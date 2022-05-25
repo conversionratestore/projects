@@ -361,14 +361,14 @@ function pushDataLayer(action,label) {
     if (label) {
         dataLayer.push({
             'event': 'event-to-ga',
-            'eventCategory': 'Exp: Exit-intent pop-up - {{device category}}',
+            'eventCategory': `Exp: Exit-intent pop-up - ${detectMob() == true ? 'mobile' : 'desktop'}`,
             'eventAction': action,
             'eventLabel': label
         });
     } else {
         dataLayer.push({
             'event': 'event-to-ga',
-            'eventCategory': `Exp: Exit-intent pop-up - ${detectMob() == true ? 'mobile' : 'disktop'}`,
+            'eventCategory': `Exp: Exit-intent pop-up - ${detectMob() == true ? 'mobile' : 'desktop'}`,
             'eventAction': action
         });
 
@@ -552,7 +552,7 @@ window.onload = function() {
 
             //show modal mobile
             let my_scroll = (function() {
-                let last_position, new_position, timer, delta, delay = 20;
+                let last_position, new_position, timer, delta, delay = 50;
 
                 function clear() {
                     last_position = null;
@@ -574,7 +574,7 @@ window.onload = function() {
             })();
             
             function myScrollSpeedFunction(){
-                if(my_scroll() < -200 && !sessionStorage.getItem('modal_loaded')) {
+                if(my_scroll() < -150 && !sessionStorage.getItem('modal_loaded')) {
                     sessionStorage.setItem('modal_loaded', 'true'); //refresh status modal
                     showModal() //show modal
                 }
