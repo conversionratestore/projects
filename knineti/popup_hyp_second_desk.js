@@ -11,6 +11,26 @@ let startFunkDesk = setInterval(() => {
     scriptCustomSlider.async = false
     document.head.appendChild(scriptCustomSlider)
 
+    function pushDataLayer(actionDataLayer, labelDataLayer) {
+      window.dataLayer = window.dataLayer || []
+      if (labelDataLayer) {
+        console.log(actionDataLayer + " : " + labelDataLayer)
+        dataLayer.push({
+          event: "event-to-ga",
+          eventCategory: `Exp: Improved registration flow`,
+          eventAction: `${actionDataLayer}`,
+          eventLabel: `${labelDataLayer}`,
+        })
+      } else {
+        console.log(actionDataLayer)
+        dataLayer.push({
+          event: "event-to-ga",
+          eventCategory: `Exp: Improved registration flow`,
+          eventAction: `${actionDataLayer}`,
+        })
+      }
+    }
+
     let popupStyle = /*html */ `
     <style>
       header,
@@ -1083,6 +1103,7 @@ let startFunkDesk = setInterval(() => {
 
     </style>
     `
+
     let newBlock = /*html */ `
     <section class="new_block">
         <div class="join_text">
@@ -1571,8 +1592,23 @@ let startFunkDesk = setInterval(() => {
     //   click on btn
     document.querySelector(".enroll_box .info_box > div:first-child > a").addEventListener("click", function (e) {
       e.preventDefault()
+      pushDataLayer("Step 1 Sign up for workshop (main)")
 
       document.querySelector(".desktop-view .button-header a.button-blue-large:link").click()
+    })
+
+    document.querySelector(".what a.grab_butn").addEventListener("click", () => {
+      pushDataLayer("Step 1 Grab your free seat (any)")
+    })
+
+    document.querySelector(".Rapt a").addEventListener("click", () => {
+      pushDataLayer("Step 1 Grab your free seat (any)")
+    })
+
+    document.querySelectorAll(".buttons a.grab_butn").forEach((el) => {
+      el.addEventListener("click", () => {
+        pushDataLayer("Step 1 Grab your free seat (any)")
+      })
     })
 
     // #openModal
@@ -1607,10 +1643,17 @@ let startFunkDesk = setInterval(() => {
           document.querySelector(".chosen_select ul").insertAdjacentHTML("afterbegin", setListBreedDog(el))
         })
 
+        // click on label checkbox
+        document.querySelectorAll("#openModal .custom_checkbox + label").forEach((el) => {
+          el.addEventListener("click", function () {
+            pushDataLayer(`${this.getAttribute("for")} selected`)
+          })
+        })
+
         //   click on first btn Continue
         if (document.querySelector(".popup_new > div:last-child .popup_first .btn_continue")) {
           document.querySelector(".popup_new > div:last-child .popup_first .btn_continue").addEventListener("click", function (el) {
-            console.log(`.popup_first .btn_continue`, this)
+            pushDataLayer(`Click on Continue on step "What unwanted behavior do you want to address`)
             this.closest(".popup_first")?.classList.remove("active_popup")
 
             document.querySelector(".popup_new > div:last-child .progress_bar > div p:first-child.active_btn_first").style.display = "none"
@@ -1628,7 +1671,7 @@ let startFunkDesk = setInterval(() => {
 
         //   click on second btn Continue
         document.querySelector(".popup_new > div:last-child .popup_second .btn_continue").addEventListener("click", function (el) {
-          console.log(`.popup_second .btn_continue`, this)
+          pushDataLayer(`Click on Continue on step "What’s your dog’s age?`)
           this.closest(".popup_second")?.classList.remove("active_popup")
 
           document.querySelector(".popup_new > div:last-child .progress_bar > div p:nth-child(2).active_btn_second")?.classList.remove("active_btn_second")
@@ -1642,6 +1685,10 @@ let startFunkDesk = setInterval(() => {
 
         //   click on third btn Continue
         document.querySelector(".popup_new > div:last-child .popup_third_box .btn_continue").addEventListener("click", function () {
+          if (document.querySelector(".chosen_select label > input")) {
+            let inputValue = document.querySelector(".chosen_select label > input").value
+            pushDataLayer(`Click on Continue on step "What breed is your dog? ${inputValue}`)
+          }
           document.querySelector(".popup_new").style.display = "none"
           document.querySelector("#openModal .modal-body").style.display = "block"
           document.querySelector(".btn_wrapp").style.display = "flex"
@@ -1649,6 +1696,7 @@ let startFunkDesk = setInterval(() => {
 
         // //   btn back first
         document.querySelector(".popup_new > div:last-child .progress_bar > div p:nth-child(1)").addEventListener("click", function () {
+          pushDataLayer(`Click on Previous on step "What unwanted behavior do you want to address?"`)
           if (document.querySelector(".popup_new > div:last-child .popup_first .btn_continue").getAttribute("data-lst-dog")) {
             document.querySelector(".popup_new > div:last-child .popup_first .btn_continue").removeAttribute("data-lst-dog", "2")
           }
@@ -1658,10 +1706,10 @@ let startFunkDesk = setInterval(() => {
           document.querySelector(".popup_new > div:last-child .progress_bar > div p:nth-child(2)").addEventListener("click", function (el) {
             //   btn back active_btn_second
             if (this?.classList.contains("active_btn_second")) {
+              pushDataLayer(`Click on Previous on step "What’s your dog’s age?"`)
               this.style.display = "none"
               document.querySelector(".popup_new > div:last-child .progress_bar > div p:nth-child(1)").style.display = "flex"
               document.querySelector(".popup_new > div:last-child .progress_bar > div p:nth-child(1)")?.classList.add("active_btn_first")
-              console.log("popup_second")
               document.querySelector(".popup_new > div:last-child .popup_first")?.classList.add("active_popup")
               document.querySelector(".popup_new > div:last-child .popup_second")?.classList.remove("active_popup")
               document.querySelector(".popup_new .img_wrap .dog_second").style.display = "none"
@@ -1672,7 +1720,7 @@ let startFunkDesk = setInterval(() => {
 
             //   btn back active_btn_third
             if (this?.classList.contains("active_btn_third")) {
-              console.log("popup_third_box")
+              pushDataLayer(`Click on Previous on step "What breed is your dog?"`)
               this?.classList.remove("active_btn_third")
               this?.classList.add("active_btn_second")
 
@@ -1692,10 +1740,19 @@ let startFunkDesk = setInterval(() => {
           document.querySelector(".modal.in .modal-dialog .btn_wrapp > p").addEventListener("click", function () {
             // btn back fourth
             if (this?.classList.contains("active_btn_fourth")) {
+              pushDataLayer(`Click on Previous on step "How should we address you and yourdog?"`)
               document.querySelector(".popup_new").style.display = "flex"
               document.querySelector("#openModal .modal-body").style.display = "none"
               document.querySelector(".btn_wrapp").style.display = "none"
             }
+          })
+        }
+
+        if (document.querySelector(".popup_new > div:last-child .popup_second ul")) {
+          document.querySelectorAll(".popup_new > div:last-child .popup_second ul li label").forEach((el) => {
+            el.addEventListener("click", function () {
+              pushDataLayer(`${this.getAttribute("for")} selected`)
+            })
           })
         }
 
@@ -1712,7 +1769,6 @@ let startFunkDesk = setInterval(() => {
         document.querySelector("#openModal #subs-email2").tabIndex = "0"
         document.querySelector("#openModal #subs-mobile2").tabIndex = "0"
         document.querySelector("#openModal #contact-submit").tabIndex = "0"
-        console.log(`#openModal`)
 
         document
           .querySelector(`#openModal input[name='dog_name']`)
@@ -1731,10 +1787,6 @@ let startFunkDesk = setInterval(() => {
           //   value btn main submit
           document.querySelector("#openModal #contact-submit").value = "Get workshop link"
 
-          //   document.querySelector("#openModal #contact-submit").addEventListener("click", function () {
-          //     pushDataLayer("Get workshop link clicked #openModal")
-          //   })
-
           //   create btn last continue
           document.querySelector("#openModal form .form-group > div:last-child").insertAdjacentHTML("beforebegin", buttonInputName)
         }
@@ -1746,19 +1798,19 @@ let startFunkDesk = setInterval(() => {
         }
 
         // click on button.close
-        if (document.querySelector("#openModal .popup_name button.close")) {
-          document.querySelector("#openModal .popup_name button.close").addEventListener("click", () => {
-            document.querySelector(".popup_new").style.display = "flex"
-            // pushDataLayer(`Click on Closed on step "How should we address you and your dog?" #openModal`)
-          })
-        }
+        document.querySelector("#openModal .btn_wrapp button.close").addEventListener("click", () => {
+          if (document.querySelector("#openModal .btn_wrapp > p").classList.contains("active_btn_fourth")) {
+            pushDataLayer(`Click on Closed on step "How should we address you and your dog?"`)
+          }
 
-        if (document.querySelector("#openModal .popup_adress button.close")) {
-          document.querySelector("#openModal .popup_adress button.close").addEventListener("click", () => {
-            document.querySelector(".popup_new").style.display = "flex"
-            // pushDataLayer(`Click on Closed on step "Enter your email and mobile number to access" #openModal`)
-          })
-        }
+          if (document.querySelector("#openModal .btn_wrapp > p").classList.contains("active_btn_fifth")) {
+            pushDataLayer(`Click on Closed on step "Enter your email and mobile number to access"`)
+          }
+        })
+
+        document.querySelector("#firstModal #contact-submit").addEventListener("click", function () {
+          pushDataLayer("Get workshop link clicked")
+        })
 
         // choose select
         if (document.querySelector(".chosen_select")) {
@@ -1840,7 +1892,7 @@ let startFunkDesk = setInterval(() => {
             })
 
             if (notFound) {
-              document.querySelector(".chosen_select ul").innerHTML = `<li>Opps, no result!</li>`
+              document.querySelector(".chosen_select ul").innerHTML = `<li>Oops, nothing found!</li>`
             }
           }
         }
@@ -1886,7 +1938,7 @@ let startFunkDesk = setInterval(() => {
       }
 
       if (document.querySelector(`${parent} input.input_error`) === null && parent === `#openModal`) {
-        // pushDataLayer(`Click on Continue on step "How should we address you and your dog?"`)
+        pushDataLayer(`Click on Continue on step "How should we address you and your dog?"`)
         document.querySelector("#openModal .button_input_name").style.display = "none"
         document.querySelector("#openModal #subs-name2").style.display = "none"
         document.querySelector("#openModal #dog-name2").style.display = "none"
@@ -1912,6 +1964,7 @@ let startFunkDesk = setInterval(() => {
     document.querySelectorAll(".dog_list ul li a").forEach((el) => {
       el.addEventListener("click", function (e) {
         e.preventDefault()
+        pushDataLayer(`Step 1 click on ${el.querySelector("span").textContent} (minus Continue on step "What unwanted behavior do you want to address)`)
 
         document.querySelector(".desktop-view .button-header a.button-blue-large:link").click()
 
@@ -1930,5 +1983,8 @@ let startFunkDesk = setInterval(() => {
         }, 20)
       })
     })
+
+    pushDataLayer("loaded")
+    clarity("set", "reg_popup_impr", "variant_1")
   }
 }, 10)
