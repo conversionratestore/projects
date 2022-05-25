@@ -140,7 +140,7 @@ let style = `
         color: #111111;
         padding-left: 20px;
     }
-    .btn {
+    .modal__popular .btn {
         background: #068922;
         border-radius: 5px;
         line-height: 52px;
@@ -155,61 +155,33 @@ let style = `
         align-items: center;
         justify-content: center;
     }
-    .btn img , .btn svg {
+    .modal__popular .btn img, .modal__popular .btn svg {
         margin-left: 10px;
     }
-    .btn__google-pay, .btn__apple-pay {
+    .modal__popular .btn__google-pay, .modal__popular .btn__apple-pay {
         background: #111111;
         font-weight: 400;
         text-transform: inherit;
     }
-    .btn__paypal, .btn__affirm {
+    .modal__popular .btn__paypal, .modal__popular .btn__affirm {
         background: #F0F0F0;
         font-weight: 400;
         color: #4D4D4D;
         text-transform: inherit;
     }
-    .btn__paypal img {
+    .modal__popular .btn__paypal img {
         margin-bottom: 4px;
     }
-    .btn__affirm img {
+    .modal__popular .btn__affirm img {
         margin-bottom: 11px;
     }
-    .btns .btn {
+    .modal__popular .btns .btn {
         margin-bottom: 15px;
     }
-    .btns .btn:last-child {
+    .modal__popular .btns .btn:last-child {
         margin: 0;
     }
-    .btn_more {
-        background: #fff;
-        border: none;
-        margin-top: -1px;
-        margin-bottom: 15px;
-        width: 100%;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        position: relative;
-        z-index: 2;
-    }
-    .btn_more span {
-        background: #F0F0F0;
-        border-radius: 3px;
-        color: #464646;
-        font-weight: 400;
-        font-size: 14px;
-        line-height: 18px;
-        padding: 5px 10px;
-    }
-    .btn_more .line {
-        max-width: 190px;
-        width: calc(100% - 20px);
-        height: 1px;
-        opacity: 0.5;
-        background: #D8D8D8;
-        padding: 0;
-    }
+    
     .modal__popular .heading {
         border-top: 2px solid #d8d8d8;
         margin: 24px 0;
