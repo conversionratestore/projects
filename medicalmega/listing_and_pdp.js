@@ -1986,6 +1986,7 @@ window.onload = function() {
           
           if (isSearchStalled === false ) {
             console.log(isSearchStalled)
+            console.log( document.querySelector('#form-search .ais-SearchBox-submit'))
             document.querySelector('#form-search .ais-SearchBox-submit').addEventListener('click', (e) => {
               e.stopImmediatePropagation()
               search.helper.state.hierarchicalFacetsRefinements['categories.lvl0'] = [];
