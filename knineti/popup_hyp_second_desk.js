@@ -1616,28 +1616,61 @@ let startFunkDesk = setInterval(() => {
     let a = setInterval(() => {
       if (document.querySelector("#openModal .modal-content.modal-of-content.popup-first-body.landscape-popup-width")) {
         clearInterval(a)
-        if (document.querySelector("#openModal.modal.in .modal-dialog")) {
-          document.querySelector("#openModal.modal.in .modal-dialog").insertAdjacentHTML(
-            "afterbegin",
-            `     <div class="img_wrap">
-                          <img src="https://conversionratestore.github.io/projects/knineti/img/logo_dog.png" alt="logo dog">
-                      </div>`
-          )
-
-          document.querySelector("#openModal.modal.in .modal-dialog > .img_wrap").insertAdjacentHTML(
-            "afterend",
-            `<div class="btn_wrapp">     
-             <p class="active_btn_fourth" tabIndex="0">
-            <img src="https://conversionratestore.github.io/projects/knineti/img/previous_btn.svg" alt="previous button">
-            <span>Previous</span></p>
-            <button type="button" class="close" id="closestepthree" data-dismiss="modal" style="display: block;" data-original-title="" title="">
-                <spam class="btn_space" data-original-title="" title="">×</spam>
-            </button>
-            </div>  `
-          )
-        }
 
         document.querySelector("#openModal .border-of-modal").insertAdjacentHTML("afterbegin", popupNew)
+
+        let b = setInterval(() => {
+          if (document.querySelector("#openModal.modal.in .modal-dialog")) {
+            clearInterval(b)
+            // if (document.querySelector("#openModal.modal.in .modal-dialog")) {
+            console.log('"#openModal.modal.in .modal-dialog')
+            document.querySelector("#openModal.modal.in .modal-dialog").insertAdjacentHTML(
+              "afterbegin",
+              `     <div class="img_wrap">
+                              <img src="https://conversionratestore.github.io/projects/knineti/img/logo_dog.png" alt="logo dog">
+                          </div>`
+            )
+
+            document.querySelector("#openModal.modal.in .modal-dialog > .img_wrap").insertAdjacentHTML(
+              "afterend",
+              `<div class="btn_wrapp">     
+                 <p class="active_btn_fourth" tabIndex="0">
+                <img src="https://conversionratestore.github.io/projects/knineti/img/previous_btn.svg" alt="previous button">
+                <span>Previous</span></p>
+                <button type="button" class="close" id="closestepthree" data-dismiss="modal" style="display: block;" data-original-title="" title="">
+                    <spam class="btn_space" data-original-title="" title="">×</spam>
+                </button>
+                </div>  `
+            )
+
+            // click on button.close
+            if (document.querySelector("#openModal .btn_wrapp button.close")) {
+              document.querySelector("#openModal .btn_wrapp button.close").addEventListener("click", () => {
+                if (document.querySelector("#openModal .btn_wrapp > p").classList.contains("active_btn_fourth")) {
+                  pushDataLayer(`Click on Closed on step "How should we address you and your dog?"`)
+                }
+
+                if (document.querySelector("#openModal .btn_wrapp > p").classList.contains("active_btn_fifth")) {
+                  pushDataLayer(`Click on Closed on step "Enter your email and mobile number to access"`)
+                }
+              })
+            }
+
+            // btn back fourth
+            if (document.querySelector("#openModal.modal.in .modal-dialog .btn_wrapp")) {
+              document.querySelector("#openModal.modal.in .modal-dialog .btn_wrapp > p").addEventListener("click", function () {
+                // btn back fourth
+                if (this?.classList.contains("active_btn_fourth")) {
+                  pushDataLayer(`Click on Previous on step "How should we address you and yourdog?"`)
+                  document.querySelector(".popup_new").style.display = "flex"
+                  document.querySelector("#openModal .modal-body").style.display = "none"
+                  document.querySelector("#openModal .btn_wrapp").style.display = "none"
+                }
+              })
+            }
+          }
+          // }
+        }, 10)
 
         arrayBreedDog.forEach((el) => {
           document.querySelector(".chosen_select ul").insertAdjacentHTML("afterbegin", setListBreedDog(el))
@@ -1684,15 +1717,19 @@ let startFunkDesk = setInterval(() => {
         })
 
         //   click on third btn Continue
-        document.querySelector(".popup_new > div:last-child .popup_third_box .btn_continue").addEventListener("click", function () {
-          if (document.querySelector(".chosen_select label > input")) {
-            let inputValue = document.querySelector(".chosen_select label > input").value
-            pushDataLayer(`Click on Continue on step "What breed is your dog? ${inputValue}`)
-          }
-          document.querySelector(".popup_new").style.display = "none"
-          document.querySelector("#openModal .modal-body").style.display = "block"
-          document.querySelector(".btn_wrapp").style.display = "flex"
-        })
+        if (document.querySelector(".popup_new > div:last-child .popup_third_box .btn_continue")) {
+          document.querySelector(".popup_new > div:last-child .popup_third_box .btn_continue").addEventListener("click", function () {
+            if (document.querySelector(".chosen_select label > input")) {
+              let inputValue = document.querySelector(".chosen_select label > input").value
+              pushDataLayer(`Click on Continue on step "What breed is your dog? ${inputValue}`)
+            }
+            document.querySelector(".popup_new").style.display = "none"
+            document.querySelector("#openModal .modal-body").style.display = "block"
+            if (document.querySelector("#openModal .btn_wrapp")) {
+              document.querySelector("#openModal .btn_wrapp").style.display = "flex"
+            }
+          })
+        }
 
         // //   btn back first
         document.querySelector(".popup_new > div:last-child .progress_bar > div p:nth-child(1)").addEventListener("click", function () {
@@ -1731,19 +1768,6 @@ let startFunkDesk = setInterval(() => {
               document.querySelector(".popup_new .img_wrap .dog_second").style.display = "block"
               document.querySelector(".popup_new > div:last-child .progress_bar > ul li:nth-child(3)")?.classList.remove("active_step")
               document.querySelector(".popup_new > div:last-child .progress_bar > div p:last-child span:nth-child(1)").textContent = "2"
-            }
-          })
-        }
-
-        // btn back fourth
-        if (document.querySelector(".modal.in .modal-dialog .btn_wrapp")) {
-          document.querySelector(".modal.in .modal-dialog .btn_wrapp > p").addEventListener("click", function () {
-            // btn back fourth
-            if (this?.classList.contains("active_btn_fourth")) {
-              pushDataLayer(`Click on Previous on step "How should we address you and yourdog?"`)
-              document.querySelector(".popup_new").style.display = "flex"
-              document.querySelector("#openModal .modal-body").style.display = "none"
-              document.querySelector(".btn_wrapp").style.display = "none"
             }
           })
         }
@@ -1797,26 +1821,19 @@ let startFunkDesk = setInterval(() => {
           })
         }
 
-        // click on button.close
-        document.querySelector("#openModal .btn_wrapp button.close").addEventListener("click", () => {
-          if (document.querySelector("#openModal .btn_wrapp > p").classList.contains("active_btn_fourth")) {
-            pushDataLayer(`Click on Closed on step "How should we address you and your dog?"`)
-          }
-
-          if (document.querySelector("#openModal .btn_wrapp > p").classList.contains("active_btn_fifth")) {
-            pushDataLayer(`Click on Closed on step "Enter your email and mobile number to access"`)
-          }
-        })
-
-        document.querySelector("#firstModal #contact-submit").addEventListener("click", function () {
-          pushDataLayer("Get workshop link clicked")
-        })
+        // click on btn Get workshop link clicked
+        if (document.querySelector("#openModal #firstModal #contact-submit")) {
+          document.querySelector("#openModal #firstModal #contact-submit").addEventListener("click", function () {
+            pushDataLayer("Get workshop link clicked")
+          })
+        }
 
         // choose select
         if (document.querySelector(".chosen_select")) {
           filteInputText()
           // remove all text input
           document.querySelector("#removeTextInput").addEventListener("click", function (e) {
+            pushDataLayer("Click on Closed on step 'What breed is your dog?'")
             document.querySelector(".chosen_select ul").innerHTML = ""
             arrayBreedDog.forEach((el) => {
               document.querySelector(".chosen_select ul").insertAdjacentHTML("afterbegin", setListBreedDog(el))
@@ -1964,9 +1981,12 @@ let startFunkDesk = setInterval(() => {
     document.querySelectorAll(".dog_list ul li a").forEach((el) => {
       el.addEventListener("click", function (e) {
         e.preventDefault()
-        pushDataLayer(`Step 1 click on ${el.querySelector("span").textContent} (minus Continue on step "What unwanted behavior do you want to address)`)
 
         document.querySelector(".desktop-view .button-header a.button-blue-large:link").click()
+
+        if (document.querySelector("#openModal .btn_wrapp")) {
+          pushDataLayer(`Step 1 click on ${el.querySelector("span").textContent}`)
+        }
 
         let a = setInterval(() => {
           if (document.querySelector(".popup_new > div:last-child .progress_bar > div p:nth-child(1)")?.classList.contains("active_btn_first")) {
@@ -1977,6 +1997,7 @@ let startFunkDesk = setInterval(() => {
             if (document.querySelector(".popup_new > div:last-child .popup_first .btn_continue")) {
               if (!document.querySelector(".popup_new > div:last-child .popup_first .btn_continue").getAttribute("data-lst-dog")) {
                 document.querySelector(".popup_new > div:last-child .popup_first .btn_continue").click()
+                pushDataLayer(`Step 1 click on ${el.querySelector("span").textContent} (minus Continue on step "What unwanted behavior do you want to address)`)
               }
             }
           }
