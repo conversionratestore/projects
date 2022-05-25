@@ -1,15 +1,6 @@
 let startFunkDesk = setInterval(() => {
   if (document.querySelector(".entry-content")) {
     clearInterval(startFunkDesk)
-    let scriptCustomSliderStyle = document.createElement("link")
-    scriptCustomSliderStyle.href = "https://cdnjs.cloudflare.com/ajax/libs/chosen/1.5.1/chosen.min.css"
-    scriptCustomSliderStyle.rel = "stylesheet"
-    document.head.appendChild(scriptCustomSliderStyle)
-
-    let scriptCustomSlider = document.createElement("script")
-    scriptCustomSlider.src = "https://cdnjs.cloudflare.com/ajax/libs/chosen/1.5.1/chosen.jquery.min.js"
-    scriptCustomSlider.async = false
-    document.head.appendChild(scriptCustomSlider)
 
     function pushDataLayer(actionDataLayer, labelDataLayer) {
       window.dataLayer = window.dataLayer || []
@@ -1622,8 +1613,7 @@ let startFunkDesk = setInterval(() => {
         let b = setInterval(() => {
           if (document.querySelector("#openModal.modal.in .modal-dialog")) {
             clearInterval(b)
-            // if (document.querySelector("#openModal.modal.in .modal-dialog")) {
-            console.log('"#openModal.modal.in .modal-dialog')
+
             document.querySelector("#openModal.modal.in .modal-dialog").insertAdjacentHTML(
               "afterbegin",
               `     <div class="img_wrap">
@@ -1669,7 +1659,6 @@ let startFunkDesk = setInterval(() => {
               })
             }
           }
-          // }
         }, 10)
 
         arrayBreedDog.forEach((el) => {
@@ -1992,8 +1981,6 @@ let startFunkDesk = setInterval(() => {
           if (document.querySelector(".popup_new > div:last-child .progress_bar > div p:nth-child(1)")?.classList.contains("active_btn_first")) {
             clearInterval(a)
 
-            console.log(`setInterval`)
-
             if (document.querySelector(".popup_new > div:last-child .popup_first .btn_continue")) {
               if (!document.querySelector(".popup_new > div:last-child .popup_first .btn_continue").getAttribute("data-lst-dog")) {
                 document.querySelector(".popup_new > div:last-child .popup_first .btn_continue").click()
@@ -2007,5 +1994,6 @@ let startFunkDesk = setInterval(() => {
 
     pushDataLayer("loaded")
     clarity("set", "reg_popup_impr", "variant_1")
+    document.querySelector(".exp")?.remove()
   }
 }, 10)
