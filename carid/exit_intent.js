@@ -169,6 +169,12 @@ let style = `
         color: #4D4D4D;
         text-transform: inherit;
     }
+    .btn__paypal img {
+        margin-bottom: 4px;
+    }
+    .btn__affirm img {
+        margin-bottom: 11px;
+    }
     .btns .btn {
         margin-bottom: 15px;
     }
