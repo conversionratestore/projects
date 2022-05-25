@@ -579,10 +579,12 @@ window.onload = function() {
         //close modal
         document.querySelector('.btn_close').addEventListener('click', () => {
             hideModal();
+            pushDataLayer(`Click close on the pop-up its almost yours`)
         })
         document.querySelector('.modal__popular').addEventListener('click', (e) => {
             if (e.target.matches('.modal__popular')) {
                 hideModal()
+                pushDataLayer(`Click on the pop-up outside its almost yours`)
             }
         })
 
@@ -602,7 +604,7 @@ window.onload = function() {
             pushDataLayer('Click on check out with PayPal button')
             hideModal()
         })
-        
+
         document.querySelector('.btn__affirm').addEventListener('click', (e) => {
             pushDataLayer('Click on monthly payment affirm button')
             hideModal()
