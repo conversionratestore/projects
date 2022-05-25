@@ -638,7 +638,7 @@ border-radius: 100px;
     font-size: 12px;
     line-height: 130%; }
     .listing_wrapper .card_name span {
-      margin-bottom: 33px; }
+      margin-bottom: 7px; }
   .listing_wrapper .calc-qty {
     width: 32px;
     height: 32px;
@@ -782,8 +782,9 @@ border-radius: 100px;
       line-height: 15.6px;
       margin-bottom: 7px; }
       .card_item {
-        font-size: 10px;
+        font-size: 11px;
         margin-bottom: 15px;
+        color: #6D7E85;
       }
   .card .btn {
     padding: 0;
@@ -1819,7 +1820,7 @@ window.onload = function() {
           <img src="https://medicalmegaimgs.net/prod/uploaded/product/pro_thumb/${findImageHits(hit.variants) != '' ? findImageHits(hit.variants) : 'dummyimage.jpg' }" alt="${hit.name}">
           <span title='${hit.name}'>${hit.name}</span>
         </a>
-        <p class="card_item">${hit.item_num}</p>
+        <p class="card_item">Item #${hit.item_num}</p>
         <form action="https://medicalmega.com/cart.html" method="post">
           <div class="flex-center-center calc" ${hit.in_stock==false || hit.price == '0:00' ? 'disabled' : ''}>
             <button class="btn-calc btn-calc_minus" type="button" disabled=""></button>
@@ -2663,7 +2664,7 @@ window.onload = function() {
                       <img src="https://medicalmegaimgs.net/prod/uploaded/product/${findImageHits(hits[i].variants) == '' ? 'dummyimage.jpg' : findImageHits(hits[i].variants)}" alt="${hits[i].name}">
                       <span title='${hits[i].name}'>${hits[i].name}</span>
                   </a>
-                  <p class="card_item">${hits[i].item_num}</p>
+                  <p class="card_item">Item #${hits[i].item_num}</p>
                   <form action="https://medicalmega.com/cart.html" method="post">
                       <div class="flex-center-center calc" ${hits[i].in_stock==false || hits[i].price == '0:00' ? 'disabled' : ''}> 
                         <button class="btn-calc btn-calc_minus" type="button" disabled=""></button>
