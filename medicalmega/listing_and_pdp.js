@@ -2141,7 +2141,6 @@ window.onload = function() {
   document.querySelector('#form-search .ais-SearchBox-submit').addEventListener('click', (e) => {
     e.stopImmediatePropagation()
     search.helper.state.hierarchicalFacetsRefinements['categories.lvl0'] = [];
-    search.helper.state.query = document.querySelector('#form-search .ais-SearchBox-input').value;
     // document.querySelector('.ais-ClearRefinements-button').classList.add('action-clean');
     // document.querySelector('.ais-ClearRefinements-button').click()
     if (document.querySelector('.advanced-search.active') != null) {
