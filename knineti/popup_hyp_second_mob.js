@@ -9,7 +9,7 @@ if (window.innerWidth <= 768) {
           console.log(actionDataLayer + " : " + labelDataLayer)
           dataLayer.push({
             event: "event-to-ga",
-            eventCategory: `Exp: Improved registration flow`,
+            eventCategory: `Exp: Improved registration flow mob`,
             eventAction: `${actionDataLayer}`,
             eventLabel: `${labelDataLayer}`,
           })
@@ -17,7 +17,7 @@ if (window.innerWidth <= 768) {
           console.log(actionDataLayer)
           dataLayer.push({
             event: "event-to-ga",
-            eventCategory: `Exp: Improved registration flow`,
+            eventCategory: `Exp: Improved registration flow mob`,
             eventAction: `${actionDataLayer}`,
           })
         }
