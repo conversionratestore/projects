@@ -2271,28 +2271,28 @@ window.onload = function() {
     })
   })
 
-  autocomplete('#form-search input', {hint: false, debug: false}, [
-    {
-        source: autocomplete.sources.hits(index, {hitsPerPage: 7, facetFilters: ["*"]}),
-        displayKey: 'name',
-        // openOnFocus: true,
-        onStateChange: false,
+  // autocomplete('#form-search input', {hint: false, debug: false}, [
+  //   {
+  //       source: autocomplete.sources.hits(index, {hitsPerPage: 7, facetFilters: ["*"]}),
+  //       displayKey: 'name',
+  //       // openOnFocus: true,
+  //       onStateChange: false,
       
-        templates: {
-          suggestion: function(suggestion) {
-            let sugTemplate = "<img src='https://medicalmegaimgs.net/prod/uploaded/product/pro_thumb/"+ (findImageHits(suggestion.variants) != '' ? findImageHits(suggestion.variants) : 'dummyimage.jpg') +"'/><div><p class='name'>"+ suggestion._highlightResult.name.value +"</p><p class='item_num'>Item #" + suggestion._highlightResult.item_num.value + "</p><p class='price'>$" + suggestion.price + "</p></div>"
+  //       templates: {
+  //         suggestion: function(suggestion) {
+  //           let sugTemplate = "<img src='https://medicalmegaimgs.net/prod/uploaded/product/pro_thumb/"+ (findImageHits(suggestion.variants) != '' ? findImageHits(suggestion.variants) : 'dummyimage.jpg') +"'/><div><p class='name'>"+ suggestion._highlightResult.name.value +"</p><p class='item_num'>Item #" + suggestion._highlightResult.item_num.value + "</p><p class='price'>$" + suggestion.price + "</p></div>"
                     
-            return sugTemplate;
-          },
-        },
-    }
-    ]).on('autocomplete:selected', function(event, suggestion, dataset) {
-      window.location.href = `https://medicalmega.com/product/${suggestion.seo}`
+  //           return sugTemplate;
+  //         },
+  //       },
+  //   }
+  //   ]).on('autocomplete:selected', function(event, suggestion, dataset) {
+  //     window.location.href = `https://medicalmega.com/product/${suggestion.seo}`
 
-      actionDataLayer = `Selected suggestion`;
-      labelDataLayer = 'Autocomplete Search by Name';
-      pushDataLayer(actionDataLayer, labelDataLayer)
-    })
+  //     actionDataLayer = `Selected suggestion`;
+  //     labelDataLayer = 'Autocomplete Search by Name';
+  //     pushDataLayer(actionDataLayer, labelDataLayer)
+  //   })
 
   document.querySelector('#form-search input').addEventListener('click', (e) => {
     actionDataLayer = `Click on Search by Name`;
