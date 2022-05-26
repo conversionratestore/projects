@@ -1988,6 +1988,7 @@ window.onload = function() {
             console.log(isSearchStalled)
 
             console.log( document.querySelector('#form-search .ais-SearchBox-submit'))
+         
             document.querySelector('#form-search .ais-SearchBox-submit').addEventListener('click', (e) => {
               e.stopImmediatePropagation()
               console.log('click')
@@ -2002,7 +2003,7 @@ window.onload = function() {
               query = document.querySelector('#form-search .ais-SearchBox-input').value;
               console.log(query)
               search._searchFunction(search.helper)
-              search.refresh()
+              // search.refresh()
               
               actionDataLayer = `Click on submit button`;
               labelDataLayer = 'Search by Name';
@@ -2158,6 +2159,11 @@ window.onload = function() {
 
   search.start();
 
+  document.querySelector('#form-search .ais-SearchBox-input').addEventListener('input', (e) => {
+    query = e.target.value;
+    console.log(query)
+    search._searchFunction(search.helper)
+  })
 
   let dataButton = document.querySelectorAll('[data-button]'), // btn for open or bloc
       closeBtn = document.querySelectorAll('[data-close]'); //btn close for hide popup or block
