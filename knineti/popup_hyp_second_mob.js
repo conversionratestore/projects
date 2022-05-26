@@ -95,7 +95,7 @@ if (window.innerWidth <= 768) {
 }
 
 .enroll_box .img_wrap {
-  max-width: 116px;
+  max-width: 200px;
   text-align: left;
 }
 
