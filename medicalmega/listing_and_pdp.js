@@ -1848,7 +1848,7 @@ window.onload = function() {
     instantsearch.widgets.searchBox({
       container: '#form-search',
       placeholder: 'Search by Name',
-      loadingIndicator: false,
+      showLoadingIndicator: false,
       searchAsYouType: false, 
       templates: {
           loadingIndicator: '<img src="https://conversionratestore.github.io/projects/medicalmega/img/loading-buffering.gif" alt="icon loading">',
@@ -1970,7 +1970,7 @@ window.onload = function() {
         'categories.lvl2',
         'categories.lvl3',
         'categories.lvl4',
-        'query',
+        // 'query',
       ],
       transformItems(items) {
         return items.map(item => ({
