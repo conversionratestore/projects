@@ -2162,7 +2162,6 @@ window.onload = function() {
   document.querySelector('#form-search .ais-SearchBox-input').addEventListener('input', (e) => {
     query = e.target.value;
     console.log(query)
-    search._searchFunction(search.helper)
   })
 
   let dataButton = document.querySelectorAll('[data-button]'), // btn for open or bloc
