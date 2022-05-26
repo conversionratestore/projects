@@ -2172,17 +2172,17 @@ window.onload = function() {
     window.location.href = currentPath;
   })
 
-  // document.body.addEventListener('click', (e) => { 
-  //   if (!e.target.closest('.select')) remActiveSelect();
-  //   if (!e.target.closest('.nav_category')) {
-  //       document.querySelector(`.nav_category`).classList.remove('active');
-  //   } 
-  //   if (search.helper.state.query == '' && !e.target.closest('#form-search')) {
-  //     console.log(search.helper)
-  //     document.querySelector('#form-search .ais-SearchBox-input').value = '';
-  //     document.querySelector('#form-search pre').innerHTML = '';
-  //   }
-  // })
+  document.body.addEventListener('click', (e) => { 
+    if (!e.target.closest('.select')) remActiveSelect();
+    if (!e.target.closest('.nav_category')) {
+        document.querySelector(`.nav_category`).classList.remove('active');
+    } 
+    if (search.helper.state.query == '' && !e.target.closest('#form-search')) {
+      console.log(search.helper)
+      document.querySelector('#form-search .ais-SearchBox-input').value = '';
+      document.querySelector('#form-search pre').innerHTML = '';
+    }
+  })
   console.log( document.querySelector('#form-search .ais-SearchBox-submit'))
          
   document.querySelector('#form-search .ais-SearchBox-submit').addEventListener('click', (e) => {
@@ -2191,14 +2191,14 @@ window.onload = function() {
     // search.helper.state.hierarchicalFacetsRefinements['categories.lvl0'] = [];
     // document.querySelector('.ais-ClearRefinements-button').classList.add('action-clean');
     // document.querySelector('.ais-ClearRefinements-button').click()
-    // if (document.querySelector('.advanced-search.active') != null) {
-    //   document.querySelector('.advanced-search').classList.remove('active');
-    // }
-    // toggleListing(true)
+    if (document.querySelector('.advanced-search.active') != null) {
+      document.querySelector('.advanced-search').classList.remove('active');
+    }
+    toggleListing(true)
 
     // query = document.querySelector('#form-search .ais-SearchBox-input').value;
     console.log(query)
-    // search._searchFunction(search.helper)
+    search._searchFunction(search.helper)
     // search.refresh()
     actionDataLayer = `Click on submit button`;
     labelDataLayer = 'Search by Name';
