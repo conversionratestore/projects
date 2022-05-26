@@ -1933,6 +1933,7 @@ window.onload = function() {
         'categories.lvl2',
         'categories.lvl3',
         'categories.lvl4',
+        'query',
       ],
     }),
     instantsearch.widgets.hierarchicalMenu({
@@ -1972,7 +1973,7 @@ window.onload = function() {
         'categories.lvl2',
         'categories.lvl3',
         'categories.lvl4',
-        // 'query',
+        'query',
       ],
       transformItems(items) {
         return items.map(item => ({
