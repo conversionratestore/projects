@@ -299,12 +299,6 @@ function pushProducts(name,image,price) {
         popularProducts = [...popularProducts,...JSON.parse(sessionStorage.getItem('popular_products'))]
     } 
 
-    popularProducts = popularProducts.filter((thing, index, self) =>
-        index === self.findIndex((t) => (
-            t.name === thing.name && t.price === thing.price
-        ))
-    )
-
     console.log(popularProducts)
     sessionStorage.setItem('popular_products', JSON.stringify(popularProducts));
 }
@@ -343,7 +337,6 @@ function pushDataLayer(action,label) {
             'eventCategory': `Exp: Exit-intent pop-up - ${detectMob() == true ? 'mobile' : 'desktop'}`,
             'eventAction': action
         });
-
     }
 }
 
@@ -383,14 +376,39 @@ function stopSecInterval() {
     clearInterval(secInterval);
     pushDataLayer(`Visibility equals the pop-up its almost yours`,  setTime * 1000)
 }
-    
+
+let namePDP = '' ;
+let countMax = 0;
+
 function starInterval() {
     interval = setInterval(() => {
+        if (document.querySelector('#child_products_tbl .po_prod .po_prod_title') != null && namePDP == '') {
+            // clearInterval(interval);
+            namePDP = document.querySelector('#child_products_tbl .po_prod .po_prod_title').innerText;
+        }
         //pdp add product
         if (document.querySelector('.prod_add_to_cart_lst li') != null) {
             clearInterval(interval);
-            pushProducts(document.querySelector('.prod_add_to_cart_lst .black').innerText,document.querySelector('.prod_add_to_cart_lst img').src,document.querySelector('.prod_add_to_cart_lst b').innerHTML)  
-            if (document.querySelector('.prod_add') != null) document.querySelector('.prod_add').addEventListener('click', (e) => starInterval())
+            popularProducts = [];
+            document.querySelectorAll('.prod_add_to_cart_lst li').forEach(el => {
+                
+                if (el.querySelector('.black').innerText.includes(namePDP)) {
+                    console.log(el.querySelector('.black').innerText)
+                    pushProducts(el.querySelector('.black').innerText,el.querySelector('img').src,el.querySelector('b').innerHTML)
+                } 
+                if (!el.querySelector('.black').innerText.includes(namePDP) && countMax == 0) {
+                    countMax = 1;
+                    console.log(el.querySelector('.black').innerText)
+                    let list = document.querySelectorAll(".prod_add_to_cart_lst li");
+                    let maxNumber = [].reduce.call(list, function(a, b) {
+                        return 0 <= a.querySelector('b').innerHTML.replace('$','') - b.querySelector('b').innerHTML.replace('$','') ? a : b
+                    },)
+    
+                    console.log(maxNumber)
+                    pushProducts(maxNumber.querySelector('.black').innerHTML,maxNumber.querySelector('img').src,maxNumber.querySelector('b').innerHTML)  
+                }
+            })
+           if (document.querySelector('.prod_add') != null) document.querySelector('.prod_add').addEventListener('click', (e) => starInterval())
             sessionStorage.removeItem('modal_loaded'); //refresh status modal
         }
         //google pay button
@@ -485,38 +503,24 @@ window.onload = function() {
 
         document.body.insertAdjacentHTML('afterbegin', style); //insert styles
         document.body.insertAdjacentHTML('beforeend', html); //insert html
-        
-    
-        let items = JSON.parse(sessionStorage.getItem('popular_products')) //products in storage 
-        let cards = document.querySelectorAll('.cart-section'); //products in cart
-        let refreshPopularProducts = []; //new array
 
-        //sort products in cart and storage
-        for (let j = 0; j < cards.length; j++) {
-            for (let i = 0; i < items.length; i++) {
-                //find products on name and price in cart and storage
-                if (cards[j].querySelector('.cart_prod_name').innerText.toLowerCase().includes(items[i].name.toLowerCase().replace('...',''))) { 
-                    if (cards[j].querySelector('.cart_prod_each_prc') != null && cards[j].querySelector('.cart_prod_each_prc').innerHTML.split('<span>')[0].includes(items[i].price)) {
-                        refreshPopularProducts.push(items[i]) //add products in new array
-                    } else if (cards[j].querySelector('.cart_prod_each_prc') == null && cards[j].querySelector('.cart-product-total-price').innerHTML.includes(items[i].price)) {
-                        refreshPopularProducts.push(items[i])
-                    }
-                    
-                } 
-            }
-        }
-    
-        console.log(refreshPopularProducts)
-        sessionStorage.setItem('popular_products', JSON.stringify(refreshPopularProducts)); //set new array in storage
-
-        if (refreshPopularProducts.length > 0) {
+        if (sessionStorage.getItem('popular_products') != [] && sessionStorage.getItem('popular_products') != '' && sessionStorage.getItem('popular_products') != null) {
             //render last added product
-            let lastProduct = refreshPopularProducts[Object.keys(refreshPopularProducts)[Object.keys(refreshPopularProducts).length - 1]];
-            new Products(lastProduct.name, lastProduct.image, lastProduct.price).render();
+            let items = JSON.parse(sessionStorage.getItem('popular_products'));
+            let cards = document.querySelectorAll('.cart-section'); //products in cart
+            let countLast = 0;
+            for (let i = 0; i < items.length; i++) {
+                for (let k = 0; k < cards.length; k++) {
+                    if (cards[k].querySelector('.cart_prod_name').innerText.toLowerCase().includes(items[i].name.toLowerCase().replace('...','').split('&amp;').join('&')) && countLast == 0) {
+                        countLast = 1;
+                        new Products(cards[k].querySelector('.cart_prod_name').innerText, items[i].image, items[i].price).render();
+                    }
+                }
+            }
 
             //show modal desktop
             addEvent(document, 'mouseout', function(e) {
-                if (e.toElement == null && e.relatedTarget == null && !sessionStorage.getItem('modal_loaded')) {
+                if (e.toElement == null && e.relatedTarget == null && !sessionStorage.getItem('modal_loaded') && document.querySelector('.modal__products').innerHTML != '') {
                     sessionStorage.setItem('modal_loaded', 'true'); //refresh status modal
                     showModal() //show modal
                 }
@@ -524,7 +528,7 @@ window.onload = function() {
 
             //show modal mobile
             let my_scroll = (function() {
-                let last_position, new_position, timer, delta, delay = 30;
+                let last_position, new_position, timer, delta, delay = 50;
 
                 function clear() {
                     last_position = null;
@@ -546,7 +550,7 @@ window.onload = function() {
             })();
             
             function myScrollSpeedFunction(){
-                if(my_scroll() < -150 && !sessionStorage.getItem('modal_loaded')) {
+                if(my_scroll() < -200 && !sessionStorage.getItem('modal_loaded') && document.querySelector('.modal__products').innerHTML != '') {
                     sessionStorage.setItem('modal_loaded', 'true'); //refresh status modal
                     showModal() //show modal
                 }
