@@ -1843,13 +1843,15 @@ window.onload = function() {
 
     instantsearch.widgets.configure({
       hitsPerPage: '12',
-      // enablePersonalization: true,
+      enablePersonalization: true,
     }),
     instantsearch.widgets.searchBox({
       container: '#form-search',
       placeholder: 'Search by Name',
       showLoadingIndicator: false,
       searchAsYouType: false, 
+      showSubmit: true,
+      howReset: true,
       templates: {
           loadingIndicator: '<img src="https://conversionratestore.github.io/projects/medicalmega/img/loading-buffering.gif" alt="icon loading">',
       },
