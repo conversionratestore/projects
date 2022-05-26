@@ -2261,28 +2261,27 @@ window.onload = function() {
         templates: {
           suggestion: function(suggestion) {
             let sugTemplate = "<img src='https://medicalmegaimgs.net/prod/uploaded/product/pro_thumb/"+ (findImageHits(suggestion.variants) != '' ? findImageHits(suggestion.variants) : 'dummyimage.jpg') +"'/><div><p class='name'>"+ suggestion._highlightResult.name.value +"</p><p class='item_num'>Item #" + suggestion._highlightResult.item_num.value + "</p><p class='price'>$" + suggestion.price + "</p></div>"
-                    
-            console.log( document.querySelector('#form-search .ais-SearchBox-submit'))
+                  
         
-            // document.querySelector('#form-search .ais-SearchBox-submit').addEventListener('click', (e) => {
-            //   e.stopImmediatePropagation()
-            //   console.log('click')
-            //   search.helper.state.hierarchicalFacetsRefinements['categories.lvl0'] = [];
-            //   document.querySelector('.ais-ClearRefinements-button').classList.add('action-clean');
-            //   document.querySelector('.ais-ClearRefinements-button').click()
-            //   if (document.querySelector('.advanced-search.active') != null) {
-            //     document.querySelector('.advanced-search').classList.remove('active');
-            //   }
-            //   toggleListing(true)
+            document.querySelector('#form-search .ais-SearchBox-submit').addEventListener('click', (e) => {
+              e.stopImmediatePropagation()
+              console.log('click')
+              search.helper.state.hierarchicalFacetsRefinements['categories.lvl0'] = [];
+              // document.querySelector('.ais-ClearRefinements-button').classList.add('action-clean');
+              // document.querySelector('.ais-ClearRefinements-button').click()
+              if (document.querySelector('.advanced-search.active') != null) {
+                document.querySelector('.advanced-search').classList.remove('active');
+              }
+              toggleListing(true)
           
-            //   query = document.querySelector('#form-search .ais-SearchBox-input').value;
-            //   console.log(query)
-            //   search._searchFunction(search.helper)
-            //   // search.refresh()
-            //   actionDataLayer = `Click on submit button`;
-            //   labelDataLayer = 'Search by Name';
-            //   pushDataLayer(actionDataLayer, labelDataLayer)
-            // });
+              query = document.querySelector('#form-search .ais-SearchBox-input').value;
+              console.log(query)
+              search._searchFunction(search.helper)
+              // search.refresh()
+              actionDataLayer = `Click on submit button`;
+              labelDataLayer = 'Search by Name';
+              pushDataLayer(actionDataLayer, labelDataLayer)
+            });
 
             return sugTemplate;
           },
