@@ -2186,8 +2186,9 @@ window.onload = function() {
   console.log( document.querySelector('#form-search .ais-SearchBox-submit'))
          
   document.querySelector('#form-search .ais-SearchBox-submit').addEventListener('click', (e) => {
+    e.stopImmediatePropagation()
     console.log('click')
-    // search.helper.state.hierarchicalFacetsRefinements['categories.lvl0'] = [];
+    search.helper.state.hierarchicalFacetsRefinements['categories.lvl0'] = [];
     // document.querySelector('.ais-ClearRefinements-button').classList.add('action-clean');
     // document.querySelector('.ais-ClearRefinements-button').click()
     // if (document.querySelector('.advanced-search.active') != null) {
@@ -2196,10 +2197,9 @@ window.onload = function() {
     // toggleListing(true)
 
     // query = document.querySelector('#form-search .ais-SearchBox-input').value;
-    // console.log(query)
+    console.log(query)
     // search._searchFunction(search.helper)
     // search.refresh()
-    window.location.href = `https://medicalmega.com/?products%5Bquery%5D=${query}`
     actionDataLayer = `Click on submit button`;
     labelDataLayer = 'Search by Name';
     pushDataLayer(actionDataLayer, labelDataLayer)
