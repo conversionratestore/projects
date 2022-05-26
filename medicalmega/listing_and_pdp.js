@@ -2046,7 +2046,7 @@ window.onload = function() {
               console.log( document.querySelector('#form-search .ais-SearchBox-submit'))
          
               document.querySelector('#form-search .ais-SearchBox-submit').addEventListener('click', (e) => {
-                // e.stopImmediatePropagation()
+                e.stopImmediatePropagation()
                 console.log('click')
                 search.helper.state.hierarchicalFacetsRefinements['categories.lvl0'] = [];
                 document.querySelector('.ais-ClearRefinements-button').classList.add('action-clean');
@@ -2056,7 +2056,7 @@ window.onload = function() {
                 }
                 toggleListing(true)
             
-                // query = document.querySelector('#form-search .ais-SearchBox-input').value;
+                query = document.querySelector('#form-search .ais-SearchBox-input').value;
                 console.log(query)
                 search._searchFunction(search.helper)
                 // search.refresh()
