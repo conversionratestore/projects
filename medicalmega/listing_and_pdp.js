@@ -1658,7 +1658,7 @@ function startStuff() {
     } else {
       document.querySelector('.listing_popular').style = '';
     }
-  });
+  }, 100);
 }
 
 function stopStuff() {
