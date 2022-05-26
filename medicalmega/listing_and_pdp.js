@@ -1989,7 +1989,7 @@ window.onload = function() {
 
             console.log( document.querySelector('#form-search .ais-SearchBox-submit'))
          
-            document.querySelector('#form-search .ais-SearchBox-submit').addEventListener('click', (e) => {
+            document.querySelector('#form-search .ais-SearchBox-submit').addEventListener('submit', (e) => {
               e.stopImmediatePropagation()
               console.log('click')
               search.helper.state.hierarchicalFacetsRefinements['categories.lvl0'] = [];
