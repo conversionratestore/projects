@@ -2042,6 +2042,28 @@ window.onload = function() {
               let items = [...alphabet.querySelectorAll("li")];
               items.sort((a, b) => a.innerText == b.innerText ? 0 : a.innerText < b.innerText ? -1 : 1);
               items.forEach(item => alphabet.appendChild(item));
+
+              console.log( document.querySelector('#form-search .ais-SearchBox-submit'))
+         
+              document.querySelector('#form-search .ais-SearchBox-submit').addEventListener('click', (e) => {
+                // e.stopImmediatePropagation()
+                console.log('click')
+                search.helper.state.hierarchicalFacetsRefinements['categories.lvl0'] = [];
+                document.querySelector('.ais-ClearRefinements-button').classList.add('action-clean');
+                document.querySelector('.ais-ClearRefinements-button').click()
+                if (document.querySelector('.advanced-search.active') != null) {
+                  document.querySelector('.advanced-search').classList.remove('active');
+                }
+                toggleListing(true)
+            
+                // query = document.querySelector('#form-search .ais-SearchBox-input').value;
+                console.log(query)
+                search._searchFunction(search.helper)
+                // search.refresh()
+                actionDataLayer = `Click on submit button`;
+                labelDataLayer = 'Search by Name';
+                pushDataLayer(actionDataLayer, labelDataLayer)
+              });
             }
 
             if (window.location.pathname.includes('/category')) {
@@ -2185,27 +2207,7 @@ window.onload = function() {
       document.querySelector('#form-search pre').innerHTML = '';
     }
   })
-  console.log( document.querySelector('#form-search .ais-SearchBox-submit'))
-         
-  document.querySelector('#form-search .ais-SearchBox-submit').addEventListener('click', (e) => {
-    // e.stopImmediatePropagation()
-    console.log('click')
-    // search.helper.state.hierarchicalFacetsRefinements['categories.lvl0'] = [];
-    // document.querySelector('.ais-ClearRefinements-button').classList.add('action-clean');
-    // document.querySelector('.ais-ClearRefinements-button').click()
-    if (document.querySelector('.advanced-search.active') != null) {
-      document.querySelector('.advanced-search').classList.remove('active');
-    }
-    toggleListing(true)
 
-    // query = document.querySelector('#form-search .ais-SearchBox-input').value;
-    console.log(query)
-    search._searchFunction(search.helper)
-    // search.refresh()
-    actionDataLayer = `Click on submit button`;
-    labelDataLayer = 'Search by Name';
-    pushDataLayer(actionDataLayer, labelDataLayer)
-  });
   window.addEventListener('scroll', (e) => {
     remActiveSelect(); 
     if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
