@@ -2198,6 +2198,7 @@ window.onload = function() {
         document.querySelector(`.nav_category`).classList.remove('active');
     } 
     if (search.helper.state.query == '' && !e.target.classList.contains('.ais-SearchBox-submit')) {
+      console.log(search.helper)
       document.querySelector('#form-search .ais-SearchBox-input').value = '';
       document.querySelector('#form-search pre').innerHTML = '';
     }
