@@ -469,6 +469,7 @@ function hideModal() {
     stopSecInterval()
 }
 window.onload = function() {
+    document.body.insertAdjacentHTML('afterbegin',`<p>loaded test</p>`)
     //cart
     if (window.location.pathname.includes('/cart.php') && sessionStorage.getItem('popular_products') != null && sessionStorage.getItem('popular_products') != '' && sessionStorage.getItem('popular_products') != []) { 
 
@@ -525,7 +526,7 @@ window.onload = function() {
 
         //show modal desktop
         addEvent(document, 'mouseout', function(e) {
-            if (e.toElement == null && e.relatedTarget == null && !sessionStorage.getItem('modal_loaded') && document.querySelector('.modal__products').innerHTML != '') {
+            if (e.toElement == null && e.relatedTarget == null && !sessionStorage.getItem('modal_loaded')) {
                 sessionStorage.setItem('modal_loaded', 'true'); //refresh status modal
                 showModal() //show modal
             }
@@ -556,7 +557,7 @@ window.onload = function() {
         
         function myScrollSpeedFunction(){
             console.log(my_scroll())
-            if(my_scroll() < -130 && !sessionStorage.getItem('modal_loaded') && document.querySelector('.modal__products').innerHTML != '') {
+            if(my_scroll() < -130 && !sessionStorage.getItem('modal_loaded') ) {
                 sessionStorage.setItem('modal_loaded', 'true'); //refresh status modal
                 showModal() //show modal
             }
