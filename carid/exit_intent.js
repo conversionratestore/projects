@@ -439,7 +439,7 @@ function starInterval() {
             })
         }
 
-        //refresh status modal on click delete in cart
+        //remove status modal on click delete in cart
         if (document.querySelector('.cart-item-remove-btn.-delete') != null && sessionStorage.getItem('modal_loaded') != null) {
             clearInterval(interval);
             document.querySelector('.cart-item-remove-btn.-delete').addEventListener('click', () => {
@@ -533,38 +533,7 @@ window.onload = function() {
         })
 
         //show modal mobile
-        // let my_scroll = (function() {
-        //     let last_position, new_position, timer, delta, delay = 50;
-
-        //     function clear() {
-        //         last_position = null;
-        //         delta = 0;
-        //     }
-
-        //     clear();
-
-        //     return function(){
-        //         new_position = window.scrollY;
-        //         if (last_position != null){
-        //             delta = new_position -  last_position;
-        //         }
-        //         last_position = new_position;
-        //         clearTimeout(timer);
-        //         timer = setTimeout(clear, delay);
-        //         return delta;
-        //     };
-        // })();
-        
-        // function myScrollSpeedFunction(){
-        //     console.log(my_scroll())
-	    //     document.querySelector('#loaded-test').innerHTML = `loaded test; speed scroll = ${my_scroll()}`;
-        //     if(my_scroll() < -100 && sessionStorage.getItem('modal_loaded') == null) {
-        //         sessionStorage.setItem('modal_loaded', 'true'); //refresh status modal
-        //         showModal() //show modal
-        //     }
-        // }
-
-        if (window.matchMedia("(max-width: 767px)").matches) {
+        if (detectMob() == true) {
             let lastPosition = 0, newPosition = 0, currentSpeed = 0;
             let scrollSpeed = () => {
                 lastPosition = window.scrollY;
@@ -574,13 +543,12 @@ window.onload = function() {
                 currentSpeed = newPosition - lastPosition;
                 document.querySelector('#loaded-test').innerHTML = `loaded test; speed scroll = ${currentSpeed}`;
 
-                if (currentSpeed > 160 && sessionStorage.getItem('modal_loaded') == null) {
-                    sessionStorage.setItem('modal_loaded', 'true'); //refresh status modal
+                if (currentSpeed > 120 && sessionStorage.getItem('modal_loaded') == null) {
+                    sessionStorage.setItem('modal_loaded', 'true'); //set status modal true
                     showModal() //show modal
                     document.removeEventListener("scroll", scrollSpeed);
                 }
             };
-
 
             document.addEventListener("scroll", scrollSpeed);
         } 
