@@ -534,7 +534,7 @@ window.onload = function() {
 
         //show modal mobile
         let my_scroll = (function() {
-            let last_position, new_position, timer, delta, delay = 0;
+            let last_position, new_position, timer, delta, delay = 50;
 
             function clear() {
                 last_position = null;
