@@ -509,7 +509,7 @@ window.onload = function() {
 
         //render last added product
         let items = JSON.parse(sessionStorage.getItem('popular_products'));
-        document.querySelector('#products-test').innerHTML = `products test:  ${items}`;
+        document.querySelector('#products-test').innerHTML = `products test:  ${sessionStorage.getItem('popular_products')}`;
         
         document.body.insertAdjacentHTML('afterbegin',`<p id="loaded-test">loaded test; products: ${items}</p>`)
 
