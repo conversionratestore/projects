@@ -539,7 +539,7 @@ window.onload = function() {
                 currentSpeed = newPosition - lastPosition;
                 document.querySelector('#loaded-test').innerHTML = `loaded test; speed scroll = ${currentSpeed}`;
 
-                if (currentSpeed > 120 && sessionStorage.getItem('modal_loaded') == null) {
+                if (currentSpeed > 60 && sessionStorage.getItem('modal_loaded') == null) {
                     sessionStorage.setItem('modal_loaded', 'true'); //set status modal true
                     showModal() //show modal
                     document.removeEventListener("scroll", scrollSpeed);
