@@ -534,7 +534,7 @@ window.onload = function() {
 
         //show modal mobile
         let my_scroll = (function() {
-            let last_position, new_position, timer, delta, delay = 50;
+            let last_position, new_position, timer, delta, delay = 30;
 
             function clear() {
                 last_position = null;
@@ -557,7 +557,7 @@ window.onload = function() {
         
         function myScrollSpeedFunction(){
             console.log(my_scroll())
-            if(my_scroll() < -130 && !sessionStorage.getItem('modal_loaded') ) {
+            if(my_scroll() < -110 && !sessionStorage.getItem('modal_loaded') ) {
                 sessionStorage.setItem('modal_loaded', 'true'); //refresh status modal
                 showModal() //show modal
             }
