@@ -533,39 +533,56 @@ window.onload = function() {
         })
 
         //show modal mobile
-        let my_scroll = (function() {
-            let last_position, new_position, timer, delta, delay = 50;
+        // let my_scroll = (function() {
+        //     let last_position, new_position, timer, delta, delay = 50;
 
-            function clear() {
-                last_position = null;
-                delta = 0;
-            }
+        //     function clear() {
+        //         last_position = null;
+        //         delta = 0;
+        //     }
 
-            clear();
+        //     clear();
 
-            return function(){
-                new_position = window.scrollY;
-                if (last_position != null){
-                    delta = new_position -  last_position;
-                }
-                last_position = new_position;
-                clearTimeout(timer);
-                timer = setTimeout(clear, delay);
-                return delta;
-            };
-        })();
+        //     return function(){
+        //         new_position = window.scrollY;
+        //         if (last_position != null){
+        //             delta = new_position -  last_position;
+        //         }
+        //         last_position = new_position;
+        //         clearTimeout(timer);
+        //         timer = setTimeout(clear, delay);
+        //         return delta;
+        //     };
+        // })();
         
-        function myScrollSpeedFunction(){
-            console.log(my_scroll())
-	        document.querySelector('#loaded-test').innerHTML = `loaded test; speed scroll = ${my_scroll()}`;
-            if(my_scroll() < -100 && sessionStorage.getItem('modal_loaded') == null) {
-                sessionStorage.setItem('modal_loaded', 'true'); //refresh status modal
-                showModal() //show modal
-            }
-        }
+        // function myScrollSpeedFunction(){
+        //     console.log(my_scroll())
+	    //     document.querySelector('#loaded-test').innerHTML = `loaded test; speed scroll = ${my_scroll()}`;
+        //     if(my_scroll() < -100 && sessionStorage.getItem('modal_loaded') == null) {
+        //         sessionStorage.setItem('modal_loaded', 'true'); //refresh status modal
+        //         showModal() //show modal
+        //     }
+        // }
 
         if (window.matchMedia("(max-width: 767px)").matches) {
-            window.addEventListener('scroll', myScrollSpeedFunction);
+            let lastPosition = 0, newPosition = 0, currentSpeed = 0;
+            let scrollSpeed = () => {
+                lastPosition = window.scrollY;
+                setTimeout(() => {
+                    newPosition = window.scrollY;
+                }, 100);
+                currentSpeed = newPosition - lastPosition;
+                document.querySelector('#loaded-test').innerHTML = `loaded test; speed scroll = ${currentSpeed}`;
+
+                if (currentSpeed > 160 && sessionStorage.getItem('modal_loaded') == null) {
+                    sessionStorage.setItem('modal_loaded', 'true'); //refresh status modal
+                    showModal() //show modal
+                    document.removeEventListener("scroll", scrollSpeed);
+                }
+            };
+
+
+            document.addEventListener("scroll", scrollSpeed);
         } 
         
         //close modal
