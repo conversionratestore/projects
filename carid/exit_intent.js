@@ -374,7 +374,7 @@ function starSecInterval() {
 
 function stopSecInterval() {
     clearInterval(secInterval);
-    pushDataLayer(`Visibility equals the pop-up its almost yours`,  setTime * 1000)
+    pushDataLayer(`Visibility equals the pop-up its almost yours`,  setTime)
 }
 
 let namePDP = '' ;
@@ -468,6 +468,7 @@ function hideModal() {
     document.querySelector('.modal__popular').classList.remove('show');
     stopSecInterval()
 }
+
 window.onload = function() {
     //cart
     if (window.location.pathname.includes('/cart.php') && sessionStorage.getItem('popular_products') != null && sessionStorage.getItem('popular_products') != '' && sessionStorage.getItem('popular_products') != []) { 
