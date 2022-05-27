@@ -465,9 +465,10 @@ function hideModal() {
     stopSecInterval()
 }
 window.onload = function() {
-    document.body.insertAdjacentHTML('afterbegin',`<p id="loaded-test">loaded test</p>`)
+    document.body.insertAdjacentHTML('afterbegin',`<p id="loaded-test">loaded test</p><p id="speed-scroll">speed scroll: </p><p id="products-test">products test: </p>`)
     //cart
     if (window.location.pathname.includes('/cart.php') && sessionStorage.getItem('popular_products') != null && sessionStorage.getItem('popular_products') != '' && sessionStorage.getItem('popular_products') != []) { 
+
 
         //html modal
         let html = `
@@ -508,6 +509,10 @@ window.onload = function() {
 
         //render last added product
         let items = JSON.parse(sessionStorage.getItem('popular_products'));
+        document.querySelector('#products-test').innerHTML = `products test:  ${items}`;
+        
+        document.body.insertAdjacentHTML('afterbegin',`<p id="loaded-test">loaded test; products: ${items}</p>`)
+
         let cards = document.querySelectorAll('.cart-section'); //products in cart
         let countLast = 0;
         for (let i = 0; i < items.length; i++) {
@@ -537,12 +542,12 @@ window.onload = function() {
                     newPosition = window.scrollY;
                 }, 100);
                 currentSpeed = newPosition - lastPosition;
-                document.querySelector('#loaded-test').innerHTML = `loaded test; speed scroll = ${currentSpeed}`;
+                document.querySelector('#speed-scroll').innerHTML = `speed scroll = ${currentSpeed}`;
 
-                if (currentSpeed > 60 && sessionStorage.getItem('modal_loaded') == null) {
+                if (currentSpeed > 70 && sessionStorage.getItem('modal_loaded') == null) {
                     sessionStorage.setItem('modal_loaded', 'true'); //set status modal true
                     showModal() //show modal
-//                     document.removeEventListener("scroll", scrollSpeed);
+                    document.removeEventListener("scroll", scrollSpeed);
                 }
             };
 
