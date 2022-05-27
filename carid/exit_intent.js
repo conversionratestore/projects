@@ -526,7 +526,7 @@ window.onload = function() {
 
         //show modal desktop
         addEvent(document, 'mouseout', function(e) {
-            if (e.toElement == null && e.relatedTarget == null && !sessionStorage.getItem('modal_loaded')) {
+            if (e.toElement == null && e.relatedTarget == null && sessionStorage.getItem('modal_loaded') == null) {
                 sessionStorage.setItem('modal_loaded', 'true'); //refresh status modal
                 showModal() //show modal
             }
@@ -557,8 +557,8 @@ window.onload = function() {
         
         function myScrollSpeedFunction(){
             console.log(my_scroll())
-	    document.querySelector('#loaded-test').innerHTML = `loaded test; speed scroll = ${my_scroll()}`;
-            if(my_scroll() < -100 && !sessionStorage.getItem('modal_loaded') ) {
+	        document.querySelector('#loaded-test').innerHTML = `loaded test; speed scroll = ${my_scroll()}`;
+            if(my_scroll() < -100 && sessionStorage.getItem('modal_loaded') == null) {
                 sessionStorage.setItem('modal_loaded', 'true'); //refresh status modal
                 showModal() //show modal
             }
