@@ -436,13 +436,13 @@ function starInterval() {
         }
 
         //remove status modal on click delete in cart
-        if (document.querySelector('.cart-item-remove-btn.-delete') != null && sessionStorage.getItem('modal_loaded') != null) {
-            clearInterval(interval);
-            document.querySelector('.cart-item-remove-btn.-delete').addEventListener('click', () => {
-                sessionStorage.removeItem('modal_loaded'); 
-                starInterval()
-            })
-        }
+        // if (document.querySelector('.cart-item-remove-btn.-delete') != null && sessionStorage.getItem('modal_loaded') != null) {
+        //     clearInterval(interval);
+        //     document.querySelector('.cart-item-remove-btn.-delete').addEventListener('click', () => {
+        //         sessionStorage.removeItem('modal_loaded'); 
+        //         starInterval()
+        //     })
+        // }
          //cart
         if (window.location.pathname.includes('/cart.php') && sessionStorage.getItem('popular_products') != null && sessionStorage.getItem('popular_products') != '' && sessionStorage.getItem('popular_products') != []) { 
             clearInterval(interval);
