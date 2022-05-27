@@ -417,8 +417,8 @@ function starInterval() {
             sessionStorage.removeItem('modal_loaded'); //refresh status modal
         }
         //google pay button
-        if (document.querySelector('.cart-order .google-pay-button') != null && document.querySelector('.cart-order .google-pay-button.hidden') == null &&  document.querySelector('.btns .heading') != null) {
-            clearInterval(interval);
+        if (document.querySelector('.btn__google-pay') == null && document.querySelector('.cart-order .google-pay-button') != null && document.querySelector('.cart-order .google-pay-button.hidden') == null &&  document.querySelector('.btns .heading') != null) {
+         
             document.querySelector('.btns .heading').insertAdjacentHTML('afterend', googlePayBtn) //add google pay button
            
             document.querySelector('.btn__google-pay').addEventListener('click', (e) => {  //click on google pay button
@@ -428,8 +428,8 @@ function starInterval() {
             })
         }
         //apple pay button
-        if (document.querySelector('.cart-order .apple-pay-button') != null && document.querySelector('.cart-order .apple-pay-button.hidden') == null &&  document.querySelector('.btns .heading') != null) {
-            clearInterval(interval);
+        if (document.querySelector('.btn__apple-pay') == null && document.querySelector('.cart-order .apple-pay-button') != null && document.querySelector('.cart-order .apple-pay-button.hidden') == null &&  document.querySelector('.btns .heading') != null) {
+            
             document.querySelector('.btns .heading').insertAdjacentHTML('afterend', applePayBtn) //add apple pay button
             
             document.querySelector('.btn__apple-pay').addEventListener('click', (e) => { //click on apple pay button
