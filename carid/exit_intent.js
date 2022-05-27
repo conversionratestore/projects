@@ -408,7 +408,12 @@ function starInterval() {
                     pushProducts(maxNumber.querySelector('.black').innerHTML,maxNumber.querySelector('img').src,maxNumber.querySelector('b').innerHTML)  
                 }
             })
-           if (document.querySelector('.prod_add') != null) document.querySelector('.prod_add').addEventListener('click', (e) => starInterval())
+            if (document.querySelector('[aria-label="close"]') != null) {
+                document.querySelector('[aria-label="close"]').addEventListener('click', (e) => {
+                    console.log('click')
+                    starInterval()
+                })
+            }
             sessionStorage.removeItem('modal_loaded'); //refresh status modal
         }
         //google pay button
