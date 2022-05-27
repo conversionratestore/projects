@@ -509,62 +509,62 @@ window.onload = function() {
         document.body.insertAdjacentHTML('afterbegin', style); //insert styles
         document.body.insertAdjacentHTML('beforeend', html); //insert html
 
-        if (sessionStorage.getItem('popular_products') != [] && sessionStorage.getItem('popular_products') != '' && sessionStorage.getItem('popular_products') != null) {
-            //render last added product
-            let items = JSON.parse(sessionStorage.getItem('popular_products'));
-            let cards = document.querySelectorAll('.cart-section'); //products in cart
-            let countLast = 0;
-            for (let i = 0; i < items.length; i++) {
-                for (let k = 0; k < cards.length; k++) {
-                    if (cards[k].querySelector('.cart_prod_name').innerText.toLowerCase().includes(items[i].name.toLowerCase().replace('...','').split('&amp;').join('&')) && countLast == 0) {
-                        countLast = 1;
-                        new Products(cards[k].querySelector('.cart_prod_name').innerText, items[i].image, items[i].price).render();
-                    }
+        //render last added product
+        let items = JSON.parse(sessionStorage.getItem('popular_products'));
+        let cards = document.querySelectorAll('.cart-section'); //products in cart
+        let countLast = 0;
+        for (let i = 0; i < items.length; i++) {
+            for (let k = 0; k < cards.length; k++) {
+                if (cards[k].querySelector('.cart_prod_name').innerText.toLowerCase().includes(items[i].name.toLowerCase().replace('...','').split('&amp;').join('&')) && countLast == 0) {
+                    console.log(cards[k].querySelector('.cart_prod_name').innerText)
+                    countLast = 1;
+                    new Products(cards[k].querySelector('.cart_prod_name').innerText, items[i].image, items[i].price).render();
                 }
             }
+        }
 
-            //show modal desktop
-            addEvent(document, 'mouseout', function(e) {
-                if (e.toElement == null && e.relatedTarget == null && !sessionStorage.getItem('modal_loaded') && document.querySelector('.modal__products').innerHTML != '') {
-                    sessionStorage.setItem('modal_loaded', 'true'); //refresh status modal
-                    showModal() //show modal
-                }
-            })
+        //show modal desktop
+        addEvent(document, 'mouseout', function(e) {
+            if (e.toElement == null && e.relatedTarget == null && !sessionStorage.getItem('modal_loaded') && document.querySelector('.modal__products').innerHTML != '') {
+                sessionStorage.setItem('modal_loaded', 'true'); //refresh status modal
+                showModal() //show modal
+            }
+        })
 
-            //show modal mobile
-            let my_scroll = (function() {
-                let last_position, new_position, timer, delta, delay = 50;
+        //show modal mobile
+        let my_scroll = (function() {
+            let last_position, new_position, timer, delta, delay = 50;
 
-                function clear() {
-                    last_position = null;
-                    delta = 0;
-                }
-
-                clear();
-
-                return function(){
-                    new_position = window.scrollY;
-                    if (last_position != null){
-                        delta = new_position -  last_position;
-                    }
-                    last_position = new_position;
-                    clearTimeout(timer);
-                    timer = setTimeout(clear, delay);
-                    return delta;
-                };
-            })();
-            
-            function myScrollSpeedFunction(){
-                if(my_scroll() < -200 && !sessionStorage.getItem('modal_loaded') && document.querySelector('.modal__products').innerHTML != '') {
-                    sessionStorage.setItem('modal_loaded', 'true'); //refresh status modal
-                    showModal() //show modal
-                }
+            function clear() {
+                last_position = null;
+                delta = 0;
             }
 
-            if (detectMob() == true) {
-                window.addEventListener('scroll', myScrollSpeedFunction);
-            } 
+            clear();
+
+            return function(){
+                new_position = window.scrollY;
+                if (last_position != null){
+                    delta = new_position -  last_position;
+                }
+                last_position = new_position;
+                clearTimeout(timer);
+                timer = setTimeout(clear, delay);
+                return delta;
+            };
+        })();
+        
+        function myScrollSpeedFunction(){
+            if(my_scroll() < -200 && !sessionStorage.getItem('modal_loaded') && document.querySelector('.modal__products').innerHTML != '') {
+                sessionStorage.setItem('modal_loaded', 'true'); //refresh status modal
+                showModal() //show modal
+            }
+        }
+
+        if (detectMob() == true) {
+            window.addEventListener('scroll', myScrollSpeedFunction);
         } 
+        
 
         //close modal
         document.querySelector('.btn_close').addEventListener('click', () => {
