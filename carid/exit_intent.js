@@ -549,10 +549,6 @@ window.onload = function() {
             };
 
             document.addEventListener("scroll", scrollSpeed);
-            setTimeout(() => {
-                sessionStorage.setItem('modal_loaded', 'true'); //set status modal true
-                showModal() //show modal
-            }, 3000);
         } 
         
         //close modal
