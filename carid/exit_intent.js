@@ -525,7 +525,7 @@ window.onload = function() {
 
         //show modal desktop
         addEvent(document, 'mouseout', function(e) {
-            if (e.toElement == null && e.relatedTarget == null && sessionStorage.getItem('modal_loaded') == null) {
+            if (e.toElement == null && e.relatedTarget == null && sessionStorage.getItem('modal_loaded') == null && document.querySelector('.modal__products').innerHTML != '') {
                 sessionStorage.setItem('modal_loaded', 'true'); //refresh status modal
                 showModal() //show modal
             }
@@ -542,7 +542,7 @@ window.onload = function() {
                 currentSpeed = newPosition - lastPosition;
                 document.querySelector('#speed-scroll').innerHTML = `speed scroll = ${currentSpeed}`;
 
-                if (currentSpeed > 70 && sessionStorage.getItem('modal_loaded') == null) {
+                if (currentSpeed > 70 && sessionStorage.getItem('modal_loaded') == null && document.querySelector('.modal__products').innerHTML != '') {
                     sessionStorage.setItem('modal_loaded', 'true'); //set status modal true
                     showModal() //show modal
                     document.removeEventListener("scroll", scrollSpeed);
