@@ -465,10 +465,10 @@ function hideModal() {
     stopSecInterval()
 }
 window.onload = function() {
-    document.body.insertAdjacentHTML('afterbegin',`<p id="loaded-test">loaded test</p><p id="speed-scroll">speed scroll: </p><p id="products-test">products test: </p>`)
-    //cart
+   //cart
     if (window.location.pathname.includes('/cart.php') && sessionStorage.getItem('popular_products') != null && sessionStorage.getItem('popular_products') != '' && sessionStorage.getItem('popular_products') != []) { 
-
+        document.body.insertAdjacentHTML('afterbegin',`<p id="loaded-test">loaded test</p><p id="speed-scroll">speed scroll: </p><p id="products-test">products test: </p>`)
+    
 
         //html modal
         let html = `
