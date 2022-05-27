@@ -37,7 +37,7 @@ let style = `
     }
     .modal__popular .container {
         background: #FFFFFF;
-        padding: 30px 0;
+        padding: 30px 0 15px;
         max-width: 556px;
         width: calc(100% - 40px);
         margin: auto;
@@ -177,9 +177,6 @@ let style = `
     }
     .modal__popular .btns .btn {
         margin-bottom: 15px;
-    }
-    .modal__popular .btns .btn:last-child {
-        margin: 0;
     }
     
     .modal__popular .heading {
@@ -391,7 +388,6 @@ function starInterval() {
             clearInterval(interval);
             popularProducts = [];
             document.querySelectorAll('.prod_add_to_cart_lst li').forEach(el => {
-                
                 if (el.querySelector('.black').innerText.includes(namePDP)) {
                     console.log(el.querySelector('.black').innerText)
                     pushProducts(el.querySelector('.black').innerText,el.querySelector('img').src,el.querySelector('b').innerHTML)
