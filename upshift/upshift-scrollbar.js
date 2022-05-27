@@ -232,7 +232,7 @@ function scrollBar() {
 		scrollEvent('100')
 	}
 
-	if (scrolled >= 25 && !document.querySelector('.my_btn-wrapper.show')) {
+	if (scrolled >= 9 && !document.querySelector('.my_btn-wrapper.show')) {
 		document.querySelector('.my_btn-wrapper').classList.add('show')
 
 		window.dataLayer = window.dataLayer || []
@@ -243,7 +243,7 @@ function scrollBar() {
 			'eventLabel': '',
 
 		})
-	} else if (scrolled < 25) {
+	} else if (scrolled < 9) {
 		document.querySelector('.my_btn-wrapper').classList.remove('show')
 	}
 
