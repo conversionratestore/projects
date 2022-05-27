@@ -564,7 +564,7 @@ window.onload = function() {
             }
         }
 
-        if (detectMob() == true) {
+        if (window.matchMedia("(max-width: 767px)").matches) {
             window.addEventListener('scroll', myScrollSpeedFunction);
         } 
         
