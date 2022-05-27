@@ -469,7 +469,6 @@ function hideModal() {
     stopSecInterval()
 }
 window.onload = function() {
-    document.body.insertAdjacentHTML('afterbegin',`<p>loaded test</p>`)
     //cart
     if (window.location.pathname.includes('/cart.php') && sessionStorage.getItem('popular_products') != null && sessionStorage.getItem('popular_products') != '' && sessionStorage.getItem('popular_products') != []) { 
 
