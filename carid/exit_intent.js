@@ -542,7 +542,7 @@ window.onload = function() {
                 if (currentSpeed > 60 && sessionStorage.getItem('modal_loaded') == null) {
                     sessionStorage.setItem('modal_loaded', 'true'); //set status modal true
                     showModal() //show modal
-                    document.removeEventListener("scroll", scrollSpeed);
+//                     document.removeEventListener("scroll", scrollSpeed);
                 }
             };
 
