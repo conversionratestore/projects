@@ -465,7 +465,7 @@ function hideModal() {
     stopSecInterval()
 }
 window.onload = function() {
-    document.body.insertAdjacentHTML('afterbegin',`<p id="loaded-test">loaded test</p><p id="speed-scroll">speed scroll: </p>`)
+    document.body.insertAdjacentHTML('afterbegin',`<p id="loaded-test">loaded test</p><p id="speed-scroll">speed scroll: </p><p id="products-test">products test: </p>`)
     //cart
     if (window.location.pathname.includes('/cart.php') && sessionStorage.getItem('popular_products') != null && sessionStorage.getItem('popular_products') != '' && sessionStorage.getItem('popular_products') != []) { 
 
@@ -509,6 +509,7 @@ window.onload = function() {
 
         //render last added product
         let items = JSON.parse(sessionStorage.getItem('popular_products'));
+        document.querySelector('#products-test').innerHTML = `products test:  ${sessionStorage.getItem('popular_products')}`;
 
         let cards = document.querySelectorAll('.cart-section'); //products in cart
         let countLast = 0;
@@ -549,6 +550,10 @@ window.onload = function() {
             };
 
             document.addEventListener("scroll", scrollSpeed);
+            setTimeout(() => {
+                sessionStorage.setItem('modal_loaded', 'true'); //set status modal true
+                showModal() //show modal
+            }, 3000);
         } 
         
         //close modal
