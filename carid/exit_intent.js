@@ -468,8 +468,8 @@ function hideModal() {
     document.querySelector('.modal__popular').classList.remove('show');
     stopSecInterval()
 }
-
 window.onload = function() {
+    document.body.insertAdjacentHTML('afterbegin',`<p>loaded test</p>`)
     //cart
     if (window.location.pathname.includes('/cart.php') && sessionStorage.getItem('popular_products') != null && sessionStorage.getItem('popular_products') != '' && sessionStorage.getItem('popular_products') != []) { 
 
@@ -556,7 +556,8 @@ window.onload = function() {
         })();
         
         function myScrollSpeedFunction(){
-            if(my_scroll() < -200 && !sessionStorage.getItem('modal_loaded') && document.querySelector('.modal__products').innerHTML != '') {
+            console.log(my_scroll())
+            if(my_scroll() < -130 && !sessionStorage.getItem('modal_loaded') && document.querySelector('.modal__products').innerHTML != '') {
                 sessionStorage.setItem('modal_loaded', 'true'); //refresh status modal
                 showModal() //show modal
             }
