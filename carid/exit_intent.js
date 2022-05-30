@@ -402,7 +402,6 @@ function starInterval() {
                     console.log(maxNumber)
                     pushProducts(maxNumber.querySelector('.black').innerHTML,maxNumber.querySelector('img').src,maxNumber.querySelector('b').innerHTML)  
                 }
-                sessionStorage.removeItem('modal_loaded'); 
             })
             if (document.querySelector('[aria-label="close"]') != null) {
                 document.querySelector('[aria-label="close"]').addEventListener('click', (e) => {
@@ -412,6 +411,7 @@ function starInterval() {
                 })
             }
             console.log('stop interval 1')
+            sessionStorage.removeItem('modal_loaded'); 
         }
         //google pay button
         if (document.querySelector('.btn__google-pay') == null && document.querySelector('.cart-order .google-pay-button') != null && document.querySelector('.cart-order .google-pay-button.hidden') == null &&  document.querySelector('.btns .heading') != null) {
