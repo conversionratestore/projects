@@ -385,7 +385,6 @@ function starInterval() {
         //pdp add product
         if (document.querySelector('.prod_add_to_cart_lst li') != null) {
             clearInterval(interval);
-            console.log('stop interval 1')
             popularProducts = [];
             document.querySelectorAll('.prod_add_to_cart_lst li').forEach(el => {
                 if (el.querySelector('.black').innerText.includes(namePDP)) {
@@ -403,6 +402,7 @@ function starInterval() {
                     console.log(maxNumber)
                     pushProducts(maxNumber.querySelector('.black').innerHTML,maxNumber.querySelector('img').src,maxNumber.querySelector('b').innerHTML)  
                 }
+                sessionStorage.removeItem('modal_loaded'); 
             })
             if (document.querySelector('[aria-label="close"]') != null) {
                 document.querySelector('[aria-label="close"]').addEventListener('click', (e) => {
@@ -411,7 +411,7 @@ function starInterval() {
                     starInterval()
                 })
             }
-	        sessionStorage.removeItem('modal_loaded'); 
+            console.log('stop interval 1')
         }
         //google pay button
         if (document.querySelector('.btn__google-pay') == null && document.querySelector('.cart-order .google-pay-button') != null && document.querySelector('.cart-order .google-pay-button.hidden') == null &&  document.querySelector('.btns .heading') != null) {
