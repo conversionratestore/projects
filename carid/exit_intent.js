@@ -358,19 +358,18 @@ let applePayBtn = `
 `
 
 let interval = null, 
-    secInterval = null;   
+    timeInterval = null;   
 
 let setTime = 0;
 
-function starSecInterval() {
-    secInterval = setInterval(() => { 
+function startimeInterval() {
+    timeInterval = setInterval(() => { 
         setTime++
-        console.log(setTime)
     }, 1000);
 }
 
-function stopSecInterval() {
-    clearInterval(secInterval);
+function stoptimeInterval() {
+    clearInterval(timeInterval);
     pushDataLayer(`Visibility equals the pop-up its almost yours`,  setTime)
 }
 
@@ -429,7 +428,7 @@ function starInterval() {
             document.querySelector('.btns .heading').insertAdjacentHTML('afterend', applePayBtn) //add apple pay button
             
             document.querySelector('.btn__apple-pay').addEventListener('click', (e) => { //click on apple pay button
-                document.querySelector('.cart-order .apple-pay-button button').click();
+                document.querySelector('.cart-order .apple-pay-button').click();
                 pushDataLayer('Click on check out with ApplePay button');
                 hideModal();
             })
@@ -457,13 +456,13 @@ function showModal() {
     document.querySelector('.modal__popular').classList.add('show');  
     setTime = 0;
     pushDataLayer('Showed pop-up its almost yours')
-    starSecInterval()
+    startimeInterval()
 }
 
 //hide modal 
 function hideModal() {
     document.querySelector('.modal__popular').classList.remove('show');
-    stopSecInterval()
+    stoptimeInterval()
 }
 
 window.onload = function() {
