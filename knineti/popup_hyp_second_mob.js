@@ -692,10 +692,19 @@ if (window.innerWidth <= 768) {
 }
 
 #openModal .btn_wrapp button.close {
+  position: absolute;
+  opacity: 1;
+  text-shadow: unset;
   top: 0;
   right: -5px;
   color: #808080;
 }
+
+#openModal .close:focus {
+  color: #a0a1a8;
+  opacity: 1;
+}
+
 
 #openModal .btn_wrapp > p.active_btn_fifth {
   opacity: 0;
@@ -954,20 +963,7 @@ if (window.innerWidth <= 768) {
   color: #808080 !important;
 }
 
-#openModal button.close {
-  display: block;
-  position: absolute;
-  top: 13px;
-  right: 18px;
-  color: black;
-  opacity: 1;
-  text-shadow: unset;
-}
 
-#openModal .close:focus {
-  color: #a0a1a8;
-  opacity: 1;
-}
 
 .input_error_text {
   font-size: 10px;
