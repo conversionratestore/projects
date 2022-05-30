@@ -227,7 +227,7 @@ if (window.innerWidth <= 768) {
 }
 
 .dog_list ul li {
-  width: 29%;
+  width: 28%;
   position: relative;
   border-radius: 10px;
   transition: all 350ms ease-in-out;
