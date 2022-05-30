@@ -407,10 +407,10 @@ function starInterval() {
             if (document.querySelector('[aria-label="close"]') != null) {
                 document.querySelector('[aria-label="close"]').addEventListener('click', (e) => {
                     console.log('click')
+                    sessionStorage.removeItem('modal_loaded'); 
                     starInterval()
                 })
             }
-            sessionStorage.removeItem('modal_loaded'); //refresh status modal
         }
         //google pay button
         if (document.querySelector('.btn__google-pay') == null && document.querySelector('.cart-order .google-pay-button') != null && document.querySelector('.cart-order .google-pay-button.hidden') == null &&  document.querySelector('.btns .heading') != null) {
