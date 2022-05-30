@@ -31,6 +31,10 @@ if (window.innerWidth <= 768) {
   display: none !important;
 }
 
+#firstModal #closestepthree{
+  display: flex !important;
+}
+
 .container_var {
   width: 85%;
   margin: 0 auto;
@@ -333,6 +337,7 @@ if (window.innerWidth <= 768) {
   font-weight: 400;
   font-size: 16px;
   line-height: 125%;
+  opacity: 1;
   color: #808080 !important;
   margin: 0;
   display: flex;
@@ -692,6 +697,7 @@ if (window.innerWidth <= 768) {
 }
 
 #openModal .btn_wrapp button.close {
+  display: block;
   position: absolute;
   opacity: 1;
   text-shadow: unset;
@@ -1342,7 +1348,7 @@ if (window.innerWidth <= 768) {
                     <li></li>
                 </ul>
                 <div>
-                   <p class="active_btn_first" class="close" id="closestepthree" data-dismiss="modal" data-original-title="" title="" tabIndex="0">
+                   <p class="active_btn_first close" id="closestepthree" data-dismiss="modal" data-original-title="" title="" tabIndex="0">
                        <img src="https://conversionratestore.github.io/projects/knineti/img/previous_btn.svg" alt="previous button">
                    </p>
                     <p class="active_btn_second" tabIndex="0">
@@ -1646,9 +1652,9 @@ if (window.innerWidth <= 768) {
               pushDataLayer(`Click on Continue on step "What unwanted behavior do you want to address`)
               this.closest(".popup_first")?.classList.remove("active_popup")
 
-              document.querySelector(".popup_new > .progress_bar > div p:first-child.active_btn_first").style.display = "none"
-              if (document.querySelector(".popup_new > .progress_bar > div p:nth-child(1)")?.classList.contains("active_btn_first")) {
-                document.querySelector(".popup_new > .progress_bar > div p:nth-child(1)")?.classList.remove("active_btn_first")
+              document.querySelector("#openModal .popup_new > .progress_bar > div p:nth-child(1).active_btn_first").style.display = "none"
+              if (document.querySelector("#openModal .popup_new > .progress_bar > div p:nth-child(1)")?.classList.contains("active_btn_first")) {
+                document.querySelector("#openModal .popup_new > .progress_bar > div p:nth-child(1)")?.classList.remove("active_btn_first")
               }
               document.querySelector(".popup_new > .progress_bar > div p:nth-child(2).active_btn_second").style.display = "flex"
               document.querySelector(".popup_new > .popup_second")?.classList.add("active_popup")
@@ -1702,8 +1708,8 @@ if (window.innerWidth <= 768) {
               if (this?.classList.contains("active_btn_second")) {
                 pushDataLayer(`Click on Previous on step "What’s your dog’s age?"`)
                 this.style.display = "none"
-                document.querySelector(".popup_new > .progress_bar > div p:nth-child(1)").style.display = "flex"
-                document.querySelector(".popup_new > .progress_bar > div p:nth-child(1)")?.classList.add("active_btn_first")
+                document.querySelector("#openModal .popup_new > .progress_bar > div p:nth-child(1)").style.display = "flex"
+                document.querySelector("#openModal .popup_new > .progress_bar > div p:nth-child(1)")?.classList.add("active_btn_first")
                 document.querySelector(".popup_new > .popup_first")?.classList.add("active_popup")
                 document.querySelector(".popup_new > .popup_second")?.classList.remove("active_popup")
                 document.querySelector(".popup_new .img_wrap .dog_second").style.display = "none"
