@@ -410,6 +410,7 @@ function starInterval() {
                     starInterval()
                 })
             }
+	    sessionStorage.removeItem('modal_loaded'); 
         }
         //google pay button
         if (document.querySelector('.btn__google-pay') == null && document.querySelector('.cart-order .google-pay-button') != null && document.querySelector('.cart-order .google-pay-button.hidden') == null &&  document.querySelector('.btns .heading') != null) {
