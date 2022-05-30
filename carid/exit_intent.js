@@ -459,15 +459,17 @@ function showModal() {
     pushDataLayer('Showed pop-up its almost yours')
     starSecInterval()
 }
+
 //hide modal 
 function hideModal() {
     document.querySelector('.modal__popular').classList.remove('show');
     stopSecInterval()
 }
+
 window.onload = function() {
    //cart
     if (window.location.pathname.includes('/cart.php') && sessionStorage.getItem('popular_products') != null && sessionStorage.getItem('popular_products') != '' && sessionStorage.getItem('popular_products') != []) { 
-        document.body.insertAdjacentHTML('afterbegin',`<p id="loaded-test">loaded test</p><p id="speed-scroll">speed scroll: </p><p id="products-test">products test: </p>`)
+        document.body.insertAdjacentHTML('afterbegin',`<p id="loaded-test">loaded test</p><p id="speed-scroll">speed scroll: </p>`)
     
         //html modal
         let html = `
@@ -508,13 +510,12 @@ window.onload = function() {
 
         //render last added product
         let items = JSON.parse(sessionStorage.getItem('popular_products'));
-        document.querySelector('#products-test').innerHTML = `products test:  ${sessionStorage.getItem('popular_products')}`;
 
         let cards = document.querySelectorAll('.cart-section'); //products in cart
         let countLast = 0;
         for (let i = 0; i < items.length; i++) {
             for (let k = 0; k < cards.length; k++) {
-                if (cards[k].querySelector('.cart_prod_name').innerText.toLowerCase().includes(items[i].name.toLowerCase().replace('...','').split('&amp;').join('&').split('dfr1™').join('™')) && countLast == 0) {
+                if (cards[k].querySelector('.cart_prod_name').innerText.toLowerCase().includes(items[i].name.toLowerCase().replace('...','').split('&amp;').join('&').split('DFR1™').join('™')) && countLast == 0) {
                     console.log(cards[k].querySelector('.cart_prod_name').innerText)
                     countLast = 1;
                     new Products(cards[k].querySelector('.cart_prod_name').innerText, items[i].image, items[i].price).render();
