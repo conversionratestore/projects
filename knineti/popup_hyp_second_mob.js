@@ -1342,7 +1342,7 @@ if (window.innerWidth <= 768) {
                     <li></li>
                 </ul>
                 <div>
-                   <p class="active_btn_first" class="close" id="closestepthree" data-dismiss="modal" style="display: block;" data-original-title="" title="" tabIndex="0">
+                   <p class="active_btn_first" class="close" id="closestepthree" data-dismiss="modal" data-original-title="" title="" tabIndex="0">
                        <img src="https://conversionratestore.github.io/projects/knineti/img/previous_btn.svg" alt="previous button">
                    </p>
                     <p class="active_btn_second" tabIndex="0">
@@ -1595,7 +1595,7 @@ if (window.innerWidth <= 768) {
                 `<div class="btn_wrapp">     
                  <p class="active_btn_fourth" tabIndex="0">
                 <img src="https://conversionratestore.github.io/projects/knineti/img/previous_btn.svg" alt="previous button"></p>
-                <button type="button" class="close" id="closestepthree" data-dismiss="modal" style="display: block;" data-original-title="" title="">
+                <button type="button" class="close" id="closestepthree" data-dismiss="modal" data-original-title="" title="">
                     <spam class="btn_space" data-original-title="" title="">×</spam>
                 </button>
                 </div>  `
