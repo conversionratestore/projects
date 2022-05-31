@@ -2,13 +2,19 @@ let startfunk = setInterval(() => {
   if (document.querySelector(".main-content")) {
     clearInterval(startfunk)
 
+    let eventVar = "desktop"
+
+    if (window.innerWidth <= 768) {
+      eventVar = "mobile"
+    }
+
     function pushDataLayer(actionDataLayer, labelDataLayer) {
       window.dataLayer = window.dataLayer || []
       if (labelDataLayer) {
         console.log(actionDataLayer + " : " + labelDataLayer)
         dataLayer.push({
           event: "event-to-ga",
-          eventCategory: `Exp: PDP on new tab`,
+          eventCategory: `Exp: PDP on new tab - ${eventVar}`,
           eventAction: `${actionDataLayer}`,
           eventLabel: `${labelDataLayer}`,
         })
@@ -16,7 +22,7 @@ let startfunk = setInterval(() => {
         console.log(actionDataLayer)
         dataLayer.push({
           event: "event-to-ga",
-          eventCategory: `Exp: PDP on new tab`,
+          eventCategory: `Exp: PDP on new tab - ${eventVar}`,
           eventAction: `${actionDataLayer}`,
         })
       }
@@ -65,6 +71,6 @@ let startfunk = setInterval(() => {
     })
 
     pushDataLayer("loaded")
-    clarity("set", "pdp_on_new_tab", "variant_1")
+    clarity("set", `pdp_on_new_tab_${eventVar}`, "variant_1")
   }
 }, 10)
