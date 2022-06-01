@@ -177,6 +177,17 @@ const myStyle = `
 							margin-top: 8px;
 						}
 						
+                        .bottom_part div {
+                            display: flex;
+                            flex-direction: row;
+                            gap: 8px;
+                        }
+
+                        .bottom_part p:first-child {
+                            text-decoration: line-through;
+                            color: #C80000;
+                        }
+
 						.bottom_part p {
 							margin: 4px 0;
 						}
@@ -213,7 +224,7 @@ const myStyle = `
 							cursor: pointer;
 						}
 						
-						.top_part .img_discount {
+						.top_part .discount {
 							position: absolute;
 							top: 0;
 							left: 0;
@@ -384,6 +395,11 @@ let language = translations[pageLanguage2]
 /* code */
 
 const HOME_URL = 'https://gateway.kingsbox.com/service'
+const defaultHeaders = {
+    'x-system': 'EU',
+    'x-currency': 'EUR',
+    'Accept-Language': pageLanguage2
+}
 
 let identifier
 
@@ -443,9 +459,10 @@ const initSlider = sliders => {
 
 const checkCart = async cartId => {
     try {
-        let response = await fetch(`${HOME_URL}/shopping-cart/${cartId}/products?page_num=1&page_size=8`, {
-            headers: { 'X-request-from': 'SHOPPING_CART' },
-        })
+        const headers = { ...defaultHeaders }
+        headers['x-system-service'] = 'SHOPPING_CART'
+
+        let response = await fetch(`${HOME_URL}/shopping-cart/${cartId}/products?page_num=1&page_size=8`, { headers })
 
         let data = await response.json()
 
@@ -581,10 +598,13 @@ const drawSelectedAccessory = (categoryAccessoryIndex) => {
 							<div class="top_part">
 								<img src="${entity.image.url}" alt="${entity.image.alt}">
 								<p>${entity.name}</p>
+                                ${entity.price.discount != 0 ? `<span class="discount">-${entity.price.discount}%</span>` : ''}
 							</div>
 						</a>
 						<div class="bottom_part">
-							<p>${entity.price.price} €</p>
+                            <div>
+                                ${entity.price.price !== entity.price?.priceDiscounted ? `<p>${entity.price.price} €</p><p>${entity.price?.priceDiscounted} €</p>` : ''}                                
+                            </div>                            
 							<button>${language[1]}</button>
 						</div>
 					</div>																				
@@ -622,8 +642,11 @@ const drawSelectedAccessory = (categoryAccessoryIndex) => {
 
 const getAccessory = async (accessoryId, accessoryIndex) => {
     try {
+        const headers = { ...defaultHeaders }
+        headers['x-system-service'] = 'PRODUCTS_ACCESSORIES'
+
         const response = await fetch(
-            `${HOME_URL}/products/details/${currentProductSKU}/accessories?value=${accessoryId}`, { headers: { 'Accept-Language': pageLanguage2 } })
+            `${HOME_URL}/products/details/${currentProductSKU}/accessories?value=${accessoryId}`, { headers })
         const accessory = await response.json()
 
         accessoriesArray[accessoryIndex] = accessory.data.entities
@@ -636,9 +659,10 @@ const getAccessory = async (accessoryId, accessoryIndex) => {
 
 const getCategories = async () => {
     try {
-        let response = await fetch(`${HOME_URL}/products/details/${currentProductSKU}/accessories/categories`, {
-            headers: { 'Accept-Language': pageLanguage2 },
-        })
+        const headers = { ...defaultHeaders }
+        headers['x-system-service'] = 'PRODUCTS'
+
+        let response = await fetch(`${HOME_URL}/products/details/${currentProductSKU}/accessories/categories`, { headers })
 
         let data = await response.json()
 
@@ -661,34 +685,42 @@ const getCategories = async () => {
 }
 
 const addToCart = async (productParentId, productParentSku, productSku) => {
-    let data = {
-        productParentId,
-        productParentSku,
-        productSku,
-        'quantity': 1,
-        'isBulkAdd': false,
-    }
-
-    await fetch(`${HOME_URL}/shopping-cart/${identifier}`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(data),
-    })
-    await fetch(`${HOME_URL}/shopping-cart/${identifier}/products?page_num=1&page_size=8`, {
-        headers: { 'X-request-from': 'SHOPPING_CART' },
-    })
-
-    document.querySelector('.my_cart').classList.add('show')
-
-    document.querySelector('.side-modal-content-top i').click()
-    document.querySelector('#main_nav_bottom i').click()
-
-    let waitForCart = setInterval(() => {
-        if (document.querySelector('#side-dialog-container .shopping-cart')) {
-            clearInterval(waitForCart)
-            document.querySelector('.my_cart').classList.remove('show')
+    try {
+        let data = {
+            productParentId,
+            productParentSku,
+            productSku,
+            'productDiscount': 0.05,
+            'quantity': 1,
+            'isBulkAdd': false,
         }
-    }, 100)
+
+        const shoppingHeader = { ...defaultHeaders }
+        shoppingHeader['x-system-service'] = 'SHOPPING_CART'
+
+        await fetch(`${HOME_URL}/shopping-cart/${identifier}`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(data),
+        })
+        await fetch(`${HOME_URL}/shopping-cart/${identifier}/products?page_num=1&page_size=8`, { headers: shoppingHeader })
+
+        document.querySelector('.my_cart').classList.add('show')
+
+        document.querySelector('.side-modal-content-top i').click()
+        document.querySelector('#main_nav_bottom i').click()
+
+        let waitForCart = setInterval(() => {
+            if (document.querySelector('#side-dialog-container .shopping-cart')) {
+                clearInterval(waitForCart)
+                document.querySelector('.my_cart').classList.remove('show')
+            }
+        }, 100)
+    } catch (error) {
+        console.err(err);
+    }
 }
 
 const checkIsEmptyCategory = (selectedCategoryIndex) => {
@@ -750,6 +782,8 @@ const drawAccessoriesNew = () => {
 
             if (!document.querySelector('.category_list')) {
                 document.querySelector('.loader_wrapper').remove()
+                document.querySelector('.no_products')?.remove()
+
                 document.querySelector('.cart_accessories .cart_content').insertAdjacentHTML('beforeend', cartInnerTemplate)
 
                 window.dataLayer = window.dataLayer || [];
