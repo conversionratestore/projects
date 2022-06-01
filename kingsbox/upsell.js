@@ -686,19 +686,20 @@ const getCategories = async () => {
 
 const addToCart = async (productParentId, productParentSku, productSku) => {
     try {
-        let data = {
-            productParentId,
-            productParentSku,
-            productSku,
-            'productDiscount': 0.05,
-            'quantity': 1,
-            'isBulkAdd': false,
-        }
+        let data =
+            [{
+                productParentId,
+                productParentSku,
+                productSku,
+                'productDiscount': 0.05,
+                'quantity': 1,
+                'isBulkAdd': false
+            }]
 
         const shoppingHeader = { ...defaultHeaders }
         shoppingHeader['x-system-service'] = 'SHOPPING_CART'
 
-        await fetch(`${HOME_URL}/shopping-cart/${identifier}`, {
+        await fetch(`${HOME_URL}/shopping-cart/${identifier}/bulk`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
