@@ -261,6 +261,11 @@ const myStyle = `
 						    transform: translateY(-50%);
 						    z-index: 1;
 						}
+
+                        .cart_accessories .tns-controls button[disabled] {
+                            opacity: 0.3;
+                            cursor: not-allowed;
+                        }
 						
 						.category_products {
 							display: flex;
@@ -332,7 +337,7 @@ const myStyle = `
 						
 						.price_block [data-operator="minus"].my_darker {
 							cursor: pointer;
-							filter: brightness(.7)
+							filter: brightness(0.7)
 						}
 						
 						[data-operator="plus"].my_lighter {
