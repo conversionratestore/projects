@@ -411,7 +411,7 @@ function starInterval() {
                 })
             }
             console.log('stop interval 1')
-            sessionStorage.removeItem('modal_loaded'); 
+            if (document.querySelector('.cart-item-remove-btn.-delete') == null) sessionStorage.removeItem('modal_loaded'); 
         }
         //google pay button
         if (document.querySelector('.btn__google-pay') == null && document.querySelector('.cart-order .google-pay-button') != null && document.querySelector('.cart-order .google-pay-button.hidden') == null &&  document.querySelector('.btns .heading') != null) {
@@ -465,8 +465,7 @@ function hideModal() {
 window.onload = function() {
    //cart
     if (window.location.pathname.includes('/cart.php') && sessionStorage.getItem('popular_products') != null && sessionStorage.getItem('popular_products') != '' && sessionStorage.getItem('popular_products') != []) { 
-        document.body.insertAdjacentHTML('afterbegin',`<p id="loaded-test">loaded test</p><p id="speed-scroll">speed scroll: </p>`)
-    
+
         //html modal
         let html = `
             <div class="modal__popular">
@@ -536,7 +535,6 @@ window.onload = function() {
                     newPosition = window.scrollY;
                 }, 100);
                 currentSpeed = newPosition - lastPosition;
-                document.querySelector('#speed-scroll').innerHTML = `speed scroll = ${currentSpeed}`;
 
                 if (currentSpeed > 100 && sessionStorage.getItem('modal_loaded') == null && document.querySelector('.modal__products').innerHTML != '') {
                     sessionStorage.setItem('modal_loaded', 'true'); //set status modal true
