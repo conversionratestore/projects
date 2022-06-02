@@ -599,7 +599,7 @@ const drawSelectedAccessory = (categoryAccessoryIndex) => {
             return `
 				<div data-item-index="${index}" class="category_item${isInCart ? ' hide_item' : ''}">																	
 					<div class="item_inner">
-						<a href='https://kingsbox.com/${pageLanguage2 !== 'en' ? pageLanguage2 + '/product' : ''}/${pathLink}'>
+						<a href='https://kingsbox.com/${pageLanguage2 !== 'en' ? pageLanguage2 + '/product/' : ''}${pathLink}'>
 							<div class="top_part">
 								<img src="${entity.image.url}" alt="${entity.image.alt}">
 								<p>${entity.name}</p>
