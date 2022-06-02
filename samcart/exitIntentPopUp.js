@@ -289,8 +289,8 @@ let startFunk = setInterval(() => {
     </div>
     `
 
-    document.head.insertAdjacentHTML("beforeend", exitIntentPopUpStyle) // styles
-    document.body.insertAdjacentHTML("beforeend", exitIntentPopUp) // html
+    document.head.insertAdjacentHTML("beforeend", exitIntentPopUpStyle)
+    document.body.insertAdjacentHTML("beforeend", exitIntentPopUp)
 
     //show popup desktop
     addEvent(document, "mouseout", function (e) {
