@@ -246,22 +246,35 @@
                })
 
                setTimeout(() => { 
-                    let card = document.querySelectorAll('.cursor-pointer.max-w-4xl.relative.mx-auto.shadow-md.border.rounded-md.overflow-hidden.mb-8.grid.grid-cols-1.gap-0.place-items-start');
                     
-                    card.forEach(item => {
-                         item.querySelector('.flex.flex-row.justify-start.items-start:nth-child(1)').before(item.querySelector('.flex.flex-row.justify-start.items-start:nth-child(3)')); //move Distance element in card
-                         item.querySelector('.my-4').after(item.querySelector('.flex.flex-row.justify-start.items-start:last-child')); //move Free Cancellation element in card
-                         item.querySelector('.flex.flex-col.w-full.col-span-2.pb-5.pl-8.pr-0.self-center.mx-auto > .flex.flex-row.justify-start.items-start .text-xs span:not(.font-bold)').innerHTML = `until ${document.querySelector('.input-ext').value[0] != '0' ? document.querySelector('.input-ext').value : document.querySelector('.input-ext').value.replace(document.querySelector('.input-ext').value[0],'')}` ; //set date for Free Cancellation in card
-                         item.querySelector('.grid.grid-cols-3.w-full').insertAdjacentHTML('beforeend',`<div class="flex items-center row-price"><div></div></div>`);
-                         item.querySelector('.row-price > div').after(item.querySelector('.flex.flex-col.h-full.items-center.justify-center.self-center.py-5.pr-4.w-full'));
-                         item.querySelector('.row-price > div').after(item.querySelector('.self-end.flex.flex-col.px-4.pb-4.col-span-3'));
-                         item.querySelector('.row-price .flex.flex-col.h-full.items-center.justify-center.self-center.py-5.pr-4.w-full small').innerHTML = ` / day`; //change 'Daily rate' element 
-                         item.querySelector('.row-price .rounded-full').innerHTML = `Online-only price`;
-                    })
-                   let minNumber = [].reduce.call(card, function(a, b) {
-                        return 0 >= a.querySelector('.row-price h3').innerHTML.replace('$','') - b.querySelector('.row-price h3').innerHTML.replace('$','') ? a : b
-                    })
-                    console.log(minNumber)
+                    function changeInCards(selector) {
+                         selector.forEach(item => {
+                              item.querySelector('.flex.flex-row.justify-start.items-start:nth-child(1)').before(item.querySelector('.flex.flex-row.justify-start.items-start:nth-child(3)')); //move Distance element in card
+                              item.querySelector('.my-4').after(item.querySelector('.flex.flex-row.justify-start.items-start:last-child')); //move Free Cancellation element in card
+                              item.querySelector('.flex.flex-row.justify-start.items-start .text-xs span:not(.font-bold)').innerHTML = `until ${document.querySelector('.input-ext').value[0] != '0' ? document.querySelector('.input-ext').value : document.querySelector('.input-ext').value.replace(document.querySelector('.input-ext').value[0],'')}` ; //set date for Free Cancellation in card
+                              item.querySelector('.grid.grid-cols-3.w-full').insertAdjacentHTML('beforeend',`<div class="flex items-center row-price"><div></div></div>`);
+                              item.querySelector('.row-price > div').after(item.querySelector('.flex.flex-col.h-full.items-center.justify-center.self-center.py-5.pr-4.w-full'));
+                              item.querySelector('.row-price > div').after(item.querySelector('.self-end.flex.flex-col.px-4.pb-4.col-span-3'));
+                              item.querySelector('.row-price .flex.flex-col.h-full.items-center.justify-center.self-center.py-5.pr-4.w-full small').innerHTML = ` / day`; //change 'Daily rate' element 
+                              item.querySelector('.row-price .rounded-full').innerHTML = `Online-only price`;
+                         })
+                    }
+                    changeInCards(document.querySelectorAll('.max-w-4xl.mx-auto.shadow-md.border.rounded-md.mb-8.grid.grid-cols-1.gap-0.place-items-start.overflow-hidden'))
+                  
+
+                    // var list = document.querySelectorAll("h3.text-4xl.font-medium.text-right");
+                    // var minNumber = [].reduce.call(list, function(a, b) {
+                    //     return 0 <= a.innerHTML.replace('$','') - b.innerHTML.replace('$','') ? a : b
+                    // })
+    
+                    // let minNumber = [].reduce.call(card, function(a, b) {
+                    //     if (a.querySelector('.row-price h3').innerHTML.replace('$','') <= b.querySelector('.row-price h3').innerHTML.replace('$','')) {
+                    //      return a
+                    //     } else {
+                    //      return b
+                    //     }
+                    // })
+                    // console.log(minNumber)
                }, 200)
 
             
