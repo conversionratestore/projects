@@ -245,8 +245,10 @@
                     input.addEventListener('change', (e) => setFormat(input))
                })
 
-               setTimeout(() => {
-                    document.querySelectorAll('.cursor-pointer.max-w-4xl.relative.mx-auto.shadow-md.border.rounded-md.overflow-hidden.mb-8.grid.grid-cols-1.gap-0.place-items-start').forEach(item => {
+               setTimeout(() => { 
+                    let card = document.querySelectorAll('.cursor-pointer.max-w-4xl.relative.mx-auto.shadow-md.border.rounded-md.overflow-hidden.mb-8.grid.grid-cols-1.gap-0.place-items-start');
+                    
+                    card.forEach(item => {
                          item.querySelector('.flex.flex-row.justify-start.items-start:nth-child(1)').before(item.querySelector('.flex.flex-row.justify-start.items-start:nth-child(3)')); //move Distance element in card
                          item.querySelector('.my-4').after(item.querySelector('.flex.flex-row.justify-start.items-start:last-child')); //move Free Cancellation element in card
                          item.querySelector('.flex.flex-col.w-full.col-span-2.pb-5.pl-8.pr-0.self-center.mx-auto > .flex.flex-row.justify-start.items-start .text-xs span:not(.font-bold)').innerHTML = `until ${document.querySelector('.input-ext').value[0] != '0' ? document.querySelector('.input-ext').value : document.querySelector('.input-ext').value.replace(document.querySelector('.input-ext').value[0],'')}` ; //set date for Free Cancellation in card
@@ -256,7 +258,13 @@
                          item.querySelector('.row-price .flex.flex-col.h-full.items-center.justify-center.self-center.py-5.pr-4.w-full small').innerHTML = ` / day`; //change 'Daily rate' element 
                          item.querySelector('.row-price .rounded-full').innerHTML = `Online-only price`;
                     })
+                   let minNumber = [].reduce.call(card, function(a, b) {
+                        return 0 >= a.querySelector('.row-price h3').innerHTML.replace('$','') - b.querySelector('.row-price h3').innerHTML.replace('$','') ? a : b
+                    })
+                    console.log(minNumber)
                }, 200)
+
+            
           }
 
           if (document.querySelector('#parkingat') != null || loadedContent == false) {
