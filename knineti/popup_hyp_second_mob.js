@@ -1087,7 +1087,7 @@ if (window.innerWidth <= 768) {
                             <img src="https://conversionratestore.github.io/projects/knineti/img/medal.svg" alt="medal">
                             <span>Exclusive and first ever online workshop by renowned service dog trainer Dr. Alexa Diaz, PhD</span>
                         </div>
-                        <h1>Learn how to train your dog <br> to be as <span>obedient</span> as a <br> service dog</h1>
+                        <h1>Learn how to train your dog to be as <span>obedient</span> as a service dog</h1>
                         <div class="img_wrap">
                             <img src="https://conversionratestore.github.io/projects/knineti/img/enroll_box_dog.jpg" alt="dog">
                         </div>   
