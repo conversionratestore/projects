@@ -31,10 +31,6 @@ if (window.innerWidth <= 768) {
   display: none !important;
 }
 
-#firstModal #closestepthree{
-  display: flex !important;
-}
-
 .container_var {
   width: 85%;
   margin: 0 auto;
@@ -1534,6 +1530,14 @@ if (window.innerWidth <= 768) {
       document.head.insertAdjacentHTML("beforeend", popupStyle)
       document.querySelector(".want-to-obey").insertAdjacentHTML("beforebegin", newBlock)
 
+      if (document.querySelector("#firstModal")) {
+        document.querySelectorAll("#firstModal #puppyCheck").forEach((el) => {
+          el.addEventListener("click", function () {
+            document.querySelector("#firstModal .modal-header #closestepthree.close").style.display = "block"
+          })
+        })
+      }
+
       function setListDog(title, photo) {
         return `  <li>
                     <a href="#">
@@ -1695,10 +1699,10 @@ if (window.innerWidth <= 768) {
           }
 
           // //   btn back first
-          document.querySelector(".popup_new > .progress_bar > div p:nth-child(1)").addEventListener("click", function () {
+          document.querySelector("#openModal .popup_new > .progress_bar > div p:nth-child(1)").addEventListener("click", function () {
             pushDataLayer(`Click on Previous on step "What unwanted behavior do you want to address?"`)
-            if (document.querySelector(".popup_new > .popup_first .btn_continue").getAttribute("data-lst-dog")) {
-              document.querySelector(".popup_new > .popup_first .btn_continue").removeAttribute("data-lst-dog", "2")
+            if (document.querySelector("#openModal .popup_new > .popup_first .btn_continue").getAttribute("data-lst-dog")) {
+              document.querySelector("#openModal .popup_new > .popup_first .btn_continue").removeAttribute("data-lst-dog", "2")
             }
           })
 
