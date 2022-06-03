@@ -25,6 +25,7 @@ let style = `
           color: #FFFFFF;
           display: block;
           text-transform: initial;
+          padding: 0;
      }
      h2.mb-2.text-2xl.px-5.uppercase.flex.flex-row.items-center.w-full span {
           font-weight: 400;
@@ -286,8 +287,8 @@ let formatDate = {
 }
 
 let lowerPrice = `<div class="lowest_price">Lowest price</div>`,
-     bestReviews = `<div class="best_reviews">Best reviews</div>`,
-     guarantHtml = `<div class="guarant flex justify-between pt-4 pb-6">
+    bestReviews = `<div class="best_reviews">Best reviews</div>`,
+    guarantHtml = `<div class="guarant flex justify-between pt-4 pb-6">
           <div class="guarant_item">
                <div>
                     <img src="https://conversionratestore.github.io/projects/onairparking/img/price.svg" alt="icon">
@@ -369,7 +370,7 @@ function changeInCards(selector) {
      })
 }
 
-let count = 0;
+let count = 0; //for click on "Search again" button
 function starInterval() {
      start = setInterval(() => {
           window.location.pathname == '/reservation/search' ?  loadedContent = true : loadedContent = false;
@@ -401,7 +402,7 @@ function starInterval() {
 
                changeInCards(document.querySelectorAll('.mx-auto.shadow-md.border.rounded-md.mb-8.grid.grid-cols-1.gap-0.place-items-start.overflow-hidden'))
      
-               document.querySelector('[data-test-id="park_now"]').addEventListener('click', () => count = 1)
+               document.querySelector('[data-test-id="park_now"]').addEventListener('click', () => count = 1) //click on "Search again" button
           
                document.querySelector('main > div > div.container.mx-auto.px-4.py-8').insertAdjacentHTML('beforeend', guarantHtml)
           }
