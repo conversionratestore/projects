@@ -516,7 +516,7 @@ input.other_text{
                       </li>
                       <li>
                         <label for="otherTextSecond">
-                          <input maxlength="50" class="other_text" type="text" id="otherTextSecond" placeholder="Please specify your niche">
+                          <input maxlength="100" class="other_text" type="text" id="otherTextSecond" placeholder="Please specify your niche">
                         </label>
                       </li>
                     </ul>
