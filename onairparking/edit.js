@@ -323,58 +323,59 @@ function changeInCards(selector) {
 
      //random "Only 8 left at this price"
      let randomIndex = Math.floor(Math.random() * selector.length);
-
-     selector.forEach((item, index) => {
-          item.querySelector('.flex.flex-row.justify-start.items-start:nth-child(1)').before(item.querySelector('.flex.flex-row.justify-start.items-start:nth-child(3)')); //move Distance element in card
-          item.querySelectorAll('.flex.flex-row.justify-start.items-start .text-xs .font-bold').forEach(el => {
-               if (el.innerText.toLowerCase() == 'free cancellations') {
-                    el.nextElementSibling.innerHTML = `until ${document.querySelector('.input-ext').value[0] != '0' ? document.querySelector('.input-ext').value : document.querySelector('.input-ext').value.replace(document.querySelector('.input-ext').value[0],'')}` ; //set date for Free Cancellation in card
+     setTimeout(() => {
+          selector.forEach((item, index) => {
+               item.querySelector('.flex.flex-row.justify-start.items-start:nth-child(1)').before(item.querySelector('.flex.flex-row.justify-start.items-start:nth-child(3)')); //move Distance element in card
+               item.querySelectorAll('.flex.flex-row.justify-start.items-start .text-xs .font-bold').forEach(el => {
+                    if (el.innerText.toLowerCase() == 'free cancellations') {
+                         el.nextElementSibling.innerHTML = `until ${document.querySelector('.input-ext').value[0] != '0' ? document.querySelector('.input-ext').value : document.querySelector('.input-ext').value.replace(document.querySelector('.input-ext').value[0],'')}` ; //set date for Free Cancellation in card
+                    }
+               })
+               
+               item.querySelector('.grid.grid-cols-3.w-full').insertAdjacentHTML('beforeend',`<div class="block_b"><div></div></div><div class="flex items-center row-price"><div></div></div>`);
+               item.querySelector('.block_b > div').before(item.querySelector('.flex.flex-row.justify-start.items-start:last-child')); //move Free Cancellation element in card
+               item.querySelector('.row-price > div').after(item.querySelector('.flex.flex-col.h-full.items-center.justify-center.self-center.py-5.pr-4.w-full')); //price
+               item.querySelector('.row-price > div').after(item.querySelector('.self-end.flex.flex-col.px-4.pb-4.col-span-3')); //btn 'Online-only price'
+               //text under the btn
+               if (item.querySelector('.self-end.flex.flex-col.px-4.pb-4.col-span-3 small.text-center') != null) { 
+                    item.querySelector('.row-price').after(item.querySelector('.self-end.flex.flex-col.px-4.pb-4.col-span-3 small.text-center'));
+               }
+               
+               item.querySelector('.row-price .flex.flex-col.h-full.items-center.justify-center.self-center.py-5.pr-4.w-full small').innerHTML = ` / day`; //change 'Daily rate' element 
+               
+               //change text\style on button card
+               let btn = item.querySelector('.row-price .rounded-full');
+               if (btn.innerText.toLowerCase() == 'park here') {
+                    btn.innerHTML = `Online-only price`;
+               } else if (btn.innerText.toLowerCase() == 'sold out' || btn.innerText.toLowerCase() == 'unavailable') {
+                    btn.style = `background-color: #8d8d8d`
+               }   
+               //add "Only 8 left at this price"
+               if (randomIndex == index) {
+                    item.querySelector('.block_b').insertAdjacentHTML('afterbegin',`<p class="c-red">Only 8 left at this price</p>`)
+               }
+     
+               item.querySelector('div:nth-child(2)').style = `min-height: ${item.clientHeight}px!important`; //height image parking
+               item.querySelector('.relative.bg-gray-100.w-full').style = `min-height: ${item.clientHeight}px!important`; //height image parking
+     
+          })
+     
+          let list = document.querySelectorAll("h3.text-4xl.font-medium.text-right");
+          let minNumber = [].reduce.call(list, (a, b) => 0 >= a.innerHTML.replace('$','') - b.innerHTML.replace('$','') ? a : b)
+     
+          if (minNumber.parentElement.querySelector('.rounded-full') != null) {
+               minNumber.closest('.max-w-4xl.mx-auto.shadow-md.border.rounded-md.mb-8.grid.grid-cols-1.gap-0.place-items-start.overflow-hidden > div:nth-child(2)').insertAdjacentHTML('afterbegin', lowerPrice)
+          } 
+          //title
+          document.querySelector('h2.mb-2.text-2xl.px-5.uppercase.flex.flex-row.items-center.w-full').innerHTML = `${document.querySelector('.ant-select-single .ant-select-selector .ant-select-selection-search-input').value.split('- ')[1]}  <span class="from-title">From <br> ${minNumber.innerHTML} / day</span>`;          
+          
+          //add best reviews
+          selector.forEach(item => {
+               if (item.querySelectorAll('.ant-rate-star-full').length >= 5 && item.querySelector('.lowest_price') == null && document.querySelector('.best_reviews') == null) {
+                    item.querySelector('div:nth-child(2)').insertAdjacentHTML('afterbegin', bestReviews)
                }
           })
-          
-          item.querySelector('.grid.grid-cols-3.w-full').insertAdjacentHTML('beforeend',`<div class="block_b"><div></div></div><div class="flex items-center row-price"><div></div></div>`);
-          item.querySelector('.block_b > div').before(item.querySelector('.flex.flex-row.justify-start.items-start:last-child')); //move Free Cancellation element in card
-          item.querySelector('.row-price > div').after(item.querySelector('.flex.flex-col.h-full.items-center.justify-center.self-center.py-5.pr-4.w-full')); //price
-          item.querySelector('.row-price > div').after(item.querySelector('.self-end.flex.flex-col.px-4.pb-4.col-span-3')); //btn 'Online-only price'
-          //text under the btn
-          if (item.querySelector('.self-end.flex.flex-col.px-4.pb-4.col-span-3 small.text-center') != null) { 
-               item.querySelector('.row-price').after(item.querySelector('.self-end.flex.flex-col.px-4.pb-4.col-span-3 small.text-center'));
-          }
-          
-          item.querySelector('.row-price .flex.flex-col.h-full.items-center.justify-center.self-center.py-5.pr-4.w-full small').innerHTML = ` / day`; //change 'Daily rate' element 
-          
-          //change text\style on button card
-          let btn = item.querySelector('.row-price .rounded-full');
-          if (btn.innerText.toLowerCase() == 'park here') {
-               btn.innerHTML = `Online-only price`;
-          } else if (btn.innerText.toLowerCase() == 'sold out' || btn.innerText.toLowerCase() == 'unavailable') {
-               btn.style = `background-color: #8d8d8d`
-          }   
-          //add "Only 8 left at this price"
-          if (randomIndex == index) {
-               item.querySelector('.block_b').insertAdjacentHTML('afterbegin',`<p class="c-red">Only 8 left at this price</p>`)
-          }
-
-          item.querySelector('div:nth-child(2)').style = `min-height: ${item.clientHeight}px!important`; //height image parking
-          item.querySelector('.relative.bg-gray-100.w-full').style = `min-height: ${item.clientHeight}px!important`; //height image parking
-
-     })
-
-     let list = document.querySelectorAll("h3.text-4xl.font-medium.text-right");
-     let minNumber = [].reduce.call(list, (a, b) => 0 >= a.innerHTML.replace('$','') - b.innerHTML.replace('$','') ? a : b)
-
-     if (minNumber.parentElement.querySelector('.rounded-full') != null) {
-          minNumber.closest('.max-w-4xl.mx-auto.shadow-md.border.rounded-md.mb-8.grid.grid-cols-1.gap-0.place-items-start.overflow-hidden > div:nth-child(2)').insertAdjacentHTML('afterbegin', lowerPrice)
-     } 
-     //title
-     document.querySelector('h2.mb-2.text-2xl.px-5.uppercase.flex.flex-row.items-center.w-full').innerHTML = `${document.querySelector('.ant-select-single .ant-select-selector .ant-select-selection-search-input').value.split('- ')[1]}  <span class="from-title">From <br> ${minNumber.innerHTML} / day</span>`;          
-     
-     //add best reviews
-     selector.forEach(item => {
-          if (item.querySelectorAll('.ant-rate-star-full').length >= 5 && item.querySelector('.lowest_price') == null && document.querySelector('.best_reviews') == null) {
-               item.querySelector('div:nth-child(2)').insertAdjacentHTML('afterbegin', bestReviews)
-          }
-     })
+     }, 150);
 }
 
 function starInterval() {
@@ -387,7 +388,6 @@ function starInterval() {
                     document.querySelector('.bg-white.rounded-md.relative.w-full.py-2.pl-4.pr-6.mb-3.text-gray-700.leading-tight.h-10.flex.flex-row.items-center.justify-center').style = 'display: none'
                }
           }
-        
 
           if (count == 0 && document.querySelector('.js-style') == null && document.querySelector('button.btn-orange span') != null && document.querySelector('button.btn-orange span').outerHTML == '<span>Hide Search</span>' && loadedContent == true) {
                console.log('1')
