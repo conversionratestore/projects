@@ -3,6 +3,9 @@ let style = `
      .bg-white.rounded-md.relative.w-full.py-2.pl-4.pr-6.mb-3.text-gray-700.leading-tight.h-10.flex.flex-row.items-center.justify-center, .ribbon, .flex.flex-row.justify-start.items-start > span, .-ml-4.-mr-4.-mt-8.px-6.py-4.bg-gray-100.mb-4.block.bg-orange-50, .grid.grid-cols-1.divide-y.divide-gray-500.container.mx-auto.px-2 {
           display: none!important
      }
+     main > div > div.container.mx-auto.px-4.py-8 {
+          background-color: #FEF3EB;
+     }
      .max-w-4xl.mx-auto.shadow-md.border.rounded-md.mb-8.grid.grid-cols-1.gap-0.place-items-start.overflow-hidden {
           border-radius: 10px;
           border: none;
@@ -10,6 +13,7 @@ let style = `
           box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.05), 0px 0px 19px rgba(0, 0, 0, 0.05), 0px 2px 10px rgba(0, 0, 0, 0.06);
           position: relative;
           display: flex;
+          background-color: #fff;
      }
      h2.mb-2.text-2xl.px-5.uppercase.flex.flex-row.items-center.w-full {
           font-family: 'Roboto', sans-serif;
@@ -241,6 +245,27 @@ let style = `
      .grid.grid-cols-3.w-full small.text-center {
           text-align: left;
      }
+     .guarant_item {
+          width: 33.33%;
+     }
+     .guarant_item > div {
+          height: 45px;
+          margin-bottom: 10px;
+          display: flex;
+     }
+     .guarant_item img {
+          margin: auto auto 0 ;
+     }
+     .guarant_item p {
+          font-weight: 500;
+          font-size: 14px;
+          line-height: 17px;
+          text-align: center;
+          color: #515356;
+     }
+     .ant-layout-footer {
+          margin-top: 0;
+     }
 </style>
 `
 
@@ -261,7 +286,28 @@ let formatDate = {
 }
 
 let lowerPrice = `<div class="lowest_price">Lowest price</div>`,
-     bestReviews = `<div class="best_reviews">Best reviews</div>`;
+     bestReviews = `<div class="best_reviews">Best reviews</div>`,
+     guarantHtml = `<div class="guarant flex justify-between pt-4 pb-6">
+          <div class="guarant_item">
+               <div>
+                    <img src="https://conversionratestore.github.io/projects/onairparking/img/price.svg" alt="icon">
+               </div>
+                  
+               <p>The lowest price guaranteed</p>
+          </div>
+          <div class="guarant_item">
+               <div>
+                    <img src="https://conversionratestore.github.io/projects/onairparking/img/free-cancellation.png" alt="icon">
+               </div>
+               <p>Free <br> cancellation</p>
+          </div>
+          <div class="guarant_item">
+               <div>
+                    <img src="https://conversionratestore.github.io/projects/onairparking/img/shuttle.png" alt="icon">
+               </div>
+               <p>24/7 free <br> shuttle service</p>
+          </div>
+     </div>`;
 
 let start = null;
 
@@ -357,6 +403,7 @@ function starInterval() {
      
                document.querySelector('[data-test-id="park_now"]').addEventListener('click', () => count = 1)
           
+               document.querySelector('main > div > div.container.mx-auto.px-4.py-8').insertAdjacentHTML('beforeend', guarantHtml)
           }
           if (count === 1 && document.querySelector('.row-price') == null && document.querySelector('button.btn-orange span') != null && document.querySelector('button.btn-orange span').outerHTML == '<span>Hide Search</span>' && loadedContent == true) {
                console.log('2')
