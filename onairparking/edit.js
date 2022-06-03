@@ -1,64 +1,5 @@
-//change cards                 
-function changeInCards(selector) {
-     let lowerPrice = `<div class="lowest_price">Lowest price</div>`,
-          bestReviews = `<div class="best_reviews">Best reviews</div>`;
+window.onload  = function () {
 
-     //random "Only 8 left at this price"
-     let randomIndex = Math.floor(Math.random() * selector.length);
-
-     selector.forEach((item, index) => {
-          item.querySelector('.flex.flex-row.justify-start.items-start:nth-child(1)').before(item.querySelector('.flex.flex-row.justify-start.items-start:nth-child(3)')); //move Distance element in card
-          item.querySelectorAll('.flex.flex-row.justify-start.items-start .text-xs .font-bold').forEach(el => {
-               if (el.innerText.toLowerCase() == 'free cancellations') {
-                    el.nextElementSibling.innerHTML = `until ${document.querySelector('.input-ext').value[0] != '0' ? document.querySelector('.input-ext').value : document.querySelector('.input-ext').value.replace(document.querySelector('.input-ext').value[0],'')}` ; //set date for Free Cancellation in card
-               }
-          })
-          
-          item.querySelector('.grid.grid-cols-3.w-full').insertAdjacentHTML('beforeend',`<div class="block_b"><div></div></div><div class="flex items-center row-price"><div></div></div>`);
-          item.querySelector('.block_b > div').before(item.querySelector('.flex.flex-row.justify-start.items-start:last-child')); //move Free Cancellation element in card
-          item.querySelector('.row-price > div').after(item.querySelector('.flex.flex-col.h-full.items-center.justify-center.self-center.py-5.pr-4.w-full')); //price
-          item.querySelector('.row-price > div').after(item.querySelector('.self-end.flex.flex-col.px-4.pb-4.col-span-3')); //btn 'Online-only price'
-          //text under the btn
-          if (item.querySelector('.self-end.flex.flex-col.px-4.pb-4.col-span-3 small.text-center') != null) { 
-               item.querySelector('.row-price').after(item.querySelector('.self-end.flex.flex-col.px-4.pb-4.col-span-3 small.text-center'));
-          }
-          
-          item.querySelector('.row-price .flex.flex-col.h-full.items-center.justify-center.self-center.py-5.pr-4.w-full small').innerHTML = ` / day`; //change 'Daily rate' element 
-          
-          //change text\style on button card
-          let btn = item.querySelector('.row-price .rounded-full');
-          if (btn.innerText.toLowerCase() == 'park here') {
-               btn.innerHTML = `Online-only price`;
-          } else if (btn.innerText.toLowerCase() == 'sold out' || btn.innerText.toLowerCase() == 'unavailable') {
-               btn.style = `background-color: #8d8d8d`
-          }   
-          //add "Only 8 left at this price"
-          if (randomIndex == index) {
-               item.querySelector('.block_b').insertAdjacentHTML('afterbegin',`<p class="c-red">Only 8 left at this price</p>`)
-          }
-
-          item.querySelector('div:nth-child(2)').style = `min-height: ${item.clientHeight}px!important`; //height image parking
-          item.querySelector('.relative.bg-gray-100.w-full').style = `min-height: ${item.clientHeight}px!important`; //height image parking
-
-     })
-
-     let list = document.querySelectorAll("h3.text-4xl.font-medium.text-right");
-     let minNumber = [].reduce.call(list, (a, b) => 0 >= a.innerHTML.replace('$','') - b.innerHTML.replace('$','') ? a : b)
-
-     if (minNumber.parentElement.querySelector('.rounded-full') != null) {
-          minNumber.closest('.max-w-4xl.mx-auto.shadow-md.border.rounded-md.mb-8.grid.grid-cols-1.gap-0.place-items-start.overflow-hidden > div:nth-child(2)').insertAdjacentHTML('afterbegin', lowerPrice)
-     } 
-     //title
-     document.querySelector('h2.mb-2.text-2xl.px-5.uppercase.flex.flex-row.items-center.w-full').innerHTML = `${document.querySelector('.ant-select-single .ant-select-selector .ant-select-selection-search-input').value.split('- ')[1]}  <span class="from-title">From <br> ${minNumber.innerHTML} / day</span>`;          
-     
-     //add best reviews
-     selector.forEach(item => {
-          if (item.querySelectorAll('.ant-rate-star-full').length >= 5 && item.querySelector('.lowest_price') == null && document.querySelector('.best_reviews') == null) {
-               item.querySelector('div:nth-child(2)').insertAdjacentHTML('afterbegin', bestReviews)
-          }
-     })
-}
-function starInterval() {
      let style = `
      <style class="js-style">
           .bg-white.rounded-md.relative.w-full.py-2.pl-4.pr-6.mb-3.text-gray-700.leading-tight.h-10.flex.flex-row.items-center.justify-center, .ribbon, .flex.flex-row.justify-start.items-start > span, .-ml-4.-mr-4.-mt-8.px-6.py-4.bg-gray-100.mb-4.block.bg-orange-50, .grid.grid-cols-1.divide-y.divide-gray-500.container.mx-auto.px-2 {
@@ -200,7 +141,7 @@ function starInterval() {
           }
           .flex.flex-row.justify-start.items-start .text-xs .font-bold { 
                font-weight: 400;
-
+     
           }
           .my-4 .flex.flex-row.justify-start.items-start:nth-child(3) .text-xs .font-bold {
                display: none;
@@ -331,7 +272,7 @@ function starInterval() {
      </style>`;
      
      let count = 0; //for click on "Search again" button
-
+     
      let loadedContent = false;
      let formatDate = {
           '01':'Jan',
@@ -347,8 +288,10 @@ function starInterval() {
           '11':'Nov',
           '12':'Dec'
      }
-
-     let guarantHtml = `<div class="guarant flex justify-between pt-4 pb-6">
+     
+     let lowerPrice = `<div class="lowest_price">Lowest price</div>`,
+          bestReviews = `<div class="best_reviews">Best reviews</div>`,
+          guarantHtml = `<div class="guarant flex justify-between pt-4 pb-6">
                <div class="guarant_item">
                     <div>
                          <img src="https://conversionratestore.github.io/projects/onairparking/img/price.svg" alt="icon">
@@ -369,59 +312,120 @@ function starInterval() {
                     <p>24/7 free <br> shuttle service</p>
                </div>
           </div>`;
-
-     let start = null;
-
-     start = setInterval(() => {
-          window.location.pathname == '/reservation/search' ?  loadedContent = true : loadedContent = false;
-
-          if (count == 0 && document.querySelector('.js-style') == null && document.querySelector('button.btn-orange span') != null && document.querySelector('button.btn-orange span').outerHTML == '<span>Hide Search</span>' && loadedContent == true) {
-               console.log('1')
-
-               document.body.insertAdjacentHTML('afterbegin', style) // add style
-
-               //bg gradient
-               document.querySelector('img.z-0.w-full.object-cover.min-h-64.h-full.absolute.object-bottom').src = `https://conversionratestore.github.io/projects/onairparking/img/map-gradient.png`
-               
-               //set format date
-               function setFormat(date) {
-                    let itemDate = date,
-                         mouth = itemDate.value.split('-');
-
-                    for (const key in formatDate) {
-                         if (mouth[1] == key) {
-                              itemDate.parentElement.querySelector('.input-ext').value = mouth[2] + " " + formatDate[key];
-                         }
-                    } 
-               }
-
-               document.querySelectorAll('.bg-white.py-6.rounded-md.flex.flex-col.w-full.items-start.justify-start > .h-14 input').forEach(input => {
-                    input.insertAdjacentHTML('afterend',`<input type="text" class="input-ext">`);
-                    setFormat(input)
-                    input.addEventListener('change', (e) => setFormat(input))
-               })
-
-               changeInCards(document.querySelectorAll('.mx-auto.shadow-md.border.rounded-md.mb-8.grid.grid-cols-1.gap-0.place-items-start.overflow-hidden'))
      
-               document.querySelector('[data-test-id="park_now"]').addEventListener('click', () => count = 1) //click on "Search again" button
+     let start = null;
+     
+     //change cards                 
+     function changeInCards(selector) {
+     
+          //random "Only 8 left at this price"
+          let randomIndex = Math.floor(Math.random() * selector.length);
+     
+          selector.forEach((item, index) => {
+               item.querySelector('.flex.flex-row.justify-start.items-start:nth-child(1)').before(item.querySelector('.flex.flex-row.justify-start.items-start:nth-child(3)')); //move Distance element in card
+               item.querySelectorAll('.flex.flex-row.justify-start.items-start .text-xs .font-bold').forEach(el => {
+                    if (el.innerText.toLowerCase() == 'free cancellations') {
+                         el.nextElementSibling.innerHTML = `until ${document.querySelector('.input-ext').value[0] != '0' ? document.querySelector('.input-ext').value : document.querySelector('.input-ext').value.replace(document.querySelector('.input-ext').value[0],'')}` ; //set date for Free Cancellation in card
+                    }
+               })
+               
+               item.querySelector('.grid.grid-cols-3.w-full').insertAdjacentHTML('beforeend',`<div class="block_b"><div></div></div><div class="flex items-center row-price"><div></div></div>`);
+               item.querySelector('.block_b > div').before(item.querySelector('.flex.flex-row.justify-start.items-start:last-child')); //move Free Cancellation element in card
+               item.querySelector('.row-price > div').after(item.querySelector('.flex.flex-col.h-full.items-center.justify-center.self-center.py-5.pr-4.w-full')); //price
+               item.querySelector('.row-price > div').after(item.querySelector('.self-end.flex.flex-col.px-4.pb-4.col-span-3')); //btn 'Online-only price'
+               //text under the btn
+               if (item.querySelector('.self-end.flex.flex-col.px-4.pb-4.col-span-3 small.text-center') != null) { 
+                    item.querySelector('.row-price').after(item.querySelector('.self-end.flex.flex-col.px-4.pb-4.col-span-3 small.text-center'));
+               }
+               
+               item.querySelector('.row-price .flex.flex-col.h-full.items-center.justify-center.self-center.py-5.pr-4.w-full small').innerHTML = ` / day`; //change 'Daily rate' element 
+               
+               //change text\style on button card
+               let btn = item.querySelector('.row-price .rounded-full');
+               if (btn.innerText.toLowerCase() == 'park here') {
+                    btn.innerHTML = `Online-only price`;
+               } else if (btn.innerText.toLowerCase() == 'sold out' || btn.innerText.toLowerCase() == 'unavailable') {
+                    btn.style = `background-color: #8d8d8d`
+               }   
+               //add "Only 8 left at this price"
+               if (randomIndex == index) {
+                    item.querySelector('.block_b').insertAdjacentHTML('afterbegin',`<p class="c-red">Only 8 left at this price</p>`)
+               }
+     
+               item.querySelector('div:nth-child(2)').style = `min-height: ${item.clientHeight}px!important`; //height image parking
+               item.querySelector('.relative.bg-gray-100.w-full').style = `min-height: ${item.clientHeight}px!important`; //height image parking
+     
+          })
+     
+          let list = document.querySelectorAll("h3.text-4xl.font-medium.text-right");
+          let minNumber = [].reduce.call(list, (a, b) => 0 >= a.innerHTML.replace('$','') - b.innerHTML.replace('$','') ? a : b)
+     
+          if (minNumber.parentElement.querySelector('.rounded-full') != null) {
+               minNumber.closest('.max-w-4xl.mx-auto.shadow-md.border.rounded-md.mb-8.grid.grid-cols-1.gap-0.place-items-start.overflow-hidden > div:nth-child(2)').insertAdjacentHTML('afterbegin', lowerPrice)
+          } 
+          //title
+          document.querySelector('h2.mb-2.text-2xl.px-5.uppercase.flex.flex-row.items-center.w-full').innerHTML = `${document.querySelector('.ant-select-single .ant-select-selector .ant-select-selection-search-input').value.split('- ')[1]}  <span class="from-title">From <br> ${minNumber.innerHTML} / day</span>`;          
           
-               document.querySelector('main > div > div.container.mx-auto.px-4.py-8').insertAdjacentHTML('beforeend', guarantHtml)
-          }
-          if (count === 1 && document.querySelector('.row-price') == null && document.querySelector('button.btn-orange span') != null && document.querySelector('button.btn-orange span').outerHTML == '<span>Hide Search</span>' && loadedContent == true) {
-               console.log('2')
-               count = 0;
-               changeInCards(document.querySelectorAll('.mx-auto.shadow-md.border.rounded-md.mb-8.grid.grid-cols-1.gap-0.place-items-start.overflow-hidden'))
-          }
-          
-          document.querySelectorAll('.row-price .rounded-full').forEach(el => {
-               if (el.innerText == 'Online-only pricePark Here' || el.innerText == 'Park Here') {
-                    el.innerHTML = 'Online-only price'
+          //add best reviews
+          selector.forEach(item => {
+               if (item.querySelectorAll('.ant-rate-star-full').length >= 5 && item.querySelector('.lowest_price') == null && document.querySelector('.best_reviews') == null) {
+                    item.querySelector('div:nth-child(2)').insertAdjacentHTML('afterbegin', bestReviews)
                }
           })
-
-          if (document.querySelector('#parkingat') != null || loadedContent == false) {
-               document.querySelector('.js-style') != null ? document.querySelector('.js-style').remove() : '';
-          }
-     }, 100)
-}
-starInterval()
+     }
+     
+     function starInterval() {
+          start = setInterval(() => {
+               window.location.pathname == '/reservation/search' ?  loadedContent = true : loadedContent = false;
+     
+               if (count == 0 && document.querySelector('.js-style') == null && document.querySelector('button.btn-orange span') != null && document.querySelector('button.btn-orange span').outerHTML == '<span>Hide Search</span>' && loadedContent == true) {
+                    console.log('1')
+     
+                    document.body.insertAdjacentHTML('afterbegin', style) // add style
+     
+                    //bg gradient
+                    document.querySelector('img.z-0.w-full.object-cover.min-h-64.h-full.absolute.object-bottom').src = `https://conversionratestore.github.io/projects/onairparking/img/map-gradient.png`
+                    
+                    //set format date
+                    function setFormat(date) {
+                         let itemDate = date,
+                              mouth = itemDate.value.split('-');
+     
+                         for (const key in formatDate) {
+                              if (mouth[1] == key) {
+                                   itemDate.parentElement.querySelector('.input-ext').value = mouth[2] + " " + formatDate[key];
+                              }
+                         } 
+                    }
+     
+                    document.querySelectorAll('.bg-white.py-6.rounded-md.flex.flex-col.w-full.items-start.justify-start > .h-14 input').forEach(input => {
+                         input.insertAdjacentHTML('afterend',`<input type="text" class="input-ext">`);
+                         setFormat(input)
+                         input.addEventListener('change', (e) => setFormat(input))
+                    })
+     
+                    changeInCards(document.querySelectorAll('.mx-auto.shadow-md.border.rounded-md.mb-8.grid.grid-cols-1.gap-0.place-items-start.overflow-hidden'))
+          
+                    document.querySelector('[data-test-id="park_now"]').addEventListener('click', () => count = 1) //click on "Search again" button
+               
+                    document.querySelector('main > div > div.container.mx-auto.px-4.py-8').insertAdjacentHTML('beforeend', guarantHtml)
+               }
+               if (count === 1 && document.querySelector('.row-price') == null && document.querySelector('button.btn-orange span') != null && document.querySelector('button.btn-orange span').outerHTML == '<span>Hide Search</span>' && loadedContent == true) {
+                    console.log('2')
+                    count = 0;
+                    changeInCards(document.querySelectorAll('.mx-auto.shadow-md.border.rounded-md.mb-8.grid.grid-cols-1.gap-0.place-items-start.overflow-hidden'))
+               }
+               
+               document.querySelectorAll('.row-price .rounded-full').forEach(el => {
+                    if (el.innerText == 'Online-only pricePark Here' || el.innerText == 'Park Here') {
+                         el.innerHTML = 'Online-only price'
+                    }
+               })
+     
+               if (document.querySelector('#parkingat') != null || loadedContent == false) {
+                    document.querySelector('.js-style') != null ? document.querySelector('.js-style').remove() : '';
+               }
+          }, 100)
+     }
+     starInterval()
+};
