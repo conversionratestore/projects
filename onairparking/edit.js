@@ -106,7 +106,7 @@ function starInterval() {
 
           if (count == 0 && document.querySelector('.js-style') == null && document.querySelector('button.btn-orange span') != null && document.querySelector('button.btn-orange span').outerHTML == '<span>Hide Search</span>' && loadedContent == true) {
                console.log('1')
-               let styleForEdit = `
+               let style = `
                     <style class="js-style">
                          .bg-white.rounded-md.relative.w-full.py-2.pl-4.pr-6.mb-3.text-gray-700.leading-tight.h-10.flex.flex-row.items-center.justify-center, .ribbon, .flex.flex-row.justify-start.items-start > span, .-ml-4.-mr-4.-mt-8.px-6.py-4.bg-gray-100.mb-4.block.bg-orange-50, .grid.grid-cols-1.divide-y.divide-gray-500.container.mx-auto.px-2 {
                               display: none!important
@@ -377,7 +377,7 @@ function starInterval() {
                          }
                     </style>`;
 
-               document.body.insertAdjacentHTML('afterbegin', styleForEdit) // add style
+               document.body.insertAdjacentHTML('afterbegin', style) // add style
 
                //bg gradient
                document.querySelector('img.z-0.w-full.object-cover.min-h-64.h-full.absolute.object-bottom').src = `https://conversionratestore.github.io/projects/onairparking/img/map-gradient.png`
