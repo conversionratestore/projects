@@ -1,7 +1,7 @@
-
-
 //change cards                 
 function changeInCards(selector) {
+     let lowerPrice = `<div class="lowest_price">Lowest price</div>`,
+          bestReviews = `<div class="best_reviews">Best reviews</div>`;
 
      //random "Only 8 left at this price"
      let randomIndex = Math.floor(Math.random() * selector.length);
@@ -13,7 +13,7 @@ function changeInCards(selector) {
                     el.nextElementSibling.innerHTML = `until ${document.querySelector('.input-ext').value[0] != '0' ? document.querySelector('.input-ext').value : document.querySelector('.input-ext').value.replace(document.querySelector('.input-ext').value[0],'')}` ; //set date for Free Cancellation in card
                }
           })
-
+          
           item.querySelector('.grid.grid-cols-3.w-full').insertAdjacentHTML('beforeend',`<div class="block_b"><div></div></div><div class="flex items-center row-price"><div></div></div>`);
           item.querySelector('.block_b > div').before(item.querySelector('.flex.flex-row.justify-start.items-start:last-child')); //move Free Cancellation element in card
           item.querySelector('.row-price > div').after(item.querySelector('.flex.flex-col.h-full.items-center.justify-center.self-center.py-5.pr-4.w-full')); //price
@@ -22,9 +22,9 @@ function changeInCards(selector) {
           if (item.querySelector('.self-end.flex.flex-col.px-4.pb-4.col-span-3 small.text-center') != null) { 
                item.querySelector('.row-price').after(item.querySelector('.self-end.flex.flex-col.px-4.pb-4.col-span-3 small.text-center'));
           }
-
+          
           item.querySelector('.row-price .flex.flex-col.h-full.items-center.justify-center.self-center.py-5.pr-4.w-full small').innerHTML = ` / day`; //change 'Daily rate' element 
-
+          
           //change text\style on button card
           let btn = item.querySelector('.row-price .rounded-full');
           if (btn.innerText.toLowerCase() == 'park here') {
@@ -50,7 +50,7 @@ function changeInCards(selector) {
      } 
      //title
      document.querySelector('h2.mb-2.text-2xl.px-5.uppercase.flex.flex-row.items-center.w-full').innerHTML = `${document.querySelector('.ant-select-single .ant-select-selector .ant-select-selection-search-input').value.split('- ')[1]}  <span class="from-title">From <br> ${minNumber.innerHTML} / day</span>`;          
-
+     
      //add best reviews
      selector.forEach(item => {
           if (item.querySelectorAll('.ant-rate-star-full').length >= 5 && item.querySelector('.lowest_price') == null && document.querySelector('.best_reviews') == null) {
@@ -194,11 +194,11 @@ function starInterval() {
                .ant-rate-star:not(:last-child) {
                     margin-right: 2px;
                }
-
+               
                .flex.flex-row.justify-start.items-start .text-xs, .grid.grid-cols-1.gap-1.self-center.items-start, .flex.flex-row.justify-start.items-start:nth-child(2), .flex.flex-row.justify-start.items-start:nth-child(3) {
                     display: inline!important;
                }
-
+               
                .flex.flex-row.justify-start.items-start .text-xs { 
                     margin-left: 0;
                     font-size: 12px;
@@ -207,7 +207,7 @@ function starInterval() {
                }
                .flex.flex-row.justify-start.items-start .text-xs .font-bold { 
                     font-weight: 400;
-
+          
                }
                .my-4 .flex.flex-row.justify-start.items-start:nth-child(3) .text-xs .font-bold {
                     display: none;
@@ -355,37 +355,36 @@ function starInterval() {
           '12':'Dec'
      }
 
-     let lowerPrice = `<div class="lowest_price">Lowest price</div>`,
-          bestReviews = `<div class="best_reviews">Best reviews</div>`,
-          guarantHtml = `<div class="guarant flex justify-between pt-4 pb-6">
-               <div class="guarant_item">
-                    <div>
-                         <img src="https://conversionratestore.github.io/projects/onairparking/img/price.svg" alt="icon">
-                    </div>
-
-                    <p>The lowest price guaranteed</p>
+     let guarantHtml = `<div class="guarant flex justify-between pt-4 pb-6">
+          <div class="guarant_item">
+               <div>
+                    <img src="https://conversionratestore.github.io/projects/onairparking/img/price.svg" alt="icon">
                </div>
-               <div class="guarant_item">
-                    <div>
-                         <img src="https://conversionratestore.github.io/projects/onairparking/img/free-cancellation.png" alt="icon">
-                    </div>
-                    <p>Free <br> cancellation</p>
+               
+               <p>The lowest price guaranteed</p>
+          </div>
+          <div class="guarant_item">
+               <div>
+                    <img src="https://conversionratestore.github.io/projects/onairparking/img/free-cancellation.png" alt="icon">
                </div>
-               <div class="guarant_item">
-                    <div>
-                         <img src="https://conversionratestore.github.io/projects/onairparking/img/shuttle.png" alt="icon">
-                    </div>
-                    <p>24/7 free <br> shuttle service</p>
+               <p>Free <br> cancellation</p>
+          </div>
+          <div class="guarant_item">
+               <div>
+                    <img src="https://conversionratestore.github.io/projects/onairparking/img/shuttle.png" alt="icon">
                </div>
-          </div>`;
+               <p>24/7 free <br> shuttle service</p>
+          </div>
+     </div>`;
 
      let start = null;
+
      start = setInterval(() => {
           window.location.pathname == '/reservation/search' ?  loadedContent = true : loadedContent = false;
-          if (document.querySelector('.bg-white.rounded-md.relative.w-full.py-2.pl-4.pr-6.mb-3.text-gray-700.leading-tight.h-10.flex.flex-row.items-center.justify-center') != null && loadedContent == true && document.querySelector('.max-w-4xl.mx-auto.shadow-md.border.rounded-md.mb-8.grid.grid-cols-1.gap-0.place-items-start.overflow-hidden') == null) {
-               document.querySelector('.bg-white.rounded-md.relative.w-full.py-2.pl-4.pr-6.mb-3.text-gray-700.leading-tight.h-10.flex.flex-row.items-center.justify-center').style = 'display: block'
+          if (document.querySelect('.bg-white.rounded-md.relative.w-full.py-2.pl-4.pr-6.mb-3.text-gray-700.leading-tight.h-10.flex.flex-row.items-center.justify-center') != null && loadedContent == true && document.querySelector('.max-w-4xl.mx-auto.shadow-md.border.rounded-md.mb-8.grid.grid-cols-1.gap-0.place-items-start.overflow-hidden') == null) {
+               document.querySelect('.bg-white.rounded-md.relative.w-full.py-2.pl-4.pr-6.mb-3.text-gray-700.leading-tight.h-10.flex.flex-row.items-center.justify-center').style = 'display: block'
           } else {
-               document.querySelector('.bg-white.rounded-md.relative.w-full.py-2.pl-4.pr-6.mb-3.text-gray-700.leading-tight.h-10.flex.flex-row.items-center.justify-center').style = 'display: none'
+               document.querySelect('.bg-white.rounded-md.relative.w-full.py-2.pl-4.pr-6.mb-3.text-gray-700.leading-tight.h-10.flex.flex-row.items-center.justify-center').style = 'display: none'
           }
 
           if (count == 0 && document.querySelector('.js-style') == null && document.querySelector('button.btn-orange span') != null && document.querySelector('button.btn-orange span').outerHTML == '<span>Hide Search</span>' && loadedContent == true) {
@@ -395,7 +394,7 @@ function starInterval() {
 
                //bg gradient
                document.querySelector('img.z-0.w-full.object-cover.min-h-64.h-full.absolute.object-bottom').src = `https://conversionratestore.github.io/projects/onairparking/img/map-gradient.png`
-
+               
                //set format date
                function setFormat(date) {
                     let itemDate = date,
@@ -415,9 +414,9 @@ function starInterval() {
                })
 
                changeInCards(document.querySelectorAll('.mx-auto.shadow-md.border.rounded-md.mb-8.grid.grid-cols-1.gap-0.place-items-start.overflow-hidden'))
-
+     
                document.querySelector('[data-test-id="park_now"]').addEventListener('click', () => count = 1) //click on "Search again" button
-
+          
                document.querySelector('main > div > div.container.mx-auto.px-4.py-8').insertAdjacentHTML('beforeend', guarantHtml)
           }
           if (count === 1 && document.querySelector('.row-price') == null && document.querySelector('button.btn-orange span') != null && document.querySelector('button.btn-orange span').outerHTML == '<span>Hide Search</span>' && loadedContent == true) {
@@ -425,7 +424,7 @@ function starInterval() {
                count = 0;
                changeInCards(document.querySelectorAll('.mx-auto.shadow-md.border.rounded-md.mb-8.grid.grid-cols-1.gap-0.place-items-start.overflow-hidden'))
           }
-
+          
           document.querySelectorAll('.row-price .rounded-full').forEach(el => {
                if (el.innerText == 'Online-only pricePark Here' || el.innerText == 'Park Here') {
                     el.innerHTML = 'Online-only price'
@@ -438,4 +437,3 @@ function starInterval() {
      }, 100)
 }
 starInterval()
-
