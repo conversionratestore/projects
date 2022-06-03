@@ -273,6 +273,26 @@ let style = `
           .ant-layout-footer {
                margin-top: 0;
           }
+          @media only screen and (max-width: 370px)  {
+               .grid.grid-cols-3.w-full{
+                    padding: 0 10px 10px;
+               }
+               h2.text-xl.text-left.w-full.px-8.pt-4.truncate {
+                    padding: 10px 10px 0;
+               }
+               .row-price .rounded-full {
+                    margin: 0 0 10px 0;
+               }
+               .row-price .flex.flex-col.px-4.pb-4.col-span-3 {
+                    paddin-right: 10px;
+               }
+               .max-w-4xl.mx-auto.shadow-md.border.rounded-md.mb-8.grid.grid-cols-1.gap-0.place-items-start.overflow-hidden > div:nth-child(2) {
+                    width: calc(100% - 92px);
+               }
+               .relative.bg-gray-100.w-full {
+                    width: 92px;
+               }
+          }
 </style>`;
 
 let count = 0; //for click on "Search again" button
