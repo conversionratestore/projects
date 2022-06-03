@@ -381,10 +381,10 @@ function starInterval() {
 
      start = setInterval(() => {
           window.location.pathname == '/reservation/search' ?  loadedContent = true : loadedContent = false;
-          if (document.querySelect('.bg-white.rounded-md.relative.w-full.py-2.pl-4.pr-6.mb-3.text-gray-700.leading-tight.h-10.flex.flex-row.items-center.justify-center') != null && loadedContent == true && document.querySelector('.max-w-4xl.mx-auto.shadow-md.border.rounded-md.mb-8.grid.grid-cols-1.gap-0.place-items-start.overflow-hidden') == null) {
-               document.querySelect('.bg-white.rounded-md.relative.w-full.py-2.pl-4.pr-6.mb-3.text-gray-700.leading-tight.h-10.flex.flex-row.items-center.justify-center').style = 'display: block'
+          if (document.querySelector('.bg-white.rounded-md.relative.w-full.py-2.pl-4.pr-6.mb-3.text-gray-700.leading-tight.h-10.flex.flex-row.items-center.justify-center') != null && loadedContent == true && document.querySelector('.max-w-4xl.mx-auto.shadow-md.border.rounded-md.mb-8.grid.grid-cols-1.gap-0.place-items-start.overflow-hidden') == null) {
+               document.querySelector('.bg-white.rounded-md.relative.w-full.py-2.pl-4.pr-6.mb-3.text-gray-700.leading-tight.h-10.flex.flex-row.items-center.justify-center').style = 'display: block'
           } else {
-               document.querySelect('.bg-white.rounded-md.relative.w-full.py-2.pl-4.pr-6.mb-3.text-gray-700.leading-tight.h-10.flex.flex-row.items-center.justify-center').style = 'display: none'
+               document.querySelector('.bg-white.rounded-md.relative.w-full.py-2.pl-4.pr-6.mb-3.text-gray-700.leading-tight.h-10.flex.flex-row.items-center.justify-center').style = 'display: none'
           }
 
           if (count == 0 && document.querySelector('.js-style') == null && document.querySelector('button.btn-orange span') != null && document.querySelector('button.btn-orange span').outerHTML == '<span>Hide Search</span>' && loadedContent == true) {
