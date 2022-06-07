@@ -73,6 +73,16 @@ const style = /*html*/`
             padding-top: 50px !important;
         }
 
+        .effectiveness + .wave-effect {
+            display: none;
+        }
+
+        .bp-comparison {
+            background: url("https://conversionratestore.github.io/projects/buzzpatch/img/table_bg.svg"), #fff !important;
+            background-size: cover !important;
+            padding-top: 80px !important;
+        }
+
         .possibility {
             display: flex;
             flex-direction: column;
@@ -340,6 +350,7 @@ const style = /*html*/`
         .bp-mob-table-container span {
             font-weight: 600;
             line-height: 16px;
+            margin-left: 4px;
         }
 
         .bp-mob-table-container .col-3 {
