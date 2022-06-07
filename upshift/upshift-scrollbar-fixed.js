@@ -238,6 +238,6 @@ dataLayer.push({
 let waitForClarity = setInterval(() => {
     if (typeof clarity === 'function') {
         clearInterval(waitForClarity)
-        clarity('set', 'scrollbar', 'variant_1')
+        clarity('set', 'scrollbar', 'variant_3')
     }
 }, 200)
