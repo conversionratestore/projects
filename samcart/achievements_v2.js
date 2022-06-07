@@ -757,7 +757,7 @@ input.other_text{
 
       pushDataLayer("click on Try SamCard for FREE button step 3")
 
-      if (document.querySelector('.radio-box[id="achievements6"]:checked')) {
+      if (document.querySelector('.radio-box[id="achievements6"]:checked') && !document.querySelector('.radio-box[id="achievements16"]:checked')) {
         if (valueFirst != "") {
           pushDataLayer(`${valueFirst} - Try SamCard for FREE`, ``)
         } else if (valueFirst === "") {
@@ -765,7 +765,7 @@ input.other_text{
         }
       }
 
-      if (document.querySelector('.radio-box[id="achievements16"]:checked')) {
+      if (document.querySelector('.radio-box[id="achievements16"]:checked') && !document.querySelector('.radio-box[id="achievements6"]:checked')) {
         if (valueSecond === "") {
           pushDataLayer(``, `"" - Try SamCard for FREE`)
         } else if (valueSecond != "") {
