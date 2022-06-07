@@ -179,6 +179,7 @@ let waitForBar = setInterval(() => {
                 'event': 'event-to-ga',
                 'eventCategory': 'Exp: Scrollbar',
                 'eventAction': 'Click on sticky button',
+                'eventLabel': '',
             })
         })
     }
