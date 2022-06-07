@@ -331,6 +331,7 @@ const style = /*html*/`
 
         .bp-mob-table-container span {
             font-weight: 600;
+            line-height: 16px;
         }
 
         .bp-mob-table-container .col-3 {
@@ -550,8 +551,8 @@ const isDiscount = () => {
 }
 
 const addDiscount = () => {
-    document.querySelector('#getNow a').insertAdjacentHTML('beforebegin', `
-        <p id="my_discount">Additional <b>10% discount<b/> will be applied on the next step</p>
+    document.querySelector('#getNow a').insertAdjacentHTML('beforebegin', /*html*/`
+        <p id="my_discount">Additional <b>10% discount</b> will be applied on the next step</p>
     `)
 
     window.dataLayer = window.dataLayer || [];
@@ -583,13 +584,11 @@ const waitForPurchase = setInterval(() => {
         `)
 
         if (!document.getElementById('my_discount')) {
-            if (isDiscount) {
+            if (!!(isDiscount())) {
                 addDiscount()
             } else {
                 const waitForDiscount = setInterval(() => {
-                    console.log('interval');
-
-                    if (isDiscount()) {
+                    if (!!(isDiscount())) {
                         clearInterval(waitForDiscount)
 
                         addDiscount()
