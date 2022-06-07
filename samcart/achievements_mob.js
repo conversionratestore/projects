@@ -277,6 +277,22 @@ if (window.innerWidth <= 768) {
     font-size: 30px;
   }
 }
+
+.achievements_block #box_first ul li:last-child,
+.achievements_block #box_second ul li:last-child{
+    display: none;
+}
+
+input.other_text{
+    width: 100%;
+    height: 100%;
+    outline: none;
+    border: unset;
+    background: inherit;
+    color: inherit;
+    font-size: inherit;
+    font-weight: inherit;
+}
              
 </style>
 `
@@ -291,7 +307,7 @@ if (window.innerWidth <= 768) {
                     <ul>
                       <li>
                         <input type="radio" name="achievements" id="achievements1" class="radio-box" />
-                        <label for="achievements1">
+                        <label for="achievements1" data-count>
                           <div>
                             <span class="radio-style"></span>
                             <span>I want a new/additional source of income</span>
@@ -300,7 +316,7 @@ if (window.innerWidth <= 768) {
                       </li>
                       <li>
                         <input type="radio" name="achievements" id="achievements2" class="radio-box" />
-                        <label for="achievements2">
+                        <label for="achievements2" data-count>
                           <div>
                             <span class="radio-style"></span>
                             <span>I want to start selling online</span>
@@ -309,7 +325,7 @@ if (window.innerWidth <= 768) {
                       </li>
                       <li>
                         <input type="radio" name="achievements" id="achievements3" class="radio-box" />
-                        <label for="achievements3">
+                        <label for="achievements3" data-count>
                           <div>
                             <span class="radio-style"></span>
                             <span>I want to start my own business</span>
@@ -318,7 +334,7 @@ if (window.innerWidth <= 768) {
                       </li>
                       <li>
                         <input type="radio" name="achievements" id="achievements4" class="radio-box" />
-                        <label for="achievements4">
+                        <label for="achievements4" data-count>
                           <div>
                             <span class="radio-style"></span>
                             <span>I want to acquire new skills and knowledge</span>
@@ -327,7 +343,7 @@ if (window.innerWidth <= 768) {
                       </li>
                       <li>
                         <input type="radio" name="achievements" id="achievements5" class="radio-box" />
-                        <label for="achievements5">
+                        <label for="achievements5" data-count>
                           <div>
                             <span class="radio-style"></span>
                             <span>I want to scale my existing business</span>
@@ -336,11 +352,16 @@ if (window.innerWidth <= 768) {
                       </li>
                       <li>
                         <input type="radio" name="achievements" id="achievements6" class="radio-box" />
-                        <label for="achievements6">
+                        <label for="achievements6" data-count>
                           <div>
                             <span class="radio-style"></span>
                             <span>Other</span>
                           </div>
+                        </label>
+                      </li>
+                      <li>
+                        <label for="otherTextFirst">
+                          <input maxlength="100" class="other_text" type="text" id="otherTextFirst" placeholder="Please specify what do you want to achieve">
                         </label>
                       </li>
                     </ul>
@@ -453,6 +474,11 @@ if (window.innerWidth <= 768) {
                           </div>
                         </label>
                       </li>
+                      <li>
+                        <label for="otherTextSecond">
+                          <input maxlength="100" class="other_text" type="text" id="otherTextSecond" placeholder="Please specify your niche">
+                        </label>
+                      </li>
                     </ul>
 
                     <div class="btn_wrapp">                      
@@ -558,9 +584,16 @@ if (window.innerWidth <= 768) {
         }, 1000)
       }
 
-      document.querySelectorAll(".achievements_block .box_first ul li label").forEach((el) => {
+      document.querySelectorAll(".achievements_block .box_first ul li label[data-count]").forEach((el) => {
         el.addEventListener("click", function () {
           pushDataLayer("click on radio button step1", `${el.querySelector("div > span:last-child").textContent}`)
+
+          if (el.querySelector("div > span:last-child").textContent === "Other") {
+            document.querySelector(".achievements_block #box_first ul li:last-child").style.display = "block"
+          } else {
+            document.querySelector(".achievements_block #box_first ul li:last-child").style.display = "none"
+            document.querySelector(".achievements_block #box_first ul li:last-child input").value = ""
+          }
 
           if (document.querySelector(".achievements_block .box_first .btn_next").classList.contains("disabled_btn")) {
             document.querySelector(".achievements_block .box_first .btn_next.disabled_btn").classList.remove("disabled_btn")
@@ -568,7 +601,7 @@ if (window.innerWidth <= 768) {
         })
       })
 
-      document.querySelectorAll(".achievements_block .box_second ul li label").forEach((el) => {
+      document.querySelectorAll(".achievements_block .box_second ul li label[data-count]").forEach((el) => {
         el.addEventListener("click", function () {
           pushDataLayer("click on radio button step 2", `${el.querySelector("div > span:last-child").textContent}`)
 
@@ -576,10 +609,15 @@ if (window.innerWidth <= 768) {
             document.querySelector(".achievements_block .box_third > h3").innerHTML = `          
           <h3>There are currently more than <span>11955</span> entrepreneurs from a <span class="var_text">vast variety</span> of niches that are successfully using SamCart</h3>
           `
+
+            document.querySelector(".achievements_block #box_second ul li:last-child").style.display = "block"
           } else {
             document.querySelector(".achievements_block .box_third > h3").innerHTML = `          
           <h3>There are currently <span>11955</span> entrepreneurs from the <span class="var_text">Self-help and Motivation</span> niche that are successfully using SamCart</h3>
           `
+
+            document.querySelector(".achievements_block #box_second ul li:last-child").style.display = "none"
+            document.querySelector(".achievements_block #box_second ul li:last-child input").value = ""
           }
 
           document.querySelector(".achievements_block .box_third > h3 span:not(.var_text)").textContent = el.getAttribute("data-count")
@@ -593,13 +631,6 @@ if (window.innerWidth <= 768) {
             document.querySelector(".achievements_block .box_second .btn_next.disabled_btn").classList.remove("disabled_btn")
           }
         })
-      })
-
-      //   click on Try SamCart for FREE
-      document.querySelector(".achievements_block .box_third > .btn_wrapp a:first-child").addEventListener("click", function (e) {
-        pushDataLayer("click on Try it for free button step 3")
-
-        document.querySelector(".achievements_block .box_third").classList.add("end")
       })
 
       scrolling(".achievements_block .box_first .btn_wrapp .btn_next", 300)
@@ -638,7 +669,8 @@ if (window.innerWidth <= 768) {
             }
 
             if (upSelector === ".achievements_block .box_second .btn_wrapp .btn_next") {
-              pushDataLayer("click on Next button step 2")
+              pushDataLayer(`click on Next button step 2`)
+
               document.querySelector(".achievements_block .box_second").classList.remove("show_var")
               document.querySelector(".achievements_block > h2").style.display = "none"
               document.querySelector(".achievements_block .box_third").classList.add("show_var")
@@ -704,6 +736,24 @@ if (window.innerWidth <= 768) {
           })
         })
       }
+
+      //   click on Try SamCart for FREE
+      document.querySelector(".achievements_block .box_third > .btn_wrapp a:first-child").addEventListener("click", function (e) {
+        let valueFirst = document.querySelector("input#otherTextFirst.other_text").value
+        let valueSecond = document.querySelector("input#otherTextSecond.other_text").value
+
+        if (valueFirst != "" && valueSecond === "") {
+          pushDataLayer(`${valueFirst} - Try SamCard for FREE`, `"" - Try SamCard for FREE`)
+        } else if (valueFirst === "" && valueSecond != "") {
+          pushDataLayer(`"" - Try SamCard for FREE`, `${valueSecond} - Try SamCard for FREE`)
+        } else if (valueFirst != "" && valueSecond != "") {
+          pushDataLayer(`${valueFirst} - Try SamCard for FREE`, `${valueSecond} - Try SamCard for FREE`)
+        } else {
+          pushDataLayer("click on Try SamCard for FREE button step 3")
+        }
+
+        document.querySelector(".achievements_block .box_third").classList.add("end")
+      })
     }
   }, 10)
 }
