@@ -10,6 +10,10 @@ document.head.appendChild(scriptCustom)
 
 const style = /*html*/`
     <style>
+        #flowers .col-sm-12 p {
+            margin-bottom: -15px;
+        }
+
         .shipping-noti {
             background: #3055AE !important;
         }
@@ -24,7 +28,7 @@ const style = /*html*/`
         }
 
         #flowers .wave-bg {
-            margin-top: -75px !important;
+            margin-top: -80px !important;
         } 
 
         .trust-rating {
@@ -63,6 +67,10 @@ const style = /*html*/`
 
         .transparent + .effectiveness .container:first-child {
             display: none;
+        }
+
+        .transparent + .effectiveness {
+            padding-top: 50px !important;
         }
 
         .possibility {
