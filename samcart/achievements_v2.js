@@ -628,13 +628,7 @@ input.other_text{
     document.querySelector(".achievements_block .box_first .btn_wrapp .btn_next").addEventListener("click", function (e) {
       e.preventDefault()
 
-      let value = document.querySelector("input#otherTextFirst.other_text").value
-
-      if (value != "") {
-        pushDataLayer(`click on Next button step 1 "${value}"`)
-      } else {
-        pushDataLayer("click on Next button step 1")
-      }
+      pushDataLayer("click on Next button step 1")
 
       document.querySelector(".achievements_block .box_first").classList.remove("show_var")
       document.querySelector(".achievements_block .box_second").classList.add("show_var")
@@ -707,13 +701,7 @@ input.other_text{
     document.querySelector(".achievements_block .box_second .btn_wrapp .btn_next").addEventListener("click", function (e) {
       e.preventDefault()
 
-      let value = document.querySelector("input#otherTextSecond.other_text").value
-
-      if (value !== "") {
-        pushDataLayer(`click on Next button step 2 "${value}"`)
-      } else {
-        pushDataLayer(`click on Next button step 2`)
-      }
+      pushDataLayer(`click on Next button step 2`)
 
       document.querySelector(".achievements_block .box_second").classList.remove("show_var")
       document.querySelector(".achievements_block > h2").style.display = "none"
@@ -764,7 +752,18 @@ input.other_text{
 
     //   click on Try SamCart for FREE
     document.querySelector(".achievements_block .box_third > .btn_wrapp a:last-child").addEventListener("click", function (e) {
-      pushDataLayer("click on Try it for free button step 3")
+      let valueFirst = document.querySelector("input#otherTextFirst.other_text").value
+      let valueSecond = document.querySelector("input#otherTextSecond.other_text").value
+
+      if (valueFirst != "") {
+        pushDataLayer(`${valueFirst} - Try SamCard for FREE`, `"" - Try SamCard for FREE`)
+      } else if (valueSecond != "") {
+        pushDataLayer(`"" - Try SamCard for FREE`, `${valueSecond} - Try SamCard for FREE`)
+      } else if (valueFirst != "" && valueSecond != "") {
+        pushDataLayer(`${valueFirst} - Try SamCard for FREE`, `${valueSecond} - Try SamCard for FREE`)
+      } else {
+        pushDataLayer("click on Try SamCard for FREE button step 3")
+      }
 
       document.querySelector(".achievements_block .box_third").classList.add("end")
     })
