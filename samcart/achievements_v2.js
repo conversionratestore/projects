@@ -755,9 +755,9 @@ input.other_text{
       let valueFirst = document.querySelector("input#otherTextFirst.other_text").value
       let valueSecond = document.querySelector("input#otherTextSecond.other_text").value
 
-      if (valueFirst != "") {
+      if (valueFirst != "" && valueSecond === "") {
         pushDataLayer(`${valueFirst} - Try SamCard for FREE`, `"" - Try SamCard for FREE`)
-      } else if (valueSecond != "") {
+      } else if (valueFirst === "" && valueSecond != "") {
         pushDataLayer(`"" - Try SamCard for FREE`, `${valueSecond} - Try SamCard for FREE`)
       } else if (valueFirst != "" && valueSecond != "") {
         pushDataLayer(`${valueFirst} - Try SamCard for FREE`, `${valueSecond} - Try SamCard for FREE`)
