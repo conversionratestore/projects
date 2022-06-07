@@ -744,33 +744,33 @@ input.other_text{
 
         pushDataLayer("click on Try SamCard for FREE button step 3")
 
-        if (document.querySelector('.radio-box[id="achievements6"]:checked')) {
-          if (valueFirst != "") {
-            pushDataLayer(`${valueFirst} - Try SamCard for FREE`, ``)
-          } else if (valueFirst === "") {
-            pushDataLayer(`"" - Try SamCard for FREE`, ``)
-          }
+      if (document.querySelector('.radio-box[id="achievements6"]:checked') && !document.querySelector('.radio-box[id="achievements16"]:checked')) {
+        if (valueFirst != "") {
+          pushDataLayer(`${valueFirst} - Try SamCard for FREE`, ``)
+        } else if (valueFirst === "") {
+          pushDataLayer(`"" - Try SamCard for FREE`, ``)
         }
+      }
 
-        if (document.querySelector('.radio-box[id="achievements16"]:checked')) {
-          if (valueSecond === "") {
-            pushDataLayer(``, `"" - Try SamCard for FREE`)
-          } else if (valueSecond != "") {
-            pushDataLayer(``, `${valueSecond} - Try SamCard for FREE`)
-          }
+      if (document.querySelector('.radio-box[id="achievements16"]:checked') && !document.querySelector('.radio-box[id="achievements6"]:checked')) {
+        if (valueSecond === "") {
+          pushDataLayer(``, `"" - Try SamCard for FREE`)
+        } else if (valueSecond != "") {
+          pushDataLayer(``, `${valueSecond} - Try SamCard for FREE`)
         }
+      }
 
-        if (document.querySelector('.radio-box[id="achievements6"]:checked') && document.querySelector('.radio-box[id="achievements16"]:checked')) {
-          if (valueFirst != "" && valueSecond === "") {
-            pushDataLayer(`${valueFirst} - Try SamCard for FREE`, `"" - Try SamCard for FREE`)
-          } else if (valueFirst === "" && valueSecond != "") {
-            pushDataLayer(`"" - Try SamCard for FREE`, `${valueSecond} - Try SamCard for FREE`)
-          } else if (valueFirst != "" && valueSecond != "") {
-            pushDataLayer(`${valueFirst} - Try SamCard for FREE`, `${valueSecond} - Try SamCard for FREE`)
-          } else if (valueFirst === "" && valueSecond === "") {
-            pushDataLayer(`"" - Try SamCard for FREE`, `"" - Try SamCard for FREE`)
-          }
+      if (document.querySelector('.radio-box[id="achievements6"]:checked') && document.querySelector('.radio-box[id="achievements16"]:checked')) {
+        if (valueFirst != "" && valueSecond === "") {
+          pushDataLayer(`${valueFirst} - Try SamCard for FREE`, `"" - Try SamCard for FREE`)
+        } else if (valueFirst === "" && valueSecond != "") {
+          pushDataLayer(`"" - Try SamCard for FREE`, `${valueSecond} - Try SamCard for FREE`)
+        } else if (valueFirst != "" && valueSecond != "") {
+          pushDataLayer(`${valueFirst} - Try SamCard for FREE`, `${valueSecond} - Try SamCard for FREE`)
+        } else if (valueFirst === "" && valueSecond === "") {
+          pushDataLayer(`"" - Try SamCard for FREE`, `"" - Try SamCard for FREE`)
         }
+      }
 
         document.querySelector(".achievements_block .box_third").classList.add("end")
       })
