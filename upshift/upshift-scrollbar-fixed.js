@@ -81,7 +81,7 @@ const style2 = `
 			position: fixed;
 			bottom: 0;
 			left: 0;
-			height: 50px;
+			height: 60px;
 			z-index: 10000;
 			width: 101%;
 			background-color: #f1f1f1;
