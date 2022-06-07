@@ -477,8 +477,8 @@ const waitForSlider = setInterval(() => {
             window.dataLayer = window.dataLayer || []
             dataLayer.push({
                 'event': 'event-to-ga',
-                'eventCategory': 'Exp — PDP improvements (Julia edition) - Mobile',
-                'eventAction': `Swipe slider`,
+                'eventCategory': 'Exp: PDP improvements',
+                'eventAction': 'Clicks on slider',
                 'eventLabel': '',
             })
         })
@@ -492,8 +492,8 @@ const waitForSlider = setInterval(() => {
                         window.dataLayer = window.dataLayer || []
                         dataLayer.push({
                             'event': 'event-to-ga',
-                            'eventCategory': 'Exp — PDP improvements (Julia edition) - Mobile',
-                            'eventAction': `Swipe slider`,
+                            'eventCategory': 'Exp: PDP improvements',
+                            'eventAction': 'Clicks on slider',
                             'eventLabel': '',
                         })
                     }
@@ -603,7 +603,7 @@ const waitForPurchase = setInterval(() => {
 window.dataLayer = window.dataLayer || [];
 dataLayer.push({
     'event': 'event-to-ga',
-    'eventCategory': 'Exp — PDP improvements (Julia edition) - Mobile',
+    'eventCategory': 'Exp: PDP improvements',
     'eventAction': 'loaded',
     'eventLabel': ''
 });
@@ -612,7 +612,7 @@ let waitForClarityNew = setInterval(() => {
     if (typeof clarity === 'function') {
         clearInterval(waitForClarityNew)
 
-        clarity('set', 'pdp_improvements_julia_edition_mobile', 'variant_1');
+        clarity('set', 'pdp_improvements', 'variant_1');
     }
 }, 200);
 
@@ -624,7 +624,8 @@ const waitForJu = setInterval(() => {
         dataLayer.push({
             'event': 'event-to-ga',
             'eventCategory': 'Exp: PDP improvements',
-            'eventAction': 'Pop up load'
+            'eventAction': 'Pop up load',
+            'eventLabel': ''
         });
     }
 }, 2000);
