@@ -314,26 +314,6 @@ transition: all 2s ease;
     font-size: 11px;
   }
 }
-
-.achievements_block #box_first ul li:last-child,
-.achievements_block #box_second ul li:last-child{
-    display: none;
-}
-
-.achievements_block #box_first ul li:last-child{
-    margin: 0 0 0 auto;
-}
-
-input.other_text{
-    width: 100%;
-    height: 100%;
-    outline: none;
-    border: unset;
-    background: inherit;
-    color: inherit;
-    font-size: inherit;
-    font-weight: inherit;
-}
              
 </style>
 `
@@ -347,8 +327,8 @@ input.other_text{
                   <div class="box_first show_var" id="box_first">
                     <ul>
                       <li>
-                        <input type="radio" name="achievements" id="achievements1" class="radio-box"/>
-                        <label for="achievements1" data-count>
+                        <input type="radio" name="achievements" id="achievements1" class="radio-box" />
+                        <label for="achievements1">
                           <div>
                             <span class="radio-style"></span>
                             <span>I want a new/additional source of income</span>
@@ -356,8 +336,8 @@ input.other_text{
                         </label>
                       </li>
                       <li>
-                        <input type="radio" name="achievements" id="achievements2" class="radio-box"/>
-                        <label for="achievements2" data-count>
+                        <input type="radio" name="achievements" id="achievements2" class="radio-box" />
+                        <label for="achievements2">
                           <div>
                             <span class="radio-style"></span>
                             <span>I want to start selling online</span>
@@ -365,8 +345,8 @@ input.other_text{
                         </label>
                       </li>
                       <li>
-                        <input type="radio" name="achievements" id="achievements3" class="radio-box"/>
-                        <label for="achievements3" data-count>
+                        <input type="radio" name="achievements" id="achievements3" class="radio-box" />
+                        <label for="achievements3">
                           <div>
                             <span class="radio-style"></span>
                             <span>I want to start my own business</span>
@@ -374,8 +354,8 @@ input.other_text{
                         </label>
                       </li>
                       <li>
-                        <input type="radio" name="achievements" id="achievements4" class="radio-box"/>
-                        <label for="achievements4" data-count>
+                        <input type="radio" name="achievements" id="achievements4" class="radio-box" />
+                        <label for="achievements4">
                           <div>
                             <span class="radio-style"></span>
                             <span>I want to acquire new skills and knowledge</span>
@@ -383,8 +363,8 @@ input.other_text{
                         </label>
                       </li>
                       <li>
-                        <input type="radio" name="achievements" id="achievements5" class="radio-box"/>
-                        <label for="achievements5" data-count>
+                        <input type="radio" name="achievements" id="achievements5" class="radio-box" />
+                        <label for="achievements5">
                           <div>
                             <span class="radio-style"></span>
                             <span>I want to scale my existing business</span>
@@ -392,17 +372,12 @@ input.other_text{
                         </label>
                       </li>
                       <li>
-                        <input type="radio" name="achievements" id="achievements6" class="radio-box"/>
-                        <label for="achievements6" data-count>
+                        <input type="radio" name="achievements" id="achievements6" class="radio-box" />
+                        <label for="achievements6">
                           <div>
                             <span class="radio-style"></span>
                             <span>Other</span>
                           </div>
-                        </label>
-                      </li>
-                      <li>
-                        <label for="otherTextFirst">
-                          <input maxlength="100" class="other_text" type="text" id="otherTextFirst" placeholder="Please specify your goal">
                         </label>
                       </li>
                     </ul>
@@ -512,11 +487,6 @@ input.other_text{
                             <span class="radio-style"></span>
                             <span>Education</span>
                           </div>
-                        </label>
-                      </li>
-                      <li>
-                        <label for="otherTextSecond">
-                          <input maxlength="100" class="other_text" type="text" id="otherTextSecond" placeholder="Please specify your niche">
                         </label>
                       </li>
                     </ul>
@@ -645,16 +615,9 @@ input.other_text{
       }
     })
 
-    document.querySelectorAll(".achievements_block .box_first ul li label[data-count]").forEach((el) => {
+    document.querySelectorAll(".achievements_block .box_first ul li label").forEach((el) => {
       el.addEventListener("click", function () {
         pushDataLayer("click on radio button step1", `${el.querySelector("div > span:last-child").textContent}`)
-
-        if (el.querySelector("div > span:last-child").textContent === "Other") {
-          document.querySelector(".achievements_block #box_first ul li:last-child").style.display = "block"
-        } else {
-          document.querySelector(".achievements_block #box_first ul li:last-child").style.display = "none"
-          document.querySelector(".achievements_block #box_first ul li:last-child input").value = ""
-        }
 
         if (document.querySelector(".achievements_block .box_first .btn_next").classList.contains("disabled_btn")) {
           document.querySelector(".achievements_block .box_first .btn_next.disabled_btn").classList.remove("disabled_btn")
@@ -662,7 +625,7 @@ input.other_text{
       })
     })
 
-    document.querySelectorAll(".achievements_block .box_second ul li label[data-count]").forEach((el) => {
+    document.querySelectorAll(".achievements_block .box_second ul li label").forEach((el) => {
       el.addEventListener("click", function () {
         pushDataLayer("click on radio button step 2", `${el.querySelector("div > span:last-child").textContent}`)
 
@@ -670,18 +633,10 @@ input.other_text{
           document.querySelector(".achievements_block .box_third > h3").innerHTML = `          
           <h3>There are currently more than <span>11955</span> entrepreneurs from a <span class="var_text">vast variety</span> of niches that are successfully using SamCart</h3>
           `
-
-          document.querySelector(".achievements_block #box_second ul li:last-child").style.display = "block"
-          // setTimeout(() => {
-          //   document.querySelector(".achievements_block #box_second ul li:last-child input").focus()
-          // }, 10)
         } else {
           document.querySelector(".achievements_block .box_third > h3").innerHTML = `          
           <h3>There are currently <span>11955</span> entrepreneurs from the <span class="var_text">Self-help and Motivation</span> niche that are successfully using SamCart</h3>
           `
-
-          document.querySelector(".achievements_block #box_second ul li:last-child").style.display = "none"
-          document.querySelector(".achievements_block #box_second ul li:last-child input").value = ""
         }
 
         document.querySelector(".achievements_block .box_third > h3 span:not(.var_text)").textContent = el.getAttribute("data-count")
@@ -701,7 +656,7 @@ input.other_text{
     document.querySelector(".achievements_block .box_second .btn_wrapp .btn_next").addEventListener("click", function (e) {
       e.preventDefault()
 
-      pushDataLayer(`click on Next button step 2`)
+      pushDataLayer("click on Next button step 2")
 
       document.querySelector(".achievements_block .box_second").classList.remove("show_var")
       document.querySelector(".achievements_block > h2").style.display = "none"
@@ -752,38 +707,7 @@ input.other_text{
 
     //   click on Try SamCart for FREE
     document.querySelector(".achievements_block .box_third > .btn_wrapp a:last-child").addEventListener("click", function (e) {
-      let valueFirst = document.querySelector("input#otherTextFirst.other_text").value
-      let valueSecond = document.querySelector("input#otherTextSecond.other_text").value
-
-      pushDataLayer("click on Try SamCart for FREE button step 3")
-
-      if (document.querySelector('.radio-box[id="achievements6"]:checked') && !document.querySelector('.radio-box[id="achievements16"]:checked')) {
-        if (valueFirst != "") {
-          pushDataLayer(`${valueFirst} - Try SamCart for FREE`, ``)
-        } else if (valueFirst === "") {
-          pushDataLayer(`"" - Try SamCart for FREE`, ``)
-        }
-      }
-
-      if (document.querySelector('.radio-box[id="achievements16"]:checked') && !document.querySelector('.radio-box[id="achievements6"]:checked')) {
-        if (valueSecond === "") {
-          pushDataLayer(``, `"" - Try SamCart for FREE`)
-        } else if (valueSecond != "") {
-          pushDataLayer(``, `${valueSecond} - Try SamCart for FREE`)
-        }
-      }
-
-      if (document.querySelector('.radio-box[id="achievements6"]:checked') && document.querySelector('.radio-box[id="achievements16"]:checked')) {
-        if (valueFirst != "" && valueSecond === "") {
-          pushDataLayer(`${valueFirst} - Try SamCart for FREE`, `"" - Try SamCart for FREE`)
-        } else if (valueFirst === "" && valueSecond != "") {
-          pushDataLayer(`"" - Try SamCart for FREE`, `${valueSecond} - Try SamCart for FREE`)
-        } else if (valueFirst != "" && valueSecond != "") {
-          pushDataLayer(`${valueFirst} - Try SamCart for FREE`, `${valueSecond} - Try SamCart for FREE`)
-        } else if (valueFirst === "" && valueSecond === "") {
-          pushDataLayer(`"" - Try SamCart for FREE`, `"" - Try SamCart for FREE`)
-        }
-      }
+      pushDataLayer("click on Try it for free button step 3")
 
       document.querySelector(".achievements_block .box_third").classList.add("end")
     })
