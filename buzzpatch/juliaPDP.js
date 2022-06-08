@@ -28,7 +28,7 @@ const style = /*html*/`
         }
 
         #flowers .wave-bg {
-            margin-top: -80px !important;
+            margin-top: -75px !important;
         } 
 
         .trust-rating {
