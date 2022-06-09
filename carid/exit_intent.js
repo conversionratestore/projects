@@ -1,4 +1,3 @@
-let popularProducts = [];
 
 let style = `
 <style>
@@ -284,22 +283,6 @@ function addEvent(obj, evt, fn) {
     }
 }
 
-//filter and push popular products in sessionStorage
-function pushProducts(name,image,price) {
-    popularProducts.push({
-        'name' : name,
-        'image' : image,
-        'price' : price,
-    })
-
-    if (sessionStorage.getItem('popular_products') != null && sessionStorage.getItem('popular_products') != '') {
-        popularProducts = [...popularProducts,...JSON.parse(sessionStorage.getItem('popular_products'))]
-    } 
-
-    console.log(popularProducts)
-    sessionStorage.setItem('popular_products', JSON.stringify(popularProducts));
-}
-
 //detect mobile
 function detectMob() {
     const toMatch = [
@@ -357,9 +340,6 @@ let applePayBtn = `
 </button>
 `
 
-let interval = null, 
-    timeInterval = null;   
-
 let setTime = 0;
 
 function startimeInterval() {
@@ -373,80 +353,29 @@ function stoptimeInterval() {
     pushDataLayer(`Visibility equals the pop-up its almost yours`,  setTime)
 }
 
-let namePDP = '' ;
-let countMax = 0;
+let intervalCart = setInterval(() => {
+    //google pay button
+    if (document.querySelector('.btn__google-pay') == null && document.querySelector('.cart-order .google-pay-button') != null && document.querySelector('.cart-order .google-pay-button.hidden') == null &&  document.querySelector('.btns .heading') != null) {
+        document.querySelector('.btns .heading').insertAdjacentHTML('afterend', googlePayBtn) //add google pay button
+        
+        document.querySelector('.btn__google-pay').addEventListener('click', (e) => {  //click on google pay button
+            document.querySelector('.cart-order .google-pay-button button').click();
+            pushDataLayer('Click on check out with GPay button');
+            hideModal();
+        })
+    }
+    //apple pay button
+    if (document.querySelector('.btn__apple-pay') == null && document.querySelector('.cart-order .apple-pay-button') != null && document.querySelector('.cart-order .apple-pay-button.hidden') == null &&  document.querySelector('.btns .heading') != null) {
+        document.querySelector('.btns .heading').insertAdjacentHTML('afterend', applePayBtn) //add apple pay button
+        
+        document.querySelector('.btn__apple-pay').addEventListener('click', (e) => { //click on apple pay button
+            document.querySelector('.cart-order .apple-pay-button').click();
+            pushDataLayer('Click on check out with ApplePay button');
+            hideModal();
+        })
+    }
+})
 
-function starInterval() {
-    interval = setInterval(() => {
-        if (document.querySelector('#child_products_tbl .po_prod .po_prod_title') != null && namePDP == '') {
-            // clearInterval(interval);
-            namePDP = document.querySelector('#child_products_tbl .po_prod .po_prod_title').innerText;
-        }
-        //pdp add product
-        if (document.querySelector('.prod_add_to_cart_lst li') != null) {
-            clearInterval(interval);
-            popularProducts = [];
-            document.querySelectorAll('.prod_add_to_cart_lst li').forEach(el => {
-                if (el.querySelector('.black').innerText.includes(namePDP)) {
-                    console.log(el.querySelector('.black').innerText)
-                    pushProducts(el.querySelector('.black').innerText,el.querySelector('img').src,el.querySelector('b').innerHTML)
-                } 
-                if (!el.querySelector('.black').innerText.includes(namePDP) && countMax == 0) {
-                    countMax = 1;
-                    console.log(el.querySelector('.black').innerText)
-                    let list = document.querySelectorAll(".prod_add_to_cart_lst li");
-                    let maxNumber = [].reduce.call(list, function(a, b) {
-                        return 0 <= a.querySelector('b').innerHTML.replace('$','') - b.querySelector('b').innerHTML.replace('$','') ? a : b
-                    },)
-    
-                    console.log(maxNumber)
-                    pushProducts(maxNumber.querySelector('.black').innerHTML,maxNumber.querySelector('img').src,maxNumber.querySelector('b').innerHTML)  
-                }
-            })
-            if (document.querySelector('[aria-label="close"]') != null) {
-                document.querySelector('[aria-label="close"]').addEventListener('click', (e) => {
-                    console.log('click')
-                    sessionStorage.removeItem('modal_loaded'); 
-                    starInterval()
-                })
-            }
-            console.log('stop interval 1')
-            if (document.querySelector('.cart-item-remove-btn.-delete') == null) sessionStorage.removeItem('modal_loaded'); 
-        }
-        //google pay button
-        if (document.querySelector('.btn__google-pay') == null && document.querySelector('.cart-order .google-pay-button') != null && document.querySelector('.cart-order .google-pay-button.hidden') == null &&  document.querySelector('.btns .heading') != null) {
-            document.querySelector('.btns .heading').insertAdjacentHTML('afterend', googlePayBtn) //add google pay button
-           
-            document.querySelector('.btn__google-pay').addEventListener('click', (e) => {  //click on google pay button
-                document.querySelector('.cart-order .google-pay-button button').click();
-                pushDataLayer('Click on check out with GPay button');
-                hideModal();
-            })
-        }
-        //apple pay button
-        if (document.querySelector('.btn__apple-pay') == null && document.querySelector('.cart-order .apple-pay-button') != null && document.querySelector('.cart-order .apple-pay-button.hidden') == null &&  document.querySelector('.btns .heading') != null) {
-            document.querySelector('.btns .heading').insertAdjacentHTML('afterend', applePayBtn) //add apple pay button
-            
-            document.querySelector('.btn__apple-pay').addEventListener('click', (e) => { //click on apple pay button
-                document.querySelector('.cart-order .apple-pay-button').click();
-                pushDataLayer('Click on check out with ApplePay button');
-                hideModal();
-            })
-        }
-
-        //remove status modal on click delete in cart
-        if (document.querySelector('.cart-item-remove-btn.-delete') != null && sessionStorage.getItem('modal_loaded') != null) {
-            clearInterval(interval);
-            console.log('stop interval 2')
-            document.querySelector('.cart-item-remove-btn.-delete').addEventListener('click', () => {
-                sessionStorage.removeItem('modal_loaded'); 
-                starInterval()
-            })
-        }
-    })
-}
-
-starInterval()
 
 //show modal 
 function showModal() {
@@ -519,12 +448,14 @@ window.onload = function() {
         }
 
         //show modal desktop
-        addEvent(document, 'mouseout', function(e) {
+        let exitModal = (e) => {
             if (e.toElement == null && e.relatedTarget == null && sessionStorage.getItem('modal_loaded') == null && document.querySelector('.modal__products').innerHTML != '') {
                 sessionStorage.setItem('modal_loaded', 'true'); //refresh status modal
                 showModal() //show modal
+                document.removeEventListener("mouseout", exitModal);
             }
-        })
+        }
+        addEvent(document, 'mouseout', exitModal)
 
         //show modal mobile
         if (detectMob() == true) {
