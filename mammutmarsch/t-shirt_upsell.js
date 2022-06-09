@@ -164,28 +164,36 @@ for (const key in obj) {
         document.body.insertAdjacentHTML('beforeend',`
         <div class="modal">
             <div class="modal_container">
-                <button type="button" class="close" data-close></button>
+                <button type="button" class="close"></button>
                 <h2 class="title">${obj[key]['title']}</h2>
-                <form  action="https://mammutmarsch.de/checkout/" method="POST" enctype="multipart/form-data">
-                    <div class="items-end">
-                        <img loading="lazy" src="https://conversionratestore.github.io/projects/mammutmarsch/img/t-shirt.png" data-lazy-src="https://mammutmarsch.de/wp-content/themes/megamate-child/images/tshirt.jpg" class="lazyloaded" data-was-processed="true">
-                        <div>
-                            <p class="name">${obj[key]['name']}</p>
-                            <p class="size">One-size</p>
-                            <p class="price"><span class="price_through">30€  </span> <span class="price_item">22€</span>  </p>
-                            <p class="text">${obj[key]['text']}</p>
-                        </div>
+                <div class="items-end">
+                    <img loading="lazy" src="https://conversionratestore.github.io/projects/mammutmarsch/img/t-shirt.png" data-lazy-src="https://mammutmarsch.de/wp-content/themes/megamate-child/images/tshirt.jpg" class="lazyloaded" data-was-processed="true">
+                    <div>
+                        <p class="name">${obj[key]['name']}</p>
+                        <p class="size">One-size</p>
+                        <p class="price"><span class="price_through">30€  </span> <span class="price_item">22€</span>  </p>
+                        <p class="text">${obj[key]['text']}</p>
                     </div>
-                    <a href="https://mammutmarsch.de/checkout/?add-to-cart=${document.querySelector('.variations_form.cart [name="add-to-cart"]').value}&quantity=1" class="btn_skip text-center">${obj[key]['textSkip']}</a>
-                </form>
-               
+                </div>
+                <a href="#" class="btn_skip text-center">${obj[key]['textSkip']}</a>
                 <div class="modal_footer">
                     <p class="price"><span class="price_through">30€  </span>  <span class="price_item">22€</span> </p>
-                    <a href="https://mammutmarsch.de/checkout/?add-to-cart=${document.querySelector('.variations_form.cart [name="add-to-cart"]').value}&quantity=1" class="btn_add-order">${obj[key]['textBtn']}</a>
+                    <a href="#" class="btn_add-order">${obj[key]['textBtn']}</a>
                 </div>
             </div>
         </div>`)
     }
+}
+
+//push data layer
+function pushDataLayer(action) {
+    console.log(action)
+    window.dataLayer = window.dataLayer || [];
+    dataLayer.push({
+        'event': 'event-to-ga',
+        'eventCategory': 'Exp: T-shirt upsell',
+        'eventAction': action
+    });
 }
 
 function showModal() { // function show modal
@@ -201,10 +209,14 @@ document.querySelectorAll('.favourite').forEach(item => {
 })
 
 // hide modal
-document.querySelector('[data-close]').addEventListener('click', (e) => hideModal())
+document.querySelector('.modal .close').addEventListener('click', (e) => {
+    hideModal()
+    pushDataLayer('Upsell pop up closed (x)')
+})
 document.querySelector('.modal').addEventListener('click', (e) => {
     if (e.target.classList.contains('modal')) {
         hideModal()
+        pushDataLayer('Upsell pop up closed under pop up')
     }
 }) 
 
@@ -214,6 +226,7 @@ document.querySelectorAll('.checkboxes-anmelden').forEach(item => {
     item.insertAdjacentHTML('afterend', `<div class="btn_next">${item.innerHTML}</div>`)
     item.nextElementSibling.addEventListener('click', (e) => {
         let parent = item.parentElement;
+        // pushDataLayer(`Click on ${e.target.innerText} button`)
 
         //set href for "Skip offer and Continue Checkout" button
         parent.querySelector('.radio-container input').click()
@@ -225,8 +238,10 @@ document.querySelectorAll('.checkboxes-anmelden').forEach(item => {
        
         favorite.forEach(el => {
             if (favorite.length > 1) {
-                el.innerHTML.includes(parent.querySelector('.title').innerHTML.split(' ')[0]) ? el.click() : '';
+                console.log(el.innerHTML + " == " + parent.querySelector('.title').innerHTML.split('KM')[0].trim())
+                el.innerHTML.includes(parent.querySelector('.title').innerHTML.split('KM')[0].trim()) ? el.click() : '';
             } else {
+                console.log(el.innerHTML)
                 el.click();
             }
 
@@ -246,3 +261,24 @@ document.querySelectorAll('.checkboxes-anmelden').forEach(item => {
         showModal() //show modal
     })
 })
+
+document.querySelector('.modal .btn_skip').addEventListener('click', (e) => pushDataLayer('Scip offer selected'))
+document.querySelector('.modal .btn_add-order').addEventListener('click', (e) => pushDataLayer('T-shirt added to the order'))
+
+
+window.dataLayer = window.dataLayer || [];
+dataLayer.push({
+    'event': 'event-to-ga',
+    'eventCategory': 'Exp: T-shirt upsell',
+    'eventAction': 'loaded'
+});
+
+(function(h,o,t,j,a,r){
+    h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
+    h._hjSettings={hjid:1191175,hjsv:6};
+    a=o.getElementsByTagName('head')[0];
+    r=o.createElement('script');r.async=1;
+    r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
+    a.appendChild(r);
+})(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
+hj('event', 'tshirt_upsell');
