@@ -156,38 +156,8 @@ let obj = {
     }
 }
 
-document.body.insertAdjacentHTML('afterbegin', style); //add styles
-
-//add modal de/en
-for (const key in obj) {
-    if (location.href.includes(`${key}`)) {
-        document.body.insertAdjacentHTML('beforeend',`
-        <div class="modal">
-            <div class="modal_container">
-                <button type="button" class="close"></button>
-                <h2 class="title">${obj[key]['title']}</h2>
-                <div class="items-end">
-                    <img loading="lazy" src="https://conversionratestore.github.io/projects/mammutmarsch/img/t-shirt.png" data-lazy-src="https://mammutmarsch.de/wp-content/themes/megamate-child/images/tshirt.jpg" class="lazyloaded" data-was-processed="true">
-                    <div>
-                        <p class="name">${obj[key]['name']}</p>
-                        <p class="size">One-size</p>
-                        <p class="price"><span class="price_through">30€  </span> <span class="price_item">22€</span>  </p>
-                        <p class="text">${obj[key]['text']}</p>
-                    </div>
-                </div>
-                <a href="#" class="btn_skip text-center">${obj[key]['textSkip']}</a>
-                <div class="modal_footer">
-                    <p class="price"><span class="price_through">30€  </span>  <span class="price_item">22€</span> </p>
-                    <a href="#" class="btn_add-order">${obj[key]['textBtn']}</a>
-                </div>
-            </div>
-        </div>`)
-    }
-}
-
 //push data layer
 function pushDataLayer(action) {
-    console.log(action)
     window.dataLayer = window.dataLayer || [];
     dataLayer.push({
         'event': 'event-to-ga',
@@ -196,75 +166,109 @@ function pushDataLayer(action) {
     });
 }
 
-function showModal() { // function show modal
-    document.querySelector('.modal').classList.add('active');
-}
-function hideModal() { // function hide modal
-    document.querySelector('.modal').classList.remove('active');
-}
+let interval = setInterval(() => {
+    if (document.body) {
+        clearInterval(interval);
 
-// all favorite cards are hidden
-document.querySelectorAll('.favourite').forEach(item => {
-    item.closest('.col-md-6').style.display = 'none'; 
-})
+        document.body.insertAdjacentHTML('afterbegin', style); //add styles
 
-// hide modal
-document.querySelector('.modal .close').addEventListener('click', (e) => {
-    hideModal()
-    pushDataLayer('Upsell pop up closed (x)')
-})
-document.querySelector('.modal').addEventListener('click', (e) => {
-    if (e.target.classList.contains('modal')) {
-        hideModal()
-        pushDataLayer('Upsell pop up closed under pop up')
-    }
-}) 
-
-// events on green button in cards
-document.querySelectorAll('.checkboxes-anmelden').forEach(item => {
-    item.style.display = 'none';
-    item.insertAdjacentHTML('afterend', `<div class="btn_next">${item.innerHTML}</div>`)
-    item.nextElementSibling.addEventListener('click', (e) => {
-        let parent = item.parentElement;
-        // pushDataLayer(`Click on ${e.target.innerText} button`)
-
-        //set href for "Skip offer and Continue Checkout" button
-        parent.querySelector('.radio-container input').click()
-        console.log(document.querySelector('.variations_form.cart [name="add-to-cart"]').value)
-        document.querySelector('.modal .btn_skip').href = `https://mammutmarsch.de/checkout/?add-to-cart=${document.querySelector('.variations_form.cart [name="add-to-cart"]').value}&quantity=1`;
-        
-        //set data for T-shirt
-        let favorite = document.querySelectorAll('.favourite');
-       
-        favorite.forEach(el => {
-            if (favorite.length > 1) {
-                console.log(el.innerHTML + " == " + parent.querySelector('.title').innerHTML.split('KM')[0].trim())
-                el.innerHTML.includes(parent.querySelector('.title').innerHTML.split('KM')[0].trim()) ? el.click() : '';
-            } else {
-                console.log(el.innerHTML)
-                el.click();
+        //add modal de/en
+        for (const key in obj) {
+            if (location.href.includes(`${key}`)) {
+                document.body.insertAdjacentHTML('beforeend',`
+                <div class="modal">
+                    <div class="modal_container">
+                        <button type="button" class="close"></button>
+                        <h2 class="title">${obj[key]['title']}</h2>
+                        <div class="items-end">
+                            <img loading="lazy" src="https://conversionratestore.github.io/projects/mammutmarsch/img/t-shirt.png" data-lazy-src="https://mammutmarsch.de/wp-content/themes/megamate-child/images/tshirt.jpg" class="lazyloaded" data-was-processed="true">
+                            <div>
+                                <p class="name">${obj[key]['name']}</p>
+                                <p class="size">One-size</p>
+                                <p class="price"><span class="price_through">30€  </span> <span class="price_item">22€</span>  </p>
+                                <p class="text">${obj[key]['text']}</p>
+                            </div>
+                        </div>
+                        <a href="#" class="btn_skip text-center">${obj[key]['textSkip']}</a>
+                        <div class="modal_footer">
+                            <p class="price"><span class="price_through">30€  </span>  <span class="price_item">22€</span> </p>
+                            <a href="#" class="btn_add-order">${obj[key]['textBtn']}</a>
+                        </div>
+                    </div>
+                </div>`)
             }
+        }
 
-            // if (el.closest('.col-md-6').querySelector('.radio-container input').checked) {
-            //     document.querySelector('.modal .name').innerHTML = el.innerHTML;
-            //     document.querySelectorAll('.modal .price').forEach(price => {
-            //         price.querySelector('.price_item').innerHTML = document.querySelector('.checkout_total_price').innerHTML + ' €';
-            //     })
-            //     document.querySelector('.modal .text').innerHTML = el.closest('.col-md-6').querySelector
-            // }
-           
-        })  
-        //set href for "Add to order" button
-        console.log(document.querySelector('.variations_form.cart [name="add-to-cart"]').value)
-        document.querySelector('.modal .btn_add-order').href = `https://mammutmarsch.de/checkout/?add-to-cart=${document.querySelector('.variations_form.cart [name="add-to-cart"]').value}&quantity=1`;   
-        
-        showModal() //show modal
-    })
-})
+        function showModal() { // function show modal
+            document.querySelector('.modal').classList.add('active');
+        }
+        function hideModal() { // function hide modal
+            document.querySelector('.modal').classList.remove('active');
+        }
 
-document.querySelector('.modal .btn_skip').addEventListener('click', (e) => pushDataLayer('Scip offer selected'))
-document.querySelector('.modal .btn_add-order').addEventListener('click', (e) => pushDataLayer('T-shirt added to the order'))
+        // all favorite cards are hidden
+        document.querySelectorAll('.favourite').forEach(item => {
+            item.closest('.col-md-6').style.display = 'none'; 
+        })
 
+        // hide modal
+        document.querySelector('.modal .close').addEventListener('click', (e) => {
+            hideModal()
+            pushDataLayer('Upsell pop up closed (x)')
+        })
+        document.querySelector('.modal').addEventListener('click', (e) => {
+            if (e.target.classList.contains('modal')) {
+                hideModal()
+                pushDataLayer('Upsell pop up closed under pop up')
+            }
+        }) 
+
+        // events on green button in cards
+        document.querySelectorAll('.checkboxes-anmelden').forEach(item => {
+            item.style.display = 'none';
+            item.insertAdjacentHTML('afterend', `<div class="btn_next">${item.innerHTML}</div>`)
+            item.nextElementSibling.addEventListener('click', (e) => {
+                let parent = item.parentElement;
+                // pushDataLayer(`Click on ${e.target.innerText} button`)
+
+                //set href for "Skip offer and Continue Checkout" button
+                parent.querySelector('.radio-container input').click()
+                console.log(document.querySelector('.variations_form.cart [name="add-to-cart"]').value)
+                document.querySelector('.modal .btn_skip').href = `https://mammutmarsch.de/checkout/?add-to-cart=${document.querySelector('.variations_form.cart [name="add-to-cart"]').value}&quantity=1`;
+                
+                //set data for T-shirt
+                let favorite = document.querySelectorAll('.favourite');
+            
+                favorite.forEach(el => {
+                    if (favorite.length > 1) {
+                        console.log(el.innerHTML + " == " + parent.querySelector('.title').innerHTML.split('KM')[0].trim())
+                        el.innerHTML.includes(parent.querySelector('.title').innerHTML.split('KM')[0].trim()) ? el.click() : '';
+                    } else {
+                        console.log(el.innerHTML)
+                        el.click();
+                    }
+
+                    // if (el.closest('.col-md-6').querySelector('.radio-container input').checked) {
+                    //     document.querySelector('.modal .name').innerHTML = el.innerHTML;
+                    //     document.querySelectorAll('.modal .price').forEach(price => {
+                    //         price.querySelector('.price_item').innerHTML = document.querySelector('.checkout_total_price').innerHTML + ' €';
+                    //     })
+                    //     document.querySelector('.modal .text').innerHTML = el.closest('.col-md-6').querySelector
+                    // }
+                
+                })  
+                //set href for "Add to order" button
+                console.log(document.querySelector('.variations_form.cart [name="add-to-cart"]').value)
+                document.querySelector('.modal .btn_add-order').href = `https://mammutmarsch.de/checkout/?add-to-cart=${document.querySelector('.variations_form.cart [name="add-to-cart"]').value}&quantity=1`;   
+                
+                showModal() //show modal
+            })
+        })
+
+        document.querySelector('.modal .btn_skip').addEventListener('click', (e) => pushDataLayer('Scip offer selected'))
+        document.querySelector('.modal .btn_add-order').addEventListener('click', (e) => pushDataLayer('T-shirt added to the order'))
+    }
+});
 
 window.dataLayer = window.dataLayer || [];
 dataLayer.push({
