@@ -437,16 +437,31 @@ window.onload = function() {
         for (let i = 0; i < items.length; i++) {
             for (let k = 0; k < cards.length; k++) {
 		    
-                let priceProduct = cards[k].querySelector('.cart_prod_each_prc') != null ? cards[k].querySelector('.cart_prod_each_prc').innerHTML.split('<span>')[0] : cards[k].querySelector('.cart-product-total-price').innerHTML;
+                let priceProductCart = cards[k].querySelector('.cart_prod_each_prc') != null ? cards[k].querySelector('.cart_prod_each_prc').innerHTML.split('<span>')[0] : cards[k].querySelector('.cart-product-total-price').innerHTML;
                     
-                if (cards[k].querySelector('.cart_prod_name').innerText.toLowerCase().includes(items[i].name.toLowerCase().replace('...','').split('&amp;').join('&').split('dfr1™').join('™')) && countLast == 0 && priceProduct.includes(items[i].price)) {
-                    countLast = 1;
+                let nameItems = items[i].name.toLowerCase().replace('...','').split('&amp;').join('&').split('dfr1™').join('™'),
+                    nameItemsCart = cards[k].querySelector('.cart_prod_name').innerText.toLowerCase();
 
-                    console.log(cards[k].querySelector('.cart_prod_name').innerText.toLowerCase() + " == " + items[i].name.toLowerCase().replace('...','').split('&amp;').join('&').split('dfr1™').join('™'))
-                    console.log(priceProduct + " == " + items[i].price)
-                    new Products(cards[k].querySelector('.cart_prod_name').innerText, cards[k].querySelector('.cart-prod-img-item').src, priceProduct).render();
+                if (nameItems.includes('®') && nameItems.includes('-')) {
+                    let toHyphen = nameItems.split('®')[0],
+                    fromHyphen = nameItems.split(/\s-\s(.*)/g)[1];
+                    if (nameItemsCart.includes(toHyphen) && nameItemsCart.includes(fromHyphen) && countLast == 0 && priceProductCart.includes(items[i].price)) {
+                        countLast = 1;
+    
+                        console.log(toHyphen + " / " + fromHyphen)
+                        console.log(nameItemsCart + " == " + nameItems)
+                        console.log(priceProductCart + " == " + items[i].price)
+                        new Products(cards[k].querySelector('.cart_prod_name').innerText, cards[k].querySelector('.cart-prod-img-item').src, priceProductCart).render();
+                    }
+                } else {
+                    if (nameItemsCart.includes(nameItems) && countLast == 0 && priceProductCart.includes(items[i].price)) {
+                        countLast = 1;
+    
+                        console.log(nameItemsCart + " == " + nameItems)
+                        console.log(priceProductCart + " == " + items[i].price)
+                        new Products(cards[k].querySelector('.cart_prod_name').innerText, cards[k].querySelector('.cart-prod-img-item').src, priceProductCart).render();
+                    }
                 }
-		    
             }
         }
 
