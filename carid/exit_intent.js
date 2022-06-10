@@ -457,7 +457,6 @@ window.onload = function() {
                     sessionStorage.setItem('modal_loaded', 'true'); //set status modal true
                     showModal() //show modal
                     
-                    console.log('out mobile')
                     document.removeEventListener("scroll", scrollSpeed);
                 }
             };
@@ -469,7 +468,7 @@ window.onload = function() {
                 if (e.relatedTarget == null && e.target.closest('.gbox_portal') == null && sessionStorage.getItem('modal_loaded') == null && document.querySelector('.modal__products').innerHTML != '') {
                     sessionStorage.setItem('modal_loaded', 'true'); //refresh status modal
                     showModal() //show modal
-                    console.log('out desktop')
+			
                     document.removeEventListener("mouseout", exitModal);
                 }
             }
