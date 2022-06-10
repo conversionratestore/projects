@@ -437,9 +437,14 @@ window.onload = function() {
         for (let i = 0; i < items.length; i++) {
             for (let k = 0; k < cards.length; k++) {
 		    
-                if (cards[k].querySelector('.cart_prod_name').innerText.toLowerCase().includes(items[i].name.toLowerCase().replace('...','').split('&amp;').join('&').split('dfr1™').join('™')) && countLast == 0) {
+                let priceProduct = cards[k].querySelector('.cart_prod_each_prc') != null ? cards[k].querySelector('.cart_prod_each_prc').innerHTML.split('<span>')[0] : cards[k].querySelector('.cart-product-total-price').innerHTML;
+                    
+                if (cards[k].querySelector('.cart_prod_name').innerText.toLowerCase().includes(items[i].name.toLowerCase().replace('...','').split('&amp;').join('&').split('dfr1™').join('™')) && countLast == 0 && priceProduct.includes(items[i].price)) {
                     countLast = 1;
-                    new Products(cards[k].querySelector('.cart_prod_name').innerText, items[i].image, items[i].price).render();
+
+                    console.log(cards[k].querySelector('.cart_prod_name').innerText.toLowerCase() + " == " + items[i].name.toLowerCase().replace('...','').split('&amp;').join('&').split('dfr1™').join('™'))
+                    console.log(priceProduct + " == " + items[i].price)
+                    new Products(cards[k].querySelector('.cart_prod_name').innerText, cards[k].querySelector('.cart-prod-img-item').src, priceProduct).render();
                 }
 		    
             }
