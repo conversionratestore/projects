@@ -302,7 +302,6 @@ function detectMob() {
 
 //push data layer
 function pushDataLayer(action,label) {
-    console.log(action + ' : ' + label)
     window.dataLayer = window.dataLayer || [];
     if (label) {
         dataLayer.push({
@@ -376,7 +375,6 @@ let intervalCart = setInterval(() => {
     }
 })
 
-
 //show modal 
 function showModal() {
     document.querySelector('.modal__popular').classList.add('show');  
@@ -440,7 +438,6 @@ window.onload = function() {
         for (let i = 0; i < items.length; i++) {
             for (let k = 0; k < cards.length; k++) {
                 if (cards[k].querySelector('.cart_prod_name').innerText.toLowerCase().includes(items[i].name.toLowerCase().replace('...','').split('&amp;').join('&').split('dfr1™').join('™')) && countLast == 0) {
-                    console.log(cards[k].querySelector('.cart_prod_name').innerText)
                     countLast = 1;
                     new Products(cards[k].querySelector('.cart_prod_name').innerText, items[i].image, items[i].price).render();
                 }
@@ -450,33 +447,34 @@ window.onload = function() {
         //show modal mobile
         if (detectMob() == true) {
             let lastPosition = 0, newPosition = 0, currentSpeed = 0;
-            let scrollSpeed = () => {
+            let scrollSpeed = (e) => {
                 lastPosition = window.scrollY;
                 setTimeout(() => {
                     newPosition = window.scrollY;
                 }, 100);
                 currentSpeed = newPosition - lastPosition;
 
-                if (currentSpeed > 100 && sessionStorage.getItem('modal_loaded') == null && document.querySelector('.modal__products').innerHTML != '') {
+                if (currentSpeed > 100 && e.target.closest('.gbox_portal') == null && sessionStorage.getItem('modal_loaded') == null && document.querySelector('.modal__products').innerHTML != '') {
                     sessionStorage.setItem('modal_loaded', 'true'); //set status modal true
                     showModal() //show modal
+                    
+                    console.log('out mobile')
                     document.removeEventListener("scroll", scrollSpeed);
                 }
             };
 
-            document.addEventListener("scroll", scrollSpeed);
+            document.addEventListener("scroll", (e) => scrollSpeed(e));
         } else {
             //show modal desktop
             let exitModal = (e) => {
                 if (e.relatedTarget == null && e.target.closest('.gbox_portal') == null && sessionStorage.getItem('modal_loaded') == null && document.querySelector('.modal__products').innerHTML != '') {
                     sessionStorage.setItem('modal_loaded', 'true'); //refresh status modal
                     showModal() //show modal
-                    console.log('out')
+                    console.log('out desktop')
                     document.removeEventListener("mouseout", exitModal);
                 }
             }
             addEvent(document, 'mouseout', exitModal)
-          
         }
         
         //close modal
