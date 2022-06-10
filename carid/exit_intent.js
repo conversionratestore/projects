@@ -1,3 +1,4 @@
+
 let style = `
 <style>
     .modal__popular hr {
@@ -301,6 +302,7 @@ function detectMob() {
 
 //push data layer
 function pushDataLayer(action,label) {
+    console.log(action + ' : ' + label)
     window.dataLayer = window.dataLayer || [];
     if (label) {
         dataLayer.push({
@@ -374,6 +376,7 @@ let intervalCart = setInterval(() => {
     }
 })
 
+
 //show modal 
 function showModal() {
     document.querySelector('.modal__popular').classList.add('show');  
@@ -391,6 +394,7 @@ function hideModal() {
 window.onload = function() {
    //cart
     if (window.location.pathname.includes('/cart.php') && sessionStorage.getItem('popular_products') != null && sessionStorage.getItem('popular_products') != '' && sessionStorage.getItem('popular_products') != []) { 
+
         //html modal
         let html = `
             <div class="modal__popular">
@@ -442,7 +446,7 @@ window.onload = function() {
                 }
             }
         }
-        
+
         //show modal mobile
         if (detectMob() == true) {
             let lastPosition = 0, newPosition = 0, currentSpeed = 0;
@@ -464,13 +468,15 @@ window.onload = function() {
         } else {
             //show modal desktop
             let exitModal = (e) => {
-                if (e.relatedTarget == null && sessionStorage.getItem('modal_loaded') == null && document.querySelector('.modal__products').innerHTML != '') {
+                if (e.relatedTarget == null && e.target.closest('.gbox_portal') == null && sessionStorage.getItem('modal_loaded') == null && document.querySelector('.modal__products').innerHTML != '') {
                     sessionStorage.setItem('modal_loaded', 'true'); //refresh status modal
                     showModal() //show modal
+                    console.log('out')
                     document.removeEventListener("mouseout", exitModal);
                 }
             }
             addEvent(document, 'mouseout', exitModal)
+          
         }
         
         //close modal
