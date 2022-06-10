@@ -1,4 +1,3 @@
-
 let style = `
 <style>
     .modal__popular hr {
@@ -302,7 +301,6 @@ function detectMob() {
 
 //push data layer
 function pushDataLayer(action,label) {
-    console.log(action + ' : ' + label)
     window.dataLayer = window.dataLayer || [];
     if (label) {
         dataLayer.push({
@@ -376,7 +374,6 @@ let intervalCart = setInterval(() => {
     }
 })
 
-
 //show modal 
 function showModal() {
     document.querySelector('.modal__popular').classList.add('show');  
@@ -394,7 +391,6 @@ function hideModal() {
 window.onload = function() {
    //cart
     if (window.location.pathname.includes('/cart.php') && sessionStorage.getItem('popular_products') != null && sessionStorage.getItem('popular_products') != '' && sessionStorage.getItem('popular_products') != []) { 
-
         //html modal
         let html = `
             <div class="modal__popular">
