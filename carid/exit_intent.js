@@ -436,7 +436,11 @@ window.onload = function() {
         let countLast = 0;
         for (let i = 0; i < items.length; i++) {
             for (let k = 0; k < cards.length; k++) {
-                if (cards[k].querySelector('.cart_prod_name').innerText.toLowerCase().includes(items[i].name.toLowerCase().replace('...','').split('&amp;').join('&').split('dfr1™').join('™')) && countLast == 0) {
+                let nameItems = items[i].name.toLowerCase(),
+                    cutOutNameC = nameItems.split('®')[0],
+                    newNameItems = cutOutNameC + '® - ' + nameItems.split(' - ')[1];
+
+                if (cards[k].querySelector('.cart_prod_name').innerText.toLowerCase().includes(newNameItems.replace('...','').split('&amp;').join('&').split('dfr1™').join('™')) && countLast == 0) {
                     countLast = 1;
                     new Products(cards[k].querySelector('.cart_prod_name').innerText, items[i].image, items[i].price).render();
                 }
