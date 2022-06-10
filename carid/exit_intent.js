@@ -460,7 +460,7 @@ window.onload = function() {
                 }, 100);
                 currentSpeed = newPosition - lastPosition;
 
-                if (currentSpeed > 100 && document.querySelector('.gbox_portal') == null && sessionStorage.getItem('modal_loaded') == null && document.querySelector('.modal__products').innerHTML != '') {
+                if (currentSpeed > 70 && document.querySelector('.gbox_portal') == null && sessionStorage.getItem('modal_loaded') == null && document.querySelector('.modal__products').innerHTML != '') {
                     sessionStorage.setItem('modal_loaded', 'true'); //set status modal true
                     showModal() //show modal
                     
