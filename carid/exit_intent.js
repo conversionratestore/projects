@@ -437,7 +437,14 @@ window.onload = function() {
         for (let i = 0; i < items.length; i++) {
             for (let k = 0; k < cards.length; k++) {
 		    
-                let priceProductCart = cards[k].querySelector('.cart_prod_each_prc') != null ? cards[k].querySelector('.cart_prod_each_prc').innerHTML.split('<span>')[0] : cards[k].querySelector('.cart-product-total-price').innerHTML;
+                let priceProductCart = ''
+                if (cards[k].querySelector('.cart_prod_each_prc') != null) {
+                    priceProductCart = cards[k].querySelector('.cart_prod_each_prc').innerHTML.split('<span>')[0];
+                } else if (cards[k].querySelector('.cart-product-price-original') != null && cards[k].querySelector('.cart_prod_each_prc') == null) {
+                    priceProductCart = cards[k].querySelector('.cart-product-total-price').innerHTML.split('</span>')[1];
+                } else {
+                    priceProductCart = cards[k].querySelector('.cart-product-total-price').innerHTML;
+                }
                            
                 let nameItems = items[i].name.toLowerCase().replace('...','').split('&amp;').join('&').split('dfr1™').join('™'),
                     nameItemsCart = cards[k].querySelector('.cart_prod_name').innerText.toLowerCase();
@@ -448,13 +455,13 @@ window.onload = function() {
                     if (nameItemsCart.includes(toHyphen) && nameItemsCart.includes(fromHyphen) && countLast == 0 && priceProductCart.includes(items[i].price)) {
                         countLast = 1;
     
-                        new Products(cards[k].querySelector('.cart_prod_name').innerText, cards[k].querySelector('.cart-prod-img-item').src, priceProductCart.split('</span>')[1]).render();
+                        new Products(cards[k].querySelector('.cart_prod_name').innerText, cards[k].querySelector('.cart-prod-img-item').src, priceProductCart).render();
                     }
                 } else {
                     if (nameItemsCart.includes(nameItems) && countLast == 0 && priceProductCart.includes(items[i].price)) {
                         countLast = 1;
     
-                        new Products(cards[k].querySelector('.cart_prod_name').innerText, cards[k].querySelector('.cart-prod-img-item').src, priceProductCart.split('</span>')[1]).render();
+                        new Products(cards[k].querySelector('.cart_prod_name').innerText, cards[k].querySelector('.cart-prod-img-item').src, priceProductCart).render();
                     }
                 }
             }
