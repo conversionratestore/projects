@@ -245,6 +245,15 @@ let style = `
 	    padding-left: 7px;
         }
     }
+    
+    @media only screen and (max-width: 360px)  {
+    	.modal__header, .modal__footer {
+	    padding: 0 15px;
+	}
+	.modal__products {
+	    padding: 0 15px 10px;
+	}
+    }
 </style>`
 
 /* Classes method for Product */
