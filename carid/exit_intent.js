@@ -242,6 +242,7 @@ let style = `
         }
         .modal__products li .price {
             font-weight: 500;
+	    padding-left: 7px;
         }
     }
 </style>`
