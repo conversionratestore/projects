@@ -438,7 +438,7 @@ window.onload = function() {
             for (let k = 0; k < cards.length; k++) {
 		    
                 let priceProductCart = cards[k].querySelector('.cart_prod_each_prc') != null ? cards[k].querySelector('.cart_prod_each_prc').innerHTML.split('<span>')[0] : cards[k].querySelector('.cart-product-total-price').innerHTML;
-                    
+                           
                 let nameItems = items[i].name.toLowerCase().replace('...','').split('&amp;').join('&').split('dfr1™').join('™'),
                     nameItemsCart = cards[k].querySelector('.cart_prod_name').innerText.toLowerCase();
 
@@ -448,18 +448,13 @@ window.onload = function() {
                     if (nameItemsCart.includes(toHyphen) && nameItemsCart.includes(fromHyphen) && countLast == 0 && priceProductCart.includes(items[i].price)) {
                         countLast = 1;
     
-                        console.log(toHyphen + " / " + fromHyphen)
-                        console.log(nameItemsCart + " == " + nameItems)
-                        console.log(priceProductCart + " == " + items[i].price)
-                        new Products(cards[k].querySelector('.cart_prod_name').innerText, cards[k].querySelector('.cart-prod-img-item').src, priceProductCart).render();
+                        new Products(cards[k].querySelector('.cart_prod_name').innerText, cards[k].querySelector('.cart-prod-img-item').src, priceProductCart.split('</span>')[1]).render();
                     }
                 } else {
                     if (nameItemsCart.includes(nameItems) && countLast == 0 && priceProductCart.includes(items[i].price)) {
                         countLast = 1;
     
-                        console.log(nameItemsCart + " == " + nameItems)
-                        console.log(priceProductCart + " == " + items[i].price)
-                        new Products(cards[k].querySelector('.cart_prod_name').innerText, cards[k].querySelector('.cart-prod-img-item').src, priceProductCart).render();
+                        new Products(cards[k].querySelector('.cart_prod_name').innerText, cards[k].querySelector('.cart-prod-img-item').src, priceProductCart.split('</span>')[1]).render();
                     }
                 }
             }
