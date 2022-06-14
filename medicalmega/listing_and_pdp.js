@@ -1814,22 +1814,34 @@ window.onload = function() {
   }
 
   function initHits(hit) {
+    let variants = hit.variants,
+        count = 0;
+    for (let i = 0; i < variants.length; i++) {
+      if (variants[i].in_stock == true && variants[i].price != '0:00') {
+        count = i;
+        break;
+      } else {
+        count = i;
+      }
+    }
+    console.log(count)
+    console.log(hit['variants'][count])
     let boxItem = `
       <div class="card">
-        <p class="status" style="display:${hit.in_stock==false || hit.price == '0:00'? 'block':'none'}">Out of Stock</p>
+        <p class="status" style="display:${hit['variants'][count].in_stock==false || hit['variants'][count].price == '0:00'? 'block':'none'}">Out of Stock</p>
         <a class="card_name" href="https://medicalmega.com/product/${hit.seo}">
           <img src="https://medicalmegaimgs.net/prod/uploaded/product/pro_thumb/${findImageHits(hit.variants) != '' ? findImageHits(hit.variants) : 'dummyimage.jpg' }" alt="${hit.name}">
           <span title='${hit.name}'>${hit.name}</span>
         </a>
         <p class="card_item">Item #${hit.item_num}</p>
         <form action="https://medicalmega.com/cart.html" method="post">
-          <div class="flex-center-center calc" ${hit.in_stock==false || hit.price == '0:00' ? 'disabled' : ''}>
+          <div class="flex-center-center calc" ${hit['variants'][count].in_stock==false || hit['variants'][count].price == '0:00' ? 'disabled' : ''}>
             <button class="btn-calc btn-calc_minus" type="button" disabled=""></button>
-            <input class="calc-qty" type="number" name="quantity" value="1" data-max-value="${hit.qty}">
+            <input class="calc-qty" type="number" name="quantity" value="1" data-max-value="${hit['variants'][count].qty}">
             <button class="btn-calc btn-calc_plus" type="button"></button>
           </div>
-          ${hit.in_stock==false || hit.price == '0:00' ? '<button class="btn btn_white" type="button" data-button="notify"><span>Out of Stock</span></button>':'<button class="btn btn_dark add-cart" type="submit"><span>$<span class="pr" data-price="' + hit.price + '">' + hit.price + '</span> | Add to Cart</span></button>'}
-          <input type="hidden" name="product_variant_id" value="${hit.pv_id}">
+          ${hit['variants'][count].in_stock==false || hit['variants'][count].price == '0:00' ? '<button class="btn btn_white" type="button" data-button="notify"><span>Out of Stock</span></button>':'<button class="btn btn_dark add-cart" type="submit"><span>$<span class="pr" data-price="' + hit['variants'][count].price + '">' + hit['variants'][count].price + '</span> | Add to Cart</span></button>'}
+          <input type="hidden" name="product_variant_id" value="${hit['variants'][count].pv_id}">
           <input type="hidden" name="product_id" value="${hit.objectID }">
           <input type="hidden" name="add_to_cart" value="variant">
           
@@ -2179,7 +2191,7 @@ window.onload = function() {
     } 
     if (search.helper.state.query == '' && !e.target.closest('#form-search')) {
       document.querySelector('#form-search .ais-SearchBox-input').value = '';
-      document.querySelector('#form-search pre').innerHTML = '';
+      document.querySelector('#form-search pre') != null ? document.querySelector('#form-search pre').innerHTML = '' : '';
     }
   })
 
@@ -2260,8 +2272,6 @@ window.onload = function() {
             document.querySelector('#form-search .ais-SearchBox-submit').addEventListener('click', (e) => {
               e.stopImmediatePropagation()
               search.helper.state.hierarchicalFacetsRefinements['categories.lvl0'] = [];
-              // document.querySelector('.ais-ClearRefinements-button').classList.add('action-clean');
-              // document.querySelector('.ais-ClearRefinements-button').click()
               if (document.querySelector('.advanced-search.active') != null) {
                 document.querySelector('.advanced-search').classList.remove('active');
               }
@@ -2269,7 +2279,6 @@ window.onload = function() {
           
               query = document.querySelector('#form-search .ais-SearchBox-input').value;
               search._searchFunction(search.helper)
-              // search.refresh()
               actionDataLayer = `Click on submit button`;
               labelDataLayer = 'Search by Name';
               pushDataLayer(actionDataLayer, labelDataLayer)
@@ -2397,7 +2406,7 @@ window.onload = function() {
             categoryLvl = `categories.lvl${Object.keys(categoriesHit).length - 1}:${lastLvlCategories[j]}`
           }
         }
-
+        console.log(categoryLvl)
         let requestSimilarProduct = index.search({
           facetFilters: [categoryLvl],
           // filters: categoryLvl,
@@ -2418,7 +2427,7 @@ window.onload = function() {
               label = ``;
           for (let i = 0; i < options.length; i++) {
             if (options[i].price != '0.00') {
-              label += `<label><input class="checkbox" type="radio" name="radio" data-variant="${options[i].pv_id}"><span class="radio-check"><span>${options[i].extra}</span><span class="radio-check_price">$${options[i].price}</span></span></label>`;
+              label += `<label><input class="checkbox" type="radio" name="radio" data-variant="${options[i].pv_id}" ${options[i].in_stock == false ? 'disabled' : ''}><span class="radio-check"><span>${options[i].extra}</span><span class="radio-check_price">$${options[i].price}</span></span></label>`;
             }
           }
           return label
@@ -2658,28 +2667,8 @@ window.onload = function() {
           let hits = res.hits;
 
           if (hits.length > 0) {
-
             for (let i = 0; i < hits.length; i++) {
-              document.querySelector('.cards_similar').insertAdjacentHTML('beforeend',`
-              <div class="card" >
-                  <p class="status" style="display:${hits[i].in_stock==false || hits[i].price == '0:00'? 'block':'none'}">Out of Stock</p>
-                  <a class="card_name" href="${hits[i].seo}">
-                      <img src="https://medicalmegaimgs.net/prod/uploaded/product/${findImageHits(hits[i].variants) == '' ? 'dummyimage.jpg' : findImageHits(hits[i].variants)}" alt="${hits[i].name}">
-                      <span title='${hits[i].name}'>${hits[i].name}</span>
-                  </a>
-                  <p class="card_item">Item #${hits[i].item_num}</p>
-                  <form action="https://medicalmega.com/cart.html" method="post">
-                      <div class="flex-center-center calc" ${hits[i].in_stock==false || hits[i].price == '0:00' ? 'disabled' : ''}> 
-                        <button class="btn-calc btn-calc_minus" type="button" disabled=""></button>
-                        <input class="calc-qty" type="number" value="1" name="quantity">
-                        <button class="btn-calc btn-calc_plus" type="button"></button>
-                      </div>
-                      ${hits[i].in_stock==false || hits[i].price == '0:00' ? '<button class="btn btn_white" type="button" data-button="notify"><span>Out of Stick</span></button>':'<button class="btn btn_dark add-cart" type="submit"><span>$<span class="pr" data-price="' + hits[i].price + '">' + hits[i].price + '</span> | Add to Cart</span></button>'}
-                      <input type="hidden" name="product_variant_id" value="${hits[i].pv_id}">
-                      <input type="hidden" name="product_id" value="${hits[i].objectID}">
-                      <input type="hidden" name="add_to_cart" value="variant">
-                  </form>
-              </div>`)
+              document.querySelector('.cards_similar').insertAdjacentHTML('beforeend', initHits(hits[i]))
             }
           }
         })
