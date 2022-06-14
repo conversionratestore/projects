@@ -1598,7 +1598,6 @@ let requestProduct = new Promise((resolve, reject) => {
 
 //push dataLayer
 function pushDataLayer(actionDataLayer, labelDataLayer) {
-  console.log(actionDataLayer + ' : ' + labelDataLayer)
   window.dataLayer = window.dataLayer || [];
   dataLayer.push({
       'event': 'event-to-ga',
@@ -2401,7 +2400,7 @@ window.onload = function() {
             categoryLvl = `categories.lvl${Object.keys(categoriesHit).length - 1}:${lastLvlCategories[j]}`
           }
         }
-        console.log(categoryLvl)
+        
         let requestSimilarProduct = index.search({
           facetFilters: [categoryLvl],
           // filters: categoryLvl,
@@ -2564,7 +2563,7 @@ window.onload = function() {
         })
 
         //zoom
-        function imageZoom(imgID, resultID) {
+        function setImageZoom(imgID, resultID) {
           let img, lens, result, cx, cy;
           img = document.getElementById(imgID);
           result = document.getElementById(resultID);
@@ -2619,11 +2618,11 @@ window.onload = function() {
               return {x : x, y : y};
           }
         }
-        
+
         let startZoom = setInterval(() => {
           if (document.querySelector('#zoomResult') != null && document.querySelector('#forImg') != null) {
               clearInterval(startZoom)
-              imageZoom("forImg", "zoomResult")
+              setImageZoom("forImg", "zoomResult")
           }
         }, 200);
 
