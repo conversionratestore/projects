@@ -378,21 +378,21 @@ document.head.appendChild(myScriptCustom)
 /* translation */
 
 const translations = {
-	en: ['Accessories', 'Add to cart', 'There are no products in this category yet', 'There are no products in these categories of products yet'],
-	it: ['Accessori', 'Aggiungi al carrello', 'Non ci sono ancora prodotti in questa categoria', 'Non ci sono ancora prodotti in queste categorie di prodotti'],
-	hr: ['Dodaci', 'Dodaj u košaricu', 'Još nema proizvoda u ovoj kategoriji', 'Još nema proizvoda u ovim kategorijama proizvoda'],
-	sl: ['Dodatki', 'Dodaj v košarico', 'V tej kategoriji še ni izdelkov', 'V tej kategoriji izdelkov ni še nobenega izdelka'],
-	de: ['Zubehör', 'In den Warenkorb', 'Es sind bis noch keine Produkte in dieser Kategorie', 'Es sind noch keine Produkte in dieser Kategorie von Produkten'],
-	fr: ['Accessories', 'Ajouter au panier', `Il n'y a pas encore de produits dans cette catégorie`, `Il n'y a pas encore de produits dans ces catégories de produits`],
-	es: ['Accesorios', 'Agregar al carrito', 'Todavía no hay productos en esta categoría', 'Todavía no hay productos en estas categorías de productos'],
+    en: ['Accessories', 'Add to cart', 'There are no products in this category yet', 'There are no products in these categories of products yet'],
+    it: ['Accessori', 'Aggiungi al carrello', 'Non ci sono ancora prodotti in questa categoria', 'Non ci sono ancora prodotti in queste categorie di prodotti'],
+    hr: ['Dodaci', 'Dodaj u košaricu', 'Još nema proizvoda u ovoj kategoriji', 'Još nema proizvoda u ovim kategorijama proizvoda'],
+    sl: ['Dodatki', 'Dodaj v košarico', 'V tej kategoriji še ni izdelkov', 'V tej kategoriji izdelkov ni še nobenega izdelka'],
+    de: ['Zubehör', 'In den Warenkorb', 'Es sind bis noch keine Produkte in dieser Kategorie', 'Es sind noch keine Produkte in dieser Kategorie von Produkten'],
+    fr: ['Accessories', 'Ajouter au panier', `Il n'y a pas encore de produits dans cette catégorie`, `Il n'y a pas encore de produits dans ces catégories de produits`],
+    es: ['Accesorios', 'Agregar al carrito', 'Todavía no hay productos en esta categoría', 'Todavía no hay productos en estas categorías de productos'],
 }
 
 let pageLanguage2 = ''
 
 if (!!translations[window.location.pathname.split('/')[1]]) {
-	pageLanguage2 = window.location.pathname.split('/')[1]
+    pageLanguage2 = window.location.pathname.split('/')[1]
 } else {
-	pageLanguage2 = 'en'
+    pageLanguage2 = 'en'
 }
 
 let language = translations[pageLanguage2]
@@ -401,9 +401,9 @@ let language = translations[pageLanguage2]
 
 const HOME_URL = 'https://gateway.kingsbox.com/service'
 const defaultHeaders = {
-	'x-system': 'EU',
-	'x-currency': 'EUR',
-	'Accept-Language': pageLanguage2
+    'x-system': 'EU',
+    'x-currency': 'EUR',
+    'Accept-Language': pageLanguage2
 }
 
 let identifier
@@ -418,60 +418,60 @@ let currentProductSKU = ''
 let device = ''
 
 if (window.matchMedia('(max-width: 768px)').matches) {
-	device = 'mobile'
+    device = 'mobile'
 } else {
-	device = 'desktop'
+    device = 'desktop'
 }
 
 const initSlider = sliders => {
-	document.querySelectorAll(sliders).forEach((slider) => {
-		let name = ''
+    document.querySelectorAll(sliders).forEach((slider) => {
+        let name = ''
 
-		let sliderObj = {
-			items: 3,
-			container: slider,
-			slideBy: 'page',
-			mouseDrag: true,
-			swipeAngle: 30,
-			gutter: 8,
-			loop: false,
-			autoplay: false,
-			autoplayButton: false,
-			autoplayButtonOutput: false,
-			nav: false,
-		}
+        let sliderObj = {
+            items: 3,
+            container: slider,
+            slideBy: 'page',
+            mouseDrag: true,
+            swipeAngle: 30,
+            gutter: 8,
+            loop: false,
+            autoplay: false,
+            autoplayButton: false,
+            autoplayButtonOutput: false,
+            nav: false,
+        }
 
-		if (sliders === '.category_list') {
-			name = 'category list'
-			sliderObj.controlsText = [`<span><img src="https://conversionratestore.github.io/projects/kingsbox/img/arrow_new_back.svg" alt="arrow left"></span>`, `<span><img src="https://conversionratestore.github.io/projects/kingsbox/img/arrow_forward.svg" alt="arrow right"></span>`]
-		} else {
-			name = 'category'
-			sliderObj.controlsText = [`<span><img src="https://conversionratestore.github.io/projects/kingsbox/img/arrow_new_round_back.svg" alt="arrow left"></span>`, `<span><img src="https://conversionratestore.github.io/projects/kingsbox/img/arrow_back.svg" alt="arrow right"></span>`]
-		}
+        if (sliders === '.category_list') {
+            name = 'category list'
+            sliderObj.controlsText = [`<span><img src="https://conversionratestore.github.io/projects/kingsbox/img/arrow_new_back.svg" alt="arrow left"></span>`, `<span><img src="https://conversionratestore.github.io/projects/kingsbox/img/arrow_forward.svg" alt="arrow right"></span>`]
+        } else {
+            name = 'category'
+            sliderObj.controlsText = [`<span><img src="https://conversionratestore.github.io/projects/kingsbox/img/arrow_new_round_back.svg" alt="arrow left"></span>`, `<span><img src="https://conversionratestore.github.io/projects/kingsbox/img/arrow_back.svg" alt="arrow right"></span>`]
+        }
 
-		let my_slider = tns(sliderObj)
+        let my_slider = tns(sliderObj)
 
-		my_slider.events.on('indexChanged', () => {
-			window.dataLayer = window.dataLayer || []
-			dataLayer.push({
-				'event': 'event-to-ga',
-				'eventCategory': 'Exp: Slide in cart improvemnets ' + device,
-				'eventAction': `Swipe on ${name} slider`,
-			})
-		})
-	})
+        my_slider.events.on('indexChanged', () => {
+            window.dataLayer = window.dataLayer || []
+            dataLayer.push({
+                'event': 'event-to-ga',
+                'eventCategory': 'Exp: Slide in cart improvemnets ' + device,
+                'eventAction': `Swipe on ${name} slider`,
+            })
+        })
+    })
 }
 
 const checkCart = async cartId => {
-	try {
-		const headers = { ...defaultHeaders }
-		headers['x-system-service'] = 'SHOPPING_CART'
+    try {
+        const headers = { ...defaultHeaders }
+        headers['x-system-service'] = 'SHOPPING_CART'
 
-		let response = await fetch(`${HOME_URL}/shopping-cart/${cartId}/products?page_num=1&page_size=8`, { headers })
+        let response = await fetch(`${HOME_URL}/shopping-cart/${cartId}/products?page_num=1&page_size=8`, { headers })
 
-		let data = await response.json()
+        let data = await response.json()
 
-		const cartTemplate = `
+        const cartTemplate = `
 						<div class="cart_accessories">
 							<p class="title">${language[0]}<span><img src="https://conversionratestore.github.io/projects/kingsbox/img/arrow_up.svg" alt="toggle arrow"></span></p>
 							<div class="cart_content">
@@ -481,121 +481,121 @@ const checkCart = async cartId => {
 							</div>
 						</div>`
 
-		if (!document.querySelector('.cart_accessories')) {
-			document.querySelector('.shopping-cart-products')?.insertAdjacentHTML('afterend', cartTemplate)
+        if (!document.querySelector('.cart_accessories')) {
+            document.querySelector('.shopping-cart-products')?.insertAdjacentHTML('afterend', cartTemplate)
 
-			let waitForArrow = setInterval(() => {
-				if (document.querySelector('.cart_accessories .title span')) {
-					clearInterval(waitForArrow)
+            let waitForArrow = setInterval(() => {
+                if (document.querySelector('.cart_accessories .title span')) {
+                    clearInterval(waitForArrow)
 
-					document.querySelector('.cart_accessories .title span').addEventListener('click', function () {
-						let content = document.querySelector('.cart_content')
-						content.hidden = !content.hidden
+                    document.querySelector('.cart_accessories .title span').addEventListener('click', function () {
+                        let content = document.querySelector('.cart_content')
+                        content.hidden = !content.hidden
 
-						this.classList.toggle('arr_down')
+                        this.classList.toggle('arr_down')
 
-						window.dataLayer = window.dataLayer || [];
-						dataLayer.push({
-							'event': 'event-to-ga',
-							'eventCategory': 'Exp: Slide in cart improvemnets ' + device,
-							'eventAction': 'Clicks on arrow near accossorizes'
-						})
-					})
+                        window.dataLayer = window.dataLayer || [];
+                        dataLayer.push({
+                            'event': 'event-to-ga',
+                            'eventCategory': 'Exp: Slide in cart improvemnets ' + device,
+                            'eventAction': 'Clicks on arrow near accossorizes'
+                        })
+                    })
 
-					document.querySelector('.cart_accessories').addEventListener('click', (e) => {
-						if (e.target.closest('.category_item')) {
-							window.dataLayer = window.dataLayer || [];
-							dataLayer.push({
-								'event': 'event-to-ga',
-								'eventCategory': 'Exp: Slide in cart improvemnets ' + device,
-								'eventAction': 'Clicks to similar products in the slide in cart'
-							})
-						}
+                    document.querySelector('.cart_accessories').addEventListener('click', (e) => {
+                        if (e.target.closest('.category_item')) {
+                            window.dataLayer = window.dataLayer || [];
+                            dataLayer.push({
+                                'event': 'event-to-ga',
+                                'eventCategory': 'Exp: Slide in cart improvemnets ' + device,
+                                'eventAction': 'Clicks to similar products in the slide in cart'
+                            })
+                        }
 
-						if (e.target.closest('.bottom_part button')) {
-							window.dataLayer = window.dataLayer || [];
-							dataLayer.push({
-								'event': 'event-to-ga',
-								'eventCategory': 'Exp: Slide in cart improvemnets ' + device,
-								'eventAction': 'Clicks on add to cart'
-							})
-						}
-					})
-				}
-			}, 100)
-		}
+                        if (e.target.closest('.bottom_part button')) {
+                            window.dataLayer = window.dataLayer || [];
+                            dataLayer.push({
+                                'event': 'event-to-ga',
+                                'eventCategory': 'Exp: Slide in cart improvemnets ' + device,
+                                'eventAction': 'Clicks on add to cart'
+                            })
+                        }
+                    })
+                }
+            }, 100)
+        }
 
-		if (!data.data?.entities[productIndex]?.sku) {
-			// console.log('All products don\'t have accessories')
-			document.querySelector('.loader_wrapper')?.remove()
+        if (!data.data?.entities[productIndex]?.sku) {
+            // console.log('All products don\'t have accessories')
+            document.querySelector('.loader_wrapper')?.remove()
 
-			window.dataLayer = window.dataLayer || [];
-			dataLayer.push({
-				'event': 'event-to-ga',
-				'eventCategory': 'Exp: Slide in cart improvemnets ' + device,
-				'eventAction': 'Slide in cart appearance',
-				'eventLabel': 'Empty'
-			})
+            window.dataLayer = window.dataLayer || [];
+            dataLayer.push({
+                'event': 'event-to-ga',
+                'eventCategory': 'Exp: Slide in cart improvemnets ' + device,
+                'eventAction': 'Slide in cart appearance',
+                'eventLabel': 'Empty'
+            })
 
-			let waitForContent = setInterval(() => {
-				if (document.querySelector('.cart_content') && !document.querySelector('.no_products')) {
-					clearInterval(waitForContent)
-					document.querySelector('.cart_content').insertAdjacentHTML('beforeend', `<p class="no_products">${language[3]}</p>`)
-				}
-			}, 100)
+            let waitForContent = setInterval(() => {
+                if (document.querySelector('.cart_content') && !document.querySelector('.no_products')) {
+                    clearInterval(waitForContent)
+                    document.querySelector('.cart_content').insertAdjacentHTML('beforeend', `<p class="no_products">${language[3]}</p>`)
+                }
+            }, 100)
 
-			return false
-		} else {
-			console.group(`%c checking %c${data.data.entities[productIndex].name}`, 'background: black; color: yellow', 'background: black; color: lightgreen; font-weigth: bold; font-size: 16px;')
-			console.log(`%c ${HOME_URL}/products/details/${data.data.entities[productIndex].parentSku}/accessories/categories`, 'background: purple;');
-			console.groupEnd()
+            return false
+        } else {
+            console.group(`%c checking %c${data.data.entities[productIndex].name}`, 'background: black; color: yellow', 'background: black; color: lightgreen; font-weigth: bold; font-size: 16px;')
+            console.log(`%c ${HOME_URL}/products/details/${data.data.entities[productIndex].parentSku}/accessories/categories`, 'background: purple;');
+            console.groupEnd()
 
-			// console.log('previous Product SKU: ', currentProductSKU)
+            // console.log('previous Product SKU: ', currentProductSKU)
 
-			if (currentProductSKU === '') {
-				currentProductSKU = data.data.entities[productIndex].parentSku
-			} else if (currentProductSKU !== data.data.entities[productIndex].parentSku) {
-				accessoriesIdArray = []
-				categoriesNameArray = []
-				accessoriesArray = []
+            if (currentProductSKU === '') {
+                currentProductSKU = data.data.entities[productIndex].parentSku
+            } else if (currentProductSKU !== data.data.entities[productIndex].parentSku) {
+                accessoriesIdArray = []
+                categoriesNameArray = []
+                accessoriesArray = []
 
-				currentProductSKU = data.data.entities[productIndex].parentSku
-			}
+                currentProductSKU = data.data.entities[productIndex].parentSku
+            }
 
-			return true
-		}
-	} catch (err) {
-		console.error(err)
-	}
+            return true
+        }
+    } catch (err) {
+        console.error(err)
+    }
 }
 
 const drawSelectedAccessory = (categoryAccessoryIndex) => {
-	let accessoryItems = ''
+    let accessoryItems = ''
 
-	const cartNames = [...document.querySelectorAll('.product-name span')].map(span => span.innerText)
+    const cartNames = [...document.querySelectorAll('.product-name span')].map(span => span.innerText)
 
-	if (accessoriesArray[categoryAccessoryIndex].length > 0) {
-		accessoryItems = `
+    if (accessoriesArray[categoryAccessoryIndex].length > 0) {
+        accessoryItems = `
 			<div class="category" data-category-index="${categoryAccessoryIndex}">							
 				${accessoriesArray[categoryAccessoryIndex].map((entity, index) => {
 
-			let pathLink = entity.path
+            let pathLink = entity.path
 
-			if (pathLink.includes('/')) {
-				pathLink = entity.path.split('/')[1]
-			}
+            if (pathLink.includes('/')) {
+                pathLink = entity.path.split('/')[1]
+            }
 
-			let isInCart = false
+            let isInCart = false
 
-			cartNames.forEach(name => {
-				if (name === entity.name) {
-					isInCart = true
-				}
-			})
+            cartNames.forEach(name => {
+                if (name === entity.name) {
+                    isInCart = true
+                }
+            })
 
-			console.log(pathLink);
+            console.log(pathLink);
 
-			return `
+            return `
 				<div data-item-index="${index}" class="category_item${isInCart ? ' hide_item' : ''}">																	
 					<div class="item_inner">
 						<a href='https://kingsbox.com/${pageLanguage2 !== 'en' ? pageLanguage2 + '/' : ''}product/${pathLink}'>
@@ -613,326 +613,326 @@ const drawSelectedAccessory = (categoryAccessoryIndex) => {
 						</div>
 					</div>																				
 				</div>`
-		}).join('')}							
+        }).join('')}							
 		</div>`
-	}
+    }
 
-	let waitForWrapper = setInterval(() => {
-		if (document.querySelector('.category_wrapper')) {
-			clearInterval(waitForWrapper)
+    let waitForWrapper = setInterval(() => {
+        if (document.querySelector('.category_wrapper')) {
+            clearInterval(waitForWrapper)
 
-			document.querySelector('.category_wrapper').insertAdjacentHTML('beforeend', accessoryItems)
+            document.querySelector('.category_wrapper').insertAdjacentHTML('beforeend', accessoryItems)
 
-			let waitForList = setInterval(() => {
-				if (typeof tns === 'function') {
-					clearInterval(waitForList)
-					initSlider('.category_wrapper .category:not(.tns-slider)')
-				}
-			}, 200)
+            let waitForList = setInterval(() => {
+                if (typeof tns === 'function') {
+                    clearInterval(waitForList)
+                    initSlider('.category_wrapper .category:not(.tns-slider)')
+                }
+            }, 200)
 
-			if (document.querySelectorAll('.category_wrapper .tns-outer').length < 1) {
-				let waitForFrSlider = setInterval(() => {
-					if (document.querySelector('.category_wrapper .tns-outer')) {
-						clearInterval(waitForFrSlider)
+            if (document.querySelectorAll('.category_wrapper .tns-outer').length < 1) {
+                let waitForFrSlider = setInterval(() => {
+                    if (document.querySelector('.category_wrapper .tns-outer')) {
+                        clearInterval(waitForFrSlider)
 
-						document.querySelector('.category_wrapper .tns-outer').classList.add('selected')
-						document.querySelector('.category_wrapper .category').classList.add('loaded')
-					}
-				}, 100)
-			}
-		}
-	}, 100);
+                        document.querySelector('.category_wrapper .tns-outer').classList.add('selected')
+                        document.querySelector('.category_wrapper .category').classList.add('loaded')
+                    }
+                }, 100)
+            }
+        }
+    }, 100);
 }
 
 const getAccessory = async (accessoryId, accessoryIndex) => {
-	try {
-		const headers = { ...defaultHeaders }
-		headers['x-system-service'] = 'PRODUCTS_ACCESSORIES'
+    try {
+        const headers = { ...defaultHeaders }
+        headers['x-system-service'] = 'PRODUCTS_ACCESSORIES'
 
-		const response = await fetch(
-			`${HOME_URL}/products/details/${currentProductSKU}/accessories?value=${accessoryId}`, { headers })
-		const accessory = await response.json()
+        const response = await fetch(
+            `${HOME_URL}/products/details/${currentProductSKU}/accessories?value=${accessoryId}`, { headers })
+        const accessory = await response.json()
 
-		accessoriesArray[accessoryIndex] = accessory.data.entities
+        accessoriesArray[accessoryIndex] = accessory.data.entities
 
-		drawSelectedAccessory(accessoryIndex)
-	} catch (err) {
-		console.error(err)
-	}
+        drawSelectedAccessory(accessoryIndex)
+    } catch (err) {
+        console.error(err)
+    }
 }
 
 const getCategories = async () => {
-	try {
-		const headers = { ...defaultHeaders }
-		headers['x-system-service'] = 'PRODUCTS'
+    try {
+        const headers = { ...defaultHeaders }
+        headers['x-system-service'] = 'PRODUCTS'
 
-		let response = await fetch(`${HOME_URL}/products/details/${currentProductSKU}/accessories/categories`, { headers })
+        let response = await fetch(`${HOME_URL}/products/details/${currentProductSKU}/accessories/categories`, { headers })
 
-		let data = await response.json()
+        let data = await response.json()
 
-		if (!data.data.length) {
-			// console.log(`Product "${currentProductSKU}" doesn't have accessories`)
-			return false
-		} else {
-			// console.log('productSku', currentProductSKU)
+        if (!data.data.length) {
+            // console.log(`Product "${currentProductSKU}" doesn't have accessories`)
+            return false
+        } else {
+            // console.log('productSku', currentProductSKU)
 
-			accessoriesIdArray = data.data.map(accessory => accessory.id)
-			categoriesNameArray = data.data.map(accessory => accessory.name)
+            accessoriesIdArray = data.data.map(accessory => accessory.id)
+            categoriesNameArray = data.data.map(accessory => accessory.name)
 
-			// console.log('categoriesNameArray', categoriesNameArray)
+            // console.log('categoriesNameArray', categoriesNameArray)
 
-			drawAccessoriesNew()
-		}
-	} catch (err) {
-		console.error(err)
-	}
+            drawAccessoriesNew()
+        }
+    } catch (err) {
+        console.error(err)
+    }
 }
 
 const addToCart = async (productParentId, productParentSku, productSku) => {
-	try {
-		let data =
-			[{
-				productParentId,
-				productParentSku,
-				productSku,
-				'productDiscount': 0.05,
-				'quantity': 1,
-				'isBulkAdd': false
-			}]
+    try {
+        let data =
+            [{
+                productParentId,
+                productParentSku,
+                productSku,
+                'productDiscount': 0.05,
+                'quantity': 1,
+                'isBulkAdd': false
+            }]
 
-		const shoppingHeader = { ...defaultHeaders }
-		shoppingHeader['x-system-service'] = 'SHOPPING_CART'
+        const shoppingHeader = { ...defaultHeaders }
+        shoppingHeader['x-system-service'] = 'SHOPPING_CART'
 
-		await fetch(`${HOME_URL}/shopping-cart/${identifier}/bulk`, {
-			method: 'POST',
-			headers: {
-				'Content-Type': 'application/json',
-			},
-			body: JSON.stringify(data),
-		})
-		await fetch(`${HOME_URL}/shopping-cart/${identifier}/products?page_num=1&page_size=8`, { headers: shoppingHeader })
+        await fetch(`${HOME_URL}/shopping-cart/${identifier}/bulk`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(data),
+        })
+        await fetch(`${HOME_URL}/shopping-cart/${identifier}/products?page_num=1&page_size=8`, { headers: shoppingHeader })
 
-		document.querySelector('.my_cart').classList.add('show')
+        document.querySelector('.my_cart').classList.add('show')
 
-		document.querySelector('.side-modal-content-top i').click()
-		document.querySelector('#main_nav_bottom i').click()
+        document.querySelector('.side-modal-content-top i').click()
+        document.querySelector('.icons-row div i').click()
 
-		let waitForCart = setInterval(() => {
-			if (document.querySelector('#side-dialog-container .shopping-cart')) {
-				clearInterval(waitForCart)
-				document.querySelector('.my_cart').classList.remove('show')
-			}
-		}, 100)
-	} catch (error) {
-		console.err(err);
-	}
+        let waitForCart = setInterval(() => {
+            if (document.querySelector('#side-dialog-container .shopping-cart')) {
+                clearInterval(waitForCart)
+                document.querySelector('.my_cart').classList.remove('show')
+            }
+        }, 100)
+    } catch (error) {
+        console.err(err);
+    }
 }
 
 const checkIsEmptyCategory = (selectedCategoryIndex) => {
-	let waitForCategory = setInterval(() => {
-		if (document.querySelector(`.category[data-category-index="${selectedCategoryIndex}"]`)?.closest('.tns-outer')) {
-			clearInterval(waitForCategory)
+    let waitForCategory = setInterval(() => {
+        if (document.querySelector(`.category[data-category-index="${selectedCategoryIndex}"]`)?.closest('.tns-outer')) {
+            clearInterval(waitForCategory)
 
-			let waitForSelected = setInterval(() => {
-				if (document.querySelectorAll('.category_list li')[selectedCategoryIndex]?.classList.contains('selected')) {
-					clearInterval(waitForSelected)
+            let waitForSelected = setInterval(() => {
+                if (document.querySelectorAll('.category_list li')[selectedCategoryIndex]?.classList.contains('selected')) {
+                    clearInterval(waitForSelected)
 
-					let selectedCategory = document.querySelector(`.category[data-category-index="${selectedCategoryIndex}"]`)
+                    let selectedCategory = document.querySelector(`.category[data-category-index="${selectedCategoryIndex}"]`)
 
-					document.querySelector(`.category[data-category-index="${selectedCategoryIndex}"]`).closest('.tns-outer').classList.add('selected')
+                    document.querySelector(`.category[data-category-index="${selectedCategoryIndex}"]`).closest('.tns-outer').classList.add('selected')
 
-					if (!selectedCategory.classList.contains('loaded')) {
-						selectedCategory.classList.add('loaded')
-					}
+                    if (!selectedCategory.classList.contains('loaded')) {
+                        selectedCategory.classList.add('loaded')
+                    }
 
-					// console.log('checking is empty category...')
+                    // console.log('checking is empty category...')
 
-					let isEmptyCategory = false
+                    let isEmptyCategory = false
 
-					const itemsList = [...document.querySelectorAll(`.category[data-category-index="${selectedCategoryIndex}"] .category_item`)]
+                    const itemsList = [...document.querySelectorAll(`.category[data-category-index="${selectedCategoryIndex}"] .category_item`)]
 
-					for (let i = 0; i < itemsList.length; i++) {
-						if (!itemsList[i].classList.contains('hide_item')) {
-							isEmptyCategory = false
-							break
-						} else {
-							isEmptyCategory = true
-						}
-					}
+                    for (let i = 0; i < itemsList.length; i++) {
+                        if (!itemsList[i].classList.contains('hide_item')) {
+                            isEmptyCategory = false
+                            break
+                        } else {
+                            isEmptyCategory = true
+                        }
+                    }
 
-					if (isEmptyCategory) {
-						document.querySelector(`.empty_cart`).classList.add('show')
-					} else {
-						document.querySelector(`.empty_cart`).classList.remove('show')
-					}
-				}
-			})
-		}
-	}, 200)
+                    if (isEmptyCategory) {
+                        document.querySelector(`.empty_cart`).classList.add('show')
+                    } else {
+                        document.querySelector(`.empty_cart`).classList.remove('show')
+                    }
+                }
+            })
+        }
+    }, 200)
 }
 
 const drawAccessoriesNew = () => {
-	let categories = categoriesNameArray.map((categoryName, index) => `<li ${index === 0 ? 'class="selected"' : ''}><span>${categoryName}</span></li>`)
+    let categories = categoriesNameArray.map((categoryName, index) => `<li ${index === 0 ? 'class="selected"' : ''}><span>${categoryName}</span></li>`)
 
-	const cartInnerTemplate = `										
+    const cartInnerTemplate = `										
 			<ul class="category_list">
 				${categories}
 			</ul>
 			<div class="category_wrapper"></div>
 			<div class="empty_cart"><p>${language[2]}</p></div>		`
 
-	let waitForTemplate = setInterval(() => {
-		if (document.querySelector('.cart_accessories .cart_content')) {
-			clearInterval(waitForTemplate)
+    let waitForTemplate = setInterval(() => {
+        if (document.querySelector('.cart_accessories .cart_content')) {
+            clearInterval(waitForTemplate)
 
-			if (!document.querySelector('.category_list')) {
-				document.querySelector('.loader_wrapper').remove()
-				document.querySelector('.no_products')?.remove()
+            if (!document.querySelector('.category_list')) {
+                document.querySelector('.loader_wrapper').remove()
+                document.querySelector('.no_products')?.remove()
 
-				document.querySelector('.cart_accessories .cart_content').insertAdjacentHTML('beforeend', cartInnerTemplate)
+                document.querySelector('.cart_accessories .cart_content').insertAdjacentHTML('beforeend', cartInnerTemplate)
 
-				window.dataLayer = window.dataLayer || [];
-				dataLayer.push({
-					'event': 'event-to-ga',
-					'eventCategory': 'Exp: Slide in cart improvemnets ' + device,
-					'eventAction': 'Slide in cart appearance',
-					'eventLabel': 'Filled'
-				})
+                window.dataLayer = window.dataLayer || [];
+                dataLayer.push({
+                    'event': 'event-to-ga',
+                    'eventCategory': 'Exp: Slide in cart improvemnets ' + device,
+                    'eventAction': 'Slide in cart appearance',
+                    'eventLabel': 'Filled'
+                })
 
-				if (accessoriesArray[0] === undefined) {
-					getAccessory(accessoriesIdArray[0], 0).then(() => checkIsEmptyCategory(0))
-				} else {
-					drawSelectedAccessory(0)
-				}
+                if (accessoriesArray[0] === undefined) {
+                    getAccessory(accessoriesIdArray[0], 0).then(() => checkIsEmptyCategory(0))
+                } else {
+                    drawSelectedAccessory(0)
+                }
 
-				if (document.querySelector('.category_list') && typeof tns === 'function') {
-					initSlider('.category_list')
+                if (document.querySelector('.category_list') && typeof tns === 'function') {
+                    initSlider('.category_list')
 
-					document.querySelectorAll('.category_list li').forEach((item, index) => {
-						item.addEventListener('click', async () => {
+                    document.querySelectorAll('.category_list li').forEach((item, index) => {
+                        item.addEventListener('click', async () => {
 
-							document.querySelectorAll('.selected').forEach(selected => {
-								selected.classList.remove('selected')
-							})
+                            document.querySelectorAll('.selected').forEach(selected => {
+                                selected.classList.remove('selected')
+                            })
 
-							item.classList.add('selected')
+                            item.classList.add('selected')
 
-							if (document.querySelector(`.category[data-category-index="${index}"]`)?.closest('.tns-outer')) {
-								document.querySelector(`.category[data-category-index="${index}"]`).closest('.tns-outer').classList.add('selected')
-							} else {
-								if (accessoriesArray[index] === undefined) {
-									getAccessory(accessoriesIdArray[index], index)
-								} else {
-									drawSelectedAccessory(index)
-								}
-							}
+                            if (document.querySelector(`.category[data-category-index="${index}"]`)?.closest('.tns-outer')) {
+                                document.querySelector(`.category[data-category-index="${index}"]`).closest('.tns-outer').classList.add('selected')
+                            } else {
+                                if (accessoriesArray[index] === undefined) {
+                                    getAccessory(accessoriesIdArray[index], index)
+                                } else {
+                                    drawSelectedAccessory(index)
+                                }
+                            }
 
-							window.dataLayer = window.dataLayer || [];
-							dataLayer.push({
-								'event': 'event-to-ga',
-								'eventCategory': 'Exp: Slide in cart improvemnets ' + device,
-								'eventAction': 'Click on the catagories'
-							});
+                            window.dataLayer = window.dataLayer || [];
+                            dataLayer.push({
+                                'event': 'event-to-ga',
+                                'eventCategory': 'Exp: Slide in cart improvemnets ' + device,
+                                'eventAction': 'Click on the catagories'
+                            });
 
-							// console.log('click on category');
+                            // console.log('click on category');
 
 
-							checkIsEmptyCategory(index)
-						})
-					})
+                            checkIsEmptyCategory(index)
+                        })
+                    })
 
-					document.querySelector('.cart_accessories').addEventListener('click', function (e) {
-						if (e.target.matches('.bottom_part button')) {
-							let categoryIndex = e.target.closest('[data-category-index]').dataset.categoryIndex
-							let itemIndex = e.target.closest('[data-item-index]').dataset.itemIndex
+                    document.querySelector('.cart_accessories').addEventListener('click', function (e) {
+                        if (e.target.matches('.bottom_part button')) {
+                            let categoryIndex = e.target.closest('[data-category-index]').dataset.categoryIndex
+                            let itemIndex = e.target.closest('[data-item-index]').dataset.itemIndex
 
-							let addedItem = accessoriesArray[categoryIndex][itemIndex]
+                            let addedItem = accessoriesArray[categoryIndex][itemIndex]
 
-							addToCart(addedItem.parentId, addedItem.parentSku, addedItem.sku)
-						}
-					})
-				}
-			}
-		}
-	}, 100)
+                            addToCart(addedItem.parentId, addedItem.parentSku, addedItem.sku)
+                        }
+                    })
+                }
+            }
+        }
+    }, 100)
 }
 
 const runAsyncFunctions = async () => {
-	const cartProduct = await checkCart(identifier)
+    const cartProduct = await checkCart(identifier)
 
-	if (cartProduct) {
-		const accessoriesCategories = await getCategories()
+    if (cartProduct) {
+        const accessoriesCategories = await getCategories()
 
-		// console.log(accessoriesCategories)
+        // console.log(accessoriesCategories)
 
-		if (accessoriesCategories === false) {
-			productIndex++
-			runAsyncFunctions()
-		}
-	}
+        if (accessoriesCategories === false) {
+            productIndex++
+            runAsyncFunctions()
+        }
+    }
 }
 
 const startCartObserver = () => {
-	const target = document.getElementById('side-dialog-container')
-	const config = {
-		// attributes: true,
-		childList: true,
-		subtree: true,
-	}
+    const target = document.getElementById('side-dialog-container')
+    const config = {
+        // attributes: true,
+        childList: true,
+        subtree: true,
+    }
 
-	const callback = async () => {
-		if (localStorage.getItem('kboxShoppingCartId') && document.querySelector('#side-dialog-container div')) {
-			observer.disconnect()
+    const callback = async () => {
+        if (localStorage.getItem('kboxShoppingCartId') && document.querySelector('#side-dialog-container div')) {
+            observer.disconnect()
 
-			identifier = localStorage.getItem('kboxShoppingCartId')
+            identifier = localStorage.getItem('kboxShoppingCartId')
 
-			// console.log('mut callback >>>')
+            // console.log('mut callback >>>')
 
-			productIndex = 0
-			runAsyncFunctions()
+            productIndex = 0
+            runAsyncFunctions()
 
-			observer.observe(target, config)
-		}
-	}
+            observer.observe(target, config)
+        }
+    }
 
-	let observer = new MutationObserver(mutations => {
-		for (let mutation of mutations) {
-			for (let node of mutation.addedNodes) {
-				if (!(node instanceof HTMLElement)) continue
-				if (node.matches('.shopping-cart')) {
-					callback()
-				}
-			}
-		}
-	})
+    let observer = new MutationObserver(mutations => {
+        for (let mutation of mutations) {
+            for (let node of mutation.addedNodes) {
+                if (!(node instanceof HTMLElement)) continue
+                if (node.matches('.shopping-cart')) {
+                    callback()
+                }
+            }
+        }
+    })
 
-	observer.observe(target, config)
+    observer.observe(target, config)
 }
 
 let waitForCart = setInterval(() => {
-	if (document.getElementById('side-dialog-container')) {
-		clearInterval(waitForCart)
-		startCartObserver()
+    if (document.getElementById('side-dialog-container')) {
+        clearInterval(waitForCart)
+        startCartObserver()
 
-		document.getElementById('side-dialog-container').insertAdjacentHTML('beforeend', `
+        document.getElementById('side-dialog-container').insertAdjacentHTML('beforeend', `
 			<div class="my_cart">
 				<div class="loader"></div>
 			</div>
 		`)
-	}
+    }
 }, 200)
 
 window.dataLayer = window.dataLayer || [];
 dataLayer.push({
-	'event': 'event-to-ga',
-	'eventCategory': 'Exp: Slide in cart improvemnets ' + device,
-	'eventAction': 'loaded'
+    'event': 'event-to-ga',
+    'eventCategory': 'Exp: Slide in cart improvemnets ' + device,
+    'eventAction': 'loaded'
 });
 
 let waitForClarity = setInterval(() => {
-	if (typeof clarity === 'function') {
-		clearInterval(waitForClarity)
+    if (typeof clarity === 'function') {
+        clearInterval(waitForClarity)
 
-		clarity('set', 'slide_cart_improvemnets_' + device, 'variant_1');
-	}
+        clarity('set', 'slide_cart_improvemnets_' + device, 'variant_1');
+    }
 }, 200);
