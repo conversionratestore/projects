@@ -1134,6 +1134,7 @@ border-radius: 100px;
     border: 1px solid #d4d4d4;
     width: 140px;
     height: 140px;
+    pointer-events: none;
     visibility: hidden; }
   .main .img-zoom-result {
     border: 1px solid #d4d4d4;
@@ -1143,6 +1144,7 @@ border-radius: 100px;
     top: 0;
     left: 100%;
     visibility: hidden;
+    pointer-events: none;
     background-color: #fff; }
   .slider-for {
     position: relative;
@@ -1598,6 +1600,7 @@ let requestProduct = new Promise((resolve, reject) => {
 
 //push dataLayer
 function pushDataLayer(actionDataLayer, labelDataLayer) {
+  console.log(actionDataLayer + ' : ' + labelDataLayer)
   window.dataLayer = window.dataLayer || [];
   dataLayer.push({
       'event': 'event-to-ga',
@@ -2400,7 +2403,7 @@ window.onload = function() {
             categoryLvl = `categories.lvl${Object.keys(categoriesHit).length - 1}:${lastLvlCategories[j]}`
           }
         }
-        
+        console.log(categoryLvl)
         let requestSimilarProduct = index.search({
           facetFilters: [categoryLvl],
           // filters: categoryLvl,
