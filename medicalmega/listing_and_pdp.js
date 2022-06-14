@@ -1824,8 +1824,7 @@ window.onload = function() {
         count = i;
       }
     }
-    console.log(count)
-    console.log(hit['variants'][count])
+    
     let boxItem = `
       <div class="card">
         <p class="status" style="display:${hit['variants'][count].in_stock==false || hit['variants'][count].price == '0:00'? 'block':'none'}">Out of Stock</p>
