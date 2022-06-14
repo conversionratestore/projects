@@ -2378,10 +2378,6 @@ window.onload = function() {
 
   //pdp
   if (window.location.pathname.includes('/product/')) {
-    let scriptCustom = document.createElement('script');
-    scriptCustom.src = 'https://olha1001.github.io/medicalmega/pdp-rediesign/js/zoom.js';
-    document.head.appendChild(scriptCustom);
-
     toggleListing(false); //hide listing
     
     requestProduct.then(data => {
