@@ -940,8 +940,6 @@ let waitForClarity = setInterval(() => {
 
 document.addEventListener('click', (e) => {
     if (e.target.matches('.product-remove') && document.querySelector('.cart_accessories .cart_content')) {
-        console.log('removed');
-
         document.querySelector('.cart_accessories .cart_content').innerHTML = ''
         document.querySelector('.cart_accessories .cart_content').insertAdjacentHTML('afterbegin', loaderHTML)
     }
