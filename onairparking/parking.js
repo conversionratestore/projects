@@ -231,7 +231,7 @@ let loadingHtml = `<p id="loading_parking"></p>`,
 
 let html = `
     <ul id="list_parking" class="p-4">${loadingHtml}</ul>
-    <div class="guarant flex justify-between pt-4 pb-6">
+    <div class="guarant flex justify-between pt-4 pb-8">
         <div class="guarant_item">
             <div>
                 <img src="https://conversionratestore.github.io/projects/onairparking/img/price.svg" alt="icon">
@@ -371,6 +371,28 @@ function scrollTop(a, b) {
     });
 }
 
+//push dataLayer
+function pushDataLayer(action) {
+    console.log(action)
+    window.dataLayer = window.dataLayer || [];
+    dataLayer.push({
+        'event': 'event-to-ga',
+        'eventCategory': 'Exp: Redesign landing page',
+        'eventAction': action,
+    });
+}
+
+//comes into view
+function isScrolledIntoView(el) {
+    let rect = el.getBoundingClientRect(),
+    elemTop = rect.top,
+    elemBottom = rect.bottom;
+
+    let isVisible = (elemTop >= 0) && (elemBottom <= window.innerHeight);
+
+    return isVisible;
+}
+
 let postParking = (startDate, endDate) => {
     fetch(`https://www.onairparking.com/api/Facility/SearchAlternate`, {
         headers: {
@@ -401,13 +423,13 @@ let postParking = (startDate, endDate) => {
             }
     
             //lowerPrice
-            let prices = document.querySelectorAll('#list_parking .price_parking b');
-            let minNumber = [].reduce.call(prices, (a, b) => 0 >= a.innerHTML.replace('$','') - b.innerHTML.replace('$','') ? a : b)
+            let prices = document.querySelectorAll('#list_parking .price_parking b'),
+                minNumber = [].reduce.call(prices, (a, b) => 0 >= a.innerHTML.replace('$','') - b.innerHTML.replace('$','') ? a : b)
                 minNumber.closest('#list_parking > li').querySelector('.notes_parking').insertAdjacentHTML('beforeend', lowerPrice)
             
             //bestReviews
-            let rating = document.querySelectorAll("#list_parking .rate_parking");
-            let maxNumber = [].reduce.call(rating, (a, b) => 0 < a.dataset.rate - b.dataset.rate ? a : b)
+            let rating = document.querySelectorAll("#list_parking .rate_parking"),
+                maxNumber = [].reduce.call(rating, (a, b) => 0 < a.dataset.rate - b.dataset.rate ? a : b)
                 maxNumber.closest('#list_parking > li').querySelector('.notes_parking').insertAdjacentHTML('beforeend', bestReviews)
 
             //scroll top
@@ -419,10 +441,25 @@ let postParking = (startDate, endDate) => {
             })
             
             //add "Only 8 left at this price"
-            let listParking = document.querySelectorAll('#list_parking > li')
-            let randomIndex = Math.floor(Math.random() * listParking.length); //random
+            let listParking = document.querySelectorAll('#list_parking > li'),
+                randomIndex = Math.floor(Math.random() * listParking.length); //random
+
             listParking[randomIndex].querySelector('.c-green').insertAdjacentHTML('beforebegin',`<p class="c-red">Only 8 left at this price</p>`)
 
+            //events
+            listParking.forEach(item => {
+                item.addEventListener('click', (e) => {
+                    if (item.querySelector('.lowest_price') != null && item.querySelector('.best_reviews') != null) {
+                        pushDataLayer('Click on Lowest Price and Best reviews Parking section')
+                    } else if (item.querySelector('.lowest_price') != null && item.querySelector('.best_reviews') == null) {
+                        pushDataLayer('Click on Lowest Price Parking section')
+                    } else if (item.querySelector('.best_reviews') != null && item.querySelector('.lowest_price') == null) {
+                        pushDataLayer('Click on Best reviews Parking section')
+                    } else if (item.querySelector('.lowest_price') == null && item.querySelector('.best_reviews') == null) {
+                        pushDataLayer('Click on regular Parking section')
+                    }
+                })
+            })
         } else {
             document.querySelector('#list_parking').innerHTML = emptyHtml;
         }
@@ -453,6 +490,9 @@ function starInterval() {
             let startDate = document.querySelector('[data-test-id="mob_start_date"]').value, 
                 endDate = document.querySelector('[data-test-id="mob_end_date"]').value;
 
+            document.querySelector('[data-test-id="mob_start_date"]').addEventListener('click', () => pushDataLayer('Click on start day')) //event
+            document.querySelector('[data-test-id="mob_end_date"]').addEventListener('click', () => pushDataLayer('Click on end day')) //event
+
             postParking(startDate,endDate)
 
             document.querySelector('#btn_check_availability').addEventListener('click', () => {
@@ -462,8 +502,9 @@ function starInterval() {
                     document.querySelector('#list_parking').innerHTML = loadingHtml;
                     postParking(startDate,endDate)
                 } else {
-                    document.querySelector('[data-test-id="park_now"]').click();
+                    document.querySelector('[data-test-id="park_now"]').click(); //for request
                 }
+                pushDataLayer('Click on check availability button') //event
             })
             
             //set format date
@@ -483,8 +524,19 @@ function starInterval() {
                 setFormat(input)
                 input.addEventListener('change', (e) => setFormat(input))
             })
+            //event
+            let viewed = false;
+            document.addEventListener('scroll', (e) => {
+                if (isScrolledIntoView(document.querySelector('.guarant')) == true) {
+                    if (viewed == false) {
+                        viewed = true;
+                        pushDataLayer('Visibility block of guarantees') 
+                    }
+                } else {
+                    viewed = false;
+                }
+            })  
         } 
-
         // if (document.querySelector('#parkingat') != null || loadedLocation == false) {
         //     console.log('2')
         //     document.querySelector('.js-style') != null ? document.querySelector('.js-style').remove() : '';
@@ -492,3 +544,17 @@ function starInterval() {
     })
 }
 starInterval()
+
+window.dataLayer = window.dataLayer || [];
+dataLayer.push({
+    'event': 'event-to-ga',
+    'eventCategory': 'Exp: Redesign landing page',
+    'eventAction': 'loaded'
+});
+
+let isClarify = setInterval(() => {
+	if (typeof clarity == 'function') {
+		clearInterval(isClarify)
+		clarity('set', 'redesign_landing_page', 'variant_1')
+	}
+}, 100)
