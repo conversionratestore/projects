@@ -113,16 +113,14 @@ let style = `
             color: #515356;
         }
         .best_reviews, .lowest_price {
-            position: absolute;
-            top: 10px;
-            left: 50%;
-            transform: translateX(-50%);
             text-transform: uppercase;
             font-weight: 700;
             font-size: 10px;
             line-height: 12px;
             border-radius: 3px;
-            padding: 4px 6px;
+            padding: 4px 6px 3px;
+            white-space: nowrap;
+            margin-bottom: 7px;
         }
         .lowest_price {
             background: #F37621;
@@ -132,7 +130,10 @@ let style = `
             background: #FFFFFF;
             color: #515356;
         }
-        .list_parking .btn {
+        #list_parking {
+            padding: 16px 16px 0;
+        }
+        #list_parking .btn {
             background: #069B27;
             border-radius: 3px;
             margin-right: 20px;
@@ -143,6 +144,25 @@ let style = `
             color: #FFFFFF;
             text-transform: initial;
             border: none;
+            margin-top: 10px;
+        }
+        #list_parking > li {
+            background: #FFFFFF;
+            border-radius: 10px;
+            box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.05), 0px 0px 19px rgba(0, 0, 0, 0.05), 0px 2px 10px rgba(0, 0, 0, 0.06);
+            margin-bottom: 16px;
+        }
+        .name_parking {
+            font-family: 'Roboto', sans-serif;
+            font-style: normal;
+            font-weight: 800;
+            font-size: 16px;
+            line-height: 19px;
+            color: #515356;
+            margin-bottom: 10px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
         }
         .price_parking {
             background: #DADADA;
@@ -150,6 +170,21 @@ let style = `
             padding: 3px 6px;
             line-height: 14px;
             color: #515356;
+            font-size: 10px;
+            margin-top: 10px;
+        }
+        .price_parking b {
+            font-weight: 800;
+            font-size: 12px;
+        }
+        .img_parking {
+            position: relative;
+        }
+        .notes_parking {
+            position: absolute;
+            top: 10px;
+            left: 50%;
+            transform: translateX(-50%);
         }
         .img_parking img {
             width: 102px;
@@ -159,11 +194,28 @@ let style = `
         .info_parking {
             width: calc(100% - 102px);
             padding: 15px;
+            flex-direction: column;
+        }
+        .info_parking small {
+            margin-top: 5px;
+        }
+        .c-green {
+            font-weight: 700;
+            font-size: 12px;
+            line-height: 14px;
+            color: #069B27;
+            padding-bottom: 10px;
+        }
+        .rate_parking  svg {
+            margin-right: 2px;
         }
     </style>`
 
+let loadingHtml = `<p id="loading_parking"></p>`,
+    emptyHtml = `<div class="ant-empty ant-empty-normal"><div class="ant-empty-image"><svg class="ant-empty-img-simple" width="64" height="41" viewBox="0 0 64 41" xmlns="http://www.w3.org/2000/svg"><g transform="translate(0 1)" fill="none" fill-rule="evenodd"><ellipse class="ant-empty-img-simple-ellipse" cx="32" cy="33" rx="32" ry="7"></ellipse><g class="ant-empty-img-simple-g" fill-rule="nonzero"><path d="M55 12.76L44.854 1.258C44.367.474 43.656 0 42.907 0H21.093c-.749 0-1.46.474-1.947 1.257L9 12.761V22h46v-9.24z"></path><path d="M41.613 15.931c0-1.605.994-2.93 2.227-2.931H55v18.137C55 33.26 53.68 35 52.05 35h-40.1C10.32 35 9 33.259 9 31.137V13h11.16c1.233 0 2.227 1.323 2.227 2.928v.022c0 1.605 1.005 2.901 2.237 2.901h14.752c1.232 0 2.237-1.308 2.237-2.913v-.007z" class="ant-empty-img-simple-path"></path></g></g></svg></div><div class="ant-empty-description">No Data</div></div>`;
+
 let html = `
-    <ul id="list_parking"></ul>
+    <ul id="list_parking">${loadingHtml}</ul>
     <div class="guarant flex justify-between pt-4 pb-6">
         <div class="guarant_item">
             <div>
@@ -190,9 +242,8 @@ let lowerPrice = `<div class="lowest_price">Lowest price</div>`,
     
 /* Classes method for Parking */
 class Parking{
-    constructor(url,image,name,reviews,distance,shuttle,shuttleFrequency,freeCancellation,price) {
+    constructor(url,name,reviews,distance,shuttle,shuttleFrequency,freeCancellation,price,minDay) {
         this.url = url;
-        this.image = image;
         this.name = name;
         this.reviews = reviews;
         this.distance = distance;
@@ -200,17 +251,21 @@ class Parking{
         this.shuttleFrequency = shuttleFrequency;
         this.freeCancellation = freeCancellation;
         this.price = price;
+        this.minDay = minDay;
+        this.renderStar();
+        this.setMinDay();
     }
 
     renderStar() {
         let stars = '',
             starGold = `<svg viewBox="64 64 896 896" fill="#fadb14" focusable="false" data-icon="star" width="15px" height="15px" fill="currentColor" aria-hidden="true"><path d="M908.1 353.1l-253.9-36.9L540.7 86.1c-3.1-6.3-8.2-11.4-14.5-14.5-15.8-7.8-35-1.3-42.9 14.5L369.8 316.2l-253.9 36.9c-7 1-13.4 4.3-18.3 9.3a32.05 32.05 0 00.6 45.3l183.7 179.1-43.4 252.9a31.95 31.95 0 0046.4 33.7L512 754l227.1 119.4c6.2 3.3 13.4 4.4 20.3 3.2 17.4-3 29.1-19.5 26.1-36.9l-43.4-252.9 183.7-179.1c5-4.9 8.3-11.3 9.3-18.3 2.7-17.5-9.5-33.7-27-36.3z"></path></svg>`,
             starGray = `<svg viewBox="64 64 896 896" fill="#ccc" focusable="false" data-icon="star" width="15px" height="15px" fill="currentColor" aria-hidden="true"><path d="M908.1 353.1l-253.9-36.9L540.7 86.1c-3.1-6.3-8.2-11.4-14.5-14.5-15.8-7.8-35-1.3-42.9 14.5L369.8 316.2l-253.9 36.9c-7 1-13.4 4.3-18.3 9.3a32.05 32.05 0 00.6 45.3l183.7 179.1-43.4 252.9a31.95 31.95 0 0046.4 33.7L512 754l227.1 119.4c6.2 3.3 13.4 4.4 20.3 3.2 17.4-3 29.1-19.5 26.1-36.9l-43.4-252.9 183.7-179.1c5-4.9 8.3-11.3 9.3-18.3 2.7-17.5-9.5-33.7-27-36.3z"></path></svg>`;
-       
+      
         let review = this.reviews.split('/')[0];
+      
         for (let i = 0; i < 5; i++) {
             review[i];
-            if (i < review.length) {
+            if (i < review) {
                 stars += starGold;
             } else {
                 stars += starGray;
@@ -219,32 +274,42 @@ class Parking{
         return stars
     }
 
+    setMinDay() {
+        let startDate = document.querySelectorAll('.input-ext')[0].value.split(' ')[0],
+            endDate = document.querySelectorAll('.input-ext')[1].value.split(' ')[0],
+            difference = +endDate - +startDate;
+            
+        return this.minDay > difference && this.minDay > 0 ? `<small>This facility requires a minimum <span class="truncate">of <strong>${this.minDay}</strong> days.</span> Change the dates!</small>` : ''
+    }
+
     render() {
         let element = document.createElement('li');
         element.classList.add('flex');
 
+        console.log(this.reviews)
         element.innerHTML = `
-            <div class="img_parking">
-                <img src="${this.image}" alt="${this.name}">
-            </div>
-            <div class="info_parking">
+            <a href="https://www.onairparking.com/parkingat/${this.url}" class="img_parking">
+                <div class="notes_parking"></div>
+                <img src="https://conversionratestore.github.io/projects/onairparking/img/parking.png" alt="${this.name}">
+            </a>
+            <a href="https://www.onairparking.com/parkingat/${this.url}" class="info_parking flex justify-between" >
                 <div>
-                    <a href="https://www.onairparking.com/parkingat/${this.url}">${this.name}</a>
-                    <div class="rate_parking flex" data-rate="${this.reviews.split('/')[1]}">${renderStar()}</div>
+                    <p class="name_parking" title="${this.name}">${this.name}</p>
+                    <div class="rate_parking flex" data-rate="${this.reviews.split('/')[1]}">${this.renderStar()}</div>
                 </div>
                 <ul>
                     <li>Distance: <b>${this.distance}</b></li>
                     <li>Free Shuttle ${this.shuttle} <b>${this.shuttleFrequency}</b></li>
                 </ul>
                 <div>
-                    <p class="c-green">${this.freeCancellation}</p>
+                    <p class="c-green">Free Cancellation until ${this.freeCancellation.includes('up to start date') ? document.querySelector('.input-ext').value : this.freeCancellation}</p>
                     <div class="flex items-center">
-                        <a href="https://www.onairparking.com/parkingat/${this.url}" class="btn">Online-only price</a>
-                        <p class="price_parking">$${this.price} / day</p>
+                        <p class="btn">Online-only price</p>
+                        <p class="price_parking"><b>$${this.price.toFixed(2)}</b> / day</p>
                     </div>
-                </div>
-
-            </div>
+                    ${this.setMinDay()}
+                </div
+            </a>
             
         `
 
@@ -266,6 +331,47 @@ let formatDate = {
     '11':'Nov',
     '12':'Dec'
 }
+let postPrking = (startDate, endDate) => {
+    fetch(`https://www.onairparking.com/api/Facility/SearchAlternate`, {
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        method: 'POST',
+        body: `{"airport_id":${id},"start_date":"${startDate}","end_date":"${endDate}"}`
+
+    }).then(res => res.json()).then(data => {
+        console.log(data)
+        document.querySelector('#loading_parking').style.display = 'none';
+        let result = data.result;
+        if (result.length > 0) {
+            for (let i = 0; i < result.length; i++) {
+                let url = `${result[i]['facility_url_code']}?checkin=${startDate}&checkout=${endDate}`,
+                    name = result[i]['facility_lot'],
+                    reviews = result[i]['facility_review'] + '/' + result[i]['facility_review_avg'],
+                    distance = result[i].highlights[2].description != null ? result[i].highlights[2].description : '',
+                    shuttle = result[i].highlights[0].description != null ? result[i].highlights[0].description : '',
+                    shuttleFrequency = result[i].highlights[1].description != null ? result[i].highlights[1].description : '',
+                    freeCancellation = result[i].highlights[3].description != null ? result[i].highlights[3].description : '',
+                    price = result[i]['facility_selling_price'],
+                    minDay = result[i]['facility_min_days'];
+    
+                new Parking(url,name,reviews,distance,shuttle,shuttleFrequency,freeCancellation,price,minDay).render();
+            }
+    
+            //lowerPrice
+            let prices = document.querySelectorAll('#list_parking .price_parking b');
+            let minNumber = [].reduce.call(prices, (a, b) => 0 >= a.innerHTML.replace('$','') - b.innerHTML.replace('$','') ? a : b)
+                minNumber.closest('#list_parking > li').querySelector('.notes_parking').insertAdjacentHTML('beforeend', lowerPrice)
+            
+            //bestReviews
+            let rating = document.querySelectorAll("#list_parking .rate_parking");
+            let maxNumber = [].reduce.call(rating, (a, b) => 0 <= a.dataset.rate - b.dataset.rate ? a : b)
+                maxNumber.closest('#list_parking > li').querySelector('.notes_parking').insertAdjacentHTML('beforeend', bestReviews)
+        } else {
+            document.querySelector('#list_parking').innerHTML = emptyHtml;
+        }
+    }) 
+}
 
 let loadedLocation = false;
 let start = null;
@@ -286,50 +392,18 @@ function starInterval() {
             //add "Check availability" button
             document.querySelector('button[data-test-id="park_now"]').insertAdjacentHTML('afterend',`<button type="button" id="btn_check_availability" class="h-14 mt-3 md:mt-0 md:ml-2 bg-secondary text-white text-base rounded-full p-4 hover:bg-opacity-75 focus:outline-none w-full md:w-48 flex flex-row items-center justify-center uppercase font-bold">Check availability</button>`)
             
-
-            let arr = document.querySelector('#__NEXT_DATA__').innerHTML.split(',"airport_initials":"SFO"')[0].split('"airport_id":');
+            let arr = document.querySelector('#__NEXT_DATA__').innerHTML.split(`,"airport_initials":"${document.querySelector('[data-test-id="airport"]').value.split('-')[0].trim()}"`)[0].split('"airport_id":');
             id = arr[arr.length - 1]
+            let startDate = document.querySelector('[data-test-id="mob_start_date"]').value, 
+                endDate = document.querySelector('[data-test-id="mob_end_date"]').value;
+
+            postPrking(startDate,endDate)
 
             document.querySelector('#btn_check_availability').addEventListener('click', () => {
-                let startDate = document.querySelector('[data-test-id="mob_start_date"]').value, 
-                    endDate = document.querySelector('[data-test-id="mob_end_date"]').value;
-
-                fetch(`https://www.onairparking.com/api/Facility/SearchAlternate`, {
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    method: 'POST',
-                    body: `{"airport_id":${id},"start_date":"${startDate}","end_date":"${endDate}"}`
-    
-                }).then(res => res.json()).then(data => {
-                    console.log(data)
-                    let result = data.result;
-                    for (let i = 0; i < result.length; i++) {
-                        let url = `/parkingat/${result[i].facility_url_code}?checkin=${startDate}&checkout=${endDate}`,
-                            image ,
-                            name,
-                            reviews = result[i].facility_review + '/' + result[i].facility_review_avg,
-                            distance,
-                            shuttle,
-                            shuttleFrequency,
-                            freeCancellation,
-                            price = result[i].facility_selling_price;
-
-                        new Parking(url,image,name,reviews,distance,shuttle,shuttleFrequency,freeCancellation,price).render();
-                        
-                    }
-
-                    //bestReviews
-//                     let list = document.querySelectorAll("#list_parking > li");
-                    
-//                     list.forEach(item => {
-//                         if (item.length >= 5 && item.querySelector('.lowest_price') == null && document.querySelector('.best_reviews') == null) {               
-//                             item.querySelector('.img_parking').insertAdjacentHTML('afterbegin', bestReviews)
-//                         }
-//                     }
-                   
-                }) 
-    
+                startDate = document.querySelector('[data-test-id="mob_start_date"]').value;
+                endDate = document.querySelector('[data-test-id="mob_end_date"]').value;
+                document.querySelector('#list_parking').innerHTML = loadingHtml;
+                postPrking(startDate,endDate)
             })
             
             //set format date
@@ -369,9 +443,4 @@ starInterval()
 
 // let list = document.querySelectorAll("#list_parking > li");
 
-//lowerPrice
-// let minNumber = [].reduce.call(list, (a, b) => 0 >= a.innerHTML.replace('$','') - b.innerHTML.replace('$','') ? a : b)
 
-// if (minNumber.parentElement.querySelector('.rounded-full') != null) {
-//      minNumber.closest('#list_parking > li').querySelector('.img_parking').insertAdjacentHTML('afterbegin', lowerPrice)
-// } 
