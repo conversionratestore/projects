@@ -171,6 +171,8 @@ const myStyle = `
 						
 						.top_part {
 							position: relative;
+                            display: flex;
+                            flex-direction: column;
 						}
 						
 						.top_part p {
@@ -348,8 +350,6 @@ const myStyle = `
 						.shopping-cart-pagination {
 							margin-bottom: 20px;
 						}
-
-
 						
 						@media (min-width: 768px) {
 							.my_cart {
@@ -395,7 +395,7 @@ if (!!translations[window.location.pathname.split('/')[1]]) {
     pageLanguage2 = 'en'
 }
 
-let language = translations[pageLanguage2]
+let language2 = translations[pageLanguage2]
 
 /* code */
 
@@ -415,13 +415,18 @@ let categoriesNameArray = []
 let accessoriesArray = []
 let currentProductSKU = ''
 
-let device = ''
+let device2 = ''
 
 if (window.matchMedia('(max-width: 768px)').matches) {
-    device = 'mobile'
+    device2 = 'mobile'
 } else {
-    device = 'desktop'
+    device2 = 'desktop'
 }
+
+const loaderHTML = `
+<div class="loader_wrapper">
+    <div class="loader"></div>
+</div>`
 
 const initSlider = sliders => {
     document.querySelectorAll(sliders).forEach((slider) => {
@@ -455,7 +460,7 @@ const initSlider = sliders => {
             window.dataLayer = window.dataLayer || []
             dataLayer.push({
                 'event': 'event-to-ga',
-                'eventCategory': 'Exp: Slide in cart improvemnets ' + device,
+                'eventCategory': 'Exp: Slide in cart improvemnets ' + device2,
                 'eventAction': `Swipe on ${name} slider`,
             })
         })
@@ -473,11 +478,9 @@ const checkCart = async cartId => {
 
         const cartTemplate = `
 						<div class="cart_accessories">
-							<p class="title">${language[0]}<span><img src="https://conversionratestore.github.io/projects/kingsbox/img/arrow_up.svg" alt="toggle arrow"></span></p>
+							<p class="title">${language2[0]}<span><img src="https://conversionratestore.github.io/projects/kingsbox/img/arrow_up.svg" alt="toggle arrow"></span></p>
 							<div class="cart_content">
-								<div class="loader_wrapper">
-									<div class="loader"></div>
-								</div>
+								${loaderHTML}
 							</div>
 						</div>`
 
@@ -497,7 +500,7 @@ const checkCart = async cartId => {
                         window.dataLayer = window.dataLayer || [];
                         dataLayer.push({
                             'event': 'event-to-ga',
-                            'eventCategory': 'Exp: Slide in cart improvemnets ' + device,
+                            'eventCategory': 'Exp: Slide in cart improvemnets ' + device2,
                             'eventAction': 'Clicks on arrow near accossorizes'
                         })
                     })
@@ -507,7 +510,7 @@ const checkCart = async cartId => {
                             window.dataLayer = window.dataLayer || [];
                             dataLayer.push({
                                 'event': 'event-to-ga',
-                                'eventCategory': 'Exp: Slide in cart improvemnets ' + device,
+                                'eventCategory': 'Exp: Slide in cart improvemnets ' + device2,
                                 'eventAction': 'Clicks to similar products in the slide in cart'
                             })
                         }
@@ -516,7 +519,7 @@ const checkCart = async cartId => {
                             window.dataLayer = window.dataLayer || [];
                             dataLayer.push({
                                 'event': 'event-to-ga',
-                                'eventCategory': 'Exp: Slide in cart improvemnets ' + device,
+                                'eventCategory': 'Exp: Slide in cart improvemnets ' + device2,
                                 'eventAction': 'Clicks on add to cart'
                             })
                         }
@@ -532,7 +535,7 @@ const checkCart = async cartId => {
             window.dataLayer = window.dataLayer || [];
             dataLayer.push({
                 'event': 'event-to-ga',
-                'eventCategory': 'Exp: Slide in cart improvemnets ' + device,
+                'eventCategory': 'Exp: Slide in cart improvemnets ' + device2,
                 'eventAction': 'Slide in cart appearance',
                 'eventLabel': 'Empty'
             })
@@ -540,7 +543,7 @@ const checkCart = async cartId => {
             let waitForContent = setInterval(() => {
                 if (document.querySelector('.cart_content') && !document.querySelector('.no_products')) {
                     clearInterval(waitForContent)
-                    document.querySelector('.cart_content').insertAdjacentHTML('beforeend', `<p class="no_products">${language[3]}</p>`)
+                    document.querySelector('.cart_content').insertAdjacentHTML('beforeend', `<p class="no_products">${language2[3]}</p>`)
                 }
             }, 100)
 
@@ -609,7 +612,7 @@ const drawSelectedAccessory = (categoryAccessoryIndex) => {
                             <div>
                                 ${entity.price.price !== entity.price?.priceDiscounted ? `<p>${entity.price.price} €</p><p>${entity.price?.priceDiscounted} €</p>` : ''}                                
                             </div>                            
-							<button>${language[1]}</button>
+							<button>${language2[1]}</button>
 						</div>
 					</div>																				
 				</div>`
@@ -779,79 +782,77 @@ const drawAccessoriesNew = () => {
 				${categories}
 			</ul>
 			<div class="category_wrapper"></div>
-			<div class="empty_cart"><p>${language[2]}</p></div>		`
+			<div class="empty_cart"><p>${language2[2]}</p></div>		`
 
     let waitForTemplate = setInterval(() => {
         if (document.querySelector('.cart_accessories .cart_content')) {
             clearInterval(waitForTemplate)
 
-            if (!document.querySelector('.category_list')) {
-                document.querySelector('.loader_wrapper').remove()
-                document.querySelector('.no_products')?.remove()
+            document.querySelector('.loader_wrapper')?.remove()
+            document.querySelector('.no_products')?.remove()
 
-                document.querySelector('.cart_accessories .cart_content').insertAdjacentHTML('beforeend', cartInnerTemplate)
+            document.querySelector('.cart_accessories .cart_content').insertAdjacentHTML('beforeend', cartInnerTemplate)
 
-                window.dataLayer = window.dataLayer || [];
-                dataLayer.push({
-                    'event': 'event-to-ga',
-                    'eventCategory': 'Exp: Slide in cart improvemnets ' + device,
-                    'eventAction': 'Slide in cart appearance',
-                    'eventLabel': 'Filled'
+            window.dataLayer = window.dataLayer || [];
+            dataLayer.push({
+                'event': 'event-to-ga',
+                'eventCategory': 'Exp: Slide in cart improvemnets ' + device2,
+                'eventAction': 'Slide in cart appearance',
+                'eventLabel': 'Filled'
+            })
+
+            if (accessoriesArray[0] === undefined) {
+                getAccessory(accessoriesIdArray[0], 0).then(() => checkIsEmptyCategory(0))
+            } else {
+                drawSelectedAccessory(0)
+            }
+
+            if (document.querySelector('.category_list') && typeof tns === 'function') {
+                initSlider('.category_list')
+
+                document.querySelectorAll('.category_list li').forEach((item, index) => {
+                    item.addEventListener('click', async () => {
+
+                        document.querySelectorAll('.selected').forEach(selected => {
+                            selected.classList.remove('selected')
+                        })
+
+                        item.classList.add('selected')
+
+                        if (document.querySelector(`.category[data-category-index="${index}"]`)?.closest('.tns-outer')) {
+                            document.querySelector(`.category[data-category-index="${index}"]`).closest('.tns-outer').classList.add('selected')
+                        } else {
+                            if (accessoriesArray[index] === undefined) {
+                                getAccessory(accessoriesIdArray[index], index)
+                            } else {
+                                drawSelectedAccessory(index)
+                            }
+                        }
+
+                        window.dataLayer = window.dataLayer || [];
+                        dataLayer.push({
+                            'event': 'event-to-ga',
+                            'eventCategory': 'Exp: Slide in cart improvemnets ' + device2,
+                            'eventAction': 'Click on the catagories'
+                        });
+
+                        // console.log('click on category');
+
+
+                        checkIsEmptyCategory(index)
+                    })
                 })
 
-                if (accessoriesArray[0] === undefined) {
-                    getAccessory(accessoriesIdArray[0], 0).then(() => checkIsEmptyCategory(0))
-                } else {
-                    drawSelectedAccessory(0)
-                }
+                document.querySelector('.cart_accessories').addEventListener('click', function (e) {
+                    if (e.target.matches('.bottom_part button')) {
+                        let categoryIndex = e.target.closest('[data-category-index]').dataset.categoryIndex
+                        let itemIndex = e.target.closest('[data-item-index]').dataset.itemIndex
 
-                if (document.querySelector('.category_list') && typeof tns === 'function') {
-                    initSlider('.category_list')
+                        let addedItem = accessoriesArray[categoryIndex][itemIndex]
 
-                    document.querySelectorAll('.category_list li').forEach((item, index) => {
-                        item.addEventListener('click', async () => {
-
-                            document.querySelectorAll('.selected').forEach(selected => {
-                                selected.classList.remove('selected')
-                            })
-
-                            item.classList.add('selected')
-
-                            if (document.querySelector(`.category[data-category-index="${index}"]`)?.closest('.tns-outer')) {
-                                document.querySelector(`.category[data-category-index="${index}"]`).closest('.tns-outer').classList.add('selected')
-                            } else {
-                                if (accessoriesArray[index] === undefined) {
-                                    getAccessory(accessoriesIdArray[index], index)
-                                } else {
-                                    drawSelectedAccessory(index)
-                                }
-                            }
-
-                            window.dataLayer = window.dataLayer || [];
-                            dataLayer.push({
-                                'event': 'event-to-ga',
-                                'eventCategory': 'Exp: Slide in cart improvemnets ' + device,
-                                'eventAction': 'Click on the catagories'
-                            });
-
-                            // console.log('click on category');
-
-
-                            checkIsEmptyCategory(index)
-                        })
-                    })
-
-                    document.querySelector('.cart_accessories').addEventListener('click', function (e) {
-                        if (e.target.matches('.bottom_part button')) {
-                            let categoryIndex = e.target.closest('[data-category-index]').dataset.categoryIndex
-                            let itemIndex = e.target.closest('[data-item-index]').dataset.itemIndex
-
-                            let addedItem = accessoriesArray[categoryIndex][itemIndex]
-
-                            addToCart(addedItem.parentId, addedItem.parentSku, addedItem.sku)
-                        }
-                    })
-                }
+                        addToCart(addedItem.parentId, addedItem.parentSku, addedItem.sku)
+                    }
+                })
             }
         }
     }, 100)
@@ -899,7 +900,7 @@ const startCartObserver = () => {
         for (let mutation of mutations) {
             for (let node of mutation.addedNodes) {
                 if (!(node instanceof HTMLElement)) continue
-                if (node.matches('.shopping-cart')) {
+                if (node.matches('.shopping-cart-clear')) {
                     callback()
                 }
             }
@@ -925,7 +926,7 @@ let waitForCart = setInterval(() => {
 window.dataLayer = window.dataLayer || [];
 dataLayer.push({
     'event': 'event-to-ga',
-    'eventCategory': 'Exp: Slide in cart improvemnets ' + device,
+    'eventCategory': 'Exp: Slide in cart improvemnets ' + device2,
     'eventAction': 'loaded'
 });
 
@@ -933,6 +934,15 @@ let waitForClarity = setInterval(() => {
     if (typeof clarity === 'function') {
         clearInterval(waitForClarity)
 
-        clarity('set', 'slide_cart_improvemnets_' + device, 'variant_1');
+        clarity('set', 'slide_cart_improvemnets_' + device2, 'variant_1');
     }
 }, 200);
+
+document.addEventListener('click', (e) => {
+    if (e.target.matches('.product-remove') && document.querySelector('.cart_accessories .cart_content')) {
+        console.log('removed');
+
+        document.querySelector('.cart_accessories .cart_content').innerHTML = ''
+        document.querySelector('.cart_accessories .cart_content').insertAdjacentHTML('afterbegin', loaderHTML)
+    }
+})
