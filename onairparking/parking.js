@@ -337,7 +337,6 @@ class Parking{
                     ${this.setMinDay()}
                 </div
             </a>
-            
         `
 
         document.querySelector('#list_parking').appendChild(element);
@@ -358,6 +357,7 @@ let formatDate = {
     '11':'Nov',
     '12':'Dec'
 }
+
 //scrooll top
 function scrollTop(a, b) {
     const scrollTarget = a;
@@ -423,7 +423,6 @@ let postParking = (startDate, endDate) => {
             let randomIndex = Math.floor(Math.random() * listParking.length); //random
             listParking[randomIndex].querySelector('.c-green').insertAdjacentHTML('beforebegin',`<p class="c-red">Only 8 left at this price</p>`)
 
-                
         } else {
             document.querySelector('#list_parking').innerHTML = emptyHtml;
         }
