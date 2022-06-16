@@ -393,7 +393,7 @@ function isScrolledIntoView(el) {
 }
 
 let postParking = (id, startDate, endDate, parent) => {
-    console.log(id, startDate, endDate, parent)
+   
     fetch(`https://www.onairparking.com/api/Facility/SearchAlternate`, {
         headers: {
             'Content-Type': 'application/json',
@@ -447,7 +447,7 @@ let postParking = (id, startDate, endDate, parent) => {
             //add "Only 8 left at this price"
             let randomIndex = Math.floor(Math.random() * children.length); //random
             console.log(randomIndex)
-            children[randomIndex - 1].querySelector('.c-green').insertAdjacentHTML('beforebegin',`<p class="c-red">Only 8 left at this price</p>`)
+            children[randomIndex].querySelector('.c-green').insertAdjacentHTML('beforebegin',`<p class="c-red">Only 8 left at this price</p>`)
 
             //events
             children.forEach(item => {
@@ -506,7 +506,7 @@ function starInterval() {
                     e.stopImmediatePropagation();
                     pushDataLayer('Click on end day')
                 }) //event
-
+                console.log(id, startDate, endDate, parent)
                 document.querySelector('#list_parking').innerHTML == '' ? postParking(id, startDate, endDate, document.querySelector('#list_parking')) : ''
 
                 //set format date
@@ -553,6 +553,7 @@ function starInterval() {
                     let arr = document.querySelector('#__NEXT_DATA__').innerHTML.split(`,"airport_initials":"${document.querySelector('[data-test-id="airport"]').value.split('-')[0].trim()}"`)[0].split('"airport_id":'),
                     id = arr[arr.length - 1];
                     if (startDate != endDate) {
+                        console.log(id, startDate, endDate, parent)
                         postParking(id, startDate, endDate, document.querySelector('#list_parking'))
                     } else {
                         document.querySelector('[data-test-id="park_now"]').click(); //for request
