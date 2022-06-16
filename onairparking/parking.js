@@ -483,14 +483,14 @@ function starInterval() {
 
             let arr = document.querySelector('#__NEXT_DATA__').innerHTML.split(`,"airport_initials":"${document.querySelector('[data-test-id="airport"]').value.split('-')[0].trim()}"`)[0].split('"airport_id":'),
                 id = arr[arr.length - 1];
-                
+
             let startDate = document.querySelector('[data-test-id="mob_start_date"]').value, 
                 endDate = document.querySelector('[data-test-id="mob_end_date"]').value;
 
             document.querySelector('[data-test-id="mob_start_date"]').addEventListener('click', () => pushDataLayer('Click on start day')) //event
             document.querySelector('[data-test-id="mob_end_date"]').addEventListener('click', () => pushDataLayer('Click on end day')) //event
 
-            postParking(id, startDate, endDate, document.querySelector('#list_parking'), document.querySelectorAll('#list_parking > li'))
+            document.querySelector('#list_parking').innerHTML == '' ? postParking(id, startDate, endDate, document.querySelector('#list_parking'), document.querySelectorAll('#list_parking > li')) : ''
 
             //add "Check availability" button
             if (document.querySelector('button[data-test-id="park_now"]') != null) {
