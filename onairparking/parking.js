@@ -391,7 +391,7 @@ function isScrolledIntoView(el) {
     return isVisible;
 }
 
-let postParking = (startDate, endDate) => {
+let postParking = (id, startDate, endDate) => {
     fetch(`https://www.onairparking.com/api/Facility/SearchAlternate`, {
         headers: {
             'Content-Type': 'application/json',
@@ -490,14 +490,14 @@ function starInterval() {
             document.querySelector('[data-test-id="mob_start_date"]').addEventListener('click', () => pushDataLayer('Click on start day')) //event
             document.querySelector('[data-test-id="mob_end_date"]').addEventListener('click', () => pushDataLayer('Click on end day')) //event
 
-            postParking(startDate,endDate)
+            postParking(id,startDate,endDate)
 
             document.querySelector('#btn_check_availability').addEventListener('click', () => {
                 startDate = document.querySelector('[data-test-id="mob_start_date"]').value;
                 endDate = document.querySelector('[data-test-id="mob_end_date"]').value;
                 if (startDate != endDate) {
                     document.querySelector('#list_parking').innerHTML = loadingHtml;
-                    postParking(startDate,endDate)
+                    postParking(id,startDate,endDate)
                 } else {
                     document.querySelector('[data-test-id="park_now"]').click(); //for request
                 }
@@ -534,6 +534,10 @@ function starInterval() {
                 }
             })  
         } 
+        // if (document.querySelector('#parkingat') != null || loadedLocation == false) {
+        //     console.log('2')
+        //     document.querySelector('.js-style') != null ? document.querySelector('.js-style').remove() : '';
+        // }
     })
 }
 starInterval()
