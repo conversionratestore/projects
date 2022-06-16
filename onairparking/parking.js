@@ -269,8 +269,8 @@ class Parking{
         this.soldOut = soldOut;
         this.unavailable = unavailable;
         this.renderStar();
-        this.checkSoldOut();
-        this.setBtn();
+        this.renderText();
+        this.renderBtn();
     }
 
     renderStar() {
@@ -291,7 +291,7 @@ class Parking{
         return stars
     }
 
-    checkSoldOut() {
+    renderText() {
         if (this.soldOut == 1 && this.unavailable != 1) {
             return `<small class="block mt-1.5">This facility is sold out for this period. <span class="block text-secondary underline cursor-pointer">Change the dates!</span></small>`
         } else if (this.unavailable == 1) {
@@ -301,7 +301,7 @@ class Parking{
         }
     }
 
-    setBtn() {
+    renderBtn() {
         return this.unavailable == 1 ? '<p class="btn btn_gray">Unavailable<p>' : this.soldOut == 1 ? '<p class="btn btn_gray">Sold Out<p>':'<p class="btn">Online-only price<p>'
     }
 
@@ -329,10 +329,10 @@ class Parking{
                         <p class="c-green">Free Cancellation until ${this.freeCancellation.includes('up to start date') ? document.querySelector('.input-ext').value : this.freeCancellation}</p>
                     </div>
                     <div class="flex items-center">
-                        ${this.setBtn()}
+                        ${this.renderBtn()}
                         <p class="price_parking"><b>$${this.price.toFixed(2)}</b> / day</p>
                     </div>
-                    ${this.checkSoldOut()}
+                    ${this.renderText()}
                 </div
             </a>
         `
@@ -534,6 +534,10 @@ function starInterval() {
                 }
             })  
         } 
+        // if (document.querySelector('#parkingat') != null || loadedLocation == false) {
+        //     console.log('2')
+        //     document.querySelector('.js-style') != null ? document.querySelector('.js-style').remove() : '';
+        // }
     })
 }
 starInterval()
