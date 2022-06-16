@@ -256,7 +256,7 @@ let lowerPrice = `<div class="lowest_price">Lowest price</div>`,
     
 /* Classes method for Parking */
 class Parking{
-    constructor(url,name,reviews,distance,shuttle,shuttleFrequency,freeCancellation,price,minDay,soldOut,unavailable,notSufficientDays) {
+    constructor(url,name,reviews,distance,shuttle,shuttleFrequency,freeCancellation,price,minDay,soldOut,unavailable) {
         this.url = url;
         this.name = name;
         this.reviews = reviews;
@@ -268,7 +268,6 @@ class Parking{
         this.minDay = minDay;
         this.soldOut = soldOut;
         this.unavailable = unavailable;
-        this.notSufficientDays = notSufficientDays;
         this.renderStar();
         this.setMinDay();
         this.setStatus();
