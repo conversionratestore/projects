@@ -256,7 +256,7 @@ let lowerPrice = `<div class="lowest_price">Lowest price</div>`,
     
 /* Classes method for Parking */
 class Parking{
-    constructor(url,name,reviews,distance,shuttle,shuttleFrequency,freeCancellation,price,minDay,soldOut,unavailable) {
+    constructor(url, name, reviews, distance, shuttle, shuttleFrequency, freeCancellation, price, minDay, soldOut, unavailable) {
         this.url = url;
         this.name = name;
         this.reviews = reviews;
@@ -392,6 +392,7 @@ function isScrolledIntoView(el) {
 }
 
 let postParking = (id, startDate, endDate) => {
+    console.log(id, startDate, endDate)
     fetch(`https://www.onairparking.com/api/Facility/SearchAlternate`, {
         headers: {
             'Content-Type': 'application/json',
@@ -534,10 +535,6 @@ function starInterval() {
                 }
             })  
         } 
-        // if (document.querySelector('#parkingat') != null || loadedLocation == false) {
-        //     console.log('2')
-        //     document.querySelector('.js-style') != null ? document.querySelector('.js-style').remove() : '';
-        // }
     })
 }
 starInterval()
