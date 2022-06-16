@@ -337,7 +337,7 @@ class Parking{
                 </div
             </a>
         `
-        console.log(this.parent + " == render parking")
+        console.log(this.parent + " == parent Parking")
         this.parent.appendChild(element);
     }
 }
@@ -407,7 +407,7 @@ let postParking = (id, startDate, endDate, parent, parking) => {
         let result = data.result;
 
         if (result.length > 0) {
-            console.log(parent + " == post parking")
+            console.log(parent + " == parent Post")
             for (let i = 0; i < result.length; i++) {
                 let url = `${result[i]['facility_url_code']}?checkin=${startDate}&checkout=${endDate}`,
                     name = result[i]['facility_lot'],
