@@ -239,13 +239,13 @@ let html = `
         </div>
         <div class="guarant_item">
             <div>
-                <img src="https://conversionratestore.github.io/projects/onairparking/img/free-cancellation.png" alt="icon">
+                <img src="https://conversionratestore.github.io/projects/onairparking/img/free-cancellation.svg" alt="icon">
             </div>
             <p>Free <br> cancellation</p>
         </div>
         <div class="guarant_item">
             <div>
-                <img src="https://conversionratestore.github.io/projects/onairparking/img/shuttle.png" alt="icon">
+                <img src="https://conversionratestore.github.io/projects/onairparking/img/shuttle.svg" alt="icon">
             </div>
             <p>24/7 free <br> shuttle service</p>
         </div>
