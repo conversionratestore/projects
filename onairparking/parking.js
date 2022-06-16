@@ -478,7 +478,7 @@ function starInterval() {
           
             console.log('1')
             document.querySelector('.js-style') == null ? document.body.insertAdjacentHTML('afterbegin', style) : ''; // add style
-            document.querySelector('.landing') != null && document.querySelector('!list_parking') == null ? document.querySelector('.landing').insertAdjacentHTML('beforebegin', html) : ''; // add html
+            document.querySelector('.landing') != null && document.querySelector('#list_parking') == null ? document.querySelector('.landing').insertAdjacentHTML('beforebegin', html) : ''; // add html
 
             //title
             if (document.querySelector('h1') != null && document.querySelector('h1 span') == null) {
