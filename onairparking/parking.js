@@ -498,7 +498,6 @@ function starInterval() {
                 startDate = document.querySelector('[data-test-id="mob_start_date"]').value;
                 endDate = document.querySelector('[data-test-id="mob_end_date"]').value;
                 if (startDate != endDate) {
-                    document.querySelector('#list_parking').innerHTML = loadingHtml;
                     postParking(id, startDate, endDate, document.querySelector('#list_parking'), document.querySelectorAll('#list_parking > li'))
                 } else {
                     document.querySelector('[data-test-id="park_now"]').click(); //for request
