@@ -442,13 +442,14 @@ let postParking = (id, startDate, endDate, parent) => {
                 })
             })
             
+            let children =  [...parent.children]; //parking list
+
             //add "Only 8 left at this price"
-            let randomIndex = Math.floor(Math.random() * parking.length); //random
+            let randomIndex = Math.floor(Math.random() * children.length); //random
             console.log(randomIndex)
-            // parking[randomIndex - 1].querySelector('.c-green').insertAdjacentHTML('beforebegin',`<p class="c-red">Only 8 left at this price</p>`)
+            children[randomIndex - 1].querySelector('.c-green').insertAdjacentHTML('beforebegin',`<p class="c-red">Only 8 left at this price</p>`)
 
             //events
-            let children =  [...parent.children];
             children.forEach(item => {
                 item.addEventListener('click', (e) => {
                     if (item.querySelector('.lowest_price') != null && item.querySelector('.best_reviews') != null) {
