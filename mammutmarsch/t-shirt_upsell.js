@@ -224,6 +224,7 @@ let interval = setInterval(() => {
 
         function showModal() { // function show modal
             document.querySelector('.modal').classList.add('active');
+            pushDataLayer('Show pop up') //event
         }
         function hideModal() { // function hide modal
             document.querySelector('.modal').classList.remove('active');
@@ -252,7 +253,6 @@ let interval = setInterval(() => {
             item.insertAdjacentHTML('afterend', `<div class="btn_next">${item.innerHTML}</div>`)
             item.nextElementSibling.addEventListener('click', (e) => {
                 let parent = item.parentElement;
-                // pushDataLayer(`Click on ${e.target.innerText} button`)
 
                 //set href for "Skip offer and Continue Checkout" button
                 parent.querySelector('.radio-container input').click()
