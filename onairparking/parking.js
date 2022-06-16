@@ -471,6 +471,7 @@ let postParking = (id, startDate, endDate, parent) => {
 
 let loadedLocation = false;
 let start = null;
+let viewed = false;
 
 function starInterval() {
     start = setInterval(() => {
@@ -478,7 +479,6 @@ function starInterval() {
 
         if (loadedLocation == true) {
 
-            console.log('1')
             document.querySelector('.js-style') == null ? document.body.insertAdjacentHTML('afterbegin', style) : ''; // add style
             document.querySelector('.landing') != null && document.querySelector('#list_parking') == null ? document.querySelector('.landing').insertAdjacentHTML('beforebegin', html) : ''; // add html
 
@@ -524,7 +524,6 @@ function starInterval() {
             }
 
             //event
-            let viewed = false;
             document.addEventListener('scroll', (e) => {
                 if (document.querySelector('.guarant') != null) {
                     if (isScrolledIntoView(document.querySelector('.guarant')) == true) {
