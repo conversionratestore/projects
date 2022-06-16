@@ -407,7 +407,7 @@ let postParking = (id, startDate, endDate, parent, parking) => {
         let result = data.result;
 
         if (result.length > 0) {
-            console.log(document.querySelector('#list_parking') + " == post parking")
+            console.log(parent + " == post parking")
             for (let i = 0; i < result.length; i++) {
                 let url = `${result[i]['facility_url_code']}?checkin=${startDate}&checkout=${endDate}`,
                     name = result[i]['facility_lot'],
