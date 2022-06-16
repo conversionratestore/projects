@@ -473,15 +473,18 @@ function starInterval() {
     start = setInterval(() => {
         window.location.pathname.includes('/parking/') ?  loadedLocation = true : loadedLocation = false;
 
-        if (loadedLocation == true && document.querySelector('input[data-test-id]') != null && document.querySelector('h1') != null) {
+        if (loadedLocation == true && document.querySelector('input[data-test-id]') != null && document.querySelector('.landing') != null && document.querySelector('h1') != null && document.querySelector('.js-style') == null) {
+            clearInterval(start)
             console.log('1')
             document.querySelector('.js-style') == null ? document.body.insertAdjacentHTML('afterbegin', style) : ''; // add style
             document.querySelector('#list_parking') == null ? document.querySelector('.landing').insertAdjacentHTML('beforebegin', html) : ''; // add html
 
             //title
-            let title = document.querySelector('h1').innerHTML;
-            document.querySelector('h1').innerHTML = `${title.substring(title.indexOf(' ') + 1)} <span> From <br>${title.substring(0, title.indexOf(' '))} / day</span>`
-    
+            if (document.querySelector('h1 span') == null) {
+                let title = document.querySelector('h1').innerHTML;
+                document.querySelector('h1').innerHTML = `${title.substring(title.indexOf(' ') + 1)} <span> From <br>${title.substring(0, title.indexOf(' '))} / day</span>`
+            }
+           
             //get id parking
             let arr = document.querySelector('#__NEXT_DATA__').innerHTML.split(`,"airport_initials":"${document.querySelector('[data-test-id="airport"]').value.split('-')[0].trim()}"`)[0].split('"airport_id":'),
                 id = arr[arr.length - 1];
@@ -493,6 +496,7 @@ function starInterval() {
             document.querySelector('[data-test-id="mob_start_date"]').addEventListener('click', () => pushDataLayer('Click on start day')) //event
             document.querySelector('[data-test-id="mob_end_date"]').addEventListener('click', () => pushDataLayer('Click on end day')) //event
 
+            console.log(startDate,endDate)
             document.querySelector('#list_parking').innerHTML == '' ? postParking(id, startDate, endDate, document.querySelector('#list_parking'), document.querySelectorAll('#list_parking > li')) : ''
 
             //add "Check availability" button
@@ -509,8 +513,6 @@ function starInterval() {
                     pushDataLayer('Click on check availability button') //event
                 })
             } 
-         
-            
          
             //set format date
             function setFormat(date) {
