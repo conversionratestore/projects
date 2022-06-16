@@ -550,7 +550,7 @@ let intevalOne = setInterval(() => {
 let start = setInterval(() => {
     window.location.pathname.includes('/parking/') ? loadedLocation = true : loadedLocation = false;
 
-    if (loadedLocation == true && document.querySelector('.js-style') == null && document.querySelector('.landing') != null && ) {
+    if (loadedLocation == true && document.querySelector('.js-style') == null && document.querySelector('.landing') != null) {
         document.body.insertAdjacentHTML('afterbegin', style); // add style
         document.querySelector('.landing').insertAdjacentHTML('beforebegin', html); // add html
 
