@@ -393,7 +393,7 @@ function isScrolledIntoView(el) {
 }
 
 let postParking = (id, startDate, endDate, parent) => {
-    console.log(id, startDate, endDate)
+    console.log(id, startDate, endDate, parent)
     fetch(`https://www.onairparking.com/api/Facility/SearchAlternate`, {
         headers: {
             'Content-Type': 'application/json',
@@ -407,7 +407,7 @@ let postParking = (id, startDate, endDate, parent) => {
         let result = data.result;
 
         if (result.length > 0) {
-            console.log(parent + " == parent Post")
+
             for (let i = 0; i < result.length; i++) {
                 let url = `${result[i]['facility_url_code']}?checkin=${startDate}&checkout=${endDate}`,
                     name = result[i]['facility_lot'],
@@ -442,13 +442,14 @@ let postParking = (id, startDate, endDate, parent) => {
                 })
             })
             
+            let children =  [...parent.children]; //parking list
+
             //add "Only 8 left at this price"
-            let randomIndex = Math.floor(Math.random() * parking.length); //random
+            let randomIndex = Math.floor(Math.random() * children.length); //random
             console.log(randomIndex)
-            // parking[randomIndex - 1].querySelector('.c-green').insertAdjacentHTML('beforebegin',`<p class="c-red">Only 8 left at this price</p>`)
+            children[randomIndex - 1].querySelector('.c-green').insertAdjacentHTML('beforebegin',`<p class="c-red">Only 8 left at this price</p>`)
 
             //events
-            let children =  [...parent.children];
             children.forEach(item => {
                 item.addEventListener('click', (e) => {
                     if (item.querySelector('.lowest_price') != null && item.querySelector('.best_reviews') != null) {
@@ -495,13 +496,19 @@ function starInterval() {
                 //get start/end dates
                 let startDate = document.querySelector('[data-test-id="mob_start_date"]').value, 
                 endDate = document.querySelector('[data-test-id="mob_end_date"]').value;
+               
+                document.querySelector('[data-test-id="mob_start_date"]').addEventListener('click', (e) => {
+                    e.stopImmediatePropagation();
+                    pushDataLayer('Click on start day')
+                }) //event
 
-                document.querySelector('[data-test-id="mob_start_date"]').addEventListener('click', () => pushDataLayer('Click on start day')) //event
-                document.querySelector('[data-test-id="mob_end_date"]').addEventListener('click', () => pushDataLayer('Click on end day')) //event
+                document.querySelector('[data-test-id="mob_end_date"]').addEventListener('click', (e) => {
+                    e.stopImmediatePropagation();
+                    pushDataLayer('Click on end day')
+                }) //event
 
-                console.log(id,startDate,endDate,  document.querySelector('#list_parking'))
-                postParking(id, startDate, endDate, document.querySelector('#list_parking'))
-             
+                document.querySelector('#list_parking').innerHTML == '' ? postParking(id, startDate, endDate, document.querySelector('#list_parking')) : '';
+
                 //set format date
                 function setFormat(date) {
                     let itemDate = date,
@@ -534,6 +541,7 @@ function starInterval() {
                     }
                 }
             })  
+
             //add "Check availability" button
             if (document.querySelector('#__NEXT_DATA__') != null && document.querySelector('button[data-test-id="park_now"]') != null && document.querySelector('#btn_check_availability') == null && document.querySelector('#list_parking') != null) {
                 document.querySelector('button[data-test-id="park_now"]').insertAdjacentHTML('afterend',`<button type="button" id="btn_check_availability" class="h-14 mt-3 md:mt-0 md:ml-2 bg-secondary text-white text-base rounded-full p-4 hover:bg-opacity-75 focus:outline-none w-full md:w-48 flex flex-row items-center justify-center uppercase font-bold">Check availability</button>`)
