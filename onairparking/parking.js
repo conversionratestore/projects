@@ -528,20 +528,6 @@ function starInterval() {
                 })
             }
 
-            //event
-            document.addEventListener('scroll', (e) => {
-                if (document.querySelector('.guarant') != null) {
-                    if (isScrolledIntoView(document.querySelector('.guarant')) == true) {
-                        if (viewed == false) {
-                            viewed = true;
-                            pushDataLayer('Visibility block of guarantees') 
-                        }
-                    } else {
-                        viewed = false;
-                    }
-                }
-            })  
-
             //add "Check availability" button
             if (document.querySelector('#__NEXT_DATA__') != null && document.querySelector('button[data-test-id="park_now"]') != null && document.querySelector('#btn_check_availability') == null && document.querySelector('#list_parking') != null) {
                 document.querySelector('button[data-test-id="park_now"]').insertAdjacentHTML('afterend',`<button type="button" id="btn_check_availability" class="h-14 mt-3 md:mt-0 md:ml-2 bg-secondary text-white text-base rounded-full p-4 hover:bg-opacity-75 focus:outline-none w-full md:w-48 flex flex-row items-center justify-center uppercase font-bold">Check availability</button>`)
@@ -560,6 +546,20 @@ function starInterval() {
                     }
                     pushDataLayer('Click on check availability button') //event
                 })
+                
+                //event
+                document.addEventListener('scroll', (e) => {
+                    if (document.querySelector('.guarant') != null) {
+                        if (isScrolledIntoView(document.querySelector('.guarant')) == true) {
+                            if (viewed == false) {
+                                viewed = true;
+                                pushDataLayer('Visibility block of guarantees') 
+                            }
+                        } else {
+                            viewed = false;
+                        }
+                    }
+                })  
             } 
         } 
         
