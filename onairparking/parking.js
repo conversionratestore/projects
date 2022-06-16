@@ -481,8 +481,9 @@ function starInterval() {
             let title = document.querySelector('h1').innerHTML;
             document.querySelector('h1').innerHTML = `${title.substring(title.indexOf(' ') + 1)} <span> From <br>${title.substring(0, title.indexOf(' '))} / day</span>`
 
-            let arr = document.querySelector('#__NEXT_DATA__').innerHTML.split(`,"airport_initials":"${document.querySelector('[data-test-id="airport"]').value.split('-')[0].trim()}"`)[0].split('"airport_id":');
-            id = arr[arr.length - 1]
+            let arr = document.querySelector('#__NEXT_DATA__').innerHTML.split(`,"airport_initials":"${document.querySelector('[data-test-id="airport"]').value.split('-')[0].trim()}"`)[0].split('"airport_id":'),
+                id = arr[arr.length - 1];
+                
             let startDate = document.querySelector('[data-test-id="mob_start_date"]').value, 
                 endDate = document.querySelector('[data-test-id="mob_end_date"]').value;
 
