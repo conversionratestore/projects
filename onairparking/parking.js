@@ -311,7 +311,6 @@ class Parking{
         let element = document.createElement('li');
         element.classList.add('flex');
 
-        console.log(this.reviews + " = " + this.name)
         element.innerHTML = `
             <a href="https://www.onairparking.com/parkingat/${this.url}" class="img_parking relative">
                 <div class="notes_parking top-2.5"></div>
@@ -338,7 +337,7 @@ class Parking{
                 </div
             </a>
         `
-        console.log(this.parent + " == parent Parking")
+
         this.parent.appendChild(element);
     }
 }
@@ -447,7 +446,6 @@ let postParking = (id, startDate, endDate, parent) => {
 
             //add "Only 8 left at this price"
             let randomIndex = Math.floor(Math.random() * children.length); //random
-            console.log(randomIndex)
             children[randomIndex].querySelector('.c-green').insertAdjacentHTML('beforebegin',`<p class="c-red">Only 8 left at this price</p>`)
 
             //events
@@ -505,14 +503,12 @@ let intevalOne = setInterval(() => {
                 }
             } 
         }
-        console.log(document.querySelectorAll('.h-14 input[data-test-id]'))
         document.querySelectorAll('.h-14 input[data-test-id]').forEach(input => {
             input.insertAdjacentHTML('afterend',`<input type="text" class="input-ext">`);
             setFormat(input)
             input.addEventListener('change', (e) => setFormat(input))
         })
 	    
-        console.log(id, startDate, endDate, parent)
         document.querySelector('#list_parking').innerHTML == '' ? postParking(id, startDate, endDate, document.querySelector('#list_parking')) : ''
 
         //add "Check availability" button
@@ -524,8 +520,7 @@ let intevalOne = setInterval(() => {
             //get id parking
             let arr = document.querySelector('#__NEXT_DATA__').innerHTML.split(`,"airport_initials":"${document.querySelector('[data-test-id="airport"]').value.split('-')[0].trim()}"`)[0].split('"airport_id":'),
             id = arr[arr.length - 1];
-            if (startDate != endDate) {
-                console.log(id, startDate, endDate, parent)
+            if (startDate != endDate && startDate < endDate) {
                 postParking(id, startDate, endDate, document.querySelector('#list_parking'))
             } else {
                 document.querySelector('[data-test-id="park_now"]').click(); //for request
@@ -550,10 +545,7 @@ let intevalOne = setInterval(() => {
 }, 200)
 
 let start = setInterval(() => {
-//     window.location.pathname.includes('/parking/') ? loadedLocation = true : loadedLocation = false;
-
     if (document.querySelector('.js-style') == null && document.querySelector('.landing') != null) {
-        console.log(html)
         document.body.insertAdjacentHTML('afterbegin', style); // add style
         document.querySelector('.landing').insertAdjacentHTML('beforebegin', html); // add html
 
@@ -563,11 +555,6 @@ let start = setInterval(() => {
             document.querySelector('h1').innerHTML = `${title.substring(title.indexOf(' ') + 1)} <span> From <br>${title.substring(0, title.indexOf(' '))} / day</span>`  
         }
     } 
-    
-//     if (document.querySelector('#parkingat') != null || loadedLocation == false) {
-//         console.log('2')
-//         document.querySelector('.js-style') != null ? document.querySelector('.js-style').remove() : '';
-//     }
 }, 100)
 
 
