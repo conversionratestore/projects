@@ -472,18 +472,15 @@ function starInterval() {
     start = setInterval(() => {
         window.location.pathname.includes('/parking/') ?  loadedLocation = true : loadedLocation = false;
 
-        if (document.querySelector('.js-style') == null && loadedLocation == true && document.querySelector('[data-test-id]') != null && document.querySelector('#list_parking') == null) {
+        if (loadedLocation == true && document.querySelector('input[data-test-id]') != null) {
             console.log('1')
-            document.body.insertAdjacentHTML('afterbegin', style); // add style
-            document.querySelector('.landing').insertAdjacentHTML('beforebegin', html); // add html
+            document.querySelector('.js-style') == null ? document.body.insertAdjacentHTML('afterbegin', style) : ''; // add style
+            document.querySelector('#list_parking') == null ? document.querySelector('.landing').insertAdjacentHTML('beforebegin', html) : ''; // add html
 
             //title
             let title = document.querySelector('h1').innerHTML;
             document.querySelector('h1').innerHTML = `${title.substring(title.indexOf(' ') + 1)} <span> From <br>${title.substring(0, title.indexOf(' '))} / day</span>`
 
-            //add "Check availability" button
-            document.querySelector('button[data-test-id="park_now"]').insertAdjacentHTML('afterend',`<button type="button" id="btn_check_availability" class="h-14 mt-3 md:mt-0 md:ml-2 bg-secondary text-white text-base rounded-full p-4 hover:bg-opacity-75 focus:outline-none w-full md:w-48 flex flex-row items-center justify-center uppercase font-bold">Check availability</button>`)
-            
             let arr = document.querySelector('#__NEXT_DATA__').innerHTML.split(`,"airport_initials":"${document.querySelector('[data-test-id="airport"]').value.split('-')[0].trim()}"`)[0].split('"airport_id":');
             id = arr[arr.length - 1]
             let startDate = document.querySelector('[data-test-id="mob_start_date"]').value, 
@@ -494,17 +491,23 @@ function starInterval() {
 
             postParking(id, startDate, endDate, document.querySelector('#list_parking'), document.querySelectorAll('#list_parking > li'))
 
-            document.querySelector('#btn_check_availability').addEventListener('click', () => {
-                startDate = document.querySelector('[data-test-id="mob_start_date"]').value;
-                endDate = document.querySelector('[data-test-id="mob_end_date"]').value;
-                if (startDate != endDate) {
-                    postParking(id, startDate, endDate, document.querySelector('#list_parking'), document.querySelectorAll('#list_parking > li'))
-                } else {
-                    document.querySelector('[data-test-id="park_now"]').click(); //for request
-                }
-                pushDataLayer('Click on check availability button') //event
-            })
+            //add "Check availability" button
+            if (document.querySelector('button[data-test-id="park_now"]') != null) {
+                document.querySelector('button[data-test-id="park_now"]').insertAdjacentHTML('afterend',`<button type="button" id="btn_check_availability" class="h-14 mt-3 md:mt-0 md:ml-2 bg-secondary text-white text-base rounded-full p-4 hover:bg-opacity-75 focus:outline-none w-full md:w-48 flex flex-row items-center justify-center uppercase font-bold">Check availability</button>`)
+                document.querySelector('#btn_check_availability').addEventListener('click', () => {
+                    startDate = document.querySelector('[data-test-id="mob_start_date"]').value;
+                    endDate = document.querySelector('[data-test-id="mob_end_date"]').value;
+                    if (startDate != endDate) {
+                        postParking(id, startDate, endDate, document.querySelector('#list_parking'), document.querySelectorAll('#list_parking > li'))
+                    } else {
+                        document.querySelector('[data-test-id="park_now"]').click(); //for request
+                    }
+                    pushDataLayer('Click on check availability button') //event
+                })
+            } 
+         
             
+         
             //set format date
             function setFormat(date) {
                 let itemDate = date,
