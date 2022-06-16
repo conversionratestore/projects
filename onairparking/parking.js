@@ -337,7 +337,7 @@ class Parking{
                 </div
             </a>
         `
-        console.log(this.parent)
+        console.log(this.parent + " == render parking")
         this.parent.appendChild(element);
     }
 }
@@ -406,6 +406,7 @@ let postParking = (id, startDate, endDate, parent, parking) => {
         let result = data.result;
 
         if (result.length > 0) {
+            console.log(document.querySelector('#list_parking') + " == post parking")
             for (let i = 0; i < result.length; i++) {
                 let url = `${result[i]['facility_url_code']}?checkin=${startDate}&checkout=${endDate}`,
                     name = result[i]['facility_lot'],
@@ -472,7 +473,7 @@ function starInterval() {
     start = setInterval(() => {
         window.location.pathname.includes('/parking/') ?  loadedLocation = true : loadedLocation = false;
 
-        if (loadedLocation == true && document.querySelector('input[data-test-id]') != null) {
+        if (loadedLocation == true && document.querySelector('input[data-test-id]') != null && document.querySelector('h1') != null) {
             console.log('1')
             document.querySelector('.js-style') == null ? document.body.insertAdjacentHTML('afterbegin', style) : ''; // add style
             document.querySelector('#list_parking') == null ? document.querySelector('.landing').insertAdjacentHTML('beforebegin', html) : ''; // add html
@@ -480,10 +481,12 @@ function starInterval() {
             //title
             let title = document.querySelector('h1').innerHTML;
             document.querySelector('h1').innerHTML = `${title.substring(title.indexOf(' ') + 1)} <span> From <br>${title.substring(0, title.indexOf(' '))} / day</span>`
-
+    
+            //get id parking
             let arr = document.querySelector('#__NEXT_DATA__').innerHTML.split(`,"airport_initials":"${document.querySelector('[data-test-id="airport"]').value.split('-')[0].trim()}"`)[0].split('"airport_id":'),
                 id = arr[arr.length - 1];
 
+            //get start/end dates
             let startDate = document.querySelector('[data-test-id="mob_start_date"]').value, 
                 endDate = document.querySelector('[data-test-id="mob_end_date"]').value;
 
@@ -493,7 +496,7 @@ function starInterval() {
             document.querySelector('#list_parking').innerHTML == '' ? postParking(id, startDate, endDate, document.querySelector('#list_parking'), document.querySelectorAll('#list_parking > li')) : ''
 
             //add "Check availability" button
-            if (document.querySelector('button[data-test-id="park_now"]') != null) {
+            if (document.querySelector('button[data-test-id="park_now"]') != null && document.querySelector('#btn_check_availability') == null) {
                 document.querySelector('button[data-test-id="park_now"]').insertAdjacentHTML('afterend',`<button type="button" id="btn_check_availability" class="h-14 mt-3 md:mt-0 md:ml-2 bg-secondary text-white text-base rounded-full p-4 hover:bg-opacity-75 focus:outline-none w-full md:w-48 flex flex-row items-center justify-center uppercase font-bold">Check availability</button>`)
                 document.querySelector('#btn_check_availability').addEventListener('click', () => {
                     startDate = document.querySelector('[data-test-id="mob_start_date"]').value;
