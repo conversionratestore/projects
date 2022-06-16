@@ -492,8 +492,6 @@ let intevalOne = setInterval(() => {
             e.stopImmediatePropagation();
             pushDataLayer('Click on end day')
         }) //event
-        console.log(id, startDate, endDate, parent)
-        document.querySelector('#list_parking').innerHTML == '' ? postParking(id, startDate, endDate, document.querySelector('#list_parking')) : ''
 
         //set format date
         function setFormat(date) {
@@ -512,6 +510,9 @@ let intevalOne = setInterval(() => {
             setFormat(input)
             input.addEventListener('change', (e) => setFormat(input))
         })
+	    
+        console.log(id, startDate, endDate, parent)
+        document.querySelector('#list_parking').innerHTML == '' ? postParking(id, startDate, endDate, document.querySelector('#list_parking')) : ''
 
         //add "Check availability" button
         document.querySelector('button[data-test-id="park_now"]').insertAdjacentHTML('afterend',`<button type="button" id="btn_check_availability" class="h-14 mt-3 md:mt-0 md:ml-2 bg-secondary text-white text-base rounded-full p-4 hover:bg-opacity-75 focus:outline-none w-full md:w-48 flex flex-row items-center justify-center uppercase font-bold">Check availability</button>`)
