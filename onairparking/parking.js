@@ -473,7 +473,7 @@ let loadedLocation = false;
 let viewed = false;
 
 let intevalOne = setInterval(() => { 
-    if (document.querySelector('#__NEXT_DATA__') != null && document.querySelector('input[data-test-id="mob_start_date"]') != null && document.querySelector('input[data-test-id="mob_end_date"]') != null && document.querySelector('#list_parking') != null && document.querySelector('button[data-test-id="park_now"]') != null && document.querySelector('#btn_check_availability') == null) {
+    if (document.querySelector('#__NEXT_DATA__') != null && document.querySelector('.h-14 input[data-test-id="mob_start_date"]') != null && document.querySelector('.h-14 input[data-test-id="mob_end_date"]') != null && document.querySelector('#list_parking') != null && document.querySelector('button[data-test-id="park_now"]') != null && document.querySelector('#btn_check_availability') == null) {
         clearInterval(intevalOne)
         //get id parking
         let arr = document.querySelector('#__NEXT_DATA__').innerHTML.split(`,"airport_initials":"${document.querySelector('[data-test-id="airport"]').value.split('-')[0].trim()}"`)[0].split('"airport_id":'),
@@ -506,8 +506,8 @@ let intevalOne = setInterval(() => {
                 }
             } 
         }
-        console.log(document.querySelectorAll('.bg-white.py-6.rounded-md.flex.flex-col.w-full.items-start.justify-start > .h-14 input'))
-        document.querySelectorAll('.bg-white.py-6.rounded-md.flex.flex-col.w-full.items-start.justify-start > .h-14 input').forEach(input => {
+        console.log(document.querySelectorAll('.h-14 input[data-test-id]'))
+        document.querySelectorAll('.h-14 input[data-test-id]').forEach(input => {
             input.insertAdjacentHTML('afterend',`<input type="text" class="input-ext">`);
             setFormat(input)
             input.addEventListener('change', (e) => setFormat(input))
