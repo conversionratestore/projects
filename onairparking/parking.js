@@ -256,7 +256,7 @@ let lowerPrice = `<div class="lowest_price">Lowest price</div>`,
     
 /* Classes method for Parking */
 class Parking{
-    constructor(url, name, reviews, distance, shuttle, shuttleFrequency, freeCancellation, price, minDay, soldOut, unavailable) {
+    constructor(url, name, reviews, distance, shuttle, shuttleFrequency, freeCancellation, price, minDay, soldOut, unavailable, parent) {
         this.url = url;
         this.name = name;
         this.reviews = reviews;
@@ -268,6 +268,7 @@ class Parking{
         this.minDay = minDay;
         this.soldOut = soldOut;
         this.unavailable = unavailable;
+        this.parent = parent;
         this.renderStar();
         this.renderText();
         this.renderBtn();
@@ -336,8 +337,8 @@ class Parking{
                 </div
             </a>
         `
-        console.log(document.querySelector('#list_parking'))
-        document.querySelector('#list_parking').appendChild(element);
+        console.log(this.parent)
+        this.parent.appendChild(element);
     }
 }
   
@@ -418,7 +419,7 @@ let postParking = (id, startDate, endDate, parent, parking) => {
                     soldOut = result[i]['date_sold_out'],
                     unavailable = result[i]['not_sufficient_days'];
     
-                new Parking(url,name,reviews,distance,shuttle,shuttleFrequency,freeCancellation,price,minDay,soldOut,unavailable).render();
+                new Parking(url,name,reviews,distance,shuttle,shuttleFrequency,freeCancellation,price,minDay,soldOut,unavailable,document.querySelector('#list_parking')).render();
             }
     
             //lowerPrice
@@ -535,6 +536,10 @@ function starInterval() {
                 }
             })  
         } 
+        if (document.querySelector('#parkingat') != null || loadedLocation == false) {
+            console.log('2')
+            document.querySelector('.js-style') != null ? document.querySelector('.js-style').remove() : '';
+        }
     })
 }
 starInterval()
