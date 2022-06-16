@@ -403,6 +403,7 @@ let postParking = (id, startDate, endDate, parent, parking) => {
 
     }).then(res => res.json()).then(data => {
         console.log(data)
+        parent.innerHTML = ''
         let result = data.result;
 
         if (result.length > 0) {
@@ -494,7 +495,7 @@ function starInterval() {
             document.querySelector('[data-test-id="mob_start_date"]').addEventListener('click', () => pushDataLayer('Click on start day')) //event
             document.querySelector('[data-test-id="mob_end_date"]').addEventListener('click', () => pushDataLayer('Click on end day')) //event
 
-            console.log(startDate,endDate)
+            console.log(id,startDate,endDate)
             document.querySelector('#list_parking').innerHTML == '' ? postParking(id, startDate, endDate, document.querySelector('#list_parking'), document.querySelectorAll('#list_parking > li')) : ''
 
             //add "Check availability" button
