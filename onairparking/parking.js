@@ -192,6 +192,7 @@ let style = `
             width: 102px;
             height: 100%;
             object-fit: cover;
+	    border-radius: 10px 0px 0px 10px;
         }
         .info_parking {
             width: calc(100% - 102px);
