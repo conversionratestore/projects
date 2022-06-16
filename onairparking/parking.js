@@ -448,8 +448,7 @@ let postParking = (id, startDate, endDate, parent) => {
             // parking[randomIndex - 1].querySelector('.c-green').insertAdjacentHTML('beforebegin',`<p class="c-red">Only 8 left at this price</p>`)
 
             //events
-            let children = Array.prototype.slice.call(parent.children);
-
+            let children =  [...parent.children];
             children.forEach(item => {
                 item.addEventListener('click', (e) => {
                     if (item.querySelector('.lowest_price') != null && item.querySelector('.best_reviews') != null) {
@@ -488,13 +487,12 @@ function starInterval() {
                 document.querySelector('h1').innerHTML = `${title.substring(title.indexOf(' ') + 1)} <span> From <br>${title.substring(0, title.indexOf(' '))} / day</span>`  
             }
            
-            //get id parking
-            console.log(document.querySelector('#__NEXT_DATA__') != null)
-            let arr = document.querySelector('#__NEXT_DATA__').innerHTML.split(`,"airport_initials":"${document.querySelector('[data-test-id="airport"]').value.split('-')[0].trim()}"`)[0].split('"airport_id":'),
-                id = arr[arr.length - 1];
-
-            //get start/end dates
-            if (document.querySelector('input[data-test-id="mob_start_date"]') != null && document.querySelector('imput[data-test-id="mob_end_date"]') != null && document.querySelector('#list_parking') != null) {
+            if (document.querySelector('#__NEXT_DATA__') != null && document.querySelector('input[data-test-id="mob_start_date"]') != null && document.querySelector('imput[data-test-id="mob_end_date"]') != null && document.querySelector('#list_parking') != null) {
+                //get id parking
+                let arr = document.querySelector('#__NEXT_DATA__').innerHTML.split(`,"airport_initials":"${document.querySelector('[data-test-id="airport"]').value.split('-')[0].trim()}"`)[0].split('"airport_id":'),
+                    id = arr[arr.length - 1];
+         
+                //get start/end dates
                 let startDate = document.querySelector('[data-test-id="mob_start_date"]').value, 
                 endDate = document.querySelector('[data-test-id="mob_end_date"]').value;
 
@@ -553,7 +551,6 @@ function starInterval() {
             } 
         } 
         
-   
         if (document.querySelector('#parkingat') != null || loadedLocation == false) {
             console.log('2')
             document.querySelector('.js-style') != null ? document.querySelector('.js-style').remove() : '';
