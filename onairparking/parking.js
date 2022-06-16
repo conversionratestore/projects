@@ -269,8 +269,8 @@ class Parking{
         this.soldOut = soldOut;
         this.unavailable = unavailable;
         this.renderStar();
-        this.setMinDay();
-        this.setStatus();
+        this.checkSoldOut();
+        this.setBtn();
     }
 
     renderStar() {
@@ -414,7 +414,7 @@ let postParking = (id, startDate, endDate) => {
                     price = result[i]['facility_selling_price'],
                     minDay = result[i]['facility_min_days'],
                     soldOut = result[i]['date_sold_out'],
-                    unavailable = result[i]['not_sufficient_days'],
+                    unavailable = result[i]['not_sufficient_days'];
     
                 new Parking(url,name,reviews,distance,shuttle,shuttleFrequency,freeCancellation,price,minDay,soldOut,unavailable).render();
             }
@@ -534,10 +534,6 @@ function starInterval() {
                 }
             })  
         } 
-        // if (document.querySelector('#parkingat') != null || loadedLocation == false) {
-        //     console.log('2')
-        //     document.querySelector('.js-style') != null ? document.querySelector('.js-style').remove() : '';
-        // }
     })
 }
 starInterval()
