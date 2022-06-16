@@ -256,7 +256,7 @@ let lowerPrice = `<div class="lowest_price">Lowest price</div>`,
     
 /* Classes method for Parking */
 class Parking{
-    constructor(url,name,reviews,distance,shuttle,shuttleFrequency,freeCancellation,price,minDay,soldOut,unavailable) {
+    constructor(url,name,reviews,distance,shuttle,shuttleFrequency,freeCancellation,price,minDay,soldOut,unavailable,notSufficientDays) {
         this.url = url;
         this.name = name;
         this.reviews = reviews;
@@ -268,6 +268,7 @@ class Parking{
         this.minDay = minDay;
         this.soldOut = soldOut;
         this.unavailable = unavailable;
+        this.notSufficientDays = notSufficientDays;
         this.renderStar();
         this.setMinDay();
         this.setStatus();
@@ -291,18 +292,17 @@ class Parking{
         return stars
     }
 
-    setMinDay() {
-        let startDate = document.querySelectorAll('.input-ext')[0].value.split(' ')[0],
-            endDate = document.querySelectorAll('.input-ext')[1].value.split(' ')[0],
-            difference = +endDate - +startDate;
+    checkSoldOut() {
         if (this.soldOut == 1 && this.unavailable != 1) {
             return `<small class="block mt-1.5">This facility is sold out for this period. <span class="block text-secondary underline cursor-pointer">Change the dates!</span></small>`
+        } else if (this.unavailable == 1) {
+            return `<small class="block mt-1.5">This facility requires a minimum <span class="truncate">of <strong>${this.minDay}</strong> days.</span> <span class="text-secondary underline cursor-pointer block">Change the dates!</span></small>` : ''
         } else {
-            return this.minDay > difference && this.minDay > 0 ? `<small class="block mt-1.5">This facility requires a minimum <span class="truncate">of <strong>${this.minDay}</strong> days.</span> <span class="text-secondary underline cursor-pointer block">Change the dates!</span></small>` : ''
+            return ''
         }
     }
 
-    setStatus() {
+    setBtn() {
         return this.unavailable == 1 ? '<p class="btn btn_gray">Unavailable<p>' : this.soldOut == 1 ? '<p class="btn btn_gray">Sold Out<p>':'<p class="btn">Online-only price<p>'
     }
 
@@ -330,10 +330,10 @@ class Parking{
                         <p class="c-green">Free Cancellation until ${this.freeCancellation.includes('up to start date') ? document.querySelector('.input-ext').value : this.freeCancellation}</p>
                     </div>
                     <div class="flex items-center">
-                        ${this.setStatus()}
+                        ${this.setBtn()}
                         <p class="price_parking"><b>$${this.price.toFixed(2)}</b> / day</p>
                     </div>
-                    ${this.setMinDay()}
+                    ${this.checkSoldOut()}
                 </div
             </a>
         `
@@ -415,7 +415,7 @@ let postParking = (startDate, endDate) => {
                     price = result[i]['facility_selling_price'],
                     minDay = result[i]['facility_min_days'],
                     soldOut = result[i]['date_sold_out'],
-                    unavailable = result[i]['not_sufficient_days'];
+                    unavailable = result[i]['not_sufficient_days'],
     
                 new Parking(url,name,reviews,distance,shuttle,shuttleFrequency,freeCancellation,price,minDay,soldOut,unavailable).render();
             }
@@ -535,10 +535,6 @@ function starInterval() {
                 }
             })  
         } 
-        // if (document.querySelector('#parkingat') != null || loadedLocation == false) {
-        //     console.log('2')
-        //     document.querySelector('.js-style') != null ? document.querySelector('.js-style').remove() : '';
-        // }
     })
 }
 starInterval()
