@@ -495,14 +495,19 @@ function starInterval() {
                 //get start/end dates
                 let startDate = document.querySelector('[data-test-id="mob_start_date"]').value, 
                 endDate = document.querySelector('[data-test-id="mob_end_date"]').value;
+               
+                document.querySelector('[data-test-id="mob_start_date"]').addEventListener('click', (e) => {
+                    e.stopImmediatePropagation();
+                    pushDataLayer('Click on start day')
+                }) //event
 
-                document.querySelector('[data-test-id="mob_start_date"]').addEventListener('click', () => pushDataLayer('Click on start day')) //event
-                document.querySelector('[data-test-id="mob_end_date"]').addEventListener('click', () => pushDataLayer('Click on end day')) //event
+                document.querySelector('[data-test-id="mob_end_date"]').addEventListener('click', (e) => {
+                    e.stopImmediatePropagation();
+                    pushDataLayer('Click on end day')
+                }) //event
 
-                if (document.querySelector('#list_parking').innerHTML == '') {
-                    console.log(id,startDate,endDate,  document.querySelector('#list_parking'))
-                    postParking(id, startDate, endDate, document.querySelector('#list_parking'))
-                }
+                document.querySelector('#list_parking').innerHTML == '' ? postParking(id, startDate, endDate, document.querySelector('#list_parking')) : '';
+
                 //set format date
                 function setFormat(date) {
                     let itemDate = date,
