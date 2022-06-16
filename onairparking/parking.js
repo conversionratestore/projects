@@ -507,7 +507,7 @@ function starInterval() {
                     pushDataLayer('Click on end day')
                 }) //event
 
-                document.querySelector('#list_parking').innerHTML == '' ? postParking(id, startDate, endDate, document.querySelector('#list_parking')) : '';
+                document.querySelector('#list_parking').innerHTML == '' ? postParking(id, startDate, endDate, document.querySelector('#list_parking')) : ''
 
                 //set format date
                 function setFormat(date) {
