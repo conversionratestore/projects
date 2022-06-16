@@ -1748,6 +1748,9 @@ window.onload = function() {
     if (e.target.matches('.all_category')) {
       document.querySelector('.ais-ClearRefinements-button').classList.add('action-clean');
       document.querySelector('.ais-ClearRefinements-button').click();
+  
+      query = '';
+      search._searchFunction(search.helper);
       e.target.parentElement.classList.toggle('active');
       document.querySelector('.advanced-search').classList.remove('active');
       document.querySelector(`[data-button="advanced-search"]`).classList.remove('active');
@@ -1853,7 +1856,6 @@ window.onload = function() {
   }
 
   search.addWidgets([
-
     instantsearch.widgets.configure({
       hitsPerPage: '12',
       enablePersonalization: true,
