@@ -473,7 +473,7 @@ let loadedLocation = false;
 let viewed = false;
 
 let intevalOne = setInterval(() => { 
-    if (document.querySelector('#__NEXT_DATA__') != null && document.querySelector('.h-14 input[data-test-id="mob_start_date"]') != null && document.querySelector('.h-14 input[data-test-id="mob_end_date"]') != null && document.querySelector('#list_parking') != null && document.querySelector('button[data-test-id="park_now"]') != null && document.querySelector('#btn_check_availability') == null) {
+    if (document.querySelector('#__NEXT_DATA__') != null && document.querySelector('.h-14 input[data-test-id="mob_start_date"]') != null && document.querySelector('.h-14 input[data-test-id="mob_end_date"]') != null && document.querySelector('#list_parking') != null && document.querySelector('button[data-test-id="park_now"]') != null) {
         clearInterval(intevalOne)
         //get id parking
         let arr = document.querySelector('#__NEXT_DATA__').innerHTML.split(`,"airport_initials":"${document.querySelector('[data-test-id="airport"]').value.split('-')[0].trim()}"`)[0].split('"airport_id":'),
