@@ -506,7 +506,7 @@ let intevalOne = setInterval(() => {
                 }
             } 
         }
-        console.log(ocument.querySelectorAll('.bg-white.py-6.rounded-md.flex.flex-col.w-full.items-start.justify-start > .h-14 input'))
+        console.log(document.querySelectorAll('.bg-white.py-6.rounded-md.flex.flex-col.w-full.items-start.justify-start > .h-14 input'))
         document.querySelectorAll('.bg-white.py-6.rounded-md.flex.flex-col.w-full.items-start.justify-start > .h-14 input').forEach(input => {
             input.insertAdjacentHTML('afterend',`<input type="text" class="input-ext">`);
             setFormat(input)
