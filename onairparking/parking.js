@@ -421,7 +421,7 @@ let postParking = (id, startDate, endDate, parent, parking) => {
                     soldOut = result[i]['date_sold_out'],
                     unavailable = result[i]['not_sufficient_days'];
     
-                new Parking(url,name,reviews,distance,shuttle,shuttleFrequency,freeCancellation,price,minDay,soldOut,unavailable,document.querySelector('#list_parking')).render();
+                new Parking(url,name,reviews,distance,shuttle,shuttleFrequency,freeCancellation,price,minDay,soldOut,unavailable,parent).render();
             }
     
             //lowerPrice
