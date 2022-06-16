@@ -29,12 +29,13 @@ let style = `
     }
     .modal .close {
         position: absolute;
-        right: 0;
-        bottom: 100%;
-        width: 34px;
-        height: 34px;
+        right: 10px;
+        top: 10px;
+        width: 12px;
+        height: 12px;
         background: url("https://conversionratestore.github.io/projects/mammutmarsch/img/close.svg") no-repeat center / 16px;
         opacity: 1;
+        flex-shrink: 0;
     }
     .modal_container {
         margin-top: auto;
@@ -43,116 +44,146 @@ let style = `
         background: #FFFFFF;
         width: 100%;
         transition: all 0.3s ease;
+        padding: 0 20px 20px;
+    }
+    .modal_header {
+        padding: 20px 0;
+        margin-bottom: 20px;
+        display: flex;
+        justify-content: space-between;
+        border-bottom: 1px solid #D9D9D9;
     }
     .modal .title {
         font-family: 'Bebas Neue', sans-serif;
-        font-style: normal;
         font-weight: 700;
-        font-size: 30px;
+        font-size: 29px;
         line-height: 30px;
-        text-align: center;
-        letter-spacing: 0.06em;
-        color: #000000;
-        padding: 26px;
+        text-transform: uppercase;
+        color: #111111;
+    }
+    .modal .title span {
+        text-transform: lowercase;
     }
     .modal img {
-        max-width: 137px;
+        max-width: 157px;
         width: 100%;
-        margin-right: 34px;
+        height: 197px;
+        margin-right: 20px;
     }
     .modal .name {
         font-weight: 700;
         font-size: 14px;
         line-height: 16px;
         color: #000000;
-        margin-bottom: 10px;
+        margin-bottom: 5px;
     }
-    .modal .size, .modal .text {
+    .modal .text {
         font-size: 12px;
-        line-height: 14px;
         color: #4A4A4A;
-        margin-bottom: 7px;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        display: -webkit-box;
+        -webkit-line-clamp: 4;
+        -webkit-box-orient: vertical;
+        line-height: 19px;
+        position: relative;
     }
+    // .modal .text {
+    //     content: '...more';
+    //     position: absolute;
+    //     background: #FFFFFF;
+    //     z-index: 1
+    // }
     .modal .size {
-        font-weight: 700;
+        font-size: 12px;
+        color: #7F7F7F;
+        margin-bottom: 20px;
+        line-height: 14px;
     }
     .modal .price {
-        font-weight: 700;
-        font-size: 14px;
-        line-height: 16px;
-        margin-bottom: 10px;
-        color: #000000;
+        margin-bottom: 20px;
     }
-    .modal .price_through {
-        text-decoration-line: line-through;
-        color: #4A4A4A;
-        padding-right: 5px;
-    }
-    .btn_skip {
+    .modal .price_item {
         font-family: 'Bebas Neue', sans-serif;
         font-weight: 700;
-        font-size: 20px;
-        line-height: 20px;
-        letter-spacing: 0.05em;
+        font-size: 30px;
+        line-height: 30px;
+        color: #111111;
+    }
+    .modal .price_through {
+        font-family: 'Roboto', sans-serif;
+        padding-left: 5px;
+        font-size: 14px;
+        line-height: 16px;
+        text-decoration-line: line-through;
+        color: #D23F3C;
+    }
+    .btn_skip {
+        font-family: 'Roboto', sans-serif;
+        font-weight: 600;
+        font-size: 11px;
+        line-height: 14px;
+        text-align: center;
+        letter-spacing: 0.03em;
         text-decoration-line: underline;
         text-transform: uppercase;
-        color: #000000;
-        padding: 29px;
-        margin-top: 25px;
+        color: #111111;
         display: block;
-    }
-    .modal_footer {
-        padding: 16px 28px;
-        box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.25);
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-    }
-    .modal_footer .price {
-        font-size: 20px;
-        line-height: 20px;
-        margin: 0;
+        padding: 10px 0;
+        margin: 10px 0;
     }
     .btn_add-order {
-        background: #FCE300;
+        background: #ffff00;
         border-radius: 20px;
-        padding: 8px 24px;
+        padding: 13px 30px;
         font-family: 'Bebas Neue';
-        font-style: normal;
         font-weight: 700;
-        font-size: 20px;
-        line-height: 20px;
-        letter-spacing: 0.05em;
-        text-transform: uppercase;
-        color: #000000;
-    }
-    .items-end {
-        display: flex;
-        align-items: flex-end;
-        max-width: 400px;
+        font-size: 16px;
+        line-height: 16px;
+        letter-spacing: 0.02em;
+        color: #111111;
+        display: block;
+        width: fit-content;
         margin: 0 auto;
-        padding: 0 12px;
+    }
+    .d-flex {
+        display: flex;
+        max-width: 375px;
+        margin: 0 auto;
     }
     .btn_next {
         margin-top: 20px;
         text-align: center;
     }
+    .btn_more {
+        position: absolute;
+        z-index: 2;
+        right: 0;
+        bottom: 0;
+        font-family: 'Roboto', sans-serif;
+        font-style: normal;
+        font-weight: 700;
+        font-size: 12px;
+        line-height: 19px;
+        text-decoration-line: underline;
+        color: #111111;
+    }
 </style>`
 
 let obj = {
     '.de/': {
-        'title': 'Join route in mammut marsch event t-shirt',
-        'name': 'Mammut marsch event t-shirt, m/f',
-        'text': 'T-shirt provides flexibility and comfort on the race course.  Designed with the everyday obstacle course racer in mind, the T-shirt has excellent stretch and recovery for optimal freedom of movement on the course and off.',
-        'textSkip': 'Skip offer and Continue Checkout',
-        'textBtn': 'Add to order'
+        'title': 'Hol dir jetzt unser Event T-Shirt! <span>(nur möglich als Vorbestellung)</span>',
+        'size': 'Größe S, M, L, XL, XXL',
+        'text': 'Hochwertiges Baumwoll T-Shirt, individueller Druck für jedes Event, Damen- und Herrenshirts, modisch geschnitten.',
+        'textSkip': 'Angebot überspringen und Anmeldung abschließen',
+        'textBtn': 'T-Shirt hinzufügen'
     },
     '.en/': {
         'title': 'Join route in mammut marsch event t-shirt',
-        'name': 'Mammut marsch event t-shirt, m/f',
+        'size': 'Size S, M, L, XL, XXL',
         'text': 'T-shirt provides flexibility and comfort on the race course.  Designed with the everyday obstacle course racer in mind, the T-shirt has excellent stretch and recovery for optimal freedom of movement on the course and off.',
         'textSkip': 'Skip offer and Continue Checkout',
-        'textBtn': 'Add to order'
+        'textBtn': 'Add event t-shirt to my purchase'
     }
 }
 
@@ -178,22 +209,21 @@ let interval = setInterval(() => {
                 document.body.insertAdjacentHTML('beforeend',`
                 <div class="modal">
                     <div class="modal_container">
-                        <button type="button" class="close"></button>
-                        <h2 class="title">${obj[key]['title']}</h2>
-                        <div class="items-end">
+                        <div class="modal_header">
+                            <h2 class="title">${obj[key]['title']}</h2>
+                            <button type="button" class="close"></button>
+                        </div>
+                        <div class="d-flex">
                             <img loading="lazy" src="https://conversionratestore.github.io/projects/mammutmarsch/img/t-shirt.png" data-lazy-src="https://mammutmarsch.de/wp-content/themes/megamate-child/images/tshirt.jpg" class="lazyloaded" data-was-processed="true">
                             <div>
-                                <p class="name">${obj[key]['name']}</p>
-                                <p class="size">One-size</p>
-                                <p class="price"><span class="price_through">30€  </span> <span class="price_item">22€</span>  </p>
-                                <p class="text">${obj[key]['text']}</p>
+                                <p class="name">Mammutmarsch <br>Event T-Shirt</p>
+                                <p class="size">${obj[key]['size']}</p>
+                                <p class="price"><span class="price_item">22€</span><span class="price_through">30€ </span></p>
+                                <p class="text">${obj[key]['text']} <a href="#" class="btn_more">more</a></p>
                             </div>
                         </div>
                         <a href="#" class="btn_skip text-center">${obj[key]['textSkip']}</a>
-                        <div class="modal_footer">
-                            <p class="price"><span class="price_through">30€  </span>  <span class="price_item">22€</span> </p>
-                            <a href="#" class="btn_add-order">${obj[key]['textBtn']}</a>
-                        </div>
+                        <a href="#" class="btn_add-order">${obj[key]['textBtn']}</a>
                     </div>
                 </div>`)
             }
@@ -214,7 +244,7 @@ let interval = setInterval(() => {
         // hide modal
         document.querySelector('.modal .close').addEventListener('click', (e) => {
             hideModal()
-            pushDataLayer('Upsell pop up closed (x)')
+            pushDataLayer('Upsell pop up closed (x)') //event
         })
         document.querySelector('.modal').addEventListener('click', (e) => {
             if (e.target.classList.contains('modal')) {
@@ -247,15 +277,6 @@ let interval = setInterval(() => {
                         console.log(el.innerHTML)
                         el.click();
                     }
-
-                    // if (el.closest('.col-md-6').querySelector('.radio-container input').checked) {
-                    //     document.querySelector('.modal .name').innerHTML = el.innerHTML;
-                    //     document.querySelectorAll('.modal .price').forEach(price => {
-                    //         price.querySelector('.price_item').innerHTML = document.querySelector('.checkout_total_price').innerHTML + ' €';
-                    //     })
-                    //     document.querySelector('.modal .text').innerHTML = el.closest('.col-md-6').querySelector
-                    // }
-                
                 })  
                 //set href for "Add to order" button
                 console.log(document.querySelector('.variations_form.cart [name="add-to-cart"]').value)
@@ -264,11 +285,17 @@ let interval = setInterval(() => {
                 showModal() //show modal
             })
         })
-
-        document.querySelector('.modal .btn_skip').addEventListener('click', (e) => pushDataLayer('Scip offer selected'))
-        document.querySelector('.modal .btn_add-order').addEventListener('click', (e) => pushDataLayer('T-shirt added to the order'))
+        
+        document.querySelector('.modal .btn_more').addEventListener('click', (e) => {
+            e.target.hidden = true;
+            document.querySelector('.modal .text').style = '-webkit-line-clamp: inherit;'
+            pushDataLayer('click on more button') //event
+        }) 
+        document.querySelector('.modal .btn_skip').addEventListener('click', (e) => pushDataLayer('Scip offer selected')) //event
+        document.querySelector('.modal .btn_add-order').addEventListener('click', (e) => pushDataLayer('T-shirt added to the order')) //event
     }
-});
+})
+
 
 window.dataLayer = window.dataLayer || [];
 dataLayer.push({
