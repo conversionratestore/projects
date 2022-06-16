@@ -472,7 +472,7 @@ function starInterval() {
     start = setInterval(() => {
         window.location.pathname.includes('/parking/') ?  loadedLocation = true : loadedLocation = false;
 
-        if (document.querySelector('.js-style') == null && loadedLocation == true && document.querySelector('[data-test-id]') != null) {
+        if (document.querySelector('.js-style') == null && loadedLocation == true && document.querySelector('[data-test-id]') != null && document.querySelector('.landing') != null) {
             console.log('1')
             document.body.insertAdjacentHTML('afterbegin', style); // add style
             document.querySelector('.landing').insertAdjacentHTML('beforebegin', html); // add html
