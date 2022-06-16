@@ -566,7 +566,7 @@ function starInterval() {
             console.log('2')
             document.querySelector('.js-style') != null ? document.querySelector('.js-style').remove() : '';
         }
-    })
+    }, 100)
 }
 starInterval()
 
