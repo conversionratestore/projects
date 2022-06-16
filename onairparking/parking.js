@@ -336,7 +336,7 @@ class Parking{
                 </div
             </a>
         `
-
+        console.log(document.querySelector('#list_parking'))
         document.querySelector('#list_parking').appendChild(element);
     }
 }
@@ -391,7 +391,7 @@ function isScrolledIntoView(el) {
     return isVisible;
 }
 
-let postParking = (id, startDate, endDate) => {
+let postParking = (id, startDate, endDate, parent, parking) => {
     console.log(id, startDate, endDate)
     fetch(`https://www.onairparking.com/api/Facility/SearchAlternate`, {
         headers: {
@@ -403,6 +403,7 @@ let postParking = (id, startDate, endDate) => {
     }).then(res => res.json()).then(data => {
         console.log(data)
         let result = data.result;
+
         if (result.length > 0) {
             for (let i = 0; i < result.length; i++) {
                 let url = `${result[i]['facility_url_code']}?checkin=${startDate}&checkout=${endDate}`,
@@ -431,7 +432,7 @@ let postParking = (id, startDate, endDate) => {
                 maxNumber.closest('#list_parking > li').querySelector('.notes_parking').insertAdjacentHTML('beforeend', bestReviews)
 
             //scroll top
-            document.querySelectorAll('small .underline').forEach(item => {
+            parent.querySelectorAll('small .underline').forEach(item => {
                 item.addEventListener('click', (e) => {
                     e.preventDefault();
                     scrollTop(document.body, e.target)
@@ -439,13 +440,12 @@ let postParking = (id, startDate, endDate) => {
             })
             
             //add "Only 8 left at this price"
-            let listParking = document.querySelectorAll('#list_parking > li'),
-                randomIndex = Math.floor(Math.random() * listParking.length); //random
+            let randomIndex = Math.floor(Math.random() * parking.length); //random
 
-            listParking[randomIndex].querySelector('.c-green').insertAdjacentHTML('beforebegin',`<p class="c-red">Only 8 left at this price</p>`)
+            parking[randomIndex].querySelector('.c-green').insertAdjacentHTML('beforebegin',`<p class="c-red">Only 8 left at this price</p>`)
 
             //events
-            listParking.forEach(item => {
+            parking.forEach(item => {
                 item.addEventListener('click', (e) => {
                     if (item.querySelector('.lowest_price') != null && item.querySelector('.best_reviews') != null) {
                         pushDataLayer('Click on Lowest Price and Best reviews Parking section')
@@ -459,7 +459,7 @@ let postParking = (id, startDate, endDate) => {
                 })
             })
         } else {
-            document.querySelector('#list_parking').innerHTML = emptyHtml;
+            parent.innerHTML = emptyHtml;
         }
     }) 
 }
@@ -471,7 +471,7 @@ function starInterval() {
     start = setInterval(() => {
         window.location.pathname.includes('/parking/') ?  loadedLocation = true : loadedLocation = false;
 
-        if (document.querySelector('.js-style') == null && loadedLocation == true) {
+        if (document.querySelector('.js-style') == null && loadedLocation == true && document.querySelector('[data-test-id]') != null) {
             console.log('1')
             document.body.insertAdjacentHTML('afterbegin', style); // add style
             document.querySelector('.landing').insertAdjacentHTML('beforebegin', html); // add html
@@ -491,14 +491,14 @@ function starInterval() {
             document.querySelector('[data-test-id="mob_start_date"]').addEventListener('click', () => pushDataLayer('Click on start day')) //event
             document.querySelector('[data-test-id="mob_end_date"]').addEventListener('click', () => pushDataLayer('Click on end day')) //event
 
-            postParking(id,startDate,endDate)
+            postParking(id, startDate, endDate, document.querySelector('#list_parking'), document.querySelectorAll('#list_parking > li'))
 
             document.querySelector('#btn_check_availability').addEventListener('click', () => {
                 startDate = document.querySelector('[data-test-id="mob_start_date"]').value;
                 endDate = document.querySelector('[data-test-id="mob_end_date"]').value;
                 if (startDate != endDate) {
                     document.querySelector('#list_parking').innerHTML = loadingHtml;
-                    postParking(id,startDate,endDate)
+                    postParking(id, startDate, endDate, document.querySelector('#list_parking'), document.querySelectorAll('#list_parking > li'))
                 } else {
                     document.querySelector('[data-test-id="park_now"]').click(); //for request
                 }
