@@ -63,11 +63,12 @@ let style = `
     }
     .modal .title span {
         text-transform: lowercase;
+        display: block;
     }
     .modal img {
         max-width: 157px;
         width: 100%;
-        height: 197px;
+        height: 100%;
         margin-right: 20px;
     }
     .modal .name {
@@ -88,12 +89,6 @@ let style = `
         line-height: 19px;
         position: relative;
     }
-    // .modal .text {
-    //     content: '...more';
-    //     position: absolute;
-    //     background: #FFFFFF;
-    //     z-index: 1
-    // }
     .modal .size {
         font-size: 12px;
         color: #7F7F7F;
@@ -148,7 +143,7 @@ let style = `
     }
     .d-flex {
         display: flex;
-        max-width: 375px;
+        max-width: 338px;
         margin: 0 auto;
     }
     .btn_next {
@@ -168,24 +163,26 @@ let style = `
         text-decoration-line: underline;
         color: #111111;
     }
-</style>`
-
-let obj = {
-    '.de/': {
-        'title': 'Hol dir jetzt unser Event T-Shirt! <span>(nur möglich als Vorbestellung)</span>',
-        'size': 'Größe S, M, L, XL, XXL',
-        'text': 'Hochwertiges Baumwoll T-Shirt, individueller Druck für jedes Event, Damen- und Herrenshirts, modisch geschnitten.',
-        'textSkip': 'Angebot überspringen und Anmeldung abschließen',
-        'textBtn': 'T-Shirt hinzufügen'
-    },
-    '.en/': {
-        'title': 'Join route in mammut marsch event t-shirt',
-        'size': 'Size S, M, L, XL, XXL',
-        'text': 'T-shirt provides flexibility and comfort on the race course.  Designed with the everyday obstacle course racer in mind, the T-shirt has excellent stretch and recovery for optimal freedom of movement on the course and off.',
-        'textSkip': 'Skip offer and Continue Checkout',
-        'textBtn': 'Add event t-shirt to my purchase'
+    @media only screen and (max-width: 360px) {
+        .modal .title {
+            font-size: 25px;
+            line-height: 25px;
+        }
+        .modal_container {
+            padding: 0 10px 20px;
+        }
+        .modal img {
+            margin-right: 15px;
+            max-width: 130px;
+        }
+        .d-flex {
+            max-width: 301px;
+        }
+        .btn_skip {
+            font-size: 10px;
+        }
     }
-}
+</style>`
 
 //push data layer
 function pushDataLayer(action) {
@@ -203,31 +200,27 @@ let interval = setInterval(() => {
 
         document.body.insertAdjacentHTML('afterbegin', style); //add styles
 
-        //add modal de/en
-        for (const key in obj) {
-            if (location.href.includes(`${key}`)) {
-                document.body.insertAdjacentHTML('beforeend',`
-                <div class="modal">
-                    <div class="modal_container">
-                        <div class="modal_header">
-                            <h2 class="title">${obj[key]['title']}</h2>
-                            <button type="button" class="close"></button>
-                        </div>
-                        <div class="d-flex">
-                            <img loading="lazy" src="https://conversionratestore.github.io/projects/mammutmarsch/img/t-shirt.png" data-lazy-src="https://mammutmarsch.de/wp-content/themes/megamate-child/images/tshirt.jpg" class="lazyloaded" data-was-processed="true">
-                            <div>
-                                <p class="name">Mammutmarsch <br>Event T-Shirt</p>
-                                <p class="size">${obj[key]['size']}</p>
-                                <p class="price"><span class="price_item">22€</span><span class="price_through">30€ </span></p>
-                                <p class="text">${obj[key]['text']} <a href="#" class="btn_more">more</a></p>
-                            </div>
-                        </div>
-                        <a href="#" class="btn_skip text-center">${obj[key]['textSkip']}</a>
-                        <a href="#" class="btn_add-order">${obj[key]['textBtn']}</a>
+        //add modal
+        document.body.insertAdjacentHTML('beforeend',`
+        <div class="modal">
+            <div class="modal_container">
+                <div class="modal_header">
+                    <h2 class="title">Hol dir jetzt unser Event T-Shirt! <span>(nur möglich als Vorbestellung)</span></h2>
+                    <button type="button" class="close"></button>
+                </div>
+                <div class="d-flex">
+                    <img loading="lazy" src="https://conversionratestore.github.io/projects/mammutmarsch/img/t-shirt.png" data-lazy-src="https://mammutmarsch.de/wp-content/themes/megamate-child/images/tshirt.jpg" class="lazyloaded" data-was-processed="true">
+                    <div>
+                        <p class="name">Mammutmarsch <br>Event T-Shirt</p>
+                        <p class="size">Größe S, M, L, XL, XXL</p>
+                        <p class="price"><span class="price_item">20€</span><span class="price_through">30€ </span></p>
+                        <p class="text">Hochwertiges Baumwoll T-Shirt, individueller Druck für jedes Event, Damen- und Herrenshirts, modisch geschnitten. <a href="#" class="btn_more">more</a></p>
                     </div>
-                </div>`)
-            }
-        }
+                </div>
+                <a href="#" class="btn_skip text-center">Angebot überspringen und Anmeldung abschließen</a>
+                <a href="#" class="btn_add-order">T-Shirt hinzufügen</a>
+            </div>
+        </div>`)
 
         function showModal() { // function show modal
             document.querySelector('.modal').classList.add('active');
@@ -263,7 +256,6 @@ let interval = setInterval(() => {
 
                 //set href for "Skip offer and Continue Checkout" button
                 parent.querySelector('.radio-container input').click()
-                console.log(document.querySelector('.variations_form.cart [name="add-to-cart"]').value)
                 document.querySelector('.modal .btn_skip').href = `https://mammutmarsch.de/checkout/?add-to-cart=${document.querySelector('.variations_form.cart [name="add-to-cart"]').value}&quantity=1`;
                 
                 //set data for T-shirt
@@ -271,15 +263,12 @@ let interval = setInterval(() => {
             
                 favorite.forEach(el => {
                     if (favorite.length > 1) {
-                        console.log(el.innerHTML + " == " + parent.querySelector('.title').innerHTML.split('KM')[0].trim())
                         el.innerHTML.includes(parent.querySelector('.title').innerHTML.split('KM')[0].trim()) ? el.click() : '';
                     } else {
-                        console.log(el.innerHTML)
                         el.click();
                     }
                 })  
                 //set href for "Add to order" button
-                console.log(document.querySelector('.variations_form.cart [name="add-to-cart"]').value)
                 document.querySelector('.modal .btn_add-order').href = `https://mammutmarsch.de/checkout/?add-to-cart=${document.querySelector('.variations_form.cart [name="add-to-cart"]').value}&quantity=1`;   
                 
                 showModal() //show modal
@@ -296,13 +285,12 @@ let interval = setInterval(() => {
     }
 })
 
-
 window.dataLayer = window.dataLayer || [];
 dataLayer.push({
     'event': 'event-to-ga',
     'eventCategory': 'Exp: T-shirt upsell',
     'eventAction': 'loaded'
-});
+});;
 
 (function(h,o,t,j,a,r){
     h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
