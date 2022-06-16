@@ -549,23 +549,24 @@ let intevalOne = setInterval(() => {
 }, 200)
 
 let start = setInterval(() => {
-    window.location.pathname.includes('/parking/') ? loadedLocation = true : loadedLocation = false;
+//     window.location.pathname.includes('/parking/') ? loadedLocation = true : loadedLocation = false;
 
-    if (loadedLocation == true && document.querySelector('.js-style') == null && document.querySelector('.landing') != null) {
+    if (document.querySelector('.js-style') == null && document.querySelector('.landing') != null) {
+        console.log(html)
         document.body.insertAdjacentHTML('afterbegin', style); // add style
         document.querySelector('.landing').insertAdjacentHTML('beforebegin', html); // add html
 
         //title
-        // if (document.querySelector('h1') != null && document.querySelector('h1 span') == null) {
+        if (document.querySelector('h1') != null && document.querySelector('h1 span') == null) {
             let title = document.querySelector('h1').innerHTML;
             document.querySelector('h1').innerHTML = `${title.substring(title.indexOf(' ') + 1)} <span> From <br>${title.substring(0, title.indexOf(' '))} / day</span>`  
-        // }
+        }
     } 
     
-    if (document.querySelector('#parkingat') != null || loadedLocation == false) {
-        console.log('2')
-        document.querySelector('.js-style') != null ? document.querySelector('.js-style').remove() : '';
-    }
+//     if (document.querySelector('#parkingat') != null || loadedLocation == false) {
+//         console.log('2')
+//         document.querySelector('.js-style') != null ? document.querySelector('.js-style').remove() : '';
+//     }
 }, 100)
 
 
