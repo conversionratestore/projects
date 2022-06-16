@@ -392,7 +392,7 @@ function isScrolledIntoView(el) {
     return isVisible;
 }
 
-let postParking = (id, startDate, endDate, parent, parking) => {
+let postParking = (id, startDate, endDate, parent) => {
     console.log(id, startDate, endDate)
     fetch(`https://www.onairparking.com/api/Facility/SearchAlternate`, {
         headers: {
@@ -448,7 +448,9 @@ let postParking = (id, startDate, endDate, parent, parking) => {
             // parking[randomIndex - 1].querySelector('.c-green').insertAdjacentHTML('beforebegin',`<p class="c-red">Only 8 left at this price</p>`)
 
             //events
-            parking.forEach(item => {
+            let children = Array.prototype.slice.call(parent.children);
+
+            children.forEach(item => {
                 item.addEventListener('click', (e) => {
                     if (item.querySelector('.lowest_price') != null && item.querySelector('.best_reviews') != null) {
                         pushDataLayer('Click on Lowest Price and Best reviews Parking section')
@@ -475,7 +477,7 @@ function starInterval() {
         window.location.pathname.includes('/parking/') ?  loadedLocation = true : loadedLocation = false;
 
         if (loadedLocation == true) {
-          
+
             console.log('1')
             document.querySelector('.js-style') == null ? document.body.insertAdjacentHTML('afterbegin', style) : ''; // add style
             document.querySelector('.landing') != null && document.querySelector('#list_parking') == null ? document.querySelector('.landing').insertAdjacentHTML('beforebegin', html) : ''; // add html
@@ -487,6 +489,7 @@ function starInterval() {
             }
            
             //get id parking
+            console.log(document.querySelector('#__NEXT_DATA__') != null)
             let arr = document.querySelector('#__NEXT_DATA__').innerHTML.split(`,"airport_initials":"${document.querySelector('[data-test-id="airport"]').value.split('-')[0].trim()}"`)[0].split('"airport_id":'),
                 id = arr[arr.length - 1];
 
@@ -499,7 +502,7 @@ function starInterval() {
                 document.querySelector('[data-test-id="mob_end_date"]').addEventListener('click', () => pushDataLayer('Click on end day')) //event
 
                 console.log(id,startDate,endDate,  document.querySelector('#list_parking'))
-                postParking(id, startDate, endDate, document.querySelector('#list_parking'), document.querySelectorAll('#list_parking > li'))
+                postParking(id, startDate, endDate, document.querySelector('#list_parking'))
              
                 //set format date
                 function setFormat(date) {
@@ -534,15 +537,15 @@ function starInterval() {
                     }
                 }
             })  
-                 //add "Check availability" button
-            if (document.querySelector('button[data-test-id="park_now"]') != null && document.querySelector('#btn_check_availability') == null) {
+            //add "Check availability" button
+            if (document.querySelector('button[data-test-id="park_now"]') != null && document.querySelector('#btn_check_availability') == null && document.querySelector('#list_parking') != null) {
                 document.querySelector('button[data-test-id="park_now"]').insertAdjacentHTML('afterend',`<button type="button" id="btn_check_availability" class="h-14 mt-3 md:mt-0 md:ml-2 bg-secondary text-white text-base rounded-full p-4 hover:bg-opacity-75 focus:outline-none w-full md:w-48 flex flex-row items-center justify-center uppercase font-bold">Check availability</button>`)
                 document.querySelector('#btn_check_availability').addEventListener('click', (e) => {
                     e.stopImmediatePropagation();
                     startDate = document.querySelector('[data-test-id="mob_start_date"]').value;
                     endDate = document.querySelector('[data-test-id="mob_end_date"]').value;
                     if (startDate != endDate) {
-                        postParking(id, startDate, endDate, document.querySelector('#list_parking'), document.querySelectorAll('#list_parking > li'))
+                        postParking(id, startDate, endDate, document.querySelector('#list_parking'))
                     } else {
                         document.querySelector('[data-test-id="park_now"]').click(); //for request
                     }
