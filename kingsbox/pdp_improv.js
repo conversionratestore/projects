@@ -863,7 +863,7 @@ const style = `
 											letter-spacing: -0.02em;
 											text-transform: uppercase;
 											color: #A1A1A1;
-											padding-bottom: 5px;
+											padding-bottom: 10px;
 										}	
 										
 										.item_info div {
@@ -879,6 +879,7 @@ const style = `
 										color: #A1A1A1 !important;
 										margin: 0;
 									    display: inline-block;
+										line-height: normal;
 										}
 										
 										[data-style="not"] .product-variations {
