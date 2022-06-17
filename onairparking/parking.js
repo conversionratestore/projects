@@ -470,78 +470,81 @@ let postParking = (id, startDate, endDate, parent) => {
 
 let viewed = false;
 
-let intevalOne = setInterval(() => { 
-    if (document.querySelector('#__NEXT_DATA__') != null && document.querySelector('.h-14 input[data-test-id="mob_start_date"]') != null && document.querySelector('.h-14 input[data-test-id="mob_end_date"]') != null && document.querySelector('#list_parking') != null && document.querySelector('button[data-test-id="park_now"]') != null) {
-        clearInterval(intevalOne)
-        //get id parking
-        let arr = document.querySelector('#__NEXT_DATA__').innerHTML.split(`,"airport_initials":"${document.querySelector('[data-test-id="airport"]').value.split('-')[0].trim()}"`)[0].split('"airport_id":'),
-            id = arr[arr.length - 1];
-    
-        //get start/end dates
-        let startDate = document.querySelector('[data-test-id="mob_start_date"]').value, 
-        endDate = document.querySelector('[data-test-id="mob_end_date"]').value;
-        
-        document.querySelector('[data-test-id="mob_start_date"]').addEventListener('click', (e) => {
-            e.stopImmediatePropagation();
-            pushDataLayer('Click on start day')
-        }) //event
-
-        document.querySelector('[data-test-id="mob_end_date"]').addEventListener('click', (e) => {
-            e.stopImmediatePropagation();
-            pushDataLayer('Click on end day')
-        }) //event
-
-        //set format date
-        function setFormat(date) {
-            let itemDate = date,
-                mouth = itemDate.value.split('-');
-
-            for (const key in formatDate) {
-                if (mouth[1] == key) {
-                    itemDate.parentElement.querySelector('.input-ext').value = mouth[2] + " " + formatDate[key];
-                }
-            } 
-        }
-        document.querySelectorAll('.h-14 input[data-test-id]').forEach(input => {
-            input.insertAdjacentHTML('afterend',`<input type="text" class="input-ext">`);
-            setFormat(input)
-            input.addEventListener('change', (e) => setFormat(input))
-        })
-	    
-        document.querySelector('#list_parking').innerHTML == '' ? postParking(id, startDate, endDate, document.querySelector('#list_parking')) : ''
-
-        //add "Check availability" button
-        document.querySelector('button[data-test-id="park_now"]').insertAdjacentHTML('afterend',`<button type="button" id="btn_check_availability" class="h-14 mt-3 md:mt-0 md:ml-2 bg-secondary text-white text-base rounded-full p-4 hover:bg-opacity-75 focus:outline-none w-full md:w-48 flex flex-row items-center justify-center uppercase font-bold">Check availability</button>`)
-        document.querySelector('#btn_check_availability').addEventListener('click', (e) => {
-            e.stopImmediatePropagation();
-            startDate = document.querySelector('[data-test-id="mob_start_date"]').value;
-            endDate = document.querySelector('[data-test-id="mob_end_date"]').value;
+function startInterval() {
+    let intevalOne = setInterval(() => { 
+        if (document.querySelector('#__NEXT_DATA__') != null && document.querySelector('.h-14 input[data-test-id="mob_start_date"]') != null && document.querySelector('.h-14 input[data-test-id="mob_end_date"]') != null && document.querySelector('#list_parking') != null && document.querySelector('button[data-test-id="park_now"]') != null) {
+            clearInterval(intevalOne)
             //get id parking
             let arr = document.querySelector('#__NEXT_DATA__').innerHTML.split(`,"airport_initials":"${document.querySelector('[data-test-id="airport"]').value.split('-')[0].trim()}"`)[0].split('"airport_id":'),
-            id = arr[arr.length - 1];
-            if (startDate != endDate && startDate < endDate) {
-                postParking(id, startDate, endDate, document.querySelector('#list_parking'))
-            } else {
-                document.querySelector('[data-test-id="park_now"]').click(); //for request
-            }
-            pushDataLayer('Click on check availability button') //event
-        })
+                id = arr[arr.length - 1];
         
-        //event
-        document.addEventListener('scroll', (e) => {
-            if (document.querySelector('.guarant') != null) {
-                if (isScrolledIntoView(document.querySelector('.guarant')) == true) {
-                    if (viewed == false) {
-                        viewed = true;
-                        pushDataLayer('Visibility block of guarantees') 
+            //get start/end dates
+            let startDate = document.querySelector('[data-test-id="mob_start_date"]').value, 
+            endDate = document.querySelector('[data-test-id="mob_end_date"]').value;
+            
+            document.querySelector('[data-test-id="mob_start_date"]').addEventListener('click', (e) => {
+                e.stopImmediatePropagation();
+                pushDataLayer('Click on start day')
+            }) //event
+    
+            document.querySelector('[data-test-id="mob_end_date"]').addEventListener('click', (e) => {
+                e.stopImmediatePropagation();
+                pushDataLayer('Click on end day')
+            }) //event
+    
+            //set format date
+            function setFormat(date) {
+                let itemDate = date,
+                    mouth = itemDate.value.split('-');
+    
+                for (const key in formatDate) {
+                    if (mouth[1] == key) {
+                        itemDate.parentElement.querySelector('.input-ext').value = mouth[2] + " " + formatDate[key];
                     }
-                } else {
-                    viewed = false;
-                }
+                } 
             }
-        })  
-    } 
-}, 200)
+            document.querySelectorAll('.h-14 input[data-test-id]').forEach(input => {
+                input.insertAdjacentHTML('afterend',`<input type="text" class="input-ext">`);
+                setFormat(input)
+                input.addEventListener('change', (e) => setFormat(input))
+            })
+            
+            document.querySelector('#list_parking').innerHTML == '' ? postParking(id, startDate, endDate, document.querySelector('#list_parking')) : ''
+    
+            //add "Check availability" button
+            document.querySelector('button[data-test-id="park_now"]').insertAdjacentHTML('afterend',`<button type="button" id="btn_check_availability" class="h-14 mt-3 md:mt-0 md:ml-2 bg-secondary text-white text-base rounded-full p-4 hover:bg-opacity-75 focus:outline-none w-full md:w-48 flex flex-row items-center justify-center uppercase font-bold">Check availability</button>`)
+            document.querySelector('#btn_check_availability').addEventListener('click', (e) => {
+                e.stopImmediatePropagation();
+                startDate = document.querySelector('[data-test-id="mob_start_date"]').value;
+                endDate = document.querySelector('[data-test-id="mob_end_date"]').value;
+                //get id parking
+                let arr = document.querySelector('#__NEXT_DATA__').innerHTML.split(`,"airport_initials":"${document.querySelector('[data-test-id="airport"]').value.split('-')[0].trim()}"`)[0].split('"airport_id":'),
+                id = arr[arr.length - 1];
+                if (startDate != endDate && startDate < endDate) {
+                    postParking(id, startDate, endDate, document.querySelector('#list_parking'))
+                } else {
+                    document.querySelector('[data-test-id="park_now"]').click(); //for request
+                }
+                pushDataLayer('Click on check availability button') //event
+            })
+            
+            //event
+            document.addEventListener('scroll', (e) => {
+                if (document.querySelector('.guarant') != null) {
+                    if (isScrolledIntoView(document.querySelector('.guarant')) == true) {
+                        if (viewed == false) {
+                            viewed = true;
+                            pushDataLayer('Visibility block of guarantees') 
+                        }
+                    } else {
+                        viewed = false;
+                    }
+                }
+            })  
+        } 
+    }, 200)
+}
+startInterval()
 
 let start = setInterval(() => {
     if (document.querySelector('.landing') != null && document.querySelector('#list_parking') == null) {
@@ -553,6 +556,7 @@ let start = setInterval(() => {
             let title = document.querySelector('h1').innerHTML;
             document.querySelector('h1').innerHTML = `${title.substring(title.indexOf(' ') + 1)} <span> From <br>${title.substring(0, title.indexOf(' '))} / day</span>`  
         }
+        startInterval()
     } 
     if (document.querySelector('.js-style') != null && !window.location.pathname.includes('/parking/'))  {
         document.querySelector('.js-style').remove()
