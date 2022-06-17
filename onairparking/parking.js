@@ -321,7 +321,7 @@ class Parking{
                     <p class="name_parking truncate" title="${this.name}">${this.name}</p>
                     <div class="rate_parking flex" data-rate="${this.reviews.split('/')[1]}">${this.renderStar()}</div>
                     <ul>
-                        <li>Distance: <b>${this.distance}</b></li>
+                        <li>${this.distance != '' ? `Distance: <b>${this.distance}</b>`: ''}</li>
                         <li>Free Shuttle ${this.shuttle} <b>${this.shuttleFrequency}</b></li>
                     </ul>
                 </div>
@@ -412,7 +412,7 @@ let postParking = (id, startDate, endDate, parent) => {
                 let url = `${result[i]['facility_url_code']}?checkin=${startDate}&checkout=${endDate}`,
                     name = result[i]['facility_lot'],
                     reviews = result[i]['facility_review'] + '/' + result[i]['facility_review_avg'],
-                    distance = result[i].highlights[2].description != null ? result[i].highlights[2].description : '',
+                    distance = result[i].highlights[2].description != null ? result[i].highlights[2].description : result[i]['facility_airport_distance'] != null ? `${result[i]['facility_airport_distance']} miles` : '' ,
                     shuttle = result[i].highlights[0].description != null ? result[i].highlights[0].description : '',
                     shuttleFrequency = result[i].highlights[1].description != null ? result[i].highlights[1].description : '',
                     freeCancellation = result[i].highlights[3].description != null ? result[i].highlights[3].description : '',
