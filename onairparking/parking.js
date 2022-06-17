@@ -504,7 +504,7 @@ function startInterval() {
                 } 
             }
             document.querySelectorAll('.h-14 input[data-test-id]').forEach(input => {
-                if (input.querySelector('.input-ext') == null) {
+                if (input.parentElement.querySelector('.input-ext') == null) {
                      input.insertAdjacentHTML('afterend',`<input type="text" class="input-ext">`);
                      setFormat(input)
                      input.addEventListener('change', (e) => setFormat(input))
