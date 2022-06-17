@@ -968,239 +968,239 @@ document.head.insertAdjacentHTML('beforeend', style)
 let device = ''
 
 if (window.matchMedia('(max-width: 768px)').matches) {
-	device = 'mobile'
+    device = 'mobile'
 } else {
-	device = 'desktop'
+    device = 'desktop'
 }
 
 /* initialize language */
 
 const languagesObj = {
-	en: {
-		statuses: {
-			not: 'Not in stock',
-			pre: 'pre',
-			expected: 'expected',
-		},
-		demand: 'This product is in high demand',
-		order: 'Pre-order today and get your order dispatched within',
-		weeks: 'weeks',
-		week: 'week',
-		details: 'Product details',
-		wl: 'join waiting list',
-		guarantee: '30-day money back guarantee',
-		made: 'Made in EU',
-		designed: 'Designed in EU',
-		superb: 'Superb quality guaranteed',
-		similar: 'Similar product',
-		like: 'you may also like',
-		shop: 'Shop by category',
-		sell: 'selling fast',
-		menu: [
-			'STRENGTH',
-			'RIGS & RACKS',
-			'STRENGTH MACHINES',
-			'CONDITIONING',
-			'BODY WEIGHT',
-			'GYM ESSENTIALS',
-			'APPAREL',
-			'SETS',
-			'ACCESSORIES',
-			'SPECIAL OFFERS',
-		],
-	},
-	it: {
-		statuses: {
-			not: 'Esaurito',
-			pre: 'PREORDINE',
-			expected: 'disponibiltà',
-		},
-		demand: 'Questo prodotto è molto richiesto',
-		order: 'Preordine oggi e ricevi il tuo ordine entro',
-		weeks: 'settimane',
-		week: 'settimana',
-		details: 'Dettagli del prodotto',
-		wl: `Iscriviti alla lista d'attesa`,
-		guarantee: 'Garanzia di rimborso di 30 giorni',
-		made: 'Prodotto in UE',
-		superb: 'Superba qualità garantita',
-		similar: 'PRODOTTI SIMILI',
-		like: 'potrebbe anche piacerti',
-		shop: 'Acquista per categoria',
-		sell: 'Vendi velocemente',
-		menu: [
-			'STRENGTH',
-			'RIGS & RACKS',
-			'STRENGTH MACHINES',
-			'CONDITIONING',
-			'CORPO LIBERO',
-			'INDISPENSABILE',
-			'ABBIGLIAMENTO E ACCESSORI',
-			'PACCHETTI',
-			'ACCESSORI ALLENAMENTO',
-			'OFFERTA SPECIALE',
-		],
-	},
-	hr: {
-		statuses: {
-			not: 'Izvan zaliha',
-			pre: 'PREDNARUDŽBA',
-			expected: 'očekivana',
-		},
-		demand: 'Ovaj proizvod je vrlo tražen',
-		order: 'Prednarudžba danas i vaša  narudžba će biti poslana u roku od',
-		weeks: 'tjedna',
-		week: 'tjedna',
-		details: 'Detalji o proizvodu',
-		wl: 'PRIDRUŽITE SE LISTI ČEKANJA',
-		guarantee: '30-dnevno jamstvo povrata novca',
-		made: 'Proizvedeno u EU-u',
-		superb: 'Zajamčena vrhunska kvaliteta',
-		similar: 'SLIČNI PROIZVODI',
-		like: 'možda će vam se svidjeti i',
-		shop: 'Kupujte po kategoriji',
-		sell: 'Brzo se prodaje',
-		menu: [
-			'STRENGTH',
-			'RIGS & RACKS',
-			'SPRAVE ZA SNAGU',
-			'KONDICIJA',
-			'VLASTITA TEŽINA',
-			'OSNOVNA OPREMA',
-			'ODJEĆA I PRIBOR',
-			'PAKETI',
-			'DODATNA OPREMA',
-			'POSEBNA PONUDA',
-		],
-	},
-	sl: {
-		statuses: {
-			not: `Ni na voljo`,
-			pre: 'PREDNAROČILO',
-			expected: 'Predvidena',
-		},
-		demand: 'Za ta produkt je zelo veliko povpraševanja',
-		order: 'Prednaročilo danes in tvoje naročilo bo odpremljeno v',
-		weeks: 'tednih',
-		week: 'tednu',
-		details: 'Podrobnosti o izdelku',
-		wl: 'Obvesti me, ko bo izdelek na voljo',
-		guarantee: '30-dnevni odstop od nakupa',
-		made: 'Narejeno v Sloveniji ',
-		superb: 'Zagotovljena visoka kakovost',
-		similar: 'PODOBNI PRODUKTI',
-		like: 'morda vam bo všeč tudi',
-		shop: 'Nakupuj po kategorijah',
-		sell: 'Priljubljen izdelek',
-		menu: [
-			'STRENGTH',
-			'RIGS & RACKS',
-			'NAPRAVE ZA MOČ',
-			'KONDICIJA',
-			'LASTNA TEŽA',
-			'OSNOVNA OPREMA',
-			'OBLAČILA IN DODATKI',
-			'PAKETI',
-			'DODATKI ZA TRENING',
-			'POSEBNE PONUDBE',
-		],
-	},
-	de: {
-		statuses: {
-			not: `Nicht vorrättig`,
-			pre: 'VORBESTELLUNG',
-			expected: 'Erwartete',
-		},
-		demand: 'Dieses Produkt hat eine hohe Nachfrage',
-		order: 'Vorbestellung Sie noch heute und Ihre Bestellung wird innerhalb von',
-		weeks: 'Wochen versandt',
-		week: 'Woche versandt',
-		details: 'Einzelheiten zum Produkt',
-		wl: 'WARTELISTE BEITRETEN',
-		guarantee: '30 Tage Geld-zurück-Garantie',
-		made: 'Hergestellt in der EU',
-		superb: 'Hervorragende Qualität garantiert',
-		similar: 'ÄHNLICHE PRODUKTE',
-		like: 'Folgende Produkte könnten Ihnen auch gefallen',
-		shop: 'Nach Kategorie shoppen',
-		sell: 'Schnell verkaufen',
-		menu: [
-			'STRENGTH',
-			'RIGS & RACKS',
-			'KRAFTTRAINING',
-			'CONDITIONING',
-			'KÖRPERGEWICHT',
-			'GYMBEDARF',
-			'KLEIDUNG UND ACCESSOIRES',
-			'PAKETE',
-			'TRAININGSZUBEHÖR',
-			'SONDERANGEBOT',
-		],
-	},
-	fr: {
-		statuses: {
-			not: 'Rupture de stock',
-			pre: 'PRÉCOMMANDER',
-			expected: 'Réassort',
-		},
-		demand: 'Ce produit est très en demande',
-		order: `Précommander aujourd'hui et recevez votre commande en`,
-		weeks: 'semaines',
-		week: 'semaine',
-		details: 'Détails du produit',
-		wl: `REJOINDRE LA LISTE D'ATTENTE`,
-		guarantee: 'Garantie de remboursement de 30 jours',
-		made: 'Fabriqué en UE',
-		superb: 'Haute qualité garantie',
-		similar: 'PRODUITS SIMILAIRES',
-		like: 'Vous pourriez apprécier aussi',
-		shop: 'Acheter par catégorie',
-		sell: 'Le produit s’envole rapidement',
-		menu: [
-			'STRENGTH',
-			'RIGS & RACKS',
-			'ÉQUIPEMENT FORCE',
-			'CONDITIONING',
-			'POIDS DU CORPS',
-			'INDISPENSABLE',
-			'VÊTEMENTS ET ACCESSOIRES',
-			'SETS',
-			'ACCESSOIRES',
-			'PROMO',
-		],
-	},
-	es: {
-		statuses: {
-			not: 'No disponible',
-			pre: 'RESERVACIÓN',
-			expected: 'Disponibilidad',
-		},
-		demand: 'Este producto tiene una gran demanda',
-		order: 'Reservación tu pedido hoy y recibe tu pedido en',
-		weeks: 'semanas',
-		week: 'semana',
-		details: 'Detalles de producto',
-		wl: 'ÚNETE A LA LISTA DE ESPERA',
-		guarantee: '30 días de garantía de devolución de dinero',
-		made: 'Fabricado en la UE',
-		superb: 'Excelente calidad garantizada',
-		similar: 'PRODUCTOS SIMILARES',
-		like: 'También te puede interesar',
-		shop: 'Compra por categoría',
-		sell: 'Vendiendo rápido',
-		menu: [
-			'STRENGTH',
-			'RIGS & RACKS',
-			'MAQUINAS DE FUERZA',
-			'CONDICIÓN FÍSICA',
-			'PESO CORPORAL',
-			'EQUIPAMIENTO BÁSICO',
-			'ROPA Y ACCESORIOS',
-			'SETS',
-			'ACCESORIOS PARA ENTRENAMIENTO',
-			'OFERTAS',
-		],
-	},
+    en: {
+        statuses: {
+            not: 'Not in stock',
+            pre: 'pre',
+            expected: 'expected',
+        },
+        demand: 'This product is in high demand',
+        order: 'Pre-order today and get your order dispatched within',
+        weeks: 'weeks',
+        week: 'week',
+        details: 'Product details',
+        wl: 'join waiting list',
+        guarantee: '30-day money back guarantee',
+        made: 'Made in EU',
+        designed: 'Designed in EU',
+        superb: 'Superb quality guaranteed',
+        similar: 'Similar product',
+        like: 'you may also like',
+        shop: 'Shop by category',
+        sell: 'selling fast',
+        menu: [
+            'STRENGTH',
+            'RIGS & RACKS',
+            'STRENGTH MACHINES',
+            'CONDITIONING',
+            'BODY WEIGHT',
+            'GYM ESSENTIALS',
+            'APPAREL',
+            'SETS',
+            'ACCESSORIES',
+            'SPECIAL OFFERS',
+        ],
+    },
+    it: {
+        statuses: {
+            not: 'Esaurito',
+            pre: 'PREORDINE',
+            expected: 'disponibiltà',
+        },
+        demand: 'Questo prodotto è molto richiesto',
+        order: 'Preordine oggi e ricevi il tuo ordine entro',
+        weeks: 'settimane',
+        week: 'settimana',
+        details: 'Dettagli del prodotto',
+        wl: `Iscriviti alla lista d'attesa`,
+        guarantee: 'Garanzia di rimborso di 30 giorni',
+        made: 'Prodotto in UE',
+        superb: 'Superba qualità garantita',
+        similar: 'PRODOTTI SIMILI',
+        like: 'potrebbe anche piacerti',
+        shop: 'Acquista per categoria',
+        sell: 'Vendi velocemente',
+        menu: [
+            'STRENGTH',
+            'RIGS & RACKS',
+            'STRENGTH MACHINES',
+            'CONDITIONING',
+            'CORPO LIBERO',
+            'INDISPENSABILE',
+            'ABBIGLIAMENTO E ACCESSORI',
+            'PACCHETTI',
+            'ACCESSORI ALLENAMENTO',
+            'OFFERTA SPECIALE',
+        ],
+    },
+    hr: {
+        statuses: {
+            not: 'Izvan zaliha',
+            pre: 'PREDNARUDŽBA',
+            expected: 'očekivana',
+        },
+        demand: 'Ovaj proizvod je vrlo tražen',
+        order: 'Prednarudžba danas i vaša  narudžba će biti poslana u roku od',
+        weeks: 'tjedna',
+        week: 'tjedna',
+        details: 'Detalji o proizvodu',
+        wl: 'PRIDRUŽITE SE LISTI ČEKANJA',
+        guarantee: '30-dnevno jamstvo povrata novca',
+        made: 'Proizvedeno u EU-u',
+        superb: 'Zajamčena vrhunska kvaliteta',
+        similar: 'SLIČNI PROIZVODI',
+        like: 'možda će vam se svidjeti i',
+        shop: 'Kupujte po kategoriji',
+        sell: 'Brzo se prodaje',
+        menu: [
+            'STRENGTH',
+            'RIGS & RACKS',
+            'SPRAVE ZA SNAGU',
+            'KONDICIJA',
+            'VLASTITA TEŽINA',
+            'OSNOVNA OPREMA',
+            'ODJEĆA I PRIBOR',
+            'PAKETI',
+            'DODATNA OPREMA',
+            'POSEBNA PONUDA',
+        ],
+    },
+    sl: {
+        statuses: {
+            not: `Ni na voljo`,
+            pre: 'PREDNAROČILO',
+            expected: 'Predvidena',
+        },
+        demand: 'Za ta produkt je zelo veliko povpraševanja',
+        order: 'Prednaročilo danes in tvoje naročilo bo odpremljeno v',
+        weeks: 'tednih',
+        week: 'tednu',
+        details: 'Podrobnosti o izdelku',
+        wl: 'Obvesti me, ko bo izdelek na voljo',
+        guarantee: '30-dnevni odstop od nakupa',
+        made: 'Narejeno v Sloveniji ',
+        superb: 'Zagotovljena visoka kakovost',
+        similar: 'PODOBNI PRODUKTI',
+        like: 'morda vam bo všeč tudi',
+        shop: 'Nakupuj po kategorijah',
+        sell: 'Priljubljen izdelek',
+        menu: [
+            'STRENGTH',
+            'RIGS & RACKS',
+            'NAPRAVE ZA MOČ',
+            'KONDICIJA',
+            'LASTNA TEŽA',
+            'OSNOVNA OPREMA',
+            'OBLAČILA IN DODATKI',
+            'PAKETI',
+            'DODATKI ZA TRENING',
+            'POSEBNE PONUDBE',
+        ],
+    },
+    de: {
+        statuses: {
+            not: `Nicht vorrättig`,
+            pre: 'VORBESTELLUNG',
+            expected: 'Erwartete',
+        },
+        demand: 'Dieses Produkt hat eine hohe Nachfrage',
+        order: 'Vorbestellung Sie noch heute und Ihre Bestellung wird innerhalb von',
+        weeks: 'Wochen versandt',
+        week: 'Woche versandt',
+        details: 'Einzelheiten zum Produkt',
+        wl: 'WARTELISTE BEITRETEN',
+        guarantee: '30 Tage Geld-zurück-Garantie',
+        made: 'Hergestellt in der EU',
+        superb: 'Hervorragende Qualität garantiert',
+        similar: 'ÄHNLICHE PRODUKTE',
+        like: 'Folgende Produkte könnten Ihnen auch gefallen',
+        shop: 'Nach Kategorie shoppen',
+        sell: 'Schnell verkaufen',
+        menu: [
+            'STRENGTH',
+            'RIGS & RACKS',
+            'KRAFTTRAINING',
+            'CONDITIONING',
+            'KÖRPERGEWICHT',
+            'GYMBEDARF',
+            'KLEIDUNG UND ACCESSOIRES',
+            'PAKETE',
+            'TRAININGSZUBEHÖR',
+            'SONDERANGEBOT',
+        ],
+    },
+    fr: {
+        statuses: {
+            not: 'Rupture de stock',
+            pre: 'PRÉCOMMANDER',
+            expected: 'Réassort',
+        },
+        demand: 'Ce produit est très en demande',
+        order: `Précommander aujourd'hui et recevez votre commande en`,
+        weeks: 'semaines',
+        week: 'semaine',
+        details: 'Détails du produit',
+        wl: `REJOINDRE LA LISTE D'ATTENTE`,
+        guarantee: 'Garantie de remboursement de 30 jours',
+        made: 'Fabriqué en UE',
+        superb: 'Haute qualité garantie',
+        similar: 'PRODUITS SIMILAIRES',
+        like: 'Vous pourriez apprécier aussi',
+        shop: 'Acheter par catégorie',
+        sell: 'Le produit s’envole rapidement',
+        menu: [
+            'STRENGTH',
+            'RIGS & RACKS',
+            'ÉQUIPEMENT FORCE',
+            'CONDITIONING',
+            'POIDS DU CORPS',
+            'INDISPENSABLE',
+            'VÊTEMENTS ET ACCESSOIRES',
+            'SETS',
+            'ACCESSOIRES',
+            'PROMO',
+        ],
+    },
+    es: {
+        statuses: {
+            not: 'No disponible',
+            pre: 'RESERVACIÓN',
+            expected: 'Disponibilidad',
+        },
+        demand: 'Este producto tiene una gran demanda',
+        order: 'Reservación tu pedido hoy y recibe tu pedido en',
+        weeks: 'semanas',
+        week: 'semana',
+        details: 'Detalles de producto',
+        wl: 'ÚNETE A LA LISTA DE ESPERA',
+        guarantee: '30 días de garantía de devolución de dinero',
+        made: 'Fabricado en la UE',
+        superb: 'Excelente calidad garantizada',
+        similar: 'PRODUCTOS SIMILARES',
+        like: 'También te puede interesar',
+        shop: 'Compra por categoría',
+        sell: 'Vendiendo rápido',
+        menu: [
+            'STRENGTH',
+            'RIGS & RACKS',
+            'MAQUINAS DE FUERZA',
+            'CONDICIÓN FÍSICA',
+            'PESO CORPORAL',
+            'EQUIPAMIENTO BÁSICO',
+            'ROPA Y ACCESORIOS',
+            'SETS',
+            'ACCESORIOS PARA ENTRENAMIENTO',
+            'OFERTAS',
+        ],
+    },
 }
 let pageLanguage = window.location.pathname.split('product')[0].replace(/\//g, '') || 'en'
 let language = languagesObj[pageLanguage]
@@ -1208,126 +1208,126 @@ let language = languagesObj[pageLanguage]
 /* API  apiItem here */
 
 const categoriesLink = {
-	strength: '1010,1020,1030,1040,1050,1060,101010,101020,101030,101040,101050,102010,102020,102030,102040,103010,103020,104010,104020,104030,105010,105020,105030,106010,106020',
-	'rigs-racks': '2010,2020,2030,2040,2050,201010,201020,202010,202020,203010,203020,203030,203040,203050,204010,204020,204030,205010,205020',
-	'strength-machines': '2510,2520,2530',
-	conditioning: '3010,3020,3030,3050,3080,3085,3090,301010,301020,301030,301040,301050,302010,302020,303010,303020,303030,305010,305020,308010,308020,308030,309010,309020',
-	'body-weight': '4010,4020,4030,4040,4050,4060,4070,401010,401020,402010,402020,402030,402040,403010,403020,404010,404020,404030,404050,404060,405010,405020,405030,405040,405050,406010,406020,406040,407010,407020,407030,4080',
-	'gym-essentials': '5010,5020,5030,5040,5050,5060,501010,501020,501030,501040,501050,502010,502020,502030,502040,502050,503010,503020,503030,503040,503050,503060,505010,505020,505030,506010,506020,506030,506040',
-	'apparel-accessories': '61,6110,611010,611020,611030,611040,611050,611060,611070,611080,6120,612010,612020,612030,612040,612050,612060,612070,6130,613010,613020,613030,613040',
-	sets: '7510,7520,7530,7540,7550,751010,751020',
-	accessories: '8010,8020,8030,801010,801020,801030,801040,801050,801060,802010,802020,802030,802040,802060,803010,803020,803025,803030,803040,803050,803060,803010,803020,803025,803030,803040,803050,803060',
+    strength: '1010,1020,1030,1040,1050,1060,101010,101020,101030,101040,101050,102010,102020,102030,102040,103010,103020,104010,104020,104030,105010,105020,105030,106010,106020',
+    'rigs-racks': '2010,2020,2030,2040,2050,201010,201020,202010,202020,203010,203020,203030,203040,203050,204010,204020,204030,205010,205020',
+    'strength-machines': '2510,2520,2530',
+    conditioning: '3010,3020,3030,3050,3080,3085,3090,301010,301020,301030,301040,301050,302010,302020,303010,303020,303030,305010,305020,308010,308020,308030,309010,309020',
+    'body-weight': '4010,4020,4030,4040,4050,4060,4070,401010,401020,402010,402020,402030,402040,403010,403020,404010,404020,404030,404050,404060,405010,405020,405030,405040,405050,406010,406020,406040,407010,407020,407030,4080',
+    'gym-essentials': '5010,5020,5030,5040,5050,5060,501010,501020,501030,501040,501050,502010,502020,502030,502040,502050,503010,503020,503030,503040,503050,503060,505010,505020,505030,506010,506020,506030,506040',
+    'apparel-accessories': '61,6110,611010,611020,611030,611040,611050,611060,611070,611080,6120,612010,612020,612030,612040,612050,612060,612070,6130,613010,613020,613030,613040',
+    sets: '7510,7520,7530,7540,7550,751010,751020',
+    accessories: '8010,8020,8030,801010,801020,801030,801040,801050,801060,802010,802020,802030,802040,802060,803010,803020,803025,803030,803040,803050,803060,803010,803020,803025,803030,803040,803050,803060',
 }
-const productLink = pageLanguage === 'en' ? `https://kingsbox.com/product/` : `https://kingsbox.com/${ pageLanguage }/product/`
+const productLink = pageLanguage === 'en' ? `https://kingsbox.com/product/` : `https://kingsbox.com/${pageLanguage}/product/`
 
 const fetchCategory = category => {
-	let minPage = 1
+    let minPage = 1
 
-	const maxPage = () => {
-		switch (category) {
-			case 'sets':
-				return 1
-			case 'strength-machines':
-			case 'accessories':
-				return 2
-			case 'strength':
-			case 'apparel-accessories':
-				return 13
-			case 'rigs-racks':
-				minPage = 13
-				return 28
-			default:
-				return 8
-		}
-	}
+    const maxPage = () => {
+        switch (category) {
+            case 'sets':
+                return 1
+            case 'strength-machines':
+            case 'accessories':
+                return 2
+            case 'strength':
+            case 'apparel-accessories':
+                return 13
+            case 'rigs-racks':
+                minPage = 13
+                return 28
+            default:
+                return 8
+        }
+    }
 
-	let page = Math.floor(Math.random() * (maxPage() - minPage + 1) + minPage)
+    let page = Math.floor(Math.random() * (maxPage() - minPage + 1) + minPage)
 
-	return `https://gateway.kingsbox.com/service/products?value=${ categoriesLink[category] }&page_num=${ page }&page_size=8`
+    return `https://gateway.kingsbox.com/service/products?value=${categoriesLink[category]}&page_num=${page}&page_size=8`
 }
 const productToHtml = item => `
 				<div class="my_product" >	
-					<div class="img_wrapper" onclick="location.href='${ productLink }${ item.path }';">
-						<a href='${ productLink }${ item.path }'><img src=${ item.image.url } alt=${ item.image.alt }></a>
+					<div class="img_wrapper" onclick="location.href='${productLink}${item.path}';">
+						<a href='${productLink}${item.path}'><img src=${item.image.url} alt=${item.image.alt}></a>
 					</div>
 					<div class="inner_text">
-						<a href='${ productLink }${ item.path }'><p class="product_name">${ item.name }</p></a>
+						<a href='${productLink}${item.path}'><p class="product_name">${item.name}</p></a>
 						<div>				
 							<div class="review_wrapper">
-								${ drawStars(Math.round(item.reviewsSummary.avgRating)) }
-								<p class="product_count">(${ item.reviewsSummary.numReviews })</p><br>
+								${drawStars(Math.round(item.reviewsSummary.avgRating))}
+								<p class="product_count">(${item.reviewsSummary.numReviews})</p><br>
 															
 							</div>	
-							<p class="product_price">${ item.price.price } €</p>
+							<p class="product_price">${item.price.price} €</p>
 						</div>								
 					</div>					
 				</div>`
 const randomize = (arr, randomNumber) => arr.sort(() => .5 - Math.random()).slice(0, randomNumber)
 const drawStars = number => {
-	let span = ``
-	let isReview = ''
-	for (let i = 1; i <= 5; i++) {
-		if (i <= number) {
-			span += `<span class="checked_star">★</span>`
-			isReview = 'reviewed'
-		} else {
-			span += `<span>★</span>`
-		}
-	}
-	return `<p class="stars ${ isReview }">${ span }</p>`
+    let span = ``
+    let isReview = ''
+    for (let i = 1; i <= 5; i++) {
+        if (i <= number) {
+            span += `<span class="checked_star">★</span>`
+            isReview = 'reviewed'
+        } else {
+            span += `<span>★</span>`
+        }
+    }
+    return `<p class="stars ${isReview}">${span}</p>`
 }
 
 const drawDiagonalLine = (variations, statuses) => {
-	variations.forEach((variation, index) => {
-		let status = statuses[index]
+    variations.forEach((variation, index) => {
+        let status = statuses[index]
 
-		status = status.split('_')[0].toLowerCase()
-		if (status === 'not') {
-			variation.classList.add('out')
-		} else {
-			variation.classList.remove('out')
-		}
-	})
+        status = status.split('_')[0].toLowerCase()
+        if (status === 'not') {
+            variation.classList.add('out')
+        } else {
+            variation.classList.remove('out')
+        }
+    })
 }
 
 const addTwoVarUrl = item => {
-	let urls = []
+    let urls = []
 
-	item.productVariations[1].values.forEach(size => {
-		size.key = size.key.replace(',', '.')
+    item.productVariations[1].values.forEach(size => {
+        size.key = size.key.replace(',', '.')
 
-		item.productVariations[0].values.forEach(productVar => {
-			productVar.key = productVar.key.replace(',', '.')
+        item.productVariations[0].values.forEach(productVar => {
+            productVar.key = productVar.key.replace(',', '.')
 
-			item.variationsChildren.forEach((childVar) => {
-				childVar.variation = childVar.variation.replace(/[\[\]']+/g, '').replace(',', '.')
+            item.variationsChildren.forEach((childVar) => {
+                childVar.variation = childVar.variation.replace(/[\[\]']+/g, '').replace(',', '.')
 
-				let splitVariation = childVar.variation.split('---')
+                let splitVariation = childVar.variation.split('---')
 
-				if (splitVariation[0] === productVar.key && splitVariation[1] === size.key) {
-					urls.push(`https://gateway.kingsbox.com/service/products/details/${ childVar.sku }/stock?quantity=1`)
-				}
-			})
-		})
-	})
+                if (splitVariation[0] === productVar.key && splitVariation[1] === size.key) {
+                    urls.push(`https://gateway.kingsbox.com/service/products/details/${childVar.sku}/stock?quantity=1`)
+                }
+            })
+        })
+    })
 
-	return urls
+    return urls
 }
 const addOneVarUrl = item => {
-	let urls = []
+    let urls = []
 
-	item.productVariations[0].values.forEach(productVar => {
-		productVar.key = productVar.key.replace(',', '.')
-		item.variationsChildren.forEach((childVar) => {
-			childVar.variation = childVar.variation.replace(/[\[\]']+/g, '').replace(',', '.')
+    item.productVariations[0].values.forEach(productVar => {
+        productVar.key = productVar.key.replace(',', '.')
+        item.variationsChildren.forEach((childVar) => {
+            childVar.variation = childVar.variation.replace(/[\[\]']+/g, '').replace(',', '.')
 
-			if (productVar.key === childVar.variation) {
-				urls.push(`https://gateway.kingsbox.com/service/products/details/${ childVar.sku }/stock?quantity=1`)
-			}
-		})
-	})
+            if (productVar.key === childVar.variation) {
+                urls.push(`https://gateway.kingsbox.com/service/products/details/${childVar.sku}/stock?quantity=1`)
+            }
+        })
+    })
 
-	return urls
+    return urls
 }
 const filterItemById = (data, id) => data.filter(x => x.id !== id)
 
@@ -1338,190 +1338,195 @@ const URL = productUrl + itemNameUrl
 let exceptionProduct = false
 
 if (
-	itemNameUrl === 'kingsbox-hi-temp-bumper-plates-3-0' ||
-	itemNameUrl === 'royal-hi-temp-rubber-floor-100x100-cm' ||
-	itemNameUrl === 'royal-hi-temp-rubber-floor-50x50-cm'
+    itemNameUrl === 'kingsbox-hi-temp-bumper-plates-3-0' ||
+    itemNameUrl === 'royal-hi-temp-rubber-floor-100x100-cm' ||
+    itemNameUrl === 'royal-hi-temp-rubber-floor-50x50-cm'
 ) {
-	exceptionProduct = true
+    exceptionProduct = true
 }
 
-let header = new Headers({ 'Accept-Language': pageLanguage })
+let header = new Headers({
+    'Accept-Language': pageLanguage,
+    'x-currency': 'EUR',
+    'x-system': 'EU',
+    'x-system-service': 'PRODUCTS'
+})
 
 let skuType = ''
 
 const fetchURL = async () => {
-	try {
-		let response = await fetch(URL, { headers: header })
-		return await response.json()
-	} catch (e) {
-		console.error(e)
-	}
+    try {
+        let response = await fetch(URL, { headers: header })
+        return await response.json()
+    } catch (e) {
+        console.error(e)
+    }
 }
 const getSKU = async data => {
-	try {
-		let itemSKU
+    try {
+        let itemSKU
 
-		data = data.data
+        data = data.data
 
-		if (data.variationsChildren.length) {
-			itemSKU = data.variationsChildren[0].sku
-		} else {
-			itemSKU = data.sku
-		}
+        if (data.variationsChildren.length) {
+            itemSKU = data.variationsChildren[0].sku
+        } else {
+            itemSKU = data.sku
+        }
 
-		skuType = itemSKU[0] + itemSKU[1]
-	} catch (e) {
-		console.error(e)
-	}
+        skuType = itemSKU[0] + itemSKU[1]
+    } catch (e) {
+        console.error(e)
+    }
 
 }
 const getAvailable = async data => {
-	try {
-		let urls = []
-		let item = data.data
-		let isSizeOption = false
+    try {
+        let urls = []
+        let item = data.data
+        let isSizeOption = false
 
-		if (item.productVariations[1]?.values.length) {
-			isSizeOption = true
+        if (item.productVariations[1]?.values.length) {
+            isSizeOption = true
 
-			urls = addTwoVarUrl(item)
-		} else if (item.productVariations[0]?.values.length) {
-			urls = addOneVarUrl(item)
-		} else {
-			return false
-		}
+            urls = addTwoVarUrl(item)
+        } else if (item.productVariations[0]?.values.length) {
+            urls = addOneVarUrl(item)
+        } else {
+            return false
+        }
 
-		let requests = urls.map(url => fetch(url, { headers: header }))
+        let requests = urls.map(url => fetch(url, { headers: header }))
 
-		Promise.all(requests)
-			.then(responses => {
-				return responses
-			})
-			.then(responses => Promise.all(responses.map(r => r.json())))
-			.then(items => items.map(item => item.data.status))
-			.then(statuses => {
-				let variations
+        Promise.all(requests)
+            .then(responses => {
+                return responses
+            })
+            .then(responses => Promise.all(responses.map(r => r.json())))
+            .then(items => items.map(item => item.data.status))
+            .then(statuses => {
+                let variations
 
-				if (document.querySelectorAll('.product-variation .square').length) {
-					variations = document.querySelectorAll('.product-variation .square')
-				}
-				if (document.querySelectorAll('.product-variation div .circle').length) {
-					variations = document.querySelector('.product-variation div ').querySelectorAll('.circle')
-				}
+                if (document.querySelectorAll('.product-variation .square').length) {
+                    variations = document.querySelectorAll('.product-variation .square')
+                }
+                if (document.querySelectorAll('.product-variation div .circle').length) {
+                    variations = document.querySelector('.product-variation div ').querySelectorAll('.circle')
+                }
 
-				drawDiagonalLine(variations, statuses)
+                drawDiagonalLine(variations, statuses)
 
-				let $secondOption = document.querySelectorAll('.product-variation .square') || document.querySelectorAll('.product-variation')[1]?.querySelectorAll('.circle')
+                let $secondOption = document.querySelectorAll('.product-variation .square') || document.querySelectorAll('.product-variation')[1]?.querySelectorAll('.circle')
 
-				if (isSizeOption && $secondOption) {
-					let colorsPerSize = statuses.length / $secondOption.length
+                if (isSizeOption && $secondOption) {
+                    let colorsPerSize = statuses.length / $secondOption.length
 
-					$secondOption.forEach((size, index) => {
-						size.addEventListener('click', () => {
-							let currSizeStatus = statuses.slice(index * colorsPerSize, index * colorsPerSize + colorsPerSize)
+                    $secondOption.forEach((size, index) => {
+                        size.addEventListener('click', () => {
+                            let currSizeStatus = statuses.slice(index * colorsPerSize, index * colorsPerSize + colorsPerSize)
 
-							drawDiagonalLine(variations, currSizeStatus)
-						})
-					})
-				}
-			})
-	} catch (e) {
-		console.error(e)
-	}
+                            drawDiagonalLine(variations, currSizeStatus)
+                        })
+                    })
+                }
+            })
+    } catch (e) {
+        console.error(e)
+    }
 
 }
 const getSimilar = async data => {
-	try {
-		const breadcrumb = data.data.breadcrumb[0].url
-		const itemId = data.data.id
+    try {
+        const breadcrumb = data.data.breadcrumb[0].url
+        const itemId = data.data.id
 
-		fetch(fetchCategory(breadcrumb), { headers: header })
-			.then((response) => {
-				return response.json()
-			})
-			.then((data) => {
-				let filteredArr = filterItemById(data.data, itemId)
+        fetch(fetchCategory(breadcrumb), { headers: header })
+            .then((response) => {
+                return response.json()
+            })
+            .then((data) => {
+                let filteredArr = filterItemById(data.data, itemId)
 
-				let randomItemsNumber = 6
+                let randomItemsNumber = 6
 
-				let isRecommend = setInterval(() => {
-					if (
-						document.querySelector('.product-recommendations') &&
-						document.querySelector('.product-layout-1 .col-xl-4')
-					) {
-						clearInterval(isRecommend)
+                let isRecommend = setInterval(() => {
+                    if (
+                        document.querySelector('.product-recommendations') &&
+                        document.querySelector('.product-layout-1 .col-xl-4')
+                    ) {
+                        clearInterval(isRecommend)
 
-						let isSimilarItem = !!document.querySelector('.product-recommendations .col-12')
+                        let isSimilarItem = !!document.querySelector('.product-recommendations .col-12')
 
-						if (isSimilarItem) {
-							randomItemsNumber = 4
-						}
+                        if (isSimilarItem) {
+                            randomItemsNumber = 4
+                        }
 
-						let randomItems = randomize(filteredArr, randomItemsNumber)
+                        let randomItems = randomize(filteredArr, randomItemsNumber)
 
-						if (randomItems.length > 0) {
-							let divClass = isSimilarItem ? 'similar_exist' : ''
+                        if (randomItems.length > 0) {
+                            let divClass = isSimilarItem ? 'similar_exist' : ''
 
-							const similarProducts = `
-							<div class="similar_products right ${ divClass }">
-								<p class="products_title">${ language.like }</p>
-								${ randomItems.map(productToHtml).join('') }
+                            const similarProducts = `
+							<div class="similar_products right ${divClass}">
+								<p class="products_title">${language.like}</p>
+								${randomItems.map(productToHtml).join('')}
 							</div>`
 
-							const similarProductsLeft = `
-									<div class="similar_products left ${ divClass }">
-										<p class="products_title">${ language.like }</p>
-										${ randomItems.map(productToHtml).join('') }
+                            const similarProductsLeft = `
+									<div class="similar_products left ${divClass}">
+										<p class="products_title">${language.like}</p>
+										${randomItems.map(productToHtml).join('')}
 									</div>`
 
-							document.querySelector('.product-layout-1 .col-xl-4').insertAdjacentHTML('beforeend', similarProducts)
-							document.querySelector('.product-recommendations:not(.custom_recommendations)').insertAdjacentHTML('afterend', similarProductsLeft)
+                            document.querySelector('.product-layout-1 .col-xl-4').insertAdjacentHTML('beforeend', similarProducts)
+                            document.querySelector('.product-recommendations:not(.custom_recommendations)').insertAdjacentHTML('afterend', similarProductsLeft)
 
-							let isSimilarRight = setInterval(() => {
-								if (document.querySelector('.similar_products.right')) {
-									clearInterval(isSimilarRight)
-									document.querySelector('.similar_products.right').addEventListener('click', e => {
-										if (e.target.closest('.my_product')) {
-											window.dataLayer = window.dataLayer || []
-											dataLayer.push({
-												'event': 'event-to-ga',
-												'eventCategory': 'Exp: PDP improvemnets ' + device,
-												'eventAction': 'You may also like',
-											})
-										}
-									})
-								}
-							}, 200)
-							let isSimilarLeft = setInterval(() => {
-								if (document.querySelector('.similar_products.left')) {
-									clearInterval(isSimilarLeft)
-									document.querySelector('.similar_products.left').addEventListener('click', e => {
-										if (e.target.closest('.my_product')) {
-											window.dataLayer = window.dataLayer || []
-											dataLayer.push({
-												'event': 'event-to-ga',
-												'eventCategory': 'Exp: PDP improvemnets ' + device,
-												'eventAction': 'You may also like',
-											})
-										}
-									})
-								}
-							}, 200)
-						}
-					}
-				}, 100)
-			})
-	} catch (e) {
-		console.error(e)
-	}
+                            let isSimilarRight = setInterval(() => {
+                                if (document.querySelector('.similar_products.right')) {
+                                    clearInterval(isSimilarRight)
+                                    document.querySelector('.similar_products.right').addEventListener('click', e => {
+                                        if (e.target.closest('.my_product')) {
+                                            window.dataLayer = window.dataLayer || []
+                                            dataLayer.push({
+                                                'event': 'event-to-ga',
+                                                'eventCategory': 'Exp: PDP improvemnets ' + device,
+                                                'eventAction': 'You may also like',
+                                            })
+                                        }
+                                    })
+                                }
+                            }, 200)
+                            let isSimilarLeft = setInterval(() => {
+                                if (document.querySelector('.similar_products.left')) {
+                                    clearInterval(isSimilarLeft)
+                                    document.querySelector('.similar_products.left').addEventListener('click', e => {
+                                        if (e.target.closest('.my_product')) {
+                                            window.dataLayer = window.dataLayer || []
+                                            dataLayer.push({
+                                                'event': 'event-to-ga',
+                                                'eventCategory': 'Exp: PDP improvemnets ' + device,
+                                                'eventAction': 'You may also like',
+                                            })
+                                        }
+                                    })
+                                }
+                            }, 200)
+                        }
+                    }
+                }, 100)
+            })
+    } catch (e) {
+        console.error(e)
+    }
 }
 
 (async () => {
-	const data = await fetchURL()
+    const data = await fetchURL()
 
-	await getSKU(data)
-	await getAvailable(data)
-	await getSimilar(data)
+    await getSKU(data)
+    await getAvailable(data)
+    await getSimilar(data)
 })()
 
 /* load tiny slider */
@@ -1540,600 +1545,600 @@ document.head.appendChild(scriptCustom)
 
 
 let isStatus = setInterval(() => {
-	if (
-		document.querySelector('p.indicator + p') &&
-		document.querySelector('div.pt-3.pb-3')
-	) {
-		clearInterval(isStatus)
+    if (
+        document.querySelector('p.indicator + p') &&
+        document.querySelector('div.pt-3.pb-3')
+    ) {
+        clearInterval(isStatus)
 
-		let isCircle = !!document.querySelector('.product-variation .circle')
+        let isCircle = !!document.querySelector('.product-variation .circle')
 
-		if (isCircle) {
-			document.querySelector('.product-variation .circle').classList.add('my_flex')
-		}
+        if (isCircle) {
+            document.querySelector('.product-variation .circle').classList.add('my_flex')
+        }
 
-		if (document.querySelector('.product-variation p.label')) {
-			document.querySelectorAll('.product-variation p.label').forEach(p => {
-				p.innerText += ':'
-			})
-		}
+        if (document.querySelector('.product-variation p.label')) {
+            document.querySelectorAll('.product-variation p.label').forEach(p => {
+                p.innerText += ':'
+            })
+        }
 
-		let $containerDataset = document.querySelector('.product-container').dataset
-		let $statusTarget = document.querySelector('p.indicator + p')
+        let $containerDataset = document.querySelector('.product-container').dataset
+        let $statusTarget = document.querySelector('p.indicator + p')
 
-		let $imagesTarget = document.querySelector('#product-images-thumbs')
+        let $imagesTarget = document.querySelector('#product-images-thumbs')
 
-		mutationTemplate($statusTarget, () => checkItemStatus($statusTarget, $containerDataset))
-		mutationTemplate($imagesTarget, checkActiveImg)
-	}
+        mutationTemplate($statusTarget, () => checkItemStatus($statusTarget, $containerDataset))
+        mutationTemplate($imagesTarget, checkActiveImg)
+    }
 }, 200)
 let isWhiteAccordion = setInterval(() => {
-	if (document.querySelectorAll('.accordion.product-properties .flex-row')[1]) {
-		clearInterval(isWhiteAccordion)
+    if (document.querySelectorAll('.accordion.product-properties .flex-row')[1]) {
+        clearInterval(isWhiteAccordion)
 
-		if (document.querySelector('[data-style="not"]')) {
-			document.querySelectorAll('.accordion.product-properties .flex-row')[0].click()
-		} else {
-			document.querySelectorAll('.accordion.product-properties .flex-row')[1].click()
-		}
+        if (document.querySelector('[data-style="not"]')) {
+            document.querySelectorAll('.accordion.product-properties .flex-row')[0].click()
+        } else {
+            document.querySelectorAll('.accordion.product-properties .flex-row')[1].click()
+        }
 
-		document.querySelector('.accordion.product-properties .card').before(document.querySelectorAll('.accordion.product-properties .card')[1])
-	}
+        document.querySelector('.accordion.product-properties .card').before(document.querySelectorAll('.accordion.product-properties .card')[1])
+    }
 }, 200)
 
 let isBlackAccordion = setInterval(() => {
-	if (document.querySelector('.accordion.product-accessory-category') && !document.querySelector('[data-style="not"]') && document.querySelector('.product-breadcrumb a')) {
-		clearInterval(isBlackAccordion)
+    if (document.querySelector('.accordion.product-accessory-category') && !document.querySelector('[data-style="not"]') && document.querySelector('.product-breadcrumb a')) {
+        clearInterval(isBlackAccordion)
 
-		document.querySelector('.accordion.product-accessory-category')?.closest('.pt-3')?.before(document.querySelector('.accordion.product-properties'))
-		document.querySelector('.accordion.product-accessory-category .card').style.marginTop = '12px'
+        document.querySelector('.accordion.product-accessory-category')?.closest('.pt-3')?.before(document.querySelector('.accordion.product-properties'))
+        document.querySelector('.accordion.product-accessory-category .card').style.marginTop = '12px'
 
-		document.querySelector('.accordion.product-accessory-category').addEventListener('click', e => {
-			if (e.target.closest('.card-header')) {
-				initializeCarousel()
-			}
-		})
+        document.querySelector('.accordion.product-accessory-category').addEventListener('click', e => {
+            if (e.target.closest('.card-header')) {
+                initializeCarousel()
+            }
+        })
 
-		let txt = document.querySelector('.product-breadcrumb a').innerText.split(' ').join('').toLowerCase()
+        let txt = document.querySelector('.product-breadcrumb a').innerText.split(' ').join('').toLowerCase()
 
-		if (txt !== 'sets') {
-			if (!document.querySelectorAll('.accordion.product-accessory-category .card')[0]?.querySelector('.collapse.show')) {
-				document.querySelector('.accordion.product-accessory-category .card .flex-row')?.click()
-			}
-		} else {
-			initializeCarousel()
-		}
-	}
+        if (txt !== 'sets') {
+            if (!document.querySelectorAll('.accordion.product-accessory-category .card')[0]?.querySelector('.collapse.show')) {
+                document.querySelector('.accordion.product-accessory-category .card .flex-row')?.click()
+            }
+        } else {
+            initializeCarousel()
+        }
+    }
 }, 200)
 let isSimilar = setInterval(() => {
-	if (document.querySelector('.product-recommendations:not(.custom_recommendations) .card img')) {
-		clearInterval(isSimilar)
+    if (document.querySelector('.product-recommendations:not(.custom_recommendations) .card img')) {
+        clearInterval(isSimilar)
 
-		document.querySelectorAll('.product-recommendations:not(.custom_recommendations) .card source').forEach((source, index) => {
-			document.querySelectorAll('.product-recommendations:not(.custom_recommendations) .card img')[index].src = source.getAttribute('lazyload')
-		})
+        document.querySelectorAll('.product-recommendations:not(.custom_recommendations) .card source').forEach((source, index) => {
+            document.querySelectorAll('.product-recommendations:not(.custom_recommendations) .card img')[index].src = source.getAttribute('lazyload')
+        })
 
-		let $recommendCopyRight = document.querySelector('.product-recommendations').cloneNode(true)
-		$recommendCopyRight.classList.add('custom_recommendations', 'right')
+        let $recommendCopyRight = document.querySelector('.product-recommendations').cloneNode(true)
+        $recommendCopyRight.classList.add('custom_recommendations', 'right')
 
-		let isCloned2 = setInterval(() => {
-			if (
-				document.querySelector(`.product-layout-1 .col-xl-4`) &&
-				$recommendCopyRight
-			) {
-				clearInterval(isCloned2)
+        let isCloned2 = setInterval(() => {
+            if (
+                document.querySelector(`.product-layout-1 .col-xl-4`) &&
+                $recommendCopyRight
+            ) {
+                clearInterval(isCloned2)
 
-				document.querySelector('.product-recommendations:not(.custom_recommendations)').style.display = 'none'
-				document.querySelector(`.product-layout-1 .col-xl-4`).insertAdjacentElement('beforeend', $recommendCopyRight)
-			}
-		})
-	}
+                document.querySelector('.product-recommendations:not(.custom_recommendations)').style.display = 'none'
+                document.querySelector(`.product-layout-1 .col-xl-4`).insertAdjacentElement('beforeend', $recommendCopyRight)
+            }
+        })
+    }
 }, 100)
 let drawMenu = setInterval(() => {
-	if (document.querySelector('.product-layout-1')) {
-		clearInterval(drawMenu)
-		let links = [
-			'strength',
-			'rigs-racks',
-			'strength-machines',
-			'conditioning',
-			'body-weight',
-			'gym-essentials',
-			'apparel-accessories',
-			'sets',
-			'accessories',
-			'special-offer',
-		]
+    if (document.querySelector('.product-layout-1')) {
+        clearInterval(drawMenu)
+        let links = [
+            'strength',
+            'rigs-racks',
+            'strength-machines',
+            'conditioning',
+            'body-weight',
+            'gym-essentials',
+            'apparel-accessories',
+            'sets',
+            'accessories',
+            'special-offer',
+        ]
 
-		let menuItems = ''
+        let menuItems = ''
 
-		for (let i = 0; i < links.length; i++) {
-			menuItems += `<li><a href="https://kingsbox.com/category/${ links[i] }">${ language.menu[i] }</a></li>`
-		}
+        for (let i = 0; i < links.length; i++) {
+            menuItems += `<li><a href="https://kingsbox.com/category/${links[i]}">${language.menu[i]}</a></li>`
+        }
 
-		let menu = `
-					<div class="custom_menu_wrapper"><p class="products_title">${ language.shop }</p><ul class='custom_menu'>${ menuItems }</ul></div>
+        let menu = `
+					<div class="custom_menu_wrapper"><p class="products_title">${language.shop}</p><ul class='custom_menu'>${menuItems}</ul></div>
 				`
 
-		document.querySelector('.product-layout-1').insertAdjacentHTML('beforeend', menu)
+        document.querySelector('.product-layout-1').insertAdjacentHTML('beforeend', menu)
 
-		let isMenu = setInterval(() => {
-			if (document.querySelector('.custom_menu_wrapper')) {
-				clearInterval(isMenu)
-				document.querySelector('.custom_menu_wrapper').addEventListener('click', e => {
-					if (e.target.closest('li')) {
+        let isMenu = setInterval(() => {
+            if (document.querySelector('.custom_menu_wrapper')) {
+                clearInterval(isMenu)
+                document.querySelector('.custom_menu_wrapper').addEventListener('click', e => {
+                    if (e.target.closest('li')) {
 
-						window.dataLayer = window.dataLayer || []
-						dataLayer.push({
-							'event': 'event-to-ga',
-							'eventCategory': 'Exp: PDP improvemnets ' + device,
-							'eventAction': 'Clicks on the shop by categories',
-						})
-					}
-				})
-			}
-		}, 200)
-	}
+                        window.dataLayer = window.dataLayer || []
+                        dataLayer.push({
+                            'event': 'event-to-ga',
+                            'eventCategory': 'Exp: PDP improvemnets ' + device,
+                            'eventAction': 'Clicks on the shop by categories',
+                        })
+                    }
+                })
+            }
+        }, 200)
+    }
 }, 200)
 
 const duplicatesArr = [
-	'demand_wrapper',
-	'sell_wrapper',
-	'guarantees_wrapper',
-	'not_wrapper',
-	'action_btns',
+    'demand_wrapper',
+    'sell_wrapper',
+    'guarantees_wrapper',
+    'not_wrapper',
+    'action_btns',
 ]
 const removeDuplicates = duplicate => {
-	document.querySelectorAll('.' + duplicate)?.forEach(duplicate => {
-		duplicate.remove()
-	})
+    document.querySelectorAll('.' + duplicate)?.forEach(duplicate => {
+        duplicate.remove()
+    })
 }
 
 function checkItemStatus(item, containerDataset) {
-	let $addItemBtn = document.querySelector('div.pt-3.pb-3')
-	let $statusFrWord = item.innerHTML.split(' ')[0].replace(/!/g, '').toLowerCase()
-	let itemStatus = containerDataset.style = (Object.entries(language.statuses).map(([key, value]) => {
-		if (value.toString().split(' ')[0].toLowerCase() === $statusFrWord) {
-			return key
-		}
-	})).join('')
+    let $addItemBtn = document.querySelector('div.pt-3.pb-3')
+    let $statusFrWord = item.innerHTML.split(' ')[0].replace(/!/g, '').toLowerCase()
+    let itemStatus = containerDataset.style = (Object.entries(language.statuses).map(([key, value]) => {
+        if (value.toString().split(' ')[0].toLowerCase() === $statusFrWord) {
+            return key
+        }
+    })).join('')
 
-	/* check and remove duplicates */
-	duplicatesArr.forEach(removeDuplicates)
+    /* check and remove duplicates */
+    duplicatesArr.forEach(removeDuplicates)
 
-	_addGuarantees()
-	waitSkuGuarantee()
+    _addGuarantees()
+    waitSkuGuarantee()
 
-	if (itemStatus !== 'not') {
-		if (skuType === '') {
-			let isSKU = setInterval(() => {
-				if (skuType !== '') {
-					clearInterval(isSKU)
+    if (itemStatus !== 'not') {
+        if (skuType === '') {
+            let isSKU = setInterval(() => {
+                if (skuType !== '') {
+                    clearInterval(isSKU)
 
-					addBadge()
-				}
-			}, 100)
-		} else {
-			addBadge()
-		}
-	}
+                    addBadge()
+                }
+            }, 100)
+        } else {
+            addBadge()
+        }
+    }
 
-	window.scrollTo({ top: 0, behavior: 'smooth' })
+    window.scrollTo({ top: 0, behavior: 'smooth' })
 
-	switch (itemStatus) {
-		case 'not':
-			_addNotStyle()
-			break
-		case 'expected':
-		case 'pre':
-			_setExpectedItem($addItemBtn)
-			break
-		default:
-			break
-	}
+    switch (itemStatus) {
+        case 'not':
+            _addNotStyle()
+            break
+        case 'expected':
+        case 'pre':
+            _setExpectedItem($addItemBtn)
+            break
+        default:
+            break
+    }
 }
 
 function mutationTemplate(target, callback) {
-	if (target) {
-		let config = { attributes: true, childList: true, subtree: true, characterDataOldValue: true }
+    if (target) {
+        let config = { attributes: true, childList: true, subtree: true, characterDataOldValue: true }
 
-		let observer = new MutationObserver(() => {
-			observer.disconnect()
-			callback()
-			observer.observe(target, config)
-		})
+        let observer = new MutationObserver(() => {
+            observer.disconnect()
+            callback()
+            observer.observe(target, config)
+        })
 
-		callback()
-		observer.observe(target, config)
-	}
+        callback()
+        observer.observe(target, config)
+    }
 }
 
 function _setExpectedItem(where) {
-	let interval = setInterval(() => {
-		if (
-			document.querySelector('div.pt-3.pb-3') &&
-			document.querySelector('.product-image-wrapper') &&
-			document.querySelector('.indicator + p')
-		) {
-			clearInterval(interval)
+    let interval = setInterval(() => {
+        if (
+            document.querySelector('div.pt-3.pb-3') &&
+            document.querySelector('.product-image-wrapper') &&
+            document.querySelector('.indicator + p')
+        ) {
+            clearInterval(interval)
 
-			addSellBadge()
+            addSellBadge()
 
-			let weeksNumber = document.querySelector('.indicator + p')?.innerText.replace(/[^0-9.-]/g, '')
+            let weeksNumber = document.querySelector('.indicator + p')?.innerText.replace(/[^0-9.-]/g, '')
 
-			let drawWeeks = true
-			let oneWeek = false
+            let drawWeeks = true
+            let oneWeek = false
 
-			if (weeksNumber !== '') {
-				if (document.querySelector('.product-stock-wrapper .able-to-buy')) {
-					let parts = weeksNumber.split('.')
+            if (weeksNumber !== '') {
+                if (document.querySelector('.product-stock-wrapper .able-to-buy')) {
+                    let parts = weeksNumber.split('.')
 
-					let weekDifference = (new Date(parts[2], parts[1] - 1, parts[0]) - new Date()) / (7 * 24 * 60 * 60 * 1000)
+                    let weekDifference = (new Date(parts[2], parts[1] - 1, parts[0]) - new Date()) / (7 * 24 * 60 * 60 * 1000)
 
-					let min = Math.floor(weekDifference)
-					let max = Math.ceil(weekDifference)
+                    let min = Math.floor(weekDifference)
+                    let max = Math.ceil(weekDifference)
 
-					if (min <= 0 || max <= 0) {
-						weeksNumber = 1
-						oneWeek = true
-					} else if (min !== max) {
-						weeksNumber = min + ' - ' + max
-					} else {
-						weeksNumber = max
-						if (weeksNumber == 1) {
-							oneWeek = true
-						}
-					}
-				} else if (document.querySelector('.product-stock-wrapper .pre-order')) {
-					weeksNumber = weeksNumber.replace('-', ' - ')
-				}
-			} else {
-				drawWeeks = false
-			}
+                    if (min <= 0 || max <= 0) {
+                        weeksNumber = 1
+                        oneWeek = true
+                    } else if (min !== max) {
+                        weeksNumber = min + ' - ' + max
+                    } else {
+                        weeksNumber = max
+                        if (weeksNumber == 1) {
+                            oneWeek = true
+                        }
+                    }
+                } else if (document.querySelector('.product-stock-wrapper .pre-order')) {
+                    weeksNumber = weeksNumber.replace('-', ' - ')
+                }
+            } else {
+                drawWeeks = false
+            }
 
-			let weekP = ''
+            let weekP = ''
 
-			if (drawWeeks) {
-				if (oneWeek) {
-					weekP = `<p>${ language.order } <span>2 ${ language.weeks }</span>.</p>`
-				} else {
-					weekP = `<p>${ language.order } <span>${ weeksNumber } ${ language.weeks }</span>.</p>`
-				}
-			} else {
-				weekP = `<p>${ language.order } <span>3 - 4 ${ language.weeks }</span>.</p>`
-			}
+            if (drawWeeks) {
+                if (oneWeek) {
+                    weekP = `<p>${language.order} <span>2 ${language.weeks}</span>.</p>`
+                } else {
+                    weekP = `<p>${language.order} <span>${weeksNumber} ${language.weeks}</span>.</p>`
+                }
+            } else {
+                weekP = `<p>${language.order} <span>3 - 4 ${language.weeks}</span>.</p>`
+            }
 
-			let demandText = `
+            let demandText = `
 				<div class="demand_wrapper">
-					<p>${ language.demand }.</p>
-					${ weekP }
+					<p>${language.demand}.</p>
+					${weekP}
 				</div>
 			`
 
-			if (!document.querySelector('.demand_wrapper')) {
-				where.insertAdjacentHTML('beforebegin', demandText)
-			}
-		}
-	}, 200)
+            if (!document.querySelector('.demand_wrapper')) {
+                where.insertAdjacentHTML('beforebegin', demandText)
+            }
+        }
+    }, 200)
 }
 
 function addBadge() {
-	let badge = ''
+    let badge = ''
 
-	switch (skuType) {
-		case 'KX':
-		case 'HG':
-		case 'VH':
-			badge = `<img src="https://conversionratestore.github.io/projects/kingsbox/img/EU.svg" alt=${ languagesObj['en'].designed }><span>${ languagesObj['en'].designed }</span>`
-			break
-		case 'KB':
-		case '13':
-			badge = `<img src="https://conversionratestore.github.io/projects/kingsbox/img/EU.svg" alt=${ language.made }><span>${ language.made }</span>`
-			break
-		default:
-			break
-	}
+    switch (skuType) {
+        case 'KX':
+        case 'HG':
+        case 'VH':
+            badge = `<img src="https://conversionratestore.github.io/projects/kingsbox/img/EU.svg" alt=${languagesObj['en'].designed}><span>${languagesObj['en'].designed}</span>`
+            break
+        case 'KB':
+        case '13':
+            badge = `<img src="https://conversionratestore.github.io/projects/kingsbox/img/EU.svg" alt=${language.made}><span>${language.made}</span>`
+            break
+        default:
+            break
+    }
 
-	if (exceptionProduct) {
-		badge = `<img src="https://conversionratestore.github.io/projects/kingsbox/img/EU.svg" alt=${ language.made }><span>${ language.made }</span>`
-	}
+    if (exceptionProduct) {
+        badge = `<img src="https://conversionratestore.github.io/projects/kingsbox/img/EU.svg" alt=${language.made}><span>${language.made}</span>`
+    }
 
-	if (badge) {
-		let sellImg = `
+    if (badge) {
+        let sellImg = `
 				<div class="sell_wrapper eu">
-					${ badge }
+					${badge}
 				</div>
 			`
 
 
-		if (!document.querySelector('.product-images-container div .eu')) {
-			document.querySelector('.product-images-container div:not(.product-discount-badge)').insertAdjacentHTML('beforeend', sellImg)
-		}
-		if (!document.querySelector('.product-images-container-mobile .product-image-wrapper div .eu')) {
-			document.querySelector('.product-images-container-mobile .product-image-wrapper div:not(.product-discount-badge)').insertAdjacentHTML('beforeend', sellImg)
-		}
-	}
+        if (!document.querySelector('.product-images-container div .eu')) {
+            document.querySelector('.product-images-container div:not(.product-discount-badge)').insertAdjacentHTML('beforeend', sellImg)
+        }
+        if (!document.querySelector('.product-images-container-mobile .product-image-wrapper div .eu')) {
+            document.querySelector('.product-images-container-mobile .product-image-wrapper div:not(.product-discount-badge)').insertAdjacentHTML('beforeend', sellImg)
+        }
+    }
 }
 
 function addSellBadge() {
-	let sellImg = `
+    let sellImg = `
 				<div class="sell_wrapper fire">
-					<img src="https://conversionratestore.github.io/projects/kingsbox/img/fire.svg" alt="hot sale"><span>${ language.sell }</span>
+					<img src="https://conversionratestore.github.io/projects/kingsbox/img/fire.svg" alt="hot sale"><span>${language.sell}</span>
 				</div>
 			`
 
-	document.querySelector('.product-images-container div')?.insertAdjacentHTML('beforeend', sellImg)
-	document.querySelector('.product-images-container-mobile .product-image-wrapper div')?.insertAdjacentHTML('beforeend', sellImg)
+    document.querySelector('.product-images-container div')?.insertAdjacentHTML('beforeend', sellImg)
+    document.querySelector('.product-images-container-mobile .product-image-wrapper div')?.insertAdjacentHTML('beforeend', sellImg)
 }
 
 function _addGuarantees() {
-	let guaranteesArr = [
-		{ img: 'guarantee', text: language.guarantee },
-		{ img: 'trustpilot', text: language.superb },
-	]
+    let guaranteesArr = [
+        { img: 'guarantee', text: language.guarantee },
+        { img: 'trustpilot', text: language.superb },
+    ]
 
-	let guaranteeMarkup = guarantee => `
+    let guaranteeMarkup = guarantee => `
 									<div class="guarantee">
-										<img src="https://conversionratestore.github.io/projects/kingsbox/img/${ guarantee.img }.svg" alt="${ guarantee.img }">
-										<p>${ guarantee.text }</p>
+										<img src="https://conversionratestore.github.io/projects/kingsbox/img/${guarantee.img}.svg" alt="${guarantee.img}">
+										<p>${guarantee.text}</p>
 									</div>`
 
-	let guaranteesBlock = `
+    let guaranteesBlock = `
 									<div class="guarantees_wrapper">
-										${ guaranteesArr.map(guaranteeMarkup).join('') }
+										${guaranteesArr.map(guaranteeMarkup).join('')}
 									</div>`
 
-	document.querySelector('div.pt-3.pb-3').insertAdjacentHTML('afterend', guaranteesBlock)
+    document.querySelector('div.pt-3.pb-3').insertAdjacentHTML('afterend', guaranteesBlock)
 }
 
 function waitSkuGuarantee() {
-	let skuGuarantee = setInterval(() => {
-		if (document.querySelector('.guarantees_wrapper .guarantee') && skuType) {
-			clearInterval(skuGuarantee)
+    let skuGuarantee = setInterval(() => {
+        if (document.querySelector('.guarantees_wrapper .guarantee') && skuType) {
+            clearInterval(skuGuarantee)
 
-			let txt = ''
-			let imgName = ''
-			let isEU = false
+            let txt = ''
+            let imgName = ''
+            let isEU = false
 
 
-			const addEU = (text, imageName) =>
-				`<div class="guarantee EU">
-				<img src="https://conversionratestore.github.io/projects/kingsbox/img/${ imageName }.svg" alt="${ text }">
-				<p>${ text }</p>
+            const addEU = (text, imageName) =>
+                `<div class="guarantee EU">
+				<img src="https://conversionratestore.github.io/projects/kingsbox/img/${imageName}.svg" alt="${text}">
+				<p>${text}</p>
 			</div>`
 
-			switch (skuType) {
-				case 'KX':
-				case 'HG':
-				case 'VH':
-					txt = languagesObj['en'].designed
-					imgName = 'designed_eu'
-					isEU = true
-					break
-				case 'KB':
-				case '13':
-					txt = language.made
-					imgName = 'made_in_eu'
-					isEU = true
-					break
-				default:
-					break
-			}
+            switch (skuType) {
+                case 'KX':
+                case 'HG':
+                case 'VH':
+                    txt = languagesObj['en'].designed
+                    imgName = 'designed_eu'
+                    isEU = true
+                    break
+                case 'KB':
+                case '13':
+                    txt = language.made
+                    imgName = 'made_in_eu'
+                    isEU = true
+                    break
+                default:
+                    break
+            }
 
-			if (exceptionProduct) {
-				txt = language.made
-				isEU = true
-				imgName = 'made_in_eu'
-			}
+            if (exceptionProduct) {
+                txt = language.made
+                isEU = true
+                imgName = 'made_in_eu'
+            }
 
-			if (!document.querySelector('.EU') && isEU) {
-				document.querySelector('.guarantees_wrapper .guarantee').insertAdjacentHTML('afterend', addEU(txt, imgName))
-			}
-		}
-	}, 100)
+            if (!document.querySelector('.EU') && isEU) {
+                document.querySelector('.guarantees_wrapper .guarantee').insertAdjacentHTML('afterend', addEU(txt, imgName))
+            }
+        }
+    }, 100)
 }
 
 function _addNotStyle() {
-	let intr = setInterval(() => {
-		if (
-			document.querySelector('app-reviews-summary') &&
-			document.querySelector('.product-price div') &&
-			document.querySelector('app-product-variations')
-		) {
-			clearInterval(intr)
+    let intr = setInterval(() => {
+        if (
+            document.querySelector('app-reviews-summary') &&
+            document.querySelector('.product-price div') &&
+            document.querySelector('app-product-variations')
+        ) {
+            clearInterval(intr)
 
-			let $title = document.querySelector('.product-title')
-			let $cloneReviews = document.querySelector('app-reviews-summary').cloneNode(true)
-			let $clonePrice = document.querySelector('.product-price div').cloneNode(true)
-			let sliderItem = ''
+            let $title = document.querySelector('.product-title')
+            let $cloneReviews = document.querySelector('app-reviews-summary').cloneNode(true)
+            let $clonePrice = document.querySelector('.product-price div').cloneNode(true)
+            let sliderItem = ''
 
 
-			$cloneReviews.classList.add('not_item_mobile')
-			$clonePrice.classList.add('not_item_mobile')
+            $cloneReviews.classList.add('not_item_mobile')
+            $clonePrice.classList.add('not_item_mobile')
 
-			let imgArr
+            let imgArr
 
-			if (device === 'mobile') {
-				imgArr = document.querySelectorAll('#product-images-thumbs .picture')
-				imgArr.length ? null : imgArr = document.querySelectorAll('.product-images-container-mobile img')
-			} else {
-				document.querySelectorAll('.product-images-container .product-image-wrapper source').forEach((source, index) => {
-					document.querySelectorAll('.product-images-container .product-image-wrapper source + img')[index].src = source.getAttribute('lazyload')
-				})
+            if (device === 'mobile') {
+                imgArr = document.querySelectorAll('#product-images-thumbs .picture')
+                imgArr.length ? null : imgArr = document.querySelectorAll('.product-images-container-mobile img')
+            } else {
+                document.querySelectorAll('.product-images-container .product-image-wrapper source').forEach((source, index) => {
+                    document.querySelectorAll('.product-images-container .product-image-wrapper source + img')[index].src = source.getAttribute('lazyload')
+                })
 
-				imgArr = document.querySelectorAll('.product-images-container .product-image-wrapper img')
-			}
+                imgArr = document.querySelectorAll('.product-images-container .product-image-wrapper img')
+            }
 
-			document.querySelector('app-product-images').classList.add('w_load')
+            document.querySelector('app-product-images').classList.add('w_load')
 
-			imgArr.forEach((img, index) => {
-				// img.src = img.src.replace('&blur=90', '')
-				sliderItem += `<div><img src=${ img.src } alt="slider image ${ index }"></div>`
-			})
+            imgArr.forEach((img, index) => {
+                // img.src = img.src.replace('&blur=90', '')
+                sliderItem += `<div><img src=${img.src} alt="slider image ${index}"></div>`
+            })
 
-			let sliderWrapper = `
+            let sliderWrapper = `
 								<div class="not_wrapper">			
 									<div class="slider">
-										${ sliderItem }
+										${sliderItem}
 									</div>
 									<div class="item_info not_item_mobile">
-										<p class="not_stock"><span class="red_circle"></span>${ language.statuses.not }</p>
+										<p class="not_stock"><span class="red_circle"></span>${language.statuses.not}</p>
 										<div>
-											<p class="custom_title">${ $title.innerText }</p>							
+											<p class="custom_title">${$title.innerText}</p>							
 										</div>
 									</div>
 								</div>
 							`
 
-			document.querySelector('.col-xl-8 .product-breadcrumb').insertAdjacentHTML('afterend', sliderWrapper)
+            document.querySelector('.col-xl-8 .product-breadcrumb').insertAdjacentHTML('afterend', sliderWrapper)
 
-			let isSlider = setInterval(() => {
-				if (document.querySelector('.slider img') && typeof tns == 'function') {
-					clearInterval(isSlider)
+            let isSlider = setInterval(() => {
+                if (document.querySelector('.slider img') && typeof tns == 'function') {
+                    clearInterval(isSlider)
 
-					tnsSettings('.slider', 2.2, true, 0, true, 'main', false, 1)
-				}
-			}, 100)
+                    tnsSettings('.slider', 2.2, true, 0, true, 'main', false, 1)
+                }
+            }, 100)
 
 
-			let clone = setInterval(() => {
-				if (document.querySelector('.item_info div')) {
-					clearInterval(clone)
+            let clone = setInterval(() => {
+                if (document.querySelector('.item_info div')) {
+                    clearInterval(clone)
 
-					document.querySelector('.item_info div').insertAdjacentElement('beforeend', $cloneReviews)
-					document.querySelector('.item_info').insertAdjacentElement('beforeend', $clonePrice)
-				}
-			}, 100)
+                    document.querySelector('.item_info div').insertAdjacentElement('beforeend', $cloneReviews)
+                    document.querySelector('.item_info').insertAdjacentElement('beforeend', $clonePrice)
+                }
+            }, 100)
 
-			let actionBtns = `
+            let actionBtns = `
 							<div class="action_btns bottom">
-								<p class="switch_info">${ language.details } <span>V</span></p>
-								<p class="join_wl">${ language.wl }</p>
+								<p class="switch_info">${language.details} <span>V</span></p>
+								<p class="join_wl">${language.wl}</p>
 							</div>`
 
-			document.querySelector('app-product-variations').insertAdjacentHTML('beforeend', actionBtns)
+            document.querySelector('app-product-variations').insertAdjacentHTML('beforeend', actionBtns)
 
-			let isBtns = setInterval(() => {
-				if (document.querySelector('.action_btns')) {
-					clearInterval(isBtns)
+            let isBtns = setInterval(() => {
+                if (document.querySelector('.action_btns')) {
+                    clearInterval(isBtns)
 
-					let $guarantees = document.querySelector('.guarantees_wrapper')
-					let $accessories = document.querySelector('app-product-accessories')
-					let $properties = document.querySelector('.product-properties')?.parentNode?.closest('.pt-3') || document.querySelector('.product-properties')
+                    let $guarantees = document.querySelector('.guarantees_wrapper')
+                    let $accessories = document.querySelector('app-product-accessories')
+                    let $properties = document.querySelector('.product-properties')?.parentNode?.closest('.pt-3') || document.querySelector('.product-properties')
 
-					let $v = document.querySelector('.switch_info span')
+                    let $v = document.querySelector('.switch_info span')
 
-					$guarantees?.classList.add('custom_hide')
-					$accessories?.classList.add('custom_hide')
-					$properties?.classList.add('custom_hide')
+                    $guarantees?.classList.add('custom_hide')
+                    $accessories?.classList.add('custom_hide')
+                    $properties?.classList.add('custom_hide')
 
 
-					document.querySelector('.action_btns').addEventListener('click', (e) => {
-						if (e.target.closest('.switch_info')) {
-							if ($guarantees) {
-								$guarantees.classList.toggle('custom_hide')
-							}
+                    document.querySelector('.action_btns').addEventListener('click', (e) => {
+                        if (e.target.closest('.switch_info')) {
+                            if ($guarantees) {
+                                $guarantees.classList.toggle('custom_hide')
+                            }
 
-							if ($accessories) {
-								$accessories.classList.toggle('custom_hide')
-							}
+                            if ($accessories) {
+                                $accessories.classList.toggle('custom_hide')
+                            }
 
-							if ($properties) {
-								$properties.classList.toggle('custom_hide')
-							}
+                            if ($properties) {
+                                $properties.classList.toggle('custom_hide')
+                            }
 
-							$v.innerText === 'V' ? $v.innerText = 'ꓥ' : $v.innerText = 'V'
+                            $v.innerText === 'V' ? $v.innerText = 'ꓥ' : $v.innerText = 'V'
 
-							document.querySelector('.action_btns').classList.toggle('bottom')
+                            document.querySelector('.action_btns').classList.toggle('bottom')
 
-							window.dataLayer = window.dataLayer || []
-							dataLayer.push({
-								'event': 'event-to-ga',
-								'eventCategory': 'Exp: PDP improvemnets ' + device,
-								'eventAction': 'Click on Product details',
-							})
-						}
-						if (e.target.matches('.join_wl')) {
-							document.querySelector('.product-actions button').click()
-						}
-					})
-				}
-			}, 200)
-		}
-	}, 100)
+                            window.dataLayer = window.dataLayer || []
+                            dataLayer.push({
+                                'event': 'event-to-ga',
+                                'eventCategory': 'Exp: PDP improvemnets ' + device,
+                                'eventAction': 'Click on Product details',
+                            })
+                        }
+                        if (e.target.matches('.join_wl')) {
+                            document.querySelector('.product-actions button').click()
+                        }
+                    })
+                }
+            }, 200)
+        }
+    }, 100)
 }
 
 function checkActiveImg() {
-	document.querySelector('.active_img')?.classList.remove('active_img')
-	document.querySelector('.product-images-thumb .active')?.closest('.product-images-thumb').classList.add('active_img')
+    document.querySelector('.active_img')?.classList.remove('active_img')
+    document.querySelector('.product-images-thumb .active')?.closest('.product-images-thumb').classList.add('active_img')
 }
 
 function initializeCarousel() {
-	let outerInterval = setInterval(() => {
-		if (
-			document.querySelectorAll('#product-accessory-category [role="tabpanel"] .ng-star-inserted')[1]?.querySelector('img') &&
-			typeof tns == 'function'
-		) {
-			clearInterval(outerInterval)
+    let outerInterval = setInterval(() => {
+        if (
+            document.querySelectorAll('#product-accessory-category [role="tabpanel"] .ng-star-inserted')[1]?.querySelector('img') &&
+            typeof tns == 'function'
+        ) {
+            clearInterval(outerInterval)
 
-			if (!document.querySelector('.card-body .tns-outer')) {
-				let blackAccordion = document.querySelectorAll(`#product-accessory-category [role="tabpanel"] .ng-star-inserted`)[1]
+            if (!document.querySelector('.card-body .tns-outer')) {
+                let blackAccordion = document.querySelectorAll(`#product-accessory-category [role="tabpanel"] .ng-star-inserted`)[1]
 
-				blackAccordion.querySelectorAll('source').forEach((source, index) => {
-					blackAccordion.querySelectorAll('source + img')[index].src = source.getAttribute('lazyload')
-				})
+                blackAccordion.querySelectorAll('source').forEach((source, index) => {
+                    blackAccordion.querySelectorAll('source + img')[index].src = source.getAttribute('lazyload')
+                })
 
-				tnsSettings(blackAccordion, 3, false, 8, false, 'accessories', true, 3)
-			}
-		}
-	}, 100)
+                tnsSettings(blackAccordion, 3, false, 8, false, 'accessories', true, 3)
+            }
+        }
+    }, 100)
 }
 
 function tnsSettings(container, items, nav, gutter, responsive, name, controls, slideBy) {
-	let obj = {
-		container,
-		items,
-		autoplay: false,
-		controls,
-		controlsText: [`<span><img src="https://conversionratestore.github.io/projects/kingsbox/img/arrow_back.svg" alt="arrow left"></span>`, `<span><img src="https://conversionratestore.github.io/projects/kingsbox/img/arrow_back.svg" alt="arrow right"></span>`],
-		loop: false,
-		autoplayButton: false,
-		autoplayButtonOutput: false,
-		nav,
-		navPosition: 'bottom',
-		preventScrollOnTouch: 'auto',
-		mouseDrag: true,
-		swipeAngle: 30,
-		gutter,
-		slideBy,
-		autoHeight: false,
-	}
+    let obj = {
+        container,
+        items,
+        autoplay: false,
+        controls,
+        controlsText: [`<span><img src="https://conversionratestore.github.io/projects/kingsbox/img/arrow_back.svg" alt="arrow left"></span>`, `<span><img src="https://conversionratestore.github.io/projects/kingsbox/img/arrow_back.svg" alt="arrow right"></span>`],
+        loop: false,
+        autoplayButton: false,
+        autoplayButtonOutput: false,
+        nav,
+        navPosition: 'bottom',
+        preventScrollOnTouch: 'auto',
+        mouseDrag: true,
+        swipeAngle: 30,
+        gutter,
+        slideBy,
+        autoHeight: false,
+    }
 
-	responsive ? obj.responsive = { 768: { items: 1 } } : null
+    responsive ? obj.responsive = { 768: { items: 1 } } : null
 
-	let slider = tns(obj)
+    let slider = tns(obj)
 
-	slider.events.on('indexChanged', () => {
-		window.dataLayer = window.dataLayer || []
-		dataLayer.push({
-			'event': 'event-to-ga',
-			'eventCategory': 'Exp: PDP improvemnets ' + device,
-			'eventAction': `Swipe on ${ name } slider`,
-		})
-	})
+    slider.events.on('indexChanged', () => {
+        window.dataLayer = window.dataLayer || []
+        dataLayer.push({
+            'event': 'event-to-ga',
+            'eventCategory': 'Exp: PDP improvemnets ' + device,
+            'eventAction': `Swipe on ${name} slider`,
+        })
+    })
 }
 
 window.dataLayer = window.dataLayer || []
 dataLayer.push({
-	'event': 'event-to-ga',
-	'eventCategory': 'Exp: PDP improvemnets ' + device,
-	'eventAction': 'loaded',
+    'event': 'event-to-ga',
+    'eventCategory': 'Exp: PDP improvemnets ' + device,
+    'eventAction': 'loaded',
 })
 
 let isClarity = setInterval(() => {
-	if (typeof clarity == 'function') {
-		clearInterval(isClarity)
+    if (typeof clarity == 'function') {
+        clearInterval(isClarity)
 
-		clarity('set', `pdp_improvemnets_${ device }`, 'variant_1')
-	}
+        clarity('set', `pdp_improvemnets_${device}`, 'variant_1')
+    }
 }, 100)
