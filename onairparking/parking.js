@@ -295,9 +295,9 @@ class Parking{
 
     renderText() {
         if (this.soldOut == 1 && this.unavailable != 1) {
-            return `<small class="block mt-1.5">This facility is sold out for this period. <span class="block text-secondary underline cursor-pointer" onclick="pushDataLayer('Click on Change the dates button')">Change the dates!</span></small>`
+            return `<small class="block mt-1.5">This facility is sold out for this period. <span class="block text-secondary underline cursor-pointer">Change the dates!</span></small>`
         } else if (this.unavailable == 1) {
-            return `<small class="block mt-1.5">This facility requires a minimum <span class="truncate">of <strong>${this.minDay}</strong> days.</span> <span class="text-secondary underline cursor-pointer block" onclick="pushDataLayer('Click on Change the dates button')">Change the dates!</span></small>`
+            return `<small class="block mt-1.5">This facility requires a minimum <span class="truncate">of <strong>${this.minDay}</strong> days.</span> <span class="text-secondary underline cursor-pointer block">Change the dates!</span></small>`
         } else {
             return ''
         }
@@ -438,7 +438,8 @@ let postParking = (id, startDate, endDate, parent) => {
             parent.querySelectorAll('small .underline').forEach(item => {
                 item.addEventListener('click', (e) => {
                     e.preventDefault();
-                    scrollTop(document.body, e.target)
+                    scrollTop(document.body, e.target);
+                    pushDataLayer('Click on Change the dates button');
                 })
             })
             
