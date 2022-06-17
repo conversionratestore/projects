@@ -544,9 +544,9 @@ let intevalOne = setInterval(() => {
 }, 200)
 
 let start = setInterval(() => {
-    if (document.querySelector('.js-style') == null && document.querySelector('.landing') != null && window.location.pathname.includes('/parking/')) {
-        document.body.insertAdjacentHTML('afterbegin', style); // add style
+    if (document.querySelector('.landing') != null && document.querySelector('#list_parking') == null) {
         document.querySelector('.landing').insertAdjacentHTML('beforebegin', html); // add html
+        document.body.insertAdjacentHTML('afterbegin', style); // add style
 
         //title
         if (document.querySelector('h1') != null && document.querySelector('h1 span') == null) {
