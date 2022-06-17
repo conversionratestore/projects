@@ -504,10 +504,12 @@ function startInterval() {
                 } 
             }
             document.querySelectorAll('.h-14 input[data-test-id]').forEach(input => {
-                input.insertAdjacentHTML('afterend',`<input type="text" class="input-ext">`);
-                setFormat(input)
-                input.addEventListener('change', (e) => setFormat(input))
-            })
+                if (input.querySelector('.input-ext') == null) {
+                     input.insertAdjacentHTML('afterend',`<input type="text" class="input-ext">`);
+                     setFormat(input)
+                     input.addEventListener('change', (e) => setFormat(input))
+                }
+             })
             
             document.querySelector('#list_parking').innerHTML == '' ? postParking(id, startDate, endDate, document.querySelector('#list_parking')) : ''
     
