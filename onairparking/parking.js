@@ -554,7 +554,8 @@ let start = setInterval(() => {
             let title = document.querySelector('h1').innerHTML;
             document.querySelector('h1').innerHTML = `${title.substring(title.indexOf(' ') + 1)} <span> From <br>${title.substring(0, title.indexOf(' '))} / day</span>`  
         }
-    } else {
+    } 
+    if (document.querySelector('.js-style') != null && !window.location.pathname.includes('/parking/'))  {
         document.querySelector('.js-style') != null ? document.querySelector('.js-style').remove() : ''
     }
 }, 100)
