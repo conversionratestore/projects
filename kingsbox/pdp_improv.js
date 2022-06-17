@@ -191,11 +191,6 @@ const style = `
 										display: none;
 									}
 									
-									.product-variation.my_flex {
-										display: flex;
-										gap: 10px;
-									}		
-									
 									.pt-3.pb-3 .flex-row,
 									.pt-3.pb-3 button {
 										width: 100%;
@@ -329,12 +324,13 @@ const style = `
 									
 									.similar_products {
 										display: flex;
-										flex-direction: column;
-										/*column-gap: 30px;*/
-										row-gap: 16px;
-										margin-bottom: 30px;
-										
+										flex-direction: column;									
+										margin-bottom: 30px;										
 									}
+
+                                    .similar_products .my_product {
+                                        margin-bottom: 16px;	
+                                    }
 									
 									.similar_products .products_title {
 										margin-top: 10px;
@@ -498,6 +494,7 @@ const style = `
 									
 									.demand_wrapper span {
 										color: #28A9E2;
+                                        display: inline-block;
 									}
 									
 									/*.product-recommendations {*/
@@ -538,14 +535,14 @@ const style = `
 										[data-style="not"] .custom_menu {
 											display: flex;
 											flex-wrap: wrap;
-											 list-style:none;
+											list-style:none;
 										    padding:0;
-										    margin:0;
-										    gap: 10px;
+										    margin:0;										    
 										}
 										
 										[data-style="not"] .custom_menu li a {
 											display: block;
+                                            margin: 0 10px 10px 0;
 											padding: 10px 30px;
 											border: 1px solid #000;
 											font-weight: 600;
@@ -917,16 +914,12 @@ const style = `
 										
 										
 										[data-style="not"]  .product-card .product-name,
-										[data-style="not"]  .product-card .card-price					 
-										 {
+										[data-style="not"]  .product-card .card-price {
 											font-size: 11px !important;
-										}
-										
-										
+										}									
 										
 										[data-style="not"] .similar_products.left {
-											column-gap: 8px;
-										
+											column-gap: 8px;										
 										}
 										
 										[data-style="not"] .similar_products.left .my_product {
@@ -1550,12 +1543,6 @@ let isStatus = setInterval(() => {
         document.querySelector('div.pt-3.pb-3')
     ) {
         clearInterval(isStatus)
-
-        let isCircle = !!document.querySelector('.product-variation .circle')
-
-        if (isCircle) {
-            document.querySelector('.product-variation .circle').classList.add('my_flex')
-        }
 
         if (document.querySelector('.product-variation p.label')) {
             document.querySelectorAll('.product-variation p.label').forEach(p => {
