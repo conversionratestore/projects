@@ -61,6 +61,10 @@ let startFunk = setInterval(() => {
       flex: 1;
     }
 
+    .body_popup > div > img{
+      height: 100%;
+    }
+
     .body_popup .form_wrap {
       padding: 45px 30px;
       display: none;
@@ -506,7 +510,7 @@ let startFunk = setInterval(() => {
     `
 
     let discountCartSignUp = /*html */ `
-    <div class="discount_cart sign_up"><span>Sign up</span> <span>to get</span> 15% discount</div>
+    <div class="discount_cart sign_up"><span data-sign="signUup">Sign up</span> <span>to get</span> 15% discount</div>
     `
 
     let discountPdp = /*html */ `
@@ -514,7 +518,7 @@ let startFunk = setInterval(() => {
     `
 
     let discounPdpSignUp = /*html */ `
-    <div class="discount_pdp sign_up"><span>Sign up</span> <span>to get</span> 15% discount</div>
+    <div class="discount_pdp sign_up"><span data-sign="signUup">Sign up</span> <span>to get</span> 15% discount</div>
     `
 
     document.head.insertAdjacentHTML("beforeend", popUpStyle)
@@ -566,7 +570,7 @@ let startFunk = setInterval(() => {
       }
     }
 
-    // coupon true
+    // coupon activate
     function activateCoupon() {
       if (document.querySelector('.header-container .header-actions .action-links [data-account-trigger="true"] span').textContent === "Account") {
         document.querySelector('.inner-panel .i-block [data-label="Cart Coupon"]')?.click()
@@ -611,6 +615,13 @@ let startFunk = setInterval(() => {
     //   childList: true,
     //   subtree: true,
     // })
+
+    // click on SIGN UP
+    document.querySelectorAll("[data-sign]").forEach((el) => {
+      el.addEventListener("click", function () {
+        document.querySelector('.header-container .header-actions .action-links [data-account-trigger="true"]').click()
+      })
+    })
 
     // TO show POPUP
     setTimeout(() => {
