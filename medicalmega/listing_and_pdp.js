@@ -1855,7 +1855,7 @@ window.onload = function() {
   search.addWidgets([
     instantsearch.widgets.configure({
       hitsPerPage: '12',
-      enablePersonalization: true,
+      // enablePersonalization: true,
     }),
     instantsearch.widgets.searchBox({
       container: '#form-search',
