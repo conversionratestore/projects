@@ -48,10 +48,11 @@ let style = `
     }
     .modal_header {
         padding: 20px 0;
-        margin-bottom: 20px;
         display: flex;
         justify-content: space-between;
         border-bottom: 1px solid #D9D9D9;
+        max-width: 338px;
+        margin: 0 auto 20px;
     }
     .modal .title {
         font-family: 'Bebas Neue', sans-serif;
