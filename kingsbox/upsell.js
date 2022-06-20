@@ -887,7 +887,7 @@ const startCartObserver = () => {
 
             identifier = localStorage.getItem('kboxShoppingCartId')
 
-            // console.log('mut callback >>>')
+            console.log('mut callback >>>')
 
             productIndex = 0
             runAsyncFunctions()
@@ -900,7 +900,9 @@ const startCartObserver = () => {
         for (let mutation of mutations) {
             for (let node of mutation.addedNodes) {
                 if (!(node instanceof HTMLElement)) continue
-                if (node.matches('.shopping-cart-clear')) {
+                if (node.matches('.shopping-cart')) {
+                    console.log('added nodes');
+                    console.log(node);
                     callback()
                 }
             }
@@ -940,7 +942,15 @@ let waitForClarity = setInterval(() => {
 
 document.addEventListener('click', (e) => {
     if (e.target.matches('.product-remove') && document.querySelector('.cart_accessories .cart_content')) {
-        document.querySelector('.cart_accessories .cart_content').innerHTML = ''
-        document.querySelector('.cart_accessories .cart_content').insertAdjacentHTML('afterbegin', loaderHTML)
+        const lastProductIndex = document.querySelectorAll('.shopping-cart-product').length - 1
+
+        let waifForDelete = setInterval(() => {
+            if (document.querySelectorAll('.shopping-cart-product')[lastProductIndex] === undefined) {
+                clearInterval(waifForDelete)
+
+                document.querySelector('.side-modal-content-top i').click()
+                document.querySelector('.icons-row div i').click()
+            }
+        }, 200);
     }
 })
