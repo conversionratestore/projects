@@ -944,13 +944,15 @@ document.addEventListener('click', (e) => {
     if (e.target.matches('.product-remove') && document.querySelector('.cart_accessories .cart_content')) {
         const lastProductIndex = document.querySelectorAll('.shopping-cart-product').length - 1
 
-        let waifForDelete = setInterval(() => {
-            if (document.querySelectorAll('.shopping-cart-product')[lastProductIndex] === undefined) {
-                clearInterval(waifForDelete)
+        if (lastProductIndex > 0) {
+            let waifForDelete = setInterval(() => {
+                if (document.querySelectorAll('.shopping-cart-product')[lastProductIndex] === undefined) {
+                    clearInterval(waifForDelete)
 
-                document.querySelector('.side-modal-content-top i').click()
-                document.querySelector('.icons-row div i').click()
-            }
-        }, 200);
+                    document.querySelector('.side-modal-content-top i').click()
+                    document.querySelector('.icons-row div i').click()
+                }
+            }, 200);
+        }
     }
 })
