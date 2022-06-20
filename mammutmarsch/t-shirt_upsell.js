@@ -48,7 +48,7 @@ let style = `
         padding: 0 20px 20px;
     }
     .modal_header {
-        padding: 20px 0;
+        padding: 20px 0 17px;
         display: flex;
         justify-content: space-between;
         border-bottom: 1px solid #D9D9D9;
