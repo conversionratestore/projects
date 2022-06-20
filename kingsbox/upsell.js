@@ -645,6 +645,8 @@ const drawSelectedAccessory = (categoryAccessoryIndex) => {
             }
         }
     }, 100);
+
+    checkIsEmptyCategory(categoryAccessoryIndex || 0)
 }
 
 const getAccessory = async (accessoryId, accessoryIndex) => {
@@ -802,10 +804,11 @@ const drawAccessoriesNew = () => {
             })
 
             if (accessoriesArray[0] === undefined) {
-                getAccessory(accessoriesIdArray[0], 0).then(() => checkIsEmptyCategory(0))
+                getAccessory(accessoriesIdArray[0], 0)
             } else {
                 drawSelectedAccessory(0)
             }
+
 
             if (document.querySelector('.category_list') && typeof tns === 'function') {
                 initSlider('.category_list')
@@ -887,7 +890,7 @@ const startCartObserver = () => {
 
             identifier = localStorage.getItem('kboxShoppingCartId')
 
-            console.log('mut callback >>>')
+            // console.log('mut callback >>>')
 
             productIndex = 0
             runAsyncFunctions()
@@ -901,8 +904,6 @@ const startCartObserver = () => {
             for (let node of mutation.addedNodes) {
                 if (!(node instanceof HTMLElement)) continue
                 if (node.matches('.shopping-cart')) {
-                    console.log('added nodes');
-                    console.log(node);
                     callback()
                 }
             }
