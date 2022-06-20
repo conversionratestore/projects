@@ -52,7 +52,7 @@ let style = `
         display: flex;
         justify-content: space-between;
         border-bottom: 1px solid #D9D9D9;
-        max-width: 338px;
+        max-width: 350px;
         margin: 0 auto 20px;
     }
     .modal .title {
