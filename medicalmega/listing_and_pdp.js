@@ -102,10 +102,7 @@ input {
   width: 100%;
   font-size: 14px;
   outline-color: #344D57;
-  line-height: 26px;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none; }
+  line-height: 26px; }
 input[type="search"]::-webkit-search-decoration,
 input[type="search"]::-webkit-search-cancel-button,
 input[type="search"]::-webkit-search-results-button,
