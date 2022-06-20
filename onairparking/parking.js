@@ -437,7 +437,7 @@ let postParking = (id, startDate, endDate, parent) => {
             //scroll top
             parent.querySelectorAll('small .underline').forEach(item => {
                 item.addEventListener('click', (e) => {
-                    e.stopImmediatePropagation();
+                    e.preventDefault();
                     scrollTop(document.body, e.target);
                     pushDataLayer('Click on Change the dates button');
                 })
@@ -452,14 +452,16 @@ let postParking = (id, startDate, endDate, parent) => {
             //events
             children.forEach(item => {
                 item.addEventListener('click', (e) => {
-                    if (item.querySelector('.lowest_price') != null && item.querySelector('.best_reviews') != null) {
-                        pushDataLayer('Click on Lowest Price and Best reviews Parking section')
-                    } else if (item.querySelector('.lowest_price') != null && item.querySelector('.best_reviews') == null) {
-                        pushDataLayer('Click on Lowest Price Parking section')
-                    } else if (item.querySelector('.best_reviews') != null && item.querySelector('.lowest_price') == null) {
-                        pushDataLayer('Click on Best reviews Parking section')
-                    } else if (item.querySelector('.lowest_price') == null && item.querySelector('.best_reviews') == null) {
-                        pushDataLayer('Click on regular Parking section')
+                    if (e.target.classList.contains('underline')) {
+                        if (item.querySelector('.lowest_price') != null && item.querySelector('.best_reviews') != null) {
+                            pushDataLayer('Click on Lowest Price and Best reviews Parking section')
+                        } else if (item.querySelector('.lowest_price') != null && item.querySelector('.best_reviews') == null) {
+                            pushDataLayer('Click on Lowest Price Parking section')
+                        } else if (item.querySelector('.best_reviews') != null && item.querySelector('.lowest_price') == null) {
+                            pushDataLayer('Click on Best reviews Parking section')
+                        } else if (item.querySelector('.lowest_price') == null && item.querySelector('.best_reviews') == null) {
+                            pushDataLayer('Click on regular Parking section')
+                        }
                     }
                 })
             })
