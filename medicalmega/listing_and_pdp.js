@@ -1870,7 +1870,7 @@ window.onload = function() {
     }),
     instantsearch.widgets.infiniteHits({
       container: '#hits',
-      escapeHTML: false,
+      // escapeHTML: false,
       templates: {
           empty: `No Item Found`,
           item: (hit) => initHits(hit)
