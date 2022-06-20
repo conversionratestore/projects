@@ -452,7 +452,7 @@ let postParking = (id, startDate, endDate, parent) => {
             //events
             children.forEach(item => {
                 item.addEventListener('click', (e) => {
-                    if (e.target.classList.contains('underline')) {
+                    if (!e.target.classList.contains('underline')) {
                         if (item.querySelector('.lowest_price') != null && item.querySelector('.best_reviews') != null) {
                             pushDataLayer('Click on Lowest Price and Best reviews Parking section')
                         } else if (item.querySelector('.lowest_price') != null && item.querySelector('.best_reviews') == null) {
