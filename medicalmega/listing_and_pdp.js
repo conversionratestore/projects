@@ -2206,7 +2206,9 @@ window.onload = function() {
           query = window.location.pathname.split('search/')[1].split('-').join(' ');
         } 
         console.log(query)
+
         query = state;
+        
         console.log(query)
         search._searchFunction(search.helper)
       }
