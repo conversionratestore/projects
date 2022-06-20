@@ -2200,10 +2200,14 @@ window.onload = function() {
     if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
       if (document.querySelector('.listing_content .ais-InfiniteHits-loadMore') != null && document.querySelector('.listing_content .ais-InfiniteHits-loadMore.ais-InfiniteHits-loadMore--disabled') == null) {
         let state = window.location.pathname.includes('/search/') ? window.location.pathname.split('search/')[1].split('-').join(' ') : '';
+        console.log(state)
         document.querySelector('.listing_content .ais-InfiniteHits-loadMore').click();
         if (state == query && window.location.pathname.includes('/search/')) {
           query = window.location.pathname.split('search/')[1].split('-').join(' ');
         } 
+        console.log(query)
+        query = state;
+        console.log(query)
         search._searchFunction(search.helper)
       }
     }
