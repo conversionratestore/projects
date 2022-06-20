@@ -437,7 +437,7 @@ let postParking = (id, startDate, endDate, parent) => {
             //scroll top
             parent.querySelectorAll('small .underline').forEach(item => {
                 item.addEventListener('click', (e) => {
-                    e.preventDefault();
+                    e.stopImmediatePropagation();
                     scrollTop(document.body, e.target);
                     pushDataLayer('Click on Change the dates button');
                 })
