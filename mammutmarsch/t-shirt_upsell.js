@@ -58,8 +58,8 @@ let style = `
     .modal .title {
         font-family: 'Bebas Neue', sans-serif;
         font-weight: 700;
-        font-size: 28px;
-        line-height: 29px;
+        font-size: 26px;
+        line-height: 27px;
         text-transform: uppercase;
         color: #111111;
     }
@@ -167,8 +167,8 @@ let style = `
     }
     @media only screen and (max-width: 360px) {
         .modal .title {
-            font-size: 25px;
-            line-height: 25px;
+            font-size: 22px;
+            line-height: 22px;
         }
         .modal_container {
             padding: 0 10px 20px;
