@@ -2184,7 +2184,7 @@ window.onload = function() {
     window.location.href = currentPath;
   })
 
-  document.body.addEventListener('click', (e) => { 
+  document.addEventListener('click', (e) => { 
     if (!e.target.closest('.select')) remActiveSelect();
     if (!e.target.closest('.nav_category')) {
         document.querySelector(`.nav_category`).classList.remove('active');
@@ -2809,6 +2809,8 @@ let mut = new MutationObserver(function (muts) {
         e.stopImmediatePropagation();
         query = '';
         search._searchFunction(search.helper)
+        document.querySelector('#form-search .ais-SearchBox-input').value = '';
+        document.querySelector('#form-search pre').innerHTML = '';
 
         let scrollTarget = document.body,
         topOffset = scrollTarget;
@@ -2867,7 +2869,9 @@ let mut = new MutationObserver(function (muts) {
         e.stopImmediatePropagation();
         query = '';
         search._searchFunction(search.helper)
+        console.log(document.querySelector('#form-search .ais-SearchBox-input').value)
         document.querySelector('#form-search .ais-SearchBox-input').value = '';
+        document.querySelector('#form-search pre').innerHTML = '';
        
         if (document.querySelector('.ais-ClearRefinements-button') != null) {
           document.querySelector('.ais-ClearRefinements-button').classList.add('action-clean');
