@@ -182,6 +182,10 @@ let style = `
         .btn_skip {
             font-size: 10px;
         }
+        .modal .close {
+            right: 0;
+            top: 0;
+        }
     }
 </style>`
 
