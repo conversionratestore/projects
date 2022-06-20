@@ -57,8 +57,8 @@ let style = `
     }
     .modal .title {
         font-family: 'Bebas Neue', sans-serif;
-        font-size: 23px;
-        line-height: 24px;
+        font-size: 24px;
+        line-height: 25px;
         text-transform: uppercase;
         color: #111111;
     }
