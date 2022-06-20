@@ -15,6 +15,7 @@ let style = `
         transition: all 0.3s ease;
         height: 100vh;
         width: 100%;
+        overflow-y: auto;
     }
     .modal.active {
         opacity: 1;
