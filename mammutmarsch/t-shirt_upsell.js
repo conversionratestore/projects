@@ -65,7 +65,6 @@ let style = `
     }
     .modal .title span {
         text-transform: lowercase;
-        display: block;
     }
     .modal img {
         max-width: 157px;
