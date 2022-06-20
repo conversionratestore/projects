@@ -2271,6 +2271,7 @@ window.onload = function() {
         
             document.querySelector('#form-search .ais-SearchBox-submit').addEventListener('click', (e) => {
               e.stopImmediatePropagation()
+              document.querySelector('.nav_category').classList.remove('active');
               search.helper.state.hierarchicalFacetsRefinements['categories.lvl0'] = [];
               if (document.querySelector('.advanced-search.active') != null) {
                 document.querySelector('.advanced-search').classList.remove('active');
