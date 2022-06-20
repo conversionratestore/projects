@@ -718,6 +718,7 @@ const addToCart = async (productParentId, productParentSku, productSku) => {
         document.querySelector('.my_cart').classList.add('show')
 
         document.querySelector('.side-modal-content-top i').click()
+        document.querySelector('.cart_content')?.innerHTML = ''
         document.querySelector('.icons-row div i').click()
 
         let waitForCart = setInterval(() => {
@@ -950,6 +951,7 @@ document.addEventListener('click', (e) => {
                     clearInterval(waifForDelete)
 
                     document.querySelector('.side-modal-content-top i').click()
+                    document.querySelector('.cart_content')?.innerHTML = ''
                     document.querySelector('.icons-row div i').click()
                 }
             }, 200);
