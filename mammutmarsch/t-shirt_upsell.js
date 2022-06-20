@@ -30,8 +30,8 @@ let style = `
     }
     .modal .close {
         position: absolute;
-        right: 0;
-        top: 0;
+        right: 10px;
+        top: 5px;
         width: 32px;
         height: 32px;
         background: url("https://conversionratestore.github.io/projects/mammutmarsch/img/close.svg") no-repeat center / 12px;
