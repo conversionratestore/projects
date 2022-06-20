@@ -30,11 +30,11 @@ let style = `
     }
     .modal .close {
         position: absolute;
-        right: 10px;
-        top: 10px;
-        width: 12px;
-        height: 12px;
-        background: url("https://conversionratestore.github.io/projects/mammutmarsch/img/close.svg") no-repeat center / 16px;
+        right: 0;
+        top: 0;
+        width: 32px;
+        height: 32px;
+        background: url("https://conversionratestore.github.io/projects/mammutmarsch/img/close.svg") no-repeat center / 12px;
         opacity: 1;
         flex-shrink: 0;
     }
