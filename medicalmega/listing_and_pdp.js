@@ -1743,17 +1743,21 @@ window.onload = function() {
   //all categories
   btnCategory.addEventListener('click', (e) => {
     if (e.target.matches('.all_category')) {
-      document.querySelector('.ais-ClearRefinements-button').classList.add('action-clean');
-      document.querySelector('.ais-ClearRefinements-button').click();
+      if (document.querySelector('.ais-ClearRefinements-button') != null && document.querySelector('.ais-ClearRefinements-button.ais-ClearRefinements-button--disabled') == null) {
+        document.querySelector('.ais-ClearRefinements-button').classList.add('action-clean');
+        document.querySelector('.ais-ClearRefinements-button').click();
+      }
   
       // query = '';
       // search._searchFunction(search.helper);
-      if (document.querySelector('#form-search input').value != '') {
+      if (document.querySelector('#form-search input').value != '' && search.helper.state.query != '') {
         search.helper.setQuery('') // this call resets the page
           .setPage(search.helper.getPage()) // we re-apply the previous page // Retrieve the current page 
           .search();
 
-        document.querySelector('#form-search input').value = '';
+        setTimeout(() => {
+          document.querySelector('#form-search input').value = '';
+        }, 400)
       }
      
       e.target.parentElement.classList.toggle('active');
