@@ -2833,9 +2833,11 @@ let mut = new MutationObserver(function (muts) {
           if (window.location.pathname.includes('/product/') || window.location.pathname.includes('/search/')) {
             if (window.location.href.includes('?products')) {
               clearInterval(startInterval)
-              let url = window.location.href.split('?')[1];
-              console.log(url)
-              window.location.href = "https://medicalmega.com/?" + url;
+              setTimeout(() => {
+                let url = window.location.href.split('?')[1];
+                console.log(url)
+                window.location.href = "https://medicalmega.com/?" + url;
+              }, 100);
             }
           } else {
             clearInterval(startInterval)
