@@ -119,3 +119,10 @@ dataLayer.push({
     'eventCategory': 'Exp: New pricing block',
     'eventAction': 'loaded'
 });
+
+let isClarify = setInterval(() => {
+	if (typeof clarity == 'function') {
+		clearInterval(isClarify)
+		clarity('set', `new_pricing_block`, 'variant_1')
+	}
+}, 100)
