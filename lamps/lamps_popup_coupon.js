@@ -2,6 +2,33 @@ let startFunk = setInterval(() => {
   if (document.querySelector(".catalog-product-view .main-container")) {
     clearInterval(startFunk)
 
+    // event
+    let eventVar = "desktop"
+
+    if (window.innerWidth <= 768) {
+      eventVar = "mobile"
+    }
+
+    function pushDataLayer(actionDataLayer, labelDataLayer) {
+      window.dataLayer = window.dataLayer || []
+      if (labelDataLayer) {
+        console.log(actionDataLayer + " : " + labelDataLayer)
+        dataLayer.push({
+          event: "event-to-ga",
+          eventCategory: `Exp: Sign up discount ${eventVar}`,
+          eventAction: `${actionDataLayer}`,
+          eventLabel: `${labelDataLayer}`,
+        })
+      } else {
+        console.log(actionDataLayer)
+        dataLayer.push({
+          event: "event-to-ga",
+          eventCategory: `Exp: Sign up discount ${eventVar}`,
+          eventAction: `${actionDataLayer}`,
+        })
+      }
+    }
+
     let popUpStyle = /*html */ `
     <style>
     #cart-panel .mkt.i-block.text-center {
@@ -285,29 +312,50 @@ let startFunk = setInterval(() => {
       margin-bottom: -5px;
     }
 
+    .discount_cart{
+      height: 44px;
+    }
+
+    .discount_cart.sign_up{
+      font-weight: 700;
+    }
+
     .discount_pdp,
     .discount_pdp.sign_up {
       border-radius: 8px;
       max-width: 260px;
-      margin: 0;
+      margin: 14px 0 0 15px;
+    }
+
+    .discount_pdp{
+      margin-top: 8px;
+      height: 44px;
+    }
+
+    .catalog-product-view .product-essential .p-price .final-price{
+      display: block;
+      width: fit-content;
+      float: left;
     }
 
     .discount_pdp.sign_up {
-      max-width: 218px;
+      max-width: 252px;
+      font-size: 14px;
+      line-height: 16px;
+      color: #286278;
+      background: unset;
     }
 
-    .discount_cart.sign_up span:first-of-type,
-    .discount_pdp.sign_up span:first-of-type {
+    .discount_cart.sign_up span,
+    .discount_pdp.sign_up span {
       text-decoration: underline;
       cursor: pointer;
-      margin: 0;
+      margin: 0 0 0 5px;
     }
 
-    .discount_cart.sign_up span:last-of-type,
-    .discount_pdp.sign_up span:last-of-type,
-    .discount_pdp span {
-      font-weight: 400;
-      margin: 0 5px;
+    .discount_pdp span,
+    .discount_cart span{
+      margin: 0 0 0 5px;
     }
 
     .img_lamps_mob {
@@ -358,6 +406,15 @@ let startFunk = setInterval(() => {
       .form_wrap > p.coupon_var:last-child {
         position: unset;
         margin: 0;
+      }
+
+      .discount_pdp, 
+      .discount_pdp.sign_up{
+        margin: 14px 0 0 6px;
+      }
+
+      .discount_pdp {
+          margin-top: 8px;
       }
     }
 
@@ -506,43 +563,61 @@ let startFunk = setInterval(() => {
     `
 
     let discountCart = /*html */ `
-    <div class="discount_cart">15% discount applied</div>
+    <div class="discount_cart">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M7.49977 14.25L11.6248 10.125M9.74977 16.5L11.6248 14.625M3.31027 12.4395L11.5603 4.1895C11.8415 3.90818 12.223 3.75008 12.6208 3.75H18.7498C19.1476 3.75 19.5291 3.90804 19.8104 4.18934C20.0917 4.47064 20.2498 4.85218 20.2498 5.25V11.379C20.2497 11.7768 20.0916 12.1583 19.8103 12.4395L11.5603 20.6895C11.279 20.9707 10.8975 21.1287 10.4998 21.1287C10.102 21.1287 9.72057 20.9707 9.43927 20.6895L3.31027 14.5605C3.02907 14.2792 2.87109 13.8977 2.87109 13.5C2.87109 13.1023 3.02907 12.7208 3.31027 12.4395V12.4395Z" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M17.25 7.5C17.25 7.69891 17.171 7.88968 17.0303 8.03033C16.8897 8.17098 16.6989 8.25 16.5 8.25C16.3011 8.25 16.1103 8.17098 15.9697 8.03033C15.829 7.88968 15.75 7.69891 15.75 7.5C15.75 7.30109 15.829 7.11032 15.9697 6.96967C16.1103 6.82902 16.3011 6.75 16.5 6.75C16.6989 6.75 16.8897 6.82902 17.0303 6.96967C17.171 7.11032 17.25 7.30109 17.25 7.5Z" fill="white"/>
+      </svg>  
+      <span>15% discount applied</span>
+    </div>
     `
 
     let discountCartSignUp = /*html */ `
-    <div class="discount_cart sign_up"><span data-sign="signUup">Sign up</span> <span>to get</span> 15% discount</div>
+    <div class="discount_cart sign_up"><span data-sign="signUup">get 15% off with a coupon</span></div>
     `
 
     let discountPdp = /*html */ `
-    <div class="discount_pdp">15% discount <span>applied at checkout</span></div>
+    <div class="discount_pdp">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M7.49977 14.25L11.6248 10.125M9.74977 16.5L11.6248 14.625M3.31027 12.4395L11.5603 4.1895C11.8415 3.90818 12.223 3.75008 12.6208 3.75H18.7498C19.1476 3.75 19.5291 3.90804 19.8104 4.18934C20.0917 4.47064 20.2498 4.85218 20.2498 5.25V11.379C20.2497 11.7768 20.0916 12.1583 19.8103 12.4395L11.5603 20.6895C11.279 20.9707 10.8975 21.1287 10.4998 21.1287C10.102 21.1287 9.72057 20.9707 9.43927 20.6895L3.31027 14.5605C3.02907 14.2792 2.87109 13.8977 2.87109 13.5C2.87109 13.1023 3.02907 12.7208 3.31027 12.4395V12.4395Z" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M17.25 7.5C17.25 7.69891 17.171 7.88968 17.0303 8.03033C16.8897 8.17098 16.6989 8.25 16.5 8.25C16.3011 8.25 16.1103 8.17098 15.9697 8.03033C15.829 7.88968 15.75 7.69891 15.75 7.5C15.75 7.30109 15.829 7.11032 15.9697 6.96967C16.1103 6.82902 16.3011 6.75 16.5 6.75C16.6989 6.75 16.8897 6.82902 17.0303 6.96967C17.171 7.11032 17.25 7.30109 17.25 7.5Z" fill="white"/>
+      </svg>  
+      <span>15% discount applied on cart</span>
+    </div>
     `
 
     let discounPdpSignUp = /*html */ `
-    <div class="discount_pdp sign_up"><span data-sign="signUup">Sign up</span> <span>to get</span> 15% discount</div>
+    <div class="discount_pdp sign_up">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M7.49977 14.25L11.6248 10.125M9.74977 16.5L11.6248 14.625M3.31027 12.4395L11.5603 4.1895C11.8415 3.90818 12.223 3.75008 12.6208 3.75H18.7498C19.1476 3.75 19.5291 3.90804 19.8104 4.18934C20.0917 4.47064 20.2498 4.85218 20.2498 5.25V11.379C20.2497 11.7768 20.0916 12.1583 19.8103 12.4395L11.5603 20.6895C11.279 20.9707 10.8975 21.1287 10.4998 21.1287C10.102 21.1287 9.72057 20.9707 9.43927 20.6895L3.31027 14.5605C3.02907 14.2792 2.87109 13.8977 2.87109 13.5C2.87109 13.1023 3.02907 12.7208 3.31027 12.4395V12.4395Z" stroke="#286278" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M17.25 7.5C17.25 7.69891 17.171 7.88968 17.0303 8.03033C16.8897 8.17098 16.6989 8.25 16.5 8.25C16.3011 8.25 16.1103 8.17098 15.9697 8.03033C15.829 7.88968 15.75 7.69891 15.75 7.5C15.75 7.30109 15.829 7.11032 15.9697 6.96967C16.1103 6.82902 16.3011 6.75 16.5 6.75C16.6989 6.75 16.8897 6.82902 17.0303 6.96967C17.171 7.11032 17.25 7.30109 17.25 7.5Z" fill="#286278"/>
+      </svg>
+      <span data-sign="signUup">get 15% off with a coupon</span>
+    </div>
     `
 
     document.head.insertAdjacentHTML("beforeend", popUpStyle)
     document.body.insertAdjacentHTML("beforeend", popUp)
     document.querySelector(".body_popup")?.insertAdjacentHTML("afterbegin", bodyPopup)
 
-    renderTextToCart()
+    // renderTextToCart()
     renderToPdp()
+    renderToCart()
 
     // render text on cart
-    function renderTextToCart() {
+    function renderToCart() {
       if (document.querySelector("#cart-panel #minicart-items")) {
         document.querySelectorAll("#cart-panel #minicart-items > div").forEach((el) => {
-          console.log(`listing on pdp`)
-
           let dataProduct = JSON.parse(el.getAttribute("data-product"))
           let salesProduct = dataProduct.salesproduct
 
           if (salesProduct) {
-            console.log(typeof salesProduct)
             if (document.querySelector('.header-container .header-actions .action-links [data-account-trigger="true"] span').textContent === "Account") {
               el.insertAdjacentHTML("beforeend", discountCart)
             } else {
               el.insertAdjacentHTML("beforeend", discountCartSignUp)
+
+              onClickSignUp("#cart-panel")
             }
           }
         })
@@ -564,6 +639,8 @@ let startFunk = setInterval(() => {
           } else {
             if (!document.querySelector(".discount_pdp.sign_up")) {
               document.querySelector(".catalog-product-view .product-essential .p-price .pdp-afterpay")?.insertAdjacentHTML("beforebegin", discounPdpSignUp)
+
+              onClickSignUp("#main-wrapper")
             }
           }
         }
@@ -571,15 +648,19 @@ let startFunk = setInterval(() => {
     }
 
     // coupon activate
-    function activateCoupon() {
-      if (document.querySelector('.header-container .header-actions .action-links [data-account-trigger="true"] span').textContent === "Account") {
-        document.querySelector('.inner-panel .i-block [data-label="Cart Coupon"]')?.click()
-        document.querySelector(".inner-panel .i-block #sidebar-discount-coupon-form input").value = "WLS1-QFT5"
-        if (document.querySelector(".inner-panel .i-block #sidebar-discount-coupon-form input").value !== "") {
-          document.querySelector(".inner-panel .i-block #submit-coupon")?.click()
+    const startCoupon = setInterval(() => {
+      const couponInput = document.querySelector(".inner-panel .i-block #sidebar-discount-coupon-form input")
+      if (couponInput) {
+        // clearInterval(startCoupon)
+
+        if (document.querySelector('.header-container .header-actions .action-links [data-account-trigger="true"] span').textContent === "Account") {
+          if (couponInput.value !== "WLS1-QFT5") {
+            couponInput.value = "WLS1-QFT5"
+            document.querySelector(".inner-panel .i-block #submit-coupon")?.click()
+          }
         }
       }
-    }
+    }, 1000)
 
     // observer
     let observer = new MutationObserver(() => {
@@ -599,41 +680,63 @@ let startFunk = setInterval(() => {
       subtree: true,
     })
 
-    // let observerCart = new MutationObserver(() => {
-    //   if (document.querySelector("#cart-panel")) {
-    //     observer.disconnect()
-    //     renderTextToCart()
+    let observerCart = new MutationObserver((muts) => {
+      console.log(muts)
+      if (document.querySelector("#cart-panel")) {
+        console.log(document.querySelector("#cart-panel"))
+        observerCart.disconnect()
+        renderToCart()
 
-    //     observerCart.observe(document.querySelector("#cart-panel"), {
-    //       childList: true,
-    //       subtree: true,
-    //     })
-    //   }
-    // })
+        observerCart.observe(document.querySelector("#cart-panel"), {
+          childList: true,
+          subtree: true,
+        })
+      }
+    })
 
-    // observerCart.observe(document.querySelector("#cart-panel"), {
-    //   childList: true,
-    //   subtree: true,
-    // })
+    observerCart.observe(document.querySelector("#cart-panel"), {
+      childList: true,
+      subtree: true,
+    })
 
     // click on SIGN UP
-    document.querySelectorAll("[data-sign]").forEach((el) => {
-      el.addEventListener("click", function () {
-        document.querySelector('.header-container .header-actions .action-links [data-account-trigger="true"]').click()
+    function onClickSignUp(parent) {
+      document.querySelectorAll(`${parent} [data-sign]`).forEach((el) => {
+        el.addEventListener("click", function () {
+          if (parent === "#main-wrapper") {
+            pushDataLayer("15% off link on PDP clicked")
+          }
+
+          if (parent === "#cart-panel") {
+            pushDataLayer("15% off button on Cart clicked")
+          }
+
+          document.querySelector('.header-container .header-actions .action-links [data-account-trigger="true"]').click()
+        })
       })
-    })
+    }
 
     // TO show POPUP
     setTimeout(() => {
-      showPopup()
+      if (!sessionStorage.getItem("successSign")) {
+        showPopup()
+      }
     }, 3000)
 
-    document.querySelector(".btn_close").addEventListener("click", () => {
+    document.querySelector(".btn_close").addEventListener("click", function () {
+      console.log(this)
+      if (this.getAttribute("successCoupon")) {
+        pushDataLayer("TY after registration pop up closed by X")
+      } else {
+        pushDataLayer("Registration pop up closed by X")
+      }
+
       hidePopup()
     })
 
     document.querySelector(".backdrop_popup").addEventListener("click", (e) => {
       if (e.target.matches(".backdrop_popup")) {
+        pushDataLayer("Registration pop up closed by backdrop")
         hidePopup()
       }
     })
@@ -676,7 +779,9 @@ let startFunk = setInterval(() => {
     })
 
     document.querySelector(".form_wrap button#continueBtn")?.addEventListener("click", () => {
+      pushDataLayer("Continue Shopping clicked")
       hidePopup()
+      // window.location.reload()
     })
 
     document.querySelector(".form_wrap button#btnRegisterSubmit")?.addEventListener("click", () => {
@@ -685,13 +790,13 @@ let startFunk = setInterval(() => {
 
     let newPopup = setInterval(() => {
       if (document.querySelector('.header-container .header-actions .action-links [data-account-trigger="true"] span').textContent === "Account") {
-        if (sessionStorage.getItem("successSign")) {
+        if (sessionStorage.getItem("successCoupon")) {
           clearInterval(newPopup)
           document.querySelectorAll(".body_popup .form_wrap")[1].classList.add("active")
           document.querySelectorAll(".body_popup .form_wrap")[0].classList.remove("active")
           showPopup()
-          if (sessionStorage.getItem("successSign")) {
-            sessionStorage.removeItem("successSign")
+          if (sessionStorage.getItem("successCoupon")) {
+            sessionStorage.removeItem("successCoupon")
           }
         }
       }
@@ -701,7 +806,7 @@ let startFunk = setInterval(() => {
     function validationForm(parent) {
       let inputValueName = document.querySelector(`${parent} input[name='firstName']`).value.match(/^[а-яА-ЯёЁa-zA-Z0-9]+$/)
       let inputLastName = document.querySelector(`${parent} input[name='lastName']`).value.match(/^[а-яА-ЯёЁa-zA-Z0-9]+$/)
-      let inputValueEmail = document.querySelector(`${parent} input[name='registerEmail']`).value.match(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,})+$/)
+      let inputValueEmail = document.querySelector(`${parent} input[name='registerEmail']`).value.match(/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/)
 
       let inputValuePassword = document.querySelector(`${parent} input[name='registerPassword']`).value.match(/^.{7,24}$/)
 
@@ -755,9 +860,31 @@ let startFunk = setInterval(() => {
 
         document.querySelector("#btn-register-submit").click()
 
+        // const a = setInterval(() => {
+        //   if (document.querySelector(".status-msg.danger.alert.alert-danger")) {
+        //     clearInterval(a)
+        //     console.log(`>>>setInterval`)
+        //     document.querySelector(".status-msg.danger.alert.alert-danger").remove()
+        //   }
+        // }, 100)
+
+        // setTimeout(() => {
+        //   if (!document.querySelector(".status-msg.danger.alert.alert-danger")) {
+        //     clearInterval(a)
+        //     console.log(`>>>setTimeout`)
+
+        //   }
+        // }, 1500)
+
+        pushDataLayer("Sign Up clicked")
+        document.querySelector(".btn_close").setAttribute("successCoupon", "true")
         sessionStorage.setItem("successSign", true)
+        sessionStorage.setItem("successCoupon", true)
         hidePopup()
       }
     }
+
+    pushDataLayer("loaded")
+    clarity("set", `signup_discount_${eventVar}`, "variant_1")
   }
 }, 10)
