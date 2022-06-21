@@ -75,19 +75,20 @@ let style = `
 
 let html = `
     <div class="purchase_price">
+        <div class="for_pack">
+            Get
+            <b>3 packs</b>
+            x
+            <b>60 patches</b>
+        </div>
         <div class="flex justify-center align-center">  
-            <div class="rp_wrap ">$<span class="rp">74.97</span></div>
-            <b class="pr_wrap">$<span class="pr">36</span> </b>
+            <div class="rp_wrap ">Was $<span class="rp">84</span> (Save $ <span class="rs">46.5</span>)</div>
+
+            <b class="pr_wrap">$<span class="pr">37.5</span> </b>
             <div class="ps_wrap">
                 <span class="ps">52</span>
                 % OFF
             </div> 
-        </div>
-        <div class="for_pack">
-            for
-            <b>3 packs</b>
-            x
-            <b>60 patches</b>
         </div>
     </div>
 `;
@@ -111,24 +112,40 @@ document.querySelector('#addToCart').insertAdjacentHTML('afterend',`
 //object prices
 let objPrice = [   
     {
-        'oldPrice': '99.96',
-        'price': '46',
-        'off': '54'
+        'id': '40077473021996',
+        'pack': '3',
+        'oldPrice': '84',
+        'pricePack': '37.5',
+        'price': '12',
+        'off': '55',
+        'save': '46.5'
     },
     {
-        'oldPrice': '74.97',
-        'price': '36',
-        'off': '52'
+        'id': '40077473120300',
+        'pack': '4',
+        'oldPrice': '112',
+        'pricePack': '46',
+        'price': '11.5',
+        'off': '58',
+        'save': '66'
+    },
+    {   
+        'id': '40077473087532',
+        'pack': '2',
+        'oldPrice': '56',
+        'pricePack': '27',
+        'price': '13.5',
+        'off': '51',
+        'save': '29'
     },
     {
-        'oldPrice': '49.98',
-        'price': '26.99',
-        'off': '46'
-    },
-    {
-        'oldPrice': '24.99',
+        'id': '40077473054764',
+        'pack': '1',
+        'oldPrice': '27.99',
+        'pricePack': '16',
         'price': '16',
-        'off': '36'
+        'off': '42',
+        'save': '11.99'
     }
 ] 
 
@@ -138,27 +155,28 @@ let price = document.querySelector('.pr_wrap .pr'),
     forPack = document.querySelector('.for_pack b');
 
 //change prices
-document.querySelectorAll('.js-packs').forEach((pack,index) => {
-    pack.addEventListener('change', () => {
-        if (pack.querySelector('input').checked) {
-            forPack.innerHTML = pack.querySelector('label').innerHTML.toLowerCase().split('<br')[0];
-            if (index == 0) {
-                price.innerHTML = objPrice[1].price
-                priceOld.innerHTML = objPrice[1].oldPrice
-                off.innerHTML = objPrice[1].off
-            } else if (index == 1) {
-                price.innerHTML = objPrice[0].price
-                priceOld.innerHTML = objPrice[0].oldPrice
-                off.innerHTML = objPrice[0].off
-            } else if (index == 2) {
-                price.innerHTML = objPrice[2].price
-                priceOld.innerHTML = objPrice[2].oldPrice
-                off.innerHTML = objPrice[2].off
-            } else {
-                price.innerHTML = objPrice[3].price
-                priceOld.innerHTML = objPrice[3].oldPrice
-                off.innerHTML = objPrice[3].off
-            }
-        }
+document.querySelectorAll('.js-packs').forEach((pack,i) => {
+    pack.querySelector('input').value = objPrice[i].id;
+    pack.querySelector('label span').innerHTML = `$${objPrice[i].price} Each`;
+    pack.addEventListener('change', (e) => {
+        forPack.innerHTML = pack.querySelector('label').innerHTML.toLowerCase().split('<br')[0];
+
+        price.innerHTML = objPrice[i].pricePack;
+        priceOld.innerHTML = objPrice[i].oldPrice;
+        off.innerHTML = objPrice[i].off;
+
+        window.dataLayer = window.dataLayer || [];
+        dataLayer.push({
+            'event': 'event-to-ga',
+            'eventCategory': 'Exp: New pricing block',
+            'eventAction': `Clicks on package - ${forPack.innerHTML}`
+        });
     })
 })
+
+window.dataLayer = window.dataLayer || [];
+dataLayer.push({
+    'event': 'event-to-ga',
+    'eventCategory': 'Exp: New pricing block',
+    'eventAction': 'loaded'
+});
