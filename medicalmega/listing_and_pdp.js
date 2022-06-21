@@ -2148,6 +2148,7 @@ window.onload = function() {
                 openCategoriesFoeAlphabet(document.querySelectorAll('#list_categories li'))
               })
             }
+              
           }
       },
     },
@@ -2155,6 +2156,11 @@ window.onload = function() {
 
   search.start();
   
+  if (window.location.pathname.includes('/search/')) {
+    search.helper.setQuery(window.location.pathname.split('/search/')[1]) // this call resets the page
+      .setPage(search.helper.getPage()) // we re-apply the previous page
+      .search();
+  }
 
   // document.querySelector('#form-search .ais-SearchBox-input').addEventListener('input', (e) => query = e.target.value)
 
