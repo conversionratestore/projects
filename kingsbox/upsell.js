@@ -744,7 +744,7 @@ const checkIsEmptyCategory = (selectedCategoryIndex) => {
 
                     let selectedCategory = document.querySelector(`.category[data-category-index="${selectedCategoryIndex}"]`)
 
-                    document.querySelector(`.category[data-category-index="${selectedCategoryIndex}"]`).closest('.tns-outer').classList.add('selected')
+                    selectedCategory?.closest('.tns-outer').classList.add('selected')
 
                     if (!selectedCategory.classList.contains('loaded')) {
                         selectedCategory.classList.add('loaded')
