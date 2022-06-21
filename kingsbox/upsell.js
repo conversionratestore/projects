@@ -589,8 +589,9 @@ const drawSelectedAccessory = (categoryAccessoryIndex) => {
                 }
             })
 
-            return `
-				<div data-item-index="${index}" class="category_item${isInCart ? ' hide_item' : ''}">																	
+            if (!isInCart) {
+                return `
+				<div data-item-index="${index}" class="category_item">																	
 					<div class="item_inner">
 						<a href='https://kingsbox.com/${pageLanguage2 !== 'en' ? pageLanguage2 + '/' : ''}product/${pathLink}'>
 							<div class="top_part">
@@ -607,39 +608,49 @@ const drawSelectedAccessory = (categoryAccessoryIndex) => {
 						</div>
 					</div>																				
 				</div>`
+            }
         }).join('')}							
 		</div>`
     }
 
-    let waitForWrapper = setInterval(() => {
-        if (document.querySelector('.category_wrapper')) {
-            clearInterval(waitForWrapper)
+    console.log('accessoryItems', accessoryItems);
 
-            document.querySelector('.category_wrapper .selected')?.classList.remove('selected')
-            document.querySelector('.category_wrapper').insertAdjacentHTML('beforeend', accessoryItems)
+    console.log();
 
+    if (accessoryItems.includes('category_item')) {
+        document.querySelector(`.empty_cart`).classList.remove('show')
 
-            let waitForList = setInterval(() => {
-                if (typeof tns === 'function') {
-                    clearInterval(waitForList)
-                    initSlider('.category_wrapper .category:not(.tns-slider)')
-                }
-            }, 200)
+        let waitForWrapper = setInterval(() => {
+            if (document.querySelector('.category_wrapper')) {
+                clearInterval(waitForWrapper)
 
-            if (document.querySelectorAll('.category_wrapper .tns-outer').length < 1) {
-                let waitForFrSlider = setInterval(() => {
-                    if (document.querySelector('.category_wrapper .tns-outer')) {
-                        clearInterval(waitForFrSlider)
+                document.querySelector('.category_wrapper .selected')?.classList.remove('selected')
+                document.querySelector('.category_wrapper').insertAdjacentHTML('beforeend', accessoryItems)
 
-                        document.querySelector('.category_wrapper .tns-outer').classList.add('selected')
-                        document.querySelector('.category_wrapper .category').classList.add('loaded')
+                let waitForList = setInterval(() => {
+                    if (typeof tns === 'function') {
+                        clearInterval(waitForList)
+                        initSlider('.category_wrapper .category:not(.tns-slider)')
                     }
-                }, 100)
-            }
-        }
-    }, 100);
+                }, 200)
 
-    checkIsEmptyCategory(categoryAccessoryIndex || 0)
+                if (document.querySelectorAll('.category_wrapper .tns-outer').length < 1) {
+                    let waitForFrSlider = setInterval(() => {
+                        if (document.querySelector('.category_wrapper .tns-outer')) {
+                            clearInterval(waitForFrSlider)
+
+                            document.querySelector('.category_wrapper .tns-outer').classList.add('selected')
+                            document.querySelector('.category_wrapper .category').classList.add('loaded')
+                        }
+                    }, 100)
+                }
+            }
+        }, 100);
+    } else {
+        document.querySelector(`.empty_cart`).classList.add('show')
+    }
+
+    selectCategory(categoryAccessoryIndex || 0)
 }
 
 const getAccessory = async (accessoryId, accessoryIndex) => {
@@ -721,7 +732,7 @@ const addToCart = async (productParentId, productParentSku, productSku) => {
     }
 }
 
-const checkIsEmptyCategory = (selectedCategoryIndex) => {
+const selectCategory = (selectedCategoryIndex) => {
     let waitForCategory = setInterval(() => {
         if (document.querySelector(`.category[data-category-index="${selectedCategoryIndex}"]`)?.closest('.tns-outer')) {
             clearInterval(waitForCategory)
@@ -736,25 +747,6 @@ const checkIsEmptyCategory = (selectedCategoryIndex) => {
 
                     if (!selectedCategory.classList.contains('loaded')) {
                         selectedCategory.classList.add('loaded')
-                    }
-
-                    let isEmptyCategory = false
-
-                    const itemsList = [...document.querySelectorAll(`.category[data-category-index="${selectedCategoryIndex}"] .category_item`)]
-
-                    for (let i = 0; i < itemsList.length; i++) {
-                        if (!itemsList[i].classList.contains('hide_item')) {
-                            isEmptyCategory = false
-                            break
-                        } else {
-                            isEmptyCategory = true
-                        }
-                    }
-
-                    if (isEmptyCategory) {
-                        document.querySelector(`.empty_cart`).classList.add('show')
-                    } else {
-                        document.querySelector(`.empty_cart`).classList.remove('show')
                     }
                 }
             })
@@ -825,7 +817,7 @@ const drawAccessoriesNew = () => {
                             'eventAction': 'Click on the catagories'
                         });
 
-                        checkIsEmptyCategory(index)
+                        selectCategory(index)
                     })
                 })
 
