@@ -23,7 +23,6 @@ let style = `
         font-size: 18px;
     }
     .rp_wrap {
-        color: #534E4E;
         font-size: 14px;
         line-height: 24px;
         color: #777777;
