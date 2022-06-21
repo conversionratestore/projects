@@ -618,8 +618,6 @@ const drawSelectedAccessory = (categoryAccessoryIndex) => {
     console.log();
 
     if (accessoryItems.includes('category_item')) {
-        document.querySelector(`.empty_cart`).classList.remove('show')
-
         let waitForWrapper = setInterval(() => {
             if (document.querySelector('.category_wrapper')) {
                 clearInterval(waitForWrapper)
@@ -646,11 +644,10 @@ const drawSelectedAccessory = (categoryAccessoryIndex) => {
                 }
             }
         }, 100);
+        selectCategory(categoryAccessoryIndex || 0)
     } else {
         document.querySelector(`.empty_cart`).classList.add('show')
     }
-
-    selectCategory(categoryAccessoryIndex || 0)
 }
 
 const getAccessory = async (accessoryId, accessoryIndex) => {
@@ -744,6 +741,8 @@ const selectCategory = (selectedCategoryIndex) => {
                     let selectedCategory = document.querySelector(`.category[data-category-index="${selectedCategoryIndex}"]`)
 
                     selectedCategory?.closest('.tns-outer').classList.add('selected')
+
+                    document.querySelector(`.empty_cart`).classList.remove('show')
 
                     if (!selectedCategory.classList.contains('loaded')) {
                         selectedCategory.classList.add('loaded')
