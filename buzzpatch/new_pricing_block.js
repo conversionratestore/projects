@@ -53,31 +53,11 @@ let style = `
         font-size: 16px;
         line-height: 24px;
     }
-    .text_stock {
-        font-family: 'Roboto', sans-serif;
-        font-style: normal;
-        font-weight: 400;
-        font-size: 14px;
-        line-height: 20px;
-        color: #000000;
-        margin: 17px 0 24px;
-    }
     #purchase .prices, #getNow .days {
         display: none;
     }
-    .free_shipping {
-        font-family: 'Roboto', sans-serif;
-        font-style: normal;
-        font-size: 14px;
-        line-height: 16px;
-        color: #0C0B0B;
-        margin-bottom: 20px;
-    }
-    #purchase #getNow .free_shipping img {
-        margin: 0 13px 0 0;
-    }
-    .max-w-330 {
-        max-width: 330px;
+    .package .form {
+        margin-bottom: 30px;
     }
 </style>`
 
