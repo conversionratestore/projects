@@ -2206,6 +2206,10 @@ window.onload = function() {
     remActiveSelect(); 
     document.querySelector('.nav_category').classList.remove('active')
     if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
+      console.log(window.innerHeight + window.scrollY)
+      console.log(document.body.offsetHeight)
+      console.log((window.innerHeight + window.scrollY) >= document.body.offsetHeight)
+
       if (document.querySelector('.listing_content .ais-InfiniteHits-loadMore') != null && document.querySelector('.listing_content .ais-InfiniteHits-loadMore.ais-InfiniteHits-loadMore--disabled') == null) {
         let state = window.location.pathname.includes('/search/') ? window.location.pathname.split('search/')[1].split('-').join(' ') : '';
         console.log(state)
@@ -2217,7 +2221,7 @@ window.onload = function() {
 
         // query = state;
         
-        // console.log(query)
+        console.log(search.helper.state.query)
         // search._searchFunction(search.helper)
       }
     }
