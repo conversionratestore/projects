@@ -72,8 +72,7 @@ let html = `
         <div class="flex justify-center align-center">  
             <b class="pr_wrap">NOW $<span class="pr">36</span> </b>
             <div class="ps_wrap">
-                <span class="ps">52</span>
-                % OFF
+                <span class="ps">52</span>% OFF
             </div> 
         </div>
     </div>
