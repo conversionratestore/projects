@@ -2828,13 +2828,14 @@ let mut = new MutationObserver(function (muts) {
             if (window.location.href.includes('?products')) {
               clearInterval(startInterval)
               let url = window.location.href.split('?')[1];
+              console.log(url)
               window.location.href = "https://medicalmega.com/?" + url;
             }
           } else {
             clearInterval(startInterval)
             toggleListing(true)
           }
-        })
+        }, 100)
         if (e.target.classList.contains('home-popular')) {
           actionDataLayer = `Click on Show more button - ${el.querySelector('.ais-HierarchicalMenu-label').innerText}`;
           labelDataLayer = `Home page`;
