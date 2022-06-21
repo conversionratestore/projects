@@ -4,7 +4,7 @@ let style = `
         font-weight: 400;
         font-size: 36px;
         line-height: 30px;
-        margin-bottom: 19px;
+        margin-bottom: 18px;
     }
     #purchase #getNow img {
         max-width: 270px;   
