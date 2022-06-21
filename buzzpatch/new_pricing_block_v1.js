@@ -69,9 +69,9 @@ let html = `
             x
             <b>60 patches</b>
         </div>
-        <div class="rp_wrap ">Was <span class="line-through">$<span class="rp">84</span></span> (Save $<span class="rs">46.5</span>)</div>
+        <div class="rp_wrap ">Was <span class="line-through">$<span class="rp">74.97</span></span> (Save $<span class="rs">39</span>)</div>
         <div class="flex justify-center align-center">  
-            <b class="pr_wrap">NOW $<span class="pr">37.5</span> </b>
+            <b class="pr_wrap">NOW $<span class="pr">36</span> </b>
             <div class="ps_wrap">
                 <span class="ps">52</span>
                 % OFF
