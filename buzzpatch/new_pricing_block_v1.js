@@ -107,7 +107,7 @@ window.onload  = function () {
             window.dataLayer = window.dataLayer || [];
             dataLayer.push({
                 'event': 'event-to-ga',
-                'eventCategory': 'Exp: New pricing block',
+                'eventCategory': 'Exp: New pricing block (v1)',
                 'eventAction': `Clicks on package - ${forPack.innerHTML}`
             });
         })
@@ -117,7 +117,7 @@ window.onload  = function () {
 window.dataLayer = window.dataLayer || [];
 dataLayer.push({
     'event': 'event-to-ga',
-    'eventCategory': 'Exp: New pricing block',
+    'eventCategory': 'Exp: New pricing block (v1)',
     'eventAction': 'loaded'
 });
 
