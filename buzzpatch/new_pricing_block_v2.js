@@ -104,7 +104,7 @@ window.onload  = function () {
             window.dataLayer = window.dataLayer || [];
             dataLayer.push({
                 'event': 'event-to-ga',
-                'eventCategory': 'Exp: New pricing block',
+                'eventCategory': 'Exp: New pricing block (v2)',
                 'eventAction': `Clicks on package - ${forPack.innerHTML}`
             });
         })
@@ -114,13 +114,13 @@ window.onload  = function () {
 window.dataLayer = window.dataLayer || [];
 dataLayer.push({
     'event': 'event-to-ga',
-    'eventCategory': 'Exp: New pricing block',
+    'eventCategory': 'Exp: New pricing block (v2)',
     'eventAction': 'loaded'
 });
 
 let isClarify = setInterval(() => {
 	if (typeof clarity == 'function') {
 		clearInterval(isClarify)
-		clarity('set', `new_pricing_block`, 'variant_1')
+		clarity('set', `new_pricing_block`, 'variant_2')
 	}
 }, 100)
