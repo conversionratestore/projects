@@ -1718,7 +1718,6 @@ function changeQty(qty,pr,action) {
 }
 
 window.onload = function() {
-
   document.body.insertAdjacentHTML('afterbegin', html);
   document.body.insertAdjacentHTML('afterbegin', style);
 
@@ -2002,7 +2001,6 @@ window.onload = function() {
         }));
       }
     }),
-
     {
       render({ searchMetadata = {} }) {
           const { isSearchStalled } = searchMetadata
@@ -2064,7 +2062,6 @@ window.onload = function() {
               let items = [...alphabet.querySelectorAll("li")];
               items.sort((a, b) => a.innerText == b.innerText ? 0 : a.innerText < b.innerText ? -1 : 1);
               items.forEach(item => alphabet.appendChild(item));
-
             }
 
             if (window.location.pathname.includes('/category')) {
@@ -2226,7 +2223,6 @@ window.onload = function() {
         // console.log(query)
 
         // query = state;
-        
         // search._searchFunction(search.helper)
       }
     }
@@ -2313,8 +2309,7 @@ window.onload = function() {
     }
     ]).on('autocomplete:selected', function(event, suggestion, dataset) {
       window.location.href = `https://medicalmega.com/product/${suggestion.seo}`
-      
-
+  
       actionDataLayer = `Selected suggestion`;
       labelDataLayer = 'Autocomplete Search by Name';
       pushDataLayer(actionDataLayer, labelDataLayer)
@@ -2884,8 +2879,8 @@ let mut = new MutationObserver(function (muts) {
         openCategoriesFoeAlphabet(document.querySelectorAll('#list_categories li'))
       })
     })
-
   }
+
   mut.observe(document, optionMut);
   if ( document.querySelector('#list_categories li') != null ) {
     mut.disconnect();
@@ -2929,6 +2924,7 @@ let mut = new MutationObserver(function (muts) {
       })
     })
   }
+  
   mut.observe(document, optionMut);
   if (document.querySelector('.calc') != null) {
     document.querySelectorAll('.calc').forEach((el, i) => {
