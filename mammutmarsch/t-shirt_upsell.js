@@ -97,22 +97,12 @@ let style = `
         line-height: 14px;
     }
     .modal .price {
-        margin-bottom: 20px;
-    }
-    .modal .price_item {
         font-family: 'Bebas Neue', sans-serif;
         font-weight: 700;
         font-size: 30px;
         line-height: 30px;
         color: #111111;
-    }
-    .modal .price_through {
-        font-family: 'Roboto', sans-serif;
-        padding-left: 5px;
-        font-size: 14px;
-        line-height: 16px;
-        text-decoration-line: line-through;
-        color: #D23F3C;
+        margin-bottom: 20px;
     }
     .btn_skip {
         font-family: 'Roboto', sans-serif;
@@ -218,7 +208,7 @@ let interval = setInterval(() => {
                     <div>
                         <p class="name">Mammutmarsch <br>Event T-Shirt</p>
                         <p class="size">Größe S, M, L, XL, XXL</p>
-                        <p class="price"><span class="price_item">20€</span><span class="price_through">30€ </span></p>
+                        <p class="price">20€</p>
                         <p class="text">Hochwertiges Baumwoll T-Shirt, individueller Druck für jedes Event, Damen- und Herrenshirts, modisch geschnitten. <a href="#" class="btn_more">more</a></p>
                     </div>
                 </div>
