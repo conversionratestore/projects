@@ -73,8 +73,10 @@ let html = `
         </div>
         <div class="ps_wrap"> Save $<span class="rs">39</span> (<span class="ps">52</span>% OFF) </div> 
     </div>
-`;
+`
+
 window.onload  = function () {
+	
     document.head.insertAdjacentHTML('beforeend',`<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet">`); //add font
     document.body.insertAdjacentHTML('afterbegin', style); //add style
     document.querySelector('.package .form').insertAdjacentHTML('beforebegin', html); //add html prices
