@@ -85,6 +85,7 @@ window.onload  = function () {
     document.querySelector('#purchase #getNow img').style = `margin-bottom: -40px;`; //image PACKAGE
     document.querySelector('#getNow p').style.display = 'none'; //hide text behind title
     document.querySelector('#getNow img').srcset = `https://conversionratestore.github.io/projects/buzzpatch/img/package_patches.png`; 
+    document.querySelector('#getNow img').src = `https://conversionratestore.github.io/projects/buzzpatch/img/package_patches.png`; 
     document.querySelector('#addToCart').insertAdjacentHTML('afterend',`<img src="https://conversionratestore.github.io/projects/buzzpatch/img/trust.png" alt="trust icon">`) //add Trustpilot block behind the "PROCEED TO CHECKOUT" button
 
     let price = document.querySelector('.pr_wrap .pr'), 
