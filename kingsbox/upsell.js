@@ -507,6 +507,8 @@ const checkCart = async cartId => {
 
                     document.querySelector('.cart_accessories').addEventListener('click', (e) => {
                         if (e.target.closest('.category_item a')) {
+                            e.preventDefault()
+                            console.log('ss');
                             window.dataLayer = window.dataLayer || [];
                             dataLayer.push({
                                 'event': 'event-to-ga',
@@ -516,6 +518,8 @@ const checkCart = async cartId => {
                         }
 
                         if (e.target.closest('.bottom_part button')) {
+                            e.preventDefault()
+                            console.log('aaa');
                             window.dataLayer = window.dataLayer || [];
                             dataLayer.push({
                                 'event': 'event-to-ga',
