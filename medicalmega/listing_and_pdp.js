@@ -1549,18 +1549,18 @@ const searchClient = algoliasearch(
 
 const indexName = 'products';
 
-let query = window.location.pathname.includes('/search/') ? window.location.pathname.split('/search/')[1].split('-').join(' ') : window.location.href.includes('query%5D=') ? window.location.href.split('query%5D=')[1].split('&products')[0].split('%20').join(' ') : '';
+// let query = window.location.pathname.includes('/search/') ? window.location.pathname.split('/search/')[1].split('-').join(' ') : window.location.href.includes('query%5D=') ? window.location.href.split('query%5D=')[1].split('&products')[0].split('%20').join(' ') : '';
 
 const search = instantsearch({
   searchClient,
   indexName: indexName,
   routing: true,
-  searchFunction(helper) {
-    const page = helper.getPage(); // Retrieve the current page
-    helper.setQuery(query) // this call resets the page
-          .setPage(page) // we re-apply the previous page
-          .search();
-  },
+  // searchFunction(helper) {
+  //   const page = helper.getPage(); // Retrieve the current page
+  //   helper.setQuery(query) // this call resets the page
+  //         .setPage(page) // we re-apply the previous page
+  //         .search();
+  // },
 });
 
 const index = searchClient.initIndex(indexName);
@@ -1586,7 +1586,7 @@ let optionFetchAlgolia = {
 let firstLoaded = true;
 
 let requestAllCaterories = new Promise((resolve, reject) => {
-  fetch(`https://PXDJAQHDPZ-dsn.algolia.net/1/indexes/products?facets=["categories.lvl0","categories.lvl1","categories.lvl2","categories.lvl3","categories.lvl4","manufacturer"]`, optionFetchAlgolia).then(res => res.json()).then(data => resolve(data))
+  fetch(`https://PXDJAQHDPZ-dsn.algolia.net/1/indexes/products?facets=["categories.lvl0","manufacturer"]`, optionFetchAlgolia).then(res => res.json()).then(data => resolve(data))
 })
 
 let requestProduct = new Promise((resolve, reject) => {
@@ -1746,8 +1746,11 @@ window.onload = function() {
       document.querySelector('.ais-ClearRefinements-button').classList.add('action-clean');
       document.querySelector('.ais-ClearRefinements-button').click();
   
-      query = '';
-      search._searchFunction(search.helper);
+      // query = '';
+      // search._searchFunction(search.helper);
+      search.helper.setQuery('') // this call resets the page
+        .setPage(search.helper.getPage()) // we re-apply the previous page // Retrieve the current page 
+        .search();
       e.target.parentElement.classList.toggle('active');
       document.querySelector('.advanced-search').classList.remove('active');
       document.querySelector(`[data-button="advanced-search"]`).classList.remove('active');
@@ -1787,15 +1790,10 @@ window.onload = function() {
 
   requestAllCaterories.then(data => {
     let categoriesLvl0 = data.facets["categories.lvl0"],
-        categoriesLvl1 = data.facets["categories.lvl1"],
-        categoriesLvl2 = data.facets["categories.lvl2"],
-        categoriesLvl3 = data.facets["categories.lvl3"],
-        categoriesLvl4 = data.facets["categories.lvl4"],
         brand = data.facets.manufacturer;
 
 
     for (let key in categoriesLvl0) {
-      // document.querySelector('#list_categories').insertAdjacentHTML('beforeend',`<li><a href="https://medicalmega.com/?products%5BhierarchicalMenu%5D%5Bcategories.lvl0%5D%5B0%5D=${key}" data-category="categories.lvl0:${key}">${key}</a><ul></ul></li>`)
       document.querySelector('.select_category .select_dropdown').insertAdjacentHTML('beforeend', ` 
       <li class="select_option"><p data-category="categories.lvl0:${key}">${key}</p>
         <ul></ul>
@@ -1855,7 +1853,7 @@ window.onload = function() {
   search.addWidgets([
     instantsearch.widgets.configure({
       hitsPerPage: '12',
-      // enablePersonalization: true,
+      enablePersonalization: true,
     }),
     instantsearch.widgets.searchBox({
       container: '#form-search',
@@ -1863,7 +1861,7 @@ window.onload = function() {
       showLoadingIndicator: false,
       searchAsYouType: false, 
       showSubmit: true,
-      howReset: true,
+      showReset: true,
       templates: {
           loadingIndicator: '<img src="https://conversionratestore.github.io/projects/medicalmega/img/loading-buffering.gif" alt="icon loading">',
       },
@@ -2014,11 +2012,13 @@ window.onload = function() {
                   pricesContainer.appendChild(p);
               });
             }
-         
+            document.querySelector('#form-search input').addEventListener('blur', () => {
+              document.querySelector('#form-search input').value = search.helper.state.query == 'undefined' ||  search.helper.state.query == '' ? '' : search.helper.state.query;
+            });
             document.querySelector('.ais-SearchBox-reset').addEventListener('click', (e) => {
               e.stopImmediatePropagation()
-              query = '';
-              search._searchFunction(search.helper);
+              // query = '';
+              // search._searchFunction(search.helper);
 
               toggleListing(true)
               if (!e.target.classList.contains('reset')) {
@@ -2029,6 +2029,7 @@ window.onload = function() {
                 e.target.classList.remove('reset')
               }
             })
+            
             if (countSearchStalled == 0) {
               countSearchStalled = 1;
               let listCategories = document.querySelectorAll('#list_categories li'),
@@ -2125,9 +2126,9 @@ window.onload = function() {
                 e.stopImmediatePropagation();
                 countSearchStalled = 0;
                 
-                query = '';
-                search._searchFunction(search.helper);
-                document.querySelector('#form-search .ais-SearchBox-input').value = '';
+                // query = '';
+                // search._searchFunction(search.helper);
+                // document.querySelector('#form-search .ais-SearchBox-input').value = '';
 
                 if (!e.target.classList.contains('action-clean')) {
                   actionDataLayer = `Click on All Clear Filters button`;
@@ -2153,8 +2154,9 @@ window.onload = function() {
   ]); 
 
   search.start();
+  
 
-  document.querySelector('#form-search .ais-SearchBox-input').addEventListener('input', (e) => query = e.target.value)
+  // document.querySelector('#form-search .ais-SearchBox-input').addEventListener('input', (e) => query = e.target.value)
 
   let dataButton = document.querySelectorAll('[data-button]'), // btn for open or bloc
       closeBtn = document.querySelectorAll('[data-close]'); //btn close for hide popup or block
@@ -2189,10 +2191,9 @@ window.onload = function() {
     if (!e.target.closest('.nav_category')) {
         document.querySelector(`.nav_category`).classList.remove('active');
     } 
-    if (search.helper.state.query == '' && !e.target.closest('#form-search')) {
-      document.querySelector('#form-search .ais-SearchBox-input').value = '';
-      document.querySelector('#form-search pre') != null ? document.querySelector('#form-search pre').innerHTML = '' : '';
-    }
+    // if (search.helper.state.query == '' && !e.target.closest('#form-search')) {
+    //   document.querySelector('#form-search .ais-SearchBox-input').value = '';
+    // }
   })
 
   window.addEventListener('scroll', (e) => {
@@ -2202,15 +2203,15 @@ window.onload = function() {
         let state = window.location.pathname.includes('/search/') ? window.location.pathname.split('search/')[1].split('-').join(' ') : '';
         console.log(state)
         document.querySelector('.listing_content .ais-InfiniteHits-loadMore').click();
-        if (state == query && window.location.pathname.includes('/search/')) {
-          query = window.location.pathname.split('search/')[1].split('-').join(' ');
-        } 
-        console.log(query)
+        // if (state == query && window.location.pathname.includes('/search/')) {
+        //   query = window.location.pathname.split('search/')[1].split('-').join(' ');
+        // } 
+        // console.log(query)
 
-        query = state;
+        // query = state;
         
-        console.log(query)
-        search._searchFunction(search.helper)
+        // console.log(query)
+        // search._searchFunction(search.helper)
       }
     }
   })
@@ -2274,7 +2275,6 @@ window.onload = function() {
           suggestion: function(suggestion) {
             let sugTemplate = "<img src='https://medicalmegaimgs.net/prod/uploaded/product/pro_thumb/"+ (findImageHits(suggestion.variants) != '' ? findImageHits(suggestion.variants) : 'dummyimage.jpg') +"'/><div><p class='name'>"+ suggestion._highlightResult.name.value +"</p><p class='item_num'>Item #" + suggestion._highlightResult.item_num.value + "</p><p class='price'>$" + suggestion.price + "</p></div>"
                   
-        
             document.querySelector('#form-search .ais-SearchBox-submit').addEventListener('click', (e) => {
               e.stopImmediatePropagation()
               document.querySelector('.nav_category').classList.remove('active');
@@ -2284,8 +2284,8 @@ window.onload = function() {
               }
               toggleListing(true)
           
-              query = document.querySelector('#form-search .ais-SearchBox-input').value;
-              search._searchFunction(search.helper)
+              // query = document.querySelector('#form-search .ais-SearchBox-input').value;
+              // search._searchFunction(search.helper)
               actionDataLayer = `Click on submit button`;
               labelDataLayer = 'Search by Name';
               pushDataLayer(actionDataLayer, labelDataLayer)
@@ -2297,6 +2297,7 @@ window.onload = function() {
     }
     ]).on('autocomplete:selected', function(event, suggestion, dataset) {
       window.location.href = `https://medicalmega.com/product/${suggestion.seo}`
+      
 
       actionDataLayer = `Selected suggestion`;
       labelDataLayer = 'Autocomplete Search by Name';
@@ -2813,10 +2814,9 @@ let mut = new MutationObserver(function (muts) {
     document.querySelectorAll('#list_categories li').forEach((el) => {
       el.addEventListener('click', (e) => {
         e.stopImmediatePropagation();
-        query = '';
-        search._searchFunction(search.helper)
-        document.querySelector('#form-search .ais-SearchBox-input').value = '';
-        document.querySelector('#form-search pre').innerHTML = '';
+        // query = '';
+        // search._searchFunction(search.helper)
+        // document.querySelector('#form-search .ais-SearchBox-input').value = '';
 
         let scrollTarget = document.body,
         topOffset = scrollTarget;
@@ -2827,7 +2827,8 @@ let mut = new MutationObserver(function (muts) {
           if (window.location.pathname.includes('/product/') || window.location.pathname.includes('/search/')) {
             if (window.location.href.includes('?products')) {
               clearInterval(startInterval)
-              window.location.href = "https://medicalmega.com/?" + window.location.href.split('?')[1];
+              let url = window.location.href.split('?')[1];
+              window.location.href = "https://medicalmega.com/?" + url;
             }
           } else {
             clearInterval(startInterval)
@@ -2873,11 +2874,14 @@ let mut = new MutationObserver(function (muts) {
       el.addEventListener('click', (e) => {
         e.preventDefault();
         e.stopImmediatePropagation();
-        query = '';
-        search._searchFunction(search.helper)
-        console.log(document.querySelector('#form-search .ais-SearchBox-input').value)
-        document.querySelector('#form-search .ais-SearchBox-input').value = '';
-        document.querySelector('#form-search pre').innerHTML = '';
+        // query = '';
+        // search._searchFunction(search.helper)
+        search.helper.setQuery('') // this call resets the page
+                .setPage(search.helper.getPage()) // we re-apply the previous page // Retrieve the current page 
+                .search();
+    
+        // console.log(document.querySelector('#form-search .ais-SearchBox-input').value)
+        // document.querySelector('#form-search .ais-SearchBox-input').value = '';
        
         if (document.querySelector('.ais-ClearRefinements-button') != null) {
           document.querySelector('.ais-ClearRefinements-button').classList.add('action-clean');
