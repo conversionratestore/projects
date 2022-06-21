@@ -22,28 +22,35 @@ let style = `
         font-size: 18px;
     }
     .rp_wrap {
-        font-weight: 500;
-        font-size: 14px;
-        text-decoration-line: line-through;
         color: #534E4E;
+        font-size: 14px;
+        line-height: 24px;
+        color: #777777;
+        margin: 18px 0 14px;
+    }
+    .line-through {
+        text-decoration-line: line-through;
     }
     .purchase_price b.pr_wrap {
-        font-size: 22px;
+        font-size: 25px;
+        line-height: 34px;
         margin: 0 15px;
     }
     .ps_wrap {
         background: #FF3C7F;
-        border-radius: 2px;
-        padding: 1px 15px;
-        font-family: 'DINEngschrift LT', sans-serif;
-        font-style: normal;
-        font-weight: 500;
-        font-size: 16px;
-        line-height: 24px;
+        border-radius: 3px;
+        padding: 5px 12.5px;
+        font-weight: 900;
+        font-size: 22px;
+        line-height: 110%;
+        letter-spacing: 0.02em;
+        text-transform: uppercase;
         color: #FFFFFF;
     }
     .for_pack {
         margin-top: 10px;
+        font-size: 16px;
+        line-height: 24px;
     }
     .text_stock {
         font-family: 'Roboto', sans-serif;
@@ -81,10 +88,9 @@ let html = `
             x
             <b>60 patches</b>
         </div>
+        <div class="rp_wrap ">Was <span class="line-through">$<span class="rp">84</span></span>  (Save $ <span class="rs">46.5</span>)</div>
         <div class="flex justify-center align-center">  
-            <div class="rp_wrap ">Was $<span class="rp">84</span> (Save $ <span class="rs">46.5</span>)</div>
-
-            <b class="pr_wrap">$<span class="pr">37.5</span> </b>
+            <b class="pr_wrap">NOW $<span class="pr">37.5</span> </b>
             <div class="ps_wrap">
                 <span class="ps">52</span>
                 % OFF
@@ -93,21 +99,14 @@ let html = `
     </div>
 `;
 
+document.head.insertAdjacentHTML('beforeend',`<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet">`); //add font
 document.body.insertAdjacentHTML('afterbegin', style); //add style
 document.querySelector('.package .form').insertAdjacentHTML('beforebegin', html); //add html prices
-document.querySelector('#purchase #getNow img').style = `margin-bottom: -25px;`; //image PACKAGE
+document.querySelector('#purchase #getNow img').style = `margin-bottom: -40px;`; //image PACKAGE
 document.querySelector('#getNow p').style.display = 'none'; //hide text behind title
-document.querySelector('#getNow img').src = `https://conversionratestore.github.io/projects/buzzpatch/img/patches2.png`; //change image
+document.querySelector('#getNow img').src = `https://conversionratestore.github.io/projects/buzzpatch/img/package_patches.png`; //change image
 document.querySelector('.package .form').insertAdjacentHTML('afterend',`<div class="text_stock">Additional <b>10% discount</b> will be applied on the next step</div>`) //add text behind the form
-document.querySelector('#addToCart').insertAdjacentHTML('afterend',`
-    <div class="free_shipping flex justify-center align-center"> 
-        <img src="https://conversionratestore.github.io/projects/buzzpatch/img/car.svg" alt="car icon"> 
-        <b>FREE</b> worldwide shipping for all orders
-    </div>
-    <div class="flex justify-between max-w-330 mx-auto">
-        <img src="https://conversionratestore.github.io/projects/buzzpatch/img/thirty-days.png" alt="thirty days icon"> 
-        <img src="https://conversionratestore.github.io/projects/buzzpatch/img/trustpilot_new3.png" alt="trustpilot image"> 
-    </div>`) //add free shipping text behind the "PROCEED TO CHECKOUT" button and Trustpilot block
+document.querySelector('#addToCart').insertAdjacentHTML('afterend',`<img src="https://conversionratestore.github.io/projects/buzzpatch/img/trust.png" alt="trust icon">`) //add Trustpilot block behind the "PROCEED TO CHECKOUT" button
 
 //object prices
 let objPrice = [   
