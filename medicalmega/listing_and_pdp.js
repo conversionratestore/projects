@@ -1748,9 +1748,12 @@ window.onload = function() {
   
       // query = '';
       // search._searchFunction(search.helper);
-      search.helper.setQuery('') // this call resets the page
-        .setPage(search.helper.getPage()) // we re-apply the previous page // Retrieve the current page 
-        .search();
+      if (document.querySelector('#form-search input').value != '') {
+        search.helper.setQuery('') // this call resets the page
+          .setPage(search.helper.getPage()) // we re-apply the previous page // Retrieve the current page 
+          .search();
+      }
+     
       e.target.parentElement.classList.toggle('active');
       document.querySelector('.advanced-search').classList.remove('active');
       document.querySelector(`[data-button="advanced-search"]`).classList.remove('active');
