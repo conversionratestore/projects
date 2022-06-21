@@ -92,84 +92,35 @@ window.onload  = function () {
         save = document.querySelector('.ps_wrap .rs');
 
     //change prices
-    let newPrices = [
-        ['12', '36', '52', '74.97', '39', '39264142393388'], // 3pack
-        ['10.5', '42', '58', '99.96', '58', '39264134070316'], // 4pack
-        ['13.5', '27', '46', '49.98', '23', '39307585519660'], // 2pack
-        ['14.99', '14.99', '40', '24.99', '10', '34137893142572'] // 1pack
-    ]
-
     document.querySelectorAll('.js-packs').forEach((pack,i) => {
-        let e = pack;
+        pack.addEventListener('change', (e) => {
+            forPack.innerHTML = pack.querySelector('label').innerHTML.toLowerCase().split('<br')[0];
 
-        let d = document.createElement('label');
-            d.classList.add('js-packs')
-        d.innerHTML = e.innerHTML;
-    
-        e.parentNode.insertBefore(d, e);
-        e.parentNode.removeChild(e);
+            price.innerHTML = +document.querySelector('.prices .js-total .pr').innerHTML;
+            priceOld.innerHTML = document.querySelector('.prices .js-regular .js-strike .rp').innerHTML;
+            off.innerHTML = document.querySelector('.prices .js-total .ps').innerHTML;
+            save.innerHTML = document.querySelector('.prices .js-regular .rs').innerHTML;
 
-        console.log(pack)
-        console.log(d)
-        pack[0].querySelector('input').checked = true;
-        d.addEventListener('click', (e) => {
-            if (e.target.parentElement.querySelector('input').checked) {
-                forPack.innerHTML = e.target.parentElement.querySelector('label').innerHTML.toLowerCase().split('<br')[0];
-                price.innerHTML = +newPrices[i][1];
-                priceOld.innerHTML = newPrices[i][3];
-                off.innerHTML = newPrices[i][2];
-                save.innerHTML = newPrices[i][4];
-            }
             window.dataLayer = window.dataLayer || [];
             dataLayer.push({
                 'event': 'event-to-ga',
-                'eventCategory': 'Exp: New pricing block (v2)',
+                'eventCategory': 'Exp: New pricing block',
                 'eventAction': `Clicks on package - ${forPack.innerHTML}`
             });
         })
     })
-    document.querySelector('#addToCart').addEventListener('click', (e) => {
-        e.preventDefault()
-        let formData = {
-            'items': [{
-                'id': document.querySelector('.js-packs input:checked').value,
-                'quantity': 1
-            }]
-        };
-        fetch('/cart/clear.js', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-        })
-        fetch('/cart/add.js', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(formData)
-        })
-            .then(response => {
-                return response.json();
-            }).then(data => {
-            window.location.href = '/checkout'
-        })
-            .catch((error) => {
-                console.error('Error:', error);
-            });
-    })      
 };
 
 window.dataLayer = window.dataLayer || [];
 dataLayer.push({
     'event': 'event-to-ga',
-    'eventCategory': 'Exp: New pricing block (v2)',
+    'eventCategory': 'Exp: New pricing block',
     'eventAction': 'loaded'
 });
 
 let isClarify = setInterval(() => {
 	if (typeof clarity == 'function') {
 		clearInterval(isClarify)
-		clarity('set', `new_pricing_block`, 'variant_2')
+		clarity('set', `new_pricing_block`, 'variant_1')
 	}
 }, 100)
