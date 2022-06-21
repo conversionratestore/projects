@@ -2830,8 +2830,8 @@ let mut = new MutationObserver(function (muts) {
         scrollTop(scrollTarget, topOffset)
 
         let startInterval = setInterval(function() {
-          if (window.location.pathname.includes('/product/') || window.location.pathname.includes('/search/')) {
-            if (window.location.href.includes('?products')) {
+          if (window.location.pathname.includes('/product/') ) { //|| window.location.pathname.includes('/search/')
+            if (window.location.href.includes('hierarchicalMenu')) {
               clearInterval(startInterval)
               setTimeout(() => {
                 let url = window.location.href.split('?')[1];
@@ -2844,6 +2844,7 @@ let mut = new MutationObserver(function (muts) {
             toggleListing(true)
           }
         }, 100)
+        
         if (e.target.classList.contains('home-popular')) {
           actionDataLayer = `Click on Show more button - ${el.querySelector('.ais-HierarchicalMenu-label').innerText}`;
           labelDataLayer = `Home page`;
