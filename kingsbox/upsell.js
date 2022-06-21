@@ -1,7 +1,11 @@
 /* CSS */
 
 const myStyle = `
-					<style>					
+					<style>
+						.shopping-cart-product .product-image {
+						    margin-right: 5px;
+						}
+						
 						.my_cart {
 							display: none;
 							justify-content: center;
