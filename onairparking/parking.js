@@ -48,6 +48,7 @@ let style = `
              right: 13px;
              transform: translateY(-50%);
              pointer-events: none;
+             z-index: 5;
         }
         .bg-white.py-6.rounded-md.flex.flex-col.w-full.items-start.justify-start > .h-14 > label {
              font-weight: 400;
@@ -59,6 +60,7 @@ let style = `
              left: 0;
              top: 8px;
              z-index: 3;
+             pointer-events: none;
         }
         .bg-white.py-6.rounded-md.flex.flex-col.w-full.items-start.justify-start > .h-14 input[type=date] {
              min-height: auto;
@@ -68,15 +70,15 @@ let style = `
              padding: 22px 6px 6px;
         }
         .bg-white.py-6.rounded-md.flex.flex-col.w-full.items-start.justify-start > .h-14 input[type="date"]::-webkit-calendar-picker-indicator {
-             color: transparent;
-             background: none;
-             z-index: 1;
-             position: absolute;
-             top: 50%;
-             right: 10px;
-             transform: translateY(-50%);
-             width: 24px;
-             height: 24px;
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            width: auto;
+            height: auto;
+            color: transparent;
+            background: transparent;
         }
         .input-ext {
              position: absolute;
@@ -85,7 +87,8 @@ let style = `
              pointer-events: none;
              background: #FFF9ED;
              z-index: 2;
-             width: calc(100% - 40px);
+             width: 100%;
+             height: 100%;
              padding: 22px calc(6px + 0.25rem) 6px;
              border-radius: 10px;
              font-weight: 700;
@@ -93,6 +96,7 @@ let style = `
              font-size: 16px;
              line-height: 19px;
              text-transform: uppercase;
+             pointer-events: none;
         }
         .guarant_item {
             width: 33.33%;
