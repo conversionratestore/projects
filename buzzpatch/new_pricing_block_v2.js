@@ -76,7 +76,6 @@ let html = `
 `
 
 window.onload  = function () {
-	
     document.head.insertAdjacentHTML('beforeend',`<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet">`); //add font
     document.body.insertAdjacentHTML('afterbegin', style); //add style
     document.querySelector('.package .form').insertAdjacentHTML('beforebegin', html); //add html prices
