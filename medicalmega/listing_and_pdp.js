@@ -2156,8 +2156,8 @@ window.onload = function() {
 
   search.start();
   
-  if (window.location.pathname.includes('/search/')) {
-    search.helper.setQuery(window.location.pathname.split('/search/')[1]) // this call resets the page
+  if (window.location.href.includes('/search/') && !window.location.href.includes('?products')) {
+    search.helper.setQuery(window.location.href.split('/search/')[1].split('-').join(' ')) // this call resets the page
       .setPage(search.helper.getPage()) // we re-apply the previous page
       .search();
   }
@@ -2830,7 +2830,7 @@ let mut = new MutationObserver(function (muts) {
         scrollTop(scrollTarget, topOffset)
 
         let startInterval = setInterval(function() {
-          if (window.location.pathname.includes('/product/') ) { //|| window.location.pathname.includes('/search/')
+          if (window.location.href.includes('/product/') ) { //|| window.location.pathname.includes('/search/')
             if (window.location.href.includes('hierarchicalMenu')) {
               clearInterval(startInterval)
               setTimeout(() => {
@@ -2844,7 +2844,7 @@ let mut = new MutationObserver(function (muts) {
             toggleListing(true)
           }
         }, 100)
-        
+
         if (e.target.classList.contains('home-popular')) {
           actionDataLayer = `Click on Show more button - ${el.querySelector('.ais-HierarchicalMenu-label').innerText}`;
           labelDataLayer = `Home page`;
