@@ -1,11 +1,7 @@
 /* CSS */
 
 const myStyle = `
-					<style>
-						.shopping-cart-product .product {
-						    gap: 6px;
-						}
-						
+					<style>					
 						.my_cart {
 							display: none;
 							justify-content: center;
@@ -182,12 +178,12 @@ const myStyle = `
                         .bottom_part div {
                             display: flex;
                             flex-direction: row;
-                            gap: 8px;
                         }
 
                         .bottom_part p:first-child {
                             text-decoration: line-through;
                             color: #C80000;
+                            margin-right: 8px;
                         }
 
 						.bottom_part p {
