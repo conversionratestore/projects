@@ -529,7 +529,6 @@ const checkCart = async cartId => {
         }
 
         if (!data.data?.entities[productIndex]?.sku) {
-            // console.log('All products don\'t have accessories')
             document.querySelector('.loader_wrapper')?.remove()
 
             window.dataLayer = window.dataLayer || [];
@@ -549,12 +548,6 @@ const checkCart = async cartId => {
 
             return false
         } else {
-            console.group(`%c checking %c${data.data.entities[productIndex].name}`, 'background: black; color: yellow', 'background: black; color: lightgreen; font-weigth: bold; font-size: 16px;')
-            console.log(`%c ${HOME_URL}/products/details/${data.data.entities[productIndex].parentSku}/accessories/categories`, 'background: purple;');
-            console.groupEnd()
-
-            // console.log('previous Product SKU: ', currentProductSKU)
-
             if (currentProductSKU === '') {
                 currentProductSKU = data.data.entities[productIndex].parentSku
             } else if (currentProductSKU !== data.data.entities[productIndex].parentSku) {
@@ -596,8 +589,6 @@ const drawSelectedAccessory = (categoryAccessoryIndex) => {
                 }
             })
 
-            console.log(pathLink);
-
             return `
 				<div data-item-index="${index}" class="category_item${isInCart ? ' hide_item' : ''}">																	
 					<div class="item_inner">
@@ -626,7 +617,7 @@ const drawSelectedAccessory = (categoryAccessoryIndex) => {
 
             document.querySelector('.category_wrapper .selected')?.classList.remove('selected')
             document.querySelector('.category_wrapper').insertAdjacentHTML('beforeend', accessoryItems)
-            
+
 
             let waitForList = setInterval(() => {
                 if (typeof tns === 'function') {
@@ -678,15 +669,10 @@ const getCategories = async () => {
         let data = await response.json()
 
         if (!data.data.length) {
-            // console.log(`Product "${currentProductSKU}" doesn't have accessories`)
             return false
         } else {
-            // console.log('productSku', currentProductSKU)
-
             accessoriesIdArray = data.data.map(accessory => accessory.id)
             categoriesNameArray = data.data.map(accessory => accessory.name)
-
-            // console.log('categoriesNameArray', categoriesNameArray)
 
             drawAccessoriesNew()
         }
@@ -751,8 +737,6 @@ const checkIsEmptyCategory = (selectedCategoryIndex) => {
                     if (!selectedCategory.classList.contains('loaded')) {
                         selectedCategory.classList.add('loaded')
                     }
-
-                    // console.log('checking is empty category...')
 
                     let isEmptyCategory = false
 
@@ -841,9 +825,6 @@ const drawAccessoriesNew = () => {
                             'eventAction': 'Click on the catagories'
                         });
 
-                        // console.log('click on category');
-
-
                         checkIsEmptyCategory(index)
                     })
                 })
@@ -869,8 +850,6 @@ const runAsyncFunctions = async () => {
     if (cartProduct) {
         const accessoriesCategories = await getCategories()
 
-        // console.log(accessoriesCategories)
-
         if (accessoriesCategories === false) {
             productIndex++
             runAsyncFunctions()
@@ -881,7 +860,6 @@ const runAsyncFunctions = async () => {
 const startCartObserver = () => {
     const target = document.getElementById('side-dialog-container')
     const config = {
-        // attributes: true,
         childList: true,
         subtree: true,
     }
@@ -891,8 +869,6 @@ const startCartObserver = () => {
             observer.disconnect()
 
             identifier = localStorage.getItem('kboxShoppingCartId')
-
-            // console.log('mut callback >>>')
 
             productIndex = 0
             runAsyncFunctions()
