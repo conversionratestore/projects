@@ -626,6 +626,7 @@ const drawSelectedAccessory = (categoryAccessoryIndex) => {
 
             document.querySelector('.category_wrapper .selected')?.classList.remove('selected')
             document.querySelector('.category_wrapper').insertAdjacentHTML('beforeend', accessoryItems)
+            
 
             let waitForList = setInterval(() => {
                 if (typeof tns === 'function') {
