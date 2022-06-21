@@ -506,7 +506,7 @@ const checkCart = async cartId => {
                     })
 
                     document.querySelector('.cart_accessories').addEventListener('click', (e) => {
-                        if (e.target.closest('.category_item')) {
+                        if (e.target.closest('.category_item a')) {
                             window.dataLayer = window.dataLayer || [];
                             dataLayer.push({
                                 'event': 'event-to-ga',
@@ -612,10 +612,6 @@ const drawSelectedAccessory = (categoryAccessoryIndex) => {
         }).join('')}							
 		</div>`
     }
-
-    console.log('accessoryItems', accessoryItems);
-
-    console.log();
 
     if (accessoryItems.includes('category_item')) {
         let waitForWrapper = setInterval(() => {
