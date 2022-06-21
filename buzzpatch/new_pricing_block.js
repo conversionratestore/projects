@@ -17,6 +17,7 @@ let style = `
         font-size: 16px;
         line-height: 28px;
         color: #0C0B0B;
+        padding-bottom: 35px;
     }
     .purchase_price b {
         font-size: 18px;
@@ -26,7 +27,7 @@ let style = `
         font-size: 14px;
         line-height: 24px;
         color: #777777;
-        margin: 18px 0 14px;
+        margin: 18px 0 9px;
     }
     .line-through {
         text-decoration-line: line-through;
@@ -88,7 +89,7 @@ let html = `
             x
             <b>60 patches</b>
         </div>
-        <div class="rp_wrap ">Was <span class="line-through">$<span class="rp">84</span></span>  (Save $ <span class="rs">46.5</span>)</div>
+        <div class="rp_wrap ">Was <span class="line-through">$<span class="rp">84</span></span> (Save $<span class="rs">46.5</span>)</div>
         <div class="flex justify-center align-center">  
             <b class="pr_wrap">NOW $<span class="pr">37.5</span> </b>
             <div class="ps_wrap">
@@ -104,65 +105,24 @@ document.body.insertAdjacentHTML('afterbegin', style); //add style
 document.querySelector('.package .form').insertAdjacentHTML('beforebegin', html); //add html prices
 document.querySelector('#purchase #getNow img').style = `margin-bottom: -40px;`; //image PACKAGE
 document.querySelector('#getNow p').style.display = 'none'; //hide text behind title
-document.querySelector('#getNow img').src = `https://conversionratestore.github.io/projects/buzzpatch/img/package_patches.png`; //change image
-document.querySelector('.package .form').insertAdjacentHTML('afterend',`<div class="text_stock">Additional <b>10% discount</b> will be applied on the next step</div>`) //add text behind the form
+document.querySelector('#getNow img').srcset = `https://conversionratestore.github.io/projects/buzzpatch/img/package_patches.png`; 
 document.querySelector('#addToCart').insertAdjacentHTML('afterend',`<img src="https://conversionratestore.github.io/projects/buzzpatch/img/trust.png" alt="trust icon">`) //add Trustpilot block behind the "PROCEED TO CHECKOUT" button
-
-//object prices
-let objPrice = [   
-    {
-        'id': '40077473021996',
-        'pack': '3',
-        'oldPrice': '84',
-        'pricePack': '37.5',
-        'price': '12',
-        'off': '55',
-        'save': '46.5'
-    },
-    {
-        'id': '40077473120300',
-        'pack': '4',
-        'oldPrice': '112',
-        'pricePack': '46',
-        'price': '11.5',
-        'off': '58',
-        'save': '66'
-    },
-    {   
-        'id': '40077473087532',
-        'pack': '2',
-        'oldPrice': '56',
-        'pricePack': '27',
-        'price': '13.5',
-        'off': '51',
-        'save': '29'
-    },
-    {
-        'id': '40077473054764',
-        'pack': '1',
-        'oldPrice': '27.99',
-        'pricePack': '16',
-        'price': '16',
-        'off': '42',
-        'save': '11.99'
-    }
-] 
 
 let price = document.querySelector('.pr_wrap .pr'), 
     priceOld = document.querySelector('.rp_wrap .rp'),
     off = document.querySelector('.ps_wrap .ps'),
-    forPack = document.querySelector('.for_pack b');
+    forPack = document.querySelector('.for_pack b'),
+    save = document.querySelector('.rp_wrap .rs');
 
 //change prices
 document.querySelectorAll('.js-packs').forEach((pack,i) => {
-    pack.querySelector('input').value = objPrice[i].id;
-    pack.querySelector('label span').innerHTML = `$${objPrice[i].price} Each`;
     pack.addEventListener('change', (e) => {
         forPack.innerHTML = pack.querySelector('label').innerHTML.toLowerCase().split('<br')[0];
 
-        price.innerHTML = objPrice[i].pricePack;
-        priceOld.innerHTML = objPrice[i].oldPrice;
-        off.innerHTML = objPrice[i].off;
+        price.innerHTML = +document.querySelector('.prices .js-total .pr').innerHTML;
+        priceOld.innerHTML = document.querySelector('.prices .js-regular .js-strike .rp').innerHTML;
+        off.innerHTML = document.querySelector('.prices .js-total .ps').innerHTML;
+        save.innerHTML = document.querySelector('.prices .js-regular .rs').innerHTML;
 
         window.dataLayer = window.dataLayer || [];
         dataLayer.push({
