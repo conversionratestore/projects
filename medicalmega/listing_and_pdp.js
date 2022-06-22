@@ -955,10 +955,11 @@ border-radius: 100px;
     display: block;
     width: 100%;
     background: #fff;
-    z-index: 2;
+    z-index: 3;
     outline: none;
     color: #344D57;
     text-align: left;
+    position: relative;
   }
   .main a#top {
     background-color: #1E3944;
