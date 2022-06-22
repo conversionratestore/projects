@@ -615,8 +615,9 @@ let startFunk = setInterval(() => {
             if (document.querySelector('.header-container .header-actions .action-links [data-account-trigger="true"] span').textContent === "Account") {
               el.insertAdjacentHTML("beforeend", discountCart)
             } else {
-              el.insertAdjacentHTML("beforeend", discountCartSignUp)
-
+              if (!el.querySelector(".discount_cart.sign_up")) {
+                el.insertAdjacentHTML("beforeend", discountCartSignUp)
+              }
               onClickSignUp("#cart-panel")
             }
           }
@@ -631,7 +632,6 @@ let startFunk = setInterval(() => {
         let salesProduct = dataProduct.salesproduct
 
         if (salesProduct) {
-          console.log(typeof salesProduct)
           if (document.querySelector('.header-container .header-actions .action-links [data-account-trigger="true"] span').textContent === "Account") {
             if (!document.querySelector(".discount_pdp")) {
               document.querySelector(".catalog-product-view .product-essential .p-price .pdp-afterpay")?.insertAdjacentHTML("beforebegin", discountPdp)
@@ -681,9 +681,7 @@ let startFunk = setInterval(() => {
     })
 
     let observerCart = new MutationObserver((muts) => {
-      console.log(muts)
       if (document.querySelector("#cart-panel")) {
-        console.log(document.querySelector("#cart-panel"))
         observerCart.disconnect()
         renderToCart()
 
@@ -702,17 +700,20 @@ let startFunk = setInterval(() => {
     // click on SIGN UP
     function onClickSignUp(parent) {
       document.querySelectorAll(`${parent} [data-sign]`).forEach((el) => {
-        el.addEventListener("click", function () {
-          if (parent === "#main-wrapper") {
-            pushDataLayer("15% off link on PDP clicked")
-          }
+        if (!el.getAttribute("data-click")) {
+          el.addEventListener("click", function () {
+            if (parent === "#main-wrapper") {
+              pushDataLayer("15% off link on PDP clicked")
+            }
 
-          if (parent === "#cart-panel") {
-            pushDataLayer("15% off button on Cart clicked")
-          }
+            if (parent === "#cart-panel") {
+              pushDataLayer("15% off button on Cart clicked")
+            }
 
-          document.querySelector('.header-container .header-actions .action-links [data-account-trigger="true"]').click()
-        })
+            document.querySelector('.header-container .header-actions .action-links [data-account-trigger="true"]').click()
+          })
+        }
+        el.setAttribute("data-click", "1")
       })
     }
 
@@ -724,7 +725,6 @@ let startFunk = setInterval(() => {
     }, 3000)
 
     document.querySelector(".btn_close").addEventListener("click", function () {
-      console.log(this)
       if (this.getAttribute("successCoupon")) {
         pushDataLayer("TY after registration pop up closed by X")
       } else {
