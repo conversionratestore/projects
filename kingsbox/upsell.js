@@ -174,6 +174,11 @@ const myStyle = `
                             display: flex;
                             flex-direction: column;
 						}
+
+                        .top_part img {
+                            min-height: 80px;
+                            object-fit: cover;
+                        }
 						
 						.top_part p {
 							margin-top: 8px;
@@ -184,10 +189,13 @@ const myStyle = `
                             flex-direction: row;
                         }
 
-                        .bottom_part p:first-child {
-                            text-decoration: line-through;
+                        .bottom_part div p:first-child {
+                            text-decoration: line-through;                            
+                            margin-right: 4px;
+                        }
+
+                        .bottom_part div p:last-child {
                             color: #C80000;
-                            margin-right: 8px;
                         }
 
 						.bottom_part p {
@@ -844,6 +852,8 @@ const runAsyncFunctions = async () => {
     }
 }
 
+let firstOpen = false
+
 const startCartObserver = () => {
     const target = document.getElementById('side-dialog-container')
     const config = {
@@ -858,6 +868,19 @@ const startCartObserver = () => {
             identifier = localStorage.getItem('kboxShoppingCartId')
 
             productIndex = 0
+
+            if (!firstOpen) {
+                let waitForClarityCart = setInterval(() => {
+                    if (typeof clarity === 'function') {
+                        clearInterval(waitForClarityCart)
+
+                        firstOpen = true
+
+                        clarity('set', 'slide_cart_improvemnets_' + device2, 'cart');
+                    }
+                }, 200);
+            }
+
             runAsyncFunctions()
 
             observer.observe(target, config)
