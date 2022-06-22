@@ -104,7 +104,6 @@ window.onload  = function () {
         if (pack.querySelector('input:checked')) {
             forPack.innerHTML = pack.querySelector('label').innerHTML.toLowerCase().split('<br')[0];
         }
-      
         pack.addEventListener('change', (e) => {
             forPack.innerHTML = pack.querySelector('label').innerHTML.toLowerCase().split('<br')[0];
 
