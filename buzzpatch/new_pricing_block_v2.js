@@ -91,15 +91,24 @@ window.onload  = function () {
         forPack = document.querySelector('.for_pack b'),
         save = document.querySelector('.ps_wrap .rs');
 
+    function setPrice() {
+        price.innerHTML = +document.querySelector('.prices .js-total .pr').innerHTML;
+        priceOld.innerHTML = document.querySelector('.prices .js-regular .js-strike .rp').innerHTML;
+        off.innerHTML = document.querySelector('.prices .js-total .ps').innerHTML;
+        save.innerHTML = document.querySelector('.prices .js-regular .rs').innerHTML;
+    }
+    setPrice()
+    
     //change prices
     document.querySelectorAll('.js-packs').forEach((pack,i) => {
+        if (pack.querySelector('input:checked')) {
+            forPack.innerHTML = pack.querySelector('label').innerHTML.toLowerCase().split('<br')[0];
+        }
+      
         pack.addEventListener('change', (e) => {
             forPack.innerHTML = pack.querySelector('label').innerHTML.toLowerCase().split('<br')[0];
 
-            price.innerHTML = +document.querySelector('.prices .js-total .pr').innerHTML;
-            priceOld.innerHTML = document.querySelector('.prices .js-regular .js-strike .rp').innerHTML;
-            off.innerHTML = document.querySelector('.prices .js-total .ps').innerHTML;
-            save.innerHTML = document.querySelector('.prices .js-regular .rs').innerHTML;
+            setPrice()
 
             window.dataLayer = window.dataLayer || [];
             dataLayer.push({
