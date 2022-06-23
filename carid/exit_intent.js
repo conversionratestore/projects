@@ -178,7 +178,9 @@ let style = `
     .modal__popular .btns .btn {
         margin-bottom: 15px;
     }
-    
+    .modal__popular .btns .btn:hover {
+        text-decoration: underline;
+    }
     .modal__popular .heading {
         border-top: 2px solid #d8d8d8;
         margin: 24px 0;
