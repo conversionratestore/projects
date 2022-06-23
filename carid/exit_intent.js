@@ -55,6 +55,7 @@ let style = `
         height: 15px;
         opacity: 0.3;
         background: url(https://conversionratestore.github.io/projects/carid/img/close.svg) no-repeat center / 100%;
+        cursor: pointer;
     }
     .modal__popular h2 {
         font-size: 30px;
@@ -152,6 +153,7 @@ let style = `
         display: flex;
         align-items: center;
         justify-content: center;
+        cursor: pointer;
     }
     .modal__popular .btn img, .modal__popular .btn svg {
         margin-left: 10px;
