@@ -887,48 +887,48 @@ let startFunk = setInterval(() => {
         console.log(document.querySelector("#last-name").value)
         console.log(document.querySelector("#register-email").value)
         console.log(document.querySelector("#register-password").value)
-        postForm(document.querySelector(`${parent} input[name='registerEmail']`).value)
-        document.querySelector("#btn-register-submit").click()
-
-        // const a = setInterval(() => {
-        //   if (document.querySelector(".status-msg.danger.alert.alert-danger")) {
-        //     clearInterval(a)
-        //     console.log(`>>>setInterval`)
-        //     document.querySelector(".status-msg.danger.alert.alert-danger").remove()
-        //   }
-        // }, 100)
-
-        // setTimeout(() => {
-        //   if (!document.querySelector(".status-msg.danger.alert.alert-danger")) {
-        //     clearInterval(a)
-        //     console.log(`>>>setTimeout`)
-
-        //   }
-        // }, 1500)
-
-        pushDataLayer("Sign Up clicked")
-        document.querySelector(".btn_close").setAttribute("successCoupon", "true")
-        sessionStorage.setItem("successSign", true)
-        sessionStorage.setItem("successCoupon", true)
-        hidePopup()
+        postForm(
+          document.querySelector(`${parent} input[name='registerEmail']`).value,
+          document.querySelector(`${parent} input[name='registerPassword']`).value,
+          document.querySelector(`${parent} input[name='firstName']`).value,
+          document.querySelector(`${parent} input[name='lastName']`).value
+        )
       }
     }
 
-    function postForm(email) {
-      fetch(`https://www.lamps.com/l-c/ajax/info?email=${email}`, {
+    function postForm(email, passwordVal, firstName, lastName) {
+      let form = new FormData()
+
+      form.append("form_key", window.form_key)
+      form.append("submit_type", "register")
+      form.append("emailAddress", email)
+      form.append("password", passwordVal)
+      form.append("firstname", firstName)
+      form.append("lastname", lastName)
+      console.log(form)
+
+      fetch(`https://www.lamps.com/l-c/ajax/`, {
         headers: {
           "Content-Type": "application/json",
         },
-        // body: JSON.stringify({
-        //   email: `${email}`,
-        // }),
-        method: "GET",
+        // body: {
+        //   form_key: window.form_key,
+        //   submit_type: "register",
+        //   emailAddress: email,
+        //   password: passwordVal,
+        //   firstname: firstName,
+        //   lastname: lastName,
+        // },
+
+        body: form,
+        method: "POST",
       })
         .then((res) => res.json())
         .then((data) => {
           console.log(data)
 
-          // if (data.is_logged_in) { // true / false
+          // if (data.is_logged_in) {
+          //   // true / false
           //   document.querySelector(".form_wrap  > .error_msg").style.display = "block"
           // } else {
           //   document.querySelector(".form_wrap  > .error_msg").style.display = "none"
