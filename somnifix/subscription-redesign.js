@@ -101,20 +101,24 @@ optionShipTo = () => {
 
 let objVariants = [
     {
+        'productId': '4617243754611',
         'variantId': '32115046023283',
         'title': '1 Pack',
+        '': 'SINGLE-PACK',
         'week' :'4 week pack',
         'days':'28 strips',
         'sale':'',
         'price': '23.99',
         'popular': false,
-        'perStrip':'0.86',
+        'perStrip':'0.85',
         'active':'',
     },
     {
-        'variantId': '32115046056051',
+        'productId': '',
+        'variantId': '16037160779819',
         'title': '3 Pack',
-        'week' :'12 week pack',
+        '': 'THREE-PACK',
+        'week' :'12-week pack',
         'days':'84 strips',
         'sale':'Save 22%',
         'price': '55.97',
@@ -123,12 +127,14 @@ let objVariants = [
         'active':'',
     },
     {
-        'variantId': '32115046940787',
+        'productId': '',
+        'variantId': '30282132226091',
         'title': '12 Pack',
-        'week' :'52 week pack',
-        'days':'364 strips',
+        '': 'THREE-PACK SUBSCRIPTION',
+        'week' :'12-week pack',
+        'days':'84 strips',
         'sale':'Save 30%',
-        'price': '219.97',
+        'price': '49.97',
         'popular': true,
         'perStrip':'0.59',
         'active':'swatchCustom__item--active nosale',
@@ -463,37 +469,6 @@ let style = `
         height: 35px;
         width: fit-content;
     }
-    .subscribe-custom {
-        display: block;
-        color: #1E415F;
-        background: #FEF7E7;
-        border: 1px solid #F2B413;
-        border-radius: 10px;
-        padding: 15px;
-        margin: 10px 0;
-    }
-    .subscribe-custom p{
-        font-size: 12px;
-        line-height: 17px !important;
-        font-weight: 400;
-
-    }
-    h5.subscribe-custom__header {
-        font-family: "Roboto";
-        font-weight: 500;
-        display: inline;
-        font-size: 14px;
-        line-height: 16px;
-        color: #1E415F;
-    }
-    .subscribe-custom__header span{
-        color: #F27113;
-    }
-    .subscribe-custom__checkbox {
-        transform: scale(1.4);
-        margin: 0 5px 0 0;
-
-    }
     .moneyback {
         height: 150px;
         display:flex;
@@ -593,209 +568,141 @@ let style = `
     .mobile .to_checkout {
         margin-top: 30px;
     }
-  
-  @media (max-width: 1023px) {
-        .desktop {
-            display: none;
-        }
-
-        .mobile {
-            display: block;
-        }
-
-        .dark_bg {
-            background: rgba(25, 25, 25, 0.8);
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            z-index: 9999;
-            display: none;
-        }
-        
-        .dark_bg.active {
-            display: block;
-        }
-
-        .variant_select_popup{
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            background: white;
-            padding: 10px;
-        }
-
-        .variant_select_popup>p {
-            font-size: 17px;
-            color: #1E4670;
-            margin: 8px 0;
-            margin-left: 15px;
-        }
-
-        .variant_select_popup>.flx {
-            width: 100%;
-            overflow-x: scroll;
-        }
-
-        .swatchCustom__item__mobile {
-            border: 1px dashed #4090D1;
-            border-radius: 10px;
-            opacity: 0.6;
-            padding: 10px;
-            padding-top: 5px;
-            min-width: 140px;
-            margin: 0 5px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            position: relative;
-        }
-
-        .swatchCustom__item__mobile img {
-            height: 60px;
-            margin: 20px 0;
-        }
-
-        .swatchCustom__item__mobile .week {
-            font-weight: bold;
-            font-size: 16px;
-            color: #1E415F;
-        }
-
-        .swatchCustom__item__mobile .days {
-            font-size: 12px;
-            color: #747474;
-            margin: 20px 0;
-        }
-        
-        .swatchCustom__item__mobile .sale {
-            position: absolute;
-            background: rgba(242, 113, 19, 0.29);
-            font-size: 11px;
-            color: #F27113;
-            padding: 0 4px;
-            top: 15px;
-            left: 15px;
-        }
-
-        .swatchCustom__item__mobile .price {
-            font-family: Rubik;
-            font-weight: 500;
-            font-size: 14px;
-            letter-spacing: 0.05em;
-            color: #1E415F;
-        }
-
-        .swatchCustom__item__mobile .compare {
-            font-family: Rubik;
-            font-weight: 500;
-            font-size: 10px;
-            letter-spacing: 0.05em;
-            text-decoration-line: line-through;
-            color: #747474;
-        }
-
-        .swatchCustom__item--active {
-            background: rgba(64, 144, 209, 0.1);
-            opacity: 1;
-            border: 2px solid #4090D1;
-        }
-
-        .swatchCustom__item--active .close_btn {
-            position: absolute;
-            top: -30px;
-            right: 20px;
-            font-weight: bold;
-            font-size: 16px;
-            color: #FFFFFF;
-            text-transform: uppercase;
-        }
-
-        .select_pack {
-            position: relative;
-            border: 2px solid #4090D1;
-            border-radius: 5px;
-            background: #F1F7FC;
-            padding: 10px 15px;
-            color: rgb(30, 65, 95);
-            font-size: 16px;
-            margin: 15px 0;
-            cursor: pointer;
-        }
-
-        .select_pack svg {
-            position: absolute;
-            width: 15px;
-            top: 50%;
-            right: 25px;
-            transform: translateY(-50%);
-        }
-
-        .select_pack .choosen {
-            font-weight: 700;
-        }
-
-        .select_pack p {
-            line-height: 1;
-        }
-
-        .mobile .checklist {
-            margin-bottom: 20px;
-        }
-
-        .mobile .subscribe-custom {
-            margin: 20px 0;
-        }
-
-        .country_select {
-            margin-bottom: 0;
-        }
-
-        .free-shipping-label {
-            padding: 5px 20px;
-            font-size: 16px;
-        }
-
-        .moneyback {
-            justify-content: center;
-        }
-
-        .delivery_date {
-            margin-bottom: 10px;
-        }
-
-        .free-shipping-label {
-            margin-bottom: 10px;
-        }
-
-        .close_btn {
-            position: absolute;
-            top: -30px;
-            right: 20px;
-            transform: translateY(0);
-            transition: all 0.3s ease;
-            font-family: Roboto;
-            font-weight: bold;
-            font-size: 16px;
-            color: #FFFFFF;
-            text-transform: uppercase;
-            background: transparent;
-            border: none;
-            outline: none;
-        }
-
-        .swatchCustom__item__mobile>.flx {
-            align-items: center;
-            justify-content: space-between;
-        }
-
-        .mobile .checklist+span {
-            color: #1E415F;
-            font-size: 14px;
-        }
+    .money_back {
+        padding: 100px 0;
+        background-color: #f8f8f8;
     }
+    
+    .money_back .flx {
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+    }
+    
+    .money_back>* {
+        width: 95%;
+        margin: 0 auto;
+        max-width: 1200px;
+    }
+    
+    .money_back h2 {
+        text-align: center;
+        margin-bottom: 60px;
+        color: #000000;
+        font-size: 36px;
+        font-weight: 700;
+        font-family: 'Roboto', sans-serif;
+    }
+    
+    .money_back .schedule {
+        background-color: #fff;
+        border-radius: 25px;
+        margin-bottom: 60px;
+        padding: 30px 10%;
+    }
+    
+    .money_back .schedule select {
+        width: fit-content;
+    }
+    
+    .money_back .spots {
+        color: #1E415F;
+        font-size: 18px;
+        font-weight: 700;
+    }
+    
+    .money_back .spots>p {
+        width: 200px;
+        text-align: center;
+        padding: 50px 35px;
+        line-height: 1.1;
+    }
+    .money_back .spots>p:first-child {
+       background: url("https://conversionratestore.github.io/projects/somnifix/img/spot1.svg") center center no-repeat;
+       background-size: contain;
+    }
+    
+    .money_back .spots>p:nth-child(2) {
+       background: url("https://conversionratestore.github.io/projects/somnifix/img/spot2.svg") center center no-repeat;
+       background-size: contain;
+    }
+    
+    .money_back .spots>p:last-child {
+       background: url("https://conversionratestore.github.io/projects/somnifix/img/spot3.svg") center center no-repeat;
+       background-size: contain;
+    }
+    
+    .money_back .delivery_time {
+        position:relative;
+    }
+    
+    .money_back .delivery_time>div:not(.line) {
+        position:absolute;
+        top: -70px;
+        width: fit-content;
+    }
+    
+    .money_back .delivery_time>div:nth-child(3) {
+        left: 20%;
+    }
+    
+    .money_back .delivery_time>div:last-child {
+        left: 65%;
+    }
+    
+    .money_back .delivery_time>div:not(.line)>p:first-child {
+        font-size: 20px;
+        font-weight: 700;
+        color: #1E415F;
+    }
+    
+    .money_back .delivery_time>div:not(.line)>p:nth-child(2) {
+        font-size: 14px;
+        color: #1E415F;
+    }
+    
+    .money_back .delivery_time>div:not(.line)>p:last-child {
+        font-size: 14px;
+        margin-top: 30px;
+        color: #6aadc4;
+    }
+    
+    .money_back .line {
+        margin: 85px 0 35px;
+        height: 10px;
+        width: 100%;
+        background-color: #E3F4FF;
+        border-radius: 10px;
+        position:relative;
+    }
+    
+    .money_back .line span {
+        display: block;
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        background-color: #2374B5;
+        position:absolute;
+        top: -5px;
+        left: 0;
+    }
+    
+    .money_back .line span.point2 {
+        left: calc(20% - 10px);
+    }
+    
+    .money_back .line span.point3 {
+        left: calc(65% - 10px);
+    }
+    
+    .money_back .line p {
+        height: 10px;
+        width: 65%;
+        background-color: #2374b5;
+        border-radius: 10px;
+        display: block!important;
+    }
+  
 </style>
 `;
 
@@ -935,7 +842,7 @@ let html = `
                     </div>
             
                     <div class="part2 gray_bg">
-                        <p class="total_price">$<span>23.99</span> USD</p>
+                        <p class="total_price">$<span>55.97</span> USD</p>
                         <span class="free-shipping-label">Free Shipping</span>
                         <div class="flx">
                             <b>Ship to:</b>
@@ -944,18 +851,12 @@ let html = `
                             </label>
                         </div>
                 
-                        <span class="delivery_date">Arrives: <b>01 Jul - 03 Jul</b> </span>
+                        <span class="delivery_date">Arrives: <b></b> </span>
             
                         <h4 class="stock__header">In Stock.</h4>
                         <select class="stock__select">${qty()}</select>
-                        <p class="stock__pack">1 pack = <span>28</span> strips</p>
+                        <p class="stock__pack">1 pack = <span>84</span> strips</p>
             
-                        <div class="subscribe-custom">
-                            <input class="subscribe-custom__checkbox" type="checkbox">
-                            <h5 class="subscribe-custom__header">Subscribe and <span>save 10%</span></h5>
-                            <p class="subscibe-custom__info">Auto delivery every 52 weeks for $199.97</p>
-                            <p>Cancel anytime.</p>
-                        </div>
                         <button class="to_checkout">Add to cart</button>
                     </div>
                 </div>
@@ -996,10 +897,36 @@ let html = `
     </div>
 
 </div>
+
+<div class="money_back" id="money_back">
+    <h2>Money back guarantee</h2>
+    <div class="schedule">
+        <p>Ship to:</p>
+        <label class="for_country_select">
+            <select class="country_select" name="country">${optionShipTo()}</select>
+        </label>
+        <div class="delivery_time">
+            <div class="line">
+                <span class="point1"></span>
+                <span class="point2"></span>
+                <span class="point3"></span>
+                <p></p>
+            </div>
+            <div><p>Buy SomniFix</p><p>Today</p><p class="today">Jun 17, 2021</p></div>
+            <div><p>Shipping</p><p>1-4 days</p><p class="delivery_date">Jun 18-21, 2021</p></div>
+            <div><p>100% money back guarantee through</p><p>After 30 days</p><p class="money_back_date">Jul 17, 2021</p></div>
+        </div>
+    </div>
+    <div class="flx spots">
+        <p><img src="https://conversionratestore.github.io/projects/somnifix/img/check.svg" alt="check"><br>Free US shipping and returns</p>
+        <p><img src="https://conversionratestore.github.io/projects/somnifix/img/check.svg" alt="check"><br>30-day money back guarantee</p>
+        <p><img src="https://conversionratestore.github.io/projects/somnifix/img/check.svg" alt="check"><br>Made in USA</p>
+    </div>
+</div>
 `;
 
 //add html and style
-document.querySelectorAll('.shogun-root > .shg-box-vertical-align-wrapper ')[1].querySelectorAll('.shg-box-vertical-align-wrapper')[4].insertAdjacentHTML('beforebegin', html);
+document.querySelectorAll('.shogun-root > .shg-box-vertical-align-wrapper')[1].querySelectorAll('.shg-box-vertical-align-wrapper')[4].insertAdjacentHTML('beforebegin', html);
 document.body.insertAdjacentHTML('afterbegin', style);
 
 //swatch packs
@@ -1030,7 +957,6 @@ $('.swatchCustom__item').click(function() {
         $(this).siblings().removeClass('swatchCustom__item--active')
         $(this).addClass('swatchCustom__item--active')
         document.querySelector(".part2 .stock__select").disabled = false
-        $(".part2 .subscribe-custom__checkbox").prop("checked", false)
 
         let price = $(this).data('price')
 
@@ -1038,15 +964,10 @@ $('.swatchCustom__item').click(function() {
         $('.stock__select').val('1')
         if($(this).data('title') === '3 Pack') {
             $('.stock__pack span').text('84')
-            $('.subscribe-custom').css('display', 'block')
-            $('.subscibe-custom__info').text('Auto delivery every 12 weeks for $49.97')
         } else if($(this).data('title') === '12 Pack') {
-            $('.stock__pack span').text('364')
-            $('.subscribe-custom').css('display', 'block')
-            $('.subscibe-custom__info').text('Auto delivery every 52 weeks for $199.97')
+            $('.stock__pack span').text('84')
         } else {
             $('.stock__pack span').text('28')
-            $('.subscribe-custom').css('display', 'none')
         }
     }
 })
@@ -1070,17 +991,104 @@ $('.country_select').change(function() {
     }
 })
 
-$(".part2 .subscribe-custom__checkbox").change(function(e){
-    if (e.currentTarget.checked) {
-        $(".stock__select").prop('disabled', 'true');
-        $(".stock__select").val('1');
-        if($('.swatchCustom__item--active').data('title') === '3 Pack') {
-            $('.total_price span').text('49.97')
-        } else {
-            $('.total_price span').text('199.97')
+//add to cart
+$('.part2 .to_checkout').click(function() {
+    const itemId = document.querySelector(".swatchCustom__item--active").dataset.variant;
+    const itemQuantity = document.querySelector(".part2 .stock__select").value;
+
+    let formData = {
+        'items': [{
+            'id': itemId,
+            'quantity': itemQuantity
+        }]
+    };
+    fetch('/cart/add.js', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(formData)
+    }).then(response => {
+        return response.json();
+    }).then(data => {
+        if (window.stackable) {
+            window.stackable.checkOut(null, new Event('Stackable Checkout'))
         }
-    } else {
-        $(".stock__select").removeAttr('disabled')
-        $('.total_price span').text($('.swatchCustom__item.swatchCustom__item--active').data('price'))
-    }
+    }).catch((error) => {
+        console.error('Error:', error);
+    });
 })
+
+//Money back guarantee
+let start = setInterval(function () {
+    if (document.querySelector('.for_country_select')) {
+        clearInterval(start)
+        
+        let link = `
+          <div class="navbar-item header__item " data-navlink-handle="guarantee"> 
+              <a href="#" class="navbar-link header__link  is-arrowless to_money_back">guarantee</a>
+          </div>
+		`
+
+        document.querySelector('nav.header__menu-items').insertAdjacentHTML('beforeend', link)
+
+        document.querySelector('.to_money_back').addEventListener('click', function (e) {
+            e.preventDefault()
+            document.querySelector('#money_back').scrollIntoView({behavior: "smooth"})
+        })
+
+        document.querySelector('.money_back select').addEventListener('change', function (e) {
+            document.querySelectorAll('select[name="country"]')[0].value = this.value
+            document.querySelectorAll('select[name="country"]')[1].value = this.value
+            let d = e.target.options[e.target.selectedIndex].dataset.value
+            document.querySelectorAll('.delivery_date b')[0].innerHTML = d
+            document.querySelectorAll('.delivery_date b')[1].innerHTML = d
+            setDateDelivery(d)
+        })
+
+        document.querySelectorAll('select[name="country"]')[0].addEventListener('change', function (e) {
+            document.querySelector('.money_back select').value = this.value
+            document.querySelectorAll('select[name="country"]')[1].value = this.value
+            let d = e.target.options[e.target.selectedIndex].dataset.value
+            setDateDelivery(d)
+        })
+        
+        document.querySelectorAll('select[name="country"]')[1].addEventListener('change', function (e) {
+            document.querySelector('.money_back select').value = this.value
+            document.querySelectorAll('select[name="country"]')[0].value = this.value
+            let d = e.target.options[e.target.selectedIndex].dataset.value
+            setDateDelivery(d)
+        })
+
+        let monthTable = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
+
+        function setDateDelivery (str) {
+            let parseStr = str.split(' ').filter((item) => item !== '-')
+            let day = new Date().getDate()
+            let month = new Date().getMonth()
+            let year = new Date().getFullYear()
+            let day1 = +parseStr[0]
+            let day2 = +parseStr[2]
+            let month1 = monthTable.indexOf(parseStr[1])
+            let month2 = monthTable.indexOf(parseStr[3])
+            let date = new Date(year, month, day);
+            let date1 = new Date(year, month1, day1);
+            let date2 = new Date(year, month2, day2);
+            let daysLag1 = Math.ceil(Math.abs(date1.getTime() - date.getTime()) / (1000 * 3600 * 24));
+            let daysLag2 = Math.ceil(Math.abs(date2.getTime() - date.getTime()) / (1000 * 3600 * 24));
+            let daysLag3 = new Date(date1.setDate(date1.getDate() + 30))
+            let daysLag4 = new Date(date2.setDate(date2.getDate() + 30))
+
+            document.querySelector('.delivery_time>div:nth-child(3)>p:nth-child(2)').innerHTML = `${daysLag1}-${daysLag2} days`
+            document.querySelector('.delivery_time .today').innerHTML = `${monthTable[month]} ${day}, ${year}`
+            document.querySelector('.delivery_time .delivery_date').innerHTML = `${parseStr[1]} ${parseStr[0]} - ${parseStr[3]} ${parseStr[2]}, ${year}`
+            document.querySelector('.delivery_time .money_back_date').innerHTML = `${monthTable[daysLag3.getMonth()]} ${daysLag3.getDate()} - ${monthTable[daysLag4.getMonth()]} ${daysLag4.getDate()}, ${daysLag3.getFullYear()}  `
+        }
+
+        let firstStr = document.querySelector('.delivery_date b').innerText
+
+        setDateDelivery(firstStr);
+
+    }
+}, 100);
+  
