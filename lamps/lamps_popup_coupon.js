@@ -1,5 +1,5 @@
 let startFunk = setInterval(() => {
-  if (document.querySelector(".catalog-product-view .main-container")) {
+  if (document.querySelector("#main-wrapper")) {
     clearInterval(startFunk)
 
     // event
