@@ -279,7 +279,7 @@ let interval = setInterval(() => {
         document.querySelector('.modal .btn_add-order').addEventListener('click', (e) => pushDataLayer('T-shirt added to the order')) //event
         const appHeight = () => {
             // document.querySelector('.modal').style.height = window.innerHeight + 'px';
-            document.querySelector('.modal').style.height = window.clientHeight + 'px';
+            document.querySelector('.modal').style.height = window.outerHeight + 'px';
         }
         window.addEventListener('resize', appHeight)
         appHeight()
