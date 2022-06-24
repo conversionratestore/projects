@@ -148,6 +148,30 @@ function qty() {
     return option
 }
 
+function post(itemId,itemQuantity) {
+    let formData = {
+        'items': [{
+            'id': itemId,
+            'quantity': itemQuantity
+        }]
+    };
+    fetch('/cart/add.js', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(formData)
+    }).then(response => {
+        return response.json();
+    }).then(data => {
+        if (window.stackable) {
+            window.stackable.checkOut(null, new Event('Stackable Checkout'))
+        }
+    }).catch((error) => {
+        console.error('Error:', error);
+    });
+}
+
 let style = `
 <style>
     .banner_btn {
@@ -1029,13 +1053,16 @@ let html = `
 </div>
 `;
 
-//add html and style
-document.querySelectorAll('.shogun-root > .shg-box-vertical-align-wrapper')[1].querySelectorAll('.shg-box-vertical-align-wrapper')[4].insertAdjacentHTML('beforebegin', html);
-document.body.insertAdjacentHTML('afterbegin', style);
+let startMain = setInterval(function () {
+    if(document.querySelectorAll('.shogun-root > .shg-box-vertical-align-wrapper')[1]) {
+        clearInterval(startMain)
+        //add html and style
+        document.querySelectorAll('.shogun-root > .shg-box-vertical-align-wrapper')[1].querySelectorAll('.shg-box-vertical-align-wrapper')[4].insertAdjacentHTML('beforebegin', html);
+        document.body.insertAdjacentHTML('afterbegin', style);
 
-//swatch packs
-for (let i = 0; i < objVariants.length; i++) {
-    let switchItem = `
+        //swatch packs
+        for (let i = 0; i < objVariants.length; i++) {
+            let switchItem = `
     <div class="swatchCustom__item ${objVariants[i].active}" data-variant="${objVariants[i].variantId}" data-title="${objVariants[i].title}" data-price="${objVariants[i].price}" data-subheading="${objVariants[i].subheading}">
         ${objVariants[i].popular == true ? `<div class="popular">Most Popular</div>` : ''}
         <div class="justify-between w-100">
@@ -1053,79 +1080,56 @@ for (let i = 0; i < objVariants.length; i++) {
         </div>
         <p class="how_cancet">Auto delivery every 3 months. <br> Cancel anytime. <a href="#" class="btn-how_cancel">How to cancel?</a></p>
     </div>`
-    document.querySelector('.part1 .checklist').insertAdjacentHTML('afterend', switchItem);
-}
-
-$('.swatchCustom__item').click(function() {
-    if(!$(this).hasClass('swatchCustom__item--active')) {
-        $(this).siblings().removeClass('swatchCustom__item--active')
-        $(this).addClass('swatchCustom__item--active')
-        document.querySelector(".part2 .stock__select").disabled = false
-
-        let price = $(this).data('price')
-
-        $('.total_price span').text(price)
-        $('.stock__select').val('1')
-        if($(this).data('title') === '3 Pack') {
-            $('.stock__pack span').text('84')
-        } else if($(this).data('title') === '12 Pack') {
-            $('.stock__pack span').text('84')
-        } else {
-            $('.stock__pack span').text('28')
+            document.querySelector('.part1 .checklist').insertAdjacentHTML('afterend', switchItem);
         }
+
+        $('.swatchCustom__item').click(function() {
+            if(!$(this).hasClass('swatchCustom__item--active')) {
+                $(this).siblings().removeClass('swatchCustom__item--active')
+                $(this).addClass('swatchCustom__item--active')
+                document.querySelector(".part2 .stock__select").disabled = false
+
+                let price = $(this).data('price')
+
+                $('.total_price span').text(price)
+                $('.stock__select').val('1')
+                if($(this).data('title') === '3 Pack') {
+                    $('.stock__pack span').text('84')
+                } else if($(this).data('title') === '12 Pack') {
+                    $('.stock__pack span').text('84')
+                } else {
+                    $('.stock__pack span').text('28')
+                }
+            }
+        })
+        //set date of arrives
+        $('.delivery_date b').html($('.country_select option:selected').attr('data-value'))
+
+        // calculating the total price
+        $('.part2 .stock__select').change(function() {
+            let price = +$('.swatchCustom__item.swatchCustom__item--active').data('price')
+            let total = (price * document.querySelector(".part2 .stock__select").value).toFixed(2)
+            $('.part2 .total_price span').text(total)
+        })
+
+        // select delivery country
+        $('.country_select').change(function() {
+            $('.delivery_date b').text($(this).find(':selected').data('value'))
+            if($(this).find(':selected').data('free') !== 'free') {
+                $('.free-shipping-label').text(`Shipping from ${$(this).find(':selected').data('free')}`)
+            } else {
+                $('.free-shipping-label').text(`Free Shipping`)
+            }
+        })
+
+        //add to cart
+        $('.part2 .to_checkout').click(function() {
+            const itemId = document.querySelector(".swatchCustom__item--active").dataset.variant;
+            const itemQuantity = document.querySelector(".part2 .stock__select").value;
+
+            post(itemId,itemQuantity)
+        })
     }
-})
-//set date of arrives 
-$('.delivery_date b').html($('.country_select option:selected').attr('data-value'))
-
-// calculating the total price
-$('.part2 .stock__select').change(function() {
-    let price = +$('.swatchCustom__item.swatchCustom__item--active').data('price')
-    let total = (price * document.querySelector(".part2 .stock__select").value).toFixed(2)
-    $('.part2 .total_price span').text(total)
-})
-
-// select delivery country
-$('.country_select').change(function() {
-    $('.delivery_date b').text($(this).find(':selected').data('value'))
-    if($(this).find(':selected').data('free') !== 'free') {
-        $('.free-shipping-label').text(`Shipping from ${$(this).find(':selected').data('free')}`)
-    } else {
-        $('.free-shipping-label').text(`Free Shipping`)
-    }
-})
-
-
-function post(itemId,itemQuantity) {
-    let formData = {
-        'items': [{
-            'id': itemId,
-            'quantity': itemQuantity
-        }]
-    };
-    fetch('/cart/add.js', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(formData)
-    }).then(response => {
-        return response.json();
-    }).then(data => {
-        if (window.stackable) {
-            window.stackable.checkOut(null, new Event('Stackable Checkout'))
-        }
-    }).catch((error) => {
-        console.error('Error:', error);
-    });
-}
-
-//add to cart
-$('.part2 .to_checkout').click(function() {
-    const itemId = document.querySelector(".swatchCustom__item--active").dataset.variant;
-    const itemQuantity = document.querySelector(".part2 .stock__select").value;
-
-    post(itemId,itemQuantity)
 })
 
 //Money back guarantee
@@ -1221,18 +1225,21 @@ let banner = `
 </div>
     `
 
-document.querySelectorAll('.shogun-image-content > div > .shg-c')[0].style = `margin: 0;`
-document.querySelectorAll('.shg-box-content > div > img.shogun-image')[1].style = 'display: none!important;';
+let startBanner= setInterval(function () {
+    if (document.querySelectorAll('.shogun-image-content > div > .shg-c') && document.querySelectorAll('.shg-row')) {
+        clearInterval(startBanner)
 
-document.querySelectorAll('.shg-row')[0].innerHTML = `
-<div class="wrap-banner">
-    <div class="row-banner">
-        <img src="https://conversionratestore.github.io/projects/somnifix/img/image5.png" alt="image">
-        ${banner}
-    </div>
-</div>
-`
+        document.querySelectorAll('.shogun-image-content > div > .shg-c')[0].style = `margin: 0;`
+        document.querySelectorAll('.shg-box-content > div > img.shogun-image')[1].style = 'display: none!important;';
 
-document.querySelector('.banner_btn').addEventListener('click', (e) => {
-    post('30282132226091',1)
+        document.querySelectorAll('.shg-row')[0].innerHTML = `
+            <div class="wrap-banner">
+                <div class="row-banner">
+                    <img src="https://conversionratestore.github.io/projects/somnifix/img/image5.png" alt="image">
+                    ${banner}
+                </div>
+            </div>`
+
+        document.querySelector('.banner_btn').addEventListener('click', (e) => post('30282132226091',1))
+    }
 })
