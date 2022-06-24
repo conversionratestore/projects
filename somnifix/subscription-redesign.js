@@ -1134,7 +1134,7 @@ let startMain = setInterval(function () {
 
 //Money back guarantee
 let start = setInterval(function () {
-    if (document.querySelector('.for_country_select')) {
+    if (document.querySelectorAll('.for_country_select')) {
         clearInterval(start)
 
         let link = `
