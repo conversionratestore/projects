@@ -1066,7 +1066,7 @@ let html = `
 `;
 
 let startMain = setInterval(function () {
-    if(document.querySelectorAll('.shogun-root > .shg-box-vertical-align-wrapper .shg-box-vertical-align-wrapper')) {
+    if(document.querySelectorAll('.shogun-root > .shg-box-vertical-align-wrapper .shg-box-vertical-align-wrapper')[5] != null) {
         clearInterval(startMain)
         //add html and style
         document.querySelectorAll('.shogun-root > .shg-box-vertical-align-wrapper')[1].querySelectorAll('.shg-box-vertical-align-wrapper')[4].insertAdjacentHTML('beforebegin', html);
