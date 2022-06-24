@@ -1,4 +1,4 @@
-     
+
 let obj = [
     'United States/9-11/free',
     'Canada/12-15/$5',
@@ -83,28 +83,26 @@ function addDays(days) {
     result.setDate(result.getDate() + days);
     return result;
 }
- 
-optionShipTo = () => {
+
+function optionShipTo() {
     let option = '';
     for (let i = 0; i < obj.length; i++) {
-        let elements = obj[i].split('/');
+        let elements = obj[i].split('/'),
             plusDays = elements[1].split('-');
 
         let minDay = addDays(+plusDays[0]),
             maxDay = addDays(+plusDays[1]);
 
-        option += `<option value="${elements[0]}" data-free="${elements[2]}" data-value="${minDay.getDate()} ${formatDate[minDay.getMonth()]} - ${maxDay.getDate()}  ${formatDate[maxDay.getMonth()]}">${elements[0]}</option>`;  
+        option += `<option value="${elements[0]}" data-free="${elements[2]}" data-value="${minDay.getDate()} ${formatDate[minDay.getMonth()]} - ${maxDay.getDate()}  ${formatDate[maxDay.getMonth()]}">${elements[0]}</option>`;
     }
-   
+
     return option
 }
 
 let objVariants = [
     {
-        'productId': '4617243754611',
         'variantId': '32115046023283',
         'title': '1 Pack',
-        '': 'SINGLE-PACK',
         'week' :'4 week pack',
         'days':'28 strips',
         'sale':'',
@@ -114,10 +112,8 @@ let objVariants = [
         'active':'',
     },
     {
-        'productId': '',
         'variantId': '16037160779819',
         'title': '3 Pack',
-        '': 'THREE-PACK',
         'week' :'12-week pack',
         'days':'84 strips',
         'sale':'Save 22%',
@@ -127,10 +123,8 @@ let objVariants = [
         'active':'',
     },
     {
-        'productId': '',
         'variantId': '30282132226091',
         'title': '12 Pack',
-        '': 'THREE-PACK SUBSCRIPTION',
         'week' :'12-week pack',
         'days':'84 strips',
         'sale':'Save 30%',
@@ -142,7 +136,7 @@ let objVariants = [
 ]
 
 //qty stock
-qty = () => {
+function qty() {
     let i = 1,
         option = ``;
 
@@ -156,6 +150,116 @@ qty = () => {
 
 let style = `
 <style>
+    .banner_btn {
+        background: #FF9729;
+        border-radius: 2px;
+        width: fit-content;
+        font-family: 'Roboto', sans-serif;
+        font-style: normal;
+        font-weight: 500;
+        font-size: 16px;
+        line-height: 19px;
+        padding: 12.5px 59.5px;
+        margin-top: 16px;
+        color: #FFFFFF;
+        border: none;
+    }
+    .wrap-banner {
+        background: url(https://conversionratestore.github.io/projects/somnifix/img/image4.png) no-repeat center / cover;         
+        width: 100%;
+    }
+    .row-banner img {
+        max-height: 326px;
+    }
+    .row-banner {
+        padding: 45px 0 34px;
+        display: flex;
+        justify-content: space-between;
+        position: inherit;
+        max-width: 1064px;
+        margin: 0 auto;
+    }
+    .shogun-image-content {
+        position: relative!important;
+    }
+    .banner .stamped-main-badge {
+        margin-bottom: 24px;
+    }
+    .banner .stamped-main-badge i:before {
+        font-size: 14px;
+        margin-right: 2px;
+    }
+    .banner .stamped-badge-caption {
+        padding-left: 15px;
+    }
+    .banner .stamped-badge-caption, .banner .stamped-badge-caption span {
+        font-family: 'Roboto', sans-serif;
+        font-style: normal;
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 100%;
+        color: #FFFFFF;
+    }
+    #s-fbdee801-5b04-4709-9608-83ce9e92dc48 img.shogun-image {
+        width: 100%;
+    }
+    .banner {
+       color: #FFFFFF;
+        font-size: 14px;
+        line-height: 16px;
+        max-width: 488px;
+        text-align: left;
+    }
+    .banner a {
+       color: #FFFFFF;
+    }
+    .banner p {
+        margin-bottom: 8px;
+    }
+    .banner h1 {
+        font-weight: 700;
+        font-size: 32px;
+        line-height: 38px;
+        text-transform: uppercase;
+        margin-bottom: 16px;
+        color: #FFFFFF;
+        font-family: 'Roboto', sans-serif!important;
+    }
+    .banner_list li {
+       margin-bottom: 8px;
+       position: relative;
+       display: flex;
+    }
+    .banner_list li:before {
+        content: '';
+        width: 16px;
+        height: 16px;
+        margin-right: 8px;
+        display: block;
+        flex-shrink: 0;
+        background: url('https://conversionratestore.github.io/projects/somnifix/img/check-orange.svg') no-repeat center / contain;  
+    }
+    .banner_list {
+        margin-bottom: 24px;
+    }
+    .banner_price-old {
+        font-size: 16px;
+        line-height: 19px;
+        text-decoration-line: line-through;
+        text-transform: uppercase;
+    }
+    .banner_price {
+        font-weight: 700;
+        font-size: 28px;
+        line-height: 33px;
+    }
+    .fs-12 {
+        font-size: 12px;
+        line-height: 14px;
+    }
+    .shogun-root > .shg-box-vertical-align-wrapper .shg-box-content > .shg-box-vertical-align-wrapper {
+        display: none;
+    }
     .justify-between { 
         display: flex;
         justify-content: space-between;
@@ -932,7 +1036,7 @@ document.body.insertAdjacentHTML('afterbegin', style);
 //swatch packs
 for (let i = 0; i < objVariants.length; i++) {
     let switchItem = `
-    <div class="swatchCustom__item ${objVariants[i].active}" data-variant=" ${objVariants[i].variantId}" data-title="${objVariants[i].title}" data-price="${objVariants[i].price}" data-subheading="${objVariants[i].subheading}">
+    <div class="swatchCustom__item ${objVariants[i].active}" data-variant="${objVariants[i].variantId}" data-title="${objVariants[i].title}" data-price="${objVariants[i].price}" data-subheading="${objVariants[i].subheading}">
         ${objVariants[i].popular == true ? `<div class="popular">Most Popular</div>` : ''}
         <div class="justify-between w-100">
             <div class="swatchCustom__item--first">
@@ -949,7 +1053,7 @@ for (let i = 0; i < objVariants.length; i++) {
         </div>
         <p class="how_cancet">Auto delivery every 3 months. <br> Cancel anytime. <a href="#" class="btn-how_cancel">How to cancel?</a></p>
     </div>`
-    document.querySelector('.part1 .checklist').insertAdjacentHTML('afterend', switchItem); 
+    document.querySelector('.part1 .checklist').insertAdjacentHTML('afterend', switchItem);
 }
 
 $('.swatchCustom__item').click(function() {
@@ -991,11 +1095,8 @@ $('.country_select').change(function() {
     }
 })
 
-//add to cart
-$('.part2 .to_checkout').click(function() {
-    const itemId = document.querySelector(".swatchCustom__item--active").dataset.variant;
-    const itemQuantity = document.querySelector(".part2 .stock__select").value;
 
+function post(itemId,itemQuantity) {
     let formData = {
         'items': [{
             'id': itemId,
@@ -1017,13 +1118,21 @@ $('.part2 .to_checkout').click(function() {
     }).catch((error) => {
         console.error('Error:', error);
     });
+}
+
+//add to cart
+$('.part2 .to_checkout').click(function() {
+    const itemId = document.querySelector(".swatchCustom__item--active").dataset.variant;
+    const itemQuantity = document.querySelector(".part2 .stock__select").value;
+
+    post(itemId,itemQuantity)
 })
 
 //Money back guarantee
 let start = setInterval(function () {
     if (document.querySelector('.for_country_select')) {
         clearInterval(start)
-        
+
         let link = `
           <div class="navbar-item header__item " data-navlink-handle="guarantee"> 
               <a href="#" class="navbar-link header__link  is-arrowless to_money_back">guarantee</a>
@@ -1052,7 +1161,7 @@ let start = setInterval(function () {
             let d = e.target.options[e.target.selectedIndex].dataset.value
             setDateDelivery(d)
         })
-        
+
         document.querySelectorAll('select[name="country"]')[1].addEventListener('change', function (e) {
             document.querySelector('.money_back select').value = this.value
             document.querySelectorAll('select[name="country"]')[0].value = this.value
@@ -1091,4 +1200,39 @@ let start = setInterval(function () {
 
     }
 }, 100);
-  
+
+//banner
+let banner = `
+<div class="banner">
+    <h1>Save 30% when you schedule repeat deliveries</h1>
+    <ul class="banner_list">
+        <li>Cancel anytime</li>
+        <li>Free US shipping</li>
+    </ul>
+    <a href="/pages/reviews" class="stamped-product-reviews-badge stamped-main-badge" data-id="4617243754611" style="display: inline-block;">
+       <span class="stamped-badge" data-rating="4.8" data-lang="" aria-label="Rated 4.8 out of 5 stars 4126reviews">
+       <span class="stamped-starrating stamped-badge-starrating" aria-hidden="true"><i class="stamped-fa stamped-fa-star" style="color: rgb(242, 180, 19) !important;" aria-hidden="true"></i><i class="stamped-fa stamped-fa-star" style="color: rgb(242, 180, 19) !important;" aria-hidden="true"></i><i class="stamped-fa stamped-fa-star" style="color: rgb(242, 180, 19) !important;" aria-hidden="true"></i><i class="stamped-fa stamped-fa-star" style="color: rgb(242, 180, 19) !important;" aria-hidden="true"></i><i class="stamped-fa stamped-fa-star" style="color: rgb(242, 180, 19) !important;" aria-hidden="true"></i></span><span class="stamped-badge-caption" data-reviews="4126" data-rating="4.8" data-label="reviews" aria-label="4126 reviews" data-version="2">4126<span style="display:none;"> reviews</span></span></span>
+    </a>
+    <p><b>3-month pack,</b> 84 strips </p>
+    <p class="banner_price-old">$71.97 USD</p>
+    <p class="banner_price">$49.97 USD</p>
+    <p class="fs-12">Auto delivery every 3 months</p>
+    <button type="button" class="banner_btn">ADD TO CART</button>
+</div>
+    `
+
+document.querySelectorAll('.shogun-image-content > div > .shg-c')[0].style = `margin: 0;`
+document.querySelectorAll('.shg-box-content > div > img.shogun-image')[1].style = 'display: none!important;';
+
+document.querySelectorAll('.shg-row')[0].innerHTML = `
+<div class="wrap-banner">
+    <div class="row-banner">
+        <img src="https://conversionratestore.github.io/projects/somnifix/img/image5.png" alt="image">
+        ${banner}
+    </div>
+</div>
+`
+
+document.querySelector('.banner_btn').addEventListener('click', (e) => {
+    post('30282132226091',1)
+})
