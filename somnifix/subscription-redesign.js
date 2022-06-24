@@ -1040,9 +1040,21 @@ let html = `
                 <span class="point3"></span>
                 <p></p>
             </div>
-            <div><p>Buy SomniFix</p><p>Today</p><p class="today">Jun 17, 2021</p></div>
-            <div><p>Shipping</p><p>1-4 days</p><p class="delivery_date">Jun 18-21, 2021</p></div>
-            <div><p>100% money back guarantee through</p><p>After 30 days</p><p class="money_back_date">Jul 17, 2021</p></div>
+            <div>
+                <p>Buy SomniFix</p>
+                <p>Today</p>
+                <p class="today">Jun 17, 2021</p>
+            </div>
+            <div>
+                <p>Shipping</p>
+                <p>1-4 days</p>
+                <p class="delivery_date">Jun 18-21, 2021</p>
+            </div>
+            <div>
+                <p>100% money back guarantee through</p>
+                <p>After 30 days</p>
+                <p class="money_back_date">Jul 17, 2021</p>
+            </div>
         </div>
     </div>
     <div class="flx spots">
@@ -1134,7 +1146,7 @@ let startMain = setInterval(function () {
 
 //Money back guarantee
 let start = setInterval(function () {
-    if (document.querySelectorAll('.for_country_select')) {
+    if (document.querySelectorAll('.for_country_select') && document.querySelector('.delivery_time') != null) {
         clearInterval(start)
 
         let link = `
