@@ -815,6 +815,7 @@ let startFunk = setInterval(() => {
     document.querySelector(".form_wrap button#continueBtn")?.addEventListener("click", () => {
       pushDataLayer("Continue Shopping clicked")
       hidePopup()
+      window.location.reload()
     })
 
     document.querySelector(".form_wrap button#btnRegisterSubmit")?.addEventListener("click", () => {
@@ -903,7 +904,6 @@ let startFunk = setInterval(() => {
         sessionStorage.setItem("successSign", true)
         sessionStorage.setItem("successCoupon", true)
         hidePopup()
-        // window.location.reload()
       }
     }
 
