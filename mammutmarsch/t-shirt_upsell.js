@@ -277,8 +277,11 @@ let interval = setInterval(() => {
         }) 
         document.querySelector('.modal .btn_skip').addEventListener('click', (e) => pushDataLayer('Scip offer selected')) //event
         document.querySelector('.modal .btn_add-order').addEventListener('click', (e) => pushDataLayer('T-shirt added to the order')) //event
-        
-        document.querySelector('.modal').style.height = window.innerHeight;
+        const appHeight = () => {
+            document.querySelector('.modal').style.height = window.innerHeight + 'px';
+        }
+        window.addEventListener('resize', appHeight)
+        appHeight()
     }
 })
 
