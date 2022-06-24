@@ -21,8 +21,21 @@ const transition = 'transition: all 0.2s ease-out;'
 
 const style = /*html*/`
     <style>
+        #ipmb-industries-we-serve {
+            margin-top: 25px;
+        }
+
         #ipmb-industries-we-serve h2 {
             width: 80%;
+        }
+
+        
+        #ipmb-industries-we-serve h2 p {
+            margin-bottom: -55px;
+        }
+
+        .ipmb-areas-content, .ipmb-areas-txt {
+            line-height: 128.7% !important;
         }
 
         .ipmb-areas-col p:first-child {
@@ -154,7 +167,7 @@ const style = /*html*/`
         #area_select { 
             font-family: 'Poppins', sans-serif;
             padding: 16px 45px;           
-            margin: 8px 0 30px;
+            margin: 8px 0 0;
             font-weight: 400;
             font-size: 14px;
             border: 1px solid rgba(119, 119, 119, 0.05);
@@ -171,17 +184,18 @@ const style = /*html*/`
         }
 
         span.area_error {
-            display: none;
-            margin-top: 10px;
+            display: block;
+            visibility: hidden;
+            margin: 5px 0;
             font-weight: 400;
-            font-size: 12px;
+            font-size: 11px;
             line-height: 18px;
             text-align: center;
             color: #D94E48;
         }
 
         .show_error .area_error {
-            display: block;
+            visibility: visible;
         }
 
         .show_error #area_select {
@@ -201,10 +215,6 @@ const style = /*html*/`
             text-transform: uppercase;
             color: ${color_black};
             margin-bottom: 20px;
-        }
-
-        #ipmb-industries-we-serve h2 p {
-            margin-bottom: -20px;
         }
 
         .slide {
@@ -311,7 +321,7 @@ const style = /*html*/`
         }
 
         .accordion_item_header {
-            padding: 15px 0;            
+            padding: 14px 0;            
             display: flex;
             align-items: center;
             position: relative;
@@ -324,9 +334,10 @@ const style = /*html*/`
             padding-right: 25px;
             font-size: 18px;
             line-height: 27px;
+            text-transform: capitalize;
         }
 
-        .accordion_item_header.active {
+        .accordion_item_header.active p {
             font-weight: 700;
         }
 
@@ -348,10 +359,12 @@ const style = /*html*/`
         .accordion_item-body {
             max-height: 0;
             overflow: hidden;
+            margin: 0 -20px 0;
+            padding: 0 20px;
             ${transition}
         }
 
-        .accordion_item_body_content {
+        .accordion_item_body_element {
             display: flex;
             margin-bottom: 20px;
             overflow: hidden;
@@ -360,32 +373,32 @@ const style = /*html*/`
             border-radius: 13px;
         }
 
-        .accordion_item_body_content img {
+        .accordion_item_body_element img {
             width: 130px;
             height: 124px;
         }
 
-        .accordion_item_body_content .city {
+        .accordion_item_body_element .city {
             font-weight: 600;
             font-size: 20px;
             color: ${color_black};
             margin-bottom: 10px;
         }
 
-        .accordion_item_body_content .sign {
+        .accordion_item_body_element .sign {
             font-weight: 400;
             font-size: 16px;
             line-height: 24px;
             color: #00A8F4;
         }
 
-        .accordion_item_body_content .sign img {
+        .accordion_item_body_element .sign img {
             width: auto;
             height: auto;
             margin-left: 10px;
         }
 
-        .accordion_item_body_content .text {
+        .accordion_item_body_element .text {
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -402,6 +415,7 @@ const style = /*html*/`
         .steps h2 {
             font-size: 24px;
             line-height: 36px;
+            margin-bottom: 45px;
         }
 
         .step {
@@ -432,7 +446,7 @@ const style = /*html*/`
             color: #656565;
         }
 
-        .faq .accordion_item_body_content {
+        .faq .accordion_item_body_element {
             flex-direction: column;
             border-radius: 0;
             overflow: auto;
@@ -440,12 +454,12 @@ const style = /*html*/`
             color: #777777;
         }
 
-        .faq .accordion_item_body_content ol {
+        .faq .accordion_item_body_element ol {
             margin-top: 0;
         }
         
-        .faq .accordion_item_body_content p,
-        .faq .accordion_item_body_content li {
+        .faq .accordion_item_body_element p,
+        .faq .accordion_item_body_element li {
             font-size: 14px;
             line-height: 24px;
         }
@@ -481,6 +495,7 @@ const style = /*html*/`
         }
 
         .find_work {
+            margin-top: -15px;
             font-family: 'Poppins', sans-serif;
             padding: 0 25px 70px;
         }
@@ -494,46 +509,69 @@ const style = /*html*/`
             text-transform: lowercase;
             color: #777777;
         }
+
+        section.faq a, 
+        section.faq span[data-sign] {
+            color: #00A8F4;
+            text-decoration: underline;
+            font-weight: 600;
+        }
+
+        .slider {
+            margin-top: -20px;
+        }
+
+        .popular button {
+            margin-top: 40px;
+            margin-bottom: 10px;
+        }
+
+        #row-unique-0 p {
+            font-weight: 700 !important;
+            font-size: 33px;
+            color: #303133;
+            line-height: 50px;
+            text-align: center !important;
+        }
     </style>
 `
 
 /* Data Objects */
 
 const cities = [
-    "Akron/Canton",
-    "Ann Arbor",
-    "Atlanta",
-    "Austin",
-    "Charlotte",
-    "Charlotte Metro Area",
-    "Cincinnati",
-    "Cleveland",
-    "Columbus",
-    "Dallas/Fort Worth",
-    "Dayton",
-    "Detroit",
-    "Fort Lauderdale",
-    "Houston",
-    "Indianapolis",
-    "Kansas City",
-    "Kansas City",
-    "Lakeland",
-    "Las Vegas",
-    "Miami",
-    "Minneapolis/St.Paul",
-    "Nashville",
-    "Northern Kentucky",
-    "Orlando",
-    "Phoenix",
-    "Pittsburgh",
-    "San Antonio",
-    "Sandusky",
-    "St. Louis",
-    "St. Louis",
-    "St. Petersburg",
-    "Tampa"
+    "Akron/Canton, OH",
+    "Ann Arbor, MI",
+    "Atlanta, GA",
+    "Austin, TX",
+    "Charlotte Metro Area, SC",
+    "Charlotte, NC",
+    "Cincinnati, OH",
+    "Cleveland, OH",
+    "Columbus, OH",
+    "Dallas/Fort Worth, TX",
+    "Dayton, OH",
+    "Detroit, MI",
+    "Fort Lauderdale, FL",
+    "Houston, TX",
+    "Indianapolis, IN",
+    "Kansas City, KS",
+    "Kansas City, MO",
+    "Lakeland, FL",
+    "Las Vegas, NV",
+    "Miami, FL",
+    "Minneapolis/St.Paul, MN",
+    "Nashville, TN",
+    "Northern Kentucky, KY",
+    "Orlando, FL",
+    "Phoenix, AZ",
+    "Pittsburgh, PA",
+    "San Antonio, TX",
+    "Sandusky, OH",
+    "St. Louis, IL",
+    "St. Louis, MO",
+    "St. Petersburg, FL",
+    "Tampa, FL"
 ]
-const cityOptions = cities.map(city => `<option value="${city}">${city}</option>`)
 
 const popularJobs = [
     [
@@ -558,7 +596,201 @@ const popularJobs = [
     ],
 ]
 
+const uploadsURL = `https://www.upshift.work/wp-content/uploads/`
+
+const locationsObj = [
+    {
+        state: 'Arizona',
+        cities: [
+            ['Phoenix', uploadsURL + '2021/12/Phoenix-small-photo-1-2.jpg']
+        ]
+    },
+    {
+        state: 'Florida',
+        cities: [
+            ["Fort Lauderdale", uploadsURL + "2022/04/fort-lauderdale-2.jpg"],
+            ["Lakeland", uploadsURL + "2021/10/Lakeland-thb-1.jpg"],
+            ["Orlando", uploadsURL + "2021/09/mick-haupt-Tyn3-Cljx-A-unsplash-1-1-e1632475827586.jpg"],
+            ["Miami", uploadsURL + "2022/01/025-Depositphotos_198880700_L-1-1.jpg"],
+            ["St. Petersburg", uploadsURL + "2021/10/St.-Petersburg-thb-1.jpg"],
+            ["Tampa", uploadsURL + "2021/09/tampa-2519396_1920-1-1-e1632418091236.jpg"]
+        ]
+    },
+    {
+        state: 'Georgia',
+        cities: [
+            ['Atlanta', uploadsURL + '2021/07/Depositphotos_51662971_l-2015-1-1-2-e1625926826674.jpg']
+        ]
+    },
+    {
+        state: 'Illinois',
+        cities: [
+            ['St. Louis', uploadsURL + '2022/02/St.louis-square-2-1.png']
+        ]
+    },
+    {
+        state: 'Indiana',
+        cities: [
+            ['Indianapolis', uploadsURL + '2021/03/Indy-3-uai-365x365-1.jpg']
+        ]
+    },
+    {
+        state: 'Kansas',
+        cities: [
+            ['Kansas City', uploadsURL + '2022/02/Kansas-City-square-2-1.png']
+        ]
+    },
+    {
+        state: 'Kentucky',
+        cities: [
+            ['Northern Kentucky', uploadsURL + '2021/03/covington-uai-533x533-1.jpg']
+        ]
+    },
+    {
+        state: 'Michigan',
+        cities: [
+            ['Ann Arbor', uploadsURL + '2022/04/brad-west-0G3Kj9L2JH0-unsplash-2.jpg'],
+            ['Detroit', uploadsURL + '2022/01/Detroit-square.png'],
+        ]
+    },
+    {
+        state: 'Minnesota',
+        cities: [
+            [`Minneapolis/<br>St.Paul`, uploadsURL + '2022/01/Minneapolis-square.png'],
+        ]
+    },
+    {
+        state: 'Missouri',
+        cities: [
+            ['Kansas City', uploadsURL + '2022/02/Kansas-City-square-2-1.png'],
+            ['St. Louis', uploadsURL + '2022/02/St.louis-square-2-1.png'],
+        ]
+    },
+    {
+        state: 'Nevada',
+        cities: [
+            ['Las Vegas', uploadsURL + '2021/12/Las-Vegas-small-photo-1-1.jpg'],
+        ]
+    },
+    {
+        state: 'North Carolina',
+        cities: [
+            ['Charlotte', uploadsURL + '2021/03/Charlote-uai-456x456-1.jpg'],
+        ]
+    },
+    {
+        state: 'Ohio',
+        cities: [
+            ['Akron/Canton', uploadsURL + "2022/04/fort-lauderdale-2.jpg"],
+            ['Cincinnati', uploadsURL + "2021/10/Lakeland-thb-1.jpg"],
+            ['Cleveland', uploadsURL + "2021/09/mick-haupt-Tyn3-Cljx-A-unsplash-1-1-e1632475827586.jpg"],
+            ['Columbus', uploadsURL + "2022/01/025-Depositphotos_198880700_L-1-1.jpg"],
+            ['Dayton', uploadsURL + "2021/10/St.-Petersburg-thb-1.jpg"],
+            ['Sandusky', uploadsURL + "2021/09/tampa-2519396_1920-1-1-e1632418091236.jpg"],
+        ]
+    },
+    {
+        state: 'Pennsilvania',
+        cities: [
+            ['Pittsburgh', uploadsURL + "2021/03/pittsburg-uai-456x456-1.jpg"]
+        ]
+    },
+    {
+        state: 'South Carolina',
+        cities: [
+            ['Charlotte Metro Area', uploadsURL + "2021/03/fortmill-uai-520x520-1.jpg"]
+        ]
+    },
+    {
+        state: 'Tennessee',
+        cities: [
+            ['Nashville', uploadsURL + "2021/03/nashville-725986_1280-uai-960x960-1.jpg"]
+        ]
+    },
+    {
+        state: 'Texas',
+        cities: [
+            ["Austin", uploadsURL + "2021/03/austin2-uai-456x456-1.jpg"],
+            [`Dallas/<br>Fort Worth`, uploadsURL + "2021/03/Dallas-uai-456x456-1.jpg"],
+            ["Houston", uploadsURL + "2021/03/Huston-uai-456x456-1.jpg"],
+            ["San Antonio", uploadsURL + "2021/03/san-antonio-uai-456x456-1.jpg"]
+        ]
+    },
+
+
+
+
+]
+
+const faqArray = [
+    [
+        'How long does the application process take?',
+        `
+            <p>It’s easy to get started with Upshift:</p>
+            <ol>
+                <li>Apply online and tell a little about yourself.</li>
+                <li>Bring some documents to one of our offices and activate your account.</li>
+                <li>Download Upshift app and start applying for available positions in your area.</li>
+            </ol>
+            <p>Processing time may vary by city, but most Upshifters are able to start working within a week or less after online application.</p>
+        `
+    ],
+    [
+        'How do I get paid?',
+        `<p>Upshifters get paid weekly. Our pay period runs from Monday through Sunday with pay going out the following Friday!</p>
+        <p>As an Upshifter you may also be able to qualify for same day pay through our partnership with Earnin. After you have received two direct deposits through Upshift you will be able to apply for same day pay through Earnin!</p>`
+    ],
+    [
+        'How often do I need to take shifts?',
+        `
+            <p>Upshift allows people to choose where and when they want to work.</p>
+            <p>There are no minimums. You can work as little as you want to and up to 40 hours per week without client approval and over 40 hours if a client approves.</p>
+        `
+    ],
+    [
+        'What are the requirements to sign up?',
+        `
+            <p>You can sign up <span data-sign>here</span> to start working today! And have a eligibility to work in the United States. You can find a breakdown of acceptable documents here: 
+            <a href="https://www.upshift.work/i9/" target="_blank">https://www.upshift.work/i9/</a></p>            
+        `
+    ],
+    [
+        'Is there a minimum amount of hours I need to work?',
+        `<p>With Upshift, there are no minimums. You can work as little as you want to and up to 40 hours per week without client approval and over 40 hours if a client approves.</p>`
+    ],
+    [
+        'Would I be a 1099 or W2?',
+        `<p>All Upshifters are W2 employees of Upshift. This means that we pay the employer portion of FICA taxes for you and that you have access to traditional employee benefits even while working flexibly.</p>`
+    ],
+    [
+        'Does Upshift charge people any fees?',
+        `<p>Upshift is 100% free for people to use. We never take any fees out of your pay for connecting you with shifts.</p>`
+    ]
+]
+
+
 /* HTML */
+
+const cityOptions = cities.map(city => `<option value="${city}">${city}</option>`).join('')
+
+const locationsHTML = locationsObj.map(location => `
+    <div class="accordion_item">
+        <div class="accordion_item_header">
+            <p>${location.state}</p>
+        </div>
+        <div class="accordion_item-body">            
+            ${location.cities.map(city => `
+                <div class="accordion_item_body_element">
+                    <img loading="lazy" src="${city[1]}" alt="${city[0]}">
+                    <div class="text">
+                        <p class="city">${city[0]}</p>
+                        <p class="sign">Sign up<img src="https://conversionratestore.github.io/projects/upshift/img/arrow_right_blue.svg" alt="arrow right"></p>
+                    </div>        
+                </div>
+            `).join('')}
+        </div>
+    </div>`
+).join('')
 
 const slides = popularJobs.map(job => `
 <div class="slide">
@@ -586,6 +818,19 @@ const slides = popularJobs.map(job => `
             </div>
 `).join('')
 
+const faqHTML = faqArray.map(faq => `
+            <div class="accordion_item">
+                <div class="accordion_item_header">
+                    <p>${faq[0]}</p>
+                </div>
+                <div class="accordion_item-body">
+                    <div class="accordion_item_body_element">
+                        ${faq[1]}                        
+                    </div>
+                </div>
+            </div> 
+`).join('')
+
 const template = /*html*/`
 <div class="template">
     <section class="area">
@@ -599,15 +844,15 @@ const template = /*html*/`
                     ${cityOptions}
                 </select>
             </div>
-            <button type="button">Get started</button>
             <span class="area_error">Please, choose a location so we can get started</span>
+            <button type="button">Get started</button>            
         </form>
     </section>
     <section class="reviews">
         <p>Over 50,000 People have already found job on upshift</p>
         <img src="${imgFolderLink}/glassdoor.svg" alt="glassdoor">
     </section>
-    <section>
+    <section class="popular">
         <h2>Popular jobs</h2>
         <div class="slider" id="slider">
             ${slides}
@@ -617,40 +862,7 @@ const template = /*html*/`
     <section>
         <h2>Upshift Locations</h2>
         <div class="accordion">
-            <div class="accordion_item">
-                <div class="accordion_item_header">
-                    <p>Arizona</p>
-                </div>
-                <div class="accordion_item-body">
-                    <div class="accordion_item_body_content">
-                        <img loading="lazy" src="https://www.upshift.work/wp-content/uploads/2021/12/Phoenix-small-photo-1-2-300x300.jpg"
-                            alt="city">
-                        <div class="text">
-                            <p class="city">Phoenix</p>
-                            <p class="sign">Sign up<img
-                                    src="https://conversionratestore.github.io/projects/upshift/img/arrow_right_blue.svg"
-                                    alt="arrow right"></p>
-                        </div>
-                    </div>
-                </div>
-            </div>    
-            <div class="accordion_item">
-                <div class="accordion_item_header">
-                    <p>Arizona</p>
-                </div>
-                <div class="accordion_item-body">
-                    <div class="accordion_item_body_content">
-                        <img loading="lazy" src="https://www.upshift.work/wp-content/uploads/2021/12/Phoenix-small-photo-1-2-300x300.jpg"
-                            alt="city">
-                        <div class="text">
-                            <p class="city">Phoenix</p>
-                            <p class="sign">Sign up<img
-                                    src="https://conversionratestore.github.io/projects/upshift/img/arrow_right_blue.svg"
-                                    alt="arrow right"></p>
-                        </div>
-                    </div>
-                </div>
-            </div>         
+            ${locationsHTML}
         </div>
     </section>
     <section>
@@ -678,38 +890,7 @@ const template = /*html*/`
     <section class="faq">
         <h2>Frequently asked questions</h2>
         <div class="accordion">
-            <div class="accordion_item">
-                <div class="accordion_item_header">
-                    <p>How long does the application process take?</p>
-                </div>
-                <div class="accordion_item-body">
-                    <div class="accordion_item_body_content">
-                        <p>It’s easy to get started with Upshift:</p>
-                        <ol>
-                            <li>Apply online and tell a little about yourself.</li>
-                            <li>Bring some documents to one of our offices and activate your account.</li>
-                            <li>Download Upshift app and start applying for available positions in your area.</li>
-                        </ol>
-                        <p>Processing time may vary by city, but most Upshifters are able to start working within a week or less after online application.</p>
-                    </div>
-                </div>
-            </div>    
-            <div class="accordion_item">
-                <div class="accordion_item_header">
-                    <p>How long does the application process take?</p>
-                </div>
-                <div class="accordion_item-body">
-                    <div class="accordion_item_body_content">
-                        <p>It’s easy to get started with Upshift:</p>
-                        <ol>
-                            <li>Apply online and tell a little about yourself.</li>
-                            <li>Bring some documents to one of our offices and activate your account.</li>
-                            <li>Download Upshift app and start applying for available positions in your area.</li>
-                        </ol>
-                        <p>Processing time may vary by city, but most Upshifters are able to start working within a week or less after online application.</p>
-                    </div>
-                </div>
-            </div>        
+            ${faqHTML}    
         </div>
         <button data-sign>Join Upshift</button>
     </section>
@@ -782,14 +963,15 @@ let waitForPeopleSection = setInterval(() => {
                     if (select.value === '') {
                         form.classList.add('show_error')
                     } else {
-                        console.log(select.value);
+
+                        localStorage.setItem('city', select.value)
+                        alert(select.value);
                         form.classList.remove('show_error')
                     }
                 });
 
                 document.querySelector('#area_form').addEventListener('change', () => {
                     form.classList.remove('show_error')
-                    console.log('ss');
                 }, { once: true });
             }
         }, 200);
@@ -803,10 +985,7 @@ let waitForPeopleSection = setInterval(() => {
                     accordion.addEventListener('click', (e) => {
                         if (e.target.closest('.accordion_item_header')) {
                             const accordionHeader = e.target.closest('.accordion_item_header')
-                            console.log(accordionHeader);
                             const accordionBody = accordionHeader.nextElementSibling
-
-                            console.log(accordionBody);
 
                             const currentlyActiveAccordionHeader = document.querySelector(".accordion_item_header.active");
                             if (currentlyActiveAccordionHeader && currentlyActiveAccordionHeader !== accordionHeader) {
@@ -840,5 +1019,42 @@ let waitForPeopleSection = setInterval(() => {
                 `)
             }
         }, 200);
+
+        /* Interval 6: Initialize Sign Up script after Buttons appearence in the DOM */
+        const waitForBtns = setInterval(() => {
+            if (document.querySelectorAll('[data-sign]')[4]) {
+                clearInterval(waitForBtns)
+
+                const form = document.getElementById('area_form')
+                const select = document.getElementById('area_select')
+
+                // add logic to Sign Up buttons
+                document.querySelectorAll('[data-sign]').forEach(btn => {
+                    btn.addEventListener('click', () => {
+                        if (select.value !== '') { // Sign Up                            
+                            alert(select.value)
+                        } else { // Scroll to Sign Form                            
+                            form.classList.add('show_error')
+
+                            window.scrollTo({
+                                top: 0,
+                                behavior: "smooth"
+                            });
+                        }
+                    })
+                })
+            }
+        }, 200);
+
+        /* Interval 7: Change heading in Why choose section after appearence in the DOM */
+        const waitForHeading = setInterval(() => {
+            if (document.querySelector('#row-unique-0 p')) {
+                clearInterval(waitForHeading)
+
+                document.querySelector('#row-unique-0 p').innerText = 'Why choose Upshift?'
+            }
+        }, 200);
+
+
     }
 }, 200);
