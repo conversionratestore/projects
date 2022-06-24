@@ -903,7 +903,7 @@ let startFunk = setInterval(() => {
         sessionStorage.setItem("successSign", true)
         sessionStorage.setItem("successCoupon", true)
         hidePopup()
-        window.location.reload()
+        // window.location.reload()
       }
     }
 
