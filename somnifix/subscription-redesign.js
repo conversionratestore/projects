@@ -1054,7 +1054,7 @@ let html = `
 `;
 
 let startMain = setInterval(function () {
-    if(document.querySelectorAll('.shogun-root > .shg-box-vertical-align-wrapper')[1]) {
+    if(document.querySelectorAll('.shogun-root > .shg-box-vertical-align-wrapper .shg-box-vertical-align-wrapper')) {
         clearInterval(startMain)
         //add html and style
         document.querySelectorAll('.shogun-root > .shg-box-vertical-align-wrapper')[1].querySelectorAll('.shg-box-vertical-align-wrapper')[4].insertAdjacentHTML('beforebegin', html);
@@ -1063,23 +1063,23 @@ let startMain = setInterval(function () {
         //swatch packs
         for (let i = 0; i < objVariants.length; i++) {
             let switchItem = `
-    <div class="swatchCustom__item ${objVariants[i].active}" data-variant="${objVariants[i].variantId}" data-title="${objVariants[i].title}" data-price="${objVariants[i].price}" data-subheading="${objVariants[i].subheading}">
-        ${objVariants[i].popular == true ? `<div class="popular">Most Popular</div>` : ''}
-        <div class="justify-between w-100">
-            <div class="swatchCustom__item--first">
-                <span class="week">${objVariants[i].week} <br><span> subscription</span></span>
-                <span class="days">${objVariants[i].days}</span>
-            </div>
-            <div class="swatchCustom__item--third">
-                <span class="sale">${objVariants[i].sale}</span>
-                <p>
-                    <span class="price">${objVariants[i].price} USD </span>
-                    <span class="per_strip">($${objVariants[i].perStrip} per strip)</span>
-                </p>
-            </div>
-        </div>
-        <p class="how_cancet">Auto delivery every 3 months. <br> Cancel anytime. <a href="#" class="btn-how_cancel">How to cancel?</a></p>
-    </div>`
+            <div class="swatchCustom__item ${objVariants[i].active}" data-variant="${objVariants[i].variantId}" data-title="${objVariants[i].title}" data-price="${objVariants[i].price}" data-subheading="${objVariants[i].subheading}">
+                ${objVariants[i].popular == true ? `<div class="popular">Most Popular</div>` : ''}
+                <div class="justify-between w-100">
+                    <div class="swatchCustom__item--first">
+                        <span class="week">${objVariants[i].week} <br><span> subscription</span></span>
+                        <span class="days">${objVariants[i].days}</span>
+                    </div>
+                    <div class="swatchCustom__item--third">
+                        <span class="sale">${objVariants[i].sale}</span>
+                        <p>
+                            <span class="price">${objVariants[i].price} USD </span>
+                            <span class="per_strip">($${objVariants[i].perStrip} per strip)</span>
+                        </p>
+                    </div>
+                </div>
+                <p class="how_cancet">Auto delivery every 3 months. <br> Cancel anytime. <a href="#" class="btn-how_cancel">How to cancel?</a></p>
+            </div>`
             document.querySelector('.part1 .checklist').insertAdjacentHTML('afterend', switchItem);
         }
 
