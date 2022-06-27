@@ -93,7 +93,7 @@ function optionShipTo() {
         let minDay = addDays(+plusDays[0]),
             maxDay = addDays(+plusDays[1]);
 
-        option += `<option value="${elements[0]}" data-free="${elements[2]}" data-value="${minDay.getDate()} ${formatDate[minDay.getMonth()]} - ${maxDay.getDate()}  ${formatDate[maxDay.getMonth()]}">${elements[0]}</option>`;
+        option += `<option value="${elements[0]}" data-free="${elements[2]}" data-value="${minDay.getDate()} ${formatDate[minDay.getMonth()]} - ${maxDay.getDate()} ${formatDate[maxDay.getMonth()]}">${elements[0]}</option>`;
     }
 
     return option
