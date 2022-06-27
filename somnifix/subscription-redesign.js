@@ -62,21 +62,10 @@ let obj = [
     'Turkey/14-17/$10',
     'Ukraine/14-17/$10'
 ]
+
 //format date
-let formatDate = {
-    '1':'Jan',
-    '2':'Feb',
-    '3':'Mar',
-    '4':'Apr',
-    '5':'May',
-    '6':'Jun',
-    '7':'Jul',
-    '8':'Aug',
-    '9':'Sep',
-    '10':'Oct',
-    '11':'Nov',
-    '12':'Dec'
-}
+let formatDate = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
+
 //new Date add days
 function addDays(days) {
     let result = new Date();
@@ -173,7 +162,6 @@ function post(itemId,itemQuantity) {
 }
 
 //push dataLayer
-let action, label;
 function pushDataLayer(action, label) {
     console.log(action + ' : ' + label)
     window.dataLayer = window.dataLayer || [];
@@ -1621,7 +1609,7 @@ let html = `
             </div>
             <div>
                 <p>Shipping</p>
-                <p>1-4 days</p>
+                <p>9-11 days</p>
                 <p class="delivery_date">Jun 18-21, 2021</p>
             </div>
             <div>
@@ -1841,35 +1829,31 @@ let start = setInterval(function () {
             setDateDelivery(d)
         })
 
-        let monthTable = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
+        // let monthTable = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
 
         function setDateDelivery (str) {
             let parseStr = str.split(' ').filter((item) => item !== '-')
             let day = new Date().getDate()
-            let month = new Date().getMonth()
+            let month = new Date().getMonth();
             let year = new Date().getFullYear()
-            let day1 = +parseStr[0]
-            let day2 = +parseStr[2]
-            let month1 = monthTable.indexOf(parseStr[1])
-            let month2 = monthTable.indexOf(parseStr[3])
-            let date = new Date(year, month, day);
-            let date1 = new Date(year, month1, day1);
-            let date2 = new Date(year, month2, day2);
-            let daysLag1 = Math.ceil(Math.abs(date1.getTime() - date.getTime()) / (1000 * 3600 * 24));
-            let daysLag2 = Math.ceil(Math.abs(date2.getTime() - date.getTime()) / (1000 * 3600 * 24));
-            let daysLag3 = new Date(date1.setDate(date1.getDate() + 30))
-            let daysLag4 = new Date(date2.setDate(date2.getDate() + 30))
+            let parceObj = obj[document.querySelector('.country_select').selectedIndex].split('/');
+            let parceDays = parceObj[1].split('-');
+            let daysLag1 = addDays(+parceDays[0])
+            let daysLag2 = addDays(+parceDays[1])
+            let day1 = +parceDays[0] + 30;
+            let day2 = +parceDays[1] + 30;
+            let daysLag3 = addDays(day1)
+            let daysLag4 = addDays(day2)
 
-            document.querySelector('.delivery_time>div:nth-child(3)>p:nth-child(2)').innerHTML = `${daysLag1}-${daysLag2} days`
-            document.querySelector('.delivery_time .today').innerHTML = `${monthTable[month]} ${day}, ${year}`
-            document.querySelector('.delivery_time .delivery_date').innerHTML = `${parseStr[1]} ${parseStr[0]} - ${parseStr[3]} ${parseStr[2]}, ${year}`
-            document.querySelector('.delivery_time .money_back_date').innerHTML = `${monthTable[daysLag3.getMonth()]} ${daysLag3.getDate()} - ${monthTable[daysLag4.getMonth()]} ${daysLag4.getDate()}, ${daysLag3.getFullYear()}  `
+            document.querySelector('.delivery_time>div:nth-child(3)>p:nth-child(2)').innerHTML = `${parceObj[1]} days`
+            document.querySelector('.delivery_time .today').innerHTML = `${formatDate[month]} ${day}, ${year}` 
+            document.querySelector('.delivery_time .delivery_date').innerHTML = `${formatDate[daysLag1.getMonth()]} ${daysLag1.getDate()} - ${formatDate[daysLag2.getMonth()]} ${daysLag2.getDate()}, ${year}`
+            document.querySelector('.delivery_time .money_back_date').innerHTML = `${formatDate[daysLag3.getMonth()]} ${daysLag3.getDate()} - ${formatDate[daysLag4.getMonth()]} ${daysLag4.getDate()}, ${daysLag3.getFullYear()}  `
         }
 
         let firstStr = document.querySelector('.delivery_date b').innerText
 
         setDateDelivery(firstStr);
-
     }
 }, 100);
 
