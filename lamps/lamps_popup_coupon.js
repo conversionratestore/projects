@@ -919,31 +919,27 @@ let startFunk = setInterval(() => {
       console.log(form)
 
       fetch(`https://www.lamps.com/l-c/ajax/`, {
-        headers: {
-          "Content-Type": "application/json",
-        },
         body: form,
         method: "POST",
       })
         .then((res) => {
-          res.json()
-          console.log(res)
+          // res.json()
+          return res.status
         })
         .then((data) => {
           console.log(data)
 
-          // if (data.is_logged_in) {
-          //   // true / false
-          //   document.querySelector(".form_wrap  > .error_msg").style.display = "block"
-          // } else {
-          //   document.querySelector(".form_wrap  > .error_msg").style.display = "none"
-          //   pushDataLayer("Sign Up clicked")
-          //   document.querySelector("#btn-register-submit").click()
-          //   document.querySelector(".btn_close").setAttribute("successCoupon", "true")
-          //   sessionStorage.setItem("successSign", true)
-          //   sessionStorage.setItem("successCoupon", true)
-          //   hidePopup()
-          // }
+          if (data === 403) {
+            document.querySelector(".form_wrap  > .error_msg").style.display = "block"
+          } else {
+            document.querySelector(".form_wrap  > .error_msg").style.display = "none"
+            pushDataLayer("Sign Up clicked")
+            document.querySelector("#btn-register-submit").click()
+            document.querySelector(".btn_close").setAttribute("successCoupon", "true")
+            sessionStorage.setItem("successSign", true)
+            sessionStorage.setItem("successCoupon", true)
+            hidePopup()
+          }
         })
         .catch((err) => {
           console.log("Failed fetch ", err)
