@@ -1332,6 +1332,7 @@ let startMain = setInterval(function () {
             draggable: true,
             freeScroll: true,
             prevNextButtons: true,
+            groupCells: 1,
         });
 
         $('.product-gallery__thumbnails').flickity({
@@ -1341,6 +1342,7 @@ let startMain = setInterval(function () {
             draggable: true,
             freeScroll: true,
             prevNextButtons: true,
+            groupCells: 5,
         });
 
         //swatch packs
