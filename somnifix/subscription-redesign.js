@@ -851,15 +851,7 @@ let html = `
                             <div class="image__container" style="max-width: 1024px">
                                 <img src="//cdn.shopify.com/s/files/1/2572/8006/products/product-image-1_2f6f8228-f3b3-4ede-9081-00286a38d7aa_2000x.jpg?v=1605687570"
                                     alt="SomniFix Mouth Strips" class="lazyload--fade-in lazyautosizes lazyloaded" data-index="0"
-                                    data-image-id="15449544917107" data-sizes="auto"
-                                    data-src="//cdn.shopify.com/s/files/1/2572/8006/products/product-image-1_2f6f8228-f3b3-4ede-9081-00286a38d7aa_2000x.jpg?v=1605687570"
-                                    srcset="//cdn.shopify.com/s/files/1/2572/8006/products/product-image-1_2f6f8228-f3b3-4ede-9081-00286a38d7aa_200x.jpg?v=1605687570 200w,
-                                        //cdn.shopify.com/s/files/1/2572/8006/products/product-image-1_2f6f8228-f3b3-4ede-9081-00286a38d7aa_400x.jpg?v=1605687570 400w,
-                                        //cdn.shopify.com/s/files/1/2572/8006/products/product-image-1_2f6f8228-f3b3-4ede-9081-00286a38d7aa_600x.jpg?v=1605687570 600w,
-                                        //cdn.shopify.com/s/files/1/2572/8006/products/product-image-1_2f6f8228-f3b3-4ede-9081-00286a38d7aa_800x.jpg?v=1605687570 800w,
-                                        //cdn.shopify.com/s/files/1/2572/8006/products/product-image-1_2f6f8228-f3b3-4ede-9081-00286a38d7aa_1200x.jpg?v=1605687570 1200w,
-                                        //cdn.shopify.com/s/files/1/2572/8006/products/product-image-1_2f6f8228-f3b3-4ede-9081-00286a38d7aa_2000x.jpg?v=1605687570 2000w"
-                                    sizes="456px">
+                                    data-image-id="15449544917107" data-sizes="auto">
                                 <noscript>
                                     <img src="//cdn.shopify.com/s/files/1/2572/8006/products/product-image-1_2f6f8228-f3b3-4ede-9081-00286a38d7aa_1200x.jpg?v=1605687570"
                                         alt="SomniFix Mouth Strips"
@@ -876,15 +868,7 @@ let html = `
                         <div class="image__container" style="max-width: 1600px"><img
                                 src="//cdn.shopify.com/s/files/1/2572/8006/products/Promotes-Nose-Breathing-web_92047d1f-65f3-41f9-bbd9-2a0546b86a5e_2000x.jpg?v=1605687570"
                                 alt="SomniFix Mouth Strips" class="lazyload--fade-in lazyautosizes lazyloaded" data-index="1"
-                                data-image-id="15449544949875" data-sizes="auto"
-                                data-src="//cdn.shopify.com/s/files/1/2572/8006/products/Promotes-Nose-Breathing-web_92047d1f-65f3-41f9-bbd9-2a0546b86a5e_2000x.jpg?v=1605687570"
-                                srcset="//cdn.shopify.com/s/files/1/2572/8006/products/Promotes-Nose-Breathing-web_92047d1f-65f3-41f9-bbd9-2a0546b86a5e_200x.jpg?v=1605687570 200w,
-                                    //cdn.shopify.com/s/files/1/2572/8006/products/Promotes-Nose-Breathing-web_92047d1f-65f3-41f9-bbd9-2a0546b86a5e_400x.jpg?v=1605687570 400w,
-                                    //cdn.shopify.com/s/files/1/2572/8006/products/Promotes-Nose-Breathing-web_92047d1f-65f3-41f9-bbd9-2a0546b86a5e_600x.jpg?v=1605687570 600w,
-                                    //cdn.shopify.com/s/files/1/2572/8006/products/Promotes-Nose-Breathing-web_92047d1f-65f3-41f9-bbd9-2a0546b86a5e_800x.jpg?v=1605687570 800w,
-                                    //cdn.shopify.com/s/files/1/2572/8006/products/Promotes-Nose-Breathing-web_92047d1f-65f3-41f9-bbd9-2a0546b86a5e_1200x.jpg?v=1605687570 1200w,
-                                    //cdn.shopify.com/s/files/1/2572/8006/products/Promotes-Nose-Breathing-web_92047d1f-65f3-41f9-bbd9-2a0546b86a5e_2000x.jpg?v=1605687570 2000w"
-                                sizes="456px">
+                                data-image-id="15449544949875" data-sizes="auto">
                             <noscript><img
                                     src="//cdn.shopify.com/s/files/1/2572/8006/products/Promotes-Nose-Breathing-web_92047d1f-65f3-41f9-bbd9-2a0546b86a5e_1200x.jpg?v=1605687570"
                                     alt="SomniFix Mouth Strips"
@@ -899,15 +883,7 @@ let html = `
                         <div class="image__container" style="max-width: 1600px"><img
                                 src="//cdn.shopify.com/s/files/1/2572/8006/products/Easy-Release-web_6b1172dd-26e5-4e6c-9ef7-5e1ef9286097_2000x.jpg?v=1605687571"
                                 alt="SomniFix Mouth Strips" class="lazyload--fade-in lazyautosizes lazyloaded" data-index="2"
-                                data-image-id="15449544982643" data-sizes="auto"
-                                data-src="//cdn.shopify.com/s/files/1/2572/8006/products/Easy-Release-web_6b1172dd-26e5-4e6c-9ef7-5e1ef9286097_2000x.jpg?v=1605687571"
-                                srcset="//cdn.shopify.com/s/files/1/2572/8006/products/Easy-Release-web_6b1172dd-26e5-4e6c-9ef7-5e1ef9286097_200x.jpg?v=1605687571 200w,
-                                    //cdn.shopify.com/s/files/1/2572/8006/products/Easy-Release-web_6b1172dd-26e5-4e6c-9ef7-5e1ef9286097_400x.jpg?v=1605687571 400w,
-                                    //cdn.shopify.com/s/files/1/2572/8006/products/Easy-Release-web_6b1172dd-26e5-4e6c-9ef7-5e1ef9286097_600x.jpg?v=1605687571 600w,
-                                    //cdn.shopify.com/s/files/1/2572/8006/products/Easy-Release-web_6b1172dd-26e5-4e6c-9ef7-5e1ef9286097_800x.jpg?v=1605687571 800w,
-                                    //cdn.shopify.com/s/files/1/2572/8006/products/Easy-Release-web_6b1172dd-26e5-4e6c-9ef7-5e1ef9286097_1200x.jpg?v=1605687571 1200w,
-                                    //cdn.shopify.com/s/files/1/2572/8006/products/Easy-Release-web_6b1172dd-26e5-4e6c-9ef7-5e1ef9286097_2000x.jpg?v=1605687571 2000w"
-                                sizes="456px">
+                                data-image-id="15449544982643" data-sizes="auto">
                             <noscript><img
                                     src="//cdn.shopify.com/s/files/1/2572/8006/products/Easy-Release-web_6b1172dd-26e5-4e6c-9ef7-5e1ef9286097_1200x.jpg?v=1605687571"
                                     alt="SomniFix Mouth Strips"
@@ -922,15 +898,7 @@ let html = `
                         <div class="image__container" style="max-width: 1600px"><img
                                 src="//cdn.shopify.com/s/files/1/2572/8006/products/Easy-to-Apply-web_7bd862a0-8fcd-48ee-882c-cbd8cf5df992_2000x.jpg?v=1605687571"
                                 alt="SomniFix Mouth Strips" class="lazyload--fade-in lazyautosizes lazyloaded" data-index="3"
-                                data-image-id="15449545015411" data-sizes="auto"
-                                data-src="//cdn.shopify.com/s/files/1/2572/8006/products/Easy-to-Apply-web_7bd862a0-8fcd-48ee-882c-cbd8cf5df992_2000x.jpg?v=1605687571"
-                                srcset="//cdn.shopify.com/s/files/1/2572/8006/products/Easy-to-Apply-web_7bd862a0-8fcd-48ee-882c-cbd8cf5df992_200x.jpg?v=1605687571 200w,
-                                    //cdn.shopify.com/s/files/1/2572/8006/products/Easy-to-Apply-web_7bd862a0-8fcd-48ee-882c-cbd8cf5df992_400x.jpg?v=1605687571 400w,
-                                    //cdn.shopify.com/s/files/1/2572/8006/products/Easy-to-Apply-web_7bd862a0-8fcd-48ee-882c-cbd8cf5df992_600x.jpg?v=1605687571 600w,
-                                    //cdn.shopify.com/s/files/1/2572/8006/products/Easy-to-Apply-web_7bd862a0-8fcd-48ee-882c-cbd8cf5df992_800x.jpg?v=1605687571 800w,
-                                    //cdn.shopify.com/s/files/1/2572/8006/products/Easy-to-Apply-web_7bd862a0-8fcd-48ee-882c-cbd8cf5df992_1200x.jpg?v=1605687571 1200w,
-                                    //cdn.shopify.com/s/files/1/2572/8006/products/Easy-to-Apply-web_7bd862a0-8fcd-48ee-882c-cbd8cf5df992_2000x.jpg?v=1605687571 2000w"
-                                sizes="480px">
+                                data-image-id="15449545015411" data-sizes="auto">
                             <noscript><img
                                     src="//cdn.shopify.com/s/files/1/2572/8006/products/Easy-to-Apply-web_7bd862a0-8fcd-48ee-882c-cbd8cf5df992_1200x.jpg?v=1605687571"
                                     alt="SomniFix Mouth Strips"
@@ -945,15 +913,7 @@ let html = `
                         <div class="image__container" style="max-width: 1600px"><img
                                 src="//cdn.shopify.com/s/files/1/2572/8006/products/Excellent-for-CPAP-Users-web_df4d690e-87b3-4c41-a6a3-ca3992484191_2000x.jpg?v=1605687571"
                                 alt="SomniFix Mouth Strips" class="lazyload--fade-in lazyautosizes lazyloaded" data-index="4"
-                                data-image-id="15449545048179" data-sizes="auto"
-                                data-src="//cdn.shopify.com/s/files/1/2572/8006/products/Excellent-for-CPAP-Users-web_df4d690e-87b3-4c41-a6a3-ca3992484191_2000x.jpg?v=1605687571"
-                                srcset="//cdn.shopify.com/s/files/1/2572/8006/products/Excellent-for-CPAP-Users-web_df4d690e-87b3-4c41-a6a3-ca3992484191_200x.jpg?v=1605687571 200w,
-                                    //cdn.shopify.com/s/files/1/2572/8006/products/Excellent-for-CPAP-Users-web_df4d690e-87b3-4c41-a6a3-ca3992484191_400x.jpg?v=1605687571 400w,
-                                    //cdn.shopify.com/s/files/1/2572/8006/products/Excellent-for-CPAP-Users-web_df4d690e-87b3-4c41-a6a3-ca3992484191_600x.jpg?v=1605687571 600w,
-                                    //cdn.shopify.com/s/files/1/2572/8006/products/Excellent-for-CPAP-Users-web_df4d690e-87b3-4c41-a6a3-ca3992484191_800x.jpg?v=1605687571 800w,
-                                    //cdn.shopify.com/s/files/1/2572/8006/products/Excellent-for-CPAP-Users-web_df4d690e-87b3-4c41-a6a3-ca3992484191_1200x.jpg?v=1605687571 1200w,
-                                    //cdn.shopify.com/s/files/1/2572/8006/products/Excellent-for-CPAP-Users-web_df4d690e-87b3-4c41-a6a3-ca3992484191_2000x.jpg?v=1605687571 2000w"
-                                sizes="480px">
+                                data-image-id="15449545048179" data-sizes="auto">
                             <noscript><img
                                     src="//cdn.shopify.com/s/files/1/2572/8006/products/Excellent-for-CPAP-Users-web_df4d690e-87b3-4c41-a6a3-ca3992484191_1200x.jpg?v=1605687571"
                                     alt="SomniFix Mouth Strips"
@@ -968,15 +928,7 @@ let html = `
                         <div class="image__container" style="max-width: 1600px"><img
                                 src="//cdn.shopify.com/s/files/1/2572/8006/products/No-Sticky-Residue-web_fbb9f6bd-eed7-4126-aed2-687c0b59d3b6_2000x.jpg?v=1605687571"
                                 alt="SomniFix Mouth Strips" class="lazyload--fade-in lazyautosizes lazyloaded" data-index="5"
-                                data-image-id="15449545080947" data-sizes="auto"
-                                data-src="//cdn.shopify.com/s/files/1/2572/8006/products/No-Sticky-Residue-web_fbb9f6bd-eed7-4126-aed2-687c0b59d3b6_2000x.jpg?v=1605687571"
-                                srcset="//cdn.shopify.com/s/files/1/2572/8006/products/No-Sticky-Residue-web_fbb9f6bd-eed7-4126-aed2-687c0b59d3b6_200x.jpg?v=1605687571 200w,
-                                    //cdn.shopify.com/s/files/1/2572/8006/products/No-Sticky-Residue-web_fbb9f6bd-eed7-4126-aed2-687c0b59d3b6_400x.jpg?v=1605687571 400w,
-                                    //cdn.shopify.com/s/files/1/2572/8006/products/No-Sticky-Residue-web_fbb9f6bd-eed7-4126-aed2-687c0b59d3b6_600x.jpg?v=1605687571 600w,
-                                    //cdn.shopify.com/s/files/1/2572/8006/products/No-Sticky-Residue-web_fbb9f6bd-eed7-4126-aed2-687c0b59d3b6_800x.jpg?v=1605687571 800w,
-                                    //cdn.shopify.com/s/files/1/2572/8006/products/No-Sticky-Residue-web_fbb9f6bd-eed7-4126-aed2-687c0b59d3b6_1200x.jpg?v=1605687571 1200w,
-                                    //cdn.shopify.com/s/files/1/2572/8006/products/No-Sticky-Residue-web_fbb9f6bd-eed7-4126-aed2-687c0b59d3b6_2000x.jpg?v=1605687571 2000w"
-                                sizes="480px">
+                                data-image-id="15449545080947" data-sizes="auto">
                             <noscript><img
                                     src="//cdn.shopify.com/s/files/1/2572/8006/products/No-Sticky-Residue-web_fbb9f6bd-eed7-4126-aed2-687c0b59d3b6_1200x.jpg?v=1605687571"
                                     alt="SomniFix Mouth Strips"
@@ -991,15 +943,7 @@ let html = `
                         <div class="image__container" style="max-width: 1600px"><img
                                 src="//cdn.shopify.com/s/files/1/2572/8006/products/Environmentally-Friendly-Material-web_2e5b01d2-0237-44b7-99a7-5d240b1475af_2000x.jpg?v=1605687571"
                                 alt="SomniFix Mouth Strips" class="lazyload--fade-in lazyautosizes lazyloaded" data-index="6"
-                                data-image-id="15449545113715" data-sizes="auto"
-                                data-src="//cdn.shopify.com/s/files/1/2572/8006/products/Environmentally-Friendly-Material-web_2e5b01d2-0237-44b7-99a7-5d240b1475af_2000x.jpg?v=1605687571"
-                                srcset="//cdn.shopify.com/s/files/1/2572/8006/products/Environmentally-Friendly-Material-web_2e5b01d2-0237-44b7-99a7-5d240b1475af_200x.jpg?v=1605687571 200w,
-                                    //cdn.shopify.com/s/files/1/2572/8006/products/Environmentally-Friendly-Material-web_2e5b01d2-0237-44b7-99a7-5d240b1475af_400x.jpg?v=1605687571 400w,
-                                    //cdn.shopify.com/s/files/1/2572/8006/products/Environmentally-Friendly-Material-web_2e5b01d2-0237-44b7-99a7-5d240b1475af_600x.jpg?v=1605687571 600w,
-                                    //cdn.shopify.com/s/files/1/2572/8006/products/Environmentally-Friendly-Material-web_2e5b01d2-0237-44b7-99a7-5d240b1475af_800x.jpg?v=1605687571 800w,
-                                    //cdn.shopify.com/s/files/1/2572/8006/products/Environmentally-Friendly-Material-web_2e5b01d2-0237-44b7-99a7-5d240b1475af_1200x.jpg?v=1605687571 1200w,
-                                    //cdn.shopify.com/s/files/1/2572/8006/products/Environmentally-Friendly-Material-web_2e5b01d2-0237-44b7-99a7-5d240b1475af_2000x.jpg?v=1605687571 2000w"
-                                sizes="480px">
+                                data-image-id="15449545113715" data-sizes="auto">
                             <noscript><img
                                     src="//cdn.shopify.com/s/files/1/2572/8006/products/Environmentally-Friendly-Material-web_2e5b01d2-0237-44b7-99a7-5d240b1475af_1200x.jpg?v=1605687571"
                                     alt="SomniFix Mouth Strips"
@@ -1014,15 +958,7 @@ let html = `
                         <div class="image__container" style="max-width: 1600px"><img
                                 src="//cdn.shopify.com/s/files/1/2572/8006/products/Nose-Breathing-is-Better-web_1d4628c7-d7be-4912-8f9c-fa894cdfd0bb_2000x.jpg?v=1605687571"
                                 alt="SomniFix Mouth Strips" class="lazyload--fade-in lazyautosizes lazyloaded" data-index="7"
-                                data-image-id="15449545146483" data-sizes="auto"
-                                data-src="//cdn.shopify.com/s/files/1/2572/8006/products/Nose-Breathing-is-Better-web_1d4628c7-d7be-4912-8f9c-fa894cdfd0bb_2000x.jpg?v=1605687571"
-                                srcset="//cdn.shopify.com/s/files/1/2572/8006/products/Nose-Breathing-is-Better-web_1d4628c7-d7be-4912-8f9c-fa894cdfd0bb_200x.jpg?v=1605687571 200w,
-                                    //cdn.shopify.com/s/files/1/2572/8006/products/Nose-Breathing-is-Better-web_1d4628c7-d7be-4912-8f9c-fa894cdfd0bb_400x.jpg?v=1605687571 400w,
-                                    //cdn.shopify.com/s/files/1/2572/8006/products/Nose-Breathing-is-Better-web_1d4628c7-d7be-4912-8f9c-fa894cdfd0bb_600x.jpg?v=1605687571 600w,
-                                    //cdn.shopify.com/s/files/1/2572/8006/products/Nose-Breathing-is-Better-web_1d4628c7-d7be-4912-8f9c-fa894cdfd0bb_800x.jpg?v=1605687571 800w,
-                                    //cdn.shopify.com/s/files/1/2572/8006/products/Nose-Breathing-is-Better-web_1d4628c7-d7be-4912-8f9c-fa894cdfd0bb_1200x.jpg?v=1605687571 1200w,
-                                    //cdn.shopify.com/s/files/1/2572/8006/products/Nose-Breathing-is-Better-web_1d4628c7-d7be-4912-8f9c-fa894cdfd0bb_2000x.jpg?v=1605687571 2000w"
-                                sizes="480px">
+                                data-image-id="15449545146483" data-sizes="auto">
                             <noscript><img
                                     src="//cdn.shopify.com/s/files/1/2572/8006/products/Nose-Breathing-is-Better-web_1d4628c7-d7be-4912-8f9c-fa894cdfd0bb_1200x.jpg?v=1605687571"
                                     alt="SomniFix Mouth Strips"
@@ -1037,15 +973,7 @@ let html = `
                         <div class="image__container" style="max-width: 1600px"><img
                                 src="//cdn.shopify.com/s/files/1/2572/8006/products/Perfect-for-Travel-web_6bf8fa73-f371-4a3b-9394-950775509b16_2000x.jpg?v=1605687571"
                                 alt="SomniFix Mouth Strips" class="lazyload--fade-in lazyautosizes lazyloaded" data-index="8"
-                                data-image-id="15449545179251" data-sizes="auto"
-                                data-src="//cdn.shopify.com/s/files/1/2572/8006/products/Perfect-for-Travel-web_6bf8fa73-f371-4a3b-9394-950775509b16_2000x.jpg?v=1605687571"
-                                srcset="//cdn.shopify.com/s/files/1/2572/8006/products/Perfect-for-Travel-web_6bf8fa73-f371-4a3b-9394-950775509b16_200x.jpg?v=1605687571 200w,
-                                    //cdn.shopify.com/s/files/1/2572/8006/products/Perfect-for-Travel-web_6bf8fa73-f371-4a3b-9394-950775509b16_400x.jpg?v=1605687571 400w,
-                                    //cdn.shopify.com/s/files/1/2572/8006/products/Perfect-for-Travel-web_6bf8fa73-f371-4a3b-9394-950775509b16_600x.jpg?v=1605687571 600w,
-                                    //cdn.shopify.com/s/files/1/2572/8006/products/Perfect-for-Travel-web_6bf8fa73-f371-4a3b-9394-950775509b16_800x.jpg?v=1605687571 800w,
-                                    //cdn.shopify.com/s/files/1/2572/8006/products/Perfect-for-Travel-web_6bf8fa73-f371-4a3b-9394-950775509b16_1200x.jpg?v=1605687571 1200w,
-                                    //cdn.shopify.com/s/files/1/2572/8006/products/Perfect-for-Travel-web_6bf8fa73-f371-4a3b-9394-950775509b16_2000x.jpg?v=1605687571 2000w"
-                                sizes="480px">
+                                data-image-id="15449545179251" data-sizes="auto">
                             <noscript><img
                                     src="//cdn.shopify.com/s/files/1/2572/8006/products/Perfect-for-Travel-web_6bf8fa73-f371-4a3b-9394-950775509b16_1200x.jpg?v=1605687571"
                                     alt="SomniFix Mouth Strips"
@@ -1060,15 +988,7 @@ let html = `
                         <div class="image__container" style="max-width: 1600px"><img
                                 src="//cdn.shopify.com/s/files/1/2572/8006/products/Do-Not-Use-web_7701445a-569b-466f-9776-a4b8fe34ebb7_2000x.jpg?v=1605687571"
                                 alt="SomniFix Mouth Strips" class="lazyload--fade-in lazyautosizes lazyloaded" data-index="9"
-                                data-image-id="15449545212019" data-sizes="auto"
-                                data-src="//cdn.shopify.com/s/files/1/2572/8006/products/Do-Not-Use-web_7701445a-569b-466f-9776-a4b8fe34ebb7_2000x.jpg?v=1605687571"
-                                srcset="//cdn.shopify.com/s/files/1/2572/8006/products/Do-Not-Use-web_7701445a-569b-466f-9776-a4b8fe34ebb7_200x.jpg?v=1605687571 200w,
-                                    //cdn.shopify.com/s/files/1/2572/8006/products/Do-Not-Use-web_7701445a-569b-466f-9776-a4b8fe34ebb7_400x.jpg?v=1605687571 400w,
-                                    //cdn.shopify.com/s/files/1/2572/8006/products/Do-Not-Use-web_7701445a-569b-466f-9776-a4b8fe34ebb7_600x.jpg?v=1605687571 600w,
-                                    //cdn.shopify.com/s/files/1/2572/8006/products/Do-Not-Use-web_7701445a-569b-466f-9776-a4b8fe34ebb7_800x.jpg?v=1605687571 800w,
-                                    //cdn.shopify.com/s/files/1/2572/8006/products/Do-Not-Use-web_7701445a-569b-466f-9776-a4b8fe34ebb7_1200x.jpg?v=1605687571 1200w,
-                                    //cdn.shopify.com/s/files/1/2572/8006/products/Do-Not-Use-web_7701445a-569b-466f-9776-a4b8fe34ebb7_2000x.jpg?v=1605687571 2000w"
-                                sizes="480px">
+                                data-image-id="15449545212019" data-sizes="auto">
                             <noscript><img
                                     src="//cdn.shopify.com/s/files/1/2572/8006/products/Do-Not-Use-web_7701445a-569b-466f-9776-a4b8fe34ebb7_1200x.jpg?v=1605687571"
                                     alt="SomniFix Mouth Strips"
@@ -1083,15 +1003,7 @@ let html = `
                         <div class="image__container" style="max-width: 1024px"><img
                                 src="//cdn.shopify.com/s/files/1/2572/8006/products/product-image-0_6ad20623-33e3-4895-9ea0-48f35bf13b4e_2000x.jpg?v=1605687571"
                                 alt="SomniFix Mouth Strips" class="lazyload--fade-in lazyautosizes lazyloaded" data-index="10"
-                                data-image-id="15449545244787" data-sizes="auto"
-                                data-src="//cdn.shopify.com/s/files/1/2572/8006/products/product-image-0_6ad20623-33e3-4895-9ea0-48f35bf13b4e_2000x.jpg?v=1605687571"
-                                srcset="//cdn.shopify.com/s/files/1/2572/8006/products/product-image-0_6ad20623-33e3-4895-9ea0-48f35bf13b4e_200x.jpg?v=1605687571 200w,
-                                    //cdn.shopify.com/s/files/1/2572/8006/products/product-image-0_6ad20623-33e3-4895-9ea0-48f35bf13b4e_400x.jpg?v=1605687571 400w,
-                                    //cdn.shopify.com/s/files/1/2572/8006/products/product-image-0_6ad20623-33e3-4895-9ea0-48f35bf13b4e_600x.jpg?v=1605687571 600w,
-                                    //cdn.shopify.com/s/files/1/2572/8006/products/product-image-0_6ad20623-33e3-4895-9ea0-48f35bf13b4e_800x.jpg?v=1605687571 800w,
-                                    //cdn.shopify.com/s/files/1/2572/8006/products/product-image-0_6ad20623-33e3-4895-9ea0-48f35bf13b4e_1200x.jpg?v=1605687571 1200w,
-                                    //cdn.shopify.com/s/files/1/2572/8006/products/product-image-0_6ad20623-33e3-4895-9ea0-48f35bf13b4e_2000x.jpg?v=1605687571 2000w"
-                                sizes="480px">
+                                data-image-id="15449545244787" data-sizes="auto">
                             <noscript><img
                                     src="//cdn.shopify.com/s/files/1/2572/8006/products/product-image-0_6ad20623-33e3-4895-9ea0-48f35bf13b4e_1200x.jpg?v=1605687571"
                                     alt="SomniFix Mouth Strips"
@@ -1107,13 +1019,6 @@ let html = `
                                 src="//cdn.shopify.com/s/files/1/2572/8006/products/product-image-2_eabe3d58-7d73-4595-873e-56a16a2e61c9_2000x.jpg?v=1605687571"
                                 alt="SomniFix Mouth Strips" class="lazyload--fade-in lazyautosizes lazyloaded" data-index="11"
                                 data-image-id="15449545277555" data-sizes="auto"
-                                data-src="//cdn.shopify.com/s/files/1/2572/8006/products/product-image-2_eabe3d58-7d73-4595-873e-56a16a2e61c9_2000x.jpg?v=1605687571"
-                                srcset="//cdn.shopify.com/s/files/1/2572/8006/products/product-image-2_eabe3d58-7d73-4595-873e-56a16a2e61c9_200x.jpg?v=1605687571 200w,
-                                            //cdn.shopify.com/s/files/1/2572/8006/products/product-image-2_eabe3d58-7d73-4595-873e-56a16a2e61c9_400x.jpg?v=1605687571 400w,
-                                            //cdn.shopify.com/s/files/1/2572/8006/products/product-image-2_eabe3d58-7d73-4595-873e-56a16a2e61c9_600x.jpg?v=1605687571 600w,
-                                            //cdn.shopify.com/s/files/1/2572/8006/products/product-image-2_eabe3d58-7d73-4595-873e-56a16a2e61c9_800x.jpg?v=1605687571 800w,
-                                            //cdn.shopify.com/s/files/1/2572/8006/products/product-image-2_eabe3d58-7d73-4595-873e-56a16a2e61c9_1200x.jpg?v=1605687571 1200w,
-                                            //cdn.shopify.com/s/files/1/2572/8006/products/product-image-2_eabe3d58-7d73-4595-873e-56a16a2e61c9_2000x.jpg?v=1605687571 2000w"
                                 sizes="480px">
                             <noscript><img
                                     src="//cdn.shopify.com/s/files/1/2572/8006/products/product-image-2_eabe3d58-7d73-4595-873e-56a16a2e61c9_1200x.jpg?v=1605687571"
@@ -1123,25 +1028,25 @@ let html = `
                     </a></div>
                 </div>
                 <div class="product-gallery__thumbnails" >
-                    <div class="product-gallery__thumbnail one-fifth column is-nav-selected is-selected" data-title="SomniFix Mouth Strips">
+                    <div class="product-gallery__thumbnail one-fifth column " data-title="SomniFix Mouth Strips">
                         <img
                             src="//cdn.shopify.com/s/files/1/2572/8006/products/product-image-1_2f6f8228-f3b3-4ede-9081-00286a38d7aa_400x.jpg?v=1605687570"
                             alt="SomniFix Mouth Strips" data-index="0" data-image-id="15449544917107"
                             data-featured-image="15449544917107">
                     </div>
-                    <div class="product-gallery__thumbnail one-fifth column is-selected" data-title="SomniFix Mouth Strips">
+                    <div class="product-gallery__thumbnail one-fifth column " data-title="SomniFix Mouth Strips">
                          <img
                             src="//cdn.shopify.com/s/files/1/2572/8006/products/Promotes-Nose-Breathing-web_92047d1f-65f3-41f9-bbd9-2a0546b86a5e_400x.jpg?v=1605687570"
                             alt="SomniFix Mouth Strips" data-index="1" data-image-id="15449544949875"
                             data-featured-image="15449544917107">
                     </div>
-                    <div class="product-gallery__thumbnail one-fifth column is-selected" data-title="SomniFix Mouth Strips">
+                    <div class="product-gallery__thumbnail one-fifth column" data-title="SomniFix Mouth Strips">
                         <img
                             src="//cdn.shopify.com/s/files/1/2572/8006/products/Easy-Release-web_6b1172dd-26e5-4e6c-9ef7-5e1ef9286097_400x.jpg?v=1605687571"
                             alt="SomniFix Mouth Strips" data-index="2" data-image-id="15449544982643"
                             data-featured-image="15449544917107">
                     </div>
-                    <div class="product-gallery__thumbnail one-fifth column is-selected" data-title="SomniFix Mouth Strips">
+                    <div class="product-gallery__thumbnail one-fifth column" data-title="SomniFix Mouth Strips">
                         <img
                             src="//cdn.shopify.com/s/files/1/2572/8006/products/Easy-to-Apply-web_7bd862a0-8fcd-48ee-882c-cbd8cf5df992_400x.jpg?v=1605687571"
                             alt="SomniFix Mouth Strips" data-index="3" data-image-id="15449545015411"
@@ -1321,7 +1226,8 @@ let startSlider = setInterval(function () {
     // }
     if (document.querySelector('.product-gallery__main') != null && document.querySelector('.product-gallery__thumbnails') != null) {
         clearInterval(startSlider)
-        $('.product-gallery__main').flickity({
+
+        new Flickity(document.querySelector('.product-gallery__main'), {
             asNavFor: '.product-gallery__thumbnails',
             contain: true,
             pageDots: false,
@@ -1331,8 +1237,7 @@ let startSlider = setInterval(function () {
             groupCells: 1,
             freeScrollFriction: 0.03,
         });
-
-        $('.product-gallery__thumbnails').flickity({
+        new Flickity(document.querySelector('.product-gallery__thumbnails'), {
             asNavFor: '.product-gallery__main',
             contain: true,
             pageDots: false,
