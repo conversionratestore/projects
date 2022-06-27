@@ -1253,6 +1253,12 @@ let style = `
     .product-gallery__main {
         margin-bottom: 20px;
     }
+    .product-gallery__thumbnail {
+        opacity: 0.3;
+    }
+    .product-gallery__thumbnail.one-fifth.column.is-selected {
+        opacity: 1;
+    }
 </style>
 `;
 
