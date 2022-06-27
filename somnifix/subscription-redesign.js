@@ -830,7 +830,12 @@ let style = `
         border-radius: 10px;
         display: block!important;
     }
-  
+    
+    //slider
+    .product-gallery__thumbnails {
+        display: flex;
+        overflow: hidden;
+    }
 </style>
 `;
 
@@ -1311,6 +1316,9 @@ let html = `
 `;
 
 let startSlider = setInterval(function () {
+    // if (typeof flickity == 'function') {
+    //     clearInterval(startSlider)
+    // }
     if (document.querySelector('.product-gallery__main') != null && document.querySelector('.product-gallery__thumbnails') != null) {
         clearInterval(startSlider)
         $('.product-gallery__main').flickity({
@@ -1323,7 +1331,7 @@ let startSlider = setInterval(function () {
             groupCells: 1,
             freeScrollFriction: 0.03,
         });
-    
+
         $('.product-gallery__thumbnails').flickity({
             asNavFor: '.product-gallery__main',
             contain: true,
@@ -1335,7 +1343,7 @@ let startSlider = setInterval(function () {
             freeScrollFriction: 0.03,
         });
     }
-})
+},200)
 
 let startMain = setInterval(function () {
     if(document.querySelectorAll('.shogun-root > .shg-box-vertical-align-wrapper .shg-box-vertical-align-wrapper')[5] != null) {
@@ -1476,6 +1484,8 @@ let start = setInterval(function () {
             let daysLag3 = new Date(date1.setDate(date1.getDate() + 30))
             let daysLag4 = new Date(date2.setDate(date2.getDate() + 30))
 
+            console.log(str)
+            console.log(parseStr)
             console.log(date)
             console.log(date2)
             console.log(daysLag2)
@@ -1514,7 +1524,7 @@ let banner = `
     `
 
 let startBanner= setInterval(function () {
-    if (document.querySelectorAll('.shogun-image-content > div > .shg-c') && document.querySelectorAll('.shg-row')) {
+    if (document.querySelector('.shogun-image-content > div > .shg-c') != null && document.querySelector('.shg-row') != null) {
         clearInterval(startBanner)
 
         document.querySelectorAll('.shogun-image-content > div > .shg-c')[0].style = `margin: 0;`
