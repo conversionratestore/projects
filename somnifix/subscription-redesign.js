@@ -1248,7 +1248,7 @@ let startSlider = setInterval(function () {
             freeScrollFriction: 0.03,
         });
     }
-},200)
+}, 500)
 
 let startMain = setInterval(function () {
     if(document.querySelectorAll('.shogun-root > .shg-box-vertical-align-wrapper .shg-box-vertical-align-wrapper')[5] != null) {
