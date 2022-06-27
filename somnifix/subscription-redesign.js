@@ -1246,10 +1246,10 @@ let style = `
     .product-gallery__thumbnail {
         flex-shrink: 0;
     }
-    .product-gallery__main, .product-gallery__thumbnails.is-slide-nav--true {
-        opacity: 1;
-        transition: none;
-    }
+    // .product-gallery__main, .product-gallery__thumbnails.is-slide-nav--true {
+    //     opacity: 1;
+    //     transition: none;
+    // }
     .product-gallery__main {
         margin-bottom: 20px;
     }
@@ -1764,56 +1764,55 @@ let startMain = setInterval(function () {
             post(itemId,itemQuantity)
             pushDataLayer('Add to cart', 'SomniFix Mouth Strips')
         })
-        // window.onload  = function () {
-        // let startSlider = setInterval(function () {
 
-        document.body.insertAdjacentHTML('beforeend',`<script type="application/json" data-section-id="product__main" data-section-data="">
-            {
-              "gallery_arrows": true,
-              "thumbnail_arrows": true,
-              "enable_zoom": false,
-              "enable_product_lightbox": true,
-              "enable_thumbnail_slider": true,
-              "slideshow_speed": 0,
-              "slideshow_transition": "slide",
-              "thumbnail_position": "bottom-thumbnails",
-              "product_images_amount": 12,
-              "template": "classic"
-            }
-          </script><script src="//cdn.shopify.com/s/files/1/2572/8006/t/69/assets/z__jsProduct.js?v=54363346918314756211655225892"></script>`)
-        // if (document.querySelector('.product-gallery__main') != null && document.querySelector('.product-gallery__thumbnails') != null) {
-        //     if (typeof Flickity === 'function') {
-        //         console.log(typeof Flickity)
-        //         // clearInterval(startSlider)
-        //         console.log('silder interval')
-        //         new Flickity(document.querySelector('.product-gallery__main'), {
-        //             asNavFor: '.product-gallery__thumbnails',
-        //             contain: true,
-        //             pageDots: false,
-        //             draggable: true,
-        //             freeScroll: true,
-        //             prevNextButtons: true,
-        //             groupCells: 1,
-        //             freeScrollFriction: 0.03,
-        //         });
-        //         new Flickity(document.querySelector('.product-gallery__thumbnails'), {
-        //             asNavFor: '.product-gallery__main',
-        //             contain: true,
-        //             pageDots: false,
-        //             draggable: true,
-        //             freeScroll: true,
-        //             prevNextButtons: true,
-        //             groupCells: 5,
-        //             freeScrollFriction: 0.03,
-        //         });
+        // document.body.insertAdjacentHTML('beforeend',`<script type="application/json" data-section-id="product__main" data-section-data="">
+        //     {
+        //       "gallery_arrows": true,
+        //       "thumbnail_arrows": true,
+        //       "enable_zoom": false,
+        //       "enable_product_lightbox": true,
+        //       "enable_thumbnail_slider": true,
+        //       "slideshow_speed": 0,
+        //       "slideshow_transition": "slide",
+        //       "thumbnail_position": "bottom-thumbnails",
+        //       "product_images_amount": 12,
+        //       "template": "classic"
         //     }
+        //   </script><script src="//cdn.shopify.com/s/files/1/2572/8006/t/69/assets/z__jsProduct.js?v=54363346918314756211655225892"></script>`)
 
-
-        // }
-        // },200)
-        // };
     }
 })
+
+let startSlider = setInterval(function () {
+    if (document.querySelector('.product-gallery__main') != null && document.querySelector('.product-gallery__thumbnails') != null) {
+        if (typeof Flickity === 'function') {
+            console.log(typeof Flickity)
+            clearInterval(startSlider)
+            console.log('silder interval')
+            new Flickity(document.querySelector('.product-gallery__main'), {
+                asNavFor: '.product-gallery__thumbnails',
+                contain: true,
+                pageDots: false,
+                draggable: true,
+                freeScroll: true,
+                // prevNextButtons: true,
+                groupCells: 1,
+                // freeScrollFriction: 0.03,
+            });
+            new Flickity(document.querySelector('.product-gallery__thumbnails'), {
+                asNavFor: '.product-gallery__main',
+                contain: true,
+                pageDots: false,
+                draggable: true,
+                freeScroll: true,
+                // prevNextButtons: true,
+                groupCells: 5,
+                // freeScrollFriction: 0.03,
+            });
+        }
+    }
+}, 200)
+
 
 //Money back guarantee
 let start = setInterval(function () {
