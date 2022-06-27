@@ -1142,6 +1142,94 @@ let style = `
         display: flex;
         overflow: hidden;
     }
+    
+    /*modal*/
+    .modal {
+        position: fixed;
+        display: flex;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 100%;
+        background: rgba(0,0,0,0.5);
+        z-index: 9999;
+        opacity: 0;
+        pointer-events: none;
+        transition: all 0.3s ease;
+    }
+    .modal.active {
+        opacity: 1;
+        pointer-events: auto;
+    }
+    .modal_container {
+        margin: auto;
+        color: #1E415D;
+        max-width: 507px;
+        width: 100%;
+        background: #FFFFFF;
+        border-radius: 20px;
+        padding: 56px;
+    }
+    .modal_title {
+        font-weight: 500;
+        font-size: 18px;
+        line-height: 21px;
+        font-family: 'Roboto', sans-serif;
+        color: #1E415D;
+        margin-bottom: 40px;
+    }
+    .modal ol {
+        counter-reset: pancakes;
+        position: relative;
+    }
+    .modal ol:before {
+        content: '';
+        height: 100%;
+        width: 0;
+        border: 1px dashed #1E415D;
+        left: 21px;
+        top: 0;
+        z-index: 0;
+        position: absolute;
+    }
+    .modal li {
+        font-size: 14px;
+        line-height: 16px;
+        letter-spacing: 0.01em;
+        font-family: 'Roboto', sans-serif;
+        color: #1E415D;
+         list-style-type: none;
+         display: flex;
+         align-items: center;
+         margin-bottom: 24px;
+    }
+    .modal li:last-child {
+        margin-bottom: 0;
+    }
+    .modal li:before {
+        content: counter(pancakes);
+        counter-increment: pancakes;
+        background: #1E415D;
+        width: 43px;
+        height: 43px;
+        border-radius: 50%;
+        line-height: 43px;
+        font-family: 'Roboto', sans-serif;
+        font-style: normal;
+        font-weight: 500;
+        font-size: 18px;
+        text-align: center;
+        color: #FFFFFF;
+        margin-right: 24px;
+        z-index: 1;
+        position: relative;
+    }
+    .modal_close {
+        width: 13px;
+        height: 13px;
+        background: url("https://conversionratestore.github.io/projects/somnifix/img/close_2.svg") no-repeat center / 100%;
+        border: none;
+    }
 </style>
 `;
 
@@ -1526,53 +1614,21 @@ let html = `
 </div>
 `;
 
-// let startHead = setInterval(function () {
-//     if (document.head != null) {
-//         clearInterval(startHead)
-//         let styleSlider = document.createElement('link');
-//         styleSlider.href = 'https://unpkg.com/flickity@2.3.0/dist/flickity.css';
-//         styleSlider.rel = 'stylesheet';
-//         styleSlider.type = 'text/css';
-//         document.head.appendChild(styleSlider);
-
-//         let scriptSlider = document.createElement('script');
-//         scriptSlider.src = 'https://unpkg.com/flickity@2.3.0/dist/flickity.pkgd.min.js';
-//         scriptSlider.async = false;
-//         document.head.appendChild(scriptSlider);
-//     }
-// })
-
-let startSlider = setInterval(function () {
-    if (document.querySelector('.product-gallery__main') != null && document.querySelector('.product-gallery__thumbnails') != null) {
-        if (typeof Flickity === 'function') {
-            console.log(typeof Flickity)
-            clearInterval(startSlider)
-            console.log('silder interval')
-            new Flickity(document.querySelector('.product-gallery__main'), {
-                asNavFor: '.product-gallery__thumbnails',
-                contain: true,
-                pageDots: false,
-                draggable: true,
-                freeScroll: true,
-                prevNextButtons: true,
-                groupCells: 1,
-                freeScrollFriction: 0.03,
-            });
-            new Flickity(document.querySelector('.product-gallery__thumbnails'), {
-                asNavFor: '.product-gallery__main',
-                contain: true,
-                pageDots: false,
-                draggable: true,
-                freeScroll: true,
-                prevNextButtons: true,
-                groupCells: 5,
-                freeScrollFriction: 0.03,
-            });
-        }
-
-
-    }
-},200)
+//modal
+let modalHtml = `
+<div class="modal" button-close>
+    <div class="modal_container">
+        <div class="justify-between">
+            <h4 class="modal_title">3 easy steps to cancel the <br> subscription. No questions asked</h4>
+            <button type="button" class="modal_close" button-close></button>
+        </div>
+        <ol>
+            <li>Go to the Account</li>
+            <li>Go to “Orders” section</li>
+            <li>Open your order details and click “Cancel”</li>
+        </ol>
+    </div>
+</div>`
 
 let startMain = setInterval(function () {
     if(document.querySelectorAll('.shogun-root > .shg-box-vertical-align-wrapper .shg-box-vertical-align-wrapper')[5] != null) {
@@ -1582,6 +1638,7 @@ let startMain = setInterval(function () {
 
         document.querySelectorAll('.shogun-root > .shg-box-vertical-align-wrapper')[1].querySelectorAll('.shg-box-vertical-align-wrapper')[4].insertAdjacentHTML('beforebegin', html);
         document.body.insertAdjacentHTML('afterbegin', style);
+        document.body.insertAdjacentHTML('beforeend', modalHtml);
 
         //swatch packs
         for (let i = 0; i < objVariants.length; i++) {
@@ -1645,6 +1702,17 @@ let startMain = setInterval(function () {
             }
         })
 
+        //modal show/hide
+        $('.btn-how_cancel').click(function() {
+            $('.modal').addClass('active');
+        })
+        $('[button-close]').click(function(e) {
+            console.log(e.target)
+            if (e.target.className == 'modal active' || e.target.className == 'modal_close') {
+                $('.modal').removeClass('active');
+            }
+        })
+
         //add to cart
         $('.part2 .to_checkout').click(function() {
             const itemId = document.querySelector(".swatchCustom__item--active").dataset.variant;
@@ -1652,6 +1720,54 @@ let startMain = setInterval(function () {
 
             post(itemId,itemQuantity)
         })
+        // window.onload  = function () {
+        // let startSlider = setInterval(function () {
+
+        document.body.insertAdjacentHTML('beforeend',`<script type="application/json" data-section-id="product__main" data-section-data="">
+            {
+              "gallery_arrows": true,
+              "thumbnail_arrows": true,
+              "enable_zoom": false,
+              "enable_product_lightbox": true,
+              "enable_thumbnail_slider": true,
+              "slideshow_speed": 0,
+              "slideshow_transition": "slide",
+              "thumbnail_position": "bottom-thumbnails",
+              "product_images_amount": 12,
+              "template": "classic"
+            }
+          </script><script src="//cdn.shopify.com/s/files/1/2572/8006/t/69/assets/z__jsProduct.js?v=54363346918314756211655225892"></script>`)
+        // if (document.querySelector('.product-gallery__main') != null && document.querySelector('.product-gallery__thumbnails') != null) {
+        //     if (typeof Flickity === 'function') {
+        //         console.log(typeof Flickity)
+        //         // clearInterval(startSlider)
+        //         console.log('silder interval')
+        //         new Flickity(document.querySelector('.product-gallery__main'), {
+        //             asNavFor: '.product-gallery__thumbnails',
+        //             contain: true,
+        //             pageDots: false,
+        //             draggable: true,
+        //             freeScroll: true,
+        //             prevNextButtons: true,
+        //             groupCells: 1,
+        //             freeScrollFriction: 0.03,
+        //         });
+        //         new Flickity(document.querySelector('.product-gallery__thumbnails'), {
+        //             asNavFor: '.product-gallery__main',
+        //             contain: true,
+        //             pageDots: false,
+        //             draggable: true,
+        //             freeScroll: true,
+        //             prevNextButtons: true,
+        //             groupCells: 5,
+        //             freeScrollFriction: 0.03,
+        //         });
+        //     }
+
+
+        // }
+        // },200)
+        // };
     }
 })
 
