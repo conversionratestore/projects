@@ -891,19 +891,19 @@ let startFunk = setInterval(() => {
         console.log(document.querySelector("#last-name").value)
         console.log(document.querySelector("#register-email").value)
         console.log(document.querySelector("#register-password").value)
-        // postForm(
-        //   document.querySelector(`${parent} input[name='registerEmail']`).value,
-        //   document.querySelector(`${parent} input[name='registerPassword']`).value,
-        //   document.querySelector(`${parent} input[name='firstName']`).value,
-        //   document.querySelector(`${parent} input[name='lastName']`).value
-        // )
+        postForm(
+          document.querySelector(`${parent} input[name='registerEmail']`).value,
+          document.querySelector(`${parent} input[name='registerPassword']`).value,
+          document.querySelector(`${parent} input[name='firstName']`).value,
+          document.querySelector(`${parent} input[name='lastName']`).value
+        )
 
         pushDataLayer("Sign Up clicked")
-        document.querySelector("#btn-register-submit").click()
-        document.querySelector(".btn_close").setAttribute("successCoupon", "true")
-        sessionStorage.setItem("successSign", true)
-        sessionStorage.setItem("successCoupon", true)
-        hidePopup()
+        // document.querySelector("#btn-register-submit").click()
+        // document.querySelector(".btn_close").setAttribute("successCoupon", "true")
+        // sessionStorage.setItem("successSign", true)
+        // sessionStorage.setItem("successCoupon", true)
+        // hidePopup()
       }
     }
 
@@ -922,19 +922,13 @@ let startFunk = setInterval(() => {
         headers: {
           "Content-Type": "application/json",
         },
-        // body: {
-        //   form_key: window.form_key,
-        //   submit_type: "register",
-        //   emailAddress: email,
-        //   password: passwordVal,
-        //   firstname: firstName,
-        //   lastname: lastName,
-        // },
-
         body: form,
         method: "POST",
       })
-        .then((res) => res.json())
+        .then((res) => {
+          res.json()
+          console.log(res)
+        })
         .then((data) => {
           console.log(data)
 
