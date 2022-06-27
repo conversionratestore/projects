@@ -1149,13 +1149,7 @@ let style = `
           width: 63%;
         }
       }
-    
-    /*slider*/
-    .product-gallery__thumbnails {
-        display: flex;
-        overflow: hidden;
-    }
-    
+
     /*modal*/
     .modal {
         position: fixed;
@@ -1242,6 +1236,22 @@ let style = `
         height: 13px;
         background: url("https://conversionratestore.github.io/projects/somnifix/img/close_2.svg") no-repeat center / 100%;
         border: none;
+    }
+        
+    /*slider*/
+    .product-gallery__thumbnails {
+        display: flex;
+        overflow: hidden;
+    }
+    .product-gallery__thumbnail {
+        flex-shrink: 0;
+    }
+    .product-gallery__main, .product-gallery__thumbnails.is-slide-nav--true {
+        opacity: 1;
+        transition: none;
+    }
+    .product-gallery__main {
+        margin-bottom: 20px;
     }
 </style>
 `;
