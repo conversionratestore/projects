@@ -1790,24 +1790,24 @@ let startSlider = setInterval(function () {
             clearInterval(startSlider)
             console.log('silder interval')
             new Flickity(document.querySelector('.product-gallery__main'), {
-                asNavFor: '.product-gallery__thumbnails',
                 contain: true,
                 pageDots: false,
-                draggable: true,
+                // draggable: true,
                 freeScroll: true,
                 // prevNextButtons: true,
                 groupCells: 1,
                 // freeScrollFriction: 0.03,
+                asNavFor: '.product-gallery__thumbnails',
             });
             new Flickity(document.querySelector('.product-gallery__thumbnails'), {
-                asNavFor: '.product-gallery__main',
+                // groupCells: 5,
                 contain: true,
                 pageDots: false,
-                draggable: true,
-                freeScroll: true,
+                // draggable: true,
+                // freeScroll: true,
                 // prevNextButtons: true,
-                groupCells: 5,
                 // freeScrollFriction: 0.03,
+                asNavFor: '.product-gallery__main',
             });
         }
     }
