@@ -1328,13 +1328,19 @@ let startMain = setInterval(function () {
         $('.product-gallery__main').flickity({
             asNavFor: '.product-gallery__thumbnails',
             contain: true,
-            pageDots: false
+            pageDots: false,
+            draggable: true,
+            freeScroll: true,
+            prevNextButtons: true,
         });
 
         $('.product-gallery__thumbnails').flickity({
             asNavFor: '.product-gallery__main',
             contain: true,
-            pageDots: false
+            pageDots: false,
+            draggable: true,
+            freeScroll: true,
+            prevNextButtons: true,
         });
 
         //swatch packs
@@ -1468,6 +1474,10 @@ let start = setInterval(function () {
             let daysLag2 = Math.ceil(Math.abs(date2.getTime() - date.getTime()) / (1000 * 3600 * 24));
             let daysLag3 = new Date(date1.setDate(date1.getDate() + 30))
             let daysLag4 = new Date(date2.setDate(date2.getDate() + 30))
+
+            console.log(date)
+            console.log(date2)
+            console.log(daysLag2)
 
             document.querySelector('.delivery_time>div:nth-child(3)>p:nth-child(2)').innerHTML = `${daysLag1}-${daysLag2} days`
             document.querySelector('.delivery_time .today').innerHTML = `${monthTable[month]} ${day}, ${year}`
