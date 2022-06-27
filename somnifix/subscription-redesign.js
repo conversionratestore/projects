@@ -1527,11 +1527,10 @@ let html = `
 `;
 
 let startSlider = setInterval(function () {
-    // if (typeof flickity == 'function') {
-    //     clearInterval(startSlider)
-    // }
     if (document.querySelector('.product-gallery__main') != null && document.querySelector('.product-gallery__thumbnails') != null && document.querySelector('.product-gallery__main .flickity-viewport') == null && document.querySelector('.product-gallery__thumbnails .flickity-viewport') == null) {
         clearInterval(startSlider)
+        console.log('silder interval')
+        console.log(typeof Flickity)
 
         new Flickity(document.querySelector('.product-gallery__main'), {
             asNavFor: '.product-gallery__thumbnails',
