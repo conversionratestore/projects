@@ -1526,8 +1526,24 @@ let html = `
 </div>
 `;
 
+let startHead = setInterval(function () {
+    if (document.head != null) {
+        clearInterval(startHead)
+        let styleSlider = document.createElement('link');
+        styleSlider.href = 'https://unpkg.com/flickity@2.3.0/dist/flickity.css';
+        styleSlider.rel = 'stylesheet';
+        styleSlider.type = 'text/css';
+        document.head.appendChild(styleSlider);
+
+        let scriptSlider = document.createElement('script');
+        scriptSlider.src = 'https://unpkg.com/flickity@2.3.0/dist/flickity.pkgd.min.js';
+        scriptSlider.async = false;
+        document.head.appendChild(scriptSlider);
+    }
+})
+
 let startSlider = setInterval(function () {
-    if (document.querySelector('.product-gallery__main') != null && document.querySelector('.product-gallery__thumbnails') != null && document.querySelector('.product-gallery__main .flickity-viewport') == null && document.querySelector('.product-gallery__thumbnails .flickity-viewport') == null) {
+    if (document.querySelector('.product-gallery__main') != null && document.querySelector('.product-gallery__thumbnails') != null) {
         if (typeof Flickity === 'function') {
             console.log(typeof Flickity)
             clearInterval(startSlider)
@@ -1554,7 +1570,7 @@ let startSlider = setInterval(function () {
             });
         }
 
-     
+
     }
 },200)
 
@@ -1562,6 +1578,8 @@ let startMain = setInterval(function () {
     if(document.querySelectorAll('.shogun-root > .shg-box-vertical-align-wrapper .shg-box-vertical-align-wrapper')[5] != null) {
         clearInterval(startMain)
         //add html and style
+
+
         document.querySelectorAll('.shogun-root > .shg-box-vertical-align-wrapper')[1].querySelectorAll('.shg-box-vertical-align-wrapper')[4].insertAdjacentHTML('beforebegin', html);
         document.body.insertAdjacentHTML('afterbegin', style);
 
