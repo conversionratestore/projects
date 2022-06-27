@@ -172,6 +172,19 @@ function post(itemId,itemQuantity) {
     });
 }
 
+//push dataLayer
+let action, label;
+function pushDataLayer(action, label) {
+    console.log(action + ' : ' + label)
+    window.dataLayer = window.dataLayer || [];
+    dataLayer.push({
+        'event': 'event-to-ga',
+        'eventCategory': 'Exp — Subscription redesign 1',
+        'eventAction': action,
+        'eventLabel': label
+    });
+}
+
 let style = `
 <style>
     /*banner*/
@@ -1663,7 +1676,7 @@ let startMain = setInterval(function () {
             document.querySelector('.part1 .checklist').insertAdjacentHTML('afterend', switchItem);
         }
 
-        $('.swatchCustom__item').click(function() {
+        $('.product_section .swatchCustom__item').click(function(e) {
             if(!$(this).hasClass('swatchCustom__item--active')) {
                 $(this).siblings().removeClass('swatchCustom__item--active')
                 $(this).addClass('swatchCustom__item--active')
@@ -1681,6 +1694,13 @@ let startMain = setInterval(function () {
                     $('.stock__pack span').text('28')
                 }
             }
+            if ($(this).index() == 3) {
+                pushDataLayer('Click on popular 12-week pack', 'Choose your pack')
+            } else if ($(this).index() == 4) {
+                pushDataLayer('Click on 12-week pack', 'Choose your pack')
+            } else {
+                pushDataLayer('Click on 4 week pack', 'Choose your pack')
+            }
         })
         //set date of arrives
         $('.delivery_date b').html($('.country_select option:selected').attr('data-value'))
@@ -1690,6 +1710,7 @@ let startMain = setInterval(function () {
             let price = +$('.swatchCustom__item.swatchCustom__item--active').data('price')
             let total = (price * document.querySelector(".part2 .stock__select").value).toFixed(2)
             $('.part2 .total_price span').text(total)
+            pushDataLayer('Click on Quantity select', 'SomniFix Mouth Strips')
         })
 
         // select delivery country
@@ -1700,17 +1721,28 @@ let startMain = setInterval(function () {
             } else {
                 $('.free-shipping-label').text(`Free Shipping`)
             }
+            if ($(this).closest('.money_back')) {
+                pushDataLayer('Click on Ship to select', 'Money back guarantee')
+            } else {
+                pushDataLayer('Click on Ship to select', 'SomniFix Mouth Strips')
+            }
         })
 
         //modal show/hide
         $('.btn-how_cancel').click(function() {
             $('.modal').addClass('active');
+            pushDataLayer('How to cancel?', 'SomniFix Mouth Strips')
         })
         $('[button-close]').click(function(e) {
             console.log(e.target)
             if (e.target.className == 'modal active' || e.target.className == 'modal_close') {
                 $('.modal').removeClass('active');
+                pushDataLayer('Close popup', 'Popup: How to cancel')
             }
+        })
+        //event review
+        $('.stamped-main-badge').click(function() {
+            pushDataLayer('Click on Reviews button', 'SomniFix Mouth Strips')
         })
 
         //add to cart
@@ -1719,6 +1751,7 @@ let startMain = setInterval(function () {
             const itemQuantity = document.querySelector(".part2 .stock__select").value;
 
             post(itemId,itemQuantity)
+            pushDataLayer('Add to cart', 'SomniFix Mouth Strips')
         })
         // window.onload  = function () {
         // let startSlider = setInterval(function () {
@@ -1879,6 +1912,26 @@ let startBanner= setInterval(function () {
                 </div>
             </div>`
 
-        document.querySelector('.banner_btn').addEventListener('click', (e) => post('30282132226091',1))
+        document.querySelector('.banner_btn').addEventListener('click', (e) => {
+            post('30282132226091',1)
+            pushDataLayer('Add to cart', 'Save 30% when you schedule repeat deliveries')
+        })
     }
 })
+
+window.dataLayer = window.dataLayer || [];
+dataLayer.push({
+    'event': 'event-to-ga',
+    'eventCategory': 'Exp — Subscription redesign 1',
+    'eventAction': 'loaded'
+});
+
+(function(h,o,t,j,a,r){
+    h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
+    h._hjSettings={hjid:1271698,hjsv:6};
+    a=o.getElementsByTagName('head')[0];
+    r=o.createElement('script');r.async=1;
+    r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
+    a.appendChild(r);
+})(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
+hj('event', 'subscription_redesign_1');
