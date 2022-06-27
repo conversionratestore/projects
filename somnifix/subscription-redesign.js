@@ -1765,20 +1765,20 @@ let startMain = setInterval(function () {
             pushDataLayer('Add to cart', 'SomniFix Mouth Strips')
         })
 
-        // document.body.insertAdjacentHTML('beforeend',`<script type="application/json" data-section-id="product__main" data-section-data="">
-        //     {
-        //       "gallery_arrows": true,
-        //       "thumbnail_arrows": true,
-        //       "enable_zoom": false,
-        //       "enable_product_lightbox": true,
-        //       "enable_thumbnail_slider": true,
-        //       "slideshow_speed": 0,
-        //       "slideshow_transition": "slide",
-        //       "thumbnail_position": "bottom-thumbnails",
-        //       "product_images_amount": 12,
-        //       "template": "classic"
-        //     }
-        //   </script><script src="//cdn.shopify.com/s/files/1/2572/8006/t/69/assets/z__jsProduct.js?v=54363346918314756211655225892"></script>`)
+        document.body.insertAdjacentHTML('beforeend',`<script type="application/json" data-section-id="product__main" data-section-data="">
+            {
+              "gallery_arrows": true,
+              "thumbnail_arrows": true,
+              "enable_zoom": false,
+              "enable_product_lightbox": true,
+              "enable_thumbnail_slider": true,
+              "slideshow_speed": 0,
+              "slideshow_transition": "slide",
+              "thumbnail_position": "bottom-thumbnails",
+              "product_images_amount": 12,
+              "template": "classic"
+            }
+          </script><script src="//cdn.shopify.com/s/files/1/2572/8006/t/69/assets/z__jsProduct.js"></script>`)
 
     }
 })
