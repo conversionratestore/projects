@@ -1246,10 +1246,6 @@ let style = `
     .product-gallery__thumbnail {
         flex-shrink: 0;
     }
-    // .product-gallery__main, .product-gallery__thumbnails.is-slide-nav--true {
-    //     opacity: 1;
-    //     transition: none;
-    // }
     .product-gallery__main {
         margin-bottom: 20px;
     }
