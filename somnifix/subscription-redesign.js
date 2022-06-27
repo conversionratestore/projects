@@ -1528,30 +1528,33 @@ let html = `
 
 let startSlider = setInterval(function () {
     if (document.querySelector('.product-gallery__main') != null && document.querySelector('.product-gallery__thumbnails') != null && document.querySelector('.product-gallery__main .flickity-viewport') == null && document.querySelector('.product-gallery__thumbnails .flickity-viewport') == null) {
-        clearInterval(startSlider)
-        console.log('silder interval')
-        console.log(typeof Flickity)
+        if (typeof Flickity === 'function') {
+            console.log(typeof Flickity)
+            clearInterval(startSlider)
+            console.log('silder interval')
+            new Flickity(document.querySelector('.product-gallery__main'), {
+                asNavFor: '.product-gallery__thumbnails',
+                contain: true,
+                pageDots: false,
+                draggable: true,
+                freeScroll: true,
+                prevNextButtons: true,
+                groupCells: 1,
+                freeScrollFriction: 0.03,
+            });
+            new Flickity(document.querySelector('.product-gallery__thumbnails'), {
+                asNavFor: '.product-gallery__main',
+                contain: true,
+                pageDots: false,
+                draggable: true,
+                freeScroll: true,
+                prevNextButtons: true,
+                groupCells: 5,
+                freeScrollFriction: 0.03,
+            });
+        }
 
-        new Flickity(document.querySelector('.product-gallery__main'), {
-            asNavFor: '.product-gallery__thumbnails',
-            contain: true,
-            pageDots: false,
-            draggable: true,
-            freeScroll: true,
-            prevNextButtons: true,
-            groupCells: 1,
-            freeScrollFriction: 0.03,
-        });
-        new Flickity(document.querySelector('.product-gallery__thumbnails'), {
-            asNavFor: '.product-gallery__main',
-            contain: true,
-            pageDots: false,
-            draggable: true,
-            freeScroll: true,
-            prevNextButtons: true,
-            groupCells: 5,
-            freeScrollFriction: 0.03,
-        });
+     
     }
 },200)
 
