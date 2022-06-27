@@ -1310,21 +1310,9 @@ let html = `
 </div>
 `;
 
-let startMain = setInterval(function () {
-    if(document.querySelectorAll('.shogun-root > .shg-box-vertical-align-wrapper .shg-box-vertical-align-wrapper')[5] != null) {
-        clearInterval(startMain)
-        //add html and style
-        document.querySelectorAll('.shogun-root > .shg-box-vertical-align-wrapper')[1].querySelectorAll('.shg-box-vertical-align-wrapper')[4].insertAdjacentHTML('beforebegin', html);
-        document.body.insertAdjacentHTML('afterbegin', style);
-
-        // let $carouselMain = $('.product-gallery__main').flickity();
-        // let $carouselThumbnails = $('.product-gallery__thumbnails').flickity();
-        //
-        // // $('.button-group').on( 'click', '.button', function() {
-        // //     let selector = $(this).attr('data-selector');
-        // //     $carousel.flickity( 'selectCell', selector );
-        // // });
-
+let startSlider = setInterval(function () {
+    if (document.querySelector('.product-gallery__main') != null && document.querySelector('.product-gallery__thumbnails') != null) {
+        clearInterval(startSlider)
         $('.product-gallery__main').flickity({
             asNavFor: '.product-gallery__thumbnails',
             contain: true,
@@ -1333,8 +1321,9 @@ let startMain = setInterval(function () {
             freeScroll: true,
             prevNextButtons: true,
             groupCells: 1,
+            freeScrollFriction: 0.03,
         });
-
+    
         $('.product-gallery__thumbnails').flickity({
             asNavFor: '.product-gallery__main',
             contain: true,
@@ -1343,7 +1332,17 @@ let startMain = setInterval(function () {
             freeScroll: true,
             prevNextButtons: true,
             groupCells: 5,
+            freeScrollFriction: 0.03,
         });
+    }
+})
+
+let startMain = setInterval(function () {
+    if(document.querySelectorAll('.shogun-root > .shg-box-vertical-align-wrapper .shg-box-vertical-align-wrapper')[5] != null) {
+        clearInterval(startMain)
+        //add html and style
+        document.querySelectorAll('.shogun-root > .shg-box-vertical-align-wrapper')[1].querySelectorAll('.shg-box-vertical-align-wrapper')[4].insertAdjacentHTML('beforebegin', html);
+        document.body.insertAdjacentHTML('afterbegin', style);
 
         //swatch packs
         for (let i = 0; i < objVariants.length; i++) {
