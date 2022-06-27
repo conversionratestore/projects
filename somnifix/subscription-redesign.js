@@ -1729,12 +1729,13 @@ let startMain = setInterval(function () {
         })
 
         //modal show/hide
-        $('.btn-how_cancel').click(function() {
+        $('.btn-how_cancel').click(function(e) {
+            e.stopImmediatePropagation()
             $('.modal').addClass('active');
             pushDataLayer('How to cancel?', 'SomniFix Mouth Strips')
         })
         $('[button-close]').click(function(e) {
-            console.log(e.target)
+            e.stopImmediatePropagation()
             if (e.target.className == 'modal active' || e.target.className == 'modal_close') {
                 $('.modal').removeClass('active');
                 pushDataLayer('Close popup', 'Popup: How to cancel')
