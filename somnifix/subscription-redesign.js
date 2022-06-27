@@ -1146,7 +1146,7 @@ let startMain = setInterval(function () {
 
 //Money back guarantee
 let start = setInterval(function () {
-    if (document.querySelectorAll('.for_country_select') && document.querySelector('.delivery_time') != null) {
+    if (document.querySelectorAll('.for_country_select') && document.querySelectorAll('.delivery_time') && document.querySelector('.money_back') != null) {
         clearInterval(start)
 
         let link = `
@@ -1167,7 +1167,7 @@ let start = setInterval(function () {
             document.querySelectorAll('select[name="country"]')[1].value = this.value
             let d = e.target.options[e.target.selectedIndex].dataset.value
             document.querySelectorAll('.delivery_date b')[0].innerHTML = d
-            document.querySelectorAll('.delivery_date b')[1].innerHTML = d
+            // document.querySelectorAll('.delivery_date b')[1].innerHTML = d
             setDateDelivery(d)
         })
 
