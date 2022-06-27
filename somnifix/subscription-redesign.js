@@ -1219,36 +1219,37 @@ let html = `
     </div>
 </div>
 `;
+window.onload  = function () {
+    let startSlider = setInterval(function () {
+        // if (typeof flickity == 'function') {
+        //     clearInterval(startSlider)
+        // }
+        if (document.querySelector('.product-gallery__main') != null && document.querySelector('.product-gallery__thumbnails') != null && document.querySelector('.product-gallery__main .flickity-viewport') == null && document.querySelector('.product-gallery__thumbnails .flickity-viewport') == null) {
+            clearInterval(startSlider)
 
-let startSlider = setInterval(function () {
-    // if (typeof flickity == 'function') {
-    //     clearInterval(startSlider)
-    // }
-    if (document.querySelector('.product-gallery__main') != null && document.querySelector('.product-gallery__thumbnails') != null && document.querySelector('.product-gallery__main .flickity-viewport') == null && document.querySelector('.product-gallery__thumbnails .flickity-viewport') == null) {
-        clearInterval(startSlider)
-
-        new Flickity(document.querySelector('.product-gallery__main'), {
-            asNavFor: '.product-gallery__thumbnails',
-            contain: true,
-            pageDots: false,
-            draggable: true,
-            freeScroll: true,
-            prevNextButtons: true,
-            groupCells: 1,
-            freeScrollFriction: 0.03,
-        });
-        new Flickity(document.querySelector('.product-gallery__thumbnails'), {
-            asNavFor: '.product-gallery__main',
-            contain: true,
-            pageDots: false,
-            draggable: true,
-            freeScroll: true,
-            prevNextButtons: true,
-            groupCells: 5,
-            freeScrollFriction: 0.03,
-        });
-    }
-}, 500)
+            new Flickity(document.querySelector('.product-gallery__main'), {
+                asNavFor: '.product-gallery__thumbnails',
+                contain: true,
+                pageDots: false,
+                draggable: true,
+                freeScroll: true,
+                prevNextButtons: true,
+                groupCells: 1,
+                freeScrollFriction: 0.03,
+            });
+            new Flickity(document.querySelector('.product-gallery__thumbnails'), {
+                asNavFor: '.product-gallery__main',
+                contain: true,
+                pageDots: false,
+                draggable: true,
+                freeScroll: true,
+                prevNextButtons: true,
+                groupCells: 5,
+                freeScrollFriction: 0.03,
+            });
+        }
+    }, 200)
+};
 
 let startMain = setInterval(function () {
     if(document.querySelectorAll('.shogun-root > .shg-box-vertical-align-wrapper .shg-box-vertical-align-wrapper')[5] != null) {
