@@ -1829,8 +1829,6 @@ let start = setInterval(function () {
             setDateDelivery(d)
         })
 
-        // let monthTable = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
-
         function setDateDelivery (str) {
             let parseStr = str.split(' ').filter((item) => item !== '-')
             let day = new Date().getDate()
