@@ -191,7 +191,7 @@ let style = `
         border: none;
     }
     .wrap-banner {
-        background: url(https://conversionratestore.github.io/projects/somnifix/img/image4.png) no-repeat center / cover;         
+        background: url(https://conversionratestore.github.io/projects/somnifix/img/image4.png) no-repeat center 25% / cover;         
         width: 100%;
     }
     .row-banner img {
