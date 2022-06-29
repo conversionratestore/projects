@@ -114,7 +114,7 @@ let objVariants = [
     {
         'variantId': '30282132226091',
         'title': '12 Pack',
-        'week' :'12-week pack',
+        'week' :'12-week pack <br> subscription',
         'days':'84 strips',
         'sale':'Save 30%',
         'price': '49.97',
@@ -484,9 +484,7 @@ let style = `
         background: #F1F7FC;
         border: 3px solid #4090D1;
     }
-    .swatchCustom__item.swatchCustom__item--active .popular, .swatchCustom__item.swatchCustom__item--active .how_cancet, .swatchCustom__item.swatchCustom__item--active .swatchCustom__item--first .week span  {
-        display: block;
-    }
+  
     .swatchCustom__item .popular {
         font-weight: 600;
         font-size: 12px;
@@ -495,7 +493,6 @@ let style = `
         background: #26A9E0;
         border-radius: 5px;
         padding: 3px 10px;
-        display: none;
         width: fit-content;
         margin-bottom: 20px;
     }
@@ -506,7 +503,6 @@ let style = `
     .swatchCustom__item .how_cancet {
         font-size: 12px;
         line-height: 14px;
-        display: none;
         padding-top: 24px;
     }
     .swatchCustom span {
@@ -517,9 +513,6 @@ let style = `
         font-size: 14px;
         line-height: 16px;
         display: block;
-    }
-    .swatchCustom__item--first .week span {
-        display: none;
     }
     .swatchCustom__item--first .days {
         font-weight: 500;
@@ -1660,7 +1653,7 @@ let startMain = setInterval(function () {
                 ${objVariants[i].popular == true ? `<div class="popular">Most Popular</div>` : ''}
                 <div class="justify-between w-100">
                     <div class="swatchCustom__item--first">
-                        <span class="week">${objVariants[i].week} <br><span> subscription</span></span>
+                        <span class="week">${objVariants[i].week}</span>
                         <span class="days">${objVariants[i].days}</span>
                     </div>
                     <div class="swatchCustom__item--third">
@@ -1671,7 +1664,8 @@ let startMain = setInterval(function () {
                         </p>
                     </div>
                 </div>
-                <p class="how_cancet">Auto delivery every 3 months. <br> Cancel anytime. <a href="#" class="btn-how_cancel">How to cancel?</a></p>
+                ${objVariants[i].popular == true ? `<p class="how_cancet">Auto delivery every 3 months. <br> Cancel anytime. <a href="#" class="btn-how_cancel">How to cancel?</a></p>` : ''}
+                
             </div>`
             document.querySelector('.part1 .checklist').insertAdjacentHTML('afterend', switchItem);
         }
