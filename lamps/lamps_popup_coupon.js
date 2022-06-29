@@ -943,16 +943,3 @@ let startFunk = setInterval(() => {
     clarity("set", `signup_discount_${eventVar}`, "variant_1")
   }
 }, 10)
-
-// function allowNewCustomerCoupon() {
-//   fetch(`https://www.lamps.com/l-c/ajax/`, {
-//     method: "GET",
-//   })
-//     .then((res) => {
-//       console.log(res.allow_new_customer_coupon)
-//       return res.allow_new_customer_coupon
-//     })
-//     .catch((err) => {
-//       console.log("Failed fetch ", err)
-//     })
-// }
