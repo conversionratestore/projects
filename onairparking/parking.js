@@ -433,16 +433,30 @@ let postParking = (id, startDate, endDate, parent) => {
                 let url = `${result[i]['facility_url_code']}?checkin=${startDate}&checkout=${endDate}`,
                     name = result[i]['facility_lot'],
                     reviews = result[i]['facility_review'] + '/' + result[i]['facility_review_avg'],
-                    distance = result[i].highlights[2].description != null ? result[i].highlights[2].description : result[i]['facility_airport_distance'] != null ? `${result[i]['facility_airport_distance']} miles` : '' ,
-                    shuttle = result[i].highlights[0].description != null ? result[i].highlights[0].description : '',
-                    shuttleFrequency = result[i].highlights[1].description != null ? result[i].highlights[1].description : '',
-                    freeCancellation = result[i].highlights[3].description != null ? result[i].highlights[3].description : '',
+                    distance = '',
+                    shuttle = '',
+                    shuttleFrequency = '',
+                    freeCancellation = '',
                     price = result[i]['facility_selling_price'],
                     minDay = result[i]['facility_min_days'],
                     soldOut = result[i]['date_sold_out'],
-                    unavailable = result[i]['not_sufficient_days'],
-                    parent = document.querySelector('#list_parking');
+                    unavailable = result[i]['not_sufficient_days'];
     
+                let highlights = result[i].highlights;
+                for (let h = 0; h < highlights.length; h++) {
+                    const element = highlights[h];
+                    if (highlights[h].type == 'facility_distance') {
+                        distance = highlights[h].description != null ? highlights[h].description : result[i]['facility_airport_distance'] != null ? `${result[i]['facility_airport_distance']} miles` : '';
+                    } else if (highlights[h].type == 'facility_free_shuttles') {
+                        shuttle = highlights[h].description != null ? highlights[h].description : '';
+                    } else if (highlights[h].type == 'facility_shuttle_frequency') {
+                        shuttleFrequency = highlights[h].description != null ? highlights[h].description : '';
+                    } else if (highlights[h].type == 'facility_free_cancellation') {
+                        freeCancellation = highlights[h].description != null ? highlights[h].description : '';
+                    } 
+                }
+                console.log(url,name,reviews + "/ " + distance,shuttle,shuttleFrequency,freeCancellation + " /" + price,minDay,soldOut,unavailable,parent)
+
                 new Parking(url,name,reviews,distance,shuttle,shuttleFrequency,freeCancellation,price,minDay,soldOut,unavailable,parent).render();
             }
     
