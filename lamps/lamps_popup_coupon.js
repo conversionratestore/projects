@@ -933,10 +933,10 @@ let startFunk = setInterval(() => {
           } else {
             document.querySelector(".form_wrap  > .error_msg").style.display = "none"
             pushDataLayer("Sign Up clicked")
-            document.querySelector("#btn-register-submit").click()
             document.querySelector(".btn_close").setAttribute("successCoupon", "true")
-            sessionStorage.setItem("successSign", true)
+            document.querySelector("#btn-register-submit").click()
             sessionStorage.setItem("successCoupon", true)
+            sessionStorage.setItem("successSign", true)
             hidePopup()
           }
         })
