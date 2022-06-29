@@ -642,6 +642,7 @@ let startFunk = setInterval(() => {
             if (document.querySelector('.header-container .header-actions .action-links [data-account-trigger="true"] span').textContent === "Account") {
               if (!el.querySelector(".discount_cart")) {
                 el.insertAdjacentHTML("beforeend", discountCart)
+                startCoupon()
               }
             } else {
               if (!el.querySelector(".discount_cart.sign_up")) {
@@ -676,20 +677,23 @@ let startFunk = setInterval(() => {
       }
     }
 
+    startCoupon()
     // coupon activate
-    const startCoupon = setInterval(() => {
-      const couponInput = document.querySelector(".inner-panel .i-block #sidebar-discount-coupon-form input")
-      if (couponInput) {
-        // clearInterval(startCoupon)
+    function startCoupon() {
+      const startCoupon = setInterval(() => {
+        const couponInput = document.querySelector(".inner-panel .i-block #sidebar-discount-coupon-form input")
+        if (couponInput) {
+          clearInterval(startCoupon)
 
-        if (document.querySelector('.header-container .header-actions .action-links [data-account-trigger="true"] span').textContent === "Account") {
-          if (couponInput.value !== "WLS1-QFT5") {
-            couponInput.value = "WLS1-QFT5"
-            document.querySelector(".inner-panel .i-block #submit-coupon")?.click()
+          if (document.querySelector('.header-container .header-actions .action-links [data-account-trigger="true"] span').textContent === "Account") {
+            if (couponInput.value !== "WLS1-QFT5") {
+              couponInput.value = "WLS1-QFT5"
+              document.querySelector(".inner-panel .i-block #submit-coupon")?.click()
+            }
           }
         }
-      }
-    }, 1000)
+      }, 1000)
+    }
 
     // observer
     let observer = new MutationObserver(() => {
@@ -937,3 +941,16 @@ let startFunk = setInterval(() => {
     clarity("set", `signup_discount_${eventVar}`, "variant_1")
   }
 }, 10)
+
+// function allowNewCustomerCoupon() {
+//   fetch(`https://www.lamps.com/l-c/ajax/`, {
+//     method: "GET",
+//   })
+//     .then((res) => {
+//       console.log(res.allow_new_customer_coupon)
+//       return res.allow_new_customer_coupon
+//     })
+//     .catch((err) => {
+//       console.log("Failed fetch ", err)
+//     })
+// }
