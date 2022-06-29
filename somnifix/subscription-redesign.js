@@ -1533,7 +1533,7 @@ let html = `
                     </div>
             
                     <div class="part2 gray_bg">
-                        <p class="total_price">$<span>55.97</span> USD</p>
+                        <p class="total_price">$<span>49.97</span> USD</p>
                         <span class="free-shipping-label">Free Shipping</span>
                         <div class="flx">
                             <b>Ship to:</b>
