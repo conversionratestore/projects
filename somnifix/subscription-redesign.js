@@ -1721,6 +1721,8 @@ let startMain = setInterval(function () {
             } else {
                 $('.free-shipping-label').text(`Free Shipping`)
             }
+        })
+        $('.country_select').click(function() {
             if ($(this).closest('.money_back')) {
                 pushDataLayer('Click on Ship to select', 'Money back guarantee')
             } else {
