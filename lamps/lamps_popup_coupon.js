@@ -898,7 +898,6 @@ let startFunk = setInterval(() => {
           document.querySelector(`${parent} input[name='lastName']`).value
         )
 
-        pushDataLayer("Sign Up clicked")
         // document.querySelector("#btn-register-submit").click()
         // document.querySelector(".btn_close").setAttribute("successCoupon", "true")
         // sessionStorage.setItem("successSign", true)
