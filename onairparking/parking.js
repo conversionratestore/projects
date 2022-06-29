@@ -455,8 +455,6 @@ let postParking = (id, startDate, endDate, parent) => {
                         freeCancellation = highlights[h].description != null ? highlights[h].description : '';
                     } 
                 }
-                console.log(url,name,reviews + "/ " + distance,shuttle,shuttleFrequency,freeCancellation + " /" + price,minDay,soldOut,unavailable,parent)
-
                 new Parking(url,name,reviews,distance,shuttle,shuttleFrequency,freeCancellation,price,minDay,soldOut,unavailable,parent).render();
             }
     
