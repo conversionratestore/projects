@@ -759,7 +759,7 @@ let startFunk = setInterval(() => {
     }, 3000)
 
     document.querySelector(".btn_close").addEventListener("click", function () {
-      if (this.getAttribute("successCoupon")) {
+      if (this.getAttribute("successCoupon") || document.querySelector(".body_popup .form_wrap:nth-child(2)").classList.contains("active")) {
         pushDataLayer("TY after registration pop up closed by X")
       } else {
         pushDataLayer("Registration pop up closed by X")
@@ -887,22 +887,12 @@ let startFunk = setInterval(() => {
         document.querySelector("#register-email").value = document.querySelector(`${parent} input[name='registerEmail']`).value
         document.querySelector("#register-password").value = document.querySelector(`${parent} input[name='registerPassword']`).value
 
-        console.log(document.querySelector("#first-name").value)
-        console.log(document.querySelector("#last-name").value)
-        console.log(document.querySelector("#register-email").value)
-        console.log(document.querySelector("#register-password").value)
         postForm(
           document.querySelector(`${parent} input[name='registerEmail']`).value,
           document.querySelector(`${parent} input[name='registerPassword']`).value,
           document.querySelector(`${parent} input[name='firstName']`).value,
           document.querySelector(`${parent} input[name='lastName']`).value
         )
-
-        // document.querySelector("#btn-register-submit").click()
-        // document.querySelector(".btn_close").setAttribute("successCoupon", "true")
-        // sessionStorage.setItem("successSign", true)
-        // sessionStorage.setItem("successCoupon", true)
-        // hidePopup()
       }
     }
 
@@ -915,19 +905,15 @@ let startFunk = setInterval(() => {
       form.append("password", passwordVal)
       form.append("firstname", firstName)
       form.append("lastname", lastName)
-      console.log(form)
 
       fetch(`https://www.lamps.com/l-c/ajax/`, {
         body: form,
         method: "POST",
       })
         .then((res) => {
-          // res.json()
           return res.status
         })
         .then((data) => {
-          console.log(data)
-
           if (data === 403) {
             document.querySelector(".form_wrap  > .error_msg").style.display = "block"
           } else {
