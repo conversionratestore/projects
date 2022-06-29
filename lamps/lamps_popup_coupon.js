@@ -2,6 +2,8 @@ let startFunk = setInterval(() => {
   if (document.querySelector("#main-wrapper")) {
     clearInterval(startFunk)
 
+    document.cookie = "login_alt = true"
+
     // event
     let eventVar = "desktop"
 
