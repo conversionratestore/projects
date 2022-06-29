@@ -440,7 +440,8 @@ let postParking = (id, startDate, endDate, parent) => {
                     price = result[i]['facility_selling_price'],
                     minDay = result[i]['facility_min_days'],
                     soldOut = result[i]['date_sold_out'],
-                    unavailable = result[i]['not_sufficient_days'];
+                    unavailable = result[i]['not_sufficient_days'],
+                    parent = document.querySelector('#list_parking');
     
                 new Parking(url,name,reviews,distance,shuttle,shuttleFrequency,freeCancellation,price,minDay,soldOut,unavailable,parent).render();
             }
