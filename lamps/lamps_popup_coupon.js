@@ -640,7 +640,9 @@ let startFunk = setInterval(() => {
 
           if (salesProduct) {
             if (document.querySelector('.header-container .header-actions .action-links [data-account-trigger="true"] span').textContent === "Account") {
-              el.insertAdjacentHTML("beforeend", discountCart)
+              if (!el.querySelector(".discount_cart")) {
+                el.insertAdjacentHTML("beforeend", discountCart)
+              }
             } else {
               if (!el.querySelector(".discount_cart.sign_up")) {
                 el.insertAdjacentHTML("beforeend", discountCartSignUp)
