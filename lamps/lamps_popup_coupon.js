@@ -5,11 +5,13 @@ let startFunk = setInterval(() => {
     document.cookie = "login_alt = true"
 
     //new_customer_coupon
-    const cookieName = "new_customer_coupon"
-    let cookieValue = "true"
-    let myDate = new Date()
-    myDate.setMonth(myDate.getMonth() + 12)
-    document.cookie = cookieName + "=" + cookieValue + ";expires=" + myDate + ";domain=.www.lamps.com;path=/"
+    if (document.querySelector('.header-container .header-actions .action-links [data-account-trigger="true"] span').textContent === "Account") {
+      const cookieName = "new_customer_coupon"
+      let cookieValue = "true"
+      let myDate = new Date()
+      myDate.setMonth(myDate.getMonth() + 12)
+      document.cookie = cookieName + "=" + cookieValue + ";expires=" + myDate + ";domain=.www.lamps.com;path=/"
+    }
 
     // event
     let eventVar = "desktop"
