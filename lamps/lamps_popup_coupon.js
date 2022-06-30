@@ -3,6 +3,7 @@ let startFunk = setInterval(() => {
     clearInterval(startFunk)
 
     document.cookie = "login_alt = true"
+    document.cookie = "new_customer_discount = true"
 
     // event
     let eventVar = "desktop"
@@ -644,7 +645,7 @@ let startFunk = setInterval(() => {
             if (document.querySelector('.header-container .header-actions .action-links [data-account-trigger="true"] span').textContent === "Account") {
               if (!el.querySelector(".discount_cart")) {
                 el.insertAdjacentHTML("beforeend", discountCart)
-                startCoupon()
+                // startCoupon()
               }
             } else {
               if (!el.querySelector(".discount_cart.sign_up")) {
@@ -679,7 +680,7 @@ let startFunk = setInterval(() => {
       }
     }
 
-    startCoupon()
+    // startCoupon()
     // coupon activate
     function startCoupon() {
       const startCoupon = setInterval(() => {
