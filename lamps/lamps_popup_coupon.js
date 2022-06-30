@@ -16,6 +16,7 @@ let startFunk = setInterval(() => {
         deleteCookie("new_customer_coupon")
 
         function deleteCookie(name) {
+          console.log(`deleteCookie`)
           setCookie(name, "", {
             expires: -1,
           })
@@ -661,9 +662,8 @@ let startFunk = setInterval(() => {
 
           if (salesProduct) {
             if (document.querySelector('.header-container .header-actions .action-links [data-account-trigger="true"] span').textContent === "Account") {
-              activateCoupon()
-
               if (!el.querySelector(".discount_cart")) {
+                activateCoupon()
                 el.insertAdjacentHTML("beforeend", discountCart)
                 // startCoupon()
               }
