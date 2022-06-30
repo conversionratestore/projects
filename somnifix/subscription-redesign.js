@@ -1692,7 +1692,7 @@ let startMain = setInterval(function () {
                 }
             }
             if ($(this).index() == 3) {
-                pushDataLayer('Click on popular 12-week pack', 'Choose your pack')
+                pushDataLayer('Click on 12-week pack subscription', 'Choose your pack')
             } else if ($(this).index() == 4) {
                 pushDataLayer('Click on 12-week pack', 'Choose your pack')
             } else {
