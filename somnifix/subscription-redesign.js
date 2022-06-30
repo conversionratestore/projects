@@ -1538,7 +1538,7 @@ let html = `
                         <span class="delivery_date">Arrives: <b></b> </span>
             
                         <h4 class="stock__header">In Stock.</h4>
-                        <select class="stock__select">${qty()}</select>
+                        <select class="stock__select" disabled>${qty()}</select>
                         <p class="stock__pack">1 pack = <span>84</span> strips</p>
             
                         <button class="to_checkout">Add to cart</button>
@@ -1682,10 +1682,13 @@ let startMain = setInterval(function () {
                 $('.stock__select').val('1')
                 if($(this).data('title') === '3 Pack') {
                     $('.stock__pack span').text('84')
+                    $('.stock__select').removeAttr('disabled')
                 } else if($(this).data('title') === '12 Pack') {
                     $('.stock__pack span').text('84')
+                    $('.stock__select').attr('disabled','')
                 } else {
                     $('.stock__pack span').text('28')
+                    $('.stock__select').removeAttr('disabled')
                 }
             }
             if ($(this).index() == 3) {
