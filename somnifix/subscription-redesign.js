@@ -206,9 +206,7 @@ let style = `
         max-width: 1064px;
         margin: 0 auto;
     }
-    .shogun-image-content {
-        position: relative!important;
-    }
+    
     .banner .stamped-main-badge {
         margin-bottom: 24px;
     }
@@ -1646,6 +1644,8 @@ let startMain = setInterval(function () {
         document.querySelectorAll('.shogun-root > .shg-box-vertical-align-wrapper')[1].querySelectorAll('.shg-box-vertical-align-wrapper')[4].insertAdjacentHTML('beforebegin', html);
         document.body.insertAdjacentHTML('afterbegin', style);
         document.body.insertAdjacentHTML('beforeend', modalHtml);
+        document.querySelectorAll('body > div.shogun-root > .shg-box-vertical-align-wrapper:nth-child(6) .shogun-image-content')[0].style.position = 'relative'
+  
 
         //swatch packs
         for (let i = 0; i < objVariants.length; i++) {
