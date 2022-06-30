@@ -137,30 +137,6 @@ function qty() {
     return option
 }
 
-function post(itemId,itemQuantity) {
-    let formData = {
-        'items': [{
-            'id': itemId,
-            'quantity': itemQuantity
-        }]
-    };
-    fetch('/cart/add.js', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(formData)
-    }).then(response => {
-        return response.json();
-    }).then(data => {
-        if (window.stackable) {
-            window.stackable.checkOut(null, new Event('Stackable Checkout'))
-        }
-    }).catch((error) => {
-        console.error('Error:', error);
-    });
-}
-
 //push dataLayer
 function pushDataLayer(action, label) {
     console.log(action + ' : ' + label)
@@ -1652,7 +1628,7 @@ let startMain = setInterval(function () {
         //swatch packs
         for (let i = 0; i < objVariants.length; i++) {
             let switchItem = `
-            <div class="swatchCustom__item ${objVariants[i].active}" data-variant="${objVariants[i].variantId}" data-title="${objVariants[i].title}" data-price="${objVariants[i].price}" data-subheading="${objVariants[i].subheading}">
+            <div class="swatchCustom__item ${objVariants[i].active}" data-variant="${objVariants[i].variantId}" data-title="${objVariants[i].title}" data-price="${objVariants[i].price}">
                 ${objVariants[i].popular == true ? `<div class="popular">Most Popular</div>` : ''}
                 <div class="justify-between w-100">
                     <div class="swatchCustom__item--first">
@@ -1753,7 +1729,32 @@ let startMain = setInterval(function () {
             const itemId = document.querySelector(".swatchCustom__item--active").dataset.variant;
             const itemQuantity = document.querySelector(".part2 .stock__select").value;
 
-            post(itemId,itemQuantity)
+            if (itemId === '30282132226091') {
+                addItemToCart("30282132226091", 1, "12", "Month", "95310");
+            } else {
+                let formData = {
+                    'items': [{
+                        'id': itemId,
+                        'quantity': itemQuantity
+                    }]
+                };
+                fetch('/cart/add.js', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(formData)
+                }).then(response => {
+                    return response.json();
+                }).then(data => {
+                    if (window.stackable) {
+                        window.stackable.checkOut(null, new Event('Stackable Checkout'))
+                    }
+                }).catch((error) => {
+                    console.error('Error:', error);
+                });
+            }
+            
             pushDataLayer('Add to cart', 'SomniFix Mouth Strips')
         })
     }
@@ -1893,7 +1894,7 @@ let startBanner= setInterval(function () {
             </div>`
 
         document.querySelector('.banner_btn').addEventListener('click', (e) => {
-            post('30282132226091',1)
+            addItemToCart("30282132226091", 1, "12", "Month", "95310");
             pushDataLayer('Add to cart', 'Save 30% when you schedule repeat deliveries')
         })
     }
