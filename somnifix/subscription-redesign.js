@@ -189,6 +189,7 @@ let style = `
         margin-top: 16px;
         color: #FFFFFF;
         border: none;
+        cursor: pointer;commit
     }
     .wrap-banner {
         background: url(https://conversionratestore.github.io/projects/somnifix/img/image4.png) no-repeat center 25% / cover;         
