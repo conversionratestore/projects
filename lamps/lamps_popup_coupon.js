@@ -11,16 +11,10 @@ let startFunk = setInterval(() => {
         let cookieValue = "true"
         let myDate = new Date()
         myDate.setMonth(myDate.getMonth() + 12)
-        document.cookie = cookieName + "=" + cookieValue + ";expires=" + myDate + ";domain=.www.lamps.com;path=/"
+        // document.cookie = cookieName + "=" + cookieValue + ";expires=" + myDate + ";domain=.www.lamps.com;path=/"
+        document.cookie = `${cookieName}=${cookieValue};expires=-1;domain=.www.lamps.com;path=/`
       } else {
-        deleteCookie("new_customer_coupon")
-
-        function deleteCookie(name) {
-          console.log(`deleteCookie`)
-          setCookie(name, "", {
-            expires: -1,
-          })
-        }
+        document.cookie = `${cookieName}="";max-age=-1;domain=.www.lamps.com;path=/`
       }
     }
 
