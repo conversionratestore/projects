@@ -1730,7 +1730,7 @@ let startMain = setInterval(function () {
             const itemQuantity = document.querySelector(".part2 .stock__select").value;
 
             if (itemId === '30282132226091') {
-                addItemToCart("30282132226091", 1, "12", "Month", "95310");
+                addItemToCart("30282132226091", 1, "3", "Month", "95310");
             } else {
                 let formData = {
                     'items': [{
