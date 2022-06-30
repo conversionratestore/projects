@@ -710,13 +710,16 @@ let startFunk = setInterval(() => {
       }
     }
 
+    onClickLogout()
     // onClick logout
-    if (document.querySelector("#btn-logout")) {
-      document.querySelector("#btn-logout").addEventListener("click", function () {
-        setTimeout(() => {
-          document.cookie = "new_customer_coupon" + "=" + "" + ";max-age=" + -1 + ";domain=.www.lamps.com;path=/"
-        }, 1000)
-      })
+    function onClickLogout() {
+      if (document.querySelector("#btn-logout")) {
+        document.querySelector("#btn-logout").addEventListener("click", function () {
+          setTimeout(() => {
+            document.cookie = "new_customer_coupon" + "=" + "" + ";max-age=" + -1 + ";domain=.www.lamps.com;path=/"
+          }, 1000)
+        })
+      }
     }
 
     // observer
@@ -724,6 +727,7 @@ let startFunk = setInterval(() => {
       if (document.querySelector("#main-wrapper")) {
         observer.disconnect()
         renderToPdp()
+        onClickLogout()
 
         observer.observe(document.querySelector("#main-wrapper"), {
           childList: true,
@@ -741,6 +745,7 @@ let startFunk = setInterval(() => {
       if (document.querySelector("#cart-panel")) {
         observerCart.disconnect()
         renderToCart()
+        onClickLogout()
 
         observerCart.observe(document.querySelector("#cart-panel"), {
           childList: true,
