@@ -3,7 +3,13 @@ let startFunk = setInterval(() => {
     clearInterval(startFunk)
 
     document.cookie = "login_alt = true"
-    document.cookie = "new_customer_discount = true"
+
+    //new_customer_coupon
+    const cookieName = "new_customer_coupon"
+    let cookieValue = "true"
+    let myDate = new Date()
+    myDate.setMonth(myDate.getMonth() + 12)
+    document.cookie = cookieName + "=" + cookieValue + ";expires=" + myDate + ";domain=.www.lamps.com;path=/"
 
     // event
     let eventVar = "desktop"
