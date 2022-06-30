@@ -92,7 +92,7 @@ let objVariants = [
     {
         'variantId': '32115046023283',
         'title': '1 Pack',
-        'week' :'4 week pack',
+        'week' :'4-week pack',
         'days':'28 strips',
         'sale':'',
         'price': '23.99',
