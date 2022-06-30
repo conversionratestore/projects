@@ -705,14 +705,14 @@ let startFunk = setInterval(() => {
         let cookieValue = "true"
         let myDate = new Date()
         myDate.setMonth(myDate.getMonth() + 12)
-        // document.cookie = cookieName + "=" + cookieValue + ";expires=" + myDate + ";domain=.www.lamps.com;path=/"
-        document.cookie = `${cookieName}=${cookieValue};expires=-1;domain=.www.lamps.com;path=/`
+        document.cookie = cookieName + "=" + cookieValue + ";expires=" + myDate + ";domain=.www.lamps.com;path=/"
+        // document.cookie = `${cookieName}=${cookieValue};expires=-1;domain=.www.lamps.com;path=/`
       }
     }
 
     // onClick logout
     document.querySelector("#btn-logout")?.addEventListener("click", () => {
-      document.cookie = `new_customer_coupon="";max-age=-1;domain=.www.lamps.com;path=/`
+      document.cookie = "new_customer_coupon" + "=" + "" + ";max-age=" + -1 + ";domain=.www.lamps.com;path=/"
     })
 
     // observer
