@@ -12,15 +12,15 @@ let startFunk = setInterval(() => {
         let myDate = new Date()
         myDate.setMonth(myDate.getMonth() + 12)
         document.cookie = cookieName + "=" + cookieValue + ";expires=" + myDate + ";domain=.www.lamps.com;path=/"
+      } else {
+        deleteCookie("new_customer_coupon")
+
+        function deleteCookie(name) {
+          setCookie(name, "", {
+            expires: -1,
+          })
+        }
       }
-
-      //   deleteCookie("new_customer_coupon")
-
-      //   function deleteCookie(name) {
-      //     setCookie(name, "", {
-      //       expires: -1,
-      //     })
-      //   }
     }
 
     // event
@@ -687,11 +687,11 @@ let startFunk = setInterval(() => {
         if (salesProduct) {
           if (document.querySelector('.header-container .header-actions .action-links [data-account-trigger="true"] span').textContent === "Account") {
             if (!document.querySelector(".discount_pdp")) {
-              document.querySelector(".catalog-product-view .product-essential .p-price .pdp-afterpay")?.insertAdjacentHTML("beforebegin", discountPdp)
+              document.querySelector(".catalog-product-view .product-essential .p-price .final-price.mt-3")?.insertAdjacentHTML("afterend", discountPdp)
             }
           } else {
             if (!document.querySelector(".discount_pdp.sign_up")) {
-              document.querySelector(".catalog-product-view .product-essential .p-price .pdp-afterpay")?.insertAdjacentHTML("beforebegin", discounPdpSignUp)
+              document.querySelector(".catalog-product-view .product-essential .p-price .final-price.mt-3")?.insertAdjacentHTML("afterend", discounPdpSignUp)
 
               onClickSignUp("#main-wrapper")
             }
