@@ -1217,6 +1217,7 @@ let style = `
         height: 13px;
         background: url("https://conversionratestore.github.io/projects/somnifix/img/close_2.svg") no-repeat center / 100%;
         border: none;
+        cursor: pointer;
     }
         
     /*slider*/
