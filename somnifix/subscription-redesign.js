@@ -205,6 +205,7 @@ let style = `
         position: inherit;
         max-width: 1064px;
         margin: 0 auto;
+        width: 95%;
     }
     
     .banner .stamped-main-badge {
