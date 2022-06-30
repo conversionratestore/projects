@@ -10,16 +10,106 @@ scriptCustom.src = "https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.3/min
 scriptCustom.async = false
 document.head.appendChild(scriptCustom)
 
-/* Some variables  */
-
-const imgFolderLink = `https://conversionratestore.github.io/projects/upshift/img`
-
 /* CSS */
 
 const color_black = '#303133'
 const transition = 'transition: all 0.2s ease-out;'
 
-const style = /*html*/`
+const imgFolderLink = `https://conversionratestore.github.io/projects/upshift/img`
+
+const jobsCSS = `
+.slide {
+    background: #FFFFFF;
+    box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.03), 0px 4px 20px #E8EBF3;
+    border-radius: 10px;
+}
+
+.slide_header {
+    display: flex;
+    justify-content: space-between;
+    background: #F1F9FE;
+    border-radius: 10px 10px 0px 0px;
+    padding: 20px;
+}
+
+.slide_header img {
+    width: 8px;
+    height: 10px;
+}
+
+.slide_header div {
+    display: flex;
+    flex-direction: column;
+}
+
+.slide_header div:last-child {
+    text-align: right;
+}
+
+.slide_header div p:first-child {
+    font-weight: 700;
+    font-size: 14px;
+    color: ${color_black};
+}
+
+.slide_header div p {
+    font-size: 12px;
+    font-weight: 400;
+    color: ${color_black};
+}
+
+.slide_body {
+    padding: 20px;
+}
+
+p.work_description {
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 18px;
+    letter-spacing: 0.01em;
+    color: #777777;
+    margin: 20px 0;
+}
+
+p.work_place {
+    font-weight: 700;
+    font-size: 12px;
+    line-height: 18px;
+    text-transform: uppercase;
+    color: #00A8F4;
+    margin-bottom: 5px;
+}
+
+.work_rating {
+    display: flex;
+    flex-direction: row;
+}
+
+.work_rating img {
+    margin-right: 7px;
+}
+
+.work_rating span {
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 19px;
+    color: ${color_black};
+    margin-left: 3px;
+}
+
+.work_time {
+    color: ${color_black};
+    letter-spacing: 0.01em;
+    font-size: 12px;
+}
+
+.work_time img {
+    margin-right: 10px;
+    display: inline-block;
+}
+`
+
+const pdpStyle = /*html*/`
     <style>
         #ipmb-industries-we-serve {
             margin-top: 25px;
@@ -217,98 +307,7 @@ const style = /*html*/`
             margin-bottom: 20px;
         }
 
-        .slide {
-            background: #FFFFFF;
-            box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.03), 0px 4px 20px #E8EBF3;
-            border-radius: 10px;
-        }
-
-        .slide_header {
-            background: #F1F9FE;
-            border-radius: 10px 10px 0px 0px;
-            padding: 20px;
-        }
-
-        .slide_header img {
-            width: 8px;
-            height: 10px;
-        }
-
-        .slide_header div {
-            display: flex;
-            flex-direction: row;
-            justify-content: space-between;
-        }
-
-        .slide_header div:first-child {
-            margin-bottom: 3px;
-        }
-
-        .slide_header div:first-child p {
-            font-weight: 700;
-            font-size: 14px;
-            color: ${color_black};
-        }
-
-        .slide_header div p {
-            font-weight: 400;
-            color: ${color_black};
-        }
-
-        .slide_header div:last-child p {
-            font-size: 12px;
-        }
-
-        .slide_body {
-            padding: 20px;
-        }
-
-        p.work_description {
-            font-weight: 400;
-            font-size: 12px;
-            line-height: 18px;
-            letter-spacing: 0.01em;
-            color: #777777;
-            margin: 20px 0;
-        }
-
-        p.work_place {
-            font-weight: 700;
-            font-size: 12px;
-            line-height: 18px;
-            text-transform: uppercase;
-            color: #00A8F4;
-            margin-bottom: 5px;
-        }
-
-        .work_rating {
-            display: flex;
-            flex-direction: row;
-        }
-
-        .work_rating img {
-            margin-right: 7px;
-        }
-
-        .work_rating span {
-            font-weight: 400;
-            font-size: 14px;
-            line-height: 19px;
-            color: ${color_black};
-            margin-left: 3px;
-        }
-
-        .work_time {
-            color: ${color_black};
-            letter-spacing: 0.01em;
-            font-size: 12px;
-        }
-
-        .work_time img {
-            margin-right: 10px;
-            width: 10px;
-            height: 10px;
-        }
+        ${jobsCSS}
 
         /* accordion */
 
@@ -533,6 +532,140 @@ const style = /*html*/`
             line-height: 50px;
             text-align: center !important;
         }
+
+        .slider .slide.tns-item:last-child {
+            width: calc(19%) !important;
+        }
+    </style>
+`
+const nearStyle = /*html*/`
+    <style>
+        section {
+            padding: 30px 25px;
+        }
+
+        section p,
+        section span,
+        section h2 {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            line-height: normal;
+        }
+
+        section h2 {            
+            font-weight: 800;
+            font-size: 33px !important;
+            line-height: 40px;
+            color: #303133;
+        }
+
+        section h2 span {
+            color: #00A8F4;
+            line-height: inherit;
+        }
+
+        section p.subtitle {
+            font-weight: 400;
+            font-size: 14px;
+            line-height: 21px;
+            letter-spacing: 0.01em;
+            color: #777777;
+            margin: 15px 0 20px;
+        }
+
+        ${jobsCSS}
+
+        .slide {
+            margin-bottom: 20px;
+        }
+
+        .slide_body {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+        }
+
+        .wrapper {
+            position: relative;
+            max-height: 400px;
+            margin: 0px -25px;    
+            padding: 0 25px;
+            overflow: hidden;
+        }
+
+        .wrapper::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 100%;
+            background: linear-gradient(0.24deg, #FFFFFF 0.21%, rgba(255, 255, 255, 0) 29.47%);
+        }
+        
+        .btn_wrapper {
+            position: fixed;
+            bottom: 25px;
+            left: 0;
+            width: 100%;
+            text-align: center;
+            padding: 0 20px;
+            z-index: 2;
+        }
+
+        .btn_wrapper a {           
+            display: block;                        
+            padding: 13px;
+            background: #00A8F4;
+            color: #fff !important;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 18px;
+            font-family: 'Poppins', sans-serif;            
+            line-height: normal;                        
+        }
+
+        .work_rating img {
+            width: 12px;
+            height: 12px;
+        }
+
+        .slide_header {
+            padding: 20px 20px 15px;
+        }
+
+        .slide_body {
+            padding: 15px 20px 20px;
+        }
+
+        p.work_place {
+            margin-bottom: 0;
+        }
+
+        #row-unique-1, 
+        #row-unique-2 {
+            padding-right: 10px;
+            padding-left: 10px;
+        }
+
+        .footer-scroll-top {
+            bottom: 90px;
+        }
+
+        #colophon {
+            position: relative;
+        }
+        
+        #colophon::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: 1;
+            background: linear-gradient(180deg, #FFFFFF 0.21%, rgba(255, 255, 255, 0) 20%);
+        }
     </style>
 `
 
@@ -575,24 +708,102 @@ const cities = [
 
 const popularJobs = [
     [
-        'Housekeeping',
-        'EST $128',
-        'Tampa, FL',
-        '$16/hr', '9.30 a.m. - 6.30 p.m',
-        'As a housekeeper, you will be playing an instrumental role in the hotel’s operations success by taking care of a building’s ...',
-        'Zoo and Aquarium',
+        'Prep cook',
+        'EST $XXX',
+        'Cincinnati, OH',
+        '$17/h', 'XXX a.m. - XXX p.m',
+        `
+                Assist in needed prep and service<br>
+                Assist in overall sanitation and organization of line and surrounding areas<br>
+                Maintain open positive and effective communication with others…
+            `,
+        'The Phoenix',
         ['star', 'star', 'star', 'star', 'star-half'],
-        '4.8'
+        '4.89'
     ],
     [
-        'Housekeeping',
-        'EST $128',
-        'Tampa, FL',
-        '$16/hr', '9.30 a.m. - 6.30 p.m',
-        'As a housekeeper, you will be playing an instrumental role in the hotel’s operations success by taking care of a building’s ...',
-        'Zoo and Aquarium',
+        'Stadium Attendant',
+        'EST $XXX',
+        'Cincinnati, OH',
+        '$18/h', 'XXX a.m. - XXX p.m',
+        `
+                Providing consistently outstanding service to all customers.  Serving of meals in a plated banquet or buffet. Dealing directly with clients, ensuring that all their individual requirements are met. Providing food and beverage service to guests throughout the event in accordance with match day/daily requirements…
+            `,
+        'FC Cincinnati Stadium',
         ['star', 'star', 'star', 'star', 'star-half'],
-        '4.8'
+        '4.76'
+    ],
+    [
+        'Banquet Attendant',
+        'EST $XXX',
+        'Atlanta, GA',
+        '$18/h', 'XXX a.m. - XXX p.m',
+        `
+                Help serve plated dinner and bus, pass appetizers, and clean stations. What to wear: black dress pants, black button long sleeve dress shirt… 
+            `,
+        'Museum Center',
+        ['star', 'star', 'star', 'star', 'star-half'],
+        '4.83'
+    ],
+    [
+        'Concession Cashier',
+        'EST $XXX',
+        'Detroit, MI',
+        '$14/h', 'XXX a.m. - XXX p.m',
+        `
+                Provide excellent guest service while working in a very fast paced environment while serving food and beverages to customers. Proper cash handling, great and service guests at the registers, taking orders, and accepting payments…
+            `,
+        'Convention Center',
+        ['star', 'star', 'star', 'star', 'star-half'],
+        '4.73'
+    ],
+    [
+        'Bartender',
+        'EST $XXX',
+        'Tampa, FL',
+        '$19/h', 'XXX a.m. - XXX p.m',
+        `
+            Providing consistently outstanding service to all customers.  Serving of meals in a plated banquet or buffet. Dealing directly with clients, ensuring that all their individual requirements are met. Providing food and beverage service to guests throughout the event in accordance with match day/daily requirements…
+            `,
+        'Park',
+        ['star', 'star', 'star', 'star', 'star-half'],
+        '4.89'
+    ],
+    [
+        'Concessions',
+        'EST $XXX',
+        'Orlando, FL',
+        '$16/h', 'XXX a.m. - XXX p.m',
+        `
+                This role involves a variety of tasks, from customer service and taking orders to preparing food and handling transactions. Concession stand workers are a vital part of the sports stadium experience. They are the friendly faces that deliver much-needed refreshments and occasional banter.
+            `,
+        'Arena',
+        ['star', 'star', 'star', 'star', 'star-half'],
+        '4.76'
+    ],
+    [
+        'Suite Runner',
+        'EST $XXX',
+        'Las Vegas, NV',
+        '$16/h', 'XXX a.m. - XXX p.m',
+        `
+                Help serve plated dinner and bus, pass appetizers, and clean stations. What to wear: black dress pants, black button long sleeve dress shirt… 
+            `,
+        'Arena',
+        ['star', 'star', 'star', 'star', 'star-half'],
+        '4.83'
+    ],
+    [
+        'Concession Cashier',
+        'EST $XXX',
+        'San Antonio, TX',
+        '$15/h', 'XXX a.m. - XXX p.m',
+        `
+                Provide excellent guest service while working in a very fast paced      environment while serving food and beverages to customers. Proper cash handling, great and service guests at the registers, taking orders, and accepting payments… 
+            `,
+        'Convention Center',
+        ['star', 'star', 'star', 'star', 'star-half'],
+        '4.73'
     ],
 ]
 
@@ -716,10 +927,6 @@ const locationsObj = [
             ["San Antonio", uploadsURL + "2021/03/san-antonio-uai-456x456-1.jpg"]
         ]
     },
-
-
-
-
 ]
 
 const faqArray = [
@@ -768,10 +975,41 @@ const faqArray = [
     ]
 ]
 
+/* JS: Part 1 */
+
+// Check page  
+const isPDP = window.location.pathname.includes('for-people')
+
+// Get user location from URL
+let userLocation = ''
+
+if (isPDP) {
+    const queryString = window.location.search;
+    const urlParams = new URLSearchParams(queryString);
+    const campaign = urlParams.get('utm_campaign')?.toLowerCase()
+
+    if (campaign) {
+        if (campaign.includes('cincinnati')) {
+            userLocation = 'Cincinnati, OH'
+
+        } else if (campaign.includes('miami')) {
+            userLocation = 'Miami, FL'
+        }
+
+        localStorage.setItem('city', userLocation)
+    }
+}
+
+// Get random items from array
+const getRandomItems = (arr, num) => arr.sort(() => Math.random() - 0.5).slice(0, num)
 
 /* HTML */
 
-const cityOptions = cities.map(city => `<option value="${city}">${city}</option>`).join('')
+/* HTML: 'For People' Page  */
+
+const cityOptions = cities.map(city =>
+    `<option value="${city}" ${city === userLocation ? 'selected' : ''}>${city}</option>`
+).join('')
 
 const locationsHTML = locationsObj.map(location => `
     <div class="accordion_item">
@@ -792,15 +1030,16 @@ const locationsHTML = locationsObj.map(location => `
     </div>`
 ).join('')
 
-const slides = popularJobs.map(job => `
+
+const slides = getRandomItems(popularJobs, 5).map(job => `
 <div class="slide">
                 <div class="slide_header">
                     <div>
                         <p>${job[0]}</p>
-                        <p>${job[1]}</p>
+                        <p><img src="${imgFolderLink}/marker.svg" alt="marker"> ${job[2]}</p>
                     </div>
                     <div>
-                        <p><img src="${imgFolderLink}/marker.svg" alt="marker"> ${job[2]}</p>
+                        <p>${job[1]}</p>                        
                         <p>${job[3]}</p>
                     </div>
                 </div>
@@ -831,7 +1070,7 @@ const faqHTML = faqArray.map(faq => `
             </div> 
 `).join('')
 
-const template = /*html*/`
+const pdpTemplate = /*html*/`
 <div class="template">
     <section class="area">
         <h1>Flexible shifts accross the US</h1>
@@ -849,11 +1088,11 @@ const template = /*html*/`
         </form>
     </section>
     <section class="reviews">
-        <p>Over 50,000 People have already found job on upshift</p>
+        <p>Over 50,000 People have already found shift on upshift</p>
         <img src="${imgFolderLink}/glassdoor.svg" alt="glassdoor">
     </section>
     <section class="popular">
-        <h2>Popular jobs</h2>
+        <h2>Popular shifts</h2>
         <div class="slider" id="slider">
             ${slides}
         </div>
@@ -880,7 +1119,7 @@ const template = /*html*/`
             </div>
             <div class="step">
                 <p class="title">Step 3</p>
-                <p class="subtitle">Start getting jobs</p>
+                <p class="subtitle">Start getting shifts</p>
                 <p class="txt">Download Upshift app and start applying for available positions in your area. Once you are accepted for a shift, just confirm the shift and it’s yours! 
                     You can apply for multiple shifts based on your availability and interests!</p>
             </div>
@@ -897,164 +1136,321 @@ const template = /*html*/`
 </div>
 `
 
-/* JS Scripts */
+/* HTML: 'Shifts near you' Page */
 
-// parse text as CSS
-document.head.insertAdjacentHTML('beforeend', style)
+const nearJobs = {
+    'Cincinnati, OH': [
+        [
+            'Prep cook',
+            'EST $XXX',
+            '$17/h', 'XXX a.m. - XXX p.m',
+            'The Phoenix',
+            ['star', 'star', 'star', 'star', 'star-half'],
+            '4.89'
+        ],
+        [
+            'Stadium Attendant',
+            'EST $XXX',
+            '$18/h', 'XXX a.m. - XXX p.m',
+            'FC Cincinnati Stadium',
+            ['star', 'star', 'star', 'star', 'star-half'],
+            '4.76'
+        ],
+        [
+            'Banquet Attendant',
+            'EST $XXX',
+            '$18/h', 'XXX a.m. - XXX p.m',
+            'Cincinnati Museum Center',
+            ['star', 'star', 'star', 'star', 'star-half'],
+            '4.83'
+        ],
+        [
+            'Concession Cashier',
+            'EST $XXX',
+            '$14/h', 'XXX a.m. - XXX p.m',
+            'Duke Energy Convention Center',
+            ['star', 'star', 'star', 'star', 'star-half'],
+            '4.73'
+        ],
 
-/* Interval 0: run scripts */
-let waitForPeopleSection = setInterval(() => {
-    if (document.getElementById('ipmb-for-people-second-section')) {
-        clearInterval(waitForPeopleSection)
+    ],
+    'Miami, FL': [
+        [
+            'Bartender',
+            'EST $XXX',
+            '$19/h', 'XXX a.m. - XXX p.m',
+            'LoanDepot Park',
+            ['star', 'star', 'star', 'star', 'star-half'],
+            '4.89'
+        ],
+        [
+            'Concessions',
+            'EST $XXX',
+            '$16/h', 'XXX a.m. - XXX p.m',
+            'FLA Live Arena',
+            ['star', 'star', 'star', 'star', 'star-half'],
+            '4.76'
+        ],
+        [
+            'Suite Runner',
+            'EST $XXX',
+            '$16/h', 'XXX a.m. - XXX p.m',
+            'FTX Arena',
+            ['star', 'star', 'star', 'star', 'star-half'],
+            '4.83'
+        ],
+        [
+            'Concession Cashier',
+            'EST $XXX',
+            '',
+            '$15/h', 'XXX a.m. - XXX p.m',
+            'Miami Beach Convention Center',
+            ['star', 'star', 'star', 'star', 'star-half'],
+            '4.73'
+        ],
+    ],
+}
 
-        // Parse my text as HTML
-        document.getElementById('ipmb-for-people-second-section').insertAdjacentHTML('afterend', template)
+const currentCity = localStorage.getItem('city') || 'Miami, FL'
 
-        /* Interval 1: Move 'Industries' section behind my 'Reviews' section */
-        const waitForIndustriesSection = setInterval(() => {
-            if (document.getElementById('ipmb-industries-we-serve') && document.querySelector('.reviews')) {
-                clearInterval(waitForIndustriesSection)
+const nearJobsHTML = getRandomItems(nearJobs[currentCity], 3).map(job => `
+<div class="slide">
+                <div class="slide_header">
+                    <div>
+                        <p>${job[0]}</p>                        
+                    </div>
+                    <div>
+                        <p>${job[1]}</p>
+                        <p>${job[2]}</p>
+                    </div>
+                </div>
+                <div class="slide_body">      
+                    <div>
+                        <p class="work_place">${job[4]}</p>
+                        <div class="work_rating">
+                            <div>
+                                ${job[5].map(star => `<img src="${imgFolderLink}/${star}.svg" alt="${star}"/>`).join('')}
+                            </div>
+                            <span>${job[6]}</span>
+                        </div>                        
+                    </div>    
+                    <div>
+                        <p class="work_time"><img src="${imgFolderLink}/time.svg" alt="time">${job[3]}</p>
+                    </div>                              
+                </div>               
+            </div>
+`).join('')
 
-                document.querySelector('.reviews').insertAdjacentElement('afterend', document.getElementById('ipmb-industries-we-serve'))
-            }
-        }, 200);
+const nearTemplate = `
+    <section>
+        <h2>We’ve found flexible shifts in <span>${currentCity}</span></h2>
+        <p class="subtitle">Here’s a sneak peek for you. Become Upshifter and apply for them! It’s absolutely free!</p>
+        <div class="wrapper">
+            ${nearJobsHTML}
+        </div>
+        <div class="btn_wrapper">
+            <a href="/for-people/sign-up/">Get started</a>
+        </div>        
+    </section>
+`
 
-        /* Interval 2: Initialize Tiny Slider script after Slider appearence in the DOM */
-        const waitForSlider = setInterval(() => {
-            if (document.getElementById('slider') && typeof tns === 'function') {
-                clearInterval(waitForSlider)
+/* JS: Part 2 */
 
-                const slider = tns({
-                    container: '#slider',
-                    items: 1.4,
-                    slideBy: 'page',
-                    mouseDrag: true,
-                    swipeAngle: 30,
-                    controls: false,
-                    nav: true,
-                    navPosition: 'bottom',
-                    loop: false,
-                })
+const intervalTimeout = 200
 
-                slider.events.on('indexChanged', () => {
-                    window.dataLayer = window.dataLayer || []
-                    dataLayer.push({
-                        'event': 'event-to-ga',
-                        'eventCategory': '',
-                        'eventAction': 'Swipe slider',
-                        'eventLabel': '',
+// set location and open Shifts page
+const signLogic = () => {
+    const select = document.getElementById('area_select')
+
+    document.querySelector('.show_error')?.classList.remove('show_error')
+
+    if (select.value === 'Miami, FL' || select.value === 'Cincinnati, OH') {
+        localStorage.setItem('city', select.value)
+    } else if (userLocation) {
+        localStorage.setItem('city', userLocation)
+    } else {
+        localStorage.setItem('city', 'Miami, FL')
+    }
+
+    window.open("https://www.upshift.work/shifts-near-you/", "_self")
+}
+
+if (isPDP) {
+    /* 'For People' Page */
+
+    // parse text as CSS
+    document.head.insertAdjacentHTML('beforeend', pdpStyle)
+
+    /* Interval 0: run scripts */
+    let waitForPeopleSection = setInterval(() => {
+        if (document.getElementById('ipmb-for-people-second-section')) {
+            clearInterval(waitForPeopleSection)
+
+            // Parse my text as HTML
+            document.getElementById('ipmb-for-people-second-section').insertAdjacentHTML('afterend', pdpTemplate)
+
+            /* Interval 1: Move 'Industries' section behind my 'Reviews' section */
+            const waitForIndustriesSection = setInterval(() => {
+                if (document.getElementById('ipmb-industries-we-serve') && document.querySelector('.reviews')) {
+                    clearInterval(waitForIndustriesSection)
+
+                    document.querySelector('.reviews').insertAdjacentElement('afterend', document.getElementById('ipmb-industries-we-serve'))
+                }
+            }, intervalTimeout);
+
+            /* Interval 2: Initialize Tiny Slider script after Slider appearence in the DOM */
+            const waitForSlider = setInterval(() => {
+                if (document.getElementById('slider') && typeof tns === 'function') {
+                    clearInterval(waitForSlider)
+
+                    const slider = tns({
+                        container: '#slider',
+                        items: 1.4,
+                        slideBy: 1,
+                        mouseDrag: true,
+                        swipeAngle: 30,
+                        controls: false,
+                        nav: true,
+                        navPosition: 'bottom',
+                        loop: false,
+                        autoplay: true,
+                        autoplayButton: false,
+                        autoplayButtonOutput: false,
+                        autoplayTimeout: 7000,
                     })
-                })
-            }
-        }, 200);
 
-        /* Interval 3: Initialize Form script after Form appearence in the DOM */
-        const waitForForm = setInterval(() => {
-            if (document.querySelector('#area_form button')) {
-                clearInterval(waitForForm)
+                    slider.events.on('indexChanged', () => {
+                        window.dataLayer = window.dataLayer || []
+                        dataLayer.push({
+                            'event': 'event-to-ga',
+                            'eventCategory': '',
+                            'eventAction': 'Swipe slider',
+                            'eventLabel': '',
+                        })
+                    })
+                }
+            }, intervalTimeout);
 
-                const form = document.getElementById('area_form')
-                const select = document.getElementById('area_select')
+            /* Interval 3: Initialize Form script after Form appearence in the DOM */
+            const waitForForm = setInterval(() => {
+                if (document.querySelector('#area_form button')) {
+                    clearInterval(waitForForm)
 
-                // This defines what happens when the user tries to submit the data
-                document.querySelector('#area_form button').addEventListener('click', (e) => {
-                    // e.preventDefault()
+                    const form = document.getElementById('area_form')
+                    const select = document.getElementById('area_select')
 
-                    if (select.value === '') {
-                        form.classList.add('show_error')
-                    } else {
+                    // This defines what happens when the user tries to submit the data
+                    document.querySelector('#area_form button').addEventListener('click', (e) => {
+                        // e.preventDefault()
 
-                        localStorage.setItem('city', select.value)
-                        alert(select.value);
-                        form.classList.remove('show_error')
-                    }
-                });
-
-                document.querySelector('#area_form').addEventListener('change', () => {
-                    form.classList.remove('show_error')
-                }, { once: true });
-            }
-        }, 200);
-
-        /* Interval 4: Initialize Accordion script after Accordions appearence in the DOM */
-        const waitForAccordions = setInterval(() => {
-            if (document.querySelectorAll('.accordion')[1]) {
-                clearInterval(waitForAccordions)
-
-                document.querySelectorAll('.accordion').forEach(accordion => {
-                    accordion.addEventListener('click', (e) => {
-                        if (e.target.closest('.accordion_item_header')) {
-                            const accordionHeader = e.target.closest('.accordion_item_header')
-                            const accordionBody = accordionHeader.nextElementSibling
-
-                            const currentlyActiveAccordionHeader = document.querySelector(".accordion_item_header.active");
-                            if (currentlyActiveAccordionHeader && currentlyActiveAccordionHeader !== accordionHeader) {
-                                currentlyActiveAccordionHeader.classList.toggle("active");
-                                currentlyActiveAccordionHeader.nextElementSibling.style.maxHeight = 0;
-                            }
-
-                            accordionHeader.classList.toggle("active");
-                            if (accordionHeader.classList.contains("active")) {
-                                accordionBody.style.maxHeight = accordionBody.scrollHeight + "px";
-                            }
-                            else {
-                                accordionBody.style.maxHeight = 0;
-                            }
+                        if (select.value === '') {
+                            form.classList.add('show_error')
+                        } else {
+                            signLogic()
                         }
-                    })
-                });
-            }
-        }, 200);
+                    });
 
-        /* Interval 5: Add button to the end of 'Why choose Upshift?' section */
-        const waitForWhyChooseSection = setInterval(() => {
-            if (document.getElementById('row-unique-1')) {
-                clearInterval(waitForWhyChooseSection)
+                    document.querySelector('#area_form').addEventListener('change', () => {
+                        form.classList.remove('show_error')
+                    }, { once: true });
+                }
+            }, intervalTimeout);
 
-                document.getElementById('row-unique-1').insertAdjacentHTML('beforeend', /*html*/`
+            /* Interval 4: Initialize Accordion script after Accordions appearence in the DOM */
+            const waitForAccordions = setInterval(() => {
+                if (document.querySelectorAll('.accordion')[1]) {
+                    clearInterval(waitForAccordions)
+
+                    document.querySelectorAll('.accordion').forEach(accordion => {
+                        accordion.addEventListener('click', (e) => {
+                            if (e.target.closest('.accordion_item_header')) {
+                                const accordionHeader = e.target.closest('.accordion_item_header')
+                                const accordionBody = accordionHeader.nextElementSibling
+
+                                const currentlyActiveAccordionHeader = document.querySelector(".accordion_item_header.active");
+                                if (currentlyActiveAccordionHeader && currentlyActiveAccordionHeader !== accordionHeader) {
+                                    currentlyActiveAccordionHeader.classList.toggle("active");
+                                    currentlyActiveAccordionHeader.nextElementSibling.style.maxHeight = 0;
+                                }
+
+                                accordionHeader.classList.toggle("active");
+                                if (accordionHeader.classList.contains("active")) {
+                                    accordionBody.style.maxHeight = accordionBody.scrollHeight + "px";
+                                }
+                                else {
+                                    accordionBody.style.maxHeight = 0;
+                                }
+                            }
+
+                            if (e.target.closest('.accordion_item_body_element .sign')) {
+                                signLogic()
+                            }
+                        })
+                    });
+                }
+            }, intervalTimeout);
+
+            /* Interval 5: Add button to the end of 'Why choose Upshift?' section */
+            const waitForWhyChooseSection = setInterval(() => {
+                if (document.getElementById('row-unique-1')) {
+                    clearInterval(waitForWhyChooseSection)
+
+                    document.getElementById('row-unique-1').insertAdjacentHTML('beforeend', /*html*/`
                     <div class="find_work">
                         <button class="btn_green" data-sign>Join Upshift</button>    
                         <span>to find work</span>
                     </div>                    
                 `)
-            }
-        }, 200);
+                }
+            }, intervalTimeout);
 
-        /* Interval 6: Initialize Sign Up script after Buttons appearence in the DOM */
-        const waitForBtns = setInterval(() => {
-            if (document.querySelectorAll('[data-sign]')[4]) {
-                clearInterval(waitForBtns)
+            /* Interval 6: Initialize Sign Up script after Buttons appearence in the DOM */
+            const waitForBtns = setInterval(() => {
+                if (document.querySelectorAll('[data-sign]')[4]) {
+                    clearInterval(waitForBtns)
 
-                const form = document.getElementById('area_form')
-                const select = document.getElementById('area_select')
+                    const form = document.getElementById('area_form')
+                    const select = document.getElementById('area_select')
 
-                // add logic to Sign Up buttons
-                document.querySelectorAll('[data-sign]').forEach(btn => {
-                    btn.addEventListener('click', () => {
-                        if (select.value !== '') { // Sign Up                            
-                            alert(select.value)
-                        } else { // Scroll to Sign Form                            
-                            form.classList.add('show_error')
+                    // add logic to Sign Up buttons
+                    document.querySelectorAll('[data-sign]').forEach(btn => {
+                        btn.addEventListener('click', () => {
+                            if (select.value !== '') { // Sign Up                            
+                                signLogic()
+                            } else { // Scroll to Sign Form                            
+                                form.classList.add('show_error')
 
-                            window.scrollTo({
-                                top: 0,
-                                behavior: "smooth"
-                            });
-                        }
+                                window.scrollTo({
+                                    top: 0,
+                                    behavior: "smooth"
+                                });
+                            }
+                        })
                     })
-                })
-            }
-        }, 200);
+                }
+            }, intervalTimeout);
 
-        /* Interval 7: Change heading in Why choose section after appearence in the DOM */
-        const waitForHeading = setInterval(() => {
-            if (document.querySelector('#row-unique-0 p')) {
-                clearInterval(waitForHeading)
+            /* Interval 7: Change heading in Why choose section after appearence in the DOM */
+            const waitForHeading = setInterval(() => {
+                if (document.querySelector('#row-unique-0 p')) {
+                    clearInterval(waitForHeading)
 
-                document.querySelector('#row-unique-0 p').innerText = 'Why choose Upshift?'
-            }
-        }, 200);
+                    document.querySelector('#row-unique-0 p').innerText = 'Why choose Upshift?'
+                }
+            }, intervalTimeout);
+        }
+    }, intervalTimeout);
+} else {
+    /* 'Shifts near you' Page */
 
+    document.head.insertAdjacentHTML('beforeend', nearStyle)
 
-    }
-}, 200);
+    const waitForContent = setInterval(() => {
+        if (document.querySelector('.post-content')) {
+            clearInterval(waitForContent)
+
+            document.querySelector('.post-content').insertAdjacentHTML('afterbegin', nearTemplate)
+
+        }
+    }, intervalTimeout);
+}
