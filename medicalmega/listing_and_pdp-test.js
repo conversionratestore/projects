@@ -1632,26 +1632,6 @@ function openCategoriesFoeAlphabet(item) {
     });
 }
 
-function scrollTop(a, b) {
-
-    const scrollTarget = a;
-    const topOffset = b.offsetHeight;
-    const elementPosition = scrollTarget.getBoundingClientRect().top;
-    const offsetPosition = elementPosition - topOffset;
-
-    window.scrollBy({
-        top: offsetPosition,
-        behavior: 'smooth'
-    });
-}
-//exit intent for all categories menu
-function addEvent(obj, evt, fn) {
-    if (obj.addEventListener) {
-        obj.addEventListener(evt, fn, false);
-    } else if (obj.attachEvent) {
-        obj.attachEvent("on" + evt, fn);
-    }
-}
 function scrolled(element) {
     if (element.scrollHeight - element.scrollTop === element.clientHeight) {
         element.classList.remove('scroll')
@@ -1729,12 +1709,6 @@ function changeQty(qty,pr,action) {
 }
 
 window.onload = function() {
-    let exitMenu = (e) => {
-        if (e.relatedTarget == null && document.querySelector('.nav_category.active') != null) {
-            document.querySelector('.nav_category').classList.remove('active')
-        }
-    }
-    addEvent(document, 'mouseout', exitMenu)
     document.body.insertAdjacentHTML('afterbegin', html);
     document.body.insertAdjacentHTML('afterbegin', style);
 
@@ -2238,7 +2212,7 @@ window.onload = function() {
 
     search.start();
 
-    document.querySelectorAll('.category_popular li').forEach((el) => {
+    document.querySelectorAll('.category_popular li a').forEach((el) => {
         el.addEventListener('click', (e) => {
             actionDataLayer = `Click on category item - ${e.target.innerText}`;
             labelDataLayer = 'Popular categories';
@@ -2285,9 +2259,6 @@ window.onload = function() {
         if (!e.target.closest('.nav_category')) {
             document.querySelector(`.nav_category`).classList.remove('active');
         }
-        // if (search.helper.state.query == '' && !e.target.closest('#form-search')) {
-        //   document.querySelector('#form-search .ais-SearchBox-input').value = '';
-        // }
     })
 
     window.addEventListener('scroll', (e) => {
