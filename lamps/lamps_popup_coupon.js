@@ -4,6 +4,22 @@ let startFunk = setInterval(() => {
 
     document.cookie = "login_alt = true"
 
+    //new_customer_coupon
+    function activateCoupon() {
+      if (document.querySelector('.header-container .header-actions .action-links [data-account-trigger="true"] span').textContent === "Account") {
+        const cookieName = "new_customer_coupon"
+        let cookieValue = "true"
+        let myDate = new Date()
+        myDate.setMonth(myDate.getMonth() + 12)
+        document.cookie = cookieName + "=" + cookieValue + ";expires=" + myDate + ";domain=.www.lamps.com;path=/"
+      }
+    }
+
+    // onClick logout
+    document.querySelector("#btn-logout")?.addEventListener("click", () => {
+      document.cookie = "new_customer_coupon" + "=" + "" + ";max-age=" + -1 + ";domain=.www.lamps.com;path=/"
+    })
+
     // event
     let eventVar = "desktop"
 
@@ -698,23 +714,6 @@ let startFunk = setInterval(() => {
     //   }, 1000)
     // }
 
-    //new_customer_coupon
-    function activateCoupon() {
-      if (document.querySelector('.header-container .header-actions .action-links [data-account-trigger="true"] span').textContent === "Account") {
-        const cookieName = "new_customer_coupon"
-        let cookieValue = "true"
-        let myDate = new Date()
-        myDate.setMonth(myDate.getMonth() + 12)
-        document.cookie = cookieName + "=" + cookieValue + ";expires=" + myDate + ";domain=.www.lamps.com;path=/"
-        // document.cookie = `${cookieName}=${cookieValue};expires=-1;domain=.www.lamps.com;path=/`
-      }
-    }
-
-    // onClick logout
-    document.querySelector("#btn-logout")?.addEventListener("click", () => {
-      document.cookie = "new_customer_coupon" + "=" + "" + ";max-age=" + -1 + ";domain=.www.lamps.com;path=/"
-    })
-
     // observer
     let observer = new MutationObserver(() => {
       if (document.querySelector("#main-wrapper")) {
@@ -862,7 +861,7 @@ let startFunk = setInterval(() => {
       }
     }, 10)
 
-    // validate form
+    // validate formu
     function validationForm(parent) {
       let inputValueName = document.querySelector(`${parent} input[name='firstName']`).value.match(/^[а-яА-ЯёЁa-zA-Z0-9]+$/)
       let inputLastName = document.querySelector(`${parent} input[name='lastName']`).value.match(/^[а-яА-ЯёЁa-zA-Z0-9]+$/)
