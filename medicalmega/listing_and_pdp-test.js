@@ -330,6 +330,8 @@ input[type="search"]::-webkit-search-results-decoration {
   padding: 20px 40px;
   width: 327px;
   background: #FBFBFB; }
+  #list_categories ul {
+    display: none;}
   #list_categories li.active a {
     text-decoration: underline;}
   #list_categories li ul {
@@ -346,6 +348,9 @@ input[type="search"]::-webkit-search-results-decoration {
     display: block; }
   #list_categories a:hover {
     text-decoration: underline; }
+   #list_categories li:hover > ul {
+    display: block
+   }
   .nav_category.active .all_category {
     background: #E9EBEC; }
   .nav_category.active .dropdown_categories {
@@ -1046,9 +1051,10 @@ border-radius: 100px;
     min-height: 43.2px;
     margin-bottom: 33px;
   }
-  .listing_popular .btn[data-category] {
+  .listing_popular .btn {
     margin: 0 auto 33px;
     display: block;
+    width: fit-content;
   }
   #current-refinements {
     min-height: 27px;
@@ -1483,17 +1489,18 @@ let html = `
               </div>
               <div class="dropdown_categories">
                 <ul class="alphabet"></ul>
-                <div id="list_categories"> </div>
+                <ul id="list_categories"> </ul>
+                <div id="list_categories_ex" style="display: none!important"></div>
               </div>
             </nav>
             <ul class="category_popular d-flex">
-              <li><a href="#">New Products!</a></li>
-              <li><a href="#">Hand Sanitizing</a></li>
-              <li><a href="#">Wound Care</a></li>
-              <li><a href="#">Gloves</a></li>
-              <li><a href="#">Disinfectants</a></li>
-              <li><a href="#">Ostomy</a></li>
-              <li><a href="#">Instruments</a></li>
+              <li><a href="/?products%5BhierarchicalMenu%5D%5Bcategories.lvl0%5D%5B0%5D=New%20Products!">New Products!</a></li>
+              <li><a href="/?products%5BhierarchicalMenu%5D%5Bcategories.lvl0%5D%5B0%5D=Hand%20Sanitizing">Hand Sanitizing</a></li>
+              <li><a href="/?products%5BhierarchicalMenu%5D%5Bcategories.lvl0%5D%5B0%5D=Wound%20Care">Wound Care</a></li>
+              <li><a href="/?products%5BhierarchicalMenu%5D%5Bcategories.lvl0%5D%5B0%5D=Gloves">Gloves</a></li>
+              <li><a href="/?products%5BhierarchicalMenu%5D%5Bcategories.lvl0%5D%5B0%5D=Disinfectants">Disinfectants</a></li>
+              <li><a href="/?products%5BhierarchicalMenu%5D%5Bcategories.lvl0%5D%5B0%5D=Ostomy">Ostomy</a></li>
+              <li><a href="/?products%5BhierarchicalMenu%5D%5Bcategories.lvl0%5D%5B0%5D=Instruments">Instruments</a></li>
             </ul>
             <p class="previous-version">switch to the previous version</p>
           </div>
@@ -1550,8 +1557,6 @@ const searchClient = algoliasearch(
 
 const indexName = 'products';
 
-// let query = window.location.pathname.includes('/search/') ? window.location.pathname.split('/search/')[1].split('-').join(' ') : window.location.href.includes('query%5D=') ? window.location.href.split('query%5D=')[1].split('&products')[0].split('%20').join(' ') : '';
-
 const search = instantsearch({
     searchClient,
     indexName: indexName,
@@ -1573,8 +1578,6 @@ let litterAlphabet = [];
 let actionDataLayer = '',
     labelDataLayer = '';
 
-let countSearchStalled = 0;
-
 let optionFetchAlgolia = {
     headers: {
         'Content-Type': 'application/x-www-form-urlencoded',
@@ -1587,7 +1590,7 @@ let optionFetchAlgolia = {
 let firstLoaded = true;
 
 let requestAllCaterories = new Promise((resolve, reject) => {
-    fetch(`https://PXDJAQHDPZ-dsn.algolia.net/1/indexes/products?facets=["categories.lvl0","manufacturer"]`, optionFetchAlgolia).then(res => res.json()).then(data => resolve(data))
+    fetch(`https://PXDJAQHDPZ-dsn.algolia.net/1/indexes/products?facets=["categories.lvl0","categories.lvl1","categories.lvl2","categories.lvl3","categories.lvl4","manufacturer"]`, optionFetchAlgolia).then(res => res.json()).then(data => resolve(data))
 })
 
 let requestProduct = new Promise((resolve, reject) => {
@@ -1622,9 +1625,9 @@ function labelForEvents(e) {
 function openCategoriesFoeAlphabet(item) {
     item.forEach(el => {
         if (el.innerText[0] != document.querySelector('.alphabet .active').innerText[0]) {
-            el.style.display = "none";
+            el.parentElement.style.display = "none";
         } else {
-            el.style.display = "block";
+            el.parentElement.style.display = "block";
         }
     });
 }
@@ -1641,7 +1644,6 @@ function scrollTop(a, b) {
         behavior: 'smooth'
     });
 }
-
 //exit intent for all categories menu
 function addEvent(obj, evt, fn) {
     if (obj.addEventListener) {
@@ -1650,7 +1652,6 @@ function addEvent(obj, evt, fn) {
         obj.attachEvent("on" + evt, fn);
     }
 }
-
 function scrolled(element) {
     if (element.scrollHeight - element.scrollTop === element.clientHeight) {
         element.classList.remove('scroll')
@@ -1734,7 +1735,6 @@ window.onload = function() {
         }
     }
     addEvent(document, 'mouseout', exitMenu)
-
     document.body.insertAdjacentHTML('afterbegin', html);
     document.body.insertAdjacentHTML('afterbegin', style);
 
@@ -1754,6 +1754,37 @@ window.onload = function() {
     })
     document.querySelector('.cart_count').innerHTML = document.querySelector('.shoppingcart .by_num span').innerHTML;
 
+    let btnCategory = document.querySelector('.all_category');
+
+    //all categories
+    btnCategory.addEventListener('click', (e) => {
+        if (e.target.matches('.all_category')) {
+            // if (document.querySelector('.ais-ClearRefinements-button') != null && document.querySelector('.ais-ClearRefinements-button.ais-ClearRefinements-button--disabled') == null) {
+            //   document.querySelector('.ais-ClearRefinements-button').classList.add('action-clean');
+            //   document.querySelector('.ais-ClearRefinements-button').click();
+            // }
+
+            // // query = '';
+            // // search._searchFunction(search.helper);
+            // if (document.querySelector('#form-search input').value != '' && search.helper.state.query != '') {
+            //   search.helper.setQuery('') // this call resets the page
+            //     .setPage(search.helper.getPage()) // we re-apply the previous page // Retrieve the current page
+            //     .search();
+
+            //   setTimeout(() => {
+            //     document.querySelector('#form-search input').value = '';
+            //   }, 400)
+            // }
+
+            e.target.parentElement.classList.toggle('active');
+            document.querySelector('.advanced-search').classList.remove('active');
+            document.querySelector(`[data-button="advanced-search"]`).classList.remove('active');
+
+            actionDataLayer = `Click on ${e.target.innerText} button`;
+            labelDataLayer = `Header`;
+            pushDataLayer(actionDataLayer,labelDataLayer);
+        }
+    })
 
     //select
     function remActiveSelect() {
@@ -1784,19 +1815,139 @@ window.onload = function() {
 
     requestAllCaterories.then(data => {
         let categoriesLvl0 = data.facets["categories.lvl0"],
+            categoriesLvl1 = data.facets["categories.lvl1"],
+            categoriesLvl2 = data.facets["categories.lvl2"],
+            categoriesLvl3 = data.facets["categories.lvl3"],
+            categoriesLvl4 = data.facets["categories.lvl4"],
             brand = data.facets.manufacturer;
 
+        console.log(data)
 
         for (let key in categoriesLvl0) {
             document.querySelector('.select_category .select_dropdown').insertAdjacentHTML('beforeend', ` 
-      <li class="select_option"><p data-category="categories.lvl0:${key}">${key}</p>
-        <ul></ul>
-      </li>`)
+              <li class="select_option"><p data-category="categories.lvl0:${key}">${key}</p>
+                <ul></ul>
+              </li>`)
+            document.querySelector('#list_categories').insertAdjacentHTML('beforeend',`
+             <li>
+                <a href="https://medicalmega.com/?products%5BhierarchicalMenu%5D%5Bcategories.lvl0%5D%5B0%5D=${key}">${key}</a>
+                <ul data-bread="${key}" class="lvl1"></ul>
+             </li>`)
+        }
+
+        for (let key in categoriesLvl1) {
+            document.querySelectorAll('#list_categories .lvl1').forEach(item => {
+                if (key.includes(item.dataset.bread)) {
+                    let breabcrumbs = ``;
+                    let crumbs =  key.split(' > ');
+
+                    for (let i = 0; i < crumbs.length; i++) {
+                        breabcrumbs += `&products%5BhierarchicalMenu%5D%5Bcategories.lvl0%5D%5B${i}%5D=${crumbs[i]}`
+                    }
+
+                    item.insertAdjacentHTML('beforeend',`
+                     <li>
+                        <a href="https://medicalmega.com/?${breabcrumbs}">${crumbs[crumbs.length - 1]}</a>
+                        <ul data-bread="${key}" class="lvl2"></ul>
+                     </li>`)
+
+                }
+            })
+        }
+        for (let key in categoriesLvl2) {
+            document.querySelectorAll('#list_categories .lvl2').forEach(item => {
+                if (key.includes(item.dataset.bread)) {
+                    let breabcrumbs = ``;
+                    let crumbs =  key.split(' > ');
+
+                    for (let i = 0; i < crumbs.length; i++) {
+                        breabcrumbs += `&products%5BhierarchicalMenu%5D%5Bcategories.lvl0%5D%5B${i}%5D=${crumbs[i]}`
+                    }
+                    item.insertAdjacentHTML('beforeend',`
+                     <li>
+                        <a href="https://medicalmega.com/?${breabcrumbs}">${crumbs[crumbs.length - 1]}</a>
+                        <ul data-bread="${key}" class="lvl3"></ul>
+                     </li>`)
+                }
+            })
+        }
+        for (let key in categoriesLvl3) {
+            document.querySelectorAll('#list_categories .lvl3').forEach(item => {
+                if (key.includes(item.dataset.bread)) {
+                    let breabcrumbs = ``;
+                    let crumbs =  key.split(' > ');
+
+                    for (let i = 0; i < crumbs.length; i++) {
+                        breabcrumbs += `&products%5BhierarchicalMenu%5D%5Bcategories.lvl0%5D%5B${i}%5D=${crumbs[i]}`
+                    }
+                    item.insertAdjacentHTML('beforeend',`
+                     <li>
+                        <a href="https://medicalmega.com/?${breabcrumbs}">${crumbs[crumbs.length - 1]}</a>
+                        <ul data-bread="${key}" class="lvl4"></ul>
+                     </li>`)
+                }
+            })
+        }
+        for (let key in categoriesLvl4) {
+            document.querySelectorAll('#list_categories .lvl4').forEach(item => {
+                if (key.includes(item.dataset.bread)) {
+                    let breabcrumbs = ``;
+                    let crumbs =  key.split(' > ');
+
+                    for (let i = 0; i < crumbs.length; i++) {
+                        breabcrumbs += `&products%5BhierarchicalMenu%5D%5Bcategories.lvl0%5D%5B${i}%5D=${crumbs[i]}`
+                    }
+                    item.insertAdjacentHTML('beforeend',`
+                     <li>
+                        <a href="https://medicalmega.com/?${breabcrumbs}">${crumbs[crumbs.length - 1]}</a>
+                     </li>`)
+                }
+            })
         }
 
         for (let key in brand) {
             document.querySelector('.select_brand .select_dropdown').insertAdjacentHTML('beforeend', ` <li class="select_option"><p>${key}</p></li>`)
         }
+
+        let listCategories = document.querySelectorAll('#list_categories > li > a'),
+            alphabet = document.querySelector('.alphabet'); //alphabet
+            alphabet.innerHTML = '';
+
+        listCategories.forEach((el) => {
+            litterAlphabet.push({'letter': el.innerText[0]})
+            el.addEventListener('click', () => {
+                actionDataLayer = `Click on category item - ${el.innerText}`;
+                labelDataLayer = `All categories`;
+                pushDataLayer(actionDataLayer,labelDataLayer);
+            })
+        })
+
+        litterAlphabet = litterAlphabet.filter((thing, index, self) =>
+            index === self.findIndex((t) => (
+                t.letter === thing.letter
+            ))
+        )
+
+        for (let i = 0; i < litterAlphabet.length; i++) {
+            // if (litterAlphabet[i].letter != 'undefined') {
+                alphabet.insertAdjacentHTML('beforeend',`<li class="${i == 0 ? 'active': ''}">${litterAlphabet[i].letter}</li>`);
+            // }
+        }
+
+        openCategoriesFoeAlphabet(listCategories)
+
+        let items = [...alphabet.querySelectorAll("li")];
+        items.sort((a, b) => a.innerText == b.innerText ? 0 : a.innerText < b.innerText ? -1 : 1);
+        items.forEach(item => alphabet.appendChild(item));
+
+        alphabet.querySelectorAll('li').forEach(el => {
+            el.addEventListener('mouseover', (e) => {
+                e.stopImmediatePropagation();
+                e.target.parentElement.querySelector('.active').classList.remove('active');
+                e.target.classList.add('active');
+                openCategoriesFoeAlphabet(listCategories)
+            })
+        })
     })
 
     function findImageHits(variants) {
@@ -1941,7 +2092,7 @@ window.onload = function() {
             ],
         }),
         instantsearch.widgets.hierarchicalMenu({
-            container: `#list_categories`,
+            container: `#list_categories_ex`,
             attributes: [
                 'categories.lvl0',
                 'categories.lvl1',
@@ -1949,14 +2100,6 @@ window.onload = function() {
                 'categories.lvl3',
                 'categories.lvl4',
             ],
-            sortBy: ['isRefined'],
-            showParentLevel: true,
-            limit: 150,
-            templates: {
-                item: (data) => {
-                    return `<a class="ais-HierarchicalMenu-link" href="#"><span class="ais-HierarchicalMenu-label">${data.label}</span></a>`
-                }
-            }
         }),
         instantsearch.widgets.breadcrumb({
             container: '#breadcrumbs',
@@ -2023,82 +2166,8 @@ window.onload = function() {
                         }
                     })
 
-                    let btnCategory = document.querySelector('.all_category');
-
-                    //all categories
-                    btnCategory.addEventListener('click', (e) => {
-                        if (e.target.matches('.all_category')) {
-                            e.stopImmediatePropagation();
-                            if (document.querySelector('.ais-ClearRefinements-button') != null && document.querySelector('.ais-ClearRefinements-button.ais-ClearRefinements-button--disabled') == null) {
-                                document.querySelector('.ais-ClearRefinements-button').classList.add('action-clean');
-                                document.querySelector('.ais-ClearRefinements-button').click();
-                            }
-
-                            // query = '';
-                            // search._searchFunction(search.helper);
-                            if (document.querySelector('#form-search input').value != '' && search.helper.state.query != '') {
-                                search.helper.setQuery('') // this call resets the page
-                                    .setPage(search.helper.getPage()) // we re-apply the previous page // Retrieve the current page
-                                    .search();
-
-                                setTimeout(() => {
-                                    document.querySelector('#form-search input').value = '';
-                                }, 400)
-                            }
-
-                            setTimeout(() => {
-                                let listCategories = document.querySelectorAll('#list_categories li'),
-                                    alphabet = document.querySelector('.alphabet'); //alphabet
-                                alphabet.innerHTML = '';
-
-                                console.log(listCategories.length)
-
-                                listCategories.forEach((el) => litterAlphabet.push({'letter': el.innerText[0]}))
-
-                                litterAlphabet = litterAlphabet.filter((thing, index, self) =>
-                                    index === self.findIndex((t) => (
-                                        t.letter === thing.letter
-                                    ))
-                                )
-
-                                for (let i = 0; i < litterAlphabet.length; i++) {
-                                    if (litterAlphabet[i].letter != 'undefined') {
-                                        alphabet.insertAdjacentHTML('beforeend',`<li class="${i == 0 ? 'active': ''}">${litterAlphabet[i].letter}</li>`);
-                                    }
-                                }
-
-                                openCategoriesFoeAlphabet(listCategories)
-
-                                let items = [...alphabet.querySelectorAll("li")];
-                                items.sort((a, b) => a.innerText == b.innerText ? 0 : a.innerText < b.innerText ? -1 : 1);
-                                items.forEach(item => alphabet.appendChild(item));
-                            }, 500);
-
-
-                            e.target.parentElement.classList.toggle('active');
-                            document.querySelector('.advanced-search').classList.remove('active');
-                            document.querySelector(`[data-button="advanced-search"]`).classList.remove('active');
-
-                            actionDataLayer = `Click on ${e.target.innerText} button`;
-                            labelDataLayer = `Header`;
-                            pushDataLayer(actionDataLayer,labelDataLayer);
-                        }
-                    })
-
-
-                    if (window.location.pathname.includes('/category')) {
-                        document.querySelectorAll('#list_categories li a').forEach(el => {
-                            if (el.innerText == document.querySelector('title').innerText.split(' |')[0] && firstLoaded == true) {
-                                document.querySelectorAll('.alphabet li').forEach(letter => {
-                                    letter.classList.contains('active') ? letter.classList.remove('active') : '';
-                                    if (el.innerText[0] == letter.innerText[0]) {
-                                        letter.classList.add('active');
-                                        el.click();
-                                        firstLoaded = false;
-                                    }
-                                })
-                            }
-                        })
+                    if (window.location.pathname.includes('/category') && !window.location.pathname.includes('?products')) {
+                        window.location.href = `https://medicalmega.com/?products%5BhierarchicalMenu%5D%5Bcategories.lvl0%5D%5B0%5D=${window.location.pathname.split('category/')[1]}`
                     } else {
                         firstLoaded = false
                     }
@@ -2152,11 +2221,6 @@ window.onload = function() {
                     if (document.querySelector('.ais-ClearRefinements-button') != null) {
                         document.querySelector('.ais-ClearRefinements-button').addEventListener('click', (e) => {
                             e.stopImmediatePropagation();
-                            countSearchStalled = 0;
-
-                            // query = '';
-                            // search._searchFunction(search.helper);
-                            // document.querySelector('#form-search .ais-SearchBox-input').value = '';
 
                             if (!e.target.classList.contains('action-clean')) {
                                 actionDataLayer = `Click on All Clear Filters button`;
@@ -2164,16 +2228,6 @@ window.onload = function() {
                                 pushDataLayer(actionDataLayer, labelDataLayer)
                             }
                             e.target.classList.remove('action-clean');
-
-                            document.querySelectorAll('.alphabet li').forEach((letter, index) => {
-                                if (index == 0) {
-                                    letter.classList.add('active')
-                                } else {
-                                    letter.classList.remove('active')
-                                }
-                            })
-
-                            openCategoriesFoeAlphabet(document.querySelectorAll('#list_categories li'))
                         })
                     }
 
@@ -2184,13 +2238,19 @@ window.onload = function() {
 
     search.start();
 
+    document.querySelectorAll('.category_popular li').forEach((el) => {
+        el.addEventListener('click', (e) => {
+            actionDataLayer = `Click on category item - ${e.target.innerText}`;
+            labelDataLayer = 'Popular categories';
+            pushDataLayer(actionDataLayer, labelDataLayer);
+        })
+    })
+
     if (window.location.href.includes('/search/') && !window.location.href.includes('?products')) {
         search.helper.setQuery(window.location.href.split('/search/')[1].split('-').join(' ')) // this call resets the page
             .setPage(search.helper.getPage()) // we re-apply the previous page
             .search();
     }
-
-    // document.querySelector('#form-search .ais-SearchBox-input').addEventListener('input', (e) => query = e.target.value)
 
     let dataButton = document.querySelectorAll('[data-button]'), // btn for open or bloc
         closeBtn = document.querySelectorAll('[data-close]'); //btn close for hide popup or block
@@ -2313,7 +2373,6 @@ window.onload = function() {
                         e.stopImmediatePropagation()
                         document.querySelector('.nav_category').classList.remove('active');
                         search.helper.state.hierarchicalFacetsRefinements['categories.lvl0'] = [];
-                        search.refresh()
                         if (document.querySelector('.advanced-search.active') != null) {
                             document.querySelector('.advanced-search').classList.remove('active');
                         }
@@ -2379,19 +2438,19 @@ window.onload = function() {
       <h2>New Products!</h2>
       <p class="c-gray">${res[0].nbHits} items</p>
       <ul class="d-flex"></ul>
-      <button type="button" class="btn btn_white" data-category="new products!">Show More</button>
+      <a href="https://medicalmega.com/?products%5BhierarchicalMenu%5D%5Bcategories.lvl0%5D%5B0%5D=New%20Products!" class="btn btn_white">Show More</a>
     </div>
     <div class="ostomy">
       <h2>Ostomy</h2>
       <p class="c-gray">${res[1].nbHits} items</p>
       <ul class="d-flex"></ul>
-      <button type="button" class="btn btn_white" data-category="ostomy">Show More</button>
+      <a href="https://medicalmega.com/?products%5BhierarchicalMenu%5D%5Bcategories.lvl0%5D%5B0%5D=Ostomy" class="btn btn_white">Show More</a>
     </div>
     <div class="wound-care">
       <h2>Wound Care</h2>
       <p class="c-gray">${res[2].nbHits} items</p>
       <ul class="d-flex"></ul>
-      <button type="button" class="btn btn_white" data-category="wound care">Show More</button>
+      <a href="https://medicalmega.com/?products%5BhierarchicalMenu%5D%5Bcategories.lvl0%5D%5B0%5D=Wound%20Care" class="btn btn_white">Show More</a>
     </div>`);
 
         for (let i = 0; i < 4; i++) {
@@ -2401,20 +2460,9 @@ window.onload = function() {
         }
         document.querySelectorAll('.listing_popular .btn_white').forEach(el => {
             el.addEventListener('click', (e) => {
-                labelDataLayer = `el.dataset.category`;
-                actionDataLayer = `Click on Show More}`;
+                labelDataLayer = `${el.parentElement.querySelector('h2').innerText}`;
+                actionDataLayer = `Click on Show More`;
                 pushDataLayer(actionDataLayer, labelDataLayer)
-                document.querySelectorAll('#list_categories li a').forEach(el => {
-                    if (e.target.dataset.category.includes(el.querySelector('.ais-HierarchicalMenu-label').innerText.toLowerCase())) {
-                        el.classList.add('home-popular');
-                        el.click();
-                    }
-                })
-
-                let scrollTarget = document.body,
-                    topOffset = e.target;
-
-                scrollTop(scrollTarget, topOffset)
             })
         })
     });
@@ -2674,18 +2722,18 @@ window.onload = function() {
                     let contentAvailableOptions = document.querySelector('.product_sidebar .available-options .justify-content-between');
 
                     contentAvailableOptions.insertAdjacentHTML('beforebegin',`
-          <div class="arrow_buttons">
-              <button class="arrow_button arrow_button_prev" type="button" disabled>
-                  <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <path d="M12.2868 13.8473C12.3432 13.9036 12.375 13.9803 12.375 14.0602C12.375 14.1402 12.3432 14.2169 12.2868 14.2732L11.6546 14.9091C11.6005 14.9671 11.5249 15 11.4459 15C11.3668 15 11.2912 14.9671 11.2371 14.9091L5.75621 9.39594C5.6723 9.31164 5.6251 9.19728 5.625 9.07799V8.92201C5.6251 8.80272 5.6723 8.68836 5.75621 8.60406L11.2371 3.0909C11.2912 3.0329 11.3668 3 11.4459 3C11.5249 3 11.6005 3.0329 11.6546 3.0909L12.2868 3.7268C12.3432 3.78312 12.375 3.85979 12.375 3.93977C12.375 4.01975 12.3432 4.09641 12.2868 4.15274L7.46788 9L12.2868 13.8473Z" fill="#091114"/>
-                  </svg>
-              </button>
-              <button class="arrow_button arrow_button_next" type="button">
-                  <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <path d="M5.71321 13.8473C5.65675 13.9036 5.625 13.9803 5.625 14.0602C5.625 14.1402 5.65675 14.2169 5.71321 14.2732L6.34539 14.9091C6.39951 14.9671 6.47506 15 6.55413 15C6.63321 15 6.70876 14.9671 6.76287 14.9091L12.2438 9.39594C12.3277 9.31164 12.3749 9.19728 12.375 9.07799V8.92201C12.3749 8.80272 12.3277 8.68836 12.2438 8.60406L6.76287 3.0909C6.70876 3.0329 6.63321 3 6.55413 3C6.47506 3 6.39951 3.0329 6.34539 3.0909L5.71321 3.7268C5.65675 3.78312 5.625 3.85979 5.625 3.93977C5.625 4.01975 5.65675 4.09641 5.71321 4.15274L10.5321 9L5.71321 13.8473Z" fill="#091114"/>
-                  </svg>
-              </button>
-          </div>`)
+                  <div class="arrow_buttons">
+                      <button class="arrow_button arrow_button_prev" type="button" disabled>
+                          <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                              <path d="M12.2868 13.8473C12.3432 13.9036 12.375 13.9803 12.375 14.0602C12.375 14.1402 12.3432 14.2169 12.2868 14.2732L11.6546 14.9091C11.6005 14.9671 11.5249 15 11.4459 15C11.3668 15 11.2912 14.9671 11.2371 14.9091L5.75621 9.39594C5.6723 9.31164 5.6251 9.19728 5.625 9.07799V8.92201C5.6251 8.80272 5.6723 8.68836 5.75621 8.60406L11.2371 3.0909C11.2912 3.0329 11.3668 3 11.4459 3C11.5249 3 11.6005 3.0329 11.6546 3.0909L12.2868 3.7268C12.3432 3.78312 12.375 3.85979 12.375 3.93977C12.375 4.01975 12.3432 4.09641 12.2868 4.15274L7.46788 9L12.2868 13.8473Z" fill="#091114"/>
+                          </svg>
+                      </button>
+                      <button class="arrow_button arrow_button_next" type="button">
+                          <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                              <path d="M5.71321 13.8473C5.65675 13.9036 5.625 13.9803 5.625 14.0602C5.625 14.1402 5.65675 14.2169 5.71321 14.2732L6.34539 14.9091C6.39951 14.9671 6.47506 15 6.55413 15C6.63321 15 6.70876 14.9671 6.76287 14.9091L12.2438 9.39594C12.3277 9.31164 12.3749 9.19728 12.375 9.07799V8.92201C12.3749 8.80272 12.3277 8.68836 12.2438 8.60406L6.76287 3.0909C6.70876 3.0329 6.63321 3 6.55413 3C6.47506 3 6.39951 3.0329 6.34539 3.0909L5.71321 3.7268C5.65675 3.78312 5.625 3.85979 5.625 3.93977C5.625 4.01975 5.65675 4.09641 5.71321 4.15274L10.5321 9L5.71321 13.8473Z" fill="#091114"/>
+                          </svg>
+                      </button>
+                  </div>`)
 
                     document.querySelectorAll('.arrow_button').forEach(arrow => {
                         arrow.addEventListener('click', () => {
@@ -2838,112 +2886,6 @@ let mut = new MutationObserver(function (muts) {
                     }
                     option.closest('.select').classList.remove('active');
                 })
-            })
-        })
-    }
-    mut.observe(document, optionMut);
-    if (document.querySelector('.alphabet li') != null && document.querySelector('#list_categories li') != null) {
-        mut.disconnect();
-
-        document.querySelectorAll('#list_categories li').forEach((el) => {
-            el.addEventListener('click', (e) => {
-                e.stopImmediatePropagation();
-                // query = '';
-                // search._searchFunction(search.helper)
-                // document.querySelector('#form-search .ais-SearchBox-input').value = '';
-
-                let scrollTarget = document.body,
-                    topOffset = scrollTarget;
-
-                scrollTop(scrollTarget, topOffset)
-
-                let startInterval = setInterval(function() {
-                    if (window.location.href.includes('/product/') ) { //|| window.location.pathname.includes('/search/')
-                        if (window.location.href.includes('hierarchicalMenu')) {
-                            clearInterval(startInterval)
-                            setTimeout(() => {
-                                let url = window.location.href.split('?')[1];
-                                console.log(url)
-                                window.location.href = "https://medicalmega.com/?" + url;
-                            }, 100);
-                        }
-                    } else {
-                        clearInterval(startInterval)
-                        toggleListing(true)
-                    }
-                }, 100)
-
-                if (e.target.classList.contains('home-popular')) {
-                    actionDataLayer = `Click on Show more button - ${el.querySelector('.ais-HierarchicalMenu-label').innerText}`;
-                    labelDataLayer = `Home page`;
-                } else {
-                    actionDataLayer = `Click on category item - ${el.querySelector('.ais-HierarchicalMenu-label').innerText}`;
-
-                    if (e.target.classList.contains('popular')) {
-                        labelDataLayer = `Popular categories`;
-                        el.classList.remove('popular');
-                    }  else {
-                        labelDataLayer = `All categories`;
-                    }
-                }
-
-                if (firstLoaded == false) {
-                    pushDataLayer(actionDataLayer,labelDataLayer);
-                }
-            })
-        })
-
-        openCategoriesFoeAlphabet(document.querySelectorAll('#list_categories li'))
-        document.querySelectorAll('.alphabet li').forEach(el => {
-            el.addEventListener('mouseover', (e) => {
-                e.stopImmediatePropagation();
-                e.target.parentElement.querySelector('.active').classList.remove('active');
-                e.target.classList.add('active');
-                openCategoriesFoeAlphabet(document.querySelectorAll('#list_categories li'))
-            })
-        })
-    }
-
-    mut.observe(document, optionMut);
-    if ( document.querySelector('#list_categories li') != null ) {
-        mut.disconnect();
-
-        document.querySelectorAll('.category_popular li').forEach((el) => {
-            el.addEventListener('click', (e) => {
-                e.preventDefault();
-                e.stopImmediatePropagation();
-                // query = '';
-                // search._searchFunction(search.helper)
-                search.helper.setQuery('') // this call resets the page
-                    .setPage(search.helper.getPage()) // we re-apply the previous page // Retrieve the current page
-                    .search();
-
-                // console.log(document.querySelector('#form-search .ais-SearchBox-input').value)
-                // document.querySelector('#form-search .ais-SearchBox-input').value = '';
-
-                if (document.querySelector('.ais-ClearRefinements-button') != null) {
-                    document.querySelector('.ais-ClearRefinements-button').classList.add('action-clean');
-                    document.querySelector('.ais-ClearRefinements-button').click()
-                }
-                setTimeout(function() {
-                    document.querySelectorAll('#list_categories > .ais-HierarchicalMenu > ul > li').forEach(item => {
-                        if (el.querySelector('a').innerText.toLowerCase() == item.querySelector('.ais-HierarchicalMenu-label').innerText.toLowerCase()) {
-                            countSearchStalled = 1;
-
-                            document.querySelectorAll('.alphabet li').forEach(letter => {
-                                letter.classList.contains('active') ? letter.classList.remove('active') : '';
-                                if (letter.innerText == el.innerText[0]) {
-                                    letter.classList.add('active');
-
-                                    openCategoriesFoeAlphabet(document.querySelectorAll('#list_categories li'));
-                                    item.classList.add('popular');
-                                    item.click();
-                                }
-                            })
-                        }
-                    })
-                },200)
-
             })
         })
     }
