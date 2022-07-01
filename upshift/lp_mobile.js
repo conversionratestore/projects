@@ -1530,7 +1530,7 @@ if (isPDP) { /* 'For People' Page  */
         .acsb-trigger {
             bottom: 25px !important;
             right: auto !important;
-            left: 10px !important;
+            left: 25px !important;
         }
     </style>
     `
