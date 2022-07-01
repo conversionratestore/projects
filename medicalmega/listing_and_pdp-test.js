@@ -1053,7 +1053,7 @@ border-radius: 100px;
     min-height: 43.2px;
     margin-bottom: 33px;
   }
-  .listing_popular .btn {
+  .listing_popular > div > .btn {
     margin: 0 auto 33px;
     display: block;
     width: fit-content;
