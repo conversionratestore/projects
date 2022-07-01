@@ -1587,8 +1587,6 @@ let optionFetchAlgolia = {
     method: 'GET'
 }
 
-let firstLoaded = true;
-
 let requestAllCaterories = new Promise((resolve, reject) => {
     fetch(`https://PXDJAQHDPZ-dsn.algolia.net/1/indexes/products?facets=["categories.lvl0","categories.lvl1","categories.lvl2","categories.lvl3","categories.lvl4","manufacturer"]`, optionFetchAlgolia).then(res => res.json()).then(data => resolve(data))
 })
@@ -1796,6 +1794,17 @@ window.onload = function() {
             brand = data.facets.manufacturer;
 
         console.log(data)
+        function setLinkCategory(key,item) {
+            if (key.includes(item.dataset.bread)) {
+                let breabcrumbs = ``;
+                let crumbs = key.split(' > ');
+
+                for (let i = 0; i < crumbs.length; i++) {
+                    breabcrumbs += `&products%5BhierarchicalMenu%5D%5Bcategories.lvl0%5D%5B${i}%5D=${crumbs[i]}`
+                }
+                item.insertAdjacentHTML('beforeend', `<li><a href="https://medicalmega.com/?${breabcrumbs}">${crumbs[crumbs.length - 1]}</a></li>`)
+            }
+        }
 
         for (let key in categoriesLvl0) {
             document.querySelector('.select_category .select_dropdown').insertAdjacentHTML('beforeend', ` 
@@ -1810,73 +1819,16 @@ window.onload = function() {
         }
 
         for (let key in categoriesLvl1) {
-            document.querySelectorAll('#list_categories .lvl1').forEach(item => {
-                if (key.includes(item.dataset.bread)) {
-                    let breabcrumbs = ``;
-                    let crumbs =  key.split(' > ');
-
-                    for (let i = 0; i < crumbs.length; i++) {
-                        breabcrumbs += `&products%5BhierarchicalMenu%5D%5Bcategories.lvl0%5D%5B${i}%5D=${crumbs[i]}`
-                    }
-
-                    item.insertAdjacentHTML('beforeend',`
-                     <li>
-                        <a href="https://medicalmega.com/?${breabcrumbs}">${crumbs[crumbs.length - 1]}</a>
-                        <ul data-bread="${key}" class="lvl2"></ul>
-                     </li>`)
-
-                }
-            })
+            document.querySelectorAll('#list_categories .lvl1').forEach(item => setLinkCategory(key,item))
         }
         for (let key in categoriesLvl2) {
-            document.querySelectorAll('#list_categories .lvl2').forEach(item => {
-                if (key.includes(item.dataset.bread)) {
-                    let breabcrumbs = ``;
-                    let crumbs =  key.split(' > ');
-
-                    for (let i = 0; i < crumbs.length; i++) {
-                        breabcrumbs += `&products%5BhierarchicalMenu%5D%5Bcategories.lvl0%5D%5B${i}%5D=${crumbs[i]}`
-                    }
-                    item.insertAdjacentHTML('beforeend',`
-                     <li>
-                        <a href="https://medicalmega.com/?${breabcrumbs}">${crumbs[crumbs.length - 1]}</a>
-                        <ul data-bread="${key}" class="lvl3"></ul>
-                     </li>`)
-                }
-            })
+            document.querySelectorAll('#list_categories .lvl2').forEach(item => setLinkCategory(key,item))
         }
         for (let key in categoriesLvl3) {
-            document.querySelectorAll('#list_categories .lvl3').forEach(item => {
-                if (key.includes(item.dataset.bread)) {
-                    let breabcrumbs = ``;
-                    let crumbs =  key.split(' > ');
-
-                    for (let i = 0; i < crumbs.length; i++) {
-                        breabcrumbs += `&products%5BhierarchicalMenu%5D%5Bcategories.lvl0%5D%5B${i}%5D=${crumbs[i]}`
-                    }
-                    item.insertAdjacentHTML('beforeend',`
-                     <li>
-                        <a href="https://medicalmega.com/?${breabcrumbs}">${crumbs[crumbs.length - 1]}</a>
-                        <ul data-bread="${key}" class="lvl4"></ul>
-                     </li>`)
-                }
-            })
+            document.querySelectorAll('#list_categories .lvl3').forEach(item => setLinkCategory(key,item))
         }
         for (let key in categoriesLvl4) {
-            document.querySelectorAll('#list_categories .lvl4').forEach(item => {
-                if (key.includes(item.dataset.bread)) {
-                    let breabcrumbs = ``;
-                    let crumbs =  key.split(' > ');
-
-                    for (let i = 0; i < crumbs.length; i++) {
-                        breabcrumbs += `&products%5BhierarchicalMenu%5D%5Bcategories.lvl0%5D%5B${i}%5D=${crumbs[i]}`
-                    }
-                    item.insertAdjacentHTML('beforeend',`
-                     <li>
-                        <a href="https://medicalmega.com/?${breabcrumbs}">${crumbs[crumbs.length - 1]}</a>
-                     </li>`)
-                }
-            })
+            document.querySelectorAll('#list_categories .lvl4').forEach(item => setLinkCategory(key,item))
         }
 
         for (let key in brand) {
@@ -1885,7 +1837,7 @@ window.onload = function() {
 
         let listCategories = document.querySelectorAll('#list_categories > li > a'),
             alphabet = document.querySelector('.alphabet'); //alphabet
-            alphabet.innerHTML = '';
+        alphabet.innerHTML = '';
 
         listCategories.forEach((el) => {
             litterAlphabet.push({'letter': el.innerText[0]})
@@ -1903,7 +1855,7 @@ window.onload = function() {
         )
 
         for (let i = 0; i < litterAlphabet.length; i++) {
-           alphabet.insertAdjacentHTML('beforeend',`<li class="${litterAlphabet[i].letter == 'A' ? 'active': ''}">${litterAlphabet[i].letter}</li>`);
+            alphabet.insertAdjacentHTML('beforeend',`<li class="${litterAlphabet[i].letter == 'A' ? 'active': ''}">${litterAlphabet[i].letter}</li>`);
         }
 
         openCategoriesFoeAlphabet(listCategories)
@@ -2140,8 +2092,6 @@ window.onload = function() {
 
                     if (window.location.pathname.includes('/category') && !window.location.pathname.includes('?products')) {
                         window.location.href = `https://medicalmega.com/?products%5BhierarchicalMenu%5D%5Bcategories.lvl0%5D%5B0%5D=${window.location.pathname.split('category/')[1]}`
-                    } else {
-                        firstLoaded = false
                     }
 
                     let crumbs = document.querySelectorAll('#breadcrumbs li');
