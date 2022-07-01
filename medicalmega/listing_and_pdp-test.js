@@ -1783,7 +1783,7 @@ window.onload = function() {
                 let crumbs = key.split(' > ');
 
                 for (let i = 0; i < crumbs.length; i++) {
-                    breabcrumbs += `&products%5BhierarchicalMenu%5D%5Bcategories.lvl0%5D%5B${i}%5D=${crumbs[i].split('-').join(' ').split('&').join('%26')}`
+                    breabcrumbs += `&products%5BhierarchicalMenu%5D%5Bcategories.lvl0%5D%5B${i}%5D=${crumbs[i].split('&').join('%26')}`
                 }
                 item.insertAdjacentHTML('beforeend', `<li><a href="https://medicalmega.com/?${breabcrumbs}">${crumbs[crumbs.length - 1]}</a> <ul data-bread="${key}" class="lvl${lvl}"></ul></li>`)
             }
