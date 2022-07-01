@@ -2074,7 +2074,7 @@ window.onload = function() {
                     })
 
                     if (window.location.pathname.includes('/category') && !window.location.pathname.includes('?products')) {
-                        window.location.href = `https://medicalmega.com/?products%5BhierarchicalMenu%5D%5Bcategories.lvl0%5D%5B0%5D=${window.location.pathname.split('category/')[1]}`
+                        window.location.href = `https://medicalmega.com/?products%5BhierarchicalMenu%5D%5Bcategories.lvl0%5D%5B0%5D=${window.location.pathname.split('category/')[1].split('-').join(' ')}`
                     }
 
                     let crumbs = document.querySelectorAll('#breadcrumbs li');
