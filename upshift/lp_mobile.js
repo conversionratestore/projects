@@ -659,7 +659,8 @@ if (isPDP) { /* 'For People' Page  */
         }
 
         .template button,
-        #row-unique-1 button {            
+        #row-unique-1 button,
+        #row-unique-8 button.btn_white {            
             width: 100%;
             background: #00A8F4;
             color: #fff;
@@ -673,6 +674,18 @@ if (isPDP) { /* 'For People' Page  */
         .template button.btn_green,
         #row-unique-1 button.btn_green {
             background: #6AC29A;
+        }
+
+        #row-unique-8 .btn-container {
+            display: none;
+        }
+
+        #row-unique-8 button.btn_white {
+            background: #fff !important;
+            color: #43c597!important;
+            width: 170px;
+            margin-bottom: 10px;
+            margin-left: calc(50% - 84px);
         }
 
         button[data-sign] {
@@ -1198,7 +1211,7 @@ if (isPDP) { /* 'For People' Page  */
 
             /* Interval 6: Initialize Sign Up script after Buttons appearence in the DOM */
             const waitForBtns = setInterval(() => {
-                if (document.querySelectorAll('[data-sign]')[4]) {
+                if (document.querySelectorAll('[data-sign]')[5]) {
                     clearInterval(waitForBtns)
 
                     const form = document.getElementById('area_form')
@@ -1232,6 +1245,17 @@ if (isPDP) { /* 'For People' Page  */
                     document.querySelector('#row-unique-0 p').innerText = 'Why choose Upshift?'
                 }
             }, intervalTimeout);
+
+            /* Interval 7: Change heading in Why choose section after appearence in the DOM */
+            const waitForLastBtn = setInterval(() => {
+                if (document.querySelector('#row-unique-0 p')) {
+                    clearInterval(waitForLastBtn)
+
+                    document.querySelector('#row-unique-8 .btn-container').insertAdjacentHTML('afterend', `<button class="btn_white" data-sign>Apply now</button>`)
+                }
+            }, intervalTimeout);
+
+
         }
     }, intervalTimeout);
 
