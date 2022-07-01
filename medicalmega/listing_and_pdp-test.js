@@ -1824,8 +1824,9 @@ window.onload = function() {
 
         let litterAlphabet = [];
 
-        listCategories.forEach((el) => {
-            litterAlphabet.push({'letter': el.innerText[0]})
+        listCategories.forEach((el) => litterAlphabet.push({'letter': el.innerText[0]}))
+
+        document.querySelectorAll('#list_categories li a').forEach((el) => {
             el.addEventListener('click', () => {
                 actionDataLayer = `Click on category item - ${el.innerText}`;
                 labelDataLayer = `All categories`;
