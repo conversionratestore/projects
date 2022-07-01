@@ -1828,7 +1828,7 @@ window.onload = function() {
         document.querySelectorAll('#list_categories li a').forEach((el) => {
             el.addEventListener('click', (e) => {
                 e.preventDefault()
-                window.location.href = el.href.split('&').join('%26');
+                window.location.href = el.href.split(' &').join('%20%26');
                 actionDataLayer = `Click on category item - ${el.innerText}`;
                 labelDataLayer = `All categories`;
                 pushDataLayer(actionDataLayer,labelDataLayer);
