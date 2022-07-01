@@ -1903,9 +1903,7 @@ window.onload = function() {
         )
 
         for (let i = 0; i < litterAlphabet.length; i++) {
-            // if (litterAlphabet[i].letter != 'undefined') {
-                alphabet.insertAdjacentHTML('beforeend',`<li class="${i == 0 ? 'active': ''}">${litterAlphabet[i].letter}</li>`);
-            // }
+           alphabet.insertAdjacentHTML('beforeend',`<li class="${litterAlphabet[i].letter == 'A' ? 'active': ''}">${litterAlphabet[i].letter}</li>`);
         }
 
         openCategoriesFoeAlphabet(listCategories)
