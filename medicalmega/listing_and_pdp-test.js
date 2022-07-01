@@ -1783,7 +1783,7 @@ window.onload = function() {
                 let crumbs = key.split(' > ');
 
                 for (let i = 0; i < crumbs.length; i++) {
-                    breabcrumbs += `&products%5BhierarchicalMenu%5D%5Bcategories.lvl0%5D%5B${i}%5D=${crumbs[i]}`
+                    breabcrumbs += `&products%5BhierarchicalMenu%5D%5Bcategories.lvl0%5D%5B${i}%5D=${crumbs[i].split('-').join(' ').split('&').join('%26')}`
                 }
                 item.insertAdjacentHTML('beforeend', `<li><a href="https://medicalmega.com/?${breabcrumbs}">${crumbs[crumbs.length - 1]}</a> <ul data-bread="${key}" class="lvl${lvl}"></ul></li>`)
             }
@@ -2074,7 +2074,7 @@ window.onload = function() {
                     })
 
                     if (window.location.pathname.includes('/category') && !window.location.pathname.includes('?products')) {
-                        window.location.href = `https://medicalmega.com/?products%5BhierarchicalMenu%5D%5Bcategories.lvl0%5D%5B0%5D=${window.location.pathname.split('category/')[1].split('-').join(' ')}`
+                        window.location.href = `https://medicalmega.com/?products%5BhierarchicalMenu%5D%5Bcategories.lvl0%5D%5B0%5D=${window.location.pathname.split('category/')[1].split('-').join(' ').split('&').join('%26')}`
                     }
 
                     let crumbs = document.querySelectorAll('#breadcrumbs li');
