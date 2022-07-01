@@ -1707,642 +1707,646 @@ function changeQty(qty,pr,action) {
 }
 
 window.onload = function() {
-    document.body.insertAdjacentHTML('afterbegin', html);
-    document.body.insertAdjacentHTML('afterbegin', style);
+    if (sessionStorage.getItem('old_version') == null) {
+        document.body.insertAdjacentHTML('afterbegin', html);
+        document.body.insertAdjacentHTML('afterbegin', style);
 
-    startStuff();
+        startStuff();
 
-    document.querySelector('.header').before(document.querySelector('#top'));
-    document.querySelector('#top img').src = 'https://conversionratestore.github.io/projects/medicalmega/img/chevron-right.svg';
-    document.querySelector('#top').addEventListener('click', (e) => {
-        actionDataLayer = `Click on Top button`;
-        labelDataLayer = `Footer`;
-        pushDataLayer(actionDataLayer,labelDataLayer);
-    })
-    document.querySelector('.supbar a').addEventListener('click', (e) => {
-        actionDataLayer = `Click on Customer Service`;
-        labelDataLayer = `Header`;
-        pushDataLayer(actionDataLayer,labelDataLayer);
-    })
-    document.querySelector('.cart_count').innerHTML = document.querySelector('.shoppingcart .by_num span').innerHTML;
-
-    let btnCategory = document.querySelector('.all_category');
-
-    //all categories
-    btnCategory.addEventListener('click', (e) => {
-        if (e.target.matches('.all_category')) {
-            e.target.parentElement.classList.toggle('active');
-            document.querySelector('.advanced-search').classList.remove('active');
-            document.querySelector(`[data-button="advanced-search"]`).classList.remove('active');
-
-            actionDataLayer = `Click on ${e.target.innerText} button`;
+        document.querySelector('.header').before(document.querySelector('#top'));
+        document.querySelector('#top img').src = 'https://conversionratestore.github.io/projects/medicalmega/img/chevron-right.svg';
+        document.querySelector('#top').addEventListener('click', (e) => {
+            actionDataLayer = `Click on Top button`;
+            labelDataLayer = `Footer`;
+            pushDataLayer(actionDataLayer, labelDataLayer);
+        })
+        document.querySelector('.supbar a').addEventListener('click', (e) => {
+            actionDataLayer = `Click on Customer Service`;
             labelDataLayer = `Header`;
-            pushDataLayer(actionDataLayer,labelDataLayer);
-        }
-    })
+            pushDataLayer(actionDataLayer, labelDataLayer);
+        })
+        document.querySelector('.cart_count').innerHTML = document.querySelector('.shoppingcart .by_num span').innerHTML;
 
-    //select
-    function remActiveSelect() {
-        let dropdowns = document.querySelectorAll(".select");
-        for (let i = 0; i < dropdowns.length; i++) {
-            if (dropdowns[i].classList.contains('active')) {
-                dropdowns[i].classList.remove('active');
-            }
-        }
-    }
+        let btnCategory = document.querySelector('.all_category');
 
-    function toggleActive(getData,action) {
-        if (document.querySelector(`[data-item=${getData}]`)) {
-            document.querySelector(`[data-item=${getData}]`).classList.toggle('active')
-            if (getData == 'advanced-search') {
-                document.querySelector(`[data-button=${getData}]`).classList.toggle('active');
-                document.querySelector(`.nav_category`).classList.remove('active');
-                if (action != 'close') {
-                    actionDataLayer = `Click on advanced search`;
-                } else {
-                    actionDataLayer = `Click on cross button`;
-                }
+        //all categories
+        btnCategory.addEventListener('click', (e) => {
+            if (e.target.matches('.all_category')) {
+                e.target.parentElement.classList.toggle('active');
+                document.querySelector('.advanced-search').classList.remove('active');
+                document.querySelector(`[data-button="advanced-search"]`).classList.remove('active');
+
+                actionDataLayer = `Click on ${e.target.innerText} button`;
                 labelDataLayer = `Header`;
-                pushDataLayer(actionDataLayer,labelDataLayer);
+                pushDataLayer(actionDataLayer, labelDataLayer);
             }
-        }
-    }
+        })
 
-    requestAllCaterories.then(data => {
-        let categoriesLvl0 = data.facets["categories.lvl0"],
-            categoriesLvl1 = data.facets["categories.lvl1"],
-            categoriesLvl2 = data.facets["categories.lvl2"],
-            categoriesLvl3 = data.facets["categories.lvl3"],
-            categoriesLvl4 = data.facets["categories.lvl4"],
-            brand = data.facets.manufacturer;
-
-        console.log(data)
-        function setLinkCategory(key,item,lvl) {
-            if (key.includes(item.dataset.bread)) {
-                let breabcrumbs = ``;
-                let crumbs = key.split(' > ');
-                for (let i = 0; i < crumbs.length; i++) {
-                    breabcrumbs += `&products%5BhierarchicalMenu%5D%5Bcategories.lvl0%5D%5B${i}%5D=${crumbs[i]}`
+        //select
+        function remActiveSelect() {
+            let dropdowns = document.querySelectorAll(".select");
+            for (let i = 0; i < dropdowns.length; i++) {
+                if (dropdowns[i].classList.contains('active')) {
+                    dropdowns[i].classList.remove('active');
                 }
-                item.insertAdjacentHTML('beforeend', `<li><a href="https://medicalmega.com/?${breabcrumbs}">${crumbs[crumbs.length - 1]}</a> <ul data-bread="${key}" class="lvl${lvl}"></ul></li>`)
             }
         }
 
-        for (let key in categoriesLvl0) {
-            document.querySelector('.select_category .select_dropdown').insertAdjacentHTML('beforeend', ` 
+        function toggleActive(getData, action) {
+            if (document.querySelector(`[data-item=${getData}]`)) {
+                document.querySelector(`[data-item=${getData}]`).classList.toggle('active')
+                if (getData == 'advanced-search') {
+                    document.querySelector(`[data-button=${getData}]`).classList.toggle('active');
+                    document.querySelector(`.nav_category`).classList.remove('active');
+                    if (action != 'close') {
+                        actionDataLayer = `Click on advanced search`;
+                    } else {
+                        actionDataLayer = `Click on cross button`;
+                    }
+                    labelDataLayer = `Header`;
+                    pushDataLayer(actionDataLayer, labelDataLayer);
+                }
+            }
+        }
+
+        requestAllCaterories.then(data => {
+            let categoriesLvl0 = data.facets["categories.lvl0"],
+                categoriesLvl1 = data.facets["categories.lvl1"],
+                categoriesLvl2 = data.facets["categories.lvl2"],
+                categoriesLvl3 = data.facets["categories.lvl3"],
+                categoriesLvl4 = data.facets["categories.lvl4"],
+                brand = data.facets.manufacturer;
+
+            console.log(data)
+
+            function setLinkCategory(key, item, lvl) {
+                if (key.includes(item.dataset.bread)) {
+                    let breabcrumbs = ``;
+                    let crumbs = key.split(' > ');
+                    for (let i = 0; i < crumbs.length; i++) {
+                        breabcrumbs += `&products%5BhierarchicalMenu%5D%5Bcategories.lvl0%5D%5B${i}%5D=${crumbs[i]}`
+                    }
+                    item.insertAdjacentHTML('beforeend', `<li><a href="https://medicalmega.com/?${breabcrumbs}">${crumbs[crumbs.length - 1]}</a> <ul data-bread="${key}" class="lvl${lvl}"></ul></li>`)
+                }
+            }
+
+            for (let key in categoriesLvl0) {
+                document.querySelector('.select_category .select_dropdown').insertAdjacentHTML('beforeend', ` 
               <li class="select_option"><p data-category="categories.lvl0:${key}">${key}</p>
                 <ul></ul>
               </li>`)
-            document.querySelector('#list_categories').insertAdjacentHTML('beforeend',`
+                document.querySelector('#list_categories').insertAdjacentHTML('beforeend', `
              <li>
                 <a href="https://medicalmega.com/?products%5BhierarchicalMenu%5D%5Bcategories.lvl0%5D%5B0%5D=${key}">${key}</a>
                 <ul data-bread="${key}" class="lvl1"></ul>
              </li>`)
-        }
+            }
 
-        for (let key in categoriesLvl1) {
-            document.querySelectorAll('#list_categories .lvl1').forEach(item => setLinkCategory(key, item,2))
-        }
-        for (let key in categoriesLvl2) {
-            document.querySelectorAll('#list_categories .lvl2').forEach(item => setLinkCategory(key, item,3))
-        }
-        for (let key in categoriesLvl3) {
-            document.querySelectorAll('#list_categories .lvl3').forEach(item =>  setLinkCategory(key, item,4))
-        }
-        for (let key in categoriesLvl4) {
-            document.querySelectorAll('#list_categories .lvl4').forEach(item =>  setLinkCategory(key, item,5))
-        }
+            for (let key in categoriesLvl1) {
+                document.querySelectorAll('#list_categories .lvl1').forEach(item => setLinkCategory(key, item, 2))
+            }
+            for (let key in categoriesLvl2) {
+                document.querySelectorAll('#list_categories .lvl2').forEach(item => setLinkCategory(key, item, 3))
+            }
+            for (let key in categoriesLvl3) {
+                document.querySelectorAll('#list_categories .lvl3').forEach(item => setLinkCategory(key, item, 4))
+            }
+            for (let key in categoriesLvl4) {
+                document.querySelectorAll('#list_categories .lvl4').forEach(item => setLinkCategory(key, item, 5))
+            }
 
-        for (let key in brand) {
-            document.querySelector('.select_brand .select_dropdown').insertAdjacentHTML('beforeend', ` <li class="select_option"><p>${key}</p></li>`)
-        }
+            for (let key in brand) {
+                document.querySelector('.select_brand .select_dropdown').insertAdjacentHTML('beforeend', ` <li class="select_option"><p>${key}</p></li>`)
+            }
 
-        let listCategories = document.querySelectorAll('#list_categories > li > a'),
-        alphabet = document.querySelector('.alphabet'); //alphabet
-        alphabet.innerHTML = '';
+            let listCategories = document.querySelectorAll('#list_categories > li > a'),
+                alphabet = document.querySelector('.alphabet'); //alphabet
+            alphabet.innerHTML = '';
 
-        let litterAlphabet = [];
+            let litterAlphabet = [];
 
-        listCategories.forEach((el) => litterAlphabet.push({'letter': el.innerText[0]}))
+            listCategories.forEach((el) => litterAlphabet.push({'letter': el.innerText[0]}))
 
-        document.querySelectorAll('#list_categories li a').forEach((el) => {
-            el.addEventListener('click', (e) => {
-                e.preventDefault()
-                let link = el.href.split('20&').join('20%26');
-                console.log(link)
-                window.location.href = link;
-                actionDataLayer = `Click on category item - ${el.innerText}`;
-                labelDataLayer = `All categories`;
-                pushDataLayer(actionDataLayer,labelDataLayer);
+            document.querySelectorAll('#list_categories li a').forEach((el) => {
+                el.addEventListener('click', (e) => {
+                    e.preventDefault()
+                    let link = el.href.split('20&').join('20%26');
+                    console.log(link)
+                    window.location.href = link;
+                    actionDataLayer = `Click on category item - ${el.innerText}`;
+                    labelDataLayer = `All categories`;
+                    pushDataLayer(actionDataLayer, labelDataLayer);
+                })
+            })
+
+            litterAlphabet = litterAlphabet.filter((thing, index, self) =>
+                index === self.findIndex((t) => (
+                    t.letter === thing.letter
+                ))
+            )
+
+            for (let i = 0; i < litterAlphabet.length; i++) {
+                alphabet.insertAdjacentHTML('beforeend', `<li class="${litterAlphabet[i].letter == 'A' ? 'active' : ''}">${litterAlphabet[i].letter}</li>`);
+            }
+
+            openCategoriesFoeAlphabet(listCategories)
+
+            let items = [...alphabet.querySelectorAll("li")];
+            items.sort((a, b) => a.innerText == b.innerText ? 0 : a.innerText < b.innerText ? -1 : 1);
+            items.forEach(item => alphabet.appendChild(item));
+
+            let itemsList = [...document.querySelectorAll('#list_categories li')]
+            itemsList.sort((a, b) => a.querySelector('a').innerText == b.querySelector('a').innerText ? 0 : a.querySelector('a').innerText < b.querySelector('a').innerText ? -1 : 1);
+            itemsList.forEach(item => item.parentElement.appendChild(item));
+
+            alphabet.querySelectorAll('li').forEach(el => {
+                el.addEventListener('mouseover', (e) => {
+                    e.stopImmediatePropagation();
+                    e.target.parentElement.querySelector('.active').classList.remove('active');
+                    e.target.classList.add('active');
+                    openCategoriesFoeAlphabet(listCategories)
+                })
             })
         })
 
-        litterAlphabet = litterAlphabet.filter((thing, index, self) =>
-            index === self.findIndex((t) => (
-                t.letter === thing.letter
-            ))
-        )
-
-        for (let i = 0; i < litterAlphabet.length; i++) {
-            alphabet.insertAdjacentHTML('beforeend',`<li class="${litterAlphabet[i].letter == 'A' ? 'active': ''}">${litterAlphabet[i].letter}</li>`);
-        }
-
-        openCategoriesFoeAlphabet(listCategories)
-
-        let items = [...alphabet.querySelectorAll("li")];
-        items.sort((a, b) => a.innerText == b.innerText ? 0 : a.innerText < b.innerText ? -1 : 1);
-        items.forEach(item => alphabet.appendChild(item));
-
-        let itemsList = [...document.querySelectorAll('#list_categories li')]
-        itemsList.sort((a, b) => a.querySelector('a').innerText == b.querySelector('a').innerText ? 0 : a.querySelector('a').innerText < b.querySelector('a').innerText ? -1 : 1);
-        itemsList.forEach(item => item.parentElement.appendChild(item));
-
-        alphabet.querySelectorAll('li').forEach(el => {
-            el.addEventListener('mouseover', (e) => {
-                e.stopImmediatePropagation();
-                e.target.parentElement.querySelector('.active').classList.remove('active');
-                e.target.classList.add('active');
-                openCategoriesFoeAlphabet(listCategories)
-            })
-        })
-    })
-
-    function findImageHits(variants) {
-        for (let i = 0; i < variants.length; i++) {
-            if (variants[i].image != '') {
-                return variants[i].image
-            }
-        }
-    }
-
-    function initHits(hit) {
-        let variants = hit.variants,
-            count = 0;
-        for (let i = 0; i < variants.length; i++) {
-            if (variants[i].in_stock == true && variants[i].price != '0:00') {
-                count = i;
-                break;
-            } else {
-                count = i;
+        function findImageHits(variants) {
+            for (let i = 0; i < variants.length; i++) {
+                if (variants[i].image != '') {
+                    return variants[i].image
+                }
             }
         }
 
-        let boxItem = `
+        function initHits(hit) {
+            let variants = hit.variants,
+                count = 0;
+            for (let i = 0; i < variants.length; i++) {
+                if (variants[i].in_stock == true && variants[i].price != '0:00') {
+                    count = i;
+                    break;
+                } else {
+                    count = i;
+                }
+            }
+
+            let boxItem = `
       <div class="card">
-        <p class="status" style="display:${hit['variants'][count].in_stock==false || hit['variants'][count].price == '0:00'? 'block':'none'}">Out of Stock</p>
+        <p class="status" style="display:${hit['variants'][count].in_stock == false || hit['variants'][count].price == '0:00' ? 'block' : 'none'}">Out of Stock</p>
         <a class="card_name" href="https://medicalmega.com/product/${hit.seo}">
-          <img src="https://medicalmegaimgs.net/prod/uploaded/product/pro_thumb/${findImageHits(hit.variants) != '' ? findImageHits(hit.variants) : 'dummyimage.jpg' }" alt="${hit.name}">
+          <img src="https://medicalmegaimgs.net/prod/uploaded/product/pro_thumb/${findImageHits(hit.variants) != '' ? findImageHits(hit.variants) : 'dummyimage.jpg'}" alt="${hit.name}">
           <span title='${hit.name}'>${hit.name}</span>
         </a>
         <p class="card_item">Item #${hit.item_num}</p>
         <form action="https://medicalmega.com/cart.html" method="post">
-          <div class="flex-center-center calc" ${hit['variants'][count].in_stock==false || hit['variants'][count].price == '0:00' ? 'disabled' : ''}>
+          <div class="flex-center-center calc" ${hit['variants'][count].in_stock == false || hit['variants'][count].price == '0:00' ? 'disabled' : ''}>
             <button class="btn-calc btn-calc_minus" type="button" disabled=""></button>
             <input class="calc-qty" type="number" name="quantity" value="1" data-max-value="${hit['variants'][count].qty}">
             <button class="btn-calc btn-calc_plus" type="button"></button>
           </div>
-          ${hit['variants'][count].in_stock==false || hit['variants'][count].price == '0:00' ? '<button class="btn btn_white" type="button" data-button="notify"><span>Out of Stock</span></button>':'<button class="btn btn_dark add-cart" type="submit"><span>$<span class="pr" data-price="' + hit['variants'][count].price + '">' + hit['variants'][count].price + '</span> | Add to Cart</span></button>'}
+          ${hit['variants'][count].in_stock == false || hit['variants'][count].price == '0:00' ? '<button class="btn btn_white" type="button" data-button="notify"><span>Out of Stock</span></button>' : '<button class="btn btn_dark add-cart" type="submit"><span>$<span class="pr" data-price="' + hit['variants'][count].price + '">' + hit['variants'][count].price + '</span> | Add to Cart</span></button>'}
           <input type="hidden" name="product_variant_id" value="${hit['variants'][count].pv_id}">
-          <input type="hidden" name="product_id" value="${hit.objectID }">
+          <input type="hidden" name="product_id" value="${hit.objectID}">
           <input type="hidden" name="add_to_cart" value="variant">
           
         </form>
       </div>
     `
-        return boxItem
-    }
+            return boxItem
+        }
 
-    search.addWidgets([
-        instantsearch.widgets.configure({
-            hitsPerPage: '12',
-            enablePersonalization: true,
-        }),
-        instantsearch.widgets.searchBox({
-            container: '#form-search',
-            placeholder: 'Search by Name',
-            showLoadingIndicator: false,
-            searchAsYouType: false,
-            showSubmit: true,
-            showReset: true,
-            templates: {
-                loadingIndicator: '<img src="https://conversionratestore.github.io/projects/medicalmega/img/loading-buffering.gif" alt="icon loading">',
-            },
-        }),
-        instantsearch.widgets.infiniteHits({
-            container: '#hits',
-            escapeHTML: false,
-            templates: {
-                empty: `No Item Found`,
-                item: (hit) => initHits(hit)
-            },
-        }),
-
-        instantsearch.widgets.stats({
-            container: '#stats-container',
-            templates: {
-                text(data) {
-                    if (data.hasManyResults || data.hasOneResult) {
-                        return `${data.nbHits} items`;
-                    } else {
-                        return `no result`;
-                    }
+        search.addWidgets([
+            instantsearch.widgets.configure({
+                hitsPerPage: '12',
+                enablePersonalization: true,
+            }),
+            instantsearch.widgets.searchBox({
+                container: '#form-search',
+                placeholder: 'Search by Name',
+                showLoadingIndicator: false,
+                searchAsYouType: false,
+                showSubmit: true,
+                showReset: true,
+                templates: {
+                    loadingIndicator: '<img src="https://conversionratestore.github.io/projects/medicalmega/img/loading-buffering.gif" alt="icon loading">',
                 },
-            },
-        }),
-        instantsearch.widgets.refinementList({
-            container: '#manufacturer',
-            attribute: 'manufacturer',
-            limit: 7,
-            showMore: true,
-            // searchable: true,
-            showMoreLimit: 400,
-            sortBy: ['name:asc'],
-            templates: {
-                item: (data) => {
-                    let checkbox = `
+            }),
+            instantsearch.widgets.infiniteHits({
+                container: '#hits',
+                escapeHTML: false,
+                templates: {
+                    empty: `No Item Found`,
+                    item: (hit) => initHits(hit)
+                },
+            }),
+
+            instantsearch.widgets.stats({
+                container: '#stats-container',
+                templates: {
+                    text(data) {
+                        if (data.hasManyResults || data.hasOneResult) {
+                            return `${data.nbHits} items`;
+                        } else {
+                            return `no result`;
+                        }
+                    },
+                },
+            }),
+            instantsearch.widgets.refinementList({
+                container: '#manufacturer',
+                attribute: 'manufacturer',
+                limit: 7,
+                showMore: true,
+                // searchable: true,
+                showMoreLimit: 400,
+                sortBy: ['name:asc'],
+                templates: {
+                    item: (data) => {
+                        let checkbox = `
                           <label class="mt-16 align-items-center" onclick="pushDataLayer('Click on one of the brand items on filters','Filters')">
                             <span class="check"></span>
                             <span class="check_text">${data.value}<span class="count_brand">(${data.count})</span></span>
                           </label>
                       `;
-                    return checkbox
+                        return checkbox
+                    },
                 },
-            },
-        }),
-        instantsearch.widgets.refinementList({
-            container: '#price_group',
-            attribute: 'price_group',
-            limit: 10,
-            sortBy: ['name:asc'],
-            transformItems(items) {
-                return items.map(item => ({
-                    ...item,
-                    label: item.label.includes(' - ') ? `$${item.value.split(' - ')[0]} - $${item.value.split(' - ')[1]}` : `> $${item.value.split('> ')[1]}`,
-                }));
-            },
-            templates: {
-                item: (data) => {
-                    let checkbox = `
+            }),
+            instantsearch.widgets.refinementList({
+                container: '#price_group',
+                attribute: 'price_group',
+                limit: 10,
+                sortBy: ['name:asc'],
+                transformItems(items) {
+                    return items.map(item => ({
+                        ...item,
+                        label: item.label.includes(' - ') ? `$${item.value.split(' - ')[0]} - $${item.value.split(' - ')[1]}` : `> $${item.value.split('> ')[1]}`,
+                    }));
+                },
+                templates: {
+                    item: (data) => {
+                        let checkbox = `
                       <label class="mt-16 align-items-center" onclick="pushDataLayer('Click on one of the price items on filters','Filters')">
                           <span class="check"></span>
                           <span class="check_text">${data.label} <span class="count_brand">(${data.count})</span></span>
                       </label>
                     `;
 
-                    return checkbox
+                        return checkbox
+                    },
                 },
-            },
-        }),
+            }),
 
-        instantsearch.widgets.clearRefinements({
-            container: '#clear-refinements',
-            templates: {
-                resetLabel: `Clear All Filters ✕`,
-            },
-            excludedAttributes: [
-                'categories.lvl0',
-                'categories.lvl1',
-                'categories.lvl2',
-                'categories.lvl3',
-                'categories.lvl4',
-                'query',
-            ],
-        }),
-        instantsearch.widgets.hierarchicalMenu({
-            container: `#list_categories_ex`,
-            attributes: [
-                'categories.lvl0',
-                'categories.lvl1',
-                'categories.lvl2',
-                'categories.lvl3',
-                'categories.lvl4',
-            ],
-        }),
-        instantsearch.widgets.breadcrumb({
-            container: '#breadcrumbs',
-            attributes: [
-                'categories.lvl0',
-                'categories.lvl1',
-                'categories.lvl2',
-                'categories.lvl3',
-                'categories.lvl4',
-            ],
-            limit: 150,
-        }),
-        instantsearch.widgets.currentRefinements({
-            container: "#current-refinements",
-            excludedAttributes: [
-                'categories.lvl0',
-                'categories.lvl1',
-                'categories.lvl2',
-                'categories.lvl3',
-                'categories.lvl4',
-                'query',
-            ],
-            transformItems(items) {
-                return items.map(item => ({
-                    ...item,
-                    label: item.label == "manufacturer" ? item.label = "brands" : item.label == "price_group" ? item.label = "prices" : '',
-                    // refinements: item.refinements.label.includes
-                }));
-            }
-        }),
-        {
-            render({ searchMetadata = {} }) {
-                const { isSearchStalled } = searchMetadata
+            instantsearch.widgets.clearRefinements({
+                container: '#clear-refinements',
+                templates: {
+                    resetLabel: `Clear All Filters ✕`,
+                },
+                excludedAttributes: [
+                    'categories.lvl0',
+                    'categories.lvl1',
+                    'categories.lvl2',
+                    'categories.lvl3',
+                    'categories.lvl4',
+                    'query',
+                ],
+            }),
+            instantsearch.widgets.hierarchicalMenu({
+                container: `#list_categories_ex`,
+                attributes: [
+                    'categories.lvl0',
+                    'categories.lvl1',
+                    'categories.lvl2',
+                    'categories.lvl3',
+                    'categories.lvl4',
+                ],
+            }),
+            instantsearch.widgets.breadcrumb({
+                container: '#breadcrumbs',
+                attributes: [
+                    'categories.lvl0',
+                    'categories.lvl1',
+                    'categories.lvl2',
+                    'categories.lvl3',
+                    'categories.lvl4',
+                ],
+                limit: 150,
+            }),
+            instantsearch.widgets.currentRefinements({
+                container: "#current-refinements",
+                excludedAttributes: [
+                    'categories.lvl0',
+                    'categories.lvl1',
+                    'categories.lvl2',
+                    'categories.lvl3',
+                    'categories.lvl4',
+                    'query',
+                ],
+                transformItems(items) {
+                    return items.map(item => ({
+                        ...item,
+                        label: item.label == "manufacturer" ? item.label = "brands" : item.label == "price_group" ? item.label = "prices" : '',
+                        // refinements: item.refinements.label.includes
+                    }));
+                }
+            }),
+            {
+                render({searchMetadata = {}}) {
+                    const {isSearchStalled} = searchMetadata
 
-                if (isSearchStalled === false ) {
-                    console.log(isSearchStalled)
+                    if (isSearchStalled === false) {
+                        console.log(isSearchStalled)
 
-                    if (document.querySelector('#price_group li') != null) {
-                        let pricesContainer = document.querySelector('#price_group ul'),
-                            para = document.querySelectorAll('#price_group li');
+                        if (document.querySelector('#price_group li') != null) {
+                            let pricesContainer = document.querySelector('#price_group ul'),
+                                para = document.querySelectorAll('#price_group li');
 
-                        let paraArr = [].slice.call(para).sort(function (a, b) {
-                            return a.querySelector('.check_text').innerText.split(' -')[0].replace('$','') - b.querySelector('.check_text').innerText.split(' -')[0].replace('$','')
-                        });
-                        paraArr.forEach(function (p) {
-                            pricesContainer.appendChild(p);
-                        });
-                    }
-                    document.querySelector('#form-search input').addEventListener('blur', () => {
-                        document.querySelector('#form-search input').value = search.helper.state.query == 'undefined' ||  search.helper.state.query == '' ? '' : search.helper.state.query;
-                    });
-                    document.querySelector('.ais-SearchBox-reset').addEventListener('click', (e) => {
-                        e.stopImmediatePropagation()
-                        toggleListing(true)
-                        if (!e.target.classList.contains('reset')) {
-                            actionDataLayer = `Click on reset button`;
-                            labelDataLayer = 'Search by Name';
-                            pushDataLayer(actionDataLayer, labelDataLayer)
-                        } else {
-                            e.target.classList.remove('reset')
+                            let paraArr = [].slice.call(para).sort(function (a, b) {
+                                return a.querySelector('.check_text').innerText.split(' -')[0].replace('$', '') - b.querySelector('.check_text').innerText.split(' -')[0].replace('$', '')
+                            });
+                            paraArr.forEach(function (p) {
+                                pricesContainer.appendChild(p);
+                            });
                         }
-                    })
-
-                    if (window.location.pathname.includes('/category') && !window.location.pathname.includes('?products')) {
-                        // window.location.href = `https://medicalmega.com/?products%5BhierarchicalMenu%5D%5Bcategories.lvl0%5D%5B0%5D=${window.location.pathname.split('category/')[1].split('-').join(' ').split('%26').join('&')]}`
-                        search.helper.state.hierarchicalFacetsRefinements['categories.lvl0'] = [document.querySelector('title').innerHTML.split(' |')[0].split('&amp;').join('&')];
-                        search.refresh()
-                    }
-
-                    let crumbs = document.querySelectorAll('#breadcrumbs li');
-                    if (crumbs.length < 2) {
-                        document.querySelector('#breadcrumbs').style.opacity = '0';
-                        document.querySelector('.listing_title').innerHTML = 'All Products';
-                    } else {
-                        document.querySelector('#breadcrumbs').style = '';
-                        document.querySelector('.listing_title').innerHTML = document.querySelector('#breadcrumbs .ais-Breadcrumb-item.ais-Breadcrumb-item--selected').innerText.replace('>','')
-                    }
-
-                    if (document.querySelector('#manufacturer li') != null) {
-                        let element = document.querySelector('#manufacturer ul');
-                        element.addEventListener('scroll', (e) => {
-                            e.stopImmediatePropagation();
-                            scrolled(e.target)}
-                        );
-                    }
-                    if (document.querySelector('#manufacturer .ais-RefinementList-showMore') != null) {
-                        document.querySelector('#manufacturer .ais-RefinementList-showMore').addEventListener('click', (e) => {
-                            e.stopImmediatePropagation();
-                            actionDataLayer = `Click on ${e.target.innerText} button`;
-                            labelDataLayer = 'Filters';
-                            pushDataLayer(actionDataLayer, labelDataLayer);
-                            document.querySelector('#manufacturer ul').classList.toggle('scroll');
-                            e.target.innerText == 'Show more' ? document.querySelector('#manufacturer ul').classList.remove('scroll'): '';
+                        document.querySelector('#form-search input').addEventListener('blur', () => {
+                            document.querySelector('#form-search input').value = search.helper.state.query == 'undefined' || search.helper.state.query == '' ? '' : search.helper.state.query;
+                        });
+                        document.querySelector('.ais-SearchBox-reset').addEventListener('click', (e) => {
+                            e.stopImmediatePropagation()
+                            toggleListing(true)
+                            if (!e.target.classList.contains('reset')) {
+                                actionDataLayer = `Click on reset button`;
+                                labelDataLayer = 'Search by Name';
+                                pushDataLayer(actionDataLayer, labelDataLayer)
+                            } else {
+                                e.target.classList.remove('reset')
+                            }
                         })
-                    }
 
-                    document.querySelectorAll('.breadcrumbs li').forEach((crumb, index) => {
-                        crumb.addEventListener('click', (e) => {
-                            e.stopImmediatePropagation();
-                            actionDataLayer = `Click on crumb - ${e.target.innerText}`;
-                            labelDataLayer = 'Breadcrumbs';
-                            pushDataLayer(actionDataLayer, labelDataLayer);
-                        })
-                    })
+                        if (window.location.pathname.includes('/category') && !window.location.pathname.includes('?products')) {
+                            // window.location.href = `https://medicalmega.com/?products%5BhierarchicalMenu%5D%5Bcategories.lvl0%5D%5B0%5D=${window.location.pathname.split('category/')[1].split('-').join(' ').split('%26').join('&')]}`
+                            search.helper.state.hierarchicalFacetsRefinements['categories.lvl0'] = [document.querySelector('title').innerHTML.split(' |')[0].split('&amp;').join('&')];
+                            search.refresh()
+                        }
 
-                    if (document.querySelector('.ais-CurrentRefinements-delete')!= null) {
-                        document.querySelectorAll('.ais-CurrentRefinements-delete').forEach(item => {
-                            item.addEventListener('click', (e) => {
+                        let crumbs = document.querySelectorAll('#breadcrumbs li');
+                        if (crumbs.length < 2) {
+                            document.querySelector('#breadcrumbs').style.opacity = '0';
+                            document.querySelector('.listing_title').innerHTML = 'All Products';
+                        } else {
+                            document.querySelector('#breadcrumbs').style = '';
+                            document.querySelector('.listing_title').innerHTML = document.querySelector('#breadcrumbs .ais-Breadcrumb-item.ais-Breadcrumb-item--selected').innerText.replace('>', '')
+                        }
+
+                        if (document.querySelector('#manufacturer li') != null) {
+                            let element = document.querySelector('#manufacturer ul');
+                            element.addEventListener('scroll', (e) => {
+                                    e.stopImmediatePropagation();
+                                    scrolled(e.target)
+                                }
+                            );
+                        }
+                        if (document.querySelector('#manufacturer .ais-RefinementList-showMore') != null) {
+                            document.querySelector('#manufacturer .ais-RefinementList-showMore').addEventListener('click', (e) => {
                                 e.stopImmediatePropagation();
-                                actionDataLayer = `Click on cross button`;
-                                labelDataLayer = 'Current Refinements';
+                                actionDataLayer = `Click on ${e.target.innerText} button`;
+                                labelDataLayer = 'Filters';
+                                pushDataLayer(actionDataLayer, labelDataLayer);
+                                document.querySelector('#manufacturer ul').classList.toggle('scroll');
+                                e.target.innerText == 'Show more' ? document.querySelector('#manufacturer ul').classList.remove('scroll') : '';
+                            })
+                        }
+
+                        document.querySelectorAll('.breadcrumbs li').forEach((crumb, index) => {
+                            crumb.addEventListener('click', (e) => {
+                                e.stopImmediatePropagation();
+                                actionDataLayer = `Click on crumb - ${e.target.innerText}`;
+                                labelDataLayer = 'Breadcrumbs';
                                 pushDataLayer(actionDataLayer, labelDataLayer);
                             })
                         })
-                    }
-                    if (document.querySelector('.ais-ClearRefinements-button') != null) {
-                        document.querySelector('.ais-ClearRefinements-button').addEventListener('click', (e) => {
-                            e.stopImmediatePropagation();
 
-                            if (!e.target.classList.contains('action-clean')) {
-                                actionDataLayer = `Click on All Clear Filters button`;
-                                labelDataLayer = 'Filters';
-                                pushDataLayer(actionDataLayer, labelDataLayer)
-                            }
-                            e.target.classList.remove('action-clean');
-                        })
-                    }
-
-                }
-            },
-        },
-    ]);
-
-    search.start();
-
-    document.querySelectorAll('.category_popular li a').forEach((el) => {
-        el.addEventListener('click', (e) => {
-            actionDataLayer = `Click on category item - ${e.target.innerText}`;
-            labelDataLayer = 'Popular categories';
-            pushDataLayer(actionDataLayer, labelDataLayer);
-        })
-    })
-
-    if (window.location.href.includes('/search/') && !window.location.href.includes('?products')) {
-        search.helper.setQuery(window.location.href.split('/search/')[1].split('-').join(' ')) // this call resets the page
-            .setPage(search.helper.getPage()) // we re-apply the previous page
-            .search();
-    }
-
-    let dataButton = document.querySelectorAll('[data-button]'), // btn for open or bloc
-        closeBtn = document.querySelectorAll('[data-close]'); //btn close for hide popup or block
-
-    dataButton.forEach(item => {
-        item.addEventListener('click', (e) => {
-            toggleActive(item.getAttribute('data-button'))
-        })
-    })
-
-    closeBtn.forEach(item => {
-        item.addEventListener('click', (e) => {
-            toggleActive(item.getAttribute('data-close'),'close');
-            document.querySelectorAll('.select_option p.active').forEach(el => el.classList.remove('active'))
-
-            document.querySelector('.select_category ul li p').classList.add('active');
-            document.querySelector('.select_category .select_current').innerHTML = `<span>Select Category</span>`;
-            document.querySelector('.select_brand ul li p').classList.add('active');
-            document.querySelector('.select_brand .select_current').innerHTML = `<span>Select Manufacturer</span>`;
-        })
-    })
-
-    document.querySelector('.header .logo').addEventListener('click', (e) => {
-        actionDataLayer = `Click on logo`;
-        labelDataLayer = 'Header';
-        pushDataLayer(actionDataLayer, labelDataLayer);
-        window.location.href = currentPath;
-    })
-
-    document.addEventListener('click', (e) => {
-        if (!e.target.closest('.select')) remActiveSelect();
-        if (!e.target.closest('.nav_category')) {
-            document.querySelector(`.nav_category`).classList.remove('active');
-        }
-    })
-
-    window.addEventListener('scroll', (e) => {
-        remActiveSelect();
-        document.querySelector('.nav_category').classList.remove('active')
-        console.log(search.helper.state.query)
-        if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
-            if (document.querySelector('.listing_content .ais-InfiniteHits-loadMore') != null && document.querySelector('.listing_content .ais-InfiniteHits-loadMore.ais-InfiniteHits-loadMore--disabled') == null) {
-                let state = window.location.pathname.includes('/search/') ? window.location.pathname.split('search/')[1].split('-').join(' ') : '';
-                console.log(state)
-                document.querySelector('.listing_content .ais-InfiniteHits-loadMore').click();
-                // if (state == query && window.location.pathname.includes('/search/')) {
-                //   query = window.location.pathname.split('search/')[1].split('-').join(' ');
-                // }
-                // console.log(query)
-
-                // query = state;
-                // search._searchFunction(search.helper)
-            }
-        }
-    })
-
-    //select filter
-    document.querySelectorAll('.select_filter').forEach(el => {
-        el.querySelector('.select_item').addEventListener('click', (e) => {
-            el.classList.toggle('active');
-            actionDataLayer = `Click on ${e.target.innerText} button`;
-            labelDataLayer = 'Filter';
-            pushDataLayer(actionDataLayer, labelDataLayer)
-        })
-    })
-
-
-    document.querySelector('.advanced-search .btn').addEventListener('click', () => {
-        let categories = document.querySelector('.select_category .select_current').dataset.category;
-        let brand = document.querySelector('.select_brand .select_current').innerText.includes('Select') ? "" : `&products%5BrefinementList%5D%5Bmanufacturer%5D%5B0%5D=${document.querySelector('.select_brand .select_current').innerText}`;
-
-        let queryKeyword = document.querySelector('[name="search_keyword"]').value,
-            queryItem = document.querySelector('[name="search_item"]').value,
-            querySum = queryItem + (queryKeyword != '' && queryItem != '' ? ' ' : '') + queryKeyword;
-
-        let option = ``;
-        let crumbs = categories.split(':')[1].split(' > ');
-
-        for (let i = 0; i < crumbs.length; i++) {
-            option += `&products%5BhierarchicalMenu%5D%5Bcategories.lvl0%5D%5B${i}%5D=${crumbs[i]}`
-        }
-
-        actionDataLayer = `Click on submit button`;
-        labelDataLayer = 'Advanced Search';
-        pushDataLayer(actionDataLayer, labelDataLayer)
-        if (querySum != '' || brand != '' || !option.includes("*")) {
-            window.location.href = `https://medicalmega.com/?products%5Bquery%5D=${querySum}${brand}${!option.includes("*") ? option.split('&').join('%26') : ''}`;
-        }
-    })
-
-    document.querySelectorAll('.advanced-search input').forEach(input => {
-        input.addEventListener('click', (e) => {
-            actionDataLayer = `Click on ${e.target.placeholder}`;
-            labelDataLayer = 'Advanced Search';
-            pushDataLayer(actionDataLayer, labelDataLayer)
-        })
-
-        input.addEventListener('keypress', (e) => {
-            if (e.keyCode == '13') {
-                document.querySelector('.advanced-search .btn').click();
-            }
-        })
-    })
-
-    autocomplete('#form-search input', {hint: false, debug: false}, [
-        {
-            source: autocomplete.sources.hits(index, {hitsPerPage: 7, facetFilters: ["*"]}),
-            displayKey: 'name',
-            // openOnFocus: true,
-            onStateChange: false,
-
-            templates: {
-                suggestion: function(suggestion) {
-                    let sugTemplate = "<img src='https://medicalmegaimgs.net/prod/uploaded/product/pro_thumb/"+ (findImageHits(suggestion.variants) != '' ? findImageHits(suggestion.variants) : 'dummyimage.jpg') +"'/><div><p class='name'>"+ suggestion._highlightResult.name.value +"</p><p class='item_num'>Item #" + suggestion._highlightResult.item_num.value + "</p><p class='price'>$" + suggestion.price + "</p></div>"
-
-                    document.querySelector('#form-search .ais-SearchBox-submit').addEventListener('click', (e) => {
-                        e.stopImmediatePropagation()
-                        document.querySelector('.nav_category').classList.remove('active');
-                        search.helper.state.hierarchicalFacetsRefinements['categories.lvl0'] = [];
-                        if (document.querySelector('.advanced-search.active') != null) {
-                            document.querySelector('.advanced-search').classList.remove('active');
+                        if (document.querySelector('.ais-CurrentRefinements-delete') != null) {
+                            document.querySelectorAll('.ais-CurrentRefinements-delete').forEach(item => {
+                                item.addEventListener('click', (e) => {
+                                    e.stopImmediatePropagation();
+                                    actionDataLayer = `Click on cross button`;
+                                    labelDataLayer = 'Current Refinements';
+                                    pushDataLayer(actionDataLayer, labelDataLayer);
+                                })
+                            })
                         }
-                        toggleListing(true)
+                        if (document.querySelector('.ais-ClearRefinements-button') != null) {
+                            document.querySelector('.ais-ClearRefinements-button').addEventListener('click', (e) => {
+                                e.stopImmediatePropagation();
 
-                        actionDataLayer = `Click on submit button`;
-                        labelDataLayer = 'Search by Name';
-                        pushDataLayer(actionDataLayer, labelDataLayer)
-                    });
+                                if (!e.target.classList.contains('action-clean')) {
+                                    actionDataLayer = `Click on All Clear Filters button`;
+                                    labelDataLayer = 'Filters';
+                                    pushDataLayer(actionDataLayer, labelDataLayer)
+                                }
+                                e.target.classList.remove('action-clean');
+                            })
+                        }
 
-                    return sugTemplate;
+                    }
                 },
             },
+        ]);
+
+        search.start();
+
+        document.querySelectorAll('.category_popular li a').forEach((el) => {
+            el.addEventListener('click', (e) => {
+                actionDataLayer = `Click on category item - ${e.target.innerText}`;
+                labelDataLayer = 'Popular categories';
+                pushDataLayer(actionDataLayer, labelDataLayer);
+            })
+        })
+
+        if (window.location.href.includes('/search/') && !window.location.href.includes('?products')) {
+            search.helper.setQuery(window.location.href.split('/search/')[1].split('-').join(' ')) // this call resets the page
+                .setPage(search.helper.getPage()) // we re-apply the previous page
+                .search();
         }
-    ]).on('autocomplete:selected', function(event, suggestion, dataset) {
-        window.location.href = `https://medicalmega.com/product/${suggestion.seo}`
 
-        actionDataLayer = `Selected suggestion`;
-        labelDataLayer = 'Autocomplete Search by Name';
-        pushDataLayer(actionDataLayer, labelDataLayer)
-    })
+        let dataButton = document.querySelectorAll('[data-button]'), // btn for open or bloc
+            closeBtn = document.querySelectorAll('[data-close]'); //btn close for hide popup or block
 
-    document.querySelector('#form-search input').addEventListener('click', (e) => {
-        actionDataLayer = `Click on Search by Name`;
-        labelDataLayer = 'Header';
-        pushDataLayer(actionDataLayer, labelDataLayer)
-    })
+        dataButton.forEach(item => {
+            item.addEventListener('click', (e) => {
+                toggleActive(item.getAttribute('data-button'))
+            })
+        })
 
-    document.querySelector('.previous-version').addEventListener('click', (e) => {
-        document.querySelector('.main').style.display = 'none';
-        document.querySelector('#wrap').style.display = 'block';
-        document.querySelector('.style-main').remove();
-        actionDataLayer = `Click on ${e.target.innerText}`;
-        labelDataLayer = 'Header';
-        pushDataLayer(actionDataLayer, labelDataLayer)
-    })
-    document.querySelectorAll('.midbar_action').forEach(el => {
-        el.addEventListener('click', (e) => {
+        closeBtn.forEach(item => {
+            item.addEventListener('click', (e) => {
+                toggleActive(item.getAttribute('data-close'), 'close');
+                document.querySelectorAll('.select_option p.active').forEach(el => el.classList.remove('active'))
+
+                document.querySelector('.select_category ul li p').classList.add('active');
+                document.querySelector('.select_category .select_current').innerHTML = `<span>Select Category</span>`;
+                document.querySelector('.select_brand ul li p').classList.add('active');
+                document.querySelector('.select_brand .select_current').innerHTML = `<span>Select Manufacturer</span>`;
+            })
+        })
+
+        document.querySelector('.header .logo').addEventListener('click', (e) => {
+            actionDataLayer = `Click on logo`;
+            labelDataLayer = 'Header';
+            pushDataLayer(actionDataLayer, labelDataLayer);
+            window.location.href = currentPath;
+        })
+
+        document.addEventListener('click', (e) => {
+            if (!e.target.closest('.select')) remActiveSelect();
+            if (!e.target.closest('.nav_category')) {
+                document.querySelector(`.nav_category`).classList.remove('active');
+            }
+        })
+
+        window.addEventListener('scroll', (e) => {
+            remActiveSelect();
+            document.querySelector('.nav_category').classList.remove('active')
+            console.log(search.helper.state.query)
+            if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
+                if (document.querySelector('.listing_content .ais-InfiniteHits-loadMore') != null && document.querySelector('.listing_content .ais-InfiniteHits-loadMore.ais-InfiniteHits-loadMore--disabled') == null) {
+                    let state = window.location.pathname.includes('/search/') ? window.location.pathname.split('search/')[1].split('-').join(' ') : '';
+                    console.log(state)
+                    document.querySelector('.listing_content .ais-InfiniteHits-loadMore').click();
+                    // if (state == query && window.location.pathname.includes('/search/')) {
+                    //   query = window.location.pathname.split('search/')[1].split('-').join(' ');
+                    // }
+                    // console.log(query)
+
+                    // query = state;
+                    // search._searchFunction(search.helper)
+                }
+            }
+        })
+
+        //select filter
+        document.querySelectorAll('.select_filter').forEach(el => {
+            el.querySelector('.select_item').addEventListener('click', (e) => {
+                el.classList.toggle('active');
+                actionDataLayer = `Click on ${e.target.innerText} button`;
+                labelDataLayer = 'Filter';
+                pushDataLayer(actionDataLayer, labelDataLayer)
+            })
+        })
+
+
+        document.querySelector('.advanced-search .btn').addEventListener('click', () => {
+            let categories = document.querySelector('.select_category .select_current').dataset.category;
+            let brand = document.querySelector('.select_brand .select_current').innerText.includes('Select') ? "" : `&products%5BrefinementList%5D%5Bmanufacturer%5D%5B0%5D=${document.querySelector('.select_brand .select_current').innerText}`;
+
+            let queryKeyword = document.querySelector('[name="search_keyword"]').value,
+                queryItem = document.querySelector('[name="search_item"]').value,
+                querySum = queryItem + (queryKeyword != '' && queryItem != '' ? ' ' : '') + queryKeyword;
+
+            let option = ``;
+            let crumbs = categories.split(':')[1].split(' > ');
+
+            for (let i = 0; i < crumbs.length; i++) {
+                option += `&products%5BhierarchicalMenu%5D%5Bcategories.lvl0%5D%5B${i}%5D=${crumbs[i]}`
+            }
+
+            actionDataLayer = `Click on submit button`;
+            labelDataLayer = 'Advanced Search';
+            pushDataLayer(actionDataLayer, labelDataLayer)
+            if (querySum != '' || brand != '' || !option.includes("*")) {
+                window.location.href = `https://medicalmega.com/?products%5Bquery%5D=${querySum}${brand}${!option.includes("*") ? option.split('&').join('%26') : ''}`;
+            }
+        })
+
+        document.querySelectorAll('.advanced-search input').forEach(input => {
+            input.addEventListener('click', (e) => {
+                actionDataLayer = `Click on ${e.target.placeholder}`;
+                labelDataLayer = 'Advanced Search';
+                pushDataLayer(actionDataLayer, labelDataLayer)
+            })
+
+            input.addEventListener('keypress', (e) => {
+                if (e.keyCode == '13') {
+                    document.querySelector('.advanced-search .btn').click();
+                }
+            })
+        })
+
+        autocomplete('#form-search input', {hint: false, debug: false}, [
+            {
+                source: autocomplete.sources.hits(index, {hitsPerPage: 7, facetFilters: ["*"]}),
+                displayKey: 'name',
+                // openOnFocus: true,
+                onStateChange: false,
+
+                templates: {
+                    suggestion: function (suggestion) {
+                        let sugTemplate = "<img src='https://medicalmegaimgs.net/prod/uploaded/product/pro_thumb/" + (findImageHits(suggestion.variants) != '' ? findImageHits(suggestion.variants) : 'dummyimage.jpg') + "'/><div><p class='name'>" + suggestion._highlightResult.name.value + "</p><p class='item_num'>Item #" + suggestion._highlightResult.item_num.value + "</p><p class='price'>$" + suggestion.price + "</p></div>"
+
+                        document.querySelector('#form-search .ais-SearchBox-submit').addEventListener('click', (e) => {
+                            e.stopImmediatePropagation()
+                            document.querySelector('.nav_category').classList.remove('active');
+                            search.helper.state.hierarchicalFacetsRefinements['categories.lvl0'] = [];
+                            if (document.querySelector('.advanced-search.active') != null) {
+                                document.querySelector('.advanced-search').classList.remove('active');
+                            }
+                            toggleListing(true)
+
+                            actionDataLayer = `Click on submit button`;
+                            labelDataLayer = 'Search by Name';
+                            pushDataLayer(actionDataLayer, labelDataLayer)
+                        });
+
+                        return sugTemplate;
+                    },
+                },
+            }
+        ]).on('autocomplete:selected', function (event, suggestion, dataset) {
+            window.location.href = `https://medicalmega.com/product/${suggestion.seo}`
+
+            actionDataLayer = `Selected suggestion`;
+            labelDataLayer = 'Autocomplete Search by Name';
+            pushDataLayer(actionDataLayer, labelDataLayer)
+        })
+
+        document.querySelector('#form-search input').addEventListener('click', (e) => {
+            actionDataLayer = `Click on Search by Name`;
+            labelDataLayer = 'Header';
+            pushDataLayer(actionDataLayer, labelDataLayer)
+        })
+
+        document.querySelector('.previous-version').addEventListener('click', (e) => {
+            sessionStorage.setItem('old_version', 'true');
+            document.querySelector('.main').remove();
+            document.querySelector('.style-main').remove();
+            document.querySelector('#wrap').style.display = 'block';
             actionDataLayer = `Click on ${e.target.innerText}`;
             labelDataLayer = 'Header';
             pushDataLayer(actionDataLayer, labelDataLayer)
         })
-    })
+        document.querySelectorAll('.midbar_action').forEach(el => {
+            el.addEventListener('click', (e) => {
+                actionDataLayer = `Click on ${e.target.innerText}`;
+                labelDataLayer = 'Header';
+                pushDataLayer(actionDataLayer, labelDataLayer)
+            })
+        })
 
-    let requestNewProduct = index.search( {
-        facetFilters: ['categories.lvl0:New Products!'],
-        hitsPerPage: '4',
-    })
-    let requestOstomy = index.search('', {
-        facetFilters: ['categories.lvl0:Ostomy'],
-        hitsPerPage: '4'
-    })
-    let requestWoundCare = index.search('', {
-        facetFilters: ['categories.lvl0:Wound Care'],
-        hitsPerPage: '4',
+        let requestNewProduct = index.search({
+            facetFilters: ['categories.lvl0:New Products!'],
+            hitsPerPage: '4',
+        })
+        let requestOstomy = index.search('', {
+            facetFilters: ['categories.lvl0:Ostomy'],
+            hitsPerPage: '4'
+        })
+        let requestWoundCare = index.search('', {
+            facetFilters: ['categories.lvl0:Wound Care'],
+            hitsPerPage: '4',
 
-    })
-    Promise.all([requestNewProduct,requestOstomy,requestWoundCare]).then(res => {
-        document.querySelector('.listing_popular').insertAdjacentHTML('beforeend', `
+        })
+        Promise.all([requestNewProduct, requestOstomy, requestWoundCare]).then(res => {
+            document.querySelector('.listing_popular').insertAdjacentHTML('beforeend', `
         <div class="new-products">
           <h2>New Products!</h2>
           <p class="c-gray">${res[0].nbHits} items</p>
@@ -2362,54 +2366,54 @@ window.onload = function() {
           <a href="https://medicalmega.com/?products%5BhierarchicalMenu%5D%5Bcategories.lvl0%5D%5B0%5D=Wound%20Care" class="btn btn_white">Show More</a>
         </div>`);
 
-        for (let i = 0; i < 4; i++) {
-            document.querySelector(`.listing_popular .new-products ul`).insertAdjacentHTML('beforeend',`<li>${initHits(res[0].hits[i])}</li>`)
-            document.querySelector(`.listing_popular .ostomy ul`).insertAdjacentHTML('beforeend',`<li>${initHits(res[1].hits[i])}</li>`)
-            document.querySelector(`.listing_popular .wound-care ul`).insertAdjacentHTML('beforeend',`<li>${initHits(res[2].hits[i])}</li>`)
-        }
-        document.querySelectorAll('.listing_popular .btn_white').forEach(el => {
-            el.addEventListener('click', (e) => {
-                labelDataLayer = `${el.parentElement.querySelector('h2').innerText}`;
-                actionDataLayer = `Click on Show More`;
-                pushDataLayer(actionDataLayer, labelDataLayer)
-            })
-        })
-    });
-
-    //pdp
-    if (window.location.pathname.includes('/product/')) {
-        toggleListing(false); //hide listing
-
-        requestProduct.then(data => {
-            if (data.nbHits == 0) {
-                document.querySelector('.main').style.display = 'none';
-                document.querySelector('.style-main') != null ? document.querySelector('.style-main').remove() : '';
-                document.querySelector('#wrap').style.display = 'block';
-            } else {
-                let product = data.hits[0],
-                    firstVariant = product.variants[0];
-
-                let imagesProduct = firstVariant.images,
-                    categoriesHit = product.categories;
-
-                let categoryLvl = '';
-
-                let lastLvlCategories = categoriesHit[Object.keys(categoriesHit)[Object.keys(categoriesHit).length - 1]];
-
-                for (let j = 0; j < lastLvlCategories.length; j++) {
-                    if (lastLvlCategories[j] != null) {
-                        categoryLvl = `categories.lvl${Object.keys(categoriesHit).length - 1}:${lastLvlCategories[j]}`
-                    }
-                }
-                console.log(categoryLvl)
-                let requestSimilarProduct = index.search({
-                    facetFilters: [categoryLvl],
-                    // filters: categoryLvl,
-                    hitsPerPage: '4',
+            for (let i = 0; i < 4; i++) {
+                document.querySelector(`.listing_popular .new-products ul`).insertAdjacentHTML('beforeend', `<li>${initHits(res[0].hits[i])}</li>`)
+                document.querySelector(`.listing_popular .ostomy ul`).insertAdjacentHTML('beforeend', `<li>${initHits(res[1].hits[i])}</li>`)
+                document.querySelector(`.listing_popular .wound-care ul`).insertAdjacentHTML('beforeend', `<li>${initHits(res[2].hits[i])}</li>`)
+            }
+            document.querySelectorAll('.listing_popular .btn_white').forEach(el => {
+                el.addEventListener('click', (e) => {
+                    labelDataLayer = `${el.parentElement.querySelector('h2').innerText}`;
+                    actionDataLayer = `Click on Show More`;
+                    pushDataLayer(actionDataLayer, labelDataLayer)
                 })
+            })
+        });
 
-                //Available Options
-                let htmlAvailableOptions = `
+        //pdp
+        if (window.location.pathname.includes('/product/')) {
+            toggleListing(false); //hide listing
+
+            requestProduct.then(data => {
+                if (data.nbHits == 0) {
+                    document.querySelector('.main').style.display = 'none';
+                    document.querySelector('.style-main') != null ? document.querySelector('.style-main').remove() : '';
+                    document.querySelector('#wrap').style.display = 'block';
+                } else {
+                    let product = data.hits[0],
+                        firstVariant = product.variants[0];
+
+                    let imagesProduct = firstVariant.images,
+                        categoriesHit = product.categories;
+
+                    let categoryLvl = '';
+
+                    let lastLvlCategories = categoriesHit[Object.keys(categoriesHit)[Object.keys(categoriesHit).length - 1]];
+
+                    for (let j = 0; j < lastLvlCategories.length; j++) {
+                        if (lastLvlCategories[j] != null) {
+                            categoryLvl = `categories.lvl${Object.keys(categoriesHit).length - 1}:${lastLvlCategories[j]}`
+                        }
+                    }
+                    console.log(categoryLvl)
+                    let requestSimilarProduct = index.search({
+                        facetFilters: [categoryLvl],
+                        // filters: categoryLvl,
+                        hitsPerPage: '4',
+                    })
+
+                    //Available Options
+                    let htmlAvailableOptions = `
                 <div class="available-options"> 
                   <p class="fs-14 fw-semi">Available Options: </p> 
                   <div class="relative">
@@ -2417,26 +2421,26 @@ window.onload = function() {
                   </div>
                 </div>`;
 
-                function availableOptions() {
-                    let options = product.variants,
-                        label = ``;
-                    for (let i = 0; i < options.length; i++) {
-                        if (options[i].price != '0.00') {
-                            label += `<label><input class="checkbox" type="radio" name="radio" data-variant="${options[i].pv_id}" ${options[i].in_stock == false ? 'disabled' : ''}><span class="radio-check"><span>${options[i].extra}</span><span class="radio-check_price">$${options[i].price}</span></span></label>`;
+                    function availableOptions() {
+                        let options = product.variants,
+                            label = ``;
+                        for (let i = 0; i < options.length; i++) {
+                            if (options[i].price != '0.00') {
+                                label += `<label><input class="checkbox" type="radio" name="radio" data-variant="${options[i].pv_id}" ${options[i].in_stock == false ? 'disabled' : ''}><span class="radio-check"><span>${options[i].extra}</span><span class="radio-check_price">$${options[i].price}</span></span></label>`;
+                            }
                         }
+                        return label
                     }
-                    return label
-                }
 
-                function getSlidesImage() {
-                    let slides = ''
-                    for (let i = 0; i < imagesProduct.length; i++) {
-                        slides += `<div class="slide ${i==0?'active':''}"><img src="https://medicalmegaimgs.net/prod/uploaded/product/${imagesProduct[i]}" alt="image ${i}"> </div>`
+                    function getSlidesImage() {
+                        let slides = ''
+                        for (let i = 0; i < imagesProduct.length; i++) {
+                            slides += `<div class="slide ${i == 0 ? 'active' : ''}"><img src="https://medicalmegaimgs.net/prod/uploaded/product/${imagesProduct[i]}" alt="image ${i}"> </div>`
+                        }
+                        return slides
                     }
-                    return slides
-                }
 
-                let htmlProduct = `
+                    let htmlProduct = `
                 <div id="container-product" class="container">
                   <nav id="breadcrumbs-pdp" class="breadcrumbs">
                     <ul class="ais-Breadcrumb-list">
@@ -2482,8 +2486,8 @@ window.onload = function() {
                               <div class="content-item active">${firstVariant.desc}</div>
                             </div>
                           </div>
-                          <div class="product_sidebar ${firstVariant.in_stock == false ? 'disabled' :''}">
-                            ${firstVariant.in_stock == false ? '<p class="out-of-stick">Out Of Stock</p>' :''}
+                          <div class="product_sidebar ${firstVariant.in_stock == false ? 'disabled' : ''}">
+                            ${firstVariant.in_stock == false ? '<p class="out-of-stick">Out Of Stock</p>' : ''}
                             <div class="product_sidebar_top">
                               <div class="shipping_block">
                                   <div class="align-items-center"> 
@@ -2498,13 +2502,13 @@ window.onload = function() {
                               ${product.variants.length < 2 ? `<div class="flex-end-between fw-semi total"> <p class="fs-14">Price:</p><p class="fs-24">$<span class="pr-state">${firstVariant.price}</span></p> </div>` : htmlAvailableOptions}
                             </div>
                             <form action="https://medicalmega.com/cart.html" method="post">
-                                <div class="flex-center-center calc" ${firstVariant.in_stock==false || firstVariant.price == '0:00' ? 'disabled' : ''}> 
+                                <div class="flex-center-center calc" ${firstVariant.in_stock == false || firstVariant.price == '0:00' ? 'disabled' : ''}> 
                                   <button class="btn-calc btn-calc_minus" type="button" disabled></button>
                                   <input class="calc-qty" type="number" value="1" name="quantity">
                                   <button class="btn-calc btn-calc_plus" type="button"></button>
                                 </div>
                                 ${firstVariant.in_stock == false || firstVariant.price == '0:00' ? '<button class="btn btn btn_white" type="button" data-button="notify">Out of Stock</button>' : `<button class="btn btn_dark add-cart" type="submit" ><span hidden>$<span class="pr" data-price="${firstVariant.price}">${firstVariant.price}</span> | </span>Add to Cart</button>`}
-                                <input type="hidden" name="product_variant_id" value="${firstVariant.pv_id }">
+                                <input type="hidden" name="product_variant_id" value="${firstVariant.pv_id}">
                                 <input type="hidden" name="product_id" value="${product.objectID}">
                                 <input type="hidden" name="add_to_cart" value="variant">
                             </form>
@@ -2518,119 +2522,129 @@ window.onload = function() {
                     </section>
                   </div>`
 
-                document.querySelector('#container-listing').insertAdjacentHTML('beforebegin', htmlProduct);
+                    document.querySelector('#container-listing').insertAdjacentHTML('beforebegin', htmlProduct);
 
-                document.querySelector('.available-options .scroll-x') != null ? document.querySelector('.available-options .scroll-x').innerHTML = availableOptions() : '';
+                    document.querySelector('.available-options .scroll-x') != null ? document.querySelector('.available-options .scroll-x').innerHTML = availableOptions() : '';
 
-                let tabs = document.querySelectorAll('.tabs-discription li'), //tabs description
-                    contents = document.querySelectorAll('.content-discription .content-item'), // content discription
-                    slidesFor = document.querySelectorAll('.slider-for .slide'); //slider main
-                slidesNav = document.querySelectorAll('.slider-nav .slide'); //slider main
+                    let tabs = document.querySelectorAll('.tabs-discription li'), //tabs description
+                        contents = document.querySelectorAll('.content-discription .content-item'), // content discription
+                        slidesFor = document.querySelectorAll('.slider-for .slide'); //slider main
+                    slidesNav = document.querySelectorAll('.slider-nav .slide'); //slider main
 
-                tabs.forEach((tab,i) => {
-                    tab.addEventListener('click', () => {
-                        tab.parentElement.querySelector('.active').classList.remove('active');
-                        contents[i].parentElement.querySelector('.active').classList.remove('active');
-                        tab.classList.add('active');
-                        contents[i].classList.add('active');
-                        actionDataLayer = `Click at the ${tab.innerText} tab`;
-                        labelDataLayer = `Product section`;
-                        pushDataLayer(actionDataLayer, labelDataLayer)
+                    tabs.forEach((tab, i) => {
+                        tab.addEventListener('click', () => {
+                            tab.parentElement.querySelector('.active').classList.remove('active');
+                            contents[i].parentElement.querySelector('.active').classList.remove('active');
+                            tab.classList.add('active');
+                            contents[i].classList.add('active');
+                            actionDataLayer = `Click at the ${tab.innerText} tab`;
+                            labelDataLayer = `Product section`;
+                            pushDataLayer(actionDataLayer, labelDataLayer)
 
+                        })
                     })
-                })
-                //slider zoom
-                slidesFor.forEach((el) => {
-                    el.addEventListener('mousemove', (e) => {
-                        document.querySelector('.img-zoom-result').style.visibility = 'visible';
-                        document.querySelector('.img-zoom-lens').style.visibility = 'visible';
+                    //slider zoom
+                    slidesFor.forEach((el) => {
+                        el.addEventListener('mousemove', (e) => {
+                            document.querySelector('.img-zoom-result').style.visibility = 'visible';
+                            document.querySelector('.img-zoom-lens').style.visibility = 'visible';
+                        })
+                        el.addEventListener('mouseout', (e) => {
+                            document.querySelector('.img-zoom-result').style.visibility = 'hidden';
+                            document.querySelector('.img-zoom-lens').style.visibility = 'hidden';
+                        })
                     })
-                    el.addEventListener('mouseout', (e) => {
-                        document.querySelector('.img-zoom-result').style.visibility = 'hidden';
-                        document.querySelector('.img-zoom-lens').style.visibility = 'hidden';
+
+                    //slider nav
+                    slidesNav.forEach((el, i) => {
+                        el.addEventListener('click', () => {
+                            el.closest('.slider-nav').querySelector('.active').classList.remove('active');
+                            el.classList.add('active');
+
+                            let src = el.querySelector('img').getAttribute('src');
+                            document.querySelector('.slider-for_img').setAttribute('src', src)
+                            document.querySelector('.img-zoom-result').style.backgroundImage = `url("${src}")`
+                        })
                     })
-                })
 
-                //slider nav
-                slidesNav.forEach((el,i) => {
-                    el.addEventListener('click', () => {
-                        el.closest('.slider-nav').querySelector('.active').classList.remove('active');
-                        el.classList.add('active');
+                    //zoom
+                    function setImageZoom(imgID, resultID) {
+                        let img, lens, result, cx, cy;
+                        img = document.getElementById(imgID);
+                        result = document.getElementById(resultID);
+                        /*create lens:*/
+                        lens = document.createElement("DIV");
+                        lens.setAttribute("class", "img-zoom-lens");
+                        /*insert lens:*/
+                        img.parentElement.insertBefore(lens, img);
+                        /*calculate the ratio between result DIV and lens:*/
+                        cx = result.offsetWidth / lens.offsetWidth;
+                        cy = result.offsetHeight / lens.offsetHeight;
+                        /*set background properties for the result DIV:*/
+                        result.style.backgroundImage = "url('" + img.src + "')";
+                        result.style.backgroundSize = (img.width * cx) + "px " + (img.height * cy) + "px";
+                        /*execute a function when someone moves the cursor over the image, or the lens:*/
+                        lens.addEventListener("mousemove", moveLens);
+                        img.addEventListener("mousemove", moveLens);
+                        /*and also for touch screens:*/
+                        lens.addEventListener("touchmove", moveLens);
+                        img.addEventListener("touchmove", moveLens);
 
-                        let src = el.querySelector('img').getAttribute('src');
-                        document.querySelector('.slider-for_img').setAttribute('src',src)
-                        document.querySelector('.img-zoom-result').style.backgroundImage = `url("${src}")`
-                    })
-                })
+                        function moveLens(e) {
+                            var pos, x, y;
+                            /*prevent any other actions that may occur when moving over the image:*/
+                            e.preventDefault();
+                            /*get the cursor's x and y positions:*/
+                            pos = getCursorPos(e);
+                            /*calculate the position of the lens:*/
+                            x = pos.x - (lens.offsetWidth / 2);
+                            y = pos.y - (lens.offsetHeight / 2);
+                            /*prevent the lens from being positioned outside the image:*/
+                            if (x > img.width - lens.offsetWidth) {
+                                x = img.width - lens.offsetWidth;
+                            }
+                            if (x < 0) {
+                                x = 0;
+                            }
+                            if (y > img.height - lens.offsetHeight) {
+                                y = img.height - lens.offsetHeight;
+                            }
+                            if (y < 0) {
+                                y = 0;
+                            }
+                            /*set the position of the lens:*/
+                            lens.style.left = x + "px";
+                            lens.style.top = y + "px";
+                            /*display what the lens "sees":*/
+                            result.style.backgroundPosition = "-" + (x * cx) + "px -" + (y * cy) + "px";
+                        }
 
-                //zoom
-                function setImageZoom(imgID, resultID) {
-                    let img, lens, result, cx, cy;
-                    img = document.getElementById(imgID);
-                    result = document.getElementById(resultID);
-                    /*create lens:*/
-                    lens = document.createElement("DIV");
-                    lens.setAttribute("class", "img-zoom-lens");
-                    /*insert lens:*/
-                    img.parentElement.insertBefore(lens, img);
-                    /*calculate the ratio between result DIV and lens:*/
-                    cx = result.offsetWidth / lens.offsetWidth;
-                    cy = result.offsetHeight / lens.offsetHeight;
-                    /*set background properties for the result DIV:*/
-                    result.style.backgroundImage = "url('" + img.src + "')";
-                    result.style.backgroundSize = (img.width * cx) + "px " + (img.height * cy) + "px";
-                    /*execute a function when someone moves the cursor over the image, or the lens:*/
-                    lens.addEventListener("mousemove", moveLens);
-                    img.addEventListener("mousemove", moveLens);
-                    /*and also for touch screens:*/
-                    lens.addEventListener("touchmove", moveLens);
-                    img.addEventListener("touchmove", moveLens);
-                    function moveLens(e) {
-                        var pos, x, y;
-                        /*prevent any other actions that may occur when moving over the image:*/
-                        e.preventDefault();
-                        /*get the cursor's x and y positions:*/
-                        pos = getCursorPos(e);
-                        /*calculate the position of the lens:*/
-                        x = pos.x - (lens.offsetWidth / 2);
-                        y = pos.y - (lens.offsetHeight / 2);
-                        /*prevent the lens from being positioned outside the image:*/
-                        if (x > img.width - lens.offsetWidth) {x = img.width - lens.offsetWidth;}
-                        if (x < 0) {x = 0;}
-                        if (y > img.height - lens.offsetHeight) {y = img.height - lens.offsetHeight;}
-                        if (y < 0) {y = 0;}
-                        /*set the position of the lens:*/
-                        lens.style.left = x + "px";
-                        lens.style.top = y + "px";
-                        /*display what the lens "sees":*/
-                        result.style.backgroundPosition = "-" + (x * cx) + "px -" + (y * cy) + "px";
+                        function getCursorPos(e) {
+                            var a, x = 0, y = 0;
+                            e = e || window.event;
+                            /*get the x and y positions of the image:*/
+                            a = img.getBoundingClientRect();
+                            /*calculate the cursor's x and y coordinates, relative to the image:*/
+                            x = e.pageX - a.left;
+                            y = e.pageY - a.top;
+                            /*consider any page scrolling:*/
+                            x = x - window.pageXOffset;
+                            y = y - window.pageYOffset;
+                            return {x: x, y: y};
+                        }
                     }
-                    function getCursorPos(e) {
-                        var a, x = 0, y = 0;
-                        e = e || window.event;
-                        /*get the x and y positions of the image:*/
-                        a = img.getBoundingClientRect();
-                        /*calculate the cursor's x and y coordinates, relative to the image:*/
-                        x = e.pageX - a.left;
-                        y = e.pageY - a.top;
-                        /*consider any page scrolling:*/
-                        x = x - window.pageXOffset;
-                        y = y - window.pageYOffset;
-                        return {x : x, y : y};
-                    }
-                }
 
-                let startZoom = setInterval(() => {
-                    if (document.querySelector('#zoomResult') != null && document.querySelector('#forImg') != null) {
-                        clearInterval(startZoom)
-                        setImageZoom("forImg", "zoomResult")
-                    }
-                }, 200);
+                    let startZoom = setInterval(() => {
+                        if (document.querySelector('#zoomResult') != null && document.querySelector('#forImg') != null) {
+                            clearInterval(startZoom)
+                            setImageZoom("forImg", "zoomResult")
+                        }
+                    }, 200);
 
-                if (product.variants.length > 2) {
-                    let contentAvailableOptions = document.querySelector('.product_sidebar .available-options .justify-content-between');
+                    if (product.variants.length > 2) {
+                        let contentAvailableOptions = document.querySelector('.product_sidebar .available-options .justify-content-between');
 
-                    contentAvailableOptions.insertAdjacentHTML('beforebegin',`
+                        contentAvailableOptions.insertAdjacentHTML('beforebegin', `
                       <div class="arrow_buttons">
                           <button class="arrow_button arrow_button_prev" type="button" disabled>
                               <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -2644,87 +2658,88 @@ window.onload = function() {
                           </button>
                       </div>`)
 
-                    document.querySelectorAll('.arrow_button').forEach(arrow => {
-                        arrow.addEventListener('click', () => {
-                            actionDataLayer = 'Click on arrow-slide button';
-                            labelDataLayer = 'Product section';
+                        document.querySelectorAll('.arrow_button').forEach(arrow => {
+                            arrow.addEventListener('click', () => {
+                                actionDataLayer = 'Click on arrow-slide button';
+                                labelDataLayer = 'Product section';
+                                pushDataLayer(actionDataLayer, labelDataLayer)
+                            })
+                        })
+
+                        let linkCustom = document.createElement('link');
+                        linkCustom.href = 'https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.3/tiny-slider.css';
+                        linkCustom.rel = 'stylesheet';
+                        document.head.appendChild(linkCustom);
+
+                        let scriptCustom = document.createElement('script');
+                        scriptCustom.src = 'https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.3/min/tiny-slider.js';
+                        scriptCustom.async = false;
+                        document.body.appendChild(scriptCustom);
+
+                        let startInterval = setInterval(() => {
+                            if (contentAvailableOptions != null) {
+                                if (document.querySelector('.tns-outer') != null) {
+                                    clearInterval(startInterval)
+                                } else {
+                                    let sliderCategories = tns({
+                                        container: contentAvailableOptions,
+                                        items: 2,
+                                        axis: 'horizontal',
+                                        controls: true,
+                                        loop: false,
+                                        prevButton: document.querySelector('.arrow_button_prev'),
+                                        nextButton: document.querySelector('.arrow_button_next'),
+                                        autoplayButton: false,
+                                        autoplayButtonOutput: false,
+                                        mouseDrag: true,
+                                        nav: false,
+                                        // autoWidth: true,
+                                        preventScrollOnTouch: 'auto',
+                                        swipeAngle: false,
+                                    });
+                                    clearInterval(startInterval)
+                                }
+                            }
+                        }, 200)
+                    }
+
+                    //checkbox choice
+                    document.querySelectorAll('.available-options .checkbox').forEach((checkbox, index) => {
+                        if (index == 0) {
+                            checkbox.checked = true
+                        }
+                        checkbox.addEventListener('change', (e) => {
+                            if (checkbox.checked) {
+                                let optionPrice = checkbox.nextElementSibling.querySelector('.radio-check_price').innerText.replace('$', ''),
+                                    qty = document.querySelector('.product_sidebar .calc-qty'),
+                                    priceProduct = document.querySelector('.product_sidebar .add-cart .pr');
+
+                                document.querySelector('.product_sidebar [name="product_variant_id"]').value = checkbox.dataset.variant;
+                                priceProduct.dataset.price = optionPrice;
+
+                                priceProduct.innerHTML = (+optionPrice * +qty.value).toFixed(2);
+                                if (qty.value == '') {
+                                    priceProduct.innerHTML = optionPrice
+                                }
+                            }
+                            actionDataLayer = 'Click on available options';
+                            labelDataLayer = 'PDP';
                             pushDataLayer(actionDataLayer, labelDataLayer)
                         })
                     })
 
-                    let linkCustom = document.createElement('link');
-                    linkCustom.href = 'https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.3/tiny-slider.css';
-                    linkCustom.rel = 'stylesheet';
-                    document.head.appendChild(linkCustom);
+                    requestSimilarProduct.then(res => {
+                        let hits = res.hits;
 
-                    let scriptCustom = document.createElement('script');
-                    scriptCustom.src = 'https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.3/min/tiny-slider.js';
-                    scriptCustom.async = false;
-                    document.body.appendChild(scriptCustom);
-
-                    let startInterval = setInterval(() => {
-                        if (contentAvailableOptions != null) {
-                            if (document.querySelector('.tns-outer') != null) {
-                                clearInterval(startInterval)
-                            } else {
-                                let sliderCategories = tns({
-                                    container: contentAvailableOptions,
-                                    items: 2,
-                                    axis: 'horizontal',
-                                    controls: true,
-                                    loop: false,
-                                    prevButton: document.querySelector('.arrow_button_prev'),
-                                    nextButton: document.querySelector('.arrow_button_next'),
-                                    autoplayButton: false,
-                                    autoplayButtonOutput: false,
-                                    mouseDrag: true,
-                                    nav: false,
-                                    // autoWidth: true,
-                                    preventScrollOnTouch: 'auto',
-                                    swipeAngle: false,
-                                });
-                                clearInterval(startInterval)
+                        if (hits.length > 0) {
+                            for (let i = 0; i < hits.length; i++) {
+                                document.querySelector('.cards_similar').insertAdjacentHTML('beforeend', initHits(hits[i]))
                             }
                         }
-                    }, 200)
-                }
-
-                //checkbox choice
-                document.querySelectorAll('.available-options .checkbox').forEach((checkbox, index) => {
-                    if (index == 0) {
-                        checkbox.checked = true
-                    }
-                    checkbox.addEventListener('change', (e) => {
-                        if (checkbox.checked) {
-                            let optionPrice = checkbox.nextElementSibling.querySelector('.radio-check_price').innerText.replace('$',''),
-                                qty = document.querySelector('.product_sidebar .calc-qty'),
-                                priceProduct = document.querySelector('.product_sidebar .add-cart .pr');
-
-                            document.querySelector('.product_sidebar [name="product_variant_id"]').value = checkbox.dataset.variant;
-                            priceProduct.dataset.price = optionPrice;
-
-                            priceProduct.innerHTML = (+optionPrice * +qty.value).toFixed(2);
-                            if (qty.value == '') {
-                                priceProduct.innerHTML = optionPrice
-                            }
-                        }
-                        actionDataLayer = 'Click on available options';
-                        labelDataLayer = 'PDP';
-                        pushDataLayer(actionDataLayer, labelDataLayer)
                     })
-                })
-
-                requestSimilarProduct.then(res => {
-                    let hits = res.hits;
-
-                    if (hits.length > 0) {
-                        for (let i = 0; i < hits.length; i++) {
-                            document.querySelector('.cards_similar').insertAdjacentHTML('beforeend', initHits(hits[i]))
-                        }
-                    }
-                })
-            }
-        })
+                }
+            })
+        }
     }
 };
 
