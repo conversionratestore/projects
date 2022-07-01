@@ -100,7 +100,7 @@ p.work_place {
 /* JS: Common */
 
 // Check what page we are on
-const isPDP = window.location.pathname.includes('for-people')
+let isPDP = window.location.pathname.includes('for-people')
 
 // Get random items from array
 const getRandomItems = (arr, num) => arr.sort(() => Math.random() - 0.5).slice(0, num)
@@ -1489,8 +1489,8 @@ if (isPDP) { /* 'For People' Page  */
             position: relative;
         }
         
-        #colophon::before {
-            content: '';
+        #colophon .my_opacity  {            
+            display: block;
             position: absolute;
             width: 100%;
             height: 100%;
@@ -1498,6 +1498,7 @@ if (isPDP) { /* 'For People' Page  */
             left: 0;
             z-index: 1;
             background: linear-gradient(180deg, #FFFFFF 0.21%, rgba(255, 255, 255, 0) 20%);
+            pointer-events: none;
         }
 
         .acsb-trigger {
@@ -1518,6 +1519,17 @@ if (isPDP) { /* 'For People' Page  */
             clearInterval(waitForContent)
 
             document.querySelector('.post-content').insertAdjacentHTML('afterbegin', nearTemplate)
+
+        }
+    }, intervalTimeout);
+
+    const waitForFooter = setInterval(() => {
+        if (document.getElementById('colophon')) {
+            clearInterval(waitForFooter)
+
+            console.log('asdasd');
+
+            document.getElementById('colophon').insertAdjacentHTML('afterbegin', `<div class="my_opacity"><div>`)
 
         }
     }, intervalTimeout);
