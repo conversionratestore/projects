@@ -1201,8 +1201,7 @@ const nearJobs = {
         ],
         [
             'Concession Cashier',
-            'EST $XXX',
-            '',
+            'EST $XXX',            
             '$15/h', 'XXX a.m. - XXX p.m',
             'Miami Beach Convention Center',
             ['star', 'star', 'star', 'star', 'star-half'],
