@@ -1783,9 +1783,9 @@ window.onload = function() {
                 let crumbs = key.split(' > ');
 
                 for (let i = 0; i < crumbs.length; i++) {
-                    breabcrumbs += `&products%5BhierarchicalMenu%5D%5Bcategories.lvl0%5D%5B${i}%5D=${crumbs[i].split('&').join('%26')}`
+                    breabcrumbs += `&products%5BhierarchicalMenu%5D%5Bcategories.lvl0%5D%5B${i}%5D=${crumbs[i]}`
                 }
-                item.insertAdjacentHTML('beforeend', `<li><a href="https://medicalmega.com/?${breabcrumbs}">${crumbs[crumbs.length - 1]}</a> <ul data-bread="${key}" class="lvl${lvl}"></ul></li>`)
+                item.insertAdjacentHTML('beforeend', `<li><a href="https://medicalmega.com/?${breabcrumbs.split('&').join('%26')}">${crumbs[crumbs.length - 1]}</a> <ul data-bread="${key}" class="lvl${lvl}"></ul></li>`)
             }
         }
 
@@ -2244,7 +2244,7 @@ window.onload = function() {
         labelDataLayer = 'Advanced Search';
         pushDataLayer(actionDataLayer, labelDataLayer)
         if (querySum != '' || brand != '' || !option.includes("*")) {
-            window.location.href = `https://medicalmega.com/?products%5Bquery%5D=${querySum}${brand}${!option.includes("*") ? option : ''}`;
+            window.location.href = `https://medicalmega.com/?products%5Bquery%5D=${querySum}${brand}${!option.includes("*") ? option.split('&').join('%26') : ''}`;
         }
     })
 
