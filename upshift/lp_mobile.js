@@ -1486,11 +1486,13 @@ if (isPDP) { /* 'For People' Page  */
         }
 
         #colophon {
-            position: relative;
+            position: relative !important;
+            display: block !important;
+            height: 100% !important;
         }
         
-        #colophon .my_opacity  {            
-            display: block;
+        #colophon::before {            
+            content: '';
             position: absolute;
             width: 100%;
             height: 100%;
@@ -1522,18 +1524,6 @@ if (isPDP) { /* 'For People' Page  */
 
         }
     }, intervalTimeout);
-
-    const waitForFooter = setInterval(() => {
-        if (document.getElementById('colophon')) {
-            clearInterval(waitForFooter)
-
-            console.log('asdasd');
-
-            document.getElementById('colophon').insertAdjacentHTML('afterbegin', `<div class="my_opacity"><div>`)
-
-        }
-    }, intervalTimeout);
-
 }
 
 callEvent('loaded')
