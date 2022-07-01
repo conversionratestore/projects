@@ -1601,7 +1601,6 @@ let requestProduct = new Promise((resolve, reject) => {
 
 //push dataLayer
 function pushDataLayer(actionDataLayer, labelDataLayer) {
-    console.log(actionDataLayer + ' : ' + labelDataLayer)
     window.dataLayer = window.dataLayer || [];
     dataLayer.push({
         'event': 'event-to-ga',
@@ -1833,7 +1832,6 @@ window.onload = function() {
                 el.addEventListener('click', (e) => {
                     e.preventDefault()
                     let link = el.href.split('20&').join('20%26');
-                    console.log(link)
                     window.location.href = link;
                     actionDataLayer = `Click on category item - ${el.innerText}`;
                     labelDataLayer = `All categories`;
@@ -2209,19 +2207,9 @@ window.onload = function() {
         window.addEventListener('scroll', (e) => {
             remActiveSelect();
             document.querySelector('.nav_category').classList.remove('active')
-            console.log(search.helper.state.query)
             if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
                 if (document.querySelector('.listing_content .ais-InfiniteHits-loadMore') != null && document.querySelector('.listing_content .ais-InfiniteHits-loadMore.ais-InfiniteHits-loadMore--disabled') == null) {
-                    let state = window.location.pathname.includes('/search/') ? window.location.pathname.split('search/')[1].split('-').join(' ') : '';
-                    console.log(state)
                     document.querySelector('.listing_content .ais-InfiniteHits-loadMore').click();
-                    // if (state == query && window.location.pathname.includes('/search/')) {
-                    //   query = window.location.pathname.split('search/')[1].split('-').join(' ');
-                    // }
-                    // console.log(query)
-
-                    // query = state;
-                    // search._searchFunction(search.helper)
                 }
             }
         })
@@ -2416,12 +2404,12 @@ window.onload = function() {
 
                     //Available Options
                     let htmlAvailableOptions = `
-                <div class="available-options"> 
-                  <p class="fs-14 fw-semi">Available Options: </p> 
-                  <div class="relative">
-                    <div class="justify-content-between scroll-x"></div>
-                  </div>
-                </div>`;
+                    <div class="available-options"> 
+                      <p class="fs-14 fw-semi">Available Options: </p> 
+                      <div class="relative">
+                        <div class="justify-content-between scroll-x"></div>
+                      </div>
+                    </div>`;
 
                     function availableOptions() {
                         let options = product.variants,
