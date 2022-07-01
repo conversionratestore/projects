@@ -1808,10 +1808,10 @@ window.onload = function() {
             document.querySelectorAll('#list_categories .lvl2').forEach(item => setLinkCategory(key, item,3))
         }
         for (let key in categoriesLvl3) {
-            document.querySelectorAll('#list_categories .lvl3').forEach(item =>  setLinkCategory(key, item,4))
+            document.querySelectorAll('#list_categories .lvl3').forEach(item => setLinkCategory(key, item,4))
         }
         for (let key in categoriesLvl4) {
-            document.querySelectorAll('#list_categories .lvl4').forEach(item =>  setLinkCategory(key, item,5))
+            document.querySelectorAll('#list_categories .lvl4').forEach(item => setLinkCategory(key, item,5))
         }
 
         for (let key in brand) {
