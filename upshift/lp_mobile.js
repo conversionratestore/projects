@@ -109,7 +109,13 @@ const intervalTimeout = 200
 
 // dataLayer
 const callEvent = (eventAction, eventLabel = '') => {
-    console.log(eventAction);
+    if (!eventLabel) {
+        console.group('eventAction: ', eventAction);
+    } else {
+        console.group('eventAction: ', eventAction);
+        console.log('eventLabel: ', eventLabel)
+        console.groupEnd()
+    }
 
     window.dataLayer = window.dataLayer || [];
     dataLayer.push({
@@ -1000,7 +1006,6 @@ if (isPDP) { /* 'For People' Page  */
         }
 
         .popular button {
-            margin-top: 40px;
             margin-bottom: 10px;
         }
 
@@ -1080,21 +1085,26 @@ if (isPDP) { /* 'For People' Page  */
                         autoplayTimeout: 5000,
                     })
 
+                    // start autoplay, when slider is visible
                     slider.pause()
-
                     playSlider(slider)
 
+                    // add dataLayer events
+                    slider.events.on('touchEnd', () => {
+                        callEvent('Swipe Slider', 'Dragging')
+                    })
 
-                    // slider.events.on('indexChanged', () => {
-                    //     window.dataLayer = window.dataLayer || []
-                    //     dataLayer.push({
-                    //         'event': 'event-to-ga',
-                    //         'eventCategory': '',
-                    //         'eventAction': 'Swipe slider',
-                    //         'eventLabel': '',
-                    //     })
-                    // })
+                    let waitForBullets = setInterval(() => {
+                        if (document.querySelector('.tns-nav')) {
+                            clearInterval(waitForBullets)
 
+                            document.querySelector('.tns-nav').addEventListener('click', (e) => {
+                                if (e.target.closest('.tns-nav button')) {
+                                    callEvent('Swipe Slider', 'Click on a bullet')
+                                }
+                            })
+                        }
+                    }, intervalTimeout);
                 }
             }, intervalTimeout);
 
@@ -1107,16 +1117,16 @@ if (isPDP) { /* 'For People' Page  */
                     const select = document.getElementById('area_select')
 
                     // This defines what happens when the user tries to submit the data
-                    document.querySelector('#area_form button').addEventListener('click', (e) => {
-                        // e.preventDefault()
-
-                        if (select.value === '') {
-                            form.classList.add('show_error')
-                        } else {
-                            signLogic()
-                        }
-
+                    document.querySelector('#area_form button').addEventListener('click', () => {
                         callEvent('Click on Get Started button')
+
+                        if (select.value !== '') {
+                            signLogic()
+                        } else {
+                            form.classList.add('show_error')
+
+                            callEvent('Validation failed')
+                        }
                     });
 
                     select.addEventListener('change', () => {
@@ -1153,10 +1163,19 @@ if (isPDP) { /* 'For People' Page  */
                                 else {
                                     accordionBody.style.maxHeight = 0;
                                 }
+
+                                callEvent('Clicks on locations', accordionHeader.innerText + ' header')
                             }
 
                             if (e.target.closest('.accordion_item_body_element .sign')) {
-                                signLogic()
+                                const clickedCity = e.target.closest('.accordion_item_body_element .sign').previousElementSibling.innerText
+
+
+                                const state = e.target.closest('.accordion_item').querySelector('.accordion_item_header p').innerText
+
+                                callEvent('Clicks on locations', clickedCity + ' sign up')
+
+                                // signLogic()
                             }
                         })
                     });
@@ -1192,6 +1211,8 @@ if (isPDP) { /* 'For People' Page  */
                                 signLogic()
                             } else { // Scroll to Sign Form                            
                                 form.classList.add('show_error')
+
+                                callEvent('Validation failed')
 
                                 window.scrollTo({
                                     top: 0,
@@ -1478,6 +1499,12 @@ if (isPDP) { /* 'For People' Page  */
             z-index: 1;
             background: linear-gradient(180deg, #FFFFFF 0.21%, rgba(255, 255, 255, 0) 20%);
         }
+
+        .acsb-trigger {
+            bottom: 25px !important;
+            right: auto !important;
+            left: 10px !important;
+        }
     </style>
     `
 
@@ -1499,6 +1526,7 @@ if (isPDP) { /* 'For People' Page  */
 
 callEvent('loaded')
 
+// initial clarity
 let waitForClarity = setInterval(() => {
     if (typeof clarity === 'function') {
         clearInterval(waitForClarity)
