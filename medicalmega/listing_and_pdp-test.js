@@ -1777,14 +1777,16 @@ window.onload = function() {
             brand = data.facets.manufacturer;
 
         console.log(data)
-        function setLinkCategory(key,item) {
-            let breabcrumbs = ``;
-            let crumbs = key.split(' > ');
+        function setLinkCategory(key,item,lvl) {
+            if (key.includes(item.dataset.bread)) {
+                let breabcrumbs = ``;
+                let crumbs = key.split(' > ');
 
-            for (let i = 0; i < crumbs.length; i++) {
-                breabcrumbs += `&products%5BhierarchicalMenu%5D%5Bcategories.lvl0%5D%5B${i}%5D=${crumbs[i]}`
+                for (let i = 0; i < crumbs.length; i++) {
+                    breabcrumbs += `&products%5BhierarchicalMenu%5D%5Bcategories.lvl0%5D%5B${i}%5D=${crumbs[i]}`
+                }
+                item.insertAdjacentHTML('beforeend', `<li><a href="https://medicalmega.com/?${breabcrumbs}">${crumbs[crumbs.length - 1]}</a> <ul data-bread="${key}" class="lvl${lvl}"></ul></li>`)
             }
-            item.insertAdjacentHTML('beforeend', `<li><a href="https://medicalmega.com/?${breabcrumbs}">${crumbs[crumbs.length - 1]}</a></li>`)
         }
 
         for (let key in categoriesLvl0) {
@@ -1800,32 +1802,16 @@ window.onload = function() {
         }
 
         for (let key in categoriesLvl1) {
-            document.querySelectorAll('#list_categories .lvl1').forEach(item => {
-                if (key.includes(item.dataset.bread)) {
-                    setLinkCategory(key, item)
-                }
-            })
+            document.querySelectorAll('#list_categories .lvl1').forEach(item => setLinkCategory(key, item,2))
         }
         for (let key in categoriesLvl2) {
-            document.querySelectorAll('#list_categories .lvl2').forEach(item => {
-                if (key.includes(item.dataset.bread)) {
-                    setLinkCategory(key, item)
-                }
-            })
+            document.querySelectorAll('#list_categories .lvl2').forEach(item => setLinkCategory(key, item,3))
         }
         for (let key in categoriesLvl3) {
-            document.querySelectorAll('#list_categories .lvl3').forEach(item => {
-                if (key.includes(item.dataset.bread)) {
-                    setLinkCategory(key, item)
-                }
-            })
+            document.querySelectorAll('#list_categories .lvl3').forEach(item =>  setLinkCategory(key, item,4))
         }
         for (let key in categoriesLvl4) {
-            document.querySelectorAll('#list_categories .lvl4').forEach(item => {
-                if (key.includes(item.dataset.bread)) {
-                    setLinkCategory(key, item)
-                }
-            })
+            document.querySelectorAll('#list_categories .lvl4').forEach(item =>  setLinkCategory(key, item,5))
         }
 
         for (let key in brand) {
