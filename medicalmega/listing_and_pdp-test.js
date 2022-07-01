@@ -1851,9 +1851,9 @@ window.onload = function() {
         items.sort((a, b) => a.innerText == b.innerText ? 0 : a.innerText < b.innerText ? -1 : 1);
         items.forEach(item => alphabet.appendChild(item));
 
-        // let itemsList = [...listCategories]
-        // itemsList.sort((a, b) => a.innerText == b.innerText ? 0 : a.innerText < b.innerText ? -1 : 1);
-        // itemsList.forEach(item => alphabet.appendChild(item));
+        let itemsList = [...document.querySelectorAll('#list_categories li')]
+        itemsList.sort((a, b) => a.querySelector('a').innerText == b.querySelector('a').innerText ? 0 : a.querySelector('a').innerText < b.querySelector('a').innerText ? -1 : 1);
+        itemsList.forEach(item => item.parentElement.appendChild(item));
 
         alphabet.querySelectorAll('li').forEach(el => {
             el.addEventListener('mouseover', (e) => {
