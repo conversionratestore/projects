@@ -324,6 +324,8 @@ input[type="search"]::-webkit-search-results-decoration {
       font-weight: 600;
     line-height: 29px;
       font-size: 24px; }
+#list_categories_ex {
+  display: none!important}
 #list_categories {
   height: calc(100vh - 188px);
   overflow-y: auto;
@@ -1490,7 +1492,7 @@ let html = `
               <div class="dropdown_categories">
                 <ul class="alphabet"></ul>
                 <ul id="list_categories"> </ul>
-                <div id="list_categories_ex" style="display: none!important"></div>
+                <div id="list_categories_ex"></div>
               </div>
             </nav>
             <ul class="category_popular d-flex">
@@ -1572,8 +1574,6 @@ const search = instantsearch({
 const index = searchClient.initIndex(indexName);
 
 let currentPath = 'https://medicalmega.com/';
-
-let litterAlphabet = [];
 
 let actionDataLayer = '',
     labelDataLayer = '';
@@ -1731,23 +1731,6 @@ window.onload = function() {
     //all categories
     btnCategory.addEventListener('click', (e) => {
         if (e.target.matches('.all_category')) {
-            // if (document.querySelector('.ais-ClearRefinements-button') != null && document.querySelector('.ais-ClearRefinements-button.ais-ClearRefinements-button--disabled') == null) {
-            //   document.querySelector('.ais-ClearRefinements-button').classList.add('action-clean');
-            //   document.querySelector('.ais-ClearRefinements-button').click();
-            // }
-
-            // // query = '';
-            // // search._searchFunction(search.helper);
-            // if (document.querySelector('#form-search input').value != '' && search.helper.state.query != '') {
-            //   search.helper.setQuery('') // this call resets the page
-            //     .setPage(search.helper.getPage()) // we re-apply the previous page // Retrieve the current page
-            //     .search();
-
-            //   setTimeout(() => {
-            //     document.querySelector('#form-search input').value = '';
-            //   }, 400)
-            // }
-
             e.target.parentElement.classList.toggle('active');
             document.querySelector('.advanced-search').classList.remove('active');
             document.querySelector(`[data-button="advanced-search"]`).classList.remove('active');
@@ -1836,8 +1819,10 @@ window.onload = function() {
         }
 
         let listCategories = document.querySelectorAll('#list_categories > li > a'),
-            alphabet = document.querySelector('.alphabet'); //alphabet
+        alphabet = document.querySelector('.alphabet'); //alphabet
         alphabet.innerHTML = '';
+
+        let litterAlphabet = [];
 
         listCategories.forEach((el) => {
             litterAlphabet.push({'letter': el.innerText[0]})
@@ -1967,11 +1952,11 @@ window.onload = function() {
             templates: {
                 item: (data) => {
                     let checkbox = `
-              <label class="mt-16 align-items-center" onclick="pushDataLayer('Click on one of the brand items on filters','Filters')">
-                <span class="check"></span>
-                <span class="check_text">${data.value}<span class="count_brand">(${data.count})</span></span>
-              </label>
-          `;
+                          <label class="mt-16 align-items-center" onclick="pushDataLayer('Click on one of the brand items on filters','Filters')">
+                            <span class="check"></span>
+                            <span class="check_text">${data.value}<span class="count_brand">(${data.count})</span></span>
+                          </label>
+                      `;
                     return checkbox
                 },
             },
@@ -1990,11 +1975,11 @@ window.onload = function() {
             templates: {
                 item: (data) => {
                     let checkbox = `
-              <label class="mt-16 align-items-center" onclick="pushDataLayer('Click on one of the price items on filters','Filters')">
-                  <span class="check"></span>
-                  <span class="check_text">${data.label} <span class="count_brand">(${data.count})</span></span>
-              </label>
-          `;
+                      <label class="mt-16 align-items-center" onclick="pushDataLayer('Click on one of the price items on filters','Filters')">
+                          <span class="check"></span>
+                          <span class="check_text">${data.label} <span class="count_brand">(${data.count})</span></span>
+                      </label>
+                    `;
 
                     return checkbox
                 },
@@ -2077,9 +2062,6 @@ window.onload = function() {
                     });
                     document.querySelector('.ais-SearchBox-reset').addEventListener('click', (e) => {
                         e.stopImmediatePropagation()
-                        // query = '';
-                        // search._searchFunction(search.helper);
-
                         toggleListing(true)
                         if (!e.target.classList.contains('reset')) {
                             actionDataLayer = `Click on reset button`;
@@ -2297,8 +2279,6 @@ window.onload = function() {
                         }
                         toggleListing(true)
 
-                        // query = document.querySelector('#form-search .ais-SearchBox-input').value;
-                        // search._searchFunction(search.helper)
                         actionDataLayer = `Click on submit button`;
                         labelDataLayer = 'Search by Name';
                         pushDataLayer(actionDataLayer, labelDataLayer)
@@ -2353,24 +2333,24 @@ window.onload = function() {
     })
     Promise.all([requestNewProduct,requestOstomy,requestWoundCare]).then(res => {
         document.querySelector('.listing_popular').insertAdjacentHTML('beforeend', `
-    <div class="new-products">
-      <h2>New Products!</h2>
-      <p class="c-gray">${res[0].nbHits} items</p>
-      <ul class="d-flex"></ul>
-      <a href="https://medicalmega.com/?products%5BhierarchicalMenu%5D%5Bcategories.lvl0%5D%5B0%5D=New%20Products!" class="btn btn_white">Show More</a>
-    </div>
-    <div class="ostomy">
-      <h2>Ostomy</h2>
-      <p class="c-gray">${res[1].nbHits} items</p>
-      <ul class="d-flex"></ul>
-      <a href="https://medicalmega.com/?products%5BhierarchicalMenu%5D%5Bcategories.lvl0%5D%5B0%5D=Ostomy" class="btn btn_white">Show More</a>
-    </div>
-    <div class="wound-care">
-      <h2>Wound Care</h2>
-      <p class="c-gray">${res[2].nbHits} items</p>
-      <ul class="d-flex"></ul>
-      <a href="https://medicalmega.com/?products%5BhierarchicalMenu%5D%5Bcategories.lvl0%5D%5B0%5D=Wound%20Care" class="btn btn_white">Show More</a>
-    </div>`);
+        <div class="new-products">
+          <h2>New Products!</h2>
+          <p class="c-gray">${res[0].nbHits} items</p>
+          <ul class="d-flex"></ul>
+          <a href="https://medicalmega.com/?products%5BhierarchicalMenu%5D%5Bcategories.lvl0%5D%5B0%5D=New%20Products!" class="btn btn_white">Show More</a>
+        </div>
+        <div class="ostomy">
+          <h2>Ostomy</h2>
+          <p class="c-gray">${res[1].nbHits} items</p>
+          <ul class="d-flex"></ul>
+          <a href="https://medicalmega.com/?products%5BhierarchicalMenu%5D%5Bcategories.lvl0%5D%5B0%5D=Ostomy" class="btn btn_white">Show More</a>
+        </div>
+        <div class="wound-care">
+          <h2>Wound Care</h2>
+          <p class="c-gray">${res[2].nbHits} items</p>
+          <ul class="d-flex"></ul>
+          <a href="https://medicalmega.com/?products%5BhierarchicalMenu%5D%5Bcategories.lvl0%5D%5B0%5D=Wound%20Care" class="btn btn_white">Show More</a>
+        </div>`);
 
         for (let i = 0; i < 4; i++) {
             document.querySelector(`.listing_popular .new-products ul`).insertAdjacentHTML('beforeend',`<li>${initHits(res[0].hits[i])}</li>`)
@@ -2420,12 +2400,12 @@ window.onload = function() {
 
                 //Available Options
                 let htmlAvailableOptions = `
-        <div class="available-options"> 
-          <p class="fs-14 fw-semi">Available Options: </p> 
-          <div class="relative">
-            <div class="justify-content-between scroll-x"></div>
-          </div>
-        </div>`;
+                <div class="available-options"> 
+                  <p class="fs-14 fw-semi">Available Options: </p> 
+                  <div class="relative">
+                    <div class="justify-content-between scroll-x"></div>
+                  </div>
+                </div>`;
 
                 function availableOptions() {
                     let options = product.variants,
@@ -2447,86 +2427,86 @@ window.onload = function() {
                 }
 
                 let htmlProduct = `
-        <div id="container-product" class="container">
-          <nav id="breadcrumbs-pdp" class="breadcrumbs">
-            <ul class="ais-Breadcrumb-list">
-              <li class="ais-Breadcrumb-item">
-                <a class="ais-Breadcrumb-link" href="https://medicalmega.com/">Home</a>
-              </li>
-              <li class="ais-Breadcrumb-item">
-                <span class="ais-Breadcrumb-separator" aria-hidden="true">&gt;</span>
-                <a class="ais-Breadcrumb-link" href="https://medicalmega.com/?products%5BhierarchicalMenu%5D%5Bcategories.lvl0%5D%5B0%5D=${product.categories['lvl0'][0]}">${product.categories['lvl0'][0]}</a>
-              </li>
-              <li class="ais-Breadcrumb-item ais-Breadcrumb-item--selected"><span class="ais-Breadcrumb-separator" aria-hidden="true">&gt;</span>${product.name}</li>
-            </ul>  
-          </nav>
-            <div class="flex-wrap w-100 justify-content-between product"> 
-              <div class="col_left flex-wrap"> 
-                <div class="side_one">
-                  <div class="slider-nav">${getSlidesImage()}</div>
-                  <div class="trustpilot"></div>
-                </div>
-                <div class="side_two">
-                  <div class="slider-for">
-                    <div class="slide" data-item="show-zoom">
-                      <img class="slider-for_img" id="forImg" src="https://medicalmegaimgs.net/prod/uploaded/product/${imagesProduct[0]}" alt="image ${product.name}">
-                      <div class="img-zoom-result" id="zoomResult"></div>
-                    </div>
-                  </div>
-                  <p class="text-small text-center">Image shown for reference purposes only. Actual product appearance may vary.</p>
-                </div>
-              </div>
-              <div class="col_right"> 
-                <div class="product_content justify-content-between"> 
-                  <div class="col_mid">
-                    <h2 class="title">${product.name}</h2>
-                    <ul class="list">
-                      <li> Sold By: <span class="fw-semi">${firstVariant.extra}</span></li>
-                      <li> Item Number: <span class="fw-semi">${product.item_num}</span></li>
-                      <li> Manufacturer: <span class="fw-semi">${product.manufacturer}</span></li>
-                    </ul>
-                    <ul class="tabs-discription d-flex"> 
-                      <li class="active">Product details</li>
-                    </ul>
-                    <div class="content-discription">
-                      <div class="content-item active">${firstVariant.desc}</div>
-                    </div>
-                  </div>
-                  <div class="product_sidebar ${firstVariant.in_stock == false ? 'disabled' :''}">
-                    ${firstVariant.in_stock == false ? '<p class="out-of-stick">Out Of Stock</p>' :''}
-                    <div class="product_sidebar_top">
-                      <div class="shipping_block">
-                          <div class="align-items-center"> 
-                            <img class="mr-16 icon-car" src="https://olha1001.github.io/medicalmega/pdp-rediesign/img/common/car.svg" alt="icon shipping">
-                            <div> 
-                              <p class="c-red text-up fw-semi l-t-02">Estimated shipping</p>
-                              <p class="c-gray">2-3 business days*</p>
+                <div id="container-product" class="container">
+                  <nav id="breadcrumbs-pdp" class="breadcrumbs">
+                    <ul class="ais-Breadcrumb-list">
+                      <li class="ais-Breadcrumb-item">
+                        <a class="ais-Breadcrumb-link" href="https://medicalmega.com/">Home</a>
+                      </li>
+                      <li class="ais-Breadcrumb-item">
+                        <span class="ais-Breadcrumb-separator" aria-hidden="true">&gt;</span>
+                        <a class="ais-Breadcrumb-link" href="https://medicalmega.com/?products%5BhierarchicalMenu%5D%5Bcategories.lvl0%5D%5B0%5D=${product.categories['lvl0'][0]}">${product.categories['lvl0'][0]}</a>
+                      </li>
+                      <li class="ais-Breadcrumb-item ais-Breadcrumb-item--selected"><span class="ais-Breadcrumb-separator" aria-hidden="true">&gt;</span>${product.name}</li>
+                    </ul>  
+                  </nav>
+                    <div class="flex-wrap w-100 justify-content-between product"> 
+                      <div class="col_left flex-wrap"> 
+                        <div class="side_one">
+                          <div class="slider-nav">${getSlidesImage()}</div>
+                          <div class="trustpilot"></div>
+                        </div>
+                        <div class="side_two">
+                          <div class="slider-for">
+                            <div class="slide" data-item="show-zoom">
+                              <img class="slider-for_img" id="forImg" src="https://medicalmegaimgs.net/prod/uploaded/product/${imagesProduct[0]}" alt="image ${product.name}">
+                              <div class="img-zoom-result" id="zoomResult"></div>
                             </div>
                           </div>
-                          <div class="line"></div>
-                      </div>     
-                      ${product.variants.length < 2 ? `<div class="flex-end-between fw-semi total"> <p class="fs-14">Price:</p><p class="fs-24">$<span class="pr-state">${firstVariant.price}</span></p> </div>` : htmlAvailableOptions}
-                    </div>
-                    <form action="https://medicalmega.com/cart.html" method="post">
-                        <div class="flex-center-center calc" ${firstVariant.in_stock==false || firstVariant.price == '0:00' ? 'disabled' : ''}> 
-                          <button class="btn-calc btn-calc_minus" type="button" disabled></button>
-                          <input class="calc-qty" type="number" value="1" name="quantity">
-                          <button class="btn-calc btn-calc_plus" type="button"></button>
+                          <p class="text-small text-center">Image shown for reference purposes only. Actual product appearance may vary.</p>
                         </div>
-                        ${firstVariant.in_stock == false || firstVariant.price == '0:00' ? '<button class="btn btn btn_white" type="button" data-button="notify">Out of Stock</button>' : `<button class="btn btn_dark add-cart" type="submit" ><span hidden>$<span class="pr" data-price="${firstVariant.price}">${firstVariant.price}</span> | </span>Add to Cart</button>`}
-                        <input type="hidden" name="product_variant_id" value="${firstVariant.pv_id }">
-                        <input type="hidden" name="product_id" value="${product.objectID}">
-                        <input type="hidden" name="add_to_cart" value="variant">
-                    </form>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <section class="similar-products">
-              <h2 class="text-center">Similar Products</h2>
-              <div class="justify-content-center cards_similar"></div>
-            </section>
-          </div>`
+                      </div>
+                      <div class="col_right"> 
+                        <div class="product_content justify-content-between"> 
+                          <div class="col_mid">
+                            <h2 class="title">${product.name}</h2>
+                            <ul class="list">
+                              <li> Sold By: <span class="fw-semi">${firstVariant.extra}</span></li>
+                              <li> Item Number: <span class="fw-semi">${product.item_num}</span></li>
+                              <li> Manufacturer: <span class="fw-semi">${product.manufacturer}</span></li>
+                            </ul>
+                            <ul class="tabs-discription d-flex"> 
+                              <li class="active">Product details</li>
+                            </ul>
+                            <div class="content-discription">
+                              <div class="content-item active">${firstVariant.desc}</div>
+                            </div>
+                          </div>
+                          <div class="product_sidebar ${firstVariant.in_stock == false ? 'disabled' :''}">
+                            ${firstVariant.in_stock == false ? '<p class="out-of-stick">Out Of Stock</p>' :''}
+                            <div class="product_sidebar_top">
+                              <div class="shipping_block">
+                                  <div class="align-items-center"> 
+                                    <img class="mr-16 icon-car" src="https://olha1001.github.io/medicalmega/pdp-rediesign/img/common/car.svg" alt="icon shipping">
+                                    <div> 
+                                      <p class="c-red text-up fw-semi l-t-02">Estimated shipping</p>
+                                      <p class="c-gray">2-3 business days*</p>
+                                    </div>
+                                  </div>
+                                  <div class="line"></div>
+                              </div>     
+                              ${product.variants.length < 2 ? `<div class="flex-end-between fw-semi total"> <p class="fs-14">Price:</p><p class="fs-24">$<span class="pr-state">${firstVariant.price}</span></p> </div>` : htmlAvailableOptions}
+                            </div>
+                            <form action="https://medicalmega.com/cart.html" method="post">
+                                <div class="flex-center-center calc" ${firstVariant.in_stock==false || firstVariant.price == '0:00' ? 'disabled' : ''}> 
+                                  <button class="btn-calc btn-calc_minus" type="button" disabled></button>
+                                  <input class="calc-qty" type="number" value="1" name="quantity">
+                                  <button class="btn-calc btn-calc_plus" type="button"></button>
+                                </div>
+                                ${firstVariant.in_stock == false || firstVariant.price == '0:00' ? '<button class="btn btn btn_white" type="button" data-button="notify">Out of Stock</button>' : `<button class="btn btn_dark add-cart" type="submit" ><span hidden>$<span class="pr" data-price="${firstVariant.price}">${firstVariant.price}</span> | </span>Add to Cart</button>`}
+                                <input type="hidden" name="product_variant_id" value="${firstVariant.pv_id }">
+                                <input type="hidden" name="product_id" value="${product.objectID}">
+                                <input type="hidden" name="add_to_cart" value="variant">
+                            </form>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <section class="similar-products">
+                      <h2 class="text-center">Similar Products</h2>
+                      <div class="justify-content-center cards_similar"></div>
+                    </section>
+                  </div>`
 
                 document.querySelector('#container-listing').insertAdjacentHTML('beforebegin', htmlProduct);
 
@@ -2641,18 +2621,18 @@ window.onload = function() {
                     let contentAvailableOptions = document.querySelector('.product_sidebar .available-options .justify-content-between');
 
                     contentAvailableOptions.insertAdjacentHTML('beforebegin',`
-                  <div class="arrow_buttons">
-                      <button class="arrow_button arrow_button_prev" type="button" disabled>
-                          <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                              <path d="M12.2868 13.8473C12.3432 13.9036 12.375 13.9803 12.375 14.0602C12.375 14.1402 12.3432 14.2169 12.2868 14.2732L11.6546 14.9091C11.6005 14.9671 11.5249 15 11.4459 15C11.3668 15 11.2912 14.9671 11.2371 14.9091L5.75621 9.39594C5.6723 9.31164 5.6251 9.19728 5.625 9.07799V8.92201C5.6251 8.80272 5.6723 8.68836 5.75621 8.60406L11.2371 3.0909C11.2912 3.0329 11.3668 3 11.4459 3C11.5249 3 11.6005 3.0329 11.6546 3.0909L12.2868 3.7268C12.3432 3.78312 12.375 3.85979 12.375 3.93977C12.375 4.01975 12.3432 4.09641 12.2868 4.15274L7.46788 9L12.2868 13.8473Z" fill="#091114"/>
-                          </svg>
-                      </button>
-                      <button class="arrow_button arrow_button_next" type="button">
-                          <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                              <path d="M5.71321 13.8473C5.65675 13.9036 5.625 13.9803 5.625 14.0602C5.625 14.1402 5.65675 14.2169 5.71321 14.2732L6.34539 14.9091C6.39951 14.9671 6.47506 15 6.55413 15C6.63321 15 6.70876 14.9671 6.76287 14.9091L12.2438 9.39594C12.3277 9.31164 12.3749 9.19728 12.375 9.07799V8.92201C12.3749 8.80272 12.3277 8.68836 12.2438 8.60406L6.76287 3.0909C6.70876 3.0329 6.63321 3 6.55413 3C6.47506 3 6.39951 3.0329 6.34539 3.0909L5.71321 3.7268C5.65675 3.78312 5.625 3.85979 5.625 3.93977C5.625 4.01975 5.65675 4.09641 5.71321 4.15274L10.5321 9L5.71321 13.8473Z" fill="#091114"/>
-                          </svg>
-                      </button>
-                  </div>`)
+                      <div class="arrow_buttons">
+                          <button class="arrow_button arrow_button_prev" type="button" disabled>
+                              <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                  <path d="M12.2868 13.8473C12.3432 13.9036 12.375 13.9803 12.375 14.0602C12.375 14.1402 12.3432 14.2169 12.2868 14.2732L11.6546 14.9091C11.6005 14.9671 11.5249 15 11.4459 15C11.3668 15 11.2912 14.9671 11.2371 14.9091L5.75621 9.39594C5.6723 9.31164 5.6251 9.19728 5.625 9.07799V8.92201C5.6251 8.80272 5.6723 8.68836 5.75621 8.60406L11.2371 3.0909C11.2912 3.0329 11.3668 3 11.4459 3C11.5249 3 11.6005 3.0329 11.6546 3.0909L12.2868 3.7268C12.3432 3.78312 12.375 3.85979 12.375 3.93977C12.375 4.01975 12.3432 4.09641 12.2868 4.15274L7.46788 9L12.2868 13.8473Z" fill="#091114"/>
+                              </svg>
+                          </button>
+                          <button class="arrow_button arrow_button_next" type="button">
+                              <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                  <path d="M5.71321 13.8473C5.65675 13.9036 5.625 13.9803 5.625 14.0602C5.625 14.1402 5.65675 14.2169 5.71321 14.2732L6.34539 14.9091C6.39951 14.9671 6.47506 15 6.55413 15C6.63321 15 6.70876 14.9671 6.76287 14.9091L12.2438 9.39594C12.3277 9.31164 12.3749 9.19728 12.375 9.07799V8.92201C12.3749 8.80272 12.3277 8.68836 12.2438 8.60406L6.76287 3.0909C6.70876 3.0329 6.63321 3 6.55413 3C6.47506 3 6.39951 3.0329 6.34539 3.0909L5.71321 3.7268C5.65675 3.78312 5.625 3.85979 5.625 3.93977C5.625 4.01975 5.65675 4.09641 5.71321 4.15274L10.5321 9L5.71321 13.8473Z" fill="#091114"/>
+                              </svg>
+                          </button>
+                      </div>`)
 
                     document.querySelectorAll('.arrow_button').forEach(arrow => {
                         arrow.addEventListener('click', () => {
