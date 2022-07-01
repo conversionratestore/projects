@@ -1808,10 +1808,10 @@ window.onload = function() {
             document.querySelectorAll('#list_categories .lvl2').forEach(item => setLinkCategory(key, item,3))
         }
         for (let key in categoriesLvl3) {
-            document.querySelectorAll('#list_categories .lvl3').forEach(item => setLinkCategory(key, item,4))
+            document.querySelectorAll('#list_categories .lvl3').forEach(item =>  setLinkCategory(key, item,4))
         }
         for (let key in categoriesLvl4) {
-            document.querySelectorAll('#list_categories .lvl4').forEach(item => setLinkCategory(key, item,5))
+            document.querySelectorAll('#list_categories .lvl4').forEach(item =>  setLinkCategory(key, item,5))
         }
 
         for (let key in brand) {
@@ -2074,7 +2074,8 @@ window.onload = function() {
                     })
 
                     if (window.location.pathname.includes('/category') && !window.location.pathname.includes('?products')) {
-                        window.location.href = `https://medicalmega.com/?products%5BhierarchicalMenu%5D%5Bcategories.lvl0%5D%5B0%5D=${window.location.pathname.split('category/')[1].split('-').join(' ').split('&').join('%26')}`
+                        // window.location.href = `https://medicalmega.com/?products%5BhierarchicalMenu%5D%5Bcategories.lvl0%5D%5B0%5D=${window.location.pathname.split('category/')[1].split('-').join(' ').split('%26').join('&')]}`
+                        search.helper.state.hierarchicalFacetsRefinements['categories.lvl0'] = [window.location.pathname.split('category/')[1].split('-').join(' ').split('%26').join('&')];
                     }
 
                     let crumbs = document.querySelectorAll('#breadcrumbs li');
