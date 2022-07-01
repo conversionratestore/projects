@@ -1782,8 +1782,7 @@ window.onload = function() {
                 let breabcrumbs = ``;
                 let crumbs = key.split(' > ');
                 for (let i = 0; i < crumbs.length; i++) {
-                    console.log(crumbs[i].split(' ').join('%20').split('&').join('%26'))
-                    breabcrumbs += `&products%5BhierarchicalMenu%5D%5Bcategories.lvl0%5D%5B${i}%5D=${crumbs[i].split(' ').join('%20').split('&').join('%26')}`
+                    breabcrumbs += `&products%5BhierarchicalMenu%5D%5Bcategories.lvl0%5D%5B${i}%5D=${crumbs[i]}`
                 }
                 item.insertAdjacentHTML('beforeend', `<li><a href="https://medicalmega.com/?${breabcrumbs}">${crumbs[crumbs.length - 1]}</a> <ul data-bread="${key}" class="lvl${lvl}"></ul></li>`)
             }
@@ -1827,7 +1826,9 @@ window.onload = function() {
         listCategories.forEach((el) => litterAlphabet.push({'letter': el.innerText[0]}))
 
         document.querySelectorAll('#list_categories li a').forEach((el) => {
-            el.addEventListener('click', () => {
+            el.addEventListener('click', (e) => {
+                e.preventDefault()
+                window.location.href = el.href.split('&').join('%26');
                 actionDataLayer = `Click on category item - ${el.innerText}`;
                 labelDataLayer = `All categories`;
                 pushDataLayer(actionDataLayer,labelDataLayer);
@@ -1849,6 +1850,10 @@ window.onload = function() {
         let items = [...alphabet.querySelectorAll("li")];
         items.sort((a, b) => a.innerText == b.innerText ? 0 : a.innerText < b.innerText ? -1 : 1);
         items.forEach(item => alphabet.appendChild(item));
+
+        // let itemsList = [...listCategories]
+        // itemsList.sort((a, b) => a.innerText == b.innerText ? 0 : a.innerText < b.innerText ? -1 : 1);
+        // itemsList.forEach(item => alphabet.appendChild(item));
 
         alphabet.querySelectorAll('li').forEach(el => {
             el.addEventListener('mouseover', (e) => {
