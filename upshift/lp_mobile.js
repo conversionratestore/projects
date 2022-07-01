@@ -1528,7 +1528,7 @@ if (isPDP) { /* 'For People' Page  */
         }
 
         .acsb-trigger {
-            bottom: 25px !important;
+            bottom: 90px !important;
             right: auto !important;
             left: 25px !important;
         }
