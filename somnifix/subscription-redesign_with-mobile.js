@@ -120,7 +120,7 @@ let objVariants = [
         'price': '49.97',
         'popular': true,
         'perStrip':'0.59',
-        'active':'swatchCustom__item--active nosale',
+        'active':'swatchCustom__item--active',
     },
 ]
 
@@ -308,6 +308,10 @@ let style = `
     /*product*/
     .shogun-root > .shg-box-vertical-align-wrapper .shg-box-content > .shg-box-vertical-align-wrapper {
         display: none;
+    }
+    .items-center {
+        display: flex;
+        align-items: center;
     }
     .justify-between { 
         display: flex;
@@ -967,6 +971,15 @@ let style = `
             font-size: 18px;
             padding: 17px;
             margin-top: 32px;
+        }
+        .qty_block {
+            display: none;
+        }
+        .swatchCustom__item.swatchCustom__item--active .qty_block {
+            display: block;
+        }
+        .gray_bg {
+            border-radius: 10px;
         }
     }
     
@@ -1695,6 +1708,14 @@ let modalHtml = `
     </div>
 </div>`
 
+//icons block (mobile)
+let iconsHtml = `
+<div class="justify-between items-center">
+    <img src='https://conversionratestore.github.io/projects/somnifix/img/icon1.svg' alt='icon'>
+    <img src='https://conversionratestore.github.io/projects/somnifix/img/icon2.svg' alt='icon'>
+    <img src='https://conversionratestore.github.io/projects/somnifix/img/icon3.svg' alt='icon'>
+</div>
+`
 let startMain = setInterval(function () {
     if(document.querySelectorAll('.shogun-root > .shg-box-vertical-align-wrapper .shg-box-vertical-align-wrapper')[5] != null) {
         clearInterval(startMain)
@@ -1723,9 +1744,8 @@ let startMain = setInterval(function () {
                     </div>
                 </div>
                 ${objVariants[i].popular == true ? `<p class="how_cancet">Auto delivery every 3 months. <br> Cancel anytime. <a href="#" class="btn-how_cancel">How to cancel?</a></p>` : ''}
-                ${objVariants[i].popular != true && window.innerWidth < 768 ? `<h4 class="stock__header">In Stock.</h4>
-                <select class="stock__select" disabled>${qty()}</select>
-                <p class="stock__pack">1 pack = <span>84</span> strips</p>` : ''}
+                ${objVariants[i].popular != true && window.innerWidth < 768 ? `<div class="qty_block"><h4 class="stock__header">In Stock.</h4>
+                <select class="stock__select" disabled>${qty()}</select></div>` : ''}
                 
             </div>`
             document.querySelector('.part1 .checklist').insertAdjacentHTML('afterend', switchItem);
@@ -1734,6 +1754,7 @@ let startMain = setInterval(function () {
         if (window.innerWidth < 768) {
             document.querySelector('.swatch_cro .product_name.title').innerHTML = `Choose your pack`;
             document.querySelectorAll('.part1 .swatchCustom__item')[2].after(document.querySelector('.part2 .to_checkout'))
+            document.querySelector('.section').insertAdjacentHTML('afterend', iconsHtml)
         }
 
         $('.product_section .swatchCustom__item').click(function(e) {
@@ -1757,13 +1778,16 @@ let startMain = setInterval(function () {
                     $('.stock__select').removeAttr('disabled')
                 }
             }
-            if ($(this).index() == 3) {
-                pushDataLayer('Click on 12-week pack subscription', 'Choose your pack')
-            } else if ($(this).index() == 4) {
-                pushDataLayer('Click on 12-week pack', 'Choose your pack')
-            } else {
-                pushDataLayer('Click on 4 week pack', 'Choose your pack')
+            if (!e.target.closest('.stock__select')){
+                if ($(this).index() == 3) {
+                    pushDataLayer('Click on 12-week pack subscription', 'Choose your pack')
+                } else if ($(this).index() == 4) {
+                    pushDataLayer('Click on 12-week pack', 'Choose your pack')
+                } else {
+                    pushDataLayer('Click on 4 week pack', 'Choose your pack')
+                }
             }
+          
         })
         //set date of arrives
         $('.delivery_date b').html($('.country_select option:selected').attr('data-value'))
@@ -1773,7 +1797,7 @@ let startMain = setInterval(function () {
             let price = +$('.swatchCustom__item.swatchCustom__item--active').data('price')
             let total = (price * document.querySelector(".stock__select").value).toFixed(2)
             $('.part2 .total_price span').text(total)
-            pushDataLayer('Click on Quantity select', 'SomniFix Mouth Strips')
+            pushDataLayer('Click on Quantity option', 'SomniFix Mouth Strips')
         })
 
         // select delivery country
@@ -1816,7 +1840,6 @@ let startMain = setInterval(function () {
             const itemId = document.querySelector(".swatchCustom__item--active").dataset.variant;
             const itemQuantity = window.innerWidth < 768 ?  document.querySelector(".swatchCustom__item--active .stock__select").value : document.querySelector(".stock__select").value;
 
-            console.log(itemQuantity)
             if (itemId === '30282132226091') {
                 addItemToCart("30282132226091", 1, "3", "Month", "95310");
             } else {
