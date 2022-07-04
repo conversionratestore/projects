@@ -781,15 +781,17 @@ let startFunk = setInterval(() => {
 
     // TO show POPUP
     setTimeout(() => {
-      let dataProduct = JSON.parse(document.querySelector("#main-wrapper #item-details")?.getAttribute("data-product"))
-      let salesProduct = dataProduct.salesproduct
+      if (document.querySelector("#main-wrapper #item-details")) {
+        let dataProduct = JSON.parse(document.querySelector("#main-wrapper #item-details")?.getAttribute("data-product"))
+        let salesProduct = dataProduct.salesproduct
 
-      if (
-        !sessionStorage.getItem("successSign") &&
-        salesProduct &&
-        document.querySelector('.header-container .header-actions .action-links [data-account-trigger="true"] span').textContent !== "Account"
-      ) {
-        showPopup()
+        if (
+          !sessionStorage.getItem("successSign") &&
+          salesProduct &&
+          document.querySelector('.header-container .header-actions .action-links [data-account-trigger="true"] span').textContent !== "Account"
+        ) {
+          showPopup()
+        }
       }
     }, 3000)
 
