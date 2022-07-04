@@ -643,12 +643,12 @@ let startFunk = setInterval(() => {
 
           if (salesProduct) {
             if (document.querySelector('.header-container .header-actions .action-links [data-account-trigger="true"] span').textContent === "Account") {
-              if (!el.querySelector(".discount_cart")) {
-                dataLayerCustomer.forEach((item) => {
-                  let customer = item.customer
-                  if (customer) {
-                    for (key in customer) {
-                      if (customer[key] === "General") {
+              dataLayerCustomer.forEach((item) => {
+                let customer = item.customer
+                if (customer) {
+                  for (key in customer) {
+                    if (customer[key] === "General") {
+                      if (!el.querySelector(".discount_cart")) {
                         console.log(customer[key])
                         activateCoupon()
                         el.insertAdjacentHTML("beforeend", discountCart)
@@ -656,8 +656,8 @@ let startFunk = setInterval(() => {
                       }
                     }
                   }
-                })
-              }
+                }
+              })
             } else {
               if (!el.querySelector(".discount_cart.sign_up")) {
                 el.insertAdjacentHTML("beforeend", discountCartSignUp)
@@ -678,19 +678,19 @@ let startFunk = setInterval(() => {
 
         if (salesProduct) {
           if (document.querySelector('.header-container .header-actions .action-links [data-account-trigger="true"] span').textContent === "Account") {
-            if (!document.querySelector(".discount_pdp")) {
-              dataLayerCustomer.forEach((item) => {
-                let customer = item.customer
-                if (customer) {
-                  for (key in customer) {
-                    if (customer[key] === "General") {
+            dataLayerCustomer.forEach((item) => {
+              let customer = item.customer
+              if (customer) {
+                for (key in customer) {
+                  if (customer[key] === "General") {
+                    if (!document.querySelector(".discount_pdp")) {
                       console.log(customer[key])
                       document.querySelector(".catalog-product-view .product-essential .p-price .final-price.mt-3")?.insertAdjacentHTML("afterend", discountPdp)
                     }
                   }
                 }
-              })
-            }
+              }
+            })
           } else {
             if (!document.querySelector(".discount_pdp.sign_up")) {
               document.querySelector(".catalog-product-view .product-essential .p-price .final-price.mt-3")?.insertAdjacentHTML("afterend", discounPdpSignUp)
