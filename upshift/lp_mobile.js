@@ -1505,7 +1505,8 @@ if (isPDP) { /* 'For People' Page  */
             font-weight: 600;
             font-size: 18px;
             font-family: 'Poppins', sans-serif;            
-            line-height: normal;                        
+            line-height: normal;          
+            text-transform: capitalize;              
         }
 
         .work_rating div {
