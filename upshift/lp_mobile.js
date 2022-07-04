@@ -1177,7 +1177,7 @@ if (isPDP) { /* 'For People' Page  */
                                     accordionBody.style.maxHeight = 0;
                                 }
 
-                                callEvent('Clicks on locations', accordionHeader.innerText + ' header')
+                                // callEvent('Clicks on locations', accordionHeader.innerText + ' header')
                             }
 
                             if (e.target.closest('.accordion_item_body_element .sign')) {
@@ -1186,9 +1186,9 @@ if (isPDP) { /* 'For People' Page  */
 
                                 const state = e.target.closest('.accordion_item').querySelector('.accordion_item_header p').innerText
 
-                                callEvent('Clicks on locations', clickedCity + ' sign up')
+                                // callEvent('Clicks on locations', clickedCity + ' sign up')
 
-                                // signLogic()
+                                signLogic()
                             }
                         })
                     });
