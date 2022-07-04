@@ -923,14 +923,50 @@ let style = `
         .is-width-standard .product_section {
             flex-direction: column;
         }
-
         .product__information.one-half {
             width: 100%;
             padding-left: 0;
         }
-
         .product__images.one-half {
             width: 100%;
+        }
+        .swatch_cro .part2, .product_name+.flx, .checklist, .product__images.one-half, .checkmark {
+            display: none;
+        }
+        .swatch_cro .part1 {
+            width: 100%;
+            padding: 40px 17px;
+        }
+        .swatch_cro .product_name.title {
+            font-size: 24px;
+            line-height: 28px;
+            text-align: center;
+        }
+        .section {
+            padding: 40px 0!important;
+        }
+        .swatchCustom__item {
+            min-height: 90px;
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+            margin: 16px 0;
+        }
+        .swatchCustom__item p {
+            font-size: 14px;
+            line-height: 16px;
+        }
+        .swatchCustom__item--third .price {
+            font-weight: 500;
+        }
+        .swatchCustom__item--third .sale {
+            margin-bottom: 3px;
+        }
+        .to_checkout {
+            font-weight: 500;
+            font-size: 18px;
+            padding: 17px;
+            margin-top: 32px;
         }
     }
     
@@ -1664,11 +1700,10 @@ let startMain = setInterval(function () {
         clearInterval(startMain)
         //add html and style
 
-
         document.querySelectorAll('.shogun-root > .shg-box-vertical-align-wrapper')[1].querySelectorAll('.shg-box-vertical-align-wrapper')[4].insertAdjacentHTML('beforebegin', html);
         document.body.insertAdjacentHTML('afterbegin', style);
         document.body.insertAdjacentHTML('beforeend', modalHtml);
-
+       
         //swatch packs
         for (let i = 0; i < objVariants.length; i++) {
             let switchItem = `
@@ -1680,7 +1715,7 @@ let startMain = setInterval(function () {
                         <span class="days">${objVariants[i].days}</span>
                     </div>
                     <div class="swatchCustom__item--third">
-                        <span class="sale">${objVariants[i].sale}</span>
+                        ${objVariants[i].sale != '' ? '<span class="sale">' + objVariants[i].sale + '</span>' :''}
                         <p>
                             <span class="price">${objVariants[i].price} USD </span>
                             <span class="per_strip">($${objVariants[i].perStrip} per strip)</span>
@@ -1693,11 +1728,16 @@ let startMain = setInterval(function () {
             document.querySelector('.part1 .checklist').insertAdjacentHTML('afterend', switchItem);
         }
 
+        if (window.innerWidth < 768) {
+            document.querySelector('.swatch_cro .product_name.title').innerHTML = `Choose your pack`;
+            document.querySelectorAll('.part1 .swatchCustom__item')[2].after(document.querySelector('.part2 .to_checkout'))
+        }
+
         $('.product_section .swatchCustom__item').click(function(e) {
             if(!$(this).hasClass('swatchCustom__item--active')) {
                 $(this).siblings().removeClass('swatchCustom__item--active')
                 $(this).addClass('swatchCustom__item--active')
-                document.querySelector(".part2 .stock__select").disabled = false
+                document.querySelector('.stock__select').disabled = false
 
                 let price = $(this).data('price')
 
@@ -1726,10 +1766,11 @@ let startMain = setInterval(function () {
         $('.delivery_date b').html($('.country_select option:selected').attr('data-value'))
 
         // calculating the total price
-        $('.part2 .stock__select').change(function() {
+        $('.stock__select').change(function() {
             let price = +$('.swatchCustom__item.swatchCustom__item--active').data('price')
-            let total = (price * document.querySelector(".part2 .stock__select").value).toFixed(2)
+            let total = (price * document.querySelector(".stock__select").value).toFixed(2)
             $('.part2 .total_price span').text(total)
+            $('.stock__select')
             pushDataLayer('Click on Quantity select', 'SomniFix Mouth Strips')
         })
 
@@ -1769,9 +1810,9 @@ let startMain = setInterval(function () {
         })
 
         //add to cart
-        $('.part2 .to_checkout').click(function() {
+        $('.swatch_cro .to_checkout').click(function() {
             const itemId = document.querySelector(".swatchCustom__item--active").dataset.variant;
-            const itemQuantity = document.querySelector(".part2 .stock__select").value;
+            const itemQuantity = document.querySelector(".stock__select").value;
 
             if (itemId === '30282132226091') {
                 addItemToCart("30282132226091", 1, "3", "Month", "95310");
@@ -1805,7 +1846,7 @@ let startMain = setInterval(function () {
 })
 
 let startSlider = setInterval(function () {
-    if (document.querySelector('.product-gallery__main') != null && document.querySelector('.product-gallery__thumbnails') != null) {
+    if (document.querySelector('.product-gallery__main') != null && document.querySelector('.product-gallery__thumbnails') != null && window.innerWidth > 768) {
         if (typeof Flickity === 'function') {
             console.log(typeof Flickity)
             clearInterval(startSlider)
@@ -1813,21 +1854,13 @@ let startSlider = setInterval(function () {
             new Flickity(document.querySelector('.product-gallery__main'), {
                 contain: true,
                 pageDots: false,
-                // draggable: true,
                 freeScroll: true,
-                // prevNextButtons: true,
                 groupCells: 1,
-                // freeScrollFriction: 0.03,
                 asNavFor: '.product-gallery__thumbnails',
             });
             new Flickity(document.querySelector('.product-gallery__thumbnails'), {
-                // groupCells: 5,
                 contain: true,
                 pageDots: false,
-                // draggable: true,
-                // freeScroll: true,
-                // prevNextButtons: true,
-                // freeScrollFriction: 0.03,
                 asNavFor: '.product-gallery__main',
             });
         }
