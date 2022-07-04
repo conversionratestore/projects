@@ -1554,7 +1554,7 @@ if (isPDP) { /* 'For People' Page  */
             top: 0;
             left: 0;
             z-index: 1;
-            background: linear-gradient(180deg, #FFFFFF 0.21%, rgba(255, 255, 255, 0) 20%);
+            background: linear-gradient(180deg, #FFFFFF 0%, rgba(255, 255, 255, 0) 12%);
             pointer-events: none;
         }
 
