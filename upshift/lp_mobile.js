@@ -86,6 +86,7 @@ p.work_place {
 }
 
 .work_time {
+    display: inline-flex;
     color: ${color_black};
     letter-spacing: 0.01em;
     font-size: 12px;
