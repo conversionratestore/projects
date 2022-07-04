@@ -639,13 +639,24 @@ let startFunk = setInterval(() => {
         document.querySelectorAll("#cart-panel #minicart-items > div").forEach((el) => {
           let dataProduct = JSON.parse(el.getAttribute("data-product"))
           let salesProduct = dataProduct.salesproduct
+          let dataLayerCustomer = window.dataLayer
 
           if (salesProduct) {
             if (document.querySelector('.header-container .header-actions .action-links [data-account-trigger="true"] span').textContent === "Account") {
               if (!el.querySelector(".discount_cart")) {
-                activateCoupon()
-                el.insertAdjacentHTML("beforeend", discountCart)
-                // startCoupon()
+                dataLayerCustomer.forEach((item) => {
+                  let customer = item.customer
+                  if (customer) {
+                    for (key in customer) {
+                      if (customer[key] === "General") {
+                        console.log(customer[key])
+                        activateCoupon()
+                        el.insertAdjacentHTML("beforeend", discountCart)
+                        // startCoupon()
+                      }
+                    }
+                  }
+                })
               }
             } else {
               if (!el.querySelector(".discount_cart.sign_up")) {
@@ -663,11 +674,22 @@ let startFunk = setInterval(() => {
       if (document.querySelector("#main-wrapper #item-details")) {
         let dataProduct = JSON.parse(document.querySelector("#main-wrapper #item-details").getAttribute("data-product"))
         let salesProduct = dataProduct.salesproduct
+        let dataLayerCustomer = window.dataLayer
 
         if (salesProduct) {
           if (document.querySelector('.header-container .header-actions .action-links [data-account-trigger="true"] span').textContent === "Account") {
             if (!document.querySelector(".discount_pdp")) {
-              document.querySelector(".catalog-product-view .product-essential .p-price .final-price.mt-3")?.insertAdjacentHTML("afterend", discountPdp)
+              dataLayerCustomer.forEach((item) => {
+                let customer = item.customer
+                if (customer) {
+                  for (key in customer) {
+                    if (customer[key] === "General") {
+                      console.log(customer[key])
+                      document.querySelector(".catalog-product-view .product-essential .p-price .final-price.mt-3")?.insertAdjacentHTML("afterend", discountPdp)
+                    }
+                  }
+                }
+              })
             }
           } else {
             if (!document.querySelector(".discount_pdp.sign_up")) {
