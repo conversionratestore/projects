@@ -89,6 +89,11 @@ p.work_place {
     color: ${color_black};
     letter-spacing: 0.01em;
     font-size: 12px;
+    padding-left: 2px;
+}
+
+.work_time img {
+    margin-right: 8px;
 }
 
 .work_time img {
@@ -1382,7 +1387,7 @@ if (isPDP) { /* 'For People' Page  */
                     </div>
                 </div>
                 <div class="slide_body">      
-                    <div>
+                    <div class="place_wrapper">
                         <p class="work_place">${job[4]}</p>
                         <div class="work_rating">
                             <div>
@@ -1415,7 +1420,7 @@ if (isPDP) { /* 'For People' Page  */
     const nearStyle = /*html*/`
     <style>
         section {
-            padding: 30px 25px;
+            padding: 30px 25px 0;
         }
 
         section p,
@@ -1459,9 +1464,12 @@ if (isPDP) { /* 'For People' Page  */
             justify-content: space-between;
         }
 
+        .slide_body .place_wrapper {
+            width: 47%;
+        }
+
         .wrapper {
             position: relative;
-            max-height: 400px;
             margin: 0px -25px;    
             padding: 0 25px;
             overflow: hidden;
@@ -1474,7 +1482,7 @@ if (isPDP) { /* 'For People' Page  */
             left: 0;
             height: 100%;
             width: 100%;
-            background: linear-gradient(0.24deg, #FFFFFF 0.21%, rgba(255, 255, 255, 0) 29.47%);
+            background: linear-gradient(0.24deg, #FFFFFF 15%, rgba(255, 255, 255, 0) 50%);
         }
         
         .btn_wrapper {
@@ -1497,6 +1505,10 @@ if (isPDP) { /* 'For People' Page  */
             font-size: 18px;
             font-family: 'Poppins', sans-serif;            
             line-height: normal;                        
+        }
+
+        .work_rating div {
+            white-space: nowrap;
         }
 
         .work_rating img {
