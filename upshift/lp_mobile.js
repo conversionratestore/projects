@@ -95,10 +95,6 @@ p.work_place {
 
 .work_time img {
     margin-right: 8px;
-}
-
-.work_time img {
-    margin-right: 10px;
     display: inline-block;
 }
 `
@@ -511,7 +507,7 @@ if (isPDP) { /* 'For People' Page  */
                     </div>
                 </div>
                 <div class="slide_body">
-                    <p class="work_time"><img src="${imgFolderLink}/time.svg" alt="time"><b>Shift:</b> ${job[4]}</p>
+                    <p class="work_time"><img src="${imgFolderLink}/time.svg" alt="time"><b>Shift: </b>${job[4]}</p>
                     <p class="work_description">${job[5]}</p>
                     <p class="work_place">${job[6]}</p>
                     <div class="work_rating">
@@ -1483,7 +1479,7 @@ if (isPDP) { /* 'For People' Page  */
             left: 0;
             height: 100%;
             width: 100%;
-            background: linear-gradient(0.24deg, #FFFFFF 21%, rgba(255, 255, 255, 0) 40%);
+            background: linear-gradient(0.24deg, #FFFFFF 20%, rgba(255, 255, 255, 0) 40%);
         }
         
         .btn_wrapper {
@@ -1554,7 +1550,7 @@ if (isPDP) { /* 'For People' Page  */
             top: 0;
             left: 0;
             z-index: 1;
-            background: linear-gradient(180deg, #FFFFFF 0%, rgba(255, 255, 255, 0) 12%);
+            background: linear-gradient(180deg, #FFFFFF 0.21%, rgba(255, 255, 255, 0) 20%);
             pointer-events: none;
         }
 
