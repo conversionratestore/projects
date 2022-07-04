@@ -1483,7 +1483,7 @@ if (isPDP) { /* 'For People' Page  */
             left: 0;
             height: 100%;
             width: 100%;
-            background: linear-gradient(0.24deg, #FFFFFF 15%, rgba(255, 255, 255, 0) 50%);
+            background: linear-gradient(0.24deg, #FFFFFF 20%, rgba(255, 255, 255, 0) 45%);
         }
         
         .btn_wrapper {
