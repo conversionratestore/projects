@@ -552,20 +552,20 @@ if (isPDP) { /* 'For People' Page  */
         <p>Over 50,000 People have already found shift on upshift</p>
         <img src="${imgFolderLink}/glassdoor.svg" alt="glassdoor">
     </section>
-    <section class="popular">
+    <section class="popular_shifts">
         <h2>Popular shifts</h2>
         <div class="slider" id="slider">
             ${slides}
         </div>
         <button data-sign>Apply now</button>
     </section>
-    <section>
+    <section class="locations">
         <h2>Upshift Locations</h2>
         <div class="accordion">
             ${locationsHTML}
         </div>
     </section>
-    <section>
+    <section class="three_steps">
         <div class="steps">
             <h2>Become an Upshifter in 3 Easy Steps</h2>
             <div class="step">
@@ -1018,7 +1018,7 @@ if (isPDP) { /* 'For People' Page  */
             margin-top: -20px;
         }
 
-        .popular button {
+        .popular_shifts button {
             margin-bottom: 10px;
         }
 
@@ -1177,16 +1177,19 @@ if (isPDP) { /* 'For People' Page  */
                                     accordionBody.style.maxHeight = 0;
                                 }
 
-                                // callEvent('Clicks on locations', accordionHeader.innerText + ' header')
+                                if (e.target.closest('.faq')) {
+                                    callEvent('Click on FAQ', accordionHeader.innerText)
+                                }
+                                if (e.target.closest('.locations')) {
+                                    callEvent('Click on State. Locations', accordionHeader.innerText)
+                                }
                             }
 
                             if (e.target.closest('.accordion_item_body_element .sign')) {
                                 const clickedCity = e.target.closest('.accordion_item_body_element .sign').previousElementSibling.innerText
-
-
                                 const state = e.target.closest('.accordion_item').querySelector('.accordion_item_header p').innerText
 
-                                // callEvent('Clicks on locations', clickedCity + ' sign up')
+                                callEvent('Click on City. Locations', `${clickedCity}(${state})`)
 
                                 signLogic()
                             }
@@ -1220,6 +1223,7 @@ if (isPDP) { /* 'For People' Page  */
                     // add logic to Sign Up buttons
                     document.querySelectorAll('[data-sign]').forEach(btn => {
                         btn.addEventListener('click', () => {
+                            // logic
                             if (select.value !== '') { // Sign Up                            
                                 signLogic()
                             } else { // Scroll to Sign Form                            
@@ -1231,6 +1235,19 @@ if (isPDP) { /* 'For People' Page  */
                                     top: 0,
                                     behavior: "smooth"
                                 });
+                            }
+
+                            // call event
+                            if (btn.closest('.accordion_item_body_element')) {
+                                callEvent('Click on Sign up here')
+                            } else if (btn.closest('section')) {
+                                const sectionName = btn.closest('section').className.replace('_', ' ')
+
+                                callEvent('Click on Apply/Join', sectionName)
+                            } else if (btn.closest('.find_work')) {
+                                callEvent('Click on Apply/Join', 'why choose upshift')
+                            } else if (btn.closest('#row-unique-8')) {
+                                callEvent('Click on Apply/Join', 'flexible work')
                             }
                         })
                     })
@@ -1462,7 +1479,7 @@ if (isPDP) { /* 'For People' Page  */
         
         .btn_wrapper {
             position: fixed;
-            bottom: 25px;
+            bottom: 40px;
             left: 0;
             width: 100%;
             text-align: center;
@@ -1506,7 +1523,7 @@ if (isPDP) { /* 'For People' Page  */
         }
 
         .footer-scroll-top {
-            bottom: 90px;
+            bottom: 115px;
         }
 
         #colophon {
@@ -1528,7 +1545,7 @@ if (isPDP) { /* 'For People' Page  */
         }
 
         .acsb-trigger {
-            bottom: 90px !important;
+            bottom: 115px !important;
             right: auto !important;
             left: 25px !important;
         }
@@ -1540,12 +1557,23 @@ if (isPDP) { /* 'For People' Page  */
     // parse text as CSS
     document.head.insertAdjacentHTML('beforeend', nearStyle)
 
+    // parse text as HTML
     const waitForContent = setInterval(() => {
         if (document.querySelector('.post-content')) {
             clearInterval(waitForContent)
 
             document.querySelector('.post-content').insertAdjacentHTML('afterbegin', nearTemplate)
+        }
+    }, intervalTimeout);
 
+    // call event 
+    const waitForBtn = setInterval(() => {
+        if (document.querySelector('.btn_wrapper a')) {
+            clearInterval(waitForBtn)
+
+            document.querySelector('.btn_wrapper a').addEventListener('click', () => {
+                callEvent('Click on Get Started on the Shifts page')
+            })
         }
     }, intervalTimeout);
 }
