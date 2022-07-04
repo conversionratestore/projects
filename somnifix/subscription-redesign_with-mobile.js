@@ -1723,6 +1723,9 @@ let startMain = setInterval(function () {
                     </div>
                 </div>
                 ${objVariants[i].popular == true ? `<p class="how_cancet">Auto delivery every 3 months. <br> Cancel anytime. <a href="#" class="btn-how_cancel">How to cancel?</a></p>` : ''}
+                ${objVariants[i].popular != true && window.innerWidth < 768 ? `<h4 class="stock__header">In Stock.</h4>
+                <select class="stock__select" disabled>${qty()}</select>
+                <p class="stock__pack">1 pack = <span>84</span> strips</p>` : ''}
                 
             </div>`
             document.querySelector('.part1 .checklist').insertAdjacentHTML('afterend', switchItem);
@@ -1770,7 +1773,6 @@ let startMain = setInterval(function () {
             let price = +$('.swatchCustom__item.swatchCustom__item--active').data('price')
             let total = (price * document.querySelector(".stock__select").value).toFixed(2)
             $('.part2 .total_price span').text(total)
-            $('.stock__select')
             pushDataLayer('Click on Quantity select', 'SomniFix Mouth Strips')
         })
 
@@ -1812,8 +1814,9 @@ let startMain = setInterval(function () {
         //add to cart
         $('.swatch_cro .to_checkout').click(function() {
             const itemId = document.querySelector(".swatchCustom__item--active").dataset.variant;
-            const itemQuantity = document.querySelector(".stock__select").value;
+            const itemQuantity = window.innerWidth < 768 ?  document.querySelector(".swatchCustom__item--active .stock__select").value : document.querySelector(".stock__select").value;
 
+            console.log(itemQuantity)
             if (itemId === '30282132226091') {
                 addItemToCart("30282132226091", 1, "3", "Month", "95310");
             } else {
