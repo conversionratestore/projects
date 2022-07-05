@@ -1,4 +1,3 @@
-
 let obj = [
     'United States/9-11/free',
     'Canada/12-15/$5',
