@@ -201,30 +201,16 @@ if (isPDP) { /* 'For People' Page  */
 
     const popularJobs = [
         [
-            'Prep cook',
-            'EST $136',
-            'Cincinnati, OH',
-            '$17/hr', '9:00 a.m. - 5:00 p.m.',
+            'Concessions',
+            'EST $80',
+            'Orlando, FL',
+            '$16/hr', '2:00 p.m. - 7:00 p.m.',
             `
-                Assist in needed prep and service<br>
-                Assist in overall sanitation and organization of line and surrounding areas<br>
-                Maintain open positive and effective communication with others…
+                This role involves a variety of tasks, from customer service and taking orders to preparing food and handling transactions. Concession stand workers are a vital part of the sports stadium experience. They are the friendly faces that deliver much-needed refreshments and occasional banter.
             `,
-            'The Phoenix',
+            'Sports Arena',
             ['star', 'star', 'star', 'star', 'star-half'],
-            '4.89'
-        ],
-        [
-            'Stadium Attendant',
-            'EST $126',
-            'Cincinnati, OH',
-            '$18/hr', '3:00 p.m. - 10:00 p.m.',
-            `
-                Providing consistently outstanding service to all customers.  Serving of meals in a plated banquet or buffet. Dealing directly with clients, ensuring that all their individual requirements are met. Providing food and beverage service to guests throughout the event in accordance with match day/daily requirements…
-            `,
-            'FC Cincinnati Stadium',
-            ['star', 'star', 'star', 'star', 'star-half'],
-            '4.76'
+            '4.9'
         ],
         [
             'Banquet Attendant',
@@ -234,69 +220,57 @@ if (isPDP) { /* 'For People' Page  */
             `
                 Help serve plated dinner and bus, pass appetizers, and clean stations. What to wear: black dress pants, black button long sleeve dress shirt… 
             `,
-            'Museum Center',
+            'Art Museum',
             ['star', 'star', 'star', 'star', 'star-half'],
             '4.83'
         ],
         [
-            'Concession Cashier',
-            'EST $126',
+            'Packer',
+            'EST $120',
+            'Phoenix, AZ',
+            '$15/hr', '8:00 a.m. - 4:00 p.m.',
+            `
+            As a Packer you’ll be playing an instrumental role in manufacturing operations  success. Some of the responsibilities may include handling inventory with care and attention to detail, ensuring product orders are packed and moved carefully, inspecting weighing, and packaging products, and monitoring the flow of product into processing machinery.
+            `,
+            'Distribution Center',
+            ['star', 'star', 'star', 'star', 'star-half'],
+            '4.5'
+        ],
+        [
+            'Housekeeper',
+            'EST $80',
             'Detroit, MI',
-            '$14/hr', '2:00 p.m. - 7:00 p.m.',
+            '$16/hr', '2:00 p.m. - 7:00 p.m.',
+            `
+            As a housekeeper, you will be playing an instrumental role in the hotel’s operations success by taking care of a building’s general cleanliness to provide tidy and sanitary amenities to guests and residents. Some of the responsibilities might include cleaning floors, making beds, dusting surfaces.
+            `,
+            'Hotel',
+            ['star', 'star', 'star', 'star', 'star-half'],
+            '4.75'
+        ],
+        [
+            'Server',
+            'EST $80',
+            'Dayton, OH',
+            '$16/hr', '2:00 p.m. - 7:00 p.m.',
             `
                 Provide excellent guest service while working in a very fast paced environment while serving food and beverages to customers. Proper cash handling, great and service guests at the registers, taking orders, and accepting payments…
             `,
-            'Convention Center',
+            'University Cafeteria',
             ['star', 'star', 'star', 'star', 'star-half'],
             '4.73'
         ],
         [
-            'Bartender',
-            'EST $133',
-            'Tampa, FL',
-            '$19/hr', '3:00 p.m. - 10:00 p.m.',
+            'Warehouse Associate',
+            'EST $128',
+            'Nashville, TN',
+            '$16/hr', '8:00 a.m. - 4:00 p.m.',
             `
-            Providing consistently outstanding service to all customers.  Serving of meals in a plated banquet or buffet. Dealing directly with clients, ensuring that all their individual requirements are met. Providing food and beverage service to guests throughout the event in accordance with match day/daily requirements…
+                As a Warehouse Associate / Crew Member, you will be playing an instrumental role in the warehouse operations by performing an array of duties such as receiving and processing incoming stock and materials, packing or shipping orders, picking and filling orders.
             `,
-            'Park',
+            'Manufacturer',
             ['star', 'star', 'star', 'star', 'star-half'],
-            '4.89'
-        ],
-        [
-            'Concessions',
-            'EST $80',
-            'Orlando, FL',
-            '$16/hr', '2:00 p.m. - 7:00 p.m.',
-            `
-                This role involves a variety of tasks, from customer service and taking orders to preparing food and handling transactions. Concession stand workers are a vital part of the sports stadium experience. They are the friendly faces that deliver much-needed refreshments and occasional banter.
-            `,
-            'Arena',
-            ['star', 'star', 'star', 'star', 'star-half'],
-            '4.76'
-        ],
-        [
-            'Suite Runner',
-            'EST $126',
-            'Las Vegas, NV',
-            '$16/hr', '4:00 p.m. - 11:00 p.m.',
-            `
-                Help serve plated dinner and bus, pass appetizers, and clean stations. What to wear: black dress pants, black button long sleeve dress shirt… 
-            `,
-            'Arena',
-            ['star', 'star', 'star', 'star', 'star-half'],
-            '4.83'
-        ],
-        [
-            'Concession Cashier',
-            'EST $120',
-            'San Antonio, TX',
-            '$15/hr', '10:00 a.m. - 6:00 p.m.',
-            `
-                Provide excellent guest service while working in a very fast paced      environment while serving food and beverages to customers. Proper cash handling, great and service guests at the registers, taking orders, and accepting payments… 
-            `,
-            'Convention Center',
-            ['star', 'star', 'star', 'star', 'star-half'],
-            '4.73'
+            '4.8'
         ],
     ]
 
@@ -493,7 +467,7 @@ if (isPDP) { /* 'For People' Page  */
     </div>`
     ).join('')
 
-    const slides = getRandomItems(popularJobs, 5).map(job => `
+    const slides = popularJobs.map(job => `
     <div>
 <div class="slide">
                 <div class="slide_header">
@@ -1479,7 +1453,7 @@ if (isPDP) { /* 'For People' Page  */
             left: 0;
             height: 100%;
             width: 100%;
-            background: linear-gradient(0.24deg, #FFFFFF 21%, rgba(255, 255, 255, 0) 35%);
+            background: linear-gradient(0.24deg, #FFFFFF 21%, rgba(255, 255, 255, 0) 40%);
         }
         
         .btn_wrapper {
