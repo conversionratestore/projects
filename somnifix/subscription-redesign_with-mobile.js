@@ -1844,7 +1844,7 @@ let startMain = setInterval(function () {
             document.querySelector('.part1 .checklist').insertAdjacentHTML('afterend', switchItem);
         }
 
-        if (window.innerWidth < 768) {
+        if (window.innerWidth <= 768) {
             document.querySelectorAll('.part1 .swatchCustom__item')[2].after(document.querySelector('.part2 .to_checkout'))
             document.querySelectorAll('.part1 .swatchCustom__item')[2].insertAdjacentHTML('afterend', qtyHtml)
             document.querySelector('.col-left').after(document.querySelector('.total_price'))
@@ -1949,7 +1949,7 @@ let startMain = setInterval(function () {
         //add to cart
         $('.swatch_cro .to_checkout').click(function() {
             const itemId = document.querySelector(".swatchCustom__item--active").dataset.variant;
-            const itemQuantity = window.innerWidth < 768 ? document.querySelector(".calc-qty").value : document.querySelector(".stock__select").value;
+            const itemQuantity = window.innerWidth <= 768 ? document.querySelector(".calc-qty").value : document.querySelector(".stock__select").value;
 
             if (itemId === '30282132226091') {
                 addItemToCart("30282132226091", 1, "3", "Month", "95310");
