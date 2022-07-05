@@ -476,12 +476,12 @@ if (!isShifts) { /* 'For People' Page  */
                         <p><img src="${imgFolderLink}/marker.svg" alt="marker"> ${job[2]}</p>
                     </div>
                     <div>
-                        <p>${job[1]}</p>                        
+                        <p style="white-space: nowrap;">${job[1]}</p>                        
                         <p>${job[3]}</p>
                     </div>
                 </div>
                 <div class="slide_body">
-                    <p class="work_time"><img src="${imgFolderLink}/time.svg" alt="time"><b>Shift: </b>${job[4]}</p>
+                    <p class="work_time"><img src="${imgFolderLink}/time.svg" alt="time"><b>Shift:&nbsp;</b>${job[4]}</p>
                     <p class="work_description">${job[5]}</p>
                     <p class="work_place">${job[6]}</p>
                     <div class="work_rating">
