@@ -772,6 +772,8 @@ if (isPDP) { /* 'For People' Page  */
         }
 
         .reviews  {
+            padding-left: 0;
+            padding-right: 0;
             text-align: center;
         }
 
