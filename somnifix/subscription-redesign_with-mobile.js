@@ -756,6 +756,7 @@ let style = `
         color: #1E415F;
         width: 41px;
         background: transparent;
+        outline: none;
     }
     .btn-calc {
         width: 24px;
@@ -1060,6 +1061,9 @@ let style = `
         }
         .product_section.has-padding-bottom {
             padding-bottom: 0!important
+        }
+        .icons__block {
+            padding-bottom: 40px
         }
     }
     
@@ -1790,7 +1794,7 @@ let modalHtml = `
 
 //icons block (mobile)
 let iconsHtml = `
-<div class="justify-between items-center has-padding-bottom">
+<div class="justify-between items-center icons__block">
     <img src='https://conversionratestore.github.io/projects/somnifix/img/icon1.svg' alt='icon'>
     <img src='https://conversionratestore.github.io/projects/somnifix/img/icon2.svg' alt='icon'>
     <img src='https://conversionratestore.github.io/projects/somnifix/img/icon3.svg' alt='icon'>
@@ -1945,7 +1949,7 @@ let startMain = setInterval(function () {
         //add to cart
         $('.swatch_cro .to_checkout').click(function() {
             const itemId = document.querySelector(".swatchCustom__item--active").dataset.variant;
-            const itemQuantity = window.innerWidth < 768 ?  document.querySelector(".swatchCustom__item--active .stock__select").value : document.querySelector(".stock__select").value;
+            const itemQuantity = window.innerWidth < 768 ? document.querySelector(".calc-qty").value : document.querySelector(".stock__select").value;
 
             if (itemId === '30282132226091') {
                 addItemToCart("30282132226091", 1, "3", "Month", "95310");
