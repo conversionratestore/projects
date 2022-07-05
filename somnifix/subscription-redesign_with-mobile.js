@@ -149,6 +149,38 @@ function pushDataLayer(action, label) {
     });
 }
 
+//qty change
+function changeQty(qty,pr,action) {
+    if (action == 'plus') {
+        qty.value = parseInt(qty.value) + 1;
+    } else if (action == 'minus') {
+        qty.value = parseInt(qty.value) - 1;
+    }
+    if (action == 'plus' || action == 'minus') {
+        if (qty.value == '') {
+            qty.value = 1;
+        }
+    }
+    if (qty.value > 1) {
+        qty.previousElementSibling.disabled = false;
+    } else {
+        qty.previousElementSibling.disabled = true;
+    }
+
+    pr.innerHTML= (+pr.dataset.price * +qty.value).toFixed(2)
+
+    if (qty.value == 0 && qty.value != '') {
+        qty.value = 1;
+        pr.innerHTML= (+pr.dataset.price * +qty.value).toFixed(2)
+    }
+    if (qty.value == '') {
+        pr.innerHTML = pr.dataset.price
+    }
+    if (qty.value > 1) {
+        qty.parentElement.nextElementSibling.querySelector('span').hidden = false;
+    } 
+}
+
 let style = `
 <style>
     /*banner*/
@@ -1716,6 +1748,16 @@ let iconsHtml = `
     <img src='https://conversionratestore.github.io/projects/somnifix/img/icon3.svg' alt='icon'>
 </div>
 `
+
+let qtyHtml = `
+<div class="justify-between">
+    <div class="items-center calc"> 
+        <button class="btn-calc btn-calc_minus" type="button" disabled></button>
+        <input class="calc-qty" type="number" value="1" name="quantity">
+        <button class="btn-calc btn-calc_plus" type="button"></button>
+    </div>
+</div>`
+
 let startMain = setInterval(function () {
     if(document.querySelectorAll('.shogun-root > .shg-box-vertical-align-wrapper .shg-box-vertical-align-wrapper')[5] != null) {
         clearInterval(startMain)
@@ -1743,17 +1785,15 @@ let startMain = setInterval(function () {
                         </p>
                     </div>
                 </div>
-                ${objVariants[i].popular == true ? `<p class="how_cancet">Auto delivery every 3 months. <br> Cancel anytime. <a href="#" class="btn-how_cancel">How to cancel?</a></p>` : ''}
-                ${objVariants[i].popular != true && window.innerWidth < 768 ? `<div class="qty_block"><h4 class="stock__header">In Stock.</h4>
-                <select class="stock__select" disabled>${qty()}</select></div>` : ''}
-                
+                ${objVariants[i].popular == true ? `<p class="how_cancet">Auto delivery every 3 months. <br> Cancel anytime. <a href="#" class="btn-how_cancel">How to cancel?</a></p>` : ''}  
             </div>`
             document.querySelector('.part1 .checklist').insertAdjacentHTML('afterend', switchItem);
         }
 
         if (window.innerWidth < 768) {
-            document.querySelector('.swatch_cro .product_name.title').innerHTML = `Choose your pack`;
             document.querySelectorAll('.part1 .swatchCustom__item')[2].after(document.querySelector('.part2 .to_checkout'))
+            document.querySelectorAll('.part1 .swatchCustom__item')[2].insertAdjacentHTML('afterend', qtyHtml)
+            document.querySelector('.calc').insertAdjacentHTML('beforeend', total_price)
             document.querySelector('.section').insertAdjacentHTML('afterend', iconsHtml)
         }
 
