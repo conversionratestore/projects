@@ -103,6 +103,7 @@ p.work_place {
 
 // Check what page we are on
 let isShifts = window.location.pathname.includes('shifts-near-you')
+let isForPeople = window.location.pathname.includes('for-people')
 
 // Get random items from array
 const getRandomItems = (arr, num) => arr.sort(() => Math.random() - 0.5).slice(0, num)
@@ -129,7 +130,7 @@ const callEvent = (eventAction, eventLabel = '') => {
 }
 
 // initial relative page scripts 
-if (!isShifts) { /* 'For People' Page  */
+if (!isShifts) { /* 'For People' && 'Findshifts1' Pages */
 
     /* Load Tiny Slider  */
 
@@ -528,6 +529,36 @@ if (!isShifts) { /* 'For People' Page  */
         <p>Over 50,000 People have already found shift on upshift</p>
         <img src="${imgFolderLink}/websites.svg" alt="websites">
     </section>
+    <section class="industries">
+        <h2>Find Hourly Work in Various Industries</h2>
+        <div class="industry">
+            <div>
+                <img src="https://www.upshift.work/wp-content/uploads/2021/03/hotel-4-1.svg" alt="hotel">
+            </div>
+            <div class="desribe">
+                <p>Hotels/Food Service</p>
+                <p>Housekeepers, Kitchen Staff, Front Desk, Cooks, Bartenders</p>
+            </div>
+        </div>
+        <div class="industry">
+            <div>
+                <img src="https://www.upshift.work/wp-content/uploads/2021/03/food-1-1.svg" alt="food">
+            </div>
+            <div class="desribe">
+                <p>Catering/Events</p>
+                <p>Banquet Servers, Kitchen Staff, Bartenders, Dishwashers, Crew</p>
+            </div>
+        </div>
+        <div class="industry">
+            <div>
+                <img src="https://www.upshift.work/wp-content/uploads/2021/03/box-1-1.svg" alt="box">
+            </div>
+            <div class="desribe">           
+                <p>Warehouse/<br>Manufacturing</p>
+                <p>Pickers, Packers, Equipment Operators, Janitorial, Customer Service</p>
+            </div>
+        </div>
+    </section>
     <section class="popular_shifts">
         <h2>Popular shifts</h2>
         <div class="slider" id="slider">
@@ -570,6 +601,67 @@ if (!isShifts) { /* 'For People' Page  */
         </div>
         <button data-sign>Join Upshift</button>
     </section>
+    <section class="chooses">
+        <h2>Why choose<br>Upshift?</h2>
+        <div class="choose">
+            <div>
+                <img src="https://www.upshift.work/wp-content/uploads/2021/03/calendar.png" alt="calendar">
+            </div>
+            <div class="text">
+                <p>Work When You Want</p>
+                <p>Create your own schedule with flexible hours by applying to as many or as few shifts as you want. Whether you want a full-time job, part-time job, or flexible shifts, we have it all available!</p>
+            </div>
+        </div>
+        <div class="choose">
+            <div>
+                <img src="https://www.upshift.work/wp-content/uploads/2021/03/Bez-nazwy5.png" alt="better shifts">
+            </div>
+            <div class="text">
+                <p>Find Better Shifts</p>
+                <p>Build your reputation through your profile with great reviews, certifications and other achievements. As your profile improves, you’ll be more likely to be selected for higher-paying shifts.</p>
+            </div>
+        </div>
+        <div class="choose">
+            <div>
+                <img src="https://www.upshift.work/wp-content/uploads/2021/03/Bez-nazwy.png" alt="easy use app">
+            </div>
+            <div class="text">
+                <p>Easy-to-use Upshift App</p>
+                <p>Easily keep track of all your shifts in one place. We offer a web and mobile platform so that you can pick up shifts at the click of a button.</p>
+            </div>
+        </div>
+        <div class="choose">
+            <div>
+                <img src="https://www.upshift.work/wp-content/uploads/2021/03/Bez-nazwy2.png" alt="income">
+            </div>
+            <div class="text">
+                <p>Supplement Your Income</p>
+                <p>Whether you need a steady income or you’re just wanting some extra spending money, you can pick up shifts and get paid weekly.</p>
+            </div>
+        </div>
+        <div class="choose">
+            <div>
+                <img src="https://www.upshift.work/wp-content/uploads/2021/03/Bez-nazwy3.png" alt="network">
+            </div>
+            <div class="text">
+                <p>Build Your Network and Skills</p>
+                <p>Get exposed to different types of jobs and meet new people along the way. Learn new skills from each shift you work and add them to your profile.</p>
+            </div>
+        </div>
+        <div class="choose">
+            <div>
+                <img src="https://www.upshift.work/wp-content/uploads/2021/03/Bez-nazwy4.png" alt="benefits">
+            </div>
+            <div class="text">
+                <p>Get Benefits</p>
+                <p>You will be a W-2 employee of Upshift, which means that taxes are taken out of your paycheck and you will receive a W-2 after the year has ended. You’re also able to get benefits after your first paycheck including dental, medical, vision, and more!</p>
+            </div>
+        </div>
+        <div class="find_work">
+            <button class="btn_green" data-sign>Join Upshift</button>    
+            <span>to find work</span>
+        </div>    
+    </section>
 </div>
     `
 
@@ -600,15 +692,22 @@ if (!isShifts) { /* 'For People' Page  */
 
         #ipmb-duble-bg-green,
         #ipmb-for-people-second-section,
+                #row-unique-0,
+        #row-unique-1,
         #row-unique-2,
         #row-unique-3,
         #row-unique-4,
         #row-unique-5,
         #row-unique-6,
         #ipmb-steps-header,
-        #ipmb-8-btn-section {
+        #ipmb-8-btn-section,
+        #ipmb-industries-we-serve,
+        .wpb_column.pos-middle.pos-left.align_left.column_parent.col-lg-6.ipmb-mobile-padding-0.spcmobiletop.single-internal-gutter
+        {
             display: none !important;
         }
+
+        ${isForPeople ? '' : `#row-unique-7, #signup {display: none !important;}`}
 
         .template h1, 
         .template h2,
@@ -620,6 +719,10 @@ if (!isShifts) { /* 'For People' Page  */
             margin: 0;
             font-family: 'Poppins', sans-serif;
             line-height: normal;
+        }
+
+        .isotope-wrapper .isotope-container > div {
+            width: auto !important;
         }
 
         .template section {
@@ -652,16 +755,24 @@ if (!isShifts) { /* 'For People' Page  */
             background: #6AC29A;
         }
 
-        #row-unique-8 .btn-container {
+        #row-unique-8 .btn-container,
+        #row-unique-9 .btn-container {
             display: none;
         }
 
-        #row-unique-8 button.btn_white {
+        #row-unique-8 button.btn_white,
+        #row-unique-9 button.btn_white {
             background: #fff !important;
             color: #43c597!important;
             width: 170px;
             margin-bottom: 10px;
             margin-left: calc(50% - 84px);
+            border-radius: 8px;
+            font-weight: 600;
+            padding: 13px 0;
+            text-transform: capitalize;
+            font-size: 16px!important;
+            font-family: 'Poppins', sans-serif;
         }
 
         button[data-sign] {
@@ -772,7 +883,7 @@ if (!isShifts) { /* 'For People' Page  */
         }
 
         section.reviews  {
-            padding-left: 40px 0 0;
+            padding: 40px 0 0;
             text-align: center;
         }
 
@@ -790,6 +901,43 @@ if (!isShifts) { /* 'For People' Page  */
             color: ${color_black};
             margin-bottom: 10px;
             padding: 0 25px;
+        }
+
+        .industries img {
+            max-width: 50px;
+            height: 50px;
+            margin: 0 30px 0 20px;
+        } 
+
+        .industries h2 {
+            font-size: 24px;
+            font-weight: 600;
+            line-height: 32px;
+            text-align: center;
+            margin-bottom: 38px;
+        }
+
+        .industry {
+            display: flex;
+            padding: 20px 10px;
+            box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.03), 0px 4px 20px #E8EBF3;
+            border-radius: 13px;
+            margin-bottom: 25px;
+        }
+
+        .desribe p:first-child {
+            font-size: 18px;
+            line-height: 22px;
+            margin-bottom: 5px;
+            font-weight: 600;
+        }
+
+        .desribe p:last-child {
+            font-size: 14px;
+            line-height: 128.7%;
+            font-weight: 400;
+            color: #303133;
+            opacity: .8;
         }
 
         ${jobsCSS}
@@ -974,9 +1122,7 @@ if (!isShifts) { /* 'For People' Page  */
         }
 
         .find_work {
-            margin-top: -15px;
-            font-family: 'Poppins', sans-serif;
-            padding: 0 25px 70px;
+            padding-bottom: 25px;
         }
 
         .find_work span {
@@ -1011,6 +1157,40 @@ if (!isShifts) { /* 'For People' Page  */
             line-height: 50px;
             text-align: center !important;
         }
+
+        .chooses h2 {
+            text-align: center;
+            margin: 10px 0 45px;
+        }
+
+        .choose {
+            display: flex;
+            flex-direction: row;
+            margin-bottom: 15px;
+        }
+
+        .choose img {
+            max-width: 60px;
+            max-height: 60px;
+            box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.03), 0px 4px 20px #E8EBF3;
+            border-radius: 50%;
+            margin-right: 30px;
+        }
+
+        .chooses .text p:first-child {
+            font-weight: 600;
+            font-size: 24px;
+            line-height: 32px;
+            margin-bottom: 23px;
+        }
+
+        .chooses .text p:last-child {            
+            font-size: 15px;            
+            font-weight: 400;
+            line-height: 26px;
+            letter-spacing: 0em;
+            opacity: .75;
+        }
     </style>
     `
 
@@ -1041,11 +1221,11 @@ if (!isShifts) { /* 'For People' Page  */
 
     /* Interval 0: run scripts */
     let waitForPeopleSection = setInterval(() => {
-        if (document.getElementById('ipmb-for-people-second-section')) {
+        if (document.querySelector('.post-content')) {
             clearInterval(waitForPeopleSection)
 
             // Parse my text as HTML
-            document.getElementById('ipmb-for-people-second-section').insertAdjacentHTML('afterend', pdpTemplate)
+            document.querySelector('.post-content').insertAdjacentHTML('afterbegin', pdpTemplate)
 
             /* Interval 1: Move 'Industries' section behind my 'Reviews' section */
             const waitForIndustriesSection = setInterval(() => {
@@ -1180,21 +1360,7 @@ if (!isShifts) { /* 'For People' Page  */
                 }
             }, intervalTimeout);
 
-            /* Interval 5: Add button to the end of 'Why choose Upshift?' section */
-            const waitForWhyChooseSection = setInterval(() => {
-                if (document.getElementById('row-unique-1')) {
-                    clearInterval(waitForWhyChooseSection)
-
-                    document.getElementById('row-unique-1').insertAdjacentHTML('beforeend', /*html*/`
-                    <div class="find_work">
-                        <button class="btn_green" data-sign>Join Upshift</button>    
-                        <span>to find work</span>
-                    </div>                    
-                `)
-                }
-            }, intervalTimeout);
-
-            /* Interval 6: Initialize Sign Up script after Buttons appearence in the DOM */
+            /* Interval 5: Initialize Sign Up script after Buttons appearence in the DOM */
             const waitForBtns = setInterval(() => {
                 if (document.querySelectorAll('[data-sign]')[5]) {
                     clearInterval(waitForBtns)
@@ -1236,25 +1402,22 @@ if (!isShifts) { /* 'For People' Page  */
                 }
             }, intervalTimeout);
 
-            /* Interval 7: Change heading in Why choose section after appearence in the DOM */
-            const waitForHeading = setInterval(() => {
-                if (document.querySelector('#row-unique-0 p')) {
-                    clearInterval(waitForHeading)
+            /* Interval 6: Change btn logic */
+            let row = ''
 
-                    document.querySelector('#row-unique-0 p').innerText = 'Why choose Upshift?'
-                }
-            }, intervalTimeout);
+            if (isForPeople) {
+                row = 'row-unique-8'
+            } else {
+                row = 'row-unique-9'
+            }
 
-            /* Interval 7: Change heading in Why choose section after appearence in the DOM */
             const waitForLastBtn = setInterval(() => {
-                if (document.querySelector('#row-unique-0 p')) {
+                if (document.querySelector(`#${row} p`)) {
                     clearInterval(waitForLastBtn)
 
-                    document.querySelector('#row-unique-8 .btn-container').insertAdjacentHTML('afterend', `<button class="btn_white" data-sign>Apply now</button>`)
+                    document.querySelector(`#${row} .btn-container`).insertAdjacentHTML('afterend', `<button class="btn_white" data-sign>Apply now</button>`)
                 }
             }, intervalTimeout);
-
-
         }
     }, intervalTimeout);
 
