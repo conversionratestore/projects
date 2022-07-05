@@ -777,6 +777,10 @@ if (!isShifts) { /* 'For People' Page  */
             text-align: center;
         }
 
+        section.reviews {
+            width: 100%;
+        }
+
         .reviews p {
             font-weight: 600;
             font-size: 16px;
