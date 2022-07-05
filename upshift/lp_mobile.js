@@ -512,7 +512,7 @@ if (!isShifts) { /* 'For People' && 'Findshifts1' Pages */
 <div class="template">
     <section class="area">
         <h1>Flexible shifts accross the US</h1>
-        <h4>Pick up shifts, work when you want and get paid daily!</h4>
+        <h4>Pick up shifts, work when you want<br>and get paid daily!</h4>
         <form id="area_form" name="area_form">
             <p class="area_title">Your area</p>
             <div class="select_wrapper">
