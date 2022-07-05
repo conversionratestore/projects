@@ -115,7 +115,11 @@ let startFunkReview = setInterval(() => {
             position: relative;
         }
 
-        .block_second > ul > li::before{
+        .stories.carousel .story>a u{
+            position: relative;
+        }
+
+        .stories.carousel .story>a u::before{
             position: absolute;
             content: '';
             width: 24px;
@@ -206,18 +210,7 @@ let startFunkReview = setInterval(() => {
     <div class="block_second">
         <h2>Video Reviews</h2>
         <ul id="stories">
-            <li>
-                <!-- <img src="" alt="photo"> -->
-            </li>
-            <li>
-                <!-- <img src="" alt="photo"> -->
-            </li>
-            <li>
-                <!-- <img src="" alt="photo"> -->
-            </li>
-            <li>
-                <!-- <img src="" alt="photo"> -->
-            </li>
+
         </ul>
     </div>
     
@@ -282,8 +275,7 @@ let startFunkReview = setInterval(() => {
         }
       }
 
-      const stories = new Zuck({
-        id: "stories",
+      const stories = new Zuck("stories", {
         skin: "snapgram",
         avatars: true,
         list: false,
@@ -298,13 +290,24 @@ let startFunkReview = setInterval(() => {
         rtl: false,
         stories: [
           {
-            id: "vision",
-            photo: "https://conversionratestore.github.io/projects/buzzpatch/img/review4.jpg",
-            name: "Tech",
-            items: [
-              buildItem("3", "photo", 3, "https://conversionratestore.github.io/projects/buzzpatch/img/review4.jpg", "", false, 1492665454),
-              buildItem("2", "photo", 3, "https://conversionratestore.github.io/projects/buzzpatch/img/review1.jpg", "", false, 1492665454),
-            ],
+            id: "a",
+            photo: "https://conversionratestore.github.io/projects/buzzpatch/img/video_review1.jpg",
+            items: [buildItem("1", "photo", 1, "https://conversionratestore.github.io/projects/buzzpatch/img/review4.jpg", "", "", false, 1492665454)],
+          },
+          {
+            id: "r",
+            photo: "https://conversionratestore.github.io/projects/buzzpatch/img/video_review2.jpg",
+            items: [buildItem("1", "photo", 3, "https://conversionratestore.github.io/projects/buzzpatch/img/review4.jpg", "", false, 1492665454)],
+          },
+          {
+            id: "t",
+            photo: "https://conversionratestore.github.io/projects/buzzpatch/img/video_review3.jpg",
+            items: [buildItem("1", "photo", 3, "https://conversionratestore.github.io/projects/buzzpatch/img/review4.jpg", "", false, 1492665454)],
+          },
+          {
+            id: "d",
+            photo: "https://conversionratestore.github.io/projects/buzzpatch/img/video_review4.jpg",
+            items: [buildItem("1", "photo", 3, "https://conversionratestore.github.io/projects/buzzpatch/img/review4.jpg", "", false, 1492665454)],
           },
         ],
       })
