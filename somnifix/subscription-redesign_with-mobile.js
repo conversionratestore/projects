@@ -1375,6 +1375,15 @@ let style = `
         cursor: pointer;
     }
         
+    @media (max-width: 768px) {
+        .modal_container {
+            margin: auto 0 0 0;
+            border-radius: 20px 20px 0 0;
+            padding: 32px;
+            max-width: 100%;
+        }
+    }
+
     /*slider*/
     .product-gallery__thumbnails {
         display: flex;
