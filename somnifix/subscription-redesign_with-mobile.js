@@ -765,6 +765,8 @@ let style = `
         background: #FFFFFF;
         border: 1px solid #1E415F;
         position: relative;
+        display: block;
+        flex-shrink: 0;
     }
     .btn-calc:before, .btn-calc_plus:after {
         content: '';
