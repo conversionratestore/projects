@@ -526,7 +526,7 @@ if (isPDP) { /* 'For People' Page  */
     </section>
     <section class="reviews">
         <p>Over 50,000 People have already found shift on upshift</p>
-        <img src="${imgFolderLink}/glassdoor.svg" alt="glassdoor">
+        <img src="${imgFolderLink}/websites.svg" alt="websites">
     </section>
     <section class="popular_shifts">
         <h2>Popular shifts</h2>
