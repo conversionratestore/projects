@@ -102,7 +102,7 @@ p.work_place {
 /* JS: Common */
 
 // Check what page we are on
-let isPDP = window.location.pathname.includes('for-people')
+let isShifts = window.location.pathname.includes('shifts-near-you')
 
 // Get random items from array
 const getRandomItems = (arr, num) => arr.sort(() => Math.random() - 0.5).slice(0, num)
@@ -129,7 +129,7 @@ const callEvent = (eventAction, eventLabel = '') => {
 }
 
 // initial relative page scripts 
-if (isPDP) { /* 'For People' Page  */
+if (!isShifts) { /* 'For People' Page  */
 
     /* Load Tiny Slider  */
 
