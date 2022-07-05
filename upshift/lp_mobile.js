@@ -772,8 +772,7 @@ if (!isShifts) { /* 'For People' Page  */
         }
 
         section.reviews  {
-            padding-left: 0;
-            padding-right: 0;
+            padding-left: 40px 0 0;
             text-align: center;
         }
 
@@ -789,7 +788,7 @@ if (!isShifts) { /* 'For People' Page  */
             letter-spacing: 0.01em;
             text-transform: uppercase;
             color: ${color_black};
-            margin-bottom: 20px;
+            margin-bottom: 10px;
             padding: 0 25px;
         }
 
