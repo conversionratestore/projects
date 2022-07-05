@@ -771,7 +771,7 @@ if (isPDP) { /* 'For People' Page  */
             border: 1px solid #D94E48;
         }
 
-        .reviews  {
+        section.reviews  {
             padding-left: 0;
             padding-right: 0;
             text-align: center;
@@ -786,6 +786,7 @@ if (isPDP) { /* 'For People' Page  */
             text-transform: uppercase;
             color: ${color_black};
             margin-bottom: 20px;
+            padding: 0 25px;
         }
 
         ${jobsCSS}
