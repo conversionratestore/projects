@@ -767,6 +767,7 @@ let style = `
         position: relative;
         display: block;
         flex-shrink: 0;
+        padding: 0;
     }
     .btn-calc:before, .btn-calc_plus:after {
         content: '';
