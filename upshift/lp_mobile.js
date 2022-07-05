@@ -715,7 +715,8 @@ if (!isShifts) { /* 'For People' && 'Findshifts1' Pages */
         .template p,
         .template span,
         .template a, 
-        .template button {
+        .template button,
+        .template li {
             margin: 0;
             font-family: 'Poppins', sans-serif;
             line-height: normal;
@@ -1565,8 +1566,7 @@ if (!isShifts) { /* 'For People' && 'Findshifts1' Pages */
 
         section p,
         section span,
-        section h2,
-        section li {
+        section h2 {
             font-family: 'Poppins', sans-serif;
             margin: 0;
             line-height: normal;
