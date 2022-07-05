@@ -150,11 +150,14 @@ function pushDataLayer(action, label) {
 }
 
 //qty change
-function changeQty(qty,pr,action) {
+function changeQty(qty,action) {
+    let actionData = '';
     if (action == 'plus') {
         qty.value = parseInt(qty.value) + 1;
+        actionData = 'Click on plus button';
     } else if (action == 'minus') {
         qty.value = parseInt(qty.value) - 1;
+        actionData = 'Click on minus button';
     }
     if (action == 'plus' || action == 'minus') {
         if (qty.value == '') {
@@ -167,18 +170,10 @@ function changeQty(qty,pr,action) {
         qty.previousElementSibling.disabled = true;
     }
 
-    pr.innerHTML= (+pr.dataset.price * +qty.value).toFixed(2)
-
     if (qty.value == 0 && qty.value != '') {
         qty.value = 1;
-        pr.innerHTML= (+pr.dataset.price * +qty.value).toFixed(2)
     }
-    if (qty.value == '') {
-        pr.innerHTML = pr.dataset.price
-    }
-    if (qty.value > 1) {
-        qty.parentElement.nextElementSibling.querySelector('span').hidden = false;
-    } 
+    pushDataLayer(actionData, 'SomniFix Mouth Strips');
 }
 
 let style = `
@@ -750,6 +745,45 @@ let style = `
     .mobile .to_checkout {
         margin-top: 30px;
     }
+    .calc-qty {
+        font-family: 'Rubik', sans-serif;
+        font-style: normal;
+        font-weight: 700;
+        font-size: 18px;
+        line-height: 22px;
+        text-align: center;
+        border: none;
+        color: #1E415F;
+        width: 41px;
+        background: transparent;
+    }
+    .btn-calc {
+        width: 24px;
+        height: 24px;
+        border-radius: 50%;
+        background: #FFFFFF;
+        border: 1px solid #1E415F;
+        position: relative;
+    }
+    .btn-calc:before, .btn-calc_plus:after {
+        content: '';
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%,-50%);
+        background: #1E415F;
+    }
+    .btn-calc:before {
+        width: 7px;
+        height: 1px;
+    }
+    .btn-calc_plus:after {
+        width: 1px;
+        height: 7px;
+    }
+    .btn-calc[disabled] {
+        opacity: 0.5;
+    }
     
     @media (max-width: 1023px) {
         .desktop {
@@ -1012,6 +1046,20 @@ let style = `
         }
         .gray_bg {
             border-radius: 10px;
+        }
+        .total_price {
+            font-size: 18px;
+            line-height: 18px;
+            margin-bottom: 0;
+        }
+        .stock__pack {
+            font-size: 12px;
+            line-height: 12px;
+            color: #6D6E75;
+            margin-top: 12px;
+        }
+        .product_section.has-padding-bottom {
+            padding-bottom: 0!important
         }
     }
     
@@ -1742,7 +1790,7 @@ let modalHtml = `
 
 //icons block (mobile)
 let iconsHtml = `
-<div class="justify-between items-center">
+<div class="justify-between items-center has-padding-bottom">
     <img src='https://conversionratestore.github.io/projects/somnifix/img/icon1.svg' alt='icon'>
     <img src='https://conversionratestore.github.io/projects/somnifix/img/icon2.svg' alt='icon'>
     <img src='https://conversionratestore.github.io/projects/somnifix/img/icon3.svg' alt='icon'>
@@ -1750,11 +1798,13 @@ let iconsHtml = `
 `
 
 let qtyHtml = `
-<div class="justify-between">
-    <div class="items-center calc"> 
-        <button class="btn-calc btn-calc_minus" type="button" disabled></button>
-        <input class="calc-qty" type="number" value="1" name="quantity">
-        <button class="btn-calc btn-calc_plus" type="button"></button>
+<div class="justify-between items-center">
+    <div class="col-left">
+        <div class="items-center calc"> 
+            <button class="btn-calc btn-calc_minus" type="button" disabled></button>
+            <input class="calc-qty" type="number" value="1" name="quantity" readonly>
+            <button class="btn-calc btn-calc_plus" type="button" disabled></button>
+        </div>
     </div>
 </div>`
 
@@ -1793,8 +1843,21 @@ let startMain = setInterval(function () {
         if (window.innerWidth < 768) {
             document.querySelectorAll('.part1 .swatchCustom__item')[2].after(document.querySelector('.part2 .to_checkout'))
             document.querySelectorAll('.part1 .swatchCustom__item')[2].insertAdjacentHTML('afterend', qtyHtml)
-            document.querySelector('.calc').insertAdjacentHTML('beforeend', total_price)
-            document.querySelector('.section').insertAdjacentHTML('afterend', iconsHtml)
+            document.querySelector('.col-left').after(document.querySelector('.total_price'))
+            document.querySelector('.col-left .calc').after(document.querySelector('.stock__pack'))
+            document.querySelector('.money_back').insertAdjacentHTML('beforebegin', iconsHtml);
+            document.querySelectorAll('.btn-calc').forEach(button => {
+                button.addEventListener('click', (e) => {
+                    if (button.classList.contains('btn-calc_minus')) {
+                        changeQty(document.querySelector('.calc-qty'), 'minus')
+                    } else {
+                        changeQty(document.querySelector('.calc-qty'), 'plus')
+                    }
+                    let price = +document.querySelector('.swatchCustom__item.swatchCustom__item--active').dataset.price;
+                    let total = (price * document.querySelector('.calc-qty').value).toFixed(2);
+                    document.querySelector('.total_price span').innerHTML = total;
+                })
+            })
         }
 
         $('.product_section .swatchCustom__item').click(function(e) {
@@ -1807,15 +1870,19 @@ let startMain = setInterval(function () {
 
                 $('.total_price span').text(price)
                 $('.stock__select').val('1')
+                $('.calc-qty').val('1')
                 if($(this).data('title') === '3 Pack') {
                     $('.stock__pack span').text('84')
                     $('.stock__select').removeAttr('disabled')
+                    $('.btn-calc_plus').removeAttr('disabled')
                 } else if($(this).data('title') === '12 Pack') {
                     $('.stock__pack span').text('84')
                     $('.stock__select').attr('disabled','')
+                    $('.btn-calc').attr('disabled','')
                 } else {
                     $('.stock__pack span').text('28')
                     $('.stock__select').removeAttr('disabled')
+                    $('.btn-calc_plus').removeAttr('disabled')
                 }
             }
             if (!e.target.closest('.stock__select')){
@@ -1836,7 +1903,7 @@ let startMain = setInterval(function () {
         $('.stock__select').change(function() {
             let price = +$('.swatchCustom__item.swatchCustom__item--active').data('price')
             let total = (price * document.querySelector(".stock__select").value).toFixed(2)
-            $('.part2 .total_price span').text(total)
+            $('.total_price span').text(total)
             pushDataLayer('Click on Quantity option', 'SomniFix Mouth Strips')
         })
 
