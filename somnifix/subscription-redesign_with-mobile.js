@@ -1015,9 +1015,7 @@ let style = `
             line-height: 28px;
             text-align: center;
         }
-        .section {
-            padding: 40px 0!important;
-        }
+       
         .swatchCustom__item {
             min-height: 90px;
             display: flex;
@@ -1062,7 +1060,8 @@ let style = `
             margin-top: 12px;
         }
         .product_section.has-padding-bottom {
-            padding-bottom: 0!important
+            padding-bottom: 0!important;
+            margin: -14px 0;
         }
         .icons__block {
             padding-bottom: 40px
