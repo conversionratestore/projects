@@ -1064,7 +1064,7 @@ let style = `
             margin: -14px 0;
         }
         .icons__block {
-            padding-bottom: 40px
+            padding: 0 10px 40px;
         }
     }
     
