@@ -1565,7 +1565,8 @@ if (!isShifts) { /* 'For People' && 'Findshifts1' Pages */
 
         section p,
         section span,
-        section h2 {
+        section h2,
+        section li {
             font-family: 'Poppins', sans-serif;
             margin: 0;
             line-height: normal;
