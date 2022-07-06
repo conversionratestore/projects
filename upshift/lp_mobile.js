@@ -1557,7 +1557,7 @@ if (!isShifts) { /* 'For People' && 'Findshifts1' Pages */
                 '$15/hr', '10:00 a.m. - 6:00 p.m.',
                 'Convention Center',
                 ['star', 'star', 'star', 'star', 'star-half'],
-                '4.73'
+                '4.75'
             ]
         ]
     }
