@@ -1,5 +1,5 @@
 let startFunkReview = setInterval(() => {
-  if (document.querySelector(".js-heading .trust-rating")) {
+  if (document.querySelector("#mainContent")) {
     clearInterval(startFunkReview);
 
     let scriptCustom = document.createElement("script");
