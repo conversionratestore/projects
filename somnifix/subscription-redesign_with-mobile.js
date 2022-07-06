@@ -1226,6 +1226,7 @@ let style = `
      @media (max-width: 768px) {
         .money_back {
           padding: 50px 0;
+	  overflow: hidden;
         } 
         
         .money_back .schedule>p {
