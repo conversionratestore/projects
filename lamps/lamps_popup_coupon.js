@@ -391,7 +391,7 @@ let startFunk = setInterval(() => {
     .final_coupon_price{
       font-weight: 600;
       font-size: 14px;
-      line-height: 129%;
+      line-height: 1;
       color: #333333;
       display: block;
     }
@@ -695,7 +695,7 @@ let startFunk = setInterval(() => {
 
                             el.querySelector(
                               ".final_coupon_price"
-                            ).textContent = `$${newPriceCoupon}`;
+                            ).textContent = `$${newPriceCoupon.toFixed(2)}`;
                           }
                           // startCoupon()
                         }
