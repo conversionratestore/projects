@@ -404,8 +404,8 @@ if (!isShifts) { /* 'For People' && 'Findshifts1' Pages */
             <p>It’s easy to get started with Upshift:</p>
             <ol>
                 <li>Apply online and tell a little about yourself.</li>
+                <li>Show up at one of our offices for the document check/onboarding to activate your account.</li>
                 <li>Then download our Upshift app and start applying for available positions in your area.</li>
-                <li>Download Upshift app and start applying for available positions in your area.</li>
             </ol>
             <p>Processing time may vary by city, but most Upshifters are able to start working within a week or less after the online application.</p>
         `
