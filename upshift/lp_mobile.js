@@ -1361,6 +1361,16 @@ if (!isShifts) { /* 'For People' && 'Findshifts1' Pages */
                 }
             }, intervalTimeout);
 
+
+            // set last row depends on the page
+            let row = ''
+
+            if (isForPeople) {
+                row = '#row-unique-8'
+            } else {
+                row = '#row-unique-9'
+            }
+
             /* Interval 5: Initialize Sign Up script after Buttons appearence in the DOM */
             const waitForBtns = setInterval(() => {
                 if (document.querySelectorAll('[data-sign]')[5]) {
@@ -1395,7 +1405,7 @@ if (!isShifts) { /* 'For People' && 'Findshifts1' Pages */
                                 callEvent('Click on Apply/Join', sectionName)
                             } else if (btn.closest('.find_work')) {
                                 callEvent('Click on Apply/Join', 'why choose upshift')
-                            } else if (btn.closest('#row-unique-8')) {
+                            } else if (btn.closest(row)) {
                                 callEvent('Click on Apply/Join', 'flexible work')
                             }
                         })
@@ -1404,19 +1414,11 @@ if (!isShifts) { /* 'For People' && 'Findshifts1' Pages */
             }, intervalTimeout);
 
             /* Interval 6: Change btn logic */
-            let row = ''
-
-            if (isForPeople) {
-                row = 'row-unique-8'
-            } else {
-                row = 'row-unique-9'
-            }
-
             const waitForLastBtn = setInterval(() => {
-                if (document.querySelector(`#${row} p`)) {
+                if (document.querySelector(`${row} p`)) {
                     clearInterval(waitForLastBtn)
 
-                    document.querySelector(`#${row} .btn-container`).insertAdjacentHTML('afterend', `<button class="btn_white" data-sign>Apply now</button>`)
+                    document.querySelector(`${row} .btn-container`).insertAdjacentHTML('afterend', `<button class="btn_white" data-sign>Apply now</button>`)
                 }
             }, intervalTimeout);
         }
