@@ -289,34 +289,45 @@ let startFunkReview = setInterval(() => {
         link.addEventListener("click", function (event) {
           event.preventDefault();
 
-          let widthTop = document.documentElement.scrollTop,
-            hash = "#reviews",
-            toBlock =
-              document.querySelector(hash).getBoundingClientRect().top - 120,
-            start = null;
+          const scrollTarget = document.getElementById("reviews");
 
-          requestAnimationFrame(step);
+          const topOffset = 101;
+          const elementPosition = scrollTarget.getBoundingClientRect().top;
+          const offsetPosition = elementPosition - topOffset;
 
-          function step(time) {
-            if (start === null) {
-              start = time;
-              console.log(`time`, time);
-            }
+          window.scrollBy({
+            top: offsetPosition,
+            behavior: "smooth",
+          });
 
-            let progress = time - start,
-              r =
-                toBlock < 0
-                  ? Math.max(widthTop - progress / speed, widthTop + toBlock)
-                  : Math.min(widthTop + progress / speed, widthTop + toBlock);
+          // let widthTop = document.documentElement.scrollTop,
+          //   hash = "#reviews",
+          //   toBlock =
+          //     document.querySelector(hash).getBoundingClientRect().top - 120,
+          //   start = null;
 
-            document.documentElement.scrollTo(0, r);
+          // requestAnimationFrame(step);
 
-            if (r != widthTop + toBlock) {
-              requestAnimationFrame(step);
-            } else {
-              location.hash = hash;
-            }
-          }
+          // function step(time) {
+          //   if (start === null) {
+          //     start = time;
+          //     console.log(`time`, time);
+          //   }
+
+          //   let progress = time - start,
+          //     r =
+          //       toBlock < 0
+          //         ? Math.max(widthTop - progress / speed, widthTop + toBlock)
+          //         : Math.min(widthTop + progress / speed, widthTop + toBlock);
+
+          //   document.documentElement.scrollTo(0, r);
+
+          //   if (r != widthTop + toBlock) {
+          //     requestAnimationFrame(step);
+          //   } else {
+          //     location.hash = hash;
+          //   }
+          // }
         });
       });
     }
