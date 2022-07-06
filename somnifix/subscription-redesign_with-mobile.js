@@ -1031,7 +1031,20 @@ let style = `
             font-weight: 500;
         }
         .swatchCustom__item--third .sale {
-            margin-bottom: 3px;
+            margin-bottom: 12px;
+        }
+        .swatchCustom__item--first .week {
+            margin-bottom: 9px;
+        }
+        .swatchCustom__item:first-child .swatchCustom__item--third .sale {
+            margin-bottom: 28px;
+        }
+        .swatchCustom__item .how_cancet {
+            padding-top: 12px;
+        }
+        .btn-how_cancel {
+            display: block;
+            margin-top: 12px;
         }
         .to_checkout {
             font-weight: 500;
@@ -1064,7 +1077,8 @@ let style = `
             margin: -14px 0;
         }
         .icons__block {
-            padding: 0 10px 40px;
+            width: 95%;
+            margin: 0 auto 40px;
         }
     }
     
@@ -1372,6 +1386,8 @@ let style = `
         background: url("https://conversionratestore.github.io/projects/somnifix/img/close_2.svg") no-repeat center / 100%;
         border: none;
         cursor: pointer;
+        padding: 0;
+        flex-shrink: 0;
     }
         
     @media (max-width: 768px) {
@@ -1995,9 +2011,7 @@ let startMain = setInterval(function () {
 let startSlider = setInterval(function () {
     if (document.querySelector('.product-gallery__main') != null && document.querySelector('.product-gallery__thumbnails') != null && window.innerWidth > 768) {
         if (typeof Flickity === 'function') {
-            console.log(typeof Flickity)
             clearInterval(startSlider)
-            console.log('silder interval')
             new Flickity(document.querySelector('.product-gallery__main'), {
                 contain: true,
                 pageDots: false,
