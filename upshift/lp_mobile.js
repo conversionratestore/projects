@@ -159,8 +159,6 @@ if (!isShifts) { /* 'For People' && 'Findshifts1' Pages */
         } else if (campaign.includes('miami')) {
             userLocation = 'Miami, FL'
         }
-
-        localStorage.setItem('city', userLocation)
     }
 
     /* Data Objects */
@@ -1418,13 +1416,7 @@ if (!isShifts) { /* 'For People' && 'Findshifts1' Pages */
 
         document.querySelector('.show_error')?.classList.remove('show_error')
 
-        if (select.value === 'Miami, FL' || select.value === 'Cincinnati, OH') {
-            localStorage.setItem('city', select.value)
-        } else if (userLocation) {
-            localStorage.setItem('city', userLocation)
-        } else {
-            localStorage.setItem('city', 'Miami, FL')
-        }
+        localStorage.setItem('city', select.value)
 
         window.open("https://www.upshift.work/shifts-near-you/", "_self")
     }
@@ -1502,11 +1494,77 @@ if (!isShifts) { /* 'For People' && 'Findshifts1' Pages */
                 '4.73'
             ],
         ],
+        'others': [
+            [
+                'Prep cook',
+                'EST $136',
+                '$17/hr', '9:00 a.m. - 5:00 p.m.',
+                'Restaurant',
+                ['star', 'star', 'star', 'star', 'star-half'],
+                '4.89'
+            ],
+            [
+                'Stadium Attendant',
+                'EST $126',
+                '$18/hr', '3:00 p.m. - 10:00 p.m.',
+                'Stadium',
+                ['star', 'star', 'star', 'star', 'star-half'],
+                '4.76'
+            ],
+            [
+                'Banquet Attendant',
+                'EST $144',
+                '$18/hr', '10:00 a.m. - 6:00 p.m.',
+                'Museum Center',
+                ['star', 'star', 'star', 'star', 'star-half'],
+                '4.83'
+            ],
+            [
+                'Concession Cashier',
+                'EST $126',
+                '$14/hr', '2:00 p.m. - 7:00 p.m.',
+                'Convention Center',
+                ['star', 'star', 'star', 'star', 'star-half'],
+                '4.73'
+            ],
+            [
+                'Bartender',
+                'EST $133',
+                '$19/hr', '3:00 p.m. - 10:00 p.m.',
+                'Park',
+                ['star', 'star', 'star', 'star', 'star-half'],
+                '4.89'
+            ],
+            [
+                'Concessions',
+                'EST $80',
+                '$16/hr', '2:00 p.m. - 7:00 p.m.',
+                'Sports Arena',
+                ['star', 'star', 'star', 'star', 'star-half'],
+                '4.76'
+            ],
+            [
+                'Suite Runner',
+                'EST $126',
+                '$16/hr', '4:00 p.m. - 11:00 p.m.',
+                'Hotel',
+                ['star', 'star', 'star', 'star', 'star-half'],
+                '4.83'
+            ],
+            [
+                'Concession Cashier',
+                'EST $120',
+                '$15/hr', '10:00 a.m. - 6:00 p.m.',
+                'Convention Center',
+                ['star', 'star', 'star', 'star', 'star-half'],
+                '4.73'
+            ]
+        ]
     }
 
     const currentCity = localStorage.getItem('city') || 'Miami, FL'
 
-    const nearJobsHTML = getRandomItems(nearJobs[currentCity], 3).map(job => `
+    const nearJobsHTML = getRandomItems(nearJobs[currentCity] || nearJobs['others'], 3).map(job => `
 <div class="slide">
                 <div class="slide_header">
                     <div>
