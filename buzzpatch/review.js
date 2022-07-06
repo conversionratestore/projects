@@ -3,17 +3,17 @@ let startFunkReview = setInterval(() => {
     clearInterval(startFunkReview)
 
     let scriptCustom = document.createElement("script")
-    scriptCustom.src = "https://cdnjs.cloudflare.com/ajax/libs/zuck.js/1.3.0/zuck.js"
+    scriptCustom.src = "https://cdnjs.cloudflare.com/ajax/libs/zuck.js/1.0.0/zuck.js"
     scriptCustom.async = false
     document.head.appendChild(scriptCustom)
 
     let scriptCustomStyle = document.createElement("link")
-    scriptCustomStyle.href = "https://cdnjs.cloudflare.com/ajax/libs/zuck.js/1.3.0/zuck.css"
+    scriptCustomStyle.href = "https://cdnjs.cloudflare.com/ajax/libs/zuck.js/1.0.0/zuck.css"
     scriptCustomStyle.rel = "stylesheet"
     document.head.appendChild(scriptCustomStyle)
 
     let scriptSnapgramStyle = document.createElement("link")
-    scriptSnapgramStyle.href = "https://cdnjs.cloudflare.com/ajax/libs/zuck.js/1.3.0/skins/snapgram.css"
+    scriptSnapgramStyle.href = "https://cdnjs.cloudflare.com/ajax/libs/zuck.js/1.0.0/skins/snapgram.css"
     scriptSnapgramStyle.rel = "stylesheet"
     document.head.appendChild(scriptSnapgramStyle)
 
