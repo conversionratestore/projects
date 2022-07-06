@@ -288,6 +288,7 @@ let style = `
     }
     @media (max-width: 768px) {
         .wrap-banner {
+            margin-top: -25px;
             background: linear-gradient(180deg, #4E99B6 0%, #5FB9CF 100%);
         }
         .row-banner {
