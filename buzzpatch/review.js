@@ -3,7 +3,7 @@ let startFunkReview = setInterval(() => {
     clearInterval(startFunkReview)
 
     let scriptCustom = document.createElement("script")
-    scriptCustom.src = "https://cdnjs.cloudflare.com/ajax/libs/zuck.js/1.0.0/zuck.js"
+    scriptCustom.src = "https://cdnjs.cloudflare.com/ajax/libs/zuck.js/1.0.0/zuck.min.js"
     scriptCustom.async = false
     document.head.appendChild(scriptCustom)
 
@@ -309,12 +309,12 @@ let startFunkReview = setInterval(() => {
           avatars: true,
           backNative: true,
           list: false,
-          openEffect: false,
-          cubeEffect: true,
+          openEffect: true,
+          cubeEffect: "true",
           autoFullScreen: "false",
           backButton: true,
           localStorage: true,
-          // previousTap: true,
+          previousTap: true,
           reactive: true,
           stories: [
             {
