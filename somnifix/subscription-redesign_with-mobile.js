@@ -1704,7 +1704,7 @@ let html = `
                             <li>Boost CPAP exprerience</li>
                             <li>Improve sleep quality</li>
                         </ul>
-            
+                        <div class="wrapper__swatch"></div>
                     </div>
             
                     <div class="part2 gray_bg">
@@ -1867,12 +1867,12 @@ let startMain = setInterval(function () {
                 </div>
                 ${objVariants[i].popular == true ? `<p class="how_cancet">Auto delivery every 3 months. <br> Cancel anytime. <a href="#" class="btn-how_cancel">How to cancel?</a></p>` : ''}  
             </div>`
-            document.querySelector('.part1 .checklist').insertAdjacentHTML('afterend', switchItem);
+            document.querySelector('.wrapper__swatch').insertAdjacentHTML('afterbegin', switchItem);
         }
 
         if (window.innerWidth <= 768) {
-            document.querySelectorAll('.part1 .swatchCustom__item')[2].after(document.querySelector('.part2 .to_checkout'))
-            document.querySelectorAll('.part1 .swatchCustom__item')[2].insertAdjacentHTML('afterend', qtyHtml)
+            document.querySelector('.wrapper__swatch').after(document.querySelector('.part2 .to_checkout'))
+            document.querySelector('.wrapper__swatch').insertAdjacentHTML('afterend', qtyHtml)
             document.querySelector('.col-left').after(document.querySelector('.total_price'))
             document.querySelector('.col-left .calc').after(document.querySelector('.stock__pack'))
             document.querySelector('.money_back').insertAdjacentHTML('beforebegin', iconsHtml);
