@@ -8,7 +8,7 @@ let startFunkReview = setInterval(() => {
     document.head.appendChild(scriptCustom)
 
     let scriptCustomStyle = document.createElement("link")
-    scriptCustomStyle.href = "https://cdnjs.cloudflare.com/ajax/libs/zuck.js/1.3.0/zuck.min.css"
+    scriptCustomStyle.href = "https://cdnjs.cloudflare.com/ajax/libs/zuck.js/1.3.0/zuck.css"
     scriptCustomStyle.rel = "stylesheet"
     document.head.appendChild(scriptCustomStyle)
 
