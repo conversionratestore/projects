@@ -288,7 +288,7 @@ let style = `
     }
     @media (max-width: 768px) {
         .wrap-banner {
-            margin-top: -25px;
+            margin-top: -65px;
             background: linear-gradient(180deg, #4E99B6 0%, #5FB9CF 100%);
         }
         .row-banner {
@@ -1078,7 +1078,7 @@ let style = `
             margin: -14px 0;
         }
         .icons__block {
-            width: 95%;
+            width: 85%;
             margin: 0 auto 40px;
         }
     }
