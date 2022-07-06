@@ -113,7 +113,7 @@ const intervalTimeout = 200
 // dataLayer
 const callEvent = (eventAction, eventLabel = '') => {
     if (!eventLabel) {
-        console.group('eventAction: ', eventAction);
+        console.log('eventAction: ', eventAction);
     } else {
         console.group('eventAction: ', eventAction);
         console.log('eventLabel: ', eventLabel)
@@ -404,10 +404,10 @@ if (!isShifts) { /* 'For People' && 'Findshifts1' Pages */
             <p>It’s easy to get started with Upshift:</p>
             <ol>
                 <li>Apply online and tell a little about yourself.</li>
-                <li>Bring some documents to one of our offices and activate your account.</li>
+                <li>Then download our Upshift app and start applying for available positions in your area.</li>
                 <li>Download Upshift app and start applying for available positions in your area.</li>
             </ol>
-            <p>Processing time may vary by city, but most Upshifters are able to start working within a week or less after online application.</p>
+            <p>Processing time may vary by city, but most Upshifters are able to start working within a week or less after the online application.</p>
         `
         ],
         [
@@ -420,13 +420,6 @@ if (!isShifts) { /* 'For People' && 'Findshifts1' Pages */
             `
             <p>Upshift allows people to choose where and when they want to work.</p>
             <p>There are no minimums. You can work as little as you want to and up to 40 hours per week without client approval and over 40 hours if a client approves.</p>
-        `
-        ],
-        [
-            'What are the requirements to sign up?',
-            `
-            <p>You can sign up <span data-sign>here</span> to start working today! And have a eligibility to work in the United States. You can find a breakdown of acceptable documents here: 
-            <a href="https://www.upshift.work/i9/" target="_blank">https://www.upshift.work/i9/</a></p>            
         `
         ],
         [
@@ -511,7 +504,7 @@ if (!isShifts) { /* 'For People' && 'Findshifts1' Pages */
     const pdpTemplate = /*html*/`
 <div class="template">
     <section class="area">
-        <h1>Flexible shifts accross the US</h1>
+        <h1>Find flexible shifts near you</h1>
         <h4>Pick up shifts, work when you want<br>and get paid daily!</h4>
         <form id="area_form" name="area_form">
             <p class="area_title">Your area</p>
@@ -526,7 +519,7 @@ if (!isShifts) { /* 'For People' && 'Findshifts1' Pages */
         </form>
     </section>
     <section class="reviews">
-        <p>Over 50,000 People have already found shift on upshift</p>
+        <p>TRUSTED BY OVER 70,000 PEOPLE TO FIND WORK OPPORTUNITIES</p>
         <img src="${imgFolderLink}/websites.svg" alt="websites">
     </section>
     <section class="industries">
@@ -560,7 +553,7 @@ if (!isShifts) { /* 'For People' && 'Findshifts1' Pages */
         </div>
     </section>
     <section class="popular_shifts">
-        <h2>Popular shifts</h2>
+        <h2>Some of the shifts<br>you can find in<br>our app</h2>
         <div class="slider" id="slider">
             ${slides}
         </div>
@@ -578,18 +571,17 @@ if (!isShifts) { /* 'For People' && 'Findshifts1' Pages */
             <div class="step">
                 <p class="title">Step 1</p>
                 <p class="subtitle">Sign up online</p>
-                <p class="txt">Create account and complete the quick online assessment.</p>
+                <p class="txt">Fill out a registration form and complete our quick online assessment.</p>
             </div>
             <div class="step">
                 <p class="title">Step 2</p>
                 <p class="subtitle">Activate your account</p>
-                <p class="txt">Share some documents to verify your eligibility to work in the United States and visit our office to complete onboarding.</p>
+                <p class="txt">For the final step, we will ask you to attend our in-person document check/onboarding in order to activate your account and officially become an Upshifter!</p>
             </div>
             <div class="step">
                 <p class="title">Step 3</p>
-                <p class="subtitle">Start getting shifts</p>
-                <p class="txt">Download Upshift app and start applying for available positions in your area. Once you are accepted for a shift, just confirm the shift and it’s yours! 
-                    You can apply for multiple shifts based on your availability and interests!</p>
+                <p class="subtitle">Start picking up shifts</p>
+                <p class="txt">Download the Upshift app and start applying for available shifts in your area. Once you are accepted for a shift, just confirm the shift and it’s yours! You can apply for multiple shifts based on your availability and interests!</p>
             </div>
             <button class="btn_green" data-sign>Join Upshift</button>
         </div>
@@ -1373,7 +1365,7 @@ if (!isShifts) { /* 'For People' && 'Findshifts1' Pages */
 
             /* Interval 5: Initialize Sign Up script after Buttons appearence in the DOM */
             const waitForBtns = setInterval(() => {
-                if (document.querySelectorAll('[data-sign]')[5]) {
+                if (document.querySelectorAll('[data-sign]')[4]) {
                     clearInterval(waitForBtns)
 
                     const form = document.getElementById('area_form')
@@ -1397,14 +1389,10 @@ if (!isShifts) { /* 'For People' && 'Findshifts1' Pages */
                             }
 
                             // call event
-                            if (btn.closest('.accordion_item_body_element')) {
-                                callEvent('Click on Sign up here')
-                            } else if (btn.closest('section')) {
+                            if (btn.closest('section')) {
                                 const sectionName = btn.closest('section').className.replace('_', ' ')
 
                                 callEvent('Click on Apply/Join', sectionName)
-                            } else if (btn.closest('.find_work')) {
-                                callEvent('Click on Apply/Join', 'why choose upshift')
                             } else if (btn.closest(row)) {
                                 callEvent('Click on Apply/Join', 'flexible work')
                             }
