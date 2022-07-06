@@ -3,17 +3,17 @@ let startFunkReview = setInterval(() => {
     clearInterval(startFunkReview)
 
     let scriptCustom = document.createElement("script")
-    scriptCustom.src = "https://cdnjs.cloudflare.com/ajax/libs/zuck.js/1.0.0/zuck.min.js"
+    scriptCustom.src = "https://cdnjs.cloudflare.com/ajax/libs/zuck.js/1.3.0/zuck.min.js"
     scriptCustom.async = false
     document.head.appendChild(scriptCustom)
 
     let scriptCustomStyle = document.createElement("link")
-    scriptCustomStyle.href = "https://cdnjs.cloudflare.com/ajax/libs/zuck.js/1.0.0/zuck.css"
+    scriptCustomStyle.href = "https://cdnjs.cloudflare.com/ajax/libs/zuck.js/1.3.0/zuck.min.css"
     scriptCustomStyle.rel = "stylesheet"
     document.head.appendChild(scriptCustomStyle)
 
     let scriptSnapgramStyle = document.createElement("link")
-    scriptSnapgramStyle.href = "https://cdnjs.cloudflare.com/ajax/libs/zuck.js/1.0.0/skins/snapgram.css"
+    scriptSnapgramStyle.href = "https://cdnjs.cloudflare.com/ajax/libs/zuck.js/1.3.0/skins/snapgram.css"
     scriptSnapgramStyle.rel = "stylesheet"
     document.head.appendChild(scriptSnapgramStyle)
 
@@ -309,12 +309,12 @@ let startFunkReview = setInterval(() => {
           avatars: true,
           backNative: true,
           list: false,
-          openEffect: true,
-          cubeEffect: "true",
+          openEffect: false,
+          cubeEffect: true,
           autoFullScreen: "false",
           backButton: true,
           localStorage: true,
-          previousTap: true,
+          // previousTap: true,
           reactive: true,
           stories: [
             {
