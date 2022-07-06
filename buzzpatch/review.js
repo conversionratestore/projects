@@ -282,8 +282,7 @@ let startFunkReview = setInterval(() => {
     // Pure js scrolling
     function scrolling(upSelector) {
       // Scrolling with raf
-      let links = document.querySelectorAll(upSelector),
-        speed = 0.4;
+      let links = document.querySelectorAll(upSelector);
 
       links.forEach((link) => {
         link.addEventListener("click", function (event) {
@@ -299,35 +298,6 @@ let startFunkReview = setInterval(() => {
             top: offsetPosition,
             behavior: "smooth",
           });
-
-          // let widthTop = document.documentElement.scrollTop,
-          //   hash = "#reviews",
-          //   toBlock =
-          //     document.querySelector(hash).getBoundingClientRect().top - 120,
-          //   start = null;
-
-          // requestAnimationFrame(step);
-
-          // function step(time) {
-          //   if (start === null) {
-          //     start = time;
-          //     console.log(`time`, time);
-          //   }
-
-          //   let progress = time - start,
-          //     r =
-          //       toBlock < 0
-          //         ? Math.max(widthTop - progress / speed, widthTop + toBlock)
-          //         : Math.min(widthTop + progress / speed, widthTop + toBlock);
-
-          //   document.documentElement.scrollTo(0, r);
-
-          //   if (r != widthTop + toBlock) {
-          //     requestAnimationFrame(step);
-          //   } else {
-          //     location.hash = hash;
-          //   }
-          // }
         });
       });
     }
@@ -356,6 +326,8 @@ let startFunkReview = setInterval(() => {
           backButton: true,
           localStorage: true,
           previousTap: true,
+          rtl: false,
+          reactive: true,
           stories: [
             {
               id: "a",
