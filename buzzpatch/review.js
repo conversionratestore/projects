@@ -322,7 +322,7 @@ let startFunkReview = setInterval(() => {
           list: false,
           openEffect: true,
           cubeEffect: true,
-          autoFullScreen: true,
+          // autoFullScreen: false,
           backButton: true,
           localStorage: true,
           previousTap: true,
