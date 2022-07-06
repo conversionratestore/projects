@@ -1,37 +1,32 @@
 let startFunkReview = setInterval(() => {
   if (document.querySelector("#mainContent")) {
-    clearInterval(startFunkReview);
+    clearInterval(startFunkReview)
 
-    let scriptCustom = document.createElement("script");
-    scriptCustom.src =
-      "https://cdnjs.cloudflare.com/ajax/libs/zuck.js/1.0.0/zuck.min.js";
-    scriptCustom.async = false;
-    document.head.appendChild(scriptCustom);
+    let scriptCustom = document.createElement("script")
+    scriptCustom.src = "https://cdnjs.cloudflare.com/ajax/libs/zuck.js/1.0.0/zuck.min.js"
+    scriptCustom.async = false
+    document.head.appendChild(scriptCustom)
 
-    let scriptCustomStyle = document.createElement("link");
-    scriptCustomStyle.href =
-      "https://cdnjs.cloudflare.com/ajax/libs/zuck.js/1.0.0/zuck.min.css";
-    scriptCustomStyle.rel = "stylesheet";
-    document.head.appendChild(scriptCustomStyle);
+    let scriptCustomStyle = document.createElement("link")
+    scriptCustomStyle.href = "https://cdnjs.cloudflare.com/ajax/libs/zuck.js/1.0.0/zuck.css"
+    scriptCustomStyle.rel = "stylesheet"
+    document.head.appendChild(scriptCustomStyle)
 
-    let scriptSnapgramStyle = document.createElement("link");
-    scriptSnapgramStyle.href =
-      "https://cdnjs.cloudflare.com/ajax/libs/zuck.js/1.0.4/skins/snapgram.min.css";
-    scriptSnapgramStyle.rel = "stylesheet";
-    document.head.appendChild(scriptSnapgramStyle);
+    let scriptSnapgramStyle = document.createElement("link")
+    scriptSnapgramStyle.href = "https://cdnjs.cloudflare.com/ajax/libs/zuck.js/1.0.0/skins/snapgram.css"
+    scriptSnapgramStyle.rel = "stylesheet"
+    document.head.appendChild(scriptSnapgramStyle)
 
     //----------------------------------------------------------------------------------------------------
-    let scriptCustomImg = document.createElement("script");
-    scriptCustomImg.src =
-      "https://cdn.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.umd.js";
-    scriptCustomImg.async = false;
-    document.head.appendChild(scriptCustomImg);
+    let scriptCustomImg = document.createElement("script")
+    scriptCustomImg.src = "https://cdn.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.umd.js"
+    scriptCustomImg.async = false
+    document.head.appendChild(scriptCustomImg)
 
-    let scriptCustomImgStyle = document.createElement("link");
-    scriptCustomImgStyle.href =
-      "https://cdn.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.css";
-    scriptCustomImgStyle.rel = "stylesheet";
-    document.head.appendChild(scriptCustomImgStyle);
+    let scriptCustomImgStyle = document.createElement("link")
+    scriptCustomImgStyle.href = "https://cdn.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.css"
+    scriptCustomImgStyle.rel = "stylesheet"
+    document.head.appendChild(scriptCustomImgStyle)
 
     let styleReveiw = /* html */ `
       <style>
@@ -202,7 +197,7 @@ let startFunkReview = setInterval(() => {
          }
 
       </style>
-      `;
+      `
 
     let blockFirst = /* html */ `
     <div class="block_first">
@@ -213,14 +208,14 @@ let startFunkReview = setInterval(() => {
         <li><img src="https://conversionratestore.github.io/projects/buzzpatch/img/review4.jpg" alt="child" /></li>
       </ul>
     </div>
-    `;
+    `
 
     let blockSecond = /* html */ `
     <div class="block_second">
         <h2>Video Reviews</h2>
         <ul id="stories"></ul>
     </div>    
-    `;
+    `
 
     let blockThird = /* html */ `
 <div class="block_third">
@@ -255,68 +250,58 @@ let startFunkReview = setInterval(() => {
         </li>
     </ul>
 </div>
-`;
+`
 
-    document.head.insertAdjacentHTML("beforeend", styleReveiw);
-    document
-      .querySelector(".js-heading .trust-rating .stars")
-      .insertAdjacentHTML("afterend", blockFirst);
+    document.head.insertAdjacentHTML("beforeend", styleReveiw)
+    document.querySelector(".js-heading .trust-rating .stars").insertAdjacentHTML("afterend", blockFirst)
 
-    document
-      .querySelector("#flowers")
-      .insertAdjacentHTML("afterbegin", blockSecond);
+    document.querySelector("#flowers").insertAdjacentHTML("afterbegin", blockSecond)
 
-    document.querySelector(".trust-rating .stars .text").textContent =
-      "Reviews 699";
+    document.querySelector(".trust-rating .stars .text").textContent = "Reviews 699"
 
-    document
-      .querySelector("#ingredients")
-      .insertAdjacentHTML("beforebegin", blockThird);
+    document.querySelector("#ingredients").insertAdjacentHTML("beforebegin", blockThird)
 
     document
       .querySelector(".js-iphone .grey")
-      .insertAdjacentHTML(
-        "beforeend",
-        `<img class="new_img_review" src="https://conversionratestore.github.io/projects/buzzpatch/img/reviews_box.png" alt="reviews">`
-      );
+      .insertAdjacentHTML("beforeend", `<img class="new_img_review" src="https://conversionratestore.github.io/projects/buzzpatch/img/reviews_box.png" alt="reviews">`)
 
     //click on block_first
-    scrolling(".trust-rating");
+    scrolling(".trust-rating")
 
     // Pure js scrolling
     function scrolling(upSelector) {
       // Scrolling with raf
-      let links = document.querySelectorAll(upSelector);
+      let links = document.querySelectorAll(upSelector)
 
       links.forEach((link) => {
         link.addEventListener("click", function (event) {
-          event.preventDefault();
+          event.preventDefault()
 
-          const scrollTarget = document.getElementById("reviews");
+          const scrollTarget = document.getElementById("reviews")
 
-          const topOffset = 101;
-          const elementPosition = scrollTarget.getBoundingClientRect().top;
-          const offsetPosition = elementPosition - topOffset;
+          const topOffset = 101
+          const elementPosition = scrollTarget.getBoundingClientRect().top
+          const offsetPosition = elementPosition - topOffset
 
           window.scrollBy({
             top: offsetPosition,
             behavior: "smooth",
-          });
-        });
-      });
+          })
+        })
+      })
     }
 
     //play video insta
     let videoInsta = setInterval(() => {
       if (document.querySelector("#stories") && typeof Zuck === "function") {
-        clearInterval(videoInsta);
+        clearInterval(videoInsta)
         function buildItem(id, type, src, seen) {
           return {
             id,
             type,
             src,
             seen,
-          };
+          }
         }
 
         const stories = new Zuck("stories", {
@@ -334,80 +319,40 @@ let startFunkReview = setInterval(() => {
           stories: [
             {
               id: "a",
-              photo:
-                "https://conversionratestore.github.io/projects/buzzpatch/img/video_review1.jpg",
-              items: [
-                buildItem(
-                  "1",
-                  "video",
-                  "https://conversionratestore.github.io/projects/buzzpatch/video/familyandcoffee.mp4",
-                  false
-                ),
-              ],
+              photo: "https://conversionratestore.github.io/projects/buzzpatch/img/video_review1.jpg",
+              items: [buildItem("1", "video", "https://conversionratestore.github.io/projects/buzzpatch/video/familyandcoffee.mp4", false)],
             },
             {
               id: "r",
-              photo:
-                "https://conversionratestore.github.io/projects/buzzpatch/img/video_review2.jpg",
-              items: [
-                buildItem(
-                  "1",
-                  "video",
-                  "https://conversionratestore.github.io/projects/buzzpatch/video/paosfitmomlife.mp4",
-                  false
-                ),
-              ],
+              photo: "https://conversionratestore.github.io/projects/buzzpatch/img/video_review2.jpg",
+              items: [buildItem("1", "video", "https://conversionratestore.github.io/projects/buzzpatch/video/paosfitmomlife.mp4", false)],
             },
             {
               id: "t",
-              photo:
-                "https://conversionratestore.github.io/projects/buzzpatch/img/video_review3.jpg",
+              photo: "https://conversionratestore.github.io/projects/buzzpatch/img/video_review3.jpg",
               items: [
-                buildItem(
-                  "1",
-                  "video",
-                  "https://conversionratestore.github.io/projects/buzzpatch/video/blessed_by_brynn-1.mp4",
-                  false
-                ),
-                buildItem(
-                  "2",
-                  "video",
-                  "https://conversionratestore.github.io/projects/buzzpatch/video/blessed_by_brynn-2.mp4",
-                  false
-                ),
-                buildItem(
-                  "3",
-                  "video",
-                  "https://conversionratestore.github.io/projects/buzzpatch/video/blessed_by_brynn-3.mp4",
-                  false
-                ),
+                buildItem("1", "video", "https://conversionratestore.github.io/projects/buzzpatch/video/blessed_by_brynn-1.mp4", false),
+                buildItem("2", "video", "https://conversionratestore.github.io/projects/buzzpatch/video/blessed_by_brynn-2.mp4", false),
+                buildItem("3", "video", "https://conversionratestore.github.io/projects/buzzpatch/video/blessed_by_brynn-3.mp4", false),
               ],
             },
             {
               id: "d",
-              photo:
-                "https://conversionratestore.github.io/projects/buzzpatch/img/video_review4.jpg",
-              items: [
-                buildItem(
-                  "1",
-                  "video",
-                  "https://conversionratestore.github.io/projects/buzzpatch/video/allthngsmely.mp4",
-                  false
-                ),
-              ],
+              photo: "https://conversionratestore.github.io/projects/buzzpatch/img/video_review4.jpg",
+              items: [buildItem("1", "video", "https://conversionratestore.github.io/projects/buzzpatch/video/allthngsmely.mp4", false)],
             },
           ],
-        });
+        })
       }
-    }, 20);
+    }, 20)
 
     // full Size Img
     let fullImg = setInterval(() => {
       if (typeof Fancybox === "function") {
-        clearInterval(fullImg);
+        clearInterval(fullImg)
 
-        Fancybox.bind("[data-fancybox]", {});
+        Fancybox.bind("[data-fancybox]", {})
       }
-    }, 10);
+    }, 10)
   }
-}, 10);
+}, 10)
