@@ -787,7 +787,12 @@ let style = `
     .btn-calc[disabled] {
         opacity: 0.5;
     }
-    
+        
+    @media (min-width: 769px) {
+        .d-md-none {
+            display: none;
+        }
+    }
     @media (max-width: 1023px) {
         .desktop {
             display: none;
@@ -2102,7 +2107,7 @@ let banner = `
         ${window.innerWidth <= 768 ? '<h1>Save 30% when you schedule repeat deliveries</h1>': ''}
         <img src="https://conversionratestore.github.io/projects/somnifix/img/${window.innerWidth > 768 ? 'image5.png' : 'image6.png'}" alt="image">
         <div class="banner">
-             ${window.innerWidth > 768 ? '<h1>Save 30% when you schedule repeat deliveries</h1>': ''}
+             ${window.innerWidth > 768 ? '<h1>Save 30% when you <br class="d-md-none"> schedule repeat <br class="d-md-none"> deliveries</h1>': ''}
             <ul class="banner_list">
                 <li>Cancel anytime</li>
                 <li>Free US shipping</li>
