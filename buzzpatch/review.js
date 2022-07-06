@@ -321,12 +321,11 @@ let startFunkReview = setInterval(() => {
           backNative: true,
           list: false,
           openEffect: true,
-          cubeEffect: true,
-          autoFullScreen: true,
+          cubeEffect: "true",
+          autoFullScreen: "true",
           backButton: true,
           localStorage: true,
           previousTap: true,
-          rtl: false,
           reactive: true,
           stories: [
             {
