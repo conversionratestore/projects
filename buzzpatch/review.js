@@ -3,7 +3,7 @@ let startFunkReview = setInterval(() => {
     clearInterval(startFunkReview)
 
     let scriptCustom = document.createElement("script")
-    scriptCustom.src = "https://cdnjs.cloudflare.com/ajax/libs/zuck.js/1.3.0/zuck.min.js"
+    scriptCustom.src = "https://cdnjs.cloudflare.com/ajax/libs/zuck.js/1.3.0/zuck.js"
     scriptCustom.async = false
     document.head.appendChild(scriptCustom)
 
