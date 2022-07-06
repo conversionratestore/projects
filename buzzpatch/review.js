@@ -145,6 +145,10 @@ let startFunkReview = setInterval(() => {
           display: none;
         }
 
+        #zuck-modal *{
+          -webkit-user-select: none;
+        }
+
          /*block_third */
         .block_third {
             margin: 64px 30px 0;
