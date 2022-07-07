@@ -366,6 +366,16 @@ let startFunkReview = setInterval(() => {
             onClose(storyId, callback) {
               callback() // on close story viewer
               document.body.style.overflow = "unset"
+
+              const scrollTarget = document.querySelector(".js-iphone .wave-bg")
+              const topOffset = 90
+              const elementPosition = scrollTarget.getBoundingClientRect().top
+              const offsetPosition = elementPosition - topOffset
+
+              window.scrollBy({
+                top: offsetPosition,
+                behavior: "smooth",
+              })
             },
           },
           stories: [
