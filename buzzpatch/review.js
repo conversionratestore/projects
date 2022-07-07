@@ -345,7 +345,7 @@ let startFunkReview = setInterval(() => {
           avatars: true,
           backNative: true,
           list: false,
-          openEffect: true,
+          openEffect: false,
           cubeEffect: true,
           autoFullScreen: true,
           backButton: true,
