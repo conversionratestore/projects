@@ -1729,22 +1729,8 @@ if (!isShifts) { /* 'For People' && 'Findshifts1' Pages */
             bottom: 115px;
         }
 
-        #colophon {
-            position: relative !important;
-            display: block !important;
-            height: 100% !important;
-        }
-        
-        #colophon::before {            
-            content: '';
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            top: 0;
-            left: 0;
-            z-index: 1;
-            background: linear-gradient(180deg, #FFFFFF 0%, rgba(255, 255, 255, 0) 12%);
-            pointer-events: none;
+        #colophon {            
+            display: none !important;            
         }
 
         .acsb-trigger {
