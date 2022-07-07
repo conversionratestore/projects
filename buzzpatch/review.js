@@ -301,7 +301,7 @@ let startFunkReview = setInterval(() => {
 
           const scrollTarget = document.getElementById("reviews")
 
-          const topOffset = 101
+          const topOffset = 105
           const elementPosition = scrollTarget.getBoundingClientRect().top
           const offsetPosition = elementPosition - topOffset
 
