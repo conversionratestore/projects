@@ -365,14 +365,6 @@ let startFunkReview = setInterval(() => {
             },
           ],
         })
-
-        if (document.querySelectorAll("#stories .story")) {
-          document.querySelectorAll("#stories .story").forEach((el, i) => {
-            el.addEventListener("click", function () {
-              pushDataLayer("click on video review", `video_${i + 1}`)
-            })
-          })
-        }
       }
     }, 20)
 
