@@ -51,6 +51,15 @@ let startFunkReview = setInterval(() => {
 
     let styleReveiw = /* html */ `
       <style>
+        #zuck-modal-content .story-viewer .head .left{
+          float: right !important;
+          margin: 15px 17px !important;
+        }
+
+        #zuck-modal-content .story-viewer.with-back-button .head .left .img{
+          display: none;
+        }
+
         /*block_first */
         .block_first{
             margin: 10px 0 0;
