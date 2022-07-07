@@ -177,6 +177,9 @@ function changeQty(qty,action) {
 
 let style = `
 <style>
+    .mobile-menu__toggle-icon .icon {
+        vertical-align: middle;
+    }
     /*banner*/
     .banner_btn {
         background: #FF9729;
