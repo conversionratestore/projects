@@ -517,7 +517,7 @@
             .concat(option("backButton") ? "with-back-button" : "")
           storyViewer.setAttribute("data-story-id", storyId)
           var html = '<div class="head"><div class="left">'
-            .concat(option("backButton") ? '<a class="back">&lsaquo;</a>' : "", '<u class="img" style="background-image:url(')
+            .concat(option("backButton") ? '<a class="back">&#10006;</a>' : "", '<u class="img" style="background-image:url(')
             .concat(get(storyData, "photo"), ');"></u><div><strong>')
             .concat(get(storyData, "name"), '</strong><span class="time">')
             .concat(currentItemTime, '</span></div></div><div class="right"><span class="time">')
