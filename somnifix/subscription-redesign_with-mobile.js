@@ -1085,8 +1085,7 @@ let style = `
             margin: 0 auto 40px;
         }
         .qty_row {
-          width: 95%;
-          margin: 0 auto;
+          padding: 0 15px;
         }
     }
     
