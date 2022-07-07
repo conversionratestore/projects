@@ -1892,7 +1892,7 @@ let startMain = setInterval(function () {
             })
         }
 
-        $('.product_section .swatchCustom__item').click(function(e) {
+        $('.wrapper__swatch .swatchCustom__item').click(function(e) {
             if(!$(this).hasClass('swatchCustom__item--active')) {
                 $(this).siblings().removeClass('swatchCustom__item--active')
                 $(this).addClass('swatchCustom__item--active')
@@ -1917,16 +1917,13 @@ let startMain = setInterval(function () {
                     $('.btn-calc_plus').removeAttr('disabled')
                 }
             }
-            if (!e.target.closest('.stock__select')){
-                if ($(this).index() == 3) {
-                    pushDataLayer('Click on 12-week pack subscription', 'Choose your pack')
-                } else if ($(this).index() == 4) {
-                    pushDataLayer('Click on 12-week pack', 'Choose your pack')
-                } else {
-                    pushDataLayer('Click on 4 week pack', 'Choose your pack')
-                }
+            if ($(this).index() == 0) {
+                pushDataLayer('Click on 12-week pack subscription', 'Choose your pack')
+            } else if ($(this).index() == 1) {
+                pushDataLayer('Click on 12-week pack', 'Choose your pack')
+            } else {
+                pushDataLayer('Click on 4 week pack', 'Choose your pack')
             }
-          
         })
         //set date of arrives
         $('.delivery_date b').html($('.country_select option:selected').attr('data-value'))
