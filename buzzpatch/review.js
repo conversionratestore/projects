@@ -28,6 +28,27 @@ let startFunkReview = setInterval(() => {
     scriptCustomImgStyle.rel = "stylesheet"
     document.head.appendChild(scriptCustomImgStyle)
 
+    // event
+    function pushDataLayer(actionDataLayer, labelDataLayer) {
+      window.dataLayer = window.dataLayer || []
+      if (labelDataLayer) {
+        console.log(actionDataLayer + " : " + labelDataLayer)
+        dataLayer.push({
+          event: "event-to-ga",
+          eventCategory: `Exp: Review hypothesis`,
+          eventAction: `${actionDataLayer}`,
+          eventLabel: `${labelDataLayer}`,
+        })
+      } else {
+        console.log(actionDataLayer)
+        dataLayer.push({
+          event: "event-to-ga",
+          eventCategory: `Exp: Review hypothesis`,
+          eventAction: `${actionDataLayer}`,
+        })
+      }
+    }
+
     let styleReveiw = /* html */ `
       <style>
         /*block_first */
