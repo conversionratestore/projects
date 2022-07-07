@@ -357,7 +357,6 @@ let startFunkReview = setInterval(() => {
               // on open story viewer
               pushDataLayer("click on video review", `video_${storyId}`)
               callback()
-              document.body.style.overflow = "hidden"
             },
             onView(storyId) {
               // on view story
@@ -365,17 +364,17 @@ let startFunkReview = setInterval(() => {
             },
             onClose(storyId, callback) {
               callback() // on close story viewer
-              document.body.style.overflow = "unset"
+              setTimeout(() => {
+                const scrollTarget = document.querySelector(".js-iphone .wave-bg")
+                const topOffset = 90
+                const elementPosition = scrollTarget.getBoundingClientRect().top
+                const offsetPosition = elementPosition - topOffset
 
-              const scrollTarget = document.querySelector(".js-iphone .wave-bg")
-              const topOffset = 90
-              const elementPosition = scrollTarget.getBoundingClientRect().top
-              const offsetPosition = elementPosition - topOffset
-
-              window.scrollBy({
-                top: offsetPosition,
-                behavior: "smooth",
-              })
+                window.scrollBy({
+                  top: offsetPosition,
+                  behavior: "smooth",
+                })
+              }, 400)
             },
           },
           stories: [
