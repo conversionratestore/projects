@@ -1453,7 +1453,7 @@ if (!isShifts) { /* 'For People' && 'Findshifts1' Pages */
             ],
             [
                 'Concession Cashier',
-                'EST $126',
+                'EST $70',
                 '$14/hr', '2:00 p.m. - 7:00 p.m.',
                 'Duke Energy Convention Center',
                 ['star', 'star', 'star', 'star', 'star-half'],
@@ -1481,7 +1481,7 @@ if (!isShifts) { /* 'For People' && 'Findshifts1' Pages */
             [
                 'Suite Runner',
                 'EST $126',
-                '$16/hr', '4:00 p.m. - 11:00 p.m.',
+                '$18/hr', '4:00 p.m. - 11:00 p.m.',
                 'FTX Arena',
                 ['star', 'star', 'star', 'star', 'star-half'],
                 '4.83'
@@ -1522,7 +1522,7 @@ if (!isShifts) { /* 'For People' && 'Findshifts1' Pages */
             ],
             [
                 'Concession Cashier',
-                'EST $126',
+                'EST $70',
                 '$14/hr', '2:00 p.m. - 7:00 p.m.',
                 'Convention Center',
                 ['star', 'star', 'star', 'star', 'star-half'],
@@ -1547,7 +1547,7 @@ if (!isShifts) { /* 'For People' && 'Findshifts1' Pages */
             [
                 'Suite Runner',
                 'EST $126',
-                '$16/hr', '4:00 p.m. - 11:00 p.m.',
+                '$18/hr', '4:00 p.m. - 11:00 p.m.',
                 'Hotel',
                 ['star', 'star', 'star', 'star', 'star-half'],
                 '4.83'
