@@ -1726,7 +1726,7 @@ if (!isShifts) { /* 'For People' && 'Findshifts1' Pages */
         }
 
         .footer-scroll-top {
-            bottom: 115px;
+            display: none !important;
         }
 
         #colophon {            
@@ -1734,9 +1734,7 @@ if (!isShifts) { /* 'For People' && 'Findshifts1' Pages */
         }
 
         .acsb-trigger {
-            bottom: 115px !important;
-            right: auto !important;
-            left: 25px !important;
+            bottom: 115px !important;            
         }
     </style>
     `
