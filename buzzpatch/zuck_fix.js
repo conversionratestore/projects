@@ -517,7 +517,12 @@
             .concat(option("backButton") ? "with-back-button" : "")
           storyViewer.setAttribute("data-story-id", storyId)
           var html = '<div class="head"><div class="left">'
-            .concat(option("backButton") ? '<a class="back">&#10006;</a>' : "", '<u class="img" style="background-image:url(')
+            .concat(
+              option("backButton")
+                ? '<a class="back"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M19 6.41L17.59 5L12 10.59L6.41 5L5 6.41L10.59 12L5 17.59L6.41 19L12 13.41L17.59 19L19 17.59L13.41 12L19 6.41Z" fill="white"/></svg></a>'
+                : "",
+              '<u class="img" style="background-image:url('
+            )
             .concat(get(storyData, "photo"), ');"></u><div><strong>')
             .concat(get(storyData, "name"), '</strong><span class="time">')
             .concat(currentItemTime, '</span></div></div><div class="right"><span class="time">')
@@ -527,6 +532,7 @@
           each(storyViewer.querySelectorAll(".close, .back"), function (i, el) {
             el.onclick = function (e) {
               e.preventDefault()
+              e.stopPropagation()
               modal.close()
             }
           })
