@@ -279,118 +279,118 @@ if (!isShifts) { /* 'For People' && 'Findshifts1' Pages */
         {
             state: 'Arizona',
             cities: [
-                ['Phoenix', uploadsURL + '2021/12/Phoenix-small-photo-1-2.jpg']
+                ['Phoenix', 'Phoenix, AZ', uploadsURL + '2021/12/Phoenix-small-photo-1-2.jpg']
             ]
         },
         {
             state: 'Florida',
             cities: [
-                ["Fort Lauderdale", uploadsURL + "2022/04/fort-lauderdale-2.jpg"],
-                ["Lakeland", uploadsURL + "2021/10/Lakeland-thb-1.jpg"],
-                ["Orlando", uploadsURL + "2021/09/mick-haupt-Tyn3-Cljx-A-unsplash-1-1-e1632475827586.jpg"],
-                ["Miami", uploadsURL + "2022/01/025-Depositphotos_198880700_L-1-1.jpg"],
-                ["St. Petersburg", uploadsURL + "2021/10/St.-Petersburg-thb-1.jpg"],
-                ["Tampa", uploadsURL + "2021/09/tampa-2519396_1920-1-1-e1632418091236.jpg"]
+                ["Fort Lauderdale", 'Fort Lauderdale, FL', uploadsURL + "2022/04/fort-lauderdale-2.jpg"],
+                ["Lakeland", "Lakeland, FL", uploadsURL + "2021/10/Lakeland-thb-1.jpg"],
+                ["Orlando", "Orlando, FL", uploadsURL + "2021/09/mick-haupt-Tyn3-Cljx-A-unsplash-1-1-e1632475827586.jpg"],
+                ["Miami", "Miami, FL", uploadsURL + "2022/01/025-Depositphotos_198880700_L-1-1.jpg"],
+                ["St. Petersburg", "St. Petersburg, FL", uploadsURL + "2021/10/St.-Petersburg-thb-1.jpg"],
+                ["Tampa", "Tampa, FL", uploadsURL + "2021/09/tampa-2519396_1920-1-1-e1632418091236.jpg"]
             ]
         },
         {
             state: 'Georgia',
             cities: [
-                ['Atlanta', uploadsURL + '2021/07/Depositphotos_51662971_l-2015-1-1-2-e1625926826674.jpg']
+                ['Atlanta', "Atlanta, GA", uploadsURL + '2021/07/Depositphotos_51662971_l-2015-1-1-2-e1625926826674.jpg']
             ]
         },
         {
             state: 'Illinois',
             cities: [
-                ['St. Louis', uploadsURL + '2022/02/St.louis-square-2-1.png']
+                ['St. Louis', "St. Louis, IL", uploadsURL + '2022/02/St.louis-square-2-1.png']
             ]
         },
         {
             state: 'Indiana',
             cities: [
-                ['Indianapolis', uploadsURL + '2021/03/Indy-3-uai-365x365-1.jpg']
+                ['Indianapolis', "Indianapolis, IN", uploadsURL + '2021/03/Indy-3-uai-365x365-1.jpg']
             ]
         },
         {
             state: 'Kansas',
             cities: [
-                ['Kansas City', uploadsURL + '2022/02/Kansas-City-square-2-1.png']
+                ['Kansas City', "Kansas City, KS", uploadsURL + '2022/02/Kansas-City-square-2-1.png']
             ]
         },
         {
             state: 'Kentucky',
             cities: [
-                ['Northern Kentucky', uploadsURL + '2021/03/covington-uai-533x533-1.jpg']
+                ['Northern Kentucky', "Northern Kentucky, KY", uploadsURL + '2021/03/covington-uai-533x533-1.jpg']
             ]
         },
         {
             state: 'Michigan',
             cities: [
-                ['Ann Arbor', uploadsURL + '2022/04/brad-west-0G3Kj9L2JH0-unsplash-2.jpg'],
-                ['Detroit', uploadsURL + '2022/01/Detroit-square.png'],
+                ['Ann Arbor', "Ann Arbor, MI", uploadsURL + '2022/04/brad-west-0G3Kj9L2JH0-unsplash-2.jpg'],
+                ['Detroit', "Detroit, MI", uploadsURL + '2022/01/Detroit-square.png'],
             ]
         },
         {
             state: 'Minnesota',
             cities: [
-                [`Minneapolis/<br>St.Paul`, uploadsURL + '2022/01/Minneapolis-square.png'],
+                [`Minneapolis/<br>St.Paul`, "Minneapolis/St.Paul, MN", uploadsURL + '2022/01/Minneapolis-square.png'],
             ]
         },
         {
             state: 'Missouri',
             cities: [
-                ['Kansas City', uploadsURL + '2022/02/Kansas-City-square-2-1.png'],
-                ['St. Louis', uploadsURL + '2022/02/St.louis-square-2-1.png'],
+                ['Kansas City', "Kansas City, MO", uploadsURL + '2022/02/Kansas-City-square-2-1.png'],
+                ['St. Louis', "St. Louis, MO", uploadsURL + '2022/02/St.louis-square-2-1.png'],
             ]
         },
         {
             state: 'Nevada',
             cities: [
-                ['Las Vegas', uploadsURL + '2021/12/Las-Vegas-small-photo-1-1.jpg'],
+                ['Las Vegas', "Las Vegas, NV", uploadsURL + '2021/12/Las-Vegas-small-photo-1-1.jpg'],
             ]
         },
         {
             state: 'North Carolina',
             cities: [
-                ['Charlotte', uploadsURL + '2021/03/Charlote-uai-456x456-1.jpg'],
+                ['Charlotte', "Charlotte, NC", uploadsURL + '2021/03/Charlote-uai-456x456-1.jpg'],
             ]
         },
         {
             state: 'Ohio',
             cities: [
-                ['Akron/Canton', uploadsURL + "2022/04/fort-lauderdale-2.jpg"],
-                ['Cincinnati', uploadsURL + "2021/10/Lakeland-thb-1.jpg"],
-                ['Cleveland', uploadsURL + "2021/09/mick-haupt-Tyn3-Cljx-A-unsplash-1-1-e1632475827586.jpg"],
-                ['Columbus', uploadsURL + "2022/01/025-Depositphotos_198880700_L-1-1.jpg"],
-                ['Dayton', uploadsURL + "2021/10/St.-Petersburg-thb-1.jpg"],
-                ['Sandusky', uploadsURL + "2021/09/tampa-2519396_1920-1-1-e1632418091236.jpg"],
+                ['Akron/Canton', "Akron/Canton, OH", uploadsURL + "2022/04/fort-lauderdale-2.jpg"],
+                ['Cincinnati', "Cincinnati, OH", uploadsURL + "2021/10/Lakeland-thb-1.jpg"],
+                ['Cleveland', "Cleveland, OH", uploadsURL + "2021/09/mick-haupt-Tyn3-Cljx-A-unsplash-1-1-e1632475827586.jpg"],
+                ['Columbus', "Columbus, OH", uploadsURL + "2022/01/025-Depositphotos_198880700_L-1-1.jpg"],
+                ['Dayton', "Dayton, OH", uploadsURL + "2021/10/St.-Petersburg-thb-1.jpg"],
+                ['Sandusky', "Sandusky, OH", uploadsURL + "2021/09/tampa-2519396_1920-1-1-e1632418091236.jpg"],
             ]
         },
         {
             state: 'Pennsilvania',
             cities: [
-                ['Pittsburgh', uploadsURL + "2021/03/pittsburg-uai-456x456-1.jpg"]
+                ['Pittsburgh', "Pittsburgh, PA", uploadsURL + "2021/03/pittsburg-uai-456x456-1.jpg"]
             ]
         },
         {
             state: 'South Carolina',
             cities: [
-                ['Charlotte Metro Area', uploadsURL + "2021/03/fortmill-uai-520x520-1.jpg"]
+                ['Charlotte Metro Area', "Charlotte Metro Area, SC", uploadsURL + "2021/03/fortmill-uai-520x520-1.jpg"]
             ]
         },
         {
             state: 'Tennessee',
             cities: [
-                ['Nashville', uploadsURL + "2021/03/nashville-725986_1280-uai-960x960-1.jpg"]
+                ['Nashville', "Nashville, TN", uploadsURL + "2021/03/nashville-725986_1280-uai-960x960-1.jpg"]
             ]
         },
         {
             state: 'Texas',
             cities: [
-                ["Austin", uploadsURL + "2021/03/austin2-uai-456x456-1.jpg"],
-                [`Dallas/<br>Fort Worth`, uploadsURL + "2021/03/Dallas-uai-456x456-1.jpg"],
-                ["Houston", uploadsURL + "2021/03/Huston-uai-456x456-1.jpg"],
-                ["San Antonio", uploadsURL + "2021/03/san-antonio-uai-456x456-1.jpg"]
+                ["Austin", "Austin, TX", uploadsURL + "2021/03/austin2-uai-456x456-1.jpg"],
+                [`Dallas/<br>Fort Worth`, "Dallas/Fort Worth, TX", uploadsURL + "2021/03/Dallas-uai-456x456-1.jpg"],
+                ["Houston", "Houston, TX", uploadsURL + "2021/03/Huston-uai-456x456-1.jpg"],
+                ["San Antonio", "San Antonio, TX", uploadsURL + "2021/03/san-antonio-uai-456x456-1.jpg"]
             ]
         },
     ]
@@ -448,9 +448,9 @@ if (!isShifts) { /* 'For People' && 'Findshifts1' Pages */
         <div class="accordion_item-body">            
             ${location.cities.map(city => `
                 <div class="accordion_item_body_element">
-                    <img loading="lazy" src="${city[1]}" alt="${city[0]}">
+                    <img loading="lazy" src="${city[2]}" alt="${city[0]}">
                     <div class="text">
-                        <p class="city">${city[0]}</p>
+                        <p class="city" data-city="${city[1]}">${city[0]}</p>
                         <p class="sign">Sign up<img src="https://conversionratestore.github.io/projects/upshift/img/arrow_right_blue.svg" alt="arrow right"></p>
                     </div>        
                 </div>
@@ -1339,12 +1339,13 @@ if (!isShifts) { /* 'For People' && 'Findshifts1' Pages */
                             }
 
                             if (e.target.closest('.accordion_item_body_element .sign')) {
-                                const clickedCity = e.target.closest('.accordion_item_body_element .sign').previousElementSibling.innerText
-                                const state = e.target.closest('.accordion_item').querySelector('.accordion_item_header p').innerText
+                                const clickedCity = e.target.closest('.accordion_item_body_element .sign')?.previousElementSibling.dataset.city
 
-                                callEvent('Click on City. Locations', `${clickedCity}(${state})`)
+                                callEvent('Click on City. Locations', `${clickedCity}`)
 
-                                signLogic()
+                                localStorage.setItem('city', clickedCity)
+
+                                window.open("https://www.upshift.work/shifts-near-you/", "_self")
                             }
                         })
                     });
