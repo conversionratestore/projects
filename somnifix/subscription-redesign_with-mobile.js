@@ -706,10 +706,10 @@ let style = `
     }
   
     .for_country_select {
-		position: relative;
+        position: relative;
     }
   
-  	.for_country_select::after {
+    .for_country_select::after {
       content: "";
       display: block;
       background: url(https://cdn.shopify.com/s/files/1/2572/8006/t/69/assets/expandmore.svg?v=7151923608371747051655225870) center center no-repeat;
@@ -1083,6 +1083,10 @@ let style = `
         .icons__block {
             width: 85%;
             margin: 0 auto 40px;
+        }
+        .qty_row {
+          width: 95%;
+          margin: 0 auto;
         }
     }
     
@@ -1833,7 +1837,7 @@ let iconsHtml = `
 `
 
 let qtyHtml = `
-<div class="justify-between items-center">
+<div class="justify-between items-center qty_row">
     <div class="col-left">
         <div class="items-center calc"> 
             <button class="btn-calc btn-calc_minus" type="button" disabled></button>
