@@ -9,6 +9,8 @@ const style = `
 										.footer-wrapper {
 											margin-top: 30px;
 										}									
+								
+
 										
 										img.lazyloading {
 											opacity: 1 !important;
@@ -20,7 +22,21 @@ const style = `
 										
 										[data-style="not"] .similar_products.similar_exist {
 											display: flex;
-										}																	
+										}
+										
+										.product-actions app-number-picker div:first-child {
+											align-items: center;
+											border: 1px solid #A1A1A1;
+											padding: 0 5px;
+										}
+										
+										.product-actions app-number-picker input {
+											border: none !important;
+											text-align: center;											
+											padding: 0;
+											background-color: #fff !important;
+											font-size: 14px;                                            
+										}
 										
 										.product-actions button {
 											height: auto !important;
@@ -31,7 +47,11 @@ const style = `
 											font-size: 2rem;
 											color: #707070 !important;
 		                                    font-weight: 400 !important;
-										}										
+										}
+										
+										.picker-buttons-wrapper {
+											display: none !important;
+										}
 										
 										.product-variations .product-variation .value .square {
 											font-weight: 600;
@@ -166,10 +186,11 @@ const style = `
 										display: none;
 									}
 									
-									.pt-3.pb-3 .flex-row,
-									.pt-3.pb-3 button {
+									.pt-3.pb-3 .flex-row {									
 										width: 100%;
 									}
+
+                                    .pt-3.pb-3 button {width: 69%;}
 									
 									.pt-3.pb-3 button,
 									input[_ngcontent-serverApp-c104],
@@ -494,6 +515,16 @@ const style = `
 										width: 100% !important;
 										max-width: 100%;
 									}
+
+                                    [data-sign] {
+                                        cursor: pointer;
+                                        padding: 5px;
+                                    }
+
+                                    .minus_light {
+                                        cursor: not-allowed;
+                                        opacity: 0.72;
+                                    }
 									
 									/* =============================
 										Item status: Not in stock 
@@ -1642,6 +1673,34 @@ let drawMenu = setInterval(() => {
         }, 200)
     }
 }, 200)
+let counter = setInterval(() => {
+    if (document.querySelector('[type="number"]')) {
+        clearInterval(counter)
+
+        document.querySelector('[type="number"]').insertAdjacentHTML('beforebegin', `<img data-sign="minus" class="minus_light" src="https://conversionratestore.github.io/projects/kingsbox/img/remove_dark.svg" alt="minus">`)
+        document.querySelector('[type="number"]').insertAdjacentHTML('afterend', `<img data-sign="plus" src="https://conversionratestore.github.io/projects/kingsbox/img/add.svg" alt="plus">`)
+
+        let waitForSigns = setInterval(() => {
+            if (document.querySelector('[data-sign="plus"]') && document.querySelector('[data-sign="minus"]')) {
+                clearInterval(waitForSigns)
+
+                document.querySelector('[data-sign="plus"]').addEventListener('click', () => {
+                    document.querySelector('.material-icons.up').click()
+
+                    document.querySelector('[data-sign="minus"]').classList.remove('minus_light')
+                })
+
+                document.querySelector('[data-sign="minus"]').addEventListener('click', () => {
+                    document.querySelector('.material-icons.down').click()
+
+                    if (document.querySelector('[type="number"]').value === '1') {
+                        document.querySelector('[data-sign="minus"]').classList.add('minus_light')
+                    }
+                })
+            }
+        }, 200);
+    }
+}, 200);
 
 const duplicatesArr = [
     'demand_wrapper',
