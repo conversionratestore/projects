@@ -28,27 +28,6 @@ let startFunkReview = setInterval(() => {
     scriptCustomImgStyle.rel = "stylesheet"
     document.head.appendChild(scriptCustomImgStyle)
 
-    // event
-    function pushDataLayer(actionDataLayer, labelDataLayer) {
-      window.dataLayer = window.dataLayer || []
-      if (labelDataLayer) {
-        console.log(actionDataLayer + " : " + labelDataLayer)
-        dataLayer.push({
-          event: "event-to-ga",
-          eventCategory: `Exp: Review hypothesis`,
-          eventAction: `${actionDataLayer}`,
-          eventLabel: `${labelDataLayer}`,
-        })
-      } else {
-        console.log(actionDataLayer)
-        dataLayer.push({
-          event: "event-to-ga",
-          eventCategory: `Exp: Review hypothesis`,
-          eventAction: `${actionDataLayer}`,
-        })
-      }
-    }
-
     let styleReveiw = /* html */ `
       <style>
         /*block_first */
@@ -340,17 +319,17 @@ let startFunkReview = setInterval(() => {
           reactive: true,
           stories: [
             {
-              id: "1",
+              id: "a",
               photo: "https://conversionratestore.github.io/projects/buzzpatch/img/video_review1.jpg",
               items: [buildItem("1", "video", "https://conversionratestore.github.io/projects/buzzpatch/video/familyandcoffee.mp4", false)],
             },
             {
-              id: "2",
+              id: "r",
               photo: "https://conversionratestore.github.io/projects/buzzpatch/img/video_review2.jpg",
               items: [buildItem("1", "video", "https://conversionratestore.github.io/projects/buzzpatch/video/paosfitmomlife.mp4", false)],
             },
             {
-              id: "3",
+              id: "t",
               photo: "https://conversionratestore.github.io/projects/buzzpatch/img/video_review3.jpg",
               items: [
                 buildItem("1", "video", "https://conversionratestore.github.io/projects/buzzpatch/video/blessed_by_brynn-1.mp4", false),
@@ -359,7 +338,7 @@ let startFunkReview = setInterval(() => {
               ],
             },
             {
-              id: "4",
+              id: "d",
               photo: "https://conversionratestore.github.io/projects/buzzpatch/img/video_review4.jpg",
               items: [buildItem("1", "video", "https://conversionratestore.github.io/projects/buzzpatch/video/allthngsmely.mp4", false)],
             },
