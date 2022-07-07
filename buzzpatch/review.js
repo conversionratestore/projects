@@ -357,10 +357,15 @@ let startFunkReview = setInterval(() => {
               // on open story viewer
               pushDataLayer("click on video review", `video_${storyId}`)
               callback()
+              document.body.style.overflow = "hidden"
             },
             onView(storyId) {
               // on view story
               pushDataLayer(`video review loaded_${storyId}`)
+            },
+            onClose(storyId, callback) {
+              callback() // on close story viewer
+              document.body.style.overflow = "unset"
             },
           },
           stories: [
