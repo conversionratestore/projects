@@ -3,7 +3,7 @@ let startFunkReview = setInterval(() => {
     clearInterval(startFunkReview)
 
     let scriptCustom = document.createElement("script")
-    scriptCustom.src = "https://cdnjs.cloudflare.com/ajax/libs/zuck.js/1.3.0/zuck.min.js"
+    scriptCustom.src = "https://conversionratestore.github.io/projects/buzzpatch/zuck_fix.js"
     scriptCustom.async = false
     document.head.appendChild(scriptCustom)
 
@@ -157,7 +157,7 @@ let startFunkReview = setInterval(() => {
             background: url('https://conversionratestore.github.io/projects/buzzpatch/img/play_arrow.png');
         }
 
-        #zuck-modal-content .story-viewer .head .right .time{
+        #zuck-modal-content .story-viewer .head .right .time {
           display: none;
         }
 
@@ -338,30 +338,41 @@ let startFunkReview = setInterval(() => {
           localStorage: true,
           previousTap: true,
           reactive: true,
+          callbacks: {
+            onOpen: function (storyId, callback) {
+              // on open story viewer
+              pushDataLayer("click on video review", `video_${storyId}`)
+              callback()
+            },
+            onView(storyId) {
+              // on view story
+              pushDataLayer(`video review loaded_${storyId}`)
+            },
+          },
           stories: [
             {
-              id: "a",
+              id: "1",
               photo: "https://conversionratestore.github.io/projects/buzzpatch/img/video_review1.jpg",
-              items: [buildItem("1", "video", "https://conversionratestore.github.io/projects/buzzpatch/video/familyandcoffee.mp4", false)],
+              items: [buildItem("11", "video", "https://conversionratestore.github.io/projects/buzzpatch/video/familyandcoffee.mp4", false)],
             },
             {
-              id: "r",
+              id: "2",
               photo: "https://conversionratestore.github.io/projects/buzzpatch/img/video_review2.jpg",
-              items: [buildItem("1", "video", "https://conversionratestore.github.io/projects/buzzpatch/video/paosfitmomlife.mp4", false)],
+              items: [buildItem("21", "video", "https://conversionratestore.github.io/projects/buzzpatch/video/paosfitmomlife.mp4", false)],
             },
             {
-              id: "t",
+              id: "3",
               photo: "https://conversionratestore.github.io/projects/buzzpatch/img/video_review3.jpg",
               items: [
-                buildItem("1", "video", "https://conversionratestore.github.io/projects/buzzpatch/video/blessed_by_brynn-1.mp4", false),
-                buildItem("2", "video", "https://conversionratestore.github.io/projects/buzzpatch/video/blessed_by_brynn-2.mp4", false),
-                buildItem("3", "video", "https://conversionratestore.github.io/projects/buzzpatch/video/blessed_by_brynn-3.mp4", false),
+                buildItem("31", "video", "https://conversionratestore.github.io/projects/buzzpatch/video/blessed_by_brynn-1.mp4", false),
+                buildItem("32", "video", "https://conversionratestore.github.io/projects/buzzpatch/video/blessed_by_brynn-2.mp4", false),
+                buildItem("33", "video", "https://conversionratestore.github.io/projects/buzzpatch/video/blessed_by_brynn-3.mp4", false),
               ],
             },
             {
-              id: "d",
+              id: "4",
               photo: "https://conversionratestore.github.io/projects/buzzpatch/img/video_review4.jpg",
-              items: [buildItem("1", "video", "https://conversionratestore.github.io/projects/buzzpatch/video/allthngsmely.mp4", false)],
+              items: [buildItem("41", "video", "https://conversionratestore.github.io/projects/buzzpatch/video/allthngsmely.mp4", false)],
             },
           ],
         })
@@ -375,17 +386,9 @@ let startFunkReview = setInterval(() => {
 
         Fancybox.bind("[data-fancybox]", {
           on: {
-            load: (fancybox, slide) => {
-              if (fancybox.getSlide().index === slide.index) {
-                pushDataLayer("'photo review loaded", `photo_${slide.index + 1}`)
-              }
+            done: (fancybox, slide) => {
+              pushDataLayer("'photo review loaded", `photo_${slide.index + 1}`)
             },
-            // done: (fancybox, slide) => {
-            //   if (fancybox.getSlide().index === slide.index) {
-            //     // pushDataLayer("'photo review loaded", `photo_${slide.index + 1}`)
-            //     console.log(`done!`, slide.index)
-            //   }
-            // },
           },
         })
 
