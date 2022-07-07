@@ -8,7 +8,11 @@ const style = `
 										
 										.footer-wrapper {
 											margin-top: 30px;
-										}									
+										}
+										
+										.product-actions .mr-2 {
+											display: none;
+										}
 										
 										img.lazyloading {
 											opacity: 1 !important;
