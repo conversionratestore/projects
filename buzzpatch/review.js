@@ -28,6 +28,27 @@ let startFunkReview = setInterval(() => {
     scriptCustomImgStyle.rel = "stylesheet"
     document.head.appendChild(scriptCustomImgStyle)
 
+    // event
+    function pushDataLayer(actionDataLayer, labelDataLayer) {
+      window.dataLayer = window.dataLayer || []
+      if (labelDataLayer) {
+        console.log(actionDataLayer + " : " + labelDataLayer)
+        dataLayer.push({
+          event: "event-to-ga",
+          eventCategory: `Exp: Review hypothesis`,
+          eventAction: `${actionDataLayer}`,
+          eventLabel: `${labelDataLayer}`,
+        })
+      } else {
+        console.log(actionDataLayer)
+        dataLayer.push({
+          event: "event-to-ga",
+          eventCategory: `Exp: Review hypothesis`,
+          eventAction: `${actionDataLayer}`,
+        })
+      }
+    }
+
     let styleReveiw = /* html */ `
       <style>
         /*block_first */
@@ -276,6 +297,7 @@ let startFunkReview = setInterval(() => {
       links.forEach((link) => {
         link.addEventListener("click", function (event) {
           event.preventDefault()
+          pushDataLayer("click on Reviews")
 
           const scrollTarget = document.getElementById("reviews")
 
@@ -318,17 +340,17 @@ let startFunkReview = setInterval(() => {
           reactive: true,
           stories: [
             {
-              id: "a",
+              id: "1",
               photo: "https://conversionratestore.github.io/projects/buzzpatch/img/video_review1.jpg",
               items: [buildItem("1", "video", "https://conversionratestore.github.io/projects/buzzpatch/video/familyandcoffee.mp4", false)],
             },
             {
-              id: "r",
+              id: "2",
               photo: "https://conversionratestore.github.io/projects/buzzpatch/img/video_review2.jpg",
               items: [buildItem("1", "video", "https://conversionratestore.github.io/projects/buzzpatch/video/paosfitmomlife.mp4", false)],
             },
             {
-              id: "t",
+              id: "3",
               photo: "https://conversionratestore.github.io/projects/buzzpatch/img/video_review3.jpg",
               items: [
                 buildItem("1", "video", "https://conversionratestore.github.io/projects/buzzpatch/video/blessed_by_brynn-1.mp4", false),
@@ -337,12 +359,20 @@ let startFunkReview = setInterval(() => {
               ],
             },
             {
-              id: "d",
+              id: "4",
               photo: "https://conversionratestore.github.io/projects/buzzpatch/img/video_review4.jpg",
               items: [buildItem("1", "video", "https://conversionratestore.github.io/projects/buzzpatch/video/allthngsmely.mp4", false)],
             },
           ],
         })
+
+        if (document.querySelectorAll("#stories .story")) {
+          document.querySelectorAll("#stories .story").forEach((el, i) => {
+            el.addEventListener("click", function () {
+              pushDataLayer("click on video review", `video_${i + 1}`)
+            })
+          })
+        }
       }
     }, 20)
 
@@ -351,8 +381,31 @@ let startFunkReview = setInterval(() => {
       if (typeof Fancybox === "function") {
         clearInterval(fullImg)
 
-        Fancybox.bind("[data-fancybox]", {})
+        Fancybox.bind("[data-fancybox]", {
+          on: {
+            load: (fancybox, slide) => {
+              if (fancybox.getSlide().index === slide.index) {
+                pushDataLayer("'photo review loaded", `photo_${slide.index + 1}`)
+              }
+            },
+            // done: (fancybox, slide) => {
+            //   if (fancybox.getSlide().index === slide.index) {
+            //     // pushDataLayer("'photo review loaded", `photo_${slide.index + 1}`)
+            //     console.log(`done!`, slide.index)
+            //   }
+            // },
+          },
+        })
+
+        document.querySelectorAll("[data-fancybox]").forEach((el, i) => {
+          el.addEventListener("click", function () {
+            pushDataLayer("click on photo review", `photo_${i + 1}`)
+          })
+        })
       }
     }, 10)
+
+    pushDataLayer("loaded")
+    clarity("set", `review_hypothesis`, "variant_1")
   }
 }, 10)
