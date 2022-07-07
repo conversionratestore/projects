@@ -8,11 +8,7 @@ const style = `
 										
 										.footer-wrapper {
 											margin-top: 30px;
-										}
-										
-										.product-actions .mr-2 {
-											display: none;
-										}
+										}									
 										
 										img.lazyloading {
 											opacity: 1 !important;
@@ -24,24 +20,7 @@ const style = `
 										
 										[data-style="not"] .similar_products.similar_exist {
 											display: flex;
-										}
-										
-										.product-actions app-number-picker div:first-child {
-											align-items: center;
-											border: 1px solid #A1A1A1;
-											padding: 0 10px;
-										}
-										
-										.product-actions app-number-picker input {
-											border: none !important;
-											min-width: 40px;
-											width: 40px;
-											text-align: center;
-											
-											padding: 0 10px;
-											background-color: #fff !important;
-											font-size: 14px;
-										}
+										}																	
 										
 										.product-actions button {
 											height: auto !important;
@@ -52,11 +31,7 @@ const style = `
 											font-size: 2rem;
 											color: #707070 !important;
 		                                    font-weight: 400 !important;
-										}
-										
-										.picker-buttons-wrapper {
-											display: none !important;
-										}
+										}										
 										
 										.product-variations .product-variation .value .square {
 											font-weight: 600;
