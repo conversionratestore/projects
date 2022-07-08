@@ -255,11 +255,11 @@ let interval = setInterval(() => {
 
             item.nextElementSibling.addEventListener('click', (e) => {
                 let parent = item.parentElement;
-                saveIndex = index;
                 //set href for "Skip offer and Continue Checkout" button
                 parent.querySelector('.radio-container input').click()
                 document.querySelector('.modal .btn_skip').href = `https://mammutmarsch.de/checkout/?add-to-cart=${document.querySelector('.variations_form.cart [name="add-to-cart"]').value}&quantity=1`;
 
+                saveIndex = index;
                 //set data for T-shirt
                 let favorite = document.querySelectorAll('.favourite');
 
@@ -270,6 +270,7 @@ let interval = setInterval(() => {
                         el.click();
                     }
                 })
+
                 //set href for "Add to order" button
                 document.querySelector('.modal .btn_add-order').href = `https://mammutmarsch.de/checkout/?add-to-cart=${document.querySelector('.variations_form.cart [name="add-to-cart"]').value}&quantity=1`;
                 if (clickOnFullReg == false) {
