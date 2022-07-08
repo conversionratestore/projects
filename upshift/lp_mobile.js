@@ -464,8 +464,7 @@ if (!isShifts) { /* 'For People' && 'Findshifts1' Pages */
 <div class="slide">
                 <div class="slide_header">
                     <div>
-                        <p>${job[0]}</p>
-                        <p><img src="${imgFolderLink}/marker.svg" alt="marker"> ${job[2]}</p>
+                        <p>${job[0]}</p>                        
                     </div>
                     <div>
                         <p style="white-space: nowrap;">${job[1]}</p>                        
