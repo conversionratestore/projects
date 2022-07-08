@@ -65,10 +65,11 @@ let startFunkReview = setInterval(() => {
           position: fixed !important;
         }
 
-        #zuck-modal-content .story-viewer.paused.longPress .head{
+        #zuck-modal-content .story-viewer .head {
+          top: 15px !important;
           display: flex;
           justify-content: space-between;
-        }
+        }        
         
         #zuck-modal-content .story-viewer .head .left{
           display: none !important;
