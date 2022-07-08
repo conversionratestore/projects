@@ -53,12 +53,12 @@ let startFunkReview = setInterval(() => {
       <style>
         #zuck-modal{
           z-index: 999999999999999 !important;
-          opacity: 1 !important;
         }
 
         #zuck-modal-content .story-viewer .head .right .close{
           display: block !important;
           color: #FFFFFF !important;
+          opacity: 1 !important;
         }
 
         #zuck-modal.with-effects{
