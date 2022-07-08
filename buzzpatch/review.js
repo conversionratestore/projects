@@ -385,8 +385,8 @@ let startFunkReview = setInterval(() => {
           stories: [
             {
               id: "1",
-              photo: "https://conversionratestore.github.io/projects/buzzpatch/img/video_review1.jpg",
-              items: [buildItem("11", "video", "https://conversionratestore.github.io/projects/buzzpatch/video/familyandcoffee.mp4", false)],
+              photo: "https://conversionratestore.github.io/projects/buzzpatch/img/video_review1_1.jpg",
+              items: [buildItem("11", "video", "https://conversionratestore.github.io/projects/buzzpatch/video/youngwildandfriedl.mp4", false)],
             },
             {
               id: "2",
