@@ -55,6 +55,11 @@ let startFunkReview = setInterval(() => {
           z-index: 999999999999999 !important;
         }
 
+        #zuck-modal-content .story-viewer .head .right .close{
+          display: block !important;
+          color: #FFFFFF !important;
+        }
+
         #zuck-modal.with-effects{
           position: fixed !important;
         }
@@ -63,6 +68,7 @@ let startFunkReview = setInterval(() => {
           float: right !important;
           margin: 8px 0 !important;
           width: 33px !important;
+          display: none !important;
         }
 
         #zuck-modal-content .story-viewer.with-back-button .head .left > .back{
