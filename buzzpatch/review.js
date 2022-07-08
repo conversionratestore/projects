@@ -51,6 +51,10 @@ let startFunkReview = setInterval(() => {
 
     let styleReveiw = /* html */ `
       <style>
+        #zuck-modal{
+          z-index: 999999999999999 !important;
+        }
+
         #zuck-modal.with-effects{
           position: fixed !important;
         }
