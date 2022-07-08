@@ -421,11 +421,11 @@ let startFunkReview = setInterval(() => {
         clearInterval(fullImg)
 
         Fancybox.bind("[data-fancybox]", {
-          on: {
-            done: (fancybox, slide) => {
-              pushDataLayer("'photo review loaded", `photo_${slide.index + 1}`)
-            },
-          },
+          // on: {
+          //   done: (fancybox, slide) => {
+          //     pushDataLayer("'photo review loaded", `photo_${slide.index + 1}`)
+          //   },
+          // },
         })
 
         document.querySelectorAll("[data-fancybox]").forEach((el, i) => {
