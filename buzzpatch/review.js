@@ -399,7 +399,7 @@ let startFunkReview = setInterval(() => {
               items: [
                 buildItem("31", "video", "https://conversionratestore.github.io/projects/buzzpatch/video/blessed_by_brynn-1.mp4", false),
                 buildItem("32", "video", "https://conversionratestore.github.io/projects/buzzpatch/video/blessed_by_brynn-2.mp4", false),
-                buildItem("33", "video", "https://conversionratestore.github.io/projects/buzzpatch/video/blessed_by_brynn-3.mp4", false),
+                // buildItem("33", "video", "https://conversionratestore.github.io/projects/buzzpatch/video/blessed_by_brynn-3.mp4", false),
               ],
             },
             {
