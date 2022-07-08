@@ -181,6 +181,7 @@ let style = `
 
 //push data layer
 function pushDataLayer(action) {
+    console.log(action)
     window.dataLayer = window.dataLayer || [];
     dataLayer.push({
         'event': 'event-to-ga',
@@ -188,6 +189,9 @@ function pushDataLayer(action) {
         'eventAction': action
     });
 }
+
+let clickOnFullReg = false; //for full registratin button events
+let saveIndex = 0; //return the last variant of the index (not favourite)
 
 let interval = setInterval(() => {
     if (document.body) {
@@ -216,19 +220,21 @@ let interval = setInterval(() => {
                 <a href="#" class="btn_add-order">T-Shirt hinzufügen</a>
             </div>
         </div>`)
-
         function showModal() { // function show modal
             document.querySelector('.modal').classList.add('active');
             pushDataLayer('Show pop up') //event
         }
         function hideModal() { // function hide modal
+            document.querySelectorAll('.custom-variation .radio-container input')[saveIndex].click()
             document.querySelector('.modal').classList.remove('active');
         }
 
         // all favorite cards are hidden
         document.querySelectorAll('.favourite').forEach(item => {
-            item.closest('.col-md-6').style.display = 'none'; 
+            item.closest('.col-md-6').style.display = 'none';
         })
+        //active first variant (not favourite)
+        document.querySelectorAll('.custom-variation .title:not(.favourite)')[0].closest('.heading').querySelector('.radio-container input').click()
 
         // hide modal
         document.querySelector('.modal .close').addEventListener('click', (e) => {
@@ -240,46 +246,62 @@ let interval = setInterval(() => {
                 hideModal()
                 pushDataLayer('Upsell pop up closed under pop up')
             }
-        }) 
+        })
 
         // events on green button in cards
-        document.querySelectorAll('.checkboxes-anmelden').forEach(item => {
+        document.querySelectorAll('.checkboxes-anmelden').forEach((item, index) => {
             item.style.display = 'none';
             item.insertAdjacentHTML('afterend', `<div class="btn_next">${item.innerHTML}</div>`)
+
             item.nextElementSibling.addEventListener('click', (e) => {
                 let parent = item.parentElement;
-
+                saveIndex = index;
                 //set href for "Skip offer and Continue Checkout" button
                 parent.querySelector('.radio-container input').click()
                 document.querySelector('.modal .btn_skip').href = `https://mammutmarsch.de/checkout/?add-to-cart=${document.querySelector('.variations_form.cart [name="add-to-cart"]').value}&quantity=1`;
-                
+
                 //set data for T-shirt
                 let favorite = document.querySelectorAll('.favourite');
-            
+
                 favorite.forEach(el => {
                     if (favorite.length > 1) {
                         el.innerHTML.includes(parent.querySelector('.title').innerHTML.split('KM')[0].trim()) ? el.click() : '';
                     } else {
                         el.click();
                     }
-                })  
+                })
                 //set href for "Add to order" button
-                document.querySelector('.modal .btn_add-order').href = `https://mammutmarsch.de/checkout/?add-to-cart=${document.querySelector('.variations_form.cart [name="add-to-cart"]').value}&quantity=1`;   
-                
+                document.querySelector('.modal .btn_add-order').href = `https://mammutmarsch.de/checkout/?add-to-cart=${document.querySelector('.variations_form.cart [name="add-to-cart"]').value}&quantity=1`;
+                if (clickOnFullReg == false) {
+                    pushDataLayer('Click on register button') //event
+                } else {
+                    pushDataLayer('Click on full registration button') //event
+                    clickOnFullReg = false
+                }
                 showModal() //show modal
             })
         })
-        
+
+        document.querySelector('#proceed_to_checkout').addEventListener('click', (e) => {
+            e.preventDefault();
+            document.querySelectorAll('.custom-variation').forEach((el,index) => {
+                if (el.querySelector('.title').innerText.toLowerCase().includes(selected_package_label.toLowerCase())) {
+                    saveIndex = index;
+                    clickOnFullReg = true;
+                    el.querySelector('.btn_next button').click();
+                }
+            })
+        })
+
         document.querySelector('.modal .btn_more').addEventListener('click', (e) => {
             e.target.hidden = true;
             document.querySelector('.modal .text').style = '-webkit-line-clamp: inherit;'
             pushDataLayer('click on more button') //event
-        }) 
+        })
         document.querySelector('.modal .btn_skip').addEventListener('click', (e) => pushDataLayer('Scip offer selected')) //event
         document.querySelector('.modal .btn_add-order').addEventListener('click', (e) => pushDataLayer('T-shirt added to the order')) //event
         const appHeight = () => {
             document.querySelector('.modal').style.height = window.innerHeight + 'px';
-            // document.querySelector('.modal').style.height = window.outerHeight + 'px';
         }
         window.addEventListener('resize', appHeight)
         appHeight()
