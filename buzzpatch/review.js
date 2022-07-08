@@ -64,18 +64,21 @@ let startFunkReview = setInterval(() => {
         #zuck-modal.with-effects{
           position: fixed !important;
         }
+
+        #zuck-modal-content .story-viewer.paused.longPress .head{
+          display: flex;
+          justify-content: space-between;
+        }
         
         #zuck-modal-content .story-viewer .head .left{
-          /*
-          float: right !important;
-          margin: 8px 0 !important;
-          width: 33px !important;
-          */
           display: none !important;
         }
 
         #zuck-modal-content .story-viewer .head .right{
           float: unset !important;
+          width: 48px;
+          height: 42px;
+          margin: 0 0 0 auto;
         }
 
         #zuck-modal-content .story-viewer.with-back-button .head .left > .back{
