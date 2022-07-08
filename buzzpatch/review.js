@@ -65,8 +65,13 @@ let startFunkReview = setInterval(() => {
           position: fixed !important;
         }
 
+        #zuck-modal-content .story-viewer .head .right .close > svg{
+          top: 24px !important;
+          position: absolute !important;
+          right: 15px !important;
+        }
+
         #zuck-modal-content .story-viewer .head {
-          top: 15px !important;
           display: flex;
           justify-content: space-between;
         }        
