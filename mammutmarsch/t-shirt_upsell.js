@@ -189,9 +189,20 @@ function pushDataLayer(action) {
         'eventAction': action
     });
 }
+//set data for T-shirt
+function setHrefForTShirt(favorite,parent) {
+    favorite.forEach(el => {
+        if (favorite.length > 1) {
+            el.innerHTML.includes(parent.querySelector('.title').innerHTML.split('KM')[0].trim()) ? el.click() : '';
+        } else {
+            el.click();
+        }
+    })
 
-let clickOnFullReg = false; //for full registratin button events
-let saveIndex = 0; //return the last variant of the index (not favourite)
+    //set href for "Add to order" button
+    document.querySelector('.modal .btn_add-order').href = document.querySelector('#proceed_to_checkout').href; //set href for add order button
+}
+let saveIndex = 0;
 
 let interval = setInterval(() => {
     if (document.body) {
@@ -220,13 +231,14 @@ let interval = setInterval(() => {
                 <a href="#" class="btn_add-order">T-Shirt hinzufügen</a>
             </div>
         </div>`)
+
         function showModal() { // function show modal
             document.querySelector('.modal').classList.add('active');
-            pushDataLayer('Show pop up') //event
+            pushDataLayer('Show pop up'); //event
         }
         function hideModal() { // function hide modal
-            document.querySelectorAll('.custom-variation .radio-container input')[saveIndex].click()
             document.querySelector('.modal').classList.remove('active');
+            document.querySelectorAll('.custom-variation .title')[saveIndex].click();
         }
 
         // all favorite cards are hidden
@@ -254,42 +266,50 @@ let interval = setInterval(() => {
             item.insertAdjacentHTML('afterend', `<div class="btn_next">${item.innerHTML}</div>`)
 
             item.nextElementSibling.addEventListener('click', (e) => {
+                e.stopImmediatePropagation()
                 let parent = item.parentElement;
+
                 //set href for "Skip offer and Continue Checkout" button
                 parent.querySelector('.radio-container input').click()
-                document.querySelector('.modal .btn_skip').href = `https://mammutmarsch.de/checkout/?add-to-cart=${document.querySelector('.variations_form.cart [name="add-to-cart"]').value}&quantity=1`;
-
+                document.querySelector('.modal .btn_skip').href = document.querySelector('#proceed_to_checkout').href; //set href for skip button
+                console.log(document.querySelector('#proceed_to_checkout').href)
                 saveIndex = index;
-                //set data for T-shirt
+
                 let favorite = document.querySelectorAll('.favourite');
+                setHrefForTShirt(favorite,parent)
+                console.log(document.querySelector('#proceed_to_checkout').href)
+                pushDataLayer('Click on register button')//event
 
-                favorite.forEach(el => {
-                    if (favorite.length > 1) {
-                        el.innerHTML.includes(parent.querySelector('.title').innerHTML.split('KM')[0].trim()) ? el.click() : '';
-                    } else {
-                        el.click();
-                    }
-                })
-
-                //set href for "Add to order" button
-                document.querySelector('.modal .btn_add-order').href = `https://mammutmarsch.de/checkout/?add-to-cart=${document.querySelector('.variations_form.cart [name="add-to-cart"]').value}&quantity=1`;
-                if (clickOnFullReg == false) {
-                    pushDataLayer('Click on register button') //event
-                } else {
-                    pushDataLayer('Click on full registration button') //event
-                    clickOnFullReg = false
-                }
-                showModal() //show modal
+                //show modal
+                showModal()
             })
         })
 
         document.querySelector('#proceed_to_checkout').addEventListener('click', (e) => {
             e.preventDefault();
+            showModal()
+            pushDataLayer('Click on full registration button')
             document.querySelectorAll('.custom-variation').forEach((el,index) => {
                 if (el.querySelector('.title').innerText.toLowerCase().includes(selected_package_label.toLowerCase())) {
-                    saveIndex = index;
-                    clickOnFullReg = true;
-                    el.querySelector('.btn_next button').click();
+                    if (el.querySelector('.title.favourite') != null ) {
+                        document.querySelector('.modal .btn_add-order').href = document.querySelector('#proceed_to_checkout').href; //set href for add order button
+                        let titleFavorite = el.querySelector('.title.favourite').innerHTML.split('KM')[0].trim()
+                        document.querySelectorAll('.custom-variation .title:not(.favourite)').forEach((title,index) => {
+                            if (title.innerHTML.toLowerCase().includes(titleFavorite)) {
+                                title.click()
+                                document.querySelector('.modal .btn_skip').href = document.querySelector('#proceed_to_checkout').href; //set href for skip button
+                                console.log(document.querySelector('#proceed_to_checkout').href);
+                            }
+                        })
+                    } else {
+                        saveIndex = index;
+                        document.querySelector('.modal .btn_skip').href = document.querySelector('#proceed_to_checkout').href; //set href for skip button
+
+                        console.log(document.querySelector('#proceed_to_checkout').href);
+                        let favorite = document.querySelectorAll('.favourite');
+                        setHrefForTShirt(favorite,el);
+                        console.log(document.querySelector('#proceed_to_checkout').href);
+                    }
                 }
             })
         })
