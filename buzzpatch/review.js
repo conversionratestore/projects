@@ -361,13 +361,9 @@ let startFunkReview = setInterval(() => {
             onView(storyId) {
               // on view story
               pushDataLayer(`video review loaded_${storyId}`)
-              document.body.style.overflow = "hidden"
-              document.body.style.height = "100vh"
             },
             onClose(storyId, callback) {
               callback() // on close story viewer
-              document.body.style.overflow = "unset"
-
               setTimeout(() => {
                 const scrollTarget = document.querySelector(".js-iphone .wave-bg")
                 const topOffset = 90
