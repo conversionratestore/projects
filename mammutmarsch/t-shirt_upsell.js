@@ -181,7 +181,6 @@ let style = `
 
 //push data layer
 function pushDataLayer(action) {
-    console.log(action)
     window.dataLayer = window.dataLayer || [];
     dataLayer.push({
         'event': 'event-to-ga',
@@ -272,12 +271,10 @@ let interval = setInterval(() => {
                 //set href for "Skip offer and Continue Checkout" button
                 parent.querySelector('.radio-container input').click()
                 document.querySelector('.modal .btn_skip').href = document.querySelector('#proceed_to_checkout').href; //set href for skip button
-                console.log(document.querySelector('#proceed_to_checkout').href)
                 saveIndex = index;
 
                 let favorite = document.querySelectorAll('.favourite');
                 setHrefForTShirt(favorite,parent)
-                console.log(document.querySelector('#proceed_to_checkout').href)
                 pushDataLayer('Click on register button')//event
 
                 //show modal
@@ -298,17 +295,14 @@ let interval = setInterval(() => {
                             if (title.innerHTML.toLowerCase().includes(titleFavorite)) {
                                 title.click()
                                 document.querySelector('.modal .btn_skip').href = document.querySelector('#proceed_to_checkout').href; //set href for skip button
-                                console.log(document.querySelector('#proceed_to_checkout').href);
                             }
                         })
                     } else {
                         saveIndex = index;
                         document.querySelector('.modal .btn_skip').href = document.querySelector('#proceed_to_checkout').href; //set href for skip button
 
-                        console.log(document.querySelector('#proceed_to_checkout').href);
                         let favorite = document.querySelectorAll('.favourite');
                         setHrefForTShirt(favorite,el);
-                        console.log(document.querySelector('#proceed_to_checkout').href);
                     }
                 }
             })
