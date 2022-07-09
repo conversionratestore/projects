@@ -535,7 +535,6 @@
           each(storyViewer.querySelectorAll(".close, .back"), function (i, el) {
             el.onclick = function (e) {
               e.preventDefault()
-              e.stopPropagation()
               modal.close()
             }
           })
