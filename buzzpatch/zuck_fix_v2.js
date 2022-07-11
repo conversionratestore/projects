@@ -607,7 +607,7 @@
             )
             .concat(
               currentItemTime,
-              '</span><span class="loading"></span><a class="close" tabIndex="2">x</a></div></div><div class="slides-pointers"><div>'
+              '</span><span class="loading"></span><a class="close" tabIndex="2">&times;</a></div></div><div class="slides-pointers"><div>'
             )
             .concat(pointerItems, "</div></div>");
           storyViewer.innerHTML = html;
