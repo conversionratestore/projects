@@ -336,7 +336,7 @@ let startFunk = setInterval(() => {
       height: 44px;
     }
 
-    .catalog-product-view .product-essential .p-price .final-price{
+    .catalog-product-view .product-essential .p-price .final-price.active_sales{
       display: block;
       width: fit-content;
       float: left;
@@ -868,6 +868,7 @@ let startFunk = setInterval(() => {
     function hidePopup() {
       document.querySelector(".backdrop_popup").classList.remove("show")
       document.body.style.overflow = "unset"
+      document.querySelector(".catalog-product-view .product-essential .p-price .final-price").classList.add("active_sales")
 
       renderToPdp()
     }
