@@ -66,8 +66,8 @@ let startFunkReview = setInterval(() => {
           opacity: 1 !important;
           height: 100%;
           font-weight: 400;
-          margin-top: 10px;
-          font-size: 30px !important;
+          margin-top: 16px;
+          font-size: 21px !important;
         }
 
         #zuck-modal.with-effects{
@@ -409,6 +409,7 @@ let startFunkReview = setInterval(() => {
             },
             onClose(storyId, callback) {
               callback(); // on close story viewer
+              pushDataLayer(`click on btn close video_${storyId}`);
               setTimeout(() => {
                 const scrollTarget = document.querySelector(
                   ".js-iphone .wave-bg"
