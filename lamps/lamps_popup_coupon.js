@@ -670,12 +670,12 @@ let startFunk = setInterval(() => {
                         el.querySelector(".final-price .price").classList.add("coupon_price")
                         el.querySelector(".col-6.mc-price.mt-2").insertAdjacentHTML("afterbegin", `<span class="final_coupon_price"></span>`)
                         if (el.querySelector(".final_coupon_price")) {
-                          let newPrice = el.querySelector(".final-price .price.coupon_price").textContent.slice(1)
+                          let newPrice = el.querySelector(".final-price .price.coupon_price").textContent.slice(1).replace(/,/g, "")
                           console.log(typeof newPrice)
 
                           let newPriceCoupon = +newPrice * 0.85
 
-                          el.querySelector(".final_coupon_price").textContent = `$${newPriceCoupon.toFixed(2)}`
+                          el.querySelector(".final_coupon_price").textContent = `$${newPriceCoupon.toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, "$1,")}`
                         }
                         // startCoupon()
                       }
