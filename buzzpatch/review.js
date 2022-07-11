@@ -1,51 +1,56 @@
 let startFunkReview = setInterval(() => {
   if (document.querySelector("#mainContent")) {
-    clearInterval(startFunkReview)
+    clearInterval(startFunkReview);
 
-    let scriptCustom = document.createElement("script")
-    scriptCustom.src = "https://conversionratestore.github.io/projects/buzzpatch/zuck_fix.js"
-    scriptCustom.async = false
-    document.head.appendChild(scriptCustom)
+    let scriptCustom = document.createElement("script");
+    scriptCustom.src =
+      "https://conversionratestore.github.io/projects/buzzpatch/zuck_fix.js";
+    scriptCustom.async = false;
+    document.head.appendChild(scriptCustom);
 
-    let scriptCustomStyle = document.createElement("link")
-    scriptCustomStyle.href = "https://cdnjs.cloudflare.com/ajax/libs/zuck.js/1.3.0/zuck.css"
-    scriptCustomStyle.rel = "stylesheet"
-    document.head.appendChild(scriptCustomStyle)
+    let scriptCustomStyle = document.createElement("link");
+    scriptCustomStyle.href =
+      "https://cdnjs.cloudflare.com/ajax/libs/zuck.js/1.3.0/zuck.css";
+    scriptCustomStyle.rel = "stylesheet";
+    document.head.appendChild(scriptCustomStyle);
 
-    let scriptSnapgramStyle = document.createElement("link")
-    scriptSnapgramStyle.href = "https://cdnjs.cloudflare.com/ajax/libs/zuck.js/1.3.0/skins/snapgram.css"
-    scriptSnapgramStyle.rel = "stylesheet"
-    document.head.appendChild(scriptSnapgramStyle)
+    let scriptSnapgramStyle = document.createElement("link");
+    scriptSnapgramStyle.href =
+      "https://cdnjs.cloudflare.com/ajax/libs/zuck.js/1.3.0/skins/snapgram.css";
+    scriptSnapgramStyle.rel = "stylesheet";
+    document.head.appendChild(scriptSnapgramStyle);
 
     //----------------------------------------------------------------------------------------------------
-    let scriptCustomImg = document.createElement("script")
-    scriptCustomImg.src = "https://cdn.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.umd.js"
-    scriptCustomImg.async = false
-    document.head.appendChild(scriptCustomImg)
+    let scriptCustomImg = document.createElement("script");
+    scriptCustomImg.src =
+      "https://cdn.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.umd.js";
+    scriptCustomImg.async = false;
+    document.head.appendChild(scriptCustomImg);
 
-    let scriptCustomImgStyle = document.createElement("link")
-    scriptCustomImgStyle.href = "https://cdn.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.css"
-    scriptCustomImgStyle.rel = "stylesheet"
-    document.head.appendChild(scriptCustomImgStyle)
+    let scriptCustomImgStyle = document.createElement("link");
+    scriptCustomImgStyle.href =
+      "https://cdn.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.css";
+    scriptCustomImgStyle.rel = "stylesheet";
+    document.head.appendChild(scriptCustomImgStyle);
 
     // event
     function pushDataLayer(actionDataLayer, labelDataLayer) {
-      window.dataLayer = window.dataLayer || []
+      window.dataLayer = window.dataLayer || [];
       if (labelDataLayer) {
-        console.log(actionDataLayer + " : " + labelDataLayer)
+        console.log(actionDataLayer + " : " + labelDataLayer);
         dataLayer.push({
           event: "event-to-ga",
           eventCategory: `Exp: Review hypothesis`,
           eventAction: `${actionDataLayer}`,
           eventLabel: `${labelDataLayer}`,
-        })
+        });
       } else {
-        console.log(actionDataLayer)
+        console.log(actionDataLayer);
         dataLayer.push({
           event: "event-to-ga",
           eventCategory: `Exp: Review hypothesis`,
           eventAction: `${actionDataLayer}`,
-        })
+        });
       }
     }
 
@@ -207,10 +212,6 @@ let startFunkReview = setInterval(() => {
           display: none;
         }
 
-        #zuck-modal *{
-          -webkit-user-select: none;
-        }
-
          /*block_third */
         .block_third {
             margin: 64px 30px 0;
@@ -264,7 +265,7 @@ let startFunkReview = setInterval(() => {
          }
 
       </style>
-      `
+      `;
 
     let blockFirst = /* html */ `
     <div class="block_first">
@@ -275,14 +276,14 @@ let startFunkReview = setInterval(() => {
         <li><img src="https://conversionratestore.github.io/projects/buzzpatch/img/review4.jpg" alt="child" /></li>
       </ul>
     </div>
-    `
+    `;
 
     let blockSecond = /* html */ `
     <div class="block_second">
         <h2>Video Reviews</h2>
         <ul id="stories"></ul>
     </div>    
-    `
+    `;
 
     let blockThird = /* html */ `
 <div class="block_third">
@@ -317,59 +318,69 @@ let startFunkReview = setInterval(() => {
         </li>
     </ul>
 </div>
-`
+`;
 
-    document.head.insertAdjacentHTML("beforeend", styleReveiw)
-    document.querySelector(".js-heading .trust-rating .stars").insertAdjacentHTML("afterend", blockFirst)
+    document.head.insertAdjacentHTML("beforeend", styleReveiw);
+    document
+      .querySelector(".js-heading .trust-rating .stars")
+      .insertAdjacentHTML("afterend", blockFirst);
 
-    document.querySelector("#flowers").insertAdjacentHTML("afterbegin", blockSecond)
+    document
+      .querySelector("#flowers")
+      .insertAdjacentHTML("afterbegin", blockSecond);
 
-    document.querySelector(".trust-rating .stars .text").textContent = "Reviews 699"
+    document.querySelector(".trust-rating .stars .text").textContent =
+      "Reviews 699";
 
-    document.querySelector("#ingredients").insertAdjacentHTML("beforebegin", blockThird)
+    document
+      .querySelector("#ingredients")
+      .insertAdjacentHTML("beforebegin", blockThird);
 
     document
       .querySelector(".js-iphone .grey")
-      .insertAdjacentHTML("beforeend", `<img class="new_img_review" src="https://conversionratestore.github.io/projects/buzzpatch/img/reviews_box.png" alt="reviews">`)
+      .insertAdjacentHTML(
+        "beforeend",
+        `<img class="new_img_review" src="https://conversionratestore.github.io/projects/buzzpatch/img/reviews_box.png" alt="reviews">`
+      );
 
     //click on block_first
-    scrolling(".trust-rating")
+    scrolling(".trust-rating");
 
     // Pure js scrolling
     function scrolling(upSelector) {
       // Scrolling with raf
-      let links = document.querySelectorAll(upSelector)
+      let links = document.querySelectorAll(upSelector);
 
       links.forEach((link) => {
         link.addEventListener("click", function (event) {
-          event.preventDefault()
-          pushDataLayer("click on Reviews")
+          event.preventDefault();
+          pushDataLayer("click on Reviews");
 
-          const scrollTarget = document.getElementById("reviews")
+          const scrollTarget = document.getElementById("reviews");
 
-          const topOffset = 105
-          const elementPosition = scrollTarget.getBoundingClientRect().top
-          const offsetPosition = elementPosition - topOffset
+          const topOffset = 105;
+          const elementPosition = scrollTarget.getBoundingClientRect().top;
+          const offsetPosition = elementPosition - topOffset;
 
           window.scrollBy({
             top: offsetPosition,
             behavior: "smooth",
-          })
-        })
-      })
+          });
+        });
+      });
     }
 
     //play video insta
     let videoInsta = setInterval(() => {
       if (document.querySelector("#stories") && typeof Zuck === "function") {
-        clearInterval(videoInsta)
+        clearInterval(videoInsta);
         function buildItem(id, type, src, seen) {
           return {
             id,
             type,
             src,
             seen,
-          }
+          };
         }
 
         const stories = new Zuck("stories", {
@@ -386,61 +397,99 @@ let startFunkReview = setInterval(() => {
           callbacks: {
             onOpen: function (storyId, callback) {
               // on open story viewer
-              pushDataLayer("click on video review", `video_${storyId}`)
-              callback()
+              pushDataLayer("click on video review", `video_${storyId}`);
+              callback();
             },
             onView(storyId) {
               // on view story
-              pushDataLayer(`video review loaded_${storyId}`)
+              pushDataLayer(`video review loaded_${storyId}`);
             },
             onClose(storyId, callback) {
-              callback() // on close story viewer
+              callback(); // on close story viewer
               setTimeout(() => {
-                const scrollTarget = document.querySelector(".js-iphone .wave-bg")
-                const topOffset = 90
-                const elementPosition = scrollTarget.getBoundingClientRect().top
-                const offsetPosition = elementPosition - topOffset
+                const scrollTarget = document.querySelector(
+                  ".js-iphone .wave-bg"
+                );
+                const topOffset = 90;
+                const elementPosition =
+                  scrollTarget.getBoundingClientRect().top;
+                const offsetPosition = elementPosition - topOffset;
 
                 window.scrollBy({
                   top: offsetPosition,
                   behavior: "smooth",
-                })
-              }, 400)
+                });
+              }, 400);
             },
           },
           stories: [
             {
               id: "1",
-              photo: "https://conversionratestore.github.io/projects/buzzpatch/img/video_review1_1.jpg",
-              items: [buildItem("11", "video", "https://conversionratestore.github.io/projects/buzzpatch/video/youngwildandfriedl.mp4", false)],
+              photo:
+                "https://conversionratestore.github.io/projects/buzzpatch/img/video_review1_1.jpg",
+              items: [
+                buildItem(
+                  "11",
+                  "video",
+                  "https://conversionratestore.github.io/projects/buzzpatch/video/youngwildandfriedl.mp4",
+                  false
+                ),
+              ],
             },
             {
               id: "2",
-              photo: "https://conversionratestore.github.io/projects/buzzpatch/img/video_review2.jpg",
-              items: [buildItem("21", "video", "https://conversionratestore.github.io/projects/buzzpatch/video/paosfitmomlife.mp4", false)],
+              photo:
+                "https://conversionratestore.github.io/projects/buzzpatch/img/video_review2.jpg",
+              items: [
+                buildItem(
+                  "21",
+                  "video",
+                  "https://conversionratestore.github.io/projects/buzzpatch/video/paosfitmomlife.mp4",
+                  false
+                ),
+              ],
             },
             {
               id: "3",
-              photo: "https://conversionratestore.github.io/projects/buzzpatch/img/video_review3.jpg",
+              photo:
+                "https://conversionratestore.github.io/projects/buzzpatch/img/video_review3.jpg",
               items: [
-                buildItem("31", "video", "https://conversionratestore.github.io/projects/buzzpatch/video/blessed_by_brynn-1.mp4", false),
-                buildItem("32", "video", "https://conversionratestore.github.io/projects/buzzpatch/video/blessed_by_brynn-2.mp4", false),
+                buildItem(
+                  "31",
+                  "video",
+                  "https://conversionratestore.github.io/projects/buzzpatch/video/blessed_by_brynn-1.mp4",
+                  false
+                ),
+                buildItem(
+                  "32",
+                  "video",
+                  "https://conversionratestore.github.io/projects/buzzpatch/video/blessed_by_brynn-2.mp4",
+                  false
+                ),
               ],
             },
             {
               id: "4",
-              photo: "https://conversionratestore.github.io/projects/buzzpatch/img/video_review4.jpg",
-              items: [buildItem("41", "video", "https://conversionratestore.github.io/projects/buzzpatch/video/allthngsmely.mp4", false)],
+              photo:
+                "https://conversionratestore.github.io/projects/buzzpatch/img/video_review4.jpg",
+              items: [
+                buildItem(
+                  "41",
+                  "video",
+                  "https://conversionratestore.github.io/projects/buzzpatch/video/allthngsmely.mp4",
+                  false
+                ),
+              ],
             },
           ],
-        })
+        });
       }
-    }, 20)
+    }, 20);
 
     // full Size Img
     let fullImg = setInterval(() => {
       if (typeof Fancybox === "function") {
-        clearInterval(fullImg)
+        clearInterval(fullImg);
 
         Fancybox.bind("[data-fancybox]", {
           // on: {
@@ -448,17 +497,17 @@ let startFunkReview = setInterval(() => {
           //     pushDataLayer("'photo review loaded", `photo_${slide.index + 1}`)
           //   },
           // },
-        })
+        });
 
         document.querySelectorAll("[data-fancybox]").forEach((el, i) => {
           el.addEventListener("click", function () {
-            pushDataLayer("click on photo review", `photo_${i + 1}`)
-          })
-        })
+            pushDataLayer("click on photo review", `photo_${i + 1}`);
+          });
+        });
       }
-    }, 10)
+    }, 10);
 
-    pushDataLayer("loaded")
-    clarity("set", `review_hypothesis`, "variant_1")
+    pushDataLayer("loaded");
+    clarity("set", `review_hypothesis`, "variant_1");
   }
-}, 10)
+}, 10);
