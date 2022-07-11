@@ -4,7 +4,7 @@ let startFunkReview = setInterval(() => {
 
     let scriptCustom = document.createElement("script");
     scriptCustom.src =
-      "https://conversionratestore.github.io/projects/buzzpatch/zuck_fix.js";
+      "https://conversionratestore.github.io/projects/buzzpatch/zuck_fix_v2.js";
     scriptCustom.async = false;
     document.head.appendChild(scriptCustom);
 
@@ -399,15 +399,6 @@ let startFunkReview = setInterval(() => {
               // on open story viewer
               pushDataLayer("click on video review", `video_${storyId}`);
               callback();
-
-              document
-                .querySelectorAll("#zuck-modal-content .head")
-                .forEach((el) => {
-                  el.addEventListener("click", () => {
-                    document.querySelector("#zuck-modal").style.display =
-                      "none";
-                  });
-                });
             },
             onView(storyId) {
               // on view story
