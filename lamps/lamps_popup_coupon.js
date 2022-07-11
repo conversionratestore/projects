@@ -831,21 +831,26 @@ let startFunk = setInterval(() => {
     }
 
     // TO show POPUP
-    setTimeout(() => {
-      if (document.querySelector("#main-wrapper #item-details")) {
-        let dataProduct = JSON.parse(document.querySelector("#main-wrapper #item-details")?.getAttribute("data-product"))
-        let salesProduct = dataProduct.salesproduct
+    let showPopupTimer = setInterval(() => {
+      if (!document.querySelector("#overlay")) {
+        clearInterval(showPopupTimer)
+        setTimeout(() => {
+          if (document.querySelector("#main-wrapper #item-details")) {
+            let dataProduct = JSON.parse(document.querySelector("#main-wrapper #item-details")?.getAttribute("data-product"))
+            let salesProduct = dataProduct.salesproduct
 
-        if (
-          !document.querySelector("#overlay") &&
-          !sessionStorage.getItem("successSign") &&
-          salesProduct &&
-          document.querySelector('.header-container .header-actions .action-links [data-account-trigger="true"] span').textContent !== "Account"
-        ) {
-          showPopup()
-        }
+            if (
+              !document.querySelector("#overlay") &&
+              !sessionStorage.getItem("successSign") &&
+              salesProduct &&
+              document.querySelector('.header-container .header-actions .action-links [data-account-trigger="true"] span').textContent !== "Account"
+            ) {
+              showPopup()
+            }
+          }
+        }, 3000)
       }
-    }, 3000)
+    }, 10)
 
     document.querySelector(".btn_close").addEventListener("click", function () {
       if (this.getAttribute("successCoupon") || document.querySelector(".body_popup .form_wrap:nth-child(2)").classList.contains("active")) {
