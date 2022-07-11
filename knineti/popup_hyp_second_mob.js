@@ -1,25 +1,25 @@
 if (window.innerWidth <= 768) {
   let startFunkMob = setInterval(() => {
     if (document.querySelector(".entry-content")) {
-      clearInterval(startFunkMob)
+      clearInterval(startFunkMob);
 
       function pushDataLayer(actionDataLayer, labelDataLayer) {
-        window.dataLayer = window.dataLayer || []
+        window.dataLayer = window.dataLayer || [];
         if (labelDataLayer) {
-          console.log(actionDataLayer + " : " + labelDataLayer)
+          console.log(actionDataLayer + " : " + labelDataLayer);
           dataLayer.push({
             event: "event-to-ga",
             eventCategory: `Exp: Improved registration flow mob`,
             eventAction: `${actionDataLayer}`,
             eventLabel: `${labelDataLayer}`,
-          })
+          });
         } else {
-          console.log(actionDataLayer)
+          console.log(actionDataLayer);
           dataLayer.push({
             event: "event-to-ga",
             eventCategory: `Exp: Improved registration flow mob`,
             eventAction: `${actionDataLayer}`,
-          })
+          });
         }
       }
 
@@ -1065,7 +1065,7 @@ if (window.innerWidth <= 768) {
 
 
     </style>
-    `
+    `;
 
       let newBlock = /*html */ `
     <section class="new_block">
@@ -1115,22 +1115,46 @@ if (window.innerWidth <= 768) {
         </div>
 
     </section>
-    `
+    `;
 
       let arrayDog = {
-        "Reacting to other dogs": ["https://conversionratestore.github.io/projects/knineti/img/dog_list12.jpg"],
-        "Anxiety ": ["https://conversionratestore.github.io/projects/knineti/img/dog_list11.jpg"],
-        "Aggression ": ["https://conversionratestore.github.io/projects/knineti/img/dog_list10.jpg"],
-        "Extremely excited": ["https://conversionratestore.github.io/projects/knineti/img/dog_list9.jpg"],
-        "Chewing ": ["https://conversionratestore.github.io/projects/knineti/img/dog_list8.jpg"],
-        "Doesn't listen": ["https://conversionratestore.github.io/projects/knineti/img/dog_list7.jpg"],
-        "Not coming when called": ["https://conversionratestore.github.io/projects/knineti/img/dog_list6.jpg"],
-        "Nipping or biting": ["https://conversionratestore.github.io/projects/knineti/img/dog_list5.jpg"],
-        "Housebreaking ": ["https://conversionratestore.github.io/projects/knineti/img/dog_list4.jpg"],
-        "Pulling on leash": ["https://conversionratestore.github.io/projects/knineti/img/dog_list3.jpg"],
-        "Jumping ": ["https://conversionratestore.github.io/projects/knineti/img/dog_list2.jpg"],
-        "Barking ": ["https://conversionratestore.github.io/projects/knineti/img/dog_list1.jpg"],
-      }
+        "Reacting to other dogs": [
+          "https://conversionratestore.github.io/projects/knineti/img/dog_list12.jpg",
+        ],
+        "Anxiety ": [
+          "https://conversionratestore.github.io/projects/knineti/img/dog_list11.jpg",
+        ],
+        "Aggression ": [
+          "https://conversionratestore.github.io/projects/knineti/img/dog_list10.jpg",
+        ],
+        "Extremely excited": [
+          "https://conversionratestore.github.io/projects/knineti/img/dog_list9.jpg",
+        ],
+        "Chewing ": [
+          "https://conversionratestore.github.io/projects/knineti/img/dog_list8.jpg",
+        ],
+        "Doesn't listen": [
+          "https://conversionratestore.github.io/projects/knineti/img/dog_list7.jpg",
+        ],
+        "Not coming when called": [
+          "https://conversionratestore.github.io/projects/knineti/img/dog_list6.jpg",
+        ],
+        "Nipping or biting": [
+          "https://conversionratestore.github.io/projects/knineti/img/dog_list5.jpg",
+        ],
+        "Housebreaking ": [
+          "https://conversionratestore.github.io/projects/knineti/img/dog_list4.jpg",
+        ],
+        "Pulling on leash": [
+          "https://conversionratestore.github.io/projects/knineti/img/dog_list3.jpg",
+        ],
+        "Jumping ": [
+          "https://conversionratestore.github.io/projects/knineti/img/dog_list2.jpg",
+        ],
+        "Barking ": [
+          "https://conversionratestore.github.io/projects/knineti/img/dog_list1.jpg",
+        ],
+      };
 
       let arrayBreedDog = [
         "Yorkshire Terrier",
@@ -1333,7 +1357,7 @@ if (window.innerWidth <= 768) {
         "Airedale Terrier",
         "Afghan Hound",
         "Affenpinscher",
-      ]
+      ];
 
       let popupNew = /*html*/ `
     <div class="popup_new">
@@ -1469,7 +1493,7 @@ if (window.innerWidth <= 768) {
             </div>
     </div>
    
-    `
+    `;
 
       let buttonInputName = /*html*/ `
         <div class="button_input_name" tabindex="0">Continue</div>
@@ -1504,7 +1528,7 @@ if (window.innerWidth <= 768) {
                 <p>Your email address and mobile number won't be shared with anyone. <br> Please review our privacy policy for more information.</p>
             </div>
         </div>
-    `
+    `;
 
       let popup_third = /*html*/ `
     <div class="popup_third">       
@@ -1521,21 +1545,25 @@ if (window.innerWidth <= 768) {
             </div>
         </div>
     </div>
-    `
+    `;
 
       let textForWorkShop = /*html */ `
     <p class="text_for_work_shop">We’ll email and text you the link for the workshop <br> and tips to train your dog.</p>
-    `
+    `;
 
-      document.head.insertAdjacentHTML("beforeend", popupStyle)
-      document.querySelector(".want-to-obey").insertAdjacentHTML("beforebegin", newBlock)
+      document.head.insertAdjacentHTML("beforeend", popupStyle);
+      document
+        .querySelector(".want-to-obey")
+        .insertAdjacentHTML("beforebegin", newBlock);
 
       if (document.querySelector("#firstModal")) {
         document.querySelectorAll("#firstModal #puppyCheck").forEach((el) => {
           el.addEventListener("click", function () {
-            document.querySelector("#firstModal .modal-header #closestepthree.close").style.display = "block"
-          })
-        })
+            document.querySelector(
+              "#firstModal .modal-header #closestepthree.close"
+            ).style.display = "block";
+          });
+        });
       }
 
       function setListDog(title, photo) {
@@ -1544,402 +1572,718 @@ if (window.innerWidth <= 768) {
                         <img src="${photo}" alt="${title}">
                         <span>${title}</span>
                     </a>
-                </li>`
+                </li>`;
       }
 
       function setListBreedDog(title) {
-        return `  <li data-breed="${title}">${title}</li>`
+        return `  <li data-breed="${title}">${title}</li>`;
       }
 
       for (let key in arrayDog) {
-        document.querySelector(".dog_list ul").insertAdjacentHTML("afterbegin", setListDog(key, arrayDog[key][0]))
+        document
+          .querySelector(".dog_list ul")
+          .insertAdjacentHTML("afterbegin", setListDog(key, arrayDog[key][0]));
       }
 
       //   click on btn
-      document.querySelector(".enroll_box .info_box > a").addEventListener("click", function (e) {
-        e.preventDefault()
-        pushDataLayer("Step 1 Sign up for workshop (main)")
+      document
+        .querySelector(".enroll_box .info_box > a")
+        .addEventListener("click", function (e) {
+          e.preventDefault();
+          pushDataLayer("Step 1 Sign up for workshop (main)");
 
-        document.querySelector(".desktop-view .button-header a.button-blue-large:link").click()
-      })
+          document
+            .querySelector(
+              ".desktop-view .button-header a.button-blue-large:link"
+            )
+            .click();
+        });
 
-      document.querySelector(".what a.grab_butn").addEventListener("click", () => {
-        pushDataLayer("Step 1 Grab your free seat (any)")
-      })
+      document
+        .querySelector(".what a.grab_butn")
+        .addEventListener("click", () => {
+          pushDataLayer("Step 1 Grab your free seat (any)");
+        });
 
       document.querySelector(".Rapt a").addEventListener("click", () => {
-        pushDataLayer("Step 1 Grab your free seat (any)")
-      })
+        pushDataLayer("Step 1 Grab your free seat (any)");
+      });
 
       document.querySelectorAll(".buttons a.grab_butn").forEach((el) => {
         el.addEventListener("click", () => {
-          pushDataLayer("Step 1 Grab your free seat (any)")
-        })
-      })
+          pushDataLayer("Step 1 Grab your free seat (any)");
+        });
+      });
 
       // #openModal
       // document.querySelectorAll('#openModal') -> click on btn popup
       let a = setInterval(() => {
-        if (document.querySelector("#openModal .modal-content.modal-of-content.popup-first-body")) {
-          clearInterval(a)
+        if (
+          document.querySelector(
+            "#openModal .modal-content.modal-of-content.popup-first-body"
+          )
+        ) {
+          clearInterval(a);
 
-          document.querySelector("#openModal .border-of-modal").insertAdjacentHTML("afterbegin", popupNew)
+          document
+            .querySelector("#openModal .border-of-modal")
+            .insertAdjacentHTML("afterbegin", popupNew);
 
           let b = setInterval(() => {
             if (document.querySelector("#openModal.modal.in .modal-dialog")) {
-              clearInterval(b)
+              clearInterval(b);
 
-              document.querySelector("#openModal.modal.in .modal-dialog").insertAdjacentHTML(
-                "afterbegin",
-                `     
+              document
+                .querySelector("#openModal.modal.in .modal-dialog")
+                .insertAdjacentHTML(
+                  "afterbegin",
+                  `     
                 <div class="join_text">
                     <p>Join our free online workshop</p>
                 </div>
                 <div class="img_wrap">
                               <img src="https://conversionratestore.github.io/projects/knineti/img/logo_dog.png" alt="logo dog">
                           </div>`
-              )
+                );
 
-              document.querySelector("#openModal.modal.in .modal-dialog > .img_wrap").insertAdjacentHTML(
-                "afterend",
-                `<div class="btn_wrapp">     
+              document
+                .querySelector("#openModal.modal.in .modal-dialog > .img_wrap")
+                .insertAdjacentHTML(
+                  "afterend",
+                  `<div class="btn_wrapp">     
                  <p class="active_btn_fourth" tabIndex="0">
                 <img src="https://conversionratestore.github.io/projects/knineti/img/previous_btn.svg" alt="previous button"></p>
                 <button type="button" class="close" id="closestepthree" data-dismiss="modal" data-original-title="" title="">
                     <spam class="btn_space" data-original-title="" title="">×</spam>
                 </button>
                 </div>  `
-              )
+                );
 
               // click on button.close
-              if (document.querySelector("#openModal .btn_wrapp button.close")) {
-                document.querySelector("#openModal .btn_wrapp button.close").addEventListener("click", () => {
-                  if (document.querySelector("#openModal .btn_wrapp > p").classList.contains("active_btn_fourth")) {
-                    pushDataLayer(`Click on Closed on step "How should we address you and your dog?"`)
-                  }
+              if (
+                document.querySelector("#openModal .btn_wrapp button.close")
+              ) {
+                document
+                  .querySelector("#openModal .btn_wrapp button.close")
+                  .addEventListener("click", () => {
+                    if (
+                      document
+                        .querySelector("#openModal .btn_wrapp > p")
+                        .classList.contains("active_btn_fourth")
+                    ) {
+                      pushDataLayer(
+                        `Click on Closed on step "How should we address you and your dog?"`
+                      );
+                    }
 
-                  if (document.querySelector("#openModal .btn_wrapp > p").classList.contains("active_btn_fifth")) {
-                    pushDataLayer(`Click on Closed on step "Enter your email and mobile number to access"`)
-                  }
-                })
+                    if (
+                      document
+                        .querySelector("#openModal .btn_wrapp > p")
+                        .classList.contains("active_btn_fifth")
+                    ) {
+                      pushDataLayer(
+                        `Click on Closed on step "Enter your email and mobile number to access"`
+                      );
+                    }
+                  });
               }
 
               // btn back fourth
-              if (document.querySelector("#openModal.modal.in .modal-dialog .btn_wrapp")) {
-                document.querySelector("#openModal.modal.in .modal-dialog .btn_wrapp > p").addEventListener("click", function () {
-                  // btn back fourth
-                  if (this?.classList.contains("active_btn_fourth")) {
-                    pushDataLayer(`Click on Previous on step "How should we address you and yourdog?"`)
-                    document.querySelector(".popup_new").style.display = "flex"
-                    document.querySelector("#openModal .modal-body").style.display = "none"
-                    document.querySelector("#openModal .btn_wrapp").style.display = "none"
-                  }
-                })
+              if (
+                document.querySelector(
+                  "#openModal.modal.in .modal-dialog .btn_wrapp"
+                )
+              ) {
+                document
+                  .querySelector(
+                    "#openModal.modal.in .modal-dialog .btn_wrapp > p"
+                  )
+                  .addEventListener("click", function () {
+                    // btn back fourth
+                    if (this?.classList.contains("active_btn_fourth")) {
+                      pushDataLayer(
+                        `Click on Previous on step "How should we address you and yourdog?"`
+                      );
+                      document.querySelector(".popup_new").style.display =
+                        "flex";
+                      document.querySelector(
+                        "#openModal .modal-body"
+                      ).style.display = "none";
+                      document.querySelector(
+                        "#openModal .btn_wrapp"
+                      ).style.display = "none";
+                    }
+                  });
               }
             }
-          }, 10)
+          }, 10);
 
           arrayBreedDog.forEach((el) => {
-            document.querySelector(".chosen_select ul").insertAdjacentHTML("afterbegin", setListBreedDog(el))
-          })
+            document
+              .querySelector(".chosen_select ul")
+              .insertAdjacentHTML("afterbegin", setListBreedDog(el));
+          });
 
           // click on label checkbox
-          document.querySelectorAll("#openModal .custom_checkbox + label").forEach((el) => {
-            el.addEventListener("click", function () {
-              pushDataLayer(`${this.getAttribute("for")} selected`)
-            })
-          })
+          document
+            .querySelectorAll("#openModal .custom_checkbox + label")
+            .forEach((el) => {
+              el.addEventListener("click", function () {
+                pushDataLayer(`${this.getAttribute("for")} selected`);
+              });
+            });
 
           //   click on first btn Continue
-          if (document.querySelector(".popup_new > .popup_first .btn_continue")) {
-            document.querySelector(".popup_new > .popup_first .btn_continue").addEventListener("click", function (el) {
-              pushDataLayer(`Click on Continue on step "What unwanted behavior do you want to address`)
-              this.closest(".popup_first")?.classList.remove("active_popup")
+          if (
+            document.querySelector(".popup_new > .popup_first .btn_continue")
+          ) {
+            document
+              .querySelector(".popup_new > .popup_first .btn_continue")
+              .addEventListener("click", function (el) {
+                pushDataLayer(
+                  `Click on Continue on step "What unwanted behavior do you want to address`
+                );
+                this.closest(".popup_first")?.classList.remove("active_popup");
 
-              document.querySelector("#openModal .popup_new > .progress_bar > div p:nth-child(1).active_btn_first").style.display = "none"
-              if (document.querySelector("#openModal .popup_new > .progress_bar > div p:nth-child(1)")?.classList.contains("active_btn_first")) {
-                document.querySelector("#openModal .popup_new > .progress_bar > div p:nth-child(1)")?.classList.remove("active_btn_first")
-              }
-              document.querySelector(".popup_new > .progress_bar > div p:nth-child(2).active_btn_second").style.display = "flex"
-              document.querySelector(".popup_new > .popup_second")?.classList.add("active_popup")
-              document.querySelector(".popup_new .img_wrap .dog_first").style.display = "none"
-              document.querySelector(".popup_new .img_wrap .dog_second").style.display = "block"
-              document.querySelector(".popup_new > .progress_bar > ul li:nth-child(2)")?.classList.add("active_step")
-              document.querySelector(".popup_new > .progress_bar > div p:last-child span:nth-child(1)").textContent = "2"
-            })
+                document.querySelector(
+                  "#openModal .popup_new > .progress_bar > div p:nth-child(1).active_btn_first"
+                ).style.display = "none";
+                if (
+                  document
+                    .querySelector(
+                      "#openModal .popup_new > .progress_bar > div p:nth-child(1)"
+                    )
+                    ?.classList.contains("active_btn_first")
+                ) {
+                  document
+                    .querySelector(
+                      "#openModal .popup_new > .progress_bar > div p:nth-child(1)"
+                    )
+                    ?.classList.remove("active_btn_first");
+                }
+                document.querySelector(
+                  ".popup_new > .progress_bar > div p:nth-child(2).active_btn_second"
+                ).style.display = "flex";
+                document
+                  .querySelector(".popup_new > .popup_second")
+                  ?.classList.add("active_popup");
+                document.querySelector(
+                  ".popup_new .img_wrap .dog_first"
+                ).style.display = "none";
+                document.querySelector(
+                  ".popup_new .img_wrap .dog_second"
+                ).style.display = "block";
+                document
+                  .querySelector(
+                    ".popup_new > .progress_bar > ul li:nth-child(2)"
+                  )
+                  ?.classList.add("active_step");
+                document.querySelector(
+                  ".popup_new > .progress_bar > div p:last-child span:nth-child(1)"
+                ).textContent = "2";
+              });
           }
 
           //   click on second btn Continue
-          document.querySelector(".popup_new > .popup_second .btn_continue").addEventListener("click", function (el) {
-            pushDataLayer(`Click on Continue on step "What’s your dog’s age?`)
-            this.closest(".popup_second")?.classList.remove("active_popup")
+          document
+            .querySelector(".popup_new > .popup_second .btn_continue")
+            .addEventListener("click", function (el) {
+              pushDataLayer(
+                `Click on Continue on step "What’s your dog’s age?`
+              );
+              this.closest(".popup_second")?.classList.remove("active_popup");
 
-            document.querySelector(".popup_new > .progress_bar > div p:nth-child(2).active_btn_second")?.classList.remove("active_btn_second")
-            document.querySelector(".popup_new > .progress_bar > div p:nth-child(2)")?.classList.add("active_btn_third")
-            document.querySelector(".popup_new > .popup_third_box")?.classList.add("active_popup")
-            document.querySelector(".popup_new .img_wrap .dog_second").style.display = "none"
-            document.querySelector(".popup_new .img_wrap .dog_third").style.display = "block"
-            document.querySelector(".popup_new > .progress_bar > ul li:nth-child(3)")?.classList.add("active_step")
-            document.querySelector(".popup_new > .progress_bar > div p:last-child span:nth-child(1)").textContent = "3"
-          })
+              document
+                .querySelector(
+                  ".popup_new > .progress_bar > div p:nth-child(2).active_btn_second"
+                )
+                ?.classList.remove("active_btn_second");
+              document
+                .querySelector(
+                  ".popup_new > .progress_bar > div p:nth-child(2)"
+                )
+                ?.classList.add("active_btn_third");
+              document
+                .querySelector(".popup_new > .popup_third_box")
+                ?.classList.add("active_popup");
+              document.querySelector(
+                ".popup_new .img_wrap .dog_second"
+              ).style.display = "none";
+              document.querySelector(
+                ".popup_new .img_wrap .dog_third"
+              ).style.display = "block";
+              document
+                .querySelector(
+                  ".popup_new > .progress_bar > ul li:nth-child(3)"
+                )
+                ?.classList.add("active_step");
+              document.querySelector(
+                ".popup_new > .progress_bar > div p:last-child span:nth-child(1)"
+              ).textContent = "3";
+            });
 
           //   click on third btn Continue
-          if (document.querySelector(".popup_new > .popup_third_box .btn_continue")) {
-            document.querySelector(".popup_new > .popup_third_box .btn_continue").addEventListener("click", function () {
-              if (document.querySelector(".chosen_select label > input")) {
-                let inputValue = document.querySelector(".chosen_select label > input").value
-                pushDataLayer(`Click on Continue on step "What breed is your dog? ${inputValue}`)
-              }
-              document.querySelector(".popup_new").style.display = "none"
-              document.querySelector("#openModal .modal-body").style.display = "block"
-              if (document.querySelector("#openModal .btn_wrapp")) {
-                document.querySelector("#openModal .btn_wrapp").style.display = "flex"
-              }
-            })
+          if (
+            document.querySelector(
+              ".popup_new > .popup_third_box .btn_continue"
+            )
+          ) {
+            document
+              .querySelector(".popup_new > .popup_third_box .btn_continue")
+              .addEventListener("click", function () {
+                if (document.querySelector(".chosen_select label > input")) {
+                  let inputValue = document.querySelector(
+                    ".chosen_select label > input"
+                  ).value;
+                  pushDataLayer(
+                    `Click on Continue on step "What breed is your dog? ${inputValue}`
+                  );
+                }
+                document.querySelector(".popup_new").style.display = "none";
+                document.querySelector("#openModal .modal-body").style.display =
+                  "block";
+                if (document.querySelector("#openModal .btn_wrapp")) {
+                  document.querySelector(
+                    "#openModal .btn_wrapp"
+                  ).style.display = "flex";
+                }
+              });
           }
 
           // //   btn back first
-          document.querySelector("#openModal .popup_new > .progress_bar > div p:nth-child(1)").addEventListener("click", function () {
-            pushDataLayer(`Click on Previous on step "What unwanted behavior do you want to address?"`)
-            if (document.querySelector("#openModal .popup_new > .popup_first .btn_continue").getAttribute("data-lst-dog")) {
-              document.querySelector("#openModal .popup_new > .popup_first .btn_continue").removeAttribute("data-lst-dog", "2")
-            }
-          })
-
-          if (document.querySelector(".popup_new > .progress_bar > div p:nth-child(2)")) {
-            document.querySelector(".popup_new > .progress_bar > div p:nth-child(2)").addEventListener("click", function (el) {
-              //   btn back active_btn_second
-              if (this?.classList.contains("active_btn_second")) {
-                pushDataLayer(`Click on Previous on step "What’s your dog’s age?"`)
-                this.style.display = "none"
-                document.querySelector("#openModal .popup_new > .progress_bar > div p:nth-child(1)").style.display = "flex"
-                document.querySelector("#openModal .popup_new > .progress_bar > div p:nth-child(1)")?.classList.add("active_btn_first")
-                document.querySelector(".popup_new > .popup_first")?.classList.add("active_popup")
-                document.querySelector(".popup_new > .popup_second")?.classList.remove("active_popup")
-                document.querySelector(".popup_new .img_wrap .dog_second").style.display = "none"
-                document.querySelector(".popup_new .img_wrap .dog_first").style.display = "block"
-                document.querySelector(".popup_new > .progress_bar > ul li:nth-child(2)")?.classList.remove("active_step")
-                document.querySelector(".popup_new > .progress_bar > div p:last-child span:nth-child(1)").textContent = "1"
+          document
+            .querySelector(
+              "#openModal .popup_new > .progress_bar > div p:nth-child(1)"
+            )
+            .addEventListener("click", function () {
+              pushDataLayer(
+                `Click on Previous on step "What unwanted behavior do you want to address?"`
+              );
+              if (
+                document
+                  .querySelector(
+                    "#openModal .popup_new > .popup_first .btn_continue"
+                  )
+                  .getAttribute("data-lst-dog")
+              ) {
+                document
+                  .querySelector(
+                    "#openModal .popup_new > .popup_first .btn_continue"
+                  )
+                  .removeAttribute("data-lst-dog", "2");
               }
+            });
 
-              //   btn back active_btn_third
-              if (this?.classList.contains("active_btn_third")) {
-                pushDataLayer(`Click on Previous on step "What breed is your dog?"`)
-                this?.classList.remove("active_btn_third")
-                this?.classList.add("active_btn_second")
+          if (
+            document.querySelector(
+              ".popup_new > .progress_bar > div p:nth-child(2)"
+            )
+          ) {
+            document
+              .querySelector(".popup_new > .progress_bar > div p:nth-child(2)")
+              .addEventListener("click", function (el) {
+                //   btn back active_btn_second
+                if (this?.classList.contains("active_btn_second")) {
+                  pushDataLayer(
+                    `Click on Previous on step "What’s your dog’s age?"`
+                  );
+                  this.style.display = "none";
+                  document.querySelector(
+                    "#openModal .popup_new > .progress_bar > div p:nth-child(1)"
+                  ).style.display = "flex";
+                  document
+                    .querySelector(
+                      "#openModal .popup_new > .progress_bar > div p:nth-child(1)"
+                    )
+                    ?.classList.add("active_btn_first");
+                  document
+                    .querySelector(".popup_new > .popup_first")
+                    ?.classList.add("active_popup");
+                  document
+                    .querySelector(".popup_new > .popup_second")
+                    ?.classList.remove("active_popup");
+                  document.querySelector(
+                    ".popup_new .img_wrap .dog_second"
+                  ).style.display = "none";
+                  document.querySelector(
+                    ".popup_new .img_wrap .dog_first"
+                  ).style.display = "block";
+                  document
+                    .querySelector(
+                      ".popup_new > .progress_bar > ul li:nth-child(2)"
+                    )
+                    ?.classList.remove("active_step");
+                  document.querySelector(
+                    ".popup_new > .progress_bar > div p:last-child span:nth-child(1)"
+                  ).textContent = "1";
+                }
 
-                document.querySelector(".popup_new > .popup_first .btn_continue").setAttribute("data-lst-dog", "2")
-                document.querySelector(".popup_new > .popup_third_box")?.classList.remove("active_popup")
-                document.querySelector(".popup_new > .popup_second")?.classList.add("active_popup")
-                document.querySelector(".popup_new .img_wrap .dog_third").style.display = "none"
-                document.querySelector(".popup_new .img_wrap .dog_second").style.display = "block"
-                document.querySelector(".popup_new > .progress_bar > ul li:nth-child(3)")?.classList.remove("active_step")
-                document.querySelector(".popup_new > .progress_bar > div p:last-child span:nth-child(1)").textContent = "2"
-              }
-            })
+                //   btn back active_btn_third
+                if (this?.classList.contains("active_btn_third")) {
+                  pushDataLayer(
+                    `Click on Previous on step "What breed is your dog?"`
+                  );
+                  this?.classList.remove("active_btn_third");
+                  this?.classList.add("active_btn_second");
+
+                  document
+                    .querySelector(".popup_new > .popup_first .btn_continue")
+                    .setAttribute("data-lst-dog", "2");
+                  document
+                    .querySelector(".popup_new > .popup_third_box")
+                    ?.classList.remove("active_popup");
+                  document
+                    .querySelector(".popup_new > .popup_second")
+                    ?.classList.add("active_popup");
+                  document.querySelector(
+                    ".popup_new .img_wrap .dog_third"
+                  ).style.display = "none";
+                  document.querySelector(
+                    ".popup_new .img_wrap .dog_second"
+                  ).style.display = "block";
+                  document
+                    .querySelector(
+                      ".popup_new > .progress_bar > ul li:nth-child(3)"
+                    )
+                    ?.classList.remove("active_step");
+                  document.querySelector(
+                    ".popup_new > .progress_bar > div p:last-child span:nth-child(1)"
+                  ).textContent = "2";
+                }
+              });
           }
 
           if (document.querySelector(".popup_new > .popup_second ul")) {
-            document.querySelectorAll(".popup_new > .popup_second ul li label").forEach((el) => {
-              el.addEventListener("click", function () {
-                pushDataLayer(`${this.getAttribute("for")} selected`)
-              })
-            })
+            document
+              .querySelectorAll(".popup_new > .popup_second ul li label")
+              .forEach((el) => {
+                el.addEventListener("click", function () {
+                  pushDataLayer(`${this.getAttribute("for")} selected`);
+                });
+              });
           }
 
           //FORM
-          document.querySelector("#openModal #subs-name2").placeholder = "Your name"
-          document.querySelector("#openModal #dog-name2").placeholder = "Dog’s name"
-          document.querySelector("#openModal #subs-email2").placeholder = "Enter your email"
-          document.querySelector("#openModal #subs-mobile2").placeholder = "Enter your phone number"
-          document.querySelector("#openModal #contact-submit").textContent = "Get workshop link"
-          document.querySelector("#openModal #dog-name2-top-levels").textContent = "Dog’s name"
-          document.querySelector("#openModal #subs-name2-top-levels").textContent = "Your name"
-          document.querySelector("#openModal #subs-name2").tabIndex = "0"
-          document.querySelector("#openModal #dog-name2").tabIndex = "0"
-          document.querySelector("#openModal #subs-email2").tabIndex = "0"
-          document.querySelector("#openModal #subs-mobile2").tabIndex = "0"
-          document.querySelector("#openModal #contact-submit").tabIndex = "0"
+          document.querySelector("#openModal #subs-name2").placeholder =
+            "Your name";
+          document.querySelector("#openModal #dog-name2").placeholder =
+            "Dog’s name";
+          document.querySelector("#openModal #subs-email2").placeholder =
+            "Enter your email";
+          document.querySelector("#openModal #subs-mobile2").placeholder =
+            "Enter your phone number";
+          document.querySelector("#openModal #contact-submit").textContent =
+            "Get workshop link";
+          document.querySelector(
+            "#openModal #dog-name2-top-levels"
+          ).textContent = "Dog’s name";
+          document.querySelector(
+            "#openModal #subs-name2-top-levels"
+          ).textContent = "Your name";
+          document.querySelector("#openModal #subs-name2").tabIndex = "0";
+          document.querySelector("#openModal #dog-name2").tabIndex = "0";
+          document.querySelector("#openModal #subs-email2").tabIndex = "0";
+          document.querySelector("#openModal #subs-mobile2").tabIndex = "0";
+          document.querySelector("#openModal #contact-submit").tabIndex = "0";
 
           document
             .querySelector(`#openModal input[name='dog_name']`)
-            .insertAdjacentHTML("afterend", `<span class="input_error_text">Please enter Your Dog’s name without spaces, numbers or special characters</span>`)
+            .insertAdjacentHTML(
+              "afterend",
+              `<span class="input_error_text">Please enter Your Dog’s name without spaces, numbers or special characters</span>`
+            );
 
           document
             .querySelector(`#openModal input[name='first_name']`)
-            .insertAdjacentHTML("afterend", `<span class="input_error_text">Please enter Your name without spaces, numbers or special characters</span>`)
+            .insertAdjacentHTML(
+              "afterend",
+              `<span class="input_error_text">Please enter Your name without spaces, numbers or special characters</span>`
+            );
 
-          document.querySelector("#openModal #contact-submit").insertAdjacentHTML("beforebegin", textForWorkShop)
+          document
+            .querySelector("#openModal #contact-submit")
+            .insertAdjacentHTML("beforebegin", textForWorkShop);
 
           // create new element popup finalForm -> input name, email, number
-          document.querySelector("#openModal .row-md-12.style-of-row-free-workshop > div:first-child").insertAdjacentHTML("afterend", popup_third)
+          document
+            .querySelector(
+              "#openModal .row-md-12.style-of-row-free-workshop > div:first-child"
+            )
+            .insertAdjacentHTML("afterend", popup_third);
 
           if (document.querySelector("#openModal form .form-group")) {
             //   value btn main submit
-            document.querySelector("#openModal #contact-submit").value = "Get workshop link"
+            document.querySelector("#openModal #contact-submit").value =
+              "Get workshop link";
 
             //   create btn last continue
-            document.querySelector("#openModal form .form-group > div:last-child").insertAdjacentHTML("beforebegin", buttonInputName)
+            document
+              .querySelector("#openModal form .form-group > div:last-child")
+              .insertAdjacentHTML("beforebegin", buttonInputName);
           }
 
           if (document.querySelector("#openModal .button_input_name")) {
-            document.querySelector("#openModal .button_input_name").addEventListener("click", () => {
-              validationForm("#openModal")
-            })
+            document
+              .querySelector("#openModal .button_input_name")
+              .addEventListener("click", () => {
+                validationForm("#openModal");
+              });
           }
 
           // click on btn Get workshop link clicked
-          if (document.querySelector("#openModal #firstModal #contact-submit")) {
-            document.querySelector("#openModal #firstModal #contact-submit").addEventListener("click", function () {
-              pushDataLayer("Get workshop link clicked")
-            })
+          if (document.querySelector("#openModal #contact-submit")) {
+            document
+              .querySelector("#openModal #contact-submit")
+              .addEventListener("click", function () {
+                pushDataLayer("Get workshop link clicked");
+              });
           }
 
           // choose select
           if (document.querySelector(".chosen_select")) {
-            filteInputText()
+            filteInputText();
             // remove all text input
-            document.querySelector("#removeTextInput").addEventListener("click", function (e) {
-              pushDataLayer("Click on Closed on step 'What breed is your dog?'")
-              document.querySelector(".chosen_select ul").innerHTML = ""
-              arrayBreedDog.forEach((el) => {
-                document.querySelector(".chosen_select ul").insertAdjacentHTML("afterbegin", setListBreedDog(el))
-              })
-              this.previousElementSibling.value = ""
-              document.querySelector(".chosen_select div").style.display = "block"
-              document.querySelector(".popup_new > .popup_third_box .btn_continue")?.classList.add("disabled_var")
-              filteInputText()
-            })
+            document
+              .querySelector("#removeTextInput")
+              .addEventListener("click", function (e) {
+                pushDataLayer(
+                  "Click on Closed on step 'What breed is your dog?'"
+                );
+                document.querySelector(".chosen_select ul").innerHTML = "";
+                arrayBreedDog.forEach((el) => {
+                  document
+                    .querySelector(".chosen_select ul")
+                    .insertAdjacentHTML("afterbegin", setListBreedDog(el));
+                });
+                this.previousElementSibling.value = "";
+                document.querySelector(".chosen_select div").style.display =
+                  "block";
+                document
+                  .querySelector(".popup_new > .popup_third_box .btn_continue")
+                  ?.classList.add("disabled_var");
+                filteInputText();
+              });
 
             // filter
-            document.querySelector(".chosen_select label > input").addEventListener("focus", () => {
-              document.querySelector(".chosen_select label")?.classList.add("on_focus")
-              document.querySelector(".chosen_select").insertAdjacentHTML(
-                "beforeend",
-                `<p class="hover_text"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><g clip-path="url(#clip0_732_846)"><path d="M11.8087 9.26711L7.222 1.3227C6.96695 0.880953 6.51013 0.617188 5.99999 0.617188C5.48988 0.617188 5.03303 0.880953 4.77799 1.3227L0.191302 9.26708C-0.0637675 9.70888 -0.0637675 10.2364 0.191302 10.6781C0.446372 11.1199 0.903168 11.3837 1.41331 11.3837H10.5867C11.0968 11.3837 11.5536 11.1199 11.8087 10.6782C12.0638 10.2364 12.0638 9.70888 11.8087 9.26711ZM11.1999 10.3266C11.0719 10.5483 10.8426 10.6806 10.5867 10.6806H1.41331C1.15732 10.6806 0.928106 10.5483 0.800137 10.3266C0.672169 10.105 0.672169 9.84032 0.800137 9.61865L5.38687 1.67424C5.51484 1.45257 5.74406 1.32024 6.00002 1.32024C6.25595 1.32024 6.4852 1.45257 6.61316 1.67424L11.1999 9.61865C11.3278 9.84032 11.3278 10.105 11.1999 10.3266Z" fill="#808080"/><path d="M6.35147 4.125H5.64844V7.6402H6.35147V4.125Z" fill="#808080"/><path d="M5.99995 8.34375C5.74151 8.34375 5.53125 8.55401 5.53125 8.81245C5.53125 9.0709 5.74151 9.28115 5.99995 9.28115C6.25837 9.28115 6.46865 9.0709 6.46865 8.81245C6.46865 8.55401 6.2584 8.34375 5.99995 8.34375Z" fill="#808080"/></g><defs><clipPath id="clip0_732_846"><rect width="12" height="12" fill="white"/></clipPath></defs></svg>
+            document
+              .querySelector(".chosen_select label > input")
+              .addEventListener("focus", () => {
+                document
+                  .querySelector(".chosen_select label")
+                  ?.classList.add("on_focus");
+                document.querySelector(".chosen_select").insertAdjacentHTML(
+                  "beforeend",
+                  `<p class="hover_text"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><g clip-path="url(#clip0_732_846)"><path d="M11.8087 9.26711L7.222 1.3227C6.96695 0.880953 6.51013 0.617188 5.99999 0.617188C5.48988 0.617188 5.03303 0.880953 4.77799 1.3227L0.191302 9.26708C-0.0637675 9.70888 -0.0637675 10.2364 0.191302 10.6781C0.446372 11.1199 0.903168 11.3837 1.41331 11.3837H10.5867C11.0968 11.3837 11.5536 11.1199 11.8087 10.6782C12.0638 10.2364 12.0638 9.70888 11.8087 9.26711ZM11.1999 10.3266C11.0719 10.5483 10.8426 10.6806 10.5867 10.6806H1.41331C1.15732 10.6806 0.928106 10.5483 0.800137 10.3266C0.672169 10.105 0.672169 9.84032 0.800137 9.61865L5.38687 1.67424C5.51484 1.45257 5.74406 1.32024 6.00002 1.32024C6.25595 1.32024 6.4852 1.45257 6.61316 1.67424L11.1999 9.61865C11.3278 9.84032 11.3278 10.105 11.1999 10.3266Z" fill="#808080"/><path d="M6.35147 4.125H5.64844V7.6402H6.35147V4.125Z" fill="#808080"/><path d="M5.99995 8.34375C5.74151 8.34375 5.53125 8.55401 5.53125 8.81245C5.53125 9.0709 5.74151 9.28115 5.99995 9.28115C6.25837 9.28115 6.46865 9.0709 6.46865 8.81245C6.46865 8.55401 6.2584 8.34375 5.99995 8.34375Z" fill="#808080"/></g><defs><clipPath id="clip0_732_846"><rect width="12" height="12" fill="white"/></clipPath></defs></svg>
               Choose your dog breed to continue</p>`
-              )
-            })
+                );
+              });
 
-            document.querySelector(".chosen_select label > input").addEventListener("blur", () => {
-              if (document.querySelector(".chosen_select label")?.classList.contains("on_focus")) {
-                document.querySelector(".chosen_select label")?.classList.remove("on_focus")
+            document
+              .querySelector(".chosen_select label > input")
+              .addEventListener("blur", () => {
+                if (
+                  document
+                    .querySelector(".chosen_select label")
+                    ?.classList.contains("on_focus")
+                ) {
+                  document
+                    .querySelector(".chosen_select label")
+                    ?.classList.remove("on_focus");
 
-                if (document.querySelector(".chosen_select > p")) {
-                  document.querySelector(".chosen_select > p").remove()
+                  if (document.querySelector(".chosen_select > p")) {
+                    document.querySelector(".chosen_select > p").remove();
+                  }
+                  if (
+                    document.querySelector(".chosen_select label > input")
+                      .value === ""
+                  ) {
+                    document.querySelector(
+                      ".chosen_select label svg#removeTextInput"
+                    ).style.display = "none";
+                  }
                 }
-                if (document.querySelector(".chosen_select label > input").value === "") {
-                  document.querySelector(".chosen_select label svg#removeTextInput").style.display = "none"
+              });
+
+            document
+              .querySelector(".chosen_select label > input")
+              .addEventListener("input", function (e) {
+                if (e.value !== "") {
+                  document.querySelector(
+                    ".chosen_select label svg#removeTextInput"
+                  ).style.display = "block";
                 }
-              }
-            })
 
-            document.querySelector(".chosen_select label > input").addEventListener("input", function (e) {
-              if (e.value !== "") {
-                document.querySelector(".chosen_select label svg#removeTextInput").style.display = "block"
-              }
+                document.querySelector(".chosen_select ul").innerHTML = "";
+                arrayBreedDog.forEach((el) => {
+                  document
+                    .querySelector(".chosen_select ul")
+                    .insertAdjacentHTML("afterbegin", setListBreedDog(el));
+                });
 
-              document.querySelector(".chosen_select ul").innerHTML = ""
-              arrayBreedDog.forEach((el) => {
-                document.querySelector(".chosen_select ul").insertAdjacentHTML("afterbegin", setListBreedDog(el))
-              })
-
-              document.querySelector(".chosen_select div").style.display = "block"
-              document.querySelector(".popup_new > .popup_third_box .btn_continue")?.classList.add("disabled_var")
-              filteInputText()
-            })
+                document.querySelector(".chosen_select div").style.display =
+                  "block";
+                document
+                  .querySelector(".popup_new > .popup_third_box .btn_continue")
+                  ?.classList.add("disabled_var");
+                filteInputText();
+              });
 
             function filteInputText() {
-              let filterValue = document.querySelector(".chosen_select label > input").value.toUpperCase()
-              let notFound = true
+              let filterValue = document
+                .querySelector(".chosen_select label > input")
+                .value.toUpperCase();
+              let notFound = true;
 
-              document.querySelectorAll(".chosen_select ul li").forEach(function (el) {
-                el.addEventListener("click", function () {
-                  document.querySelector(".chosen_select label > input").value = el.textContent
-                  document.querySelector(".chosen_select div").style.display = "none"
-                  document.querySelector(".popup_new > .popup_third_box .btn_continue.disabled_var")?.classList.remove("disabled_var")
-                  if (document.querySelector(".chosen_select label > input").value !== "") {
-                    document.querySelector(".chosen_select label svg#removeTextInput").style.display = "block"
+              document
+                .querySelectorAll(".chosen_select ul li")
+                .forEach(function (el) {
+                  el.addEventListener("click", function () {
+                    document.querySelector(
+                      ".chosen_select label > input"
+                    ).value = el.textContent;
+                    document.querySelector(".chosen_select div").style.display =
+                      "none";
+                    document
+                      .querySelector(
+                        ".popup_new > .popup_third_box .btn_continue.disabled_var"
+                      )
+                      ?.classList.remove("disabled_var");
+                    if (
+                      document.querySelector(".chosen_select label > input")
+                        .value !== ""
+                    ) {
+                      document.querySelector(
+                        ".chosen_select label svg#removeTextInput"
+                      ).style.display = "block";
+                    }
+                  });
+
+                  let text = el.textContent.toUpperCase();
+                  if (text.includes(filterValue)) {
+                    el?.classList.add("show");
+                    el?.classList.remove("hide");
+                    notFound = false;
+                    includesSymb(filterValue, text, el.firstChild);
+                  } else {
+                    el?.classList.add("hide");
+                    el?.classList.remove("show");
                   }
-                })
-
-                let text = el.textContent.toUpperCase()
-                if (text.includes(filterValue)) {
-                  el?.classList.add("show")
-                  el?.classList.remove("hide")
-                  notFound = false
-                  includesSymb(filterValue, text, el.firstChild)
-                } else {
-                  el?.classList.add("hide")
-                  el?.classList.remove("show")
-                }
-              })
+                });
 
               if (notFound) {
-                document.querySelector(".chosen_select ul").innerHTML = `<li>Oops, nothing found!</li>`
+                document.querySelector(
+                  ".chosen_select ul"
+                ).innerHTML = `<li>Oops, nothing found!</li>`;
               }
             }
           }
 
           function includesSymb(text, cont, element) {
-            let root = element
-            let content = cont
+            let root = element;
+            let content = cont;
 
-            let rng = document.createRange()
+            let rng = document.createRange();
 
-            rng.setStart(root, content.indexOf(text))
+            rng.setStart(root, content.indexOf(text));
 
-            rng.setEnd(root, content.indexOf(text) + text.length)
+            rng.setEnd(root, content.indexOf(text) + text.length);
 
-            let highlightDiv = document.createElement("strong")
+            let highlightDiv = document.createElement("strong");
 
-            rng.surroundContents(highlightDiv)
+            rng.surroundContents(highlightDiv);
           }
         }
-      }, 10)
+      }, 10);
 
       // validate formu
       function validationForm(parent) {
-        let inputValueName = document.querySelector(`${parent} input[name='first_name']`).value.match(/^[a-zA-Z]+$/)
-        let inputDogName = document.querySelector(`${parent} input[name='dog_name']`).value.match(/^[a-zA-Z]+$/)
+        let inputValueName = document
+          .querySelector(`${parent} input[name='first_name']`)
+          .value.match(/^[a-zA-Z]+$/);
+        let inputDogName = document
+          .querySelector(`${parent} input[name='dog_name']`)
+          .value.match(/^[a-zA-Z]+$/);
 
         // first_name
         if (inputValueName === null) {
-          document.querySelector(`${parent} input[name='first_name']`)?.classList.add("input_error")
-          document.querySelector(`${parent} .input_error_text`).style.display = "block"
+          document
+            .querySelector(`${parent} input[name='first_name']`)
+            ?.classList.add("input_error");
+          document.querySelector(`${parent} .input_error_text`).style.display =
+            "block";
         } else {
-          document.querySelector(`${parent} input[name='first_name']`)?.classList.remove("input_error")
-          document.querySelector(`${parent} .input_error_text`).style.display = "none"
+          document
+            .querySelector(`${parent} input[name='first_name']`)
+            ?.classList.remove("input_error");
+          document.querySelector(`${parent} .input_error_text`).style.display =
+            "none";
         }
 
         // dog_name
         if (inputDogName === null) {
-          document.querySelector(`${parent} input[name='dog_name']`)?.classList.add("input_error")
-          document.querySelector(`${parent} input[name='dog_name'] + .input_error_text`).style.display = "block"
+          document
+            .querySelector(`${parent} input[name='dog_name']`)
+            ?.classList.add("input_error");
+          document.querySelector(
+            `${parent} input[name='dog_name'] + .input_error_text`
+          ).style.display = "block";
         } else {
-          document.querySelector(`${parent} input[name='dog_name']`)?.classList.remove("input_error")
-          document.querySelector(`${parent} input[name='dog_name'] + .input_error_text`).style.display = "none"
+          document
+            .querySelector(`${parent} input[name='dog_name']`)
+            ?.classList.remove("input_error");
+          document.querySelector(
+            `${parent} input[name='dog_name'] + .input_error_text`
+          ).style.display = "none";
         }
 
-        if (document.querySelector(`${parent} input.input_error`) === null && parent === `#openModal`) {
-          pushDataLayer(`Click on Continue on step "How should we address you and your dog?"`)
-          document.querySelector("#openModal .button_input_name").style.display = "none"
-          document.querySelector("#openModal #subs-name2").style.display = "none"
-          document.querySelector("#openModal #dog-name2").style.display = "none"
-          document.querySelector("#openModal #dog-name2-top-levels").style.display = "none"
-          document.querySelector("#openModal #subs-name2-top-levels").style.display = "none"
+        if (
+          document.querySelector(`${parent} input.input_error`) === null &&
+          parent === `#openModal`
+        ) {
+          pushDataLayer(
+            `Click on Continue on step "How should we address you and your dog?"`
+          );
+          document.querySelector(
+            "#openModal .button_input_name"
+          ).style.display = "none";
+          document.querySelector("#openModal #subs-name2").style.display =
+            "none";
+          document.querySelector("#openModal #dog-name2").style.display =
+            "none";
+          document.querySelector(
+            "#openModal #dog-name2-top-levels"
+          ).style.display = "none";
+          document.querySelector(
+            "#openModal #subs-name2-top-levels"
+          ).style.display = "none";
 
-          document.querySelector("#openModal #subs-email2").style.display = "flex"
-          document.querySelector("#openModal #subs-mobile2").style.display = "flex"
-          document.querySelector("#openModal #contact-submit").style.display = "flex"
+          document.querySelector("#openModal #subs-email2").style.display =
+            "flex";
+          document.querySelector("#openModal #subs-mobile2").style.display =
+            "flex";
+          document.querySelector("#openModal #contact-submit").style.display =
+            "flex";
 
-          document.querySelector("#openModal .text_for_work_shop").style.display = "block"
-          document.querySelector("#openModal .benefits").style.display = "block"
-          document.querySelector("#openModal .popup_adress").style.display = "block"
-          document.querySelector("#openModal .popup_name").style.display = "none"
-          if (document.querySelector(".modal.in .modal-dialog .btn_wrapp > p")?.classList.contains("active_btn_fourth")) {
-            document.querySelector(".modal.in .modal-dialog .btn_wrapp > p")?.classList.remove("active_btn_fourth")
-            document.querySelector(".modal.in .modal-dialog .btn_wrapp > p")?.classList.add("active_btn_fifth")
+          document.querySelector(
+            "#openModal .text_for_work_shop"
+          ).style.display = "block";
+          document.querySelector("#openModal .benefits").style.display =
+            "block";
+          document.querySelector("#openModal .popup_adress").style.display =
+            "block";
+          document.querySelector("#openModal .popup_name").style.display =
+            "none";
+          if (
+            document
+              .querySelector(".modal.in .modal-dialog .btn_wrapp > p")
+              ?.classList.contains("active_btn_fourth")
+          ) {
+            document
+              .querySelector(".modal.in .modal-dialog .btn_wrapp > p")
+              ?.classList.remove("active_btn_fourth");
+            document
+              .querySelector(".modal.in .modal-dialog .btn_wrapp > p")
+              ?.classList.add("active_btn_fifth");
           }
         }
       }
@@ -1947,32 +2291,58 @@ if (window.innerWidth <= 768) {
       // click on img list Dog
       document.querySelectorAll(".dog_list ul li a").forEach((el) => {
         el.addEventListener("click", function (e) {
-          e.preventDefault()
+          e.preventDefault();
 
-          document.querySelector(".desktop-view .button-header a.button-blue-large:link").click()
+          document
+            .querySelector(
+              ".desktop-view .button-header a.button-blue-large:link"
+            )
+            .click();
 
           if (document.querySelector("#openModal .btn_wrapp")) {
-            pushDataLayer(`Step 1 click on ${el.querySelector("span").textContent}`)
+            pushDataLayer(
+              `Step 1 click on ${el.querySelector("span").textContent}`
+            );
           }
 
           let a = setInterval(() => {
-            if (document.querySelector(".popup_new > .progress_bar > div p:nth-child(1)")?.classList.contains("active_btn_first")) {
-              clearInterval(a)
+            if (
+              document
+                .querySelector(
+                  ".popup_new > .progress_bar > div p:nth-child(1)"
+                )
+                ?.classList.contains("active_btn_first")
+            ) {
+              clearInterval(a);
 
-              if (document.querySelector(".popup_new > .popup_first .btn_continue")) {
-                if (!document.querySelector(".popup_new > .popup_first .btn_continue").getAttribute("data-lst-dog")) {
-                  document.querySelector(".popup_new > .popup_first .btn_continue").click()
-                  pushDataLayer(`Step 1 click on ${el.querySelector("span").textContent} (minus Continue on step "What unwanted behavior do you want to address)`)
+              if (
+                document.querySelector(
+                  ".popup_new > .popup_first .btn_continue"
+                )
+              ) {
+                if (
+                  !document
+                    .querySelector(".popup_new > .popup_first .btn_continue")
+                    .getAttribute("data-lst-dog")
+                ) {
+                  document
+                    .querySelector(".popup_new > .popup_first .btn_continue")
+                    .click();
+                  pushDataLayer(
+                    `Step 1 click on ${
+                      el.querySelector("span").textContent
+                    } (minus Continue on step "What unwanted behavior do you want to address)`
+                  );
                 }
               }
             }
-          }, 20)
-        })
-      })
+          }, 20);
+        });
+      });
 
-      pushDataLayer("loaded")
-      clarity("set", "reg_popup_impr", "variant_1")
-      document.querySelector(".exp")?.remove()
+      pushDataLayer("loaded");
+      clarity("set", "reg_popup_impr", "variant_1");
+      document.querySelector(".exp")?.remove();
     }
-  }, 10)
+  }, 10);
 }
