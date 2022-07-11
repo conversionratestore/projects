@@ -780,6 +780,7 @@ let startFunk = setInterval(() => {
     let observer = new MutationObserver(() => {
       if (document.querySelector("#main-wrapper")) {
         observer.disconnect()
+        console.log(`#main-wrapper`)
         renderToPdp()
         onClickLogout()
 
@@ -798,6 +799,7 @@ let startFunk = setInterval(() => {
     let observerCart = new MutationObserver((muts) => {
       if (document.querySelector("#cart-panel")) {
         observerCart.disconnect()
+        console.log(`#cart-panel`)
         renderToCart()
         onClickLogout()
 
