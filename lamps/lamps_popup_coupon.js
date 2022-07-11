@@ -765,6 +765,10 @@ let startFunk = setInterval(() => {
     function onClickLogout() {
       if (document.querySelector("#btn-logout")) {
         document.querySelector("#btn-logout").addEventListener("click", function () {
+          if (sessionStorage.getItem("successSign")) {
+            sessionStorage.removeItem("successSign")
+          }
+
           setTimeout(() => {
             document.cookie = "new_customer_coupon" + "=" + "" + ";max-age=" + -1 + ";domain=.www.lamps.com;path=/"
           }, 1000)
