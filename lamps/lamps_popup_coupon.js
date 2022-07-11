@@ -645,10 +645,7 @@ let startFunk = setInterval(() => {
     document.body.insertAdjacentHTML("beforeend", popUp)
     document.querySelector(".body_popup")?.insertAdjacentHTML("afterbegin", bodyPopup)
 
-    if (document.querySelector('.header-container .header-actions .action-links [data-account-trigger="true"] span').textContent === "Account") {
-      renderToPdp()
-    }
-
+    renderToPdp()
     renderToCart()
 
     // render text on cart
@@ -705,6 +702,10 @@ let startFunk = setInterval(() => {
         let dataLayerCustomer = window.dataLayer
 
         if (salesProduct) {
+          if (!document.querySelector(".catalog-product-view .product-essential .p-price .final-price").classList.contains("active_sales")) {
+            document.querySelector(".catalog-product-view .product-essential .p-price .final-price").classList.add("active_sales")
+          }
+
           if (document.querySelector('.header-container .header-actions .action-links [data-account-trigger="true"] span').textContent === "Account") {
             dataLayerCustomer.forEach((item) => {
               let customer = item.customer
@@ -765,10 +766,6 @@ let startFunk = setInterval(() => {
     function onClickLogout() {
       if (document.querySelector("#btn-logout")) {
         document.querySelector("#btn-logout").addEventListener("click", function () {
-          if (sessionStorage.getItem("successSign")) {
-            sessionStorage.removeItem("successSign")
-          }
-
           setTimeout(() => {
             document.cookie = "new_customer_coupon" + "=" + "" + ";max-age=" + -1 + ";domain=.www.lamps.com;path=/"
           }, 1000)
@@ -780,7 +777,6 @@ let startFunk = setInterval(() => {
     let observer = new MutationObserver(() => {
       if (document.querySelector("#main-wrapper")) {
         observer.disconnect()
-        console.log(`#main-wrapper`)
         renderToPdp()
         onClickLogout()
 
@@ -799,7 +795,6 @@ let startFunk = setInterval(() => {
     let observerCart = new MutationObserver((muts) => {
       if (document.querySelector("#cart-panel")) {
         observerCart.disconnect()
-        console.log(`#cart-panel`)
         renderToCart()
         onClickLogout()
 
@@ -842,6 +837,7 @@ let startFunk = setInterval(() => {
         let salesProduct = dataProduct.salesproduct
 
         if (
+          !document.querySelector("#overlay") &&
           !sessionStorage.getItem("successSign") &&
           salesProduct &&
           document.querySelector('.header-container .header-actions .action-links [data-account-trigger="true"] span').textContent !== "Account"
@@ -878,9 +874,6 @@ let startFunk = setInterval(() => {
     function hidePopup() {
       document.querySelector(".backdrop_popup").classList.remove("show")
       document.body.style.overflow = "unset"
-      document.querySelector(".catalog-product-view .product-essential .p-price .final-price").classList.add("active_sales")
-
-      renderToPdp()
     }
 
     // form
