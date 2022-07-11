@@ -401,11 +401,12 @@ let startFunkReview = setInterval(() => {
               callback();
 
               document
-                .querySelector(
-                  "#zuck-modal-content .story-viewer.paused.longPress .head"
-                )
-                .addEventListener("click", () => {
-                  document.querySelector("#zuck-modal").style.display = "none";
+                .querySelectorAll("#zuck-modal-content .head")
+                .forEach((el) => {
+                  el.addEventListener("click", () => {
+                    document.querySelector("#zuck-modal").style.display =
+                      "none";
+                  });
                 });
             },
             onView(storyId) {
