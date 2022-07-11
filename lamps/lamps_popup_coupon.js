@@ -702,8 +702,10 @@ let startFunk = setInterval(() => {
         let dataLayerCustomer = window.dataLayer
 
         if (salesProduct) {
-          if (!document.querySelector(".catalog-product-view .product-essential .p-price .final-price").classList.contains("active_sales")) {
-            document.querySelector(".catalog-product-view .product-essential .p-price .final-price").classList.add("active_sales")
+          if (document.querySelector(".catalog-product-view .product-essential .p-price .final-price")) {
+            if (!document.querySelector(".catalog-product-view .product-essential .p-price .final-price").classList.contains("active_sales")) {
+              document.querySelector(".catalog-product-view .product-essential .p-price .final-price").classList.add("active_sales")
+            }
           }
 
           if (document.querySelector('.header-container .header-actions .action-links [data-account-trigger="true"] span').textContent === "Account") {
