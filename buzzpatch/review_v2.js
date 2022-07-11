@@ -67,6 +67,7 @@ let startFunkReview = setInterval(() => {
           height: 100%;
           font-weight: 400;
           margin-top: 10px;
+          font-size: 30px !important;
         }
 
         #zuck-modal.with-effects{
