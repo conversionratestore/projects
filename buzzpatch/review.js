@@ -4,7 +4,7 @@ let startFunkReview = setInterval(() => {
 
     let scriptCustom = document.createElement("script");
     scriptCustom.src =
-      "https://conversionratestore.github.io/projects/buzzpatch/zuck_fix.js";
+      "https://conversionratestore.github.io/projects/buzzpatch/zuck_fix_v2.js";
     scriptCustom.async = false;
     document.head.appendChild(scriptCustom);
 
@@ -64,7 +64,10 @@ let startFunkReview = setInterval(() => {
           display: block !important;
           color: #FFFFFF !important;
           opacity: 1 !important;
-          height: 55px !important;
+          height: 100%;
+          font-weight: 400;
+          margin-top: 16px;
+          font-size: 21px !important;
         }
 
         #zuck-modal.with-effects{
@@ -406,6 +409,7 @@ let startFunkReview = setInterval(() => {
             },
             onClose(storyId, callback) {
               callback(); // on close story viewer
+              pushDataLayer(`click on btn close video_${storyId}`);
               setTimeout(() => {
                 const scrollTarget = document.querySelector(
                   ".js-iphone .wave-bg"
