@@ -1811,8 +1811,8 @@ let startFunkDesk = setInterval(() => {
         }
 
         // click on btn Get workshop link clicked
-        if (document.querySelector("#openModal #firstModal #contact-submit")) {
-          document.querySelector("#openModal #firstModal #contact-submit").addEventListener("click", function () {
+        if (document.querySelector("#openModal #contact-submit")) {
+          document.querySelector("#openModal #contact-submit").addEventListener("click", function () {
             pushDataLayer("Get workshop link clicked")
           })
         }
