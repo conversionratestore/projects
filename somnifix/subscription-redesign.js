@@ -1916,3 +1916,10 @@ dataLayer.push({
     a.appendChild(r);
 })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
 hj('event', 'subscription_redesign_1');
+
+let isClarify = setInterval(() => {
+    if(typeof clarity == 'function') {
+        clearInterval(isClarify)
+        clarity("set", "subscription_redesign", "variant_1");
+    }
+}, 100)
