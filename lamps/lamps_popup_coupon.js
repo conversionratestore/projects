@@ -50,7 +50,7 @@ let startFunk = setInterval(() => {
       background: rgb(0 0 0 / 65%);
       display: flex;
       overflow-y: auto;
-      z-index: 1000000019;
+      z-index: 5500000595;
       opacity: 0;
       pointer-events: none;
       transition: all 0.3s ease;
@@ -644,6 +644,10 @@ let startFunk = setInterval(() => {
     document.head.insertAdjacentHTML("beforeend", popUpStyle)
     document.body.insertAdjacentHTML("beforeend", popUp)
     document.querySelector(".body_popup")?.insertAdjacentHTML("afterbegin", bodyPopup)
+
+    if (document.querySelector('.header-container .header-actions .action-links [data-account-trigger="true"] span').textContent === "Account") {
+      renderToPdp()
+    }
 
     renderToCart()
 
