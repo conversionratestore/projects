@@ -665,7 +665,7 @@ let startFunk = setInterval(() => {
                     if (customer[key] === "General") {
                       if (!el.querySelector(".discount_cart")) {
                         console.log(customer[key])
-                        activateCoupon()
+
                         el.insertAdjacentHTML("beforeend", discountCart)
                         el.querySelector(".final-price .price").classList.add("coupon_price")
                         el.querySelector(".col-6.mc-price.mt-2").insertAdjacentHTML("afterbegin", `<span class="final_coupon_price"></span>`)
@@ -1017,6 +1017,7 @@ let startFunk = setInterval(() => {
             document.querySelector("#btn-register-submit").click()
             sessionStorage.setItem("successCoupon", true)
             sessionStorage.setItem("successSign", true)
+            activateCoupon()
             hidePopup()
           }
         })
