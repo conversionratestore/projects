@@ -664,14 +664,11 @@ let startFunk = setInterval(() => {
                   for (key in customer) {
                     if (customer[key] === "General") {
                       if (!el.querySelector(".discount_cart")) {
-                        console.log(customer[key])
-
                         el.insertAdjacentHTML("beforeend", discountCart)
                         el.querySelector(".final-price .price").classList.add("coupon_price")
                         el.querySelector(".col-6.mc-price.mt-2").insertAdjacentHTML("afterbegin", `<span class="final_coupon_price"></span>`)
                         if (el.querySelector(".final_coupon_price")) {
                           let newPrice = el.querySelector(".final-price .price.coupon_price").textContent.slice(1).replace(/,/g, "")
-                          console.log(typeof newPrice)
 
                           let newPriceCoupon = +newPrice * 0.85
 
@@ -715,7 +712,6 @@ let startFunk = setInterval(() => {
                 for (key in customer) {
                   if (customer[key] === "General") {
                     if (!document.querySelector(".discount_pdp")) {
-                      console.log(customer[key])
                       document.querySelector(".catalog-product-view .product-essential .p-price .final-price.mt-3")?.insertAdjacentHTML("afterend", discountPdp)
                     }
                   }
@@ -753,14 +749,11 @@ let startFunk = setInterval(() => {
 
     //new_customer_coupon
     function activateCoupon() {
-      if (document.querySelector('.header-container .header-actions .action-links [data-account-trigger="true"] span').textContent === "Account") {
-        const cookieName = "new_customer_coupon"
-        let cookieValue = "true"
-        let myDate = new Date()
-        myDate.setMonth(myDate.getMonth() + 12)
-        document.cookie = cookieName + "=" + cookieValue + ";expires=" + myDate + ";domain=.www.lamps.com;path=/"
-        // document.cookie = `${cookieName}=${cookieValue};expires=-1;domain=.www.lamps.com;path=/`
-      }
+      const cookieName = "new_customer_coupon"
+      let cookieValue = "true"
+      let myDate = new Date()
+      myDate.setMonth(myDate.getMonth() + 12)
+      document.cookie = cookieName + "=" + cookieValue + ";expires=" + myDate + ";domain=.www.lamps.com;path=/"
     }
 
     onClickLogout()
@@ -1013,11 +1006,11 @@ let startFunk = setInterval(() => {
           } else {
             document.querySelector(".form_wrap  > .error_msg").style.display = "none"
             pushDataLayer("Sign Up clicked")
+            activateCoupon()
             document.querySelector(".btn_close").setAttribute("successCoupon", "true")
             document.querySelector("#btn-register-submit").click()
             sessionStorage.setItem("successCoupon", true)
             sessionStorage.setItem("successSign", true)
-            activateCoupon()
             hidePopup()
           }
         })
