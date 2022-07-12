@@ -112,14 +112,6 @@ const intervalTimeout = 200
 
 // dataLayer
 const callEvent = (eventAction, eventLabel = '') => {
-    if (!eventLabel) {
-        console.log('eventAction: ', eventAction);
-    } else {
-        console.group('eventAction: ', eventAction);
-        console.log('eventLabel: ', eventLabel)
-        console.groupEnd()
-    }
-
     window.dataLayer = window.dataLayer || [];
     dataLayer.push({
         'event': 'event-to-ga',
