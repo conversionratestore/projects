@@ -54,7 +54,7 @@ let startFunkReview = setInterval(() => {
         .trust-rating .stars .text{
             border-bottom: 1px solid #000000;
             font-weight: 700 !important;
-            font-size: 13px !important;
+            font-size: 12px !important;
             line-height: 16px !important;
         }
         
