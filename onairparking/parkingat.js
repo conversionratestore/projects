@@ -130,7 +130,6 @@ let style = `
         border-width: 0 15px 10px 15px;
         border-color: transparent transparent #F9FAFB transparent;
     }
-    
 </style>`
 
 //push dataLayer
@@ -263,27 +262,27 @@ let postParking = (id, startDate, endDate, parent) => {
                         </svg>
                     </button>
                 </div>
-                <div class="review-slider"></div>
+                <div class="review-slider "></div>
             </div>
         `)
 
         document.querySelector('.location_section p').after(document.querySelector('#google-map-parking-at'));
         document.querySelector('.btn_see-all').addEventListener('click', (e) => scrollTop(document.querySelector('#parkingat > div > article > div > .demo-loadmore-list').parentElement, e.target))
 
-        let listReview = document.querySelectorAll('.demo-loadmore-list ul > li');
-        for (let i = 0; i < listReview.length; i++) {
+        let listReview = document.querySelectorAll('.demo-loadmore-list ul.ant-list-items > li'),
+            countReview = listReview.length > 5 ? 6 : listReview.length;
+            console.log(countReview)
+        for (let i = 0; i < countReview; i++) {
             document.querySelector('.review-slider').insertAdjacentHTML('beforeend',`<div class="slide">${listReview[i].innerHTML}</div>`)
         }
 
-        // $('.review-slider').slick({
-        //     infinite: true,
-        //     slidesToShow: 2,
-        //     slidesToScroll: 2,
-        //     dots: true,
-        //     arrows: false,
-        // })
-
-
+          // $('.review-slider').slick({
+          //           infinite: true,
+          //           slidesToShow: 2,
+          //           slidesToScroll: 2,
+          //           dots: true,
+          //           arrows: false,
+          //       })
     })
 }
 
@@ -292,10 +291,13 @@ let sentPost = false;
 let start = setInterval(() => {
     if (document.querySelector('#__NEXT_DATA__') != null && window.location.pathname.includes('/parkingat/') && document.querySelector('#parkingat') != null && document.querySelector('.js-style') == null) {
         document.body.insertAdjacentHTML('afterbegin', style) // add style
-        let id = document.querySelector('#__NEXT_DATA__').innerHTML.split(`airport_id":`)[1].split(',')[0],
+        let initial = window.location.href.split('parkingat/')[1].split('?')[0].replace(/[0-9]/g, '');
+        let arr = document.querySelector('#__NEXT_DATA__').innerText.split(`,"airport_initials":"${initial.toUpperCase()}`)[0].split('"airport_id":'),
+            id = arr[arr.length - 1],
             startDate = window.location.href.split('checkin=')[1].split('&')[0],
             endDate = window.location.href.split('checkout=')[1],
             parent = document.querySelector('#parkingat');
+
         if (sentPost == false) {
             sentPost = true;
             postParking(id, startDate, endDate, parent)
