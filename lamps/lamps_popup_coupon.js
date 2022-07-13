@@ -1,37 +1,37 @@
- let startFunk = setInterval(() => {
-      if (document.querySelector("#main-wrapper")) {
-          clearInterval(startFunk)
+let startFunk = setInterval(() => {
+  if (document.querySelector("#main-wrapper")) {
+    clearInterval(startFunk)
 
-          document.cookie = "login_alt = true"
+    document.cookie = "login_alt = true"
 
-          // event
-          let eventVar = "desktop"
+    // event
+    let eventVar = "desktop"
 
-          if (window.innerWidth <= 768) {
-              eventVar = "mobile"
-          }
+    if (window.innerWidth <= 768) {
+      eventVar = "mobile"
+    }
 
-          function pushDataLayer(actionDataLayer, labelDataLayer) {
-              window.dataLayer = window.dataLayer || []
-              if (labelDataLayer) {
-                  console.log(actionDataLayer + " : " + labelDataLayer)
-                  dataLayer.push({
-                      event: "event-to-ga",
-                      eventCategory: `Exp: Sign up discount ${eventVar}`,
-                      eventAction: `${actionDataLayer}`,
-                      eventLabel: `${labelDataLayer}`,
-                  })
-              } else {
-                  console.log(actionDataLayer)
-                  dataLayer.push({
-                      event: "event-to-ga",
-                      eventCategory: `Exp: Sign up discount ${eventVar}`,
-                      eventAction: `${actionDataLayer}`,
-                  })
-              }
-          }
+    function pushDataLayer(actionDataLayer, labelDataLayer) {
+      window.dataLayer = window.dataLayer || []
+      if (labelDataLayer) {
+        console.log(actionDataLayer + " : " + labelDataLayer)
+        dataLayer.push({
+          event: "event-to-ga",
+          eventCategory: `Exp: Sign up discount ${eventVar}`,
+          eventAction: `${actionDataLayer}`,
+          eventLabel: `${labelDataLayer}`,
+        })
+      } else {
+        console.log(actionDataLayer)
+        dataLayer.push({
+          event: "event-to-ga",
+          eventCategory: `Exp: Sign up discount ${eventVar}`,
+          eventAction: `${actionDataLayer}`,
+        })
+      }
+    }
 
-          let popUpStyle = /*html */ `
+    let popUpStyle = /*html */ `
       <style>
       #cart-panel .mkt.i-block.text-center {
           display: none;
@@ -450,7 +450,7 @@
       </style>
       `
 
-          let popUp = /*html */ `
+    let popUp = /*html */ `
       <div class="backdrop_popup">
           <div class="container_popup">
               <svg class="btn_close" width="15" height="24" viewBox="0 0 15 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -469,7 +469,7 @@
       </div>
       `
 
-          let bodyPopup = /*html */ `
+    let bodyPopup = /*html */ `
       <div class="form_wrap active">
           <h2>Save 15% on today’s order</h2>
           <p>Sign up below and get instant savings on items over $75</p>
@@ -525,7 +525,7 @@
       </div>
       `
 
-          let discountCart = /*html */ `
+    let discountCart = /*html */ `
       <div class="discount_cart">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path d="M7.49977 14.25L11.6248 10.125M9.74977 16.5L11.6248 14.625M3.31027 12.4395L11.5603 4.1895C11.8415 3.90818 12.223 3.75008 12.6208 3.75H18.7498C19.1476 3.75 19.5291 3.90804 19.8104 4.18934C20.0917 4.47064 20.2498 4.85218 20.2498 5.25V11.379C20.2497 11.7768 20.0916 12.1583 19.8103 12.4395L11.5603 20.6895C11.279 20.9707 10.8975 21.1287 10.4998 21.1287C10.102 21.1287 9.72057 20.9707 9.43927 20.6895L3.31027 14.5605C3.02907 14.2792 2.87109 13.8977 2.87109 13.5C2.87109 13.1023 3.02907 12.7208 3.31027 12.4395V12.4395Z" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
@@ -535,7 +535,7 @@
       </div>
       `
 
-          let discountCartSignUp = /*html */ `
+    let discountCartSignUp = /*html */ `
       <div class="discount_cart sign_up">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path d="M7.49977 14.25L11.6248 10.125M9.74977 16.5L11.6248 14.625M3.31027 12.4395L11.5603 4.1895C11.8415 3.90818 12.223 3.75008 12.6208 3.75H18.7498C19.1476 3.75 19.5291 3.90804 19.8104 4.18934C20.0917 4.47064 20.2498 4.85218 20.2498 5.25V11.379C20.2497 11.7768 20.0916 12.1583 19.8103 12.4395L11.5603 20.6895C11.279 20.9707 10.8975 21.1287 10.4998 21.1287C10.102 21.1287 9.72057 20.9707 9.43927 20.6895L3.31027 14.5605C3.02907 14.2792 2.87109 13.8977 2.87109 13.5C2.87109 13.1023 3.02907 12.7208 3.31027 12.4395V12.4395Z" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
@@ -545,7 +545,7 @@
       </div>
       `
 
-          let discountPdp = /*html */ `
+    let discountPdp = /*html */ `
       <div class="discount_pdp">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path d="M7.49977 14.25L11.6248 10.125M9.74977 16.5L11.6248 14.625M3.31027 12.4395L11.5603 4.1895C11.8415 3.90818 12.223 3.75008 12.6208 3.75H18.7498C19.1476 3.75 19.5291 3.90804 19.8104 4.18934C20.0917 4.47064 20.2498 4.85218 20.2498 5.25V11.379C20.2497 11.7768 20.0916 12.1583 19.8103 12.4395L11.5603 20.6895C11.279 20.9707 10.8975 21.1287 10.4998 21.1287C10.102 21.1287 9.72057 20.9707 9.43927 20.6895L3.31027 14.5605C3.02907 14.2792 2.87109 13.8977 2.87109 13.5C2.87109 13.1023 3.02907 12.7208 3.31027 12.4395V12.4395Z" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
@@ -555,7 +555,7 @@
       </div>
       `
 
-          let discounPdpSignUp = /*html */ `
+    let discounPdpSignUp = /*html */ `
       <div class="discount_pdp sign_up">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path d="M7.49977 14.25L11.6248 10.125M9.74977 16.5L11.6248 14.625M3.31027 12.4395L11.5603 4.1895C11.8415 3.90818 12.223 3.75008 12.6208 3.75H18.7498C19.1476 3.75 19.5291 3.90804 19.8104 4.18934C20.0917 4.47064 20.2498 4.85218 20.2498 5.25V11.379C20.2497 11.7768 20.0916 12.1583 19.8103 12.4395L11.5603 20.6895C11.279 20.9707 10.8975 21.1287 10.4998 21.1287C10.102 21.1287 9.72057 20.9707 9.43927 20.6895L3.31027 14.5605C3.02907 14.2792 2.87109 13.8977 2.87109 13.5C2.87109 13.1023 3.02907 12.7208 3.31027 12.4395V12.4395Z" stroke="#286278" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
@@ -565,390 +565,390 @@
       </div>
       `
 
-          document.head.insertAdjacentHTML("beforeend", popUpStyle)
-          document.body.insertAdjacentHTML("beforeend", popUp)
-          document.querySelector(".body_popup")?.insertAdjacentHTML("afterbegin", bodyPopup)
+    document.head.insertAdjacentHTML("beforeend", popUpStyle)
+    document.body.insertAdjacentHTML("beforeend", popUp)
+    document.querySelector(".body_popup")?.insertAdjacentHTML("afterbegin", bodyPopup)
 
-          renderToPdp()
-          renderToCart()
+    renderToPdp()
+    renderToCart()
 
-          // render text on cart
-          function renderToCart() {
-              if (document.querySelector("#cart-panel #minicart-items")) {
-                  document.querySelectorAll("#cart-panel #minicart-items > div").forEach((el) => {
-                      let dataProduct = JSON.parse(el.getAttribute("data-product"))
-                      let salesProduct = dataProduct.salesproduct
-                      let dataLayerCustomer = window.dataLayer
+    // render text on cart
+    function renderToCart() {
+      if (document.querySelector("#cart-panel #minicart-items")) {
+        document.querySelectorAll("#cart-panel #minicart-items > div").forEach((el) => {
+          let dataProduct = JSON.parse(el.getAttribute("data-product"))
+          let salesProduct = dataProduct.salesproduct
+          let dataLayerCustomer = window.dataLayer
 
-                      if (salesProduct) {
-                          if (document.querySelector('.header-container .header-actions .action-links [data-account-trigger="true"] span').textContent === "Account") {
-                              dataLayerCustomer.forEach((item) => {
-                                  let customer = item.customer
-                                  if (customer) {
-                                      for (key in customer) {
-                                          if (customer[key] === "General") {
-                                              if (!el.querySelector(".discount_cart")) {
-                                                  console.log(customer[key])
+          if (salesProduct) {
+            if (document.querySelector('.header-container .header-actions .action-links [data-account-trigger="true"] span').textContent === "Account") {
+              dataLayerCustomer.forEach((item) => {
+                let customer = item.customer
+                if (customer) {
+                  for (key in customer) {
+                    if (customer[key] === "General") {
+                      if (!el.querySelector(".discount_cart")) {
+                        console.log(customer[key])
 
-                                                  el.insertAdjacentHTML("beforeend", discountCart)
-                                                  el.querySelector(".final-price .price").classList.add("coupon_price")
-                                                  el.querySelector(".col-6.mc-price.mt-2").insertAdjacentHTML("afterbegin", `<span class="final_coupon_price"></span>`)
-                                                  if (el.querySelector(".final_coupon_price")) {
-                                                      let newPrice = el.querySelector(".final-price .price.coupon_price").textContent.slice(1).replace(/,/g, "")
-                                                      console.log(typeof newPrice)
+                        el.insertAdjacentHTML("beforeend", discountCart)
+                        el.querySelector(".final-price .price").classList.add("coupon_price")
+                        el.querySelector(".col-6.mc-price.mt-2").insertAdjacentHTML("afterbegin", `<span class="final_coupon_price"></span>`)
+                        if (el.querySelector(".final_coupon_price")) {
+                          let newPrice = el.querySelector(".final-price .price.coupon_price").textContent.slice(1).replace(/,/g, "")
+                          console.log(typeof newPrice)
 
-                                                      let newPriceCoupon = +newPrice * 0.85
+                          let newPriceCoupon = +newPrice * 0.85
 
-                                                      el.querySelector(".final_coupon_price").textContent = `$${newPriceCoupon.toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, "$1,")}`
-                                                  }
-                                                  // startCoupon()
-                                              }
-                                          }
-                                      }
-                                  }
-                              })
-                          } else {
-                              if (!el.querySelector(".discount_cart.sign_up")) {
-                                  el.insertAdjacentHTML("beforeend", discountCartSignUp)
-                              }
-                              onClickSignUp("#cart-panel")
-                          }
+                          el.querySelector(".final_coupon_price").textContent = `$${newPriceCoupon.toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, "$1,")}`
+                        }
+                        // startCoupon()
                       }
-                  })
-              }
-          }
-
-          // render text on cart
-          function renderToPdp() {
-              if (document.querySelector("#main-wrapper #item-details")) {
-                  let dataProduct = JSON.parse(document.querySelector("#main-wrapper #item-details").getAttribute("data-product"))
-                  let salesProduct = dataProduct.salesproduct
-                  let dataLayerCustomer = window.dataLayer
-
-                  if (salesProduct) {
-                      if (document.querySelector(".catalog-product-view .product-essential .p-price .final-price")) {
-                          if (!document.querySelector(".catalog-product-view .product-essential .p-price .final-price").classList.contains("active_sales")) {
-                              document.querySelector(".catalog-product-view .product-essential .p-price .final-price").classList.add("active_sales")
-                          }
-                      }
-
-                      if (document.querySelector('.header-container .header-actions .action-links [data-account-trigger="true"] span').textContent === "Account") {
-                          dataLayerCustomer.forEach((item) => {
-                              let customer = item.customer
-                              if (customer) {
-                                  for (key in customer) {
-                                      if (customer[key] === "General") {
-                                          if (!document.querySelector(".discount_pdp")) {
-                                              console.log(customer[key])
-                                              document.querySelector(".catalog-product-view .product-essential .p-price .final-price.mt-3")?.insertAdjacentHTML("afterend", discountPdp)
-                                          }
-                                      }
-                                  }
-                              }
-                          })
-                      } else {
-                          if (!document.querySelector(".discount_pdp.sign_up")) {
-                              document.querySelector(".catalog-product-view .product-essential .p-price .final-price.mt-3")?.insertAdjacentHTML("afterend", discounPdpSignUp)
-
-                              onClickSignUp("#main-wrapper")
-                          }
-                      }
+                    }
                   }
-              }
-          }
-
-          // startCoupon()
-          // coupon activate
-          // function startCoupon() {
-          //   const startCoupon = setInterval(() => {
-          //     const couponInput = document.querySelector(".inner-panel .i-block #sidebar-discount-coupon-form input")
-          //     if (couponInput) {
-          //       clearInterval(startCoupon)
-
-          //       if (document.querySelector('.header-container .header-actions .action-links [data-account-trigger="true"] span').textContent === "Account") {
-          //         if (couponInput.value !== "WLS1-QFT5") {
-          //           couponInput.value = "WLS1-QFT5"
-          //           document.querySelector(".inner-panel .i-block #submit-coupon")?.click()
-          //         }
-          //       }
-          //     }
-          //   }, 1000)
-          // }
-
-          //new_customer_coupon
-          function activateCoupon() {
-              const cookieName = "new_customer_coupon"
-              let cookieValue = "true"
-              let myDate = new Date()
-              myDate.setMonth(myDate.getMonth() + 12)
-              document.cookie = cookieName + "=" + cookieValue + ";expires=" + myDate + ";domain=.www.lamps.com;path=/"
-          }
-
-          onClickLogout()
-          // onClick logout
-          function onClickLogout() {
-              if (document.querySelector("#btn-logout")) {
-                  document.querySelector("#btn-logout").addEventListener("click", function () {
-                      setTimeout(() => {
-                          document.cookie = "new_customer_coupon" + "=" + "" + ";max-age=" + -1 + ";domain=.www.lamps.com;path=/"
-                      }, 1000)
-                  })
-              }
-          }
-
-          // observer
-          let observer = new MutationObserver(() => {
-              if (document.querySelector("#main-wrapper")) {
-                  observer.disconnect()
-                  renderToPdp()
-                  onClickLogout()
-
-                  observer.observe(document.querySelector("#main-wrapper"), {
-                      childList: true,
-                      subtree: true,
-                  })
-              }
-          })
-
-          observer.observe(document.querySelector("#main-wrapper"), {
-              childList: true,
-              subtree: true,
-          })
-
-          let observerCart = new MutationObserver((muts) => {
-              if (document.querySelector("#cart-panel")) {
-                  observerCart.disconnect()
-                  renderToCart()
-                  onClickLogout()
-
-                  observerCart.observe(document.querySelector("#cart-panel"), {
-                      childList: true,
-                      subtree: true,
-                  })
-              }
-          })
-
-          observerCart.observe(document.querySelector("#cart-panel"), {
-              childList: true,
-              subtree: true,
-          })
-
-          // click on SIGN UP
-          function onClickSignUp(parent) {
-              document.querySelectorAll(`${parent} [data-sign]`).forEach((el) => {
-                  if (!el.getAttribute("data-click")) {
-                      el.addEventListener("click", function () {
-                          if (parent === "#main-wrapper") {
-                              pushDataLayer("15% off link on PDP clicked")
-                          }
-
-                          if (parent === "#cart-panel") {
-                              pushDataLayer("15% off button on Cart clicked")
-                          }
-
-                          document.querySelector('.header-container .header-actions .action-links [data-account-trigger="true"]').click()
-                      })
-                  }
-                  el.setAttribute("data-click", "1")
+                }
               })
+            } else {
+              if (!el.querySelector(".discount_cart.sign_up")) {
+                el.insertAdjacentHTML("beforeend", discountCartSignUp)
+              }
+              onClickSignUp("#cart-panel")
+            }
           }
-
-          // TO show POPUP
-          showFirstPopup()
-          function showFirstPopup() {
-              setTimeout(() => {
-                  if (document.querySelector("#main-wrapper #item-details")) {
-                      let dataProduct = JSON.parse(document.querySelector("#main-wrapper #item-details")?.getAttribute("data-product"))
-                      let salesProduct = dataProduct.salesproduct
-
-                      if (
-                          !document.querySelector("#overlay") &&
-                          !sessionStorage.getItem("successSign") &&
-                          salesProduct &&
-                          document.querySelector('.header-container .header-actions .action-links [data-account-trigger="true"] span').textContent !== "Account"
-                      ) {
-                          showPopup()
-                      }
-                  }
-              }, 3000)
-          }
-
-          document.querySelector(".btn_close").addEventListener("click", function () {
-              if (this.getAttribute("successCoupon") || document.querySelector(".body_popup .form_wrap:nth-child(2)").classList.contains("active")) {
-                  pushDataLayer("TY after registration pop up closed by X")
-              } else {
-                  pushDataLayer("Registration pop up closed by X")
-              }
-
-              hidePopup()
-          })
-
-          document.querySelector(".backdrop_popup").addEventListener("click", (e) => {
-              if (e.target.matches(".backdrop_popup")) {
-                  pushDataLayer("Registration pop up closed by backdrop")
-                  hidePopup()
-              }
-          })
-
-          //show popup
-          function showPopup() {
-              document.querySelector(".backdrop_popup").classList.add("show")
-              document.body.style.overflow = "hidden"
-          }
-
-          //hide popup
-          function hidePopup() {
-              document.querySelector(".backdrop_popup").classList.remove("show")
-              document.body.style.overflow = "unset"
-          }
-
-          // form
-          if (document.querySelector(".form_wrap > ul")) {
-              document.querySelectorAll(".form_wrap > ul li").forEach((el) => {
-                  el.addEventListener("click", () => {
-                      if (el.classList.contains("fb")) {
-                          document.querySelector(".i-block.m-0 .fab.fa-facebook").closest("a").click()
-                      }
-
-                      if (el.classList.contains("google")) {
-                          document.querySelector(".i-block.m-0 .fab.fa-google").closest("a").click()
-                      }
-
-                      if (el.classList.contains("amazon")) {
-                          document.querySelector(".i-block.m-0 .fab.fa-amazon").closest("a").click()
-                      }
-                  })
-              })
-          }
-
-          document.querySelector(".form_wrap > p > span")?.addEventListener("click", () => {
-              hidePopup()
-              document.querySelector('.header-container .header-actions .action-links [data-account-trigger="true"]')?.click()
-              document.querySelector("#account-panel .content-panel #btn-login-show")?.click()
-          })
-
-          document.querySelector(".form_wrap button#continueBtn")?.addEventListener("click", () => {
-              pushDataLayer("Continue Shopping clicked")
-              hidePopup()
-              window.location.reload()
-          })
-
-          document.querySelector(".form_wrap button#btnRegisterSubmit")?.addEventListener("click", () => {
-              validationForm(`.new_form`)
-          })
-
-          let newPopup = setInterval(() => {
-              if (document.querySelector('.header-container .header-actions .action-links [data-account-trigger="true"] span').textContent === "Account") {
-                  if (sessionStorage.getItem("successCoupon")) {
-                      clearInterval(newPopup)
-                      document.querySelectorAll(".body_popup .form_wrap")[1].classList.add("active")
-                      document.querySelectorAll(".body_popup .form_wrap")[0].classList.remove("active")
-                      showPopup()
-                      if (sessionStorage.getItem("successCoupon")) {
-                          sessionStorage.removeItem("successCoupon")
-                      }
-                  }
-              }
-          }, 10)
-
-          // validate form
-          function validationForm(parent) {
-              let inputValueName = document.querySelector(`${parent} input[name='firstName']`).value.match(/^[а-яА-ЯёЁa-zA-Z0-9]+$/)
-              let inputLastName = document.querySelector(`${parent} input[name='lastName']`).value.match(/^[а-яА-ЯёЁa-zA-Z0-9]+$/)
-              let inputValueEmail = document.querySelector(`${parent} input[name='registerEmail']`).value.match(/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/)
-
-              let inputValuePassword = document.querySelector(`${parent} input[name='registerPassword']`).value.match(/^.{7,24}$/)
-
-              // first_name
-              if (inputValueName === null) {
-                  document.querySelector(`${parent} input[name='firstName']`)?.closest("div").classList.add("input_error")
-                  document.querySelector(`${parent} input[name='firstName'] + .text_validation`).style.display = "block"
-              } else {
-                  document.querySelector(`${parent} input[name='firstName']`)?.closest("div").classList.remove("input_error")
-                  document.querySelector(`${parent} input[name='firstName'] + .text_validation`).style.display = "none"
-              }
-
-              // dog_name
-              if (inputLastName === null) {
-                  document.querySelector(`${parent} input[name='lastName']`)?.closest("div").classList.add("input_error")
-                  document.querySelector(`${parent} input[name='lastName'] + .text_validation`).style.display = "block"
-              } else {
-                  document.querySelector(`${parent} input[name='lastName']`)?.closest("div").classList.remove("input_error")
-                  document.querySelector(`${parent} input[name='lastName'] + .text_validation`).style.display = "none"
-              }
-
-              if (inputValueEmail === null) {
-                  document.querySelector(`${parent} input[name='registerEmail']`).closest("div").classList.add("input_error")
-                  document.querySelector(`${parent} input[name='registerEmail'] + .text_validation`).style.display = "block"
-              } else {
-                  document.querySelector(`${parent} input[name='registerEmail']`).closest("div").classList.remove("input_error")
-                  document.querySelector(`${parent} input[name='registerEmail'] + .text_validation`).style.display = "none"
-              }
-
-              if (inputValuePassword === null) {
-                  document.querySelector(`${parent} input[name='registerPassword']`).closest("div").classList.add("input_error")
-                  document.querySelector(`${parent} input[name='registerPassword'] + .text_validation`).style.display = "block"
-                  document.querySelector(".form_wrap button").style.marginTop = "30px"
-              } else {
-                  document.querySelector(`${parent} input[name='registerPassword']`).closest("div").classList.remove("input_error")
-                  document.querySelector(`${parent} input[name='registerPassword'] + .text_validation`).style.display = "none"
-                  document.querySelector(".form_wrap button").style.marginTop = "0px"
-              }
-
-              if (document.querySelector(`${parent} > div.input_error`) === null) {
-                  document.querySelector("#signup-email").click()
-                  document.querySelector("#first-name").value = document.querySelector(`${parent} input[name='firstName']`).value
-                  document.querySelector("#last-name").value = document.querySelector(`${parent} input[name='lastName']`).value
-                  document.querySelector("#register-email").value = document.querySelector(`${parent} input[name='registerEmail']`).value
-                  document.querySelector("#register-password").value = document.querySelector(`${parent} input[name='registerPassword']`).value
-
-                  postForm(
-                      document.querySelector(`${parent} input[name='registerEmail']`).value,
-                      document.querySelector(`${parent} input[name='registerPassword']`).value,
-                      document.querySelector(`${parent} input[name='firstName']`).value,
-                      document.querySelector(`${parent} input[name='lastName']`).value
-                  )
-              }
-          }
-
-          function postForm(email, passwordVal, firstName, lastName) {
-              let form = new FormData()
-
-              form.append("form_key", window.form_key)
-              form.append("submit_type", "register")
-              form.append("emailAddress", email)
-              form.append("password", passwordVal)
-              form.append("firstname", firstName)
-              form.append("lastname", lastName)
-              form.append("newsletter", 'on')
-
-              fetch(`/l-c/ajax/`, {
-                  body: form,
-                  method: "POST",
-              })
-                  .then((res) => {
-                      return res.status
-                  })
-                  .then((data) => {
-                      if (data === 403) {
-                          document.querySelector(".form_wrap  > .error_msg").style.display = "block"
-                      } else {
-                          document.querySelector(".form_wrap  > .error_msg").style.display = "none"
-                          pushDataLayer("Sign Up clicked")
-                          document.querySelector(".btn_close").setAttribute("successCoupon", "true")
-                          sessionStorage.setItem("successCoupon", true)
-                          sessionStorage.setItem("successSign", true)
-                          activateCoupon()
-                          $j(document).hoAjax('refreshPage', 'account');
-                          hidePopup()
-                      }
-                  })
-                  .catch((err) => {
-                      console.log("Failed fetch ", err)
-                  })
-          }
-
-          pushDataLayer("loaded")
-          clarity("set", `signup_discount_${eventVar}`, "variant_1")
+        })
       }
-  }, 10)
+    }
+
+    // render text on cart
+    function renderToPdp() {
+      if (document.querySelector("#main-wrapper #item-details")) {
+        let dataProduct = JSON.parse(document.querySelector("#main-wrapper #item-details").getAttribute("data-product"))
+        let salesProduct = dataProduct.salesproduct
+        let dataLayerCustomer = window.dataLayer
+
+        if (salesProduct) {
+          if (document.querySelector(".catalog-product-view .product-essential .p-price .final-price")) {
+            if (!document.querySelector(".catalog-product-view .product-essential .p-price .final-price").classList.contains("active_sales")) {
+              document.querySelector(".catalog-product-view .product-essential .p-price .final-price").classList.add("active_sales")
+            }
+          }
+
+          if (document.querySelector('.header-container .header-actions .action-links [data-account-trigger="true"] span').textContent === "Account") {
+            dataLayerCustomer.forEach((item) => {
+              let customer = item.customer
+              if (customer) {
+                for (key in customer) {
+                  if (customer[key] === "General") {
+                    if (!document.querySelector(".discount_pdp")) {
+                      console.log(customer[key])
+                      document.querySelector(".catalog-product-view .product-essential .p-price .final-price.mt-3")?.insertAdjacentHTML("afterend", discountPdp)
+                    }
+                  }
+                }
+              }
+            })
+          } else {
+            if (!document.querySelector(".discount_pdp.sign_up")) {
+              document.querySelector(".catalog-product-view .product-essential .p-price .final-price.mt-3")?.insertAdjacentHTML("afterend", discounPdpSignUp)
+
+              onClickSignUp("#main-wrapper")
+            }
+          }
+        }
+      }
+    }
+
+    // startCoupon()
+    // coupon activate
+    // function startCoupon() {
+    //   const startCoupon = setInterval(() => {
+    //     const couponInput = document.querySelector(".inner-panel .i-block #sidebar-discount-coupon-form input")
+    //     if (couponInput) {
+    //       clearInterval(startCoupon)
+
+    //       if (document.querySelector('.header-container .header-actions .action-links [data-account-trigger="true"] span').textContent === "Account") {
+    //         if (couponInput.value !== "WLS1-QFT5") {
+    //           couponInput.value = "WLS1-QFT5"
+    //           document.querySelector(".inner-panel .i-block #submit-coupon")?.click()
+    //         }
+    //       }
+    //     }
+    //   }, 1000)
+    // }
+
+    //new_customer_coupon
+    function activateCoupon() {
+      const cookieName = "new_customer_coupon"
+      let cookieValue = "true"
+      let myDate = new Date()
+      myDate.setMonth(myDate.getMonth() + 12)
+      document.cookie = cookieName + "=" + cookieValue + ";expires=" + myDate + ";domain=.www.lamps.com;path=/"
+    }
+
+    onClickLogout()
+    // onClick logout
+    function onClickLogout() {
+      if (document.querySelector("#btn-logout")) {
+        document.querySelector("#btn-logout").addEventListener("click", function () {
+          setTimeout(() => {
+            document.cookie = "new_customer_coupon" + "=" + "" + ";max-age=" + -1 + ";domain=.www.lamps.com;path=/"
+          }, 1000)
+        })
+      }
+    }
+
+    // observer
+    let observer = new MutationObserver(() => {
+      if (document.querySelector("#main-wrapper")) {
+        observer.disconnect()
+        renderToPdp()
+        onClickLogout()
+
+        observer.observe(document.querySelector("#main-wrapper"), {
+          childList: true,
+          subtree: true,
+        })
+      }
+    })
+
+    observer.observe(document.querySelector("#main-wrapper"), {
+      childList: true,
+      subtree: true,
+    })
+
+    let observerCart = new MutationObserver((muts) => {
+      if (document.querySelector("#cart-panel")) {
+        observerCart.disconnect()
+        renderToCart()
+        onClickLogout()
+
+        observerCart.observe(document.querySelector("#cart-panel"), {
+          childList: true,
+          subtree: true,
+        })
+      }
+    })
+
+    observerCart.observe(document.querySelector("#cart-panel"), {
+      childList: true,
+      subtree: true,
+    })
+
+    // click on SIGN UP
+    function onClickSignUp(parent) {
+      document.querySelectorAll(`${parent} [data-sign]`).forEach((el) => {
+        if (!el.getAttribute("data-click")) {
+          el.addEventListener("click", function () {
+            if (parent === "#main-wrapper") {
+              pushDataLayer("15% off link on PDP clicked")
+            }
+
+            if (parent === "#cart-panel") {
+              pushDataLayer("15% off button on Cart clicked")
+            }
+
+            document.querySelector('.header-container .header-actions .action-links [data-account-trigger="true"]').click()
+          })
+        }
+        el.setAttribute("data-click", "1")
+      })
+    }
+
+    // TO show POPUP
+    showFirstPopup()
+    function showFirstPopup() {
+      setTimeout(() => {
+        if (document.querySelector("#main-wrapper #item-details")) {
+          let dataProduct = JSON.parse(document.querySelector("#main-wrapper #item-details")?.getAttribute("data-product"))
+          let salesProduct = dataProduct.salesproduct
+
+          if (
+            !document.querySelector("#overlay") &&
+            !sessionStorage.getItem("successSign") &&
+            salesProduct &&
+            document.querySelector('.header-container .header-actions .action-links [data-account-trigger="true"] span').textContent !== "Account"
+          ) {
+            showPopup()
+          }
+        }
+      }, 3000)
+    }
+
+    document.querySelector(".btn_close").addEventListener("click", function () {
+      if (this.getAttribute("successCoupon") || document.querySelector(".body_popup .form_wrap:nth-child(2)").classList.contains("active")) {
+        pushDataLayer("TY after registration pop up closed by X")
+      } else {
+        pushDataLayer("Registration pop up closed by X")
+      }
+
+      hidePopup()
+    })
+
+    document.querySelector(".backdrop_popup").addEventListener("click", (e) => {
+      if (e.target.matches(".backdrop_popup")) {
+        pushDataLayer("Registration pop up closed by backdrop")
+        hidePopup()
+      }
+    })
+
+    //show popup
+    function showPopup() {
+      document.querySelector(".backdrop_popup").classList.add("show")
+      document.body.style.overflow = "hidden"
+    }
+
+    //hide popup
+    function hidePopup() {
+      document.querySelector(".backdrop_popup").classList.remove("show")
+      document.body.style.overflow = "unset"
+    }
+
+    // form
+    if (document.querySelector(".form_wrap > ul")) {
+      document.querySelectorAll(".form_wrap > ul li").forEach((el) => {
+        el.addEventListener("click", () => {
+          if (el.classList.contains("fb")) {
+            document.querySelector(".i-block.m-0 .fab.fa-facebook").closest("a").click()
+          }
+
+          if (el.classList.contains("google")) {
+            document.querySelector(".i-block.m-0 .fab.fa-google").closest("a").click()
+          }
+
+          if (el.classList.contains("amazon")) {
+            document.querySelector(".i-block.m-0 .fab.fa-amazon").closest("a").click()
+          }
+        })
+      })
+    }
+
+    document.querySelector(".form_wrap > p > span")?.addEventListener("click", () => {
+      hidePopup()
+      document.querySelector('.header-container .header-actions .action-links [data-account-trigger="true"]')?.click()
+      document.querySelector("#account-panel .content-panel #btn-login-show")?.click()
+    })
+
+    document.querySelector(".form_wrap button#continueBtn")?.addEventListener("click", () => {
+      pushDataLayer("Continue Shopping clicked")
+      hidePopup()
+      window.location.reload()
+    })
+
+    document.querySelector(".form_wrap button#btnRegisterSubmit")?.addEventListener("click", () => {
+      validationForm(`.new_form`)
+    })
+
+    let newPopup = setInterval(() => {
+      if (document.querySelector('.header-container .header-actions .action-links [data-account-trigger="true"] span').textContent === "Account") {
+        if (sessionStorage.getItem("successCoupon")) {
+          clearInterval(newPopup)
+          document.querySelectorAll(".body_popup .form_wrap")[1].classList.add("active")
+          document.querySelectorAll(".body_popup .form_wrap")[0].classList.remove("active")
+          showPopup()
+          if (sessionStorage.getItem("successCoupon")) {
+            sessionStorage.removeItem("successCoupon")
+          }
+        }
+      }
+    }, 10)
+
+    // validate form
+    function validationForm(parent) {
+      let inputValueName = document.querySelector(`${parent} input[name='firstName']`).value.match(/^[а-яА-ЯёЁa-zA-Z0-9]+$/)
+      let inputLastName = document.querySelector(`${parent} input[name='lastName']`).value.match(/^[а-яА-ЯёЁa-zA-Z0-9]+$/)
+      let inputValueEmail = document.querySelector(`${parent} input[name='registerEmail']`).value.match(/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/)
+
+      let inputValuePassword = document.querySelector(`${parent} input[name='registerPassword']`).value.match(/^.{7,24}$/)
+
+      // first_name
+      if (inputValueName === null) {
+        document.querySelector(`${parent} input[name='firstName']`)?.closest("div").classList.add("input_error")
+        document.querySelector(`${parent} input[name='firstName'] + .text_validation`).style.display = "block"
+      } else {
+        document.querySelector(`${parent} input[name='firstName']`)?.closest("div").classList.remove("input_error")
+        document.querySelector(`${parent} input[name='firstName'] + .text_validation`).style.display = "none"
+      }
+
+      // dog_name
+      if (inputLastName === null) {
+        document.querySelector(`${parent} input[name='lastName']`)?.closest("div").classList.add("input_error")
+        document.querySelector(`${parent} input[name='lastName'] + .text_validation`).style.display = "block"
+      } else {
+        document.querySelector(`${parent} input[name='lastName']`)?.closest("div").classList.remove("input_error")
+        document.querySelector(`${parent} input[name='lastName'] + .text_validation`).style.display = "none"
+      }
+
+      if (inputValueEmail === null) {
+        document.querySelector(`${parent} input[name='registerEmail']`).closest("div").classList.add("input_error")
+        document.querySelector(`${parent} input[name='registerEmail'] + .text_validation`).style.display = "block"
+      } else {
+        document.querySelector(`${parent} input[name='registerEmail']`).closest("div").classList.remove("input_error")
+        document.querySelector(`${parent} input[name='registerEmail'] + .text_validation`).style.display = "none"
+      }
+
+      if (inputValuePassword === null) {
+        document.querySelector(`${parent} input[name='registerPassword']`).closest("div").classList.add("input_error")
+        document.querySelector(`${parent} input[name='registerPassword'] + .text_validation`).style.display = "block"
+        document.querySelector(".form_wrap button").style.marginTop = "30px"
+      } else {
+        document.querySelector(`${parent} input[name='registerPassword']`).closest("div").classList.remove("input_error")
+        document.querySelector(`${parent} input[name='registerPassword'] + .text_validation`).style.display = "none"
+        document.querySelector(".form_wrap button").style.marginTop = "0px"
+      }
+
+      if (document.querySelector(`${parent} > div.input_error`) === null) {
+        document.querySelector("#signup-email").click()
+        document.querySelector("#first-name").value = document.querySelector(`${parent} input[name='firstName']`).value
+        document.querySelector("#last-name").value = document.querySelector(`${parent} input[name='lastName']`).value
+        document.querySelector("#register-email").value = document.querySelector(`${parent} input[name='registerEmail']`).value
+        document.querySelector("#register-password").value = document.querySelector(`${parent} input[name='registerPassword']`).value
+
+        postForm(
+          document.querySelector(`${parent} input[name='registerEmail']`).value,
+          document.querySelector(`${parent} input[name='registerPassword']`).value,
+          document.querySelector(`${parent} input[name='firstName']`).value,
+          document.querySelector(`${parent} input[name='lastName']`).value
+        )
+      }
+    }
+
+    function postForm(email, passwordVal, firstName, lastName) {
+      let form = new FormData()
+
+      form.append("form_key", window.form_key)
+      form.append("submit_type", "register")
+      form.append("emailAddress", email)
+      form.append("password", passwordVal)
+      form.append("firstname", firstName)
+      form.append("lastname", lastName)
+      form.append("newsletter", "on")
+
+      fetch(`/l-c/ajax/`, {
+        body: form,
+        method: "POST",
+      })
+        .then((res) => {
+          return res.status
+        })
+        .then((data) => {
+          if (data === 403) {
+            document.querySelector(".form_wrap  > .error_msg").style.display = "block"
+          } else {
+            document.querySelector(".form_wrap  > .error_msg").style.display = "none"
+            document.querySelector(".btn_close").setAttribute("successCoupon", "true")
+            sessionStorage.setItem("successCoupon", true)
+            sessionStorage.setItem("successSign", true)
+            activateCoupon()
+            $j(document).hoAjax("refreshPage", "account")
+            pushDataLayer("Sign Up clicked")
+            hidePopup()
+          }
+        })
+        .catch((err) => {
+          console.log("Failed fetch ", err)
+        })
+    }
+
+    pushDataLayer("loaded")
+    clarity("set", `signup_discount_${eventVar}`, "variant_1")
+  }
+}, 10)
