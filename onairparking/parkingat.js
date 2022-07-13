@@ -92,6 +92,44 @@ let style = `
     #google-map-parking-at {
         height: 65vw!important;
     }
+    .relative:hover .tooltip {
+        opacity: 1;
+    }
+    .tooltip {
+        position: absolute;
+        right: -26px;
+        top: calc(100% + 13px);
+        background: #F9FAFB;
+        border-radius: 5px;
+        padding: 10px;
+        font-size: 10px;
+        line-height: 15px;
+        box-shadow: 0 0 30px rgba(0, 0, 0, 0.1), 0 0 2px rgba(0, 0, 0, 0.1);
+        pointer-events: none;
+        opacity: 0;
+        transition: all 0.3s ease;
+        width: 191px;
+        z-index: 2;
+    }
+    .tooltip:before, .tooltip:after {
+        content: '';
+        position: absolute;
+        width: 0;
+        height: 0;
+        border-style: solid;
+    }
+    .tooltip:before {
+        bottom: calc(100% + 1px);
+        right: 25px;
+        border-width: 0 16px 11px 16px;
+        border-color: transparent transparent rgb(238 239 239) transparent;
+    }
+    .tooltip:after {
+        bottom: 100%;
+        right: 26px;
+        border-width: 0 15px 10px 15px;
+        border-color: transparent transparent #F9FAFB transparent;
+    }
     
 </style>`
 
@@ -103,6 +141,18 @@ let pushDataLayer = (action) => {
         'event': 'event-to-ga',
         'eventCategory': 'Exp: Redesign landing page',
         'eventAction': action,
+    });
+}
+//scrooll to
+let scrollTop = (targetScroll, offsetTop) => {
+    const scrollTarget = targetScroll;
+    const topOffset = offsetTop.offsetHeight;
+    const elementPosition = scrollTarget.getBoundingClientRect().top;
+    const offsetPosition = elementPosition - topOffset;
+
+    window.scrollBy({
+        top: offsetPosition,
+        behavior: 'smooth'
     });
 }
 
@@ -153,9 +203,6 @@ let postParking = (id, startDate, endDate, parent) => {
         //rewiev
         parent.querySelector('div > article > div.flex > span').innerHTML = `<span class="review_section flex items-center mt-2 fs-14"><ul class="flex">${renderStar(result['facility_review'])}</ul> (${result['num_review']})</span>`;
 
-
-        //12
-        console.log(startDate)
         //info about, price block
         parent.querySelector('div > article > div.flex.flex-col').insertAdjacentHTML('afterend',`
             <ul class="info_about list bb-1">${distance + shuttle + shuttleFrequency}<li>On air parking</li></ul> 
@@ -189,8 +236,8 @@ let postParking = (id, startDate, endDate, parent) => {
             </div>
             <div class="location_section bb-1">
                 <h3 class="title mb-2">Facility Location</h3>
-                <p class="mb-5">Exact location provided after booking 
-                    <label>
+                <p class="mb-5 flex items-center">Exact location provided after booking 
+                    <label class="relative">
                         <svg class="flex-shrink-0 ml-2" width="17" height="17" viewBox="0 0 17 17" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <circle cx="8.5" cy="8.5" r="8" stroke="#515356"/>
                             <path d="M7.92045 13V6.45455H8.92614V13H7.92045ZM8.43182 5.36364C8.2358 5.36364 8.06676 5.29688 7.92472 5.16335C7.78551 5.02983 7.71591 4.86932 7.71591 4.68182C7.71591 4.49432 7.78551 4.33381 7.92472 4.20028C8.06676 4.06676 8.2358 4 8.43182 4C8.62784 4 8.79545 4.06676 8.93466 4.20028C9.0767 4.33381 9.14773 4.49432 9.14773 4.68182C9.14773 4.86932 9.0767 5.02983 8.93466 5.16335C8.79545 5.29688 8.62784 5.36364 8.43182 5.36364Z" fill="#515356"/>
@@ -210,19 +257,32 @@ let postParking = (id, startDate, endDate, parent) => {
             <div class="bb-1">
                 <div class="flex justify-between">
                     <h3 class="title">Reviews</h3>
-                    <button class="btn_see-all" type="button">See all
+                    <button class="btn_see-all flex items-center" type="button">See all
                         <svg class="ml-2" width="6" height="10" viewBox="0 0 6 10" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M1 9L5 5L1 1" stroke="#515356" stroke-linecap="round" stroke-linejoin="round"/>
                         </svg>
                     </button>
                 </div>
-                <div class="review-slider">
-                    <div class="slide"></div>
-                </div>
+                <div class="review-slider"></div>
             </div>
         `)
 
         document.querySelector('.location_section p').after(document.querySelector('#google-map-parking-at'));
+        document.querySelector('.btn_see-all').addEventListener('click', (e) => scrollTop(document.querySelector('#parkingat > div > article > div > .demo-loadmore-list').parentElement, e.target))
+
+        let listReview = document.querySelectorAll('.demo-loadmore-list ul > li');
+        for (let i = 0; i < listReview.length; i++) {
+            document.querySelector('.review-slider').insertAdjacentHTML('beforeend',`<div class="slide">${listReview[i].innerHTML}</div>`)
+        }
+
+        // $('.review-slider').slick({
+        //     infinite: true,
+        //     slidesToShow: 2,
+        //     slidesToScroll: 2,
+        //     dots: true,
+        //     arrows: false,
+        // })
+
 
     })
 }
