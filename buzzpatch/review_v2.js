@@ -305,6 +305,18 @@ let startFunkReview = setInterval(() => {
             .block_third ul li{
                 width: 28%;
             }
+
+            .trust-rating .stars .text{
+              font-size: 10px !important;
+            }
+
+            #getNow .new_img_review_box >img:nth-child(2){
+              max-width: 158px !important;
+            }
+
+            #getNow .new_img_review_box >img:nth-child(1) {
+                max-width: 62px !important;
+            }
          }
 
       </style>
