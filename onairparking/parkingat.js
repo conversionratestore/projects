@@ -304,14 +304,12 @@ let renderStar = (rate) => {
     return stars
 }
 
-let renderPriceDay = (startDate,endDate,price) => {
+let renderPriceDay = (startDate,endDate,total) => {
     let newDate = new Date(new Date(endDate.split('-')[0], endDate.split('-')[1], endDate.split('-')[2]) - new Date(startDate.split('-')[0], startDate.split('-')[1], startDate.split('-')[2]));
     console.log(newDate)
     let day = +newDate.getDate() - 1;
     console.log(day)
-    let total = +price.innerText.replace('$','');
-    console.log(total)
-    let priceDay = (total / day).toFixed(2);
+    let priceDay = (+total / day).toFixed(2);
     console.log(priceDay)
     return priceDay;
 }
@@ -332,7 +330,7 @@ let formatDate = {
     'Dec':'12'
 }
 
-let postParking = (id, startDate, endDate, parent, urlCode) => {
+let postParking = (id, startDate, endDate, parent, urlCode, total) => {
 
     fetch(`https://www.onairparking.com/api/Facility/SearchAlternate`, {
         headers: {
@@ -375,7 +373,7 @@ let postParking = (id, startDate, endDate, parent, urlCode) => {
                     <div class="flex justify-between price_section bb-1">
                         <div>
                             <div class="tab mb-4 fs-12 font-medium">Online-only price</div>
-                            <p class="price mb-1">$${renderPriceDay(startDate,endDate,document.querySelector('#detail-info > table > tbody > tr:nth-child(5) > td.text-right.pt-2 > strong'))} /day</p>
+                            <p class="price mb-1">$${renderPriceDay(startDate,endDate,total)} /day</p>
                             <p class="n-left font-semibold">Only 8 left at this price</p>
                         </div>
                         <div class="guarantee_section">
@@ -464,7 +462,7 @@ let sentPost = false;
 let viewed = false;
 
 let start = setInterval(() => {
-    if (document.querySelector('#__NEXT_DATA__') != null && window.location.pathname.includes('/parkingat/') && document.querySelector('#parkingat') != null && document.querySelector('.js-style') == null) {
+    if (document.querySelector('#__NEXT_DATA__') != null && window.location.pathname.includes('/parkingat/') && document.querySelector('#parkingat') != null && document.querySelector('.js-style') == null && document.querySelector('#detail-info > p.block') != null) {
         document.body.insertAdjacentHTML('afterbegin', style) // add style
         let initial = window.location.href.split('parkingat/')[1].split('?')[0].replace(/[0-9]/g, '');
         let arr = document.querySelector('#__NEXT_DATA__').innerText.split(`,"airport_initials":"${initial.toUpperCase()}`)[0].split('"airport_id":'),
@@ -487,8 +485,16 @@ let start = setInterval(() => {
             document.body.appendChild(scriptCustom);
 
             console.log(arr)
-            console.log(id, startDate, endDate, parent, urlCode)
-            postParking(id, startDate, endDate, parent, urlCode)
+            let total = '';
+            let tr = document.querySelectorAll('#detail-info > table > tr.text-base');
+            for (let i = 0; i < tr.length; i++) {
+                if (tr[i].querySelector('td').innerText.toLowerCase() == 'total') {
+                    total = tr[i].querySelector('td:last-child').innerText.replace('$','');
+                }
+            }
+
+            console.log(id, startDate, endDate, parent, urlCode, total)
+            postParking(id, startDate, endDate, parent, urlCode, total)
             document.body.insertAdjacentHTML('beforeend',`<div class="fix_footer"><button type="button" class="btn_reserve-now">Reserve now</button></div>`)
             document.querySelector('.btn_reserve-now').addEventListener('click', () => {
                 document.querySelector('#detail-info > button.ant-btn').click();
@@ -542,8 +548,15 @@ let startEdit = setInterval(() => {
 
         let startDate = `${year1}-${mouth1}-${day1}`,
             endDate = `${year2}-${mouth2}-${day2}`;
-        console.log(startDate,endDate)
-        renderPriceDay(startDate,endDate,document.querySelector('#detail-info > table > tbody > tr:nth-child(5) > td.text-right.pt-2 > strong'))
+        console.log(startDate,endDate);
+        let total = '';
+        let tr = document.querySelectorAll('#detail-info > table > tr.text-base');
+        for (let i = 0; i < tr.length; i++) {
+            if (tr[i].querySelector('td').innerText.toLowerCase() == 'total') {
+                total = tr[i].querySelector('td:last-child').innerText.replace('$','');
+            }
+        }
+        renderPriceDay(startDate,endDate,total)
 
     }
 }, 100)
