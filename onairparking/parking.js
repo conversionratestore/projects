@@ -514,18 +514,22 @@ let start = setInterval(() => {
                     }
                 }
             })
+            startRemove()
         }
     }
 },100)
 
-let startRemove = setInterval(() => {
-    if (document.querySelector('#parkingat') == null || document.querySelector('#easy-checkout') != null) {
-        clearInterval(startRemove)
-        document.querySelector('.js-style') != null ? document.querySelector('.js-style').remove() : '';
-        sentPost = false;
-        console.log('remove')
-    }
-},100)
+let startRemove = () => {
+    let startRemove = setInterval(() => {
+        if (document.querySelector('#parkingat') == null || document.querySelector('#easy-checkout') != null) {
+            clearInterval(startRemove)
+            document.querySelector('.js-style') != null ? document.querySelector('.js-style').remove() : '';
+            sentPost = false;
+            console.log('remove')
+        }
+    },100)
+}
+startRemove()
 
 let startEdit = setInterval(() => {
     if (window.location.pathname.includes('/parkingat/') && document.querySelector('#detail-info > div.flex.flex-row > div > svg') == null && document.querySelector('#detail-info > div.flex.flex-row.justify-between.items-center > div.text-secondary.underline.font-medium.cursor-pointer') != null) {
@@ -558,6 +562,5 @@ let startEdit = setInterval(() => {
             }
         }
         renderPriceDay(startDate,endDate,total)
-
     }
 }, 100)
