@@ -516,7 +516,7 @@ let start = setInterval(() => {
             })
             //click on Reserve now button
             reserveBtn.addEventListener('click', (e) => {
-                if (!e.target.classlist.contains('click-btn-sticky')) {
+                if (!e.target.classList.contains('click-btn-sticky')) {
                     pushDataLayer('Click at Reserve now button')
                 } else {
                     reserveBtn.classList.remove('click-btn-sticky')
@@ -538,11 +538,11 @@ let start = setInterval(() => {
             startRemove()
         }
     }
-},100)
+})
 
 let startRemove = () => {
     let startRemove = setInterval(() => {
-        if (document.querySelector('#parkingat') == null) {
+        if (document.querySelector('#parkingat') == null || document.querySelector('#easy-checkout') != null) {
             clearInterval(startRemove)
             document.querySelector('.js-style') != null ? document.querySelector('.js-style').remove() : '';
             sentPost = false;
