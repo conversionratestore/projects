@@ -307,11 +307,12 @@ let renderStar = (rate) => {
 let renderPriceDay = (startDate,endDate,price) => {
     let newDate = new Date(new Date(endDate.split('-')[0], endDate.split('-')[1], endDate.split('-')[2]) - new Date(startDate.split('-')[0], startDate.split('-')[1], startDate.split('-')[2]));
     console.log(newDate)
-    let day = +newDate.getDate();
+    let day = +newDate.getDate() - 1;
     console.log(day)
-    let total = +price.innerText.replace('$','')
+    let total = +price.innerText.replace('$','');
     console.log(total)
-    let priceDay = (total / day).toFixed(2)
+    let priceDay = (total / day).toFixed(2);
+    console.log(priceDay)
     return priceDay;
 }
 
@@ -367,7 +368,6 @@ let postParking = (id, startDate, endDate, parent, urlCode) => {
                 }
                 //review
                 parent.querySelector('div > article > div.flex > span').innerHTML = `<span class="review_section flex items-center mt-2 fs-14"><ul class="flex">${renderStar(Math.round(result[i]['facility_review_avg']))}</ul> (${result[i]['num_review']})</span>`;
-
 
                 //info about, price block
                 parent.querySelector('div > article > div.flex.flex-col').insertAdjacentHTML('afterend',`
@@ -457,7 +457,6 @@ let postParking = (id, startDate, endDate, parent, urlCode) => {
                 });
             }
         }
-
     })
 }
 
