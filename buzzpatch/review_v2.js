@@ -56,6 +56,7 @@ let startFunkReview = setInterval(() => {
             font-weight: 700 !important;
             font-size: 12px !important;
             line-height: 16px !important;
+            z-index: 100;
         }
         
         #zuck-modal{
@@ -413,7 +414,8 @@ let startFunkReview = setInterval(() => {
     )
 
     //click on block_first and new_img_review_box
-    scrolling(".trust-rating")
+    scrolling("div.trust-rating")
+    scrolling(".stars .text")
     scrolling("#getNow .new_img_review_box >img:nth-child(2)")
 
     // Pure js scrolling
@@ -424,9 +426,18 @@ let startFunkReview = setInterval(() => {
       links.forEach((link) => {
         link.addEventListener("click", function (event) {
           event.preventDefault()
+
           if (link.closest("div").classList.contains("new_img_review_box")) {
             pushDataLayer("click on Reviews 'SELECT PACKAGE'")
-          } else {
+          }
+
+          if (!this.classList.contains("trust-rating") && this.classList.contains("text")) {
+            event.stopPropagation()
+            pushDataLayer("click on See reviews")
+          }
+
+          if (event.currentTarget.classList.contains("trust-rating")) {
+            event.stopPropagation()
             pushDataLayer("click on Reviews")
           }
 
