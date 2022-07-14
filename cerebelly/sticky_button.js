@@ -160,87 +160,91 @@ let testStart = setInterval(() => {
   //   ).textContent = "CHECKOUT NOW - GET 15% OFF";
 
   // observer
-  const target = document.querySelector(".e-page-content-wrap + div")
-  const config = {
-    childList: true,
-    subtree: true,
-  }
+  // const target = document.querySelector(".e-page-content-wrap + div")
+  // const config = {
+  //   childList: true,
+  //   subtree: true,
+  // }
 
-  let observer = new MutationObserver((mutations) => {
-    observer.disconnect()
+  // let observer = new MutationObserver((mutations) => {
+  //   observer.disconnect()
 
-    for (let mutation of mutations) {
-      for (let node of mutation.addedNodes) {
-        if (!(node instanceof HTMLElement)) continue
+  //   // for (let mutation of mutations) {
+  //   //   for (let node of mutation.addedNodes) {
+  //   //     if (!(node instanceof HTMLElement)) continue
 
-        if (node.matches(".css-n8qisr .custom .content > div")) {
-          calback()
-        }
+  //   //     if (node.matches(".css-n8qisr .custom .content > div")) {
+  //   //       calback()
+  //   //     }
 
-        function calback() {
-          // const items = [...document.querySelectorAll(".product-count")]
-          // let totalItems = 0
-          // items.forEach((i) => {
-          //   let item = +i.textContent.split(" ")[0] || +i.textContent.split("-")[0]
-          //   totalItems += item
-          // })
-          // localStorage.setItem("allItems", totalItems)
-          // console.dir(totalItems)
-          const items = document.querySelector(".cart-product-wrapper").children.length
-          totalItems = items
-          localStorage.setItem("allItems", totalItems)
+  //   //     function calback() {
+  //   //       // const items = [...document.querySelectorAll(".product-count")]
+  //   //       // let totalItems = 0
+  //   //       // items.forEach((i) => {
+  //   //       //   let item = +i.textContent.split(" ")[0] || +i.textContent.split("-")[0]
+  //   //       //   totalItems += item
+  //   //       // })
+  //   //       // localStorage.setItem("allItems", totalItems)
+  //   //       // console.dir(totalItems)
+  //   //       const items = document.querySelector(".cart-product-wrapper").children.length
+  //   //       totalItems = items
+  //   //       localStorage.setItem("allItems", totalItems)
 
-          const prices = [...document.querySelectorAll(".product-price")]
-          let totalPrice = 0
+  //   //       const prices = [...document.querySelectorAll(".product-price")]
+  //   //       let totalPrice = 0
 
-          prices.forEach((element) => {
-            let price = +element.textContent.slice(1).replace(/,/g, "")
-            totalPrice += price
-          })
+  //   //       prices.forEach((element) => {
+  //   //         let price = +element.textContent.slice(1).replace(/,/g, "")
+  //   //         totalPrice += price
+  //   //       })
 
-          localStorage.setItem("allSumm", totalPrice.toFixed(2))
-          renderCountBadge()
-          renderStickyBox()
+  //   //       localStorage.setItem("allSumm", totalPrice.toFixed(2))
+  //   //       // renderCountBadge()
+  //   //       // renderStickyBox()
 
-          console.dir(totalPrice.toFixed(2))
-        }
-      }
-    }
-    observer.observe(target, config)
-  })
+  //   //       console.dir(totalPrice.toFixed(2))
+  //   //     }
+  //   //   }
+  //   // }
+  //   observer.observe(target, config)
+  // })
 
-  observer.observe(target, config)
+  // observer.observe(target, config)
 
-  renderStickyBox()
-  renderCountBadge()
+  // renderStickyBox()
+  // renderCountBadge()
 
   // render StickyBox
-  function renderStickyBox() {
-    // if (document.querySelector(".count_badge").classList.contains("is_visible") && localStorage.getItem("allSumm") && !document.querySelector(".sticky_box")) {
-    //   document.querySelector(".e-page-content.css-xf71d4.css-l33dnr.is-scrolled.is-scrolled-50.is-scrolled-60").insertAdjacentHTML("beforeend", stickyBox)
-    // }
+  // function renderStickyBox() {
+  //   // if (document.querySelector(".count_badge").classList.contains("is_visible") && localStorage.getItem("allSumm") && !document.querySelector(".sticky_box")) {
+  //   //   document.querySelector(".e-page-content.css-xf71d4.css-l33dnr.is-scrolled.is-scrolled-50.is-scrolled-60").insertAdjacentHTML("beforeend", stickyBox)
+  //   // }
 
-    if (localStorage.getItem("allSumm") && !document.querySelector(".sticky_box")) {
-      document.querySelector(".e-page-content.css-xf71d4.css-l33dnr.is-scrolled.is-scrolled-50.is-scrolled-60").insertAdjacentHTML("beforeend", stickyBox)
-    }
+  //   if (localStorage.getItem("allSumm") && !document.querySelector(".sticky_box")) {
+  //     document.querySelector(".e-page-content.css-xf71d4.css-l33dnr.is-scrolled.is-scrolled-50.is-scrolled-60").insertAdjacentHTML("beforeend", stickyBox)
+  //   }
 
-    if (document.querySelector(".sticky_box > span")) {
-      let summ = +localStorage.getItem("allSumm")
-      document.querySelector(".sticky_box > span").textContent = `$${summ}`
-    }
-  }
+  //   if (document.querySelector(".sticky_box > span")) {
+  //     let summ = +localStorage.getItem("allSumm")
+  //     document.querySelector(".sticky_box > span").textContent = `$${summ}`
+  //   }
+  // }
 
-  function renderCountBadge() {
-    if (!document.querySelector(".count_badge") && localStorage.getItem("allItems")) {
-      document.querySelector(".css-11td2i.b-header.fw-header .e-nav .mobile-cart-box")?.insertAdjacentHTML("afterbegin", `<span class="count_badge">0</span>`)
-    }
+  // function renderCountBadge() {
+  //   if (!document.querySelector(".count_badge") && localStorage.getItem("allItems")) {
+  //     document.querySelector(".css-11td2i.b-header.fw-header .e-nav .mobile-cart-box")?.insertAdjacentHTML("afterbegin", `<span class="count_badge">0</span>`)
+  //   }
 
-    if (document.querySelector(".count_badge") && localStorage.getItem("allItems")) {
-      let items = +localStorage.getItem("allItems")
-      document.querySelector(".count_badge").textContent = items
-      document.querySelector(".count_badge").classList.add("is_visible")
-    }
-  }
+  //   if (document.querySelector(".count_badge") && localStorage.getItem("allItems")) {
+  //     let items = +localStorage.getItem("allItems")
+  //     document.querySelector(".count_badge").textContent = items
+  //     document.querySelector(".count_badge").classList.add("is_visible")
+  //   }
+  // }
+
+  // ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+  document.querySelector(".css-11td2i.b-header.fw-header .e-nav .mobile-cart-box")?.insertAdjacentHTML("afterbegin", `<span class="count_badge">0</span>`)
 
   //?????????
   addToCartPopup()
@@ -252,10 +256,68 @@ let testStart = setInterval(() => {
         document.querySelector(".css-11td2i.b-header.fw-header .e-nav .mobile-cart-box").click()
         document.querySelector(".e-page-content-wrap + div").classList.remove("is_hidden")
 
-        // if (+document.querySelector(".count_badge.is_visible").textContent < +document.querySelector(".count_badge.is_visible").textContent) {
-        //   console.dir(+document.querySelector(".count_badge.is_visible").textContent)
-        // }
+        let temp = []
+        if (localStorage.getItem("product")) {
+          temp = JSON.parse(localStorage.getItem("product"))
+        }
+
+        temp.push({
+          price: el.closest(".product").querySelector(".discount").textContent.slice(1).replace(/,/g, ""),
+          count: 1,
+          title: el.closest(".product").querySelector(".title").textContent,
+        })
+
+        localStorage.setItem("product", JSON.stringify(temp))
+
+        if (localStorage.getItem("product") && !document.querySelector(".sticky_box")) {
+          document.querySelector(".e-page-content.css-xf71d4.css-l33dnr.is-scrolled.is-scrolled-50.is-scrolled-60").insertAdjacentHTML("beforeend", stickyBox)
+        }
+
+        getStorageInfo()
       })
     })
   }
+
+  function getStorageInfo() {
+    let storage = JSON.parse(localStorage.getItem("product"))
+    let res = storage.reduce((accumulator, el) => accumulator + +el.price, 0)
+    let resCount = storage.reduce((accumulator, el) => accumulator + +el.count, 0)
+    console.dir(res)
+    if (document.querySelector(".sticky_box > span")) {
+      document.querySelector(".sticky_box > span").textContent = `$${res.toFixed(2)}`
+    }
+
+    if (document.querySelector(".count_badge")) {
+      document.querySelector(".count_badge").textContent = resCount
+      document.querySelector(".count_badge").classList.add("is_visible")
+    }
+  }
+
+  document.querySelector(".sticky_box > button")?.addEventListener("click", function () {
+    document.querySelector(".css-11td2i.b-header.fw-header .e-nav .mobile-cart-box").click()
+    document.querySelector(".e-page-content-wrap + div").classList.add("is_hidden")
+    document.querySelector(".css-qa0rkb .cart-wrapper .cart-product-actions button.checkout").click()
+    document.querySelector(".e-page-content-wrap + div").classList.remove("is_hidden")
+  })
+
+  document.querySelectorAll(".product .added button").forEach((el) => {
+    let title = el.closest(".product").querySelector(".title").textContent
+
+    el.addEventListener("click", () => {
+      let storage = JSON.parse(localStorage.getItem("product"))
+      let res = storage.filter((item) => {
+        return item.title === title
+      })
+
+      if (el.classList.contains("add")) {
+        console.dir(`add`)
+        console.dir(res)
+      }
+
+      if (el.classList.contains("remove")) {
+        console.dir(`remove`)
+        console.dir(res)
+      }
+    })
+  })
 }, 10)
