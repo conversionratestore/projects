@@ -245,13 +245,13 @@ let startFunkReview = setInterval(() => {
             flex-wrap: wrap;
             justify-content: space-between;
             align-items: center;
-            gap: 15px;
             margin: 0;
         }
 
         .block_third ul li{
             list-style: none;
             width: 30%;
+            margin-bottom: 15px;
         }
 
         .block_third ul li img{
