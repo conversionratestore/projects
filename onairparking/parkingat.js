@@ -278,6 +278,16 @@ let scrollTop = (targetScroll, offsetTop) => {
         behavior: 'smooth'
     });
 }
+//comes into view
+function isScrolledIntoView(el) {
+    let rect = el.getBoundingClientRect(),
+        elemTop = rect.top,
+        elemBottom = rect.bottom;
+
+    let isVisible = (elemTop >= 0) && (elemBottom <= window.innerHeight);
+
+    return isVisible;
+}
 
 let renderStar = (rate) => {
     let stars = '',
@@ -431,6 +441,7 @@ let postParking = (id, startDate, endDate, parent, urlCode) => {
 }
 
 let sentPost = false;
+let viewed = false;
 
 let start = setInterval(() => {
     if (document.querySelector('#__NEXT_DATA__') != null && window.location.pathname.includes('/parkingat/') && document.querySelector('#parkingat') != null && document.querySelector('.js-style') == null) {
@@ -464,10 +475,16 @@ let start = setInterval(() => {
             })
 
             window.addEventListener('scroll', () => {
-                if (window.pageYOffset >= document.querySelector('#detail-info > button.ant-btn').offsetTop) {
-                    document.querySelector('.fix_footer').classList.add('active')
-                } else {
-                    document.querySelector('.fix_footer').classList.remove('active');
+                if (document.querySelector('#detail-info > button.ant-btn') != null || document.querySelector('#parkingat > div > article > div.flex.flex-col > button') != null) {
+                    if (isScrolledIntoView(document.querySelector('#detail-info > button.ant-btn')) == true || isScrolledIntoView(document.querySelector('#parkingat > div > article > div.flex.flex-col > button')) == true) {
+                        if (viewed == false) {
+                            viewed = true;
+                            document.querySelector('.fix_footer').classList.remove('active');
+                        }
+                    } else {
+                        document.querySelector('.fix_footer').classList.add('active');
+                        viewed = false;
+                    }
                 }
             })
             document.querySelector('#detail-info > div.flex.flex-row.justify-between.items-center > div.text-secondary.underline.font-medium.cursor-pointer').classList.add('flex','lh-14');
@@ -482,7 +499,7 @@ let start = setInterval(() => {
 },100)
 
 let startRemove = setInterval(() => {
-    if (document.querySelector('.js-style') != null && !window.location.pathname.includes('/parking/')) {
+    if (document.querySelector('.js-style') != null && !window.location.pathname.includes('/parkingat/')) {
         clearInterval(startRemove)
         document.querySelector('.js-style').remove();
     }
