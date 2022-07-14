@@ -291,6 +291,12 @@ let startFunkReview = setInterval(() => {
             max-width: 200px !important;
         }
 
+        @media (max-width: 360px){
+            .block_third ul li{
+                width: 28%;
+            }
+        }
+
 
          @media (max-width: 320px){
             .block_first > div span:nth-child(1){
