@@ -195,6 +195,10 @@ let style = `
     .reviews-slider .slide > div > div:first-child {
         order: 1;
     }
+    .reviews-slider {
+        display: flex;
+        padding-bottom: 28px!important;
+    }
     .reviews-slider .slide {
         padding: 15px;
         background: #F9FAFB;
@@ -216,11 +220,7 @@ let style = `
     .reviews-slider .justify-self-start {
         line-height: 15px;
     }
-    #tns1 {
-        display: flex;
-        padding-bottom: 28px!important;
-    }
-    #tns1-ow {
+    .tns-outer {
         position: relative;
         margin-left: -7.5px;
         width: calc(100% + 15px);
@@ -462,18 +462,19 @@ let sentPost = false;
 let viewed = false;
 
 let start = setInterval(() => {
-    if (document.querySelector('#__NEXT_DATA__') != null && window.location.pathname.includes('/parkingat/') && document.querySelector('#parkingat') != null && document.querySelector('.js-style') == null && document.querySelector('#detail-info > p.block') != null && document.querySelector('#detail-info > table tr') != null) {
-        document.body.insertAdjacentHTML('afterbegin', style) // add style
-        let initial = window.location.href.split('parkingat/')[1].split('?')[0].replace(/[0-9]/g, '');
-        let arr = document.querySelector('#__NEXT_DATA__').innerText.split(`,"airport_initials":"${initial.toUpperCase()}`)[0].split('"airport_id":'),
-            id = arr[arr.length - 1],
-            urlCode = window.location.href.split('parkingat/')[1].split('?')[0].toUpperCase(),
-            startDate = window.location.href.split('checkin=')[1].split('&')[0],
-            endDate = window.location.href.split('checkout=')[1],
-            parent = document.querySelector('#parkingat');
+    if (document.querySelector('#__NEXT_DATA__') != null && window.location.pathname.includes('/parkingat/') && document.querySelector('#parkingat') != null && document.querySelector('#detail-info > p.block') != null && document.querySelector('#detail-info > table tr') != null) {
+        document.querySelector('.js-style') == null ? document.body.insertAdjacentHTML('afterbegin', style) : ''; // add style
 
         if (sentPost == false) {
             sentPost = true;
+            let initial = window.location.href.split('parkingat/')[1].split('?')[0].replace(/[0-9]/g, '');
+            let arr = document.querySelector('#__NEXT_DATA__').innerText.split(`,"airport_initials":"${initial.toUpperCase()}`)[0].split('"airport_id":'),
+                id = arr[arr.length - 1],
+                urlCode = window.location.href.split('parkingat/')[1].split('?')[0].toUpperCase(),
+                startDate = window.location.href.split('checkin=')[1].split('&')[0],
+                endDate = window.location.href.split('checkout=')[1],
+                parent = document.querySelector('#parkingat');
+
             let linkCustom = document.createElement('link');
             linkCustom.href = 'https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.3/tiny-slider.css';
             linkCustom.rel = 'stylesheet';
@@ -513,16 +514,16 @@ let start = setInterval(() => {
                     }
                 }
             })
-
         }
-
     }
 },100)
 
 let startRemove = setInterval(() => {
-    if (document.querySelector('.js-style') != null && !window.location.pathname.includes('/parkingat/')) {
+    if (document.querySelector('.js-style') != null && !window.location.pathname.includes('/parkingat/') || document.querySelector('#easy-checkout') != null || (document.querySelector('#__next > section > main > div > div.container > div.block.bg-orange-50 > div > button') != null) && document.querySelector('#__next > section > main > div > div.container > div.block.bg-orange-50 > div > button').innerText == 'Edit') {
         clearInterval(startRemove)
         document.querySelector('.js-style').remove();
+        sentPost = false;
+        console.log('remove')
     }
 },100)
 
