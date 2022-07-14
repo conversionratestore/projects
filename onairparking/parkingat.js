@@ -216,6 +216,12 @@ let style = `
     }
     .reviews-slider .ant-rate {
         font-size: 15px;
+        margin-bottom: 10px;
+    }
+    .reviews-slider time {
+        font-weight: 300;
+        font-size: 12px;
+        line-height: 14px;
     }
     .reviews-slider .justify-self-start {
         line-height: 15px;
@@ -244,7 +250,18 @@ let style = `
     .tns-nav button.tns-nav-active {
         background: #515356;
     }
-    
+    #parkingat > div > article > div > h3 {
+        font-weight: 800!important;
+    }
+    #parkingat > div > article > div > h3 > span {
+        font-weight: 400!important;
+    }
+    .ant-rate-star:not(:last-child) {
+        margin-right: 5px;
+    }
+    #parkingat > div > article > div > h3 > ul.ant-rate {
+        margin-left: auto!important;
+    }
     @media only screen and (max-width: 360px) {
         #tns1-ow {
             margin-left: -3px;
