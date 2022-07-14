@@ -304,7 +304,32 @@ let renderStar = (rate) => {
     return stars
 }
 
+let renderPriceDay = (startDate,endDate,price) => {
+    let newDate = new Date(new Date(endDate.split('-')[0], endDate.split('-')[1], endDate.split('-')[2]) - new Date(startDate.split('-')[0], startDate.split('-')[1], startDate.split('-')[2]));
+    console.log(newDate)
+    let day = +newDate.getDate();
+    console.log(day)
+    let total = +price.innerText.replace('$','')
+    console.log(total)
+    let priceDay = (total / day).toFixed(2)
+    return priceDay;
+}
+
 let arrMouth = ['Jan','Feb','Mar','Apr','May','Jun','Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+let formatDate = {
+    'Jan':'01',
+    'Feb':'02',
+    'Mar':'03',
+    'Apr':'04',
+    'May':'05',
+    'Jun':'06',
+    'Jul':'07',
+    'Aug':'08',
+    'Sep':'09',
+    'Oct':'10',
+    'Nov':'11',
+    'Dec':'12'
+}
 
 let postParking = (id, startDate, endDate, parent, urlCode) => {
 
@@ -343,14 +368,6 @@ let postParking = (id, startDate, endDate, parent, urlCode) => {
                 //review
                 parent.querySelector('div > article > div.flex > span').innerHTML = `<span class="review_section flex items-center mt-2 fs-14"><ul class="flex">${renderStar(Math.round(result[i]['facility_review_avg']))}</ul> (${result[i]['num_review']})</span>`;
 
-                let newDate = new Date(new Date(endDate.split('-')[0], endDate.split('-')[1], endDate.split('-')[2]) - new Date(startDate.split('-')[0], startDate.split('-')[1], startDate.split('-')[2]));
-                console.log(newDate)
-                let date = +newDate.getDate();
-                console.log(date)
-                let price = +document.querySelector('#detail-info > table > tbody > tr:nth-child(5) > td.text-right.pt-2 > strong').innerText.replace('$','')
-                console.log(price)
-                let priceDay = price / date;
-                console.log(priceDay)
 
                 //info about, price block
                 parent.querySelector('div > article > div.flex.flex-col').insertAdjacentHTML('afterend',`
@@ -358,7 +375,7 @@ let postParking = (id, startDate, endDate, parent, urlCode) => {
                     <div class="flex justify-between price_section bb-1">
                         <div>
                             <div class="tab mb-4 fs-12 font-medium">Online-only price</div>
-                            <p class="price mb-1">$${priceDay.toFixed(2)} /day</p>
+                            <p class="price mb-1">$${renderPriceDay(startDate,endDate,document.querySelector('#detail-info > table > tbody > tr:nth-child(5) > td.text-right.pt-2 > strong'))} /day</p>
                             <p class="n-left font-semibold">Only 8 left at this price</p>
                         </div>
                         <div class="guarantee_section">
@@ -515,5 +532,19 @@ let startEdit = setInterval(() => {
         if (document.querySelector('.free_block') != null) {
             document.querySelector('#detail-info > table').after(document.querySelector('.free_block'))
         }
+        let date1 = document.querySelector('#detail-info > div.grid.grid-cols-2.gap-2.w-full.mt-4.justify-between > div:nth-child(1) > p').innerText,
+            date2 = document.querySelector('#detail-info > div.grid.grid-cols-2.gap-2.w-full.mt-4.justify-between > div:nth-child(2) > p').innerText,
+            year1 = date1.split(', ')[1].split(' ')[0],
+            year2 = date2.split(', ')[1].split(' ')[0],
+            mouth1 = formatDate[date1.split(' ')[0]],
+            mouth2 = formatDate[date2.split(' ')[0]],
+            day1 = date1.split(', ')[0].split(' ')[1],
+            day2 = date2.split(', ')[0].split(' ')[1];
+
+        let startDate = `${year1}-${mouth1}-${day1}`,
+            endDate = `${year2}-${mouth2}-${day2}`;
+        console.log(startDate,endDate)
+        renderPriceDay(startDate,endDate,document.querySelector('#detail-info > table > tbody > tr:nth-child(5) > td.text-right.pt-2 > strong'))
+
     }
 }, 100)
