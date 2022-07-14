@@ -542,7 +542,7 @@ let start = setInterval(() => {
 
 let startRemove = () => {
     let startRemove = setInterval(() => {
-        if (document.querySelector('#parkingat') == null || document.querySelector('#easy-checkout') != null) {
+        if (document.querySelector('#parkingat') == null) {
             clearInterval(startRemove)
             document.querySelector('.js-style') != null ? document.querySelector('.js-style').remove() : '';
             sentPost = false;
@@ -553,7 +553,7 @@ let startRemove = () => {
 startRemove()
 
 let startEdit = setInterval(() => {
-    if (window.location.pathname.includes('/parkingat/') && document.querySelector('#detail-info > div.flex.flex-row > div > svg') == null && document.querySelector('#detail-info > div.flex.flex-row.justify-between.items-center > div.text-secondary.underline.font-medium.cursor-pointer') != null) {
+    if (window.location.pathname.includes('/parkingat/') && document.querySelector('#detail-info > div.flex.flex-row > div > svg') == null && document.querySelector('#detail-info > div.flex.flex-row.justify-between.items-center > div.text-secondary.underline.font-medium.cursor-pointer') != null && document.querySelector('.price_section .price') != null) {
         let editBtn = document.querySelector('#detail-info > div.flex.flex-row.justify-between.items-center > div.text-secondary.underline.font-medium.cursor-pointer');
         editBtn.classList.add('flex','lh-14');
         editBtn.insertAdjacentHTML('beforeend',`
@@ -584,7 +584,7 @@ let startEdit = setInterval(() => {
                 total = tr[i].querySelector('td:last-child').innerText.replace('$','');
             }
         }
-        renderPriceDay(startDate,endDate,total)
+        document.querySelector('.price_section .price').innerHTML = `$${renderPriceDay(startDate,endDate,total)} /day`
     }
 }, 100)
 
