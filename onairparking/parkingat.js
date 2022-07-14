@@ -335,7 +335,7 @@ let postParking = (id, startDate, endDate, parent, urlCode) => {
                     } else if (highlights[h].type == 'facility_shuttle_frequency' && highlights[h].description != null) {
                         shuttleFrequency = ` <span class="font-bold">${highlights[h].description}</span></li>`;
                     } else if (highlights[h].type == 'facility_free_cancellation' && highlights[h].description == 'up to start date') {
-                        freeCancellation = `<div class="flex items-center pt-1 mb-5"><svg class="mr-2" width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="9" cy="9" r="8" stroke="#069B27" stroke-width="2"/><path d="M5.47852 9.89474L8.02397 12L12.4785 7" stroke="#069B27" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                        freeCancellation = `<div class="flex items-center pt-1 mb-5 free_block"><svg class="mr-2" width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="9" cy="9" r="8" stroke="#069B27" stroke-width="2"/><path d="M5.47852 9.89474L8.02397 12L12.4785 7" stroke="#069B27" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
                                             <p class="fs-13 c-green font-bold"> Free cancellation until ${startDate.split('-')[2]} ${arrMouth[+startDate.split('-')[1] - 1]}</p></div>`
                         document.querySelector('#detail-info > p.block').insertAdjacentHTML('beforebegin', freeCancellation)
                     }
@@ -343,14 +343,22 @@ let postParking = (id, startDate, endDate, parent, urlCode) => {
                 //review
                 parent.querySelector('div > article > div.flex > span').innerHTML = `<span class="review_section flex items-center mt-2 fs-14"><ul class="flex">${renderStar(Math.round(result[i]['facility_review_avg']))}</ul> (${result[i]['num_review']})</span>`;
 
+                let newDate = new Date(new Date(endDate.split('-')[0], endDate.split('-')[1], endDate.split('-')[2]) - new Date(startDate.split('-')[0], startDate.split('-')[1], startDate.split('-')[2]));
+                console.log(newDate)
+                let date = +newDate.getDate();
+                console.log(date)
                 let price = +document.querySelector('#detail-info > table > tbody > tr:nth-child(5) > td.text-right.pt-2 > strong').innerText.replace('$','')
+                console.log(price)
+                let priceDay = price / date;
+                console.log(priceDay)
+
                 //info about, price block
                 parent.querySelector('div > article > div.flex.flex-col').insertAdjacentHTML('afterend',`
                     <ul class="info_about list bb-1">${distance + shuttle + shuttleFrequency}<li>On air parking</li></ul> 
                     <div class="flex justify-between price_section bb-1">
                         <div>
                             <div class="tab mb-4 fs-12 font-medium">Online-only price</div>
-                            <p class="price mb-1">$${result[i]['facility_selling_price'].toFixed(2)} /day</p>
+                            <p class="price mb-1">$${priceDay.toFixed(2)} /day</p>
                             <p class="n-left font-semibold">Only 8 left at this price</p>
                         </div>
                         <div class="guarantee_section">
@@ -483,12 +491,7 @@ let start = setInterval(() => {
                     }
                 }
             })
-            document.querySelector('#detail-info > div.flex.flex-row.justify-between.items-center > div.text-secondary.underline.font-medium.cursor-pointer').classList.add('flex','lh-14');
-            document.querySelector('#detail-info > div.flex.flex-row.justify-between.items-center > div.text-secondary.underline.font-medium.cursor-pointer').insertAdjacentHTML('beforeend',`
-            <svg class="ml-2" width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M7 11.6667H12.25" stroke="#5D99D6" stroke-linecap="round" stroke-linejoin="round"/>
-                <path d="M9.625 2.04164C9.85706 1.80957 10.1718 1.6792 10.5 1.6792C10.6625 1.6792 10.8234 1.71121 10.9735 1.77339C11.1237 1.83558 11.2601 1.92673 11.375 2.04164C11.4899 2.15654 11.5811 2.29296 11.6432 2.44309C11.7054 2.59322 11.7374 2.75413 11.7374 2.91664C11.7374 3.07914 11.7054 3.24005 11.6432 3.39018C11.5811 3.54032 11.4899 3.67673 11.375 3.79164L4.08333 11.0833L1.75 11.6666L2.33333 9.3333L9.625 2.04164Z" stroke="#5D99D6" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>`)
+
         }
 
     }
@@ -500,3 +503,17 @@ let startRemove = setInterval(() => {
         document.querySelector('.js-style').remove();
     }
 },100)
+
+let startEdit = setInterval(() => {
+    if (window.location.pathname.includes('/parkingat/') && document.querySelector('#detail-info > div.flex.flex-row > div > svg') == null && document.querySelector('#detail-info > div.flex.flex-row.justify-between.items-center > div.text-secondary.underline.font-medium.cursor-pointer') != null) {
+        document.querySelector('#detail-info > div.flex.flex-row.justify-between.items-center > div.text-secondary.underline.font-medium.cursor-pointer').classList.add('flex','lh-14');
+        document.querySelector('#detail-info > div.flex.flex-row.justify-between.items-center > div.text-secondary.underline.font-medium.cursor-pointer').insertAdjacentHTML('beforeend',`
+            <svg class="ml-2" width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M7 11.6667H12.25" stroke="#5D99D6" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M9.625 2.04164C9.85706 1.80957 10.1718 1.6792 10.5 1.6792C10.6625 1.6792 10.8234 1.71121 10.9735 1.77339C11.1237 1.83558 11.2601 1.92673 11.375 2.04164C11.4899 2.15654 11.5811 2.29296 11.6432 2.44309C11.7054 2.59322 11.7374 2.75413 11.7374 2.91664C11.7374 3.07914 11.7054 3.24005 11.6432 3.39018C11.5811 3.54032 11.4899 3.67673 11.375 3.79164L4.08333 11.0833L1.75 11.6666L2.33333 9.3333L9.625 2.04164Z" stroke="#5D99D6" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>`)
+        if (document.querySelector('.free_block') != null) {
+            document.querySelector('#detail-info > table').after(document.querySelector('.free_block'))
+        }
+    }
+}, 100)
