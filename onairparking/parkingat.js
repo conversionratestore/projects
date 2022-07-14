@@ -337,12 +337,13 @@ let postParking = (id, startDate, endDate, parent, urlCode) => {
                     } else if (highlights[h].type == 'facility_free_cancellation' && highlights[h].description == 'up to start date') {
                         freeCancellation = `<div class="flex items-center pt-1 mb-5"><svg class="mr-2" width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="9" cy="9" r="8" stroke="#069B27" stroke-width="2"/><path d="M5.47852 9.89474L8.02397 12L12.4785 7" stroke="#069B27" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
                                             <p class="fs-13 c-green font-bold"> Free cancellation until ${startDate.split('-')[2]} ${arrMouth[+startDate.split('-')[1] - 1]}</p></div>`
-                        document.querySelector('#detail-info > table').insertAdjacentHTML('afterend', freeCancellation)
+                        document.querySelector('#detail-info > p.block').insertAdjacentHTML('beforebegin', freeCancellation)
                     }
                 }
                 //review
                 parent.querySelector('div > article > div.flex > span').innerHTML = `<span class="review_section flex items-center mt-2 fs-14"><ul class="flex">${renderStar(Math.round(result[i]['facility_review_avg']))}</ul> (${result[i]['num_review']})</span>`;
 
+                let price = +document.querySelector('#detail-info > table > tbody > tr:nth-child(5) > td.text-right.pt-2 > strong').innerText.replace('$','')
                 //info about, price block
                 parent.querySelector('div > article > div.flex.flex-col').insertAdjacentHTML('afterend',`
                     <ul class="info_about list bb-1">${distance + shuttle + shuttleFrequency}<li>On air parking</li></ul> 
@@ -423,14 +424,9 @@ let postParking = (id, startDate, endDate, parent, urlCode) => {
                 let sliderCategories = tns({
                     container: document.querySelector('.reviews-slider'),
                     items: 2,
-                    // axis: 'horizontal',
                     controls: false,
                     loop: false,
-                    // autoplayButton: false,
-                    // autoplayButtonOutput: false,
                     mouseDrag: true,
-                    // nav: true,
-                    // autoWidth: true,
                     preventScrollOnTouch: 'auto',
                     swipeAngle: false,
                 });
