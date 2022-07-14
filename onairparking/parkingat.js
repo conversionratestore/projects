@@ -228,10 +228,11 @@ let style = `
     .tns-nav {
         position: absolute;
         bottom: 0;
-        left: 0;
-        width: 100%;
+        left: 50%;
+        transform: translateX(-50%);
+        width: fit-content;
         display: flex;
-        justify-content: center;
+        z-index: 3;
     }
     .tns-nav button {
         width: 8px;
@@ -262,8 +263,8 @@ let pushDataLayer = (action) => {
     window.dataLayer = window.dataLayer || [];
     dataLayer.push({
         'event': 'event-to-ga',
-        'eventCategory': 'Exp: Redesign landing page',
-        'eventAction': action,
+        'eventCategory': 'Exp — Complete redesign PDP',
+        'eventAction': action
     });
 }
 //scroll to
@@ -402,7 +403,7 @@ let postParking = (id, startDate, endDate, parent, urlCode, total) => {
                         <h3 class="title mb-2">Facility Location</h3>
                         <p class="mb-5 flex items-center">Exact location provided after booking 
                             <label class="relative">
-                                <svg class="flex-shrink-0 ml-2" width="17" height="17" viewBox="0 0 17 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <svg class="flex-shrink-0 ml-2 icon_info" width="17" height="17" viewBox="0 0 17 17" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <circle cx="8.5" cy="8.5" r="8" stroke="#515356"/>
                                     <path d="M7.92045 13V6.45455H8.92614V13H7.92045ZM8.43182 5.36364C8.2358 5.36364 8.06676 5.29688 7.92472 5.16335C7.78551 5.02983 7.71591 4.86932 7.71591 4.68182C7.71591 4.49432 7.78551 4.33381 7.92472 4.20028C8.06676 4.06676 8.2358 4 8.43182 4C8.62784 4 8.79545 4.06676 8.93466 4.20028C9.0767 4.33381 9.14773 4.49432 9.14773 4.68182C9.14773 4.86932 9.0767 5.02983 8.93466 5.16335C8.79545 5.29688 8.62784 5.36364 8.43182 5.36364Z" fill="#515356"/>
                                 </svg>
@@ -433,7 +434,10 @@ let postParking = (id, startDate, endDate, parent, urlCode, total) => {
 
                 document.querySelector('.location_section p').after(document.querySelector('#google-map-parking-at')); //move map
                 //click on See all button
-                document.querySelector('.btn_see-all').addEventListener('click', (e) => scrollTop(document.querySelector('#parkingat > div > article > div > .demo-loadmore-list').parentElement, e.target))
+                document.querySelector('.btn_see-all').addEventListener('click', (e) => {
+                    scrollTop(document.querySelector('#parkingat > div > article > div > .demo-loadmore-list').parentElement, e.target)
+                    pushDataLayer( 'Click on the see all')
+                })
 
                 //add slides in slider carousel
                 let listReview = document.querySelectorAll('.demo-loadmore-list ul.ant-list-items > li'),
@@ -442,6 +446,7 @@ let postParking = (id, startDate, endDate, parent, urlCode, total) => {
                 for (let i = 0; i < countReview; i++) {
                     document.querySelector('.reviews-slider').insertAdjacentHTML('beforeend',`<div class="slide">${listReview[i].innerHTML}</div>`)
                 }
+
 
                 //init slider carousel
                 let sliderCategories = tns({
@@ -453,6 +458,10 @@ let postParking = (id, startDate, endDate, parent, urlCode, total) => {
                     preventScrollOnTouch: 'auto',
                     swipeAngle: false,
                 });
+                //events
+                document.querySelector('.icon_info').addEventListener('mouseover', (e) => pushDataLayer('Tap on the info icon'))
+                document.querySelector('.tns-nav').addEventListener('click', (e) => pushDataLayer('Using of the review slider'))
+                document.querySelector('.reviews-slider').addEventListener('click', (e) => pushDataLayer('Using of the review slider'))
             }
         }
     })
@@ -475,6 +484,14 @@ let start = setInterval(() => {
                 endDate = window.location.href.split('checkout=')[1],
                 parent = document.querySelector('#parkingat');
 
+            let total = '';
+            let tr = document.querySelectorAll('#detail-info > table tr.text-base');
+            for (let i = 0; i < tr.length; i++) {
+                if (tr[i].querySelector('td').innerText.toLowerCase() == 'total') {
+                    total = tr[i].querySelector('td:last-child').innerText.replace('$','');
+                }
+            }
+
             let linkCustom = document.createElement('link');
             linkCustom.href = 'https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.3/tiny-slider.css';
             linkCustom.rel = 'stylesheet';
@@ -486,21 +503,25 @@ let start = setInterval(() => {
             document.body.appendChild(scriptCustom);
 
             console.log(arr)
-            let total = '';
-            let tr = document.querySelectorAll('#detail-info > table tr.text-base');
-            for (let i = 0; i < tr.length; i++) {
-                if (tr[i].querySelector('td').innerText.toLowerCase() == 'total') {
-                    total = tr[i].querySelector('td:last-child').innerText.replace('$','');
-                }
-            }
-
             console.log(id, startDate, endDate, parent, urlCode, total)
-            postParking(id, startDate, endDate, parent, urlCode, total)
+            postParking(id, startDate, endDate, parent, urlCode, total) // send post parking
+            //add fix button
             document.body.insertAdjacentHTML('beforeend',`<div class="fix_footer"><button type="button" class="btn_reserve-now">Reserve now</button></div>`)
+            //Reserve now sticky button
+            let reserveBtn = document.querySelector('#detail-info > button.ant-btn');
             document.querySelector('.btn_reserve-now').addEventListener('click', () => {
-                document.querySelector('#detail-info > button.ant-btn').click();
+                reserveBtn.classList.add('click-btn-sticky')
+                reserveBtn.click();
+                pushDataLayer('Click at Reserve now sticky button')
             })
-
+            //click on Reserve now button
+            reserveBtn.addEventListener('click', (e) => {
+                if (!e.target.classlist.contains('click-btn-sticky')) {
+                    pushDataLayer('Click at Reserve now button')
+                } else {
+                    reserveBtn.classList.remove('click-btn-sticky')
+                }
+            })
             window.addEventListener('scroll', () => {
                 if (document.querySelector('#detail-info > button.ant-btn') != null || document.querySelector('#parkingat > div > article > div.flex.flex-col > button') != null) {
                     if (isScrolledIntoView(document.querySelector('#detail-info > button.ant-btn')) == true || isScrolledIntoView(document.querySelector('#parkingat > div > article > div.flex.flex-col > button')) == true) {
@@ -514,27 +535,33 @@ let start = setInterval(() => {
                     }
                 }
             })
+            startRemove()
         }
     }
 },100)
 
-let startRemove = setInterval(() => {
-    if (document.querySelector('.js-style') != null && !window.location.pathname.includes('/parkingat/') || document.querySelector('#easy-checkout') != null || (document.querySelector('#__next > section > main > div > div.container > div.block.bg-orange-50 > div > button') != null) && document.querySelector('#__next > section > main > div > div.container > div.block.bg-orange-50 > div > button').innerText == 'Edit') {
-        clearInterval(startRemove)
-        document.querySelector('.js-style').remove();
-        sentPost = false;
-        console.log('remove')
-    }
-},100)
+let startRemove = () => {
+    let startRemove = setInterval(() => {
+        if (document.querySelector('#parkingat') == null || document.querySelector('#easy-checkout') != null) {
+            clearInterval(startRemove)
+            document.querySelector('.js-style') != null ? document.querySelector('.js-style').remove() : '';
+            sentPost = false;
+            console.log('remove')
+        }
+    },100)
+}
+startRemove()
 
 let startEdit = setInterval(() => {
     if (window.location.pathname.includes('/parkingat/') && document.querySelector('#detail-info > div.flex.flex-row > div > svg') == null && document.querySelector('#detail-info > div.flex.flex-row.justify-between.items-center > div.text-secondary.underline.font-medium.cursor-pointer') != null) {
-        document.querySelector('#detail-info > div.flex.flex-row.justify-between.items-center > div.text-secondary.underline.font-medium.cursor-pointer').classList.add('flex','lh-14');
-        document.querySelector('#detail-info > div.flex.flex-row.justify-between.items-center > div.text-secondary.underline.font-medium.cursor-pointer').insertAdjacentHTML('beforeend',`
+        let editBtn = document.querySelector('#detail-info > div.flex.flex-row.justify-between.items-center > div.text-secondary.underline.font-medium.cursor-pointer');
+        editBtn.classList.add('flex','lh-14');
+        editBtn.insertAdjacentHTML('beforeend',`
             <svg class="ml-2" width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M7 11.6667H12.25" stroke="#5D99D6" stroke-linecap="round" stroke-linejoin="round"/>
                 <path d="M9.625 2.04164C9.85706 1.80957 10.1718 1.6792 10.5 1.6792C10.6625 1.6792 10.8234 1.71121 10.9735 1.77339C11.1237 1.83558 11.2601 1.92673 11.375 2.04164C11.4899 2.15654 11.5811 2.29296 11.6432 2.44309C11.7054 2.59322 11.7374 2.75413 11.7374 2.91664C11.7374 3.07914 11.7054 3.24005 11.6432 3.39018C11.5811 3.54032 11.4899 3.67673 11.375 3.79164L4.08333 11.0833L1.75 11.6666L2.33333 9.3333L9.625 2.04164Z" stroke="#5D99D6" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>`)
+        editBtn.addEventListener('click', () => pushDataLayer('Click at Edit button'))
         if (document.querySelector('.free_block') != null) {
             document.querySelector('#detail-info > table').after(document.querySelector('.free_block'))
         }
@@ -558,6 +585,19 @@ let startEdit = setInterval(() => {
             }
         }
         renderPriceDay(startDate,endDate,total)
+    }
+}, 100)
 
+window.dataLayer = window.dataLayer || [];
+dataLayer.push({
+    'event': 'event-to-ga',
+    'eventCategory': 'Exp — Complete redesign PDP',
+    'eventAction': 'loaded'
+});
+
+let isClarify = setInterval(() => {
+    if(typeof clarity == 'function') {
+        clearInterval(isClarify)
+        clarity("set", "complete_redesign_pdp", "variant_1");
     }
 }, 100)
