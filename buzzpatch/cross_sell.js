@@ -115,23 +115,24 @@ let crossSellFunc = setInterval(() => {
   color: #0c0b0b;
   margin: 0;
 }
-.magic_patch_box h2 span {
-  color: #ff3c7f;
-}
+
 .magic_patch_box > p {
-  font-weight: 600;
+  font-weight: 400;
   text-align: center;
   font-size: 16px !important;
   line-height: 130% !important;
-  color: #ff3c7f;
+  color: #212529;
   margin: 4px 0 20px;
+}
+.magic_patch_box h2 span,
+.magic_patch_box > p > span {
+  color: #ff3c7f;
+  font-weight: 700;
 }
 .price_block {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding-bottom: 20px;
-  border-bottom: 1px solid #d9d9d9;
   margin: 13px 0 20px;
 }
 .price_block span {
@@ -165,8 +166,7 @@ let crossSellFunc = setInterval(() => {
 .btn_wrap {
   display: flex;
   align-items: center;
-  justify-content: center;
-  flex-direction: column;
+  justify-content: space-between;
   padding: 0 0 20px;
 }
 .btn_wrap button {
@@ -176,9 +176,9 @@ let crossSellFunc = setInterval(() => {
   background: #f53981;
   box-shadow: 0px 2px 4px rgba(12, 11, 11, 0.1), 0px 12px 32px rgba(0, 0, 0, 0.05);
   border-radius: 52px;
-  font-weight: 500;
+  font-weight: 400;
   font-size: 20px;
-  line-height: 80%;
+  line-height: 110%;
   text-align: center;
   letter-spacing: 0.05em;
   text-transform: uppercase;
@@ -191,12 +191,28 @@ let crossSellFunc = setInterval(() => {
 }
 .btn_wrap button.no_magic {
   color: #0c0b0b;
-  font-weight: 400;
-  font-size: 16px;
   background: #f9f8f6;
 }
 .btn_wrap button + button {
-  margin-top: 10px;
+  margin-left: 20px;
+}
+
+/*about_magicpatch_block */
+.about_magicpatch_block{
+    background: #FFFFFF;
+    border: 1px solid #EFEFEF;
+    border-radius: 10px;
+    padding: 20px;
+}
+.about_magicpatch_block h3{
+  margin-bottom: 12px;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 130%;
+  color: #0C0B0B;
+  font-family: "Roboto", sans-serif !important;
+  text-align: center;
+  text-transform: unset;
 }
 
 /*carousel */
@@ -281,6 +297,7 @@ let crossSellFunc = setInterval(() => {
   }
   .btn_wrap button {
     height: 58px;
+    font-size: 18px;
   }
   .carousel__slide img {
     max-height: 155px;
@@ -305,6 +322,7 @@ let crossSellFunc = setInterval(() => {
   }
   .btn_wrap button {
     height: 54px;
+    font-size: 16px;
   }
   .carousel__slide img {
     max-height: 135px;
@@ -344,8 +362,8 @@ let crossSellFunc = setInterval(() => {
               </div>
 
               <div class="magic_patch_box">
-                <h2>Get <span>Extra</span> Protection with MagicPatch Itch Relief</h2>
-                <p>in case you get an unexpected bite</p>
+                <h2>Get <span>Extra</span> Protection with <br> MagicPatch</h2>
+                <p>Reduce pain in 30-60 seconds in <br> case you get an <span>unexpected</span> bite </p>
                 <ul id="carousel" class="single-item">
                   <li class="carousel__slide">
                     <img src="https://conversionratestore.github.io/projects/buzzpatch/img/magic_patch1.jpg" alt="magic patch" />
@@ -361,17 +379,20 @@ let crossSellFunc = setInterval(() => {
                   <span>$14.99 (40% OFF)</span>
                   <span>Reg. Price: $24.99 (Save $9.99)</span>
                 </div>
-                <ul>
-                  <li><span>Reduce pain in 30-60 seconds</span></li>
-                  <li><span>100% natural & chemical free</span></li>
-                  <li><span>Safe for kids 0+ years old</span></li>
-                  <li><span>27 patches in 1 pack</span></li>
-                </ul>
+                <div class="btn_wrap">
+                  <button class="no_magic">No, Thanks</button>
+                  <button class="add_to_order">Add to ORDER</button>
+                </div>
+                <div class="about_magicpatch_block">
+                  <h3>Why MagicPatch?</h3>
+                  <ul>
+                    <li><span>Reduce pain in 30-60 seconds</span></li>
+                    <li><span>100% natural & chemical free</span></li>
+                    <li><span>Safe for kids 0+ years old</span></li>
+                    <li><span>27 patches in 1 pack</span></li>
+                  </ul>
+                </div>
               </div>
-            </div>
-            <div class="btn_wrap">
-              <button class="add_to_order">Add to ORDER</button>
-              <button class="no_magic">No, Thanks</button>
             </div>
           </div>
         </div>
