@@ -844,6 +844,8 @@ let startFunk = setInterval(() => {
           document.querySelectorAll(".body_popup .form_wrap")[1].classList.add("active")
           document.querySelectorAll(".body_popup .form_wrap")[0].classList.remove("active")
           showPopup()
+          clarity("set", `signup_discount_${eventVar}`, "popup_viewed")
+
           if (sessionStorage.getItem("successCoupon")) {
             sessionStorage.removeItem("successCoupon")
           }
