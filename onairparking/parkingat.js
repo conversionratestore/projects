@@ -469,7 +469,7 @@ let postParking = (id, startDate, endDate, parent, urlCode, total) => {
                 }
                 //events
                 document.querySelector('.reviews-slider').addEventListener('click', (e) => pushDataLayer('Using of the review slider'))
-                document.querySelector('.icon_info').addEventListener('mouseover', (e) => pushDataLayer('Tap on the info icon'))
+                document.querySelector('.icon_info').addEventListener('click', (e) => pushDataLayer('Tap on the info icon'))
 
                 startSlider()//init carousel
                 //add free Cancellation element in DOM
