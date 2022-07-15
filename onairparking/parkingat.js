@@ -207,6 +207,13 @@ let style = `
         border-radius: 7px;
         margin: 0 7.5px;
     }
+    .reviews-slider .slide > p {
+        text-overflow: ellipsis;
+        overflow: hidden;
+        display: -webkit-box;
+        -webkit-line-clamp: 6;
+        -webkit-box-orient: vertical;
+    }
     .reviews-slider .anticon svg {
         height: 15px;
         width: 15px;
