@@ -601,7 +601,7 @@ let startEdit = setInterval(() => {
 
 let startSlider = () => {
     let sliderInterval = setInterval( () => {
-        if(document.querySelector('tns-carousel') == null && document.querySelector('.reviews-slider') != null) {
+        if(document.querySelector('.tns-carousel') == null && document.querySelector('.reviews-slider') != null) {
             clearInterval(sliderInterval)
             //init slider carousel
             let sliderCategories = tns({
