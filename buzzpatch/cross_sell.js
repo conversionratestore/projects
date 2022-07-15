@@ -185,10 +185,6 @@ let crossSellFunc = setInterval(() => {
   color: #ffffff;
   transition: all 0.15s;
 }
-.btn_wrap button:active {
-  max-width: 98%;
-  padding: 1em;
-}
 .btn_wrap button.no_magic {
   color: #0c0b0b;
   background: #f9f8f6;
@@ -404,7 +400,7 @@ let crossSellFunc = setInterval(() => {
     `
 
     document.head.insertAdjacentHTML("beforeend", crossSellStyle)
-    document.body.insertAdjacentHTML("afterbegin", popUp)
+    document.body.insertAdjacentHTML("beforeend", popUp)
     document.querySelector(".prices").insertAdjacentHTML("afterend", newBtnAddToCart)
 
     //textContent addToCart
