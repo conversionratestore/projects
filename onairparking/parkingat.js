@@ -468,7 +468,7 @@ let postParking = (id, startDate, endDate, parent, urlCode, total) => {
                     document.querySelector('.reviews-slider').insertAdjacentHTML('beforeend',`<div class="slide">${listReview[i].innerHTML}</div>`)
                 }
                 //events
-                document.querySelector('.reviews-slider').addEventListener('click', (e) => pushDataLayer('Using of the review slider'))
+                document.querySelector('.reviews-slider').addEventListener('touchstart', (e) => pushDataLayer('Using of the review slider'))
                 document.querySelector('.icon_info').addEventListener('click', (e) => pushDataLayer('Tap on the info icon'))
 
                 startSlider()//init carousel
