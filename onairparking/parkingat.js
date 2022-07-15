@@ -449,7 +449,9 @@ let postParking = (id, startDate, endDate, parent, urlCode, total) => {
                     </div>
                 `)
 
-                parent.querySelector('#detail-info > p').insertAdjacentHTML('beforebegin', freeCancellation)
+                setTimeout(() => {
+                    parent.querySelector('#detail-info > p').insertAdjacentHTML('beforebegin', freeCancellation)
+                }, 500)
 
                 document.querySelector('.location_section p').after(document.querySelector('#google-map-parking-at')); //move map
                 //click on See all button
@@ -465,21 +467,10 @@ let postParking = (id, startDate, endDate, parent, urlCode, total) => {
                 for (let i = 0; i < countReview; i++) {
                     document.querySelector('.reviews-slider').insertAdjacentHTML('beforeend',`<div class="slide">${listReview[i].innerHTML}</div>`)
                 }
-
-                //init slider carousel
-                let sliderCategories = tns({
-                    container: document.querySelector('.reviews-slider'),
-                    items: 2,
-                    controls: false,
-                    loop: false,
-                    mouseDrag: true,
-                    preventScrollOnTouch: 'auto',
-                    swipeAngle: false,
-                });
-                //events
-                document.querySelector('.icon_info').addEventListener('mouseover', (e) => pushDataLayer('Tap on the info icon'))
-                document.querySelector('.tns-nav').addEventListener('click', (e) => pushDataLayer('Using of the review slider'))
+                //event
                 document.querySelector('.reviews-slider').addEventListener('click', (e) => pushDataLayer('Using of the review slider'))
+
+                startSlider()
             }
         }
     })
@@ -489,11 +480,21 @@ let sentPost = false;
 let viewed = false;
 
 let start = setInterval(() => {
-    if (document.querySelector('#__NEXT_DATA__') != null && window.location.pathname.includes('/parkingat/') && document.querySelector('#parkingat') != null && document.querySelector('#detail-info > p.block') != null && document.querySelector('#detail-info > table tr') != null) {
+    if (document.querySelector('#__NEXT_DATA__') != null && window.location.pathname.includes('/parkingat/') && document.querySelector('#parkingat') != null && document.querySelector('#detail-info > p.block') != null && document.querySelector('#detail-info > table tr') != null && document.querySelector('#detail-info > button') != null) {
         document.querySelector('.js-style') == null ? document.body.insertAdjacentHTML('afterbegin', style) : ''; // add style
 
         if (sentPost == false) {
             sentPost = true;
+            let linkCustom = document.createElement('link');
+            linkCustom.href = 'https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.3/tiny-slider.css';
+            linkCustom.rel = 'stylesheet';
+            document.head.appendChild(linkCustom);
+
+            let scriptCustom = document.createElement('script');
+            scriptCustom.src = 'https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.3/min/tiny-slider.js';
+            scriptCustom.async = false;
+            document.body.appendChild(scriptCustom);
+
             let initial = window.location.href.split('parkingat/')[1].split('?')[0].replace(/[0-9]/g, '');
             let arr = document.querySelector('#__NEXT_DATA__').innerText.split(`,"airport_initials":"${initial.toUpperCase()}`)[0].split('"airport_id":'),
                 id = arr[arr.length - 1],
@@ -509,16 +510,6 @@ let start = setInterval(() => {
                     total = tr[i].querySelector('td:last-child').innerText.replace('$','');
                 }
             }
-
-            let linkCustom = document.createElement('link');
-            linkCustom.href = 'https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.3/tiny-slider.css';
-            linkCustom.rel = 'stylesheet';
-            document.head.appendChild(linkCustom);
-
-            let scriptCustom = document.createElement('script');
-            scriptCustom.src = 'https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.3/min/tiny-slider.js';
-            scriptCustom.async = false;
-            document.body.appendChild(scriptCustom);
 
             console.log(arr)
             console.log(id, startDate, endDate, parent, urlCode, total)
@@ -553,7 +544,9 @@ let start = setInterval(() => {
                     }
                 }
             })
+            document.querySelector('.icon_info').addEventListener('mouseover', (e) => pushDataLayer('Tap on the info icon')) //event
             // startRemove()
+
         }
     }
 })
@@ -605,6 +598,30 @@ let startEdit = setInterval(() => {
         document.querySelector('.price_section .price').innerHTML = `$${renderPriceDay(startDate,endDate,total)} /day`
     }
 }, 100)
+
+let startSlider = () => {
+    let sliderInterval = setInterval( () => {
+        if(document.querySelector('tns-carousel') == null && document.querySelector('.reviews-slider') != null) {
+            clearInterval(sliderInterval)
+            //init slider carousel
+            let sliderCategories = tns({
+                container: document.querySelector('.reviews-slider'),
+                items: 2,
+                controls: false,
+                loop: false,
+                mouseDrag: true,
+                preventScrollOnTouch: 'auto',
+                swipeAngle: false,
+            });
+
+            //events
+            if (document.querySelector('.tns-nav') != null) {
+                document.querySelector('.tns-nav').addEventListener('click', (e) => pushDataLayer('Using of the review slider'))
+             }
+        }
+    },100)
+}
+
 
 window.dataLayer = window.dataLayer || [];
 dataLayer.push({
