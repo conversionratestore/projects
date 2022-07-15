@@ -553,7 +553,7 @@ let start = setInterval(() => {
                     }
                 }
             })
-            startRemove()
+            // startRemove()
         }
     }
 })
@@ -561,7 +561,7 @@ let start = setInterval(() => {
 let startRemove = () => {
     let startRemove = setInterval(() => {
         if (document.querySelector('#parkingat') == null || document.querySelector('#easy-checkout') != null) {
-            clearInterval(startRemove)
+            // clearInterval(startRemove)
             document.querySelector('.js-style') != null ? document.querySelector('.js-style').remove() : '';
             sentPost = false;
             console.log('remove')
