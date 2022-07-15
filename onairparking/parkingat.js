@@ -262,6 +262,10 @@ let style = `
     #parkingat > div > article > div > h3 > ul.ant-rate {
         margin-left: auto!important;
     }
+    #parkingat > div > article > div.mt-12.max-w-3xl.mx-auto.px-4 {
+        padding-right: 0!important;
+        padding-left: 0!important;
+    }
     @media only screen and (max-width: 360px) {
         #tns1-ow {
             margin-left: -3px;
