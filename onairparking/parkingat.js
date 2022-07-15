@@ -449,10 +449,6 @@ let postParking = (id, startDate, endDate, parent, urlCode, total) => {
                     </div>
                 `)
 
-                setTimeout(() => {
-                    parent.querySelector('#detail-info > p').insertAdjacentHTML('beforebegin', freeCancellation)
-                }, 500)
-
                 document.querySelector('.location_section p').after(document.querySelector('#google-map-parking-at')); //move map
                 //click on See all button
                 document.querySelector('.btn_see-all').addEventListener('click', (e) => {
@@ -467,10 +463,15 @@ let postParking = (id, startDate, endDate, parent, urlCode, total) => {
                 for (let i = 0; i < countReview; i++) {
                     document.querySelector('.reviews-slider').insertAdjacentHTML('beforeend',`<div class="slide">${listReview[i].innerHTML}</div>`)
                 }
-                //event
+                //events
                 document.querySelector('.reviews-slider').addEventListener('click', (e) => pushDataLayer('Using of the review slider'))
+                document.querySelector('.icon_info').addEventListener('mouseover', (e) => pushDataLayer('Tap on the info icon'))
 
-                startSlider()
+                startSlider()//init carousel
+                //add free Cancellation element in DOM
+                setTimeout(() => {
+                    parent.querySelector('#detail-info > p').insertAdjacentHTML('beforebegin', freeCancellation)
+                }, 500)
             }
         }
     })
@@ -544,8 +545,7 @@ let start = setInterval(() => {
                     }
                 }
             })
-            document.querySelector('.icon_info').addEventListener('mouseover', (e) => pushDataLayer('Tap on the info icon')) //event
-            // startRemove()
+           // startRemove()
 
         }
     }
