@@ -180,7 +180,7 @@ let crossSellFunc = setInterval(() => {
   font-size: 20px;
   line-height: 110%;
   text-align: center;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.02em;
   text-transform: uppercase;
   color: #ffffff;
   transition: all 0.15s;
@@ -192,6 +192,9 @@ let crossSellFunc = setInterval(() => {
 .btn_wrap button.no_magic {
   color: #0c0b0b;
   background: #f9f8f6;
+  box-shadow: unset;
+  border: 2px solid #ECECEC;
+  border-radius: 52px;
 }
 .btn_wrap button + button {
   margin-left: 20px;
