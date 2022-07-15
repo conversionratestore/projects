@@ -12,6 +12,27 @@ let crossSellFunc = setInterval(() => {
     scriptCustomSliderStyle.rel = "stylesheet"
     document.head.appendChild(scriptCustomSliderStyle)
 
+    // event
+    function pushDataLayer(actionDataLayer, labelDataLayer) {
+      window.dataLayer = window.dataLayer || []
+      if (labelDataLayer) {
+        console.log(actionDataLayer + " : " + labelDataLayer)
+        dataLayer.push({
+          event: "event-to-ga",
+          eventCategory: `Exp: Upsell hypothesis`,
+          eventAction: `${actionDataLayer}`,
+          eventLabel: `${labelDataLayer}`,
+        })
+      } else {
+        console.log(actionDataLayer)
+        dataLayer.push({
+          event: "event-to-ga",
+          eventCategory: `Exp: Upsell hypothesis`,
+          eventAction: `${actionDataLayer}`,
+        })
+      }
+    }
+
     let crossSellStyle = /*html */ `
     <style>
       /* */
@@ -365,7 +386,6 @@ let crossSellFunc = setInterval(() => {
     //textContent addToCart
     document.querySelector(".new_btn_addToCart a").addEventListener("click", function (e) {
       e.preventDefault()
-      console.log(`addToCart`)
       showPopup()
     })
 
@@ -373,6 +393,7 @@ let crossSellFunc = setInterval(() => {
     function showPopup() {
       document.querySelector(".backdrop_popup").classList.add("show")
       document.body.style.overflow = "hidden"
+      pushDataLayer("Pop up loaded")
     }
 
     //get count value
@@ -414,12 +435,14 @@ let crossSellFunc = setInterval(() => {
     // click on btn
     document.querySelector(".add_to_order").addEventListener("click", function (e) {
       e.preventDefault()
+      pushDataLayer("loaded", `Add to Order`)
 
       addToCartCheckout(idValue)
     })
 
     document.querySelector(".no_magic").addEventListener("click", function (e) {
       e.preventDefault()
+      pushDataLayer("loaded", `Click No thanks`)
 
       addToCartCheckout(idValue, "Checkout without Upsell")
     })
@@ -488,8 +511,9 @@ let crossSellFunc = setInterval(() => {
     let slickInterval = setInterval(() => {
       if (typeof jQuery("#carousel").slick === "function") {
         clearInterval(slickInterval)
+
         setTimeout(() => {
-          $(".single-item").slick({
+          let slider = $(".single-item").slick({
             arrows: true,
             // variableWidth: true,
             centerMode: true,
@@ -499,6 +523,16 @@ let crossSellFunc = setInterval(() => {
              <div class="prev_btn"><svg width="14" height="24" viewBox="0 0 14 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M13.4111 22.5892C14.1896 21.8107 14.1903 20.5486 13.4126 19.7692L5.66031 12L13.4126 4.23077C14.1903 3.45137 14.1896 2.18931 13.4111 1.41077V1.41077C12.6319 0.631622 11.3687 0.631623 10.5895 1.41077L0.000312805 12L10.5895 22.5892C11.3687 23.3684 12.6319 23.3684 13.4111 22.5892V22.5892Z" fill="#FF3C7F"/></svg></div>`,
             nextArrow: `
               <div class="next_btn"><svg width="14" height="24" viewBox="0 0 14 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M0.588919 22.5892C-0.189627 21.8107 -0.190315 20.5486 0.587381 19.7692L8.33969 12L0.587381 4.23077C-0.190315 3.45137 -0.189627 2.18931 0.588919 1.41077C1.36806 0.631622 2.63131 0.631623 3.41046 1.41077L13.9997 12L3.41046 22.5892C2.63131 23.3684 1.36806 23.3684 0.588919 22.5892Z" fill="#FF3C7F"/></svg></div>`,
+          })
+
+          slider.on("swipe", () => {
+            pushDataLayer("Swipe to slider")
+          })
+
+          document.querySelectorAll(".slick-arrow").forEach((el) => {
+            el.addEventListener("click", function () {
+              pushDataLayer(`Clicks to slider ${this.classList[0]}`)
+            })
           })
         }, 700)
 
@@ -517,5 +551,8 @@ let crossSellFunc = setInterval(() => {
         // })
       }
     }, 10)
+
+    pushDataLayer("loaded")
+    clarity("set", `upsell_hypothesis`, "variant_1")
   }
 }, 10)
