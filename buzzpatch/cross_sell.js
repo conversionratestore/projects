@@ -236,6 +236,7 @@ let crossSellFunc = setInterval(() => {
 
  .carousel__slide img {
   margin: 0 auto;
+  border-radius: 6px;
  }
 
 .slick-arrow:not(.disabled):not([disabled]):focus,
