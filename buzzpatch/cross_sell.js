@@ -387,8 +387,8 @@ let crossSellFunc = setInterval(() => {
                   <h3>Why MagicPatch?</h3>
                   <ul>
                     <li><span>Reduce pain in 30-60 seconds</span></li>
-                    <li><span>100% natural & chemical free</span></li>
                     <li><span>Safe for kids 0+ years old</span></li>
+                    <li><span>100% natural & chemical free</span></li>
                     <li><span>27 patches in 1 pack</span></li>
                   </ul>
                 </div>
