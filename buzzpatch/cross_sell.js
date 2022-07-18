@@ -43,7 +43,7 @@ let crossSellFunc = setInterval(() => {
   width: 100%;
   height: 100%;
   background: #f9f8f6;
-  display: flex;
+  display: block;
   overflow-y: auto;
   z-index: 5500000595;
   opacity: 0;
@@ -233,9 +233,10 @@ let crossSellFunc = setInterval(() => {
 .slick-arrow.next_btn {
   right: -8px;
 }
-.slick-initialized .slick-slide {
-  padding: 0 35px;
-}
+
+ .carousel__slide img {
+  margin: 0 auto;
+ }
 
 .slick-arrow:not(.disabled):not([disabled]):focus,
 .slick-arrow:not(.disabled):not([disabled]):hover {
@@ -535,9 +536,6 @@ let crossSellFunc = setInterval(() => {
         setTimeout(() => {
           let slider = $(".single-item").slick({
             arrows: true,
-            // variableWidth: true,
-            centerMode: true,
-            centerPadding: "1px",
             slidesToShow: 1,
             prevArrow: `
              <div class="prev_btn"><svg width="14" height="24" viewBox="0 0 14 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M13.4111 22.5892C14.1896 21.8107 14.1903 20.5486 13.4126 19.7692L5.66031 12L13.4126 4.23077C14.1903 3.45137 14.1896 2.18931 13.4111 1.41077V1.41077C12.6319 0.631622 11.3687 0.631623 10.5895 1.41077L0.000312805 12L10.5895 22.5892C11.3687 23.3684 12.6319 23.3684 13.4111 22.5892V22.5892Z" fill="#FF3C7F"/></svg></div>`,
@@ -555,20 +553,6 @@ let crossSellFunc = setInterval(() => {
             })
           })
         }, 700)
-
-        // $(".single-item").slick({
-        //   slidesToShow: 1,
-        //   slidesToScroll: 1,
-        //   arrows: true,
-        //   autoplay: false,
-        //   dots: false,
-        //   centerMode: true,
-        //   variableWidth: true,
-        //   prevArrow: `
-        //    <div class="prev_btn"><svg width="14" height="24" viewBox="0 0 14 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M13.4111 22.5892C14.1896 21.8107 14.1903 20.5486 13.4126 19.7692L5.66031 12L13.4126 4.23077C14.1903 3.45137 14.1896 2.18931 13.4111 1.41077V1.41077C12.6319 0.631622 11.3687 0.631623 10.5895 1.41077L0.000312805 12L10.5895 22.5892C11.3687 23.3684 12.6319 23.3684 13.4111 22.5892V22.5892Z" fill="#FF3C7F"/></svg></div>`,
-        //   nextArrow: `
-        //     <div class="next_btn"><svg width="14" height="24" viewBox="0 0 14 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M0.588919 22.5892C-0.189627 21.8107 -0.190315 20.5486 0.587381 19.7692L8.33969 12L0.587381 4.23077C-0.190315 3.45137 -0.189627 2.18931 0.588919 1.41077C1.36806 0.631622 2.63131 0.631623 3.41046 1.41077L13.9997 12L3.41046 22.5892C2.63131 23.3684 1.36806 23.3684 0.588919 22.5892Z" fill="#FF3C7F"/></svg></div>`,
-        // })
       }
     }, 10)
 
