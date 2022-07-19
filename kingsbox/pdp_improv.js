@@ -25,7 +25,7 @@ const style = `
 										}
 
                                         .product-actions .mr-2 {
-                                            width: 25%;
+                                            min-width: 100px;
                                             max-width: 100px;
                                         }
 										
@@ -196,7 +196,7 @@ const style = `
 										width: 100%;
 									}
 
-                                    .pt-3.pb-3 button {width: 80%; text-transform: uppercase;}
+                                    .pt-3.pb-3 button {width: 100%; text-transform: uppercase;}
 									
 									.pt-3.pb-3 button,
 									input[_ngcontent-serverApp-c104],
@@ -755,11 +755,7 @@ const style = `
 									}
 									   
 									@media only screen and (max-width: 768px) {
-                                    .pt-3.pb-3 button {width: 70%;}
-
-                                    .product-actions .mr-2 {
-                                        width: 30%;
-                                    }
+                                    
 
 									p.products_title {
 										font-size: 26px;
