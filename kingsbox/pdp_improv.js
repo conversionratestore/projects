@@ -196,7 +196,7 @@ const style = `
 										width: 100%;
 									}
 
-                                    .pt-3.pb-3 button {width: 77%; text-transform: uppercase;}
+                                    .pt-3.pb-3 button {width: 80%; text-transform: uppercase;}
 									
 									.pt-3.pb-3 button,
 									input[_ngcontent-serverApp-c104],
