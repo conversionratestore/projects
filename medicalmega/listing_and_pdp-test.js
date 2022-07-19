@@ -1890,27 +1890,27 @@ window.onload = function() {
             }
 
             let boxItem = `
-      <div class="card">
-        <p class="status" style="display:${hit['variants'][count].in_stock == false || hit['variants'][count].price == '0:00' ? 'block' : 'none'}">Out of Stock</p>
-        <a class="card_name" href="https://medicalmega.com/product/${hit.seo}">
-          <img src="https://medicalmegaimgs.net/prod/uploaded/product/pro_thumb/${findImageHits(hit.variants) != '' ? findImageHits(hit.variants) : 'dummyimage.jpg'}" alt="${hit.name}">
-          <span title='${hit.name}'>${hit.name}</span>
-        </a>
-        <p class="card_item">Item #${hit.item_num}</p>
-        <form action="https://medicalmega.com/cart.html" method="post">
-          <div class="flex-center-center calc" ${hit['variants'][count].in_stock == false || hit['variants'][count].price == '0:00' ? 'disabled' : ''}>
-            <button class="btn-calc btn-calc_minus" type="button" disabled=""></button>
-            <input class="calc-qty" type="number" name="quantity" value="1" data-max-value="${hit['variants'][count].qty}">
-            <button class="btn-calc btn-calc_plus" type="button"></button>
-          </div>
-          ${hit['variants'][count].in_stock == false || hit['variants'][count].price == '0:00' ? '<button class="btn btn_white" type="button" data-button="notify"><span>Out of Stock</span></button>' : '<button class="btn btn_dark add-cart" type="submit"><span>$<span class="pr" data-price="' + hit['variants'][count].price + '">' + hit['variants'][count].price + '</span> | Add to Cart</span></button>'}
-          <input type="hidden" name="product_variant_id" value="${hit['variants'][count].pv_id}">
-          <input type="hidden" name="product_id" value="${hit.objectID}">
-          <input type="hidden" name="add_to_cart" value="variant">
-          
-        </form>
-      </div>
-    `
+            <div class="card">
+              <p class="status" style="display:${hit['variants'][count].in_stock == false || hit['variants'][count].price == '0:00' ? 'block' : 'none'}">Out of Stock</p>
+              <a class="card_name" href="https://medicalmega.com/product/${hit.seo}">
+                <img src="https://medicalmegaimgs.net/prod/uploaded/product/pro_thumb/${findImageHits(hit.variants) != '' ? findImageHits(hit.variants) : 'dummyimage.jpg'}" alt="${hit.name}">
+                <span title='${hit.name}'>${hit.name}</span>
+              </a>
+              <p class="card_item">Item #${hit.item_num}</p>
+              <form action="https://medicalmega.com/cart.html" method="post">
+                <div class="flex-center-center calc" ${hit['variants'][count].in_stock == false || hit['variants'][count].price == '0:00' ? 'disabled' : ''}>
+                  <button class="btn-calc btn-calc_minus" type="button" disabled=""></button>
+                  <input class="calc-qty" type="number" name="quantity" value="1" data-max-value="${hit['variants'][count].qty}">
+                  <button class="btn-calc btn-calc_plus" type="button"></button>
+                </div>
+                ${hit['variants'][count].in_stock == false || hit['variants'][count].price == '0:00' ? '<button class="btn btn_white" type="button" data-button="notify"><span>Out of Stock</span></button>' : '<button class="btn btn_dark add-cart" type="submit"><span>$<span class="pr" data-price="' + hit['variants'][count].price + '">' + hit['variants'][count].price + '</span> | Add to Cart</span></button>'}
+                <input type="hidden" name="product_variant_id" value="${hit['variants'][count].pv_id}">
+                <input type="hidden" name="product_id" value="${hit.objectID}">
+                <input type="hidden" name="add_to_cart" value="variant">
+                
+              </form>
+            </div>
+          `
             return boxItem
         }
 
@@ -2271,7 +2271,17 @@ window.onload = function() {
 
                 templates: {
                     suggestion: function (suggestion) {
-                        let sugTemplate = "<img src='https://medicalmegaimgs.net/prod/uploaded/product/pro_thumb/" + (findImageHits(suggestion.variants) != '' ? findImageHits(suggestion.variants) : 'dummyimage.jpg') + "'/><div><p class='name'>" + suggestion._highlightResult.name.value + "</p><p class='item_num'>Item #" + suggestion._highlightResult.item_num.value + "</p><p class='price'>$" + suggestion.price + "</p></div>"
+                        console.log(suggestion)
+                        let variants = suggestion.variants;
+                        let price = suggestion.price;
+                        for (let i = 0; i < variants.length; i++) {
+                            if (variants[i].extra.toLowerCase() == 'each') {
+                                price = variants[i].price
+                            } else {
+                                price = variants[0].price
+                            }
+                        }
+                        let sugTemplate = "<img src='https://medicalmegaimgs.net/prod/uploaded/product/pro_thumb/" + (findImageHits(suggestion.variants) != '' ? findImageHits(suggestion.variants) : 'dummyimage.jpg') + "'/><div><p class='name'>" + suggestion._highlightResult.name.value + "</p><p class='item_num'>Item #" + suggestion._highlightResult.item_num.value + "</p><p class='price'>$" + price + "</p></div>"
 
                         document.querySelector('#form-search .ais-SearchBox-submit').addEventListener('click', (e) => {
                             e.stopImmediatePropagation()
