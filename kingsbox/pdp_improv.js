@@ -524,7 +524,7 @@ const style = `
 
                                     [data-sign] {
                                         cursor: pointer;
-                                        padding: 5px;
+                                        padding: 10px 5px;
                                     }
 
                                     .minus_light {
