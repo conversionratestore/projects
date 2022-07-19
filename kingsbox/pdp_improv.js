@@ -25,7 +25,8 @@ const style = `
 										}
 
                                         .product-actions .mr-2 {
-                                            width: 23%;
+                                            width: 25%;
+                                            max-width: 100px;
                                         }
 										
 										.product-actions app-number-picker div:first-child {
