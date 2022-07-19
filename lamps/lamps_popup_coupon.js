@@ -402,7 +402,7 @@ let startFunk = setInterval(() => {
           font-size: 13px;
         }
 
-        .discount_pdp, .discount_pdp.sign_up{
+        .discount_pdp.sign_up{
           margin: 14px 0 0 1px;
         }
       }
@@ -441,6 +441,10 @@ let startFunk = setInterval(() => {
             max-width: 204px;
             font-size: 10px;
           }
+
+          .discount_pdp{
+            font-size: 9px;
+          }
       }
       @media (max-width: 280px) {
           .form_wrap > h2 {
@@ -464,7 +468,7 @@ let startFunk = setInterval(() => {
             max-width: 171px;
             font-size: 9px;
           }
-          .discount_pdp, .discount_pdp.sign_up svg{
+          .discount_pdp.sign_up svg{
             width: 15px;
             height: 15px;
           }
