@@ -809,7 +809,7 @@ let startFunk = setInterval(() => {
             showPopup()
           }
         }
-      }, 3000)
+      }, 8000)
     }
 
     document.querySelector(".btn_close").addEventListener("click", function () {
