@@ -396,6 +396,16 @@ let startFunk = setInterval(() => {
               margin-top: 8px;
           }
       }
+
+      @media (max-width: 380px) {
+        .discount_pdp.sign_up{
+          font-size: 13px;
+        }
+
+        .discount_pdp, .discount_pdp.sign_up{
+          margin: 14px 0 0 1px;
+        }
+      }
       @media (max-width: 320px) {
           .new_form > div:nth-child(1),
           .new_form > div:nth-child(2) {
@@ -427,6 +437,10 @@ let startFunk = setInterval(() => {
           .form_wrap > p.coupon_var {
           font-size: 10px;
           }
+          .discount_pdp, .discount_pdp.sign_up{
+            max-width: 204px;
+            font-size: 10px;
+          }
       }
       @media (max-width: 280px) {
           .form_wrap > h2 {
@@ -441,10 +455,18 @@ let startFunk = setInterval(() => {
           }
           .form_wrap > span::before,
           .form_wrap > span::after {
-          width: 33%;
+            width: 33%;
           }
           .form_wrap > p.coupon_var {
-          font-size: 9px;
+            font-size: 9px;
+          }
+          .discount_pdp, .discount_pdp.sign_up {
+            max-width: 171px;
+            font-size: 9px;
+          }
+          .discount_pdp, .discount_pdp.sign_up svg{
+            width: 15px;
+            height: 15px;
           }
       }
       </style>
