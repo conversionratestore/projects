@@ -444,6 +444,7 @@ let startFunk = setInterval(() => {
 
           .discount_pdp{
             font-size: 9px;
+            height: 38px;
           }
       }
       @media (max-width: 280px) {
