@@ -2,9 +2,11 @@
 
 const myStyle = `
 					<style>
-                        #notification-container + [title] > div {
-                            z-index: 99999 !important;
-                        }
+						#notification-container + [title] > div {
+						    z-index: 99999 !important;
+						}
+
+						.side-modal { padding-bottom: 25px; }
 
 						.shopping-cart-product .product-image {
 						    margin-right: 5px;
