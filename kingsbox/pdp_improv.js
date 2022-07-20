@@ -8,6 +8,8 @@ const style = `
 										 #notification-container + [title] > div {
 											z-index: 99999 !important;
 										}
+					
+										.side-modal { padding-bottom: 25px; }
 
 										.footer-wrapper {
 											margin-top: 30px;
