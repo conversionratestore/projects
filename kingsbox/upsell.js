@@ -187,6 +187,7 @@ const myStyle = `
                         .bottom_part div {
                             display: flex;
                             flex-direction: row;
+                            flex-wrap: wrap;
                         }
 
                         .bottom_part div p:first-child {
@@ -199,7 +200,7 @@ const myStyle = `
                         }
 
 						.bottom_part p {
-							margin: 4px 0;
+							margin: 4px 0 0;
 							white-space: nowrap;
 						}
 						
@@ -224,7 +225,7 @@ const myStyle = `
 						
 						.bottom_part button {
 							display: block;
-							margin: 8px auto 0;
+							margin: 12px auto 0;
 							background-color: #28A9E2;
 							color: #fff;
 							width: 90%;
