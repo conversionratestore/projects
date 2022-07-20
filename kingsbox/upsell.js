@@ -449,7 +449,7 @@ const initSlider = sliders => {
             slideBy: 'page',
             mouseDrag: true,
             swipeAngle: 30,
-            gutter: 8,
+            gutter: 6,
             loop: false,
             autoplay: false,
             autoplayButton: false,
