@@ -798,21 +798,15 @@ let startFunk = setInterval(() => {
 
     //show EXIT INTENT popup desktop
     addEvent(document, "mouseout", function (e) {
-      if (document.querySelector("#main-wrapper #item-details")) {
-        let dataProduct = JSON.parse(document.querySelector("#main-wrapper #item-details")?.getAttribute("data-product"))
-        let salesProduct = dataProduct.salesproduct
-
-        if (
-          e.toElement == null &&
-          e.relatedTarget == null &&
-          sessionStorage.getItem("exit_popup_loaded") == null &&
-          salesProduct &&
-          !document.querySelector(".backdrop_popup").classList.contains("show")
-        ) {
-          sessionStorage.setItem("exit_popup_loaded", "true") //refresh status popup
-          pushDataLayer("Exit Registration pop")
-          showPopup() //show popup
-        }
+      if (
+        e.toElement == null &&
+        e.relatedTarget == null &&
+        sessionStorage.getItem("exit_popup_loaded") == null &&
+        !document.querySelector(".backdrop_popup").classList.contains("show")
+      ) {
+        sessionStorage.setItem("exit_popup_loaded", "true") //refresh status popup
+        pushDataLayer("Exit Registration pop")
+        showPopup() //show popup
       }
     })
 
@@ -827,28 +821,23 @@ let startFunk = setInterval(() => {
 
     //show EXIT INTENT popup mobile
     if (window.innerWidth <= 768) {
-      if (document.querySelector("#main-wrapper #item-details")) {
-        let lastPosition = 0,
-          newPosition = 0,
-          currentSpeed = 0
+      let lastPosition = 0,
+        newPosition = 0,
+        currentSpeed = 0
 
-        let dataProduct = JSON.parse(document.querySelector("#main-wrapper #item-details")?.getAttribute("data-product"))
-        let salesProduct = dataProduct.salesproduct
+      let scrollSpeed = () => {
+        lastPosition = window.scrollY
+        setTimeout(() => {
+          newPosition = window.scrollY
+        }, 100)
+        currentSpeed = newPosition - lastPosition
 
-        let scrollSpeed = () => {
-          lastPosition = window.scrollY
-          setTimeout(() => {
-            newPosition = window.scrollY
-          }, 100)
-          currentSpeed = newPosition - lastPosition
-
-          if (currentSpeed > 100 && sessionStorage.getItem("exit_popup_loaded") == null && salesProduct && !document.querySelector(".backdrop_popup").classList.contains("show")) {
-            sessionStorage.setItem("exit_popup_loaded", "true") //refresh status popup
-            pushDataLayer("Exit Intent Registration pop")
-            document.querySelector(".body_popup .form_wrap:nth-child(1)").classList.add("exit_popup_")
-            showPopup() //show popup
-            document.removeEventListener("scroll", scrollSpeed)
-          }
+        if (currentSpeed > 100 && sessionStorage.getItem("exit_popup_loaded") == null && !document.querySelector(".backdrop_popup").classList.contains("show")) {
+          sessionStorage.setItem("exit_popup_loaded", "true") //refresh status popup
+          pushDataLayer("Exit Intent Registration pop")
+          document.querySelector(".body_popup .form_wrap:nth-child(1)").classList.add("exit_popup_")
+          showPopup() //show popup
+          document.removeEventListener("scroll", scrollSpeed)
         }
       }
 
