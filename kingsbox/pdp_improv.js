@@ -6,7 +6,7 @@ const style = `
 										General style
 										============= */
 										 #notification-container + [title] > div {
-											z-index: 99999;
+											z-index: 99999 !important;
 										}
 
 										.footer-wrapper {
