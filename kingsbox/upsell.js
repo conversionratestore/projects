@@ -200,6 +200,7 @@ const myStyle = `
 
 						.bottom_part p {
 							margin: 4px 0;
+							white-space: nowrap;
 						}
 						
 						.bottom_part p span {
