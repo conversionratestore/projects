@@ -920,11 +920,13 @@ let startFunk = setInterval(() => {
       validationForm(`.new_form`)
     })
 
-    document.querySelectorAll(".vp-row.col-11.opt-personalize").forEach((el) => {
-      el.addEventListener("click", function () {
-        pushDataLayer("Click on `Register Now. Save 15% on your first full-priced order`")
+    if (document.querySelector(".vp-row.col-11.opt-personalize")) {
+      document.querySelectorAll(".vp-row.col-11.opt-personalize").forEach((el) => {
+        el.addEventListener("click", function () {
+          pushDataLayer("Click on `Register Now. Save 15% on your first full-priced order`")
+        })
       })
-    })
+    }
 
     let newPopup = setInterval(() => {
       if (document.querySelector('.header-container .header-actions .action-links [data-account-trigger="true"] span').textContent === "Account") {
