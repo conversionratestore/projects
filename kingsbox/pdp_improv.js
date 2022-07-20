@@ -5,7 +5,10 @@ const style = `
 									/*  ============
 										General style
 										============= */
-										
+										 #notification-container + [title] > div {
+											z-index: 99999;
+										}
+
 										.footer-wrapper {
 											margin-top: 30px;
 										}									
