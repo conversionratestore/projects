@@ -802,7 +802,8 @@ let startFunk = setInterval(() => {
         e.toElement == null &&
         e.relatedTarget == null &&
         sessionStorage.getItem("exit_popup_loaded") == null &&
-        !document.querySelector(".backdrop_popup").classList.contains("show")
+        !document.querySelector(".backdrop_popup").classList.contains("show") &&
+        document.querySelector('.header-container .header-actions .action-links [data-account-trigger="true"] span').textContent !== "Account"
       ) {
         sessionStorage.setItem("exit_popup_loaded", "true") //refresh status popup
         pushDataLayer("Exit Registration pop")
@@ -832,7 +833,12 @@ let startFunk = setInterval(() => {
         }, 100)
         currentSpeed = newPosition - lastPosition
 
-        if (currentSpeed > 100 && sessionStorage.getItem("exit_popup_loaded") == null && !document.querySelector(".backdrop_popup").classList.contains("show")) {
+        if (
+          currentSpeed > 100 &&
+          sessionStorage.getItem("exit_popup_loaded") == null &&
+          !document.querySelector(".backdrop_popup").classList.contains("show") &&
+          document.querySelector('.header-container .header-actions .action-links [data-account-trigger="true"] span').textContent !== "Account"
+        ) {
           sessionStorage.setItem("exit_popup_loaded", "true") //refresh status popup
           pushDataLayer("Exit Intent Registration pop")
           document.querySelector(".body_popup .form_wrap:nth-child(1)").classList.add("exit_popup_")
