@@ -3,7 +3,7 @@
 const myStyle = `
 					<style>
                         #notification-container + [title] > div {
-                            top: 70% !important;
+                                z-index: 99999;
                         }
 
 						.shopping-cart-product .product-image {
