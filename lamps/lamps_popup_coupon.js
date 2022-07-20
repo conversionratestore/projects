@@ -696,24 +696,6 @@ let startFunk = setInterval(() => {
       }
     }
 
-    // startCoupon()
-    // coupon activate
-    // function startCoupon() {
-    //   const startCoupon = setInterval(() => {
-    //     const couponInput = document.querySelector(".inner-panel .i-block #sidebar-discount-coupon-form input")
-    //     if (couponInput) {
-    //       clearInterval(startCoupon)
-
-    //       if (document.querySelector('.header-container .header-actions .action-links [data-account-trigger="true"] span').textContent === "Account") {
-    //         if (couponInput.value !== "WLS1-QFT5") {
-    //           couponInput.value = "WLS1-QFT5"
-    //           document.querySelector(".inner-panel .i-block #submit-coupon")?.click()
-    //         }
-    //       }
-    //     }
-    //   }, 1000)
-    // }
-
     //new_customer_coupon
     function activateCoupon() {
       const cookieName = "new_customer_coupon"
@@ -803,18 +785,87 @@ let startFunk = setInterval(() => {
           if (
             !document.querySelector("#overlay") &&
             !sessionStorage.getItem("successSign") &&
+            !sessionStorage.getItem("set_timeout_popup_loaded") &&
             salesProduct &&
+            !document.querySelector(".backdrop_popup").classList.contains("show") &&
             document.querySelector('.header-container .header-actions .action-links [data-account-trigger="true"] span').textContent !== "Account"
           ) {
+            sessionStorage.setItem("set_timeout_popup_loaded", "true")
             showPopup()
           }
         }
       }, 8000)
     }
 
+    //show EXIT INTENT popup desktop
+    setTimeout(() => {
+      console.log(`time`)
+      addEvent(document, "mouseout", function (e) {
+        if (
+          e.toElement == null &&
+          e.relatedTarget == null &&
+          !document.querySelector("#overlay") &&
+          !sessionStorage.getItem("successSign") &&
+          sessionStorage.getItem("exit_popup_loaded") == null &&
+          !document.querySelector(".backdrop_popup").classList.contains("show") &&
+          document.querySelector('.header-container .header-actions .action-links [data-account-trigger="true"] span').textContent !== "Account"
+        ) {
+          sessionStorage.setItem("exit_popup_loaded", "true") //refresh status popup
+          pushDataLayer("Exit Registration pop")
+          showPopup() //show popup
+        }
+      })
+    }, 38000)
+
+    //exit intent
+    function addEvent(obj, evt, fn) {
+      if (obj.addEventListener) {
+        obj.addEventListener(evt, fn, false)
+      } else if (obj.attachEvent) {
+        obj.attachEvent("on" + evt, fn)
+      }
+    }
+
+    //show EXIT INTENT popup mobile
+    if (window.innerWidth <= 768) {
+      setTimeout(() => {
+        console.log(`time`)
+
+        let lastPosition = 0,
+          newPosition = 0,
+          currentSpeed = 0
+
+        let scrollSpeed = () => {
+          lastPosition = window.scrollY
+          setTimeout(() => {
+            newPosition = window.scrollY
+          }, 100)
+          currentSpeed = newPosition - lastPosition
+
+          if (
+            currentSpeed > 100 &&
+            sessionStorage.getItem("exit_popup_loaded") == null &&
+            !document.querySelector("#overlay") &&
+            !sessionStorage.getItem("successSign") &&
+            !document.querySelector(".backdrop_popup").classList.contains("show") &&
+            document.querySelector('.header-container .header-actions .action-links [data-account-trigger="true"] span').textContent !== "Account"
+          ) {
+            sessionStorage.setItem("exit_popup_loaded", "true") //refresh status popup
+            pushDataLayer("Exit Registration pop")
+            showPopup() //show popup
+            document.removeEventListener("scroll", scrollSpeed)
+          }
+        }
+
+        document.addEventListener("scroll", scrollSpeed)
+      }, 38000)
+    }
+
     document.querySelector(".btn_close").addEventListener("click", function () {
       if (this.getAttribute("successCoupon") || document.querySelector(".body_popup .form_wrap:nth-child(2)").classList.contains("active")) {
         pushDataLayer("TY after registration pop up closed by X")
+      } else if (sessionStorage.getItem("exit_popup_loaded")) {
+        pushDataLayer("Exit Intent Registration pop up closed by X")
       } else {
         pushDataLayer("Registration pop up closed by X")
       }
@@ -875,6 +926,14 @@ let startFunk = setInterval(() => {
     document.querySelector(".form_wrap button#btnRegisterSubmit")?.addEventListener("click", () => {
       validationForm(`.new_form`)
     })
+
+    if (document.querySelector(".vp-row.col-11.opt-personalize")) {
+      document.querySelectorAll(".vp-row.col-11.opt-personalize").forEach((el) => {
+        el.addEventListener("click", function () {
+          pushDataLayer("Click on `Register Now. Save 15% on your first full-priced order`")
+        })
+      })
+    }
 
     let newPopup = setInterval(() => {
       if (document.querySelector('.header-container .header-actions .action-links [data-account-trigger="true"] span').textContent === "Account") {
