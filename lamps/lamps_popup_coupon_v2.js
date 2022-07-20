@@ -785,11 +785,13 @@ let startFunk = setInterval(() => {
           if (
             !document.querySelector("#overlay") &&
             !sessionStorage.getItem("successSign") &&
+            !sessionStorage.getItem("set_timeout_popup_loaded") &&
             // !sessionStorage.getItem("exit_popup_loaded") &&
             salesProduct &&
             !document.querySelector(".backdrop_popup").classList.contains("show") &&
             document.querySelector('.header-container .header-actions .action-links [data-account-trigger="true"] span').textContent !== "Account"
           ) {
+            sessionStorage.setItem("set_timeout_popup_loaded", "true")
             showPopup()
           }
         }
