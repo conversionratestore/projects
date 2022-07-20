@@ -808,8 +808,10 @@ let startFunk = setInterval(() => {
         document.querySelector('.header-container .header-actions .action-links [data-account-trigger="true"] span').textContent !== "Account"
       ) {
         sessionStorage.setItem("exit_popup_loaded", "true") //refresh status popup
-        pushDataLayer("Exit Registration pop")
-        showPopup() //show popup
+        setTimeout(() => {
+          pushDataLayer("Exit Registration pop")
+          showPopup() //show popup
+        }, 30000)
       }
     })
 
@@ -916,6 +918,12 @@ let startFunk = setInterval(() => {
 
     document.querySelector(".form_wrap button#btnRegisterSubmit")?.addEventListener("click", () => {
       validationForm(`.new_form`)
+    })
+
+    document.querySelectorAll(".vp-row.col-11.opt-personalize").forEach((el) => {
+      el.addEventListener("click", function () {
+        pushDataLayer("Click on `Register Now. Save 15% on your first full-priced order`")
+      })
     })
 
     let newPopup = setInterval(() => {
