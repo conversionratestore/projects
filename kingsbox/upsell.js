@@ -2,7 +2,9 @@
 
 const myStyle = `
 					<style>
-                        
+                        #notification-container + [title] > div {
+                            top: 70% !important;
+                        }
 
 						.shopping-cart-product .product-image {
 						    margin-right: 5px;
