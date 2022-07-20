@@ -804,6 +804,8 @@ let startFunk = setInterval(() => {
         if (
           e.toElement == null &&
           e.relatedTarget == null &&
+          !document.querySelector("#overlay") &&
+          !sessionStorage.getItem("successSign") &&
           sessionStorage.getItem("exit_popup_loaded") == null &&
           !document.querySelector(".backdrop_popup").classList.contains("show") &&
           document.querySelector('.header-container .header-actions .action-links [data-account-trigger="true"] span').textContent !== "Account"
@@ -843,6 +845,8 @@ let startFunk = setInterval(() => {
           if (
             currentSpeed > 100 &&
             sessionStorage.getItem("exit_popup_loaded") == null &&
+            !document.querySelector("#overlay") &&
+            !sessionStorage.getItem("successSign") &&
             !document.querySelector(".backdrop_popup").classList.contains("show") &&
             document.querySelector('.header-container .header-actions .action-links [data-account-trigger="true"] span').textContent !== "Account"
           ) {
