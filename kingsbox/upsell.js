@@ -2,9 +2,7 @@
 
 const myStyle = `
 					<style>
-                        .side-modal {
-                            padding-bottom: 25px;
-                        }
+                        
 
 						.shopping-cart-product .product-image {
 						    margin-right: 5px;
