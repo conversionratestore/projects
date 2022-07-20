@@ -786,7 +786,6 @@ let startFunk = setInterval(() => {
             !document.querySelector("#overlay") &&
             !sessionStorage.getItem("successSign") &&
             !sessionStorage.getItem("set_timeout_popup_loaded") &&
-            !sessionStorage.getItem("exit_popup_loaded") &&
             salesProduct &&
             !document.querySelector(".backdrop_popup").classList.contains("show") &&
             document.querySelector('.header-container .header-actions .action-links [data-account-trigger="true"] span').textContent !== "Account"
@@ -799,21 +798,22 @@ let startFunk = setInterval(() => {
     }
 
     //show EXIT INTENT popup desktop
-    addEvent(document, "mouseout", function (e) {
-      if (
-        e.toElement == null &&
-        e.relatedTarget == null &&
-        sessionStorage.getItem("exit_popup_loaded") == null &&
-        !document.querySelector(".backdrop_popup").classList.contains("show") &&
-        document.querySelector('.header-container .header-actions .action-links [data-account-trigger="true"] span').textContent !== "Account"
-      ) {
-        sessionStorage.setItem("exit_popup_loaded", "true") //refresh status popup
-        setTimeout(() => {
+    let countTime = setInterval(() => {
+      addEvent(document, "mouseout", function (e) {
+        if (
+          e.toElement == null &&
+          e.relatedTarget == null &&
+          sessionStorage.getItem("exit_popup_loaded") == null &&
+          !document.querySelector(".backdrop_popup").classList.contains("show") &&
+          document.querySelector('.header-container .header-actions .action-links [data-account-trigger="true"] span').textContent !== "Account"
+        ) {
+          clearInterval(countTime)
+          sessionStorage.setItem("exit_popup_loaded", "true") //refresh status popup
           pushDataLayer("Exit Registration pop")
           showPopup() //show popup
-        }, 30000)
-      }
-    })
+        }
+      })
+    }, 30000)
 
     //exit intent
     function addEvent(obj, evt, fn) {
