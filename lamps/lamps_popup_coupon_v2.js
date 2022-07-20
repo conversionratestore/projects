@@ -798,7 +798,8 @@ let startFunk = setInterval(() => {
     }
 
     //show EXIT INTENT popup desktop
-    let countTime = setInterval(() => {
+    setTimeout(() => {
+      console.log(`time`)
       addEvent(document, "mouseout", function (e) {
         if (
           e.toElement == null &&
@@ -807,13 +808,12 @@ let startFunk = setInterval(() => {
           !document.querySelector(".backdrop_popup").classList.contains("show") &&
           document.querySelector('.header-container .header-actions .action-links [data-account-trigger="true"] span').textContent !== "Account"
         ) {
-          clearInterval(countTime)
           sessionStorage.setItem("exit_popup_loaded", "true") //refresh status popup
           pushDataLayer("Exit Registration pop")
           showPopup() //show popup
         }
       })
-    }, 30000)
+    }, 38000)
 
     //exit intent
     function addEvent(obj, evt, fn) {
@@ -826,34 +826,35 @@ let startFunk = setInterval(() => {
 
     //show EXIT INTENT popup mobile
     if (window.innerWidth <= 768) {
-      let lastPosition = 0,
-        newPosition = 0,
-        currentSpeed = 0
+      setTimeout(() => {
+        console.log(`time`)
 
-      let scrollSpeed = () => {
-        lastPosition = window.scrollY
-        setTimeout(() => {
-          newPosition = window.scrollY
-        }, 100)
-        currentSpeed = newPosition - lastPosition
+        let lastPosition = 0,
+          newPosition = 0,
+          currentSpeed = 0
 
-        if (
-          currentSpeed > 100 &&
-          sessionStorage.getItem("exit_popup_loaded") == null &&
-          !document.querySelector(".backdrop_popup").classList.contains("show") &&
-          document.querySelector('.header-container .header-actions .action-links [data-account-trigger="true"] span').textContent !== "Account"
-        ) {
-          sessionStorage.setItem("exit_popup_loaded", "true") //refresh status popup
+        let scrollSpeed = () => {
+          lastPosition = window.scrollY
           setTimeout(() => {
+            newPosition = window.scrollY
+          }, 100)
+          currentSpeed = newPosition - lastPosition
+
+          if (
+            currentSpeed > 100 &&
+            sessionStorage.getItem("exit_popup_loaded") == null &&
+            !document.querySelector(".backdrop_popup").classList.contains("show") &&
+            document.querySelector('.header-container .header-actions .action-links [data-account-trigger="true"] span').textContent !== "Account"
+          ) {
+            sessionStorage.setItem("exit_popup_loaded", "true") //refresh status popup
             pushDataLayer("Exit Registration pop")
             showPopup() //show popup
-            document.querySelector(".body_popup .form_wrap:nth-child(1)").classList.add("exit_popup_")
-          }, 30000)
-          document.removeEventListener("scroll", scrollSpeed)
+            document.removeEventListener("scroll", scrollSpeed)
+          }
         }
-      }
 
-      document.addEventListener("scroll", scrollSpeed)
+        document.addEventListener("scroll", scrollSpeed)
+      }, 38000)
     }
 
     document.querySelector(".btn_close").addEventListener("click", function () {
