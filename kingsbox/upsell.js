@@ -188,6 +188,7 @@ const myStyle = `
                             display: flex;
                             flex-direction: row;
                             flex-wrap: wrap;
+                            padding-top: 4px;
                         }
 
                         .bottom_part div p:first-child {
@@ -200,7 +201,7 @@ const myStyle = `
                         }
 
 						.bottom_part p {
-							margin: 4px 0 0;
+							margin: 0;
 							white-space: nowrap;
 						}
 						
