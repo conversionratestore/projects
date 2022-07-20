@@ -844,9 +844,11 @@ let startFunk = setInterval(() => {
           document.querySelector('.header-container .header-actions .action-links [data-account-trigger="true"] span').textContent !== "Account"
         ) {
           sessionStorage.setItem("exit_popup_loaded", "true") //refresh status popup
-          pushDataLayer("Exit Intent Registration pop")
-          document.querySelector(".body_popup .form_wrap:nth-child(1)").classList.add("exit_popup_")
-          showPopup() //show popup
+          setTimeout(() => {
+            pushDataLayer("Exit Registration pop")
+            showPopup() //show popup
+            document.querySelector(".body_popup .form_wrap:nth-child(1)").classList.add("exit_popup_")
+          }, 30000)
           document.removeEventListener("scroll", scrollSpeed)
         }
       }
