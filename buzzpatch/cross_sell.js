@@ -405,9 +405,10 @@ let crossSellFunc = setInterval(() => {
     document.body.insertAdjacentHTML("beforeend", popUp)
     document.querySelector(".prices").insertAdjacentHTML("afterend", newBtnAddToCart)
 
-    //textContent addToCart
+    //click on btn addToCart
     document.querySelector(".new_btn_addToCart a").addEventListener("click", function (e) {
       e.preventDefault()
+      clarity("set", `upsell_hypothesis`, "click_add2cart")
       showPopup()
     })
 
