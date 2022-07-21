@@ -1023,7 +1023,7 @@ const languagesObj = {
             'SPECIAL OFFERS',
         ],
     },
-    du: {
+    nl: {
         statuses: {
             not: 'Niet op voorraad',
             pre: 'VOORAFGAANDE',
