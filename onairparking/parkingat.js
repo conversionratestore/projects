@@ -190,7 +190,11 @@ let style = `
         display: none!important;
     }
     .reviews_section {
+        overflow: hidden;
+        margin-left: -7.5px;
+        width: calc(100% + 15px);
         margin-bottom: 30px;
+        padding: 0 7.5px;
     }
     .reviews-slider .slide > div > div:first-child {
         order: 1;
@@ -235,8 +239,6 @@ let style = `
     }
     .tns-outer {
         position: relative;
-        margin-left: -7.5px;
-        width: calc(100% + 15px);
     }
     .tns-nav {
         position: absolute;
