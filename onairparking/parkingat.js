@@ -194,6 +194,8 @@ let style = `
         margin-left: -7.5px;
         width: calc(100% + 15px);
         margin-bottom: 30px;
+    }
+    .reviews_section > div:first-child {
         padding: 0 7.5px;
     }
     .reviews-slider .slide > div > div:first-child {
@@ -289,7 +291,6 @@ let style = `
 
 //push dataLayer
 let pushDataLayer = (action) => {
-    console.log(action)
     window.dataLayer = window.dataLayer || [];
     dataLayer.push({
         'event': 'event-to-ga',
@@ -559,7 +560,6 @@ let startRemove = () => {
             // clearInterval(startRemove)
             document.querySelector('.js-style') != null ? document.querySelector('.js-style').remove() : '';
             sentPost = false;
-            console.log('remove')
         }
     },100)
 }
