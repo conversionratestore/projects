@@ -337,11 +337,8 @@ let renderStar = (rate) => {
 
 let renderPriceDay = (startDate,endDate,total) => {
     let newDate = new Date(new Date(endDate.split('-')[0], endDate.split('-')[1], endDate.split('-')[2]) - new Date(startDate.split('-')[0], startDate.split('-')[1], startDate.split('-')[2]));
-    console.log(newDate)
     let day = +newDate.getDate() - 1;
-    console.log(day)
     let priceDay = (+total / day).toFixed(2);
-    console.log(priceDay)
     return priceDay;
 }
 
@@ -481,6 +478,7 @@ let postParking = (id, startDate, endDate, parent, urlCode, total) => {
                 document.querySelector('.icon_info').addEventListener('click', (e) => pushDataLayer('Tap on the info icon'))
 
                 startSlider()//init carousel
+                
                 //add free Cancellation element in DOM
                 setTimeout(() => {
                     parent.querySelector('#detail-info > p').insertAdjacentHTML('beforebegin', freeCancellation)
@@ -499,6 +497,7 @@ let start = setInterval(() => {
 
         if (sentPost == false) {
             sentPost = true;
+            
             let linkCustom = document.createElement('link');
             linkCustom.href = 'https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.3/tiny-slider.css';
             linkCustom.rel = 'stylesheet';
@@ -524,9 +523,7 @@ let start = setInterval(() => {
                     total = tr[i].querySelector('td:last-child').innerText.replace('$','');
                 }
             }
-
-            console.log(arr)
-            console.log(id, startDate, endDate, parent, urlCode, total)
+        
             postParking(id, startDate, endDate, parent, urlCode, total) // send post parking
             //add fix button
             document.body.insertAdjacentHTML('beforeend',`<div class="fix_footer"><button type="button" class="btn_reserve-now">Reserve now</button></div>`)
@@ -545,6 +542,8 @@ let start = setInterval(() => {
                     reserveBtn.classList.remove('click-btn-sticky')
                 }
             })
+            document.querySelector('#parkingat > div > article > div.flex > button').addEventListener('click', (e) => pushDataLayer('Click at Reserve now button'))
+            
             window.addEventListener('scroll', () => {
                 if (document.querySelector('#detail-info > button.ant-btn') != null || document.querySelector('#parkingat > div > article > div.flex.flex-col > button') != null) {
                     if (isScrolledIntoView(document.querySelector('#detail-info > button.ant-btn')) == true || isScrolledIntoView(document.querySelector('#parkingat > div > article > div.flex.flex-col > button')) == true) {
@@ -600,7 +599,7 @@ let startEdit = setInterval(() => {
 
         let startDate = `${year1}-${mouth1}-${day1}`,
             endDate = `${year2}-${mouth2}-${day2}`;
-        console.log(startDate,endDate);
+
         let total = '';
         let tr = document.querySelectorAll('#detail-info > table tr.text-base');
         for (let i = 0; i < tr.length; i++) {
