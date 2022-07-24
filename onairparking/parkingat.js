@@ -278,9 +278,12 @@ let style = `
         padding-left: 0!important;
     }
     @media only screen and (max-width: 360px) {
-        #tns1-ow {
+        .reviews_section {
             margin-left: -3px;
             width: calc(100% + 6px);
+        }
+        .reviews_section > div:first-child {
+            padding: 0 3px;
         }
         .reviews-slider .slide {
             padding: 10px;
