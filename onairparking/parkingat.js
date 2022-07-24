@@ -497,16 +497,6 @@ let start = setInterval(() => {
 
         if (sentPost == false) {
             sentPost = true;
-            
-            let linkCustom = document.createElement('link');
-            linkCustom.href = 'https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.3/tiny-slider.css';
-            linkCustom.rel = 'stylesheet';
-            document.head.appendChild(linkCustom);
-
-            let scriptCustom = document.createElement('script');
-            scriptCustom.src = 'https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.3/min/tiny-slider.js';
-            scriptCustom.async = false;
-            document.body.appendChild(scriptCustom);
 
             let initial = window.location.href.split('parkingat/')[1].split('?')[0].replace(/[0-9]/g, '');
             let arr = document.querySelector('#__NEXT_DATA__').innerText.split(`,"airport_initials":"${initial.toUpperCase()}`)[0].split('"airport_id":'),
@@ -543,7 +533,7 @@ let start = setInterval(() => {
                 }
             })
             document.querySelector('#parkingat > div > article > div.flex > button').addEventListener('click', (e) => pushDataLayer('Click at Reserve now button'))
-            
+
             window.addEventListener('scroll', () => {
                 if (document.querySelector('#detail-info > button.ant-btn') != null || document.querySelector('#parkingat > div > article > div.flex.flex-col > button') != null) {
                     if (isScrolledIntoView(document.querySelector('#detail-info > button.ant-btn')) == true || isScrolledIntoView(document.querySelector('#parkingat > div > article > div.flex.flex-col > button')) == true) {
@@ -629,7 +619,7 @@ let startSlider = () => {
             //events
             if (document.querySelector('.tns-nav') != null) {
                 document.querySelector('.tns-nav').addEventListener('click', (e) => pushDataLayer('Using of the review slider'))
-             }
+            }
         }
     },100)
 }
