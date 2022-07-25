@@ -723,6 +723,7 @@ let startFunk = setInterval(() => {
         observer.disconnect()
         renderToPdp()
         onClickLogout()
+        onClickOldBtn()
 
         observer.observe(document.querySelector("#main-wrapper"), {
           childList: true,
@@ -741,6 +742,7 @@ let startFunk = setInterval(() => {
         observerCart.disconnect()
         renderToCart()
         onClickLogout()
+        onClickOldBtn()
 
         observerCart.observe(document.querySelector("#cart-panel"), {
           childList: true,
@@ -767,7 +769,13 @@ let startFunk = setInterval(() => {
               pushDataLayer("15% off button on Cart clicked")
             }
 
-            document.querySelector('.header-container .header-actions .action-links [data-account-trigger="true"]').click()
+            if (
+              !sessionStorage.getItem("successSign") &&
+              !document.querySelector(".backdrop_popup").classList.contains("show") &&
+              document.querySelector('.header-container .header-actions .action-links [data-account-trigger="true"] span').textContent !== "Account"
+            ) {
+              showPopup()
+            }
           })
         }
         el.setAttribute("data-click", "1")
@@ -864,11 +872,13 @@ let startFunk = setInterval(() => {
     document.querySelector(".btn_close").addEventListener("click", function () {
       if (this.getAttribute("successCoupon") || document.querySelector(".body_popup .form_wrap:nth-child(2)").classList.contains("active")) {
         pushDataLayer("TY after registration pop up closed by X")
-      } else if (sessionStorage.getItem("exit_popup_loaded")) {
-        pushDataLayer("Exit Intent Registration pop up closed by X")
       } else {
         pushDataLayer("Registration pop up closed by X")
       }
+
+      // else if (sessionStorage.getItem("exit_popup_loaded")) {
+      //   pushDataLayer("Exit Intent Registration pop up closed by X")
+      // }
 
       hidePopup()
     })
@@ -929,10 +939,52 @@ let startFunk = setInterval(() => {
 
     if (document.querySelector(".vp-row.col-11.opt-personalize")) {
       document.querySelectorAll(".vp-row.col-11.opt-personalize").forEach((el) => {
-        el.addEventListener("click", function () {
+        el.addEventListener("click", function (e) {
+          e.preventDefault()
+          e.stopPropagation()
           pushDataLayer("Click on `Register Now. Save 15% on your first full-priced order`")
+          if (
+            !sessionStorage.getItem("successSign") &&
+            !document.querySelector(".backdrop_popup").classList.contains("show") &&
+            document.querySelector('.header-container .header-actions .action-links [data-account-trigger="true"] span').textContent !== "Account"
+          ) {
+            showPopup()
+          }
         })
       })
+    }
+
+    onClickOldBtn()
+    function onClickOldBtn() {
+      if (document.querySelector('.header-container .header-actions .action-links [data-account-trigger="true"] span').textContent !== "Account") {
+        document.querySelector('.header-container .header-actions .action-links [data-account-trigger="true"]').addEventListener("click", function (e) {
+          e.preventDefault()
+          e.stopPropagation()
+
+          if (
+            !sessionStorage.getItem("successSign") &&
+            !document.querySelector(".backdrop_popup").classList.contains("show") &&
+            document.querySelector('.header-container .header-actions .action-links [data-account-trigger="true"] span').textContent !== "Account"
+          ) {
+            pushDataLayer("Click on `Sign In`")
+            showPopup()
+          }
+        })
+
+        document.querySelector('.header-container .top-links-container .tlink[data-position="3"]').addEventListener("click", function (e) {
+          e.preventDefault()
+          e.stopPropagation()
+
+          if (
+            !sessionStorage.getItem("successSign") &&
+            !document.querySelector(".backdrop_popup").classList.contains("show") &&
+            document.querySelector('.header-container .header-actions .action-links [data-account-trigger="true"] span').textContent !== "Account"
+          ) {
+            pushDataLayer("Click on `Login | Sign Up`")
+            showPopup()
+          }
+        })
+      }
     }
 
     let newPopup = setInterval(() => {
