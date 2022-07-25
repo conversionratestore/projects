@@ -547,6 +547,7 @@ let start = setInterval(() => {
 
         if (sentPost == false) {
             sentPost = true;
+            changeImage()//change image
 
             let initial = window.location.href.split('parkingat/')[1].split('?')[0].replace(/[0-9]/g, '');
             let arr = document.querySelector('#__NEXT_DATA__').innerText.split(`,"airport_initials":"${initial.toUpperCase()}`)[0].split('"airport_id":'),
@@ -598,7 +599,6 @@ let start = setInterval(() => {
                     }
                 }
             })
-            changeImage()//change image
         }
     }
 })
