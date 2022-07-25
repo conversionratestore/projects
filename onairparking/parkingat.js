@@ -394,7 +394,7 @@ let postParking = (id, startDate, endDate, parent, urlCode, total) => {
                         freeCancellation = `<div class="flex items-center pt-1 mb-5 free_block"><svg class="mr-2" width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="9" cy="9" r="8" stroke="#069B27" stroke-width="2"/><path d="M5.47852 9.89474L8.02397 12L12.4785 7" stroke="#069B27" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
                                             <p class="fs-13 c-green font-bold"> Free cancellation until ${startDate.split('-')[2]} ${arrMouth[+startDate.split('-')[1] - 1]}</p></div>`
 
-                   }
+                    }
                 }
                 //review
                 parent.querySelector('div > article > div.flex > span').innerHTML = `<span class="review_section flex items-center mt-2 fs-14"><ul class="flex">${renderStar(Math.round(result[i]['facility_review_avg']))}</ul> (${result[i]['num_review']})</span>`;
@@ -482,7 +482,8 @@ let postParking = (id, startDate, endDate, parent, urlCode, total) => {
                 document.querySelector('.icon_info').addEventListener('click', (e) => pushDataLayer('Tap on the info icon'))
 
                 startSlider()//init carousel
-                
+                changeImage()//change image
+
                 //add free Cancellation element in DOM
                 setTimeout(() => {
                     parent.querySelector('#detail-info > p').insertAdjacentHTML('beforebegin', freeCancellation)
@@ -494,6 +495,46 @@ let postParking = (id, startDate, endDate, parent, urlCode, total) => {
 
 let sentPost = false;
 let viewed = false;
+
+let arrImage = ['aerial-view-road-buildings-cars-parked-lot-sunny-day.jpg','cars-parking.jpg','overhead-view-car-parking-slots-copy-space.jpg','parked-vehicles-view.jpg','top-view-cars-parking-lot.jpg','transport-concept-with-parked-cars.jpg'];
+
+let parkingat_items = [];
+//change image
+let changeImage = () => {
+    let startImage = setInterval(() => {
+        if (document.querySelector('#parkingat') != null && document.querySelector('#parkingat > div > article > div > h1') != null && document.querySelector('#parkingat > div > article > div.relative > img') != null) {
+            let image = arrImage[arrImage.length * Math.random() | 0];
+            let objParking = ''
+            if (localStorage.getItem('parkingat_items') != null) {
+                let itemsStorage = JSON.parse(localStorage.getItem('parkingat_items'));
+                objParking = itemsStorage.filter((item,index) => {
+                    if (item.name == document.querySelector('#parkingat > div > article > div > h1').innerText) {
+                        return item
+                    }
+                })
+
+                if (objParking != '') {
+                    document.querySelector('#parkingat > div > article > div.relative > img').src = `https://conversionratestore.github.io/projects/onairparking/img/parking/${objParking[0].image}`;
+                } else {
+                    parkingat_items.push({
+                        'image': image,
+                        'name': document.querySelector('#parkingat > div > article > div > h1').innerText
+                    })
+                    console.log(parkingat_items)
+                    localStorage.setItem('parkingat_items', JSON.stringify(parkingat_items))
+                    document.querySelector('#parkingat > div > article > div.relative > img').src = `https://conversionratestore.github.io/projects/onairparking/img/parking/${image}`;
+                }
+            } else {
+                parkingat_items.push({
+                    'image': image,
+                    'name': document.querySelector('#parkingat > div > article > div > h1').innerText
+                })
+                localStorage.setItem('parkingat_items', JSON.stringify(parkingat_items))
+                document.querySelector('#parkingat > div > article > div.relative > img').src = `https://conversionratestore.github.io/projects/onairparking/img/parking/${image}`;
+            }
+        }
+    }, 100)
+}
 
 let start = setInterval(() => {
     if (document.querySelector('#__NEXT_DATA__') != null && window.location.pathname.includes('/parkingat/') && document.querySelector('#parkingat') != null && document.querySelector('#detail-info > p.block') != null && document.querySelector('#detail-info > table tr') != null && document.querySelector('#detail-info > button') != null) {
@@ -517,11 +558,9 @@ let start = setInterval(() => {
                     total = tr[i].querySelector('td:last-child').innerText.replace('$','');
                 }
             }
-        
+
             postParking(id, startDate, endDate, parent, urlCode, total) // send post parking
 
-            //change image 
-            document.querySelector('#parkingat > div > article > div.relative > img').src = `https://conversionratestore.github.io/projects/onairparking/img/parking/overhead-view-car-parking-slots-copy-space.jpg`
             //add fix button
             document.body.insertAdjacentHTML('beforeend',`<div class="fix_footer"><button type="button" class="btn_reserve-now">Reserve now</button></div>`)
             //Reserve now sticky button
@@ -554,8 +593,6 @@ let start = setInterval(() => {
                     }
                 }
             })
-           // startRemove()
-
         }
     }
 })
@@ -629,7 +666,6 @@ let startSlider = () => {
         }
     },100)
 }
-
 
 window.dataLayer = window.dataLayer || [];
 dataLayer.push({
