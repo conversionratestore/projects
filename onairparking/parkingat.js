@@ -482,7 +482,6 @@ let postParking = (id, startDate, endDate, parent, urlCode, total) => {
                 document.querySelector('.icon_info').addEventListener('click', (e) => pushDataLayer('Tap on the info icon'))
 
                 startSlider()//init carousel
-                changeImage()//change image
 
                 //add free Cancellation element in DOM
                 setTimeout(() => {
@@ -503,6 +502,7 @@ let parkingat_items = [];
 let changeImage = () => {
     let startImage = setInterval(() => {
         if (document.querySelector('#parkingat') != null && document.querySelector('#parkingat > div > article > div > h1') != null && document.querySelector('#parkingat > div > article > div.relative > img') != null) {
+            clearInterval(startImage)
             let image = arrImage[arrImage.length * Math.random() | 0];
             let objParking = ''
             if (localStorage.getItem('parkingat_items') != null) {
@@ -598,6 +598,7 @@ let start = setInterval(() => {
                     }
                 }
             })
+            changeImage()//change image
         }
     }
 })
