@@ -521,7 +521,11 @@ let changeImage = () => {
                         'name': document.querySelector('#parkingat > div > article > div > h1').innerText
                     })
                     parkingat_items = [...parkingat_items, ...itemsStorage]
-                    console.log(parkingat_items)
+                    parkingat_items = parkingat_items.filter((thing, index, self) =>
+                        index === self.findIndex((t) => (
+                            t.name === thing.name
+                        ))
+                    )
                     localStorage.setItem('parkingat_items', JSON.stringify(parkingat_items))
                     document.querySelector('#parkingat > div > article > div.relative > img').src = `https://conversionratestore.github.io/projects/onairparking/img/parking/${image}`;
                 }
