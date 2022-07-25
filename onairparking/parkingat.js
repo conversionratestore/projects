@@ -519,6 +519,9 @@ let start = setInterval(() => {
             }
         
             postParking(id, startDate, endDate, parent, urlCode, total) // send post parking
+
+            //change image 
+            document.querySelector('#parkingat > div > article > div.relative > img').src = `https://conversionratestore.github.io/projects/onairparking/img/parking/aerial-view-road-buildings-cars-parked-lot-sunny-day.jpg`
             //add fix button
             document.body.insertAdjacentHTML('beforeend',`<div class="fix_footer"><button type="button" class="btn_reserve-now">Reserve now</button></div>`)
             //Reserve now sticky button
