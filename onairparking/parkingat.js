@@ -497,8 +497,8 @@ let sentPost = false;
 let viewed = false;
 
 let arrImage = ['aerial-view-road-buildings-cars-parked-lot-sunny-day.jpg','cars-parking.jpg','overhead-view-car-parking-slots-copy-space.jpg','parked-vehicles-view.jpg','top-view-cars-parking-lot.jpg','transport-concept-with-parked-cars.jpg'];
-
 let parkingat_items = [];
+
 //change image
 let changeImage = () => {
     let startImage = setInterval(() => {
