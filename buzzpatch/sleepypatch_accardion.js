@@ -5,7 +5,7 @@ let startFunkAccardion = setInterval(() => {
     let styleAccardion = /*html */ `
       <style>
         .section_accardion{
-            padding: 20px;
+            padding: 23px;
         }
         .section_accardion > div{
             display: flex;
