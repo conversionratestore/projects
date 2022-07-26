@@ -361,14 +361,16 @@ if (window.innerWidth <= 768) {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-  gap: 12px;
+  gap: 8px;
   margin: 0 0 40px;
 }
 
 .first_block_checkbox input.custom_checkbox {
-  position: absolute;
-  z-index: -1;
-  opacity: 0;
+    z-index: -1;
+    opacity: 0;
+    height: 0;
+    margin: 0;
+    padding: 0;
 }
 
 .first_block_checkbox label {
