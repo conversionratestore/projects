@@ -19,9 +19,6 @@ let style = `
         background: #FFFFFF;
         color: #515356;
     }
-    #list_parking {
-            background: #FEF3EB;
-        }
     #list_parking .btn {
         background: #069B27;
         border-radius: 3px;
@@ -113,6 +110,8 @@ let style = `
     .swipe {
         box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.07), 0 -3px 50px rgba(0, 0, 0, 0.12);
         border-radius: 20px 20px 0 0;
+        margin-top: -66px;
+        transition: all 0.2s ease;
     }
     .swipe-header {
         padding: 26px 16px 21px;
@@ -152,11 +151,143 @@ let style = `
     }
     .btns-edit {
         padding: 10px;
+        position: absolute;
+        left: 0;
+        top: 50px;
+        width: 100%;
     }
     .btns-edit button {
         background: #FFFFFF;
         box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.15), 0px 0px 20px rgba(0, 0, 0, 0.1);
         border-radius: 86px;
+        padding: 10px 15px;
+        font-size: 12px;
+        line-height: 14px;
+        color: #515356;
+        text-align: left;
+        min-height: 48px;
+    }
+
+    .btn-edit-name {
+        width: 62%;
+    }
+    .btn-edit-date  {
+        width: 35%;
+    }
+    #__next > section > nav > div > div > div.flex.w-12.h-12 {
+        width: 42px!important;
+        height: 42px!important;
+    }
+    #__next > section > nav > div > div > div.flex.w-12.h-12 > button > svg.h-6.w-6 {
+        width: 16px!important;
+        height: 16px!important;
+    }
+    #__next > section > nav > div > div {
+        height: 50px!important;
+    }
+    #__next > section > nav > div > div > div.flex.items-center > div > a > span > span > img {
+        height: 40px!important;
+    }
+    #map-main {
+        min-height: calc(100vh - 50px)
+    }
+    body {
+        overflow: hidden;
+    }
+    body.active {
+        overflow-y: auto;
+    }
+    body.active .swipe {
+        margin-top: -50vh;
+    }
+    .popup {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100vh;
+        z-index: 999999;
+        background: #FFFFFF;
+        opacity: 0;
+        pointer-events: none;
+        transition: all 0.3s ease;
+    }
+    .popup.active {
+        opacity: 1;
+        pointer-events: auto;
+    }
+    .popup_header {
+        padding: 17px 20px 16px;
+        background: #FFFFFF;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.07), 0 3px 50px rgba(0, 0, 0, 0.12);
+        position: sticky;
+        top: 0;
+    }
+    .btn-back {
+        position: absolute;
+        left: 20px;
+        top: 16px;
+    }
+    .popup-top {
+        text-align: center;
+        font-weight: 500;
+        font-size: 20px;
+        line-height: 23px;
+        padding-bottom: 16px;
+        border-bottom: 1px solid #515356;
+        color: #515356;
+    }
+    .input-place {
+        font-weight: 500;
+        font-size: 13px;
+        line-height: 15px;
+        color: #515356;
+        border: 1px solid #FF9729;
+        border-radius: 50px;
+        padding: 13px 20px 12px;
+        width: 100%;
+    }
+    .input-place:focus, .input-place:valid {
+        border-color: #515356;
+    }
+    .input-place::-webkit-input-placeholder, .input-place:-moz-placeholder, .input-place::-moz-placeholder, .input-place:-ms-input-placeholder {
+        font-weight: 400;
+        font-size: 13px;
+        line-height: 15px;
+        color: #515356;
+        opacity: 0.3; 
+    }
+    .popup_body {
+        padding: 30px 20px;
+    } 
+    .popular-place p {
+        font-weight: 600;
+        font-size: 16px;
+        line-height: 19px;
+        color: #515356;
+    }
+    .popular-place li img {
+        flex-shrink: 0;
+    }
+    .popular-place li span {
+        font-size: 14px;
+        line-height: 16px;
+        color: #515356;
+        margin-left: 15px;
+    }
+    .list-autocomplete .ant-select-item {
+        display: flex;
+        align-items: center;
+        font-size: 14px;
+        line-height: 16px;
+        color: #515356;
+    }
+    .list-autocomplete .ant-select-item:before {
+        content: '';
+        background: url("https://conversionratestore.github.io/projects/onairparking/img/pin-location.png") no-repeat center / 35px;
+        width: 35px;
+        height: 35px;
+        margin-right: 15px;
     }
     @media only screen and (max-width: 340px) {
         .info_parking {
@@ -183,7 +314,7 @@ let html = `
     
     <div class="flex items-center justify-between btns-edit">
         <button type="button" class="btn-edit-name items-center flex">
-            <span></span>
+            <b></b>
             <svg width="13" height="12" viewBox="0 0 13 12" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M6.25879 10.9995H11.5154" stroke="#515356" stroke-linecap="round" stroke-linejoin="round"/>
                 <path d="M8.88491 1.36289C9.11726 1.13054 9.43241 1 9.76101 1C9.92371 1 10.0848 1.03205 10.2351 1.09431C10.3855 1.15658 10.5221 1.24784 10.6371 1.36289C10.7522 1.47794 10.8434 1.61453 10.9057 1.76485C10.968 1.91517 11 2.07629 11 2.23899C11 2.4017 10.968 2.56281 10.9057 2.71314C10.8434 2.86346 10.7522 3.00004 10.6371 3.11509L3.33627 10.4159L1 11L1.58407 8.66373L8.88491 1.36289Z" stroke="#515356" stroke-linecap="round" stroke-linejoin="round"/>
@@ -191,8 +322,8 @@ let html = `
         </button>
         <button type="button" class="btn-edit-date items-center flex">
             <span>
-                From: <span class="from"></span> <br>
-                To: <span class="to"></span>
+                From: <b class="from"></b> <br>
+                To: <b class="to"></b>
             </span>
             <svg width="13" height="12" viewBox="0 0 13 12" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M6.25879 10.9995H11.5154" stroke="#515356" stroke-linecap="round" stroke-linejoin="round"/>
@@ -207,7 +338,44 @@ let html = `
         </div>
         <ul id="list_parking" class="p-4"></ul>
     </div>
+</div>
 
+<div class="popup" data-title="choose place">
+    <div class="popup_header">
+        <div class="popup-top">
+            <button type="button" class="btn-back">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M15 18L9 12L15 6" stroke="#515356" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </button>
+            <h4 class="popup-title">Choose place</h4>
+        </div>
+        <input type="text" class="input-place" placeholder="Where do you want to park?">
+    </div>
+    <div class="popup_body">
+        <div class="popular-place">
+            <p>Popular locations</p>
+            <ul>
+                <li class="flex items-center mb-4">
+                    <img src="https://conversionratestore.github.io/projects/onairparking/img/pin-location.png" alt="icon location">
+                    <span>Denver International Airport</span>
+                </li>
+                <li class="flex items-center mb-4">
+                    <img src="https://conversionratestore.github.io/projects/onairparking/img/pin-location.png" alt="icon location">
+                    <span>Chicago O'Hare International Airport</span>
+                </li>
+                <li class="flex items-center mb-4">
+                    <img src="https://conversionratestore.github.io/projects/onairparking/img/pin-location.png" alt="icon location">
+                    <span>Boston Logan International Airport</span>
+                </li>
+                <li class="flex items-center">
+                    <img src="https://conversionratestore.github.io/projects/onairparking/img/pin-location.png" alt="icon location">
+                    <span>Atlanta Hartsfield-Jackson International Airport</span>
+                </li>
+            </ul>
+        </div>
+        <div class="list-autocomplete"></div>
+    </div>
 </div>
 `;
 
@@ -315,6 +483,56 @@ class Parking{
         `
 
         this.parent.appendChild(element);
+    }
+}
+
+//swipe
+class Swipe {
+    constructor(element) {
+        this.yDown = null;
+        this.element = typeof(element) === 'string' ? document.querySelector(element) : element;
+
+        this.element.addEventListener('touchstart', function(evt) {
+            this.yDown = evt.touches[0].clientY;
+        }.bind(this), false);
+
+    }
+
+    onUp(callback) {
+        this.onUp = callback;
+
+        return this;
+    }
+
+    onDown(callback) {
+        this.onDown = callback;
+
+        return this;
+    }
+
+    handleTouchMove(evt) {
+        if ( ! this.yDown ) {
+            return;
+        }
+
+        let yUp = evt.touches[0].clientY;
+
+        this.yDiff = this.yDown - yUp;
+
+        if ( this.yDiff > 0 ) {
+            this.onUp();
+        } else {
+            this.onDown();
+        }
+
+        // Reset values.
+        this.yDown = null;
+    }
+
+    run() {
+        this.element.addEventListener('touchmove', function(evt) {
+            this.handleTouchMove(evt).bind(this);
+        }.bind(this), false);
     }
 }
 
@@ -428,8 +646,37 @@ let start = setInterval(() => {
                 endDate = window.location.href.split('checkout=')[1],
                 parent = document.querySelector('#list_parking');
 
+            document.querySelector('.btn-edit-name b').innerHTML = window.location.href.split('airport=')[1].split('&')[0].split('+').join(' ');
+            document.querySelector('.btn-edit-date .from').innerHTML = startDate.split('-')[2] + ' ' + formatDate[startDate.split('-')[1]];
+            document.querySelector('.btn-edit-date .to').innerHTML = endDate.split('-')[2] + ' ' + formatDate[endDate.split('-')[1]];
+
             postParking(id, startDate, endDate, parent) // send post parking
 
+            //swipe event
+            let swiper = new Swipe('.swipe-header');
+            swiper.onUp(() => { document.body.classList.add('active') });
+            swiper.run();
+            swiper.onDown(() => { document.body.classList.remove('active') });
+            swiper.run();
+
+            document.querySelector('.input-place').addEventListener('input', (e) => {
+                console.log(e.target.value)
+                document.querySelector('#rc_select_0').value = e.target.value;
+                // document.querySelector('#rc_select_0').focus()
+                // let runA = setInterval( () => {
+                    if (document.querySelector('.rc-virtual-list-holder-inner') != null) {
+                        clearInterval(runA)
+                        if (e.target.value != '') {
+                            document.querySelector('.popular-place').style.display = 'none';
+                            document.querySelector('.list-autocomplete').innerHTML = document.querySelector('.rc-virtual-list-holder-inner').innerHTML;
+                        } else {
+                            document.querySelector('.popular-place').style.display = 'block';
+                            document.querySelector('.list-autocomplete').innerHTML = '';
+                        }
+                    }
+                // }, 200)
+
+            })
         }
     }
 })
