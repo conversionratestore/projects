@@ -959,6 +959,7 @@ let startFunk = setInterval(() => {
     document.querySelector(".form_wrap > p > span")?.addEventListener("click", () => {
       hidePopup()
       document.querySelector('.header-container .top-links-container .tlink[data-position="3"] span').click()
+
       if (document.querySelector('#account-panel .content-panel .content-row > div:first-child').classList.contains('d-block')) {
         document.querySelector('#btn-login-show').click()
       }
@@ -1032,19 +1033,19 @@ let startFunk = setInterval(() => {
           }
         })
 
-        document.querySelector('.header-container .top-links-container .tlink[data-position="3"]').addEventListener("click", function (e) {
-          e.preventDefault()
-          e.stopPropagation()
+        // document.querySelector('.header-container .top-links-container .tlink[data-position="3"]').addEventListener("click", function (e) {
+        //   e.preventDefault()
+        //   e.stopPropagation()
 
-          if (
-            !sessionStorage.getItem("successSign") &&
-            !document.querySelector(".backdrop_popup").classList.contains("show") &&
-            document.querySelector('.header-container .header-actions .action-links [data-account-trigger="true"] span').textContent !== "Account"
-          ) {
-            pushDataLayer("Click on `Login | Sign Up`")
-            showPopup()
-          }
-        })
+        //   if (
+        //     !sessionStorage.getItem("successSign") &&
+        //     !document.querySelector(".backdrop_popup").classList.contains("show") &&
+        //     document.querySelector('.header-container .header-actions .action-links [data-account-trigger="true"] span').textContent !== "Account"
+        //   ) {
+        //     pushDataLayer("Click on `Login | Sign Up`")
+        //     showPopup()
+        //   }
+        // })
       }
     }
 
