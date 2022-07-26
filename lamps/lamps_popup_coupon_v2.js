@@ -1103,6 +1103,27 @@ let startFunk = setInterval(() => {
             }
           });
 
+        document
+          .querySelector("#btn-register-show")
+          .addEventListener("click", function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            if (
+              !sessionStorage.getItem("successSign") &&
+              !document
+                .querySelector(".backdrop_popup")
+                .classList.contains("show") &&
+              document.querySelector(
+                '.header-container .header-actions .action-links [data-account-trigger="true"] span'
+              ).textContent !== "Account"
+            ) {
+              pushDataLayer("Click on `Login | Sign Up`");
+              document.querySelector("#overlay").click();
+              showPopup();
+            }
+          });
+
         // document.querySelector('.header-container .top-links-container .tlink[data-position="3"]').addEventListener("click", function (e) {
         //   e.preventDefault()
         //   e.stopPropagation()
