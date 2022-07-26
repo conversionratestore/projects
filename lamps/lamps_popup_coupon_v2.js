@@ -1027,12 +1027,9 @@ let startFunk = setInterval(() => {
         hidePopup();
         document
           .querySelector(
-            '.header-container .header-actions .action-links [data-account-trigger="true"]'
+            '.header-container .top-links-container .tlink[data-position="3"] span'
           )
-          ?.click();
-        document
-          .querySelector("#account-panel .content-panel #btn-login-show")
-          ?.click();
+          .click();
       });
 
     document
