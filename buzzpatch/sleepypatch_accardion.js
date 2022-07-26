@@ -1,6 +1,26 @@
 let startFunkAccardion = setInterval(() => {
   if (document.querySelector("#flowers")) {
-    clearInterval(startFunkAccardion)
+    clearInterval(startFunkAccardion);
+
+    function pushDataLayer(actionDataLayer, labelDataLayer) {
+      window.dataLayer = window.dataLayer || [];
+      if (labelDataLayer) {
+        console.log(actionDataLayer + " : " + labelDataLayer);
+        dataLayer.push({
+          event: "event-to-ga",
+          eventCategory: `Exp: Add scientific research`,
+          eventAction: `${actionDataLayer}`,
+          eventLabel: `${labelDataLayer}`,
+        });
+      } else {
+        console.log(actionDataLayer);
+        dataLayer.push({
+          event: "event-to-ga",
+          eventCategory: `Exp: Add scientific research`,
+          eventAction: `${actionDataLayer}`,
+        });
+      }
+    }
 
     let styleAccardion = /*html */ `
       <style>
@@ -190,7 +210,7 @@ let startFunkAccardion = setInterval(() => {
         }
 
       </style>
-    `
+    `;
     let sectionAccardion = /*html */ `
      <section class="section_accardion">
         <div>
@@ -265,40 +285,50 @@ let startFunkAccardion = setInterval(() => {
             </li>
         </ul> 
     </section>    
-    `
+    `;
 
-    document.head.insertAdjacentHTML("beforeend", styleAccardion)
-    document.querySelector("#flowers").insertAdjacentHTML("afterend", sectionAccardion)
+    document.head.insertAdjacentHTML("beforeend", styleAccardion);
+    document
+      .querySelector("#flowers")
+      .insertAdjacentHTML("afterend", sectionAccardion);
 
     //
     const accardionToggle = (slideMenu) => (e) => {
       slideMenu.forEach((links) => {
-        const hidePanel = links.nextElementSibling
+        const hidePanel = links.nextElementSibling;
         if (links === e.currentTarget) {
-          e.currentTarget.classList.toggle("active")
+          e.currentTarget.classList.toggle("active");
 
-          hidePanel.classList.toggle("active_block")
+          pushDataLayer(
+            "Click on section explaining",
+            `${e.currentTarget.querySelector("p").textContent}`
+          );
 
-          const scrollTarget = hidePanel
-          const topOffset = 155
-          const elementPosition = scrollTarget.getBoundingClientRect().top
-          const offsetPosition = elementPosition - topOffset
+          hidePanel.classList.toggle("active_block");
+
+          const scrollTarget = hidePanel;
+          const topOffset = 155;
+          const elementPosition = scrollTarget.getBoundingClientRect().top;
+          const offsetPosition = elementPosition - topOffset;
 
           window.scrollBy({
             top: offsetPosition,
             behavior: "smooth",
-          })
+          });
         } else {
-          links.classList.remove("active")
-          hidePanel.classList.remove("active_block")
+          links.classList.remove("active");
+          hidePanel.classList.remove("active_block");
         }
-      })
-    }
+      });
+    };
 
-    const slideMenu = document.querySelectorAll(".accardion_link")
+    const slideMenu = document.querySelectorAll(".accardion_link");
 
     slideMenu.forEach((links) => {
-      links.addEventListener("click", accardionToggle(slideMenu))
-    })
+      links.addEventListener("click", accardionToggle(slideMenu));
+    });
+
+    pushDataLayer("loaded");
+    clarity("set", "add_scientific_research", "variant_1");
   }
-}, 10)
+}, 10);
