@@ -39,7 +39,7 @@ let startFunk = setInterval(() => {
       body.no-scroll {
           overflow: hidden !important;
       }
-      .backdrop_popup {
+      .backdrop_popup, .over {
           position: fixed;
           top: 0;
           left: 0;
@@ -48,10 +48,17 @@ let startFunk = setInterval(() => {
           background: rgb(0 0 0 / 65%);
           display: flex;
           overflow-y: auto;
-          z-index: 5500000595;
+          z-index: 1000000000;
           opacity: 0;
           pointer-events: none;
           transition: all 0.3s ease;
+      }
+
+      .over {
+        display: none;
+        z-index: 1000000000;
+        opacity: 1;
+        pointer-events: auto;
       }
       .backdrop_popup.show {
           opacity: 1;
@@ -486,6 +493,20 @@ let startFunk = setInterval(() => {
             margin-top: 12px;
           }
       }
+
+      #account-panel .content-panel .content-row > div:first-child,
+      .inner-panel .header-panel .c-header span:first-child{
+        display: none !important;
+      }
+
+      #account-panel .content-panel .content-row > div:last-child,
+      .inner-panel .header-panel .c-header span:last-child{
+        display: block !important;
+      }
+
+      .panel-responsive.logged-out {
+        z-index: 1000000001;
+      }
       </style>
       `
 
@@ -548,7 +569,7 @@ let startFunk = setInterval(() => {
               <img src="https://conversionratestore.github.io/projects/lamps/img/amazon.png" alt="logo Amazon">
           </li>
           </ul>
-          <p>Already have an account? <span>Login</span></p>
+          <p>Already have an account? <span class="to_login">Login</span></p>
       </div>
       <div class="form_wrap">
           <h2>Thank you!</h2>
@@ -604,8 +625,11 @@ let startFunk = setInterval(() => {
       </div>
       `
 
+    const overlay = /*html */ `<div class="over"></div>`
+
     document.head.insertAdjacentHTML("beforeend", popUpStyle)
     document.body.insertAdjacentHTML("beforeend", popUp)
+    document.body.insertAdjacentHTML("beforeend", overlay)
     document.querySelector(".body_popup")?.insertAdjacentHTML("afterbegin", bodyPopup)
 
     renderToPdp()
@@ -620,11 +644,7 @@ let startFunk = setInterval(() => {
           let dataLayerCustomer = window.dataLayer
 
           if (salesProduct) {
-            if (
-              document.querySelector(
-                '.header-container .header-actions .action-links [data-account-trigger="true"] span'
-              ).textContent === "Account"
-            ) {
+            if (document.querySelector('.header-container .header-actions .action-links [data-account-trigger="true"] span').textContent === "Account") {
               dataLayerCustomer.forEach((item) => {
                 let customer = item.customer
                 if (customer) {
@@ -635,22 +655,14 @@ let startFunk = setInterval(() => {
 
                         el.insertAdjacentHTML("beforeend", discountCart)
                         el.querySelector(".final-price .price").classList.add("coupon_price")
-                        el.querySelector(".col-6.mc-price.mt-2").insertAdjacentHTML(
-                          "afterbegin",
-                          `<span class="final_coupon_price"></span>`
-                        )
+                        el.querySelector(".col-6.mc-price.mt-2").insertAdjacentHTML("afterbegin", `<span class="final_coupon_price"></span>`)
                         if (el.querySelector(".final_coupon_price")) {
-                          let newPrice = el
-                            .querySelector(".final-price .price.coupon_price")
-                            .textContent.slice(1)
-                            .replace(/,/g, "")
+                          let newPrice = el.querySelector(".final-price .price.coupon_price").textContent.slice(1).replace(/,/g, "")
                           console.log(typeof newPrice)
 
                           let newPriceCoupon = +newPrice * 0.85
 
-                          el.querySelector(".final_coupon_price").textContent = `$${newPriceCoupon
-                            .toFixed(2)
-                            .replace(/(\d)(?=(\d{3})+\.)/g, "$1,")}`
+                          el.querySelector(".final_coupon_price").textContent = `$${newPriceCoupon.toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, "$1,")}`
                         }
                         // startCoupon()
                       }
@@ -662,7 +674,7 @@ let startFunk = setInterval(() => {
               if (!el.querySelector(".discount_cart.sign_up")) {
                 el.insertAdjacentHTML("beforeend", discountCartSignUp)
               }
-              onClickSignUp("#cart-panel")
+              // onClickSignUp("#cart-panel")
             }
           }
         })
@@ -678,21 +690,12 @@ let startFunk = setInterval(() => {
 
         if (salesProduct) {
           if (document.querySelector(".catalog-product-view .product-essential .p-price .final-price")) {
-            if (
-              !document
-                .querySelector(".catalog-product-view .product-essential .p-price .final-price")
-                .classList.contains("active_sales")
-            ) {
-              document
-                .querySelector(".catalog-product-view .product-essential .p-price .final-price")
-                .classList.add("active_sales")
+            if (!document.querySelector(".catalog-product-view .product-essential .p-price .final-price").classList.contains("active_sales")) {
+              document.querySelector(".catalog-product-view .product-essential .p-price .final-price").classList.add("active_sales")
             }
           }
 
-          if (
-            document.querySelector('.header-container .header-actions .action-links [data-account-trigger="true"] span')
-              .textContent === "Account"
-          ) {
+          if (document.querySelector('.header-container .header-actions .action-links [data-account-trigger="true"] span').textContent === "Account") {
             dataLayerCustomer.forEach((item) => {
               let customer = item.customer
               if (customer) {
@@ -700,9 +703,7 @@ let startFunk = setInterval(() => {
                   if (customer[key] === "General") {
                     if (!document.querySelector(".discount_pdp")) {
                       console.log(customer[key])
-                      document
-                        .querySelector(".catalog-product-view .product-essential .p-price .final-price.mt-3")
-                        ?.insertAdjacentHTML("afterend", discountPdp)
+                      document.querySelector(".catalog-product-view .product-essential .p-price .final-price.mt-3")?.insertAdjacentHTML("afterend", discountPdp)
                     }
                   }
                 }
@@ -710,11 +711,9 @@ let startFunk = setInterval(() => {
             })
           } else {
             if (!document.querySelector(".discount_pdp.sign_up")) {
-              document
-                .querySelector(".catalog-product-view .product-essential .p-price .final-price.mt-3")
-                ?.insertAdjacentHTML("afterend", discounPdpSignUp)
+              document.querySelector(".catalog-product-view .product-essential .p-price .final-price.mt-3")?.insertAdjacentHTML("afterend", discounPdpSignUp)
 
-              onClickSignUp("#main-wrapper")
+              // onClickSignUp("#main-wrapper")
             }
           }
         }
@@ -733,13 +732,11 @@ let startFunk = setInterval(() => {
     onClickLogout()
     // onClick logout
     function onClickLogout() {
-      if (document.querySelector("#btn-logout")) {
-        document.querySelector("#btn-logout").addEventListener("click", function () {
-          setTimeout(() => {
-            document.cookie = "new_customer_coupon" + "=" + "" + ";max-age=" + -1 + ";domain=.www.lamps.com;path=/"
-          }, 1000)
-        })
-      }
+      document.querySelector("#btn-logout")?.addEventListener("click", function () {
+        setTimeout(() => {
+          document.cookie = "new_customer_coupon" + "=" + "" + ";max-age=" + -1 + ";domain=.www.lamps.com;path=/"
+        }, 1000)
+      })
     }
 
     // observer
@@ -748,7 +745,6 @@ let startFunk = setInterval(() => {
         observer.disconnect()
         renderToPdp()
         onClickLogout()
-        onClickOldBtn()
 
         observer.observe(document.querySelector("#main-wrapper"), {
           childList: true,
@@ -767,7 +763,6 @@ let startFunk = setInterval(() => {
         observerCart.disconnect()
         renderToCart()
         onClickLogout()
-        onClickOldBtn()
 
         observerCart.observe(document.querySelector("#cart-panel"), {
           childList: true,
@@ -780,6 +775,74 @@ let startFunk = setInterval(() => {
       childList: true,
       subtree: true,
     })
+
+    if (document.querySelector('.header-container .header-actions .action-links [data-account-trigger="true"] span').textContent !== "Account") {
+      // jQuery("body").on("click", "#btn-register-show", function (e) {
+      //   e.preventDefault()
+      //   e.stopPropagation()
+
+      //   if (!sessionStorage.getItem("successSign")) {
+      //     pushDataLayer("Click on `Don't have an account? Sign Up`")
+      //     document.querySelector("body .panel-responsive.logged-out").style.display = "none"
+      //     jQuery(".over").css("display", "none")
+      //     showPopup()
+      //   }
+      // })
+
+      jQuery("body").on('click', `[data-position="3"], 
+        .header-container .header-actions 
+        .action-links [data-account-trigger="true"], 
+        .vp-row.col-11.opt-personalize, 
+        .panel-responsive.logged-out .panel-close i`, (e) => {
+        e.preventDefault()
+        e.stopPropagation()
+      })
+
+
+      jQuery("body").on("click", '[data-position="3"], .header-container .header-actions .action-links [data-account-trigger="true"], .to_login', function (e) {
+        jQuery('.over').css('display', 'block')
+        jQuery('.panel-responsive.logged-out').css('display', 'block')
+        jQuery('body').css('overflow', 'hidden')
+      })
+
+      jQuery("body").on("click", '.to_login', function () {
+        hidePopup()
+      })
+
+      jQuery("body").on("click", '.panel-responsive.logged-out .panel-close i', function () {
+        jQuery('.over').css('display', 'none')
+        jQuery('.panel-responsive.logged-out').css('display', 'none')
+        jQuery('body').css('overflow', 'auto')
+      })
+
+      jQuery("body").on("click", '.vp-row.col-11.opt-personalize span, .discount_pdp.sign_up, .discount_cart.sign_up, #btn-register-show', function () {
+        jQuery('.over').css('display', 'none')
+        jQuery('.panel-responsive.logged-out').css('display', 'none')
+        showPopup()
+      })
+
+      // jQuery(".over").click(function () {
+      //   pushDataLayer("Login pop up closed by backdrop")
+      //   // document.querySelectorAll(".inner-panel .header-panel .panel-close")[1].click()
+      //   document.querySelector("body .panel-responsive.logged-out").style.display = "none"
+      //   jQuery(".over").css("display", "none")
+      //   hidePopup()
+      //   jQuery("#overlay").css("top", "0")
+      // })
+
+      // jQuery("body").on("click", ".header-container .top-links-container .tlink[data-position='3'] span", function (e) {
+      //   if (document.querySelector("#account-panel .content-panel .content-row > div:first-child").classList.contains("d-block")) {
+      //     setTimeout(() => {
+      //       document.querySelector("#btn-login-show").click()
+      //       pushDataLayer("Click on `Login | Sign Up`")
+      //     }, 100)
+      //   }
+      // })
+
+      // jQuery("body").on("click", ".header-container .header-actions .action-links [data-account-trigger='true']", function (e) {
+      //   pushDataLayer("Click on `Sign In`")
+      // })
+    }
 
     // click on SIGN UP
     function onClickSignUp(parent) {
@@ -797,9 +860,7 @@ let startFunk = setInterval(() => {
             if (
               !sessionStorage.getItem("successSign") &&
               !document.querySelector(".backdrop_popup").classList.contains("show") &&
-              document.querySelector(
-                '.header-container .header-actions .action-links [data-account-trigger="true"] span'
-              ).textContent !== "Account"
+              document.querySelector('.header-container .header-actions .action-links [data-account-trigger="true"] span').textContent !== "Account"
             ) {
               showPopup()
             }
@@ -814,9 +875,7 @@ let startFunk = setInterval(() => {
     function showFirstPopup() {
       setTimeout(() => {
         if (document.querySelector("#main-wrapper #item-details")) {
-          let dataProduct = JSON.parse(
-            document.querySelector("#main-wrapper #item-details")?.getAttribute("data-product")
-          )
+          let dataProduct = JSON.parse(document.querySelector("#main-wrapper #item-details")?.getAttribute("data-product"))
           let salesProduct = dataProduct.salesproduct
 
           if (
@@ -825,8 +884,7 @@ let startFunk = setInterval(() => {
             !sessionStorage.getItem("set_timeout_popup_loaded") &&
             salesProduct &&
             !document.querySelector(".backdrop_popup").classList.contains("show") &&
-            document.querySelector('.header-container .header-actions .action-links [data-account-trigger="true"] span')
-              .textContent !== "Account"
+            document.querySelector('.header-container .header-actions .action-links [data-account-trigger="true"] span').textContent !== "Account"
           ) {
             sessionStorage.setItem("set_timeout_popup_loaded", "true")
             showPopup()
@@ -846,8 +904,7 @@ let startFunk = setInterval(() => {
           !sessionStorage.getItem("successSign") &&
           sessionStorage.getItem("exit_popup_loaded") == null &&
           !document.querySelector(".backdrop_popup").classList.contains("show") &&
-          document.querySelector('.header-container .header-actions .action-links [data-account-trigger="true"] span')
-            .textContent !== "Account"
+          document.querySelector('.header-container .header-actions .action-links [data-account-trigger="true"] span').textContent !== "Account"
         ) {
           sessionStorage.setItem("exit_popup_loaded", "true") //refresh status popup
           pushDataLayer("Exit Registration pop")
@@ -887,8 +944,7 @@ let startFunk = setInterval(() => {
             !document.querySelector("#overlay") &&
             !sessionStorage.getItem("successSign") &&
             !document.querySelector(".backdrop_popup").classList.contains("show") &&
-            document.querySelector('.header-container .header-actions .action-links [data-account-trigger="true"] span')
-              .textContent !== "Account"
+            document.querySelector('.header-container .header-actions .action-links [data-account-trigger="true"] span').textContent !== "Account"
           ) {
             sessionStorage.setItem("exit_popup_loaded", "true") //refresh status popup
             pushDataLayer("Exit Registration pop")
@@ -901,40 +957,41 @@ let startFunk = setInterval(() => {
       }, 38000)
     }
 
-    document.querySelector(".btn_close").addEventListener("click", function () {
-      if (
-        this.getAttribute("successCoupon") ||
-        document.querySelector(".body_popup .form_wrap:nth-child(2)").classList.contains("active")
-      ) {
-        pushDataLayer("TY after registration pop up closed by X")
-      } else {
-        pushDataLayer("Registration pop up closed by X")
-      }
+    // click on CLOSE
+    // document.querySelector(".btn_close").addEventListener("click", function () {
+    //   if (this.getAttribute("successCoupon") || document.querySelector(".body_popup .form_wrap:nth-child(2)").classList.contains("active")) {
+    //     pushDataLayer("TY after registration pop up closed by X")
+    //   } else {
+    //     pushDataLayer("Registration pop up closed by X")
+    //   }
+    //   hidePopup()
+    // })
 
-      // else if (sessionStorage.getItem("exit_popup_loaded")) {
-      //   pushDataLayer("Exit Intent Registration pop up closed by X")
-      // }
+    // jQuery("body").on("click", ".panel-responsive.logged-out .panel-close:nth-child(2)", function (e) {
+    //   pushDataLayer("Login pop up closed by X")
+    //   document.querySelector("body .panel-responsive.logged-out").style.display = "none"
+    //   jQuery(".over").css("display", "none")
+    //   hidePopup()
+    // })
 
-      hidePopup()
-    })
-
-    document.querySelector(".backdrop_popup").addEventListener("click", (e) => {
-      if (e.target.matches(".backdrop_popup")) {
-        pushDataLayer("Registration pop up closed by backdrop")
-        hidePopup()
-      }
-    })
+    // click on backdrop_popup
+    // document.querySelector(".backdrop_popup").addEventListener("click", (e) => {
+    //   if (e.target.matches(".backdrop_popup")) {
+    //     pushDataLayer("Registration pop up closed by backdrop")
+    //     hidePopup()
+    //   }
+    // })
 
     //show popup
     function showPopup() {
       document.querySelector(".backdrop_popup").classList.add("show")
-      document.body.style.overflow = "hidden"
+      jQuery('body').css('overflow', 'hidden')
     }
 
     //hide popup
     function hidePopup() {
       document.querySelector(".backdrop_popup").classList.remove("show")
-      document.body.style.overflow = "unset"
+      jQuery('body').css('overflow', 'auto')
     }
 
     // form
@@ -956,14 +1013,12 @@ let startFunk = setInterval(() => {
       })
     }
 
-    document.querySelector(".form_wrap > p > span")?.addEventListener("click", () => {
-      hidePopup()
-      document.querySelector('.header-container .top-links-container .tlink[data-position="3"] span').click()
-
-      if (document.querySelector('#account-panel .content-panel .content-row > div:first-child').classList.contains('d-block')) {
-        document.querySelector('#btn-login-show').click()
-      }
-    })
+    // document.querySelector(".form_wrap > p > span")?.addEventListener("click", () => {
+    //   pushDataLayer("Click on newPopup 'Already have an account? Login'")
+    //   hidePopup()
+    //   document.querySelector("body .panel-responsive.logged-out").style.display = "block"
+    //   document.querySelector(".backdrop_popup").classList.add("show")
+    // })
 
     document.querySelector(".form_wrap button#continueBtn")?.addEventListener("click", () => {
       pushDataLayer("Continue Shopping clicked")
@@ -975,85 +1030,25 @@ let startFunk = setInterval(() => {
       validationForm(`.new_form`)
     })
 
-    if (document.querySelector(".vp-row.col-11.opt-personalize")) {
-      document.querySelectorAll(".vp-row.col-11.opt-personalize").forEach((el) => {
-        el.addEventListener("click", function (e) {
-          e.preventDefault()
-          e.stopPropagation()
-          pushDataLayer("Click on `Register Now. Save 15% on your first full-priced order`")
-          if (
-            !sessionStorage.getItem("successSign") &&
-            !document.querySelector(".backdrop_popup").classList.contains("show") &&
-            document.querySelector('.header-container .header-actions .action-links [data-account-trigger="true"] span')
-              .textContent !== "Account"
-          ) {
-            showPopup()
-          }
-        })
-      })
-    }
 
-    onClickOldBtn()
-    function onClickOldBtn() {
-      if (
-        document.querySelector('.header-container .header-actions .action-links [data-account-trigger="true"] span')
-          .textContent !== "Account"
-      ) {
-        document
-          .querySelector('.header-container .header-actions .action-links [data-account-trigger="true"]')
-          .addEventListener("click", function (e) {
-            e.preventDefault()
-            e.stopPropagation()
+    // document.querySelectorAll(".vp-row.col-11.opt-personalize").forEach((el) => {
+    //   el.addEventListener("click", function (e) {
+    //     e.preventDefault()
+    //     e.stopPropagation()
+    //     pushDataLayer("Click on `Register Now. Save 15% on your first full-priced order`")
+    //     if (
+    //       !sessionStorage.getItem("successSign") &&
+    //       !document.querySelector(".backdrop_popup").classList.contains("show") &&
+    //       document.querySelector('.header-container .header-actions .action-links [data-account-trigger="true"] span').textContent !== "Account"
+    //     ) {
+    //       showPopup()
+    //     }
+    //   })
+    // })
 
-            if (
-              !sessionStorage.getItem("successSign") &&
-              !document.querySelector(".backdrop_popup").classList.contains("show") &&
-              document.querySelector(
-                '.header-container .header-actions .action-links [data-account-trigger="true"] span'
-              ).textContent !== "Account"
-            ) {
-              pushDataLayer("Click on `Sign In`")
-              showPopup()
-            }
-          })
-
-        document.querySelector("#btn-register-show").addEventListener("click", function (e) {
-          e.preventDefault()
-          e.stopPropagation()
-
-          if (
-            !sessionStorage.getItem("successSign") &&
-            !document.querySelector(".backdrop_popup").classList.contains("show") &&
-            document.querySelector('.header-container .header-actions .action-links [data-account-trigger="true"] span')
-              .textContent !== "Account"
-          ) {
-            pushDataLayer("Click on `Login | Sign Up`")
-            document.querySelector("#overlay").click()
-            showPopup()
-          }
-        })
-
-        // document.querySelector('.header-container .top-links-container .tlink[data-position="3"]').addEventListener("click", function (e) {
-        //   e.preventDefault()
-        //   e.stopPropagation()
-
-        //   if (
-        //     !sessionStorage.getItem("successSign") &&
-        //     !document.querySelector(".backdrop_popup").classList.contains("show") &&
-        //     document.querySelector('.header-container .header-actions .action-links [data-account-trigger="true"] span').textContent !== "Account"
-        //   ) {
-        //     pushDataLayer("Click on `Login | Sign Up`")
-        //     showPopup()
-        //   }
-        // })
-      }
-    }
 
     let newPopup = setInterval(() => {
-      if (
-        document.querySelector('.header-container .header-actions .action-links [data-account-trigger="true"] span')
-          .textContent === "Account"
-      ) {
+      if (document.querySelector('.header-container .header-actions .action-links [data-account-trigger="true"] span').textContent === "Account") {
         if (sessionStorage.getItem("successCoupon")) {
           clearInterval(newPopup)
           document.querySelectorAll(".body_popup .form_wrap")[1].classList.add("active")
@@ -1070,19 +1065,11 @@ let startFunk = setInterval(() => {
 
     // validate form
     function validationForm(parent) {
-      let inputValueName = document
-        .querySelector(`${parent} input[name='firstName']`)
-        .value.match(/^[а-яА-ЯёЁa-zA-Z0-9]+$/)
-      let inputLastName = document
-        .querySelector(`${parent} input[name='lastName']`)
-        .value.match(/^[а-яА-ЯёЁa-zA-Z0-9]+$/)
-      let inputValueEmail = document
-        .querySelector(`${parent} input[name='registerEmail']`)
-        .value.match(/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/)
+      let inputValueName = document.querySelector(`${parent} input[name='firstName']`).value.match(/^[а-яА-ЯёЁa-zA-Z0-9]+$/)
+      let inputLastName = document.querySelector(`${parent} input[name='lastName']`).value.match(/^[а-яА-ЯёЁa-zA-Z0-9]+$/)
+      let inputValueEmail = document.querySelector(`${parent} input[name='registerEmail']`).value.match(/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/)
 
-      let inputValuePassword = document
-        .querySelector(`${parent} input[name='registerPassword']`)
-        .value.match(/^.{7,24}$/)
+      let inputValuePassword = document.querySelector(`${parent} input[name='registerPassword']`).value.match(/^.{7,24}$/)
 
       // first_name
       if (inputValueName === null) {
@@ -1115,10 +1102,7 @@ let startFunk = setInterval(() => {
         document.querySelector(`${parent} input[name='registerPassword'] + .text_validation`).style.display = "block"
         document.querySelector(".form_wrap button").style.marginTop = "30px"
       } else {
-        document
-          .querySelector(`${parent} input[name='registerPassword']`)
-          .closest("div")
-          .classList.remove("input_error")
+        document.querySelector(`${parent} input[name='registerPassword']`).closest("div").classList.remove("input_error")
         document.querySelector(`${parent} input[name='registerPassword'] + .text_validation`).style.display = "none"
         document.querySelector(".form_wrap button").style.marginTop = "0px"
       }
@@ -1127,12 +1111,8 @@ let startFunk = setInterval(() => {
         document.querySelector("#signup-email").click()
         document.querySelector("#first-name").value = document.querySelector(`${parent} input[name='firstName']`).value
         document.querySelector("#last-name").value = document.querySelector(`${parent} input[name='lastName']`).value
-        document.querySelector("#register-email").value = document.querySelector(
-          `${parent} input[name='registerEmail']`
-        ).value
-        document.querySelector("#register-password").value = document.querySelector(
-          `${parent} input[name='registerPassword']`
-        ).value
+        document.querySelector("#register-email").value = document.querySelector(`${parent} input[name='registerEmail']`).value
+        document.querySelector("#register-password").value = document.querySelector(`${parent} input[name='registerPassword']`).value
 
         postForm(
           document.querySelector(`${parent} input[name='registerEmail']`).value,
