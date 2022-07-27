@@ -60,6 +60,9 @@ let startFunk = setInterval(() => {
         opacity: 1;
         pointer-events: auto;
       }
+      .over.show{
+        display: block;
+      }
       .backdrop_popup.show {
           opacity: 1;
           pointer-events: auto;
@@ -495,7 +498,8 @@ let startFunk = setInterval(() => {
       }
 
       #account-panel .content-panel .content-row > div:first-child,
-      .inner-panel .header-panel .c-header span:first-child{
+      .inner-panel .header-panel .c-header span:first-child,
+      .panel-responsive.logged-out .panel-close i{
         display: none !important;
       }
 
@@ -506,6 +510,20 @@ let startFunk = setInterval(() => {
 
       .panel-responsive.logged-out {
         z-index: 1000000001;
+      }
+
+      .login_close_btn{
+        color: #fff;
+        cursor: pointer;
+        font-size: 19px;
+        font-weight: 700;
+        position: absolute;
+        top: 13px;
+        right: 20px;
+      }
+
+      [data-position="3"] span{
+        cursor: pointer;
       }
       </style>
       `
@@ -664,7 +682,6 @@ let startFunk = setInterval(() => {
 
                           el.querySelector(".final_coupon_price").textContent = `$${newPriceCoupon.toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, "$1,")}`
                         }
-                        // startCoupon()
                       }
                     }
                   }
@@ -674,7 +691,6 @@ let startFunk = setInterval(() => {
               if (!el.querySelector(".discount_cart.sign_up")) {
                 el.insertAdjacentHTML("beforeend", discountCartSignUp)
               }
-              // onClickSignUp("#cart-panel")
             }
           }
         })
@@ -712,8 +728,6 @@ let startFunk = setInterval(() => {
           } else {
             if (!document.querySelector(".discount_pdp.sign_up")) {
               document.querySelector(".catalog-product-view .product-essential .p-price .final-price.mt-3")?.insertAdjacentHTML("afterend", discounPdpSignUp)
-
-              // onClickSignUp("#main-wrapper")
             }
           }
         }
@@ -777,96 +791,74 @@ let startFunk = setInterval(() => {
     })
 
     if (document.querySelector('.header-container .header-actions .action-links [data-account-trigger="true"] span').textContent !== "Account") {
-      // jQuery("body").on("click", "#btn-register-show", function (e) {
-      //   e.preventDefault()
-      //   e.stopPropagation()
-
-      //   if (!sessionStorage.getItem("successSign")) {
-      //     pushDataLayer("Click on `Don't have an account? Sign Up`")
-      //     document.querySelector("body .panel-responsive.logged-out").style.display = "none"
-      //     jQuery(".over").css("display", "none")
-      //     showPopup()
-      //   }
-      // })
-
-      jQuery("body").on('click', `[data-position="3"], 
+      jQuery("body").on(
+        "click",
+        `[data-position="3"],
+        #mobile-nav .inner-panel .menu.customer li.account-panel-login-register, 
         .header-container .header-actions 
         .action-links [data-account-trigger="true"], 
+        .header-container .mobile-actions .action-links [data-account-trigger="true"],
         .vp-row.col-11.opt-personalize, 
-        .panel-responsive.logged-out .panel-close i`, (e) => {
-        e.preventDefault()
-        e.stopPropagation()
-      })
+        .panel-responsive.logged-out .panel-close i`,
+        (e) => {
+          e.preventDefault()
+          e.stopPropagation()
+        }
+      )
 
+      jQuery("body").on(
+        "click",
+        '[data-position="3"], #mobile-nav .inner-panel .menu.customer li.account-panel-login-register, .header-container .header-actions .action-links [data-account-trigger="true"], .header-container .mobile-actions .action-links [data-account-trigger="true"], .to_login',
+        function (e) {
+          if (!document.querySelector('.login_close_btn')) {
+            jQuery(".panel-responsive.logged-out .panel-close").after(`<div class="login_close_btn">&#10005;</div>`)
+          }
+          if (e.target.textContent === "Login") {
+            pushDataLayer("Click on newPopup 'Already have an account? Login'")
+          } else if (e.target.closest("div.mobile-actions")) {
+            console.log(`Click on "Sign In"`)
+          } else {
+            pushDataLayer(`Click on '${e.target.textContent}'`)
+          }
 
-      jQuery("body").on("click", '[data-position="3"], .header-container .header-actions .action-links [data-account-trigger="true"], .to_login', function (e) {
-        jQuery('.over').css('display', 'block')
-        jQuery('.panel-responsive.logged-out').css('display', 'block')
-        jQuery('body').css('overflow', 'hidden')
-      })
+          jQuery(".over").addClass('show')
+          jQuery(".panel-responsive.logged-out").css("display", "block")
+          jQuery("body").css("overflow", "hidden")
+        }
+      )
 
-      jQuery("body").on("click", '.to_login', function () {
+      jQuery("body").on("click", ".to_login", function () {
         hidePopup()
       })
 
-      jQuery("body").on("click", '.panel-responsive.logged-out .panel-close i', function () {
-        jQuery('.over').css('display', 'none')
-        jQuery('.panel-responsive.logged-out').css('display', 'none')
-        jQuery('body').css('overflow', 'auto')
+      jQuery("body").on("click", ".login_close_btn", function (e) {
+        pushDataLayer("Login pop up closed by X")
+
+        jQuery(".over").removeClass('show')
+        jQuery(".panel-responsive.logged-out").css("display", "none")
+        jQuery("body").css("overflow", "auto")
       })
 
-      jQuery("body").on("click", '.vp-row.col-11.opt-personalize span, .discount_pdp.sign_up, .discount_cart.sign_up, #btn-register-show', function () {
-        jQuery('.over').css('display', 'none')
-        jQuery('.panel-responsive.logged-out').css('display', 'none')
+      jQuery("body").on("click", ".vp-row.col-11.opt-personalize span, .discount_pdp.sign_up, .discount_cart.sign_up, #btn-register-show", function (e) {
+        if (e.target.closest("div").classList.contains("discount_pdp")) {
+          pushDataLayer("15% off link on PDP clicked")
+        } else if (e.target.closest("div").classList.contains("discount_cart")) {
+          pushDataLayer("15% off button on Cart clicked")
+        } else {
+          pushDataLayer(`Click on '${e.target.textContent}'`)
+        }
+
+        jQuery(".over").removeClass('show')
+        jQuery(".panel-responsive.logged-out").css("display", "none")
         showPopup()
       })
 
-      // jQuery(".over").click(function () {
-      //   pushDataLayer("Login pop up closed by backdrop")
-      //   // document.querySelectorAll(".inner-panel .header-panel .panel-close")[1].click()
-      //   document.querySelector("body .panel-responsive.logged-out").style.display = "none"
-      //   jQuery(".over").css("display", "none")
-      //   hidePopup()
-      //   jQuery("#overlay").css("top", "0")
-      // })
+      jQuery(".over").click(function () {
+        pushDataLayer("Login pop up closed by backdrop")
 
-      // jQuery("body").on("click", ".header-container .top-links-container .tlink[data-position='3'] span", function (e) {
-      //   if (document.querySelector("#account-panel .content-panel .content-row > div:first-child").classList.contains("d-block")) {
-      //     setTimeout(() => {
-      //       document.querySelector("#btn-login-show").click()
-      //       pushDataLayer("Click on `Login | Sign Up`")
-      //     }, 100)
-      //   }
-      // })
-
-      // jQuery("body").on("click", ".header-container .header-actions .action-links [data-account-trigger='true']", function (e) {
-      //   pushDataLayer("Click on `Sign In`")
-      // })
-    }
-
-    // click on SIGN UP
-    function onClickSignUp(parent) {
-      document.querySelectorAll(`${parent} [data-sign]`).forEach((el) => {
-        if (!el.getAttribute("data-click")) {
-          el.addEventListener("click", function () {
-            if (parent === "#main-wrapper") {
-              pushDataLayer("15% off link on PDP clicked")
-            }
-
-            if (parent === "#cart-panel") {
-              pushDataLayer("15% off button on Cart clicked")
-            }
-
-            if (
-              !sessionStorage.getItem("successSign") &&
-              !document.querySelector(".backdrop_popup").classList.contains("show") &&
-              document.querySelector('.header-container .header-actions .action-links [data-account-trigger="true"] span').textContent !== "Account"
-            ) {
-              showPopup()
-            }
-          })
-        }
-        el.setAttribute("data-click", "1")
+        jQuery(".over").removeClass('show')
+        jQuery(".panel-responsive.logged-out").css("display", "none")
+        jQuery("body").css("overflow", "auto")
       })
     }
 
@@ -879,10 +871,10 @@ let startFunk = setInterval(() => {
           let salesProduct = dataProduct.salesproduct
 
           if (
-            !document.querySelector("#overlay") &&
             !sessionStorage.getItem("successSign") &&
             !sessionStorage.getItem("set_timeout_popup_loaded") &&
             salesProduct &&
+            !document.querySelector(".over").classList.contains("show") &&
             !document.querySelector(".backdrop_popup").classList.contains("show") &&
             document.querySelector('.header-container .header-actions .action-links [data-account-trigger="true"] span').textContent !== "Account"
           ) {
@@ -900,9 +892,9 @@ let startFunk = setInterval(() => {
         if (
           e.toElement == null &&
           e.relatedTarget == null &&
-          !document.querySelector("#overlay") &&
           !sessionStorage.getItem("successSign") &&
           sessionStorage.getItem("exit_popup_loaded") == null &&
+          !document.querySelector(".over").classList.contains("show") &&
           !document.querySelector(".backdrop_popup").classList.contains("show") &&
           document.querySelector('.header-container .header-actions .action-links [data-account-trigger="true"] span').textContent !== "Account"
         ) {
@@ -941,8 +933,8 @@ let startFunk = setInterval(() => {
           if (
             currentSpeed > 100 &&
             sessionStorage.getItem("exit_popup_loaded") == null &&
-            !document.querySelector("#overlay") &&
             !sessionStorage.getItem("successSign") &&
+            !document.querySelector(".over").classList.contains("show") &&
             !document.querySelector(".backdrop_popup").classList.contains("show") &&
             document.querySelector('.header-container .header-actions .action-links [data-account-trigger="true"] span').textContent !== "Account"
           ) {
@@ -958,40 +950,33 @@ let startFunk = setInterval(() => {
     }
 
     // click on CLOSE
-    // document.querySelector(".btn_close").addEventListener("click", function () {
-    //   if (this.getAttribute("successCoupon") || document.querySelector(".body_popup .form_wrap:nth-child(2)").classList.contains("active")) {
-    //     pushDataLayer("TY after registration pop up closed by X")
-    //   } else {
-    //     pushDataLayer("Registration pop up closed by X")
-    //   }
-    //   hidePopup()
-    // })
-
-    // jQuery("body").on("click", ".panel-responsive.logged-out .panel-close:nth-child(2)", function (e) {
-    //   pushDataLayer("Login pop up closed by X")
-    //   document.querySelector("body .panel-responsive.logged-out").style.display = "none"
-    //   jQuery(".over").css("display", "none")
-    //   hidePopup()
-    // })
+    document.querySelector(".btn_close").addEventListener("click", function () {
+      if (this.getAttribute("successCoupon") || document.querySelector(".body_popup .form_wrap:nth-child(2)").classList.contains("active")) {
+        pushDataLayer("TY after registration pop up closed by X")
+      } else {
+        pushDataLayer("Registration pop up closed by X")
+      }
+      hidePopup()
+    })
 
     // click on backdrop_popup
-    // document.querySelector(".backdrop_popup").addEventListener("click", (e) => {
-    //   if (e.target.matches(".backdrop_popup")) {
-    //     pushDataLayer("Registration pop up closed by backdrop")
-    //     hidePopup()
-    //   }
-    // })
+    document.querySelector(".backdrop_popup").addEventListener("click", (e) => {
+      if (e.target.matches(".backdrop_popup")) {
+        pushDataLayer("Registration pop up closed by backdrop")
+        hidePopup()
+      }
+    })
 
     //show popup
     function showPopup() {
       document.querySelector(".backdrop_popup").classList.add("show")
-      jQuery('body').css('overflow', 'hidden')
+      jQuery("body").css("overflow", "hidden")
     }
 
     //hide popup
     function hidePopup() {
       document.querySelector(".backdrop_popup").classList.remove("show")
-      jQuery('body').css('overflow', 'auto')
+      jQuery("body").css("overflow", "auto")
     }
 
     // form
@@ -1013,13 +998,6 @@ let startFunk = setInterval(() => {
       })
     }
 
-    // document.querySelector(".form_wrap > p > span")?.addEventListener("click", () => {
-    //   pushDataLayer("Click on newPopup 'Already have an account? Login'")
-    //   hidePopup()
-    //   document.querySelector("body .panel-responsive.logged-out").style.display = "block"
-    //   document.querySelector(".backdrop_popup").classList.add("show")
-    // })
-
     document.querySelector(".form_wrap button#continueBtn")?.addEventListener("click", () => {
       pushDataLayer("Continue Shopping clicked")
       hidePopup()
@@ -1029,23 +1007,6 @@ let startFunk = setInterval(() => {
     document.querySelector(".form_wrap button#btnRegisterSubmit")?.addEventListener("click", () => {
       validationForm(`.new_form`)
     })
-
-
-    // document.querySelectorAll(".vp-row.col-11.opt-personalize").forEach((el) => {
-    //   el.addEventListener("click", function (e) {
-    //     e.preventDefault()
-    //     e.stopPropagation()
-    //     pushDataLayer("Click on `Register Now. Save 15% on your first full-priced order`")
-    //     if (
-    //       !sessionStorage.getItem("successSign") &&
-    //       !document.querySelector(".backdrop_popup").classList.contains("show") &&
-    //       document.querySelector('.header-container .header-actions .action-links [data-account-trigger="true"] span').textContent !== "Account"
-    //     ) {
-    //       showPopup()
-    //     }
-    //   })
-    // })
-
 
     let newPopup = setInterval(() => {
       if (document.querySelector('.header-container .header-actions .action-links [data-account-trigger="true"] span').textContent === "Account") {
