@@ -339,9 +339,9 @@ let renderStar = (rate) => {
     return stars
 }
 
-function dateDiff(firstDate,secondDate){
-  let firstDate = new Date(firstDate);
-  let secondDate = new Date(secondDate);
+function dateDiff(a,b){
+  let firstDate = new Date(a);
+  let secondDate = new Date(b);
   let days = Math.abs(firstDate.getTime() - secondDate.getTime());
   let result = parseInt(Math.ceil(days / (1000 * 60 * 60 * 24)));
   return result
