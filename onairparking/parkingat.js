@@ -463,7 +463,7 @@ let postParking = (id, startDate, endDate, parent, urlCode, total) => {
                     </div>
                 `)
 
-                document.querySelector('.location_section p').after(document.querySelector('#google-map-parking-at')); //move map
+                document.querySelector('#google-map-parking-at') != null ? document.querySelector('.location_section p').after(document.querySelector('#google-map-parking-at')) : ''; //move map
                 //click on See all button
                 document.querySelector('.btn_see-all').addEventListener('click', (e) => {
                     scrollTop(document.querySelector('#parkingat > div > article > div > .demo-loadmore-list').parentElement, e.target)
