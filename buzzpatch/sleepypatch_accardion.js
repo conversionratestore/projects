@@ -83,13 +83,15 @@ let startFunkAccardion = setInterval(() => {
         .accardion_link span::before{
             position: absolute;
             content: "";
-            background: url(https://conversionratestore.github.io/projects/buzzpatch/img/sleepy_plus.svg);
+            width: 100%;
+            height: 100%;
+            background: url(https://conversionratestore.github.io/projects/buzzpatch/img/sleepy_plus.svg) no-repeat center center;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
         }
         .accardion_link.active span::before {
-            background: url(https://conversionratestore.github.io/projects/buzzpatch/img/sleepy_minus.svg);
+            background: url(https://conversionratestore.github.io/projects/buzzpatch/img/sleepy_minus.svg) no-repeat center center;
         }
         .accardion_link p{
             font-family: "Inter", sans-serif;
