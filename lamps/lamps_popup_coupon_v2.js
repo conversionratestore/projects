@@ -741,6 +741,7 @@ let startFunk = setInterval(() => {
 
     //new_customer_coupon
     function activateCoupon() {
+      console.log(`>>>activateCoupon`)
       const cookieName = "new_customer_coupon"
       let cookieValue = "true"
       let myDate = new Date()
