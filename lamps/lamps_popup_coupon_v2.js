@@ -816,7 +816,8 @@ let startFunk = setInterval(() => {
         .action-links [data-account-trigger="true"], 
         .header-container .mobile-actions .action-links [data-account-trigger="true"],
         .vp-row.col-11.opt-personalize, 
-        .panel-responsive.logged-out .panel-close i`,
+        .panel-responsive.logged-out .panel-close i,
+        .ew-vp.pt-1 a`,
         (e) => {
           e.preventDefault()
           e.stopPropagation()
@@ -825,15 +826,18 @@ let startFunk = setInterval(() => {
 
       jQuery("body").on(
         "click",
-        '[data-position="3"], #mobile-nav .inner-panel .menu.customer li.account-panel-login-register, .header-container .header-actions .action-links [data-account-trigger="true"], .header-container .mobile-actions .action-links [data-account-trigger="true"], .to_login',
+        '[data-position="3"], #mobile-nav .inner-panel .menu.customer li.account-panel-login-register, .header-container .header-actions .action-links [data-account-trigger="true"], .header-container .mobile-actions .action-links [data-account-trigger="true"], .to_login, .ew-vp.pt-1 a:nth-child(1)',
         function (e) {
           if (!document.querySelector(".login_close_btn")) {
             jQuery(".panel-responsive.logged-out .panel-close").after(`<div class="login_close_btn">&#10005;</div>`)
           }
-          if (e.target.textContent === "Login") {
+
+          if (e.target.textContent === "Login" && !e.target.is("a")) {
             pushDataLayer("Click on newPopup 'Already have an account? Login'")
           } else if (e.target.closest("div.mobile-actions") || e.target.closest(".menu-container.mt-sm-3")) {
             console.log(`Click on "Sign In"`)
+          } else if (e.target.is("a")) {
+            pushDataLayer("Click on 'Login Cart'")
           } else {
             pushDataLayer(`Click on '${e.target.textContent}'`)
           }
@@ -856,19 +860,25 @@ let startFunk = setInterval(() => {
         jQuery("body").css("overflow", "auto")
       })
 
-      jQuery("body").on("click", ".vp-row.col-11.opt-personalize span, .discount_pdp.sign_up, .discount_cart.sign_up, #btn-register-show", function (e) {
-        if (e.target.closest("div").classList.contains("discount_pdp")) {
-          pushDataLayer("15% off link on PDP clicked")
-        } else if (e.target.closest("div").classList.contains("discount_cart")) {
-          pushDataLayer("15% off button on Cart clicked")
-        } else {
-          pushDataLayer(`Click on '${e.target.textContent}'`)
-        }
+      jQuery("body").on(
+        "click",
+        ".vp-row.col-11.opt-personalize span, .discount_pdp.sign_up, .discount_cart.sign_up, #btn-register-show, .ew-vp.pt-1 a:nth-child(2)",
+        function (e) {
+          if (e.target.closest("div").classList.contains("discount_pdp")) {
+            pushDataLayer("15% off link on PDP clicked")
+          } else if (e.target.closest("div").classList.contains("discount_cart")) {
+            pushDataLayer("15% off button on Cart clicked")
+          } else if (e.target.is("a")) {
+            pushDataLayer("Click on ' Sign Up Cart'")
+          } else {
+            pushDataLayer(`Click on '${e.target.textContent}'`)
+          }
 
-        jQuery(".over").removeClass("show")
-        jQuery(".panel-responsive.logged-out").css("display", "none")
-        showPopup()
-      })
+          jQuery(".over").removeClass("show")
+          jQuery(".panel-responsive.logged-out").css("display", "none")
+          showPopup()
+        }
+      )
 
       jQuery(".over").click(function () {
         pushDataLayer("Login pop up closed by backdrop")
