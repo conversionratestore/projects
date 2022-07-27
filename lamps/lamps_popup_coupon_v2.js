@@ -694,6 +694,7 @@ let startFunk = setInterval(() => {
               console.log(`>>>>>>>>>OK1 NOT LOGIN`)
               if (!el.querySelector(".discount_cart.sign_up")) {
                 console.log(`>>>>>>>>>OK2 NOT LOGIN`)
+                console.log(`ELEM`, el)
                 el.insertAdjacentHTML("beforeend", discountCartSignUp)
               }
             }
