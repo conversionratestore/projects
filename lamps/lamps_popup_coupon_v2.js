@@ -664,12 +664,12 @@ let startFunk = setInterval(() => {
 
           if (salesProduct) {
             if (document.querySelector('.header-container .header-actions .action-links [data-account-trigger="true"] span').textContent === "Account") {
-              console.log(`>>>>>>>>>OK`)
+              console.log(`>>>>>>>>>OK Account`)
               dataLayerCustomer.forEach((item) => {
                 let customer = item.customer
                 if (customer) {
                   for (key in customer) {
-                    console.log(`>>>>>>>>>OK2`)
+                    console.log(`>>>>>>>>>OK2 Account`)
                     if (customer[key] === "General") {
                       if (!el.querySelector(".discount_cart")) {
                         console.log(customer[key])
@@ -691,7 +691,9 @@ let startFunk = setInterval(() => {
                 }
               })
             } else {
+              console.log(`>>>>>>>>>OK1 NOT LOGIN`)
               if (!el.querySelector(".discount_cart.sign_up")) {
+                console.log(`>>>>>>>>>OK2 NOT LOGIN`)
                 el.insertAdjacentHTML("beforeend", discountCartSignUp)
               }
             }
