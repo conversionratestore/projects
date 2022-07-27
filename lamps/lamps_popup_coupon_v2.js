@@ -815,7 +815,7 @@ let startFunk = setInterval(() => {
           }
           if (e.target.textContent === "Login") {
             pushDataLayer("Click on newPopup 'Already have an account? Login'")
-          } else if (e.target.closest("div.mobile-actions")) {
+          } else if (e.target.closest("div.mobile-actions") || e.target.closest('.account-panel-login-register')) {
             console.log(`Click on "Sign In"`)
           } else {
             pushDataLayer(`Click on '${e.target.textContent}'`)
