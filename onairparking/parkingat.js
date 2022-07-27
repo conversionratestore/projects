@@ -339,8 +339,16 @@ let renderStar = (rate) => {
     return stars
 }
 
+function dateDiff(firstDate,secondDate){
+  let firstDate = new Date(firstDate);
+  let secondDate = new Date(secondDate);
+  let days = Math.abs(firstDate.getTime() - secondDate.getTime());
+  let result = parseInt(Math.ceil(days / (1000 * 60 * 60 * 24)));
+  return result
+}
+
 let renderPriceDay = (startDate,endDate,total) => {
-    let days = (new Date(endDate.split('-')[0], endDate.split('-')[1], endDate.split('-')[2]) - new Date(startDate.split('-')[0], startDate.split('-')[1], startDate.split('-')[2])) / (60 * 60 * 24 * 1000);
+    let days = dateDiff(endDate,startDate);
     let priceDay = (+total / days).toFixed(2);
     return priceDay;
 }
