@@ -568,7 +568,7 @@ let start = setInterval(() => {
             postParking(id, startDate, endDate, parent, urlCode, total) // send post parking
 
             //add fix button
-            document.body.insertAdjacentHTML('beforeend',`<div class="fix_footer"><button type="button" class="btn_reserve-now">Reserve now</button></div>`)
+            document.querySelector('.fix_footer') == null && document.querySelector('#easy-checkout') == null ? document.body.insertAdjacentHTML('beforeend',`<div class="fix_footer"><button type="button" class="btn_reserve-now">Reserve now</button></div>`) : '';
             //Reserve now sticky button
             let reserveBtn = document.querySelector('#detail-info > button.ant-btn');
             document.querySelector('.btn_reserve-now').addEventListener('click', () => {
@@ -608,6 +608,8 @@ let startRemove = () => {
         if (document.querySelector('#parkingat') == null || document.querySelector('#easy-checkout') != null) {
             // clearInterval(startRemove)
             document.querySelector('.js-style') != null ? document.querySelector('.js-style').remove() : '';
+            document.querySelector('.fix_footer') != null ? document.querySelector('.fix_footer').remove() : '';
+            
             sentPost = false;
         }
     },100)
