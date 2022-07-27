@@ -647,8 +647,13 @@ let startEdit = setInterval(() => {
         }
         document.querySelector('.price_section .price').innerHTML = `$${renderPriceDay(startDate,endDate,total)} /day`
         if (document.querySelector('.free_block') != null) {
-            document.querySelector('#detail-info > table').after(document.querySelector('.free_block'))
+            document.querySelector('#detail-info > table').after(document.querySelector('.free_block'));
+            document.querySelector('.free_block p').innerHTML = `Free cancellation until ${date1.split(',')[0]}`;
         }
+        
+        if (document.querySelector('.cancel_section p.font-bold') != null) {
+            document.querySelector('.cancel_section p.font-bold').innerHTML = `Free cancellation until ${date1.split(',')[0]}`
+        } 
     }
 }, 100)
 
