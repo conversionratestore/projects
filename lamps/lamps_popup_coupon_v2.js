@@ -808,14 +808,14 @@ let startFunk = setInterval(() => {
 
       jQuery("body").on(
         "click",
-        '[data-position="3"], #mobile-nav .inner-panel .menu.customer li.account-panel-login-register, .header-container .action-links [data-account-trigger="true"], .to_login',
+        '[data-position="3"], #mobile-nav .inner-panel .menu.customer li.account-panel-login-register, .header-container .header-actions .action-links [data-account-trigger="true"], .header-container .mobile-actions .action-links [data-account-trigger="true"], .to_login',
         function (e) {
           if (!document.querySelector('.login_close_btn')) {
             jQuery(".panel-responsive.logged-out .panel-close").after(`<div class="login_close_btn">&#10005;</div>`)
           }
           if (e.target.textContent === "Login") {
             pushDataLayer("Click on newPopup 'Already have an account? Login'")
-          } else if (e.target.classList.contains('action-links')) {
+          } else if (e.target.closest("div.mobile-actions") || e.target.closest('.menu-container.mt-sm-3')) {
             console.log(`Click on "Sign In"`)
           } else {
             pushDataLayer(`Click on '${e.target.textContent}'`)
