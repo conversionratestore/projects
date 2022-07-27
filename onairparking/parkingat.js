@@ -340,9 +340,8 @@ let renderStar = (rate) => {
 }
 
 let renderPriceDay = (startDate,endDate,total) => {
-    let newDate = new Date(new Date(endDate.split('-')[0], endDate.split('-')[1], endDate.split('-')[2]) - new Date(startDate.split('-')[0], startDate.split('-')[1], startDate.split('-')[2]));
-    let day = +newDate.getDate() - 1;
-    let priceDay = (+total / day).toFixed(2);
+    let days = (new Date(endDate.split('-')[0], endDate.split('-')[1], endDate.split('-')[2]) - new Date(startDate.split('-')[0], startDate.split('-')[1], startDate.split('-')[2])) / (60 * 60 * 24 * 1000);
+    let priceDay = (+total / days).toFixed(2);
     return priceDay;
 }
 
@@ -587,7 +586,7 @@ let start = setInterval(() => {
             document.querySelector('#parkingat > div > article > div.flex > button').addEventListener('click', (e) => pushDataLayer('Click at Reserve now button'))
 
             window.addEventListener('scroll', () => {
-                if (document.querySelector('#detail-info > button.ant-btn') != null || document.querySelector('#parkingat > div > article > div.flex.flex-col > button') != null) {
+                if (document.querySelector('#detail-info > button.ant-btn') != null || document.querySelector('#parkingat > div > article > div.flex.flex-col > button') != null && document.querySelector('.fix_footer') != null) {
                     if (isScrolledIntoView(document.querySelector('#detail-info > button.ant-btn')) == true || isScrolledIntoView(document.querySelector('#parkingat > div > article > div.flex.flex-col > button')) == true) {
                         if (viewed == false) {
                             viewed = true;
