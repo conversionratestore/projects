@@ -664,10 +664,12 @@ let startFunk = setInterval(() => {
 
           if (salesProduct) {
             if (document.querySelector('.header-container .header-actions .action-links [data-account-trigger="true"] span').textContent === "Account") {
+              console.log(`>>>>>>>>>OK`)
               dataLayerCustomer.forEach((item) => {
                 let customer = item.customer
                 if (customer) {
                   for (key in customer) {
+                    console.log(`>>>>>>>>>OK2`)
                     if (customer[key] === "General") {
                       if (!el.querySelector(".discount_cart")) {
                         console.log(customer[key])
