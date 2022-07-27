@@ -793,12 +793,12 @@ let startFunk = setInterval(() => {
       subtree: true,
     })
 
-    jQuery(body).on('click', `#add-item-to-cart`, function () {
+    jQuery("body").on("click", `#add-item-to-cart`, function () {
       console.log(document.querySelector("#cart-panel"))
       renderToCart()
     })
 
-    jQuery(body).on('click', ` .category-products .products-grid .item .item-inner .details-area .actions .addtocart`, function () {
+    jQuery("body").on("click", ` .category-products .products-grid .item .item-inner .details-area .actions .addtocart`, function () {
       console.log(document.querySelector("#cart-panel"))
       renderToCart()
     })
@@ -823,18 +823,18 @@ let startFunk = setInterval(() => {
         "click",
         '[data-position="3"], #mobile-nav .inner-panel .menu.customer li.account-panel-login-register, .header-container .header-actions .action-links [data-account-trigger="true"], .header-container .mobile-actions .action-links [data-account-trigger="true"], .to_login',
         function (e) {
-          if (!document.querySelector('.login_close_btn')) {
+          if (!document.querySelector(".login_close_btn")) {
             jQuery(".panel-responsive.logged-out .panel-close").after(`<div class="login_close_btn">&#10005;</div>`)
           }
           if (e.target.textContent === "Login") {
             pushDataLayer("Click on newPopup 'Already have an account? Login'")
-          } else if (e.target.closest("div.mobile-actions") || e.target.closest('.menu-container.mt-sm-3')) {
+          } else if (e.target.closest("div.mobile-actions") || e.target.closest(".menu-container.mt-sm-3")) {
             console.log(`Click on "Sign In"`)
           } else {
             pushDataLayer(`Click on '${e.target.textContent}'`)
           }
 
-          jQuery(".over").addClass('show')
+          jQuery(".over").addClass("show")
           jQuery(".panel-responsive.logged-out").css("display", "block")
           jQuery("body").css("overflow", "hidden")
         }
@@ -847,7 +847,7 @@ let startFunk = setInterval(() => {
       jQuery("body").on("click", ".login_close_btn", function (e) {
         pushDataLayer("Login pop up closed by X")
 
-        jQuery(".over").removeClass('show')
+        jQuery(".over").removeClass("show")
         jQuery(".panel-responsive.logged-out").css("display", "none")
         jQuery("body").css("overflow", "auto")
       })
@@ -861,7 +861,7 @@ let startFunk = setInterval(() => {
           pushDataLayer(`Click on '${e.target.textContent}'`)
         }
 
-        jQuery(".over").removeClass('show')
+        jQuery(".over").removeClass("show")
         jQuery(".panel-responsive.logged-out").css("display", "none")
         showPopup()
       })
@@ -869,7 +869,7 @@ let startFunk = setInterval(() => {
       jQuery(".over").click(function () {
         pushDataLayer("Login pop up closed by backdrop")
 
-        jQuery(".over").removeClass('show')
+        jQuery(".over").removeClass("show")
         jQuery(".panel-responsive.logged-out").css("display", "none")
         jQuery("body").css("overflow", "auto")
       })
