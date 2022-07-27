@@ -391,7 +391,7 @@ let postParking = (id, startDate, endDate, parent, urlCode, total) => {
                         shuttleFrequency = ` <span class="font-bold">${highlights[h].description}</span></li>`;
                     } else if (highlights[h].type == 'facility_free_cancellation' && highlights[h].description == 'up to start date') {
                         freeCancellation = `<div class="flex items-center pt-1 mb-5 free_block"><svg class="mr-2" width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="9" cy="9" r="8" stroke="#069B27" stroke-width="2"/><path d="M5.47852 9.89474L8.02397 12L12.4785 7" stroke="#069B27" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                                            <p class="fs-13 c-green font-bold"> Free cancellation until ${startDate.split('-')[2]} ${arrMouth[+startDate.split('-')[1] - 1]}</p></div>`
+                                            <p class="fs-13 c-green font-bold"> Free cancellation until ${arrMouth[+startDate.split('-')[1] - 1]} ${startDate.split('-')[2]}</p></div>`
 
                     }
                 }
@@ -424,7 +424,7 @@ let postParking = (id, startDate, endDate, parent, urlCode, total) => {
                                 <path d="M1 6.5L5.72727 10.5L14 1" stroke="#069B27" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                             </svg>
                             <div>
-                                <p class="font-bold c-green mb-2 fs-16">Free cancellation until ${startDate.split('-')[2]} ${arrMouth[+startDate.split('-')[1] - 1]}</p>
+                                <p class="font-bold c-green mb-2 fs-16">Free cancellation until ${arrMouth[+startDate.split('-')[1] - 1]} ${startDate.split('-')[2]}</p>
                                 <p class="fs-14">Simply respond to your e-mail confirmation reservation with the reservation number in it saying "I'd like a refund" or something of the sort. We’ll process your refund within 48 h, or on the next business day if it's on a weekend.</p>
                             </div>
                         </div>
