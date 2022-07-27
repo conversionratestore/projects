@@ -1,28 +1,28 @@
 let startFunkAccardion = setInterval(() => {
-  if (document.querySelector("#flowers")) {
-    clearInterval(startFunkAccardion);
+    if (document.querySelector("#flowers")) {
+        clearInterval(startFunkAccardion);
 
-    function pushDataLayer(actionDataLayer, labelDataLayer) {
-      window.dataLayer = window.dataLayer || [];
-      if (labelDataLayer) {
-        console.log(actionDataLayer + " : " + labelDataLayer);
-        dataLayer.push({
-          event: "event-to-ga",
-          eventCategory: `Exp: Add scientific research`,
-          eventAction: `${actionDataLayer}`,
-          eventLabel: `${labelDataLayer}`,
-        });
-      } else {
-        console.log(actionDataLayer);
-        dataLayer.push({
-          event: "event-to-ga",
-          eventCategory: `Exp: Add scientific research`,
-          eventAction: `${actionDataLayer}`,
-        });
-      }
-    }
+        function pushDataLayer(actionDataLayer, labelDataLayer) {
+            window.dataLayer = window.dataLayer || [];
+            if (labelDataLayer) {
+                console.log(actionDataLayer + " : " + labelDataLayer);
+                dataLayer.push({
+                    event: "event-to-ga",
+                    eventCategory: `Exp: Add scientific research`,
+                    eventAction: `${actionDataLayer}`,
+                    eventLabel: `${labelDataLayer}`,
+                });
+            } else {
+                console.log(actionDataLayer);
+                dataLayer.push({
+                    event: "event-to-ga",
+                    eventCategory: `Exp: Add scientific research`,
+                    eventAction: `${actionDataLayer}`,
+                });
+            }
+        }
 
-    let styleAccardion = /*html */ `
+        let styleAccardion = /*html */ `
       <style>
         .section_accardion{
             padding: 23px;
@@ -71,31 +71,25 @@ let startFunkAccardion = setInterval(() => {
         }
         .accardion_link span{
             font-family: "Inter", sans-serif;
-            width: 23px;
-            height: 23px;
+            width: 24px;
+            height: 24px;
             margin: 3px 15px 0 0;
             font-weight: 400;
-            font-size: 16px;
-            line-height: 147%;
             color: #3582E5;
             position: relative;
+            border: 1px solid #3582E5;
+            border-radius: 50%;
         }
         .accardion_link span::before{
             position: absolute;
-            content: "+";
-            top: 0;
+            content: "";
+            background: url(https://conversionratestore.github.io/projects/buzzpatch/img/sleepy_plus.svg);
+            top: 50%;
             left: 50%;
-            transform: translateX(-50%);
-            border: 1px solid #3582E5;
-            border-radius: 50%;
-            width: 23px;
-            height: 23px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            transform: translate(-50%, -50%);
         }
         .accardion_link.active span::before {
-            content: '-';
+            background: url(https://conversionratestore.github.io/projects/buzzpatch/img/sleepy_minus.svg);
         }
         .accardion_link p{
             font-family: "Inter", sans-serif;
@@ -211,7 +205,7 @@ let startFunkAccardion = setInterval(() => {
 
       </style>
     `;
-    let sectionAccardion = /*html */ `
+        let sectionAccardion = /*html */ `
      <section class="section_accardion">
         <div>
             <img src="https://conversionratestore.github.io/projects/buzzpatch/img/microscope.png" alt="microscope">
@@ -287,48 +281,48 @@ let startFunkAccardion = setInterval(() => {
     </section>    
     `;
 
-    document.head.insertAdjacentHTML("beforeend", styleAccardion);
-    document
-      .querySelector("#flowers")
-      .insertAdjacentHTML("afterend", sectionAccardion);
+        document.head.insertAdjacentHTML("beforeend", styleAccardion);
+        document
+            .querySelector("#flowers")
+            .insertAdjacentHTML("afterend", sectionAccardion);
 
-    //
-    const accardionToggle = (slideMenu) => (e) => {
-      slideMenu.forEach((links) => {
-        const hidePanel = links.nextElementSibling;
-        if (links === e.currentTarget) {
-          e.currentTarget.classList.toggle("active");
+        //
+        const accardionToggle = (slideMenu) => (e) => {
+            slideMenu.forEach((links) => {
+                const hidePanel = links.nextElementSibling;
+                if (links === e.currentTarget) {
+                    e.currentTarget.classList.toggle("active");
 
-          pushDataLayer(
-            "Click on section explaining",
-            `${e.currentTarget.querySelector("p").textContent}`
-          );
+                    pushDataLayer(
+                        "Click on section explaining",
+                        `${e.currentTarget.querySelector("p").textContent}`
+                    );
 
-          hidePanel.classList.toggle("active_block");
+                    hidePanel.classList.toggle("active_block");
 
-          const scrollTarget = hidePanel;
-          const topOffset = 155;
-          const elementPosition = scrollTarget.getBoundingClientRect().top;
-          const offsetPosition = elementPosition - topOffset;
+                    const scrollTarget = hidePanel;
+                    const topOffset = 155;
+                    const elementPosition = scrollTarget.getBoundingClientRect().top;
+                    const offsetPosition = elementPosition - topOffset;
 
-          window.scrollBy({
-            top: offsetPosition,
-            behavior: "smooth",
-          });
-        } else {
-          links.classList.remove("active");
-          hidePanel.classList.remove("active_block");
-        }
-      });
-    };
+                    window.scrollBy({
+                        top: offsetPosition,
+                        behavior: "smooth",
+                    });
+                } else {
+                    links.classList.remove("active");
+                    hidePanel.classList.remove("active_block");
+                }
+            });
+        };
 
-    const slideMenu = document.querySelectorAll(".accardion_link");
+        const slideMenu = document.querySelectorAll(".accardion_link");
 
-    slideMenu.forEach((links) => {
-      links.addEventListener("click", accardionToggle(slideMenu));
-    });
+        slideMenu.forEach((links) => {
+            links.addEventListener("click", accardionToggle(slideMenu));
+        });
 
-    pushDataLayer("loaded");
-    clarity("set", "add_scientific_research", "variant_1");
-  }
+        pushDataLayer("loaded");
+        clarity("set", "add_scientific_research", "variant_1");
+    }
 }, 10);
