@@ -295,6 +295,7 @@ let startFunkAccardion = setInterval(() => {
         //
         const accardionToggle = (slideMenu) => (e) => {
             slideMenu.forEach((links) => {
+                e.preventDefault()
                 const hidePanel = links.nextElementSibling;
                 if (links === e.currentTarget) {
                     e.currentTarget.classList.toggle("active");
@@ -306,6 +307,7 @@ let startFunkAccardion = setInterval(() => {
 
                     hidePanel.classList.toggle("active_block");
 
+                    console.log(hidePanel)
                     const scrollTarget = hidePanel;
                     const topOffset = 155;
                     const elementPosition = scrollTarget.getBoundingClientRect().top;
