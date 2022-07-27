@@ -794,10 +794,12 @@ let startFunk = setInterval(() => {
       }
     })
 
-    observerCart.observe(document.querySelector("#cart-panel"), {
-      childList: true,
-      subtree: true,
-    })
+    if (document.querySelector("#cart-panel")) {
+      observerCart.observe(document.querySelector("#cart-panel"), {
+        childList: true,
+        subtree: true,
+      })
+    }
 
     jQuery("body").on("click", `#add-item-to-cart`, function () {
       console.log(document.querySelector("#cart-panel"))
