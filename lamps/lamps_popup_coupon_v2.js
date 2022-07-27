@@ -659,6 +659,7 @@ let startFunk = setInterval(() => {
         document.querySelectorAll("#cart-panel #minicart-items > div").forEach((el) => {
           let dataProduct = JSON.parse(el.getAttribute("data-product"))
           let salesProduct = dataProduct.salesproduct
+          console.log(salesProduct)
           let dataLayerCustomer = window.dataLayer
 
           if (salesProduct) {
@@ -775,6 +776,7 @@ let startFunk = setInterval(() => {
     let observerCart = new MutationObserver((muts) => {
       if (document.querySelector("#cart-panel")) {
         observerCart.disconnect()
+        console.log(`#cart-panel`)
         renderToCart()
         onClickLogout()
 
