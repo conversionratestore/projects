@@ -659,24 +659,45 @@ let start = setInterval(() => {
             swiper.onDown(() => { document.body.classList.remove('active') });
             swiper.run();
 
-            document.querySelector('.input-place').addEventListener('input', (e) => {
-                console.log(e.target.value)
-                document.querySelector('#rc_select_0').value = e.target.value;
-                // document.querySelector('#rc_select_0').focus()
-                // let runA = setInterval( () => {
-                    if (document.querySelector('.rc-virtual-list-holder-inner') != null) {
-                        clearInterval(runA)
-                        if (e.target.value != '') {
-                            document.querySelector('.popular-place').style.display = 'none';
-                            document.querySelector('.list-autocomplete').innerHTML = document.querySelector('.rc-virtual-list-holder-inner').innerHTML;
-                        } else {
-                            document.querySelector('.popular-place').style.display = 'block';
-                            document.querySelector('.list-autocomplete').innerHTML = '';
-                        }
-                    }
-                // }, 200)
+            // document.querySelector('.input-place').addEventListener('input', (e) => {
+            //     console.log(e.target.value)
+            //     document.querySelector('#rc_select_0').value = e.target.value;
+            //     console.log(document.querySelector('#rc_select_0').value)
+            //     document.querySelector('#rc_select_0').focus()
+            //     let runA = setInterval( () => {
+            //         document.querySelector('#rc_select_0').addEventListener('change', (e) => {
+            //             if (document.querySelector('.rc-virtual-list-holder-inner') != null) {
+            //                 clearInterval(runA)
+            //                 if (e.target.value != '') {
+            //                     document.querySelector('.popular-place').style.display = 'none';
+            //                     document.querySelector('.list-autocomplete').innerHTML = document.querySelector('.rc-virtual-list-holder-inner').innerHTML;
+            //                 } else {
+            //                     document.querySelector('.popular-place').style.display = 'block';
+            //                     document.querySelector('.list-autocomplete').innerHTML = '';
+            //                 }
+            //             }
+            //         })
+            //     }, 200)
+            //
+            // })
 
-            })
+            //ant-select ant-select-auto-complete w-full border-white hover:border-white px-0  ant-select-single ant-select-customize-input ant-select-show-search
+            //ant-select ant-select-auto-complete w-full border-white hover:border-white px-0  ant-select-single ant-select-customize-input ant-select-show-search ant-select-focused ant-select-open
+            // <input type="search" autocomplete="off" data-test-id="airport" placeholder="Where do you want to park?" class="ant-input ant-input-borderless ant-select-selection-search-input border-none hover:border-white px-0 ml-2 focus:outline-none" role="combobox" aria-haspopup="listbox" aria-owns="rc_select_0_list" aria-autocomplete="list" aria-controls="rc_select_0_list" aria-activedescendant="rc_select_0_list_0" value="ATL - Atlanta Hartsfield-Jackson International Airport" id="rc_select_0" aria-expanded="false">
+
+            // document.querySelector('#rc_select_0').addEventListener('change', (e) => {
+            //     console.log(e.target.value)
+            //     if (document.querySelector('.rc-virtual-list-holder-inner') != null) {
+            //
+            //         if (e.target.value != '') {
+            //             document.querySelector('.popular-place').style.display = 'none';
+            //             document.querySelector('.list-autocomplete').innerHTML = document.querySelector('.rc-virtual-list-holder-inner').innerHTML;
+            //         } else {
+            //             document.querySelector('.popular-place').style.display = 'block';
+            //             document.querySelector('.list-autocomplete').innerHTML = '';
+            //         }
+            //     }
+            // })
         }
     }
 })
