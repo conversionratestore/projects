@@ -444,7 +444,7 @@ let postParking = (id, startDate, endDate, parent, urlCode, total) => {
                     <div class="measures_section bb-1">
                         <h3 class="title mb-5">Safety Measures</h3>
                         <ul class="list mb-2">
-                            <li>On air parking with a fence</li>
+                            <li>Near airport parking with a fence</li>
                             <li>On-Site Staff</li>
                         </ul>
                         <p>On Air Parking partners with 4 and 5-star facilities to provide travelers with the excellent quality, price, and service</p>
