@@ -561,7 +561,7 @@ let start = setInterval(() => {
             let tr = document.querySelectorAll('#detail-info > table tr.text-base');
             for (let i = 0; i < tr.length; i++) {
                 if (tr[i].querySelector('td').innerText.toLowerCase() == 'total') {
-                    total = tr[i].querySelector('td:last-child').innerText.replace('$','');
+                    total = (+tr[i].querySelector('td:last-child').innerText.replace('$','')).toFixed(2);
                 }
             }
 
@@ -626,9 +626,7 @@ let startEdit = setInterval(() => {
                 <path d="M9.625 2.04164C9.85706 1.80957 10.1718 1.6792 10.5 1.6792C10.6625 1.6792 10.8234 1.71121 10.9735 1.77339C11.1237 1.83558 11.2601 1.92673 11.375 2.04164C11.4899 2.15654 11.5811 2.29296 11.6432 2.44309C11.7054 2.59322 11.7374 2.75413 11.7374 2.91664C11.7374 3.07914 11.7054 3.24005 11.6432 3.39018C11.5811 3.54032 11.4899 3.67673 11.375 3.79164L4.08333 11.0833L1.75 11.6666L2.33333 9.3333L9.625 2.04164Z" stroke="#5D99D6" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>`)
         editBtn.addEventListener('click', () => pushDataLayer('Click at Edit button'))
-        if (document.querySelector('.free_block') != null) {
-            document.querySelector('#detail-info > table').after(document.querySelector('.free_block'))
-        }
+     
         let date1 = document.querySelector('#detail-info > div.grid.grid-cols-2.gap-2.w-full.mt-4.justify-between > div:nth-child(1) > p').innerText,
             date2 = document.querySelector('#detail-info > div.grid.grid-cols-2.gap-2.w-full.mt-4.justify-between > div:nth-child(2) > p').innerText,
             year1 = date1.split(', ')[1].split(' ')[0],
@@ -645,10 +643,13 @@ let startEdit = setInterval(() => {
         let tr = document.querySelectorAll('#detail-info > table tr.text-base');
         for (let i = 0; i < tr.length; i++) {
             if (tr[i].querySelector('td').innerText.toLowerCase() == 'total') {
-                total = tr[i].querySelector('td:last-child').innerText.replace('$','');
+                total = (+tr[i].querySelector('td:last-child').innerText.replace('$','')).toFixed(2);
             }
         }
         document.querySelector('.price_section .price').innerHTML = `$${renderPriceDay(startDate,endDate,total)} /day`
+        if (document.querySelector('.free_block') != null) {
+            document.querySelector('#detail-info > table').after(document.querySelector('.free_block'))
+        }
     }
 }, 100)
 
