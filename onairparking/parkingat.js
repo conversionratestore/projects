@@ -560,7 +560,7 @@ let start = setInterval(() => {
             let tr = document.querySelectorAll('#detail-info > table tr.text-base');
             for (let i = 0; i < tr.length; i++) {
                 if (tr[i].querySelector('td').innerText.toLowerCase() == 'total') {
-                    total = (+tr[i].querySelector('td:last-child').innerText.replace('$','')).toFixed(2);
+                    total = (+tr[i].querySelector('td:last-child').innerText.replace('$','').split(',').join('')).toFixed(2);
                 }
             }
 
@@ -642,7 +642,7 @@ let startEdit = setInterval(() => {
         let tr = document.querySelectorAll('#detail-info > table tr.text-base');
         for (let i = 0; i < tr.length; i++) {
             if (tr[i].querySelector('td').innerText.toLowerCase() == 'total') {
-                total = (+tr[i].querySelector('td:last-child').innerText.replace('$','')).toFixed(2);
+                total = (+tr[i].querySelector('td:last-child').innerText.replace('$','').split(',').join('')).toFixed(2);
             }
         }
         document.querySelector('.price_section .price').innerHTML = `$${renderPriceDay(startDate,endDate,total)} /day`
