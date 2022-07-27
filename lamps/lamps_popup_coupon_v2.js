@@ -836,8 +836,6 @@ let startFunk = setInterval(() => {
             pushDataLayer("Click on newPopup 'Already have an account? Login'")
           } else if (e.target.closest("div.mobile-actions") || e.target.closest(".menu-container.mt-sm-3")) {
             console.log(`Click on "Sign In"`)
-          } else if (e.target.is("a")) {
-            pushDataLayer("Click on 'Login Cart'")
           } else {
             pushDataLayer(`Click on '${e.target.textContent}'`)
           }
@@ -868,8 +866,6 @@ let startFunk = setInterval(() => {
             pushDataLayer("15% off link on PDP clicked")
           } else if (e.target.closest("div").classList.contains("discount_cart")) {
             pushDataLayer("15% off button on Cart clicked")
-          } else if (e.target.is("a")) {
-            pushDataLayer("Click on ' Sign Up Cart'")
           } else {
             pushDataLayer(`Click on '${e.target.textContent}'`)
           }
