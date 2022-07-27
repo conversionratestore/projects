@@ -307,16 +307,15 @@ let startFunkAccardion = setInterval(() => {
 
                     hidePanel.classList.toggle("active_block");
 
-                    console.log(hidePanel)
-                    // const scrollTarget = hidePanel;
-                    // const topOffset = 155;
-                    // const elementPosition = scrollTarget.getBoundingClientRect().top;
-                    // const offsetPosition = elementPosition - topOffset;
+                    const scrollTarget = hidePanel;
+                    const topOffset = 155;
+                    const elementPosition = scrollTarget.getBoundingClientRect().top;
+                    const offsetPosition = elementPosition - topOffset;
 
-                    // window.scrollBy({
-                    //     top: offsetPosition,
-                    //     behavior: "smooth",
-                    // });
+                    window.scrollBy({
+                        top: offsetPosition,
+                        behavior: "smooth",
+                    });
                 } else {
                     links.classList.remove("active");
                     hidePanel.classList.remove("active_block");
