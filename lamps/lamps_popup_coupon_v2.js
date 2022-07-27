@@ -759,6 +759,7 @@ let startFunk = setInterval(() => {
       if (document.querySelector("#main-wrapper")) {
         observer.disconnect()
         renderToPdp()
+        renderToCart()
         onClickLogout()
 
         observer.observe(document.querySelector("#main-wrapper"), {
