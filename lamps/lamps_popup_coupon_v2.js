@@ -793,6 +793,16 @@ let startFunk = setInterval(() => {
       subtree: true,
     })
 
+    jQuery(body).on('click', `#add-item-to-cart`, function () {
+      console.log(document.querySelector("#cart-panel"))
+      renderToCart()
+    })
+
+    jQuery(body).on('click', ` .category-products .products-grid .item .item-inner .details-area .actions .addtocart`, function () {
+      console.log(document.querySelector("#cart-panel"))
+      renderToCart()
+    })
+
     if (document.querySelector('.header-container .header-actions .action-links [data-account-trigger="true"] span').textContent !== "Account") {
       jQuery("body").on(
         "click",
