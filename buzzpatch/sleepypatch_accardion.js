@@ -149,6 +149,10 @@ let startFunkAccardion = setInterval(() => {
         }
         .img_style{
             margin-top: 20px;
+            max-width: 46px !important;
+            max-height: 57px !important;
+            width: 100%;
+            height: 100%;
         }
         .img_inform_wrap{
             display: flex;
