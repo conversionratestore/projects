@@ -344,7 +344,7 @@ function dateDiff(a,b){
   let secondDate = new Date(b);
   let days = Math.abs(firstDate.getTime() - secondDate.getTime());
   let result = parseInt(Math.ceil(days / (1000 * 60 * 60 * 24)));
-  return result
+  return result != 0 ? result : 1
 }
 
 let renderPriceDay = (startDate,endDate,total) => {
