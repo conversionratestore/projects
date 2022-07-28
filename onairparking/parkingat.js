@@ -595,7 +595,7 @@ let start = setInterval(() => {
                 document.querySelector('#parkingat > div > article > div.flex > button').addEventListener('click', (e) => pushDataLayer('Click at Reserve now button'))
     
                 window.addEventListener('scroll', () => {
-                    if (document.querySelector('#detail-info > button.ant-btn') != null || document.querySelector('#parkingat > div > article > div.flex.flex-col > button') != null && document.querySelector('.fix_footer') != null) {
+                    if ((document.querySelector('#detail-info > button.ant-btn') != null || document.querySelector('#parkingat > div > article > div.flex.flex-col > button') != null) && document.querySelector('.fix_footer') != null) {
                         if (isScrolledIntoView(document.querySelector('#detail-info > button.ant-btn')) == true || isScrolledIntoView(document.querySelector('#parkingat > div > article > div.flex.flex-col > button')) == true) {
                             if (viewed == false) {
                                 viewed = true;
