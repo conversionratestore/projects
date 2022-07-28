@@ -809,7 +809,7 @@ let startFunk = setInterval(() => {
       setTimeout(() => {
         console.log(`setTimeout for  renderToCart()`)
         renderToCart()
-      }, 500)
+      }, 4000)
     })
 
     if (document.querySelector('.header-container .header-actions .action-links [data-account-trigger="true"] span').textContent !== "Account") {
