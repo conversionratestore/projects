@@ -549,65 +549,68 @@ let changeImage = () => {
 }
 
 let start = setInterval(() => {
-    if (document.querySelector('#__NEXT_DATA__') != null && window.location.pathname.includes('/parkingat/') && document.querySelector('#parkingat') != null && document.querySelector('#detail-info > p.block') != null && document.querySelector('#detail-info > table tr') != null && document.querySelector('#detail-info > button') != null) {
-        document.querySelector('.js-style') == null ? document.body.insertAdjacentHTML('afterbegin', style) : ''; // add style
-
-        if (sentPost == false) {
-            sentPost = true;
-            changeImage()//change image
-
-            let initial = window.location.href.split('parkingat/')[1].split('?')[0].replace(/[0-9]/g, '');
-            let arr = document.querySelector('#__NEXT_DATA__').innerText.split(`,"airport_initials":"${initial.toUpperCase()}`)[0].split('"airport_id":'),
-                id = arr[arr.length - 1],
-                urlCode = window.location.href.split('parkingat/')[1].split('?')[0].toUpperCase(),
-                startDate = window.location.href.split('checkin=')[1].split('&')[0],
-                endDate = window.location.href.split('checkout=')[1],
-                parent = document.querySelector('#parkingat');
-
-            let total = '';
-            let tr = document.querySelectorAll('#detail-info > table tr.text-base');
-            for (let i = 0; i < tr.length; i++) {
-                if (tr[i].querySelector('td').innerText.toLowerCase() == 'total') {
-                    total = +(+tr[i].querySelector('td:last-child').innerText.replace('$','').split(',').join('')).toFixed(2);
-                }
-            }
-
-            postParking(id, startDate, endDate, parent, urlCode, total) // send post parking
-
-            //add fix button
-            document.querySelector('.fix_footer') == null && document.querySelector('#easy-checkout') == null ? document.body.insertAdjacentHTML('beforeend',`<div class="fix_footer"><button type="button" class="btn_reserve-now">Reserve now</button></div>`) : '';
-            //Reserve now sticky button
-            let reserveBtn = document.querySelector('#detail-info > button.ant-btn');
-            document.querySelector('.btn_reserve-now').addEventListener('click', () => {
-                reserveBtn.classList.add('click-btn-sticky')
-                reserveBtn.click();
-                pushDataLayer('Click at Reserve now sticky button')
-            })
-            //click on Reserve now button
-            reserveBtn.addEventListener('click', (e) => {
-                if (!e.target.classList.contains('click-btn-sticky')) {
-                    pushDataLayer('Click at Reserve now button')
-                } else {
-                    reserveBtn.classList.remove('click-btn-sticky')
-                }
-            })
-            document.querySelector('#parkingat > div > article > div.flex > button').addEventListener('click', (e) => pushDataLayer('Click at Reserve now button'))
-
-            window.addEventListener('scroll', () => {
-                if (document.querySelector('#detail-info > button.ant-btn') != null || document.querySelector('#parkingat > div > article > div.flex.flex-col > button') != null && document.querySelector('.fix_footer') != null) {
-                    if (isScrolledIntoView(document.querySelector('#detail-info > button.ant-btn')) == true || isScrolledIntoView(document.querySelector('#parkingat > div > article > div.flex.flex-col > button')) == true) {
-                        if (viewed == false) {
-                            viewed = true;
-                            document.querySelector('.fix_footer').classList.remove('active');
-                        }
-                    } else {
-                        document.querySelector('.fix_footer').classList.add('active');
-                        viewed = false;
+    if (!document.querySelector('#__NEXT_DATA__').innerHTML.includes('/citysearch')) {
+        if (document.querySelector('#__NEXT_DATA__') != null && window.location.pathname.includes('/parkingat/') && document.querySelector('#parkingat') != null && document.querySelector('#detail-info > p.block') != null && document.querySelector('#detail-info > table tr') != null && document.querySelector('#detail-info > button') != null) {
+            document.querySelector('.js-style') == null ? document.body.insertAdjacentHTML('afterbegin', style) : ''; // add style
+    
+            if (sentPost == false) {
+                sentPost = true;
+                changeImage()//change image
+    
+                let initial = window.location.href.split('parkingat/')[1].split('?')[0].replace(/[0-9]/g, '');
+                let arr = document.querySelector('#__NEXT_DATA__').innerText.split(`,"airport_initials":"${initial.toUpperCase()}`)[0].split('"airport_id":'),
+                    id = arr[arr.length - 1],
+                    urlCode = window.location.href.split('parkingat/')[1].split('?')[0].toUpperCase(),
+                    startDate = window.location.href.split('checkin=')[1].split('&')[0],
+                    endDate = window.location.href.split('checkout=')[1],
+                    parent = document.querySelector('#parkingat');
+    
+                let total = '';
+                let tr = document.querySelectorAll('#detail-info > table tr.text-base');
+                for (let i = 0; i < tr.length; i++) {
+                    if (tr[i].querySelector('td').innerText.toLowerCase() == 'total') {
+                        total = +(+tr[i].querySelector('td:last-child').innerText.replace('$','').split(',').join('')).toFixed(2);
                     }
                 }
-            })
+    
+                postParking(id, startDate, endDate, parent, urlCode, total) // send post parking
+    
+                //add fix button
+                document.querySelector('.fix_footer') == null && document.querySelector('#easy-checkout') == null ? document.body.insertAdjacentHTML('beforeend',`<div class="fix_footer"><button type="button" class="btn_reserve-now">Reserve now</button></div>`) : '';
+                //Reserve now sticky button
+                let reserveBtn = document.querySelector('#detail-info > button.ant-btn');
+                document.querySelector('.btn_reserve-now').addEventListener('click', () => {
+                    reserveBtn.classList.add('click-btn-sticky')
+                    reserveBtn.click();
+                    pushDataLayer('Click at Reserve now sticky button')
+                })
+                //click on Reserve now button
+                reserveBtn.addEventListener('click', (e) => {
+                    if (!e.target.classList.contains('click-btn-sticky')) {
+                        pushDataLayer('Click at Reserve now button')
+                    } else {
+                        reserveBtn.classList.remove('click-btn-sticky')
+                    }
+                })
+                document.querySelector('#parkingat > div > article > div.flex > button').addEventListener('click', (e) => pushDataLayer('Click at Reserve now button'))
+    
+                window.addEventListener('scroll', () => {
+                    if (document.querySelector('#detail-info > button.ant-btn') != null || document.querySelector('#parkingat > div > article > div.flex.flex-col > button') != null && document.querySelector('.fix_footer') != null) {
+                        if (isScrolledIntoView(document.querySelector('#detail-info > button.ant-btn')) == true || isScrolledIntoView(document.querySelector('#parkingat > div > article > div.flex.flex-col > button')) == true) {
+                            if (viewed == false) {
+                                viewed = true;
+                                document.querySelector('.fix_footer').classList.remove('active');
+                            }
+                        } else {
+                            document.querySelector('.fix_footer').classList.add('active');
+                            viewed = false;
+                        }
+                    }
+                })
+            }
         }
     }
+
 })
 
 let startRemove = () => {
