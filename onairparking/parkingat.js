@@ -547,7 +547,9 @@ let changeImage = () => {
         }
     }, 100)
 }
+
 let citySearch = true;
+
 let start = setInterval(() => {
     if (!document.querySelector('#__NEXT_DATA__').innerHTML.includes('/citysearch')) {
         if (document.querySelector('#__NEXT_DATA__') != null && window.location.pathname.includes('/parkingat/') && document.querySelector('#parkingat') != null && document.querySelector('#detail-info > p.block') != null && document.querySelector('#detail-info > table tr') != null && document.querySelector('#detail-info > button') != null) {
@@ -619,7 +621,6 @@ let start = setInterval(() => {
             }
         }
     }
-
 })
 
 let startRemove = () => {
