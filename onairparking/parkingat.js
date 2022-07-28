@@ -391,7 +391,7 @@ let postParking = (id, startDate, endDate, parent, urlCode, total) => {
 
                 let highlights = result[i]['highlights'];
                 for (let h = 0; h < highlights.length; h++) {
-                    if (highlights[h].type == 'facility_distance' && (highlights[h].description != null || result[i]['facility_airport_distance'] != null)) {
+                    if (highlights[h].type == 'facility_distance' && (highlights[h].description != null || (result[i]['facility_airport_distance'] != null && result[i]['facility_airport_distance'] != 0))) {
                         distance = `<li>Distance from airport: <span class="font-bold">` + (highlights[h].description != null ? highlights[h].description : result[i]['facility_airport_distance'] != null ? `${result[i]['facility_airport_distance']} miles` : '') + `</span></li>`;
                     } else if (highlights[h].type == 'facility_free_shuttles' && highlights[h].description != null) {
                         shuttle = `<li>Free shuttle <span class="font-bold">${highlights[h].description}</span>`;
@@ -547,19 +547,28 @@ let changeImage = () => {
         }
     }, 100)
 }
-
+let citySearch = true;
 let start = setInterval(() => {
     if (!document.querySelector('#__NEXT_DATA__').innerHTML.includes('/citysearch')) {
         if (document.querySelector('#__NEXT_DATA__') != null && window.location.pathname.includes('/parkingat/') && document.querySelector('#parkingat') != null && document.querySelector('#detail-info > p.block') != null && document.querySelector('#detail-info > table tr') != null && document.querySelector('#detail-info > button') != null) {
-            document.querySelector('.js-style') == null ? document.body.insertAdjacentHTML('afterbegin', style) : ''; // add style
-    
-            if (sentPost == false) {
+           for (let i = 0; i < document.querySelectorAll('script').length; i++) {
+                if ( document.querySelectorAll('script')[i].src.includes('citysearch')) {
+                     citySearch = true;
+                     break;
+                } else {
+                     citySearch = false;
+                 }
+             }
+            if (sentPost == false && citySearch == false) {
                 sentPost = true;
+                document.querySelector('.js-style') == null ? document.body.insertAdjacentHTML('afterbegin', style) : ''; // add style
+            
+                console.log(citySearch)
                 changeImage()//change image
     
                 let initial = window.location.href.split('parkingat/')[1].split('?')[0].replace(/[0-9]/g, '');
                 let arr = document.querySelector('#__NEXT_DATA__').innerText.split(`,"airport_initials":"${initial.toUpperCase()}`)[0].split('"airport_id":'),
-                    id = arr[arr.length - 1],
+                    id = arr[arr.length - 1].split(',')[0],
                     urlCode = window.location.href.split('parkingat/')[1].split('?')[0].toUpperCase(),
                     startDate = window.location.href.split('checkin=')[1].split('&')[0],
                     endDate = window.location.href.split('checkout=')[1],
