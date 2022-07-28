@@ -425,7 +425,7 @@ let postParking = (id, startDate, endDate, parent, urlCode, total) => {
                             <p class="fs-10">We’ll pay you the difference if you find the same deal cheaper after booking</p>
                         </div>
                     </div>
-                    <div class="cancel_section bb-1">
+                    <div class="cancel_section bb-1" style="display: ${freeCancellation == '' ? 'none': ''}">
                         <h3 class="title mb-5">Can I cancel?</h3>
                         <div class="flex">
                             <svg class="flex-shrink-0 mr-2 mt-1" width="15" height="12" viewBox="0 0 15 12" fill="none" xmlns="http://www.w3.org/2000/svg">
