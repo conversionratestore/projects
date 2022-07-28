@@ -156,6 +156,9 @@ let style = `
         top: 50px;
         width: 100%;
     }
+    .btns-edit svg {
+        flex-shrink: 0;
+    }
     .btns-edit button {
         background: #FFFFFF;
         box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.15), 0px 0px 20px rgba(0, 0, 0, 0.1);
@@ -206,7 +209,7 @@ let style = `
         left: 0;
         width: 100%;
         height: 100vh;
-        z-index: 999999;
+        z-index: 999;
         background: #FFFFFF;
         opacity: 0;
         pointer-events: none;
@@ -236,27 +239,68 @@ let style = `
         padding-bottom: 16px;
         border-bottom: 1px solid #515356;
         color: #515356;
+        margin-bottom: 16px;
     }
-    .input-place {
+    .popup input {
         font-weight: 500;
         font-size: 13px;
         line-height: 15px;
         color: #515356;
-        border: 1px solid #FF9729;
+        border: 1px solid #FF9729!important;
         border-radius: 50px;
-        padding: 13px 20px 12px;
+        padding: 12px 20px 11px!important;
         width: 100%;
+        margin: 0!important;
     }
-    .input-place:focus, .input-place:valid {
-        border-color: #515356;
+    .popup input:focus, .popup input:valid {
+        border: 1px solid #515356!important;
+        box-shadow: none!important;
     }
-    .input-place::-webkit-input-placeholder, .input-place:-moz-placeholder, .input-place::-moz-placeholder, .input-place:-ms-input-placeholder {
+    .ant-select-dropdown {
+        box-shadow: none!important;
+        top: calc(129px + 30px)!important;
+        padding: 0!important;
+        width: 100%!important;
+        left: 0!important;
+    }
+    .ant-select-item {
+        position: relative;
+        padding: 9.5px 20px 9.5px 70px!important;
+        margin-bottom: 15px;
+    }
+    .ant-select-item-option-content {
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 16px;
+        color: #515356;
+    }
+    .ant-select-item:before {
+        content: '';
+        position: absolute;
+        left: 20px;
+        top: 0;
+        background: url("https://conversionratestore.github.io/projects/onairparking/img/pin-location.png") no-repeat center / 35px;
+        width: 35px;
+        height: 35px;
+    }
+    .ant-select-item-option-active:not(.ant-select-item-option-disabled) {
+        background: #fff!important;;
+    }
+    .rc-virtual-list-holder {
+        max-height: calc(100vh - 160px)!important;
+    }
+    /*.rc-virtual-list-holder-inner {*/
+    /*    transform: translateY(0px)!important;*/
+    /*}*/
+    .popup .ant-select-selection-placeholder {
         font-weight: 400;
         font-size: 13px;
         line-height: 15px;
+        padding: 12px 20px 11px!important;
         color: #515356;
         opacity: 0.3; 
     }
+    
     .popup_body {
         padding: 30px 20px;
     } 
@@ -265,6 +309,7 @@ let style = `
         font-size: 16px;
         line-height: 19px;
         color: #515356;
+        margin-bottom: 30px;
     }
     .popular-place li img {
         flex-shrink: 0;
@@ -275,20 +320,13 @@ let style = `
         color: #515356;
         margin-left: 15px;
     }
-    .list-autocomplete .ant-select-item {
-        display: flex;
-        align-items: center;
-        font-size: 14px;
-        line-height: 16px;
-        color: #515356;
+    .show-autocomplete .ant-select-dropdown {
+        display: block!important;
     }
-    .list-autocomplete .ant-select-item:before {
-        content: '';
-        background: url("https://conversionratestore.github.io/projects/onairparking/img/pin-location.png") no-repeat center / 35px;
-        width: 35px;
-        height: 35px;
-        margin-right: 15px;
+    .show-autocomplete .popular-place {
+        display: none!important;
     }
+    
     @media only screen and (max-width: 340px) {
         .info_parking {
             padding: 7px;
@@ -313,17 +351,17 @@ let html = `
     <div id="map-main"></div>
     
     <div class="flex items-center justify-between btns-edit">
-        <button type="button" class="btn-edit-name items-center flex">
+        <button type="button" class="btn-edit-name items-center flex" data-popup="choose place">
             <b></b>
             <svg width="13" height="12" viewBox="0 0 13 12" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M6.25879 10.9995H11.5154" stroke="#515356" stroke-linecap="round" stroke-linejoin="round"/>
                 <path d="M8.88491 1.36289C9.11726 1.13054 9.43241 1 9.76101 1C9.92371 1 10.0848 1.03205 10.2351 1.09431C10.3855 1.15658 10.5221 1.24784 10.6371 1.36289C10.7522 1.47794 10.8434 1.61453 10.9057 1.76485C10.968 1.91517 11 2.07629 11 2.23899C11 2.4017 10.968 2.56281 10.9057 2.71314C10.8434 2.86346 10.7522 3.00004 10.6371 3.11509L3.33627 10.4159L1 11L1.58407 8.66373L8.88491 1.36289Z" stroke="#515356" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
         </button>
-        <button type="button" class="btn-edit-date items-center flex">
+        <button type="button" class="btn-edit-date items-center flex" data-popup="choose dates">
             <span>
-                From: <b class="from"></b> <br>
-                To: <b class="to"></b>
+                From: <b class="from" ></b> <br>
+                To: <b class="to" ></b>
             </span>
             <svg width="13" height="12" viewBox="0 0 13 12" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M6.25879 10.9995H11.5154" stroke="#515356" stroke-linecap="round" stroke-linejoin="round"/>
@@ -350,31 +388,47 @@ let html = `
             </button>
             <h4 class="popup-title">Choose place</h4>
         </div>
-        <input type="text" class="input-place" placeholder="Where do you want to park?">
     </div>
     <div class="popup_body">
         <div class="popular-place">
             <p>Popular locations</p>
             <ul>
-                <li class="flex items-center mb-4">
+                <li class="flex items-center mb-4" id="1" title="DIA - Denver International Airport">
                     <img src="https://conversionratestore.github.io/projects/onairparking/img/pin-location.png" alt="icon location">
                     <span>Denver International Airport</span>
                 </li>
-                <li class="flex items-center mb-4">
+                <li class="flex items-center mb-4" id="5" title="ORD - Chicago O'Hare International Airport">
                     <img src="https://conversionratestore.github.io/projects/onairparking/img/pin-location.png" alt="icon location">
                     <span>Chicago O'Hare International Airport</span>
                 </li>
-                <li class="flex items-center mb-4">
+                <li class="flex items-center mb-4" id="12" title="BOS - Boston Logan International Airport">
                     <img src="https://conversionratestore.github.io/projects/onairparking/img/pin-location.png" alt="icon location">
                     <span>Boston Logan International Airport</span>
                 </li>
-                <li class="flex items-center">
+                <li class="flex items-center" id="7" title="ATL - Atlanta Hartsfield-Jackson International Airport">
                     <img src="https://conversionratestore.github.io/projects/onairparking/img/pin-location.png" alt="icon location">
                     <span>Atlanta Hartsfield-Jackson International Airport</span>
                 </li>
             </ul>
         </div>
         <div class="list-autocomplete"></div>
+    </div>
+</div>
+<div class="popup" data-title="choose dates">
+    <div class="popup_header">
+        <div class="popup-top">
+            <h4 class="popup-title">Choose dates</h4>
+            <button type="button" class="btn-back">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M15 1L7.78784 7.78788L15 15" stroke="#515356" stroke-width="2"/>
+                    <path d="M1.00004 15L8.21216 8.21212L1.00004 1" stroke="#515356" stroke-width="2"/>
+                </svg>
+            </button>
+        </div>
+        <div class="week flex justify-between"></div>
+    </div>
+    <div class="popup_body">
+      
     </div>
 </div>
 `;
@@ -547,7 +601,7 @@ let pushDataLayer = (action) => {
     });
 }
 
-let postParking = (id, startDate, endDate, parent) => {
+let postParking = (id, startDate, endDate, parent, countSelector) => {
 
     fetch(`https://www.onairparking.com/api/Facility/SearchAlternate`, {
         headers: {
@@ -560,6 +614,8 @@ let postParking = (id, startDate, endDate, parent) => {
         console.log(data)
         parent.innerHTML = ''
         let result = data.result;
+
+        countSelector.innerHTML = result.length; //set count parkings found
 
         if (result.length > 0) {
 
@@ -644,60 +700,76 @@ let start = setInterval(() => {
                 id = arr[arr.length - 1],
                 startDate = window.location.href.split('checkin=')[1].split('&')[0],
                 endDate = window.location.href.split('checkout=')[1],
-                parent = document.querySelector('#list_parking');
+                parent = document.querySelector('#list_parking'),
+                countSelector = document.querySelector('.count_parking span');
 
             document.querySelector('.btn-edit-name b').innerHTML = window.location.href.split('airport=')[1].split('&')[0].split('+').join(' ');
+            document.querySelector('.btn-edit-date .from').setAttribute('data-date',startDate)
+            document.querySelector('.btn-edit-date .to').setAttribute('data-date',endDate)
             document.querySelector('.btn-edit-date .from').innerHTML = startDate.split('-')[2] + ' ' + formatDate[startDate.split('-')[1]];
             document.querySelector('.btn-edit-date .to').innerHTML = endDate.split('-')[2] + ' ' + formatDate[endDate.split('-')[1]];
 
-            postParking(id, startDate, endDate, parent) // send post parking
+            postParking(id, startDate, endDate, parent, countSelector) // send post parking
 
             //swipe event
             let swiper = new Swipe('.swipe-header');
             swiper.onUp(() => { document.body.classList.add('active') });
             swiper.run();
-            swiper.onDown(() => { document.body.classList.remove('active') });
+            swiper.onDown(() => {
+                document.body.classList.remove('active');
+                scrollTo(0,0)
+            });
             swiper.run();
+            document.querySelector('.popup-top').after(document.querySelector('.ant-select'))
+            document.querySelector('.ant-select input').addEventListener('change', () => {
 
-            // document.querySelector('.input-place').addEventListener('input', (e) => {
-            //     console.log(e.target.value)
-            //     document.querySelector('#rc_select_0').value = e.target.value;
-            //     console.log(document.querySelector('#rc_select_0').value)
-            //     document.querySelector('#rc_select_0').focus()
-            //     let runA = setInterval( () => {
-            //         document.querySelector('#rc_select_0').addEventListener('change', (e) => {
-            //             if (document.querySelector('.rc-virtual-list-holder-inner') != null) {
-            //                 clearInterval(runA)
-            //                 if (e.target.value != '') {
-            //                     document.querySelector('.popular-place').style.display = 'none';
-            //                     document.querySelector('.list-autocomplete').innerHTML = document.querySelector('.rc-virtual-list-holder-inner').innerHTML;
-            //                 } else {
-            //                     document.querySelector('.popular-place').style.display = 'block';
-            //                     document.querySelector('.list-autocomplete').innerHTML = '';
-            //                 }
-            //             }
-            //         })
-            //     }, 200)
-            //
-            // })
-
-            //ant-select ant-select-auto-complete w-full border-white hover:border-white px-0  ant-select-single ant-select-customize-input ant-select-show-search
-            //ant-select ant-select-auto-complete w-full border-white hover:border-white px-0  ant-select-single ant-select-customize-input ant-select-show-search ant-select-focused ant-select-open
-            // <input type="search" autocomplete="off" data-test-id="airport" placeholder="Where do you want to park?" class="ant-input ant-input-borderless ant-select-selection-search-input border-none hover:border-white px-0 ml-2 focus:outline-none" role="combobox" aria-haspopup="listbox" aria-owns="rc_select_0_list" aria-autocomplete="list" aria-controls="rc_select_0_list" aria-activedescendant="rc_select_0_list_0" value="ATL - Atlanta Hartsfield-Jackson International Airport" id="rc_select_0" aria-expanded="false">
-
-            // document.querySelector('#rc_select_0').addEventListener('change', (e) => {
-            //     console.log(e.target.value)
-            //     if (document.querySelector('.rc-virtual-list-holder-inner') != null) {
-            //
-            //         if (e.target.value != '') {
-            //             document.querySelector('.popular-place').style.display = 'none';
-            //             document.querySelector('.list-autocomplete').innerHTML = document.querySelector('.rc-virtual-list-holder-inner').innerHTML;
-            //         } else {
-            //             document.querySelector('.popular-place').style.display = 'block';
-            //             document.querySelector('.list-autocomplete').innerHTML = '';
-            //         }
-            //     }
-            // })
+            })
+            let showModal = (e) => {
+                document.querySelector(`.popup[data-title="${e.dataset.popup}"]`).classList.add('active')
+            }
+            let hideModal = (e) => {
+                document.querySelectorAll(`.popup`).forEach(item => item.classList.remove('active'))
+            }
+            document.querySelectorAll('.btns-edit button').forEach(item => {
+                item.addEventListener('click', () => showModal(item))
+            })
+            document.querySelectorAll('.popular-place ul > li').forEach(item => {
+                item.addEventListener('click', () => {
+                    let id = item.id,
+                        startDate = document.querySelector('.btn-edit-date .from').dataset.date,
+                        endDate = document.querySelector('.btn-edit-date .to').dataset.date;
+                    console.log(id, startDate, endDate, parent,countSelector)
+                    postParking(id, startDate, endDate, parent,countSelector)
+                    document.querySelector('#rc_select_0').setAttribute('value', item.title)
+                    hideModal()
+                })
+            })
+            let popularPlace = (e) => {
+                if (e.value != '') {
+                    document.body.classList.add('show-autocomplete')
+                } else {
+                    document.body.classList.remove('show-autocomplete')
+                }
+                document.querySelectorAll('.ant-select-item').forEach(item => {
+                    item.addEventListener('click', (e) => {
+                        e.stopImmediatePropagation()
+                        let id = item.id,
+                            startDate = document.querySelector('.btn-edit-date .from').dataset.date,
+                            endDate = document.querySelector('.btn-edit-date .to').dataset.date;
+                        console.log(id, startDate, endDate, parent,countSelector)
+                        postParking(id, startDate, endDate, parent,countSelector)
+                        hideModal()
+                    })
+                })
+            }
+            document.querySelector('#rc_select_0').addEventListener('input',(e) => {
+                console.log(e.target.value)
+                popularPlace(e.target)
+            })
+            document.querySelector('#rc_select_0').addEventListener('click',(e) => {
+                console.log(e.target.value)
+                popularPlace(e.target)
+            })
         }
     }
 })
