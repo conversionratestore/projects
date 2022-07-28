@@ -808,7 +808,7 @@ let startFunk = setInterval(() => {
         setTimeout(() => {
           console.log(`setTimeout for  renderToCart()`)
           renderToCart()
-        }, 1500)
+        }, 2000)
       }
     )
 
