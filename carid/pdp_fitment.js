@@ -10,154 +10,149 @@ const intervalTimeout = 200
 const imgFolderUrl = 'https://conversionratestore.github.io/projects/carid/img/'
 
 const style = /*html*/`
-    <style>
-        /* PDP */
+        <style>
+            /* PDP */
 
-        .prod_vehicle {
-            padding-top: 0;
-            display: flex;
-            align-items: center;
-        }
+            .prod_vehicle {
+                padding-top: 0;
+                display: flex;
+                align-items: center;
+            }
 
-        .fit_select_car p {
-            font-weight: 400;
-            font-size: 18px;
-            color: #000;
-            margin: 0;
-            line-height: normal;
-        }
+            .fit_unselect_car p {
+                font-weight: 400;
+                font-size: 18px;
+                color: #000;
+                margin: 0;
+                line-height: normal;
+            }
 
-        .fit_select_car p:last-child {
-            margin-top: 5px;
-            font-size: 12px;
-        }
+            .fit_unselect_car p:last-child {
+                margin-top: 5px;
+                font-size: 12px;
+            }
 
-        .fit_select_car span,
-        .js-product-options-link {
-            color: #3E61BC;
-            text-decoration: underline;   
-            font-weight: 700;    
-            cursor: pointer;     
-        }
+            .fit_unselect_car span,
+            .js-product-options-link {
+                color: #3E61BC;
+                text-decoration: underline;   
+                font-weight: 700;    
+                cursor: pointer;     
+            }
 
-        .js-product-options-link {
-            font-weight: 400;     
-            font-size: 12px;    
-        }
+            .js-product-options-link {
+                font-weight: 400;     
+                font-size: 12px;    
+            }
 
-        .prod_vehicle {
-            display: none;
-        }
+            .prod_vehicle {
+                display: none;
+            }
 
-        /* Popup */
+            /* Popup */
 
-        .po_header {
-            text-transform: initial !important;
-            padding-bottom: 10px !important;
-        }
+            .po_header {
+                text-transform: initial !important;
+                padding-bottom: 10px !important;
+            }
 
-        .po_header .header {
-            font-weight: 700;
-            font-size: 32px;
-            color: #FFFFFF;
-        }
+            .po_header .header {
+                font-weight: 700;
+                font-size: 32px;
+                color: #FFFFFF;
+            }
 
-        .po_header .subheader {
-            font-weight: 300;
-            font-size: 14px;
-            color: #FFFFFF;
-        }
+            .po_header .subheader {
+                font-weight: 300;
+                font-size: 14px;
+                color: #FFFFFF;
+            }
 
-        .fit_car {
-            position: absolute;
-            top: 18px;
-            right: 22px;
-            display: flex;
-            flex-direction: row;
-            align-items: center;
-        }
+            .fit_car {
+                position: absolute;
+                top: 18px;
+                right: 22px;
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+            }
 
-        .fit_car.pdp {
-            position: relative;
-            top: auto;
-            right: auto;
-        }
+            .fit_car.pdp {
+                position: relative;
+                top: auto;
+                right: auto;
+            }
 
-        .fit_select_car[hidden],
-        .fit_car[hidden],
-        .prod_vehicle[hidden] {
-            display: none;
-        }
+            .fit_unselect_car[hidden],
+            .fit_car[hidden],
+            .prod_vehicle[hidden] {
+                display: none;
+            }
 
-        .fit_car div:first-child { 
-            display: flex; 
-            margin-right: 9px;
-        }
+            .fit_car div:first-child { 
+                display: flex; 
+                margin-right: 9px;
+            }
 
-        .fit_car p {
-            font-weight: 400;
-            font-size: 12px;
-            line-height: 14px;
-            color: #000000;
-            margin: 0;
-        }
+            .fit_car p {
+                font-weight: 400;
+                font-size: 12px;
+                line-height: 14px;
+                color: #000000;
+                margin: 0;
+            }
 
-        .fit_car p:last-child {
-            font-weight: 500;
-        }
+            .fit_car p:last-child {
+                font-weight: 500;
+            }
 
-        .fit_car.pdp div:first-child {
-            margin-right: 14px;
-        }
+            .fit_car.pdp div:first-child {
+                margin-right: 14px;
+            }
 
-        .fit_car.pdp img {
-            height: 36px;
-            width: 36px;
-        }
+            .fit_car.pdp img {
+                height: 36px;
+                width: 36px;
+            }
 
-        .fit_car.pdp p {
-            font-size: 14px;
-            line-height: 17px;
-        }
+            .fit_car.pdp p {
+                font-size: 14px;
+                line-height: 17px;
+            }
 
-        .fit_car.pdp span {
-            color: #3E61BC;
-            font-weight: 600;
-            font-size: 12px;
-            cursor: pointer;
-        }
-    </style>
-`
+            .fit_car.pdp span {
+                color: #3E61BC;
+                font-weight: 600;
+                font-size: 12px;
+                cursor: pointer;
+            }
+        </style>
+    `
 
 /**
 * Return the Fit Block HTML with or without selected Car model
 * @param {string} carModel - the Model of the selected Car.
-* @param {boolean} [isChangeBtn = true] - Is Change Model Button exist?
-* @param {boolean} [isPreselected = false] - Is Car Model PDP preselected?
-* @param {boolean} [isFitPopup = false] - Is it a Popup?
+* @param {boolean} [isPDP = true] - Is it a PDP?
 * @param {boolean} [isUpsale = false] - Is it a Upsale?
 */
 const addFitChangePDP = (params) => { // replace vehicle with a Fit block on the PDP
     let carModel = params.carModel
-    let isChangeBtn = params.hasOwnProperty('isChangeBtn') ? params.isChangeBtn : true;
-    let isPreselected = params.hasOwnProperty('isPreselected') ? params.isPreselected : false;
-    let isFitPopup = params.hasOwnProperty('isFitPopup') ? params.isFitPopup : false;
+    let isPDP = params.hasOwnProperty('isPDP') ? params.isPDP : true;
     let isUpsale = params.hasOwnProperty('isUpsale') ? params.isUpsale : 'false';
 
-
     const fitToBlock = /*html*/` 
-    <div class="fit_car${isChangeBtn || isPreselected ? ' pdp' : ''}">
-        <div><img src="${imgFolderUrl}check-circle.svg" alt="check"></div>
-        <div>
-            <p>Guaranteed fit to</p>
-            <p>${carModel} ${isChangeBtn ? `<span>change</span>` : ''}</p>                        
+        <div class="fit_car${isPDP ? ' pdp' : ''}">
+            <div><img src="${imgFolderUrl}check-circle.svg" alt="check"></div>
+            <div>
+                <p>Guaranteed fit to</p>
+                <p>${carModel} ${isPDP ? `<span>change</span>` : ''}</p>                        
+            </div>
         </div>
-    </div>
-`
+    `
 
-    if (!isFitPopup) {
+    if (isPDP) {
         if (!query('.fit_car.pdp')) {
-            query('.fit_select_car') ? query('.fit_select_car').hidden = true : null
+            query('.fit_unselect_car') ? query('.fit_unselect_car').hidden = true : null
 
             query('.prod_verify_vehicle').insertAdjacentHTML('afterbegin', fitToBlock)
 
@@ -187,24 +182,32 @@ const drawPdpFit = () => { // add a Fit block to the PDP
     ) {
         addFitChangePDP({ carModel: selectedCarModel })
     } else if (query('.prod_vehicle').innerText !== 'Vehicle Specific') { // if car is preselected on the PDP        
-        addFitChangePDP({ carModel: selectedCarModel, isChangeBtn: false, isPreselected: true })
+        addFitChangePDP({ carModel: selectedCarModel })
     } else if (localStorage.getItem('upsale') === 'true' && query('.js-header-garage-mmy').innerText === localStorage.getItem('car')) { // if upsale
-        addFitChangePDP({ carModel: selectedCarModel, isChangeBtn: false, isPreselected: true, isUpsale: 'true' })
+        console.log('//////');
+        console.log('UPSALE');
+        console.log('//////');
+
+        addFitChangePDP({ carModel: selectedCarModel, isUpsale: 'true' })
     } else {
         const defaultPdpFit = /*html*/`
-            <div class="fit_select_car">
-                <p>Guaranteed Fitment</p>
-                <p><span>Select your vehicle</span> to check the fitment</p>
-            </div>
-        `
+                <div class="fit_unselect_car">
+                    <p>Guaranteed Fitment</p>
+                    <p><span>Select your vehicle</span> to check the fitment</p>
+                </div>
+            `
 
         query('.prod_verify_vehicle').insertAdjacentHTML('afterbegin', defaultPdpFit)
 
         const waitForDefaultPdpFit = setInterval(() => { // open the Popup by clicking on the 'select'
-            if (query('.fit_select_car span')) {
+            if (query('.fit_unselect_car span')) {
                 clearInterval(waitForDefaultPdpFit)
 
-                query('.fit_select_car span').addEventListener('click', openPopup)
+                query('.fit_unselect_car span').addEventListener('click', () => {
+                    openPopup()
+                    callEvent('Select your vehicle', 'Guaranteed fitment')
+                })
+
             }
         }, intervalTimeout)
     }
@@ -218,9 +221,9 @@ const changePopupHeader = () => { // change a Popup header
 
             if (query('.po_header').innerText.includes('select')) {
                 const header = /*html*/`
-                <p class="header">SELECT YOUR VEHICLE</p>
-                <p class="subheader">Get the perfect fit & an accurate price quote</p>
-            `
+                    <p class="header">SELECT YOUR VEHICLE</p>
+                    <p class="subheader">Get the perfect fit & an accurate price quote</p>
+                `
 
                 query('.po_header').innerHTML = header
             }
@@ -241,14 +244,14 @@ const addFitToPopup = () => {
             localStorage.setItem('car', car)
             localStorage.setItem('product', product)
 
-            addFitChangePDP({ carModel: car, isChangeBtn: false, isPreselected: false, isFitPopup: true }) // add a Fit block to the Popup    
+            addFitChangePDP({ carModel: car, isPDP: false }) // add a Fit block to the Popup    
             addFitChangePDP({ carModel: car }) // add a Fit block to the PDP 
         }
     }, intervalTimeout)
 
-    const waitForAllBtn = setInterval(() => {
+    const waitForAllBtns = setInterval(() => {
         if (query('.po_notif_msg_a') && query('.fit_car')) {
-            clearInterval(waitForAllBtn)
+            clearInterval(waitForAllBtns)
 
             query('.po_notif_msg_a').addEventListener('click', () => { // hide or show a Fit block by clicking on 'Click me'
                 if (query('.po_notif_msg_attention_grey_mark')) {
@@ -257,6 +260,139 @@ const addFitToPopup = () => {
                     query('.fit_car').hidden = true
                 }
             })
+        }
+    }, intervalTimeout)
+}
+
+/** GO Events */
+
+const callEvent = (eventAction, eventLabel = '') => {
+    console.log('////////');
+    console.log(`%c ${eventAction}`, 'color: yellow',);
+    console.log(eventLabel);
+    console.log('////////');
+
+    window.dataLayer = window.dataLayer || []
+    dataLayer.push({
+        'event': 'event-to-ga',
+        'eventCategory': 'Exp: PDP fitment. Desktop',
+        eventAction,
+        eventLabel
+    })
+}
+
+const clickOnPopupFormSelect = () => {
+    const waitForPopupFormSelect = setInterval(() => {
+        if (query('.po_submodel')) {
+            clearInterval(waitForPopupFormSelect)
+
+            query('.po_submodel').addEventListener('click', (e) => {
+                const el = e.target
+
+                if (el.matches('.po-select') || el.matches('.value')) {
+                    const select_name = el.closest('.po-select').dataset.placeholder
+
+                    callEvent(`Select ${select_name}`, 'Popup. Select your vehicle')
+                }
+
+                if (el.matches('.item')) {
+                    const option_name = el.getAttribute('value')
+                    const select_name = el.closest('.po-select').dataset.placeholder
+
+                    callEvent(`Option ${option_name} in select ${select_name}`)
+                }
+            })
+        }
+    }, intervalTimeout)
+}
+
+const clickOnCancelAndAddCart = () => {
+    const waitForEl = setInterval(() => {
+        if (queryAll('.group-buttons button')[1]) {
+            clearInterval(waitForEl)
+
+            query('.group-buttons').addEventListener('click', (e) => {
+                const el = e.target
+
+                if (el.closest('#cancel-anchor')) {
+                    callEvent('Cancel', 'Popup. Select your vehicle')
+                }
+                if (el.closest('.po_button_holder')?.querySelector('button')?.innerText === 'Add To Cart'.toUpperCase()) {
+                    callEvent('Add to cart', 'Popup. Select your vehicle')
+                }
+            })
+        }
+    }, intervalTimeout)
+}
+
+const clickOnXPopup = () => {
+    const waitForEl = setInterval(() => {
+        if (query('.gbox_close')) {
+            clearInterval(waitForEl)
+            if (getId('selectOptWin')) {
+                query('.gbox_close').addEventListener('click', () => callEvent('Close popup. Cross', 'Popup. Select your vehicle'))
+            }
+        }
+    }, intervalTimeout)
+}
+
+const clickOnXAttention = () => {
+    const waitForEl = setInterval(() => {
+        if (query('.gbox_close')) {
+            clearInterval(waitForEl)
+            if (query('.-attention')) {
+                query('.gbox_close').addEventListener('click', () => callEvent('Close popup. Cross', `Popup: Attention. This particular wheel doesn't fit`))
+            }
+        }
+    }, intervalTimeout)
+}
+
+const clickOnChange = () => {
+    const waitForEl = setInterval(() => {
+        if (query('.-po-change-vehicle')) {
+            clearInterval(waitForEl)
+
+            query('.-po-change-vehicle').addEventListener('click', () => callEvent('Change vehicle', 'Popup. Product options'))
+        }
+    }, intervalTimeout)
+}
+
+const clickOnClickHere = () => {
+    const waitForEl = setInterval(() => {
+        if (query('.po_notif_msg_a')) {
+            clearInterval(waitForEl)
+
+            query('.po_notif_msg_a').addEventListener('click', () => callEvent('Click here', 'Popup. Product options'))
+        }
+    }, intervalTimeout)
+}
+
+const viewAttentionPopup = () => {
+    const waitForEl = setInterval(() => {
+        if (query('.po')) {
+            clearInterval(waitForEl)
+
+            callEvent('View popup', `Popup: Attention. This particular wheel doesn't fit`)
+        }
+    }, intervalTimeout)
+}
+
+const clickOnView = () => {
+    const waitForEl = setInterval(() => {
+        if (query('.-success')) {
+            clearInterval(waitForEl)
+
+            query('.-success').addEventListener('click', () => callEvent('View wheels that do fit', `Popup: Attention. This particular wheel doesn't fit`))
+        }
+    }, intervalTimeout)
+}
+
+const clickOnContinue = () => {
+    const waitForEl = setInterval(() => {
+        if (query('.-transparent')) {
+            clearInterval(waitForEl)
+
+            query('.-transparent').addEventListener('click', () => callEvent('Continue anyway', `Popup: Attention. This particular wheel doesn't fit`))
         }
     }, intervalTimeout)
 }
@@ -273,30 +409,40 @@ const observePopup = () => { // make changes when Popup is opened
         subtree: true,
     }
 
-    const disable = false
+    let disable = false
 
-    let observer = new MutationObserver(mutations => {
+    let mainObserver = new MutationObserver(mutations => {
         for (let mutation of mutations) {
             for (let node of mutation.addedNodes) {
                 if (!(node instanceof HTMLElement)) continue
 
                 if (node.matches('#child_products_tbl') && disable === false) {
-                    observer.disconnect()
+                    mainObserver.disconnect()
 
                     observerCallback()
 
-                    observer.observe(target, config)
+                    mainObserver.observe(target, config)
                 }
 
-                if (node.matches('.po')) {
-                    observer.disconnect()
+                if (node.matches('.po')) { // if wheel doesn't fit the car
+                    mainObserver.disconnect()
+
+                    query('.fit_car.pdp') ? query('.fit_car.pdp').hidden = true : null
+                    query('.fit_unselect_car') ? query('.fit_unselect_car').hidden = false : null
+
                     disable = true
                 }
 
                 if (node.matches('.upsale-products-content')) {
                     query('.upsale-products-content').addEventListener('click', (e) => {
-                        if (e.target.matches('.-upsale')) {
-                            localStorage.setItem('upsale', 'true')
+                        if (e.target.closest('.upsale-item')) {
+
+                            const upsaleItemName = e.target.closest('.upsale-item').dataset.name
+
+                            localStorage.setItem('upsaleItem', upsaleItemName)
+                            console.log('//////');
+                            console.log('set upsale !!');
+                            console.log('//////');
                         }
                     })
                 }
@@ -304,7 +450,48 @@ const observePopup = () => { // make changes when Popup is opened
         }
     })
 
-    observer.observe(target, config)
+    mainObserver.observe(target, config)
+
+    let infinityObserver = new MutationObserver(mutations => {
+        for (let mutation of mutations) {
+            for (let node of mutation.addedNodes) {
+                if (!(node instanceof HTMLElement)) continue
+
+                console.log('%c node', 'color: red');
+                console.log(node);
+
+                if (node.matches('.po-child-products-loading')) { // restart mainObserver
+                    disable = false
+
+                    mainObserver.disconnect() // in case if mainObserver is still running
+                    mainObserver.observe(target, config)
+                }
+
+                if (node.matches('.overlay_portal')) {
+                    /* events if wheel doesn't fit the car */
+
+                    console.log('//////');
+                    console.log('%c overlay_portal', 'color: #bada55');
+                    console.log('//////');
+
+                    viewAttentionPopup()
+                    clickOnXAttention() // !
+                    clickOnView()
+                    clickOnContinue()
+
+                    /* popup events */
+
+                    clickOnPopupFormSelect()
+                    clickOnCancelAndAddCart()
+                    clickOnChange()
+                    clickOnClickHere()
+                    clickOnXPopup() // !
+                }
+            }
+        }
+    })
+
+    infinityObserver.observe(target, config)
 }
 
 /** Implementation */
@@ -314,20 +501,22 @@ document.head.insertAdjacentHTML('beforeend', style) // add CSS
 drawPdpFit()
 observePopup()
 
-/** GO Events */
-
-window.dataLayer = window.dataLayer || []
-dataLayer.push({
-    'event': 'event-to-ga',
-    'eventCategory': 'Exp: PDP fitment',
-    'eventAction': 'loaded',
-})
+callEvent('loaded')
 
 let isClarity = setInterval(() => {
     if (typeof clarity === 'function') {
         clearInterval(isClarity)
 
-        clarity('set', `pdp_fitment`, 'variant_1')
+        clarity('set', `pdp_fitment_desktop`, 'variant_1')
     }
 }, 100)
 
+const waitForViewOptions = setInterval(() => {
+    if (query('.js-product-options-link')) {
+        clearInterval(waitForViewOptions)
+
+        query('.js-product-options-link').addEventListener('click', () => {
+            callEvent('View Product Options', 'Fits Following Model(s)')
+        })
+    }
+}, intervalTimeout)
