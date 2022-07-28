@@ -805,11 +805,10 @@ let startFunk = setInterval(() => {
     }
 
     jQuery("body").on("click", `#add-item-to-cart, .category-products .products-grid .item .item-inner .details-area .actions .addtocart`, function () {
-      console.log(`>>CART`, document.querySelector("#cart-panel"))
       setTimeout(() => {
         console.log(`setTimeout for  renderToCart()`)
         renderToCart()
-      }, 4000)
+      }, 2000)
     })
 
     if (document.querySelector('.header-container .header-actions .action-links [data-account-trigger="true"] span').textContent !== "Account") {
