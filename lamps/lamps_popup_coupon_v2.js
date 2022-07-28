@@ -694,7 +694,6 @@ let startFunk = setInterval(() => {
               console.log(`>>>>>>>>>OK1 NOT LOGIN`)
               if (!el.querySelector(".discount_cart.sign_up")) {
                 console.log(`>>>>>>>>>OK2 NOT LOGIN`)
-                console.log(`ELEM`, el)
                 el.insertAdjacentHTML("beforeend", discountCartSignUp)
                 console.log(`>>>>>END`)
                 console.log(document.querySelector(".discount_cart.sign_up"))
@@ -783,10 +782,8 @@ let startFunk = setInterval(() => {
     })
 
     let observerCart = new MutationObserver((muts) => {
-      console.log(`observerCart`, muts)
       if (document.querySelector("#cart-panel")) {
         observerCart.disconnect()
-        console.log(`#cart-panel`)
         renderToCart()
         onClickLogout()
 
@@ -804,12 +801,16 @@ let startFunk = setInterval(() => {
       })
     }
 
-    jQuery("body").on("click", `#add-item-to-cart, .category-products .products-grid .item .item-inner .details-area .actions .addtocart`, function () {
-      setTimeout(() => {
-        console.log(`setTimeout for  renderToCart()`)
-        renderToCart()
-      }, 2000)
-    })
+    jQuery("body").on(
+      "click",
+      `#add-item-to-cart, .category-products .products-grid .item .item-inner .details-area .actions .addtocart, .inner-panel .content-panel .c-product .p-qty .input-group-btn .btn-number`,
+      function () {
+        setTimeout(() => {
+          console.log(`setTimeout for  renderToCart()`)
+          renderToCart()
+        }, 1500)
+      }
+    )
 
     if (document.querySelector('.header-container .header-actions .action-links [data-account-trigger="true"] span').textContent !== "Account") {
       jQuery("body").on(
