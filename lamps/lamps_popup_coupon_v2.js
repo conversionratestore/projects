@@ -801,14 +801,11 @@ let startFunk = setInterval(() => {
       })
     }
 
-    jQuery("body").on("click", `#add-item-to-cart`, function () {
-      console.log(document.querySelector("#cart-panel"))
-      renderToCart()
-    })
-
-    jQuery("body").on("click", ` .category-products .products-grid .item .item-inner .details-area .actions .addtocart`, function () {
-      console.log(document.querySelector("#cart-panel"))
-      renderToCart()
+    jQuery("body").on("click", `#add-item-to-cart, .category-products .products-grid .item .item-inner .details-area .actions .addtocart`, function () {
+      console.log(`>>CART`, document.querySelector("#cart-panel"))
+      setTimeout(() => {
+        renderToCart()
+      }, 200)
     })
 
     if (document.querySelector('.header-container .header-actions .action-links [data-account-trigger="true"] span').textContent !== "Account") {
