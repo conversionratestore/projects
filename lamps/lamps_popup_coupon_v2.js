@@ -783,6 +783,7 @@ let startFunk = setInterval(() => {
     })
 
     let observerCart = new MutationObserver((muts) => {
+      console.log(`observerCart`, muts)
       if (document.querySelector("#cart-panel")) {
         observerCart.disconnect()
         console.log(`#cart-panel`)
