@@ -548,24 +548,23 @@ let changeImage = () => {
     }, 100)
 }
 
-let citySearch = true;
 
 let start = setInterval(() => {
-    if (!document.querySelector('#__NEXT_DATA__').innerHTML.includes('/citysearch')) {
-        if (document.querySelector('#__NEXT_DATA__') != null && window.location.pathname.includes('/parkingat/') && document.querySelector('#parkingat') != null && document.querySelector('#detail-info > p.block') != null && document.querySelector('#detail-info > table tr') != null && document.querySelector('#detail-info > button') != null) {
-           for (let i = 0; i < document.querySelectorAll('script').length; i++) {
-                if ( document.querySelectorAll('script')[i].src.includes('citysearch')) {
-                     citySearch = true;
-                     break;
-                } else {
-                     citySearch = false;
-                 }
-             }
-            if (sentPost == false && citySearch == false) {
-                sentPost = true;
+    if (document.querySelectorAll('#marker > div.snap-mandatory > div.bg-white > div > div.flex > a') && window.location.href.includes('reservation/citysearch')) {
+        document.querySelectorAll('#marker > div.snap-mandatory > div.bg-white > div > div.flex > a').forEach(item => {
+            item.addEventListener('click', (e) => sessionStorage.setItem('reload','false'))
+        })
+    }
+    if (document.querySelector('#__NEXT_DATA__') != null && window.location.pathname.includes('/parkingat/') && document.querySelector('#parkingat') != null && document.querySelector('#detail-info > p.block') != null && document.querySelector('#detail-info > table tr') != null && document.querySelector('#detail-info > button') != null) {  
+        
+        if (sentPost == false) {
+            sentPost = true;
+            if (sessionStorage.getItem('reload') == 'false') {
+                sessionStorage.setItem('reload','true')
+                window.location.reload()
+            } else {
                 document.querySelector('.js-style') == null ? document.body.insertAdjacentHTML('afterbegin', style) : ''; // add style
-            
-                console.log(citySearch)
+        
                 changeImage()//change image
     
                 let initial = window.location.href.split('parkingat/')[1].split('?')[0].replace(/[0-9]/g, '');
@@ -621,6 +620,7 @@ let start = setInterval(() => {
             }
         }
     }
+    
 })
 
 let startRemove = () => {
