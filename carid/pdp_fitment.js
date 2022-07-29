@@ -233,8 +233,6 @@ const changePopupHeader = () => { // change a Popup header
         if (query('.po_header')) {
             clearInterval(waitForHeader)
 
-            console.log('BBBBBBBBBBBBBb');
-
             console.log(query('.po_header'));
             console.log(query('.po_header').innerText.toLowerCase().includes('select'));
 
@@ -289,7 +287,7 @@ const addFitToPopup = () => {
 
 const callEvent = (eventAction, eventLabel = '') => {
     console.log('////////');
-    console.log(`%c ${eventAction}`, 'color: yellow',);
+    console.log(`%c ${eventAction}`, 'color: yellow');
     console.log(eventLabel);
     console.log('////////');
 
@@ -493,9 +491,7 @@ const observePopup = () => { // make changes when Popup is opened
                     changePopupHeader()
 
                     viewAttentionPopup()
-                    clickOnXAttention() // !
-                    clickOnView()
-                    clickOnContinue()
+                    clickOnXAttention() // !                  
 
                     /* popup events */
 
@@ -504,6 +500,12 @@ const observePopup = () => { // make changes when Popup is opened
                     clickOnChange()
                     clickOnClickHere()
                     clickOnXPopup() // !
+                }
+
+                if (node.matches('.po')) {
+                    console.log('%c POOOOO', 'color: green');
+                    clickOnView()
+                    clickOnContinue()
                 }
             }
         }
@@ -516,7 +518,15 @@ const observePopup = () => { // make changes when Popup is opened
 
 document.head.insertAdjacentHTML('beforeend', style) // add CSS
 
-drawPdpFit()
+const waitForEl = setInterval(() => {
+    if(getId('addToCartButReact')) {
+        clearInterval(waitForEl)
+
+        drawPdpFit()
+    }
+}, intervalTimeout)
+
+
 observePopup()
 
 callEvent('loaded')
