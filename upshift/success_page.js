@@ -319,11 +319,12 @@ const shifts = [
 const queryString = window.location.search;
 const urlParams = new URLSearchParams(queryString);
 
-const nameUrl = urlParams.get('nameUrl')
+const nameUrl = urlParams.get('fname') || ''
 const mailUrl = urlParams.get('email')
 
 if(nameUrl) {
     localStorage.setItem('myName', nameUrl)
+    localStorage.myName
 }
 
 const getRandomItems = (arr, num) => arr.sort(() => Math.random() - 0.5).slice(0, num)
@@ -358,13 +359,18 @@ const shiftsHTML = getRandomItems(shifts, 3).map(job => `
             </div>
     `).join('')
 
+console.log(nameUrl);
+console.log(localStorage.getItem('myName'));
+
 const htmlName = nameUrl || localStorage.getItem('myName') || ''
+
+console.log(htmlName);
 
 const successTemplate = /*html*/`
     <main class="main_wrapper">
         <section class="message_section">
             <div class="content">
-                <p class="title">Congratulations${htmlName ? `, ${nameUrl}` : ''}! 🎉<br>You have been <span>approved</span> to join Upshift.</p>
+                <p class="title">Congratulations${htmlName ? ', ' + htmlName : ''}! 🎉<br>You have been <span>approved</span> to join Upshift.</p>
                 <p class="subtitle">Next you just need to <b>complete your onboarding</b> to start making extra money!
                 </p>
                 <div class="box timer">
