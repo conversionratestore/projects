@@ -395,7 +395,7 @@ const successTemplate = /*html*/`
                 </div>
                 <div class="box message" hidden>
                     <p class="box_title">SMS and email with suggested times have been sent!</p>
-                    <p class="check_mail">Check email</p>
+                    <p class="check_mail">Please check your email</p>
                     <div class="info">
                         <img src="${imgFolderLink}/info_blue.svg" alt="info">
                         <p>In case you cannot find the email,<br>check your spam folder</p>
