@@ -364,7 +364,7 @@ const successTemplate = /*html*/`
     <main class="main_wrapper">
         <section class="message_section">
             <div class="content">
-                <p class="title">Congratulations${nameUrl ? `, ${nameUrl}` : ''}! 🎉<br>You have been <span>approved</span> to join Upshift.</p>
+                <p class="title">Congratulations${htmlName ? `, ${nameUrl}` : ''}! 🎉<br>You have been <span>approved</span> to join Upshift.</p>
                 <p class="subtitle">Next you just need to <b>complete your onboarding</b> to start making extra money!
                 </p>
                 <div class="box timer">
