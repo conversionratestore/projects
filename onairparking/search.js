@@ -334,14 +334,65 @@ let style = `
         text-align: center;
         border-bottom: 1px solid #515356;
         padding-bottom: 20px;
+        margin-bottom: 30px;
     }
-    .calendar .table .day {
+    .calendar .day {
         font-weight: 700;
         font-size: 14px;
         line-height: 28px;
         text-align: center;
         color: #515356;
         margin: 4px 0;
+    }
+    .calendar .day.disabled {
+        color: #515356;
+        font-weight: 500;
+        opacity: 0.3;
+    }
+    .calendar .day.start, .calendar .day.end {
+        font-weight: 800;
+        color: #FFFFFF;
+        position: relative;
+    }
+    .calendar .day.start:before, .calendar .day.end:before {
+        content: '';
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        background: #F37621;
+        width: 28px;
+        height: 28px;
+        pointer-events: none;
+        border: 1px solid #F37621;
+        border-radius: 3px;
+    }
+    .popup_footer {
+        background: #FFFFFF;
+        position: fixed;
+        z-index: 2;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.07), 0 -3px 50px rgba(0, 0, 0, 0.12);
+        padding: 15px 16px;
+    }
+    .btn-search {
+        background: #F37621;
+        border-radius: 100px;
+        width: 161px;
+        font-weight: 800;
+        font-size: 16px;
+        line-height: 50px;
+        text-align: center;
+        text-transform: uppercase;
+        color: #FFFFFF;
+    }
+    .btn-clear {
+        font-weight: 700;
+        font-size: 14px;
+        line-height: 16px;
+        text-transform: uppercase;
+        color: #515356;
     }
     @media only screen and (max-width: 340px) {
         .info_parking {
@@ -446,6 +497,16 @@ let html = `
     </div>
     <div class="popup_body">
         <div id="calendar_table" class="calendar"></div>
+    </div>
+    <div class="popup_footer flex items-center justify-between">
+        <button type="button" class="flex items-center btn-clear">
+            <svg class="mr-2" width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M11.0001 1L5.84863 5.84848L11.0001 11" stroke="#515356" stroke-width="2"/>
+                <path d="M0.999852 11L6.15137 6.15152L0.999852 1" stroke="#515356" stroke-width="2"/>
+            </svg>
+            <span>Clear</span>
+        </button>
+        <button type="button" class="flex items-center btn-search">Search</button>
     </div>
 </div>
 `;
@@ -792,13 +853,11 @@ let start = setInterval(() => {
                 let month = date.getMonth() + 1 + i,
                     year = date.getFullYear();
                 if (month < 13) {
-                    console.log(month,year)
-                    createCalendar(calendar, year, month);
+                    createCalendar(calendar, year, month, startDate, endDate);
                 } else {
                     let newMonth =  (date.getMonth() - 1 - i) * -1,
                         newYear = year + 1;
-                    console.log(newMonth,newYear)
-                    createCalendar(calendar, newYear,newMonth);
+                    createCalendar(calendar, newYear,newMonth, startDate, endDate);
                 }
             }
         }
@@ -816,40 +875,51 @@ let startRemove = () => {
 }
 startRemove()
 
-function createCalendar(elem, year, month) {
-
-    let mon = month - 1; // месяцы в JS идут от 0 до 11, а не от 1 до 12
+let today = new Date();
+function createCalendar(elem, year, month, startDate, endDate) {
+    let mon = month - 1;
     let d = new Date(year, mon);
+
+    let startD = new Date(startDate),
+        endD = new Date(endDate);
+
+    console.log(startD,endD)
 
     let table = `<div class="head">${formatDate[mon]} ${year}</div><div class="table"><div class="flex">`;
 
-    // пробелы для первого ряда
-    // с понедельника до первого дня месяца
+    // spaces for first row
+    // from Monday to the first day of the month
     // * * * 1  2  3  4
     for (let i = 0; i < getDay(d); i++) {
         table += '<div></div>';
     }
 
-    // <td> ячейки календаря с датами
+    // calendar cells with dates
     while (d.getMonth() == mon) {
-        table += '<div class="day">' + d.getDate() + '</div>';
+        if (d < today && d.getDate() < today.getDate()) {
+            table += '<div class="day disabled">' + d.getDate() + '</div>';
+        } else if (d.getDate() === startD.getDate() && d.getMonth() === startD.getMonth() && d.getFullYear() === startD.getFullYear()) {
+            table += '<div class="day start">' + d.getDate() + '</div>';
+        } else if (d.getDate() === endD.getDate() && d.getMonth() === endD.getMonth() && d.getFullYear() === endD.getFullYear()) {
+            table += '<div class="day end">' + d.getDate() + '</div>';
+        } else {
+            table += '<div class="day">' + d.getDate() + '</div>';
+        }
 
-        if (getDay(d) % 7 == 6) { // вс, последний день - перевод строки
+        if (getDay(d) % 7 == 6) { // Sun, last day - newline
             table += '</div><div class="flex">';
         }
 
         d.setDate(d.getDate() + 1);
     }
-
-    // добить таблицу пустыми ячейками, если нужно
+    // add empty cells to table
     // 29 30 31 * * * *
     if (getDay(d) != 0) {
         for (let i = getDay(d); i < 7; i++) {
             table += '<div></div>';
         }
     }
-
-    // закрыть таблицу
+    // close the table
     table += '</div></div></div>';
 
     elem.insertAdjacentHTML('beforeend',table);
