@@ -404,7 +404,14 @@ const successTemplate = /*html*/`
 const intervalTimeout = 200
 
 document.head.insertAdjacentHTML('beforeend', successCSS)
-document.querySelector('.post-content').insertAdjacentHTML('afterbegin', successTemplate)
+
+const waitForBody = setInterval(() => {
+    if(document.querySelector('.post-content')) {
+        clearInterval(waitForBody)
+
+        document.querySelector('.post-content').insertAdjacentHTML('afterbegin', successTemplate)
+    }
+}, intervalTimeout)
 
 let countdownTime = 120;
 
