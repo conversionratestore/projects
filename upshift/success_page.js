@@ -319,7 +319,7 @@ const shifts = [
 const queryString = window.location.search;
 const urlParams = new URLSearchParams(queryString);
 
-const nameUrl = urlParams.get('fname')
+const nameUrl = urlParams.get('nameUrl')
 const mailUrl = urlParams.get('email')
 
 if(nameUrl) {
@@ -358,7 +358,7 @@ const shiftsHTML = getRandomItems(shifts, 3).map(job => `
             </div>
     `).join('')
 
-const htmlName = nameUrl || localStorage.getItem('myName', nameUrl) || ''
+const htmlName = nameUrl || localStorage.getItem('myName') || ''
 
 const successTemplate = /*html*/`
     <main class="main_wrapper">
