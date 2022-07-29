@@ -340,16 +340,16 @@ let renderStar = (rate) => {
 }
 
 function dateDiff(a,b){
-  let firstDate = new Date(a);
-  let secondDate = new Date(b);
-  let days = Math.abs(firstDate.getTime() - secondDate.getTime());
-  let result = parseInt(Math.ceil(days / (1000 * 60 * 60 * 24)));
-  return result != 0 ? result : 1
+    let firstDate = new Date(a);
+    let secondDate = new Date(b);
+    let days = Math.abs(firstDate.getTime() - secondDate.getTime());
+    let result = parseInt(Math.ceil(days / (1000 * 60 * 60 * 24)));
+    return result != 0 ? result : 1
 }
 
 let renderPriceDay = (startDate,endDate,total) => {
     let days = dateDiff(endDate,startDate);
-    let priceDay = (+total / days).toFixed(2);
+    let priceDay = (+total / +days).toFixed(2);
     return priceDay;
 }
 
@@ -555,8 +555,8 @@ let start = setInterval(() => {
             item.addEventListener('click', (e) => sessionStorage.setItem('reload','false'))
         })
     }
-    if (document.querySelector('#__NEXT_DATA__') != null && window.location.pathname.includes('/parkingat/') && document.querySelector('#parkingat') != null && document.querySelector('#detail-info > p.block') != null && document.querySelector('#detail-info > table tr') != null && document.querySelector('#detail-info > button') != null) {  
-        
+    if (document.querySelector('#__NEXT_DATA__') != null && window.location.pathname.includes('/parkingat/') && document.querySelector('#parkingat') != null && document.querySelector('#detail-info > p.block') != null && document.querySelector('#detail-info > table tr') != null && document.querySelector('#detail-info > button') != null) {
+
         if (sentPost == false) {
             sentPost = true;
             if (sessionStorage.getItem('reload') == 'false') {
@@ -564,9 +564,9 @@ let start = setInterval(() => {
                 window.location.reload()
             } else {
                 document.querySelector('.js-style') == null ? document.body.insertAdjacentHTML('afterbegin', style) : ''; // add style
-        
+
                 changeImage()//change image
-    
+
                 let initial = window.location.href.split('parkingat/')[1].split('?')[0].replace(/[0-9]/g, '');
                 let arr = document.querySelector('#__NEXT_DATA__').innerText.split(`,"airport_initials":"${initial.toUpperCase()}`)[0].split('"airport_id":'),
                     id = arr[arr.length - 1].split(',')[0],
@@ -574,17 +574,17 @@ let start = setInterval(() => {
                     startDate = window.location.href.split('checkin=')[1].split('&')[0],
                     endDate = window.location.href.split('checkout=')[1],
                     parent = document.querySelector('#parkingat');
-    
+
                 let total = '';
-                let tr = document.querySelectorAll('#detail-info > table tr.text-base');
+                let tr = document.querySelectorAll('#detail-info > table tr.text-base td:first-child strong');
                 for (let i = 0; i < tr.length; i++) {
-                    if (tr[i].querySelector('td').innerText.toLowerCase() == 'total') {
-                        total = +(+tr[i].querySelector('td:last-child').innerText.replace('$','').split(',').join('')).toFixed(2);
+                    if (tr[i].innerHTML.toLowerCase() == 'total') {
+                        total = +(+tr[i].closest('tr').querySelector('td:last-child strong').innerHTML.replace(/[^\d\.]/g,'')).toFixed(2);
                     }
                 }
-    
+
                 postParking(id, startDate, endDate, parent, urlCode, total) // send post parking
-    
+
                 //add fix button
                 document.querySelector('.fix_footer') == null && document.querySelector('#easy-checkout') == null ? document.body.insertAdjacentHTML('beforeend',`<div class="fix_footer"><button type="button" class="btn_reserve-now">Reserve now</button></div>`) : '';
                 //Reserve now sticky button
@@ -603,7 +603,7 @@ let start = setInterval(() => {
                     }
                 })
                 document.querySelector('#parkingat > div > article > div.flex > button').addEventListener('click', (e) => pushDataLayer('Click at Reserve now button'))
-    
+
                 window.addEventListener('scroll', () => {
                     if ((document.querySelector('#detail-info > button.ant-btn') != null || document.querySelector('#parkingat > div > article > div.flex.flex-col > button') != null) && document.querySelector('.fix_footer') != null) {
                         if (isScrolledIntoView(document.querySelector('#detail-info > button.ant-btn')) == true || isScrolledIntoView(document.querySelector('#parkingat > div > article > div.flex.flex-col > button')) == true) {
@@ -620,7 +620,7 @@ let start = setInterval(() => {
             }
         }
     }
-    
+
 })
 
 let startRemove = () => {
@@ -629,7 +629,7 @@ let startRemove = () => {
             // clearInterval(startRemove)
             document.querySelector('.js-style') != null ? document.querySelector('.js-style').remove() : '';
             document.querySelector('.fix_footer') != null ? document.querySelector('.fix_footer').remove() : '';
-            
+
             sentPost = false;
         }
     },100)
@@ -646,7 +646,7 @@ let startEdit = setInterval(() => {
                 <path d="M9.625 2.04164C9.85706 1.80957 10.1718 1.6792 10.5 1.6792C10.6625 1.6792 10.8234 1.71121 10.9735 1.77339C11.1237 1.83558 11.2601 1.92673 11.375 2.04164C11.4899 2.15654 11.5811 2.29296 11.6432 2.44309C11.7054 2.59322 11.7374 2.75413 11.7374 2.91664C11.7374 3.07914 11.7054 3.24005 11.6432 3.39018C11.5811 3.54032 11.4899 3.67673 11.375 3.79164L4.08333 11.0833L1.75 11.6666L2.33333 9.3333L9.625 2.04164Z" stroke="#5D99D6" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>`)
         editBtn.addEventListener('click', () => pushDataLayer('Click at Edit button'))
-     
+
         let date1 = document.querySelector('#detail-info > div.grid.grid-cols-2.gap-2.w-full.mt-4.justify-between > div:nth-child(1) > p').innerText,
             date2 = document.querySelector('#detail-info > div.grid.grid-cols-2.gap-2.w-full.mt-4.justify-between > div:nth-child(2) > p').innerText,
             year1 = date1.split(', ')[1].split(' ')[0],
@@ -660,10 +660,10 @@ let startEdit = setInterval(() => {
             endDate = `${year2}-${mouth2}-${day2}`;
 
         let total = '';
-        let tr = document.querySelectorAll('#detail-info > table tr.text-base');
+        let tr = document.querySelectorAll('#detail-info > table tr.text-base td:first-child strong');
         for (let i = 0; i < tr.length; i++) {
-            if (tr[i].querySelector('td').innerText.toLowerCase() == 'total') {
-                total = +(+tr[i].querySelector('td:last-child').innerText.replace('$','').split(',').join('')).toFixed(2);
+            if (tr[i].innerHTML.toLowerCase() == 'total') {
+                total = +(+tr[i].closest('tr').querySelector('td:last-child strong').innerHTML.replace(/[^\d\.]/g,'')).toFixed(2);
             }
         }
         document.querySelector('.price_section .price').innerHTML = `$${renderPriceDay(startDate,endDate,total)} /day`
@@ -671,10 +671,10 @@ let startEdit = setInterval(() => {
             document.querySelector('#detail-info > table').after(document.querySelector('.free_block'));
             document.querySelector('.free_block p').innerHTML = `Free cancellation until ${date1.split(',')[0]}`;
         }
-        
+
         if (document.querySelector('.cancel_section p.font-bold') != null) {
             document.querySelector('.cancel_section p.font-bold').innerHTML = `Free cancellation until ${date1.split(',')[0]}`
-        } 
+        }
     }
 }, 100)
 
