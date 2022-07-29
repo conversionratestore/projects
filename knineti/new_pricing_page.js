@@ -139,6 +139,11 @@ header {
   color: #808080;
 }
 
+.tippy-content {
+  text-align: left;
+  padding: 0 !important;
+}
+
 .tippy-tooltip span {
   font-weight: 700;
 }
@@ -481,11 +486,12 @@ table tbody tr:nth-child(5) td {
   color: #0037b4;
 }
 
+
       </style>
     `
 
     let renederHtml = /*html */ `
-              <header>
+        <header>
       <a href="#" class="logo_wrapp">
         <img src="https://conversionratestore.github.io/projects/knineti/img/new_test_logo.jpg" alt="lofo k9ti" />
       </a>
@@ -511,11 +517,154 @@ table tbody tr:nth-child(5) td {
             <div>
               <img src="https://conversionratestore.github.io/projects/knineti/img/new_error_outline.svg" alt="error outline" />
               <span>NOTE:</span>
-              <p>You can claim the special offer today and delay training until later. Simply contact us after purchase to postpone the start of your dog's training</p>
+              <p>
+                You can claim the special offer today and delay activation until later. Simply contact us after purchase to postpone the the start of your dog's training course
+              </p>
             </div>
           </div>
         </div>
 
+        <!-- <div class="pricing_wrapp">
+          <ul class="tabs_visible_wrap">
+            <li class="">
+              <h3>Basic</h3>
+              <div>
+                <span>$497</span>
+                <span>$297</span>
+              </div>
+              <p data-tolltip="2"><span>or $99/month</span> <span>for 3 months</span></p>
+              <button>Select</button>
+            </li>
+            <li class="active_tab">
+              <h3>Premium</h3>
+              <div>
+                <span>$587</span>
+                <span>$387</span>
+              </div>
+              <p data-tolltip="3"><span>or $129/month</span> <span>for 3 months</span></p>
+              <button>Selected</button>
+            </li>
+            <li class="">
+              <h3>Deluxe</h3>
+              <div>
+                <span>$887</span>
+                <span>$687</span>
+              </div>
+              <p data-tolltip="4"><span>or $229/month</span> <span>for 3 months</span></p>
+              <button>Select</button>
+            </li>
+          </ul>
+
+          <ul class="tabs_content">
+            <li class="inform_content desk">
+              <ul>
+                <li>
+                  <p data-tolltip="5">Lifetime Access to <span class="bold_txt underline_txt">Total Transformation Masterclass + 3 bonus classes</span></p>
+                </li>
+                <li>
+                  <p data-tolltip="6"><span class="bold_txt underline_txt">Live Weekly Q&A Group Calls</span> with personal coaching</p>
+                </li>
+                <li>
+                  <p>Ability to <span class="bold_txt">email us questions</span> which will be answered in a separate downloadable weekly call</p>
+                </li>
+                <li>
+                  <p class="bold_txt">Recordings of Weekly Q&A Calls</p>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <ul>
+                <li>
+                  <svg width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M4.5 12.5L10.5 18.5L20.5 6.5" stroke="#808080" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                  </svg>
+                </li>
+                <li>
+                  <svg width="21" height="2" viewBox="0 0 21 2" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect x="0.5" width="20" height="2" rx="1" fill="#808080" />
+                  </svg>
+                </li>
+                <li>
+                  <svg width="21" height="2" viewBox="0 0 21 2" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect x="0.5" width="20" height="2" rx="1" fill="#808080" />
+                  </svg>
+                </li>
+                <li>
+                  <svg width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M4.5 12.5L10.5 18.5L20.5 6.5" stroke="#808080" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                  </svg>
+                  <span>10-Week Access</span>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <ul>
+                <li>
+                  <svg width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M4.5 12.5L10.5 18.5L20.5 6.5" stroke="#808080" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                  </svg>
+                </li>
+                <li>
+                  <svg width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M4.5 12.5L10.5 18.5L20.5 6.5" stroke="#808080" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                  </svg>
+                  <span>10-Week Access</span>
+                </li>
+                <li>
+                  <svg width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M4.5 12.5L10.5 18.5L20.5 6.5" stroke="#808080" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                  </svg>
+                  <span>10-Week Access</span>
+                </li>
+                <li>
+                  <svg width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M4.5 12.5L10.5 18.5L20.5 6.5" stroke="#808080" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                  </svg>
+                  <span>10-Week Access</span>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <ul>
+                <li>
+                  <svg width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M4.5 12.5L10.5 18.5L20.5 6.5" stroke="#808080" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                  </svg>
+                </li>
+                <li>
+                  <svg width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M4.5 12.5L10.5 18.5L20.5 6.5" stroke="#808080" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                  </svg>
+                  <span>1-Year Access</span>
+                </li>
+                <li>
+                  <svg width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M4.5 12.5L10.5 18.5L20.5 6.5" stroke="#808080" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                  </svg>
+                  <span>1-Year Access</span>
+                </li>
+                <li>
+                  <svg width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M4.5 12.5L10.5 18.5L20.5 6.5" stroke="#808080" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                  </svg>
+                  <span>1-Year Access</span>
+                </li>
+              </ul>
+            </li>
+            <li class="active_plan">
+              <ul>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+              </ul>
+              <div>
+                <a href="#" target="_blank">Enroll — <span>Premium</span> Version</a>
+                <p><span class="bold_txt">Discount</span>expires on<span>Jul 26, 2022</span></p>
+              </div>
+            </li>
+          </ul>
+        </div> -->
         <div class="pricing_wrapp">
           <div>
             <table>
@@ -736,6 +885,7 @@ table tbody tr:nth-child(5) td {
     document.head.insertAdjacentHTML("beforeend", styleVar)
     document.querySelector(".site-container").insertAdjacentHTML("afterbegin", renederHtml)
 
+    //
     let scriptPopper = document.createElement("script")
     scriptPopper.src = "https://unpkg.com/popper.js@1"
     scriptPopper.async = false
@@ -750,13 +900,13 @@ table tbody tr:nth-child(5) td {
     // Tooltip
     let arrTooltipTable = {
       1: [
-        `The Total Transformation Masterclass uses videos of real dogs to demonstrate how you can instil service-dog-levels of calmness, obedience, and impulse control into your canine companion`,
+        `The Total Transformation Masterclass uses videos of real dogs to demonstrate how you can instil service-dog levels of calmness, obedience, and impulse control into your canine companion`,
       ],
       2: [`You may spread the payment over 3 months by choosing instalments at Checkout`],
       3: [`You may spread the payment over 3 months by choosing instalments at Checkout`],
       4: [`You may spread the payment over 3 months by choosing instalments at Checkout`],
       5: [
-        `The Total Transformation Masterclass uses videos of real dogs to demonstrate how you can instil service dog levels of calmness, obedience, and impulse control into your canine companion. <br/> <span>Plus:</span> Housebreaking, Separation Anxiety, and Biting/Nipping Prevention <span>BONUS classes</span>`,
+        `The Total Transformation Masterclass uses videos of real dogs to demonstrate how you can instil service dog levels of calmness, obedience, and impulse control into your canine companion. <br/> <span> Plus:</span> Housebreaking, Separation Anxiety, and Biting/Nipping Prevention <span>BONUS classes</span>`,
       ],
       6: [`Calls held every Saturday at 3PM EST`],
     }
