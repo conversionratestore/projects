@@ -233,7 +233,14 @@ const changePopupHeader = () => { // change a Popup header
         if (query('.po_header')) {
             clearInterval(waitForHeader)
 
-            if (query('.po_header').innerText.includes('select')) {
+            console.log('BBBBBBBBBBBBBb');
+
+            console.log(query('.po_header'));
+            console.log(query('.po_header').innerText.toLowerCase().includes('select'));
+
+            if (query('.po_header').innerText.toLowerCase().includes('select')) {
+
+
                 const header = /*html*/`
                     <p class="header">SELECT YOUR VEHICLE</p>
                     <p class="subheader">Get the perfect fit & an accurate price quote</p>
@@ -411,11 +418,6 @@ const clickOnContinue = () => {
     }, intervalTimeout)
 }
 
-const observerCallback = () => {
-    changePopupHeader()
-    addFitToPopup()
-}
-
 const observePopup = () => { // make changes when Popup is opened
     const target = document.body
     const config = {
@@ -433,7 +435,7 @@ const observePopup = () => { // make changes when Popup is opened
                 if (node.matches('#child_products_tbl') && disable === false) {
                     mainObserver.disconnect()
 
-                    observerCallback()
+                    addFitToPopup()
 
                     mainObserver.observe(target, config)
                 }
@@ -487,6 +489,8 @@ const observePopup = () => { // make changes when Popup is opened
                     console.log('//////');
                     console.log('%c overlay_portal', 'color: #bada55');
                     console.log('//////');
+
+                    changePopupHeader()
 
                     viewAttentionPopup()
                     clickOnXAttention() // !
