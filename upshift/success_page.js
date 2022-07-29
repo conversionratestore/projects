@@ -322,10 +322,31 @@ const urlParams = new URLSearchParams(queryString);
 const nameUrl = urlParams.get('fname') || ''
 const mailUrl = urlParams.get('email')
 
-if(nameUrl) {
+/* check new user */
+
+if (nameUrl) {
     localStorage.setItem('myName', nameUrl)
     localStorage.myName
 }
+
+if (mailUrl) {
+    if (localStorage.getItem('myEmail') !== mailUrl) {
+        localStorage.setItem('myEmail', mailUrl)
+        localStorage.removeItem('startDate');
+    }
+}
+
+let countdownTime = 120;
+
+if (!localStorage.getItem('startDate')) { // check Date
+    localStorage.setItem('startDate', Date.now().toString());
+} else {
+    let currentDate = Date.now();
+
+    countdownTime = 120 - (currentDate.toString() - localStorage.startDate) / 1000
+}
+
+/* html and etc */
 
 const getRandomItems = (arr, num) => arr.sort(() => Math.random() - 0.5).slice(0, num)
 
@@ -359,12 +380,7 @@ const shiftsHTML = getRandomItems(shifts, 3).map(job => `
             </div>
     `).join('')
 
-console.log(nameUrl);
-console.log(localStorage.getItem('myName'));
-
 const htmlName = nameUrl || localStorage.getItem('myName') || ''
-
-console.log(htmlName);
 
 const successTemplate = /*html*/`
     <main class="main_wrapper">
@@ -424,24 +440,7 @@ const waitForBody = setInterval(() => {
     }
 }, intervalTimeout)
 
-let countdownTime = 120;
-
-// check new user
-if (localStorage.getItem('myEmail') !== mailUrl) {
-    localStorage.setItem('myEmail', mailUrl)
-    localStorage.removeItem('startDate');
-}
-
-// check Date
-if (!localStorage.getItem('startDate')) {
-    localStorage.setItem('startDate', Date.now().toString());
-} else {
-    let currentDate = Date.now();
-
-    countdownTime = 120 - (currentDate.toString() - localStorage.startDate) / 1000
-}
-
-function startTimer(duration, display) {
+const startTimer = (duration, display) => {
     let timer = duration
 
     let minutes, seconds
