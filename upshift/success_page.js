@@ -319,8 +319,12 @@ const shifts = [
 const queryString = window.location.search;
 const urlParams = new URLSearchParams(queryString);
 
-const fname = urlParams.get('fname')
-const myMail = urlParams.get('email')
+const nameUrl = urlParams.get('nameUrl')
+const mailUrl = urlParams.get('email')
+
+if(mailUrl) {
+    localStorage.setItem('myName', nameUrl)
+}
 
 const getRandomItems = (arr, num) => arr.sort(() => Math.random() - 0.5).slice(0, num)
 
@@ -354,11 +358,13 @@ const shiftsHTML = getRandomItems(shifts, 3).map(job => `
             </div>
     `).join('')
 
+const htmlName = mailUrl || localStorage.setItem('myName', nameUrl) || ''
+
 const successTemplate = /*html*/`
     <main class="main_wrapper">
         <section class="message_section">
             <div class="content">
-                <p class="title">Congratulations${fname ? `, ${fname}` : ''}! 🎉<br>You have been <span>approved</span> to join Upshift.</p>
+                <p class="title">Congratulations${mailUrl ? `, ${mailUrl}` : ''}! 🎉<br>You have been <span>approved</span> to join Upshift.</p>
                 <p class="subtitle">Next you just need to <b>complete your onboarding</b> to start making extra money!
                 </p>
                 <div class="box timer">
@@ -415,8 +421,8 @@ const waitForBody = setInterval(() => {
 let countdownTime = 120;
 
 // check new user
-if (localStorage.getItem('myEmail') !== myMail) {
-    localStorage.setItem('myEmail', myMail)
+if (localStorage.getItem('myEmail') !== mailUrl) {
+    localStorage.setItem('myEmail', mailUrl)
     localStorage.removeItem('startDate');
 }
 
