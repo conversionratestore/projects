@@ -358,7 +358,7 @@ const successTemplate = /*html*/`
     <main class="main_wrapper">
         <section class="message_section">
             <div class="content">
-                <p class="title">Congratulations, ${fname}! 🎉<br>You have been <span>approved</span> to join Upshift.</p>
+                <p class="title">Congratulations${fname ? `, ${fname}` : ''}! 🎉<br>You have been <span>approved</span> to join Upshift.</p>
                 <p class="subtitle">Next you just need to <b>complete your onboarding</b> to start making extra money!
                 </p>
                 <div class="box timer">
@@ -367,11 +367,7 @@ const successTemplate = /*html*/`
                 </div>
                 <div class="box message" hidden>
                     <p class="box_title">SMS and email with suggested times have been sent!</p>
-                    <p class="check_mail">Check email <img src="${imgFolderLink}/right_arr_blue.svg" alt="arrow"></p>
-                    <a href="mailto:">Mail</a>
-<a href="intent://my_host#Intent;scheme=my_scheme;action=android.intent.action.VIEW;end">
-    Go to Mail!
-</a>
+                    <p class="check_mail">Check email</p>
                     <div class="info">
                         <img src="${imgFolderLink}/info_blue.svg" alt="info">
                         <p>In case you cannot find the email,<br>check your spam folder</p>
@@ -409,7 +405,7 @@ const intervalTimeout = 200
 document.head.insertAdjacentHTML('beforeend', successCSS)
 
 const waitForBody = setInterval(() => {
-    if(document.querySelector('.post-content')) {
+    if (document.querySelector('.post-content')) {
         clearInterval(waitForBody)
 
         document.querySelector('.post-content').insertAdjacentHTML('afterbegin', successTemplate)
@@ -420,7 +416,7 @@ let countdownTime = 120;
 
 // check new user
 if (localStorage.getItem('myEmail') !== myMail) {
-    localStorage.setItem('myEmail', myMail)    
+    localStorage.setItem('myEmail', myMail)
     localStorage.removeItem('startDate');
 }
 
@@ -463,3 +459,18 @@ const waitForTimer = setInterval(() => {
         startTimer(countdownTime, document.querySelector('.time'))
     }
 }, intervalTimeout)
+
+window.dataLayer = window.dataLayer || []
+dataLayer.push({
+    'event': 'event-to-ga',
+    'eventCategory': 'Exp: Success Page',
+    'eventAction': 'loaded'
+})
+
+let isSuccessClarity = setInterval(() => {
+    if (typeof clarity === 'function') {
+        clearInterval(isSuccessClarity)
+
+        clarity('set', 'success_page', 'variant_1')
+    }
+}, 100)
