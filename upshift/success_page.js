@@ -322,7 +322,7 @@ const urlParams = new URLSearchParams(queryString);
 const nameUrl = urlParams.get('nameUrl')
 const mailUrl = urlParams.get('email')
 
-if(mailUrl) {
+if(nameUrl) {
     localStorage.setItem('myName', nameUrl)
 }
 
