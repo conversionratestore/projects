@@ -518,9 +518,9 @@ const observePopup = () => { // make changes when Popup is opened
 
 document.head.insertAdjacentHTML('beforeend', style) // add CSS
 
-const waitForEl = setInterval(() => {
+const waitForAddCartBtn = setInterval(() => {
     if(getId('addToCartButReact')) {
-        clearInterval(waitForEl)
+        clearInterval(waitForAddCartBtn)
 
         drawPdpFit()
     }
