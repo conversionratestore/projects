@@ -319,7 +319,7 @@ const shifts = [
 const queryString = window.location.search;
 const urlParams = new URLSearchParams(queryString);
 
-const nameUrl = urlParams.get('nameUrl')
+const nameUrl = urlParams.get('fname')
 const mailUrl = urlParams.get('email')
 
 if(nameUrl) {
