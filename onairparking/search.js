@@ -201,7 +201,7 @@ let style = `
         overflow-y: auto;
     }
     body.active .swipe {
-        margin-top: -50vh;
+        margin-top: -60vh;
     }
     .popup {
         position: fixed;
@@ -214,6 +214,7 @@ let style = `
         opacity: 0;
         pointer-events: none;
         transition: all 0.3s ease;
+        overflow-y: auto;
     }
     .popup.active {
         opacity: 1;
@@ -252,7 +253,7 @@ let style = `
         width: 100%;
         margin: 0!important;
     }
-    .popup input:focus, .popup input:valid {
+    .popup input:focus, .popup input:invalid  {
         border: 1px solid #515356!important;
         box-shadow: none!important;
     }
@@ -300,10 +301,12 @@ let style = `
         color: #515356;
         opacity: 0.3; 
     }
-    
     .popup_body {
-        padding: 30px 20px;
+        padding: 30px 0;
     } 
+    .popular-place {
+        padding: 0 20px;
+    }
     .popular-place p {
         font-weight: 600;
         font-size: 16px;
@@ -326,7 +329,20 @@ let style = `
     .show-autocomplete .popular-place {
         display: none!important;
     }
-    
+    .calendar .table {
+        width: 100%;
+        text-align: center;
+        border-bottom: 1px solid #515356;
+        padding-bottom: 20px;
+    }
+    .calendar .table .day {
+        font-weight: 700;
+        font-size: 14px;
+        line-height: 28px;
+        text-align: center;
+        color: #515356;
+        margin: 4px 0;
+    }
     @media only screen and (max-width: 340px) {
         .info_parking {
             padding: 7px;
@@ -411,7 +427,6 @@ let html = `
                 </li>
             </ul>
         </div>
-        <div class="list-autocomplete"></div>
     </div>
 </div>
 <div class="popup" data-title="choose dates">
@@ -425,10 +440,12 @@ let html = `
                 </svg>
             </button>
         </div>
-        <div class="week flex justify-between"></div>
+        <div class="week flex justify-between">
+            <div>Su</div><div>Mo</div><div>Tu</div><div>We</div><div>Th</div><div>Fr</div><div>Sa</div>
+        </div>
     </div>
     <div class="popup_body">
-      
+        <div id="calendar_table" class="calendar"></div>
     </div>
 </div>
 `;
@@ -438,20 +455,7 @@ let emptyHtml = `<div class="ant-empty ant-empty-normal"><div class="ant-empty-i
 let lowerPrice = `<div class="lowest_price">Lowest price</div>`,
     bestReviews = `<div class="best_reviews">Best reviews</div>`;
 
-let formatDate = {
-    '01':'Jan',
-    '02':'Feb',
-    '03':'Mar',
-    '04':'Apr',
-    '05':'May',
-    '06':'Jun',
-    '07':'Jul',
-    '08':'Aug',
-    '09':'Sep',
-    '10':'Oct',
-    '11':'Nov',
-    '12':'Dec'
-}
+let formatDate = ['Jan','Feb','Mar','Apr','May','Jun','Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
 
 /* Classes method for Parking */
 class Parking{
@@ -525,7 +529,7 @@ class Parking{
                 </div>
                 <div>
                     <div class="relative">
-                        <p class="c-green">Free Cancellation until ${this.freeCancellation.includes('up to start date') ? this.checkin.split('-')[2] : this.freeCancellation} ${formatDate[this.checkin.split('-')[1]]}</p>
+                        <p class="c-green">Free Cancellation until ${this.freeCancellation.includes('up to start date') ? this.checkin.split('-')[2] : this.freeCancellation} ${formatDate[this.checkin.split('-')[1] - 1]}</p>
                     </div>
                     <div class="flex items-center">
                         ${this.renderBtn()}
@@ -688,7 +692,7 @@ let postParking = (id, startDate, endDate, parent, countSelector) => {
 let sentPost = false;
 
 let start = setInterval(() => {
-    if (document.querySelector('#__NEXT_DATA__') != null && window.location.pathname.includes('/reservation/search') && document.querySelector('#__next > section > main > div > div.container > div.grid > div.flex > button > span:nth-child(2)') != null) {
+    if (document.querySelector('#rc_select_0') != null && document.querySelector('#__NEXT_DATA__') != null && window.location.pathname.includes('/reservation/search') && document.querySelector('#__next > section > main > div > div.container > div.grid > div.flex > button > span:nth-child(2)') != null) {
         document.querySelector('.js-style') == null ? document.body.insertAdjacentHTML('afterbegin', style) : ''; // add style
 
         if (sentPost == false) {
@@ -706,8 +710,8 @@ let start = setInterval(() => {
             document.querySelector('.btn-edit-name b').innerHTML = window.location.href.split('airport=')[1].split('&')[0].split('+').join(' ');
             document.querySelector('.btn-edit-date .from').setAttribute('data-date',startDate)
             document.querySelector('.btn-edit-date .to').setAttribute('data-date',endDate)
-            document.querySelector('.btn-edit-date .from').innerHTML = startDate.split('-')[2] + ' ' + formatDate[startDate.split('-')[1]];
-            document.querySelector('.btn-edit-date .to').innerHTML = endDate.split('-')[2] + ' ' + formatDate[endDate.split('-')[1]];
+            document.querySelector('.btn-edit-date .from').innerHTML = startDate.split('-')[2] + ' ' + formatDate[startDate.split('-')[1] - 1];
+            document.querySelector('.btn-edit-date .to').innerHTML = endDate.split('-')[2] + ' ' + formatDate[endDate.split('-')[1] - 1];
 
             postParking(id, startDate, endDate, parent, countSelector) // send post parking
 
@@ -724,15 +728,18 @@ let start = setInterval(() => {
             document.querySelector('.ant-select input').addEventListener('change', () => {
 
             })
-            let showModal = (e) => {
-                document.querySelector(`.popup[data-title="${e.dataset.popup}"]`).classList.add('active')
+            let showModal = (e) => { //show modal
+                document.querySelector(`.popup[data-title="${e.dataset.popup}"]`).classList.add('active');
             }
-            let hideModal = (e) => {
-                document.querySelectorAll(`.popup`).forEach(item => item.classList.remove('active'))
+            let hideModal = (e) => { //hide modal
+                document.querySelectorAll(`.popup`).forEach(item => item.classList.remove('active'));
+                document.body.classList.remove('show-autocomplete');
             }
+            //show modal
             document.querySelectorAll('.btns-edit button').forEach(item => {
                 item.addEventListener('click', () => showModal(item))
             })
+            //choose popular place
             document.querySelectorAll('.popular-place ul > li').forEach(item => {
                 item.addEventListener('click', () => {
                     let id = item.id,
@@ -741,9 +748,11 @@ let start = setInterval(() => {
                     console.log(id, startDate, endDate, parent,countSelector)
                     postParking(id, startDate, endDate, parent,countSelector)
                     document.querySelector('#rc_select_0').setAttribute('value', item.title)
+                    document.querySelector('.btn-edit-name b').innerHTML = item.title;
                     hideModal()
                 })
             })
+            //choose place
             let popularPlace = (e) => {
                 if (e.value != '') {
                     document.body.classList.add('show-autocomplete')
@@ -758,6 +767,7 @@ let start = setInterval(() => {
                             endDate = document.querySelector('.btn-edit-date .to').dataset.date;
                         console.log(id, startDate, endDate, parent,countSelector)
                         postParking(id, startDate, endDate, parent,countSelector)
+                        document.querySelector('.btn-edit-name b').innerHTML = item.innerText;
                         hideModal()
                     })
                 })
@@ -770,6 +780,27 @@ let start = setInterval(() => {
                 console.log(e.target.value)
                 popularPlace(e.target)
             })
+            //close modal
+            document.querySelectorAll('.btn-back').forEach(item => {
+                item.addEventListener('click', () => hideModal())
+            })
+
+            //calendar
+            let date = new Date();
+            let calendar = document.querySelector('#calendar_table')
+            for (let i = 0; i < 12; i++) {
+                let month = date.getMonth() + 1 + i,
+                    year = date.getFullYear();
+                if (month < 13) {
+                    console.log(month,year)
+                    createCalendar(calendar, year, month);
+                } else {
+                    let newMonth =  (date.getMonth() - 1 - i) * -1,
+                        newYear = year + 1;
+                    console.log(newMonth,newYear)
+                    createCalendar(calendar, newYear,newMonth);
+                }
+            }
         }
     }
 })
@@ -784,3 +815,48 @@ let startRemove = () => {
     },100)
 }
 startRemove()
+
+function createCalendar(elem, year, month) {
+
+    let mon = month - 1; // месяцы в JS идут от 0 до 11, а не от 1 до 12
+    let d = new Date(year, mon);
+
+    let table = `<div class="head">${formatDate[mon]} ${year}</div><div class="table"><div class="flex">`;
+
+    // пробелы для первого ряда
+    // с понедельника до первого дня месяца
+    // * * * 1  2  3  4
+    for (let i = 0; i < getDay(d); i++) {
+        table += '<div></div>';
+    }
+
+    // <td> ячейки календаря с датами
+    while (d.getMonth() == mon) {
+        table += '<div class="day">' + d.getDate() + '</div>';
+
+        if (getDay(d) % 7 == 6) { // вс, последний день - перевод строки
+            table += '</div><div class="flex">';
+        }
+
+        d.setDate(d.getDate() + 1);
+    }
+
+    // добить таблицу пустыми ячейками, если нужно
+    // 29 30 31 * * * *
+    if (getDay(d) != 0) {
+        for (let i = getDay(d); i < 7; i++) {
+            table += '<div></div>';
+        }
+    }
+
+    // закрыть таблицу
+    table += '</div></div></div>';
+
+    elem.insertAdjacentHTML('beforeend',table);
+}
+
+function getDay(date) { // получить номер дня недели, от 0 (пн) до 6 (вс)
+    let day = date.getDay();
+    if (day == 0) day = 7; // сделать воскресенье (0) последним днем
+    return day - 1;
+}
