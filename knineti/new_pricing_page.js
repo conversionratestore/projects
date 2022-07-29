@@ -498,6 +498,42 @@ table tr td:first-child p span.mob_var {
   display: none;
 }
 
+/* sticky_wrapp */
+main {
+  position: relative;
+}
+.sticky_wrapp {
+  position: fixed;
+  display: none;
+  top: 0;
+  z-index: 999;
+  background: #ffffff;
+  box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.2), 0px 2px 6px 2px rgba(0, 0, 0, 0.15);
+  width: 100%;
+  margin: 0;
+}
+.sticky_wrapp ul {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0;
+}
+.sticky_wrapp ul li {
+  flex: 1;
+  padding: 16px;
+  text-align: center;
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 25px;
+  letter-spacing: -0.01em;
+  text-transform: uppercase;
+  color: #794e15;
+}
+.sticky_wrapp ul li.active_plan {
+  background: #1d3871;
+  color: #ffffff;
+}
+
 @media (max-width: 767px) {
   /*  header*/
   header {
@@ -685,6 +721,12 @@ table tr td:first-child p span.mob_var {
   table tbody tr:first-child td {
     padding: 15px 0;
   }
+  thead tr:nth-child(1) {
+    position: relative;
+  }
+  thead tr th:first-child {
+    position: absolute;
+  }
   table tbody tr td:nth-child(3) {
     background: #f9fcff;
     color: #1d3871;
@@ -742,6 +784,9 @@ table tr td:first-child p span.mob_var {
   .tippy-tooltip {
     font-size: 10px;
   }
+  .sticky_wrapp ul li {
+    font-size: 15px;
+  }
 }
 @media (max-width: 280px) {
   body .container_var {
@@ -774,7 +819,11 @@ table tr td:first-child p span.mob_var {
   .best_value::before {
     font-size: 9px;
   }
+  .sticky_wrapp ul li {
+    font-size: 12px;
+  }
 }
+
 
       </style>
     `
@@ -1051,6 +1100,15 @@ table tr td:first-child p span.mob_var {
           </ul>
         </div>
       </section>
+      <div class="sticky_wrapp">
+        <div class="container_var">
+          <ul>
+            <li data-count="basic">Basic</li>
+            <li data-count="premium" class="active_plan">Premium</li>
+            <li data-count="deluxe">Deluxe</li>
+          </ul>
+        </div>
+      </div>
     </main>
       `
     document.head.insertAdjacentHTML("beforeend", styleVar)
@@ -1133,14 +1191,12 @@ table tr td:first-child p span.mob_var {
     // plan pricing Switch
     const planSwitch = (slideMenu) => (e) => {
       slideMenu.forEach((links) => {
-        const hidePanel = links.nextElementSibling
         if (links === e.currentTarget) {
           e.currentTarget.closest("th").classList.add("active_plan")
 
           let s = e.currentTarget.closest("th").getAttribute("data-count")
           if (window.innerWidth > 768) {
             if (s === "premium") {
-              console.log(s)
               document.querySelectorAll("table tbody tr:not(:nth-child(1)) td:nth-child(2)").forEach((el) => {
                 el.style.background = "#FFFFFF"
                 el.style.color = "#808080"
@@ -1171,7 +1227,6 @@ table tr td:first-child p span.mob_var {
             }
 
             if (s === "basic") {
-              console.log(s)
               document.querySelectorAll("table tbody tr:not(:nth-child(1))  td:nth-child(2)").forEach((el) => {
                 el.style.background = "#f9fcff"
                 el.style.color = "#1D3871"
@@ -1201,7 +1256,6 @@ table tr td:first-child p span.mob_var {
               })
             }
             if (s === "deluxe") {
-              console.log(s)
               document.querySelectorAll("table tbody tr:not(:nth-child(1)) td:nth-child(4)").forEach((el) => {
                 el.style.background = "#f9fcff"
                 el.style.color = "#1D3871"
@@ -1234,9 +1288,7 @@ table tr td:first-child p span.mob_var {
 
           if (window.innerWidth <= 768) {
             if (s === "premium") {
-              console.log(s)
               document.querySelectorAll("table tbody tr td:nth-child(2)").forEach((el) => {
-                console.log(el)
                 el.style.background = "#FFFFFF"
                 el.style.color = "#808080"
                 if (el.querySelector("svg")) {
@@ -1270,7 +1322,6 @@ table tr td:first-child p span.mob_var {
             }
 
             if (s === "basic") {
-              console.log(s)
               document.querySelectorAll("table tbody tr td:nth-child(2)").forEach((el) => {
                 el.style.background = "#f9fcff"
                 el.style.color = "#1D3871"
@@ -1304,7 +1355,6 @@ table tr td:first-child p span.mob_var {
               })
             }
             if (s === "deluxe") {
-              console.log(s)
               document.querySelectorAll("table tbody tr td:nth-child(4)").forEach((el) => {
                 el.style.background = "#f9fcff"
                 el.style.color = "#1D3871"
@@ -1349,5 +1399,54 @@ table tr td:first-child p span.mob_var {
     slideMenu.forEach((links) => {
       links.addEventListener("click", planSwitch(slideMenu))
     })
+
+    // click on btn sticky
+    if (window.innerWidth <= 768) {
+      const planStickySwitch = (slideMenu) => (e) => {
+        slideMenu.forEach((links) => {
+          e.preventDefault()
+
+          if (links === e.currentTarget) {
+            e.currentTarget.classList.add("active_plan")
+          } else {
+            links.classList.remove("active_plan")
+          }
+
+          let attr = e.target.getAttribute("data-count")
+          if (attr === "basic") {
+            document.querySelectorAll(".plan_header .btn_plan")[0].click()
+          }
+          if (attr === "premium") {
+            document.querySelectorAll(".plan_header .btn_plan")[1].click()
+          }
+          if (attr === "deluxe") {
+            document.querySelectorAll(".plan_header .btn_plan")[2].click()
+          }
+        })
+      }
+
+      const stickyMenu = document.querySelectorAll(".sticky_wrapp ul li")
+
+      stickyMenu.forEach((links) => {
+        links.addEventListener("click", planStickySwitch(stickyMenu))
+      })
+
+      // sticky btn
+      const element = document.querySelector("tbody")
+
+      function visible(target) {
+        if (target.getBoundingClientRect().top < 0) {
+          document.querySelector(".sticky_wrapp").style.display = "block"
+        } else {
+          document.querySelector(".sticky_wrapp").style.display = "none"
+        }
+      }
+
+      window.addEventListener("scroll", function () {
+        visible(element)
+      })
+
+      visible(element)
+    }
   }
 }, 10)
