@@ -358,7 +358,7 @@ const shiftsHTML = getRandomItems(shifts, 3).map(job => `
             </div>
     `).join('')
 
-const htmlName = mailUrl || localStorage.setItem('myName', nameUrl) || ''
+const htmlName = nameUrl || localStorage.getItem('myName', nameUrl) || ''
 
 const successTemplate = /*html*/`
     <main class="main_wrapper">
