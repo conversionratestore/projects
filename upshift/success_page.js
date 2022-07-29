@@ -369,6 +369,9 @@ const successTemplate = /*html*/`
                     <p class="box_title">SMS and email with suggested times have been sent!</p>
                     <p class="check_mail">Check email <img src="${imgFolderLink}/right_arr_blue.svg" alt="arrow"></p>
                     <a href="mailto:">Mail</a>
+<a href="intent://my_host#Intent;scheme=my_scheme;action=android.intent.action.VIEW;end">
+    Go to Mail!
+</a>
                     <div class="info">
                         <img src="${imgFolderLink}/info_blue.svg" alt="info">
                         <p>In case you cannot find the email,<br>check your spam folder</p>
