@@ -518,7 +518,7 @@ table tbody tr:nth-child(5) td {
               <img src="https://conversionratestore.github.io/projects/knineti/img/new_error_outline.svg" alt="error outline" />
               <span>NOTE:</span>
               <p>
-                You can claim the special offer today and delay activation until later. Simply contact us after purchase to postpone the the start of your dog's training course
+                You can claim the special offer today and delay activation until later. Simply contact us after purchase to postpone the start of your dog's training course
               </p>
             </div>
           </div>
