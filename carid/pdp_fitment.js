@@ -134,21 +134,25 @@ const style = /*html*/`
 * @param {string} carModel - the Model of the selected Car.
 * @param {boolean} [isPDP = true] - Is it a PDP?
 * @param {boolean} [isUpsale = false] - Is it a Upsale?
+* @param {boolean} [isChangeBtn = true] - Is it Btn?
 */
 const addFitChangePDP = (params) => { // replace vehicle with a Fit block on the PDP
     let carModel = params.carModel
     let isPDP = params.hasOwnProperty('isPDP') ? params.isPDP : true;
     let isUpsale = params.hasOwnProperty('isUpsale') ? params.isUpsale : 'false';
+    let isChangeBtn = params.hasOwnProperty('isChangeBtn') ? params.isChangeBtn : true;
 
     const fitToBlock = /*html*/` 
         <div class="fit_car${isPDP ? ' pdp' : ''}">
             <div><img src="${imgFolderUrl}check-circle.svg" alt="check"></div>
             <div>
                 <p>Guaranteed fit to</p>
-                <p>${carModel} ${isPDP ? `<span>change</span>` : ''}</p>                        
+                <p>${carModel} ${isChangeBtn ? `<span>change</span>` : ''}</p>                         
             </div>
         </div>
     `
+
+
 
     if (isPDP) {
         if (!query('.fit_car.pdp')) {
@@ -156,12 +160,14 @@ const addFitChangePDP = (params) => { // replace vehicle with a Fit block on the
 
             query('.prod_verify_vehicle').insertAdjacentHTML('afterbegin', fitToBlock)
 
-
             const waitForChangeBtn = setInterval(() => { // open the Popup by clicking on the change button
                 if (query('.fit_car.pdp span')) {
                     clearInterval(waitForChangeBtn)
 
-                    query('.fit_car.pdp span').addEventListener('click', openPopup)
+                    query('.fit_car.pdp span').addEventListener('click', () => {
+                        openPopup()
+                        callEvent('Change', 'Guaranteed fitment')
+                    })
                 }
             }, intervalTimeout)
         }
@@ -180,12 +186,20 @@ const drawPdpFit = () => { // add a Fit block to the PDP
         query('.prod-title .name').innerText === selectedProduct
         && query('.js-header-garage-mmy').innerText === selectedCarModel
     ) {
+        console.log('%c if car model and product fit each other ', 'color: purple');
+
         addFitChangePDP({ carModel: selectedCarModel })
-    } else if (query('.prod_vehicle').innerText !== 'Vehicle Specific') { // if car is preselected on the PDP        
-        addFitChangePDP({ carModel: selectedCarModel })
+    } else if (!getId('selectBtnReact')) { // if car is preselected on the PDP  
+
+        console.log('%c if car is preselected on the PDP', 'color: purple');
+        console.log('btnreact', getId('selectBtnReact'));
+
+        const preselectedCarModel = selectedCarModel || query('.prod_vehicle>div').innerText
+
+        addFitChangePDP({ carModel: preselectedCarModel, isChangeBtn: false })
     } else if (localStorage.getItem('upsale') === 'true' && query('.js-header-garage-mmy').innerText === localStorage.getItem('car')) { // if upsale
         console.log('//////');
-        console.log('UPSALE');
+        console.log('%c UPSALE', 'color: purple');
         console.log('//////');
 
         addFitChangePDP({ carModel: selectedCarModel, isUpsale: 'true' })
