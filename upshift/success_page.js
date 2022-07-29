@@ -315,6 +315,13 @@ const shifts = [
     ]
 ]
 
+/* parse URL */
+const queryString = window.location.search;
+const urlParams = new URLSearchParams(queryString);
+
+const fname = urlParams.get('fname')
+const myMail = urlParams.get('email')
+
 const getRandomItems = (arr, num) => arr.sort(() => Math.random() - 0.5).slice(0, num)
 
 const imgFolderLink = `https://conversionratestore.github.io/projects/upshift/img`
@@ -351,16 +358,17 @@ const successTemplate = /*html*/`
     <main class="main_wrapper">
         <section class="message_section">
             <div class="content">
-                <p class="title">Congratulations, John! 🎉<br>You have been <span>approved</span> to join Upshift.</p>
+                <p class="title">Congratulations, ${fname}! 🎉<br>You have been <span>approved</span> to join Upshift.</p>
                 <p class="subtitle">Next you just need to <b>complete your onboarding</b> to start making extra money!
                 </p>
                 <div class="box timer">
                     <p class="box_title">We’ll email and SMS you with suggested times in:</p>
-                    <p class="time">02:00</p>
+                    <p class="time"></p>
                 </div>
                 <div class="box message" hidden>
                     <p class="box_title">SMS and email with suggested times have been sent!</p>
                     <p class="check_mail">Check email <img src="${imgFolderLink}/right_arr_blue.svg" alt="arrow"></p>
+                    <a href="mailto:">Mail</a>
                     <div class="info">
                         <img src="${imgFolderLink}/info_blue.svg" alt="info">
                         <p>In case you cannot find the email,<br>check your spam folder</p>
@@ -398,7 +406,13 @@ const intervalTimeout = 200
 document.head.insertAdjacentHTML('beforeend', successCSS)
 document.querySelector('.post-content').insertAdjacentHTML('afterbegin', successTemplate)
 
-let countdownTime = 119;
+let countdownTime = 120;
+
+// check new user
+if (localStorage.getItem('myEmail') !== myMail) {
+    localStorage.setItem('myEmail', myMail)    
+    localStorage.removeItem('startDate');
+}
 
 // check Date
 if (!localStorage.getItem('startDate')) {
@@ -406,7 +420,7 @@ if (!localStorage.getItem('startDate')) {
 } else {
     let currentDate = Date.now();
 
-    countdownTime = 119 - (currentDate.toString() - localStorage.startDate) / 1000
+    countdownTime = 120 - (currentDate.toString() - localStorage.startDate) / 1000
 }
 
 function startTimer(duration, display) {
@@ -425,7 +439,6 @@ function startTimer(duration, display) {
 
         if (--timer < -1) {
             timer = duration;
-            console.log(timer);
 
             document.querySelector('.box.message').hidden = false;
             document.querySelector('.box.timer').hidden = true;
