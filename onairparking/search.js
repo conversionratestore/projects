@@ -383,7 +383,7 @@ let style = `
         border-radius: 3px;
         z-index: -1;
     }
-    .calendar .day.start:not(:last-child):before, .calendar .day.end:not(:first-child):before {
+    .calendar .day.start:not(:last-child).active:before, .calendar .day.end:not(:first-child).active:before {
         content: '';
         position: absolute;
         top: 0;
@@ -996,9 +996,9 @@ function createCalendar(elem, year, month, startDate, endDate) {
         if (d < today && d.getDate() < today.getDate()) {
             table += '<div class="day disabled">' + d.getDate() + '</div>';
         } else if (d.getDate() === startD.getDate() && d.getMonth() === startD.getMonth() && d.getFullYear() === startD.getFullYear()) {
-            table += '<div class="day start">' + d.getDate() + '</div>';
+            table += '<div class="day start active">' + d.getDate() + '</div>';
         } else if (d.getDate() === endD.getDate() && d.getMonth() === endD.getMonth() && d.getFullYear() === endD.getFullYear()) {
-            table += '<div class="day end">' + d.getDate() + '</div>';
+            table += '<div class="day end active">' + d.getDate() + '</div>';
         } else if (d > startD && d < endD) {
             table += '<div class="day active">' + d.getDate() + '</div>';
         } else {
