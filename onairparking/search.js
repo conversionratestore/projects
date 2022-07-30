@@ -332,9 +332,21 @@ let style = `
     .calendar .table {
         width: 100%;
         text-align: center;
-        border-bottom: 1px solid #515356;
+        border-bottom: 1px solid rgba(81, 83, 86, 0.1);
         padding-bottom: 20px;
         margin-bottom: 30px;
+    }
+    .calendar .head {
+        font-weight: 800;
+        font-size: 16px;
+        line-height: 19px;
+        text-transform: uppercase;
+        color: #515356;
+        text-align: center;
+        padding-bottom: 26px;
+    }
+    .calendar .table > .flex > div {
+        width: 100%;
     }
     .calendar .day {
         font-weight: 700;
@@ -343,28 +355,69 @@ let style = `
         text-align: center;
         color: #515356;
         margin: 4px 0;
+        position: relative;
+        cursor: pointer;
     }
+    
     .calendar .day.disabled {
         color: #515356;
         font-weight: 500;
         opacity: 0.3;
+        cursor: no-drop;
     }
     .calendar .day.start, .calendar .day.end {
         font-weight: 800;
         color: #FFFFFF;
-        position: relative;
     }
-    .calendar .day.start:before, .calendar .day.end:before {
+    .calendar .day.start:after, .calendar .day.end:after {
         content: '';
         position: absolute;
         left: 50%;
         top: 50%;
+        transform: translate(-50%,-50%);
         background: #F37621;
         width: 28px;
         height: 28px;
         pointer-events: none;
         border: 1px solid #F37621;
         border-radius: 3px;
+        z-index: -1;
+    }
+    .calendar .day.start:not(:last-child):before, .calendar .day.end:not(:first-child):before {
+        content: '';
+        position: absolute;
+        top: 0;
+        width: calc(100% - 13px);
+        height: 100%;
+        background: #FEF6E8;
+        z-index: -2;
+    }
+    .calendar .day.start:not(:last-child):before {
+        left: 13px;
+    }
+    .calendar .day.end:not(:first-child):before {
+        right: 13px; 
+    }
+    .calendar .day.active:before {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background: #FEF6E8;
+        z-index: -1;
+    }
+    .calendar .day:first-child.active:before {
+        border-radius: 3px 0 0 3px;
+        left: 13px;
+        width: calc(100% - 13px);
+    }
+    .calendar .day:last-child.active:before {
+        border-radius: 0 3px 3px 0;
+        left: auto;
+        right: 13px;
+        width: calc(100% - 13px);
     }
     .popup_footer {
         background: #FFFFFF;
@@ -394,6 +447,7 @@ let style = `
         text-transform: uppercase;
         color: #515356;
     }
+    
     @media only screen and (max-width: 340px) {
         .info_parking {
             padding: 7px;
@@ -665,6 +719,10 @@ let pushDataLayer = (action) => {
         'eventAction': action,
     });
 }
+//add event Listener
+function addEvent(selector, type, fun) {
+    selector.addEventListener(type, fun)
+}
 
 let postParking = (id, startDate, endDate, parent, countSelector) => {
 
@@ -729,21 +787,20 @@ let postParking = (id, startDate, endDate, parent, countSelector) => {
             children[randomIndex].querySelector('.c-green').insertAdjacentHTML('beforebegin',`<p class="c-red">Only 8 left at this price</p>`)
 
             //events
-            children.forEach(item => {
-                item.addEventListener('click', (e) => {
-                    if (!e.target.classList.contains('underline')) {
-                        if (item.querySelector('.lowest_price') != null && item.querySelector('.best_reviews') != null) {
-                            pushDataLayer('Click on Lowest Price and Best reviews Parking section')
-                        } else if (item.querySelector('.lowest_price') != null && item.querySelector('.best_reviews') == null) {
-                            pushDataLayer('Click on Lowest Price Parking section')
-                        } else if (item.querySelector('.best_reviews') != null && item.querySelector('.lowest_price') == null) {
-                            pushDataLayer('Click on Best reviews Parking section')
-                        } else if (item.querySelector('.lowest_price') == null && item.querySelector('.best_reviews') == null) {
-                            pushDataLayer('Click on regular Parking section')
-                        }
+            let evtParking = (e) => {
+                if (!e.target.classList.contains('underline')) {
+                    if (item.querySelector('.lowest_price') != null && item.querySelector('.best_reviews') != null) {
+                        pushDataLayer('Click on Lowest Price and Best reviews Parking section')
+                    } else if (item.querySelector('.lowest_price') != null && item.querySelector('.best_reviews') == null) {
+                        pushDataLayer('Click on Lowest Price Parking section')
+                    } else if (item.querySelector('.best_reviews') != null && item.querySelector('.lowest_price') == null) {
+                        pushDataLayer('Click on Best reviews Parking section')
+                    } else if (item.querySelector('.lowest_price') == null && item.querySelector('.best_reviews') == null) {
+                        pushDataLayer('Click on regular Parking section')
                     }
-                })
-            })
+                }
+            }
+            children.forEach(item => addEvent(item, 'click',() => {evtParking(e)} ))
         } else {
             parent.innerHTML = emptyHtml;
         }
@@ -786,67 +843,64 @@ let start = setInterval(() => {
             });
             swiper.run();
             document.querySelector('.popup-top').after(document.querySelector('.ant-select'))
-            document.querySelector('.ant-select input').addEventListener('change', () => {
 
-            })
-            let showModal = (e) => { //show modal
+            function showModal(e) { //show modal
                 document.querySelector(`.popup[data-title="${e.dataset.popup}"]`).classList.add('active');
             }
-            let hideModal = (e) => { //hide modal
+            function hideModal(e) { //hide modal
                 document.querySelectorAll(`.popup`).forEach(item => item.classList.remove('active'));
                 document.body.classList.remove('show-autocomplete');
             }
             //show modal
             document.querySelectorAll('.btns-edit button').forEach(item => {
-                item.addEventListener('click', () => showModal(item))
+                addEvent(item, 'click', () => {showModal(item)})
             })
             //choose popular place
+            function clickOnPopularPlace(item) {
+                let id = item.id,
+                    startDate = document.querySelector('.btn-edit-date .from').dataset.date,
+                    endDate = document.querySelector('.btn-edit-date .to').dataset.date;
+                console.log(id, startDate, endDate, parent,countSelector)
+                postParking(id, startDate, endDate, parent,countSelector)
+                document.querySelector('#rc_select_0').setAttribute('value', item.title)
+                document.querySelector('.btn-edit-name b').innerHTML = item.title;
+                hideModal()
+            }
             document.querySelectorAll('.popular-place ul > li').forEach(item => {
-                item.addEventListener('click', () => {
-                    let id = item.id,
-                        startDate = document.querySelector('.btn-edit-date .from').dataset.date,
-                        endDate = document.querySelector('.btn-edit-date .to').dataset.date;
-                    console.log(id, startDate, endDate, parent,countSelector)
-                    postParking(id, startDate, endDate, parent,countSelector)
-                    document.querySelector('#rc_select_0').setAttribute('value', item.title)
-                    document.querySelector('.btn-edit-name b').innerHTML = item.title;
-                    hideModal()
-                })
+                addEvent(item, 'click', () => {clickOnPopularPlace(item)})
             })
             //choose place
-            let popularPlace = (e) => {
+            function clickOnItemPlace(e,item) {
+                e.stopImmediatePropagation()
+                let id = item.id,
+                    startDate = document.querySelector('.btn-edit-date .from').dataset.date,
+                    endDate = document.querySelector('.btn-edit-date .to').dataset.date;
+                console.log(id, startDate, endDate, parent,countSelector)
+                postParking(id, startDate, endDate, parent,countSelector)
+                document.querySelector('.btn-edit-name b').innerHTML = item.innerText;
+                hideModal()
+            }
+            function clickOnInputPlace(e) {
                 if (e.value != '') {
                     document.body.classList.add('show-autocomplete')
                 } else {
                     document.body.classList.remove('show-autocomplete')
                 }
                 document.querySelectorAll('.ant-select-item').forEach(item => {
-                    item.addEventListener('click', (e) => {
-                        e.stopImmediatePropagation()
-                        let id = item.id,
-                            startDate = document.querySelector('.btn-edit-date .from').dataset.date,
-                            endDate = document.querySelector('.btn-edit-date .to').dataset.date;
-                        console.log(id, startDate, endDate, parent,countSelector)
-                        postParking(id, startDate, endDate, parent,countSelector)
-                        document.querySelector('.btn-edit-name b').innerHTML = item.innerText;
-                        hideModal()
-                    })
+                    addEvent(item, 'click', () => {clickOnItemPlace(e,item)})
                 })
             }
-            document.querySelector('#rc_select_0').addEventListener('input',(e) => {
-                console.log(e.target.value)
-                popularPlace(e.target)
-            })
-            document.querySelector('#rc_select_0').addEventListener('click',(e) => {
-                console.log(e.target.value)
-                popularPlace(e.target)
-            })
+
+            //click on input in popup "Choose place"
+            addEvent(document.querySelector('#rc_select_0'),'input', () => {clickOnInputPlace(e.target)})
+            addEvent(document.querySelector('#rc_select_0'),'click',  () => {clickOnInputPlace(e.target)})
+
             //close modal
             document.querySelectorAll('.btn-back').forEach(item => {
-                item.addEventListener('click', () => hideModal())
+                addEvent(item, 'click', () => {hideModal()})
             })
 
-            //calendar
+            //create calendar
             let date = new Date();
             let calendar = document.querySelector('#calendar_table')
             for (let i = 0; i < 12; i++) {
@@ -860,11 +914,53 @@ let start = setInterval(() => {
                     createCalendar(calendar, newYear,newMonth, startDate, endDate);
                 }
             }
+
+            //choose dates
+            let days = document.querySelectorAll('.calendar .day:not(.disabled)');
+            let betweenDays = 0;
+            function clickOnDay(item) {
+                let dayS = document.querySelector('.calendar .day.start') != null ? document.querySelector('.calendar .day.start') : '',
+                    dayE = document.querySelector('.calendar .day.end') != null ? document.querySelector('.calendar .day.end')  : '',
+                    dayA = document.querySelectorAll('.calendar .day.active');
+
+                console.log(dayS, dayE)
+                console.log(betweenDays)
+                if (betweenDays === 0) {
+                    dayS != '' ? dayS.classList.remove('start') : '';
+                    dayE != '' ? dayE.classList.remove('end') : '';
+                    for (let i = 0; i < dayA.length; i++) {
+                        dayA[i].classList.remove('active')
+                    }
+                    item.classList.add('start')
+                    betweenDays = 1;
+                } else {
+                    item.classList.add('end')
+                    for(let i = 0; i <= days.length; i++) {
+                        if(!days[i].classList.contains('end')) {
+                            days[i].classList.add('active')
+                            break;
+                        }
+                    }
+                    for(let i = 0; i <= days.length; i++) {
+                        if(!days[i].classList.contains('start')) {
+                            days[i].classList.remove('active')
+                            break;
+                        }
+                    }
+                    betweenDays = 0;
+                }
+            }
+            for (let i = 0; i < days.length; i++) {
+                addEvent(days[i], 'click', () => {
+                    clickOnDay(days[i])
+                })
+            }
         }
     }
 })
 
-let startRemove = () => {
+//remove exp
+function startRemove() {
     let startRemove = setInterval(() => {
         if (document.querySelector('#parkingat') != null || document.querySelector('#easy-checkout') != null || document.querySelector('.search-switch') != null) {
             // clearInterval(startRemove)
@@ -875,6 +971,7 @@ let startRemove = () => {
 }
 startRemove()
 
+//calendar
 let today = new Date();
 function createCalendar(elem, year, month, startDate, endDate) {
     let mon = month - 1;
@@ -902,6 +999,8 @@ function createCalendar(elem, year, month, startDate, endDate) {
             table += '<div class="day start">' + d.getDate() + '</div>';
         } else if (d.getDate() === endD.getDate() && d.getMonth() === endD.getMonth() && d.getFullYear() === endD.getFullYear()) {
             table += '<div class="day end">' + d.getDate() + '</div>';
+        } else if (d > startD && d < endD) {
+            table += '<div class="day active">' + d.getDate() + '</div>';
         } else {
             table += '<div class="day">' + d.getDate() + '</div>';
         }
@@ -925,8 +1024,8 @@ function createCalendar(elem, year, month, startDate, endDate) {
     elem.insertAdjacentHTML('beforeend',table);
 }
 
-function getDay(date) { // получить номер дня недели, от 0 (пн) до 6 (вс)
+function getDay(date) { // get the day number of Sunday, from 0 (Mon) to 6 (Sun)
     let day = date.getDay();
-    if (day == 0) day = 7; // сделать воскресенье (0) последним днем
+    if (day == 0) day = 7; // make Sunday (0) the last day
     return day - 1;
 }
