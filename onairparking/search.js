@@ -38,7 +38,7 @@ let style = `
     #list_parking > li {
         background: #FFFFFF;
         border-radius: 10px;
-        box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.05), 0px 0px 19px rgba(0, 0, 0, 0.05), 0px 2px 10px rgba(0, 0, 0, 0.06);
+        box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05), 0 0 19px rgba(0, 0, 0, 0.05), 0 2px 10px rgba(0, 0, 0, 0.06);
     }
     #list_parking > li:not(:last-child) {
         margin-bottom: 16px;
@@ -161,7 +161,7 @@ let style = `
     }
     .btns-edit button {
         background: #FFFFFF;
-        box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.15), 0px 0px 20px rgba(0, 0, 0, 0.1);
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15), 0 0 20px rgba(0, 0, 0, 0.1);
         border-radius: 86px;
         padding: 10px 15px;
         font-size: 12px;
@@ -383,6 +383,9 @@ let style = `
         border-radius: 3px;
         z-index: -1;
     }
+    .calendar .day:last-child.start.active:before, .calendar .day:first-child.end.active:before {
+        content: none;
+    }
     .calendar .day.start:not(:last-child).active:before, .calendar .day.end:not(:first-child).active:before {
         content: '';
         position: absolute;
@@ -408,12 +411,12 @@ let style = `
         background: #FEF6E8;
         z-index: -1;
     }
-    .calendar .day:first-child.active:before {
+    .calendar .day:first-child.active:not(.end):before {
         border-radius: 3px 0 0 3px;
         left: 13px;
         width: calc(100% - 13px);
     }
-    .calendar .day:last-child.active:before {
+    .calendar .day:last-child.active:not(.start):before {
         border-radius: 0 3px 3px 0;
         left: auto;
         right: 13px;
@@ -447,7 +450,22 @@ let style = `
         text-transform: uppercase;
         color: #515356;
     }
-    
+    .modal_error {
+        position: fixed;
+        top: 20px;
+        right: 0;
+        width: 40%;
+        padding: 10px 15px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15), 0 0 20px rgba(0, 0, 0, 0.1);
+        opacity: 0;
+        pointer-events: none;
+        transition: all 0.2s ease;
+        color: red;
+    }
+    .modal_error.active {
+        opacity: 1;
+        pointer-events: auto;
+    }
     @media only screen and (max-width: 340px) {
         .info_parking {
             padding: 7px;
@@ -498,7 +516,7 @@ let html = `
         <ul id="list_parking" class="p-4"></ul>
     </div>
 </div>
-
+<div class="modal_error"></div>
 <div class="popup" data-title="choose place">
     <div class="popup_header">
         <div class="popup-top">
@@ -923,6 +941,7 @@ let start = setInterval(() => {
                     dayE = document.querySelector('.calendar .day.end') != null ? document.querySelector('.calendar .day.end')  : '',
                     dayA = document.querySelectorAll('.calendar .day.active');
 
+                let days = document.querySelectorAll('.calendar .day:not(.disabled)');
 
                 console.log(dayS, dayE)
                 console.log(betweenDays)
@@ -936,22 +955,17 @@ let start = setInterval(() => {
                     betweenDays = 1;
                 } else {
                     item.classList.add('end')
-                    console.log(days)
-                    console.log(days.length)
-                    for(let j = 0; j <= days.length; j++) {
-
-                        console.log(days[j])
-                        if(!days[j].classList.contains('end')) {
-                            days[j].classList.add('active')
-                            break;
+                    let indexEnd, indexStart;
+                    for (let i = 0; i < days.length; i++) {
+                        if(days[i].classList.contains('end')) {
+                            indexEnd = i;
+                        }
+                        if (days[i].classList.contains('start')) {
+                            indexStart = i
                         }
                     }
-                    for(let j = 0; j <= days.length; j++) {
-                        console.log(days[j])
-                        if(!days[j].classList.contains('start')) {
-                            days[j].classList.remove('active')
-                            break;
-                        }
+                    for (let i = indexStart; i < indexEnd + 1; i++) {
+                        days[i].classList.add('active')
                     }
 
                     betweenDays = 0;
@@ -962,6 +976,43 @@ let start = setInterval(() => {
                     clickOnDay(days[i])
                 })
             }
+            //clear calendar
+            addEvent(document.querySelector('.btn-clear'), 'click', () => {
+                document.querySelector('.calendar .day.start') != null ? document.querySelector('.calendar .day.start').classList.remove('start') : '';
+                document.querySelector('.calendar .day.end') != null ? document.querySelector('.calendar .day.end').classList.remove('end')  : '';
+                document.querySelectorAll('.calendar .day.active').forEach(item => {
+                    item.classList.remove('active')
+                })
+            })
+            //search by calendar
+            let itemError = document.querySelector('.modal_error');
+            addEvent(document.querySelector('.btn-search'), 'click', () => {
+
+                if (document.querySelector('.calendar .day.start') == null && document.querySelector('.calendar .day.end') == null) {
+                    itemError.innerHTML = 'Choose start and end dates!'
+                } else if (document.querySelector('.calendar .day.end') == null) {
+                    itemError.innerHTML = 'Choose end date!'
+                } else if (document.querySelector('.calendar .day.start') == null) {
+                    itemError.innerHTML = 'Choose start date!'
+                } else {
+                    let start = document.querySelector('.calendar .day.start'),
+                        end = document.querySelector('.calendar .day.end');
+                    itemError.innerHTML = '';
+                    startDate = document.querySelector('.btn-edit-date .from');
+                    endDate = document.querySelector('.btn-edit-date .to');
+
+                    startDate.dataset.date = `${start.closest('.table').previousElementSibling.getAttribute('data-item')}-${start.innerText}`
+                    endDate.dataset.date = `${end.closest('.table').previousElementSibling.getAttribute('data-item')}-${end.innerText}`
+
+                    startDate.innerHTML = `${start.innerText} ${formatDate[startDate.dataset.date.split('-')[1]]}`;
+                    endDate.innerHtml = `${end.innerText} ${formatDate[endDate.dataset.date.split('-')[1]]}`;
+                }
+                if (document.querySelector('.calendar .day.end') == null || document.querySelector('.calendar .day.start') == null) {
+                    itemError.classList.add('active')
+                } else {
+                    itemError.classList.remove('active')
+                }
+            })
         }
     }
 })
@@ -989,7 +1040,7 @@ function createCalendar(elem, year, month, startDate, endDate) {
 
     console.log(startD,endD)
 
-    let table = `<div class="head">${formatDate[mon]} ${year}</div><div class="table"><div class="flex">`;
+    let table = `<div class="head" data-item="${year}-${mon}">${formatDate[mon]} ${year}</div><div class="table"><div class="flex">`;
 
     // spaces for first row
     // from Monday to the first day of the month
