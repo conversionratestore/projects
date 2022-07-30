@@ -923,6 +923,7 @@ let start = setInterval(() => {
                     dayE = document.querySelector('.calendar .day.end') != null ? document.querySelector('.calendar .day.end')  : '',
                     dayA = document.querySelectorAll('.calendar .day.active');
 
+
                 console.log(dayS, dayE)
                 console.log(betweenDays)
                 if (betweenDays === 0) {
@@ -935,18 +936,24 @@ let start = setInterval(() => {
                     betweenDays = 1;
                 } else {
                     item.classList.add('end')
-                    for(let i = 0; i <= days.length; i++) {
-                        if(!days[i].classList.contains('end')) {
-                            days[i].classList.add('active')
+                    console.log(days)
+                    console.log(days.length)
+                    for(let j = 0; j <= days.length; j++) {
+
+                        console.log(days[j])
+                        if(!days[j].classList.contains('end')) {
+                            days[j].classList.add('active')
                             break;
                         }
                     }
-                    for(let i = 0; i <= days.length; i++) {
-                        if(!days[i].classList.contains('start')) {
-                            days[i].classList.remove('active')
+                    for(let j = 0; j <= days.length; j++) {
+                        console.log(days[j])
+                        if(!days[j].classList.contains('start')) {
+                            days[j].classList.remove('active')
                             break;
                         }
                     }
+
                     betweenDays = 0;
                 }
             }
