@@ -45,7 +45,7 @@ const style = /*html*/`
                 font-size: 12px;    
             }
 
-            .prod_vehicle {
+            #prodRightSide .prod_vehicle {
                 display: none;
             }
 
@@ -83,6 +83,10 @@ const style = /*html*/`
                 right: auto;
             }
 
+            .fit_car.below_sku {
+                top: 50px;
+            }
+
             .fit_unselect_car[hidden],
             .fit_car[hidden],
             .prod_vehicle[hidden] {
@@ -96,7 +100,7 @@ const style = /*html*/`
 
             .fit_car p {
                 font-weight: 400;
-                font-size: 12px;
+                font-size: 14px;
                 line-height: 14px;
                 color: #000000;
                 margin: 0;
@@ -126,6 +130,10 @@ const style = /*html*/`
                 font-size: 12px;
                 cursor: pointer;
             }
+
+            /*#child_products_tbl .po_prod:first-child .po_prod_sku {
+                padding-top: 35px;
+            }*/
         </style>
     `
 
@@ -152,13 +160,11 @@ const addFitChangePDP = (params) => { // replace vehicle with a Fit block on the
         </div>
     `
 
-
-
     if (isPDP) {
         if (!query('.fit_car.pdp')) {
             query('.fit_unselect_car') ? query('.fit_unselect_car').hidden = true : null
 
-            query('.prod_verify_vehicle').insertAdjacentHTML('afterbegin', fitToBlock)
+            query('#prodRightSide .prod_verify_vehicle').insertAdjacentHTML('afterbegin', fitToBlock)
 
             const waitForChangeBtn = setInterval(() => { // open the Popup by clicking on the change button
                 if (query('.fit_car.pdp span')) {
@@ -173,6 +179,16 @@ const addFitChangePDP = (params) => { // replace vehicle with a Fit block on the
         }
     } else {
         query('.po_prod').insertAdjacentHTML('afterbegin', fitToBlock)
+
+        if(query('.po_prod_sku')) {
+            const waitForFit = setInterval(() => {
+                if(query('.po_prod .fit_car')) {
+                    clearInterval(waitForFit)
+            
+                    query('.po_prod .fit_car').classList.add('below_sku')
+                }
+            }, intervalTimeout)
+        }
     }
 
     isUpsale ? localStorage.setItem('upsale', 'true') : localStorage.setItem('upsale', 'false')
@@ -211,7 +227,7 @@ const drawPdpFit = () => { // add a Fit block to the PDP
                 </div>
             `
 
-        query('.prod_verify_vehicle').insertAdjacentHTML('afterbegin', defaultPdpFit)
+        query('#prodRightSide .prod_verify_vehicle').insertAdjacentHTML('afterbegin', defaultPdpFit)
 
         const waitForDefaultPdpFit = setInterval(() => { // open the Popup by clicking on the 'select'
             if (query('.fit_unselect_car span')) {
@@ -263,7 +279,7 @@ const addFitToPopup = () => {
             localStorage.setItem('car', car)
             localStorage.setItem('product', product)
 
-            addFitChangePDP({ carModel: car, isPDP: false }) // add a Fit block to the Popup    
+            addFitChangePDP({ carModel: car, isPDP: false, isChangeBtn: false }) // add a Fit block to the Popup    
             addFitChangePDP({ carModel: car }) // add a Fit block to the PDP 
         }
     }, intervalTimeout)
