@@ -791,10 +791,10 @@ let postParking = (id, startDate, endDate, parent, countSelector) => {
                         url: `https://conversionratestore.github.io/projects/onairparking/img/marker.png`,
                         // scaledSize: new google.maps.Size(65, 34),
                         origin: new google.maps.Point(-2, -6),
-                        // anchor: new google.maps.Point(5, 22)
+                        // anchor: new google.maps.Point(0, 0)
                     },
                     label:{
-                        text: `$${price}`,
+                        text: `$${price.toFixed(2)}`,
                         fontSize: "14px",
                         fontWeight: "800",
                         color: '#F37621'
