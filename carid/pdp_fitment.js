@@ -171,7 +171,7 @@ const addFitChangePDP = (params) => { // replace vehicle with a Fit block on the
                     clearInterval(waitForChangeBtn)
 
                     query('.fit_car.pdp span').addEventListener('click', () => {
-                        openPopup()
+                        changeCar()
                         callEvent('Change', 'Guaranteed fitment')
                     })
                 }
@@ -234,7 +234,7 @@ const drawPdpFit = () => { // add a Fit block to the PDP
                 clearInterval(waitForDefaultPdpFit)
 
                 query('.fit_unselect_car span').addEventListener('click', () => {
-                    openPopup()
+                    getId('selectBtnReact').click()
                     callEvent('Select your vehicle', 'Guaranteed fitment')
                 })
 
@@ -243,28 +243,47 @@ const drawPdpFit = () => { // add a Fit block to the PDP
     }
 }
 
-const openPopup = () => getId('selectBtnReact').click()
-const changePopupHeader = () => { // change a Popup header
+const changeCar = () => {
+    getId('selectBtnReact').click()
+
     const waitForHeader = setInterval(() => {
-        if (query('.po_header')) {
-            clearInterval(waitForHeader)
+        setTimeout(() => {
+            if (query('.po_header')) {
+                clearInterval(waitForHeader)
 
-            console.log(query('.po_header'));
-            console.log(query('.po_header').innerText.toLowerCase().includes('select'));
+                if (!query('.po_header').innerText.toLowerCase().includes('select')) {
+                    const waitForChangeBtn = setInterval(() => {
+                        if (query('.-po-change-vehicle')) {
+                            clearInterval(waitForChangeBtn)
 
-            if (query('.po_header').innerText.toLowerCase().includes('select')) {
+                            query('#child_products_tbl .fit_car')?.remove()
+                            query('.-po-change-vehicle').click()
+                        }
+                    }, intervalTimeout)
 
+                    const waitForHeaderAgain = setInterval(() => {
+                        if (query('.po_header')) {
+                            clearInterval(waitForHeaderAgain)
 
-                const header = /*html*/`
+                            const header = /*html*/`
+                            <p class="header">SELECT YOUR VEHICLE</p>
+                            <p class="subheader">Get the perfect fit & an accurate price quote</p>`
+
+                            query('.po_header').innerHTML = header
+                        }
+                    }, intervalTimeout)
+                } else {
+                    const header = /*html*/`
                     <p class="header">SELECT YOUR VEHICLE</p>
-                    <p class="subheader">Get the perfect fit & an accurate price quote</p>
-                `
+                    <p class="subheader">Get the perfect fit & an accurate price quote</p>`
 
-                query('.po_header').innerHTML = header
+                    query('.po_header').innerHTML = header
+                }
             }
-        }
+        }, 500);
     }, intervalTimeout)
 }
+
 const addFitToPopup = () => {
     const waitForTitle = setInterval(() => {
         if (query('.po-header-selected .title') && query('.po_prod')) {
@@ -496,7 +515,7 @@ const observePopup = () => { // make changes when Popup is opened
                     console.log('%c overlay_portal', 'color: #bada55');
                     console.log('//////');
 
-                    changePopupHeader()
+
 
                     viewAttentionPopup()
                     clickOnX() // !                  
