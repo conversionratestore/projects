@@ -545,13 +545,12 @@ const observePopup = () => { // make changes when Popup is opened
 document.head.insertAdjacentHTML('beforeend', style) // add CSS
 
 const waitForAddCartBtn = setInterval(() => {
-    if (getId('addToCartButReact') && query('.prod-title .name') && query('.js-header-garage-mmy')) {
+    if (query('.prod-title .name') && query('.js-header-garage-mmy')) {
         clearInterval(waitForAddCartBtn)
 
         drawPdpFit()
     }
 }, intervalTimeout)
-
 
 observePopup()
 
