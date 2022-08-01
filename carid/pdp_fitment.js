@@ -344,24 +344,18 @@ const clickOnCancelAndAddCart = () => {
     }, intervalTimeout)
 }
 
-const clickOnXPopup = () => {
+const clickOnX = () => {
     const waitForEl = setInterval(() => {
         if (query('.gbox_close')) {
             clearInterval(waitForEl)
-            if (getId('selectOptWin')) {
-                query('.gbox_close').addEventListener('click', () => callEvent('Close popup. Cross', 'Popup. Select your vehicle'))
-            }
-        }
-    }, intervalTimeout)
-}
 
-const clickOnXAttention = () => {
-    const waitForEl = setInterval(() => {
-        if (query('.gbox_close')) {
-            clearInterval(waitForEl)
-            if (query('.-attention')) {
-                query('.gbox_close').addEventListener('click', () => callEvent('Close popup. Cross', `Popup: Attention. This particular wheel doesn't fit`))
-            }
+            query('.gbox_close').addEventListener('click', () => {
+                if (query('.-attention')) {
+                    callEvent('Close popup. Cross', `Popup: Attention. This particular wheel doesn't fit`)
+                } else {
+                    callEvent('Close popup. Cross', 'Popup. Select your vehicle')
+                }
+            })
         }
     }, intervalTimeout)
 }
@@ -491,7 +485,7 @@ const observePopup = () => { // make changes when Popup is opened
                     changePopupHeader()
 
                     viewAttentionPopup()
-                    clickOnXAttention() // !                  
+                    clickOnX() // !                  
 
                     /* popup events */
 
@@ -499,7 +493,6 @@ const observePopup = () => { // make changes when Popup is opened
                     clickOnCancelAndAddCart()
                     clickOnChange()
                     clickOnClickHere()
-                    clickOnXPopup() // !
                 }
 
                 if (node.matches('.po')) {
@@ -519,7 +512,7 @@ const observePopup = () => { // make changes when Popup is opened
 document.head.insertAdjacentHTML('beforeend', style) // add CSS
 
 const waitForAddCartBtn = setInterval(() => {
-    if(getId('addToCartButReact')) {
+    if (getId('addToCartButReact')) {
         clearInterval(waitForAddCartBtn)
 
         drawPdpFit()
