@@ -83,10 +83,6 @@ const style = /*html*/`
                 right: auto;
             }
 
-            .fit_car.below_sku {
-                top: 50px;
-            }
-
             .fit_unselect_car[hidden],
             .fit_car[hidden],
             .prod_vehicle[hidden] {
@@ -131,9 +127,9 @@ const style = /*html*/`
                 cursor: pointer;
             }
 
-            /*#child_products_tbl .po_prod:first-child .po_prod_sku {
-                padding-top: 35px;
-            }*/
+            #child_products_tbl .po_prod:first-child .po_prod_sku {
+                padding-top: 40px;
+            }
         </style>
     `
 
@@ -179,16 +175,6 @@ const addFitChangePDP = (params) => { // replace vehicle with a Fit block on the
         }
     } else {
         query('.po_prod').insertAdjacentHTML('afterbegin', fitToBlock)
-
-        if (query('#child_products_tbl > div .po_prod_sku')) {
-            const waitForFit = setInterval(() => {
-                if (query('.po_prod .fit_car')) {
-                    clearInterval(waitForFit)
-
-                    query('.po_prod .fit_car').classList.add('below_sku')
-                }
-            }, intervalTimeout)
-        }
     }
 
     isUpsale ? localStorage.setItem('upsale', 'true') : localStorage.setItem('upsale', 'false')
