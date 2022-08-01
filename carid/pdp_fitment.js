@@ -180,7 +180,7 @@ const addFitChangePDP = (params) => { // replace vehicle with a Fit block on the
     } else {
         query('.po_prod').insertAdjacentHTML('afterbegin', fitToBlock)
 
-        if(query('.po_prod_sku')) {
+        if(query('#child_products_tbl > div .po_prod_sku')) {
             const waitForFit = setInterval(() => {
                 if(query('.po_prod .fit_car')) {
                     clearInterval(waitForFit)
