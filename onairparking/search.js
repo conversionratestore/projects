@@ -1,5 +1,10 @@
 let style = `
 <style class="js-style">
+    .wrapper {
+        z-index: 9;
+        position: relative;
+        background: #fff;
+    }
     /*list parking*/
     .best_reviews, .lowest_price {
         text-transform: uppercase;
@@ -112,6 +117,9 @@ let style = `
         border-radius: 20px 20px 0 0;
         margin-top: -66px;
         transition: all 0.2s ease;
+        position: relative;
+        z-index: 2;
+        background: #fff;
     }
     .swipe-header {
         padding: 26px 16px 21px;
@@ -153,8 +161,9 @@ let style = `
         padding: 10px;
         position: absolute;
         left: 0;
-        top: 50px;
+        top: 0;
         width: 100%;
+        z-index: 2;
     }
     .btns-edit svg {
         flex-shrink: 0;
@@ -185,7 +194,7 @@ let style = `
         width: 16px!important;
         height: 16px!important;
     }
-    #__next > section > nav > div > div {
+    #__next > section > nav > div > div.h-14 {
         height: 50px!important;
     }
     #__next > section > nav > div > div > div.flex.items-center > div > a > span > span > img {
@@ -202,6 +211,7 @@ let style = `
     }
     body.active .swipe {
         margin-top: -60vh;
+        min-height: 60vh;
     }
     .popup {
         position: fixed;
@@ -226,6 +236,7 @@ let style = `
         box-shadow: 0 2px 4px rgba(0, 0, 0, 0.07), 0 3px 50px rgba(0, 0, 0, 0.12);
         position: sticky;
         top: 0;
+        z-index: 9;
     }
     .btn-back {
         position: absolute;
@@ -249,7 +260,7 @@ let style = `
         color: #515356;
         border: 1px solid #FF9729!important;
         border-radius: 50px;
-        padding: 12px 20px 11px!important;
+        padding: 12px 10px 11px 20px!important;
         width: 100%;
         margin: 0!important;
     }
@@ -257,12 +268,17 @@ let style = `
         border: 1px solid #515356!important;
         box-shadow: none!important;
     }
+    .ant-input-prefix {
+        display: none;
+    }
     .ant-select-dropdown {
         box-shadow: none!important;
         top: calc(129px + 30px)!important;
         padding: 0!important;
         width: 100%!important;
         left: 0!important;
+        background: transparent;
+        display: none;
     }
     .ant-select-item {
         position: relative;
@@ -443,6 +459,9 @@ let style = `
         text-transform: uppercase;
         color: #FFFFFF;
     }
+    .btn-search[disabled] {
+        background: #D1D1D1;
+    }
     .btn-clear {
         font-weight: 700;
         font-size: 14px;
@@ -450,22 +469,7 @@ let style = `
         text-transform: uppercase;
         color: #515356;
     }
-    .modal_error {
-        position: fixed;
-        top: 20px;
-        right: 0;
-        width: 40%;
-        padding: 10px 15px;
-        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15), 0 0 20px rgba(0, 0, 0, 0.1);
-        opacity: 0;
-        pointer-events: none;
-        transition: all 0.2s ease;
-        color: red;
-    }
-    .modal_error.active {
-        opacity: 1;
-        pointer-events: auto;
-    }
+
     @media only screen and (max-width: 340px) {
         .info_parking {
             padding: 7px;
@@ -490,14 +494,14 @@ let html = `
     <div id="map-main"></div>
     
     <div class="flex items-center justify-between btns-edit">
-        <button type="button" class="btn-edit-name items-center flex" data-popup="choose place">
+        <button type="button" class="btn-edit-name items-center flex justify-between" data-popup="choose place">
             <b></b>
             <svg width="13" height="12" viewBox="0 0 13 12" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M6.25879 10.9995H11.5154" stroke="#515356" stroke-linecap="round" stroke-linejoin="round"/>
                 <path d="M8.88491 1.36289C9.11726 1.13054 9.43241 1 9.76101 1C9.92371 1 10.0848 1.03205 10.2351 1.09431C10.3855 1.15658 10.5221 1.24784 10.6371 1.36289C10.7522 1.47794 10.8434 1.61453 10.9057 1.76485C10.968 1.91517 11 2.07629 11 2.23899C11 2.4017 10.968 2.56281 10.9057 2.71314C10.8434 2.86346 10.7522 3.00004 10.6371 3.11509L3.33627 10.4159L1 11L1.58407 8.66373L8.88491 1.36289Z" stroke="#515356" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
         </button>
-        <button type="button" class="btn-edit-date items-center flex" data-popup="choose dates">
+        <button type="button" class="btn-edit-date items-center flex justify-between" data-popup="choose dates">
             <span>
                 From: <b class="from" ></b> <br>
                 To: <b class="to" ></b>
@@ -516,7 +520,6 @@ let html = `
         <ul id="list_parking" class="p-4"></ul>
     </div>
 </div>
-<div class="modal_error"></div>
 <div class="popup" data-title="choose place">
     <div class="popup_header">
         <div class="popup-top">
@@ -532,19 +535,19 @@ let html = `
         <div class="popular-place">
             <p>Popular locations</p>
             <ul>
-                <li class="flex items-center mb-4" id="1" title="DIA - Denver International Airport">
+                <li class="flex items-center mb-4" data-id="1" title="DIA - Denver International Airport">
                     <img src="https://conversionratestore.github.io/projects/onairparking/img/pin-location.png" alt="icon location">
                     <span>Denver International Airport</span>
                 </li>
-                <li class="flex items-center mb-4" id="5" title="ORD - Chicago O'Hare International Airport">
+                <li class="flex items-center mb-4" data-id="5" title="ORD - Chicago O'Hare International Airport">
                     <img src="https://conversionratestore.github.io/projects/onairparking/img/pin-location.png" alt="icon location">
                     <span>Chicago O'Hare International Airport</span>
                 </li>
-                <li class="flex items-center mb-4" id="12" title="BOS - Boston Logan International Airport">
+                <li class="flex items-center mb-4" data-id="12" title="BOS - Boston Logan International Airport">
                     <img src="https://conversionratestore.github.io/projects/onairparking/img/pin-location.png" alt="icon location">
                     <span>Boston Logan International Airport</span>
                 </li>
-                <li class="flex items-center" id="7" title="ATL - Atlanta Hartsfield-Jackson International Airport">
+                <li class="flex items-center" data-id="7" title="ATL - Atlanta Hartsfield-Jackson International Airport">
                     <img src="https://conversionratestore.github.io/projects/onairparking/img/pin-location.png" alt="icon location">
                     <span>Atlanta Hartsfield-Jackson International Airport</span>
                 </li>
@@ -578,7 +581,7 @@ let html = `
             </svg>
             <span>Clear</span>
         </button>
-        <button type="button" class="flex items-center btn-search">Search</button>
+        <button type="button" class="btn-search">Search</button>
     </div>
 </div>
 `;
@@ -592,7 +595,7 @@ let formatDate = ['Jan','Feb','Mar','Apr','May','Jun','Jul', 'Aug', 'Sep', 'Oct'
 
 /* Classes method for Parking */
 class Parking{
-    constructor(url, name, reviews, distance, shuttle, shuttleFrequency, freeCancellation, price, minDay, soldOut, unavailable, parent) {
+    constructor(url, name, reviews, distance, shuttle, shuttleFrequency, freeCancellation, price, minDay, soldOut, unavailable, parent, checkin) {
         this.url = url;
         this.name = name;
         this.reviews = reviews;
@@ -605,7 +608,7 @@ class Parking{
         this.soldOut = soldOut;
         this.unavailable = unavailable;
         this.parent = parent;
-        this.checkin = window.location.href.split('checkin=')[1].split('&')[0];
+        this.checkin = checkin;
         this.renderStar();
         this.renderText();
         this.renderBtn();
@@ -645,7 +648,7 @@ class Parking{
     render() {
         let element = document.createElement('li');
         element.classList.add('flex');
-
+        console.log(this.freeCancellation)
         element.innerHTML = `
             <a href="https://www.onairparking.com/parkingat/${this.url}" class="img_parking relative">
                 <div class="notes_parking top-2.5"></div>
@@ -662,7 +665,7 @@ class Parking{
                 </div>
                 <div>
                     <div class="relative">
-                        <p class="c-green">Free Cancellation until ${this.freeCancellation.includes('up to start date') ? this.checkin.split('-')[2] : this.freeCancellation} ${formatDate[this.checkin.split('-')[1] - 1]}</p>
+                        <p class="c-green">${this.freeCancellation.includes('up to start date') ? `Free Cancellation until ${this.checkin.split('-')[2]} ${formatDate[this.checkin.split('-')[1] - 1]}` : this.freeCancellation}</p>
                     </div>
                     <div class="flex items-center">
                         ${this.renderBtn()}
@@ -677,7 +680,7 @@ class Parking{
     }
 }
 
-//swipe
+// Classes method for swipe
 class Swipe {
     constructor(element) {
         this.yDown = null;
@@ -738,12 +741,13 @@ let pushDataLayer = (action) => {
     });
 }
 //add event Listener
-function addEvent(selector, type, fun) {
-    selector.addEventListener(type, fun)
+function addEvent(item, type, fun) {
+    item.addEventListener(type, fun)
 }
 
 let postParking = (id, startDate, endDate, parent, countSelector) => {
 
+    console.log(id, startDate, endDate, parent, countSelector)
     fetch(`https://www.onairparking.com/api/Facility/SearchAlternate`, {
         headers: {
             'Content-Type': 'application/json',
@@ -759,7 +763,12 @@ let postParking = (id, startDate, endDate, parent, countSelector) => {
         countSelector.innerHTML = result.length; //set count parkings found
 
         if (result.length > 0) {
-
+            let myLatLng = new google.maps.LatLng(result[0]['facility_latitude_fake'], result[0]['facility_longitude_fake'] );
+            let gmap = new google.maps.Map(document.getElementById("map-main"), {
+                zoom: 11,
+                center: myLatLng,
+                mapTypeId: google.maps.MapTypeId.READMAP
+            });
             for (let i = 0; i < result.length; i++) {
                 let url = `${result[i]['facility_url_code']}?checkin=${startDate}&checkout=${endDate}`,
                     name = result[i]['facility_lot'],
@@ -773,6 +782,27 @@ let postParking = (id, startDate, endDate, parent, countSelector) => {
                     soldOut = result[i]['date_sold_out'],
                     unavailable = result[i]['not_sufficient_days'];
 
+                let myLatLng = { lat: result[i]['facility_latitude_fake'], lng: result[i]['facility_longitude_fake'] };
+
+                new google.maps.Marker({
+                    position: myLatLng,
+                    map: gmap,
+                    icon: {
+                        url: `https://conversionratestore.github.io/projects/onairparking/img/marker.png`,
+                        // scaledSize: new google.maps.Size(65, 34),
+                        origin: new google.maps.Point(-2, -6),
+                        // anchor: new google.maps.Point(5, 22)
+                    },
+                    label:{
+                        text: `$${price}`,
+                        fontSize: "14px",
+                        fontWeight: "800",
+                        color: '#F37621'
+                    }
+                });
+
+                document.querySelectorAll('#map-main > div > div > div:nth-child(2) > div:nth-child(1) > div:nth-child(4) > div:nth-child(2)')
+
                 let highlights = result[i].highlights;
                 for (let h = 0; h < highlights.length; h++) {
                     if (highlights[h].type == 'facility_distance') {
@@ -785,7 +815,7 @@ let postParking = (id, startDate, endDate, parent, countSelector) => {
                         freeCancellation = highlights[h].description != null ? highlights[h].description : '';
                     }
                 }
-                new Parking(url,name,reviews,distance,shuttle,shuttleFrequency,freeCancellation,price,minDay,soldOut,unavailable,parent).render();
+                new Parking(url,name,reviews,distance,shuttle,shuttleFrequency,freeCancellation,price,minDay,soldOut,unavailable,parent,startDate).render();
             }
 
             //lowerPrice
@@ -822,13 +852,21 @@ let postParking = (id, startDate, endDate, parent, countSelector) => {
         } else {
             parent.innerHTML = emptyHtml;
         }
-    })
+    }).catch((error) => {
+        console.log('Error:', error);
+        countSelector.innerHTML = 0;
+        parent.innerHTML = emptyHtml;
+    });
 }
 
 let sentPost = false;
+let scriptMap = document.createElement('script');
+scriptMap.src = `https://maps.googleapis.com/maps/api/js?key=AIzaSyDGbiPmw_9_RfWYV_6bO-7pHXcl8PxBZJg&v=weekly`;
+scriptMap.async = true;
+document.head.appendChild(scriptMap)
 
 let start = setInterval(() => {
-    if (document.querySelector('#rc_select_0') != null && document.querySelector('#__NEXT_DATA__') != null && window.location.pathname.includes('/reservation/search') && document.querySelector('#__next > section > main > div > div.container > div.grid > div.flex > button > span:nth-child(2)') != null) {
+    if (document.querySelector('input[type="search"]') != null && document.querySelector('#__NEXT_DATA__') != null && window.location.pathname.includes('/reservation/search')) {
         document.querySelector('.js-style') == null ? document.body.insertAdjacentHTML('afterbegin', style) : ''; // add style
 
         if (sentPost == false) {
@@ -843,6 +881,7 @@ let start = setInterval(() => {
                 parent = document.querySelector('#list_parking'),
                 countSelector = document.querySelector('.count_parking span');
 
+            document.querySelector('.btn-edit-name').setAttribute('data-id', id)
             document.querySelector('.btn-edit-name b').innerHTML = window.location.href.split('airport=')[1].split('&')[0].split('+').join(' ');
             document.querySelector('.btn-edit-date .from').setAttribute('data-date',startDate)
             document.querySelector('.btn-edit-date .to').setAttribute('data-date',endDate)
@@ -865,7 +904,7 @@ let start = setInterval(() => {
             function showModal(e) { //show modal
                 document.querySelector(`.popup[data-title="${e.dataset.popup}"]`).classList.add('active');
             }
-            function hideModal(e) { //hide modal
+            function hideModal() { //hide modal
                 document.querySelectorAll(`.popup`).forEach(item => item.classList.remove('active'));
                 document.body.classList.remove('show-autocomplete');
             }
@@ -875,12 +914,14 @@ let start = setInterval(() => {
             })
             //choose popular place
             function clickOnPopularPlace(item) {
-                let id = item.id,
+                let id = item.dataset.id,
                     startDate = document.querySelector('.btn-edit-date .from').dataset.date,
                     endDate = document.querySelector('.btn-edit-date .to').dataset.date;
-                console.log(id, startDate, endDate, parent,countSelector)
-                postParking(id, startDate, endDate, parent,countSelector)
-                document.querySelector('#rc_select_0').setAttribute('value', item.title)
+
+                document.querySelector('.btn-edit-name').setAttribute('data-id', id)
+
+                postParking(id, startDate, endDate, parent, countSelector)
+                document.querySelector('input[type="search"]').setAttribute('value', item.title)
                 document.querySelector('.btn-edit-name b').innerHTML = item.title;
                 hideModal()
             }
@@ -893,58 +934,68 @@ let start = setInterval(() => {
                 let id = item.id,
                     startDate = document.querySelector('.btn-edit-date .from').dataset.date,
                     endDate = document.querySelector('.btn-edit-date .to').dataset.date;
-                console.log(id, startDate, endDate, parent,countSelector)
-                postParking(id, startDate, endDate, parent,countSelector)
+
+                document.querySelector('.btn-edit-name').setAttribute('data-id', id)
+
+                postParking(id, startDate, endDate, parent, countSelector)
                 document.querySelector('.btn-edit-name b').innerHTML = item.innerText;
                 hideModal()
             }
-            function clickOnInputPlace(e) {
+            function clickOnInputPlace(e, items) {
                 if (e.value != '') {
                     document.body.classList.add('show-autocomplete')
                 } else {
                     document.body.classList.remove('show-autocomplete')
                 }
-                document.querySelectorAll('.ant-select-item').forEach(item => {
-                    addEvent(item, 'click', () => {clickOnItemPlace(e,item)})
-                })
+                setInterval(() => {
+                    if (document.querySelectorAll('.ant-select-item')) {
+                        document.querySelectorAll('.ant-select-item').forEach(item => {
+                            addEvent(item, 'click', (e) => {clickOnItemPlace(e,item)})
+                        })
+                    }
+                }, 100)
+
             }
 
             //click on input in popup "Choose place"
-            addEvent(document.querySelector('#rc_select_0'),'input', () => {clickOnInputPlace(e.target)})
-            addEvent(document.querySelector('#rc_select_0'),'click',  () => {clickOnInputPlace(e.target)})
+            let inputSearch = document.querySelector('input[type="search"]')
+            addEvent(inputSearch, 'click', (e) => {clickOnInputPlace(e.target)})
+            addEvent(inputSearch, 'input', (e) => {clickOnInputPlace(e.target)})
 
             //close modal
             document.querySelectorAll('.btn-back').forEach(item => {
-                addEvent(item, 'click', () => {hideModal()})
+                addEvent(item, 'click', (e) => {hideModal()})
             })
 
             //create calendar
             let date = new Date();
             let calendar = document.querySelector('#calendar_table')
-            for (let i = 0; i < 12; i++) {
+            for (let i = 0; i < 13; i++) {
                 let month = date.getMonth() + 1 + i,
                     year = date.getFullYear();
-                if (month < 13) {
+                if (month <= 12) {
                     createCalendar(calendar, year, month, startDate, endDate);
                 } else {
                     let newMonth =  (date.getMonth() - 1 - i) * -1,
                         newYear = year + 1;
-                    createCalendar(calendar, newYear,newMonth, startDate, endDate);
+                    console.log(newMonth, i)
+                    if (newMonth > 0) {
+                        createCalendar(calendar, newYear,newMonth, startDate, endDate);
+                    }
+
                 }
             }
 
             //choose dates
             let days = document.querySelectorAll('.calendar .day:not(.disabled)');
             let betweenDays = 0;
-            function clickOnDay(item) {
+            function clickOnDay(item,index) {
                 let dayS = document.querySelector('.calendar .day.start') != null ? document.querySelector('.calendar .day.start') : '',
                     dayE = document.querySelector('.calendar .day.end') != null ? document.querySelector('.calendar .day.end')  : '',
                     dayA = document.querySelectorAll('.calendar .day.active');
 
-                let days = document.querySelectorAll('.calendar .day:not(.disabled)');
+                let indexEnd = 0, indexStart = 0;
 
-                console.log(dayS, dayE)
-                console.log(betweenDays)
                 if (betweenDays === 0) {
                     dayS != '' ? dayS.classList.remove('start') : '';
                     dayE != '' ? dayE.classList.remove('end') : '';
@@ -952,28 +1003,33 @@ let start = setInterval(() => {
                         dayA[i].classList.remove('active')
                     }
                     item.classList.add('start')
+                    document.querySelector('.btn-search').disabled = true
                     betweenDays = 1;
                 } else {
-                    item.classList.add('end')
-                    let indexEnd, indexStart;
                     for (let i = 0; i < days.length; i++) {
-                        if(days[i].classList.contains('end')) {
-                            indexEnd = i;
-                        }
                         if (days[i].classList.contains('start')) {
                             indexStart = i
                         }
                     }
-                    for (let i = indexStart; i < indexEnd + 1; i++) {
-                        days[i].classList.add('active')
-                    }
+                    if (index > indexStart) {
+                        item.classList.add('end')
+                        indexEnd = index;
 
-                    betweenDays = 0;
+                        for (let i = indexStart; i < indexEnd + 1; i++) {
+                            days[i].classList.add('active')
+                        }
+
+                        document.querySelector('.btn-search').disabled = false
+                        betweenDays = 0;
+                    } else {
+                        document.querySelector('.calendar .day.start').classList.remove('start');
+                        item.classList.add('start')
+                    }
                 }
             }
             for (let i = 0; i < days.length; i++) {
                 addEvent(days[i], 'click', () => {
-                    clickOnDay(days[i])
+                    clickOnDay(days[i],i)
                 })
             }
             //clear calendar
@@ -983,21 +1039,16 @@ let start = setInterval(() => {
                 document.querySelectorAll('.calendar .day.active').forEach(item => {
                     item.classList.remove('active')
                 })
+                document.querySelector('.btn-search').disabled = true;
+                betweenDays = 0;
             })
             //search by calendar
-            let itemError = document.querySelector('.modal_error');
             addEvent(document.querySelector('.btn-search'), 'click', () => {
-
-                if (document.querySelector('.calendar .day.start') == null && document.querySelector('.calendar .day.end') == null) {
-                    itemError.innerHTML = 'Choose start and end dates!'
-                } else if (document.querySelector('.calendar .day.end') == null) {
-                    itemError.innerHTML = 'Choose end date!'
-                } else if (document.querySelector('.calendar .day.start') == null) {
-                    itemError.innerHTML = 'Choose start date!'
-                } else {
+                if (document.querySelector('.btn-search').disabled == false) {
                     let start = document.querySelector('.calendar .day.start'),
-                        end = document.querySelector('.calendar .day.end');
-                    itemError.innerHTML = '';
+                        end = document.querySelector('.calendar .day.end'),
+                        id = document.querySelector('.btn-edit-name').dataset.id;
+                    console.log(start,end)
                     startDate = document.querySelector('.btn-edit-date .from');
                     endDate = document.querySelector('.btn-edit-date .to');
 
@@ -1005,13 +1056,12 @@ let start = setInterval(() => {
                     endDate.dataset.date = `${end.closest('.table').previousElementSibling.getAttribute('data-item')}-${end.innerText}`
 
                     startDate.innerHTML = `${start.innerText} ${formatDate[startDate.dataset.date.split('-')[1]]}`;
-                    endDate.innerHtml = `${end.innerText} ${formatDate[endDate.dataset.date.split('-')[1]]}`;
+                    endDate.innerHTML = `${end.innerText} ${formatDate[endDate.dataset.date.split('-')[1]]}`;
+
+                    postParking(id, startDate.dataset.date, endDate.dataset.date, parent, countSelector)
+                    hideModal()
                 }
-                if (document.querySelector('.calendar .day.end') == null || document.querySelector('.calendar .day.start') == null) {
-                    itemError.classList.add('active')
-                } else {
-                    itemError.classList.remove('active')
-                }
+
             })
         }
     }
@@ -1038,7 +1088,7 @@ function createCalendar(elem, year, month, startDate, endDate) {
     let startD = new Date(startDate),
         endD = new Date(endDate);
 
-    console.log(startD,endD)
+    console.log(mon)
 
     let table = `<div class="head" data-item="${year}-${mon}">${formatDate[mon]} ${year}</div><div class="table"><div class="flex">`;
 
