@@ -510,15 +510,7 @@ const observePopup = () => { // make changes when Popup is opened
 
                 if (node.matches('.overlay_portal')) {
                     /* events if wheel doesn't fit the car */
-
-                    console.log('//////');
-                    console.log('%c overlay_portal', 'color: #bada55');
-                    console.log('//////');
-
-
-
-                    viewAttentionPopup()
-                    clickOnX() // !                  
+                    clickOnX()               
 
                     /* popup events */
 
@@ -530,6 +522,7 @@ const observePopup = () => { // make changes when Popup is opened
 
                 if (node.matches('.po')) {
                     console.log('%c POOOOO', 'color: green');
+                    viewAttentionPopup()
                     clickOnView()
                     clickOnContinue()
                 }
