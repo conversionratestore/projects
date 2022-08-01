@@ -101,7 +101,7 @@ const style = /*html*/`
             .fit_car p {
                 font-weight: 400;
                 font-size: 14px;
-                line-height: 14px;
+                line-height: 16px;
                 color: #000000;
                 margin: 0;
             }
@@ -180,11 +180,11 @@ const addFitChangePDP = (params) => { // replace vehicle with a Fit block on the
     } else {
         query('.po_prod').insertAdjacentHTML('afterbegin', fitToBlock)
 
-        if(query('#child_products_tbl > div .po_prod_sku')) {
+        if (query('#child_products_tbl > div .po_prod_sku')) {
             const waitForFit = setInterval(() => {
-                if(query('.po_prod .fit_car')) {
+                if (query('.po_prod .fit_car')) {
                     clearInterval(waitForFit)
-            
+
                     query('.po_prod .fit_car').classList.add('below_sku')
                 }
             }, intervalTimeout)
@@ -302,10 +302,10 @@ const addFitToPopup = () => {
 /** GO Events */
 
 const callEvent = (eventAction, eventLabel = '') => {
-    console.log('////////');
-    console.log(`%c ${eventAction}`, 'color: yellow');
-    console.log(eventLabel);
-    console.log('////////');
+    // console.log('////////');
+    // console.log(`%c ${eventAction}`, 'color: yellow');
+    // console.log(eventLabel);
+    // console.log('////////');
 
     window.dataLayer = window.dataLayer || []
     dataLayer.push({
@@ -440,16 +440,14 @@ const observePopup = () => { // make changes when Popup is opened
             for (let node of mutation.addedNodes) {
                 if (!(node instanceof HTMLElement)) continue
 
-                if (node.matches('#child_products_tbl') && disable === false) {
-                    mainObserver.disconnect()
-
+                if (node.matches('.overlay_portal') && disable === false) {
                     addFitToPopup()
-
-                    mainObserver.observe(target, config)
                 }
 
                 if (node.matches('.po')) { // if wheel doesn't fit the car
                     mainObserver.disconnect()
+
+                    console.log('POOOOOOOOOO');
 
                     query('.fit_car.pdp') ? query('.fit_car.pdp').hidden = true : null
                     query('.fit_unselect_car') ? query('.fit_unselect_car').hidden = false : null
@@ -481,8 +479,8 @@ const observePopup = () => { // make changes when Popup is opened
             for (let node of mutation.addedNodes) {
                 if (!(node instanceof HTMLElement)) continue
 
-                console.log('%c node', 'color: red');
-                console.log(node);
+                // console.log('%c node', 'color: red');
+                // console.log(node);
 
                 if (node.matches('.po-child-products-loading')) { // restart mainObserver
                     disable = false
@@ -528,7 +526,7 @@ const observePopup = () => { // make changes when Popup is opened
 document.head.insertAdjacentHTML('beforeend', style) // add CSS
 
 const waitForAddCartBtn = setInterval(() => {
-    if (getId('addToCartButReact')) {
+    if (getId('addToCartButReact') && query('.prod-title .name') && query('.js-header-garage-mmy')) {
         clearInterval(waitForAddCartBtn)
 
         drawPdpFit()
