@@ -200,7 +200,7 @@ const addFitChangePDP = (params) => { // replace vehicle with a Fit block on the
                 }
             }, intervalTimeout)
         }
-    } if (!query('.po_prod .fit_car')) {
+    } else if (!query('.po_prod .fit_car')) {
         query('.po_prod').insertAdjacentHTML('afterbegin', fitToBlock)
     }
 
