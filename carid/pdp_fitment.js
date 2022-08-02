@@ -136,41 +136,26 @@ const style = /*html*/`
 const changeCar = (isSubtitle) => {
     getId('selectBtnReact').click()
 
-    const waitForHeader = setInterval(() => {
-        setTimeout(() => {
-            if (query('.po_header')) {
-                clearInterval(waitForHeader)
+    const waitForNonSelectHeader = setInterval(() => { // product options 
+        if (query('.-po-change-vehicle')) {
+            clearInterval(waitForNonSelectHeader)
 
-                if (!query('.po_header').innerText.toLowerCase().includes('select')) {
-                    const waitForChangeBtn = setInterval(() => {
-                        if (query('.-po-change-vehicle')) {
-                            clearInterval(waitForChangeBtn)
+            query('#child_products_tbl .fit_car')?.remove()
+            query('.-po-change-vehicle').click()
+        }
+    }, intervalTimeout)
 
-                            query('#child_products_tbl .fit_car')?.remove()
-                            query('.-po-change-vehicle').click()
-                        }
-                    }, intervalTimeout)
+    const waitForSelectHeader = setInterval(() => { // select product options 
+        if (query('.po_header')?.innerText.toLowerCase().includes('select')) {
+            clearInterval(waitForSelectHeader)
+            clearInterval(waitForNonSelectHeader)
 
-                    const waitForHeaderAgain = setInterval(() => {
-                        if (query('.po_header')) {
-                            clearInterval(waitForHeaderAgain)
+            const header = /*html*/`
+                <p class="header">SELECT YOUR VEHICLE</p>
+                ${isSubtitle ? '<p class="subheader">Get the perfect fit & an accurate price quote</p>' : ''}`
 
-                            const header = /*html*/`
-                            <p class="header">SELECT YOUR VEHICLE</p>
-                            ${isSubtitle ? '<p class="subheader">Get the perfect fit & an accurate price quote</p>' : ''}`
-
-                            query('.po_header').innerHTML = header
-                        }
-                    }, intervalTimeout)
-                } else {
-                    const header = /*html*/`
-                    <p class="header">SELECT YOUR VEHICLE</p>
-                    <p class="subheader">Get the perfect fit & an accurate price quote</p>`
-
-                    query('.po_header').innerHTML = header
-                }
-            }
-        }, 500);
+            query('.po_header').innerHTML = header
+        }
     }, intervalTimeout)
 }
 
