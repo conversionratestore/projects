@@ -347,9 +347,9 @@ function dateDiff(a,b){
     return result != 0 ? result : 1
 }
 
-let renderPriceDay = (startDate,endDate,total) => {
+function renderPriceDay(startDate,endDate,total) {
     let days = dateDiff(endDate,startDate);
-    let priceDay = (+total / +days).toFixed(2);
+    let priceDay = (+total.replace(/[^\d\.]/g,'') / +days).toFixed(2);
     return priceDay;
 }
 
