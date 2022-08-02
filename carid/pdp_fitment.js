@@ -130,6 +130,8 @@ const style = /*html*/`
             #child_products_tbl .po_prod:first-child .po_prod_sku {
                 padding-top: 40px;
             }
+
+            .po_prod_title {width: 75%;}
         </style>
     `
 
