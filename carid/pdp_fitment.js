@@ -65,6 +65,7 @@ const style = /*html*/`
                 font-weight: 300;
                 font-size: 14px;
                 color: #FFFFFF;
+                text-transform: initial;
             }
 
             .fit_car {
