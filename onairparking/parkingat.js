@@ -549,7 +549,6 @@ let changeImage = () => {
     }, 100)
 }
 
-
 let start = setInterval(() => {
     if (document.querySelectorAll('#marker > div.snap-mandatory > div.bg-white > div > div.flex > a') && window.location.href.includes('reservation/citysearch')) {
         document.querySelectorAll('#marker > div.snap-mandatory > div.bg-white > div > div.flex > a').forEach(item => {
