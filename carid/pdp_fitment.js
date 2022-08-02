@@ -227,6 +227,7 @@ const drawPdpFit = () => { // add a Fit block to the PDP
     const selectedProduct = localStorage.getItem('product')
 
     if ( // if car model and product fit each other 
+        selectedCarModel &&
         query('.prod-title .name').innerText === selectedProduct
         && query('.js-header-garage-mmy').innerText === selectedCarModel
     ) {
@@ -241,13 +242,17 @@ const drawPdpFit = () => { // add a Fit block to the PDP
         const preselectedCarModel = selectedCarModel || query('.prod_vehicle>div').innerText
 
         addFitChangePDP({ carModel: preselectedCarModel, isChangeBtn: false })
-    } else if (localStorage.getItem('upsale') === 'true' && query('.js-header-garage-mmy').innerText === localStorage.getItem('car')) { // if upsale
-        console.log('//////');
-        console.log('%c UPSALE', 'color: purple');
-        console.log('//////');
+    } 
+    
+    // else if (localStorage.getItem('upsale') === 'true' && query('.js-header-garage-mmy').innerText === localStorage.getItem('car')) { // if upsale
+    //     console.log('//////');
+    //     console.log('%c UPSALE', 'color: purple');
+    //     console.log('//////');
 
-        addFitChangePDP({ carModel: selectedCarModel, isUpsale: 'true' })
-    } else {
+    //     addFitChangePDP({ carModel: selectedCarModel, isUpsale: 'true' })
+    // } 
+    
+    else {
         const defaultPdpFit = /*html*/`
                 <div class="fit_unselect_car">
                     <p>Guaranteed Fitment</p>
