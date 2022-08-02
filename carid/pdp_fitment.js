@@ -382,6 +382,16 @@ const drawPopupFit = () => {
                     </div>`
 
                 query('.po_prod').insertAdjacentHTML('afterbegin', fitToBlock)
+
+                const waitForMsg = setInterval(() => {
+                    if(query('po_notif_msg') && query('.po_prod .fit_car')) {
+                        clearInterval(waitForMsg)
+                
+                        if(query('.po_notif_msg .po_notif_msg_attention_grey_mark')) {
+                            query('.po_prod .fit_car').hidden = true
+                        }
+                    }
+                }, intervalTimeout)
             }
         }, intervalTimeout)
     }
