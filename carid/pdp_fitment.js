@@ -222,7 +222,7 @@ const addFitChangePDP = (params) => { // replace vehicle with a Fit block on the
 }
 
 const drawPdpFit = () => { // add a Fit block to the PDP
-    const selectedCarModel = JSON.parse(localStorage.garageData).current
+    const selectedCarModel = JSON.parse(localStorage.garageData).current || localStorage.getItem('car')
     // const selectedCarModel = localStorage.getItem('car')
     const selectedProduct = localStorage.getItem('product')
 
