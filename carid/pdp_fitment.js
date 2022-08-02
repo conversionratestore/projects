@@ -445,7 +445,7 @@ const observePopup = () => { // make changes when Popup is opened
             for (let node of mutation.addedNodes) {
                 if (!(node instanceof HTMLElement)) continue
 
-                if (node.matches('.overlay_portal') && disable === false) {
+                if (node.matches('#child_products_tbl') && disable === false) {
                     addFitToPopup()
                 }
 
