@@ -52,7 +52,6 @@ const style = /*html*/`
             /* Popup */
 
             .po_header {
-                text-transform: initial !important;
                 padding-bottom: 10px !important;
             }
 
@@ -133,7 +132,7 @@ const style = /*html*/`
         </style>
     `
 
-const changeCar = () => {
+const changeCar = (isSubtitle) => {
     getId('selectBtnReact').click()
 
     const waitForHeader = setInterval(() => {
@@ -157,7 +156,7 @@ const changeCar = () => {
 
                             const header = /*html*/`
                             <p class="header">SELECT YOUR VEHICLE</p>
-                            <p class="subheader">Get the perfect fit & an accurate price quote</p>`
+                            ${isSubtitle ? '<p class="subheader">Get the perfect fit & an accurate price quote</p>' : ''}`
 
                             query('.po_header').innerHTML = header
                         }
@@ -208,7 +207,7 @@ const addFitChangePDP = (params) => { // replace vehicle with a Fit block on the
                     clearInterval(waitForChangeBtn)
 
                     query('.fit_car.pdp span').addEventListener('click', () => {
-                        changeCar()
+                        changeCar(false)
                         callEvent('Change', 'Guaranteed fitment')
                     })
                 }
@@ -242,8 +241,8 @@ const drawPdpFit = () => { // add a Fit block to the PDP
         const preselectedCarModel = selectedCarModel || query('.prod_vehicle>div').innerText
 
         addFitChangePDP({ carModel: preselectedCarModel, isChangeBtn: false })
-    } 
-    
+    }
+
     // else if (localStorage.getItem('upsale') === 'true' && query('.js-header-garage-mmy').innerText === localStorage.getItem('car')) { // if upsale
     //     console.log('//////');
     //     console.log('%c UPSALE', 'color: purple');
@@ -251,7 +250,7 @@ const drawPdpFit = () => { // add a Fit block to the PDP
 
     //     addFitChangePDP({ carModel: selectedCarModel, isUpsale: 'true' })
     // } 
-    
+
     else {
         const defaultPdpFit = /*html*/`
                 <div class="fit_unselect_car">
@@ -268,7 +267,7 @@ const drawPdpFit = () => { // add a Fit block to the PDP
 
                 query('.fit_unselect_car span').addEventListener('click', () => {
                     // getId('selectBtnReact').click()
-                    changeCar()
+                    changeCar(true)
                     callEvent('Select your vehicle', 'Guaranteed fitment')
                 })
 
