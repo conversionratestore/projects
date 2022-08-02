@@ -349,7 +349,8 @@ function dateDiff(a,b){
 
 function renderPriceDay(startDate,endDate,total) {
     let days = dateDiff(endDate,startDate);
-    let priceDay = (+(total.replace(/[^\d\.]/g,'')) / +days).toFixed(2);
+    let sumStr = total.toString().replace(/[^\d\.]/g,'')
+    let priceDay = (+sumStr / +days).toFixed(2);
     return priceDay;
 }
 
@@ -605,7 +606,6 @@ let start = setInterval(() => {
                 if (document.querySelector('#parkingat > div > article > div.flex > button') != null) {
                     document.querySelector('#parkingat > div > article > div.flex > button').addEventListener('click', (e) => pushDataLayer('Click at Reserve now button'))
                 }
-               
 
                 window.addEventListener('scroll', () => {
                     if ((document.querySelector('#detail-info > button.ant-btn') != null || document.querySelector('#parkingat > div > article > div.flex.flex-col > button') != null) && document.querySelector('.fix_footer') != null) {
