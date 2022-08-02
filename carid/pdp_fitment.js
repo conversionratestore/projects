@@ -178,7 +178,6 @@ const changeCar = (isSubtitle) => {
 * Return the Fit Block HTML with or without selected Car model
 * @param {string} carModel - the Model of the selected Car.
 * @param {boolean} [isPDP = true] - Is it a PDP?
-* @param {boolean} [isUpsale = false] - Is it a Upsale?
 * @param {boolean} [isChangeBtn = true] - Is it Btn?
 */
 const addFitChangePDP = (params) => { // replace vehicle with a Fit block on the PDP
@@ -221,40 +220,25 @@ const addFitChangePDP = (params) => { // replace vehicle with a Fit block on the
     isUpsale ? localStorage.setItem('upsale', 'true') : localStorage.setItem('upsale', 'false')
 }
 
-const drawPdpFit = () => { // add a Fit block to the PDP
-    const selectedCarModel = JSON.parse(localStorage.garageData).current || localStorage.getItem('car')
-    // const selectedCarModel = localStorage.getItem('car')
+const drawPdpFit = () => { // add a Fit block to the PDP    
+    const selectedCarModel = localStorage.getItem('car')
     const selectedProduct = localStorage.getItem('product')
 
     console.log('selectedCarModel', selectedCarModel);
 
     if ( // if car model and product fit each other 
-        selectedCarModel &&
         query('.prod-title .name').innerText === selectedProduct
-        && query('.js-header-garage-mmy').innerText === selectedCarModel
+        && JSON.parse(localStorage.garageData).current === selectedCarModel
     ) {
         console.log('%c if car model and product fit each other ', 'color: purple');
 
         addFitChangePDP({ carModel: selectedCarModel })
     } else if (!getId('selectBtnReact')) { // if car is preselected on the PDP  
-
         console.log('%c if car is preselected on the PDP', 'color: purple');
-        console.log('btnreact', getId('selectBtnReact'));
-
-        const preselectedCarModel = selectedCarModel || query('.prod_vehicle>div').innerText
+        const preselectedCarModel = selectedCarModel || query('.prod_vehicle > div').innerText
 
         addFitChangePDP({ carModel: preselectedCarModel, isChangeBtn: false })
-    }
-
-    // else if (localStorage.getItem('upsale') === 'true' && query('.js-header-garage-mmy').innerText === localStorage.getItem('car')) { // if upsale
-    //     console.log('//////');
-    //     console.log('%c UPSALE', 'color: purple');
-    //     console.log('//////');
-
-    //     addFitChangePDP({ carModel: selectedCarModel, isUpsale: 'true' })
-    // } 
-
-    else {
+    } else {
         const defaultPdpFit = /*html*/`
                 <div class="fit_unselect_car">
                     <p>Guaranteed Fitment</p>
@@ -269,11 +253,9 @@ const drawPdpFit = () => { // add a Fit block to the PDP
                 clearInterval(waitForDefaultPdpFit)
 
                 query('.fit_unselect_car span').addEventListener('click', () => {
-                    // getId('selectBtnReact').click()
                     changeCar(true)
                     callEvent('Select your vehicle', 'Guaranteed fitment')
                 })
-
             }
         }, intervalTimeout)
     }
@@ -286,9 +268,6 @@ const addFitToPopup = () => {
 
             const car = query('.po-header-selected .title').innerText
             const product = query('.prod-title .name').innerText
-
-            console.log('Selected Car is' + car);
-            console.log('Selected Product is' + product);
 
             localStorage.setItem('car', car)
             localStorage.setItem('product', product)
@@ -316,11 +295,6 @@ const addFitToPopup = () => {
 /** GO Events */
 
 const callEvent = (eventAction, eventLabel = '') => {
-    // console.log('////////');
-    // console.log(`%c ${eventAction}`, 'color: yellow');
-    // console.log(eventLabel);
-    // console.log('////////');
-
     window.dataLayer = window.dataLayer || []
     dataLayer.push({
         'event': 'event-to-ga',
@@ -461,8 +435,6 @@ const observePopup = () => { // make changes when Popup is opened
                 if (node.matches('.po')) { // if wheel doesn't fit the car
                     mainObserver.disconnect()
 
-                    console.log('POOOOOOOOOO');
-
                     query('.fit_car.pdp') ? query('.fit_car.pdp').hidden = true : null
                     query('.fit_unselect_car') ? query('.fit_unselect_car').hidden = false : null
 
@@ -533,19 +505,10 @@ const observePopup = () => { // make changes when Popup is opened
 document.head.insertAdjacentHTML('beforeend', style) // add CSS
 
 const waitForAddCartBtn = setInterval(() => {
-    if (query('.prod-title .name') && query('.js-header-garage-mmy')) {
+    if (query('.prod-title .name')) {
         clearInterval(waitForAddCartBtn)
 
-        console.log(query('.prod-title .name'));
-        console.log(query('.js-header-garage-mmy'));
-
-        console.log('DRAWWWWWWW');
-
-        setTimeout(() => {
-            drawPdpFit()
-        }, 500);
-
-
+        drawPdpFit()
     }
 }, intervalTimeout)
 
