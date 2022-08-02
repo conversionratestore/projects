@@ -200,7 +200,7 @@ const addFitChangePDP = (params) => { // replace vehicle with a Fit block on the
                 }
             }, intervalTimeout)
         }
-    } else {
+    } if (!query('.po_prod .fit_car')) {
         query('.po_prod').insertAdjacentHTML('afterbegin', fitToBlock)
     }
 
@@ -417,7 +417,7 @@ const observePopup = () => { // make changes when Popup is opened
 
                 console.log(node);
 
-                if (node.matches('.overlay_portal') && disable === false) {
+                if ((node.matches('#child_products_tbl') || node.matches('.overlay_portal')) && disable === false) {
                     addFitToPopup()
                 }
 
