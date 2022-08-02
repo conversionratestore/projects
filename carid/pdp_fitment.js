@@ -215,7 +215,7 @@ const drawPdpFit = () => { // add a Fit block to the PDP
 
     if ( // if car model and product fit each other 
         query('.prod-title .name').innerText === selectedProduct
-        && JSON.parse(localStorage.garageData).current === selectedCarModel
+        && query('.js-header-garage-mmy').innerText === selectedCarModel
     ) {
         console.log('%c if car model and product fit each other ', 'color: purple');
 
