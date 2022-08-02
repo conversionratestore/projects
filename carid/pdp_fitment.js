@@ -527,6 +527,11 @@ const waitForAddCartBtn = setInterval(() => {
     if (query('.prod-title .name') && query('.js-header-garage-mmy')) {
         clearInterval(waitForAddCartBtn)
 
+        console.log(query('.prod-title .name'));
+        console.log(query('.js-header-garage-mmy'));
+
+        console.log('DRAWWWWWWW');
+
         drawPdpFit()
     }
 }, intervalTimeout)
