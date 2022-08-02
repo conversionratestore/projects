@@ -226,6 +226,8 @@ const drawPdpFit = () => { // add a Fit block to the PDP
     // const selectedCarModel = localStorage.getItem('car')
     const selectedProduct = localStorage.getItem('product')
 
+    console.log('selectedCarModel', selectedCarModel);
+
     if ( // if car model and product fit each other 
         selectedCarModel &&
         query('.prod-title .name').innerText === selectedProduct
@@ -276,8 +278,6 @@ const drawPdpFit = () => { // add a Fit block to the PDP
         }, intervalTimeout)
     }
 }
-
-
 
 const addFitToPopup = () => {
     const waitForTitle = setInterval(() => {
@@ -541,7 +541,11 @@ const waitForAddCartBtn = setInterval(() => {
 
         console.log('DRAWWWWWWW');
 
-        drawPdpFit()
+        setTimeout(() => {
+            drawPdpFit()
+        }, 500);
+
+
     }
 }, intervalTimeout)
 
