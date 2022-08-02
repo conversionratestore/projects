@@ -133,6 +133,47 @@ const style = /*html*/`
         </style>
     `
 
+const changeCar = () => {
+    getId('selectBtnReact').click()
+
+    const waitForHeader = setInterval(() => {
+        setTimeout(() => {
+            if (query('.po_header')) {
+                clearInterval(waitForHeader)
+
+                if (!query('.po_header').innerText.toLowerCase().includes('select')) {
+                    const waitForChangeBtn = setInterval(() => {
+                        if (query('.-po-change-vehicle')) {
+                            clearInterval(waitForChangeBtn)
+
+                            query('#child_products_tbl .fit_car')?.remove()
+                            query('.-po-change-vehicle').click()
+                        }
+                    }, intervalTimeout)
+
+                    const waitForHeaderAgain = setInterval(() => {
+                        if (query('.po_header')) {
+                            clearInterval(waitForHeaderAgain)
+
+                            const header = /*html*/`
+                            <p class="header">SELECT YOUR VEHICLE</p>
+                            <p class="subheader">Get the perfect fit & an accurate price quote</p>`
+
+                            query('.po_header').innerHTML = header
+                        }
+                    }, intervalTimeout)
+                } else {
+                    const header = /*html*/`
+                    <p class="header">SELECT YOUR VEHICLE</p>
+                    <p class="subheader">Get the perfect fit & an accurate price quote</p>`
+
+                    query('.po_header').innerHTML = header
+                }
+            }
+        }, 500);
+    }, intervalTimeout)
+}
+
 /**
 * Return the Fit Block HTML with or without selected Car model
 * @param {string} carModel - the Model of the selected Car.
@@ -181,7 +222,8 @@ const addFitChangePDP = (params) => { // replace vehicle with a Fit block on the
 }
 
 const drawPdpFit = () => { // add a Fit block to the PDP
-    const selectedCarModel = localStorage.getItem('car')
+    const selectedCarModel = JSON.parse(localStorage.garageData).current
+    // const selectedCarModel = localStorage.getItem('car')
     const selectedProduct = localStorage.getItem('product')
 
     if ( // if car model and product fit each other 
@@ -220,7 +262,8 @@ const drawPdpFit = () => { // add a Fit block to the PDP
                 clearInterval(waitForDefaultPdpFit)
 
                 query('.fit_unselect_car span').addEventListener('click', () => {
-                    getId('selectBtnReact').click()
+                    // getId('selectBtnReact').click()
+                    changeCar()
                     callEvent('Select your vehicle', 'Guaranteed fitment')
                 })
 
@@ -229,46 +272,7 @@ const drawPdpFit = () => { // add a Fit block to the PDP
     }
 }
 
-const changeCar = () => {
-    getId('selectBtnReact').click()
 
-    const waitForHeader = setInterval(() => {
-        setTimeout(() => {
-            if (query('.po_header')) {
-                clearInterval(waitForHeader)
-
-                if (!query('.po_header').innerText.toLowerCase().includes('select')) {
-                    const waitForChangeBtn = setInterval(() => {
-                        if (query('.-po-change-vehicle')) {
-                            clearInterval(waitForChangeBtn)
-
-                            query('#child_products_tbl .fit_car')?.remove()
-                            query('.-po-change-vehicle').click()
-                        }
-                    }, intervalTimeout)
-
-                    const waitForHeaderAgain = setInterval(() => {
-                        if (query('.po_header')) {
-                            clearInterval(waitForHeaderAgain)
-
-                            const header = /*html*/`
-                            <p class="header">SELECT YOUR VEHICLE</p>
-                            <p class="subheader">Get the perfect fit & an accurate price quote</p>`
-
-                            query('.po_header').innerHTML = header
-                        }
-                    }, intervalTimeout)
-                } else {
-                    const header = /*html*/`
-                    <p class="header">SELECT YOUR VEHICLE</p>
-                    <p class="subheader">Get the perfect fit & an accurate price quote</p>`
-
-                    query('.po_header').innerHTML = header
-                }
-            }
-        }, 500);
-    }, intervalTimeout)
-}
 
 const addFitToPopup = () => {
     const waitForTitle = setInterval(() => {
@@ -496,7 +500,7 @@ const observePopup = () => { // make changes when Popup is opened
 
                 if (node.matches('.overlay_portal')) {
                     /* events if wheel doesn't fit the car */
-                    clickOnX()               
+                    clickOnX()
 
                     /* popup events */
 
