@@ -418,7 +418,6 @@ const clickOnClickHere = () => {
             query('.po_notif_msg_a').addEventListener('click', () => {
                 if (query('#child_products_tbl .fit_car')) {
                     if (query('.po_notif_msg_check_mark')) {
-                        console.log('green');
                         query('#child_products_tbl .fit_car').hidden = true;
                     } else {
                         query('#child_products_tbl .fit_car').hidden = false;
@@ -444,7 +443,6 @@ const observePopup = () => {
         for (let mutation of mutations) {
             for (let node of mutation.addedNodes) {
                 if (!(node instanceof HTMLElement)) continue
-                console.log(node);
 
                 if (node.matches('#child_products_tbl')) { // products changed
                     const waitForCarModel = setInterval(() => {
@@ -459,9 +457,6 @@ const observePopup = () => {
                             myCarObj.isFit = true
                             setItem('myCarStorageObj', myCarObj)
 
-                            console.log('model name changed!');
-                            console.log('current storage obj: ', parsedObj('myCarStorageObj'))
-
                             drawPopupFit()
                             drawPdpFit()
                         }
@@ -469,8 +464,6 @@ const observePopup = () => {
                 }
 
                 if (node.matches('.overlay_portal')) { // popup opened
-                    console.log('overlay node');
-
                     drawPopupFit()
                     clickOnClickHere()
 
@@ -486,9 +479,6 @@ const observePopup = () => {
                     const myCarObj = parsedObj('myCarStorageObj')
                     myCarObj.isFit = false
                     setItem('myCarStorageObj', myCarObj)
-
-                    console.log('isFit set to false');
-                    console.log('current storage obj: ', parsedObj('myCarStorageObj'))
 
                     drawPdpFit()
 
