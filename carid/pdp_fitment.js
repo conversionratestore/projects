@@ -386,7 +386,7 @@ const drawPopupFit = () => {
                 const carModel = parsedObj('myCarStorageObj').carModel
 
                 const fitToBlock = /*html*/` 
-                    <div class="fit_car">
+                    <div class="fit_car" hidden>
                         <div><img src="${imgFolderUrl}check-circle.svg" alt="check"></div>
                         <div>
                             <p>Guaranteed fit to</p>
@@ -397,11 +397,11 @@ const drawPopupFit = () => {
                 query('.po_prod').insertAdjacentHTML('afterbegin', fitToBlock)
 
                 const waitForMsg = setInterval(() => {
-                    if (query('po_notif_msg') && query('.po_prod .fit_car')) {
+                    if (query('.po_notif_msg') && query('.po_prod .fit_car')) {
                         clearInterval(waitForMsg)
 
-                        if (query('.po_notif_msg .po_notif_msg_attention_grey_mark')) {
-                            query('.po_prod .fit_car').hidden = true
+                        if(query('.po_notif_msg_check_mark')) {
+                            query('.po_prod .fit_car').hidden = false
                         }
                     }
                 }, intervalTimeout)
@@ -410,22 +410,25 @@ const drawPopupFit = () => {
     }
 }
 
+const clickHereLogic = () => {
+    if (query('#child_products_tbl .fit_car')) {
+        if (query('.po_notif_msg_check_mark')) {
+            query('#child_products_tbl .fit_car').hidden = true;
+        } else {
+            query('#child_products_tbl .fit_car').hidden = false;
+        }
+    }
+
+    callEvent('Click here', 'Popup. Product options')
+}
+
 const clickOnClickHere = () => {
     const waitForEl = setInterval(() => {
         if (query('.po_notif_msg_a')) {
             clearInterval(waitForEl)
 
-            query('.po_notif_msg_a').addEventListener('click', () => {
-                if (query('#child_products_tbl .fit_car')) {
-                    if (query('.po_notif_msg_check_mark')) {
-                        query('#child_products_tbl .fit_car').hidden = true;
-                    } else {
-                        query('#child_products_tbl .fit_car').hidden = false;
-                    }
-                }
-
-                callEvent('Click here', 'Popup. Product options')
-            })
+            query('.po_notif_msg_a').removeEventListener('click', clickHereLogic) // remove dublicates
+            query('.po_notif_msg_a').addEventListener('click', clickHereLogic)            
         }
     }, intervalTimeout)
 }
@@ -458,14 +461,15 @@ const observePopup = () => {
                             setItem('myCarStorageObj', myCarObj)
 
                             drawPopupFit()
-                            drawPdpFit()
+                            drawPdpFit()                           
+
+                            clickOnClickHere()
                         }
                     }, intervalTimeout)
                 }
 
                 if (node.matches('.overlay_portal')) { // popup opened
                     drawPopupFit()
-                    clickOnClickHere()
 
                     /* popup events */
                     clickOnX()
