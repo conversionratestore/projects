@@ -77,19 +77,12 @@ const style = /*html*/`
             }
 
             .fit_car {
-                position: absolute;
-                top: 18px;
-                right: 22px;
                 display: flex;
                 flex-direction: row;
                 align-items: center;
             }
 
-            .fit_car.pdp {
-                position: relative;
-                top: auto;
-                right: auto;
-            }
+            #child_products_tbl .fit_car {float: right; padding-left: 20px;}
 
             .fit_unselect_car[hidden],
             .fit_car[hidden],
@@ -134,10 +127,20 @@ const style = /*html*/`
             #child_products_tbl .po_prod:first-child .po_prod_sku {
                 position: absolute;
                 right: 22px;
-                top: 45px;
+                top: 37px;
             }
 
-            .po_prod_title {width: 75%;}
+            /*.po_prod_title {width: 75%;} */
+
+            @media screen and (max-width: 740px) {
+                #child_products_tbl .fit_car {float: left; padding: 0;}
+
+                #child_products_tbl .po_prod:first-child .po_prod_sku {
+                    position: relative;
+                    top: auto;
+                    right: auto;
+                }
+            }
         </style>
     `
 
@@ -412,7 +415,7 @@ const drawPopupFit = () => {
                         </div>
                     </div>`
 
-                query('.po_prod').insertAdjacentHTML('afterbegin', fitToBlock)
+                query('.po_prod .po_prod_info').insertAdjacentHTML('afterbegin', fitToBlock)
 
                 const waitForMsg = setInterval(() => {
                     if (query('.clear + div') && query('.po_prod .fit_car')) {
