@@ -219,12 +219,15 @@ const clickOnX = () => {
     }, intervalTimeout)
 }
 
+const changeEventLogic = () => { callEvent('Change vehicle', 'Popup. Product options') }
+
 const clickOnChange = () => {
     const waitForEl = setInterval(() => {
         if (query('.-po-change-vehicle')) {
             clearInterval(waitForEl)
 
-            query('.-po-change-vehicle').addEventListener('click', () => callEvent('Change vehicle', 'Popup. Product options'))
+            query('.-po-change-vehicle').removeEventListener('click', changeEventLogic)
+            query('.-po-change-vehicle').addEventListener('click', changeEventLogic)
         }
     }, intervalTimeout)
 }
@@ -509,6 +512,7 @@ const observePopup = () => {
 
                     clickOnCancelAndAddCart()
                     clickOnPopupFormSelect()
+                    clickOnChange()
                 }
             }
         }
