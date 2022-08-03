@@ -132,7 +132,9 @@ const style = /*html*/`
             }
 
             #child_products_tbl .po_prod:first-child .po_prod_sku {
-                padding-top: 40px;
+                position: absolute;
+                right: 22px;
+                top: 45px;
             }
 
             .po_prod_title {width: 75%;}
@@ -320,8 +322,14 @@ const drawPdpFit = () => {
                 (parsedObj('myCarStorageObj').isFit && parsedObj('myCarStorageObj').carModel)
                 || query('.prod_vehicle > div').innerText !== 'Vehicle Specific'
             ) { // fit or Preselected Car
+
+
                 const carModel = parsedObj('myCarStorageObj').carModel || query('.prod_vehicle > div').innerText
                 const isChangeBtn = getId('selectBtnReact') ? true : false
+
+                myCarObj.carModel = carModel
+                myCarObj.isFit = true
+                setItem('myCarStorageObj', myCarObj)
 
                 const fitToSelectedCar = /*html*/`                     
                         <div class="fit_car pdp">
@@ -398,10 +406,12 @@ const drawPopupFit = () => {
                 query('.po_prod').insertAdjacentHTML('afterbegin', fitToBlock)
 
                 const waitForMsg = setInterval(() => {
-                    if (query('.po_notif_msg') && query('.po_prod .fit_car')) {
+                    if (query('.clear + div') && query('.po_prod .fit_car')) {
                         clearInterval(waitForMsg)
 
-                        if (query('.po_notif_msg_check_mark')) {
+                        if (query('.po_notif_msg_attention_grey_mark')) {
+                            query('.po_prod .fit_car').hidden = true
+                        } else {
                             query('.po_prod .fit_car').hidden = false
                         }
                     }
@@ -447,6 +457,8 @@ const observePopup = () => {
         for (let mutation of mutations) {
             for (let node of mutation.addedNodes) {
                 if (!(node instanceof HTMLElement)) continue
+
+                console.log('node', node);
 
                 if (node.matches('#child_products_tbl')) { // products changed
                     const waitForCarModel = setInterval(() => {
