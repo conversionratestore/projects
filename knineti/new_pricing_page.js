@@ -1,5 +1,6 @@
+// pricing page
 let startFunk = setInterval(() => {
-  if (document.querySelector(".content-sidebar-wrap")) {
+  if (document.querySelector(".new-price-list")) {
     clearInterval(startFunk)
 
     let styleVar = /*html */ `
@@ -824,7 +825,6 @@ main {
   }
 }
 
-
       </style>
     `
 
@@ -1447,6 +1447,151 @@ main {
       })
 
       visible(element)
+    }
+  }
+}, 10)
+
+//checkout
+let checkoutFunk = setInterval(() => {
+  if (document.querySelector(".payment_inform_box")) {
+    clearInterval(checkoutFunk)
+
+    let styleCheckoutVar = /*html */ `
+    <style>
+      .payment_order .subtitle_text:nth-child(1){
+        display: none;
+      }
+      .payment_inform_box li.payment_order > div{
+        padding: 28px 0;
+      }
+      .payment_inform_box li > div table tbody tr td{
+        line-height: 167% !important;
+      }
+      .payment_inform_box li > div table tbody tr td:nth-child(2){
+        text-decoration-line: line-through !important;
+      }
+      .payment_inform_box li > div table thead tr th:nth-child(1){
+        font-family: "Inter", sans-serif !important;
+        text-align: left;
+        color: #1D3871;
+        font-weight: 700;
+        font-size: 14px !important;
+        line-height: 17px;
+        padding: 0 0 0 25px;
+        text-transform: unset !important;
+      }
+      .payment_inform_box li > div table thead tr th:nth-child(3){
+        padding-right: 25px;
+      }
+      .payment_inform_box li.payment_order > div > p{
+        display: block !important;
+        margin: 20px 25px 0 0 !important;
+      }
+      .new_table_block:not(:last-of-type){
+        background: #F9FCFF;
+      }
+      .payment_inform_box li > div table tbody tr.new_table_block:not(:last-of-type) td:nth-child(2){
+        padding: 0 15px 18px;
+      }
+       .payment_inform_box li > div table tbody tr.new_table_block:not(:last-of-type) td:nth-child(3){
+        padding: 0 25px 18px 0;
+       }
+      .payment_inform_box li > div table tbody tr.new_table_block:last-child td{
+        padding-bottom: 16px;
+      }
+      .payment_inform_box li > div table tr td:nth-child(1){
+        padding-left: 25px;
+        max-width: 320px;
+      }
+      .payment_inform_box li > div table tr td:nth-child(3){
+        padding-right: 25px;
+      }
+
+      @media (max-width: 767px) {
+        .payment_inform_box li > div table tr td:nth-child(1),
+        .payment_inform_box li > div table thead tr th:nth-child(1){
+          padding-left: 15px;
+        }
+        .payment_inform_box li > div table tr td:nth-child(3),
+        .payment_inform_box li > div table thead tr th:nth-child(3),
+        .payment_inform_box li > div table tbody tr.new_table_block:not(:last-of-type) td:nth-child(3) {
+          padding-right: 15px;
+        }
+        .payment_inform_box li.payment_order > div > p{
+          margin-right: 15px !important;
+        }
+
+      }
+
+    </style>
+    `
+
+    let newTableBlock = /*html */ `
+    <tr class="new_table_block">
+			<td><b>Exclusive to <span class="name__pricing_plan">Premium</span> Plan</b></td>
+			<td class="actual_price"></td>
+			<td></td>
+		</tr>
+    <tr class="new_table_block">
+			<td>Live Weekly Q&A Group Calls with personal coaching <span class="period_access">(10-week access)</span></td>
+			<td class="actual_price price_group_calls">$999.00</td>
+			<td>$0.00</td>
+		</tr>
+    <tr class="new_table_block">
+			<td>Email your questions - answered in separate downloadable weekly call <span class="period_access">(10-week access)</td>
+			<td class="actual_price price_email_questions">$299.00</td>
+			<td>$0.00</td>
+		</tr>
+    <tr class="new_table_block">
+			<td>Recordings of Weekly Q&A Calls</td>
+			<td class="actual_price">$299.00</td>
+			<td>$0.00</td>
+		</tr>
+    `
+
+    document.head.insertAdjacentHTML("beforeend", styleCheckoutVar)
+    document.querySelector(".payment_order .subtitle_text")?.insertAdjacentHTML("afterend", `<p class="subtitle_text">Order Summary</p>`)
+    if (document.querySelector(".payment_order .subtitle_text").textContent.includes("Prem")) {
+      // Premium plan
+      document.querySelector(".payment_inform_box li > div table thead tr th:nth-child(1)").textContent = "Premium plan"
+      document.querySelector(".payment_inform_box li > div table tbody tr:nth-child(7)")?.insertAdjacentHTML("afterend", newTableBlock)
+      document.querySelectorAll(".total_actual").forEach((el) => {
+        el.textContent = "$2393.10"
+      })
+      document.querySelector("tr.abtest5_2_full")?.remove()
+      document.querySelector("tr.not_basic_main")?.remove()
+    }
+
+    if (document.querySelector(".payment_order .subtitle_text").textContent.includes("Deluxe")) {
+      // Deluxe plan
+      document.querySelector(".payment_inform_box li > div table thead tr th:nth-child(1)").textContent = "Deluxe Plan"
+      document.querySelector(".payment_inform_box li > div table tbody tr:nth-child(7)")?.insertAdjacentHTML("afterend", newTableBlock)
+      if (document.querySelector(".name__pricing_plan")) {
+        document.querySelector(".name__pricing_plan").textContent = "Deluxe"
+      }
+      if (document.querySelector(".period_access")) {
+        document.querySelectorAll(".period_access").forEach((el) => {
+          el.textContent = "(1-year access)"
+        })
+      }
+      if (document.querySelector(".price_group_calls")) {
+        document.querySelector(".price_group_calls").textContent = "$1999.00"
+      }
+      if (document.querySelector(".price_email_questions")) {
+        document.querySelector(".price_email_questions").textContent = "$599.00"
+      }
+
+      document.querySelectorAll(".total_actual").forEach((el) => {
+        el.textContent = "$3993.10"
+      })
+      document.querySelector("tr.abtest5_2_full")?.remove()
+      document.querySelector("tr.not_basic_main")?.remove()
+    }
+
+    if (document.querySelector(".payment_order .subtitle_text").textContent.includes("Basic")) {
+      // Basic plan
+      document.querySelector(".payment_inform_box li > div table thead tr th:nth-child(1)").textContent = "Basic plan"
+      document.querySelector(".payment_inform_box li > div table tbody tr:nth-child(7)")?.after(document.querySelector("tr.abtest5_2_full"))
     }
   }
 }, 10)
