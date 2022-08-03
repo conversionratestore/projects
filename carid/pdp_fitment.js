@@ -166,7 +166,7 @@ const formSelectLogic = (e) => {
         const option_name = el.getAttribute('value')
         const select_name = el.closest('.po-select').dataset.placeholder
 
-        callEvent(`Option ${option_name} in select ${select_name}`)
+        callEvent(`Option ${option_name} in select ${select_name}`, 'Popup. Select your vehicle')
     }
 }
 
