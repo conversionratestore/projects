@@ -258,10 +258,11 @@ const setItem = (name, value) => sessionStorage.setItem(name, JSON.stringify(val
 
 /** Website Logic and HTML */
 
-if (!parsedObj('myCarStorageObj')) {
+if (!parsedObj('myCarStorageObj') || parsedObj('myCarStorageObj').pageName !== window.location.pathname) {
     const defaultCarObj = {
         carModel: '',
-        isFit: false, // 
+        isFit: false,
+        pageName: window.location.pathname
     }
 
     setItem('myCarStorageObj', defaultCarObj)
@@ -400,7 +401,7 @@ const drawPopupFit = () => {
                     if (query('.po_notif_msg') && query('.po_prod .fit_car')) {
                         clearInterval(waitForMsg)
 
-                        if(query('.po_notif_msg_check_mark')) {
+                        if (query('.po_notif_msg_check_mark')) {
                             query('.po_prod .fit_car').hidden = false
                         }
                     }
@@ -428,7 +429,7 @@ const clickOnClickHere = () => {
             clearInterval(waitForEl)
 
             query('.po_notif_msg_a').removeEventListener('click', clickHereLogic) // remove dublicates
-            query('.po_notif_msg_a').addEventListener('click', clickHereLogic)            
+            query('.po_notif_msg_a').addEventListener('click', clickHereLogic)
         }
     }, intervalTimeout)
 }
@@ -461,7 +462,7 @@ const observePopup = () => {
                             setItem('myCarStorageObj', myCarObj)
 
                             drawPopupFit()
-                            drawPdpFit()                           
+                            drawPdpFit()
 
                             clickOnClickHere()
                         }
