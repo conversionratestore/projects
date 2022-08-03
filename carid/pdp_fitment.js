@@ -18,6 +18,15 @@ const style = /*html*/`
                 align-items: center;
             }
 
+            .fit_unselect_car {
+                display: flex;
+                flex-direction: row;
+            }
+
+            .fit_unselect_car div:first-child {
+                margin-right: 12px;
+            }
+
             .fit_unselect_car p {
                 font-weight: 400;
                 font-size: 18px;
@@ -90,13 +99,12 @@ const style = /*html*/`
 
             .fit_car div:first-child { 
                 display: flex; 
-                margin-right: 9px;
             }
 
             .fit_car p {
                 font-weight: 400;
                 font-size: 14px;
-                line-height: 16px;
+                line-height: 17px;
                 color: #000000;
                 margin: 0;
             }
@@ -105,13 +113,13 @@ const style = /*html*/`
                 font-weight: 500;
             }
 
-            .fit_car.pdp div:first-child {
-                margin-right: 14px;
+            .fit_car div:first-child {
+                margin-right: 12px;
             }
 
-            .fit_car.pdp img {
-                height: 36px;
-                width: 36px;
+            .fit_car img {
+                height: 40px;
+                width: 40px;
             }
 
             /* TODO: make bigger font-size*/
@@ -339,8 +347,13 @@ const drawPdpFit = () => {
             else if (myCarObj.isFit === false || myCarObj.carModel === '') { // if not Fit status
                 const fitToUnSelectedCar = /*html*/`                    
                     <div class="fit_unselect_car">
-                        <p>Guaranteed Fitment</p>
-                        <p><span>Select your vehicle</span> to check the fitment</p>
+                        <div>
+                            <img src="https://cdn.carid.com/css/prod-images/9fffff65.svg" alt="arrow">
+                        </div>
+                        <div>
+                            <p>Guaranteed Fitment</p>
+                            <p><span>Select your vehicle</span> to check the fitment</p>
+                        </div>
                     </div>`
 
                 query('.fit_wrapper').innerHTML = fitToUnSelectedCar
@@ -384,10 +397,10 @@ const drawPopupFit = () => {
                 query('.po_prod').insertAdjacentHTML('afterbegin', fitToBlock)
 
                 const waitForMsg = setInterval(() => {
-                    if(query('po_notif_msg') && query('.po_prod .fit_car')) {
+                    if (query('po_notif_msg') && query('.po_prod .fit_car')) {
                         clearInterval(waitForMsg)
-                
-                        if(query('.po_notif_msg .po_notif_msg_attention_grey_mark')) {
+
+                        if (query('.po_notif_msg .po_notif_msg_attention_grey_mark')) {
                             query('.po_prod .fit_car').hidden = true
                         }
                     }
