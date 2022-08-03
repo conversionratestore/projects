@@ -153,29 +153,43 @@ const callEvent = (eventAction, eventLabel = '') => {
     })
 }
 
+const formSelectLogic = (e) => {
+    const el = e.target
+
+    if (el.matches('.po-select') || el.matches('.value')) {
+        const select_name = el.closest('.po-select').dataset.placeholder
+
+        callEvent(`Select ${select_name}`, 'Popup. Select your vehicle')
+    }
+
+    if (el.matches('.item')) {
+        const option_name = el.getAttribute('value')
+        const select_name = el.closest('.po-select').dataset.placeholder
+
+        callEvent(`Option ${option_name} in select ${select_name}`)
+    }
+}
+
 const clickOnPopupFormSelect = () => {
     const waitForPopupFormSelect = setInterval(() => {
         if (query('.po_submodel')) {
             clearInterval(waitForPopupFormSelect)
 
-            query('.po_submodel').addEventListener('click', (e) => {
-                const el = e.target
-
-                if (el.matches('.po-select') || el.matches('.value')) {
-                    const select_name = el.closest('.po-select').dataset.placeholder
-
-                    callEvent(`Select ${select_name}`, 'Popup. Select your vehicle')
-                }
-
-                if (el.matches('.item')) {
-                    const option_name = el.getAttribute('value')
-                    const select_name = el.closest('.po-select').dataset.placeholder
-
-                    callEvent(`Option ${option_name} in select ${select_name}`)
-                }
-            })
+            query('.po_submodel').removeEventListener('click', formSelectLogic)
+            query('.po_submodel').addEventListener('click', formSelectLogic)
         }
     }, intervalTimeout)
+}
+
+const cancelAndAddLogic = (e) => {
+    const el = e.target
+
+    if (el.closest('#cancel-anchor')) {
+        callEvent('Cancel', 'Popup. Select your vehicle')
+    }
+    if (el.closest('.po_button_holder')?.querySelector('button')?.innerText === 'Add To Cart'.toUpperCase()) {
+        callEvent('Add to cart', 'Popup. Select your vehicle')
+    }
 }
 
 const clickOnCancelAndAddCart = () => {
@@ -183,16 +197,8 @@ const clickOnCancelAndAddCart = () => {
         if (queryAll('.group-buttons button')[1]) {
             clearInterval(waitForEl)
 
-            query('.group-buttons').addEventListener('click', (e) => {
-                const el = e.target
-
-                if (el.closest('#cancel-anchor')) {
-                    callEvent('Cancel', 'Popup. Select your vehicle')
-                }
-                if (el.closest('.po_button_holder')?.querySelector('button')?.innerText === 'Add To Cart'.toUpperCase()) {
-                    callEvent('Add to cart', 'Popup. Select your vehicle')
-                }
-            })
+            query('.group-buttons').removeEventListener('click', cancelAndAddLogic)
+            query('.group-buttons').addEventListener('click', cancelAndAddLogic)
         }
     }, intervalTimeout)
 }
@@ -458,8 +464,6 @@ const observePopup = () => {
             for (let node of mutation.addedNodes) {
                 if (!(node instanceof HTMLElement)) continue
 
-                console.log('node', node);
-
                 if (node.matches('#child_products_tbl')) { // products changed
                     const waitForCarModel = setInterval(() => {
                         if (query('.po-header-selected .title')) {
@@ -502,6 +506,9 @@ const observePopup = () => {
                     viewAttentionPopup()
                     clickOnView()
                     clickOnContinue()
+
+                    clickOnCancelAndAddCart()
+                    clickOnPopupFormSelect()
                 }
             }
         }
