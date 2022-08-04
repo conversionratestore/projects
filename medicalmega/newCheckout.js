@@ -726,7 +726,7 @@ if ((window.location.href.includes('/login.php') || window.location.href.include
 //         console.log(data)
 //     })
 // }
-let saveAddress = (type,fname,lname,addr1,city,state,zip,country,phn,email) => {
+let saveAddress = (type,fname,lname,addr1,city,stateF,zip,country,phn,email) => {
     let body = JSON.stringify({
             "isPrimary": "1",
             "type": type,
@@ -735,7 +735,7 @@ let saveAddress = (type,fname,lname,addr1,city,state,zip,country,phn,email) => {
             "addr1": addr1,
             "addr2": "",
             "city": city,
-            "state": state,
+            "state": stateF,
             "zip": zip,
             "country": country,
             "phn": phn,
@@ -850,8 +850,10 @@ let billFormHtml = (state, countries_ship, active) => {
     </form>
 `
 }
-let fname, lname;
-let shipBoxHtml = (fname, lname, addr1, city, state, zip, country, phone, type) => {
+let fname, lname, addr1, city, stateF, zip, country, phn, email; //for forms
+
+//ship/bill addresses
+let addressBoxHtml = (fname, lname, addr1, city, state, zip, country, phone, type) => {
     return `
     <div class="address ${type === 'bill' ? 'bill' : 'ship'}">
         <div class="justify-between">
@@ -868,6 +870,16 @@ let shipBoxHtml = (fname, lname, addr1, city, state, zip, country, phone, type) 
     </div>`
 }
 
+let copyShip = (address, checkboxShip, formType) => {
+    checkboxShip.addEventListener('click', (e) => {
+        if (e.target.checked) {
+            for (const keyShip in address) {
+                console.log(keyShip, address[keyShip])
+                document.querySelector(`.${formType}-form dd[name="${keyShip}"]`).value = addresses[0][keyShip]
+            }
+        }
+    })
+}
 //step 2 "Shipping Information"
 if (href.includes('/checkout/step1') ) {
     document.querySelectorAll('.step')[0].classList.add('checked');
@@ -882,7 +894,7 @@ if (href.includes('/checkout/step1') ) {
         let addresses = data['addresses'];
         if (!!addresses && addresses.length > 0) {
             for (let i = 0; i < addresses.length; i++) {
-                document.querySelector('.col-left .head').insertAdjacentHTML('afterend', shipBoxHtml(addresses[i].fname, addresses[i].lname, addresses[i].addr1, addresses[i].city, addresses[i].state, addresses[i].zip, addresses[i].country, addresses[i].phn, addresses[i].type))
+                document.querySelector('.col-left .head').insertAdjacentHTML('afterend', addressBoxHtml(addresses[i].fname, addresses[i].lname, addresses[i].addr1, addresses[i].city, addresses[i].state, addresses[i].zip, addresses[i].country, addresses[i].phn, addresses[i].type))
                 fname = addresses[i].fname;
                 lname = addresses[i].lname;
             }
@@ -897,6 +909,8 @@ if (href.includes('/checkout/step1') ) {
         } else {
             document.querySelector('.col-left .head').insertAdjacentHTML('afterend', shipFormHtml(state, countries_ship))
             document.querySelector('.col-left .head').insertAdjacentHTML('afterend', billFormHtml(state, countries_ship, ''))
+
+            copyShip(addresses[0], document.querySelector('[name="shipping"]'),'bill')
         }
     })
 }
@@ -926,16 +940,16 @@ document.querySelector('.btn-next').addEventListener('click', () => {
            document.querySelector(`.ship-form [name="fname"]`) != null ? fname = document.querySelector(`.ship-form [name="fname"]`) : fname;
            document.querySelector(`.ship-form [name="lname"]`)  != null ? lname = document.querySelector(`.ship-form [name="lname"]`) : fname;
 
-           let addr1 = document.querySelector(`.${type}-form [name="addr1"]`),
-                city = document.querySelector(`.${type}-form [name="city"]`),
-                state = document.querySelector(`.${type}-form [name="state"]`),
-                zip = document.querySelector(`.${type}-form [name="zip"]`),
-                country = document.querySelector(`.${type}-form [name="country"]`),
-                phn = document.querySelector(`.${type}-form [name="phn"]`),
-                email = document.querySelector(`.${type}-form [name="email"]`);
+            addr1 = document.querySelector(`.${type}-form [name="addr1"]`);
+            city = document.querySelector(`.${type}-form [name="city"]`);
+            stateF = document.querySelector(`.${type}-form [name="state"]`);
+            zip = document.querySelector(`.${type}-form [name="zip"]`);
+            country = document.querySelector(`.${type}-form [name="country"]`);
+            phn = document.querySelector(`.${type}-form [name="phn"]`);
+            email = document.querySelector(`.${type}-form [name="email"]`);
 
             let dataDD = document.querySelectorAll(`.${type}-form dd.error`)
-            console.log(type,fname,lname,addr1,city,state,zip,country,phn,email)
+            console.log(type,fname,lname,addr1,city,stateF,zip,country,phn,email)
             let errorsFun = (dataErrors) => {
                 dataDD.forEach(item => {
                     item.classList.remove('error')
@@ -956,8 +970,8 @@ document.querySelector('.btn-next').addEventListener('click', () => {
                             city.parentElement.classList.add('error')
                             city.nextElementSibling.innerHTML = dataErrors[i]
                         } else if (dataErrors[i].includes('State')) {
-                            state.parentElement.classList.add('error')
-                            state.nextElementSibling.innerHTML = dataErrors[i]
+                            stateF.parentElement.classList.add('error')
+                            stateF.nextElementSibling.innerHTML = dataErrors[i]
                         } else if (dataErrors[i].includes('Zip')) {
                             zip.parentElement.classList.add('error')
                             zip.nextElementSibling.innerHTML = dataErrors[i]
@@ -989,7 +1003,7 @@ document.querySelector('.btn-next').addEventListener('click', () => {
                         }
                     })
                 } else {
-                    postFetch('/api/v1/addresses', saveAddress('ship',fname.value,fname.value,addr1.value,city.value,state.value,zip.value,country.value,phn.value,email.value)).then(data => {
+                    postFetch('/api/v1/addresses', saveAddress('ship',fname.value,fname.value,addr1.value,city.value,stateF.value,zip.value,country.value,phn.value,email.value)).then(data => {
                         console.log(data)
                         let dataErrors = data.errors;
                         if (dataErrors.length < 1) {
@@ -1012,7 +1026,7 @@ document.querySelector('.btn-next').addEventListener('click', () => {
                     fnameNew = fname;
                     lnameNew = lname;
                 }
-                postFetch('/api/v1/addresses', saveAddress('bill',fnameNew,fnameNew,addr1.value,city.value,state.value,zip.value,country.value,phn.value,email.value)).then(data => {
+                postFetch('/api/v1/addresses', saveAddress('bill',fnameNew,fnameNew,addr1.value,city.value,stateF.value,zip.value,country.value,phn.value,email.value)).then(data => {
                     console.log(data)
                     let dataErrors = data.errors;
                     if (dataErrors.length < 1) {
