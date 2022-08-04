@@ -49,7 +49,7 @@ const style = /*html*/`
             }
 
             .js-product-options-link {
-                font-weight: 400;     
+                font-weight: 600;     
                 font-size: 12px;    
             }
 
