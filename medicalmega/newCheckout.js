@@ -224,6 +224,7 @@ let style = `
     dd input[type=checkbox] {
         margin-right: 8px!important;
         width: fit-content;
+        display: block;
     }
     .myAccountleft > form > dd:nth-child(7) {
         font-size: 14px;
@@ -400,6 +401,10 @@ let style = `
         border: none;
         text-align: center;
     }
+    .quantity-btn[disabled] {
+        pointer-events: none;
+        color: #BCC4C7;
+    }
     .quantity {
         color: #344D57;
         text-align: center;
@@ -547,8 +552,30 @@ let style = `
     .relative {
         position: relative;
     }
+    [disabled] {
+        pointer-events: none;
+    }
 </style>`
 
+let obj = {
+    'stepsName': ['Personal information','Shipping information','Payment Method','Confirmation'],
+    'back' : {
+        'personal information' : ['Back to Cart', '/cart.html'],
+        'shipping information' : ['Back to Cart','/cart.html'],
+        'billing information' : ['Back to Shipping Info','/checkout/step1'],
+        'delivery method' : ['Back To Address Info','/checkout/step1'],
+        'payment method': ['Back to Delivery Method','/checkout/step2']
+    },
+    'pricingArr':  {
+        'subtotal': 'Sub total',
+        'shipping': 'Delivery fee',
+        'processing_fee': 'Processing fee',
+        'discount': 'Discount',
+        'tax': 'Tax',
+        'total': 'Grand Total'
+    }
+}
+let href = window.location.href;
 let headerHTML = `
 <header class="header-checkout">
     <div class="flex-center-between container">
@@ -600,19 +627,20 @@ let product = (id, variantId, quantity, subtotal, url, imageUrl, title) => {
                     <a href="${url}" class="checkout-product_img"> 
                         <img src="${imageUrl}" alt="${title}">
                     </a>
-                     <button class="remove" type="button">
+                    ${href.includes('checkout/step2') ? '':`<button class="remove" type="button">
                         <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M6.60688 6L9.68305 2.3332C9.73461 2.27227 9.69126 2.17969 9.61157 2.17969H8.67641C8.62133 2.17969 8.5686 2.2043 8.53227 2.24648L5.99516 5.27109L3.45805 2.24648C3.4229 2.2043 3.37016 2.17969 3.31391 2.17969H2.37876C2.29907 2.17969 2.25571 2.27227 2.30727 2.3332L5.38344 6L2.30727 9.6668C2.29572 9.68038 2.28831 9.69699 2.28592 9.71466C2.28353 9.73233 2.28626 9.75031 2.29379 9.76648C2.30131 9.78264 2.31332 9.79631 2.32838 9.80585C2.34344 9.81539 2.36093 9.82041 2.37876 9.82031H3.31391C3.36899 9.82031 3.42172 9.7957 3.45805 9.75352L5.99516 6.72891L8.53227 9.75352C8.56743 9.7957 8.62016 9.82031 8.67641 9.82031H9.61157C9.69126 9.82031 9.73461 9.72774 9.68305 9.6668L6.60688 6Z" fill="#6D7E85"/>
                         </svg>
-                     </button>
+                     </button>`}
+                   
                 </div>
                 <div>
                     <a href="${url}">${title}</a>
                     <div class="flex-center-between">
                         <div class="items-center">
-                            <button type="button" class="quantity-btn quantity-btn_minus">−</button>
-                            <input type="number" name="quantity" value="${quantity}" class="quantity">
-                            <button type="button" class="quantity-btn quantity-btn_plus">+</button>
+                            <button type="button" class="quantity-btn quantity-btn_minus" ${href.includes('checkout/step2') ? 'disabled': ''}>−</button>
+                            <input type="number" name="quantity" value="${quantity}" class="quantity" ${href.includes('checkout/step2') ? 'disabled': ''}>
+                            <button type="button" class="quantity-btn quantity-btn_plus" ${href.includes('checkout/step2') ? 'disabled': ''}>+</button>
                         </div>
                         <div class="total-price flex">$<b>${subtotal.toFixed(2)}</b></div>
                     </div>
@@ -620,25 +648,6 @@ let product = (id, variantId, quantity, subtotal, url, imageUrl, title) => {
             </div>`
 }
 
-let obj = {
-    'stepsName': ['Personal information','Shipping information','Billing information','Delivery Method','Payment Method','Confirmation'],
-    'back' : {
-        'personal information' : ['Back to Cart', '/cart.html'],
-        'shipping information' : ['Back to Cart','/cart.html'],
-        'billing information' : ['Back to Shipping Info','/checkout/step1'],
-        'delivery method' : ['Back To Address Info','/checkout/step1'],
-        'payment method': ['Back to Delivery Method','/checkout/step2']
-    },
-    'pricingArr':  {
-        'subtotal': 'Sub total',
-        'shipping': 'Delivery fee',
-        'processing_fee': 'Processing fee',
-        'discount': 'Discount',
-        'tax': 'Tax',
-        'total': 'Grand Total'
-    }
-}
-let href = window.location.href;
 let headerFetchAddress = {
     'Content-Type': 'application/x-www-form-urlencoded',
     'Cart-Token': mm.ctoken,
@@ -660,11 +669,11 @@ for (let i = 0; i < obj['stepsName'].length; i++) {
 }
 
 //post
-let postFetch = (host,body) => {
+let postFetch = (host,body,method) => {
     return new Promise((resolve, reject) => {
         fetch(host, {
             headers: headerFetchAddress,
-            method: "POST",
+            method: method,
             body: body
         }).then(res => res.json()).then(data => {
             console.log(data)
@@ -677,7 +686,7 @@ let postFetch = (host,body) => {
 //order
 let cart = () => {
     //get data
-    postFetch('/cart.html',`api=c&cart_action=cart&ctoken=${mm.ctoken}`).then(data => {
+    postFetch('/cart.html',`api=c&cart_action=cart&ctoken=${mm.ctoken}`,'POST').then(data => {
         document.querySelector('.order_body').innerHTML = ''
         document.querySelector('.order_foot').innerHTML = ''
         //add pricing for order
@@ -701,9 +710,12 @@ let cart = () => {
 
             //remove product
             let remove = document.querySelectorAll('.remove');
-            remove[i].addEventListener('click', (e) => {
-                postFetch('/cart.html',`api=c&cart_action=remove&variant_id=${remove[i].closest('.checkout-product').dataset.variantId}&ctoken=${mm.ctoken}`).then(data => cart())
-            })
+            if (!remove) {
+                remove[i].addEventListener('click', (e) => {
+                    postFetch('/cart.html',`api=c&cart_action=remove&variant_id=${remove[i].closest('.checkout-product').dataset.variantId}&ctoken=${mm.ctoken}`,'POST').then(data => cart())
+                })
+            }
+
             //update product
             let plus = document.querySelectorAll('.quantity-btn_plus'),
                 minus = document.querySelectorAll('.quantity-btn_minus'),
@@ -713,19 +725,22 @@ let cart = () => {
                 if (quantity[i].value < 1) {
                     quantity[i].value = 1
                 }
-                postFetch('/cart.html',`api=c&cart_action=update&variant_id=${quantity[i].closest('.checkout-product').dataset.variantId}&quantity=${quantity[i].value}&ctoken=${mm.ctoken}`).then(data => cart())
+                postFetch('/cart.html',`api=c&cart_action=update&variant_id=${quantity[i].closest('.checkout-product').dataset.variantId}&quantity=${quantity[i].value}&ctoken=${mm.ctoken}`,'POST').then(data => cart())
             })
             plus[i].addEventListener('click', () => {
                 quantity[i].value = +quantity[i].value + 1;
                 quantity[i].parentElement.querySelector('.quantity-btn_minus').disabled = false;
 
-                postFetch('/cart.html',`api=c&cart_action=update&variant_id=${plus[i].closest('.checkout-product').dataset.variantId}&quantity=${quantity[i].value}&ctoken=${mm.ctoken}`).then(data => cart())
+                postFetch('/cart.html',`api=c&cart_action=update&variant_id=${plus[i].closest('.checkout-product').dataset.variantId}&quantity=${quantity[i].value}&ctoken=${mm.ctoken}`,'POST').then(data => cart())
             })
-            if (minus[i].nextElementSibling.value < 2) {
-                minus[i].disabled = true;
-            } else {
-                minus[i].disabled = false;
+            if (!href.includes('/checkout/step2') || !href.includes('/checkout/step3') ) {
+                if (minus[i].nextElementSibling.value < 2) {
+                    minus[i].disabled = true;
+                } else {
+                    minus[i].disabled = false;
+                }
             }
+
             minus[i].addEventListener('click', () => {
                 if (minus[i].nextElementSibling.value < 2) {
                     minus[i].nextElementSibling.value = 1;
@@ -733,7 +748,7 @@ let cart = () => {
                 } else {
                     minus[i].nextElementSibling.value = +minus[i].nextElementSibling.value - 1;
                 }
-                postFetch('/cart.html',`api=c&cart_action=update&variant_id=${minus[i].closest('.checkout-product').dataset.variantId}&quantity=${quantity[i].value}&ctoken=${mm.ctoken}`).then(data => cart())
+                postFetch('/cart.html',`api=c&cart_action=update&variant_id=${minus[i].closest('.checkout-product').dataset.variantId}&quantity=${quantity[i].value}&ctoken=${mm.ctoken}`,'POST').then(data => cart())
             })
         }
     })
@@ -741,7 +756,7 @@ let cart = () => {
 cart()
 
 //login/register step
-if ((window.location.href.includes('/login.php') || window.location.href.includes('/register.php')) && document.querySelector('.myAccount') != null) {
+if ((href.includes('/login.php') || href.includes('/register.php')) && document.querySelector('.myAccount') != null) {
     document.querySelector('.col-left .head').after(document.querySelector('.myAccount'))
     document.querySelector('.col-left .head h4').innerHTML = obj['stepsName'][0];
     document.querySelector('.myAccountleft').classList.add('active');
@@ -802,9 +817,9 @@ let saveAddress = (type,fname,lname,addr1,city,stateF,zip,country,phn,email) => 
     return body
 }
 
-let shipFormHtml = (state, countries_ship) => {
+let shipFormHtml = (state, countries_ship, active, edit) => {
    return `
-    <form class="ship-form active">
+    <form class="ship-form ${edit} ${active}">
         <dd style="width: 50%;float:left;padding-right: 8px">
             <label for="fname">Name <span class="c-red"> *</span></label>
             <input type="text" name="fname" placeholder="John">
@@ -850,7 +865,7 @@ let shipFormHtml = (state, countries_ship) => {
             <input type="text" name="phn" placeholder="+1 (XXX) XXX-XXXX">
             <i></i>
         </dd>
-        <dd style="width: 100%;">
+        <dd style="width: 100%;display: ${edit != '' ? 'none':''}">
             <label>
                 <input name="billing" type="checkbox" class="checkbox">
                 <span>My Billing info is different</span>
@@ -858,9 +873,9 @@ let shipFormHtml = (state, countries_ship) => {
         </dd>
     </form>`
 }
-let billFormHtml = (state, countries_ship, active) => {
+let billFormHtml = (state, countries_ship, active, edit) => {
     return `
-    <form class="bill-form ${active}">
+    <form class="bill-form ${active} ${edit}">
         <dd style="width: 100%;">
             <label>
                 <input name="shipping" type="checkbox" class="checkbox">
@@ -926,20 +941,24 @@ let addressCurrentHtml = (fname, lname, addr1, city, state, zip, country, phone,
 }
 
 //copy from shipping
-let copyFromShip = (address, checkboxShip, formType) => {
-    checkboxShip.addEventListener('click', (e) => {
-        if (e.target.checked) {
+let copyFromShip = (e, formType) => {
+    if (e.checked) {
+        fetch(`/api/v1/addresses&type=ship`, {
+            headers: headerFetchAddress,
+            method: "GET",
+        }).then(res => res.json()).then(data => {
+            let address = data['addresses'][0]
             for (const keyShip in address) {
                 console.log(keyShip, address[keyShip])
                 if (document.querySelector(`.${formType}-form dd [name="${keyShip}"]`) != null && address[keyShip] != '') {
                     document.querySelector(`.${formType}-form dd [name="${keyShip}"]`).value = address[keyShip]
                 }
             }
-        }
-    })
+        })
+    }
 }
 //step 2 "Shipping Information"
-let currentAddressShip;
+let currentAddressShip, currentAddressBill;
 if (href.includes('/checkout/step1') || href.includes('/checkout/step2')) {
     document.querySelectorAll('.step')[0].classList.add('checked');
     document.querySelectorAll('.step')[1].classList.add('active');
@@ -957,10 +976,38 @@ if (href.includes('/checkout/step1') ) {
             for (let i = 0; i < addresses.length; i++) {
                 if (addresses[i].type === 'ship') {
                     currentAddressShip = addresses[i]
+                } else {
+                    currentAddressBill = addresses[i]
                 }
                 document.querySelector('.col-left .head').insertAdjacentHTML('afterend', addressCurrentHtml(addresses[i].fname, addresses[i].lname, addresses[i].addr1, addresses[i].city, addresses[i].state, addresses[i].zip, addresses[i].country, addresses[i].phn, addresses[i].type))
                 fname = addresses[i].fname;
                 lname = addresses[i].lname;
+                document.querySelectorAll('.btn-edit').forEach(item => {
+                    item.addEventListener('click', (e) => {
+                        e.stopImmediatePropagation()
+                        if (item.closest('.ship') != null) {
+                            document.querySelector('.col-left .head').insertAdjacentHTML('afterend', shipFormHtml(state, countries_ship,'active', 'edit'))
+                            document.querySelector('.col-left .head h4').innerHTML = obj['stepsName'][1];
+                            for (const keyShip in currentAddressShip) {
+                                if (document.querySelector(`.ship-form > dd [name="${keyShip}"]`) != null) {
+                                    document.querySelector(`.ship-form > dd [name="${keyShip}"]`).value = currentAddressShip[keyShip];
+                                }
+                            }
+                        } else if (item.closest('.bill') != null) {
+                            document.querySelector('.col-left .head').insertAdjacentHTML('afterend', billFormHtml(state, countries_ship, 'active','edit'))
+                            document.querySelector('.col-left .head h4').innerHTML = 'Billing information';
+                            for (const keyBill in currentAddressBill) {
+                                if (document.querySelector(`.ship-form > dd [name="${keyBill}"]`) != null) {
+                                    document.querySelector(`.ship-form > dd [name="${keyBill}"]`).value = currentAddressBill[keyBill];
+                                }
+                            }
+                            document.querySelector('[name="shipping"]').addEventListener('click', (e) => copyFromShip(e.target, 'bill'))
+                        }
+                        document.querySelector('.btn-back span').innerHTML = 'Back';
+                        document.querySelector('.btn-back').href = '/checkout/step1';
+                        document.querySelectorAll('.address').forEach(el => el.style.display = 'none');
+                    })
+                })
             }
             if (document.querySelector('.address.bill') != null) {
                 document.querySelector('.address .link').addEventListener('click', (e) => {
@@ -972,9 +1019,12 @@ if (href.includes('/checkout/step1') ) {
             }
         } else {
             //Shipping Information - not filled
-            document.querySelector('.col-left .head').insertAdjacentHTML('afterend', shipFormHtml(state, countries_ship))
-            document.querySelector('.col-left .head').insertAdjacentHTML('afterend', billFormHtml(state, countries_ship, ''))
-            copyFromShip(currentAddressShip, document.querySelector('[name="shipping"]'), 'bill')
+            document.querySelector('.col-left .head').insertAdjacentHTML('afterend', shipFormHtml(state, countries_ship, 'active', ''))
+            document.querySelector('.col-left .head').insertAdjacentHTML('afterend', billFormHtml(state, countries_ship, '', ''))
+            document.querySelector('[name="shipping"]').addEventListener('click', (e) => {
+                console.log(e.target)
+                copyFromShip(e.target, 'bill')
+            })
         }
     })
 }
@@ -990,27 +1040,36 @@ let deliveryMethodHtml = (i, type, text, price) => {
                 ${text != '' ? '<span class="text">' +text+'</span>':''}
                 <span class="price">${price}</span>
             </span>
-          
         </span>
     </label>`
 }
 
 if (href.includes('/checkout/step2')) {
-    document.querySelector('.col-left .head h4').innerHTML = obj['stepsName'][3];
+    document.querySelector('.col-left .head h4').innerHTML = 'Delivery Method';
     document.querySelectorAll('#ship_options > li').forEach((item, index) => {
         let type = item.querySelector('p > i').innerText,
             text = '',
             price = item.querySelector('p > b').innerText;
+        if (index == 0) {
+            item.querySelector('input').checked = true;
+        }
 
         if (item.querySelectorAll('p').length > 1) {
             text = item.querySelectorAll('p')[item.querySelectorAll('p').length - 1].innerText
         }
-        document.querySelector('.col-left .foot').insertAdjacentHTML('beforebegin',`<div class="delivery-method"></div>`)
+        document.querySelector('.col-left .head').insertAdjacentHTML('afterend',`<div class="delivery-method"></div>`)
         document.querySelector('.delivery-method').insertAdjacentHTML('beforeend', deliveryMethodHtml(index, type, text, price))
         document.querySelectorAll('[name="radio-method"]')[index].addEventListener('input', (e) => {
             document.querySelectorAll('#ship_options > li input')[index].checked = true
         })
     })
+}
+if (href.includes('/checkout/step3')) {
+    document.querySelectorAll('.step')[0].classList.add('checked');
+    document.querySelectorAll('.step')[1].classList.add('checked');
+    document.querySelectorAll('.step')[2].classList.add('active');
+    document.querySelector('.col-left .head h4').innerHTML = obj['stepsName'][4];
+
 }
 
 //set text for back button
@@ -1027,108 +1086,94 @@ document.querySelectorAll('label').forEach(el => {
     }
 })
 
-//add click on next button
-document.querySelector('.btn-next').addEventListener('click', () => {
-    if (document.querySelector('.myAccountright.active') != null) {
-        document.querySelector('#login_btn').click()
-    } else if (document.querySelector('.myAccountleft.active') != null) {
-        document.querySelector('[name="register"]').click()
-    } else if (document.querySelector('.ship-form') != null || document.querySelector('.bill-form') != null) {
-        let address = (type) => {
-           document.querySelector(`.ship-form [name="fname"]`) != null ? fname = document.querySelector(`.ship-form [name="fname"]`) : fname;
-           document.querySelector(`.ship-form [name="lname"]`)  != null ? lname = document.querySelector(`.ship-form [name="lname"]`) : fname;
+let address = (type) => {
+    console.log(type)
+    document.querySelector(`.ship-form [name="fname"]`) != null ? fname = document.querySelector(`.ship-form [name="fname"]`) : fname;
+    document.querySelector(`.ship-form [name="lname"]`)  != null ? lname = document.querySelector(`.ship-form [name="lname"]`) : fname;
 
-            addr1 = document.querySelector(`.${type}-form [name="addr1"]`);
-            city = document.querySelector(`.${type}-form [name="city"]`);
-            stateF = document.querySelector(`.${type}-form [name="state"]`);
-            zip = document.querySelector(`.${type}-form [name="zip"]`);
-            country = document.querySelector(`.${type}-form [name="country"]`);
-            phn = document.querySelector(`.${type}-form [name="phn"]`);
-            email = document.querySelector(`.${type}-form [name="email"]`);
+    addr1 = document.querySelector(`.${type}-form [name="addr1"]`);
+    city = document.querySelector(`.${type}-form [name="city"]`);
+    stateF = document.querySelector(`.${type}-form [name="state"]`);
+    zip = document.querySelector(`.${type}-form [name="zip"]`);
+    country = document.querySelector(`.${type}-form [name="country"]`);
+    phn = document.querySelector(`.${type}-form [name="phn"]`);
+    email = document.querySelector(`.${type}-form [name="email"]`);
 
-            let dataDD = document.querySelectorAll(`.${type}-form dd.error`)
-            console.log(type,fname,lname,addr1,city,stateF,zip,country,phn,email)
-            let errorsFun = (dataErrors) => {
-                dataDD.forEach(item => {
-                    item.classList.remove('error')
-                    item.querySelector('i').innerHTML = ''
-                })
-                if (dataErrors.length > 0) {
-                    for (let i = 0; i < dataErrors.length; i++) {
-                        if (dataErrors[i].includes('First name')) {
-                            fname.parentElement.classList.add('error')
-                            fname.nextElementSibling.innerHTML = dataErrors[i]
-                        } else if (dataErrors[i].includes('Last name')) {
-                            lname.parentElement.classList.add('error')
-                            lname.nextElementSibling.innerHTML = dataErrors[i]
-                        } else if (dataErrors[i].includes('Address')) {
-                            addr1.parentElement.classList.add('error')
-                            addr1.nextElementSibling.innerHTML = dataErrors[i]
-                        } else if (dataErrors[i].includes('City')) {
-                            city.parentElement.classList.add('error')
-                            city.nextElementSibling.innerHTML = dataErrors[i]
-                        } else if (dataErrors[i].includes('State')) {
-                            stateF.parentElement.classList.add('error')
-                            stateF.nextElementSibling.innerHTML = dataErrors[i]
-                        } else if (dataErrors[i].includes('Zip')) {
-                            zip.parentElement.classList.add('error')
-                            zip.nextElementSibling.innerHTML = dataErrors[i]
-                        } else if (dataErrors[i].includes('Country')) {
-                            country.parentElement.classList.add('error')
-                            country.nextElementSibling.innerHTML = dataErrors[i]
-                        } else if (dataErrors[i].includes('Phone')) {
-                            phn.parentElement.classList.add('error')
-                            phn.nextElementSibling.innerHTML = dataErrors[i]
-                        } else if (dataErrors[i].includes('Email')) {
-                            email.parentElement.classList.add('error')
-                            email.nextElementSibling.innerHTML = dataErrors[i]
-                        }
-                    }
+    let dataDD = document.querySelectorAll(`.${type}-form dd.error`)
+    console.log(type,fname,lname,addr1,city,stateF,zip,country,phn,email)
+    let errorsFun = (dataErrors) => {
+        dataDD.forEach(item => {
+            item.classList.remove('error')
+            item.querySelector('i').innerHTML = ''
+        })
+        if (dataErrors.length > 0) {
+            for (let i = 0; i < dataErrors.length; i++) {
+                if (dataErrors[i].includes('First name')) {
+                    fname.parentElement.classList.add('error')
+                    fname.nextElementSibling.innerHTML = dataErrors[i]
+                } else if (dataErrors[i].includes('Last name')) {
+                    lname.parentElement.classList.add('error')
+                    lname.nextElementSibling.innerHTML = dataErrors[i]
+                } else if (dataErrors[i].includes('Address')) {
+                    addr1.parentElement.classList.add('error')
+                    addr1.nextElementSibling.innerHTML = dataErrors[i]
+                } else if (dataErrors[i].includes('City')) {
+                    city.parentElement.classList.add('error')
+                    city.nextElementSibling.innerHTML = dataErrors[i]
+                } else if (dataErrors[i].includes('State')) {
+                    stateF.parentElement.classList.add('error')
+                    stateF.nextElementSibling.innerHTML = dataErrors[i]
+                } else if (dataErrors[i].includes('Zip')) {
+                    zip.parentElement.classList.add('error')
+                    zip.nextElementSibling.innerHTML = dataErrors[i]
+                } else if (dataErrors[i].includes('Country')) {
+                    country.parentElement.classList.add('error')
+                    country.nextElementSibling.innerHTML = dataErrors[i]
+                } else if (dataErrors[i].includes('Phone')) {
+                    phn.parentElement.classList.add('error')
+                    phn.nextElementSibling.innerHTML = dataErrors[i]
+                } else if (dataErrors[i].includes('Email')) {
+                    email.parentElement.classList.add('error')
+                    email.nextElementSibling.innerHTML = dataErrors[i]
                 }
             }
-            if (document.querySelector(`.ship-form.active`) != null) {
-                if (document.querySelector(`.ship-form .checkbox[name="billing"]`).checked) {
-                    postFetch('/api/v1/addresses', saveAddress('ship',fname.value,lname.value,addr1.value,city.value,state.value,zip.value,country.value,phn.value,email.value)).then(data => {
-                        console.log(data)
-                        let dataErrors = data.errors;
-                        if (dataErrors.length < 1) {
-                            postFetch('/api/v1/addresses', saveAddress('bill',fname.value,lname.value,addr1.value,city.value,state.value,zip.value,country.value,phn.value,email.value)).then(dataBill => {
-                                console.log(dataBill)
-                                window.location.href = 'https://medicalmega.com/checkout/step2'
-                            })
-                        } else {
-                            errorsFun(dataErrors)
-                        }
-                    })
+        }
+    }
+    if (document.querySelector(`.ship-form.active`) != null) {
+        if (document.querySelector(`.ship-form.active.edit`) != null) {
+            postFetch(`/api/v1/addresses/${currentAddressShip.id}`, saveAddress('ship', fname.value,lname.value,addr1.value,city.value,stateF.value,zip.value,country.value,phn.value,email.value),'PUT').then(data => {
+                console.log(data)
+                let dataErrors = data.errors;
+                if (dataErrors.length < 1) {
+                    window.location.href = `/checkout/step2`
                 } else {
-                    postFetch('/api/v1/addresses', saveAddress('ship',fname.value,fname.value,addr1.value,city.value,stateF.value,zip.value,country.value,phn.value,email.value)).then(data => {
-                        console.log(data)
-                        let dataErrors = data.errors;
-                        if (dataErrors.length < 1) {
-                            document.querySelector('.col-left .head h4').innerHTML = obj['stepsName'][2];
-                            setBack()
-                            document.querySelector('.ship-form.active').classList.remove('active')
-                            document.querySelector('.bill-form').classList.add('active')
-                        } else {
-                            errorsFun(dataErrors)
-                        }
-                    })
+                    errorsFun(dataErrors)
+                }
+            })
 
-                }
-            } else {
-                let fnameNew, lnameNew;
-                if (fname.tagName === 'INPUT' && lname.tagName === 'INPUT') {
-                    fnameNew = fname.value;
-                    lnameNew = lname.value;
-                } else {
-                    fnameNew = fname;
-                    lnameNew = lname;
-                }
-                postFetch('/api/v1/addresses', saveAddress('bill',fnameNew,fnameNew,addr1.value,city.value,stateF.value,zip.value,country.value,phn.value,email.value)).then(data => {
+        } else {
+            if (document.querySelector(`.ship-form .checkbox[name="billing"]`).checked) {
+                postFetch('/api/v1/addresses', saveAddress('ship',fname.value,lname.value,addr1.value,city.value,stateF.value,zip.value,country.value,phn.value,email.value),'POST').then(data => {
                     console.log(data)
                     let dataErrors = data.errors;
                     if (dataErrors.length < 1) {
-                        window.location.href = 'https://medicalmega.com/checkout/step2'
+                        postFetch('/api/v1/addresses', saveAddress('bill',fname.value,lname.value,addr1.value,city.value,stateF.value,zip.value,country.value,phn.value,email.value),'POST').then(dataBill => {
+                            console.log(dataBill)
+                            window.location.href = 'https://medicalmega.com/checkout/step2'
+                        })
+                    } else {
+                        errorsFun(dataErrors)
+                    }
+                })
+            } else {
+                postFetch('/api/v1/addresses', saveAddress('ship',fname.value,fname.value,addr1.value,city.value,stateF.value,zip.value,country.value,phn.value,email.value),'POST').then(data => {
+                    console.log(data)
+                    let dataErrors = data.errors;
+                    if (dataErrors.length < 1) {
+                        document.querySelector('.col-left .head h4').innerHTML = 'Billing information';
+                        setBack()
+                        document.querySelector('.ship-form.active').classList.remove('active')
+                        document.querySelector('.bill-form').classList.add('active')
                     } else {
                         errorsFun(dataErrors)
                     }
@@ -1136,21 +1181,50 @@ document.querySelector('.btn-next').addEventListener('click', () => {
             }
         }
 
-        if (document.querySelector('.ship-form.active') != null) {
-            address('ship')
+    } else {
+        let fnameNew, lnameNew;
+        if (fname.tagName === 'INPUT' && lname.tagName === 'INPUT') {
+            fnameNew = fname.value;
+            lnameNew = lname.value;
+        } else {
+            fnameNew = fname;
+            lnameNew = lname;
         }
-        if (document.querySelector('.bill-form.active') != null) {
-            address('bill')
-        }
-    } else if (document.querySelector('.address.ship') != null && document.querySelector('.address.bill') != null) {
-        window.location.href = `https://medicalmega.com/checkout/step2`
+        postFetch('/api/v1/addresses', saveAddress('bill',fnameNew,fnameNew,addr1.value,city.value,stateF.value,zip.value,country.value,phn.value,email.value),'POST').then(data => {
+            console.log(data)
+            let dataErrors = data.errors;
+            if (dataErrors.length < 1) {
+                window.location.href = 'https://medicalmega.com/checkout/step2'
+            } else {
+                errorsFun(dataErrors)
+            }
+        })
+    }
+}
+
+//add click on next button
+document.querySelector('.btn-next').addEventListener('click', (e) => {
+    if (document.querySelector('.myAccountright.active') != null) {
+        document.querySelector('#login_btn').click()
+    } else if (document.querySelector('.myAccountleft.active') != null) {
+        document.querySelector('[name="register"]').click()
+    } else if (document.querySelector('.ship-form.active') != null) {
+        address('ship')
+    } else if (document.querySelector('.bill-form.active') != null) {
+        address('bill')
+    } else if (document.querySelector('.address.ship') != null && document.querySelector('.address.bill') != null && document.querySelector('.bill-form.edit') == null && document.querySelector('.ship-form.edit') == null) {
+        href = `https://medicalmega.com/checkout/step2`
     } else if (document.querySelector('.address.ship') != null && document.querySelector('.address.bill') == null && document.querySelector('.bill-form.active') == null) {
         document.querySelector('.address.ship').style.display = 'none'
-        document.querySelector('.col-left .head h4').innerHTML = obj['stepsName'][2];
+        document.querySelector('.col-left .head h4').innerHTML = 'Billing information'; //change title
+        //change back button
         setBack()
-        document.querySelector('.col-left .head').insertAdjacentHTML('afterend', billFormHtml(state, countries_ship, 'active'))
-        copyFromShip(currentAddressShip, document.querySelector('[name="shipping"]'), 'bill')
-    } else if (window.location.href.includes('checkout/step2')) {
+        //add billing form html
+        document.querySelector('.col-left .head').insertAdjacentHTML('afterend', billFormHtml(state, countries_ship, 'active',''))
+        //copy from Shipping
+        document.querySelector('[name="shipping"]').addEventListener('click', (e) => copyFromShip(e.target, 'bill'))
+    }
+    else if (href.includes('checkout/step2')) {
         document.querySelector('form > div > input[type=image]').click()
     }
 })
