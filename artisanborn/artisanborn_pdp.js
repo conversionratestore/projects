@@ -783,14 +783,6 @@ let startFunk = setInterval(() => {
       showPopup()
     })
 
-    // click on backdrop_popup
-    document.querySelector(".backdrop_popup")?.addEventListener("click", (e) => {
-      if (e.target.matches(".backdrop_popup")) {
-        pushDataLayer("Customization pop up 'backdrop'")
-        hidePopup()
-      }
-    })
-
     // click on reviews POPUP
     document.querySelector(".inform_pdp .reviews_pdp")?.addEventListener("click", function (e) {
       e.preventDefault()
@@ -902,10 +894,18 @@ let startFunk = setInterval(() => {
       //     })
     }
 
-    //   change place price and inStock
     if (window.innerWidth <= 768) {
+      //   change place price and inStock
       document.querySelector("div#underpricee")?.after(document.querySelector("#shopify-section-product-template .prices-wrap"))
       document.querySelector("#shopify-section-product-template .prices-wrap")?.after(document.querySelector("span.in-stock"))
+
+      // click on backdrop_popup
+      document.querySelector(".backdrop_popup")?.addEventListener("click", (e) => {
+        if (e.target.matches(".backdrop_popup")) {
+          pushDataLayer("Customization pop up 'backdrop'")
+          hidePopup()
+        }
+      })
     }
 
     pushDataLayer("loaded")
