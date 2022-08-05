@@ -33,6 +33,9 @@ let startFunk = setInterval(() => {
 
     let styleVar = /*html */ `
             <style>
+                #dummy-chat-button-iframe{
+                    z-index: 2147483646 !important;
+                }
                 .sale-savings,
                 .old_price_wrap,
                 .product .final-price-wrap b:last-child{
