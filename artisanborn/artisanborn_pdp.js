@@ -750,10 +750,23 @@ let startFunk = setInterval(() => {
       let clonedNodeReviews = document.querySelector("#desktest")?.cloneNode(true)
       let clonedNodePrice = document.querySelector("span.final-price-wrap")?.cloneNode(true)
       let clonedNodeImg = document.querySelectorAll(".product_gallery .flickity-slider .gallery-cell")[0]?.cloneNode(true)
-      document.querySelector(".title_pdp")?.appendChild(clonedNodeTitle)
-      document.querySelector(".reviews_pdp")?.appendChild(clonedNodeReviews)
-      document.querySelector(".price_pdp")?.appendChild(clonedNodePrice)
-      document.querySelector(".img_wrap")?.appendChild(clonedNodeImg)
+      console.log(clonedNodeImg)
+
+      if (clonedNodeTitle) {
+        document.querySelector(".title_pdp")?.appendChild(clonedNodeTitle)
+      }
+
+      if (clonedNodeReviews) {
+        document.querySelector(".reviews_pdp")?.appendChild(clonedNodeReviews)
+      }
+
+      if (clonedNodePrice) {
+        document.querySelector(".price_pdp")?.appendChild(clonedNodePrice)
+      }
+
+      if (clonedNodeImg) {
+        document.querySelector(".img_wrap")?.appendChild(clonedNodeImg)
+      }
 
       // id pdp
       document.querySelector('.body_popup [name="productId"]').value = document.querySelector(".shopify-product-reviews-badge").getAttribute("data-id")
