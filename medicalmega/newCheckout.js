@@ -459,7 +459,74 @@ let style = `
     .ship-form.active, .bill-form.active {
         display: block;
     }
-  
+    /*Delivery Method*/
+    .delivery-method label {
+        margin-bottom: 20px;
+        display: block;
+    }
+    .method {
+        border: 1px solid #E0E4E5;
+        border-radius: 4px;
+        height: 61px;
+        color: #091114;
+        padding: 16px 24px 16px 16px;
+        font-size: 16px;
+        line-height: 20px;
+    }
+    .check {
+        border: 1px solid #6D7E85;
+        border-radius: 50%;
+        display: block;
+        flex-shrink: 0;
+        width: 16px;
+        height: 16px;
+        position: relative;
+    }
+    .check:after {
+        content: none;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%,-50%);
+        background: #091114;
+        border-radius: 50%;
+        width: 8px;
+        height: 8px;
+    }
+    .checkbox {
+        display: none;
+    }
+    .checkbox:checked ~ .method {
+        border-color: #091114;
+    }
+    .checkbox:checked ~ span .check:after {
+        content: '';
+    }
+    .checkbox:checked ~ .method .type, .checkbox:checked ~ .method .price, .checkbox:checked ~ .method .text {
+        border-color: #091114;
+        font-weight: 600;
+        font-size: 18px;
+    }
+    .method .type {
+        border-left: 1px solid #E0E4E5;
+        padding-left: 16px;
+        margin: 0 16px;
+    }
+    .ml-auto {
+        margin-left: auto;
+    }
+    .method .price {
+        border-left: 1px solid #E0E4E5;
+        width: 72px;
+        text-align: right;
+    }
+    .method .text {
+        border-left: 1px solid #E0E4E5;
+        font-weight: 400;
+        font-size: 16px;
+        padding: 0 20px;
+    }
+ 
     /*flex*/
     .flex {
         display: flex;
@@ -559,12 +626,12 @@ let obj = {
         'personal information' : ['Back to Cart', '/cart.html'],
         'shipping information' : ['Back to Cart','/cart.html'],
         'billing information' : ['Back to Shipping Info','/checkout/step1'],
-        'delivery Method' : ['Back To Address Info','/checkout/step1'],
-        'payment Method': ['Back to Delivery Method','/checkout/step2']
+        'delivery method' : ['Back To Address Info','/checkout/step1'],
+        'payment method': ['Back to Delivery Method','/checkout/step2']
     },
     'pricingArr':  {
         'subtotal': 'Sub total',
-        'shipping':'Delivery fee',
+        'shipping': 'Delivery fee',
         'processing_fee': 'Processing fee',
         'discount': 'Discount',
         'tax': 'Tax',
@@ -714,18 +781,6 @@ if ((window.location.href.includes('/login.php') || window.location.href.include
 
 }
 
-// let getAddress = (id) => {
-//     fetch(`/api/v1/addresses/${id}`, {
-//         headers:  {
-//             'Content-Type': 'application/x-www-form-urlencoded',
-//             'Cart-Token': mm.ctoken,
-//             'x-api-key': 'Ojza12AGCMUzG6omNmSK8Qx2mdgiSVB5'
-//         },
-//         method: "GET",
-//     }).then(res => res.json()).then(data => {
-//         console.log(data)
-//     })
-// }
 let saveAddress = (type,fname,lname,addr1,city,stateF,zip,country,phn,email) => {
     let body = JSON.stringify({
             "isPrimary": "1",
@@ -853,7 +908,7 @@ let billFormHtml = (state, countries_ship, active) => {
 let fname, lname, addr1, city, stateF, zip, country, phn, email; //for forms
 
 //ship/bill addresses
-let addressBoxHtml = (fname, lname, addr1, city, state, zip, country, phone, type) => {
+let addressCurrentHtml = (fname, lname, addr1, city, state, zip, country, phone, type) => {
     return `
     <div class="address ${type === 'bill' ? 'bill' : 'ship'}">
         <div class="justify-between">
@@ -870,22 +925,27 @@ let addressBoxHtml = (fname, lname, addr1, city, state, zip, country, phone, typ
     </div>`
 }
 
-let copyShip = (address, checkboxShip, formType) => {
+//copy from shipping
+let copyFromShip = (address, checkboxShip, formType) => {
     checkboxShip.addEventListener('click', (e) => {
         if (e.target.checked) {
             for (const keyShip in address) {
                 console.log(keyShip, address[keyShip])
-                document.querySelector(`.${formType}-form dd[name="${keyShip}"]`).value = addresses[0][keyShip]
+                if (document.querySelector(`.${formType}-form dd [name="${keyShip}"]`) != null && address[keyShip] != '') {
+                    document.querySelector(`.${formType}-form dd [name="${keyShip}"]`).value = address[keyShip]
+                }
             }
         }
     })
 }
 //step 2 "Shipping Information"
-if (href.includes('/checkout/step1') ) {
+let currentAddressShip;
+if (href.includes('/checkout/step1') || href.includes('/checkout/step2')) {
     document.querySelectorAll('.step')[0].classList.add('checked');
     document.querySelectorAll('.step')[1].classList.add('active');
+}
+if (href.includes('/checkout/step1') ) {
     document.querySelector('.col-left .head h4').innerHTML = obj['stepsName'][1];
-
     fetch(`/api/v1/addresses`, {
         headers: headerFetchAddress,
         method: "GET",
@@ -893,8 +953,12 @@ if (href.includes('/checkout/step1') ) {
         console.log(data)
         let addresses = data['addresses'];
         if (!!addresses && addresses.length > 0) {
+            //Shipping Information - current users
             for (let i = 0; i < addresses.length; i++) {
-                document.querySelector('.col-left .head').insertAdjacentHTML('afterend', addressBoxHtml(addresses[i].fname, addresses[i].lname, addresses[i].addr1, addresses[i].city, addresses[i].state, addresses[i].zip, addresses[i].country, addresses[i].phn, addresses[i].type))
+                if (addresses[i].type === 'ship') {
+                    currentAddressShip = addresses[i]
+                }
+                document.querySelector('.col-left .head').insertAdjacentHTML('afterend', addressCurrentHtml(addresses[i].fname, addresses[i].lname, addresses[i].addr1, addresses[i].city, addresses[i].state, addresses[i].zip, addresses[i].country, addresses[i].phn, addresses[i].type))
                 fname = addresses[i].fname;
                 lname = addresses[i].lname;
             }
@@ -907,20 +971,54 @@ if (href.includes('/checkout/step1') ) {
                 document.querySelector('.address .link').hidden = true;
             }
         } else {
+            //Shipping Information - not filled
             document.querySelector('.col-left .head').insertAdjacentHTML('afterend', shipFormHtml(state, countries_ship))
             document.querySelector('.col-left .head').insertAdjacentHTML('afterend', billFormHtml(state, countries_ship, ''))
-
-            copyShip(addresses[0], document.querySelector('[name="shipping"]'),'bill')
+            copyFromShip(currentAddressShip, document.querySelector('[name="shipping"]'), 'bill')
         }
     })
 }
 
+let deliveryMethodHtml = (i, type, text, price) => {
+    return `
+    <label>
+        <input type="radio" name="radio-method" class="checkbox" ${i==0?'checked':''}>
+        <span class="items-center method">
+            <span class="check"></span>
+            <span class="type">${type}</span>
+            <span class="ml-auto items-center">  
+                ${text != '' ? '<span class="text">' +text+'</span>':''}
+                <span class="price">${price}</span>
+            </span>
+          
+        </span>
+    </label>`
+}
+
+if (href.includes('/checkout/step2')) {
+    document.querySelector('.col-left .head h4').innerHTML = obj['stepsName'][3];
+    document.querySelectorAll('#ship_options > li').forEach((item, index) => {
+        let type = item.querySelector('p > i').innerText,
+            text = '',
+            price = item.querySelector('p > b').innerText;
+
+        if (item.querySelectorAll('p').length > 1) {
+            text = item.querySelectorAll('p')[item.querySelectorAll('p').length - 1].innerText
+        }
+        document.querySelector('.col-left .foot').insertAdjacentHTML('beforebegin',`<div class="delivery-method"></div>`)
+        document.querySelector('.delivery-method').insertAdjacentHTML('beforeend', deliveryMethodHtml(index, type, text, price))
+        document.querySelectorAll('[name="radio-method"]')[index].addEventListener('input', (e) => {
+            document.querySelectorAll('#ship_options > li input')[index].checked = true
+        })
+    })
+}
+
 //set text for back button
-let backFun = () => {
+let setBack = () => {
     document.querySelector('.btn-back span').innerHTML = obj['back'][document.querySelector('.col-left .head h4').innerHTML.toLowerCase()][0]
     document.querySelector('.btn-back').href = obj['back'][document.querySelector('.col-left .head h4').innerHTML.toLowerCase()][1]
 }
-backFun()
+setBack()
 
 //set * request for label
 document.querySelectorAll('label').forEach(el => {
@@ -1007,8 +1105,8 @@ document.querySelector('.btn-next').addEventListener('click', () => {
                         console.log(data)
                         let dataErrors = data.errors;
                         if (dataErrors.length < 1) {
-                            document.querySelector('.col-left .head h4').innerHTML = 'Billing information';
-                            backFun()
+                            document.querySelector('.col-left .head h4').innerHTML = obj['stepsName'][2];
+                            setBack()
                             document.querySelector('.ship-form.active').classList.remove('active')
                             document.querySelector('.bill-form').classList.add('active')
                         } else {
@@ -1036,7 +1134,6 @@ document.querySelector('.btn-next').addEventListener('click', () => {
                     }
                 })
             }
-
         }
 
         if (document.querySelector('.ship-form.active') != null) {
@@ -1049,6 +1146,11 @@ document.querySelector('.btn-next').addEventListener('click', () => {
         window.location.href = `https://medicalmega.com/checkout/step2`
     } else if (document.querySelector('.address.ship') != null && document.querySelector('.address.bill') == null && document.querySelector('.bill-form.active') == null) {
         document.querySelector('.address.ship').style.display = 'none'
+        document.querySelector('.col-left .head h4').innerHTML = obj['stepsName'][2];
+        setBack()
         document.querySelector('.col-left .head').insertAdjacentHTML('afterend', billFormHtml(state, countries_ship, 'active'))
+        copyFromShip(currentAddressShip, document.querySelector('[name="shipping"]'), 'bill')
+    } else if (window.location.href.includes('checkout/step2')) {
+        document.querySelector('form > div > input[type=image]').click()
     }
 })
