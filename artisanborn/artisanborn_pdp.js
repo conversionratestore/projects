@@ -1,6 +1,34 @@
 let startFunk = setInterval(() => {
   if (document.querySelector("#shopify-section-product-template")) {
     clearInterval(startFunk)
+
+    // event
+    let eventVar = "desktop"
+
+    if (window.innerWidth <= 768) {
+      eventVar = "mobile"
+    }
+
+    function pushDataLayer(actionDataLayer, labelDataLayer) {
+      window.dataLayer = window.dataLayer || []
+      if (labelDataLayer) {
+        console.log(actionDataLayer + " : " + labelDataLayer)
+        dataLayer.push({
+          event: "event-to-ga",
+          eventCategory: `Exp: PDP improvements ${eventVar}`,
+          eventAction: `${actionDataLayer}`,
+          eventLabel: `${labelDataLayer}`,
+        })
+      } else {
+        console.log(actionDataLayer)
+        dataLayer.push({
+          event: "event-to-ga",
+          eventCategory: `Exp: PDP improvements ${eventVar}`,
+          eventAction: `${actionDataLayer}`,
+        })
+      }
+    }
+
     const spanStockUrl = "https://conversionratestore.github.io/projects/artisanborn/img/in_stock_black.svg"
 
     let styleVar = /*html */ `
@@ -688,7 +716,6 @@ let startFunk = setInterval(() => {
         el.closest("div").insertAdjacentHTML("afterbegin", renderNewLabel(text, "https://conversionratestore.github.io/projects/artisanborn/img/select_length.png"))
       } else if (text === "LEG TYPE" || text === "LEG STYLE" || text === "CHOOSE LEG TYPE") {
         if (el.value === "Hairpin Legs" || el.value === "Hairpin") {
-          console.log(el.value)
           el.closest("div").insertAdjacentHTML("afterbegin", renderNewLabel(text, "https://conversionratestore.github.io/projects/artisanborn/img/hairpin.png"))
         } else {
           el.closest("div").insertAdjacentHTML("afterbegin", renderNewLabel(text, "https://conversionratestore.github.io/projects/artisanborn/img/u_shape.png"))
@@ -752,12 +779,14 @@ let startFunk = setInterval(() => {
 
     // click on "Need more customization? Send us a request"
     document.querySelector(".text_custom_link p span")?.addEventListener("click", function () {
+      pushDataLayer("Custimization request link clicked")
       showPopup()
     })
 
     // click on backdrop_popup
     document.querySelector(".backdrop_popup")?.addEventListener("click", (e) => {
       if (e.target.matches(".backdrop_popup")) {
+        pushDataLayer("Customization pop up 'backdrop'")
         hidePopup()
       }
     })
@@ -767,27 +796,32 @@ let startFunk = setInterval(() => {
       e.preventDefault()
     })
 
+    //  click on AddToCart
+    document.querySelector("#AddToCart")?.addEventListener("click", function (e) {
+      pushDataLayer("Add to Cart clicked")
+    })
+
     // click on CLOSE
     document.querySelector(".btn_close")?.addEventListener("click", function () {
-      console.log(`btn_close`)
+      pushDataLayer("Customization pop up closed (x)")
       hidePopup()
     })
 
     // click on cancel
     document.querySelector(".cancel_btn")?.addEventListener("click", function () {
-      console.log(`cancel_btn`)
+      pushDataLayer("Customization pop up 'Cancel'")
       hidePopup()
     })
 
     // ok_btn
     document.querySelector(".ok_btn")?.addEventListener("click", function () {
-      console.log(`ok_btn`)
+      pushDataLayer("Customization pop up 'Ok'")
       hidePopup()
     })
 
     // submit
     document.querySelector(".send_btn")?.addEventListener("click", function () {
-      console.log(this.closest("form"))
+      pushDataLayer("Custom request sent")
     })
 
     // observer pdp
@@ -814,14 +848,12 @@ let startFunk = setInterval(() => {
 
     function changeLangType() {
       document.querySelectorAll(".select > .selector-wrapper select").forEach((el) => {
-        console.log(`changeLangType`)
         let text
         text = el.previousSibling.textContent.toLocaleUpperCase()
 
         if (text === "LEG TYPE" || text === "LEG STYLE" || text === "CHOOSE LEG TYPE") {
           el.addEventListener("change", function () {
             if (el.value === "Hairpin Legs" || el.value === "Hairpin") {
-              console.log(`changeLangType`, el.value)
               el.closest("div").querySelector(".new_label img").src = "https://conversionratestore.github.io/projects/artisanborn/img/hairpin.png"
             } else {
               el.closest("div").querySelector(".new_label img").src = "https://conversionratestore.github.io/projects/artisanborn/img/u_shape.png"
@@ -831,20 +863,29 @@ let startFunk = setInterval(() => {
       })
     }
 
+    changeSelectEvent()
+    function changeSelectEvent() {
+      document.querySelectorAll(".select > .selector-wrapper select").forEach((el) => {
+        let text
+
+        el.addEventListener("change", function () {
+          if (el.previousSibling.classList.contains("new_label")) {
+            text = el.closest("div.select").querySelector("label").textContent
+          } else {
+            text = el.previousSibling.textContent
+          }
+
+          pushDataLayer(`${text} drop down selected`)
+        })
+      })
+    }
+
     //   fetch question form
     function fetchQuestionForm(form) {
       let formData = new FormData(form)
       let inputName = form.querySelector('[name="name"]').value
       let inputEmail = form.querySelector('[name="email"]').value
       let textarea = form.querySelector('[name="reviewBody"]').value
-
-      if (inputName.length > 0 && (inputEmail.length > 0 && textarea.length) > 0) {
-        console.log(inputName.length)
-      } else {
-        console.log(form.querySelector('[name="name"]').value)
-        console.log(form.querySelector('[name="email"]').value)
-        console.log(form.querySelector('[name="reviewBody"]').value)
-      }
 
       //   fetch(`https://stamped.io/api/questions`, {
       //     body: formData,
@@ -866,12 +907,42 @@ let startFunk = setInterval(() => {
       document.querySelector("div#underpricee")?.after(document.querySelector("#shopify-section-product-template .prices-wrap"))
       document.querySelector("#shopify-section-product-template .prices-wrap")?.after(document.querySelector("span.in-stock"))
     }
+
+    pushDataLayer("loaded")
+    clarity("set", `pdp_improvements${eventVar}`, "variant_1")
   }
 }, 10)
 
 let startFunkCard = setInterval(() => {
-  if (document) {
+  if (document.querySelector("#cart_form")) {
     clearInterval(startFunkCard)
+
+    // event
+    let eventVar = "desktop"
+
+    if (window.innerWidth <= 768) {
+      eventVar = "mobile"
+    }
+
+    function pushDataLayer(actionDataLayer, labelDataLayer) {
+      window.dataLayer = window.dataLayer || []
+      if (labelDataLayer) {
+        console.log(actionDataLayer + " : " + labelDataLayer)
+        dataLayer.push({
+          event: "event-to-ga",
+          eventCategory: `Exp: PDP improvements ${eventVar}`,
+          eventAction: `${actionDataLayer}`,
+          eventLabel: `${labelDataLayer}`,
+        })
+      } else {
+        console.log(actionDataLayer)
+        dataLayer.push({
+          event: "event-to-ga",
+          eventCategory: `Exp: PDP improvements ${eventVar}`,
+          eventAction: `${actionDataLayer}`,
+        })
+      }
+    }
 
     let styleCard = /*html */ `
     <style>
@@ -888,10 +959,12 @@ let startFunkCard = setInterval(() => {
       p.price_total{
         margin: 0;
       }
-    </style>
-    
+    </style>    
     `
 
     document.head.insertAdjacentHTML("beforeend", styleCard)
+
+    pushDataLayer("loaded")
+    clarity("set", `pdp_improvements${eventVar}`, "variant_1")
   }
 }, 10)
