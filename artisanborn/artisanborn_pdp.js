@@ -496,6 +496,10 @@ let startFunk = setInterval(() => {
                   .text_custom_link {
                         margin-top: 12px;
                     }
+                    .new_label > img{
+                        min-height: 40px;
+                        min-width: 70px;
+                    }
                 }
 
                 @media (max-width: 320px) {
