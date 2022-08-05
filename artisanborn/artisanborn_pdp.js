@@ -657,8 +657,10 @@ let startFunk = setInterval(() => {
     document.head.insertAdjacentHTML("beforeend", styleVar)
     document.body.insertAdjacentHTML("beforeend", overlayPopUp)
 
-    document.querySelector(".product .final-price-wrap b:first-child").textContent = "Price from"
-    document.querySelector(".product .final-price-wrap b:last-child")
+    if (document.querySelector(".product .final-price-wrap b:first-child")) {
+      document.querySelector(".product .final-price-wrap b:first-child").textContent = "Price from"
+    }
+
     if (document.querySelector(".product .final-price-wrap b:last-child")) {
       document
         .querySelector(".clearfix.product_form")
@@ -931,7 +933,7 @@ let startFunk = setInterval(() => {
     pushDataLayer("loaded")
     clarity("set", `pdp_improvements${eventVar}`, "variant_1")
   }
-}, 200)
+}, 350)
 
 let startFunkCard = setInterval(() => {
   if (document.querySelector("#cart_form")) {
