@@ -95,7 +95,7 @@ let startFunk = setInterval(() => {
                     align-items: flex-end;
                     justify-content: flex-start;
                     gap: 4px;
-                    margin-top: 20px;
+                    margin-bottom: 20px;
                     position: relative;
                     padding-top: 27px;
                 }
@@ -133,6 +133,7 @@ let startFunk = setInterval(() => {
 
                 /*text_custom_title */
                 .text_custom_title{
+                    margin-bottom: 10px;
                    
                 }
                 .text_custom_title p{
@@ -145,7 +146,7 @@ let startFunk = setInterval(() => {
 
                 /*text_custom_link */
                 .text_custom_link{
-                    margin-top: 19px;
+                   
                 }
                 .text_custom_link p{
                     font-weight: 400;
@@ -493,12 +494,15 @@ let startFunk = setInterval(() => {
                   .free_shipping_txt{
                     margin: 0;
                   }
+                  .text_custom_title{
+                    margin-bottom: 8px;
+                  }
                   .text_custom_title p{
                     font-size: 16px;
                     line-height: 160%;
                   }
                   .select .selector-wrapper{
-                    margin-top: 8px;
+                    margin-bottom: 8px;
                     gap: 8px;
                   }
                   .select select{
@@ -507,7 +511,7 @@ let startFunk = setInterval(() => {
                     padding: 8px 37px 8px 14px;
                   }
                   .text_custom_link {
-                        margin-top: 12px;
+                     
                     }
                     .new_label > img{
                         min-height: 40px;
