@@ -984,8 +984,12 @@ let startFunkCard = setInterval(() => {
     let styleCard = /*html */ `
     <style>
       .save-text,
-      .was_price{
+      .was_price,
+      .subtotal p.cart_subtotal:nth-of-type(1){
         display: none;
+      }
+      .subtotal p.cart_subtotal:nth-of-type(3){
+        color: black !important;
       }
       .money.sale{
         color: #000 !important;
