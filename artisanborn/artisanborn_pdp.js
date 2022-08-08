@@ -33,7 +33,9 @@ let startFunk = setInterval(() => {
 
     let styleVar = /*html */ `
             <style>
-                .inform_pdp .stamped-badge{
+                .inform_pdp .stamped-badge,
+                .inform_pdp .reviews_pdp > a, 
+                .inform_pdp .stamped-main-badge{
                     cursor: unset !important;
                 }
                 #dummy-chat-button-iframe{
