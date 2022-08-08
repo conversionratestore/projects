@@ -745,9 +745,9 @@ let startFunk = setInterval(() => {
         el.closest("div")?.insertAdjacentHTML("afterbegin", renderNewLabel(text, "https://conversionratestore.github.io/projects/artisanborn/img/select_size2.png"))
       } else if (text === "WOOD" || text === "WOOD COLOR" || text === "CHOOSE COLOR" || text === "MATERIAL") {
         if (el.value.toLocaleUpperCase().includes("WALNUT")) {
-          el.closest("div").querySelector(".new_label img").src = "https://conversionratestore.github.io/projects/artisanborn/img/walnut2.png"
+          el.closest("div")?.insertAdjacentHTML("afterbegin", renderNewLabel(text, "https://conversionratestore.github.io/projects/artisanborn/img/walnut2.png"))
         } else if (el.value.toLocaleUpperCase().includes("MAPLE")) {
-          el.closest("div").querySelector(".new_label img").src = "https://conversionratestore.github.io/projects/artisanborn/img/maple2.png"
+          el.closest("div")?.insertAdjacentHTML("afterbegin", renderNewLabel(text, "https://conversionratestore.github.io/projects/artisanborn/img/maple2.png"))
         }
       } else if (text === "DIMENSIONS") {
         el.closest("div")?.insertAdjacentHTML("afterbegin", renderNewLabel(text, "https://conversionratestore.github.io/projects/artisanborn/img/select_dimensions2.png"))
