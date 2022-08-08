@@ -893,7 +893,12 @@ let startFunk = setInterval(() => {
     function changeLangType() {
       document.querySelectorAll(".select > .selector-wrapper select").forEach((el) => {
         let text
-        text = el.previousSibling.textContent.toLocaleUpperCase()
+
+        if (el.previousSibling) {
+          text = el.previousSibling.textContent.toLocaleUpperCase()
+        } else {
+          text = el.closest("div.select").querySelector("label").textContent.toLocaleUpperCase()
+        }
 
         if (text === "LEG TYPE" || text === "LEG STYLE" || text === "CHOOSE LEG TYPE") {
           el.addEventListener("change", function () {
