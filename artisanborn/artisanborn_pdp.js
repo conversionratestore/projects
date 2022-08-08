@@ -43,7 +43,8 @@ let startFunk = setInterval(() => {
                 }
                 .sale-savings,
                 .old_price_wrap,
-                .product .final-price-wrap b:last-child{
+                .product .final-price-wrap b:last-child,
+                .test_text{
                   display: none;
                 }
 
@@ -613,7 +614,7 @@ let startFunk = setInterval(() => {
               <div class="price_pdp"></div>
             </div>
           </div>
-          <form method="post" action="//stamped.io/api/questions" id="new-question-form" onsubmit = "event.preventDefault(); StampedFn.submitQuestionForm(this); setTimeout(() => {document.querySelector('.body_popup form').style.display = 'none'; document.querySelector('.sending_rqst').classList.add('is_visible')}, 3500);">
+          <form method="post" action="//stamped.io/api/questions" id="new-question-form" onsubmit = "event.preventDefault(); StampedFn.submitQuestionForm(this); setTimeout(() => {document.querySelector('.body_popup form').style.display = 'none'; document.querySelector('.sending_rqst').classList.add('is_visible')}, 4000);">
             <input type="hidden" name="productId" value="">
             <input type="hidden" name="shop" value="artisan-born.myshopify.com">
             <input type="hidden" name="apiKey" value="pubkey-1W01YekPtU0kCf65p72yNtV5xoKxR7">
@@ -809,10 +810,10 @@ let startFunk = setInterval(() => {
       document.querySelector(".backdrop_popup")?.classList.remove("show")
       jQuery("body").css("overflow", "auto")
 
-      if (document.querySelector(".sending_rqst").classList.contains("is_visible")) {
-        document.querySelector(".sending_rqst").classList.remove("is_visible")
-        document.querySelector(".body_popup form").style.display = "block"
-      }
+      //   if (document.querySelector(".sending_rqst").classList.contains("is_visible")) {
+      //     document.querySelector(".sending_rqst").classList.remove("is_visible")
+      //   }
+      document.querySelector(".body_popup form").style.display = "block"
     }
 
     // click on "Need more customization? Send us a request"
