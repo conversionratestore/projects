@@ -33,6 +33,9 @@ let startFunk = setInterval(() => {
 
     let styleVar = /*html */ `
             <style>
+                .inform_pdp .stamped-badge{
+                    cursor: unset !important;
+                }
                 #dummy-chat-button-iframe{
                     z-index: 2147483646 !important;
                 }
