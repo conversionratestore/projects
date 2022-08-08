@@ -614,7 +614,7 @@ let startFunk = setInterval(() => {
               <div class="price_pdp"></div>
             </div>
           </div>
-          <form method="post" action="//stamped.io/api/questions" id="new-question-form" onsubmit = "event.preventDefault(); StampedFn.submitQuestionForm(this); setTimeout(() => {document.querySelector('.body_popup form').style.display = 'none'; document.querySelector('.sending_rqst').classList.add('is_visible')}, 4200);">
+          <form method="post" action="//stamped.io/api/questions" id="new-question-form" onsubmit = "event.preventDefault(); StampedFn.submitQuestionForm(this); setTimeout(() => {document.querySelector('.body_popup form').style.display = 'none'; document.querySelector('.sending_rqst').classList.add('is_visible')}, 4500);">
             <input type="hidden" name="productId" value="">
             <input type="hidden" name="shop" value="artisan-born.myshopify.com">
             <input type="hidden" name="apiKey" value="pubkey-1W01YekPtU0kCf65p72yNtV5xoKxR7">
@@ -802,6 +802,7 @@ let startFunk = setInterval(() => {
     //show popup
     function showPopup() {
       document.querySelector(".backdrop_popup")?.classList.add("show")
+      document.querySelector(".body_popup form").style.display = "block"
       jQuery("body").css("overflow", "hidden")
     }
 
