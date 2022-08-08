@@ -760,8 +760,11 @@ let startFunk = setInterval(() => {
         el.closest("div")?.insertAdjacentHTML("afterbegin", renderNewLabel(text, "https://conversionratestore.github.io/projects/artisanborn/img/select_quantity2.png"))
       }
     })
+    2
 
-    document.querySelector(".product_section form .select ")?.insertAdjacentHTML("afterbegin", textCustomTitle)
+    if (document.querySelector(".product_section form .select .selector-wrapper")) {
+      document.querySelector(".product_section form .select ")?.insertAdjacentHTML("afterbegin", textCustomTitle)
+    }
     document.querySelector(".product_section form .select ")?.insertAdjacentHTML("beforeend", textCustomLink)
 
     if (document.querySelector(".product .final-price-wrap b:first-child")) {
@@ -802,7 +805,7 @@ let startFunk = setInterval(() => {
     //show popup
     function showPopup() {
       document.querySelector(".backdrop_popup")?.classList.add("show")
-    //   document.querySelector(".body_popup form").style.display = "block"
+      //   document.querySelector(".body_popup form").style.display = "block"
       jQuery("body").css("overflow", "hidden")
     }
 
