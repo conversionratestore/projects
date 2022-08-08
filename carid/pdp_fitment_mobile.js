@@ -65,7 +65,7 @@ const style = /*html*/`
 
             .po_header .header {
                 font-weight: 700;
-                font-size: 32px;
+                font-size: 22px;
                 color: #FFFFFF;
             }
 
@@ -178,8 +178,6 @@ const style = /*html*/`
                 font-weight: 500 !important;
             }
 
-            /* TODO: make bigger font-size*/
-
             .fit_car.pdp span {
                 color: #3E61BC;
                 font-weight: 600;
@@ -189,6 +187,12 @@ const style = /*html*/`
 
             .po_notif_msg_check_mark, .po_notif_msg_attention_grey_mark {
                 display: none;
+            }
+
+            .only_fit_block {
+                padding: 12px;
+                background-color: #fff;
+                margin-top: 16px;
             }
         </style>
     `
@@ -450,12 +454,14 @@ const drawPopupFit = () => {
         // && parsedObj('garageData').current === parsedObj('myCarStorageObj').carModel
     ) {
         const waitForPopupProduct = setInterval(() => {
-            if (query('.po_notif_msg')) {
+            if (getId('child_products_tbl')) {
                 clearInterval(waitForPopupProduct)
 
                 const carModel = parsedObj('myCarStorageObj').carModel
 
-                const fitToBlock = /*html*/` 
+                if (!query('#selectOptWin .fit_car')) {
+                    if (query('.po_notif_msg')) {
+                        const fitAndSizes = /*html*/` 
                     <div class="fit_car" hidden>
                         <div><img src="${imgFolderUrl}check-circle.svg" alt="check"></div>
                         <div>
@@ -470,35 +476,47 @@ const drawPopupFit = () => {
                     <div class="view_click">
                         <p>To view all available sizes for this wheel anyway</p>
                         <button type="button">CLICK HERE</button>                                        
-                    </div>
-                    `
+                    </div>`
 
-                query('.po_notif_msg').insertAdjacentHTML('afterbegin', fitToBlock)
+                        query('.po_notif_msg').insertAdjacentHTML('afterbegin', fitAndSizes)
 
-                const waitForMsg = setInterval(() => {
-                    if (
-                        query('.view_click button')
-                        && query('.po_notif_msg .fit_car')
-                        && query('.po_notif_msg .all_sizes')
-                    ) {
-                        clearInterval(waitForMsg)
+                        const waitForMsg = setInterval(() => {
+                            if (
+                                query('.view_click button')
+                                && query('.po_notif_msg .fit_car')
+                                && query('.po_notif_msg .all_sizes')
+                            ) {
+                                clearInterval(waitForMsg)
 
-                        if (query('.po_notif_msg_attention_grey_mark')) {
-                            query('.po_notif_msg .fit_car').hidden = true
-                            query('.po_notif_msg .all_sizes').hidden = false
-                        } else {
-                            query('.po_notif_msg .fit_car').hidden = false
-                            query('.po_notif_msg .all_sizes').hidden = true
-                        }
+                                if (query('.po_notif_msg_attention_grey_mark')) {
+                                    query('.po_notif_msg .fit_car').hidden = true
+                                    query('.po_notif_msg .all_sizes').hidden = false
+                                } else {
+                                    query('.po_notif_msg .fit_car').hidden = false
+                                    query('.po_notif_msg .all_sizes').hidden = true
+                                }
 
-                        query('.view_click button').addEventListener('click', () => {
-                            query('.po_notif_msg_a').click()
+                                query('.view_click button').addEventListener('click', () => {
+                                    query('.po_notif_msg_a').click()
 
-                            query('.po_notif_msg .fit_car').hidden = !query('.po_notif_msg .fit_car').hidden
-                            query('.po_notif_msg .all_sizes').hidden = !query('.po_notif_msg .all_sizes').hidden
-                        })
+                                    query('.po_notif_msg .fit_car').hidden = !query('.po_notif_msg .fit_car').hidden
+                                    query('.po_notif_msg .all_sizes').hidden = !query('.po_notif_msg .all_sizes').hidden
+                                })
+                            }
+                        }, intervalTimeout)
+                    } else {
+                        const fitBlock = `
+                        <div class="fit_car only_fit_block">
+                            <div><img src="${imgFolderUrl}check-circle.svg" alt="check"></div>
+                            <div>
+                                <p>Guaranteed fit to</p>
+                                <p>${carModel}</p>                         
+                            </div>
+                        </div>`
+
+                        getId('child_products_tbl').insertAdjacentHTML('afterbegin', fitBlock)
                     }
-                }, intervalTimeout)
+                }
             }
         }, intervalTimeout)
     }
