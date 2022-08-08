@@ -405,6 +405,13 @@ let startFunk = setInterval(() => {
                   font-weight: 700;
                 }
 
+                 .new_label > img{
+                    max-width: 72px;
+                    max-height: 40px;
+                    width: 100%;
+                    height: 100%;
+                 }
+
                 @media (max-width: 768px) {
                   .body_popup{
                     padding: 36px 16px 16px;
@@ -706,46 +713,46 @@ let startFunk = setInterval(() => {
       } else {
         console.log(">>>>NOT selector-wrapper", el.closest("div.select").querySelector("label").textContent)
         if (outsideLabel === "SIZE" || outsideLabel === "CHOOSE SIZE") {
-          el.closest("div")?.insertAdjacentHTML("afterbegin", renderNewLabel(outsideLabel, "https://conversionratestore.github.io/projects/artisanborn/img/select_size.png"))
+          el.closest("div")?.insertAdjacentHTML("afterbegin", renderNewLabel(outsideLabel, "https://conversionratestore.github.io/projects/artisanborn/img/select_size.svg"))
         }
 
         if (outsideLabel === "LENGTH" || outsideLabel === "CHOOSE LENGTH") {
-          el.closest("div")?.insertAdjacentHTML("afterbegin", renderNewLabel(outsideLabel, "https://conversionratestore.github.io/projects/artisanborn/img/select_length.png"))
+          el.closest("div")?.insertAdjacentHTML("afterbegin", renderNewLabel(outsideLabel, "https://conversionratestore.github.io/projects/artisanborn/img/select_length.svg"))
         }
 
         if (outsideLabel === "DIMENSIONS") {
-          el.closest("div")?.insertAdjacentHTML("afterbegin", renderNewLabel(outsideLabel, "https://conversionratestore.github.io/projects/artisanborn/img/select_dimensions.png"))
+          el.closest("div")?.insertAdjacentHTML("afterbegin", renderNewLabel(outsideLabel, "https://conversionratestore.github.io/projects/artisanborn/img/select_dimensions.svg"))
         }
 
         if (outsideLabel === "WIDTH" || outsideLabel === "CHOOSE WIDTH") {
-          el.closest("div")?.insertAdjacentHTML("afterbegin", renderNewLabel(outsideLabel, "https://conversionratestore.github.io/projects/artisanborn/img/select_width.png"))
+          el.closest("div")?.insertAdjacentHTML("afterbegin", renderNewLabel(outsideLabel, "https://conversionratestore.github.io/projects/artisanborn/img/select_width.svg"))
         }
       }
 
       if (text === "LENGTH" || text === "CHOOSE LENGTH") {
-        el.closest("div")?.insertAdjacentHTML("afterbegin", renderNewLabel(text, "https://conversionratestore.github.io/projects/artisanborn/img/select_length.png"))
+        el.closest("div")?.insertAdjacentHTML("afterbegin", renderNewLabel(text, "https://conversionratestore.github.io/projects/artisanborn/img/select_length.svg"))
       } else if (text === "LEG TYPE" || text === "LEG STYLE" || text === "CHOOSE LEG TYPE") {
         if (el.value === "Hairpin Legs" || el.value === "Hairpin") {
-          el.closest("div")?.insertAdjacentHTML("afterbegin", renderNewLabel(text, "https://conversionratestore.github.io/projects/artisanborn/img/hairpin.png"))
+          el.closest("div")?.insertAdjacentHTML("afterbegin", renderNewLabel(text, "https://conversionratestore.github.io/projects/artisanborn/img/hairpin.svg"))
         } else {
-          el.closest("div")?.insertAdjacentHTML("afterbegin", renderNewLabel(text, "https://conversionratestore.github.io/projects/artisanborn/img/u_shape.png"))
+          el.closest("div")?.insertAdjacentHTML("afterbegin", renderNewLabel(text, "https://conversionratestore.github.io/projects/artisanborn/img/u_shape.svg"))
         }
       } else if (text === "WIDTH" || text === "CHOOSE WIDTH") {
-        el.closest("div")?.insertAdjacentHTML("afterbegin", renderNewLabel(text, "https://conversionratestore.github.io/projects/artisanborn/img/select_width.png"))
+        el.closest("div")?.insertAdjacentHTML("afterbegin", renderNewLabel(text, "https://conversionratestore.github.io/projects/artisanborn/img/select_width.svg"))
       } else if (text === "HEIGHT" || text === "CHOOSE TABLE HEIGHT") {
-        el.closest("div")?.insertAdjacentHTML("afterbegin", renderNewLabel(text, "https://conversionratestore.github.io/projects/artisanborn/img/select_height.png"))
+        el.closest("div")?.insertAdjacentHTML("afterbegin", renderNewLabel(text, "https://conversionratestore.github.io/projects/artisanborn/img/select_height.svg"))
       } else if (text === "SIZE" || text === "CHOOSE SIZE") {
-        el.closest("div")?.insertAdjacentHTML("afterbegin", renderNewLabel(text, "https://conversionratestore.github.io/projects/artisanborn/img/select_size.png"))
+        el.closest("div")?.insertAdjacentHTML("afterbegin", renderNewLabel(text, "https://conversionratestore.github.io/projects/artisanborn/img/select_size.svg"))
       } else if (text === "WOOD" || text === "WOOD COLOR" || text === "CHOOSE COLOR" || text === "MATERIAL") {
-        el.closest("div")?.insertAdjacentHTML("afterbegin", renderNewLabel(text, "https://conversionratestore.github.io/projects/artisanborn/img/select_color.png"))
+        el.closest("div")?.insertAdjacentHTML("afterbegin", renderNewLabel(text, "https://conversionratestore.github.io/projects/artisanborn/img/select_color.svg"))
       } else if (text === "DIMENSIONS") {
-        el.closest("div")?.insertAdjacentHTML("afterbegin", renderNewLabel(text, "https://conversionratestore.github.io/projects/artisanborn/img/select_dimensions.png"))
+        el.closest("div")?.insertAdjacentHTML("afterbegin", renderNewLabel(text, "https://conversionratestore.github.io/projects/artisanborn/img/select_dimensions.svg"))
       } else if (text === "TITLE") {
-        el.closest("div")?.insertAdjacentHTML("afterbegin", renderNewLabel(text, "https://conversionratestore.github.io/projects/artisanborn/img/select_title.png"))
+        el.closest("div")?.insertAdjacentHTML("afterbegin", renderNewLabel(text, "https://conversionratestore.github.io/projects/artisanborn/img/select_title.svg"))
       } else if (text === "DEPTH" || text === "CHOOSE DEPTH") {
-        el.closest("div")?.insertAdjacentHTML("afterbegin", renderNewLabel(text, "https://conversionratestore.github.io/projects/artisanborn/img/select_depth.png"))
+        el.closest("div")?.insertAdjacentHTML("afterbegin", renderNewLabel(text, "https://conversionratestore.github.io/projects/artisanborn/img/select_depth.svg"))
       } else if (text === "QUANTITY") {
-        el.closest("div")?.insertAdjacentHTML("afterbegin", renderNewLabel(text, "https://conversionratestore.github.io/projects/artisanborn/img/select_quantity.png"))
+        el.closest("div")?.insertAdjacentHTML("afterbegin", renderNewLabel(text, "https://conversionratestore.github.io/projects/artisanborn/img/select_quantity.svg"))
       }
     })
 
@@ -872,9 +879,9 @@ let startFunk = setInterval(() => {
         if (text === "LEG TYPE" || text === "LEG STYLE" || text === "CHOOSE LEG TYPE") {
           el.addEventListener("change", function () {
             if (el.value === "Hairpin Legs" || el.value === "Hairpin") {
-              el.closest("div").querySelector(".new_label img").src = "https://conversionratestore.github.io/projects/artisanborn/img/hairpin.png"
+              el.closest("div").querySelector(".new_label img").src = "https://conversionratestore.github.io/projects/artisanborn/img/hairpin.svg"
             } else {
-              el.closest("div").querySelector(".new_label img").src = "https://conversionratestore.github.io/projects/artisanborn/img/u_shape.png"
+              el.closest("div").querySelector(".new_label img").src = "https://conversionratestore.github.io/projects/artisanborn/img/u_shape.svg"
             }
           })
         }
