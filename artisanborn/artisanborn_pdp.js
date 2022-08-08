@@ -768,7 +768,7 @@ let startFunk = setInterval(() => {
           el.closest("div")?.insertAdjacentHTML("afterbegin", renderNewLabel(text, "https://conversionratestore.github.io/projects/artisanborn/img/select_quantity2.png"))
         }
       })
-    }, 200)
+    }, 1000)
 
     if (document.querySelector(".product_section form .select .selector-wrapper")) {
       document.querySelector(".product_section form .select ")?.insertAdjacentHTML("afterbegin", textCustomTitle)
