@@ -810,9 +810,9 @@ let startFunk = setInterval(() => {
       document.querySelector(".backdrop_popup")?.classList.remove("show")
       jQuery("body").css("overflow", "auto")
 
-      //   if (document.querySelector(".sending_rqst").classList.contains("is_visible")) {
-      //     document.querySelector(".sending_rqst").classList.remove("is_visible")
-      //   }
+      if (document.querySelector(".sending_rqst").classList.contains("is_visible")) {
+        document.querySelector(".sending_rqst").classList.remove("is_visible")
+      }
       document.querySelector(".body_popup form").style.display = "block"
     }
 
