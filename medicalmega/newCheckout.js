@@ -19,7 +19,29 @@ let styleMain =`
     .btn-next svg {
         margin-left: 8px;
     }
+    /*pricing*/
+    .order_pricing li:not(:last-child) {
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 150%;
+        color: #344D57;
+        margin-bottom: 8px;
+    }
+    .order_pricing li:last-child {
+        font-weight: 600;
+        font-size: 18px;
+        line-height: 120%;
+        color: #091114;
+        padding-top: 20px;
+        border-top: 1px solid #E0E4E5;
+    }
     /*product cart*/
+    .product-item .qty {
+        font-weight: 400;
+        font-size: 12px;
+        line-height: 150%;
+        color: #6D7E85;
+    }
     .product-item {
         padding: 20px 0;
         border-bottom: 1px solid #E0E4E5;
@@ -50,7 +72,7 @@ let styleMain =`
         flex-shrink: 0;
         object-fit: contain;
     }
-    .total-price {
+    .shopping-cart .total-price, .order_body .total-price {
         font-weight: 600;
         font-size: 16px;
         line-height: 130%;
@@ -163,36 +185,169 @@ let postFetch = (host,body,method) => {
         });
     })
 }
+//changeQuantity
+let changeQuantity = (plus, minus, quantity, post=false) => {
+    //update quantity
+    quantity.addEventListener('change', () => {
+        if (quantity.value < 1) {
+            quantity.value = 1
+        }
+        post == true ? postFetch('/cart.html',`api=c&cart_action=update&variant_id=${quantity.closest('.product-item').dataset.variantId}&quantity=${quantity.value}&ctoken=${mm.ctoken}`,'POST').then(data => cart()) : '';
+    })
+    plus.addEventListener('click', () => {
+        quantity.value = +quantity.value + 1;
+        quantity.parentElement.querySelector('.quantity-btn_minus').disabled = false;
+
+        post == true ? postFetch('/cart.html',`api=c&cart_action=update&variant_id=${plus.closest('.product-item').dataset.variantId}&quantity=${quantity.value}&ctoken=${mm.ctoken}`,'POST').then(data => cart()) : '';
+    })
+
+    if (!href.includes('/checkout/step2') && !href.includes('/checkout/step3') ) {
+        if (minus.nextElementSibling.value < 2) {
+            minus.disabled = true;
+        } else {
+            minus.disabled = false;
+        }
+    } else {
+        minus.disabled = true;
+    }
+
+    minus.addEventListener('click', () => {
+        if (minus.nextElementSibling.value < 2) {
+            minus.nextElementSibling.value = 1;
+            minus.disabled = true;
+        } else {
+            minus.nextElementSibling.value = +minus.nextElementSibling.value - 1;
+        }
+        post == true ? postFetch('/cart.html',`api=c&cart_action=update&variant_id=${minus.closest('.product-item').dataset.variantId}&quantity=${quantity.value}&ctoken=${mm.ctoken}`,'POST').then(data => cart()) : '';
+    })
+}
+//set pricing
+let pricing = (parent, data) => {
+    document.querySelector(parent).innerHTML = '';
+    let pricing = obj['pricingArr']
+    for (let key in pricing) {
+        for (let keyData in data) {
+            if (key == keyData && (data[keyData] != 0 || keyData == 'subtotal' || keyData == 'total' || keyData == 'tax')) {
+                document.querySelector(parent).insertAdjacentHTML('beforeend', `
+                <li class="justify-between">
+                    <p>${pricing[key]}:</p>
+                    <p>$<span>${(+data[keyData].toString().replace(/[^\d\.]/g,'')).toFixed(2)}</span></p>
+                </li>`)
+            }
+        }
+    }
+}
+
 //add product
-let product = (id, variantId, quantity, subtotal, url, imageUrl, title) => {
+let product = (id, variantId, quantity, subtotal, url, imageUrl, title, varQty) => {
     return `<li class="flex product-item" data-id="${id}" data-variant-id="${variantId}">
                 <div class="relative">
                     <a href="${url}" class="product-item_img"> 
                         <img src="${imageUrl}" alt="${title}">
                     </a>
-                    ${href.includes('checkout/step2') ? '':`<button class="remove" type="button">
+                    ${varQty == 0 ? `<button class="remove" type="button">
                         <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M6.60688 6L9.68305 2.3332C9.73461 2.27227 9.69126 2.17969 9.61157 2.17969H8.67641C8.62133 2.17969 8.5686 2.2043 8.53227 2.24648L5.99516 5.27109L3.45805 2.24648C3.4229 2.2043 3.37016 2.17969 3.31391 2.17969H2.37876C2.29907 2.17969 2.25571 2.27227 2.30727 2.3332L5.38344 6L2.30727 9.6668C2.29572 9.68038 2.28831 9.69699 2.28592 9.71466C2.28353 9.73233 2.28626 9.75031 2.29379 9.76648C2.30131 9.78264 2.31332 9.79631 2.32838 9.80585C2.34344 9.81539 2.36093 9.82041 2.37876 9.82031H3.31391C3.36899 9.82031 3.42172 9.7957 3.45805 9.75352L5.99516 6.72891L8.53227 9.75352C8.56743 9.7957 8.62016 9.82031 8.67641 9.82031H9.61157C9.69126 9.82031 9.73461 9.72774 9.68305 9.6668L6.60688 6Z" fill="#6D7E85"/>
                         </svg>
-                     </button>`}
-                   
+                     </button>` : ''}
                 </div>
                 <div>
                     <a href="${url}">${title}</a>
                     <div class="flex-center-between">
-                        <div class="items-center">
-                            <button type="button" class="quantity-btn quantity-btn_minus" ${href.includes('checkout/step2') ? 'disabled': ''}>−</button>
-                            <input type="number" name="quantity" value="${quantity}" class="quantity" ${href.includes('checkout/step2') ? 'disabled': ''}>
-                            <button type="button" class="quantity-btn quantity-btn_plus" ${href.includes('checkout/step2') ? 'disabled': ''}>+</button>
-                        </div>
-                        <div class="total-price flex">$<b>${subtotal.toFixed(2)}</b></div>
+                        ${varQty == 0 ? `<div class="items-center">
+                            <button type="button" class="quantity-btn quantity-btn_minus" ${varQty == 1 ? 'disabled': ''}>−</button>
+                            <input type="number" name="quantity" value="${quantity}" class="quantity" ${varQty == 1 ? 'disabled': ''}>
+                            <button type="button" class="quantity-btn quantity-btn_plus" ${varQty == 1 ? 'disabled': ''}>+</button>
+                        </div>` : '<p class="qty">Qty: ' + quantity + '</p>'}
+                        
+                        <div class="total-price flex">$<b>${(+subtotal.toString().replace(/[^\d\.]/g,'')).toFixed(2)}</b></div>
                     </div>
                 </div>
             </li>`
 }
 
 document.body.insertAdjacentHTML('afterbegin', styleMain)
+//Confirmation
+if (href.includes('Confirmation')) {
+    let styleConfirmation = `<style>
+        .confirmation {
+            max-width: 833px;
+            width: 100%;
+        }
+        .confirmation h2 {
+            font-weight: 600;
+            font-size: 36px;
+            line-height: 120%;
+            color: #091114;
+            margin-bottom: 12px;
+        }
+        .confirmation > p {
+            font-weight: 400;
+            font-size: 16px;
+            line-height: 150%;
+            color: #344D57;
+        }
+        .order-confirmation {
+            background: #FFFFFF;
+            box-shadow: 0 4px 8px 3px rgba(0, 0, 0, 0.15), 0 1px 3px rgba(0, 0, 0, 0.3);
+            border-radius: 8px;
+            padding: 40px 0;
+        }
+        .order-confirmation .col {
+            width: 50%;
+            padding: 0 40px;
+        }
+        .order-confirmation .col:first-child {
+            border-right: 1px solid #E0E4E5;
+        }
+        .products-confirmation {
+            height: 180px;
+            overflow-y: auto;
+        }
+        .products-confirmation::-webkit-scrollbar{
+            background: #CCCCCC;
+            width: 4px;
+            height: 4px;}
+        .products-confirmation::-webkit-scrollbar-thumb{
+            background: #666666;}
+        .products-confirmation .product-item > div:last-child a {
+            font-size: 14px;
+            color: #344D57
+        }
+        .products-confirmation .total-price {
+            font-size: 18px;
+            color: #091114;
+        }
+        .order_pricing li:not(:last-child) {
+            color: #6D7E85;
+        }
+    </style>`
+    let confirmationHTML = `
+        <div class="confirmation">
+            <h2>Thank you!</h2>
+            <p>Your order has been successfully placed</p>
+            <div class="order-confirmation">
+                <div class="col">
+                    <h3>Your Order</h3>
+                    <ul class="order_pricing"></ul>
+                </div>
+                <div class="col">
+                    <ul class="products-confirmation"></ul>
+                </div>
+            </div>
+        </div>`
+    document.body.insertAdjacentHTML('afterbegin', confirmationHTML)
 
+    postFetch('/cart.html',`api=c&cart_action=last_order&ctoken=${mm.ctoken}`,'POST').then(data => {
+        console.log(data)
+        pricing('.pricing', data) // set pricing
+        let items = data.items;
+        for (let i = 0; i < items.length; i++) {
+            document.querySelector('.products-confirmation').insertAdjacentHTML('beforeend', product(items[i].product_id, items[i].variant_id, items[i].qty, items[i].subtotal, items[i].url, items[i].image_url, items[i].title, 1))
+        }
+    })
+
+}
 if (href.includes('login.php') || href.includes('/register.php') || href.includes('/checkout') || href.includes('/guest-checkout1.php')) {
     //checkout
     let style = `
@@ -532,24 +687,10 @@ if (href.includes('login.php') || href.includes('/register.php') || href.include
             height: 4px;}
         .order_body::-webkit-scrollbar-thumb{
             background: #666666;}
-        .order_foot {
+
+        .order_pricing {
             background: #F0F1F2;
             padding: 40px;
-        }
-        .order_foot li:not(:last-child) {
-            font-weight: 400;
-            font-size: 16px;
-            line-height: 150%;
-            color: #344D57;
-            margin-bottom: 8px;
-        }
-        .order_foot li:last-child {
-            font-weight: 600;
-            font-size: 18px;
-            line-height: 120%;
-            color: #091114;
-            padding-top: 20px;
-            border-top: 1px solid #E0E4E5;
         }
         /*step 1 address*/
         .address {
@@ -846,7 +987,7 @@ if (href.includes('login.php') || href.includes('/register.php') || href.include
                         </div>
                         <ul class="order_body"></ul>
                     </div>
-                    <ul class="order_foot"></ul>
+                    <ul class="order_pricing"></ul>
                </div>
         </div>
     </div>`
@@ -1145,43 +1286,43 @@ if (href.includes('login.php') || href.includes('/register.php') || href.include
 
     let deliveryMethodHtml = (i, type, text, price) => {
         return `
-    <label>
-        <input type="radio" name="radio-method" class="checkbox" ${i==0?'checked':''}>
-        <span class="items-center method">
-            <span class="check"></span>
-            <span class="type">${type}</span>
-            <span class="ml-auto items-center">  
-                ${text != '' ? '<span class="text">' +text+'</span>':''}
-                <span class="price">${price}</span>
+        <label>
+            <input type="radio" name="radio-method" class="checkbox" ${i==0?'checked':''}>
+            <span class="items-center method">
+                <span class="check"></span>
+                <span class="type">${type}</span>
+                <span class="ml-auto items-center">  
+                    ${text != '' ? '<span class="text">' +text+'</span>':''}
+                    <span class="price">${price}</span>
+                </span>
             </span>
-        </span>
-    </label>`
+        </label>`
     }
 
     if (href.includes('/checkout/step2')) {
         document.querySelector('.col-left .head h4').innerHTML = 'Delivery Method';
+        document.querySelector('.col-left .head').insertAdjacentHTML('afterend',`<div class="delivery-method"></div>`)
         document.querySelectorAll('#ship_options > li').forEach((item, index) => {
             let type = item.querySelector('p > i').innerText,
                 text = '',
-                price = item.querySelector('p > b').innerText;
+                price = item.querySelector('p > b') != null ? item.querySelector('p > b').innerText : item.querySelector('p > strong').innerText == 'FREE!' ? 'FREE!' : '';
             if (index == 0) {
                 item.querySelector('input').checked = true;
             }
 
-            if (item.querySelectorAll('p').length > 1) {
+            if (item.querySelectorAll('p').length > 1 && item.querySelector('p > strong').innerText != 'FREE!') {
                 text = item.querySelectorAll('p')[1].innerText
             }
-            document.querySelector('.col-left .head').insertAdjacentHTML('afterend',`
-            <div class="delivery-method"></div>
-            <div class="promocode items-center">
-                <p>Promotional Code <span>(Optional):</span></p>
-                <input type="text" placeholder="Enter your code" class="ml-auto">
-            </div>`)
             document.querySelector('.delivery-method').insertAdjacentHTML('beforeend', deliveryMethodHtml(index, type, text, price))
             document.querySelectorAll('[name="radio-method"]')[index].addEventListener('input', (e) => {
                 document.querySelectorAll('#ship_options > li input')[index].checked = true
             })
         })
+        document.querySelector('.col-left .delivery-method').insertAdjacentHTML('afterend',`
+            <div class="promocode items-center">
+                <p>Promotional Code <span>(Optional):</span></p>
+                <input type="text" placeholder="Enter your code" class="ml-auto">
+            </div>`)
         document.querySelector('.promocode input').addEventListener('input', (e) => {
             document.querySelector('.promoCode').value = e.target.value;
         })
@@ -1242,6 +1383,7 @@ if (href.includes('login.php') || href.includes('/register.php') || href.include
                 item.classList.remove('error')
                 item.querySelector('i').innerHTML = ''
             })
+            document.querySelector('.error-other') != null ? document.querySelector('.error-other').remove() : ''
             if (dataErrors.length > 0) {
                 for (let i = 0; i < dataErrors.length; i++) {
                     if (dataErrors[i].includes('First name')) {
@@ -1271,6 +1413,8 @@ if (href.includes('login.php') || href.includes('/register.php') || href.include
                     } else if (dataErrors[i].includes('Email')) {
                         email.parentElement.classList.add('error')
                         email.nextElementSibling.innerHTML = dataErrors[i]
+                    } else if (dataErrors[i] == 'Could not update address record. Nothing to update.'){
+                        document.querySelector(`.${type}-form`).insertAdjacentHTML('afterend', `<p class="c-red error-other" style="margin: 10px 0">${dataErrors[i]}</p>`)
                     }
                 }
             }
@@ -1400,11 +1544,22 @@ if (href.includes('login.php') || href.includes('/register.php') || href.include
             transition: all 0.3s ease;
             width: 100%;
             height: 100%;
+            opacity: 0;
+            pointer-events: none;
+        }
+        .shopping-cart.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+        .shopping-cart.active .container {
+            transform: translateX(0);
         }
         .shopping-cart .container {
            background: #FFFFFF;
            margin-left: auto;
            width: 590px;
+           transform: translateX(200px);
+           transition: all 0.3s ease;
         }
         .shopping-cart svg {
             cursor: pointer;
@@ -1427,6 +1582,8 @@ if (href.includes('login.php') || href.includes('/register.php') || href.include
             padding: 0 48px;
             overflow-y: auto;
             height: calc(100vh - 112px - 68px);
+            display: flex;
+            flex-direction: column;
         }
         .list-product .product-item_img img {
             height: 86px;
@@ -1434,6 +1591,9 @@ if (href.includes('login.php') || href.includes('/register.php') || href.include
         }
         .list-product .product-item_img {
             margin-right: 16px;
+        }
+        .also-bought {
+            margin-top: auto;
         }
         .subtotal {
             font-weight: 600;
@@ -1465,28 +1625,74 @@ if (href.includes('login.php') || href.includes('/register.php') || href.include
             line-height: 120%;
             color: #344D57;
         }
+        /*empty cart*/
+        .empty-cart {
+            margin: auto;
+            display: block;
+            width: fit-content;
+        }
+        .empty-cart p {
+            font-weight: 400;
+            font-size: 18px;
+            line-height: 150%;
+            color: #344D57;
+            margin-bottom: 28px;
+        }
+        .empty-cart button.btn-next {
+            padding: 0 24px;
+        }
         /*slider*/
         .slider-products {
             padding: 32px 0 9px;
         }
+        .tns-outer {
+            margin-right: -48px;
+            padding-right: 48px;
+        }
         .shopping-cart button.swiper-button {
-            background: #FFFFFF no-repeat center / 12px!important;
-            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3), 0 1px 3px 1px rgba(0, 0, 0, 0.15);
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
             position: absolute;
             top: calc(50% - 12px);
             transform: translateY(-50%);
+            width: 50px;
+            height: 50px;
             z-index: 8;
         }
+        .shopping-cart button.swiper-button span {
+            background: #FFFFFF;
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3), 0 1px 3px 1px rgba(0, 0, 0, 0.15);
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            display: block;
+            position: relative;
+            z-index: 2;
+        }
+        .shopping-cart button.swiper-button:before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 0;
+            transform: translateY(-50%);
+            height: 290px;
+            width: 62px;
+            z-index: -1;
+        }
+     
         .shopping-cart button.swiper-button.swiper-button-prev {
-            left: -20px;
-            background-image: url('https://conversionratestore.github.io/projects/medicalmega/img/arrow-left-2.svg');
+            left: -36px;
         }
         .shopping-cart button.swiper-button.swiper-button-next {
-            right: -20px;
-            background-image: url('https://conversionratestore.github.io/projects/medicalmega/img/arrow-right-2.svg');
+            right: -36px;
+        }
+        .shopping-cart button.swiper-button.swiper-button-prev:before {
+            background: linear-gradient(90deg, #FFFFFF 24.37%, rgba(255, 255, 255, 0));
+            width: 106px;
+        }
+        .shopping-cart button.swiper-button.swiper-button-next:before {
+            background: linear-gradient(-90deg, #FFFFFF 24.37%, rgba(255, 255, 255, 0));
+        }
+        .shopping-cart button.swiper-button[disabled] {
+            opacity: 0;
         }
         .slide {
             background: #FFFFFF;
@@ -1519,14 +1725,20 @@ if (href.includes('login.php') || href.includes('/register.php') || href.include
             line-height: 150%;
             color: #6E6E6E;
             margin: 4px 0 8px;
+            text-align: left;
+            text-overflow: ellipsis;
+            overflow: hidden;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
         }
-        .btn-add {
+        .shopping-cart button.btn-add {
             background: #FBFBFB;
             border: 2px solid #1E3944;
             border-radius: 100px;
             font-weight: 600;
             font-size: 10px;
-            line-height: 30px;
+            line-height: 28px;
             text-align: center;
             letter-spacing: 0.05em;
             text-transform: uppercase;
@@ -1541,14 +1753,28 @@ if (href.includes('login.php') || href.includes('/register.php') || href.include
         <div class="container">     
             <div class="header-cart"><div class=" flex-center-between">Shopping cart <svg class="ml-auto" width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M15.4161 14L22.5939 5.44414C22.7142 5.30195 22.613 5.08594 22.4271 5.08594H20.245C20.1165 5.08594 19.9935 5.14336 19.9087 5.2418L13.9888 12.2992L8.06887 5.2418C7.98684 5.14336 7.86379 5.08594 7.73254 5.08594H5.55051C5.36457 5.08594 5.2634 5.30195 5.38372 5.44414L12.5614 14L5.38372 22.5559C5.35676 22.5876 5.33947 22.6263 5.3339 22.6675C5.32832 22.7088 5.33469 22.7507 5.35225 22.7884C5.36981 22.8262 5.39783 22.858 5.43297 22.8803C5.46812 22.9026 5.50891 22.9143 5.55051 22.9141H7.73254C7.86106 22.9141 7.98411 22.8566 8.06887 22.7582L13.9888 15.7008L19.9087 22.7582C19.9907 22.8566 20.1138 22.9141 20.245 22.9141H22.4271C22.613 22.9141 22.7142 22.698 22.5939 22.5559L15.4161 14Z" fill="#6D7E85"/></svg></div></div>
             <div class="body-cart">
-                <ul class="list-product"></ul>
-               <div class="justify-between subtotal"><p>Total:</p> <p>$<span>0.00</span></p></div>
-               <h4>Also bought with</h4>
-               <div class="relative">
-                    <button class="swiper-button swiper-button-prev" type="button"></button>
-                    <div class="slider-products"></div>
-                    <button class="swiper-button swiper-button-next" type="button"></button>
-               </div>
+               <ul class="list-product"></ul>
+               <div class="justify-between subtotal"></div>
+                <div class="also-bought">
+                   <h4>Also bought with</h4>
+                   <div class="relative">
+                        <button class="swiper-button swiper-button-prev" type="button">
+                            <span>
+                                <svg width="18" height="50" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M12.2868 13.8473C12.3432 13.9036 12.375 13.9803 12.375 14.0602C12.375 14.1402 12.3432 14.2169 12.2868 14.2732L11.6546 14.9091C11.6005 14.9671 11.5249 15 11.4459 15C11.3668 15 11.2912 14.9671 11.2371 14.9091L5.75621 9.39594C5.6723 9.31164 5.6251 9.19728 5.625 9.07799V8.92201C5.6251 8.80272 5.6723 8.68836 5.75621 8.60406L11.2371 3.0909C11.2912 3.0329 11.3668 3 11.4459 3C11.5249 3 11.6005 3.0329 11.6546 3.0909L12.2868 3.7268C12.3432 3.78312 12.375 3.85979 12.375 3.93977C12.375 4.01975 12.3432 4.09641 12.2868 4.15274L7.46788 9L12.2868 13.8473Z" fill="#344D57"/>
+                                </svg>               
+                            </span>
+                        </button>
+                        <div class="slider-products"></div>
+                        <button class="swiper-button swiper-button-next" type="button">
+                            <span>
+                                <svg width="18" height="50" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M5.71321 13.8473C5.65675 13.9036 5.625 13.9803 5.625 14.0602C5.625 14.1402 5.65675 14.2169 5.71321 14.2732L6.34539 14.9091C6.39951 14.9671 6.47506 15 6.55413 15C6.63321 15 6.70876 14.9671 6.76287 14.9091L12.2438 9.39594C12.3277 9.31164 12.3749 9.19728 12.375 9.07799V8.92201C12.3749 8.80272 12.3277 8.68836 12.2438 8.60406L6.76287 3.0909C6.70876 3.0329 6.63321 3 6.55413 3C6.47506 3 6.39951 3.0329 6.34539 3.0909L5.71321 3.7268C5.65675 3.78312 5.625 3.85979 5.625 3.93977C5.625 4.01975 5.65675 4.09641 5.71321 4.15274L10.5321 9L5.71321 13.8473Z" fill="#344D57"/>
+                                </svg>
+                            </span>
+                        </button>
+                   </div>
+                </div>
             </div>
             <div class="footer-cart flex-center-between">
                 <form action="https://medicalmega.com/guest-expresscheckout.php" method="POST" target="default" class="paypal-form-button">
@@ -1568,14 +1794,12 @@ if (href.includes('login.php') || href.includes('/register.php') || href.include
     document.body.insertAdjacentHTML('beforeend', cartModalHTML); //add cart modal
 
     let linkCustom = document.createElement('link');
-    linkCustom.href =
-        'https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.3/tiny-slider.css';
+    linkCustom.href = 'https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.3/tiny-slider.css';
     linkCustom.rel = 'stylesheet';
     document.head.appendChild(linkCustom);
 
     let scriptCustom = document.createElement('script');
-    scriptCustom.src =
-        'https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.3/min/tiny-slider.js';
+    scriptCustom.src = 'https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.3/min/tiny-slider.js';
     scriptCustom.async = false;
     document.head.appendChild(scriptCustom);
 
@@ -1587,11 +1811,14 @@ if (href.includes('login.php') || href.includes('/register.php') || href.include
         hideCart()
     })
     document.querySelector('.shopping-cart').addEventListener('click', (e) => {
-        if(e.target.matches('shopping-cart')) {
+        if(e.target.matches('.shopping-cart')) {
             hideCart()
         }
     })
-
+    document.querySelector('.shoppingcart.tooltip-cart').addEventListener('click', (e) => {
+        e.preventDefault();
+        showCart()
+    })
     //add products in slider
     let slideHTML = (url, urlImage, title, price, id, variantId, parent) =>  {
         let slide = `
@@ -1601,7 +1828,7 @@ if (href.includes('login.php') || href.includes('/register.php') || href.include
                         <img src="${urlImage}" alt="${title}">
                         <span class="price">
                             <p></p>
-                            <b>$${price}</b>
+                            <b>${price}</b>
                         </span>
                     </span>
                     <span class="name">${title}</span>
@@ -1622,9 +1849,16 @@ if (href.includes('login.php') || href.includes('/register.php') || href.include
 
     //11212 Hand Sanitizing
     postFetch('/api/products',`offset=0&limit=6&is_featured=0&ctoken=${mm.ctoken}&category=11212`,'POST').then(data => {
+        console.log(data)
         let products = data.products;
         for (let i = 0; i < products.length; i++) {
-           slideHTML(products[i].url, products[i].variants[0].image_url, products[i].title, products[i].price, products[i].variants[0].product_id, products[i].variants[0].variant_id, '.slider-products')
+           slideHTML(products[i].url, products[i].variants[0].image_url, products[i].title, products[i].variants[0].regular_price, products[i].variants[0].product_id, products[i].variants[0].variant_id, '.slider-products')
+
+            let plus = document.querySelectorAll(`.slide .quantity-btn_plus`)[i],
+                minus = document.querySelectorAll(`.slide .quantity-btn_minus`)[i],
+                quantity = document.querySelectorAll(`.slide .quantity`)[i];
+
+            changeQuantity(plus, minus, quantity, false)
         }
         tns({
             container: document.querySelector('.slider-products'),
@@ -1643,8 +1877,6 @@ if (href.includes('login.php') || href.includes('/register.php') || href.include
             swipeAngle: false,
         });
     })
-
-
 }
 
 //cart product
@@ -1654,77 +1886,47 @@ let cart = () => {
     //get data
     postFetch('/cart.html',`api=c&cart_action=cart&ctoken=${mm.ctoken}`,'POST').then(data => {
         console.log(data)
-        document.querySelector(parent).innerHTML = ''
-        if (parent == '.order_body') {
-            //add pricing for order
-            document.querySelector('.order_foot').innerHTML = '';
-            let pricing = obj['pricingArr']
-            for (let key in pricing) {
-                for (let keyData in data) {
-                    if (key == keyData && data[keyData] != 0) {
-                        document.querySelector('.order_foot').insertAdjacentHTML('beforeend', `
-                        <li class="justify-between">
-                            <p>${pricing[key]}:</p>
-                            <p>$<span>${data[keyData]}</span></p>
-                        </li>`)
-                    }
-                }
-            }
-        } else {
-            document.querySelector('.subtotal p span').innerHTML = '';
-            document.querySelector('.subtotal p span').innerHTML = data.subtotal;
-        }
-
-        //product actions
         let products = data['items'];
-        for (let i = 0; i < products.length; i++) {
-            //add products
-            document.querySelector(parent).insertAdjacentHTML('beforeend', product(products[i].product_id, products[i].variant_id, products[i].quantity, products[i].subtotal, products[i].url, products[i].image_url, products[i].title))
-
-            //remove product
-            let remove = document.querySelectorAll('.remove');
-            if (!!remove) {
-                remove[i].addEventListener('click', (e) => {
-                    console.log(e.target)
-                    postFetch('/cart.html',`api=c&cart_action=remove&variant_id=${remove[i].closest('.product-item').dataset.variantId}&ctoken=${mm.ctoken}`,'POST').then(data => cart())
-                })
+        document.querySelector(parent).innerHTML = '';
+        if (parent == '.order_body') {
+            pricing('.order_pricing', data)  //add pricing for order
+        } else {
+            document.querySelector('.subtotal').innerHTML = data.subtotal != 0 ? `<p>Total:</p> <p>$<span>${(+data.subtotal.toString().replace(/[^\d\.]/g,'')).toFixed(2)}</span></p>` : '';
+            if (products.length < 1) {
+                document.querySelector(parent).innerHTML = `<div class="empty-cart">
+                           <p>Your cart is currently empty.</p>
+                           <button type="button" class="btn-next"><span>Shop now</span></button>
+                    </div>`;
+                document.querySelector('.subtotal').style.display = 'none';
+                document.querySelector(parent).style.margin = 'auto'
+            } else {
+                document.querySelector('.subtotal').style = '';
+                document.querySelector(parent).style = '';
             }
+        }
+        if (products.length > 0) {
+            //product quantity changes
+            let varQty = href.includes('checkout/step2') || href.includes('checkout/step3') ? 1 : 0
+            for (let i = 0; i < products.length; i++) {
+                //add products
+                document.querySelector(parent).insertAdjacentHTML('beforeend', product(products[i].product_id, products[i].variant_id, products[i].quantity, products[i].subtotal, products[i].url, products[i].image_url, products[i].title, varQty))
 
-            //update product
-            let plus = document.querySelectorAll('.quantity-btn_plus'),
-                minus = document.querySelectorAll('.quantity-btn_minus'),
-                quantity = document.querySelectorAll('.quantity');
-
-            quantity[i].addEventListener('change', () => {
-                if (quantity[i].value < 1) {
-                    quantity[i].value = 1
+                //remove product
+                let remove = document.querySelectorAll('.remove');
+                if (remove.length > 0) {
+                    remove[i].addEventListener('click', (e) => {
+                        console.log(e.target)
+                        postFetch('/cart.html',`api=c&cart_action=remove&variant_id=${remove[i].closest('.product-item').dataset.variantId}&ctoken=${mm.ctoken}`,'POST').then(data => cart())
+                    })
                 }
-                postFetch('/cart.html',`api=c&cart_action=update&variant_id=${quantity[i].closest('.product-item').dataset.variantId}&quantity=${quantity[i].value}&ctoken=${mm.ctoken}`,'POST').then(data => cart())
-            })
-            plus[i].addEventListener('click', () => {
-                quantity[i].value = +quantity[i].value + 1;
-                quantity[i].parentElement.querySelector('.quantity-btn_minus').disabled = false;
+                let plus = document.querySelectorAll(`${parent} .quantity-btn_plus`)[i],
+                    minus = document.querySelectorAll(`${parent} .quantity-btn_minus`)[i],
+                    quantity = document.querySelectorAll(`${parent} .quantity`)[i];
 
-                postFetch('/cart.html',`api=c&cart_action=update&variant_id=${plus[i].closest('.product-item').dataset.variantId}&quantity=${quantity[i].value}&ctoken=${mm.ctoken}`,'POST').then(data => cart())
-            })
-            if (!href.includes('/checkout/step2') || !href.includes('/checkout/step3') ) {
-                if (minus[i].nextElementSibling.value < 2) {
-                    minus[i].disabled = true;
-                } else {
-                    minus[i].disabled = false;
-                }
+                varQty == 0 ? changeQuantity(plus, minus, quantity, true) : ''
             }
-
-            minus[i].addEventListener('click', () => {
-                if (minus[i].nextElementSibling.value < 2) {
-                    minus[i].nextElementSibling.value = 1;
-                    minus[i].disabled = true;
-                } else {
-                    minus[i].nextElementSibling.value = +minus[i].nextElementSibling.value - 1;
-                }
-                postFetch('/cart.html',`api=c&cart_action=update&variant_id=${minus[i].closest('.product-item').dataset.variantId}&quantity=${quantity[i].value}&ctoken=${mm.ctoken}`,'POST').then(data => cart())
-            })
         }
     })
 }
 cart()
+
