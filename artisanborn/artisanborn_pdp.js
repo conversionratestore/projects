@@ -874,6 +874,7 @@ let startFunk = setInterval(() => {
       if (document.querySelector(".product.clearfix")) {
         observer.disconnect()
         console.log(`observer`)
+        changeLangType()
 
         observer.observe(document.querySelector(".product.clearfix"), {
           childList: true,
