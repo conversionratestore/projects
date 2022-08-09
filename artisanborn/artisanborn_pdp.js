@@ -790,7 +790,7 @@ let startFunk = setInterval(() => {
       let clonedNodeReviews = document.querySelector("#desktest")?.cloneNode(true)
       let clonedNodePrice = document.querySelector("span.final-price-wrap")?.cloneNode(true)
       let clonedNodeImg = document.querySelectorAll(".product_gallery .flickity-slider .gallery-cell")[0]?.cloneNode(true)
-      console.log(clonedNodeImg)
+      // console.log(clonedNodeImg)
 
       if (clonedNodeTitle) {
         if (!document.querySelector(".title_pdp #desktopppp")) {
@@ -807,6 +807,7 @@ let startFunk = setInterval(() => {
       if (clonedNodePrice) {
         if (!document.querySelector(".price_pdp span.final-price-wrap")) {
           document.querySelector(".price_pdp")?.appendChild(clonedNodePrice)
+          // document.querySelector(".price_pdp span.final-price-wrap b:first-child").textContent = "Price"
         }
       }
 
@@ -955,6 +956,10 @@ let startFunk = setInterval(() => {
 
           if (document.querySelector(".product .final-price-wrap b:first-child").textContent !== "Price") {
             document.querySelector(".product .final-price-wrap b:first-child").textContent = "Price"
+          }
+
+          if (document.querySelector(".price_pdp span.final-price-wrap b:first-child")) {
+            document.querySelector(".price_pdp span.final-price-wrap b:first-child").textContent = "Price"
           }
 
           pushDataLayer(`${text} drop down selected`)
