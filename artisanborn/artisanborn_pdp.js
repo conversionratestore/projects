@@ -577,6 +577,9 @@ let startFunk = setInterval(() => {
                 .is_visible{
                     display: block;
                 }
+                .was_price{
+                  display: none !important;
+                }
             </style>        
             `
 
