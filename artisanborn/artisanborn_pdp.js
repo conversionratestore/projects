@@ -782,7 +782,10 @@ let startFunk = setInterval(() => {
     renderInformPopup()
     //  renderInformPopup
     function renderInformPopup() {
-      document.querySelector(".container_popup")?.insertAdjacentHTML("afterbegin", bodyPopup)
+      if (!document.querySelector(".body_popup")) {
+        document.querySelector(".container_popup")?.insertAdjacentHTML("afterbegin", bodyPopup)
+      }
+
       let clonedNodeTitle = document.querySelector("#desktopppp")?.cloneNode(true)
       let clonedNodeReviews = document.querySelector("#desktest")?.cloneNode(true)
       let clonedNodePrice = document.querySelector("span.final-price-wrap")?.cloneNode(true)
@@ -790,20 +793,32 @@ let startFunk = setInterval(() => {
       console.log(clonedNodeImg)
 
       if (clonedNodeTitle) {
-        document.querySelector(".title_pdp")?.appendChild(clonedNodeTitle)
+        if (!document.querySelector(".title_pdp #desktopppp")) {
+          document.querySelector(".title_pdp")?.appendChild(clonedNodeTitle)
+        }
       }
 
       if (clonedNodeReviews) {
-        document.querySelector(".reviews_pdp")?.appendChild(clonedNodeReviews)
+        if (!document.querySelector(".reviews_pdp #desktest")) {
+          document.querySelector(".reviews_pdp")?.appendChild(clonedNodeReviews)
+        }
       }
 
       if (clonedNodePrice) {
-        document.querySelector(".price_pdp")?.appendChild(clonedNodePrice)
+        if (!document.querySelector(".price_pdp span.final-price-wrap")) {
+          document.querySelector(".price_pdp")?.appendChild(clonedNodePrice)
+        }
       }
 
       if (clonedNodeImg) {
         setTimeout(() => {
-          document.querySelector(".img_wrap")?.appendChild(clonedNodeImg)
+          if (!document.querySelector(".img_wrap .gallery-cell")) {
+            document.querySelector(".img_wrap")?.appendChild(clonedNodeImg)
+
+            document.querySelector(".img_wrap .gallery-cell").addEventListener("click", function (e) {
+              e.preventDefault()
+            })
+          }
         }, 1000)
       }
 
@@ -877,6 +892,7 @@ let startFunk = setInterval(() => {
         observer.disconnect()
         console.log(`observer`)
         changeLangType()
+        renderInformPopup()
 
         observer.observe(document.querySelector(".product.clearfix"), {
           childList: true,
