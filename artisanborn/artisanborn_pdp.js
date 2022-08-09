@@ -780,35 +780,35 @@ let startFunk = setInterval(() => {
     }
 
     renderInformPopup()
-    //  renderInformPopup()
+    //  renderInformPopup
     function renderInformPopup() {
-      setTimeout(() => {
-        document.querySelector(".container_popup")?.insertAdjacentHTML("afterbegin", bodyPopup)
-        let clonedNodeTitle = document.querySelector("#desktopppp")?.cloneNode(true)
-        let clonedNodeReviews = document.querySelector("#desktest")?.cloneNode(true)
-        let clonedNodePrice = document.querySelector("span.final-price-wrap")?.cloneNode(true)
-        let clonedNodeImg = document.querySelectorAll(".product_gallery .flickity-slider .gallery-cell")[0]?.cloneNode(true)
-        console.log(clonedNodeImg)
+      document.querySelector(".container_popup")?.insertAdjacentHTML("afterbegin", bodyPopup)
+      let clonedNodeTitle = document.querySelector("#desktopppp")?.cloneNode(true)
+      let clonedNodeReviews = document.querySelector("#desktest")?.cloneNode(true)
+      let clonedNodePrice = document.querySelector("span.final-price-wrap")?.cloneNode(true)
+      let clonedNodeImg = document.querySelectorAll(".product_gallery .flickity-slider .gallery-cell")[0]?.cloneNode(true)
+      console.log(clonedNodeImg)
 
-        if (clonedNodeTitle) {
-          document.querySelector(".title_pdp")?.appendChild(clonedNodeTitle)
-        }
+      if (clonedNodeTitle) {
+        document.querySelector(".title_pdp")?.appendChild(clonedNodeTitle)
+      }
 
-        if (clonedNodeReviews) {
-          document.querySelector(".reviews_pdp")?.appendChild(clonedNodeReviews)
-        }
+      if (clonedNodeReviews) {
+        document.querySelector(".reviews_pdp")?.appendChild(clonedNodeReviews)
+      }
 
-        if (clonedNodePrice) {
-          document.querySelector(".price_pdp")?.appendChild(clonedNodePrice)
-        }
+      if (clonedNodePrice) {
+        document.querySelector(".price_pdp")?.appendChild(clonedNodePrice)
+      }
 
-        if (clonedNodeImg) {
+      if (clonedNodeImg) {
+        setTimeout(() => {
           document.querySelector(".img_wrap")?.appendChild(clonedNodeImg)
-        }
+        }, 1000)
+      }
 
-        // id pdp
-        document.querySelector('.body_popup [name="productId"]').value = document.querySelector(".shopify-product-reviews-badge").getAttribute("data-id")
-      }, 1000)
+      // id pdp
+      document.querySelector('.body_popup [name="productId"]').value = document.querySelector(".shopify-product-reviews-badge").getAttribute("data-id")
     }
 
     // POPUP
