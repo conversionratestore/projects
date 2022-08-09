@@ -1,4 +1,7 @@
+console.log('script loaded!!');
+
 if (window.location.hostname.includes('typeform')) {
+    console.log('typeform');
     const target = document
 
     const config = {
@@ -24,6 +27,7 @@ if (window.location.hostname.includes('typeform')) {
     observer.observe(target, config)
 }
 if (window.location.pathname.includes('success')) {
+    console.log('success');
     runSuccessPage()
 }
 
