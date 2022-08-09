@@ -985,7 +985,7 @@ let startFunk = setInterval(() => {
     pushDataLayer("loaded")
     clarity("set", `pdp_improvements${eventVar}`, "variant_1")
   }
-}, 500)
+}, 550)
 
 let startFunkCard = setInterval(() => {
   if (document.querySelector("#cart_form")) {
