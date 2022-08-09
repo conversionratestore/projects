@@ -766,7 +766,7 @@ let startFunk = setInterval(() => {
         } else if (text === "TITLE") {
           el.closest("div")?.insertAdjacentHTML("afterbegin", renderNewLabel(text, "https://conversionratestore.github.io/projects/artisanborn/img/select_title2.png"))
         } else if (text === "DEPTH" || text === "CHOOSE DEPTH") {
-          el.closest("div")?.insertAdjacentHTML("afterbegin", renderNewLabel(text, "https://conversionratestore.github.io/projects/artisanborn/img/select_width2.png"))
+          el.closest("div")?.insertAdjacentHTML("afterbegin", renderNewLabel(text, "https://conversionratestore.github.io/projects/artisanborn/img/select_depth2.png"))
         } else if (text === "QUANTITY") {
           el.closest("div")?.insertAdjacentHTML("afterbegin", renderNewLabel(text, "https://conversionratestore.github.io/projects/artisanborn/img/select_quantity2.png"))
         }
