@@ -315,27 +315,8 @@ const shifts = [
     ]
 ]
 
-/* parse URL */
-const queryString = window.location.search;
-const urlParams = new URLSearchParams(queryString);
-
-const nameUrl = urlParams.get('fname') || ''
-const mailUrl = urlParams.get('email')
 
 /* check new user */
-
-if (nameUrl) {
-    localStorage.setItem('myName', nameUrl)
-    localStorage.myName
-}
-
-if (mailUrl) {
-    if (localStorage.getItem('myEmail') !== mailUrl) {
-        localStorage.setItem('myEmail', mailUrl)
-        localStorage.removeItem('startDate');
-    }
-}
-
 let countdownTime = 120;
 
 if (!localStorage.getItem('startDate')) { // check Date
@@ -380,13 +361,11 @@ const shiftsHTML = getRandomItems(shifts, 3).map(job => `
             </div>
     `).join('')
 
-const htmlName = nameUrl || localStorage.getItem('myName') || ''
-
 const successTemplate = /*html*/`
     <main class="main_wrapper">
         <section class="message_section">
             <div class="content">
-                <p class="title">Congratulations${htmlName ? ', ' + htmlName : ''}! 🎉<br>You have been <span>approved</span> to join Upshift.</p>
+                <p class="title">Congratulations! 🎉<br>You have been <span>approved</span> to join Upshift.</p>
                 <p class="subtitle">Next you just need to <b>complete your onboarding</b> to start making extra money!
                 </p>
                 <div class="box timer">
