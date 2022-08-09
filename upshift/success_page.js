@@ -1,4 +1,32 @@
-const successCSS = /*html*/`
+if (window.location.hostname.includes('typeform')) {
+    const target = document
+
+    const config = {
+        childList: true,
+        subtree: true
+    }
+
+    const callback = function (mutationsList) {
+        for (let mutation of mutationsList) {
+            for (let node of mutation.addedNodes) {
+                if (!(node instanceof HTMLElement)) continue
+
+                if (node.matches('.jTQElb')) {
+                    window.location.href = 'https://www.upshift.work/for-people/success-page/';
+                }
+            }
+        }
+    }
+
+    const observer = new MutationObserver(callback)
+    observer.observe(target, config)
+}
+if (window.location.pathname.includes('success')) {
+    runSuccessPage()
+}
+
+function runSuccessPage() {
+    const successCSS = /*html*/`
 <style>
     section .content {
         padding: 25px;
@@ -248,92 +276,92 @@ const successCSS = /*html*/`
     </style>
 `
 
-const shifts = [
-    [
-        'Prep cook',
-        'EST $136',
-        '$17/hr', '9:00 a.m. - 5:00 p.m.',
-        'Restaurant',
-        ['star', 'star', 'star', 'star', 'star-half'],
-        '4.89'
-    ],
-    [
-        'Stadium Attendant',
-        'EST $126',
-        '$18/hr', '3:00 p.m. - 10:00 p.m.',
-        'Stadium',
-        ['star', 'star', 'star', 'star', 'star-half'],
-        '4.76'
-    ],
-    [
-        'Banquet Attendant',
-        'EST $144',
-        '$18/hr', '10:00 a.m. - 6:00 p.m.',
-        'Museum Center',
-        ['star', 'star', 'star', 'star', 'star-half'],
-        '4.83'
-    ],
-    [
-        'Concession Cashier',
-        'EST $70',
-        '$14/hr', '2:00 p.m. - 7:00 p.m.',
-        'Convention Center',
-        ['star', 'star', 'star', 'star', 'star-half'],
-        '4.73'
-    ],
-    [
-        'Bartender',
-        'EST $133',
-        '$19/hr', '3:00 p.m. - 10:00 p.m.',
-        'Park',
-        ['star', 'star', 'star', 'star', 'star-half'],
-        '4.89'
-    ],
-    [
-        'Concessions',
-        'EST $80',
-        '$16/hr', '2:00 p.m. - 7:00 p.m.',
-        'Sports Arena',
-        ['star', 'star', 'star', 'star', 'star-half'],
-        '4.76'
-    ],
-    [
-        'Suite Runner',
-        'EST $126',
-        '$18/hr', '4:00 p.m. - 11:00 p.m.',
-        'Hotel',
-        ['star', 'star', 'star', 'star', 'star-half'],
-        '4.83'
-    ],
-    [
-        'Concession Cashier',
-        'EST $120',
-        '$15/hr', '10:00 a.m. - 6:00 p.m.',
-        'Convention Center',
-        ['star', 'star', 'star', 'star', 'star-half'],
-        '4.75'
+    const shifts = [
+        [
+            'Prep cook',
+            'EST $136',
+            '$17/hr', '9:00 a.m. - 5:00 p.m.',
+            'Restaurant',
+            ['star', 'star', 'star', 'star', 'star-half'],
+            '4.89'
+        ],
+        [
+            'Stadium Attendant',
+            'EST $126',
+            '$18/hr', '3:00 p.m. - 10:00 p.m.',
+            'Stadium',
+            ['star', 'star', 'star', 'star', 'star-half'],
+            '4.76'
+        ],
+        [
+            'Banquet Attendant',
+            'EST $144',
+            '$18/hr', '10:00 a.m. - 6:00 p.m.',
+            'Museum Center',
+            ['star', 'star', 'star', 'star', 'star-half'],
+            '4.83'
+        ],
+        [
+            'Concession Cashier',
+            'EST $70',
+            '$14/hr', '2:00 p.m. - 7:00 p.m.',
+            'Convention Center',
+            ['star', 'star', 'star', 'star', 'star-half'],
+            '4.73'
+        ],
+        [
+            'Bartender',
+            'EST $133',
+            '$19/hr', '3:00 p.m. - 10:00 p.m.',
+            'Park',
+            ['star', 'star', 'star', 'star', 'star-half'],
+            '4.89'
+        ],
+        [
+            'Concessions',
+            'EST $80',
+            '$16/hr', '2:00 p.m. - 7:00 p.m.',
+            'Sports Arena',
+            ['star', 'star', 'star', 'star', 'star-half'],
+            '4.76'
+        ],
+        [
+            'Suite Runner',
+            'EST $126',
+            '$18/hr', '4:00 p.m. - 11:00 p.m.',
+            'Hotel',
+            ['star', 'star', 'star', 'star', 'star-half'],
+            '4.83'
+        ],
+        [
+            'Concession Cashier',
+            'EST $120',
+            '$15/hr', '10:00 a.m. - 6:00 p.m.',
+            'Convention Center',
+            ['star', 'star', 'star', 'star', 'star-half'],
+            '4.75'
+        ]
     ]
-]
 
 
-/* check new user */
-let countdownTime = 120;
+    /* check new user */
+    let countdownTime = 120;
 
-if (!localStorage.getItem('startDate')) { // check Date
-    localStorage.setItem('startDate', Date.now().toString());
-} else {
-    let currentDate = Date.now();
+    if (!localStorage.getItem('startDate')) { // check Date
+        localStorage.setItem('startDate', Date.now().toString());
+    } else {
+        let currentDate = Date.now();
 
-    countdownTime = 120 - (currentDate.toString() - localStorage.startDate) / 1000
-}
+        countdownTime = 120 - (currentDate.toString() - localStorage.startDate) / 1000
+    }
 
-/* html and etc */
+    /* html and etc */
 
-const getRandomItems = (arr, num) => arr.sort(() => Math.random() - 0.5).slice(0, num)
+    const getRandomItems = (arr, num) => arr.sort(() => Math.random() - 0.5).slice(0, num)
 
-const imgFolderLink = `https://conversionratestore.github.io/projects/upshift/img`
+    const imgFolderLink = `https://conversionratestore.github.io/projects/upshift/img`
 
-const shiftsHTML = getRandomItems(shifts, 3).map(job => `
+    const shiftsHTML = getRandomItems(shifts, 3).map(job => `
 <div class="slide">
                 <div class="slide_header">
                     <div>
@@ -361,7 +389,7 @@ const shiftsHTML = getRandomItems(shifts, 3).map(job => `
             </div>
     `).join('')
 
-const successTemplate = /*html*/`
+    const successTemplate = /*html*/`
     <main class="main_wrapper">
         <section class="message_section">
             <div class="content">
@@ -407,60 +435,61 @@ const successTemplate = /*html*/`
     </main>
 `
 
-const intervalTimeout = 200
+    const intervalTimeout = 200
 
-document.head.insertAdjacentHTML('beforeend', successCSS)
+    document.head.insertAdjacentHTML('beforeend', successCSS)
 
-const waitForBody = setInterval(() => {
-    if (document.querySelector('.post-content')) {
-        clearInterval(waitForBody)
+    const waitForBody = setInterval(() => {
+        if (document.querySelector('.post-content')) {
+            clearInterval(waitForBody)
 
-        document.querySelector('.post-content').insertAdjacentHTML('afterbegin', successTemplate)
-    }
-}, intervalTimeout)
-
-const startTimer = (duration, display) => {
-    let timer = duration
-
-    let minutes, seconds
-
-    setInterval(() => {
-        minutes = parseInt(timer / 60, 10);
-        seconds = parseInt(timer % 60, 10);
-
-        minutes = minutes < 10 ? "0" + minutes : minutes;
-        seconds = seconds < 10 ? "0" + seconds : seconds;
-
-        display.textContent = minutes + ":" + seconds;
-
-        if (--timer < -1) {
-            timer = duration;
-
-            document.querySelector('.box.message').hidden = false;
-            document.querySelector('.box.timer').hidden = true;
+            document.querySelector('.post-content').insertAdjacentHTML('afterbegin', successTemplate)
         }
-    }, 1000);
+    }, intervalTimeout)
+
+    const startTimer = (duration, display) => {
+        let timer = duration
+
+        let minutes, seconds
+
+        setInterval(() => {
+            minutes = parseInt(timer / 60, 10);
+            seconds = parseInt(timer % 60, 10);
+
+            minutes = minutes < 10 ? "0" + minutes : minutes;
+            seconds = seconds < 10 ? "0" + seconds : seconds;
+
+            display.textContent = minutes + ":" + seconds;
+
+            if (--timer < -1) {
+                timer = duration;
+
+                document.querySelector('.box.message').hidden = false;
+                document.querySelector('.box.timer').hidden = true;
+            }
+        }, 1000);
+    }
+
+    const waitForTimer = setInterval(() => {
+        if (document.querySelector('.time')) {
+            clearInterval(waitForTimer)
+
+            startTimer(countdownTime, document.querySelector('.time'))
+        }
+    }, intervalTimeout)
+
+    window.dataLayer = window.dataLayer || []
+    dataLayer.push({
+        'event': 'event-to-ga',
+        'eventCategory': 'Exp: Success Page',
+        'eventAction': 'loaded'
+    })
+
+    let isSuccessClarity = setInterval(() => {
+        if (typeof clarity === 'function') {
+            clearInterval(isSuccessClarity)
+
+            clarity('set', 'success_page', 'variant_1')
+        }
+    }, 100)
 }
-
-const waitForTimer = setInterval(() => {
-    if (document.querySelector('.time')) {
-        clearInterval(waitForTimer)
-
-        startTimer(countdownTime, document.querySelector('.time'))
-    }
-}, intervalTimeout)
-
-window.dataLayer = window.dataLayer || []
-dataLayer.push({
-    'event': 'event-to-ga',
-    'eventCategory': 'Exp: Success Page',
-    'eventAction': 'loaded'
-})
-
-let isSuccessClarity = setInterval(() => {
-    if (typeof clarity === 'function') {
-        clearInterval(isSuccessClarity)
-
-        clarity('set', 'success_page', 'variant_1')
-    }
-}, 100)
