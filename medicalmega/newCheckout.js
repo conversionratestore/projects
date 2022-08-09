@@ -106,6 +106,11 @@ let styleMain =`
         align-items: center;
         justify-content: space-between;
     }
+    .flex-center {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
     .items-center {
         display: flex!important;
         align-items: center;
@@ -1460,8 +1465,74 @@ if (href.includes('login.php') || href.includes('/register.php') || href.include
             line-height: 120%;
             color: #344D57;
         }
+        /*slider*/
         .slider-products {
             padding: 32px 0 9px;
+        }
+        .shopping-cart button.swiper-button {
+            background: #FFFFFF no-repeat center / 12px!important;
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3), 0 1px 3px 1px rgba(0, 0, 0, 0.15);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            position: absolute;
+            top: calc(50% - 12px);
+            transform: translateY(-50%);
+            z-index: 8;
+        }
+        .shopping-cart button.swiper-button.swiper-button-prev {
+            left: -20px;
+            background-image: url('https://conversionratestore.github.io/projects/medicalmega/img/arrow-left-2.svg');
+        }
+        .shopping-cart button.swiper-button.swiper-button-next {
+            right: -20px;
+            background-image: url('https://conversionratestore.github.io/projects/medicalmega/img/arrow-right-2.svg');
+        }
+        .slide {
+            background: #FFFFFF;
+            margin-right: 12px;
+            padding: 20px;
+            border: 1px solid #E3E6E7;
+            border-radius: 4px;
+        }
+        .slide img {
+            width: 80px;
+            height: 80px;
+            margin-right: 8px;
+        }
+        .slide .price p {
+            font-weight: 300;
+            font-size: 12px;
+            line-height: 150%;
+            text-decoration-line: line-through;
+            color: #666666;
+        }
+        .slide .price b {
+            font-weight: 600;
+            font-size: 16px;
+            line-height: 130%;
+            color: #091114;
+        }
+        .slide .name {
+            font-weight: 400;
+            font-size: 12px;
+            line-height: 150%;
+            color: #6E6E6E;
+            margin: 4px 0 8px;
+        }
+        .btn-add {
+            background: #FBFBFB;
+            border: 2px solid #1E3944;
+            border-radius: 100px;
+            font-weight: 600;
+            font-size: 10px;
+            line-height: 30px;
+            text-align: center;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            color: #1E3944;
+            width: 100%;
+            margin-top: 16px;
         }
     </style>`
 
@@ -1474,9 +1545,9 @@ if (href.includes('login.php') || href.includes('/register.php') || href.include
                <div class="justify-between subtotal"><p>Total:</p> <p>$<span>0.00</span></p></div>
                <h4>Also bought with</h4>
                <div class="relative">
-                    <button class="swiper-button-prev" type="button"></button>
+                    <button class="swiper-button swiper-button-prev" type="button"></button>
                     <div class="slider-products"></div>
-                    <button class="swiper-button-next" type="button"></button>
+                    <button class="swiper-button swiper-button-next" type="button"></button>
                </div>
             </div>
             <div class="footer-cart flex-center-between">
@@ -1496,6 +1567,19 @@ if (href.includes('login.php') || href.includes('/register.php') || href.include
     document.body.insertAdjacentHTML('afterbegin', styleCart); //add style for cart modal
     document.body.insertAdjacentHTML('beforeend', cartModalHTML); //add cart modal
 
+    let linkCustom = document.createElement('link');
+    linkCustom.href =
+        'https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.3/tiny-slider.css';
+    linkCustom.rel = 'stylesheet';
+    document.head.appendChild(linkCustom);
+
+    let scriptCustom = document.createElement('script');
+    scriptCustom.src =
+        'https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.3/min/tiny-slider.js';
+    scriptCustom.async = false;
+    document.head.appendChild(scriptCustom);
+
+    //show/hide cart modal
     let showCart = () => document.querySelector('.shopping-cart').classList.add('active');
     let hideCart = () => document.querySelector('.shopping-cart').classList.remove('active');
 
@@ -1508,7 +1592,8 @@ if (href.includes('login.php') || href.includes('/register.php') || href.include
         }
     })
 
-    let slideHTML = (url, urlImage, title, id, variantId, parent) =>  {
+    //add products in slider
+    let slideHTML = (url, urlImage, title, price, id, variantId, parent) =>  {
         let slide = `
             <form action="https://medicalmega.com/cart.html" method="post" class="slide">
                 <a href="${url}">
@@ -1516,12 +1601,12 @@ if (href.includes('login.php') || href.includes('/register.php') || href.include
                         <img src="${urlImage}" alt="${title}">
                         <span class="price">
                             <p></p>
-                            <b>$</b>
+                            <b>$${price}</b>
                         </span>
                     </span>
                     <span class="name">${title}</span>
                 </a>
-                <div class="items-center">
+                <div class="flex-center">
                     <button type="button" class="quantity-btn quantity-btn_minus">−</button>
                     <input type="number" name="quantity" value="1" class="quantity">
                     <button type="button" class="quantity-btn quantity-btn_plus" >+</button>
@@ -1539,7 +1624,7 @@ if (href.includes('login.php') || href.includes('/register.php') || href.include
     postFetch('/api/products',`offset=0&limit=6&is_featured=0&ctoken=${mm.ctoken}&category=11212`,'POST').then(data => {
         let products = data.products;
         for (let i = 0; i < products.length; i++) {
-           slideHTML(products[i].url, products[i].variants[0].image_url, products[i].title, products[i].variants[0].product_id, products[i].variants[0].variant_id, '.slider-products')
+           slideHTML(products[i].url, products[i].variants[0].image_url, products[i].title, products[i].price, products[i].variants[0].product_id, products[i].variants[0].variant_id, '.slider-products')
         }
         tns({
             container: document.querySelector('.slider-products'),
