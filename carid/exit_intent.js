@@ -246,22 +246,22 @@ let style = `
         }
         .modal__products li .price {
             font-weight: 500;
-	    padding-left: 7px;
+	        padding-left: 7px;
         }
     }
     
     @media only screen and (max-width: 360px)  {
     	.modal__header, .modal__footer {
-	    padding: 0 15px;
-	}
-	.modal__products {
-	    padding: 0 15px 10px;
-	}
+            padding: 0 15px;
+        }
+        .modal__products {
+            padding: 0 15px 10px;
+        }
     }
 </style>`
 
 /* Classes method for Product */
-class Products{
+class Products {
     constructor(name,image,price) {
         this.name = name;
         this.image = image;
@@ -307,9 +307,9 @@ function detectMob() {
         /BlackBerry/i,
         /Windows Phone/i
     ];
-    
+
     return toMatch.some((toMatchItem) => {
-      return navigator.userAgent.match(toMatchItem);
+        return navigator.userAgent.match(toMatchItem);
     });
 }
 
@@ -332,7 +332,7 @@ function pushDataLayer(action,label) {
     }
 }
 
-//PDP 
+//PDP
 //html google pay button
 let googlePayBtn = `
 <button type="button" class="btn btn__google-pay">
@@ -355,7 +355,7 @@ let applePayBtn = `
 let setTime = 0;
 
 function startimeInterval() {
-    timeInterval = setInterval(() => { 
+    timeInterval = setInterval(() => {
         setTime++
     }, 1000);
 }
@@ -369,7 +369,7 @@ let intervalCart = setInterval(() => {
     //google pay button
     if (document.querySelector('.btn__google-pay') == null && document.querySelector('.cart-order .google-pay-button') != null && document.querySelector('.cart-order .google-pay-button.hidden') == null &&  document.querySelector('.btns .heading') != null) {
         document.querySelector('.btns .heading').insertAdjacentHTML('afterend', googlePayBtn) //add google pay button
-        
+
         document.querySelector('.btn__google-pay').addEventListener('click', (e) => {  //click on google pay button
             document.querySelector('.cart-order .google-pay-button button').click();
             pushDataLayer('Click on check out with GPay button');
@@ -379,7 +379,7 @@ let intervalCart = setInterval(() => {
     //apple pay button
     if (document.querySelector('.btn__apple-pay') == null && document.querySelector('.cart-order .apple-pay-button') != null && document.querySelector('.cart-order .apple-pay-button.hidden') == null &&  document.querySelector('.btns .heading') != null) {
         document.querySelector('.btns .heading').insertAdjacentHTML('afterend', applePayBtn) //add apple pay button
-        
+
         document.querySelector('.btn__apple-pay').addEventListener('click', (e) => { //click on apple pay button
             document.querySelector('.cart-order .apple-pay-button').click();
             pushDataLayer('Click on check out with ApplePay button');
@@ -388,23 +388,23 @@ let intervalCart = setInterval(() => {
     }
 })
 
-//show modal 
+//show modal
 function showModal() {
-    document.querySelector('.modal__popular').classList.add('show');  
+    document.querySelector('.modal__popular').classList.add('show');
     setTime = 0;
     pushDataLayer('Showed pop-up its almost yours')
     startimeInterval()
 }
 
-//hide modal 
+//hide modal
 function hideModal() {
     document.querySelector('.modal__popular').classList.remove('show');
     stoptimeInterval()
 }
 
 window.onload = function() {
-   //cart
-    if (window.location.pathname.includes('/cart.php') && sessionStorage.getItem('popular_products') != null && sessionStorage.getItem('popular_products') != '' && sessionStorage.getItem('popular_products') != []) { 
+    //cart
+    if (window.location.pathname.includes('/cart.php') && sessionStorage.getItem('popular_products') != null && sessionStorage.getItem('popular_products') != '' && sessionStorage.getItem('popular_products') != []) {
 
         //html modal
         let html = `
@@ -450,32 +450,33 @@ window.onload = function() {
         let countLast = 0;
         for (let i = 0; i < items.length; i++) {
             for (let k = 0; k < cards.length; k++) {
-		    
-                let priceProductCart = ''
-                if (cards[k].querySelector('.cart_prod_each_prc') != null) {
-                    priceProductCart = cards[k].querySelector('.cart_prod_each_prc').innerHTML.split('<span>')[0];
-                } else if (cards[k].querySelector('.cart-product-price-original') != null && cards[k].querySelector('.cart_prod_each_prc') == null) {
-                    priceProductCart = cards[k].querySelector('.cart-product-total-price').innerHTML.split('</span>')[1];
-                } else {
-                    priceProductCart = cards[k].querySelector('.cart-product-total-price').innerHTML;
-                }
-                           
-                let nameItems = items[i].name.toLowerCase().replace('...','').split('&amp;').join('&').split('dfr1™').join('™'),
-                    nameItemsCart = cards[k].querySelector('.cart_prod_name').innerText.toLowerCase();
-
-                if (nameItems.includes('®') && nameItems.includes('-')) {
-                    let toHyphen = nameItems.split('®')[0],
-                    fromHyphen = nameItems.split(/\s-\s(.*)/g)[1];
-                    if (nameItemsCart.includes(toHyphen) && nameItemsCart.includes(fromHyphen) && countLast == 0 && priceProductCart.includes(items[i].price)) {
-                        countLast = 1;
-    
-                        new Products(cards[k].querySelector('.cart_prod_name').innerText, cards[k].querySelector('.cart-prod-img-item').src, priceProductCart).render();
+                if (items[i].price != '$0.00' && items[i].price != '$00.00' && items[i].price != '$0.0') {
+                    let priceProductCart = '';
+                    if (cards[k].querySelector('.cart_prod_each_prc') != null) {
+                        priceProductCart = cards[k].querySelector('.cart_prod_each_prc').innerHTML.split('<span>')[0];
+                    } else if (cards[k].querySelector('.cart-product-price-original') != null && cards[k].querySelector('.cart_prod_each_prc') == null) {
+                        priceProductCart = cards[k].querySelector('.cart-product-total-price').innerHTML.split('</span>')[1];
+                    } else {
+                        priceProductCart = cards[k].querySelector('.cart-product-total-price').innerHTML;
                     }
-                } else {
-                    if (nameItemsCart.includes(nameItems) && countLast == 0 && priceProductCart.includes(items[i].price)) {
-                        countLast = 1;
-    
-                        new Products(cards[k].querySelector('.cart_prod_name').innerText, cards[k].querySelector('.cart-prod-img-item').src, priceProductCart).render();
+
+                    let nameItems = items[i].name.toLowerCase().replace('...','').split('&amp;').join('&').split('dfr1™').join('™'),
+                        nameItemsCart = cards[k].querySelector('.cart_prod_name').innerText.toLowerCase();
+
+                    if (nameItems.includes('®') && nameItems.includes('-')) {
+                        let toHyphen = nameItems.split('®')[0],
+                            fromHyphen = nameItems.split(/\s-\s(.*)/g)[1];
+                        if (nameItemsCart.includes(toHyphen) && nameItemsCart.includes(fromHyphen) && countLast == 0 && priceProductCart.includes(items[i].price)) {
+                            countLast = 1;
+
+                            new Products(cards[k].querySelector('.cart_prod_name').innerText, cards[k].querySelector('.cart-prod-img-item').src, priceProductCart).render();
+                        }
+                    } else {
+                        if (nameItemsCart.includes(nameItems) && countLast == 0 && priceProductCart.includes(items[i].price)) {
+                            countLast = 1;
+
+                            new Products(cards[k].querySelector('.cart_prod_name').innerText, cards[k].querySelector('.cart-prod-img-item').src, priceProductCart).render();
+                        }
                     }
                 }
             }
@@ -494,7 +495,7 @@ window.onload = function() {
                 if (currentSpeed > 70 && document.querySelector('.gbox_portal') == null && sessionStorage.getItem('modal_loaded') == null && document.querySelector('.modal__products').innerHTML != '') {
                     sessionStorage.setItem('modal_loaded', 'true'); //set status modal true
                     showModal() //show modal
-                    
+
                     document.removeEventListener("scroll", scrollSpeed);
                 }
             };
@@ -506,13 +507,13 @@ window.onload = function() {
                 if (e.relatedTarget == null && e.target.closest('.gbox_portal') == null && sessionStorage.getItem('modal_loaded') == null && document.querySelector('.modal__products').innerHTML != '') {
                     sessionStorage.setItem('modal_loaded', 'true'); //refresh status modal
                     showModal() //show modal
-			
+
                     document.removeEventListener("mouseout", exitModal);
                 }
             }
             addEvent(document, 'mouseout', exitModal)
         }
-        
+
         //close modal
         document.querySelector('.btn_close').addEventListener('click', () => {
             hideModal();
@@ -562,8 +563,8 @@ dataLayer.push({
 });
 
 let isClarify = setInterval(() => {
-	if (typeof clarity == 'function') {
-		clearInterval(isClarify)
-		clarity('set', `Exit_intent_pop_up_${detectMob() == true ? 'mobile' : 'desktop'}`, 'variant_1')
-	}
+    if (typeof clarity == 'function') {
+        clearInterval(isClarify)
+        clarity('set', `Exit_intent_pop_up_${detectMob() == true ? 'mobile' : 'desktop'}`, 'variant_1')
+    }
 }, 100)
