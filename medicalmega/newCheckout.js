@@ -15,9 +15,75 @@ let styleMain =`
         letter-spacing: 0.05em;
         text-transform: uppercase;
         color: #FBFBFB;
+        width: fit-content;
+        display: block;
     }
     .btn-next svg {
         margin-left: 8px;
+    }
+    /*wrapper and header*/
+    .header-checkout *, .wrapper-checkout * {
+        box-sizing: border-box;
+    }
+    .header-checkout {
+        background: #FBFBFB;
+        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3), 0 2px 6px 2px rgba(0, 0, 0, 0.15);
+        position: sticky;
+        top: 0;
+        z-index: 99;
+        padding: 39px 0;
+    }
+    .header-checkout .container {
+        max-width: 1270px;
+    }
+    .logo img {
+        width: 185px;
+        height: 40px;
+    }
+    .step {
+        position: relative;
+    }
+    .step:not(:last-child):after {
+        content: '';
+        border-bottom: 1px dashed #091114;
+        height: 0;
+        width: 60px;
+        margin-right: 8px;
+        margin-top: auto;
+        margin-bottom: 6px;
+    }
+    .step .circle {
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        border: 1px solid #9AA6AB;
+        margin-right: 12px;
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 30px;
+        text-align: center;
+        color: #9AA6AB;
+    }
+    .step p {
+        width: 74px;
+        font-weight: 400;
+        font-size: 12px;
+        line-height: 150%;
+        color: #9AA6AB;
+        text-align: left;
+        text-transform: capitalize;
+    }
+    .step.active p, .step.checked p {
+        color: #091114;
+    }
+    .step.active .circle {
+        border-color: #091114;
+        color: #091114;
+    }
+    .step.checked .circle {
+        border-color: #091114;
+        background: #091114 url('https://conversionratestore.github.io/projects/medicalmega/img/icnArrowDown.svg') no-repeat center / 12px;
+        color: transparent;
     }
     /*pricing*/
     .order_pricing li:not(:last-child) {
@@ -43,7 +109,7 @@ let styleMain =`
         color: #6D7E85;
     }
     .product-item {
-        padding: 20px 0;
+        padding: 19.5px 0;
         border-bottom: 1px solid #E0E4E5;
     }
     .product-item:last-child {
@@ -60,8 +126,12 @@ let styleMain =`
         line-height: 150%;
         color: #6D7E85;
         text-align: left;
-        display: block;
         margin-bottom: 12px;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
     }
     .product-item_img {
         margin-right: 4px;
@@ -227,7 +297,7 @@ let pricing = (parent, data) => {
     let pricing = obj['pricingArr']
     for (let key in pricing) {
         for (let keyData in data) {
-            if (key == keyData && (data[keyData] != 0 || keyData == 'subtotal' || keyData == 'total' || keyData == 'tax')) {
+            if (key == keyData && (data[keyData] != 0 || keyData == 'subtotal' || keyData == 'total')) {
                 document.querySelector(parent).insertAdjacentHTML('beforeend', `
                 <li class="justify-between">
                     <p>${pricing[key]}:</p>
@@ -242,7 +312,7 @@ let pricing = (parent, data) => {
 let product = (id, variantId, quantity, subtotal, url, imageUrl, title, varQty) => {
     return `<li class="flex product-item" data-id="${id}" data-variant-id="${variantId}">
                 <div class="relative">
-                    <a href="${url}" class="product-item_img"> 
+                    <a href="${url}" class="product-item_img" title="${title}"> 
                         <img src="${imageUrl}" alt="${title}">
                     </a>
                     ${varQty == 0 ? `<button class="remove" type="button">
@@ -252,7 +322,7 @@ let product = (id, variantId, quantity, subtotal, url, imageUrl, title, varQty) 
                      </button>` : ''}
                 </div>
                 <div>
-                    <a href="${url}">${title}</a>
+                    <a href="${url}" title="${title}">${title}</a>
                     <div class="flex-center-between">
                         ${varQty == 0 ? `<div class="items-center">
                             <button type="button" class="quantity-btn quantity-btn_minus" ${varQty == 1 ? 'disabled': ''}>−</button>
@@ -267,12 +337,47 @@ let product = (id, variantId, quantity, subtotal, url, imageUrl, title, varQty) 
 }
 
 document.body.insertAdjacentHTML('afterbegin', styleMain)
+
+let headerHTML = `
+    <header class="header-checkout">
+        <div class="flex-center-between container">
+            <a href="/" class="logo">
+                <img src="https://conversionratestore.github.io/projects/medicalmega/img/logo-checkout.svg" alt="logo">
+            </a>
+            <div class="flex steps"></div>
+        </div>
+    </header> `
+//add steps in header
+let addStep = (query,index) => {
+    for (let i = 0; i < obj['stepsName'].length; i++) {
+        if (obj['stepsName'][i] != 'Billing information' && obj['stepsName'][i] != 'Delivery Method') {
+            document.querySelector(query).insertAdjacentHTML('beforeend', `
+            <div class="step items-center ${i < index ? 'checked' : i == index ? 'active' : ''}">
+                <div class="circle">${i+1}</div>
+                <p>${obj['stepsName'][i]}</p>
+            </div>`)
+        }
+    }
+}
+let arrMouth = ['Jan','Feb','Mar','Apr','May','Jun','Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
 //Confirmation
 if (href.includes('Confirmation')) {
-    let styleConfirmation = `<style>
+    let styleConfirmation = `
+    <style>
+        .confirmation * {
+            box-sizing: border-box;
+        }
+        #wrap {
+            display: none;
+        }
         .confirmation {
             max-width: 833px;
             width: 100%;
+            margin: auto;
+            padding: 40px 0 80px;
+            font-size: 14px;
+            line-height: 150%;
+            color: #474747;
         }
         .confirmation h2 {
             font-weight: 600;
@@ -281,70 +386,121 @@ if (href.includes('Confirmation')) {
             color: #091114;
             margin-bottom: 12px;
         }
-        .confirmation > p {
+        .confirmation-span {
             font-weight: 400;
             font-size: 16px;
-            line-height: 150%;
             color: #344D57;
         }
-        .order-confirmation {
+        .confirmation-order {
             background: #FFFFFF;
             box-shadow: 0 4px 8px 3px rgba(0, 0, 0, 0.15), 0 1px 3px rgba(0, 0, 0, 0.3);
             border-radius: 8px;
             padding: 40px 0;
+            margin: 40px 0 32px;
         }
-        .order-confirmation .col {
+        .confirmation-order .col {
             width: 50%;
+        }
+        .confirmation-order .col:first-child {
+            border-right: 1px solid #E0E4E5;
             padding: 0 40px;
         }
-        .order-confirmation .col:first-child {
-            border-right: 1px solid #E0E4E5;
+        .confirmation-order .col:last-child {
+            position: relative;
         }
-        .products-confirmation {
-            height: 180px;
+        .confirmation-order .col:last-child:after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -40px;
+            width: 100%;
+            height: 55%;
+            pointer-events: none;
+            background: linear-gradient(360deg, #FFFFFF 0%, rgba(255, 255, 255, 0) 100%);
+        }
+        .confirmation-products {
+            margin-top: -20px;
+            margin-bottom: -40px;
+            padding: 0 40px;
             overflow-y: auto;
         }
-        .products-confirmation::-webkit-scrollbar{
+        .confirmation-products::-webkit-scrollbar{
             background: #CCCCCC;
             width: 4px;
             height: 4px;}
-        .products-confirmation::-webkit-scrollbar-thumb{
+        .confirmation-products::-webkit-scrollbar-thumb{
             background: #666666;}
-        .products-confirmation .product-item > div:last-child a {
+        .confirmation-products .product-item > div:last-child a {
             font-size: 14px;
             color: #344D57
         }
-        .products-confirmation .total-price {
+        .confirmation-products .total-price {
             font-size: 18px;
             color: #091114;
         }
-        .order_pricing li:not(:last-child) {
+        .confirmation-order .order_pricing li:not(:last-child) {
             color: #6D7E85;
+            margin-bottom: 12px;
+        }
+        .confirmation-order .order_pricing li:last-child {
+            padding-top: 28px;
+        }
+        .confirmation-order h3 {
+            font-weight: 600;
+            font-size: 24px;
+            line-height: 120%;
+            margin-bottom: 28px;
+            text-align: left;
+            color: #091114;
+        }
+        .confirmation-date {
+            font-weight: 600;
+            font-size: 18px;
+            line-height: 120%;
+            padding: 12px 0;
+            color: #96280F;
+        }
+        .confirmation .btn-next {
+            padding: 0 24px;
+            margin: 36px auto 0;
         }
     </style>`
     let confirmationHTML = `
         <div class="confirmation">
             <h2>Thank you!</h2>
-            <p>Your order has been successfully placed</p>
-            <div class="order-confirmation">
+            <p class="confirmation-span">Your order has been successfully placed</p>
+            <div class="confirmation-order flex">
                 <div class="col">
                     <h3>Your Order</h3>
                     <ul class="order_pricing"></ul>
                 </div>
                 <div class="col">
-                    <ul class="products-confirmation"></ul>
+                    <ul class="confirmation-products"></ul>
                 </div>
             </div>
+            <p>Approximate shipping date of your order is:</p>
+            <p class="confirmation-date"></p>
+            <a href="/" class="btn-next"><span>Back to the website</span></a>
         </div>`
     document.body.insertAdjacentHTML('afterbegin', confirmationHTML)
-
+    document.body.insertAdjacentHTML('afterbegin', headerHTML)
+    document.body.insertAdjacentHTML('afterbegin', styleConfirmation)
+    //add steps in header
+    addStep('.steps',3)
     postFetch('/cart.html',`api=c&cart_action=last_order&ctoken=${mm.ctoken}`,'POST').then(data => {
         console.log(data)
-        pricing('.pricing', data) // set pricing
+        let day = data.date.split('-')[2],
+            mounth = data.date.split('-')[1],
+            year = data.date.split('-')[0];
+        document.querySelector('.confirmation-date').innerHTML = day + ' ' + arrMouth[+mounth - 1] + '. ' + year
+        pricing('.order_pricing', data) // set pricing
         let items = data.items;
         for (let i = 0; i < items.length; i++) {
-            document.querySelector('.products-confirmation').insertAdjacentHTML('beforeend', product(items[i].product_id, items[i].variant_id, items[i].qty, items[i].subtotal, items[i].url, items[i].image_url, items[i].title, 1))
+            document.querySelector('.confirmation-products').insertAdjacentHTML('beforeend', product(items[i].product_id, items[i].variant_id, items[i].qty, items[i].subtotal, items[i].url, items[i].image_url, items[i].title, 1))
         }
+
+        let height = document.querySelector('.confirmation-order .col:first-child').clientHeight;
+        document.querySelector('.confirmation-products').style.height = height + 60 + 'px'
     })
 
 }
@@ -366,9 +522,6 @@ if (href.includes('login.php') || href.includes('/register.php') || href.include
         input[type=number] {
           -moz-appearance: textfield;
         }
-        .header-checkout *, .wrapper-checkout * {
-            box-sizing: border-box;
-        }
         .container {
             width: 100%;
             margin: 0 auto;
@@ -376,73 +529,12 @@ if (href.includes('login.php') || href.includes('/register.php') || href.include
             padding-left: 15px;
         }
         #wrap {
-            /*display: none;*/
+            display: none;
         }
         button {
             background: transparent;
             border: none;
             cursor: pointer;
-        }
-        /*header*/
-        .header-checkout {
-            background: #FBFBFB;
-            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3), 0 2px 6px 2px rgba(0, 0, 0, 0.15);
-            position: sticky;
-            top: 0;
-            z-index: 99;
-            padding: 39px 0;
-        }
-        .header-checkout .container {
-            max-width: 1270px;
-        }
-        .logo img {
-            width: 185px;
-            height: 40px;
-        }
-        .step {
-            position: relative;
-        }
-        .step:not(:last-child):after {
-            content: '';
-            border-bottom: 1px dashed #091114;
-            height: 0;
-            width: 60px;
-            margin-right: 8px;
-            margin-top: auto;
-            margin-bottom: 6px;
-        }
-        .step .circle {
-            width: 32px;
-            height: 32px;
-            border-radius: 50%;
-            border: 1px solid #9AA6AB;
-            margin-right: 12px;
-            font-weight: 400;
-            font-size: 14px;
-            line-height: 30px;
-            text-align: center;
-            color: #9AA6AB;
-        }
-        .step p {
-            width: 74px;
-            font-weight: 400;
-            font-size: 12px;
-            line-height: 150%;
-            color: #9AA6AB;
-            text-align: left;
-            text-transform: capitalize;
-        }
-        .step.active p, .step.checked p {
-            color: #091114;
-        }
-        .step.active .circle {
-            border-color: #091114;
-            color: #091114;
-        }
-        .step.checked .circle {
-            border-color: #091114;
-            background: #091114 url('https://conversionratestore.github.io/projects/medicalmega/img/icnArrowDown.svg') no-repeat center / 12px;
-            color: transparent;
         }
         /*body checkout*/
         .wrapper-checkout .container {
@@ -948,15 +1040,7 @@ if (href.includes('login.php') || href.includes('/register.php') || href.include
         }
     </style>`
 
-    let headerHTML = `
-    <header class="header-checkout">
-        <div class="flex-center-between container">
-            <a href="/" class="logo">
-                <img src="https://conversionratestore.github.io/projects/medicalmega/img/logo-checkout.svg" alt="logo">
-            </a>
-            <div class="flex steps"></div>
-        </div>
-    </header>
+    let wrapperHTML = `
     <div class="wrapper-checkout">
         <div class="container justify-between">
                <div class="col-left justify-between">
@@ -990,21 +1074,11 @@ if (href.includes('login.php') || href.includes('/register.php') || href.include
                     <ul class="order_pricing"></ul>
                </div>
         </div>
-    </div>`
+    </div>`;
 
-    document.body.insertAdjacentHTML('afterbegin', style) // add styles
+    document.body.insertAdjacentHTML('afterbegin',wrapperHTML) // add wrapper
     document.body.insertAdjacentHTML('afterbegin',headerHTML) // add header
-
-    //add steps in header
-    for (let i = 0; i < obj['stepsName'].length; i++) {
-        if (obj['stepsName'][i] != 'Billing information' && obj['stepsName'][i] != 'Delivery Method') {
-            document.querySelector('.steps').insertAdjacentHTML('beforeend', `
-            <div class="step items-center">
-                <div class="circle">${i+1}</div>
-                <p>${obj['stepsName'][i]}</p>
-            </div>`)
-        }
-    }
+    document.body.insertAdjacentHTML('afterbegin', style) // add styles
 
     //login/register step
     if ((href.includes('/login.php') || href.includes('/register.php')) && document.querySelector('.myAccount') != null) {
@@ -1212,8 +1286,7 @@ if (href.includes('login.php') || href.includes('/register.php') || href.include
     let currentAddressShip, currentAddressBill;
     let state_item, countries_ship_item
     if (href.includes('/checkout/step1') || href.includes('/checkout/step2') || href.includes('guest-checkout1.php')) {
-        document.querySelectorAll('.step')[0].classList.add('checked');
-        document.querySelectorAll('.step')[1].classList.add('active');
+        addStep('.steps', 1) //add steps in header
     }
     if (href.includes('/checkout/step1') || href.includes('guest-checkout1.php')) {
         document.querySelector('.col-left .head h4').innerHTML = obj['stepsName'][1];
@@ -1310,8 +1383,8 @@ if (href.includes('login.php') || href.includes('/register.php') || href.include
                 item.querySelector('input').checked = true;
             }
 
-            if (item.querySelectorAll('p').length > 1 && item.querySelector('p > strong').innerText != 'FREE!') {
-                text = item.querySelectorAll('p')[1].innerText
+            if (item.querySelectorAll('p').length > 1) {
+                text = item.querySelectorAll('p')[1].innerHTML.split('<strong')[0]
             }
             document.querySelector('.delivery-method').insertAdjacentHTML('beforeend', deliveryMethodHtml(index, type, text, price))
             document.querySelectorAll('[name="radio-method"]')[index].addEventListener('input', (e) => {
@@ -1332,9 +1405,7 @@ if (href.includes('login.php') || href.includes('/register.php') || href.include
         }
     }
     if (href.includes('/checkout/step3')) {
-        document.querySelectorAll('.step')[0].classList.add('checked');
-        document.querySelectorAll('.step')[1].classList.add('checked');
-        document.querySelectorAll('.step')[2].classList.add('active');
+        addStep('.steps', 2) //add steps in header
         document.querySelector('.col-left .head h4').innerHTML = obj['stepsName'][2];
 
         document.querySelector('.col-left .head').after(document.querySelector('#checkoutForm'))
@@ -1929,4 +2000,3 @@ let cart = () => {
     })
 }
 cart()
-
