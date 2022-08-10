@@ -478,7 +478,9 @@ function runSuccessPage() {
         if (document.querySelector('.post-content')) {
             clearInterval(waitForBody)
 
-            document.querySelector('.post-content').insertAdjacentHTML('afterbegin', successTemplate)
+            if(!document.querySelector('.main_wrapper')){
+                document.querySelector('.post-content').insertAdjacentHTML('afterbegin', successTemplate)
+            }            
         }
     }, intervalTimeout)
 
