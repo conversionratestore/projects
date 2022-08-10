@@ -589,7 +589,7 @@ let startFunk = setInterval(() => {
 
     let textCustomTitle = /*html */ `
             <div class="text_custom_title">
-                <p>Select size & style preferences for exact quote:</p>
+                <p>Select size and options for price:</p>
             </div>    
         `
 
