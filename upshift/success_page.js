@@ -1,4 +1,4 @@
-// console.log('script loaded!!');
+console.log('script loaded!! >>>>>>>>>>>>>>>>>>>>>>>>>>>');
 
 if (window.location.hostname.includes('typeform')) {
     // console.log('typeform');
