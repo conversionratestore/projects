@@ -14,9 +14,13 @@ if (window.location.hostname.includes('typeform')) {
             for (let node of mutation.addedNodes) {
                 if (!(node instanceof HTMLElement)) continue
 
+                console.log(node);
+
                 if (node.matches('.jTQElb')) {
+                    console.log('matches jTQElb!!');
+
                     const waitForEl = setInterval(() => {
-                        if (document.querySelector('[data-qa="thank-you-button"] .hZUeEQ')) {
+                        if (document.querySelector('[data-qa="thank-you-button"] .hZUeEQ')?.innerText) {
                             clearInterval(waitForEl)
 
                             if (document.querySelector('[data-qa="thank-you-button"] .hZUeEQ').innerText === 'Exit the survey') {
