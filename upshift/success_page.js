@@ -77,7 +77,7 @@ function runSuccessPage() {
         line-height: 33px;
     }
 
-    .message_section .title span {
+    .message_section .title .approved {
         color: #3DA454;
         text-decoration: underline;
     }
@@ -304,6 +304,14 @@ function runSuccessPage() {
     #colophon {
         display: none !important;
     }
+
+    .some-txt p {
+        margin-bottom: 10px;
+    }
+
+    .some-txt p:last-child {
+        margin-bottom: 0;
+    }
     </style>
 `
 
@@ -432,7 +440,7 @@ function runSuccessPage() {
     <main class="main_wrapper">
         <section class="message_section">
             <div class="content">
-                <p class="title">Congratulations${htmlName ? ', ' + htmlName : ''}! 🎉<br>You have been <span>approved</span> to join Upshift.</p>
+                <p class="title">Congratulations${htmlName ? ', ' + htmlName : ''}!🎉</span><br>You have been <span class="approved">approved</span> to join Upshift.</p>
                 <p class="subtitle">Next you just need to <b>complete your onboarding</b> to start making extra money!
                 </p>
                 <div class="box timer">
@@ -456,11 +464,15 @@ function runSuccessPage() {
                     <iframe src="https://www.youtube.com/embed/TY3rh8xfvO8" frameborder="0" allowfullscreen>
                     </iframe>
                 </div>
-                <p><b>In-person Onboarding</b> is a short informational session in our office.<br>
+                <div class="some-txt">
+                    <p><b>In-person Onboarding</b> is a short informational session in our office.</p>
+                    <p>
                     During this onboarding, you will complete tax paperwork and you’ll receive a brief orientation on
                     how to
-                    use Upshift.<br>
+                    use Upshift.</p><p>
                     You’ll be able to pick up shifts through our app as soon as the meeting is finished!</p>
+                </div>
+  
             </div>
         </section>
         <section class="shifts_section">
