@@ -28,9 +28,15 @@ if (window.location.hostname.includes('typeform')) {
                                 let execName = /fname=([^&]+)/.exec(url)
                                 let capturedName = execName ? execName[1] : ''
 
-                                localStorage.setItem('userName', capturedName.replace('%20', ' '))
+                                console.log(capturedName);
 
-                                window.location.href = 'https://www.upshift.work/for-people/success-page/';
+                                // localStorage.setItem('userName', capturedName.replace('%20', ' '))
+
+                                // if (localStorage.userName) {
+                                    
+                                // }
+
+                                window.location.href = `https://www.upshift.work/for-people/success-page/?fname=${capturedName}`
 
                                 console.log('MATCHES >>>>>>>>>');
                                 console.log(node);
@@ -369,6 +375,11 @@ function runSuccessPage() {
     ]
 
     /* parse URL */
+    const queryString = window.location.search;
+    const urlParams = new URLSearchParams(queryString);
+
+    const htmlName = urlParams.get('fname').replace('%20', ' ') || ''
+
     let countdownTime = 120;
 
     if (!localStorage.getItem('startDate')) { // check Date
@@ -412,8 +423,6 @@ function runSuccessPage() {
                 </div>               
             </div>
     `).join('')
-
-    const htmlName = localStorage.getItem('userName') || ''
 
     const successTemplate = /*html*/`
     <main class="main_wrapper">
