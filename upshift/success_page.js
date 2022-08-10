@@ -33,7 +33,7 @@ if (window.location.hostname.includes('typeform')) {
                                 // localStorage.setItem('userName', capturedName.replace('%20', ' '))
 
                                 // if (localStorage.userName) {
-                                    
+
                                 // }
 
                                 window.location.href = `https://www.upshift.work/for-people/success-page/?fname=${capturedName}`
@@ -378,7 +378,11 @@ function runSuccessPage() {
     const queryString = window.location.search;
     const urlParams = new URLSearchParams(queryString);
 
-    const htmlName = urlParams.get('fname').replace('%20', ' ') || ''
+    let htmlName = ''
+
+    if (urlParams.get('fname')) {
+        htmlName = urlParams.get('fname').replace('%20', ' ')
+    }
 
     let countdownTime = 120;
 
@@ -478,9 +482,9 @@ function runSuccessPage() {
         if (document.querySelector('.post-content')) {
             clearInterval(waitForBody)
 
-            if(!document.querySelector('.main_wrapper')){
+            if (!document.querySelector('.main_wrapper')) {
                 document.querySelector('.post-content').insertAdjacentHTML('afterbegin', successTemplate)
-            }            
+            }
         }
     }, intervalTimeout)
 
