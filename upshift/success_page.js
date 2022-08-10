@@ -1,7 +1,7 @@
-console.log('script loaded!!');
+// console.log('script loaded!!');
 
 if (window.location.hostname.includes('typeform')) {
-    console.log('typeform');
+    // console.log('typeform');
     const target = document
 
     const config = {
@@ -14,10 +14,10 @@ if (window.location.hostname.includes('typeform')) {
             for (let node of mutation.addedNodes) {
                 if (!(node instanceof HTMLElement)) continue
 
-                console.log(node);
+                // console.log(node);
 
                 if (node.matches('.jTQElb')) {
-                    console.log('matches jTQElb!!');
+                    // console.log('matches jTQElb!!');
 
                     const waitForEl = setInterval(() => {
                         if (document.querySelector('[data-qa="thank-you-button"] .hZUeEQ')?.innerText) {
@@ -28,7 +28,7 @@ if (window.location.hostname.includes('typeform')) {
                                 let execName = /fname=([^&]+)/.exec(url)
                                 let capturedName = execName ? execName[1] : ''
 
-                                console.log(capturedName);
+                                // console.log(capturedName);
 
                                 // localStorage.setItem('userName', capturedName.replace('%20', ' '))
 
@@ -38,8 +38,8 @@ if (window.location.hostname.includes('typeform')) {
 
                                 window.location.href = `https://www.upshift.work/for-people/success-page/?fname=${capturedName}`
 
-                                console.log('MATCHES >>>>>>>>>');
-                                console.log(node);
+                                // console.log('MATCHES >>>>>>>>>');
+                                // console.log(node);
                             }
                         }
                     }, 100)
@@ -52,7 +52,7 @@ if (window.location.hostname.includes('typeform')) {
     observer.observe(target, config)
 }
 if (window.location.pathname.includes('success')) {
-    console.log('success');
+    // console.log('success');
     runSuccessPage()
 }
 
