@@ -15,18 +15,24 @@ if (window.location.hostname.includes('typeform')) {
                 if (!(node instanceof HTMLElement)) continue
 
                 if (node.matches('.jTQElb')) {
-                    if (document.querySelector('[data-qa="thank-you-button"]')) {
-                        const url = window.location.href
-                        let execName = /fname=([^&]+)/.exec(url)
-                        let capturedName = execName ? execName[1] : ''
+                    const waitForEl = setInterval(() => {
+                        if (document.querySelector('[data-qa="thank-you-button"] .hZUeEQ')) {
+                            clearInterval(waitForEl)
 
-                        localStorage.setItem('userName', capturedName.replace('%20', ' '))
+                            if (document.querySelector('[data-qa="thank-you-button"] .hZUeEQ').innerText === 'Exit the survey') {
+                                const url = window.location.href
+                                let execName = /fname=([^&]+)/.exec(url)
+                                let capturedName = execName ? execName[1] : ''
 
-                        window.location.href = 'https://www.upshift.work/for-people/success-page/';
+                                localStorage.setItem('userName', capturedName.replace('%20', ' '))
 
-                        console.log('MATCHES >>>>>>>>>');
-                        console.log(node);
-                    }
+                                window.location.href = 'https://www.upshift.work/for-people/success-page/';
+
+                                console.log('MATCHES >>>>>>>>>');
+                                console.log(node);
+                            }
+                        }
+                    }, 100)
                 }
             }
         }
