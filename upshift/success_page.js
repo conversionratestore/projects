@@ -14,7 +14,7 @@ if (window.location.hostname.includes('typeform')) {
             for (let node of mutation.addedNodes) {
                 if (!(node instanceof HTMLElement)) continue
 
-                // console.log(node);
+                console.log(node);
 
                 if (node.matches('.jTQElb')) {
                     // console.log('matches jTQElb!!');
