@@ -20,10 +20,10 @@ if (window.location.hostname.includes('typeform')) {
                     // console.log('matches jTQElb!!');
 
                     const waitForEl = setInterval(() => {
-                        if (document.querySelector('[data-qa="thank-you-button"] .hZUeEQ')?.innerText) {
+                        if (document.querySelector('[data-qa="thank-you-button"] > span > span > span')?.innerText) {
                             clearInterval(waitForEl)
 
-                            if (document.querySelector('[data-qa="thank-you-button"] .hZUeEQ').innerText === 'Exit the survey') {
+                            if (document.querySelector('[data-qa="thank-you-button"] > span > span > span').innerText === 'Exit the survey') {
                                 const url = window.location.href
                                 let execName = /fname=([^&]+)/.exec(url)
                                 let capturedName = execName ? execName[1] : ''
