@@ -1,5 +1,22 @@
 let styleMain =`
 <style>
+    .confirmation-products::-webkit-scrollbar, .body-cart::-webkit-scrollbar {
+        background: #CCCCCC;
+        width: 4px;
+        height: 4px;}
+    .confirmation-products::-webkit-scrollbar-thumb, .body-cart::-webkit-scrollbar-thumb {
+        background: #666666;}
+    /* Chrome, Safari, Edge, Opera */
+    input.quantity::-webkit-outer-spin-button,
+    input.quantity::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+    
+    /* Firefox */
+    input.quantity[type=number] {
+      -moz-appearance: textfield;
+    }
     .shopping-cart button {
         background: transparent;
         border: none;
@@ -34,7 +51,8 @@ let styleMain =`
         padding: 39px 0;
     }
     .header-checkout .container {
-        max-width: 1270px;
+        max-width: 1280px;
+        padding: 0 20px;
     }
     .logo img {
         width: 185px;
@@ -424,12 +442,6 @@ if (href.includes('Confirmation')) {
             padding: 0 40px;
             overflow-y: auto;
         }
-        .confirmation-products::-webkit-scrollbar{
-            background: #CCCCCC;
-            width: 4px;
-            height: 4px;}
-        .confirmation-products::-webkit-scrollbar-thumb{
-            background: #666666;}
         .confirmation-products .product-item > div:last-child a {
             font-size: 14px;
             color: #344D57
@@ -510,17 +522,6 @@ if (href.includes('login.php') || href.includes('/register.php') || href.include
     <style>
         body {
             border: none;
-        }
-        /* Chrome, Safari, Edge, Opera */
-        input::-webkit-outer-spin-button,
-        input::-webkit-inner-spin-button {
-          -webkit-appearance: none;
-          margin: 0;
-        }
-        
-        /* Firefox */
-        input[type=number] {
-          -moz-appearance: textfield;
         }
         .container {
             width: 100%;
@@ -949,13 +950,13 @@ if (href.includes('login.php') || href.includes('/register.php') || href.include
         .ccInfo {
             display: grid;
         }
-        .ccInfo > dd:first-child,  .ccInfo > dd:nth-child(2), .ccInfo > dd:nth-child(3) {
+       .ccInfo > dd:first-child,  .ccInfo > dd:nth-child(3), .ccInfo > dd:nth-child(4),  #cc_block > dl > div.ccInfo > dd:nth-child(2) {
             order: 1;
         }
         #iframeForm {
             order: 0;
         }
-        #cc_block > dl > div.ccInfo > dd:nth-child(4), #cc_block > dl > div.ccInfo > dd:nth-child(2), #cc_block > dl > dd:nth-child(3) {
+        #cc_block > dl > div:nth-child(1) > span:nth-child(1), #cc_block > dl > div.ccInfo > dd:nth-child(2), #cc_block > dl > div.ccInfo > dd:nth-child(5), #cc_block > dl > dd:nth-child(3), #cc_block > dl > div.ccInfo > dd:nth-child(3) {
             font-weight: 400;
             font-size: 14px;
             line-height: 150%;
@@ -973,6 +974,9 @@ if (href.includes('login.php') || href.includes('/register.php') || href.include
         .primaryInfo dl, #checkoutForm > fieldset > div:nth-child(2) {
             margin: 0!important;
         }
+        #save_cc_info {
+            display: none;
+        }
         .check2 {
             border: 1px solid #6D7E85;
             border-radius: 2px;
@@ -982,9 +986,6 @@ if (href.includes('login.php') || href.includes('/register.php') || href.include
             position: relative;
             margin-right: 8px;
             flex-shrink: 0;
-        }
-        #save_cc_info {
-            display: none;
         }
         .check2:before {
             content: none;
@@ -1410,10 +1411,10 @@ if (href.includes('login.php') || href.includes('/register.php') || href.include
 
         document.querySelector('.col-left .head').after(document.querySelector('#checkoutForm'))
         document.querySelector('#checkoutForm h3').innerHTML = `Card Details <img src="https://conversionratestore.github.io/projects/medicalmega/img/payment-cards.png" alt="icons">`
-        document.querySelector('#cc_block > dl > div.ccInfo > dd:nth-child(4)').innerHTML = `Credit/Debit Card<span class="c-red"> *</span>`;
-        document.querySelector('#cc_block > dl > div.ccInfo > dd:nth-child(2)').innerHTML = `Name on card:<span class="c-red"> *</span>`;
+        document.querySelector('#cc_block > dl > div.ccInfo > dd:nth-child(5)').innerHTML = `Credit/Debit Card<span class="c-red"> *</span>`;
+        document.querySelector('#cc_block > dl > div.ccInfo > dd:nth-child(3)').innerHTML = `Name on card:<span class="c-red"> *</span>`;
 
-        document.querySelector('#save_cc_info').insertAdjacentHTML('afterend','<span class="check2"></span>')
+        document.querySelector('#save_cc_info') != null ? document.querySelector('#save_cc_info').insertAdjacentHTML('afterend','<span class="check2"></span>') : '';
 
         document.querySelector('.cc-recurring-setting').insertAdjacentHTML('beforebegin',`<label class="order-every flex-center-between"><span class="check2"></span>${document.querySelector('.cc-recurring-setting').innerHTML}</label>`)
         document.querySelector('.order-every .check2').before(document.querySelector('#cc-recurring-check'))
@@ -1617,6 +1618,7 @@ if (href.includes('login.php') || href.includes('/register.php') || href.include
             height: 100%;
             opacity: 0;
             pointer-events: none;
+            z-index: 999;
         }
         .shopping-cart.active {
             opacity: 1;
@@ -1893,7 +1895,7 @@ if (href.includes('login.php') || href.includes('/register.php') || href.include
     //add products in slider
     let slideHTML = (url, urlImage, title, price, id, variantId, parent) =>  {
         let slide = `
-            <form action="https://medicalmega.com/cart.html" method="post" class="slide">
+            <div class="slide">
                 <a href="${url}">
                     <span class="items-center">
                         <img src="${urlImage}" alt="${title}">
@@ -1909,11 +1911,8 @@ if (href.includes('login.php') || href.includes('/register.php') || href.include
                     <input type="number" name="quantity" value="1" class="quantity">
                     <button type="button" class="quantity-btn quantity-btn_plus" >+</button>
                 </div>
-                <input type="hidden" name="product_variant_id" value="${variantId}">
-                <input type="hidden" name="product_id" value="${id}">
-                <input type="hidden" name="add_to_cart" value="variant">
-                <button type="submit" class="btn-add">Add to cart</button>
-            </form> `;
+                <button type="button" class="btn-add" data-variant-id="${variantId}" data-id="${id}">Add to cart</button>
+            </div> `;
 
         document.querySelector(parent).insertAdjacentHTML('beforeend', slide)
     }
@@ -1929,7 +1928,14 @@ if (href.includes('login.php') || href.includes('/register.php') || href.include
                 minus = document.querySelectorAll(`.slide .quantity-btn_minus`)[i],
                 quantity = document.querySelectorAll(`.slide .quantity`)[i];
 
-            changeQuantity(plus, minus, quantity, false)
+            changeQuantity(plus, minus, quantity, false);
+            let addBtns = document.querySelectorAll('.btn-add');
+            addBtns[i].addEventListener('click', (e) => {
+                postFetch('/cart.html',`api=c&cart_action=add&variant_id=${addBtns[i].dataset.variantId}&quantity=${addBtns[i].previousElementSibling.querySelector('.quantity').value}&product_id=${addBtns[i].dataset.id}&ctoken=${mm.ctoken}`,'POST').then(data => {
+                    console.log(data)
+                    cart()
+                })
+            })
         }
         tns({
             container: document.querySelector('.slider-products'),
@@ -2000,3 +2006,4 @@ let cart = () => {
     })
 }
 cart()
+
