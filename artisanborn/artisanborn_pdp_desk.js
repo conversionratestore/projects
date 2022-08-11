@@ -680,7 +680,7 @@ let startFunk = setInterval(() => {
     if (document.querySelector(".product .final-price-wrap b:last-child")) {
       document
         .querySelector(".clearfix.product_form")
-        .insertAdjacentHTML("afterbegin", `<p class="free_shipping_txt"><b>Congratulations!</b> You get <b>free shipping</b> with this order</p>`)
+        ?.insertAdjacentHTML("afterbegin", `<p class="free_shipping_txt"><b>Congratulations!</b> You get <b>free shipping</b> with this order</p>`)
     }
 
     if (document.querySelector(".free_shipping_txt")) {
@@ -689,7 +689,7 @@ let startFunk = setInterval(() => {
       })
     }
 
-    document.querySelector("span.in-stock").insertAdjacentHTML("afterbegin", inStockSvg)
+    document.querySelector("span.in-stock")?.insertAdjacentHTML("afterbegin", inStockSvg)
 
     function renderNewLabel(text, img) {
       return `<div class="new_label">
@@ -827,7 +827,7 @@ let startFunk = setInterval(() => {
       }
 
       // id pdp
-      document.querySelector('.body_popup [name="productId"]').value = document.querySelector(".shopify-product-reviews-badge").getAttribute("data-id")
+      document.querySelector('.body_popup [name="productId"]').value = document.querySelector(".shopify-product-reviews-badge")?.getAttribute("data-id")
     }
 
     // POPUP
@@ -905,10 +905,12 @@ let startFunk = setInterval(() => {
       }
     })
 
-    observer.observe(document.querySelector(".product.clearfix"), {
-      childList: true,
-      subtree: true,
-    })
+    if (document.querySelector(".product.clearfix")) {
+      observer.observe(document.querySelector(".product.clearfix"), {
+        childList: true,
+        subtree: true,
+      })
+    }
 
     // change Lang Type
     changeLangType()
