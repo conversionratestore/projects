@@ -490,8 +490,9 @@ function runSuccessPage() {
             player = new YT.Player('video_youtube', {
                 videoId: 'TY3rh8xfvO8',
                 playerVars: {
-                    'playsinline': 1
+                    'playsinline': 1,
                 },
+                host: 'https://www.youtube.com',
                 events: {
                     'onReady': onPlayerReady,
                     'onStateChange': onPlayerStateChange
