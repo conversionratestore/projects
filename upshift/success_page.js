@@ -11,8 +11,6 @@ if (window.location.hostname.includes('typeform')) {
             for (let node of mutation.addedNodes) {
                 if (!(node instanceof HTMLElement)) continue
 
-                console.log(node);
-
                 if (node.matches('.jTQElb')) {
                     const waitForEl = setInterval(() => {
                         if (document.querySelector('[data-qa="thank-you-button"] > span > span > span')?.innerText) {
@@ -447,8 +445,6 @@ function runSuccessPage() {
                 <p class="title">Watch this short video to see what to expect during the onboarding</p>
                 <div class="video_wrapper">
                     <div id="video_youtube"></div>
-                    <!-- <iframe src="https://www.youtube.com/embed/TY3rh8xfvO8" frameborder="0" allowfullscreen>
-                    </iframe> -->
                 </div>
                 <div class="some-txt">
                     <p><b>In-person Onboarding</b> is a short informational session in our office.</p>
@@ -503,7 +499,7 @@ function runSuccessPage() {
             });
 
             function onPlayerReady() {
-                console.log('video is ready to play (loaded)');
+                callEvent('video is ready to play (loaded)', 'video')
             }
 
             function changeStatus(playerStatus) {
