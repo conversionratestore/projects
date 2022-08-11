@@ -1,7 +1,4 @@
-console.log('script loaded!! >>>>>>>>>>>>>>>>>>>>>>>>>>>');
-
 if (window.location.hostname.includes('typeform')) {
-    // console.log('typeform');
     const target = document
 
     const config = {
@@ -17,29 +14,18 @@ if (window.location.hostname.includes('typeform')) {
                 console.log(node);
 
                 if (node.matches('.jTQElb')) {
-                    // console.log('matches jTQElb!!');
-
                     const waitForEl = setInterval(() => {
                         if (document.querySelector('[data-qa="thank-you-button"] > span > span > span')?.innerText) {
                             clearInterval(waitForEl)
 
                             if (document.querySelector('[data-qa="thank-you-button"] > span > span > span').innerText === 'Exit the survey') {
+                                document.head.insertAdjacentHTML('beforeend', `<style>body {display:none;}</style>`)
+
                                 const url = window.location.href
                                 let execName = /fname=([^&]+)/.exec(url)
                                 let capturedName = execName ? execName[1] : ''
 
-                                // console.log(capturedName);
-
-                                // localStorage.setItem('userName', capturedName.replace('%20', ' '))
-
-                                // if (localStorage.userName) {
-
-                                // }
-
                                 window.location.href = `https://www.upshift.work/for-people/success-page/?fname=${capturedName}`
-
-                                // console.log('MATCHES >>>>>>>>>');
-                                // console.log(node);
                             }
                         }
                     }, 100)
@@ -52,11 +38,16 @@ if (window.location.hostname.includes('typeform')) {
     observer.observe(target, config)
 }
 if (window.location.pathname.includes('success')) {
-    // console.log('success');
     runSuccessPage()
 }
 
 function runSuccessPage() {
+    let tag = document.createElement('script');
+    tag.id = 'iframe-demo';
+    tag.src = 'https://www.youtube.com/iframe_api';
+    let firstScriptTag = document.getElementsByTagName('script')[0];
+    firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
     const successCSS = /*html*/`
 <style>
     section .content {
@@ -313,8 +304,7 @@ function runSuccessPage() {
         margin-bottom: 0;
     }
     </style>
-`
-
+    `
     const shifts = [
         [
             'Prep cook',
@@ -387,13 +377,11 @@ function runSuccessPage() {
     const urlParams = new URLSearchParams(queryString);
 
     let htmlName = ''
-
     if (urlParams.get('fname')) {
         htmlName = urlParams.get('fname').replace('%20', ' ')
     }
 
     let countdownTime = 120;
-
     if (!localStorage.getItem('startDate')) { // check Date
         localStorage.setItem('startDate', Date.now().toString());
     } else {
@@ -403,11 +391,8 @@ function runSuccessPage() {
     }
 
     /* html and etc */
-
-    const getRandomItems = (arr, num) => arr.sort(() => Math.random() - 0.5).slice(0, num)
-
     const imgFolderLink = `https://conversionratestore.github.io/projects/upshift/img`
-
+    const getRandomItems = (arr, num) => arr.sort(() => Math.random() - 0.5).slice(0, num)
     const shiftsHTML = getRandomItems(shifts, 3).map(job => `
 <div class="slide">
                 <div class="slide_header">
@@ -461,8 +446,9 @@ function runSuccessPage() {
             <div class="content">
                 <p class="title">Watch this short video to see what to expect during the onboarding</p>
                 <div class="video_wrapper">
-                    <iframe src="https://www.youtube.com/embed/TY3rh8xfvO8" frameborder="0" allowfullscreen>
-                    </iframe>
+                    <div id="video_youtube"></div>
+                    <!-- <iframe src="https://www.youtube.com/embed/TY3rh8xfvO8" frameborder="0" allowfullscreen>
+                    </iframe> -->
                 </div>
                 <div class="some-txt">
                     <p><b>In-person Onboarding</b> is a short informational session in our office.</p>
@@ -484,7 +470,7 @@ function runSuccessPage() {
             </div>
         </section>
     </main>
-`
+    `
 
     const intervalTimeout = 200
 
@@ -496,6 +482,49 @@ function runSuccessPage() {
 
             if (!document.querySelector('.main_wrapper')) {
                 document.querySelector('.post-content').insertAdjacentHTML('afterbegin', successTemplate)
+            }
+        }
+    }, intervalTimeout)
+
+    const waitForY = setInterval(() => {
+        if (document.getElementById('video_youtube') && typeof YT === 'object') {
+            clearInterval(waitForY)
+
+            let player;
+            player = new YT.Player('video_youtube', {
+                videoId: 'TY3rh8xfvO8',
+                playerVars: {
+                    'playsinline': 1
+                },
+                events: {
+                    'onReady': onPlayerReady,
+                    'onStateChange': onPlayerStateChange
+                }
+            });
+
+            function onPlayerReady() {
+                console.log('video is ready to play (loaded)');
+            }
+
+            function changeStatus(playerStatus) {
+                let status;
+                if (playerStatus == 0) {
+                    status = "ended";
+                } else if (playerStatus == 1) {
+                    status = "playing";
+                } else if (playerStatus == 2) {
+                    status = "paused";
+                } else if (playerStatus == 3) {
+                    status = "buffering";
+                } else if (playerStatus == -1) {
+                    status = "video is started"
+                }
+                if (status) {
+                    callEvent(status, 'video')
+                }
+            }
+            function onPlayerStateChange(event) {
+                changeStatus(event.data);
             }
         }
     }, intervalTimeout)
@@ -531,10 +560,24 @@ function runSuccessPage() {
         }
     }, intervalTimeout)
 
+    callEvent('Success Page loaded')
+}
+
+function callEvent(eventAction, eventLabel = '') {
     window.dataLayer = window.dataLayer || []
     dataLayer.push({
         'event': 'event-to-ga',
         'eventCategory': 'Exp: video and timer after',
-        'eventAction': 'Success Page opened'
+        eventAction,
+        eventLabel
     })
 }
+
+callEvent('loaded')
+
+let record = setInterval(function () {
+    if (typeof clarity === 'function') {
+        clearInterval(record)
+        clarity('set', `video_timer_after`, 'variant_1')
+    }
+}, 100)
