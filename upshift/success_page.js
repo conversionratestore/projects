@@ -444,11 +444,11 @@ function runSuccessPage() {
                 <p class="subtitle">Next you just need to <b>complete your onboarding</b> to start making extra money!
                 </p>
                 <div class="box timer">
-                    <p class="box_title">We’ll email and SMS you with suggested times in:</p>
+                    <p class="box_title">We’ll email and SMS you with suggested onboarding times in:</p>
                     <p class="time"></p>
                 </div>
                 <div class="box message" hidden>
-                    <p class="box_title">SMS and email with suggested times have been sent!</p>
+                    <p class="box_title">SMS and email with suggested onboarding times have been sent!</p>
                     <p class="check_mail">Please check your email</p>
                     <div class="info">
                         <img src="${imgFolderLink}/info_blue.svg" alt="info">
