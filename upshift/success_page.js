@@ -534,15 +534,7 @@ function runSuccessPage() {
     window.dataLayer = window.dataLayer || []
     dataLayer.push({
         'event': 'event-to-ga',
-        'eventCategory': 'Exp: Success Page',
-        'eventAction': 'loaded'
+        'eventCategory': 'Exp: video and timer after',
+        'eventAction': 'Success Page opened'
     })
-
-    let isSuccessClarity = setInterval(() => {
-        if (typeof clarity === 'function') {
-            clearInterval(isSuccessClarity)
-
-            clarity('set', 'success_page', 'variant_1')
-        }
-    }, 100)
 }
