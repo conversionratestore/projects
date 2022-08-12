@@ -1021,6 +1021,9 @@ if (href.includes('login.php') || href.includes('/register.php') || href.include
         #checkoutForm > div {
             height: auto!important;
         }
+        #cc_block > dl > div > div:nth-child(1) {
+            display: none;
+        }
     </style>`
 
     let wrapperHTML = `
