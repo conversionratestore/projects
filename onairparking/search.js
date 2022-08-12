@@ -24,7 +24,7 @@ let style = `
         background: #FFFFFF;
         color: #515356;
     }
-    #list_parking .btn {
+    .list_parking .btn {
         background: #069B27;
         border-radius: 3px;
         margin-right: 20px;
@@ -37,15 +37,15 @@ let style = `
         border: none;
         margin-top: 10px;
     }
-    #list_parking .btn_gray {
+    .list_parking .btn_gray {
         background-color: #8d8d8d;
     }
-    #list_parking > li {
+    .list_parking > li {
         background: #FFFFFF;
         border-radius: 10px;
         box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05), 0 0 19px rgba(0, 0, 0, 0.05), 0 2px 10px rgba(0, 0, 0, 0.06);
     }
-    #list_parking > li:not(:last-child) {
+    .list_parking > li:not(:last-child) {
         margin-bottom: 16px;
     }
     .name_parking {
@@ -306,9 +306,6 @@ let style = `
     .rc-virtual-list-holder {
         max-height: calc(100vh - 160px)!important;
     }
-    /*.rc-virtual-list-holder-inner {*/
-    /*    transform: translateY(0px)!important;*/
-    /*}*/
     .popup .ant-select-selection-placeholder {
         font-weight: 400;
         font-size: 13px;
@@ -318,7 +315,7 @@ let style = `
         opacity: 0.3; 
     }
     .popup_body {
-        padding: 30px 0;
+        padding: 30px 0 45px;
     } 
     .popular-place {
         padding: 0 20px;
@@ -469,7 +466,22 @@ let style = `
         text-transform: uppercase;
         color: #515356;
     }
-
+    #items-map {
+        position: absolute;
+        bottom: 100%;
+        left: 0;
+        width: 100%;
+        padding: 16px;
+    }
+    .ant-layout-content {
+        display: none;
+    }
+    #map-main > div > div > div:nth-child(14) > div {
+        bottom: 30%!important;
+    }
+    #map-main > div > div > div:nth-child(9) > button, #map-main > div > div > div:nth-child(5) > div {
+        display: none!important;
+    }
     @media only screen and (max-width: 340px) {
         .info_parking {
             padding: 7px;
@@ -483,7 +495,7 @@ let style = `
         .best_reviews, .lowest_price {
             font-size: 9px;
         }
-        #list_parking .btn {
+        .list_parking .btn {
             margin-right: 10px;
         }
     }
@@ -513,11 +525,12 @@ let html = `
         </button>
     </div>
     <div class="swipe">
+        <ul id="items-map" class="list_parking"><li class="flex"></li></ul>
         <div class="flex items-center justify-between swipe-header">
             <div class="count_parking"><span></span> parkings found</div>
             <div class="sort">Sort by: <button type="button" class="ml-2">PRICE</button></div>
         </div>
-        <ul id="list_parking" class="p-4"></ul>
+        <ul id="list_parking" class="p-4 list_parking"></ul>
     </div>
 </div>
 <div class="popup" data-title="choose place">
@@ -613,7 +626,6 @@ class Parking{
         this.renderText();
         this.renderBtn();
     }
-
     renderStar() {
         let stars = '',
             starGold = `<svg viewBox="64 64 896 896" fill="#fadb14" focusable="false" data-icon="star" width="15px" height="15px" fill="currentColor" aria-hidden="true"><path d="M908.1 353.1l-253.9-36.9L540.7 86.1c-3.1-6.3-8.2-11.4-14.5-14.5-15.8-7.8-35-1.3-42.9 14.5L369.8 316.2l-253.9 36.9c-7 1-13.4 4.3-18.3 9.3a32.05 32.05 0 00.6 45.3l183.7 179.1-43.4 252.9a31.95 31.95 0 0046.4 33.7L512 754l227.1 119.4c6.2 3.3 13.4 4.4 20.3 3.2 17.4-3 29.1-19.5 26.1-36.9l-43.4-252.9 183.7-179.1c5-4.9 8.3-11.3 9.3-18.3 2.7-17.5-9.5-33.7-27-36.3z"></path></svg>`,
@@ -648,7 +660,6 @@ class Parking{
     render() {
         let element = document.createElement('li');
         element.classList.add('flex');
-        console.log(this.freeCancellation)
         element.innerHTML = `
             <a href="https://www.onairparking.com/parkingat/${this.url}" class="img_parking relative">
                 <div class="notes_parking top-2.5"></div>
@@ -673,8 +684,7 @@ class Parking{
                     </div>
                     ${this.renderText()}
                 </div
-            </a>
-        `
+            </a>`
 
         this.parent.appendChild(element);
     }
@@ -761,14 +771,19 @@ let postParking = (id, startDate, endDate, parent, countSelector) => {
         let result = data.result;
 
         countSelector.innerHTML = result.length; //set count parkings found
+        let optionMap = (zoom) => {
+            return {
+                zoom: zoom,
+                minZoom: zoom,
+                center: new google.maps.LatLng(38.472351, -102.151480),
+                mapTypeId: google.maps.MapTypeId.ROADMAP
+            }
+        }
 
+        let bounds = new google.maps.LatLngBounds(); //bounds for markers
         if (result.length > 0) {
-            let myLatLng = new google.maps.LatLng(result[0]['facility_latitude_fake'], result[0]['facility_longitude_fake'] );
-            let gmap = new google.maps.Map(document.getElementById("map-main"), {
-                zoom: 11,
-                center: myLatLng,
-                mapTypeId: google.maps.MapTypeId.READMAP
-            });
+            let gmap = new google.maps.Map(parent.closest('.wrapper').querySelector("#map-main"), optionMap(5));
+
             for (let i = 0; i < result.length; i++) {
                 let url = `${result[i]['facility_url_code']}?checkin=${startDate}&checkout=${endDate}`,
                     name = result[i]['facility_lot'],
@@ -784,13 +799,13 @@ let postParking = (id, startDate, endDate, parent, countSelector) => {
 
                 let myLatLng = { lat: result[i]['facility_latitude_fake'], lng: result[i]['facility_longitude_fake'] };
 
-                new google.maps.Marker({
+                let marker = new google.maps.Marker({
                     position: myLatLng,
                     map: gmap,
                     icon: {
-                        url: `https://conversionratestore.github.io/projects/onairparking/img/marker.png`,
-                        // scaledSize: new google.maps.Size(65, 34),
-                        origin: new google.maps.Point(-2, -6),
+                        url: `https://conversionratestore.github.io/projects/onairparking/img/marker.svg`,
+                        // scaledSize: new google.maps.Size(73, 44),
+                        origin: new google.maps.Point(-1, 0),
                         // anchor: new google.maps.Point(0, 0)
                     },
                     label:{
@@ -800,8 +815,7 @@ let postParking = (id, startDate, endDate, parent, countSelector) => {
                         color: '#F37621'
                     }
                 });
-
-                document.querySelectorAll('#map-main > div > div > div:nth-child(2) > div:nth-child(1) > div:nth-child(4) > div:nth-child(2)')
+                bounds.extend(myLatLng);
 
                 let highlights = result[i].highlights;
                 for (let h = 0; h < highlights.length; h++) {
@@ -816,7 +830,35 @@ let postParking = (id, startDate, endDate, parent, countSelector) => {
                     }
                 }
                 new Parking(url,name,reviews,distance,shuttle,shuttleFrequency,freeCancellation,price,minDay,soldOut,unavailable,parent,startDate).render();
+
+                marker.addListener("click", () => {
+                    parent.parentElement.querySelector('#items-map li').innerHTML = parent.childNodes[i].innerHTML;
+                    parent.parentElement.querySelector('#items-map').style.display = 'block';
+                });
             }
+            //set minimum zoom
+            google.maps.event.addListener(gmap, 'zoom_changed', function() {
+                zoomChangeBoundsListener =
+                    google.maps.event.addListener(gmap, 'bounds_changed', function(event) {
+                        if (this.getZoom() > 12 && this.initialZoom == true) {
+                            // Change max/min zoom here
+                            this.setZoom(12);
+                            this.initialZoom = false;
+                        }
+                        google.maps.event.removeListener(zoomChangeBoundsListener);
+                    });
+            });
+            gmap.initialZoom = true;
+            gmap.fitBounds(bounds); //all markers in visible area
+
+            //sort on price
+            let items = parent.childNodes;
+            document.querySelector('.sort button').addEventListener('click', (e) => {
+                let itemsArr = [].slice.call(items).sort(function (a, b) {
+                    return a.querySelector('.price_parking b').innerText.replace('$', '') - b.querySelector('.price_parking b').innerText.replace('$', '')
+                });
+                itemsArr.forEach((p) => parent.appendChild(p));
+            })
 
             //lowerPrice
             let prices = document.querySelectorAll('#list_parking .price_parking b'),
@@ -851,6 +893,7 @@ let postParking = (id, startDate, endDate, parent, countSelector) => {
             children.forEach(item => addEvent(item, 'click',() => {evtParking(e)} ))
         } else {
             parent.innerHTML = emptyHtml;
+            new google.maps.Map(parent.closest('.wrapper').querySelector("#map-main"), optionMap(3));
         }
     }).catch((error) => {
         console.log('Error:', error);
@@ -864,6 +907,8 @@ let scriptMap = document.createElement('script');
 scriptMap.src = `https://maps.googleapis.com/maps/api/js?key=AIzaSyDGbiPmw_9_RfWYV_6bO-7pHXcl8PxBZJg&v=weekly`;
 scriptMap.async = true;
 document.head.appendChild(scriptMap)
+
+scrollTo(0,0)
 
 let start = setInterval(() => {
     if (document.querySelector('input[type="search"]') != null && document.querySelector('#__NEXT_DATA__') != null && window.location.pathname.includes('/reservation/search')) {
@@ -892,7 +937,10 @@ let start = setInterval(() => {
 
             //swipe event
             let swiper = new Swipe('.swipe-header');
-            swiper.onUp(() => { document.body.classList.add('active') });
+            swiper.onUp(() => {
+                document.body.classList.add('active') ;
+                document.querySelector('#items-map').style.display = 'none';
+            });
             swiper.run();
             swiper.onDown(() => {
                 document.body.classList.remove('active');
@@ -954,7 +1002,6 @@ let start = setInterval(() => {
                         })
                     }
                 }, 100)
-
             }
 
             //click on input in popup "Choose place"
