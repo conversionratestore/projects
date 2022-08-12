@@ -511,6 +511,9 @@ if (href.includes('login.php') || href.includes('/register.php') || href.include
             background: #FBFBFB;
             padding: 0 20px;
         }
+        .col-left > div:first-child {
+            display: grid;
+        }
         .col-left .address.bill {
             order: 2;
             display: none;
@@ -1062,6 +1065,7 @@ if (href.includes('login.php') || href.includes('/register.php') || href.include
 
     document.body.insertAdjacentHTML('afterbegin',wrapperHTML) // add wrapper
     document.body.insertAdjacentHTML('afterbegin', style) // add styles
+
     //show/hide order
     document.querySelector('.order_head').addEventListener('click', (e) => {
         document.querySelector('.order').classList.toggle('active');
@@ -1278,6 +1282,11 @@ if (href.includes('login.php') || href.includes('/register.php') || href.include
     let state_item, countries_ship_item
     if (href.includes('/checkout/step1') || href.includes('/checkout/step2') || href.includes('guest-checkout1.php')) {
         document.querySelector('.steps').innerHTML = `Step 2<span>/4</span> — ${obj['stepsName'][1]}`; //add steps in header
+        if (document.querySelector('.tooltip') != null) {
+            setTimeout(() => {
+                document.querySelector('.tooltip').style.display = "none"
+            }, 3000)
+        }
     }
     if (href.includes('/checkout/step1') || href.includes('guest-checkout1.php')) {
         document.querySelector('.col-left .head h4').innerHTML = obj['stepsName'][1];
