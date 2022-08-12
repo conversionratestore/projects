@@ -702,6 +702,8 @@ if (href.includes('login.php') || href.includes('/register.php') || href.include
             line-height: 150%;
             color: #091114;
             margin-bottom: 0!important;
+            display: flex;
+            clear: both;
         }
         .wrapper-checkout form:not(#checkoutForm) dd {
             margin-bottom: 25px!important;
@@ -1039,6 +1041,9 @@ if (href.includes('login.php') || href.includes('/register.php') || href.include
         #checkoutForm > div {
             height: auto!important;
         }
+        #cc_block > dl > div.ccInfo > div:nth-child(1) {
+            display: none;
+        }
     </style>`
 
     let wrapperHTML = `
@@ -1077,8 +1082,8 @@ if (href.includes('login.php') || href.includes('/register.php') || href.include
         </div>
     </div>`;
 
-    document.body.insertAdjacentHTML('afterbegin',wrapperHTML) // add wrapper
-    document.body.insertAdjacentHTML('afterbegin',headerHTML) // add header
+    document.body.insertAdjacentHTML('afterbegin', wrapperHTML) // add wrapper
+    document.body.insertAdjacentHTML('afterbegin', headerHTML) // add header
     document.body.insertAdjacentHTML('afterbegin', style) // add styles
 
     //login/register step
@@ -1086,8 +1091,7 @@ if (href.includes('login.php') || href.includes('/register.php') || href.include
         document.querySelector('.col-left .head').after(document.querySelector('.myAccount'))
         document.querySelector('.col-left .head h4').innerHTML = obj['stepsName'][0];
         document.querySelector('.myAccountleft').classList.add('active');
-
-        document.querySelectorAll('.step')[0].classList.add('active')
+        addStep('.steps', 0)
 
         //click on 'Sign in/Register' button
         let linkHead = document.querySelector('.head-login .link'),
@@ -2006,4 +2010,3 @@ let cart = () => {
     })
 }
 cart()
-
