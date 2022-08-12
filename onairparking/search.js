@@ -342,6 +342,10 @@ let style = `
     .show-autocomplete .popular-place {
         display: none!important;
     }
+    #calendar_table {
+        max-width: 375px;
+        margin: 0 auto;
+    }
     .calendar .table {
         width: 100%;
         text-align: center;
@@ -482,6 +486,7 @@ let style = `
     #map-main > div > div > div:nth-child(9) > button, #map-main > div > div > div:nth-child(5) > div {
         display: none!important;
     }
+    
     @media only screen and (max-width: 340px) {
         .info_parking {
             padding: 7px;
@@ -854,8 +859,14 @@ let postParking = (id, startDate, endDate, parent, countSelector) => {
             //sort on price
             let items = parent.childNodes;
             document.querySelector('.sort button').addEventListener('click', (e) => {
+                e.stopImmediatePropagation()
+                e.target.classList.toggle('ascending')
                 let itemsArr = [].slice.call(items).sort(function (a, b) {
-                    return a.querySelector('.price_parking b').innerText.replace('$', '') - b.querySelector('.price_parking b').innerText.replace('$', '')
+                    if (e.target.classList.contains('ascending')) {
+                        return a.querySelector('.price_parking b').innerText.replace('$', '') - b.querySelector('.price_parking b').innerText.replace('$', '');
+                    } else {
+                        return b.querySelector('.price_parking b').innerText.replace('$', '') - a.querySelector('.price_parking b').innerText.replace('$', '');
+                    }
                 });
                 itemsArr.forEach((p) => parent.appendChild(p));
             })
@@ -940,13 +951,11 @@ let start = setInterval(() => {
             swiper.onUp(() => {
                 document.body.classList.add('active') ;
                 document.querySelector('#items-map').style.display = 'none';
-            });
-            swiper.run();
+            }).run();
             swiper.onDown(() => {
                 document.body.classList.remove('active');
                 scrollTo(0,0)
-            });
-            swiper.run();
+            }).run();
             document.querySelector('.popup-top').after(document.querySelector('.ant-select'))
 
             function showModal(e) { //show modal
@@ -956,9 +965,14 @@ let start = setInterval(() => {
                 document.querySelectorAll(`.popup`).forEach(item => item.classList.remove('active'));
                 document.body.classList.remove('show-autocomplete');
             }
+
             //show modal
             document.querySelectorAll('.btns-edit button').forEach(item => {
-                addEvent(item, 'click', () => {showModal(item)})
+                addEvent(item, 'click', (e) => {
+                    showModal(item)
+                    document.body.classList.remove('active');
+                    scrollTo(0,0)
+                })
             })
             //choose popular place
             function clickOnPopularPlace(item) {
@@ -1011,12 +1025,12 @@ let start = setInterval(() => {
 
             //close modal
             document.querySelectorAll('.btn-back').forEach(item => {
-                addEvent(item, 'click', (e) => {hideModal()})
+                addEvent(item, 'click', (e) => hideModal())
             })
 
             //create calendar
             let date = new Date();
-            let calendar = document.querySelector('#calendar_table')
+            let calendar = document.querySelector('#calendar_table');
             for (let i = 0; i < 13; i++) {
                 let month = date.getMonth() + 1 + i,
                     year = date.getFullYear();
@@ -1025,11 +1039,9 @@ let start = setInterval(() => {
                 } else {
                     let newMonth =  (date.getMonth() - 1 - i) * -1,
                         newYear = year + 1;
-                    console.log(newMonth, i)
                     if (newMonth > 0) {
                         createCalendar(calendar, newYear,newMonth, startDate, endDate);
                     }
-
                 }
             }
 
