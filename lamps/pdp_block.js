@@ -1562,8 +1562,10 @@ let startFunkPdp = setInterval(() => {
       let observerCheckoutCart = new MutationObserver((muts) => {
         if (document.querySelector(".cart")) {
           observerCheckoutCart.disconnect()
-          console.log(`observer`)
+          console.log(`observer cart checkout`)
           renderReturnPeriodCard()
+          renderCardPdpBlock()
+          onClickBtnCheckout()
 
           observerCheckoutCart.observe(document.querySelector(".cart"), {
             childList: true,
@@ -1579,12 +1581,16 @@ let startFunkPdp = setInterval(() => {
         })
       }
 
-      jQuery("body").on("click", `.checkout-cart-index .wrapper .c-product .p-qty .input-group-btn`, function () {
-        setTimeout(() => {
-          console.log(`click btn +/-`)
-          renderReturnPeriodCard()
-        }, 4000)
-      })
+      onClickBtnCheckout()
+      function onClickBtnCheckout() {
+        jQuery("body").on("click", `.wrapper .c-product .p-qty .input-group-btn, .wrapper .c-product .c-actions button`, function () {
+          setTimeout(() => {
+            console.log(`click btn +/-`)
+            renderCardPdpBlock()
+            renderReturnPeriodCard()
+          }, 1500)
+        })
+      }
 
       pushDataLayer("loaded")
       clarity("set", `pdp_improvements_${eventVar}`, "variant_1")
