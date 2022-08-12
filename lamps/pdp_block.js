@@ -1060,6 +1060,11 @@ let startFunkPdp = setInterval(() => {
               ".catalog-product-view .product-essential .p-price .pdp-afterpay img"
             ).src = `https://conversionratestore.github.io/projects/lamps/img/afterpay2.png`
           }
+
+          // on Click afterpay
+          document.querySelector(".catalog-product-view .product-essential .p-price .pdp-afterpay img")?.addEventListener("click", () => {
+            pushDataLayer("Afterpay link clicked")
+          })
         }
 
         //  render block Why do I need this?
@@ -1113,7 +1118,8 @@ let startFunkPdp = setInterval(() => {
               document.querySelectorAll("[data-tolltip]").forEach((el) => {
                 tippy(el, {
                   content: el.getAttribute("data-tolltip"),
-                  trigger: "click",
+                  // trigger: "click",
+                  duration: [500, 500],
                   interactive: true,
                   onTrigger(e) {
                     if (el.closest(".text_why_need")) {
@@ -1181,11 +1187,6 @@ let startFunkPdp = setInterval(() => {
         // on Click questions
         document.querySelector(".wrap_questions")?.addEventListener("click", () => {
           pushDataLayer("Question about product link clicked")
-        })
-
-        // on Click afterpay
-        document.querySelector(".catalog-product-view .product-essential .p-price .pdp-afterpay img")?.addEventListener("click", () => {
-          pushDataLayer("Afterpay link clicked")
         })
       }
 
