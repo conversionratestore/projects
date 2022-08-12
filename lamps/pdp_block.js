@@ -67,7 +67,8 @@ let startFunkPdp = setInterval(() => {
         .var_ceiling_fan .header-container {
           border: unset !important;
         }
-        .var_ceiling_fan .banner {
+        .var_ceiling_fan .banner,
+        .checkout-cart-index .banner{
           background: linear-gradient(0deg, #daf5e1, #daf5e1), #dfe7eb;
           padding: 9px;
           text-align: center;
@@ -75,23 +76,28 @@ let startFunkPdp = setInterval(() => {
           align-items: center;
           justify-content: center;
         }
-        .var_ceiling_fan .banner div{
+        .var_ceiling_fan .banner div,
+        .checkout-cart-index .banner div{
           margin-right: 4px;
           display: flex;
           align-items: center;
         }
         .var_ceiling_fan .banner p,
-        .var_ceiling_fan .banner b {
+        .var_ceiling_fan .banner b,
+        .checkout-cart-index .banner p,
+        .checkout-cart-index .banner b {
           font-weight: 400;
           font-size: 16px;
           line-height: 23px;
           margin: 0;
           text-transform: capitalize;
         }
-        .var_ceiling_fan .banner b{
+        .var_ceiling_fan .banner b,
+        .checkout-cart-index .banner b{
           font-weight: 700;
         }
-        .var_ceiling_fan .banner img {
+        .var_ceiling_fan .banner img,
+        .checkout-cart-index .banner img {
           margin-right: 4px;
           width: 20px;
         }
@@ -312,6 +318,7 @@ let startFunkPdp = setInterval(() => {
         }
         .var_ceiling_fan.catalog-product-view .product-essential .vp-box .vp-row.text-center {
           max-width: 20px;
+          margin: -2px 5px 0 0;
         }
         .var_ceiling_fan.catalog-product-view .product-essential .vp-box .vp-row {
           padding: 0;
@@ -701,16 +708,20 @@ let startFunkPdp = setInterval(() => {
       }
 
       @media (max-width: 768px) {
-        .var_ceiling_fan .banner{
+        .var_ceiling_fan .banner,
+        .checkout-cart-index .banner{
           padding: 6px;
           flex-direction: column;
         }
         .var_ceiling_fan .banner p,
-        .var_ceiling_fan .banner b{
+        .var_ceiling_fan .banner b,
+        .checkout-cart-index .banner p,
+        .checkout-cart-index .banner b{
           font-size: 15px;
           line-height: 22px;
         }
-        .var_ceiling_fan .banner div{
+        .var_ceiling_fan .banner div,
+        .checkout-cart-index .banner div{
           margin: 0;
         }
         /*toolpit */
@@ -843,8 +854,17 @@ let startFunkPdp = setInterval(() => {
           margin-bottom: 12px;
           margin-top: 11px !important;
         }
-        .inner-panel .content-panel .c-product .mc-price{
+        .inner-panel .content-panel .c-product .mc-priceб
+        .checkout-cart-index .wrapper .var_ceiling_fan.c-product .p-qtyб
+        .checkout-cart-index .wrapper .var_ceiling_fan.c-product .mc-price{
           margin-bottom: 12px;
+        }
+        .checkout-cart-index .var_ceiling_fan .diff_price_block{
+          margin: 0 7.5px 20px;
+        }
+        .checkout-cart-index .wrapper .var_ceiling_fan.c-product .promo{
+              font-size: 14px;
+            line-height: 16px;
         }
       }
     </style>
@@ -1579,6 +1599,11 @@ let startFunkPdp = setInterval(() => {
           </div>`
           )
         }
+        if (document.querySelector(".checkout-cart-index")) {
+          if (!document.querySelector(".checkout-cart-index .banner")) {
+            document.querySelector("#main-wrapper > div:first-child").insertAdjacentHTML("afterend", banner) // add static banner
+          }
+        }
       }
 
       function renderCardPdpBlock() {
@@ -1603,8 +1628,10 @@ let startFunkPdp = setInterval(() => {
               let diffDisc = oldPrice - price
 
               let percent = (100 - (price * 100) / oldPrice).toFixed(0)
-              el.querySelector(".p-qty").insertAdjacentHTML("afterend", `<div class="diff_price_block"><p>You save: $${diffDisc.toFixed(2)} (${percent}% off)</p></div>`)
-              el.querySelector(".p-qty").classList.add("margin_var")
+              if (!el.querySelector(".diff_price_block")) {
+                el.querySelector(".p-qty").insertAdjacentHTML("afterend", `<div class="diff_price_block"><p>You save: $${diffDisc.toFixed(2)} (${percent}% off)</p></div>`)
+                el.querySelector(".p-qty").classList.add("margin_var")
+              }
             }
 
             let dataProduct = JSON.parse(el.getAttribute("data-product"))
@@ -1720,7 +1747,7 @@ let startFunkPdp = setInterval(() => {
             console.log(`click btn +/-`)
             renderCardPdpBlock()
             renderReturnPeriodCard()
-          }, 1500)
+          }, 1700)
         })
       }
 
