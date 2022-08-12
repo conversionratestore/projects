@@ -75,12 +75,21 @@ let startFunkPdp = setInterval(() => {
           align-items: center;
           justify-content: center;
         }
-        .var_ceiling_fan .banner p {
+        .var_ceiling_fan .banner div{
+          margin-right: 4px;
+          display: flex;
+          align-items: center;
+        }
+        .var_ceiling_fan .banner p,
+        .var_ceiling_fan .banner b {
           font-weight: 400;
           font-size: 16px;
           line-height: 23px;
           margin: 0;
           text-transform: capitalize;
+        }
+        .var_ceiling_fan .banner b{
+          font-weight: 700;
         }
         .var_ceiling_fan .banner img {
           margin-right: 4px;
@@ -691,6 +700,21 @@ let startFunkPdp = setInterval(() => {
       .checkout-cart-index .wrapper .var_ceiling_fan.c-product .p-stock .now_stock_svg{
        margin-top: -4px;
       }
+
+      @media (max-width: 768px) {
+        .var_ceiling_fan .banner{
+          padding: 6px;
+          flex-direction: column;
+        }
+        .var_ceiling_fan .banner p,
+        .var_ceiling_fan .banner b{
+          font-size: 15px;
+          line-height: 22px;
+        }
+        .var_ceiling_fan .banner div{
+          margin: 0;
+        }
+      }
     </style>
     `
       // Tooltip
@@ -735,9 +759,12 @@ let startFunkPdp = setInterval(() => {
 
       const banner = /*html*/ `
     <div class="banner">
-        <img src="${imgFolderUrl}check_arrow.svg" alt="check arrow">
+        <div>
+          <img src="${imgFolderUrl}check_arrow.svg" alt="check arrow">
+          <b>30-Day Lowest Price Guarantee.</b>
+        </div>
         <p>
-            <b>30-Day Lowest Price Guarantee.</b> Find cheaper? We will refund the difference.
+          Find cheaper? We will refund the difference.
         </p>
     </div>`
 
@@ -895,7 +922,7 @@ let startFunkPdp = setInterval(() => {
 
         if (document.querySelector(".wrap_questions > div:nth-child(2) p > span")) {
           document.querySelector(".wrap_questions > div:nth-child(2) p > span").textContent = document.querySelector(
-            ".catalog-product-view .product-essential .p-head .product-name span"
+            ".catalog-product-view .product-essential h1.product-name span"
           ).textContent // title pdp question
         }
 
