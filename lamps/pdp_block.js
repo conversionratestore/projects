@@ -949,6 +949,25 @@ let startFunkPdp = setInterval(() => {
         }
       }
 
+      @media (max-width: 360px) {
+        .var_ceiling_fan #product_addtocart_form > div.row .qty-box{
+          width: 37%;
+          max-width: 37%;
+        }
+        .var_ceiling_fan.catalog-product-view .product-essential .p-atc .add-to {
+          width: 62%;
+          max-width: 62%;
+        }
+        .var_ceiling_fan .wrap_var_policy ul li span,
+        .var_ceiling_fan .wrap_var_policy ul li p{
+          font-size: 12px;
+        }
+        .var_ceiling_fan.catalog-product-view .select2 {
+            width: 100% !important;
+            min-width: unset !important;
+        }
+      }
+
       @media (max-width: 320px) {
         .return_period_cart {
           width: 110%;
