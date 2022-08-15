@@ -934,7 +934,7 @@ let startFunkPdp = setInterval(() => {
           margin-bottom: 12px;
         }
         .checkout-cart-index .var_ceiling_fan .diff_price_block {
-          margin: 0 7.5px 20px;
+          margin: 0 0 20px;
         }
         .checkout-cart-index .wrapper .var_ceiling_fan.c-product .promo {
           font-size: 14px;
@@ -949,9 +949,6 @@ let startFunkPdp = setInterval(() => {
         }
         .checkout-cart-index .wrapper .c-product .mc-price{
           padding-left: 0;
-        }
-        .checkout-cart-index .var_ceiling_fan .diff_price_block{
-          margin: 0;
         }
       }
 
