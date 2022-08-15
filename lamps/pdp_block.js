@@ -766,6 +766,9 @@ let startFunkPdp = setInterval(() => {
         .var_ceiling_fan #hbl-live-chat-wrapper{
           display: none !important;
         }
+        .var_ceiling_fan .text_why_need{
+          font-size: 17px;
+        }
         .checkout-cart-index .col-12,
         .checkout-cart-index .page .main-container {
           padding: 0;
