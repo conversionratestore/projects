@@ -764,7 +764,7 @@ let startFunkPdp = setInterval(() => {
 
       @media (max-width: 768px) {
         .var_ceiling_fan #hbl-live-chat-wrapper{
-          display: none;
+          display: none !important;
         }
         .checkout-cart-index .col-12,
         .checkout-cart-index .page .main-container {
@@ -1652,7 +1652,7 @@ let startFunkPdp = setInterval(() => {
         document.querySelector(".wrap_questions")?.addEventListener("click", () => {
           pushDataLayer("Question about product link clicked")
           if (window.innerWidth <= 768) {
-            document.querySelector(".var_ceiling_fan #hbl-live-chat-wrapper").style.display = "block"
+            document.querySelector(".var_ceiling_fan #hbl-live-chat-wrapper").style.display = "block !important"
           }
         })
 
@@ -1661,7 +1661,7 @@ let startFunkPdp = setInterval(() => {
             document.querySelector("#olark-wrapper .olark-launch-button")?.addEventListener("click", () => {
               console.log(document.querySelector('[aria-expanded="true"]'))
               setTimeout(() => {
-                document.querySelector(".var_ceiling_fan #hbl-live-chat-wrapper").style.display = "none"
+                document.querySelector(".var_ceiling_fan #hbl-live-chat-wrapper").style.display = "none !important"
               }, 100)
             })
           }
