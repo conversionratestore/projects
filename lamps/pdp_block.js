@@ -764,7 +764,7 @@ let startFunkPdp = setInterval(() => {
 
       @media (max-width: 768px) {
         .var_ceiling_fan #hbl-live-chat-wrapper{
-          display: none !important;
+          display: none;
         }
         .var_ceiling_fan .text_why_need{
           font-size: 17px;
@@ -1655,7 +1655,7 @@ let startFunkPdp = setInterval(() => {
         document.querySelector(".wrap_questions")?.addEventListener("click", () => {
           pushDataLayer("Question about product link clicked")
           if (window.innerWidth <= 768) {
-            document.querySelector(".var_ceiling_fan #hbl-live-chat-wrapper").style.display = "block !important"
+            document.querySelector(".var_ceiling_fan #hbl-live-chat-wrapper").style.display = "block"
           }
         })
 
@@ -1664,7 +1664,7 @@ let startFunkPdp = setInterval(() => {
             document.querySelector("#olark-wrapper .olark-launch-button")?.addEventListener("click", () => {
               console.log(document.querySelector('[aria-expanded="true"]'))
               setTimeout(() => {
-                document.querySelector(".var_ceiling_fan #hbl-live-chat-wrapper").style.display = "none !important"
+                document.querySelector(".var_ceiling_fan #hbl-live-chat-wrapper").style.display = "none"
               }, 100)
             })
           }
