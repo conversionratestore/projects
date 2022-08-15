@@ -947,6 +947,12 @@ let startFunkPdp = setInterval(() => {
         .checkout-cart-index .wrapper .total-col .cart-totals .btn {
           width: 96%;
         }
+        .checkout-cart-index .wrapper .c-product .mc-price{
+          padding-left: 0;
+        }
+        .checkout-cart-index .var_ceiling_fan .diff_price_block{
+          margin: 0;
+        }
       }
 
       @media (max-width: 360px) {
@@ -965,6 +971,12 @@ let startFunkPdp = setInterval(() => {
         .var_ceiling_fan.catalog-product-view .select2 {
             width: 100% !important;
             min-width: unset !important;
+        }
+        .var_ceiling_fan #cts-goods .category-products > .col-12{
+          flex-direction: column;
+        }
+        .wrap_var_policy_cart ul li span{
+          font-size: 12px;
         }
       }
 
