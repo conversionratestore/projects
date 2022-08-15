@@ -511,14 +511,13 @@ let startFunkPdp = setInterval(() => {
       }
       /*wrap_var_policy_cart */
       .wrap_var_policy_cart {
-        margin: 32px 0 20px;
+        margin: 32px 7.5px 20px;
         width: 100%;
       }
       .wrap_var_policy_cart ul {
         display: flex;
         align-items: center;
         justify-content: space-between;
-        gap: 40px;
       }
       .wrap_var_policy_cart ul li {
         display: flex;
