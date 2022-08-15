@@ -1152,7 +1152,7 @@ let startFunkPdp = setInterval(() => {
                   <img src="${imgFolderUrl}price_policy.svg" alt="price policy">
                 </div>
                 <span>Price Match Guarantee</span>
-                <p>Pay less than enywhere else</p>
+                <p>Pay less than anywhere else</p>
             </li>
             <li data-tolltip>
                 <div class="img_wrap">
