@@ -950,6 +950,16 @@ let startFunkPdp = setInterval(() => {
         .checkout-cart-index .wrapper .c-product .mc-price{
           padding-left: 0;
         }
+        .catalog-product-view .cts-goods .item .product-options .attr-label{
+          margin-bottom: 10px;
+        }
+        .var_ceiling_fan #cts-goods .category-products > .col-12{
+          flex-direction: column;
+        }
+        .var_ceiling_fan.catalog-product-view .select2 {
+            width: 100% !important;
+            min-width: unset !important;
+        }
       }
 
       @media (max-width: 360px) {
@@ -964,13 +974,6 @@ let startFunkPdp = setInterval(() => {
         .var_ceiling_fan .wrap_var_policy ul li span,
         .var_ceiling_fan .wrap_var_policy ul li p{
           font-size: 12px;
-        }
-        .var_ceiling_fan.catalog-product-view .select2 {
-            width: 100% !important;
-            min-width: unset !important;
-        }
-        .var_ceiling_fan #cts-goods .category-products > .col-12{
-          flex-direction: column;
         }
         .wrap_var_policy_cart ul li span{
           font-size: 12px;
