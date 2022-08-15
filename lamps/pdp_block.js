@@ -763,11 +763,11 @@ let startFunkPdp = setInterval(() => {
       }
 
       @media (max-width: 768px) {
-        .col-12,
-        .page .main-container {
+        .checkout-cart-index .col-12,
+        .checkout-cart-index .page .main-container {
           padding: 0;
         }
-        .row {
+        .checkout-cart-index .row {
           margin: 0;
         }
         .var_ceiling_fan .banner,
