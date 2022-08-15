@@ -763,6 +763,9 @@ let startFunkPdp = setInterval(() => {
       }
 
       @media (max-width: 768px) {
+        .var_ceiling_fan #hbl-live-chat-wrapper{
+          display: none;
+        }
         .checkout-cart-index .col-12,
         .checkout-cart-index .page .main-container {
           padding: 0;
@@ -1264,6 +1267,7 @@ let startFunkPdp = setInterval(() => {
         if (!document.querySelector(".catalog-product-view").classList.contains("var_ceiling_fan")) {
           document.querySelector(".catalog-product-view").classList.add("var_ceiling_fan")
         }
+
         console.log(`START PDP`, document.querySelector(".catalog-product-view"))
 
         // sticky block
@@ -1342,7 +1346,9 @@ let startFunkPdp = setInterval(() => {
 
                 if (el.querySelector(".final-price .price")) {
                   price = +el.querySelector(".final-price .price").textContent.slice(1).replace(/,/g, "")
-                  document.querySelector(".sticky_box .last_price").textContent = el.querySelector(".final-price .price").textContent
+                  if (window.innerWidth <= 768) {
+                    document.querySelector(".sticky_box .last_price").textContent = el.querySelector(".final-price .price").textContent
+                  }
                 }
 
                 if (price < 75) {
@@ -1354,8 +1360,10 @@ let startFunkPdp = setInterval(() => {
                 if (el.querySelector(".orig-price")) {
                   if (el.querySelector(".orig-price .price")) {
                     oldPrice = +el.querySelector(".orig-price .price").textContent.slice(1).replace(/,/g, "")
-                    document.querySelector(".sticky_box .old_price").style.display = "block"
-                    document.querySelector(".sticky_box .old_price").textContent = el.querySelector(".orig-price .price").textContent
+                    if (window.innerWidth <= 768) {
+                      document.querySelector(".sticky_box .old_price").style.display = "block"
+                      document.querySelector(".sticky_box .old_price").textContent = el.querySelector(".orig-price .price").textContent
+                    }
                   }
 
                   let diffDisc = oldPrice - price
@@ -1612,7 +1620,19 @@ let startFunkPdp = setInterval(() => {
         // on Click questions
         document.querySelector(".wrap_questions")?.addEventListener("click", () => {
           pushDataLayer("Question about product link clicked")
+          if (window.innerWidth <= 768) {
+            document.querySelector("#hbl-live-chat-wrapper").style.display = "block"
+          }
         })
+
+        if (window.innerWidth <= 768) {
+          if (document.querySelector("#olark-wrapper .olark-launch-button")) {
+            document.querySelector("#olark-wrapper .olark-launch-button")?.addEventListener("click", () => {
+              console.log(document.querySelector('[aria-expanded="true"]'))
+              document.querySelector("#hbl-live-chat-wrapper").style.display = "none"
+            })
+          }
+        }
       }
 
       // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> CART
