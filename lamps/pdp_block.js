@@ -1660,7 +1660,9 @@ let startFunkPdp = setInterval(() => {
           if (document.querySelector("#olark-wrapper .olark-launch-button")) {
             document.querySelector("#olark-wrapper .olark-launch-button")?.addEventListener("click", () => {
               console.log(document.querySelector('[aria-expanded="true"]'))
-              document.querySelector(".var_ceiling_fan #hbl-live-chat-wrapper").style.display = "none"
+              setTimeout(() => {
+                document.querySelector(".var_ceiling_fan #hbl-live-chat-wrapper").style.display = "none"
+              }, 100)
             })
           }
         }
