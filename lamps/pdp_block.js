@@ -1617,6 +1617,7 @@ let startFunkPdp = setInterval(() => {
 
             renderToPdp()
 
+            varQlark()
             observer.observe(document.querySelector(".catalog-product-view .product-essential"), {
               childList: true,
               subtree: true,
@@ -1659,6 +1660,9 @@ let startFunkPdp = setInterval(() => {
           }
         })
 
+        varQlark()
+      }
+      function varQlark() {
         if (window.innerWidth <= 768) {
           if (document.querySelector("#olark-wrapper .olark-launch-button")) {
             document.querySelector("#olark-wrapper .olark-launch-button")?.addEventListener("click", () => {
