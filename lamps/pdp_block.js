@@ -1652,7 +1652,7 @@ let startFunkPdp = setInterval(() => {
         document.querySelector(".wrap_questions")?.addEventListener("click", () => {
           pushDataLayer("Question about product link clicked")
           if (window.innerWidth <= 768) {
-            document.querySelector("#hbl-live-chat-wrapper").style.display = "block"
+            document.querySelector(".var_ceiling_fan #hbl-live-chat-wrapper").style.display = "block"
           }
         })
 
@@ -1660,7 +1660,7 @@ let startFunkPdp = setInterval(() => {
           if (document.querySelector("#olark-wrapper .olark-launch-button")) {
             document.querySelector("#olark-wrapper .olark-launch-button")?.addEventListener("click", () => {
               console.log(document.querySelector('[aria-expanded="true"]'))
-              document.querySelector("#hbl-live-chat-wrapper").style.display = "none"
+              document.querySelector(".var_ceiling_fan #hbl-live-chat-wrapper").style.display = "none"
             })
           }
         }
