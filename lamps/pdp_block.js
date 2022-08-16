@@ -1302,8 +1302,6 @@ let startFunkPdp = setInterval(() => {
           document.querySelector(".catalog-product-view").classList.add("var_ceiling_fan")
         }
 
-        console.log(`START PDP`, document.querySelector(".catalog-product-view"))
-
         // sticky block
         if (window.innerWidth <= 768) {
           if (!document.querySelector("body.catalog-product-view .sticky_box")) {
@@ -1362,7 +1360,6 @@ let startFunkPdp = setInterval(() => {
 
                   // on click GET 15% OFF WITH A COUPON
                   document.querySelector(".discount_pdp.sign_up > span")?.addEventListener("click", function () {
-                    console.log(`GET 15% OFF WITH A COUPON`)
                     document.querySelector('.header-container .header-actions .action-links [data-account-trigger="true"]')?.click()
                   })
                 }
@@ -1666,7 +1663,6 @@ let startFunkPdp = setInterval(() => {
         if (window.innerWidth <= 768) {
           if (document.querySelector("#olark-wrapper .olark-launch-button")) {
             document.querySelector("#olark-wrapper .olark-launch-button")?.addEventListener("click", () => {
-              console.log(document.querySelector('[aria-expanded="true"]'))
               document.querySelector(".var_ceiling_fan #hbl-live-chat-wrapper").style.display = "none"
             })
           }
@@ -1693,7 +1689,6 @@ let startFunkPdp = setInterval(() => {
                 if (!el.classList.contains("var_ceiling_fan")) {
                   el.classList.add("var_ceiling_fan")
                 }
-                console.log(el.querySelector(".p-name span").textContent.includes("Ceiling Fan"))
 
                 addWrappPolicyCard()
 
@@ -1730,7 +1725,6 @@ let startFunkPdp = setInterval(() => {
                     }
                     // on click GET 15% OFF WITH A COUPON
                     document.querySelector(".discount_cart.sign_up span")?.addEventListener("click", function () {
-                      console.log(`GET 15% OFF WITH A COUPON`)
                       document.querySelector('.header-container .header-actions .action-links [data-account-trigger="true"]')?.click()
                     })
                   }
@@ -1887,7 +1881,6 @@ let startFunkPdp = setInterval(() => {
           `#add-item-to-cart, .category-products .products-grid .item .item-inner .details-area .actions .addtocart, .inner-panel .content-panel .c-product .p-qty .input-group-btn .btn-number`,
           function () {
             setTimeout(() => {
-              console.log(`setTimeout for  renderToCart()`)
               renderToCart()
             }, 2000)
           }
@@ -1976,7 +1969,6 @@ let startFunkPdp = setInterval(() => {
             }
 
             if (el.querySelector(".p-stock span.text-strong")?.textContent === "In Stock.") {
-              console.log(el.querySelector(".p-stock span.text-strong")?.textContent)
               if (!el.querySelector(".justify-content-start >div:first-child > svg")) {
                 el.querySelector(".justify-content-start >div:first-child").insertAdjacentHTML(
                   "afterbegin",
@@ -2064,7 +2056,6 @@ let startFunkPdp = setInterval(() => {
       function onClickBtnCheckout() {
         jQuery("body").on("click", `.wrapper .c-product .p-qty .input-group-btn, .wrapper .c-product .c-actions button`, function () {
           setTimeout(() => {
-            console.log(`click btn +/-`)
             renderCardPdpBlock()
           }, 1700)
         })
