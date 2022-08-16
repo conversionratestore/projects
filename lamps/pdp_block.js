@@ -1675,9 +1675,9 @@ let startFunkPdp = setInterval(() => {
 
       // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> CART
       startFunkCardSlider()
+
       function startFunkCardSlider() {
         renderToCart()
-        addWrappPolicyCard()
 
         // render text on cart
         function renderToCart() {
@@ -1687,6 +1687,9 @@ let startFunkPdp = setInterval(() => {
                 if (!el.classList.contains("var_ceiling_fan")) {
                   el.classList.add("var_ceiling_fan")
                 }
+                console.log(el.querySelector(".p-name span").textContent.includes("Ceiling Fan"))
+
+                addWrappPolicyCard()
 
                 let dataProduct = JSON.parse(el.getAttribute("data-product"))
                 let salesProduct = dataProduct.salesproduct
@@ -1858,7 +1861,6 @@ let startFunkPdp = setInterval(() => {
           if (document.querySelector("#cart-panel")) {
             observerCart.disconnect()
             renderToCart()
-            addWrappPolicyCard()
 
             observerCart.observe(document.querySelector("#cart-panel"), {
               childList: true,
@@ -1881,14 +1883,12 @@ let startFunkPdp = setInterval(() => {
             setTimeout(() => {
               console.log(`setTimeout for  renderToCart()`)
               renderToCart()
-              addWrappPolicyCard()
             }, 2000)
           }
         )
       }
 
-      //
-      renderReturnPeriodCard()
+      // checkout card
       renderCardPdpBlock()
 
       function renderReturnPeriodCard() {
@@ -1903,11 +1903,6 @@ let startFunkPdp = setInterval(() => {
           </div>`
           )
         }
-        if (document.querySelector(".checkout-cart-index")) {
-          if (!document.querySelector(".checkout-cart-index .banner")) {
-            document.querySelector("#main-wrapper > div:first-child").insertAdjacentHTML("afterend", banner) // add static banner
-          }
-        }
       }
 
       function renderCardPdpBlock() {
@@ -1916,6 +1911,14 @@ let startFunkPdp = setInterval(() => {
             if (!el.classList.contains("var_ceiling_fan")) {
               el.classList.add("var_ceiling_fan")
             }
+
+            renderReturnPeriodCard()
+
+            // if (document.querySelector(".checkout-cart-index")) {
+            if (!document.querySelector(".checkout-cart-index .banner")) {
+              document.querySelector("#main-wrapper > div:first-child").insertAdjacentHTML("afterend", banner) // add static banner
+            }
+            // }
 
             if (el.querySelector(".orig-price")) {
               let price
@@ -2018,6 +2021,10 @@ let startFunkPdp = setInterval(() => {
                 )
               }
             }
+          } else {
+            if (document.querySelector(".checkout-cart-index .banner")) {
+              document.querySelector(".checkout-cart-index .banner").remove()
+            }
           }
         })
       }
@@ -2026,7 +2033,6 @@ let startFunkPdp = setInterval(() => {
         if (document.querySelector(".cart")) {
           observerCheckoutCart.disconnect()
           console.log(`observer cart checkout`)
-          renderReturnPeriodCard()
           renderCardPdpBlock()
           onClickBtnCheckout()
 
@@ -2050,7 +2056,6 @@ let startFunkPdp = setInterval(() => {
           setTimeout(() => {
             console.log(`click btn +/-`)
             renderCardPdpBlock()
-            renderReturnPeriodCard()
           }, 1700)
         })
       }
