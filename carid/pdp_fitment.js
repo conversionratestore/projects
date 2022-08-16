@@ -477,7 +477,7 @@ function waitForPopupTimer(startWatchPopup) {
 
             let endWatchPopup = startWatchPopup > 0 ? (Date.now().toString() - startWatchPopup) : 0
 
-            // console.log('popup', millisToMinutesAndSeconds(endWatchPopup));
+             console.log('popup', millisToMinutesAndSeconds(endWatchPopup));
             callEvent('Popup was closed after ' + millisToMinutesAndSeconds(endWatchPopup), 'Popup. Product options')
         }
     }, 2000)
@@ -490,7 +490,7 @@ function waitForAttTimer(startWatchAttention) {
 
             let endWatchAttention = startWatchAttention > 0 ? (Date.now().toString() - startWatchAttention) : 0
 
-            // console.log('attr', millisToMinutesAndSeconds(endWatchAttention));
+            console.log('attr', millisToMinutesAndSeconds(endWatchAttention));
             callEvent('Popup was closed after ' + millisToMinutesAndSeconds(endWatchAttention), `Popup: Attention. This particular wheel doesn't fit`)
         }
     }, 1000)
