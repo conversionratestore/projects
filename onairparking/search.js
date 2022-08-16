@@ -751,7 +751,7 @@ let pushDataLayer = (action) => {
     window.dataLayer = window.dataLayer || [];
     dataLayer.push({
         'event': 'event-to-ga',
-        'eventCategory': 'Exp: Redesign landing page',
+        'eventCategory': 'Exp — Complete Redesign Search',
         'eventAction': action,
     });
 }
@@ -839,6 +839,8 @@ let postParking = (id, startDate, endDate, parent, countSelector) => {
                 marker.addListener("click", () => {
                     parent.parentElement.querySelector('#items-map li').innerHTML = parent.childNodes[i].innerHTML;
                     parent.parentElement.querySelector('#items-map').style.display = 'block';
+
+                    pushDataLayer('Click on the price (map)')
                 });
             }
             //set minimum zoom
@@ -869,6 +871,7 @@ let postParking = (id, startDate, endDate, parent, countSelector) => {
                     }
                 });
                 itemsArr.forEach((p) => parent.appendChild(p));
+                pushDataLayer('Click on “sort by price”');
             })
 
             //lowerPrice
@@ -887,21 +890,8 @@ let postParking = (id, startDate, endDate, parent, countSelector) => {
             let randomIndex = Math.floor(Math.random() * children.length); //random
             children[randomIndex].querySelector('.c-green').insertAdjacentHTML('beforebegin',`<p class="c-red">Only 8 left at this price</p>`)
 
-            //events
-            let evtParking = (e) => {
-                if (!e.target.classList.contains('underline')) {
-                    if (item.querySelector('.lowest_price') != null && item.querySelector('.best_reviews') != null) {
-                        pushDataLayer('Click on Lowest Price and Best reviews Parking section')
-                    } else if (item.querySelector('.lowest_price') != null && item.querySelector('.best_reviews') == null) {
-                        pushDataLayer('Click on Lowest Price Parking section')
-                    } else if (item.querySelector('.best_reviews') != null && item.querySelector('.lowest_price') == null) {
-                        pushDataLayer('Click on Best reviews Parking section')
-                    } else if (item.querySelector('.lowest_price') == null && item.querySelector('.best_reviews') == null) {
-                        pushDataLayer('Click on regular Parking section')
-                    }
-                }
-            }
-            children.forEach(item => addEvent(item, 'click',() => {evtParking(e)} ))
+            //event
+            children.forEach(item => addEvent(item, 'click',() => pushDataLayer('Click on the parking')))
         } else {
             parent.innerHTML = emptyHtml;
             new google.maps.Map(parent.closest('.wrapper').querySelector("#map-main"), optionMap(3));
@@ -960,6 +950,11 @@ let start = setInterval(() => {
 
             function showModal(e) { //show modal
                 document.querySelector(`.popup[data-title="${e.dataset.popup}"]`).classList.add('active');
+                if (e.dataset.popup == 'choose place') {
+                    pushDataLayer('Click on airport selector')
+                } else {
+                    pushDataLayer('Click on dates selector')
+                }
             }
             function hideModal() { //hide modal
                 document.querySelectorAll(`.popup`).forEach(item => item.classList.remove('active'));
@@ -1023,11 +1018,6 @@ let start = setInterval(() => {
             addEvent(inputSearch, 'click', (e) => {clickOnInputPlace(e.target)})
             addEvent(inputSearch, 'input', (e) => {clickOnInputPlace(e.target)})
 
-            //close modal
-            document.querySelectorAll('.btn-back').forEach(item => {
-                addEvent(item, 'click', (e) => hideModal())
-            })
-
             //create calendar
             let date = new Date();
             let calendar = document.querySelector('#calendar_table');
@@ -1048,12 +1038,12 @@ let start = setInterval(() => {
             //choose dates
             let days = document.querySelectorAll('.calendar .day:not(.disabled)');
             let betweenDays = 0;
+            let indexEnd = 0, indexStart = 0;
+
             function clickOnDay(item,index) {
                 let dayS = document.querySelector('.calendar .day.start') != null ? document.querySelector('.calendar .day.start') : '',
                     dayE = document.querySelector('.calendar .day.end') != null ? document.querySelector('.calendar .day.end')  : '',
                     dayA = document.querySelectorAll('.calendar .day.active');
-
-                let indexEnd = 0, indexStart = 0;
 
                 if (betweenDays === 0) {
                     dayS != '' ? dayS.classList.remove('start') : '';
@@ -1091,13 +1081,45 @@ let start = setInterval(() => {
                     clickOnDay(days[i],i)
                 })
             }
+
+            //close modal
+            document.querySelectorAll('.btn-back').forEach(item => {
+                addEvent(item, 'click', (e) => {
+                    hideModal()
+                    if (item.closest('[data-title="choose dates"]')) {
+                        console.log('back choose dates popup')
+                        let startDate = document.querySelector('.from').dataset.date.split('-'),
+                            endDate = document.querySelector('.to').dataset.date.split('-');
+
+                        let startDateYear = startDate[0],
+                            startDateMonth = startDate[1][0] == '0' && startDate.length > 1 ? +startDate[1].replace('0','') -1 : startDate[1],
+                            startDateDay = +startDate[2];
+                        let endDateYear = endDate[0],
+                            endDateMonth = endDate[1][0] == '0' && endDate.length > 1 ? +endDate[1].replace('0','') -1 : endDate[1],
+                            endDateDay = +endDate[2];
+
+                        document.querySelector(`.calendar .head[data-item="${startDateYear}-${startDateMonth}"]`).nextElementSibling.querySelectorAll('.day')[startDateDay-1].classList.add('start','active');
+                        document.querySelector(`.calendar .head[data-item="${endDateYear}-${endDateMonth}"]`).nextElementSibling.querySelectorAll('.day')[endDateDay-1].classList.add('end','active');
+
+                        for (let i = 0; i < days.length; i++) {
+                            if (days[i].classList.contains('start')) {
+                                indexStart = i;
+                            }
+                            if (days[i].classList.contains('end')) {
+                                indexEnd = i
+                            }
+                        }
+                        for (let i = indexStart; i < indexEnd; i++) {
+                            days[i].classList.add('active')
+                        }
+                    }
+                })
+            })
             //clear calendar
             addEvent(document.querySelector('.btn-clear'), 'click', () => {
                 document.querySelector('.calendar .day.start') != null ? document.querySelector('.calendar .day.start').classList.remove('start') : '';
                 document.querySelector('.calendar .day.end') != null ? document.querySelector('.calendar .day.end').classList.remove('end')  : '';
-                document.querySelectorAll('.calendar .day.active').forEach(item => {
-                    item.classList.remove('active')
-                })
+                document.querySelectorAll('.calendar .day.active').forEach(item => item.classList.remove('active'))
                 document.querySelector('.btn-search').disabled = true;
                 betweenDays = 0;
             })
@@ -1120,7 +1142,6 @@ let start = setInterval(() => {
                     postParking(id, startDate.dataset.date, endDate.dataset.date, parent, countSelector)
                     hideModal()
                 }
-
             })
         }
     }
@@ -1196,3 +1217,17 @@ function getDay(date) { // get the day number of Sunday, from 0 (Mon) to 6 (Sun)
     if (day == 0) day = 7; // make Sunday (0) the last day
     return day - 1;
 }
+
+window.dataLayer = window.dataLayer || [];
+dataLayer.push({
+    'event': 'event-to-ga',
+    'eventCategory': 'Exp — Complete Redesign Search',
+    'eventAction': 'loaded'
+});
+
+let isClarify = setInterval(() => {
+    if(typeof clarity == 'function') {
+        clearInterval(isClarify)
+        clarity("set", "complete_redesign_search", "variant_1");
+    }
+}, 100)
