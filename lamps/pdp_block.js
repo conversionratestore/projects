@@ -1681,9 +1681,15 @@ let startFunkPdp = setInterval(() => {
 
         // render text on cart
         function renderToCart() {
+          let dataProductStart
+          let itemCategory
+
           if (document.querySelector("#cart-panel #minicart-items")) {
             document.querySelectorAll("#cart-panel #minicart-items > div").forEach((el) => {
-              if (el.querySelector(".p-name span").textContent.includes("Ceiling Fan")) {
+              dataProductStart = JSON.parse(el.getAttribute("data-product"))
+              itemCategory = dataProductStart.item_category2
+
+              if (itemCategory === "Ceiling Fans") {
                 if (!el.classList.contains("var_ceiling_fan")) {
                   el.classList.add("var_ceiling_fan")
                 }
@@ -1906,8 +1912,12 @@ let startFunkPdp = setInterval(() => {
       }
 
       function renderCardPdpBlock() {
+        let dataProductStart
+        let itemCategory
         document.querySelectorAll(".checkout-cart-index .wrapper .c-product").forEach((el) => {
-          if (el.querySelector(".p-name span").textContent.includes("Ceiling Fan")) {
+          dataProductStart = JSON.parse(el.getAttribute("data-product"))
+          itemCategory = dataProductStart.item_category2
+          if (itemCategory === "Ceiling Fans") {
             if (!el.classList.contains("var_ceiling_fan")) {
               el.classList.add("var_ceiling_fan")
             }
