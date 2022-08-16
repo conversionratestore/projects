@@ -510,8 +510,6 @@ const observePopup = () => {
             for (let node of mutation.addedNodes) {
                 if (!(node instanceof HTMLElement)) continue
 
-                // console.log(node);
-
                 if (node.matches('#child_products_tbl')) { // products changed
                     const waitForCarModel = setInterval(() => {
                         if (query('.po-header-selected .title')) {
@@ -533,7 +531,6 @@ const observePopup = () => {
                     }, intervalTimeout)
                 }
 
-
                 if (node.matches('.overlay_portal')) { // popup opened
                     drawPopupFit()
 
@@ -544,12 +541,14 @@ const observePopup = () => {
                     clickOnChange()
                     clickOnClickHere()
 
+                    if (query('.po:not(#selectOptWin')) {
+                        waitForAttTimer(Date.now().toString())
+                    }
+                }
+
+                if (node.matches('.gbox_portal')) {
                     if (getId('selectOptWin')) {
                         waitForPopupTimer(Date.now().toString())
-                    }
-
-                    if (document.querySelector('.po:not(#selectOptWin')) {
-                        waitForAttTimer(Date.now().toString())
                     }
                 }
 
