@@ -210,8 +210,8 @@ let style = `
         overflow-y: auto;
     }
     body.active .swipe {
-        margin-top: -60vh;
-        min-height: 60vh;
+        margin-top: -55vh;
+        min-height: 55vh;
     }
     .popup {
         position: fixed;
@@ -315,7 +315,7 @@ let style = `
         opacity: 0.3; 
     }
     .popup_body {
-        padding: 30px 0 45px;
+        padding: 30px 0 80px;
     } 
     .popular-place {
         padding: 0 20px;
