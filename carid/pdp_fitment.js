@@ -250,9 +250,13 @@ const clickOnView = (startTime) => {
         if (query('.-success')) {
             clearInterval(waitForEl)
 
-            query('.-success').addEventListener('click', () => {                
-                waitForAttTimer(startTime)
+            query('.-success').addEventListener('click', () => {
                 callEvent('View wheels that do fit', `Popup: Attention. This particular wheel doesn't fit`)
+
+                let endWatchAttention = startTime > 0 ? (Date.now().toString() - startTime) : 0
+
+                console.log('attr', millisToMinutesAndSeconds(endWatchAttention));
+                callEvent('Popup was closed after ' + millisToMinutesAndSeconds(endWatchAttention), `Popup: Attention. This particular wheel doesn't fit`)
             })
         }
     }, intervalTimeout)
