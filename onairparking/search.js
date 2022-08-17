@@ -206,9 +206,6 @@ let style = `
     body {
         overflow: hidden;
     }
-    body.active {
-        overflow-y: auto;
-    }
     body.active .swipe {
         margin-top: -60vh;
         min-height: 60vh;
@@ -944,9 +941,13 @@ let start = setInterval(() => {
             swiper.onUp(() => {
                 document.body.classList.add('active') ;
                 document.querySelector('#items-map').style.display = 'none';
+                setTimeout(() => {
+                    document.body.style.overflowY = 'auto';
+                }, 500);
             }).run();
             swiper.onDown(() => {
                 document.body.classList.remove('active');
+                document.body.style.overflowY = 'none';
                 scrollTo(0,0)
             }).run();
             document.querySelector('.popup-top').after(document.querySelector('.ant-select'))
