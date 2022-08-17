@@ -206,6 +206,9 @@ let style = `
     body {
         overflow: hidden;
     }
+    body.fixed {
+        overflow-y: auto;
+    }
     body.active .swipe {
         margin-top: -60vh;
         min-height: 60vh;
@@ -942,12 +945,12 @@ let start = setInterval(() => {
                 document.body.classList.add('active') ;
                 document.querySelector('#items-map').style.display = 'none';
                 setTimeout(() => {
-                    document.body.style.overflowY = 'auto';
+                    document.body.classList.add('fixed') ;
                 }, 500);
             }).run();
             swiper.onDown(() => {
                 document.body.classList.remove('active');
-                document.body.style.overflowY = 'none';
+                document.body.classList.remove('fixed') ;
                 scrollTo(0,0)
             }).run();
             document.querySelector('.popup-top').after(document.querySelector('.ant-select'))
