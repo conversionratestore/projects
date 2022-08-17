@@ -1171,6 +1171,7 @@ function startRemove() {
             // clearInterval(startRemove)
             document.querySelector('.js-style') != null ? document.querySelector('.js-style').remove() : '';
             document.querySelector('.wrapper') != null ? document.querySelector('.wrapper').remove() : '';
+            document.querySelector('.popup') != null ? document.querySelector('.popup').remove() : '';
             sentPost = false;
         }
     },100)
