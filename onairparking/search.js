@@ -123,6 +123,7 @@ let style = `
         position: relative;
         z-index: 2;
         background: #fff;
+        min-height: 60vh;
     }
     .swipe-header {
         padding: 26px 16px 21px;
