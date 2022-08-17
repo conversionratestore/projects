@@ -917,7 +917,7 @@ document.querySelector('[name="viewport"]').setAttribute('content','width=device
             
 let sentPost = false;
 let start = setInterval(() => {
-    if (document.querySelector('#__next > section > main > div > div.bg-white > div > button') != null && document.querySelector('#__next > section > main > div > div.bg-white > div > button').innerText == 'Edit' && document.querySelector('input[type="search"]') != null && document.querySelector('#__NEXT_DATA__') != null && window.location.pathname.includes('/reservation/search')) {
+    if (document.querySelector('#__next > section > main > div > div.bg-white > div > button') != null && document.querySelector('#__next > section > main > div > div.bg-white > div > button').innerText == 'Edit' && document.querySelector('input[type="search"]') != null && document.querySelector('#__NEXT_DATA__') != null && window.location.href.includes('/reservation/search?initials')) {
         document.querySelector('.js-style') == null ? document.body.insertAdjacentHTML('afterbegin', style) : ''; // add style
 
         if (sentPost == false) {
@@ -1170,7 +1170,7 @@ let start = setInterval(() => {
 //remove exp
 function startRemove() {
     let startRemove = setInterval(() => {
-        if (document.querySelector('#parkingat') != null || document.querySelector('#easy-checkout') != null || document.querySelector('.search-switch') != null || (document.querySelector('#__next > section > main > div > div.bg-search-airport2 > div.container.mx-auto.flex.flex-col.relative > div > div:nth-child(2) > div:nth-child(1) > h2') != null && document.querySelector('#__next > section > main > div > div.bg-search-airport2 > div.container.mx-auto.flex.flex-col.relative > div > div:nth-child(2) > div:nth-child(1) > h2').innerText == 'Search parking deals') || document.querySelector('#__next > section > main > div > div.bg-white > div > button') == null) { 
+        if (document.querySelector('#parkingat') != null || document.querySelector('#easy-checkout') != null || document.querySelector('.search-switch') != null || (document.querySelector('#__next > section > main > div > div.bg-search-airport2 > div.container.mx-auto.flex.flex-col.relative > div > div:nth-child(2) > div:nth-child(1) > h2') != null && document.querySelector('#__next > section > main > div > div.bg-search-airport2 > div.container.mx-auto.flex.flex-col.relative > div > div:nth-child(2) > div:nth-child(1) > h2').innerText == 'Search parking deals')) { 
             // clearInterval(startRemove)
             document.querySelector('.wrapper') != null ? document.querySelector('.wrapper').remove() : '';
             document.querySelector('.popup') != null ? document.querySelector('.popup').remove() : '';
