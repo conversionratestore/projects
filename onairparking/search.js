@@ -751,7 +751,7 @@ let pushDataLayer = (action) => {
     window.dataLayer = window.dataLayer || [];
     dataLayer.push({
         'event': 'event-to-ga',
-        'eventCategory': 'Exp — Complete Redesign Search',
+        'eventCategory': 'Exp — Complete Redesign of the Search Results',
         'eventAction': action,
     });
 }
@@ -760,7 +760,7 @@ function addEvent(item, type, fun) {
     item.addEventListener(type, fun)
 }
 
-let postParking = (id, startDate, endDate, parent, countSelector) => {
+let postParking = (id, startDate, endDate, parent, countSelector, mapSelector) => {
 
     console.log(id, startDate, endDate, parent, countSelector)
     fetch(`https://www.onairparking.com/api/Facility/SearchAlternate`, {
@@ -787,7 +787,7 @@ let postParking = (id, startDate, endDate, parent, countSelector) => {
 
         let bounds = new google.maps.LatLngBounds(); //bounds for markers
         if (result.length > 0) {
-            let gmap = new google.maps.Map(parent.closest('.wrapper').querySelector("#map-main"), optionMap(5));
+            let gmap = new google.maps.Map(mapSelector, optionMap(5));
 
             for (let i = 0; i < result.length; i++) {
                 let url = `${result[i]['facility_url_code']}?checkin=${startDate}&checkout=${endDate}`,
@@ -942,7 +942,7 @@ let start = setInterval(() => {
             document.querySelector('.btn-edit-date .from').innerHTML = startDate.split('-')[2] + ' ' + formatDate[startDate.split('-')[1] - 1];
             document.querySelector('.btn-edit-date .to').innerHTML = endDate.split('-')[2] + ' ' + formatDate[endDate.split('-')[1] - 1];
 
-            postParking(id, startDate, endDate, parent, countSelector) // send post parking
+            postParking(id, startDate, endDate, parent, countSelector, document.querySelector('#map-main')) // send post parking
 
             //swipe event
             let swiper = new Swipe('.swipe-header');
@@ -990,7 +990,7 @@ let start = setInterval(() => {
 
                 document.querySelector('.btn-edit-name').setAttribute('data-id', id)
 
-                postParking(id, startDate, endDate, parent, countSelector)
+                postParking(id, startDate, endDate, parent, countSelector, document.querySelector('#map-main'))
                 document.querySelector('input[type="search"]').setAttribute('value', item.title)
                 document.querySelector('.btn-edit-name b').innerHTML = item.title;
                 hideModal()
@@ -1007,7 +1007,7 @@ let start = setInterval(() => {
 
                 document.querySelector('.btn-edit-name').setAttribute('data-id', id)
 
-                postParking(id, startDate, endDate, parent, countSelector)
+                postParking(id, startDate, endDate, parent, countSelector, document.querySelector('#map-main'))
                 document.querySelector('.btn-edit-name b').innerHTML = item.innerText;
                 hideModal()
             }
@@ -1154,7 +1154,7 @@ let start = setInterval(() => {
                     startDate.innerHTML = `${start.innerText} ${formatDate[startDate.dataset.date.split('-')[1]]}`;
                     endDate.innerHTML = `${end.innerText} ${formatDate[endDate.dataset.date.split('-')[1]]}`;
 
-                    postParking(id, startDate.dataset.date, endDate.dataset.date, parent, countSelector)
+                    postParking(id, startDate.dataset.date, endDate.dataset.date, parent, countSelector, document.querySelector('#map-main'))
                     hideModal()
                 }
             })
@@ -1234,13 +1234,13 @@ function getDay(date) { // get the day number of Sunday, from 0 (Mon) to 6 (Sun)
 window.dataLayer = window.dataLayer || [];
 dataLayer.push({
     'event': 'event-to-ga',
-    'eventCategory': 'Exp — Complete Redesign Search',
+    'eventCategory': 'Exp — Complete Redesign of the Search Results',
     'eventAction': 'loaded'
 });
 
 let isClarify = setInterval(() => {
     if(typeof clarity == 'function') {
         clearInterval(isClarify)
-        clarity("set", "complete_redesign_search", "variant_1");
+        clarity("set", "complete_redesign_search_results", "variant_1");
     }
 }, 100)
