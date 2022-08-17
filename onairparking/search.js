@@ -481,7 +481,7 @@ let style = `
         display: none;
     }
     #map-main > div > div > div:nth-child(14) > div {
-        bottom: 30%!important;
+        bottom: 40%!important;
     }
     #map-main > div > div > div:nth-child(9) > button, #map-main > div > div > div:nth-child(5) > div {
         display: none!important;
