@@ -912,8 +912,6 @@ if (document.querySelector('[src="https://maps.googleapis.com/maps/api/js?key=AI
     
 }
 
-scrollTo(0,0)
-
 let start = setInterval(() => {
     if (document.querySelector('input[type="search"]') != null && document.querySelector('#__NEXT_DATA__') != null && window.location.pathname.includes('/reservation/search')) {
         document.querySelector('.js-style') == null ? document.body.insertAdjacentHTML('afterbegin', style) : ''; // add style
@@ -928,6 +926,8 @@ let start = setInterval(() => {
             }
             window.addEventListener('resize', appHeight)
             appHeight()
+
+            scrollTo(0,0)
 
             let initial = window.location.href.split('initials=')[1].split('&')[0];
             let arr = document.querySelector('#__NEXT_DATA__').innerText.split(`,"airport_initials":"${initial}`)[0].split('"airport_id":'),
