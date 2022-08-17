@@ -922,8 +922,6 @@ let start = setInterval(() => {
             }
             appHeight()
 
-            scrollTo(0,0)
-
             let initial = window.location.href.split('initials=')[1].split('&')[0];
             let arr = document.querySelector('#__NEXT_DATA__').innerText.split(`,"airport_initials":"${initial}`)[0].split('"airport_id":'),
                 id = arr[arr.length - 1],
@@ -957,6 +955,8 @@ let start = setInterval(() => {
                 scrollTo(0,0)
             }).run();
             document.querySelector('.popup-top').after(document.querySelector('.ant-select'))
+
+            scrollTo(0,0)
 
             function showModal(e) { //show modal
                 document.querySelector(`.popup[data-title="${e.dataset.popup}"]`).classList.add('active');
