@@ -618,7 +618,7 @@ class Parking{
         this.name = name;
         this.reviews = reviews;
         this.distance = distance;
-        this.shuttle = shuttle;
+        this.shuttle = shuttle != '' ? 'Free Shuttle ' + shuttle : '';
         this.shuttleFrequency = shuttleFrequency;
         this.freeCancellation = freeCancellation;
         this.price = price;
@@ -676,7 +676,7 @@ class Parking{
                     <div class="rate_parking flex" data-rate="${this.reviews.split('/')[1]}">${this.renderStar()}</div>
                     <ul>
                         <li>${this.distance != '' ? `Distance: <b>${this.distance}</b>`: ''}</li>
-                        <li>Free Shuttle ${this.shuttle} <b>${this.shuttleFrequency}</b></li>
+                        <li>${this.shuttle} <b>${this.shuttleFrequency}</b></li>
                     </ul>
                 </div>
                 <div>
