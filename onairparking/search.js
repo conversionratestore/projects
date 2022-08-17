@@ -907,6 +907,8 @@ let postParking = (id, startDate, endDate, parent, countSelector, mapSelector) =
     });
 }
 
+document.querySelector('[name="viewport"]').setAttribute('content','width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no')
+            
 let sentPost = false;
 let start = setInterval(() => {
     if (document.querySelector('input[type="search"]') != null && document.querySelector('#__NEXT_DATA__') != null && window.location.pathname.includes('/reservation/search')) {
@@ -915,7 +917,6 @@ let start = setInterval(() => {
         if (sentPost == false) {
             sentPost = true;
             document.querySelector('#__next > section > nav').insertAdjacentHTML('afterend', html)
-            document.querySelector('[name="viewport"]').setAttribute('content','width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no')
             
             //set height for map
             const appHeight = () => {
