@@ -1170,11 +1170,11 @@ let start = setInterval(() => {
 //remove exp
 function startRemove() {
     let startRemove = setInterval(() => {
-        if (document.querySelector('#parkingat') != null || document.querySelector('#easy-checkout') != null || document.querySelector('.search-switch') != null || (document.querySelector('#__next > section > main > div > div.bg-search-airport2 > div.container.mx-auto.flex.flex-col.relative > div > div:nth-child(2) > div:nth-child(1) > h2') != null && document.querySelector('#__next > section > main > div > div.bg-search-airport2 > div.container.mx-auto.flex.flex-col.relative > div > div:nth-child(2) > div:nth-child(1) > h2').innerText == 'Search parking deals')) {
+        if (document.querySelector('#parkingat') != null || document.querySelector('#easy-checkout') != null || document.querySelector('.search-switch') != null || (document.querySelector('#__next > section > main > div > div.bg-search-airport2 > div.container.mx-auto.flex.flex-col.relative > div > div:nth-child(2) > div:nth-child(1) > h2') != null && document.querySelector('#__next > section > main > div > div.bg-search-airport2 > div.container.mx-auto.flex.flex-col.relative > div > div:nth-child(2) > div:nth-child(1) > h2').innerText == 'Search parking deals') || document.querySelector('#__next > section > main > div > div.bg-white > div > button') == null || (document.querySelector('#__next > section > main > div > div.block.relative > div > h2') && (document.querySelector('#__next > section > main > div > div.block.relative > div > h2').innerText == 'AIRPORT') || document.querySelector('#__next > section > main > div > div.block.relative > div > h2').innerText == 'CITY')) { 
             // clearInterval(startRemove)
-            document.querySelector('.js-style') != null ? document.querySelector('.js-style').remove() : '';
             document.querySelector('.wrapper') != null ? document.querySelector('.wrapper').remove() : '';
             document.querySelector('.popup') != null ? document.querySelector('.popup').remove() : '';
+            document.querySelector('.js-style') != null ? document.querySelector('.js-style').remove() : '';
             sentPost = false;
         }
     },100)
