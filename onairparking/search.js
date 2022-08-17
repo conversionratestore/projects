@@ -950,6 +950,7 @@ let start = setInterval(() => {
             swiper.onUp(() => {
                 document.body.classList.add('active') ;
                 document.querySelector('#items-map').style.display = 'none';
+                scrollTo(0,0)
                 setTimeout(() => {
                     document.body.classList.add('fix') ;
                 }, 500);
@@ -1182,8 +1183,6 @@ function createCalendar(elem, year, month, startDate, endDate) {
 
     let startD = new Date(startDate),
         endD = new Date(endDate);
-
-    console.log(mon)
 
     let table = `<div class="head" data-item="${year}-${mon}">${formatDate[mon]} ${year}</div><div class="table"><div class="flex">`;
 
