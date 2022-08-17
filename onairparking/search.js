@@ -917,7 +917,7 @@ document.querySelector('[name="viewport"]').setAttribute('content','width=device
             
 let sentPost = false;
 let start = setInterval(() => {
-    if (document.querySelector('input[type="search"]') != null && document.querySelector('#__NEXT_DATA__') != null && window.location.pathname.includes('/reservation/search')) {
+    if (document.querySelector('#__next > section > main > div > div.bg-white > div > button') != null && document.querySelector('#__next > section > main > div > div.bg-white > div > button').innerText == 'Edit' && document.querySelector('input[type="search"]') != null && document.querySelector('#__NEXT_DATA__') != null && window.location.pathname.includes('/reservation/search')) {
         document.querySelector('.js-style') == null ? document.body.insertAdjacentHTML('afterbegin', style) : ''; // add style
 
         if (sentPost == false) {
