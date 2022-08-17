@@ -298,12 +298,19 @@ const viewAttentionPopup = () => {
     }, intervalTimeout)
 }
 
-const clickOnView = () => {
+const clickOnView = (startTime) => {
     const waitForEl = setInterval(() => {
         if (query('.-success')) {
             clearInterval(waitForEl)
 
-            query('.-success').addEventListener('click', () => callEvent('View wheels that do fit', `Popup: Attention. This particular wheel doesn't fit`))
+            query('.-success').addEventListener('click', () => {
+                callEvent('View wheels that do fit', `Popup: Attention. This particular wheel doesn't fit`)
+
+                let endWatchAttention = startTime > 0 ? (Date.now().toString() - startTime) : 0
+
+                console.log('attr', millisToMinutesAndSeconds(endWatchAttention));
+                callEvent('Popup was closed after ' + millisToMinutesAndSeconds(endWatchAttention), `Popup: Attention. This particular wheel doesn't fit`)
+            })
         }
     }, intervalTimeout)
 }
@@ -313,7 +320,11 @@ const clickOnContinue = () => {
         if (query('.-transparent')) {
             clearInterval(waitForEl)
 
-            query('.-transparent').addEventListener('click', () => callEvent('Continue anyway', `Popup: Attention. This particular wheel doesn't fit`))
+            query('.-transparent').addEventListener('click', () => {
+                callEvent('Continue anyway', `Popup: Attention. This particular wheel doesn't fit`)
+
+                waitForPopupTimer(Date.now().toString())
+            })
         }
     }, intervalTimeout)
 }
@@ -545,6 +556,42 @@ const clickOnClickHere = () => {
     }, intervalTimeout)
 }
 
+const millisToMinutesAndSeconds = (millis) => {
+    let minutes = Math.floor(millis / 60000);
+    let seconds = ((millis % 60000) / 1000).toFixed(0);
+    return (
+        seconds == 60 ?
+            (minutes + 1) + ":00" :
+            minutes + ":" + (seconds < 10 ? "0" : "") + seconds
+    );
+}
+
+function waitForPopupTimer(startWatchPopup) {
+    const waitForPopupTimer = setInterval(() => {
+        if (!getId('selectOptWin')) {
+            clearInterval(waitForPopupTimer)
+
+            let endWatchPopup = startWatchPopup > 0 ? (Date.now().toString() - startWatchPopup) : 0
+
+            console.log('popup', millisToMinutesAndSeconds(endWatchPopup));
+            callEvent('Popup was closed after ' + millisToMinutesAndSeconds(endWatchPopup), 'Popup. Product options')
+        }
+    }, 2000)
+}
+
+function waitForAttTimer(startWatchAttention) {
+    const waitForAttTimer = setInterval(() => {
+        if (!document.querySelector('.po:not(#selectOptWin')) {
+            clearInterval(waitForAttTimer)
+
+            let endWatchAttention = startWatchAttention > 0 ? (Date.now().toString() - startWatchAttention) : 0
+
+            console.log('attr', millisToMinutesAndSeconds(endWatchAttention));
+            callEvent('Popup was closed after ' + millisToMinutesAndSeconds(endWatchAttention), `Popup: Attention. This particular wheel doesn't fit`)
+        }
+    }, 1000)
+}
+
 /** observer */
 
 const observePopup = () => {
@@ -589,6 +636,24 @@ const observePopup = () => {
                     clickOnCancelAndAddCart()
                     clickOnChange()
                     clickOnClickHere()
+
+                    if (query('.po:not(#selectOptWin')) {
+                        waitForAttTimer(Date.now().toString())
+                    }
+                }
+
+                if (node.matches('.gbox_portal')) {
+                    console.log(getId('selectOptWin'));
+
+                    const waitForEl = setInterval(() => {
+                        if (query('.po')) {
+                            clearInterval(waitForEl)
+
+                            if (getId('selectOptWin')) {
+                                waitForPopupTimer(Date.now().toString())
+                            }
+                        }
+                    }, intervalTimeout)
                 }
 
                 if (node.matches('.po')) { // attention error
@@ -599,12 +664,14 @@ const observePopup = () => {
                     drawPdpFit()
 
                     viewAttentionPopup()
-                    clickOnView()
+                    clickOnView(Date.now().toString())
                     clickOnContinue()
 
                     clickOnCancelAndAddCart()
                     clickOnPopupFormSelect()
                     clickOnChange()
+
+                    waitForAttTimer(Date.now().toString())
                 }
             }
         }
