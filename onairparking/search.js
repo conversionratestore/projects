@@ -922,6 +922,13 @@ let start = setInterval(() => {
             sentPost = true;
             document.querySelector('#__next > section > nav').insertAdjacentHTML('afterend', html)
 
+            //set height for map
+            const appHeight = () => {
+                document.querySelector('#map-main').style.minHeight = window.innerHeight - 51 + 'px';
+            }
+            window.addEventListener('resize', appHeight)
+            appHeight()
+
             let initial = window.location.href.split('initials=')[1].split('&')[0];
             let arr = document.querySelector('#__NEXT_DATA__').innerText.split(`,"airport_initials":"${initial}`)[0].split('"airport_id":'),
                 id = arr[arr.length - 1],
@@ -1094,7 +1101,9 @@ let start = setInterval(() => {
                 addEvent(item, 'click', (e) => {
                     hideModal()
                     if (item.closest('[data-title="choose dates"]')) {
-                        console.log('back choose dates popup')
+                        document.querySelector('.calendar .day.start') != null ? document.querySelector('.calendar .day.start').classList.remove('start') : '';
+                        document.querySelector('.calendar .day.end') != null ? document.querySelector('.calendar .day.end').classList.remove('end')  : '';
+                        document.querySelectorAll('.calendar .day.active').forEach(item => item.classList.remove('active'))
                         let startDate = document.querySelector('.from').dataset.date.split('-'),
                             endDate = document.querySelector('.to').dataset.date.split('-');
 
