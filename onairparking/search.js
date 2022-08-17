@@ -778,12 +778,6 @@ let postParking = (id, startDate, endDate, parent, countSelector, mapSelector) =
 
         countSelector.innerHTML = result.length; //set count parkings found
         //add key google map
-        if (document.querySelector('[src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDGbiPmw_9_RfWYV_6bO-7pHXcl8PxBZJg&v=weekly"]') == null) {
-            let scriptMap = document.createElement('script');
-            scriptMap.src = `https://maps.googleapis.com/maps/api/js?key=AIzaSyDGbiPmw_9_RfWYV_6bO-7pHXcl8PxBZJg&v=weekly`;
-            scriptMap.async = true;
-            document.head.appendChild(scriptMap)
-        }
 
         let optionMap = (zoom) => {
             return {
