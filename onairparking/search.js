@@ -918,7 +918,8 @@ let start = setInterval(() => {
         if (sentPost == false) {
             sentPost = true;
             document.querySelector('#__next > section > nav').insertAdjacentHTML('afterend', html)
-
+            document.querySelector('[name="viewport"]').setAttribute('content','width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no')
+            
             //set height for map
             const appHeight = () => {
                 document.querySelector('#map-main').style.minHeight = window.innerHeight - 51 + 'px';
