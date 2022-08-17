@@ -490,7 +490,7 @@ let style = `
     #map-main > div > div > div:nth-child(14) > div {
         bottom: 40%!important;
     }
-    #map-main > div > div > div:nth-child(9) > button, #map-main > div > div > div:nth-child(5) > div, #map-main > div > div > div:nth-child(14) > div > div.gm-svpc {
+    #map-main > div > div > div:nth-child(9) > button, #map-main > div > div > div:nth-child(5) > div, #map-main > div > div > div:nth-child(14) > div > div.gm-svpc, #menu-link-2 {
         display: none!important;
     }
     @media only screen and (max-width: 340px) {
