@@ -861,7 +861,7 @@ let postParking = (id, startDate, endDate, parent, countSelector, mapSelector) =
 
             //sort on price
             let items = parent.childNodes;
-            document.querySelector('.sort button').addEventListener('click', (e) => {
+            parent.parentElement.querySelector('.sort button').addEventListener('click', (e) => {
                 e.stopImmediatePropagation()
                 e.target.classList.toggle('ascending')
                 let itemsArr = [].slice.call(items).sort(function (a, b) {
@@ -876,12 +876,12 @@ let postParking = (id, startDate, endDate, parent, countSelector, mapSelector) =
             })
 
             //lowerPrice
-            let prices = document.querySelectorAll('#list_parking .price_parking b'),
+            let prices = parent.querySelectorAll('.price_parking b'),
                 minNumber = [].reduce.call(prices, (a, b) => 0 >= a.innerHTML.replace('$','') - b.innerHTML.replace('$','') ? a : b)
             minNumber.closest('#list_parking > li').querySelector('.notes_parking').insertAdjacentHTML('beforeend', lowerPrice)
 
             //bestReviews
-            let rating = document.querySelectorAll("#list_parking .rate_parking"),
+            let rating = parent.querySelectorAll(".rate_parking"),
                 maxNumber = [].reduce.call(rating, (a, b) => 0 < a.dataset.rate - b.dataset.rate ? a : b)
             maxNumber.closest('#list_parking > li').querySelector('.notes_parking').insertAdjacentHTML('beforeend', bestReviews)
 
@@ -895,7 +895,7 @@ let postParking = (id, startDate, endDate, parent, countSelector, mapSelector) =
             children.forEach(item => addEvent(item, 'click',() => pushDataLayer('Click on the parking')))
         } else {
             parent.innerHTML = emptyHtml;
-            new google.maps.Map(parent.closest('.wrapper').querySelector("#map-main"), optionMap(3));
+            new google.maps.Map(mapSelector, optionMap(3));
         }
     }).catch((error) => {
         console.log('Error:', error);
