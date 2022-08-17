@@ -206,7 +206,7 @@ let style = `
     body {
         overflow: hidden;
     }
-    body.fixed {
+    body.fix {
         overflow-y: auto;
     }
     body.active .swipe {
@@ -904,18 +904,17 @@ let postParking = (id, startDate, endDate, parent, countSelector) => {
 }
 
 let sentPost = false;
-if (document.querySelector('[src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDGbiPmw_9_RfWYV_6bO-7pHXcl8PxBZJg&v=weekly"]') == null) {
-    let scriptMap = document.createElement('script');
-    scriptMap.src = `https://maps.googleapis.com/maps/api/js?key=AIzaSyDGbiPmw_9_RfWYV_6bO-7pHXcl8PxBZJg&v=weekly`;
-    scriptMap.async = true;
-    document.head.appendChild(scriptMap)
-    
-}
 
 let start = setInterval(() => {
     if (document.querySelector('input[type="search"]') != null && document.querySelector('#__NEXT_DATA__') != null && window.location.pathname.includes('/reservation/search')) {
         document.querySelector('.js-style') == null ? document.body.insertAdjacentHTML('afterbegin', style) : ''; // add style
 
+        if (document.querySelector('[src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDGbiPmw_9_RfWYV_6bO-7pHXcl8PxBZJg&v=weekly"]') == null) {
+            let scriptMap = document.createElement('script');
+            scriptMap.src = `https://maps.googleapis.com/maps/api/js?key=AIzaSyDGbiPmw_9_RfWYV_6bO-7pHXcl8PxBZJg&v=weekly`;
+            scriptMap.async = true;
+            document.head.appendChild(scriptMap)
+        }
         if (sentPost == false) {
             sentPost = true;
             document.querySelector('#__next > section > nav').insertAdjacentHTML('afterend', html)
@@ -952,12 +951,12 @@ let start = setInterval(() => {
                 document.body.classList.add('active') ;
                 document.querySelector('#items-map').style.display = 'none';
                 setTimeout(() => {
-                    document.body.classList.add('fixed') ;
+                    document.body.classList.add('fix') ;
                 }, 500);
             }).run();
             swiper.onDown(() => {
                 document.body.classList.remove('active');
-                document.body.classList.remove('fixed') ;
+                document.body.classList.remove('fix') ;
                 scrollTo(0,0)
             }).run();
             document.querySelector('.popup-top').after(document.querySelector('.ant-select'))
