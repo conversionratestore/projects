@@ -774,6 +774,7 @@ let postParking = (id, startDate, endDate, parent, countSelector, mapSelector) =
         console.log(data)
         parent.innerHTML = ''
         let result = data.result;
+        scrollTo(0,0)
 
         countSelector.innerHTML = result.length; //set count parkings found
         let optionMap = (zoom) => {
