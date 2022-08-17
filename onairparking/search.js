@@ -1170,6 +1170,7 @@ function startRemove() {
         if (document.querySelector('#parkingat') != null || document.querySelector('#easy-checkout') != null || document.querySelector('.search-switch') != null || (document.querySelector('#__next > section > main > div > div.bg-search-airport2 > div.container.mx-auto.flex.flex-col.relative > div > div:nth-child(2) > div:nth-child(1) > h2') != null && document.querySelector('#__next > section > main > div > div.bg-search-airport2 > div.container.mx-auto.flex.flex-col.relative > div > div:nth-child(2) > div:nth-child(1) > h2').innerText == 'Search parking deals')) {
             // clearInterval(startRemove)
             document.querySelector('.js-style') != null ? document.querySelector('.js-style').remove() : '';
+            document.querySelector('.wrapper') != null ? document.querySelector('.wrapper').remove() : '';
             sentPost = false;
         }
     },100)
