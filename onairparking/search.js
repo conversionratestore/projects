@@ -203,9 +203,9 @@ let style = `
     #map-main {
         min-height: calc(100vh - 50px)
     }
-    // body {
-    //     overflow: hidden;
-    // }
+    body {
+        overflow: hidden;
+    }
     body.fix {
         overflow-y: auto;
     }
@@ -947,13 +947,13 @@ let start = setInterval(() => {
                 document.body.classList.add('active') ;
                 document.querySelector('#items-map').style.display = 'none';
                 scrollTo(0,0)
-                // setTimeout(() => {
-                //     document.body.classList.add('fix') ;
-                // }, 500);
+                setTimeout(() => {
+                    document.body.classList.add('fix') ;
+                }, 500);
             }).run();
             swiper.onDown(() => {
                 document.body.classList.remove('active');
-                // document.body.classList.remove('fix') ;
+                document.body.classList.remove('fix') ;
                 scrollTo(0,0)
             }).run();
             document.querySelector('.popup-top').after(document.querySelector('.ant-select'))
