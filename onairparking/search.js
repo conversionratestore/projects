@@ -774,7 +774,6 @@ let postParking = (id, startDate, endDate, parent, countSelector, mapSelector) =
         console.log(data)
         parent.innerHTML = ''
         let result = data.result;
-        scrollTo(0,0)
 
         countSelector.innerHTML = result.length; //set count parkings found
         //add key google map
@@ -846,6 +845,7 @@ let postParking = (id, startDate, endDate, parent, countSelector, mapSelector) =
                     pushDataLayer('Click on the price (map)')
                 });
             }
+            scrollTo(0,0)
             //set minimum zoom
             google.maps.event.addListener(gmap, 'zoom_changed', function() {
                 zoomChangeBoundsListener =
@@ -898,6 +898,7 @@ let postParking = (id, startDate, endDate, parent, countSelector, mapSelector) =
         } else {
             parent.innerHTML = emptyHtml;
             new google.maps.Map(mapSelector, optionMap(3));
+            scrollTo(0,0)
         }
     }).catch((error) => {
         console.log('Error:', error);
