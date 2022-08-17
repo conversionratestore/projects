@@ -245,12 +245,15 @@ const viewAttentionPopup = () => {
     }, intervalTimeout)
 }
 
-const clickOnView = () => {
+const clickOnView = (startTime) => {
     const waitForEl = setInterval(() => {
         if (query('.-success')) {
             clearInterval(waitForEl)
 
-            query('.-success').addEventListener('click', () => callEvent('View wheels that do fit', `Popup: Attention. This particular wheel doesn't fit`))
+            query('.-success').addEventListener('click', () => {                
+                waitForAttTimer(startTime)
+                callEvent('View wheels that do fit', `Popup: Attention. This particular wheel doesn't fit`)
+            })
         }
     }, intervalTimeout)
 }
@@ -510,6 +513,8 @@ const observePopup = () => {
             for (let node of mutation.addedNodes) {
                 if (!(node instanceof HTMLElement)) continue
 
+                console.log(node);
+
                 if (node.matches('#child_products_tbl')) { // products changed
                     const waitForCarModel = setInterval(() => {
                         if (query('.po-header-selected .title')) {
@@ -547,9 +552,17 @@ const observePopup = () => {
                 }
 
                 if (node.matches('.gbox_portal')) {
-                    if (getId('selectOptWin')) {
-                        waitForPopupTimer(Date.now().toString())
-                    }
+                    console.log(getId('selectOptWin'));
+
+                    const waitForEl = setInterval(() => {
+                        if (query('.po')) {
+                            clearInterval(waitForEl)
+
+                            if (getId('selectOptWin')) {
+                                waitForPopupTimer(Date.now().toString())
+                            }
+                        }
+                    }, intervalTimeout)
                 }
 
                 if (node.matches('.po')) { // attention error
@@ -560,7 +573,7 @@ const observePopup = () => {
                     drawPdpFit()
 
                     viewAttentionPopup()
-                    clickOnView()
+                    clickOnView(Date.now().toString())
                     clickOnContinue()
 
                     clickOnCancelAndAddCart()
