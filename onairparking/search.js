@@ -37,6 +37,9 @@ let style = `
         border: none;
         margin-top: 10px;
     }
+    #list_parking  {
+        overflow: none;
+    }
     .list_parking .btn_gray {
         background-color: #8d8d8d;
     }
@@ -210,8 +213,11 @@ let style = `
         overflow-y: auto;
     }
     body.active .swipe {
-        margin-top: -55vh;
-        min-height: 55vh;
+        margin-top: -60vh;
+    }
+    body.active #list_parking {
+        height: calc(60vh - 66px);
+        overflow-y: auto;
     }
     .popup {
         position: fixed;
