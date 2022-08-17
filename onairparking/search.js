@@ -922,9 +922,7 @@ let start = setInterval(() => {
             //set height for map
             const appHeight = () => {
                 document.querySelector('#map-main').style.minHeight = window.innerHeight - 51 + 'px';
-                scrollTo(0,0)
             }
-            window.addEventListener('resize', appHeight)
             appHeight()
 
             scrollTo(0,0)
