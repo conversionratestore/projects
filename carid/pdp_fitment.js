@@ -254,8 +254,6 @@ const clickOnView = (startTime) => {
                 callEvent('View wheels that do fit', `Popup: Attention. This particular wheel doesn't fit`)
 
                 let endWatchAttention = startTime > 0 ? (Date.now().toString() - startTime) : 0
-
-                console.log('attr', millisToMinutesAndSeconds(endWatchAttention));
                 callEvent('Popup was closed after ' + millisToMinutesAndSeconds(endWatchAttention), `Popup: Attention. This particular wheel doesn't fit`)
             })
         }
@@ -483,8 +481,6 @@ function waitForPopupTimer(startWatchPopup) {
             clearInterval(waitForPopupTimer)
 
             let endWatchPopup = startWatchPopup > 0 ? (Date.now().toString() - startWatchPopup) : 0
-
-            console.log('popup', millisToMinutesAndSeconds(endWatchPopup));
             callEvent('Popup was closed after ' + millisToMinutesAndSeconds(endWatchPopup), 'Popup. Product options')
         }
     }, 2000)
@@ -496,8 +492,6 @@ function waitForAttTimer(startWatchAttention) {
             clearInterval(waitForAttTimer)
 
             let endWatchAttention = startWatchAttention > 0 ? (Date.now().toString() - startWatchAttention) : 0
-
-            console.log('attr', millisToMinutesAndSeconds(endWatchAttention));
             callEvent('Popup was closed after ' + millisToMinutesAndSeconds(endWatchAttention), `Popup: Attention. This particular wheel doesn't fit`)
         }
     }, 1000)
@@ -516,8 +510,6 @@ const observePopup = () => {
         for (let mutation of mutations) {
             for (let node of mutation.addedNodes) {
                 if (!(node instanceof HTMLElement)) continue
-
-                console.log(node);
 
                 if (node.matches('#child_products_tbl')) { // products changed
                     const waitForCarModel = setInterval(() => {
@@ -556,8 +548,6 @@ const observePopup = () => {
                 }
 
                 if (node.matches('.gbox_portal')) {
-                    console.log(getId('selectOptWin'));
-
                     const waitForEl = setInterval(() => {
                         if (query('.po')) {
                             clearInterval(waitForEl)
