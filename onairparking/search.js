@@ -957,11 +957,13 @@ let start = setInterval(() => {
                 setTimeout(() => {
                     document.body.classList.add('fix') ;
                 }, 500);
+                pushDataLayer('Swipe search results')
             }).run();
             swiper.onDown(() => {
                 document.body.classList.remove('active');
                 document.body.classList.remove('fix') ;
                 scrollTo(0,0)
+                pushDataLayer('Swipe search results')
             }).run();
             document.querySelector('.popup-top').after(document.querySelector('.ant-select'))
 
@@ -1133,6 +1135,8 @@ let start = setInterval(() => {
                         for (let i = indexStart; i < indexEnd; i++) {
                             days[i].classList.add('active')
                         }
+
+                        pushDataLayer('Calendar: close button')
                     }
                 })
             })
@@ -1143,6 +1147,7 @@ let start = setInterval(() => {
                 document.querySelectorAll('.calendar .day.active').forEach(item => item.classList.remove('active'))
                 document.querySelector('.btn-search').disabled = true;
                 betweenDays = 0;
+                pushDataLayer('Callendar: clear button')
             })
             //search by calendar
             addEvent(document.querySelector('.btn-search'), 'click', () => {
@@ -1162,6 +1167,7 @@ let start = setInterval(() => {
 
                     postParking(id, startDate.dataset.date, endDate.dataset.date, parent, countSelector, document.querySelector('#map-main'))
                     hideModal()
+                    pushDataLayer('Callendar: search button')
                 }
             })
         }
