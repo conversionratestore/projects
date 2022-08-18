@@ -768,7 +768,6 @@ function addEvent(item, type, fun) {
 
 let postParking = (id, startDate, endDate, parent, countSelector, mapSelector) => {
 
-    console.log(id, startDate, endDate, parent, countSelector)
     fetch(`https://www.onairparking.com/api/Facility/SearchAlternate`, {
         headers: {
             'Content-Type': 'application/json',
@@ -1155,7 +1154,7 @@ let start = setInterval(() => {
                     let start = document.querySelector('.calendar .day.start'),
                         end = document.querySelector('.calendar .day.end'),
                         id = document.querySelector('.btn-edit-name').dataset.id;
-                    console.log(start,end)
+                        
                     startDate = document.querySelector('.btn-edit-date .from');
                     endDate = document.querySelector('.btn-edit-date .to');
 
