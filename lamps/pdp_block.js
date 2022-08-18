@@ -1,71 +1,75 @@
 let startFunkPdp = setInterval(() => {
-  if (document.querySelector("#main-wrapper")) {
-    clearInterval(startFunkPdp)
+    if (document.querySelector("#main-wrapper")) {
+        clearInterval(startFunkPdp)
 
-    let dataLayerCustomer = window.dataLayer
+        let dataLayerCustomer = window.dataLayer
 
-    dataLayerCustomer.forEach((item) => {
-      let customer = item.customer
+        dataLayerCustomer.forEach((item) => {
+            let customer = item.customer
 
-      if (customer) {
-        for (key in customer) {
-          if (key === "group") {
-            if (customer[key] !== "P10" && customer[key] !== "P10 Taxable") {
-              console.log(customer[key])
-              pdpTest()
+            if (customer) {
+                for (key in customer) {
+                    if (key === "group") {
+                        if (customer[key] !== "P10" && customer[key] !== "P10 Taxable") {
+                            console.log(customer[key])
+                            pdpTest()
+                        }
+                    }
+                }
             }
-          }
-        }
-      }
-    })
+        })
 
-    function pdpTest() {
-      // event
-      let eventVar = "desktop"
+        function pdpTest() {
+            // event
+            let eventVar = "desktop"
 
-      if (window.innerWidth <= 768) {
-        eventVar = "mobile"
-      }
+            if (window.innerWidth <= 768) {
+                eventVar = "mobile"
+            }
 
-      function pushDataLayer(actionDataLayer, labelDataLayer) {
-        window.dataLayer = window.dataLayer || []
-        if (labelDataLayer) {
-          console.log(actionDataLayer + " : " + labelDataLayer)
-          dataLayer.push({
-            event: "event-to-ga",
-            eventCategory: `Exp: PDP improvements ${eventVar}`,
-            eventAction: `${actionDataLayer}`,
-            eventLabel: `${labelDataLayer}`,
-          })
-        } else {
-          console.log(actionDataLayer)
-          dataLayer.push({
-            event: "event-to-ga",
-            eventCategory: `Exp: PDP improvements ${eventVar}`,
-            eventAction: `${actionDataLayer}`,
-          })
-        }
-      }
+            function pushDataLayer(actionDataLayer, labelDataLayer) {
+                window.dataLayer = window.dataLayer || []
+                if (labelDataLayer) {
+                    console.log(actionDataLayer + " : " + labelDataLayer)
+                    dataLayer.push({
+                        event: "event-to-ga",
+                        eventCategory: `Exp: PDP improvements ${eventVar}`,
+                        eventAction: `${actionDataLayer}`,
+                        eventLabel: `${labelDataLayer}`,
+                    })
+                } else {
+                    console.log(actionDataLayer)
+                    dataLayer.push({
+                        event: "event-to-ga",
+                        eventCategory: `Exp: PDP improvements ${eventVar}`,
+                        eventAction: `${actionDataLayer}`,
+                    })
+                }
+            }
 
-      // SCRIPT
-      let scriptPopper = document.createElement("script")
-      scriptPopper.src = "https://unpkg.com/popper.js@1"
-      scriptPopper.async = false
-      document.body.appendChild(scriptPopper)
+            // SCRIPT
+            let scriptPopper = document.createElement("script")
+            scriptPopper.src = "https://unpkg.com/popper.js@1"
+            scriptPopper.async = false
+            document.body.appendChild(scriptPopper)
 
-      let scriptTippy = document.createElement("script")
-      scriptTippy.src = "https://unpkg.com/tippy.js@5"
-      scriptTippy.async = false
-      document.body.appendChild(scriptTippy)
+            let scriptTippy = document.createElement("script")
+            scriptTippy.src = "https://unpkg.com/tippy.js@5"
+            scriptTippy.async = false
+            document.body.appendChild(scriptTippy)
 
-      /* other variables  */
-      const imgFolderUrl = "https://conversionratestore.github.io/projects/lamps/img/"
+            /* other variables  */
+            const imgFolderUrl = "https://conversionratestore.github.io/projects/lamps/img/"
 
-      //   style
-      let styleVar = /*html */ `
+            //   style
+            let styleVar = /*html */ `
     <style>
       .var_ceiling_fan .header-container {
         border: unset !important;
+      }
+      .p-value-props+.qty-box {
+        max-width: fit-content !important; 
+        margin-right: 24px !important;
       }
       .var_ceiling_fan .banner,
       .checkout-cart-index .banner {
@@ -76,8 +80,8 @@ let startFunkPdp = setInterval(() => {
         align-items: center;
         justify-content: center;
       }
-      .var_ceiling_fan .banner div,
-      .checkout-cart-index .banner div {
+      .var_ceiling_fan .banner a,
+      .checkout-cart-index .banner a {
         margin-right: 4px;
         display: flex;
         align-items: center;
@@ -761,6 +765,10 @@ let startFunkPdp = setInterval(() => {
         line-height: 24px;
         color: #ffffff;
       }
+      
+      .checkout-types .buttons+.col-12 {
+        padding: 0;
+      }
 
       @media (max-width: 768px) {
         .var_ceiling_fan #hbl-live-chat-wrapper{
@@ -788,8 +796,8 @@ let startFunkPdp = setInterval(() => {
           font-size: 15px;
           line-height: 22px;
         }
-        .var_ceiling_fan .banner div,
-        .checkout-cart-index .banner div {
+        .var_ceiling_fan .banner a,
+        .checkout-cart-index .banner a {
           margin: 0;
         }
         /*toolpit */
@@ -981,6 +989,8 @@ let startFunkPdp = setInterval(() => {
         .wrap_var_policy_cart ul li span{
           font-size: 12px;
         }
+        
+        
       }
 
       @media (max-width: 320px) {
@@ -1114,62 +1124,62 @@ let startFunkPdp = setInterval(() => {
 
     </style>
     `
-      // Tooltip
-      let arrTooltipTable = {
-        "Price Match Guarantee": [
-          `<div class="tooltip_bar"><div class="name_tooltip"><img src="https://conversionratestore.github.io/projects/lamps/img/price_policy.svg" alt="price policy" /><span>Price Match Guarantee</span></div><p>Find cheaper? We will refund the difference within 30 days of receiving your order.<br /> Read more about our <a class="on_policy" target="_blank" href="/policies/returns/">price protection policy here</a>.</p></div>`,
-        ],
-        "30-day return period": [
-          `<div class="tooltip_bar"><div class="name_tooltip"><img src="https://conversionratestore.github.io/projects/lamps/img/return_policy.svg" alt="return policy" /><span>Easy Return</span></div><p>Because we want you to love your purchase, most items can be returned up to 30 days from the date the item was delivered. Read more about our <a class="on_return" target="_blank" href="/policies/returns/">return policy here</a>.</p></div>`,
-        ],
-        Downrods: [
-          `<div class="tooltip_bar"><div class="name_tooltip"><img src="https://conversionratestore.github.io/projects/lamps/img/help.svg" alt="return policy" /><span>Downrods</span></div><p>Ceiling fans should hang between 7 feet and 9 feet above the floor. A longer downrod may be needed for ceilings 9 feet tall or greater. See details above for included downrod length(s).</p></div>`,
-        ],
-        "Downrod Couplers": [
-          `<div class="tooltip_bar"><div class="name_tooltip"><img src="https://conversionratestore.github.io/projects/lamps/img/help.svg" alt="return policy" /><span>Downrod Couplers</span></div><p>A downrod coupler joins together two downrods and is intended for lengths greater than 72" where a single rod cannot be used. </p></div>`,
-        ],
-        "Close to Ceiling Kits": [
-          `<div class="tooltip_bar"><div class="name_tooltip"><img src="https://conversionratestore.github.io/projects/lamps/img/help.svg" alt="return policy" /><span>Close to Ceiling Kits</span></div><p>For lower ceiling heights, a close to ceiling kit can be used in place of a downrod to bring your fan closer to the ceiling. </p></div>`,
-        ],
-        "Sloped Ceiling Kits": [
-          `<div class="tooltip_bar"><div class="name_tooltip"><img src="https://conversionratestore.github.io/projects/lamps/img/help.svg" alt="return policy" /><span>Sloped Ceiling Kits</span></div><p>This adapter will allow for installation on most extremely sloped or vaulted ceilings. See details above for additional information on the degree of slope this fan may be able to accomodate out of the box. </p></div>`,
-        ],
-        "Light Kits": [
-          `<div class="tooltip_bar"><div class="name_tooltip"><img src="https://conversionratestore.github.io/projects/lamps/img/help.svg" alt="return policy" /><span>Light Kits</span></div><p>Select fans may not include a light kit. This accessory will allow for the addition of illumination to your fan.</p></div>`,
-        ],
-        Controls: [
-          `<div class="tooltip_bar"><div class="name_tooltip"><img src="https://conversionratestore.github.io/projects/lamps/img/help.svg" alt="return policy" /><span>Controls</span></div><p>Most fans will be operated by either a pull chain, wall control, or handheld remote. These accessories allow you to customize how you power your fan. See details above for included controls. </p></div>`,
-        ],
-        "Finish Kits": [
-          `<div class="tooltip_bar"><div class="name_tooltip"><img src="https://conversionratestore.github.io/projects/lamps/img/help.svg" alt="return policy" /><span>Finish Kits</span></div><p>A finish kit allows you to customize the appearance of your fan. </p></div>`,
-        ],
-        Blades: [
-          `<div class="tooltip_bar"><div class="name_tooltip"><img src="https://conversionratestore.github.io/projects/lamps/img/help.svg" alt="return policy" /><span>Blades</span></div><p>Additional blades are offered to customize the appearance of your fan.</p></div>`,
-        ],
-        "WiFi Accessory": [
-          `<div class="tooltip_bar"><div class="name_tooltip"><img src="https://conversionratestore.github.io/projects/lamps/img/help.svg" alt="return policy" /><span>WiFi Accessory</span></div><p>This accessory allows for your fan to be connected to many of your favorite Smart devices or applications.</p></div>`,
-        ],
-        "Light Kit Covers": [
-          `<div class="tooltip_bar"><div class="name_tooltip"><img src="https://conversionratestore.github.io/projects/lamps/img/help.svg" alt="return policy" /><span>Light Kit Covers</span></div><p>This accessory may be added if you do not wish to use the fan for illumination.</p></div>`,
-        ],
-      }
+            // Tooltip
+            let arrTooltipTable = {
+                "Price Match Guarantee": [
+                    `<div class="tooltip_bar"><div class="name_tooltip"><img src="https://conversionratestore.github.io/projects/lamps/img/price_policy.svg" alt="price policy" /><span>Price Match Guarantee</span></div><p>Read more about our <a class="on_policy" target="_blank" href="/policies/price-protection/">price protection policy here</a>.</p></div>`,
+                ],
+                "Easy returns": [
+                    `<div class="tooltip_bar"><div class="name_tooltip"><img src="https://conversionratestore.github.io/projects/lamps/img/return_policy.svg" alt="return policy" /><span>Easy Return</span></div><p>Because we want you to love your purchase, most items can be returned up to 30 days from the date the item was delivered. Read more about our <a class="on_return" target="_blank" href="/policies/returns/">return policy here</a>.</p></div>`,
+                ],
+                Downrods: [
+                    `<div class="tooltip_bar"><div class="name_tooltip"><img src="https://conversionratestore.github.io/projects/lamps/img/help.svg" alt="return policy" /><span>Downrods</span></div><p>Ceiling fans should hang between 7 feet and 9 feet above the floor. A longer downrod may be needed for ceilings 9 feet tall or greater. See details above for included downrod length(s).</p></div>`,
+                ],
+                "Downrod Couplers": [
+                    `<div class="tooltip_bar"><div class="name_tooltip"><img src="https://conversionratestore.github.io/projects/lamps/img/help.svg" alt="return policy" /><span>Downrod Couplers</span></div><p>A downrod coupler joins together two downrods and is intended for lengths greater than 72" where a single rod cannot be used. </p></div>`,
+                ],
+                "Close to Ceiling Kits": [
+                    `<div class="tooltip_bar"><div class="name_tooltip"><img src="https://conversionratestore.github.io/projects/lamps/img/help.svg" alt="return policy" /><span>Close to Ceiling Kits</span></div><p>For lower ceiling heights, a close to ceiling kit can be used in place of a downrod to bring your fan closer to the ceiling. </p></div>`,
+                ],
+                "Sloped Ceiling Kits": [
+                    `<div class="tooltip_bar"><div class="name_tooltip"><img src="https://conversionratestore.github.io/projects/lamps/img/help.svg" alt="return policy" /><span>Sloped Ceiling Kits</span></div><p>This adapter will allow for installation on most extremely sloped or vaulted ceilings. See details above for additional information on the degree of slope this fan may be able to accomodate out of the box. </p></div>`,
+                ],
+                "Light Kits": [
+                    `<div class="tooltip_bar"><div class="name_tooltip"><img src="https://conversionratestore.github.io/projects/lamps/img/help.svg" alt="return policy" /><span>Light Kits</span></div><p>Select fans may not include a light kit. This accessory will allow for the addition of illumination to your fan.</p></div>`,
+                ],
+                Controls: [
+                    `<div class="tooltip_bar"><div class="name_tooltip"><img src="https://conversionratestore.github.io/projects/lamps/img/help.svg" alt="return policy" /><span>Controls</span></div><p>Most fans will be operated by either a pull chain, wall control, or handheld remote. These accessories allow you to customize how you power your fan. See details above for included controls. </p></div>`,
+                ],
+                "Finish Kits": [
+                    `<div class="tooltip_bar"><div class="name_tooltip"><img src="https://conversionratestore.github.io/projects/lamps/img/help.svg" alt="return policy" /><span>Finish Kits</span></div><p>A finish kit allows you to customize the appearance of your fan. </p></div>`,
+                ],
+                Blades: [
+                    `<div class="tooltip_bar"><div class="name_tooltip"><img src="https://conversionratestore.github.io/projects/lamps/img/help.svg" alt="return policy" /><span>Blades</span></div><p>Additional blades are offered to customize the appearance of your fan.</p></div>`,
+                ],
+                "WiFi Accessory": [
+                    `<div class="tooltip_bar"><div class="name_tooltip"><img src="https://conversionratestore.github.io/projects/lamps/img/help.svg" alt="return policy" /><span>WiFi Accessory</span></div><p>This accessory allows for your fan to be connected to many of your favorite Smart devices or applications.</p></div>`,
+                ],
+                "Light Kit Covers": [
+                    `<div class="tooltip_bar"><div class="name_tooltip"><img src="https://conversionratestore.github.io/projects/lamps/img/help.svg" alt="return policy" /><span>Light Kit Covers</span></div><p>This accessory may be added if you do not wish to use the fan for illumination.</p></div>`,
+                ],
+                "Free Shipping!": [
+                    `<div class="tooltip_bar"><div class="name_tooltip"><img src="https://conversionratestore.github.io/projects/lamps/img/help.svg" alt="return policy" /><span>Free Shipping</span></div><p>Free standard ground shipping on all orders within the continental US. Orders shipping to Alaska, Hawaii, Puerto Rico may incur additional shipping charges. Charges will be calculated at checkout.</p></div>`
+                ]
+            }
 
-      const banner = /*html*/ `
+            const banner = /*html*/ `
     <div class="banner">
-        <div>
-          <img src="${imgFolderUrl}check_arrow.svg" alt="check arrow">
-          <b>30-Day Lowest Price Guarantee.</b>
-        </div>
-        <p>
-          Find cheaper? We will refund the difference.
-        </p>
+          <a target="_blank" href="/policies/price-protection/">
+              <img src="${imgFolderUrl}check_arrow.svg" alt="check arrow">
+              <b>30-Day Lowest Price Guarantee.</b>
+          </a>
     </div>`
 
-      let textWhyNeed = /*html */ `
+            let textWhyNeed = /*html */ `
       <p data-title data-tolltip class="text_why_need">Why do I need this?</p>
       `
 
-      let priceMatchGuarantee = /*html */ `
+            let priceMatchGuarantee = /*html */ `
         <div data-tolltip class="price_match_guarantee">
             <div class="img_wrap">
               <img src="${imgFolderUrl}price_policy.svg" alt="price policy">
@@ -1178,7 +1188,7 @@ let startFunkPdp = setInterval(() => {
         </div>
       `
 
-      let wrapVarPolicy = /*html */ `
+            let wrapVarPolicy = /*html */ `
     <div class="wrap_var_policy">
         <ul>
             <li data-tolltip>
@@ -1192,14 +1202,14 @@ let startFunkPdp = setInterval(() => {
                 <div class="img_wrap">
                   <img src="${imgFolderUrl}return_policy.png" alt="return policy">
                 </div>
-                <span class="return_policy">30-day return period</span>
-                <p>Easy returns and exchanges</p>
+                <span class="return_policy">Easy returns</span>
+                <p>30-day return period</p>
             </li>
         </ul>
     </div>
     `
 
-      let wrapQuestions = /*html */ `
+            let wrapQuestions = /*html */ `
     <div class="wrap_questions" onclick="olark('api.box.expand')">
         <div class="img_wrap">
             <img src="${imgFolderUrl}logo_question2.png" alt="logo lamps">
@@ -1214,7 +1224,7 @@ let startFunkPdp = setInterval(() => {
     </div>
     `
 
-      let shipping = /*html */ `
+            let shipping = /*html */ `
     <div class="shipping">
       <ul>
         <li class="shipping_box">
@@ -1223,13 +1233,13 @@ let startFunkPdp = setInterval(() => {
             <path d="M6.36035 12.9926C5.92413 13.1406 5.59683 13.4211 5.39424 13.834C5.27743 14.0717 5.26953 14.1183 5.26953 14.4807C5.26953 14.839 5.28129 14.8936 5.39424 15.1351C5.54614 15.4545 5.82275 15.735 6.13443 15.8909C6.34088 15.9882 6.39928 16 6.78885 16C7.17051 16 7.24068 15.9882 7.43941 15.8948C8.07435 15.5987 8.45602 14.8781 8.33149 14.2235C8.23029 13.7172 7.89124 13.2731 7.43941 13.0666C7.26015 12.9847 7.14719 12.9614 6.86672 12.9537C6.64871 12.9459 6.45769 12.9615 6.36035 12.9926ZM7.02652 14.0327C7.39661 14.2158 7.40433 14.7378 7.03827 14.9366C6.87848 15.0221 6.77342 15.0262 6.59416 14.9522C6.16951 14.7731 6.22406 14.099 6.67203 13.9822C6.81236 13.9469 6.85901 13.9548 7.02652 14.0327Z" fill="#286278"/>
             <path d="M15.0848 12.9925C14.8355 13.0783 14.6757 13.1716 14.4772 13.3588C14.002 13.8029 13.8617 14.4378 14.0915 15.061C14.2121 15.3727 14.555 15.7388 14.8783 15.8868C15.1004 15.988 15.1626 15.9998 15.5327 15.9998C15.9105 15.9998 15.9612 15.992 16.1949 15.8791C16.9389 15.5207 17.266 14.6909 16.974 13.9002C16.8572 13.5926 16.5337 13.2535 16.2066 13.0901C15.9846 12.981 15.9028 12.9615 15.595 12.9538C15.377 12.9459 15.1823 12.9615 15.0848 12.9925ZM15.7548 14.0288C16.1638 14.2158 16.1287 14.8156 15.6964 14.9675C15.1004 15.174 14.7382 14.2898 15.3107 14.0288C15.4003 13.9899 15.5015 13.9548 15.5327 13.9548C15.5639 13.9548 15.6653 13.9897 15.7548 14.0288Z" fill="#286278"/>
           </svg>
-          <p class="shipping_var"><b>Free Shipping!</b></p>
+          <p class="shipping_var" data-tolltip><span><b>Free Shipping!</b></span></p>
         </li>
       </ul>
     </div>
     `
 
-      let discountPdp = /*html */ `
+            let discountPdp = /*html */ `
       <div class="discount_pdp">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path d="M7.49977 14.25L11.6248 10.125M9.74977 16.5L11.6248 14.625M3.31027 12.4395L11.5603 4.1895C11.8415 3.90818 12.223 3.75008 12.6208 3.75H18.7498C19.1476 3.75 19.5291 3.90804 19.8104 4.18934C20.0917 4.47064 20.2498 4.85218 20.2498 5.25V11.379C20.2497 11.7768 20.0916 12.1583 19.8103 12.4395L11.5603 20.6895C11.279 20.9707 10.8975 21.1287 10.4998 21.1287C10.102 21.1287 9.72057 20.9707 9.43927 20.6895L3.31027 14.5605C3.02907 14.2792 2.87109 13.8977 2.87109 13.5C2.87109 13.1023 3.02907 12.7208 3.31027 12.4395V12.4395Z" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
@@ -1239,7 +1249,7 @@ let startFunkPdp = setInterval(() => {
       </div>
       `
 
-      let discounPdpSignUp = /*html */ `
+            let discounPdpSignUp = /*html */ `
       <div class="discount_pdp sign_up">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path d="M7.49977 14.25L11.6248 10.125M9.74977 16.5L11.6248 14.625M3.31027 12.4395L11.5603 4.1895C11.8415 3.90818 12.223 3.75008 12.6208 3.75H18.7498C19.1476 3.75 19.5291 3.90804 19.8104 4.18934C20.0917 4.47064 20.2498 4.85218 20.2498 5.25V11.379C20.2497 11.7768 20.0916 12.1583 19.8103 12.4395L11.5603 20.6895C11.279 20.9707 10.8975 21.1287 10.4998 21.1287C10.102 21.1287 9.72057 20.9707 9.43927 20.6895L3.31027 14.5605C3.02907 14.2792 2.87109 13.8977 2.87109 13.5C2.87109 13.1023 3.02907 12.7208 3.31027 12.4395V12.4395Z" stroke="#286278" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
@@ -1249,14 +1259,14 @@ let startFunkPdp = setInterval(() => {
       </div>
       `
 
-      let priceReflectsPdpSignUp = /*html */ `
+            let priceReflectsPdpSignUp = /*html */ `
       <div class="price_reflects_pdp sign_up">
           <img src="${imgFolderUrl}price_reflects.png" alt="icon">
           <span></span>
       </div>
       `
 
-      let discountCart = /*html */ `
+            let discountCart = /*html */ `
       <div class="discount_cart">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path d="M7.49977 14.25L11.6248 10.125M9.74977 16.5L11.6248 14.625M3.31027 12.4395L11.5603 4.1895C11.8415 3.90818 12.223 3.75008 12.6208 3.75H18.7498C19.1476 3.75 19.5291 3.90804 19.8104 4.18934C20.0917 4.47064 20.2498 4.85218 20.2498 5.25V11.379C20.2497 11.7768 20.0916 12.1583 19.8103 12.4395L11.5603 20.6895C11.279 20.9707 10.8975 21.1287 10.4998 21.1287C10.102 21.1287 9.72057 20.9707 9.43927 20.6895L3.31027 14.5605C3.02907 14.2792 2.87109 13.8977 2.87109 13.5C2.87109 13.1023 3.02907 12.7208 3.31027 12.4395V12.4395Z" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
@@ -1266,7 +1276,7 @@ let startFunkPdp = setInterval(() => {
       </div>
       `
 
-      let discountCartSignUp = /*html */ `
+            let discountCartSignUp = /*html */ `
       <div class="discount_cart sign_up">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path d="M7.49977 14.25L11.6248 10.125M9.74977 16.5L11.6248 14.625M3.31027 12.4395L11.5603 4.1895C11.8415 3.90818 12.223 3.75008 12.6208 3.75H18.7498C19.1476 3.75 19.5291 3.90804 19.8104 4.18934C20.0917 4.47064 20.2498 4.85218 20.2498 5.25V11.379C20.2497 11.7768 20.0916 12.1583 19.8103 12.4395L11.5603 20.6895C11.279 20.9707 10.8975 21.1287 10.4998 21.1287C10.102 21.1287 9.72057 20.9707 9.43927 20.6895L3.31027 14.5605C3.02907 14.2792 2.87109 13.8977 2.87109 13.5C2.87109 13.1023 3.02907 12.7208 3.31027 12.4395V12.4395Z" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
@@ -1276,7 +1286,7 @@ let startFunkPdp = setInterval(() => {
       </div>
       `
 
-      let stickyBox = /*html */ `
+            let stickyBox = /*html */ `
       <div class="sticky_box">
         <div class="price_wrap">
           <span class="old_price">$508.96</span>
@@ -1289,554 +1299,557 @@ let startFunkPdp = setInterval(() => {
       </div>
       `
 
-      document.head.insertAdjacentHTML("beforeend", styleVar)
+            document.head.insertAdjacentHTML("beforeend", styleVar)
 
-      let dataProductStart
-      let itemCategory
-      if (document.querySelector("#main-wrapper #item-details")) {
-        dataProductStart = JSON.parse(document.querySelector("#main-wrapper #item-details").getAttribute("data-product"))
-        itemCategory = dataProductStart.item_category2
-      }
-      if (itemCategory === "Ceiling Fans") {
-        if (!document.querySelector(".catalog-product-view").classList.contains("var_ceiling_fan")) {
-          document.querySelector(".catalog-product-view").classList.add("var_ceiling_fan")
-        }
-
-        // sticky block
-        if (window.innerWidth <= 768) {
-          if (!document.querySelector("body.catalog-product-view .sticky_box")) {
-            document.querySelector("body.catalog-product-view")?.insertAdjacentHTML("afterbegin", stickyBox)
-          }
-        }
-
-        changeImgAfterpay()
-        renderTextWhyNeed()
-        renderPriceMatchGuarantee()
-
-        document.querySelector(".header-container").insertAdjacentHTML("beforeend", banner) // add static banner
-        document.querySelector("button#add-item-to-cart")?.insertAdjacentHTML("afterbegin", `<img src="${imgFolderUrl}add_to_card_icon.png" alt="button">`) // add to cart icon
-
-        // to change place for price and other element
-        if (document.querySelector(".catalog-product-view .product-essential .product-shop .p-value-props")) {
-          document
-            .querySelector(".catalog-product-view .product-essential .p-atc .qty-box")
-            ?.before(document.querySelector(".catalog-product-view .product-essential .product-shop .p-value-props"))
-        }
-
-        if (document.querySelector("#config-box")) {
-          document.querySelector(".catalog-product-view .product-essential .p-price")?.after(document.querySelector("#config-box"))
-        }
-
-        // render new blocks
-        if (document.querySelector(".row.no-gutters.p-atc")) {
-          document.querySelector(".row.no-gutters.p-atc").insertAdjacentHTML("afterend", wrapVarPolicy)
-        }
-
-        if (document.querySelector(".wrap_var_policy")) {
-          document.querySelector(".wrap_var_policy").insertAdjacentHTML("afterend", wrapQuestions)
-        }
-
-        if (document.querySelector(".wrap_questions > div:nth-child(2) p > span")) {
-          document.querySelector(".wrap_questions > div:nth-child(2) p > span").textContent = document.querySelector(
-            ".catalog-product-view .product-essential h1.product-name span"
-          ).textContent // title pdp question
-        }
-
-        renderToPdp()
-
-        function renderToPdp() {
-          if (document.querySelector("#main-wrapper #item-details")) {
-            let dataProduct = JSON.parse(document.querySelector("#main-wrapper #item-details").getAttribute("data-product"))
-            let salesProduct = dataProduct.salesproduct
-
-            if (salesProduct) {
-              if (document.querySelector('.header-container .header-actions .action-links [data-account-trigger="true"] span').textContent === "Account") {
-                if (!document.querySelector(".discount_pdp")) {
-                  document.querySelector(".catalog-product-view .product-essential .p-price")?.insertAdjacentHTML("afterend", discountPdp)
-                }
-              } else {
-                if (!document.querySelector(".discount_pdp.sign_up")) {
-                  document.querySelector(".catalog-product-view .product-essential .p-price")?.insertAdjacentHTML("afterend", discounPdpSignUp)
-
-                  // on click GET 15% OFF WITH A COUPON
-                  document.querySelector(".discount_pdp.sign_up > span")?.addEventListener("click", function () {
-                    document.querySelector('.header-container .header-actions .action-links [data-account-trigger="true"]')?.click()
-                  })
-                }
-              }
+            let dataProductStart
+            let itemCategory
+            if (document.querySelector("#main-wrapper #item-details")) {
+                dataProductStart = JSON.parse(document.querySelector("#main-wrapper #item-details").getAttribute("data-product"))
+                itemCategory = dataProductStart.item_category2
             }
-
-            if (!document.querySelector(".shipping")) {
-              document.querySelector(".catalog-product-view .product-essential .vp-box")?.insertAdjacentHTML("beforeend", shipping)
-            }
-
-            document.querySelectorAll(".product-shop").forEach((el) => {
-              if (document.querySelector(".shipping")) {
-                let price
-                let oldPrice
-
-                if (el.querySelector(".final-price .price")) {
-                  price = +el.querySelector(".final-price .price").textContent.slice(1).replace(/,/g, "")
-                  if (window.innerWidth <= 768) {
-                    document.querySelector(".sticky_box .last_price").textContent = el.querySelector(".final-price .price").textContent
-                  }
+            if (itemCategory === "Ceiling Fans") {
+                if (!document.querySelector(".catalog-product-view").classList.contains("var_ceiling_fan")) {
+                    document.querySelector(".catalog-product-view").classList.add("var_ceiling_fan")
                 }
 
-                if (price < 75) {
-                  el.querySelector("p.shipping_var").innerHTML = `<b>Free Shipping</b> on orders over $75`
-                } else {
-                  el.querySelector("p.shipping_var").innerHTML = "<b>Free Shipping!</b>"
+                // sticky block
+                if (window.innerWidth <= 768) {
+                    if (!document.querySelector("body.catalog-product-view .sticky_box")) {
+                        document.querySelector("body.catalog-product-view")?.insertAdjacentHTML("afterbegin", stickyBox)
+                    }
                 }
 
-                if (el.querySelector(".orig-price")) {
-                  if (el.querySelector(".orig-price .price")) {
-                    oldPrice = +el.querySelector(".orig-price .price").textContent.slice(1).replace(/,/g, "")
-                    if (window.innerWidth <= 768) {
-                      document.querySelector(".sticky_box .old_price").style.display = "block"
-                      document.querySelector(".sticky_box .old_price").textContent = el.querySelector(".orig-price .price").textContent
-                    }
-                  }
+                changeImgAfterpay()
+                renderTextWhyNeed()
+                renderPriceMatchGuarantee()
 
-                  let diffDisc = oldPrice - price
+                document.querySelector(".header-container").insertAdjacentHTML("beforeend", banner) // add static banner
+                document.querySelector("button#add-item-to-cart")?.insertAdjacentHTML("afterbegin", `<img src="${imgFolderUrl}add_to_card_icon.png" alt="button">`) // add to cart icon
 
-                  let percent = (100 - (price * 100) / oldPrice).toFixed(0)
-                  if (!el.querySelector(".diff_price_block")) {
-                    el.querySelector(".pdp-afterpay")?.insertAdjacentHTML(
-                      "beforebegin",
-                      `<div class="diff_price_block"><p>You save: $${diffDisc.toFixed(2)} (${percent}% off)</p></div>`
-                    )
-                  }
+                // to change place for price and other element
+                if (document.querySelector(".catalog-product-view .product-essential .product-shop .p-value-props")) {
+                    document
+                        .querySelector(".catalog-product-view .product-essential .p-atc .qty-box")
+                        ?.before(document.querySelector(".catalog-product-view .product-essential .product-shop .p-value-props"))
                 }
 
-                el.querySelectorAll(".vp-box .vp-row .text-strong").forEach((i) => {
-                  if (i.textContent === "Free Shipping ") {
-                    i.closest(".vp-row.col-11").previousElementSibling.style.display = "none"
-                    i.closest(".vp-row.col-11").style.display = "none"
-                  }
+                if (document.querySelector("#config-box")) {
+                    document.querySelector(".catalog-product-view .product-essential .p-price")?.after(document.querySelector("#config-box"))
+                }
 
-                  if (i.closest(".vp-box").querySelector(".vp-row.col-11").textContent.includes("Price reflects")) {
-                    if (el.querySelector(".p-price")) {
-                      if (!el.querySelector(".price_reflects_pdp.sign_up")) {
-                        el.querySelector(".p-price").insertAdjacentHTML("afterend", priceReflectsPdpSignUp)
-                      }
-                    }
+                // render new blocks
+                if (document.querySelector(".row.no-gutters.p-atc")) {
+                    document.querySelector(".row.no-gutters.p-atc").insertAdjacentHTML("afterend", wrapVarPolicy)
+                }
 
-                    i.closest(".vp-box").querySelector(".vp-row.col-11").previousElementSibling.style.display = "none"
-                    i.closest(".vp-box").querySelector(".vp-row.col-11").style.display = "none"
-                  }
+                if (document.querySelector(".wrap_var_policy")) {
+                    document.querySelector(".wrap_var_policy").insertAdjacentHTML("afterend", wrapQuestions)
+                }
 
-                  if (el.querySelector(".price_reflects_pdp.sign_up")) {
-                    let t = i.closest(".vp-box").querySelector(".vp-row.col-11").innerHTML.split(".")
-                    el.querySelector(".price_reflects_pdp.sign_up span").innerHTML = `${t[0]}.<br/><b>${t[1]}${t[2]}</b>.`
-                  }
+                if (document.querySelector(".wrap_questions > div:nth-child(2) p > span")) {
+                    document.querySelector(".wrap_questions > div:nth-child(2) p > span").textContent = document.querySelector(
+                        ".catalog-product-view .product-essential h1.product-name span"
+                    ).textContent // title pdp question
+                }
 
-                  if (i.closest(".vp-box").querySelector(".vp-row.col-11").textContent.includes("Register Now.")) {
-                    i.closest(".vp-box").querySelector(".vp-row.col-11").previousElementSibling.style.display = "none"
-                    i.closest(".vp-box").querySelector(".vp-row.col-11").style.display = "none"
-                  }
+                renderToPdp()
 
-                  if (el.querySelector("i.in-stock")) {
-                    if (i.closest(".vp-box").querySelector(".vp-row.col-11 span.text-strong").textContent === "In Stock.") {
-                      if (!i.closest(".vp-box").querySelector(".vp-row.text-center .in_stock_svg")) {
-                        el.querySelector("i.in-stock").insertAdjacentHTML(
-                          "beforebegin",
-                          `<svg class="in_stock_svg" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M10 2C5.584 2 2 5.584 2 10C2 14.416 5.584 18 10 18C14.416 18 18 14.416 18 10C18 5.584 14.416 2 10 2ZM8.4 14L4.4 10L5.528 8.872L8.4 11.736L14.472 5.664L15.6 6.8L8.4 14Z" fill="#1B963E"/></svg>`
-                        )
-                      }
-                    }
-                  }
-                  if (el.querySelector("i.made-to-order")) {
-                    if (i.closest(".vp-box").querySelector(".vp-row.col-11 span.text-strong").textContent === "Closeout - Final Sale.") {
-                      if (!i.closest(".vp-box").querySelector(".vp-row.text-center .final_sale_svg")) {
-                        el.querySelector("i.made-to-order").insertAdjacentHTML(
-                          "beforebegin",
-                          `<svg class="final_sale_svg" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                function renderToPdp() {
+                    if (document.querySelector("#main-wrapper #item-details")) {
+                        let dataProduct = JSON.parse(document.querySelector("#main-wrapper #item-details").getAttribute("data-product"))
+                        let salesProduct = dataProduct.salesproduct
+
+                        if (salesProduct) {
+                            if (document.querySelector('.header-container .header-actions .action-links [data-account-trigger="true"] span').textContent === "Account") {
+                                if (!document.querySelector(".discount_pdp")) {
+                                    document.querySelector(".catalog-product-view .product-essential .p-price")?.insertAdjacentHTML("afterend", discountPdp)
+                                }
+                            } else {
+                                if (!document.querySelector(".discount_pdp.sign_up")) {
+                                    document.querySelector(".catalog-product-view .product-essential .p-price")?.insertAdjacentHTML("afterend", discounPdpSignUp)
+
+                                    // on click GET 15% OFF WITH A COUPON
+                                    document.querySelector(".discount_pdp.sign_up > span")?.addEventListener("click", function () {
+                                        document.querySelector('.header-container .header-actions .action-links [data-account-trigger="true"]')?.click()
+                                    })
+                                }
+                            }
+                        }
+
+                        if (!document.querySelector(".shipping")) {
+                            document.querySelector(".catalog-product-view .product-essential .vp-box")?.insertAdjacentHTML("beforeend", shipping)
+                        }
+
+                        document.querySelectorAll(".product-shop").forEach((el) => {
+                            if (document.querySelector(".shipping")) {
+                                let price
+                                let oldPrice
+
+                                if (el.querySelector(".final-price .price")) {
+                                    price = +el.querySelector(".final-price .price").textContent.slice(1).replace(/,/g, "")
+                                    if (window.innerWidth <= 768) {
+                                        document.querySelector(".sticky_box .last_price").textContent = el.querySelector(".final-price .price").textContent
+                                    }
+                                }
+
+                                if (price < 75) {
+                                    el.querySelector("p.shipping_var").innerHTML = `<b>Free Shipping</b> on orders over $75`
+                                } else {
+                                    el.querySelector("p.shipping_var").innerHTML = "<b>Free Shipping!</b>"
+                                }
+
+                                if (el.querySelector(".orig-price")) {
+                                    if (el.querySelector(".orig-price .price")) {
+                                        oldPrice = +el.querySelector(".orig-price .price").textContent.slice(1).replace(/,/g, "")
+                                        if (window.innerWidth <= 768) {
+                                            document.querySelector(".sticky_box .old_price").style.display = "block"
+                                            document.querySelector(".sticky_box .old_price").textContent = el.querySelector(".orig-price .price").textContent
+                                        }
+                                    }
+
+                                    let diffDisc = oldPrice - price
+
+                                    let percent = (100 - (price * 100) / oldPrice).toFixed(0)
+                                    if (!el.querySelector(".diff_price_block")) {
+                                        el.querySelector(".pdp-afterpay")?.insertAdjacentHTML(
+                                            "beforebegin",
+                                            `<div class="diff_price_block"><p>You save: $${diffDisc.toFixed(2)} (${percent}% off)</p></div>`
+                                        )
+                                    }
+                                }
+
+                                el.querySelectorAll(".vp-box .vp-row .text-strong").forEach((i) => {
+                                    if (i.textContent === "Free Shipping ") {
+                                        i.closest(".vp-row.col-11").previousElementSibling.style.display = "none"
+                                        i.closest(".vp-row.col-11").style.display = "none"
+                                    }
+
+                                    if (i.closest(".vp-box").querySelector(".vp-row.col-11").textContent.includes("Price reflects")) {
+                                        if (el.querySelector(".p-price")) {
+                                            if (!el.querySelector(".price_reflects_pdp.sign_up")) {
+                                                el.querySelector(".p-price").insertAdjacentHTML("afterend", priceReflectsPdpSignUp)
+                                            }
+                                        }
+
+                                        i.closest(".vp-box").querySelector(".vp-row.col-11").previousElementSibling.style.display = "none"
+                                        i.closest(".vp-box").querySelector(".vp-row.col-11").style.display = "none"
+                                    }
+
+                                    if (el.querySelector(".price_reflects_pdp.sign_up")) {
+                                        let t = i.closest(".vp-box").querySelector(".vp-row.col-11").innerHTML.split(".")
+                                        el.querySelector(".price_reflects_pdp.sign_up span").innerHTML = `${t[0]}.<br/><b>${t[1]}${t[2]}</b>.`
+                                    }
+
+                                    if (i.closest(".vp-box").querySelector(".vp-row.col-11").textContent.includes("Register Now.")) {
+                                        i.closest(".vp-box").querySelector(".vp-row.col-11").previousElementSibling.style.display = "none"
+                                        i.closest(".vp-box").querySelector(".vp-row.col-11").style.display = "none"
+                                    }
+
+                                    if (el.querySelector("i.in-stock")) {
+                                        if (i.closest(".vp-box").querySelector(".vp-row.col-11 span.text-strong").textContent === "In Stock.") {
+                                            if (!i.closest(".vp-box").querySelector(".vp-row.text-center .in_stock_svg")) {
+                                                el.querySelector("i.in-stock").insertAdjacentHTML(
+                                                    "beforebegin",
+                                                    `<svg class="in_stock_svg" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M10 2C5.584 2 2 5.584 2 10C2 14.416 5.584 18 10 18C14.416 18 18 14.416 18 10C18 5.584 14.416 2 10 2ZM8.4 14L4.4 10L5.528 8.872L8.4 11.736L14.472 5.664L15.6 6.8L8.4 14Z" fill="#1B963E"/></svg>`
+                                                )
+                                            }
+                                        }
+                                    }
+                                    if (el.querySelector("i.made-to-order")) {
+                                        if (i.closest(".vp-box").querySelector(".vp-row.col-11 span.text-strong").textContent === "Closeout - Final Sale.") {
+                                            if (!i.closest(".vp-box").querySelector(".vp-row.text-center .final_sale_svg")) {
+                                                el.querySelector("i.made-to-order").insertAdjacentHTML(
+                                                    "beforebegin",
+                                                    `<svg class="final_sale_svg" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                           <path d="M16.6333 7.46675C16.075 6.85008 15.2333 6.49175 14.0666 6.36675V5.73341C14.0666 4.59175 13.5833 3.49175 12.7333 2.72508C11.875 1.94175 10.7583 1.57508 9.59995 1.68341C7.60828 1.87508 5.93328 3.80008 5.93328 5.88341V6.36675C4.76662 6.49175 3.92495 6.85008 3.36662 7.46675C2.55828 8.36675 2.58328 9.56675 2.67495 10.4001L3.25828 15.0417C3.43328 16.6667 4.09162 18.3334 7.67495 18.3334H12.325C15.9083 18.3334 16.5666 16.6667 16.7416 15.0501L17.325 10.3917C17.4166 9.56675 17.4416 8.36675 16.6333 7.46675ZM9.71662 2.84175C10.55 2.76675 11.3416 3.02508 11.9583 3.58341C12.5666 4.13341 12.9083 4.91675 12.9083 5.73341V6.31675H7.09162V5.88341C7.09162 4.40008 8.31662 2.97508 9.71662 2.84175ZM9.99995 15.4834C8.25828 15.4834 6.84162 14.0667 6.84162 12.3251C6.84162 10.5834 8.25828 9.16675 9.99995 9.16675C11.7416 9.16675 13.1583 10.5834 13.1583 12.3251C13.1583 14.0667 11.7416 15.4834 9.99995 15.4834Z" fill="#286278"/>
                           <path d="M9.16657 13.8167C8.95824 13.8167 8.7499 13.7083 8.63324 13.5166C8.45824 13.225 8.5499 12.8333 8.8499 12.6583L9.59157 12.2167V11.3167C9.59157 10.975 9.8749 10.6917 10.2166 10.6917C10.5582 10.6917 10.8332 10.9667 10.8332 11.3167V12.5667C10.8332 12.7833 10.7166 12.9917 10.5332 13.1L9.49157 13.725C9.39157 13.7833 9.2749 13.8167 9.16657 13.8167Z" fill="#286278"/>
                         </svg>`
-                        )
-                      }
-                    }
-                  }
-                  if (el.querySelector("i.low-stock")) {
-                    if (i.closest(".vp-box").querySelector(".vp-row.col-11 span.text-strong").textContent === "Low Stock.") {
-                      if (!i.closest(".vp-box").querySelector(".vp-row.text-center .low_stock_svg")) {
-                        el.querySelector("i.low-stock").insertAdjacentHTML(
-                          "beforebegin",
-                          `<svg class="low_stock_svg" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                )
+                                            }
+                                        }
+                                    }
+                                    if (el.querySelector("i.low-stock")) {
+                                        if (i.closest(".vp-box").querySelector(".vp-row.col-11 span.text-strong").textContent === "Low Stock.") {
+                                            if (!i.closest(".vp-box").querySelector(".vp-row.text-center .low_stock_svg")) {
+                                                el.querySelector("i.low-stock").insertAdjacentHTML(
+                                                    "beforebegin",
+                                                    `<svg class="low_stock_svg" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path d="M18.3335 13.4917L18.3335 6.50841C18.3335 3.47508 16.5252 1.66675 13.4918 1.66675L6.51683 1.66675C3.47516 1.66675 1.66683 3.47508 1.66683 6.50841L1.66683 13.4834C1.66683 16.5167 3.47516 18.3251 6.5085 18.3251L13.4918 18.3251C16.5252 18.3334 18.3335 16.5251 18.3335 13.4917ZM4.87516 6.35841C4.5335 6.35841 4.25016 6.07508 4.25016 5.73341C4.25016 5.39175 4.5335 5.10841 4.87516 5.10841L6.60016 5.10841C6.94183 5.10841 7.22516 5.39175 7.22516 5.73341C7.22516 6.07508 6.94183 6.35841 6.60016 6.35841H4.87516ZM4.87516 10.6251C4.5335 10.6251 4.25016 10.3417 4.25016 10.0001C4.25016 9.65841 4.5335 9.37508 4.87516 9.37508L8.3335 9.37508C8.67516 9.37508 8.9585 9.65841 8.9585 10.0001C8.9585 10.3417 8.67516 10.6251 8.3335 10.6251L4.87516 10.6251ZM4.87516 14.8917C4.5335 14.8917 4.25016 14.6084 4.25016 14.2667C4.25016 13.9251 4.5335 13.6417 4.87516 13.6417L10.0585 13.6417C10.4002 13.6417 10.6835 13.9251 10.6835 14.2667C10.6835 14.6084 10.4002 14.8917 10.0585 14.8917L4.87516 14.8917ZM12.6918 14.8917C12.3502 14.8917 12.0668 14.6084 12.0668 14.2667C12.0668 13.9251 12.3502 13.6417 12.6918 13.6417H13.5002C11.3168 11.5167 9.77516 8.85841 9.0335 5.88341C9.01683 5.83341 9.01683 5.78341 9.01683 5.73341C9.01683 5.45008 9.2085 5.20008 9.49183 5.12508C9.82516 5.04175 10.1668 5.24175 10.2502 5.58341C10.9502 8.39175 12.4252 10.8917 14.5085 12.8751V11.8334C14.5085 11.4917 14.7918 11.2084 15.1335 11.2084C15.4752 11.2084 15.7585 11.4917 15.7585 11.8334L15.7585 14.2751C15.7585 14.3084 15.7418 14.3334 15.7418 14.3667C15.7335 14.4084 15.7335 14.4501 15.7168 14.4917C15.7002 14.5334 15.6752 14.5667 15.6502 14.6084C15.6335 14.6334 15.6252 14.6584 15.6085 14.6834C15.6002 14.6917 15.5918 14.6917 15.5918 14.7001C15.5585 14.7334 15.5252 14.7584 15.4918 14.7834C15.4585 14.8084 15.4335 14.8334 15.4002 14.8417C15.3668 14.8584 15.3335 14.8584 15.2918 14.8667C15.2502 14.8751 15.2085 14.8917 15.1585 14.8917C15.1502 14.8917 15.1418 14.9001 15.1335 14.9001L12.6918 14.9001V14.8917Z" fill="#F29C38"/>
                   </svg>`
-                        )
-                      }
-                    }
-                  }
-                  if (el.querySelector("i.fad.fa-times-circle")) {
-                    if (i.closest(".vp-box").querySelector(".vp-row.col-11 span.text-strong").textContent === "Backordered.") {
-                      if (!i.closest(".vp-box").querySelector(".vp-row.text-center .backordered_svg")) {
-                        el.querySelector("i.fad.fa-times-circle").insertAdjacentHTML(
-                          "beforebegin",
-                          `<svg class="backordered_svg" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                )
+                                            }
+                                        }
+                                    }
+                                    if (el.querySelector("i.fad.fa-times-circle")) {
+                                        if (i.closest(".vp-box").querySelector(".vp-row.col-11 span.text-strong").textContent === "Backordered.") {
+                                            if (!i.closest(".vp-box").querySelector(".vp-row.text-center .backordered_svg")) {
+                                                el.querySelector("i.fad.fa-times-circle").insertAdjacentHTML(
+                                                    "beforebegin",
+                                                    `<svg class="backordered_svg" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                           <path d="M16.6333 7.46675C16.075 6.85008 15.2333 6.49175 14.0666 6.36675V5.73341C14.0666 4.59175 13.5833 3.49175 12.7333 2.72508C11.875 1.94175 10.7583 1.57508 9.59995 1.68341C7.60828 1.87508 5.93328 3.80008 5.93328 5.88341V6.36675C4.76662 6.49175 3.92495 6.85008 3.36662 7.46675C2.55828 8.36675 2.58328 9.56675 2.67495 10.4001L3.25828 15.0417C3.43328 16.6667 4.09162 18.3334 7.67495 18.3334H12.325C15.9083 18.3334 16.5666 16.6667 16.7416 15.0501L17.325 10.3917C17.4166 9.56675 17.4416 8.36675 16.6333 7.46675ZM9.71662 2.84175C10.55 2.76675 11.3416 3.02508 11.9583 3.58341C12.5666 4.13341 12.9083 4.91675 12.9083 5.73341V6.31675H7.09162V5.88341C7.09162 4.40008 8.31662 2.97508 9.71662 2.84175ZM9.99995 15.4834C8.25828 15.4834 6.84162 14.0667 6.84162 12.3251C6.84162 10.5834 8.25828 9.16675 9.99995 9.16675C11.7416 9.16675 13.1583 10.5834 13.1583 12.3251C13.1583 14.0667 11.7416 15.4834 9.99995 15.4834Z" fill="#E35757"/>
                           <path d="M11.3333 12.7582L10.8916 12.3166L11.3083 11.8999C11.5499 11.6582 11.5499 11.2582 11.3083 11.0166C11.0666 10.7749 10.6666 10.7749 10.4249 11.0166L10.0083 11.4332L9.5666 10.9916C9.32493 10.7499 8.92494 10.7499 8.68327 10.9916C8.4416 11.2332 8.4416 11.6332 8.68327 11.8749L9.12494 12.3166L8.6666 12.7749C8.42493 13.0166 8.42493 13.4166 8.6666 13.6582C8.7916 13.7832 8.94994 13.8416 9.10827 13.8416C9.2666 13.8416 9.42494 13.7832 9.54994 13.6582L10.0083 13.1999L10.4499 13.6416C10.5749 13.7666 10.7333 13.8249 10.8916 13.8249C11.0499 13.8249 11.2083 13.7666 11.3333 13.6416C11.5749 13.3999 11.5749 13.0082 11.3333 12.7582Z" fill="#E35757"/>
                         </svg>`
-                        )
-                      }
-                    }
-                  }
-                  if (el.querySelector("i.no-stock")) {
-                    if (i.closest(".vp-box").querySelector("i.no-stock")) {
-                      if (!i.closest(".vp-box").querySelector(".vp-row.text-center .no_stock_svg")) {
-                        el.querySelector("i.no-stock").insertAdjacentHTML(
-                          "beforebegin",
-                          `<svg class="no_stock_svg" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                )
+                                            }
+                                        }
+                                    }
+                                    if (el.querySelector("i.no-stock")) {
+                                        if (i.closest(".vp-box").querySelector("i.no-stock")) {
+                                            if (!i.closest(".vp-box").querySelector(".vp-row.text-center .no_stock_svg")) {
+                                                el.querySelector("i.no-stock").insertAdjacentHTML(
+                                                    "beforebegin",
+                                                    `<svg class="no_stock_svg" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M13.3337 3.54175C13.3337 4.57508 12.492 5.41675 11.4587 5.41675H8.54199C8.02533 5.41675 7.55866 5.20841 7.21699 4.86675C6.87533 4.52508 6.66699 4.05841 6.66699 3.54175C6.66699 2.50841 7.50866 1.66675 8.54199 1.66675H11.4587C11.9753 1.66675 12.442 1.87508 12.7837 2.21675C13.1253 2.55841 13.3337 3.02508 13.3337 3.54175Z" fill="#286278"/>
                         <path d="M15.6913 4.19176C15.4997 4.03342 15.283 3.90842 15.0497 3.81676C14.808 3.72509 14.5663 3.91676 14.5163 4.16676C14.233 5.59176 12.9747 6.66676 11.458 6.66676H8.54134C7.70801 6.66676 6.92467 6.34176 6.33301 5.75009C5.89967 5.31676 5.59967 4.76676 5.48301 4.17509C5.43301 3.92509 5.18301 3.72509 4.94134 3.82509C3.97467 4.21676 3.33301 5.10009 3.33301 6.87509V15.0001C3.33301 17.5001 4.82467 18.3334 6.66634 18.3334H13.333C15.1747 18.3334 16.6663 17.5001 16.6663 15.0001V6.87509C16.6663 5.51676 16.2913 4.68342 15.6913 4.19176ZM6.66634 10.2084H9.99967C10.3413 10.2084 10.6247 10.4918 10.6247 10.8334C10.6247 11.1751 10.3413 11.4584 9.99967 11.4584H6.66634C6.32467 11.4584 6.04134 11.1751 6.04134 10.8334C6.04134 10.4918 6.32467 10.2084 6.66634 10.2084ZM13.333 14.7918H6.66634C6.32467 14.7918 6.04134 14.5084 6.04134 14.1668C6.04134 13.8251 6.32467 13.5418 6.66634 13.5418H13.333C13.6747 13.5418 13.958 13.8251 13.958 14.1668C13.958 14.5084 13.6747 14.7918 13.333 14.7918Z" fill="#286278"/>
                         </svg>`
-                        )
-                      }
+                                                )
+                                            }
+                                        }
+                                    }
+                                })
+                            }
+                        })
                     }
-                  }
-                })
-              }
-            })
-          }
-        }
-
-        // change img afterpay
-        function changeImgAfterpay() {
-          if (document.querySelector(".catalog-product-view .product-essential .p-price .pdp-afterpay")) {
-            document.querySelector(
-              ".catalog-product-view .product-essential .p-price .pdp-afterpay img"
-            ).src = `https://conversionratestore.github.io/projects/lamps/img/afterpay2.png`
-          }
-
-          // on Click afterpay
-          document.querySelector(".catalog-product-view .product-essential .p-price .pdp-afterpay img")?.addEventListener("click", () => {
-            pushDataLayer("Afterpay link clicked")
-          })
-        }
-
-        //  render block Why do I need this?
-        function renderTextWhyNeed() {
-          if (document.querySelector(".category-products .col-12 span.h4.group")) {
-            document.querySelectorAll(".category-products .col-12 span.h4.group").forEach((el) => {
-              el.insertAdjacentHTML("afterend", textWhyNeed)
-            })
-          }
-        }
-
-        // render block Price Match Guarantee
-        function renderPriceMatchGuarantee() {
-          if (document.querySelector(".catalog-product-view .product-essential .p-price .final-price")) {
-            document.querySelectorAll(".catalog-product-view .product-essential .p-price .final-price").forEach((el) => {
-              el.insertAdjacentHTML("beforeend", priceMatchGuarantee)
-              if (el.closest(".p-price").querySelector(".orig-price")) {
-                el.before(el.closest(".p-price").querySelector(".orig-price"))
-              }
-            })
-          }
-        }
-
-        renderTooltip()
-        function renderTooltip() {
-          document.querySelectorAll("[data-tolltip]").forEach((el) => {
-            let title
-
-            if (el.closest(".text_why_need")) {
-              title = el.closest("div").querySelector("span.h4.group").textContent
-              el.closest(".text_why_need").setAttribute("data-title", title)
-            }
-            if (el.closest(".wrap_var_policy")) {
-              title = el.querySelector("span").textContent
-            }
-            if (el.closest(".price_match_guarantee")) {
-              title = el.querySelector("span").textContent
-            }
-
-            let arrTooltipTableVar = arrTooltipTable[title]
-            el.setAttribute("data-tolltip", arrTooltipTableVar)
-          })
-        }
-
-        onTippyRun()
-        function onTippyRun() {
-          let tippyRun = setInterval(() => {
-            if (typeof tippy === "function" && document.querySelector("[data-tolltip]")) {
-              clearInterval(tippyRun)
-
-              document.querySelectorAll("[data-tolltip]").forEach((el) => {
-                tippy(el, {
-                  content: el.getAttribute("data-tolltip"),
-                  // trigger: "click",
-                  duration: [500, 500],
-                  interactive: true,
-                  onTrigger(e) {
-                    if (el.closest(".text_why_need")) {
-                      pushDataLayer(`Why do I need this '${el.closest(".text_why_need").getAttribute("data-title")}' clicked `)
-                    } else if (el.closest(".final-price")) {
-                      pushDataLayer(`${el.querySelector("span").textContent} link clicked`)
-                    } else {
-                      pushDataLayer(`${el.querySelector("span").textContent} block clicked`)
-                    }
-                  },
-                })
-              })
-
-              // Click on_policy
-              document.querySelector(".on_policy")?.addEventListener("click", () => {
-                pushDataLayer("'price protection policy here.' link clicked")
-              })
-
-              // Click on_return
-              document.querySelector(".on_return")?.addEventListener("click", () => {
-                pushDataLayer("'return policy here.' link clicked")
-              })
-            }
-          }, 500)
-        }
-
-        // observer pdp
-        let observer = new MutationObserver(() => {
-          if (document.querySelector(".catalog-product-view .product-essential")) {
-            observer.disconnect()
-            console.log(`observer`)
-            if (!document.querySelector(".text_why_need")) {
-              renderTextWhyNeed()
-            }
-
-            if (!document.querySelector(".price_match_guarantee")) {
-              renderPriceMatchGuarantee()
-            }
-
-            onTippyRun()
-            renderTooltip()
-            changeImgAfterpay()
-
-            renderToPdp()
-
-            varQlark()
-            observer.observe(document.querySelector(".catalog-product-view .product-essential"), {
-              childList: true,
-              subtree: true,
-            })
-          }
-        })
-
-        if (document.querySelector(".catalog-product-view .product-essential")) {
-          observer.observe(document.querySelector(".catalog-product-view .product-essential"), {
-            childList: true,
-            subtree: true,
-          })
-        }
-
-        // on Click ADD2Cart
-        document.querySelector("button#add-item-to-cart")?.addEventListener("click", (e) => {
-          if (e.target.classList.contains("sticky_var")) {
-            pushDataLayer("sticky Add2Cart clicked")
-          } else {
-            pushDataLayer("Add2Cart clicked")
-          }
-        })
-        // on Click add_to_cart_sticky
-        document.querySelector(".sticky_box button.add_to_cart_sticky")?.addEventListener("click", (e) => {
-          document.querySelector("button#add-item-to-cart").classList.add("sticky_var")
-          document.querySelector("button#add-item-to-cart").click()
-
-          setTimeout(() => {
-            if (document.querySelector("button#add-item-to-cart").classList.contains("sticky_var")) {
-              document.querySelector("button#add-item-to-cart").classList.remove("sticky_var")
-            }
-          }, 200)
-        })
-
-        // on Click questions
-        document.querySelector(".wrap_questions")?.addEventListener("click", () => {
-          pushDataLayer("Question about product link clicked")
-          if (window.innerWidth <= 768) {
-            document.querySelector(".var_ceiling_fan #hbl-live-chat-wrapper").style.display = "block"
-          }
-        })
-
-        varQlark()
-      }
-      function varQlark() {
-        if (window.innerWidth <= 768) {
-          if (document.querySelector("#olark-wrapper .olark-launch-button")) {
-            document.querySelector("#olark-wrapper .olark-launch-button")?.addEventListener("click", () => {
-              document.querySelector(".var_ceiling_fan #hbl-live-chat-wrapper").style.display = "none"
-            })
-          }
-        }
-      }
-
-      // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> CART
-      startFunkCardSlider()
-
-      function startFunkCardSlider() {
-        renderToCart()
-
-        // render text on cart
-        function renderToCart() {
-          let dataProductStart
-          let itemCategory
-
-          if (document.querySelector("#cart-panel #minicart-items")) {
-            document.querySelectorAll("#cart-panel #minicart-items > div").forEach((el) => {
-              dataProductStart = JSON.parse(el.getAttribute("data-product"))
-              itemCategory = dataProductStart.item_category2
-
-              if (itemCategory === "Ceiling Fans") {
-                if (!el.classList.contains("var_ceiling_fan")) {
-                  el.classList.add("var_ceiling_fan")
                 }
 
-                addWrappPolicyCard()
-
-                let dataProduct = JSON.parse(el.getAttribute("data-product"))
-                let salesProduct = dataProduct.salesproduct
-
-                if (salesProduct) {
-                  if (document.querySelector('.header-container .header-actions .action-links [data-account-trigger="true"] span').textContent === "Account") {
-                    if (!el.querySelector(".discount_cart")) {
-                      el.insertAdjacentHTML("beforeend", discountCart)
-                      el.querySelector(".final-price .price").classList.add("coupon_price")
-                      el.querySelector(".col-6.mc-price.mt-2").insertAdjacentHTML("beforeend", `<span class="final_coupon_price"></span>`)
-                      if (el.querySelector(".final_coupon_price")) {
-                        let oldPrice = el.querySelector(".final-price .price.coupon_price").textContent.slice(1).replace(/,/g, "")
-
-                        let price = +oldPrice * 0.85
-                        let diffPrice = oldPrice - price
-                        let percent = (100 - (price * 100) / oldPrice).toFixed(0)
-
-                        el.querySelector(".final_coupon_price").textContent = `$${price.toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, "$1,")}`
-
-                        if (!el.querySelector(".diff_price_block")) {
-                          el.querySelector(".p-qty").insertAdjacentHTML(
-                            "afterend",
-                            `<div class="diff_price_block"><p>You save: $${diffPrice.toFixed(2)} (${percent}% off)</p></div>`
-                          )
-                          el.querySelector(".p-qty").classList.add("margin_var")
-                        }
-                      }
+                // change img afterpay
+                function changeImgAfterpay() {
+                    if (document.querySelector(".catalog-product-view .product-essential .p-price .pdp-afterpay")) {
+                        document.querySelector(
+                            ".catalog-product-view .product-essential .p-price .pdp-afterpay img"
+                        ).src = `https://conversionratestore.github.io/projects/lamps/img/afterpay2.png`
                     }
-                  } else {
-                    if (!el.querySelector(".discount_cart.sign_up")) {
-                      el.insertAdjacentHTML("beforeend", discountCartSignUp)
-                    }
-                    // on click GET 15% OFF WITH A COUPON
-                    document.querySelector(".discount_cart.sign_up span")?.addEventListener("click", function () {
-                      document.querySelector('.header-container .header-actions .action-links [data-account-trigger="true"]')?.click()
+
+                    // on Click afterpay
+                    document.querySelector(".catalog-product-view .product-essential .p-price .pdp-afterpay img")?.addEventListener("click", () => {
+                        pushDataLayer("Afterpay link clicked")
                     })
-                  }
                 }
 
-                if (el.querySelector(".orig-price")) {
-                  let price
-                  let oldPrice
-
-                  if (el.querySelector(".final-price .price")) {
-                    el.querySelector(".final-price").before(el.querySelector(".orig-price"))
-                    price = +el.closest("div.c-product").querySelector(".final-price .price").textContent.slice(1).replace(/,/g, "")
-                  }
-
-                  if (el.querySelector(".orig-price .price")) {
-                    oldPrice = +el.querySelector(".orig-price .price").textContent.slice(1).replace(/,/g, "")
-                  }
-                  let diffDisc = oldPrice - price
-
-                  let percent = (100 - (price * 100) / oldPrice).toFixed(0)
-                  if (!el.querySelector(".diff_price_block")) {
-                    el.querySelector(".p-qty").insertAdjacentHTML("afterend", `<div class="diff_price_block"><p>You save: $${diffDisc.toFixed(2)} (${percent}% off)</p></div>`)
-                    el.querySelector(".p-qty").classList.add("margin_var")
-                  }
-                }
-
-                if (el.querySelector(".promo")) {
-                  if (!el.querySelector(".price_reflects_cart")) {
-                    el.querySelector(".promo").insertAdjacentHTML(
-                      "beforebegin",
-                      `<div class="price_reflects_cart"><img src="${imgFolderUrl}price_reflects.png" alt="icon"><span>${el.querySelector(".promo").innerHTML}</span></div>`
-                    )
-                  }
-                }
-
-                if (el.querySelector(".p-stock")) {
-                  if (el.querySelector(".p-stock .justify-content-start >div:last-child br")) {
-                    el.querySelector(".p-stock .justify-content-start >div:last-child br").remove()
-                  }
-
-                  if (el.querySelector(".p-stock .justify-content-start >div:last-child span.text-strong")?.textContent === "In Stock.") {
-                    if (!el.querySelector(".p-stock .justify-content-start >div:first-child > svg")) {
-                      el.querySelector(".justify-content-start >div:first-child").insertAdjacentHTML(
-                        "afterbegin",
-                        `<svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M10 2C5.584 2 2 5.584 2 10C2 14.416 5.584 18 10 18C14.416 18 18 14.416 18 10C18 5.584 14.416 2 10 2ZM8.4 14L4.4 10L5.528 8.872L8.4 11.736L14.472 5.664L15.6 6.8L8.4 14Z" fill="#1B963E"/></svg>`
-                      )
+                //  render block Why do I need this?
+                function renderTextWhyNeed() {
+                    if (document.querySelector(".category-products .col-12 span.h4.group")) {
+                        document.querySelectorAll(".category-products .col-12 span.h4.group").forEach((el) => {
+                            el.insertAdjacentHTML("afterend", textWhyNeed)
+                        })
                     }
-                  }
-                  if (el.querySelector("i.made-to-order")) {
-                    if (el.querySelector(".p-stock .justify-content-start >div:last-child span.text-strong").textContent === "Closeout - Final Sale.") {
-                      if (!el.querySelector(".p-stock .justify-content-start >div:first-child > svg.final_sale_svg")) {
-                        el.querySelector("i.made-to-order").insertAdjacentHTML(
-                          "beforebegin",
-                          `<svg class="final_sale_svg" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                }
+
+                // render block Price Match Guarantee
+                function renderPriceMatchGuarantee() {
+                    if (document.querySelector(".catalog-product-view .product-essential .p-price .final-price")) {
+                        document.querySelectorAll(".catalog-product-view .product-essential .p-price .final-price").forEach((el) => {
+                            el.insertAdjacentHTML("beforeend", priceMatchGuarantee)
+                            if (el.closest(".p-price").querySelector(".orig-price")) {
+                                el.before(el.closest(".p-price").querySelector(".orig-price"))
+                            }
+                        })
+                    }
+                }
+
+                renderTooltip()
+                function renderTooltip() {
+                    document.querySelectorAll("[data-tolltip]").forEach((el) => {
+                        let title
+
+                        if (el.closest(".text_why_need")) {
+                            title = el.closest("div").querySelector("span.h4.group").textContent
+                            el.closest(".text_why_need").setAttribute("data-title", title)
+                        }
+                        if (el.closest(".wrap_var_policy")) {
+                            title = el.querySelector("span").textContent
+                        }
+                        if (el.closest(".price_match_guarantee")) {
+                            title = el.querySelector("span").textContent
+                        }
+                        if(el.classList.contains('shipping_var')) {
+                            title = el.querySelector("b").textContent
+                        }
+
+                        let arrTooltipTableVar = arrTooltipTable[title]
+                        el.setAttribute("data-tolltip", arrTooltipTableVar)
+                    })
+                }
+
+                onTippyRun()
+                function onTippyRun() {
+                    let tippyRun = setInterval(() => {
+                        if (typeof tippy === "function" && document.querySelector("[data-tolltip]")) {
+                            clearInterval(tippyRun)
+
+                            document.querySelectorAll("[data-tolltip]").forEach((el) => {
+                                tippy(el, {
+                                    content: el.getAttribute("data-tolltip"),
+                                    // trigger: "click",
+                                    duration: [500, 500],
+                                    interactive: true,
+                                    onTrigger(e) {
+                                        if (el.closest(".text_why_need")) {
+                                            pushDataLayer(`Why do I need this '${el.closest(".text_why_need").getAttribute("data-title")}' clicked `)
+                                        } else if (el.closest(".final-price")) {
+                                            pushDataLayer(`${el.querySelector("span").textContent} link clicked`)
+                                        } else {
+                                            pushDataLayer(`${el.querySelector("span")?.textContent} block clicked`)
+                                        }
+                                    },
+                                })
+                            })
+
+                            // Click on_policy
+                            document.querySelector(".on_policy")?.addEventListener("click", () => {
+                                pushDataLayer("'price protection policy here.' link clicked")
+                            })
+
+                            // Click on_return
+                            document.querySelector(".on_return")?.addEventListener("click", () => {
+                                pushDataLayer("'return policy here.' link clicked")
+                            })
+                        }
+                    }, 500)
+                }
+
+                // observer pdp
+                let observer = new MutationObserver(() => {
+                    if (document.querySelector(".catalog-product-view .product-essential")) {
+                        observer.disconnect()
+                        console.log(`observer`)
+                        if (!document.querySelector(".text_why_need")) {
+                            renderTextWhyNeed()
+                        }
+
+                        if (!document.querySelector(".price_match_guarantee")) {
+                            renderPriceMatchGuarantee()
+                        }
+
+                        onTippyRun()
+                        renderTooltip()
+                        changeImgAfterpay()
+
+                        renderToPdp()
+
+                        varQlark()
+                        observer.observe(document.querySelector(".catalog-product-view .product-essential"), {
+                            childList: true,
+                            subtree: true,
+                        })
+                    }
+                })
+
+                if (document.querySelector(".catalog-product-view .product-essential")) {
+                    observer.observe(document.querySelector(".catalog-product-view .product-essential"), {
+                        childList: true,
+                        subtree: true,
+                    })
+                }
+
+                // on Click ADD2Cart
+                document.querySelector("button#add-item-to-cart")?.addEventListener("click", (e) => {
+                    if (e.target.classList.contains("sticky_var")) {
+                        pushDataLayer("sticky Add2Cart clicked")
+                    } else {
+                        pushDataLayer("Add2Cart clicked")
+                    }
+                })
+                // on Click add_to_cart_sticky
+                document.querySelector(".sticky_box button.add_to_cart_sticky")?.addEventListener("click", (e) => {
+                    document.querySelector("button#add-item-to-cart").classList.add("sticky_var")
+                    document.querySelector("button#add-item-to-cart").click()
+
+                    setTimeout(() => {
+                        if (document.querySelector("button#add-item-to-cart").classList.contains("sticky_var")) {
+                            document.querySelector("button#add-item-to-cart").classList.remove("sticky_var")
+                        }
+                    }, 200)
+                })
+
+                // on Click questions
+                document.querySelector(".wrap_questions")?.addEventListener("click", () => {
+                    pushDataLayer("Question about product link clicked")
+                    if (window.innerWidth <= 768) {
+                        document.querySelector(".var_ceiling_fan #hbl-live-chat-wrapper").style.display = "block"
+                    }
+                })
+
+                varQlark()
+            }
+            function varQlark() {
+                if (window.innerWidth <= 768) {
+                    if (document.querySelector("#olark-wrapper .olark-launch-button")) {
+                        document.querySelector("#olark-wrapper .olark-launch-button")?.addEventListener("click", () => {
+                            document.querySelector(".var_ceiling_fan #hbl-live-chat-wrapper").style.display = "none"
+                        })
+                    }
+                }
+            }
+
+            // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> CART
+            startFunkCardSlider()
+
+            function startFunkCardSlider() {
+                renderToCart()
+
+                // render text on cart
+                function renderToCart() {
+                    let dataProductStart
+                    let itemCategory
+
+                    if (document.querySelector("#cart-panel #minicart-items")) {
+                        document.querySelectorAll("#cart-panel #minicart-items > div").forEach((el) => {
+                            dataProductStart = JSON.parse(el.getAttribute("data-product"))
+                            itemCategory = dataProductStart.item_category2
+
+                            if (itemCategory === "Ceiling Fans") {
+                                if (!el.classList.contains("var_ceiling_fan")) {
+                                    el.classList.add("var_ceiling_fan")
+                                }
+
+                                addWrappPolicyCard()
+
+                                let dataProduct = JSON.parse(el.getAttribute("data-product"))
+                                let salesProduct = dataProduct.salesproduct
+
+                                if (salesProduct) {
+                                    if (document.querySelector('.header-container .header-actions .action-links [data-account-trigger="true"] span').textContent === "Account") {
+                                        if (!el.querySelector(".discount_cart")) {
+                                            el.insertAdjacentHTML("beforeend", discountCart)
+                                            el.querySelector(".final-price .price").classList.add("coupon_price")
+                                            el.querySelector(".col-6.mc-price.mt-2").insertAdjacentHTML("beforeend", `<span class="final_coupon_price"></span>`)
+                                            if (el.querySelector(".final_coupon_price")) {
+                                                let oldPrice = el.querySelector(".final-price .price.coupon_price").textContent.slice(1).replace(/,/g, "")
+
+                                                let price = +oldPrice * 0.85
+                                                let diffPrice = oldPrice - price
+                                                let percent = (100 - (price * 100) / oldPrice).toFixed(0)
+
+                                                el.querySelector(".final_coupon_price").textContent = `$${price.toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, "$1,")}`
+
+                                                if (!el.querySelector(".diff_price_block")) {
+                                                    el.querySelector(".p-qty").insertAdjacentHTML(
+                                                        "afterend",
+                                                        `<div class="diff_price_block"><p>You save: $${diffPrice.toFixed(2)} (${percent}% off)</p></div>`
+                                                    )
+                                                    el.querySelector(".p-qty").classList.add("margin_var")
+                                                }
+                                            }
+                                        }
+                                    } else {
+                                        if (!el.querySelector(".discount_cart.sign_up")) {
+                                            el.insertAdjacentHTML("beforeend", discountCartSignUp)
+                                        }
+                                        // on click GET 15% OFF WITH A COUPON
+                                        document.querySelector(".discount_cart.sign_up span")?.addEventListener("click", function () {
+                                            document.querySelector('.header-container .header-actions .action-links [data-account-trigger="true"]')?.click()
+                                        })
+                                    }
+                                }
+
+                                if (el.querySelector(".orig-price")) {
+                                    let price
+                                    let oldPrice
+
+                                    if (el.querySelector(".final-price .price")) {
+                                        el.querySelector(".final-price").before(el.querySelector(".orig-price"))
+                                        price = +el.closest("div.c-product").querySelector(".final-price .price").textContent.slice(1).replace(/,/g, "")
+                                    }
+
+                                    if (el.querySelector(".orig-price .price")) {
+                                        oldPrice = +el.querySelector(".orig-price .price").textContent.slice(1).replace(/,/g, "")
+                                    }
+                                    let diffDisc = oldPrice - price
+
+                                    let percent = (100 - (price * 100) / oldPrice).toFixed(0)
+                                    if (!el.querySelector(".diff_price_block")) {
+                                        el.querySelector(".p-qty").insertAdjacentHTML("afterend", `<div class="diff_price_block"><p>You save: $${diffDisc.toFixed(2)} (${percent}% off)</p></div>`)
+                                        el.querySelector(".p-qty").classList.add("margin_var")
+                                    }
+                                }
+
+                                if (el.querySelector(".promo")) {
+                                    if (!el.querySelector(".price_reflects_cart")) {
+                                        el.querySelector(".promo").insertAdjacentHTML(
+                                            "beforebegin",
+                                            `<div class="price_reflects_cart"><img src="${imgFolderUrl}price_reflects.png" alt="icon"><span>${el.querySelector(".promo").innerHTML}</span></div>`
+                                        )
+                                    }
+                                }
+
+                                if (el.querySelector(".p-stock")) {
+                                    if (el.querySelector(".p-stock .justify-content-start >div:last-child br")) {
+                                        el.querySelector(".p-stock .justify-content-start >div:last-child br").remove()
+                                    }
+
+                                    if (el.querySelector(".p-stock .justify-content-start >div:last-child span.text-strong")?.textContent === "In Stock.") {
+                                        if (!el.querySelector(".p-stock .justify-content-start >div:first-child > svg")) {
+                                            el.querySelector(".justify-content-start >div:first-child").insertAdjacentHTML(
+                                                "afterbegin",
+                                                `<svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M10 2C5.584 2 2 5.584 2 10C2 14.416 5.584 18 10 18C14.416 18 18 14.416 18 10C18 5.584 14.416 2 10 2ZM8.4 14L4.4 10L5.528 8.872L8.4 11.736L14.472 5.664L15.6 6.8L8.4 14Z" fill="#1B963E"/></svg>`
+                                            )
+                                        }
+                                    }
+                                    if (el.querySelector("i.made-to-order")) {
+                                        if (el.querySelector(".p-stock .justify-content-start >div:last-child span.text-strong").textContent === "Closeout - Final Sale.") {
+                                            if (!el.querySelector(".p-stock .justify-content-start >div:first-child > svg.final_sale_svg")) {
+                                                el.querySelector("i.made-to-order").insertAdjacentHTML(
+                                                    "beforebegin",
+                                                    `<svg class="final_sale_svg" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                           <path d="M16.6333 7.46675C16.075 6.85008 15.2333 6.49175 14.0666 6.36675V5.73341C14.0666 4.59175 13.5833 3.49175 12.7333 2.72508C11.875 1.94175 10.7583 1.57508 9.59995 1.68341C7.60828 1.87508 5.93328 3.80008 5.93328 5.88341V6.36675C4.76662 6.49175 3.92495 6.85008 3.36662 7.46675C2.55828 8.36675 2.58328 9.56675 2.67495 10.4001L3.25828 15.0417C3.43328 16.6667 4.09162 18.3334 7.67495 18.3334H12.325C15.9083 18.3334 16.5666 16.6667 16.7416 15.0501L17.325 10.3917C17.4166 9.56675 17.4416 8.36675 16.6333 7.46675ZM9.71662 2.84175C10.55 2.76675 11.3416 3.02508 11.9583 3.58341C12.5666 4.13341 12.9083 4.91675 12.9083 5.73341V6.31675H7.09162V5.88341C7.09162 4.40008 8.31662 2.97508 9.71662 2.84175ZM9.99995 15.4834C8.25828 15.4834 6.84162 14.0667 6.84162 12.3251C6.84162 10.5834 8.25828 9.16675 9.99995 9.16675C11.7416 9.16675 13.1583 10.5834 13.1583 12.3251C13.1583 14.0667 11.7416 15.4834 9.99995 15.4834Z" fill="#286278"/>
                           <path d="M9.16657 13.8167C8.95824 13.8167 8.7499 13.7083 8.63324 13.5166C8.45824 13.225 8.5499 12.8333 8.8499 12.6583L9.59157 12.2167V11.3167C9.59157 10.975 9.8749 10.6917 10.2166 10.6917C10.5582 10.6917 10.8332 10.9667 10.8332 11.3167V12.5667C10.8332 12.7833 10.7166 12.9917 10.5332 13.1L9.49157 13.725C9.39157 13.7833 9.2749 13.8167 9.16657 13.8167Z" fill="#286278"/>
                         </svg>`
-                        )
-                      }
-                    }
-                  }
-                  if (el.querySelector("i.low-stock")) {
-                    if (el.querySelector(".p-stock .justify-content-start >div:last-child span.text-strong").textContent === "Low Stock.") {
-                      if (!el.querySelector(".p-stock .justify-content-start >div:first-child > svg.low_stock_svg")) {
-                        el.querySelector("i.low-stock").insertAdjacentHTML(
-                          "beforebegin",
-                          `<svg class="low_stock_svg" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                )
+                                            }
+                                        }
+                                    }
+                                    if (el.querySelector("i.low-stock")) {
+                                        if (el.querySelector(".p-stock .justify-content-start >div:last-child span.text-strong").textContent === "Low Stock.") {
+                                            if (!el.querySelector(".p-stock .justify-content-start >div:first-child > svg.low_stock_svg")) {
+                                                el.querySelector("i.low-stock").insertAdjacentHTML(
+                                                    "beforebegin",
+                                                    `<svg class="low_stock_svg" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M18.3335 13.4917L18.3335 6.50841C18.3335 3.47508 16.5252 1.66675 13.4918 1.66675L6.51683 1.66675C3.47516 1.66675 1.66683 3.47508 1.66683 6.50841L1.66683 13.4834C1.66683 16.5167 3.47516 18.3251 6.5085 18.3251L13.4918 18.3251C16.5252 18.3334 18.3335 16.5251 18.3335 13.4917ZM4.87516 6.35841C4.5335 6.35841 4.25016 6.07508 4.25016 5.73341C4.25016 5.39175 4.5335 5.10841 4.87516 5.10841L6.60016 5.10841C6.94183 5.10841 7.22516 5.39175 7.22516 5.73341C7.22516 6.07508 6.94183 6.35841 6.60016 6.35841H4.87516ZM4.87516 10.6251C4.5335 10.6251 4.25016 10.3417 4.25016 10.0001C4.25016 9.65841 4.5335 9.37508 4.87516 9.37508L8.3335 9.37508C8.67516 9.37508 8.9585 9.65841 8.9585 10.0001C8.9585 10.3417 8.67516 10.6251 8.3335 10.6251L4.87516 10.6251ZM4.87516 14.8917C4.5335 14.8917 4.25016 14.6084 4.25016 14.2667C4.25016 13.9251 4.5335 13.6417 4.87516 13.6417L10.0585 13.6417C10.4002 13.6417 10.6835 13.9251 10.6835 14.2667C10.6835 14.6084 10.4002 14.8917 10.0585 14.8917L4.87516 14.8917ZM12.6918 14.8917C12.3502 14.8917 12.0668 14.6084 12.0668 14.2667C12.0668 13.9251 12.3502 13.6417 12.6918 13.6417H13.5002C11.3168 11.5167 9.77516 8.85841 9.0335 5.88341C9.01683 5.83341 9.01683 5.78341 9.01683 5.73341C9.01683 5.45008 9.2085 5.20008 9.49183 5.12508C9.82516 5.04175 10.1668 5.24175 10.2502 5.58341C10.9502 8.39175 12.4252 10.8917 14.5085 12.8751V11.8334C14.5085 11.4917 14.7918 11.2084 15.1335 11.2084C15.4752 11.2084 15.7585 11.4917 15.7585 11.8334L15.7585 14.2751C15.7585 14.3084 15.7418 14.3334 15.7418 14.3667C15.7335 14.4084 15.7335 14.4501 15.7168 14.4917C15.7002 14.5334 15.6752 14.5667 15.6502 14.6084C15.6335 14.6334 15.6252 14.6584 15.6085 14.6834C15.6002 14.6917 15.5918 14.6917 15.5918 14.7001C15.5585 14.7334 15.5252 14.7584 15.4918 14.7834C15.4585 14.8084 15.4335 14.8334 15.4002 14.8417C15.3668 14.8584 15.3335 14.8584 15.2918 14.8667C15.2502 14.8751 15.2085 14.8917 15.1585 14.8917C15.1502 14.8917 15.1418 14.9001 15.1335 14.9001L12.6918 14.9001V14.8917Z" fill="#F29C38"/>
                         </svg>`
-                        )
-                      }
-                    }
-                  }
-                  if (el.querySelector("i.fad.fa-times-circle")) {
-                    if (el.querySelector(".p-stock .justify-content-start >div:last-child span.text-strong").textContent === "Backordered.") {
-                      if (!el.querySelector(".p-stock .justify-content-start >div:first-child > svg.backordered_svg")) {
-                        el.querySelector("i.fad.fa-times-circle").insertAdjacentHTML(
-                          "beforebegin",
-                          `<svg class="backordered_svg" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                )
+                                            }
+                                        }
+                                    }
+                                    if (el.querySelector("i.fad.fa-times-circle")) {
+                                        if (el.querySelector(".p-stock .justify-content-start >div:last-child span.text-strong").textContent === "Backordered.") {
+                                            if (!el.querySelector(".p-stock .justify-content-start >div:first-child > svg.backordered_svg")) {
+                                                el.querySelector("i.fad.fa-times-circle").insertAdjacentHTML(
+                                                    "beforebegin",
+                                                    `<svg class="backordered_svg" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                           <path d="M16.6333 7.46675C16.075 6.85008 15.2333 6.49175 14.0666 6.36675V5.73341C14.0666 4.59175 13.5833 3.49175 12.7333 2.72508C11.875 1.94175 10.7583 1.57508 9.59995 1.68341C7.60828 1.87508 5.93328 3.80008 5.93328 5.88341V6.36675C4.76662 6.49175 3.92495 6.85008 3.36662 7.46675C2.55828 8.36675 2.58328 9.56675 2.67495 10.4001L3.25828 15.0417C3.43328 16.6667 4.09162 18.3334 7.67495 18.3334H12.325C15.9083 18.3334 16.5666 16.6667 16.7416 15.0501L17.325 10.3917C17.4166 9.56675 17.4416 8.36675 16.6333 7.46675ZM9.71662 2.84175C10.55 2.76675 11.3416 3.02508 11.9583 3.58341C12.5666 4.13341 12.9083 4.91675 12.9083 5.73341V6.31675H7.09162V5.88341C7.09162 4.40008 8.31662 2.97508 9.71662 2.84175ZM9.99995 15.4834C8.25828 15.4834 6.84162 14.0667 6.84162 12.3251C6.84162 10.5834 8.25828 9.16675 9.99995 9.16675C11.7416 9.16675 13.1583 10.5834 13.1583 12.3251C13.1583 14.0667 11.7416 15.4834 9.99995 15.4834Z" fill="#E35757"/>
                           <path d="M11.3333 12.7582L10.8916 12.3166L11.3083 11.8999C11.5499 11.6582 11.5499 11.2582 11.3083 11.0166C11.0666 10.7749 10.6666 10.7749 10.4249 11.0166L10.0083 11.4332L9.5666 10.9916C9.32493 10.7499 8.92494 10.7499 8.68327 10.9916C8.4416 11.2332 8.4416 11.6332 8.68327 11.8749L9.12494 12.3166L8.6666 12.7749C8.42493 13.0166 8.42493 13.4166 8.6666 13.6582C8.7916 13.7832 8.94994 13.8416 9.10827 13.8416C9.2666 13.8416 9.42494 13.7832 9.54994 13.6582L10.0083 13.1999L10.4499 13.6416C10.5749 13.7666 10.7333 13.8249 10.8916 13.8249C11.0499 13.8249 11.2083 13.7666 11.3333 13.6416C11.5749 13.3999 11.5749 13.0082 11.3333 12.7582Z" fill="#E35757"/>
                         </svg>`
-                        )
-                      }
-                    }
-                  }
-                  if (el.querySelector(".p-stock .no-stock")) {
-                    if (el.querySelector(".p-stock .no-stock")) {
-                      if (!el.querySelector(".p-stock .justify-content-start >div:first-child > svg.no_stock_svg")) {
-                        el.querySelector(".p-stock .no-stock").insertAdjacentHTML(
-                          "beforebegin",
-                          `<svg class="no_stock_svg" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                )
+                                            }
+                                        }
+                                    }
+                                    if (el.querySelector(".p-stock .no-stock")) {
+                                        if (el.querySelector(".p-stock .no-stock")) {
+                                            if (!el.querySelector(".p-stock .justify-content-start >div:first-child > svg.no_stock_svg")) {
+                                                el.querySelector(".p-stock .no-stock").insertAdjacentHTML(
+                                                    "beforebegin",
+                                                    `<svg class="no_stock_svg" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M13.3337 3.54175C13.3337 4.57508 12.492 5.41675 11.4587 5.41675H8.54199C8.02533 5.41675 7.55866 5.20841 7.21699 4.86675C6.87533 4.52508 6.66699 4.05841 6.66699 3.54175C6.66699 2.50841 7.50866 1.66675 8.54199 1.66675H11.4587C11.9753 1.66675 12.442 1.87508 12.7837 2.21675C13.1253 2.55841 13.3337 3.02508 13.3337 3.54175Z" fill="#286278"/>
                         <path d="M15.6913 4.19176C15.4997 4.03342 15.283 3.90842 15.0497 3.81676C14.808 3.72509 14.5663 3.91676 14.5163 4.16676C14.233 5.59176 12.9747 6.66676 11.458 6.66676H8.54134C7.70801 6.66676 6.92467 6.34176 6.33301 5.75009C5.89967 5.31676 5.59967 4.76676 5.48301 4.17509C5.43301 3.92509 5.18301 3.72509 4.94134 3.82509C3.97467 4.21676 3.33301 5.10009 3.33301 6.87509V15.0001C3.33301 17.5001 4.82467 18.3334 6.66634 18.3334H13.333C15.1747 18.3334 16.6663 17.5001 16.6663 15.0001V6.87509C16.6663 5.51676 16.2913 4.68342 15.6913 4.19176ZM6.66634 10.2084H9.99967C10.3413 10.2084 10.6247 10.4918 10.6247 10.8334C10.6247 11.1751 10.3413 11.4584 9.99967 11.4584H6.66634C6.32467 11.4584 6.04134 11.1751 6.04134 10.8334C6.04134 10.4918 6.32467 10.2084 6.66634 10.2084ZM13.333 14.7918H6.66634C6.32467 14.7918 6.04134 14.5084 6.04134 14.1668C6.04134 13.8251 6.32467 13.5418 6.66634 13.5418H13.333C13.6747 13.5418 13.958 13.8251 13.958 14.1668C13.958 14.5084 13.6747 14.7918 13.333 14.7918Z" fill="#286278"/>
                         </svg>`
-                        )
-                      }
+                                                )
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        })
                     }
-                  }
                 }
-              }
-            })
-          }
-        }
 
-        // render Wrapp Policy Card
-        function addWrappPolicyCard() {
-          if (document.querySelector(".total-panel .totals > div.col-12.text-right")) {
-            if (!document.querySelector(".wrap_var_policy_cart")) {
-              document.querySelector(".total-panel .totals > div.col-12.text-right").insertAdjacentHTML(
-                "afterend",
-                `    <div class="wrap_var_policy_cart">
+                // render Wrapp Policy Card
+                function addWrappPolicyCard() {
+                    if (document.querySelector(".total-panel .totals > div.col-12.text-right")) {
+                        if (!document.querySelector(".wrap_var_policy_cart")) {
+                            document.querySelector(".total-panel .totals > div.col-12.text-right").insertAdjacentHTML(
+                                "afterend",
+                                `    <div class="wrap_var_policy_cart">
             <ul>
                 <li>
                     <div class="img_wrap">
@@ -1852,217 +1865,217 @@ let startFunkPdp = setInterval(() => {
                 </li>
             </ul>
         </div>`
-              )
+                            )
+                        }
+                    }
+                }
+
+                let observerCart = new MutationObserver((muts) => {
+                    if (document.querySelector("#cart-panel")) {
+                        observerCart.disconnect()
+                        renderToCart()
+
+                        observerCart.observe(document.querySelector("#cart-panel"), {
+                            childList: true,
+                            subtree: true,
+                        })
+                    }
+                })
+
+                if (document.querySelector("#cart-panel")) {
+                    observerCart.observe(document.querySelector("#cart-panel"), {
+                        childList: true,
+                        subtree: true,
+                    })
+                }
+
+                jQuery("body").on(
+                    "click",
+                    `#add-item-to-cart, .category-products .products-grid .item .item-inner .details-area .actions .addtocart, .inner-panel .content-panel .c-product .p-qty .input-group-btn .btn-number`,
+                    function () {
+                        setTimeout(() => {
+                            renderToCart()
+                        }, 2000)
+                    }
+                )
             }
-          }
-        }
 
-        let observerCart = new MutationObserver((muts) => {
-          if (document.querySelector("#cart-panel")) {
-            observerCart.disconnect()
-            renderToCart()
+            // checkout card
+            renderCardPdpBlock()
 
-            observerCart.observe(document.querySelector("#cart-panel"), {
-              childList: true,
-              subtree: true,
-            })
-          }
-        })
-
-        if (document.querySelector("#cart-panel")) {
-          observerCart.observe(document.querySelector("#cart-panel"), {
-            childList: true,
-            subtree: true,
-          })
-        }
-
-        jQuery("body").on(
-          "click",
-          `#add-item-to-cart, .category-products .products-grid .item .item-inner .details-area .actions .addtocart, .inner-panel .content-panel .c-product .p-qty .input-group-btn .btn-number`,
-          function () {
-            setTimeout(() => {
-              renderToCart()
-            }, 2000)
-          }
-        )
-      }
-
-      // checkout card
-      renderCardPdpBlock()
-
-      function renderReturnPeriodCard() {
-        if (!document.querySelector(".cart .return_period_cart")) {
-          document.querySelector(".dropdown-content.col-12")?.insertAdjacentHTML(
-            "afterend",
-            `<div class="return_period_cart">
+            function renderReturnPeriodCard() {
+                if (!document.querySelector(".cart .return_period_cart")) {
+                    document.querySelector(".dropdown-content.col-12")?.insertAdjacentHTML(
+                        "afterend",
+                        `<div class="return_period_cart">
             <div class="img_wrap">
               <img src="${imgFolderUrl}return_policy.png" alt="return policy">
             </div>
             <span>30-day return period</span>
           </div>`
-          )
-        }
-      }
-
-      function renderCardPdpBlock() {
-        let dataProductStart
-        let itemCategory
-        document.querySelectorAll(".checkout-cart-index .wrapper .c-product").forEach((el) => {
-          dataProductStart = JSON.parse(el.getAttribute("data-product"))
-          itemCategory = dataProductStart.item_category2
-          if (itemCategory === "Ceiling Fans") {
-            if (!el.classList.contains("var_ceiling_fan")) {
-              el.classList.add("var_ceiling_fan")
-            }
-
-            renderReturnPeriodCard()
-
-            // if (document.querySelector(".checkout-cart-index")) {
-            if (!document.querySelector(".checkout-cart-index .banner")) {
-              document.querySelector("#main-wrapper > div:first-child").insertAdjacentHTML("afterend", banner) // add static banner
-            }
-            // }
-
-            if (el.querySelector(".orig-price")) {
-              let price
-              let oldPrice
-
-              if (el.querySelector(".final-price .price")) {
-                el.querySelector(".final-price").before(el.querySelector(".orig-price"))
-                price = +el.closest("div.c-product").querySelector(".final-price .price").textContent.slice(1).replace(/,/g, "")
-              }
-
-              if (el.querySelector(".orig-price .price")) {
-                oldPrice = +el.querySelector(".orig-price .price").textContent.slice(1).replace(/,/g, "")
-              }
-              let diffDisc = oldPrice - price
-
-              let percent = (100 - (price * 100) / oldPrice).toFixed(0)
-              if (!el.querySelector(".diff_price_block")) {
-                el.querySelector(".p-qty").insertAdjacentHTML("afterend", `<div class="diff_price_block"><p>You save: $${diffDisc.toFixed(2)} (${percent}% off)</p></div>`)
-                el.querySelector(".p-qty").classList.add("margin_var")
-              }
-            }
-
-            let dataProduct = JSON.parse(el.getAttribute("data-product"))
-            let salesProduct = dataProduct.salesproduct
-
-            if (salesProduct) {
-              if (document.querySelector('.header-container .header-actions .action-links [data-account-trigger="true"] span').textContent === "Account") {
-                el.querySelector(".final-price .price").classList.add("coupon_price")
-                el.querySelector(".mc-price").insertAdjacentHTML("beforeend", `<span class="final_coupon_price"></span>`)
-                if (el.querySelector(".final_coupon_price")) {
-                  let oldPrice = el.querySelector(".final-price .price.coupon_price").textContent.slice(1).replace(/,/g, "")
-
-                  let price = +oldPrice * 0.85
-                  let diffDisc = oldPrice - price
-                  let percent = (100 - (price * 100) / oldPrice).toFixed(0)
-
-                  el.querySelector(".final_coupon_price").textContent = `$${price.toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, "$1,")}`
-
-                  if (!el.querySelector(".diff_price_block")) {
-                    el.querySelector(".p-qty").insertAdjacentHTML("afterend", `<div class="diff_price_block"><p>You save: $${diffDisc.toFixed(2)} (${percent}% off)</p></div>`)
-                    el.querySelector(".p-qty").classList.add("margin_var")
-                  }
+                    )
                 }
-              }
             }
 
-            if (el.querySelector(".p-stock span.text-strong")?.textContent === "In Stock.") {
-              if (!el.querySelector(".justify-content-start >div:first-child > svg")) {
-                el.querySelector(".justify-content-start >div:first-child").insertAdjacentHTML(
-                  "afterbegin",
-                  `<svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M10 2C5.584 2 2 5.584 2 10C2 14.416 5.584 18 10 18C14.416 18 18 14.416 18 10C18 5.584 14.416 2 10 2ZM8.4 14L4.4 10L5.528 8.872L8.4 11.736L14.472 5.664L15.6 6.8L8.4 14Z" fill="#1B963E"/></svg>`
-                )
-              }
-            }
-            if (el.querySelector("i.made-to-order")) {
-              if (el.querySelector(".p-stock span.text-strong")?.textContent === "Closeout - Final Sale.") {
-                if (!el.querySelector(".justify-content-start >div:first-child > svg.final_sale_svg")) {
-                  el.querySelector(".justify-content-start >div:first-child").insertAdjacentHTML(
-                    "afterbegin",
-                    `<svg class="final_sale_svg" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+            function renderCardPdpBlock() {
+                let dataProductStart
+                let itemCategory
+                document.querySelectorAll(".checkout-cart-index .wrapper .c-product").forEach((el) => {
+                    dataProductStart = JSON.parse(el.getAttribute("data-product"))
+                    itemCategory = dataProductStart.item_category2
+                    if (itemCategory === "Ceiling Fans") {
+                        if (!el.classList.contains("var_ceiling_fan")) {
+                            el.classList.add("var_ceiling_fan")
+                        }
+
+                        renderReturnPeriodCard()
+
+                        // if (document.querySelector(".checkout-cart-index")) {
+                        if (!document.querySelector(".checkout-cart-index .banner")) {
+                            document.querySelector("#main-wrapper > div:first-child").insertAdjacentHTML("afterend", banner) // add static banner
+                        }
+                        // }
+
+                        if (el.querySelector(".orig-price")) {
+                            let price
+                            let oldPrice
+
+                            if (el.querySelector(".final-price .price")) {
+                                el.querySelector(".final-price").before(el.querySelector(".orig-price"))
+                                price = +el.closest("div.c-product").querySelector(".final-price .price").textContent.slice(1).replace(/,/g, "")
+                            }
+
+                            if (el.querySelector(".orig-price .price")) {
+                                oldPrice = +el.querySelector(".orig-price .price").textContent.slice(1).replace(/,/g, "")
+                            }
+                            let diffDisc = oldPrice - price
+
+                            let percent = (100 - (price * 100) / oldPrice).toFixed(0)
+                            if (!el.querySelector(".diff_price_block")) {
+                                el.querySelector(".p-qty").insertAdjacentHTML("afterend", `<div class="diff_price_block"><p>You save: $${diffDisc.toFixed(2)} (${percent}% off)</p></div>`)
+                                el.querySelector(".p-qty").classList.add("margin_var")
+                            }
+                        }
+
+                        let dataProduct = JSON.parse(el.getAttribute("data-product"))
+                        let salesProduct = dataProduct.salesproduct
+
+                        if (salesProduct) {
+                            if (document.querySelector('.header-container .header-actions .action-links [data-account-trigger="true"] span').textContent === "Account") {
+                                el.querySelector(".final-price .price").classList.add("coupon_price")
+                                el.querySelector(".mc-price").insertAdjacentHTML("beforeend", `<span class="final_coupon_price"></span>`)
+                                if (el.querySelector(".final_coupon_price")) {
+                                    let oldPrice = el.querySelector(".final-price .price.coupon_price").textContent.slice(1).replace(/,/g, "")
+
+                                    let price = +oldPrice * 0.85
+                                    let diffDisc = oldPrice - price
+                                    let percent = (100 - (price * 100) / oldPrice).toFixed(0)
+
+                                    el.querySelector(".final_coupon_price").textContent = `$${price.toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, "$1,")}`
+
+                                    if (!el.querySelector(".diff_price_block")) {
+                                        el.querySelector(".p-qty").insertAdjacentHTML("afterend", `<div class="diff_price_block"><p>You save: $${diffDisc.toFixed(2)} (${percent}% off)</p></div>`)
+                                        el.querySelector(".p-qty").classList.add("margin_var")
+                                    }
+                                }
+                            }
+                        }
+
+                        if (el.querySelector(".p-stock span.text-strong")?.textContent === "In Stock.") {
+                            if (!el.querySelector(".justify-content-start >div:first-child > svg")) {
+                                el.querySelector(".justify-content-start >div:first-child").insertAdjacentHTML(
+                                    "afterbegin",
+                                    `<svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M10 2C5.584 2 2 5.584 2 10C2 14.416 5.584 18 10 18C14.416 18 18 14.416 18 10C18 5.584 14.416 2 10 2ZM8.4 14L4.4 10L5.528 8.872L8.4 11.736L14.472 5.664L15.6 6.8L8.4 14Z" fill="#1B963E"/></svg>`
+                                )
+                            }
+                        }
+                        if (el.querySelector("i.made-to-order")) {
+                            if (el.querySelector(".p-stock span.text-strong")?.textContent === "Closeout - Final Sale.") {
+                                if (!el.querySelector(".justify-content-start >div:first-child > svg.final_sale_svg")) {
+                                    el.querySelector(".justify-content-start >div:first-child").insertAdjacentHTML(
+                                        "afterbegin",
+                                        `<svg class="final_sale_svg" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                           <path d="M16.6333 7.46675C16.075 6.85008 15.2333 6.49175 14.0666 6.36675V5.73341C14.0666 4.59175 13.5833 3.49175 12.7333 2.72508C11.875 1.94175 10.7583 1.57508 9.59995 1.68341C7.60828 1.87508 5.93328 3.80008 5.93328 5.88341V6.36675C4.76662 6.49175 3.92495 6.85008 3.36662 7.46675C2.55828 8.36675 2.58328 9.56675 2.67495 10.4001L3.25828 15.0417C3.43328 16.6667 4.09162 18.3334 7.67495 18.3334H12.325C15.9083 18.3334 16.5666 16.6667 16.7416 15.0501L17.325 10.3917C17.4166 9.56675 17.4416 8.36675 16.6333 7.46675ZM9.71662 2.84175C10.55 2.76675 11.3416 3.02508 11.9583 3.58341C12.5666 4.13341 12.9083 4.91675 12.9083 5.73341V6.31675H7.09162V5.88341C7.09162 4.40008 8.31662 2.97508 9.71662 2.84175ZM9.99995 15.4834C8.25828 15.4834 6.84162 14.0667 6.84162 12.3251C6.84162 10.5834 8.25828 9.16675 9.99995 9.16675C11.7416 9.16675 13.1583 10.5834 13.1583 12.3251C13.1583 14.0667 11.7416 15.4834 9.99995 15.4834Z" fill="#286278"/>
                           <path d="M9.16657 13.8167C8.95824 13.8167 8.7499 13.7083 8.63324 13.5166C8.45824 13.225 8.5499 12.8333 8.8499 12.6583L9.59157 12.2167V11.3167C9.59157 10.975 9.8749 10.6917 10.2166 10.6917C10.5582 10.6917 10.8332 10.9667 10.8332 11.3167V12.5667C10.8332 12.7833 10.7166 12.9917 10.5332 13.1L9.49157 13.725C9.39157 13.7833 9.2749 13.8167 9.16657 13.8167Z" fill="#286278"/>
                         </svg>`
-                  )
-                }
-              }
-            }
-            if (el.querySelector("i.low-stock")) {
-              if (el.querySelector(".p-stock span.text-strong")?.textContent === "Low Stock.") {
-                if (!el.querySelector(".justify-content-start >div:first-child > svg.low_stock_svg")) {
-                  el.querySelector(".justify-content-start >div:first-child").insertAdjacentHTML(
-                    "afterbegin",
-                    `<svg class="low_stock_svg" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    )
+                                }
+                            }
+                        }
+                        if (el.querySelector("i.low-stock")) {
+                            if (el.querySelector(".p-stock span.text-strong")?.textContent === "Low Stock.") {
+                                if (!el.querySelector(".justify-content-start >div:first-child > svg.low_stock_svg")) {
+                                    el.querySelector(".justify-content-start >div:first-child").insertAdjacentHTML(
+                                        "afterbegin",
+                                        `<svg class="low_stock_svg" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path d="M18.3335 13.4917L18.3335 6.50841C18.3335 3.47508 16.5252 1.66675 13.4918 1.66675L6.51683 1.66675C3.47516 1.66675 1.66683 3.47508 1.66683 6.50841L1.66683 13.4834C1.66683 16.5167 3.47516 18.3251 6.5085 18.3251L13.4918 18.3251C16.5252 18.3334 18.3335 16.5251 18.3335 13.4917ZM4.87516 6.35841C4.5335 6.35841 4.25016 6.07508 4.25016 5.73341C4.25016 5.39175 4.5335 5.10841 4.87516 5.10841L6.60016 5.10841C6.94183 5.10841 7.22516 5.39175 7.22516 5.73341C7.22516 6.07508 6.94183 6.35841 6.60016 6.35841H4.87516ZM4.87516 10.6251C4.5335 10.6251 4.25016 10.3417 4.25016 10.0001C4.25016 9.65841 4.5335 9.37508 4.87516 9.37508L8.3335 9.37508C8.67516 9.37508 8.9585 9.65841 8.9585 10.0001C8.9585 10.3417 8.67516 10.6251 8.3335 10.6251L4.87516 10.6251ZM4.87516 14.8917C4.5335 14.8917 4.25016 14.6084 4.25016 14.2667C4.25016 13.9251 4.5335 13.6417 4.87516 13.6417L10.0585 13.6417C10.4002 13.6417 10.6835 13.9251 10.6835 14.2667C10.6835 14.6084 10.4002 14.8917 10.0585 14.8917L4.87516 14.8917ZM12.6918 14.8917C12.3502 14.8917 12.0668 14.6084 12.0668 14.2667C12.0668 13.9251 12.3502 13.6417 12.6918 13.6417H13.5002C11.3168 11.5167 9.77516 8.85841 9.0335 5.88341C9.01683 5.83341 9.01683 5.78341 9.01683 5.73341C9.01683 5.45008 9.2085 5.20008 9.49183 5.12508C9.82516 5.04175 10.1668 5.24175 10.2502 5.58341C10.9502 8.39175 12.4252 10.8917 14.5085 12.8751V11.8334C14.5085 11.4917 14.7918 11.2084 15.1335 11.2084C15.4752 11.2084 15.7585 11.4917 15.7585 11.8334L15.7585 14.2751C15.7585 14.3084 15.7418 14.3334 15.7418 14.3667C15.7335 14.4084 15.7335 14.4501 15.7168 14.4917C15.7002 14.5334 15.6752 14.5667 15.6502 14.6084C15.6335 14.6334 15.6252 14.6584 15.6085 14.6834C15.6002 14.6917 15.5918 14.6917 15.5918 14.7001C15.5585 14.7334 15.5252 14.7584 15.4918 14.7834C15.4585 14.8084 15.4335 14.8334 15.4002 14.8417C15.3668 14.8584 15.3335 14.8584 15.2918 14.8667C15.2502 14.8751 15.2085 14.8917 15.1585 14.8917C15.1502 14.8917 15.1418 14.9001 15.1335 14.9001L12.6918 14.9001V14.8917Z" fill="#F29C38"/>
                   </svg>`
-                  )
-                }
-              }
-            }
-            if (el.querySelector(".p-stock span.text-strong")?.textContent === "Backordered.") {
-              if (!el.querySelector(".justify-content-start >div:first-child > svg.backordered_svg")) {
-                el.querySelector(".justify-content-start >div:first-child").insertAdjacentHTML(
-                  "afterbegin",
-                  `<svg class="backordered_svg" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    )
+                                }
+                            }
+                        }
+                        if (el.querySelector(".p-stock span.text-strong")?.textContent === "Backordered.") {
+                            if (!el.querySelector(".justify-content-start >div:first-child > svg.backordered_svg")) {
+                                el.querySelector(".justify-content-start >div:first-child").insertAdjacentHTML(
+                                    "afterbegin",
+                                    `<svg class="backordered_svg" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path d="M16.6333 7.46675C16.075 6.85008 15.2333 6.49175 14.0666 6.36675V5.73341C14.0666 4.59175 13.5833 3.49175 12.7333 2.72508C11.875 1.94175 10.7583 1.57508 9.59995 1.68341C7.60828 1.87508 5.93328 3.80008 5.93328 5.88341V6.36675C4.76662 6.49175 3.92495 6.85008 3.36662 7.46675C2.55828 8.36675 2.58328 9.56675 2.67495 10.4001L3.25828 15.0417C3.43328 16.6667 4.09162 18.3334 7.67495 18.3334H12.325C15.9083 18.3334 16.5666 16.6667 16.7416 15.0501L17.325 10.3917C17.4166 9.56675 17.4416 8.36675 16.6333 7.46675ZM9.71662 2.84175C10.55 2.76675 11.3416 3.02508 11.9583 3.58341C12.5666 4.13341 12.9083 4.91675 12.9083 5.73341V6.31675H7.09162V5.88341C7.09162 4.40008 8.31662 2.97508 9.71662 2.84175ZM9.99995 15.4834C8.25828 15.4834 6.84162 14.0667 6.84162 12.3251C6.84162 10.5834 8.25828 9.16675 9.99995 9.16675C11.7416 9.16675 13.1583 10.5834 13.1583 12.3251C13.1583 14.0667 11.7416 15.4834 9.99995 15.4834Z" fill="#E35757"/>
                   <path d="M11.3333 12.7582L10.8916 12.3166L11.3083 11.8999C11.5499 11.6582 11.5499 11.2582 11.3083 11.0166C11.0666 10.7749 10.6666 10.7749 10.4249 11.0166L10.0083 11.4332L9.5666 10.9916C9.32493 10.7499 8.92494 10.7499 8.68327 10.9916C8.4416 11.2332 8.4416 11.6332 8.68327 11.8749L9.12494 12.3166L8.6666 12.7749C8.42493 13.0166 8.42493 13.4166 8.6666 13.6582C8.7916 13.7832 8.94994 13.8416 9.10827 13.8416C9.2666 13.8416 9.42494 13.7832 9.54994 13.6582L10.0083 13.1999L10.4499 13.6416C10.5749 13.7666 10.7333 13.8249 10.8916 13.8249C11.0499 13.8249 11.2083 13.7666 11.3333 13.6416C11.5749 13.3999 11.5749 13.0082 11.3333 12.7582Z" fill="#E35757"/>
                 </svg>`
-                )
-              }
-            }
-            if (el.querySelector(".p-stock .no-stock")) {
-              if (!el.querySelector(".justify-content-start >div:first-child > svg.no_stock_svg")) {
-                el.querySelector(".justify-content-start >div:first-child").insertAdjacentHTML(
-                  "afterbegin",
-                  `<svg class="no_stock_svg" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                )
+                            }
+                        }
+                        if (el.querySelector(".p-stock .no-stock")) {
+                            if (!el.querySelector(".justify-content-start >div:first-child > svg.no_stock_svg")) {
+                                el.querySelector(".justify-content-start >div:first-child").insertAdjacentHTML(
+                                    "afterbegin",
+                                    `<svg class="no_stock_svg" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M13.3337 3.54175C13.3337 4.57508 12.492 5.41675 11.4587 5.41675H8.54199C8.02533 5.41675 7.55866 5.20841 7.21699 4.86675C6.87533 4.52508 6.66699 4.05841 6.66699 3.54175C6.66699 2.50841 7.50866 1.66675 8.54199 1.66675H11.4587C11.9753 1.66675 12.442 1.87508 12.7837 2.21675C13.1253 2.55841 13.3337 3.02508 13.3337 3.54175Z" fill="#286278"/>
                 <path d="M15.6913 4.19176C15.4997 4.03342 15.283 3.90842 15.0497 3.81676C14.808 3.72509 14.5663 3.91676 14.5163 4.16676C14.233 5.59176 12.9747 6.66676 11.458 6.66676H8.54134C7.70801 6.66676 6.92467 6.34176 6.33301 5.75009C5.89967 5.31676 5.59967 4.76676 5.48301 4.17509C5.43301 3.92509 5.18301 3.72509 4.94134 3.82509C3.97467 4.21676 3.33301 5.10009 3.33301 6.87509V15.0001C3.33301 17.5001 4.82467 18.3334 6.66634 18.3334H13.333C15.1747 18.3334 16.6663 17.5001 16.6663 15.0001V6.87509C16.6663 5.51676 16.2913 4.68342 15.6913 4.19176ZM6.66634 10.2084H9.99967C10.3413 10.2084 10.6247 10.4918 10.6247 10.8334C10.6247 11.1751 10.3413 11.4584 9.99967 11.4584H6.66634C6.32467 11.4584 6.04134 11.1751 6.04134 10.8334C6.04134 10.4918 6.32467 10.2084 6.66634 10.2084ZM13.333 14.7918H6.66634C6.32467 14.7918 6.04134 14.5084 6.04134 14.1668C6.04134 13.8251 6.32467 13.5418 6.66634 13.5418H13.333C13.6747 13.5418 13.958 13.8251 13.958 14.1668C13.958 14.5084 13.6747 14.7918 13.333 14.7918Z" fill="#286278"/>
                 </svg>`
-                )
-              }
+                                )
+                            }
+                        }
+                    } else {
+                        if (document.querySelector(".checkout-cart-index .banner")) {
+                            document.querySelector(".checkout-cart-index .banner").remove()
+                        }
+                    }
+                })
             }
-          } else {
-            if (document.querySelector(".checkout-cart-index .banner")) {
-              document.querySelector(".checkout-cart-index .banner").remove()
+
+            let observerCheckoutCart = new MutationObserver((muts) => {
+                if (document.querySelector(".cart")) {
+                    observerCheckoutCart.disconnect()
+                    console.log(`observer cart checkout`)
+                    renderCardPdpBlock()
+                    onClickBtnCheckout()
+
+                    observerCheckoutCart.observe(document.querySelector(".cart"), {
+                        childList: true,
+                        subtree: true,
+                    })
+                }
+            })
+
+            if (document.querySelector(".cart")) {
+                observerCheckoutCart.observe(document.querySelector(".cart"), {
+                    childList: true,
+                    subtree: true,
+                })
             }
-          }
-        })
-      }
 
-      let observerCheckoutCart = new MutationObserver((muts) => {
-        if (document.querySelector(".cart")) {
-          observerCheckoutCart.disconnect()
-          console.log(`observer cart checkout`)
-          renderCardPdpBlock()
-          onClickBtnCheckout()
+            onClickBtnCheckout()
+            function onClickBtnCheckout() {
+                jQuery("body").on("click", `.wrapper .c-product .p-qty .input-group-btn, .wrapper .c-product .c-actions button`, function () {
+                    setTimeout(() => {
+                        renderCardPdpBlock()
+                    }, 1700)
+                })
+            }
 
-          observerCheckoutCart.observe(document.querySelector(".cart"), {
-            childList: true,
-            subtree: true,
-          })
+            pushDataLayer("loaded")
+            clarity("set", `pdp_improvements_${eventVar}`, "variant_1")
         }
-      })
-
-      if (document.querySelector(".cart")) {
-        observerCheckoutCart.observe(document.querySelector(".cart"), {
-          childList: true,
-          subtree: true,
-        })
-      }
-
-      onClickBtnCheckout()
-      function onClickBtnCheckout() {
-        jQuery("body").on("click", `.wrapper .c-product .p-qty .input-group-btn, .wrapper .c-product .c-actions button`, function () {
-          setTimeout(() => {
-            renderCardPdpBlock()
-          }, 1700)
-        })
-      }
-
-      pushDataLayer("loaded")
-      clarity("set", `pdp_improvements_${eventVar}`, "variant_1")
     }
-  }
 }, 1400)
