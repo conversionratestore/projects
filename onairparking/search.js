@@ -538,7 +538,7 @@ let html = `
     <div class="swipe">
         <ul id="items-map" class="list_parking"><li class="flex"></li></ul>
         <div class="flex items-center justify-between swipe-header">
-            <div class="count_parking"><span></span> parkings found</div>
+            <div class="count_parking"></div>
             <div class="sort">Sort by: <button type="button" class="ml-2">PRICE</button></div>
         </div>
         <ul id="list_parking" class="p-4 list_parking"></ul>
@@ -781,7 +781,8 @@ let postParking = (id, startDate, endDate, parent, countSelector, mapSelector) =
         parent.innerHTML = ''
         let result = data.result;
 
-        countSelector.innerHTML = result.length; //set count parkings found
+        countSelector.innerHTML = result.length == 1 ? '1 parking found' : `${result.length} parkings found`; //set count parkings found
+
         //add key google map
 
         let optionMap = (zoom) => {
@@ -908,7 +909,7 @@ let postParking = (id, startDate, endDate, parent, countSelector, mapSelector) =
         }
     }).catch((error) => {
         console.log('Error:', error);
-        countSelector.innerHTML = 0;
+        countSelector.innerHTML = `0 parkings found`;
         parent.innerHTML = emptyHtml;
     });
 }
@@ -936,7 +937,7 @@ let start = setInterval(() => {
                 startDate = window.location.href.split('checkin=')[1].split('&')[0],
                 endDate = window.location.href.split('checkout=')[1],
                 parent = document.querySelector('#list_parking'),
-                countSelector = document.querySelector('.count_parking span');
+                countSelector = document.querySelector('.count_parking');
 
             document.querySelector('.btn-edit-name').setAttribute('data-id', id)
             document.querySelector('.btn-edit-name b').innerHTML = window.location.href.split('airport=')[1].split('&')[0].split('+').join(' ');
