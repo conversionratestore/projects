@@ -307,12 +307,15 @@ let styles = `
             margin-right: -20px;
         }
         .slide {
+            width: 190px;
+        }
+        .slide-card {
             background: #FFFFFF;
             padding: 20px;
             border: 1px solid #E3E6E7;
             border-radius: 4px;
-            margin-right: 12px;
-            max-width: 190px;
+            margin-right: 11px;
+            margin-left: 1px;
         }
         .slide img {
             width: 80px;
@@ -2443,22 +2446,24 @@ else {
     let slideHTML = (url, urlImage, title, price, id, variantId, parent) =>  {
         let slide = `
             <div class="slide">
-                <a href="${url}">
-                    <span class="items-center">
-                        <img src="${urlImage}" alt="${title}">
-                        <span class="price">
-                            <p></p>
-                            <b>${price}</b>
+                <div class="slide-card">
+                    <a href="${url}">
+                        <span class="items-center">
+                            <img src="${urlImage}" alt="${title}">
+                            <span class="price">
+                                <p></p>
+                                <b>${price}</b>
+                            </span>
                         </span>
-                    </span>
-                    <span class="name">${title}</span>
-                </a>
-                <div class="flex-center">
-                    <button type="button" class="quantity-btn quantity-btn_minus">−</button>
-                    <input type="number" name="quantity" value="1" class="quantity">
-                    <button type="button" class="quantity-btn quantity-btn_plus" >+</button>
+                        <span class="name">${title}</span>
+                    </a>
+                    <div class="flex-center">
+                        <button type="button" class="quantity-btn quantity-btn_minus">−</button>
+                        <input type="number" name="quantity" value="1" class="quantity">
+                        <button type="button" class="quantity-btn quantity-btn_plus" >+</button>
+                    </div>
+                    <button type="button" class="btn-add" data-variant-id="${variantId}" data-id="${id}">Add to cart</button>
                 </div>
-                <button type="button" class="btn-add" data-variant-id="${variantId}" data-id="${id}">Add to cart</button>
             </div> `;
 
         document.querySelector(parent).insertAdjacentHTML('beforeend', slide)
@@ -2492,11 +2497,10 @@ else {
             autoWidth: true,
             // lazyload: true,
             axis: 'horizontal',
-            startIndex: 0,
             controls: false,
-            // loop: true,
-            autoplayButton: false,
-            autoplayButtonOutput: false,
+            loop: false,
+            // autoplayButton: false,
+            // autoplayButtonOutput: false,
             mouseDrag: true,
             nav: false,
             // preventScrollOnTouch: 'auto',
