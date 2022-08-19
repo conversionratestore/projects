@@ -317,19 +317,6 @@ const changeCar = (isDefault) => {
             }
         }, intervalTimeout)
     }
-
-    const scroll = setInterval(() => { // product options 
-        if (query('.po_submodel') && getId('child_products_tbl')) {
-            clearInterval(scroll)
-
-            setTimeout(() => {
-                window.scrollTo({
-                    top: 0,
-                    behavior: "smooth"
-                });
-            }, 100);            
-        }
-    }, intervalTimeout)
 }
 
 const defaultPdpFitWrapper = () => {
