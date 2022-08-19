@@ -300,11 +300,6 @@ const changeCar = (isDefault) => {
 
             query('#child_products_tbl .fit_car')?.remove()
             query('.-po-change-vehicle').click()
-            
-            window.scrollTo({
-                top: 0,
-                behavior: "smooth"
-            });
         }
     }, intervalTimeout)
 
