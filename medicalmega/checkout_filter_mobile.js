@@ -1063,6 +1063,7 @@ let pricing = (parent, data) => {
     for (let key in pricing) {
         for (let keyData in data) {
             if (key == keyData && (data[keyData] != 0 || keyData == 'subtotal' || keyData == 'total')) {
+                console.log(pricing[key], data[keyData])
                 document.querySelector(parent).insertAdjacentHTML('beforeend', `
                 <li class="justify-between">
                     <p>${pricing[key]}:</p>
@@ -1115,67 +1116,29 @@ if (href.includes('Confirmation')) {
             display: none;
         }
         .confirmation {
-            max-width: 833px;
+            box-sizing: border-box;
             width: 100%;
-            margin: auto;
-            padding: 40px 0 80px;
+            padding: 40px 20px;
             font-size: 14px;
             line-height: 150%;
-            color: #474747;
+            color: #6D7E85;
         }
         .confirmation h2 {
             font-weight: 600;
             font-size: 36px;
             line-height: 120%;
-            color: #091114;
-            margin-bottom: 12px;
+            color: #344D57;
+            margin-bottom: 8px;
         }
         .confirmation-span {
-            font-weight: 400;
-            font-size: 16px;
             color: #344D57;
         }
         .confirmation-order {
-            background: #FFFFFF;
-            box-shadow: 0 4px 8px 3px rgba(0, 0, 0, 0.15), 0 1px 3px rgba(0, 0, 0, 0.3);
-            border-radius: 8px;
+            border-top: 1px solid #E0E4E5;
             padding: 40px 0;
-            margin: 40px 0 32px;
+            margin-top: 28px;
         }
-        .confirmation-order .col {
-            width: 50%;
-        }
-        .confirmation-order .col:first-child {
-            border-right: 1px solid #E0E4E5;
-            padding: 0 40px;
-        }
-        .confirmation-order .col:last-child {
-            position: relative;
-        }
-        .confirmation-order .col:last-child:after {
-            content: '';
-            position: absolute;
-            left: 0;
-            bottom: -40px;
-            width: 100%;
-            height: 55%;
-            pointer-events: none;
-            background: linear-gradient(360deg, #FFFFFF 0%, rgba(255, 255, 255, 0) 100%);
-        }
-        .confirmation-products {
-            margin-top: -20px;
-            margin-bottom: -40px;
-            padding: 0 40px;
-            overflow-y: auto;
-        }
-        .confirmation-products::-webkit-scrollbar{
-            background: #CCCCCC;
-            width: 4px;
-            height: 4px;}
-        .confirmation-products::-webkit-scrollbar-thumb{
-            background: #666666;}
         .confirmation-products .product-item > div:last-child a {
-            font-size: 14px;
             color: #344D57
         }
         .confirmation-products .total-price {
@@ -1189,13 +1152,17 @@ if (href.includes('Confirmation')) {
         .confirmation-order .order_pricing li:last-child {
             padding-top: 28px;
         }
+        .confirmation-order .product-item:last-child {
+            border-bottom: 1px solid #E0E4E5;
+        }
         .confirmation-order h3 {
             font-weight: 600;
             font-size: 24px;
             line-height: 120%;
-            margin-bottom: 28px;
+            padding-bottom: 20px;
             text-align: left;
-            color: #091114;
+            color: #344D57;
+            border-bottom: 1px solid #E0E4E5;
         }
         .confirmation-date {
             font-weight: 600;
@@ -1208,23 +1175,23 @@ if (href.includes('Confirmation')) {
             padding: 0 24px;
             margin: 36px auto 0;
         }
+        .confirmation > img {
+            margin: 28px auto;
+        }
     </style>`
     let confirmationHTML = `
         <header class="header-checkout"><div class="steps"></div></header>
         <div class="confirmation">
             <h2>Thank you!</h2>
-            <p class="confirmation-span">Your order has been successfully placed</p>
-            <div class="confirmation-order flex">
-                <div class="col">
-                    <h3>Your Order</h3>
-                    <ul class="order_pricing"></ul>
-                </div>
-                <div class="col">
-                    <ul class="confirmation-products"></ul>
-                </div>
-            </div>
-            <p>Approximate shipping date of your order is:</p>
+            <p>Your order has been successfully placed</p>
+            <img src="https://conversionratestore.github.io/projects/medicalmega/img/smile.svg" alt="smile icon">
+            <p class="confirmation-span">Approximate shipping date of your order is</p>
             <p class="confirmation-date"></p>
+            <div class="confirmation-order">
+                <h3>Order summary</h3>
+                <ul class="order_pricing"></ul>
+                <ul class="confirmation-products"></ul>
+            </div>
             <a href="/" class="btn-next"><span>Back to the website</span></a>
         </div>`
     document.body.insertAdjacentHTML('afterbegin', confirmationHTML)
@@ -1242,12 +1209,9 @@ if (href.includes('Confirmation')) {
         for (let i = 0; i < items.length; i++) {
             document.querySelector('.confirmation-products').insertAdjacentHTML('beforeend', product(items[i].product_id, items[i].variant_id, items[i].qty, items[i].subtotal, items[i].url, items[i].image_url, items[i].title, 1))
         }
-
-        let height = document.querySelector('.confirmation-order .col:first-child').clientHeight;
-        document.querySelector('.confirmation-products').style.height = height + 60 + 'px'
     })
-
 }
+
 if (href.includes('login.php') || href.includes('/register.php') || href.includes('/checkout') || href.includes('/guest-checkout1.php')) {
     //checkout
     let style = `
@@ -3398,7 +3362,6 @@ if (!href.includes('/checkout/') && !href.includes('login.php') && !href.include
         }
     })
 // };
-
 }
 
 // let scriptAlgoliaLite = document.createElement('script');
