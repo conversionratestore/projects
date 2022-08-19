@@ -281,7 +281,7 @@ const setItem = (name, value) => sessionStorage.setItem(name, JSON.stringify(val
 
 /** Website Logic and HTML */
 
-if (!parsedObj('myCarStorageObj') || parsedObj('myCarStorageObj').pageName !== window.location.pathname) {
+if (!parsedObj('myCarStorageObj') || parsedObj('myCarStorageObj').pageName !== window.location.pathname || JSON.parse(localStorage.garageData).current === '') {
     const defaultCarObj = {
         carModel: '',
         isFit: false,
