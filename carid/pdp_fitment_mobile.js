@@ -600,6 +600,18 @@ const observePopup = () => {
             for (let node of mutation.addedNodes) {
                 if (!(node instanceof HTMLElement)) continue
 
+                console.log(node);
+
+                if (node.matches('.po-toolbar-sticky')) {
+                    query('.po-toolbar-sticky .-transparent').addEventListener('click', () => {
+                        callEvent('sticky Cancel', 'Popup. Select your vehicle')
+                    })
+
+                    query('.po-toolbar-sticky .-success').addEventListener('click', () => {
+                        callEvent('sticky Add to cart', 'Popup. Select your vehicle')
+                    })
+                }
+
                 if (node.matches('#child_products_tbl')) { // products changed
                     const waitForCarModel = setInterval(() => {
                         if (query('.po-header-selected .title')) {
