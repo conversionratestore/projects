@@ -1170,6 +1170,9 @@ let startFunkPdp = setInterval(() => {
         "Free Shipping!": [
           `<div class="tooltip_bar"><div class="name_tooltip"><img src="https://conversionratestore.github.io/projects/lamps/img/help.svg" alt="return policy" /><span>Free Shipping</span></div><p>Free standard ground shipping on all orders within the continental US. Orders shipping to Alaska, Hawaii, Puerto Rico may incur additional shipping charges. Charges will be calculated at checkout.</p></div>`,
         ],
+        "Free Shipping": [
+          `<div class="tooltip_bar"><div class="name_tooltip"><img src="https://conversionratestore.github.io/projects/lamps/img/help.svg" alt="return policy" /><span>Free Shipping</span></div><p>Free standard ground shipping on all orders within the continental US. Orders shipping to Alaska, Hawaii, Puerto Rico may incur additional shipping charges. Charges will be calculated at checkout.</p></div>`,
+        ],
       }
 
       const banner = /*html*/ `
@@ -1329,6 +1332,9 @@ let startFunkPdp = setInterval(() => {
         renderPriceMatchGuarantee()
 
         document.querySelector(".header-container").insertAdjacentHTML("beforeend", banner) // add static banner
+        document.querySelector(".var_ceiling_fan .banner b")?.addEventListener("click", () => {
+          pushDataLayer("Banner link clicked")
+        })
         document.querySelector("button#add-item-to-cart")?.insertAdjacentHTML("afterbegin", `<img src="${imgFolderUrl}add_to_card_icon.png" alt="button">`) // add to cart icon
 
         // to change place for price and other element
@@ -1524,11 +1530,16 @@ let startFunkPdp = setInterval(() => {
               ".catalog-product-view .product-essential .p-price .pdp-afterpay img"
             ).src = `https://conversionratestore.github.io/projects/lamps/img/afterpay2.png`
           }
-
           // on Click afterpay
-          document.querySelector(".catalog-product-view .product-essential .p-price .pdp-afterpay img")?.addEventListener("click", () => {
-            pushDataLayer("Afterpay link clicked")
-          })
+
+          if (document.querySelector(".catalog-product-view .product-essential .p-price .pdp-afterpay img")) {
+            if (document.querySelector(".catalog-product-view .product-essential .p-price .pdp-afterpay img").getAttribute("data-test")) {
+              document.querySelector(".catalog-product-view .product-essential .p-price .pdp-afterpay img")?.addEventListener("click", () => {
+                pushDataLayer("Afterpay link clicked")
+              })
+            }
+            document.querySelector(".catalog-product-view .product-essential .p-price .pdp-afterpay img").setAttribute("data-test", "1")
+          }
         }
 
         //  render block Why do I need this?
@@ -1585,7 +1596,7 @@ let startFunkPdp = setInterval(() => {
               document.querySelectorAll("[data-tolltip]").forEach((el) => {
                 tippy(el, {
                   content: el.getAttribute("data-tolltip"),
-                  // trigger: "click",
+                  trigger: "click",
                   duration: [500, 500],
                   interactive: true,
                   onTrigger(e) {
@@ -1593,6 +1604,9 @@ let startFunkPdp = setInterval(() => {
                       pushDataLayer(`Why do I need this '${el.closest(".text_why_need").getAttribute("data-title")}' clicked `)
                     } else if (el.closest(".final-price")) {
                       pushDataLayer(`${el.querySelector("span").textContent} link clicked`)
+                    } else if (el.classList.contains("shipping_var")) {
+                      pushDataLayer(`${el.querySelector("b").textContent} link clicked`)
+                      console.log(el.getAttribute("data-tolltip"))
                     } else {
                       pushDataLayer(`${el.querySelector("span")?.textContent} block clicked`)
                     }
@@ -1601,14 +1615,24 @@ let startFunkPdp = setInterval(() => {
               })
 
               // Click on_policy
-              document.querySelector(".on_policy")?.addEventListener("click", () => {
-                pushDataLayer("'price protection policy here.' link clicked")
-              })
+              if (document.querySelector(".on_policy")) {
+                if (document.querySelector(".on_policy").getAttribute("data-test")) {
+                  document.querySelector(".on_policy")?.addEventListener("click", () => {
+                    pushDataLayer("'price protection policy here.' link clicked")
+                  })
+                }
+                document.querySelector(".on_policy").setAttribute("data-test", "1")
+              }
 
               // Click on_return
-              document.querySelector(".on_return")?.addEventListener("click", () => {
-                pushDataLayer("'return policy here.' link clicked")
-              })
+              if (document.querySelector(".on_return")) {
+                if (document.querySelector(".on_return").getAttribute("data-test")) {
+                  document.querySelector(".on_return")?.addEventListener("click", () => {
+                    pushDataLayer("'return policy here.' link clicked")
+                  })
+                }
+                document.querySelector(".on_return").setAttribute("data-test", "1")
+              }
             }
           }, 500)
         }
@@ -1626,8 +1650,11 @@ let startFunkPdp = setInterval(() => {
               renderPriceMatchGuarantee()
             }
 
-            onTippyRun()
-            renderTooltip()
+            setTimeout(() => {
+              renderTooltip()
+              onTippyRun()
+            }, 1000)
+
             changeImgAfterpay()
 
             renderToPdp()
@@ -1938,7 +1965,12 @@ let startFunkPdp = setInterval(() => {
             // if (document.querySelector(".checkout-cart-index")) {
             if (!document.querySelector(".checkout-cart-index .banner")) {
               document.querySelector("#main-wrapper > div:first-child").insertAdjacentHTML("afterend", banner) // add static banner
+
+              document.querySelector(".checkout-cart-index .banner b")?.addEventListener("click", () => {
+                pushDataLayer("Banner link clicked")
+              })
             }
+
             // }
 
             if (el.querySelector(".orig-price")) {
