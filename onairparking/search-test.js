@@ -943,16 +943,11 @@ let start = setInterval(() => {
                 mapSelector = document.querySelector('#map-main');
                 
             //set height for map
-            const appHeight = (boolean) => {
-                if (boolean == true) {
-                    window.addEventListener('resize', () => {
-                        mapSelector.style.minHeight = window.innerHeight - 51 + 'px';
-                    })
-                } else {
-                    mapSelector.style.minHeight = window.innerHeight - 51 + 'px';
-                }
+            const appHeight = () => {
+                mapSelector.style.minHeight = window.innerHeight - 51 + 'px';
             }
-            appHeight(true)
+            window.addEventListener('resize', () => appHeight())
+            appHeight()
 
             document.querySelector('.btn-edit-name').setAttribute('data-id', id)
             document.querySelector('.btn-edit-name b').innerHTML = window.location.href.split('airport=')[1].split('&')[0].split('+').join(' ');
@@ -966,7 +961,6 @@ let start = setInterval(() => {
             //swipe event
             let swiper = new Swipe('.swipe-header');
             swiper.onUp(() => {
-                appHeight(false)
                 document.body.classList.add('active') ;
                 document.querySelector('#items-map').style.display = 'none';
                 scrollTo(0,0)
@@ -980,7 +974,6 @@ let start = setInterval(() => {
                 document.body.classList.remove('fix') ;
                 scrollTo(0,0)
                 pushDataLayer('Swipe search results')
-                appHeight(true)
             }).run();
             document.querySelector('.popup-top').after(document.querySelector('.ant-select'))
 
