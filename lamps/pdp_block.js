@@ -1597,23 +1597,30 @@ let startFunkPdp = setInterval(() => {
               clearInterval(tippyRun)
 
               document.querySelectorAll("[data-tolltip]").forEach((el) => {
-                tippy(el, {
-                  content: el.getAttribute("data-tolltip"),
-                  // trigger: "click",
-                  duration: [500, 500],
-                  interactive: true,
-                  onTrigger(e) {
-                    if (el.closest(".text_why_need")) {
-                      pushDataLayer(`Why do I need this '${el.closest(".text_why_need").getAttribute("data-title")}' clicked `)
-                    } else if (el.closest(".final-price")) {
-                      pushDataLayer(`${el.querySelector("span").textContent} link clicked`)
-                    } else if (el.classList.contains("shipping_var")) {
-                      pushDataLayer(`${el.querySelector("b").textContent} link clicked`)
-                    } else {
-                      pushDataLayer(`${el.querySelector("span")?.textContent} block clicked`)
-                    }
-                  },
-                })
+                let s = setInterval(() => {
+                  if (el) {
+                    clearInterval(s)
+                    tippy(el, {
+                      content: el.getAttribute("data-tolltip"),
+                      // trigger: "click",
+                      duration: [500, 500],
+                      interactive: true,
+                      onTrigger(e) {
+                        if (el) {
+                          if (el.closest(".text_why_need")) {
+                            pushDataLayer(`Why do I need this '${el.closest(".text_why_need").getAttribute("data-title")}' clicked `)
+                          } else if (el.closest(".final-price")) {
+                            pushDataLayer(`${el.querySelector("span").textContent} link clicked`)
+                          } else if (el.classList.contains("shipping_var")) {
+                            pushDataLayer(`${el.querySelector("b").textContent} link clicked`)
+                          } else {
+                            pushDataLayer(`${el.querySelector("span")?.textContent} block clicked`)
+                          }
+                        }
+                      },
+                    })
+                  }
+                }, 100)
               })
 
               // Click on_policy
@@ -1636,7 +1643,7 @@ let startFunkPdp = setInterval(() => {
                 document.querySelector(".on_return").setAttribute("data-test", "1")
               }
             }
-          }, 500)
+          }, 100)
         }
 
         // observer pdp
@@ -1655,7 +1662,7 @@ let startFunkPdp = setInterval(() => {
             setTimeout(() => {
               renderTooltip()
               onTippyRun()
-            }, 100)
+            }, 3000)
 
             changeImgAfterpay()
 
