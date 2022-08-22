@@ -955,7 +955,7 @@ let start = setInterval(() => {
             postParking(id, startDate, endDate, parent, countSelector, mapSelector) // send post parking
 
             //hide item parking
-            mapSelector.addEventListener('click', () => document.querySelector('#items-map').style.display = 'none';)
+            mapSelector.addEventListener('click', () => document.querySelector('#items-map').style.display = 'none')
 
             //swipe event
             let swiper = new Swipe('.swipe-header');
