@@ -926,16 +926,6 @@ let start = setInterval(() => {
             clarity("set", "complete_redesign_search_results", "search_visited");
             document.querySelector('#__next > section > main > div > div.bg-white> div > button').closest('main').insertAdjacentHTML('beforebegin', html)
 
-            //set height for map
-            const appHeight = (boolean) => {
-                if (boolean == true) {
-                    window.addEventListener('resize', () => {
-                        document.querySelector('#map-main').style.minHeight = window.innerHeight - 51 + 'px';
-                    })
-                }
-            }
-            appHeight(true)
-
             let initial = window.location.href.split('initials=')[1].split('&')[0];
             let arr = document.querySelector('#__NEXT_DATA__').innerText.split(`,"airport_initials":"${initial}`)[0].split('"airport_id":'),
                 id = arr[arr.length - 1],
@@ -944,6 +934,16 @@ let start = setInterval(() => {
                 parent = document.querySelector('#list_parking'),
                 countSelector = document.querySelector('.count_parking'),
                 mapSelector = document.querySelector('#map-main');
+                
+            //set height for map
+            const appHeight = (boolean) => {
+                if (boolean == true) {
+                    window.addEventListener('resize', () => {
+                        mapSelector.style.minHeight = window.innerHeight - 51 + 'px';
+                    })
+                }
+            }
+            appHeight(true)
 
             document.querySelector('.btn-edit-name').setAttribute('data-id', id)
             document.querySelector('.btn-edit-name b').innerHTML = window.location.href.split('airport=')[1].split('&')[0].split('+').join(' ');
