@@ -941,6 +941,8 @@ let start = setInterval(() => {
                     window.addEventListener('resize', () => {
                         mapSelector.style.minHeight = window.innerHeight - 51 + 'px';
                     })
+                } else {
+                    mapSelector.style.minHeight = window.innerHeight - 51 + 'px';
                 }
             }
             appHeight(true)
