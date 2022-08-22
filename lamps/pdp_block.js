@@ -99,6 +99,8 @@ let startFunkPdp = setInterval(() => {
       .var_ceiling_fan .banner b,
       .checkout-cart-index .banner b {
         font-weight: 700;
+        text-decoration-line: underline;
+        color: #333333;
       }
       .var_ceiling_fan .banner img,
       .checkout-cart-index .banner img {
@@ -1179,7 +1181,7 @@ let startFunkPdp = setInterval(() => {
     <div class="banner">
           <a target="_blank" href="/policies/price-protection/">
               <img src="${imgFolderUrl}check_arrow.svg" alt="check arrow">
-              <b>30-Day Lowest Price Guarantee.</b>
+              <b>30-Day Lowest Price Guarantee</b>
           </a>
     </div>`
 
@@ -1596,7 +1598,7 @@ let startFunkPdp = setInterval(() => {
               document.querySelectorAll("[data-tolltip]").forEach((el) => {
                 tippy(el, {
                   content: el.getAttribute("data-tolltip"),
-                  trigger: "click",
+                  // trigger: "click",
                   duration: [500, 500],
                   interactive: true,
                   onTrigger(e) {
