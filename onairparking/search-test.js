@@ -962,10 +962,10 @@ let start = setInterval(() => {
             swiper.onUp(() => {
                 document.body.classList.add('active') ;
                 document.querySelector('#items-map').style.display = 'none';
-                scrollTo(0,0)
                 setTimeout(() => {
                     document.body.classList.add('fix') ;
                 }, 500);
+                scrollTo(0,0)
                 pushDataLayer('Swipe search results')
             }).run();
             swiper.onDown(() => {
