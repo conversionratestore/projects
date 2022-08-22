@@ -922,7 +922,14 @@ let start = setInterval(() => {
 
         if (sentPost == false) {
             sentPost = true;
-            clarity("set", "complete_redesign_search_results", "search_visited");
+            
+            let isClarifyVisited = setInterval(() => {
+                if(typeof clarity == 'function') {
+                    clearInterval(isClarifyVisited)
+                    clarity("set", "complete_redesign_search_results", "search_visited");
+                }
+            }, 100)
+          
             document.querySelector('#__next > section > main > div > div.bg-white> div > button').closest('main').insertAdjacentHTML('beforebegin', html)
             
             //set height for map
