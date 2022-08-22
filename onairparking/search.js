@@ -493,6 +493,9 @@ let style = `
     #map-main > div > div > div:nth-child(9) > button, #map-main > div > div > div:nth-child(5) > div, #map-main > div > div > div:nth-child(14) > div > div.gm-svpc, #menu-link-2 {
         display: none!important;
     }
+    button.gm-ui-hover-effect {
+        visibility: visible;
+    }
     @media only screen and (max-width: 340px) {
         .info_parking {
             padding: 7px;
@@ -844,12 +847,19 @@ let postParking = (id, startDate, endDate, parent, countSelector, mapSelector) =
                 }
                 new Parking(url,name,reviews,distance,shuttle,shuttleFrequency,freeCancellation,price,minDay,soldOut,unavailable,parent,startDate).render();
 
-                marker.addListener("click", () => {
+                marker.addListener("click", (e) => {
                     parent.parentElement.querySelector('#items-map li').innerHTML = parent.childNodes[i].innerHTML;
                     parent.parentElement.querySelector('#items-map').style.display = 'block';
 
                     pushDataLayer('Click on the price (map)')
                 });
+                
+                //hide item parking
+                document.addEventListener('click', (e) => {
+                    if (!e.target.closest('#items-map') && !e.target.matches('#items-map')) {
+                        document.querySelector('#items-map').style.display = 'none'
+                    }
+                })
             }
             scrollTo(0,0)
             //set minimum zoom
@@ -914,7 +924,7 @@ let postParking = (id, startDate, endDate, parent, countSelector, mapSelector) =
 }
 
 document.querySelector('[name="viewport"]').setAttribute('content','width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no')
-            
+
 let sentPost = false;
 let start = setInterval(() => {
     if (document.querySelector('#__next > section > main > div > div.bg-white > div > button') != null && document.querySelector('#__next > section > main > div > div.bg-white > div > button').innerText == 'Edit' && document.querySelector('input[type="search"]') != null && document.querySelector('#__NEXT_DATA__') != null && window.location.href.includes('/reservation/search?initials')) {
@@ -922,21 +932,15 @@ let start = setInterval(() => {
 
         if (sentPost == false) {
             sentPost = true;
-            
+
             let isClarifyVisited = setInterval(() => {
                 if(typeof clarity == 'function') {
                     clearInterval(isClarifyVisited)
                     clarity("set", "complete_redesign_search_results", "search_visited");
                 }
             }, 100)
-          
+
             document.querySelector('#__next > section > main > div > div.bg-white> div > button').closest('main').insertAdjacentHTML('beforebegin', html)
-            
-            //set height for map
-            const appHeight = () => {
-                document.querySelector('#map-main').style.minHeight = window.innerHeight - 51 + 'px';
-            }
-            appHeight()
 
             let initial = window.location.href.split('initials=')[1].split('&')[0];
             let arr = document.querySelector('#__NEXT_DATA__').innerText.split(`,"airport_initials":"${initial}`)[0].split('"airport_id":'),
@@ -944,26 +948,34 @@ let start = setInterval(() => {
                 startDate = window.location.href.split('checkin=')[1].split('&')[0],
                 endDate = window.location.href.split('checkout=')[1],
                 parent = document.querySelector('#list_parking'),
-                countSelector = document.querySelector('.count_parking');
+                countSelector = document.querySelector('.count_parking'),
+                mapSelector = document.querySelector('#map-main');
+                
+            //set height for map
+            const appHeight = () => {
+                mapSelector.style.minHeight = window.innerHeight - 51 + 'px';
+            }
+            window.addEventListener('resize', () => appHeight())
+            appHeight()
 
             document.querySelector('.btn-edit-name').setAttribute('data-id', id)
-            document.querySelector('.btn-edit-name b').innerHTML = window.location.href.split('airport=')[1].split('&')[0].split('+').join(' ');
+            document.querySelector('.btn-edit-name b').innerHTML = window.location.href.split('airport=')[1].split('&')[0].split('+').join(' ').split('%29').join(')').split('%28').join('(');
             document.querySelector('.btn-edit-date .from').setAttribute('data-date',startDate)
             document.querySelector('.btn-edit-date .to').setAttribute('data-date',endDate)
             document.querySelector('.btn-edit-date .from').innerHTML = startDate.split('-')[2] + ' ' + formatDate[startDate.split('-')[1] - 1];
             document.querySelector('.btn-edit-date .to').innerHTML = endDate.split('-')[2] + ' ' + formatDate[endDate.split('-')[1] - 1];
 
-            postParking(id, startDate, endDate, parent, countSelector, document.querySelector('#map-main')) // send post parking
+            postParking(id, startDate, endDate, parent, countSelector, mapSelector) // send post parking
 
             //swipe event
             let swiper = new Swipe('.swipe-header');
             swiper.onUp(() => {
                 document.body.classList.add('active') ;
                 document.querySelector('#items-map').style.display = 'none';
-                scrollTo(0,0)
                 setTimeout(() => {
                     document.body.classList.add('fix') ;
                 }, 500);
+                scrollTo(0,0)
                 pushDataLayer('Swipe search results')
             }).run();
             swiper.onDown(() => {
@@ -1005,7 +1017,7 @@ let start = setInterval(() => {
 
                 document.querySelector('.btn-edit-name').setAttribute('data-id', id)
 
-                postParking(id, startDate, endDate, parent, countSelector, document.querySelector('#map-main'))
+                postParking(id, startDate, endDate, parent, countSelector, mapSelector)
                 document.querySelector('input[type="search"]').setAttribute('value', item.title)
                 document.querySelector('.btn-edit-name b').innerHTML = item.title;
                 hideModal()
@@ -1022,7 +1034,7 @@ let start = setInterval(() => {
 
                 document.querySelector('.btn-edit-name').setAttribute('data-id', id)
 
-                postParking(id, startDate, endDate, parent, countSelector, document.querySelector('#map-main'))
+                postParking(id, startDate, endDate, parent, countSelector, mapSelector)
                 document.querySelector('.btn-edit-name b').innerHTML = item.innerText;
                 hideModal()
             }
@@ -1162,7 +1174,7 @@ let start = setInterval(() => {
                     let start = document.querySelector('.calendar .day.start'),
                         end = document.querySelector('.calendar .day.end'),
                         id = document.querySelector('.btn-edit-name').dataset.id;
-                        
+
                     startDate = document.querySelector('.btn-edit-date .from');
                     endDate = document.querySelector('.btn-edit-date .to');
 
@@ -1172,7 +1184,7 @@ let start = setInterval(() => {
                     startDate.innerHTML = `${start.innerText} ${formatDate[startDate.dataset.date.split('-')[1]]}`;
                     endDate.innerHTML = `${end.innerText} ${formatDate[endDate.dataset.date.split('-')[1]]}`;
 
-                    postParking(id, startDate.dataset.date, endDate.dataset.date, parent, countSelector, document.querySelector('#map-main'))
+                    postParking(id, startDate.dataset.date, endDate.dataset.date, parent, countSelector, mapSelector)
                     hideModal()
                     pushDataLayer('Callendar: search button')
                 }
@@ -1184,7 +1196,7 @@ let start = setInterval(() => {
 //remove exp
 function startRemove() {
     let startRemove = setInterval(() => {
-        if (document.querySelector('#parkingat') != null || document.querySelector('#easy-checkout') != null || document.querySelector('.search-switch') != null || (document.querySelector('#__next > section > main > div > div.bg-search-airport2 > div.container.mx-auto.flex.flex-col.relative > div > div:nth-child(2) > div:nth-child(1) > h2') != null && document.querySelector('#__next > section > main > div > div.bg-search-airport2 > div.container.mx-auto.flex.flex-col.relative > div > div:nth-child(2) > div:nth-child(1) > h2').innerText == 'Search parking deals')) { 
+        if (document.querySelector('#parkingat') != null || document.querySelector('#easy-checkout') != null || document.querySelector('.search-switch') != null || (document.querySelector('#__next > section > main > div > div.bg-search-airport2 > div.container.mx-auto.flex.flex-col.relative > div > div:nth-child(2) > div:nth-child(1) > h2') != null && document.querySelector('#__next > section > main > div > div.bg-search-airport2 > div.container.mx-auto.flex.flex-col.relative > div > div:nth-child(2) > div:nth-child(1) > h2').innerText == 'Search parking deals')) {
             // clearInterval(startRemove)
             document.querySelector('.js-style') != null ? document.querySelector('.js-style').remove() : '';
             sentPost = false;
