@@ -101,6 +101,7 @@ let startFunkPdp = setInterval(() => {
         font-weight: 700;
         text-decoration-line: underline;
         color: #333333;
+        cursor: pointer;
       }
       .var_ceiling_fan .banner img,
       .checkout-cart-index .banner img {
@@ -323,6 +324,7 @@ let startFunkPdp = setInterval(() => {
         line-height: 133%;
         color: #333333;
         margin: 0 0 0 6px;
+        cursor: pointer;
       }
       .var_ceiling_fan p.stock_var {
         margin: 0 0 0 6px;
@@ -1655,7 +1657,7 @@ let startFunkPdp = setInterval(() => {
             setTimeout(() => {
               renderTooltip()
               onTippyRun()
-            }, 1000)
+            }, 1400)
 
             changeImgAfterpay()
 
