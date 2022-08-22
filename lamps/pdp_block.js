@@ -11,7 +11,6 @@ let startFunkPdp = setInterval(() => {
         for (key in customer) {
           if (key === "group") {
             if (customer[key] !== "P10" && customer[key] !== "P10 Taxable") {
-              console.log(customer[key])
               pdpTest()
             }
           }
@@ -1536,13 +1535,13 @@ let startFunkPdp = setInterval(() => {
           }
           // on Click afterpay
 
-          if (document.querySelector(".catalog-product-view .product-essential .p-price .pdp-afterpay img")) {
-            if (document.querySelector(".catalog-product-view .product-essential .p-price .pdp-afterpay img").getAttribute("data-test")) {
-              document.querySelector(".catalog-product-view .product-essential .p-price .pdp-afterpay img")?.addEventListener("click", () => {
+          if (document.querySelector(".var_ceiling_fan.catalog-product-view .product-essential .p-price .pdp-afterpay img")) {
+            if (!document.querySelector(".var_ceiling_fan.catalog-product-view .product-essential .p-price .pdp-afterpay img").getAttribute("data-test")) {
+              document.querySelector(".var_ceiling_fan.catalog-product-view .product-essential .p-price .pdp-afterpay img")?.addEventListener("click", () => {
                 pushDataLayer("Afterpay link clicked")
               })
             }
-            document.querySelector(".catalog-product-view .product-essential .p-price .pdp-afterpay img").setAttribute("data-test", "1")
+            document.querySelector(".var_ceiling_fan.catalog-product-view .product-essential .p-price .pdp-afterpay img").setAttribute("data-test", "1")
           }
         }
 
@@ -1610,7 +1609,6 @@ let startFunkPdp = setInterval(() => {
                       pushDataLayer(`${el.querySelector("span").textContent} link clicked`)
                     } else if (el.classList.contains("shipping_var")) {
                       pushDataLayer(`${el.querySelector("b").textContent} link clicked`)
-                      console.log(el.getAttribute("data-tolltip"))
                     } else {
                       pushDataLayer(`${el.querySelector("span")?.textContent} block clicked`)
                     }
@@ -1620,7 +1618,7 @@ let startFunkPdp = setInterval(() => {
 
               // Click on_policy
               if (document.querySelector(".on_policy")) {
-                if (document.querySelector(".on_policy").getAttribute("data-test")) {
+                if (!document.querySelector(".on_policy").getAttribute("data-test")) {
                   document.querySelector(".on_policy")?.addEventListener("click", () => {
                     pushDataLayer("'price protection policy here.' link clicked")
                   })
@@ -1630,7 +1628,7 @@ let startFunkPdp = setInterval(() => {
 
               // Click on_return
               if (document.querySelector(".on_return")) {
-                if (document.querySelector(".on_return").getAttribute("data-test")) {
+                if (!document.querySelector(".on_return").getAttribute("data-test")) {
                   document.querySelector(".on_return")?.addEventListener("click", () => {
                     pushDataLayer("'return policy here.' link clicked")
                   })
@@ -1657,7 +1655,7 @@ let startFunkPdp = setInterval(() => {
             setTimeout(() => {
               renderTooltip()
               onTippyRun()
-            }, 1400)
+            }, 100)
 
             changeImgAfterpay()
 
