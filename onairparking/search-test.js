@@ -845,7 +845,6 @@ let postParking = (id, startDate, endDate, parent, countSelector, mapSelector) =
                 new Parking(url,name,reviews,distance,shuttle,shuttleFrequency,freeCancellation,price,minDay,soldOut,unavailable,parent,startDate).render();
 
                 marker.addListener("click", (e) => {
-                    e.stopImmediatePropagation()
                     parent.parentElement.querySelector('#items-map li').innerHTML = parent.childNodes[i].innerHTML;
                     parent.parentElement.querySelector('#items-map').style.display = 'block';
 
