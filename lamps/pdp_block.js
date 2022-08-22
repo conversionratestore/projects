@@ -264,10 +264,16 @@ let startFunkPdp = setInterval(() => {
         border: 1px solid #286278;
       }
 
+      .var_ceiling_fan.catalog-product-view .product-essential .product-shop #product-options-wrapper .swatches .attribute-swatch.selected .hex-swatch,
+      .var_ceiling_fan.catalog-product-view .product-essential .product-shop #product-options-wrapper .swatches .attribute-swatch.selected .img-swatch{
+        border: 3px solid #f2f2f2;
+      }
+
       .var_ceiling_fan.catalog-product-view .product-essential .product-shop #product-options-wrapper .swatches .attribute-swatch .hex-swatch,
       .var_ceiling_fan.catalog-product-view .product-essential .product-shop #product-options-wrapper .swatches .attribute-swatch .img-swatch {
         height: 23px;
         width: 23px;
+        border: unset;
       }
       .var_ceiling_fan.catalog-product-view .product-essential .product-shop #product-options-wrapper .labels .attribute-label span {
         font-size: 13px;
