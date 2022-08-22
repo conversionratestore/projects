@@ -851,6 +851,13 @@ let postParking = (id, startDate, endDate, parent, countSelector, mapSelector) =
 
                     pushDataLayer('Click on the price (map)')
                 });
+                
+                //hide item parking
+                document.addEventListener('click', (e) => {
+                    if (!e.target.closest('#items-map') && !e.target.matches('#items-map')) {
+                        document.querySelector('#items-map').style.display = 'none'
+                    }
+                })
             }
             scrollTo(0,0)
             //set minimum zoom
@@ -955,9 +962,6 @@ let start = setInterval(() => {
             document.querySelector('.btn-edit-date .to').innerHTML = endDate.split('-')[2] + ' ' + formatDate[endDate.split('-')[1] - 1];
 
             postParking(id, startDate, endDate, parent, countSelector, mapSelector) // send post parking
-
-            //hide item parking
-            mapSelector.addEventListener('click', () => document.querySelector('#items-map').style.display = 'none')
 
             //swipe event
             let swiper = new Swipe('.swipe-header');
