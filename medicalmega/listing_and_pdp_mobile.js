@@ -393,7 +393,7 @@ letter-spacing: 0.05em;
     bottom: 0;
     left: 0;
     width: 100%;
-     padding: 20px;
+    padding: 0 20px;
     z-index: 999;
     box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3), 0 2px 6px 2px rgba(0, 0, 0, 0.15);
     border-radius: 20px 20px 0 0;
@@ -401,7 +401,8 @@ letter-spacing: 0.05em;
     pointer-events: none;
     transition: all 0.3s ease;
     transform: translateY(100px);
-    height: calc(100vh - 184px);}
+    overflow-y: auto;
+    height: calc(100vh - 210px);}
     .filter.active {
         opacity: 1;
         pointer-events: auto;
@@ -427,7 +428,7 @@ margin: 16px -20px; }
   margin-bottom: 40px; }
 .listing_content {
   padding-left: 1px;
-  margin-top: 13px; }
+  margin-top: 14px; }
   .listing_wrapper li {
     width: 50%; 
   }
@@ -445,8 +446,8 @@ margin: 16px -20px; }
         border-left: none;
     }
     .listing_wrapper .card img {
-      width: 150px;
-      height: 150px; }
+      width: 147px;
+      height: 147px; }
     .listing_wrapper .card .btn_white {
       pointer-events: none;
     }
@@ -463,10 +464,6 @@ margin: 16px -20px; }
     width: 32px;
     height: 32px;
     line-height: 32px; }
-  .listing_wrapper .btn-calc {
-    width: 24px;
-    height: 24px;
-    margin: 0 12px; }
 .count_brand {
   color: #9AA6AB;
   margin-left: 4px; }
@@ -486,7 +483,10 @@ margin: 16px -20px; }
   color: #344D57;
   cursor: pointer;
   border-bottom: 1px solid #E0E4E5;
-  position: relative; }
+  position: sticky; 
+  top: 108px;
+  background: #fff;
+  z-index: 9;}
   .select_item:before {
     content: '';
     position: absolute;
@@ -537,9 +537,9 @@ margin: 16px -20px; }
   position: relative;
   background-color: transparent;
   cursor: pointer;
-  width: 40px;
-  height: 40px;
-  margin: 0 4px; }
+  width: 20px;
+  height: 20px;
+  margin: 0 12px; }
   .btn-calc:hover:before, .btn-calc:hover:after {
     background: #96280F; }
   .btn-calc:before, .btn-calc:after {
@@ -557,18 +557,18 @@ margin: 16px -20px; }
     background: #BCC4C7; }
   .btn-calc:before {
     content: '';
-    width: 14px;
+    width: 12px;
     height: 2px; }
   .btn-calc:after {
     width: 2px;
-    height: 14px; }
+    height: 12px; }
   .btn-calc_plus:after {
     content: ''; }
 .card {
   background: #FFFFFF;
   border: 1px solid #E3E6E7;
   border-radius: 4px;
-  padding: 40px;
+  padding: 20px;
   display: flex;
   justify-content: space-between;
   flex-direction: column;
@@ -797,6 +797,7 @@ margin: 16px -20px; }
     border: 1px solid #eeeeee;
     margin-right: 10px;
     object-fit: contain;
+    flex-shrink: 0;
   }
   .aa-suggestion em {
     font-weight: 700;
@@ -816,29 +817,6 @@ margin: 16px -20px; }
   }
   .aa-suggestion .price {
     fonr-size: 11px
-  }
-  #autocomplete {
-    position: absolute!important;
-    opacity: 0;
-    pointer-events: none;
-  }
-  #manufacturer ul {
-    max-height: 370px;
-    overflow-x: hidden;
-    overflow-y: auto;
-  }
-  #manufacturer ul.scroll:before {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 56px;
-    z-index: 2;
-    pointer-events: none;
-    opacity: 1;
-    transition: all 0.2s ease;
-    background: linear-gradient(to top, rgba(255, 255, 255, 1) 26%, rgba(255, 255, 255, 0.3))
   }
   .listing_popular {
     margin-bottom: 33px;
@@ -861,7 +839,8 @@ margin: 16px -20px; }
     width: calc(100% - 40px);
   }
   #current-refinements {
-    padding: 0 20px;
+    padding-right: 20px;
+    font-size: 11px;
   }
   #current-refinements li {
     width: fit-content;
@@ -876,16 +855,16 @@ margin: 16px -20px; }
     flex-wrap: wrap;
   }
   .ais-CurrentRefinements-category {
-    padding: 5px 8px;
+    padding: 3px 7px;
     line-height: 1;
     border-radius: 40px;
     background-color: #e9ebec;
     display: flex;
     align-items: center;
-    margin: 2.5px 0 2.5px 5px;
+    margin: 2px 0 2px 4px;
   }
   .ais-CurrentRefinements-label {
-    margin: 4px 5px 4px 15px;
+    margin: 3px 4px 3px 12px;
   }
   .ais-CurrentRefinements-delete {
     padding-left: 4px;
@@ -896,9 +875,14 @@ margin: 16px -20px; }
   .ais-CurrentRefinements-delete:hover {
     color: #bf0400;
   }
+  span.ais-CurrentRefinements-categoryLabel {
+    overflow: hidden;
+    max-width: 100px;
+    text-overflow: ellipsis;
+  }
   #stats-container {
     white-space: nowrap;
-    padding: 0 10px;
+    padding: 3px 20px;
   }
   .col_left {
     width: 456px;
@@ -1026,9 +1010,9 @@ margin: 16px -20px; }
     pointer-events: none;
     opacity: 0.7;}
   .calc-qty, .main input.calc-qty {
-    width: 40px;
-    height: 40px;
-    line-height: 40px;
+    width: 32px;
+    height: 32px;
+    line-height: 32px;
     color: #171717;
     font-size: 12px;
     background-color: #FBFBFB;
@@ -1256,6 +1240,14 @@ margin: 16px -20px; }
     display: block;
     background: #fff;
   }
+  .sticky {
+    position: sticky;
+    top: 0;
+    width: 100%;
+    background: #fff;
+    z-index: 99;
+    padding-top: 20px;
+  }
 
 </style>`
 
@@ -1272,14 +1264,14 @@ let htmlMenu = `
             </a> 
          
             <div class="category_popular">
-                <a href="" class="c-red">New Products</a>
-                <a href="" class="c-red">Sale Products</a>
-                <a href="">Hand Sanitizing</a>
-                <a href="">Wound Care</a>
-                <a href="">Gloves</a>
-                <a href="">Disinfectants</a>
-                <a href="">Ostomy</a>
-                <a href="">Instruments</a>
+                <a href="/category/new-products" class="c-red">New Products</a>
+                <a href="/category/sale-products" class="c-red">Sale Products</a>
+                <a href="/category/hand-sanitizing">Hand Sanitizing</a>
+                <a href="/category/wound-care">Wound Care</a>
+                <a href="/category/gloves">Gloves</a>
+                <a href="/category/disinfectants">Disinfectants</a>
+                <a href="/category/ostomy">Ostomy</a>
+                <a href="/category/instruments">Instruments</a>
                 <button type="button" class="flex-center-between all_category" data-button=".menu-conteiner"> 
                     <span>view All Categories</span> 
                     <img src="https://conversionratestore.github.io/projects/medicalmega/img/arrow_forward-right.svg" alt="arrow right icon">
@@ -1319,7 +1311,6 @@ let html = `
               </div>
               <div class="box-search"> 
                  <div id="form-search"></div>
-                 <input type="text" id="autocomplete">
               </div>
               <div class="align-items-center"> 
                   <a class="align-items-center midbar_action" href="https://medicalmega.com/cart.html">
@@ -1358,20 +1349,21 @@ let html = `
       </div>
       
       <div class="filter">
-        <button class="close-filter" data-button=".filter">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M13.2143 12L19.3666 4.66641C19.4697 4.54453 19.383 4.35938 19.2236 4.35938H17.3533C17.2432 4.35938 17.1377 4.40859 17.065 4.49297L11.9908 10.5422L6.91659 4.49297C6.84628 4.40859 6.74081 4.35938 6.62831 4.35938H4.758C4.59863 4.35938 4.51191 4.54453 4.61503 4.66641L10.7674 12L4.61503 19.3336C4.59193 19.3608 4.57711 19.394 4.57233 19.4293C4.56755 19.4647 4.57301 19.5006 4.58806 19.533C4.60312 19.5653 4.62713 19.5926 4.65725 19.6117C4.68737 19.6308 4.72234 19.6408 4.758 19.6406H6.62831C6.73847 19.6406 6.84394 19.5914 6.91659 19.507L11.9908 13.4578L17.065 19.507C17.1353 19.5914 17.2408 19.6406 17.3533 19.6406H19.2236C19.383 19.6406 19.4697 19.4555 19.3666 19.3336L13.2143 12Z" fill="#9AA6AB"/>
-            </svg>
-        </button>
-        <div class="flex-center-between">
-          <h3 class="filter_title align-items-center">
-            <svg class="mr-8" width="19" height="18" viewBox="0 0 19 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M16.3906 2.8125H2.60938C2.53203 2.8125 2.46875 2.87578 2.46875 2.95312V4.07812C2.46875 4.15547 2.53203 4.21875 2.60938 4.21875H16.3906C16.468 4.21875 16.5312 4.15547 16.5312 4.07812V2.95312C16.5312 2.87578 16.468 2.8125 16.3906 2.8125ZM11.8906 13.7812H7.10938C7.03203 13.7812 6.96875 13.8445 6.96875 13.9219V15.0469C6.96875 15.1242 7.03203 15.1875 7.10938 15.1875H11.8906C11.968 15.1875 12.0312 15.1242 12.0312 15.0469V13.9219C12.0312 13.8445 11.968 13.7812 11.8906 13.7812ZM14.1406 8.29688H4.85938C4.78203 8.29688 4.71875 8.36016 4.71875 8.4375V9.5625C4.71875 9.63984 4.78203 9.70312 4.85938 9.70312H14.1406C14.218 9.70312 14.2812 9.63984 14.2812 9.5625V8.4375C14.2812 8.36016 14.218 8.29688 14.1406 8.29688Z" fill="#344D57"/>
-            </svg>
-            Filters</h3>
-          <div id="clear-refinements"></div>
+        <div class="sticky">
+            <button class="close-filter" data-button=".filter">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M13.2143 12L19.3666 4.66641C19.4697 4.54453 19.383 4.35938 19.2236 4.35938H17.3533C17.2432 4.35938 17.1377 4.40859 17.065 4.49297L11.9908 10.5422L6.91659 4.49297C6.84628 4.40859 6.74081 4.35938 6.62831 4.35938H4.758C4.59863 4.35938 4.51191 4.54453 4.61503 4.66641L10.7674 12L4.61503 19.3336C4.59193 19.3608 4.57711 19.394 4.57233 19.4293C4.56755 19.4647 4.57301 19.5006 4.58806 19.533C4.60312 19.5653 4.62713 19.5926 4.65725 19.6117C4.68737 19.6308 4.72234 19.6408 4.758 19.6406H6.62831C6.73847 19.6406 6.84394 19.5914 6.91659 19.507L11.9908 13.4578L17.065 19.507C17.1353 19.5914 17.2408 19.6406 17.3533 19.6406H19.2236C19.383 19.6406 19.4697 19.4555 19.3666 19.3336L13.2143 12Z" fill="#9AA6AB"/>
+                </svg>
+            </button>
+            <div class="flex-center-between">
+                <h3 class="filter_title align-items-center">
+                    <svg class="mr-8" width="19" height="18" viewBox="0 0 19 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M16.3906 2.8125H2.60938C2.53203 2.8125 2.46875 2.87578 2.46875 2.95312V4.07812C2.46875 4.15547 2.53203 4.21875 2.60938 4.21875H16.3906C16.468 4.21875 16.5312 4.15547 16.5312 4.07812V2.95312C16.5312 2.87578 16.468 2.8125 16.3906 2.8125ZM11.8906 13.7812H7.10938C7.03203 13.7812 6.96875 13.8445 6.96875 13.9219V15.0469C6.96875 15.1242 7.03203 15.1875 7.10938 15.1875H11.8906C11.968 15.1875 12.0312 15.1242 12.0312 15.0469V13.9219C12.0312 13.8445 11.968 13.7812 11.8906 13.7812ZM14.1406 8.29688H4.85938C4.78203 8.29688 4.71875 8.36016 4.71875 8.4375V9.5625C4.71875 9.63984 4.78203 9.70312 4.85938 9.70312H14.1406C14.218 9.70312 14.2812 9.63984 14.2812 9.5625V8.4375C14.2812 8.36016 14.218 8.29688 14.1406 8.29688Z" fill="#344D57"/>
+                    </svg>
+                    Filters</h3>
+                <div id="clear-refinements"></div>
+            </div>
         </div>
-        
         <div class="select_filter active">
           <div class="select_item">
             <p>Brands</p>
@@ -1443,7 +1435,7 @@ function pushDataLayer(actionDataLayer, labelDataLayer) {
     window.dataLayer = window.dataLayer || [];
     dataLayer.push({
         'event': 'event-to-ga',
-        'eventCategory': 'Exp — New PL and PDP (mobile)',
+        'eventCategory': 'Exp — New PL',
         'eventAction': actionDataLayer,
         'eventLabel': labelDataLayer
     });
@@ -1686,7 +1678,7 @@ function toggleModal(item) {
                     <input class="calc-qty" type="number" name="quantity" value="1" data-max-value="${hit['variants'][count].qty}">
                     <button class="btn-calc btn-calc_plus" type="button"></button>
                   </div>
-                  ${hit['variants'][count].in_stock == false || hit['variants'][count].price == '0:00' ? '<button class="btn btn_white" type="button" data-button="notify"><span>Out of Stock</span></button>' : '<button class="btn btn_dark add-cart" type="submit"><span>$<span class="pr" data-price="' + hit['variants'][count].price + '">' + hit['variants'][count].price + '</span> | Add to Cart</span></button>'}
+                  ${hit['variants'][count].in_stock == false || hit['variants'][count].price == '0:00' ? '<button class="btn btn_white" type="button" data-button="notify"><span>Out of Stock</span></button>' : '<button class="btn btn_dark add-cart" type="submit"><span>$<span class="pr" data-price="' + hit['variants'][count].price + '">' + hit['variants'][count].price + '</span> | Add</span></button>'}
                   <input type="hidden" name="product_variant_id" value="${hit['variants'][count].pv_id}">
                   <input type="hidden" name="product_id" value="${hit.objectID}">
                   <input type="hidden" name="add_to_cart" value="variant">
@@ -2051,19 +2043,19 @@ function toggleModal(item) {
             <div class="new-products">
               <h2>New Products!</h2>
               <p class="c-gray">${res[0].nbHits} items</p>
-              <ul class="d-flex"></ul>
+              <ul class="flex-wrap"></ul>
               <a href="https://medicalmega.com/?products%5BhierarchicalMenu%5D%5Bcategories.lvl0%5D%5B0%5D=New%20Products!" class="btn btn_white">Show More</a>
             </div>
             <div class="ostomy">
               <h2>Ostomy</h2>
               <p class="c-gray">${res[1].nbHits} items</p>
-              <ul class="d-flex"></ul>
+              <ul class="flex-wrap"></ul>
               <a href="https://medicalmega.com/?products%5BhierarchicalMenu%5D%5Bcategories.lvl0%5D%5B0%5D=Ostomy" class="btn btn_white">Show More</a>
             </div>
             <div class="wound-care">
               <h2>Wound Care</h2>
               <p class="c-gray">${res[2].nbHits} items</p>
-              <ul class="d-flex"></ul>
+              <ul class=flex-wrap"></ul>
               <a href="https://medicalmega.com/?products%5BhierarchicalMenu%5D%5Bcategories.lvl0%5D%5B0%5D=Wound%20Care" class="btn btn_white">Show More</a>
             </div>`);
 
@@ -2451,88 +2443,18 @@ let optionMut = {
 }
 
 let mut = new MutationObserver(function (muts) {
-    if (document.querySelectorAll('.select_current')) {
-        mut.disconnect();
-
-        document.querySelectorAll('.select_current').forEach((el,index) => {
-            el.addEventListener('click',(e) => {
-                e.stopImmediatePropagation()
-                el.parentElement.classList.toggle('active');
-
-                if (index == 0) {
-                    document.querySelectorAll('.select')[1].classList.remove('active');
-                }
-                if (index == 1)  {
-                    document.querySelectorAll('.select')[0].classList.remove('active');
-                }
-                //events
-                let notes = ' select';
-                if (el.closest('.select_category')) {
-                    notes = ' select category';
-                } else if (el.closest('.select_brand')) {
-                    notes = ' select brand'
-                }
-                labelDataLayer = `Header`;
-                actionDataLayer = `Click on ${notes}`;
-                pushDataLayer(actionDataLayer, labelDataLayer)
-            })
-            el.nextElementSibling.querySelectorAll('.select_option p').forEach( (option, index) => {
-                option.addEventListener('click', (e) => {
-                    e.stopImmediatePropagation()
-                    let notes = 'select';
-                    if (option.closest('.select_category')) {
-                        notes = 'select category';
-                        el.dataset.category = option.dataset.category;
-                        fetch(`https://PXDJAQHDPZ-dsn.algolia.net/1/indexes/products?facets=manufacturer&query=${e.target.innerText.includes('Select') ? '*' : e.target.innerText}`, optionFetchAlgolia).then(res => res.json()).then(data => {
-                            let brand = data.facets.manufacturer;
-                            document.querySelector('.select_brand .select_current').innerHTML = `<span>Select Manufacturer</span>`;
-                            document.querySelector('.select_brand .select_dropdown').innerHTML = `<li class="select_option "><p class="active">Select Manufacturer</p></li>`;
-                            for (let key in brand) {
-                                document.querySelector('.select_brand .select_dropdown').insertAdjacentHTML('beforeend', ` <li class="select_option"><p>${key}</p></li>`)
-                            }
-                        })
-                    } else if (option.closest('.select_brand')) {
-                        notes = 'select manufacturer';
-                    }
-                    actionDataLayer = `Click on option ${notes}`;
-                    labelDataLayer = 'Advanced Search';
-                    pushDataLayer(actionDataLayer, labelDataLayer)
-
-                    if (option.closest('.select').querySelector('.active') != null) {
-                        option.closest('.select').querySelector('.active').classList.remove('active');
-                    }
-
-                    option.classList.add('active');
-
-                    if (index == 0) {
-                        el.innerHTML = `<span>${option.innerHTML}</span>`;
-                    } else {
-                        el.innerHTML = option.innerHTML;
-                    }
-                    option.closest('.select').classList.remove('active');
-                })
-            })
-        })
-    }
-
-    mut.observe(document, optionMut);
     if (document.querySelector('.calc') != null) {
         document.querySelectorAll('.calc').forEach((el, i) => {
             el.querySelector('.btn-calc_plus').addEventListener('click', (e) => {
                 e.stopImmediatePropagation();
-
-                actionDataLayer = `Click on plus button`;
-                labelDataLayer = labelForEvents(e.target);
-                pushDataLayer(actionDataLayer,labelDataLayer);
+                pushDataLayer(`Click on plus button`,labelForEvents(e.target));
 
                 changeQty(el.querySelector('.calc-qty'), el.nextElementSibling.querySelector('.pr'),'plus')
             })
             el.querySelector('.btn-calc_minus').addEventListener('click', (e) => {
                 e.stopImmediatePropagation();
 
-                actionDataLayer = `Click on minus button`;
-                labelDataLayer = labelForEvents(e.target);
-                pushDataLayer(actionDataLayer,labelDataLayer);
+                pushDataLayer(`Click on minus button`,labelForEvents(e.target));
 
                 changeQty(el.querySelector('.calc-qty'), el.nextElementSibling.querySelector('.pr'),'minus')
             })
@@ -2542,9 +2464,7 @@ let mut = new MutationObserver(function (muts) {
             })
             el.querySelector('.calc-qty').addEventListener('click', (e) => {
                 e.stopImmediatePropagation();
-                actionDataLayer = `Click on quantity button`;
-                labelDataLayer = labelForEvents(e.target);
-                pushDataLayer(actionDataLayer,labelDataLayer);
+                pushDataLayer(`Click on quantity button`,labelForEvents(e.target));
             })
             el.querySelector('.calc-qty').addEventListener('blur', (e) => {
                 if (e.target.value == '') {
@@ -2555,17 +2475,13 @@ let mut = new MutationObserver(function (muts) {
         document.querySelectorAll('.card_name').forEach(el => {
             el.addEventListener('click', (e) => {
                 e.stopImmediatePropagation();
-                actionDataLayer = `Click on Card Product`;
-                labelDataLayer = `Card Product`;
-                pushDataLayer(actionDataLayer,labelDataLayer);
+                pushDataLayer(`Click on Card Product`,`Card Product`);
             })
         })
         document.querySelectorAll('.add-cart').forEach(el => {
             el.addEventListener('click', (e) => {
                 e.stopImmediatePropagation();
-                actionDataLayer = `Click on Add to cart button`;
-                labelDataLayer = labelForEvents(e.target);
-                pushDataLayer(actionDataLayer,labelDataLayer);
+                pushDataLayer(`Click on Add button`,labelForEvents(e.target));
 
             })
         })
