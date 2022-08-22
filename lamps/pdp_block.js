@@ -1597,9 +1597,8 @@ let startFunkPdp = setInterval(() => {
               clearInterval(tippyRun)
 
               document.querySelectorAll("[data-tolltip]").forEach((el) => {
-                let s = setInterval(() => {
+                setTimeout(() => {
                   if (el) {
-                    clearInterval(s)
                     tippy(el, {
                       content: el.getAttribute("data-tolltip"),
                       // trigger: "click",
@@ -1620,7 +1619,7 @@ let startFunkPdp = setInterval(() => {
                       },
                     })
                   }
-                }, 100)
+                }, 1000)
               })
 
               // Click on_policy
@@ -1643,7 +1642,7 @@ let startFunkPdp = setInterval(() => {
                 document.querySelector(".on_return").setAttribute("data-test", "1")
               }
             }
-          }, 100)
+          }, 1000)
         }
 
         // observer pdp
@@ -1662,7 +1661,7 @@ let startFunkPdp = setInterval(() => {
             setTimeout(() => {
               renderTooltip()
               onTippyRun()
-            }, 3000)
+            }, 2000)
 
             changeImgAfterpay()
 
