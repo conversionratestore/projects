@@ -929,7 +929,7 @@ let start = setInterval(() => {
 
         if (sentPost == false) {
             sentPost = true;
-            
+
             let isClarifyVisited = setInterval(() => {
                 if(typeof clarity == 'function') {
                     clearInterval(isClarifyVisited)
@@ -956,7 +956,7 @@ let start = setInterval(() => {
             appHeight()
 
             document.querySelector('.btn-edit-name').setAttribute('data-id', id)
-            document.querySelector('.btn-edit-name b').innerHTML = window.location.href.split('airport=')[1].split('&')[0].split('+').join(' ');
+            document.querySelector('.btn-edit-name b').innerHTML = window.location.href.split('airport=')[1].split('&')[0].split('+').join(' ').split('%29').join(')').split('%28').join('(');
             document.querySelector('.btn-edit-date .from').setAttribute('data-date',startDate)
             document.querySelector('.btn-edit-date .to').setAttribute('data-date',endDate)
             document.querySelector('.btn-edit-date .from').innerHTML = startDate.split('-')[2] + ' ' + formatDate[startDate.split('-')[1] - 1];
