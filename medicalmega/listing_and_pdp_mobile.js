@@ -214,7 +214,7 @@ input[type="search"]::-webkit-search-results-decoration {
   background: #fff; }
 
 .midbar {
-  padding: 20px 0; }
+  padding: 12px 0; }
 .menu .midbar_action {
     margin-top: 13px;
 }
@@ -246,7 +246,7 @@ letter-spacing: 0.05em;
   .main .ais-SearchBox-input {
     background: #E9EBEC;
     border-radius: 38px;
-    padding: 11px 50px 11px 20px;
+    padding: 10px 50px 10px 20px;
     width: 100%; }
   .ais-SearchBox-submit {
     cursor: pointer;
@@ -402,7 +402,7 @@ letter-spacing: 0.05em;
     transition: all 0.3s ease;
     transform: translateY(100px);
     overflow-y: auto;
-    height: calc(100vh - 210px);}
+    height: calc(100vh - 190px);}
     .filter.active {
         opacity: 1;
         pointer-events: auto;
@@ -425,6 +425,7 @@ margin: 16px -20px; }
   font-weight: 600;
   font-size: 32px;
   line-height: 120%;
+  text-transform: capitalize;
   margin-bottom: 40px; }
 .listing_content {
   padding-left: 1px;
@@ -617,7 +618,7 @@ margin: 16px -20px; }
   .ais-Breadcrumb-link, .breadcrumbs a {
     font-weight: normal;
     font-size: 12px;
-    line-height: 15px;
+    line-height: 1;
     color: #344D57;
     display: flex;
     align-items: center;
@@ -781,6 +782,9 @@ margin: 16px -20px; }
     background: #FBFBFB;
     box-shadow: 0 4px 4px rgb(0 0 0 / 5%);
     width: 100%;
+    position: fixed!important;
+    left: 0!important;
+    top: 64px!important;
   }
   .aa-suggestion {
       display: flex;
@@ -829,7 +833,7 @@ margin: 16px -20px; }
   }
   .listing_popular h2 {
     font-weight: 600;
-    font-size: 36px;
+    font-size: 32px;
     line-height: 120%;
     padding: 0 20px 30px;
   }
@@ -879,79 +883,27 @@ margin: 16px -20px; }
     overflow: hidden;
     max-width: 100px;
     text-overflow: ellipsis;
+    white-space: nowrap;
   }
   #stats-container {
     white-space: nowrap;
     padding: 3px 20px;
   }
-  .col_left {
-    width: 456px;
-    position: sticky;
-    top: 205px;
-    margin-top: 14px;
-    height: -webkit-fit-content;
-    height: -moz-fit-content;
-    height: fit-content;
-    z-index: 2; }
-  .col_right {
-    width: calc(100% - 456px);
-    max-width: calc(100% - 456px - 48px); }
-  .side_one {
-    width: 96px;
-    padding-top: 10px;
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    flex-direction: column; } 
   .trustpilot iframe {
     width: 90%!important;
     height: 91px!important;}
-  .side_two {
-    width: calc(100% - 96px); }
-  .slider-nav .slide {
-    width: 56px;
-    height: 56px;
-    border: 1px solid transparent;
-    border-radius: 2px;
-    padding: 2px;
-    margin-bottom: 8px; }
-    .slider-nav .slide.active {
-      border-color: #BCC4C7; }
-  .slider-nav img {
-    width: 100%;
-    height: 100%;
-    -o-object-fit: contain;
-    object-fit: contain; }
-  .img-zoom-lens {
-    position: absolute;
-    border: 1px solid #d4d4d4;
-    width: 140px;
-    height: 140px;
-    pointer-events: none;
-    visibility: hidden; }
-  .main .img-zoom-result {
-    border: 1px solid #d4d4d4;
-    width: 300px;
-    height: 300px;
-    position: absolute;
-    top: 0;
-    left: 100%;
-    visibility: hidden;
-    pointer-events: none;
-    background-color: #fff; }
-  .slider-for {
+  .slider-main {
     position: relative;
-    width: 360px;
-    height: 360px;
-    margin: 49px 0 12px; }
-    .slider-for img {
-      width: 100%;
-      height: 360px;
-      -o-object-fit: contain;
-      object-fit: contain; }
+    width: 100%;
+    height: 89.33vw;
+    margin: 40px auto 8px;}
+    #tns1 > .tns-item {
+    height: 100%;
+        border: 1px solid #E0E4E5;
+        border-radius: 4px;}
   .list {
     color: #344D57;
-    margin-bottom: 15px; }
+    margin: 70px 0 48px; }
     .list .fw-semi {
       color: #091114;}
     .list li {
@@ -1075,17 +1027,18 @@ margin: 16px -20px; }
       font-weight: 600;
       font-size: 24px;
       line-height: 29px;
-      margin-bottom: 56px; }
+      margin-bottom: 28px; }
       .similar-products .card {
-        max-width: 281px;
-        width: calc(25% - 30px);
-        margin-right: 40px; }
-      .similar-products .card:last-child {
-        margin-right: 0;
-      }
+        width: 280px;
+        flex-shrink: 0;
+        margin-right: 16px; }
       .similar-products .card img {
         width: 100%;
         height: 200px;}
+        .cards_similar {
+            overflow-x: auto;
+            margin-right: -20px;
+        }
   .product {
     padding-top: 17px;
     padding-bottom: 60px; }
@@ -1104,8 +1057,8 @@ margin: 16px -20px; }
     font-size: 24px;
     line-height: 29px; }
   
-  .l-t-02 {
-    letter-spacing: 0.02em; }
+  .l-t-05 {
+    letter-spacing: 0.05em; }
   
   .text-small {
     font-weight: normal;
@@ -1133,15 +1086,38 @@ margin: 16px -20px; }
 .product_sidebar.disabled .calc-qty, .main .product_sidebar.disabled input.calc-qty {
   border-color: #E3E6E7;
   color: #BCC4C7; }
+.shipping_block {
+    background: #F0F1F2;
+    border: 1px solid #E0E4E5;
+    padding: 20px;
+    margin-bottom: 8px;
+    border-radius: 4px;}
 .scroll-x {
   overflow-x: auto;}
 .scroll-x::-webkit-scrollbar {
   display: none; }
 .tns-outer {
-  margin-left: -4px;
-  margin-right: -4px; }
-  .tns-outer .scroll-x {
+    position: relative;}
+.tns-outer .scroll-x {
     margin-left: 0!important;}
+.tns-nav {
+    position: absolute;
+    bottom: -45px;
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;}
+.tns-nav button {
+    width: 8px;
+    height: 8px;
+    background: #E0E4E5;
+    border-radius: 50%;
+    margin: 0 4px;}
+.tns-nav button.tns-nav-active {
+    width: 10px;
+    height: 10px;
+    background: #1E3944;}
 .available-options .justify-content-between label {
   position: relative;
   z-index: 1;
@@ -1248,6 +1224,28 @@ margin: 16px -20px; }
     z-index: 99;
     padding-top: 20px;
   }
+  .add-to-cart {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    z-index: 999;
+    background: #fff;
+    box-shadow: 0 -1px 2px rgba(0, 0, 0, 0.3), 0 -1px 3px 1px rgba(0, 0, 0, 0.15);
+    padding: 20px 20px 20px 8px;
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(50px);
+    transition: all 0.3s ease;
+  }
+  .add-to-cart.active {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(0);
+  }
+  .add-to-cart .calc {
+    margin-bottom: 0;
+  }
 
 </style>`
 
@@ -1264,14 +1262,13 @@ let htmlMenu = `
             </a> 
          
             <div class="category_popular">
-                <a href="/category/new-products" class="c-red">New Products</a>
-                <a href="/category/sale-products" class="c-red">Sale Products</a>
-                <a href="/category/hand-sanitizing">Hand Sanitizing</a>
-                <a href="/category/wound-care">Wound Care</a>
-                <a href="/category/gloves">Gloves</a>
-                <a href="/category/disinfectants">Disinfectants</a>
-                <a href="/category/ostomy">Ostomy</a>
-                <a href="/category/instruments">Instruments</a>
+                <a href="/?products%5BhierarchicalMenu%5D%5Bcategories.lvl0%5D%5B0%5D=New%20Products!" class="c-red">New Products</a>
+                <a href="/?products%5BhierarchicalMenu%5D%5Bcategories.lvl0%5D%5B0%5D=Hand%20Sanitizing">Hand Sanitizing</a>
+                <a href="/?products%5BhierarchicalMenu%5D%5Bcategories.lvl0%5D%5B0%5D=Wound%20Care">Wound Care</a>
+                <a href="/?products%5BhierarchicalMenu%5D%5Bcategories.lvl0%5D%5B0%5D=Gloves">Gloves</a>
+                <a href="/?products%5BhierarchicalMenu%5D%5Bcategories.lvl0%5D%5B0%5D=Disinfectants">Disinfectants</a>
+                <a href="/?products%5BhierarchicalMenu%5D%5Bcategories.lvl0%5D%5B0%5D=Ostomy">Ostomy</a>
+                <a href="/?products%5BhierarchicalMenu%5D%5Bcategories.lvl0%5D%5B0%5D=Instruments">Instruments</a>
                 <button type="button" class="flex-center-between all_category" data-button=".menu-conteiner"> 
                     <span>view All Categories</span> 
                     <img src="https://conversionratestore.github.io/projects/medicalmega/img/arrow_forward-right.svg" alt="arrow right icon">
@@ -1513,18 +1510,6 @@ function changeQty(qty,pr,action) {
     }
     if (qty.value == '') {
         pr.innerHTML = pr.dataset.price
-    }
-    if (qty.value > 1) {
-        qty.parentElement.nextElementSibling.querySelector('span').hidden = false;
-    } else {
-        if (qty.closest('.product_sidebar')) {
-            qty.closest('.product_sidebar').querySelector('.add-cart span').hidden = true;
-            if (document.querySelector('.available-options') == null) {
-                qty.closest('.product_sidebar').querySelector('.add-cart span').hidden = true;
-            } else {
-                qty.closest('.product_sidebar').querySelector('.add-cart span').hidden = false;
-            }
-        }
     }
 }
 
@@ -1859,7 +1844,8 @@ function toggleModal(item) {
 
                         if (window.location.pathname.includes('/category') && !window.location.href.includes('?products') && categoryPageLoaded == false) {
                             categoryPageLoaded = true;
-                            search.helper.state.hierarchicalFacetsRefinements['categories.lvl0'] = [document.querySelector('title').innerHTML.split(' |')[0].split('&amp;').join('&')];
+                            let category = window.location.href.split('category/')[1].split('-').join(' ');
+                            search.helper.state.hierarchicalFacetsRefinements['categories.lvl0'] = [category];
                             search.refresh()
                         }
 
@@ -1974,7 +1960,7 @@ function toggleModal(item) {
 
         autocomplete('#form-search input', {hint: false, debug: false}, [
             {
-                source: autocomplete.sources.hits(index, {hitsPerPage: 7, facetFilters: ["*"]}),
+                source: autocomplete.sources.hits(index, {hitsPerPage: 5, facetFilters: ["*"]}),
                 displayKey: 'name',
                 // openOnFocus: true,
                 onStateChange: false,
@@ -2055,7 +2041,7 @@ function toggleModal(item) {
             <div class="wound-care">
               <h2>Wound Care</h2>
               <p class="c-gray">${res[2].nbHits} items</p>
-              <ul class=flex-wrap"></ul>
+              <ul class="flex-wrap"></ul>
               <a href="https://medicalmega.com/?products%5BhierarchicalMenu%5D%5Bcategories.lvl0%5D%5B0%5D=Wound%20Care" class="btn btn_white">Show More</a>
             </div>`);
 
@@ -2125,104 +2111,87 @@ function toggleModal(item) {
                         return label
                     }
 
-                    function getSlidesImage() {
+                    function slides() {
                         let slides = ''
                         for (let i = 0; i < imagesProduct.length; i++) {
-                            slides += `<div class="slide ${i == 0 ? 'active' : ''}"><img src="https://medicalmegaimgs.net/prod/uploaded/product/${imagesProduct[i]}" alt="image ${i}"> </div>`
+                            slides += `<div class="slide"><img src="https://medicalmegaimgs.net/prod/uploaded/product/${imagesProduct[i]}" alt="image ${i}"></div>`
                         }
                         return slides
                     }
 
                     let htmlProduct = `
-                <div id="container-product" class="container">
-                  <nav id="breadcrumbs-pdp" class="breadcrumbs">
-                    <ul class="ais-Breadcrumb-list">
-                      <li class="ais-Breadcrumb-item">
-                        <a class="ais-Breadcrumb-link" href="https://medicalmega.com/">Home</a>
-                      </li>
-                      <li class="ais-Breadcrumb-item">
-                        <span class="ais-Breadcrumb-separator" aria-hidden="true">&gt;</span>
-                        <a class="ais-Breadcrumb-link" href="https://medicalmega.com/?products%5BhierarchicalMenu%5D%5Bcategories.lvl0%5D%5B0%5D=${product.categories['lvl0'][0]}">${product.categories['lvl0'][0]}</a>
-                      </li>
-                      <li class="ais-Breadcrumb-item ais-Breadcrumb-item--selected"><span class="ais-Breadcrumb-separator" aria-hidden="true">&gt;</span>${product.name}</li>
-                    </ul>  
-                  </nav>
-                    <div class="flex-wrap w-100 justify-content-between product"> 
-                      <div class="col_left flex-wrap"> 
-                        <div class="side_one">
-                          <div class="slider-nav">${getSlidesImage()}</div>
-                          <div class="trustpilot"></div>
-                        </div>
-                        <div class="side_two">
-                          <div class="slider-for">
-                            <div class="slide" data-item="show-zoom">
-                              <img class="slider-for_img" id="forImg" src="https://medicalmegaimgs.net/prod/uploaded/product/${imagesProduct[0]}" alt="image ${product.name}">
-                              <div class="img-zoom-result" id="zoomResult"></div>
-                            </div>
-                          </div>
-                          <p class="text-small text-center">Image shown for reference purposes only. Actual product appearance may vary.</p>
-                        </div>
-                      </div>
-                      <div class="col_right"> 
-                        <div class="product_content justify-content-between"> 
-                          <div class="col_mid">
-                            <h2 class="title">${product.name}</h2>
-                            <ul class="list">
-                              <li> Sold By: <span class="fw-semi">${firstVariant.extra}</span></li>
-                              <li> Item Number: <span class="fw-semi">${product.item_num}</span></li>
-                              <li> Manufacturer: <span class="fw-semi">${product.manufacturer}</span></li>
-                            </ul>
-                            <ul class="tabs-discription d-flex"> 
-                              <li class="active">Product details</li>
-                            </ul>
-                            <div class="content-discription">
-                              <div class="content-item active">${firstVariant.desc}</div>
-                            </div>
-                          </div>
-                          <div class="product_sidebar ${firstVariant.in_stock == false ? 'disabled' : ''}">
-                            ${firstVariant.in_stock == false ? '<p class="out-of-stick">Out Of Stock</p>' : ''}
-                            <div class="product_sidebar_top">
-                              <div class="shipping_block">
-                                  <div class="align-items-center"> 
+                        <div id="container-product" class="container">
+                            <nav id="breadcrumbs-pdp" class="breadcrumbs">
+                                <ul class="ais-Breadcrumb-list">
+                                    <li class="ais-Breadcrumb-item">
+                                        <span class="ais-Breadcrumb-separator" aria-hidden="true" style="transform: scaleX(-1)">&gt;</span>
+                                        <a class="ais-Breadcrumb-link" href="https://medicalmega.com/?products%5BhierarchicalMenu%5D%5Bcategories.lvl0%5D%5B0%5D=${product.categories['lvl0'][0]}">${product.categories['lvl0'][0]}</a>
+                                    </li>
+                                </ul>  
+                            </nav>
+                            <div class="product"> 
+                                <h2 class="title">${product.name}</h2>
+                                <div class="slider-main">${slides()}</div>
+                                <p class="text-small text-center">Image shown for reference purposes only. Actual product appearance may vary.</p>
+                             
+                                <ul class="list">
+                                    <li> Sold By: <span class="fw-semi">${firstVariant.extra}</span></li>
+                                    <li> Item Number: <span class="fw-semi">${product.item_num}</span></li>
+                                    <li> Manufacturer: <span class="fw-semi">${product.manufacturer}</span></li>
+                                </ul>
+                                <div class="shipping_block flex-center-center">
                                     <img class="mr-16 icon-car" src="https://olha1001.github.io/medicalmega/pdp-rediesign/img/common/car.svg" alt="icon shipping">
                                     <div> 
-                                      <p class="c-red text-up fw-semi l-t-02">Estimated shipping</p>
-                                      <p class="c-gray">2-3 business days*</p>
+                                        <p class="c-red text-up fw-semi l-t-05">Estimated shipping</p>
+                                        <p class="c-gray">2-3 business days*</p>
                                     </div>
-                                  </div>
-                                  <div class="line"></div>
-                              </div>     
-                              ${product.variants.length < 2 ? `<div class="flex-end-between fw-semi total"> <p class="fs-14">Price:</p><p class="fs-24">$<span class="pr-state">${firstVariant.price}</span></p> </div>` : htmlAvailableOptions}
-                            </div>
-                            <form action="https://medicalmega.com/cart.html" method="post">
-                                <div class="flex-center-center calc" ${firstVariant.in_stock == false || firstVariant.price == '0:00' ? 'disabled' : ''}> 
-                                  <button class="btn-calc btn-calc_minus" type="button" disabled></button>
-                                  <input class="calc-qty" type="number" value="1" name="quantity">
-                                  <button class="btn-calc btn-calc_plus" type="button"></button>
+                                </div>    
+                                <p class="text-small">*Sometimes by technical reasons delivery can took a bit longer up to 7 days. </p>
+                                  
+                                <ul class="tabs-discription d-flex"> 
+                                    <li class="active">Product details</li>
+                                </ul>
+                                <div class="content-discription">
+                                    <div class="content-item active">${firstVariant.desc}</div>
                                 </div>
-                                ${firstVariant.in_stock == false || firstVariant.price == '0:00' ? '<button class="btn btn btn_white" type="button" data-button="notify">Out of Stock</button>' : `<button class="btn btn_dark add-cart" type="submit" ><span hidden>$<span class="pr" data-price="${firstVariant.price}">${firstVariant.price}</span> | </span>Add to Cart</button>`}
-                                <input type="hidden" name="product_variant_id" value="${firstVariant.pv_id}">
-                                <input type="hidden" name="product_id" value="${product.objectID}">
-                                <input type="hidden" name="add_to_cart" value="variant">
-                            </form>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <section class="similar-products">
-                      <h2 class="text-center">Similar Products</h2>
-                      <div class="justify-content-center cards_similar"></div>
-                    </section>
-                  </div>`
-
+                                <form class="flex-center-between add-to-cart active" action="https://medicalmega.com/cart.html" method="post">
+                                    <div class="flex-center-center calc" ${firstVariant.in_stock == false || firstVariant.price == '0:00' ? 'disabled' : ''}> 
+                                      <button class="btn-calc btn-calc_minus" type="button" disabled></button>
+                                      <input class="calc-qty" type="number" value="1" name="quantity">
+                                      <button class="btn-calc btn-calc_plus" type="button"></button>
+                                    </div>
+                                    ${firstVariant.in_stock == false || firstVariant.price == '0:00' ? '<button class="btn btn btn_white" type="button" data-button="notify">Out of Stock</button>' : `<button class="btn btn_dark add-cart" type="submit" ><span>$<span class="pr" data-price="${firstVariant.price}">${firstVariant.price}</span> | </span>Add to Cart</button>`}
+                                    <input type="hidden" name="product_variant_id" value="${firstVariant.pv_id}">
+                                    <input type="hidden" name="product_id" value="${product.objectID}">
+                                    <input type="hidden" name="add_to_cart" value="variant">
+                                </form>
+                                ${htmlAvailableOptions}
+                            </div>
+                            <section class="similar-products">
+                                <h2>Similar Products</h2>
+                                <div class="d-flex cards_similar"></div>
+                            </section>
+                        </div>`
+                    //add html pdp
                     document.querySelector('#container-listing').insertAdjacentHTML('beforebegin', htmlProduct);
 
                     document.querySelector('.available-options .scroll-x') != null ? document.querySelector('.available-options .scroll-x').innerHTML = availableOptions() : '';
 
+                    tns({
+                        container: document.querySelector('.slider-main'),
+                        autoplay: false,
+                        items: 1,
+                        axis: 'horizontal',
+                        controls: false,
+                        loop: false,
+                        mouseDrag: true,
+                        nav: true,
+                        preventScrollOnTouch: 'auto',
+                        swipeAngle: false,
+                    });
+
                     let tabs = document.querySelectorAll('.tabs-discription li'), //tabs description
-                        contents = document.querySelectorAll('.content-discription .content-item'), // content discription
-                        slidesFor = document.querySelectorAll('.slider-for .slide'); //slider main
-                    slidesNav = document.querySelectorAll('.slider-nav .slide'); //slider main
+                        contents = document.querySelectorAll('.content-discription .content-item'); // content discription
 
                     tabs.forEach((tab, i) => {
                         tab.addEventListener('click', () => {
@@ -2236,120 +2205,23 @@ function toggleModal(item) {
 
                         })
                     })
-                    //slider zoom
-                    slidesFor.forEach((el) => {
-                        el.addEventListener('mousemove', (e) => {
-                            document.querySelector('.img-zoom-result').style.visibility = 'visible';
-                            document.querySelector('.img-zoom-lens').style.visibility = 'visible';
-                        })
-                        el.addEventListener('mouseout', (e) => {
-                            document.querySelector('.img-zoom-result').style.visibility = 'hidden';
-                            document.querySelector('.img-zoom-lens').style.visibility = 'hidden';
-                        })
-                    })
-
-                    //slider nav
-                    slidesNav.forEach((el, i) => {
-                        el.addEventListener('click', () => {
-                            el.closest('.slider-nav').querySelector('.active').classList.remove('active');
-                            el.classList.add('active');
-
-                            let src = el.querySelector('img').getAttribute('src');
-                            document.querySelector('.slider-for_img').setAttribute('src', src)
-                            document.querySelector('.img-zoom-result').style.backgroundImage = `url("${src}")`
-                        })
-                    })
-
-                    //zoom
-                    function setImageZoom(imgID, resultID) {
-                        let img, lens, result, cx, cy;
-                        img = document.getElementById(imgID);
-                        result = document.getElementById(resultID);
-                        /*create lens:*/
-                        lens = document.createElement("DIV");
-                        lens.setAttribute("class", "img-zoom-lens");
-                        /*insert lens:*/
-                        img.parentElement.insertBefore(lens, img);
-                        /*calculate the ratio between result DIV and lens:*/
-                        cx = result.offsetWidth / lens.offsetWidth;
-                        cy = result.offsetHeight / lens.offsetHeight;
-                        /*set background properties for the result DIV:*/
-                        result.style.backgroundImage = "url('" + img.src + "')";
-                        result.style.backgroundSize = (img.width * cx) + "px " + (img.height * cy) + "px";
-                        /*execute a function when someone moves the cursor over the image, or the lens:*/
-                        lens.addEventListener("mousemove", moveLens);
-                        img.addEventListener("mousemove", moveLens);
-                        /*and also for touch screens:*/
-                        lens.addEventListener("touchmove", moveLens);
-                        img.addEventListener("touchmove", moveLens);
-
-                        function moveLens(e) {
-                            var pos, x, y;
-                            /*prevent any other actions that may occur when moving over the image:*/
-                            e.preventDefault();
-                            /*get the cursor's x and y positions:*/
-                            pos = getCursorPos(e);
-                            /*calculate the position of the lens:*/
-                            x = pos.x - (lens.offsetWidth / 2);
-                            y = pos.y - (lens.offsetHeight / 2);
-                            /*prevent the lens from being positioned outside the image:*/
-                            if (x > img.width - lens.offsetWidth) {
-                                x = img.width - lens.offsetWidth;
-                            }
-                            if (x < 0) {
-                                x = 0;
-                            }
-                            if (y > img.height - lens.offsetHeight) {
-                                y = img.height - lens.offsetHeight;
-                            }
-                            if (y < 0) {
-                                y = 0;
-                            }
-                            /*set the position of the lens:*/
-                            lens.style.left = x + "px";
-                            lens.style.top = y + "px";
-                            /*display what the lens "sees":*/
-                            result.style.backgroundPosition = "-" + (x * cx) + "px -" + (y * cy) + "px";
-                        }
-
-                        function getCursorPos(e) {
-                            var a, x = 0, y = 0;
-                            e = e || window.event;
-                            /*get the x and y positions of the image:*/
-                            a = img.getBoundingClientRect();
-                            /*calculate the cursor's x and y coordinates, relative to the image:*/
-                            x = e.pageX - a.left;
-                            y = e.pageY - a.top;
-                            /*consider any page scrolling:*/
-                            x = x - window.pageXOffset;
-                            y = y - window.pageYOffset;
-                            return {x: x, y: y};
-                        }
-                    }
-
-                    let startZoom = setInterval(() => {
-                        if (document.querySelector('#zoomResult') != null && document.querySelector('#forImg') != null) {
-                            clearInterval(startZoom)
-                            setImageZoom("forImg", "zoomResult")
-                        }
-                    }, 200);
 
                     if (product.variants.length > 2) {
-                        let contentAvailableOptions = document.querySelector('.product_sidebar .available-options .justify-content-between');
+                        let contentAvailableOptions = document.querySelector('.available-options .justify-content-between');
 
                         contentAvailableOptions.insertAdjacentHTML('beforebegin', `
-                      <div class="arrow_buttons">
-                          <button class="arrow_button arrow_button_prev" type="button" disabled>
-                              <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                  <path d="M12.2868 13.8473C12.3432 13.9036 12.375 13.9803 12.375 14.0602C12.375 14.1402 12.3432 14.2169 12.2868 14.2732L11.6546 14.9091C11.6005 14.9671 11.5249 15 11.4459 15C11.3668 15 11.2912 14.9671 11.2371 14.9091L5.75621 9.39594C5.6723 9.31164 5.6251 9.19728 5.625 9.07799V8.92201C5.6251 8.80272 5.6723 8.68836 5.75621 8.60406L11.2371 3.0909C11.2912 3.0329 11.3668 3 11.4459 3C11.5249 3 11.6005 3.0329 11.6546 3.0909L12.2868 3.7268C12.3432 3.78312 12.375 3.85979 12.375 3.93977C12.375 4.01975 12.3432 4.09641 12.2868 4.15274L7.46788 9L12.2868 13.8473Z" fill="#091114"/>
-                              </svg>
-                          </button>
-                          <button class="arrow_button arrow_button_next" type="button">
-                              <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                  <path d="M5.71321 13.8473C5.65675 13.9036 5.625 13.9803 5.625 14.0602C5.625 14.1402 5.65675 14.2169 5.71321 14.2732L6.34539 14.9091C6.39951 14.9671 6.47506 15 6.55413 15C6.63321 15 6.70876 14.9671 6.76287 14.9091L12.2438 9.39594C12.3277 9.31164 12.3749 9.19728 12.375 9.07799V8.92201C12.3749 8.80272 12.3277 8.68836 12.2438 8.60406L6.76287 3.0909C6.70876 3.0329 6.63321 3 6.55413 3C6.47506 3 6.39951 3.0329 6.34539 3.0909L5.71321 3.7268C5.65675 3.78312 5.625 3.85979 5.625 3.93977C5.625 4.01975 5.65675 4.09641 5.71321 4.15274L10.5321 9L5.71321 13.8473Z" fill="#091114"/>
-                              </svg>
-                          </button>
-                      </div>`)
+                          <div class="arrow_buttons">
+                              <button class="arrow_button arrow_button_prev" type="button" disabled>
+                                  <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                      <path d="M12.2868 13.8473C12.3432 13.9036 12.375 13.9803 12.375 14.0602C12.375 14.1402 12.3432 14.2169 12.2868 14.2732L11.6546 14.9091C11.6005 14.9671 11.5249 15 11.4459 15C11.3668 15 11.2912 14.9671 11.2371 14.9091L5.75621 9.39594C5.6723 9.31164 5.6251 9.19728 5.625 9.07799V8.92201C5.6251 8.80272 5.6723 8.68836 5.75621 8.60406L11.2371 3.0909C11.2912 3.0329 11.3668 3 11.4459 3C11.5249 3 11.6005 3.0329 11.6546 3.0909L12.2868 3.7268C12.3432 3.78312 12.375 3.85979 12.375 3.93977C12.375 4.01975 12.3432 4.09641 12.2868 4.15274L7.46788 9L12.2868 13.8473Z" fill="#091114"/>
+                                  </svg>
+                              </button>
+                              <button class="arrow_button arrow_button_next" type="button">
+                                  <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                      <path d="M5.71321 13.8473C5.65675 13.9036 5.625 13.9803 5.625 14.0602C5.625 14.1402 5.65675 14.2169 5.71321 14.2732L6.34539 14.9091C6.39951 14.9671 6.47506 15 6.55413 15C6.63321 15 6.70876 14.9671 6.76287 14.9091L12.2438 9.39594C12.3277 9.31164 12.3749 9.19728 12.375 9.07799V8.92201C12.3749 8.80272 12.3277 8.68836 12.2438 8.60406L6.76287 3.0909C6.70876 3.0329 6.63321 3 6.55413 3C6.47506 3 6.39951 3.0329 6.34539 3.0909L5.71321 3.7268C5.65675 3.78312 5.625 3.85979 5.625 3.93977C5.625 4.01975 5.65675 4.09641 5.71321 4.15274L10.5321 9L5.71321 13.8473Z" fill="#091114"/>
+                                  </svg>
+                              </button>
+                          </div>`)
 
                         document.querySelectorAll('.arrow_button').forEach(arrow => {
                             arrow.addEventListener('click', () => {
@@ -2404,10 +2276,10 @@ function toggleModal(item) {
                         checkbox.addEventListener('change', (e) => {
                             if (checkbox.checked) {
                                 let optionPrice = checkbox.nextElementSibling.querySelector('.radio-check_price').innerText.replace('$', ''),
-                                    qty = document.querySelector('.product_sidebar .calc-qty'),
-                                    priceProduct = document.querySelector('.product_sidebar .add-cart .pr');
+                                    qty = document.querySelector('.product .calc-qty'),
+                                    priceProduct = document.querySelector('.product .add-cart .pr');
 
-                                document.querySelector('.product_sidebar [name="product_variant_id"]').value = checkbox.dataset.variant;
+                                document.querySelector('.product [name="product_variant_id"]').value = checkbox.dataset.variant;
                                 priceProduct.dataset.price = optionPrice;
 
                                 priceProduct.innerHTML = (+optionPrice * +qty.value).toFixed(2);
@@ -2415,9 +2287,7 @@ function toggleModal(item) {
                                     priceProduct.innerHTML = optionPrice
                                 }
                             }
-                            actionDataLayer = 'Click on available options';
-                            labelDataLayer = 'PDP';
-                            pushDataLayer(actionDataLayer, labelDataLayer)
+                            pushDataLayer('Click on available options', 'PDP')
                         })
                     })
 
@@ -2497,7 +2367,7 @@ mut.observe(document, optionMut);
 //     'eventCategory': 'Exp — New PL',
 //     'eventAction': 'loaded'
 // });
-
+//
 // (function(h,o,t,j,a,r){
 //     h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
 //     h._hjSettings={hjid:1483840,hjsv:6};
