@@ -755,7 +755,7 @@ let startFunk = setInterval(() => {
           el.closest("div")?.insertAdjacentHTML("afterbegin", renderNewLabel(text, "https://conversionratestore.github.io/projects/artisanborn/img/select_height2.png"))
         } else if (text === "SIZE" || text === "CHOOSE SIZE") {
           el.closest("div")?.insertAdjacentHTML("afterbegin", renderNewLabel(text, "https://conversionratestore.github.io/projects/artisanborn/img/select_size2.png"))
-        } else if (text === "WOOD" || text === "WOOD COLOR" || text === "CHOOSE COLOR" || text === "MATERIAL") {
+        } else if (text === "WOOD" || text === "WOOD COLOR" || text === "CHOOSE COLOR" || text === "MATERIAL" || text === "CHOOSE MATERIAL") {
           if (el.value.toLocaleUpperCase().includes("WALNUT")) {
             el.closest("div")?.insertAdjacentHTML("afterbegin", renderNewLabel(text, "https://conversionratestore.github.io/projects/artisanborn/img/walnut2.png"))
           } else if (el.value.toLocaleUpperCase().includes("MAPLE")) {
@@ -935,7 +935,7 @@ let startFunk = setInterval(() => {
           })
         }
 
-        if (text === "WOOD" || text === "WOOD COLOR" || text === "CHOOSE COLOR" || text === "MATERIAL") {
+        if (text === "WOOD" || text === "WOOD COLOR" || text === "CHOOSE COLOR" || text === "MATERIAL" || text === "CHOOSE MATERIAL") {
           el.addEventListener("change", function () {
             if (el.value.toLocaleUpperCase().includes("WALNUT")) {
               el.closest("div").querySelector(".new_label img").src = "https://conversionratestore.github.io/projects/artisanborn/img/walnut2.png"
