@@ -512,12 +512,6 @@ margin: 16px -20px; }
   position: absolute;
   top: 16px;
   right: 16px; }
-.line {
-  background: #DCE0E1;
-  width: 100%;
-  height: 1px;
-  display: block;
-  margin: 12px 0; }
 .calc {
   margin-bottom: 16px; }
 .calc[disabled] {
@@ -909,44 +903,15 @@ margin: 16px -20px; }
     .list li {
       font-size: 16px;
       line-height: 170%; }
-  .out-of-stick {
-    position: absolute;
-    top: 16px;
-    right: 16px;
-    font-size: 14px;
-    line-height: 150%;
-    color: #96280F!important;}
-  .product_sidebar {
-    min-height: 381px;
-    background: #F0F1F2;
-    border: 1px solid #E3E6E7;
-    border-radius: 4px;
-    width: 280px;
-    padding: 48px 40px 40px;
-    height: -webkit-fit-content;
-    height: -moz-fit-content;
-    height: fit-content;
-    position: sticky;
-    display: flex;
-    justify-content: space-between;
-    flex-direction: column;
-    top: 255px; }
-  .product_sidebar .btn {
-  padding: 0;
-    width: 100%;}
-  .product_content { 
-    font-family: 'Inter', sans-serif;
-    padding-top: 28px; }
-    .product_content h2, .product_content .title {
-        padding-left: 0;
+
+  .product { 
+    font-family: 'Inter', sans-serif;}
+    .product h2, .product .title {
+      padding-left: 0;
       font-weight: 600;
       font-size: 32px;
       line-height: 120%;
-      margin-bottom: 24px; }
-    .product_content .col_mid {
-        padding-right: 10px;
-        width: calc(100% - 280px);
-        max-width: 426px; }
+      margin-bottom: 20px; }
   .line {
     background: #DCE0E1;
     width: 100%;
@@ -1004,7 +969,7 @@ margin: 16px -20px; }
     line-height: 21px;
     color: #091114;
     border-bottom: 1px solid #BCC4C7;
-    padding: 13px 15px;
+    padding: 9.5px 10px;
     cursor: pointer; }
     .tabs-discription li:first-letter {
         text-transform: uppercase;}
@@ -1039,9 +1004,6 @@ margin: 16px -20px; }
             overflow-x: auto;
             margin-right: -20px;
         }
-  .product {
-    padding-top: 17px;
-    padding-bottom: 60px; }
   .mt-22 {
     margin-top: 22px; }
   
@@ -2146,7 +2108,7 @@ function toggleModal(item) {
                                         <p class="c-gray">2-3 business days*</p>
                                     </div>
                                 </div>    
-                                <p class="text-small">*Sometimes by technical reasons delivery can took a bit longer up to 7 days. </p>
+                                <p class="text-small text-center">*Sometimes by technical reasons delivery can took a bit longer up to 7 days. </p>
                                   
                                 <ul class="tabs-discription d-flex"> 
                                     <li class="active">Product details</li>
