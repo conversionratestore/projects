@@ -932,6 +932,7 @@ let start = setInterval(() => {
 
         if (sentPost == false) {
             sentPost = true;
+            document.querySelector('[name="viewport"]').setAttribute('content','width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no')
 
             let isClarifyVisited = setInterval(() => {
                 if(typeof clarity == 'function') {
