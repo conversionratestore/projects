@@ -912,6 +912,10 @@ margin: 16px -20px; }
       font-size: 32px;
       line-height: 120%;
       margin-bottom: 20px; }
+  .product_pricing {
+    margin-top: 20px;}
+  .product_pricing .btn {
+    width: 100%;}
   .line {
     background: #DCE0E1;
     width: 100%;
@@ -963,6 +967,8 @@ margin: 16px -20px; }
         width: 40%;
         padding-right: 10px;
         word-break: break-word; }
+    .tabs-discription {
+        margin-top: 40px;}
   .tabs-discription li {
     text-transform: lowercase;
     font-size: 14px;
@@ -1388,7 +1394,16 @@ let requestProduct = new Promise((resolve, reject) => {
         fetch(`https://PXDJAQHDPZ-dsn.algolia.net/1/indexes/products?query=${window.location.pathname.split('/product/')[1]}`, optionFetchAlgolia).then(res => res.json()).then(data => resolve(data))
     }
 })
+//comes into view
+function isScrolledIntoView(el) {
+    let rect = el.getBoundingClientRect(),
+        elemTop = rect.top,
+        elemBottom = rect.bottom;
 
+    let isVisible = (elemTop >= 0) && (elemBottom <= window.innerHeight);
+
+    return isVisible;
+}
 //push dataLayer
 function pushDataLayer(actionDataLayer, labelDataLayer) {
     window.dataLayer = window.dataLayer || [];
@@ -1472,6 +1487,18 @@ function changeQty(qty,pr,action) {
     }
     if (qty.value == '') {
         pr.innerHTML = pr.dataset.price
+    }
+    //pricing PDP
+    if (qty.closest('.product_pricing')) {
+        let qtyBlock = qty.closest('.product').querySelector('.add-to-cart .calc-qty'),
+            priceBlock = qty.closest('.product').querySelector('.add-to-cart .add-cart .pr');
+        qtyBlock.value = qty.value;
+        priceBlock.innerHTML = (+priceBlock.dataset.price * +qty.value).toFixed(2);
+    } else if (qty.closest('.add-to-cart')) {
+        let qtyBlock = qty.closest('.product').querySelector('.product_pricing .calc-qty'),
+            priceBlock = qty.closest('.product').querySelector('.product_pricing .add-cart .pr');
+        qtyBlock.value = qty.value;
+        priceBlock.innerHTML = (+priceBlock.dataset.price * +qty.value).toFixed(2);
     }
 }
 
@@ -2080,6 +2107,20 @@ function toggleModal(item) {
                         }
                         return slides
                     }
+                    function pricingBlock(className) {
+                        return `
+                           <form class="${className}" action="https://medicalmega.com/cart.html" method="post">
+                                <div class="flex-center-center calc" ${firstVariant.in_stock == false || firstVariant.price == '0:00' ? 'disabled' : ''}> 
+                                  <button class="btn-calc btn-calc_minus" type="button" disabled></button>
+                                  <input class="calc-qty" type="number" value="1" name="quantity">
+                                  <button class="btn-calc btn-calc_plus" type="button"></button>
+                                </div>
+                                ${firstVariant.in_stock == false || firstVariant.price == '0:00' ? '<button class="btn btn btn_white" type="button" data-button="notify">Out of Stock</button>' : `<button class="btn btn_dark add-cart" type="submit" ><span>$<span class="pr" data-price="${firstVariant.price}">${firstVariant.price}</span> | </span>Add to Cart</button>`}
+                                <input type="hidden" name="product_variant_id" value="${firstVariant.pv_id}">
+                                <input type="hidden" name="product_id" value="${firstVariant.objectID}">
+                                <input type="hidden" name="add_to_cart" value="variant">
+                            </form>`
+                    }
 
                     let htmlProduct = `
                         <div id="container-product" class="container">
@@ -2116,18 +2157,9 @@ function toggleModal(item) {
                                 <div class="content-discription">
                                     <div class="content-item active">${firstVariant.desc}</div>
                                 </div>
-                                <form class="flex-center-between add-to-cart active" action="https://medicalmega.com/cart.html" method="post">
-                                    <div class="flex-center-center calc" ${firstVariant.in_stock == false || firstVariant.price == '0:00' ? 'disabled' : ''}> 
-                                      <button class="btn-calc btn-calc_minus" type="button" disabled></button>
-                                      <input class="calc-qty" type="number" value="1" name="quantity">
-                                      <button class="btn-calc btn-calc_plus" type="button"></button>
-                                    </div>
-                                    ${firstVariant.in_stock == false || firstVariant.price == '0:00' ? '<button class="btn btn btn_white" type="button" data-button="notify">Out of Stock</button>' : `<button class="btn btn_dark add-cart" type="submit" ><span>$<span class="pr" data-price="${firstVariant.price}">${firstVariant.price}</span> | </span>Add to Cart</button>`}
-                                    <input type="hidden" name="product_variant_id" value="${firstVariant.pv_id}">
-                                    <input type="hidden" name="product_id" value="${product.objectID}">
-                                    <input type="hidden" name="add_to_cart" value="variant">
-                                </form>
-                                ${htmlAvailableOptions}
+                                ${pricingBlock('flex-center-between add-to-cart active')}
+                                ${product.variants.length > 1 ? htmlAvailableOptions : ''}
+                                ${pricingBlock('product_pricing')}
                             </div>
                             <section class="similar-products">
                                 <h2>Similar Products</h2>
@@ -2136,6 +2168,15 @@ function toggleModal(item) {
                         </div>`
                     //add html pdp
                     document.querySelector('#container-listing').insertAdjacentHTML('beforebegin', htmlProduct);
+
+                    //comes into view pricing product
+                    window.addEventListener('scroll', () => {
+                       if (isScrolledIntoView(document.querySelector('.product_pricing')) == true) {
+                           document.querySelector('.add-to-cart').classList.remove('active');
+                       } else {
+                           document.querySelector('.add-to-cart').classList.add('active');
+                       }
+                    })
 
                     document.querySelector('.available-options .scroll-x') != null ? document.querySelector('.available-options .scroll-x').innerHTML = availableOptions() : '';
 
@@ -2169,7 +2210,7 @@ function toggleModal(item) {
                     })
 
                     if (product.variants.length > 2) {
-                        let contentAvailableOptions = document.querySelector('.available-options .justify-content-between');
+                        let contentAvailableOptions = document.querySelector('.available-options .scroll-x');
 
                         contentAvailableOptions.insertAdjacentHTML('beforebegin', `
                           <div class="arrow_buttons">
@@ -2185,49 +2226,26 @@ function toggleModal(item) {
                               </button>
                           </div>`)
 
+                        //event for arrow button in available options
                         document.querySelectorAll('.arrow_button').forEach(arrow => {
-                            arrow.addEventListener('click', () => {
-                                actionDataLayer = 'Click on arrow-slide button';
-                                labelDataLayer = 'Product section';
-                                pushDataLayer(actionDataLayer, labelDataLayer)
-                            })
+                            arrow.addEventListener('click', () => pushDataLayer('Click on arrow-slide button', 'Product section'))
                         })
 
-                        let linkCustom = document.createElement('link');
-                        linkCustom.href = 'https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.3/tiny-slider.css';
-                        linkCustom.rel = 'stylesheet';
-                        document.head.appendChild(linkCustom);
-
-                        let scriptCustom = document.createElement('script');
-                        scriptCustom.src = 'https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.3/min/tiny-slider.js';
-                        scriptCustom.async = false;
-                        document.body.appendChild(scriptCustom);
-
-                        let startInterval = setInterval(() => {
-                            if (contentAvailableOptions != null) {
-                                if (document.querySelector('.tns-outer') != null) {
-                                    clearInterval(startInterval)
-                                } else {
-                                    let sliderCategories = tns({
-                                        container: contentAvailableOptions,
-                                        items: 2,
-                                        axis: 'horizontal',
-                                        controls: true,
-                                        loop: false,
-                                        prevButton: document.querySelector('.arrow_button_prev'),
-                                        nextButton: document.querySelector('.arrow_button_next'),
-                                        autoplayButton: false,
-                                        autoplayButtonOutput: false,
-                                        mouseDrag: true,
-                                        nav: false,
-                                        // autoWidth: true,
-                                        preventScrollOnTouch: 'auto',
-                                        swipeAngle: false,
-                                    });
-                                    clearInterval(startInterval)
-                                }
-                            }
-                        }, 200)
+                        tns({
+                            container: contentAvailableOptions,
+                            items: 2,
+                            axis: 'horizontal',
+                            controls: true,
+                            loop: false,
+                            prevButton: document.querySelector('.arrow_button_prev'),
+                            nextButton: document.querySelector('.arrow_button_next'),
+                            autoplayButton: false,
+                            autoplayButtonOutput: false,
+                            mouseDrag: true,
+                            nav: false,
+                            preventScrollOnTouch: 'auto',
+                            swipeAngle: false,
+                        });
                     }
 
                     //checkbox choice
