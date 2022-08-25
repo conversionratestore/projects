@@ -362,7 +362,6 @@ letter-spacing: 0.05em;
   margin-right: 10px; }
   .category_popular {
     padding: 14px 0;
-    min-height: calc(100vh - 345px);
     border-bottom: 1px solid #E0E4E5;
   }
 .category_popular a {
@@ -1018,6 +1017,7 @@ margin: 16px -20px; }
       .similar-products .card {
         width: 280px;
         flex-shrink: 0;
+        padding: 40px;
         margin-right: 16px; }
       .similar-products .card img {
         width: 100%;
