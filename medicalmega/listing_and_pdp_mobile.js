@@ -1190,6 +1190,7 @@ margin: 16px -20px; }
     border-style: solid;
     border-width: 4px 4px 0 4px;
     border-color: rgba(154,166,171,0.5) transparent transparent transparent;
+    pointer-events: none;
   }
   .close-menu {
     background: transparent;
