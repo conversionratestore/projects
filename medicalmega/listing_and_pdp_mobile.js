@@ -1507,785 +1507,786 @@ function changeQty(qty,pr,action) {
 function toggleModal(item) {
     document.querySelector(item).classList.toggle('active')
 }
-// window.onload = function() {
-    if (sessionStorage.getItem('old_version') == null) {
-        document.body.insertAdjacentHTML('afterbegin', html);
-        document.body.insertAdjacentHTML('afterbegin', htmlMenu);
-        document.body.insertAdjacentHTML('afterbegin', style);
+window.onload = function() {
+    document.querySelector('[name="viewport"]').setAttribute('content','width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no')
 
-        startStuff();
+    document.body.insertAdjacentHTML('afterbegin', html);
+    document.body.insertAdjacentHTML('afterbegin', htmlMenu);
+    document.body.insertAdjacentHTML('afterbegin', style);
 
-        document.querySelector('.header').before(document.querySelector('#top'));
-        document.querySelector('#top img').src = 'https://conversionratestore.github.io/projects/medicalmega/img/chevron-right.svg';
-        document.querySelector('#top').addEventListener('click', (e) => {
-            actionDataLayer = `Click on Top button`;
-            labelDataLayer = `Footer`;
-            pushDataLayer(actionDataLayer, labelDataLayer);
+    startStuff();
+
+    document.querySelector('.header').before(document.querySelector('#top'));
+    document.querySelector('#top img').src = 'https://conversionratestore.github.io/projects/medicalmega/img/chevron-right.svg';
+    document.querySelector('#top').addEventListener('click', (e) => {
+        actionDataLayer = `Click on Top button`;
+        labelDataLayer = `Footer`;
+        pushDataLayer(actionDataLayer, labelDataLayer);
+    })
+    document.querySelector('.cart_count').innerHTML = document.querySelector('.shoppingcart .by_num span').innerHTML;
+
+    document.querySelectorAll('[data-button]').forEach(item => {
+        item.addEventListener('click', (e) => {
+            let data = item.dataset.button
+            toggleModal(data)
+            if (item.classList.contains('close-menu')) {
+                pushDataLayer(`Click on close button`, `Header`);
+            } else if (item.classList.contains('all_category')) {
+                pushDataLayer(`Click on view All Categories button`, `Header`);
+            } else if (item.classList.contains('back-menu')) {
+                pushDataLayer(`Click on Main Menu button`, `Header`);
+            } else if (item.classList.contains('btn-filters')) {
+                pushDataLayer(`Click on filters button`, `Listing`);
+            } else if (item.classList.contains('close-filter')) {
+                pushDataLayer(`Click on close button`, `Filters`);
+            } else if (item.classList.contains('burger')) {
+                pushDataLayer(`Click on burger button`, `Header`);
+            }
         })
-        document.querySelector('.cart_count').innerHTML = document.querySelector('.shoppingcart .by_num span').innerHTML;
+    })
 
-        document.querySelectorAll('[data-button]').forEach(item => {
-            item.addEventListener('click', (e) => {
-                let data = item.dataset.button
-                toggleModal(data)
-                if (item.classList.contains('close-menu')) {
-                    pushDataLayer(`Click on close button`, `Header`);
-                } else if (item.classList.contains('all_category')) {
-                    pushDataLayer(`Click on view All Categories button`, `Header`);
-                } else if (item.classList.contains('back-menu')) {
-                    pushDataLayer(`Click on Main Menu button`, `Header`);
-                } else if (item.classList.contains('btn-filters')) {
-                    pushDataLayer(`Click on filters button`, `Listing`);
-                } else if (item.classList.contains('close-filter')) {
-                    pushDataLayer(`Click on close button`, `Filters`);
-                } else if (item.classList.contains('burger')) {
-                    pushDataLayer(`Click on burger button`, `Header`);
+    //click on menu
+    document.querySelector('.menu').addEventListener('click', (e) => {
+        if (e.target.matches('.menu')) {
+            toggleModal('.menu')
+            pushDataLayer(`Click on under menu`, `Header`);
+        }
+    })
+
+    //hide dropdown select
+    function remActiveSelect() {
+        let dropdowns = document.querySelectorAll(".select");
+        for (let i = 0; i < dropdowns.length; i++) {
+            if (dropdowns[i].classList.contains('active')) {
+                dropdowns[i].classList.remove('active');
+            }
+        }
+    }
+
+    requestAllCaterories.then(data => {
+        let categoriesLvl0 = data.facets["categories.lvl0"];
+
+        console.log(data)
+
+        let alphabet = document.querySelector('.alphabet'); //alphabet
+        // alphabet.innerHTML = '';
+
+        let litterAlphabet = [];
+        for (let key in categoriesLvl0) {
+            litterAlphabet.push({'letter': key.charAt(0)})
+        }
+
+        litterAlphabet = litterAlphabet.filter((thing, index, self) =>
+            index === self.findIndex((t) => (
+                t.letter === thing.letter
+            ))
+        )
+
+        for (let i = 0; i < litterAlphabet.length; i++) {
+            alphabet.insertAdjacentHTML('afterbegin', `<li><p class="alphabet-item flex-center-between ${litterAlphabet[i].letter == 'A' ? 'active' : ''}">${litterAlphabet[i].letter} <span class="arrow"></span></p><div class="alphabet-drop"></div></li>`);
+        }
+
+        let items = [...alphabet.querySelectorAll("li")];
+        items.sort((a, b) => a.innerText == b.innerText ? 0 : a.innerText < b.innerText ? -1 : 1);
+        items.forEach(item => alphabet.appendChild(item));
+
+        for (let key in categoriesLvl0) {
+            document.querySelectorAll('.alphabet-item').forEach(letter => {
+                if (key.charAt(0) == letter.innerText.charAt(0)) {
+                    letter.nextElementSibling.insertAdjacentHTML('beforeend', `<a href="https://medicalmega.com/?products%5BhierarchicalMenu%5D%5Bcategories.lvl0%5D%5B0%5D=${key}">${key}</a>`)
                 }
+            })
+        }
+
+        document.querySelectorAll('.alphabet-drop a').forEach((el) => {
+            el.addEventListener('click', (e) => {
+                e.preventDefault()
+                let link = el.href.split('20&').join('20%26');
+                window.location.href = link;
+                actionDataLayer = `Click on category item - ${el.innerText}`;
+                labelDataLayer = `All categories`;
+                pushDataLayer(actionDataLayer, labelDataLayer);
             })
         })
 
-        //click on menu
-        document.querySelector('.menu').addEventListener('click', (e) => {
-            if (e.target.matches('.menu')) {
-                toggleModal('.menu')
-                pushDataLayer(`Click on under menu`, `Header`);
-            }
+        alphabet.querySelectorAll('.alphabet-item').forEach(el => {
+            el.addEventListener('click', (e) => {
+                e.stopImmediatePropagation();
+                e.target.closest('.alphabet').querySelector('.active').classList.remove('active');
+                e.target.classList.add('active');
+            })
         })
 
-        //hide dropdown select
-        function remActiveSelect() {
-            let dropdowns = document.querySelectorAll(".select");
-            for (let i = 0; i < dropdowns.length; i++) {
-                if (dropdowns[i].classList.contains('active')) {
-                    dropdowns[i].classList.remove('active');
-                }
+
+    })
+
+    function findImageHits(variants) {
+        for (let i = 0; i < variants.length; i++) {
+            if (variants[i].image != '') {
+                return variants[i].image
+            }
+        }
+    }
+
+    function initHits(hit) {
+        let variants = hit.variants,
+            count = 0;
+        for (let i = 0; i < variants.length; i++) {
+            if (variants[i].in_stock == true && variants[i].price != '0:00') {
+                count = i;
+                break;
+            } else {
+                count = i;
             }
         }
 
-        requestAllCaterories.then(data => {
-            let categoriesLvl0 = data.facets["categories.lvl0"];
-
-            console.log(data)
-
-            let alphabet = document.querySelector('.alphabet'); //alphabet
-            // alphabet.innerHTML = '';
-
-            let litterAlphabet = [];
-            for (let key in categoriesLvl0) {
-                litterAlphabet.push({'letter': key.charAt(0)})
-            }
-
-            litterAlphabet = litterAlphabet.filter((thing, index, self) =>
-                index === self.findIndex((t) => (
-                    t.letter === thing.letter
-                ))
-            )
-
-            for (let i = 0; i < litterAlphabet.length; i++) {
-                alphabet.insertAdjacentHTML('afterbegin', `<li><p class="alphabet-item flex-center-between ${litterAlphabet[i].letter == 'A' ? 'active' : ''}">${litterAlphabet[i].letter} <span class="arrow"></span></p><div class="alphabet-drop"></div></li>`);
-            }
-
-            let items = [...alphabet.querySelectorAll("li")];
-            items.sort((a, b) => a.innerText == b.innerText ? 0 : a.innerText < b.innerText ? -1 : 1);
-            items.forEach(item => alphabet.appendChild(item));
-
-            for (let key in categoriesLvl0) {
-                document.querySelectorAll('.alphabet-item').forEach(letter => {
-                    if (key.charAt(0) == letter.innerText.charAt(0)) {
-                        letter.nextElementSibling.insertAdjacentHTML('beforeend', `<a href="https://medicalmega.com/?products%5BhierarchicalMenu%5D%5Bcategories.lvl0%5D%5B0%5D=${key}">${key}</a>`)
-                    }
-                })
-            }
-
-            document.querySelectorAll('.alphabet-drop a').forEach((el) => {
-                el.addEventListener('click', (e) => {
-                    e.preventDefault()
-                    let link = el.href.split('20&').join('20%26');
-                    window.location.href = link;
-                    actionDataLayer = `Click on category item - ${el.innerText}`;
-                    labelDataLayer = `All categories`;
-                    pushDataLayer(actionDataLayer, labelDataLayer);
-                })
-            })
-
-            alphabet.querySelectorAll('.alphabet-item').forEach(el => {
-                el.addEventListener('click', (e) => {
-                    e.stopImmediatePropagation();
-                    e.target.closest('.alphabet').querySelector('.active').classList.remove('active');
-                    e.target.classList.add('active');
-                })
-            })
-
-
-        })
-
-        function findImageHits(variants) {
-            for (let i = 0; i < variants.length; i++) {
-                if (variants[i].image != '') {
-                    return variants[i].image
-                }
-            }
-        }
-
-        function initHits(hit) {
-            let variants = hit.variants,
-                count = 0;
-            for (let i = 0; i < variants.length; i++) {
-                if (variants[i].in_stock == true && variants[i].price != '0:00') {
-                    count = i;
-                    break;
-                } else {
-                    count = i;
-                }
-            }
-
-            let boxItem = `
-              <div class="card">
-                <p class="status" style="display:${hit['variants'][count].in_stock == false || hit['variants'][count].price == '0:00' ? 'block' : 'none'}">Out of Stock</p>
-                <a class="card_name" href="https://medicalmega.com/product/${hit.seo}">
-                  <img src="https://medicalmegaimgs.net/prod/uploaded/product/pro_thumb/${findImageHits(hit.variants) != '' ? findImageHits(hit.variants) : 'dummyimage.jpg'}" alt="${hit.name}">
-                  <span title='${hit.name}'>${hit.name}</span>
-                </a>
-                <p class="card_item">Item #${hit.item_num}</p>
-                <form action="https://medicalmega.com/cart.html" method="post">
-                  <div class="flex-center-center calc" ${hit['variants'][count].in_stock == false || hit['variants'][count].price == '0:00' ? 'disabled' : ''}>
-                    <button class="btn-calc btn-calc_minus" type="button" disabled=""></button>
-                    <input class="calc-qty" type="number" name="quantity" value="1" data-max-value="${hit['variants'][count].qty}">
-                    <button class="btn-calc btn-calc_plus" type="button"></button>
-                  </div>
-                  ${hit['variants'][count].in_stock == false || hit['variants'][count].price == '0:00' ? '<button class="btn btn_white" type="button" data-button="notify"><span>Out of Stock</span></button>' : '<button class="btn btn_dark add-cart" type="submit"><span>$<span class="pr" data-price="' + hit['variants'][count].price + '">' + hit['variants'][count].price + '</span> | Add</span></button>'}
-                  <input type="hidden" name="product_variant_id" value="${hit['variants'][count].pv_id}">
-                  <input type="hidden" name="product_id" value="${hit.objectID}">
-                  <input type="hidden" name="add_to_cart" value="variant">
-                  
-                </form>
+        let boxItem = `
+          <div class="card">
+            <p class="status" style="display:${hit['variants'][count].in_stock == false || hit['variants'][count].price == '0:00' ? 'block' : 'none'}">Out of Stock</p>
+            <a class="card_name" href="https://medicalmega.com/product/${hit.seo}">
+              <img src="https://medicalmegaimgs.net/prod/uploaded/product/pro_thumb/${findImageHits(hit.variants) != '' ? findImageHits(hit.variants) : 'dummyimage.jpg'}" alt="${hit.name}">
+              <span title='${hit.name}'>${hit.name}</span>
+            </a>
+            <p class="card_item">Item #${hit.item_num}</p>
+            <form action="https://medicalmega.com/cart.html" method="post">
+              <div class="flex-center-center calc" ${hit['variants'][count].in_stock == false || hit['variants'][count].price == '0:00' ? 'disabled' : ''}>
+                <button class="btn-calc btn-calc_minus" type="button" disabled=""></button>
+                <input class="calc-qty" type="number" name="quantity" value="1" data-max-value="${hit['variants'][count].qty}">
+                <button class="btn-calc btn-calc_plus" type="button"></button>
               </div>
-    `
-            return boxItem
-        }
+              ${hit['variants'][count].in_stock == false || hit['variants'][count].price == '0:00' ? '<button class="btn btn_white" type="button" data-button="notify"><span>Out of Stock</span></button>' : '<button class="btn btn_dark add-cart" type="submit"><span>$<span class="pr" data-price="' + hit['variants'][count].price + '">' + hit['variants'][count].price + '</span> | Add</span></button>'}
+              <input type="hidden" name="product_variant_id" value="${hit['variants'][count].pv_id}">
+              <input type="hidden" name="product_id" value="${hit.objectID}">
+              <input type="hidden" name="add_to_cart" value="variant">
+              
+            </form>
+          </div>
+`
+        return boxItem
+    }
 
-        search.addWidgets([
-            instantsearch.widgets.configure({
-                hitsPerPage: '12',
-                enablePersonalization: true,
-            }),
-            instantsearch.widgets.searchBox({
-                container: '#form-search',
-                placeholder: 'Search by Name',
-                showLoadingIndicator: false,
-                searchAsYouType: false,
-                showSubmit: true,
-                showReset: true,
-                templates: {
-                    loadingIndicator: '<img src="https://conversionratestore.github.io/projects/medicalmega/img/loading-buffering.gif" alt="icon loading">',
-                },
-            }),
-            instantsearch.widgets.infiniteHits({
-                container: '#hits',
-                escapeHTML: false,
-                templates: {
-                    empty: `No Item Found`,
-                    item: (hit) => initHits(hit)
-                },
-            }),
+    search.addWidgets([
+        instantsearch.widgets.configure({
+            hitsPerPage: '12',
+            enablePersonalization: true,
+        }),
+        instantsearch.widgets.searchBox({
+            container: '#form-search',
+            placeholder: 'Search by Name',
+            showLoadingIndicator: false,
+            searchAsYouType: false,
+            showSubmit: true,
+            showReset: true,
+            templates: {
+                loadingIndicator: '<img src="https://conversionratestore.github.io/projects/medicalmega/img/loading-buffering.gif" alt="icon loading">',
+            },
+        }),
+        instantsearch.widgets.infiniteHits({
+            container: '#hits',
+            escapeHTML: false,
+            templates: {
+                empty: `No Item Found`,
+                item: (hit) => initHits(hit)
+            },
+        }),
 
-            instantsearch.widgets.stats({
-                container: '#stats-container',
-                templates: {
-                    text(data) {
-                        if (data.hasManyResults || data.hasOneResult) {
-                            return `${data.nbHits} items`;
-                        } else {
-                            return `no result`;
-                        }
-                    },
-                },
-            }),
-            instantsearch.widgets.refinementList({
-                container: '#manufacturer',
-                attribute: 'manufacturer',
-                limit: 7,
-                showMore: true,
-                // searchable: true,
-                showMoreLimit: 400,
-                sortBy: ['name:asc'],
-                templates: {
-                    item: (data) => {
-                        let checkbox = `
-                          <label class="mt-16 align-items-center" onclick="pushDataLayer('Click on one of the brand items on filters','Filters')">
-                            <span class="check"></span>
-                            <span class="check_text">${data.value}<span class="count_brand">(${data.count})</span></span>
-                          </label>
-                      `;
-                        return checkbox
-                    },
-                },
-            }),
-            instantsearch.widgets.refinementList({
-                container: '#price_group',
-                attribute: 'price_group',
-                limit: 10,
-                sortBy: ['name:asc'],
-                transformItems(items) {
-                    return items.map(item => ({
-                        ...item,
-                        label: item.label.includes(' - ') ? `$${item.value.split(' - ')[0]} - $${item.value.split(' - ')[1]}` : `> $${item.value.split('> ')[1]}`,
-                    }));
-                },
-                templates: {
-                    item: (data) => {
-                        let checkbox = `
-                      <label class="mt-16 align-items-center" onclick="pushDataLayer('Click on one of the price items on filters','Filters')">
-                          <span class="check"></span>
-                          <span class="check_text">${data.label} <span class="count_brand">(${data.count})</span></span>
-                      </label>
-                    `;
-
-                        return checkbox
-                    },
-                },
-            }),
-
-            instantsearch.widgets.clearRefinements({
-                container: '#clear-refinements',
-                templates: {
-                    resetLabel: `Clear All Filters ✕`,
-                },
-                excludedAttributes: [
-                    'categories.lvl0',
-                    'categories.lvl1',
-                    'categories.lvl2',
-                    'categories.lvl3',
-                    'categories.lvl4',
-                    'query',
-                ],
-            }),
-            instantsearch.widgets.hierarchicalMenu({
-                container: `#list_categories_ex`,
-                attributes: [
-                    'categories.lvl0',
-                    'categories.lvl1',
-                    'categories.lvl2',
-                    'categories.lvl3',
-                    'categories.lvl4',
-                ],
-            }),
-            instantsearch.widgets.breadcrumb({
-                container: '#breadcrumbs',
-                attributes: [
-                    'categories.lvl0',
-                    'categories.lvl1',
-                    'categories.lvl2',
-                    'categories.lvl3',
-                    'categories.lvl4',
-                ],
-                limit: 150,
-            }),
-            instantsearch.widgets.currentRefinements({
-                container: "#current-refinements",
-                excludedAttributes: [
-                    'categories.lvl0',
-                    'categories.lvl1',
-                    'categories.lvl2',
-                    'categories.lvl3',
-                    'categories.lvl4',
-                    'query',
-                ],
-                transformItems(items) {
-                    return items.map(item => ({
-                        ...item,
-                        label: item.label == "manufacturer" ? item.label = "brands" : item.label == "price_group" ? item.label = "prices" : '',
-                        // refinements: item.refinements.label.includes
-                    }));
-                }
-            }),
-            {
-                render({searchMetadata = {}}) {
-                    const {isSearchStalled} = searchMetadata
-
-                    if (isSearchStalled === false) {
-                        console.log(isSearchStalled)
-
-                        if (document.querySelector('#price_group li') != null) {
-                            let pricesContainer = document.querySelector('#price_group ul'),
-                                para = document.querySelectorAll('#price_group li');
-
-                            let paraArr = [].slice.call(para).sort(function (a, b) {
-                                return a.querySelector('.check_text').innerText.split(' -')[0].replace('$', '') - b.querySelector('.check_text').innerText.split(' -')[0].replace('$', '')
-                            });
-                            paraArr.forEach(function (p) {
-                                pricesContainer.appendChild(p);
-                            });
-                        }
-                        document.querySelector('#form-search input').addEventListener('blur', () => {
-                            document.querySelector('#form-search input').value = search.helper.state.query == 'undefined' || search.helper.state.query == '' ? '' : search.helper.state.query;
-                        });
-                        document.querySelector('.ais-SearchBox-reset').addEventListener('click', (e) => {
-                            e.stopImmediatePropagation()
-                            toggleListing(true)
-                            if (!e.target.classList.contains('reset')) {
-                                actionDataLayer = `Click on reset button`;
-                                labelDataLayer = 'Search by Name';
-                                pushDataLayer(actionDataLayer, labelDataLayer)
-                            } else {
-                                e.target.classList.remove('reset')
-                            }
-                        })
-
-                        if (window.location.pathname.includes('/category') && !window.location.href.includes('?products') && categoryPageLoaded == false) {
-                            categoryPageLoaded = true;
-                            let category = window.location.href.split('category/')[1].split('-').join(' ');
-                            search.helper.state.hierarchicalFacetsRefinements['categories.lvl0'] = [category];
-                            search.refresh()
-                        }
-
-                        let crumbs = document.querySelectorAll('#breadcrumbs li');
-                        if (crumbs.length < 2) {
-                            document.querySelector('#breadcrumbs').style.opacity = '0';
-                            document.querySelector('.listing_title').innerHTML = 'All Products';
-                        } else {
-                            document.querySelector('#breadcrumbs').style = '';
-                            document.querySelector('.listing_title').innerHTML = document.querySelector('#breadcrumbs .ais-Breadcrumb-item.ais-Breadcrumb-item--selected').innerText.replace('>', '')
-                        }
-
-                        if (document.querySelector('#manufacturer li') != null) {
-                            let element = document.querySelector('#manufacturer ul');
-                            element.addEventListener('scroll', (e) => {
-                                    e.stopImmediatePropagation();
-                                    scrolled(e.target)
-                                }
-                            );
-                        }
-                        if (document.querySelector('#manufacturer .ais-RefinementList-showMore') != null) {
-                            document.querySelector('#manufacturer .ais-RefinementList-showMore').addEventListener('click', (e) => {
-                                e.stopImmediatePropagation();
-                                actionDataLayer = `Click on ${e.target.innerText} button`;
-                                labelDataLayer = 'Filters';
-                                pushDataLayer(actionDataLayer, labelDataLayer);
-                                document.querySelector('#manufacturer ul').classList.toggle('scroll');
-                                e.target.innerText == 'Show more' ? document.querySelector('#manufacturer ul').classList.remove('scroll') : '';
-                            })
-                        }
-
-                        document.querySelectorAll('.breadcrumbs li').forEach((crumb, index) => {
-                            crumb.addEventListener('click', (e) => {
-                                e.stopImmediatePropagation();
-                                actionDataLayer = `Click on crumb - ${e.target.innerText}`;
-                                labelDataLayer = 'Breadcrumbs';
-                                pushDataLayer(actionDataLayer, labelDataLayer);
-                            })
-                        })
-
-                        if (document.querySelector('.ais-CurrentRefinements-delete') != null) {
-                            document.querySelectorAll('.ais-CurrentRefinements-delete').forEach(item => {
-                                item.addEventListener('click', (e) => {
-                                    e.stopImmediatePropagation();
-                                    actionDataLayer = `Click on cross button`;
-                                    labelDataLayer = 'Current Refinements';
-                                    pushDataLayer(actionDataLayer, labelDataLayer);
-                                })
-                            })
-                        }
-                        if (document.querySelector('.ais-ClearRefinements-button') != null) {
-                            document.querySelector('.ais-ClearRefinements-button').addEventListener('click', (e) => {
-                                e.stopImmediatePropagation();
-
-                                if (!e.target.classList.contains('action-clean')) {
-                                    actionDataLayer = `Click on All Clear Filters button`;
-                                    labelDataLayer = 'Filters';
-                                    pushDataLayer(actionDataLayer, labelDataLayer)
-                                }
-                                e.target.classList.remove('action-clean');
-                            })
-                        }
-
+        instantsearch.widgets.stats({
+            container: '#stats-container',
+            templates: {
+                text(data) {
+                    if (data.hasManyResults || data.hasOneResult) {
+                        return `${data.nbHits} items`;
+                    } else {
+                        return `no result`;
                     }
                 },
             },
-        ]);
+        }),
+        instantsearch.widgets.refinementList({
+            container: '#manufacturer',
+            attribute: 'manufacturer',
+            limit: 7,
+            showMore: true,
+            // searchable: true,
+            showMoreLimit: 400,
+            sortBy: ['name:asc'],
+            templates: {
+                item: (data) => {
+                    let checkbox = `
+                      <label class="mt-16 align-items-center" onclick="pushDataLayer('Click on one of the brand items on filters','Filters')">
+                        <span class="check"></span>
+                        <span class="check_text">${data.value}<span class="count_brand">(${data.count})</span></span>
+                      </label>
+                  `;
+                    return checkbox
+                },
+            },
+        }),
+        instantsearch.widgets.refinementList({
+            container: '#price_group',
+            attribute: 'price_group',
+            limit: 10,
+            sortBy: ['name:asc'],
+            transformItems(items) {
+                return items.map(item => ({
+                    ...item,
+                    label: item.label.includes(' - ') ? `$${item.value.split(' - ')[0]} - $${item.value.split(' - ')[1]}` : `> $${item.value.split('> ')[1]}`,
+                }));
+            },
+            templates: {
+                item: (data) => {
+                    let checkbox = `
+                  <label class="mt-16 align-items-center" onclick="pushDataLayer('Click on one of the price items on filters','Filters')">
+                      <span class="check"></span>
+                      <span class="check_text">${data.label} <span class="count_brand">(${data.count})</span></span>
+                  </label>
+                `;
 
-        search.start();
+                    return checkbox
+                },
+            },
+        }),
 
-        document.querySelectorAll('.category_popular a').forEach((el) => {
-            el.addEventListener('click', (e) => pushDataLayer(`Click on category item - ${e.target.innerText}`, 'Popular categories'))
-        })
-
-        if (window.location.href.includes('/search/') && !window.location.href.includes('?products')) {
-            search.helper.setQuery(window.location.href.split('/search/')[1].split('-').join(' ')) // this call resets the page
-                .setPage(search.helper.getPage()) // we re-apply the previous page
-                .search();
-        }
-
-        //click on logo
-        document.querySelector('.logo').addEventListener('click', (e) => {
-            pushDataLayer(`Click on logo`, 'Header');
-            window.location.href = currentPath;
-        })
-
-        document.addEventListener('click', (e) => {
-            if (!e.target.closest('.select')) remActiveSelect();
-            if (!e.target.closest('.filter') && !e.target.matches('.filter') && !e.target.matches('.btn-filters')) {
-                document.querySelector('.filter').classList.remove('active')
+        instantsearch.widgets.clearRefinements({
+            container: '#clear-refinements',
+            templates: {
+                resetLabel: `Clear All Filters ✕`,
+            },
+            excludedAttributes: [
+                'categories.lvl0',
+                'categories.lvl1',
+                'categories.lvl2',
+                'categories.lvl3',
+                'categories.lvl4',
+                'query',
+            ],
+        }),
+        instantsearch.widgets.hierarchicalMenu({
+            container: `#list_categories_ex`,
+            attributes: [
+                'categories.lvl0',
+                'categories.lvl1',
+                'categories.lvl2',
+                'categories.lvl3',
+                'categories.lvl4',
+            ],
+        }),
+        instantsearch.widgets.breadcrumb({
+            container: '#breadcrumbs',
+            attributes: [
+                'categories.lvl0',
+                'categories.lvl1',
+                'categories.lvl2',
+                'categories.lvl3',
+                'categories.lvl4',
+            ],
+            limit: 150,
+        }),
+        instantsearch.widgets.currentRefinements({
+            container: "#current-refinements",
+            excludedAttributes: [
+                'categories.lvl0',
+                'categories.lvl1',
+                'categories.lvl2',
+                'categories.lvl3',
+                'categories.lvl4',
+                'query',
+            ],
+            transformItems(items) {
+                return items.map(item => ({
+                    ...item,
+                    label: item.label == "manufacturer" ? item.label = "brands" : item.label == "price_group" ? item.label = "prices" : '',
+                    // refinements: item.refinements.label.includes
+                }));
             }
-        })
+        }),
+        {
+            render({searchMetadata = {}}) {
+                const {isSearchStalled} = searchMetadata
 
-        window.addEventListener('scroll', (e) => {
-            remActiveSelect();
-            if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
-                if (document.querySelector('.listing_content .ais-InfiniteHits-loadMore') != null && document.querySelector('.listing_content .ais-InfiniteHits-loadMore.ais-InfiniteHits-loadMore--disabled') == null) {
-                    document.querySelector('.listing_content .ais-InfiniteHits-loadMore').click();
+                if (isSearchStalled === false) {
+                    console.log(isSearchStalled)
+
+                    if (document.querySelector('#price_group li') != null) {
+                        let pricesContainer = document.querySelector('#price_group ul'),
+                            para = document.querySelectorAll('#price_group li');
+
+                        let paraArr = [].slice.call(para).sort(function (a, b) {
+                            return a.querySelector('.check_text').innerText.split(' -')[0].replace('$', '') - b.querySelector('.check_text').innerText.split(' -')[0].replace('$', '')
+                        });
+                        paraArr.forEach(function (p) {
+                            pricesContainer.appendChild(p);
+                        });
+                    }
+                    document.querySelector('#form-search input').addEventListener('blur', () => {
+                        document.querySelector('#form-search input').value = search.helper.state.query == 'undefined' || search.helper.state.query == '' ? '' : search.helper.state.query;
+                    });
+                    document.querySelector('.ais-SearchBox-reset').addEventListener('click', (e) => {
+                        e.stopImmediatePropagation()
+                        toggleListing(true)
+                        if (!e.target.classList.contains('reset')) {
+                            actionDataLayer = `Click on reset button`;
+                            labelDataLayer = 'Search by Name';
+                            pushDataLayer(actionDataLayer, labelDataLayer)
+                        } else {
+                            e.target.classList.remove('reset')
+                        }
+                    })
+
+                    if (window.location.pathname.includes('/category') && !window.location.href.includes('?products') && categoryPageLoaded == false) {
+                        categoryPageLoaded = true;
+                        let category = window.location.href.split('category/')[1].split('-').join(' ');
+                        search.helper.state.hierarchicalFacetsRefinements['categories.lvl0'] = [category];
+                        search.refresh()
+                    }
+
+                    let crumbs = document.querySelectorAll('#breadcrumbs li');
+                    if (crumbs.length < 2) {
+                        document.querySelector('#breadcrumbs').style.opacity = '0';
+                        document.querySelector('.listing_title').innerHTML = 'All Products';
+                    } else {
+                        document.querySelector('#breadcrumbs').style = '';
+                        document.querySelector('.listing_title').innerHTML = document.querySelector('#breadcrumbs .ais-Breadcrumb-item.ais-Breadcrumb-item--selected').innerText.replace('>', '')
+                    }
+
+                    if (document.querySelector('#manufacturer li') != null) {
+                        let element = document.querySelector('#manufacturer ul');
+                        element.addEventListener('scroll', (e) => {
+                                e.stopImmediatePropagation();
+                                scrolled(e.target)
+                            }
+                        );
+                    }
+                    if (document.querySelector('#manufacturer .ais-RefinementList-showMore') != null) {
+                        document.querySelector('#manufacturer .ais-RefinementList-showMore').addEventListener('click', (e) => {
+                            e.stopImmediatePropagation();
+                            actionDataLayer = `Click on ${e.target.innerText} button`;
+                            labelDataLayer = 'Filters';
+                            pushDataLayer(actionDataLayer, labelDataLayer);
+                            document.querySelector('#manufacturer ul').classList.toggle('scroll');
+                            e.target.innerText == 'Show more' ? document.querySelector('#manufacturer ul').classList.remove('scroll') : '';
+                        })
+                    }
+
+                    document.querySelectorAll('.breadcrumbs li').forEach((crumb, index) => {
+                        crumb.addEventListener('click', (e) => {
+                            e.stopImmediatePropagation();
+                            actionDataLayer = `Click on crumb - ${e.target.innerText}`;
+                            labelDataLayer = 'Breadcrumbs';
+                            pushDataLayer(actionDataLayer, labelDataLayer);
+                        })
+                    })
+
+                    if (document.querySelector('.ais-CurrentRefinements-delete') != null) {
+                        document.querySelectorAll('.ais-CurrentRefinements-delete').forEach(item => {
+                            item.addEventListener('click', (e) => {
+                                e.stopImmediatePropagation();
+                                actionDataLayer = `Click on cross button`;
+                                labelDataLayer = 'Current Refinements';
+                                pushDataLayer(actionDataLayer, labelDataLayer);
+                            })
+                        })
+                    }
+                    if (document.querySelector('.ais-ClearRefinements-button') != null) {
+                        document.querySelector('.ais-ClearRefinements-button').addEventListener('click', (e) => {
+                            e.stopImmediatePropagation();
+
+                            if (!e.target.classList.contains('action-clean')) {
+                                actionDataLayer = `Click on All Clear Filters button`;
+                                labelDataLayer = 'Filters';
+                                pushDataLayer(actionDataLayer, labelDataLayer)
+                            }
+                            e.target.classList.remove('action-clean');
+                        })
+                    }
+
                 }
-            }
-        })
+            },
+        },
+    ]);
 
-        //select filter
-        document.querySelectorAll('.select_filter').forEach(el => {
-            el.querySelector('.select_item').addEventListener('click', (e) => {
-                el.classList.toggle('active');
-                actionDataLayer = `Click on ${e.target.innerText} button`;
-                labelDataLayer = 'Filter';
+    search.start();
+
+    document.querySelectorAll('.category_popular a').forEach((el) => {
+        el.addEventListener('click', (e) => pushDataLayer(`Click on category item - ${e.target.innerText}`, 'Popular categories'))
+    })
+
+    if (window.location.href.includes('/search/') && !window.location.href.includes('?products')) {
+        search.helper.setQuery(window.location.href.split('/search/')[1].split('-').join(' ')) // this call resets the page
+            .setPage(search.helper.getPage()) // we re-apply the previous page
+            .search();
+    }
+
+    //click on logo
+    document.querySelector('.logo').addEventListener('click', (e) => {
+        pushDataLayer(`Click on logo`, 'Header');
+        window.location.href = currentPath;
+    })
+
+    document.addEventListener('click', (e) => {
+        if (!e.target.closest('.select')) remActiveSelect();
+        if (!e.target.closest('.filter') && !e.target.matches('.filter') && !e.target.matches('.btn-filters')) {
+            document.querySelector('.filter').classList.remove('active')
+        }
+    })
+
+    window.addEventListener('scroll', (e) => {
+        remActiveSelect();
+        if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
+            if (document.querySelector('.listing_content .ais-InfiniteHits-loadMore') != null && document.querySelector('.listing_content .ais-InfiniteHits-loadMore.ais-InfiniteHits-loadMore--disabled') == null) {
+                document.querySelector('.listing_content .ais-InfiniteHits-loadMore').click();
+            }
+        }
+    })
+
+    //select filter
+    document.querySelectorAll('.select_filter').forEach(el => {
+        el.querySelector('.select_item').addEventListener('click', (e) => {
+            el.classList.toggle('active');
+            actionDataLayer = `Click on ${e.target.innerText} button`;
+            labelDataLayer = 'Filter';
+            pushDataLayer(actionDataLayer, labelDataLayer)
+        })
+    })
+
+    autocomplete('#form-search input', {hint: false, debug: false}, [
+        {
+            source: autocomplete.sources.hits(index, {hitsPerPage: 5, facetFilters: ["*"]}),
+            displayKey: 'name',
+            // openOnFocus: true,
+            onStateChange: false,
+
+            templates: {
+                suggestion: function (suggestion) {
+                    let variants = suggestion.variants;
+                    let price = suggestion.price;
+                    for (let i = 0; i < variants.length; i++) {
+                        if (variants[i].extra.toLowerCase() == 'each' ) {
+                            price = variants[i].price
+                        } else {
+                            price = variants[0].price
+                        }
+                    }
+                    let sugTemplate = "<img src='https://medicalmegaimgs.net/prod/uploaded/product/pro_thumb/" + (findImageHits(suggestion.variants) != '' ? findImageHits(suggestion.variants) : 'dummyimage.jpg') + "'/><div><p class='name'>" + suggestion._highlightResult.name.value + "</p><p class='item_num'>Item #" + suggestion._highlightResult.item_num.value + "</p><p class='price'>$" + price + "</p></div>"
+
+                    document.querySelector('#form-search .ais-SearchBox-submit').addEventListener('click', (e) => {
+                        e.stopImmediatePropagation()
+                        search.helper.state.hierarchicalFacetsRefinements['categories.lvl0'] = [];
+
+                        toggleListing(true)
+
+                        actionDataLayer = `Click on submit button`;
+                        labelDataLayer = 'Search by Name';
+                        pushDataLayer(actionDataLayer, labelDataLayer)
+                    });
+
+                    return sugTemplate;
+                },
+            },
+        }
+    ]).on('autocomplete:selected', function (event, suggestion, dataset) {
+        window.location.href = `https://medicalmega.com/product/${suggestion.seo}`
+
+        actionDataLayer = `Selected suggestion`;
+        labelDataLayer = 'Autocomplete Search by Name';
+        pushDataLayer(actionDataLayer, labelDataLayer)
+    })
+
+    document.querySelector('#form-search input').addEventListener('click', (e) => {
+        actionDataLayer = `Click on Search by Name`;
+        labelDataLayer = 'Header';
+        pushDataLayer(actionDataLayer, labelDataLayer)
+    })
+
+    document.querySelectorAll('.midbar_action').forEach(el => {
+        el.addEventListener('click', (e) => pushDataLayer(`Click on ${e.target.innerText}`, 'Header'))
+    })
+
+    let requestNewProduct = index.search({
+        facetFilters: ['categories.lvl0:New Products!'],
+        hitsPerPage: '4',
+    })
+    let requestOstomy = index.search('', {
+        facetFilters: ['categories.lvl0:Ostomy'],
+        hitsPerPage: '4'
+    })
+    let requestWoundCare = index.search('', {
+        facetFilters: ['categories.lvl0:Wound Care'],
+        hitsPerPage: '4',
+
+    })
+    Promise.all([requestNewProduct, requestOstomy, requestWoundCare]).then(res => {
+        document.querySelector('.listing_popular').insertAdjacentHTML('beforeend', `
+        <div class="new-products">
+          <h2>New Products!</h2>
+          <p class="c-gray">${res[0].nbHits} items</p>
+          <ul class="flex-wrap"></ul>
+          <a href="https://medicalmega.com/?products%5BhierarchicalMenu%5D%5Bcategories.lvl0%5D%5B0%5D=New%20Products!" class="btn btn_white">Show More</a>
+        </div>
+        <div class="ostomy">
+          <h2>Ostomy</h2>
+          <p class="c-gray">${res[1].nbHits} items</p>
+          <ul class="flex-wrap"></ul>
+          <a href="https://medicalmega.com/?products%5BhierarchicalMenu%5D%5Bcategories.lvl0%5D%5B0%5D=Ostomy" class="btn btn_white">Show More</a>
+        </div>
+        <div class="wound-care">
+          <h2>Wound Care</h2>
+          <p class="c-gray">${res[2].nbHits} items</p>
+          <ul class="flex-wrap"></ul>
+          <a href="https://medicalmega.com/?products%5BhierarchicalMenu%5D%5Bcategories.lvl0%5D%5B0%5D=Wound%20Care" class="btn btn_white">Show More</a>
+        </div>`);
+
+        for (let i = 0; i < 4; i++) {
+            document.querySelector(`.listing_popular .new-products ul`).insertAdjacentHTML('beforeend', `<li>${initHits(res[0].hits[i])}</li>`)
+            document.querySelector(`.listing_popular .ostomy ul`).insertAdjacentHTML('beforeend', `<li>${initHits(res[1].hits[i])}</li>`)
+            document.querySelector(`.listing_popular .wound-care ul`).insertAdjacentHTML('beforeend', `<li>${initHits(res[2].hits[i])}</li>`)
+        }
+        document.querySelectorAll('.listing_popular .btn_white').forEach(el => {
+            el.addEventListener('click', (e) => {
+                labelDataLayer = `${el.parentElement.querySelector('h2').innerText}`;
+                actionDataLayer = `Click on Show More`;
                 pushDataLayer(actionDataLayer, labelDataLayer)
             })
         })
+    });
 
-        autocomplete('#form-search input', {hint: false, debug: false}, [
-            {
-                source: autocomplete.sources.hits(index, {hitsPerPage: 5, facetFilters: ["*"]}),
-                displayKey: 'name',
-                // openOnFocus: true,
-                onStateChange: false,
+    //pdp
+    if (window.location.pathname.includes('/product/')) {
+        toggleListing(false); //hide listing
 
-                templates: {
-                    suggestion: function (suggestion) {
-                        let variants = suggestion.variants;
-                        let price = suggestion.price;
-                        for (let i = 0; i < variants.length; i++) {
-                            if (variants[i].extra.toLowerCase() == 'each' ) {
-                                price = variants[i].price
-                            } else {
-                                price = variants[0].price
-                            }
-                        }
-                        let sugTemplate = "<img src='https://medicalmegaimgs.net/prod/uploaded/product/pro_thumb/" + (findImageHits(suggestion.variants) != '' ? findImageHits(suggestion.variants) : 'dummyimage.jpg') + "'/><div><p class='name'>" + suggestion._highlightResult.name.value + "</p><p class='item_num'>Item #" + suggestion._highlightResult.item_num.value + "</p><p class='price'>$" + price + "</p></div>"
+        requestProduct.then(data => {
+            if (data.nbHits == 0) {
+                document.querySelector('.main').style.display = 'none';
+                document.querySelector('.style-main') != null ? document.querySelector('.style-main').remove() : '';
+                document.querySelector('#wrap').style.display = 'block';
+            } else {
+                let product = data.hits[0],
+                    firstVariant = product.variants[0];
 
-                        document.querySelector('#form-search .ais-SearchBox-submit').addEventListener('click', (e) => {
-                            e.stopImmediatePropagation()
-                            search.helper.state.hierarchicalFacetsRefinements['categories.lvl0'] = [];
+                let imagesProduct = firstVariant.images,
+                    categoriesHit = product.categories;
 
-                            toggleListing(true)
+                let categoryLvl = '';
 
-                            actionDataLayer = `Click on submit button`;
-                            labelDataLayer = 'Search by Name';
-                            pushDataLayer(actionDataLayer, labelDataLayer)
-                        });
+                let lastLvlCategories = categoriesHit[Object.keys(categoriesHit)[Object.keys(categoriesHit).length - 1]];
 
-                        return sugTemplate;
-                    },
-                },
-            }
-        ]).on('autocomplete:selected', function (event, suggestion, dataset) {
-            window.location.href = `https://medicalmega.com/product/${suggestion.seo}`
-
-            actionDataLayer = `Selected suggestion`;
-            labelDataLayer = 'Autocomplete Search by Name';
-            pushDataLayer(actionDataLayer, labelDataLayer)
-        })
-
-        document.querySelector('#form-search input').addEventListener('click', (e) => {
-            actionDataLayer = `Click on Search by Name`;
-            labelDataLayer = 'Header';
-            pushDataLayer(actionDataLayer, labelDataLayer)
-        })
-
-        document.querySelectorAll('.midbar_action').forEach(el => {
-            el.addEventListener('click', (e) => pushDataLayer(`Click on ${e.target.innerText}`, 'Header'))
-        })
-
-        let requestNewProduct = index.search({
-            facetFilters: ['categories.lvl0:New Products!'],
-            hitsPerPage: '4',
-        })
-        let requestOstomy = index.search('', {
-            facetFilters: ['categories.lvl0:Ostomy'],
-            hitsPerPage: '4'
-        })
-        let requestWoundCare = index.search('', {
-            facetFilters: ['categories.lvl0:Wound Care'],
-            hitsPerPage: '4',
-
-        })
-        Promise.all([requestNewProduct, requestOstomy, requestWoundCare]).then(res => {
-            document.querySelector('.listing_popular').insertAdjacentHTML('beforeend', `
-            <div class="new-products">
-              <h2>New Products!</h2>
-              <p class="c-gray">${res[0].nbHits} items</p>
-              <ul class="flex-wrap"></ul>
-              <a href="https://medicalmega.com/?products%5BhierarchicalMenu%5D%5Bcategories.lvl0%5D%5B0%5D=New%20Products!" class="btn btn_white">Show More</a>
-            </div>
-            <div class="ostomy">
-              <h2>Ostomy</h2>
-              <p class="c-gray">${res[1].nbHits} items</p>
-              <ul class="flex-wrap"></ul>
-              <a href="https://medicalmega.com/?products%5BhierarchicalMenu%5D%5Bcategories.lvl0%5D%5B0%5D=Ostomy" class="btn btn_white">Show More</a>
-            </div>
-            <div class="wound-care">
-              <h2>Wound Care</h2>
-              <p class="c-gray">${res[2].nbHits} items</p>
-              <ul class="flex-wrap"></ul>
-              <a href="https://medicalmega.com/?products%5BhierarchicalMenu%5D%5Bcategories.lvl0%5D%5B0%5D=Wound%20Care" class="btn btn_white">Show More</a>
-            </div>`);
-
-            for (let i = 0; i < 4; i++) {
-                document.querySelector(`.listing_popular .new-products ul`).insertAdjacentHTML('beforeend', `<li>${initHits(res[0].hits[i])}</li>`)
-                document.querySelector(`.listing_popular .ostomy ul`).insertAdjacentHTML('beforeend', `<li>${initHits(res[1].hits[i])}</li>`)
-                document.querySelector(`.listing_popular .wound-care ul`).insertAdjacentHTML('beforeend', `<li>${initHits(res[2].hits[i])}</li>`)
-            }
-            document.querySelectorAll('.listing_popular .btn_white').forEach(el => {
-                el.addEventListener('click', (e) => {
-                    labelDataLayer = `${el.parentElement.querySelector('h2').innerText}`;
-                    actionDataLayer = `Click on Show More`;
-                    pushDataLayer(actionDataLayer, labelDataLayer)
+                for (let j = 0; j < lastLvlCategories.length; j++) {
+                    if (lastLvlCategories[j] != null) {
+                        categoryLvl = `categories.lvl${Object.keys(categoriesHit).length - 1}:${lastLvlCategories[j]}`
+                    }
+                }
+                console.log(categoryLvl)
+                let requestSimilarProduct = index.search({
+                    facetFilters: [categoryLvl],
+                    // filters: categoryLvl,
+                    hitsPerPage: '4',
                 })
-            })
-        });
 
-        //pdp
-        if (window.location.pathname.includes('/product/')) {
-            toggleListing(false); //hide listing
+                //Available Options
+                let htmlAvailableOptions = `
+                <div class="available-options"> 
+                  <p class="fs-14 fw-semi">Available Options: </p> 
+                  <div class="relative">
+                    <div class="justify-content-between scroll-x"></div>
+                  </div>
+                </div>`;
 
-            requestProduct.then(data => {
-                if (data.nbHits == 0) {
-                    document.querySelector('.main').style.display = 'none';
-                    document.querySelector('.style-main') != null ? document.querySelector('.style-main').remove() : '';
-                    document.querySelector('#wrap').style.display = 'block';
-                } else {
-                    let product = data.hits[0],
-                        firstVariant = product.variants[0];
-
-                    let imagesProduct = firstVariant.images,
-                        categoriesHit = product.categories;
-
-                    let categoryLvl = '';
-
-                    let lastLvlCategories = categoriesHit[Object.keys(categoriesHit)[Object.keys(categoriesHit).length - 1]];
-
-                    for (let j = 0; j < lastLvlCategories.length; j++) {
-                        if (lastLvlCategories[j] != null) {
-                            categoryLvl = `categories.lvl${Object.keys(categoriesHit).length - 1}:${lastLvlCategories[j]}`
+                function availableOptions() {
+                    let options = product.variants,
+                        label = ``;
+                    for (let i = 0; i < options.length; i++) {
+                        if (options[i].price != '0.00') {
+                            label += `<label><input class="checkbox" type="radio" name="radio" data-variant="${options[i].pv_id}" ${options[i].in_stock == false ? 'disabled' : ''}><span class="radio-check"><span>${options[i].extra}</span><span class="radio-check_price">$${options[i].price}</span></span></label>`;
                         }
                     }
-                    console.log(categoryLvl)
-                    let requestSimilarProduct = index.search({
-                        facetFilters: [categoryLvl],
-                        // filters: categoryLvl,
-                        hitsPerPage: '4',
-                    })
+                    return label
+                }
 
-                    //Available Options
-                    let htmlAvailableOptions = `
-                    <div class="available-options"> 
-                      <p class="fs-14 fw-semi">Available Options: </p> 
-                      <div class="relative">
-                        <div class="justify-content-between scroll-x"></div>
-                      </div>
-                    </div>`;
-
-                    function availableOptions() {
-                        let options = product.variants,
-                            label = ``;
-                        for (let i = 0; i < options.length; i++) {
-                            if (options[i].price != '0.00') {
-                                label += `<label><input class="checkbox" type="radio" name="radio" data-variant="${options[i].pv_id}" ${options[i].in_stock == false ? 'disabled' : ''}><span class="radio-check"><span>${options[i].extra}</span><span class="radio-check_price">$${options[i].price}</span></span></label>`;
-                            }
-                        }
-                        return label
+                function slides() {
+                    let slides = ''
+                    for (let i = 0; i < imagesProduct.length; i++) {
+                        slides += `<div class="slide"><img src="https://medicalmegaimgs.net/prod/uploaded/product/${imagesProduct[i]}" alt="image ${i}"></div>`
                     }
-
-                    function slides() {
-                        let slides = ''
-                        for (let i = 0; i < imagesProduct.length; i++) {
-                            slides += `<div class="slide"><img src="https://medicalmegaimgs.net/prod/uploaded/product/${imagesProduct[i]}" alt="image ${i}"></div>`
-                        }
-                        return slides
-                    }
-                    function pricingBlock(className) {
-                        return `
-                           <form class="${className}" action="https://medicalmega.com/cart.html" method="post">
-                                <div class="flex-center-center calc" ${firstVariant.in_stock == false || firstVariant.price == '0:00' ? 'disabled' : ''}> 
-                                  <button class="btn-calc btn-calc_minus" type="button" disabled></button>
-                                  <input class="calc-qty" type="number" value="1" name="quantity">
-                                  <button class="btn-calc btn-calc_plus" type="button"></button>
-                                </div>
-                                ${firstVariant.in_stock == false || firstVariant.price == '0:00' ? '<button class="btn btn btn_white" type="button" data-button="notify">Out of Stock</button>' : `<button class="btn btn_dark add-cart" type="submit" ><span>$<span class="pr" data-price="${firstVariant.price}">${firstVariant.price}</span> | </span>Add to Cart</button>`}
-                                <input type="hidden" name="product_variant_id" value="${firstVariant.pv_id}">
-                                <input type="hidden" name="product_id" value="${firstVariant.objectID}">
-                                <input type="hidden" name="add_to_cart" value="variant">
-                            </form>`
-                    }
-
-                    let htmlProduct = `
-                        <div id="container-product" class="container">
-                            <nav id="breadcrumbs-pdp" class="breadcrumbs">
-                                <ul class="ais-Breadcrumb-list">
-                                    <li class="ais-Breadcrumb-item">
-                                        <span class="ais-Breadcrumb-separator" aria-hidden="true" style="transform: scaleX(-1)">&gt;</span>
-                                        <a class="ais-Breadcrumb-link" href="https://medicalmega.com/?products%5BhierarchicalMenu%5D%5Bcategories.lvl0%5D%5B0%5D=${product.categories['lvl0'][0]}">${product.categories['lvl0'][0]}</a>
-                                    </li>
-                                </ul>  
-                            </nav>
-                            <div class="product"> 
-                                <h2 class="title">${product.name}</h2>
-                                <div class="slider-main">${slides()}</div>
-                                <p class="text-small text-center">Image shown for reference purposes only. Actual product appearance may vary.</p>
-                             
-                                <ul class="list">
-                                    <li> Sold By: <span class="fw-semi">${firstVariant.extra}</span></li>
-                                    <li> Item Number: <span class="fw-semi">${product.item_num}</span></li>
-                                    <li> Manufacturer: <span class="fw-semi">${product.manufacturer}</span></li>
-                                </ul>
-                                <div class="shipping_block flex-center-center">
-                                    <img class="mr-16 icon-car" src="https://olha1001.github.io/medicalmega/pdp-rediesign/img/common/car.svg" alt="icon shipping">
-                                    <div> 
-                                        <p class="c-red text-up fw-semi l-t-05">Estimated shipping</p>
-                                        <p class="c-gray">2-3 business days*</p>
-                                    </div>
-                                </div>    
-                                <p class="text-small text-center">*Sometimes by technical reasons delivery can took a bit longer up to 7 days. </p>
-                                  
-                                <ul class="tabs-discription d-flex"> 
-                                    <li class="active">Product details</li>
-                                </ul>
-                                <div class="content-discription">
-                                    <div class="content-item active">${firstVariant.desc}</div>
-                                </div>
-                                ${pricingBlock('flex-center-between add-to-cart active')}
-                                ${product.variants.length > 1 ? htmlAvailableOptions : ''}
-                                ${pricingBlock('product_pricing')}
+                    return slides
+                }
+                function pricingBlock(className) {
+                    return `
+                        <form class="${className}" action="https://medicalmega.com/cart.html" method="post">
+                            <div class="flex-center-center calc" ${firstVariant.in_stock == false || firstVariant.price == '0:00' ? 'disabled' : ''}> 
+                              <button class="btn-calc btn-calc_minus" type="button" disabled></button>
+                              <input class="calc-qty" type="number" value="1" name="quantity">
+                              <button class="btn-calc btn-calc_plus" type="button"></button>
                             </div>
-                            <section class="similar-products">
-                                <h2>Similar Products</h2>
-                                <div class="d-flex cards_similar"></div>
-                            </section>
-                        </div>`
-                    //add html pdp
-                    document.querySelector('#container-listing').insertAdjacentHTML('beforebegin', htmlProduct);
+                            ${firstVariant.in_stock == false || firstVariant.price == '0:00' ? '<button class="btn btn btn_white" type="button" data-button="notify">Out of Stock</button>' : `<button class="btn btn_dark add-cart" type="submit" ><span>$<span class="pr" data-price="${firstVariant.price}">${firstVariant.price}</span> | </span>Add to Cart</button>`}
+                            <input type="hidden" name="product_variant_id" value="${firstVariant.pv_id}">
+                            <input type="hidden" name="product_id" value="${firstVariant.objectID}">
+                            <input type="hidden" name="add_to_cart" value="variant">
+                        </form>`
+                }
 
-                    //comes into view pricing product
-                    window.addEventListener('scroll', () => {
-                       if (isScrolledIntoView(document.querySelector('.product_pricing')) == true) {
-                           document.querySelector('.add-to-cart').classList.remove('active');
-                       } else {
-                           document.querySelector('.add-to-cart').classList.add('active');
-                       }
+                let htmlProduct = `
+                    <div id="container-product" class="container">
+                        <nav id="breadcrumbs-pdp" class="breadcrumbs">
+                            <ul class="ais-Breadcrumb-list">
+                                <li class="ais-Breadcrumb-item">
+                                    <span class="ais-Breadcrumb-separator" aria-hidden="true" style="transform: scaleX(-1)">&gt;</span>
+                                    <a class="ais-Breadcrumb-link" href="https://medicalmega.com/?products%5BhierarchicalMenu%5D%5Bcategories.lvl0%5D%5B0%5D=${product.categories['lvl0'][0]}">${product.categories['lvl0'][0]}</a>
+                                </li>
+                            </ul>  
+                        </nav>
+                        <div class="product"> 
+                            <h2 class="title">${product.name}</h2>
+                            <div class="slider-main">${slides()}</div>
+                            <p class="text-small text-center">Image shown for reference purposes only. Actual product appearance may vary.</p>
+                          
+                            <ul class="list">
+                                <li> Sold By: <span class="fw-semi">${firstVariant.extra}</span></li>
+                                <li> Item Number: <span class="fw-semi">${product.item_num}</span></li>
+                                <li> Manufacturer: <span class="fw-semi">${product.manufacturer}</span></li>
+                            </ul>
+                            <div class="shipping_block flex-center-center">
+                                <img class="mr-16 icon-car" src="https://olha1001.github.io/medicalmega/pdp-rediesign/img/common/car.svg" alt="icon shipping">
+                                <div> 
+                                    <p class="c-red text-up fw-semi l-t-05">Estimated shipping</p>
+                                    <p class="c-gray">2-3 business days*</p>
+                                </div>
+                            </div>    
+                            <p class="text-small text-center">*Sometimes by technical reasons delivery can took a bit longer up to 7 days. </p>
+                              
+                            <ul class="tabs-discription d-flex"> 
+                                <li class="active">Product details</li>
+                            </ul>
+                            <div class="content-discription">
+                                <div class="content-item active">${firstVariant.desc}</div>
+                            </div>
+                            ${pricingBlock('flex-center-between add-to-cart active')}
+                            ${product.variants.length > 1 ? htmlAvailableOptions : ''}
+                            ${pricingBlock('product_pricing')}
+                        </div>
+                        <section class="similar-products">
+                            <h2>Similar Products</h2>
+                            <div class="d-flex cards_similar"></div>
+                        </section>
+                    </div>`
+                //add html pdp
+                document.querySelector('#container-listing').insertAdjacentHTML('beforebegin', htmlProduct);
+
+                //comes into view pricing product
+                window.addEventListener('scroll', () => {
+                    if (isScrolledIntoView(document.querySelector('.product_pricing')) == true) {
+                        document.querySelector('.add-to-cart').classList.remove('active');
+                    } else {
+                        document.querySelector('.add-to-cart').classList.add('active');
+                    }
+                })
+
+                document.querySelector('.available-options .scroll-x') != null ? document.querySelector('.available-options .scroll-x').innerHTML = availableOptions() : '';
+
+                tns({
+                    container: document.querySelector('.slider-main'),
+                    autoplay: false,
+                    items: 1,
+                    axis: 'horizontal',
+                    controls: false,
+                    loop: false,
+                    mouseDrag: true,
+                    nav: true,
+                    preventScrollOnTouch: 'auto',
+                    swipeAngle: false,
+                });
+
+                let tabs = document.querySelectorAll('.tabs-discription li'), //tabs description
+                    contents = document.querySelectorAll('.content-discription .content-item'); // content discription
+
+                tabs.forEach((tab, i) => {
+                    tab.addEventListener('click', () => {
+                        tab.parentElement.querySelector('.active').classList.remove('active');
+                        contents[i].parentElement.querySelector('.active').classList.remove('active');
+                        tab.classList.add('active');
+                        contents[i].classList.add('active');
+                        actionDataLayer = `Click at the ${tab.innerText} tab`;
+                        labelDataLayer = `Product section`;
+                        pushDataLayer(actionDataLayer, labelDataLayer)
+
                     })
+                })
 
-                    document.querySelector('.available-options .scroll-x') != null ? document.querySelector('.available-options .scroll-x').innerHTML = availableOptions() : '';
+                if (product.variants.length > 2) {
+                    let contentAvailableOptions = document.querySelector('.available-options .scroll-x');
+
+                    contentAvailableOptions.insertAdjacentHTML('beforebegin', `
+                      <div class="arrow_buttons">
+                          <button class="arrow_button arrow_button_prev" type="button" disabled>
+                              <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                  <path d="M12.2868 13.8473C12.3432 13.9036 12.375 13.9803 12.375 14.0602C12.375 14.1402 12.3432 14.2169 12.2868 14.2732L11.6546 14.9091C11.6005 14.9671 11.5249 15 11.4459 15C11.3668 15 11.2912 14.9671 11.2371 14.9091L5.75621 9.39594C5.6723 9.31164 5.6251 9.19728 5.625 9.07799V8.92201C5.6251 8.80272 5.6723 8.68836 5.75621 8.60406L11.2371 3.0909C11.2912 3.0329 11.3668 3 11.4459 3C11.5249 3 11.6005 3.0329 11.6546 3.0909L12.2868 3.7268C12.3432 3.78312 12.375 3.85979 12.375 3.93977C12.375 4.01975 12.3432 4.09641 12.2868 4.15274L7.46788 9L12.2868 13.8473Z" fill="#091114"/>
+                              </svg>
+                          </button>
+                          <button class="arrow_button arrow_button_next" type="button">
+                              <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                  <path d="M5.71321 13.8473C5.65675 13.9036 5.625 13.9803 5.625 14.0602C5.625 14.1402 5.65675 14.2169 5.71321 14.2732L6.34539 14.9091C6.39951 14.9671 6.47506 15 6.55413 15C6.63321 15 6.70876 14.9671 6.76287 14.9091L12.2438 9.39594C12.3277 9.31164 12.3749 9.19728 12.375 9.07799V8.92201C12.3749 8.80272 12.3277 8.68836 12.2438 8.60406L6.76287 3.0909C6.70876 3.0329 6.63321 3 6.55413 3C6.47506 3 6.39951 3.0329 6.34539 3.0909L5.71321 3.7268C5.65675 3.78312 5.625 3.85979 5.625 3.93977C5.625 4.01975 5.65675 4.09641 5.71321 4.15274L10.5321 9L5.71321 13.8473Z" fill="#091114"/>
+                              </svg>
+                          </button>
+                      </div>`)
+
+                    //event for arrow button in available options
+                    document.querySelectorAll('.arrow_button').forEach(arrow => {
+                        arrow.addEventListener('click', () => pushDataLayer('Click on arrow-slide button', 'Product section'))
+                    })
 
                     tns({
-                        container: document.querySelector('.slider-main'),
-                        autoplay: false,
-                        items: 1,
+                        container: contentAvailableOptions,
+                        items: 2,
                         axis: 'horizontal',
-                        controls: false,
+                        controls: true,
                         loop: false,
+                        prevButton: document.querySelector('.arrow_button_prev'),
+                        nextButton: document.querySelector('.arrow_button_next'),
+                        autoplayButton: false,
+                        autoplayButtonOutput: false,
                         mouseDrag: true,
-                        nav: true,
+                        nav: false,
                         preventScrollOnTouch: 'auto',
                         swipeAngle: false,
                     });
-
-                    let tabs = document.querySelectorAll('.tabs-discription li'), //tabs description
-                        contents = document.querySelectorAll('.content-discription .content-item'); // content discription
-
-                    tabs.forEach((tab, i) => {
-                        tab.addEventListener('click', () => {
-                            tab.parentElement.querySelector('.active').classList.remove('active');
-                            contents[i].parentElement.querySelector('.active').classList.remove('active');
-                            tab.classList.add('active');
-                            contents[i].classList.add('active');
-                            actionDataLayer = `Click at the ${tab.innerText} tab`;
-                            labelDataLayer = `Product section`;
-                            pushDataLayer(actionDataLayer, labelDataLayer)
-
-                        })
-                    })
-
-                    if (product.variants.length > 2) {
-                        let contentAvailableOptions = document.querySelector('.available-options .scroll-x');
-
-                        contentAvailableOptions.insertAdjacentHTML('beforebegin', `
-                          <div class="arrow_buttons">
-                              <button class="arrow_button arrow_button_prev" type="button" disabled>
-                                  <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                      <path d="M12.2868 13.8473C12.3432 13.9036 12.375 13.9803 12.375 14.0602C12.375 14.1402 12.3432 14.2169 12.2868 14.2732L11.6546 14.9091C11.6005 14.9671 11.5249 15 11.4459 15C11.3668 15 11.2912 14.9671 11.2371 14.9091L5.75621 9.39594C5.6723 9.31164 5.6251 9.19728 5.625 9.07799V8.92201C5.6251 8.80272 5.6723 8.68836 5.75621 8.60406L11.2371 3.0909C11.2912 3.0329 11.3668 3 11.4459 3C11.5249 3 11.6005 3.0329 11.6546 3.0909L12.2868 3.7268C12.3432 3.78312 12.375 3.85979 12.375 3.93977C12.375 4.01975 12.3432 4.09641 12.2868 4.15274L7.46788 9L12.2868 13.8473Z" fill="#091114"/>
-                                  </svg>
-                              </button>
-                              <button class="arrow_button arrow_button_next" type="button">
-                                  <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                      <path d="M5.71321 13.8473C5.65675 13.9036 5.625 13.9803 5.625 14.0602C5.625 14.1402 5.65675 14.2169 5.71321 14.2732L6.34539 14.9091C6.39951 14.9671 6.47506 15 6.55413 15C6.63321 15 6.70876 14.9671 6.76287 14.9091L12.2438 9.39594C12.3277 9.31164 12.3749 9.19728 12.375 9.07799V8.92201C12.3749 8.80272 12.3277 8.68836 12.2438 8.60406L6.76287 3.0909C6.70876 3.0329 6.63321 3 6.55413 3C6.47506 3 6.39951 3.0329 6.34539 3.0909L5.71321 3.7268C5.65675 3.78312 5.625 3.85979 5.625 3.93977C5.625 4.01975 5.65675 4.09641 5.71321 4.15274L10.5321 9L5.71321 13.8473Z" fill="#091114"/>
-                                  </svg>
-                              </button>
-                          </div>`)
-
-                        //event for arrow button in available options
-                        document.querySelectorAll('.arrow_button').forEach(arrow => {
-                            arrow.addEventListener('click', () => pushDataLayer('Click on arrow-slide button', 'Product section'))
-                        })
-
-                        tns({
-                            container: contentAvailableOptions,
-                            items: 2,
-                            axis: 'horizontal',
-                            controls: true,
-                            loop: false,
-                            prevButton: document.querySelector('.arrow_button_prev'),
-                            nextButton: document.querySelector('.arrow_button_next'),
-                            autoplayButton: false,
-                            autoplayButtonOutput: false,
-                            mouseDrag: true,
-                            nav: false,
-                            preventScrollOnTouch: 'auto',
-                            swipeAngle: false,
-                        });
-                    }
-
-                    //checkbox choice
-                    document.querySelectorAll('.available-options .checkbox').forEach((checkbox, index) => {
-                        if (index == 0) {
-                            checkbox.checked = true
-                        }
-                        checkbox.addEventListener('change', (e) => {
-                            if (checkbox.checked) {
-                                let optionPrice = checkbox.nextElementSibling.querySelector('.radio-check_price').innerText.replace('$', ''),
-                                    qty = document.querySelector('.product .calc-qty'),
-                                    priceProduct = document.querySelector('.product .add-cart .pr');
-
-                                document.querySelector('.product [name="product_variant_id"]').value = checkbox.dataset.variant;
-                                priceProduct.dataset.price = optionPrice;
-
-                                priceProduct.innerHTML = (+optionPrice * +qty.value).toFixed(2);
-                                if (qty.value == '') {
-                                    priceProduct.innerHTML = optionPrice
-                                }
-                            }
-                            pushDataLayer('Click on available options', 'PDP')
-                        })
-                    })
-
-                    requestSimilarProduct.then(res => {
-                        let hits = res.hits;
-
-                        if (hits.length > 0) {
-                            for (let i = 0; i < hits.length; i++) {
-                                document.querySelector('.cards_similar').insertAdjacentHTML('beforeend', initHits(hits[i]))
-                            }
-                        }
-                    })
                 }
-            })
-        }
+
+                //checkbox choice
+                document.querySelectorAll('.available-options .checkbox').forEach((checkbox, index) => {
+                    if (index == 0) {
+                        checkbox.checked = true
+                    }
+                    checkbox.addEventListener('change', (e) => {
+                        if (checkbox.checked) {
+                            let optionPrice = checkbox.nextElementSibling.querySelector('.radio-check_price').innerText.replace('$', ''),
+                                qty = document.querySelector('.product .calc-qty'),
+                                priceProduct = document.querySelector('.product .add-cart .pr');
+
+                            document.querySelector('.product [name="product_variant_id"]').value = checkbox.dataset.variant;
+                            priceProduct.dataset.price = optionPrice;
+
+                            priceProduct.innerHTML = (+optionPrice * +qty.value).toFixed(2);
+                            if (qty.value == '') {
+                                priceProduct.innerHTML = optionPrice
+                            }
+                        }
+                        pushDataLayer('Click on available options', 'PDP')
+                    })
+                })
+
+                requestSimilarProduct.then(res => {
+                    let hits = res.hits;
+
+                    if (hits.length > 0) {
+                        for (let i = 0; i < hits.length; i++) {
+                            document.querySelector('.cards_similar').insertAdjacentHTML('beforeend', initHits(hits[i]))
+                        }
+                    }
+                })
+            }
+        })
     }
-// };
+
+};
 
 let optionMut = {
     childList: true,
