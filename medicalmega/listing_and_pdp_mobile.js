@@ -1607,9 +1607,7 @@ window.onload = function() {
                 e.preventDefault()
                 let link = el.href.split('20&').join('20%26');
                 window.location.href = link;
-                actionDataLayer = `Click on category item - ${el.innerText}`;
-                labelDataLayer = `All categories`;
-                pushDataLayer(actionDataLayer, labelDataLayer);
+                pushDataLayer(`Click on category item - ${el.innerText}`, `All categories`);
             })
         })
 
@@ -1829,9 +1827,7 @@ window.onload = function() {
                         e.stopImmediatePropagation()
                         toggleListing(true)
                         if (!e.target.classList.contains('reset')) {
-                            actionDataLayer = `Click on reset button`;
-                            labelDataLayer = 'Search by Name';
-                            pushDataLayer(actionDataLayer, labelDataLayer)
+                            pushDataLayer(`Click on reset button`, 'Search by Name')
                         } else {
                             e.target.classList.remove('reset')
                         }
@@ -1866,9 +1862,7 @@ window.onload = function() {
                     if (document.querySelector('#manufacturer .ais-RefinementList-showMore') != null) {
                         document.querySelector('#manufacturer .ais-RefinementList-showMore').addEventListener('click', (e) => {
                             e.stopImmediatePropagation();
-                            actionDataLayer = `Click on ${e.target.innerText} button`;
-                            labelDataLayer = 'Filters';
-                            pushDataLayer(actionDataLayer, labelDataLayer);
+                            pushDataLayer(`Click on ${e.target.innerText} button`, 'Filters');
                             document.querySelector('#manufacturer ul').classList.toggle('scroll');
                             e.target.innerText == 'Show more' ? document.querySelector('#manufacturer ul').classList.remove('scroll') : '';
                         })
@@ -1877,9 +1871,7 @@ window.onload = function() {
                     document.querySelectorAll('.breadcrumbs li').forEach((crumb, index) => {
                         crumb.addEventListener('click', (e) => {
                             e.stopImmediatePropagation();
-                            actionDataLayer = `Click on crumb - ${e.target.innerText}`;
-                            labelDataLayer = 'Breadcrumbs';
-                            pushDataLayer(actionDataLayer, labelDataLayer);
+                            pushDataLayer(`Click on crumb - ${e.target.innerText}`, 'Breadcrumbs');
                         })
                     })
 
@@ -1887,9 +1879,7 @@ window.onload = function() {
                         document.querySelectorAll('.ais-CurrentRefinements-delete').forEach(item => {
                             item.addEventListener('click', (e) => {
                                 e.stopImmediatePropagation();
-                                actionDataLayer = `Click on cross button`;
-                                labelDataLayer = 'Current Refinements';
-                                pushDataLayer(actionDataLayer, labelDataLayer);
+                                pushDataLayer(`Click on cross button`, 'Current Refinements');
                             })
                         })
                     }
@@ -1898,9 +1888,7 @@ window.onload = function() {
                             e.stopImmediatePropagation();
 
                             if (!e.target.classList.contains('action-clean')) {
-                                actionDataLayer = `Click on All Clear Filters button`;
-                                labelDataLayer = 'Filters';
-                                pushDataLayer(actionDataLayer, labelDataLayer)
+                                pushDataLayer(`Click on All Clear Filters button`, 'Filters')
                             }
                             e.target.classList.remove('action-clean');
                         })
@@ -1949,9 +1937,7 @@ window.onload = function() {
     document.querySelectorAll('.select_filter').forEach(el => {
         el.querySelector('.select_item').addEventListener('click', (e) => {
             el.classList.toggle('active');
-            actionDataLayer = `Click on ${e.target.innerText} button`;
-            labelDataLayer = 'Filter';
-            pushDataLayer(actionDataLayer, labelDataLayer)
+            pushDataLayer(`Click on ${e.target.innerText} button`, 'Filter')
         })
     })
 
@@ -1992,17 +1978,10 @@ window.onload = function() {
         }
     ]).on('autocomplete:selected', function (event, suggestion, dataset) {
         window.location.href = `https://medicalmega.com/product/${suggestion.seo}`
-
-        actionDataLayer = `Selected suggestion`;
-        labelDataLayer = 'Autocomplete Search by Name';
-        pushDataLayer(actionDataLayer, labelDataLayer)
+        pushDataLayer(`Selected suggestion`, 'Autocomplete Search by Name')
     })
 
-    document.querySelector('#form-search input').addEventListener('click', (e) => {
-        actionDataLayer = `Click on Search by Name`;
-        labelDataLayer = 'Header';
-        pushDataLayer(actionDataLayer, labelDataLayer)
-    })
+    document.querySelector('#form-search input').addEventListener('click', (e) => pushDataLayer(`Click on Search by Name`, 'Header'))
 
     document.querySelectorAll('.midbar_action').forEach(el => {
         el.addEventListener('click', (e) => pushDataLayer(`Click on ${e.target.innerText}`, 'Header'))
@@ -2048,11 +2027,7 @@ window.onload = function() {
             document.querySelector(`.listing_popular .wound-care ul`).insertAdjacentHTML('beforeend', `<li>${initHits(res[2].hits[i])}</li>`)
         }
         document.querySelectorAll('.listing_popular .btn_white').forEach(el => {
-            el.addEventListener('click', (e) => {
-                labelDataLayer = `${el.parentElement.querySelector('h2').innerText}`;
-                actionDataLayer = `Click on Show More`;
-                pushDataLayer(actionDataLayer, labelDataLayer)
-            })
+            el.addEventListener('click', (e) => pushDataLayer(`${el.parentElement.querySelector('h2').innerText}`, `Click on Show More`))
         })
     });
 
@@ -2210,10 +2185,7 @@ window.onload = function() {
                         contents[i].parentElement.querySelector('.active').classList.remove('active');
                         tab.classList.add('active');
                         contents[i].classList.add('active');
-                        actionDataLayer = `Click at the ${tab.innerText} tab`;
-                        labelDataLayer = `Product section`;
-                        pushDataLayer(actionDataLayer, labelDataLayer)
-
+                        pushDataLayer(`Click at the ${tab.innerText} tab`, `Product section`)
                     })
                 })
 
@@ -2236,7 +2208,7 @@ window.onload = function() {
 
                     //event for arrow button in available options
                     document.querySelectorAll('.arrow_button').forEach(arrow => {
-                        arrow.addEventListener('click', () => pushDataLayer('Click on arrow-slide button', 'Product section'))
+                        arrow.addEventListener('click', () => pushDataLayer('Click on arrow-slide button', 'PDP'))
                     })
 
                     tns({
