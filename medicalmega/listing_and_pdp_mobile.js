@@ -607,6 +607,17 @@ margin: 16px -20px; }
   display: flex;
   align-items: center;
 }
+#breadcrumbs ul > li:first-child a:before {
+  content: '';
+  width: 18px;
+  height: 18px;
+  margin-left: 4px;
+  display: block;
+  color: transparent;
+  transform: scaleX(-1);
+  flex-shrink: 0;
+  background: url(https://conversionratestore.github.io/projects/medicalmega/img/chevron-right.svg) no-repeat center / contain;
+}
 .breadcrumbs {
   padding: 10px 0 5px; }
   .ais-Breadcrumb-link, .breadcrumbs a {
@@ -729,7 +740,7 @@ margin: 16px -20px; }
   .ais-Breadcrumb-separator {
     width: 18px;
     height: 18px;
-    margin-right: 4px;
+    margin-left: 4px;
     display: block;
     color: transparent;
     transform: scaleX(-1);
@@ -1847,7 +1858,6 @@ window.onload = function() {
                         document.querySelector('.listing_title').innerHTML = 'All Products';
                     } else {
                         document.querySelector('#breadcrumbs .ais-Breadcrumb-item--selected').style.display = 'none';
-                        document.querySelectorAll('#breadcrumbs li a')[0].insertAdjacentHTML('afterbegin',`<span class="ais-Breadcrumb-separator" aria-hidden="true">&gt;</span>`)
                         document.querySelector('#breadcrumbs').style = '';
                         document.querySelector('.listing_title').innerHTML = document.querySelector('#breadcrumbs .ais-Breadcrumb-item.ais-Breadcrumb-item--selected').innerText.replace('>', '')
                     }
