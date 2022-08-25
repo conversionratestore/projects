@@ -1647,7 +1647,7 @@ window.onload = function() {
           <div class="card">
             <p class="status" style="display:${hit['variants'][count].in_stock == false || hit['variants'][count].price == '0:00' ? 'block' : 'none'}">Out of Stock</p>
             <a class="card_name" href="https://medicalmega.com/product/${hit.seo}">
-              <img src="https://medicalmegaimgs.net/prod/uploaded/product/pro_thumb/${findImageHits(hit.variants) != '' ? findImageHits(hit.variants) : 'dummyimage.jpg'}" alt="${hit.name}">
+              <img src="https://medicalmegaimgs.net/prod/uploaded/product/${findImageHits(hit.variants) != '' ? findImageHits(hit.variants) : 'dummyimage.jpg'}" alt="${hit.name}">
               <span title='${hit.name}'>${hit.name}</span>
             </a>
             <p class="card_item">Item #${hit.item_num}</p>
