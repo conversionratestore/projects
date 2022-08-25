@@ -1144,7 +1144,7 @@ margin: 16px -20px; }
     opacity: 0;
     pointer-events: none;
     transition: all 0.3s ease;
-    z-index: 9;
+    z-index: 9999;
     overflow: hidden;
   }
   .menu.active {
