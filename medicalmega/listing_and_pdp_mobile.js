@@ -1846,8 +1846,8 @@ window.onload = function() {
                         document.querySelector('#breadcrumbs').style.opacity = '0';
                         document.querySelector('.listing_title').innerHTML = 'All Products';
                     } else {
-                        document.querySelectorAll('#breadcrumbs > li')[1].style.display = 'none';
-                        document.querySelectorAll('#breadcrumbs > li')[0].insertAdjacentHTML('afterbegin',`<span class="ais-Breadcrumb-separator" aria-hidden="true">&gt;</span>`)
+                        document.querySelector('#breadcrumbs .ais-Breadcrumb-item--selected').style.display = 'none';
+                        document.querySelectorAll('#breadcrumbs > li a')[0].insertAdjacentHTML('afterbegin',`<span class="ais-Breadcrumb-separator" aria-hidden="true">&gt;</span>`)
                         document.querySelector('#breadcrumbs').style = '';
                         document.querySelector('.listing_title').innerHTML = document.querySelector('#breadcrumbs .ais-Breadcrumb-item.ais-Breadcrumb-item--selected').innerText.replace('>', '')
                     }
