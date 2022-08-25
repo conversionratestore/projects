@@ -510,8 +510,8 @@ margin: 16px -20px; }
 .status {
   color: #96280F;
   position: absolute;
-  top: 16px;
-  right: 16px; }
+  top: 12px;
+  right: 12px; }
 .calc {
   margin-bottom: 16px; }
 .calc[disabled] {
