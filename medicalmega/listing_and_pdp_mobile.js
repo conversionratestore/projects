@@ -892,10 +892,13 @@ margin: 16px -20px; }
     width: 100%;
     height: 89.33vw;
     margin: 40px auto 8px;}
-    #tns1 > .tns-item {
+  #tns1 > .tns-item {
+    display: flex;
     height: 100%;
-        border: 1px solid #E0E4E5;
-        border-radius: 4px;}
+    border: 1px solid #E0E4E5;
+    border-radius: 4px;}
+  #tns1 > .tns-item img {
+    margin: auto;}
   .list {
     color: #344D57;
     margin: 70px 0 48px; }
