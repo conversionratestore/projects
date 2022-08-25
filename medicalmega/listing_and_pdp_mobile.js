@@ -611,7 +611,7 @@ margin: 16px -20px; }
   content: '';
   width: 18px;
   height: 18px;
-  margin-left: 4px;
+  margin-right: 4px;
   display: block;
   color: transparent;
   transform: scaleX(-1);
@@ -740,7 +740,7 @@ margin: 16px -20px; }
   .ais-Breadcrumb-separator {
     width: 18px;
     height: 18px;
-    margin-left: 4px;
+    margin-right: 4px;
     display: block;
     color: transparent;
     transform: scaleX(-1);
