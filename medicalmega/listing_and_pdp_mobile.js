@@ -1241,7 +1241,7 @@ let htmlMenu = `
                 <button type="button" class="close-menu" data-button=".menu"><img src="https://conversionratestore.github.io/projects/medicalmega/img/close-m.svg" alt="close menu"></button>
             </div>
             <a class="align-items-center midbar_action" href="https://medicalmega.com/myaccount.html">
-                <img class="" src="https://olha1001.github.io/medicalmega/pdp-rediesign/img/common/user.svg" alt="account icon">
+                <img class="mr-8" src="https://olha1001.github.io/medicalmega/pdp-rediesign/img/common/user.svg" alt="account icon">
                 <span>Account</span>
             </a> 
          
