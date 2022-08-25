@@ -2125,7 +2125,7 @@ window.onload = function() {
                             </div>
                             ${firstVariant.in_stock == false || firstVariant.price == '0:00' ? '<button class="btn btn btn_white" type="button" data-button="notify">Out of Stock</button>' : `<button class="btn btn_dark add-cart" type="submit" ><span>$<span class="pr" data-price="${firstVariant.price}">${firstVariant.price}</span> | </span>Add to Cart</button>`}
                             <input type="hidden" name="product_variant_id" value="${firstVariant.pv_id}">
-                            <input type="hidden" name="product_id" value="${firstVariant.objectID}">
+                            <input type="hidden" name="product_id" value="${product.objectID}">
                             <input type="hidden" name="add_to_cart" value="variant">
                         </form>`
                 }
@@ -2264,16 +2264,19 @@ window.onload = function() {
                     checkbox.addEventListener('change', (e) => {
                         if (checkbox.checked) {
                             let optionPrice = checkbox.nextElementSibling.querySelector('.radio-check_price').innerText.replace('$', ''),
-                                qty = document.querySelector('.product .calc-qty'),
-                                priceProduct = document.querySelector('.product .add-cart .pr');
+                                qty = document.querySelectorAll('.product .calc-qty'),
+                                priceProduct = document.querySelectorAll('.product .add-cart .pr');
 
-                            document.querySelector('.product [name="product_variant_id"]').value = checkbox.dataset.variant;
-                            priceProduct.dataset.price = optionPrice;
+                            document.querySelectorAll('.product [name="product_variant_id"]').forEach((item, i) => {
+                              item.value = checkbox.dataset.variant;
+                              priceProduct[i].dataset.price = optionPrice;
 
-                            priceProduct.innerHTML = (+optionPrice * +qty.value).toFixed(2);
-                            if (qty.value == '') {
-                                priceProduct.innerHTML = optionPrice
-                            }
+                              priceProduct[i].innerHTML = (+optionPrice * +qty[i].value).toFixed(2);
+                              if (qty[i].value == '') {
+                                  priceProduct[i].innerHTML = optionPrice
+                              }
+                            })
+                          
                         }
                         pushDataLayer('Click on available options', 'PDP')
                     })
