@@ -1409,7 +1409,7 @@ function pushDataLayer(actionDataLayer, labelDataLayer) {
     window.dataLayer = window.dataLayer || [];
     dataLayer.push({
         'event': 'event-to-ga',
-        'eventCategory': 'Exp — New PL',
+        'eventCategory': 'Exp — New PL and PDP (mobile)',
         'eventAction': actionDataLayer,
         'eventLabel': labelDataLayer
     });
@@ -2341,12 +2341,12 @@ let mut = new MutationObserver(function (muts) {
 
 mut.observe(document, optionMut);
 
-// window.dataLayer = window.dataLayer || [];
-// dataLayer.push({
-//     'event': 'event-to-ga',
-//     'eventCategory': 'Exp — New PL',
-//     'eventAction': 'loaded'
-// });
+window.dataLayer = window.dataLayer || [];
+dataLayer.push({
+    'event': 'event-to-ga',
+    'eventCategory': 'Exp — New PL and PDP (mobile)',
+    'eventAction': 'loaded'
+});
 //
 // (function(h,o,t,j,a,r){
 //     h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
