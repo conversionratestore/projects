@@ -1434,7 +1434,7 @@ function pushDataLayer(actionDataLayer, labelDataLayer) {
 
 //set Label For Events
 function labelForEvents(e) {
-    if (e.closest('.product_sidebar')) {
+    if (e.closest('.product')) {
         return `PDP`;
     } else if (e.closest('.cards_similar')) {
         return `Similar Products`;
