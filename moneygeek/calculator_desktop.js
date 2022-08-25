@@ -3,6 +3,54 @@ const queryAll = document.querySelectorAll.bind(document)
 
 const style = /*html*/`
             <style>
+                .css-1fdnw4t {
+                    padding: 48px 28px 48px 48px !important;
+                    max-width: 50% !important;
+                }
+
+                .css-1tnvl9l {
+                    padding-top: 48px !important;
+                    margin: 0 48px 18px 28px !important;
+                }
+
+                .css-ppy82w {
+                    background-image: url(https://res.cloudinary.com/moneygeek/image/upload/v1621864481/MoneyGeek.com/assets/min_pmm3ay.png);
+                    background-repeat: no-repeat;
+                    height: 155px !important;
+                    width: 328px !important;
+                    background-size: cover !important;
+                }
+                .css-ppy82w p.middle-text {
+                    margin-top: 105px !important;
+                    margin-left: 103px !important;
+                } 
+                .css-ppy82w .low-end {
+                    margin-top: 105px !important;
+                    margin-left: 45px !important;
+                }
+                .css-ppy82w .high-end {
+                    margin-top: 105px !important;
+                    margin-left: 232px !important;
+                }
+                .css-ppy82w .average {
+                    margin-top: 38px !important;
+                    margin-left: 134px !important;
+                }
+                
+                .css-wrissr .subtitle {
+                    margin-top: 20px;
+                    text-align: left;
+                }
+
+                .css-107z8q1 .header,
+                .css-107z8q1 .row {
+                    margin: 0 !important;
+                }
+
+                .css-zveagm {
+                    margin-top: 48px !important;
+                }
+
                 .fr_select_wrapper .last { margin-top: 0 !important; }
                 .fr_select_wrapper .state { margin-bottom: 0 !important; }
 
@@ -151,31 +199,14 @@ const style = /*html*/`
                     padding-left: 20px;
                 }
 
-                .css-1fdnw4t .student-section {margin-top: 0px !important;}
-
-                /* mob*/
-
-                .my_blue_btn {
-                    margin: 20px 20px 0 !important;
-                    width: auto !important;
-                }
-
-                .e1ssirya5 {padding-bottom: 0 !important;}
-
-                .css-1fdnw4t .add-student {margin-top: 0 !important;}
-                
-                .e1ssirya4 {display: none !important;}
-
-                .css-1fdnw4t {
-                    padding: 30px 20px 0 !important;
-                }                
+                .css-1fdnw4t .student-section {margin-top: 0px !important;}                
             </style>
         `
 document.head.insertAdjacentHTML('beforeend', style)
 
 const intervalTimeout = 200
 const fireEvent = (eventAction, eventLabel = '') => {
-    const device = 'Mobile'
+    const device = 'Desktop'
 
     window.dataLayer = window.dataLayer || []
     dataLayer.push({
@@ -274,10 +305,8 @@ const hideSelects = () => {
                 </svg><p>Back<p></div>
             `)
 
-    query('.e1ssirya3').insertAdjacentHTML('beforebegin', `<button type="submit" hidden class="my_blue_btn chakra-button css-15hckgf">Get Your Personalized Quote</button>`)
-
     const waitForBtn = setInterval(() => {
-        if (query('.continue') && query('.back') && ('.my_blue_btn')) {
+        if (query('.continue') && query('.back')) {
             clearInterval(waitForBtn)
 
             const firstPartSelects = [
@@ -292,8 +321,6 @@ const hideSelects = () => {
                 secondPartSelects.forEach(select => { select.hidden = false })
                 firstPartSelects.forEach(select => { select.hidden = true })
 
-                query('.my_blue_btn').hidden = false
-
                 if (query('.student-section')) {
                     query('.student-section').hidden = false
                 }
@@ -306,8 +333,6 @@ const hideSelects = () => {
             const showFirstPart = () => {
                 secondPartSelects.forEach(select => { select.hidden = true })
                 firstPartSelects.forEach(select => { select.hidden = false })
-
-                query('.my_blue_btn').hidden = true
 
                 if (query('.student-section')) {
                     query('.student-section').hidden = true
@@ -324,11 +349,6 @@ const hideSelects = () => {
 
             query('.continue').addEventListener('click', showSecondPart)
             query('.back').addEventListener('click', showFirstPart)
-
-            query('.my_blue_btn').addEventListener('click', () => {
-                query('.e1ssirya3 .chakra-button').click()
-                fireEvent('click on My Get Quote Btn')
-            })
         }
     }, intervalTimeout)
 }
@@ -382,7 +402,7 @@ const callback = (mutations) => {
     for (let mutation of mutations) {
         for (let node of mutation.addedNodes) {
             if (!(node instanceof HTMLElement)) continue
-            
+
             if (node.matches('.css-2b097c-container')) {
                 if (isFirstPart && query('.student-section')) {
                     query('.student-section').hidden = true
@@ -438,6 +458,6 @@ fireEvent('Loaded')
 let record = setInterval(function () {
     if (typeof clarity === 'function') {
         clearInterval(record)
-        clarity('set', `calculator_improvements_mobile`, 'variant_1')
+        clarity('set', `calculator_improvements_desktop`, 'variant_1')
     }
 }, intervalTimeout)
