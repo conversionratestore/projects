@@ -1626,8 +1626,8 @@ window.onload = function() {
         alphabet.querySelectorAll('.alphabet-item').forEach(el => {
             el.addEventListener('click', (e) => {
                 e.stopImmediatePropagation();
-                e.target.closest('.alphabet').querySelector('.active') != null ? e.target.closest('.alphabet').querySelector('.active').classList.remove('active') : '';
-                e.target.classList.toggle('active');
+                // e.target.closest('.alphabet').querySelector('.active').classList.remove('active');
+                el.classList.toggle('active');
             })
         })
     })
