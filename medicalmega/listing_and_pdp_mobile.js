@@ -1626,12 +1626,10 @@ window.onload = function() {
         alphabet.querySelectorAll('.alphabet-item').forEach(el => {
             el.addEventListener('click', (e) => {
                 e.stopImmediatePropagation();
-                e.target.closest('.alphabet').querySelector('.active').classList.remove('active');
-                e.target.classList.add('active');
+                e.target.closest('.alphabet').querySelector('.active') != null ? e.target.closest('.alphabet').querySelector('.active').classList.remove('active') : '';
+                e.target.classList.toggle('active');
             })
         })
-
-
     })
 
     function findImageHits(variants) {
