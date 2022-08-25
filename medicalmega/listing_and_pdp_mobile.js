@@ -1406,6 +1406,7 @@ function isScrolledIntoView(el) {
 }
 //push dataLayer
 function pushDataLayer(actionDataLayer, labelDataLayer) {
+    console.log(actionDataLayer, labelDataLayer)
     window.dataLayer = window.dataLayer || [];
     dataLayer.push({
         'event': 'event-to-ga',
