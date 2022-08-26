@@ -2051,6 +2051,7 @@ window.onload = function() {
         toggleListing(false); //hide listing
 
         requestProduct.then(data => {
+          console.log(data)
             if (data.nbHits == 0) {
                 document.querySelector('.main').style.display = 'none';
                 document.querySelector('.style-main') != null ? document.querySelector('.style-main').remove() : '';
