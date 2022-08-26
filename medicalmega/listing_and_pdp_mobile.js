@@ -2211,37 +2211,14 @@ window.onload = function() {
                 if (product.variants.length > 2) {
                     let contentAvailableOptions = document.querySelector('.available-options .scroll-x');
 
-                    contentAvailableOptions.insertAdjacentHTML('beforebegin', `
-                      <div class="arrow_buttons">
-                          <button class="arrow_button arrow_button_prev" type="button" disabled>
-                              <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                  <path d="M12.2868 13.8473C12.3432 13.9036 12.375 13.9803 12.375 14.0602C12.375 14.1402 12.3432 14.2169 12.2868 14.2732L11.6546 14.9091C11.6005 14.9671 11.5249 15 11.4459 15C11.3668 15 11.2912 14.9671 11.2371 14.9091L5.75621 9.39594C5.6723 9.31164 5.6251 9.19728 5.625 9.07799V8.92201C5.6251 8.80272 5.6723 8.68836 5.75621 8.60406L11.2371 3.0909C11.2912 3.0329 11.3668 3 11.4459 3C11.5249 3 11.6005 3.0329 11.6546 3.0909L12.2868 3.7268C12.3432 3.78312 12.375 3.85979 12.375 3.93977C12.375 4.01975 12.3432 4.09641 12.2868 4.15274L7.46788 9L12.2868 13.8473Z" fill="#091114"/>
-                              </svg>
-                          </button>
-                          <button class="arrow_button arrow_button_next" type="button">
-                              <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                  <path d="M5.71321 13.8473C5.65675 13.9036 5.625 13.9803 5.625 14.0602C5.625 14.1402 5.65675 14.2169 5.71321 14.2732L6.34539 14.9091C6.39951 14.9671 6.47506 15 6.55413 15C6.63321 15 6.70876 14.9671 6.76287 14.9091L12.2438 9.39594C12.3277 9.31164 12.3749 9.19728 12.375 9.07799V8.92201C12.3749 8.80272 12.3277 8.68836 12.2438 8.60406L6.76287 3.0909C6.70876 3.0329 6.63321 3 6.55413 3C6.47506 3 6.39951 3.0329 6.34539 3.0909L5.71321 3.7268C5.65675 3.78312 5.625 3.85979 5.625 3.93977C5.625 4.01975 5.65675 4.09641 5.71321 4.15274L10.5321 9L5.71321 13.8473Z" fill="#091114"/>
-                              </svg>
-                          </button>
-                      </div>`)
-
-                    //event for arrow button in available options
-                    document.querySelectorAll('.arrow_button').forEach(arrow => {
-                        arrow.addEventListener('click', () => pushDataLayer('Click on arrow-slide button', 'PDP'))
-                    })
-
                     tns({
                         container: contentAvailableOptions,
                         items: 2,
                         axis: 'horizontal',
-                        controls: true,
+                        controls: false,
                         loop: false,
-                        prevButton: document.querySelector('.arrow_button_prev'),
-                        nextButton: document.querySelector('.arrow_button_next'),
-                        autoplayButton: false,
-                        autoplayButtonOutput: false,
                         mouseDrag: true,
-                        nav: false,
+                        nav: true,
                         preventScrollOnTouch: 'auto',
                         swipeAngle: false,
                     });
