@@ -1624,13 +1624,18 @@ window.onload = function() {
             })
         })
 
-        alphabet.querySelectorAll('.alphabet-item').forEach(el => {
+        alphabet.querySelectorAll('.alphabet-item').forEach((el, index) => {
             el.addEventListener('click', (e) => {
                 e.stopImmediatePropagation();
-                // e.target.closest('.alphabet').querySelector('.active').classList.remove('active');
-                el.classList.toggle('active');
+                let elem = document.querySelectorAll('.alphabet-item')
+                for (let i = 0; i < elem.length; i++) {
+                  if (i != index && elem[i].classList.contains('active')) {
+                    elem[i].classList.remove('active')
+                  }
+                }
+                e.target.classList.toggle('active')
             })
-        })
+        })  
     })
 
     function findImageHits(variants) {
@@ -2127,6 +2132,10 @@ window.onload = function() {
                         </nav>
                         <div class="product"> 
                             <h2 class="title">${product.name}</h2>
+                            <div class="flex-center-between">
+                              <img class="mr-8" src="https://olha1001.github.io/medicalmega/pdp-rediesign/img/transpilot1.svg" alt="icon transpilot">
+                              <img src="https://olha1001.github.io/medicalmega/pdp-rediesign/img/transpilot2.svg" alt="icon transpilot">
+                            </div>
                             <div class="slider-main">${slides()}</div>
                             <p class="text-small text-center">Image shown for reference purposes only. Actual product appearance may vary.</p>
                           
