@@ -484,7 +484,7 @@ margin: 16px -20px; }
   cursor: pointer;
   border-bottom: 1px solid #E0E4E5;
   position: sticky; 
-  top: 108px;
+  top: 107px;
   background: #fff;
   z-index: 9;}
   .select_item:before {
