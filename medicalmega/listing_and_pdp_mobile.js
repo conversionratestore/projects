@@ -817,7 +817,6 @@ margin: 16px -20px; }
     display: -webkit-box;
     -webkit-line-clamp: 1;
     -webkit-box-orient: vertical;
-    height: 14px;
   }
   .aa-suggestion .item_num {
     font-size: 10px;
