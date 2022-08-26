@@ -132,7 +132,7 @@ let faqs = setInterval(() => {
                 <li class="accardion_block_faqs">
                     <div class="accardion_link_faqs">
                         <span></span>
-                        <h3>How does SleepyPatch work?</h3>
+                        <h3>How do SleepyPatches work?</h3>
                     </div>
                     <div class="accardion_lists_faqs">
                         <div>
@@ -149,7 +149,7 @@ let faqs = setInterval(() => {
                 <li class="accardion_block_faqs">
                     <div class="accardion_link_faqs">
                         <span></span>
-                        <h3>How to apply SleepyPatch?</h3>
+                        <h3>How do you apply SleepyPatches?</h3>
                     </div>
                     <div class="accardion_lists_faqs">
                         <div>
@@ -165,7 +165,7 @@ let faqs = setInterval(() => {
                 <li class="accardion_block_faqs">
                     <div class="accardion_link_faqs">
                         <span></span>
-                        <h3>How long do SleepyPatch last?</h3>
+                        <h3>How long do SleepyPatches work for?</h3>
                     </div>
                     <div class="accardion_lists_faqs">
                         <div>
@@ -176,7 +176,7 @@ let faqs = setInterval(() => {
                 <li class="accardion_block_faqs">
                     <div class="accardion_link_faqs">
                         <span></span>
-                        <h3>What do the SleepyPatches smell like?</h3>
+                        <h3>What do SleepyPatches smell like?</h3>
                     </div>
                     <div class="accardion_lists_faqs">
                         <div>
@@ -187,7 +187,7 @@ let faqs = setInterval(() => {
                 <li >
                     <div class="accardion_link_faqs">
                         <span></span>
-                        <h3>What are the ingredients in the SleepyPatch?</h3>
+                        <h3>What ingredients are in SleepyPatches?</h3>
                     </div>
                     <div class="accardion_lists_faqs">
                         <div>
@@ -198,7 +198,7 @@ let faqs = setInterval(() => {
                 <li class="accardion_block_faqs">
                     <div class="accardion_link_faqs">
                         <span></span>
-                        <h3>Does SleepyPatch have scientifically proven effect?</h3>
+                        <h3>Are SleepyPatches science-backed?</h3>
                     </div>
                     <div class="accardion_lists_faqs">
                         <div>
