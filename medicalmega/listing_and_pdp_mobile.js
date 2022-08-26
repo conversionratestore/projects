@@ -1672,7 +1672,7 @@ window.onload = function() {
                 <input class="calc-qty" type="number" name="quantity" value="1" data-max-value="${hit['variants'][count].qty}">
                 <button class="btn-calc btn-calc_plus" type="button"></button>
               </div>
-              ${hit['variants'][count].in_stock == false || hit['variants'][count].price == '0:00' ? '<button class="btn btn_white" type="button" data-button="notify"><span>Out of Stock</span></button>' : '<button class="btn btn_dark add-cart" type="submit"><span>$<span class="pr" data-price="' + hit['variants'][count].price + '">' + hit['variants'][count].price + '</span> | Add</span></button>'}
+              ${hit['variants'][count].in_stock == false || hit['variants'][count].price == '0.00' ? '<button class="btn btn_white" type="button" data-button="notify"><span>Out of Stock</span></button>' : '<button class="btn btn_dark add-cart" type="submit"><span>$<span class="pr" data-price="' + hit['variants'][count].price + '">' + hit['variants'][count].price + '</span> | Add</span></button>'}
               <input type="hidden" name="product_variant_id" value="${hit['variants'][count].pv_id}">
               <input type="hidden" name="product_id" value="${hit.objectID}">
               <input type="hidden" name="add_to_cart" value="variant">
