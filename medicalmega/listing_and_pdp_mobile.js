@@ -595,7 +595,7 @@ margin: 16px -20px; }
       margin-bottom: 7px; }
       .card_item {
         font-size: 11px;
-        margin-bottom: 15px;
+        margin-bottom: 5px;
         color: #6D7E85;
       }
   .card .btn {
@@ -1230,6 +1230,14 @@ margin: 16px -20px; }
   .add-to-cart .calc {
     margin-bottom: 0;
   }
+  .box-of {
+    min-height: 21px;
+  }
+  .box-of p {
+    margin-bottom: 5px;
+    font-size: 11px;
+    color: #6D7E85;
+  }
 
 </style>`
 
@@ -1647,14 +1655,21 @@ window.onload = function() {
 
     function initHits(hit) {
         let variants = hit.variants,
-            count = 0;
+            count = 0,
+            boxOf = '';
         for (let i = 0; i < variants.length; i++) {
             if (variants[i].in_stock == true && variants[i].price != '0:00') {
                 count = i;
                 break;
             } else {
                 count = i;
-            }
+            }  
+        }
+
+        for (let i = 0; i < variants.length; i++) {
+          if (variants.length > 1 && variants[i].extra != 'Each') {
+            boxOf += `<p>${variants[i].extra} = $${variants[i].price}</p>`;
+          }
         }
 
         let boxItem = `
@@ -1666,6 +1681,9 @@ window.onload = function() {
             </a>
             <p class="card_item">Item #${hit.item_num}</p>
             <form action="https://medicalmega.com/cart.html" method="post">
+              <div class="box-of">
+                ${boxOf}
+              </div>
               <div class="flex-center-center calc" ${hit['variants'][count].in_stock == false || hit['variants'][count].price == '0:00' ? 'disabled' : ''}>
                 <button class="btn-calc btn-calc_minus" type="button" disabled=""></button>
                 <input class="calc-qty" type="number" name="quantity" value="1" data-max-value="${hit['variants'][count].qty}">
