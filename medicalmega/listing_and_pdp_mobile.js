@@ -596,7 +596,7 @@ margin: 16px -20px; }
       margin-bottom: 7px; }
       .card_item {
         font-size: 11px;
-        margin-bottom: 5px;
+        margin-bottom: 15px;
         color: #6D7E85;
       }
   .card .btn {
