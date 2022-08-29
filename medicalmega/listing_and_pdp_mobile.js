@@ -1232,6 +1232,7 @@ margin: 16px -20px; }
   }
   .box-of {
     min-height: 21px;
+    margin-bottom: 5px;
   }
   .box-of p {
     margin-bottom: 5px;
