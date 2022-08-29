@@ -1662,7 +1662,7 @@ window.onload = function() {
             count = 0,
             boxOf = '';
         for (let i = 0; i < variants.length; i++) {
-            if (variants[i].in_stock == true && variants[i].price != '0:00') {
+            if (variants[i].in_stock == true && variants[i].price != '0.00') {
                 count = i;
                 break;
             } else {
@@ -1671,7 +1671,7 @@ window.onload = function() {
         }
 
         for (let i = 0; i < variants.length; i++) {
-          if (variants.length > 1 && variants[i].extra != 'Each' && variants[i].price != '0:00') {
+          if (variants.length > 1 && variants[i].extra != 'Each' && variants[i].price != '0.00') {
             boxOf += `<p>${variants[i].extra} = $${variants[i].price}</p>`;
           }
         }
