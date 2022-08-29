@@ -441,6 +441,7 @@ margin: 16px -20px; }
     margin-top: -1px;
     margin-left: -1px;
     width: 100%;
+    height: 100%;
     }
     .listing_wrapper li:nth-child(2n+2) .card {
         border-left: none;
@@ -1231,7 +1232,6 @@ margin: 16px -20px; }
     margin-bottom: 0;
   }
   .box-of {
-    min-height: 37px;
     margin-bottom: 5px;
   }
   .box-of p {
