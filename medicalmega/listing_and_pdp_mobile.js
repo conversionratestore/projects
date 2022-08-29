@@ -1239,6 +1239,9 @@ margin: 16px -20px; }
     font-size: 11px;
     color: #6D7E85;
   }
+  .ais-InfiniteHits--empty {
+    padding: 0 20px;
+  }
 
 </style>`
 
