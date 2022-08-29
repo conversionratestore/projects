@@ -1668,7 +1668,7 @@ window.onload = function() {
         }
 
         for (let i = 0; i < variants.length; i++) {
-          if (variants.length > 1 && variants[i].extra != 'Each') {
+          if (variants.length > 1 && variants[i].extra != 'Each' && variants[i].price != '0:00') {
             boxOf += `<p>${variants[i].extra} = $${variants[i].price}</p>`;
           }
         }
