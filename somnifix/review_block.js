@@ -163,9 +163,8 @@ const style = /*html*/`
 
         .pack .img_wrapper {
             background: #FFFFFF;
-            border-radius: 5px;
-            
-            width: 37%;
+            border-radius: 5px;            
+            width: 30%;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -188,7 +187,7 @@ const style = /*html*/`
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            width: 55%;
+            width: 60%;
         }
 
         .somnifix {
@@ -367,140 +366,8 @@ const style = /*html*/`
     </style>
 `
 
-// const select = /*html*/`
-//     <select class="country_select" name="country">
-//         <option value="United States" data-free="free" data-value="04 Sep - 06 Sep">United States</option>
-//         <option value="Canada" data-free="$5" data-value="07 Sep - 10 Sep">Canada</option>
-//         <option value="United Kingdom" data-free="free" data-value="09 Sep - 12 Sep">United Kingdom</option>
-//         <option value="Australia" data-free="$10" data-value="09 Sep - 12 Sep">Australia</option>
-//         <option value="France" data-free="free" data-value="09 Sep - 12 Sep">France</option>
-//         <option value="Germany" data-free="free" data-value="09 Sep - 12 Sep">Germany</option>
-//         <option value="The Netherlands" data-free="free" data-value="09 Sep - 12 Sep">The Netherlands
-//         </option>
-//         <option value="Belgium" data-free="free" data-value="09 Sep - 12 Sep">Belgium</option>
-//         <option value="Spain" data-free="free" data-value="09 Sep - 12 Sep">Spain</option>
-//         <option value="Austria" data-free="free" data-value="09 Sep - 12 Sep">Austria</option>
-//         <option value="Poland" data-free="free" data-value="09 Sep - 12 Sep">Poland</option>
-//         <option value="Switzerland" data-free="free" data-value="09 Sep - 12 Sep">Switzerland</option>
-//         <option value="Aland Islands" data-free="$10" data-value="09 Sep - 12 Sep">Aland Islands</option>
-//         <option value="Albania" data-free="$10" data-value="09 Sep - 12 Sep">Albania</option>
-//         <option value="Andorra" data-free="$10" data-value="09 Sep - 12 Sep">Andorra</option>
-//         <option value="Armenia" data-free="$10" data-value="09 Sep - 12 Sep">Armenia</option>
-//         <option value="Belarus" data-free="$10" data-value="09 Sep - 12 Sep">Belarus</option>
-//         <option value="Bosnia And Herzegovina" data-free="$10" data-value="09 Sep - 12 Sep">Bosnia And
-//             Herzegovina</option>
-//         <option value="Bouvet Island" data-free="$10" data-value="09 Sep - 12 Sep">Bouvet Island</option>
-//         <option value="Bulgaria" data-free="$10" data-value="09 Sep - 12 Sep">Bulgaria</option>
-//         <option value="Croatia" data-free="$10" data-value="09 Sep - 12 Sep">Croatia</option>
-//         <option value="Cyprus" data-free="$10" data-value="09 Sep - 12 Sep">Cyprus</option>
-//         <option value="Czech Republic" data-free="" data-value="26 Aug - 26 Aug">Czech Republic</option>
-//         <option value="Denmark" data-free="free" data-value="09 Sep - 12 Sep">Denmark</option>
-//         <option value="Estonia" data-free="free" data-value="09 Sep - 12 Sep">Estonia</option>
-//         <option value="Faroe Islands" data-free="$10" data-value="09 Sep - 12 Sep">Faroe Islands</option>
-//         <option value="Finland" data-free="$10" data-value="09 Sep - 12 Sep">Finland</option>
-//         <option value="Georgia" data-free="$10" data-value="09 Sep - 12 Sep">Georgia</option>
-//         <option value="Gibraltar" data-free="$10" data-value="09 Sep - 12 Sep">Gibraltar</option>
-//         <option value="Greece" data-free="$10" data-value="09 Sep - 12 Sep">Greece</option>
-//         <option value="Greenland" data-free="$10" data-value="09 Sep - 12 Sep">Greenland</option>
-//         <option value="Guadeloupe" data-free="$10" data-value="09 Sep - 12 Sep">Guadeloupe</option>
-//         <option value="Guernsey" data-free="$10" data-value="09 Sep - 12 Sep">Guernsey</option>
-//         <option value="Hungary" data-free="free" data-value="09 Sep - 12 Sep">Hungary</option>
-//         <option value="Iceland" data-free="$10" data-value="09 Sep - 12 Sep">Iceland</option>
-//         <option value="Ireland" data-free="$10" data-value="09 Sep - 12 Sep">Ireland</option>
-//         <option value="Isle of Man" data-free="$10" data-value="09 Sep - 12 Sep">Isle of Man</option>
-//         <option value="Italy" data-free="free" data-value="09 Sep - 12 Sep">Italy</option>
-//         <option value="Jersey" data-free="$10" data-value="09 Sep - 12 Sep">Jersey</option>
-//         <option value="Kosovo" data-free="$10" data-value="09 Sep - 12 Sep">Kosovo</option>
-//         <option value="Latvia" data-free="free" data-value="09 Sep - 12 Sep">Latvia</option>
-//         <option value="Liechtenstein" data-free="$10" data-value="09 Sep - 12 Sep">Liechtenstein</option>
-//         <option value="Lithuania" data-free="free" data-value="09 Sep - 12 Sep">Lithuania</option>
-//         <option value="Luxembourg" data-free="free" data-value="09 Sep - 12 Sep">Luxembourg</option>
-//         <option value="Malta" data-free="free" data-value="09 Sep - 12 Sep">Malta</option>
-//         <option value="Mayotte" data-free="$10" data-value="09 Sep - 12 Sep">Mayotte</option>
-//         <option value="Monaco" data-free="$10" data-value="09 Sep - 12 Sep">Monaco</option>
-//         <option value="Montenegro" data-free="$10" data-value="09 Sep - 12 Sep">Montenegro</option>
-//         <option value="New Zealand" data-free="$10" data-value="09 Sep - 12 Sep">New Zealand</option>
-//         <option value="Norway" data-free="$10" data-value="09 Sep - 12 Sep">Norway</option>
-//         <option value="Portugal" data-free="free" data-value="09 Sep - 12 Sep">Portugal</option>
-//         <option value="Reunion" data-free="$10" data-value="09 Sep - 12 Sep">Reunion</option>
-//         <option value="Romania" data-free="$10" data-value="09 Sep - 12 Sep">Romania</option>
-//         <option value="San Marino" data-free="$10" data-value="09 Sep - 12 Sep">San Marino</option>
-//         <option value="Serbia" data-free="$10" data-value="09 Sep - 12 Sep">Serbia</option>
-//         <option value="Slovakia" data-free="$10" data-value="09 Sep - 12 Sep">Slovakia</option>
-//         <option value="Slovenia" data-free="$10" data-value="09 Sep - 12 Sep">Slovenia</option>
-//         <option value="Svlabard And Jan Mayen" data-free="$10" data-value="09 Sep - 12 Sep">Svlabard And
-//             Jan Mayen</option>
-//         <option value="Sweden" data-free="free" data-value="09 Sep - 12 Sep">Sweden</option>
-//         <option value="Turkey" data-free="$10" data-value="09 Sep - 12 Sep">Turkey</option>
-//         <option value="Ukraine" data-free="$10" data-value="09 Sep - 12 Sep">Ukraine</option>
-//     </select>
-// `
-
-const select = /*html*/`
-<select class="country_select" name="country"> <option value="United States" data-free="free" data-value="07 Sep - 09 Sep">United States</option> <option value="Canada" data-free="$5" data-value="10 Sep - 13 Sep">
-Canada</option> <option value="United Kingdom" data-free="free" data-value="12 Sep - 15 Sep">
-United Kingdom</option> <option value="Australia" data-free="$10" data-value="12 Sep - 15 Sep">
-Australia</option> <option value="France" data-free="free" data-value="12 Sep - 15 Sep">
-France</option> <option value="Germany" data-free="free" data-value="12 Sep - 15 Sep">
-Germany</option> <option value="The Netherlands" data-free="free" data-value="12 Sep - 15 Sep">
-The Netherlands</option> <option value="Belgium" data-free="free" data-value="12 Sep - 15 Sep">
-Belgium</option> <option value="Spain" data-free="free" data-value="12 Sep - 15 Sep">
-Spain</option> <option value="Austria" data-free="free" data-value="12 Sep - 15 Sep">
-Austria</option> <option value="Poland" data-free="free" data-value="12 Sep - 15 Sep">
-Poland</option> <option value="Switzerland" data-free="free" data-value="12 Sep - 15 Sep">
-Switzerland</option> <option value="Aland Islands" data-free="$10" data-value="12 Sep - 15 Sep">
-Aland Islands</option> <option value="Albania" data-free="$10" data-value="12 Sep - 15 Sep">
-Albania</option> <option value="Andorra" data-free="$10" data-value="12 Sep - 15 Sep">
-Andorra</option> <option value="Armenia" data-free="$10" data-value="12 Sep - 15 Sep">
-Armenia</option> <option value="Belarus" data-free="$10" data-value="12 Sep - 15 Sep">
-Belarus</option> <option value="Bosnia And Herzegovina" data-free="$10" data-value="12 Sep - 15 Sep">
-Bosnia And Herzegovina</option> <option value="Bouvet Island" data-free="$10" data-value="12 Sep - 15 Sep">
-Bouvet Island</option> <option value="Bulgaria" data-free="$10" data-value="12 Sep - 15 Sep">
-Bulgaria</option> <option value="Croatia" data-free="$10" data-value="12 Sep - 15 Sep">
-Croatia</option> <option value="Cyprus" data-free="$10" data-value="12 Sep - 15 Sep">
-Cyprus</option> <option value="Czech Republic14-17" data-free="" data-value="29 Aug - 29 Aug">
-Czech Republic14-17</option> <option value="Denmark" data-free="free" data-value="12 Sep - 15 Sep">
-Denmark</option> <option value="Estonia" data-free="free" data-value="12 Sep - 15 Sep">
-Estonia</option> <option value="Faroe Islands" data-free="$10" data-value="12 Sep - 15 Sep">
-Faroe Islands</option> <option value="Finland" data-free="$10" data-value="12 Sep - 15 Sep">
-Finland</option> <option value="Georgia" data-free="$10" data-value="12 Sep - 15 Sep">
-Georgia</option> <option value="Gibraltar" data-free="$10" data-value="12 Sep - 15 Sep">
-Gibraltar</option> <option value="Greece" data-free="$10" data-value="12 Sep - 15 Sep">
-Greece</option> <option value="Greenland" data-free="$10" data-value="12 Sep - 15 Sep">
-Greenland</option> <option value="Guadeloupe" data-free="$10" data-value="12 Sep - 15 Sep">
-Guadeloupe</option> <option value="Guernsey" data-free="$10" data-value="12 Sep - 15 Sep">
-Guernsey</option> <option value="Hungary" data-free="free" data-value="12 Sep - 15 Sep">
-Hungary</option> <option value="Iceland" data-free="$10" data-value="12 Sep - 15 Sep">
-Iceland</option> <option value="Ireland" data-free="$10" data-value="12 Sep - 15 Sep">
-Ireland</option> <option value="Isle of Man" data-free="$10" data-value="12 Sep - 15 Sep">
-Isle of Man</option> <option value="Italy" data-free="free" data-value="12 Sep - 15 Sep">
-Italy</option> <option value="Jersey" data-free="$10" data-value="12 Sep - 15 Sep">
-Jersey</option> <option value="Kosovo" data-free="$10" data-value="12 Sep - 15 Sep">
-Kosovo</option> <option value="Latvia" data-free="free" data-value="12 Sep - 15 Sep">
-Latvia</option> <option value="Liechtenstein" data-free="$10" data-value="12 Sep - 15 Sep">
-Liechtenstein</option> <option value="Lithuania" data-free="free" data-value="12 Sep - 15 Sep">
-Lithuania</option> <option value="Luxembourg" data-free="free" data-value="12 Sep - 15 Sep">
-Luxembourg</option> <option value="Malta" data-free="free" data-value="12 Sep - 15 Sep">
-Malta</option> <option value="Mayotte" data-free="$10" data-value="12 Sep - 15 Sep">
-Mayotte</option> <option value="Monaco" data-free="$10" data-value="12 Sep - 15 Sep">
-Monaco</option> <option value="Montenegro" data-free="$10" data-value="12 Sep - 15 Sep">
-Montenegro</option> <option value="New Zealand" data-free="$10" data-value="12 Sep - 15 Sep">
-New Zealand</option> <option value="Norway" data-free="$10" data-value="12 Sep - 15 Sep">
-Norway</option> <option value="Portugal" data-free="free" data-value="12 Sep - 15 Sep">
-Portugal</option> <option value="Reunion" data-free="$10" data-value="12 Sep - 15 Sep">
-Reunion</option> <option value="Romania" data-free="$10" data-value="12 Sep - 15 Sep">
-Romania</option> <option value="San Marino" data-free="$10" data-value="12 Sep - 15 Sep">
-San Marino</option> <option value="Serbia" data-free="$10" data-value="12 Sep - 15 Sep">
-Serbia</option> <option value="Slovakia" data-free="$10" data-value="12 Sep - 15 Sep">
-Slovakia</option> <option value="Slovenia" data-free="$10" data-value="12 Sep - 15 Sep">
-Slovenia</option> <option value="Svlabard And Jan Mayen" data-free="$10" data-value="12 Sep - 15 Sep">
-Svlabard And Jan Mayen</option> <option value="Sweden" data-free="free" data-value="12 Sep - 15 Sep">
-Sweden</option> <option value="Turkey" data-free="$10" data-value="12 Sep - 15 Sep">
-Turkey</option> <option value="Ukraine" data-free="$10" data-value="12 Sep - 15 Sep">
-Ukraine</option></select>
-`
-
-/* HTML elements */
+/** HTML elements */
+/* review */
 const review = /*html*/`
     <div class="review">
         <div class="left_part">
@@ -522,12 +389,12 @@ const review = /*html*/`
         </div>
     </div>`
 
+/* 3 packs */
 const packsArr = [
     ['one_month', '4', '28', '23.99', '32115046023283'],
     ['three_month', '12', '84', '55.97', '32115046056051', '22'],
     ['twelve_month', '52', '365', '219.97', '32115046940787', '30'],
 ]
-
 const packsHTML = packsArr.map(item => /*html*/`
         <div class="pack" ${item[5] ? `data-sale="Save ${item[5]}%"` : ''} >
             <div class="head">
@@ -543,7 +410,6 @@ const packsHTML = packsArr.map(item => /*html*/`
                 <div class="country_wrapper">
                     <b>Ship to:</b>
                     <label class="for_country_select">
-                    ${select}
                     </label>
                 </div>                
                 <div class="date_wrapper">
@@ -557,12 +423,11 @@ const packsHTML = packsArr.map(item => /*html*/`
                     <span>Price:</span>
                     <span>$${item[3]} USD</span>
                 </div>
-                <button class="add_btn" data-pack="${item[4]}">Add to cart</button>
+                <button class="add_btn" data-pack-id="${item[4]}" data-pack-week="${item[1]}">Add to cart</button>
             </div>
         </div>
 `).join('')
-
-const packs = /*html*/`
+const packsBlock = /*html*/`
     <div class="packs">
         ${packsHTML}
     </div>`
@@ -572,53 +437,43 @@ const callEvent = (eventAction, eventLabel = '') => {
     window.dataLayer = window.dataLayer || []
     dataLayer.push({
         'event': 'event-to-ga',
-        'eventCategory': 'Exp: ',
+        'eventCategory': 'Exp: PDP. New Review block.',
         eventAction,
         eventLabel
     })
 }
 
 /** Run functions and etc. */
+/* run events */
+callEvent('loaded')
+const clarityRecord = setInterval(() => {
+    if (typeof clarity === 'function') {
+        clearInterval(clarityRecord)
+
+        clarity('set', `pdp_new_review_block`, 'variant_1')
+    }
+}, intervalTimeout)
+
+/* add CSS */
 document.head.insertAdjacentHTML('beforeend', style)
 
+/* add HTML elements and logic */
 const addReview = setInterval(() => {
     if (query('.product__images')) {
         clearInterval(addReview)
 
-        query('.product__images').insertAdjacentHTML('beforeend', review)
+        query('.product__images').insertAdjacentHTML('beforeend', review) // add review to HTML
 
-        const waitForMore = setInterval(() => {
+        const waitForMoreBtn = setInterval(() => { // 'More review' btn logic
             if (query('.more_reviews') && query('.desktop .stamped-badge-caption')) {
-                clearInterval(waitForMore)
+                clearInterval(waitForMoreBtn)
 
                 query('.more_reviews').addEventListener('click', () => {
                     query('.desktop .stamped-badge-caption').click()
+                    callEvent(`Click at “View more reviews”`)
                 })
             }
         }, intervalTimeout)
-    }
-}, intervalTimeout)
-
-const waitForClientSelect = setInterval(() => {
-    if (query('.desktop .for_country_select select') && queryAll('.packs select')[2]) {
-        clearInterval(waitForClientSelect)
-
-        query('.desktop .for_country_select select').addEventListener('change', () => {
-            const selectedValue = query('.desktop .for_country_select select').value.replace('\n', '')
-
-            const selectedOption = query(`select [value="${selectedValue}"]`)
-
-            queryAll('.pack').forEach(pack => {
-                pack.querySelector('select').value = selectedOption.value
-                pack.querySelector('.date span').innerText = selectedOption.dataset.value
-
-                if (selectedOption.dataset.free === 'free') {
-                    pack.querySelector('.shipping').innerText = 'Free shipping'
-                } else {
-                    pack.querySelector('.shipping').innerText = 'Shipping from ' + selectedOption.dataset.free
-                }
-            })
-        })
     }
 }, intervalTimeout)
 
@@ -626,86 +481,82 @@ const addPacks = setInterval(() => {
     if (queryAll('.stamped-review')[2] && query('.delivery_date b')) {
         clearInterval(addPacks)
 
-        queryAll('.stamped-review')[2].insertAdjacentHTML('afterend', packs)
+        queryAll('.stamped-review')[2].insertAdjacentHTML('afterend', packsBlock) // add packs to HTML
 
         const waitForPacks = setInterval(() => {
-            if (query('.packs')) {
+            if (queryAll('.packs .for_country_select')[2] && query('.desktop select')) {
                 clearInterval(waitForPacks)
 
-                query('.packs').addEventListener('change', (e) => {
-                    if (e.target.matches('select')) {
-                        const selectedOption = query(`select [value="${e.target.value}"]`)
-
-                        // console.log(selectedOption.value);
-
-                        document.querySelectorAll('.desktop .for_country_select option').forEach(option => {
-                            if (selectedOption.value === option.innerText.trim()) {
-
-
-                                const optionValue = option.value
-                                console.log(option);
-                                console.log(optionValue);
-
-                                var select = query('.desktop .for_country_select select')
-                                select.value = optionValue
-                                select.dispatchEvent(new Event('change'));
-
-                                // // console.log(optionValue);
-
-                                // const select = document.querySelector('.desktop .for_country_select select')
-
-                                // if (optionValue === 'United States') {
-                                //     select.value = 'United States'
-                                // } else {
-                                //     select.value = `\n${optionValue}`
-                                // }
-
-                                // select.dispatchEvent(new Event('change'));
-
-                                // var select = document.querySelector('.desktop .for_country_select select')
-                                // select.value = '\nBulgaria';
-                                // select.dispatchEvent(new Event('change'));
-
-                            }
-                        })
-
-                        queryAll('.pack').forEach(pack => {
-                            pack.querySelector('select').value = selectedOption.value
-                            pack.querySelector('.date span').innerText = selectedOption.dataset.value
-
-                            if (selectedOption.dataset.free === 'free') {
-                                pack.querySelector('.shipping').innerText = 'Free shipping'
-                            } else {
-                                pack.querySelector('.shipping').innerText = 'Shipping from ' + selectedOption.dataset.free
-                            }
-                        })
-                    }
+                queryAll('.pack .for_country_select').forEach((label) => { // add client's select data to my packs
+                    label.insertAdjacentHTML('beforeend', query('.desktop select').outerHTML.replaceAll('value="\n', 'value="'))
                 })
 
-                const waitForEl = setInterval(() => {
+                const waitForSelects = setInterval(() => {
+                    if (queryAll('.packs select')[2]) {
+                        clearInterval(waitForSelects)
+
+                        query('.packs').addEventListener('change', (e) => { // add onchange country logic
+                            if (e.target.matches('select')) {
+                                const selectedOption = query(`select [value="${e.target.value}"]`)
+
+                                document.querySelectorAll('.desktop .for_country_select option').forEach(option => {
+                                    if (selectedOption.value === option.innerText.trim()) {
+                                        const optionValue = option.value
+
+                                        const select = query('.desktop .for_country_select select')
+                                        select.value = optionValue
+                                        select.dispatchEvent(new Event('change'));
+                                    }
+                                })
+
+                                queryAll('.pack').forEach(pack => {
+                                    pack.querySelector('select').value = selectedOption.value
+                                    pack.querySelector('.date span').innerText = selectedOption.dataset.value
+
+                                    if (selectedOption.dataset.free === 'free') {
+                                        pack.querySelector('.shipping').innerText = 'Free shipping'
+                                    } else {
+                                        pack.querySelector('.shipping').innerText = 'Shipping from ' + selectedOption.dataset.free
+                                    }
+                                })
+
+                                callEvent('change country', `custom select`)
+                            }
+                        })
+
+                        query('.desktop .for_country_select select').addEventListener('change', () => { // changes country in custom selects if user changed country in client's select
+                            const selectedValue = query('.desktop .for_country_select select').value.replace('\n', '')
+                            const selectedOption = query(`select [value="${selectedValue}"]`)
+
+                            queryAll('.pack').forEach(pack => {
+                                pack.querySelector('select').value = selectedOption.value
+                                pack.querySelector('.date span').innerText = selectedOption.dataset.value
+
+                                if (selectedOption.dataset.free === 'free') {
+                                    pack.querySelector('.shipping').innerText = 'Free shipping'
+                                } else {
+                                    pack.querySelector('.shipping').innerText = 'Shipping from ' + selectedOption.dataset.free
+                                }
+                            })
+
+                            callEvent('change country', `client's select `)
+                        })
+                    }
+                }, intervalTimeout)
+
+                const waitForAddBtns = setInterval(() => { // my 'Add to cart' btns logic
                     if (queryAll('.packs .add_btn')[2]) {
-                        clearInterval(waitForEl)
+                        clearInterval(waitForAddBtns)
 
                         queryAll('.packs .add_btn').forEach(btn => {
                             btn.addEventListener('click', () => {
-                                addItemToCart(btn.dataset.pack, 1)
+                                addItemToCart(btn.dataset.packId, 1)
+                                callEvent(`Click “Add to cart” ${btn.dataset.packWeek}week pack`)
                             })
                         });
                     }
                 }, intervalTimeout)
-
-
             }
         }, intervalTimeout)
-    }
-}, intervalTimeout)
-
-callEvent('loaded')
-
-const isClarity = setInterval(() => {
-    if (typeof clarity === 'function') {
-        clearInterval(isClarity)
-
-        clarity('set', ``, 'variant_1')
     }
 }, intervalTimeout)
