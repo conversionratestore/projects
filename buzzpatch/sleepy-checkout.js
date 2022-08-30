@@ -75,6 +75,10 @@ const style = `
         .logo--center img {
           width: 100%;
         }
+        
+        .step__footer__previous-link:hover .previous-link__icon {
+          fill: #0092D8 !important;
+        }
        
     </style>
 `
@@ -160,7 +164,7 @@ function start() {
             'eventAction': 'click_money_back'
         })
     })
-    
+
     document.querySelectorAll('.review-item').forEach((item, i) => {
         item.querySelector('img').setAttribute('src', `https://conversionratestore.github.io/projects/buzzpatch/img/${reviews[i].img}`)
         item.querySelector('p').innerText = reviews[i].text
