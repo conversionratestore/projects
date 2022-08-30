@@ -1690,7 +1690,7 @@ window.onload = function() {
               <div class="box-of">
                 ${boxOf}
               </div>
-              <div class="flex-center-center calc" ${hit['variants'][count].in_stock == false || hit['variants'][count].price == '0:00' ? 'disabled' : ''}>
+              <div class="flex-center-center calc" ${hit['variants'][count].in_stock == false || hit['variants'][count].price == '0.00' ? 'disabled' : ''}>
                 <button class="btn-calc btn-calc_minus" type="button" disabled=""></button>
                 <input class="calc-qty" type="number" name="quantity" value="1" data-max-value="${hit['variants'][count].qty}">
                 <button class="btn-calc btn-calc_plus" type="button"></button>
@@ -2132,12 +2132,12 @@ window.onload = function() {
                 function pricingBlock(className) {
                     return `
                         <form class="${className}" action="https://medicalmega.com/cart.html" method="post">
-                            <div class="flex-center-center calc" ${firstVariant.in_stock == false || firstVariant.price == '0:00' ? 'disabled' : ''}> 
+                            <div class="flex-center-center calc" ${firstVariant.in_stock == false || firstVariant.price == '0.00' ? 'disabled' : ''}> 
                               <button class="btn-calc btn-calc_minus" type="button" disabled></button>
                               <input class="calc-qty" type="number" value="1" name="quantity">
                               <button class="btn-calc btn-calc_plus" type="button"></button>
                             </div>
-                            ${firstVariant.in_stock == false || firstVariant.price == '0:00' ? '<button class="btn btn btn_white" type="button" data-button="notify">Out of Stock</button>' : `<button class="btn btn_dark add-cart" type="submit" ><span>$<span class="pr" data-price="${firstVariant.price}">${firstVariant.price}</span> | </span>Add to Cart</button>`}
+                            ${firstVariant.in_stock == false || firstVariant.price == '0.00' ? '<button class="btn btn btn_white" type="button" data-button="notify">Out of Stock</button>' : `<button class="btn btn_dark add-cart" type="submit" ><span>$<span class="pr" data-price="${firstVariant.price}">${firstVariant.price}</span> | </span>Add to Cart</button>`}
                             <input type="hidden" name="product_variant_id" value="${firstVariant.pv_id}">
                             <input type="hidden" name="product_id" value="${product.objectID}">
                             <input type="hidden" name="add_to_cart" value="variant">
