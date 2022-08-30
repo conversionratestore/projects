@@ -142,6 +142,24 @@ function start() {
             'eventAction': 'click_logo_checkout'
         })
     })
+
+    document.querySelectorAll('.money-back')[0].addEventListener('click', function () {
+        window.dataLayer = window.dataLayer || []
+        dataLayer.push({
+            'event': 'event-to-ga',
+            'eventCategory': 'Checkout_hypothesis',
+            'eventAction': 'click_money_back'
+        })
+    })
+
+    document.querySelector('.free_shipping').addEventListener('click', function () {
+        window.dataLayer = window.dataLayer || []
+        dataLayer.push({
+            'event': 'event-to-ga',
+            'eventCategory': 'Checkout_hypothesis',
+            'eventAction': 'click_free_shipping'
+        })
+    })
     document.querySelectorAll('.review-item').forEach((item, i) => {
         item.querySelector('img').setAttribute('src', `https://conversionratestore.github.io/projects/buzzpatch/img/${reviews[i].img}`)
         item.querySelector('p').innerText = reviews[i].text
