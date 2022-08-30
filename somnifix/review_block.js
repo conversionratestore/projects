@@ -414,7 +414,7 @@ const packsHTML = packsArr.map(item => /*html*/`
                     </label>
                 </div>                
                 <div class="date_wrapper">
-                    <p class="date"><b>Arrives: </b><span>${query('.delivery_date b').innerText}</span></p>
+                    <p class="date"><b>Arrives: </b><span></span></p>
                     <span class="shipping">Free Shipping</span>
                 </div>           
             </div>
@@ -492,11 +492,15 @@ const addPacks = setInterval(() => {
         queryAll('.stamped-review')[2].insertAdjacentHTML('afterend', packsBlock) // add packs to HTML
 
         const waitForPacks = setInterval(() => {
-            if (queryAll('.packs .for_country_select')[2] && query('.desktop select')) {
+            if (queryAll('.packs .for_country_select')[2] && query('.desktop select') && query('.delivery_date b')) {
                 clearInterval(waitForPacks)
 
-                queryAll('.pack .for_country_select').forEach((label) => { // add client's select data to my packs
-                    label.insertAdjacentHTML('beforeend', query('.desktop select').outerHTML.replaceAll('value="\n', 'value="'))
+                queryAll('.pack').forEach(pack => {
+                    // add client's select to my packs
+                    pack.querySelector('.for_country_select').insertAdjacentHTML('beforeend', query('.desktop select').outerHTML.replaceAll('value="\n', 'value="'))
+
+                    // add client's shipping data to my packs
+                    pack.querySelector('.date_wrapper .date span').innerText = query('.delivery_date b').innerText
                 })
 
                 const waitForSelects = setInterval(() => {
