@@ -342,6 +342,7 @@ const style = /*html*/`
 
         .country_wrapper .for_country_select::after {
             pointer-events: none;
+            filter: invert(0%) sepia(100%) saturate(0%) hue-rotate(28deg) brightness(95%) contrast(105%);
         }
 
         .country_wrapper b, .date b {
