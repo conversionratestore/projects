@@ -433,14 +433,21 @@ const packsBlock = /*html*/`
     </div>`
 
 /** GO Events */
-const callEvent = (eventAction, eventLabel = '') => {
+const callEvent = (eventAction, eventLabel = '', eventValue) => {
     window.dataLayer = window.dataLayer || []
-    dataLayer.push({
+
+    let eventObj = {
         'event': 'event-to-ga',
-        'eventCategory': 'Exp: PDP. New Review block.',
+        'eventCategory': 'Exp: PDP. New Review block',
         eventAction,
         eventLabel
-    })
+    }
+
+    if (eventValue) {
+        eventObj.eventValue = eventValue
+    }
+
+    dataLayer.push(eventObj)
 }
 
 /** Run functions and etc. */
@@ -520,7 +527,7 @@ const addPacks = setInterval(() => {
                                     }
                                 })
 
-                                callEvent('change country', `custom select`)
+                                callEvent('select country', `custom select`, selectedOption.value)
                             }
                         })
 
@@ -539,7 +546,7 @@ const addPacks = setInterval(() => {
                                 }
                             })
 
-                            callEvent('change country', `client's select `)
+                            callEvent('select country', `client's select `, selectedOption.value)
                         })
                     }
                 }, intervalTimeout)
