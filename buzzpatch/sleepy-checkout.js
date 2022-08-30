@@ -85,59 +85,82 @@ let freeShipping = `
     </div>
 `
 
-document.body.insertAdjacentHTML('afterbegin', style)
+if(window.location.pathname.includes('/pages/sleepypatch')) {
+    setTimeout(function () {
+        $('.navbar-brand').attr('href', '/pages/sleepypatch')
+        $('.navbar-brand').click(function () {
+            window.dataLayer = window.dataLayer || []
+            dataLayer.push({
+                'event': 'event-to-ga',
+                'eventCategory': 'Checkout_hypothesis',
+                'eventAction': 'click_logo_landing'
+            })
+        })
+    }, 2000)
+
+} else {
+    const init = setInterval(() => {
+        console.log('>>> test')
+        if (document.querySelector('.review-top img')) {
+            clearInterval(init)
+            document.body.insertAdjacentHTML('afterbegin', style)
+            start()
+        }
+    })
+}
 
 
-const init = setInterval(() => {
-    console.log('>>> test')
-    if (document.querySelector('.review-top img')) {
-        clearInterval(init)
-        start()
-    }
-})
 
 
 function start() {
 
-const int = setInterval(() => {
-    if (document.querySelector('.skeleton-while-loading.order-summary__small-text')) {
+    const int = setInterval(() => {
+        if (document.querySelector('.skeleton-while-loading.order-summary__small-text')) {
+            clearInterval(int)
+            document.querySelector('.skeleton-while-loading.order-summary__small-text').innerText = 'Free'
+        }
+    }, 200)
+
+    const int2 = setInterval(() => {
+        if (document.querySelector('header .wrap>.logo.logo--center')) {
+            clearInterval(int2)
+            document.querySelector('header .wrap>.logo.logo--center').insertAdjacentHTML('afterbegin', `<img src="https://conversionratestore.github.io/projects/buzzpatch/img/header.svg">`)
+            document.querySelector('.money-back.js-mobile').insertAdjacentHTML('afterend', freeShipping)
+        }
+    }, 200)
+
+    setTimeout(() => {
         clearInterval(int)
-        document.querySelector('.skeleton-while-loading.order-summary__small-text').innerText = 'Free'
-    }
-}, 200)
+    }, 4000)
 
-const int2 = setInterval(() => {
-    if (document.querySelector('header .wrap>.logo.logo--center')) {
-        clearInterval(int2)
-        document.querySelector('header .wrap>.logo.logo--center').insertAdjacentHTML('afterbegin', `<img src="https://conversionratestore.github.io/projects/buzzpatch/img/header.svg">`)
-        document.querySelector('.money-back.js-mobile').insertAdjacentHTML('afterend', freeShipping)
-    }
-}, 200)
+    document.querySelector('.logo.logo--center').setAttribute('href', '#')
+    document.querySelector('.logo.logo--center').addEventListener('click', function () {
+        window.dataLayer = window.dataLayer || []
+        dataLayer.push({
+            'event': 'event-to-ga',
+            'eventCategory': 'Checkout_hypothesis',
+            'eventAction': 'click_logo_checkout'
+        })
+    })
+    document.querySelectorAll('.review-item').forEach((item, i) => {
+        item.querySelector('img').setAttribute('src', `https://conversionratestore.github.io/projects/buzzpatch/img/${reviews[i].img}`)
+        item.querySelector('p').innerText = reviews[i].text
+    })
 
-setTimeout(() => {
-    clearInterval(int)
-}, 4000)
-
-
-document.querySelectorAll('.review-item').forEach((item, i) => {
-    item.querySelector('img').setAttribute('src', `https://conversionratestore.github.io/projects/buzzpatch/img/${reviews[i].img}`)
-    item.querySelector('p').innerText = reviews[i].text
-})
-
-document.querySelector('.review-top img').setAttribute('src', `https://conversionratestore.github.io/projects/buzzpatch/img/reviews-total.svg`)
+    document.querySelector('.review-top img').setAttribute('src', `https://conversionratestore.github.io/projects/buzzpatch/img/reviews-total.svg`)
 
 
-let record = setInterval(function () {
-    if (typeof clarity === 'function') {
-        clearInterval(record)
-        clarity("set", "checkout_hypothesis", "sleepypatch");
-    }
-}, 100)
+    let record = setInterval(function () {
+        if (typeof clarity === 'function') {
+            clearInterval(record)
+            clarity("set", "checkout_hypothesis", "sleepypatch")
+        }
+    }, 100)
 
-window.dataLayer = window.dataLayer || [];
-dataLayer.push({
-    'event': 'event-to-ga',
-    'eventCategory': 'Checkout_hypothesis',
-    'eventAction': 'loaded'
-});
+    window.dataLayer = window.dataLayer || []
+    dataLayer.push({
+        'event': 'event-to-ga',
+        'eventCategory': 'Checkout_hypothesis',
+        'eventAction': 'loaded'
+    })
 }
