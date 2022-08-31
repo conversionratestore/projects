@@ -394,7 +394,7 @@ const review = /*html*/`
 const packsArr = [
     ['one_month', '4', '28', '23.99', '32115046023283'],
     ['three_month', '12', '84', '55.97', '32115046056051', '22'],
-    ['twelve_month', '52', '365', '219.97', '32115046940787', '30'],
+    ['twelve_month', '52', '364', '219.97', '32115046940787', '30'],
 ]
 const packsHTML = packsArr.map(item => /*html*/`
         <div class="pack" ${item[5] ? `data-sale="Save ${item[5]}%"` : ''} >
