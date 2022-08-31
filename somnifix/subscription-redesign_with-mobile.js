@@ -2116,7 +2116,7 @@ let banner = `
                 <span class="stamped-badge" data-rating="4.8" data-lang="" aria-label="Rated 4.8 out of 5 stars 4126reviews">
                 <span class="stamped-starrating stamped-badge-starrating" aria-hidden="true"><i class="stamped-fa stamped-fa-star" style="color: rgb(242, 180, 19) !important;" aria-hidden="true"></i><i class="stamped-fa stamped-fa-star" style="color: rgb(242, 180, 19) !important;" aria-hidden="true"></i><i class="stamped-fa stamped-fa-star" style="color: rgb(242, 180, 19) !important;" aria-hidden="true"></i><i class="stamped-fa stamped-fa-star" style="color: rgb(242, 180, 19) !important;" aria-hidden="true"></i><i class="stamped-fa stamped-fa-star" style="color: rgb(242, 180, 19) !important;" aria-hidden="true"></i></span><span class="stamped-badge-caption" data-reviews="4126" data-rating="4.8" data-label="reviews" aria-label="4126 reviews" data-version="2">4126<span style="display:none;"> reviews</span></span></span>
             </a>
-            <p><b>3-month pack,</b> 84 strips </p>
+            <p><b>12-week pack,</b> 84 strips </p>
             <p class="banner_price-old">$71.97 USD</p>
             <p class="banner_price">$49.97 USD</p>
             <p class="fs-12">Auto delivery every 3 months</p>
