@@ -13,26 +13,25 @@ const style = /*html*/`
                     margin: 0 48px 18px 28px !important;
                 }
 
-                .css-ppy82w {
-                    background-image: url(https://res.cloudinary.com/moneygeek/image/upload/v1621864481/MoneyGeek.com/assets/min_pmm3ay.png);
-                    background-repeat: no-repeat;
+                .e1ssirya1 {
                     height: 155px !important;
                     width: 328px !important;
                     background-size: cover !important;
                 }
-                .css-ppy82w p.middle-text {
+                .e1ssirya1 p.middle-text {
                     margin-top: 105px !important;
                     margin-left: 103px !important;
+                    font-size: 12px !important;
                 } 
-                .css-ppy82w .low-end {
+                .e1ssirya1 .low-end {
                     margin-top: 105px !important;
                     margin-left: 45px !important;
                 }
-                .css-ppy82w .high-end {
+                .e1ssirya1 .high-end {
                     margin-top: 105px !important;
                     margin-left: 232px !important;
                 }
-                .css-ppy82w .average {
+                .e1ssirya1 .average {
                     margin-top: 38px !important;
                     margin-left: 134px !important;
                 }
@@ -205,16 +204,22 @@ const style = /*html*/`
 document.head.insertAdjacentHTML('beforeend', style)
 
 const intervalTimeout = 200
-const fireEvent = (eventAction, eventLabel = '') => {
+const fireEvent = (eventAction, eventLabel = '', eventValue) => {
     const device = 'Desktop'
 
-    window.dataLayer = window.dataLayer || []
-    dataLayer.push({
+    let eventObj = {
         'event': 'event-to-ga',
         'eventCategory': 'Exp: Calculator improvements. ' + device,
         eventAction,
         eventLabel,
-    })
+    }
+
+    if (eventValue) {
+        eventObj.eventValue = eventValue
+    }
+
+    window.dataLayer = window.dataLayer || []
+    dataLayer.push(eventObj)
 }
 const addTooltips = () => {
     const tooltipTxt = [
@@ -357,7 +362,7 @@ const waitForCalc = setInterval(() => {
         clearInterval(waitForCalc)
 
         query('.e1ssirya5 h4').insertAdjacentHTML('afterend', `
-                    <p class="subheader">See how the Average Annual Auto Insurance Rates vary with the options chosen.</p>
+                    <p class="subheader">See how the average annual auto insurance rates vary with the options chosen.</p>
                     <div class="inlineSelectContainer fr_select_wrapper"><div class="selectInline"></div></div>
                 `)
 
@@ -425,6 +430,10 @@ const callback = (mutations) => {
             }
 
             if (node.matches('.css-26l3qy-menu')) {
+                const select = query('.css-26l3qy-menu').closest('.selectInline').querySelector('.selectTitle').innerText
+
+                fireEvent('Click on select:', '', select)
+
                 if (query('.css-26l3qy-menu > div > div')?.innerText === 'Clean') {
                     const selectName = query('.css-26l3qy-menu').closest('.selectInline').querySelector('.css-1uccc91-singleValue')
 
@@ -442,10 +451,27 @@ const callback = (mutations) => {
                     query('.css-26l3qy-menu > div > div + div').innerText = 'Speeding'
                     query('.css-26l3qy-menu > div > div + div + div').innerText = 'At-Fault Accident'
                 }
+
+                query('.css-26l3qy-menu > div').addEventListener('click', (e) => {
+                    const selectName = e.target.closest('.selectInline').querySelector('.selectTitle').innerText
+                    const selectValue = e.target.innerText
+
+                    console.log(`Select: ${selectName}; Value: ${selectValue}`);
+                    fireEvent(`Select: ${selectName}`, '', selectValue)
+                })
             }
 
-            if (node.matches('.student-section')) {
+            if (node.matches('.student-section')) {              
                 queryAll('.student-section .selectTitle')[2].innerText = 'Student Driver Age'
+
+                query('.student-section .radio-buttons').addEventListener('click', (e) => {
+                    if (e.target.matches('#camry')) {
+                        fireEvent('click on Sedan', 'Student Driver Car')
+                    }
+                    if (e.target.matches('#mustang')) {
+                        fireEvent('click on Sports Car', 'Student Driver Car')
+                    }
+                })
             }
         }
     }
