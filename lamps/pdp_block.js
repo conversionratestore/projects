@@ -335,6 +335,9 @@ let startFunkPdp = setInterval(() => {
       .var_ceiling_fan.catalog-product-view .product-essential .vp-box .vp-row {
         padding: 0;
       }
+      .var_ceiling_fan.catalog-product-view .product-essential .vp-box .vp-row:nth-child(2){
+        margin-bottom: 10px;
+      }
       .shipping {
         margin-top: 10px;
       }
