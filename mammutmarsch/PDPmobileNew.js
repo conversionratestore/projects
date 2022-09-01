@@ -25,6 +25,9 @@ const obj =  {
 
 let style = `
 <style>
+    .attribute-pa_paket .col-md-6 .btn {
+        width: 100%;
+    }
     /*base*/
     .wrapper-event * {
         margin: 0;
@@ -147,9 +150,12 @@ let style = `
         bottom: 0;
         opacity: 0;
         pointer-events: none;
+        z-index: 99999;
         color: #333333;
         transform: translateY(100px);
         transition: all 0.3s ease;
+        overflow-y: auto;
+        height: 100vh;
     }
     .modal-m.active {
         opacity: 1;
@@ -161,7 +167,6 @@ let style = `
         border-radius: 20px 20px 0 0;
         padding: 16px 16px 20px;
         transition: all 0.3s ease;
-        overflow-y: auto;
     }
     .modal-close {
         display: block;
@@ -219,6 +224,29 @@ let style = `
         display: none;
     }
 </style>`
+
+//scroll to
+let scrollTop = (targetScroll, offsetTop) => {
+    const scrollTarget = targetScroll;
+    const topOffset = offsetTop.offsetHeight;
+    const elementPosition = scrollTarget.getBoundingClientRect().top;
+    const offsetPosition = elementPosition - topOffset;
+
+    window.scrollBy({
+        top: offsetPosition,
+        behavior: 'smooth'
+    });
+}
+
+//push dataLayer
+let pushDataLayer = (action) => {
+    window.dataLayer = window.dataLayer || [];
+    dataLayer.push({
+        'event': 'event-to-ga',
+        'eventCategory': 'Exp: PDP improvements',
+        'eventAction': action
+    });
+}
 
 for (const key in obj) {
     if (location.href.includes(`${key}`)) {
@@ -321,33 +349,54 @@ for (const key in obj) {
                 let btnYellow = document.querySelector('.event-section .btn'),
                     linkModal = document.querySelector('.event-section .link'),
                     btnModal = document.querySelector('.modal-m .btn'),
+                    btnCloseModal = document.querySelector('.modal-close'),
                     modal = document.querySelector('.modal-m');
-
-                function hideModal() {
+                //hide modal
+                let hideModal = () => {
                     modal.classList.remove('active')
                 }
-
                 //scroll to packets
                 btnYellow.addEventListener('click', (e) => {
-                    console.log(e.target)
-                    let current_position = document.querySelector('.variations').pageYOffset;
-                    console.log(current_position)
-                    document.querySelector('.variations').scrollTo({ top: current_position, behavior: 'smooth' });
+                    pushDataLayer('Click on Get ticket button')
+                    scrollTop(document.querySelector('.variations > h3'), e.target)
                 })
                 //click "What is extreme hiking?" button
                 linkModal.addEventListener('click', (e) => {
+                    pushDataLayer('Click on What is extreme hiking trail button')
                     modal.classList.add('active')
                 })
-
-                btnModal.addEventListener('click', (e) => {
-                    hideModal()
-                })
+                //click onside modal
                 document.addEventListener('click', (e) => {
-                    if ((!e.target.closest('.modal-m') && !e.target.classList.contains('link')) || e.target.classlist.contains('btn')) {
+                    if (!e.target.closest('.modal-m') && !e.target.classList.contains('link')) {
                         hideModal()
+                        pushDataLayer('Click back side modal')
                     }
+                })
+                //click on close button modal
+                btnCloseModal.addEventListener('click', (e) => {
+                    hideModal()
+                    pushDataLayer('Click on close button')
+                })
+                //click on button modal
+                btnModal.addEventListener('click', (e) => {
+                    pushDataLayer('Click on I am ready button')
+                    hideModal()
                 })
             }
         }
     }
 }
+
+window.dataLayer = window.dataLayer || [];
+dataLayer.push({
+    'event': 'event-to-ga',
+    'eventCategory': 'Exp: PDP improvements',
+    'eventAction': 'loaded'
+});
+
+let isClarify = setInterval(() => {
+    if(typeof clarity == 'function') {
+        clearInterval(isClarify)
+        clarity("set", "pdp_improvements", "variant_1");
+    }
+}, 100)
