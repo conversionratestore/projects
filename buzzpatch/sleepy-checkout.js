@@ -146,6 +146,13 @@ function start() {
         clearInterval(int)
     }, 4000)
 
+    document.querySelectorAll('[aria-label="Breadcrumb"] a')[0].innerText = 'Back'
+    document.querySelectorAll('[aria-label="Breadcrumb"] a')[0].setAttribute('href', 'https://naturalpatch.com/pages/sleepypatch')
+
+    if(document.querySelector('.step__footer__previous-link').getAttribute('href') === 'https://naturalpatch.com/cart') {
+        document.querySelector('.step__footer__previous-link').setAttribute('href', 'https://naturalpatch.com/pages/sleepypatch')
+        document.querySelector('.step__footer__previous-link-content').innerText = 'Back'
+    }
     document.querySelector('.logo.logo--center').setAttribute('href', '#')
     document.querySelector('.logo.logo--center').addEventListener('click', function () {
         window.dataLayer = window.dataLayer || []
