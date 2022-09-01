@@ -3,7 +3,6 @@ const obj =  {
         'base': {
             'spanTitle': 'Du wirst weiter marschieren, als die 99% aller Menschen es je tun werden!',
             'btnMain': 'Strecke auswählen',
-            'linkMain': 'Was ist Extremwandern?',
             'btnRegister': 'Anmelden',
             'titleText': 'Event-Infos',
             'modalTitle': 'Was ist Extremwandern?',
@@ -15,13 +14,11 @@ const obj =  {
             'title2': 'Mammutmarsch Dortmund — 30/55 km',
             'date1': '8. Oktober 2022',
             'date2': '08/10/2022',
-            'place': 'Phoenixplatz 4 , 44263 Dortmund (nahe Warsteiner Music Hall). <a href="#" class="link"><b>Karte anzeigen</b></a>',
-            'dateInfo': '<b>Sonntag, 08. Oktober 2022</b><p>Startzeit: 07:30 - 09:00 Uhr <b>(55 km)</b></p><p>Startzeit: 09:30 - 11:30 Uhr <b>(30 km)</b></p><p class="text-up">Die Startgruppenauswahl beginnt wenige Wochen vor dem Event.</p>',
-            'difficulty': '<div class="flex"><p>Schwierigkeit — </p><div><p> Challenger <b>(30 km)</b></p><p>Pro <b>(55 km)</b></p></div></div>',
-            'route': '<div class="flex"><p class="nowrap">30/55 KM — </p><p class="lh-16"> Eindrucksvolle Industrielandschaften und viel Natur</p></div>',
-            'review': '<b>4.8 </b><svg width="78" height="14" viewBox="0 0 78 14" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3.15931 13.6644C2.82156 13.8376 2.43832 13.534 2.50656 13.1464L3.23281 9.00766L0.150196 6.07116C-0.137678 5.79642 0.0119467 5.29417 0.397821 5.23992L4.68356 4.63092L6.59455 0.844804C6.76693 0.503555 7.2333 0.503555 7.40568 0.844804L9.31667 4.63092L13.6024 5.23992C13.9883 5.29417 14.1379 5.79642 13.8492 6.07116L10.7674 9.00766L11.4937 13.1464C11.5619 13.534 11.1787 13.8376 10.8409 13.6644L6.9988 11.6904L3.15844 13.6644H3.15931Z" fill="#FAAC07"/><path d="M19.1593 13.6644C18.8216 13.8376 18.4383 13.534 18.5066 13.1464L19.2328 9.00766L16.1502 6.07116C15.8623 5.79642 16.0119 5.29417 16.3978 5.23992L20.6836 4.63092L22.5946 0.844804C22.7669 0.503555 23.2333 0.503555 23.4057 0.844804L25.3167 4.63092L29.6024 5.23992C29.9883 5.29417 30.1379 5.79642 29.8492 6.07116L26.7674 9.00766L27.4937 13.1464C27.5619 13.534 27.1787 13.8376 26.8409 13.6644L22.9988 11.6904L19.1584 13.6644H19.1593Z" fill="#FAAC07"/><path d="M35.1593 13.6644C34.8216 13.8376 34.4383 13.534 34.5066 13.1464L35.2328 9.00766L32.1502 6.07116C31.8623 5.79642 32.0119 5.29417 32.3978 5.23992L36.6836 4.63092L38.5946 0.844804C38.7669 0.503555 39.2333 0.503555 39.4057 0.844804L41.3167 4.63092L45.6024 5.23992C45.9883 5.29417 46.1379 5.79642 45.8492 6.07116L42.7674 9.00766L43.4937 13.1464C43.5619 13.534 43.1787 13.8376 42.8409 13.6644L38.9988 11.6904L35.1584 13.6644H35.1593Z" fill="#FAAC07"/> <path d="M51.1593 13.6644C50.8216 13.8376 50.4383 13.534 50.5066 13.1464L51.2328 9.00766L48.1502 6.07116C47.8623 5.79642 48.0119 5.29417 48.3978 5.23992L52.6836 4.63092L54.5946 0.844804C54.7669 0.503555 55.2333 0.503555 55.4057 0.844804L57.3167 4.63092L61.6024 5.23992C61.9883 5.29417 62.1379 5.79642 61.8492 6.07116L58.7674 9.00766L59.4937 13.1464C59.5619 13.534 59.1787 13.8376 58.8409 13.6644L54.9988 11.6904L51.1584 13.6644H51.1593Z" fill="#FAAC07"/> <path d="M68.6836 4.63025L70.5945 0.844352C70.6312 0.768191 70.6885 0.703864 70.76 0.658696C70.8315 0.613528 70.9142 0.589334 70.9987 0.588867C71.1588 0.588867 71.3189 0.673737 71.4056 0.844352L73.3164 4.63025L77.6019 5.23921C77.7087 5.256 77.8065 5.30913 77.8787 5.38962C77.9509 5.47011 77.9931 5.57305 77.9983 5.68106C78.0044 5.75296 77.9942 5.82532 77.9684 5.89274C77.9427 5.96016 77.902 6.02089 77.8495 6.07041L74.7671 9.00673L75.4933 13.1452C75.5616 13.5328 75.1783 13.8364 74.8406 13.6632L70.9987 11.6893L67.1586 13.6632C67.1184 13.684 67.0753 13.6988 67.0308 13.7069C66.7316 13.7594 66.4464 13.4847 66.5059 13.1452L67.2321 9.00673L64.1505 6.07041C64.1026 6.02508 64.0645 5.9704 64.0386 5.90974C64.0127 5.84908 63.9996 5.78375 64 5.7178C64.0001 5.62457 64.0258 5.53314 64.0744 5.45357C64.1089 5.39588 64.1558 5.34667 64.2119 5.30957C64.2679 5.27247 64.3315 5.24843 64.3981 5.23921L68.6836 4.63025ZM70.9987 10.6744C71.0693 10.6741 71.139 10.6909 71.2017 10.7234L74.4267 12.3805L73.8195 8.91836C73.8052 8.83873 73.8106 8.75681 73.8353 8.67977C73.8601 8.60273 73.9033 8.53294 73.9613 8.47651L76.5047 6.05291L72.9595 5.54894C72.8861 5.53785 72.8164 5.50914 72.7565 5.46525C72.6966 5.42137 72.6483 5.36362 72.6156 5.29695L70.9996 2.0964L70.9987 2.09903V10.6735V10.6744Z" fill="#FAAC07"/></svg> <a href="#" class="link-review">176 Bewertungen</a>',
+            'place': 'Phoenixplatz 4 , 44263 Dortmund (nahe Warsteiner Music Hall).',
+            'dateInfo': '<p><b>Sonntag, 08. Oktober 2022</b></p><p>Startzeit: 07:30 - 09:00 Uhr <b>(55 km)</b></p><p>Startzeit: 09:30 - 11:30 Uhr <b>(30 km)</b></p><p class="text-up lh-20">Die Startgruppenauswahl beginnt wenige Wochen vor dem Event.</p>',
+            'difficulty': '<p><b>Schwierigkeit</b></p><p>Challenger <b>(30 km)</b> Pro <b>(55 km)</b></p>',
+            'route': '<p><b>30/55 KM</b></p><p> Eindrucksvolle Industrielandschaften und viel Natur</p>',
             'text': `Für uns war immer klar: Dortmund hat viel mehr zu bieten als den BVB. Als Ruhrgebietsstadt, gibt es hier Industriekultur ohne Ende umringt von wunderschöner Natur.</br></br>Nach zwei überrangenden Events war für uns klar: Wir kommen auch dieses Jahr nach Dortmund!</br></br>Mammutmarsch bedeutet immer auch Grenzerfahrung. Bei wanderst du eine Strecke, an die sich 99% aller Menschen in ihrem ganzen Leben nicht wagen werden. Und egal, wie anstrengend es wird, im Ziel bekommst du einen Heldenempfang inklusive Medaille und kühlem Finisher-Beer.`,
-            'price': '52,50 - 82,50 €',
         }
     }
 }
@@ -36,8 +33,12 @@ let style = `
         font-style: normal;
         font-weight: 400;
         font-size: 14px;
-        line-height: 20px;
+        line-height: 16px;
         font-family: 'Roboto', sans-serif;
+    }
+    .wrapper-event {
+        margin-top: -40px;
+        color: #111111;
     }
     .wrapper-event .date {
         letter-spacing: 0.5px;
@@ -62,7 +63,7 @@ let style = `
         font-size: 16px;
         letter-spacing: 0.02em;
         color: #111111;
-        font-family: 'Bebas Neue', sans-serif;
+        font-weight: 700;
     }
     .wrapper-event .link {
         font-weight: 500;
@@ -73,21 +74,15 @@ let style = `
         display: block;
         color: #111111;
         margin-bottom: 0;
+        cursor: pointer;
     }
     .wrapper-event b {
         font-weight: 500;
     }
-    .wrapper-event .link-review {
-        font-weight: 500;
-        font-size: 10px;
-        line-height: 16px;
-        text-decoration-line: underline;
-        color: #7F7F7F;
-    }
     /*event section*/
     .event-section {
         background: url("https://conversionratestore.github.io/projects/mammutmarsch/img/image-main.png") no-repeat center / cover;
-        padding: 28px 24px 40px;
+        padding: 28px 16px 40px;
         color: #FFFFFF;
     }
     .event-section .date {
@@ -95,8 +90,8 @@ let style = `
         text-align: center;
     }
     .event-section .btn {
-        display: block;
-        margin: 20px auto 8px;
+        margin: 14px 0;
+        width: 100%;
     }
     .event-section .link {
         opacity: 0.8;
@@ -136,36 +131,17 @@ let style = `
         margin-bottom: 16px;
         color: #111111;
     }
+    .info-section .list p {
+           margin-bottom: 4px;
+    }
+    .info-section .list p.text-up {
+        padding-top: 4px;
+    }
     .info-section .list svg {
         margin-right: 12px;
     }
-    /*pricing fixed*/
-    .pricing-fixed {
-        padding: 16px;
-        background: #FFFFFF;
-        position: fixed;
-        bottom: 0;
-        left: 0;
-        z-index: 8;
-        width: 100%;
-        box-shadow: 0 -1px 2px rgba(0, 0, 0, 0.3), 0px -1px 3px 1px rgba(0, 0, 0, 0.15);
-    }
-    .pricing-fixed .date {
-        font-size: 12px;
-        line-height: 12px;
-        color: #333333;
-        margin-bottom: 8px;
-    }
-    .pricing-fixed .price {
-        font-size: 24px;
-        line-height: 24px;
-        letter-spacing: 0.05em;
-        text-transform: lowercase;
-        color: #111111;
-        font-family: 'Bebas Neue', sans-serif;
-    }
     /*modal*/
-    .modal {
+    .modal-m {
         position: fixed;
         left: 0;
         bottom: 0;
@@ -173,27 +149,36 @@ let style = `
         pointer-events: none;
         color: #333333;
         transform: translateY(100px);
+        transition: all 0.3s ease;
     }
-    .modal.active {
+    .modal-m.active {
         opacity: 1;
         pointer-events: auto;
         transform: translateY(0);
     }
-    .modal .container {
+    .modal-m .container {
         background: #FFFFFF;
         border-radius: 20px 20px 0 0;
         padding: 16px 16px 20px;
+        transition: all 0.3s ease;
+        overflow-y: auto;
     }
     .modal-close {
         display: block;
         margin-left: auto;
+        height: 16px;
+        margin-bottom: 16px;
     }
-    .modal img {
+    .modal-m img {
         width: 100%;
         margin-bottom: 20px;
     }
-    .modal h1 {
+    .modal-m h1 {
         color: #111111
+    }
+    .modal-m .btn {
+        margin: 0 auto;
+        display: block;
     }
     /*text transform*/
     .text-up {
@@ -202,8 +187,8 @@ let style = `
     .text-center {
         text-align: center;
     }
-    .nowrap {
-        white-space: nowrap;
+    .lh-20 {
+        line-height: 20px;
     }
     /*color*/
     .bg-green {
@@ -211,6 +196,9 @@ let style = `
     }
     .bg-red {
         background-color: #E32D33;
+    }
+    .c-dark-charcoal {
+        color: #333333;
     }
     /*flex*/
     .flex {
@@ -227,6 +215,9 @@ let style = `
     .shrink-0 {
         flex-shrink: 0;
     }
+    #main > div > div > div > h2, #main > div > div > div > div.row, .single-product-content > div > div.cshero-product-images-wrap.col-lg-3.col-md-3.col-sm-6.col-xs-12, div.single-product-content > div > div.entry-summary.col-lg-9.col-md-9.col-sm-6.col-xs-12 {
+        display: none;
+    }
 </style>`
 
 for (const key in obj) {
@@ -239,11 +230,11 @@ for (const key in obj) {
                 const page = `
                 <div class="wrapper-event">
                     <section class="event-section">
-                        <p class="date">${cityObj.date1}</p>
+                        <p class="date lh-20">${cityObj.date1}</p>
                         <h1>${cityObj.title}</h1>
-                        <p class="text-center">${base.spanTitle}</p>
+                        <p class="text-center lh-20">${base.spanTitle}</p>
                         <button type="button" class="btn">${base.btnMain}</button>
-                        <p class="link">${base.linkMain}</p>
+                        <p class="link">${base.modalTitle}</p>
                     </section>
                     <div class="info-section">
                         <div class="flex-center-between">
@@ -275,7 +266,7 @@ for (const key in obj) {
                                     <path d="M12 14C13.6569 14 15 12.6569 15 11C15 9.34315 13.6569 8 12 8C10.3431 8 9 9.34315 9 11C9 12.6569 10.3431 14 12 14Z" stroke="#111111" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
                                     <path d="M12 3C9.87827 3 7.84344 3.84285 6.34315 5.34315C4.84285 6.84344 4 8.87827 4 11C4 12.892 4.402 14.13 5.5 15.5L12 23L18.5 15.5C19.598 14.13 20 12.892 20 11C20 8.87827 19.1571 6.84344 17.6569 5.34315C16.1566 3.84285 14.1217 3 12 3V3Z" stroke="#111111" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
                                 </svg>
-                                <div>${cityObj.place}</div>
+                                <div class="lh-20">${cityObj.place}</div>
                             </li>
                             <li class="flex">
                                 <svg class="shrink-0" width="25" height="24" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -305,40 +296,57 @@ for (const key in obj) {
                 
                                 <div>${cityObj.route}</div>
                             </li>
-                            <li class="flex items-center">
-                                <svg class="shrink-0" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M11.6555 6.79343C11.8003 6.50048 12.2163 6.4954 12.3682 6.78473L13.5056 8.95069L15.862 9.28736C16.1994 9.33557 16.3258 9.75671 16.0707 9.98274L14.3605 11.4979L14.9184 13.6921C15.0047 14.0316 14.6437 14.3102 14.3371 14.1407L12.0033 12.8499L9.66959 14.1407C9.36299 14.3102 9.00199 14.0316 9.08833 13.6921L9.6462 11.4979L7.93918 9.98556C7.68352 9.75906 7.81103 9.33701 8.14933 9.28997L10.5891 8.95069L11.6555 6.79343Z" fill="#111111"/>
-                                    <path d="M13.7535 22.4168C13.5377 22.7881 13.0633 22.9166 12.6896 22.705C12.31 22.49 12.179 22.0064 12.3982 21.6292L14.8537 17.4039C15.0327 17.0959 15.3621 16.9064 15.7183 16.9064H19.8571C20.0636 16.9067 20.2681 16.8669 20.4589 16.7894C20.6497 16.7118 20.823 16.598 20.969 16.4545C21.115 16.3109 21.2307 16.1405 21.3096 15.9529C21.3884 15.7653 21.4289 15.5642 21.4286 15.3612V6.0903C21.4289 5.8873 21.3884 5.68624 21.3096 5.49864C21.2307 5.31103 21.115 5.14058 20.969 4.99703C20.823 4.85349 20.6497 4.73969 20.4589 4.66215C20.2681 4.5846 20.0636 4.54485 19.8571 4.54515H4.14286C3.93641 4.54485 3.73193 4.5846 3.54113 4.66215C3.35034 4.73969 3.17698 4.85349 3.031 4.99703C2.88502 5.14058 2.76928 5.31103 2.69041 5.49864C2.61155 5.68624 2.57112 5.8873 2.57143 6.0903V15.3612C2.57112 15.5642 2.61155 15.7653 2.69041 15.9529C2.76928 16.1405 2.88502 16.3109 3.031 16.4545C3.17698 16.598 3.35034 16.7118 3.54113 16.7894C3.73193 16.8669 3.93641 16.9067 4.14286 16.9064H10.4417C10.8684 16.9064 11.2143 17.2522 11.2143 17.6789C11.2143 18.1056 10.8684 18.4515 10.4417 18.4515H4.14286C3.30932 18.4515 2.50992 18.1259 1.92052 17.5464C1.33112 16.9668 1 16.1808 1 15.3612V6.0903C0.999897 5.68445 1.08112 5.28255 1.23903 4.90757C1.39693 4.5326 1.62843 4.19188 1.92029 3.9049C2.21215 3.61792 2.55866 3.39029 2.94002 3.23503C3.32137 3.07976 3.7301 2.9999 4.14286 3H19.8571C20.2699 2.9999 20.6786 3.07976 21.06 3.23503C21.4413 3.39029 21.7878 3.61792 22.0797 3.9049C22.3716 4.19188 22.6031 4.5326 22.761 4.90757C22.9189 5.28255 23.0001 5.68445 23 6.0903V15.3612C23 16.1808 22.6689 16.9668 22.0795 17.5464C21.4901 18.1259 20.6907 18.4515 19.8571 18.4515H16.0582L13.7535 22.4168Z" fill="#111111"/>
-                                </svg>
-                                <div>${cityObj.review}</div>
-                            </li>
                         </ul>
+                        <img src="https://conversionratestore.github.io/projects/mammutmarsch/img/reviewG.svg" alt="review icons">
                         <h2>${base.titleText}</h2>
-                        <p>${cityObj.text}</p>
+                        <p class="lh-20 c-dark-charcoal">${cityObj.text}</p>
                     </div>
-                    <div class="pricing-fixed flex-center-between">
-                        <div>
-                            <p class="date">${cityObj.date1}</p>
-                            <p class="price">${cityObj.price}</p>
-                        </div>
-                        <button class="btn" type="button">${base.btnRegister}</button>
-                    </div>
-                    <div class="modal">
+                    <div class="modal-m">
                         <div class="container">
                             <button type="button" class="modal-close">
                                 <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M13.3337 2.66699L2.66699 13.3337M13.3337 13.3337L2.66699 2.66699L13.3337 13.3337Z" stroke="#111111" stroke-linecap="round"/>
                                 </svg>
                             </button>
-                            <img src="image-modal.png" alt="image">
+                            <img src="https://conversionratestore.github.io/projects/mammutmarsch/img/image-modal.png" alt="image">
                             <h2>${base.modalTitle}</h2>
-                            <p>${base.modalText}</p>
+                            <p class="lh-20">${base.modalText}</p>
                             <button type="button" class="btn">${base.modalBtn}</button>
                         </div>
                     </div>
                 </div>`
                 document.body.insertAdjacentHTML('afterbegin', style)
                 document.querySelector('#main').insertAdjacentHTML('afterbegin', page)
+
+                let btnYellow = document.querySelector('.event-section .btn'),
+                    linkModal = document.querySelector('.event-section .link'),
+                    btnModal = document.querySelector('.modal-m .btn'),
+                    modal = document.querySelector('.modal-m');
+
+                function hideModal() {
+                    modal.classList.remove('active')
+                }
+
+                //scroll to packets
+                btnYellow.addEventListener('click', (e) => {
+                    console.log(e.target)
+                    let current_position = document.querySelector('.variations').pageYOffset;
+                    console.log(current_position)
+                    document.querySelector('.variations').scrollTo({ top: current_position, behavior: 'smooth' });
+                })
+                //click "What is extreme hiking?" button
+                linkModal.addEventListener('click', (e) => {
+                    modal.classList.add('active')
+                })
+
+                btnModal.addEventListener('click', (e) => {
+                    hideModal()
+                })
+                document.addEventListener('click', (e) => {
+                    if ((!e.target.closest('.modal-m') && !e.target.classList.contains('link')) || e.target.classlist.contains('btn')) {
+                        hideModal()
+                    }
+                })
             }
         }
     }
