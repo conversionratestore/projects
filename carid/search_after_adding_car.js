@@ -83,7 +83,7 @@ if (settings.observe) {
                         gaEvent(`Click on Make select`, "Popup: Select vehicle")
                       } else if (item.querySelector(".marker").innerText == "3") {
                         gaEvent(`Click on Model select`, "Popup: Select vehicle")
-                        sessionStorage.setItem("chooseModel", true)
+                        localStorage.setItem("chooseModel", true)
                       }
                     })
                   }
@@ -99,7 +99,7 @@ if (settings.observe) {
                   gaEvent(`Click on Make select`, "Popup: Select vehicle")
                 } else if (item.querySelector(".marker").innerText == "3") {
                   gaEvent(`Click on Model select`, "Popup: Select vehicle")
-                  sessionStorage.setItem("chooseModel", true)
+                  localStorage.setItem("chooseModel", true)
                 }
               })
             }
@@ -470,9 +470,9 @@ function handleSearch() {
 
 function openSearchAfterClickAddingCar() {
   if (document.querySelector(".nav-tool.-garage>.title").textContent !== "Select vehicle") {
-    if (sessionStorage.getItem("chooseModel")) {
+    if (localStorage.getItem("chooseModel")) {
       document.querySelector(".header-search-label").click()
-      sessionStorage.removeItem("chooseModel")
+      localStorage.removeItem("chooseModel")
     }
   }
 }
@@ -503,5 +503,5 @@ function addSearchBtn() {
     }
 
     clearInterval(addNewInterval)
-  }, 400)
+  }, 200)
 }
