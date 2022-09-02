@@ -295,7 +295,7 @@ let interval = setInterval(() => {
                     <div class="info-section">
                         <h2>${cityObj.title2}</h2>
                         <ul class="list">
-                            <li class="flex">
+                            <li class="flex ${keyPlace == '/berlin' ? 'items-center': ''}">
                                 <svg class="shrink-0" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M12 14C13.6569 14 15 12.6569 15 11C15 9.34315 13.6569 8 12 8C10.3431 8 9 9.34315 9 11C9 12.6569 10.3431 14 12 14Z" stroke="#111111" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
                                     <path d="M12 3C9.87827 3 7.84344 3.84285 6.34315 5.34315C4.84285 6.84344 4 8.87827 4 11C4 12.892 4.402 14.13 5.5 15.5L12 23L18.5 15.5C19.598 14.13 20 12.892 20 11C20 8.87827 19.1571 6.84344 17.6569 5.34315C16.1566 3.84285 14.1217 3 12 3V3Z" stroke="#111111" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
