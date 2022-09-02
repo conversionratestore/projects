@@ -145,11 +145,11 @@ let style = `
     .info-section .review-image {
         margin-bottom: 16px;
     }
-    .info-section .list li{
+    .info-section .list li {
         margin-bottom: 16px;
         color: #111111;
     }
-    .info-section .list p {
+    .info-section .list li:not(:first-child) p {
         margin-bottom: 4px;
     }
     .info-section .list p.text-up {
