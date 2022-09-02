@@ -313,7 +313,7 @@ let interval = setInterval(() => {
                                 </svg>
                                 <div>
                                     <p><b>${cityObj.dateInfo}</b></p>
-                                    <p>Startzeit: 07:30 - 09:00 Uhr <b>(55 km)</b></p><p>Startzeit: 09:30 - 11:30 Uhr <b>(30 km)</b></p>
+                                    <p>Startzeit: 07:30 - 09:00 Uhr <b>(55 KM)</b></p><p>Startzeit: 09:30 - 11:30 Uhr <b>(30 KM)</b></p>
                                     <p class="text-up lh-20">Die Startgruppenauswahl beginnt wenige Wochen vor dem Event.</p>    
                                 </div>
                             </li>
