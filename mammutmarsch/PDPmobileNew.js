@@ -1,23 +1,33 @@
 const obj =  {
-    'base': {
-        'spanTitle': 'Du wirst weiter marschieren, als die 99% aller Menschen es je tun werden!',
-        'btnMain': 'Strecke auswählen',
-        'btnRegister': 'Anmelden',
-        'titleText': 'Event-Infos',
-        'modalTitle': 'Was ist Extremwandern?',
-        'modalText': `Extremwandern steht vor allem für das Bezwingen langer Strecken zu Fuß. Es geht nicht um die Geschwindigkeit, sondern darum im Ziel anzukommen (bei uns nach 30 - 100 KM). </br> </br>Extremwandern ist Trendsport. Vor zehn Jahren hat noch niemand von Mammutmärschen gesprochen. Seitdem haben wir das Wandern schmerzhaft langer Strecken salonfähig gemacht.  </br></br>Deine Freunde werden dich für verrückt erklären, aber das macht es doch nur noch interessanter, oder? </br> </br> `,
-        'modalBtn': 'Ich bin bereit!',
-    },
-    'mammutmarsch-dortmund': {
+    '/mammutmarsch-dortmund': {
+        'src': 'image-main.png',
         'title': '30/55 KM Mammutmarsch Dortmund',
-        'title2': 'Mammutmarsch Dortmund — 30/55 km',
-        'date1': '8. Oktober 2022',
-        'date2': '08/10/2022',
+        'spanTitle': 'Du wirst weiter marschieren, als die 99% aller Menschen es je tun werden!',
+        'title2': 'Mammutmarsch Dortmund — </br>30/55 km',
+        'date': '8. Oktober 2022',
         'place': 'Phoenixplatz 4 , 44263 Dortmund (nahe Warsteiner Music Hall).',
-        'dateInfo': '<p><b>Sonntag, 08. Oktober 2022</b></p><p>Startzeit: 07:30 - 09:00 Uhr <b>(55 km)</b></p><p>Startzeit: 09:30 - 11:30 Uhr <b>(30 km)</b></p><p class="text-up lh-20">Die Startgruppenauswahl beginnt wenige Wochen vor dem Event.</p>',
-        'difficulty': '<p><b>Schwierigkeit</b></p><p>Challenger <b>(30 km)</b> Pro <b>(55 km)</b></p>',
-        'route': '<p><b>30/55 KM</b></p><p> Eindrucksvolle Industrielandschaften und viel Natur</p>',
+        'dateInfo': 'Sonntag, 08. Oktober 2022',
         'text': `Für uns war immer klar: Dortmund hat viel mehr zu bieten als den BVB. Als Ruhrgebietsstadt, gibt es hier Industriekultur ohne Ende umringt von wunderschöner Natur.</br></br>Nach zwei überrangenden Events war für uns klar: Wir kommen auch dieses Jahr nach Dortmund!</br></br>Mammutmarsch bedeutet immer auch Grenzerfahrung. Bei wanderst du eine Strecke, an die sich 99% aller Menschen in ihrem ganzen Leben nicht wagen werden. Und egal, wie anstrengend es wird, im Ziel bekommst du einen Heldenempfang inklusive Medaille und kühlem Finisher-Beer.`,
+    },
+    '/mammutmarsch-hannover-30-55-km': {
+        'src': 'image-main-2.png',
+        'title': '30/55 KM Little Mammut Hannover',
+        'spanTitle': 'Hannover, wir sind wieder da!',
+        'title2': 'Little Mammut Hannover — </br>30/55 km',
+        'date': '22. Oktober 2022',
+        'place': 'Trammplatz 2 (vor dem neuen Rathaus), 30159 Hannover.',
+        'dateInfo': 'Donnerstag, 22. Oktober 2022',
+        'text': `Nach einer wunderbaren Premiere ist für uns klar: Hannover, wir kommen wieder!</br></br>Harald Schmidt spottete einmal: “Hannover ist die Stadt mit dem gewissen nichts”. Euch vom Gegenteil zu überzeugen, haben wir uns zum Ziel gesetzt.</br></br>Denn auch hier bekommt ihr von uns die schönste Strecke, die wir für euch zusammenstellen konnten. Mit viel Grün, Wasser und einigen Highlights der Stadt. Und ja, auch die ein oder anderen Höhenmeter sind dabei.`,
+    },
+    '/berlin': {
+        'src': 'image-main-3.png',
+        'title': '30/55 KM Little Mammut Berlin',
+        'spanTitle': 'Der Halbmarathon des Extremwanderns',
+        'title2': 'Little Mammut Berlin — </br>30/55 km',
+        'date': '05. november 2022',
+        'place': 'wird noch bekannt gegeben',
+        'dateInfo': 'Samstag, 05. November 2022',
+        'text': `Little Mammut heißt 30- oder 55-KM Extremwandern in wunderschöner Natur an Berlins größtem See, dem Müggelsee.</br></br>Wenn ihr den Mammutmarsch schon eine Weile verfolgt, verbindet ihr Berlin wahrscheinlich vor allem mit unserem 100-KM-Marsch. Aber auch die 30- und 55-Kilometer-Distanzen sind nicht ohne. Der Little Mammut ist unser Extremwander-Pendant zum Halbmarathon.</br></br>Besonders stolz sind wir auf unseren Start am Müggelsee, dem größten Gewässer Berlins. Hier fällt es leicht, nach dem Marsch die Seele baumeln zu lassen. Ganz hartgesottene Mammuts feiern den Zieleinlauf mit einem Sprung in´s kühle Nass.</br></br>Auf der ganzen Strecke haben wir vor allem viel Wasser und Natur für euch. Ein berüchtigtes Highlight sind die nicht enden wollenden Treppen zum Müggelturm auf der 55-KM-Distanz. Neben dem Tetraeder im Ruhrgebiet wahrscheinlich die härtesten Treppen auf einem Mammutmarsch-Event.</br></br>Im Ziel entschädigen wir euch für alles mit einer Urkunde, einer Medaille und einem gewebten Finisher-Band. Außerdem gibt es natürlich ein kühles Finishergetränk (auch alkoholfrei) für euch, um eure Leistung zu feiern.`,
     }
 }
 
@@ -66,7 +76,7 @@ let style = `
         color: #111111;
         font-weight: 700;
     }
-    .wrapper-event .btn:hover {
+    .wrapper-event .btn:hover, .wrapper-event .btn:focus {
         background-color: #DEDE1C!important;
         color: #111111!important;
     }
@@ -86,7 +96,7 @@ let style = `
     }
     /*event section*/
     .event-section {
-        background: url("https://conversionratestore.github.io/projects/mammutmarsch/img/image-main.png") no-repeat center / cover;
+        background: no-repeat center / cover;
         padding: 28px 16px 40px;
         color: #FFFFFF;
     }
@@ -104,7 +114,7 @@ let style = `
     }
     /*info section*/
     .info-section {
-        padding: 16px;
+        padding: 0 16px 40px;
         background: #FFFFFF;
     }
     .info-section .date {
@@ -124,7 +134,7 @@ let style = `
         margin-left: 4px;
     }
     .info-section h2 {
-        margin: 32px 0 20px;
+        margin: 24px 0 20px;
         font-size: 30px;
         line-height: 36px;
         text-transform: uppercase;
@@ -132,12 +142,15 @@ let style = `
         color: #333333;
         font-family: 'Bebas Neue', sans-serif;
     }
+    .info-section .review-image {
+        margin-bottom: 16px;
+    }
     .info-section .list li{
         margin-bottom: 16px;
         color: #111111;
     }
     .info-section .list p {
-           margin-bottom: 4px;
+        margin-bottom: 4px;
     }
     .info-section .list p.text-up {
         padding-top: 4px;
@@ -242,6 +255,7 @@ let scrollTop = (targetScroll, offsetTop) => {
 
 //push dataLayer
 let pushDataLayer = (action) => {
+    console.log(action)
     window.dataLayer = window.dataLayer || [];
     dataLayer.push({
         'event': 'event-to-ga',
@@ -253,43 +267,20 @@ let pushDataLayer = (action) => {
 let interval = setInterval(() => {
     if (document.body && document.querySelector('#main') != null) {
         clearInterval(interval);
-        for (const keyPlace in obj[key]) {
+        for (const keyPlace in obj) {
             if (location.href.includes(`${keyPlace}`)) {
-                let cityObj = obj[key][keyPlace],
-                    base = obj[key]['base'];
+                let cityObj = obj[keyPlace];
 
                 const page = `
                 <div class="wrapper-event">
-                    <section class="event-section">
-                        <p class="date lh-20">${cityObj.date1}</p>
+                    <section class="event-section" style="background-image: url(https://conversionratestore.github.io/projects/mammutmarsch/img/${cityObj.src})">
+                        <p class="date lh-20">${cityObj.date}</p>
                         <h1>${cityObj.title}</h1>
-                        <p class="text-center lh-20">${base.spanTitle}</p>
-                        <button type="button" class="btn">${base.btnMain}</button>
-                        <p class="link">${base.modalTitle}</p>
+                        <p class="text-center lh-20">${cityObj.spanTitle}</p>
+                        <button type="button" class="btn">Strecke auswählen</button>
+                        <p class="link">Was ist Extremwandern?</p>
                     </section>
                     <div class="info-section">
-                        <div class="flex-center-between">
-                            <p class="date">${cityObj.date2}</p>
-                            <div class="flex">
-                                <div class="tab bg-green flex items-center">
-                                    <svg width="33" height="10" viewBox="0 0 33 10" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M2.26646 9.962C2.02417 10.094 1.74923 9.86267 1.79819 9.56735L2.31919 6.41412L0.10775 4.17686C-0.0987689 3.96753 0.00857047 3.58488 0.285393 3.54355L3.35994 3.07956L4.73088 0.194994C4.85454 -0.0649978 5.18911 -0.0649978 5.31277 0.194994L6.6837 3.07956L9.75825 3.54355C10.0351 3.58488 10.1424 3.96753 9.93527 4.17686L7.72445 6.41412L8.24545 9.56735C8.29442 9.86267 8.01948 10.094 7.77718 9.962L5.02088 8.45805L2.26584 9.962H2.26646Z" fill="white"/>
-                                        <path d="M16.2593 8.01919L13.8187 9.35153L14.2905 6.49563L14.3321 6.24401L14.1528 6.06262L12.1108 3.99678L14.9126 3.57397L15.1755 3.5343L15.2896 3.29419L16.4998 0.747634L17.7101 3.29419L17.8242 3.5343L18.0871 3.57397L20.8884 3.99671L18.8468 6.06267L18.6676 6.24405L18.7092 6.49563L19.1811 9.35199L16.7384 8.01914L16.4989 7.88843L16.2593 8.01919Z" stroke="white"/>
-                                        <path d="M27.7378 8.01919L25.2972 9.35153L25.769 6.49563L25.8106 6.24401L25.6313 6.06262L23.5893 3.99678L26.3911 3.57397L26.654 3.5343L26.7681 3.29419L27.9784 0.747634L29.1886 3.29419L29.3028 3.5343L29.5656 3.57397L32.3669 3.99671L30.3253 6.06267L30.1461 6.24405L30.1877 6.49563L30.6596 9.35199L28.2169 8.01914L27.9774 7.88843L27.7378 8.01919Z" stroke="white"/>
-                                    </svg>
-                                    <p>Challenger</p>
-                                </div>
-                                <div class="tab bg-red flex items-center">
-                                    <svg width="33" height="10" viewBox="0 0 33 10" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M2.26646 9.962C2.02417 10.094 1.74923 9.86267 1.79819 9.56735L2.31919 6.41412L0.10775 4.17686C-0.0987689 3.96753 0.00857047 3.58488 0.285393 3.54355L3.35994 3.07956L4.73088 0.194994C4.85454 -0.0649978 5.18911 -0.0649978 5.31277 0.194994L6.6837 3.07956L9.75825 3.54355C10.0351 3.58488 10.1424 3.96753 9.93527 4.17686L7.72445 6.41412L8.24545 9.56735C8.29442 9.86267 8.01948 10.094 7.77718 9.962L5.02088 8.45805L2.26584 9.962H2.26646Z" fill="white"/>
-                                        <path d="M13.7445 9.962C13.5022 10.094 13.2273 9.86267 13.2762 9.56735L13.7972 6.41412L11.5858 4.17686C11.3793 3.96753 11.4866 3.58488 11.7634 3.54355L14.838 3.07956L16.2089 0.194994C16.3326 -0.0649978 16.6671 -0.0649978 16.7908 0.194994L18.1617 3.07956L21.2363 3.54355C21.5131 3.58488 21.6204 3.96753 21.4133 4.17686L19.2025 6.41412L19.7235 9.56735C19.7724 9.86267 19.4975 10.094 19.2552 9.962L16.4989 8.45805L13.7439 9.962H13.7445Z" fill="white"/>
-                                        <path d="M27.7378 8.01919L25.2972 9.35153L25.769 6.49563L25.8106 6.24401L25.6313 6.06262L23.5893 3.99678L26.3911 3.57397L26.654 3.5343L26.7681 3.29419L27.9784 0.747634L29.1886 3.29419L29.3028 3.5343L29.5656 3.57397L32.3669 3.99671L30.3253 6.06267L30.1461 6.24405L30.1877 6.49563L30.6596 9.35199L28.2169 8.01914L27.9774 7.88843L27.7378 8.01919Z" stroke="white"/>
-                                    </svg>
-                                    <p>Pro</p>
-                                </div>
-                            </div>
-                        </div>
-                        
                         <h2>${cityObj.title2}</h2>
                         <ul class="list">
                             <li class="flex">
@@ -308,13 +299,20 @@ let interval = setInterval(() => {
                                     <path fill-rule="evenodd" clip-rule="evenodd" d="M19.3358 8.33356H2.22461V7.11133H19.3358V8.33356Z" fill="#111111"/>
                                     <path d="M4.66699 1.61112C4.66699 1.44904 4.73138 1.2936 4.84598 1.17899C4.96059 1.06439 5.11603 1 5.27811 1C5.44019 1 5.59562 1.06439 5.71023 1.17899C5.82484 1.2936 5.88922 1.44904 5.88922 1.61112V4.05558C5.88922 4.21765 5.82484 4.37309 5.71023 4.4877C5.59562 4.60231 5.44019 4.66669 5.27811 4.66669C5.11603 4.66669 4.96059 4.60231 4.84598 4.4877C4.73138 4.37309 4.66699 4.21765 4.66699 4.05558V1.61112ZM13.2226 1.61112C13.2226 1.44904 13.287 1.2936 13.4016 1.17899C13.5162 1.06439 13.6716 1 13.8337 1C13.9958 1 14.1512 1.06439 14.2658 1.17899C14.3804 1.2936 14.4448 1.44904 14.4448 1.61112V4.05558C14.4448 4.21765 14.3804 4.37309 14.2658 4.4877C14.1512 4.60231 13.9958 4.66669 13.8337 4.66669C13.6716 4.66669 13.5162 4.60231 13.4016 4.4877C13.287 4.37309 13.2226 4.21765 13.2226 4.05558V1.61112Z" fill="#111111"/>
                                 </svg>
-                                <div>${cityObj.dateInfo}</div>
+                                <div>
+                                    <p><b>${cityObj.dateInfo}</b></p>
+                                    <p>Startzeit: 07:30 - 09:00 Uhr <b>(55 km)</b></p><p>Startzeit: 09:30 - 11:30 Uhr <b>(30 km)</b></p>
+                                    <p class="text-up lh-20">Die Startgruppenauswahl beginnt wenige Wochen vor dem Event.</p>    
+                                </div>
                             </li>
                             <li class="flex">
                                 <svg class="shrink-0" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M23.2969 22.5938H18.3281V11.1291C19.1465 10.8388 19.7344 10.0573 19.7344 9.14062C19.7344 7.97752 18.7881 7.03125 17.625 7.03125H14.0449L11.335 5.22469C12.1539 4.73245 12.7031 3.83555 12.7031 2.8125C12.7031 1.26169 11.4414 0 9.89062 0C8.33981 0 7.07812 1.26169 7.07812 2.8125C7.07812 3.54698 7.36144 4.21636 7.82419 4.71783C7.73588 4.79292 7.65347 4.87556 7.57781 4.96537C7.07625 4.5023 6.40669 4.21875 5.67188 4.21875C4.12106 4.21875 2.85938 5.48044 2.85938 7.03125V13.3594C2.85938 14.5225 3.80564 15.4688 4.96875 15.4688H6.375C6.62152 15.4688 6.85805 15.4259 7.07812 15.3478V16.9437L4.61737 20.7244C4.24327 21.2884 4.16859 21.9736 4.38628 22.5938H0.703125C0.314812 22.5938 0 22.9086 0 23.2969C0 23.6852 0.314812 24 0.703125 24H23.2969C23.6852 24 24 23.6852 24 23.2969C24 22.9086 23.6852 22.5938 23.2969 22.5938ZM9.89062 1.40625C10.666 1.40625 11.2969 2.03709 11.2969 2.8125C11.2969 3.58791 10.666 4.21875 9.89062 4.21875C9.11522 4.21875 8.48438 3.58791 8.48438 2.8125C8.48438 2.03709 9.11522 1.40625 9.89062 1.40625ZM4.26562 7.03125C4.26562 6.25584 4.89647 5.625 5.67188 5.625C6.44728 5.625 7.07812 6.25584 7.07812 7.03125V8.4375H4.26562V7.03125ZM6.375 14.0625H4.96875C4.58105 14.0625 4.26562 13.7471 4.26562 13.3594V9.84375H7.07812V13.3594C7.07812 13.7471 6.7627 14.0625 6.375 14.0625ZM6.37359 22.5937C5.81573 22.5938 5.47898 21.9674 5.79005 21.5005C5.79145 21.4984 5.79286 21.4963 5.79422 21.4942L8.37052 17.536C8.44481 17.4218 8.48438 17.2886 8.48438 17.1524V15.4257L9.89062 16.3632V17.5781C9.89062 17.7173 9.8498 17.8522 9.7725 17.9681C9.77119 17.9701 9.76987 17.9721 9.76856 17.974L6.9585 22.2828C6.82739 22.4775 6.609 22.5937 6.37359 22.5937ZM8.43464 22.5938L10.9448 18.7448C11.1751 18.3979 11.2969 17.9946 11.2969 17.5781V21.8906C11.2969 22.1371 11.3398 22.3737 11.4178 22.5938H8.43464ZM16.9219 22.5938H15.3947C15.4727 22.3737 15.5156 22.1371 15.5156 21.8906V16.1719C15.5156 15.465 15.1645 14.8089 14.5763 14.4168L11.2969 12.2305V10.2695L12.2362 10.8957C12.5839 11.1275 12.9885 11.25 13.4062 11.25H16.9219V22.5938ZM17.625 9.84375H13.4062C13.267 9.84375 13.1321 9.80292 13.0162 9.72563C12.613 9.4568 11.3845 8.6378 10.9838 8.37066C10.5172 8.05959 9.89067 8.39639 9.89067 8.9557V8.95781C9.89067 8.95875 9.89067 8.95969 9.89067 8.96058V12.6068C9.89067 12.8419 10.0082 13.0614 10.2038 13.1918L13.7963 15.5869C13.9924 15.7176 14.1095 15.9363 14.1095 16.1719V21.8906C14.1095 22.2783 13.794 22.5938 13.4063 22.5938C13.0186 22.5938 12.7032 22.2783 12.7032 21.8906V16.9245C12.7032 16.6894 12.5857 16.4698 12.3901 16.3394C12.3322 16.3008 8.916 14.0233 8.79755 13.9444C8.60147 13.8136 8.48442 13.595 8.48442 13.3594C8.48442 13.0661 8.48442 6.62358 8.48442 6.32812C8.48442 6.32803 8.48442 6.32794 8.48442 6.32784C8.48442 6.32775 8.48442 6.32766 8.48442 6.32756C8.48386 5.76764 9.11063 5.43136 9.57755 5.74312L13.442 8.31942C13.5575 8.39639 13.6932 8.4375 13.832 8.4375H17.625C18.0127 8.4375 18.3281 8.75292 18.3281 9.14062C18.3281 9.52833 18.0127 9.84375 17.625 9.84375Z" fill="#111111"/>
                                 </svg>
-                                <div>${cityObj.difficulty}</div>
+                                <div>
+                                    <p><b>Schwierigkeit</b></p>
+                                    <p>Challenger <b>(30 km)</b> Pro <b>(55 km)</b></p>
+                                </div>
                             </li>
                             <li class="flex">
                                 <svg class="shrink-0" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -324,12 +322,11 @@ let interval = setInterval(() => {
                                     <path d="M4.12598 5.25C4.7473 5.25 5.25098 4.74632 5.25098 4.125C5.25098 3.50368 4.7473 3 4.12598 3C3.50466 3 3.00098 3.50368 3.00098 4.125C3.00098 4.74632 3.50466 5.25 4.12598 5.25Z" fill="#111111"/>
                                     <path d="M21.0061 22.8738C21.0069 23.899 19.7328 24.3939 19.0435 23.6247H3.37598C1.51504 23.6247 0.000976562 22.1107 0.000976562 20.2497C0.000976562 18.3888 1.51504 16.8747 3.37598 16.8747H10.8994C11.9204 16.8747 12.751 16.0441 12.751 15.0232C12.751 14.0022 11.9204 13.1716 10.8994 13.1716H4.96457C4.26941 13.9387 3.00177 13.4495 3.00098 12.4225C2.99938 11.3943 4.26552 10.9047 4.96457 11.6716H10.8994C12.7477 11.6716 14.251 13.1749 14.251 15.0232C14.251 16.8714 12.7477 18.3747 10.8994 18.3747H3.37598C2.34191 18.3747 1.50098 19.2157 1.50098 20.2497C1.50098 21.2838 2.34191 22.1247 3.37598 22.1247H19.043C19.7407 21.3547 21.0046 21.8524 21.0061 22.8738Z" fill="#111111"/>
                                 </svg>
-                
-                                <div>${cityObj.route}</div>
+                                <div><p><b>30/55 KM</b></p><p> Eindrucksvolle Industrielandschaften und viel Natur</p></div>
                             </li>
                         </ul>
-                        <img src="https://conversionratestore.github.io/projects/mammutmarsch/img/reviewG.svg" alt="review icons">
-                        <h2>${base.titleText}</h2>
+                        <img src="https://conversionratestore.github.io/projects/mammutmarsch/img/reviewG.svg" alt="review icons" class="review-image">
+                        <h2>Event-Infos</h2>
                         <p class="lh-20 c-dark-charcoal">${cityObj.text}</p>
                     </div>
                     <div class="modal-m">
@@ -340,9 +337,9 @@ let interval = setInterval(() => {
                                 </svg>
                             </button>
                             <img src="https://conversionratestore.github.io/projects/mammutmarsch/img/image-modal.png" alt="image">
-                            <h2>${base.modalTitle}</h2>
-                            <p class="lh-20">${base.modalText}</p>
-                            <button type="button" class="btn">${base.modalBtn}</button>
+                            <h2>Was ist Extremwandern?</h2>
+                            <p class="lh-20">Extremwandern steht vor allem für das Bezwingen langer Strecken zu Fuß. Es geht nicht um die Geschwindigkeit, sondern darum im Ziel anzukommen (bei uns nach 30 - 100 KM). </br> </br>Extremwandern ist Trendsport. Vor zehn Jahren hat noch niemand von Mammutmärschen gesprochen. Seitdem haben wir das Wandern schmerzhaft langer Strecken salonfähig gemacht.  </br></br>Deine Freunde werden dich für verrückt erklären, aber das macht es doch nur noch interessanter, oder? </br> </br> </p>
+                            <button type="button" class="btn">Ich bin bereit!</button>
                         </div>
                     </div>
                 </div>`
@@ -371,20 +368,29 @@ let interval = setInterval(() => {
                 })
                 //click back side modal
                 document.addEventListener('click', (e) => {
-                    if (!e.target.closest('.modal-m') && !e.target.classList.contains('link')) {
+                    if (!e.target.closest('.modal-m') && !e.target.classList.contains('link') && modal.classList.contains('active')) {
                         hideModal()
                         pushDataLayer('Click back side modal')
                     }
                 })
-                //click on close button
+                //click on close button in modal
                 btnCloseModal.addEventListener('click', (e) => {
                     hideModal()
                     pushDataLayer('Click on close button')
                 })
-                //click on I am ready button
+                //click on I am ready button in modal
                 btnModal.addEventListener('click', (e) => {
                     pushDataLayer('Click on I am ready button')
                     hideModal()
+                })
+
+                //Click on Anmelden/Register button
+                document.querySelectorAll('.attribute-pa_paket .col-md-6 .btn').forEach(item => {
+                    item.addEventListener('click', () => pushDataLayer('Click on Register button'))
+                })
+                //Click on ANMELDUNG ABSCHLIEßEN/Completing registration  button
+                document.querySelector('#proceed_to_checkout').addEventListener('click', () => {
+                    pushDataLayer('Click on Completing registration button')
                 })
             }
         }
