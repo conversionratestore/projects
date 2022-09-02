@@ -97,7 +97,7 @@ let style = `
     /*event section*/
     .event-section {
         background: no-repeat center / cover;
-        padding: 28px 16px 40px;
+        padding: 36px 16px 40px;
         color: #FFFFFF;
     }
     .event-section .date {
@@ -200,8 +200,8 @@ let style = `
         margin: 0 auto;
         display: block;
     }
-    .min-h-40 {
-        min-height: 40px;
+    .min-h-30 {
+        min-height: 30px;
     }
     /*text transform*/
     .text-up {
@@ -279,7 +279,7 @@ let interval = setInterval(() => {
                     <section class="event-section" style="background-image: url(https://conversionratestore.github.io/projects/mammutmarsch/img/${cityObj.src})">
                         <p class="date lh-20">${cityObj.date}</p>
                         <h1>${cityObj.title}</h1>
-                        <p class="text-center lh-20 min-h-40">${cityObj.spanTitle}</p>
+                        <p class="text-center lh-20 min-h-30">${cityObj.spanTitle}</p>
                         <button type="button" class="btn">Strecke auswählen</button>
                         <p class="link">Was ist Extremwandern?</p>
                     </section>
