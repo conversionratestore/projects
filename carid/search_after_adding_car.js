@@ -105,6 +105,24 @@ if (settings.observe) {
             }
           }, 800)
         }
+
+        //
+        if (node.classList.contains("select-vehicle-spacer") && node.closest(".head-nav-inner")) {
+          setTimeout(() => {
+            for (let item of document.querySelectorAll(".select-vehicle-col")) {
+              item.addEventListener("click", function () {
+                if (item.querySelector(".marker").innerText == "1") {
+                  gaEvent(`Click on Year select`, "Popup: Select vehicle")
+                } else if (item.querySelector(".marker").innerText == "2") {
+                  gaEvent(`Click on Make select`, "Popup: Select vehicle")
+                } else if (item.querySelector(".marker").innerText == "3") {
+                  gaEvent(`Click on Model select`, "Popup: Select vehicle")
+                  localStorage.setItem("showSearch", "yes")
+                }
+              })
+            }
+          }, 800)
+        }
       }
     }
   })
@@ -415,7 +433,6 @@ function init() {
   gaEvent("loaded")
 
   changeSearch()
-  openSearchAfterClickAddingCar()
   addSearchBtn()
 }
 
@@ -466,20 +483,6 @@ function handleSearch() {
     document.querySelector(".header-search-label").click()
   }
   isProcessing = false
-}
-
-function openSearchAfterClickAddingCar() {
-  if (document.querySelector(".nav-tool.-garage>.title").textContent !== "Select vehicle") {
-    if (localStorage.getItem("chooseModel")) {
-      let clickSearch = setInterval(() => {
-        if (!document.querySelector(".lav-search__btn-top")) return false
-        clearInterval(clickSearch)
-
-        document.querySelector(".header-search-label").click()
-        localStorage.removeItem("chooseModel")
-      }, 300)
-    }
-  }
 }
 
 function addSearchBtn() {
