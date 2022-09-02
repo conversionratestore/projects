@@ -300,7 +300,7 @@ let interval = setInterval(() => {
                                     <path d="M12 14C13.6569 14 15 12.6569 15 11C15 9.34315 13.6569 8 12 8C10.3431 8 9 9.34315 9 11C9 12.6569 10.3431 14 12 14Z" stroke="#111111" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
                                     <path d="M12 3C9.87827 3 7.84344 3.84285 6.34315 5.34315C4.84285 6.84344 4 8.87827 4 11C4 12.892 4.402 14.13 5.5 15.5L12 23L18.5 15.5C19.598 14.13 20 12.892 20 11C20 8.87827 19.1571 6.84344 17.6569 5.34315C16.1566 3.84285 14.1217 3 12 3V3Z" stroke="#111111" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
                                 </svg>
-                                <div class="lh-20">${cityObj.place}</div>
+                                <div class="lh-20"><p><b>${cityObj.place}</b></p></div>
                             </li>
                             <li class="flex">
                                 <svg class="shrink-0" width="25" height="24" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -334,7 +334,7 @@ let interval = setInterval(() => {
                                     <path d="M4.12598 5.25C4.7473 5.25 5.25098 4.74632 5.25098 4.125C5.25098 3.50368 4.7473 3 4.12598 3C3.50466 3 3.00098 3.50368 3.00098 4.125C3.00098 4.74632 3.50466 5.25 4.12598 5.25Z" fill="#111111"/>
                                     <path d="M21.0061 22.8738C21.0069 23.899 19.7328 24.3939 19.0435 23.6247H3.37598C1.51504 23.6247 0.000976562 22.1107 0.000976562 20.2497C0.000976562 18.3888 1.51504 16.8747 3.37598 16.8747H10.8994C11.9204 16.8747 12.751 16.0441 12.751 15.0232C12.751 14.0022 11.9204 13.1716 10.8994 13.1716H4.96457C4.26941 13.9387 3.00177 13.4495 3.00098 12.4225C2.99938 11.3943 4.26552 10.9047 4.96457 11.6716H10.8994C12.7477 11.6716 14.251 13.1749 14.251 15.0232C14.251 16.8714 12.7477 18.3747 10.8994 18.3747H3.37598C2.34191 18.3747 1.50098 19.2157 1.50098 20.2497C1.50098 21.2838 2.34191 22.1247 3.37598 22.1247H19.043C19.7407 21.3547 21.0046 21.8524 21.0061 22.8738Z" fill="#111111"/>
                                 </svg>
-                                <div><p><b>30/55 KM</b></p><p> Eindrucksvolle Industrielandschaften und viel Natur</p></div>
+                                <div><p><b>30/55 km</b></p><p> Eindrucksvolle Industrielandschaften und viel Natur</p></div>
                             </li>
                         </ul>
                         <img src="https://conversionratestore.github.io/projects/mammutmarsch/img/reviewG.svg" alt="review icons" class="review-image">
