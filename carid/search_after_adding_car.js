@@ -415,7 +415,7 @@ function init() {
   gaEvent("loaded")
 
   changeSearch()
-  openSearchAfterClickAddingCar()
+  //   openSearchAfterClickAddingCar()
   addSearchBtn()
 }
 
