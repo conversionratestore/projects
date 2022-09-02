@@ -44,8 +44,8 @@ if (settings.observe) {
         if (!(node instanceof HTMLElement)) continue
 
         if (node.classList.contains("mygarage-dd-container")) {
-          if (node.querySelector(".mygarage-vehicle-title")) {
-            localStorage.setItem("showSearch", "yes")
+          if (node.querySelector(".mygarage-vehicle-title") && document.querySelector(".lav-add-popup")) {
+            // localStorage.setItem("showSearch", "yes")
             if (localStorage.getItem("startDate")) {
               let time = (new Date().getTime() - parseInt(localStorage.getItem("startDate"))) / 1000
               gaEvent(`Popup was closed after ${time} seconds`, "Popup: Select vehicle")
@@ -91,7 +91,7 @@ if (settings.observe) {
               })
             }
 
-            for (let item of document.querySelectorAll(".lav-add-popup .select-vehicle-col")) {
+            for (let item of document.querySelectorAll(".select-vehicle-col")) {
               item.addEventListener("click", function () {
                 if (item.querySelector(".marker").innerText == "1") {
                   gaEvent(`Click on Year select`, "Popup: Select vehicle")
@@ -415,7 +415,7 @@ function init() {
   gaEvent("loaded")
 
   changeSearch()
-  //   openSearchAfterClickAddingCar()
+  openSearchAfterClickAddingCar()
   addSearchBtn()
 }
 
