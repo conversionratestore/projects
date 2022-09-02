@@ -471,8 +471,13 @@ function handleSearch() {
 function openSearchAfterClickAddingCar() {
   if (document.querySelector(".nav-tool.-garage>.title").textContent !== "Select vehicle") {
     if (localStorage.getItem("chooseModel")) {
-      document.querySelector(".header-search-label").click()
-      localStorage.removeItem("chooseModel")
+      let clickSearch = setInterval(() => {
+        if (!document.querySelector(".lav-search__btn-top")) return false
+        clearInterval(clickSearch)
+
+        document.querySelector(".header-search-label").click()
+        localStorage.removeItem("chooseModel")
+      }, 200)
     }
   }
 }
