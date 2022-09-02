@@ -155,7 +155,7 @@ let style = `
         transform: translateY(100px);
         transition: all 0.3s ease;
         overflow-y: auto;
-        height: 100vh;
+        max-height: 100vh;
     }
     .modal-m.active {
         opacity: 1;
