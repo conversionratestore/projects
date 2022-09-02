@@ -2,7 +2,7 @@ const obj =  {
     '/mammutmarsch-dortmund': {
         'src': 'image-main.png',
         'title': '30/55 KM Mammutmarsch Dortmund',
-        'spanTitle': 'Du wirst weiter marschieren, als die 99% aller Menschen es je tun werden!',
+        'spanTitle': 'Du wirst weiter marschieren, als die 99% aller </br>Menschen es je tun werden!',
         'title2': 'Mammutmarsch Dortmund — </br>30/55 km',
         'date': '8. Oktober 2022',
         'place': 'Phoenixplatz 4 , 44263 Dortmund (nahe Warsteiner Music Hall).',
