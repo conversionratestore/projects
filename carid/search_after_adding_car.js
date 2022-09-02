@@ -412,6 +412,19 @@ function init() {
     }, 200)
   }
 
+  if (document.querySelector(".nav-tool.-garage>.title").textContent !== "Select vehicle") {
+    if (localStorage.getItem("chooseModel")) {
+      let clickSearch = setInterval(() => {
+        if (!document.querySelector(".lav-search__btn-top")) return false
+        clearInterval(clickSearch)
+
+        localStorage.removeItem("chooseModel")
+        isSearch = true
+        document.querySelector(".header-search-label").click()
+      }, 300)
+    }
+  }
+
   gaEvent("loaded")
 
   changeSearch()
@@ -477,7 +490,7 @@ function openSearchAfterClickAddingCar() {
 
         document.querySelector(".header-search-label").click()
         localStorage.removeItem("chooseModel")
-      }, 200)
+      }, 300)
     }
   }
 }
