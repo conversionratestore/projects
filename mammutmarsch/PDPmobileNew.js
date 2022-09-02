@@ -68,6 +68,10 @@ let style = `
         color: #111111;
         font-weight: 700;
     }
+    .wrapper-event .btn:hover {
+        background-color: #DEDE1C!important;
+        color: #111111!important;
+    }
     .wrapper-event .link {
         font-weight: 500;
         font-size: 14px;
