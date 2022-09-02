@@ -200,6 +200,9 @@ let style = `
         margin: 0 auto;
         display: block;
     }
+    .min-h-40 {
+        min-height: 40px;
+    }
     /*text transform*/
     .text-up {
         text-transform: uppercase;
@@ -276,7 +279,7 @@ let interval = setInterval(() => {
                     <section class="event-section" style="background-image: url(https://conversionratestore.github.io/projects/mammutmarsch/img/${cityObj.src})">
                         <p class="date lh-20">${cityObj.date}</p>
                         <h1>${cityObj.title}</h1>
-                        <p class="text-center lh-20">${cityObj.spanTitle}</p>
+                        <p class="text-center lh-20 min-h-40">${cityObj.spanTitle}</p>
                         <button type="button" class="btn">Strecke auswählen</button>
                         <p class="link">Was ist Extremwandern?</p>
                     </section>
