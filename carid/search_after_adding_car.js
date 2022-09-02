@@ -112,11 +112,11 @@ if (settings.observe) {
             for (let item of document.querySelectorAll(".select-vehicle-col")) {
               item.addEventListener("click", function () {
                 if (item.querySelector(".marker").innerText == "1") {
-                  gaEvent(`Click on Year select`, "Popup: Select vehicle")
+                  gaEvent(`Click on Year select`, "Homepage: Select vehicle")
                 } else if (item.querySelector(".marker").innerText == "2") {
-                  gaEvent(`Click on Make select`, "Popup: Select vehicle")
+                  gaEvent(`Click on Make select`, "Homepage: Select vehicle")
                 } else if (item.querySelector(".marker").innerText == "3") {
-                  gaEvent(`Click on Model select`, "Popup: Select vehicle")
+                  gaEvent(`Click on Model select`, "Homepage: Select vehicle")
                   localStorage.setItem("showSearch", "yes")
                 }
               })
@@ -250,14 +250,6 @@ const styles = `
     border-radius: 5px;
     padding: 30px;
   }
-  .lav-add__caption {
-    font-weight: 500;
-    font-size: 24px;
-    line-height: 30px;
-    margin-bottom: 20px;
-    color: #FFFFFF;
-    letter-spacing: 0.4px;
-  }
   .lav-add-popup .gbox_close {
     top: 20px;
     right: 20px;
@@ -321,12 +313,6 @@ const styles = `
       margin-top: 0;
       padding: 5px;
     }
-    .lav-add__caption {
-      font-size: 20px;
-      line-height: 24px;
-      padding: 0 5px;
-      margin-bottom: 10px;
-    }
     .gbox_portal .select-vehicle {
       padding: 55px 7px 5px;
     }
@@ -351,7 +337,7 @@ function init() {
   })
 
   document.addEventListener("click", function (e) {
-    console.log(e.target)
+    // console.log(e.target)
     if (
       localStorage.getItem("startDate") &&
       e.target.href &&
