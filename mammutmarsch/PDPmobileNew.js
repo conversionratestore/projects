@@ -417,10 +417,3 @@ dataLayer.push({
     'eventCategory': 'Exp: PDP improvements',
     'eventAction': 'loaded'
 });
-
-let isClarify = setInterval(() => {
-    if(typeof clarity == 'function') {
-        clearInterval(isClarify)
-        clarity("set", "pdp_improvements", "variant_1");
-    }
-}, 100)
