@@ -400,6 +400,8 @@ let interval = setInterval(() => {
                 document.querySelectorAll('.attribute-pa_paket .col-md-6 .btn').forEach(item => {
                     item.addEventListener('click', () => pushDataLayer('Click on Register button'))
                 })
+                //change name button
+                document.querySelector('#proceed_to_checkout').innerHTML = 'ANMELDUNG ABSCHLIEßEN';
                 //Click on ANMELDUNG ABSCHLIEßEN/Completing registration  button
                 document.querySelector('#proceed_to_checkout').addEventListener('click', () => {
                     pushDataLayer('Click on Completing registration button')
