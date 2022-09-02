@@ -337,7 +337,8 @@ function init() {
   })
 
   document.addEventListener("click", function (e) {
-    // console.log(e.target)
+    console.log(e.target)
+
     if (
       localStorage.getItem("startDate") &&
       e.target.href &&
@@ -346,6 +347,19 @@ function init() {
       let time = (new Date().getTime() - parseInt(localStorage.getItem("startDate"))) / 1000
       gaEvent(`Popup was closed after ${time} seconds`, "Popup: Select vehicle")
       localStorage.removeItem("startDate")
+    }
+
+    if (e.target.classList.contains("simple-btn") && document.querySelector(".simple-btn")) {
+      gaEvent(`Click on Add vehicle`, "Header: My garage")
+    }
+
+    if (
+      e.target.classList.contains("hover-item").closest(".left-dd-vehicle-spacer") ||
+      e.target.classList.contains("left-menu-vehicles-title").closest(".left-dd-vehicle-spacer") ||
+      e.target.classList.contains("count-item").closest(".left-dd-vehicle-spacer") ||
+      e.target.classList.contains("left-dd-vehicle-spacer")
+    ) {
+      gaEvent(`Click on My Garage`, "PanelPage: My garage")
     }
 
     if (e.target.classList.contains("select-vehicle-button") && e.target.closest(".lav-add-popup")) {
