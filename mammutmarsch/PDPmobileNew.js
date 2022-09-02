@@ -195,8 +195,15 @@ let style = `
         margin-bottom: 20px;
         display: block;
     }
-    .modal-m h1 {
-        color: #111111
+    .modal-m h2 {
+        display: block!important;
+        font-weight: 400;
+        font-size: 30px;
+        line-height: 36px;
+        text-transform: uppercase;
+        font-family: 'Bebas Neue';
+        color: #111111;
+        margin-bottom: 12px;
     }
     .modal-m .btn {
         margin: 0 auto;
