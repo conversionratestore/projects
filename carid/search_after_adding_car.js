@@ -354,9 +354,9 @@ function init() {
     }
 
     if (
-      e.target.classList.contains("hover-item").closest(".left-dd-vehicle-spacer") ||
-      e.target.classList.contains("left-menu-vehicles-title").closest(".left-dd-vehicle-spacer") ||
-      e.target.classList.contains("count-item").closest(".left-dd-vehicle-spacer") ||
+      (e.target.classList.contains("hover-item") && e.target.closest(".left-dd-vehicle-spacer")) ||
+      (e.target.classList.contains("left-menu-vehicles-title") && e.target.closest(".left-dd-vehicle-spacer")) ||
+      (e.target.classList.contains("count-item") && e.target.closest(".left-dd-vehicle-spacer")) ||
       e.target.classList.contains("left-dd-vehicle-spacer")
     ) {
       gaEvent(`Click on My Garage`, "PanelPage: My garage")
