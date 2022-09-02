@@ -142,6 +142,16 @@ function start() {
         })
     }, 200)
 
+    const int3 = setInterval(function () {
+        if(document.querySelector('.step__footer__previous-link')) {
+            clearInterval(int3)
+            if(document.querySelector('.step__footer__previous-link').getAttribute('href') === 'https://naturalpatch.com/cart') {
+                document.querySelector('.step__footer__previous-link').setAttribute('href', 'https://naturalpatch.com/pages/sleepypatch')
+                document.querySelector('.step__footer__previous-link-content').innerText = 'Back'
+            }
+        }
+    }, 200)
+
     setTimeout(() => {
         clearInterval(int)
     }, 4000)
@@ -149,10 +159,7 @@ function start() {
     document.querySelectorAll('[aria-label="Breadcrumb"] a')[0].innerText = 'Back'
     document.querySelectorAll('[aria-label="Breadcrumb"] a')[0].setAttribute('href', 'https://naturalpatch.com/pages/sleepypatch')
 
-    if(document.querySelector('.step__footer__previous-link').getAttribute('href') === 'https://naturalpatch.com/cart') {
-        document.querySelector('.step__footer__previous-link').setAttribute('href', 'https://naturalpatch.com/pages/sleepypatch')
-        document.querySelector('.step__footer__previous-link-content').innerText = 'Back'
-    }
+
     document.querySelector('.logo.logo--center').setAttribute('href', '#')
     document.querySelector('.logo.logo--center').addEventListener('click', function () {
         window.dataLayer = window.dataLayer || []
