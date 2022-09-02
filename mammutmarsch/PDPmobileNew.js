@@ -1,25 +1,23 @@
 const obj =  {
-    '.de/': {
-        'base': {
-            'spanTitle': 'Du wirst weiter marschieren, als die 99% aller Menschen es je tun werden!',
-            'btnMain': 'Strecke auswählen',
-            'btnRegister': 'Anmelden',
-            'titleText': 'Event-Infos',
-            'modalTitle': 'Was ist Extremwandern?',
-            'modalText': `Extremwandern steht vor allem für das Bezwingen langer Strecken zu Fuß. Es geht nicht um die Geschwindigkeit, sondern darum im Ziel anzukommen (bei uns nach 30 - 100 KM). </br> </br>Extremwandern ist Trendsport. Vor zehn Jahren hat noch niemand von Mammutmärschen gesprochen. Seitdem haben wir das Wandern schmerzhaft langer Strecken salonfähig gemacht.  </br></br>Deine Freunde werden dich für verrückt erklären, aber das macht es doch nur noch interessanter, oder? </br> </br> `,
-            'modalBtn': 'Ich bin bereit!',
-        },
-        'mammutmarsch-dortmund': {
-            'title': '30/55 KM Mammutmarsch Dortmund',
-            'title2': 'Mammutmarsch Dortmund — 30/55 km',
-            'date1': '8. Oktober 2022',
-            'date2': '08/10/2022',
-            'place': 'Phoenixplatz 4 , 44263 Dortmund (nahe Warsteiner Music Hall).',
-            'dateInfo': '<p><b>Sonntag, 08. Oktober 2022</b></p><p>Startzeit: 07:30 - 09:00 Uhr <b>(55 km)</b></p><p>Startzeit: 09:30 - 11:30 Uhr <b>(30 km)</b></p><p class="text-up lh-20">Die Startgruppenauswahl beginnt wenige Wochen vor dem Event.</p>',
-            'difficulty': '<p><b>Schwierigkeit</b></p><p>Challenger <b>(30 km)</b> Pro <b>(55 km)</b></p>',
-            'route': '<p><b>30/55 KM</b></p><p> Eindrucksvolle Industrielandschaften und viel Natur</p>',
-            'text': `Für uns war immer klar: Dortmund hat viel mehr zu bieten als den BVB. Als Ruhrgebietsstadt, gibt es hier Industriekultur ohne Ende umringt von wunderschöner Natur.</br></br>Nach zwei überrangenden Events war für uns klar: Wir kommen auch dieses Jahr nach Dortmund!</br></br>Mammutmarsch bedeutet immer auch Grenzerfahrung. Bei wanderst du eine Strecke, an die sich 99% aller Menschen in ihrem ganzen Leben nicht wagen werden. Und egal, wie anstrengend es wird, im Ziel bekommst du einen Heldenempfang inklusive Medaille und kühlem Finisher-Beer.`,
-        }
+    'base': {
+        'spanTitle': 'Du wirst weiter marschieren, als die 99% aller Menschen es je tun werden!',
+        'btnMain': 'Strecke auswählen',
+        'btnRegister': 'Anmelden',
+        'titleText': 'Event-Infos',
+        'modalTitle': 'Was ist Extremwandern?',
+        'modalText': `Extremwandern steht vor allem für das Bezwingen langer Strecken zu Fuß. Es geht nicht um die Geschwindigkeit, sondern darum im Ziel anzukommen (bei uns nach 30 - 100 KM). </br> </br>Extremwandern ist Trendsport. Vor zehn Jahren hat noch niemand von Mammutmärschen gesprochen. Seitdem haben wir das Wandern schmerzhaft langer Strecken salonfähig gemacht.  </br></br>Deine Freunde werden dich für verrückt erklären, aber das macht es doch nur noch interessanter, oder? </br> </br> `,
+        'modalBtn': 'Ich bin bereit!',
+    },
+    'mammutmarsch-dortmund': {
+        'title': '30/55 KM Mammutmarsch Dortmund',
+        'title2': 'Mammutmarsch Dortmund — 30/55 km',
+        'date1': '8. Oktober 2022',
+        'date2': '08/10/2022',
+        'place': 'Phoenixplatz 4 , 44263 Dortmund (nahe Warsteiner Music Hall).',
+        'dateInfo': '<p><b>Sonntag, 08. Oktober 2022</b></p><p>Startzeit: 07:30 - 09:00 Uhr <b>(55 km)</b></p><p>Startzeit: 09:30 - 11:30 Uhr <b>(30 km)</b></p><p class="text-up lh-20">Die Startgruppenauswahl beginnt wenige Wochen vor dem Event.</p>',
+        'difficulty': '<p><b>Schwierigkeit</b></p><p>Challenger <b>(30 km)</b> Pro <b>(55 km)</b></p>',
+        'route': '<p><b>30/55 KM</b></p><p> Eindrucksvolle Industrielandschaften und viel Natur</p>',
+        'text': `Für uns war immer klar: Dortmund hat viel mehr zu bieten als den BVB. Als Ruhrgebietsstadt, gibt es hier Industriekultur ohne Ende umringt von wunderschöner Natur.</br></br>Nach zwei überrangenden Events war für uns klar: Wir kommen auch dieses Jahr nach Dortmund!</br></br>Mammutmarsch bedeutet immer auch Grenzerfahrung. Bei wanderst du eine Strecke, an die sich 99% aller Menschen in ihrem ganzen Leben nicht wagen werden. Und egal, wie anstrengend es wird, im Ziel bekommst du einen Heldenempfang inklusive Medaille und kühlem Finisher-Beer.`,
     }
 }
 
@@ -251,9 +249,10 @@ let pushDataLayer = (action) => {
         'eventAction': action
     });
 }
-
-for (const key in obj) {
-    if (location.href.includes(`${key}`)) {
+//start
+let interval = setInterval(() => {
+    if (document.body && document.querySelector('#main') != null) {
+        clearInterval(interval);
         for (const keyPlace in obj[key]) {
             if (location.href.includes(`${keyPlace}`)) {
                 let cityObj = obj[key][keyPlace],
@@ -318,7 +317,7 @@ for (const key in obj) {
                                 <div>${cityObj.difficulty}</div>
                             </li>
                             <li class="flex">
-                               <svg class="shrink-0" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <svg class="shrink-0" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M19.8693 10.5C17.5949 10.5023 15.7462 12.3656 15.7485 14.6541C15.7495 15.9042 16.3724 17.3292 17.6001 18.8902C18.4762 20.0044 19.3443 20.7788 19.3809 20.8111C19.6657 21.064 20.0945 21.0623 20.3774 20.8102C20.414 20.7778 21.2807 20.0016 22.1549 18.8859C23.0928 17.6886 23.9985 16.1613 23.9985 14.6461C23.9966 12.3621 22.1618 10.5 19.8693 10.5ZM19.8778 19.2113C18.8531 18.1706 17.2499 16.2122 17.2485 14.6527C17.2471 13.1911 18.4237 12.0014 19.8707 12C21.3258 12 22.4966 13.1849 22.4985 14.6475C22.4999 16.207 20.9001 18.1692 19.8778 19.2113Z" fill="#111111"/>
                                     <path d="M19.8734 13.5C18.8806 13.5 18.3664 14.7094 19.0784 15.4214C19.643 15.9847 20.6055 15.798 20.9136 15.0548C21.2186 14.319 20.6747 13.5 19.8734 13.5Z" fill="#111111"/>
                                     <path d="M3.6277 10.3106C3.9119 10.5629 4.33963 10.5633 4.62426 10.3106C4.66082 10.2783 5.52848 9.50297 6.40363 8.38828C7.62941 6.82594 8.25098 5.40047 8.25098 4.14984C8.25098 1.86187 6.40035 0 4.12598 0C1.8516 0 0.000976562 1.86187 0.000976562 4.14984C0.000976562 5.40047 0.622539 6.82594 1.84832 8.38828C2.72348 9.50297 3.59113 10.2783 3.6277 10.3106ZM4.12598 1.5C5.57348 1.5 6.75098 2.68875 6.75098 4.14984C6.75098 5.70984 5.14879 7.67063 4.12551 8.71172C3.10176 7.6725 1.50098 5.71453 1.50098 4.14984C1.50098 2.68875 2.67848 1.5 4.12598 1.5Z" fill="#111111"/>
@@ -355,6 +354,7 @@ for (const key in obj) {
                     btnModal = document.querySelector('.modal-m .btn'),
                     btnCloseModal = document.querySelector('.modal-close'),
                     modal = document.querySelector('.modal-m');
+
                 //hide modal
                 let hideModal = () => {
                     modal.classList.remove('active')
@@ -369,19 +369,19 @@ for (const key in obj) {
                     pushDataLayer('Click on What is extreme hiking trail button')
                     modal.classList.add('active')
                 })
-                //click onside modal
+                //click back side modal
                 document.addEventListener('click', (e) => {
                     if (!e.target.closest('.modal-m') && !e.target.classList.contains('link')) {
                         hideModal()
                         pushDataLayer('Click back side modal')
                     }
                 })
-                //click on close button modal
+                //click on close button
                 btnCloseModal.addEventListener('click', (e) => {
                     hideModal()
                     pushDataLayer('Click on close button')
                 })
-                //click on button modal
+                //click on I am ready button
                 btnModal.addEventListener('click', (e) => {
                     pushDataLayer('Click on I am ready button')
                     hideModal()
@@ -389,7 +389,7 @@ for (const key in obj) {
             }
         }
     }
-}
+})
 
 window.dataLayer = window.dataLayer || [];
 dataLayer.push({
