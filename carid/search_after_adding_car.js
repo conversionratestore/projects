@@ -44,7 +44,7 @@ if (settings.observe) {
         if (!(node instanceof HTMLElement)) continue
 
         if (node.classList.contains("mygarage-dd-container")) {
-          if (node.querySelector(".mygarage-vehicle-title") && document.querySelector(".lav-add-popup") && document.querySelector(".lav-add__caption")) {
+          if (node.querySelector(".mygarage-vehicle-title") && document.querySelector(".lav-add-popup")) {
             localStorage.setItem("showSearch", "yes")
             if (localStorage.getItem("startDate")) {
               let time = (new Date().getTime() - parseInt(localStorage.getItem("startDate"))) / 1000
