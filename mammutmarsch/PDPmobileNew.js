@@ -1,7 +1,7 @@
 const obj =  {
     '/mammutmarsch-dortmund': {
         'src': 'image-main.png',
-        'title': '30/55 KM Mammutmarsch Dortmund',
+        'title': '30/55 KM Mammutmarsch </br>Dortmund',
         'spanTitle': 'Du wirst weiter marschieren, als die 99% aller </br>Menschen es je tun werden!',
         'title2': 'Mammutmarsch Dortmund — </br>30/55 km',
         'date': '8. Oktober 2022',
@@ -11,7 +11,7 @@ const obj =  {
     },
     '/mammutmarsch-hannover-30-55-km': {
         'src': 'image-main-2.png',
-        'title': '30/55 KM Little Mammut Hannover',
+        'title': '30/55 KM Little Mammut </br>Hannover',
         'spanTitle': 'Hannover, wir sind wieder da!',
         'title2': 'Little Mammut Hannover — </br>30/55 km',
         'date': '22. Oktober 2022',
@@ -21,7 +21,7 @@ const obj =  {
     },
     '/berlin': {
         'src': 'image-main-3.png',
-        'title': '30/55 KM Little Mammut Berlin',
+        'title': '30/55 KM Little Mammut </br>Berlin',
         'spanTitle': 'Der Halbmarathon des Extremwanderns',
         'title2': 'Little Mammut Berlin — </br>30/55 km',
         'date': '05. november 2022',
