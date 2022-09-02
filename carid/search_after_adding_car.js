@@ -508,5 +508,5 @@ function addSearchBtn() {
     }
 
     clearInterval(addNewInterval)
-  }, 200)
+  }, 150)
 }
