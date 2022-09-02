@@ -188,10 +188,12 @@ let style = `
         margin-left: auto;
         height: 16px;
         margin-bottom: 16px;
+        border: none;
     }
     .modal-m img {
         width: 100%;
         margin-bottom: 20px;
+        display: block;
     }
     .modal-m h1 {
         color: #111111
