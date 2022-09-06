@@ -484,7 +484,7 @@ let style = `
         width: 100%;
         padding: 16px;
     }
-    .ant-layout-content {
+    .popup+.ant-layout-content {
         display: none;
     }
     #map-main > div > div > div:nth-child(14) > div {
