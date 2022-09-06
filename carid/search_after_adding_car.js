@@ -93,7 +93,7 @@ if (settings.observe) {
           node.closest(".gbox_portal").classList.add("lav-add-popup")
           setTimeout(() => {
             document.querySelector(".lav-add-popup .gbox_close").addEventListener("click", function () {
-              gaEvent("Clicks on the cross pictogramme", "First select popup")
+              gaEvent("Clicks on the cross pictogramme", "Popup: Select vehicle")
 
               // if (localStorage.getItem("startDate")) {
               //   let time = (new Date().getTime() - parseInt(localStorage.getItem("startDate"))) / 1000
@@ -418,7 +418,7 @@ var isForClosingSearch = false
 function init() {
   console.log("init")
   document.addEventListener("keypress", function (event) {
-    if (event.key === "Enter" && document.activeElement) {
+    if (event.key === "Enter" && document.activeElement && isSearch) {
       gaEvent("Click on Search button enter", "Header. Search menu")
     }
   })
@@ -426,7 +426,7 @@ function init() {
   document.addEventListener("click", function (e) {
     console.log(e.target)
 
-    console.log(isSearch)
+    // console.log(`isSearch`, isSearch)
     if (
       localStorage.getItem("startDate") &&
       e.target.href &&
@@ -483,8 +483,8 @@ function init() {
     }
 
     if (e.target.classList.contains("gbox_close") && isSearch && isForClosingSearch) {
-      isSearch = false
       gaEvent("Clicks on the closing search cross pictogramme", "Header. Search menu")
+      isSearch = false
       isForClosingSearch = false
     }
 
@@ -496,7 +496,8 @@ function init() {
       gaEvent("Click on Clear History link", "Header. Search menu")
     }
 
-    if (e.target.classList.contains("search-btn") && document.querySelector(".search-submit-loader")) {
+    if (e.target.classList.contains("search-btn") && document.querySelector(".search-submit-loader") && isSearch) {
+      console.log(`Click on Search button`)
       gaEvent(`Click on Search button. ${document.querySelector("#search-field").value}`, "Header. Search menu")
     }
 
@@ -588,9 +589,9 @@ function handleSearch() {
     clearInterval(addNewInterval)
   }, 400)
 
-  if (document.querySelector(".mygarage-vehicle-title")) {
-    isSearch = true
-  }
+  // if (document.querySelector(".mygarage-vehicle-title")) {
+  // }
+  isSearch = true
   isProcessing = false
 }
 
