@@ -1276,3 +1276,21 @@ let isClarify = setInterval(() => {
         clarity("set", "complete_redesign_search_results", "variant_1");
     }
 }, 100)
+
+let mut = new MutationObserver((muts) => {
+    if(!window.location.pathname.includes('reservation/search')) {
+        mut.disconnect()
+        document.querySelectorAll('.ant-layout .popup, .ant-layout .wrapper').forEach(item => {
+            item.remove()
+        })
+        mut.observe(document.body, {
+            childList: true,
+            subtree: true
+        })
+    }
+})
+
+mut.observe(document.body, {
+    childList: true,
+    subtree: true
+})
