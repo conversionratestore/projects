@@ -1,34 +1,34 @@
-const obj =  {
-    '/mammutmarsch-dortmund': {
-        'src': 'image-main.png',
-        'title': '30/55 KM Mammutmarsch </br>Dortmund',
-        'spanTitle': 'Du wirst weiter marschieren, als die 99% aller </br>Menschen es je tun werden!',
-        'title2': 'Mammutmarsch Dortmund — </br>30/55 km',
-        'date': '8. Oktober 2022',
-        'place': 'Phoenixplatz 4 , 44263 Dortmund (nahe Warsteiner Music Hall)',
-        'dateInfo': 'Sonntag, 08. Oktober 2022',
-        'text': `Für uns war immer klar: Dortmund hat viel mehr zu bieten als den BVB. Als Ruhrgebietsstadt, gibt es hier Industriekultur ohne Ende umringt von wunderschöner Natur.</br></br>Nach zwei überrangenden Events war für uns klar: Wir kommen auch dieses Jahr nach Dortmund!</br></br>Mammutmarsch bedeutet immer auch Grenzerfahrung. Bei wanderst du eine Strecke, an die sich 99% aller Menschen in ihrem ganzen Leben nicht wagen werden. Und egal, wie anstrengend es wird, im Ziel bekommst du einen Heldenempfang inklusive Medaille und kühlem Finisher-Beer.`,
-    },
-    '/mammutmarsch-hannover-30-55-km': {
-        'src': 'image-main-2.png',
-        'title': '30/55 KM Little Mammut </br>Hannover',
-        'spanTitle': 'Hannover, wir sind wieder da!',
-        'title2': 'Little Mammut Hannover — </br>30/55 km',
-        'date': '22. Oktober 2022',
-        'place': 'Trammplatz 2 (vor dem neuen Rathaus), 30159 Hannover',
-        'dateInfo': 'Donnerstag, 22. Oktober 2022',
-        'text': `Nach einer wunderbaren Premiere ist für uns klar: Hannover, wir kommen wieder!</br></br>Harald Schmidt spottete einmal: “Hannover ist die Stadt mit dem gewissen nichts”. Euch vom Gegenteil zu überzeugen, haben wir uns zum Ziel gesetzt.</br></br>Denn auch hier bekommt ihr von uns die schönste Strecke, die wir für euch zusammenstellen konnten. Mit viel Grün, Wasser und einigen Highlights der Stadt. Und ja, auch die ein oder anderen Höhenmeter sind dabei.`,
-    },
-    '/berlin': {
-        'src': 'image-main-3.png',
-        'title': '30/55 KM Little Mammut </br>Berlin',
-        'spanTitle': 'Der Halbmarathon des Extremwanderns',
-        'title2': 'Little Mammut Berlin — </br>30/55 km',
-        'date': '05. november 2022',
-        'place': 'wird noch bekannt gegeben',
-        'dateInfo': 'Samstag, 05. November 2022',
-        'text': `Little Mammut heißt 30- oder 55-KM Extremwandern in wunderschöner Natur an Berlins größtem See, dem Müggelsee.</br></br>Wenn ihr den Mammutmarsch schon eine Weile verfolgt, verbindet ihr Berlin wahrscheinlich vor allem mit unserem 100-KM-Marsch. Aber auch die 30- und 55-Kilometer-Distanzen sind nicht ohne. Der Little Mammut ist unser Extremwander-Pendant zum Halbmarathon.</br></br>Besonders stolz sind wir auf unseren Start am Müggelsee, dem größten Gewässer Berlins. Hier fällt es leicht, nach dem Marsch die Seele baumeln zu lassen. Ganz hartgesottene Mammuts feiern den Zieleinlauf mit einem Sprung in´s kühle Nass.</br></br>Auf der ganzen Strecke haben wir vor allem viel Wasser und Natur für euch. Ein berüchtigtes Highlight sind die nicht enden wollenden Treppen zum Müggelturm auf der 55-KM-Distanz. Neben dem Tetraeder im Ruhrgebiet wahrscheinlich die härtesten Treppen auf einem Mammutmarsch-Event.</br></br>Im Ziel entschädigen wir euch für alles mit einer Urkunde, einer Medaille und einem gewebten Finisher-Band. Außerdem gibt es natürlich ein kühles Finishergetränk (auch alkoholfrei) für euch, um eure Leistung zu feiern.`,
-    }
+const obj = {
+  "/mammutmarsch-dortmund": {
+    src: "image-main.png",
+    title: "30/55 KM Mammutmarsch </br>Dortmund",
+    spanTitle: "Du wirst weiter marschieren, als die 99% aller </br>Menschen es je tun werden!",
+    title2: "Mammutmarsch Dortmund — </br>30/55 km",
+    date: "8. Oktober 2022",
+    place: "Phoenixplatz 4 , 44263 Dortmund (nahe Warsteiner Music Hall)",
+    dateInfo: "Samstag, 08. Oktober 2022",
+    text: `Für uns war immer klar: Dortmund hat viel mehr zu bieten als den BVB. Als Ruhrgebietsstadt, gibt es hier Industriekultur ohne Ende umringt von wunderschöner Natur.</br></br>Nach zwei überrangenden Events war für uns klar: Wir kommen auch dieses Jahr nach Dortmund!</br></br>Mammutmarsch bedeutet immer auch Grenzerfahrung. Bei wanderst du eine Strecke, an die sich 99% aller Menschen in ihrem ganzen Leben nicht wagen werden. Und egal, wie anstrengend es wird, im Ziel bekommst du einen Heldenempfang inklusive Medaille und kühlem Finisher-Beer.`,
+  },
+  "/mammutmarsch-hannover-30-55-km": {
+    src: "image-main-2.png",
+    title: "30/55 KM Little Mammut </br>Hannover",
+    spanTitle: "Hannover, wir sind wieder da!",
+    title2: "Little Mammut Hannover — </br>30/55 km",
+    date: "22. Oktober 2022",
+    place: "Trammplatz 2 (vor dem neuen Rathaus), 30159 Hannover",
+    dateInfo: "Donnerstag, 22. Oktober 2022",
+    text: `Nach einer wunderbaren Premiere ist für uns klar: Hannover, wir kommen wieder!</br></br>Harald Schmidt spottete einmal: “Hannover ist die Stadt mit dem gewissen nichts”. Euch vom Gegenteil zu überzeugen, haben wir uns zum Ziel gesetzt.</br></br>Denn auch hier bekommt ihr von uns die schönste Strecke, die wir für euch zusammenstellen konnten. Mit viel Grün, Wasser und einigen Highlights der Stadt. Und ja, auch die ein oder anderen Höhenmeter sind dabei.`,
+  },
+  "/berlin": {
+    src: "image-main-3.png",
+    title: "30/55 KM Little Mammut </br>Berlin",
+    spanTitle: "Der Halbmarathon des Extremwanderns",
+    title2: "Little Mammut Berlin — </br>30/55 km",
+    date: "05. november 2022",
+    place: "wird noch bekannt gegeben",
+    dateInfo: "Samstag, 05. November 2022",
+    text: `Little Mammut heißt 30- oder 55-KM Extremwandern in wunderschöner Natur an Berlins größtem See, dem Müggelsee.</br></br>Wenn ihr den Mammutmarsch schon eine Weile verfolgt, verbindet ihr Berlin wahrscheinlich vor allem mit unserem 100-KM-Marsch. Aber auch die 30- und 55-Kilometer-Distanzen sind nicht ohne. Der Little Mammut ist unser Extremwander-Pendant zum Halbmarathon.</br></br>Besonders stolz sind wir auf unseren Start am Müggelsee, dem größten Gewässer Berlins. Hier fällt es leicht, nach dem Marsch die Seele baumeln zu lassen. Ganz hartgesottene Mammuts feiern den Zieleinlauf mit einem Sprung in´s kühle Nass.</br></br>Auf der ganzen Strecke haben wir vor allem viel Wasser und Natur für euch. Ein berüchtigtes Highlight sind die nicht enden wollenden Treppen zum Müggelturm auf der 55-KM-Distanz. Neben dem Tetraeder im Ruhrgebiet wahrscheinlich die härtesten Treppen auf einem Mammutmarsch-Event.</br></br>Im Ziel entschädigen wir euch für alles mit einer Urkunde, einer Medaille und einem gewebten Finisher-Band. Außerdem gibt es natürlich ein kühles Finishergetränk (auch alkoholfrei) für euch, um eure Leistung zu feiern.`,
+  },
 }
 
 let style = `
@@ -247,43 +247,43 @@ let style = `
     .shrink-0 {
         flex-shrink: 0;
     }
-    #main > div > div > div > h2, #main > div > div > div > div.row, .single-product-content > div > div.cshero-product-images-wrap.col-lg-3.col-md-3.col-sm-6.col-xs-12, div.single-product-content > div > div.entry-summary.col-lg-9.col-md-9.col-sm-6.col-xs-12 {
+    #main > div > div > div > h2, #main > div > div > div > div.row, .single-product-content > div > div.cshero-product-images-wrap.col-lg-3.col-md-3.col-sm-6.col-xs-12, div.single-product-content > div > div.entry-summary.col-lg-9.col-md-9.col-sm-6.col-xs-12, .bebas-neue {
         display: none;
     }
 </style>`
 
 //scroll to
 let scrollTop = (targetScroll, offsetTop) => {
-    const scrollTarget = targetScroll;
-    const topOffset = offsetTop.offsetHeight;
-    const elementPosition = scrollTarget.getBoundingClientRect().top;
-    const offsetPosition = elementPosition - topOffset;
+  const scrollTarget = targetScroll
+  const topOffset = offsetTop.offsetHeight
+  const elementPosition = scrollTarget.getBoundingClientRect().top
+  const offsetPosition = elementPosition - topOffset
 
-    window.scrollBy({
-        top: offsetPosition,
-        behavior: 'smooth'
-    });
+  window.scrollBy({
+    top: offsetPosition,
+    behavior: "smooth",
+  })
 }
 
 //push dataLayer
 let pushDataLayer = (action) => {
-    console.log(action)
-    window.dataLayer = window.dataLayer || [];
-    dataLayer.push({
-        'event': 'event-to-ga',
-        'eventCategory': 'Exp: PDP improvements',
-        'eventAction': action
-    });
+  console.log(action)
+  window.dataLayer = window.dataLayer || []
+  dataLayer.push({
+    event: "event-to-ga",
+    eventCategory: "Exp: PDP improvements",
+    eventAction: action,
+  })
 }
 //start
 let interval = setInterval(() => {
-    if (document.body && document.querySelector('#main') != null) {
-        clearInterval(interval);
-        for (const keyPlace in obj) {
-            if (location.href.includes(`${keyPlace}`)) {
-                let cityObj = obj[keyPlace];
+  if (document.body && document.querySelector("#main") != null) {
+    clearInterval(interval)
+    for (const keyPlace in obj) {
+      if (location.href.includes(`${keyPlace}`)) {
+        let cityObj = obj[keyPlace]
 
-                const page = `
+        const page = `
                 <div class="wrapper-event">
                     <section class="event-section" style="background-image: url(https://conversionratestore.github.io/projects/mammutmarsch/img/${cityObj.src})">
                         <p class="date lh-20">${cityObj.date}</p>
@@ -295,7 +295,7 @@ let interval = setInterval(() => {
                     <div class="info-section">
                         <h2>${cityObj.title2}</h2>
                         <ul class="list">
-                            <li class="flex ${keyPlace == '/berlin' ? 'items-center': ''}">
+                            <li class="flex ${keyPlace == "/berlin" ? "items-center" : ""}">
                                 <svg class="shrink-0" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M12 14C13.6569 14 15 12.6569 15 11C15 9.34315 13.6569 8 12 8C10.3431 8 9 9.34315 9 11C9 12.6569 10.3431 14 12 14Z" stroke="#111111" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
                                     <path d="M12 3C9.87827 3 7.84344 3.84285 6.34315 5.34315C4.84285 6.84344 4 8.87827 4 11C4 12.892 4.402 14.13 5.5 15.5L12 23L18.5 15.5C19.598 14.13 20 12.892 20 11C20 8.87827 19.1571 6.84344 17.6569 5.34315C16.1566 3.84285 14.1217 3 12 3V3Z" stroke="#111111" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
@@ -355,75 +355,79 @@ let interval = setInterval(() => {
                         </div>
                     </div>
                 </div>`
-                document.body.insertAdjacentHTML('afterbegin', style)
-                document.querySelector('#main').insertAdjacentHTML('afterbegin', page)
+        document.body.insertAdjacentHTML("afterbegin", style)
+        document.querySelector("#main").insertAdjacentHTML("afterbegin", page)
 
-                let btnYellow = document.querySelector('.event-section .btn'),
-                    linkModal = document.querySelector('.event-section .link'),
-                    btnModal = document.querySelector('.modal-m .btn'),
-                    btnCloseModal = document.querySelector('.modal-close'),
-                    modal = document.querySelector('.modal-m');
+        let btnYellow = document.querySelector(".event-section .btn"),
+          linkModal = document.querySelector(".event-section .link"),
+          btnModal = document.querySelector(".modal-m .btn"),
+          btnCloseModal = document.querySelector(".modal-close"),
+          modal = document.querySelector(".modal-m")
 
-                //hide modal
-                let hideModal = () => {
-                    modal.classList.remove('active')
-                }
-                //scroll to packets
-                btnYellow.addEventListener('click', (e) => {
-                    pushDataLayer('Click on Get ticket button')
-                    scrollTop(document.querySelector('.variations > h3'), e.target)
-                })
-                //click "What is extreme hiking?" button
-                linkModal.addEventListener('click', (e) => {
-                    pushDataLayer('Click on What is extreme hiking trail button')
-                    modal.classList.add('active')
-                })
-                //click back side modal
-                document.addEventListener('click', (e) => {
-                    if (!e.target.closest('.modal-m') && !e.target.classList.contains('link') && modal.classList.contains('active')) {
-                        hideModal()
-                        pushDataLayer('Click back side modal')
-                    }
-                })
-                //click on close button in modal
-                btnCloseModal.addEventListener('click', (e) => {
-                    hideModal()
-                    pushDataLayer('Click on close button')
-                })
-                //click on I am ready button in modal
-                btnModal.addEventListener('click', (e) => {
-                    pushDataLayer('Click on I am ready button')
-                    hideModal()
-                })
-
-                //Click on Anmelden/Register button
-                document.querySelectorAll('.attribute-pa_paket .col-md-6 .btn').forEach(item => {
-                    item.addEventListener('click', () => pushDataLayer('Click on Register button'))
-                })
-                //change name button
-                document.querySelector('#proceed_to_checkout').innerHTML = 'ANMELDUNG ABSCHLIEßEN';
-                //Click on ANMELDUNG ABSCHLIEßEN/Completing registration  button
-                document.querySelector('#proceed_to_checkout').addEventListener('click', () => {
-                    pushDataLayer('Click on Completing registration button')
-                })
-            }
+        //hide modal
+        let hideModal = () => {
+          modal.classList.remove("active")
         }
+        //scroll to packets
+        btnYellow.addEventListener("click", (e) => {
+          pushDataLayer("Click on Get ticket button")
+          scrollTop(document.querySelector(".variations > h3"), e.target)
+        })
+        //click "What is extreme hiking?" button
+        linkModal.addEventListener("click", (e) => {
+          pushDataLayer("Click on What is extreme hiking trail button")
+          modal.classList.add("active")
+        })
+        //click back side modal
+        document.addEventListener("click", (e) => {
+          if (!e.target.closest(".modal-m") && !e.target.classList.contains("link") && modal.classList.contains("active")) {
+            hideModal()
+            pushDataLayer("Click back side modal")
+          }
+        })
+        //click on close button in modal
+        btnCloseModal.addEventListener("click", (e) => {
+          hideModal()
+          pushDataLayer("Click on close button")
+        })
+        //click on I am ready button in modal
+        btnModal.addEventListener("click", (e) => {
+          pushDataLayer("Click on I am ready button")
+          hideModal()
+        })
+
+        //Click on Anmelden/Register button
+        document.querySelectorAll(".attribute-pa_paket .col-md-6 .btn").forEach((item) => {
+          item.addEventListener("click", () => pushDataLayer("Click on Register button"))
+        })
+        //change name button
+        document.querySelector("#proceed_to_checkout").innerHTML = "ANMELDUNG ABSCHLIEßEN"
+        //Click on ANMELDUNG ABSCHLIEßEN/Completing registration  button
+        document.querySelector("#proceed_to_checkout").addEventListener("click", () => {
+          pushDataLayer("Click on Completing registration button")
+        })
+      }
     }
+  }
 })
 
-window.dataLayer = window.dataLayer || [];
+window.dataLayer = window.dataLayer || []
 dataLayer.push({
-    'event': 'event-to-ga',
-    'eventCategory': 'Exp: PDP improvements',
-    'eventAction': 'loaded'
-});
-
-(function(h,o,t,j,a,r){
-    h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
-    h._hjSettings={hjid:1191175,hjsv:6};
-    a=o.getElementsByTagName('head')[0];
-    r=o.createElement('script');r.async=1;
-    r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
-    a.appendChild(r);
-})(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
-hj('event', 'PDP_3events');
+  event: "event-to-ga",
+  eventCategory: "Exp: PDP improvements",
+  eventAction: "loaded",
+})
+;(function (h, o, t, j, a, r) {
+  h.hj =
+    h.hj ||
+    function () {
+      ;(h.hj.q = h.hj.q || []).push(arguments)
+    }
+  h._hjSettings = { hjid: 1191175, hjsv: 6 }
+  a = o.getElementsByTagName("head")[0]
+  r = o.createElement("script")
+  r.async = 1
+  r.src = t + h._hjSettings.hjid + j + h._hjSettings.hjsv
+  a.appendChild(r)
+})(window, document, "https://static.hotjar.com/c/hotjar-", ".js?sv=")
+hj("event", "PDP_3events")
