@@ -497,8 +497,15 @@ function init() {
     }
 
     if (e.target.classList.contains("search-btn") && document.querySelector(".search-submit-loader") && isSearch) {
-      console.log(`Click on Search button`)
-      gaEvent(`Click on Search button. ${document.querySelector("#search-field").value}`, "Header. Search menu")
+      if (!e.target.getAttribute("data-test")) {
+        console.log(`Click on Search button`)
+        gaEvent(`Click on Search button. ${document.querySelector("#search-field").value}`, "Header. Search menu")
+
+        setTimeout(() => {
+          e.target.removeAttribute("data-test", "1")
+        }, 100)
+      }
+      e.target.setAttribute("data-test", "1")
     }
 
     if (
