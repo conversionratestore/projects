@@ -421,7 +421,7 @@ function init() {
     }
     if (e.target.classList.contains("-wide") && document.querySelector(".autoc-show-more-btn")) {
       if (e.target.textContent === "Show more Categories") {
-        gaEvent(`Show more Categories`, "Header. Search menu")
+        gaEvent(`Click on Show more Categories`, "Header. Search menu")
       }
       if (e.target.textContent === "Show more Products") {
         gaEvent(`Click on Show more Products`, "Header. Search menu")
