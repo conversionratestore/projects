@@ -26,7 +26,7 @@ function gaEvent(action, label) {
   try {
     var objData = {
       event: "event-to-ga",
-      eventCategory: "Exp: Site search " + device,
+      eventCategory: "Exp: Site search 2 " + device,
       eventAction: action,
       eventLabel: label,
       eventValue: "",
@@ -418,6 +418,17 @@ function init() {
 
     if (e.target.classList.contains("select-vehicle-button") && document.querySelector(".select-vehicle-button.-after-selects") && !e.target.closest(".lav-add-popup")) {
       gaEvent(`Click on Go button`, "Main Page: Select vehicle")
+    }
+    if (e.target.classList.contains("-wide") && document.querySelector(".autoc-show-more-btn")) {
+      if (e.target.textContent === "Show more Categories") {
+        gaEvent(`Show more Categories`, "Header. Search menu")
+      }
+      if (e.target.textContent === "Show more Products") {
+        gaEvent(`Click on Show more Products`, "Header. Search menu")
+      }
+    }
+    if (e.target.closest(".show-parts-h")) {
+      gaEvent(`Click on Show Parts for...`, "Header. Search menu")
     }
 
     if (
