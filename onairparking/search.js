@@ -484,7 +484,7 @@ let style = `
         width: 100%;
         padding: 16px;
     }
-    .popup+.ant-layout-content {
+    .ant-layout-content {
         display: none;
     }
     #map-main > div > div > div:nth-child(14) > div {
@@ -926,8 +926,13 @@ let postParking = (id, startDate, endDate, parent, countSelector, mapSelector) =
 document.querySelector('[name="viewport"]').setAttribute('content','width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no')
 
 let sentPost = false;
+
 let start = setInterval(() => {
-    if (document.querySelector('#__next > section > main > div > div.bg-white > div > button') != null && document.querySelector('#__next > section > main > div > div.bg-white > div > button').innerText == 'Edit' && document.querySelector('input[type="search"]') != null && document.querySelector('#__NEXT_DATA__') != null && window.location.href.includes('/reservation/search?initials')) {
+    if (document.querySelector('#__next > section > main > div > div.bg-white > div > button') != null &&
+     document.querySelector('#__next > section > main > div > div.bg-white > div > button').innerText == 'Edit' &&
+      document.querySelector('input[type="search"]') != null &&
+       document.querySelector('#__NEXT_DATA__') != null &&
+       window.location.href.includes('/reservation/search?initials')) {
         document.querySelector('.js-style') == null ? document.body.insertAdjacentHTML('afterbegin', style) : ''; // add style
 
         if (sentPost == false) {
@@ -940,8 +945,8 @@ let start = setInterval(() => {
                     clarity("set", "complete_redesign_search_results", "search_visited");
                 }
             }, 100)
-
-            document.querySelector('#__next > section > main > div > div.bg-white> div > button').closest('main').insertAdjacentHTML('beforebegin', html)
+                document.querySelector('#__next > section > main > div > div.bg-white> div > button').closest('main').insertAdjacentHTML('beforebegin', html)
+            
 
             let initial = window.location.href.split('initials=')[1].split('&')[0];
             let arr = document.querySelector('#__NEXT_DATA__').innerText.split(`,"airport_initials":"${initial}`)[0].split('"airport_id":'),
@@ -1197,10 +1202,12 @@ let start = setInterval(() => {
 //remove exp
 function startRemove() {
     let startRemove = setInterval(() => {
-        if (document.querySelector('#parkingat') != null || document.querySelector('#easy-checkout') != null || document.querySelector('.search-switch') != null || (document.querySelector('#__next > section > main > div > div.bg-search-airport2 > div.container.mx-auto.flex.flex-col.relative > div > div:nth-child(2) > div:nth-child(1) > h2') != null && document.querySelector('#__next > section > main > div > div.bg-search-airport2 > div.container.mx-auto.flex.flex-col.relative > div > div:nth-child(2) > div:nth-child(1) > h2').innerText == 'Search parking deals')) {
-            // clearInterval(startRemove)
+        if (!window.location.href.includes('reservation/search?initials')) {// clearInterval(startRemove)
             document.querySelector('.js-style') != null ? document.querySelector('.js-style').remove() : '';
             sentPost = false;
+            document.querySelectorAll('.ant-layout .popup, .ant-layout .wrapper').forEach(item => {
+                item.remove()
+            })
         }
     },100)
 }
@@ -1276,21 +1283,3 @@ let isClarify = setInterval(() => {
         clarity("set", "complete_redesign_search_results", "variant_1");
     }
 }, 100)
-
-let mut = new MutationObserver((muts) => {
-    if(!window.location.pathname.includes('reservation/search')) {
-        mut.disconnect()
-        document.querySelectorAll('.ant-layout .popup, .ant-layout .wrapper').forEach(item => {
-            item.remove()
-        })
-        mut.observe(document.body, {
-            childList: true,
-            subtree: true
-        })
-    }
-})
-
-mut.observe(document.body, {
-    childList: true,
-    subtree: true
-})
