@@ -414,7 +414,7 @@ function init() {
   document.addEventListener("click", function (e) {
     console.log(e.target)
 
-    console.log(`isSearch`, isSearch)
+    // console.log(`isSearch`, isSearch)
 
     if (e.target.classList.contains("select-vehicle-button") && document.querySelector(".select-vehicle-button.-after-selects") && !e.target.closest(".lav-add-popup")) {
       gaEvent(`Click on Go button`, "Main Page: Select vehicle")
