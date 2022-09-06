@@ -217,7 +217,7 @@ if (settings.observe) {
 // Styles
 const styles = `
     .search-field.search-preloader::after{
-    background-color: unset;
+    background-color: unset !important;
     }
   .lav-jumb {
     background: #24282F;
