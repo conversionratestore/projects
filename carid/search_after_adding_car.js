@@ -43,15 +43,50 @@ if (settings.observe) {
       for (let node of mutation.addedNodes) {
         if (!(node instanceof HTMLElement)) continue
 
-        if (node.classList.contains("mygarage-dd-container")) {
-          if (node.querySelector(".mygarage-vehicle-title") && document.querySelector(".lav-add-popup")) {
-            // localStorage.setItem("showSearch", "yes")
-            if (localStorage.getItem("startDate")) {
-              let time = (new Date().getTime() - parseInt(localStorage.getItem("startDate"))) / 1000
-              gaEvent(`Popup was closed after ${time} seconds`, "Popup: Select vehicle")
-              localStorage.removeItem("startDate")
-            }
-          }
+        // if (node.classList.contains("mygarage-dd-container")) {
+        //   if (node.querySelector(".mygarage-vehicle-title") && document.querySelector(".lav-add-popup")) {
+        //     // localStorage.setItem("showSearch", "yes")
+        //     if (localStorage.getItem("startDate")) {
+        //       let time = (new Date().getTime() - parseInt(localStorage.getItem("startDate"))) / 1000
+        //       gaEvent(`Popup was closed after ${time} seconds`, `Popup: Select vehicle`)
+        //       localStorage.removeItem("startDate")
+        //     }
+        //   }
+        // }
+
+        if (node.classList.contains("new_input-search") && node.closest(".gbox_portal")) {
+          console.log(`search-field`)
+          node.closest(".gbox_portal").classList.add("search-add-popup")
+          setTimeout(() => {
+            document.querySelector(".search-add-popup .gbox_close")?.addEventListener("click", function () {
+              if (localStorage.getItem("startDateSearch")) {
+                let time = (new Date().getTime() - parseInt(localStorage.getItem("startDateSearch"))) / 1000
+                gaEvent(`Popup was closed after ${time} seconds`, `Header. Search menu`)
+                localStorage.removeItem("startDateSearch")
+              }
+            })
+
+            document.querySelector(".search-add-popup .gbox_wrap")?.addEventListener("click", function (e) {
+              if (e.target.matches(".gbox_wrap")) {
+                console.log(`backdrop`, document.querySelector(".search-add-popup .gbox_wrap"))
+                if (localStorage.getItem("startDateSearch")) {
+                  let time = (new Date().getTime() - parseInt(localStorage.getItem("startDateSearch"))) / 1000
+                  gaEvent(`Popup was closed by backdrop after ${time} seconds`, `Header. Search menu`)
+                  localStorage.removeItem("startDateSearch")
+                }
+              }
+            })
+            document.querySelector(".search-add-popup .gbox")?.addEventListener("click", function (e) {
+              if (e.target.matches(".gbox")) {
+                console.log(`backdrop`, document.querySelector(".search-add-popup .gbox_wrap"))
+                if (localStorage.getItem("startDateSearch")) {
+                  let time = (new Date().getTime() - parseInt(localStorage.getItem("startDateSearch"))) / 1000
+                  gaEvent(`Popup was closed by backdrop after ${time} seconds`, `Header. Search menu`)
+                  localStorage.removeItem("startDateSearch")
+                }
+              }
+            })
+          }, 800)
         }
 
         if (node.classList.contains("select-vehicle") && node.closest(".gbox_portal")) {
@@ -59,10 +94,21 @@ if (settings.observe) {
           setTimeout(() => {
             document.querySelector(".lav-add-popup .gbox_close").addEventListener("click", function () {
               gaEvent("Clicks on the cross pictogramme", "First select popup")
+
               if (localStorage.getItem("startDate")) {
                 let time = (new Date().getTime() - parseInt(localStorage.getItem("startDate"))) / 1000
-                gaEvent(`Popup was closed after ${time} seconds', 'Popup: Select vehicle`)
+                gaEvent(`Popup was closed after ${time} seconds`, `Popup: Select vehicle`)
                 localStorage.removeItem("startDate")
+              }
+            })
+
+            document.querySelector(".lav-add-popup .gbox_wrap").addEventListener("click", function (e) {
+              if (e.target.matches(".gbox_wrap")) {
+                if (localStorage.getItem("startDate")) {
+                  let time = (new Date().getTime() - parseInt(localStorage.getItem("startDate"))) / 1000
+                  gaEvent(`Popup was closed by backdrop after ${time} seconds`, `Popup: Select vehicle`)
+                  localStorage.removeItem("startDate")
+                }
               }
             })
 
@@ -134,6 +180,9 @@ if (settings.observe) {
 
 // Styles
 const styles = `
+    .search-field.search-preloader::after{
+    background-color: unset;
+    }
   .lav-jumb {
     background: #24282F;
     border-radius: 5px;
@@ -328,6 +377,8 @@ document.body.appendChild(stylesEl)
 init()
 var isSearch = false
 var isProcessing = false
+var isForClosingSearch = false
+
 function init() {
   console.log("init")
   document.addEventListener("keypress", function (event) {
@@ -339,6 +390,7 @@ function init() {
   document.addEventListener("click", function (e) {
     console.log(e.target)
 
+    console.log(isSearch)
     if (
       localStorage.getItem("startDate") &&
       e.target.href &&
@@ -349,8 +401,16 @@ function init() {
       localStorage.removeItem("startDate")
     }
 
-    if (e.target.classList.contains("simple-btn") && document.querySelector(".simple-btn")) {
-      gaEvent(`Click on Add vehicle`, "Header: My garage")
+    if (e.target.classList.contains("simple-btn") && document.querySelector(".simple-btn") && e.target.closest(".home-header-nav-tool")) {
+      gaEvent(`Click on Add vehicle`, `Header: My garage`)
+      localStorage.setItem("startDate", JSON.stringify(new Date().getTime()))
+      isSearch = true
+    }
+
+    if (e.target.classList.contains("simple-btn") && document.querySelector(".simple-btn") && e.target.closest(".history-add-vehicle-block.-left-menu")) {
+      gaEvent(`Click on Add vehicle`, "Humburger menu: My garage")
+      localStorage.setItem("startDate", JSON.stringify(new Date().getTime()))
+      isSearch = true
     }
 
     if (
@@ -360,29 +420,36 @@ function init() {
       e.target.classList.contains("left-dd-vehicle-spacer") ||
       (e.target.classList.contains("left-dd-title") && e.target.closest(".left-dd-vehicle-spacer"))
     ) {
-      gaEvent(`Click on My Garage`, "PanelPage: My garage")
+      gaEvent(`Click on My Garage`, "Humburger menu: My garage")
     }
 
     if (e.target.classList.contains("select-vehicle-button") && e.target.closest(".lav-add-popup")) {
       gaEvent(`Click on Go button`, "Popup: Select vehicle")
     }
 
-    if ((e.target.classList.contains("gbox") || e.target.classList.contains("gbox_wrap")) && document.querySelector(".lav-add-popup")) {
-      if (localStorage.getItem("startDate")) {
-        let time = (new Date().getTime() - parseInt(localStorage.getItem("startDate"))) / 1000
-        gaEvent(`Popup was closed after ${time} seconds`, "Popup: Select vehicle")
-        localStorage.removeItem("startDate")
-      }
-    }
+    // if ((e.target.classList.contains("gbox") || e.target.classList.contains("gbox_wrap")) && document.querySelector(".lav-add-popup")) {
+    //   if (localStorage.getItem("startDate")) {
+    //     let time = (new Date().getTime() - parseInt(localStorage.getItem("startDate"))) / 1000
+    //     gaEvent(`Popup was closed after ${time} seconds`, "Popup: Select vehicle")
+    //     localStorage.removeItem("startDate")
+    //   }
+    // }
 
     if ((e.target.classList.contains("gbox") || e.target.classList.contains("gbox_wrap")) && isSearch) {
       isSearch = false
-      gaEvent("Clicks on the background space closes pop-up", "Header. Search menu")
+
+      if (!isForClosingSearch) {
+        gaEvent("Clicks on the background space closes pop-up", "Popup: Select vehicle")
+      } else {
+        gaEvent("Clicks on the background space closes pop-up", "Header. Search menu")
+        isForClosingSearch = false
+      }
     }
 
-    if (e.target.classList.contains("gbox_close") && isSearch) {
+    if (e.target.classList.contains("gbox_close") && isSearch && isForClosingSearch) {
       isSearch = false
       gaEvent("Clicks on the closing search cross pictogramme", "Header. Search menu")
+      isForClosingSearch = false
     }
 
     if (e.target.classList.contains("js-recent-searches-summary-item")) {
@@ -397,7 +464,11 @@ function init() {
       gaEvent(`Click on Search button. ${document.querySelector("#search-field").value}`, "Header. Search menu")
     }
 
-    if (e.target.classList.contains("cat-link") && isSearch) {
+    if (
+      (e.target.classList.contains("cat-link") && isSearch && e.target.closest(".item")) ||
+      (e.target.classList.contains("cat-img") && isSearch && e.target.closest(".item")) ||
+      (e.target.classList.contains("item") && isSearch && e.target.closest(".categories-grid"))
+    ) {
       if (e.target.closest(".autoc-section")) {
         gaEvent(`Click on ${e.target.innerText} button in ${e.target.closest(".autoc-section").querySelector(".autoc-section-title").innerText}`, "Header. Search menu")
       }
@@ -459,6 +530,7 @@ function changeSearch() {
   document.querySelector("#dummy-search-input-for-preact-render").addEventListener("click", function (e) {
     e.preventDefault()
     if (!isProcessing) {
+      isForClosingSearch = true
       gaEvent("Click on Search input", "Header. Search menu")
       clarity("set", "site_search", "search_clicked")
     }
@@ -470,18 +542,18 @@ function changeSearch() {
 function handleSearch() {
   isProcessing = true
 
-  if (!document.querySelector(".mygarage-vehicle-title")) {
-    document.querySelector(".header-search-label").click()
-    let addNewInterval = setInterval(() => {
-      if (!document.querySelector(".gbox_portal .select-vehicle")) return false
+  document.querySelector(".header-search-label").click()
 
-      localStorage.setItem("startDate", JSON.stringify(new Date().getTime()))
+  let addNewInterval = setInterval(() => {
+    if (!document.querySelector(".gbox_portal .search-field")) return false
 
-      clearInterval(addNewInterval)
-    }, 400)
-  } else {
+    localStorage.setItem("startDateSearch", JSON.stringify(new Date().getTime()))
+
+    clearInterval(addNewInterval)
+  }, 400)
+
+  if (document.querySelector(".mygarage-vehicle-title")) {
     isSearch = true
-    document.querySelector(".header-search-label").click()
   }
   isProcessing = false
 }
@@ -495,8 +567,7 @@ function addSearchBtn() {
         "beforebegin",
         ` <button class='lav-search__btn lav-search__btn-top new_input-search'>
             <span class='lav-search__btn-full'>Search</span>
-            <span class='lav-search__btn-brief'>
-              <svg width="18" height="18" viewBox="0 0 18 18" fill="#ffffff" xmlns="http://www.w3.org/2000/svg">
+            <span class='lav-search__btn-brief'>              <svg width="18" height="18" viewBox="0 0 18 18" fill="#ffffff" xmlns="http://www.w3.org/2000/svg">
                 <path fill-rule="evenodd" clip-rule="evenodd" d="M11.9659 11.2549H12.7559L17.7459 16.2549L16.2559 17.7449L11.2559 12.7549V11.9649L10.9859 11.6849C9.84586 12.6649 8.36586 13.2549 6.75586 13.2549C3.16586 13.2549 0.255859 10.3449 0.255859 6.75488C0.255859 3.16488 3.16586 0.254883 6.75586 0.254883C10.3459 0.254883 13.2559 3.16488 13.2559 6.75488C13.2559 8.36488 12.6659 9.84488 11.6859 10.9849L11.9659 11.2549ZM2.25586 6.75488C2.25586 9.24488 4.26586 11.2549 6.75586 11.2549C9.24586 11.2549 11.2559 9.24488 11.2559 6.75488C11.2559 4.26488 9.24586 2.25488 6.75586 2.25488C4.26586 2.25488 2.25586 4.26488 2.25586 6.75488Z" fill="#ffffff"/>
               </svg>
             </span>
