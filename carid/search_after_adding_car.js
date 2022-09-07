@@ -83,7 +83,8 @@ if (settings.observe) {
                         gaEvent(`Click on Make select`, "Popup: Select vehicle")
                       } else if (item.querySelector(".marker").innerText == "3") {
                         gaEvent(`Click on Model select`, "Popup: Select vehicle")
-                        if (window.location.pathname === "/") {
+                        if (localStorage.getItem("windowLocation")) {
+                          console.log(`window.location.pathname`)
                           localStorage.setItem("showSearch", "yes")
                         }
                       }
@@ -101,7 +102,8 @@ if (settings.observe) {
                   gaEvent(`Click on Make select`, "Popup: Select vehicle")
                 } else if (item.querySelector(".marker").innerText == "3") {
                   gaEvent(`Click on Model select`, "Popup: Select vehicle")
-                  if (window.location.pathname === "/") {
+                  if (localStorage.getItem("windowLocation")) {
+                    console.log(`window.location.pathname`)
                     localStorage.setItem("showSearch", "yes")
                   }
                 }
@@ -121,7 +123,8 @@ if (settings.observe) {
                   gaEvent(`Click on Make select`, "Homepage: Select vehicle")
                 } else if (item.querySelector(".marker").innerText == "3") {
                   gaEvent(`Click on Model select`, "Homepage: Select vehicle")
-                  if (window.location.pathname === "/") {
+                  if (localStorage.getItem("windowLocation")) {
+                    console.log(`window.location.pathname`)
                     localStorage.setItem("showSearch", "yes")
                   }
                 }
@@ -410,7 +413,12 @@ var isProcessing = false
 var isForClosingSearch = false
 
 function init() {
-  console.log(window.location)
+  if (window.location.pathname === "/") {
+    console.log(`HELLO>>>>>>>>>>>>`, window.location)
+    if (!localStorage.getItem("windowLocation")) {
+      localStorage.setItem("windowLocation", "yes")
+    }
+  }
   console.log("init")
   document.addEventListener("keypress", function (event) {
     if (event.key === "Enter" && document.activeElement && isSearch) {
@@ -557,6 +565,9 @@ function init() {
       if (!document.querySelector(".lav-search__btn-top")) return false
       clearInterval(clickSearch)
       localStorage.removeItem("showSearch")
+      if (localStorage.getItem("windowLocation") == "yes") {
+        localStorage.removeItem("windowLocation")
+      }
       isSearch = true
       document.querySelector(".header-search-label").click()
     }, 200)
