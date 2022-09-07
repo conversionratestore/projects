@@ -83,7 +83,9 @@ if (settings.observe) {
                         gaEvent(`Click on Make select`, "Popup: Select vehicle")
                       } else if (item.querySelector(".marker").innerText == "3") {
                         gaEvent(`Click on Model select`, "Popup: Select vehicle")
-                        localStorage.setItem("showSearch", "yes")
+                        if (window.location.pathname === "/") {
+                          localStorage.setItem("showSearch", "yes")
+                        }
                       }
                     })
                   }
@@ -99,7 +101,9 @@ if (settings.observe) {
                   gaEvent(`Click on Make select`, "Popup: Select vehicle")
                 } else if (item.querySelector(".marker").innerText == "3") {
                   gaEvent(`Click on Model select`, "Popup: Select vehicle")
-                  localStorage.setItem("showSearch", "yes")
+                  if (window.location.pathname === "/") {
+                    localStorage.setItem("showSearch", "yes")
+                  }
                 }
               })
             }
@@ -117,7 +121,9 @@ if (settings.observe) {
                   gaEvent(`Click on Make select`, "Homepage: Select vehicle")
                 } else if (item.querySelector(".marker").innerText == "3") {
                   gaEvent(`Click on Model select`, "Homepage: Select vehicle")
-                  localStorage.setItem("showSearch", "yes")
+                  if (window.location.pathname === "/") {
+                    localStorage.setItem("showSearch", "yes")
+                  }
                 }
               })
             }
@@ -404,6 +410,7 @@ var isProcessing = false
 var isForClosingSearch = false
 
 function init() {
+  console.log(window.location)
   console.log("init")
   document.addEventListener("keypress", function (event) {
     if (event.key === "Enter" && document.activeElement && isSearch) {
