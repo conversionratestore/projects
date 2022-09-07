@@ -215,6 +215,7 @@ if (settings.observe) {
 const styles = `
     .search-field.search-preloader::after{
     background-color: unset !important;
+    right: 130px;
     }
   .lav-jumb {
     background: #24282F;
@@ -355,6 +356,9 @@ const styles = `
     display: none;
     }
   @media(max-width: 1024px) {
+        .search-field.search-preloader::after{
+    right: 50px;
+    }
     .lav-search__btn-brief {
       display: block;
     }
