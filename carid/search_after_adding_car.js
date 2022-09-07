@@ -432,7 +432,7 @@ function init() {
     // console.log(`isSearch`, isSearch)
 
     if (e.target.classList.contains("select-vehicle-button") && document.querySelector(".select-vehicle-button.-after-selects") && !e.target.closest(".lav-add-popup")) {
-      gaEvent(`Click on Go button`, "Main Page: Select vehicle")
+      gaEvent(`Click on Go button`, "Homepage: Select vehicle")
     }
     if (e.target.classList.contains("-wide") && document.querySelector(".autoc-show-more-btn")) {
       if (e.target.textContent === "Show more Categories") {
