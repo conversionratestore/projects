@@ -2026,7 +2026,13 @@ window.onload = function() {
     document.querySelector('#form-search input').addEventListener('click', (e) => pushDataLayer(`Click on Search by Name`, 'Header'))
 
     document.querySelectorAll('.midbar_action').forEach(el => {
-        el.addEventListener('click', (e) => pushDataLayer(`Click on ${e.target.innerText}`, 'Header'))
+        el.addEventListener('click', (e) => {
+          if (el.querySelector('.cart_count') != null) {
+            pushDataLayer(`Click on Cart`, 'Header')
+          } else {
+            pushDataLayer(`Click on ${e.target.innerText}`, 'Header')
+          }
+        })
     })
 
     let requestNewProduct = index.search({
@@ -2199,6 +2205,9 @@ window.onload = function() {
                 //add html pdp
                 document.querySelector('#container-listing').insertAdjacentHTML('beforebegin', htmlProduct);
 
+                document.querySelectorAll('#breadcrumbs-pdp li').forEach(item => {
+                  item.addEventListener('click', (e) => pushDataLayer(`Click on crumb - ${e.target.innerText}`, 'Breadcrumbs'))
+                })
                 //comes into view pricing product
                 window.addEventListener('scroll', () => {
                     if (isScrolledIntoView(document.querySelector('.product_pricing')) == true) {
