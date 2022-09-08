@@ -1872,16 +1872,6 @@ window.onload = function() {
                         }
                     })
 
-                    if (window.location.pathname.includes('/category') && !window.location.href.includes('?products') && categoryPageLoaded == false) {
-                        categoryPageLoaded = true;
-                        // let category = window.location.href.split('category/')[1].split('-').join(' ');
-                        let category = document.querySelector('title').innerHTML.split(' |')[0];
-                        search.helper.state.hierarchicalFacetsRefinements['categories.lvl0'] = [category];
-                        search.refresh()
-                        document.querySelector('#breadcrumbs').style = '';
-                        document.querySelector('.listing_title').innerHTML = category;
-                    }
-
                     let crumbs = document.querySelectorAll('#breadcrumbs li');
                     if (crumbs.length < 2) {
                         document.querySelector('#breadcrumbs').style.opacity = '0';
@@ -1890,6 +1880,16 @@ window.onload = function() {
                         document.querySelector('#breadcrumbs .ais-Breadcrumb-item--selected').style.display = 'none';
                         document.querySelector('#breadcrumbs').style = '';
                         document.querySelector('.listing_title').innerHTML = document.querySelector('#breadcrumbs .ais-Breadcrumb-item.ais-Breadcrumb-item--selected').innerText.replace('>', '')
+                    }
+
+                    if (window.location.pathname.includes('/category') && !window.location.href.includes('?products') && categoryPageLoaded == false) {
+                      categoryPageLoaded = true;
+                      // let category = window.location.href.split('category/')[1].split('-').join(' ');
+                      let category = document.querySelector('title').innerHTML.split(' |')[0];
+                      search.helper.state.hierarchicalFacetsRefinements['categories.lvl0'] = [category];
+                      search.refresh()
+                      document.querySelector('#breadcrumbs').style = '';
+                      document.querySelector('.listing_title').innerHTML = category;
                     }
 
                     if (document.querySelector('#manufacturer li') != null) {
