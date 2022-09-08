@@ -1878,6 +1878,7 @@ window.onload = function() {
                         let category = document.querySelector('title').innerHTML.split(' |')[0];
                         search.helper.state.hierarchicalFacetsRefinements['categories.lvl0'] = [category];
                         search.refresh()
+                        document.querySelector('#breadcrumbs').style = '';
                         document.querySelector('.listing_title').innerHTML = category;
                     }
 
