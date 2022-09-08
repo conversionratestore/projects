@@ -470,7 +470,7 @@ margin: 16px -20px; }
   margin-left: 4px; }
 .select_filter {
   position: relative;
-  margin-bottom: 26px; }
+  margin-bottom: 11px; }
   .select_filter.active .select_item:before {
     -webkit-transform: translateY(-50%) scaleY(-1);
     -ms-transform: translateY(-50%) scaleY(-1);
@@ -762,11 +762,14 @@ margin: 16px -20px; }
     fill: #bf0400;
   }
   .ais-ClearRefinements-button--disabled, .listing_wrapper .ais-InfiniteHits-loadMore, .ais-RefinementList-showMore--disabled {
-    display: none!important;
+    // display: none!important;
+    opacity: 0;
+    pointer-events: none;
+    padding: 0!important;
   }
   .ais-RefinementList-showMore {
     text-decoration: underline;
-    padding-top: 15px;
+    padding: 15px 0;
     display: block;
     width: 100%;
     background: #fff;
@@ -774,7 +777,8 @@ margin: 16px -20px; }
     outline: none;
     color: #344D57;
     text-align: left;
-    position: relative;
+    position: sticky;
+    bottom: 0;
   }
   .main a#top {
     background-color: #1E3944;
