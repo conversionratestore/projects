@@ -1645,6 +1645,7 @@ window.onload = function() {
                   }
                 }
                 e.target.classList.toggle('active')
+                pushDataLayer(`Click on letter - ${el.innerText}`, `All categories`);
             })
         })  
     })
@@ -2331,7 +2332,7 @@ let mut = new MutationObserver(function (muts) {
         document.querySelectorAll('.card_name').forEach(el => {
             el.addEventListener('click', (e) => {
                 e.stopImmediatePropagation();
-                pushDataLayer(`Click on Card Product`,`Card Product`);
+                pushDataLayer(`Click on Card Product`, labelForEvents(e));
             })
         })
         document.querySelectorAll('.add-cart').forEach(el => {
