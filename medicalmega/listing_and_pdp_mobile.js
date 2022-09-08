@@ -2125,7 +2125,6 @@ window.onload = function() {
                         categoryLvl = `categories.lvl${Object.keys(categoriesHit).length - 1}:${lastLvlCategories[j]}`
                     }
                 }
-                console.log(categoryLvl)
                 let requestSimilarProduct = index.search({
                     facetFilters: [categoryLvl],
                     // filters: categoryLvl,
