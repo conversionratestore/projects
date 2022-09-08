@@ -1545,7 +1545,7 @@ function changeQty(qty,pr,action) {
 //show/hide element
 function toggleModal(item) {
     document.querySelector(item).classList.toggle('active')
-    if (item.classList.contains('active')) {
+    if (document.querySelector(item).classList.contains('active')) {
       document.getElementsByTagName('html')[0].classList.add('fix')
     } else {
       document.getElementsByTagName('html')[0].classList.remove('fix')
