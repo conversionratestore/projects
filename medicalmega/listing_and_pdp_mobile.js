@@ -761,8 +761,10 @@ margin: 16px -20px; }
   .ais-ClearRefinements-button:hover svg {
     fill: #bf0400;
   }
-  .ais-ClearRefinements-button--disabled, .listing_wrapper .ais-InfiniteHits-loadMore, .ais-RefinementList-showMore--disabled {
-    // display: none!important;
+  .ais-ClearRefinements-button--disabled, .listing_wrapper .ais-InfiniteHits-loadMore {
+    display: none!important;
+  }
+  .ais-RefinementList-showMore--disabled {
     opacity: 0;
     pointer-events: none;
     padding: 0!important;
