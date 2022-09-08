@@ -1923,9 +1923,9 @@ window.onload = function() {
                             document.querySelector('#manufacturer ul').classList.toggle('scroll');
                             if (e.target.innerText == 'Show more') {
                               document.querySelector('#manufacturer ul').classList.remove('scroll');
-                              pushDataLayer(`Click on Show more button`, 'Filters');
-                            } else {
                               pushDataLayer(`Click on Less more button`, 'Filters');
+                            } else {
+                              pushDataLayer(`Click on Show more button`, 'Filters');
                             }
                         })
                     }
