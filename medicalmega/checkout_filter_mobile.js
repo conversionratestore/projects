@@ -2155,7 +2155,7 @@ if (href.includes('login.php') || href.includes('/register.php') || href.include
 
         document.querySelector('.col-left .head').after(document.querySelector('#checkoutForm'))
         document.querySelector('#checkoutForm h3').innerHTML = `Card Details <img src="https://conversionratestore.github.io/projects/medicalmega/img/payment-cards.png" alt="icons">`
-        document.querySelector('#cc_block > dl > div.ccInfo > dd:nth-child(5)').innerHTML = `Credit/Debit Card<span class="c-red"> *</span>`;
+        document.querySelector('#cc_block > dl > div.ccInfo > dd:nth-child(5)') != null ? document.querySelector('#cc_block > dl > div.ccInfo > dd:nth-child(5)').innerHTML = `Credit/Debit Card<span class="c-red"> *</span>` : '';
         document.querySelector('#cc_block > dl > div.ccInfo > dd:nth-child(3)').innerHTML = `Name on card:<span class="c-red"> *</span>`;
 
         document.querySelector('.cc-recurring-setting').insertAdjacentHTML('beforebegin',`<label class="order-every items-center"><span class="check2"></span>${document.querySelector('.cc-recurring-setting').innerHTML}</label>`)
