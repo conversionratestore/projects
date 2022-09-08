@@ -2361,7 +2361,7 @@ let mut = new MutationObserver(function (muts) {
         document.querySelectorAll('.card_name').forEach(el => {
             el.addEventListener('click', (e) => {
                 e.stopImmediatePropagation();
-                pushDataLayer(`Click on Card Product`, labelForEvents(e));
+                pushDataLayer(`Click on Card Product`, labelForEvents(e.target));
             })
         })
         document.querySelectorAll('.add-cart').forEach(el => {
