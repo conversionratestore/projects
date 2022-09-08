@@ -49,6 +49,11 @@ body {
   font-family: "Inter", sans-serif;
   font-style: normal;
   font-weight: normal;}
+html.fix {
+    overflow: hidden;}
+html.fix body {
+    position: relative;
+    overflow: hidden;}
 button {
   border: none;
   -webkit-appearance: none;
@@ -1540,6 +1545,11 @@ function changeQty(qty,pr,action) {
 //show/hide element
 function toggleModal(item) {
     document.querySelector(item).classList.toggle('active')
+    if (item.classList.contains('active')) {
+      document.getElementsByTagName('html')[0].classList.add('fix')
+    } else {
+      document.getElementsByTagName('html')[0].classList.remove('fix')
+    }
 }
 window.onload = function() {
     document.querySelector('[name="viewport"]').setAttribute('content','width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no')
@@ -1910,9 +1920,13 @@ window.onload = function() {
                     if (document.querySelector('#manufacturer .ais-RefinementList-showMore') != null) {
                         document.querySelector('#manufacturer .ais-RefinementList-showMore').addEventListener('click', (e) => {
                             e.stopImmediatePropagation();
-                            pushDataLayer(`Click on ${e.target.innerText} button`, 'Filters');
                             document.querySelector('#manufacturer ul').classList.toggle('scroll');
-                            e.target.innerText == 'Show more' ? document.querySelector('#manufacturer ul').classList.remove('scroll') : '';
+                            if (e.target.innerText == 'Show more') {
+                              document.querySelector('#manufacturer ul').classList.remove('scroll');
+                              pushDataLayer(`Click on Show more button`, 'Filters');
+                            } else {
+                              pushDataLayer(`Click on Less more button`, 'Filters');
+                            }
                         })
                     }
 
