@@ -665,8 +665,8 @@ let startEdit = setInterval(() => {
             day1 = date1.split(', ')[0].split(' ')[1],
             day2 = date2.split(', ')[0].split(' ')[1];
 
-        let startDate = `${year1}-${mouth1}-${day1}`,
-            endDate = `${year2}-${mouth2}-${day2}`;
+        let startDate = `${year1}-${mouth1}-${day1.length < 2 ? '0'+day1 : day1}`,
+            endDate = `${year2}-${mouth2}-${day2.length < 2 ? '0'+day2 : day2}`;
 
         let total = '';
         let tr = document.querySelectorAll('#detail-info > table tr.text-base td:first-child strong');
