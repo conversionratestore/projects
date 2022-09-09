@@ -547,7 +547,7 @@ const observePopup = () => {
                     }
                 }
 
-                if (node.matches('.gbox_portal')) {
+                if (node.matches('.gbox_portal:not(.js-gbox-current)')) {
                     const waitForEl = setInterval(() => {
                         if (query('.po')) {
                             clearInterval(waitForEl)
