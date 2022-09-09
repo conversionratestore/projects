@@ -600,8 +600,6 @@ const observePopup = () => {
             for (let node of mutation.addedNodes) {
                 if (!(node instanceof HTMLElement)) continue
 
-                console.log(node);
-
                 if (node.matches('.po-toolbar-sticky')) {
                     query('.po-toolbar-sticky .-transparent').addEventListener('click', () => {
                         callEvent('sticky Cancel', 'Popup. Select your vehicle')
@@ -648,7 +646,7 @@ const observePopup = () => {
                     }
                 }
 
-                if (node.matches('.gbox_portal')) {
+                if (node.matches('.gbox_portal:not(.js-gbox-current)')) {
                     const waitForEl = setInterval(() => {
                         if (query('.po')) {
                             clearInterval(waitForEl)
