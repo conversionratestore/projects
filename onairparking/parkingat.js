@@ -587,6 +587,7 @@ let start = setInterval(() => {
                 }
 
                 document.body.insertAdjacentHTML('afterbegin',`<p> total 1: ${total}</p>`)
+                document.body.insertAdjacentHTML('afterbegin',`<p> startDate and endDate 1: ${startDate,endDate}</p>`)
 
                 postParking(id, startDate, endDate, parent, urlCode, total) // send post parking
 
@@ -674,6 +675,7 @@ let startEdit = setInterval(() => {
             }
         }
         document.body.insertAdjacentHTML('afterbegin',`<p> total 2: ${total}</p>`)
+        document.body.insertAdjacentHTML('afterbegin',`<p> startDate and endDate 2: ${startDate,endDate}</p>`)
 
         document.querySelector('.price_section .price').innerHTML = `$${renderPriceDay(startDate,endDate,total)} /day`
         if (document.querySelector('.free_block') != null) {
