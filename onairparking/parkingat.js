@@ -344,7 +344,7 @@ function dateDiff(a,b){
     let secondDate = new Date(b);
     let days = Math.abs(firstDate.getTime() - secondDate.getTime());
     let result = parseInt(Math.ceil(days / (1000 * 60 * 60 * 24)));
-    document.body.insertAdjacentHTML('afterbegin',`<p> firstDate and secondDate: ${firstDate}, ${+secondDate} / ${days}</p>`)
+    document.body.insertAdjacentHTML('afterbegin',`<p> firstDate and secondDate: ${firstDate}, ${secondDate} / ${days}</p>`)
     document.body.insertAdjacentHTML('afterbegin',`<p> dateDiff: ${result}, ${+days} / ${days}</p>`)
     return result != 0 ? result : 1
 }
