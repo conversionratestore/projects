@@ -351,7 +351,7 @@ function renderPriceDay(startDate,endDate,total) {
     let days = dateDiff(endDate,startDate);
     let sumStr = total.toString().replace(/[^\d\.]/g,'')
     let priceDay = (+sumStr / +days).toFixed(2);
-    document.body.insertAdjacentHTML('afterbegin','<p> renderPriceDay: ${priceDay} = ${+sumStr} / ${+days}</p>')
+    document.body.insertAdjacentHTML('afterbegin',`<p> renderPriceDay: ${priceDay} = ${+sumStr} / ${+days}</p>`)
     return priceDay;
 }
 
@@ -584,7 +584,7 @@ let start = setInterval(() => {
                     }
                 }
 
-                document.body.insertAdjacentHTML('afterbegin','<p> total 1: ${total}</p>')
+                document.body.insertAdjacentHTML('afterbegin',`<p> total 1: ${total}</p>`)
 
                 postParking(id, startDate, endDate, parent, urlCode, total) // send post parking
 
@@ -671,7 +671,7 @@ let startEdit = setInterval(() => {
                 total = +(+tr[i].closest('tr').querySelector('td:last-child strong').innerHTML.replace(/[^\d\.]/g,'')).toFixed(2);
             }
         }
-        document.body.insertAdjacentHTML('afterbegin','<p> total 2: ${total}</p>')
+        document.body.insertAdjacentHTML('afterbegin',`<p> total 2: ${total}</p>`)
 
         document.querySelector('.price_section .price').innerHTML = `$${renderPriceDay(startDate,endDate,total)} /day`
         if (document.querySelector('.free_block') != null) {
