@@ -711,9 +711,9 @@ dataLayer.push({
     'eventAction': 'loaded'
 });
 
-let isClarify = setInterval(() => {
+let isClarifyParkingat = setInterval(() => {
     if(typeof clarity == 'function') {
-        clearInterval(isClarify)
+        clearInterval(isClarifyParkingat)
         clarity("set", "complete_redesign_pdp", "variant_1");
     }
 }, 100)
