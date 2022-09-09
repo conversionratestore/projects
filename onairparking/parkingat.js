@@ -483,7 +483,9 @@ let postParkingat = (id, startDate, endDate, parent, urlCode, total) => {
                     countReview = listReview.length > 5 ? 6 : listReview.length;
 
                 for (let i = 0; i < countReview; i++) {
-                    document.querySelector('.reviews-slider').insertAdjacentHTML('beforeend',`<div class="slide">${listReview[i].innerHTML}</div>`)
+                    if (listReview.querySelectorAll('.ant-rate-star-full').length > 4) {
+                        document.querySelector('.reviews-slider').insertAdjacentHTML('beforeend',`<div class="slide">${listReview[i].innerHTML}</div>`)
+                    }
                 }
                 //events
                 document.querySelector('.reviews-slider').addEventListener('touchstart', (e) => pushDataLayerParkingat('Using of the review slider'))
