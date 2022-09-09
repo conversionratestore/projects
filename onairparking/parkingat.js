@@ -344,13 +344,14 @@ function dateDiff(a,b){
     let secondDate = new Date(b);
     let days = Math.abs(firstDate.getTime() - secondDate.getTime());
     let result = parseInt(Math.ceil(days / (1000 * 60 * 60 * 24)));
+    document.body.insertAdjacentHTML('afterbegin',`<p> dateDiff: ${result}, ${+days} / ${days}</p>`)
     return result != 0 ? result : 1
 }
 
 function renderPriceDay(startDate,endDate,total) {
     let days = dateDiff(endDate,startDate);
     let sumStr = total.toString().replace(/[^\d\.]/g,'')
-    let priceDay = (+sumStr / +days).toFixed(2);
+    let priceDay = +(+sumStr / +days).toFixed(2);
     document.body.insertAdjacentHTML('afterbegin',`<p> renderPriceDay: ${priceDay} = ${+sumStr} / ${+days}</p>`)
     return priceDay;
 }
