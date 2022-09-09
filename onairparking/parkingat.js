@@ -1,5 +1,5 @@
-let style = `
-<style class="js-style">
+let styleParkingat = `
+<style class="js-styleParkingat">
     #parkingat > div > article {
         margin-top: 20px!important;
         box-shadow: none!important;
@@ -293,7 +293,7 @@ let style = `
 </style>`
 
 //push dataLayer
-let pushDataLayer = (action) => {
+let pushDataLayerParkingat = (action) => {
     window.dataLayer = window.dataLayer || [];
     dataLayer.push({
         'event': 'event-to-ga',
@@ -355,7 +355,7 @@ function renderPriceDay(startDate,endDate,total) {
 }
 
 let arrMouth = ['Jan','Feb','Mar','Apr','May','Jun','Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
-let formatDate = {
+let formatDateParkingat = {
     'Jan':'01',
     'Feb':'02',
     'Mar':'03',
@@ -370,7 +370,7 @@ let formatDate = {
     'Dec':'12'
 }
 
-let postParking = (id, startDate, endDate, parent, urlCode, total) => {
+let postParkingat = (id, startDate, endDate, parent, urlCode, total) => {
 
     fetch(`https://www.onairparking.com/api/Facility/SearchAlternate`, {
         headers: {
@@ -475,7 +475,7 @@ let postParking = (id, startDate, endDate, parent, urlCode, total) => {
                 //click on See all button
                 document.querySelector('.btn_see-all').addEventListener('click', (e) => {
                     scrollTop(document.querySelector('#parkingat > div > article > div > .demo-loadmore-list').parentElement, e.target)
-                    pushDataLayer( 'Click on the see all')
+                    pushDataLayerParkingat( 'Click on the see all')
                 })
 
                 //add slides in slider carousel
@@ -486,8 +486,8 @@ let postParking = (id, startDate, endDate, parent, urlCode, total) => {
                     document.querySelector('.reviews-slider').insertAdjacentHTML('beforeend',`<div class="slide">${listReview[i].innerHTML}</div>`)
                 }
                 //events
-                document.querySelector('.reviews-slider').addEventListener('touchstart', (e) => pushDataLayer('Using of the review slider'))
-                document.querySelector('.icon_info').addEventListener('click', (e) => pushDataLayer('Tap on the info icon'))
+                document.querySelector('.reviews-slider').addEventListener('touchstart', (e) => pushDataLayerParkingat('Using of the review slider'))
+                document.querySelector('.icon_info').addEventListener('click', (e) => pushDataLayerParkingat('Tap on the info icon'))
 
                 startSlider()//init carousel
 
@@ -500,7 +500,7 @@ let postParking = (id, startDate, endDate, parent, urlCode, total) => {
     })
 }
 
-let sentPost = false;
+let sentPostParkingat = false;
 let viewed = false;
 
 let arrImage = ['aerial-view-road-buildings-cars-parked-lot-sunny-day.jpg','cars-parking.jpg','overhead-view-car-parking-slots-copy-space.jpg','parked-vehicles-view.jpg','top-view-cars-parking-lot.jpg','transport-concept-with-parked-cars.jpg'];
@@ -549,7 +549,7 @@ let changeImage = () => {
     }, 100)
 }
 
-let start = setInterval(() => {
+let startParkingat = setInterval(() => {
     if (document.querySelectorAll('#marker > div.snap-mandatory > div.bg-white > div > div.flex > a') && window.location.href.includes('reservation/citysearch')) {
         document.querySelectorAll('#marker > div.snap-mandatory > div.bg-white > div > div.flex > a').forEach(item => {
             item.addEventListener('click', (e) => sessionStorage.setItem('reload','false'))
@@ -557,13 +557,13 @@ let start = setInterval(() => {
     }
     if (document.querySelector('#__NEXT_DATA__') != null && window.location.pathname.includes('/parkingat/') && document.querySelector('#parkingat') != null && document.querySelector('#detail-info > p.block') != null && document.querySelector('#detail-info > table tr') != null && document.querySelector('#detail-info > button') != null) {
 
-        if (sentPost == false) {
-            sentPost = true;
+        if (sentPostParkingat == false) {
+            sentPostParkingat = true;
             if (sessionStorage.getItem('reload') == 'false') {
                 sessionStorage.setItem('reload','true')
                 window.location.reload()
             } else {
-                document.querySelector('.js-style') == null ? document.body.insertAdjacentHTML('afterbegin', style) : ''; // add style
+                document.querySelector('.js-styleParkingat') == null ? document.body.insertAdjacentHTML('afterbegin', styleParkingat) : ''; // add style
 
                 changeImage()//change image
 
@@ -583,7 +583,7 @@ let start = setInterval(() => {
                     }
                 }
 
-                postParking(id, startDate, endDate, parent, urlCode, total) // send post parking
+                postParkingat(id, startDate, endDate, parent, urlCode, total) // send post parking
 
                 //add fix button
                 document.querySelector('.fix_footer') == null && document.querySelector('#easy-checkout') == null ? document.body.insertAdjacentHTML('beforeend',`<div class="fix_footer"><button type="button" class="btn_reserve-now">Reserve now</button></div>`) : '';
@@ -592,18 +592,18 @@ let start = setInterval(() => {
                 document.querySelector('.btn_reserve-now').addEventListener('click', () => {
                     reserveBtn.classList.add('click-btn-sticky')
                     reserveBtn.click();
-                    pushDataLayer('Click at Reserve now sticky button')
+                    pushDataLayerParkingat('Click at Reserve now sticky button')
                 })
                 //click on Reserve now button
                 reserveBtn.addEventListener('click', (e) => {
                     if (!e.target.classList.contains('click-btn-sticky')) {
-                        pushDataLayer('Click at Reserve now button')
+                        pushDataLayerParkingat('Click at Reserve now button')
                     } else {
                         reserveBtn.classList.remove('click-btn-sticky')
                     }
                 })
                 if (document.querySelector('#parkingat > div > article > div.flex > button') != null) {
-                    document.querySelector('#parkingat > div > article > div.flex > button').addEventListener('click', (e) => pushDataLayer('Click at Reserve now button'))
+                    document.querySelector('#parkingat > div > article > div.flex > button').addEventListener('click', (e) => pushDataLayerParkingat('Click at Reserve now button'))
                 }
 
                 window.addEventListener('scroll', () => {
@@ -625,18 +625,18 @@ let start = setInterval(() => {
 
 })
 
-let startRemove = () => {
-    let startRemove = setInterval(() => {
+let startRemoveParkingat = () => {
+    let startRemoveParkingat = setInterval(() => {
         if (document.querySelector('#parkingat') == null || document.querySelector('#easy-checkout') != null) {
-            // clearInterval(startRemove)
-            document.querySelector('.js-style') != null ? document.querySelector('.js-style').remove() : '';
+            // clearInterval(startRemoveParkingat)
+            document.querySelector('.js-styleParkingat') != null ? document.querySelector('.js-styleParkingat').remove() : '';
             document.querySelector('.fix_footer') != null ? document.querySelector('.fix_footer').remove() : '';
 
-            sentPost = false;
+            sentPostParkingat = false;
         }
     },100)
 }
-startRemove()
+startRemoveParkingat()
 
 let startEdit = setInterval(() => {
     if (window.location.pathname.includes('/parkingat/') && document.querySelector('#detail-info > div.flex.flex-row > div > svg') == null && document.querySelector('#detail-info > div.flex.flex-row.justify-between.items-center > div.text-secondary.underline.font-medium.cursor-pointer') != null && document.querySelector('.price_section .price') != null) {
@@ -647,14 +647,14 @@ let startEdit = setInterval(() => {
                 <path d="M7 11.6667H12.25" stroke="#5D99D6" stroke-linecap="round" stroke-linejoin="round"/>
                 <path d="M9.625 2.04164C9.85706 1.80957 10.1718 1.6792 10.5 1.6792C10.6625 1.6792 10.8234 1.71121 10.9735 1.77339C11.1237 1.83558 11.2601 1.92673 11.375 2.04164C11.4899 2.15654 11.5811 2.29296 11.6432 2.44309C11.7054 2.59322 11.7374 2.75413 11.7374 2.91664C11.7374 3.07914 11.7054 3.24005 11.6432 3.39018C11.5811 3.54032 11.4899 3.67673 11.375 3.79164L4.08333 11.0833L1.75 11.6666L2.33333 9.3333L9.625 2.04164Z" stroke="#5D99D6" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>`)
-        editBtn.addEventListener('click', () => pushDataLayer('Click at Edit button'))
+        editBtn.addEventListener('click', () => pushDataLayerParkingat('Click at Edit button'))
 
         let date1 = document.querySelector('#detail-info > div.grid.grid-cols-2.gap-2.w-full.mt-4.justify-between > div:nth-child(1) > p').innerText,
             date2 = document.querySelector('#detail-info > div.grid.grid-cols-2.gap-2.w-full.mt-4.justify-between > div:nth-child(2) > p').innerText,
             year1 = date1.split(', ')[1].split(' ')[0],
             year2 = date2.split(', ')[1].split(' ')[0],
-            mouth1 = formatDate[date1.split(' ')[0]],
-            mouth2 = formatDate[date2.split(' ')[0]],
+            mouth1 = formatDateParkingat[date1.split(' ')[0]],
+            mouth2 = formatDateParkingat[date2.split(' ')[0]],
             day1 = date1.split(', ')[0].split(' ')[1],
             day2 = date2.split(', ')[0].split(' ')[1];
 
@@ -698,7 +698,7 @@ let startSlider = () => {
 
             //events
             if (document.querySelector('.tns-nav') != null) {
-                document.querySelector('.tns-nav').addEventListener('click', (e) => pushDataLayer('Using of the review slider'))
+                document.querySelector('.tns-nav').addEventListener('click', (e) => pushDataLayerParkingat('Using of the review slider'))
             }
         }
     },100)
