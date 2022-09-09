@@ -483,7 +483,7 @@ let postParkingat = (id, startDate, endDate, parent, urlCode, total) => {
                     countReview = listReview.length > 5 ? 6 : listReview.length;
 
                 for (let i = 0; i < countReview; i++) {
-                    if (listReview.querySelectorAll('.ant-rate-star-full').length > 4) {
+                    if (listReview[i].querySelectorAll('.ant-rate-star-full').length > 4) {
                         document.querySelector('.reviews-slider').insertAdjacentHTML('beforeend',`<div class="slide">${listReview[i].innerHTML}</div>`)
                     }
                 }
