@@ -344,8 +344,9 @@ function dateDiff(a,b){
     let secondDate = new Date(b);
     let days = Math.abs(firstDate.getTime() - secondDate.getTime());
     let result = parseInt(Math.ceil(days / (1000 * 60 * 60 * 24)));
-    document.body.insertAdjacentHTML('afterbegin',`<p> firstDate and secondDate: ${firstDate}, ${secondDate} / ${days}</p>`)
-    document.body.insertAdjacentHTML('afterbegin',`<p> dateDiff: ${result}, ${+days} / ${days}</p>`)
+    document.body.insertAdjacentHTML('afterbegin',`<p>${'LN: '+new Error().lineNumber} a and b: ${a}, ${b}</p>`)
+    document.body.insertAdjacentHTML('afterbegin',`<p>${'LN: '+new Error().lineNumber} firstDate and secondDate: ${firstDate}, ${secondDate} / ${days}</p>`)
+    document.body.insertAdjacentHTML('afterbegin',`<p>${'LN: '+new Error().lineNumber} dateDiff: ${result}, ${+days} / ${days}</p>`)
     return result != 0 ? result : 1
 }
 
@@ -353,7 +354,7 @@ function renderPriceDay(startDate,endDate,total) {
     let days = dateDiff(endDate,startDate);
     let sumStr = total.toString().replace(/[^\d\.]/g,'')
     let priceDay = +(+sumStr / +days).toFixed(2);
-    document.body.insertAdjacentHTML('afterbegin',`<p> renderPriceDay: ${priceDay} = ${+sumStr} / ${+days}</p>`)
+    document.body.insertAdjacentHTML('afterbegin',`<p>${'LN: '+new Error().lineNumber} renderPriceDay: ${priceDay} = ${+sumStr} / ${+days}</p>`)
     return priceDay;
 }
 
@@ -586,8 +587,8 @@ let start = setInterval(() => {
                     }
                 }
 
-                document.body.insertAdjacentHTML('afterbegin',`<p> total 1: ${total}</p>`)
-                document.body.insertAdjacentHTML('afterbegin',`<p> startDate and endDate 1: ${startDate,endDate}</p>`)
+                document.body.insertAdjacentHTML('afterbegin',`<p>${'LN: '+new Error().lineNumber} total 1: ${total}</p>`)
+                document.body.insertAdjacentHTML('afterbegin',`<p>${'LN: '+new Error().lineNumber} startDate and endDate 1: ${startDate,endDate}</p>`)
 
                 postParking(id, startDate, endDate, parent, urlCode, total) // send post parking
 
@@ -674,8 +675,8 @@ let startEdit = setInterval(() => {
                 total = +(+tr[i].closest('tr').querySelector('td:last-child strong').innerHTML.replace(/[^\d\.]/g,'')).toFixed(2);
             }
         }
-        document.body.insertAdjacentHTML('afterbegin',`<p> total 2: ${total}</p>`)
-        document.body.insertAdjacentHTML('afterbegin',`<p> startDate and endDate 2: ${startDate,endDate}</p>`)
+        document.body.insertAdjacentHTML('afterbegin',`<p>${'LN: '+new Error().lineNumber} total 2: ${total}</p>`)
+        document.body.insertAdjacentHTML('afterbegin',`<p>${'LN: '+new Error().lineNumber} startDate and endDate 2: ${startDate,endDate}</p>`)
 
         document.querySelector('.price_section .price').innerHTML = `$${renderPriceDay(startDate,endDate,total)} /day`
         if (document.querySelector('.free_block') != null) {
