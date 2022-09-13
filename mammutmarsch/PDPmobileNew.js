@@ -16,7 +16,7 @@ const obj = {
     title2: "Little Mammut Hannover — </br>30/55 km",
     date: "22. Oktober 2022",
     place: "Trammplatz 2 (vor dem neuen Rathaus), 30159 Hannover",
-    dateInfo: "Donnerstag, 22. Oktober 2022",
+    dateInfo: "Samstag, 22. Oktober 2022",
     text: `Nach einer wunderbaren Premiere ist für uns klar: Hannover, wir kommen wieder!</br></br>Harald Schmidt spottete einmal: “Hannover ist die Stadt mit dem gewissen nichts”. Euch vom Gegenteil zu überzeugen, haben wir uns zum Ziel gesetzt.</br></br>Denn auch hier bekommt ihr von uns die schönste Strecke, die wir für euch zusammenstellen konnten. Mit viel Grün, Wasser und einigen Highlights der Stadt. Und ja, auch die ein oder anderen Höhenmeter sind dabei.`,
   },
   "/berlin": {
