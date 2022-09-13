@@ -127,15 +127,15 @@ let interval = setInterval(() => {
 
         document.querySelector('header .header-simple-logo-a').addEventListener('click', (e) => {
             e.preventDefault()
-            pushDataLayer(`Avg. ${sessionStorage.getItem('tos_checkbox')} on the step 2 of the checkout`) 
-            sessionStorage.setItem('tos_checkbox', '');
+            pushDataLayer(`Avg. ${sessionStorage.getItem('tos_checkbox')} on the step 2 of the checkout`)
+            ClearСlock()
             window.location.href = e.href;
         })
         document.querySelectorAll('.cart-section a').forEach(link => {
             link.addEventListener('click', (e) => {
                 e.preventDefault()
-                pushDataLayer(`Avg. ${sessionStorage.getItem('tos_checkbox')} on the step 2 of the checkout`) 
-                sessionStorage.setItem('tos_checkbox', '');
+                pushDataLayer(`Avg. ${sessionStorage.getItem('tos_checkbox')} on the step 2 of the checkout`)
+                ClearСlock()
                 window.location.href = e.href;
             })
         })
@@ -143,7 +143,7 @@ let interval = setInterval(() => {
     if (viewed == false && !window.location.href.includes('/cart.php?mode=checkout') && sessionStorage.getItem('tos_checkbox') != null && sessionStorage.getItem('tos_checkbox') != '00:00:00' && sessionStorage.getItem('tos_checkbox') != '') {
         viewed = true
         pushDataLayer(`Avg. ${sessionStorage.getItem('tos_checkbox')} on the step 2 of the checkout`) 
-        sessionStorage.setItem('tos_checkbox', '');
+        ClearСlock()
     }
 })
 
