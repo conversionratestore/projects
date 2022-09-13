@@ -115,7 +115,7 @@ let interval = setInterval(() => {
         APP.abTermsCheckboxVerification()
         StartStop()
     }
-    if (viewed == false && !window.location.href.includes('/cart.php?mode=checkout') && sessionStorage.getItem('tos_checkbox') != null && (sessionStorage.getItem('tos_checkbox') != '00:00:00' || sessionStorage.getItem('tos_checkbox') != '')) {
+    if (viewed == false && !window.location.href.includes('/cart.php?mode=checkout') && sessionStorage.getItem('tos_checkbox') != null && sessionStorage.getItem('tos_checkbox') != '00:00:00' && sessionStorage.getItem('tos_checkbox') != '') {
         viewed = true
         window.dataLayer = window.dataLayer || [];
         dataLayer.push({
