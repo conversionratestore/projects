@@ -1,4 +1,4 @@
-//объявляем переменные
+//init variables
 let base = 60;
 let clocktimer, dateObj, dh, dm, ds, ms;
 let readout = '';
@@ -10,7 +10,7 @@ let h = 1,
   mss = 0,
   init = 0;
 
-//функция для очистки поля
+//to clear the filed
 function ClearСlock() {
   clearTimeout(clocktimer);
   h = 1;
@@ -24,7 +24,7 @@ function ClearСlock() {
   sessionStorage.setItem('tos_checkbox', readout);
 }
 
-//функция для старта секундомера
+//to start stopwatch
 function StartTIME() {
   let cdateObj = new Date();
   let t = (cdateObj.getTime() - dateObj.getTime()) - (s * 1000);
@@ -88,7 +88,7 @@ function StartTIME() {
   clocktimer = setTimeout("StartTIME()", 1);
 }
 
-//Функция запуска и остановки
+//start and stop
 function StartStop() {
   if (init == 0) {
     ClearСlock();
@@ -99,6 +99,16 @@ function StartStop() {
     clearTimeout(clocktimer);
     init = 0;
   }
+}
+//push dataLayer
+function pushDataLayer(action) {
+    console.log(action)
+    window.dataLayer = window.dataLayer || [];
+    dataLayer.push({
+        'event': 'event-to-ga',
+        'eventCategory': 'Exp — Accept TOS checkbox',
+        'eventAction': action
+    });
 }
 
 let viewed = false;
@@ -114,25 +124,20 @@ let interval = setInterval(() => {
         </style>`)
         APP.abTermsCheckboxVerification()
         StartStop()
+
+        document.querySelector('header .header-simple-logo-a').addEventListener('click', () => {
+            pushDataLayer(`Avg. ${sessionStorage.getItem('tos_checkbox')} on the step 2 of the checkout`) 
+            sessionStorage.removeItem("tos_checkbox");
+        })
     }
     if (viewed == false && !window.location.href.includes('/cart.php?mode=checkout') && sessionStorage.getItem('tos_checkbox') != null && sessionStorage.getItem('tos_checkbox') != '00:00:00' && sessionStorage.getItem('tos_checkbox') != '') {
         viewed = true
-        window.dataLayer = window.dataLayer || [];
-        dataLayer.push({
-            'event': 'event-to-ga',
-            'eventCategory': 'Exp — Accept TOS checkbox',
-            'eventAction': `Avg. ${sessionStorage.getItem('tos_checkbox')} on the step 2 of the checkout`
-        });
+        pushDataLayer(`Avg. ${sessionStorage.getItem('tos_checkbox')} on the step 2 of the checkout`) 
         sessionStorage.removeItem("tos_checkbox");
     }
 })
 
-window.dataLayer = window.dataLayer || [];
-dataLayer.push({
-    'event': 'event-to-ga',
-    'eventCategory': 'Exp — Accept TOS checkbox',
-    'eventAction': 'loaded'
-});
+pushDataLayer('loaded')
 
 let isClarify = setInterval(() => {
     if(typeof clarity == 'function') {
