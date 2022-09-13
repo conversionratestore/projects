@@ -125,9 +125,19 @@ let interval = setInterval(() => {
         APP.abTermsCheckboxVerification()
         StartStop()
 
-        document.querySelector('header .header-simple-logo-a').addEventListener('click', () => {
+        document.querySelector('header .header-simple-logo-a').addEventListener('click', (e) => {
+            e.preventDefault()
             pushDataLayer(`Avg. ${sessionStorage.getItem('tos_checkbox')} on the step 2 of the checkout`) 
             sessionStorage.removeItem("tos_checkbox");
+            window.location.href = e.href;
+        })
+        document.querySelectorAll('.cart-section a').forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault()
+                pushDataLayer(`Avg. ${sessionStorage.getItem('tos_checkbox')} on the step 2 of the checkout`) 
+                sessionStorage.removeItem("tos_checkbox");
+                window.location.href = e.href;
+            })
         })
     }
     if (viewed == false && !window.location.href.includes('/cart.php?mode=checkout') && sessionStorage.getItem('tos_checkbox') != null && sessionStorage.getItem('tos_checkbox') != '00:00:00' && sessionStorage.getItem('tos_checkbox') != '') {
