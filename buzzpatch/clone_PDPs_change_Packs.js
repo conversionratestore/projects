@@ -2099,7 +2099,7 @@ const addSelectPacks = () => {
     const packs = currencies[currency].map((pack, index) =>
         `
       <div class="${index === 0 ? 'selected fr_pack ' : ''}pack">
-          <p class="pack_name">${pack[0]} PACKS</p>
+          <p class="pack_name">${pack[0]} ${index === 3 ? 'PACK' : 'PACKS'}</p>
           <p class="each">${pack[1]} Each</p>
       </div>
     `
