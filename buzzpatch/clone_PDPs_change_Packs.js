@@ -860,7 +860,7 @@ const buzzPage = /*html*/`
           <span>Airborn</span>
         </div>
       </div>
-      <hr>
+      <hr><br>
       <div class="product-single__add-to-cart my_btn">
   <button class="btn btn--primary btn--add-to-cart full">
     <span class="btn__text">
@@ -2418,10 +2418,17 @@ const drawPage = () => {
     }, intervalTimeout)
 
     const waitForVideo = setInterval(() => {
-      if (query('div.js-video')) {
+      if (getId('js-video') && getId('vid-modal1')) {
         clearInterval(waitForVideo)
 
-        query('div.js-video').addEventListener('click', () => callEvent('click on video'))
+        $("#vid-modal1").on("show.bs.modal", function () {
+          $("#js-video")[0].play();
+          callEvent('show video', 'video')
+        }),
+          $("#vid-modal1").on("hide.bs.modal", function () {
+            $("#js-video")[0].pause();
+            callEvent('hide video', 'video')
+          })
       }
     }, intervalTimeout)
   }
