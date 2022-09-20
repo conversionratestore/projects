@@ -394,6 +394,14 @@ const style = /*html*/`
             background-size: cover;
             z-index: 1;
         }
+
+        .ingredients.vids .js-video {
+          margin-bottom: 10px;
+        }
+
+        .js-iphone .scientific .card-link {
+          text-transform: none;
+        }
     </style>
 `
 
@@ -933,7 +941,7 @@ const buzzPage = /*html*/`
   <div class="slider">
         <div class="slide">
             <div class="slide_inner">
-                <img class="photo" src="https://cdn.shopify.com/s/files/1/0387/0749/4956/files/138991_999990_affc665f_8efa_4464_9681_1f27324fff9e_290x250_crop_center.jpg?v=1620911426"
+                <img class="photo" loading="lazy" src="https://cdn.shopify.com/s/files/1/0387/0749/4956/files/138991_999990_affc665f_8efa_4464_9681_1f27324fff9e_290x250_crop_center.jpg?v=1620911426"
                     alt="slider img">
                 <div class="info_wrapper">
                     <p class="name">Fadya A.</p>
@@ -956,7 +964,7 @@ const buzzPage = /*html*/`
         </div>
         <div class="slide">
             <div class="slide_inner">
-                <img class="photo" src="https://cdn.shopify.com/s/files/1/0387/0749/4956/files/138991_5195756765228_bb2276e7_9275_49cf_b59d_18115e3c1aef_290x250_crop_center.jpg?v=1620911426"
+                <img class="photo" loading="lazy" src="https://cdn.shopify.com/s/files/1/0387/0749/4956/files/138991_5195756765228_bb2276e7_9275_49cf_b59d_18115e3c1aef_290x250_crop_center.jpg?v=1620911426"
                     alt="slider img">
                 <div class="info_wrapper">
                     <p class="name">J***k</p>
@@ -973,7 +981,7 @@ const buzzPage = /*html*/`
         </div>
         <div class="slide">
             <div class="slide_inner">
-                <img class="photo" src="https://cdn.shopify.com/s/files/1/0387/0749/4956/files/138991_999990_b4f75c07_46e0_4197_9623_1c1c0ffaf91e_290x250_crop_center.jpg?v=1620911426"
+                <img class="photo" loading="lazy" src="https://cdn.shopify.com/s/files/1/0387/0749/4956/files/138991_999990_b4f75c07_46e0_4197_9623_1c1c0ffaf91e_290x250_crop_center.jpg?v=1620911426"
                     alt="slider img">
                 <div class="info_wrapper">
                     <p class="name">Lauren S.</p>
@@ -991,7 +999,7 @@ const buzzPage = /*html*/`
         </div>
         <div class="slide">
             <div class="slide_inner">
-                <img class="photo" src="https://cdn.shopify.com/s/files/1/0387/0749/4956/files/138991_5195756765228_f4327ef7_76ae_4478_a5a4_90a3fea882dd_290x250_crop_center.jpg?v=1620911426"
+                <img class="photo" loading="lazy" src="https://cdn.shopify.com/s/files/1/0387/0749/4956/files/138991_5195756765228_f4327ef7_76ae_4478_a5a4_90a3fea882dd_290x250_crop_center.jpg?v=1620911426"
                     alt="slider img">
                 <div class="info_wrapper">
                     <p class="name">Joanne</p>
@@ -1196,6 +1204,16 @@ const buzzPage = /*html*/`
     </div>
   </div>
 </section>
+<section id="reviews" class="reviews ">
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 text-center "> 
+                <h2 class="js-title   text-dark">TRUSTED CUSTOMER REVIEWS</h2>
+            </div>  
+          </div>
+           
+        </div>
+      </section>
 
 </div>
 
@@ -1302,11 +1320,15 @@ const sleepyPage = /*html*/`
     margin-bottom: 15px;
 }
 
+section.scientific {
+  padding-top: 35px;
+}
+
 .flower_div {
     background-image: url(${imgFolderUrl}flower.svg) !important;
     background-size: cover;
     background-repeat: no-repeat;
-    height: 225px;
+    height: 230px;
     width: 100%;
     margin-top: -15px;
 }
@@ -1315,11 +1337,34 @@ const sleepyPage = /*html*/`
     padding: 0 15px;
     text-align: right;
     font-family: 'Roboto', sans-serif;
-font-weight: 400 !important;
-font-size: 16px !important;
-line-height: 24px !important;
-color: #224797;
-margin: 15px 0 0;
+    font-weight: 400 !important;
+    font-size: 16px !important;
+    line-height: 24px !important;
+    color: #224797;
+    margin: 15px 0 0;
+}
+
+.reviews .js-title {
+  margin-bottom: 0;
+}
+
+.template-product .card {
+  margin-top: 16px !important;
+  border: none !important;
+}
+
+#faqs {
+  margin-top: 60px !important;
+}
+
+.faqs #js-accordion .card-link {
+  padding: 20px 20px 10px 30px !important;
+}
+
+@media screen and (min-width: 385px) {
+  .flower_div {
+    height: 255px;
+  }
 }
 </style>
 <div class="js-mobile wave-bg" style="height: 80px;">
@@ -1752,7 +1797,7 @@ margin: 15px 0 0;
             <div class="slider">
         <div class="slide">
             <div class="slide_inner">
-                <img class="photo" src="https://cdn.shopify.com/s/files/1/0387/0749/4956/files/sleepy-patch-reviews_2_290x250_crop_center.jpg?v=1650872135"
+                <img class="photo" loading="lazy" src="https://cdn.shopify.com/s/files/1/0387/0749/4956/files/sleepy-patch-reviews_2_290x250_crop_center.jpg?v=1650872135"
                     alt="slider img">
                 <div class="info_wrapper">
                     <p class="name">N******</p>
@@ -1767,7 +1812,7 @@ margin: 15px 0 0;
         </div>
         <div class="slide">
             <div class="slide_inner">
-                <img class="photo" src="https://cdn.shopify.com/s/files/1/0387/0749/4956/files/sleepy-patch-reviews_3_290x250_crop_center.jpg?v=1650872135"
+                <img class="photo" loading="lazy" src="https://cdn.shopify.com/s/files/1/0387/0749/4956/files/sleepy-patch-reviews_3_290x250_crop_center.jpg?v=1650872135"
                     alt="slider img">
                 <div class="info_wrapper">
                     <p class="name">J****</p>
@@ -1782,7 +1827,7 @@ margin: 15px 0 0;
         </div>
         <div class="slide">
             <div class="slide_inner">
-                <img class="photo" src="https://cdn.shopify.com/s/files/1/0387/0749/4956/files/sleepy-patch-reviews_1_290x250_crop_center.jpg?v=1650872135"
+                <img class="photo" loading="lazy" src="https://cdn.shopify.com/s/files/1/0387/0749/4956/files/sleepy-patch-reviews_1_290x250_crop_center.jpg?v=1650872135"
                     alt="slider img">
                 <div class="info_wrapper">
                     <p class="name">L****</p>
@@ -1797,7 +1842,7 @@ margin: 15px 0 0;
         </div>
         <div class="slide">
             <div class="slide_inner">
-                <img class="photo" src="https://cdn.shopify.com/s/files/1/0387/0749/4956/files/sleepy-patch-review-4_290x250_crop_center.jpg?v=1650886924"
+                <img class="photo" loading="lazy" src="https://cdn.shopify.com/s/files/1/0387/0749/4956/files/sleepy-patch-review-4_290x250_crop_center.jpg?v=1650886924"
                     alt="slider img">
                 <div class="info_wrapper">
                     <p class="name">J**</p>
@@ -2014,6 +2059,16 @@ margin: 15px 0 0;
             </div>
           </div>
         </section>
+        <section id="reviews" class="reviews ">
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 text-center "> 
+                <h2 class="js-title   text-dark">TRUSTED CUSTOMER REVIEWS</h2>
+            </div>  
+          </div>
+           
+        </div>
+      </section>
     </div>
 `
 
@@ -2068,44 +2123,50 @@ const footer = (footerLogo) => `
 
 /** Functions */
 const addSelectPacks = () => {
-    // 3 packs, 10.66 each, 32.00 price, 51% off, 66.00 reg. price, 34.00 save
-    const currencies = {
-        'GBP': [
-            [3, '£10.66', '£32.00', 51, '£66.00', '£34'],
-            [4, '£9.25', '£37.00', 57, '£88.00', '£51'],
-            [2, '£12.00', '£24.00', 45, '£44.00', '£20'],
-            [1, '£14.00', '£14.00', 36, '£22.00', '£8'],
-        ],
-        'USD': [
-            [3, '$12.00', '$36.00', 51, '$74.97', '$38.97'],
-            [4, '$10.50', '$42.00', 57, '$99.96', '$57.96'],
-            [2, '$13.50', '$27.00', 45, '$49.98', '$22.98'],
-            [1, '$14.99', '$14.99', 40, '$24.99', '$10'],
-        ],
-        'CAD': [
-            [3, '$14.66', '$44.00', 51, '$91.00', '$47'],
-            [4, '$12.75', '$51.00', 58, '$122.00', '$71'],
-            [2, '$16.50', '$33.00', 45, '$61.00', '$28'],
-            [1, '$19.00', '$19.00', 38, '$31.00', '$12'],
-        ]
-    }
+  // 3 packs, 10.66 each, 32.00 price, 51% off, 66.00 reg. price, 34.00 save
+  const currencies = {
+    'GBP': [
+      [3, '£10.66', '£32.00', 51, '£66.00', '£34'],
+      [4, '£9.25', '£37.00', 57, '£88.00', '£51'],
+      [2, '£12.00', '£24.00', 45, '£44.00', '£20'],
+      [1, '£14.00', '£14.00', 36, '£22.00', '£8'],
+    ],
+    'USD': [
+      [3, '$12.00', '$36.00', 51, '$74.97', '$38.97'],
+      [4, '$10.50', '$42.00', 57, '$99.96', '$57.96'],
+      [2, '$13.50', '$27.00', 45, '$49.98', '$22.98'],
+      [1, '$14.99', '$14.99', 40, '$24.99', '$10'],
+    ],
+    'CAD': [
+      [3, '$14.66', '$44.00', 51, '$91.00', '$47'],
+      [4, '$12.75', '$51.00', 58, '$122.00', '$71'],
+      [2, '$16.50', '$33.00', 45, '$61.00', '$28'],
+      [1, '$19.00', '$19.00', 38, '$31.00', '$12'],
+    ],
+    'AUD': [
+      [3, '$15.00', '$45.00', 51, '$93.00', '$48'],
+      [4, '$13.00', '$52.00', 58, '$124.00', '$72'],
+      [2, '$17.00', '$34.00', 45, '$62.00', '$28'],
+      [1, '$19.00', '$19.00', 38, '$31.00', '$12'],
+    ],
+  }
 
-    let currency = document.querySelector('[data-currency]').dataset.currency
+  let currency = document.querySelector('[data-currency]').dataset.currency
 
-    if (currency !== 'USD' || currency !== 'CAD' || currency !== 'GBP') {
-        currency = 'USD'
-    }
+  if (currency !== 'USD' && currency !== 'CAD' && currency !== 'GBP' && currency !== 'AUD') {
+    currency = 'USD'
+  }
 
-    const packs = currencies[currency].map((pack, index) =>
-        `
+  const packs = currencies[currency].map((pack, index) =>
+    `
       <div class="${index === 0 ? 'selected fr_pack ' : ''}pack">
           <p class="pack_name">${pack[0]} ${index === 3 ? 'PACK' : 'PACKS'}</p>
           <p class="each">${pack[1]} Each</p>
       </div>
     `
-    ).join('')
+  ).join('')
 
-    const selectPacks = /*html*/`
+  const selectPacks = /*html*/`
 <div class="add_pack">
 <div class="packs">
     ${packs}
@@ -2124,253 +2185,263 @@ const addSelectPacks = () => {
 </div>
 </div>
 `
-    query('.product-single__meta > div').insertAdjacentHTML('afterend', selectPacks)
-    query('.empty_p').insertAdjacentHTML('afterend', selectPacks)
+  query('.product-single__meta > div').insertAdjacentHTML('afterend', selectPacks)
+  query('.empty_p').insertAdjacentHTML('afterend', selectPacks)
 
-    const waitForPacks = setInterval(() => {
-        if (queryAll('.pack')[7] && queryAll('.my_btn')[4]) {
-            clearInterval(waitForPacks)
+  const waitForPacks = setInterval(() => {
+    if (queryAll('.pack')[7] && queryAll('.my_btn')[4]) {
+      clearInterval(waitForPacks)
 
-            /* select 3 packs by default */
-            queryAll('#ProductSelect-option-0 label')[0].click()
-            queryAll('.add_pack').forEach((wrapper) => {
-                wrapper.querySelector('[data-pack-price]').innerText = currencies[currency][0][2]
-                wrapper.querySelector('[data-pack-sale]').innerText = currencies[currency][0][3]
-                wrapper.querySelector('[data-pack-reg]').innerText = currencies[currency][0][4]
-                wrapper.querySelector('[data-pack-save]').innerText = currencies[currency][0][5]
-            })
+      /* select 3 packs by default */
+      queryAll('#ProductSelect-option-0 label')[0].click()
+      queryAll('.add_pack').forEach((wrapper) => {
+        wrapper.querySelector('[data-pack-price]').innerText = currencies[currency][0][2]
+        wrapper.querySelector('[data-pack-sale]').innerText = currencies[currency][0][3]
+        wrapper.querySelector('[data-pack-reg]').innerText = currencies[currency][0][4]
+        wrapper.querySelector('[data-pack-save]').innerText = currencies[currency][0][5]
+      })
 
-            queryAll('.add_pack').forEach((pack_wrapper) => {
-                pack_wrapper.querySelectorAll('.pack').forEach((pack, index) => {
-                    pack.addEventListener('click', () => {
+      queryAll('.add_pack').forEach((pack_wrapper) => {
+        pack_wrapper.querySelectorAll('.pack').forEach((pack, index) => {
+          pack.addEventListener('click', () => {
 
-                        const packName = pack.querySelector('.pack_name').innerText
-                        const sectionName = pack.closest('section') ? pack.closest('section').className : 'main'
+            const packName = pack.querySelector('.pack_name').innerText
+            const sectionName = pack.closest('section') ? pack.closest('section').className : 'main'
 
-                        callEvent('click on the pack', sectionName + ' section', packName)
+            callEvent('click on the pack', sectionName + ' section', packName)
 
-                        queryAll('.pack').forEach(element => {
-                            element.classList.remove('selected')
-                        });
-
-                        queryAll('.add_pack').forEach((wrapper) => {
-                            wrapper.querySelectorAll('.pack')[index].classList.add('selected')
-
-                            wrapper.querySelector('[data-pack-price]').innerText = currencies[currency][index][2]
-                            wrapper.querySelector('[data-pack-sale]').innerText = currencies[currency][index][3]
-                            wrapper.querySelector('[data-pack-reg]').innerText = currencies[currency][index][4]
-                            wrapper.querySelector('[data-pack-save]').innerText = currencies[currency][index][5]
-                        })
-
-                        // client's btn and my btn have different order and index
-                        let clientIndexBtn
-
-                        switch (index) {
-                            case 0:
-                                clientIndexBtn = 0
-                                break;
-                            case 1:
-                                clientIndexBtn = 3
-                                break;
-                            case 2:
-                                clientIndexBtn = 2
-                                break;
-                            case 3:
-                                clientIndexBtn = 1
-                                break;
-
-                            default:
-                                break;
-                        }
-
-                        queryAll('#ProductSelect-option-0 label')[clientIndexBtn].click()
-                    })
-                });
+            queryAll('.pack').forEach(element => {
+              element.classList.remove('selected')
             });
 
-            const waitForAddBtn = setInterval(() => {
-                if (queryAll('.my_btn')[4]) {
-                    clearInterval(waitForAddBtn)
+            queryAll('.add_pack').forEach((wrapper) => {
+              wrapper.querySelectorAll('.pack')[index].classList.add('selected')
 
-                    queryAll('.my_btn').forEach(btn => {
-                        btn.addEventListener('click', () => {
-                            getId('AddToCart--product-template').click()
+              wrapper.querySelector('[data-pack-price]').innerText = currencies[currency][index][2]
+              wrapper.querySelector('[data-pack-sale]').innerText = currencies[currency][index][3]
+              wrapper.querySelector('[data-pack-reg]').innerText = currencies[currency][index][4]
+              wrapper.querySelector('[data-pack-save]').innerText = currencies[currency][index][5]
+            })
 
-                            let className = btn.closest('section') ? btn.closest('section').classList.value : 'main'
-                            className = className.replace('js-mobile', '').replace('vids', '')
+            // client's btn and my btn have different order and index
+            let clientIndexBtn
 
-                            callEvent('Click on "Add To Cart"', className + ' section')
-                        })
-                    });
-                }
-            }, intervalTimeout)
+            switch (index) {
+              case 0:
+                clientIndexBtn = 0
+                break;
+              case 1:
+                clientIndexBtn = 3
+                break;
+              case 2:
+                clientIndexBtn = 2
+                break;
+              case 3:
+                clientIndexBtn = 1
+                break;
+
+              default:
+                break;
+            }
+
+            queryAll('#ProductSelect-option-0 label')[clientIndexBtn].click()
+          })
+        });
+      });
+
+      const waitForAddBtn = setInterval(() => {
+        if (queryAll('.my_btn')[4]) {
+          clearInterval(waitForAddBtn)
+
+          queryAll('.my_btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+              getId('AddToCart--product-template').click()
+
+              let className = btn.closest('section') ? btn.closest('section').classList.value : 'main'
+              className = className.replace('js-mobile', '').replace('vids', '')
+
+              callEvent('Click on "Add To Cart"', className + ' section')
+            })
+          });
         }
-    }, intervalTimeout)
+      }, intervalTimeout)
+    }
+  }, intervalTimeout)
 }
 
 const sliderInit = () => { // Tiny Slider
-    const scriptCustomStyle = document.createElement("link")
-    scriptCustomStyle.href = "https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.3/tiny-slider.css"
-    scriptCustomStyle.rel = "stylesheet"
-    document.head.appendChild(scriptCustomStyle)
+  const scriptCustomStyle = document.createElement("link")
+  scriptCustomStyle.href = "https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.3/tiny-slider.css"
+  scriptCustomStyle.rel = "stylesheet"
+  document.head.appendChild(scriptCustomStyle)
 
-    const scriptCustom = document.createElement("script")
-    scriptCustom.src = "https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.3/min/tiny-slider.js"
-    scriptCustom.async = false
-    document.head.appendChild(scriptCustom)
+  const scriptCustom = document.createElement("script")
+  scriptCustom.src = "https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.3/min/tiny-slider.js"
+  scriptCustom.async = false
+  document.head.appendChild(scriptCustom)
 
-    const sliderInterval = setInterval(() => {
-        if (typeof tns === 'function' && document.querySelectorAll('.slide')[isSleepy ? 7 : 3]) {
-            clearInterval(sliderInterval)
+  const sliderInterval = setInterval(() => {
+    if (typeof tns === 'function' && document.querySelectorAll('.slide')[isSleepy ? 7 : 3]) {
+      clearInterval(sliderInterval)
 
-            const slider = tns({
-                container: '.slider',
-                items: 1,
-                center: true,
-                speed: 600,
-                mouseDrag: true,
-                swipeAngle: 30,
-                controls: false,
-                nav: true,
-                navPosition: 'bottom',
-                loop: false,
-                autoplay: false,
-                autoplayButton: false,
-                autoplayButtonOutput: false,
-                autoHeight: true
-            })
+      const slider = tns({
+        container: '.slider',
+        items: 1,
+        center: true,
+        speed: 600,
+        mouseDrag: true,
+        swipeAngle: 30,
+        controls: false,
+        nav: true,
+        navPosition: 'bottom',
+        loop: false,
+        autoplay: false,
+        autoplayButton: false,
+        autoplayButtonOutput: false,
+        autoHeight: true
+      })
 
-            // add dataLayer events
-            slider.events.on('touchEnd', () => {
-                callEvent('Swipe', 'Swipe')
-            })
+      // add dataLayer events
+      slider.events.on('touchEnd', () => {
+        callEvent('Swipe', 'Swipe')
+      })
 
-            let waitForBullets = setInterval(() => {
-                if (document.querySelector('.tns-nav')) {
-                    clearInterval(waitForBullets)
+      let waitForBullets = setInterval(() => {
+        if (document.querySelector('.tns-nav')) {
+          clearInterval(waitForBullets)
 
-                    document.querySelector('.tns-nav').addEventListener('click', (e) => {
-                        if (e.target.closest('.tns-nav button')) {
-                            callEvent('Swipe Slider', 'Click on the dot')
-                        }
-                    })
-                }
-            }, intervalTimeout);
+          document.querySelector('.tns-nav').addEventListener('click', (e) => {
+            if (e.target.closest('.tns-nav button')) {
+              callEvent('Swipe Slider', 'Click on the dot')
+            }
+          })
         }
-    }, intervalTimeout)
+      }, intervalTimeout);
+    }
+  }, intervalTimeout)
 }
 
 const callEvent = (eventAction, eventLabel = '', eventValue,) => { // GO Events
-    window.dataLayer = window.dataLayer || []
+  window.dataLayer = window.dataLayer || []
 
-    let patch = 'BuzzPatch' 
+  let patch = 'BuzzPatch'
 
-    if(isSleepy) {
-        patch = 'SleepyPatch'
-    }
+  if (isSleepy) {
+    patch = 'SleepyPatch'
+  }
 
-    let obj = {
-        'event': 'event-to-ga',
-        'eventCategory': 'Exp: PDP like a landing. ' + patch,
-        eventAction,
-        eventLabel
-    }
+  let obj = {
+    'event': 'event-to-ga',
+    'eventCategory': 'Exp: PDP like a landing. ' + patch,
+    eventAction,
+    eventLabel
+  }
 
-    if (eventValue) {
-        obj.eventValue = eventValue
-    }
+  if (eventValue) {
+    obj.eventValue = eventValue
+  }
 
-    dataLayer.push(obj)
+  dataLayer.push(obj)
+
+  console.log(obj);
 }
 
 const drawPage = () => {
-    let logo = 'Logo-NP'
-    let styleHref = "24/assets/buzzpatch-mobile.css?v=177372595770926142701654750565"
-    let logoFooter = 'Buzzpatch-logo_60x.png?v=8811688216828289090'
-    let page = buzzPage
-    let faqPacksIndex = 6
+  let logo = 'Logo-NP'
+  let styleHref = "24/assets/buzzpatch-mobile.css?v=177372595770926142701654750565"
+  let logoFooter = 'Buzzpatch-logo_60x.png?v=8811688216828289090'
+  let page = buzzPage
+  let faqPacksIndex = 6
 
-    if (isSleepy) {
-        logo = 'Logo-NP-sleepy'
-        styleHref = "35/assets/sleepypatch.css?v=70662428162829056821662356646"
-        logoFooter = 'Sleepy_Logo.png?v=1639367203'
-        page = sleepyPage
-        faqPacksIndex = 2
-    }
+  if (isSleepy) {
+    logo = 'Logo-NP-sleepy'
+    styleHref = "35/assets/sleepypatch.css?v=70662428162829056821662356646"
+    logoFooter = 'Sleepy_Logo.png?v=1639367203'
+    page = sleepyPage
+    faqPacksIndex = 2
+  }
 
-    query('.site-header__logo .mobile-logo').insertAdjacentHTML('afterend', `<img src="${imgFolderUrl + logo}.svg" alt="logo">`)
+  query('.site-header__logo .mobile-logo').insertAdjacentHTML('afterend', `<img src="${imgFolderUrl + logo}.svg" alt="logo">`)
 
-    const scriptCustomStyle = document.createElement("link")
-    scriptCustomStyle.href = "//cdn.shopify.com/s/files/1/0387/0749/4956/t/" + styleHref
-    scriptCustomStyle.rel = "stylesheet"
-    scriptCustomStyle.media = "screen"
-    document.head.appendChild(scriptCustomStyle)
+  const scriptCustomStyle = document.createElement("link")
+  scriptCustomStyle.href = "//cdn.shopify.com/s/files/1/0387/0749/4956/t/" + styleHref
+  scriptCustomStyle.rel = "stylesheet"
+  scriptCustomStyle.media = "screen"
+  document.head.appendChild(scriptCustomStyle)
 
-    getId('shopify-section-product-template').insertAdjacentHTML('afterend', page)
-    getId('judgeme_product_reviews').insertAdjacentHTML('afterend', footer(logoFooter))
+  getId('shopify-section-product-template').insertAdjacentHTML('afterend', page)
+  getId('judgeme_product_reviews').insertAdjacentHTML('afterend', footer(logoFooter))
 
-    const waitForFAQ = setInterval(() => {
-        if (queryAll('#faqs .card')[faqPacksIndex]) {
-            clearInterval(waitForFAQ)
+  const waitForFAQ = setInterval(() => {
+    if (queryAll('#faqs .card')[faqPacksIndex]) {
+      clearInterval(waitForFAQ)
 
-            getId('faqs').addEventListener('click', (e) => {
-                if (e.target.closest('.card-link')) {
-                    const faqName = e.target.closest('.card-link').innerText
-                    callEvent('click on the FAQ question', faqName)
-                }
-            })
+      getId('faqs').addEventListener('click', (e) => {
+        if (e.target.closest('.card-link')) {
+          const faqName = e.target.closest('.card-link').innerText
+          callEvent('click on the FAQ question', faqName)
         }
+      })
+    }
+  }, intervalTimeout)
+
+  if (isSleepy) {
+    const waitForEl = setInterval(() => {
+      if (queryAll('#js-accordion-scientific .card-header')[2]) {
+        clearInterval(waitForEl)
+
+        queryAll('#js-accordion-scientific .card-header').forEach(header => {
+          header.addEventListener('click', () => {
+            const headerName = header.querySelector('a').innerText
+
+            callEvent('click on accordion', headerName)
+          })
+        });
+      }
+    }, intervalTimeout)
+  } else {
+    const waitForTooltips = setInterval(() => {
+      if (queryAll('.bp-tooltip')[7]) {
+        clearInterval(waitForTooltips)
+
+        query('.effectiveness .bp-tooltip').addEventListener('click', () => {
+          callEvent('click on the tooltip', 'effectiveness section')
+        })
+
+        query('.bp-comparison').addEventListener('click', (e) => {
+          if (e.target.closest('.bp-tooltip')) {
+            const tooltipName = e.target.closest('p').innerHTML.split('<span')[0].replace(/\s+$/, '')
+            callEvent('click on the tooltip', 'comparison section', tooltipName)
+          }
+        })
+      }
     }, intervalTimeout)
 
-    if (isSleepy) {
-        const waitForEl = setInterval(() => {
-            if (queryAll('#js-accordion-scientific .card-header')[2]) {
-                clearInterval(waitForEl)
+    const waitForVideo = setInterval(() => {
+      if (query('div.js-video')) {
+        clearInterval(waitForVideo)
 
-                queryAll('#js-accordion-scientific .card-header').forEach(header => {
-                    header.addEventListener('click', () => {
-                        const headerName = header.querySelector('a').innerText
-
-                        callEvent('click on accordion', headerName)
-                    })
-                });
-            }
-        }, intervalTimeout)
-    } else {
-        const waitForTooltips = setInterval(() => {
-            if (queryAll('.bp-tooltip')[7]) {
-                clearInterval(waitForTooltips)
-
-                query('.effectiveness .bp-tooltip').addEventListener('click', () => {
-                    callEvent('click on the tooltip', 'effectiveness section')
-                })
-
-                query('.bp-comparison').addEventListener('click', (e) => {
-                    if (e.target.closest('.bp-tooltip')) {
-                        const tooltipName = e.target.closest('p').innerHTML.split('<span')[0].replace(/\s+$/, '')
-                        callEvent('click on the tooltip', 'comparison section', tooltipName)
-                    }
-                })
-            }
-        }, intervalTimeout)
-    }
-
-    const waitForLi = setInterval(() => {
-        if (queryAll('.footer-nav li')[6]) {
-            clearInterval(waitForLi)
-
-            query('.footer-nav').addEventListener('click', (e) => {
-                if (e.target.closest('li')) {
-                    const liName = e.target.closest('li').innerText
-
-                    callEvent('click on the footer list', liName)
-                }
-            })
-        }
+        query('div.js-video').addEventListener('click', () => callEvent('click on video'))
+      }
     }, intervalTimeout)
+  }
 
-    addSelectPacks()
-    sliderInit()
+  const waitForLi = setInterval(() => {
+    if (queryAll('.footer-nav li')[6]) {
+      clearInterval(waitForLi)
+
+      query('.footer-nav').addEventListener('click', (e) => {
+        if (e.target.closest('li')) {
+          const liName = e.target.closest('li').innerText
+
+          callEvent('click on the footer list', liName)
+        }
+      })
+    }
+  }, intervalTimeout)
+
+  addSelectPacks()
+  sliderInit()
 }
 
 /** Run functions and etc. */
@@ -2378,26 +2449,26 @@ document.head.insertAdjacentHTML('beforeend', style)
 
 let isSleepy = false
 if (window.location.pathname.includes('sleepypatch')) {
-    isSleepy = true
+  isSleepy = true
 }
 
 const waitForDom = setInterval(() => {
-    if (
-        (document.readyState === 'interactive' || document.readyState === 'complete')
-        && document.querySelector('[data-currency]').dataset.currency
-    ) {
-        clearInterval(waitForDom)
+  if (
+    (document.readyState === 'interactive' || document.readyState === 'complete')
+    && document.querySelector('[data-currency]').dataset.currency
+  ) {
+    clearInterval(waitForDom)
 
-        drawPage()
-    }
+    drawPage()
+  }
 }, intervalTimeout)
 
 callEvent('loaded')
 
 const record = setInterval(() => { // clarity
-    if (typeof clarity === 'function') {
-        clearInterval(record)
+  if (typeof clarity === 'function') {
+    clearInterval(record)
 
-        clarity('set', `pdp_like_landing`, 'variant_1')
-    }
+    clarity('set', `pdp_like_landing`, 'variant_1')
+  }
 }, intervalTimeout)
