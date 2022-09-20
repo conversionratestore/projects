@@ -941,7 +941,7 @@ const buzzPage = /*html*/`
   <div class="slider">
         <div class="slide">
             <div class="slide_inner">
-                <img class="photo" loading="lazy" src="https://cdn.shopify.com/s/files/1/0387/0749/4956/files/138991_999990_affc665f_8efa_4464_9681_1f27324fff9e_290x250_crop_center.jpg?v=1620911426"
+                <img class="photo" src="https://cdn.shopify.com/s/files/1/0387/0749/4956/files/138991_999990_affc665f_8efa_4464_9681_1f27324fff9e_290x250_crop_center.jpg?v=1620911426"
                     alt="slider img">
                 <div class="info_wrapper">
                     <p class="name">Fadya A.</p>
@@ -964,7 +964,7 @@ const buzzPage = /*html*/`
         </div>
         <div class="slide">
             <div class="slide_inner">
-                <img class="photo" loading="lazy" src="https://cdn.shopify.com/s/files/1/0387/0749/4956/files/138991_5195756765228_bb2276e7_9275_49cf_b59d_18115e3c1aef_290x250_crop_center.jpg?v=1620911426"
+                <img class="photo" src="https://cdn.shopify.com/s/files/1/0387/0749/4956/files/138991_5195756765228_bb2276e7_9275_49cf_b59d_18115e3c1aef_290x250_crop_center.jpg?v=1620911426"
                     alt="slider img">
                 <div class="info_wrapper">
                     <p class="name">J***k</p>
@@ -981,7 +981,7 @@ const buzzPage = /*html*/`
         </div>
         <div class="slide">
             <div class="slide_inner">
-                <img class="photo" loading="lazy" src="https://cdn.shopify.com/s/files/1/0387/0749/4956/files/138991_999990_b4f75c07_46e0_4197_9623_1c1c0ffaf91e_290x250_crop_center.jpg?v=1620911426"
+                <img class="photo" src="https://cdn.shopify.com/s/files/1/0387/0749/4956/files/138991_999990_b4f75c07_46e0_4197_9623_1c1c0ffaf91e_290x250_crop_center.jpg?v=1620911426"
                     alt="slider img">
                 <div class="info_wrapper">
                     <p class="name">Lauren S.</p>
@@ -999,7 +999,7 @@ const buzzPage = /*html*/`
         </div>
         <div class="slide">
             <div class="slide_inner">
-                <img class="photo" loading="lazy" src="https://cdn.shopify.com/s/files/1/0387/0749/4956/files/138991_5195756765228_f4327ef7_76ae_4478_a5a4_90a3fea882dd_290x250_crop_center.jpg?v=1620911426"
+                <img class="photo" src="https://cdn.shopify.com/s/files/1/0387/0749/4956/files/138991_5195756765228_f4327ef7_76ae_4478_a5a4_90a3fea882dd_290x250_crop_center.jpg?v=1620911426"
                     alt="slider img">
                 <div class="info_wrapper">
                     <p class="name">Joanne</p>
@@ -1797,7 +1797,7 @@ section.scientific {
             <div class="slider">
         <div class="slide">
             <div class="slide_inner">
-                <img class="photo" loading="lazy" src="https://cdn.shopify.com/s/files/1/0387/0749/4956/files/sleepy-patch-reviews_2_290x250_crop_center.jpg?v=1650872135"
+                <img class="photo" src="https://cdn.shopify.com/s/files/1/0387/0749/4956/files/sleepy-patch-reviews_2_290x250_crop_center.jpg?v=1650872135"
                     alt="slider img">
                 <div class="info_wrapper">
                     <p class="name">N******</p>
@@ -1812,7 +1812,7 @@ section.scientific {
         </div>
         <div class="slide">
             <div class="slide_inner">
-                <img class="photo" loading="lazy" src="https://cdn.shopify.com/s/files/1/0387/0749/4956/files/sleepy-patch-reviews_3_290x250_crop_center.jpg?v=1650872135"
+                <img class="photo" src="https://cdn.shopify.com/s/files/1/0387/0749/4956/files/sleepy-patch-reviews_3_290x250_crop_center.jpg?v=1650872135"
                     alt="slider img">
                 <div class="info_wrapper">
                     <p class="name">J****</p>
@@ -1827,7 +1827,7 @@ section.scientific {
         </div>
         <div class="slide">
             <div class="slide_inner">
-                <img class="photo" loading="lazy" src="https://cdn.shopify.com/s/files/1/0387/0749/4956/files/sleepy-patch-reviews_1_290x250_crop_center.jpg?v=1650872135"
+                <img class="photo" src="https://cdn.shopify.com/s/files/1/0387/0749/4956/files/sleepy-patch-reviews_1_290x250_crop_center.jpg?v=1650872135"
                     alt="slider img">
                 <div class="info_wrapper">
                     <p class="name">L****</p>
@@ -1842,7 +1842,7 @@ section.scientific {
         </div>
         <div class="slide">
             <div class="slide_inner">
-                <img class="photo" loading="lazy" src="https://cdn.shopify.com/s/files/1/0387/0749/4956/files/sleepy-patch-review-4_290x250_crop_center.jpg?v=1650886924"
+                <img class="photo" src="https://cdn.shopify.com/s/files/1/0387/0749/4956/files/sleepy-patch-review-4_290x250_crop_center.jpg?v=1650886924"
                     alt="slider img">
                 <div class="info_wrapper">
                     <p class="name">J**</p>
