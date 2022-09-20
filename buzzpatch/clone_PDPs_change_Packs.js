@@ -941,7 +941,7 @@ const buzzPage = /*html*/`
   <div class="slider">
         <div class="slide">
             <div class="slide_inner">
-                <img class="photo" src="https://cdn.shopify.com/s/files/1/0387/0749/4956/files/138991_999990_affc665f_8efa_4464_9681_1f27324fff9e_290x250_crop_center.jpg?v=1620911426"
+                <img class="photo" loading="lazy" src="https://cdn.shopify.com/s/files/1/0387/0749/4956/files/138991_999990_affc665f_8efa_4464_9681_1f27324fff9e_290x250_crop_center.jpg?v=1620911426"
                     alt="slider img">
                 <div class="info_wrapper">
                     <p class="name">Fadya A.</p>
@@ -964,7 +964,7 @@ const buzzPage = /*html*/`
         </div>
         <div class="slide">
             <div class="slide_inner">
-                <img class="photo" src="https://cdn.shopify.com/s/files/1/0387/0749/4956/files/138991_5195756765228_bb2276e7_9275_49cf_b59d_18115e3c1aef_290x250_crop_center.jpg?v=1620911426"
+                <img class="photo" loading="lazy" src="https://cdn.shopify.com/s/files/1/0387/0749/4956/files/138991_5195756765228_bb2276e7_9275_49cf_b59d_18115e3c1aef_290x250_crop_center.jpg?v=1620911426"
                     alt="slider img">
                 <div class="info_wrapper">
                     <p class="name">J***k</p>
@@ -981,7 +981,7 @@ const buzzPage = /*html*/`
         </div>
         <div class="slide">
             <div class="slide_inner">
-                <img class="photo" src="https://cdn.shopify.com/s/files/1/0387/0749/4956/files/138991_999990_b4f75c07_46e0_4197_9623_1c1c0ffaf91e_290x250_crop_center.jpg?v=1620911426"
+                <img class="photo" loading="lazy" src="https://cdn.shopify.com/s/files/1/0387/0749/4956/files/138991_999990_b4f75c07_46e0_4197_9623_1c1c0ffaf91e_290x250_crop_center.jpg?v=1620911426"
                     alt="slider img">
                 <div class="info_wrapper">
                     <p class="name">Lauren S.</p>
@@ -999,7 +999,7 @@ const buzzPage = /*html*/`
         </div>
         <div class="slide">
             <div class="slide_inner">
-                <img class="photo" src="https://cdn.shopify.com/s/files/1/0387/0749/4956/files/138991_5195756765228_f4327ef7_76ae_4478_a5a4_90a3fea882dd_290x250_crop_center.jpg?v=1620911426"
+                <img class="photo" loading="lazy" src="https://cdn.shopify.com/s/files/1/0387/0749/4956/files/138991_5195756765228_f4327ef7_76ae_4478_a5a4_90a3fea882dd_290x250_crop_center.jpg?v=1620911426"
                     alt="slider img">
                 <div class="info_wrapper">
                     <p class="name">Joanne</p>
@@ -1786,104 +1786,124 @@ section.scientific {
       </section>
    
   
-  <section id="featured-reviews" class="featured-reviews js-mobile my_featured">
+      <section id="featured-reviews" class="featured-reviews js-mobile my_featured">
         <div class="container">
-          <div class="row">
-            <div class="col-lg-12 col-md-12 col-sm-12 text-center "> 
-                <h2 class="js-title   text-dark">Why people love <br> SleepyPatch</h2>
-            </div>  
-          </div> 
-        </div>
-            <div class="slider">
-        <div class="slide">
-            <div class="slide_inner">
-                <img class="photo" src="https://cdn.shopify.com/s/files/1/0387/0749/4956/files/sleepy-patch-reviews_2_290x250_crop_center.jpg?v=1650872135"
-                    alt="slider img">
-                <div class="info_wrapper">
-                    <p class="name">N******</p>
-                    <p class="date">04/22/2022</p>
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12 text-center ">
+                    <h2 class="js-title   text-dark">Why people love <br> SleepyPatch</h2>
                 </div>
-                <img class="d-block "
-                    src="//cdn.shopify.com/s/files/1/0387/0749/4956/files/reviews.svg?v=9834985037217329759"
-                    alt="stars">
-                <p>These stickers (we use sleepy patch and mosquito repellent) are incredible! We had our kids being bitten multiple times a night to nothing at all with one of these stickers!! Sleepy patch stickers, my daughter usually comes out 100,000 times before she falls asleep. First night with one of these stickers and she did not come out once. I cannot recommend enough! </p>
-                <img class="d-block" src="https://cdn.shopify.com/s/files/1/0387/0749/4956/files/vertified_au.svg?v=1650873342" alt=" ">
             </div>
         </div>
-        <div class="slide">
-            <div class="slide_inner">
-                <img class="photo" src="https://cdn.shopify.com/s/files/1/0387/0749/4956/files/sleepy-patch-reviews_3_290x250_crop_center.jpg?v=1650872135"
-                    alt="slider img">
-                <div class="info_wrapper">
-                    <p class="name">J****</p>
-                    <p class="date">04/05/2022</p>
+        <div class="slider">
+            <div class="slide">
+                <div class="slide_inner">
+                    <img class="photo" loading="lazy"
+                        src="https://cdn.shopify.com/s/files/1/0387/0749/4956/files/sleepy-patch-reviews_2_290x250_crop_center.jpg?v=1650872135"
+                        alt="slider img">
+                    <div class="info_wrapper">
+                        <p class="name">N******</p>
+                        <p class="date">04/22/2022</p>
+                    </div>
+                    <img class="d-block "
+                        src="//cdn.shopify.com/s/files/1/0387/0749/4956/files/reviews.svg?v=9834985037217329759"
+                        alt="stars">
+                    <p>These stickers (we use sleepy patch and mosquito repellent) are incredible! We had our kids being
+                        bitten multiple times a night to nothing at all with one of these stickers!! Sleepy patch
+                        stickers, my daughter usually comes out 100,000 times before she falls asleep. First night with
+                        one of these stickers and she did not come out once. I cannot recommend enough! </p>
+                    <img class="d-block"
+                        src="https://cdn.shopify.com/s/files/1/0387/0749/4956/files/vertified_au.svg?v=1650873342"
+                        alt=" ">
                 </div>
-                <img class="d-block "
-                    src="//cdn.shopify.com/s/files/1/0387/0749/4956/files/reviews.svg?v=9834985037217329759"
-                    alt="stars">
+            </div>
+            <div class="slide">
+                <div class="slide_inner">
+                    <img class="photo" loading="lazy"
+                        src="https://cdn.shopify.com/s/files/1/0387/0749/4956/files/sleepy-patch-reviews_3_290x250_crop_center.jpg?v=1650872135"
+                        alt="slider img">
+                    <div class="info_wrapper">
+                        <p class="name">J****</p>
+                        <p class="date">04/05/2022</p>
+                    </div>
+                    <img class="d-block "
+                        src="//cdn.shopify.com/s/files/1/0387/0749/4956/files/reviews.svg?v=9834985037217329759"
+                        alt="stars">
                     <p>My baby sleeps like a charm. I will for sure buy them again.</p>
-                <img class="d-block" src="https://cdn.shopify.com/s/files/1/0387/0749/4956/files/vertified_au.svg?v=1650873342" alt=" ">
-            </div>
-        </div>
-        <div class="slide">
-            <div class="slide_inner">
-                <img class="photo" src="https://cdn.shopify.com/s/files/1/0387/0749/4956/files/sleepy-patch-reviews_1_290x250_crop_center.jpg?v=1650872135"
-                    alt="slider img">
-                <div class="info_wrapper">
-                    <p class="name">L****</p>
-                    <p class="date">03/31/2022</p>
+                    <img class="d-block"
+                        src="https://cdn.shopify.com/s/files/1/0387/0749/4956/files/vertified_au.svg?v=1650873342"
+                        alt=" ">
                 </div>
-                <img class="d-block "
-                    src="//cdn.shopify.com/s/files/1/0387/0749/4956/files/reviews.svg?v=9834985037217329759"
-                    alt="stars">
-                    <p>I’ve been using these every night on my child and it’s a part of our night routine. She’s been falling asleep a lot faster than before and actually stays asleep.</p>
-                <img class="d-block" src="https://cdn.shopify.com/s/files/1/0387/0749/4956/files/vertified_us.svg?v=1650873536" alt=" ">
             </div>
-        </div>
-        <div class="slide">
-            <div class="slide_inner">
-                <img class="photo" src="https://cdn.shopify.com/s/files/1/0387/0749/4956/files/sleepy-patch-review-4_290x250_crop_center.jpg?v=1650886924"
-                    alt="slider img">
-                <div class="info_wrapper">
-                    <p class="name">J**</p>
-                    <p class="date">03/20/2022</p>
+            <div class="slide">
+                <div class="slide_inner">
+                    <img class="photo" loading="lazy"
+                        src="https://cdn.shopify.com/s/files/1/0387/0749/4956/files/sleepy-patch-reviews_1_290x250_crop_center.jpg?v=1650872135"
+                        alt="slider img">
+                    <div class="info_wrapper">
+                        <p class="name">L****</p>
+                        <p class="date">03/31/2022</p>
+                    </div>
+                    <img class="d-block "
+                        src="//cdn.shopify.com/s/files/1/0387/0749/4956/files/reviews.svg?v=9834985037217329759"
+                        alt="stars">
+                    <p>I’ve been using these every night on my child and it’s a part of our night routine. She’s been
+                        falling asleep a lot faster than before and actually stays asleep.</p>
+                    <img class="d-block"
+                        src="https://cdn.shopify.com/s/files/1/0387/0749/4956/files/vertified_us.svg?v=1650873536"
+                        alt=" ">
                 </div>
-                <img class="d-block "
-                    src="//cdn.shopify.com/s/files/1/0387/0749/4956/files/reviews.svg?v=9834985037217329759"
-                    alt="stars">
-                    <p>My son has been a good sleeper but once he started teething, he wasn’t sleeping as soundly anymore. Once I started with the SleepyPatches, he seems to be less fussy at bedtime and relaxes much better allowing her to fall asleep and stay asleep.</p>
-                    <img class="d-block" src="https://cdn.shopify.com/s/files/1/0387/0749/4956/files/vertified_us.svg?v=1650873536" alt=" ">
             </div>
-        </div>
-        <div class="slide">
-            <div class="slide_inner">
-                <div class="info_wrapper">
-                    <p class="name">T****</p>
-                    <p class="date">03/15/2022</p>
+            <div class="slide">
+                <div class="slide_inner">
+                    <img class="photo" loading="lazy"
+                        src="https://cdn.shopify.com/s/files/1/0387/0749/4956/files/sleepy-patch-review-4_290x250_crop_center.jpg?v=1650886924"
+                        alt="slider img">
+                    <div class="info_wrapper">
+                        <p class="name">J**</p>
+                        <p class="date">03/20/2022</p>
+                    </div>
+                    <img class="d-block "
+                        src="//cdn.shopify.com/s/files/1/0387/0749/4956/files/reviews.svg?v=9834985037217329759"
+                        alt="stars">
+                    <p>My son has been a good sleeper but once he started teething, he wasn’t sleeping as soundly
+                        anymore. Once I started with the SleepyPatches, he seems to be less fussy at bedtime and relaxes
+                        much better allowing her to fall asleep and stay asleep.</p>
+                    <img class="d-block"
+                        src="https://cdn.shopify.com/s/files/1/0387/0749/4956/files/vertified_us.svg?v=1650873536"
+                        alt=" ">
                 </div>
-                <img class="d-block "
-                    src="//cdn.shopify.com/s/files/1/0387/0749/4956/files/reviews.svg?v=9834985037217329759"
-                    alt="stars">
-                    <p>It seems to really work! I can tell a difference in how my child sleeps when I use the SleepyPatches. She seems much more peaceful.</p>
-                    <img class="d-block" src="https://cdn.shopify.com/s/files/1/0387/0749/4956/files/vertified.svg?v=1620910794" alt=" ">
             </div>
-        </div>
-        <div class="slide">
-            <div class="slide_inner">
-                <div class="info_wrapper">
-                    <p class="name">S*****</p>
-                    <p class="date">03/5/2022</p>
+            <div class="slide">
+                <div class="slide_inner">
+                    <div class="info_wrapper">
+                        <p class="name">T****</p>
+                        <p class="date">03/15/2022</p>
+                    </div>
+                    <img class="d-block "
+                        src="//cdn.shopify.com/s/files/1/0387/0749/4956/files/reviews.svg?v=9834985037217329759"
+                        alt="stars">
+                    <p>It seems to really work! I can tell a difference in how my child sleeps when I use the
+                        SleepyPatches. She seems much more peaceful.</p>
+                    <img class="d-block"
+                        src="https://cdn.shopify.com/s/files/1/0387/0749/4956/files/vertified.svg?v=1620910794" alt=" ">
                 </div>
-                <img class="d-block "
-                    src="//cdn.shopify.com/s/files/1/0387/0749/4956/files/reviews.svg?v=9834985037217329759"
-                    alt="stars">
-                    <p>My daughter had a hard time falling asleep during naps and at bedtime. SleepyPatches have been my best friend since I had seen this on Naturalpatch.com when I needed to restock on BuzzPatch.</p>
-                    <img class="d-block" src="https://cdn.shopify.com/s/files/1/0387/0749/4956/files/vertified.svg?v=1620910794" alt=" ">
             </div>
-        </div>
-    <div>
-      </section>
-  
+            <div class="slide">
+                <div class="slide_inner">
+                    <div class="info_wrapper">
+                        <p class="name">S*****</p>
+                        <p class="date">03/5/2022</p>
+                    </div>
+                    <img class="d-block "
+                        src="//cdn.shopify.com/s/files/1/0387/0749/4956/files/reviews.svg?v=9834985037217329759"
+                        alt="stars">
+                    <p>My daughter had a hard time falling asleep during naps and at bedtime. SleepyPatches have been my
+                        best friend since I had seen this on Naturalpatch.com when I needed to restock on BuzzPatch.</p>
+                    <img class="d-block"
+                        src="https://cdn.shopify.com/s/files/1/0387/0749/4956/files/vertified.svg?v=1620910794" alt=" ">
+                </div>
+            </div>
+    </section>
       <section id="ingredients" class="ingredients vids"> 
           <div class="container js-heading js-mobile"> 
             
