@@ -1368,7 +1368,7 @@ section.scientific {
 }
 </style>
 <div class="js-mobile wave-bg" style="height: 80px;">
-          <img src="https://cdn.shopify.com/s/files/1/0387/0749/4956/files/wave.svg?v=1619943742" width="100%" class=" ls-is-cached lazyloaded" >
+          <img src="https://cdn.shopify.com/s/files/1/0387/0749/4956/files/wave.svg?v=1619943742" width="100%" class=" ls-is-cached lazyloaded" loading="lazy">
       </div>
 <div class="js-main js-iphone sleepy_page">
       <section class="js-mobile  transparent" id="flowers">
