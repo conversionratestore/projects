@@ -1,11 +1,11 @@
 function pushDataLayer(action, label = '') {
     window.dataLayer = window.dataLayer || []
-        dataLayer.push({
-            'event': 'event-to-ga',
-            'eventCategory': 'Exp: Problem based layout',
-            'eventAction': action,
-            'eventLabel': label
-        })
+    dataLayer.push({
+        'event': 'event-to-ga',
+        'eventCategory': 'Exp: Problem based layout',
+        'eventAction': action,
+        'eventLabel': label
+    })
 }
 
 const style = `
@@ -197,40 +197,41 @@ While also avoiding sensitivity triggering balms, supplements, and diffusers.
     </section>
 `
 
-document.body.insertAdjacentHTML('afterbegin', style)
-document.querySelectorAll('.effectiveness')[0].insertAdjacentHTML('beforebegin', block)
+let start = setInterval(function () {
+    if(document.querySelector('.effectiveness')) {
+        clearInterval(start)
+        document.body.insertAdjacentHTML('afterbegin', style)
+        document.querySelectorAll('.effectiveness')[0].insertAdjacentHTML('beforebegin', block)
 
 
-$('.problem_block .problem').click(function () {
-    const label = $(this).attr('data-problem')
-    if($(this).hasClass('active')) {
-        $(this).removeClass('active').next().slideUp()
-        pushDataLayer('Close block', label)
-    } else {
-        // $('.problem_block .problem.active').removeClass('active').next().slideUp()
-        $(this).addClass('active').next().slideDown()
-        // let t = this
-        // t.scrollIntoView({
-        //     behavior: "smooth",
-        //     block: "center"
-        // })
+        $('.problem_block .problem').click(function () {
+            const label = $(this).attr('data-problem')
+            if($(this).hasClass('active')) {
+                $(this).removeClass('active').next().slideUp()
+                pushDataLayer('Close block', label)
+            } else {
+                $(this).addClass('active').next().slideDown()
 
-        const headerOffset = 100;
-        const elementPosition = this.getBoundingClientRect().top;
-        const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
-        window.scrollTo({
-            top: offsetPosition,
-            behavior: "smooth",
-        });
-        pushDataLayer('Open block', label)
+                const headerOffset = 100;
+                const elementPosition = this.getBoundingClientRect().top;
+                const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+                window.scrollTo({
+                    top: offsetPosition,
+                    behavior: "smooth",
+                });
+                pushDataLayer('Open block', label)
+            }
+        })
+
+
+        $('.answer a').click(function () {
+            const label = $(this).closest('.answer').prev().attr('data-problem')
+            pushDataLayer('Click on button Get Sleepypatch', label)
+        })
     }
-})
+}, 100)
 
 
-$('.answer a').click(function () {
-    const label = $(this).closest('.answer').prev().attr('data-problem')
-    pushDataLayer('Click on button Get Sleepypatch', label)
-})
 
 pushDataLayer('loaded')
 
@@ -240,4 +241,3 @@ let record = setInterval(function () {
         clarity("set", "Problem based layout", "sleepypatch");
     }
 }, 100)
-
