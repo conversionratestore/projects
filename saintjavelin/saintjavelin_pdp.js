@@ -480,7 +480,39 @@ let startFunk = setInterval(() => {
     .add_to_cart{
       padding: 10px 25px;
     }
+    /*bar */
+    .bar{
+      width: 100%;
+      height: 28px;
+      background: rgb(31 80 139 / 10%);
+      position: relative;
+      margin-bottom: 24px;
+    }
+    .bar span.count_donate::before{
+      position: absolute;
+      content: '$100,000';
+      right: -6px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-weight: 700;
+      font-size: 14px;
+      line-height: 24px;
+      color: #3F3F3F;    
+    }
+    .bar span.count_donate{
+      display: block;
+      position: relative;
+      width: 67px;
+      height: 28px;
+      background: #FAD41A;
+    }
+    .content_popup .bar{
+      margin: 4px 0 16px;
+    }
     @media (max-width: 768px) {
+      .bar{
+        margin-bottom: 16px;
+      }
       .backdrop_modal .container_popup{
         max-width: 358px;
       }
@@ -639,7 +671,9 @@ let startFunk = setInterval(() => {
         <ul class="background_wrap">
           <li>
             <p class="goal_text">Fundraising goal by the end of October 2022: <strong>$1 million</strong></p>
-            <div class="bar"></div>
+            <div class="bar">
+              <span class="count_donate"></span>
+            </div>
             <p><a class="link_text" href="#">Buy this product</a> to <b>donate</b> <span class="donate_value">$</span><span class="donate_price">12.8</span> to support Ukraine</p>
           </li>
         </ul>
@@ -674,6 +708,9 @@ let startFunk = setInterval(() => {
               Fundraising goal by the end of October 2022: <br />
               <strong>$1 million</strong>
             </p>
+          </div>
+          <div class="bar">
+            <span class="count_donate"></span>
           </div>
           <button class="by_it_now_btn">BUY IT NOW</button>
           <ul class="main_popup_list">
@@ -1110,6 +1147,16 @@ let startFunk = setInterval(() => {
       setTimeout(() => {
         document.querySelector(".content_popup").remove()
       }, 1000)
+    })
+
+    document.querySelector(".backdrop_modal").addEventListener("click", (e) => {
+      if (e.target.matches(".backdrop_modal")) {
+        document.querySelector(".backdrop_modal").classList.add("is_hidden")
+        document.body.style.overflow = "auto"
+        setTimeout(() => {
+          document.querySelector(".content_popup").remove()
+        }, 1000)
+      }
     })
 
     getPrice(price)
