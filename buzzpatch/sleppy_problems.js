@@ -201,7 +201,7 @@ let start = setInterval(function () {
     if(document.querySelector('.effectiveness')) {
         clearInterval(start)
         document.body.insertAdjacentHTML('afterbegin', style)
-        document.querySelectorAll('.effectiveness')[0].insertAdjacentHTML('beforebegin', block)
+        document.querySelectorAll('.scientific')[0].insertAdjacentHTML('beforebegin', block)
 
 
         $('.problem_block .problem').click(function () {
