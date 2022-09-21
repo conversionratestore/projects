@@ -2495,6 +2495,10 @@ const record = setInterval(() => { // clarity
   if (typeof clarity === 'function') {
     clearInterval(record)
 
-    clarity('set', `pdp_like_landing`, 'variant_1')
+    if (isSleepy) {
+      clarity('set', `pdp_like_landing`, 'SleepyPatch')
+    } else {
+      clarity('set', `pdp_like_landing`, 'BuzzPatch')
+    }
   }
 }, intervalTimeout)
