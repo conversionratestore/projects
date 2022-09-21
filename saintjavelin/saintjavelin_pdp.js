@@ -2,6 +2,12 @@ let startFunk = setInterval(() => {
     if (document.body && document.querySelector(".product-single__meta") != null) {
         clearInterval(startFunk)
 
+        document.querySelectorAll('input[type=radio]').forEach(item => {
+            if(item.value === 'default') {
+                item.click()
+            }
+        })
+
         /* other variables  */
         const imgFolderUrl = "https://conversionratestore.github.io/projects/saintjavelin/img/"
 
