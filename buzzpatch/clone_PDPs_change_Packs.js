@@ -2212,8 +2212,6 @@ const addSelectPacks = () => {
     if (queryAll('.pack')[7] && queryAll('.my_btn')[4]) {
       clearInterval(waitForPacks)
 
-      /* select 3 packs by default */
-      queryAll('#ProductSelect-option-0 label')[0].click()
       queryAll('.add_pack').forEach((wrapper) => {
         wrapper.querySelector('[data-pack-price]').innerText = currencies[currency][0][2]
         wrapper.querySelector('[data-pack-sale]').innerText = currencies[currency][0][3]
@@ -2265,6 +2263,7 @@ const addSelectPacks = () => {
             }
 
             queryAll('#ProductSelect-option-0 label')[clientIndexBtn].click()
+            queryAll('#ProductSelect-option-0 input')[clientIndexBtn].click()
           })
         });
       });
