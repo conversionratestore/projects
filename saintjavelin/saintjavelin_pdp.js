@@ -1328,5 +1328,17 @@ let startFunk = setInterval(() => {
                 }
             })
         })
+
+        document.querySelectorAll('.variant-input-wrap[name="Color"] label:not(.disabled)').forEach(item => {
+            item.addEventListener('click', function () {
+                let color = this.previousElementSibling.value.toLowerCase().replaceAll(' ', '-')
+
+                document.querySelectorAll('.product__photos a').forEach(a => {
+                    if(a.getAttribute('href').includes(color)) {
+                        a.click()
+                    }
+                })
+            })
+        })
     }
 }, 100)
