@@ -2226,7 +2226,7 @@ const addSelectPacks = () => {
             const packName = pack.querySelector('.pack_name').innerText
             const sectionName = pack.closest('section') ? pack.closest('section').className : 'main'
 
-            callEvent('click on the pack', sectionName + ' section', packName)
+            callEvent('click on the pack - ' + packName, sectionName + ' section')
 
             queryAll('.pack').forEach(element => {
               element.classList.remove('selected')
@@ -2340,7 +2340,7 @@ const sliderInit = () => { // Tiny Slider
   }, intervalTimeout)
 }
 
-const callEvent = (eventAction, eventLabel = '', eventValue,) => { // GO Events
+const callEvent = (eventAction, eventLabel = '') => { // GO Events
   window.dataLayer = window.dataLayer || []
 
   let patch = 'BuzzPatch'
@@ -2354,10 +2354,6 @@ const callEvent = (eventAction, eventLabel = '', eventValue,) => { // GO Events
     'eventCategory': 'Exp: PDP like a landing. ' + patch,
     eventAction,
     eventLabel
-  }
-
-  if (eventValue) {
-    obj.eventValue = eventValue
   }
 
   dataLayer.push(obj)
@@ -2430,7 +2426,7 @@ const drawPage = () => {
         query('.bp-comparison').addEventListener('click', (e) => {
           if (e.target.closest('.bp-tooltip')) {
             const tooltipName = e.target.closest('p').innerHTML.split('<span')[0].replace(/\s+$/, '')
-            callEvent('click on the tooltip', 'comparison section', tooltipName)
+            callEvent('click on the tooltip - ' + tooltipName, 'comparison section')
           }
         })
       }
