@@ -1054,7 +1054,10 @@ if (window.location.pathname === "/mc/") {
       onClickSeeMore()
       getEndsDays()
       timerVideo()
-      scrollToVideo()
+      if (document.querySelectorAll("[data-watch-free]")) {
+        console.log(`>>>>>>>>>>>>scrollToVideo`)
+        scrollToVideo()
+      }
 
       //getEndsDays
       function getEndsDays() {
@@ -1233,15 +1236,16 @@ if (window.location.pathname === "/mc/") {
       // scrollToVideo
       function scrollToVideo() {
         if (document.querySelectorAll("[data-watch-free]")) {
+          console.log(`scrollToVideo`)
           let btn = document.querySelectorAll("[data-watch-free]"),
             videoOverlay = document.querySelector(".flowplayer.is-paused .fp-ui"),
             fullScreenBtn = document.querySelectorAll(".flowplayer .fp-header .fp-icon")[1]
 
-          fullScreenBtn.addEventListener("click", () => {
+          fullScreenBtn?.addEventListener("click", () => {
             pushDataLayer("Expand video to full screen")
           })
 
-          btn.forEach((el) => {
+          btn?.forEach((el) => {
             el.addEventListener("click", () => {
               console.log(`click`)
 
