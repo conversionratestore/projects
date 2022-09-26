@@ -1237,11 +1237,13 @@ if (window.location.pathname === "/mc/") {
             videoOverlay = document.querySelector(".flowplayer.is-paused .fp-ui"),
             fullScreenBtn = document.querySelectorAll(".flowplayer .fp-header .fp-icon")[1]
 
-          fullScreenBtn.addEventListener("click", () => {
-            pushDataLayer("Expand video to full screen")
-          })
+          if (fullScreenBtn) {
+            fullScreenBtn.addEventListener("click", () => {
+              pushDataLayer("Expand video to full screen")
+            })
+          }
 
-          btn.forEach((el) => {
+          btn?.forEach((el) => {
             el.addEventListener("click", () => {
               console.log(`click`)
 
