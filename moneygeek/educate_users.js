@@ -518,7 +518,7 @@ const waitForSelects = setInterval(() => {
 
                     setTimeout(() => {
                         document.querySelector('.my_text h3').scrollIntoView();
-                    }, 250);
+                    }, 500);
                 }
 
                 callEvent(select.name + ' dropdown opened ' + select.value + ' selected')
