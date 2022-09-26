@@ -1237,7 +1237,7 @@ if (window.location.pathname === "/mc/") {
         document.querySelectorAll(".flowplayer .fp-header .fp-icon")[1]?.addEventListener("click", () => {
           pushDataLayer("Expand video to full screen")
         })
-      }, 1100)
+      }, 1500)
 
       // scrollToVideo
       function scrollToVideo() {
