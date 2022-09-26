@@ -339,7 +339,7 @@ const calculator = /*html*/`
             <p>Normally, businesses will appreciate loyalty and offer their long-term customers the best rates. However, the car insurance industry generally does the opposite. Insurance companies tend to charge existing customers higher fees so so they can afford to create discounted deals that are used to attract new customers. In fact, a recent report by Expertise shows that 62% of car owners will stick with the same deal instead of looking for a better one.</p>
             <p>That’s why we recommend you shop for a better car insurance deal every 12 months.</p>
             <p>Another reason is that carriers will often change the criteria used for their underwriting, allowing you to potentially qualify for better rates than you were offered in the past.</p>
-            <h3>We can help you determine how much you can save on your new car insurance</h3>
+            <h3 id="my_anchor">We can help you determine how much you can save on your new car insurance</h3>
         </div>
         <div class="calc">
             <div class="left_part">
@@ -514,7 +514,11 @@ const waitForSelects = setInterval(() => {
             select.addEventListener('change', (e) => {
                 if (index !== 3) {
                     simulateSelectEvents(index, e.target.selectedIndex);
-                    document.querySelector('.my_text h3').scrollIntoView();
+
+                    // document.querySelector('.my_text h3').scrollIntoView();
+                    
+                    location.href = "#";
+                    location.href = "#my_anchor";
                 }
 
                 callEvent('change select - ' + select.name, 'option - ' + select.value)
