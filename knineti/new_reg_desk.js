@@ -1233,7 +1233,7 @@ if (window.location.pathname === "/mc/") {
         document.querySelectorAll(".flowplayer .fp-header .fp-icon")[1]?.addEventListener("click", () => {
           pushDataLayer("Expand video to full screen")
         })
-      }, 2600)
+      }, 3300)
 
       document.querySelectorAll("[data-watch-free]")?.forEach((el) => {
         el.addEventListener("click", () => {
