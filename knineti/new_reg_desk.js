@@ -1230,9 +1230,11 @@ if (window.location.pathname === "/mc/") {
       }
 
       setTimeout(() => {
-        document.querySelectorAll(".flowplayer .fp-header .fp-icon")[1]?.addEventListener("click", () => {
-          pushDataLayer("Expand video to full screen")
-        })
+        if (document.querySelectorAll(".flowplayer .fp-header .fp-icon")[1]) {
+          document.querySelectorAll(".flowplayer .fp-header .fp-icon")[1].addEventListener("click", () => {
+            pushDataLayer("Expand video to full screen")
+          })
+        }
       }, 3300)
 
       document.querySelectorAll("[data-watch-free]")?.forEach((el) => {
