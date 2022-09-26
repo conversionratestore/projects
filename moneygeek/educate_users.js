@@ -33,7 +33,7 @@ const style = /*html*/`
                 border: 1px solid #D3D4D6;
                 box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.26);
                 border-radius: 10px;
-                padding: 48px;
+                padding: 40px;
             }
             .calc h4,
             .calc h5 {
