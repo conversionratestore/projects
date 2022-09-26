@@ -458,7 +458,7 @@ const waitForDOM = setInterval(() => {
                 document.querySelector('.calc .e1ssirya0').addEventListener('click', (e) => {
                     if (e.target.matches('.link')) {
                         e.preventDefault()
-                        callEvent('click on the company - ' + e.target.textContent)
+                        callEvent(e.target.textContent + ' company clicked')
                     }
                 })
             }
@@ -468,7 +468,7 @@ const waitForDOM = setInterval(() => {
             if (document.querySelector('.my_text a')) {
                 clearInterval(waitForLink)
 
-                document.querySelector('.my_text a').addEventListener('click', () => callEvent('click on the link - Forbes'))
+                document.querySelector('.my_text a').addEventListener('click', () => callEvent('Forbes link clicked'))
             }
         }, intervalTimeout)
 
@@ -483,7 +483,7 @@ const waitForDOM = setInterval(() => {
                         document.querySelector(`.${priceBlock.dataset.price}`).click()
                         document.querySelector('.selected_pack').classList.remove('selected_pack')
                         priceBlock.classList.add('selected_pack')
-                        callEvent('click on the price - ' + priceBlock.className)
+                        callEvent(priceBlock.className + ' rates clicked')
                     }
                 })
             }
@@ -495,7 +495,7 @@ const waitForDOM = setInterval(() => {
 
                 document.querySelector('.my_btn').addEventListener('click', () => {
                     document.querySelector('.css-15hckgf').click()
-                    callEvent('click on the button')
+                    callEvent('See how much you can save CTA clicked')
                 })
             }
         }, intervalTimeout)
@@ -508,7 +508,7 @@ const waitForSelects = setInterval(() => {
 
         document.querySelectorAll('.select_wrapper select').forEach((select, index) => {
             select.addEventListener('click', () => {
-                callEvent('click on the select' + select.name)
+                callEvent(select.name + ' dropdown opened')
             })
 
             select.addEventListener('change', (e) => {
@@ -521,7 +521,7 @@ const waitForSelects = setInterval(() => {
                     location.href = "#my_anchor";
                 }
 
-                callEvent('change select - ' + select.name, 'option - ' + select.value)
+                callEvent(select.name +  'dropdown opened' + select.value +  ' selected' )
             })
         })
     }
