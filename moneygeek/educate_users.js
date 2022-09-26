@@ -204,7 +204,7 @@ const style = /*html*/`
 
             @media screen and (max-width: 767px) {
                 .calc {
-                    padding: 32px 16px;
+                    padding: 32px 12px;
                     flex-direction: column;
                 }
 
@@ -518,7 +518,7 @@ const waitForSelects = setInterval(() => {
 
                     setTimeout(() => {
                         document.querySelector('.my_text h3').scrollIntoView();
-                    }, 100);
+                    }, 250);
                 }
 
                 callEvent(select.name + ' dropdown opened ' + select.value + ' selected')
