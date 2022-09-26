@@ -252,6 +252,8 @@ const drawPrice = () => {
 }
 
 const changePriceAndCompanies = () => {
+    console.log('func');
+
     if (!document.querySelector('.e1ssirya3 .e1ssirya0')) {
         document.querySelector('.no_data').hidden = false
         document.querySelector('.calc .e1ssirya0').hidden = true
@@ -292,6 +294,8 @@ const runObserver = () => {
                 if (mutation.removedNodes[0]?.matches('.e1ssirya0')) {
                     changePriceAndCompanies()
                 }
+            } else {
+                mutation.target.matches('.e1ssirya1')
             }
         }
     }
@@ -503,7 +507,7 @@ const waitForDOM = setInterval(() => {
 }, intervalTimeout)
 
 const waitForSelects = setInterval(() => {
-    if (document.querySelectorAll('.select_wrapper select')[3]) {
+    if (document.querySelectorAll('.select_wrapper select')[3] && document.querySelector('.my_text h3')) {
         clearInterval(waitForSelects)
 
         document.querySelectorAll('.select_wrapper select').forEach((select, index) => {
@@ -515,13 +519,10 @@ const waitForSelects = setInterval(() => {
                 if (index !== 3) {
                     simulateSelectEvents(index, e.target.selectedIndex);
 
-                    // document.querySelector('.my_text h3').scrollIntoView();
-                    
-                    location.href = "#";
-                    location.href = "#my_anchor";
+                    document.querySelector('.my_text h3').scrollIntoView();
                 }
 
-                callEvent(select.name +  ' dropdown opened' + select.value +  ' selected' )
+                callEvent(select.name + ' dropdown opened ' + select.value + ' selected')
             })
         })
     }
