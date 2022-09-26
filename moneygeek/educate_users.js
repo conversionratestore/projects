@@ -521,7 +521,7 @@ const waitForSelects = setInterval(() => {
                     location.href = "#my_anchor";
                 }
 
-                callEvent(select.name +  'dropdown opened' + select.value +  ' selected' )
+                callEvent(select.name +  ' dropdown opened' + select.value +  ' selected' )
             })
         })
     }
