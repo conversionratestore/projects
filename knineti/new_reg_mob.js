@@ -1054,10 +1054,6 @@ if (window.location.pathname === "/mc/") {
       onClickSeeMore()
       getEndsDays()
       timerVideo()
-      if (document.querySelectorAll("[data-watch-free]")) {
-        console.log(`>>>>>>>>>>>>scrollToVideo`)
-        scrollToVideo()
-      }
 
       //getEndsDays
       function getEndsDays() {
@@ -1239,37 +1235,39 @@ if (window.location.pathname === "/mc/") {
         }, 1000)
       }
 
+      document.querySelectorAll("[data-watch-free]")?.forEach((el) => {
+        el.addEventListener("click", () => {
+          scrollToVideo(el)
+        })
+      })
+
       // scrollToVideo
-      function scrollToVideo() {
-        if (document.querySelectorAll("[data-watch-free]")) {
-          console.log(`scrollToVideo`)
-          let btn = document.querySelectorAll("[data-watch-free]")
-          // videoOverlay = document.querySelector(".flowplayer.is-paused .fp-ui"),
-          // fullScreenBtn = document.querySelectorAll(".flowplayer .fp-header .fp-icon")[1]
+      function scrollToVideo(el) {
+        console.log(`scrollToVideo`)
+        pushDataLayer(`Watch Free Workshop ${el.getAttribute("data-watch-free")} clicked`)
 
-          btn?.forEach((el) => {
-            el.addEventListener("click", () => {
-              console.log(`click`)
+        if (document.querySelector(".flowplayer.is-paused .fp-ui")) {
+          if (innerWidth <= 768) {
+            document.querySelectorAll(".flowplayer .fp-header .fp-icon")[1].click()
+          } else {
+            document.querySelector(".flowplayer.is-paused .fp-ui").scrollIntoView({ block: "center", behavior: "smooth" })
+          }
 
-              pushDataLayer(`Watch Free Workshop ${el.getAttribute("data-watch-free")} clicked`)
+          if (!document.querySelector("video")) {
+            document.querySelector(".flowplayer.is-paused .fp-ui").click()
+          } else {
+            if (document.querySelector("video").paused) {
+              document.querySelector(".flowplayer.is-paused .fp-ui").click()
+            }
+          }
+        }
 
-              if (document.querySelector(".flowplayer.is-paused .fp-ui")) {
-                if (innerWidth <= 768) {
-                  document.querySelectorAll(".flowplayer .fp-header .fp-icon")[1].click()
-                } else {
-                  document.querySelector(".flowplayer.is-paused .fp-ui").scrollIntoView({ block: "center", behavior: "smooth" })
-                }
-
-                if (!document.querySelector("video")) {
-                  document.querySelector(".flowplayer.is-paused .fp-ui").click()
-                } else {
-                  if (document.querySelector("video").paused) {
-                    document.querySelector(".flowplayer.is-paused .fp-ui").click()
-                  }
-                }
-              }
-            })
-          })
+        if (document.querySelector("video")) {
+          if (innerWidth <= 768) {
+            document.querySelectorAll(".flowplayer .fp-header .fp-icon")[1].click()
+          } else {
+            document.querySelector("video").scrollIntoView({ block: "center", behavior: "smooth" })
+          }
         }
       }
 
