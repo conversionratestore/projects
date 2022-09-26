@@ -1231,19 +1231,21 @@ if (window.location.pathname === "/mc/") {
             }, 1000)
           }
         }, 100)
+
+        setTimeout(() => {
+          document.querySelectorAll(".flowplayer .fp-header .fp-icon")[1]?.addEventListener("click", () => {
+            pushDataLayer("Expand video to full screen")
+          })
+        }, 1000)
       }
 
       // scrollToVideo
       function scrollToVideo() {
         if (document.querySelectorAll("[data-watch-free]")) {
           console.log(`scrollToVideo`)
-          let btn = document.querySelectorAll("[data-watch-free]"),
-            videoOverlay = document.querySelector(".flowplayer.is-paused .fp-ui"),
-            fullScreenBtn = document.querySelectorAll(".flowplayer .fp-header .fp-icon")[1]
-
-          fullScreenBtn?.addEventListener("click", () => {
-            pushDataLayer("Expand video to full screen")
-          })
+          let btn = document.querySelectorAll("[data-watch-free]")
+          // videoOverlay = document.querySelector(".flowplayer.is-paused .fp-ui"),
+          // fullScreenBtn = document.querySelectorAll(".flowplayer .fp-header .fp-icon")[1]
 
           btn?.forEach((el) => {
             el.addEventListener("click", () => {
@@ -1251,18 +1253,18 @@ if (window.location.pathname === "/mc/") {
 
               pushDataLayer(`Watch Free Workshop ${el.getAttribute("data-watch-free")} clicked`)
 
-              if (videoOverlay) {
+              if (document.querySelector(".flowplayer.is-paused .fp-ui")) {
                 if (innerWidth <= 768) {
-                  fullScreenBtn.click()
+                  document.querySelectorAll(".flowplayer .fp-header .fp-icon")[1].click()
                 } else {
-                  videoOverlay.scrollIntoView({ block: "center", behavior: "smooth" })
+                  document.querySelector(".flowplayer.is-paused .fp-ui").scrollIntoView({ block: "center", behavior: "smooth" })
                 }
 
                 if (!document.querySelector("video")) {
-                  videoOverlay.click()
+                  document.querySelector(".flowplayer.is-paused .fp-ui").click()
                 } else {
                   if (document.querySelector("video").paused) {
-                    videoOverlay.click()
+                    document.querySelector(".flowplayer.is-paused .fp-ui").click()
                   }
                 }
               }
