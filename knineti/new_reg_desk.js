@@ -1237,7 +1237,7 @@ if (window.location.pathname === "/mc/") {
         document.querySelectorAll(".flowplayer .fp-header .fp-icon")[1]?.addEventListener("click", () => {
           pushDataLayer("Expand video to full screen")
         })
-      }, 1000)
+      }, 1100)
 
       // scrollToVideo
       function scrollToVideo() {
@@ -1255,7 +1255,7 @@ if (window.location.pathname === "/mc/") {
 
               if (document.querySelector(".flowplayer.is-paused .fp-ui")) {
                 if (innerWidth <= 768) {
-                  fullScreenBtn.click()
+                  document.querySelectorAll(".flowplayer .fp-header .fp-icon")[1].click()
                 } else {
                   document.querySelector(".flowplayer.is-paused .fp-ui").scrollIntoView({ block: "center", behavior: "smooth" })
                 }
