@@ -1308,6 +1308,7 @@ if (window.location.pathname === "/mc/") {
 
       pushDataLayer("loaded")
       clarity("set", `new_reg_fw_flow_${eventVar}`, "variant_1")
+      document.querySelector(".exp")?.remove()
     }
   })
 }
