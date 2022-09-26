@@ -1237,12 +1237,12 @@ if (window.location.pathname === "/mc/") {
 
       document.querySelectorAll("[data-watch-free]")?.forEach((el) => {
         el.addEventListener("click", () => {
-          scrollToVideo()
+          scrollToVideo(el)
         })
       })
 
       // scrollToVideo
-      function scrollToVideo() {
+      function scrollToVideo(el) {
         console.log(`scrollToVideo`)
         pushDataLayer(`Watch Free Workshop ${el.getAttribute("data-watch-free")} clicked`)
 
