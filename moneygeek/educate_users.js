@@ -22,6 +22,7 @@ const style = /*html*/`
                 font-size: 28px;
                 line-height: 34px;
                 color: #526EFF;
+                margin-bottom: 20px;
             }
 
             .calc {
