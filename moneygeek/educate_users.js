@@ -131,7 +131,7 @@ const style = /*html*/`
 
             .calc .css-15hckgf {
                 font-size: 14px;
-                padding: 0;
+                padding: 0 5px;
             }
 
             .graph {
@@ -204,7 +204,7 @@ const style = /*html*/`
 
             @media screen and (max-width: 767px) {
                 .calc {
-                    padding: 32px 20px;
+                    padding: 32px 16px;
                     flex-direction: column;
                 }
 
@@ -252,8 +252,6 @@ const drawPrice = () => {
 }
 
 const changePriceAndCompanies = () => {
-    console.log('func');
-
     if (!document.querySelector('.e1ssirya3 .e1ssirya0')) {
         document.querySelector('.no_data').hidden = false
         document.querySelector('.calc .e1ssirya0').hidden = true
@@ -282,20 +280,19 @@ const runObserver = () => {
 
     const callback = (mutations) => {
         for (let mutation of mutations) {
-            if (mutation.target.matches('.e1ssirya0')) {
+            if (
+                mutation.target.matches('.e1ssirya1')
+                || mutation.target.matches('.e1ssirya0')
+            ) {
                 changePriceAndCompanies()
-            }
-            else if (mutation.target.matches('span.text-transition_placeholder')) {
-                // setTimeout(() => {
-                changePriceAndCompanies()
-                // }, 500);
-            }
-            else if (mutation.target.matches('.e1ssirya3')) {
-                if (mutation.removedNodes[0]?.matches('.e1ssirya0')) {
+                console.log('1');
+            } else {
+                for (let node of mutation.removedNodes) {
+                    if (!(node instanceof HTMLElement)) continue
+
+                    console.log('2');
                     changePriceAndCompanies()
                 }
-            } else {
-                mutation.target.matches('.e1ssirya1')
             }
         }
     }
@@ -520,10 +517,8 @@ const waitForSelects = setInterval(() => {
                     simulateSelectEvents(index, e.target.selectedIndex);
 
                     setTimeout(() => {
-                        document.querySelector('.my_text h3').scrollIntoView();    
-                    }, 2000);
-
-                    
+                        document.querySelector('.my_text h3').scrollIntoView();
+                    }, 100);
                 }
 
                 callEvent(select.name + ' dropdown opened ' + select.value + ' selected')
