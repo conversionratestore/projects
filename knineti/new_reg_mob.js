@@ -1227,13 +1227,15 @@ if (window.location.pathname === "/mc/") {
             }, 1000)
           }
         }, 100)
+      }
 
-        setTimeout(() => {
-          document.querySelectorAll(".flowplayer .fp-header .fp-icon")[1]?.addEventListener("click", () => {
+      setTimeout(() => {
+        if (document.querySelectorAll(".flowplayer .fp-header .fp-icon")[1]) {
+          document.querySelectorAll(".flowplayer .fp-header .fp-icon")[1].addEventListener("click", () => {
             pushDataLayer("Expand video to full screen")
           })
-        }, 3300)
-      }
+        }
+      }, 3300)
 
       document.querySelectorAll("[data-watch-free]")?.forEach((el) => {
         el.addEventListener("click", () => {
