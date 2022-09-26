@@ -153,21 +153,32 @@ const style = /*html*/`
                 border-top-left-radius: 3px;
                 border-top-right-radius: 3px;
                 cursor: pointer;
+                background: #EBEBEB;
             }
             .graph > div.low {
-                height: 70px;
-                background: #EBF6D9;
+                height: 70px;               
                 border-color: #A3D052;
             }
+            .graph > div.low.selected_pack {
+                background: #EBF6D9;
+            }
             .graph > div.average {
-                height: 78px;
-                background: #EBEBEB;
+                height: 78px;                
                 border-color: #F8D56E;
+            }
+            .graph > div.average.selected_pack {
+                background: #FFF6DE;                
+            }
+            .graph > div.average p.small {
+                font-size: 14px;
             }
             .graph > div.high {
                 height: 118px;
                 background: #EBEBEB;
                 border-color: #E98676;
+            }
+            .graph > div.high.selected_pack {
+                background: #FEE6E3;                
             }
             .graph > div p {
                 margin: 0;
@@ -178,6 +189,7 @@ const style = /*html*/`
                 font-weight: bold;
                 color: #555555;
                 margin-bottom: 4px;
+                transition: opacity 0.5s linear;
             }
             .graph > div p:last-child {
                 font-weight: 400;
@@ -231,7 +243,7 @@ const drawPrice = () => {
 
         document.querySelectorAll(`.calc .graph > div p:first-child`)[index].innerText = ''
 
-        document.querySelectorAll(`.${element[0]} .text-transition_inner`).forEach(symbol => {
+        document.querySelectorAll(`.${element[0]} .text-transition_placeholder`).forEach(symbol => {
             price = price + symbol.textContent
         });
 
@@ -240,46 +252,46 @@ const drawPrice = () => {
 }
 
 const changePriceAndCompanies = () => {
-    setTimeout(() => {
-        if (!document.querySelector('.e1ssirya3 .e1ssirya0')) {
-            document.querySelector('.no_data').hidden = false
-            document.querySelector('.calc .e1ssirya0').hidden = true
-            document.querySelector('.companies_sub').hidden = true
-        } else {
-            document.querySelector('.no_data').hidden = true
-            document.querySelector('.companies_sub').hidden = false
-            document.querySelector('.calc .e1ssirya0').replaceWith(document.querySelector('.e1ssirya0').cloneNode(true)) // copy companies table
-            document.querySelector('.calc .e1ssirya0').hidden = false
-        }
+    if (!document.querySelector('.e1ssirya3 .e1ssirya0')) {
+        document.querySelector('.no_data').hidden = false
+        document.querySelector('.calc .e1ssirya0').hidden = true
+        document.querySelector('.companies_sub').hidden = true
+    } else {
+        document.querySelector('.no_data').hidden = true
+        document.querySelector('.companies_sub').hidden = false
+        document.querySelector('.calc .e1ssirya0').replaceWith(document.querySelector('.e1ssirya0').cloneNode(true)) // copy companies table
+        document.querySelector('.calc .e1ssirya0').hidden = false
+    }
 
-        document.querySelectorAll('.select_wrapper select:not(select#my_insurance)').forEach((select, index) => { // copy select's values
-            select.value = document.querySelectorAll('.css-1uccc91-singleValue')[index].innerText
-        });
+    document.querySelectorAll('.select_wrapper select:not(select#my_insurance)').forEach((select, index) => { // copy select's values
+        select.value = document.querySelectorAll('.css-1uccc91-singleValue')[index].innerText
+    });
 
-        drawPrice()
-    }, 1000);
+    drawPrice()
 }
 
 const runObserver = () => {
-    const target = document.querySelector('.e1ssirya6');
+    const target = document.querySelector('.e1ssirya3');
     const config = {
         childList: true,
         subtree: true,
-        attributes: true,
+        // attributes: true,
     };
 
     const callback = (mutations) => {
         for (let mutation of mutations) {
-            if (
-                mutation.target.matches('.e1ssirya1')
-                || mutation.target.matches('.e1ssirya0')
-            ) {
+            if (mutation.target.matches('.e1ssirya0')) {
                 changePriceAndCompanies()
             }
-
-            for (let node of mutation.removedNodes) {
-                if (!(node instanceof HTMLElement)) continue
+            else if (mutation.target.matches('span.text-transition_placeholder')) {
+                // setTimeout(() => {
                 changePriceAndCompanies()
+                // }, 500);
+            }
+            else if (mutation.target.matches('.e1ssirya3')) {
+                if (mutation.removedNodes[0]?.matches('.e1ssirya0')) {
+                    changePriceAndCompanies()
+                }
             }
         }
     }
@@ -380,7 +392,7 @@ const calculator = /*html*/`
                 <h5>Average Annual Auto Insurance Rates</h5>
                 <p class="txt">Click the section of the wheel in your price range to see options.</p>
                 <div class="graph">
-                    <div class="low" data-price="low-end">
+                    <div class="low selected_pack" data-price="low-end">
                         <p>$457</p>
                         <p>low end</p>
                     </div>
@@ -469,6 +481,8 @@ const waitForDOM = setInterval(() => {
                         const priceBlock = e.target.closest('.graph > div')
 
                         document.querySelector(`.${priceBlock.dataset.price}`).click()
+                        document.querySelector('.selected_pack').classList.remove('selected_pack')
+                        priceBlock.classList.add('selected_pack')
                         callEvent('click on the price - ' + priceBlock.className)
                     }
                 })
