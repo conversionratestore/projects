@@ -204,7 +204,7 @@ const style = /*html*/`
 
             @media screen and (max-width: 767px) {
                 .calc {
-                    padding: 32px 12px;
+                    padding: 32px 13px;
                     flex-direction: column;
                 }
 
@@ -214,6 +214,10 @@ const style = /*html*/`
 
                 .middle_line {
                     display: none;
+                }
+
+                .my_btn {
+                    font-size: 13px !important;
                 }
             }
         </style>
