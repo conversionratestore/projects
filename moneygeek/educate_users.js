@@ -114,7 +114,7 @@ const style = /*html*/`
                 justify-content: space-between;
             }
             .two_selects .select_wrapper {
-                width: 47%;
+                width: 48%;
             }
 
             .right_part .txt {
