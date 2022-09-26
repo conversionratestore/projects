@@ -1249,21 +1249,24 @@ if (window.location.pathname === "/mc/") {
 
           btn?.forEach((el) => {
             el.addEventListener("click", () => {
-              console.log(`click`)
-
               pushDataLayer(`Watch Free Workshop ${el.getAttribute("data-watch-free")} clicked`)
 
               if (document.querySelector(".flowplayer.is-paused .fp-ui")) {
+                console.log(`>>>>>>>>>>>>>click`)
+
                 if (innerWidth <= 768) {
                   document.querySelectorAll(".flowplayer .fp-header .fp-icon")[1].click()
                 } else {
+                  console.log(`scroll`)
                   document.querySelector(".flowplayer.is-paused .fp-ui").scrollIntoView({ block: "center", behavior: "smooth" })
                 }
 
                 if (!document.querySelector("video")) {
+                  console.log(`NOvideo`)
                   document.querySelector(".flowplayer.is-paused .fp-ui").click()
                 } else {
                   if (document.querySelector("video").paused) {
+                    console.log(`videoPaused`)
                     document.querySelector(".flowplayer.is-paused .fp-ui").click()
                   }
                 }
