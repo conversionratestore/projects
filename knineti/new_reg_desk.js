@@ -1233,7 +1233,7 @@ if (window.location.pathname === "/mc/") {
         document.querySelectorAll(".flowplayer .fp-header .fp-icon")[1]?.addEventListener("click", () => {
           pushDataLayer("Expand video to full screen")
         })
-      }, 1500)
+      }, 2600)
 
       document.querySelectorAll("[data-watch-free]")?.forEach((el) => {
         el.addEventListener("click", () => {
@@ -1247,23 +1247,26 @@ if (window.location.pathname === "/mc/") {
         pushDataLayer(`Watch Free Workshop ${el.getAttribute("data-watch-free")} clicked`)
 
         if (document.querySelector(".flowplayer.is-paused .fp-ui")) {
-          console.log(`>>>>>>>>>>>>>click`)
-
           if (innerWidth <= 768) {
             document.querySelectorAll(".flowplayer .fp-header .fp-icon")[1].click()
           } else {
-            console.log(`scroll`)
             document.querySelector(".flowplayer.is-paused .fp-ui").scrollIntoView({ block: "center", behavior: "smooth" })
           }
 
           if (!document.querySelector("video")) {
-            console.log(`NOvideo`)
             document.querySelector(".flowplayer.is-paused .fp-ui").click()
           } else {
             if (document.querySelector("video").paused) {
-              console.log(`videoPaused`)
               document.querySelector(".flowplayer.is-paused .fp-ui").click()
             }
+          }
+        }
+
+        if (document.querySelector("video")) {
+          if (innerWidth <= 768) {
+            document.querySelectorAll(".flowplayer .fp-header .fp-icon")[1].click()
+          } else {
+            document.querySelector("video").scrollIntoView({ block: "center", behavior: "smooth" })
           }
         }
       }
