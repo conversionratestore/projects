@@ -107,7 +107,8 @@ if (window.location.pathname === "/mc/") {
         body.override .site-inner {
             padding-bottom: 0;
         }
-        .count_sec > .container,
+        .count_sec > .container:nth-child(1),
+        .count_sec > .container:nth-child(2),
         .banner_txt .enroll_btn_txt,
         #myHeaderr .top_menu_box{
             display: none !important;
