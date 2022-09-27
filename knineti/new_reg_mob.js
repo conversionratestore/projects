@@ -1250,16 +1250,21 @@ if (window.location.pathname === "/mc/") {
         pushDataLayer(`Watch Free Workshop ${el.getAttribute("data-watch-free")} clicked`)
 
         if (document.querySelector(".flowplayer.is-paused .fp-ui")) {
-          if (innerWidth <= 768) {
-            document.querySelector(".flowplayer .fp-header .fp-fullscreen").click()
-          } else {
-            document.querySelector(".flowplayer.is-paused .fp-ui").scrollIntoView({ block: "center", behavior: "smooth" })
-          }
-
           if (!document.querySelector("video")) {
+            if (innerWidth <= 768) {
+              document.querySelector(".flowplayer .fp-header .fp-fullscreen").click()
+            } else {
+              document.querySelector(".flowplayer.is-paused .fp-ui").scrollIntoView({ block: "center", behavior: "smooth" })
+            }
+
             document.querySelector(".flowplayer.is-paused .fp-ui").click()
           } else {
             if (document.querySelector("video").paused) {
+              if (innerWidth <= 768) {
+                document.querySelector(".flowplayer .fp-header .fp-fullscreen").click()
+              } else {
+                document.querySelector(".flowplayer.is-paused .fp-ui").scrollIntoView({ block: "center", behavior: "smooth" })
+              }
               document.querySelector(".flowplayer.is-paused .fp-ui").click()
             }
           }
