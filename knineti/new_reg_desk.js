@@ -524,6 +524,7 @@ if (window.location.pathname === "/mc/") {
             line-height: 150%;
             text-align: center;
             color: #173775 !important;
+            max-width: 988px;
         }
         body .dog_bad_behavior > p .dogs_name,
         body .dog_bad_behavior > p b{
@@ -1306,7 +1307,7 @@ if (window.location.pathname === "/mc/") {
             pushDataLayer(`'${el.querySelector("a").textContent}' in footer clicked`)
           })
         })
-        document.querySelectorAll(".Breed-Specific .enroll_now_main .button-blue-large.grab_butn.enroll_now_btn")?.forEach((el, idx) => {
+        document.querySelectorAll(".enroll_now_main .button-blue-large.grab_butn.enroll_now_btn")?.forEach((el, idx) => {
           el.addEventListener("click", (i) => {
             pushDataLayer(`Enroll now ${idx + 1} clicked`)
           })
