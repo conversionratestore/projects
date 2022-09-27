@@ -1231,8 +1231,8 @@ if (window.location.pathname === "/mc/") {
       }
 
       setTimeout(() => {
-        if (document.querySelectorAll(".flowplayer .fp-header .fp-icon")[1]) {
-          document.querySelectorAll(".flowplayer .fp-header .fp-icon")[1].addEventListener("click", () => {
+        if (document.querySelector(".flowplayer .fp-header .fp-fullscreen")) {
+          document.querySelector(".flowplayer .fp-header .fp-fullscreen").addEventListener("click", () => {
             pushDataLayer("Expand video to full screen")
           })
         }
@@ -1251,7 +1251,7 @@ if (window.location.pathname === "/mc/") {
 
         if (document.querySelector(".flowplayer.is-paused .fp-ui")) {
           if (innerWidth <= 768) {
-            document.querySelectorAll(".flowplayer .fp-header .fp-icon")[1].click()
+            document.querySelector(".flowplayer .fp-header .fp-fullscreen").click()
           } else {
             document.querySelector(".flowplayer.is-paused .fp-ui").scrollIntoView({ block: "center", behavior: "smooth" })
           }
@@ -1267,7 +1267,7 @@ if (window.location.pathname === "/mc/") {
 
         if (document.querySelector("video")) {
           if (innerWidth <= 768) {
-            document.querySelectorAll(".flowplayer .fp-header .fp-icon")[1].click()
+            document.querySelector(".flowplayer .fp-header .fp-fullscreen").click()
           } else {
             document.querySelector("video").scrollIntoView({ block: "center", behavior: "smooth" })
           }
