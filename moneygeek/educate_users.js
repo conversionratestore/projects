@@ -199,9 +199,9 @@ const style = /*html*/`
             .my_btn2 {
                 margin-top: 32px;
                 white-space: normal !important;
-                height: auto;
+                height: auto !important;
                 min-height: 2.5rem;
-                font-size: 14px;
+                font-size: 14px !important;
                 padding: 8px;
             }
 
