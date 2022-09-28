@@ -526,7 +526,7 @@ const waitForDOM = setInterval(() => {
         }, intervalTimeout)
 
         const waitForBtn = setInterval(() => {
-            if (document.querySelector('.my_btn2')) {
+            if (document.querySelector('.my_btn2') && document.querySelector('.my_btn2')) {
                 clearInterval(waitForBtn)
 
                 document.querySelector('.my_btn2').addEventListener('click', () => {
