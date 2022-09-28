@@ -77,6 +77,7 @@ const style = /*html*/`
                 line-height: 26px;
                 color: #333333;
                 transition: all 100ms ease 0s;
+                padding-right: 30px;
                 /* for Firefox */
                 -moz-appearance: none;
                 /* for Chrome */
