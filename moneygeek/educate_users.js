@@ -179,12 +179,11 @@ const style = /*html*/`
                 margin: 0;
             }
             .graph > div p:first-child {
-                font-size: 20px;
+                font-size: 19px;
                 line-height: 20px;
                 font-weight: bold;
                 color: #555555;
                 margin-bottom: 4px;
-                transition: opacity 0.5s linear;
             }
             .graph > div p:last-child {
                 font-weight: 400;
@@ -218,6 +217,10 @@ const style = /*html*/`
 
                 .middle_line {
                     display: none;
+                }
+
+                .graph > div p:first-child {
+                    font-size: 18px;
                 }
             }
         </style>
