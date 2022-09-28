@@ -33,7 +33,7 @@ const style = /*html*/`
                 border: 1px solid #D3D4D6;
                 box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.26);
                 border-radius: 10px;
-                padding: 40px;
+                padding: 48px;
             }
             .calc h4,
             .calc h5 {
@@ -129,11 +129,6 @@ const style = /*html*/`
                 margin: 0;
             }
 
-            .calc .css-15hckgf {
-                font-size: 14px;
-                padding: 0 5px;
-            }
-
             .graph {
                 display: flex;
                 flex-direction: row;
@@ -202,9 +197,18 @@ const style = /*html*/`
                 display: none;
             }
 
+            .my_btn2 {
+                margin-top: 32px;
+                white-space: normal !important;
+                height: auto;
+                min-height: 2.5rem;
+                font-size: 14px;
+                padding: 8px;
+            }
+
             @media screen and (max-width: 767px) {
                 .calc {
-                    padding: 32px 13px;
+                    padding: 32px 20px;
                     flex-direction: column;
                 }
 
@@ -215,16 +219,11 @@ const style = /*html*/`
                 .middle_line {
                     display: none;
                 }
-
-                .my_btn {
-                    font-size: 13px !important;
-                }
             }
         </style>
     `
 const intervalTimeout = 200
 
-/** Functions */
 const options = {
     'states': [
         'Alabama', 'Alaska', 'Arizona', 'Arkansas', 'California', 'Colorado', 'Connecticut', 'District of Columbia', 'Delaware', 'Florida', 'Georgia', 'Hawaii', 'Idaho', 'Illinois', 'Indiana', 'Iowa', 'Kansas', 'Kentucky', 'Louisiana', 'Maine', 'Maryland', 'Massachusetts', 'Michigan', 'Minnesota', 'Mississippi', 'Missouri', 'Montana', 'Nebraska', 'Nevada', 'New Hampshire', 'New Jersey', 'New Mexico', 'New York', 'North Carolina', 'North Dakota', 'Ohio', 'Oklahoma', 'Oregon', 'Pennsylvania', 'Rhode Island', 'South Carolina', 'South Dakota', 'Tennessee', 'Texas', 'Utah', 'Vermont', 'Virginia', 'Washington', 'West Virginia', 'Wisconsin', 'Wyoming'
@@ -233,9 +232,45 @@ const options = {
         '$400-$500', '$500-$600', '$600-$700', '$700-$800', '$800-$900', '$900-$1000', '$1000-$1100', '$1100-$1200', '$1200-$1300', 'more than $1300'
     ]
 }
-const returnOptions = (arr, selected) => arr.map(item => `<option value="${item}" ${item === selected ? 'selected' : ''}>${item}</option>`).join('')
+/** Functions */
+const addOptions = (arr, selected) => arr.map(item => `<option value="${item}" ${item === selected ? 'selected' : ''}>${item}</option>`).join('')
 
-const drawPrice = () => {
+const changeCompaniesAndPrice = () => {
+    /* change companies */
+    if (!document.querySelector('.e1ssirya3 .e1ssirya0')) {
+        document.querySelector('.no_data').hidden = false
+        document.querySelector('.calc .e1ssirya0').hidden = true
+        document.querySelector('.companies_sub').hidden = true
+    } else {
+        document.querySelector('.no_data').hidden = true
+        document.querySelector('.companies_sub').hidden = false
+        document.querySelector('.calc .e1ssirya0').replaceWith(document.querySelector('.e1ssirya0').cloneNode(true)) // copy companies table
+        document.querySelector('.calc .e1ssirya0').hidden = false
+    }
+
+    for (let i = 0; i < 4; i++) { // copy values from client's calc to my calc
+        if (i !== 1) {
+            let mySelectIndex
+
+            switch (i) {
+                case 0:
+                    mySelectIndex = 0
+                    break;
+                case 2:
+                    mySelectIndex = 1
+                    break;
+                case 3:
+                    mySelectIndex = 2
+                    break;
+                default:
+                    break;
+            }
+
+            document.querySelectorAll('.select_wrapper select')[mySelectIndex].value = document.querySelectorAll('.css-1uccc91-singleValue')[i].innerText
+        }
+    }
+
+    /* change price */
     const elements = [
         ['low-end'],
         ['average'],
@@ -255,31 +290,11 @@ const drawPrice = () => {
     });
 }
 
-const changePriceAndCompanies = () => {
-    if (!document.querySelector('.e1ssirya3 .e1ssirya0')) {
-        document.querySelector('.no_data').hidden = false
-        document.querySelector('.calc .e1ssirya0').hidden = true
-        document.querySelector('.companies_sub').hidden = true
-    } else {
-        document.querySelector('.no_data').hidden = true
-        document.querySelector('.companies_sub').hidden = false
-        document.querySelector('.calc .e1ssirya0').replaceWith(document.querySelector('.e1ssirya0').cloneNode(true)) // copy companies table
-        document.querySelector('.calc .e1ssirya0').hidden = false
-    }
-
-    document.querySelectorAll('.select_wrapper select:not(select#my_insurance)').forEach((select, index) => { // copy select's values
-        select.value = document.querySelectorAll('.css-1uccc91-singleValue')[index].innerText
-    });
-
-    drawPrice()
-}
-
 const runObserver = () => {
     const target = document.querySelector('.e1ssirya3');
     const config = {
         childList: true,
-        subtree: true,
-        // attributes: true,
+        subtree: true
     };
 
     const callback = (mutations) => {
@@ -288,14 +303,11 @@ const runObserver = () => {
                 mutation.target.matches('.e1ssirya1')
                 || mutation.target.matches('.e1ssirya0')
             ) {
-                changePriceAndCompanies()
-                console.log('1');
+                changeCompaniesAndPrice()
             } else {
                 for (let node of mutation.removedNodes) {
                     if (!(node instanceof HTMLElement)) continue
-
-                    console.log('2');
-                    changePriceAndCompanies()
+                    changeCompaniesAndPrice()
                 }
             }
         }
@@ -307,6 +319,21 @@ const runObserver = () => {
 
 const simulateSelectEvents = (selectIndex, optionIndex) => {
     const selectEvents = ['mousedown', 'focusin'];
+
+    switch (selectIndex) {
+        case 0:
+            selectIndex = 0
+            break;
+        case 1:
+            selectIndex = 2
+            break;
+        case 2:
+            selectIndex = 3
+            break;
+        default:
+            break;
+    }
+
     const select = document.querySelectorAll('.css-2b097c-container input')[selectIndex]
 
     selectEvents.forEach(eventType =>
@@ -353,7 +380,7 @@ const calculator = /*html*/`
                     <label for="state">State</label>
                     <div class="wrap">
                         <select name="state" id="my_state">
-                            ${returnOptions(options.states, 'Alaska')}
+                            ${addOptions(options.states, 'Alaska')}
                         </select>                    
                     </div>                    
                 </div>
@@ -376,8 +403,8 @@ const calculator = /*html*/`
                         <div class="wrap">
                             <select name="driving" id="my_driving">
                                 <option value="Clean" selected>Clean</option>
-                                <option value="Speed">Speed</option>
-                                <option value="Accident">Accident</option>
+                                <option value="Speeding">Speeding</option>
+                                <option value="At-Fault Accident">At-Fault Accident</option>
                                 <option value="DUI">DUI</option>
                             </select>
                         </div>
@@ -387,7 +414,7 @@ const calculator = /*html*/`
                     <label for="insurance">How much are you currently paying for your car insurance?</label>
                     <div class="wrap">
                         <select name="insurance" id="my_insurance">                    
-                            ${returnOptions(options.prices, '$400-$500')}
+                            ${addOptions(options.prices, '$400-$500')}
                         </select>
                     </div>
                 </div>
@@ -436,8 +463,8 @@ const calculator = /*html*/`
                         <button class="css-15hckgf">See How Much You Can Save on New Insurance</button>
                     </div>
                 </div>
-                <p class="no_data">MoneyGeek does not currently have data for your car and driver's selected characteristics</p>
-                <button class="css-15hckgf my_btn">See How Much You Can Save on New Insurance</button>
+                <p class="no_data" hidden>MoneyGeek does not currently have data for your car and driver's selected characteristics</p>
+                <button class="css-15hckgf my_btn2">See How Much You Can Save on New Insurance</button>
             </div>
         </div>
     `
@@ -449,6 +476,7 @@ const waitForDOM = setInterval(() => {
     if (
         (document.readyState == 'interactive' || document.readyState == 'complete')
         && document.querySelectorAll('.e159ls2j0')[1]
+        && document.querySelector('.continue')
     ) {
         clearInterval(waitForDOM)
 
@@ -495,10 +523,10 @@ const waitForDOM = setInterval(() => {
         }, intervalTimeout)
 
         const waitForBtn = setInterval(() => {
-            if (document.querySelector('.my_btn')) {
+            if (document.querySelector('.my_btn2')) {
                 clearInterval(waitForBtn)
 
-                document.querySelector('.my_btn').addEventListener('click', () => {
+                document.querySelector('.my_btn2').addEventListener('click', () => {
                     document.querySelector('.css-15hckgf').click()
                     callEvent('See how much you can save CTA clicked')
                 })
@@ -533,9 +561,9 @@ const waitForSelects = setInterval(() => {
 
 callEvent('loaded')
 
-const record = setInterval(() => {
+const record2 = setInterval(() => {
     if (typeof clarity === 'function') {
-        clearInterval(record)
+        clearInterval(record2)
 
         clarity('set', `educate_users_` + device.toLowerCase(), 'variant_1')
     }
