@@ -530,8 +530,14 @@ const waitForDOM = setInterval(() => {
                 clearInterval(waitForBtn)
 
                 document.querySelector('.my_btn2').addEventListener('click', () => {
-                    document.querySelector('.e1ssirya6 .css-15hckgf').click()
-                    callEvent('See how much you can save CTA clicked')
+                    const waitForEl = setInterval(() => {
+                        if (document.querySelector('.e1ssirya6 .css-15hckgf')) {
+                            clearInterval(waitForEl)
+
+                            document.querySelector('.e1ssirya6 .css-15hckgf').click()
+                            callEvent('See how much you can save CTA clicked')
+                        }
+                    }, intervalTimeout)
                 })
             }
         }, intervalTimeout)
