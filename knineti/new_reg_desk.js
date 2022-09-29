@@ -514,6 +514,9 @@ if (window.location.pathname === "/mc/") {
             max-width: 464px;
             margin: 0 auto;
         }
+        body .click_play > p strong{
+          text-decoration: underline;
+        }
         body .dog_bad_behavior{
             background: #DEE8F1;
         }
