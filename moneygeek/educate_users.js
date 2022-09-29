@@ -576,7 +576,6 @@ callEvent('loaded')
 const record2 = setInterval(() => {
     if (typeof clarity === 'function') {
         clearInterval(record2)
-
         clarity('set', `educate_users_` + device.toLowerCase(), 'variant_1')
     }
 }, intervalTimeout)
