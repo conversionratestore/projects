@@ -322,8 +322,7 @@ const runObserver = () => {
 }
 
 const simulateSelectEvents = (selectIndex, optionIndex) => {
-    const x = window.scrollX;
-    const y = window.scrollY;
+    let scrollTop = document.body.scrollTop;
 
     const selectEvents = ['mousedown', 'focusin'];
 
@@ -358,7 +357,7 @@ const simulateSelectEvents = (selectIndex, optionIndex) => {
     }, intervalTimeout)
 
     // Scroll to the previous location
-    window.scrollTo(x, y);
+    document.body.scrollTop = scrollTop;
 }
 
 const callEvent = (eventAction, eventLabel = '') => {
