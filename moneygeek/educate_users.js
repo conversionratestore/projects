@@ -322,6 +322,9 @@ const runObserver = () => {
 }
 
 const simulateSelectEvents = (selectIndex, optionIndex) => {
+    const x = window.scrollX;
+    const y = window.scrollY;
+
     const selectEvents = ['mousedown', 'focusin'];
 
     switch (selectIndex) {
@@ -353,6 +356,9 @@ const simulateSelectEvents = (selectIndex, optionIndex) => {
             document.querySelectorAll('.css-11unzgr div')[optionIndex].click()
         }
     }, intervalTimeout)
+
+    // Scroll to the previous location
+    window.scrollTo(x, y);
 }
 
 const callEvent = (eventAction, eventLabel = '') => {
@@ -557,10 +563,6 @@ const waitForSelects = setInterval(() => {
             select.addEventListener('change', (e) => {
                 if (index !== 3) {
                     simulateSelectEvents(index, e.target.selectedIndex);
-
-                    setTimeout(() => {
-                        document.querySelector('.my_text h3').scrollIntoView();
-                    }, 500);
                 }
 
                 callEvent(select.name + ' dropdown opened ' + select.value + ' selected')
