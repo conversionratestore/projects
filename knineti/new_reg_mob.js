@@ -580,7 +580,15 @@ if (window.location.pathname === "/mc/") {
                 font-size: 16px !important;
             }
             body .click_play > p strong{
-                text-decoration: underline;
+              position: relative;
+            }
+            body .click_play > p strong::after{
+              position: absolute;
+              content: "";
+              border-bottom: 1px solid #173775;
+              width: 100%;
+              bottom: 2px;
+              left: 0;
             }
             body .dog_bad_behavior {
                 background: unset;
