@@ -206,6 +206,64 @@ const style = /*html*/`
                 padding: 8px;
             }
 
+            /* loader*/
+            .my_overlay {
+                position: fixed;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(255,255,255,.9);
+  z-index: 2;
+  
+            }
+
+            .my_overlay.show {
+                display: flex;
+            }
+
+            .lds-ring {
+  display: inline-block;
+  position: relative;
+  width: 80px;
+  height: 80px;
+}
+.lds-ring div {
+  box-sizing: border-box;
+  display: block;
+  position: absolute;
+  width: 64px;
+  height: 64px;
+  margin: 8px;
+  border: 8px solid #526EFF;
+  border-radius: 50%;
+  animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+  border-color: #526EFF transparent transparent transparent;
+}
+.lds-ring div:nth-child(1) {
+  animation-delay: -0.45s;
+}
+.lds-ring div:nth-child(2) {
+  animation-delay: -0.3s;
+}
+.lds-ring div:nth-child(3) {
+  animation-delay: -0.15s;
+}
+@keyframes lds-ring {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+
             @media screen and (max-width: 767px) {
                 .calc {
                     padding: 32px 20px;
@@ -343,6 +401,8 @@ const simulateSelectEvents = (selectIndex, optionIndex) => {
 
     const select = document.querySelectorAll('.css-2b097c-container input')[selectIndex]
 
+    document.querySelector('.my_overlay').classList.add('show')
+
     selectEvents.forEach(eventType =>
         select.dispatchEvent(
             new MouseEvent(eventType, { bubbles: true, })
@@ -354,13 +414,17 @@ const simulateSelectEvents = (selectIndex, optionIndex) => {
             clearInterval(waitForOptions)
 
             document.querySelectorAll('.css-11unzgr div')[optionIndex].click()
+
+            // Scroll to the previous location
+            setTimeout(() => {
+                window.scrollTo(x, y);
+
+                setTimeout(() => {
+                    document.querySelector('.my_overlay').classList.remove('show')
+                }, selectIndex === 0 ? 2000 : 1000);
+            }, 0);
         }
     }, intervalTimeout)
-
-    // Scroll to the previous location
-    setTimeout(() => {
-        window.scrollTo(x, y);
-    }, 0);
 }
 
 const callEvent = (eventAction, eventLabel = '') => {
@@ -377,6 +441,9 @@ const callEvent = (eventAction, eventLabel = '') => {
 
 /* HTML elements */
 const calculator = /*html*/`
+        <div class="my_overlay">
+        <div class="lds-ring"><div></div><div></div><div></div><div></div></div>
+        </div>
         <div class="my_text">
             <h2>Learn how to stop overpaying for your car insurance</h2>
             <p>Research by <a href="https://www.forbes.com/advisor/car-insurance/survey-drivers-overpaying-car-insurance/" target="_blank">Forbes</a> reveals that almost 58% of car owners are being overcharged for their insurance.</p>
