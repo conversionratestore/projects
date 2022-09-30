@@ -1,17 +1,17 @@
 let startFunk = setInterval(() => {
-    if (document.body && document.querySelector(".product-single__meta") != null) {
-        clearInterval(startFunk)
+  if (document.body && document.querySelector(".product-single__meta") != null) {
+    clearInterval(startFunk)
 
-        document.querySelectorAll('input[type=radio]').forEach(item => {
-            if(item.value === 'default') {
-                item.click()
-            }
-        })
+    document.querySelectorAll("input[type=radio]").forEach((item) => {
+      if (item.value === "default") {
+        item.click()
+      }
+    })
 
-        /* other variables  */
-        const imgFolderUrl = "https://conversionratestore.github.io/projects/saintjavelin/img/"
+    /* other variables  */
+    const imgFolderUrl = "https://conversionratestore.github.io/projects/saintjavelin/img/"
 
-        let style = /*html */ `
+    let style = /*html */ `
     <style>
       /*donation_amount_flex */
       .donation_amount_flex{
@@ -626,7 +626,7 @@ let startFunk = setInterval(() => {
     </style>
       `
 
-        let donationAmount = /*html */ `
+    let donationAmount = /*html */ `
     <div class="donation_amount_flex">
         <p>Your purchase will <b>donate</b> <span class="donate_price">12.8</span> to support <span class="text_absol">Ukraine</span></p>
       <svg class="svg_popup" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -643,7 +643,7 @@ let startFunk = setInterval(() => {
     </div>
     `
 
-        let donationInform = /*html */ `
+    let donationInform = /*html */ `
     <div class="donation_inform">
       <div>
         <h3>All our profits go towards helping <span class="text_absol">Ukraine</span></h3>
@@ -682,7 +682,7 @@ let startFunk = setInterval(() => {
     </div>    
     `
 
-        let donatePopup = /*html */ `
+    let donatePopup = /*html */ `
   <div class="backdrop_modal is_hidden" data-modal>
     <div class="container_popup">
       <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -699,7 +699,7 @@ let startFunk = setInterval(() => {
   </div>
   `
 
-        let contentpopup = /*html */ `
+    let contentpopup = /*html */ `
       <div class="content_popup">
           <img src="${imgFolderUrl}ukrainian_flag.png" alt="ukrainian flag" />
           <h2>All profits go towards helping Ukraine resist the invasion</h2>
@@ -736,7 +736,7 @@ let startFunk = setInterval(() => {
       </div>
     `
 
-        let sixeGuidContent = /*html */ `
+    let sixeGuidContent = /*html */ `
     <div class="content_popup size_guide">
       <h2>Size guide</h2>
       <p><b>Note:</b> Some sizes (XS / 3XL / 4XL / 5XL) might be sourced outside your region depending on your location and colour/size choice.</p>
@@ -1108,243 +1108,243 @@ let startFunk = setInterval(() => {
     </div>
     `
 
+    document.body.insertAdjacentHTML("afterbegin", donatePopup)
+    document.body.insertAdjacentHTML("afterbegin", style)
 
-        document.body.insertAdjacentHTML("afterbegin", donatePopup)
-        document.body.insertAdjacentHTML("afterbegin", style)
+    let priceBlock = document.querySelector(".product-block.product-block--price"),
+      imgBlock = document.querySelector(".product-block .aos-animate"),
+      boxForDonationInform = document.querySelector(".page-content .page-width .grid [data-product-images]"),
+      body = document.body,
+      overlay = document.querySelector(".backdrop_modal")
 
-        let productBlock = document.querySelector(".product-block.product-block--price"),
-            boxForDonationInform = document.querySelector(".page-content .page-width .grid [data-product-images]"),
-            price = productBlock.querySelector(".product__price").textContent
+    priceBlock.insertAdjacentHTML("afterend", donationAmount)
 
-        productBlock.insertAdjacentHTML("afterend", donationAmount)
-
-        if (innerWidth <= 768) {
-            document.querySelector(".product-block .aos-animate").closest(".product-block").insertAdjacentHTML("beforebegin", donationInform)
-        } else {
-            boxForDonationInform.insertAdjacentHTML("beforeend", donationInform)
-        }
-
-        document.querySelector(".donation_amount_flex")?.addEventListener("click", () => {
-            document.querySelector(".backdrop_modal").classList.remove("is_hidden")
-            document.querySelector(".container_popup").insertAdjacentHTML("beforeend", contentpopup)
-            document.body.style.overflow = "hidden"
-
-            if (document.querySelector(".backdrop_modal .content_popup")) {
-                document.querySelector(".backdrop_modal .content_popup .by_it_now_btn")?.addEventListener("click", (e) => {
-                    e.preventDefault()
-                    document.querySelector("a.link_text")?.click()
-                })
-            }
-            if (innerWidth <= 768) {
-                if (document.querySelector(".content_popup p.goal_text br")) {
-                    document.querySelector(".content_popup p.goal_text br").remove()
-                }
-            }
-        })
-
-        document.querySelector(".backdrop_modal .container_popup > svg")?.addEventListener("click", () => {
-            document.querySelector(".backdrop_modal").classList.add("is_hidden")
-            document.body.style.overflow = "auto"
-            setTimeout(() => {
-                document.querySelector(".content_popup").remove()
-            }, 1000)
-        })
-
-        document.querySelector(".backdrop_modal").addEventListener("click", (e) => {
-            if (e.target.matches(".backdrop_modal")) {
-                document.querySelector(".backdrop_modal").classList.add("is_hidden")
-                document.body.style.overflow = "auto"
-                setTimeout(() => {
-                    document.querySelector(".content_popup").remove()
-                }, 1000)
-            }
-        })
-
-
-        const accardionToggleFaqs = (slideMenu) => (e) => {
-            slideMenu.forEach((link) => {
-                e.preventDefault()
-                const hidePanel = link.nextElementSibling
-                if (link === e.currentTarget) {
-                    e.currentTarget.classList.toggle("active")
-
-                    hidePanel.classList.toggle("active_block")
-                } else {
-                    link.classList.remove("active")
-                    hidePanel.classList.remove("active_block")
-                }
-            })
-        }
-
-        //
-        document.querySelectorAll(".product-block .variant__label.hidden-label").forEach((el) => {
-            if (el.textContent.includes("Color")) {
-                el.textContent = "Select color:"
-                if (!document.querySelector(".mistake.color_var")) {
-                    el.insertAdjacentHTML(
-                        "beforeend",
-                        `<div class="mistake color_var is_hidden"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M7.33398 9.99992H8.66732V11.3333H7.33398V9.99992ZM7.33398 4.66659H8.66732V8.66659H7.33398V4.66659ZM7.99398 1.33325C4.31398 1.33325 1.33398 4.31992 1.33398 7.99992C1.33398 11.6799 4.31398 14.6666 7.99398 14.6666C11.6807 14.6666 14.6673 11.6799 14.6673 7.99992C14.6673 4.31992 11.6807 1.33325 7.99398 1.33325ZM8.00065 13.3333C5.05398 13.3333 2.66732 10.9466 2.66732 7.99992C2.66732 5.05325 5.05398 2.66659 8.00065 2.66659C10.9473 2.66659 13.334 5.05325 13.334 7.99992C13.334 10.9466 10.9473 13.3333 8.00065 13.3333Z" fill="#D71D1D"/>
-                        </svg>Please select color</div>`
-                    )
-                }
-            }
-
-            if (el.textContent.includes("Size")) {
-                el.textContent = "Select size:"
-                if (!document.querySelector(".mistake.size_var")) {
-                    el.insertAdjacentHTML(
-                        "beforeend",
-                        `<div class="mistake size_var is_hidden"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M7.33398 9.99992H8.66732V11.3333H7.33398V9.99992ZM7.33398 4.66659H8.66732V8.66659H7.33398V4.66659ZM7.99398 1.33325C4.31398 1.33325 1.33398 4.31992 1.33398 7.99992C1.33398 11.6799 4.31398 14.6666 7.99398 14.6666C11.6807 14.6666 14.6673 11.6799 14.6673 7.99992C14.6673 4.31992 11.6807 1.33325 7.99398 1.33325ZM8.00065 13.3333C5.05398 13.3333 2.66732 10.9466 2.66732 7.99992C2.66732 5.05325 5.05398 2.66659 8.00065 2.66659C10.9473 2.66659 13.334 5.05325 13.334 7.99992C13.334 10.9466 10.9473 13.3333 8.00065 13.3333Z" fill="#D71D1D"/>
-                            </svg> Please select size</div>`
-                    )
-                }
-                if (
-                    !document.querySelector(".size_guide_var") &&
-                    (document.querySelector("h1.product-single__title").textContent.includes("Sweater") ||
-                        document.querySelector("h1.product-single__title").textContent.includes("Sweatshirt") ||
-                        document.querySelector("h1.product-single__title").textContent.includes("Shirt") ||
-                        document.querySelector("h1.product-single__title").textContent.includes("Tank Top") ||
-                        document.querySelector("h1.product-single__title").textContent.includes("Hoodie"))
-                ) {
-                    el.insertAdjacentHTML("beforeend", `<div class="size_guide_var">Size guide</div>`)
-                }
-
-                document.querySelector(".size_guide_var")?.addEventListener("click", () => {
-                    document.querySelector(".backdrop_modal").classList.remove("is_hidden")
-                    document.querySelector(".container_popup").insertAdjacentHTML("beforeend", sixeGuidContent)
-                    document.body.style.overflow = "hidden"
-
-                    const slideMenu = document.querySelectorAll(".accardion_link")
-
-                    if (slideMenu) {
-                        slideMenu.forEach((el) => {
-                            el.addEventListener("click", accardionToggleFaqs(slideMenu))
-                        })
-                    }
-                })
-            }
-        })
-
-        document.querySelectorAll('.donate_price').forEach(item => {
-            item.innerText = document.querySelector("[data-price-donate]").dataset.priceDonate
-        })
-
-        document.querySelectorAll(".variant-input-wrap label").forEach((el) => {
-            if (el.previousElementSibling.matches("input[type=radio]:checked")) {
-                if (el.previousElementSibling.value === "default") {
-                    if (!document.querySelector(".new_wrap_btn")) {
-                        document.querySelector("form.product-single__form").insertAdjacentHTML(
-                            "beforebegin",
-                            `    <div class="new_wrap_btn">
-                                    <button class="btn btn--full add-to-cart btn--tertiary add_to_cart">
-                                      <span>Add to cart</span>
-                                    </button>
-                                    <button type="button" class="shopify-payment-button__button shopify-payment-button__button--unbranded buy_it_now">Buy it now</button>
-                                  </div>`
-                        )
-
-                        document.querySelector("form.product-single__form").style.display = "none"
-
-                        document.querySelector(".new_wrap_btn .add_to_cart")?.addEventListener("click", (e) => {
-                            e.preventDefault()
-                            document.querySelectorAll(".mistake").forEach((el) => {
-                                el.classList.remove("is_hidden")
-                                el.scrollIntoView({block: "center", behavior: "smooth"})
-                            })
-                        })
-
-                        document.querySelector(".new_wrap_btn .buy_it_now")?.addEventListener("click", (e) => {
-                            e.preventDefault()
-
-                            document.querySelectorAll(".mistake").forEach((el) => {
-                                el.classList.remove("is_hidden")
-                                el.scrollIntoView({block: "center", behavior: "smooth"})
-                            })
-                        })
-
-                        document.querySelector("a.link_text")?.addEventListener("click", (e) => {
-                            e.preventDefault()
-
-                            if (document.querySelector('[name="add"]').getAttribute("disabled")) {
-                                document.querySelector(".new_wrap_btn .buy_it_now")?.click()
-                                if (document.querySelector(".backdrop_modal")) {
-                                    document.querySelector(".backdrop_modal").classList.add("is_hidden")
-                                    document.body.style.overflow = "auto"
-                                    setTimeout(() => {
-                                        document.querySelector(".content_popup")?.remove()
-                                    }, 1000)
-                                }
-                            } else {
-                                document.querySelector('form [data-testid="Checkout-button"')?.click()
-                            }
-                        })
-                    }
-                }
-            }
-
-            el.addEventListener("click", (i) => {
-                if (el.previousElementSibling.value !== "default") {
-                    if (el.closest(".variant-wrapper").querySelector(".variant__label.hidden-label").textContent.includes("Select color:")) {
-                        el.closest(".variant-wrapper").querySelector(".variant__label.hidden-label .mistake").classList.add("is_visited")
-                    }
-
-                    if (el.closest(".variant-wrapper").querySelector(".variant__label.hidden-label").textContent.includes("Select size:")) {
-                        el.closest(".variant-wrapper").querySelector(".variant__label.hidden-label .mistake").classList.add("is_visited")
-                    }
-
-                    if (document.querySelector(".variant__label.hidden-label .mistake.color_var") && document.querySelector(".variant__label.hidden-label .mistake.size_var")) {
-                        if (
-                            document.querySelector(".variant__label.hidden-label .mistake.color_var").classList.contains("is_visited") &&
-                            document.querySelector(".variant__label.hidden-label .mistake.size_var").classList.contains("is_visited")
-                        ) {
-                            document.querySelector("form.product-single__form").style.display = "unset"
-                            document.querySelector(".new_wrap_btn").style.display = "none"
-                        }
-                    }
-                    if (document.querySelector(".variant__label.hidden-label .mistake.color_var") && !document.querySelector(".variant__label.hidden-label .mistake.size_var")) {
-                        if (document.querySelector(".variant__label.hidden-label .mistake.color_var").classList.contains("is_visited")) {
-                            document.querySelector("form.product-single__form").style.display = "unset"
-                            document.querySelector(".new_wrap_btn").style.display = "none"
-                        }
-                    }
-
-                    if (!document.querySelector(".variant__label.hidden-label .mistake.color_var") && document.querySelector(".variant__label.hidden-label .mistake.size_var")) {
-                        if (document.querySelector(".variant__label.hidden-label .mistake.size_var").classList.contains("is_visited")) {
-                            document.querySelector("form.product-single__form").style.display = "unset"
-                            document.querySelector(".new_wrap_btn").style.display = "none"
-                        }
-                    }
-                }
-
-                document.querySelectorAll('.donate_price').forEach(item => {
-                    item.innerText = document.querySelector("[data-price-donate]").dataset.priceDonate
-                })
-
-
-                if (el.classList.contains("disabled")) {
-                    if (!el.previousElementSibling.getAttribute("disabled")) {
-                        el.previousElementSibling.setAttribute("disabled", "disabled")
-                    }
-                } else {
-                    if (el.previousElementSibling.getAttribute("disabled")) {
-                        el.previousElementSibling.removeAttribute("disabled")
-                    }
-                }
-            })
-        })
-
-        document.querySelectorAll('.variant-input-wrap[name="Color"] label:not(.disabled)').forEach(item => {
-            item.addEventListener('click', function () {
-                let color = this.previousElementSibling.value.toLowerCase().replaceAll(' ', '-')
-
-                document.querySelectorAll('.product__photos a').forEach(a => {
-                    if(a.getAttribute('href').includes(color)) {
-                        a.click()
-                    }
-                })
-            })
-        })
+    if (innerWidth <= 768) {
+      imgBlock.closest(".product-block").insertAdjacentHTML("beforebegin", donationInform)
+    } else {
+      boxForDonationInform.insertAdjacentHTML("beforeend", donationInform)
     }
+
+    document.querySelector(".donation_amount_flex")?.addEventListener("click", () => {
+      onOpenPopup(contentpopup)
+
+      if (document.querySelector(".backdrop_modal .content_popup")) {
+        document.querySelector(".backdrop_modal .content_popup .by_it_now_btn")?.addEventListener("click", (e) => {
+          e.preventDefault()
+          document.querySelector("a.link_text")?.click()
+        })
+      }
+      if (innerWidth <= 768) {
+        if (document.querySelector(".content_popup p.goal_text br")) {
+          document.querySelector(".content_popup p.goal_text br").remove()
+        }
+      }
+    })
+
+    // click on btn close popup
+    document.querySelector(".backdrop_modal .container_popup > svg")?.addEventListener("click", () => {
+      onClosePopup()
+    })
+
+    // click on overlay popup
+    overlay.addEventListener("click", (e) => {
+      if (e.target.matches(".backdrop_modal")) {
+        onClosePopup()
+      }
+    })
+
+    function onOpenPopup(block) {
+      overlay.classList.remove("is_hidden")
+      body.style.overflow = "hidden"
+
+      document.querySelector(".container_popup").insertAdjacentHTML("beforeend", block)
+    }
+
+    function onClosePopup() {
+      overlay.classList.add("is_hidden")
+      body.style.overflow = "auto"
+      setTimeout(() => {
+        document.querySelector(".content_popup")?.remove()
+      }, 1000)
+    }
+
+    const accardionToggleFaqs = (slideMenu) => (e) => {
+      slideMenu.forEach((link) => {
+        e.preventDefault()
+        const hidePanel = link.nextElementSibling
+        if (link === e.currentTarget) {
+          e.currentTarget.classList.toggle("active")
+
+          hidePanel.classList.toggle("active_block")
+        } else {
+          link.classList.remove("active")
+          hidePanel.classList.remove("active_block")
+        }
+      })
+    }
+
+    // render mistake "Please select size", "Please select color"
+    document.querySelectorAll(".product-block .variant__label.hidden-label").forEach((el) => {
+      if (el.textContent.includes("Color")) {
+        el.textContent = "Select color:"
+        if (!document.querySelector(".mistake.color_var")) {
+          el.insertAdjacentHTML(
+            "beforeend",
+            `<div class="mistake color_var is_hidden">
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M7.33398 9.99992H8.66732V11.3333H7.33398V9.99992ZM7.33398 4.66659H8.66732V8.66659H7.33398V4.66659ZM7.99398 1.33325C4.31398 1.33325 1.33398 4.31992 1.33398 7.99992C1.33398 11.6799 4.31398 14.6666 7.99398 14.6666C11.6807 14.6666 14.6673 11.6799 14.6673 7.99992C14.6673 4.31992 11.6807 1.33325 7.99398 1.33325ZM8.00065 13.3333C5.05398 13.3333 2.66732 10.9466 2.66732 7.99992C2.66732 5.05325 5.05398 2.66659 8.00065 2.66659C10.9473 2.66659 13.334 5.05325 13.334 7.99992C13.334 10.9466 10.9473 13.3333 8.00065 13.3333Z" fill="#D71D1D"/></svg>Please select color
+            </div>`
+          )
+        }
+      }
+
+      if (el.textContent.includes("Size")) {
+        el.textContent = "Select size:"
+        if (!document.querySelector(".mistake.size_var")) {
+          el.insertAdjacentHTML(
+            "beforeend",
+            `<div class="mistake size_var is_hidden">
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M7.33398 9.99992H8.66732V11.3333H7.33398V9.99992ZM7.33398 4.66659H8.66732V8.66659H7.33398V4.66659ZM7.99398 1.33325C4.31398 1.33325 1.33398 4.31992 1.33398 7.99992C1.33398 11.6799 4.31398 14.6666 7.99398 14.6666C11.6807 14.6666 14.6673 11.6799 14.6673 7.99992C14.6673 4.31992 11.6807 1.33325 7.99398 1.33325ZM8.00065 13.3333C5.05398 13.3333 2.66732 10.9466 2.66732 7.99992C2.66732 5.05325 5.05398 2.66659 8.00065 2.66659C10.9473 2.66659 13.334 5.05325 13.334 7.99992C13.334 10.9466 10.9473 13.3333 8.00065 13.3333Z" fill="#D71D1D"/></svg> Please select size
+            </div>`
+          )
+        }
+        if (
+          !document.querySelector(".size_guide_var") &&
+          (document.querySelector("h1.product-single__title").textContent.includes("Sweater") ||
+            document.querySelector("h1.product-single__title").textContent.includes("Sweatshirt") ||
+            document.querySelector("h1.product-single__title").textContent.includes("Shirt") ||
+            document.querySelector("h1.product-single__title").textContent.includes("Tank Top") ||
+            document.querySelector("h1.product-single__title").textContent.includes("Hoodie"))
+        ) {
+          el.insertAdjacentHTML("beforeend", `<div class="size_guide_var">Size guide</div>`)
+        }
+
+        document.querySelector(".size_guide_var")?.addEventListener("click", () => {
+          onOpenPopup(sixeGuidContent)
+
+          const slideMenu = document.querySelectorAll(".accardion_link")
+
+          if (slideMenu) {
+            slideMenu.forEach((el) => {
+              el.addEventListener("click", accardionToggleFaqs(slideMenu))
+            })
+          }
+        })
+      }
+    })
+
+    //render/hidden new btn "Add to cart", "Buy it now"
+    document.querySelectorAll(".variant-input-wrap label").forEach((el) => {
+      if (el.previousElementSibling.matches("input[type=radio]:checked")) {
+        if (el.previousElementSibling.value === "default") {
+          if (!document.querySelector(".new_wrap_btn")) {
+            document.querySelector("form.product-single__form").insertAdjacentHTML(
+              "beforebegin",
+              `<div class="new_wrap_btn">
+                <button class="btn btn--full add-to-cart btn--tertiary add_to_cart"><span>Add to cart</span></button>
+                <button type="button" class="shopify-payment-button__button shopify-payment-button__button--unbranded buy_it_now">Buy it now</button>
+              </div>`
+            )
+
+            document.querySelector("form.product-single__form").style.display = "none"
+
+            document.querySelector(".new_wrap_btn .add_to_cart")?.addEventListener("click", (e) => {
+              e.preventDefault()
+              removeMistakeVar()
+            })
+
+            document.querySelector(".new_wrap_btn .buy_it_now")?.addEventListener("click", (e) => {
+              e.preventDefault()
+              removeMistakeVar()
+            })
+
+            function removeMistakeVar() {
+              document.querySelectorAll(".mistake").forEach((el) => {
+                el.classList.remove("is_hidden")
+                el.scrollIntoView({ block: "center", behavior: "smooth" })
+              })
+            }
+
+            document.querySelector("a.link_text")?.addEventListener("click", (e) => {
+              e.preventDefault()
+
+              if (document.querySelector('[name="add"]').getAttribute("disabled")) {
+                document.querySelector(".new_wrap_btn .buy_it_now")?.click()
+                if (overlay) {
+                  onClosePopup()
+                }
+              } else {
+                document.querySelector('form [data-testid="Checkout-button"')?.click()
+              }
+            })
+          }
+        }
+      }
+
+      el.addEventListener("click", (i) => {
+        if (el.previousElementSibling.value !== "default") {
+          if (el.closest(".variant-wrapper").querySelector(".variant__label.hidden-label").textContent.includes("Select color:")) {
+            el.closest(".variant-wrapper").querySelector(".variant__label.hidden-label .mistake").classList.add("is_visited")
+          }
+
+          if (el.closest(".variant-wrapper").querySelector(".variant__label.hidden-label").textContent.includes("Select size:")) {
+            el.closest(".variant-wrapper").querySelector(".variant__label.hidden-label .mistake").classList.add("is_visited")
+          }
+
+          if (document.querySelector(".variant__label.hidden-label .mistake.color_var") && document.querySelector(".variant__label.hidden-label .mistake.size_var")) {
+            if (
+              document.querySelector(".variant__label.hidden-label .mistake.color_var").classList.contains("is_visited") &&
+              document.querySelector(".variant__label.hidden-label .mistake.size_var").classList.contains("is_visited")
+            ) {
+              isHiddenNewWrapBtn()
+            }
+          }
+
+          if (document.querySelector(".variant__label.hidden-label .mistake.color_var") && !document.querySelector(".variant__label.hidden-label .mistake.size_var")) {
+            if (document.querySelector(".variant__label.hidden-label .mistake.color_var").classList.contains("is_visited")) {
+              isHiddenNewWrapBtn()
+            }
+          }
+
+          if (!document.querySelector(".variant__label.hidden-label .mistake.color_var") && document.querySelector(".variant__label.hidden-label .mistake.size_var")) {
+            if (document.querySelector(".variant__label.hidden-label .mistake.size_var").classList.contains("is_visited")) {
+              isHiddenNewWrapBtn()
+            }
+          }
+
+          function isHiddenNewWrapBtn() {
+            document.querySelector("form.product-single__form").style.display = "unset"
+            document.querySelector(".new_wrap_btn").style.display = "none"
+          }
+        }
+
+        if (el.classList.contains("disabled")) {
+          if (!el.previousElementSibling.getAttribute("disabled")) {
+            el.previousElementSibling.setAttribute("disabled", "disabled")
+          }
+        } else {
+          if (el.previousElementSibling.getAttribute("disabled")) {
+            el.previousElementSibling.removeAttribute("disabled")
+          }
+        }
+      })
+    })
+
+    // change donate count
+    document.querySelectorAll(".donate_price")?.forEach((item) => {
+      item.innerHTML = document.querySelector("[data-price-donate]").dataset.priceDonate
+    })
+
+    // fix bug change color
+    document.querySelectorAll('.variant-input-wrap[name="Color"] label:not(.disabled)')?.forEach((item) => {
+      item.addEventListener("click", function () {
+        let color = this.previousElementSibling.value.toLowerCase().replaceAll(" ", "-")
+
+        document.querySelectorAll(".product__photos a").forEach((a) => {
+          if (a.getAttribute("href").includes(color)) {
+            a.click()
+          }
+        })
+      })
+    })
+  }
 }, 100)
