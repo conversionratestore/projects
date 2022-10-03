@@ -1586,6 +1586,17 @@ margin: 16px -20px; }
     .product h2, .product .title {
         font-size: 26px;
     }
+    .product > div.flex-center-between > img {
+        width: 50%;
+    }
+    similar-products .card {
+        width: 250px;
+        padding: 30px;
+        margin-right: 10px;
+    }
+    .similar-products .card img {
+        height: 188px;
+    }
   }
 
 </style>`
