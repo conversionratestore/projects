@@ -4355,7 +4355,6 @@ let mut = new MutationObserver(function (muts) {
         document.querySelectorAll('.add-cart').forEach(el => {
             el.addEventListener('click', (e) => {
                 e.stopImmediatePropagation();
-                e.preventDefault();
                 pushDataLayer(`Click on Add button`,labelForEvents(e.target));
             })
         })
