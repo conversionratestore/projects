@@ -1660,12 +1660,10 @@ let html = `
               <div class="box-search"> 
                  <div id="form-search"></div>
               </div>
-              <div class="align-items-center"> 
-                  <button class="align-items-center midbar_action" type="button">
-                    <img src="https://olha1001.github.io/medicalmega/pdp-rediesign/img/common/cart.svg" alt="icon Cart" style="margin-right: 2.6px">
-                    <span>(<span class="cart_count">0</span>)</span>
-                  </button>
-              </div>
+                <button class="flex midbar_action" type="button">
+                <img src="https://olha1001.github.io/medicalmega/pdp-rediesign/img/common/cart.svg" alt="icon Cart" style="margin-right: 2.6px">
+                <span>(<span class="cart_count">0</span>)</span>
+                </button>
           </div>
         </div>
       </header>
