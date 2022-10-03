@@ -105,7 +105,7 @@ input {
     -moz-appearance: none;
     appearance: none;
 }
-input:not(.quantity):not([name="submit"]) {
+.main input:not(.quantity):not([name="submit"]) {
   border: none;
   background-color: #E9EBEC;
   border-radius: 100px;
