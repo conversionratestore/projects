@@ -1779,8 +1779,8 @@ let requestProduct = new Promise((resolve, reject) => {
 let obj = {
     'stepsName': ['Personal information','Shipping information','Payment Method','Confirmation'],
     'back' : {
-        'personal information' : ['Back to Cart', '/cart.html'],
-        'shipping information' : ['Back to Cart','/cart.html'],
+        'personal information' : ['Back to Shopping', '/'],
+        'shipping information' : ['Back to Shopping','/'],
         'billing information' : ['Back to Shipping Info','/checkout/step1'],
         'delivery method' : ['Back To Address Info','/checkout/step1'],
         'payment method': ['Back to Delivery Method','/checkout/step2']
