@@ -1384,7 +1384,7 @@ margin: 16px -20px; }
     border: 1px solid #E3E6E7;
     border-radius: 4px;
 }
-#tns1 > .tns-item img {
+.shopping-cart .slide.tns-item img {
     width: 80px;
     height: 80px;
     margin-right: 8px;
