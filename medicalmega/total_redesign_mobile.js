@@ -1745,6 +1745,26 @@ let requestProduct = new Promise((resolve, reject) => {
         fetch(`https://PXDJAQHDPZ-dsn.algolia.net/1/indexes/products?query=${window.location.pathname.split('/product/')[1]}`, optionFetchAlgolia).then(res => res.json()).then(data => resolve(data))
     }
 })
+
+let obj = {
+    'stepsName': ['Personal information','Shipping information','Payment Method','Confirmation'],
+    'back' : {
+        'personal information' : ['Back to Cart', '/cart.html'],
+        'shipping information' : ['Back to Cart','/cart.html'],
+        'billing information' : ['Back to Shipping Info','/checkout/step1'],
+        'delivery method' : ['Back To Address Info','/checkout/step1'],
+        'payment method': ['Back to Delivery Method','/checkout/step2']
+    },
+    'pricingArr':  {
+        'subtotal': 'Sub total',
+        'shipping': 'Delivery fee',
+        'processing_fee': 'Processing fee',
+        'discount': 'Discount',
+        'tax': 'Tax',
+        'total': 'Grand Total'
+    }
+}
+
 //comes into view
 function isScrolledIntoView(el) {
     let rect = el.getBoundingClientRect(),
@@ -2027,25 +2047,6 @@ window.onload = function() {
             }
            
         </style>`
-
-        let obj = {
-            'stepsName': ['Personal information','Shipping information','Payment Method','Confirmation'],
-            'back' : {
-                'personal information' : ['Back to Cart', '/cart.html'],
-                'shipping information' : ['Back to Cart','/cart.html'],
-                'billing information' : ['Back to Shipping Info','/checkout/step1'],
-                'delivery method' : ['Back To Address Info','/checkout/step1'],
-                'payment method': ['Back to Delivery Method','/checkout/step2']
-            },
-            'pricingArr':  {
-                'subtotal': 'Sub total',
-                'shipping': 'Delivery fee',
-                'processing_fee': 'Processing fee',
-                'discount': 'Discount',
-                'tax': 'Tax',
-                'total': 'Grand Total'
-            }
-        }
 
         document.body.insertAdjacentHTML('afterbegin', styleMain)
 
