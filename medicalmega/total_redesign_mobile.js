@@ -223,6 +223,9 @@ input[type="search"]::-webkit-search-results-decoration {
 .menu .midbar_action {
     margin-top: 13px;
 }
+.midbar_action {
+    background: transparent;
+}
 .menu .midbar_action, .back-menu {
 border-bottom: 1px solid #E0E4E5;
 background: #FBFBFB;
@@ -1319,10 +1322,10 @@ let html = `
                  <div id="form-search"></div>
               </div>
               <div class="align-items-center"> 
-                  <a class="align-items-center midbar_action" href="https://medicalmega.com/cart.html">
+                  <button class="align-items-center midbar_action" type="button">
                     <img src="https://olha1001.github.io/medicalmega/pdp-rediesign/img/common/cart.svg" alt="icon Cart" style="margin-right: 2.6px">
                     <span>(<span class="cart_count">0</span>)</span>
-                  </a>
+                  </button>
               </div>
           </div>
         </div>
@@ -1451,7 +1454,7 @@ function pushDataLayer(actionDataLayer, labelDataLayer) {
     window.dataLayer = window.dataLayer || [];
     dataLayer.push({
         'event': 'event-to-ga',
-        'eventCategory': 'Exp — New PL and PDP (mobile)',
+        'eventCategory': 'Exp — Total Redesign (mobile)',
         'eventAction': actionDataLayer,
         'eventLabel': labelDataLayer
     });
@@ -1993,7 +1996,7 @@ window.onload = function() {
             <div class="confirmation-order flex">
                 <div class="col">
                     <h3>Your Order</h3>
-                    <ul class="order_pricing"></ul>
+                    <ul class="order_pricing"><li>order summary $0</li></ul>
                 </div>
                 <div class="col">
                     <ul class="confirmation-products"></ul>
@@ -3386,7 +3389,7 @@ window.onload = function() {
                     hideCart()
                 }
             })
-            document.querySelector('.shoppingcart.tooltip-cart').addEventListener('click', (e) => {
+            document.querySelector('.midbar .midbar_action').addEventListener('click', (e) => {
                 e.preventDefault();
                 showCart()
             })
@@ -3674,12 +3677,11 @@ window.onload = function() {
                 templates: {
                     item: (data) => {
                         let checkbox = `
-                  <label class="mt-16 align-items-center" onclick="pushDataLayer('Click on one of the brand items on filters','Filters')">
-                    <span class="check"></span>
-                    <span class="check_text">${data.value}<span class="count_brand">(${data.count})</span></span>
-                  </label>
-              `;
-                        return checkbox
+                          <label class="mt-16 align-items-center" onclick="pushDataLayer('Click on one of the brand items on filters','Filters')">
+                            <span class="check"></span>
+                            <span class="check_text">${data.value}<span class="count_brand">(${data.count})</span></span>
+                          </label>`;
+                       return checkbox
                     },
                 },
             }),
@@ -3697,11 +3699,11 @@ window.onload = function() {
                 templates: {
                     item: (data) => {
                         let checkbox = `
-              <label class="mt-16 align-items-center" onclick="pushDataLayer('Click on one of the price items on filters','Filters')">
-                  <span class="check"></span>
-                  <span class="check_text">${data.label} <span class="count_brand">(${data.count})</span></span>
-              </label>
-            `;
+                          <label class="mt-16 align-items-center" onclick="pushDataLayer('Click on one of the price items on filters','Filters')">
+                              <span class="check"></span>
+                              <span class="check_text">${data.label} <span class="count_brand">(${data.count})</span></span>
+                          </label>
+                        `;
 
                         return checkbox
                     },
@@ -3757,7 +3759,6 @@ window.onload = function() {
                     return items.map(item => ({
                         ...item,
                         label: item.label == "manufacturer" ? item.label = "brands" : item.label == "price_group" ? item.label = "prices" : '',
-                        // refinements: item.refinements.label.includes
                     }));
                 }
             }),
