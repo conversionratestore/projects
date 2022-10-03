@@ -105,7 +105,7 @@ input {
     -moz-appearance: none;
     appearance: none;
 }
-.main input:not(.quantity):not([name="submit"]) {
+.main input:not(.quantity, [name="submit"], .calc-qty){
   border: none;
   background-color: #E9EBEC;
   border-radius: 100px;
@@ -1562,6 +1562,30 @@ margin: 16px -20px; }
   }
   [disabled] {
       pointer-events: none;
+  }
+  @media only screen and (max-width: 360px) {
+    .container {
+        padding: 0 15px;
+    }
+    .list-product .product-item_img img {
+        height: 75px;
+        width: 75px;
+    }
+    .body-cart {
+        padding: 0 15px;
+    }
+    .tns-outer {
+        margin-right: -15px;
+    }
+    .slide {
+        margin-right: 7px;
+    }
+    .add-to-cart { 
+        padding: 20px 8px 20px 0;
+    }
+    .product h2, .product .title {
+        font-size: 26px;
+    }
   }
 
 </style>`
