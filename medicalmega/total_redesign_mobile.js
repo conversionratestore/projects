@@ -1,4 +1,4 @@
-let styleLPPDP = `
+let style = `
 <style class="style-main">
 @font-face {
   font-family: "Inter";
@@ -1256,6 +1256,310 @@ margin: 16px -20px; }
   .ais-InfiniteHits--empty {
     padding: 0 20px;
   }
+    /*  shopping cart */
+  .shopping-cart * {
+    box-sizing: border-box;
+}
+.shopping-cart {
+    background: rgba(0,0,0,0.5);
+    position: fixed;
+    top: 0;
+    left: 0;
+    transition: all 0.3s ease;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    pointer-events: none;
+    z-index: 999;
+}
+.shopping-cart.active {
+    opacity: 1;
+    pointer-events: auto;
+}
+.shopping-cart.active .container {
+    transform: translateX(0);
+}
+.shopping-cart .container {
+   background: #FFFFFF;
+   margin-left: auto;
+   width: 100%;
+   transform: translateX(200px);
+   transition: all 0.3s ease;
+}
+.shopping-cart svg {
+    cursor: pointer;
+}
+.header-cart {
+    padding: 0 20px;
+    background: #FBFBFB;
+}
+.header-cart > div {
+    border-bottom: 1px solid #E3E6E7;
+    padding: 12px 0;
+    width: 100%;
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 120%;
+    color: #474747;
+}
+.body-cart {
+    padding: 0 20px;
+    overflow-y: auto;
+    height: calc(100vh - 155px - 53px);
+    display: flex;
+    flex-direction: column;
+}
+.list-product .product-item_img img {
+    height: 86px;
+    width: 86px;
+}
+.list-product .product-item_img {
+    margin-right: 16px;
+}
+.also-bought {
+    margin-top: auto;
+    padding-top: 28px;
+}
+.subtotal {
+    font-weight: 600;
+    font-size: 24px;
+    line-height: 120%;
+    padding: 20px 0;
+    border-top: 1px solid #E3E6E7;
+}
+.footer-cart {
+    padding: 16px 20px;
+    background: #FBFBFB;
+    box-shadow: 0 -1px 2px rgba(0, 0, 0, 0.2), 0 -2px 6px 2px rgba(0, 0, 0, 0.15);
+    position: relative;
+    z-index: 2;
+}
+.footer-cart p {
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 130%;
+    color: #344D57;
+    padding: 4px;
+}
+.body-cart h4 {
+    font-weight: 600;
+    font-size: 24px;
+    line-height: 120%;
+    color: #344D57;
+}
+.paypal-form-button {
+    background: #EEC86A;
+    border-radius: 100px;
+}
+/*empty cart*/
+.empty-cart {
+    margin: auto;
+    display: block;
+    width: fit-content;
+}
+.empty-cart p {
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 150%;
+    color: #344D57;
+    margin-bottom: 28px;
+}
+.empty-cart button.btn-next {
+    padding: 0 24px;
+}
+/*slider*/
+.slider-products {
+    padding: 20px 0 40px;
+}
+.tns-outer {
+    margin-right: -20px;
+}
+.slide {
+    background: #FFFFFF;
+    margin-right: 12px;
+    padding: 20px;
+    border: 1px solid #E3E6E7;
+    border-radius: 4px;
+}
+.slide img {
+    width: 80px;
+    height: 80px;
+    margin-right: 8px;
+}
+.slide .price p {
+    font-weight: 300;
+    font-size: 12px;
+    line-height: 150%;
+    text-decoration-line: line-through;
+    color: #666666;
+}
+.slide .price b {
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 130%;
+    color: #091114;
+}
+.slide .name {
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 150%;
+    color: #6E6E6E;
+    margin: 4px 0 8px;
+    text-align: left;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+}
+.shopping-cart button.btn-add {
+    background: #FBFBFB;
+    border: 2px solid #1E3944;
+    border-radius: 100px;
+    font-weight: 600;
+    font-size: 10px;
+    line-height: 28px;
+    text-align: center;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: #1E3944;
+    width: 100%;
+    margin-top: 16px;
+}
+  .shopping-cart button {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    }
+    .btn-next {
+        background: #1E3944!important;
+        border-radius: 100px;
+        padding: 0 20px;
+        font-weight: 700;
+        font-size: 14px;
+        line-height: 48px;
+        letter-spacing: 0.05em;
+        text-transform: uppercase;
+        color: #FBFBFB;
+        width: 100%;
+        text-align: center;
+        display: block;
+    }
+    .btn-next svg {
+        margin-left: 8px;
+    }
+  /*product cart*/
+  .product-item .qty {
+      font-weight: 400;
+      font-size: 12px;
+      line-height: 150%;
+      color: #6D7E85;
+  }
+  .product-item {
+      padding: 19.5px 0;
+      border-bottom: 1px solid #E0E4E5;
+  }
+  .product-item:last-child {
+      border-bottom: none;
+  }
+  .product-item > div:last-child {
+      width: calc(100% - 87px);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+  }
+  .product-item > div:last-child a {
+      font-size: 14px;
+      line-height: 150%;
+      color: #6D7E85;
+      text-align: left;
+      margin-bottom: 12px;
+      text-overflow: ellipsis;
+      overflow: hidden;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+  }
+  .product-item_img {
+      margin-right: 16px;
+  }
+  .product-item_img img {
+      width: 86px;
+      height: 86px;
+      flex-shrink: 0;
+      object-fit: contain;
+  }
+  .product-item .price {
+      font-weight: 600;
+      font-size: 16px;
+      line-height: 130%;
+      color: #1E3944;
+  }
+  .remove {
+      position: absolute;
+      left: 0;
+      top: 0;
+      background: #FFFFFF!important;
+      width: 20px;
+      height: 20px;
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3), 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
+      border-radius: 100px;
+      display: flex;
+  }
+  .remove svg {
+      margin: auto;
+  }
+  .quantity-btn  {
+      width: 18px;
+      height: 32px;
+      font-size: 21px;
+      border: none;
+      text-align: center;
+  }
+  .quantity-btn[disabled] {
+      pointer-events: none;
+      color: #BCC4C7;
+  }
+  .quantity {
+      color: #344D57;
+      text-align: center;
+      font-size: 12px;
+      line-height: 32px;
+      width: 32px;
+      height: 32px;
+      background: #FBFBFB;
+      border: 1px solid #E0E4E5;
+      border-radius: 38px;
+      margin: 0 12px;
+  }
+  /*flex*/
+  .flex {
+      display: flex;
+  }
+  .justify-between {
+      display: flex;
+      justify-content: space-between;
+  }
+  .flex-center-between {
+      display: flex!important;
+      align-items: center;
+      justify-content: space-between;
+  }
+  .flex-center {
+      display: flex!important;
+      align-items: center;
+      justify-content: center;
+  }
+  .items-center {
+      display: flex!important;
+      align-items: center;
+  }
+  .relative {
+      position: relative;
+  }
+  [disabled] {
+      pointer-events: none;
+  }
 
 </style>`
 
@@ -1557,6 +1861,100 @@ function toggleModal(item) {
     }
 }
 
+//scroll to
+function scrollTop(targetScroll, offsetTop) {
+    const scrollTarget = targetScroll;
+    const topOffset = offsetTop.offsetHeight;
+    const elementPosition = scrollTarget.getBoundingClientRect().top;
+    const offsetPosition = elementPosition - topOffset;
+
+    window.scrollBy({
+        top: offsetPosition,
+        behavior: 'smooth'
+    });
+}
+
+//changeQuantity
+function changeQuantity(plus, minus, quantity, post=false) {
+    //update quantity
+    quantity.addEventListener('change', () => {
+        if (quantity.value < 1) {
+            quantity.value = 1
+        }
+        post == true ? postFetch('/cart.html',`api=c&cart_action=update&variant_id=${quantity.closest('.product-item').dataset.variantId}&quantity=${quantity.value}&ctoken=${mm.ctoken}`,'POST').then(data => cart()) : '';
+    })
+    plus.addEventListener('click', () => {
+        quantity.value = +quantity.value + 1;
+        quantity.parentElement.querySelector('.quantity-btn_minus').disabled = false;
+
+        post == true ? postFetch('/cart.html',`api=c&cart_action=update&variant_id=${plus.closest('.product-item').dataset.variantId}&quantity=${quantity.value}&ctoken=${mm.ctoken}`,'POST').then(data => cart()) : '';
+    })
+
+    if (!href.includes('/checkout/step2') && !href.includes('/checkout/step3') ) {
+        if (minus.nextElementSibling.value < 2) {
+            minus.disabled = true;
+        } else {
+            minus.disabled = false;
+        }
+    } else {
+        minus.disabled = true;
+    }
+
+    minus.addEventListener('click', () => {
+        if (minus.nextElementSibling.value < 2) {
+            minus.nextElementSibling.value = 1;
+            minus.disabled = true;
+        } else {
+            minus.nextElementSibling.value = +minus.nextElementSibling.value - 1;
+        }
+        post == true ? postFetch('/cart.html',`api=c&cart_action=update&variant_id=${minus.closest('.product-item').dataset.variantId}&quantity=${quantity.value}&ctoken=${mm.ctoken}`,'POST').then(data => cart()) : '';
+    })
+}
+//set pricing
+function pricing(parent, data) {
+    document.querySelector(parent).innerHTML = '';
+    let pricing = obj['pricingArr']
+    for (let key in pricing) {
+        for (let keyData in data) {
+            if (key == keyData && (data[keyData] != 0 || keyData == 'subtotal' || keyData == 'total')) {
+                document.querySelector(parent).insertAdjacentHTML('beforeend', `
+        <li class="justify-between">
+            <p>${pricing[key]}:</p>
+            <p>$<span>${(+data[keyData].toString().replace(/[^\d\.]/g,'')).toFixed(2)}</span></p>
+        </li>`)
+            }
+        }
+    }
+}
+
+//add product
+function product(id, variantId, quantity, subtotal, url, imageUrl, title, varQty) {
+    return `<li class="flex product-item" data-id="${id}" data-variant-id="${variantId}">
+        <div class="relative">
+            <a href="${url}" class="product-item_img" title="${title}"> 
+                <img src="${imageUrl}" alt="${title}">
+            </a>
+            ${varQty == 0 ? `<button class="remove" type="button">
+                <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M6.60688 6L9.68305 2.3332C9.73461 2.27227 9.69126 2.17969 9.61157 2.17969H8.67641C8.62133 2.17969 8.5686 2.2043 8.53227 2.24648L5.99516 5.27109L3.45805 2.24648C3.4229 2.2043 3.37016 2.17969 3.31391 2.17969H2.37876C2.29907 2.17969 2.25571 2.27227 2.30727 2.3332L5.38344 6L2.30727 9.6668C2.29572 9.68038 2.28831 9.69699 2.28592 9.71466C2.28353 9.73233 2.28626 9.75031 2.29379 9.76648C2.30131 9.78264 2.31332 9.79631 2.32838 9.80585C2.34344 9.81539 2.36093 9.82041 2.37876 9.82031H3.31391C3.36899 9.82031 3.42172 9.7957 3.45805 9.75352L5.99516 6.72891L8.53227 9.75352C8.56743 9.7957 8.62016 9.82031 8.67641 9.82031H9.61157C9.69126 9.82031 9.73461 9.72774 9.68305 9.6668L6.60688 6Z" fill="#6D7E85"/>
+                </svg>
+                </button>` : ''}
+        </div>
+        <div>
+            <a href="${url}" title="${title}">${title}</a>
+            <div class="flex-center-between">
+                ${varQty == 0 ? `<div class="items-center">
+                    <button type="button" class="quantity-btn quantity-btn_minus" ${varQty == 1 ? 'disabled': ''}>−</button>
+                    <input type="number" name="quantity" value="${quantity}" class="quantity" ${varQty == 1 ? 'disabled': ''}>
+                    <button type="button" class="quantity-btn quantity-btn_plus" ${varQty == 1 ? 'disabled': ''}>+</button>
+                </div>` : '<p class="qty">Qty: ' + quantity + '</p>'}
+                
+                <div class="price flex">$<b>${(+subtotal.toString().replace(/[^\d\.]/g,'')).toFixed(2)}</b></div>
+            </div>
+        </div>
+    </li>`
+}
+
 let headerFetch = {
     'Content-Type': 'application/x-www-form-urlencoded',
     'Cart-Token': mm.ctoken,
@@ -1578,6 +1976,7 @@ function postFetch(host,body,method) {
     })
 }
 window.onload = function() {
+    document.body.insertAdjacentHTML('afterbegin', style);
     //checkout
     if (href.includes('/login.php') || href.includes('/register.php') || href.includes('/checkout')){
         let styleMain =`
@@ -1593,28 +1992,7 @@ window.onload = function() {
             input.quantity[type=number] {
               -moz-appearance: textfield;
             }
-            .shopping-cart button {
-                background: transparent;
-                border: none;
-                cursor: pointer;
-            }
-            .btn-next {
-                background: #1E3944!important;
-                border-radius: 100px;
-                padding: 0 20px;
-                font-weight: 700;
-                font-size: 14px;
-                line-height: 48px;
-                letter-spacing: 0.05em;
-                text-transform: uppercase;
-                color: #FBFBFB;
-                width: 100%;
-                text-align: center;
-                display: block;
-            }
-            .btn-next svg {
-                margin-left: 8px;
-            }
+
             /*wrapper and header*/
             .header-checkout *, .wrapper-checkout * {
                 box-sizing: border-box;
@@ -1655,118 +2033,7 @@ window.onload = function() {
                 padding-top: 20px;
                 border-top: 1px solid #E0E4E5;
             }
-            /*product cart*/
-            .product-item .qty {
-                font-weight: 400;
-                font-size: 12px;
-                line-height: 150%;
-                color: #6D7E85;
-            }
-            .product-item {
-                padding: 19.5px 0;
-                border-bottom: 1px solid #E0E4E5;
-            }
-            .product-item:last-child {
-                border-bottom: none;
-            }
-            .product-item > div:last-child {
-                width: calc(100% - 87px);
-                display: flex;
-                flex-direction: column;
-                justify-content: space-between;
-            }
-            .product-item > div:last-child a {
-                font-size: 14px;
-                line-height: 150%;
-                color: #6D7E85;
-                text-align: left;
-                margin-bottom: 12px;
-                text-overflow: ellipsis;
-                overflow: hidden;
-                display: -webkit-box;
-                -webkit-line-clamp: 2;
-                -webkit-box-orient: vertical;
-            }
-            .product-item_img {
-                margin-right: 16px;
-            }
-            .product-item_img img {
-                width: 86px;
-                height: 86px;
-                flex-shrink: 0;
-                object-fit: contain;
-            }
-            .product-item .price {
-                font-weight: 600;
-                font-size: 16px;
-                line-height: 130%;
-                color: #1E3944;
-            }
-            .remove {
-                position: absolute;
-                left: 0;
-                top: 0;
-                background: #FFFFFF!important;
-                width: 20px;
-                height: 20px;
-                box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3), 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
-                border-radius: 100px;
-                display: flex;
-            }
-            .remove svg {
-                margin: auto;
-            }
-            .quantity-btn  {
-                width: 18px;
-                height: 32px;
-                font-size: 21px;
-                border: none;
-                text-align: center;
-            }
-            .quantity-btn[disabled] {
-                pointer-events: none;
-                color: #BCC4C7;
-            }
-            .quantity {
-                color: #344D57;
-                text-align: center;
-                font-size: 12px;
-                line-height: 32px;
-                width: 32px;
-                height: 32px;
-                background: #FBFBFB;
-                border: 1px solid #E0E4E5;
-                border-radius: 38px;
-                margin: 0 12px;
-            }
-            /*flex*/
-            .flex {
-                display: flex;
-            }
-            .justify-between {
-                display: flex;
-                justify-content: space-between;
-            }
-            .flex-center-between {
-                display: flex!important;
-                align-items: center;
-                justify-content: space-between;
-            }
-            .flex-center {
-                display: flex!important;
-                align-items: center;
-                justify-content: center;
-            }
-            .items-center {
-                display: flex!important;
-                align-items: center;
-            }
-            .relative {
-                position: relative;
-            }
-            [disabled] {
-                pointer-events: none;
-            }
+           
         </style>`
 
         let obj = {
@@ -1786,100 +2053,6 @@ window.onload = function() {
                 'tax': 'Tax',
                 'total': 'Grand Total'
             }
-        }
-
-
-        //scroll to
-        let scrollTop = (targetScroll, offsetTop) => {
-            const scrollTarget = targetScroll;
-            const topOffset = offsetTop.offsetHeight;
-            const elementPosition = scrollTarget.getBoundingClientRect().top;
-            const offsetPosition = elementPosition - topOffset;
-
-            window.scrollBy({
-                top: offsetPosition,
-                behavior: 'smooth'
-            });
-        }
-        //changeQuantity
-        let changeQuantity = (plus, minus, quantity, post=false) => {
-            //update quantity
-            quantity.addEventListener('change', () => {
-                if (quantity.value < 1) {
-                    quantity.value = 1
-                }
-                post == true ? postFetch('/cart.html',`api=c&cart_action=update&variant_id=${quantity.closest('.product-item').dataset.variantId}&quantity=${quantity.value}&ctoken=${mm.ctoken}`,'POST').then(data => cart()) : '';
-            })
-            plus.addEventListener('click', () => {
-                quantity.value = +quantity.value + 1;
-                quantity.parentElement.querySelector('.quantity-btn_minus').disabled = false;
-
-                post == true ? postFetch('/cart.html',`api=c&cart_action=update&variant_id=${plus.closest('.product-item').dataset.variantId}&quantity=${quantity.value}&ctoken=${mm.ctoken}`,'POST').then(data => cart()) : '';
-            })
-
-            if (!href.includes('/checkout/step2') && !href.includes('/checkout/step3') ) {
-                if (minus.nextElementSibling.value < 2) {
-                    minus.disabled = true;
-                } else {
-                    minus.disabled = false;
-                }
-            } else {
-                minus.disabled = true;
-            }
-
-            minus.addEventListener('click', () => {
-                if (minus.nextElementSibling.value < 2) {
-                    minus.nextElementSibling.value = 1;
-                    minus.disabled = true;
-                } else {
-                    minus.nextElementSibling.value = +minus.nextElementSibling.value - 1;
-                }
-                post == true ? postFetch('/cart.html',`api=c&cart_action=update&variant_id=${minus.closest('.product-item').dataset.variantId}&quantity=${quantity.value}&ctoken=${mm.ctoken}`,'POST').then(data => cart()) : '';
-            })
-        }
-        //set pricing
-        let pricing = (parent, data) => {
-            document.querySelector(parent).innerHTML = '';
-            let pricing = obj['pricingArr']
-            for (let key in pricing) {
-                for (let keyData in data) {
-                    if (key == keyData && (data[keyData] != 0 || keyData == 'subtotal' || keyData == 'total')) {
-                        document.querySelector(parent).insertAdjacentHTML('beforeend', `
-                <li class="justify-between">
-                    <p>${pricing[key]}:</p>
-                    <p>$<span>${(+data[keyData].toString().replace(/[^\d\.]/g,'')).toFixed(2)}</span></p>
-                </li>`)
-                    }
-                }
-            }
-        }
-
-        //add product
-        let product = (id, variantId, quantity, subtotal, url, imageUrl, title, varQty) => {
-            return `<li class="flex product-item" data-id="${id}" data-variant-id="${variantId}">
-                <div class="relative">
-                    <a href="${url}" class="product-item_img" title="${title}"> 
-                        <img src="${imageUrl}" alt="${title}">
-                    </a>
-                    ${varQty == 0 ? `<button class="remove" type="button">
-                        <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M6.60688 6L9.68305 2.3332C9.73461 2.27227 9.69126 2.17969 9.61157 2.17969H8.67641C8.62133 2.17969 8.5686 2.2043 8.53227 2.24648L5.99516 5.27109L3.45805 2.24648C3.4229 2.2043 3.37016 2.17969 3.31391 2.17969H2.37876C2.29907 2.17969 2.25571 2.27227 2.30727 2.3332L5.38344 6L2.30727 9.6668C2.29572 9.68038 2.28831 9.69699 2.28592 9.71466C2.28353 9.73233 2.28626 9.75031 2.29379 9.76648C2.30131 9.78264 2.31332 9.79631 2.32838 9.80585C2.34344 9.81539 2.36093 9.82041 2.37876 9.82031H3.31391C3.36899 9.82031 3.42172 9.7957 3.45805 9.75352L5.99516 6.72891L8.53227 9.75352C8.56743 9.7957 8.62016 9.82031 8.67641 9.82031H9.61157C9.69126 9.82031 9.73461 9.72774 9.68305 9.6668L6.60688 6Z" fill="#6D7E85"/>
-                        </svg>
-                     </button>` : ''}
-                </div>
-                <div>
-                    <a href="${url}" title="${title}">${title}</a>
-                    <div class="flex-center-between">
-                        ${varQty == 0 ? `<div class="items-center">
-                            <button type="button" class="quantity-btn quantity-btn_minus" ${varQty == 1 ? 'disabled': ''}>−</button>
-                            <input type="number" name="quantity" value="${quantity}" class="quantity" ${varQty == 1 ? 'disabled': ''}>
-                            <button type="button" class="quantity-btn quantity-btn_plus" ${varQty == 1 ? 'disabled': ''}>+</button>
-                        </div>` : '<p class="qty">Qty: ' + quantity + '</p>'}
-                        
-                        <div class="price flex">$<b>${(+subtotal.toString().replace(/[^\d\.]/g,'')).toFixed(2)}</b></div>
-                    </div>
-                </div>
-            </li>`
         }
 
         document.body.insertAdjacentHTML('afterbegin', styleMain)
@@ -3166,179 +3339,6 @@ window.onload = function() {
                 scrollTop(e.target, document.body)
             })
         } else {
-            //cart
-            let styleCart = `
-            <style>
-                .shopping-cart * {
-                    box-sizing: border-box;
-                }
-                .shopping-cart {
-                    background: rgba(0,0,0,0.5);
-                    position: fixed;
-                    top: 0;
-                    left: 0;
-                    transition: all 0.3s ease;
-                    width: 100%;
-                    height: 100%;
-                    opacity: 0;
-                    pointer-events: none;
-                    z-index: 999;
-                }
-                .shopping-cart.active {
-                    opacity: 1;
-                    pointer-events: auto;
-                }
-                .shopping-cart.active .container {
-                    transform: translateX(0);
-                }
-                .shopping-cart .container {
-                   background: #FFFFFF;
-                   margin-left: auto;
-                   width: 100%;
-                   transform: translateX(200px);
-                   transition: all 0.3s ease;
-                }
-                .shopping-cart svg {
-                    cursor: pointer;
-                }
-                .header-cart {
-                    padding: 0 20px;
-                    background: #FBFBFB;
-                }
-                .header-cart > div {
-                    border-bottom: 1px solid #E3E6E7;
-                    padding: 12px 0;
-                    width: 100%;
-                    font-weight: 600;
-                    font-size: 18px;
-                    line-height: 120%;
-                    color: #474747;
-                }
-                .body-cart {
-                    padding: 0 20px;
-                    overflow-y: auto;
-                    height: calc(100vh - 155px - 53px);
-                    display: flex;
-                    flex-direction: column;
-                }
-                .list-product .product-item_img img {
-                    height: 86px;
-                    width: 86px;
-                }
-                .list-product .product-item_img {
-                    margin-right: 16px;
-                }
-                .also-bought {
-                    margin-top: auto;
-                    padding-top: 28px;
-                }
-                .subtotal {
-                    font-weight: 600;
-                    font-size: 24px;
-                    line-height: 120%;
-                    padding: 20px 0;
-                    border-top: 1px solid #E3E6E7;
-                }
-                .footer-cart {
-                    padding: 16px 20px;
-                    background: #FBFBFB;
-                    box-shadow: 0 -1px 2px rgba(0, 0, 0, 0.2), 0 -2px 6px 2px rgba(0, 0, 0, 0.15);
-                    position: relative;
-                    z-index: 2;
-                }
-                .footer-cart p {
-                    font-weight: 600;
-                    font-size: 14px;
-                    line-height: 130%;
-                    color: #344D57;
-                    padding: 4px;
-                }
-                .body-cart h4 {
-                    font-weight: 600;
-                    font-size: 24px;
-                    line-height: 120%;
-                    color: #344D57;
-                }
-                .paypal-form-button {
-                    background: #EEC86A;
-                    border-radius: 100px;
-                }
-                /*empty cart*/
-                .empty-cart {
-                    margin: auto;
-                    display: block;
-                    width: fit-content;
-                }
-                .empty-cart p {
-                    font-weight: 400;
-                    font-size: 18px;
-                    line-height: 150%;
-                    color: #344D57;
-                    margin-bottom: 28px;
-                }
-                .empty-cart button.btn-next {
-                    padding: 0 24px;
-                }
-                /*slider*/
-                .slider-products {
-                    padding: 20px 0 40px;
-                }
-                .tns-outer {
-                    margin-right: -20px;
-                }
-                .slide {
-                    background: #FFFFFF;
-                    margin-right: 12px;
-                    padding: 20px;
-                    border: 1px solid #E3E6E7;
-                    border-radius: 4px;
-                }
-                .slide img {
-                    width: 80px;
-                    height: 80px;
-                    margin-right: 8px;
-                }
-                .slide .price p {
-                    font-weight: 300;
-                    font-size: 12px;
-                    line-height: 150%;
-                    text-decoration-line: line-through;
-                    color: #666666;
-                }
-                .slide .price b {
-                    font-weight: 600;
-                    font-size: 16px;
-                    line-height: 130%;
-                    color: #091114;
-                }
-                .slide .name {
-                    font-weight: 400;
-                    font-size: 12px;
-                    line-height: 150%;
-                    color: #6E6E6E;
-                    margin: 4px 0 8px;
-                    text-align: left;
-                    text-overflow: ellipsis;
-                    overflow: hidden;
-                    display: -webkit-box;
-                    -webkit-line-clamp: 2;
-                    -webkit-box-orient: vertical;
-                }
-                .shopping-cart button.btn-add {
-                    background: #FBFBFB;
-                    border: 2px solid #1E3944;
-                    border-radius: 100px;
-                    font-weight: 600;
-                    font-size: 10px;
-                    line-height: 28px;
-                    text-align: center;
-                    letter-spacing: 0.05em;
-                    text-transform: uppercase;
-                    color: #1E3944;
-                    width: 100%;
-                    margin-top: 16px;
-                }
-            </style>`
 
             let cartModalHTML = `
             <div class="shopping-cart">
@@ -3464,7 +3464,6 @@ window.onload = function() {
 
         document.body.insertAdjacentHTML('afterbegin', html);
         document.body.insertAdjacentHTML('afterbegin', htmlMenu);
-        document.body.insertAdjacentHTML('afterbegin', styleLPPDP);
 
         startStuff();
 
