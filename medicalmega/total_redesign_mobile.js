@@ -208,7 +208,7 @@ input[type="search"]::-webkit-search-results-decoration {
    .checkbox:disabled ~ .radio-check {
       border-color: #E3E6E7; }
       .checkbox:disabled ~ .radio-check span {
-        color: #BCC4C7; }
+        color: #BCC4C7!important; }
 .ais-RefinementList-item--selected .check:before {
   content: ''; }
 .header {
