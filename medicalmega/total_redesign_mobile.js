@@ -101,9 +101,11 @@ input:-webkit-autofill {
     -webkit-animation-fill-mode: both;
 }
 input {
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+input:not(.quantity):not([name="submit"]) {
   border: none;
   background-color: #E9EBEC;
   border-radius: 100px;
@@ -1285,6 +1287,7 @@ margin: 16px -20px; }
    width: 100%;
    transform: translateX(200px);
    transition: all 0.3s ease;
+   padding: 0;
 }
 .shopping-cart svg {
     cursor: pointer;
@@ -1381,7 +1384,7 @@ margin: 16px -20px; }
     border: 1px solid #E3E6E7;
     border-radius: 4px;
 }
-.slide img {
+#tns1 > .tns-item img {
     width: 80px;
     height: 80px;
     margin-right: 8px;
@@ -3357,7 +3360,6 @@ window.onload = function() {
             </div>
         </div>`
 
-        document.body.insertAdjacentHTML('afterbegin', styleCart); //add style for cart modal
         document.body.insertAdjacentHTML('beforeend', cartModalHTML); //add cart modal
 
         let linkCustom = document.createElement('link');
@@ -3373,6 +3375,11 @@ window.onload = function() {
         //show/hide cart modal
         let showCart = () => document.querySelector('.shopping-cart').classList.add('active');
         let hideCart = () => document.querySelector('.shopping-cart').classList.remove('active');
+
+        document.querySelector('[name="viewport"]').setAttribute('content','width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no')
+
+        document.body.insertAdjacentHTML('afterbegin', html);
+        document.body.insertAdjacentHTML('afterbegin', htmlMenu);
 
         document.querySelector('.header-cart svg').addEventListener('click', () => {
             hideCart()
@@ -3447,10 +3454,6 @@ window.onload = function() {
                 swipeAngle: false,
             });
         })
-        document.querySelector('[name="viewport"]').setAttribute('content','width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no')
-
-        document.body.insertAdjacentHTML('afterbegin', html);
-        document.body.insertAdjacentHTML('afterbegin', htmlMenu);
 
         startStuff();
 
