@@ -1556,6 +1556,27 @@ function toggleModal(item) {
         document.getElementsByTagName('html')[0].classList.remove('fix')
     }
 }
+
+let headerFetch = {
+    'Content-Type': 'application/x-www-form-urlencoded',
+    'Cart-Token': mm.ctoken,
+    'x-api-key': 'Ojza12AGCMUzG6omNmSK8Qx2mdgiSVB5'
+}
+
+//post
+function postFetch(host,body,method) {
+    return new Promise((resolve, reject) => {
+        fetch(host, {
+            headers: headerFetch,
+            method: method,
+            body: body
+        }).then(res => res.json()).then(data => {
+            resolve(data)
+        }).catch((error) => {
+            console.error('Error:', error);
+        });
+    })
+}
 window.onload = function() {
     //checkout
     if (href.includes('/login.php') || href.includes('/register.php') || href.includes('/checkout')){
@@ -1748,12 +1769,6 @@ window.onload = function() {
             }
         </style>`
 
-        let headerFetchAddress = {
-            'Content-Type': 'application/x-www-form-urlencoded',
-            'Cart-Token': mm.ctoken,
-            'x-api-key': 'Ojza12AGCMUzG6omNmSK8Qx2mdgiSVB5'
-        }
-
         let obj = {
             'stepsName': ['Personal information','Shipping information','Payment Method','Confirmation'],
             'back' : {
@@ -1773,20 +1788,7 @@ window.onload = function() {
             }
         }
 
-        //post
-        let postFetch = (host,body,method) => {
-            return new Promise((resolve, reject) => {
-                fetch(host, {
-                    headers: headerFetchAddress,
-                    method: method,
-                    body: body
-                }).then(res => res.json()).then(data => {
-                    resolve(data)
-                }).catch((error) => {
-                    console.error('Error:', error);
-                });
-            })
-        }
+
         //scroll to
         let scrollTop = (targetScroll, offsetTop) => {
             const scrollTarget = targetScroll;
@@ -1991,21 +1993,21 @@ window.onload = function() {
             let confirmationHTML = `
             <header class="header-checkout"><div class="steps"></div></header>
             <div class="confirmation">
-            <h2>Thank you!</h2>
-            <p class="confirmation-span">Your order has been successfully placed</p>
-            <div class="confirmation-order flex">
-                <div class="col">
-                    <h3>Your Order</h3>
-                    <ul class="order_pricing"><li>order summary $0</li></ul>
+                <h2>Thank you!</h2>
+                <p class="confirmation-span">Your order has been successfully placed</p>
+                <div class="confirmation-order flex">
+                    <div class="col">
+                        <h3>Your Order</h3>
+                        <ul class="order_pricing"><li>order summary $0</li></ul>
+                    </div>
+                    <div class="col">
+                        <ul class="confirmation-products"></ul>
+                    </div>
                 </div>
-                <div class="col">
-                    <ul class="confirmation-products"></ul>
-                </div>
-            </div>
-            <p>Approximate shipping date of your order is:</p>
-            <p class="confirmation-date"></p>
-            <a href="/" class="btn-next"><span>Back to the website</span></a>
-        </div>`
+                <p>Approximate shipping date of your order is:</p>
+                <p class="confirmation-date"></p>
+                <a href="/" class="btn-next"><span>Back to the website</span></a>
+            </div>`
             document.body.insertAdjacentHTML('afterbegin', confirmationHTML)
             document.body.insertAdjacentHTML('afterbegin', styleConfirmation)
             //add steps in header
@@ -2827,7 +2829,7 @@ window.onload = function() {
             let copyFromShip = (e, formType) => {
                 if (e.checked) {
                     fetch(`/api/v1/addresses&type=ship`, {
-                        headers: headerFetchAddress,
+                        headers: headerFetch,
                         method: "GET",
                     }).then(res => res.json()).then(data => {
                         let address = data['addresses'][0]
@@ -2856,7 +2858,7 @@ window.onload = function() {
                 state_item = href.includes('guest-checkout1.php') ? b_state : state;
                 countries_ship_item = href.includes('guest-checkout1.php') ? b_country.innerHTML : countries_ship;
                 fetch(`/api/v1/addresses`, {
-                    headers: headerFetchAddress,
+                    headers: headerFetch,
                     method: "GET",
                 }).then(res => res.json()).then(data => {
                     console.log(data)
