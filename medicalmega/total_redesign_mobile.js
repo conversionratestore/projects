@@ -1981,17 +1981,6 @@ window.onload = function() {
     if (href.includes('/login.php') || href.includes('/register.php') || href.includes('/checkout')){
         let styleMain =`
         <style>
-            /* Chrome, Safari, Edge, Opera */
-            input.quantity::-webkit-outer-spin-button,
-            input.quantity::-webkit-inner-spin-button {
-              -webkit-appearance: none;
-              margin: 0;
-            }
-            
-            /* Firefox */
-            input.quantity[type=number] {
-              -moz-appearance: textfield;
-            }
 
             /*wrapper and header*/
             .header-checkout *, .wrapper-checkout * {
