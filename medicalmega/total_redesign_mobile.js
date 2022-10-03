@@ -1587,7 +1587,7 @@ margin: 16px -20px; }
         font-size: 26px;
     }
     .product > div.flex-center-between > img {
-        width: 50%;
+        width: 48%;
     }
     similar-products .card {
         width: 250px;
