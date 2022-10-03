@@ -1385,8 +1385,8 @@ margin: 16px -20px; }
     border-radius: 4px;
 }
 .shopping-cart .slide.tns-item img {
-    width: 80px;
-    height: 80px;
+    width: 80px!important;
+    height: 80px!important;
     margin-right: 8px;
 }
 .slide .price p {
