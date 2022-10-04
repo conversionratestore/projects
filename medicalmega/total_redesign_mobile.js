@@ -1858,6 +1858,66 @@ window.onload = function() {
             document.querySelector(parent).insertAdjacentHTML('beforeend', slide)
         }
 
+        let qty = 0;
+        //cart product
+        let cart = () => {
+            let parent = href.includes('/checkout/step') || href.includes('/login.php') || href.includes('/register.php') ? '.order_body' : '.list-product';
+
+            //get data
+            postFetch('/cart.html',`api=c&cart_action=cart&ctoken=${mm.ctoken}`,'POST').then(data => {
+                console.log(data)
+                let products = data['items'];
+                document.querySelector(parent).innerHTML = '';
+                if (parent == '.order_body') {
+                    document.querySelector('.order_head .price span').innerHTML = data.total.toFixed(2);
+                    pricing('.order_pricing', data)  //add pricing for order
+                } else {
+                    document.querySelector('.subtotal').innerHTML = data.subtotal != 0 ? `<p>Total:</p> <p>$<span>${(+data.subtotal.toString().replace(/[^\d\.]/g,'')).toFixed(2)}</span></p>` : '';
+                    if (products.length < 1) {
+                        document.querySelector(parent).innerHTML = `<div class="empty-cart">
+                                <p>Your cart is currently empty.</p>
+                                <button type="button" class="btn-next"><span>Shop now</span></button>
+                            </div>`;
+                        document.querySelector('.subtotal').style.display = 'none';
+                        document.querySelector(parent).style.margin = 'auto';
+                        document.querySelector('.footer-cart').style.display = 'none';
+                        document.querySelector('.body-cart').style.height = 'calc(100vh - 53px)';
+                    } else {
+                        document.querySelector('.subtotal').style = '';
+                        document.querySelector(parent).style = '';
+                        document.querySelector('.footer-cart').style = '';
+                        document.querySelector('.body-cart').style = '';
+                    }
+                    for (let i = 0; i < products.length; i++) {
+                        qty += +products[i].quantity;
+                    }
+                }
+                if (products.length > 0) {
+                    //product quantity changes
+                    let varQty = href.includes('checkout/step2') || href.includes('checkout/step3') ? 1 : 0
+                    for (let i = 0; i < products.length; i++) {
+                        //add products
+                        document.querySelector(parent).insertAdjacentHTML('beforeend', product(products[i].product_id, products[i].variant_id, products[i].quantity, products[i].subtotal, products[i].url, products[i].image_url, products[i].title, varQty))
+
+                        //remove product
+                        let remove = document.querySelectorAll('.remove');
+                        if (remove.length > 0) {
+                            remove[i].addEventListener('click', (e) => {
+                                console.log(e.target)
+                                postFetch('/cart.html',`api=c&cart_action=remove&variant_id=${remove[i].closest('.product-item').dataset.variantId}&ctoken=${mm.ctoken}`,'POST').then(data => cart())
+                            })
+                        }
+                        let plus = document.querySelectorAll(`${parent} .quantity-btn_plus`)[i],
+                            minus = document.querySelectorAll(`${parent} .quantity-btn_minus`)[i],
+                            quantity = document.querySelectorAll(`${parent} .quantity`)[i];
+
+                        varQty == 0 ? changeQuantity(plus, minus, quantity, true) : ''
+                    }
+                }
+            })
+        }
+        cart()
+
         //11212 Hand Sanitizing
         postFetch('/api/products',`offset=0&limit=6&is_featured=0&ctoken=${mm.ctoken}&category=11212`,'POST').then(data => {
             console.log(data)
@@ -1897,65 +1957,6 @@ window.onload = function() {
         })
     }
 
-    let qty = 0;
-    //cart product
-    let cart = () => {
-        let parent = href.includes('/checkout/step') || href.includes('/login.php') || href.includes('/register.php') ? '.order_body' : '.list-product';
-
-        //get data
-        postFetch('/cart.html',`api=c&cart_action=cart&ctoken=${mm.ctoken}`,'POST').then(data => {
-            console.log(data)
-            let products = data['items'];
-            document.querySelector(parent).innerHTML = '';
-            if (parent == '.order_body') {
-                document.querySelector('.order_head .price span').innerHTML = data.total.toFixed(2);
-                pricing('.order_pricing', data)  //add pricing for order
-            } else {
-                document.querySelector('.subtotal').innerHTML = data.subtotal != 0 ? `<p>Total:</p> <p>$<span>${(+data.subtotal.toString().replace(/[^\d\.]/g,'')).toFixed(2)}</span></p>` : '';
-                if (products.length < 1) {
-                    document.querySelector(parent).innerHTML = `<div class="empty-cart">
-                            <p>Your cart is currently empty.</p>
-                            <button type="button" class="btn-next"><span>Shop now</span></button>
-                        </div>`;
-                    document.querySelector('.subtotal').style.display = 'none';
-                    document.querySelector(parent).style.margin = 'auto';
-                    document.querySelector('.footer-cart').style.display = 'none';
-                    document.querySelector('.body-cart').style.height = 'calc(100vh - 53px)';
-                } else {
-                    document.querySelector('.subtotal').style = '';
-                    document.querySelector(parent).style = '';
-                    document.querySelector('.footer-cart').style = '';
-                    document.querySelector('.body-cart').style = '';
-                }
-                for (let i = 0; i < products.length; i++) {
-                    qty += +products[i].quantity;
-                }
-            }
-            if (products.length > 0) {
-                //product quantity changes
-                let varQty = href.includes('checkout/step2') || href.includes('checkout/step3') ? 1 : 0
-                for (let i = 0; i < products.length; i++) {
-                    //add products
-                    document.querySelector(parent).insertAdjacentHTML('beforeend', product(products[i].product_id, products[i].variant_id, products[i].quantity, products[i].subtotal, products[i].url, products[i].image_url, products[i].title, varQty))
-
-                    //remove product
-                    let remove = document.querySelectorAll('.remove');
-                    if (remove.length > 0) {
-                        remove[i].addEventListener('click', (e) => {
-                            console.log(e.target)
-                            postFetch('/cart.html',`api=c&cart_action=remove&variant_id=${remove[i].closest('.product-item').dataset.variantId}&ctoken=${mm.ctoken}`,'POST').then(data => cart())
-                        })
-                    }
-                    let plus = document.querySelectorAll(`${parent} .quantity-btn_plus`)[i],
-                        minus = document.querySelectorAll(`${parent} .quantity-btn_minus`)[i],
-                        quantity = document.querySelectorAll(`${parent} .quantity`)[i];
-
-                    varQty == 0 ? changeQuantity(plus, minus, quantity, true) : ''
-                }
-            }
-        })
-    }
-    cart()
 
     console.log(qty)
     if (!href.includes('login.php') && !href.includes('/register.php') && !href.includes('/checkout') && !href.includes('/guest-checkout1.php')) {
