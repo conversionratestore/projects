@@ -198,8 +198,8 @@ let headerFetchAddress = {
 let obj = {
     'stepsName': ['Personal information','Shipping information','Payment Method','Confirmation'],
     'back' : {
-        'personal information' : ['Back to Cart', '/cart.html'],
-        'shipping information' : ['Back to Cart','/cart.html'],
+        'personal information' : ['Back to Shopping', '/'],
+        'shipping information' : ['Back to Shopping','/'],
         'billing information' : ['Back to Shipping Info','/checkout/step1'],
         'delivery method' : ['Back To Address Info','/checkout/step1'],
         'payment method': ['Back to Delivery Method','/checkout/step2']
@@ -299,8 +299,8 @@ let pushDataLayer = (actionDataLayer, labelDataLayer) => {
 }
 
 //show/hide 
-let showCart = (element) => document.querySelector(element).classList.add('active');
-let hideCart = (element) => document.querySelector(element).classList.remove('active');
+let addActive = (element) => document.querySelector(element).classList.add('active');
+let removeActive = (element) => document.querySelector(element).classList.remove('active');
 
 let qty = 0;
 window.onload = function() {
@@ -400,7 +400,6 @@ window.onload = function() {
             }
         })
     }
-    cart()
     //Confirmation
     if (href.includes('Confirmation')) {
         let styleConfirmation = `
@@ -1163,7 +1162,7 @@ window.onload = function() {
             document.querySelector('.col-left .head').after(document.querySelector('.myAccount'))
             document.querySelector('.col-left .head h4').innerHTML = obj['stepsName'][0];
             document.querySelector('.steps').innerHTML = `Step 1<span>/4</span> — ${obj['stepsName'][0]}`; //add steps in header
-            document.querySelector('.myAccountleft').classList.add('active');
+            addActive('.myAccountleft')
 
             //click on 'Sign in/Register' button
             let linkHead = document.querySelector('.head-login .link'),
@@ -1173,12 +1172,12 @@ window.onload = function() {
                     titleHead.innerHTML = 'Register';
                     linkHead.innerHTML = 'Sign in';
                     document.querySelector('.myAccountright').classList.remove('active')
-                    document.querySelector('.myAccountleft').classList.add('active')
+                    addActive('.myAccountleft')
                 } else {
                     titleHead.innerHTML = 'Sign in';
                     linkHead.innerHTML = 'Register';
                     document.querySelector('.myAccountleft').classList.remove('active')
-                    document.querySelector('.myAccountright').classList.add('active')
+                    addActive('.myAccountright')
                 }
             })
             document.querySelector(' .myAccountleft dd:nth-child(5) input').insertAdjacentHTML('afterend',`<img class="eye" src="https://conversionratestore.github.io/projects/medicalmega/img/eye-through.svg" alt="eye icon">`)
@@ -1605,7 +1604,7 @@ window.onload = function() {
                                 document.querySelector('.col-left .head h4').innerHTML = 'Billing information';
                                 setBack()
                                 document.querySelector('.ship-form.active').classList.remove('active')
-                                document.querySelector('.bill-form').classList.add('active')
+                                addActive('.bill-form')
                             } else {
                                 errorsFun(dataErrors)
                             }
@@ -1898,11 +1897,11 @@ window.onload = function() {
         document.head.appendChild(scriptCustom);
 
         document.querySelector('.header-cart svg').addEventListener('click', () => {
-            hideCart('.shopping-cart')
+            removeActive('.shopping-cart')
         })
         document.querySelector('.shopping-cart').addEventListener('click', (e) => {
             if(e.target.matches('.shopping-cart')) {
-                hideCart('.shopping-cart')
+                removeActive('.shopping-cart')
             }
         })
         //add products in slider
@@ -1967,8 +1966,13 @@ window.onload = function() {
                 swipeAngle: false,
             });
         })
+
+        if (href.includes('cart.html')) {
+            document.querySelector('')
+        }
     }
 
+    cart()
     if (!href.includes('login.php') && !href.includes('/register.php') && !href.includes('/checkout') && !href.includes('/guest-checkout1.php')) {
         let style = `
         <style class="style-main">
@@ -3531,7 +3535,7 @@ window.onload = function() {
             document.body.insertAdjacentHTML('afterbegin', htmlMenu);
             document.body.insertAdjacentHTML('afterbegin', style);
 
-            document.querySelector('.midbar .midbar_action').addEventListener('click', () => showCart('.shopping-cart')); // show cart modal 
+            document.querySelector('.midbar .midbar_action').addEventListener('click', () => addActive('.shopping-cart')); // show cart modal 
             
             startStuff();
 
@@ -4205,9 +4209,9 @@ window.onload = function() {
                         //comes into view pricing product
                         window.addEventListener('scroll', () => {
                             if (isScrolledIntoView(document.querySelector('.product_pricing')) == true) {
-                                document.querySelector('.add-to-cart').classList.remove('active');
+                                removeActive('.add-to-cart')
                             } else {
-                                document.querySelector('.add-to-cart').classList.add('active');
+                                addActive('.add-to-cart')
                             }
                         })
 
