@@ -1968,7 +1968,7 @@ window.onload = function() {
         })
 
         if (href.includes('cart.html')) {
-            document.querySelector('')
+            addActive('.shopping-cart');
         }
     }
 
