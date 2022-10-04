@@ -1497,6 +1497,7 @@ window.onload = function() {
         }
         if (href.includes('/guest-checkout3.php')) {
             document.querySelector('#checkoutForm > fieldset > dl > dd:nth-child(2)').innerHTML = `Credit/Debit Card<span class="c-red"> *</span>`;
+            document.querySelector('#checkoutForm > p').style.whiteSpace = 'initial';
         }
         if (href.includes('/checkout/step3')) {
             document.querySelector('#checkoutForm h3').innerHTML = `Card Details <img src="https://conversionratestore.github.io/projects/medicalmega/img/payment-cards.png" alt="icons">`;
