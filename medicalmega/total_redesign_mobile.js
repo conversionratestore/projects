@@ -156,6 +156,7 @@ let styleMain =`
         border: 1px solid #E0E4E5;
         border-radius: 38px;
         margin: 0 12px;
+        padding: 0;
     }
     /*flex*/
     .flex {
@@ -1636,11 +1637,12 @@ window.onload = function() {
                 transform: translateX(0);
             }
             .shopping-cart .container {
-            background: #FFFFFF;
-            margin-left: auto;
-            width: 100%;
-            transform: translateX(200px);
-            transition: all 0.3s ease;
+                background: #FFFFFF;
+                margin-left: auto;
+                width: 100%;
+                transform: translateX(200px);
+                transition: all 0.3s ease;
+                padding: 0;
             }
             .shopping-cart svg {
                 cursor: pointer;
@@ -1737,7 +1739,7 @@ window.onload = function() {
                 border: 1px solid #E3E6E7;
                 border-radius: 4px;
             }
-            .slide img {
+            .also-bought #tns1 > .tns-item img {
                 width: 80px;
                 height: 80px;
                 margin-right: 8px;
@@ -2059,7 +2061,7 @@ window.onload = function() {
             -webkit-animation-name: autofill;
             -webkit-animation-fill-mode: both;
         }
-        input {
+        input:not([type="image"], .quantity) {
             -webkit-appearance: none;
             -moz-appearance: none;
             appearance: none;
@@ -2187,7 +2189,7 @@ window.onload = function() {
             width: 100%;
             padding: 19px 8px;}
         .midbar_action {
-            background: tranparent;}
+            background: transparent;}
         .back-menu {
             position: sticky;
             top: 0;}
