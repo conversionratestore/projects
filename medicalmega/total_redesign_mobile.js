@@ -200,9 +200,9 @@ let obj = {
     'back' : {
         'personal information' : ['Back to Cart', '/cart.html'],
         'shipping information' : ['Back to Cart','/cart.html'],
-        'billing information' : ['Back to Shipping Info','/checkout/step1'],
-        'delivery method' : ['Back To Address Info','/checkout/step1'],
-        'payment method': ['Back to Delivery Method','/checkout/step2']
+        'billing information' : ['Back to Shipping Info',['/checkout/step1','/guest-checkout1.php']],
+        'delivery method' : ['Back To Address Info',['/checkout/step1','/guest-checkout1.php']],
+        'payment method': ['Back to Delivery Method',['/checkout/step2','/guest-checkout2.php']]
     },
     'pricingArr':  {
         'subtotal': 'Sub total',
@@ -1501,8 +1501,9 @@ window.onload = function() {
 
         //set text for back button
         let setBack = () => {
+            let guestOrAccount = href.includes('guest-checkout') ? 1 : 0;
             document.querySelector('.btn-back span').innerHTML = obj['back'][document.querySelector('.col-left .head h4').innerHTML.toLowerCase()][0]
-            document.querySelector('.btn-back').href = obj['back'][document.querySelector('.col-left .head h4').innerHTML.toLowerCase()][1]
+            document.querySelector('.btn-back').href = obj['back'][document.querySelector('.col-left .head h4').innerHTML.toLowerCase()][1][guestOrAccount]
         }
         setBack()
 
