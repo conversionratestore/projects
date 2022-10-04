@@ -320,6 +320,10 @@ let product = (id, variantId, quantity, subtotal, url, imageUrl, title, varQty) 
             </li>`
 }
 
+//show/hide 
+let showCart = (element) => document.querySelector(element).classList.add('active');
+let hideCart = (element) => document.querySelector(element).classList.remove('active');
+
 window.onload = function() {
     document.body.insertAdjacentHTML('afterbegin', styleMain)
 
@@ -1819,21 +1823,13 @@ window.onload = function() {
         scriptCustom.async = false;
         document.head.appendChild(scriptCustom);
 
-        //show/hide cart modal
-        let showCart = () => document.querySelector('.shopping-cart').classList.add('active');
-        let hideCart = () => document.querySelector('.shopping-cart').classList.remove('active');
-
         document.querySelector('.header-cart svg').addEventListener('click', () => {
-            hideCart()
+            hideCart('.shopping-cart')
         })
         document.querySelector('.shopping-cart').addEventListener('click', (e) => {
             if(e.target.matches('.shopping-cart')) {
-                hideCart()
+                hideCart('.shopping-cart')
             }
-        })
-        document.querySelector('.shoppingcart.tooltip-cart').addEventListener('click', (e) => {
-            e.preventDefault();
-            showCart()
         })
         //add products in slider
         let slideHTML = (url, urlImage, title, price, id, variantId, parent) =>  {
@@ -1899,6 +1895,7 @@ window.onload = function() {
         })
     }
 
+    let qty = 0;
     //cart product
     let cart = () => {
         let parent = href.includes('/checkout/step') || href.includes('/login.php') || href.includes('/register.php') ? '.order_body' : '.list-product';
@@ -1928,12 +1925,9 @@ window.onload = function() {
                     document.querySelector('.footer-cart').style = '';
                     document.querySelector('.body-cart').style = '';
                 }
-                let qty = 0
                 for (let i = 0; i < products.length; i++) {
                     qty += +products[i].quantity;
                 }
-                console.log(qty)
-                document.querySelector('.shoppingcart .by_num span').innerHTML = qty;
             }
             if (products.length > 0) {
                 //product quantity changes
@@ -1961,45 +1955,46 @@ window.onload = function() {
     }
     cart()
 
+    console.log(qty)
     if (!href.includes('login.php') && !href.includes('/register.php') && !href.includes('/checkout') && !href.includes('/guest-checkout1.php')) {
         let style = `
         <style class="style-main">
         @font-face {
-        font-family: "Inter";
-        src: url(https://olha1001.github.io/medicalmega/pdp-rediesign/fonts/Inter/Inter-Light.woff) format("woff"), url(https://olha1001.github.io/medicalmega/pdp-rediesign/fonts/Inter/Inter-Light.woff2) format("woff2"), url(https://olha1001.github.io/medicalmega/pdp-rediesign/fonts/Inter/Inter-Light.ttf) format("truetype");
-        font-weight: 300;
-        font-style: "normal"; }
+            font-family: "Inter";
+            src: url(https://olha1001.github.io/medicalmega/pdp-rediesign/fonts/Inter/Inter-Light.woff) format("woff"), url(https://olha1001.github.io/medicalmega/pdp-rediesign/fonts/Inter/Inter-Light.woff2) format("woff2"), url(https://olha1001.github.io/medicalmega/pdp-rediesign/fonts/Inter/Inter-Light.ttf) format("truetype");
+            font-weight: 300;
+            font-style: "normal"; }
+        @font-face {
+            font-family: "Inter";
+            src: url(https://olha1001.github.io/medicalmega/pdp-rediesign/fonts/Inter/Inter-Regular.woff) format("woff"), url(https://olha1001.github.io/medicalmega/pdp-rediesign/fonts/Inter/Inter-Regular.woff2) format("woff2"), url(https://olha1001.github.io/medicalmega/pdp-rediesign/fonts/Inter/Inter-Regular.ttf) format("truetype");
+            font-weight: 400;
+            font-style: "normal"; }
+        @font-face {
+            font-family: "Inter";
+            src: url(https://olha1001.github.io/medicalmega/pdp-rediesign/fonts/Inter/Inter-Medium.woff) format("woff"), url(https://olha1001.github.io/medicalmega/pdp-rediesign/fonts/Inter/Inter-Medium.woff2) format("woff2"), url(https://olha1001.github.io/medicalmega/pdp-rediesign/fonts/Inter/Inter-Medium.ttf) format("truetype");
+            font-weight: 500;
+            font-style: "normal"; }
+        @font-face {
+            font-family: "Inter";
+            src: url(https://olha1001.github.io/medicalmega/pdp-rediesign/fonts/Inter/Inter-SemiBold.woff) format("woff"), url(https://olha1001.github.io/medicalmega/pdp-rediesign/fonts/Inter/Inter-SemiBold.woff2) format("woff2"), url(https://olha1001.github.io/medicalmega/pdp-rediesign/fonts/Inter/Inter-SemiBold.ttf) format("truetype");
+            font-weight: 600;
+            font-style: "normal"; }
         @font-face {
         font-family: "Inter";
-        src: url(https://olha1001.github.io/medicalmega/pdp-rediesign/fonts/Inter/Inter-Regular.woff) format("woff"), url(https://olha1001.github.io/medicalmega/pdp-rediesign/fonts/Inter/Inter-Regular.woff2) format("woff2"), url(https://olha1001.github.io/medicalmega/pdp-rediesign/fonts/Inter/Inter-Regular.ttf) format("truetype");
-        font-weight: 400;
-        font-style: "normal"; }
+            src: url(https://olha1001.github.io/medicalmega/pdp-rediesign/fonts/Inter/Inter-Bold.woff) format("woff"), url(https://olha1001.github.io/medicalmega/pdp-rediesign/fonts/Inter/Inter-Bold.woff2) format("woff2"), url(https://olha1001.github.io/medicalmega/pdp-rediesign/fonts/Inter/Inter-Bold.ttf) format("truetype");
+            font-weight: 700;
+            font-style: "normal"; }
         @font-face {
-        font-family: "Inter";
-        src: url(https://olha1001.github.io/medicalmega/pdp-rediesign/fonts/Inter/Inter-Medium.woff) format("woff"), url(https://olha1001.github.io/medicalmega/pdp-rediesign/fonts/Inter/Inter-Medium.woff2) format("woff2"), url(https://olha1001.github.io/medicalmega/pdp-rediesign/fonts/Inter/Inter-Medium.ttf) format("truetype");
-        font-weight: 500;
-        font-style: "normal"; }
-        @font-face {
-        font-family: "Inter";
-        src: url(https://olha1001.github.io/medicalmega/pdp-rediesign/fonts/Inter/Inter-SemiBold.woff) format("woff"), url(https://olha1001.github.io/medicalmega/pdp-rediesign/fonts/Inter/Inter-SemiBold.woff2) format("woff2"), url(https://olha1001.github.io/medicalmega/pdp-rediesign/fonts/Inter/Inter-SemiBold.ttf) format("truetype");
-        font-weight: 600;
-        font-style: "normal"; }
-        @font-face {
-        font-family: "Inter";
-        src: url(https://olha1001.github.io/medicalmega/pdp-rediesign/fonts/Inter/Inter-Bold.woff) format("woff"), url(https://olha1001.github.io/medicalmega/pdp-rediesign/fonts/Inter/Inter-Bold.woff2) format("woff2"), url(https://olha1001.github.io/medicalmega/pdp-rediesign/fonts/Inter/Inter-Bold.ttf) format("truetype");
-        font-weight: 700;
-        font-style: "normal"; }
-        @font-face {
-        font-family: "Inter";
-        src: url(https://olha1001.github.io/medicalmega/pdp-rediesign/fonts/Inter/Inter-ExtraBold.woff) format("woff"), url(https://olha1001.github.io/medicalmega/pdp-rediesign/fonts/Inter/Inter-ExtraBold.woff2) format("woff2"), url(https://olha1001.github.io/medicalmega/pdp-rediesign/fonts/Inter/Inter-ExtraBold.ttf) format("truetype");
-        font-weight: 800;
-        font-style: "normal"; }
+            font-family: "Inter";
+            src: url(https://olha1001.github.io/medicalmega/pdp-rediesign/fonts/Inter/Inter-ExtraBold.woff) format("woff"), url(https://olha1001.github.io/medicalmega/pdp-rediesign/fonts/Inter/Inter-ExtraBold.woff2) format("woff2"), url(https://olha1001.github.io/medicalmega/pdp-rediesign/fonts/Inter/Inter-ExtraBold.ttf) format("truetype");
+            font-weight: 800;
+            font-style: "normal"; }
         *, *::before, *::after {
-        -webkit-appearance: none;
-        -webkit-box-sizing: border-box;
-        box-sizing: border-box;
-        padding: 0;
-        margin: 0; }
+            -webkit-appearance: none;
+            -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+            padding: 0;
+            margin: 0; }
         ul, ol, li {
             list-style: none;
         }
@@ -2008,52 +2003,52 @@ window.onload = function() {
             text-decoration: none;
         }
         body {
-        font-size: 12px;
-        border-top: 0;
-        font-family: "Inter", sans-serif;
-        font-style: normal;
-        font-weight: normal;}
+            font-size: 12px;
+            border-top: 0;
+            font-family: "Inter", sans-serif;
+            font-style: normal;
+            font-weight: normal;}
         html.fix {
             overflow: hidden;}
         html.fix body {
             position: relative;
             overflow: hidden;}
         button {
-        border: none;
-        -webkit-appearance: none;
-        -moz-appearance: none;
-        appearance: none; }
+            border: none;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none; }
         /* Chrome, Safari, Edge, Opera */
         input::-webkit-outer-spin-button, input::-webkit-inner-spin-button {
-        -webkit-appearance: none;
-        margin: 0; }
+            -webkit-appearance: none;
+            margin: 0; }
         /* Firefox */
         input[type=number] {
-        -moz-appearance: textfield; }
+            -moz-appearance: textfield; }
         *::-webkit-input-placeholder {
-        font-family: "Inter", sans-serif;
-        font-weight: 400;
-        color: #9AA6AB;
-        font-size: 12px;
-        line-height: 20px; }
+            font-family: "Inter", sans-serif;
+            font-weight: 400;
+            color: #9AA6AB;
+            font-size: 12px;
+            line-height: 20px; }
         *:-moz-placeholder {
-        font-family: "Inter", sans-serif;
-        font-weight: 400;
-        color: #9AA6AB;
-        font-size: 12px;
-        line-height: 20px;}
+            font-family: "Inter", sans-serif;
+            font-weight: 400;
+            color: #9AA6AB;
+            font-size: 12px;
+            line-height: 20px;}
         *::-moz-placeholder {
-        font-family: "Inter", sans-serif;
-        font-weight: 400;
-        color: #9AA6AB;
-        font-size: 12px;
-        line-height: 20px; }
+            font-family: "Inter", sans-serif;
+            font-weight: 400;
+            color: #9AA6AB;
+            font-size: 12px;
+            line-height: 20px; }
         *:-ms-input-placeholder {
-        font-family: "Inter", sans-serif;
-        font-weight: 400;
-        color: #9AA6AB;
-        font-size: 12px;
-        line-height: 20px;}
+            font-family: "Inter", sans-serif;
+            font-weight: 400;
+            color: #9AA6AB;
+            font-size: 12px;
+            line-height: 20px;}
         @-webkit-keyframes autofill {
             to {
                 color: #091114;
@@ -2065,53 +2060,53 @@ window.onload = function() {
             -webkit-animation-fill-mode: both;
         }
         input {
-        -webkit-appearance: none;
-        -moz-appearance: none;
-        appearance: none;
-        border: none;
-        background-color: #E9EBEC;
-        border-radius: 100px;
-        padding: 11px 20px;
-        width: 100%;
-        font-size: 12px;
-        outline-color: #344D57;
-        line-height: 20px; }
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            border: none;
+            background-color: #E9EBEC;
+            border-radius: 100px;
+            padding: 11px 20px;
+            width: 100%;
+            font-size: 12px;
+            outline-color: #344D57;
+            line-height: 20px; }
         input[type="search"]::-webkit-search-decoration,
         input[type="search"]::-webkit-search-cancel-button,
         input[type="search"]::-webkit-search-results-button,
         input[type="search"]::-webkit-search-results-decoration {
-        display: none; }
+            display: none; }
         .container {
-        max-width: 1280px;
-        padding: 0 20px;
-        width: 100%;
-        margin: 0 auto; }
+            max-width: 1280px;
+            padding: 0 20px;
+            width: 100%;
+            margin: 0 auto; }
         #wrap, .modal {
-        display: none;}
+            display: none;}
         .main {
-        font-family: "Inter", sans-serif;
-        font-style: normal;
-        font-weight: normal;
-        color: #091114;
-        text-align: left;
-        line-height: 16px; }
+            font-family: "Inter", sans-serif;
+            font-style: normal;
+            font-weight: normal;
+            color: #091114;
+            text-align: left;
+            line-height: 16px; }
         .main * {
             box-sizing: border-box;}
         .btn {
-        font-family: "Inter", sans-serif;
-        background-color: #1E3944;
-        border: 2px solid #1E3944;
-        border-radius: 40px;
-        color: #FBFBFB;
-        font-weight: 600;
-        text-align: center;
-        letter-spacing: 0.05em;
-        text-transform: uppercase;
-        line-height: 44px;
-        font-size: 12px;
-        padding: 0 22px;
-        cursor: pointer;
-        transition: all 0.3s ease;
+            font-family: "Inter", sans-serif;
+            background-color: #1E3944;
+            border: 2px solid #1E3944;
+            border-radius: 40px;
+            color: #FBFBFB;
+            font-weight: 600;
+            text-align: center;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            line-height: 44px;
+            font-size: 12px;
+            padding: 0 22px;
+            cursor: pointer;
+            transition: all 0.3s ease;
         white-space: nowrap; }
             .btn:hover, .btn:not(.btn_white):focus  {
             background-color: #344D57;
@@ -2134,16 +2129,16 @@ window.onload = function() {
             background-color: #FBFBFB;
             color: #9AA6AB; }
         .btn-filters {
-                line-height: 36px;}
+            line-height: 36px;}
         .check {
-        border: 1px solid #6D7E85;
-        width: 16px;
-        height: 16px;
-        border-radius: 2px;
-        display: block;
-        margin-right: 8px;
-        flex-shrink: 0;
-        position: relative; }
+            border: 1px solid #6D7E85;
+            width: 16px;
+            height: 16px;
+            border-radius: 2px;
+            display: block;
+            margin-right: 8px;
+            flex-shrink: 0;
+            position: relative; }
         .check:before {
             content: none;
             width: 8px;
@@ -2157,8 +2152,8 @@ window.onload = function() {
             -ms-transform: translate(-50%, -50%);
             transform: translate(-50%, -50%); }
         .check_text {
-        font-size: 14px;
-        line-height: 150%; }
+            font-size: 14px;
+            line-height: 150%; }
         .checkbox {
             display: none; }
             .checkbox:checked ~ .check:before {
@@ -2169,47 +2164,48 @@ window.onload = function() {
             color: #96280F;}
         .checkbox:disabled ~ .radio-check {
             border-color: #E3E6E7; }
-            .checkbox:disabled ~ .radio-check span {
-                color: #BCC4C7; }
+        .checkbox:disabled ~ .radio-check span {
+            color: #BCC4C7; }
         .ais-RefinementList-item--selected .check:before {
-        content: ''; }
+            content: ''; }
         .header {
-        -webkit-box-shadow: 4px 8px 12px rgba(0, 0, 0, 0.1);
-        box-shadow: 4px 8px 12px rgba(0, 0, 0, 0.1);
-        position: sticky;
-        top: 0;
-        color: #1E3944;
-        z-index: 8;
-        background: #fff; }
+            -webkit-box-shadow: 4px 8px 12px rgba(0, 0, 0, 0.1);
+            box-shadow: 4px 8px 12px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            color: #1E3944;
+            z-index: 8;
+            background: #fff; }
         
         .midbar {
-        padding: 12px 0; }
+            padding: 12px 0; }
         .menu .midbar_action {
-            margin-top: 13px;
-        }
+            margin-top: 13px;}
         .menu .midbar_action, .back-menu {
-        border-bottom: 1px solid #E0E4E5;
-        background: #FBFBFB;
-        width: 100%;
-        padding: 19px 8px;}
+            border-bottom: 1px solid #E0E4E5;
+            background: #FBFBFB;
+            width: 100%;
+            padding: 19px 8px;}
+        .midbar_action {
+            background: tranparent;}
         .back-menu {
             position: sticky;
             top: 0;}
         .midbar_action span, .back-menu span, .all_category {
-        letter-spacing: 0.05em;
-        font-weight: 600;
-        font-size: 10px;
-        text-transform: uppercase;
+            letter-spacing: 0.05em;
+            font-weight: 600;
+            font-size: 10px;
+            text-transform: uppercase;
             background: transparent;
-        line-height: 10px;
-        color: #1E3944; }
+            line-height: 10px;
+            color: #1E3944; }
         .midbar .btn {
-        font-size: 12px;}
+            font-size: 12px;}
         .midbar_action span.cart_count {
-        color: #96280F;}
+            color: #96280F;}
         .box-search {
-        position: relative;
-        width: calc(100% - 24px - 32px - 40px); }
+            position: relative;
+            width: calc(100% - 24px - 32px - 40px); }
         .form-search {
             width: 100%;}
         .main .ais-SearchBox-input {
@@ -2893,7 +2889,6 @@ window.onload = function() {
             .list li {
             font-size: 16px;
             line-height: 170%; }
-        
         .product { 
             font-family: 'Inter', sans-serif;}
             .product h2, .product .title {
@@ -2902,6 +2897,10 @@ window.onload = function() {
             font-size: 32px;
             line-height: 120%;
             margin-bottom: 20px; }
+        .product .slide {
+            padding: 0;}
+        .product > div.flex-center-between > img {
+            width: 48%; }
         .product_pricing {
             margin-top: 20px;}
         .product_pricing .btn {
@@ -3035,16 +3034,16 @@ window.onload = function() {
             white-space: nowrap; }
             
         .product_sidebar.disabled .product_sidebar_top, .product_sidebar.disabled .calc {
-        pointer-events: none;}
+            pointer-events: none;}
         .product_sidebar.disabled p {
-        color: #9AA6AB; }
+            color: #9AA6AB; }
         .product_sidebar.disabled .radio-check {
-        border-color: #E3E6E7; }
+            border-color: #E3E6E7; }
         .product_sidebar.disabled .radio-check span {
-        color: #BCC4C7!important; }
+            color: #BCC4C7!important; }
         .product_sidebar.disabled .calc-qty, .main .product_sidebar.disabled input.calc-qty {
-        border-color: #E3E6E7;
-        color: #BCC4C7; }
+            border-color: #E3E6E7;
+            color: #BCC4C7; }
         .shipping_block {
             background: #F0F1F2;
             border: 1px solid #E0E4E5;
@@ -3052,9 +3051,9 @@ window.onload = function() {
             margin-bottom: 8px;
             border-radius: 4px;}
         .scroll-x {
-        overflow-x: auto;}
+            overflow-x: auto;}
         .scroll-x::-webkit-scrollbar {
-        display: none; }
+            display: none; }
         .tns-outer {
             position: relative;}
         .tns-outer .scroll-x {
@@ -3078,37 +3077,40 @@ window.onload = function() {
             height: 10px;
             background: #1E3944;}
         .available-options .justify-content-between label {
-        position: relative;
-        z-index: 1;
-        min-width: 95px;
-        margin: 0 4px;
-        width: 48%; }
+            position: relative;
+            z-index: 1;
+            min-width: 95px;
+            margin: 0 4px;
+            width: 48%; }
         .available-options .scroll-x {
             margin-left: -5px; }
         .available-options .justify-content-between label:last-child {
             margin-right: 0; }
         .available-options .fs-14 {
-        margin: 15px 0 5px; }
+            margin: 15px 0 5px; }
+        .available-options .tns-outer {
+            margin-bottom: 60px;
+            margin-right: 0; }
+        .available-options .tns-nav {
+            bottom: -30px; }
         .radio-check {
-        background: #FBFBFB;
-        border: 1px solid #E0E4E5;
-        border-radius: 2px;
-        display: block;
-        padding: 11px 0;}
+            background: #FBFBFB;
+            border: 1px solid #E0E4E5;
+            border-radius: 2px;
+            display: block;
+            padding: 11px 0;}
         .radio-check span {
-        font-size: 12px;
-        line-height: 150%;
-        text-align: center;
-        color: #344D57;
-        display: block;
-        }
+            font-size: 12px;
+            line-height: 150%;
+            text-align: center;
+            color: #344D57;
+            display: block; }
         .radio-check span.radio-check_price {
-        font-weight: 600;
-        font-size: 14px;
-        line-height: 130%;
-        color: #091114;
-        margin-top: 8px;}
-        
+            font-weight: 600;
+            font-size: 14px;
+            line-height: 130%;
+            color: #091114;
+            margin-top: 8px;}
         .menu {
             position: fixed;
             top: 0;
@@ -3217,7 +3219,19 @@ window.onload = function() {
         .ais-InfiniteHits--empty {
             padding: 0 20px;
         }
-        
+        @media only screen and (max-width: 360px) {
+            .similar-products .card {
+                padding: 30px;
+                width: 250px;
+                margin-right: 10px;
+            }
+            .container {
+                padding: 0 15px;
+            }
+            .product h2, .product .title {
+                font-size: 28px;
+            }
+        }
         </style>`
 
         let htmlMenu = `
@@ -3267,23 +3281,21 @@ window.onload = function() {
         let html = `
         <div class="main">
         <header class="header">
-            <div class="midbar">
-            <div class="container flex-center-between">
-                <div class="burger mr-16" data-button=".menu">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M21.1875 3.75H2.8125C2.70937 3.75 2.625 3.83437 2.625 3.9375V5.4375C2.625 5.54062 2.70937 5.625 2.8125 5.625H21.1875C21.2906 5.625 21.375 5.54062 21.375 5.4375V3.9375C21.375 3.83437 21.2906 3.75 21.1875 3.75ZM21.1875 18.375H2.8125C2.70937 18.375 2.625 18.4594 2.625 18.5625V20.0625C2.625 20.1656 2.70937 20.25 2.8125 20.25H21.1875C21.2906 20.25 21.375 20.1656 21.375 20.0625V18.5625C21.375 18.4594 21.2906 18.375 21.1875 18.375ZM21.1875 11.0625H2.8125C2.70937 11.0625 2.625 11.1469 2.625 11.25V12.75C2.625 12.8531 2.70937 12.9375 2.8125 12.9375H21.1875C21.2906 12.9375 21.375 12.8531 21.375 12.75V11.25C21.375 11.1469 21.2906 11.0625 21.1875 11.0625Z" fill="#091114"/>
-                    </svg>
-                </div>
-                <div class="box-search"> 
-                    <div id="form-search"></div>
-                </div>
-                <div class="align-items-center"> 
-                    <a class="align-items-center midbar_action" href="https://medicalmega.com/cart.html">
+            <div class="midbar"> 
+                <div class="container flex-center-between">
+                    <div class="burger mr-16" data-button=".menu">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M21.1875 3.75H2.8125C2.70937 3.75 2.625 3.83437 2.625 3.9375V5.4375C2.625 5.54062 2.70937 5.625 2.8125 5.625H21.1875C21.2906 5.625 21.375 5.54062 21.375 5.4375V3.9375C21.375 3.83437 21.2906 3.75 21.1875 3.75ZM21.1875 18.375H2.8125C2.70937 18.375 2.625 18.4594 2.625 18.5625V20.0625C2.625 20.1656 2.70937 20.25 2.8125 20.25H21.1875C21.2906 20.25 21.375 20.1656 21.375 20.0625V18.5625C21.375 18.4594 21.2906 18.375 21.1875 18.375ZM21.1875 11.0625H2.8125C2.70937 11.0625 2.625 11.1469 2.625 11.25V12.75C2.625 12.8531 2.70937 12.9375 2.8125 12.9375H21.1875C21.2906 12.9375 21.375 12.8531 21.375 12.75V11.25C21.375 11.1469 21.2906 11.0625 21.1875 11.0625Z" fill="#091114"/>
+                        </svg>
+                    </div>
+                    <div class="box-search"> 
+                        <div id="form-search"></div>
+                    </div>
+                    <button class="align-items-center midbar_action" type="button">
                         <img src="https://olha1001.github.io/medicalmega/pdp-rediesign/img/common/cart.svg" alt="icon Cart" style="margin-right: 2.6px">
-                        <span>(<span class="cart_count">0</span>)</span>
-                    </a>
+                        <span>(<span class="cart_count">${qty}</span>)</span>
+                    </button>
                 </div>
-            </div>
             </div>
         </header>
         <div class="container" id="container-listing"> 
@@ -3518,6 +3530,8 @@ window.onload = function() {
             document.body.insertAdjacentHTML('afterbegin', htmlMenu);
             document.body.insertAdjacentHTML('afterbegin', style);
 
+            document.querySelector('.midbar .midbar_action').addEventListener('click', () => showCart('.shopping-cart')); // show cart modal 
+            
             startStuff();
 
             document.querySelector('.header').before(document.querySelector('#top'));
