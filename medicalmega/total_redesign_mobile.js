@@ -1127,6 +1127,11 @@ margin: 16px -20px; }
       margin-right: 0; }
 .available-options .fs-14 {
   margin: 15px 0 5px; }
+.available-options .tns-outer {
+    margin-bottom: 60px;
+    margin-right: 0;}
+.available-options .tns-nav {
+    bottom: -30px;}
 .radio-check {
   background: #FBFBFB;
   border: 1px solid #E0E4E5;
@@ -2256,7 +2261,6 @@ window.onload = function() {
             dd input[type=checkbox] {
                 margin-right: 8px!important;
                 width: fit-content;
-                display: block;
             }
             .myAccountleft > form > dd:nth-child(7) {
                 font-size: 14px;
@@ -2264,6 +2268,7 @@ window.onload = function() {
                 color: #091114;
                 margin-bottom: 0!important;
                 display: flex;
+                align-items: center;
             }
             .wrapper-checkout form:not(#checkoutForm) dd {
                 clear: both;
@@ -2682,6 +2687,11 @@ window.onload = function() {
         document.body.insertAdjacentHTML('afterbegin',wrapperHTML) // add wrapper
         document.body.insertAdjacentHTML('afterbegin', style) // add styles
      
+        //add checkboxes
+        document.querySelectorAll('input[type=checkbox]').forEach(check => {
+            check.classList.add('checkbox');
+            check.querySelector('.check') == null ? check.insertAdjacentHTML('afterend','<span class="check"></span>') : '';
+        })
         //show/hide order
         document.querySelector('.order_head').addEventListener('click', (e) => {
             document.querySelector('.order').classList.toggle('active');
@@ -2804,6 +2814,7 @@ window.onload = function() {
                 <dd style="width: 100%;display: ${edit != '' ? 'none':''}">
                     <label>
                         <input name="billing" type="checkbox" class="checkbox">
+                        <span class="check"></span>
                         <span>My Billing info is different</span>
                     </label>
                 </dd>
