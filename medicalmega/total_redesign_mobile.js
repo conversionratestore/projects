@@ -1977,7 +1977,7 @@ window.onload = function() {
     }
 
     cart()
-    if (!href.includes('login.php') && !href.includes('/register.php') && !href.includes('/checkout') && !href.includes('/guest-checkout1.php')) {
+    if (!href.includes('login.php') && !href.includes('/register.php') && !href.includes('/checkout') && !href.includes('/guest-checkout')) {
         let style = `
         <style class="style-main">
         @font-face {
