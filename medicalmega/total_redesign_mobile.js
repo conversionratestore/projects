@@ -1957,8 +1957,6 @@ window.onload = function() {
         })
     }
 
-
-    console.log(qty)
     if (!href.includes('login.php') && !href.includes('/register.php') && !href.includes('/checkout') && !href.includes('/guest-checkout1.php')) {
         let style = `
         <style class="style-main">
