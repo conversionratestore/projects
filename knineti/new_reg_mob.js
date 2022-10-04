@@ -1259,31 +1259,31 @@ if (window.location.pathname === "/mc/") {
 
         if (document.querySelector(".flowplayer.is-paused .fp-ui")) {
           if (!document.querySelector("video")) {
-            if (innerWidth <= 768) {
-              document.querySelector(".flowplayer .fp-header .fp-fullscreen").click()
-            } else {
-              document.querySelector(".flowplayer.is-paused .fp-ui").scrollIntoView({ block: "center", behavior: "smooth" })
-            }
+            // if (innerWidth <= 768) {
+            //   document.querySelector(".flowplayer .fp-header .fp-fullscreen").click()
+            // } else {
+            // }
+            document.querySelector(".flowplayer.is-paused .fp-ui").scrollIntoView({ block: "center", behavior: "smooth" })
 
             document.querySelector(".flowplayer.is-paused .fp-ui").click()
           } else {
             if (document.querySelector("video").paused) {
-              if (innerWidth <= 768) {
-                document.querySelector(".flowplayer .fp-header .fp-fullscreen").click()
-              } else {
-                document.querySelector(".flowplayer.is-paused .fp-ui").scrollIntoView({ block: "center", behavior: "smooth" })
-              }
+              // if (innerWidth <= 768) {
+              //   document.querySelector(".flowplayer .fp-header .fp-fullscreen").click()
+              // } else {
+              // }
+              document.querySelector(".flowplayer.is-paused .fp-ui").scrollIntoView({ block: "center", behavior: "smooth" })
               document.querySelector(".flowplayer.is-paused .fp-ui").click()
             }
           }
         }
 
         if (document.querySelector("video")) {
-          if (innerWidth <= 768) {
-            document.querySelector(".flowplayer .fp-header .fp-fullscreen").click()
-          } else {
-            document.querySelector("video").scrollIntoView({ block: "center", behavior: "smooth" })
-          }
+          // if (innerWidth <= 768) {
+          //   document.querySelector(".flowplayer .fp-header .fp-fullscreen").click()
+          // } else {
+          // }
+          document.querySelector("video").scrollIntoView({ block: "center", behavior: "smooth" })
         }
       }
 
