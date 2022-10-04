@@ -997,7 +997,7 @@ window.onload = function() {
             .ccInfo {
                 display: grid;
             }
-            .ccInfo > dd:first-child,  .ccInfo > dd:nth-child(3), .ccInfo > dd:nth-child(4),  #cc_block > dl > div.ccInfo > dd:nth-child(2) {
+            .ccInfo > dd:first-child, .ccInfo > dd:nth-child(4),  #cc_block > dl > div.ccInfo > dd:nth-child(2) {
                 order: 1;
             }
             #iframeForm {
