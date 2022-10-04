@@ -1454,6 +1454,7 @@ window.onload = function() {
 
         if (href.includes('/checkout/step2') || href.includes('/guest-checkout2.php')) {
             document.querySelector('.col-left .head h4').innerHTML = 'Delivery Method';
+            document.querySelector('.steps').innerHTML = `Step 2<span>/4</span> — ${obj['stepsName'][1]}`; //add steps in header
             document.querySelector('.col-left .head').insertAdjacentHTML('afterend',`<div class="delivery-method"></div>`)
             document.querySelectorAll('#ship_options > li').forEach((item, index) => {
                 let type = item.querySelector('p > i').innerText,
@@ -1678,9 +1679,9 @@ window.onload = function() {
             } else if (document.querySelector('.bill-form.edit') != null) {
                 console.log('edit bill form')
                 address('bill')
-            } else if (href.includes('checkout/step2')) {
+            } else if (href.includes('checkout/step2') || href.includes('/guest-checkout2.php')) {
                 document.querySelector('form > div > input[type=image]').click()
-            } else if (href.includes('checkout/step3')) {
+            } else if (href.includes('checkout/step3') || href.includes('/guest-checkout3.php')) {
                 document.querySelector('#submitCheckout3').click()
             }
             scrollTop(e.target, document.body)
