@@ -198,8 +198,8 @@ let headerFetchAddress = {
 let obj = {
     'stepsName': ['Personal information','Shipping information','Payment Method','Confirmation'],
     'back' : {
-        'personal information' : ['Back to Cart', '/cart.html'],
-        'shipping information' : ['Back to Cart','/cart.html'],
+        'personal information' : ['Back to Cart', ['/cart.html','/cart.html']],
+        'shipping information' : ['Back to Cart',['/cart.html','/cart.html']],
         'billing information' : ['Back to Shipping Info',['/checkout/step1','/guest-checkout1.php']],
         'delivery method' : ['Back To Address Info',['/checkout/step1','/guest-checkout1.php']],
         'payment method': ['Back to Delivery Method',['/checkout/step2','/guest-checkout2.php']]
