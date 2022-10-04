@@ -240,42 +240,7 @@ let scrollTop = (targetScroll, offsetTop) => {
         behavior: 'smooth'
     });
 }
-//changeQuantity
-let changeQuantity = (plus, minus, quantity, post=false) => {
-    //update quantity
-    quantity.addEventListener('change', () => {
-        if (quantity.value < 1) {
-            quantity.value = 1
-        }
-        post == true ? postFetch('/cart.html',`api=c&cart_action=update&variant_id=${quantity.closest('.product-item').dataset.variantId}&quantity=${quantity.value}&ctoken=${mm.ctoken}`,'POST').then(data => cart()) : '';
-    })
-    plus.addEventListener('click', () => {
-        quantity.value = +quantity.value + 1;
-        quantity.parentElement.querySelector('.quantity-btn_minus').disabled = false;
 
-        post == true ? postFetch('/cart.html',`api=c&cart_action=update&variant_id=${plus.closest('.product-item').dataset.variantId}&quantity=${quantity.value}&ctoken=${mm.ctoken}`,'POST').then(data => cart()) : '';
-    })
-
-    if (!href.includes('/checkout/step2') && !href.includes('/checkout/step3') ) {
-        if (minus.nextElementSibling.value < 2) {
-            minus.disabled = true;
-        } else {
-            minus.disabled = false;
-        }
-    } else {
-        minus.disabled = true;
-    }
-
-    minus.addEventListener('click', () => {
-        if (minus.nextElementSibling.value < 2) {
-            minus.nextElementSibling.value = 1;
-            minus.disabled = true;
-        } else {
-            minus.nextElementSibling.value = +minus.nextElementSibling.value - 1;
-        }
-        post == true ? postFetch('/cart.html',`api=c&cart_action=update&variant_id=${minus.closest('.product-item').dataset.variantId}&quantity=${quantity.value}&ctoken=${mm.ctoken}`,'POST').then(data => cart()) : '';
-    })
-}
 //set pricing
 let pricing = (parent, data) => {
     document.querySelector(parent).innerHTML = '';
@@ -319,6 +284,18 @@ let product = (id, variantId, quantity, subtotal, url, imageUrl, title, varQty) 
                     </div>
                 </div>
             </li>`
+}
+
+//push dataLayer
+let pushDataLayer = (actionDataLayer, labelDataLayer) => {
+    console.log(actionDataLayer, labelDataLayer)
+    window.dataLayer = window.dataLayer || [];
+    dataLayer.push({
+        'event': 'event-to-ga',
+        'eventCategory': 'Exp — Total Redesign (mobile)',
+        'eventAction': actionDataLayer,
+        'eventLabel': labelDataLayer
+    });
 }
 
 //show/hide 
@@ -1858,7 +1835,42 @@ window.onload = function() {
 
             document.querySelector(parent).insertAdjacentHTML('beforeend', slide)
         }
+        //changeQuantity
+        let changeQuantity = (plus, minus, quantity, post=false) => {
+            //update quantity
+            quantity.addEventListener('change', () => {
+                if (quantity.value < 1) {
+                    quantity.value = 1
+                }
+                post == true ? postFetch('/cart.html',`api=c&cart_action=update&variant_id=${quantity.closest('.product-item').dataset.variantId}&quantity=${quantity.value}&ctoken=${mm.ctoken}`,'POST').then(data => cart()) : '';
+            })
+            plus.addEventListener('click', () => {
+                quantity.value = +quantity.value + 1;
+                quantity.parentElement.querySelector('.quantity-btn_minus').disabled = false;
 
+                post == true ? postFetch('/cart.html',`api=c&cart_action=update&variant_id=${plus.closest('.product-item').dataset.variantId}&quantity=${quantity.value}&ctoken=${mm.ctoken}`,'POST').then(data => cart()) : '';
+            })
+
+            if (!href.includes('/checkout/step2') && !href.includes('/checkout/step3') ) {
+                if (minus.nextElementSibling.value < 2) {
+                    minus.disabled = true;
+                } else {
+                    minus.disabled = false;
+                }
+            } else {
+                minus.disabled = true;
+            }
+
+            minus.addEventListener('click', () => {
+                if (minus.nextElementSibling.value < 2) {
+                    minus.nextElementSibling.value = 1;
+                    minus.disabled = true;
+                } else {
+                    minus.nextElementSibling.value = +minus.nextElementSibling.value - 1;
+                }
+                post == true ? postFetch('/cart.html',`api=c&cart_action=update&variant_id=${minus.closest('.product-item').dataset.variantId}&quantity=${quantity.value}&ctoken=${mm.ctoken}`,'POST').then(data => cart()) : '';
+            })
+        }
         //cart product
         let cart = () => {
             let parent = href.includes('/checkout/step') || href.includes('/login.php') || href.includes('/register.php') ? '.order_body' : '.list-product';
@@ -3417,18 +3429,6 @@ window.onload = function() {
 
             return isVisible;
         }
-        //push dataLayer
-        function pushDataLayer(actionDataLayer, labelDataLayer) {
-            console.log(actionDataLayer, labelDataLayer)
-            window.dataLayer = window.dataLayer || [];
-            dataLayer.push({
-                'event': 'event-to-ga',
-                'eventCategory': 'Exp — Total Redesign (mobile)',
-                'eventAction': actionDataLayer,
-                'eventLabel': labelDataLayer
-            });
-        }
-
         //set Label For Events
         function labelForEvents(e) {
             if (e.closest('.product')) {
