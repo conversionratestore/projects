@@ -1878,7 +1878,7 @@ function cart() {
         let products = data['items'];
         document.querySelector(parent).innerHTML = '';
         if (parent == '.order_body') {
-            parent.closest('.order').querySelector('.order_head .price span').innerHTML = data.total.toFixed(2);
+            parent.parentElement.parentElement.querySelector('.order_head .price span').innerHTML = data.total.toFixed(2);
             pricing('.order_pricing', data)  //add pricing for order
         } else {
             parent.parentElement.querySelector('.subtotal').innerHTML = data.subtotal != 0 ? `<p>Total:</p> <p>$<span>${(+data.subtotal.toString().replace(/[^\d\.]/g,'')).toFixed(2)}</span></p>` : '';
