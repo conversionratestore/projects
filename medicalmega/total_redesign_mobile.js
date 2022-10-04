@@ -1868,6 +1868,68 @@ function toggleListing(boolean) {
     }
 }
 
+//cart product
+function cart() {
+    let parent = href.includes('/checkout') || href.includes('/login.php') || href.includes('/register.php') ? '.order_body' : '.list-product';
+
+    //get data
+    postFetch('/cart.html',`api=c&cart_action=cart&ctoken=${mm.ctoken}`,'POST').then(data => {
+        console.log(data)
+        let products = data['items'];
+        document.querySelector(parent).innerHTML = '';
+        if (parent == '.order_body') {
+            parent.closest('.order').querySelector('.order_head .price span').innerHTML = data.total.toFixed(2);
+            pricing('.order_pricing', data)  //add pricing for order
+        } else {
+            parent.parentElement.querySelector('.subtotal').innerHTML = data.subtotal != 0 ? `<p>Total:</p> <p>$<span>${(+data.subtotal.toString().replace(/[^\d\.]/g,'')).toFixed(2)}</span></p>` : '';
+            if (products.length < 1) {
+                document.querySelector(parent).innerHTML = `
+                    <div class="empty-cart">
+                            <p>Your cart is currently empty.</p>
+                            <button type="button" class="btn-next"><span>Shop now</span></button>
+                    </div>`;
+                parent.parentElement.querySelector('.subtotal').style.display = 'none';
+                document.querySelector(parent).style.margin = 'auto';
+                parent.parentElement.querySelector('.footer-cart').style.display = 'none';
+                parent.parentElement.style.height = 'calc(100vh - 53px)';
+            } else {
+                parent.parentElement.querySelector('.subtotal').style = '';
+                document.querySelector(parent).style = '';
+                parent.parentElement.querySelector('.footer-cart').style = '';
+                parent.parentElement.style = '';
+            }
+            let qty = 0
+            for (let i = 0; i < products.length; i++) {
+                qty += +products[i].quantity;
+            }
+            console.log(qty)
+            // document.querySelector('.shoppingcart .by_num span').innerHTML = qty;
+        }
+        if (products.length > 0) {
+            //product quantity changes
+            let varQty = href.includes('checkout/step2') || href.includes('checkout/step3') ? 1 : 0
+            for (let i = 0; i < products.length; i++) {
+                //add products
+                document.querySelector(parent).insertAdjacentHTML('beforeend', product(products[i].product_id, products[i].variant_id, products[i].quantity, products[i].subtotal, products[i].url, products[i].image_url, products[i].title, varQty))
+
+                //remove product
+                let remove = document.querySelectorAll('.remove');
+                if (remove.length > 0) {
+                    remove[i].addEventListener('click', (e) => {
+                        console.log(e.target)
+                        postFetch('/cart.html',`api=c&cart_action=remove&variant_id=${remove[i].closest('.product-item').dataset.variantId}&ctoken=${mm.ctoken}`,'POST').then(data => cart())
+                    })
+                }
+                let plus = document.querySelectorAll(`${parent} .quantity-btn_plus`)[i],
+                    minus = document.querySelectorAll(`${parent} .quantity-btn_minus`)[i],
+                    quantity = document.querySelectorAll(`${parent} .quantity`)[i];
+
+                varQty == 0 ? changeQuantity(plus, minus, quantity, true) : ''
+            }
+        }
+    })
+}
+
 //qty change
 function changeQty(qty,pr,action) {
     if (action == 'plus') {
@@ -2648,39 +2710,39 @@ window.onload = function() {
         <header class="header-checkout"><div class="steps"></div></header>
         <div class="wrapper-checkout">
             <div class="order">
-                    <div class="order_head flex-center-between">
-                        <div class="items-center">
-                            <p>Show order summary</p>
-                            <svg width="18" height="19" viewBox="0 0 18 19" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M9.35355 12.1464L12.1464 9.35355C12.4614 9.03857 12.2383 8.5 11.7929 8.5H6.20711C5.76165 8.5 5.53857 9.03857 5.85355 9.35355L8.64645 12.1464C8.84171 12.3417 9.15829 12.3417 9.35355 12.1464Z" fill="#091114"/>
-                            </svg>
-                        </div>
-                        <div class="price">$<span></span></div>
+                <div class="order_head flex-center-between">
+                    <div class="items-center">
+                        <p>Show order summary</p>
+                        <svg width="18" height="19" viewBox="0 0 18 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M9.35355 12.1464L12.1464 9.35355C12.4614 9.03857 12.2383 8.5 11.7929 8.5H6.20711C5.76165 8.5 5.53857 9.03857 5.85355 9.35355L8.64645 12.1464C8.84171 12.3417 9.15829 12.3417 9.35355 12.1464Z" fill="#091114"/>
+                        </svg>
                     </div>
-                    <div class="order_drop">
-                        <ul class="order_pricing"></ul>
-                        <ul class="order_body"></ul>
-                    </div>
+                    <div class="price">$<span></span></div>
+                </div>
+                <div class="order_drop">
+                    <ul class="order_pricing"></ul>
+                    <ul class="order_body"></ul>
+                </div>
             </div>
             <div class="col-left">
-                    <div>
-                        ${window.location.href.includes('/login.php') || window.location.href.includes('/register.php?') ? `<div class="flex-center-between head-login"><h3>Register</h3><a href="#" class="link">Sign in</a></div>` : ''}
-                        <div class="head"><h4></h4></div>
-                    </div>
-                    <div class="foot">
-                        <button class="btn-next flex-center" type="submit">
-                            <span>Next</span>
-                            <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M3 9.32153V8.67847C3 8.5009 3.13431 8.35695 3.3 8.35695H13.002L10.332 5.50181C10.2752 5.44144 10.2433 5.35926 10.2433 5.27352C10.2433 5.18779 10.2752 5.10561 10.332 5.04524L10.758 4.59511C10.8143 4.53424 10.891 4.5 10.971 4.5C11.051 4.5 11.1277 4.53424 11.184 4.59511L14.868 8.537C14.9524 8.62736 14.9999 8.74995 15 8.87782V9.12218C14.9986 9.24977 14.9513 9.37186 14.868 9.463L11.184 13.4049C11.1277 13.4658 11.051 13.5 10.971 13.5C10.891 13.5 10.8143 13.4658 10.758 13.4049L10.332 12.9483C10.2756 12.8891 10.2438 12.8079 10.2438 12.7233C10.2438 12.6386 10.2756 12.5575 10.332 12.4982L13.002 9.64305H3.3C3.13431 9.64305 3 9.4991 3 9.32153Z" fill="#FBFBFB"/>
-                            </svg>
-                        </button>
-                        <a class="btn-back flex-center" href="#">
-                            <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M15 9.32153V8.67847C15 8.5009 14.8657 8.35695 14.7 8.35695H4.998L7.668 5.50181C7.72479 5.44144 7.75674 5.35926 7.75674 5.27352C7.75674 5.18779 7.72479 5.10561 7.668 5.04524L7.242 4.59511C7.18567 4.53424 7.10899 4.5 7.029 4.5C6.94901 4.5 6.87233 4.53424 6.816 4.59511L3.132 8.537C3.04758 8.62736 3.0001 8.74995 3 8.87782V9.12218C3.00138 9.24977 3.04867 9.37186 3.132 9.463L6.816 13.4049C6.87233 13.4658 6.94901 13.5 7.029 13.5C7.10899 13.5 7.18567 13.4658 7.242 13.4049L7.668 12.9483C7.72444 12.8891 7.75624 12.8079 7.75624 12.7233C7.75624 12.6386 7.72444 12.5575 7.668 12.4982L4.998 9.64305H14.7C14.8657 9.64305 15 9.4991 15 9.32153Z" fill="#1E3944"/>
-                            </svg>
-                            <span></span>
-                        </a>
-                    </div>
+                <div>
+                    ${window.location.href.includes('/login.php') || window.location.href.includes('/register.php?') ? `<div class="flex-center-between head-login"><h3>Register</h3><a href="#" class="link">Sign in</a></div>` : ''}
+                    <div class="head"><h4></h4></div>
+                </div>
+                <div class="foot">
+                    <button class="btn-next flex-center" type="submit">
+                        <span>Next</span>
+                        <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M3 9.32153V8.67847C3 8.5009 3.13431 8.35695 3.3 8.35695H13.002L10.332 5.50181C10.2752 5.44144 10.2433 5.35926 10.2433 5.27352C10.2433 5.18779 10.2752 5.10561 10.332 5.04524L10.758 4.59511C10.8143 4.53424 10.891 4.5 10.971 4.5C11.051 4.5 11.1277 4.53424 11.184 4.59511L14.868 8.537C14.9524 8.62736 14.9999 8.74995 15 8.87782V9.12218C14.9986 9.24977 14.9513 9.37186 14.868 9.463L11.184 13.4049C11.1277 13.4658 11.051 13.5 10.971 13.5C10.891 13.5 10.8143 13.4658 10.758 13.4049L10.332 12.9483C10.2756 12.8891 10.2438 12.8079 10.2438 12.7233C10.2438 12.6386 10.2756 12.5575 10.332 12.4982L13.002 9.64305H3.3C3.13431 9.64305 3 9.4991 3 9.32153Z" fill="#FBFBFB"/>
+                        </svg>
+                    </button>
+                    <a class="btn-back flex-center" href="#">
+                        <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M15 9.32153V8.67847C15 8.5009 14.8657 8.35695 14.7 8.35695H4.998L7.668 5.50181C7.72479 5.44144 7.75674 5.35926 7.75674 5.27352C7.75674 5.18779 7.72479 5.10561 7.668 5.04524L7.242 4.59511C7.18567 4.53424 7.10899 4.5 7.029 4.5C6.94901 4.5 6.87233 4.53424 6.816 4.59511L3.132 8.537C3.04758 8.62736 3.0001 8.74995 3 8.87782V9.12218C3.00138 9.24977 3.04867 9.37186 3.132 9.463L6.816 13.4049C6.87233 13.4658 6.94901 13.5 7.029 13.5C7.10899 13.5 7.18567 13.4658 7.242 13.4049L7.668 12.9483C7.72444 12.8891 7.75624 12.8079 7.75624 12.7233C7.75624 12.6386 7.72444 12.5575 7.668 12.4982L4.998 9.64305H14.7C14.8657 9.64305 15 9.4991 15 9.32153Z" fill="#1E3944"/>
+                        </svg>
+                        <span></span>
+                    </a>
+                </div>
             </div>
         </div>`;
 
@@ -3380,11 +3442,11 @@ window.onload = function() {
             <div class="container">     
                 <div class="header-cart"><div class=" flex-center-between">Shopping cart <svg class="ml-auto" width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M15.4161 14L22.5939 5.44414C22.7142 5.30195 22.613 5.08594 22.4271 5.08594H20.245C20.1165 5.08594 19.9935 5.14336 19.9087 5.2418L13.9888 12.2992L8.06887 5.2418C7.98684 5.14336 7.86379 5.08594 7.73254 5.08594H5.55051C5.36457 5.08594 5.2634 5.30195 5.38372 5.44414L12.5614 14L5.38372 22.5559C5.35676 22.5876 5.33947 22.6263 5.3339 22.6675C5.32832 22.7088 5.33469 22.7507 5.35225 22.7884C5.36981 22.8262 5.39783 22.858 5.43297 22.8803C5.46812 22.9026 5.50891 22.9143 5.55051 22.9141H7.73254C7.86106 22.9141 7.98411 22.8566 8.06887 22.7582L13.9888 15.7008L19.9087 22.7582C19.9907 22.8566 20.1138 22.9141 20.245 22.9141H22.4271C22.613 22.9141 22.7142 22.698 22.5939 22.5559L15.4161 14Z" fill="#6D7E85"/></svg></div></div>
                 <div class="body-cart">
-                <ul class="list-product"></ul>
-                <div class="justify-between subtotal"></div>
+                    <ul class="list-product"></ul>
+                    <div class="justify-between subtotal"></div>
                     <div class="also-bought">
-                    <h4>Also bought with</h4>
-                    <div class="slider-products"></div>
+                        <h4>Also bought with</h4>
+                        <div class="slider-products"></div>
                     </div>
                 </div>
                 <div class="footer-cart">
@@ -4257,67 +4319,6 @@ window.onload = function() {
         })
     }
 
-    //cart product
-    let cart = () => {
-        let parent = href.includes('/checkout') || href.includes('/login.php') || href.includes('/register.php') ? '.order_body' : '.list-product';
-
-        //get data
-        postFetch('/cart.html',`api=c&cart_action=cart&ctoken=${mm.ctoken}`,'POST').then(data => {
-            console.log(data)
-            let products = data['items'];
-            document.querySelector(parent).innerHTML = '';
-            if (parent == '.order_body') {
-                document.querySelector('.order_head .price span').innerHTML = data.total.toFixed(2);
-                pricing('.order_pricing', data)  //add pricing for order
-            } else {
-                document.querySelector('.subtotal').innerHTML = data.subtotal != 0 ? `<p>Total:</p> <p>$<span>${(+data.subtotal.toString().replace(/[^\d\.]/g,'')).toFixed(2)}</span></p>` : '';
-                if (products.length < 1) {
-                    document.querySelector(parent).innerHTML = `
-                        <div class="empty-cart">
-                               <p>Your cart is currently empty.</p>
-                               <button type="button" class="btn-next"><span>Shop now</span></button>
-                        </div>`;
-                    document.querySelector('.subtotal').style.display = 'none';
-                    document.querySelector(parent).style.margin = 'auto';
-                    document.querySelector('.footer-cart').style.display = 'none';
-                    document.querySelector('.body-cart').style.height = 'calc(100vh - 53px)';
-                } else {
-                    document.querySelector('.subtotal').style = '';
-                    document.querySelector(parent).style = '';
-                    document.querySelector('.footer-cart').style = '';
-                    document.querySelector('.body-cart').style = '';
-                }
-                let qty = 0
-                for (let i = 0; i < products.length; i++) {
-                    qty += +products[i].quantity;
-                }
-                console.log(qty)
-                document.querySelector('.shoppingcart .by_num span').innerHTML = qty;
-            }
-            if (products.length > 0) {
-                //product quantity changes
-                let varQty = href.includes('checkout/step2') || href.includes('checkout/step3') ? 1 : 0
-                for (let i = 0; i < products.length; i++) {
-                    //add products
-                    document.querySelector(parent).insertAdjacentHTML('beforeend', product(products[i].product_id, products[i].variant_id, products[i].quantity, products[i].subtotal, products[i].url, products[i].image_url, products[i].title, varQty))
-
-                    //remove product
-                    let remove = document.querySelectorAll('.remove');
-                    if (remove.length > 0) {
-                        remove[i].addEventListener('click', (e) => {
-                            console.log(e.target)
-                            postFetch('/cart.html',`api=c&cart_action=remove&variant_id=${remove[i].closest('.product-item').dataset.variantId}&ctoken=${mm.ctoken}`,'POST').then(data => cart())
-                        })
-                    }
-                    let plus = document.querySelectorAll(`${parent} .quantity-btn_plus`)[i],
-                        minus = document.querySelectorAll(`${parent} .quantity-btn_minus`)[i],
-                        quantity = document.querySelectorAll(`${parent} .quantity`)[i];
-
-                    varQty == 0 ? changeQuantity(plus, minus, quantity, true) : ''
-                }
-            }
-        })
-    }
     cart()
 };
 
