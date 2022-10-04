@@ -1276,50 +1276,49 @@ window.onload = function() {
         }
         let billFormHtml = (state, countries_ship, active, edit) => {
             return `
-        <form class="bill-form ${active} ${edit}">
-            <dd style="width: 100%;">
-                <label>
-                    <input name="shipping" type="checkbox" class="checkbox">
-                    <span>Copy from Shipping info</span>
-                </label>
-            </dd>
-            <dd style="width: 50%;float:left;padding-right: 8px">
-                <label for="country">Country <span class="c-red"> *</span></label>
-                <select name="country"> ${countries_ship}</select>
-                <i></i>
-            </dd>
-            <dd style="width: 50%;float:left;padding-left: 8px">
-                <label for="addr1">Address line <span class="c-red"> *</span></label>
-                <input type="text" name="addr1" placeholder="Street address, building, apt, atc.">
-                <i></i>
-            </dd>
-            <dd style="width: 100%;float:left;padding-right: 8px">
-                <label for="email">Email <span class="c-red"> *</span></label>
-                <input type="text" name="email">
-                <i></i>
-            </dd>
-            <dd style="width: 50%;float:left;padding-right: 8px">
-                <label for="city">City <span class="c-red"> *</span></label>
-                <input type="text" name="city">
-                <i></i>
-            </dd>
-            <dd style="width: 50%;float:left;padding-left: 8px">
-                <label for="state">State (Only applicable to US) <span class="c-red"> *</span></label>
-                <select name="state"> ${state.innerHTML}</select>
-                <i></i>
-            </dd>
-            <dd style="width: 50%;float:left;padding-right: 8px">
-                <label for="zip">Zip / Postal Code <span class="c-red"> *</span></label>
-                <input type="text" name="zip">
-                <i></i>
-            </dd>
-            <dd style="width: 50%;float:left;padding-left: 8px">
-                <label for="phn">Phone <span class="c-red"> *</span></label>
-                <input type="text" name="phn" placeholder="+1 (XXX) XXX-XXXX">
-                <i></i>
-            </dd>
-        </form>
-    `
+            <form class="bill-form ${active} ${edit}">
+                <dd style="width: 100%;">
+                    <label>
+                        <input name="shipping" type="checkbox" class="checkbox">
+                        <span>Copy from Shipping info</span>
+                    </label>
+                </dd>
+                <dd style="width: 50%;float:left;padding-right: 8px">
+                    <label for="country">Country <span class="c-red"> *</span></label>
+                    <select name="country"> ${countries_ship}</select>
+                    <i></i>
+                </dd>
+                <dd style="width: 50%;float:left;padding-left: 8px">
+                    <label for="addr1">Address line <span class="c-red"> *</span></label>
+                    <input type="text" name="addr1" placeholder="Street address, building, apt, atc.">
+                    <i></i>
+                </dd>
+                <dd style="width: 100%;float:left;padding-right: 8px">
+                    <label for="email">Email <span class="c-red"> *</span></label>
+                    <input type="text" name="email">
+                    <i></i>
+                </dd>
+                <dd style="width: 50%;float:left;padding-right: 8px">
+                    <label for="city">City <span class="c-red"> *</span></label>
+                    <input type="text" name="city">
+                    <i></i>
+                </dd>
+                <dd style="width: 50%;float:left;padding-left: 8px">
+                    <label for="state">State (Only applicable to US) <span class="c-red"> *</span></label>
+                    <select name="state"> ${state.innerHTML}</select>
+                    <i></i>
+                </dd>
+                <dd style="width: 50%;float:left;padding-right: 8px">
+                    <label for="zip">Zip / Postal Code <span class="c-red"> *</span></label>
+                    <input type="text" name="zip">
+                    <i></i>
+                </dd>
+                <dd style="width: 50%;float:left;padding-left: 8px">
+                    <label for="phn">Phone <span class="c-red"> *</span></label>
+                    <input type="text" name="phn" placeholder="+1 (XXX) XXX-XXXX">
+                    <i></i>
+                </dd>
+            </form> `
         }
         let fname, lname, addr1, city, stateF, zip, country, phn, email; //for forms
 
@@ -1564,7 +1563,7 @@ window.onload = function() {
                         } else if (dataErrors[i].includes('Email')) {
                             email.parentElement.classList.add('error')
                             email.nextElementSibling.innerHTML = dataErrors[i]
-                        } else if (dataErrors[i] == 'Could not update address record. Nothing to update.'){
+                        } else if (dataErrors[i].includes('Could not update address record')){
                             document.querySelector(`.${type}-form`).insertAdjacentHTML('afterend', `<p class="c-red error-other" style="margin: 10px 0">${dataErrors[i]}</p>`)
                         }
                     }
