@@ -351,7 +351,7 @@ window.onload = function() {
         postFetch('/cart.html',`api=c&cart_action=cart&ctoken=${mm.ctoken}`,'POST').then(data => {
             console.log(data)
             let products = data['items'];
-            document.querySelector(parent).innerHTML = '';
+            document.querySelector(parent) != null ? document.querySelector(parent).innerHTML = '' : '';
             if (parent == '.order_body') {
                 document.querySelector('.order_head .price span').innerHTML = data.total.toFixed(2);
                 pricing('.order_pricing', data)  //add pricing for order
