@@ -1575,7 +1575,7 @@ window.onload = function() {
                         console.log(data)
                         let dataErrors = data.errors;
                         if (dataErrors.length < 1) {
-                            window.location.href = `/checkout/step2`
+                            window.location.href = href.includes('guest-checkout2.php') ? '/guest-checkout2.php' : `/checkout/step2`
                         } else {
                             errorsFun(dataErrors)
                         }
@@ -1589,7 +1589,7 @@ window.onload = function() {
                             if (dataErrors.length < 1) {
                                 postFetch('/api/v1/addresses', saveAddress('bill',fname.value,lname.value,addr1.value,city.value,stateF.value,zip.value,country.value,phn.value,email.value),'POST').then(dataBill => {
                                     console.log(dataBill)
-                                    window.location.href = 'https://medicalmega.com/checkout/step2'
+                                    window.location.href = href.includes('guest-checkout2.php') ? '/guest-checkout2.php' : `/checkout/step2`
                                 })
                             } else {
                                 errorsFun(dataErrors)
@@ -1626,7 +1626,7 @@ window.onload = function() {
                         console.log(data)
                         let dataErrors = data.errors;
                         if (dataErrors.length < 1) {
-                            window.location.href = `/checkout/step2`
+                            window.location.href = href.includes('guest-checkout2.php') ? '/guest-checkout2.php' : `/checkout/step2`;
                         } else {
                             errorsFun(dataErrors)
                         }
@@ -1636,7 +1636,7 @@ window.onload = function() {
                         console.log(data)
                         let dataErrors = data.errors;
                         if (dataErrors.length < 1) {
-                            window.location.href = 'https://medicalmega.com/checkout/step2'
+                            window.location.href = href.includes('guest-checkout2.php') ? '/guest-checkout2.php' : `/checkout/step2`;
                         } else {
                             errorsFun(dataErrors)
                         }
@@ -1656,7 +1656,7 @@ window.onload = function() {
             } else if (document.querySelector('.bill-form.active') != null) {
                 address('bill')
             } else if (document.querySelector('.address.ship') != null && document.querySelector('.address.bill') != null && document.querySelector('.bill-form.edit') == null && document.querySelector('.ship-form.edit') == null) {
-                window.location.href = `https://medicalmega.com/checkout/step2`
+                window.location.href = href.includes('guest-checkout2.php') ? '/guest-checkout2.php' : `/checkout/step2`;
             } else if (document.querySelector('.address.ship') != null && document.querySelector('.address.bill') == null && document.querySelector('.bill-form.active') == null) {
                 document.querySelector('.address.ship').style.display = 'none'
                 document.querySelector('.col-left .head h4').innerHTML = 'Billing information'; //change title
