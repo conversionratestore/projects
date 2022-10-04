@@ -1452,7 +1452,7 @@ window.onload = function() {
             </label>`
         }
 
-        if (href.includes('/checkout/step2')) {
+        if (href.includes('/checkout/step2') || href.includes('/guest-checkout2.php')) {
             document.querySelector('.col-left .head h4').innerHTML = 'Delivery Method';
             document.querySelector('.col-left .head').insertAdjacentHTML('afterend',`<div class="delivery-method"></div>`)
             document.querySelectorAll('#ship_options > li').forEach((item, index) => {
@@ -1484,7 +1484,7 @@ window.onload = function() {
                 document.querySelector('.promocode input').value = document.querySelector('.promoCode').value;
             }
         }
-        if (href.includes('/checkout/step3')) {
+        if (href.includes('/checkout/step3')|| href.includes('/guest-checkout3.php')) {
             document.querySelector('.steps').innerHTML = `Step 3<span>/4</span> — ${obj['stepsName'][2]}`; //add steps in header
             document.querySelector('.col-left .head h4').innerHTML = obj['stepsName'][2];
 
