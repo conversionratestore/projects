@@ -481,38 +481,160 @@ let startFunk = setInterval(() => {
     .add_to_cart{
       padding: 10px 25px;
     }
-    /*bar */
-    .bar{
+    /*range-wrapper */
+  .range-wrapper {
       width: 100%;
       height: 28px;
-      background: rgb(31 80 139 / 10%);
       position: relative;
+      display: flex;
+      align-items: center;
       margin-bottom: 24px;
-    }
-    .bar span.count_donate::before{
+  }
+  .range-line {
+      background: rgb(31 80 139 / 10%);
+      width: 100%;
+      position: relative;
+      height: 28px;
+      overflow: hidden;
+  }
+  .range-donated {
       position: absolute;
-      content: '$100,000';
-      right: -6px;
+      left: 0;
+      top: 0;
+      height: 100%;
+      background: #FAD41A;
+  }
+  .total-raised{
+    position: relative;
+    display: block;
+  }
+  .total-raised::before {
+    position: absolute;
+    content: attr(data-price);
+    right: -15px;
+    top: 2px;
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 24px;
+    color: #3F3F3F;
+}
+  .range-wrapper:before, .range-wrapper:after  {
+      content: '';
+      position: absolute;
       top: 50%;
       transform: translateY(-50%);
-      font-weight: 700;
-      font-size: 14px;
-      line-height: 24px;
-      color: #3F3F3F;    
-    }
-    .bar span.count_donate{
-      display: block;
-      position: relative;
-      width: 67px;
       height: 28px;
       background: #FAD41A;
-    }
-    .content_popup .bar{
+      width: 8px;
+  }
+  .range-wrapper:before {
+      left: 0;
+  }
+  .range-wrapper:after {
+      background: rgb(31 80 139 / 0%);
+      right: 0;
+  }
+  .range-wrapper.active:after {
+      background: #FAD41A;
+  }
+  .range-wrapper .sum, .step.active[data-price]:before  {
+      font-family: 'Novarese-Bold', sans-serif;
+      font-weight: 700;
+      font-size: 20px;
+      line-height: 22px;
+      color: #000000;
+      position: absolute;
+      text-align: center;
+      width: 101px;
+      right: 8px;
+      transform: translateX(50%);
+      bottom: calc(100% + 7px);
+  }
+  .range-wrapper .sum{
+    display: none;
+  }
+  .step.active[data-price]:before {
+      content: attr(data-price);
+  }
+  .steps .step.step-small.active[data-price]:before {
+      bottom: calc(100% + 47px);
+  }
+  .step.active[data-price]:after {
+      content: 'NOW';
+      left: 50%;
+      transform: translateX(-50%);
+      top: calc(100% + 9px);
+      position: absolute;
+      font-family: 'Novarese-Medium', sans-serif;
+      font-weight: 500;
+      font-size: 16px;
+      line-height: 18px;
+      color: #000000;
+      white-space: nowrap;
+  }
+  .steps {
+      position: absolute;
+      left: 0;
+      top: 0;
+      height: 100%;
+      width: 100%;
+      padding: 0 8px;
+      z-index: 1;
+  }
+  .steps .step {
+      width: 1px;
+      opacity: 0.2;
+      background: #000;
+      position: relative;
+  }
+  .steps:after {
+      content: '30 NOV';
+      right: 8px;
+      transform: translateX(50%);
+      position: absolute;
+      top: calc(100% + 9px);
+      font-family: 'Novarese-Medium', sans-serif;
+      font-weight: 500;
+      font-size: 16px;
+      line-height: 18px;
+      color: #000000;
+      white-space: nowrap;
+      display: none;
+  }
+  .steps .step.active {
+      opacity: 0;
+  }
+  .steps .step-small {
+      height: 8px;
+      opacity: 0;
+      display: none;
+  }
+  .steps .step-big {
+      height: 28px;
+      opacity: 0;
+  }
+  /*flex*/
+  .flex {
+      display: flex;
+  }
+  .items-end {
+      align-items: flex-end;
+  }
+  .justify-between {
+      justify-content: space-between;
+  }
+    .content_popup .range-wrapper{
       margin: 4px 0 16px;
     }
+    .content_popup .total-raised::before{
+      right: -50px;
+    }
     @media (max-width: 768px) {
-      .bar{
+      .range-wrapper{
         margin-bottom: 16px;
+      }
+      .total-raised::before{
+        right: -64px;
       }
       .backdrop_modal .container_popup{
         max-width: 358px;
@@ -570,6 +692,10 @@ let startFunk = setInterval(() => {
       }
     }
     @media (max-width: 320px) {
+      .total-raised::before{
+        font-size: 12px;
+        right: -50px;
+      }
       .donation_amount_flex p,
       .product-block .variant__label.hidden-label,
       .size_guide_var{
@@ -672,8 +798,14 @@ let startFunk = setInterval(() => {
         <ul class="background_wrap">
           <li>
             <p class="goal_text">Fundraising goal by the end of October 2022: <strong>$1 million</strong></p>
-            <div class="bar">
-              <span class="count_donate"></span>
+          <div class="range-wrapper">
+                <div class="range-line">
+                  <div class="range-donated" style="width:0%">
+                      <span class="total-raised"></span>
+                  </div>
+                </div>
+                <div class="steps flex justify-between items-end"></div>
+                <p class="sum"></p>
             </div>
             <p><a class="link_text" href="#">Buy this product</a> to <b>donate</b> <span class="donate_price">12.8</span> to support Ukraine</p>
           </li>
@@ -710,9 +842,16 @@ let startFunk = setInterval(() => {
               <strong>$1 million</strong>
             </p>
           </div>
-          <div class="bar">
-            <span class="count_donate"></span>
-          </div>
+          <div class="bar"></div>
+          <!-- <div class="range-wrapper">
+              <div class="range-line">
+                <div class="range-donated" style="width:0%">
+                    <span class="total-raised"></span>
+                </div>
+              </div>
+              <div class="steps flex justify-between items-end"></div>
+              <p class="sum"></p>
+          </div> -->
           <button class="by_it_now_btn">BUY IT NOW</button>
           <ul class="main_popup_list">
             <li>
@@ -1127,6 +1266,13 @@ let startFunk = setInterval(() => {
 
     document.querySelector(".donation_amount_flex")?.addEventListener("click", () => {
       onOpenPopup(contentpopup)
+      let clonedNodeBar = document.querySelector(".range-wrapper").cloneNode(true)
+
+      if (clonedNodeBar) {
+        if (!document.querySelector(".bar .range-wrapper")) {
+          document.querySelector(".bar")?.appendChild(clonedNodeBar)
+        }
+      }
 
       if (document.querySelector(".backdrop_modal .content_popup")) {
         document.querySelector(".backdrop_modal .content_popup .by_it_now_btn")?.addEventListener("click", (e) => {
@@ -1346,5 +1492,65 @@ let startFunk = setInterval(() => {
         })
       })
     })
+
+    //
+    fetch("https://crs-dev.fun/api/saint-javelin/total-donorbox", {
+      headers: {
+        "Content-Type": "application/json",
+      },
+      method: "GET",
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data)
+
+        // add on page
+        // document.body.insertAdjacentHTML("afterbegin", style)
+        // document.body.insertAdjacentHTML("afterbegin", progressBarHTML)
+
+        let donated = +data[0]["total_raised"],
+          sum = +data[0]["goal_amt"],
+          rangeDonated = (donated * 100) / sum,
+          wand = (rangeDonated * 90) / 100,
+          indexWand = donated < 15000 ? 0 : Math.floor(wand)
+
+        let step = ``
+
+        for (let i = 0; i < 91; i++) {
+          step += `<div class="step ${i <= indexWand ? "active" : ""} ${i % 9 ? "step-small" : "step-big"}"></div>`
+        }
+
+        document.querySelectorAll(".steps").forEach((el) => {
+          el.innerHTML = step
+        })
+        document.querySelectorAll(".range-donated").forEach((el) => {
+          el.style = `width: ${donated <= 10000 ? 0 : donated < 15000 ? 0.5 : rangeDonated}%`
+        })
+        document.querySelectorAll(".sum").forEach((el) => {
+          el.innerHTML = "$" + new Intl.NumberFormat("ru-RU").format(sum.toFixed(0))
+        })
+
+        let stepActive = document.querySelectorAll(".step.active")
+        let totalDonate = document.querySelectorAll(".total-raised")
+        if (donated > (sum * 88) / 100) {
+          stepActive[79].setAttribute("data-price", "$" + new Intl.NumberFormat("ru-RU").format(donated))
+          totalDonate.forEach((el) => {
+            el.setAttribute("data-price", "$" + new Intl.NumberFormat("ru-RU").format(donated))
+          })
+        } else {
+          stepActive[indexWand].setAttribute("data-price", "$" + new Intl.NumberFormat("ru-RU").format(donated))
+          totalDonate.forEach((el) => {
+            el.setAttribute("data-price", "$" + new Intl.NumberFormat("ru-RU").format(donated))
+          })
+        }
+        if (donated >= sum) {
+          document.querySelectorAll(".range-wrapper").forEach((el) => {
+            el.classList.add("active")
+          })
+        }
+      })
+      .catch((error) => {
+        console.error("Error:", error)
+      })
   }
 }, 100)
