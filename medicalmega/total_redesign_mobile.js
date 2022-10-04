@@ -543,7 +543,7 @@ window.onload = function() {
             document.querySelector('.confirmation-products').style.height = height + 60 + 'px'
         })
     }
-    if (href.includes('login.php') || href.includes('/register.php') || href.includes('/checkout') || href.includes('/guest-checkout1.php')) {
+    if (href.includes('login.php') || href.includes('/register.php') || href.includes('/checkout') || href.includes('/guest-checkout')) {
         //checkout
         let style = `
         <style>
