@@ -345,13 +345,13 @@ window.onload = function() {
     }
     //cart product
     let cart = () => {
-        let parent = href.includes('/checkout/step') || href.includes('/login.php') || href.includes('/register.php') ? '.order_body' : '.list-product';
+        let parent = href.includes('/checkout/step') || href.includes('/login.php') || href.includes('/register.php')|| href.includes('/guest-checkout1.php') ? '.order_body' : '.list-product';
 
         //get data
         postFetch('/cart.html',`api=c&cart_action=cart&ctoken=${mm.ctoken}`,'POST').then(data => {
             console.log(data)
             let products = data['items'];
-            document.querySelector(parent) != null ? document.querySelector(parent).innerHTML = '' : '';
+            document.querySelector(parent).innerHTML = '';
             if (parent == '.order_body') {
                 document.querySelector('.order_head .price span').innerHTML = data.total.toFixed(2);
                 pricing('.order_pricing', data)  //add pricing for order
