@@ -345,7 +345,7 @@ window.onload = function() {
     }
     //cart product
     let cart = () => {
-        let parent = href.includes('/checkout/step') || href.includes('/login.php') || href.includes('/register.php')|| href.includes('/guest-checkout1.php') ? '.order_body' : '.list-product';
+        let parent = href.includes('/checkout/step') || href.includes('/login.php') || href.includes('/register.php')|| href.includes('/guest-checkout') ? '.order_body' : '.list-product';
 
         //get data
         postFetch('/cart.html',`api=c&cart_action=cart&ctoken=${mm.ctoken}`,'POST').then(data => {
