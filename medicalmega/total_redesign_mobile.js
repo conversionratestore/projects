@@ -1484,26 +1484,30 @@ window.onload = function() {
                 document.querySelector('.promocode input').value = document.querySelector('.promoCode').value;
             }
         }
-        if (href.includes('/checkout/step3')|| href.includes('/guest-checkout3.php')) {
+        if (href.includes('/checkout/step3') || href.includes('/guest-checkout3.php')) {
             document.querySelector('.steps').innerHTML = `Step 3<span>/4</span> — ${obj['stepsName'][2]}`; //add steps in header
             document.querySelector('.col-left .head h4').innerHTML = obj['stepsName'][2];
-
             document.querySelector('.col-left .head').after(document.querySelector('#checkoutForm'))
-            document.querySelector('#checkoutForm h3').innerHTML = `Card Details <img src="https://conversionratestore.github.io/projects/medicalmega/img/payment-cards.png" alt="icons">`
-            document.querySelector('#cc_block > dl > div.ccInfo > dd:nth-child(5)').innerHTML = `Credit/Debit Card<span class="c-red"> *</span>`;
-            document.querySelector('#cc_block > dl > div.ccInfo > dd:nth-child(3)').innerHTML = `Name on card:<span class="c-red"> *</span>`;
 
             document.querySelector('.cc-recurring-setting').insertAdjacentHTML('beforebegin',`<label class="order-every items-center"><span class="check2"></span>${document.querySelector('.cc-recurring-setting').innerHTML}</label>`)
             document.querySelector('.order-every .check2').before(document.querySelector('#cc-recurring-check'))
             document.querySelector('#recurring_billing_period option').innerHTML = 'Choose Period'
             document.querySelector('.btn-next span').innerHTML = 'Proceed';
         }
+        if (href.includes('/guest-checkout3.php')) {
+            document.querySelector('#checkoutForm > fieldset > dl > dd:nth-child(2)').innerHTML = `Credit/Debit Card<span class="c-red"> *</span>`;
+        }
+        if (href.includes('/checkout/step3')) {
+            document.querySelector('#checkoutForm h3').innerHTML = `Card Details <img src="https://conversionratestore.github.io/projects/medicalmega/img/payment-cards.png" alt="icons">`;
+            document.querySelector('#cc_block > dl > div.ccInfo > dd:nth-child(3)').innerHTML = `Credit/Debit Card<span class="c-red"> *</span>`;
+            // document.querySelector('#cc_block > dl > div.ccInfo > dd:nth-child(3)').innerHTML = `Name on card:<span class="c-red"> *</span>`;
+        }
 
         //set text for back button
         let setBack = () => {
             let guestOrAccount = href.includes('guest-checkout') ? 1 : 0;
-            document.querySelector('.btn-back span').innerHTML = obj['back'][document.querySelector('.col-left .head h4').innerHTML.toLowerCase()][0]
-            document.querySelector('.btn-back').href = obj['back'][document.querySelector('.col-left .head h4').innerHTML.toLowerCase()][1][guestOrAccount]
+            document.querySelector('.btn-back span').innerHTML = obj['back'][document.querySelector('.col-left .head h4').innerHTML.toLowerCase()][0];
+            document.querySelector('.btn-back').href = obj['back'][document.querySelector('.col-left .head h4').innerHTML.toLowerCase()][1][guestOrAccount];
         }
         setBack()
 
