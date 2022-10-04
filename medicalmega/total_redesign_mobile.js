@@ -325,6 +325,7 @@ let product = (id, variantId, quantity, subtotal, url, imageUrl, title, varQty) 
 let showCart = (element) => document.querySelector(element).classList.add('active');
 let hideCart = (element) => document.querySelector(element).classList.remove('active');
 
+let qty = 0;
 window.onload = function() {
     document.body.insertAdjacentHTML('afterbegin', styleMain)
 
@@ -1858,7 +1859,6 @@ window.onload = function() {
             document.querySelector(parent).insertAdjacentHTML('beforeend', slide)
         }
 
-        let qty = 0;
         //cart product
         let cart = () => {
             let parent = href.includes('/checkout/step') || href.includes('/login.php') || href.includes('/register.php') ? '.order_body' : '.list-product';
