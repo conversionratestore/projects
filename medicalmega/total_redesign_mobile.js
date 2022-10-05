@@ -1806,7 +1806,7 @@ window.onload = function() {
             .slider-products {
                 padding: 20px 0 40px;
             }
-            .tns-outer {
+            .also-bought .tns-outer {
                 margin-right: -20px;
             }
             .slide {
@@ -3253,6 +3253,9 @@ window.onload = function() {
             }
             .product h2, .product .title {
                 font-size: 28px;
+            }
+            .also-bought .tns-outer {
+                margin-right: -15px;
             }
         }
         </style>`
