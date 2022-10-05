@@ -350,6 +350,7 @@ window.onload = function() {
         //get data
         postFetch('/cart.html',`api=c&cart_action=cart&ctoken=${mm.ctoken}`,'POST').then(data => {
             console.log(data)
+            localStorage.setItem('dataCart', JSON.stringify(data));
             let products = data['items'];
             document.querySelector(parent).innerHTML = '';
             if (parent == '.order_body') {
@@ -401,7 +402,9 @@ window.onload = function() {
         })
     }
     //Confirmation
-    if (href.includes('Confirmation') || href.includes('/checkout/step4') || href.includes('/guest-checkout4.php')) {
+    if (href.includes('/checkout/step4') || href.includes('/guest-checkout4.php')) {
+        let dataCart = JSON.parse(localStorage.getItem('dataCart'));
+        console.log(dataCart)
         let styleConfirmation = `
         <style>
             .confirmation * {
@@ -510,6 +513,13 @@ window.onload = function() {
             <div class="confirmation">
                 <h2>Thank you!</h2>
                 <p class="confirmation-span">Your order has been successfully placed</p>
+                <svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100" fill="none">
+                    <path d="M71.0151 61.4241C70.1194 60.6219 68.7434 60.7002 67.9455 61.5937C63.4107 66.6611 56.8716 69.5654 49.9999 69.5654C43.1303 69.5654 36.589 66.6611 32.0542 61.5937C31.2521 60.7002 29.8803 60.6219 28.9847 61.4241C28.089 62.2241 28.0151 63.598 28.8151 64.4937C34.1738 70.4806 41.8955 73.9132 49.9999 73.9132C58.1064 73.9132 65.8281 70.4785 71.1847 64.4937C71.9847 63.598 71.9086 62.2241 71.0151 61.4241Z" fill="#344D57"/>
+                    <path d="M50 0C22.4304 0 0 22.4304 0 50C0 77.5696 22.4304 100 50 100C77.5696 100 100 77.5696 100 50C100 22.4304 77.5696 0 50 0ZM50 95.6522C24.8261 95.6522 4.34783 75.1739 4.34783 50C4.34783 24.8261 24.8261 4.34783 50 4.34783C75.1739 4.34783 95.6522 24.8261 95.6522 50C95.6522 75.1739 75.1739 95.6522 50 95.6522Z" fill="#344D57"/>
+                    <path d="M67.3915 34.7827C61.3981 34.7827 56.522 39.6588 56.522 45.6523C56.522 46.8523 57.4959 47.8262 58.6959 47.8262C59.8959 47.8262 60.8698 46.8523 60.8698 45.6523C60.8698 42.0566 63.7959 39.1305 67.3915 39.1305C70.9872 39.1305 73.9133 42.0566 73.9133 45.6523C73.9133 46.8523 74.8872 47.8262 76.0872 47.8262C77.2872 47.8262 78.2611 46.8523 78.2611 45.6523C78.2611 39.6588 73.385 34.7827 67.3915 34.7827Z" fill="#344D57"/>
+                    <path d="M39.1306 45.6523C39.1306 46.8523 40.1045 47.8262 41.3045 47.8262C42.5045 47.8262 43.4784 46.8523 43.4784 45.6523C43.4784 39.6588 38.6023 34.7827 32.6088 34.7827C26.6153 34.7827 21.7393 39.6588 21.7393 45.6523C21.7393 46.8523 22.7132 47.8262 23.9132 47.8262C25.1132 47.8262 26.0871 46.8523 26.0871 45.6523C26.0871 42.0566 29.0132 39.1305 32.6088 39.1305C36.2045 39.1305 39.1306 42.0566 39.1306 45.6523Z" fill="#344D57"/>
+                </svg>
+                <p>Approximate shipping date of your order is</p>
                 <div class="confirmation-order flex">
                     <div class="col">
                         <h3>Your Order</h3>
@@ -529,21 +539,21 @@ window.onload = function() {
         document.querySelector('.steps').innerHTML = `Step 4<span>/4</span> — ${obj['stepsName'][3]}`;
         postFetch('/cart.html',`api=c&cart_action=last_order&ctoken=${mm.ctoken}`,'POST').then(data => {
             console.log(data)
-            let day = data.date.split('-')[2],
-                mounth = data.date.split('-')[1],
-                year = data.date.split('-')[0];
-            document.querySelector('.confirmation-date').innerHTML = day + ' ' + arrMouth[+mounth - 1] + '. ' + year
-            pricing('.order_pricing', data) // set pricing
-            let items = data.items;
-            for (let i = 0; i < items.length; i++) {
-                document.querySelector('.confirmation-products').insertAdjacentHTML('beforeend', product(items[i].product_id, items[i].variant_id, items[i].qty, items[i].subtotal, items[i].url, items[i].image_url, items[i].title, 1))
-            }
+        //     let day = data.date.split('-')[2],
+        //         mounth = data.date.split('-')[1],
+        //         year = data.date.split('-')[0];
+        //     document.querySelector('.confirmation-date').innerHTML = day + ' ' + arrMouth[+mounth - 1] + '. ' + year
+        //     pricing('.order_pricing', data) // set pricing
+        //     let items = data.items;
+        //     for (let i = 0; i < items.length; i++) {
+        //         document.querySelector('.confirmation-products').insertAdjacentHTML('beforeend', product(items[i].product_id, items[i].variant_id, items[i].qty, items[i].subtotal, items[i].url, items[i].image_url, items[i].title, 1))
+        //     }
 
-            let height = document.querySelector('.confirmation-order .col:first-child').clientHeight;
-            document.querySelector('.confirmation-products').style.height = height + 60 + 'px'
+        //     let height = document.querySelector('.confirmation-order .col:first-child').clientHeight;
+        //     document.querySelector('.confirmation-products').style.height = height + 60 + 'px'
         })
     }
-    if (href.includes('login.php') || href.includes('/register.php') || href.includes('/checkout') || href.includes('/guest-checkout')) {
+    if ((href.includes('login.php') || href.includes('/register.php') || href.includes('/checkout') || href.includes('/guest-checkout')) && !href.includes('/checkout/step4') && !href.includes('/guest-checkout4.php')) {
         //checkout
         let style = `
         <style>
@@ -1144,7 +1154,7 @@ window.onload = function() {
             </div>
         </div>`;
 
-        document.body.insertAdjacentHTML('afterbegin',wrapperHTML) // add wrapper
+        document.body.insertAdjacentHTML('afterbegin',wrapperHTML);
         document.body.insertAdjacentHTML('afterbegin', style) // add styles
 
         //show/hide order
@@ -1506,12 +1516,14 @@ window.onload = function() {
         }
 
         //set text for back button
-        let setBack = () => {
-            let guestOrAccount = href.includes('guest-checkout') ? 1 : 0;
-            document.querySelector('.btn-back span').innerHTML = obj['back'][document.querySelector('.col-left .head h4').innerHTML.toLowerCase()][0];
-            document.querySelector('.btn-back').href = obj['back'][document.querySelector('.col-left .head h4').innerHTML.toLowerCase()][1][guestOrAccount];
+        if (!href.includes('/checkout/step4') && !href.includes('/guest-checkout4.php')) {
+            let setBack = () => {
+                let guestOrAccount = href.includes('guest-checkout') ? 1 : 0;
+                document.querySelector('.btn-back span').innerHTML = obj['back'][document.querySelector('.col-left .head h4').innerHTML.toLowerCase()][0];
+                document.querySelector('.btn-back').href = obj['back'][document.querySelector('.col-left .head h4').innerHTML.toLowerCase()][1][guestOrAccount];
+            }
+            setBack()
         }
-        setBack()
 
         //set * request for label
         document.querySelectorAll('label').forEach(el => {
