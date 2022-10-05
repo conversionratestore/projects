@@ -425,7 +425,7 @@ const checkIsVisible = () => {
                 // To stop observing:
                 observer.unobserve(entry.target)
 
-                const name = entry.target.matches('my_btn2') ? 'See how much you can save CTA' : 'Calculator'
+                const name = entry.target.matches('.my_btn2') ? 'See how much you can save CTA' : 'Calculator'
 
                 callEvent(name + ' is visible')
             }
