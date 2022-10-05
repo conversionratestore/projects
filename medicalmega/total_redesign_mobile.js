@@ -533,22 +533,8 @@ window.onload = function() {
         for (let i = 0; i < items.length; i++) {
             document.querySelector('.confirmation-products').insertAdjacentHTML('beforeend', product(items[i].product_id, items[i].variant_id, items[i].quantity, items[i].subtotal, items[i].url, items[i].image_url, items[i].title, 1))
         }
-        postFetch('/cart.html',`api=c&cart_action=last_order&ctoken=${mm.ctoken}`,'POST').then(data => {
-            console.log(data)
-        //     let day = data.date.split('-')[2],
-        //         mounth = data.date.split('-')[1],
-        //         year = data.date.split('-')[0];
-        //     document.querySelector('.confirmation-date').innerHTML = day + ' ' + arrMouth[+mounth - 1] + '. ' + year
-        //     pricing('.order_pricing', data) // set pricing
-        //     let items = data.items;
-        //     for (let i = 0; i < items.length; i++) {
-        //         document.querySelector('.confirmation-products').insertAdjacentHTML('beforeend', product(items[i].product_id, items[i].variant_id, items[i].qty, items[i].subtotal, items[i].url, items[i].image_url, items[i].title, 1))
-        //     }
-
-        //     let height = document.querySelector('.confirmation-order .col:first-child').clientHeight;
-        //     document.querySelector('.confirmation-products').style.height = height + 60 + 'px'
-        })
     }
+    
     if ((href.includes('login.php') || href.includes('/register.php') || href.includes('/checkout') || href.includes('/guest-checkout')) && !href.includes('/checkout/step4') && !href.includes('/guest-checkout4.php')) {
         //checkout
         let style = `
