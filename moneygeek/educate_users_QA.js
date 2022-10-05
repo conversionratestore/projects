@@ -413,38 +413,36 @@ const simulateSelectEvents = (selectIndex, optionIndex) => {
 
 const checkIsVisible = () => {
     // define an observer instance
-    const observer1 = new IntersectionObserver(onIntersection, {
-        root: null,   // default is the viewport
-        threshold: .4 // percentage of target's visible area. Triggers "onIntersection"
-    })
+const observer1 = new IntersectionObserver(onIntersection, {
+    root: null,   // default is the viewport
+    threshold: .4 // percentage of target's visible area. Triggers "onIntersection"
+})
+const observer2 = new IntersectionObserver(onIntersection, {
+    root: null,   // default is the viewport
+    threshold: .5 // percentage of target's visible area. Triggers "onIntersection"
+})
+// callback is called on intersection change
+function onIntersection(entries) {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            let name = ''
 
-    const observer2 = new IntersectionObserver(onIntersection, {
-        root: null,   // default is the viewport
-        threshold: .5 // percentage of target's visible area. Triggers "onIntersection"
-    })
-
-    // callback is called on intersection change
-    function onIntersection(entries) {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                let name = entry.target.matches('my_btn2') ? 'See how much you can save CTA' : 'Calculator'
-
-                if (entry.target.matches('my_btn2')) {
-                    name = 'See how much you can save CTA'
-                    observer2.disconnect()
-                } else {
-                    name = 'Calculator'
-                    observer1.disconnect()
-                }
-
-                callEvent(name + ' is visible')
+            if (entry.target.matches('.my_btn2')) {
+                name = 'See how much you can save CTA'
+                observer2.disconnect()
+            } else {
+                name = 'Calculator'
+                observer1.disconnect()
             }
-        })
-    }
 
-    // Use the observer to observe an element
-    observer1.observe(document.querySelector('.calc'))
-    observer2.observe(document.querySelector('.my_btn2'))
+            callEvent(name + ' is visible')
+        }
+    })
+}
+
+// Use the observer to observe an element
+observer1.observe(document.querySelector('.calc'))
+observer2.observe(document.querySelector('.my_btn2'))
 }
 
 const callEvent = (eventAction, eventLabel = '') => {
