@@ -516,7 +516,7 @@ if (href.includes('Confirmation')) {
     })
 
 }
-if (href.includes('login.php') || href.includes('/register.php') || href.includes('/checkout') || href.includes('/guest-checkout1.php')) {
+if (href.includes('login.php') || href.includes('/register.php') || href.includes('/checkout') || href.includes('/guest-checkout')) {
     //checkout
     let style = `
     <style>
@@ -952,7 +952,7 @@ if (href.includes('login.php') || href.includes('/register.php') || href.include
         .ccInfo {
             display: grid;
         }
-       .ccInfo > dd:first-child,  .ccInfo > dd:nth-child(3), .ccInfo > dd:nth-child(4),  #cc_block > dl > div.ccInfo > dd:nth-child(2) {
+       .ccInfo > dd:first-child, .ccInfo > dd:nth-child(4),  #cc_block > dl > div.ccInfo > dd:nth-child(2) {
             order: 1;
         }
         #iframeForm {
@@ -975,9 +975,6 @@ if (href.includes('login.php') || href.includes('/register.php') || href.include
         }
         .primaryInfo dl, #checkoutForm > fieldset > div:nth-child(2) {
             margin: 0!important;
-        }
-        #save_cc_info {
-            display: none;
         }
         .check2 {
             border: 1px solid #6D7E85;
@@ -1255,19 +1252,19 @@ if (href.includes('login.php') || href.includes('/register.php') || href.include
     //ship/bill addresses
     let addressCurrentHtml = (fname, lname, addr1, city, state, zip, country, phone, type) => {
         return `
-    <div class="address ${type === 'bill' ? 'bill' : 'ship'}">
-        <div class="justify-between">
-            <div>
-                <p>${fname} ${lname}</p>
-                <p>${addr1}</p>
-                <p>${city}, ${state}, ${zip}</p>
-                <p>${country}</p>
-                <p>${phone}</p>
+        <div class="address ${type === 'bill' ? 'bill' : 'ship'}">
+            <div class="justify-between">
+                <div>
+                    <p>${fname} ${lname}</p>
+                    <p>${addr1}</p>
+                    <p>${city}, ${state}, ${zip}</p>
+                    <p>${country}</p>
+                    <p>${phone}</p>
+                </div>
+                <button class="btn-edit" type="button">${type === 'ship' ? 'Edit Shipping Address' : 'Edit Billing Info'}</button>
             </div>
-            <button class="btn-edit" type="button">${type === 'ship' ? 'Edit Shipping Address' : 'Edit Billing Info'}</button>
-        </div>
-        ${type === 'ship' ? '<p class="link">View Your Billing Info</p>' : ''} 
-    </div>`
+            ${type === 'ship' ? '<p class="link">View Your Billing Info</p>' : ''} 
+        </div>`
     }
 
     //copy from shipping
@@ -1377,7 +1374,7 @@ if (href.includes('login.php') || href.includes('/register.php') || href.include
         </label>`
     }
 
-    if (href.includes('/checkout/step2')) {
+    if (href.includes('/checkout/step2') || href.includes('guest-checkout2.php')) {
         document.querySelector('.col-left .head h4').innerHTML = 'Delivery Method';
         document.querySelector('.col-left .head').insertAdjacentHTML('afterend',`<div class="delivery-method"></div>`)
         document.querySelectorAll('#ship_options > li').forEach((item, index) => {
@@ -1409,14 +1406,13 @@ if (href.includes('login.php') || href.includes('/register.php') || href.include
             document.querySelector('.promocode input').value = document.querySelector('.promoCode').value;
         }
     }
-    if (href.includes('/checkout/step3')) {
+    if (href.includes('/checkout/step3') || href.includes('guest-checkout3.php')) {
         addStep('.steps', 2) //add steps in header
         document.querySelector('.col-left .head h4').innerHTML = obj['stepsName'][2];
 
         document.querySelector('.col-left .head').after(document.querySelector('#checkoutForm'))
-        document.querySelector('#checkoutForm h3').innerHTML = `Card Details <img src="https://conversionratestore.github.io/projects/medicalmega/img/payment-cards.png" alt="icons">`
-        document.querySelector('#cc_block > dl > div.ccInfo > dd:nth-child(5)').innerHTML = `Credit/Debit Card<span class="c-red"> *</span>`;
-        document.querySelector('#cc_block > dl > div.ccInfo > dd:nth-child(3)').innerHTML = `Name on card:<span class="c-red"> *</span>`;
+        document.querySelector('#cc_block > dl > div.ccInfo > dd:nth-child(3)').innerHTML = `Credit/Debit Card<span class="c-red"> *</span>`;
+        // document.querySelector('#cc_block > dl > div.ccInfo > dd:nth-child(3)').innerHTML = `Name on card:<span class="c-red"> *</span>`;
 
         document.querySelector('#save_cc_info') != null ? document.querySelector('#save_cc_info').insertAdjacentHTML('afterend','<span class="check2"></span>') : '';
 
@@ -1425,6 +1421,9 @@ if (href.includes('login.php') || href.includes('/register.php') || href.include
         document.querySelector('.btn-next span').innerHTML = 'Proceed';
     }
 
+    if (href.includes('/checkout/step3') ) {
+        document.querySelector('#checkoutForm h3').innerHTML = `Card Details <img src="https://conversionratestore.github.io/projects/medicalmega/img/payment-cards.png" alt="icons">`
+    }
     //set text for back button
     let setBack = () => {
         document.querySelector('.btn-back span').innerHTML = obj['back'][document.querySelector('.col-left .head h4').innerHTML.toLowerCase()][0]
@@ -1501,7 +1500,7 @@ if (href.includes('login.php') || href.includes('/register.php') || href.include
                     console.log(data)
                     let dataErrors = data.errors;
                     if (dataErrors.length < 1) {
-                        window.location.href = `/checkout/step2`
+                        window.location.href = href.includes('guest-checkout') ? '/guest-checkout2.php' : `/checkout/step2`
                     } else {
                         errorsFun(dataErrors)
                     }
@@ -1515,7 +1514,7 @@ if (href.includes('login.php') || href.includes('/register.php') || href.include
                         if (dataErrors.length < 1) {
                             postFetch('/api/v1/addresses', saveAddress('bill',fname.value,lname.value,addr1.value,city.value,stateF.value,zip.value,country.value,phn.value,email.value),'POST').then(dataBill => {
                                 console.log(dataBill)
-                                window.location.href = 'https://medicalmega.com/checkout/step2'
+                                window.location.href = href.includes('guest-checkout') ? '/guest-checkout2.php' : `/checkout/step2`
                             })
                         } else {
                             errorsFun(dataErrors)
@@ -1552,7 +1551,7 @@ if (href.includes('login.php') || href.includes('/register.php') || href.include
                     console.log(data)
                     let dataErrors = data.errors;
                     if (dataErrors.length < 1) {
-                        window.location.href = `/checkout/step2`
+                        window.location.href = href.includes('guest-checkout') ? '/guest-checkout2.php' : `/checkout/step2`
                     } else {
                         errorsFun(dataErrors)
                     }
@@ -1562,7 +1561,7 @@ if (href.includes('login.php') || href.includes('/register.php') || href.include
                     console.log(data)
                     let dataErrors = data.errors;
                     if (dataErrors.length < 1) {
-                        window.location.href = 'https://medicalmega.com/checkout/step2'
+                        window.location.href = href.includes('guest-checkout') ? '/guest-checkout2.php' : `/checkout/step2`
                     } else {
                         errorsFun(dataErrors)
                     }
@@ -1582,7 +1581,7 @@ if (href.includes('login.php') || href.includes('/register.php') || href.include
         } else if (document.querySelector('.bill-form.active') != null) {
             address('bill')
         } else if (document.querySelector('.address.ship') != null && document.querySelector('.address.bill') != null && document.querySelector('.bill-form.edit') == null && document.querySelector('.ship-form.edit') == null) {
-            window.location.href = `https://medicalmega.com/checkout/step2`
+            window.location.href = href.includes('guest-checkout') ? '/guest-checkout2.php' : `/checkout/step2`;
         } else if (document.querySelector('.address.ship') != null && document.querySelector('.address.bill') == null && document.querySelector('.bill-form.active') == null) {
             document.querySelector('.address.ship').style.display = 'none'
             document.querySelector('.col-left .head h4').innerHTML = 'Billing information'; //change title
