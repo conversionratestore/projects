@@ -42,6 +42,7 @@ let styleMain =`
         position: sticky;
         top: 0;
         z-index: 99;
+        width: 100%;
         padding: 20px;
     }
     .steps {
@@ -407,6 +408,9 @@ window.onload = function() {
         console.log(dataCart)
         let styleConfirmation = `
         <style>
+            body {
+                border-top: none;
+            }
             .confirmation * {
                 box-sizing: border-box;
             }
@@ -417,7 +421,7 @@ window.onload = function() {
                 max-width: 833px;
                 width: 100%;
                 margin: auto;
-                padding: 40px 0 80px;
+                padding: 40px 20px 20px;
                 font-size: 14px;
                 line-height: 150%;
                 color: #474747;
@@ -433,39 +437,17 @@ window.onload = function() {
                 font-weight: 400;
                 font-size: 16px;
                 color: #344D57;
+                font-weight: 400;
+                font-size: 14px;
+                line-height: 150%;
+                text-align: center;
+            }
+            .confirmation > svg {
+                margin: 28px auto ;
             }
             .confirmation-order {
-                background: #FFFFFF;
-                box-shadow: 0 4px 8px 3px rgba(0, 0, 0, 0.15), 0 1px 3px rgba(0, 0, 0, 0.3);
-                border-radius: 8px;
                 padding: 40px 0;
-                margin: 40px 0 32px;
-            }
-            .confirmation-order .col {
-                width: 50%;
-            }
-            .confirmation-order .col:first-child {
-                border-right: 1px solid #E0E4E5;
-                padding: 0 40px;
-            }
-            .confirmation-order .col:last-child {
-                position: relative;
-            }
-            .confirmation-order .col:last-child:after {
-                content: '';
-                position: absolute;
-                left: 0;
-                bottom: -40px;
-                width: 100%;
-                height: 55%;
-                pointer-events: none;
-                background: linear-gradient(360deg, #FFFFFF 0%, rgba(255, 255, 255, 0) 100%);
-            }
-            .confirmation-products {
-                margin-top: -20px;
-                margin-bottom: -40px;
-                padding: 0 40px;
-                overflow-y: auto;
+                margin: 40px 0 8px;
             }
             .confirmation-products::-webkit-scrollbar{
                 background: #CCCCCC;
@@ -483,18 +465,20 @@ window.onload = function() {
             }
             .confirmation-order .order_pricing li:not(:last-child) {
                 color: #6D7E85;
-                margin-bottom: 12px;
+                margin-bottom: 8px;
             }
             .confirmation-order .order_pricing li:last-child {
-                padding-top: 28px;
+                padding: 20px 0;
             }
             .confirmation-order h3 {
+                padding-bottom: 20px;
+                margin-bottom: 8px;
                 font-weight: 600;
                 font-size: 24px;
                 line-height: 120%;
-                margin-bottom: 28px;
+                color: #344D57;
                 text-align: left;
-                color: #091114;
+                border-bottom: 1px solid #E0E4E5;
             }
             .confirmation-date {
                 font-weight: 600;
@@ -505,38 +489,50 @@ window.onload = function() {
             }
             .confirmation .btn-next {
                 padding: 0 24px;
-                margin: 36px auto 0;
+            }
+            .product-item:last-child {
+                border-bottom: 1px solid #E0E4E5;
             }
         </style>`
         let confirmationHTML = `
-            <header class="header-checkout"><div class="steps"></div></header>
+            <header class="header-checkout flex justify-between items-center"><div class="steps"></div> 
+                <a href="/">
+                    <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M15.4161 14L22.5939 5.44414C22.7142 5.30195 22.613 5.08594 22.4271 5.08594H20.245C20.1165 5.08594 19.9935 5.14336 19.9087 5.2418L13.9888 12.2992L8.06887 5.2418C7.98684 5.14336 7.86379 5.08594 7.73254 5.08594H5.55051C5.36457 5.08594 5.2634 5.30195 5.38372 5.44414L12.5615 14L5.38372 22.5559C5.35676 22.5876 5.33947 22.6263 5.3339 22.6675C5.32832 22.7088 5.33469 22.7507 5.35225 22.7884C5.36981 22.8262 5.39783 22.858 5.43297 22.8803C5.46812 22.9026 5.50891 22.9143 5.55051 22.9141H7.73254C7.86106 22.9141 7.98411 22.8566 8.06887 22.7582L13.9888 15.7008L19.9087 22.7582C19.9907 22.8566 20.1138 22.9141 20.245 22.9141H22.4271C22.613 22.9141 22.7142 22.698 22.5939 22.5559L15.4161 14Z" fill="#6D7E85"></path>
+                    </svg>
+                </a>
+            </header>
             <div class="confirmation">
                 <h2>Thank you!</h2>
-                <p class="confirmation-span">Your order has been successfully placed</p>
+                <p class="confirmation-span c-gray">Your order has been successfully placed</p>
                 <svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100" fill="none">
                     <path d="M71.0151 61.4241C70.1194 60.6219 68.7434 60.7002 67.9455 61.5937C63.4107 66.6611 56.8716 69.5654 49.9999 69.5654C43.1303 69.5654 36.589 66.6611 32.0542 61.5937C31.2521 60.7002 29.8803 60.6219 28.9847 61.4241C28.089 62.2241 28.0151 63.598 28.8151 64.4937C34.1738 70.4806 41.8955 73.9132 49.9999 73.9132C58.1064 73.9132 65.8281 70.4785 71.1847 64.4937C71.9847 63.598 71.9086 62.2241 71.0151 61.4241Z" fill="#344D57"/>
                     <path d="M50 0C22.4304 0 0 22.4304 0 50C0 77.5696 22.4304 100 50 100C77.5696 100 100 77.5696 100 50C100 22.4304 77.5696 0 50 0ZM50 95.6522C24.8261 95.6522 4.34783 75.1739 4.34783 50C4.34783 24.8261 24.8261 4.34783 50 4.34783C75.1739 4.34783 95.6522 24.8261 95.6522 50C95.6522 75.1739 75.1739 95.6522 50 95.6522Z" fill="#344D57"/>
                     <path d="M67.3915 34.7827C61.3981 34.7827 56.522 39.6588 56.522 45.6523C56.522 46.8523 57.4959 47.8262 58.6959 47.8262C59.8959 47.8262 60.8698 46.8523 60.8698 45.6523C60.8698 42.0566 63.7959 39.1305 67.3915 39.1305C70.9872 39.1305 73.9133 42.0566 73.9133 45.6523C73.9133 46.8523 74.8872 47.8262 76.0872 47.8262C77.2872 47.8262 78.2611 46.8523 78.2611 45.6523C78.2611 39.6588 73.385 34.7827 67.3915 34.7827Z" fill="#344D57"/>
                     <path d="M39.1306 45.6523C39.1306 46.8523 40.1045 47.8262 41.3045 47.8262C42.5045 47.8262 43.4784 46.8523 43.4784 45.6523C43.4784 39.6588 38.6023 34.7827 32.6088 34.7827C26.6153 34.7827 21.7393 39.6588 21.7393 45.6523C21.7393 46.8523 22.7132 47.8262 23.9132 47.8262C25.1132 47.8262 26.0871 46.8523 26.0871 45.6523C26.0871 42.0566 29.0132 39.1305 32.6088 39.1305C36.2045 39.1305 39.1306 42.0566 39.1306 45.6523Z" fill="#344D57"/>
                 </svg>
-                <p>Approximate shipping date of your order is</p>
-                <div class="confirmation-order flex">
+                <p class="confirmation-span">Approximate shipping date of your order is</p>
+                <p class="confirmation-date"></p>
+                <div class="confirmation-order">
                     <div class="col">
-                        <h3>Your Order</h3>
+                        <h3>Order summary</h3>
                         <ul class="order_pricing"></ul>
                     </div>
                     <div class="col">
                         <ul class="confirmation-products"></ul>
                     </div>
                 </div>
-                <p>Approximate shipping date of your order is:</p>
-                <p class="confirmation-date"></p>
                 <a href="/" class="btn-next"><span>Back to the website</span></a>
             </div>`
         document.body.insertAdjacentHTML('afterbegin', confirmationHTML)
         document.body.insertAdjacentHTML('afterbegin', styleConfirmation)
         //add steps in header
         document.querySelector('.steps').innerHTML = `Step 4<span>/4</span> — ${obj['stepsName'][3]}`;
+        pricing('.order_pricing', dataCart) // set pricing
+        let items = data.items;
+        for (let i = 0; i < items.length; i++) {
+            document.querySelector('.confirmation-products').insertAdjacentHTML('beforeend', product(items[i].product_id, items[i].variant_id, items[i].quantity, items[i].subtotal, items[i].url, items[i].image_url, items[i].title, 1))
+        }
         postFetch('/cart.html',`api=c&cart_action=last_order&ctoken=${mm.ctoken}`,'POST').then(data => {
             console.log(data)
         //     let day = data.date.split('-')[2],
@@ -1115,7 +1111,14 @@ window.onload = function() {
         </style>`
 
         let wrapperHTML = `
-        <header class="header-checkout"><div class="steps"></div></header>
+        <header class="header-checkout flex justify-between items-center">
+            <div class="steps"></div>
+            <a href="/">
+                <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M15.4161 14L22.5939 5.44414C22.7142 5.30195 22.613 5.08594 22.4271 5.08594H20.245C20.1165 5.08594 19.9935 5.14336 19.9087 5.2418L13.9888 12.2992L8.06887 5.2418C7.98684 5.14336 7.86379 5.08594 7.73254 5.08594H5.55051C5.36457 5.08594 5.2634 5.30195 5.38372 5.44414L12.5615 14L5.38372 22.5559C5.35676 22.5876 5.33947 22.6263 5.3339 22.6675C5.32832 22.7088 5.33469 22.7507 5.35225 22.7884C5.36981 22.8262 5.39783 22.858 5.43297 22.8803C5.46812 22.9026 5.50891 22.9143 5.55051 22.9141H7.73254C7.86106 22.9141 7.98411 22.8566 8.06887 22.7582L13.9888 15.7008L19.9087 22.7582C19.9907 22.8566 20.1138 22.9141 20.245 22.9141H22.4271C22.613 22.9141 22.7142 22.698 22.5939 22.5559L15.4161 14Z" fill="#6D7E85"></path>
+                </svg>
+            </a>
+        </header>
         <div class="wrapper-checkout">
             <div class="order">
                     <div class="order_head flex-center-between">
@@ -1990,7 +1993,7 @@ window.onload = function() {
         }
     }
 
-    cart()
+    !href.includes('/checkout/step4') && !href.includes('/guest-checkout4.php') ? cart() : '';
     if (!href.includes('login.php') && !href.includes('/register.php') && !href.includes('/checkout') && !href.includes('/guest-checkout')) {
         let style = `
         <style class="style-main">
