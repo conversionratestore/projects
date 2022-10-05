@@ -413,7 +413,12 @@ const simulateSelectEvents = (selectIndex, optionIndex) => {
 
 const checkIsVisible = () => {
     // define an observer instance
-    const observer = new IntersectionObserver(onIntersection, {
+    const observer1 = new IntersectionObserver(onIntersection, {
+        root: null,   // default is the viewport
+        threshold: .4 // percentage of target's visible area. Triggers "onIntersection"
+    })
+
+    const observer2 = new IntersectionObserver(onIntersection, {
         root: null,   // default is the viewport
         threshold: .5 // percentage of target's visible area. Triggers "onIntersection"
     })
@@ -422,10 +427,15 @@ const checkIsVisible = () => {
     function onIntersection(entries) {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
-                // To stop observing:
-                observer.unobserve(entry.target)
+                let name = entry.target.matches('my_btn2') ? 'See how much you can save CTA' : 'Calculator'
 
-                const name = entry.target.matches('.my_btn2') ? 'See how much you can save CTA' : 'Calculator'
+                if (entry.target.matches('my_btn2')) {
+                    name = 'See how much you can save CTA'
+                    observer2.disconnect()
+                } else {
+                    name = 'Calculator'
+                    observer1.disconnect()
+                }
 
                 callEvent(name + ' is visible')
             }
@@ -433,8 +443,8 @@ const checkIsVisible = () => {
     }
 
     // Use the observer to observe an element
-    observer.observe(document.querySelector('.calc'))
-    observer.observe(document.querySelector('.my_btn2'))
+    observer1.observe(document.querySelector('.calc'))
+    observer2.observe(document.querySelector('.my_btn2'))
 }
 
 const callEvent = (eventAction, eventLabel = '') => {
