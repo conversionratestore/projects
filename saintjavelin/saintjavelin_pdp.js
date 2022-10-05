@@ -655,6 +655,12 @@ let startFunk = setInterval(() => {
     .content_popup .total-raised::before{
       right: -50px;
     }
+    .donation_inform.is_full .total-raised::before{
+      right: 5px;
+    }
+    .container_popup.is_full .content_popup .total-raised::before{
+      right: -5px;
+    }
     @media (max-width: 768px) {
       .range-wrapper{
         margin-bottom: 16px;
@@ -1335,7 +1341,6 @@ let startFunk = setInterval(() => {
     })
 
     // click on origin btn " Add to cart", "Buy it now button"
-
     // observer
     let observer = new MutationObserver(() => {
       if (document) {
@@ -1643,6 +1648,13 @@ let startFunk = setInterval(() => {
         })
         document.querySelectorAll(".range-donated").forEach((el) => {
           el.style = `width: ${donated <= 10000 ? 0 : donated < 15000 ? 0.5 : rangeDonated}%`
+          if (el.style.width >= "80%") {
+            console.log(el.style.width)
+            if (document.querySelector(".container_popup")) {
+              document.querySelector(".container_popup").classList.add("is_full")
+              document.querySelector(".donation_inform").classList.add("is_full")
+            }
+          }
         })
         document.querySelectorAll(".sum").forEach((el) => {
           el.innerHTML = "$" + new Intl.NumberFormat("ru-RU").format(sum.toFixed(0))
