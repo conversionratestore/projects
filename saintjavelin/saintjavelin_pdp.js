@@ -820,10 +820,10 @@ let startFunk = setInterval(() => {
         </ul>
       </div>
       <div>
-        <h3>Our new campaign aims to fundraise $1 million by Oct 30th to buy winter clothing and generators for 3,000 Ukrainian <span class="text_absol">soldiers</span></h3>
+        <h3>Our new campaign aims to fundraise $1 million by Nov 30th to buy winter clothing and generators for 3,000 Ukrainian <span class="text_absol">soldiers</span></h3>
         <ul class="background_wrap">
           <li>
-            <p class="goal_text">Fundraising goal by the end of October 2022: <strong>$1 million</strong></p>
+            <p class="goal_text">Fundraising goal by the end of November 2022: <strong>$1 million</strong></p>
           <div class="range-wrapper">
                 <div class="range-line">
                   <div class="range-donated" style="width:0%">
@@ -861,10 +861,10 @@ let startFunk = setInterval(() => {
       <div class="content_popup">
           <img src="${imgFolderUrl}ukrainian_flag.png" alt="ukrainian flag" />
           <h2>All profits go towards helping Ukraine resist the invasion</h2>
-          <p>Our new campaign aims to fundraise $1 million by Oct 30th to buy winter clothing and generators for 3,000 Ukrainian soldiers</p>
+          <p>Our new campaign aims to fundraise $1 million by Nov 30th to buy winter clothing and generators for 3,000 Ukrainian soldiers</p>
           <div>
             <p class="goal_text">
-              Fundraising goal by the end of October 2022: <br />
+              Fundraising goal by the end of November 2022: <br />
               <strong>$1 million</strong>
             </p>
           </div>
@@ -1335,10 +1335,29 @@ let startFunk = setInterval(() => {
     })
 
     // click on origin btn " Add to cart", "Buy it now button"
-    document.querySelector('form [data-testid="Checkout-button"')?.addEventListener("click", (e) => {
-      if (!e.target.classList.contains("on_click")) {
-        pushDataLayer("Сlick on Buy it now button", `0`)
+
+    // observer
+    let observer = new MutationObserver(() => {
+      if (document) {
+        observer.disconnect()
+        if (document.querySelectorAll(".mistake.is_visited").length === 2) {
+          document.querySelector('form [data-testid="Checkout-button"')?.addEventListener("click", (e) => {
+            if (!e.target.classList.contains("on_click")) {
+              pushDataLayer("Сlick on Buy it now button", `0`)
+            }
+          })
+        }
+
+        observer.observe(document, {
+          childList: true,
+          subtree: true,
+        })
       }
+    })
+
+    observer.observe(document, {
+      childList: true,
+      subtree: true,
     })
 
     document.querySelector("[data-button_style=shadow] .btn--tertiary.btn--full")?.addEventListener("click", () => {
