@@ -529,7 +529,7 @@ window.onload = function() {
         //add steps in header
         document.querySelector('.steps').innerHTML = `Step 4<span>/4</span> — ${obj['stepsName'][3]}`;
         pricing('.order_pricing', dataCart) // set pricing
-        let items = data.items;
+        let items = dataCart.items;
         for (let i = 0; i < items.length; i++) {
             document.querySelector('.confirmation-products').insertAdjacentHTML('beforeend', product(items[i].product_id, items[i].variant_id, items[i].quantity, items[i].subtotal, items[i].url, items[i].image_url, items[i].title, 1))
         }
