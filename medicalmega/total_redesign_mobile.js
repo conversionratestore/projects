@@ -401,7 +401,7 @@ window.onload = function() {
         })
     }
     //Confirmation
-    if (href.includes('Confirmation')) {
+    if (href.includes('Confirmation') || href.includes('/checkout/step4') || href.includes('/guest-checkout4.php')) {
         let styleConfirmation = `
         <style>
             .confirmation * {
