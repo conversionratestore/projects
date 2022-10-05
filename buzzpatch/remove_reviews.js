@@ -51,8 +51,6 @@ const waitForReviewsBlock = setInterval(() => {
     ) {
         clearInterval(waitForReviewsBlock)
 
-        document.querySelector('.jdgm-rev-widg__summary-text').innerText = 'Trustscore 4.93'
-
         // change reviews in the stars row
         const reviewRowIndex = [0, 1, 2, 4]
         reviewRowIndex.forEach(elIndex => {
@@ -98,6 +96,23 @@ const waitForReviewsBlock = setInterval(() => {
             }
         })
         observer.observe(target, config)
+
+        // change Trustscore
+        const target2 = document.querySelector('.jdgm-rev-widg__summary')
+        let observer2 = new MutationObserver(mutations => {
+            for (let mutation of mutations) {
+                for (let node of mutation.addedNodes) {
+                    if (!(node instanceof HTMLElement)) continue
+
+                    if (node.matches('div.jdgm-rev-widg__summary-text')) {
+                        observer2.disconnect()
+
+                        node.innerText = 'Trustscore 4.93'
+                    }
+                }
+            }
+        })
+        observer2.observe(target2, config)
     }
 }, intervalTimeout)
 
