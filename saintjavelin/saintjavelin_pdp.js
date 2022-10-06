@@ -174,7 +174,7 @@ let startFunk = setInterval(() => {
       /* popap_box */
     .backdrop_modal {
         position: fixed;
-        overflow: hidden;
+        overflow: scroll;
         top: 0;
         left: 0;
         width: 100vw;
