@@ -202,7 +202,7 @@ let startFunk = setInterval(() => {
       margin: 0;
       background: #FDFDFD;
       transition: all 0.5s ease 0s;
-      overflow: auto;
+      overflow: scroll;
     }
     .backdrop_modal .container_popup > svg {
         position: absolute;
