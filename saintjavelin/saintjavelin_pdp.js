@@ -675,6 +675,10 @@ let startFunk = setInterval(() => {
       .range-wrapper{
         margin-bottom: 16px;
       }
+      .donation_amount_flex svg{
+        width: 31px;
+        height: 31px;
+      
       .total-raised::before{
         right: -64px;
       }
@@ -742,11 +746,7 @@ let startFunk = setInterval(() => {
       .product-block .variant__label.hidden-label,
       .size_guide_var{
         font-size: 12px;
-      }
-      .donation_amount_flex svg{
-        width: 31px;
-        height: 31px;
-      }
+      }}
       .mistake{
         font-size: 10px;
       }
