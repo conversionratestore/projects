@@ -352,9 +352,7 @@ let product = (id, variantId, quantity, subtotal, url, imageUrl, title, varQty) 
                 </div>
             </li>`
 }
-
-document.body.insertAdjacentHTML('afterbegin', styleMain)
-
+//checkout header html 
 let headerHTML = `
     <header class="header-checkout">
         <div class="flex-center-between container">
@@ -364,6 +362,7 @@ let headerHTML = `
             <div class="flex steps"></div>
         </div>
     </header> `
+
 //add steps in header
 let addStep = (query,index) => {
     for (let i = 0; i < obj['stepsName'].length; i++) {
@@ -376,10 +375,15 @@ let addStep = (query,index) => {
         }
     }
 }
+
 let arrMouth = ['Jan','Feb','Mar','Apr','May','Jun','Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 
+document.body.insertAdjacentHTML('afterbegin', styleMain)
+
 //Confirmation
-if (href.includes('Confirmation')) {
+if (href.includes('/checkout/step4') || href.includes('/guest-checkout4.php')) {
+    let dataCart = JSON.parse(localStorage.getItem('dataCart'));
+
     let styleConfirmation = `
     <style>
         .confirmation * {
@@ -477,10 +481,12 @@ if (href.includes('Confirmation')) {
             margin: 36px auto 0;
         }
     </style>`
+
     let confirmationHTML = `
+        ${headerHTML}
         <div class="confirmation">
             <h2>Thank you!</h2>
-            <p class="confirmation-span">Your order has been successfully placed</p>
+            <p class="confirmation-span c-gray">Your order has been successfully placed</p>
             <div class="confirmation-order flex">
                 <div class="col">
                     <h3>Your Order</h3>
@@ -490,33 +496,26 @@ if (href.includes('Confirmation')) {
                     <ul class="confirmation-products"></ul>
                 </div>
             </div>
-            <p>Approximate shipping date of your order is:</p>
+            <p class="">Approximate shipping date of your order is:</p>
             <p class="confirmation-date"></p>
             <a href="/" class="btn-next"><span>Back to the website</span></a>
         </div>`
     document.body.insertAdjacentHTML('afterbegin', confirmationHTML)
-    document.body.insertAdjacentHTML('afterbegin', headerHTML)
     document.body.insertAdjacentHTML('afterbegin', styleConfirmation)
     //add steps in header
     addStep('.steps',3)
-    postFetch('/cart.html',`api=c&cart_action=last_order&ctoken=${mm.ctoken}`,'POST').then(data => {
-        console.log(data)
-        let day = data.date.split('-')[2],
-            mounth = data.date.split('-')[1],
-            year = data.date.split('-')[0];
-        document.querySelector('.confirmation-date').innerHTML = day + ' ' + arrMouth[+mounth - 1] + '. ' + year
-        pricing('.order_pricing', data) // set pricing
-        let items = data.items;
-        for (let i = 0; i < items.length; i++) {
-            document.querySelector('.confirmation-products').insertAdjacentHTML('beforeend', product(items[i].product_id, items[i].variant_id, items[i].qty, items[i].subtotal, items[i].url, items[i].image_url, items[i].title, 1))
-        }
 
-        let height = document.querySelector('.confirmation-order .col:first-child').clientHeight;
-        document.querySelector('.confirmation-products').style.height = height + 60 + 'px'
-    })
+    pricing('.order_pricing', dataCart) // set pricing
+    let items = dataCart.items;
+    for (let i = 0; i < items.length; i++) {
+        document.querySelector('.confirmation-products').insertAdjacentHTML('beforeend', product(items[i].product_id, items[i].variant_id, items[i].quantity, items[i].subtotal, items[i].url, items[i].image_url, items[i].title, 1))
+    }
 
+    let height = document.querySelector('.confirmation-order .col:first-child').clientHeight;
+    document.querySelector('.confirmation-products').style.height = height + 60 + 'px'
 }
-if (href.includes('login.php') || href.includes('/register.php') || href.includes('/checkout') || href.includes('/guest-checkout')) {
+
+if ((href.includes('login.php') || href.includes('/register.php') || href.includes('/checkout') || href.includes('/guest-checkout')) && !href.includes('/checkout/step4') && !href.includes('/guest-checkout4.php')) {
     //checkout
     let style = `
     <style>
@@ -1047,6 +1046,7 @@ if (href.includes('login.php') || href.includes('/register.php') || href.include
     </style>`
 
     let wrapperHTML = `
+    ${headerHTML}
     <div class="wrapper-checkout">
         <div class="container justify-between">
                <div class="col-left justify-between">
@@ -1083,7 +1083,6 @@ if (href.includes('login.php') || href.includes('/register.php') || href.include
     </div>`;
 
     document.body.insertAdjacentHTML('afterbegin', wrapperHTML) // add wrapper
-    document.body.insertAdjacentHTML('afterbegin', headerHTML) // add header
     document.body.insertAdjacentHTML('afterbegin', style) // add styles
 
     //login/register step
@@ -1293,6 +1292,15 @@ if (href.includes('login.php') || href.includes('/register.php') || href.include
     if (href.includes('/checkout/step1') || href.includes('/checkout/step2') || href.includes('guest-checkout1.php') || href.includes('guest-checkout2.php')) {
         addStep('.steps', 1) //add steps in header
     }
+    function currentAddress(parent, pre, obj) {
+        for (const key in obj) {
+            if (document.querySelector(`${parent} [name="${pre}${key}"]`) != null) {
+                console.log(document.querySelector(`${parent} [name="${pre}${key}"]`))
+                document.querySelector(`${parent} [name="${pre}${key}"]`).value = obj[key];
+            }
+        }
+    }
+    
     if (href.includes('/checkout/step1') || href.includes('guest-checkout1.php')) {
         document.querySelector('.col-left .head h4').innerHTML = obj['stepsName'][1];
         state_item = href.includes('guest-checkout1.php') ? b_state : state;
@@ -1308,8 +1316,10 @@ if (href.includes('login.php') || href.includes('/register.php') || href.include
                 for (let i = 0; i < addresses.length; i++) {
                     if (addresses[i].type === 'ship') {
                         currentAddressShip = addresses[i]
+                        currentAddress('.addressBook', `s_`, currentAddressShip)
                     } else {
                         currentAddressBill = addresses[i]
+                        currentAddress('.addressBook', `b_`, currentAddressBill)
                     }
                     document.querySelector('.col-left .head').insertAdjacentHTML('afterend', addressCurrentHtml(addresses[i].fname, addresses[i].lname, addresses[i].addr1, addresses[i].city, addresses[i].state, addresses[i].zip, addresses[i].country, addresses[i].phn, addresses[i].type))
                     fname = addresses[i].fname;
@@ -1320,23 +1330,18 @@ if (href.includes('login.php') || href.includes('/register.php') || href.include
                             if (item.closest('.ship') != null) {
                                 document.querySelector('.col-left .head').insertAdjacentHTML('afterend', shipFormHtml(state_item, countries_ship_item,'active', 'edit'))
                                 document.querySelector('.col-left .head h4').innerHTML = obj['stepsName'][1];
-                                for (const keyShip in currentAddressShip) {
-                                    if (document.querySelector(`.ship-form > dd [name="${keyShip}"]`) != null) {
-                                        document.querySelector(`.ship-form > dd [name="${keyShip}"]`).value = currentAddressShip[keyShip];
-                                    }
-                                }
+                                
+                                currentAddress('.ship-form > dd', ``, currentAddressShip)
                             } else if (item.closest('.bill') != null) {
                                 document.querySelector('.col-left .head').insertAdjacentHTML('afterend', billFormHtml(state_item, countries_ship_item, 'active','edit'))
                                 document.querySelector('.col-left .head h4').innerHTML = 'Billing information';
-                                for (const keyBill in currentAddressBill) {
-                                    if (document.querySelector(`.bill-form > dd [name="${keyBill}"]`) != null) {
-                                        document.querySelector(`.bill-form > dd [name="${keyBill}"]`).value = currentAddressBill[keyBill];
-                                    }
-                                }
+                                
+                                currentAddress('.bill-form > dd', ``, currentAddressBill)
+
                                 document.querySelector('[name="shipping"]').addEventListener('click', (e) => copyFromShip(e.target, 'bill'))
                             }
                             document.querySelector('.btn-back span').innerHTML = 'Back';
-                            document.querySelector('.btn-back').href = '/checkout/step1';
+                            document.querySelector('.btn-back').href = href.includes('guest-checkout') ? '/guest-checkout1.php' : `/checkout/step1`;
                             document.querySelectorAll('.address').forEach(el => el.style.display = 'none');
                         })
                     })
@@ -1972,6 +1977,8 @@ let cart = () => {
     //get data
     postFetch('/cart.html',`api=c&cart_action=cart&ctoken=${mm.ctoken}`,'POST').then(data => {
         console.log(data)
+        
+        localStorage.setItem('dataCart', JSON.stringify(data));
         let products = data['items'];
         document.querySelector(parent).innerHTML = '';
         if (parent == '.order_body') {

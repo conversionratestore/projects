@@ -304,10 +304,22 @@ let addActive = (element) => document.querySelector(element).classList.add('acti
 let removeActive = (element) => document.querySelector(element).classList.remove('active');
 
 let qty = 0;
+
+let arrMouth = ['Jan','Feb','Mar','Apr','May','Jun','Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+
+let headerHTML = `
+<header class="header-checkout flex justify-between items-center">
+    <div class="steps"></div> 
+    <a href="/">
+        <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M15.4161 14L22.5939 5.44414C22.7142 5.30195 22.613 5.08594 22.4271 5.08594H20.245C20.1165 5.08594 19.9935 5.14336 19.9087 5.2418L13.9888 12.2992L8.06887 5.2418C7.98684 5.14336 7.86379 5.08594 7.73254 5.08594H5.55051C5.36457 5.08594 5.2634 5.30195 5.38372 5.44414L12.5615 14L5.38372 22.5559C5.35676 22.5876 5.33947 22.6263 5.3339 22.6675C5.32832 22.7088 5.33469 22.7507 5.35225 22.7884C5.36981 22.8262 5.39783 22.858 5.43297 22.8803C5.46812 22.9026 5.50891 22.9143 5.55051 22.9141H7.73254C7.86106 22.9141 7.98411 22.8566 8.06887 22.7582L13.9888 15.7008L19.9087 22.7582C19.9907 22.8566 20.1138 22.9141 20.245 22.9141H22.4271C22.613 22.9141 22.7142 22.698 22.5939 22.5559L15.4161 14Z" fill="#6D7E85"></path>
+        </svg>
+    </a>
+</header>`
+
 window.onload = function() {
     document.body.insertAdjacentHTML('afterbegin', styleMain)
 
-    let arrMouth = ['Jan','Feb','Mar','Apr','May','Jun','Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
     //changeQuantity
     let changeQuantity = (plus, minus, quantity, post=false) => {
         //update quantity
@@ -495,13 +507,7 @@ window.onload = function() {
             }
         </style>`
         let confirmationHTML = `
-            <header class="header-checkout flex justify-between items-center"><div class="steps"></div> 
-                <a href="/">
-                    <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M15.4161 14L22.5939 5.44414C22.7142 5.30195 22.613 5.08594 22.4271 5.08594H20.245C20.1165 5.08594 19.9935 5.14336 19.9087 5.2418L13.9888 12.2992L8.06887 5.2418C7.98684 5.14336 7.86379 5.08594 7.73254 5.08594H5.55051C5.36457 5.08594 5.2634 5.30195 5.38372 5.44414L12.5615 14L5.38372 22.5559C5.35676 22.5876 5.33947 22.6263 5.3339 22.6675C5.32832 22.7088 5.33469 22.7507 5.35225 22.7884C5.36981 22.8262 5.39783 22.858 5.43297 22.8803C5.46812 22.9026 5.50891 22.9143 5.55051 22.9141H7.73254C7.86106 22.9141 7.98411 22.8566 8.06887 22.7582L13.9888 15.7008L19.9087 22.7582C19.9907 22.8566 20.1138 22.9141 20.245 22.9141H22.4271C22.613 22.9141 22.7142 22.698 22.5939 22.5559L15.4161 14Z" fill="#6D7E85"></path>
-                    </svg>
-                </a>
-            </header>
+            ${headerHTML}
             <div class="confirmation">
                 <h2>Thank you!</h2>
                 <p class="confirmation-span c-gray">Your order has been successfully placed</p>
@@ -1097,14 +1103,7 @@ window.onload = function() {
         </style>`
 
         let wrapperHTML = `
-        <header class="header-checkout flex justify-between items-center">
-            <div class="steps"></div>
-            <a href="/">
-                <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M15.4161 14L22.5939 5.44414C22.7142 5.30195 22.613 5.08594 22.4271 5.08594H20.245C20.1165 5.08594 19.9935 5.14336 19.9087 5.2418L13.9888 12.2992L8.06887 5.2418C7.98684 5.14336 7.86379 5.08594 7.73254 5.08594H5.55051C5.36457 5.08594 5.2634 5.30195 5.38372 5.44414L12.5615 14L5.38372 22.5559C5.35676 22.5876 5.33947 22.6263 5.3339 22.6675C5.32832 22.7088 5.33469 22.7507 5.35225 22.7884C5.36981 22.8262 5.39783 22.858 5.43297 22.8803C5.46812 22.9026 5.50891 22.9143 5.55051 22.9141H7.73254C7.86106 22.9141 7.98411 22.8566 8.06887 22.7582L13.9888 15.7008L19.9087 22.7582C19.9907 22.8566 20.1138 22.9141 20.245 22.9141H22.4271C22.613 22.9141 22.7142 22.698 22.5939 22.5559L15.4161 14Z" fill="#6D7E85"></path>
-                </svg>
-            </a>
-        </header>
+        ${headerHTML}
         <div class="wrapper-checkout">
             <div class="order">
                     <div class="order_head flex-center-between">
@@ -1371,7 +1370,6 @@ window.onload = function() {
         function currentAddress(parent, pre, obj) {
             for (const key in obj) {
                 if (document.querySelector(`${parent} [name="${pre}${key}"]`) != null) {
-                    console.log(document.querySelector(`${parent} [name="${pre}${key}"]`))
                     document.querySelector(`${parent} [name="${pre}${key}"]`).value = obj[key];
                 }
             }
