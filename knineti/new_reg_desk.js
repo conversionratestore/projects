@@ -1209,8 +1209,8 @@ if (window.location.pathname === "/mc/") {
 
               function timeUpdate() {
                 console.log(videoItem.currentTime)
-                let timer = 35 * 60
-                // let timer = 1 * 60
+                // let timer = 35 * 60
+                let timer = 1 * 60
 
                 let currentTime = Math.floor(videoItem.currentTime)
 
@@ -1219,6 +1219,7 @@ if (window.location.pathname === "/mc/") {
 
                 if (timer <= 0) {
                   document.querySelector(".more_thirty_mins_block.is_hidden")?.classList.remove("is_hidden")
+                  pushDataLayer("Price banner visibility")
                   if (document.querySelector("body .click_play")) {
                     document.querySelector("body .click_play").style.display = "none"
                   }
