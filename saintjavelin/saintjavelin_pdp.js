@@ -63,6 +63,8 @@ let startFunk = setInterval(() => {
       }
       .text_absol{
         position: relative;
+        margin-right: 25px;
+        display: inline-block;
       }
       .text_absol::after{
         content: '';
@@ -661,6 +663,14 @@ let startFunk = setInterval(() => {
     .container_popup.is_full .content_popup .total-raised::before{
       right: -5px;
     }
+    @media (max-width: 1020px) {
+      ul.background_wrap > li {
+        width: 47.5%;
+      }
+      .total-raised::before{
+        right: -35px;
+      }
+    }
     @media (max-width: 768px) {
       .range-wrapper{
         margin-bottom: 16px;
@@ -810,7 +820,7 @@ let startFunk = setInterval(() => {
             <div class="img_wrap">
               <img src="${imgFolderUrl}sj.png" alt="saintjavelin" />
             </div>
-            <p class="title_list">So far we have raised <strong>over $1 million</strong> in support of <span class="text_absol">Ukraine</span></p>
+            <p class="title_list">So far we've raised <strong>over $1 million</strong> in support of <span class="text_absol">Ukraine</span></p>
           </li>
           <li>
             <div class="img_wrap">
@@ -887,7 +897,7 @@ let startFunk = setInterval(() => {
           <button class="by_it_now_btn">BUY IT NOW</button>
           <ul class="main_popup_list">
             <li>
-              <p>So far we have raised <strong>over $1 million</strong> in support of <span class="text_absol">Ukraine</span></p>
+              <p>So far we've raised <strong>over $1 million</strong> in support of <span class="text_absol">Ukraine</span></p>
             </li>
             <li>
               <p><b>We already donated:</b></p>
@@ -1312,8 +1322,12 @@ let startFunk = setInterval(() => {
           e.preventDefault()
 
           pushDataLayer("Сlick on Buy it now button", "Pop up All profits go towards helping Ukraine resist the invasion")
-          document.querySelector(".new_wrap_btn .buy_it_now").classList.add("on_click")
-          document.querySelector('form [data-testid="Checkout-button"').classList.add("on_click")
+          if (document.querySelector(".new_wrap_btn .buy_it_now")) {
+            document.querySelector(".new_wrap_btn .buy_it_now").classList.add("on_click")
+          }
+          if (document.querySelector('form [data-testid="Checkout-button"')) {
+            document.querySelector('form [data-testid="Checkout-button"').classList.add("on_click")
+          }
 
           if (document.querySelector('[name="add"]').getAttribute("disabled")) {
             document.querySelector(".new_wrap_btn .buy_it_now")?.click()
@@ -1322,13 +1336,17 @@ let startFunk = setInterval(() => {
             }
 
             setTimeout(() => {
-              document.querySelector(".new_wrap_btn .buy_it_now").classList.remove("on_click")
+              if (document.querySelector(".new_wrap_btn .buy_it_now").classList.contains("on_click")) {
+                document.querySelector(".new_wrap_btn .buy_it_now").classList.remove("on_click")
+              }
             }, 1000)
           } else {
             document.querySelector('form [data-testid="Checkout-button"')?.click()
 
             setTimeout(() => {
-              document.querySelector('form [data-testid="Checkout-button"').classList.remove("on_click")
+              if (document.querySelector('form [data-testid="Checkout-button"').classList.contains("on_click")) {
+                document.querySelector('form [data-testid="Checkout-button"').classList.remove("on_click")
+              }
             }, 1000)
           }
         })
@@ -1472,6 +1490,40 @@ let startFunk = setInterval(() => {
       }
     })
 
+    // Сlick on Buy this product
+    document.querySelector("a.link_text")?.addEventListener("click", (e) => {
+      e.preventDefault()
+      e.stopPropagation()
+      console.log(e.target)
+
+      pushDataLayer("Сlick on Buy this product")
+      if (document.querySelector(".new_wrap_btn .buy_it_now")) {
+        document.querySelector(".new_wrap_btn .buy_it_now").classList.add("on_click")
+      }
+      if (document.querySelector('form [data-testid="Checkout-button"')) {
+        document.querySelector('form [data-testid="Checkout-button"').classList.add("on_click")
+      }
+
+      if (document.querySelector('[name="add"]').getAttribute("disabled")) {
+        document.querySelector(".new_wrap_btn .buy_it_now")?.click()
+        if (overlay) {
+          onClosePopup()
+        }
+        setTimeout(() => {
+          if (document.querySelector(".new_wrap_btn .buy_it_now").classList.contains("on_click")) {
+            document.querySelector(".new_wrap_btn .buy_it_now").classList.remove("on_click")
+          }
+        }, 1000)
+      } else {
+        document.querySelector('form [data-testid="Checkout-button"')?.click()
+        setTimeout(() => {
+          if (document.querySelector('form [data-testid="Checkout-button"').classList.contains("on_click")) {
+            document.querySelector('form [data-testid="Checkout-button"').classList.remove("on_click")
+          }
+        }, 1000)
+      }
+    })
+
     //render/hidden new btn "Add to cart", "Buy it now"
     document.querySelectorAll(".variant-input-wrap label").forEach((el) => {
       let errorVar = 2
@@ -1512,28 +1564,38 @@ let startFunk = setInterval(() => {
               })
             }
 
-            document.querySelector("a.link_text")?.addEventListener("click", (e) => {
-              e.preventDefault()
+            // document.querySelector("a.link_text")?.addEventListener("click", (e) => {
+            //   e.preventDefault()
+            //   e.stopPropagation()
+            //   console.log(e.target)
 
-              pushDataLayer("Сlick on Buy this product")
-              document.querySelector(".new_wrap_btn .buy_it_now").classList.add("on_click")
-              document.querySelector('form [data-testid="Checkout-button"').classList.add("on_click")
+            //   pushDataLayer("Сlick on Buy this product")
+            //   if (document.querySelector(".new_wrap_btn .buy_it_now")) {
+            //     document.querySelector(".new_wrap_btn .buy_it_now").classList.add("on_click")
+            //   }
+            //   if (document.querySelector('form [data-testid="Checkout-button"')) {
+            //     document.querySelector('form [data-testid="Checkout-button"').classList.add("on_click")
+            //   }
 
-              if (document.querySelector('[name="add"]').getAttribute("disabled")) {
-                document.querySelector(".new_wrap_btn .buy_it_now")?.click()
-                if (overlay) {
-                  onClosePopup()
-                }
-                setTimeout(() => {
-                  document.querySelector(".new_wrap_btn .buy_it_now").classList.remove("on_click")
-                }, 1000)
-              } else {
-                document.querySelector('form [data-testid="Checkout-button"')?.click()
-                setTimeout(() => {
-                  document.querySelector('form [data-testid="Checkout-button"').classList.remove("on_click")
-                }, 1000)
-              }
-            })
+            //   if (document.querySelector('[name="add"]').getAttribute("disabled")) {
+            //     document.querySelector(".new_wrap_btn .buy_it_now")?.click()
+            //     if (overlay) {
+            //       onClosePopup()
+            //     }
+            //     setTimeout(() => {
+            //       if (document.querySelector(".new_wrap_btn .buy_it_now").classList.contains("on_click")) {
+            //         document.querySelector(".new_wrap_btn .buy_it_now").classList.remove("on_click")
+            //       }
+            //     }, 1000)
+            //   } else {
+            //     document.querySelector('form [data-testid="Checkout-button"')?.click()
+            //     setTimeout(() => {
+            //       if (document.querySelector('form [data-testid="Checkout-button"').classList.contains("on_click")) {
+            //         document.querySelector('form [data-testid="Checkout-button"').classList.remove("on_click")
+            //       }
+            //     }, 1000)
+            //   }
+            // })
           }
         }
       }
