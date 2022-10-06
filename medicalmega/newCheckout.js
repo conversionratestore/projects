@@ -239,15 +239,14 @@ let headerFetchAddress = {
     'Cart-Token': mm.ctoken,
     'x-api-key': 'Ojza12AGCMUzG6omNmSK8Qx2mdgiSVB5'
 }
-
 let obj = {
     'stepsName': ['Personal information','Shipping information','Payment Method','Confirmation'],
     'back' : {
-        'personal information' : ['Back to Cart', '/cart.html'],
-        'shipping information' : ['Back to Cart','/cart.html'],
-        'billing information' : ['Back to Shipping Info','/checkout/step1'],
-        'delivery method' : ['Back To Address Info','/checkout/step1'],
-        'payment method': ['Back to Delivery Method','/checkout/step2']
+        'personal information' : ['Back to Cart', ['/cart.html','/cart.html']],
+        'shipping information' : ['Back to Cart',['/cart.html','/cart.html']],
+        'billing information' : ['Back to Shipping Info',['/checkout/step1','/guest-checkout1.php']],
+        'delivery method' : ['Back To Address Info',['/checkout/step1','/guest-checkout1.php']],
+        'payment method': ['Back to Delivery Method',['/checkout/step2','/guest-checkout2.php']]
     },
     'pricingArr':  {
         'subtotal': 'Sub total',
@@ -377,7 +376,8 @@ let addStep = (query,index) => {
         }
     }
 }
-let arrMouth = ['Jan','Feb','Mar','Apr','May','Jun','Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+let arrMouth = ['Jan','Feb','Mar','Apr','May','Jun','Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+
 //Confirmation
 if (href.includes('Confirmation')) {
     let styleConfirmation = `
@@ -976,6 +976,9 @@ if (href.includes('login.php') || href.includes('/register.php') || href.include
         .primaryInfo dl, #checkoutForm > fieldset > div:nth-child(2) {
             margin: 0!important;
         }
+        #save_cc_info {
+            display: none;
+        }
         .check2 {
             border: 1px solid #6D7E85;
             border-radius: 2px;
@@ -1287,7 +1290,7 @@ if (href.includes('login.php') || href.includes('/register.php') || href.include
     //step 2 "Shipping Information"
     let currentAddressShip, currentAddressBill;
     let state_item, countries_ship_item
-    if (href.includes('/checkout/step1') || href.includes('/checkout/step2') || href.includes('guest-checkout1.php')) {
+    if (href.includes('/checkout/step1') || href.includes('/checkout/step2') || href.includes('guest-checkout1.php') || href.includes('guest-checkout2.php')) {
         addStep('.steps', 1) //add steps in header
     }
     if (href.includes('/checkout/step1') || href.includes('guest-checkout1.php')) {
@@ -1300,7 +1303,7 @@ if (href.includes('login.php') || href.includes('/register.php') || href.include
         }).then(res => res.json()).then(data => {
             console.log(data)
             let addresses = data['addresses'];
-            if (!!addresses && addresses.length > 0) {
+            if (!!addresses && addresses.length > 0 && !href.includes('guest-checkout1.php')) {
                 //Shipping Information - current users
                 for (let i = 0; i < addresses.length; i++) {
                     if (addresses[i].type === 'ship') {
@@ -1425,11 +1428,14 @@ if (href.includes('login.php') || href.includes('/register.php') || href.include
         document.querySelector('#checkoutForm h3').innerHTML = `Card Details <img src="https://conversionratestore.github.io/projects/medicalmega/img/payment-cards.png" alt="icons">`
     }
     //set text for back button
-    let setBack = () => {
-        document.querySelector('.btn-back span').innerHTML = obj['back'][document.querySelector('.col-left .head h4').innerHTML.toLowerCase()][0]
-        document.querySelector('.btn-back').href = obj['back'][document.querySelector('.col-left .head h4').innerHTML.toLowerCase()][1]
+    if (!href.includes('/checkout/step4') && !href.includes('/guest-checkout4.php')) {
+        let setBack = () => {
+            let guestOrAccount = href.includes('guest-checkout') ? 1 : 0;
+            document.querySelector('.btn-back span').innerHTML = obj['back'][document.querySelector('.col-left .head h4').innerHTML.toLowerCase()][0];
+            document.querySelector('.btn-back').href = obj['back'][document.querySelector('.col-left .head h4').innerHTML.toLowerCase()][1][guestOrAccount];
+        }
+        setBack()
     }
-    setBack()
 
     //set * request for label
     document.querySelectorAll('label').forEach(el => {
@@ -1452,7 +1458,7 @@ if (href.includes('login.php') || href.includes('/register.php') || href.include
         email = document.querySelector(`.${type}-form [name="email"]`);
 
         let dataDD = document.querySelectorAll(`.${type}-form dd.error`)
-        console.log(type,fname,lname,addr1,city,stateF,zip,country,phn,email)
+        console.log(currentAddressShip,type,fname,lname,addr1,city,stateF,zip,country,phn,email)
         let errorsFun = (dataErrors) => {
             dataDD.forEach(item => {
                 item.classList.remove('error')
@@ -1488,7 +1494,7 @@ if (href.includes('login.php') || href.includes('/register.php') || href.include
                     } else if (dataErrors[i].includes('Email')) {
                         email.parentElement.classList.add('error')
                         email.nextElementSibling.innerHTML = dataErrors[i]
-                    } else if (dataErrors[i] == 'Could not update address record. Nothing to update.'){
+                    } else {
                         document.querySelector(`.${type}-form`).insertAdjacentHTML('afterend', `<p class="c-red error-other" style="margin: 10px 0">${dataErrors[i]}</p>`)
                     }
                 }
@@ -1598,9 +1604,9 @@ if (href.includes('login.php') || href.includes('/register.php') || href.include
         } else if (document.querySelector('.bill-form.edit') != null) {
             console.log('edit bill form')
             address('bill')
-        } else if (href.includes('checkout/step2')) {
+        } else if (href.includes('checkout/step2') || href.includes('guest-checkout2.php')) {
             document.querySelector('form > div > input[type=image]').click()
-        } else if (href.includes('checkout/step3')) {
+        } else if (href.includes('checkout/step3') || href.includes('guest-checkout3.php')) {
             document.querySelector('#submitCheckout3').click()
         }
     })
@@ -1961,7 +1967,7 @@ if (href.includes('login.php') || href.includes('/register.php') || href.include
 
 //cart product
 let cart = () => {
-    let parent = href.includes('/checkout/step') || href.includes('/login.php') || href.includes('/register.php') ? '.order_body' : '.list-product';
+    let parent = href.includes('/checkout/step') || href.includes('/login.php') || href.includes('/register.php') || href.includes('/guest-checkout') ? '.order_body' : '.list-product';
 
     //get data
     postFetch('/cart.html',`api=c&cart_action=cart&ctoken=${mm.ctoken}`,'POST').then(data => {

@@ -1410,7 +1410,7 @@ window.onload = function() {
                                     document.querySelector('[name="shipping"]').addEventListener('click', (e) => copyFromShip(e.target, 'bill'))
                                 }
                                 document.querySelector('.btn-back span').innerHTML = 'Back';
-                                document.querySelector('.btn-back').href = '/checkout/step1';
+                                document.querySelector('.btn-back').href = href.includes('guest-checkout') ? '/guest-checkout1.php' : `/checkout/step1`;
                                 document.querySelectorAll('.address').forEach(el => el.style.display = 'none');
                             })
                         })
@@ -1571,7 +1571,7 @@ window.onload = function() {
                         } else if (dataErrors[i].includes('Email')) {
                             email.parentElement.classList.add('error')
                             email.nextElementSibling.innerHTML = dataErrors[i]
-                        } else if (dataErrors[i].includes('Could not update address record')){
+                        } else {
                             document.querySelector(`.${type}-form`).insertAdjacentHTML('afterend', `<p class="c-red error-other" style="margin: 10px 0">${dataErrors[i]}</p>`)
                         }
                     }
