@@ -743,6 +743,10 @@ let startFunk = setInterval(() => {
       .size_guide_var{
         font-size: 12px;
       }
+      .donation_amount_flex svg{
+        width: 31px;
+        height: 31px;
+      }
       .mistake{
         font-size: 10px;
       }
