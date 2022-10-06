@@ -183,6 +183,7 @@ let startFunk = setInterval(() => {
         background: rgba(0, 0, 0, 0.5);
         transition: all 0.5s ease 0s;        
         z-index: 9005;
+        display: block;
         }
     .backdrop_modal.is_hidden {
         opacity: 0;
@@ -193,6 +194,7 @@ let startFunk = setInterval(() => {
         transition: all 0.8s ease 0s;
     }
     .backdrop_modal .container_popup{
+      display: block;
       position: absolute;
       bottom: 0;
       right: 0;
