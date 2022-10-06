@@ -682,7 +682,7 @@ let startFunk = setInterval(() => {
       .donation_amount_flex svg{
         width: 31px;
         height: 31px;
-      
+      }
       .total-raised::before{
         right: -64px;
       }
