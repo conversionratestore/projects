@@ -1505,14 +1505,14 @@ window.onload = function() {
         }
 
         //set text for back button
-        if (!href.includes('/checkout/step4') && !href.includes('/guest-checkout4.php')) {
-            let setBack = () => {
+        let setBack = () => {
+            if (!href.includes('/checkout/step4') && !href.includes('/guest-checkout4.php')) {
                 let guestOrAccount = href.includes('guest-checkout') ? 1 : 0;
                 document.querySelector('.btn-back span').innerHTML = obj['back'][document.querySelector('.col-left .head h4').innerHTML.toLowerCase()][0];
                 document.querySelector('.btn-back').href = obj['back'][document.querySelector('.col-left .head h4').innerHTML.toLowerCase()][1][guestOrAccount];
             }
-            setBack()
         }
+        setBack()
 
         //set * request for label
         document.querySelectorAll('label').forEach(el => {
@@ -1590,7 +1590,7 @@ window.onload = function() {
                     })
 
                 } else {
-                    if (document.querySelector(`.ship-form .checkbox[name="billing"]`).checked) {
+                    if (!document.querySelector(`.ship-form .checkbox[name="billing"]`).checked) {
                         postFetch('/api/v1/addresses', saveAddress('ship',fname.value,lname.value,addr1.value,city.value,stateF.value,zip.value,country.value,phn.value,email.value),'POST').then(data => {
                             console.log(data)
                             let dataErrors = data.errors;
