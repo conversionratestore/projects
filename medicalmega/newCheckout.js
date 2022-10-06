@@ -1447,7 +1447,7 @@ if (href.includes('login.php') || href.includes('/register.php') || href.include
     let address = (type) => {
         console.log(type)
         document.querySelector(`.ship-form [name="fname"]`) != null ? fname = document.querySelector(`.ship-form [name="fname"]`) : fname;
-        document.querySelector(`.ship-form [name="lname"]`)  != null ? lname = document.querySelector(`.ship-form [name="lname"]`) : fname;
+        document.querySelector(`.ship-form [name="lname"]`) != null ? lname = document.querySelector(`.ship-form [name="lname"]`) : fname;
 
         addr1 = document.querySelector(`.${type}-form [name="addr1"]`);
         city = document.querySelector(`.${type}-form [name="city"]`);
@@ -1458,7 +1458,7 @@ if (href.includes('login.php') || href.includes('/register.php') || href.include
         email = document.querySelector(`.${type}-form [name="email"]`);
 
         let dataDD = document.querySelectorAll(`.${type}-form dd.error`)
-        console.log(currentAddressShip,type,fname,lname,addr1,city,stateF,zip,country,phn,email)
+        console.log(currentAddressShip,type,fname.value,lname.value,addr1.value,city.value,stateF.value,zip.value,country.value,phn.value,email.value)
         let errorsFun = (dataErrors) => {
             dataDD.forEach(item => {
                 item.classList.remove('error')

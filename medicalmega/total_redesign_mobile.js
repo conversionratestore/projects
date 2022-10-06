@@ -1359,7 +1359,7 @@ window.onload = function() {
         //step 2 "Shipping Information"
         let currentAddressShip, currentAddressBill;
         let state_item, countries_ship_item
-        if (href.includes('/checkout/step1') || href.includes('/checkout/step2') || href.includes('guest-checkout1.php')) {
+        if (href.includes('/checkout/step1') || href.includes('/checkout/step2') || href.includes('/guest-checkout1.php')  || href.includes('/guest-checkout2.php')) {
             document.querySelector('.steps').innerHTML = `Step 2<span>/4</span> — ${obj['stepsName'][1]}`; //add steps in header
             if (document.querySelector('.tooltip') != null) {
                 setTimeout(() => {
@@ -1367,7 +1367,16 @@ window.onload = function() {
                 }, 3000)
             }
         }
-        if (href.includes('/checkout/step1') || href.includes('guest-checkout1.php')) {
+        
+        function currentAddress(parent, pre, obj) {
+            for (const key in obj) {
+                if (document.querySelector(`${parent} [name="${pre}${key}"]`) != null) {
+                    console.log(document.querySelector(`${parent} [name="${pre}${key}"]`))
+                    document.querySelector(`${parent} [name="${pre}${key}"]`).value = obj[key];
+                }
+            }
+        }
+        if (href.includes('/checkout/step1') || href.includes('/guest-checkout1.php')) {
             document.querySelector('.col-left .head h4').innerHTML = obj['stepsName'][1];
             state_item = href.includes('guest-checkout1.php') ? b_state : state;
             countries_ship_item = href.includes('guest-checkout1.php') ? b_country.innerHTML : countries_ship;
@@ -1382,8 +1391,10 @@ window.onload = function() {
                     for (let i = 0; i < addresses.length; i++) {
                         if (addresses[i].type === 'ship') {
                             currentAddressShip = addresses[i]
+                            currentAddress('.addressBook', `s_`, currentAddressShip)
                         } else {
                             currentAddressBill = addresses[i]
+                            currentAddress('.addressBook', `b_`, currentAddressBill)
                         }
                         document.querySelector('.col-left .head').insertAdjacentHTML('afterend', addressCurrentHtml(addresses[i].fname, addresses[i].lname, addresses[i].addr1, addresses[i].city, addresses[i].state, addresses[i].zip, addresses[i].country, addresses[i].phn, addresses[i].type))
                         fname = addresses[i].fname;
@@ -1394,19 +1405,14 @@ window.onload = function() {
                                 if (item.closest('.ship') != null) {
                                     document.querySelector('.col-left .head').insertAdjacentHTML('afterend', shipFormHtml(state_item, countries_ship_item,'active', 'edit'))
                                     document.querySelector('.col-left .head h4').innerHTML = obj['stepsName'][1];
-                                    for (const keyShip in currentAddressShip) {
-                                        if (document.querySelector(`.ship-form > dd [name="${keyShip}"]`) != null) {
-                                            document.querySelector(`.ship-form > dd [name="${keyShip}"]`).value = currentAddressShip[keyShip];
-                                        }
-                                    }
+
+                                    currentAddress('.ship-form > dd', ``, currentAddressShip)
                                 } else if (item.closest('.bill') != null) {
                                     document.querySelector('.col-left .head').insertAdjacentHTML('afterend', billFormHtml(state_item, countries_ship_item, 'active','edit'))
                                     document.querySelector('.col-left .head h4').innerHTML = 'Billing information';
-                                    for (const keyBill in currentAddressBill) {
-                                        if (document.querySelector(`.bill-form > dd [name="${keyBill}"]`) != null) {
-                                            document.querySelector(`.bill-form > dd [name="${keyBill}"]`).value = currentAddressBill[keyBill];
-                                        }
-                                    }
+                       
+                                    currentAddress('.bill-form > dd', ``, currentAddressBill)
+
                                     document.querySelector('[name="shipping"]').addEventListener('click', (e) => copyFromShip(e.target, 'bill'))
                                 }
                                 document.querySelector('.btn-back span').innerHTML = 'Back';
@@ -1453,7 +1459,6 @@ window.onload = function() {
 
         if (href.includes('/checkout/step2') || href.includes('/guest-checkout2.php')) {
             document.querySelector('.col-left .head h4').innerHTML = 'Delivery Method';
-            document.querySelector('.steps').innerHTML = `Step 2<span>/4</span> — ${obj['stepsName'][1]}`; //add steps in header
             document.querySelector('.col-left .head').insertAdjacentHTML('afterend',`<div class="delivery-method"></div>`)
             document.querySelectorAll('#ship_options > li').forEach((item, index) => {
                 let type = item.querySelector('p > i').innerText,
@@ -1535,7 +1540,7 @@ window.onload = function() {
             email = document.querySelector(`.${type}-form [name="email"]`);
 
             let dataDD = document.querySelectorAll(`.${type}-form dd.error`)
-            console.log(type,fname,lname,addr1,city,stateF,zip,country,phn,email)
+            console.log(currentAddressShip, currentAddressBill, type,fname.value,lname.value,addr1.value,city.value,stateF.value,zip.value,country.value,phn.value,email.value)
             let errorsFun = (dataErrors) => {
                 dataDD.forEach(item => {
                     item.classList.remove('error')
@@ -1664,6 +1669,8 @@ window.onload = function() {
             } else if (document.querySelector('.bill-form.active') != null) {
                 address('bill')
             } else if (document.querySelector('.address.ship') != null && document.querySelector('.address.bill') != null && document.querySelector('.bill-form.edit') == null && document.querySelector('.ship-form.edit') == null) {
+                
+                console.log('next 2 step')
                 window.location.href = href.includes('guest-checkout') ? '/guest-checkout2.php' : `/checkout/step2`;
             } else if (document.querySelector('.address.ship') != null && document.querySelector('.address.bill') == null && document.querySelector('.bill-form.active') == null) {
                 document.querySelector('.address.ship').style.display = 'none'
