@@ -184,6 +184,7 @@ let startFunk = setInterval(() => {
         transition: all 0.5s ease 0s;        
         z-index: 9005;
         display: block;
+        max-height: 100vh;
         }
     .backdrop_modal.is_hidden {
         opacity: 0;
@@ -205,6 +206,7 @@ let startFunk = setInterval(() => {
       background: #FDFDFD;
       transition: all 0.5s ease 0s;
       overflow: auto;
+      max-height: 100vh;
     }
     .backdrop_modal .container_popup > svg {
         position: absolute;
