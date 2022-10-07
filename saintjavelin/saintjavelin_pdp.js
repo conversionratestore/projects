@@ -1374,15 +1374,26 @@ ul.background_wrap > li p {
     })
 
     // click on origin btn " Add to cart", "Buy it now button"
+    // if (document.querySelectorAll(".mistake.is_visited").length === 2 || document.querySelectorAll(".variant-input-wrap label").length === 0) {
+    //   document.querySelector('form [data-testid="Checkout-button"')?.addEventListener("click", (e) => {
+    //     if (!e.target.classList.contains("on_click")) {
+    //       pushDataLayer("Сlick on Buy it now button", `0`)
+    //     }
+    //   })
+    // }
+
     // observer
     let observer = new MutationObserver(() => {
       if (document) {
         observer.disconnect()
-        if (document.querySelectorAll(".mistake.is_visited").length === 2) {
+        if (document.querySelectorAll(".mistake.is_visited").length === 2 || document.querySelectorAll(".variant-input-wrap label").length === 0) {
           document.querySelector('form [data-testid="Checkout-button"')?.addEventListener("click", (e) => {
-            if (!e.target.classList.contains("on_click")) {
-              pushDataLayer("Сlick on Buy it now button", `0`)
+            if (!e.target.getAttribute("data-test")) {
+              if (!e.target.classList.contains("on_click")) {
+                pushDataLayer("Сlick on Buy it now button", `0`)
+              }
             }
+            e.target.setAttribute("data-test", "1")
           })
         }
 
@@ -1398,8 +1409,11 @@ ul.background_wrap > li p {
       subtree: true,
     })
 
-    document.querySelector("[data-button_style=shadow] .btn--tertiary.btn--full")?.addEventListener("click", () => {
-      pushDataLayer("Сlick on Add to cart button", `0`)
+    document.querySelector("[data-button_style=shadow] .btn--tertiary.btn--full")?.addEventListener("click", (e) => {
+      if (!e.target.getAttribute("data-test")) {
+        pushDataLayer("Сlick on Add to cart button", `0`)
+      }
+      e.target.setAttribute("data-test", "1")
     })
 
     // click on btn close popup
