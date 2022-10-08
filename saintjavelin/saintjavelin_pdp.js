@@ -87,8 +87,15 @@ let startFunk = setInterval(() => {
   margin-top: 46px;
 }
 .donation_inform .text_absol::after {
-  top: -5px;
+  top: 11px;
+}
+.donation_inform ul.background_wrap .text_absol::after{
+  top: 2px;
+  width: 17px;
+  height: 17px;
+  right: -22px;
   transform: unset;
+  background: url(${imgFolderUrl}ukrainian_flag.png) top left / auto 17px no-repeat no-repeat;
 }
 .donation_inform h3 {
   font-weight: 700;
