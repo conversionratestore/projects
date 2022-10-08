@@ -300,7 +300,7 @@ ul.main_popup_list .already_donat_list li + li {
   height: 16px;
   background: url(https://conversionratestore.github.io/projects/saintjavelin/img/ukrainian_flag.png) top left / auto 16px no-repeat no-repeat;
   right: -20px;
-  top: -2px;
+  top: 1px;
   transform: unset;
 }
 /*size_guide */
