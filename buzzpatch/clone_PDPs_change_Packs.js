@@ -402,6 +402,11 @@ const style = /*html*/`
         .js-iphone .scientific .card-link {
           text-transform: none;
         }
+
+        .np-patches-count,
+        #productSmallDescription + form {
+          display: none !important;
+        }
     </style>
 `
 
@@ -2146,7 +2151,7 @@ const addSelectPacks = () => {
   // 3 packs, 10.66 each, 32.00 price, 51% off, 66.00 reg. price, 34.00 save
   const currencies = {
     'GBP': [
-      [3, '£11.00', '£33.00', 52, '£69.00', '£36'],
+      [3, '£11.33', '£34.00', 51, '£70.00', '£36'],
       [4, '£9.75', '£39.00', 57, '£92.00', '£53'],
       [2, '£12.50', '£25.00', 45, '£46.00', '£21'],
       [1, '£14.00', '£14.00', 39, '£23.00', '£9'],
