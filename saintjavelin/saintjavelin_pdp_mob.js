@@ -1436,6 +1436,14 @@ ul.background_wrap > li p {
             }
             e.target.setAttribute("data-test", "1")
           })
+          document.querySelector(document.querySelector("[data-testid='GooglePay-button']"))?.addEventListener("click", (e) => {
+            if (!e.target.getAttribute("data-test")) {
+              if (!e.target.classList.contains("on_click")) {
+                pushDataLayer("Сlick on GooglePay", `0`)
+              }
+            }
+            e.target.setAttribute("data-test", "1")
+          })
         }
 
         observer.observe(document, {
