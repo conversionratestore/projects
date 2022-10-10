@@ -1412,6 +1412,22 @@ ul.background_wrap > li p {
             }
             e.target.setAttribute("data-test", "1")
           })
+          document.querySelector(document.querySelector(".shopify-payment-button__more-options[data-testid='sheet-open-button']"))?.addEventListener("click", (e) => {
+            if (!e.target.getAttribute("data-test")) {
+              if (!e.target.classList.contains("on_click")) {
+                pushDataLayer("Сlick on More payment options", `0`)
+              }
+            }
+            e.target.setAttribute("data-test", "1")
+          })
+          document.querySelector(document.querySelector('[data-testid="ShopifyPay-button"]'))?.addEventListener("click", (e) => {
+            if (!e.target.getAttribute("data-test")) {
+              if (!e.target.classList.contains("on_click")) {
+                pushDataLayer("Сlick on Buy now with ShopPay", `0`)
+              }
+            }
+            e.target.setAttribute("data-test", "1")
+          })
         }
 
         observer.observe(document, {
