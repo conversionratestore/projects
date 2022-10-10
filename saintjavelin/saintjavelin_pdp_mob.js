@@ -1458,6 +1458,7 @@ ul.background_wrap > li p {
     function onOpenPopup(block) {
       overlay.classList.remove("is_hidden")
       body.style.overflow = "hidden"
+      body.style.display = "initial"
 
       document.querySelector(".container_popup").insertAdjacentHTML("beforeend", block)
     }
@@ -1465,6 +1466,7 @@ ul.background_wrap > li p {
     function onClosePopup() {
       overlay.classList.add("is_hidden")
       body.style.overflow = "auto"
+      body.style.display = ""
       setTimeout(() => {
         document.querySelector(".content_popup")?.remove()
       }, 1000)
