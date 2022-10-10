@@ -9,6 +9,17 @@ let style = `
     }
 </style>`
 
+//push data layer
+function pushDataLayer(action) {
+    console.log(action)
+    window.dataLayer = window.dataLayer || [];
+    dataLayer.push({
+        'event': 'event-to-ga',
+        'eventCategory': 'Sticky button logic rework',
+        'eventAction': action
+    });
+}
+
 //scroll to
 function scrollToElement(targetScroll, offsetTop, positionScroll) {
     const scrollTarget = targetScroll;
@@ -36,9 +47,6 @@ let interval = setInterval(() => {
             cardBtn = Array.from(document.querySelectorAll('.cardx-container-details .card-buttons')).filter(item => item.innerText.toLowerCase().includes('book now')), //book now button
             countryTours = document.querySelector('.country_tours'); //tours section
             
-         console.log(btnFixed)
-         console.log(cardBtn)
-         console.log(countryTours)
          document.body.insertAdjacentHTML('afterbegin', style) //add style
 
          //Detecting scroll position
@@ -66,8 +74,19 @@ let interval = setInterval(() => {
           //click on Book your tour button
           btnFixed.addEventListener('click', (e) => {
               e.preventDefault();
-                console.log(e.target)
+              pushDataLayer(`Click on Book your tour button`)
               scrollToElement(positionScroll == 'top' ? cardBtn[0] : countryTours, e.target, positionScroll)
           })
+        
+          //click on 'book now' and 'learn more' buttons
+          cardBtn.forEach(item => {
+             item.querySelector('a').addEventListener('click', (e) => {
+                 if (e.target.innerText.includes('book now')) {
+                    pushDataLayer(`Click on book now button`)
+                 } else if (e.target.innerText.includes('learn more')) {
+                    pushDataLayer(`Click on learn more button`)
+                 }
+             })
+          })     
     }
 }, 200)
