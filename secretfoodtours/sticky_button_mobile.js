@@ -29,35 +29,37 @@ function scrollToElement(targetScroll, offsetTop, positionScroll) {
 }
 //onload
 window.onload  = function () {
-  let btnFixed = document.querySelector('.tour_fixed_btn'), //Book your tour button
-      cardBtn = Array.from(document.querySelectorAll('.cardx-container-details .card-buttons')).filter(item => item.innerText.toLowerCase().includes('book now')), //book now button
-      countryTours = document.querySelector('.country_tours'); //tours section
+    if (document.querySelector('.country_tours') != null && document.querySelector('.cardx-container-details .card-buttons') != null && document.querySelector('.tour_fixed_btn') != null) {
+          let btnFixed = document.querySelector('.tour_fixed_btn'), //Book your tour button
+              cardBtn = Array.from(document.querySelectorAll('.cardx-container-details .card-buttons')).filter(item => item.innerText.toLowerCase().includes('book now')), //book now button
+              countryTours = document.querySelector('.country_tours'); //tours section
 
-  document.body.insertAdjacentHTML('afterbegin', style) //add style
+          document.body.insertAdjacentHTML('afterbegin', style) //add style
 
-  //Detecting scroll position
-  let positionScroll = 'down';
+          //Detecting scroll position
+          let positionScroll = 'down';
 
-  function rect() {
-      let rectFirstBtn = cardBtn[0].getBoundingClientRect(),
-          rectLastBtn = cardBtn[cardBtn.length - 1].getBoundingClientRect();
-     
-      if (((rectFirstBtn.top - window.innerHeight + cardBtn[0].clientHeight) >= 30 && rectLastBtn.top >= 0) ) {
-          btnFixed.classList.remove('hide')
-          positionScroll = 'top'
-      } else if (((rectFirstBtn.top - window.innerHeight + cardBtn[0].clientHeight) < 0 && rectLastBtn.top < -70)) {
-          btnFixed.classList.remove('hide')
-          positionScroll = 'bottom'
-      } else {
-          btnFixed.classList.add('hide')
-      }
-  }
-  rect()
-  window.addEventListener("scroll", rect, false);
+          function rect() {
+              let rectFirstBtn = cardBtn[0].getBoundingClientRect(),
+                  rectLastBtn = cardBtn[cardBtn.length - 1].getBoundingClientRect();
 
-  //click on Book your tour button
-  btnFixed.addEventListener('click', (e) => {
-      e.preventDefault();
-      scrollToElement(positionScroll == 'top' ? cardBtn[0] : countryTours, e.target, positionScroll)
-  })
+              if (((rectFirstBtn.top - window.innerHeight + cardBtn[0].clientHeight) >= 30 && rectLastBtn.top >= 0) ) {
+                  btnFixed.classList.remove('hide')
+                  positionScroll = 'top'
+              } else if (((rectFirstBtn.top - window.innerHeight + cardBtn[0].clientHeight) < 0 && rectLastBtn.top < -70)) {
+                  btnFixed.classList.remove('hide')
+                  positionScroll = 'bottom'
+              } else {
+                  btnFixed.classList.add('hide')
+              }
+          }
+          rect()
+          window.addEventListener("scroll", rect, false);
+
+          //click on Book your tour button
+          btnFixed.addEventListener('click', (e) => {
+              e.preventDefault();
+              scrollToElement(positionScroll == 'top' ? cardBtn[0] : countryTours, e.target, positionScroll)
+          })
+    }
 }
