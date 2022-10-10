@@ -41,13 +41,12 @@ let interval = setInterval(() => {
          document.body.insertAdjacentHTML('afterbegin', style) //add style
 
          //Detecting scroll position
-         let positionScroll = 'down';
+         let positionScroll = 'bottom';
 
          function rect() {
               let rectFirstBtn = cardBtn[0].getBoundingClientRect(),
                   rectLastBtn = cardBtn[cardBtn.length - 1].getBoundingClientRect();
-
-                console.log('rect')
+             
               if (((rectFirstBtn.top - window.innerHeight + cardBtn[0].clientHeight) >= 30 && rectLastBtn.top >= 0) ) {
                   btnFixed.classList.remove('hide')
                   positionScroll = 'top'
@@ -56,7 +55,9 @@ let interval = setInterval(() => {
                   positionScroll = 'bottom'
               } else {
                   btnFixed.classList.add('hide')
+                  console.log('hide button')
               }
+              console.log(positionScroll)
           }
           rect()
           window.addEventListener("scroll", rect, false);
