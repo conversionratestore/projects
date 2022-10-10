@@ -20,6 +20,7 @@ function scrollToElement(targetScroll, offsetTop, positionScroll) {
         offsetPosition = elementPosition - window.innerHeight + topOffset + 60;
     } else {
         offsetPosition = elementPosition - topOffset;
+        offsetTop.classList.add('hide')
     }
 
     window.scrollBy({
