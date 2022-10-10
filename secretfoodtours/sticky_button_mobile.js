@@ -15,7 +15,7 @@ function pushDataLayer(action) {
     window.dataLayer = window.dataLayer || [];
     dataLayer.push({
         'event': 'event-to-ga',
-        'eventCategory': 'Sticky button logic rework',
+        'eventCategory': 'Exp: Sticky button logic rework',
         'eventAction': action
     });
 }
@@ -90,3 +90,5 @@ let interval = setInterval(() => {
           })     
     }
 }, 200)
+
+pushDataLayer('loaded')
