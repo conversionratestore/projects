@@ -1461,9 +1461,9 @@ ul.background_wrap > li p {
       body.style.display = "block"
       body.style.height = "100%"
 
-      html.style.overflow = "hidden"
-      html.style.display = "block"
-      html.style.height = "100%"
+      document.querySelector("html").style.overflow = "hidden"
+      document.querySelector("html").style.display = "block"
+      document.querySelector("html").style.height = "100%"
 
       document.querySelector(".container_popup").insertAdjacentHTML("beforeend", block)
     }
@@ -1472,8 +1472,8 @@ ul.background_wrap > li p {
       overlay.classList.add("is_hidden")
       body.style.overflow = "auto"
       body.style.display = "initial"
-      html.style.overflow = "auto"
-      html.style.display = "initial"
+      document.querySelector("html").style.overflow = "auto"
+      document.querySelector("html").style.display = "initial"
 
       setTimeout(() => {
         document.querySelector(".content_popup")?.remove()
