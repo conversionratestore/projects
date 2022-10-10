@@ -1459,6 +1459,7 @@ ul.background_wrap > li p {
       overlay.classList.remove("is_hidden")
       body.style.overflow = "hidden"
       body.style.display = "block"
+      body.style.height = "100%"
 
       document.querySelector(".container_popup").insertAdjacentHTML("beforeend", block)
     }
