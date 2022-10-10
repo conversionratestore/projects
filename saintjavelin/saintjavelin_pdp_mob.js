@@ -180,7 +180,7 @@ a.link_text {
 /* */
 /* popap_box */
 .backdrop_modal {
-  position: fixed;
+  position: fixed !important;
   overflow: hidden;
   top: 0;
   left: 0;
