@@ -185,13 +185,13 @@ a.link_text {
   top: 0;
   left: 0;
   width: 100vw;
-  height: 100vh;
+  height: 100%;
   opacity: 1;
   background: rgba(0, 0, 0, 0.5);
   transition: all 0.5s ease 0s;
   z-index: 9005;
   display: block;
-  max-height: 100vh;
+  max-height: 100%;
 }
 .backdrop_modal.is_hidden {
   opacity: 0;
@@ -1461,6 +1461,10 @@ ul.background_wrap > li p {
       body.style.display = "block"
       body.style.height = "100%"
 
+      html.style.overflow = "hidden"
+      html.style.display = "block"
+      html.style.height = "100%"
+
       document.querySelector(".container_popup").insertAdjacentHTML("beforeend", block)
     }
 
@@ -1468,6 +1472,9 @@ ul.background_wrap > li p {
       overlay.classList.add("is_hidden")
       body.style.overflow = "auto"
       body.style.display = "initial"
+      html.style.overflow = "auto"
+      html.style.display = "initial"
+
       setTimeout(() => {
         document.querySelector(".content_popup")?.remove()
       }, 1000)
