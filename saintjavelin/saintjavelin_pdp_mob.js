@@ -1412,38 +1412,6 @@ ul.background_wrap > li p {
             }
             e.target.setAttribute("data-test", "1")
           })
-          document.querySelector(document.querySelector(".shopify-payment-button__more-options[data-testid='sheet-open-button']"))?.addEventListener("click", (e) => {
-            if (!e.target.getAttribute("data-test")) {
-              if (!e.target.classList.contains("on_click")) {
-                pushDataLayer("Сlick on More payment options", `0`)
-              }
-            }
-            e.target.setAttribute("data-test", "1")
-          })
-          document.querySelector(document.querySelector('[data-testid="ShopifyPay-button"]'))?.addEventListener("click", (e) => {
-            if (!e.target.getAttribute("data-test")) {
-              if (!e.target.classList.contains("on_click")) {
-                pushDataLayer("Сlick on Buy now with ShopPay", `0`)
-              }
-            }
-            e.target.setAttribute("data-test", "1")
-          })
-          document.querySelector(document.querySelector("[data-testid='ApplePay-button']"))?.addEventListener("click", (e) => {
-            if (!e.target.getAttribute("data-test")) {
-              if (!e.target.classList.contains("on_click")) {
-                pushDataLayer("Сlick on ApplePay", `0`)
-              }
-            }
-            e.target.setAttribute("data-test", "1")
-          })
-          document.querySelector(document.querySelector("[data-testid='GooglePay-button']"))?.addEventListener("click", (e) => {
-            if (!e.target.getAttribute("data-test")) {
-              if (!e.target.classList.contains("on_click")) {
-                pushDataLayer("Сlick on GooglePay", `0`)
-              }
-            }
-            e.target.setAttribute("data-test", "1")
-          })
         }
 
         observer.observe(document, {
@@ -1456,6 +1424,40 @@ ul.background_wrap > li p {
     observer.observe(document, {
       childList: true,
       subtree: true,
+    })
+
+    document.querySelector(".shopify-payment-button__more-options[data-testid='sheet-open-button']")?.addEventListener("click", (e) => {
+      console.log(e.target)
+      if (!e.target.getAttribute("data-test")) {
+        if (!e.target.classList.contains("on_click")) {
+          pushDataLayer("Сlick on More payment options", `0`)
+        }
+      }
+      e.target.setAttribute("data-test", "1")
+    })
+    document.querySelector('[data-testid="ShopifyPay-button"]')?.addEventListener("click", (e) => {
+      if (!e.target.getAttribute("data-test")) {
+        if (!e.target.classList.contains("on_click")) {
+          pushDataLayer("Сlick on Buy now with ShopPay", `0`)
+        }
+      }
+      e.target.setAttribute("data-test", "1")
+    })
+    document.querySelector("[data-testid='ApplePay-button']")?.addEventListener("click", (e) => {
+      if (!e.target.getAttribute("data-test")) {
+        if (!e.target.classList.contains("on_click")) {
+          pushDataLayer("Сlick on ApplePay", `0`)
+        }
+      }
+      e.target.setAttribute("data-test", "1")
+    })
+    document.querySelector("[data-testid='GooglePay-button']")?.addEventListener("click", (e) => {
+      if (!e.target.getAttribute("data-test")) {
+        if (!e.target.classList.contains("on_click")) {
+          pushDataLayer("Сlick on GooglePay", `0`)
+        }
+      }
+      e.target.setAttribute("data-test", "1")
     })
 
     document.querySelector("[data-button_style=shadow] .btn--tertiary.btn--full")?.addEventListener("click", (e) => {
