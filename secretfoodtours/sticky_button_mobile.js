@@ -44,50 +44,52 @@ let interval = setInterval(() => {
     if (document.querySelector('.country_tours') != null && document.querySelector('.cardx-container-details .card-buttons') != null && document.querySelector('.tour_fixed_btn') != null) {
         clearInterval(interval)
         let btnFixed = document.querySelector('.tour_fixed_btn'), //Book your tour button
-            cardBtn = Array.from(document.querySelectorAll('.cardx-container-details .card-buttons')).filter(item => item.innerText.toLowerCase().includes('book now')), //book now button
+            cardBtn = Array.from(document.querySelectorAll('.cardx-container-details .card-buttons')).filter(item => item.innerText.toLowerCase().includes('book now') || item.innerText.toLowerCase().includes('Private tours only')), //book now button
             countryTours = document.querySelector('.country_tours'); //tours section
             
-         document.body.insertAdjacentHTML('afterbegin', style) //add style
+        document.body.insertAdjacentHTML('afterbegin', style) //add style
 
-         //Detecting scroll position
-         let positionScroll = 'bottom';
+        //Detecting scroll position
+        let positionScroll = 'bottom';
 
-         function rect() {
-              let rectFirstBtn = cardBtn[0].getBoundingClientRect(),
-                  rectLastBtn = cardBtn[cardBtn.length - 1].getBoundingClientRect();
-             
-              if (((rectFirstBtn.top - window.innerHeight + cardBtn[0].clientHeight) >= 30 && rectLastBtn.top >= 0) ) {
-                  btnFixed.classList.remove('hide')
-                  positionScroll = 'top'
-              } else if (((rectFirstBtn.top - window.innerHeight + cardBtn[0].clientHeight) < 0 && rectLastBtn.top < -70)) {
-                  btnFixed.classList.remove('hide')
-                  positionScroll = 'bottom'
-              } else {
-                  btnFixed.classList.add('hide')
-                  console.log('hide button')
-              }
-              console.log(positionScroll)
-          }
-          rect()
-          window.addEventListener("scroll", rect, false);
+        function rect() {
+            let rectFirstBtn = cardBtn[0].getBoundingClientRect(),
+                rectLastBtn = cardBtn[cardBtn.length - 1].getBoundingClientRect();
+            
+            if (((rectFirstBtn.top - window.innerHeight + cardBtn[0].clientHeight) >= 30 && rectLastBtn.top >= 0) ) {
+                btnFixed.classList.remove('hide')
+                positionScroll = 'top'
+            } else if (((rectFirstBtn.top - window.innerHeight + cardBtn[0].clientHeight) < 0 && rectLastBtn.top < -70)) {
+                btnFixed.classList.remove('hide')
+                positionScroll = 'bottom'
+            } else {
+                btnFixed.classList.add('hide')
+                console.log('hide button')
+            }
+            console.log(positionScroll)
+        }
+        rect()
+        window.addEventListener("scroll", rect, false);
 
-          //click on Book your tour button
-          btnFixed.addEventListener('click', (e) => {
-              e.preventDefault();
-              pushDataLayer(`Click on Book your tour button`)
-              scrollToElement(positionScroll == 'top' ? cardBtn[0] : countryTours, e.target, positionScroll)
-          })
-        
-          //click on 'book now' and 'learn more' buttons
-          cardBtn.forEach(item => {
-             item.querySelector('a').addEventListener('click', (e) => {
-                 if (e.target.innerText.includes('book now')) {
+        //click on Book your tour button
+        btnFixed.addEventListener('click', (e) => {
+            e.preventDefault();
+            pushDataLayer(`Click on Book your tour button`)
+            scrollToElement(positionScroll == 'top' ? cardBtn[0] : countryTours, e.target, positionScroll)
+        })
+    
+        //click on 'book now' and 'learn more' buttons
+        cardBtn.forEach(item => {
+            item.querySelector('a').addEventListener('click', (e) => {
+                if (e.target.innerText.includes('book now')) {
                     pushDataLayer(`Click on book now button`)
-                 } else if (e.target.innerText.includes('learn more')) {
+                } else if (e.target.innerText.includes('learn more')) {
                     pushDataLayer(`Click on learn more button`)
-                 }
-             })
-          })     
+                } else if (e.target.innerText.includes('Private tours only')) {
+                    pushDataLayer(`Click on Private tours only button`)
+                }
+            })
+        })     
     }
 }, 200)
 
