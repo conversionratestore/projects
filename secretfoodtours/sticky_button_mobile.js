@@ -3,6 +3,9 @@ let style = `
     body, html {
         scroll-behavior: smooth;
     }
+    .destination_page_wr .tour_fixed_btn:hover {
+        opacity: 0;
+    }
     .tour_fixed_btn {
         transition: all 0.2s ease;
     }
@@ -30,20 +33,8 @@ function scrollToElement(targetScroll, offsetTop) {
     const elementPosition = scrollTarget.getBoundingClientRect().top;
     const offsetPosition = elementPosition - window.innerHeight + topOffset + 40;
 
-    // window.scrollBy({
-    //     top: offsetPosition,
-    //     behavior: 'smooth'
-    // });
     seamless.polyfill();
-    // or use specific methods
     seamless.scrollBy(window, { behavior: "smooth", top: offsetPosition, left: 0 });
-
-    // seamless.scrollIntoView(document.querySelector("#target"), {
-    //     behavior: "smooth",
-    //     block: "center",
-    //     inline: "center",
-    // });
-
 }
 
 let interval = setInterval(() => {
@@ -59,7 +50,7 @@ let interval = setInterval(() => {
             let rectFirstBtn = cardBtn[0].getBoundingClientRect(),
                 rectLastBtn = cardBtn[cardBtn.length - 1].getBoundingClientRect();
             
-            if (((rectFirstBtn.top - window.innerHeight + cardBtn[0].clientHeight) >= 0 && rectLastBtn.top >= 0) ) {
+            if (((rectFirstBtn.top - window.innerHeight + cardBtn[0].clientHeight) >= 20 && rectLastBtn.top >= 0) ) {
                 btnFixed.classList.remove('hide')
             } else if (((rectFirstBtn.top - window.innerHeight + cardBtn[0].clientHeight) < 0 && rectLastBtn.top < -70)) {
                 btnFixed.classList.remove('hide')
