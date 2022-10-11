@@ -49,7 +49,7 @@ let interval = setInterval(() => {
             let rectFirstBtn = cardBtn[0].getBoundingClientRect(),
                 rectLastBtn = cardBtn[cardBtn.length - 1].getBoundingClientRect();
             
-            if (((rectFirstBtn.top - window.innerHeight + cardBtn[0].clientHeight) >= 30 && rectLastBtn.top >= 0) ) {
+            if (((rectFirstBtn.top - window.innerHeight + cardBtn[0].clientHeight) >= 0 && rectLastBtn.top >= 0) ) {
                 btnFixed.classList.remove('hide')
             } else if (((rectFirstBtn.top - window.innerHeight + cardBtn[0].clientHeight) < 0 && rectLastBtn.top < -70)) {
                 btnFixed.classList.remove('hide')
@@ -64,9 +64,9 @@ let interval = setInterval(() => {
         btnFixed.addEventListener('click', (e) => {
             e.preventDefault();
             pushDataLayer(`Click on Book your tour button`)
-            // scrollToElement(cardBtn[0], e.target)
-            cardBtn[0].scrollIntoView({behavior: "smooth", block: "end", inline: "nearest"})
-            btnFixed.classList.add('hide')
+            scrollToElement(cardBtn[0], e.target)
+            // cardBtn[0].scrollIntoView({behavior: "smooth", block: "end", inline: "nearest"})
+            // btnFixed.classList.add('hide')
         })
     
         //click on 'book now' and 'learn more' buttons
