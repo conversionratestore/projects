@@ -66,7 +66,6 @@ let interval = setInterval(() => {
                 btnFixed.classList.add('hide')
                 console.log('hide button')
             }
-            console.log(positionScroll)
         }
         rect()
         window.addEventListener("scroll", rect, false);
