@@ -30,10 +30,19 @@ function scrollToElement(targetScroll, offsetTop) {
     const elementPosition = scrollTarget.getBoundingClientRect().top;
     const offsetPosition = elementPosition - window.innerHeight + topOffset + 40;
 
-    window.scrollBy({
-        top: offsetPosition,
-        behavior: 'smooth'
-    });
+    // window.scrollBy({
+    //     top: offsetPosition,
+    //     behavior: 'smooth'
+    // });
+    seamless.polyfill();
+    // or use specific methods
+    seamless.scrollBy(window, { behavior: "smooth", top: offsetPosition, left: 0 });
+
+    // seamless.scrollIntoView(document.querySelector("#target"), {
+    //     behavior: "smooth",
+    //     block: "center",
+    //     inline: "center",
+    // });
 
 }
 
