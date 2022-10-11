@@ -1209,8 +1209,8 @@ if (window.location.pathname === "/mc/") {
 
               function timeUpdate() {
                 console.log(videoItem.currentTime)
-                // let timer = 35 * 60
-                let timer = 1 * 60
+                let timer = 35 * 60
+                // let timer = 1 * 60
 
                 let currentTime = Math.floor(videoItem.currentTime)
 
