@@ -51,7 +51,7 @@ let interval = setInterval(() => {
         btnFixed.addEventListener('click', (e) => {
             e.preventDefault();
             pushDataLayer(`Click on Book your tour button`)
-            scrollToElement(cardBtn[0], e.target)
+            // scrollToElement(cardBtn[0], e.target)
             
             const topOffset = e.target.offsetHeight;
             const elementPosition = cardBtn[0].getBoundingClientRect().top;
