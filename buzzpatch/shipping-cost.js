@@ -65,7 +65,6 @@ if (href.includes('/checkouts/')) {
 
             if (pack != '1') {
                 clearInterval(internal)
-                console.log(pack)
                 document.querySelector('.total-line--shipping > td > span').innerHTML = `Free`;
                 document.querySelector('.total-line--shipping > td > span').style = `
                     font-weight: 700;
@@ -76,10 +75,23 @@ if (href.includes('/checkouts/')) {
                     color: #313131;`;
             } else {
                 clearInterval(internal)
-                console.log(pack)
                 document.querySelector('.money-back .f-shipping').style = 'display: none!important;';
                 document.querySelector('.money-back img').style = 'margin-bottom: 15px;';
             }
         }
     }, 200)
 }
+
+window.dataLayer = window.dataLayer || []
+dataLayer.push({
+    'event': 'event-to-ga',
+    'eventCategory': 'Exp: Shipping cost',
+    'eventAction': 'loaded',
+})
+
+let isClarify = setInterval(() => {
+	if (typeof clarity == 'function') {
+		clearInterval(isClarify)
+		clarity('set', 'shipping_cost', 'variant_1')
+	}
+}, 100)
