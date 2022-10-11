@@ -23,6 +23,20 @@ function pushDataLayer(action) {
     });
 }
 
+//scroll to
+function scrollToElement(targetScroll, offsetTop) {
+    const scrollTarget = targetScroll;
+    const topOffset = offsetTop.offsetHeight;
+    const elementPosition = scrollTarget.getBoundingClientRect().top;
+    const offsetPosition = elementPosition - window.innerHeight + topOffset + 40;
+
+    window.scrollBy({
+        top: offsetPosition,
+        behavior: 'smooth'
+    });
+
+}
+
 let interval = setInterval(() => {
     if (!!document.querySelectorAll('.cardx-container-details .card-buttons') && document.querySelector('.tour_fixed_btn') != null) {
         clearInterval(interval)
@@ -51,13 +65,7 @@ let interval = setInterval(() => {
         btnFixed.addEventListener('click', (e) => {
             e.preventDefault();
             pushDataLayer(`Click on Book your tour button`)
-            // scrollToElement(cardBtn[0], e.target)
-            
-            const topOffset = e.target.offsetHeight;
-            const elementPosition = cardBtn[0].getBoundingClientRect().top;
-            const offsetPosition = elementPosition - window.innerHeight + topOffset + 40;
-
-            smoothScroll({yPos: offsetPosition, duration: 1500});
+            scrollToElement(cardBtn[0], e.target)
             btnFixed.classList.add('hide')
         })
     
