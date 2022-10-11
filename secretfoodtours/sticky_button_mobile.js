@@ -30,10 +30,7 @@ function scrollToElement(targetScroll, offsetTop) {
     const elementPosition = scrollTarget.getBoundingClientRect().top;
     const offsetPosition = elementPosition - window.innerHeight + topOffset + 40;
 
-    window.scrollBy({
-        top: offsetPosition,
-        behavior: 'smooth'
-    });
+    smoothScroll({yPos: offsetPosition, easing: easings.value, duration: 1500});
 }
 
 let interval = setInterval(() => {
