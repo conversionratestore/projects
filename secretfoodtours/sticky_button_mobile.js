@@ -44,7 +44,7 @@ let interval = setInterval(() => {
     if (document.querySelector('.country_tours') != null && document.querySelector('.cardx-container-details .card-buttons') != null && document.querySelector('.tour_fixed_btn') != null) {
         clearInterval(interval)
         let btnFixed = document.querySelector('.tour_fixed_btn'), //Book your tour button
-            cardBtn = Array.from(document.querySelectorAll('.cardx-container-details .card-buttons')).filter(item => item.innerText.toLowerCase().includes('book now') || item.innerText.toLowerCase().includes('Private tours only')), //book now button
+            cardBtn = Array.from(document.querySelectorAll('.cardx-container-details .card-buttons')).filter(item => item.innerText.toLowerCase().includes('book now') || item.innerText.toLowerCase().includes('private tours only')), //book now button
             countryTours = document.querySelector('.country_tours'); //tours section
             
         document.body.insertAdjacentHTML('afterbegin', style) //add style
