@@ -64,7 +64,9 @@ let interval = setInterval(() => {
         btnFixed.addEventListener('click', (e) => {
             e.preventDefault();
             pushDataLayer(`Click on Book your tour button`)
-            scrollToElement(cardBtn[0], e.target)
+            // scrollToElement(cardBtn[0], e.target)
+            cardBtn[0].scrollIntoView({behavior: "smooth", block: "end", inline: "nearest"})
+            btnFixed.classList.add('hide')
         })
     
         //click on 'book now' and 'learn more' buttons
