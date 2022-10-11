@@ -81,11 +81,11 @@ let interval = setInterval(() => {
         //click on 'book now' and 'learn more' buttons
         cardBtn.forEach(item => {
             item.querySelector('a').addEventListener('click', (e) => {
-                if (e.target.innerText.includes('book now')) {
+                if (e.target.innerText.toLowerCase().includes('book now')) {
                     pushDataLayer(`Click on book now button`)
-                } else if (e.target.innerText.includes('learn more')) {
+                } else if (e.target.innerText.toLowerCase().includes('learn more')) {
                     pushDataLayer(`Click on learn more button`)
-                } else if (e.target.innerText.includes('Private tours only')) {
+                } else if (e.target.innerText.toLowerCase().includes('private tours only')) {
                     pushDataLayer(`Click on Private tours only button`)
                 }
             })
