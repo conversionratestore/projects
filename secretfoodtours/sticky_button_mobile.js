@@ -3,15 +3,8 @@ let style = `
     body, html {
         scroll-behavior: smooth;
     }
-    .destination_page_wr .tour_fixed_btn:hover {
-        opacity: 0;
-    }
-    .tour_fixed_btn {
-        transition: all 0.2s ease;
-    }
     .tour_fixed_btn.hide {
-        opacity: 0;
-        pointer-events: none;
+        display: none;
     }
 </style>`
 
