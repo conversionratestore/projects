@@ -1,8 +1,5 @@
 let style = `
 <style>
-    body, html {
-        scroll-behavior: smooth;
-    }
     .tour_fixed_btn.hide {
         display: none;
     }
@@ -59,7 +56,6 @@ let interval = setInterval(() => {
             e.preventDefault();
             pushDataLayer(`Click on Book your tour button`)
             scrollToElement(cardBtn[0], e.target)
-            btnFixed.classList.add('hide')
         })
     
         //click on 'book now' and 'learn more' buttons
