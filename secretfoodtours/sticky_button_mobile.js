@@ -41,7 +41,7 @@ let interval = setInterval(() => {
     if (!!document.querySelectorAll('.cardx-container-details .card-buttons') && document.querySelector('.tour_fixed_btn') != null) {
         clearInterval(interval)
         let btnFixed = document.querySelector('.tour_fixed_btn'), //Book your tour button
-            cardBtn = Array.from(document.querySelectorAll('.cardx-container-details .card-buttons')).filter(item => (item.innerText.toLowerCase().includes('book now') || item.innerText.toLowerCase().includes('private tours only') && item.closest('.cardx').style.display != 'none')); //book now button //tours section
+            cardBtn = Array.from(document.querySelectorAll('.cardx-container-details .card-buttons')).filter(item => (item.innerText.toLowerCase().includes('book now') || item.innerText.toLowerCase().includes('private tours') && item.closest('.cardx').style.display != 'none')); //book now button //tours section
             
         document.body.insertAdjacentHTML('afterbegin', style) //add style
 
@@ -76,8 +76,8 @@ let interval = setInterval(() => {
                     pushDataLayer(`Click on book now button`)
                 } else if (e.target.innerText.toLowerCase().includes('learn more')) {
                     pushDataLayer(`Click on learn more button`)
-                } else if (e.target.innerText.toLowerCase().includes('private tours only')) {
-                    pushDataLayer(`Click on Private tours only button`)
+                } else if (e.target.innerText.toLowerCase().includes('private tours')) {
+                    pushDataLayer(`Click on private tours button`)
                 }
             })
         })     
