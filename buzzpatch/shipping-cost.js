@@ -1,5 +1,8 @@
 let style = `
 <style>
+    .navbar-brand {
+        pointer-events: none;
+    }
     .note-block {
         background: #F4BE00;
         padding: 10px 22px;
@@ -76,12 +79,18 @@ if (href.includes('/checkouts/')) {
         } else if (routing.includes('/collections')) {
             sessionStorage.setItem('routing', 0);
         }
-        if (sessionStorage.getItem('routing') == 1 && document.querySelector('.money-back .f-shipping') != null && document.querySelector('.total-line--shipping > td > span') != null && document.querySelector('.product__description span.product__description__variant.order-summary__small-text') != null) {
+        if (sessionStorage.getItem('routing') == 1 && document.querySelector('.step__footer__previous-link-content') != null && document.querySelector('.money-back .f-shipping') != null && document.querySelector('.total-line--shipping > td > span') != null && document.querySelector('.product__description span.product__description__variant.order-summary__small-text') != null) {
             console.log('true /checkouts/')
+            clearInterval(internal)
+
             let pack = document.querySelector('.product__description span.product__description__variant.order-summary__small-text').innerHTML.split(' ')[0];
-            
+
+            console.log(pack)
+            document.querySelectorAll('.breadcrumb a')[0].innerHTML = 'Back';
+            document.querySelectorAll('.breadcrumb a')[0].href = 'https://naturalpatch.com/pages/sleepypatch';
+            document.querySelector('.step__footer__previous-link-content').innerHTML = `Back`
+            document.querySelector('.step__footer__previous-link').href = 'https://naturalpatch.com/pages/sleepypatch';
             if (pack != '1') {
-                clearInterval(internal)
                 document.querySelector('.total-line--shipping > td > span').innerHTML = `Free`;
                 document.querySelector('.total-line--shipping > td > span').style = `
                     font-weight: 700;
@@ -90,15 +99,14 @@ if (href.includes('/checkouts/')) {
                     font-family: 'Roboto', sans-serif;
                     font-style: normal;
                     color: #313131;`;
-                    
-                pushDataLayer();
+
             } else {
                 clearInterval(internal)
                 document.querySelector('.money-back .f-shipping').style = 'display: none!important;';
                 document.querySelector('.money-back img').style = 'margin-bottom: 15px;';
 
-                pushDataLayer();
             }
+            pushDataLayer();
         }
     }, 200)
 }  
