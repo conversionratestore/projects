@@ -58,7 +58,7 @@ function final_start() {
         })
     } else { // if (href.includes('/checkouts/')) 
         let internal = setInterval(() => {
-            if (!!document.querySelectorAll('.breadcrumb li') && document.querySelector('.money-back .f-shipping') != null && document.querySelector('.total-line--shipping > td > span') != null && document.querySelector('.product__description span.product__description__variant.order-summary__small-text') != null) {
+            if (document.querySelector('.money-back .f-shipping') != null && document.querySelector('.total-line--shipping > td > span') != null && document.querySelector('.product__description span.product__description__variant.order-summary__small-text') != null) {
                 console.log('true /checkouts/Information')
                 let pack = document.querySelector('.product__description span.product__description__variant.order-summary__small-text').innerHTML.split(' ')[0];
                
