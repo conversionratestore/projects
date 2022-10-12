@@ -42,7 +42,7 @@ function pushDataLayer() {
 
 if (href.includes('/pages/sleepypatch')) {
     let internal = setInterval(() => {
-        if (document.querySelector('.shipping-noti h3') != null && !!document.querySelectorAll('.js-packs') && document.querySelector('#addToCart') != null) {
+        if (document.querySelector('.shipping-noti h3') != null && !!document.querySelectorAll('.js-packs') && document.querySelector('#addToCart') != null && document.querySelector('.js-packs input[type=radio]:checked+label') != null) {
             clearInterval(internal)
             document.querySelector('.shipping-noti h3').innerHTML = `30-day Money Back Guarantee`; //change text shipping noti
             document.body.insertAdjacentHTML('afterbegin', style); //add style
@@ -50,6 +50,7 @@ if (href.includes('/pages/sleepypatch')) {
             //set text for note block 
             let textNote = '';
             let numberPack = document.querySelector('.js-packs input[type=radio]:checked+label').innerText.split(' PACK')[0]
+            console.log(numberPack)
             if (numberPack > 1 ) {
                 textNote = `Your ${numberPack} pack order comes with <b>FREE shipping</b>`
             } else {
