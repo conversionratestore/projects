@@ -30,24 +30,21 @@ function final_start() {
             if (!!document.querySelectorAll('.breadcrumb li') && document.querySelector('.money-back .f-shipping') != null && document.querySelector('.total-line--shipping > td > span') != null && document.querySelector('.product__description span.product__description__variant.order-summary__small-text') != null) {
                 console.log('true /checkouts/Information')
                 let pack = document.querySelector('.product__description span.product__description__variant.order-summary__small-text').innerHTML.split(' ')[0];
-                let crumb = Array.from(document.querySelectorAll('.breadcrumb .breadcrumb__item--current')).filter(item => item.innerText.toLowerCase().includes('cart') || item.innerText.toLowerCase().includes('information') || item.innerText.toLowerCase().includes('shipping')); 
-                
-                if (crumb.length > 0) {
-                    if (pack != '1') {
-                        clearInterval(internal)
-                        document.querySelector('.total-line--shipping > td > span').innerHTML = `Free`;
-                        document.querySelector('.total-line--shipping > td > span').style = `
-                            font-weight: 700;
-                            font-size: 14px;
-                            line-height: 16px;
-                            font-family: 'Roboto', sans-serif;
-                            font-style: normal;
-                            color: #313131;`;
-                    } else {
-                        clearInterval(internal)
-                        document.querySelector('.money-back .f-shipping').style = 'display: none!important;';
-                        document.querySelector('.money-back img').style = 'margin-bottom: 15px;';
-                    }
+               
+                if (pack != '1') {
+                    clearInterval(internal)
+                    document.querySelector('.total-line--shipping > td > span').innerHTML = `Free`;
+                    document.querySelector('.total-line--shipping > td > span').style = `
+                        font-weight: 700;
+                        font-size: 14px;
+                        line-height: 16px;
+                        font-family: 'Roboto', sans-serif;
+                        font-style: normal;
+                        color: #313131;`;
+                } else {
+                    clearInterval(internal)
+                    document.querySelector('.money-back .f-shipping').style = 'display: none!important;';
+                    document.querySelector('.money-back img').style = 'margin-bottom: 15px;';
                 }
             }
         }, 200)
