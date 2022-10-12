@@ -24,6 +24,35 @@ let style = `
 </style>`
 
 let href = window.location.href
+function final_start() {
+    if (href.includes('/checkouts/')) {
+        let internal = setInterval(() => {
+            if (!!document.querySelectorAll('.breadcrumb li') && document.querySelector('.money-back .f-shipping') != null && document.querySelector('.total-line--shipping > td > span') != null && document.querySelector('.product__description span.product__description__variant.order-summary__small-text') != null) {
+                console.log('true /checkouts/Information')
+                let pack = document.querySelector('.product__description span.product__description__variant.order-summary__small-text').innerHTML.split(' ')[0];
+                let crumb = Array.from(document.querySelectorAll('.breadcrumb .breadcrumb__item--current')).filter(item => item.innerText.toLowerCase().includes('cart') || item.innerText.toLowerCase().includes('information') || item.innerText.toLowerCase().includes('shipping')); 
+                
+                if (crumb.length > 0) {
+                    if (pack != '1') {
+                        clearInterval(internal)
+                        document.querySelector('.total-line--shipping > td > span').innerHTML = `Free`;
+                        document.querySelector('.total-line--shipping > td > span').style = `
+                            font-weight: 700;
+                            font-size: 14px;
+                            line-height: 16px;
+                            font-family: 'Roboto', sans-serif;
+                            font-style: normal;
+                            color: #313131;`;
+                    } else {
+                        clearInterval(internal)
+                        document.querySelector('.money-back .f-shipping').style = 'display: none!important;';
+                        document.querySelector('.money-back img').style = 'margin-bottom: 15px;';
+                    }
+                }
+            }
+        }, 200)
+    }    
+}
 
 if (href.includes('/pages/sleepypatch')) {
     let internal = setInterval(() => {
@@ -57,33 +86,47 @@ if (href.includes('/pages/sleepypatch')) {
     })
 }
 
-if (href.includes('/checkouts/')) {
-    let internal = setInterval(() => {
-        if (!!document.querySelectorAll('.breadcrumb li') && document.querySelector('.money-back .f-shipping') != null && document.querySelector('.total-line--shipping > td > span') != null && document.querySelector('.product__description span.product__description__variant.order-summary__small-text') != null) {
-            console.log('true /checkouts/Information')
-            let pack = document.querySelector('.product__description span.product__description__variant.order-summary__small-text').innerHTML.split(' ')[0];
-            let crumb = Array.from(document.querySelectorAll('.breadcrumb .breadcrumb__item--current')).filter(item => item.innerText.toLowerCase().includes('cart') || item.innerText.toLowerCase().includes('information') || item.innerText.toLowerCase().includes('shipping')); 
-            
-            if (crumb.length > 0) {
-                if (pack != '1') {
-                    clearInterval(internal)
-                    document.querySelector('.total-line--shipping > td > span').innerHTML = `Free`;
-                    document.querySelector('.total-line--shipping > td > span').style = `
-                        font-weight: 700;
-                        font-size: 14px;
-                        line-height: 16px;
-                        font-family: 'Roboto', sans-serif;
-                        font-style: normal;
-                        color: #313131;`;
-                } else {
-                    clearInterval(internal)
-                    document.querySelector('.money-back .f-shipping').style = 'display: none!important;';
-                    document.querySelector('.money-back img').style = 'margin-bottom: 15px;';
-                }
+let i = setInterval(function() {
+    if (document.querySelector(".review-item img")){
+        clearInterval(i);
+
+        function startsWith(str, word) {
+            return str.lastIndexOf(word, 0) === 0;
+        }
+        var h=document.referrer;
+        var g=false;
+        if (startsWith(h, "https://naturalpatch.com/pages/sleepypatch")==true){g=true;};
+
+        var g1=false;
+        if (window.location.href.indexOf("checkouts1") != -1){g1=true;};
+
+        var p='';
+        var p1='';
+        var p2=false;
+
+        r = document.querySelectorAll(".product");
+        if (r!=''){
+            for (i=0;i<r.length;i++){
+
+                if (r[i] != null) {
+                    r2='';
+                    r2= r[i].getAttribute("data-product-type");
+                    if (r2!='SleepyPatchV'){
+                        p+="1";}
+                }}}
+        p1=p;
+
+        if (p1=='' && g==true && sessionStorage.getItem('nrb')!='1' || p1=='' && g1==true && sessionStorage.getItem('nrb')!='1' || p1=='' && sessionStorage.getItem('ok')){
+            sessionStorage.setItem('ok', 1);
+            final_start();
+        }
+        else{
+            if (p1==''){
+                sessionStorage.setItem('nrb', 1);
             }
         }
-    }, 200)
-}
+    }
+}, 500);
 
 window.dataLayer = window.dataLayer || []
 dataLayer.push({
