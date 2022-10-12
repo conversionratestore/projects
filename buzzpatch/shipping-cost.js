@@ -47,14 +47,11 @@ if (href.includes('/pages/sleepypatch')) {
             document.querySelector('.shipping-noti h3').innerHTML = `30-day Money Back Guarantee`; //change text shipping noti
             document.body.insertAdjacentHTML('afterbegin', style); //add style
     
+            document.querySelector('.js-packs input[type=radio]').click()
             //set text for note block 
-            let textNote = '';
-            let numberPack = document.querySelector('.js-packs input[type=radio]:checked+label').innerText.split(' PACK')[0]
-            if (numberPack > 1 ) {
-                textNote = `Your ${numberPack} pack order comes with <b>FREE shipping</b>`
-            } else {
-                textNote = `<b>Select 2 or more packs</b> to get FREE Shipping`
-            }
+            let numberPack = document.querySelector('.js-packs label').innerText.split(' PACK')[0];
+            let textNote = `Your ${numberPack} pack order comes with <b>FREE shipping</b>`;
+            
             //add note block before addToCart button
             document.querySelector('#addToCart').insertAdjacentHTML('beforebegin',`<div class="note-block"><img src="https://conversionratestore.github.io/projects/buzzpatch/img/shipped_2.svg" alt="free delivery icon"><p>${textNote}</p></div>`);
             
