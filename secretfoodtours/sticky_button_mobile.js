@@ -74,3 +74,10 @@ let interval = setInterval(() => {
 }, 200)
 
 pushDataLayer('loaded')
+
+let isClarify = setInterval(() => {
+	if (typeof clarity == 'function') {
+		clearInterval(isClarify)
+		clarity('set', 'sticky_button_mobile', 'variant_1')
+	}
+}, 100)
