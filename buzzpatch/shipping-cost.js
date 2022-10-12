@@ -88,8 +88,10 @@ if (href.includes('/checkouts/')) {
             console.log(pack)
             document.querySelectorAll('.breadcrumb a')[0].innerHTML = 'Back';
             document.querySelectorAll('.breadcrumb a')[0].href = 'https://naturalpatch.com/pages/sleepypatch';
-            document.querySelector('.step__footer__previous-link-content').innerHTML = `Back`
-            document.querySelector('.step__footer__previous-link').href = 'https://naturalpatch.com/pages/sleepypatch';
+            if (document.querySelector('.step__footer__previous-link-content').innerHTML.toLowerCase().includes('to cart')) {
+                document.querySelector('.step__footer__previous-link-content').innerHTML = `Back`;
+                document.querySelector('.step__footer__previous-link').href = 'https://naturalpatch.com/pages/sleepypatch';
+            }
             if (pack != '1') {
                 document.querySelector('.total-line--shipping > td > span').innerHTML = `Free`;
                 document.querySelector('.total-line--shipping > td > span').style = `
@@ -101,7 +103,6 @@ if (href.includes('/checkouts/')) {
                     color: #313131;`;
 
             } else {
-                clearInterval(internal)
                 document.querySelector('.money-back .f-shipping').style = 'display: none!important;';
                 document.querySelector('.money-back img').style = 'margin-bottom: 15px;';
 
