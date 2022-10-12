@@ -47,11 +47,14 @@ if (href.includes('/pages/sleepypatch')) {
             document.querySelector('.shipping-noti h3').innerHTML = `30-day Money Back Guarantee`; //change text shipping noti
             document.body.insertAdjacentHTML('afterbegin', style); //add style
     
-            document.querySelector('.js-packs input[type=radio]').click()
             //set text for note block 
-            let numberPack = document.querySelector('.js-packs label').innerText.split(' PACK')[0];
-            let textNote = `Your ${numberPack} pack order comes with <b>FREE shipping</b>`;
-            
+            let textNote = '';
+            let numberPack = document.querySelector('.js-packs input[type=radio]:checked+label').innerText.split(' PACK')[0]
+            if (numberPack > 1 ) {
+                textNote = `Your ${numberPack} pack order comes with <b>FREE shipping</b>`
+            } else {
+                textNote = `<b>Select 2 or more packs</b> to get FREE Shipping`
+            }
             //add note block before addToCart button
             document.querySelector('#addToCart').insertAdjacentHTML('beforebegin',`<div class="note-block"><img src="https://conversionratestore.github.io/projects/buzzpatch/img/shipped_2.svg" alt="free delivery icon"><p>${textNote}</p></div>`);
             
@@ -68,6 +71,8 @@ if (href.includes('/pages/sleepypatch')) {
             pushDataLayer();
         }
     })
+    
+
 }
 
 if (href.includes('/checkouts/')) {
@@ -80,6 +85,7 @@ if (href.includes('/checkouts/')) {
             sessionStorage.setItem('routing', 0);
         }
         if (sessionStorage.getItem('routing') == 1 && document.querySelector('.step__footer__previous-link-content') != null && document.querySelector('.money-back .f-shipping') != null && document.querySelector('.total-line--shipping > td > span') != null && document.querySelector('.product__description span.product__description__variant.order-summary__small-text') != null) {
+
             clearInterval(internal)
             console.log('true /checkouts/')
 
@@ -108,6 +114,14 @@ if (href.includes('/checkouts/')) {
 
             }
             pushDataLayer();
+
+            let pricesObserve = setInterval(() => {
+                if (document.querySelector('.js-packs input') != null && document.querySelector('.js-packs input').checked == false) {
+                    clearInterval(pricesObserve)
+                    console.log(document.querySelector('.js-packs input'))
+                    document.querySelector('.js-packs input').click()
+                }
+            }, 100)
         }
     }, 200)
 }  
