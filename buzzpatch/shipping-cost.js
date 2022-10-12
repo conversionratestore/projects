@@ -14,6 +14,9 @@ let style = `
     }
     .package .note-block img {
         margin: 0 10px 0 0!important;
+        width: 31px;
+        height: 16px;
+        object-fit: contain;
     }
     .package .note-block p {
         font-family: 'Roboto', sans-serif;
