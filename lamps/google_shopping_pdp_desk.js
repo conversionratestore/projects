@@ -1942,7 +1942,9 @@ border: 1px solid rgba(40, 99, 120, 0.2)
     function renderPriceMatchGuarantee() {
       if (document.querySelector(".catalog-product-view .product-essential .p-price .final-price")) {
         document.querySelectorAll(".catalog-product-view .product-essential .p-price .final-price").forEach((el) => {
-          el.insertAdjacentHTML("beforeend", priceMatchGuarantee)
+          if (!document.querySelectorAll(".catalog-product-view .product-essential .p-price .final-price .price_match_guarantee")) {
+            el.insertAdjacentHTML("beforeend", priceMatchGuarantee)
+          }
           if (el.closest(".p-price").querySelector(".orig-price")) {
             el.before(el.closest(".p-price").querySelector(".orig-price"))
           }
