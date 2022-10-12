@@ -80,8 +80,8 @@ if (href.includes('/checkouts/')) {
             sessionStorage.setItem('routing', 0);
         }
         if (sessionStorage.getItem('routing') == 1 && document.querySelector('.step__footer__previous-link-content') != null && document.querySelector('.money-back .f-shipping') != null && document.querySelector('.total-line--shipping > td > span') != null && document.querySelector('.product__description span.product__description__variant.order-summary__small-text') != null) {
-            console.log('true /checkouts/')
             clearInterval(internal)
+            console.log('true /checkouts/')
 
             let pack = document.querySelector('.product__description span.product__description__variant.order-summary__small-text').innerHTML.split(' ')[0];
 
