@@ -25,6 +25,15 @@ let style = `
 
 let href = window.location.href
 
+function pushDataLayer() {
+    window.dataLayer = window.dataLayer || []
+    dataLayer.push({
+        'event': 'event-to-ga',
+        'eventCategory': 'Exp: Shipping cost',
+        'eventAction': 'loaded',
+    })
+}
+
 if (href.includes('/pages/sleepypatch')) {
     let internal = setInterval(() => {
         if (document.querySelector('.shipping-noti h3') != null && !!document.querySelectorAll('.js-packs') && document.querySelector('#addToCart') != null) {
@@ -53,6 +62,7 @@ if (href.includes('/pages/sleepypatch')) {
                     }
                 })
             })
+            pushDataLayer();
         }
     })
 }
@@ -80,21 +90,18 @@ if (href.includes('/checkouts/')) {
                     font-family: 'Roboto', sans-serif;
                     font-style: normal;
                     color: #313131;`;
+                    
+                pushDataLayer();
             } else {
                 clearInterval(internal)
                 document.querySelector('.money-back .f-shipping').style = 'display: none!important;';
                 document.querySelector('.money-back img').style = 'margin-bottom: 15px;';
+
+                pushDataLayer();
             }
         }
     }, 200)
 }  
-
-window.dataLayer = window.dataLayer || []
-dataLayer.push({
-    'event': 'event-to-ga',
-    'eventCategory': 'Exp: Shipping cost',
-    'eventAction': 'loaded',
-})
 
 let isClarify = setInterval(() => {
 	if (typeof clarity == 'function') {
