@@ -982,6 +982,22 @@ border: 1px solid rgba(40, 99, 120, 0.2)
 /*all_inform_wrap */
 .mini_img_wrap{
     width: 35%;
+    position: relative;
+}
+.wish_wrap{
+    position: absolute;
+    right: 8px;
+    top: 9px;
+    z-index: 555;
+}
+.wish_wrap #wishlist-btn{
+    font-size: 13px;
+    cursor: pointer;
+    background: #f2f2f2;
+    padding: 6px;
+    border-radius: 50%;
+    color: #a7a7a7;
+    font-size: 8px;
 }
 .all_inform_wrap{
     width: 60%;
@@ -1639,8 +1655,13 @@ border: 1px solid rgba(40, 99, 120, 0.2)
 
       // config_wrap
       if (document.querySelector(".product-shop .config_wrap")) {
-        document.querySelector(".product-shop .config_wrap span").after(document.querySelector(".product-shop .col-12.p-head.mb-2"))
-        document.querySelector(".product-shop .config_wrap .col-12.p-head.mb-2").after(document.querySelector(".product-shop .col-12.text-left.p-item-vendor"))
+        if (!document.querySelector(".product-shop .config_wrap .col-12.p-head.mb-2")) {
+          document.querySelector(".product-shop .config_wrap span").after(document.querySelector(".product-shop .col-12.p-head.mb-2"))
+        }
+
+        if (!document.querySelector(".product-shop .config_wrap .col-12.text-left.p-item-vendor")) {
+          document.querySelector(".product-shop .config_wrap .col-12.p-head.mb-2").after(document.querySelector(".product-shop .col-12.text-left.p-item-vendor"))
+        }
 
         if (document.querySelector("#config-box")) {
           document.querySelector(".product-shop .config_wrap .col-12.text-left.p-item-vendor").after(document.querySelector("#config-box"))
@@ -2000,12 +2021,13 @@ border: 1px solid rgba(40, 99, 120, 0.2)
       //   window.addEventListener("scroll", function () {
       //     let scrollDistance = window.scrollY
       //     document.querySelectorAll("div").forEach((el, i) => {
-      //       if (el.offsetTop <= scrollDistance) {
+      //       if (el.offsetTop - document.querySelector(".sticky_scroll_bar").clientHeight <= scrollDistance) {
       //         document.querySelectorAll(".sticky_scroll_bar ul li a").forEach((item) => {
       //           if (item.getAttribute("href").includes(el.getAttribute("id"))) {
       //             if (item.closest("li").classList.contains("active")) {
       //               item.closest("li").classList.remove("active")
       //             }
+      //             console.log(el, el.offsetTop)
       //             document.querySelectorAll(".sticky_scroll_bar ul li")[i].classList.add("active")
       //           }
       //         })
@@ -2190,14 +2212,17 @@ border: 1px solid rgba(40, 99, 120, 0.2)
         stockVar = document.querySelector(".catalog-product-view .product-essential .product-shop .p-value-props").cloneNode(true),
         diffBlock = document.querySelector(".diff_price_block")?.cloneNode(true),
         couponSignUp = document.querySelector(".discount_pdp.sign_up")?.cloneNode(true),
-        coupon = document.querySelector(".discount_pdp")?.cloneNode(true)
+        coupon = document.querySelector(".discount_pdp")?.cloneNode(true),
+        wish = document.querySelector("#wishlist-btn")?.cloneNode(true)
 
       if (document.querySelector(".new_item_inform")) {
         document.querySelector(".new_item_inform").insertAdjacentHTML(
           "afterbegin",
           `
           <div class="new_container">
-            <div class="mini_img_wrap"></div>
+            <div class="mini_img_wrap">
+            <div class="wish_wrap"></div>
+            </div>
             <div class="all_inform_wrap">
                 <h3></h3>
                 <div class="mini_vendor_box"></div>
@@ -2222,6 +2247,30 @@ border: 1px solid rgba(40, 99, 120, 0.2)
             </div>
           </div>`
         )
+      }
+
+      if (document.querySelector(".mini_img_wrap")) {
+        if (wish) {
+          if (!document.querySelector(".mini_img_wrap .wish_wrap #wishlist-btn")) {
+            document.querySelector(".mini_img_wrap .wish_wrap").appendChild(wish)
+          }
+
+          if (document.querySelector(".catalog-product-view .product-essential .p-media .media-sticky #wishlist-btn").classList.contains("in-wishlist")) {
+            document.querySelector(".mini_img_wrap .wish_wrap #wishlist-btn").style.color = "#e35757"
+          } else {
+            document.querySelector(".mini_img_wrap .wish_wrap #wishlist-btn").style.color = "#a7a7a7"
+          }
+
+          document.querySelectorAll("#wishlist-btn").forEach((el) => {
+            el.addEventListener("click", () => {
+              if (!document.querySelector(".catalog-product-view .product-essential .p-media .media-sticky #wishlist-btn").classList.contains("in-wishlist")) {
+                document.querySelector(".mini_img_wrap .wish_wrap #wishlist-btn").style.color = "#e35757"
+              } else {
+                document.querySelector(".mini_img_wrap .wish_wrap #wishlist-btn").style.color = "#a7a7a7"
+              }
+            })
+          })
+        }
       }
 
       if (document.querySelector(".new_container .all_inform_wrap")) {
