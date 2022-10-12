@@ -746,6 +746,7 @@ p.stock_var {
   justify-content: flex-start;
   align-items: flex-start;
   gap: 20px;
+  flex-wrap: wrap;
 }
 .mini_product_specs h3 {
   font-weight: 600;
@@ -763,7 +764,7 @@ p.stock_var {
   display: flex;
   justify-content: flex-start;
   flex-direction: row;
-  flex-wrap: nowrap;
+  flex-wrap: wrap;
   gap: 5px;
 }
 .mini_product_specs ul li span {
