@@ -1136,8 +1136,12 @@ border: 1px solid rgba(40, 99, 120, 0.2)
   }
   .sticky_scroll_bar {
     padding: 0;
-    margin: 0 -7.5px;
+    margin: 0 -7.5px 0;
     width: 104%;
+    border: unset;
+  }
+  .catalog-product-view .product-essential{
+    margin: 0 0 10px;
   }
   .sticky_scroll_bar > div{
     overflow: auto;
@@ -1581,7 +1585,7 @@ border: 1px solid rgba(40, 99, 120, 0.2)
       document.querySelector(".header-container").insertAdjacentHTML("beforeend", banner)
     }
     document.querySelector(".var_ceiling_fan .banner b")?.addEventListener("click", () => {
-      console.log(`banner`)
+      pushDataLayer("Banner link clicked")
     })
 
     viewAllCategories()
@@ -2036,7 +2040,8 @@ border: 1px solid rgba(40, 99, 120, 0.2)
       //   })
     } else {
       if (!document.querySelector(".sticky_scroll_bar")) {
-        document.querySelector(".catalog-product-view .product-essential .p-media").insertAdjacentHTML("beforebegin", stickyScrollBar)
+        document.querySelector(".catalog-product-view .product-essential").insertAdjacentHTML("afterend", stickyScrollBar)
+        // document.querySelector(".catalog-product-view .product-essential .p-media").insertAdjacentHTML("beforebegin", stickyScrollBar)
       }
 
       window.addEventListener("scroll", function () {
