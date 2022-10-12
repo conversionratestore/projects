@@ -71,8 +71,6 @@ if (href.includes('/pages/sleepypatch')) {
             pushDataLayer();
         }
     })
-    
-
 }
 
 if (href.includes('/checkouts/')) {
@@ -87,11 +85,9 @@ if (href.includes('/checkouts/')) {
         if (sessionStorage.getItem('routing') == 1 && document.querySelector('.step__footer__previous-link-content') != null && document.querySelector('.money-back .f-shipping') != null && document.querySelector('.total-line--shipping > td > span') != null && document.querySelector('.product__description span.product__description__variant.order-summary__small-text') != null) {
 
             clearInterval(internal)
-            console.log('true /checkouts/')
 
             let pack = document.querySelector('.product__description span.product__description__variant.order-summary__small-text').innerHTML.split(' ')[0];
 
-            console.log(pack)
             document.querySelectorAll('.breadcrumb a')[0].innerHTML = 'Back';
             document.querySelectorAll('.breadcrumb a')[0].href = 'https://naturalpatch.com/pages/sleepypatch';
             if (document.querySelector('.step__footer__previous-link-content').innerHTML.toLowerCase().includes('to cart')) {
@@ -111,17 +107,8 @@ if (href.includes('/checkouts/')) {
             } else {
                 document.querySelector('.money-back .f-shipping').style = 'display: none!important;';
                 document.querySelector('.money-back img').style = 'margin-bottom: 15px;';
-
             }
             pushDataLayer();
-
-            let pricesObserve = setInterval(() => {
-                if (document.querySelector('.js-packs input') != null && document.querySelector('.js-packs input').checked == false) {
-                    clearInterval(pricesObserve)
-                    console.log(document.querySelector('.js-packs input'))
-                    document.querySelector('.js-packs input').click()
-                }
-            }, 100)
         }
     }, 200)
 }  
