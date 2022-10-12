@@ -24,42 +24,45 @@ let style = `
 </style>`
 
 let href = window.location.href
+
+if (href.includes('/pages/sleepypatch')) {
+    let internal = setInterval(() => {
+        if (document.querySelector('.shipping-noti h3') != null && !!document.querySelectorAll('.js-packs') && document.querySelector('#addToCart') != null) {
+            clearInterval(internal)
+            document.querySelector('.shipping-noti h3').innerHTML = `30-day Money Back Guarantee`; //change text shipping noti
+            document.body.insertAdjacentHTML('afterbegin', style); //add style
+    
+            //set text for note block 
+            let textNote = '';
+            let numberPack = document.querySelector('.js-packs input[type=radio]:checked+label').innerText.split(' PACKS')[0]
+            if (numberPack > 1 ) {
+                textNote = `Your ${numberPack} pack order comes with <b>FREE shipping</b>`
+            } else {
+                textNote = `<b>Select 2 or more packs</b> to get FREE Shipping`
+            }
+            //add note block before addToCart button
+            document.querySelector('#addToCart').insertAdjacentHTML('beforebegin',`<div class="note-block"><img src="https://conversionratestore.github.io/projects/buzzpatch/img/free_delivery_2.svg" alt="free delivery icon"><p>${textNote}</p></div>`);
+            
+            //change text in note block 
+            document.querySelectorAll('.js-packs').forEach((pack, index) => {
+                pack.addEventListener('input', (e) => {
+                    if (index < 3) {
+                        document.querySelector('.package .note-block p').innerHTML = `Your ${pack.querySelector('label').innerText.split(' PACKS')[0]} pack order comes with <b>FREE shipping</b>`
+                    } else {
+                        document.querySelector('.package .note-block p').innerHTML = `<b>Select 2 or more packs</b> to get FREE Shipping`
+                    }
+                })
+            })
+        }
+    })
+}
+
 function final_start() {
     
-    if (href.includes('/pages/sleepypatch')) {
-        let internal = setInterval(() => {
-            if (document.querySelector('.shipping-noti h3') != null && !!document.querySelectorAll('.js-packs') && document.querySelector('#addToCart') != null) {
-                clearInterval(internal)
-                document.querySelector('.shipping-noti h3').innerHTML = `30-day Money Back Guarantee`; //change text shipping noti
-                document.body.insertAdjacentHTML('afterbegin', style); //add style
-        
-                //set text for note block 
-                let textNote = '';
-                let numberPack = document.querySelector('.js-packs input[type=radio]:checked+label').innerText.split(' PACKS')[0]
-                if (numberPack > 1 ) {
-                    textNote = `Your ${numberPack} pack order comes with <b>FREE shipping</b>`
-                } else {
-                    textNote = `<b>Select 2 or more packs</b> to get FREE Shipping`
-                }
-                //add note block before addToCart button
-                document.querySelector('#addToCart').insertAdjacentHTML('beforebegin',`<div class="note-block"><img src="https://conversionratestore.github.io/projects/buzzpatch/img/free_delivery_2.svg" alt="free delivery icon"><p>${textNote}</p></div>`);
-                
-                //change text in note block 
-                document.querySelectorAll('.js-packs').forEach((pack, index) => {
-                    pack.addEventListener('input', (e) => {
-                        if (index < 3) {
-                            document.querySelector('.package .note-block p').innerHTML = `Your ${pack.querySelector('label').innerText.split(' PACKS')[0]} pack order comes with <b>FREE shipping</b>`
-                        } else {
-                            document.querySelector('.package .note-block p').innerHTML = `<b>Select 2 or more packs</b> to get FREE Shipping`
-                        }
-                    })
-                })
-            }
-        })
-    } else { // if (href.includes('/checkouts/')) 
+//  else { // if (href.includes('/checkouts/')) 
         let internal = setInterval(() => {
             if (document.querySelector('.money-back .f-shipping') != null && document.querySelector('.total-line--shipping > td > span') != null && document.querySelector('.product__description span.product__description__variant.order-summary__small-text') != null) {
-                console.log('true /checkouts/Information')
+                console.log('true /checkouts/')
                 let pack = document.querySelector('.product__description span.product__description__variant.order-summary__small-text').innerHTML.split(' ')[0];
                
                 if (pack != '1') {
@@ -79,7 +82,7 @@ function final_start() {
                 }
             }
         }, 200)
-    }    
+    // }    
 }
 
 let i = setInterval(function() {
