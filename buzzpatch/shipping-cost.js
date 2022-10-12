@@ -34,7 +34,7 @@ if (href.includes('/pages/sleepypatch')) {
     
             //set text for note block 
             let textNote = '';
-            let numberPack = document.querySelector('.js-packs input[type=radio]:checked+label').innerText.split(' PACKS')[0]
+            let numberPack = document.querySelector('.js-packs input[type=radio]:checked+label').innerText.split(' PACK')[0]
             if (numberPack > 1 ) {
                 textNote = `Your ${numberPack} pack order comes with <b>FREE shipping</b>`
             } else {
@@ -57,9 +57,16 @@ if (href.includes('/pages/sleepypatch')) {
     })
 }
 
-if (href.includes('/checkouts/') && document.referrer.includes('/pages/sleepypatch')) {
+if (href.includes('/checkouts/')) {
+    let routing = document.referrer;
+
     let internal = setInterval(() => {
-        if (document.querySelector('.money-back .f-shipping') != null && document.querySelector('.total-line--shipping > td > span') != null && document.querySelector('.product__description span.product__description__variant.order-summary__small-text') != null) {
+        if (routing.includes('/pages/sleepypatch')) {
+            sessionStorage.setItem('routing', 1);
+        } else if (routing.includes('/collections')) {
+            sessionStorage.setItem('routing', 0);
+        }
+        if (sessionStorage.getItem('routing') == 1 && document.querySelector('.money-back .f-shipping') != null && document.querySelector('.total-line--shipping > td > span') != null && document.querySelector('.product__description span.product__description__variant.order-summary__small-text') != null) {
             console.log('true /checkouts/')
             let pack = document.querySelector('.product__description span.product__description__variant.order-summary__small-text').innerHTML.split(' ')[0];
             
