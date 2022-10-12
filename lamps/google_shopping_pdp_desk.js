@@ -2241,6 +2241,9 @@ border: 1px solid rgba(40, 99, 120, 0.2)
           let href = item.getAttribute("href").substring(1)
 
           const scrollTarget = document.getElementById(href)
+          if (!scrollTarget.nextElementSibling.classList.contains("show")) {
+            scrollTarget.querySelector(".btn.btn-link.btn-block").click()
+          }
 
           const topOffset = 70
           const elementPosition = scrollTarget.getBoundingClientRect().top
