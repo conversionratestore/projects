@@ -56,7 +56,7 @@ if (href.includes('/pages/sleepypatch')) {
                 textNote = `<b>Select 2 or more packs</b> to get FREE Shipping`
             }
             //add note block before addToCart button
-            document.querySelector('#addToCart').insertAdjacentHTML('beforebegin',`<div class="note-block"><img src="https://conversionratestore.github.io/projects/buzzpatch/img/free_delivery_2.svg" alt="free delivery icon"><p>${textNote}</p></div>`);
+            document.querySelector('#addToCart').insertAdjacentHTML('beforebegin',`<div class="note-block"><img src="https://conversionratestore.github.io/projects/buzzpatch/img/shipped_2.svg" alt="free delivery icon"><p>${textNote}</p></div>`);
             
             //change text in note block 
             document.querySelectorAll('.js-packs').forEach((pack, index) => {
