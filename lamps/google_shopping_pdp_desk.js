@@ -1993,8 +1993,13 @@ border: 1px solid rgba(40, 99, 120, 0.2)
           el.setAttribute("data-tolltip", arrTooltipTableVar)
 
           if (el.classList.contains("diff_price_block")) {
-            let t = document.querySelector("#pdp-promo-box span").innerHTML.split(".")
-            el.setAttribute("data-tolltip", `<div><img src="${imgFolderUrl}price_reflects.png" alt="icon"> <div>${t[0]}.<br/><b>${t[1]}${t[2]}</b>.</div></div>`)
+            if (document.querySelector("#pdp-promo-box span")) {
+              let t = document.querySelector("#pdp-promo-box span").innerHTML.split(".")
+              el.setAttribute("data-tolltip", `<div><img src="${imgFolderUrl}price_reflects.png" alt="icon"> <div>${t[0]}.<br/><b>${t[1]}${t[2]}</b>.</div></div>`)
+            } else {
+              el.removeAttribute("data-tolltip")
+              el.style.cursor = "initial"
+            }
           }
         })
 
@@ -2005,8 +2010,13 @@ border: 1px solid rgba(40, 99, 120, 0.2)
           el.setAttribute("data-tolltipDiff", arrTooltipTableVar)
 
           if (el.classList.contains("diff_price_block")) {
-            let t = document.querySelector("#pdp-promo-box span").innerHTML.split(".")
-            el.setAttribute("data-tolltipDiff", `<div><img src="${imgFolderUrl}price_reflects.png" alt="icon"> <div>${t[0]}.<br/><b>${t[1]}${t[2]}</b>.</div></div>`)
+            if (document.querySelector("#pdp-promo-box span")) {
+              let t = document.querySelector("#pdp-promo-box span").innerHTML.split(".")
+              el.setAttribute("data-tolltipDiff", `<div><img src="${imgFolderUrl}price_reflects.png" alt="icon"> <div>${t[0]}.<br/><b>${t[1]}${t[2]}</b>.</div></div>`)
+            } else {
+              el.removeAttribute("data-tolltipDiff")
+              el.style.cursor = "initial"
+            }
           }
         })
       }
