@@ -1148,6 +1148,12 @@ border: 1px solid rgba(40, 99, 120, 0.2)
 }
 
 @media (max-width: 768px) {
+  .tippy-tooltip{
+    max-width: 254px !important;
+  }
+  .tippy-content{
+    padding: 13px;
+  }
   .banner b {
     font-size: 15px;
     line-height: 22px;
@@ -1383,11 +1389,26 @@ border: 1px solid rgba(40, 99, 120, 0.2)
     .wrap_var_policy ul li > div > p{
         font-size: 9px;
     }
+      .tippy-tooltip{
+    max-width: 235px !important;
+  }
+  .tooltip_bar p{
+    font-size: 11px;
+  }
 }
 @media (max-width: 280px) {
     .wrap_var_policy ul li > div > span, 
     .wrap_var_policy ul li > div > p{
         font-size: 7px;
+    }
+        .tippy-tooltip {
+        max-width: 185px !important;
+    }
+    .name_tooltip span{
+      font-size: 12px;
+    }
+    .category-products .products-grid .item .item-inner .details-area .price-box{
+      font-size: 9.5px;
     }
 }
 .my_swiper_box,
@@ -2050,7 +2071,7 @@ border: 1px solid rgba(40, 99, 120, 0.2)
                 if (el) {
                   tippy(el, {
                     content: el.getAttribute("data-tolltip"),
-                    // trigger: "click",
+                    trigger: "click",
                     duration: [500, 500],
                     interactive: true,
                     appendTo: function () {
