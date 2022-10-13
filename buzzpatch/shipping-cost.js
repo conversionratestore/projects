@@ -40,13 +40,20 @@ function pushDataLayer() {
     })
 }
 
+let backCheckoutRouting = setInterval(() => {
+    if (sessionStorage.getItem('routing-checkout') == 1 && document.querySelector('.js-packs input') != null && !document.querySelectorAll('.js-packs input')[0].checked && document.querySelectorAll('.js-packs input').length > 3) { 
+        sessionStorage.setItem('routing-checkout', 0);
+        document.querySelectorAll('.js-packs input')[0].click()
+    }
+}, 200)
+
 if (href.includes('/pages/sleepypatch')) {
     let internal = setInterval(() => {
         if (document.querySelector('.shipping-noti h3') != null && !!document.querySelectorAll('.js-packs') && document.querySelector('#addToCart') != null && document.querySelector('.js-packs input[type=radio]:checked+label') != null) {
             clearInterval(internal)
             document.querySelector('.shipping-noti h3').innerHTML = `30-day Money Back Guarantee`; //change text shipping noti
             document.body.insertAdjacentHTML('afterbegin', style); //add style
-    
+           
             //set text for note block 
             let textNote = '';
             let numberPack = document.querySelector('.js-packs input[type=radio]:checked+label').innerText.split(' PACK')[0]
@@ -110,6 +117,8 @@ if (href.includes('/checkouts/')) {
                 document.querySelector('.money-back img').style = 'margin-bottom: 15px;';
             }
             pushDataLayer();
+            
+            sessionStorage.setItem('routing-checkout', 1);
         }
     }, 200)
 }  
