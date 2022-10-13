@@ -1867,11 +1867,7 @@ p.stock_var {
 
                 // on click GET 15% OFF WITH A COUPON
                 document.querySelector(".discount_pdp.sign_up > span")?.addEventListener("click", function () {
-                  if (window.innerWidth <= 768) {
-                    document.querySelector('.header-container .header-actions .action-links [data-account-trigger="true"]')?.click()
-                  } else {
-                    document.querySelector('.catalog-product-view .promo-box .promo-text [data-account-trigger="true"]').click()
-                  }
+                  document.querySelector('.header-container .header-actions .action-links [data-account-trigger="true"]')?.click()
                 })
               }
             }
