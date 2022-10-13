@@ -2635,6 +2635,9 @@ border: 1px solid rgba(40, 99, 120, 0.2)
       document.querySelector(".new_inform_wrap .p-support")?.addEventListener("click", () => {
         if (window.innerWidth <= 768) {
           document.querySelector("#hbl-live-chat-wrapper").style.display = "block"
+          if (document.querySelector(".sticky_box")) {
+            document.querySelector(".sticky_box").style.display = "none"
+          }
         }
       })
 
@@ -2644,6 +2647,9 @@ border: 1px solid rgba(40, 99, 120, 0.2)
           if (document.querySelector("#olark-wrapper .olark-launch-button")) {
             document.querySelector("#olark-wrapper .olark-launch-button")?.addEventListener("click", () => {
               document.querySelector("#hbl-live-chat-wrapper").style.display = "none"
+              if (document.querySelector(".sticky_box")) {
+                document.querySelector(".sticky_box").style.display = "flex"
+              }
             })
           }
         }
