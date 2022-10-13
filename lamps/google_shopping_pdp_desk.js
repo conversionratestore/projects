@@ -1166,6 +1166,11 @@ border: 1px solid rgba(40, 99, 120, 0.2)
     width: 100%;
     max-width: 397px;
   }
+  .sticky_scroll_bar > div::-webkit-scrollbar,
+  .accessories_tabs > div:nth-child(1)::-webkit-scrollbar { 
+    width: 0; 
+    height: 0;
+  }
   .sticky_scroll_bar ul {
     padding: 0 25px;
     width: max-content;
