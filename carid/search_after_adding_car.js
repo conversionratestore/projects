@@ -140,10 +140,21 @@ if (settings.observe) {
 
   observer.observe(demoElem, { childList: true, subtree: true })
 }
+let countClickSelect = 1
 
 window.onunload = unloadPage
 function unloadPage() {
   console.log("unload event detected!")
+
+  // if (window.innerWidth > 768) {
+  //   if (!localStorage.getItem("onClickSelect") !== "2") {
+  //     const selectEvents = ["mousedown", "focusin"]
+  //     const select = document.querySelector("small.value")
+  //     selectEvents.forEach((eventType) => select.dispatchEvent(new MouseEvent(eventType, { bubbles: true })))
+  //     localStorage.setItem("onClickSelect", countClickSelect)
+  //   }
+  // }
+
   if (localStorage.getItem("startDateReload")) {
     let time = (new Date().getTime() - parseInt(localStorage.getItem("startDateReload"))) / 1000
     gaEvent(`Popup was closed after ${time} seconds`, `Popup: Select vehicle`)
@@ -422,7 +433,28 @@ function init() {
     if (!localStorage.getItem("windowLocation")) {
       localStorage.setItem("windowLocation", "yes")
     }
+
+    if (window.innerWidth > 768) {
+      if (document.querySelector(".head-nav-inner .select-vehicle-spacer")) {
+        if (!localStorage.getItem("onClickSelect")) {
+          const selectEvents = ["mousedown", "focusin"]
+          const select = document.querySelector("small.value")
+          selectEvents.forEach((eventType) => select.dispatchEvent(new MouseEvent(eventType, { bubbles: true })))
+          localStorage.setItem("onClickSelect", countClickSelect)
+        } else {
+          if (localStorage.getItem("onClickSelect")) {
+            if (+localStorage.getItem("onClickSelect") < 2) {
+              const selectEvents = ["mousedown", "focusin"]
+              const select = document.querySelector("small.value")
+              selectEvents.forEach((eventType) => select.dispatchEvent(new MouseEvent(eventType, { bubbles: true })))
+              localStorage.setItem("onClickSelect", +localStorage.getItem("onClickSelect") + 1)
+            }
+          }
+        }
+      }
+    }
   }
+
   console.log("init")
   document.addEventListener("keypress", function (event) {
     if (event.key === "Enter" && document.activeElement && isSearch) {
