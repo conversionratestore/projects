@@ -47,7 +47,7 @@ let startFunk = setInterval(() => {
       "Price Match Guarantee": [
         `<div class="tooltip_bar"><div class="name_tooltip"><img src="https://conversionratestore.github.io/projects/lamps/img/price_policy.svg" alt="price policy" /><span>Price Match Guarantee</span></div><p>Read more about our <a class="on_policy" target="_blank" href="/policies/price-protection/">price protection policy here</a>.</p></div>`,
       ],
-      "Easy returns": [
+      "30-day return period": [
         `<div class="tooltip_bar"><div class="name_tooltip"><img src="https://conversionratestore.github.io/projects/lamps/img/return_policy.svg" alt="return policy" /><span>Easy Return</span></div><p>Because we want you to love your purchase, most items can be returned up to 30 days from the date the item was delivered. Read more about our <a class="on_return" target="_blank" href="/policies/returns/">return policy here</a>.</p></div>`,
       ],
       Downrods: [
@@ -1260,7 +1260,7 @@ border: 1px solid rgba(40, 99, 120, 0.2)
   }
   .wrap_var_policy ul li > div > span,
   .wrap_var_policy ul li > div > p {
-    font-size: 13px;
+    font-size: 12px;
     line-height: 14px;
   }
   /*product_details_wrap */
@@ -1359,13 +1359,13 @@ border: 1px solid rgba(40, 99, 120, 0.2)
 @media (max-width: 320px) {
     .wrap_var_policy ul li > div > span, 
     .wrap_var_policy ul li > div > p{
-        font-size: 10px;
+        font-size: 9px;
     }
 }
 @media (max-width: 280px) {
     .wrap_var_policy ul li > div > span, 
     .wrap_var_policy ul li > div > p{
-        font-size: 8px;
+        font-size: 7px;
     }
 }
 .my_swiper_box,
@@ -1501,7 +1501,7 @@ border: 1px solid rgba(40, 99, 120, 0.2)
                 </div>
                 <div>
                   <span>Price Match Guarantee</span>
-                  <p>Pay less than anywhere else</p>
+                  <p>Pay less than enywhere else</p>
                 </div>
             </li>
             <li data-tolltip>
@@ -1509,8 +1509,8 @@ border: 1px solid rgba(40, 99, 120, 0.2)
                   <img src="${imgFolderUrl}return_policy.png" alt="return policy">
                 </div>
                 <div>
-                  <span class="return_policy">Easy returns</span>
-                  <p>30-day return period</p>
+                  <span class="return_policy">30-day return period</span>
+                  <p>Easy returns and exchanges</p>
                 </div>
             </li>
         </ul>
