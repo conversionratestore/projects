@@ -944,6 +944,7 @@ font-weight: 600;
   position: relative;
    height: 100%;
    width: 100%;
+   max-height: 252px;
 }
 
 .slider-nav {
@@ -1391,7 +1392,9 @@ border: 1px solid rgba(40, 99, 120, 0.2)
 .my_swiper_box2{
     overflow: hidden;
     position: relative;
+    /*
     max-height: 310px;
+    */
     height: 100%;
 }
 .my_swiper_box2{
@@ -1411,7 +1414,10 @@ border: 1px solid rgba(40, 99, 120, 0.2)
     object-fit: contain !important;
 }
 .my_swiper_box .product_thumbs {
+  /*
     position: absolute;
+    */
+    margin-top: 8px;
     bottom: 8px;
     left: 8px;
     width: 90%;
