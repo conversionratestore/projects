@@ -2089,29 +2089,32 @@ border: 1px solid rgba(40, 99, 120, 0.2)
     // render Accessories Tabs
     function renderAccessoriesTabs() {
       if (document.querySelector("#accessories")) {
-        if (!document.querySelector(".items_need")) {
-          document.querySelector("#personalized").insertAdjacentHTML(
-            "beforebegin",
-            `<div class="items_need"><a href="#cts-goods"><svg width="18" height="14" viewBox="0 0 18 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M13.86 0.84C13.5189 0.33 12.9505 0 12.3158 0L1.89474 0.0100002C0.852632 0.0100002 0 0.9 0 2L0 12C0 13.1 0.852632 13.99 1.89474 13.99L12.3158 14C12.9505 14 13.5189 13.67 13.86 13.16L17.6251 7.55781C17.8518 7.22049 17.8518 6.77951 17.6251 6.44219L13.86 0.84Z" fill="#286378"></path>
-              <path d="M7.57879 4L7.57879 7L7.57879 4ZM7.57879 7V10V7ZM7.57879 7L4.73669 7L7.57879 7ZM7.57879 7H10.4209H7.57879Z" fill="#286378"></path>
-              <path d="M7.57879 4L7.57879 7M7.57879 7V10M7.57879 7L4.73669 7M7.57879 7H10.4209" stroke="white" stroke-width="1.5" stroke-linecap="round"></path>
-              </svg>Items you may need</a></div>`
-          )
-        }
+        if (window.innerWidth <= 768) {
+          if (!document.querySelector(".items_need")) {
+            document.querySelector("#personalized").insertAdjacentHTML(
+              "beforebegin",
+              `<div class="items_need"><a href="#cts-goods"><svg width="18" height="14" viewBox="0 0 18 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M13.86 0.84C13.5189 0.33 12.9505 0 12.3158 0L1.89474 0.0100002C0.852632 0.0100002 0 0.9 0 2L0 12C0 13.1 0.852632 13.99 1.89474 13.99L12.3158 14C12.9505 14 13.5189 13.67 13.86 13.16L17.6251 7.55781C17.8518 7.22049 17.8518 6.77951 17.6251 6.44219L13.86 0.84Z" fill="#286378"></path>
+                  <path d="M7.57879 4L7.57879 7L7.57879 4ZM7.57879 7V10V7ZM7.57879 7L4.73669 7L7.57879 7ZM7.57879 7H10.4209H7.57879Z" fill="#286378"></path>
+                  <path d="M7.57879 4L7.57879 7M7.57879 7V10M7.57879 7L4.73669 7M7.57879 7H10.4209" stroke="white" stroke-width="1.5" stroke-linecap="round"></path>
+                  </svg>Items you may need</a></div>`
+            )
+          }
 
-        if (document.querySelector(".items_need")) {
-          document.querySelector(".items_need").addEventListener("click", (e) => {
-            e.preventDefault()
-            if (document.querySelector(".sticky_scroll_bar")) {
-              document.querySelector(".sticky_scroll_bar ul li:last-child a").click()
-            }
-            // pushDataLayer(`Items you may need clicked`)
-          })
+          if (document.querySelector(".items_need")) {
+            document.querySelector(".items_need").addEventListener("click", (e) => {
+              e.preventDefault()
+              if (document.querySelector(".sticky_scroll_bar")) {
+                document.querySelector(".sticky_scroll_bar ul li:last-child a").click()
+              }
+              // pushDataLayer(`Items you may need clicked`)
+            })
+          }
+        } else {
+          if (document.querySelector(".sticky_scroll_bar")) {
+            document.querySelector(".sticky_scroll_bar ul li:last-child").style.display = "flex"
+          }
         }
-        // if (document.querySelector(".sticky_scroll_bar")) {
-        //   document.querySelector(".sticky_scroll_bar ul li:last-child").style.display = "flex"
-        // }
 
         if (!document.querySelector(".accessories_tabs")) {
           document
