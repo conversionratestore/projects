@@ -2191,7 +2191,6 @@ border: 1px solid rgba(40, 99, 120, 0.2)
 
       if (!document.querySelector(".accessories_tabs")) {
         renderAccessoriesTabs()
-        console.log(`!document.querySelector(".tabs_visible_wrap"))`)
       }
 
       // render Accessories Tabs
@@ -2342,6 +2341,12 @@ border: 1px solid rgba(40, 99, 120, 0.2)
               }
             }
             e.target.setAttribute("data-test", "1")
+
+            setTimeout(() => {
+              if (item.getAttribute("data-test")) {
+                item.removeAttribute("data-test")
+              }
+            }, 500)
 
             list.forEach((el) => {
               el.closest("li").classList.remove("active")
@@ -2654,7 +2659,6 @@ border: 1px solid rgba(40, 99, 120, 0.2)
           }
 
           if (!document.querySelector(".tabs_visible_wrap")) {
-            console.log(`!document.querySelector(".tabs_visible_wrap"))`)
             setTimeout(() => {
               renderAccessoriesTabs()
             }, 100)
