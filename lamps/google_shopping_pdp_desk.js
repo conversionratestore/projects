@@ -136,13 +136,14 @@ let startFunk = setInterval(() => {
     align-items: center;
 }
 .sticky_scroll_bar ul li {
-  padding: 12px 25px;
   cursor: pointer;
 }
 .sticky_scroll_bar ul li.active {
   border-bottom: 2px solid #286378;
 }
 .sticky_scroll_bar ul li a {
+  display: block;
+  padding: 12px 25px;
   margin: 0;
   font-weight: 600;
   font-size: 18px;
@@ -1172,9 +1173,9 @@ border: 1px solid rgba(40, 99, 120, 0.2)
     width: max-content;
   }
   .sticky_scroll_bar ul li {
-    padding: 12px 0;
   }
   .sticky_scroll_bar ul li a {
+    padding: 12px 0;
     font-size: 15px;
   }
   .sticky_scroll_bar ul li + li {
@@ -1235,6 +1236,7 @@ border: 1px solid rgba(40, 99, 120, 0.2)
   .catalog-product-view .product-essential .p-atc .qty-box .input-group-btn {
     height: 48px;
     width: 32px;
+    border-radius: unset !important;
   }
   .catalog-product-view .product-essential .p-atc .qty-box .qty {
     width: 48px;
