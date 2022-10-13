@@ -1739,7 +1739,8 @@ p.stock_var {
             document.querySelector(".product-shop .config_wrap span").after(document.querySelector(".product-shop .col-12.p-head.mb-2"))
           }
 
-          if (!document.querySelector(".product-shop .config_wrap .col-12.text-left.p-item-vendor")) {
+          if (!document.querySelector(".product-shop .config_wrap .col-12.text-left.p-item-vendor .item-vendor")) {
+            console.log(`>>>>>>>>>>>>>нет элемента`, document.querySelector(".product-shop .config_wrap .col-12.text-left.p-item-vendor .item-vendor"))
             document.querySelector(".product-shop .config_wrap .col-12.p-head.mb-2").after(document.querySelector(".product-shop .col-12.text-left.p-item-vendor"))
           }
 
@@ -1885,7 +1886,9 @@ p.stock_var {
               if (el.querySelector(".final-price .price")) {
                 price = +el.querySelector(".final-price .price").textContent.slice(1).replace(/,/g, "")
                 if (window.innerWidth <= 768) {
-                  document.querySelector(".sticky_box .last_price").textContent = el.querySelector(".final-price .price").textContent
+                  if (document.querySelector(".sticky_box .last_price")) {
+                    document.querySelector(".sticky_box .last_price").textContent = el.querySelector(".final-price .price").textContent
+                  }
                 }
               }
 
