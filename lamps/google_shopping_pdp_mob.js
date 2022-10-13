@@ -47,7 +47,7 @@ let startFunk = setInterval(() => {
       "Price Match Guarantee": [
         `<div class="tooltip_bar"><div class="name_tooltip"><img src="https://conversionratestore.github.io/projects/lamps/img/price_policy.svg" alt="price policy" /><span>Price Match Guarantee</span></div><p>Read more about our <a class="on_policy" target="_blank" href="/policies/price-protection/">price protection policy here</a>.</p></div>`,
       ],
-      "Easy returns": [
+      "30-day return period": [
         `<div class="tooltip_bar"><div class="name_tooltip"><img src="https://conversionratestore.github.io/projects/lamps/img/return_policy.svg" alt="return policy" /><span>Easy Return</span></div><p>Because we want you to love your purchase, most items can be returned up to 30 days from the date the item was delivered. Read more about our <a class="on_return" target="_blank" href="/policies/returns/">return policy here</a>.</p></div>`,
       ],
       Downrods: [
@@ -746,6 +746,7 @@ p.stock_var {
   justify-content: flex-start;
   align-items: flex-start;
   gap: 20px;
+  flex-wrap: wrap;
 }
 .mini_product_specs h3 {
   font-weight: 600;
@@ -763,7 +764,7 @@ p.stock_var {
   display: flex;
   justify-content: flex-start;
   flex-direction: row;
-  flex-wrap: nowrap;
+  flex-wrap: wrap;
   gap: 5px;
 }
 .mini_product_specs ul li span {
@@ -1259,7 +1260,7 @@ border: 1px solid rgba(40, 99, 120, 0.2)
   }
   .wrap_var_policy ul li > div > span,
   .wrap_var_policy ul li > div > p {
-    font-size: 13px;
+    font-size: 12px;
     line-height: 14px;
   }
   /*product_details_wrap */
@@ -1358,13 +1359,13 @@ border: 1px solid rgba(40, 99, 120, 0.2)
 @media (max-width: 320px) {
     .wrap_var_policy ul li > div > span, 
     .wrap_var_policy ul li > div > p{
-        font-size: 10px;
+        font-size: 9px;
     }
 }
 @media (max-width: 280px) {
     .wrap_var_policy ul li > div > span, 
     .wrap_var_policy ul li > div > p{
-        font-size: 8px;
+        font-size: 7px;
     }
 }
 .my_swiper_box,
@@ -1500,7 +1501,7 @@ border: 1px solid rgba(40, 99, 120, 0.2)
                 </div>
                 <div>
                   <span>Price Match Guarantee</span>
-                  <p>Pay less than anywhere else</p>
+                  <p>Pay less than enywhere else</p>
                 </div>
             </li>
             <li data-tolltip>
@@ -1508,8 +1509,8 @@ border: 1px solid rgba(40, 99, 120, 0.2)
                   <img src="${imgFolderUrl}return_policy.png" alt="return policy">
                 </div>
                 <div>
-                  <span class="return_policy">Easy returns</span>
-                  <p>30-day return period</p>
+                  <span class="return_policy">30-day return period</span>
+                  <p>Easy returns and exchanges</p>
                 </div>
             </li>
         </ul>
@@ -1941,7 +1942,9 @@ border: 1px solid rgba(40, 99, 120, 0.2)
     function renderPriceMatchGuarantee() {
       if (document.querySelector(".catalog-product-view .product-essential .p-price .final-price")) {
         document.querySelectorAll(".catalog-product-view .product-essential .p-price .final-price").forEach((el) => {
-          el.insertAdjacentHTML("beforeend", priceMatchGuarantee)
+          if (!document.querySelector(".catalog-product-view .product-essential .p-price .final-price .price_match_guarantee")) {
+            el.insertAdjacentHTML("beforeend", priceMatchGuarantee)
+          }
           if (el.closest(".p-price").querySelector(".orig-price")) {
             el.before(el.closest(".p-price").querySelector(".orig-price"))
           }
@@ -2086,29 +2089,32 @@ border: 1px solid rgba(40, 99, 120, 0.2)
     // render Accessories Tabs
     function renderAccessoriesTabs() {
       if (document.querySelector("#accessories")) {
-        if (!document.querySelector(".items_need")) {
-          document.querySelector("#personalized").insertAdjacentHTML(
-            "beforebegin",
-            `<div class="items_need"><a href="#cts-goods"><svg width="18" height="14" viewBox="0 0 18 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M13.86 0.84C13.5189 0.33 12.9505 0 12.3158 0L1.89474 0.0100002C0.852632 0.0100002 0 0.9 0 2L0 12C0 13.1 0.852632 13.99 1.89474 13.99L12.3158 14C12.9505 14 13.5189 13.67 13.86 13.16L17.6251 7.55781C17.8518 7.22049 17.8518 6.77951 17.6251 6.44219L13.86 0.84Z" fill="#286378"></path>
-              <path d="M7.57879 4L7.57879 7L7.57879 4ZM7.57879 7V10V7ZM7.57879 7L4.73669 7L7.57879 7ZM7.57879 7H10.4209H7.57879Z" fill="#286378"></path>
-              <path d="M7.57879 4L7.57879 7M7.57879 7V10M7.57879 7L4.73669 7M7.57879 7H10.4209" stroke="white" stroke-width="1.5" stroke-linecap="round"></path>
-              </svg>Items you may need</a></div>`
-          )
-        }
+        if (window.innerWidth <= 768) {
+          if (!document.querySelector(".items_need")) {
+            document.querySelector("#personalized").insertAdjacentHTML(
+              "beforebegin",
+              `<div class="items_need"><a href="#cts-goods"><svg width="18" height="14" viewBox="0 0 18 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M13.86 0.84C13.5189 0.33 12.9505 0 12.3158 0L1.89474 0.0100002C0.852632 0.0100002 0 0.9 0 2L0 12C0 13.1 0.852632 13.99 1.89474 13.99L12.3158 14C12.9505 14 13.5189 13.67 13.86 13.16L17.6251 7.55781C17.8518 7.22049 17.8518 6.77951 17.6251 6.44219L13.86 0.84Z" fill="#286378"></path>
+                  <path d="M7.57879 4L7.57879 7L7.57879 4ZM7.57879 7V10V7ZM7.57879 7L4.73669 7L7.57879 7ZM7.57879 7H10.4209H7.57879Z" fill="#286378"></path>
+                  <path d="M7.57879 4L7.57879 7M7.57879 7V10M7.57879 7L4.73669 7M7.57879 7H10.4209" stroke="white" stroke-width="1.5" stroke-linecap="round"></path>
+                  </svg>Items you may need</a></div>`
+            )
+          }
 
-        if (document.querySelector(".items_need")) {
-          document.querySelector(".items_need").addEventListener("click", (e) => {
-            e.preventDefault()
-            if (document.querySelector(".sticky_scroll_bar")) {
-              document.querySelector(".sticky_scroll_bar ul li:last-child a").click()
-            }
-            // pushDataLayer(`Items you may need clicked`)
-          })
+          if (document.querySelector(".items_need")) {
+            document.querySelector(".items_need").addEventListener("click", (e) => {
+              e.preventDefault()
+              if (document.querySelector(".sticky_scroll_bar")) {
+                document.querySelector(".sticky_scroll_bar ul li:last-child a").click()
+              }
+              // pushDataLayer(`Items you may need clicked`)
+            })
+          }
+        } else {
+          if (document.querySelector(".sticky_scroll_bar")) {
+            document.querySelector(".sticky_scroll_bar ul li:last-child").style.display = "flex"
+          }
         }
-        // if (document.querySelector(".sticky_scroll_bar")) {
-        //   document.querySelector(".sticky_scroll_bar ul li:last-child").style.display = "flex"
-        // }
 
         if (!document.querySelector(".accessories_tabs")) {
           document
@@ -2238,6 +2244,11 @@ border: 1px solid rgba(40, 99, 120, 0.2)
           let href = item.getAttribute("href").substring(1)
 
           const scrollTarget = document.getElementById(href)
+          if (scrollTarget.nextElementSibling) {
+            if (!scrollTarget.nextElementSibling.classList.contains("show")) {
+              scrollTarget.querySelector(".btn.btn-link.btn-block").click()
+            }
+          }
 
           const topOffset = 70
           const elementPosition = scrollTarget.getBoundingClientRect().top
