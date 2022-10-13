@@ -111,7 +111,7 @@ let startFunk = setInterval(() => {
   position: sticky;
   top: 0;
   left: 0;
-  z-index: 1524;
+  z-index: 999;
 }
 .sticky_scroll_bar ul {
   display: flex;
