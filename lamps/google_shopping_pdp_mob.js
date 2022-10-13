@@ -1413,13 +1413,13 @@ border: 1px solid rgba(40, 99, 120, 0.2)
 .my_swiper_box .product_thumbs {
   /*
     position: absolute;
+    max-height: 50px;
+    height: 100%;
     */
     margin-top: 8px;
     bottom: 8px;
     left: 8px;
     width: 90%;
-    max-height: 50px;
-    height: 100%;
 }
 .my_swiper_box img{
     height: 100% !important;
@@ -1432,6 +1432,9 @@ border: 1px solid rgba(40, 99, 120, 0.2)
 .my_swiper_box2 .swiper-button-next,
 .my_swiper_box2 .swiper-button-prev{
     color: #e35757;
+}
+.my_swiper_box .product_thumbs img{
+  max-height: 50px !important;
 }
 .my_swiper_box .product_thumbs .swiper-slide{
     border: 1px solid transparent; 
