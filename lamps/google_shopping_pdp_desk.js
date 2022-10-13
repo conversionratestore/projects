@@ -1394,6 +1394,9 @@ border: 1px solid rgba(40, 99, 120, 0.2)
     */
     height: 100%;
 }
+.my_swiper_box{
+  background: #FFFFFF;
+}
 .my_swiper_box2{
     overflow: hidden;
 }
@@ -1416,7 +1419,7 @@ border: 1px solid rgba(40, 99, 120, 0.2)
     max-height: 50px;
     height: 100%;
     */
-    margin-top: 8px;
+    margin: 8px;
     bottom: 8px;
     left: 8px;
     width: 90%;
