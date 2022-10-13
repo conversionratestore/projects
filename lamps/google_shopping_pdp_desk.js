@@ -1657,7 +1657,7 @@ border: 1px solid rgba(40, 99, 120, 0.2)
       if (!document.querySelector(".banner")) {
         document.querySelector(".header-container").insertAdjacentHTML("beforeend", banner)
       }
-      document.querySelector(".var_ceiling_fan .banner b")?.addEventListener("click", () => {
+      document.querySelector(".banner b")?.addEventListener("click", () => {
         pushDataLayer("Banner link clicked")
       })
 
