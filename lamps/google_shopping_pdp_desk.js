@@ -2071,7 +2071,7 @@ border: 1px solid rgba(40, 99, 120, 0.2)
                 if (el) {
                   tippy(el, {
                     content: el.getAttribute("data-tolltip"),
-                    trigger: "click",
+                    // trigger: "click",
                     duration: [500, 500],
                     interactive: true,
                     appendTo: function () {
