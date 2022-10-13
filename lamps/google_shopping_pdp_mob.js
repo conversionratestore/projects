@@ -2408,10 +2408,18 @@ border: 1px solid rgba(40, 99, 120, 0.2)
 
             document.querySelectorAll("#wishlist-btn").forEach((el) => {
               el.addEventListener("click", () => {
-                if (!document.querySelector(".catalog-product-view .product-essential .p-media .media-sticky #wishlist-btn").classList.contains("in-wishlist")) {
-                  document.querySelector(".mini_img_wrap .wish_wrap #wishlist-btn").style.color = "#e35757"
+                if (document.querySelector('.header-container .header-actions .action-links [data-account-trigger="true"] span').textContent === "Account") {
+                  if (!document.querySelector(".catalog-product-view .product-essential .p-media .media-sticky #wishlist-btn").classList.contains("in-wishlist")) {
+                    document.querySelector(".mini_img_wrap .wish_wrap #wishlist-btn").style.color = "#e35757"
+                  } else {
+                    document.querySelector(".mini_img_wrap .wish_wrap #wishlist-btn").style.color = "#a7a7a7"
+                  }
                 } else {
-                  document.querySelector(".mini_img_wrap .wish_wrap #wishlist-btn").style.color = "#a7a7a7"
+                  if (document.querySelector(".catalog-product-view .product-essential .p-media .media-sticky #wishlist-btn").classList.contains("in-wishlist")) {
+                    document.querySelector(".mini_img_wrap .wish_wrap #wishlist-btn").style.color = "#e35757"
+                  } else {
+                    document.querySelector(".mini_img_wrap .wish_wrap #wishlist-btn").style.color = "#a7a7a7"
+                  }
                 }
               })
             })
