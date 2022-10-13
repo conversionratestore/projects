@@ -1866,7 +1866,11 @@ border: 1px solid rgba(40, 99, 120, 0.2)
 
                 // on click GET 15% OFF WITH A COUPON
                 document.querySelector(".discount_pdp.sign_up > span")?.addEventListener("click", function () {
-                  document.querySelector('.catalog-product-view .promo-box .promo-text [data-account-trigger="true"]').click()
+                  if (window.innerWidth <= 768) {
+                    document.querySelector('.header-container .header-actions .action-links [data-account-trigger="true"]')?.click()
+                  } else {
+                    document.querySelector('.catalog-product-view .promo-box .promo-text [data-account-trigger="true"]').click()
+                  }
                 })
               }
             }
