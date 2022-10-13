@@ -448,7 +448,6 @@ p.stock_var {
   padding: 6px 8px;
   margin: 10px 0 -40px;
   max-width: fit-content;
-  cursor: pointer;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -689,7 +688,6 @@ p.stock_var {
   padding: 12px;
   display: flex;
   align-items: flex-start;
-  cursor: pointer;
   justify-content: flex-start;
   gap: 8px;
 }
@@ -721,7 +719,6 @@ p.stock_var {
   display: flex;
   align-items: center;
   justify-content: flex-start;
-  cursor: pointer;
 }
 .price_match_guarantee > span {
   font-weight: 600;
@@ -2564,9 +2561,6 @@ border: 1px solid rgba(40, 99, 120, 0.2)
               loop: false,
               spaceBetween: 2,
               calculateHeight: true,
-              zoom: {
-                maxRatio: 3,
-              },
               navigation: {
                 nextEl: ".swiper-button-next",
                 prevEl: ".swiper-button-prev",
