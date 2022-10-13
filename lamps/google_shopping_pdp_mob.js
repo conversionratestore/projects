@@ -1316,7 +1316,7 @@ border: 1px solid rgba(40, 99, 120, 0.2)
     width: 100% !important;
     min-width: 152px;
   }
-  .olark-launch-button-wrapper{
+  #hbl-live-chat-wrapper .olark-launch-button-wrapper{
     bottom: 102px !important;
   }
   .footer-container .footer-bottom{
