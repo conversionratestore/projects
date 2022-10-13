@@ -87,6 +87,7 @@ let style = `
         padding: 10px 12px;
         margin: 0;
     }
+
     .select-item {
         position: relative;
     }
@@ -170,10 +171,19 @@ let style = `
         margin-top: 4px;
     }
     .error input {
-        border-color: #FF0000;
+        border-color: #FF0000!important;
     }
     .error .error-message {
         display: block;
+    }
+    input.input-cash {
+        padding-left: 25px;
+    }
+    .currency-cash {
+        position: absolute;
+        left: 12px;
+        top: 0;
+        line-height: 48px;
     }
     .relative {
         position: relative;
@@ -297,6 +307,21 @@ function selectChange(currency) {
         })
     })
 }
+
+function apiZipCode(value) {
+    return new Promise((resolve, reject) => {
+        fetch(`https://api.zippopotam.us/us/${value}`, {
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+            },
+            method: 'GET',
+        }).then(res => res.json()).then(data => {
+            resolve(data)
+        }).catch((error) => {
+            console.error('Error:', error);
+        });
+    })
+}
 let dataCus;
 function changeContent(count) {
     switch (count) {
@@ -307,15 +332,10 @@ function changeContent(count) {
             btnNext.addEventListener('click', () => {
                 let value = document.querySelector('input').value;
                 console.log(value)
-                fetch(`https://api.zippopotam.us/us/${value}`, {
-                    headers: {
-                        'Content-Type': 'application/x-www-form-urlencoded',
-                    },
-                    method: 'GET',
-                }).then(res => res.json()).then(data => {
+                apiZipCode(value).then(data => {
                     console.log(data)
                     dataCus = data;
-                    if (!!data) {
+                    if (Object.keys(data).length > 0) {
                         console.log(data['places'][0]['state'])
                         document.querySelector('.error-message').parentElement.classList.remove('error');
                         myAnswers.zipCode = value;
@@ -324,10 +344,7 @@ function changeContent(count) {
                     } else {
                         document.querySelector('.error-message').parentElement.classList.add('error')
                     }
-                }).catch((error) => {
-                    console.log('Error:', error);
-                    document.querySelector('.error-message') != null ? document.querySelector('.error-message').parentElement.classList.add('error') : ''
-                });
+                })
             })
             break
         case '2':
@@ -370,6 +387,5 @@ function changeContent(count) {
         default:
             break
     }
-
 }
 changeContent('1')
