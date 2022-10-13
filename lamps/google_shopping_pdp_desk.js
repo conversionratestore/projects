@@ -2325,6 +2325,16 @@ border: 1px solid rgba(40, 99, 120, 0.2)
 
       if (window.innerWidth > 768) {
         miniCart()
+
+        // on click GET 15% OFF WITH A COUPON
+        if (document.querySelector(".mini_various_block .discount_pdp.sign_up > span")) {
+          document.querySelector(".mini_various_block .discount_pdp.sign_up > span")?.addEventListener("click", function (item) {
+            // if (!item.target.getAttribute("data-test")) {
+            document.querySelector('.catalog-product-view .promo-box .promo-text [data-account-trigger="true"]').click()
+            // }
+            // item.target.setAttribute("data-test", "1")
+          })
+        }
       }
 
       function miniCart() {
@@ -2483,16 +2493,6 @@ border: 1px solid rgba(40, 99, 120, 0.2)
             }
           }
 
-          // on click GET 15% OFF WITH A COUPON
-          if (document.querySelector(".mini_various_block .discount_pdp.sign_up > span")) {
-            document.querySelector(".mini_various_block .discount_pdp.sign_up > span")?.addEventListener("click", function (item) {
-              if (!item.target.getAttribute("data-test")) {
-                document.querySelector('.catalog-product-view .promo-box .promo-text [data-account-trigger="true"]').click()
-              }
-              item.target.setAttribute("data-test", "1")
-            })
-          }
-
           if (coupon) {
             if (!document.querySelector(".mini_various_block > div")) {
               document.querySelector(".mini_various_block")?.appendChild(coupon)
@@ -2597,7 +2597,7 @@ border: 1px solid rgba(40, 99, 120, 0.2)
           renderToPdp()
           viewAllCategories()
 
-          if (!document.querySelector(".price_match_guarantee")) {
+          if (!document.querySelector(".catalog-product-view .product-essential .p-price .price_match_guarantee")) {
             renderPriceMatchGuarantee()
           }
 
@@ -2633,6 +2633,16 @@ border: 1px solid rgba(40, 99, 120, 0.2)
           }
 
           varQlark()
+
+          // on click GET 15% OFF WITH A COUPON
+          if (document.querySelector(".mini_various_block .discount_pdp.sign_up > span")) {
+            document.querySelector(".mini_various_block .discount_pdp.sign_up > span")?.addEventListener("click", function (item) {
+              // if (!item.target.getAttribute("data-test")) {
+              document.querySelector('.catalog-product-view .promo-box .promo-text [data-account-trigger="true"]').click()
+              // }
+              // item.target.setAttribute("data-test", "1")
+            })
+          }
 
           observer.observe(document.querySelector(".catalog-product-view .product-essential"), {
             childList: true,
