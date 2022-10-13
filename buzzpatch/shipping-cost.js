@@ -101,7 +101,10 @@ if (href.includes('/checkouts/')) {
             if (document.querySelector('.step__footer__previous-link-content').innerHTML.toLowerCase().includes('to cart')) {
                 document.querySelector('.step__footer__previous-link-content').innerHTML = `Back`;
                 document.querySelector('.step__footer__previous-link').href = 'https://naturalpatch.com/pages/sleepypatch';
+                document.querySelector('.step__footer__previous-link').addEventListener('click', () => sessionStorage.setItem('routing-checkout', 0))
             }
+            document.querySelectorAll('.breadcrumb a')[0].addEventListener('click', () => sessionStorage.setItem('routing-checkout', 0))
+
             if (pack != '1') {
                 document.querySelector('.total-line--shipping > td > span').innerHTML = `Free`;
                 document.querySelector('.total-line--shipping > td > span').style = `
