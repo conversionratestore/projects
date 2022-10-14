@@ -491,6 +491,9 @@ ul.composition li + li {
   align-items: center;
   justify-content: flex-start;
 }
+.mistake.patch_var{
+  left: 132px;
+}
 .mistake.size_var {
   left: 82px;
 }
@@ -1584,6 +1587,17 @@ ul.background_wrap > li p {
           )
         }
       }
+      if (el.textContent.includes("PATCH TYPE")) {
+        el.textContent = "Select patch type:"
+        if (!document.querySelector(".mistake.color_var")) {
+          el.insertAdjacentHTML(
+            "beforeend",
+            `<div class="mistake patch_var is_hidden">
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M7.33398 9.99992H8.66732V11.3333H7.33398V9.99992ZM7.33398 4.66659H8.66732V8.66659H7.33398V4.66659ZM7.99398 1.33325C4.31398 1.33325 1.33398 4.31992 1.33398 7.99992C1.33398 11.6799 4.31398 14.6666 7.99398 14.6666C11.6807 14.6666 14.6673 11.6799 14.6673 7.99992C14.6673 4.31992 11.6807 1.33325 7.99398 1.33325ZM8.00065 13.3333C5.05398 13.3333 2.66732 10.9466 2.66732 7.99992C2.66732 5.05325 5.05398 2.66659 8.00065 2.66659C10.9473 2.66659 13.334 5.05325 13.334 7.99992C13.334 10.9466 10.9473 13.3333 8.00065 13.3333Z" fill="#D71D1D"/></svg>Please select color
+            </div>`
+          )
+        }
+      }
 
       if (el.textContent.includes("Size")) {
         el.textContent = "Select size:"
@@ -1750,6 +1764,10 @@ ul.background_wrap > li p {
             el.closest(".variant-wrapper").querySelector(".variant__label.hidden-label .mistake").classList.add("is_visited")
           }
 
+          if (el.closest(".variant-wrapper").querySelector(".variant__label.hidden-label").textContent.includes("Select patch type:")) {
+            el.closest(".variant-wrapper").querySelector(".variant__label.hidden-label .mistake").classList.add("is_visited")
+          }
+
           if (document.querySelector(".variant__label.hidden-label .mistake.color_var") && document.querySelector(".variant__label.hidden-label .mistake.size_var")) {
             if (
               document.querySelector(".variant__label.hidden-label .mistake.color_var").classList.contains("is_visited") &&
@@ -1767,6 +1785,12 @@ ul.background_wrap > li p {
 
           if (!document.querySelector(".variant__label.hidden-label .mistake.color_var") && document.querySelector(".variant__label.hidden-label .mistake.size_var")) {
             if (document.querySelector(".variant__label.hidden-label .mistake.size_var").classList.contains("is_visited")) {
+              isHiddenNewWrapBtn()
+            }
+          }
+
+          if (document.querySelector(".variant__label.hidden-label .mistake.patch_var")) {
+            if (document.querySelector(".variant__label.hidden-label .mistake.patch_var").classList.contains("is_visited")) {
               isHiddenNewWrapBtn()
             }
           }
