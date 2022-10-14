@@ -442,12 +442,12 @@ function init() {
           if (!localStorage.getItem("onClickSelect")) {
             console.log(`!localStorage.getItem("onClickSelect")`)
             const selectEvents = ["mousedown", "focusin"]
-            console.log(select)
             setTimeout(() => {
               let wait2 = setInterval(() => {
                 if (document.querySelectorAll(".head-nav-inner .select-vehicle-spacer small.value")[0]) {
                   clearInterval(wait2)
                   const select = document.querySelectorAll(".head-nav-inner .select-vehicle-spacer small.value")[0]
+                  console.log(select)
                   selectEvents.forEach((eventType) => select?.dispatchEvent(new MouseEvent(eventType, { bubbles: true })))
                   localStorage.setItem("onClickSelect", countClickSelect)
                 }
