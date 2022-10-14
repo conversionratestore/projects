@@ -444,9 +444,14 @@ function init() {
             const selectEvents = ["mousedown", "focusin"]
             console.log(select)
             setTimeout(() => {
-              const select = document.querySelectorAll(".head-nav-inner .select-vehicle-spacer small.value")[0]
-              selectEvents.forEach((eventType) => select?.dispatchEvent(new MouseEvent(eventType, { bubbles: true })))
-              localStorage.setItem("onClickSelect", countClickSelect)
+              let wait2 = setInterval(() => {
+                if (document.querySelectorAll(".head-nav-inner .select-vehicle-spacer small.value")[0]) {
+                  clearInterval(wait2)
+                  const select = document.querySelectorAll(".head-nav-inner .select-vehicle-spacer small.value")[0]
+                  selectEvents.forEach((eventType) => select?.dispatchEvent(new MouseEvent(eventType, { bubbles: true })))
+                  localStorage.setItem("onClickSelect", countClickSelect)
+                }
+              }, 10)
             }, 500)
           } else {
             if (localStorage.getItem("onClickSelect")) {
@@ -454,9 +459,12 @@ function init() {
                 console.log(`localStorage.getItem("onClickSelect")`)
                 const selectEvents = ["mousedown", "focusin"]
                 setTimeout(() => {
-                  const select = document.querySelectorAll(".head-nav-inner .select-vehicle-spacer small.value")[0]
-                  selectEvents.forEach((eventType) => select?.dispatchEvent(new MouseEvent(eventType, { bubbles: true })))
-                  localStorage.setItem("onClickSelect", +localStorage.getItem("onClickSelect") + 1)
+                  let wait3 = setInterval(() => {
+                    clearInterval(wait3)
+                    const select = document.querySelectorAll(".head-nav-inner .select-vehicle-spacer small.value")[0]
+                    selectEvents.forEach((eventType) => select?.dispatchEvent(new MouseEvent(eventType, { bubbles: true })))
+                    localStorage.setItem("onClickSelect", +localStorage.getItem("onClickSelect") + 1)
+                  }, 10)
                 }, 500)
               }
             }
