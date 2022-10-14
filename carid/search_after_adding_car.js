@@ -434,26 +434,30 @@ function init() {
     }
 
     if (window.innerWidth > 768) {
-      if (document.querySelector(".head-nav-inner .select-vehicle-spacer")) {
-        let countClickSelect = 1
-        if (!localStorage.getItem("onClickSelect")) {
-          console.log(`!localStorage.getItem("onClickSelect")`)
-          const selectEvents = ["mousedown", "focusin"]
-          const select = document.querySelectorAll(".head-nav-inner .select-vehicle-spacer small.value")[0]
-          selectEvents.forEach((eventType) => select.dispatchEvent(new MouseEvent(eventType, { bubbles: true })))
-          localStorage.setItem("onClickSelect", countClickSelect)
-        } else {
-          if (localStorage.getItem("onClickSelect")) {
-            if (+localStorage.getItem("onClickSelect") < 2) {
-              console.log(`localStorage.getItem("onClickSelect")`)
-              const selectEvents = ["mousedown", "focusin"]
-              const select = document.querySelectorAll(".head-nav-inner .select-vehicle-spacer small.value")[0]
-              selectEvents.forEach((eventType) => select.dispatchEvent(new MouseEvent(eventType, { bubbles: true })))
-              localStorage.setItem("onClickSelect", +localStorage.getItem("onClickSelect") + 1)
+      let wait = setInterval(() => {
+        if (document.querySelector(".head-nav-inner .select-vehicle-spacer")) {
+          clearInterval(wait)
+          console.log(`document.querySelector(".head-nav-inner .select-vehicle-spacer")`, document.querySelector(".head-nav-inner .select-vehicle-spacer"))
+          let countClickSelect = 1
+          if (!localStorage.getItem("onClickSelect")) {
+            console.log(`!localStorage.getItem("onClickSelect")`)
+            const selectEvents = ["mousedown", "focusin"]
+            const select = document.querySelectorAll(".head-nav-inner .select-vehicle-spacer small.value")[0]
+            selectEvents.forEach((eventType) => select.dispatchEvent(new MouseEvent(eventType, { bubbles: true })))
+            localStorage.setItem("onClickSelect", countClickSelect)
+          } else {
+            if (localStorage.getItem("onClickSelect")) {
+              if (+localStorage.getItem("onClickSelect") < 2) {
+                console.log(`localStorage.getItem("onClickSelect")`)
+                const selectEvents = ["mousedown", "focusin"]
+                const select = document.querySelectorAll(".head-nav-inner .select-vehicle-spacer small.value")[0]
+                selectEvents.forEach((eventType) => select.dispatchEvent(new MouseEvent(eventType, { bubbles: true })))
+                localStorage.setItem("onClickSelect", +localStorage.getItem("onClickSelect") + 1)
+              }
             }
           }
         }
-      }
+      }, 10)
     }
   }
 
