@@ -442,9 +442,10 @@ function init() {
           if (!localStorage.getItem("onClickSelect")) {
             console.log(`!localStorage.getItem("onClickSelect")`)
             const selectEvents = ["mousedown", "focusin"]
-            const select = document.querySelectorAll(".head-nav-inner .select-vehicle-spacer small.value")[0]
+            console.log(select)
             setTimeout(() => {
-              selectEvents.forEach((eventType) => select.dispatchEvent(new MouseEvent(eventType, { bubbles: true })))
+              const select = document.querySelectorAll(".head-nav-inner .select-vehicle-spacer small.value")[0]
+              selectEvents.forEach((eventType) => select?.dispatchEvent(new MouseEvent(eventType, { bubbles: true })))
               localStorage.setItem("onClickSelect", countClickSelect)
             }, 500)
           } else {
@@ -452,9 +453,9 @@ function init() {
               if (+localStorage.getItem("onClickSelect") < 2) {
                 console.log(`localStorage.getItem("onClickSelect")`)
                 const selectEvents = ["mousedown", "focusin"]
-                const select = document.querySelectorAll(".head-nav-inner .select-vehicle-spacer small.value")[0]
                 setTimeout(() => {
-                  selectEvents.forEach((eventType) => select.dispatchEvent(new MouseEvent(eventType, { bubbles: true })))
+                  const select = document.querySelectorAll(".head-nav-inner .select-vehicle-spacer small.value")[0]
+                  selectEvents.forEach((eventType) => select?.dispatchEvent(new MouseEvent(eventType, { bubbles: true })))
                   localStorage.setItem("onClickSelect", +localStorage.getItem("onClickSelect") + 1)
                 }, 500)
               }
