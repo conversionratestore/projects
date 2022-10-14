@@ -1556,7 +1556,7 @@ p.stock_var {
                 </div>
                 <div>
                   <span>Price Match Guarantee</span>
-                  <p>Pay less than enywhere else</p>
+                  <p>Pay less than anywhere else</p>
                 </div>
             </li>
             <li data-tolltip>
@@ -1741,7 +1741,7 @@ p.stock_var {
 
           if (!document.querySelector(".product-shop .config_wrap .col-12.text-left.p-item-vendor .item-vendor")) {
             console.log(`>>>>>>>>>>>>>нет элемента`, document.querySelector(".product-shop .config_wrap .col-12.text-left.p-item-vendor .item-vendor"))
-            document.querySelector(".product-shop .config_wrap .col-12.p-head.mb-2").after(document.querySelector(".product-shop .col-12.text-left.p-item-vendor"))
+            document.querySelector(".product-shop .config_wrap .col-12.p-head.mb-2")?.after(document.querySelector(".product-shop .col-12.text-left.p-item-vendor"))
           }
 
           if (document.querySelector("#config-box")) {
