@@ -274,6 +274,8 @@ let style = `
         background: #fff;
         z-index: 2;
         color: #555555;
+        line-height: 150%;
+        text-align: left;
     }
     .show-more span {
         color: #526EFF;
@@ -340,7 +342,7 @@ let style = `
         }
     }
     @media only screen and (min-width: 768px) {
-        .quiz-footer, .anonymous {
+        .quiz-footer > div:not(.quiz-result), .anonymous {
             max-width: 320px;
             margin: 0 auto;
         }
@@ -360,6 +362,34 @@ let style = `
         }
         .quiz h2 {
             margin-top: 28px;
+        }
+        .row-result {
+            display: flex;
+        }
+        .quiz-block {
+            width: calc(50% - 16px);
+            margin-right: 32px;
+            margin-top: 32px;
+        }
+        .quiz-block:last-child {
+            margin-right: 0;
+        }
+        .quiz-result .btn-next {
+            max-width: 340px;
+            margin: 32px auto 0;
+        }
+        .show-more {
+            width: 108px;
+        }
+        .my-answers {
+            margin-right: auto;
+            margin-left: 32px;
+            position: relative;
+        }
+        .my-answers_dropdown {
+            top: 100%;
+            left: 0;
+            transform: none;
         }
     }
 </style>`
@@ -475,66 +505,79 @@ function setBtn(text) {
 }
 // html
 let zipCodeHTML = `
-        <label class="">Your Zip Code</label>
-        <input type="number" placeholder="Your Zip Code">
-        <p class="error-message">You must provide a valid zip code</p>
-        ${setBtn('Next')}`,
+        <div>
+            <label class="">Your Zip Code</label>
+            <input type="number" placeholder="Your Zip Code">
+            <p class="error-message">You must provide a valid zip code</p>
+            ${setBtn('Next')}
+        </div>`,
 
     carOwnershipHTML = `
-        <label class="">Car Ownership</label>
-        <div class="select relative" name="car-ownership">
-            <div class="select-item">Fully Owned</div>
-            <div class="select-drop">
-                <div class="active">Fully Owned</div>
-                <div>Leased</div>
-                <div>Financed Purchase</div>
+        <div>
+            <label class="">Car Ownership</label>
+            <div class="select relative" name="car-ownership">
+                <div class="select-item">Fully Owned</div>
+                <div class="select-drop">
+                    <div class="active">Fully Owned</div>
+                    <div>Leased</div>
+                    <div>Financed Purchase</div>
+                </div>
             </div>
-        </div>
-        ${setBtn('Next')}`,
+            ${setBtn('Next')}
+        </div>`,
 
     cashValueHTML = `
-        <label class="">Actual Cash Value (ACV) of Your Car</label>
-        <div class="relative">
-            <p class="currency-cash">$</p>
-            <input type="text" class="input-cash" onkeyup="formatCash(this)">
-        </div>
-        <p class="error-message">Please enter your car's actual cash value</p>
-        ${setBtn('Next')}`,
+        <div>
+            <label class="">Actual Cash Value (ACV) of Your Car</label>
+            <div class="relative">
+                <p class="currency-cash">$</p>
+                <input type="text" class="input-cash" onkeyup="formatCash(this)">
+            </div>
+            <p class="error-message">Please enter your car's actual cash value</p>
+            ${setBtn('Next')}
+        </div>`,
 
     netWorthHTML = `
-        <label class="">Net worth</label>
-        <div class="select relative" name="net-worth">
-            <div class="select-item">$50,000 or Less</div>
-            <div class="select-drop">
-                <div class="active">$50,000 or Less</div>
-                <div>$50,000 to $100,000</div>
-                <div>$100,000 to $300,000</div>
-                <div>More than $300,000</div>
+        <div>
+            <label class="">Net worth</label>
+            <div class="select relative" name="net-worth">
+                <div class="select-item">$50,000 or Less</div>
+                <div class="select-drop">
+                    <div class="active">$50,000 or Less</div>
+                    <div>$50,000 to $100,000</div>
+                    <div>$100,000 to $300,000</div>
+                    <div>More than $300,000</div>
+                </div>
             </div>
-        </div>
-        ${setBtn('Next')}`,
+            ${setBtn('Next')}
+        </div>`,
 
     resultHTML = `
-        <h2 class="fs-24">Recommended Type and Level of Car Insurance Coverage:</h2>
-        <div class="coverage-type quiz-block">
-            <p>Coverage Type:</p>
-            <h3>Comprehensive and Collision</h3>
-            <p class="weight-600">Explanation:</p>
-            <div class="text-res">
-                <p></p>
-                <button type="button" class="show-more">.... <span class="weight-600">See more</span></button>
+        <div class="quiz-result">
+            <h2 class="fs-24">Recommended Type and Level of Car Insurance Coverage:</h2>
+            <div class="row-result">
+                <div class="coverage-type quiz-block">
+                    <p>Coverage Type:</p>
+                    <h3>Comprehensive and Collision</h3>
+                    <p class="weight-600">Explanation:</p>
+                    <div class="text-res">
+                        <p></p>
+                        <button type="button" class="show-more">.... <span class="weight-600">See more</span></button>
+                    </div>
+                </div>
+                <div class="required-level quiz-block">
+                    <p>Required Level of Coverage:</p>
+                    <h3></h3>
+                    <p class="weight-600">Explanation:</p>
+                    <div class="text-res">
+                        <p></p>
+                        <button type="button" class="show-more">.... <span class="weight-600">See more</span></button>
+                    </div>
+                </div>
             </div>
+            ${setBtn('Compare Coverage Pricing & Quotes')}
         </div>
-        <div class="required-level quiz-block">
-            <p>Required Level of Coverage:</p>
-            <h3></h3>
-            <p class="weight-600">Explanation:</p>
-            <div class="text-res">
-                <p></p>
-                <button type="button" class="show-more">.... <span class="weight-600">See more</span></button>
-            </div>
-        </div>
-        <div class="quiz-footer">${setBtn('Compare Coverage Pricing & Quotes')}</div>`
+       `
 
 
 document.body.insertAdjacentHTML('afterbegin', style) //add style
@@ -610,6 +653,7 @@ function formatCash(input){
 }
 //push dataLayer
 function pushDataLayer(action) {
+    console.log(action)
     window.dataLayer = window.dataLayer || [];
     dataLayer.push({
         'event': 'event-to-ga',
@@ -626,7 +670,11 @@ function changeContent(count) {
             countStep.innerHTML = '1';
             countStep.dataset.step = '1';
             btnBack.classList.add('hide');
+            //event
+            document.querySelector('').addEventListener('click', () => pushDataLayer(`Click on Your Zip Code input`))
+            //click next button
             document.querySelector('.btn-next').addEventListener('click', (e) => {
+                pushDataLayer(`Click on Next button (step - 1)`)
                 let value = document.querySelector('.quiz-footer input').value;
                 console.log(value)
                 if (value != '') {
@@ -649,11 +697,17 @@ function changeContent(count) {
             break
         case '2':
             footerQuiz.innerHTML = carOwnershipHTML;
-            countStep.innerHTML = zipCode == '' ? '2' : '1';
+            if (zipCode == '') {
+                btnBack.classList.remove('hide');
+                countStep.innerHTML = '2';
+            } else {
+                btnBack.classList.add('hide');
+                countStep.innerHTML = '1';
+            }
             countStep.dataset.step = '2';
-            btnBack.classList.remove('hide');
             selectChange('.select-item');
             document.querySelector('.btn-next').addEventListener('click', () => {
+                pushDataLayer(`Click on Next button (step - ${countStep.innerHTML})`)
                 myAnswers[2] = document.querySelector('[name="car-ownership"] .select-item').innerHTML;
                 changeContent('3')
             })
@@ -661,9 +715,11 @@ function changeContent(count) {
         case '3':
             footerQuiz.innerHTML = cashValueHTML;
             countStep.innerHTML = zipCode == '' ? '3' : '2';
+            btnBack.classList.remove('hide');
             countStep.dataset.step = '3';
             let cash = document.querySelector('.input-cash');
             document.querySelector('.btn-next').addEventListener('click', (e) => {
+                pushDataLayer(`Click on Next button (step - ${countStep.innerHTML})`)
                 if (cash.value != '') {
                     document.querySelector('.error-message').parentElement.classList.remove('error')
                     myAnswers[3] = '$' + cash.value;
@@ -683,6 +739,7 @@ function changeContent(count) {
             selectChange('.select-item');
             document.querySelector('.btn-next').addEventListener('click', () => {
                 myAnswers[4] = document.querySelector('[name="net-worth"] .select-item').innerHTML;
+                pushDataLayer(`Click on Next button (step - ${countStep.innerHTML})`)
                 changeContent('5')
             })
             break
@@ -719,6 +776,7 @@ function changeContent(count) {
                 })
             })
             document.querySelector('.btn-next').addEventListener('click', () => {
+                pushDataLayer(`Click on Compare Coverage Pricing & Quotes button`)
                 document.querySelector('form .chakra-form-control input').value = myAnswers[0];
                 document.querySelector('form .chakra-button').click();
             })
