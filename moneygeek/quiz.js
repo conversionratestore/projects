@@ -80,7 +80,7 @@ let style = `
         line-height: 24px;
         margin-bottom: 4px;
     }
-    .quiz input, .select-item {
+    .quiz input, .quiz input[type='text'], .select-item {
         background: #FFFFFF;
         border: 1px solid #D3D4D6;
         border-radius: 4px;
@@ -108,7 +108,6 @@ let style = `
         transform: scaleY(-1);
     }
     .select.active .select-drop {
-        height: 133px;
         padding: 4px 0;
         opacity: 1;
         pointer-events: auto;
@@ -179,7 +178,7 @@ let style = `
     .error .error-message {
         display: block;
     }
-    input.input-cash {
+    .quiz input.input-cash {
         padding-left: 25px;
     }
     .currency-cash {
@@ -242,7 +241,7 @@ let style = `
         padding: 20px;
     }
     .quiz-block h3 {
-        font-family: 'Brandon Grotesque', sans-serif;
+        font-family: 'Circular-Loom', sans-serif;
         font-style: normal;
         text-transform: capitalize;
         font-weight: 500;
@@ -295,6 +294,21 @@ let style = `
     .justify-center {
         justify-content: center;
     }
+    
+    @media only screen and (max-width: 375px) {
+        .anonymous {
+            padding: 10px;
+        }
+        .anonymous svg {
+            margin-right: 6px;
+        }
+        .quiz-block h3 {
+            font-size: 19px;
+        }
+        .quiz {
+            padding: 25px 15px;
+        }
+    }
     @media only screen and (max-width: 360px) {
         .quiz  {
             padding: 20px 10px;
@@ -341,34 +355,48 @@ let objQuiz = {
     'Leased': {
         0: {
             '$50,000 or Less' : ['You are obliged by law to cover a leased vehicle with a comprehensive/collision insurance. Given your indicated car ownership, <b>we recommend you to buy the comprehensive/collission coverage.</b>','Bodily injury liability insurance protects the assets you could lose if you injured someone in an accident and were forced to personally pay their financial costs. Therefore the higher your net worth, the more bodily injury liability insurance you need. We’ve already calculated this for you,<b> and given your indicated net worth we recommend you buy only the state minimum liability coverage.</b>'],
-            '$50,000 to $100,000' : ['Coverage type: You are obliged by law to cover a leased vehicle with comprehensive/collision insurance. Given your indicated car ownership, we recommend you to buy the comprehensive/collission coverage.','Bodily injury liability insurance protects the assets you could lose if you injured someone in an accident and were forced to personally pay their financial costs. Therefore the higher your net worth, the more bodily injury liability insurance you need. We’ve already calculated this for you, and given your indicated net worth we recommend you buy only the 50/100/50 liability coverage.'],
-            '$100,000 to $300,000': [' You are obliged by law to cover a leased vehicle with comprehensive/collision insurance. Given your indicated car ownership, we recommend you to buy the comprehensive/collission coverage.',' Bodily injury liability insurance protects the assets you could lose if you injured someone in an accident and were forced to personally pay their financial costs. Therefore the higher your net worth, the more bodily injury liability insurance you need. We’ve already calculated this for you, and given your indicated net worth we recommend you buy only the 100/300/100 liability coverage.'],
-            'More than $300,000': ['You are obliged by law to cover a leased vehicle with comprehensive/collision insurance. Given your indicated car ownership, we recommend you to buy the comprehensive/collission coverage.',' Bodily injury liability insurance protects the assets you could lose if you injured someone in an accident and were forced to personally personally pay their financial costs. Therefore the higher your net worth, the more bodily injury liability insurance you need. We’ve already calculated this for you, and given your indicated net worth we recommend you buy only the 100/300/100 liability coverage.'],
+            '$50,000 to $100,000' : ['Coverage type: You are obliged by law to cover a leased vehicle with comprehensive/collision insurance. Given your indicated car ownership, <b>we recommend you to buy the comprehensive/collission coverage.</b>','Bodily injury liability insurance protects the assets you could lose if you injured someone in an accident and were forced to personally pay their financial costs. Therefore the higher your net worth, the more bodily injury liability insurance you need. We’ve already calculated this for you,<b>  and given your indicated net worth we recommend you buy only the <span>50/100/50</span> liability coverage.</b>'],
+            '$100,000 to $300,000': [' You are obliged by law to cover a leased vehicle with comprehensive/collision insurance. Given your indicated car ownership, <b>we recommend you to buy the comprehensive/collission coverage.</b>',' Bodily injury liability insurance protects the assets you could lose if you injured someone in an accident and were forced to personally pay their financial costs. Therefore the higher your net worth, the more bodily injury liability insurance you need. We’ve already calculated this for you,<b>  and given your indicated net worth we recommend you buy only the <span>100/300/100</span> liability coverage.</b>'],
+            'More than $300,000': ['You are obliged by law to cover a leased vehicle with comprehensive/collision insurance. Given your indicated car ownership, <b>we recommend you to buy the comprehensive/collission coverage.</b>',' Bodily injury liability insurance protects the assets you could lose if you injured someone in an accident and were forced to personally personally pay their financial costs. Therefore the higher your net worth, the more bodily injury liability insurance you need. We’ve already calculated this for you,<b>  and given your indicated net worth we recommend you buy only the <span>100/300/100</span> liability coverage.</b>'],
         },
         1: {
-            '$50,000 or Less' : ['You are obliged by law to cover a leased vehicle with comprehensive/collision insurance. Given your indicated car ownership, we recommend you to buy the comprehensive/collission coverage.','Bodily injury liability insurance protects the assets you could lose if you injured someone in an accident and were forced to personally pay their financial costs. Therefore the higher your net worth, the more bodily injury liability insurance you need. We’ve already calculated this for you, and given your indicated net worth we recommend you buy only the state minimum liability coverage.'],
-            '$50,000 to $100,000' : ['You are obliged by law to cover a leased vehicle with a comprehensive/collision insurance. Given your indicated car ownership, we recommend you to buy the comprehensive/collission coverage.','Bodily injury liability insurance protects the assets you could lose if you injured someone in an accident and were forced to personally pay their financial costs. Therefore the higher your net worth, the more bodily injury liability insurance you need. We’ve already calculated this for you, and given your indicated net worth we recommend you buy only the 50/100/50 liability coverage.'],
-            '$100,000 to $300,000': ['You are obliged by law to cover a leased vehicle with a comprehensive/collision insurance. Given your indicated car ownership, we recommend you to buy the comprehensive/collission coverage.','Bodily injury liability insurance protects the assets you could lose if you injured someone in an accident and were forced to personally pay their financial costs. Therefore the higher your net worth, the more bodily injury liability insurance you need. We’ve already calculated this for you, and given your indicated net worth we recommend you buy only the 100/300/100 liability coverage.'],
-            'More than $300,000': ['You are obliged by law to cover a leased vehicle with comprehensive/collision insurance. Given your indicated car ownership, we recommend you to buy the comprehensive/collission coverage.','Bodily injury liability insurance protects the assets you could lose if you injured someone in an accident and were forced to personally pay their financial costs. Therefore the higher your net worth, the more bodily injury liability insurance you need. We’ve already calculated this for you, and given your indicated net worth we recommend you buy only the 100/300/100 liability coverage.'],
+            '$50,000 or Less' : ['You are obliged by law to cover a leased vehicle with comprehensive/collision insurance. Given your indicated car ownership, <b>we recommend you to buy the comprehensive/collission coverage.</b>','Bodily injury liability insurance protects the assets you could lose if you injured someone in an accident and were forced to personally pay their financial costs. Therefore the higher your net worth, the more bodily injury liability insurance you need. We’ve already calculated this for you,<b> and given your indicated net worth we recommend you buy only the state minimum liability coverage.</b>'],
+            '$50,000 to $100,000' : ['You are obliged by law to cover a leased vehicle with a comprehensive/collision insurance. Given your indicated car ownership, <b>we recommend you to buy the comprehensive/collission coverage.</b>','Bodily injury liability insurance protects the assets you could lose if you injured someone in an accident and were forced to personally pay their financial costs. Therefore the higher your net worth, the more bodily injury liability insurance you need. We’ve already calculated this for you,<b> and given your indicated net worth we recommend you buy only the <span>50/100/50</span> liability coverage.</b>'],
+            '$100,000 to $300,000': ['You are obliged by law to cover a leased vehicle with a comprehensive/collision insurance. Given your indicated car ownership, <b>we recommend you to buy the comprehensive/collission coverage.</b>','Bodily injury liability insurance protects the assets you could lose if you injured someone in an accident and were forced to personally pay their financial costs. Therefore the higher your net worth, the more bodily injury liability insurance you need. We’ve already calculated this for you,<b> and given your indicated net worth we recommend you buy only the <span>100/300/100</span> liability coverage.</b>'],
+            'More than $300,000': ['You are obliged by law to cover a leased vehicle with comprehensive/collision insurance. Given your indicated car ownership, <b>we recommend you to buy the comprehensive/collission coverage.</b>','Bodily injury liability insurance protects the assets you could lose if you injured someone in an accident and were forced to personally pay their financial costs. Therefore the higher your net worth, the more bodily injury liability insurance you need. We’ve already calculated this for you,<b> and given your indicated net worth we recommend you buy only the <span>100/300/100</span> liability coverage.</b>'],
         }
     },
     'Financed Purchase': {
         0: {
-            '$50,000 or Less' : ['You are obliged by law to cover a financed purchase vehicle with comprehensive/collision insurance. Given your indicated car ownership, we recommend you to buy the comprehensive/collission coverage.','Bodily injury liability insurance protects the assets you could lose if you injured someone in an accident and were forced to personally pay their financial costs. Therefore the higher your net worth, the more bodily injury liability insurance you need. We’ve already calculated this for you, and given your indicated net worth we recommend you buy only the state minimum liability coverage.'],
-            '$50,000 to $100,000' : ['You are obliged by law to cover a financed purchase vehicle with comprehensive/collision insurance. Given your indicated car ownership, we recommend you to buy the comprehensive/collission coverage.','Bodily injury liability insurance protects the assets you could lose if you injured someone in an accident and were forced to personally pay their financial costs. Therefore the higher your net worth, the more bodily injury liability insurance you need. We’ve already calculated this for you, and given your indicated net worth we recommend you buy only the 50/100/50 liability coverage.'],
-            '$100,000 to $300,000': ['You are obliged by law to cover a financed purchase vehicle with a comprehensive/collision insurance. Given your indicated car ownership, we recommend you to buy the comprehensive/collission coverage.','Bodily injury liability insurance protects the assets you could lose if you injured someone in an accident and were forced to personally pay their financial costs. Therefore the higher your net worth, the more bodily injury liability insurance you need. We’ve already calculated this for you, and given your indicated net worth we recommend you buy only the 100/300/100 liability coverage.'],
-            'More than $300,000': ['You are obliged by law to cover a financed purchase vehicle with comprehensive/collision insurance. Given your indicated car ownership, we recommend you to buy the comprehensive/collission coverage.','Bodily injury liability insurance protects the assets you could lose if you injured someone in an accident and were forced to personally pay their financial costs. Therefore the higher your net worth, the more bodily injury liability insurance you need. We’ve already calculated this for you, and given your indicated net worth we recommend you buy only the 100/300/100 liability coverage.'],
+            '$50,000 or Less' : ['You are obliged by law to cover a financed purchase vehicle with comprehensive/collision insurance. Given your indicated car ownership, <b>we recommend you to buy the comprehensive/collission coverage.</b>','Bodily injury liability insurance protects the assets you could lose if you injured someone in an accident and were forced to personally pay their financial costs. Therefore the higher your net worth, the more bodily injury liability insurance you need. We’ve already calculated this for you,<b> and given your indicated net worth we recommend you buy only the state minimum liability coverage.</b>'],
+            '$50,000 to $100,000' : ['You are obliged by law to cover a financed purchase vehicle with comprehensive/collision insurance. Given your indicated car ownership, <b>we recommend you to buy the comprehensive/collission coverage.</b>','Bodily injury liability insurance protects the assets you could lose if you injured someone in an accident and were forced to personally pay their financial costs. Therefore the higher your net worth, the more bodily injury liability insurance you need. We’ve already calculated this for you,<b> and given your indicated net worth we recommend you buy only the <span>50/100/50</span> liability coverage.</b>'],
+            '$100,000 to $300,000': ['You are obliged by law to cover a financed purchase vehicle with a comprehensive/collision insurance. Given your indicated car ownership, <b>we recommend you to buy the comprehensive/collission coverage.</b>','Bodily injury liability insurance protects the assets you could lose if you injured someone in an accident and were forced to personally pay their financial costs. Therefore the higher your net worth, the more bodily injury liability insurance you need. We’ve already calculated this for you,<b> and given your indicated net worth we recommend you buy only the <span>100/300/100</span> liability coverage.</b>'],
+            'More than $300,000': ['You are obliged by law to cover a financed purchase vehicle with comprehensive/collision insurance. Given your indicated car ownership, <b>we recommend you to buy the comprehensive/collission coverage.</b>','Bodily injury liability insurance protects the assets you could lose if you injured someone in an accident and were forced to personally pay their financial costs. Therefore the higher your net worth, the more bodily injury liability insurance you need. We’ve already calculated this for you,<b> and given your indicated net worth we recommend you buy only the <span>100/300/100</span> liability coverage.</b>'],
         },
         1: {
-            '$50,000 or Less' : ['You are obliged by law to cover a financed purchase vehicle with comprehensive/collision insurance. Given your indicated car ownership, we recommend you to buy the comprehensive/collission coverage.','Bodily injury liability insurance protects the assets you could lose if you injured someone in an accident and were forced to personally pay their financial costs. Therefore the higher your net worth, the more bodily injury liability insurance you need. We’ve already calculated this for you, and given your indicated net worth we recommend you buy only the 100/300/100 liability coverage.'],
-            '$50,000 to $100,000' : ['You are obliged by law to cover financed purchase vehicle with comprehensive/collision insurance. Given your indicated car ownership, we recommend you to buy the comprehensive/collission coverage.','Bodily injury liability insurance protects the assets you could lose if you injured someone in an accident and were forced to personally pay their financial costs. Therefore the higher your net worth, the more bodily injury liability insurance you need. We’ve already calculated this for you, and given your indicated net worth we recommend you buy only the 50/100/50 liability coverage.'],
-            '$100,000 to $300,000': ['You are obliged by law to cover a financed purchase vehicle with comprehensive/collision insurance. Given your indicated car ownership, we recommend you to buy the comprehensive/collission coverage.','Bodily injury liability insurance protects the assets you could lose if you injured someone in an accident and were forced to personally pay their financial costs. Therefore the higher your net worth, the more bodily injury liability insurance you need. We’ve already calculated this for you, and given your indicated net worth we recommend you buy only the 100/300/100 liability coverage.'],
-            'More than $300,000': [' You are obliged by law to cover a financed purchase vehicle with comprehensive/collision insurance. Given your indicated car ownership, we recommend you to buy the comprehensive/collission coverage.','Bodily injury liability insurance protects the assets you could lose if you injured someone in an accident and were forced to personally pay their financial costs. Therefore the higher your net worth, the more bodily injury liability insurance you need. We’ve already calculated this for you, and given your indicated net worth we recommend you buy only the 100/300/100 liability coverage.'],
+            '$50,000 or Less' : ['You are obliged by law to cover a financed purchase vehicle with comprehensive/collision insurance. Given your indicated car ownership,<b> we recommend you to buy the comprehensive/collission coverage.</b>','Bodily injury liability insurance protects the assets you could lose if you injured someone in an accident and were forced to personally pay their financial costs. Therefore the higher your net worth, the more bodily injury liability insurance you need. We’ve already calculated this for you,<b> and given your indicated net worth we recommend you buy only the <span>100/300/100</span> liability coverage.</b>'],
+            '$50,000 to $100,000' : ['You are obliged by law to cover financed purchase vehicle with comprehensive/collision insurance. Given your indicated car ownership, <b>we recommend you to buy the comprehensive/collission coverage.</b>','Bodily injury liability insurance protects the assets you could lose if you injured someone in an accident and were forced to personally pay their financial costs. Therefore the higher your net worth, the more bodily injury liability insurance you need. We’ve already calculated this for you,<b> and given your indicated net worth we recommend you buy only the <span>50/100/50</span> liability coverage.</b>'],
+            '$100,000 to $300,000': ['You are obliged by law to cover a financed purchase vehicle with comprehensive/collision insurance. Given your indicated car ownership, <b>we recommend you to buy the comprehensive/collission coverage.</b>','Bodily injury liability insurance protects the assets you could lose if you injured someone in an accident and were forced to personally pay their financial costs. Therefore the higher your net worth, the more bodily injury liability insurance you need. We’ve already calculated this for you,<b> and given your indicated net worth we recommend you buy only the <span>100/300/100</span> liability coverage.</b>'],
+            'More than $300,000': [' You are obliged by law to cover a financed purchase vehicle with comprehensive/collision insurance. Given your indicated car ownership, <b>we recommend you to buy the comprehensive/collission coverage.</b>','Bodily injury liability insurance protects the assets you could lose if you injured someone in an accident and were forced to personally pay their financial costs. Therefore the higher your net worth, the more bodily injury liability insurance you need. We’ve already calculated this for you,<b> and given your indicated net worth we recommend you buy only the <span>100/300/100</span> liability coverage.</b>'],
         }
     }
 }
 
-// let stateMinimumObj = {}
+let stateMinimumObj = ['Alabama:25/50/25', 'Alaska:50/100/25', 'Arizona:15/30/10', 'Arkansas:25/50/25', 'California:15/30/5', 'Colorado:25/50/15', 'Connecticut:25/50/25', 'District of Columbia:25/50/10', 'Delaware:25/50/10', 'Florida:10/10', 'Georgia:25/50/25', 'Hawaii:20/40/10', 'Idaho:25/50/15', 'Illinois:25/50/20', 'Indiana:25/50/25', 'Iowa:20/40/15', 'Kansas:25/50/25', 'Kentucky:25/50/25', 'Louisiana:15/30/25', 'Maine:50/100/25', 'Maryland:30/60/15', 'Massachusetts:20/40/5', 'Michigan:20/40Unlimited', 'Minnesota:30/60/10', 'Mississippi:25/50/25', 'Missouri:25/50/25', 'Montana:25/50/20', 'Nebraska:25/50/25', 'Nevada:25/50/20', 'New Hampshire:Car25/50', 'New Jersey:5/1', 'New Mexico:25/50/10', 'New York:25/50/10', 'North Carolina:30/60/25', 'North Dakota:25/50/25', 'Ohio:25/50/25', 'Oklahoma:25/50/25', 'Oregon:25/50/20', 'Pennsylvania:15/30/5', 'Rhode Island:25/50/25', 'South Carolina:25/50/25', 'South Dakota:25/50/25', 'Tennessee:25/50/15', 'Texas:30/60/25', 'Utah:25/65/15', 'Vermont:25/50/10', 'Virginia:Car25/50', 'Washington:25/50/10', 'West Virginia:25/50/25', 'Wisconsin:25/50/10', 'Wyoming:25/50/20']
+
+let myAnswers = [0,'','',0,''] //my Answers array
+let href = window.location.href; //location page
+
+let zipCode = '';
+if (href.includes('/insurance/auto/cheapest-car-insurance-texas/')) {
+    zipCode = '77494';
+    myAnswers[0] = '77494';
+    myAnswers[1] = 'Texas';
+} else if (href.includes('insurance/auto/cheapest-car-insurance-california/')) {
+    zipCode = '90011';
+    myAnswers[0] = '90011';
+    myAnswers[1] = 'California';
+}
 
 // html
 let quizHTML = `
@@ -394,7 +422,7 @@ let quizHTML = `
             </div>
         </div>
         <img src="https://conversionratestore.github.io/projects/moneygeek/img/logo.svg" alt="logo icon">
-        <div class="step-count"><span>1</span> | 4</div>
+        <div class="step-count"><span data-step="1">1</span> | ${zipCode == '' ? '4' : '3'}</div>
     </div>
     <div class="quiz-body">
         <h2>Determine How Much Car Insurance You need</h2>
@@ -411,7 +439,7 @@ let quizHTML = `
 </div>`
 
 function setBtn(text) {
-    return `<button type="button" class="btn-next flex items-center justify-center">
+    return `<button type="button" class="btn-next flex items-center justify-center" >
                 ${text} 
                 <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M0.665365 5.33268H8.7787L5.05203 1.60602L5.9987 0.666016L11.332 5.99935L5.9987 11.3327L5.0587 10.3927L8.7787 6.66602H0.665365V5.33268Z" fill="white"/>
@@ -441,7 +469,7 @@ let zipCodeHTML = `
         <label class="">Actual Cash Value (ACV) of Your Car</label>
         <div class="relative">
             <p class="currency-cash">$</p>
-            <input type="number" class="input-cash">
+            <input type="text" class="input-cash" onkeyup="formatCash(this)">
         </div>
         <p class="error-message">Please enter your car's actual cash value</p>
         ${setBtn('Next')}`,
@@ -467,7 +495,7 @@ let zipCodeHTML = `
             <p class="weight-600">Explanation:</p>
             <div class="text-res">
                 <p></p>
-                <a href="#" class="show-more">.... <span class="weight-600">See more</span></a>
+                <button type="button" class="show-more">.... <span class="weight-600">See more</span></button>
             </div>
         </div>
         <div class="required-level quiz-block">
@@ -476,18 +504,25 @@ let zipCodeHTML = `
             <p class="weight-600">Explanation:</p>
             <div class="text-res">
                 <p></p>
-                <a href="#" class="show-more">.... <span class="weight-600">See more</span></a>
+                <button type="button" class="show-more">.... <span class="weight-600">See more</span></button>
             </div>
         </div>
         <div class="quiz-footer">${setBtn('Compare Coverage Pricing & Quotes')}</div>`
 
-let myAnswers = [0,'','',0,''] //my Answers array
-let href = window.location.href; //location page
 
 document.body.insertAdjacentHTML('afterbegin', style) //add style
+
 //add quiz on page
 if (href.includes('insurance/auto/how-much-car-insurance-do-you-need/')) {
     document.querySelector('#gatsby-focus-wrapper > div > main > div.css-1irxgwz.ead1i4x8 > div > div.css-1wbld27.ead1i4x7 > div.spacing').insertAdjacentHTML('afterend', quizHTML)
+} else if (href.includes('insurance/how-to-get-car-insurance-before-buying-a-car/')) {
+    document.querySelector('.Spacing').insertAdjacentHTML('beforebegin', quizHTML)
+} else if (href.includes('insurance/auto/cheapest-full-coverage-car-insurance/')) {
+    document.querySelector('#gatsby-focus-wrapper > div > main > div.css-1irxgwz.ead1i4x8 > div > div.css-1uj8m62.ead1i4x6 > div.css-d0d87m').insertAdjacentHTML('afterend', quizHTML)
+} else if (href.includes('/insurance/auto/cheapest-car-insurance-texas/')) {
+    document.querySelector('#gatsby-focus-wrapper > div > main > div.css-1irxgwz.ead1i4x8 > div > div.css-1uj8m62.ead1i4x6 > div.css-d0d87m').insertAdjacentHTML('afterend', quizHTML)
+} else if (href.includes('insurance/auto/cheapest-car-insurance-california/')) {
+    document.querySelector('#gatsby-focus-wrapper > div > main > div.css-1irxgwz.ead1i4x8 > div > div.css-1uj8m62.ead1i4x6 > div.css-d0d87m').insertAdjacentHTML('afterend', quizHTML)
 }
 
 let footerQuiz = document.querySelector('.quiz-footer'), //footer quiz
@@ -525,6 +560,36 @@ function apiZipCode(value) {
         });
     })
 }
+//click on Enter
+function clickOnEnter(input, button) {
+    document.querySelector(input).addEventListener('keyup' , (e) => {
+        if (e.keyCode == 13) {
+            document.querySelector(button).click();
+        }
+    })
+}
+//format cash
+function formatCash(input){
+    let nStr = input.value + '';
+    nStr = nStr.replace( /\,/g, "");
+    let x = nStr.split( '.' );
+    let x1 = x[0];
+    let x2 = x.length > 1 ? '.' + x[1] : '';
+    let rgx = /(\d+)(\d{3})/;
+    while ( rgx.test(x1) ) {
+        x1 = x1.replace( rgx, '$1' + ',' + '$2' );
+    }
+    input.value = x1 + x2;
+}
+//push dataLayer
+function pushDataLayer(action) {
+    window.dataLayer = window.dataLayer || [];
+    dataLayer.push({
+        'event': 'event-to-ga',
+        'eventCategory': 'Exp: The Quiz',
+        'eventAction': action
+    });
+}
 
 //change content/logic for each stage
 function changeContent(count) {
@@ -532,9 +597,10 @@ function changeContent(count) {
         case '1':
             footerQuiz.innerHTML = zipCodeHTML;
             countStep.innerHTML = '1';
+            countStep.dataset.step = '1';
             btnBack.style.display = 'none';
             document.querySelector('.btn-next').addEventListener('click', (e) => {
-                let value = document.querySelector('input').value;
+                let value = document.querySelector('.quiz-footer input').value;
                 console.log(value)
                 if (value != '') {
                     apiZipCode(value).then(data => {
@@ -556,7 +622,8 @@ function changeContent(count) {
             break
         case '2':
             footerQuiz.innerHTML = carOwnershipHTML;
-            countStep.innerHTML = '2';
+            countStep.innerHTML = zipCode == '' ? '2' : '1';
+            countStep.dataset.step = '2';
             btnBack.style.display = '';
             selectChange('.select-item');
             document.querySelector('.btn-next').addEventListener('click', () => {
@@ -566,17 +633,13 @@ function changeContent(count) {
             break
         case '3':
             footerQuiz.innerHTML = cashValueHTML;
-            countStep.innerHTML = '3';
+            countStep.innerHTML = zipCode == '' ? '3' : '2';
+            countStep.dataset.step = '3';
             let cash = document.querySelector('.input-cash');
-            // cash.addEventListener('input', (e) => {
-            //     let target = e.target;
-            //     console.log( target.value)
-            //     target.value = new Intl.NumberFormat('en-IN').format(target.value)
-            // })
             document.querySelector('.btn-next').addEventListener('click', (e) => {
                 if (cash.value != '') {
                     document.querySelector('.error-message').parentElement.classList.remove('error')
-                    myAnswers[3] = '$' + new Intl.NumberFormat('en-IN').format(cash.value);
+                    myAnswers[3] = '$' + cash.value;
                     changeContent('4')
                 } else {
                     document.querySelector('.error-message').parentElement.classList.add('error')
@@ -585,10 +648,11 @@ function changeContent(count) {
             break
         case '4':
             footerQuiz.innerHTML = netWorthHTML;
-            countStep.innerHTML = '4';
+            countStep.innerHTML = zipCode == '' ? '4' : '3';
+            countStep.dataset.step = '4';
             countStep.parentElement.style.display = '';
             bodyQuiz.style = '';
-            console.log()
+            answers.style.display = 'none';
             selectChange('.select-item');
             document.querySelector('.btn-next').addEventListener('click', () => {
                 myAnswers[4] = document.querySelector('[name="net-worth"] .select-item').innerHTML;
@@ -596,33 +660,55 @@ function changeContent(count) {
             })
             break
         case '5':
-            console.log('result')
             footerQuiz.innerHTML = resultHTML;
-            countStep.innerHTML = '5';
+            countStep.innerHTML = zipCode == '' ? '5' : '4';
+            countStep.dataset.step = '5';
             countStep.parentElement.style.display = 'none';
             bodyQuiz.style.display = 'none';
-            answers.style.display = 'block'
+            answers.style.display = 'block';
             document.querySelectorAll('.my-answers_dropdown > p > span:last-child').forEach((item, index) => {
                 console.log(myAnswers[index + 1])
                 item.innerHTML = myAnswers[index + 1]
             })
+            let cashIndex = +(myAnswers[3].split('$')[1].split(',').join('')) > 3000 ? 1 : 0;
 
+            for (let key in objQuiz) {
+                document.querySelector('.coverage-type .text-res > p').innerHTML = objQuiz[myAnswers[2]][cashIndex][myAnswers[4]][0]
+                document.querySelector('.required-level .text-res > p').innerHTML = objQuiz[myAnswers[2]][cashIndex][myAnswers[4]][1]
+            }
+
+            for (let i = 0; i < stateMinimumObj.length; i++) {
+                if (stateMinimumObj[i].includes(myAnswers[1])) {
+                    document.querySelector('.required-level h3').innerHTML = stateMinimumObj[i].split(':')[1];
+                    if (document.querySelector('.required-level .text-res > p span') != null) {
+                        document.querySelector('.required-level .text-res > p span').innerHTML = stateMinimumObj[i].split(':')[1];
+                    }
+                }
+            }
             document.querySelectorAll('.show-more').forEach(button => {
                 button.addEventListener('click', () => {
                     button.parentElement.classList.add('show');
                     button.remove()
                 })
             })
+            document.querySelector('.btn-next').addEventListener('click', () => {
+                document.querySelector('form .chakra-form-control input').value = myAnswers[0];
+                document.querySelector('form .chakra-button').click();
+            })
             break
     }
+    if (document.querySelector('.quiz-footer input') != null) {
+        clickOnEnter('.quiz-footer input', '.btn-next');
+    }
 }
-changeContent('1')
+changeContent(zipCode == '' ? '1' : '2')
 //back step
 btnBack.addEventListener('click', () => {
-    let step = +countStep.innerHTML - 1;
+    let step = +countStep.dataset.step - 1;
     changeContent(step.toString())
 });
 
+//click on 'my Answers' button
 document.querySelector('.btn-answers').addEventListener('click', (e) => answers.classList.toggle('active'))
 
 document.addEventListener('click', (e) => {
@@ -630,3 +716,13 @@ document.addEventListener('click', (e) => {
         answers.classList.remove('active')
     }
 })
+
+pushDataLayer('loaded') //loaded event
+
+//clarify
+let isClarify = setInterval(() => {
+    if(typeof clarity == 'function') {
+        clearInterval(isClarify)
+        clarity("set", "quiz", "variant_1");
+    }
+}, 100)
