@@ -78,7 +78,7 @@ if (settings.observe) {
                     item.addEventListener("click", function (e) {
                       if (e.target.classList.contains("item")) return false
                       if (item.querySelector(".marker").innerText == "1") {
-                        gaEvent(`Click on Year select`, "Popup: Select vehicle")
+                        gaEvent(`Option ${item.querySelector(".marker").closest(".main-selector.-big").querySelector(".value")} in select Year select `, "Popup: Select vehicle")
                       } else if (item.querySelector(".marker").innerText == "2") {
                         gaEvent(`Click on Make select`, "Popup: Select vehicle")
                       } else if (item.querySelector(".marker").innerText == "3") {
@@ -95,13 +95,26 @@ if (settings.observe) {
             }
 
             for (let item of document.querySelectorAll(".select-vehicle-col")) {
-              item.addEventListener("click", function () {
+              item.addEventListener("click", function (e) {
                 if (item.querySelector(".marker").innerText == "1") {
-                  gaEvent(`Click on Year select`, "Popup: Select vehicle")
+                  if (e.target.value) {
+                    gaEvent(`Option ${e.target.value} in select Year select`, "Popup: Select vehicle")
+                  } else {
+                    gaEvent(`Click on Year select`, "Popup: Select vehicle")
+                  }
                 } else if (item.querySelector(".marker").innerText == "2") {
-                  gaEvent(`Click on Make select`, "Popup: Select vehicle")
+                  if (e.target.value === 0) {
+                    console.log(e.target.textContent)
+                    gaEvent(`Option ${e.target.textContent} in select Make select`, "Popup: Select vehicle")
+                  } else {
+                    gaEvent(`Click on Make select`, "Popup: Select vehicle")
+                  }
                 } else if (item.querySelector(".marker").innerText == "3") {
-                  gaEvent(`Click on Model select`, "Popup: Select vehicle")
+                  if (e.target.value === 0) {
+                    gaEvent(`Option ${e.target.textContent} in select Model select`, "Popup: Select vehicle")
+                  } else {
+                    gaEvent(`Click on Model select`, "Popup: Select vehicle")
+                  }
                   if (localStorage.getItem("windowLocation")) {
                     console.log(`window.location.pathname`)
                     localStorage.setItem("showSearch", "yes")
@@ -116,13 +129,26 @@ if (settings.observe) {
         if (node.classList.contains("select-vehicle-spacer") && node.closest(".head-nav-inner")) {
           setTimeout(() => {
             for (let item of document.querySelectorAll(".select-vehicle-col")) {
-              item.addEventListener("click", function () {
+              item.addEventListener("click", function (e) {
                 if (item.querySelector(".marker").innerText == "1") {
-                  gaEvent(`Click on Year select`, "Homepage: Select vehicle")
+                  if (e.target.value) {
+                    gaEvent(`Option ${e.target.value} in select Year select`, "Homepage: Select vehicle")
+                  } else {
+                    gaEvent(`Click on Year select`, "Homepage: Select vehicle")
+                  }
                 } else if (item.querySelector(".marker").innerText == "2") {
-                  gaEvent(`Click on Make select`, "Homepage: Select vehicle")
+                  if (e.target.value === 0) {
+                    console.log(e.target.textContent)
+                    gaEvent(`Option ${e.target.textContent} in select Make select`, "Homepage: Select vehicle")
+                  } else {
+                    gaEvent(`Click on Make select`, "Homepage: Select vehicle")
+                  }
                 } else if (item.querySelector(".marker").innerText == "3") {
-                  gaEvent(`Click on Model select`, "Homepage: Select vehicle")
+                  if (e.target.value === 0) {
+                    gaEvent(`Option ${e.target.textContent} in select Model select`, "Homepage: Select vehicle")
+                  } else {
+                    gaEvent(`Click on Model select`, "Homepage: Select vehicle")
+                  }
                   if (localStorage.getItem("windowLocation")) {
                     console.log(`window.location.pathname`)
                     localStorage.setItem("showSearch", "yes")
