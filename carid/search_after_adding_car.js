@@ -658,7 +658,12 @@ function changeSearch() {
     if (!isProcessing) {
       isForClosingSearch = true
       gaEvent("Click on Search input", "Header. Search menu")
-      clarity("set", "site_search", "search_clicked")
+      const record = setInterval(() => {
+        if (typeof clarity === "function") {
+          clearInterval(record)
+          clarity("set", "site_search", "search_clicked")
+        }
+      }, 200)
     }
     handleSearch()
     addSearchBtn()
