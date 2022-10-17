@@ -22,6 +22,9 @@ let style = `
         border: none;
         background: transparent;
     }
+    .btn-back.hide {
+        display: none!important;
+    }
     .btn-back svg {
         margin-right: 7px;
     }
@@ -90,9 +93,9 @@ let style = `
         padding: 10px 12px;
         margin: 0;
     }
-
     .select-item {
         position: relative;
+        cursor: pointer;
     }
     .select-item:after {
         content: '';
@@ -132,6 +135,7 @@ let style = `
         padding: 8px 12px;
         line-height: 26px;
         color: #333333;
+        cursor: pointer;
     }
     .select-drop > div.active {
         background: #526EFF;
@@ -333,6 +337,29 @@ let style = `
         }
         .anonymous svg {
             margin-right: 7px;
+        }
+    }
+    @media only screen and (min-width: 768px) {
+        .quiz-footer, .anonymous {
+            max-width: 320px;
+            margin: 0 auto;
+        }
+        .anonymous {
+            margin: 12px auto 24px;
+        }
+        .btn-back.hide {
+            display: block!important;
+            opacity: 0;
+            pointer-events: none;
+        }
+        .quiz {
+            padding: 48px;
+        }
+        .quiz h2, .quiz-body > p {
+            text-align: center;
+        }
+        .quiz h2 {
+            margin-top: 28px;
         }
     }
 </style>`
@@ -598,7 +625,7 @@ function changeContent(count) {
             footerQuiz.innerHTML = zipCodeHTML;
             countStep.innerHTML = '1';
             countStep.dataset.step = '1';
-            btnBack.style.display = 'none';
+            btnBack.classList.add('hide');
             document.querySelector('.btn-next').addEventListener('click', (e) => {
                 let value = document.querySelector('.quiz-footer input').value;
                 console.log(value)
@@ -624,7 +651,7 @@ function changeContent(count) {
             footerQuiz.innerHTML = carOwnershipHTML;
             countStep.innerHTML = zipCode == '' ? '2' : '1';
             countStep.dataset.step = '2';
-            btnBack.style.display = '';
+            btnBack.classList.remove('hide');
             selectChange('.select-item');
             document.querySelector('.btn-next').addEventListener('click', () => {
                 myAnswers[2] = document.querySelector('[name="car-ownership"] .select-item').innerHTML;
