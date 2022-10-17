@@ -500,6 +500,9 @@ function init() {
     if (e.target.closest(".show-parts-h")) {
       gaEvent(`Click on Show Parts for...`, "Header. Search menu")
     }
+    if (e.target.closest(".simple-btn.-small") && e.target.textContent.includes("Accessories")) {
+      gaEvent(`Click on Accessories`, "Header. Search menu")
+    }
 
     if (
       localStorage.getItem("startDate") &&
