@@ -1,4 +1,4 @@
-let style = `
+let styleQuiz = `
 <style>
     /*quiz*/
     .quiz {
@@ -507,7 +507,7 @@ function setBtn(text) {
 let zipCodeHTML = `
         <form>
             <label class="">Your Zip Code</label>
-            <input type="number" placeholder="Your Zip Code">
+            <input type="number" placeholder="Your Zip Code" class="input-zip">
             <p class="error-message">You must provide a valid zip code</p>
             ${setBtn('Next')}
         </form>`,
@@ -581,14 +581,19 @@ let zipCodeHTML = `
 
 //change for selects
 function selectChange(currency) {
-    let selector = document.querySelector(currency)
-    selector.addEventListener('click', () => selector.parentElement.classList.toggle('active'))
+    let selector = document.querySelector(currency);
+    let nameSelect = selector.parentElement.name.split('-').join(' ');
+    selector.addEventListener('click', () => {
+        selector.parentElement.classList.toggle('active')
+        pushDataLayer(`Click on ${nameSelect} select`)
+    })
 
     let childs = selector.nextElementSibling.querySelectorAll('div');
     childs.forEach(child => {
         child.addEventListener('click', (e) => {
             selector.innerHTML = child.innerHTML;
             selector.parentElement.classList.remove('active');
+            pushDataLayer(`${child.innerText} selected (${nameSelect})`)
         })
     })
 }
@@ -640,7 +645,7 @@ function pushDataLayer(action) {
     });
 }
 window.onload = function() {
-    document.body.insertAdjacentHTML('afterbegin', style) //add style
+    document.body.insertAdjacentHTML('afterbegin', styleQuiz) //add style quiz
 
     //add quiz on page
     if (href.includes('insurance/auto/how-much-car-insurance-do-you-need/')) {
@@ -670,7 +675,7 @@ window.onload = function() {
                 countStep.dataset.step = '1';
                 btnBack.classList.add('hide');
                 //event
-                document.querySelector('').addEventListener('click', () => pushDataLayer(`Click on Your Zip Code input`))
+                document.querySelector('.input-zip').addEventListener('click', () => pushDataLayer(`Click on Your Zip Code input`))
                 //click next button
                 document.querySelector('.btn-next').addEventListener('click', (e) => {
                     pushDataLayer(`Click on Next button (step - 1)`)
@@ -793,7 +798,10 @@ window.onload = function() {
     });
 
     //click on 'my Answers' button
-    document.querySelector('.btn-answers').addEventListener('click', (e) => answers.classList.toggle('active'))
+    document.querySelector('.btn-answers').addEventListener('click', (e) => {
+        answers.classList.toggle('active')
+        pushDataLayer(`Click on my answers button`)
+    })
 
     document.addEventListener('click', (e) => {
         if (!e.target.closest('.my-answers') && answers.classList.contains('active')) {
