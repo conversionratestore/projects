@@ -1671,9 +1671,12 @@ window.onload = function() {
             } else if (document.querySelector('.bill-form.active') != null) {
                 address('bill')
             } else if (document.querySelector('.address.ship') != null && document.querySelector('.address.bill') != null && document.querySelector('.bill-form.edit') == null && document.querySelector('.ship-form.edit') == null) {
-                
                 console.log('next 2 step')
-                window.location.href = href.includes('guest-checkout') ? '/guest-checkout2.php' : `/checkout/step2`;
+                if (href.includes('guest-checkout')) {
+                    document.querySelector('#mainbody > div > form > div > input[type=image]').click();
+                } else {
+                    window.location.href = `https://medicalmega.com/checkout/step2`;
+                }
             } else if (document.querySelector('.address.ship') != null && document.querySelector('.address.bill') == null && document.querySelector('.bill-form.active') == null) {
                 document.querySelector('.address.ship').style.display = 'none'
                 document.querySelector('.col-left .head h4').innerHTML = 'Billing information'; //change title
