@@ -1311,7 +1311,7 @@ if ((href.includes('login.php') || href.includes('/register.php') || href.includ
         }).then(res => res.json()).then(data => {
             console.log(data)
             let addresses = data['addresses'];
-            if (!!addresses && addresses.length > 0 && !href.includes('guest-checkout1.php')) {
+            if (!!addresses && addresses.length > 0) {
                 //Shipping Information - current users
                 for (let i = 0; i < addresses.length; i++) {
                     if (addresses[i].type === 'ship') {
@@ -1592,7 +1592,11 @@ if ((href.includes('login.php') || href.includes('/register.php') || href.includ
         } else if (document.querySelector('.bill-form.active') != null) {
             address('bill')
         } else if (document.querySelector('.address.ship') != null && document.querySelector('.address.bill') != null && document.querySelector('.bill-form.edit') == null && document.querySelector('.ship-form.edit') == null) {
-            window.location.href = href.includes('guest-checkout') ? '/guest-checkout2.php' : `/checkout/step2`;
+            if (href.includes('guest-checkout')) {
+                document.querySelector('#mainbody > div > form > div > input[type=image]').click();
+            } else {
+                window.location.href = `https://medicalmega.com/checkout/step2`;
+            }
         } else if (document.querySelector('.address.ship') != null && document.querySelector('.address.bill') == null && document.querySelector('.bill-form.active') == null) {
             document.querySelector('.address.ship').style.display = 'none'
             document.querySelector('.col-left .head h4').innerHTML = 'Billing information'; //change title
@@ -1727,6 +1731,7 @@ if ((href.includes('login.php') || href.includes('/register.php') || href.includ
         }
         .empty-cart button.btn-next {
             padding: 0 24px;
+            margin: 0 auto;
         }
         /*slider*/
         .slider-products {
