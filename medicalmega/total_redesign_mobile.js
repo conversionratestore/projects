@@ -1899,7 +1899,7 @@ window.onload = function() {
         document.body.insertAdjacentHTML('beforeend', cartModalHTML); //add cart modal
 
         const appHeight = () => {
-            document.querySelector('.shopping-cart').style.height = window.innerHeight + 'px';
+            document.querySelector('.body-cart').style.height = window.innerHeight - 155 - 53 + 'px';
         }
         window.addEventListener('resize', appHeight)
         appHeight()
