@@ -967,9 +967,11 @@ if ((href.includes('login.php') || href.includes('/register.php') || href.includ
             font-weight: 400;
             font-size: 14px;
             line-height: 150%;
-            color: #344D57;
-            opacity: 0.8;
+            color: rgb(124, 140, 146);
             margin: 0!important;
+        }
+        #checkoutForm > fieldset > dl > dd:nth-child(2), #cc_block > dl > div.ccInfo > dd:nth-child(3), #checkoutForm > fieldset > dl > dd:nth-child(4), #cc_block > dl > dd:nth-child(3)  {
+            padding-left: 16px;
         }
         #paymentCardContainer, #paymentCardErrorContainer {
             margin: 0!important;
@@ -1034,7 +1036,7 @@ if ((href.includes('login.php') || href.includes('/register.php') || href.includ
             font-size: 16px;
             line-height: 130%;
             color: #091114;
-            margin-bottom: -28px;
+            margin-bottom: -13px;
             display: block;
         }
         div.cc-recurring {
@@ -1428,11 +1430,12 @@ if ((href.includes('login.php') || href.includes('/register.php') || href.includ
         document.querySelector('.col-left .head h4').innerHTML = obj['stepsName'][2];
 
         document.querySelector('.col-left .head').after(document.querySelector('#checkoutForm'))
-        document.querySelector('#checkoutForm > fieldset > dl > dd:nth-child(2)').innerHTML = `Credit/Debit Card<span class="c-red"> *</span>`;
-        document.querySelector('#checkoutForm > fieldset > dl > dd:nth-child(2)').style = `color: #7C8C92; padding-left: 16px;`;
-        document.querySelector('#checkoutForm > fieldset > dl > dd:nth-child(4)').style = `color: #7C8C92; padding-left: 16px;`;
-        
-        // document.querySelector('#cc_block > dl > div.ccInfo > dd:nth-child(3)').innerHTML = `Name on card:<span class="c-red"> *</span>`;
+        if (document.querySelector('#card_list') != null) {
+            document.querySelector('#cc_block > dl > div.ccInfo > dd:nth-child(3)').innerHTML = `Credit/Debit Card<span class="c-red"> *</span>`;
+        } else {
+            document.querySelector('#checkoutForm > fieldset > dl > dd:nth-child(2)').innerHTML = `Credit/Debit Card<span class="c-red"> *</span>`;
+            document.querySelector('.auto-reorder-header').style = 'margin-bottom: -28px!important';
+        }
 
         document.querySelector('#save_cc_info') != null ? document.querySelector('#save_cc_info').insertAdjacentHTML('afterend','<span class="check2"></span>') : '';
 
