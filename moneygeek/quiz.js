@@ -496,7 +496,7 @@ let quizHTML = `
 </div>`
 
 function setBtn(text) {
-    return `<button type="submit" class="btn-next flex items-center justify-center" >
+    return `<button type="button" class="btn-next flex items-center justify-center" >
                 ${text} 
                 <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M0.665365 5.33268H8.7787L5.05203 1.60602L5.9987 0.666016L11.332 5.99935L5.9987 11.3327L5.0587 10.3927L8.7787 6.66602H0.665365V5.33268Z" fill="white"/>
@@ -505,12 +505,12 @@ function setBtn(text) {
 }
 // html
 let zipCodeHTML = `
-        <form>
+        <div>
             <label class="">Your Zip Code</label>
             <input type="number" placeholder="Your Zip Code" class="input-zip">
             <p class="error-message">You must provide a valid zip code</p>
             ${setBtn('Next')}
-        </form>`,
+        </div>`,
 
     carOwnershipHTML = `
         <div>
@@ -527,7 +527,7 @@ let zipCodeHTML = `
         </div>`,
 
     cashValueHTML = `
-        <form>
+        <div>
             <label class="">Actual Cash Value (ACV) of Your Car</label>
             <div class="relative">
                 <p class="currency-cash">$</p>
@@ -535,7 +535,7 @@ let zipCodeHTML = `
             </div>
             <p class="error-message">Please enter your car's actual cash value</p>
             ${setBtn('Next')}
-        </form>`,
+        </div>`,
 
     netWorthHTML = `
         <div>
@@ -678,7 +678,6 @@ window.onload = function() {
                 document.querySelector('.input-zip').addEventListener('click', () => pushDataLayer(`Click on Your Zip Code input`))
                 //click next button
                 document.querySelector('.btn-next').addEventListener('click', (e) => {
-                    e.preventDefault()
                     pushDataLayer(`Click on Next button (step - 1)`)
                     let value = document.querySelector('.quiz-footer input').value;
                     console.log(value)
@@ -712,7 +711,6 @@ window.onload = function() {
                 countStep.dataset.step = '2';
                 selectChange('.select-item');
                 document.querySelector('.btn-next').addEventListener('click', (e) => {
-                    e.preventDefault()
                     pushDataLayer(`Click on Next button (step - ${countStep.innerHTML})`)
                     myAnswers[2] = document.querySelector('[name="car-ownership"] .select-item').innerHTML;
                     changeContent('3')
@@ -725,7 +723,6 @@ window.onload = function() {
                 countStep.dataset.step = '3';
                 let cash = document.querySelector('.input-cash');
                 document.querySelector('.btn-next').addEventListener('click', (e) => {
-                    e.preventDefault()
                     pushDataLayer(`Click on Next button (step - ${countStep.innerHTML})`)
                     if (cash.value != '') {
                         document.querySelector('.error-message').parentElement.classList.remove('error')
@@ -745,7 +742,6 @@ window.onload = function() {
                 answers.style.display = 'none';
                 selectChange('.select-item');
                 document.querySelector('.btn-next').addEventListener('click', (e) => {
-                    e.preventDefault()
                     myAnswers[4] = document.querySelector('[name="net-worth"] .select-item').innerHTML;
                     pushDataLayer(`Click on Next button (step - ${countStep.innerHTML})`)
                     changeContent('5')
@@ -784,7 +780,6 @@ window.onload = function() {
                     })
                 })
                 document.querySelector('.btn-next').addEventListener('click', (e) => {
-                    e.preventDefault()
                     pushDataLayer(`Click on Compare Coverage Pricing & Quotes button`)
                     document.querySelector('form .chakra-form-control input').value = myAnswers[0];
                     document.querySelector('form .chakra-button').click();
