@@ -582,7 +582,7 @@ let zipCodeHTML = `
 //change for selects
 function selectChange(currency) {
     let selector = document.querySelector(currency);
-    let nameSelect = selector.parentElement.name.split('-').join(' ');
+    let nameSelect = selector.parentElement.getAttribute('name').split('-').join(' ');
     selector.addEventListener('click', () => {
         selector.parentElement.classList.toggle('active')
         pushDataLayer(`Click on ${nameSelect} select`)
