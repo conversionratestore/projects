@@ -942,8 +942,14 @@ if ((href.includes('login.php') || href.includes('/register.php') || href.includ
             width: 100%!important;
         }
         #checkoutForm > p {
-            white-space: normal;
-            text-align: left;
+            white-space: normal!important;
+            text-align: left!important;
+            margin: -21px 0 10px 0!important;
+        }
+        #comment {
+            width: 100%;
+            border: 1px solid #9AA6AB;
+            border-radius: 4px;
         }
         #cc_block {
             text-align: left;
@@ -971,6 +977,9 @@ if ((href.includes('login.php') || href.includes('/register.php') || href.includ
         .primaryInfo {
             text-align: left;
             width: 100%;
+        }
+        .primaryInfo dl {
+            width: 100%!important;
         }
         .primaryInfo dl, #checkoutForm > fieldset > div:nth-child(2) {
             margin: 0!important;
@@ -1025,7 +1034,7 @@ if ((href.includes('login.php') || href.includes('/register.php') || href.includ
             font-size: 16px;
             line-height: 130%;
             color: #091114;
-            margin-bottom: 8px;
+            margin-bottom: -28px;
             display: block;
         }
         div.cc-recurring {
@@ -1419,7 +1428,10 @@ if ((href.includes('login.php') || href.includes('/register.php') || href.includ
         document.querySelector('.col-left .head h4').innerHTML = obj['stepsName'][2];
 
         document.querySelector('.col-left .head').after(document.querySelector('#checkoutForm'))
-        document.querySelector('#cc_block > dl > div.ccInfo > dd:nth-child(3)').innerHTML = `Credit/Debit Card<span class="c-red"> *</span>`;
+        document.querySelector('#checkoutForm > fieldset > dl > dd:nth-child(2)').innerHTML = `Credit/Debit Card<span class="c-red"> *</span>`;
+        document.querySelector('#checkoutForm > fieldset > dl > dd:nth-child(2)').style = `color: #7C8C92; padding-left: 16px;`;
+        document.querySelector('#checkoutForm > fieldset > dl > dd:nth-child(4)').style = `color: #7C8C92; padding-left: 16px;`;
+        
         // document.querySelector('#cc_block > dl > div.ccInfo > dd:nth-child(3)').innerHTML = `Name on card:<span class="c-red"> *</span>`;
 
         document.querySelector('#save_cc_info') != null ? document.querySelector('#save_cc_info').insertAdjacentHTML('afterend','<span class="check2"></span>') : '';
