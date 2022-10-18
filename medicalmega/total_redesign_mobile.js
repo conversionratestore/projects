@@ -1898,6 +1898,12 @@ window.onload = function() {
         document.body.insertAdjacentHTML('afterbegin', styleCart); //add style for cart modal
         document.body.insertAdjacentHTML('beforeend', cartModalHTML); //add cart modal
 
+        const appHeight = () => {
+            document.querySelector('.shopping-cart').style.height = window.innerHeight + 'px';
+        }
+        window.addEventListener('resize', appHeight)
+        appHeight()
+
         let linkCustom = document.createElement('link');
         linkCustom.href = 'https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.3/tiny-slider.css';
         linkCustom.rel = 'stylesheet';
