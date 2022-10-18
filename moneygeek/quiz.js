@@ -644,6 +644,7 @@ function pushDataLayer(action) {
         'eventAction': action
     });
 }
+
 window.onload = function() {
     document.body.insertAdjacentHTML('afterbegin', styleQuiz) //add style quiz
 
@@ -796,6 +797,16 @@ window.onload = function() {
         let step = +countStep.dataset.step - 1;
         changeContent(step.toString())
     });
+    if (window.innerWidth <= 767) {
+        document.querySelector('.btn-next').addEventListener('click', (e) => {
+            seamless.polyfill();
+            seamless.scrollIntoView(document.querySelector(".quiz"), {
+                behavior: "smooth",
+                block: "center",
+                inline: "center",
+            });
+        });
+    }
 
     //click on 'my Answers' button
     document.querySelector('.btn-answers').addEventListener('click', (e) => {
