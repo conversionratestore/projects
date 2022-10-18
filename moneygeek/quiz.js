@@ -579,28 +579,6 @@ let zipCodeHTML = `
         </div>
        `
 
-
-document.body.insertAdjacentHTML('afterbegin', style) //add style
-
-//add quiz on page
-if (href.includes('insurance/auto/how-much-car-insurance-do-you-need/')) {
-    document.querySelector('#gatsby-focus-wrapper > div > main > div.css-1irxgwz.ead1i4x8 > div > div.css-1wbld27.ead1i4x7 > div.spacing').insertAdjacentHTML('afterend', quizHTML)
-} else if (href.includes('insurance/how-to-get-car-insurance-before-buying-a-car/')) {
-    document.querySelector('.Spacing').insertAdjacentHTML('beforebegin', quizHTML)
-} else if (href.includes('insurance/auto/cheapest-full-coverage-car-insurance/')) {
-    document.querySelector('#gatsby-focus-wrapper > div > main > div.css-1irxgwz.ead1i4x8 > div > div.css-1uj8m62.ead1i4x6 > div.css-d0d87m').insertAdjacentHTML('afterend', quizHTML)
-} else if (href.includes('/insurance/auto/cheapest-car-insurance-texas/')) {
-    document.querySelector('#gatsby-focus-wrapper > div > main > div.css-1irxgwz.ead1i4x8 > div > div.css-1uj8m62.ead1i4x6 > div.css-d0d87m').insertAdjacentHTML('afterend', quizHTML)
-} else if (href.includes('insurance/auto/cheapest-car-insurance-california/')) {
-    document.querySelector('#gatsby-focus-wrapper > div > main > div.css-1irxgwz.ead1i4x8 > div > div.css-1uj8m62.ead1i4x6 > div.css-d0d87m').insertAdjacentHTML('afterend', quizHTML)
-}
-
-let footerQuiz = document.querySelector('.quiz-footer'), //footer quiz
-    countStep = document.querySelector('.step-count span'), //step count
-    btnBack = document.querySelector('.btn-back'), //back button
-    bodyQuiz = document.querySelector('.quiz-body'), //container quiz
-    answers = document.querySelector('.my-answers'); //my answers quiz
-
 //change for selects
 function selectChange(currency) {
     let selector = document.querySelector(currency)
@@ -661,146 +639,168 @@ function pushDataLayer(action) {
         'eventAction': action
     });
 }
+window.onload = function() {
+    document.body.insertAdjacentHTML('afterbegin', style) //add style
 
-//change content/logic for each stage
-function changeContent(count) {
-    switch (count) {
-        case '1':
-            footerQuiz.innerHTML = zipCodeHTML;
-            countStep.innerHTML = '1';
-            countStep.dataset.step = '1';
-            btnBack.classList.add('hide');
-            //event
-            document.querySelector('').addEventListener('click', () => pushDataLayer(`Click on Your Zip Code input`))
-            //click next button
-            document.querySelector('.btn-next').addEventListener('click', (e) => {
-                pushDataLayer(`Click on Next button (step - 1)`)
-                let value = document.querySelector('.quiz-footer input').value;
-                console.log(value)
-                if (value != '') {
-                    apiZipCode(value).then(data => {
-                        console.log(data)
-                        if (Object.keys(data).length > 0) {
-                            console.log(data['places'][0]['state'])
-                            document.querySelector('.error-message').parentElement.classList.remove('error');
-                            myAnswers[0] = value;
-                            myAnswers[1] = data['places'][0]['state'];
-                            changeContent('2')
-                        } else {
-                            document.querySelector('.error-message').parentElement.classList.add('error');
-                        }
-                    })
-                } else {
-                    document.querySelector('.error-message').parentElement.classList.add('error');
-                }
-            })
-            break
-        case '2':
-            footerQuiz.innerHTML = carOwnershipHTML;
-            if (zipCode == '') {
-                btnBack.classList.remove('hide');
-                countStep.innerHTML = '2';
-            } else {
-                btnBack.classList.add('hide');
+    //add quiz on page
+    if (href.includes('insurance/auto/how-much-car-insurance-do-you-need/')) {
+        document.querySelector('#gatsby-focus-wrapper > div > main > div.css-1irxgwz.ead1i4x8 > div > div.css-1wbld27.ead1i4x7 > div.spacing').insertAdjacentHTML('afterend', quizHTML)
+    } else if (href.includes('insurance/how-to-get-car-insurance-before-buying-a-car/')) {
+        document.querySelector('.Spacing').insertAdjacentHTML('beforebegin', quizHTML)
+    } else if (href.includes('insurance/auto/cheapest-full-coverage-car-insurance/')) {
+        document.querySelector('#gatsby-focus-wrapper > div > main > div.css-1irxgwz.ead1i4x8 > div > div.css-1uj8m62.ead1i4x6 > div.css-d0d87m').insertAdjacentHTML('afterend', quizHTML)
+    } else if (href.includes('/insurance/auto/cheapest-car-insurance-texas/')) {
+        document.querySelector('#gatsby-focus-wrapper > div > main > div.css-1irxgwz.ead1i4x8 > div > div.css-1uj8m62.ead1i4x6 > div.css-d0d87m').insertAdjacentHTML('afterend', quizHTML)
+    } else if (href.includes('insurance/auto/cheapest-car-insurance-california/')) {
+        document.querySelector('#gatsby-focus-wrapper > div > main > div.css-1irxgwz.ead1i4x8 > div > div.css-1uj8m62.ead1i4x6 > div.css-d0d87m').insertAdjacentHTML('afterend', quizHTML)
+    }
+
+    let footerQuiz = document.querySelector('.quiz-footer'), //footer quiz
+        countStep = document.querySelector('.step-count span'), //step count
+        btnBack = document.querySelector('.btn-back'), //back button
+        bodyQuiz = document.querySelector('.quiz-body'), //container quiz
+        answers = document.querySelector('.my-answers'); //my answers quiz
+
+    //change content/logic for each stage
+    function changeContent(count) {
+        switch (count) {
+            case '1':
+                footerQuiz.innerHTML = zipCodeHTML;
                 countStep.innerHTML = '1';
-            }
-            countStep.dataset.step = '2';
-            selectChange('.select-item');
-            document.querySelector('.btn-next').addEventListener('click', () => {
-                pushDataLayer(`Click on Next button (step - ${countStep.innerHTML})`)
-                myAnswers[2] = document.querySelector('[name="car-ownership"] .select-item').innerHTML;
-                changeContent('3')
-            })
-            break
-        case '3':
-            footerQuiz.innerHTML = cashValueHTML;
-            countStep.innerHTML = zipCode == '' ? '3' : '2';
-            btnBack.classList.remove('hide');
-            countStep.dataset.step = '3';
-            let cash = document.querySelector('.input-cash');
-            document.querySelector('.btn-next').addEventListener('click', (e) => {
-                pushDataLayer(`Click on Next button (step - ${countStep.innerHTML})`)
-                if (cash.value != '') {
-                    document.querySelector('.error-message').parentElement.classList.remove('error')
-                    myAnswers[3] = '$' + cash.value;
-                    changeContent('4')
+                countStep.dataset.step = '1';
+                btnBack.classList.add('hide');
+                //event
+                document.querySelector('').addEventListener('click', () => pushDataLayer(`Click on Your Zip Code input`))
+                //click next button
+                document.querySelector('.btn-next').addEventListener('click', (e) => {
+                    pushDataLayer(`Click on Next button (step - 1)`)
+                    let value = document.querySelector('.quiz-footer input').value;
+                    console.log(value)
+                    if (value != '') {
+                        apiZipCode(value).then(data => {
+                            console.log(data)
+                            if (Object.keys(data).length > 0) {
+                                console.log(data['places'][0]['state'])
+                                document.querySelector('.error-message').parentElement.classList.remove('error');
+                                myAnswers[0] = value;
+                                myAnswers[1] = data['places'][0]['state'];
+                                changeContent('2')
+                            } else {
+                                document.querySelector('.error-message').parentElement.classList.add('error');
+                            }
+                        })
+                    } else {
+                        document.querySelector('.error-message').parentElement.classList.add('error');
+                    }
+                })
+                break
+            case '2':
+                footerQuiz.innerHTML = carOwnershipHTML;
+                if (zipCode == '') {
+                    btnBack.classList.remove('hide');
+                    countStep.innerHTML = '2';
                 } else {
-                    document.querySelector('.error-message').parentElement.classList.add('error')
+                    btnBack.classList.add('hide');
+                    countStep.innerHTML = '1';
                 }
-            })
-            break
-        case '4':
-            footerQuiz.innerHTML = netWorthHTML;
-            countStep.innerHTML = zipCode == '' ? '4' : '3';
-            countStep.dataset.step = '4';
-            countStep.parentElement.style.display = '';
-            bodyQuiz.style = '';
-            answers.style.display = 'none';
-            selectChange('.select-item');
-            document.querySelector('.btn-next').addEventListener('click', () => {
-                myAnswers[4] = document.querySelector('[name="net-worth"] .select-item').innerHTML;
-                pushDataLayer(`Click on Next button (step - ${countStep.innerHTML})`)
-                changeContent('5')
-            })
-            break
-        case '5':
-            footerQuiz.innerHTML = resultHTML;
-            countStep.innerHTML = zipCode == '' ? '5' : '4';
-            countStep.dataset.step = '5';
-            countStep.parentElement.style.display = 'none';
-            bodyQuiz.style.display = 'none';
-            answers.style.display = 'block';
-            document.querySelectorAll('.my-answers_dropdown > p > span:last-child').forEach((item, index) => {
-                console.log(myAnswers[index + 1])
-                item.innerHTML = myAnswers[index + 1]
-            })
-            let cashIndex = +(myAnswers[3].split('$')[1].split(',').join('')) > 3000 ? 1 : 0;
+                countStep.dataset.step = '2';
+                selectChange('.select-item');
+                document.querySelector('.btn-next').addEventListener('click', () => {
+                    pushDataLayer(`Click on Next button (step - ${countStep.innerHTML})`)
+                    myAnswers[2] = document.querySelector('[name="car-ownership"] .select-item').innerHTML;
+                    changeContent('3')
+                })
+                break
+            case '3':
+                footerQuiz.innerHTML = cashValueHTML;
+                countStep.innerHTML = zipCode == '' ? '3' : '2';
+                btnBack.classList.remove('hide');
+                countStep.dataset.step = '3';
+                let cash = document.querySelector('.input-cash');
+                document.querySelector('.btn-next').addEventListener('click', (e) => {
+                    pushDataLayer(`Click on Next button (step - ${countStep.innerHTML})`)
+                    if (cash.value != '') {
+                        document.querySelector('.error-message').parentElement.classList.remove('error')
+                        myAnswers[3] = '$' + cash.value;
+                        changeContent('4')
+                    } else {
+                        document.querySelector('.error-message').parentElement.classList.add('error')
+                    }
+                })
+                break
+            case '4':
+                footerQuiz.innerHTML = netWorthHTML;
+                countStep.innerHTML = zipCode == '' ? '4' : '3';
+                countStep.dataset.step = '4';
+                countStep.parentElement.style.display = '';
+                bodyQuiz.style = '';
+                answers.style.display = 'none';
+                selectChange('.select-item');
+                document.querySelector('.btn-next').addEventListener('click', () => {
+                    myAnswers[4] = document.querySelector('[name="net-worth"] .select-item').innerHTML;
+                    pushDataLayer(`Click on Next button (step - ${countStep.innerHTML})`)
+                    changeContent('5')
+                })
+                break
+            case '5':
+                footerQuiz.innerHTML = resultHTML;
+                countStep.innerHTML = zipCode == '' ? '5' : '4';
+                countStep.dataset.step = '5';
+                countStep.parentElement.style.display = 'none';
+                bodyQuiz.style.display = 'none';
+                answers.style.display = 'block';
+                document.querySelectorAll('.my-answers_dropdown > p > span:last-child').forEach((item, index) => {
+                    console.log(myAnswers[index + 1])
+                    item.innerHTML = myAnswers[index + 1]
+                })
+                let cashIndex = +(myAnswers[3].split('$')[1].split(',').join('')) > 3000 ? 1 : 0;
 
-            for (let key in objQuiz) {
-                document.querySelector('.coverage-type .text-res > p').innerHTML = objQuiz[myAnswers[2]][cashIndex][myAnswers[4]][0]
-                document.querySelector('.required-level .text-res > p').innerHTML = objQuiz[myAnswers[2]][cashIndex][myAnswers[4]][1]
-            }
+                for (let key in objQuiz) {
+                    document.querySelector('.coverage-type .text-res > p').innerHTML = objQuiz[myAnswers[2]][cashIndex][myAnswers[4]][0]
+                    document.querySelector('.required-level .text-res > p').innerHTML = objQuiz[myAnswers[2]][cashIndex][myAnswers[4]][1]
+                }
 
-            for (let i = 0; i < stateMinimumObj.length; i++) {
-                if (stateMinimumObj[i].includes(myAnswers[1])) {
-                    document.querySelector('.required-level h3').innerHTML = stateMinimumObj[i].split(':')[1];
-                    if (document.querySelector('.required-level .text-res > p span') != null) {
-                        document.querySelector('.required-level .text-res > p span').innerHTML = stateMinimumObj[i].split(':')[1];
+                for (let i = 0; i < stateMinimumObj.length; i++) {
+                    if (stateMinimumObj[i].includes(myAnswers[1])) {
+                        document.querySelector('.required-level h3').innerHTML = stateMinimumObj[i].split(':')[1];
+                        if (document.querySelector('.required-level .text-res > p span') != null) {
+                            document.querySelector('.required-level .text-res > p span').innerHTML = stateMinimumObj[i].split(':')[1];
+                        }
                     }
                 }
-            }
-            document.querySelectorAll('.show-more').forEach(button => {
-                button.addEventListener('click', () => {
-                    button.parentElement.classList.add('show');
-                    button.remove()
+                document.querySelectorAll('.show-more').forEach(button => {
+                    button.addEventListener('click', () => {
+                        button.parentElement.classList.add('show');
+                        button.remove()
+                    })
                 })
-            })
-            document.querySelector('.btn-next').addEventListener('click', () => {
-                pushDataLayer(`Click on Compare Coverage Pricing & Quotes button`)
-                document.querySelector('form .chakra-form-control input').value = myAnswers[0];
-                document.querySelector('form .chakra-button').click();
-            })
-            break
+                document.querySelector('.btn-next').addEventListener('click', () => {
+                    pushDataLayer(`Click on Compare Coverage Pricing & Quotes button`)
+                    document.querySelector('form .chakra-form-control input').value = myAnswers[0];
+                    document.querySelector('form .chakra-button').click();
+                })
+                break
+        }
+        if (document.querySelector('.quiz-footer input') != null) {
+            clickOnEnter('.quiz-footer input', '.btn-next');
+        }
     }
-    if (document.querySelector('.quiz-footer input') != null) {
-        clickOnEnter('.quiz-footer input', '.btn-next');
-    }
-}
-changeContent(zipCode == '' ? '1' : '2')
-//back step
-btnBack.addEventListener('click', () => {
-    let step = +countStep.dataset.step - 1;
-    changeContent(step.toString())
-});
+    changeContent(zipCode == '' ? '1' : '2')
+    //back step
+    btnBack.addEventListener('click', () => {
+        let step = +countStep.dataset.step - 1;
+        changeContent(step.toString())
+    });
 
-//click on 'my Answers' button
-document.querySelector('.btn-answers').addEventListener('click', (e) => answers.classList.toggle('active'))
+    //click on 'my Answers' button
+    document.querySelector('.btn-answers').addEventListener('click', (e) => answers.classList.toggle('active'))
 
-document.addEventListener('click', (e) => {
-    if (!e.target.closest('.my-answers') && answers.classList.contains('active')) {
-        answers.classList.remove('active')
-    }
-})
+    document.addEventListener('click', (e) => {
+        if (!e.target.closest('.my-answers') && answers.classList.contains('active')) {
+            answers.classList.remove('active')
+        }
+    })
+};
 
 pushDataLayer('loaded') //loaded event
 
