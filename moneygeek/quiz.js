@@ -678,6 +678,7 @@ window.onload = function() {
                 document.querySelector('.input-zip').addEventListener('click', () => pushDataLayer(`Click on Your Zip Code input`))
                 //click next button
                 document.querySelector('.btn-next').addEventListener('click', (e) => {
+                    e.preventDefault()
                     pushDataLayer(`Click on Next button (step - 1)`)
                     let value = document.querySelector('.quiz-footer input').value;
                     console.log(value)
@@ -710,7 +711,8 @@ window.onload = function() {
                 }
                 countStep.dataset.step = '2';
                 selectChange('.select-item');
-                document.querySelector('.btn-next').addEventListener('click', () => {
+                document.querySelector('.btn-next').addEventListener('click', (e) => {
+                    e.preventDefault()
                     pushDataLayer(`Click on Next button (step - ${countStep.innerHTML})`)
                     myAnswers[2] = document.querySelector('[name="car-ownership"] .select-item').innerHTML;
                     changeContent('3')
@@ -723,6 +725,7 @@ window.onload = function() {
                 countStep.dataset.step = '3';
                 let cash = document.querySelector('.input-cash');
                 document.querySelector('.btn-next').addEventListener('click', (e) => {
+                    e.preventDefault()
                     pushDataLayer(`Click on Next button (step - ${countStep.innerHTML})`)
                     if (cash.value != '') {
                         document.querySelector('.error-message').parentElement.classList.remove('error')
@@ -741,7 +744,8 @@ window.onload = function() {
                 bodyQuiz.style = '';
                 answers.style.display = 'none';
                 selectChange('.select-item');
-                document.querySelector('.btn-next').addEventListener('click', () => {
+                document.querySelector('.btn-next').addEventListener('click', (e) => {
+                    e.preventDefault()
                     myAnswers[4] = document.querySelector('[name="net-worth"] .select-item').innerHTML;
                     pushDataLayer(`Click on Next button (step - ${countStep.innerHTML})`)
                     changeContent('5')
@@ -779,7 +783,8 @@ window.onload = function() {
                         button.remove()
                     })
                 })
-                document.querySelector('.btn-next').addEventListener('click', () => {
+                document.querySelector('.btn-next').addEventListener('click', (e) => {
+                    e.preventDefault()
                     pushDataLayer(`Click on Compare Coverage Pricing & Quotes button`)
                     document.querySelector('form .chakra-form-control input').value = myAnswers[0];
                     document.querySelector('form .chakra-button').click();
