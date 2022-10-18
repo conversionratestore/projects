@@ -34,7 +34,7 @@ let styleQuiz = `
     .quiz h2 {
         font-family: 'Brandon Grotesque', sans-serif;
         font-style: normal;
-        font-weight: 450;
+        font-weight: 600;
         font-size: 28px;
         line-height: 34px;
         text-transform: capitalize;
@@ -245,10 +245,10 @@ let styleQuiz = `
         padding: 20px;
     }
     .quiz-block h3 {
-        font-family: 'Circular-Loom', sans-serif;
+        font-family: 'Brandon Grotesque', sans-serif;
         font-style: normal;
         text-transform: capitalize;
-        font-weight: 500;
+        font-weight: 600;
         font-size: 20px;
         line-height: 24px;
         color: #555555;
