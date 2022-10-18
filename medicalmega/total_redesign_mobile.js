@@ -37,6 +37,10 @@ let styleMain =`
     .header-checkout *, .wrapper-checkout * {
         box-sizing: border-box;
     }
+    .wrapper-checkout {
+        height: calc(100vh - 68px);
+        background: #FBFBFB;
+    }
     .header-checkout {
         background: #FBFBFB;
         position: sticky;
@@ -44,6 +48,7 @@ let styleMain =`
         z-index: 99;
         width: 100%;
         padding: 20px;
+        box-sizing: border-box;
     }
     .steps {
         font-weight: 600;
@@ -582,7 +587,6 @@ window.onload = function() {
                 color: #1E3944;
             }
             .col-left {
-                background: #FBFBFB;
                 padding: 0 20px;
             }
             .col-left > div:first-child {
