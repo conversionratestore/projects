@@ -1898,8 +1898,13 @@ window.onload = function() {
         document.body.insertAdjacentHTML('afterbegin', styleCart); //add style for cart modal
         document.body.insertAdjacentHTML('beforeend', cartModalHTML); //add cart modal
 
+        let bodyCart = document.querySelector('.body-cart');
         const appHeight = () => {
-            document.querySelector('.body-cart').style.height = window.innerHeight - 155 - 53 + 'px';
+            if (document.querySelector('.list-product > li') != null ) {
+                bodyCart.style.height = window.innerHeight - 155 - 53 + 'px';
+            }  else {
+                bodyCart.style.height = window.innerHeight - 53 + 'px';
+            }
         }
         window.addEventListener('resize', appHeight)
         appHeight()
