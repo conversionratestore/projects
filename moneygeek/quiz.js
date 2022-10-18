@@ -496,7 +496,7 @@ let quizHTML = `
 </div>`
 
 function setBtn(text) {
-    return `<button type="button" class="btn-next flex items-center justify-center" >
+    return `<button type="submit" class="btn-next flex items-center justify-center" >
                 ${text} 
                 <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M0.665365 5.33268H8.7787L5.05203 1.60602L5.9987 0.666016L11.332 5.99935L5.9987 11.3327L5.0587 10.3927L8.7787 6.66602H0.665365V5.33268Z" fill="white"/>
@@ -505,12 +505,12 @@ function setBtn(text) {
 }
 // html
 let zipCodeHTML = `
-        <div>
+        <form>
             <label class="">Your Zip Code</label>
             <input type="number" placeholder="Your Zip Code">
             <p class="error-message">You must provide a valid zip code</p>
             ${setBtn('Next')}
-        </div>`,
+        </form>`,
 
     carOwnershipHTML = `
         <div>
@@ -527,7 +527,7 @@ let zipCodeHTML = `
         </div>`,
 
     cashValueHTML = `
-        <div>
+        <form>
             <label class="">Actual Cash Value (ACV) of Your Car</label>
             <div class="relative">
                 <p class="currency-cash">$</p>
@@ -535,7 +535,7 @@ let zipCodeHTML = `
             </div>
             <p class="error-message">Please enter your car's actual cash value</p>
             ${setBtn('Next')}
-        </div>`,
+        </form>`,
 
     netWorthHTML = `
         <div>
