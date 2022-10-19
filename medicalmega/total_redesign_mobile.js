@@ -1772,9 +1772,6 @@ window.onload = function() {
             .also-bought h4 {
                 padding-right: 20px;
             }
-            .also-bought .slide {
-                width: 190px!important;
-            }
             .subtotal {
                 font-weight: 600;
                 font-size: 24px;
@@ -1828,10 +1825,13 @@ window.onload = function() {
             }
             .slide {
                 background: #FFFFFF;
-                margin-right: 12px;
+                // margin-right: 12px;
                 padding: 20px;
                 border: 1px solid #E3E6E7;
                 border-radius: 4px;
+            }
+            .also-bought .slide > div {
+                padding: 20px;
             }
             .also-bought #tns1 > .tns-item img {
                 width: 80px;
@@ -1942,22 +1942,24 @@ window.onload = function() {
         let slideHTML = (url, urlImage, title, price, id, variantId, parent) =>  {
             let slide = `
                 <div class="slide">
-                    <a href="${url}">
-                        <span class="items-center">
-                            <img src="${urlImage}" alt="${title}">
-                            <span class="price">
-                                <p></p>
-                                <b>${price}</b>
+                    <div>
+                        <a href="${url}">
+                            <span class="items-center">
+                                <img src="${urlImage}" alt="${title}">
+                                <span class="price">
+                                    <p></p>
+                                    <b>${price}</b>
+                                </span>
                             </span>
-                        </span>
-                        <span class="name">${title}</span>
-                    </a>
-                    <div class="flex-center">
-                        <button type="button" class="quantity-btn quantity-btn_minus">−</button>
-                        <input type="number" name="quantity" value="1" class="quantity">
-                        <button type="button" class="quantity-btn quantity-btn_plus" >+</button>
+                            <span class="name">${title}</span>
+                        </a>
+                        <div class="flex-center">
+                            <button type="button" class="quantity-btn quantity-btn_minus">−</button>
+                            <input type="number" name="quantity" value="1" class="quantity">
+                            <button type="button" class="quantity-btn quantity-btn_plus" >+</button>
+                        </div>
+                        <button type="button" class="btn-add" data-variant-id="${variantId}" data-id="${id}">Add to cart</button>
                     </div>
-                    <button type="button" class="btn-add" data-variant-id="${variantId}" data-id="${id}">Add to cart</button>
                 </div> `;
 
             document.querySelector(parent).insertAdjacentHTML('beforeend', slide)
@@ -1987,6 +1989,8 @@ window.onload = function() {
             }
             tns({
                 container: document.querySelector('.slider-products'),
+                fixedWidth: 190,
+                gutter: 12,
                 autoplay: false,
                 axis: 'horizontal',
                 controls: false,
