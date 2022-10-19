@@ -1773,7 +1773,7 @@ window.onload = function() {
                 padding-right: 20px;
             }
             .also-bought .slide {
-                width: 190px;
+                width: 190px!important;
             }
             .subtotal {
                 font-weight: 600;
