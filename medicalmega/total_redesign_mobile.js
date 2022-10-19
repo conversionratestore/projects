@@ -1772,6 +1772,9 @@ window.onload = function() {
             .also-bought h4 {
                 padding-right: 20px;
             }
+            .also-bought .slide {
+                width: 190px;
+            }
             .subtotal {
                 font-weight: 600;
                 font-size: 24px;
@@ -1984,7 +1987,6 @@ window.onload = function() {
             }
             tns({
                 container: document.querySelector('.slider-products'),
-                fixedWidth: 190,
                 autoplay: false,
                 axis: 'horizontal',
                 controls: false,
