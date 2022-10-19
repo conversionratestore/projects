@@ -1387,6 +1387,8 @@ window.onload = function() {
             document.querySelector('.col-left .head h4').innerHTML = obj['stepsName'][1];
             state_item = href.includes('guest-checkout1.php') ? b_state : state;
             countries_ship_item = href.includes('guest-checkout1.php') ? b_country.innerHTML : countries_ship;
+            let shipHave = false, billHave = false;
+
             fetch(`/api/v1/addresses`, {
                 headers: headerFetchAddress,
                 method: "GET",
@@ -1397,13 +1399,20 @@ window.onload = function() {
                     //Shipping Information - current users
                     for (let i = 0; i < addresses.length; i++) {
                         if (addresses[i].type === 'ship') {
-                            currentAddressShip = addresses[i]
-                            currentAddress('.addressBook', `s_`, currentAddressShip)
+                            if (shipHave == false) {
+                                shipHave = true;
+                                currentAddressShip = addresses[i]
+                                currentAddress('.addressBook', `s_`, currentAddressShip)
+                                document.querySelector('.col-left .head').insertAdjacentHTML('afterend', addressCurrentHtml(addresses[i].fname, addresses[i].lname, addresses[i].addr1, addresses[i].city, addresses[i].state, addresses[i].zip, addresses[i].country, addresses[i].phn, addresses[i].type))  
+                            }
                         } else {
-                            currentAddressBill = addresses[i]
-                            currentAddress('.addressBook', `b_`, currentAddressBill)
+                            if (billHave == false) {
+                                billHave = true;
+                                currentAddressBill = addresses[i]
+                                currentAddress('.addressBook', `b_`, currentAddressBill)
+                                document.querySelector('.col-left .head').insertAdjacentHTML('afterend', addressCurrentHtml(addresses[i].fname, addresses[i].lname, addresses[i].addr1, addresses[i].city, addresses[i].state, addresses[i].zip, addresses[i].country, addresses[i].phn, addresses[i].type))  
+                            }
                         }
-                        document.querySelector('.col-left .head').insertAdjacentHTML('afterend', addressCurrentHtml(addresses[i].fname, addresses[i].lname, addresses[i].addr1, addresses[i].city, addresses[i].state, addresses[i].zip, addresses[i].country, addresses[i].phn, addresses[i].type))
                         fname = addresses[i].fname;
                         lname = addresses[i].lname;
                         document.querySelectorAll('.btn-edit').forEach(item => {
@@ -2982,7 +2991,7 @@ window.onload = function() {
             border-radius: 50%;
             text-align: center;
             padding: 0; }
-            .content-discription * {
+        .content-discription * {
             font-family: 'Inter', sans-serif!important; }
         .content-discription {
             color: #6D7E85;
@@ -2990,8 +2999,8 @@ window.onload = function() {
             .content-discription{
             font-size: 16px;
             line-height: 150%; }
-            .content-discription * {
-                color: #6D7E85!important;}
+        .content-discription * {
+            color: #6D7E85;}
         .content-discription p {    
             text-align: left!important;
             margin-top: 15px;}
