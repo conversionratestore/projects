@@ -1769,7 +1769,7 @@ window.onload = function() {
                 padding-top: 28px;
                 margin-right: -20px;
             }
-            .also-bought h2 {
+            .also-bought h4 {
                 padding-right: 20px;
             }
             .subtotal {
