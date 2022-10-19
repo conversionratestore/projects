@@ -81,16 +81,30 @@ if (href.includes('/pages/sleepypatch')) {
     })
 }
 
+let styleCheckout = `
+<style class="style-checkout">
+    .money-back img.f-shipping {
+        display: none;
+    }
+    .money-back img {
+        margin: 0 0 15px 0!important;
+        display: block;
+    }
+</style>`;
+
 if (href.includes('/checkouts/')) {
     let routing = document.referrer;
-
+    
     let internal = setInterval(() => {
         if (routing.includes('/pages/sleepypatch')) {
             sessionStorage.setItem('routing', 1);
         } else if (routing.includes('/collections')) {
             sessionStorage.setItem('routing', 0);
         }
-        if (sessionStorage.getItem('routing') == 1 && document.querySelector('.step__footer__previous-link-content') != null && document.querySelector('.money-back .f-shipping') != null && document.querySelector('.total-line--shipping > td > span') != null && document.querySelector('.product__description span.product__description__variant.order-summary__small-text') != null) {
+        if (document.body != null && document.querySelector('.style-checkout') == null) {
+            document.body.insertAdjacentHTML('afterbegin', styleCheckout); //add style
+        }
+        if (sessionStorage.getItem('routing') == 1 && document.querySelector('.step__footer__previous-link-content') != null && document.querySelector('.money-back img.f-shipping') != null && document.querySelector('.total-line--shipping > td > span') != null && document.querySelector('.product__description span.product__description__variant.order-summary__small-text') != null) {
 
             clearInterval(internal)
 
@@ -114,10 +128,10 @@ if (href.includes('/checkouts/')) {
                     font-family: 'Roboto', sans-serif;
                     font-style: normal;
                     color: #313131;`;
-
+                    
+                document.querySelector('.money-back img.f-shipping').style = 'display: block!important;';
             } else {
-                document.querySelector('.money-back .f-shipping').style = 'display: none!important;';
-                document.querySelector('.money-back img').style = 'margin-bottom: 15px;';
+                document.querySelector('.money-back img.f-shipping').style = 'display: none!important;';
             }
             pushDataLayer();
             
