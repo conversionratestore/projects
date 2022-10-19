@@ -1831,8 +1831,8 @@ window.onload = function() {
                 background: #FFFFFF;
             }
             .also-bought .slide img {
-                width: 80px;
-                height: 80px;
+                width: 80px!important;
+                height: 80px!important;
                 margin-right: 8px;
             }
             .slide .price p {
