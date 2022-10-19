@@ -1823,6 +1823,9 @@ window.onload = function() {
             .slider-products {
                 padding: 20px 0 40px;
             }
+            .also-bought .slide {
+                border: none!important;
+            }
             .also-bought .slide > div {
                 width: 190px;
                 padding: 20px;
