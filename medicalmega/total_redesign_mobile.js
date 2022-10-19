@@ -1767,6 +1767,10 @@ window.onload = function() {
             .also-bought {
                 margin-top: auto;
                 padding-top: 28px;
+                margin-right: -20px;
+            }
+            .also-bought h2 {
+                padding-right: 20px;
             }
             .subtotal {
                 font-weight: 600;
@@ -1818,9 +1822,6 @@ window.onload = function() {
             /*slider*/
             .slider-products {
                 padding: 20px 0 40px;
-            }
-            .also-bought .tns-outer {
-                margin-right: -20px;
             }
             .slide {
                 background: #FFFFFF;
@@ -3994,7 +3995,8 @@ window.onload = function() {
             document.addEventListener('click', (e) => {
                 if (!e.target.closest('.select')) remActiveSelect();
                 if (!e.target.closest('.filter') && !e.target.matches('.filter') && !e.target.matches('.btn-filters')) {
-                    document.querySelector('.filter').classList.remove('active')
+                    document.querySelector('.filter').classList.remove('active');
+                    document.getElementsByTagName('html')[0].classList.remove('fix');
                 }
             })
 
