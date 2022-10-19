@@ -385,6 +385,11 @@ window.onload = function() {
                     document.querySelector(parent).style.margin = 'auto';
                     document.querySelector('.footer-cart').style.display = 'none';
                     document.querySelector('.body-cart').style.height = 'calc(100vh - 53px)';
+                    document.querySelector('.btn-next').addEventListener('click', (e) => {
+                        removeActive('.shopping-cart')
+                        document.getElementsByTagName('html')[0].classList.remove('fix');
+                        pushDataLayer('Click on Shop now button', labelForEvents(e))
+                    })
                 } else {
                     document.querySelector('.subtotal').style = '';
                     document.querySelector(parent).style = '';
@@ -1885,11 +1890,11 @@ window.onload = function() {
             <div class="container">     
                 <div class="header-cart"><div class=" flex-center-between">Shopping cart <svg class="ml-auto" width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M15.4161 14L22.5939 5.44414C22.7142 5.30195 22.613 5.08594 22.4271 5.08594H20.245C20.1165 5.08594 19.9935 5.14336 19.9087 5.2418L13.9888 12.2992L8.06887 5.2418C7.98684 5.14336 7.86379 5.08594 7.73254 5.08594H5.55051C5.36457 5.08594 5.2634 5.30195 5.38372 5.44414L12.5614 14L5.38372 22.5559C5.35676 22.5876 5.33947 22.6263 5.3339 22.6675C5.32832 22.7088 5.33469 22.7507 5.35225 22.7884C5.36981 22.8262 5.39783 22.858 5.43297 22.8803C5.46812 22.9026 5.50891 22.9143 5.55051 22.9141H7.73254C7.86106 22.9141 7.98411 22.8566 8.06887 22.7582L13.9888 15.7008L19.9087 22.7582C19.9907 22.8566 20.1138 22.9141 20.245 22.9141H22.4271C22.613 22.9141 22.7142 22.698 22.5939 22.5559L15.4161 14Z" fill="#6D7E85"/></svg></div></div>
                 <div class="body-cart">
-                <ul class="list-product"></ul>
-                <div class="justify-between subtotal"></div>
+                    <ul class="list-product"></ul>
+                    <div class="justify-between subtotal"></div>
                     <div class="also-bought">
-                    <h4>Also bought with</h4>
-                    <div class="slider-products"></div>
+                        <h4>Also bought with</h4>
+                        <div class="slider-products"></div>
                     </div>
                 </div>
                 <div class="footer-cart">
@@ -1898,7 +1903,7 @@ window.onload = function() {
                     </form>
                     <p>or</p>
                     <a href="https://medicalmega.com/checkout/step1" class="btn-next flex-center">
-                    <span>Proceed to checkout</span>
+                        <span>Proceed to checkout</span>
                         <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M3 9.32153V8.67847C3 8.5009 3.13431 8.35695 3.3 8.35695H13.002L10.332 5.50181C10.2752 5.44144 10.2433 5.35926 10.2433 5.27352C10.2433 5.18779 10.2752 5.10561 10.332 5.04524L10.758 4.59511C10.8143 4.53424 10.891 4.5 10.971 4.5C11.051 4.5 11.1277 4.53424 11.184 4.59511L14.868 8.537C14.9524 8.62736 14.9999 8.74995 15 8.87782V9.12218C14.9986 9.24977 14.9513 9.37186 14.868 9.463L11.184 13.4049C11.1277 13.4658 11.051 13.5 10.971 13.5C10.891 13.5 10.8143 13.4658 10.758 13.4049L10.332 12.9483C10.2756 12.8891 10.2438 12.8079 10.2438 12.7233C10.2438 12.6386 10.2756 12.5575 10.332 12.4982L13.002 9.64305H3.3C3.13431 9.64305 3 9.4991 3 9.32153Z" fill="#FBFBFB"/>
                         </svg>
@@ -3472,6 +3477,8 @@ window.onload = function() {
                 return `PDP`;
             } else if (e.closest('.cards_similar')) {
                 return `Similar Products`;
+            } else if (e.closest('.shopping-cart')) {
+                return `Shopping Cart`;
             } else {
                 return `Listing`;
             }
