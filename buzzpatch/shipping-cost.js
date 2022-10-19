@@ -123,7 +123,7 @@ if (href.includes('/checkouts/')) {
             
             sessionStorage.setItem('routing-checkout', 1);
         }
-    }, 200)
+    })
 }  
 
 let isClarify = setInterval(() => {
