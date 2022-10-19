@@ -31,14 +31,36 @@ let style = `
 
 let href = window.location.href
 
-function pushDataLayer() {
-    window.dataLayer = window.dataLayer || []
-    dataLayer.push({
-        'event': 'event-to-ga',
-        'eventCategory': 'Exp: Shipping cost',
-        'eventAction': 'loaded',
-    })
+function pushDataLayer(action, label) {
+    console.log(action + ' : ' + label)
+    if (label == '') {
+        window.dataLayer = window.dataLayer || []
+        dataLayer.push({
+            'event': 'event-to-ga',
+            'eventCategory': 'Exp: Shipping cost',
+            'eventAction': action,
+        })
+    } else {
+        window.dataLayer = window.dataLayer || []
+        dataLayer.push({
+            'event': 'event-to-ga',
+            'eventCategory': 'Exp: Shipping cost',
+            'eventAction': action,
+            'eventLabel': label
+        })
+    }
 }
+//comes into view
+function isScrolledIntoView(el) {
+    let rect = el.getBoundingClientRect(),
+        elemTop = rect.top,
+        elemBottom = rect.bottom;
+
+    let isVisible = (elemTop >= 0) && (elemBottom <= window.innerHeight);
+
+    return isVisible;
+}
+let viewed = false;
 
 let backCheckoutRouting = setInterval(() => {
     if (sessionStorage.getItem('routing-checkout') == 1 && document.querySelector('.js-packs input') != null && !document.querySelectorAll('.js-packs input')[0].checked && document.querySelectorAll('.js-packs input').length > 3) { 
@@ -74,9 +96,21 @@ if (href.includes('/pages/sleepypatch')) {
                     } else {
                         document.querySelector('.package .note-block p').innerHTML = `<b>Select 2 or more packs</b> to get FREE Shipping`
                     }
+                    if (isScrolledIntoView(document.querySelector('.note-block')) == true) {
+                        pushDataLayer('View on screen', document.querySelector('.note-block').innerText);
+                    }
                 })
             })
-            pushDataLayer();
+            
+            window.addEventListener('scroll', () => {
+                if (isScrolledIntoView(document.querySelector('.note-block')) == true) {
+                    if (viewed == false) {
+                        viewed = true;
+                        pushDataLayer('View on screen', document.querySelector('.note-block').innerText);
+                    }
+                }   
+            })
+            pushDataLayer('loaded','');
         }
     })
 }
@@ -133,7 +167,7 @@ if (href.includes('/checkouts/')) {
             } else {
                 document.querySelector('.money-back img.f-shipping').style = 'display: none!important;';
             }
-            pushDataLayer();
+            pushDataLayer('loaded','');
             
             sessionStorage.setItem('routing-checkout', 1);
         }
