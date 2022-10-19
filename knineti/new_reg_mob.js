@@ -1022,6 +1022,8 @@ if (window.location.pathname === "/mc/") {
       document.querySelector(".count_sec")?.insertAdjacentHTML("afterbegin", firstVisitNewBlock)
       document.querySelector("#myHeaderr").insertAdjacentHTML("beforeend", notFirstVisitStickyBlock)
       document.querySelector(".main_section")?.insertAdjacentHTML("afterbegin", moreThirtyMinsBlock)
+      let days = ""
+      let textDays = "days"
 
       if (innerWidth <= 768) {
         document.querySelector(".new_header_logo")?.insertAdjacentHTML("afterend", dogBadBehavior)
@@ -1067,21 +1069,6 @@ if (window.location.pathname === "/mc/") {
       //getEndsDays
       function getEndsDays() {
         if (document.querySelector("#myHeaderr h4.box_text")) {
-          //   let value = document.querySelector("#myHeaderr h4.box_text").textContent.split(".")[1].split(" ")
-          //   let days = `in ${value[3]}`
-          //   let textDays = value[4]
-          let days = ""
-          let textDays = "days"
-
-          //   if (value[3] === "2") {
-          //     days = "tomorrow"
-          //     textDays = ""
-          //   }
-          //   if (value[3] === "1") {
-          //     days = "today"
-          //     textDays = ""
-          //   }
-          //
           let paramsLocation = new URLSearchParams(window.location.search)
           let dQueryDate = atob(paramsLocation.get("d"))
           let dsp = dQueryDate.split("-")
@@ -1215,7 +1202,7 @@ if (window.location.pathname === "/mc/") {
 
                 if (timer <= 0) {
                   document.querySelector(".more_thirty_mins_block.is_hidden")?.classList.remove("is_hidden")
-                  pushDataLayer("Price banner visibility")
+                  pushDataLayer("Appearance", `Special offer - ends ${days} ${textDays} (under video after 35 min)`)
                   if (document.querySelector("body .click_play")) {
                     document.querySelector("body .click_play").style.display = "none"
                   }
@@ -1325,6 +1312,49 @@ if (window.location.pathname === "/mc/") {
             pushDataLayer(`Enroll now ${idx + 1} clicked`)
           })
         })
+      }
+
+      //observer
+      if (document.querySelector(".sticky_new_header")) {
+        const options = {
+          root: null,
+          threshold: 0.5,
+        }
+
+        let observerNewHeader = new IntersectionObserver((entries) => {
+          if (!entries[0].isIntersecting) return
+          pushDataLayer(`View element on screen`, `Special offer - ends ${days} ${textDays} (header)`)
+          observerNewHeader.disconnect()
+        })
+
+        observerNewHeader.observe(document.querySelector(".sticky_new_header"), options)
+      }
+
+      if (document.querySelector(".more_thirty_mins_block")) {
+        if (!document.querySelector(".more_thirty_mins_block").classList.contains("is_hidden")) {
+          pushDataLayer("Appearance", `Special offer - ends ${days} ${textDays} (under video after 35 min)`)
+        }
+
+        const options = {
+          root: null,
+          threshold: 0.5,
+        }
+
+        let observerUnderVideo = new IntersectionObserver((entries) => {
+          if (!entries[0].isIntersecting) return
+          pushDataLayer(`View element on screen`, `Special offer - ends ${days} ${textDays} (under video after 35 min)`)
+          observerUnderVideo.disconnect()
+        })
+
+        observerUnderVideo.observe(document.querySelector(".more_thirty_mins_block"), options)
+
+        let observerEnrollNow = new IntersectionObserver((entries) => {
+          if (!entries[0].isIntersecting) return
+          pushDataLayer(`View element on screen`, "Enroll now (under video after 35 min)")
+          observerEnrollNow.disconnect()
+        })
+
+        observerEnrollNow.observe(document.querySelector(".more_thirty_mins_block .enroll_now_btn_time"), options)
       }
 
       pushDataLayer("loaded")
