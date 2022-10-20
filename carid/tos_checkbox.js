@@ -1,13 +1,3 @@
-//push dataLayer
-function pushDataLayer(action) {
-    window.dataLayer = window.dataLayer || [];
-    dataLayer.push({
-        'event': 'event-to-ga',
-        'eventCategory': 'Exp — Accept TOS checkbox',
-        'eventAction': action
-    });
-}
-
 let interval = setInterval(() => {
     if (window.location.href.includes('/cart.php?mode=checkout') && document.querySelector('#checkout_form > div.cart-main-form-wrapper > div.payment-form-wrapper > div.checkout-iframe-holder > iframe') != null) {
         clearInterval(interval)
@@ -20,7 +10,11 @@ let interval = setInterval(() => {
     }
 })
 
-pushDataLayer('loaded')
+window.dataLayer = window.dataLayer || [];
+dataLayer.push({
+    'event': 'event-to-ga4',
+    'event_name': 'exp_tos_checkbox_loaded'
+})
 
 let isClarify = setInterval(() => {
     if(typeof clarity == 'function') {
