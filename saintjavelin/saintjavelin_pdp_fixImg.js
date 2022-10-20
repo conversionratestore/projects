@@ -1940,6 +1940,120 @@ ul.background_wrap > li p {
       }, 500)
     }
 
+    // Size
+    document.querySelectorAll(".product__photos a")?.forEach((item) => {
+      item.addEventListener("click", function () {
+        document.querySelectorAll('.variant-input-wrap[name="Size"] label:not(.disabled)').forEach((a) => {
+          let size
+          if (a.previousElementSibling.value.toLowerCase().includes("×")) {
+            size = a.previousElementSibling.value.toLowerCase().replaceAll(`″`, "").replaceAll(`×`, "x")
+
+            if (item.getAttribute("href").includes(`${size}`)) {
+              a.click()
+            }
+          }
+
+          if (a.previousElementSibling.value.toLowerCase().includes("iphone")) {
+            size = a.previousElementSibling.value.toLowerCase().replaceAll(` `, "-").replaceAll(`/`, "-")
+
+            if (item.getAttribute("href").includes(`${size}-case`)) {
+              a.click()
+            }
+          }
+        })
+      })
+    })
+
+    document.querySelectorAll(".photoswipe__image")?.forEach((item) => {
+      item.addEventListener("touchstart", function () {
+        changeSizeItemPswp(item)
+      })
+    })
+
+    document.querySelectorAll(".product__main-photos .flickity-page-dots li")?.forEach((item) => {
+      item.addEventListener("click", function () {
+        setTimeout(() => {
+          document.querySelectorAll('.variant-input-wrap[name="Size"] label:not(.disabled)').forEach((a) => {
+            let size
+            if (a.previousElementSibling.value.toLowerCase().includes("×")) {
+              size = a.previousElementSibling.value.toLowerCase().replaceAll(`″`, "").replaceAll(`×`, "x")
+
+              if (item.closest(".product-slideshow").querySelector(".flickity-slider .is-selected img").getAttribute("data-photoswipe-src").includes(`${size}`)) {
+                a.click()
+              }
+            }
+
+            if (a.previousElementSibling.value.toLowerCase().includes("iphone")) {
+              size = a.previousElementSibling.value.toLowerCase().replaceAll(` `, "-").replaceAll(`/`, "-")
+
+              if (item.closest(".product-slideshow").querySelector(".flickity-slider .is-selected img").getAttribute("data-photoswipe-src").includes(`${size}-case`)) {
+                a.click()
+              }
+            }
+          })
+        }, 400)
+      })
+    })
+
+    document.querySelectorAll(".pswp__button--close")?.forEach((i) => {
+      i.addEventListener("click", function () {
+        document.querySelectorAll(".photoswipe__image")?.forEach((item) => {
+          changeSizeItemPswp(item)
+        })
+      })
+    })
+
+    document.querySelectorAll(".pswp__item")?.forEach((i) => {
+      i.addEventListener("click", function () {
+        document.querySelectorAll(".photoswipe__image")?.forEach((item) => {
+          changeSizeItemPswp(item)
+        })
+      })
+    })
+
+    document.querySelectorAll(".pswp__ui")?.forEach((i) => {
+      i.addEventListener("click", function () {
+        document.querySelectorAll(".photoswipe__image")?.forEach((item) => {
+          changeSizeItemPswp(item)
+        })
+      })
+    })
+
+    document.querySelectorAll(".photoswipe__image")?.forEach((item) => {
+      item.addEventListener("click", function () {
+        changeSizeItemPswp(item)
+      })
+    })
+
+    document.querySelectorAll(".product__photo-zoom")?.forEach((item) => {
+      item.addEventListener("click", function () {
+        changeSizeItemPswp(item)
+      })
+    })
+
+    function changeSizeItemPswp(item) {
+      setTimeout(() => {
+        document.querySelectorAll('.variant-input-wrap[name="Size"] label:not(.disabled)').forEach((a) => {
+          let size
+          if (a.previousElementSibling.value.toLowerCase().includes("×")) {
+            size = a.previousElementSibling.value.toLowerCase().replaceAll(`″`, "").replaceAll(`×`, "x")
+
+            if (item.closest("div.flickity-slider").querySelector(".is-selected img").getAttribute("data-photoswipe-src").includes(`${size}`)) {
+              a.click()
+            }
+          }
+
+          if (a.previousElementSibling.value.toLowerCase().includes("iphone")) {
+            size = a.previousElementSibling.value.toLowerCase().replaceAll(` `, "-").replaceAll(`/`, "-")
+
+            if (item.closest("div.flickity-slider").querySelector(".is-selected img").getAttribute("data-photoswipe-src").includes(`${size}-case`)) {
+              a.click()
+            }
+          }
+        })
+      }, 500)
+    }
+
     //
     fetch("https://crs-dev.fun/api/saint-javelin/total-donorbox", {
       headers: {
