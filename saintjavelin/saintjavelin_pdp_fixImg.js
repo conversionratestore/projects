@@ -1417,7 +1417,6 @@ ul.background_wrap > li p {
           })
 
           document.querySelector(".shopify-payment-button__more-options[data-testid='sheet-open-button']")?.addEventListener("click", (e) => {
-            console.log(e.target)
             if (!e.target.getAttribute("data-test")) {
               if (!e.target.classList.contains("on_click")) {
                 pushDataLayer("Сlick on More payment options", `0`)
@@ -1471,7 +1470,6 @@ ul.background_wrap > li p {
     })
 
     document.querySelector(".shopify-payment-button__more-options[data-testid='sheet-open-button']")?.addEventListener("click", (e) => {
-      console.log(e.target)
       if (!e.target.getAttribute("data-test")) {
         if (!e.target.classList.contains("on_click")) {
           pushDataLayer("Сlick on More payment options", `0`)
@@ -1651,7 +1649,6 @@ ul.background_wrap > li p {
     document.querySelector("a.link_text")?.addEventListener("click", (e) => {
       e.preventDefault()
       e.stopPropagation()
-      console.log(e.target)
 
       pushDataLayer("Сlick on Buy this product")
       if (document.querySelector(".new_wrap_btn .buy_it_now")) {
@@ -1726,7 +1723,9 @@ ul.background_wrap > li p {
             function removeMistakeVar() {
               document.querySelectorAll(".mistake").forEach((el) => {
                 el.classList.remove("is_hidden")
-                el.scrollIntoView({ block: "center", behavior: "smooth" })
+                if (!el.classList.contains("is_visited")) {
+                  el.scrollIntoView({ block: "center", behavior: "smooth" })
+                }
               })
             }
 
