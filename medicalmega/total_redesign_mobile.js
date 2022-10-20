@@ -1618,7 +1618,7 @@ window.onload = function() {
                     })
 
                 } else {
-                    if (!document.querySelector(`.ship-form .checkbox[name="billing"]`).checked) {
+                    if (document.querySelector(`.ship-form .checkbox[name="billing"]`) != null && !document.querySelector(`.ship-form .checkbox[name="billing"]`).checked ) {
                         postFetch('/api/v1/addresses', saveAddress('ship',fname.value,lname.value,addr1.value,city.value,stateF.value,zip.value,country.value,phn.value,email.value),'POST').then(data => {
                             console.log(data)
                             let dataErrors = data.errors;
