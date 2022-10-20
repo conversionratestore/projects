@@ -1679,7 +1679,8 @@ window.onload = function() {
             if (document.querySelector('.myAccountright.active') != null) {
                 document.querySelector('#login_btn').click()
             } else if (document.querySelector('.myAccountleft.active') != null) {
-                document.querySelector('.myAccountleft > form > dd:nth-child(8) > input[type=hidden]').value = `https://medicalmega.com/checkout/step2`
+                document.querySelector('.myAccountleft > form > dd:nth-child(8) > input[type=hidden]').value = `https://medicalmega.com/login.php?r=https%3A%2F%2Fmedicalmega.com%2Fcheckout%2Fstep1`;
+                // window.location.href = `https://medicalmega.com/checkout/step1`;
                 document.querySelector('[name="register"]').click()
             } else if (document.querySelector('.ship-form.active') != null) {
                 address('ship')
