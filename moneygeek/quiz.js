@@ -531,7 +531,7 @@ let zipCodeHTML = `
             <label class="">Actual Cash Value (ACV) of Your Car</label>
             <div class="relative">
                 <p class="currency-cash">$</p>
-                <input type="text" class="input-cash" onkeyup="formatCash(this)">
+                <input type="text" class="input-cash" onkeyup="formatCash(this)" onkeypress="return onlyNumberKey(event)">
             </div>
             <p class="error-message">Please enter your car's actual cash value</p>
             ${setBtn('Next')}
@@ -634,6 +634,15 @@ function formatCash(input){
     }
     input.value = x1 + x2;
 }
+//only number key
+function onlyNumberKey(evt) {
+    // Only ASCII character in that range allowed
+    var ASCIICode = (evt.which) ? evt.which : evt.keyCode
+    if (ASCIICode > 31 && (ASCIICode < 48 || ASCIICode > 57))
+        return false;
+    return true;
+}
+
 //push dataLayer
 function pushDataLayer(action) {
     console.log(action)
@@ -721,6 +730,9 @@ window.onload = function() {
                 btnBack.classList.remove('hide');
                 countStep.dataset.step = '3';
                 let cash = document.querySelector('.input-cash');
+                // cash.addEventListener('input', (e) => {
+                //     e.target.value = e.target.replace(/^(?:\d\,?)+$/,'')
+                // })
                 document.querySelector('.btn-next').addEventListener('click', (e) => {
                     pushDataLayer(`Click on Next button (step - ${countStep.innerHTML})`)
                     if (cash.value != '') {
