@@ -656,13 +656,7 @@ window.onload = function() {
             document.querySelector('#gatsby-focus-wrapper > div > main > div.css-1irxgwz.ead1i4x8 > div > div.css-1wbld27.ead1i4x7 > div.spacing').insertAdjacentHTML('afterend', quizHTML)
         }
     } else if (href.includes('insurance/how-to-get-car-insurance-before-buying-a-car/')) {
-        document.querySelector('.Spacing').insertAdjacentHTML('beforebegin', quizHTML)
-    } else if (href.includes('insurance/auto/cheapest-full-coverage-car-insurance/')) {
-        document.querySelector('#gatsby-focus-wrapper > div > main > div.css-1irxgwz.ead1i4x8 > div > div.css-1uj8m62.ead1i4x6 > div.css-d0d87m').insertAdjacentHTML('afterend', quizHTML)
-    } else if (href.includes('/insurance/auto/cheapest-car-insurance-texas/')) {
-        document.querySelector('#gatsby-focus-wrapper > div > main > div.css-1irxgwz.ead1i4x8 > div > div.css-1uj8m62.ead1i4x6 > div.css-d0d87m').insertAdjacentHTML('afterend', quizHTML)
-    } else if (href.includes('insurance/auto/cheapest-car-insurance-california/')) {
-        document.querySelector('#gatsby-focus-wrapper > div > main > div.css-1irxgwz.ead1i4x8 > div > div.css-1uj8m62.ead1i4x6 > div.css-d0d87m').insertAdjacentHTML('afterend', quizHTML)
+        document.querySelectorAll('.Spacing')[0].insertAdjacentHTML('beforebegin', quizHTML)
     }
 
     let footerQuiz = document.querySelector('.quiz-footer'), //footer quiz
