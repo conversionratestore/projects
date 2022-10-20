@@ -1452,6 +1452,7 @@ window.onload = function() {
                     } 
                     if (document.querySelector('.address.bill') != null && document.querySelector('.address.ship') == null) {
                         document.querySelector('.col-left .head').insertAdjacentHTML('afterend', shipFormHtml(state_item, countries_ship_item, 'active', ''))
+                        document.querySelector('.ship-form > dd:last-child').remove();
                     }
                 } else {
                     //Shipping Information - not filled
