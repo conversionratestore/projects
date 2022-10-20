@@ -650,7 +650,11 @@ window.onload = function() {
 
     //add quiz on page
     if (href.includes('insurance/auto/how-much-car-insurance-do-you-need/')) {
-        document.querySelector('#gatsby-focus-wrapper > div > main > div.css-1irxgwz.ead1i4x8 > div > div.css-1wbld27.ead1i4x7 > div.spacing').insertAdjacentHTML('afterend', quizHTML)
+        if (window.innerWidth > 767) {
+            document.querySelector('#gatsby-focus-wrapper > div > main > div.css-1irxgwz.ead1i4x8 > div > div.css-1uj8m62.ead1i4x6 > div:nth-child(2)').insertAdjacentHTML('beforebegin', quizHTML)
+        } else {
+            document.querySelector('#gatsby-focus-wrapper > div > main > div.css-1irxgwz.ead1i4x8 > div > div.css-1wbld27.ead1i4x7 > div.spacing').insertAdjacentHTML('afterend', quizHTML)
+        }
     } else if (href.includes('insurance/how-to-get-car-insurance-before-buying-a-car/')) {
         document.querySelector('.Spacing').insertAdjacentHTML('beforebegin', quizHTML)
     } else if (href.includes('insurance/auto/cheapest-full-coverage-car-insurance/')) {
