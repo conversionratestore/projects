@@ -1399,23 +1399,25 @@ window.onload = function() {
                 if (!!addresses && addresses.length > 0) {
                     //Shipping Information - current users
                     for (let i = 0; i < addresses.length; i++) {
-                        if (addresses[i].type === 'ship') {
-                            if (shipHave == false) {
-                                shipHave = true;
-                                currentAddressShip = addresses[i]
-                                currentAddress('.addressBook', `s_`, currentAddressShip)
-                                document.querySelector('.col-left .head').insertAdjacentHTML('afterend', addressCurrentHtml(addresses[i].fname, addresses[i].lname, addresses[i].addr1, addresses[i].city, addresses[i].state, addresses[i].zip, addresses[i].country, addresses[i].phn, addresses[i].type))  
+                        if (addresses[i].isPrimary == 1) {
+                            if (addresses[i].type === 'ship') {
+                                if (shipHave == false) {
+                                    shipHave = true;
+                                    currentAddressShip = addresses[i]
+                                    currentAddress('.addressBook', `s_`, currentAddressShip)
+                                    document.querySelector('.col-left .head').insertAdjacentHTML('afterend', addressCurrentHtml(addresses[i].fname, addresses[i].lname, addresses[i].addr1, addresses[i].city, addresses[i].state, addresses[i].zip, addresses[i].country, addresses[i].phn, addresses[i].type))  
+                                }
+                            } else {
+                                if (billHave == false) {
+                                    billHave = true;
+                                    currentAddressBill = addresses[i]
+                                    currentAddress('.addressBook', `b_`, currentAddressBill)
+                                    document.querySelector('.col-left .head').insertAdjacentHTML('afterend', addressCurrentHtml(addresses[i].fname, addresses[i].lname, addresses[i].addr1, addresses[i].city, addresses[i].state, addresses[i].zip, addresses[i].country, addresses[i].phn, addresses[i].type))  
+                                }
                             }
-                        } else {
-                            if (billHave == false) {
-                                billHave = true;
-                                currentAddressBill = addresses[i]
-                                currentAddress('.addressBook', `b_`, currentAddressBill)
-                                document.querySelector('.col-left .head').insertAdjacentHTML('afterend', addressCurrentHtml(addresses[i].fname, addresses[i].lname, addresses[i].addr1, addresses[i].city, addresses[i].state, addresses[i].zip, addresses[i].country, addresses[i].phn, addresses[i].type))  
-                            }
+                            fname = addresses[i].fname;
+                            lname = addresses[i].lname;
                         }
-                        fname = addresses[i].fname;
-                        lname = addresses[i].lname;
                         document.querySelectorAll('.btn-edit').forEach(item => {
                             item.addEventListener('click', (e) => {
                                 e.stopImmediatePropagation()
@@ -1444,9 +1446,13 @@ window.onload = function() {
                             document.querySelector('.address.bill').style.display = 'block';
                         })
                     }
+
                     if (document.querySelector('.address.bill') == null && document.querySelector('.address.ship') != null) {
                         document.querySelector('.address .link').hidden = true;
-                    }
+                    } 
+                    // if (document.querySelector('.address.bill') != null && document.querySelector('.address.ship') == null) {
+                    //     document.querySelector('.col-left .head').insertAdjacentHTML('afterend', shipFormHtml(state_item, countries_ship_item, 'active', ''))
+                    // }
                 } else {
                     //Shipping Information - not filled
                     document.querySelector('.col-left .head').insertAdjacentHTML('afterend', shipFormHtml(state_item, countries_ship_item, 'active', ''))
@@ -1525,7 +1531,6 @@ window.onload = function() {
             document.querySelector('#cc_block > dl > div.ccInfo > dd:nth-child(3)').innerHTML = `Credit/Debit Card<span class="c-red"> *</span>`;
             // document.querySelector('#cc_block > dl > div.ccInfo > dd:nth-child(3)').innerHTML = `Name on card:<span class="c-red"> *</span>`;
         }
-
         //set text for back button
         let setBack = () => {
             if (!href.includes('/checkout/step4') && !href.includes('/guest-checkout4.php')) {
@@ -1675,6 +1680,8 @@ window.onload = function() {
             }
         }
 
+        console.log(currentAddressShip)
+        console.log(currentAddressBill)
         //add click on next button
         document.querySelector('.btn-next').addEventListener('click', (e) => {
             if (document.querySelector('.myAccountright.active') != null) {
@@ -1702,6 +1709,8 @@ window.onload = function() {
                 document.querySelector('.col-left .head').insertAdjacentHTML('afterend', billFormHtml(state_item, countries_ship_item, 'active',''))
                 //copy from Shipping
                 document.querySelector('[name="shipping"]').addEventListener('click', (e) => copyFromShip(e.target, 'bill'))
+            } else if (document.querySelector('.address.ship') == null && document.querySelector('.address.bill') != null && document.querySelector('.ship-form.active') == null) {
+                document.querySelector('.col-left .head').insertAdjacentHTML('afterend', shipFormHtml(state_item, countries_ship_item, 'active',''))
             } else if (document.querySelector('.ship-form.edit') != null) {
                 console.log('edit ship form')
                 address('ship')
