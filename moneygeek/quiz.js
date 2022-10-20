@@ -766,7 +766,6 @@ window.onload = function() {
                 bodyQuiz.style.display = 'none';
                 answers.style.display = 'block';
                 document.querySelectorAll('.my-answers_dropdown > p > span:last-child').forEach((item, index) => {
-                    console.log(myAnswers[index + 1])
                     item.innerHTML = myAnswers[index + 1]
                 })
                 let cashIndex = +(myAnswers[3].split('$')[1].split(',').join('')) > 3000 ? 1 : 0;
@@ -775,6 +774,8 @@ window.onload = function() {
                     document.querySelector('.coverage-type .text-res > p').innerHTML = objQuiz[myAnswers[2]][cashIndex][myAnswers[4]][0]
                     document.querySelector('.required-level .text-res > p').innerHTML = objQuiz[myAnswers[2]][cashIndex][myAnswers[4]][1]
                 }
+
+                document.querySelector('.coverage-type h3').innerHTML = myAnswers[2] == 'Fully Owned' && cashIndex == 0 ? 'Liability coverage only' : 'Comprehensive and collision';
 
                 for (let i = 0; i < stateMinimumObj.length; i++) {
                     if (stateMinimumObj[i].includes(myAnswers[1])) {
