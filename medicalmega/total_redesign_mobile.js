@@ -1450,9 +1450,9 @@ window.onload = function() {
                     if (document.querySelector('.address.bill') == null && document.querySelector('.address.ship') != null) {
                         document.querySelector('.address .link').hidden = true;
                     } 
-                    // if (document.querySelector('.address.bill') != null && document.querySelector('.address.ship') == null) {
-                    //     document.querySelector('.col-left .head').insertAdjacentHTML('afterend', shipFormHtml(state_item, countries_ship_item, 'active', ''))
-                    // }
+                    if (document.querySelector('.address.bill') != null && document.querySelector('.address.ship') == null) {
+                        document.querySelector('.col-left .head').insertAdjacentHTML('afterend', shipFormHtml(state_item, countries_ship_item, 'active', ''))
+                    }
                 } else {
                     //Shipping Information - not filled
                     document.querySelector('.col-left .head').insertAdjacentHTML('afterend', shipFormHtml(state_item, countries_ship_item, 'active', ''))
