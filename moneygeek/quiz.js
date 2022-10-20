@@ -79,7 +79,7 @@ let styleQuiz = `
     }
     .quiz label {
         font-family: 'Brandon Grotesque', sans-serif;
-        font-weight: 450;
+        font-weight: 600;
         line-height: 24px;
         margin-bottom: 4px;
     }
