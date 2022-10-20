@@ -1201,7 +1201,7 @@ window.onload = function() {
                     }
                 })
             })
-            document.querySelector('.myAccountleft > form > dd:nth-child(8) > input[type=hidden]').value = `https://medicalmega.com/checkout/step1`;
+            // document.querySelector('.myAccountleft > form > dd:nth-child(8) > input[type=hidden]').value = `https://medicalmega.com/cart.html`;
         }
 
         let saveAddress = (type,fname,lname,addr1,city,stateF,zip,country,phn,email) => {
