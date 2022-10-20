@@ -1601,6 +1601,7 @@ if ((href.includes('login.php') || href.includes('/register.php') || href.includ
         if (document.querySelector('.myAccountright.active') != null) {
             document.querySelector('#login_btn').click()
         } else if (document.querySelector('.myAccountleft.active') != null) {
+            document.querySelector('.myAccountleft > form > dd:nth-child(8) > input[type=hidden]').value = `https://medicalmega.com/checkout/step2`
             document.querySelector('[name="register"]').click()
         } else if (document.querySelector('.ship-form.active') != null) {
             address('ship')
