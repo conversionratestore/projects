@@ -799,8 +799,8 @@ window.onload = function() {
                 document.querySelectorAll('.show-more').forEach(button => {
                     button.addEventListener('click', () => {
                         button.parentElement.classList.add('show');
-                        button.remove()
-                        pushDataLayer(`Click on show more button (${button.closest('.quiz-block').querySelector('p').innerHTML.replace(':','')})`)
+                        pushDataLayer(`Click on show more button (${button.closest('.quiz-block').querySelector('p').innerHTML.replace(':','')})`);
+                        button.remove();
                     })
                 })
                 document.querySelector('.btn-next').addEventListener('click', (e) => {
