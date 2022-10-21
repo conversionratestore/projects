@@ -58,11 +58,6 @@ let styleQuiz = `
     .btn-next svg {
         margin-left: 7px;
     }
-    .step-count {
-        font-size: 16px;
-        line-height: 150%;
-        color: rgba(85, 85, 85, 1);
-    }
     .step-count span {
         font-weight: 700;
         color: rgba(82, 110, 255, 1);
@@ -253,10 +248,20 @@ let styleQuiz = `
         line-height: 24px;
         color: #555555;
         padding: 4px 0;
-        border-bottom: 2px solid #526EFF;
-        width: 40px;
-        white-space: nowrap;
         margin-bottom: 12px;
+        padding-right: 4px;
+        position: relative;
+        min-width: 46px;
+    }
+    .quiz-block h3:before {
+        content: '';
+        height: 2px;
+        width: 40px;
+        background: #526EFF;
+        position: absolute;
+        bottom: -2px;
+        left: 0;
+        pointer-events: none;
     }
     .text-res {
         height: 72px;
@@ -279,6 +284,48 @@ let styleQuiz = `
     }
     .show-more span {
         color: #526EFF;
+    }
+    .tooltip-block {
+        position: absolute;
+        bottom: calc(100% + 15px);
+        left: 0;
+        transform: translateX(-45%);
+        max-width: 308px;
+        width: max-content;
+        background: #FFFFFF;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.26);
+        border-radius: 6px;
+        padding: 20px;
+        z-index: 5;
+        opacity: 0;
+        pointer-events: none;
+        transition: all 0.2s ease;
+    }
+    .tooltip:hover .tooltip-block {
+        opacity: 1;
+    }
+    .tooltip-block:after {
+        content: '';
+        position: absolute;
+        top: 100%;
+        left: calc(45% - 8px);
+        z-index: 3;
+        width: 0;
+        height: 0;
+        border-style: solid;
+        border-width: 15px 16.5px 0 16.5px;
+        border-color: #ffffff transparent transparent transparent;
+    }
+    .tooltip-block ul {
+        background: #F3F3F3;
+        border-radius: 4px;
+        padding: 10px;
+        margin: 0;
+    }
+    .tooltip-block li {
+        margin-left: 26px;
+        line-height: 150%;
+        margin-bottom: 0;
     }
     /**/
     .weight-600 {
@@ -439,7 +486,7 @@ let objQuiz = {
     }
 }
 
-let stateMinimumObj = ['Alabama:25/50/25', 'Alaska:50/100/25', 'Arizona:15/30/10', 'Arkansas:25/50/25', 'California:15/30/5', 'Colorado:25/50/15', 'Connecticut:25/50/25', 'District of Columbia:25/50/10', 'Delaware:25/50/10', 'Florida://10', 'Georgia:25/50/25', 'Hawaii:20/40/10', 'Idaho:25/50/15', 'Illinois:25/50/20', 'Indiana:25/50/25', 'Iowa:20/40/15', 'Kansas:25/50/25', 'Kentucky:25/50/25', 'Louisiana:15/30/25', 'Maine:50/100/25', 'Maryland:30/60/15', 'Massachusetts:20/40/5', 'Michigan:20/40/', 'Minnesota:30/60/10', 'Mississippi:25/50/25', 'Missouri:25/50/25', 'Montana:25/50/20', 'Nebraska:25/50/25', 'Nevada:25/50/20', 'New Hampshire:25/50/25', 'New Jersey://5', 'New Mexico:25/50/10', 'New York:25/50/10', 'North Carolina:30/60/25', 'North Dakota:25/50/25', 'Ohio:25/50/25', 'Oklahoma:25/50/25', 'Oregon:25/50/20', 'Pennsylvania:15/30/5', 'Rhode Island:25/50/25', 'South Carolina:25/50/25', 'South Dakota:25/50/25', 'Tennessee:25/50/15', 'Texas:30/60/25', 'Utah:25/65/15', 'Vermont:25/50/10', 'Virginia:25/50/20', 'Washington:25/50/10', 'West Virginia:25/50/25', 'Wisconsin:25/50/10', 'Wyoming:25/50/20']
+let objStateMinimum = ['Alabama:25/50/25', 'Alaska:50/100/25', 'Arizona:15/30/10', 'Arkansas:25/50/25', 'California:15/30/5', 'Colorado:25/50/15', 'Connecticut:25/50/25', 'District of Columbia:25/50/10', 'Delaware:25/50/10', 'Florida://10', 'Georgia:25/50/25', 'Hawaii:20/40/10', 'Idaho:25/50/15', 'Illinois:25/50/20', 'Indiana:25/50/25', 'Iowa:20/40/15', 'Kansas:25/50/25', 'Kentucky:25/50/25', 'Louisiana:15/30/25', 'Maine:50/100/25', 'Maryland:30/60/15', 'Massachusetts:20/40/5', 'Michigan:20/40/', 'Minnesota:30/60/10', 'Mississippi:25/50/25', 'Missouri:25/50/25', 'Montana:25/50/20', 'Nebraska:25/50/25', 'Nevada:25/50/20', 'New Hampshire:25/50/25', 'New Jersey://5', 'New Mexico:25/50/10', 'New York:25/50/10', 'North Carolina:30/60/25', 'North Dakota:25/50/25', 'Ohio:25/50/25', 'Oklahoma:25/50/25', 'Oregon:25/50/20', 'Pennsylvania:15/30/5', 'Rhode Island:25/50/25', 'South Carolina:25/50/25', 'South Dakota:25/50/25', 'Tennessee:25/50/15', 'Texas:30/60/25', 'Utah:25/65/15', 'Vermont:25/50/10', 'Virginia:25/50/20', 'Washington:25/50/10', 'West Virginia:25/50/25', 'Wisconsin:25/50/10', 'Wyoming:25/50/20']
 
 let myAnswers = ['','','','$',''] //my Answers array
 let href = window.location.href; //location page
@@ -518,7 +565,7 @@ let zipCodeHTML = `
             <div class="select relative" name="car-ownership">
                 <div class="select-item">Fully Owned</div>
                 <div class="select-drop">
-                    <div>Fully Owned</div>
+                    <div class="active">Fully Owned</div>
                     <div>Leased</div>
                     <div>Financed Purchase</div>
                 </div>
@@ -543,7 +590,7 @@ let zipCodeHTML = `
             <div class="select relative" name="net-worth">
                 <div class="select-item">$50,000 or Less</div>
                 <div class="select-drop">
-                    <div>$50,000 or Less</div>
+                    <div class="active">$50,000 or Less</div>
                     <div>$50,000 to $100,000</div>
                     <div>$100,000 to $300,000</div>
                     <div>More than $300,000</div>
@@ -567,7 +614,19 @@ let zipCodeHTML = `
                 </div>
                 <div class="required-level quiz-block">
                     <p>Required Level of Coverage:</p>
-                    <h3></h3>
+                    <div class="flex">
+                        <h3></h3>
+                        <div class="tooltip relative">
+                            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M7.9987 1.33301C6.68016 1.33301 5.39123 1.724 4.2949 2.45654C3.19857 3.18909 2.34409 4.23028 1.8395 5.44845C1.33492 6.66663 1.2029 8.00707 1.46013 9.30028C1.71737 10.5935 2.35231 11.7814 3.28466 12.7137C4.21701 13.6461 5.40489 14.281 6.6981 14.5382C7.99131 14.7955 9.33175 14.6635 10.5499 14.1589C11.7681 13.6543 12.8093 12.7998 13.5418 11.7035C14.2744 10.6071 14.6654 9.31822 14.6654 7.99967C14.6654 7.1242 14.4929 6.25729 14.1579 5.44845C13.8229 4.63961 13.3318 3.90469 12.7127 3.28563C12.0937 2.66657 11.3588 2.17551 10.5499 1.84048C9.74109 1.50545 8.87418 1.33301 7.9987 1.33301ZM7.9987 13.333C6.94387 13.333 5.91272 13.0202 5.03566 12.4342C4.1586 11.8481 3.47501 11.0152 3.07134 10.0407C2.66768 9.06611 2.56206 7.99376 2.76785 6.95919C2.97363 5.92463 3.48158 4.97432 4.22746 4.22844C4.97334 3.48256 5.92365 2.97461 6.95822 2.76882C7.99278 2.56303 9.06514 2.66865 10.0397 3.07232C11.0142 3.47598 11.8472 4.15957 12.4332 5.03663C13.0192 5.91369 13.332 6.94484 13.332 7.99967C13.332 9.41416 12.7701 10.7707 11.7699 11.7709C10.7697 12.7711 9.41319 13.333 7.9987 13.333Z" fill="#555555"/>
+                                <path d="M7.9987 6.00033C8.36689 6.00033 8.66536 5.70185 8.66536 5.33366C8.66536 4.96547 8.36689 4.66699 7.9987 4.66699C7.63051 4.66699 7.33203 4.96547 7.33203 5.33366C7.33203 5.70185 7.63051 6.00033 7.9987 6.00033Z" fill="#555555"/>
+                                <path d="M7.9987 6.66699C7.82189 6.66699 7.65232 6.73723 7.52729 6.86225C7.40227 6.98728 7.33203 7.15685 7.33203 7.33366V10.667C7.33203 10.8438 7.40227 11.0134 7.52729 11.1384C7.65232 11.2634 7.82189 11.3337 7.9987 11.3337C8.17551 11.3337 8.34508 11.2634 8.4701 11.1384C8.59513 11.0134 8.66536 10.8438 8.66536 10.667V7.33366C8.66536 7.15685 8.59513 6.98728 8.4701 6.86225C8.34508 6.73723 8.17551 6.66699 7.9987 6.66699Z" fill="#555555"/>
+                            </svg>
+                            <div class="tooltip-block">
+                                <ul></ul>
+                            </div>
+                        </div>
+                    </div>
                     <p class="weight-600">Explanation:</p>
                     <div class="text-res">
                         <p></p>
@@ -583,34 +642,28 @@ let zipCodeHTML = `
 function selectChange(currency) {
     let selector = document.querySelector(currency);
     let nameSelect = selector.parentElement.getAttribute('name').split('-').join(' ');
+    let childs = selector.nextElementSibling.querySelectorAll('div');
 
     selector.addEventListener('click', () => {
         selector.parentElement.classList.toggle('active')
         pushDataLayer(`Click on ${nameSelect} select`)
     })
 
-    let childs = selector.nextElementSibling.querySelectorAll('div');
     childs.forEach(child => {
-        if (nameSelect == 'net worth') {
-            if (myAnswers[4] == child.innerText) {
-                child.classList.add('active');
-                selector.innerHTML = child.innerHTML;
-            } else {
-                child.classList.remove('active');
-            }
-        } else {
-            if (myAnswers[2] == child.innerText) {
-                child.classList.add('active');
-                selector.innerHTML = child.innerHTML;
-            } else {
-                child.classList.remove('active');
-            }
-        }
-        
+        if (nameSelect == 'car ownership' && myAnswers[2] != '' || nameSelect == 'net worth' && myAnswers[4] != '') {
+            child.classList.remove('active');
+        } 
+        if (myAnswers[4] == child.innerHTML || myAnswers[2] == child.innerHTML) {
+            child.classList.add('active');
+            selector.innerHTML = child.innerHTML;
+        } 
+
         child.addEventListener('click', (e) => {
             selector.innerHTML = child.innerHTML;
             selector.parentElement.classList.remove('active');
-            pushDataLayer(`${child.innerText} selected (${nameSelect})`)
+            e.target.parentElement.querySelector('div.active').classList.remove('active');
+            e.target.classList.add('active');
+            pushDataLayer(`${child.innerHTML} selected (${nameSelect})`)
         })
     })
 }
@@ -671,7 +724,7 @@ function pushDataLayer(action) {
     });
 }
 
-window.onload = function() {
+// window.onload = function() {
     document.body.insertAdjacentHTML('afterbegin', styleQuiz) //add style quiz
 
     //add quiz on page
@@ -791,9 +844,29 @@ window.onload = function() {
 
                 document.querySelector('.coverage-type h3').innerHTML = myAnswers[2] == 'Fully Owned' && cashIndex == 0 ? 'Liability coverage only' : 'Comprehensive and collision';
 
-                for (let i = 0; i < stateMinimumObj.length; i++) {
-                    if (stateMinimumObj[i].includes(myAnswers[1])) {
-                        document.querySelector('.required-level h3').innerHTML = result[0] == '' ? stateMinimumObj[i].split(':')[1] : result[0];
+                
+                for (let i = 0; i < objStateMinimum.length; i++) {
+                    if (objStateMinimum[i].includes(myAnswers[1])) {
+                        let sptStateMinimum = objStateMinimum[i].split(':')[1].split('/'),
+                            stateMinimum = '';
+
+                        let typeOne = '', typeTwo = '' , typeTree = '';
+                        if (result[0] == '') {
+                            for (let j = 0; j < sptStateMinimum.length; j++) {
+                                stateMinimum += sptStateMinimum[j] + (sptStateMinimum[j] != '' && j < sptStateMinimum.length - 1  ? '/' : '');
+                            }
+
+                            typeOne = sptStateMinimum[0] != '' ? `<li>$${sptStateMinimum[0]},000 in bodily injury insurance per person</li>` : '';
+                            typeTwo = sptStateMinimum[1] != '' ? `<li>$${sptStateMinimum[1]},000 in bodily injury insurance per accident</li>` : '';
+                            typeTree = sptStateMinimum[2] != '' ? `<li>$${sptStateMinimum[2]},000 in property damage insurance per accident</li>` : '';
+                        } else {
+                            typeOne = `<li>$${result[0].split('/')[0]},000 in bodily injury insurance per person</li>`;
+                            typeTwo = `<li>$${result[0].split('/')[1]},000 in bodily injury insurance per accident</li>`;
+                            typeTree = `<li>$${result[0].split('/')[2]},000 in property damage insurance per accident</li>`
+                        }
+                        
+                        document.querySelector('.required-level h3').innerHTML = result[0] == '' ? stateMinimum : result[0];
+                        document.querySelector('.tooltip-block ul').innerHTML = typeOne + typeTwo + typeTree
                     }
                 }
                 document.querySelectorAll('.show-more').forEach(button => {
@@ -843,7 +916,7 @@ window.onload = function() {
             answers.classList.remove('active')
         }
     })
-};
+// };
 
 pushDataLayer('loaded') //loaded event
 
