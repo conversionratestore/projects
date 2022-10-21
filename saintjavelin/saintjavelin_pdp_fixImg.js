@@ -1848,224 +1848,224 @@ ul.background_wrap > li p {
     })
 
     // fix bug change color
-    document.querySelectorAll('.variant-input-wrap[name="Color"] label:not(.disabled)')?.forEach((item) => {
-      item.addEventListener("click", function () {
-        let color = this.previousElementSibling.value.toLowerCase().replaceAll(" ", "-")
+    // document.querySelectorAll('.variant-input-wrap[name="Color"] label:not(.disabled)')?.forEach((item) => {
+    //   item.addEventListener("click", function () {
+    //     let color = this.previousElementSibling.value.toLowerCase().replaceAll(" ", "-")
 
-        document.querySelectorAll(".product__photos a").forEach((a) => {
-          if (a.getAttribute("href").includes(color)) {
-            a.click()
-          }
-        })
-      })
-    })
+    //     document.querySelectorAll(".product__photos a").forEach((a) => {
+    //       if (a.getAttribute("href").includes(color)) {
+    //         a.click()
+    //       }
+    //     })
+    //   })
+    // })
 
-    document.querySelector(".product__thumbs--scroller")?.addEventListener("click", function (e) {
-      console.log(`product__thumbs--scroller`, e.target)
-      if (e.target.classList.contains("product__thumbs--scroller")) {
-        document.querySelectorAll(".product__photos a.is-active")?.forEach((item) => {
-          document.querySelectorAll('.variant-input-wrap[name="Color"] label:not(.disabled)').forEach((a) => {
-            let color = a.previousElementSibling.value.toLowerCase().replaceAll(" ", "-")
-            if (item.getAttribute("href").includes(color)) {
-              a.click()
-            }
-          })
-        })
-      }
-    })
+    // document.querySelector(".product__thumbs--scroller")?.addEventListener("click", function (e) {
+    //   console.log(`product__thumbs--scroller`, e.target)
+    //   if (e.target.classList.contains("product__thumbs--scroller")) {
+    //     document.querySelectorAll(".product__photos a.is-active")?.forEach((item) => {
+    //       document.querySelectorAll('.variant-input-wrap[name="Color"] label:not(.disabled)').forEach((a) => {
+    //         let color = a.previousElementSibling.value.toLowerCase().replaceAll(" ", "-")
+    //         if (item.getAttribute("href").includes(color)) {
+    //           a.click()
+    //         }
+    //       })
+    //     })
+    //   }
+    // })
 
-    document.querySelectorAll(".product__photos a")?.forEach((item) => {
-      item.addEventListener("click", function () {
-        document.querySelectorAll('.variant-input-wrap[name="Color"] label:not(.disabled)').forEach((a) => {
-          let color = a.previousElementSibling.value.toLowerCase().replaceAll(" ", "-")
-          if (item.getAttribute("href").includes(color)) {
-            a.click()
-          }
-        })
-      })
-    })
+    // document.querySelectorAll(".product__photos a")?.forEach((item) => {
+    //   item.addEventListener("click", function () {
+    //     document.querySelectorAll('.variant-input-wrap[name="Color"] label:not(.disabled)').forEach((a) => {
+    //       let color = a.previousElementSibling.value.toLowerCase().replaceAll(" ", "-")
+    //       if (item.getAttribute("href").includes(color)) {
+    //         a.click()
+    //       }
+    //     })
+    //   })
+    // })
 
-    document.querySelectorAll(".photoswipe__image")?.forEach((item) => {
-      item.addEventListener("touchstart", function () {
-        changeColorItemPswp(item)
-      })
-    })
+    // document.querySelectorAll(".photoswipe__image")?.forEach((item) => {
+    //   item.addEventListener("touchstart", function () {
+    //     changeColorItemPswp(item)
+    //   })
+    // })
 
-    document.querySelectorAll(".product__main-photos .flickity-page-dots li")?.forEach((item) => {
-      item.addEventListener("click", function () {
-        setTimeout(() => {
-          document.querySelectorAll('.variant-input-wrap[name="Color"] label:not(.disabled)').forEach((a) => {
-            let color = a.previousElementSibling.value.toLowerCase().replaceAll(" ", "-")
+    // document.querySelectorAll(".product__main-photos .flickity-page-dots li")?.forEach((item) => {
+    //   item.addEventListener("click", function () {
+    //     setTimeout(() => {
+    //       document.querySelectorAll('.variant-input-wrap[name="Color"] label:not(.disabled)').forEach((a) => {
+    //         let color = a.previousElementSibling.value.toLowerCase().replaceAll(" ", "-")
 
-            if (item.closest(".product-slideshow").querySelector(".flickity-slider .is-selected img").getAttribute("data-photoswipe-src").includes(color)) {
-              a.click()
-            }
-          })
-        }, 600)
-      })
-    })
+    //         if (item.closest(".product-slideshow").querySelector(".flickity-slider .is-selected img").getAttribute("data-photoswipe-src").includes(color)) {
+    //           a.click()
+    //         }
+    //       })
+    //     }, 600)
+    //   })
+    // })
 
-    document.querySelectorAll(".pswp__button--close")?.forEach((i) => {
-      i.addEventListener("click", function () {
-        document.querySelectorAll(".photoswipe__image")?.forEach((item) => {
-          changeColorItemPswp(item)
-        })
-      })
-    })
+    // document.querySelectorAll(".pswp__button--close")?.forEach((i) => {
+    //   i.addEventListener("click", function () {
+    //     document.querySelectorAll(".photoswipe__image")?.forEach((item) => {
+    //       changeColorItemPswp(item)
+    //     })
+    //   })
+    // })
 
-    document.querySelectorAll(".pswp__item")?.forEach((i) => {
-      i.addEventListener("click", function () {
-        document.querySelectorAll(".photoswipe__image")?.forEach((item) => {
-          changeColorItemPswp(item)
-        })
-      })
-    })
+    // document.querySelectorAll(".pswp__item")?.forEach((i) => {
+    //   i.addEventListener("click", function () {
+    //     document.querySelectorAll(".photoswipe__image")?.forEach((item) => {
+    //       changeColorItemPswp(item)
+    //     })
+    //   })
+    // })
 
-    document.querySelectorAll(".pswp__ui")?.forEach((i) => {
-      i.addEventListener("click", function () {
-        document.querySelectorAll(".photoswipe__image")?.forEach((item) => {
-          changeColorItemPswp(item)
-        })
-      })
-    })
+    // document.querySelectorAll(".pswp__ui")?.forEach((i) => {
+    //   i.addEventListener("click", function () {
+    //     document.querySelectorAll(".photoswipe__image")?.forEach((item) => {
+    //       changeColorItemPswp(item)
+    //     })
+    //   })
+    // })
 
-    document.querySelectorAll(".photoswipe__image")?.forEach((item) => {
-      item.addEventListener("click", function () {
-        changeColorItemPswp(item)
-      })
-    })
+    // document.querySelectorAll(".photoswipe__image")?.forEach((item) => {
+    //   item.addEventListener("click", function () {
+    //     changeColorItemPswp(item)
+    //   })
+    // })
 
-    document.querySelectorAll(".product__photo-zoom")?.forEach((item) => {
-      item.addEventListener("click", function () {
-        changeColorItemPswp(item)
-      })
-    })
+    // document.querySelectorAll(".product__photo-zoom")?.forEach((item) => {
+    //   item.addEventListener("click", function () {
+    //     changeColorItemPswp(item)
+    //   })
+    // })
 
-    function changeColorItemPswp(item) {
-      setTimeout(() => {
-        document.querySelectorAll('.variant-input-wrap[name="Color"] label:not(.disabled)').forEach((a) => {
-          let color = a.previousElementSibling.value.toLowerCase().replaceAll(" ", "-")
+    // function changeColorItemPswp(item) {
+    //   setTimeout(() => {
+    //     document.querySelectorAll('.variant-input-wrap[name="Color"] label:not(.disabled)').forEach((a) => {
+    //       let color = a.previousElementSibling.value.toLowerCase().replaceAll(" ", "-")
 
-          if (item.closest("div.flickity-slider").querySelector(".is-selected img").getAttribute("data-photoswipe-src").includes(color)) {
-            a.click()
-          }
-        })
-      }, 600)
-    }
+    //       if (item.closest("div.flickity-slider").querySelector(".is-selected img").getAttribute("data-photoswipe-src").includes(color)) {
+    //         a.click()
+    //       }
+    //     })
+    //   }, 600)
+    // }
 
     // Size
-    document.querySelectorAll(".product__photos a")?.forEach((item) => {
-      item.addEventListener("click", function () {
-        document.querySelectorAll('.variant-input-wrap[name="Size"] label:not(.disabled)').forEach((a) => {
-          let size
-          if (a.previousElementSibling.value.toLowerCase().includes("×")) {
-            size = a.previousElementSibling.value.toLowerCase().replaceAll(`″`, "").replaceAll(`×`, "x")
+    // document.querySelectorAll(".product__photos a")?.forEach((item) => {
+    //   item.addEventListener("click", function () {
+    //     document.querySelectorAll('.variant-input-wrap[name="Size"] label:not(.disabled)').forEach((a) => {
+    //       let size
+    //       if (a.previousElementSibling.value.toLowerCase().includes("×")) {
+    //         size = a.previousElementSibling.value.toLowerCase().replaceAll(`″`, "").replaceAll(`×`, "x")
 
-            if (item.getAttribute("href").includes(`${size}`)) {
-              a.click()
-            }
-          }
+    //         if (item.getAttribute("href").includes(`${size}`)) {
+    //           a.click()
+    //         }
+    //       }
 
-          if (a.previousElementSibling.value.toLowerCase().includes("iphone")) {
-            size = a.previousElementSibling.value.toLowerCase().replaceAll(` `, "-").replaceAll(`/`, "-")
+    //       if (a.previousElementSibling.value.toLowerCase().includes("iphone")) {
+    //         size = a.previousElementSibling.value.toLowerCase().replaceAll(` `, "-").replaceAll(`/`, "-")
 
-            if (item.getAttribute("href").includes(`${size}-case`)) {
-              a.click()
-            }
-          }
-        })
-      })
-    })
+    //         if (item.getAttribute("href").includes(`${size}-case`)) {
+    //           a.click()
+    //         }
+    //       }
+    //     })
+    //   })
+    // })
 
-    document.querySelectorAll(".photoswipe__image")?.forEach((item) => {
-      item.addEventListener("touchstart", function () {
-        changeSizeItemPswp(item)
-      })
-    })
+    // document.querySelectorAll(".photoswipe__image")?.forEach((item) => {
+    //   item.addEventListener("touchstart", function () {
+    //     changeSizeItemPswp(item)
+    //   })
+    // })
 
-    document.querySelectorAll(".product__main-photos .flickity-page-dots li")?.forEach((item) => {
-      item.addEventListener("click", function () {
-        setTimeout(() => {
-          document.querySelectorAll('.variant-input-wrap[name="Size"] label:not(.disabled)').forEach((a) => {
-            let size
-            if (a.previousElementSibling.value.toLowerCase().includes("×")) {
-              size = a.previousElementSibling.value.toLowerCase().replaceAll(`″`, "").replaceAll(`×`, "x")
+    // document.querySelectorAll(".product__main-photos .flickity-page-dots li")?.forEach((item) => {
+    //   item.addEventListener("click", function () {
+    //     setTimeout(() => {
+    //       document.querySelectorAll('.variant-input-wrap[name="Size"] label:not(.disabled)').forEach((a) => {
+    //         let size
+    //         if (a.previousElementSibling.value.toLowerCase().includes("×")) {
+    //           size = a.previousElementSibling.value.toLowerCase().replaceAll(`″`, "").replaceAll(`×`, "x")
 
-              if (item.closest(".product-slideshow").querySelector(".flickity-slider .is-selected img").getAttribute("data-photoswipe-src").includes(`${size}`)) {
-                a.click()
-              }
-            }
+    //           if (item.closest(".product-slideshow").querySelector(".flickity-slider .is-selected img").getAttribute("data-photoswipe-src").includes(`${size}`)) {
+    //             a.click()
+    //           }
+    //         }
 
-            if (a.previousElementSibling.value.toLowerCase().includes("iphone")) {
-              size = a.previousElementSibling.value.toLowerCase().replaceAll(` `, "-").replaceAll(`/`, "-")
+    //         if (a.previousElementSibling.value.toLowerCase().includes("iphone")) {
+    //           size = a.previousElementSibling.value.toLowerCase().replaceAll(` `, "-").replaceAll(`/`, "-")
 
-              if (item.closest(".product-slideshow").querySelector(".flickity-slider .is-selected img").getAttribute("data-photoswipe-src").includes(`${size}-case`)) {
-                a.click()
-              }
-            }
-          })
-        }, 400)
-      })
-    })
+    //           if (item.closest(".product-slideshow").querySelector(".flickity-slider .is-selected img").getAttribute("data-photoswipe-src").includes(`${size}-case`)) {
+    //             a.click()
+    //           }
+    //         }
+    //       })
+    //     }, 400)
+    //   })
+    // })
 
-    document.querySelectorAll(".pswp__button--close")?.forEach((i) => {
-      i.addEventListener("click", function () {
-        document.querySelectorAll(".photoswipe__image")?.forEach((item) => {
-          changeSizeItemPswp(item)
-        })
-      })
-    })
+    // document.querySelectorAll(".pswp__button--close")?.forEach((i) => {
+    //   i.addEventListener("click", function () {
+    //     document.querySelectorAll(".photoswipe__image")?.forEach((item) => {
+    //       changeSizeItemPswp(item)
+    //     })
+    //   })
+    // })
 
-    document.querySelectorAll(".pswp__item")?.forEach((i) => {
-      i.addEventListener("click", function () {
-        document.querySelectorAll(".photoswipe__image")?.forEach((item) => {
-          changeSizeItemPswp(item)
-        })
-      })
-    })
+    // document.querySelectorAll(".pswp__item")?.forEach((i) => {
+    //   i.addEventListener("click", function () {
+    //     document.querySelectorAll(".photoswipe__image")?.forEach((item) => {
+    //       changeSizeItemPswp(item)
+    //     })
+    //   })
+    // })
 
-    document.querySelectorAll(".pswp__ui")?.forEach((i) => {
-      i.addEventListener("click", function () {
-        document.querySelectorAll(".photoswipe__image")?.forEach((item) => {
-          changeSizeItemPswp(item)
-        })
-      })
-    })
+    // document.querySelectorAll(".pswp__ui")?.forEach((i) => {
+    //   i.addEventListener("click", function () {
+    //     document.querySelectorAll(".photoswipe__image")?.forEach((item) => {
+    //       changeSizeItemPswp(item)
+    //     })
+    //   })
+    // })
 
-    document.querySelectorAll(".photoswipe__image")?.forEach((item) => {
-      item.addEventListener("click", function () {
-        changeSizeItemPswp(item)
-      })
-    })
+    // document.querySelectorAll(".photoswipe__image")?.forEach((item) => {
+    //   item.addEventListener("click", function () {
+    //     changeSizeItemPswp(item)
+    //   })
+    // })
 
-    document.querySelectorAll(".product__photo-zoom")?.forEach((item) => {
-      item.addEventListener("click", function () {
-        changeSizeItemPswp(item)
-      })
-    })
+    // document.querySelectorAll(".product__photo-zoom")?.forEach((item) => {
+    //   item.addEventListener("click", function () {
+    //     changeSizeItemPswp(item)
+    //   })
+    // })
 
-    function changeSizeItemPswp(item) {
-      setTimeout(() => {
-        document.querySelectorAll('.variant-input-wrap[name="Size"] label:not(.disabled)').forEach((a) => {
-          let size
-          if (a.previousElementSibling.value.toLowerCase().includes("×")) {
-            size = a.previousElementSibling.value.toLowerCase().replaceAll(`″`, "").replaceAll(`×`, "x")
+    // function changeSizeItemPswp(item) {
+    //   setTimeout(() => {
+    //     document.querySelectorAll('.variant-input-wrap[name="Size"] label:not(.disabled)').forEach((a) => {
+    //       let size
+    //       if (a.previousElementSibling.value.toLowerCase().includes("×")) {
+    //         size = a.previousElementSibling.value.toLowerCase().replaceAll(`″`, "").replaceAll(`×`, "x")
 
-            if (item.closest("div.flickity-slider").querySelector(".is-selected img").getAttribute("data-photoswipe-src").includes(`${size}`)) {
-              a.click()
-            }
-          }
+    //         if (item.closest("div.flickity-slider").querySelector(".is-selected img").getAttribute("data-photoswipe-src").includes(`${size}`)) {
+    //           a.click()
+    //         }
+    //       }
 
-          if (a.previousElementSibling.value.toLowerCase().includes("iphone")) {
-            size = a.previousElementSibling.value.toLowerCase().replaceAll(` `, "-").replaceAll(`/`, "-")
+    //       if (a.previousElementSibling.value.toLowerCase().includes("iphone")) {
+    //         size = a.previousElementSibling.value.toLowerCase().replaceAll(` `, "-").replaceAll(`/`, "-")
 
-            if (item.closest("div.flickity-slider").querySelector(".is-selected img").getAttribute("data-photoswipe-src").includes(`${size}-case`)) {
-              a.click()
-            }
-          }
-        })
-      }, 500)
-    }
+    //         if (item.closest("div.flickity-slider").querySelector(".is-selected img").getAttribute("data-photoswipe-src").includes(`${size}-case`)) {
+    //           a.click()
+    //         }
+    //       }
+    //     })
+    //   }, 500)
+    // }
 
     //
     fetch("https://crs-dev.fun/api/saint-javelin/total-donorbox", {
