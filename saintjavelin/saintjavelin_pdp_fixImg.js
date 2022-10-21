@@ -1542,7 +1542,7 @@ ul.background_wrap > li p {
 
       document.querySelector("html").style.overflow = "hidden"
       document.querySelector("html").style.display = "block"
-      document.querySelector("html").style.height = "100%"
+      document.querySelector("html").style.height = "max-content"
 
       document.querySelector(".container_popup").insertAdjacentHTML("beforeend", block)
     }
