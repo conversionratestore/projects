@@ -549,7 +549,7 @@ let zipCodeHTML = `
                     <div>More than $300,000</div>
                 </div>
             </div>
-            ${setBtn('Next')}
+            ${setBtn('View Your Recommended Coverage')}
         </div>`,
 
     resultHTML = `
@@ -750,7 +750,7 @@ window.onload = function() {
                 cash.value = myAnswers[3].replace('$','');
                 document.querySelector('.btn-next').addEventListener('click', (e) => {
                     pushDataLayer(`Click on Next button (step - ${countStep.innerHTML})`)
-                    if (cash.value != '') {
+                    if (cash.value != '' && cash.value != 0 && cash.value != '00' && cash.value != '0,000') {
                         document.querySelector('.error-message').parentElement.classList.remove('error')
                         myAnswers[3] = '$' + cash.value;
                         changeContent('4')
