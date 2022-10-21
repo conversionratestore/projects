@@ -518,7 +518,7 @@ let zipCodeHTML = `
             <div class="select relative" name="car-ownership">
                 <div class="select-item">Fully Owned</div>
                 <div class="select-drop">
-                    <div class="active">Fully Owned</div>
+                    <div>Fully Owned</div>
                     <div>Leased</div>
                     <div>Financed Purchase</div>
                 </div>
@@ -543,7 +543,7 @@ let zipCodeHTML = `
             <div class="select relative" name="net-worth">
                 <div class="select-item">$50,000 or Less</div>
                 <div class="select-drop">
-                    <div class="active">$50,000 or Less</div>
+                    <div>$50,000 or Less</div>
                     <div>$50,000 to $100,000</div>
                     <div>$100,000 to $300,000</div>
                     <div>More than $300,000</div>
@@ -583,6 +583,7 @@ let zipCodeHTML = `
 function selectChange(currency) {
     let selector = document.querySelector(currency);
     let nameSelect = selector.parentElement.getAttribute('name').split('-').join(' ');
+
     selector.addEventListener('click', () => {
         selector.parentElement.classList.toggle('active')
         pushDataLayer(`Click on ${nameSelect} select`)
@@ -590,6 +591,10 @@ function selectChange(currency) {
 
     let childs = selector.nextElementSibling.querySelectorAll('div');
     childs.forEach(child => {
+        console.log(selector.innerText == child.innerText)
+        if (selector.innerText == child.innerText) {
+            child.classList.add('active');
+        }
         child.addEventListener('click', (e) => {
             selector.innerHTML = child.innerHTML;
             selector.parentElement.classList.remove('active');
