@@ -494,6 +494,9 @@ ul.composition li + li {
 .mistake.patch_var{
   left: 132px;
 }
+.mistake.type_var{
+  left: 88px;
+}
 .mistake.size_var {
   left: 82px;
 }
@@ -1417,7 +1420,6 @@ ul.background_wrap > li p {
           })
 
           document.querySelector(".shopify-payment-button__more-options[data-testid='sheet-open-button']")?.addEventListener("click", (e) => {
-            console.log(e.target)
             if (!e.target.getAttribute("data-test")) {
               if (!e.target.classList.contains("on_click")) {
                 pushDataLayer("Сlick on More payment options", `0`)
@@ -1471,7 +1473,6 @@ ul.background_wrap > li p {
     })
 
     document.querySelector(".shopify-payment-button__more-options[data-testid='sheet-open-button']")?.addEventListener("click", (e) => {
-      console.log(e.target)
       if (!e.target.getAttribute("data-test")) {
         if (!e.target.classList.contains("on_click")) {
           pushDataLayer("Сlick on More payment options", `0`)
@@ -1541,7 +1542,7 @@ ul.background_wrap > li p {
 
       document.querySelector("html").style.overflow = "hidden"
       document.querySelector("html").style.display = "block"
-      document.querySelector("html").style.height = "100%"
+      document.querySelector("html").style.height = "max-content"
 
       document.querySelector(".container_popup").insertAdjacentHTML("beforeend", block)
     }
@@ -1599,6 +1600,18 @@ ul.background_wrap > li p {
         }
       }
 
+      if (el.textContent.includes("Type")) {
+        el.textContent = "Select type:"
+        if (!document.querySelector(".mistake.color_var")) {
+          el.insertAdjacentHTML(
+            "beforeend",
+            `<div class="mistake patch_var type_var is_hidden">
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M7.33398 9.99992H8.66732V11.3333H7.33398V9.99992ZM7.33398 4.66659H8.66732V8.66659H7.33398V4.66659ZM7.99398 1.33325C4.31398 1.33325 1.33398 4.31992 1.33398 7.99992C1.33398 11.6799 4.31398 14.6666 7.99398 14.6666C11.6807 14.6666 14.6673 11.6799 14.6673 7.99992C14.6673 4.31992 11.6807 1.33325 7.99398 1.33325ZM8.00065 13.3333C5.05398 13.3333 2.66732 10.9466 2.66732 7.99992C2.66732 5.05325 5.05398 2.66659 8.00065 2.66659C10.9473 2.66659 13.334 5.05325 13.334 7.99992C13.334 10.9466 10.9473 13.3333 8.00065 13.3333Z" fill="#D71D1D"/></svg>Please select type
+            </div>`
+          )
+        }
+      }
+
       if (el.textContent.includes("Size")) {
         el.textContent = "Select size:"
         if (!document.querySelector(".mistake.size_var")) {
@@ -1639,7 +1652,6 @@ ul.background_wrap > li p {
     document.querySelector("a.link_text")?.addEventListener("click", (e) => {
       e.preventDefault()
       e.stopPropagation()
-      console.log(e.target)
 
       pushDataLayer("Сlick on Buy this product")
       if (document.querySelector(".new_wrap_btn .buy_it_now")) {
@@ -1714,7 +1726,9 @@ ul.background_wrap > li p {
             function removeMistakeVar() {
               document.querySelectorAll(".mistake").forEach((el) => {
                 el.classList.remove("is_hidden")
-                el.scrollIntoView({ block: "center", behavior: "smooth" })
+                if (!el.classList.contains("is_visited")) {
+                  el.scrollIntoView({ block: "center", behavior: "smooth" })
+                }
               })
             }
 
@@ -1757,6 +1771,10 @@ ul.background_wrap > li p {
       el.addEventListener("click", (i) => {
         if (el.previousElementSibling.value !== "default") {
           if (el.closest(".variant-wrapper").querySelector(".variant__label.hidden-label").textContent.includes("Select color:")) {
+            el.closest(".variant-wrapper").querySelector(".variant__label.hidden-label .mistake").classList.add("is_visited")
+          }
+
+          if (el.closest(".variant-wrapper").querySelector(".variant__label.hidden-label").textContent.includes("Select type:")) {
             el.closest(".variant-wrapper").querySelector(".variant__label.hidden-label .mistake").classList.add("is_visited")
           }
 
@@ -1841,6 +1859,213 @@ ul.background_wrap > li p {
         })
       })
     })
+
+    // document.querySelector(".product__thumbs--scroller")?.addEventListener("click", function (e) {
+    //   console.log(`product__thumbs--scroller`, e.target)
+    //   if (e.target.classList.contains("product__thumbs--scroller")) {
+    //     document.querySelectorAll(".product__photos a.is-active")?.forEach((item) => {
+    //       document.querySelectorAll('.variant-input-wrap[name="Color"] label:not(.disabled)').forEach((a) => {
+    //         let color = a.previousElementSibling.value.toLowerCase().replaceAll(" ", "-")
+    //         if (item.getAttribute("href").includes(color)) {
+    //           a.click()
+    //         }
+    //       })
+    //     })
+    //   }
+    // })
+
+    // document.querySelectorAll(".product__photos a")?.forEach((item) => {
+    //   item.addEventListener("click", function () {
+    //     document.querySelectorAll('.variant-input-wrap[name="Color"] label:not(.disabled)').forEach((a) => {
+    //       let color = a.previousElementSibling.value.toLowerCase().replaceAll(" ", "-")
+    //       if (item.getAttribute("href").includes(color)) {
+    //         a.click()
+    //       }
+    //     })
+    //   })
+    // })
+
+    // document.querySelectorAll(".photoswipe__image")?.forEach((item) => {
+    //   item.addEventListener("touchstart", function () {
+    //     changeColorItemPswp(item)
+    //   })
+    // })
+
+    // document.querySelectorAll(".product__main-photos .flickity-page-dots li")?.forEach((item) => {
+    //   item.addEventListener("click", function () {
+    //     setTimeout(() => {
+    //       document.querySelectorAll('.variant-input-wrap[name="Color"] label:not(.disabled)').forEach((a) => {
+    //         let color = a.previousElementSibling.value.toLowerCase().replaceAll(" ", "-")
+
+    //         if (item.closest(".product-slideshow").querySelector(".flickity-slider .is-selected img").getAttribute("data-photoswipe-src").includes(color)) {
+    //           a.click()
+    //         }
+    //       })
+    //     }, 600)
+    //   })
+    // })
+
+    // document.querySelectorAll(".pswp__button--close")?.forEach((i) => {
+    //   i.addEventListener("click", function () {
+    //     document.querySelectorAll(".photoswipe__image")?.forEach((item) => {
+    //       changeColorItemPswp(item)
+    //     })
+    //   })
+    // })
+
+    // document.querySelectorAll(".pswp__item")?.forEach((i) => {
+    //   i.addEventListener("click", function () {
+    //     document.querySelectorAll(".photoswipe__image")?.forEach((item) => {
+    //       changeColorItemPswp(item)
+    //     })
+    //   })
+    // })
+
+    // document.querySelectorAll(".pswp__ui")?.forEach((i) => {
+    //   i.addEventListener("click", function () {
+    //     document.querySelectorAll(".photoswipe__image")?.forEach((item) => {
+    //       changeColorItemPswp(item)
+    //     })
+    //   })
+    // })
+
+    // document.querySelectorAll(".photoswipe__image")?.forEach((item) => {
+    //   item.addEventListener("click", function () {
+    //     changeColorItemPswp(item)
+    //   })
+    // })
+
+    // document.querySelectorAll(".product__photo-zoom")?.forEach((item) => {
+    //   item.addEventListener("click", function () {
+    //     changeColorItemPswp(item)
+    //   })
+    // })
+
+    // function changeColorItemPswp(item) {
+    //   setTimeout(() => {
+    //     document.querySelectorAll('.variant-input-wrap[name="Color"] label:not(.disabled)').forEach((a) => {
+    //       let color = a.previousElementSibling.value.toLowerCase().replaceAll(" ", "-")
+
+    //       if (item.closest("div.flickity-slider").querySelector(".is-selected img").getAttribute("data-photoswipe-src").includes(color)) {
+    //         a.click()
+    //       }
+    //     })
+    //   }, 600)
+    // }
+
+    // Size
+    // document.querySelectorAll(".product__photos a")?.forEach((item) => {
+    //   item.addEventListener("click", function () {
+    //     document.querySelectorAll('.variant-input-wrap[name="Size"] label:not(.disabled)').forEach((a) => {
+    //       let size
+    //       if (a.previousElementSibling.value.toLowerCase().includes("×")) {
+    //         size = a.previousElementSibling.value.toLowerCase().replaceAll(`″`, "").replaceAll(`×`, "x")
+
+    //         if (item.getAttribute("href").includes(`${size}`)) {
+    //           a.click()
+    //         }
+    //       }
+
+    //       if (a.previousElementSibling.value.toLowerCase().includes("iphone")) {
+    //         size = a.previousElementSibling.value.toLowerCase().replaceAll(` `, "-").replaceAll(`/`, "-")
+
+    //         if (item.getAttribute("href").includes(`${size}-case`)) {
+    //           a.click()
+    //         }
+    //       }
+    //     })
+    //   })
+    // })
+
+    // document.querySelectorAll(".photoswipe__image")?.forEach((item) => {
+    //   item.addEventListener("touchstart", function () {
+    //     changeSizeItemPswp(item)
+    //   })
+    // })
+
+    // document.querySelectorAll(".product__main-photos .flickity-page-dots li")?.forEach((item) => {
+    //   item.addEventListener("click", function () {
+    //     setTimeout(() => {
+    //       document.querySelectorAll('.variant-input-wrap[name="Size"] label:not(.disabled)').forEach((a) => {
+    //         let size
+    //         if (a.previousElementSibling.value.toLowerCase().includes("×")) {
+    //           size = a.previousElementSibling.value.toLowerCase().replaceAll(`″`, "").replaceAll(`×`, "x")
+
+    //           if (item.closest(".product-slideshow").querySelector(".flickity-slider .is-selected img").getAttribute("data-photoswipe-src").includes(`${size}`)) {
+    //             a.click()
+    //           }
+    //         }
+
+    //         if (a.previousElementSibling.value.toLowerCase().includes("iphone")) {
+    //           size = a.previousElementSibling.value.toLowerCase().replaceAll(` `, "-").replaceAll(`/`, "-")
+
+    //           if (item.closest(".product-slideshow").querySelector(".flickity-slider .is-selected img").getAttribute("data-photoswipe-src").includes(`${size}-case`)) {
+    //             a.click()
+    //           }
+    //         }
+    //       })
+    //     }, 400)
+    //   })
+    // })
+
+    // document.querySelectorAll(".pswp__button--close")?.forEach((i) => {
+    //   i.addEventListener("click", function () {
+    //     document.querySelectorAll(".photoswipe__image")?.forEach((item) => {
+    //       changeSizeItemPswp(item)
+    //     })
+    //   })
+    // })
+
+    // document.querySelectorAll(".pswp__item")?.forEach((i) => {
+    //   i.addEventListener("click", function () {
+    //     document.querySelectorAll(".photoswipe__image")?.forEach((item) => {
+    //       changeSizeItemPswp(item)
+    //     })
+    //   })
+    // })
+
+    // document.querySelectorAll(".pswp__ui")?.forEach((i) => {
+    //   i.addEventListener("click", function () {
+    //     document.querySelectorAll(".photoswipe__image")?.forEach((item) => {
+    //       changeSizeItemPswp(item)
+    //     })
+    //   })
+    // })
+
+    // document.querySelectorAll(".photoswipe__image")?.forEach((item) => {
+    //   item.addEventListener("click", function () {
+    //     changeSizeItemPswp(item)
+    //   })
+    // })
+
+    // document.querySelectorAll(".product__photo-zoom")?.forEach((item) => {
+    //   item.addEventListener("click", function () {
+    //     changeSizeItemPswp(item)
+    //   })
+    // })
+
+    // function changeSizeItemPswp(item) {
+    //   setTimeout(() => {
+    //     document.querySelectorAll('.variant-input-wrap[name="Size"] label:not(.disabled)').forEach((a) => {
+    //       let size
+    //       if (a.previousElementSibling.value.toLowerCase().includes("×")) {
+    //         size = a.previousElementSibling.value.toLowerCase().replaceAll(`″`, "").replaceAll(`×`, "x")
+
+    //         if (item.closest("div.flickity-slider").querySelector(".is-selected img").getAttribute("data-photoswipe-src").includes(`${size}`)) {
+    //           a.click()
+    //         }
+    //       }
+
+    //       if (a.previousElementSibling.value.toLowerCase().includes("iphone")) {
+    //         size = a.previousElementSibling.value.toLowerCase().replaceAll(` `, "-").replaceAll(`/`, "-")
+
+    //         if (item.closest("div.flickity-slider").querySelector(".is-selected img").getAttribute("data-photoswipe-src").includes(`${size}-case`)) {
+    //           a.click()
+    //         }
+    //       }
+    //     })
+    //   }, 500)
+    // }
 
     //
     fetch("https://crs-dev.fun/api/saint-javelin/total-donorbox", {
