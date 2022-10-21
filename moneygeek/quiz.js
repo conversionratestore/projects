@@ -769,7 +769,7 @@ window.onload = function() {
                 selectChange('.select-item');
                 document.querySelector('.btn-next').addEventListener('click', (e) => {
                     myAnswers[4] = document.querySelector('[name="net-worth"] .select-item').innerHTML;
-                    pushDataLayer(`Click on Next button (step - ${countStep.innerHTML})`)
+                    pushDataLayer(`Click on View Your Recommended Coverage button (step - ${countStep.innerHTML})`)
                     changeContent('5')
                 })
                 break
@@ -800,6 +800,7 @@ window.onload = function() {
                     button.addEventListener('click', () => {
                         button.parentElement.classList.add('show');
                         button.remove()
+                        pushDataLayer(`Click on show more button (${button.closest('.quiz-block').querySelector('p').innerHTML.replace(':','')})`)
                     })
                 })
                 document.querySelector('.btn-next').addEventListener('click', (e) => {
@@ -818,6 +819,7 @@ window.onload = function() {
     btnBack.addEventListener('click', () => {
         let step = +countStep.dataset.step - 1;
         changeContent(step.toString())
+        pushDataLayer(`Click on back button (step - ${countStep.innerHTML})`)
     });
     if (window.innerWidth <= 767) {
         document.querySelector('.btn-next').addEventListener('click', (e) => {
