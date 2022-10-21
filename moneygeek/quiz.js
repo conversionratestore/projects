@@ -682,6 +682,7 @@ window.onload = function() {
                 countStep.innerHTML = '1';
                 countStep.dataset.step = '1';
                 btnBack.classList.add('hide');
+                document.querySelector('.input-zip').value = myAnswers[0];
                 //event
                 document.querySelector('.input-zip').addEventListener('click', () => pushDataLayer(`Click on Your Zip Code input`))
                 //click next button
@@ -717,6 +718,9 @@ window.onload = function() {
                     countStep.innerHTML = '1';
                 }
                 countStep.dataset.step = '2';
+                document.querySelectorAll('.quiz-footer .select-drop > div').forEach(item => {
+                    if (myAnswers[2] == item.innerText) item.click();
+                })
                 selectChange('.select-item');
                 document.querySelector('.btn-next').addEventListener('click', (e) => {
                     pushDataLayer(`Click on Next button (step - ${countStep.innerHTML})`)
@@ -730,9 +734,7 @@ window.onload = function() {
                 btnBack.classList.remove('hide');
                 countStep.dataset.step = '3';
                 let cash = document.querySelector('.input-cash');
-                // cash.addEventListener('input', (e) => {
-                //     e.target.value = e.target.replace(/^(?:\d\,?)+$/,'')
-                // })
+                cash.value = myAnswers[3].replace('$','');
                 document.querySelector('.btn-next').addEventListener('click', (e) => {
                     pushDataLayer(`Click on Next button (step - ${countStep.innerHTML})`)
                     if (cash.value != '') {
@@ -746,6 +748,9 @@ window.onload = function() {
                 break
             case '4':
                 footerQuiz.innerHTML = netWorthHTML;
+                document.querySelectorAll('.quiz-footer .select-drop > div').forEach(item => {
+                    if (myAnswers[4] == item.innerText) item.click();
+                })
                 countStep.innerHTML = zipCode == '' ? '4' : '3';
                 countStep.dataset.step = '4';
                 countStep.parentElement.style.display = '';
