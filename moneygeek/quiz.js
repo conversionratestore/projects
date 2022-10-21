@@ -591,10 +591,22 @@ function selectChange(currency) {
 
     let childs = selector.nextElementSibling.querySelectorAll('div');
     childs.forEach(child => {
-        console.log(selector.innerText == child.innerText)
-        if (selector.innerText == child.innerText) {
-            child.classList.add('active');
+        if (nameSelect == 'net worth') {
+            if (myAnswers[4] == child.innerText) {
+                child.classList.add('active');
+                selector.innerHTML = child.innerHTML;
+            } else {
+                child.classList.remove('active');
+            }
+        } else {
+            if (myAnswers[2] == child.innerText) {
+                child.classList.add('active');
+                selector.innerHTML = child.innerHTML;
+            } else {
+                child.classList.remove('active');
+            }
         }
+        
         child.addEventListener('click', (e) => {
             selector.innerHTML = child.innerHTML;
             selector.parentElement.classList.remove('active');
@@ -694,12 +706,10 @@ window.onload = function() {
                 document.querySelector('.btn-next').addEventListener('click', (e) => {
                     pushDataLayer(`Click on Next button (step - 1)`)
                     let value = document.querySelector('.quiz-footer input').value;
-                    console.log(value)
                     if (value != '') {
                         apiZipCode(value).then(data => {
                             console.log(data)
                             if (Object.keys(data).length > 0) {
-                                console.log(data['places'][0]['state'])
                                 document.querySelector('.error-message').parentElement.classList.remove('error');
                                 myAnswers[0] = value;
                                 myAnswers[1] = data['places'][0]['state'];
@@ -723,10 +733,8 @@ window.onload = function() {
                     countStep.innerHTML = '1';
                 }
                 countStep.dataset.step = '2';
+
                 selectChange('.select-item');
-                document.querySelectorAll('.quiz-footer .select-drop > div').forEach(item => {
-                    if (myAnswers[2] == item.innerText) item.click();
-                })
                 document.querySelector('.btn-next').addEventListener('click', (e) => {
                     pushDataLayer(`Click on Next button (step - ${countStep.innerHTML})`)
                     myAnswers[2] = document.querySelector('[name="car-ownership"] .select-item').innerHTML;
@@ -759,9 +767,6 @@ window.onload = function() {
                 bodyQuiz.style = '';
                 answers.style.display = 'none';
                 selectChange('.select-item');
-                document.querySelectorAll('.quiz-footer .select-drop > div').forEach(item => {
-                    if (myAnswers[4] == item.innerText) item.click();
-                })
                 document.querySelector('.btn-next').addEventListener('click', (e) => {
                     myAnswers[4] = document.querySelector('[name="net-worth"] .select-item').innerHTML;
                     pushDataLayer(`Click on Next button (step - ${countStep.innerHTML})`)
