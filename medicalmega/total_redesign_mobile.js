@@ -778,6 +778,9 @@ window.onload = function() {
                 padding-top: 20px;
             }
             /*order*/
+            .order .order_head svg {
+                pointer-events: none;
+            }
             .order.active .order_head svg {
                 transform: scaleY(-1);
             }
@@ -1201,7 +1204,7 @@ window.onload = function() {
                     }
                 })
             })
-            // document.querySelector('.myAccountleft > form > dd:nth-child(8) > input[type=hidden]').value = `https://medicalmega.com/cart.html`;
+            // document.querySelector('.myAccountleft > form > dd:nth-child(8) > input[name="referrer"]').value = `https://medicalmega.com/cart.html`;
         }
 
         let saveAddress = (type,fname,lname,addr1,city,stateF,zip,country,phn,email) => {
@@ -1383,7 +1386,7 @@ window.onload = function() {
                 }
             }
         }
-        if (href.includes('/checkout/step1') || href.includes('/guest-checkout1.php')) {
+        if ((href.includes('/checkout/step1') || href.includes('/guest-checkout1.php')) && document.querySelector('.myAccount') == null) {
             document.querySelector('.col-left .head h4').innerHTML = obj['stepsName'][1];
             state_item = href.includes('guest-checkout1.php') ? b_state : state;
             countries_ship_item = href.includes('guest-checkout1.php') ? b_country.innerHTML : countries_ship;
@@ -1689,12 +1692,16 @@ window.onload = function() {
         //add click on next button
         document.querySelector('.btn-next').addEventListener('click', (e) => {
             if (document.querySelector('.myAccountright.active') != null) {
+                console.log('login')
                 document.querySelector('#login_btn').click()
             } else if (document.querySelector('.myAccountleft.active') != null) {
+                console.log('register')
                 document.querySelector('[name="register"]').click()
             } else if (document.querySelector('.ship-form.active') != null) {
+                console.log('ship-form.active')
                 address('ship')
             } else if (document.querySelector('.bill-form.active') != null) {
+                console.log('bill-form.active')
                 address('bill')
             } else if (document.querySelector('.address.ship') != null && document.querySelector('.address.bill') != null && document.querySelector('.bill-form.edit') == null && document.querySelector('.ship-form.edit') == null) {
                 console.log('next 2 step')
@@ -1704,6 +1711,7 @@ window.onload = function() {
                     window.location.href = `https://medicalmega.com/checkout/step2`;
                 }
             } else if (document.querySelector('.address.ship') != null && document.querySelector('.address.bill') == null && document.querySelector('.bill-form.active') == null) {
+                console.log('next 2 step')
                 document.querySelector('.address.ship').style.display = 'none'
                 document.querySelector('.col-left .head h4').innerHTML = 'Billing information'; //change title
                 //change back button
@@ -1714,6 +1722,7 @@ window.onload = function() {
                 //copy from Shipping
                 document.querySelector('[name="shipping"]').addEventListener('click', (e) => copyFromShip(e.target, 'bill'))
             } else if (document.querySelector('.address.ship') == null && document.querySelector('.address.bill') != null && document.querySelector('.ship-form.active') == null) {
+                console.log('address.ship == null')
                 document.querySelector('.col-left .head').insertAdjacentHTML('afterend', shipFormHtml(state_item, countries_ship_item, 'active',''))
             } else if (document.querySelector('.ship-form.edit') != null) {
                 console.log('edit ship form')
@@ -1722,8 +1731,10 @@ window.onload = function() {
                 console.log('edit bill form')
                 address('bill')
             } else if (href.includes('checkout/step2') || href.includes('/guest-checkout2.php')) {
+                console.log('checkout/step2 || /guest-checkout2')
                 document.querySelector('form > div > input[type=image]').click()
             } else if (href.includes('checkout/step3') || href.includes('/guest-checkout3.php')) {
+                console.log('checkout/step3 || /guest-checkout3')
                 document.querySelector('#submitCheckout3').click()
             }
             scrollTop(e.target, document.body)
