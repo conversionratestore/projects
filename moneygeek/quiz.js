@@ -718,10 +718,10 @@ window.onload = function() {
                     countStep.innerHTML = '1';
                 }
                 countStep.dataset.step = '2';
+                selectChange('.select-item');
                 document.querySelectorAll('.quiz-footer .select-drop > div').forEach(item => {
                     if (myAnswers[2] == item.innerText) item.click();
                 })
-                selectChange('.select-item');
                 document.querySelector('.btn-next').addEventListener('click', (e) => {
                     pushDataLayer(`Click on Next button (step - ${countStep.innerHTML})`)
                     myAnswers[2] = document.querySelector('[name="car-ownership"] .select-item').innerHTML;
@@ -748,15 +748,15 @@ window.onload = function() {
                 break
             case '4':
                 footerQuiz.innerHTML = netWorthHTML;
-                document.querySelectorAll('.quiz-footer .select-drop > div').forEach(item => {
-                    if (myAnswers[4] == item.innerText) item.click();
-                })
                 countStep.innerHTML = zipCode == '' ? '4' : '3';
                 countStep.dataset.step = '4';
                 countStep.parentElement.style.display = '';
                 bodyQuiz.style = '';
                 answers.style.display = 'none';
                 selectChange('.select-item');
+                document.querySelectorAll('.quiz-footer .select-drop > div').forEach(item => {
+                    if (myAnswers[4] == item.innerText) item.click();
+                })
                 document.querySelector('.btn-next').addEventListener('click', (e) => {
                     myAnswers[4] = document.querySelector('[name="net-worth"] .select-item').innerHTML;
                     pushDataLayer(`Click on Next button (step - ${countStep.innerHTML})`)
