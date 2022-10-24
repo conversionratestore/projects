@@ -33,6 +33,11 @@ let styleMain =`
     .btn-next svg {
         margin-left: 8px;
     }
+    .btn-next:hover {
+        background-color: #344D57!important;
+        border-color: #344D57;
+        color: #fff;
+    }
     /*wrapper and header*/
     .header-checkout *, .wrapper-checkout * {
         box-sizing: border-box;
