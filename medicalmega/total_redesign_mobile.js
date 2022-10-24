@@ -1117,7 +1117,7 @@ window.onload = function() {
             #cc_block > dl > div > div:nth-child(1) {
                 display: none;
             }
-        </style>`
+        </style>`;
 
         let wrapperHTML = `
         ${headerHTML}
@@ -1761,7 +1761,8 @@ window.onload = function() {
             }
             scrollTop(e.target, document.body)
         })
-    } else {
+    } 
+    if (!href.includes('login.php') && !href.includes('/register.php') && !href.includes('/checkout') && !href.includes('/guest-checkout')) {
         //cart
         let styleCart = `
         <style>

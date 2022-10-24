@@ -894,7 +894,7 @@ window.onload = function() {
 
                 
                 for (let i = 0; i < objStateMinimum.length; i++) {
-                    if (objStateMinimum[i].includes(myAnswers[1])) {
+                    if (objStateMinimum[i].split(':')[0] == myAnswers[1]) {
                         let sptStateMinimum = objStateMinimum[i].split(':')[1].split('/'),
                             stateMinimum = '';
 
@@ -931,6 +931,7 @@ window.onload = function() {
                     document.querySelector('form .chakra-form-control input').value = myAnswers[0];
                     document.querySelector('form .chakra-button').click();
                 })
+                document.querySelector('.tooltip').addEventListener('click', (e) =>  pushDataLayer(`Click on tooltip`,''))
                 break
         }
         if (document.querySelector('.quiz-footer input') != null) {
