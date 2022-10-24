@@ -131,8 +131,9 @@ let styleQuiz = `
         line-height: 26px;
         color: #333333;
         cursor: pointer;
+        transition: all 0.2s ease;
     }
-    .select-drop > div.active {
+    .select-drop > div.active, .select-drop > div:hover {
         background: #526EFF;
         color: #fff;
     }
@@ -389,6 +390,16 @@ let styleQuiz = `
         }
     }
     @media only screen and (min-width: 768px) {
+        .step-count, .btn-back {
+            min-width: 50px;
+        }
+        .step-count {
+            display: flex;
+            justify-content: flex-end;
+         }
+        .step-count span {
+            padding-right: 4px;
+        }
         .quiz-footer > div:not(.quiz-result), .anonymous {
             max-width: 320px;
             margin: 0 auto;
@@ -730,7 +741,7 @@ window.onload = function() {
     //add quiz on page
     if (href.includes('insurance/auto/how-much-car-insurance-do-you-need/')) {
         if (window.innerWidth > 767) {
-            document.querySelector('#gatsby-focus-wrapper > div > main > div.css-1irxgwz.ead1i4x8 > div > div.css-1uj8m62.ead1i4x6 > div:nth-child(2)').insertAdjacentHTML('beforebegin', quizHTML)
+            document.querySelector('#gatsby-focus-wrapper > div > main > div.css-1irxgwz.ead1i4x8 > div > div.css-1uj8m62.ead1i4x6 > div:nth-child(1)').insertAdjacentHTML('beforebegin', quizHTML)
         } else {
             document.querySelector('#gatsby-focus-wrapper > div > main > div.css-1irxgwz.ead1i4x8 > div > div.css-1wbld27.ead1i4x7 > div.spacing').insertAdjacentHTML('afterend', quizHTML)
         }
