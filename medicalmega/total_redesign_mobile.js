@@ -1259,7 +1259,7 @@ window.onload = function() {
             document.querySelector('.col-left .head-login').after(document.querySelector('.myAccount'))
             document.querySelector('.col-left .head h4').innerHTML = obj['stepsName'][0];
             document.querySelector('.col-left .head').style = 'display: none!important;';
-            document.querySelector('.col-left .head-login').insertAdjacentHTML('afterend',`<button type="button" class="btn btn_white btn-google flex-center"> <img src="https://conversionratestore.github.io/projects/medicalmega/img/google.svg" class="mr-8" alt="google icon"/> continue with google</button><p class="text-center c-gray-08 mb-16">or</p>`)
+            document.querySelector('.col-left .head-login').insertAdjacentHTML('afterend',`<button type="button" class="btn btn_white btn-google flex-center"> <img src="https://conversionratestore.github.io/projects/medicalmega/img/google.svg" class="mr-8" alt="google icon"/> continue with google</button><p class="text-center c-gray-08 mb-16 fs-14">or</p>`)
             document.querySelector('.steps').innerHTML = `Step 1<span>/4</span> — ${obj['stepsName'][0]}`; //add steps in header
             document.querySelector('.foot').insertAdjacentHTML('afterbegin','<a href="#" class="btn-guest mb-16">Checkout as a guest</a>')
             addActive('.myAccountleft')
