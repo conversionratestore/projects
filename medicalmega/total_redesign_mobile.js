@@ -720,6 +720,7 @@ window.onload = function() {
                 border-bottom: 1px solid rgba(150, 40, 15, 0.5);
                 color: #96280F;
                 padding-bottom: 2px;
+                text-decoration: none;
             }
             .myAccountright input {
                 width: 100%;
@@ -844,7 +845,7 @@ window.onload = function() {
                 color: rgba(154, 166, 171, 0.8);
                 font-size: 16px;
                 line-height: 150%;}
-            .btn-back {
+            .btn-back, .btn-guest {
                 font-weight: 700;
                 font-size: 14px;
                 line-height: 20px;
@@ -1254,9 +1255,10 @@ window.onload = function() {
         if ((href.includes('/login.php') || href.includes('/register.php')) && document.querySelector('.myAccount') != null) {
             document.querySelector('.col-left .head-login').after(document.querySelector('.myAccount'))
             document.querySelector('.col-left .head h4').innerHTML = obj['stepsName'][0];
-            document.querySelector('.col-left .head').style.display = 'none!important;';
+            document.querySelector('.col-left .head').style = 'display: none!important;';
             document.querySelector('.col-left .head-login').insertAdjacentHTML('afterend',`<button type="button" class="btn btn_white btn-google flex-center"> <img src="https://conversionratestore.github.io/projects/medicalmega/img/google.svg" class="mr-8" alt="google icon"/> continue with google</button><p class="text-center c-gray-08 mb-16">or</p>`)
             document.querySelector('.steps').innerHTML = `Step 1<span>/4</span> — ${obj['stepsName'][0]}`; //add steps in header
+            document.querySelector('.foot').insertAdjacentHTML('afterbegin','<a href="#" class="btn-guest">Checkout as a guest</a>')
             addActive('.myAccountleft')
 
             //click on 'Sign in/Register' button
@@ -1280,6 +1282,8 @@ window.onload = function() {
 
             //sign in with google
             document.querySelector('.btn-google').addEventListener('click', () => document.querySelector('.g-signin2 > div').click())
+            //Checkout as a guest
+            document.querySelector('.btn-guest').addEventListener('click', () => document.querySelector('.guest_checkout_button input').click())
             //click on eye button for password
             document.querySelectorAll(' .myAccountleft dd .eye').forEach(item => {
                 item.addEventListener('click', () => {
