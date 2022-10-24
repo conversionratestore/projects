@@ -251,7 +251,6 @@ let styleQuiz = `
         margin-bottom: 12px;
         padding-right: 4px;
         position: relative;
-        min-width: 46px;
     }
     .quiz-block h3:before {
         content: '';
@@ -287,11 +286,10 @@ let styleQuiz = `
     }
     .tooltip-block {
         position: absolute;
-        bottom: calc(100% + 15px);
+        bottom: calc(100% - 20px - 24px + 15px);
         left: 0;
-        transform: translateX(-45%);
         max-width: 308px;
-        width: max-content;
+        width: 100%;
         background: #FFFFFF;
         box-shadow: 0 5px 15px rgba(0, 0, 0, 0.26);
         border-radius: 6px;
@@ -304,11 +302,10 @@ let styleQuiz = `
     .tooltip:hover .tooltip-block {
         opacity: 1;
     }
-    .tooltip-block:after {
-        content: '';
+    .tooltip-block .arrow {
         position: absolute;
         top: 100%;
-        left: calc(45% - 8px);
+        left: 50px;
         z-index: 3;
         width: 0;
         height: 0;
@@ -362,7 +359,6 @@ let styleQuiz = `
             padding: 25px 15px;
         }
         .tooltip-block {
-            max-width: 278px;
             padding: 15px;
         }
     }
@@ -393,10 +389,6 @@ let styleQuiz = `
         }
         .tooltip-block {
             padding: 10px;
-            transform: translateX(-38%);
-        }
-        .tooltip-block:after {
-            left: calc(38% - 8px);
         }
     }
     @media only screen and (min-width: 768px) {
@@ -633,11 +625,11 @@ let zipCodeHTML = `
                         <button type="button" class="show-more">.... <span class="weight-600">See more</span></button>
                     </div>
                 </div>
-                <div class="required-level quiz-block">
+                <div class="required-level quiz-block relative">
                     <p>Required Level of Coverage:</p>
                     <div class="flex">
                         <h3></h3>
-                        <div class="tooltip relative">
+                        <div class="tooltip">
                             <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M7.9987 1.33301C6.68016 1.33301 5.39123 1.724 4.2949 2.45654C3.19857 3.18909 2.34409 4.23028 1.8395 5.44845C1.33492 6.66663 1.2029 8.00707 1.46013 9.30028C1.71737 10.5935 2.35231 11.7814 3.28466 12.7137C4.21701 13.6461 5.40489 14.281 6.6981 14.5382C7.99131 14.7955 9.33175 14.6635 10.5499 14.1589C11.7681 13.6543 12.8093 12.7998 13.5418 11.7035C14.2744 10.6071 14.6654 9.31822 14.6654 7.99967C14.6654 7.1242 14.4929 6.25729 14.1579 5.44845C13.8229 4.63961 13.3318 3.90469 12.7127 3.28563C12.0937 2.66657 11.3588 2.17551 10.5499 1.84048C9.74109 1.50545 8.87418 1.33301 7.9987 1.33301ZM7.9987 13.333C6.94387 13.333 5.91272 13.0202 5.03566 12.4342C4.1586 11.8481 3.47501 11.0152 3.07134 10.0407C2.66768 9.06611 2.56206 7.99376 2.76785 6.95919C2.97363 5.92463 3.48158 4.97432 4.22746 4.22844C4.97334 3.48256 5.92365 2.97461 6.95822 2.76882C7.99278 2.56303 9.06514 2.66865 10.0397 3.07232C11.0142 3.47598 11.8472 4.15957 12.4332 5.03663C13.0192 5.91369 13.332 6.94484 13.332 7.99967C13.332 9.41416 12.7701 10.7707 11.7699 11.7709C10.7697 12.7711 9.41319 13.333 7.9987 13.333Z" fill="#555555"/>
                                 <path d="M7.9987 6.00033C8.36689 6.00033 8.66536 5.70185 8.66536 5.33366C8.66536 4.96547 8.36689 4.66699 7.9987 4.66699C7.63051 4.66699 7.33203 4.96547 7.33203 5.33366C7.33203 5.70185 7.63051 6.00033 7.9987 6.00033Z" fill="#555555"/>
@@ -645,6 +637,7 @@ let zipCodeHTML = `
                             </svg>
                             <div class="tooltip-block">
                                 <ul></ul>
+                                <div class="arrow"></div>
                             </div>
                         </div>
                     </div>
@@ -919,6 +912,13 @@ window.onload = function() {
                         document.querySelector('.tooltip-block ul').innerHTML = typeOne + typeTwo + typeTree
                     }
                 }
+                let leftPositionArrow = document.querySelector('.required-level h3').clientWidth + +(window.getComputedStyle( document.querySelector('.required-level'), null).getPropertyValue('padding-left').replace('px',''))
+                
+                console.log(document.querySelector('.required-level h3').clientWidth)
+                console.log(+(window.getComputedStyle( document.querySelector('.required-level'), null).getPropertyValue('padding-left').replace('px','')))
+                console.log(leftPositionArrow)
+                document.querySelector('.tooltip-block .arrow').style.left = leftPositionArrow - 8 + 'px';
+
                 document.querySelectorAll('.show-more').forEach(button => {
                     button.addEventListener('click', () => {
                         button.parentElement.classList.add('show');
