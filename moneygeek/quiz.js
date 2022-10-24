@@ -853,7 +853,7 @@ function pushDataLayer(action) {
                         let typeOne = '', typeTwo = '' , typeTree = '';
                         if (result[0] == '') {
                             for (let j = 0; j < sptStateMinimum.length; j++) {
-                                stateMinimum += sptStateMinimum[j] + (sptStateMinimum[j] != '' && j < sptStateMinimum.length - 1  ? '/' : '');
+                                stateMinimum += sptStateMinimum[j] != '' ? j < 2 ? sptStateMinimum[j] + '/' : sptStateMinimum[j] : sptStateMinimum[j]
                             }
 
                             typeOne = sptStateMinimum[0] != '' ? `<li>$${sptStateMinimum[0]},000 in bodily injury insurance per person</li>` : '';
@@ -864,7 +864,9 @@ function pushDataLayer(action) {
                             typeTwo = `<li>$${result[0].split('/')[1]},000 in bodily injury insurance per accident</li>`;
                             typeTree = `<li>$${result[0].split('/')[2]},000 in property damage insurance per accident</li>`
                         }
-                        
+                        if (sptStateMinimum[2] == '') {
+                            stateMinimum = stateMinimum.slice(0, -1);
+                        }
                         document.querySelector('.required-level h3').innerHTML = result[0] == '' ? stateMinimum : result[0];
                         document.querySelector('.tooltip-block ul').innerHTML = typeOne + typeTwo + typeTree
                     }
