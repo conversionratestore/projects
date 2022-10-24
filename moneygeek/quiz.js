@@ -724,7 +724,7 @@ function pushDataLayer(action) {
     });
 }
 
-// window.onload = function() {
+window.onload = function() {
     document.body.insertAdjacentHTML('afterbegin', styleQuiz) //add style quiz
 
     //add quiz on page
@@ -918,7 +918,7 @@ function pushDataLayer(action) {
             answers.classList.remove('active')
         }
     })
-// };
+};
 
 pushDataLayer('loaded') //loaded event
 
