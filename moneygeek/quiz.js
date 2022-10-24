@@ -37,7 +37,6 @@ let styleQuiz = `
         font-weight: 600;
         font-size: 28px;
         line-height: 34px;
-        text-transform: capitalize;
         color: #555555;
         margin: 16px 0 4px;
     }
@@ -551,7 +550,7 @@ let quizHTML = `
         <div class="step-count"><span data-step="1">1</span> | ${zipCode == '' ? '4' : '3'}</div>
     </div>
     <div class="quiz-body">
-        <h2>Determine How Much Car Insurance You need</h2>
+        <h2>Determine How Much Car Insurance You Need</h2>
         <p>Take our quiz to learn the required and optimal level of car insurance for you.</p>
         <div class="anonymous flex items-center">
             <svg width="18" height="15" viewBox="0 0 18 15" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -608,7 +607,7 @@ let zipCodeHTML = `
 
     netWorthHTML = `
         <div>
-            <label class="">Net worth</label>
+            <label class="">Net Worth</label>
             <div class="select relative" name="net-worth">
                 <div class="select-item">$50,000 or Less</div>
                 <div class="select-drop">
