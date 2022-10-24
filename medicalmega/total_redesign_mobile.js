@@ -50,7 +50,7 @@ let styleMain =`
         background-color: #FBFBFB;
         color: #9AA6AB; }
     .btn-google {
-        margin: 28px 0 16px;}
+        margin: 16px 0;}
     .btn-next {
         background: #1E3944!important;
         border-radius: 100px;
