@@ -591,7 +591,7 @@ let zipCodeHTML = `
             <label class="">Actual Cash Value (ACV) of Your Car</label>
             <div class="relative">
                 <p class="currency-cash">$</p>
-                <input type="text" class="input-cash" onkeyup="formatCash(this)" onkeypress="return onlyNumberKey(event)">
+                <input type="text" class="input-cash" onkeyup="formatCash(this)" onkeypress="return onlyNumberKey(event)" pattern="\d*">
             </div>
             <p class="error-message">Please enter your car's actual cash value</p>
             ${setBtn('Next')}
