@@ -16,6 +16,25 @@ let styleMain =`
         border: none;
         cursor: pointer;
     }
+    .btn[disabled] {
+        color: #9AA6AB;
+        background-color: #F0F1F2;
+        border-color: #F0F1F2; }
+    .btn[disabled] svg, #form-search button[disabled] svg {
+        fill: #9AA6AB; }
+    .btn_white {
+        background-color: #FFFFFF;
+        color: #1E3944; }
+    .btn_white.active {
+        background-color: #E9EBEC; }
+    .btn_white:hover {
+        background-color: #F0F1F2;}
+    .btn_white[disabled], #form-search button[disabled] {
+        border-color: #F0F1F2;
+        background-color: #FBFBFB;
+        color: #9AA6AB; }
+    .btn-google {
+        margin: 28px 0 16px;}
     .btn-next {
         background: #1E3944!important;
         border-radius: 100px;
@@ -169,31 +188,66 @@ let styleMain =`
         margin: 0 12px;
         padding: 0;
     }
+    /*spacing*/
+    .ml-40 {
+        margin-left: 40px; }
+        
+    .mr-8 {
+        margin-right: 8px; }
+        
+    .mr-16 {
+        margin-right: 16px; }
+        
+    .mt-16 {
+        margin-top: 16px; }
+    .mb-16 {
+        margin-bottom: 16px; }
+    /*font*/
+    .fw-light {
+        font-weight: 300; }
+    .fw-semi {
+        font-weight: 600; }
+    .c-gray {
+        color: #6D7E85; }
+    .c-gray-08 {
+           color: rgba(52, 77, 87, 0.8)}
+    .c-red {
+        color: #96280F!important; }
+    .fs-14 {
+        font-size: 14px;
+        line-height: 25px; }
     /*flex*/
     .flex {
+        display: flex; }
+    .items-center {
+        display: flex!important;
+        align-items: center;}
+    .justify-content-center {
         display: flex;
-    }
+        justify-content: center; }
     .justify-between {
         display: flex;
-        justify-content: space-between;
-    }
+        justify-content: space-between;}
     .flex-center-between {
-        display: flex!important;
-        align-items: center;
+        display: flex;
         justify-content: space-between;
-    }
+        align-items: center; }
+    .flex-end-between {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-end; }
     .flex-center {
         display: flex!important;
         align-items: center;
-        justify-content: center;
-    }
-    .items-center {
-        display: flex!important;
-        align-items: center;
-    }
+        justify-content: center;}
+    .flex-wrap {
+        display: flex;
+        -ms-flex-wrap: wrap;
+        flex-wrap: wrap; }
+    .w-100 {
+        width: 100%; }
     .relative {
-        position: relative;
-    }
+        position: relative; }
     [disabled] {
         pointer-events: none;
     }
@@ -563,7 +617,7 @@ window.onload = function() {
             body {
                 border: none;
             }
-            #wrap {
+            #wrap, .g-signin2, .guest_checkout_button {
                 display: none;
             }
             button {
@@ -630,10 +684,10 @@ window.onload = function() {
                 padding: 0;
             }
             .myAccountleft dd:nth-child(2), .myAccountleft dd:nth-child(5), .myAccountright dd:nth-child(2) {
-            padding-right: 10px!important;
+                padding-right: 10px!important;
             }
             .myAccountleft dd:nth-child(3), .myAccountleft dd:nth-child(6), .myAccountright dd:nth-child(3) {
-            padding-left: 10px!important;
+                padding-left: 10px!important;
             }
             .myAccountleft dd:nth-child(5), .myAccountleft dd:nth-child(6), .myAccountright dd:nth-child(2), .myAccountright dd:nth-child(3) {
                 width: 50%;
@@ -642,6 +696,14 @@ window.onload = function() {
             }
             .abcRioButtonBlue {
                 margin-bottom: 28px;
+            }
+            .registerOnLogin .forgot_password a {
+                font-weight: 400;
+                font-size: 14px;
+                line-height: 150%;
+                border-bottom: 1px solid rgba(150, 40, 15, 0.5);
+                color: #96280F;
+                padding-bottom: 2px;
             }
             .myAccountright input {
                 width: 100%;
@@ -1138,24 +1200,24 @@ window.onload = function() {
                     </div>
             </div>
             <div class="col-left">
-                    <div>
-                        ${window.location.href.includes('/login.php') || window.location.href.includes('/register.php?') ? `<div class="flex-center-between head-login"><h3>Register</h3><a href="#" class="link">Sign in</a></div>` : ''}
-                        <div class="head"><h4></h4></div>
-                    </div>
-                    <div class="foot">
-                        <button class="btn-next flex-center" type="submit">
-                            <span>Next</span>
-                            <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M3 9.32153V8.67847C3 8.5009 3.13431 8.35695 3.3 8.35695H13.002L10.332 5.50181C10.2752 5.44144 10.2433 5.35926 10.2433 5.27352C10.2433 5.18779 10.2752 5.10561 10.332 5.04524L10.758 4.59511C10.8143 4.53424 10.891 4.5 10.971 4.5C11.051 4.5 11.1277 4.53424 11.184 4.59511L14.868 8.537C14.9524 8.62736 14.9999 8.74995 15 8.87782V9.12218C14.9986 9.24977 14.9513 9.37186 14.868 9.463L11.184 13.4049C11.1277 13.4658 11.051 13.5 10.971 13.5C10.891 13.5 10.8143 13.4658 10.758 13.4049L10.332 12.9483C10.2756 12.8891 10.2438 12.8079 10.2438 12.7233C10.2438 12.6386 10.2756 12.5575 10.332 12.4982L13.002 9.64305H3.3C3.13431 9.64305 3 9.4991 3 9.32153Z" fill="#FBFBFB"/>
-                            </svg>
-                        </button>
-                        <a class="btn-back flex-center" href="#">
-                            <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M15 9.32153V8.67847C15 8.5009 14.8657 8.35695 14.7 8.35695H4.998L7.668 5.50181C7.72479 5.44144 7.75674 5.35926 7.75674 5.27352C7.75674 5.18779 7.72479 5.10561 7.668 5.04524L7.242 4.59511C7.18567 4.53424 7.10899 4.5 7.029 4.5C6.94901 4.5 6.87233 4.53424 6.816 4.59511L3.132 8.537C3.04758 8.62736 3.0001 8.74995 3 8.87782V9.12218C3.00138 9.24977 3.04867 9.37186 3.132 9.463L6.816 13.4049C6.87233 13.4658 6.94901 13.5 7.029 13.5C7.10899 13.5 7.18567 13.4658 7.242 13.4049L7.668 12.9483C7.72444 12.8891 7.75624 12.8079 7.75624 12.7233C7.75624 12.6386 7.72444 12.5575 7.668 12.4982L4.998 9.64305H14.7C14.8657 9.64305 15 9.4991 15 9.32153Z" fill="#1E3944"/>
-                            </svg>
-                            <span></span>
-                        </a>
-                    </div>
+                <div>
+                    ${window.location.href.includes('/login.php') || window.location.href.includes('/register.php?') ? `<div class="flex-center-between head-login"><h3>Register</h3><a href="#" class="link">Sign in</a></div>` : ''}
+                    <div class="head"><h4></h4></div>
+                </div>
+                <div class="foot">
+                    <button class="btn-next flex-center" type="submit">
+                        <span>Next</span>
+                        <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M3 9.32153V8.67847C3 8.5009 3.13431 8.35695 3.3 8.35695H13.002L10.332 5.50181C10.2752 5.44144 10.2433 5.35926 10.2433 5.27352C10.2433 5.18779 10.2752 5.10561 10.332 5.04524L10.758 4.59511C10.8143 4.53424 10.891 4.5 10.971 4.5C11.051 4.5 11.1277 4.53424 11.184 4.59511L14.868 8.537C14.9524 8.62736 14.9999 8.74995 15 8.87782V9.12218C14.9986 9.24977 14.9513 9.37186 14.868 9.463L11.184 13.4049C11.1277 13.4658 11.051 13.5 10.971 13.5C10.891 13.5 10.8143 13.4658 10.758 13.4049L10.332 12.9483C10.2756 12.8891 10.2438 12.8079 10.2438 12.7233C10.2438 12.6386 10.2756 12.5575 10.332 12.4982L13.002 9.64305H3.3C3.13431 9.64305 3 9.4991 3 9.32153Z" fill="#FBFBFB"/>
+                        </svg>
+                    </button>
+                    <a class="btn-back flex-center" href="#">
+                        <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M15 9.32153V8.67847C15 8.5009 14.8657 8.35695 14.7 8.35695H4.998L7.668 5.50181C7.72479 5.44144 7.75674 5.35926 7.75674 5.27352C7.75674 5.18779 7.72479 5.10561 7.668 5.04524L7.242 4.59511C7.18567 4.53424 7.10899 4.5 7.029 4.5C6.94901 4.5 6.87233 4.53424 6.816 4.59511L3.132 8.537C3.04758 8.62736 3.0001 8.74995 3 8.87782V9.12218C3.00138 9.24977 3.04867 9.37186 3.132 9.463L6.816 13.4049C6.87233 13.4658 6.94901 13.5 7.029 13.5C7.10899 13.5 7.18567 13.4658 7.242 13.4049L7.668 12.9483C7.72444 12.8891 7.75624 12.8079 7.75624 12.7233C7.75624 12.6386 7.72444 12.5575 7.668 12.4982L4.998 9.64305H14.7C14.8657 9.64305 15 9.4991 15 9.32153Z" fill="#1E3944"/>
+                        </svg>
+                        <span></span>
+                    </a>
+                </div>
             </div>
         </div>`;
 
@@ -1174,8 +1236,10 @@ window.onload = function() {
         })
         //login/register step
         if ((href.includes('/login.php') || href.includes('/register.php')) && document.querySelector('.myAccount') != null) {
-            document.querySelector('.col-left .head').after(document.querySelector('.myAccount'))
+            document.querySelector('.col-left .head-login').after(document.querySelector('.myAccount'))
             document.querySelector('.col-left .head h4').innerHTML = obj['stepsName'][0];
+            document.querySelector('.col-left .head').style.display = 'none!important;';
+            document.querySelector('.col-left .head-login').insertAdjacentHTML('afterend',`<button type="button" class="btn btn_white btn-google flex-center"> <img src="https://conversionratestore.github.io/projects/medicalmega/img/google.svg" class="mr-8" alt="google icon"/> continue with google</button><p class="text-center c-gray-08 mb-16">or</p>`)
             document.querySelector('.steps').innerHTML = `Step 1<span>/4</span> — ${obj['stepsName'][0]}`; //add steps in header
             addActive('.myAccountleft')
 
@@ -1198,6 +1262,9 @@ window.onload = function() {
             document.querySelector(' .myAccountleft dd:nth-child(5) input').insertAdjacentHTML('afterend',`<img class="eye" src="https://conversionratestore.github.io/projects/medicalmega/img/eye-through.svg" alt="eye icon">`)
             document.querySelector(' .myAccountleft dd:nth-child(6) input').insertAdjacentHTML('afterend',`<img class="eye" src="https://conversionratestore.github.io/projects/medicalmega/img/eye-through.svg" alt="eye icon">`)
 
+            //sign in with google
+            document.querySelector('.btn-google').addEventListener('click', () => document.querySelector('.g-signin2 > div').click())
+            //click on eye button for password
             document.querySelectorAll(' .myAccountleft dd .eye').forEach(item => {
                 item.addEventListener('click', () => {
                     if (item.previousElementSibling.type == 'password') {
@@ -1568,7 +1635,7 @@ window.onload = function() {
 
         //set * request for label
         document.querySelectorAll('label').forEach(el => {
-            if (el.innerHTML.includes('*') && el.innerHTML.includes('c-red')) {
+            if (el.innerHTML.includes('*') && !el.innerHTML.includes('c-red')) {
                 el.innerHTML = el.innerHTML.split('*').join('<span class="c-red"> *</span>')
             }
         })
@@ -2220,23 +2287,6 @@ window.onload = function() {
             .btn:hover, .btn:not(.btn_white):focus  {
             background-color: #344D57;
             border-color: #344D57; }
-        .btn[disabled] {
-            color: #9AA6AB;
-            background-color: #F0F1F2;
-            border-color: #F0F1F2; }
-        .btn[disabled] svg, #form-search button[disabled] svg {
-            fill: #9AA6AB; }
-        .btn_white {
-            background-color: #FFFFFF;
-            color: #1E3944; }
-        .btn_white.active {
-            background-color: #E9EBEC; }
-        .btn_white:hover {
-            background-color: #F0F1F2;}
-        .btn_white[disabled], #form-search button[disabled] {
-            border-color: #F0F1F2;
-            background-color: #FBFBFB;
-            color: #9AA6AB; }
         .btn-filters {
             line-height: 36px;}
         .check {
@@ -2285,7 +2335,6 @@ window.onload = function() {
             color: #1E3944;
             z-index: 8;
             background: #fff; }
-        
         .midbar {
             padding: 12px 0; }
         .menu .midbar_action {
@@ -2334,42 +2383,39 @@ window.onload = function() {
             height: 32px;
             border-radius: 50%;
             background-color: #1E3944; }
-            .ais-SearchBox-submit svg {
+        .ais-SearchBox-submit svg {
             fill: #fff;
             width: 16px;
             height: 16px;
-            pointer-events: none;
-            }
-            .ais-SearchBox-reset {
+            pointer-events: none;}
+        .ais-SearchBox-reset {
             position: absolute;
             right: 50px;
             top: 50%;
             padding: 5px;
             transform: translateY(-50%);
             background-color: transparent;
-            cursor: pointer;
-            }
-            .ais-SearchBox-loadingIndicator {
+            cursor: pointer;}
+        .ais-SearchBox-loadingIndicator {
             position: absolute;
             left: 4px;
             top: 50%;
             transform: translateY(-50%);
             width: 16px;
-            height: 16px;
-            }
+            height: 16px;}
         .subbar {
-        border-top: 1px solid #BCC4C7;
-        padding: 9px 0; }
+            border-top: 1px solid #BCC4C7;
+            padding: 9px 0; }
         .all_category {
             width: 100%;
-        cursor: pointer;
-        margin-top: 8px;
-        margin-bottom: 14px;
-        padding: 11px 8px; }
+            cursor: pointer;
+            margin-top: 8px;
+            margin-bottom: 14px;
+            padding: 11px 8px; }
         .dropdown_categories {
             display: none; }
         .alphabet {
-        padding: 16px 0; }
+            padding: 16px 0; }
         .alphabet > li {
             border-bottom: 1px solid #E0E4E5;
             margin-bottom: 16px;
@@ -2400,13 +2446,13 @@ window.onload = function() {
             text-align: left;
             padding: 10px 0;}
         #list_categories_ex {
-        display: none!important}
+            display: none!important}
         #list_categories {
-        height: calc(100vh - 188px);
-        overflow-y: auto;
-        padding: 20px 40px;
-        width: 327px;
-        background: #FBFBFB; }
+            height: calc(100vh - 188px);
+            overflow-y: auto;
+            padding: 20px 40px;
+            width: 327px;
+            background: #FBFBFB; }
         #list_categories ul {
             display: none;}
         #list_categories li.active a {
@@ -2430,10 +2476,10 @@ window.onload = function() {
         }
         
         .burger_category {
-        pointer-events: none;
-        width: 18px;
-        height: 18px;
-        margin-right: 10px; }
+            pointer-events: none;
+            width: 18px;
+            height: 18px;
+            margin-right: 10px; }
         .category_popular {
             padding: 14px 0;
             border-bottom: 1px solid #E0E4E5;
@@ -2450,12 +2496,12 @@ window.onload = function() {
             color: #091114; }
         
         .ais-SortBy-select {
-        background: #FBFBFB;
-        font-weight: 400;
-        font-size: 14px;
-        line-height: 150%;
-        padding: 9.5px 25px 9.5px 16px;
-        color: #344D57;
+            background: #FBFBFB;
+            font-weight: 400;
+            font-size: 14px;
+            line-height: 150%;
+            padding: 9.5px 25px 9.5px 16px;
+            color: #344D57;
             border: 1px solid #E0E4E5;
             box-sizing: border-box;
             border-radius: 100px;
@@ -2493,16 +2539,16 @@ window.onload = function() {
             padding-top: 10px; 
             margin-bottom: 10px;}
         .listing_wrapper {
-        margin: 16px -20px; }
+            margin: 16px -20px; }
         .listing_title {
-        font-weight: 600;
-        font-size: 32px;
-        line-height: 120%;
-        text-transform: capitalize;
-        margin-bottom: 40px; }
+            font-weight: 600;
+            font-size: 32px;
+            line-height: 120%;
+            text-transform: capitalize;
+            margin-bottom: 40px; }
         .listing_content {
-        padding-left: 1px;
-        margin-top: 14px; }
+            padding-left: 1px;
+            margin-top: 14px; }
         .listing_wrapper li {
             width: 50%; 
         }
@@ -2582,14 +2628,14 @@ window.onload = function() {
         .select_drop {
         display: none; }
         .status {
-        color: #96280F;
-        position: absolute;
-        top: 12px;
-        right: 12px; }
+            color: #96280F;
+            position: absolute;
+            top: 12px;
+            right: 12px; }
         .calc {
-        margin-bottom: 16px; }
+            margin-bottom: 16px; }
         .calc[disabled] {
-        pointer-events: none;
+            pointer-events: none;
         opacity: 0.7;}
         .calc-qty, input.calc-qty {
         width: 40px;
@@ -2678,22 +2724,20 @@ window.onload = function() {
             font-size: 12px;
             width: 100%; }
         .ais-Breadcrumb-list, .breadcrumbs ul {  
-        display: flex;
-        align-items: center;
-        }
+            display: flex;
+            align-items: center;}
         #breadcrumbs ul > li:first-child a:before {
-        content: '';
-        width: 18px;
-        height: 18px;
-        margin-right: 4px;
-        display: block;
-        color: transparent;
-        transform: scaleX(-1);
-        flex-shrink: 0;
-        background: url(https://conversionratestore.github.io/projects/medicalmega/img/chevron-right.svg) no-repeat center / contain;
-        }
+            content: '';
+            width: 18px;
+            height: 18px;
+            margin-right: 4px;
+            display: block;
+            color: transparent;
+            transform: scaleX(-1);
+            flex-shrink: 0;
+            background: url(https://conversionratestore.github.io/projects/medicalmega/img/chevron-right.svg) no-repeat center / contain;}
         .breadcrumbs {
-        padding: 10px 0 5px; }
+            padding: 10px 0 5px; }
         .ais-Breadcrumb-link, .breadcrumbs a {
             font-weight: normal;
             font-size: 12px;
@@ -2709,108 +2753,41 @@ window.onload = function() {
             line-height: 18px;
             cursor: default;
             padding: 10px 0; }
-        .ml-40 {
-        margin-left: 40px; }
-        
-        .mr-8 {
-        margin-right: 8px; }
-        
-        .mr-16 {
-        margin-right: 16px; }
-        
-        .mt-16 {
-        margin-top: 16px; }
-        .fw-light {
-        font-weight: 300; }
-        .fw-semi {
-        font-weight: 600; }
-        .c-gray {
-        color: #6D7E85; }
-        .c-red {
-        color: #96280F!important; }
-        .fs-14 {
-        font-size: 14px;
-        line-height: 25px; }
-        .d-flex {
-        display: flex; }
-        .align-items-center {
-        display: flex;
-        align-items: center; }
-        .justify-content-center {
-        display: flex;
-        justify-content: center; }
-        .justify-content-between {
-        display: flex;
-        justify-content: space-between; }
-        .justify-content-around {
-        display: flex;
-        -ms-flex-pack: distribute;
-        justify-content: space-around; }
-        .flex-center-between {
-        display: flex;
-        justify-content: space-between;
-        align-items: center; }
-        .flex-end-between {
-        display: flex;
-        justify-content: space-between;
-        align-items: flex-end; }
-        .flex-center-around {
-        display: flex;
-        -ms-flex-pack: distribute;
-        justify-content: space-around;
-        align-items: center; }
-        .flex-wrap {
-        display: flex;
-        -ms-flex-wrap: wrap;
-        flex-wrap: wrap; }
-        .flex-center-center {
-        display: flex;
-        justify-content: center;
-        align-items: center; }
-        .w-100 {
-        width: 100%; }
-        .relative {
-        position: relative; }
         .max-391 {
-        width: 100%;
-        max-width: 391px; }
+            width: 100%;
+            max-width: 391px; }
         .scroll-x {
-        overflow-x: auto;}
+            overflow-x: auto;}
         .scroll-x::-webkit-scrollbar {
-        display: none; }
-        
+            display: none; }
         .arrow_buttons {
-        position: absolute;
-        top: 50%;
-        transform: translateY(-50%);
-        left: 0;
-        width: 100%;
-        z-index: 0;
-        display: flex;
-        justify-content: space-between;} 
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            left: 0;
+            width: 100%;
+            z-index: 0;
+            display: flex;
+            justify-content: space-between;} 
         .arrow_button {
-        cursor: pointer; }
+            cursor: pointer; }
         .arrow_button[disabled] svg path{
-        fill: #BCC4C7;}
+            fill: #BCC4C7;}
         .arrow_button_prev {
-        margin-left: -26px; }
+            margin-left: -26px; }
         .arrow_button_next {
-        margin-right: -26px;}
+            margin-right: -26px;}
         #list_categories .ais-HierarchicalMenu-list--child li {
-            display: block!important;
-        }
+            display: block!important;}
         #list_categories .ais-HierarchicalMenu-item--selected>div:first-child {
-            text-decoration: underline; 
-        }
+            text-decoration: underline; }
         #list_categories .ais-HierarchicalMenu-count {
-            display: none;
-        }
+            display: none; }
         li.ais-Breadcrumb-item.ais-Breadcrumb-item--selected {
             max-width: 600px;
             text-overflow: ellipsis;
             overflow: hidden;
-            white-space: nowrap;
-        }
+            white-space: nowrap;}
         .ais-Breadcrumb-separator {
             width: 18px;
             height: 18px;
@@ -2819,8 +2796,7 @@ window.onload = function() {
             color: transparent;
             transform: scaleX(-1);
             flex-shrink: 0;
-            background: url(https://conversionratestore.github.io/projects/medicalmega/img/chevron-right.svg) no-repeat center / contain;
-        }
+            background: url(https://conversionratestore.github.io/projects/medicalmega/img/chevron-right.svg) no-repeat center / contain;}
         .ais-ClearRefinements-button {
             background-color: #e9ebec;
             padding: 5px 8px;
@@ -2830,19 +2806,15 @@ window.onload = function() {
             cursor: pointer;
             font-size: 12px;
             line-height: 1;
-            justify-content: space-between;
-        }
+            justify-content: space-between;}
         .ais-ClearRefinements-button:hover svg {
-            fill: #bf0400;
-        }
+            fill: #bf0400;}
         .ais-ClearRefinements-button--disabled, .listing_wrapper .ais-InfiniteHits-loadMore {
-            display: none!important;
-        }
+            display: none!important;}
         .ais-RefinementList-showMore--disabled {
             opacity: 0;
             pointer-events: none;
-            padding: 0!important;
-        }
+            padding: 0!important;}
         .ais-RefinementList-showMore {
             text-decoration: underline;
             padding: 15px 0;
@@ -2854,59 +2826,48 @@ window.onload = function() {
             color: #344D57;
             text-align: left;
             position: sticky;
-            bottom: 0;
-        }
+            bottom: 0;}
         .main a#top {
             background-color: #1E3944;
             padding: 4px;
-            border-radius: 40px;
-        }
+            border-radius: 40px;}
         .algolia-autocomplete {
-            width: 100%;
-        }
+            width: 100%;}
         .aa-dropdown-menu {
             background: #FBFBFB;
             box-shadow: 0 4px 4px rgb(0 0 0 / 5%);
             width: 100%;
             position: fixed!important;
             left: 0!important;
-            top: 64px!important;
-        }
+            top: 64px!important;}
         .aa-suggestion {
             display: flex;
             align-items: center;
             padding: 5px 10px;
-            cursor: pointer;
-        }
+            cursor: pointer;}
         .aa-suggestion.aa-cursor {
-            background-color: #E0E4E5;
-        }
+            background-color: #E0E4E5;}
         .aa-suggestion img {
             width: 45px;
             height: 45px;
             border: 1px solid #eeeeee;
             margin-right: 10px;
             object-fit: contain;
-            flex-shrink: 0;
-        }
+            flex-shrink: 0;}
         .aa-suggestion em {
-            font-weight: 700;
-        }
+            font-weight: 700;}
         .aa-suggestion .name {
             text-overflow: ellipsis;
             overflow: hidden;
             display: -webkit-box;
             -webkit-line-clamp: 1;
-            -webkit-box-orient: vertical;
-        }
+            -webkit-box-orient: vertical;}
         .aa-suggestion .item_num {
             font-size: 10px;
             margin-bottom: 4px;
-            color: gray;
-        }
+            color: gray;}
         .aa-suggestion .price {
-            fonr-size: 11px
-        }
+            fonr-size: 11px}
         .listing_popular {
             margin-bottom: 33px;
         }
@@ -2993,14 +2954,14 @@ window.onload = function() {
         .list {
             color: #344D57;
             margin: 70px 0 48px; }
-            .list .fw-semi {
+        .list .fw-semi {
             color: #091114;}
-            .list li {
+        .list li {
             font-size: 16px;
             line-height: 170%; }
         .product { 
             font-family: 'Inter', sans-serif;}
-            .product h2, .product .title {
+        .product h2, .product .title {
             padding-left: 0;
             font-weight: 600;
             font-size: 32px;
@@ -3185,7 +3146,7 @@ window.onload = function() {
             width: 10px;
             height: 10px;
             background: #1E3944;}
-        .available-options .justify-content-between label {
+        .available-options .justify-between label {
             position: relative;
             z-index: 1;
             min-width: 95px;
@@ -3193,7 +3154,7 @@ window.onload = function() {
             width: 48%; }
         .available-options .scroll-x {
             margin-left: -5px; }
-        .available-options .justify-content-between label:last-child {
+        .available-options .justify-between label:last-child {
             margin-right: 0; }
         .available-options .fs-14 {
             margin: 15px 0 5px; }
@@ -3353,7 +3314,7 @@ window.onload = function() {
                     <a class="logo" href="#"><img src="https://conversionratestore.github.io/projects/medicalmega/img/logo-m.svg" alt="Medical Mega"></a>
                     <button type="button" class="close-menu" data-button=".menu"><img src="https://conversionratestore.github.io/projects/medicalmega/img/close-m.svg" alt="close menu"></button>
                 </div>
-                <a class="align-items-center midbar_action" href="https://medicalmega.com/myaccount.html">
+                <a class="items-center midbar_action" href="https://medicalmega.com/myaccount.html">
                     <img class="mr-8" src="https://olha1001.github.io/medicalmega/pdp-rediesign/img/common/user.svg" alt="account icon">
                     <span>Account</span>
                 </a> 
@@ -3373,7 +3334,7 @@ window.onload = function() {
                 </div>
             
                 <div class="dropdown_categories">
-                    <button type="button" class="align-items-center back-menu" data-button=".menu-conteiner">
+                    <button type="button" class="items-center back-menu" data-button=".menu-conteiner">
                         <img class="mr-8" src="https://conversionratestore.github.io/projects/medicalmega/img/arrowLeft.svg" alt="arrow left icon">
                         <span>Main Menu</span>
                     </button>
@@ -3383,7 +3344,7 @@ window.onload = function() {
                 </div>
                     
                 <div class="footer-menu">
-                    <a href="https://medicalmega.com/service.html" class="align-items-center"><img class="mr-8" src="https://conversionratestore.github.io/projects/medicalmega/img/help.svg" alt="icon quotation">Customer Service</a>
+                    <a href="https://medicalmega.com/service.html" class="items-center"><img class="mr-8" src="https://conversionratestore.github.io/projects/medicalmega/img/help.svg" alt="icon quotation">Customer Service</a>
                     <a href="tel:17182084380">Local Phone # <span class="underline">1-718-208-4380</span></a>
                     <a class="ml-40" href="tel:18556336342">Toll Free Phone # <span class="underline">1-855-MED-MEGA (633-6342)</span></a>
                 </div>
@@ -3403,7 +3364,7 @@ window.onload = function() {
                     <div class="box-search"> 
                         <div id="form-search"></div>
                     </div>
-                    <button class="align-items-center midbar_action" type="button">
+                    <button class="items-center midbar_action" type="button">
                         <img src="https://olha1001.github.io/medicalmega/pdp-rediesign/img/common/cart.svg" alt="icon Cart" style="margin-right: 2.6px">
                         <span>(<span class="cart_count">${qty}</span>)</span>
                     </button>
@@ -3414,8 +3375,8 @@ window.onload = function() {
             <nav id="breadcrumbs" class="breadcrumbs"></nav>
             <div id="relatedProducts"></div>
             <h2 class="listing_title">All Products</h2>
-            <div class="d-flex">
-                <button class="btn-filters btn_white btn w-100 flex-center-center" type="button" data-button=".filter">
+            <div class="flex">
+                <button class="btn-filters btn_white btn w-100 flex-center" type="button" data-button=".filter">
                     <svg class="mr-8" width="19" height="18" viewBox="0 0 19 18" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M16.3906 2.8125H2.60938C2.53203 2.8125 2.46875 2.87578 2.46875 2.95312V4.07812C2.46875 4.15547 2.53203 4.21875 2.60938 4.21875H16.3906C16.468 4.21875 16.5312 4.15547 16.5312 4.07812V2.95312C16.5312 2.87578 16.468 2.8125 16.3906 2.8125ZM11.8906 13.7812H7.10938C7.03203 13.7812 6.96875 13.8445 6.96875 13.9219V15.0469C6.96875 15.1242 7.03203 15.1875 7.10938 15.1875H11.8906C11.968 15.1875 12.0312 15.1242 12.0312 15.0469V13.9219C12.0312 13.8445 11.968 13.7812 11.8906 13.7812ZM14.1406 8.29688H4.85938C4.78203 8.29688 4.71875 8.36016 4.71875 8.4375V9.5625C4.71875 9.63984 4.78203 9.70312 4.85938 9.70312H14.1406C14.218 9.70312 14.2812 9.63984 14.2812 9.5625V8.4375C14.2812 8.36016 14.218 8.29688 14.1406 8.29688Z" fill="#344D57"/>
                     </svg>
@@ -3445,7 +3406,7 @@ window.onload = function() {
                     </svg>
                 </button>
                 <div class="flex-center-between">
-                    <h3 class="filter_title align-items-center">
+                    <h3 class="filter_title items-center">
                         <svg class="mr-8" width="19" height="18" viewBox="0 0 19 18" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M16.3906 2.8125H2.60938C2.53203 2.8125 2.46875 2.87578 2.46875 2.95312V4.07812C2.46875 4.15547 2.53203 4.21875 2.60938 4.21875H16.3906C16.468 4.21875 16.5312 4.15547 16.5312 4.07812V2.95312C16.5312 2.87578 16.468 2.8125 16.3906 2.8125ZM11.8906 13.7812H7.10938C7.03203 13.7812 6.96875 13.8445 6.96875 13.9219V15.0469C6.96875 15.1242 7.03203 15.1875 7.10938 15.1875H11.8906C11.968 15.1875 12.0312 15.1242 12.0312 15.0469V13.9219C12.0312 13.8445 11.968 13.7812 11.8906 13.7812ZM14.1406 8.29688H4.85938C4.78203 8.29688 4.71875 8.36016 4.71875 8.4375V9.5625C4.71875 9.63984 4.78203 9.70312 4.85938 9.70312H14.1406C14.218 9.70312 14.2812 9.63984 14.2812 9.5625V8.4375C14.2812 8.36016 14.218 8.29688 14.1406 8.29688Z" fill="#344D57"/>
                         </svg>
@@ -3786,7 +3747,7 @@ window.onload = function() {
                     <div class="box-of">
                         ${boxOf}
                     </div>
-                    <div class="flex-center-center calc" ${hit['variants'][count].in_stock == false || hit['variants'][count].price == '0.00' ? 'disabled' : ''}>
+                    <div class="flex-center calc" ${hit['variants'][count].in_stock == false || hit['variants'][count].price == '0.00' ? 'disabled' : ''}>
                         <button class="btn-calc btn-calc_minus" type="button" disabled=""></button>
                         <input class="calc-qty" type="number" name="quantity" value="1" data-max-value="${hit['variants'][count].qty}">
                         <button class="btn-calc btn-calc_plus" type="button"></button>
@@ -3849,7 +3810,7 @@ window.onload = function() {
                 templates: {
                     item: (data) => {
                         let checkbox = `
-                    <label class="mt-16 align-items-center" onclick="pushDataLayer('Click on one of the brand items on filters','Filters')">
+                    <label class="mt-16 items-center" onclick="pushDataLayer('Click on one of the brand items on filters','Filters')">
                         <span class="check"></span>
                         <span class="check_text">${data.value}<span class="count_brand">(${data.count})</span></span>
                     </label>
@@ -3872,7 +3833,7 @@ window.onload = function() {
                 templates: {
                     item: (data) => {
                         let checkbox = `
-                <label class="mt-16 align-items-center" onclick="pushDataLayer('Click on one of the price items on filters','Filters')">
+                <label class="mt-16 items-center" onclick="pushDataLayer('Click on one of the price items on filters','Filters')">
                     <span class="check"></span>
                     <span class="check_text">${data.label} <span class="count_brand">(${data.count})</span></span>
                 </label>
@@ -4215,7 +4176,7 @@ window.onload = function() {
                     <div class="available-options"> 
                         <p class="fs-14 fw-semi">Available Options: </p> 
                         <div class="relative">
-                            <div class="justify-content-between scroll-x"></div>
+                            <div class="justify-between scroll-x"></div>
                         </div>
                     </div>`;
 
@@ -4240,7 +4201,7 @@ window.onload = function() {
                     function pricingBlock(className) {
                         return `
                         <form class="${className}" action="https://medicalmega.com/cart.html" method="post">
-                            <div class="flex-center-center calc" ${firstVariant.in_stock == false || firstVariant.price == '0.00' ? 'disabled' : ''}> 
+                            <div class="flex-center calc" ${firstVariant.in_stock == false || firstVariant.price == '0.00' ? 'disabled' : ''}> 
                             <button class="btn-calc btn-calc_minus" type="button" disabled></button>
                             <input class="calc-qty" type="number" value="1" name="quantity">
                             <button class="btn-calc btn-calc_plus" type="button"></button>
@@ -4265,8 +4226,8 @@ window.onload = function() {
                         <div class="product"> 
                             <h2 class="title">${product.name}</h2>
                             <div class="flex-center-between">
-                            <img class="mr-8" src="https://conversionratestore.github.io/projects/medicalmega/img/transpilot1.svg" alt="icon transpilot">
-                            <img src="https://conversionratestore.github.io/projects/medicalmega/img/transpilot2.svg" alt="icon transpilot">
+                                <img class="mr-8" src="https://conversionratestore.github.io/projects/medicalmega/img/transpilot1.svg" alt="icon transpilot">
+                                <img src="https://conversionratestore.github.io/projects/medicalmega/img/transpilot2.svg" alt="icon transpilot">
                             </div>
                             <div class="slider-main">${slides()}</div>
                             <p class="text-small text-center">Image shown for reference purposes only. Actual product appearance may vary.</p>
@@ -4276,7 +4237,7 @@ window.onload = function() {
                                 <li> Item Number: <span class="fw-semi">${product.item_num}</span></li>
                                 <li> Manufacturer: <span class="fw-semi">${product.manufacturer}</span></li>
                             </ul>
-                            <div class="shipping_block flex-center-center">
+                            <div class="shipping_block flex-center">
                                 <img class="mr-16 icon-car" src="https://olha1001.github.io/medicalmega/pdp-rediesign/img/common/car.svg" alt="icon shipping">
                                 <div> 
                                     <p class="c-red text-up fw-semi l-t-05">Estimated shipping</p>
@@ -4285,7 +4246,7 @@ window.onload = function() {
                             </div>    
                             <p class="text-small text-center">*Sometimes by technical reasons delivery can took a bit longer up to 7 days. </p>
                             
-                            <ul class="tabs-discription d-flex"> 
+                            <ul class="tabs-discription flex"> 
                                 <li class="active">Product details</li>
                             </ul>
                             <div class="content-discription">
@@ -4297,7 +4258,7 @@ window.onload = function() {
                         </div>
                         <section class="similar-products">
                             <h2>Similar Products</h2>
-                            <div class="d-flex cards_similar"></div>
+                            <div class="flex cards_similar"></div>
                         </section>
                     </div>`
                     //add html pdp
