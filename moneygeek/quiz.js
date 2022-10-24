@@ -846,6 +846,8 @@ window.onload = function() {
                 countStep.dataset.step = '3';
                 let cash = document.querySelector('.input-cash');
                 cash.value = myAnswers[3].replace('$','');
+                //event
+                cash.addEventListener('click', () => pushDataLayer(`Click on Actual Cash Value (ACV) of Your Car input`))
                 document.querySelector('.btn-next').addEventListener('click', (e) => {
                     pushDataLayer(`Click on Next button (step - ${countStep.innerHTML})`,'')
                     if (cash.value != '' && cash.value != 0 && cash.value != '00' && cash.value != '0,000') {
@@ -891,7 +893,6 @@ window.onload = function() {
 
                 document.querySelector('.coverage-type h3').innerHTML = myAnswers[2] == 'Fully Owned' && cashIndex == 0 ? 'Liability coverage only' : 'Comprehensive and collision';
 
-                
                 for (let i = 0; i < objStateMinimum.length; i++) {
                     if (objStateMinimum[i].split(':')[0] == myAnswers[1]) {
                         let sptStateMinimum = objStateMinimum[i].split(':')[1].split('/'),
