@@ -913,10 +913,6 @@ window.onload = function() {
                     }
                 }
                 let leftPositionArrow = document.querySelector('.required-level h3').clientWidth + +(window.getComputedStyle( document.querySelector('.required-level'), null).getPropertyValue('padding-left').replace('px',''))
-                
-                console.log(document.querySelector('.required-level h3').clientWidth)
-                console.log(+(window.getComputedStyle( document.querySelector('.required-level'), null).getPropertyValue('padding-left').replace('px','')))
-                console.log(leftPositionArrow)
                 document.querySelector('.tooltip-block .arrow').style.left = leftPositionArrow - 8 + 'px';
 
                 document.querySelectorAll('.show-more').forEach(button => {
