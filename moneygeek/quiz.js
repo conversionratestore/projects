@@ -370,7 +370,7 @@ let styleQuiz = `
             width: 95px;
         }
         .quiz-block {
-            padding: 15px;
+            padding: 20px 15px;
         }
         .quiz h2.fs-24 {
             font-size: 21px;
