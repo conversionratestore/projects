@@ -940,7 +940,8 @@ window.onload = function() {
         if (isScrolledIntoView(document.querySelector('.btn-next')) == true) {
             if (viewed == false) {
                 viewed = true;
-                pushDataLayer('View on screen', `Step ${countStep.innerHTML}. ${document.querySelector('.quiz-footer label').innerText}`);
+                let label = countStep.dataset.step == 5 ? 'Recommended Type and Level of Car Insurance Coverage' : document.querySelector('.quiz-footer label').innerText
+                pushDataLayer('View on screen', `Step ${countStep.innerHTML}. ${label}`);
             }
         }  
     }
@@ -950,8 +951,8 @@ window.onload = function() {
         if (isScrolledIntoView(document.querySelector('.btn-next')) == true) {
             if (viewed == false) {
                 viewed = true;
-                pushDataLayer('View on screen', `Step ${countStep.innerHTML}. ${document.querySelector('.quiz-footer label').innerText}`);
-      
+                let label = countStep.dataset.step == 5 ? 'Recommended Type and Level of Car Insurance Coverage' : document.querySelector('.quiz-footer label').innerText
+                pushDataLayer('View on screen', `Step ${countStep.innerHTML}. ${label}`);
             }
         }   
     })
