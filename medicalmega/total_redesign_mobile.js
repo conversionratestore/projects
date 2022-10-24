@@ -853,6 +853,9 @@ window.onload = function() {
                 text-transform: uppercase;
                 color: #1E3944;
                 padding: 14px 8px;
+                display: block;
+            }
+            .btn-back {
                 margin: 16px 0;
             }
             .btn-back svg {
@@ -1258,7 +1261,7 @@ window.onload = function() {
             document.querySelector('.col-left .head').style = 'display: none!important;';
             document.querySelector('.col-left .head-login').insertAdjacentHTML('afterend',`<button type="button" class="btn btn_white btn-google flex-center"> <img src="https://conversionratestore.github.io/projects/medicalmega/img/google.svg" class="mr-8" alt="google icon"/> continue with google</button><p class="text-center c-gray-08 mb-16">or</p>`)
             document.querySelector('.steps').innerHTML = `Step 1<span>/4</span> — ${obj['stepsName'][0]}`; //add steps in header
-            document.querySelector('.foot').insertAdjacentHTML('afterbegin','<a href="#" class="btn-guest">Checkout as a guest</a>')
+            document.querySelector('.foot').insertAdjacentHTML('afterbegin','<a href="#" class="btn-guest mb-16">Checkout as a guest</a>')
             addActive('.myAccountleft')
 
             //click on 'Sign in/Register' button
