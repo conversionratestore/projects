@@ -4206,12 +4206,12 @@ window.onload = function() {
 
                     //Available Options
                     let htmlAvailableOptions = `
-                <div class="available-options"> 
-                <p class="fs-14 fw-semi">Available Options: </p> 
-                <div class="relative">
-                    <div class="justify-content-between scroll-x"></div>
-                </div>
-                </div>`;
+                    <div class="available-options"> 
+                        <p class="fs-14 fw-semi">Available Options: </p> 
+                        <div class="relative">
+                            <div class="justify-content-between scroll-x"></div>
+                        </div>
+                    </div>`;
 
                     function availableOptions() {
                         let options = product.variants,
@@ -4245,14 +4245,14 @@ window.onload = function() {
                             <input type="hidden" name="add_to_cart" value="variant">
                         </form>`
                     }
-
+                    console.log(product.categories['lvl0'][0])
                     let htmlProduct = `
                     <div id="container-product" class="container">
                         <nav id="breadcrumbs-pdp" class="breadcrumbs">
                             <ul class="ais-Breadcrumb-list">
                                 <li class="ais-Breadcrumb-item">
                                     <span class="ais-Breadcrumb-separator" aria-hidden="true" style="transform: scaleX(-1)">&gt;</span>
-                                    <a class="ais-Breadcrumb-link" href="https://medicalmega.com/?products%5BhierarchicalMenu%5D%5Bcategories.lvl0%5D%5B0%5D=${product.categories['lvl0'][0]}">${product.categories['lvl0'][0]}</a>
+                                    <a class="ais-Breadcrumb-link" href="https://medicalmega.com/?products%5BhierarchicalMenu%5D%5Bcategories.lvl0%5D%5B0%5D=${product.categories['lvl0'][0].split(' &').join('%20%26')}">${product.categories['lvl0'][0]}</a>
                                 </li>
                             </ul>  
                         </nav>
