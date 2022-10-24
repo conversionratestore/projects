@@ -6,16 +6,13 @@ let styleMain =`
       -webkit-appearance: none;
       margin: 0;
     }
-    
     /* Firefox */
     input.quantity[type=number] {
-      -moz-appearance: textfield;
-    }
+      -moz-appearance: textfield; }
     .shopping-cart button {
         background: transparent;
         border: none;
-        cursor: pointer;
-    }
+        cursor: pointer;}
     .btn {
         font-family: "Inter", sans-serif;
         background-color: #1E3944;
@@ -31,6 +28,10 @@ let styleMain =`
         padding: 0 22px;
         cursor: pointer;
         transition: all 0.3s ease;
+        white-space: nowrap; }
+    .btn:hover, .btn:not(.btn_white):focus  {
+        background-color: #344D57;
+        border-color: #344D57; }
     .btn[disabled] {
         color: #9AA6AB;
         background-color: #F0F1F2;
@@ -2283,10 +2284,6 @@ window.onload = function() {
             line-height: 16px; }
         .main * {
             box-sizing: border-box;}
-        white-space: nowrap; }
-            .btn:hover, .btn:not(.btn_white):focus  {
-            background-color: #344D57;
-            border-color: #344D57; }
         .btn-filters {
             line-height: 36px;}
         .check {
@@ -2563,16 +2560,16 @@ window.onload = function() {
             width: 100%;
             height: 100%;
             }
-        .listing_wrapper li:nth-child(2n+2) .card {
+            .listing_wrapper li:nth-child(2n+2) .card {
                 border-left: none;
             }
-        .listing_wrapper .card img {
+            .listing_wrapper .card img {
             width: 147px;
             height: 147px; }
             .listing_wrapper .card .btn_white {
             pointer-events: none;
             }
-        .listing_wrapper .card .btn {
+            .listing_wrapper .card .btn {
             font-size: 10px;
             line-height: 36px;
             font-weight: 600; }
@@ -2586,11 +2583,11 @@ window.onload = function() {
             height: 32px;
             line-height: 32px; }
         .count_brand {
-            color: #9AA6AB;
-            margin-left: 4px; }
+        color: #9AA6AB;
+        margin-left: 4px; }
         .select_filter {
-            position: relative;
-            margin-bottom: 11px; }
+        position: relative;
+        margin-bottom: 11px; }
         .select_filter.active .select_item:before {
             -webkit-transform: translateY(-50%) scaleY(-1);
             -ms-transform: translateY(-50%) scaleY(-1);
