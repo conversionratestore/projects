@@ -304,7 +304,7 @@ let pushDataLayer = (actionDataLayer, labelDataLayer) => {
     });
 }
 
-//show/hide 
+//show/hide
 let addActive = (element) => document.querySelector(element).classList.add('active');
 let removeActive = (element) => document.querySelector(element).classList.remove('active');
 
@@ -550,7 +550,7 @@ window.onload = function() {
             document.querySelector('.confirmation-products').insertAdjacentHTML('beforeend', product(items[i].product_id, items[i].variant_id, items[i].quantity, items[i].subtotal, items[i].url, items[i].image_url, items[i].title, 1))
         }
     }
-    
+
     if ((href.includes('login.php') || href.includes('/register.php') || href.includes('/checkout') || href.includes('/guest-checkout')) && !href.includes('/checkout/step4') && !href.includes('/guest-checkout4.php')) {
         //checkout
         let style = `
@@ -1060,17 +1060,17 @@ window.onload = function() {
                 height: 8px;
                 width: 8px;
             }
-            [type="checkbox"]:checked ~ .check2:before  {
+            [type="checkbox"]:not(#cc-recurring-check):checked ~ .check2:before, .check2.checked:before {
                 content: '';
             }
             .promoCode, .primaryInfo input[type="text"], .primaryInfo select, .primaryInfo dl input[type="text"], .primaryInfo dl textarea, .primaryInfo .cc-recurring {
                 width: 100%!important;
                 max-width: 100%;
             }
-            .primaryInfo label {
+            .primaryInfo  {
                 max-width: 100%!important;
             }
-            .primaryInfo label.order-every {
+            .primaryInfo .order-every {
                 padding: 0;
                 width: 100%;
                 max-width: 100%;
@@ -1378,7 +1378,7 @@ window.onload = function() {
                 }, 3000)
             }
         }
-        
+
         function currentAddress(parent, pre, obj) {
             for (const key in obj) {
                 if (document.querySelector(`${parent} [name="${pre}${key}"]`) != null) {
@@ -1407,14 +1407,14 @@ window.onload = function() {
                                     shipHave = true;
                                     currentAddressShip = addresses[i]
                                     currentAddress('.addressBook', `s_`, currentAddressShip)
-                                    document.querySelector('.col-left .head').insertAdjacentHTML('afterend', addressCurrentHtml(addresses[i].fname, addresses[i].lname, addresses[i].addr1, addresses[i].city, addresses[i].state, addresses[i].zip, addresses[i].country, addresses[i].phn, addresses[i].type))  
+                                    document.querySelector('.col-left .head').insertAdjacentHTML('afterend', addressCurrentHtml(addresses[i].fname, addresses[i].lname, addresses[i].addr1, addresses[i].city, addresses[i].state, addresses[i].zip, addresses[i].country, addresses[i].phn, addresses[i].type))
                                 }
                             } else {
                                 if (billHave == false) {
                                     billHave = true;
                                     currentAddressBill = addresses[i]
                                     currentAddress('.addressBook', `b_`, currentAddressBill)
-                                    document.querySelector('.col-left .head').insertAdjacentHTML('afterend', addressCurrentHtml(addresses[i].fname, addresses[i].lname, addresses[i].addr1, addresses[i].city, addresses[i].state, addresses[i].zip, addresses[i].country, addresses[i].phn, addresses[i].type))  
+                                    document.querySelector('.col-left .head').insertAdjacentHTML('afterend', addressCurrentHtml(addresses[i].fname, addresses[i].lname, addresses[i].addr1, addresses[i].city, addresses[i].state, addresses[i].zip, addresses[i].country, addresses[i].phn, addresses[i].type))
                                 }
                             }
                             fname = addresses[i].fname;
@@ -1431,7 +1431,7 @@ window.onload = function() {
                                 } else if (item.closest('.bill') != null) {
                                     document.querySelector('.col-left .head').insertAdjacentHTML('afterend', billFormHtml(state_item, countries_ship_item, 'active','edit'))
                                     document.querySelector('.col-left .head h4').innerHTML = 'Billing information';
-                       
+
                                     currentAddress('.bill-form > dd', ``, currentAddressBill)
 
                                     document.querySelector('[name="shipping"]').addEventListener('click', (e) => copyFromShip(e.target, 'bill'))
@@ -1451,7 +1451,7 @@ window.onload = function() {
 
                     if (document.querySelector('.address.bill') == null && document.querySelector('.address.ship') != null) {
                         document.querySelector('.address .link').hidden = true;
-                    } 
+                    }
                     if (document.querySelector('.address.bill') != null && document.querySelector('.address.ship') == null) {
                         document.querySelector('.col-left .head').insertAdjacentHTML('afterend', shipFormHtml(state_item, countries_ship_item, 'active', ''))
                         document.querySelector('.ship-form > dd:last-child').remove();
@@ -1520,10 +1520,26 @@ window.onload = function() {
             document.querySelector('.col-left .head h4').innerHTML = obj['stepsName'][2];
             document.querySelector('.col-left .head').after(document.querySelector('#checkoutForm'))
 
-            document.querySelector('.cc-recurring-setting').insertAdjacentHTML('beforebegin',`<label class="order-every items-center"><span class="check2"></span>${document.querySelector('.cc-recurring-setting').innerHTML}</label>`)
+            document.querySelector('.cc-recurring-setting').insertAdjacentHTML('beforebegin',`<div class="order-every items-center"><span class="check2"></span>${document.querySelector('.cc-recurring-setting').innerHTML}</div>`)
             document.querySelector('.order-every .check2').before(document.querySelector('#cc-recurring-check'))
             document.querySelector('#recurring_billing_period option').innerHTML = 'Choose Period'
             document.querySelector('.btn-next span').innerHTML = 'Proceed';
+
+            let intervalChecked = setInterval(() => {
+                if (document.querySelector('#cc-recurring-check').checked) {
+                    document.querySelector('.order-every.items-center .check2').classList.add('checked');
+                } else {
+                    document.querySelector('.order-every.items-center .check2').classList.remove('checked');
+                }
+            })
+
+            document.querySelector('.check2').addEventListener('click', (e) => {
+                let target = e.target;
+                if (target.classList.contains('checked')) {
+                    target.classList.remove('checked')
+                    document.querySelector('#cc-recurring-check').click();
+                }
+            })
         }
         if (href.includes('/guest-checkout3.php')) {
             document.querySelector('#checkoutForm > fieldset > dl > dd:nth-child(2)').innerHTML = `Credit/Debit Card<span class="c-red"> *</span>`;
@@ -3612,8 +3628,8 @@ window.onload = function() {
         document.querySelector('.midbar .midbar_action').addEventListener('click', () => {
             addActive('.shopping-cart');
             document.getElementsByTagName('html')[0].classList.add('fix');
-        }); // show cart modal 
-        
+        }); // show cart modal
+
         startStuff();
 
         document.querySelector('.header').before(document.querySelector('#top'));
