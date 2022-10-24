@@ -362,6 +362,10 @@ let styleQuiz = `
         .quiz {
             padding: 25px 15px;
         }
+        .tooltip-block {
+            max-width: 278px;
+            padding: 15px;
+        }
     }
     @media only screen and (max-width: 360px) {
         .quiz  {
@@ -387,6 +391,13 @@ let styleQuiz = `
         }
         .anonymous svg {
             margin-right: 7px;
+        }
+        .tooltip-block {
+            padding: 10px;
+            transform: translateX(-38%);
+        }
+        .tooltip-block:after {
+            left: calc(38% - 8px);
         }
     }
     @media only screen and (min-width: 768px) {
@@ -725,15 +736,36 @@ function onlyNumberKey(evt) {
 }
 
 //push dataLayer
-function pushDataLayer(action) {
-    console.log(action)
+function pushDataLayer(action, label) {
+    console.log(action + " : " + label)
     window.dataLayer = window.dataLayer || [];
-    dataLayer.push({
-        'event': 'event-to-ga',
-        'eventCategory': 'Exp: The Quiz',
-        'eventAction': action
-    });
+    if (label != '') {
+        dataLayer.push({
+            'event': 'event-to-ga',
+            'eventCategory': 'Exp: The Quiz',
+            'eventAction': action,
+            'eventLabel': label
+        });
+    } else {
+        dataLayer.push({
+            'event': 'event-to-ga',
+            'eventCategory': 'Exp: The Quiz',
+            'eventAction': action
+        });
+    }
 }
+
+//comes into view
+function isScrolledIntoView(el) {
+    let rect = el.getBoundingClientRect(),
+        elemTop = rect.top,
+        elemBottom = rect.bottom;
+
+    let isVisible = (elemTop >= 0) && (elemBottom <= window.innerHeight);
+
+    return isVisible;
+}
+let viewed = false;
 
 window.onload = function() {
     document.body.insertAdjacentHTML('afterbegin', styleQuiz) //add style quiz
@@ -759,6 +791,7 @@ window.onload = function() {
     function changeContent(count) {
         switch (count) {
             case '1':
+                viewed = false;
                 footerQuiz.innerHTML = zipCodeHTML;
                 countStep.innerHTML = '1';
                 countStep.dataset.step = '1';
@@ -768,7 +801,7 @@ window.onload = function() {
                 document.querySelector('.input-zip').addEventListener('click', () => pushDataLayer(`Click on Your Zip Code input`))
                 //click next button
                 document.querySelector('.btn-next').addEventListener('click', (e) => {
-                    pushDataLayer(`Click on Next button (step - 1)`)
+                    pushDataLayer(`Click on Next button (step - 1)`,'')
                     let value = document.querySelector('.quiz-footer input').value;
                     if (value != '') {
                         apiZipCode(value).then(data => {
@@ -788,6 +821,7 @@ window.onload = function() {
                 })
                 break
             case '2':
+                viewed = false;
                 footerQuiz.innerHTML = carOwnershipHTML;
                 if (zipCode == '') {
                     btnBack.classList.remove('hide');
@@ -800,12 +834,13 @@ window.onload = function() {
 
                 selectChange('.select-item');
                 document.querySelector('.btn-next').addEventListener('click', (e) => {
-                    pushDataLayer(`Click on Next button (step - ${countStep.innerHTML})`)
+                    pushDataLayer(`Click on Next button (step - ${countStep.innerHTML})`,'')
                     myAnswers[2] = document.querySelector('[name="car-ownership"] .select-item').innerHTML;
                     changeContent('3')
                 })
                 break
             case '3':
+                viewed = false;
                 footerQuiz.innerHTML = cashValueHTML;
                 countStep.innerHTML = zipCode == '' ? '3' : '2';
                 btnBack.classList.remove('hide');
@@ -813,7 +848,7 @@ window.onload = function() {
                 let cash = document.querySelector('.input-cash');
                 cash.value = myAnswers[3].replace('$','');
                 document.querySelector('.btn-next').addEventListener('click', (e) => {
-                    pushDataLayer(`Click on Next button (step - ${countStep.innerHTML})`)
+                    pushDataLayer(`Click on Next button (step - ${countStep.innerHTML})`,'')
                     if (cash.value != '' && cash.value != 0 && cash.value != '00' && cash.value != '0,000') {
                         document.querySelector('.error-message').parentElement.classList.remove('error')
                         myAnswers[3] = '$' + cash.value;
@@ -824,6 +859,7 @@ window.onload = function() {
                 })
                 break
             case '4':
+                viewed = false;
                 footerQuiz.innerHTML = netWorthHTML;
                 countStep.innerHTML = zipCode == '' ? '4' : '3';
                 countStep.dataset.step = '4';
@@ -833,11 +869,12 @@ window.onload = function() {
                 selectChange('.select-item');
                 document.querySelector('.btn-next').addEventListener('click', (e) => {
                     myAnswers[4] = document.querySelector('[name="net-worth"] .select-item').innerHTML;
-                    pushDataLayer(`Click on View Your Recommended Coverage button (step - ${countStep.innerHTML})`)
+                    pushDataLayer(`Click on View Your Recommended Coverage button (step - ${countStep.innerHTML})`,'')
                     changeContent('5')
                 })
                 break
             case '5':
+                viewed = false;
                 footerQuiz.innerHTML = resultHTML;
                 countStep.innerHTML = zipCode == '' ? '5' : '4';
                 countStep.dataset.step = '5';
@@ -885,12 +922,12 @@ window.onload = function() {
                 document.querySelectorAll('.show-more').forEach(button => {
                     button.addEventListener('click', () => {
                         button.parentElement.classList.add('show');
-                        pushDataLayer(`Click on show more button (${button.closest('.quiz-block').querySelector('p').innerHTML.replace(':','')})`);
+                        pushDataLayer(`Click on show more button (${button.closest('.quiz-block').querySelector('p').innerHTML.replace(':','')})`,'');
                         button.remove();
                     })
                 })
                 document.querySelector('.btn-next').addEventListener('click', (e) => {
-                    pushDataLayer(`Click on Compare Coverage Pricing & Quotes button`)
+                    pushDataLayer(`Click on Compare Coverage Pricing & Quotes button`,'')
                     document.querySelector('form .chakra-form-control input').value = myAnswers[0];
                     document.querySelector('form .chakra-button').click();
                 })
@@ -899,13 +936,30 @@ window.onload = function() {
         if (document.querySelector('.quiz-footer input') != null) {
             clickOnEnter('.quiz-footer input', '.btn-next');
         }
+        if (isScrolledIntoView(document.querySelector('.btn-next')) == true) {
+            if (viewed == false) {
+                viewed = true;
+                pushDataLayer('View on screen', `Step ${countStep.innerHTML}. ${document.querySelector('.quiz-footer label').innerText}`);
+            }
+        }  
     }
     changeContent(zipCode == '' ? '1' : '2')
+
+    window.addEventListener('scroll', () => {
+        if (isScrolledIntoView(document.querySelector('.btn-next')) == true) {
+            if (viewed == false) {
+                viewed = true;
+                pushDataLayer('View on screen', `Step ${countStep.innerHTML}. ${document.querySelector('.quiz-footer label').innerText}`);
+      
+            }
+        }   
+    })
+
     //back step
     btnBack.addEventListener('click', () => {
         let step = +countStep.dataset.step - 1;
         changeContent(step.toString())
-        pushDataLayer(`Click on back button (step - ${countStep.innerHTML})`)
+        pushDataLayer(`Click on back button (step - ${countStep.innerHTML})`,'')
     });
     if (window.innerWidth <= 767) {
         document.querySelector('.btn-next').addEventListener('click', (e) => {
@@ -921,7 +975,7 @@ window.onload = function() {
     //click on 'my Answers' button
     document.querySelector('.btn-answers').addEventListener('click', (e) => {
         answers.classList.toggle('active')
-        pushDataLayer(`Click on my answers button`)
+        pushDataLayer(`Click on my answers button`,'')
     })
 
     document.addEventListener('click', (e) => {
@@ -931,7 +985,7 @@ window.onload = function() {
     })
 };
 
-pushDataLayer('loaded') //loaded event
+pushDataLayer('loaded','') //loaded event
 
 //clarify
 let isClarify = setInterval(() => {
