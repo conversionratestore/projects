@@ -299,6 +299,11 @@ let styleQuiz = `
         pointer-events: none;
         transition: all 0.2s ease;
     }
+    .tooltip-block.bottom .arrow {
+        bottom: 100%;
+        top: auto;
+        transform: scaleY(-1);
+    }
     .tooltip:hover .tooltip-block {
         opacity: 1;
     }
@@ -940,6 +945,28 @@ window.onload = function() {
                 pushDataLayer('View on screen', `Step ${countStep.innerHTML}. ${label}`);
             }
         }  
+        if (window.innerWidth <= 767) {
+            document.querySelector('.btn-next').addEventListener('click', (e) => {
+                seamless.polyfill();
+                seamless.scrollIntoView(document.querySelector(".quiz"), {
+                    behavior: "smooth",
+                    block: "center",
+                    inline: "center",
+                });
+            });
+        }
+        window.addEventListener('scroll', () => { 
+            if (document.querySelector('.tooltip-block') != null) {
+                let tooltip = document.querySelector('.tooltip-block');
+                if (tooltip.getBoundingClientRect().top < 130) {
+                    tooltip.classList.add('bottom');
+                    tooltip.style = `bottom: calc(100% - 20px - 24px - 30px - ${tooltip.clientHeight}px)`
+                } else {
+                    tooltip.style = '';
+                    tooltip.classList.remove('bottom');
+                }
+            }
+        })
     }
     changeContent(zipCode == '' ? '1' : '2')
 
@@ -959,16 +986,6 @@ window.onload = function() {
         changeContent(step.toString())
         pushDataLayer(`Click on back button (step - ${countStep.innerHTML})`,'')
     });
-    if (window.innerWidth <= 767) {
-        document.querySelector('.btn-next').addEventListener('click', (e) => {
-            seamless.polyfill();
-            seamless.scrollIntoView(document.querySelector(".quiz"), {
-                behavior: "smooth",
-                block: "center",
-                inline: "center",
-            });
-        });
-    }
 
     //click on 'my Answers' button
     document.querySelector('.btn-answers').addEventListener('click', (e) => {
