@@ -951,7 +951,7 @@ window.onload = function() {
                         tooltip.style = '';
                         tooltip.classList.remove('bottom');
                     }
-                    e.target.classList.add('active');
+                    e.target.classList.toggle('active');
                     pushDataLayer(`Click on tooltip`,'');
                 })
                 
