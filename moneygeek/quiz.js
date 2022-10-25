@@ -300,7 +300,6 @@ let styleQuiz = `
         z-index: 5;
         opacity: 0;
         pointer-events: none;
-        transition: all 0.2s ease;
     }
     .tooltip-block.bottom .arrow {
         bottom: 100%;
@@ -942,15 +941,9 @@ window.onload = function() {
                     document.querySelector('form .chakra-form-control input').value = myAnswers[0];
                     document.querySelector('form .chakra-button').click();
                 })
-                document.querySelector('.tooltip').addEventListener('click', (e) => {
-                    e.target.classList.add('active');
-                    pushDataLayer(`Click on tooltip`,'');
-                })
-                
-                window.addEventListener('scroll', () => { 
+                function tooltipPosition() {
                     if (document.querySelector('.tooltip-block') != null) {
                         let tooltip = document.querySelector('.tooltip-block');
-                        tooltip.parentElement.classList.remove('active');
                         if (tooltip.getBoundingClientRect().top < 135) {
                             tooltip.classList.add('bottom');
                             tooltip.style = `bottom: calc(100% - 20px - 24px - 30px - ${tooltip.clientHeight}px)`
@@ -959,6 +952,11 @@ window.onload = function() {
                             tooltip.classList.remove('bottom');
                         }
                     }
+                }
+                document.querySelector('.tooltip').addEventListener('click', (e) => {
+                    tooltipPosition()
+                    e.target.classList.add('active');
+                    pushDataLayer(`Click on tooltip`,'');
                 })
                 break
         }
