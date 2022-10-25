@@ -919,7 +919,14 @@ window.onload = function() {
                 }
                 let leftPositionArrow = document.querySelector('.required-level h3').clientWidth + +(window.getComputedStyle( document.querySelector('.required-level'), null).getPropertyValue('padding-left').replace('px',''))
                 document.querySelector('.tooltip-block .arrow').style.left = leftPositionArrow - 8 + 'px';
-
+                document.addEventListener('click', (e) => {
+                   if (!e.target.closest('.my-answers') && answers.classList.contains('active')) {
+                      answers.classList.remove('active')
+                   }
+                   if (!e.target.closest('.tooltip') && document.querySelector('.tooltip').classList.contains('active')) {
+                      document.querySelector('.tooltip').classList.remove('active');
+                   }
+                })
                 document.querySelectorAll('.show-more').forEach(button => {
                     button.addEventListener('click', () => {
                         button.parentElement.classList.add('show');
@@ -932,7 +939,10 @@ window.onload = function() {
                     document.querySelector('form .chakra-form-control input').value = myAnswers[0];
                     document.querySelector('form .chakra-button').click();
                 })
-                document.querySelector('.tooltip').addEventListener('click', (e) =>  pushDataLayer(`Click on tooltip`,''))
+                document.querySelector('.tooltip').addEventListener('click', (e) => {
+                    e.target.classList.add('active');
+                    pushDataLayer(`Click on tooltip`,'');
+                })
                 break
         }
         if (document.querySelector('.quiz-footer input') != null) {
@@ -948,13 +958,13 @@ window.onload = function() {
         if (window.innerWidth <= 767) {
             document.querySelector('.btn-next').addEventListener('click', (e) => {
                 const scrollTarget = document.querySelector('.quiz');
-              const topOffset = e.target.offsetHeight;
-             const elementPosition = scrollTarget.getBoundingClientRect().top;
-             const offsetPosition = elementPosition - topOffset - 130;
+                const topOffset = e.target.offsetHeight;
+                const elementPosition = scrollTarget.getBoundingClientRect().top;
+                const offsetPosition = elementPosition - topOffset - 130;
 
-             seamless.polyfill();
-             seamless.scrollBy(window, { behavior: "smooth", top: offsetPosition, left: 0 });
-
+                seamless.polyfill();
+                seamless.scrollBy(window, { behavior: "smooth", top: offsetPosition, left: 0 });
+ 
             });
         }
         window.addEventListener('scroll', () => { 
@@ -990,15 +1000,9 @@ window.onload = function() {
     });
 
     //click on 'my Answers' button
-    document.querySelector('.btn-answers').addEventListener('click', (e) => {
+   document.querySelector('.btn-answers').addEventListener('click', (e) => {
         answers.classList.toggle('active')
         pushDataLayer(`Click on my answers button`,'')
-    })
-
-    document.addEventListener('click', (e) => {
-        if (!e.target.closest('.my-answers') && answers.classList.contains('active')) {
-            answers.classList.remove('active')
-        }
     })
 };
 
