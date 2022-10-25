@@ -942,14 +942,14 @@ window.onload = function() {
                     document.querySelector('form .chakra-button').click();
                 })
                     
-                let tooltip = document.querySelector('.tooltip-block');
-                document.querySelector('.tooltip').addEventListener('click', (e) => {
-                    if (tooltip.getBoundingClientRect().top < 135) {
-                        tooltip.classList.add('bottom');
-                        tooltip.style = `bottom: calc(100% - 20px - 24px - 30px - ${tooltip.clientHeight}px)`
+                let tooltip = document.querySelector('.tooltip');
+                tooltip.addEventListener('click', (e) => {
+                    if (tooltip.getBoundingClientRect().top < 340) {
+                        tooltip.querySelector('.tooltip-block').classList.add('bottom');
+                        tooltip.querySelector('.tooltip-block').style = `bottom: calc(100% - 20px - 24px - 30px - ${tooltip.clientHeight}px)`
                     } else {
-                        tooltip.style = '';
-                        tooltip.classList.remove('bottom');
+                        tooltip.querySelector('.tooltip-block').style = '';
+                        tooltip.querySelector('.tooltip-block').classList.remove('bottom');
                     }
                     e.target.classList.toggle('active');
                     pushDataLayer(`Click on tooltip`,'');
