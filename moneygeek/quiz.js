@@ -946,6 +946,20 @@ window.onload = function() {
                     e.target.classList.add('active');
                     pushDataLayer(`Click on tooltip`,'');
                 })
+                
+                window.addEventListener('scroll', () => { 
+                    if (document.querySelector('.tooltip-block') != null) {
+                        let tooltip = document.querySelector('.tooltip-block');
+                        tooltip.parentElement.classList.remove('active');
+                        if (tooltip.getBoundingClientRect().top < 135) {
+                            tooltip.classList.add('bottom');
+                            tooltip.style = `bottom: calc(100% - 20px - 24px - 30px - ${tooltip.clientHeight}px)`
+                        } else {
+                            tooltip.style = '';
+                            tooltip.classList.remove('bottom');
+                        }
+                    }
+                })
                 break
         }
         if (document.querySelector('.quiz-footer input') != null) {
@@ -970,20 +984,6 @@ window.onload = function() {
  
             });
         }
-
-        window.addEventListener('scroll', () => { 
-            if (document.querySelector('.tooltip-block') != null) {
-                let tooltip = document.querySelector('.tooltip-block');
-                tooltip.parentElement.classList.remove('active');
-                if (tooltip.getBoundingClientRect().top < 140) {
-                    tooltip.classList.add('bottom');
-                    tooltip.style = `bottom: calc(100% - 20px - 24px - 30px - ${tooltip.clientHeight}px)`
-                } else {
-                    tooltip.style = '';
-                    tooltip.classList.remove('bottom');
-                }
-            }
-        })
     }
     changeContent(zipCode == '' ? '1' : '2')
 
