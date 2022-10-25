@@ -950,7 +950,7 @@ window.onload = function() {
                 const scrollTarget = document.querySelector('.quiz');
               const topOffset = e.target.offsetHeight;
              const elementPosition = scrollTarget.getBoundingClientRect().top;
-             const offsetPosition = elementPosition - topOffset + 130;
+             const offsetPosition = elementPosition - topOffset - 130;
 
              seamless.polyfill();
              seamless.scrollBy(window, { behavior: "smooth", top: offsetPosition, left: 0 });
