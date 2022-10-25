@@ -284,6 +284,9 @@ let styleQuiz = `
     .show-more span {
         color: #526EFF;
     }
+    .tooltip svg {
+        pointer-events: none;
+    }
     .tooltip-block {
         position: absolute;
         bottom: calc(100% - 20px - 24px + 15px);
