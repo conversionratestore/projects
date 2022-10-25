@@ -941,9 +941,9 @@ window.onload = function() {
                     document.querySelector('form .chakra-form-control input').value = myAnswers[0];
                     document.querySelector('form .chakra-button').click();
                 })
+                let tooltip = document.querySelector('.tooltip-block');
                 function tooltipPosition() {
                     if (document.querySelector('.tooltip-block') != null) {
-                        let tooltip = document.querySelector('.tooltip-block');
                         if (tooltip.getBoundingClientRect().top < 135) {
                             tooltip.classList.add('bottom');
                             tooltip.style = `bottom: calc(100% - 20px - 24px - 30px - ${tooltip.clientHeight}px)`
@@ -958,6 +958,8 @@ window.onload = function() {
                     e.target.classList.add('active');
                     pushDataLayer(`Click on tooltip`,'');
                 })
+                
+                window.addEventListener('scroll', () => tooltip.parentElement.classList.remove('active'))
                 break
         }
         if (document.querySelector('.quiz-footer input') != null) {
