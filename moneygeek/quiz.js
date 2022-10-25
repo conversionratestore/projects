@@ -970,11 +970,12 @@ window.onload = function() {
  
             });
         }
+
         window.addEventListener('scroll', () => { 
             if (document.querySelector('.tooltip-block') != null) {
                 let tooltip = document.querySelector('.tooltip-block');
                 tooltip.parentElement.classList.remove('active');
-                if (tooltip.getBoundingClientRect().top < 130) {
+                if (tooltip.getBoundingClientRect().top < 140) {
                     tooltip.classList.add('bottom');
                     tooltip.style = `bottom: calc(100% - 20px - 24px - 30px - ${tooltip.clientHeight}px)`
                 } else {
