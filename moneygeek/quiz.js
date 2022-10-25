@@ -958,7 +958,7 @@ window.onload = function() {
                     pushDataLayer(`Click on tooltip`,'');
                 })
                 
-                window.addEventListener('scroll', () => tooltip.parentElement.classList.remove('active'))
+                window.addEventListener('scroll', () => tooltip.classList.remove('active'))
                 break
         }
         if (document.querySelector('.quiz-footer input') != null) {
