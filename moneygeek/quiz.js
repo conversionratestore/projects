@@ -949,7 +949,7 @@ window.onload = function() {
                         tooltip.querySelector('.tooltip-block').style = '';
                         tooltip.querySelector('.tooltip-block').classList.remove('bottom');
                     }
-                    e.target.classList.toggle('active');
+                    e.target.classList.add('active');
                     pushDataLayer(`Click on tooltip`,'');
                 }
                 
