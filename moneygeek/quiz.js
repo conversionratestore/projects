@@ -947,12 +947,14 @@ window.onload = function() {
         }  
         if (window.innerWidth <= 767) {
             document.querySelector('.btn-next').addEventListener('click', (e) => {
-                seamless.polyfill();
-                seamless.scrollIntoView(document.querySelector(".quiz"), {
-                    behavior: "smooth",
-                    block: "center",
-                    inline: "center",
-                });
+                const scrollTarget = document.querySelector('.quiz');
+              const topOffset = e.target.offsetHeight;
+             const elementPosition = scrollTarget.getBoundingClientRect().top;
+             const offsetPosition = elementPosition - window.innerHeight + topOffset + 130;
+
+             seamless.polyfill();
+             seamless.scrollBy(window, { behavior: "smooth", top: offsetPosition, left: 0 });
+
             });
         }
         window.addEventListener('scroll', () => { 
