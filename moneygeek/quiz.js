@@ -304,7 +304,7 @@ let styleQuiz = `
         top: auto;
         transform: scaleY(-1);
     }
-    .tooltip:hover .tooltip-block {
+    .tooltip.active .tooltip-block {
         opacity: 1;
     }
     .tooltip-block .arrow {
