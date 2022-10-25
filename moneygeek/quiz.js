@@ -921,14 +921,7 @@ window.onload = function() {
                 }
                 let leftPositionArrow = document.querySelector('.required-level h3').clientWidth + +(window.getComputedStyle( document.querySelector('.required-level'), null).getPropertyValue('padding-left').replace('px',''))
                 document.querySelector('.tooltip-block .arrow').style.left = leftPositionArrow - 8 + 'px';
-                document.addEventListener('click', (e) => {
-                   if (!e.target.closest('.my-answers') && answers.classList.contains('active')) {
-                      answers.classList.remove('active')
-                   }
-                   if (!e.target.matches('.tooltip') && document.querySelector('.tooltip').classList.contains('active')) {
-                      document.querySelector('.tooltip').classList.remove('active');
-                   }
-                })
+
                 document.querySelectorAll('.show-more').forEach(button => {
                     button.addEventListener('click', () => {
                         button.parentElement.classList.add('show');
@@ -946,8 +939,10 @@ window.onload = function() {
                     heightTooltip = tooltip.querySelector('.tooltip-block').clientHeight;
                 let heightHeader = document.querySelector('header.css-45bexu').clientHeight,
                     heightnav = document.querySelector('#sub-navigation').clientHeight;
-                tooltip.addEventListener('click', (e) => {
-                    if (tooltip.getBoundingClientRect().top - 130 - +heightHeader - +heightTooltip - +heightnav <= -90) {
+
+                let hmob = window.innerWidth <= 767 ? heightHeader + heightnav : 0
+                function addEvents(e) {
+                    if (tooltip.getBoundingClientRect().top - 130 - heightTooltip - hmob <= -90) {
                         tooltip.querySelector('.tooltip-block').classList.add('bottom');
                         tooltip.querySelector('.tooltip-block').style = `bottom: calc(100% - 20px - 24px - 30px - ${tooltip.querySelector('.tooltip-block').clientHeight}px)`
                     } else {
@@ -956,8 +951,22 @@ window.onload = function() {
                     }
                     e.target.classList.toggle('active');
                     pushDataLayer(`Click on tooltip`,'');
-                })
+                }
                 
+                if (window.innerWidth <= 767) {
+                    tooltip.addEventListener('click', (e) => addEvents(e))
+                } else {
+                    tooltip.addEventListener('mouseover', (e) => addEvents(e))
+                    tooltip.addEventListener('mouseout', (e) => tooltip.classList.remove('active'))
+                }
+                document.addEventListener('click', (e) => {
+                    if (!e.target.closest('.my-answers') && answers.classList.contains('active')) {
+                       answers.classList.remove('active')
+                    }
+                    if (!e.target.matches('.tooltip') && tooltip.classList.contains('active')) {
+                        tooltip.classList.remove('active');
+                    }
+                 })
                 window.addEventListener('scroll', () => tooltip.classList.remove('active'))
                 break
         }
