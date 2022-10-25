@@ -923,7 +923,7 @@ window.onload = function() {
                    if (!e.target.closest('.my-answers') && answers.classList.contains('active')) {
                       answers.classList.remove('active')
                    }
-                   if (!e.target.closest('.tooltip') && document.querySelector('.tooltip').classList.contains('active')) {
+                   if (!e.target.matches('.tooltip') && document.querySelector('.tooltip').classList.contains('active')) {
                       document.querySelector('.tooltip').classList.remove('active');
                    }
                 })
@@ -970,6 +970,7 @@ window.onload = function() {
         window.addEventListener('scroll', () => { 
             if (document.querySelector('.tooltip-block') != null) {
                 let tooltip = document.querySelector('.tooltip-block');
+                tooltip.parentElement.classList.remove('active');
                 if (tooltip.getBoundingClientRect().top < 130) {
                     tooltip.classList.add('bottom');
                     tooltip.style = `bottom: calc(100% - 20px - 24px - 30px - ${tooltip.clientHeight}px)`
