@@ -941,20 +941,16 @@ window.onload = function() {
                     document.querySelector('form .chakra-form-control input').value = myAnswers[0];
                     document.querySelector('form .chakra-button').click();
                 })
+                    
                 let tooltip = document.querySelector('.tooltip-block');
-                function tooltipPosition() {
-                    if (document.querySelector('.tooltip-block') != null) {
-                        if (tooltip.getBoundingClientRect().top < 135) {
-                            tooltip.classList.add('bottom');
-                            tooltip.style = `bottom: calc(100% - 20px - 24px - 30px - ${tooltip.clientHeight}px)`
-                        } else {
-                            tooltip.style = '';
-                            tooltip.classList.remove('bottom');
-                        }
-                    }
-                }
                 document.querySelector('.tooltip').addEventListener('click', (e) => {
-                    tooltipPosition()
+                    if (tooltip.getBoundingClientRect().top < 135) {
+                        tooltip.classList.add('bottom');
+                        tooltip.style = `bottom: calc(100% - 20px - 24px - 30px - ${tooltip.clientHeight}px)`
+                    } else {
+                        tooltip.style = '';
+                        tooltip.classList.remove('bottom');
+                    }
                     e.target.classList.add('active');
                     pushDataLayer(`Click on tooltip`,'');
                 })
