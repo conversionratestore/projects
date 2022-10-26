@@ -1356,12 +1356,12 @@ window.onload = function() {
                                 if (item.closest('.ship') != null) {
                                     document.querySelector('.col-left .head').insertAdjacentHTML('afterend', shipFormHtml(state_item, countries_ship_item,'active', 'edit'))
                                     document.querySelector('.col-left .head h4').innerHTML = obj['stepsName'][1];
-                                    
+
                                     currentAddress('.ship-form > dd', ``, currentAddressShip)
                                 } else if (item.closest('.bill') != null) {
                                     document.querySelector('.col-left .head').insertAdjacentHTML('afterend', billFormHtml(state_item, countries_ship_item, 'active','edit'))
                                     document.querySelector('.col-left .head h4').innerHTML = 'Billing information';
-                                    
+
                                     currentAddress('.bill-form > dd', ``, currentAddressBill)
 
                                     document.querySelector('[name="shipping"]').addEventListener('click', (e) => copyFromShip(e.target, 'bill'))
@@ -1378,8 +1378,13 @@ window.onload = function() {
                             document.querySelector('.address.bill').style.display = 'block';
                         })
                     }
+
                     if (document.querySelector('.address.bill') == null && document.querySelector('.address.ship') != null) {
                         document.querySelector('.address .link').hidden = true;
+                    }
+                    if (document.querySelector('.address.bill') != null && document.querySelector('.address.ship') == null) {
+                        document.querySelector('.col-left .head').insertAdjacentHTML('afterend', shipFormHtml(state_item, countries_ship_item, 'active', ''))
+                        document.querySelector('.ship-form > dd:last-child').remove();
                     }
                 } else {
                     //Shipping Information - not filled
