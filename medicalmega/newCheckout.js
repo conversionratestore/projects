@@ -1448,7 +1448,7 @@ window.onload = function() {
             if (document.querySelector('#card_list') != null) {
                 document.querySelector('#cc_block > dl > div.ccInfo > dd:nth-child(3)').innerHTML = `Credit/Debit Card<span class="c-red"> *</span>`;
             } else {
-                document.querySelector('#checkoutForm > fieldset > dl > dd:nth-child(2)').innerHTML = `Credit/Debit Card<span class="c-red"> *</span>`;
+                // document.querySelector('#checkoutForm > fieldset > dl > dd:nth-child(2)').innerHTML = `Credit/Debit Card<span class="c-red"> *</span>`;
                 document.querySelector('.auto-reorder-header').style = 'margin-bottom: -28px!important';
             }
 
