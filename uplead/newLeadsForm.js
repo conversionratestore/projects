@@ -1,3 +1,4 @@
+/* main page */
 let styleMainPage = `
 <style>
     section.elementor-element.elementor-element-954ec92 .elementor-container.elementor-column-gap-no {
@@ -72,3 +73,43 @@ let styleMainPage = `
 document.body.insertAdjacentHTML('afterbegin', styleMainPage)
 //change text on button
 document.querySelector('section.elementor-element.elementor-element-954ec92 .elementor-container.elementor-column-gap-no .elementor-form .elementor-button .elementor-button-text').innerHTML = 'Find Leads Now';
+/* end main page */
+
+/* pop-up form */
+let styleModal = `
+<style>
+
+</style>`;
+
+let formModal = `
+<div class="modal-sign">
+    <div class="container">
+        <h2 class="modal-header">Get access to 107M+ B2B contacts with a free trial</h2>
+        <div class="flex">
+            <div class="col">
+                <h4>Sign up and download 5 lead contacts for free</h4>
+            </div>
+            <div class="col">
+                <h4>All Features & Data Included:</h4>
+                <div class="trusted-by">
+                    <h4>Trusted by</h4>
+                    <div class="flex">
+                        <img src="" alt="icon">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>`;
+
+//add styles form main page
+document.body.insertAdjacentHTML('afterbegin', styleModal)
+//add modal html
+document.body.insertAdjacentHTML('beforeend', formModal)
+//add form in modal
+document.querySelector('.modal-sign .col:first-child h4').after(document.querySelector('form'))
+//add All Features & Data Included in modal
+document.querySelector('.modal-sign .col:last-child > h4').after(document.querySelector('.WwzhpJuEdC9ZWUaDw5ae'))
+
+/* end pop-up form */
