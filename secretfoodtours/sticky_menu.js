@@ -139,20 +139,6 @@ const obsSections = () => {
     })
 }
 
-const callEvent = (eventAction, eventLabel = '') => { // GO Event
-    window.dataLayer = window.dataLayer || []
-
-    const eventObj = {
-        'event': 'event-to-ga',
-        'eventCategory': 'Exp: Sticky menu experiment',
-        eventAction,
-        eventLabel
-    }
-
-    dataLayer.push(eventObj)
-    console.log(eventObj);
-}
-
 document.head.insertAdjacentHTML('beforeend', crsStyle)
 
 const intervalTimeout = 100
@@ -176,7 +162,14 @@ const waitForDOM = setInterval(() => {
 
                 document.querySelector('.crs_menu').addEventListener('click', (e) => {
                     if (e.target.closest('li')) {
-                        callEvent('click on menu item — ' + e.target.innerText)
+                        window.dataLayer = window.dataLayer || [];
+                        dataLayer.push({
+                            'event': 'event-to-ga4',
+                            'event_name': 'exp_sticky_button_logic_rework',
+                            'event_desc': e.target.innerText,
+                            'event_type': 'menu item',
+                            'event_loc': 'header'
+                        });
                     }
                 })
 
@@ -198,7 +191,12 @@ const waitForDOM = setInterval(() => {
     }
 }, intervalTimeout)
 
-callEvent('loaded')
+window.dataLayer = window.dataLayer || [];
+dataLayer.push({
+    'event': 'event-to-ga4',
+    'event_name': 'exp_sticky_button_logic_rework_loaded'
+});
+
 const record = setInterval(() => {
     if (typeof clarity === 'function') {
         clearInterval(record)
