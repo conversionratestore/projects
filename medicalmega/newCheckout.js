@@ -1302,11 +1302,15 @@ window.onload = function() {
         let state_item, countries_ship_item
         if (href.includes('/checkout/step1') || href.includes('/checkout/step2') || href.includes('guest-checkout1.php') || href.includes('guest-checkout2.php')) {
             addStep('.steps', 1) //add steps in header
+            if (document.querySelector('.tooltip') != null) {
+                setTimeout(() => {
+                    document.querySelector('.tooltip').style.display = "none"
+                }, 3000)
+            }
         }
         function currentAddress(parent, pre, obj) {
             for (const key in obj) {
                 if (document.querySelector(`${parent} [name="${pre}${key}"]`) != null) {
-                    console.log(document.querySelector(`${parent} [name="${pre}${key}"]`))
                     document.querySelector(`${parent} [name="${pre}${key}"]`).value = obj[key];
                 }
             }
@@ -1316,6 +1320,8 @@ window.onload = function() {
             document.querySelector('.col-left .head h4').innerHTML = obj['stepsName'][1];
             state_item = href.includes('guest-checkout1.php') ? b_state : state;
             countries_ship_item = href.includes('guest-checkout1.php') ? b_country.innerHTML : countries_ship;
+            let shipHave = false, billHave = false;
+
             fetch(`/api/v1/addresses`, {
                 headers: headerFetchAddress,
                 method: "GET",
@@ -1325,16 +1331,25 @@ window.onload = function() {
                 if (!!addresses && addresses.length > 0) {
                     //Shipping Information - current users
                     for (let i = 0; i < addresses.length; i++) {
-                        if (addresses[i].type === 'ship') {
-                            currentAddressShip = addresses[i]
-                            currentAddress('.addressBook', `s_`, currentAddressShip)
-                        } else {
-                            currentAddressBill = addresses[i]
-                            currentAddress('.addressBook', `b_`, currentAddressBill)
+                        if (addresses[i].isPrimary == 1) {
+                            if (addresses[i].type === 'ship') {
+                                if (shipHave == false) {
+                                    shipHave = true;
+                                    currentAddressShip = addresses[i]
+                                    currentAddress('.addressBook', `s_`, currentAddressShip)
+                                    document.querySelector('.col-left .head').insertAdjacentHTML('afterend', addressCurrentHtml(addresses[i].fname, addresses[i].lname, addresses[i].addr1, addresses[i].city, addresses[i].state, addresses[i].zip, addresses[i].country, addresses[i].phn, addresses[i].type))
+                                }
+                            } else {
+                                if (billHave == false) {
+                                    billHave = true;
+                                    currentAddressBill = addresses[i]
+                                    currentAddress('.addressBook', `b_`, currentAddressBill)
+                                    document.querySelector('.col-left .head').insertAdjacentHTML('afterend', addressCurrentHtml(addresses[i].fname, addresses[i].lname, addresses[i].addr1, addresses[i].city, addresses[i].state, addresses[i].zip, addresses[i].country, addresses[i].phn, addresses[i].type))
+                                }
+                            }
+                            fname = addresses[i].fname;
+                            lname = addresses[i].lname;
                         }
-                        document.querySelector('.col-left .head').insertAdjacentHTML('afterend', addressCurrentHtml(addresses[i].fname, addresses[i].lname, addresses[i].addr1, addresses[i].city, addresses[i].state, addresses[i].zip, addresses[i].country, addresses[i].phn, addresses[i].type))
-                        fname = addresses[i].fname;
-                        lname = addresses[i].lname;
                         document.querySelectorAll('.btn-edit').forEach(item => {
                             item.addEventListener('click', (e) => {
                                 e.stopImmediatePropagation()
@@ -1533,7 +1548,7 @@ window.onload = function() {
                     })
 
                 } else {
-                    if (!document.querySelector(`.ship-form .checkbox[name="billing"]`).checked) {
+                    if (document.querySelector(`.ship-form .checkbox[name="billing"]`) != null && !document.querySelector(`.ship-form .checkbox[name="billing"]`).checked ) {
                         postFetch('/api/v1/addresses', saveAddress('ship',fname.value,lname.value,addr1.value,city.value,stateF.value,zip.value,country.value,phn.value,email.value),'POST').then(data => {
                             console.log(data)
                             let dataErrors = data.errors;
@@ -1606,7 +1621,8 @@ window.onload = function() {
                 address('ship')
             } else if (document.querySelector('.bill-form.active') != null) {
                 address('bill')
-            } else if (document.querySelector('.address.ship') != null && document.querySelector('.address.bill') != null && document.querySelector('.bill-form.edit') == null && document.querySelector('.ship-form.edit') == null) {
+            }  else if (document.querySelector('.address.ship') != null && document.querySelector('.address.bill') != null && document.querySelector('.bill-form.edit') == null && document.querySelector('.ship-form.edit') == null) {
+                console.log('next 2 step')
                 if (href.includes('guest-checkout')) {
                     document.querySelector('#mainbody > div > form > div > input[type=image]').click();
                 } else {
