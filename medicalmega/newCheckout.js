@@ -536,6 +536,9 @@ window.onload = function() {
                 border: none;
                 cursor: pointer;
             }
+            #cc_block > dl > div.ccInfo {
+                padding-bottom: 20px;
+            }
             /*body checkout*/
             .wrapper-checkout .container {
                 max-width: 1110px;
@@ -1450,18 +1453,18 @@ window.onload = function() {
             document.querySelector('.col-left .head h4').innerHTML = obj['stepsName'][2];
 
             document.querySelector('.col-left .head').after(document.querySelector('#checkoutForm'))
-            if (document.querySelector('#card_list') != null) {
-                document.querySelector('#cc_block > dl > div.ccInfo > dd:nth-child(3)').innerHTML = `Credit/Debit Card<span class="c-red"> *</span>`;
-            } else {
-                // document.querySelector('#checkoutForm > fieldset > dl > dd:nth-child(2)').innerHTML = `Credit/Debit Card<span class="c-red"> *</span>`;
-                document.querySelector('.auto-reorder-header').style = 'margin-bottom: -28px!important';
+            if (document.querySelector('#card_list') == null) {
+                document.querySelector('.auto-reorder-header').style = 'margin-bottom: -15px!important';
             }
+            document.querySelector('#cc_block > dl > div.ccInfo > dd:nth-child(3)').innerHTML = `Credit/Debit Card<span class="c-red"> *</span>`;
 
             document.querySelector('#save_cc_info') != null ? document.querySelector('#save_cc_info').insertAdjacentHTML('afterend','<span class="check2"></span>') : '';
 
             document.querySelector('.cc-recurring-setting').insertAdjacentHTML('beforebegin',`<label class="order-every flex-center-between"><span class="check2"></span>${document.querySelector('.cc-recurring-setting').innerHTML}</label>`)
             document.querySelector('.order-every .check2').before(document.querySelector('#cc-recurring-check'))
             document.querySelector('.btn-next span').innerHTML = 'Proceed';
+            document.querySelector('#checkoutForm > p').innerHTML = document.querySelector('#checkoutForm > p').innerHTML.replace('Place Your Order Now','Proceed');
+
         }
 
         if (href.includes('/checkout/step3') ) {
