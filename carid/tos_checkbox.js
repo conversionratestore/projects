@@ -12,9 +12,10 @@ let interval = setInterval(() => {
 
 window.dataLayer = window.dataLayer || [];
 dataLayer.push({
-    'event': 'event-to-ga4',
-    'event_name': 'exp_tos_checkbox_loaded'
-})
+      'event': 'event-to-ga',
+      'eventCategory': 'Exp — Tos checkbox',
+      'eventAction': 'loaded'
+});
 
 let isClarify = setInterval(() => {
     if(typeof clarity == 'function') {
