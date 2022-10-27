@@ -2075,5 +2075,5 @@ window.onload = function() {
             }
         })
     }
-    cart()
+    !href.includes('/checkout/step4') && !href.includes('/guest-checkout4.php') ? cart() : '';
 };
