@@ -718,6 +718,17 @@ function pushDataLayer(action, label) {
     }
 }
 
+//scroll to
+function scrollToElement(targetScroll, offsetTop) {
+    const scrollTarget = targetScroll;
+    const topOffset = offsetTop.offsetHeight;
+    const elementPosition = scrollTarget.getBoundingClientRect().top;
+    const offsetPosition = elementPosition - topOffset - 130;
+
+    seamless.polyfill();
+    seamless.scrollBy(window, { behavior: "smooth", top: offsetPosition, left: 0 });
+}
+
 //comes into view
 function isScrolledIntoView(el) {
     let rect = el.getBoundingClientRect(),
@@ -873,8 +884,9 @@ window.onload = function() {
                     }
                 }
                 document.querySelectorAll('.show-more').forEach(button => {
-                    button.addEventListener('click', () => {
+                    button.addEventListener('click', (e) => {
                         button.parentElement.classList.toggle('show');
+                        scrollToElement(button, button)
                         pushDataLayer(`Click on ${button.innerText} button`,'');
                     })
                 })
@@ -902,16 +914,7 @@ window.onload = function() {
             }
         }  
         if (window.innerWidth <= 767) {
-            document.querySelector('.btn-next').addEventListener('click', (e) => {
-                const scrollTarget = document.querySelector('.quiz');
-                const topOffset = e.target.offsetHeight;
-                const elementPosition = scrollTarget.getBoundingClientRect().top;
-                const offsetPosition = elementPosition - topOffset - 130;
-
-                seamless.polyfill();
-                seamless.scrollBy(window, { behavior: "smooth", top: offsetPosition, left: 0 });
- 
-            });
+            document.querySelector('.btn-next').addEventListener('click', (e) => scrollToElement(document.querySelector('.quiz'), e.target));
         }
     }
     changeContent(zipCode == '' ? '1' : '2')
