@@ -668,10 +668,10 @@ function selectChange(currency) {
     })
 
     childs.forEach(child => {
-        if (nameSelect == 'car ownership' && myAnswers[2] != '' || nameSelect == 'net worth' && myAnswers[4] != '') {
+        if (nameSelect == 'car ownership' && myAnswers[2] != '' || nameSelect == 'net worth' && myAnswers[4] != '' || nameSelect == 'actual cash' && myAnswers[3] != '') {
             child.classList.remove('active');
         } 
-        if (myAnswers[4] == child.innerHTML || myAnswers[2] == child.innerHTML) {
+        if (myAnswers[4] == child.innerHTML || myAnswers[3] == child.innerHTML || myAnswers[2] == child.innerHTML) {
             child.classList.add('active');
             selector.innerHTML = child.innerHTML;
         } 
@@ -747,11 +747,7 @@ window.onload = function() {
 
     //add quiz on page
     if (href.includes('insurance/auto/how-much-car-insurance-do-you-need/')) {
-        if (window.innerWidth > 767) {
-            document.querySelector('#gatsby-focus-wrapper > div > main > div.css-1irxgwz.ead1i4x8 > div > div.css-1uj8m62.ead1i4x6 > div:nth-child(1)').insertAdjacentHTML('beforebegin', quizHTML)
-        } else {
-            document.querySelector('#gatsby-focus-wrapper > div > main > div.css-1irxgwz.ead1i4x8 > div > div.css-1uj8m62.ead1i4x6 > div:nth-child(2)').insertAdjacentHTML('beforebegin', quizHTML)
-        }
+        document.querySelector('#gatsby-focus-wrapper > div > main > div.css-1irxgwz.ead1i4x8 > div > div.css-1uj8m62.ead1i4x6 > div:nth-child(2)').insertAdjacentHTML('beforebegin', quizHTML)
     } else if (href.includes('insurance/how-to-get-car-insurance-before-buying-a-car/')) {
         document.querySelectorAll('.Spacing')[0].insertAdjacentHTML('beforebegin', quizHTML)
     }
