@@ -503,6 +503,16 @@ window.onload = function() {
     if (href.includes('/checkout/step4') || href.includes('/guest-checkout4.php')) {
         let dataCart = JSON.parse(localStorage.getItem('dataCart'));
         console.log(dataCart)
+        let dates = order.deliveryDates,
+            confirmationDates = '';
+
+        for (let i = 0; i < dates.length; i++) {
+            let day = dates[i].split('-')[2],
+                mouth = arrMouth[dates[i].split('-')[1] - 1];
+            
+                confirmationDates += `${day} ${mouth}. ${dates.length > 1 && i == 0 ? '- ' : ''}`
+        }
+
         let styleConfirmation = `
         <style>
             body {
@@ -515,6 +525,7 @@ window.onload = function() {
                 display: none;
             }
             .confirmation {
+                box-sizing: border-box;
                 max-width: 833px;
                 width: 100%;
                 margin: auto;
@@ -545,6 +556,7 @@ window.onload = function() {
             .confirmation-order {
                 padding: 40px 0;
                 margin: 40px 0 8px;
+                border-top: 1px solid #E0E4E5;
             }
             .confirmation-products::-webkit-scrollbar{
                 background: #CCCCCC;
@@ -581,7 +593,7 @@ window.onload = function() {
                 font-weight: 600;
                 font-size: 18px;
                 line-height: 120%;
-                padding: 12px 0;
+                padding: 12px 0 0;
                 color: #96280F;
             }
             .confirmation .btn-next {
@@ -595,7 +607,7 @@ window.onload = function() {
             ${headerHTML}
             <div class="confirmation">
                 <h2>Thank you!</h2>
-                <p class="confirmation-span c-gray">Your order has been successfully placed</p>
+                <p class="confirmation-span c-gray">Your order <span class="fw-semi">#${document.querySelector('#mainbody > div.payment > fieldset > p:nth-child(1)').innerHTML.split('br>')[1]}</span> has been successfully placed</p>
                 <svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100" fill="none">
                     <path d="M71.0151 61.4241C70.1194 60.6219 68.7434 60.7002 67.9455 61.5937C63.4107 66.6611 56.8716 69.5654 49.9999 69.5654C43.1303 69.5654 36.589 66.6611 32.0542 61.5937C31.2521 60.7002 29.8803 60.6219 28.9847 61.4241C28.089 62.2241 28.0151 63.598 28.8151 64.4937C34.1738 70.4806 41.8955 73.9132 49.9999 73.9132C58.1064 73.9132 65.8281 70.4785 71.1847 64.4937C71.9847 63.598 71.9086 62.2241 71.0151 61.4241Z" fill="#344D57"/>
                     <path d="M50 0C22.4304 0 0 22.4304 0 50C0 77.5696 22.4304 100 50 100C77.5696 100 100 77.5696 100 50C100 22.4304 77.5696 0 50 0ZM50 95.6522C24.8261 95.6522 4.34783 75.1739 4.34783 50C4.34783 24.8261 24.8261 4.34783 50 4.34783C75.1739 4.34783 95.6522 24.8261 95.6522 50C95.6522 75.1739 75.1739 95.6522 50 95.6522Z" fill="#344D57"/>
@@ -603,7 +615,7 @@ window.onload = function() {
                     <path d="M39.1306 45.6523C39.1306 46.8523 40.1045 47.8262 41.3045 47.8262C42.5045 47.8262 43.4784 46.8523 43.4784 45.6523C43.4784 39.6588 38.6023 34.7827 32.6088 34.7827C26.6153 34.7827 21.7393 39.6588 21.7393 45.6523C21.7393 46.8523 22.7132 47.8262 23.9132 47.8262C25.1132 47.8262 26.0871 46.8523 26.0871 45.6523C26.0871 42.0566 29.0132 39.1305 32.6088 39.1305C36.2045 39.1305 39.1306 42.0566 39.1306 45.6523Z" fill="#344D57"/>
                 </svg>
                 <p class="confirmation-span">Approximate shipping date of your order is</p>
-                <p class="confirmation-date"></p>
+                <p class="confirmation-date">${confirmationDates}</p>
                 <div class="confirmation-order">
                     <div class="col">
                         <h3>Order summary</h3>

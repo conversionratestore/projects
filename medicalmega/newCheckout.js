@@ -383,7 +383,15 @@ window.onload = function() {
     //Confirmation
     if (href.includes('/checkout/step4') || href.includes('/guest-checkout4.php')) {
         let dataCart = JSON.parse(localStorage.getItem('dataCart'));
+        let dates = order.deliveryDates,
+            confirmationDates = '';
 
+        for (let i = 0; i < dates.length; i++) {
+            let day = dates[i].split('-')[2],
+                mouth = arrMouth[dates[i].split('-')[1] - 1];
+            
+                confirmationDates += `${day} ${mouth}. ${dates.length > 1 && i == 0 ? '- ' : ''}`
+        }
         let styleConfirmation = `
         <style>
             .confirmation * {
@@ -479,6 +487,7 @@ window.onload = function() {
             .confirmation .btn-next {
                 padding: 0 24px;
                 margin: 36px auto 0;
+                width: fit-content;
             }
         </style>`
 
@@ -497,7 +506,7 @@ window.onload = function() {
                     </div>
                 </div>
                 <p class="">Approximate shipping date of your order is:</p>
-                <p class="confirmation-date"></p>
+                <p class="confirmation-date">${confirmationDates}</p>
                 <a href="/" class="btn-next"><span>Back to the website</span></a>
             </div>`
         document.body.insertAdjacentHTML('afterbegin', confirmationHTML)
