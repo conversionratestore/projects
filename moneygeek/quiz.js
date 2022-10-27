@@ -272,8 +272,6 @@ let styleQuiz = `
         font-weight: 600;
         font-size: 14px;
         line-height: 24px;
-        display: flex;
-        align-items: center;
         padding: 8px 0;
         width: 100%;
         color: #526EFF;
@@ -283,6 +281,7 @@ let styleQuiz = `
         margin-left: 4px;
         width: 8px;
         height: 6px;
+        display: block;
         transition: all 0.3s ease;
         background: url('https://conversionratestore.github.io/projects/moneygeek/img/arrow-down.svg') no-repeat center / 100%;
     }
@@ -627,7 +626,7 @@ let zipCodeHTML = `
                     <p class="quiz-block_header">Required Level of <span class="quiz-level"></span></p>
                     <div class="quiz-block_body">
                         <ul></ul>
-                        <button type="button" class="show-more"><span>Why you need this level of coverage</span> </button>
+                        <button type="button" class="show-more"><span class="flex items-center">Why you need this level of coverage</span> </button>
                         <p class="text-res"></p>
                     </div>
                 </div>
@@ -635,7 +634,7 @@ let zipCodeHTML = `
                     <p class="quiz-block_header">Recommended Coverage Type</p>
                     <div class="quiz-block_body">
                         <h3>Comprehensive and Collision</h3>
-                        <button type="button" class="show-more"><span>Why you need this coverage type</span></button>
+                        <button type="button" class="show-more"><span class="flex items-center">Why you need this coverage type</span></button>
                         <p class="text-res"></p>
                     </div>
                 </div>
