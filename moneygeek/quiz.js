@@ -369,14 +369,14 @@ let styleQuiz = `
         .quiz h2.fs-24 {
             font-size: 21px;
         }
+        .quiz-block_body {
+            padding: 12px;
+        }
         .my-answers_dropdown {
             top: 52px;
             width: 100%;
         }
-        .show-more {
-            width: 102px;
-        }
-        .required-level ~ .btn-next {
+        .row-result ~ .btn-next {
             font-size: 14px;
         }
         .anonymous svg {
