@@ -177,15 +177,6 @@ let styleQuiz = `
     .error .error-message {
         display: block;
     }
-    .quiz input.input-cash {
-        padding-left: 25px;
-    }
-    .currency-cash {
-        position: absolute;
-        left: 12px;
-        top: 0;
-        line-height: 48px;
-    }
     /*last step*/
     .my-answers {
         display: none;
@@ -596,11 +587,14 @@ let zipCodeHTML = `
     cashValueHTML = `
         <div>
             <label class="">Actual Cash Value (ACV) of Your Car</label>
-            <div class="relative">
-                <p class="currency-cash">$</p>
-                <input type="text" class="input-cash" onkeyup="formatCash(this)" onkeypress="return onlyNumberKey(event)" pattern="\d*">
+            <div class="select relative" name="cash">
+                <div class="select-item">Less than $3,000</div>
+                <div class="select-drop">
+                    <div class="active">Less than $3,000</div>
+                    <div>$3,000 to 10,000</div>
+                    <div>More than $10,000</div>
+                </div>
             </div>
-            <p class="error-message">Please enter your car's actual cash value</p>
             ${setBtn('Next')}
         </div>`,
 
@@ -711,27 +705,6 @@ function clickOnEnter(input, button) {
             document.querySelector(button).click();
         }
     })
-}
-//format cash
-function formatCash(input){
-    let nStr = input.value + '';
-    nStr = nStr.replace( /\,/g, "");
-    let x = nStr.split( '.' );
-    let x1 = x[0];
-    let x2 = x.length > 1 ? '.' + x[1] : '';
-    let rgx = /(\d+)(\d{3})/;
-    while ( rgx.test(x1) ) {
-        x1 = x1.replace( rgx, '$1' + ',' + '$2' );
-    }
-    input.value = x1 + x2;
-}
-//only number key
-function onlyNumberKey(evt) {
-    // Only ASCII character in that range allowed
-    var ASCIICode = (evt.which) ? evt.which : evt.keyCode
-    if (ASCIICode > 31 && (ASCIICode < 48 || ASCIICode > 57))
-        return false;
-    return true;
 }
 
 //push dataLayer
@@ -844,19 +817,11 @@ window.onload = function() {
                 countStep.innerHTML = zipCode == '' ? '3' : '2';
                 btnBack.classList.remove('hide');
                 countStep.dataset.step = '3';
-                let cash = document.querySelector('.input-cash');
-                cash.value = myAnswers[3].replace('$','');
-                //event
-                cash.addEventListener('click', () => pushDataLayer(`Click on Actual Cash Value (ACV) of Your Car input`))
+                selectChange('.select-item');
                 document.querySelector('.btn-next').addEventListener('click', (e) => {
-                    pushDataLayer(`Click on Next button (step - ${countStep.innerHTML})`,'')
-                    if (cash.value != '' && cash.value != 0 && cash.value != '00' && cash.value != '0,000') {
-                        document.querySelector('.error-message').parentElement.classList.remove('error')
-                        myAnswers[3] = '$' + cash.value;
-                        changeContent('4')
-                    } else {
-                        document.querySelector('.error-message').parentElement.classList.add('error')
-                    }
+                    pushDataLayer(`Click on Next button (step - ${countStep.innerHTML})`,'');
+                    myAnswers[3] = document.querySelector('[name="cash"] .select-item').innerHTML;
+                    changeContent('4')
                 })
                 break
             case '4':
@@ -882,10 +847,12 @@ window.onload = function() {
                 countStep.parentElement.style.display = 'none';
                 bodyQuiz.style.display = 'none';
                 answers.style.display = 'block';
+            
                 document.querySelectorAll('.my-answers_dropdown > p > span:last-child').forEach((item, index) => {
                     item.innerHTML = myAnswers[index + 1]
                 })
-                let cashIndex = +(myAnswers[3].split('$')[1].split(',').join('')) > 3000 ? 1 : 0;
+                
+                let cashIndex = myAnswers[3].includes('Less than $3,000') ? 0 : 1;
                 let result = objQuiz[myAnswers[2]][cashIndex][myAnswers[4]];
            
                 document.querySelector('.coverage-type .text-res > p').innerHTML = result[1];
