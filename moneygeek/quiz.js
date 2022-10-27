@@ -219,31 +219,34 @@ let styleQuiz = `
     .my-answers.active .btn-answers svg {
         transform: scaleY(-1);
     }
+    .quiz-result {
+        margin-top: 14.5px;
+    }
+    .row-result {
+        border: 1px solid #D3D4D6;
+        border-bottom: none;
+    }
     .quiz h2.fs-24 {
         font-size: 24px;
         line-height: 26px;
         margin: 18.5px 0 0;
     }
     .quiz-block {
-        border: 1px solid #D3D4D6;
-        border-radius: 3px;
-        margin-top: 12px;
-        padding: 20px;
+        border-bottom: 1px solid #D3D4D6;
     }
     .quiz-block h3 {
         font-family: 'Brandon Grotesque', sans-serif;
         font-style: normal;
         text-transform: capitalize;
         font-weight: 600;
-        font-size: 20px;
+        font-size: 18px;
         line-height: 24px;
         color: #555555;
-        padding: 4px 0;
+        padding: 0 0 2px 0;
         margin-bottom: 12px;
-        padding-right: 4px;
         position: relative;
     }
-    .quiz-block h3:before {
+    .quiz-block h3:before, .quiz-block_body ul span:before {
         content: '';
         height: 2px;
         width: 40px;
@@ -254,73 +257,69 @@ let styleQuiz = `
         pointer-events: none;
     }
     .text-res {
-        height: 72px;
-        overflow: hidden;
-        position: relative;
+        display: none;
+        padding-bottom: 8px;
     }
-    .text-res.show {
-        height: 100%;
+    .show .text-res {
+        display: block;
     }
-    .show-more {
-        position: absolute;
-        right: 0;
-        bottom: 0;
-        width: 117px;
-        background: #fff;
-        z-index: 2;
-        color: #555555;
-        line-height: 150%;
-        text-align: left;
-    }
-    .show-more span {
-        color: #526EFF;
-    }
-    .tooltip svg {
-        pointer-events: none;
-    }
-    .tooltip-block {
-        position: absolute;
-        bottom: calc(100% - 20px - 24px + 15px);
-        left: 0;
-        max-width: 308px;
-        width: 100%;
-        background: #FFFFFF;
-        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.26);
-        border-radius: 6px;
-        padding: 20px;
-        z-index: 5;
-        opacity: 0;
-        pointer-events: none;
-    }
-    .tooltip-block.bottom .arrow {
-        bottom: 100%;
-        top: auto;
+    .show span:after {
         transform: scaleY(-1);
     }
-    .tooltip.active .tooltip-block {
-        opacity: 1;
+    .show-more {
+        font-family: 'Source Sans Pro', sans-serif;
+        font-style: normal;
+        font-weight: 600;
+        font-size: 14px;
+        line-height: 24px;
+        display: flex;
+        align-items: center;
+        padding: 8px 0;
+        width: 100%;
+        color: #526EFF;
     }
-    .tooltip-block .arrow {
-        position: absolute;
-        top: 100%;
-        left: 50px;
-        z-index: 3;
-        width: 0;
-        height: 0;
-        border-style: solid;
-        border-width: 15px 16.5px 0 16.5px;
-        border-color: #ffffff transparent transparent transparent;
+    .show-more span:after {
+        content: '';
+        margin-left: 4px;
+        width: 8px;
+        height: 6px;
+        transition: all 0.3s ease;
+        background: url('https://conversionratestore.github.io/projects/moneygeek/img/arrow-down.svg') no-repeat center / 100%;
     }
-    .tooltip-block ul {
-        background: #F3F3F3;
-        border-radius: 4px;
-        padding: 10px;
+    .quiz-block_header {
+        font-family: 'Brandon Grotesque', sans-serif;
+        font-style: normal;
+        font-weight: 600;
+        font-size: 20px;
+        line-height: 24px;
+        padding: 12px;
+        border-bottom: 1px solid #D3D4D6;
+    }
+    .quiz-block_body {
+        padding: 20px 20px 12px;
+    }
+    .quiz-block_body ul {
+        list-style-type: none;
+        padding: 0;
         margin: 0;
     }
-    .tooltip-block li {
-        margin-left: 26px;
-        line-height: 150%;
-        margin-bottom: 0;
+    .quiz-block_body li {
+        font-family: 'Source Sans Pro', sans-serif;
+        font-style: normal;
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 16px;
+        margin-bottom: 12px;
+    }
+    .quiz-block_body ul span {
+        display: block;
+        font-family: 'Brandon Grotesque', sans-serif;
+        font-weight: 600;
+        font-size: 18px;
+        line-height: 24px;
+        color: #555555;
+        margin-bottom: 4px;
+        position: relative;
     }
     /**/
     .weight-600 {
@@ -366,9 +365,6 @@ let styleQuiz = `
         }
         .quiz > div > img {
             width: 95px;
-        }
-        .quiz-block {
-            padding: 20px 15px;
         }
         .quiz h2.fs-24 {
             font-size: 21px;
@@ -422,13 +418,24 @@ let styleQuiz = `
         .quiz h2 {
             margin-top: 28px;
         }
+        .quiz-result {
+            margin-top: 24.5px;
+        }
         .row-result {
             display: flex;
         }
         .quiz-block {
-            width: calc(50% - 16px);
-            margin-right: 32px;
-            margin-top: 32px;
+            width: 100%;
+            padding: 0 24px;
+        }
+        .required-level {
+            border-right: 1px solid #D3D4D6;
+        }
+        .quiz-block_header {
+            padding: 24px 0 8px;
+        }
+        .quiz-block_body {
+            padding: 12px 0;
         }
         .quiz-block:last-child {
             margin-right: 0;
@@ -436,9 +443,6 @@ let styleQuiz = `
         .quiz-result .btn-next {
             max-width: 340px;
             margin: 32px auto 0;
-        }
-        .show-more {
-            width: 108px;
         }
         .my-answers {
             margin-right: auto;
@@ -618,37 +622,21 @@ let zipCodeHTML = `
 
     resultHTML = `
         <div class="quiz-result">
-            <h2 class="fs-24">Recommended Type and Level of Car Insurance Coverage:</h2>
             <div class="row-result">
-                <div class="coverage-type quiz-block">
-                    <p>Coverage Type:</p>
-                    <h3>Comprehensive and Collision</h3>
-                    <p class="weight-600">Explanation:</p>
-                    <div class="text-res">
-                        <p></p>
-                        <button type="button" class="show-more">.... <span class="weight-600">See more</span></button>
+                <div class="required-level quiz-block relative">
+                    <p class="quiz-block_header">Required Level of <span class="quiz-level"></span></p>
+                    <div class="quiz-block_body">
+                        <ul></ul>
+                        <button type="button" class="show-more"><span>Why you need this level of coverage</span> </button>
+                        <p class="text-res"></p>
                     </div>
                 </div>
-                <div class="required-level quiz-block relative">
-                    <p>Required Level of Coverage:</p>
-                    <div class="flex">
-                        <h3></h3>
-                        <div class="tooltip">
-                            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M7.9987 1.33301C6.68016 1.33301 5.39123 1.724 4.2949 2.45654C3.19857 3.18909 2.34409 4.23028 1.8395 5.44845C1.33492 6.66663 1.2029 8.00707 1.46013 9.30028C1.71737 10.5935 2.35231 11.7814 3.28466 12.7137C4.21701 13.6461 5.40489 14.281 6.6981 14.5382C7.99131 14.7955 9.33175 14.6635 10.5499 14.1589C11.7681 13.6543 12.8093 12.7998 13.5418 11.7035C14.2744 10.6071 14.6654 9.31822 14.6654 7.99967C14.6654 7.1242 14.4929 6.25729 14.1579 5.44845C13.8229 4.63961 13.3318 3.90469 12.7127 3.28563C12.0937 2.66657 11.3588 2.17551 10.5499 1.84048C9.74109 1.50545 8.87418 1.33301 7.9987 1.33301ZM7.9987 13.333C6.94387 13.333 5.91272 13.0202 5.03566 12.4342C4.1586 11.8481 3.47501 11.0152 3.07134 10.0407C2.66768 9.06611 2.56206 7.99376 2.76785 6.95919C2.97363 5.92463 3.48158 4.97432 4.22746 4.22844C4.97334 3.48256 5.92365 2.97461 6.95822 2.76882C7.99278 2.56303 9.06514 2.66865 10.0397 3.07232C11.0142 3.47598 11.8472 4.15957 12.4332 5.03663C13.0192 5.91369 13.332 6.94484 13.332 7.99967C13.332 9.41416 12.7701 10.7707 11.7699 11.7709C10.7697 12.7711 9.41319 13.333 7.9987 13.333Z" fill="#555555"/>
-                                <path d="M7.9987 6.00033C8.36689 6.00033 8.66536 5.70185 8.66536 5.33366C8.66536 4.96547 8.36689 4.66699 7.9987 4.66699C7.63051 4.66699 7.33203 4.96547 7.33203 5.33366C7.33203 5.70185 7.63051 6.00033 7.9987 6.00033Z" fill="#555555"/>
-                                <path d="M7.9987 6.66699C7.82189 6.66699 7.65232 6.73723 7.52729 6.86225C7.40227 6.98728 7.33203 7.15685 7.33203 7.33366V10.667C7.33203 10.8438 7.40227 11.0134 7.52729 11.1384C7.65232 11.2634 7.82189 11.3337 7.9987 11.3337C8.17551 11.3337 8.34508 11.2634 8.4701 11.1384C8.59513 11.0134 8.66536 10.8438 8.66536 10.667V7.33366C8.66536 7.15685 8.59513 6.98728 8.4701 6.86225C8.34508 6.73723 8.17551 6.66699 7.9987 6.66699Z" fill="#555555"/>
-                            </svg>
-                            <div class="tooltip-block">
-                                <ul></ul>
-                                <div class="arrow"></div>
-                            </div>
-                        </div>
-                    </div>
-                    <p class="weight-600">Explanation:</p>
-                    <div class="text-res">
-                        <p></p>
-                        <button type="button" class="show-more">.... <span class="weight-600">See more</span></button>
+                <div class="coverage-type quiz-block">
+                    <p class="quiz-block_header">Recommended Coverage Type</p>
+                    <div class="quiz-block_body">
+                        <h3>Comprehensive and Collision</h3>
+                        <button type="button" class="show-more"><span>Why you need this coverage type</span></button>
+                        <p class="text-res"></p>
                     </div>
                 </div>
             </div>
@@ -854,10 +842,10 @@ window.onload = function() {
                 let cashIndex = myAnswers[3].includes('Less than $3,000') ? 0 : 1;
                 let result = objQuiz[myAnswers[2]][cashIndex][myAnswers[4]];
            
-                document.querySelector('.coverage-type .text-res > p').innerHTML = result[1];
-                document.querySelector('.required-level .text-res > p').innerHTML = result[2];
+                document.querySelector('.coverage-type .text-res').innerHTML = result[1];
+                document.querySelector('.required-level .text-res').innerHTML = result[2];
 
-                document.querySelector('.coverage-type h3').innerHTML = myAnswers[2] == 'Fully Owned' && cashIndex == 0 ? 'Liability coverage only' : 'Comprehensive and collision';
+                document.querySelector('.quiz-level').innerHTML = myAnswers[2] == 'Fully Owned' && cashIndex == 0 ? 'Liability Coverage' : 'Comprehensive and Collision';
 
                 for (let i = 0; i < objStateMinimum.length; i++) {
                     if (objStateMinimum[i].split(':')[0] == myAnswers[1]) {
@@ -870,29 +858,24 @@ window.onload = function() {
                                 stateMinimum += sptStateMinimum[j] != '' ? j < 2 ? sptStateMinimum[j] + '/' : sptStateMinimum[j] : sptStateMinimum[j]
                             }
 
-                            typeOne = sptStateMinimum[0] != '' ? `<li>$${sptStateMinimum[0]},000 in bodily injury insurance per person</li>` : '';
-                            typeTwo = sptStateMinimum[1] != '' ? `<li>$${sptStateMinimum[1]},000 in bodily injury insurance per accident</li>` : '';
-                            typeTree = sptStateMinimum[2] != '' ? `<li>$${sptStateMinimum[2]},000 in property damage insurance per accident</li>` : '';
+                            typeOne = sptStateMinimum[0] != '' ? `<li><span>$${sptStateMinimum[0]},000</span> in bodily injury insurance per person</li>` : '';
+                            typeTwo = sptStateMinimum[1] != '' ? `<li><span>$${sptStateMinimum[1]},000</span> in bodily injury insurance per accident</li>` : '';
+                            typeTree = sptStateMinimum[2] != '' ? `<li><span>$${sptStateMinimum[2]},000</span> in property damage insurance per accident</li>` : '';
                         } else {
-                            typeOne = `<li>$${result[0].split('/')[0]},000 in bodily injury insurance per person</li>`;
-                            typeTwo = `<li>$${result[0].split('/')[1]},000 in bodily injury insurance per accident</li>`;
-                            typeTree = `<li>$${result[0].split('/')[2]},000 in property damage insurance per accident</li>`
+                            typeOne = `<li><span>$${result[0].split('/')[0]},000</span> in bodily injury insurance per person</li>`;
+                            typeTwo = `<li><span>$${result[0].split('/')[1]},000</span> in bodily injury insurance per accident</li>`;
+                            typeTree = `<li><span>$${result[0].split('/')[2]},000</span> in property damage insurance per accident</li>`
                         }
                         if (sptStateMinimum[2] == '') {
                             stateMinimum = stateMinimum.slice(0, -1);
                         }
-                        document.querySelector('.required-level h3').innerHTML = result[0] == '' ? stateMinimum : result[0];
-                        document.querySelector('.tooltip-block ul').innerHTML = typeOne + typeTwo + typeTree
+                        document.querySelector('.required-level ul').innerHTML = typeOne + typeTwo + typeTree
                     }
                 }
-                let leftPositionArrow = document.querySelector('.required-level h3').clientWidth + +(window.getComputedStyle( document.querySelector('.required-level'), null).getPropertyValue('padding-left').replace('px',''))
-                document.querySelector('.tooltip-block .arrow').style.left = leftPositionArrow - 8 + 'px';
-
                 document.querySelectorAll('.show-more').forEach(button => {
                     button.addEventListener('click', () => {
-                        button.parentElement.classList.add('show');
-                        pushDataLayer(`Click on show more button (${button.closest('.quiz-block').querySelector('p').innerHTML.replace(':','')})`,'');
-                        button.remove();
+                        button.parentElement.classList.toggle('show');
+                        pushDataLayer(`Click on ${button.innerText} button`,'');
                     })
                 })
                 document.querySelector('.btn-next').addEventListener('click', (e) => {
@@ -900,40 +883,12 @@ window.onload = function() {
                     document.querySelector('form .chakra-form-control input').value = myAnswers[0];
                     document.querySelector('form .chakra-button').click();
                 })
-                    
-                let tooltip = document.querySelector('.tooltip'),
-                    heightTooltip = tooltip.querySelector('.tooltip-block').clientHeight;
-                let heightHeader = document.querySelector('header.css-45bexu').clientHeight,
-                    heightnav = document.querySelector('#sub-navigation').clientHeight;
-
-                let hmob = window.innerWidth <= 767 ? heightHeader + heightnav : 0
-                function addEvents(e) {
-                    if (tooltip.getBoundingClientRect().top - 130 - heightTooltip - hmob <= -90) {
-                        tooltip.querySelector('.tooltip-block').classList.add('bottom');
-                        tooltip.querySelector('.tooltip-block').style = `bottom: calc(100% - 20px - 24px - 30px - ${tooltip.querySelector('.tooltip-block').clientHeight}px)`
-                    } else {
-                        tooltip.querySelector('.tooltip-block').style = '';
-                        tooltip.querySelector('.tooltip-block').classList.remove('bottom');
-                    }
-                    e.target.classList.add('active');
-                    pushDataLayer(`Click on tooltip`,'');
-                }
-                
-                if (window.innerWidth <= 767) {
-                    tooltip.addEventListener('click', (e) => addEvents(e))
-                } else {
-                    tooltip.addEventListener('mouseover', (e) => addEvents(e))
-                    tooltip.addEventListener('mouseout', (e) => tooltip.classList.remove('active'))
-                }
+           
                 document.addEventListener('click', (e) => {
                     if (!e.target.closest('.my-answers') && answers.classList.contains('active')) {
                        answers.classList.remove('active')
                     }
-                    if (!e.target.matches('.tooltip') && tooltip.classList.contains('active')) {
-                        tooltip.classList.remove('active');
-                    }
                  })
-                window.addEventListener('scroll', () => tooltip.classList.remove('active'))
                 break
         }
         if (document.querySelector('.quiz-footer input') != null) {
