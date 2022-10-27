@@ -208,7 +208,7 @@ let styleQuiz = `
         padding: 16px;
         z-index: 3;
         display: none;
-        width: max-content;
+        width: calc(100% - 16px);
     }
     .my-answers_dropdown p:not(:last-child) {
         margin-bottom: 12px;
@@ -375,6 +375,7 @@ let styleQuiz = `
         }
         .my-answers_dropdown {
             top: 52px;
+            width: 100%;
         }
         .show-more {
             width: 102px;
@@ -448,6 +449,8 @@ let styleQuiz = `
             top: 100%;
             left: 0;
             transform: none;
+            width: max-content;
+            padding: 20px;
         }
     }
 </style>`
@@ -532,7 +535,7 @@ let quizHTML = `
             <div class="my-answers_dropdown">
                 <p><span class="weight-600">State You Reside In: </span> <span></span></p>
                 <p><span class="weight-600">Car Ownership: </span><span></span></p>
-                <p><span class="weight-600">Actual Cash Value (ACV) of Your Car: </span><span></span></p>
+                <p><span class="weight-600">ACV of Your Car: </span><span></span></p>
                 <p><span class="weight-600">Net Worth: </span><span></span></p>
             </div>
         </div>
@@ -587,7 +590,7 @@ let zipCodeHTML = `
     cashValueHTML = `
         <div>
             <label class="">Actual Cash Value (ACV) of Your Car</label>
-            <div class="select relative" name="cash">
+            <div class="select relative" name="actual-cash">
                 <div class="select-item">Less than $3,000</div>
                 <div class="select-drop">
                     <div class="active">Less than $3,000</div>
@@ -747,7 +750,7 @@ window.onload = function() {
         if (window.innerWidth > 767) {
             document.querySelector('#gatsby-focus-wrapper > div > main > div.css-1irxgwz.ead1i4x8 > div > div.css-1uj8m62.ead1i4x6 > div:nth-child(1)').insertAdjacentHTML('beforebegin', quizHTML)
         } else {
-            document.querySelector('#gatsby-focus-wrapper > div > main > div.css-1irxgwz.ead1i4x8 > div > div.css-1wbld27.ead1i4x7 > div.spacing').insertAdjacentHTML('afterend', quizHTML)
+            document.querySelector('#gatsby-focus-wrapper > div > main > div.css-1irxgwz.ead1i4x8 > div > div.css-1uj8m62.ead1i4x6 > div:nth-child(2)').insertAdjacentHTML('beforebegin', quizHTML)
         }
     } else if (href.includes('insurance/how-to-get-car-insurance-before-buying-a-car/')) {
         document.querySelectorAll('.Spacing')[0].insertAdjacentHTML('beforebegin', quizHTML)
@@ -820,7 +823,7 @@ window.onload = function() {
                 selectChange('.select-item');
                 document.querySelector('.btn-next').addEventListener('click', (e) => {
                     pushDataLayer(`Click on Next button (step - ${countStep.innerHTML})`,'');
-                    myAnswers[3] = document.querySelector('[name="cash"] .select-item').innerHTML;
+                    myAnswers[3] = document.querySelector('[name="actual-cash"] .select-item').innerHTML;
                     changeContent('4')
                 })
                 break
@@ -851,7 +854,7 @@ window.onload = function() {
                 document.querySelectorAll('.my-answers_dropdown > p > span:last-child').forEach((item, index) => {
                     item.innerHTML = myAnswers[index + 1]
                 })
-                
+
                 let cashIndex = myAnswers[3].includes('Less than $3,000') ? 0 : 1;
                 let result = objQuiz[myAnswers[2]][cashIndex][myAnswers[4]];
            
