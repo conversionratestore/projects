@@ -279,9 +279,10 @@ let styleQuiz = `
     .show-more span:after {
         content: '';
         margin-left: 4px;
-        width: 8px;
+        width: 9px;
         height: 6px;
         display: block;
+        pointer-events: none;
         transition: all 0.3s ease;
         background: url('https://conversionratestore.github.io/projects/moneygeek/img/arrow-down.svg') no-repeat center / 100%;
     }
@@ -442,6 +443,10 @@ let styleQuiz = `
         .quiz-result .btn-next {
             max-width: 340px;
             margin: 32px auto 0;
+        }
+        .show-more span:after {
+            width: 10px;
+            margin-left: 9px;
         }
         .my-answers {
             margin-right: auto;
