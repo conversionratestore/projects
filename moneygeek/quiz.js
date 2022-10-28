@@ -890,7 +890,7 @@ window.onload = function() {
                 }
                 document.querySelectorAll('.show-more').forEach(button => {
                     button.addEventListener('click', (e) => {
-                        if (!button.classList.contains('active')) {
+                        if (!button.parentElement.classList.contains('show')) {
                             scrollToElement(button, button)
                         }
                         button.parentElement.classList.toggle('show');
