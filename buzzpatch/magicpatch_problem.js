@@ -39,6 +39,7 @@ let problemStart = setInterval(() => {
         }
         .magicpatch_problems h2 span{
             display: block;
+            font-weight: 600;
             font-family: "Roboto", sans-serif;
         }
          .magicpatch_problems h2 span.accent_color{
@@ -143,6 +144,7 @@ let problemStart = setInterval(() => {
             background: #FF3C7F;
             box-shadow: 0px 2px 4px rgba(12, 11, 11, 0.1), 0px 12px 32px rgba(0, 0, 0, 0.05);
             border-radius: 52px;
+            font-family: 'DINEngschrift LT', sans-serif;
             font-weight: 400;
             font-size: 16px;
             line-height: 16px;
@@ -150,6 +152,10 @@ let problemStart = setInterval(() => {
             text-transform: uppercase;
             color: #FFFFFF;
             margin-top: 16px;
+         }
+         .magicpatch_accardion_btn:hover{
+            text-decoration: unset;
+            color: #FFFFFF;
          }
         .active_block {
             max-height: fit-content;
