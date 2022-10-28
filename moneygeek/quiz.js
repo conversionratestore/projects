@@ -754,7 +754,8 @@ window.onload = function() {
     } else if (href.includes('insurance/how-to-get-car-insurance-before-buying-a-car/')) {
         document.querySelectorAll('.Spacing')[0].insertAdjacentHTML('beforebegin', quizHTML)
     }
-
+    document.querySelector('#gatsby-focus-wrapper > div > main > div.css-1irxgwz.ead1i4x8 > div > div.css-1uj8m62.ead1i4x6 > div:nth-child(1) > p').innerHTML = `The minimum amount of car insurance necessary to meet your needs depends on several factors, including what state you live in, the value of your vehicle, your net worth and how much insurance you can afford. If you have a valuable car you should invest in a full coverage policy, and those who can afford it should consider greatly increasing their liability limits above state minimums.`
+    
     let footerQuiz = document.querySelector('.quiz-footer'), //footer quiz
         countStep = document.querySelector('.step-count span'), //step count
         btnBack = document.querySelector('.btn-back'), //back button
