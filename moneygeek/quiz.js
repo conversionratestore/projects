@@ -628,7 +628,7 @@ let zipCodeHTML = `
         <div class="quiz-result">
             <div class="row-result">
                 <div class="required-level quiz-block relative">
-                    <p class="quiz-block_header">Required Level of <span class="quiz-level"></span></p>
+                    <p class="quiz-block_header">Required Level of Liability Coverage</p>
                     <div class="quiz-block_body">
                         <ul></ul>
                         <button type="button" class="show-more"><span class="flex items-center">Why you need this level of coverage</span> </button>
@@ -861,7 +861,7 @@ window.onload = function() {
                 document.querySelector('.coverage-type .text-res').innerHTML = result[1];
                 document.querySelector('.required-level .text-res').innerHTML = result[2];
 
-                document.querySelector('.quiz-level').innerHTML = myAnswers[2] == 'Fully Owned' && cashIndex == 0 ? 'Liability Coverage' : 'Comprehensive and Collision';
+                document.querySelector('.coverage-type h3').innerHTML = myAnswers[2] == 'Fully Owned' && cashIndex == 0 ? 'Liability Coverage only' : 'Comprehensive and Collision';
 
                 for (let i = 0; i < objStateMinimum.length; i++) {
                     if (objStateMinimum[i].split(':')[0] == myAnswers[1]) {
@@ -891,8 +891,8 @@ window.onload = function() {
                 document.querySelectorAll('.show-more').forEach(button => {
                     button.addEventListener('click', (e) => {
                         button.parentElement.classList.toggle('show');
-                        scrollToElement(button, button)
                         pushDataLayer(`Click on ${button.innerText} button`,'');
+                        scrollToElement(button, button)
                     })
                 })
                 document.querySelector('.btn-next').addEventListener('click', (e) => {
