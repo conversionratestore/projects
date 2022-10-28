@@ -1325,7 +1325,7 @@ window.onload = function() {
                     }
                 })
             })
-            document.querySelector('.myAccountleft > form > dd:nth-child(8) > input[name="referrer"]').value = `https://medicalmega.com/register.php?r=https%3A%2F%2Fmedicalmega.com%2Fcheckout%2Fstep1`;
+            // document.querySelector('.myAccountleft > form > dd:nth-child(8) > input[name="referrer"]').value = `https://medicalmega.com/register.php?r=https%3A%2F%2Fmedicalmega.com%2Fcheckout%2Fstep1`;
         }
 
         let saveAddress = (type,fname,lname,addr1,city,stateF,zip,country,phn,email) => {
