@@ -1272,7 +1272,7 @@ window.onload = function() {
         })
         //login/register step
         if ((href.includes('/login.php') || href.includes('/register.php')) && document.querySelector('.myAccount') != null) {
-            document.querySelector('.col-left .head-login').after(document.querySelector('.myAccount'))
+            // document.querySelector('.col-left .head-login').after(document.querySelector('.myAccount'))
             document.querySelector('.col-left .head h4').innerHTML = obj['stepsName'][0];
             document.querySelector('.col-left .head').style = 'display: none!important;';
             document.querySelector('.col-left .head-login').insertAdjacentHTML('afterend',`<button type="button" class="btn btn_white btn-google flex-center"> <img src="https://conversionratestore.github.io/projects/medicalmega/img/google.svg" class="mr-8" alt="google icon"/> continue with google</button><p class="text-center c-gray-08 mb-16 fs-14">or</p>`)
