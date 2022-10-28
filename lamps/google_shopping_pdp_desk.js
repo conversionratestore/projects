@@ -1721,6 +1721,9 @@ p.stock_var {
       //new block ------> Main PDP
       function newBlock() {
         if (window.innerWidth > 768) {
+          if (document.querySelector(".catalog-product-view .product-essential .p-header-item-vendor")) {
+            document.querySelector(".catalog-product-view .product-essential .p-header-item-vendor").style.display = "none"
+          }
           if (!document.querySelector(".product-shop .config_wrap") && !document.querySelector(".product-shop .price_wrap")) {
             document
               .querySelector(".product-shop .p-atc")
