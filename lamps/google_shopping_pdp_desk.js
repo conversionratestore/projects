@@ -1717,67 +1717,74 @@ p.stock_var {
         document.querySelector(".product_details_wrap .p-support")?.after(document.querySelector(".row.no-gutters.p-product-info.pt-2"))
       }
 
+      newBlock()
       //new block ------> Main PDP
-      if (window.innerWidth > 768) {
-        if (!document.querySelector(".product-shop .config_wrap") && !document.querySelector(".product-shop .price_wrap")) {
-          document
-            .querySelector(".product-shop .p-atc")
-            ?.insertAdjacentHTML("afterbegin", `<div class="config_wrap"><span></span></div><div class="price_wrap"><span></span></div>`)
-        }
-
-        // price_wrap
-        if (document.querySelector(".product-shop .price_wrap")) {
-          document.querySelector(".product-shop .price_wrap span").after(document.querySelector(".product-shop .p-price").closest("div.col-12"))
-          document.querySelector(".product-shop .p-price").closest("div.col-12").after(document.querySelector(".product-shop .col-12.mt-2"))
-          // wrapVarPolicy
-          document.querySelector(".price_wrap").insertAdjacentHTML("beforeend", wrapVarPolicy)
-        }
-
-        // config_wrap
-        if (document.querySelector(".product-shop .config_wrap")) {
-          if (!document.querySelector(".product-shop .config_wrap .col-12.p-head.mb-2")) {
-            document.querySelector(".product-shop .config_wrap span").after(document.querySelector(".product-shop .col-12.p-head.mb-2"))
-          }
-
-          if (!document.querySelector(".product-shop .config_wrap .col-12.text-left.p-item-vendor .item-vendor")) {
-            console.log(`>>>>>>>>>>>>>нет элемента`, document.querySelector(".product-shop .config_wrap .col-12.text-left.p-item-vendor .item-vendor"))
-            document.querySelector(".product-shop .config_wrap .col-12.p-head.mb-2")?.after(document.querySelector(".product-shop .col-12.text-left.p-item-vendor"))
-          }
-
-          if (document.querySelector("#config-box")) {
-            document.querySelector(".product-shop .config_wrap .col-12.text-left.p-item-vendor").after(document.querySelector("#config-box"))
-          } else {
+      function newBlock() {
+        if (window.innerWidth > 768) {
+          if (!document.querySelector(".product-shop .config_wrap") && !document.querySelector(".product-shop .price_wrap")) {
             document
-              .querySelector(".product-shop .config_wrap .col-12.text-left.p-item-vendor")
-              ?.insertAdjacentHTML("afterend", `<div class="mini_product_specs"><div><h3></h3></div><div><h3></h3></div></div>`)
-
-            document.querySelectorAll("#product-attribute-specs h4").forEach((el) => {
-              if (el.textContent === "Dimensions") {
-                document.querySelector(".mini_product_specs div:nth-child(1) h3").textContent = el.textContent
-                let content = el.closest("div").querySelector("ul")?.cloneNode(true)
-                if (content) {
-                  if (!document.querySelector(".mini_product_specs > div:nth-child(1) > ul")) {
-                    document.querySelector(".mini_product_specs div:nth-child(1)")?.appendChild(content)
-                  }
-                }
-              }
-
-              if (el.textContent === "Appearance") {
-                document.querySelector(".mini_product_specs div:nth-child(2) h3").textContent = el.textContent
-                let content = el.closest("div").querySelector("ul")?.cloneNode(true)
-                if (content) {
-                  if (!document.querySelector(".mini_product_specs > div:nth-child(2) > ul")) {
-                    document.querySelector(".mini_product_specs div:nth-child(2)")?.appendChild(content)
-                  }
-                }
-              }
-            })
+              .querySelector(".product-shop .p-atc")
+              ?.insertAdjacentHTML("afterbegin", `<div class="config_wrap"><span></span></div><div class="price_wrap"><span></span></div>`)
           }
-        }
-      } else {
-        // wrapVarPolicy
-        if (document.querySelector(".row.no-gutters.p-atc")) {
-          document.querySelector(".row.no-gutters.p-atc").insertAdjacentHTML("afterend", wrapVarPolicy)
+
+          // price_wrap
+          if (document.querySelector(".product-shop .price_wrap")) {
+            document.querySelector(".product-shop .price_wrap span").after(document.querySelector(".product-shop .p-price").closest("div.col-12"))
+            document.querySelector(".product-shop .p-price").closest("div.col-12").after(document.querySelector(".product-shop .col-12.mt-2"))
+            // wrapVarPolicy
+            document.querySelector(".price_wrap").insertAdjacentHTML("beforeend", wrapVarPolicy)
+          }
+
+          // config_wrap
+          if (document.querySelector(".product-shop .config_wrap")) {
+            if (!document.querySelector(".product-shop .config_wrap .col-12.p-head.mb-2")) {
+              document.querySelector(".product-shop .config_wrap span").after(document.querySelector(".product-shop .col-12.p-head.mb-2"))
+            }
+
+            if (!document.querySelector(".product-shop .config_wrap .col-12.text-left.p-item-vendor .item-vendor")) {
+              console.log(`>>>>>>>>>>>>>нет элемента`, document.querySelector(".product-shop .config_wrap .col-12.text-left.p-item-vendor .item-vendor"))
+              document.querySelector(".product-shop .config_wrap .col-12.p-head.mb-2")?.after(document.querySelector(".product-shop .col-12.text-left.p-item-vendor"))
+            }
+
+            if (document.querySelector("#config-box")) {
+              document.querySelector(".product-shop .config_wrap .col-12.text-left.p-item-vendor").after(document.querySelector("#config-box"))
+            } else {
+              document
+                .querySelector(".product-shop .config_wrap .col-12.text-left.p-item-vendor")
+                ?.insertAdjacentHTML("afterend", `<div class="mini_product_specs"><div><h3></h3></div><div><h3></h3></div></div>`)
+
+              document.querySelectorAll("#product-attribute-specs h4").forEach((el) => {
+                if (el.textContent === "Dimensions") {
+                  if (document.querySelector(".mini_product_specs div:nth-child(1) h3")) {
+                    document.querySelector(".mini_product_specs div:nth-child(1) h3").textContent = el.textContent
+                  }
+                  let content = el.closest("div").querySelector("ul")?.cloneNode(true)
+                  if (content) {
+                    if (!document.querySelector(".mini_product_specs > div:nth-child(1) > ul")) {
+                      document.querySelector(".mini_product_specs div:nth-child(1)")?.appendChild(content)
+                    }
+                  }
+                }
+
+                if (el.textContent === "Appearance") {
+                  if (document.querySelector(".mini_product_specs div:nth-child(2) h3")) {
+                    document.querySelector(".mini_product_specs div:nth-child(2) h3").textContent = el.textContent
+                  }
+                  let content = el.closest("div").querySelector("ul")?.cloneNode(true)
+                  if (content) {
+                    if (!document.querySelector(".mini_product_specs > div:nth-child(2) > ul")) {
+                      document.querySelector(".mini_product_specs div:nth-child(2)")?.appendChild(content)
+                    }
+                  }
+                }
+              })
+            }
+          }
+        } else {
+          // wrapVarPolicy
+          if (document.querySelector(".row.no-gutters.p-atc")) {
+            document.querySelector(".row.no-gutters.p-atc").insertAdjacentHTML("afterend", wrapVarPolicy)
+          }
         }
       }
 
@@ -1902,8 +1909,10 @@ p.stock_var {
                 if (el.querySelector(".orig-price .price")) {
                   oldPrice = +el.querySelector(".orig-price .price").textContent.slice(1).replace(/,/g, "")
                   if (window.innerWidth <= 768) {
-                    document.querySelector(".sticky_box .old_price").style.display = "block"
-                    document.querySelector(".sticky_box .old_price").textContent = el.querySelector(".orig-price .price").textContent
+                    if (document.querySelector(".sticky_box .old_price")) {
+                      document.querySelector(".sticky_box .old_price").style.display = "block"
+                      document.querySelector(".sticky_box .old_price").textContent = el.querySelector(".orig-price .price").textContent
+                    }
                   }
                 }
 
@@ -2719,6 +2728,20 @@ p.stock_var {
               // }
               // item.target.setAttribute("data-test", "1")
             })
+          }
+
+          if (document.querySelector(".product-shop .config_wrap .col-12.text-left.p-item-vendor")) {
+            while (document.querySelector(".product-shop .config_wrap .col-12.text-left.p-item-vendor").children.length > 1) {
+              document
+                .querySelector(".product-shop .config_wrap .col-12.text-left.p-item-vendor")
+                .removeChild(document.querySelector(".product-shop .config_wrap .col-12.text-left.p-item-vendor").lastChild)
+            }
+          }
+
+          if (document.querySelector(".mini_vendor_box > div")) {
+            while (document.querySelector(".mini_vendor_box > div").children.length > 1) {
+              document.querySelector(".mini_vendor_box > div").removeChild(document.querySelector(".mini_vendor_box > div").lastChild)
+            }
           }
 
           observer.observe(document.querySelector(".catalog-product-view .product-essential"), {
