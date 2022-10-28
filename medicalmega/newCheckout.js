@@ -380,6 +380,56 @@ let arrMouth = ['Jan','Feb','Mar','Apr','May','Jun','Jul', 'Aug', 'Sep', 'Oct', 
 window.onload = function() {
     document.body.insertAdjacentHTML('afterbegin', styleMain)
 
+    //cart product
+    let cart = () => {
+        let parent = href.includes('/checkout/step') || href.includes('/login.php') || href.includes('/register.php') || href.includes('/guest-checkout') ? '.order_body' : '.list-product';
+
+        //get data
+        postFetch('/cart.html',`api=c&cart_action=cart&ctoken=${mm.ctoken}`,'POST').then(data => {
+            console.log(data)
+            localStorage.setItem('dataCart', JSON.stringify(data));
+            let products = data['items'];
+            document.querySelector(parent).innerHTML = '';
+            if (parent == '.order_body') {
+                pricing('.order_pricing', data)  //add pricing for order
+            } else {
+                document.querySelector('.subtotal').innerHTML = data.subtotal != 0 ? `<p>Total:</p> <p>$<span>${(+data.subtotal.toString().replace(/[^\d\.]/g,'')).toFixed(2)}</span></p>` : '';
+                if (products.length < 1) {
+                    document.querySelector(parent).innerHTML = `<div class="empty-cart">
+                            <p>Your cart is currently empty.</p>
+                            <button type="button" class="btn-next"><span>Shop now</span></button>
+                        </div>`;
+                    document.querySelector('.subtotal').style.display = 'none';
+                    document.querySelector(parent).style.margin = 'auto'
+                } else {
+                    document.querySelector('.subtotal').style = '';
+                    document.querySelector(parent).style = '';
+                }
+            }
+            if (products.length > 0) {
+                //product quantity changes
+                let varQty = href.includes('checkout/step2') || href.includes('checkout/step3') ? 1 : 0
+                for (let i = 0; i < products.length; i++) {
+                    //add products
+                    document.querySelector(parent).insertAdjacentHTML('beforeend', product(products[i].product_id, products[i].variant_id, products[i].quantity, products[i].subtotal, products[i].url, products[i].image_url, products[i].title, varQty))
+
+                    //remove product
+                    let remove = document.querySelectorAll('.remove');
+                    if (remove.length > 0) {
+                        remove[i].addEventListener('click', (e) => {
+                            console.log(e.target)
+                            postFetch('/cart.html',`api=c&cart_action=remove&variant_id=${remove[i].closest('.product-item').dataset.variantId}&ctoken=${mm.ctoken}`,'POST').then(data => cart())
+                        })
+                    }
+                    let plus = document.querySelectorAll(`${parent} .quantity-btn_plus`)[i],
+                        minus = document.querySelectorAll(`${parent} .quantity-btn_minus`)[i],
+                        quantity = document.querySelectorAll(`${parent} .quantity`)[i];
+
+                    varQty == 0 ? changeQuantity(plus, minus, quantity, true) : ''
+                }
+            }
+        })
+    }
     //Confirmation
     if (href.includes('/checkout/step4') || href.includes('/guest-checkout4.php')) {
         let dataCart = JSON.parse(localStorage.getItem('dataCart'));
@@ -2024,56 +2074,6 @@ window.onload = function() {
         })
     }
 
-    //cart product
-    let cart = () => {
-        let parent = href.includes('/checkout/step') || href.includes('/login.php') || href.includes('/register.php') || href.includes('/guest-checkout') ? '.order_body' : '.list-product';
 
-        //get data
-        postFetch('/cart.html',`api=c&cart_action=cart&ctoken=${mm.ctoken}`,'POST').then(data => {
-            console.log(data)
-            
-            localStorage.setItem('dataCart', JSON.stringify(data));
-            let products = data['items'];
-            document.querySelector(parent).innerHTML = '';
-            if (parent == '.order_body') {
-                pricing('.order_pricing', data)  //add pricing for order
-            } else {
-                document.querySelector('.subtotal').innerHTML = data.subtotal != 0 ? `<p>Total:</p> <p>$<span>${(+data.subtotal.toString().replace(/[^\d\.]/g,'')).toFixed(2)}</span></p>` : '';
-                if (products.length < 1) {
-                    document.querySelector(parent).innerHTML = `<div class="empty-cart">
-                            <p>Your cart is currently empty.</p>
-                            <button type="button" class="btn-next"><span>Shop now</span></button>
-                        </div>`;
-                    document.querySelector('.subtotal').style.display = 'none';
-                    document.querySelector(parent).style.margin = 'auto'
-                } else {
-                    document.querySelector('.subtotal').style = '';
-                    document.querySelector(parent).style = '';
-                }
-            }
-            if (products.length > 0) {
-                //product quantity changes
-                let varQty = href.includes('checkout/step2') || href.includes('checkout/step3') ? 1 : 0
-                for (let i = 0; i < products.length; i++) {
-                    //add products
-                    document.querySelector(parent).insertAdjacentHTML('beforeend', product(products[i].product_id, products[i].variant_id, products[i].quantity, products[i].subtotal, products[i].url, products[i].image_url, products[i].title, varQty))
-
-                    //remove product
-                    let remove = document.querySelectorAll('.remove');
-                    if (remove.length > 0) {
-                        remove[i].addEventListener('click', (e) => {
-                            console.log(e.target)
-                            postFetch('/cart.html',`api=c&cart_action=remove&variant_id=${remove[i].closest('.product-item').dataset.variantId}&ctoken=${mm.ctoken}`,'POST').then(data => cart())
-                        })
-                    }
-                    let plus = document.querySelectorAll(`${parent} .quantity-btn_plus`)[i],
-                        minus = document.querySelectorAll(`${parent} .quantity-btn_minus`)[i],
-                        quantity = document.querySelectorAll(`${parent} .quantity`)[i];
-
-                    varQty == 0 ? changeQuantity(plus, minus, quantity, true) : ''
-                }
-            }
-        })
-    }
     !href.includes('/checkout/step4') && !href.includes('/guest-checkout4.php') ? cart() : '';
 };
