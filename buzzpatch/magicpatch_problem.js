@@ -382,21 +382,21 @@ let problemStart = setInterval(() => {
         pushDataLayer("Close block", `${e.currentTarget.querySelector("p").textContent}`)
       }
 
-      //   const scrollTarget = $(this).next(".magicpatch_accardion_lists")[0]
+      const scrollTarget = $(this).next(".magicpatch_accardion_lists")[0]
 
-      //   let topOffset = 175
+      let topOffset = 175
 
-      //   if (innerWidth <= 320) {
-      //     topOffset = 160
-      //   }
+      if (innerWidth <= 320) {
+        topOffset = 160
+      }
 
-      //   const elementPosition = scrollTarget.getBoundingClientRect().top
-      //   const offsetPosition = elementPosition - topOffset
+      const elementPosition = scrollTarget.getBoundingClientRect().top
+      const offsetPosition = elementPosition - topOffset
 
-      //   window.scrollBy({
-      //     top: offsetPosition,
-      //     behavior: "smooth",
-      //   })
+      window.scrollBy({
+        top: offsetPosition,
+        behavior: "smooth",
+      })
     })
 
     pushDataLayer("loaded")
