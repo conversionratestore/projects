@@ -162,9 +162,7 @@ let problemStart = setInterval(() => {
             color: #FFFFFF;
          }
         .active_block {
-            max-height: fit-content;
-            opacity: 1;
-            margin-top: 10px;
+            display: none;
         }
         @media (max-width: 320px) {
             .js-main img{
@@ -373,11 +371,32 @@ let problemStart = setInterval(() => {
     $(".magicpatch_accardion_link").click(function (e) {
       $(this).toggleClass("active")
       $(this).next(".magicpatch_accardion_lists").slideToggle()
+      if ($(".magicpatch_accardion_link").not(this)) {
+        $(".magicpatch_accardion_link").not(this).next(".magicpatch_accardion_lists").css("display", "none")
+        $(".magicpatch_accardion_link").not(this).removeClass("active")
+      }
+
       if (e.currentTarget.classList.contains("active")) {
         pushDataLayer("Open block", `${e.currentTarget.querySelector("p").textContent}`)
       } else {
         pushDataLayer("Close block", `${e.currentTarget.querySelector("p").textContent}`)
       }
+
+      //   const scrollTarget = $(this).next(".magicpatch_accardion_lists")[0]
+
+      //   let topOffset = 175
+
+      //   if (innerWidth <= 320) {
+      //     topOffset = 160
+      //   }
+
+      //   const elementPosition = scrollTarget.getBoundingClientRect().top
+      //   const offsetPosition = elementPosition - topOffset
+
+      //   window.scrollBy({
+      //     top: offsetPosition,
+      //     behavior: "smooth",
+      //   })
     })
 
     pushDataLayer("loaded")
