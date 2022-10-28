@@ -1041,6 +1041,9 @@ p.stock_var {
   font-size: 16px;
   line-height: 16px;
 }
+.mini_vendor_box > div span a{
+  text-decoration: underline;
+}
 .mini_vendor_box > div span.divider {
   margin: 0 12px;
 }
