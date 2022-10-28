@@ -890,9 +890,11 @@ window.onload = function() {
                 }
                 document.querySelectorAll('.show-more').forEach(button => {
                     button.addEventListener('click', (e) => {
+                        if (!button.classList.contains('active')) {
+                            scrollToElement(button, button)
+                        }
                         button.parentElement.classList.toggle('show');
                         pushDataLayer(`Click on ${button.innerText} button`,'');
-                        scrollToElement(button, button)
                     })
                 })
                 document.querySelector('.btn-next').addEventListener('click', (e) => {
