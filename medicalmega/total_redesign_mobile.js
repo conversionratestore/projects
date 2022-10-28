@@ -645,9 +645,9 @@ window.onload = function() {
             body {
                 border: none;
             }
-            // #wrap, .g-signin2, .guest_checkout_button, .savingTools {
-            //     display: none;
-            // }
+            #wrap, .g-signin2, .guest_checkout_button, .savingTools {
+                display: none;
+            }
             button {
                 background: transparent;
                 border: none;
@@ -1876,7 +1876,7 @@ window.onload = function() {
             scrollTop(e.target, document.body)
         })
     } 
-    if (!href.includes('login.php') && !href.includes('/register.php') && !href.includes('/checkout') && !href.includes('/guest-checkout')) {
+    if (!href.includes('login.php') && !href.includes('register.php') && !href.includes('/checkout') && !href.includes('/guest-checkout')) {
         //cart
         let styleCart = `
         <style>
