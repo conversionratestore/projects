@@ -785,7 +785,6 @@ window.onload = function() {
             .wrapper-checkout dd > select option:first-child {
                 color: #9AA6AB;
             }
-        
             .wrapper-checkout form dd label {
                 text-align: left;
                 width: 100%;
@@ -1210,6 +1209,11 @@ window.onload = function() {
             }
             #cc_block > dl > div > div:nth-child(1) {
                 display: none;
+            }
+            @media (min-width: 760px) and (max-width: 1010px) {
+                .myAccount .myAccountleft {
+                    width: 100%;
+                }
             }
         </style>`;
 
@@ -1811,8 +1815,6 @@ window.onload = function() {
             }
         }
 
-        console.log(currentAddressShip)
-        console.log(currentAddressBill)
         //add click on next button
         document.querySelector('.btn-next').addEventListener('click', (e) => {
             if (document.querySelector('.myAccountright.active') != null) {
@@ -4434,7 +4436,6 @@ window.onload = function() {
 
         mut.observe(document, optionMut);
     }
-
 };
 
 window.dataLayer = window.dataLayer || [];
