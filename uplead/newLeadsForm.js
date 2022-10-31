@@ -80,11 +80,20 @@ let run = setInterval(() => {
         document.querySelector('section.elementor-element.elementor-element-954ec92 .elementor-container.elementor-column-gap-no .elementor-form .elementor-button .elementor-button-text').innerHTML = 'Find Leads Now';
     }
     /* end main page */
-    /* */
-    if (href == 'https://www.uplead.com/findleadsnow/') {
+
+    /* findleadsnow page */
+    if (href == 'https://www.uplead.com/findleadsnow/' && document.body != null) {
         clearInterval(run)
+        document.body.innerHTML = '';
+        document.body.style = 'background: url(https://conversionratestore.github.io/projects/uplead/img/bg-findleadsnow.png) no-repeat center / 100vw 100vh; width: 100%; height: 100vh;'
+        if (document.readyState == 'complete') {
+            setTimeout(() => {
+                window.location.href = 'https://app.uplead.com/trial-signup'
+            }, 3000)
+        }
+        document.addEventListener('click', (e) => window.location.href = 'https://app.uplead.com/trial-signup')
     }
-    /*  */
+    /* end findleadsnow page */
 
     /* pop-up form */
     if (href.includes('app.uplead.com/trial-signup') && document.querySelector('.WwzhpJuEdC9ZWUaDw5ae') != null && document.querySelector('form') != null) {
@@ -101,13 +110,16 @@ let run = setInterval(() => {
                 left: 0;
                 width: 100%;
                 height: 100%;
-                transition: all 0.3s ease;
-                opacity: 0;
-                pointer-events: none;
+                z-index: 99;
             }
-            .modal-sign.active {
-                opacity: 1;
-                pointer-events: auto;
+            .modal-sign:before {
+                content: '';
+                posisiton: absolute;
+                left: 0;
+                top: 0;
+                width: 100%;
+                height: 100%;
+                background: url(https://conversionratestore.github.io/projects/uplead/img/bg-findleadsnow-open.png) no-repeat center / 100%;
             }
             .modal-sign .container {
                 max-width: 822px;
@@ -231,7 +243,7 @@ let run = setInterval(() => {
         </style>`;
 
         let formModal = `
-        <div class="modal-sign active">
+        <div class="modal-sign">
             <div class="container">
                 <h2 class="modal-header">Get access to 107M+ B2B contacts with a free trial</h2>
                 <div class="flex">
@@ -263,20 +275,6 @@ let run = setInterval(() => {
         document.querySelector('.modal-sign .col:first-child > h4').after(document.querySelector('form'))
         //add All Features & Data Included in modal
         document.querySelector('.modal-sign .col:last-child > h4').after(document.querySelector('.WwzhpJuEdC9ZWUaDw5ae'))
-
-        let modal = document.querySelector('.modal-sign');
-        //show/hide modal
-        let toggleModal = () => {
-            modal.classList.toggle('active');
-        }
-        //modal close on click outside
-        document.addEventListener('click', (e) => {
-            if (!e.target.closest('.modal-sign .container') && modal.classList.contains('active')) {
-                toggleModal()
-            }
-        })
     }
     /* end pop-up form */
-
 })
-
