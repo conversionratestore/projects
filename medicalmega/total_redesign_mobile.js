@@ -471,17 +471,15 @@ window.onload = function() {
                     document.querySelector('.footer-cart').style = '';
                     document.querySelector('.body-cart').style = '';
                     document.querySelector('.footer-cart .btn-next').addEventListener('click', (e) => {
+                        sessionStorage.setItem('routing', 1);
                         pushDataLayer('Click on Proceed to checkout button', labelForEvents(e))
-                        delete window.document.referrer;
-                        window.document.__defineGetter__('referrer', function () {
-                            return 'https://medicalmega.com/cart.html';
-                        });
                     })
                 }
                 for (let i = 0; i < products.length; i++) {
                     qty += +products[i].quantity;
                 }
             }
+            document.querySelector('.cart_count') != null ? document.querySelector('.cart_count').value = products.length : '';
             if (products.length > 0) {
                 //product quantity changes
                 let varQty = href.includes('checkout/step2') || href.includes('checkout/step3') ? 1 : 0
@@ -646,7 +644,8 @@ window.onload = function() {
     }
 
     if ((href.includes('login.php') || href.includes('/register.php') || href.includes('/checkout') || href.includes('/guest-checkout')) && !href.includes('/checkout/step4') && !href.includes('/guest-checkout4.php')) {
-        //checkout
+        sessionStorage.setItem('routing', 0);
+       
         let style = `
         <style>
             body {
@@ -1515,6 +1514,7 @@ window.onload = function() {
             }
         }
         if ((href.includes('/checkout/step1') || href.includes('/guest-checkout1.php')) && document.querySelector('.myAccount') == null) {
+            sessionStorage.setItem('routing', 0);
             document.querySelector('.col-left .head h4').innerHTML = obj['stepsName'][1];
             state_item = href.includes('guest-checkout1.php') ? b_state : state;
             countries_ship_item = href.includes('guest-checkout1.php') ? b_country.innerHTML : countries_ship;
@@ -2080,7 +2080,7 @@ window.onload = function() {
                         <input type="image" name="submit" src="https://conversionratestore.github.io/projects/medicalmega/img/paypal.svg" border="0" align="top" alt="Check out with PayPal">
                     </form>
                     <p>or</p>
-                    <a href="https://medicalmega.com/checkout/step1" class="btn-next flex-center">
+                    <a href="https://medicalmega.com/cart.html" class="btn-next flex-center">
                         <span>Proceed to checkout</span>
                         <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M3 9.32153V8.67847C3 8.5009 3.13431 8.35695 3.3 8.35695H13.002L10.332 5.50181C10.2752 5.44144 10.2433 5.35926 10.2433 5.27352C10.2433 5.18779 10.2752 5.10561 10.332 5.04524L10.758 4.59511C10.8143 4.53424 10.891 4.5 10.971 4.5C11.051 4.5 11.1277 4.53424 11.184 4.59511L14.868 8.537C14.9524 8.62736 14.9999 8.74995 15 8.87782V9.12218C14.9986 9.24977 14.9513 9.37186 14.868 9.463L11.184 13.4049C11.1277 13.4658 11.051 13.5 10.971 13.5C10.891 13.5 10.8143 13.4658 10.758 13.4049L10.332 12.9483C10.2756 12.8891 10.2438 12.8079 10.2438 12.7233C10.2438 12.6386 10.2756 12.5575 10.332 12.4982L13.002 9.64305H3.3C3.13431 9.64305 3 9.4991 3 9.32153Z" fill="#FBFBFB"/>
@@ -4454,6 +4454,13 @@ window.onload = function() {
         mut.observe(document, optionMut);
     }
 };
+
+let intervalCart = setInterval(() => {
+    if (sessionStorage.getItem('routing') == 1 && href.includes('/cart.html')) {
+        clearInterval(intervalCart);
+        window.location.href = `https://medicalmega.com/checkout/step1`;
+    }
+})
 
 window.dataLayer = window.dataLayer || [];
 dataLayer.push({
