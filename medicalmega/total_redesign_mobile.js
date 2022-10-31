@@ -489,6 +489,7 @@ window.onload = function() {
                     document.querySelector('.footer-cart').style = '';
                     document.querySelector('.body-cart').style = '';
                     document.querySelector('.footer-cart .btn-next').addEventListener('click', (e) => {
+                        e.stopImmediatePropagation();
                         sessionStorage.setItem('routing', 1);
                         pushDataLayer('Click on Proceed to checkout button', labelForEvents(e.target))
                     })
@@ -2004,6 +2005,9 @@ window.onload = function() {
                 background: #EEC86A;
                 border-radius: 100px;
             }
+            .paypal-form-button input {
+                pointer-events: none;
+            }
             /*empty cart*/
             .empty-cart {
                 margin: auto;
@@ -2110,6 +2114,11 @@ window.onload = function() {
         document.body.insertAdjacentHTML('afterbegin', styleCart); //add style for cart modal
         document.body.insertAdjacentHTML('beforeend', cartModalHTML); //add cart modal
 
+        document.querySelector('.paypal-form-button').addEventListener('click', (e) => {
+            e.stopImmediatePropagation();
+            e.target.querySelector('input').click()
+            pushDataLayer('Click on payPal button', labelForEvents(e.target))
+        })
 
         let linkCustom = document.createElement('link');
         linkCustom.href = 'https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.3/tiny-slider.css';
@@ -3852,11 +3861,10 @@ window.onload = function() {
                 templates: {
                     item: (data) => {
                         let checkbox = `
-                    <label class="mt-16 items-center" onclick="pushDataLayer('Click on one of the brand items on filters','Filters')">
-                        <span class="check"></span>
-                        <span class="check_text">${data.value}<span class="count_brand">(${data.count})</span></span>
-                    </label>
-                `;
+                        <label class="mt-16 items-center" onclick="pushDataLayer('Click on one of the brand items on filters','Filters')">
+                            <span class="check"></span>
+                            <span class="check_text">${data.value}<span class="count_brand">(${data.count})</span></span>
+                        </label>`;
                         return checkbox
                     },
                 },
