@@ -476,7 +476,7 @@ window.onload = function() {
                     document.querySelector('.empty-cart .btn-next').addEventListener('click', (e) => {
                         removeActive('.shopping-cart')
                         document.getElementsByTagName('html')[0].classList.remove('fix');
-                        pushDataLayer('Click on Shop now button', labelForEvents(e))
+                        pushDataLayer('Click on Shop now button', labelForEvents(e.target))
                     })
                 } else {
                     document.querySelector('.subtotal').style = '';
@@ -485,7 +485,7 @@ window.onload = function() {
                     document.querySelector('.body-cart').style = '';
                     document.querySelector('.footer-cart .btn-next').addEventListener('click', (e) => {
                         sessionStorage.setItem('routing', 1);
-                        pushDataLayer('Click on Proceed to checkout button', labelForEvents(e))
+                        pushDataLayer('Click on Proceed to checkout button', labelForEvents(e.target))
                     })
                 }
                 for (let i = 0; i < products.length; i++) {
