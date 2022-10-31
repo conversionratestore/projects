@@ -343,7 +343,7 @@ let pricing = (parent, data) => {
 let product = (id, variantId, quantity, subtotal, url, imageUrl, title, varQty) => {
     return `<li class="flex product-item" data-id="${id}" data-variant-id="${variantId}">
                 <div class="relative">
-                    <a href="${url}" class="product-item_img" title="${title}" onclick="pushDataLayer('Click on products', labelForEvents(e.target))"> 
+                    <a href="${url}" class="product-item_img" title="${title}" onclick="pushDataLayer('Click on products', labelForEvents(this))"> 
                         <img src="${imageUrl}" alt="${title}">
                     </a>
                     ${varQty == 0 ? `<button class="remove" type="button">
@@ -418,14 +418,14 @@ window.onload = function() {
     //changeQuantity
     let changeQuantity = (plus, minus, quantity, post=false) => {
         //update quantity
-        quantity.addEventListener('change', () => {
+        quantity.addEventListener('change', (e) => {
             if (quantity.value < 1) {
                 quantity.value = 1
             }
             pushDataLayer('Change quantity field', labelForEvents(e.target))
             post == true ? postFetch('/cart.html',`api=c&cart_action=update&variant_id=${quantity.closest('.product-item').dataset.variantId}&quantity=${quantity.value}&ctoken=${mm.ctoken}`,'POST').then(data => cart()) : '';
         })
-        plus.addEventListener('click', () => {
+        plus.addEventListener('click', (e) => {
             quantity.value = +quantity.value + 1;
             quantity.parentElement.querySelector('.quantity-btn_minus').disabled = false;
 
@@ -443,7 +443,7 @@ window.onload = function() {
             minus.disabled = true;
         }
 
-        minus.addEventListener('click', () => {
+        minus.addEventListener('click', (e) => {
             if (minus.nextElementSibling.value < 2) {
                 minus.nextElementSibling.value = 1;
                 minus.disabled = true;
@@ -2131,7 +2131,7 @@ window.onload = function() {
             let slide = `
                 <div class="slide">
                     <div>
-                        <a href="${url}" onclick="pushDataLayer('Click on product', labelForEvents(e.target))">
+                        <a href="${url}" onclick="pushDataLayer('Click on product', labelForEvents(this))">
                             <span class="items-center">
                                 <img src="${urlImage}" alt="${title}">
                                 <span class="price">
