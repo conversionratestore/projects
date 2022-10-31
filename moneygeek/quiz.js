@@ -234,19 +234,24 @@ let styleQuiz = `
     .quiz-block {
         border-bottom: 1px solid #D3D4D6;
     }
-    .quiz-block h3 {
+    .quiz-block h3, .quiz-block_body ul span {
         font-family: 'Brandon Grotesque', sans-serif;
         font-style: normal;
-        text-transform: capitalize;
         font-weight: 600;
         font-size: 18px;
         line-height: 24px;
         color: #555555;
-        padding: 0 0 2px 0;
-        margin-bottom: 12px;
-        position: relative;
     }
-    .quiz-block h3:before, .quiz-block_body ul span:before {
+    .quiz-block h3 {
+        padding: 0 0 2px 0;
+        margin-bottom: 8px;
+    }
+    .quiz-block h3 span {
+        position: relative;
+        display: block;
+        margin-bottom: 4px;
+    }
+    .quiz-block h3 span:before, .quiz-block_body ul span:before {
         content: '';
         height: 2px;
         width: 40px;
@@ -303,6 +308,11 @@ let styleQuiz = `
         padding: 0;
         margin: 0;
     }
+    .quiz-block_body ul span {
+        display: block;
+        margin-bottom: 4px;
+        position: relative;
+    }
     .quiz-block_body li {
         font-family: 'Source Sans Pro', sans-serif;
         font-style: normal;
@@ -310,16 +320,6 @@ let styleQuiz = `
         font-size: 14px;
         line-height: 16px;
         margin-bottom: 12px;
-    }
-    .quiz-block_body ul span {
-        display: block;
-        font-family: 'Brandon Grotesque', sans-serif;
-        font-weight: 600;
-        font-size: 18px;
-        line-height: 24px;
-        color: #555555;
-        margin-bottom: 4px;
-        position: relative;
     }
     /**/
     .weight-600 {
@@ -627,19 +627,19 @@ let zipCodeHTML = `
     resultHTML = `
         <div class="quiz-result">
             <div class="row-result">
-                <div class="required-level quiz-block relative">
-                    <p class="quiz-block_header">Required Level of Liability Coverage</p>
+                <div class="coverage-type quiz-block">
+                    <p class="quiz-block_header">Coverage Type</p>
                     <div class="quiz-block_body">
-                        <ul></ul>
-                        <button type="button" class="show-more"><span class="flex items-center">Why you need this level of coverage</span> </button>
+                        <h3 class="coverage-type-set"></h3>
+                        <button type="button" class="show-more"><span class="flex items-center">Why you need this coverage type</span></button>
                         <p class="text-res"></p>
                     </div>
                 </div>
-                <div class="coverage-type quiz-block">
-                    <p class="quiz-block_header">Recommended Coverage Type</p>
+                <div class="required-level quiz-block relative">
+                    <p class="quiz-block_header">Recommended Level of Coverage</p>
                     <div class="quiz-block_body">
-                        <h3>Comprehensive and Collision</h3>
-                        <button type="button" class="show-more"><span class="flex items-center">Why you need this coverage type</span></button>
+                        <ul></ul>
+                        <button type="button" class="show-more"><span class="flex items-center">Why you need this level of coverage</span> </button>
                         <p class="text-res"></p>
                     </div>
                 </div>
@@ -861,7 +861,8 @@ window.onload = function() {
                 document.querySelector('.coverage-type .text-res').innerHTML = result[1];
                 document.querySelector('.required-level .text-res').innerHTML = result[2];
 
-                document.querySelector('.coverage-type h3').innerHTML = myAnswers[2] == 'Fully Owned' && cashIndex == 0 ? 'Liability Coverage only' : 'Comprehensive and Collision';
+                
+                document.querySelector('.coverage-type-set').innerHTML = myAnswers[2] == 'Fully Owned' && cashIndex == 0 ? '<span>Liability Coverage only</span>' : '<span>Liability Coverage</span>and<span>Comprehensive/Collision</span>';
 
                 for (let i = 0; i < objStateMinimum.length; i++) {
                     if (objStateMinimum[i].split(':')[0] == myAnswers[1]) {
