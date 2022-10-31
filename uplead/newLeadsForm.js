@@ -1,7 +1,9 @@
-let run = setInterval(() => {
+let url = window.location.href;
+
+let runTest = setInterval(() => {
     /* main page */
-    if (href == 'https://www.uplead.com/' && document.querySelector('section.elementor-element.elementor-element-954ec92 .elementor-container.elementor-column-gap-no .elementor-form .elementor-button .elementor-button-text') != null) {
-        clearInterval(run)
+    if (url == 'https://www.uplead.com/' && document.querySelector('section.elementor-element.elementor-element-954ec92 .elementor-container.elementor-column-gap-no .elementor-form .elementor-button .elementor-button-text') != null) {
+        clearInterval(runTest)
 
         //add styles form main page
         let styleMainPage = `
@@ -82,22 +84,22 @@ let run = setInterval(() => {
     /* end main page */
 
     /* findleadsnow page */
-    if (href.includes('/findleadsnow/') && document.body != null) {
-        clearInterval(run)
+    if (url.includes('/findleadsnow/') && document.body != null) {
+        clearInterval(runTest)
         document.body.innerHTML = '';
-        document.body.style = 'background: url(https://conversionratestore.github.io/projects/uplead/img/bg-findleadeshow.svg) no-repeat center / 100vw 100vh; width: 100%; height: 100vh;'
+        document.body.style = 'background: url(https://conversionratestore.github.io/projects/uplead/img/bg-findleadeshow.svg) no-repeat center / 100vw; width: 100%; height: 100vh;'
         if (document.readyState == 'complete') {
             setTimeout(() => {
-                // window.location.href = 'https://app.uplead.com/trial-signup'
+                window.location.href = 'https://app.uplead.com/trial-signup'
             }, 3000)
         }
-        // document.addEventListener('click', (e) => window.location.href = 'https://app.uplead.com/trial-signup')
+        document.addEventListener('click', (e) => window.location.href = 'https://app.uplead.com/trial-signup')
     }
     /* end findleadsnow page */
 
     /* pop-up form */
-    if (href.includes('/trial-signup') && document.querySelector('.WwzhpJuEdC9ZWUaDw5ae') != null && document.querySelector('form') != null) {
-        clearInterval(run)
+    if (url.includes('/trial-signup') && document.querySelector('.WwzhpJuEdC9ZWUaDw5ae') != null && document.querySelector('form') != null) {
+        clearInterval(runTest)
 
         let styleModal = `
         <style>
@@ -119,7 +121,8 @@ let run = setInterval(() => {
                 top: 0;
                 width: 100%;
                 height: 100%;
-                background: url(https://conversionratestore.github.io/projects/uplead/img/bg-findleadsnow-open.png) no-repeat center / 100%;
+                z-index: -1;
+                background: url(https://conversionratestore.github.io/projects/uplead/img/bg-findleadsnow-open.svg) no-repeat center bottom / 100%;
             }
             .modal-sign .container {
                 max-width: 822px;

@@ -704,7 +704,6 @@ function clickOnEnter(input, button) {
 
 //push dataLayer
 function pushDataLayer(action, label) {
-    console.log(action + " : " + label)
     window.dataLayer = window.dataLayer || [];
     if (label != '') {
         dataLayer.push({
