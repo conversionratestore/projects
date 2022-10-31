@@ -2124,7 +2124,7 @@ window.onload = function() {
         document.querySelector('.header-cart svg').addEventListener('click', (e) => {
             removeActive('.shopping-cart');
             document.getElementsByTagName('html')[0].classList.remove('fix');
-            pushDataLayer('Click on cross button', labelDataLayer(e.target))
+            pushDataLayer('Click on cross button', labelForEvents(e.target))
         })
         //add products in slider
         let slideHTML = (url, urlImage, title, price, id, variantId, parent) =>  {
