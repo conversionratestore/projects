@@ -2771,6 +2771,8 @@ p.stock_var {
           clarity("set", "pdp_gshopping", "variant_1")
         }
       }, 200)
+
+      document.querySelector(".exp")?.remove()
     }
   }
 }, 1500)
