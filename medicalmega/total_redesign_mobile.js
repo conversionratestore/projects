@@ -379,6 +379,19 @@ let pushDataLayer = (actionDataLayer, labelDataLayer) => {
     });
 }
 
+//set Label For Events
+let labelForEvents = (e) => {
+    if (e.closest('.product')) {
+        return `PDP`;
+    } else if (e.closest('.cards_similar')) {
+        return `Similar Products`;
+    } else if (e.closest('.shopping-cart')) {
+        return `Shopping Cart`;
+    } else {
+        return `Listing`;
+    }
+}
+
 //show/hide
 let addActive = (element) => document.querySelector(element).classList.add('active');
 let removeActive = (element) => document.querySelector(element).classList.remove('active');
@@ -3524,19 +3537,6 @@ window.onload = function() {
 
             return isVisible;
         }
-        //set Label For Events
-        function labelForEvents(e) {
-            if (e.closest('.product')) {
-                return `PDP`;
-            } else if (e.closest('.cards_similar')) {
-                return `Similar Products`;
-            } else if (e.closest('.shopping-cart')) {
-                return `Shopping Cart`;
-            } else {
-                return `Listing`;
-            }
-        }
-
         function scrolled(element) {
             if (element.scrollHeight - element.scrollTop === element.clientHeight) {
                 element.classList.remove('scroll')

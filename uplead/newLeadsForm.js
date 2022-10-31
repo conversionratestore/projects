@@ -82,21 +82,21 @@ let run = setInterval(() => {
     /* end main page */
 
     /* findleadsnow page */
-    if (href == 'https://www.uplead.com/findleadsnow/' && document.body != null) {
+    if (href.includes('/findleadsnow/') && document.body != null) {
         clearInterval(run)
         document.body.innerHTML = '';
-        document.body.style = 'background: url(https://conversionratestore.github.io/projects/uplead/img/bg-findleadsnow.png) no-repeat center / 100vw 100vh; width: 100%; height: 100vh;'
+        document.body.style = 'background: url(https://conversionratestore.github.io/projects/uplead/img/bg-findleadeshow.svg) no-repeat center / 100vw 100vh; width: 100%; height: 100vh;'
         if (document.readyState == 'complete') {
             setTimeout(() => {
-                window.location.href = 'https://app.uplead.com/trial-signup'
+                // window.location.href = 'https://app.uplead.com/trial-signup'
             }, 3000)
         }
-        document.addEventListener('click', (e) => window.location.href = 'https://app.uplead.com/trial-signup')
+        // document.addEventListener('click', (e) => window.location.href = 'https://app.uplead.com/trial-signup')
     }
     /* end findleadsnow page */
 
     /* pop-up form */
-    if (href.includes('app.uplead.com/trial-signup') && document.querySelector('.WwzhpJuEdC9ZWUaDw5ae') != null && document.querySelector('form') != null) {
+    if (href.includes('/trial-signup') && document.querySelector('.WwzhpJuEdC9ZWUaDw5ae') != null && document.querySelector('form') != null) {
         clearInterval(run)
 
         let styleModal = `
