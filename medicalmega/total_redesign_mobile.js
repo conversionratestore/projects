@@ -1276,7 +1276,7 @@ window.onload = function() {
             document.body.insertAdjacentHTML('afterbegin', `
             <style>
                 #wrap {
-                    display: block;
+                    display: block!important;
                 }
             </style>`) // add styles
 
