@@ -660,7 +660,7 @@ function selectChange(currency) {
     })
 
     childs.forEach(child => {
-        if (nameSelect == 'car ownership' && myAnswers[2] != '' || nameSelect == 'net worth' && myAnswers[4] != '' || nameSelect == 'actual cash' && myAnswers[3] != '') {
+        if (nameSelect == 'car ownership' && myAnswers[2] != '' || nameSelect == 'net worth' && myAnswers[4] != '' || nameSelect == 'actual cash' && myAnswers[3] != '$') {
             child.classList.remove('active');
         } 
         if (myAnswers[4] == child.innerHTML || myAnswers[3] == child.innerHTML || myAnswers[2] == child.innerHTML) {
