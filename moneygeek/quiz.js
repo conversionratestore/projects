@@ -670,8 +670,8 @@ function selectChange(currency) {
 
         child.addEventListener('click', (e) => {
             selector.innerHTML = child.innerHTML;
-            child.parentElement.querySelector('.active').classList.remove('active');
-            child.classList.add('active');
+            e.target.parentElement.querySelector('div.active') != null ? e.target.parentElement.querySelector('div.active').classList.remove('active') : '';
+            e.target.classList.add('active');
             selector.parentElement.classList.remove('active');
             pushDataLayer(`${child.innerHTML} selected (${nameSelect})`)
         })
