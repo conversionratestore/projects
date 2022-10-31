@@ -645,7 +645,7 @@ window.onload = function() {
             body {
                 border: none;
             }
-            #wrap, .g-signin2, .guest_checkout_button, .savingTools {
+            #wrap, .g-signin2, .guest_checkout_button, .savingTools, #ftr, #logo {
                 display: none;
             }
             button {
@@ -1267,22 +1267,19 @@ window.onload = function() {
             </div>
         </div>`;
 
-        document.body.insertAdjacentHTML('afterbegin',wrapperHTML);
         document.body.insertAdjacentHTML('afterbegin', style) // add styles
 
-        //show/hide order
-        document.querySelector('.order_head').addEventListener('click', (e) => {
-            document.querySelector('.order').classList.toggle('active');
-            console.log(e.target.innerText)
-            if (e.target.innerText.includes('Show')) {
-                document.querySelector('.order_head p').innerHTML = 'Hide order summary'
-            } else {
-                document.querySelector('.order_head p').innerHTML = 'Show order summary'
-            }
-        })
         //login/register step
         if ((href.includes('/login.php') || href.includes('/register.php')) && document.querySelector('.myAccount') != null) {
-            // document.querySelector('.col-left .head-login').after(document.querySelector('#mainbody'));
+            document.body.insertAdjacentHTML('afterbegin', `
+            <style>
+                #wrap {
+                    display: block;
+                }
+            </style>`) // add styles
+
+            document.querySelector('#wrap #mainbody .center').insertAdjacentHTML('beforeend', wrapperHTML);
+            document.querySelector('.col-left .head-login').after(document.querySelector('#mainbody'));
             document.querySelector('.col-left .head h4').innerHTML = obj['stepsName'][0];
             document.querySelector('.col-left .head').style = 'display: none!important;';
             document.querySelector('.col-left .head-login').insertAdjacentHTML('afterend',`<button type="button" class="btn btn_white btn-google flex-center"> <img src="https://conversionratestore.github.io/projects/medicalmega/img/google.svg" class="mr-8" alt="google icon"/> continue with google</button><p class="text-center c-gray-08 mb-16 fs-14">or</p>`)
@@ -1326,7 +1323,20 @@ window.onload = function() {
                 })
             })
             // document.querySelector('.myAccountleft > form > dd:nth-child(8) > input[name="referrer"]').value = `https://medicalmega.com/register.php?r=https%3A%2F%2Fmedicalmega.com%2Fcheckout%2Fstep1`;
+        } else {
+            document.body.insertAdjacentHTML('afterbegin',wrapperHTML);
         }
+
+        //show/hide order
+        document.querySelector('.order_head').addEventListener('click', (e) => {
+            document.querySelector('.order').classList.toggle('active');
+            console.log(e.target.innerText)
+            if (e.target.innerText.includes('Show')) {
+                document.querySelector('.order_head p').innerHTML = 'Hide order summary'
+            } else {
+                document.querySelector('.order_head p').innerHTML = 'Show order summary'
+            }
+        })
 
         let saveAddress = (type,fname,lname,addr1,city,stateF,zip,country,phn,email) => {
             let body = JSON.stringify({
