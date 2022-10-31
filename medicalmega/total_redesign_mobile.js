@@ -399,7 +399,6 @@ let headerHTML = `
 
 window.onload = function() {
     document.body.insertAdjacentHTML('afterbegin', styleMain)
-    console.log(document.querySelector('.myAccountleft > form > dd:nth-child(8) > input[name="referrer"]') != null ? document.querySelector('.myAccountleft > form > dd:nth-child(8) > input[name="referrer"]').value : '')
 
     //changeQuantity
     let changeQuantity = (plus, minus, quantity, post=false) => {
@@ -640,7 +639,6 @@ window.onload = function() {
     }
 
     if ((href.includes('login.php') || href.includes('/register.php') || href.includes('/checkout') || href.includes('/guest-checkout')) && !href.includes('/checkout/step4') && !href.includes('/guest-checkout4.php')) {
-        console.log(document.querySelector('.myAccountleft > form > dd:nth-child(8) > input[name="referrer"]').value)
         //checkout
         let style = `
         <style>
