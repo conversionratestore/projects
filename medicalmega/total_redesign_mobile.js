@@ -1286,7 +1286,7 @@ window.onload = function() {
         //login/register step
         if ((href.includes('/login.php') || href.includes('/register.php')) && document.querySelector('.myAccount') != null) {
             document.querySelector('.col-left .head-login').after(document.querySelector('.myAccount'));
-            document.querySelector('.myAccountleft > form > dd:nth-child(8) > input[name="referrer"]').value = `https://medicalmega.com/register.php?r=https%3A%2F%2Fmedicalmega.com%2Fcheckout%2Fstep1`;
+            document.querySelector('.myAccountleft > form > dd:nth-child(8) > input[name="referrer"]').value = `https://medicalmega.com/cart.html`;
 
             document.querySelector('.col-left .head h4').innerHTML = obj['stepsName'][0];
             document.querySelector('.col-left .head').style = 'display: none!important;';
