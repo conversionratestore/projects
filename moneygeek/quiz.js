@@ -660,6 +660,7 @@ function selectChange(currency) {
     })
 
     childs.forEach(child => {
+        if (nameSelect == 'car ownership' && myAnswers[2] != '' || nameSelect == 'net worth' && myAnswers[4] != '' || nameSelect == 'actual cash' && myAnswers[3] != '') {
             child.classList.remove('active');
         } 
         if (myAnswers[4] == child.innerHTML || myAnswers[3] == child.innerHTML || myAnswers[2] == child.innerHTML) {
@@ -669,7 +670,7 @@ function selectChange(currency) {
 
         child.addEventListener('click', (e) => {
             selector.innerHTML = child.innerHTML;
-            e.target.parentElement.querySelector('div.active') != null ? e.target.parentElement.querySelector('div.active').classList.remove('active') : '';
+            e.target.parentElement.querySelector('div.active').classList.remove('active');
             e.target.classList.add('active');
             selector.parentElement.classList.remove('active');
             pushDataLayer(`${child.innerHTML} selected (${nameSelect})`)
