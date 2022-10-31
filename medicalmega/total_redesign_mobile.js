@@ -1285,8 +1285,12 @@ window.onload = function() {
         
         //login/register step
         if ((href.includes('/login.php') || href.includes('/register.php')) && document.querySelector('.myAccount') != null) {
+            delete window.document.referrer;
+            window.document.__defineGetter__('referrer', function () {
+                return 'https://medicalmega.com/cart.html';
+            });
             document.querySelector('.col-left .head-login').after(document.querySelector('.myAccount'));
-            document.querySelector('.myAccountleft > form > dd:nth-child(8) > input[name="referrer"]').value = `https://medicalmega.com/cart.html`;
+            document.querySelector('.myAccountleft > form > dd:nth-child(8) > input[name="referrer"]').value = document.referrer;
 
             document.querySelector('.col-left .head h4').innerHTML = obj['stepsName'][0];
             document.querySelector('.col-left .head').style = 'display: none!important;';
