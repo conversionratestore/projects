@@ -343,7 +343,7 @@ let pricing = (parent, data) => {
 let product = (id, variantId, quantity, subtotal, url, imageUrl, title, varQty) => {
     return `<li class="flex product-item" data-id="${id}" data-variant-id="${variantId}">
                 <div class="relative">
-                    <a href="${url}" class="product-item_img" title="${title}"> 
+                    <a href="${url}" class="product-item_img" title="${title}" onclick="pushDataLayer('Click on products', labelForEvents(e.target))"> 
                         <img src="${imageUrl}" alt="${title}">
                     </a>
                     ${varQty == 0 ? `<button class="remove" type="button">
@@ -387,9 +387,11 @@ let labelForEvents = (e) => {
         return `Similar Products`;
     } else if (e.closest('.shopping-cart')) {
         return `Shopping Cart`;
+    } else if (e.closest('.order_body')) {
+        return `Order summary`;
     } else {
         return `Listing`;
-    }
+    } 
 }
 
 //show/hide
@@ -420,12 +422,14 @@ window.onload = function() {
             if (quantity.value < 1) {
                 quantity.value = 1
             }
+            pushDataLayer('Change quantity field', labelForEvents(e.target))
             post == true ? postFetch('/cart.html',`api=c&cart_action=update&variant_id=${quantity.closest('.product-item').dataset.variantId}&quantity=${quantity.value}&ctoken=${mm.ctoken}`,'POST').then(data => cart()) : '';
         })
         plus.addEventListener('click', () => {
             quantity.value = +quantity.value + 1;
             quantity.parentElement.querySelector('.quantity-btn_minus').disabled = false;
 
+            pushDataLayer('Click plus button', labelForEvents(e.target))
             post == true ? postFetch('/cart.html',`api=c&cart_action=update&variant_id=${plus.closest('.product-item').dataset.variantId}&quantity=${quantity.value}&ctoken=${mm.ctoken}`,'POST').then(data => cart()) : '';
         })
 
@@ -446,6 +450,7 @@ window.onload = function() {
             } else {
                 minus.nextElementSibling.value = +minus.nextElementSibling.value - 1;
             }
+            pushDataLayer('Click minus button', labelForEvents(e.target))
             post == true ? postFetch('/cart.html',`api=c&cart_action=update&variant_id=${minus.closest('.product-item').dataset.variantId}&quantity=${quantity.value}&ctoken=${mm.ctoken}`,'POST').then(data => cart()) : '';
         })
     }
@@ -504,7 +509,7 @@ window.onload = function() {
                     let remove = document.querySelectorAll('.remove');
                     if (remove.length > 0) {
                         remove[i].addEventListener('click', (e) => {
-                            console.log(e.target)
+                            pushDataLayer('Click on remove button', labelForEvents(e.target))
                             postFetch('/cart.html',`api=c&cart_action=remove&variant_id=${remove[i].closest('.product-item').dataset.variantId}&ctoken=${mm.ctoken}`,'POST').then(data => cart())
                         })
                     }
@@ -2116,16 +2121,17 @@ window.onload = function() {
         scriptCustom.async = false;
         document.head.appendChild(scriptCustom);
 
-        document.querySelector('.header-cart svg').addEventListener('click', () => {
+        document.querySelector('.header-cart svg').addEventListener('click', (e) => {
             removeActive('.shopping-cart');
             document.getElementsByTagName('html')[0].classList.remove('fix');
+            pushDataLayer('Click on cross button', labelDataLayer(e.target))
         })
         //add products in slider
         let slideHTML = (url, urlImage, title, price, id, variantId, parent) =>  {
             let slide = `
                 <div class="slide">
                     <div>
-                        <a href="${url}">
+                        <a href="${url}" onclick="pushDataLayer('Click on product', labelForEvents(e.target))">
                             <span class="items-center">
                                 <img src="${urlImage}" alt="${title}">
                                 <span class="price">
@@ -2162,6 +2168,7 @@ window.onload = function() {
 
                 let addBtns = document.querySelectorAll('.btn-add');
                 addBtns[i].addEventListener('click', (e) => {
+                    pushDataLayer('Click on Add to cart', labelForEvents(e.target))
                     postFetch('/cart.html',`api=c&cart_action=add&variant_id=${addBtns[i].dataset.variantId}&quantity=${addBtns[i].previousElementSibling.querySelector('.quantity').value}&product_id=${addBtns[i].dataset.id}&ctoken=${mm.ctoken}`,'POST').then(data => {
                         console.log(data)
                         cart()
