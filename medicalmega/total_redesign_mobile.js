@@ -460,7 +460,7 @@ window.onload = function() {
                     document.querySelector(parent).style.margin = 'auto';
                     document.querySelector('.footer-cart').style.display = 'none';
                     document.querySelector('.body-cart').style.height = 'calc(100vh - 53px)';
-                    document.querySelector('.btn-next').addEventListener('click', (e) => {
+                    document.querySelector('.empty-cart .btn-next').addEventListener('click', (e) => {
                         removeActive('.shopping-cart')
                         document.getElementsByTagName('html')[0].classList.remove('fix');
                         pushDataLayer('Click on Shop now button', labelForEvents(e))
@@ -470,6 +470,13 @@ window.onload = function() {
                     document.querySelector(parent).style = '';
                     document.querySelector('.footer-cart').style = '';
                     document.querySelector('.body-cart').style = '';
+                    document.querySelector('.footer-cart .btn-next').addEventListener('click', (e) => {
+                        pushDataLayer('Click on Proceed to checkout button', labelForEvents(e))
+                        delete window.document.referrer;
+                        window.document.__defineGetter__('referrer', function () {
+                            return 'https://medicalmega.com/cart.html';
+                        });
+                    })
                 }
                 for (let i = 0; i < products.length; i++) {
                     qty += +products[i].quantity;
@@ -1283,13 +1290,7 @@ window.onload = function() {
         
         //login/register step
         if ((href.includes('/login.php') || href.includes('/register.php')) && document.querySelector('.myAccount') != null) {
-            delete window.document.referrer;
-            window.document.__defineGetter__('referrer', function () {
-                return 'https://medicalmega.com/cart.html';
-            });
             document.querySelector('.col-left .head-login').after(document.querySelector('.myAccount'));
-            document.querySelector('.myAccountleft > form > dd:nth-child(8) > input[name="referrer"]').value = document.referrer;
-
             document.querySelector('.col-left .head h4').innerHTML = obj['stepsName'][0];
             document.querySelector('.col-left .head').style = 'display: none!important;';
             document.querySelector('.col-left .head-login').insertAdjacentHTML('afterend',`<button type="button" class="btn btn_white btn-google flex-center"> <img src="https://conversionratestore.github.io/projects/medicalmega/img/google.svg" class="mr-8" alt="google icon"/> continue with google</button><p class="text-center c-gray-08 mb-16 fs-14">or</p>`)
