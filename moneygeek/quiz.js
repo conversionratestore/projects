@@ -428,7 +428,7 @@ let styleQuiz = `
             width: 100%;
             padding: 0 24px;
         }
-        .required-level {
+        .coverage-type {
             border-right: 1px solid #D3D4D6;
         }
         .quiz-block_header {
