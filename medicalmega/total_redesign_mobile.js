@@ -1917,7 +1917,9 @@ window.onload = function() {
 
         document.querySelectorAll('.wrapper-checkout input:not([type="checkbox"])').forEach(item => {
             item.addEventListener('input', (e) => {
-                item.style = 'border-color: #E0E4E5!important;'
+                if (item.value != '' && !item.parentElement.classList.add.contains('error')) {
+                    item.style = 'border-color: #E0E4E5!important;'
+                }
             })
         })
     } 
