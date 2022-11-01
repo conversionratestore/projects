@@ -1690,7 +1690,7 @@ window.onload = function() {
             document.querySelector('.order-every .check2').before(document.querySelector('#cc-recurring-check'))
             document.querySelector('#recurring_billing_period option').innerHTML = 'Choose Period'
             document.querySelector('.btn-next span').innerHTML = 'Proceed';
-
+            
             let intervalChecked = setInterval(() => {
                 if (document.querySelector('#cc-recurring-check').checked) {
                     document.querySelector('.order-every.items-center .check2').classList.add('checked');
@@ -1713,7 +1713,7 @@ window.onload = function() {
             document.querySelector('#checkoutForm > p').style.whiteSpace = 'initial';
         }
         if (href.includes('/checkout/step3')) {
-            document.querySelector('#checkoutForm h3').innerHTML = `Card Details <img src="https://conversionratestore.github.io/projects/medicalmega/img/payment-cards.png" alt="icons">`;
+            document.querySelector('#checkoutForm h3').innerHTML = `Card Details <img src="https://conversionratestore.github.io/projects/medicalmega/img/payment-cards.svg" alt="icons">`;
             document.querySelector('#cc_block > dl > div.ccInfo > dd:nth-child(3)').innerHTML = `Credit/Debit Card<span class="c-red-08"> *</span>`;
             // document.querySelector('#cc_block > dl > div.ccInfo > dd:nth-child(3)').innerHTML = `Name on card:<span class="c-red-08"> *</span>`;
         }
