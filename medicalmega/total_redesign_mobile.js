@@ -1732,15 +1732,7 @@ window.onload = function() {
                 el.innerHTML = el.innerHTML.split('*').join('<span class="c-red-08"> *</span>')
             }
         })
-        //valid input
-        document.querySelectorAll('.wrapper-checkout input:not([type="checkbox"])').forEach(item => {
-            item.addEventListener('input', (e) => {
-                if (item.value != '' && !item.parentElement.classList.contains('error')) {
-                    item.style = 'border-color: #E0E4E5!important;'
-                }
-            })
-        })
-
+   
         let address = (type) => {
             console.log(type)
             document.querySelector(`.ship-form [name="fname"]`) != null ? fname = document.querySelector(`.ship-form [name="fname"]`) : fname;
@@ -4501,6 +4493,25 @@ let intervalCart = setInterval(() => {
     if (sessionStorage.getItem('routing') == 1 && href.includes('/cart.html')) {
         clearInterval(intervalCart);
         window.location.href = `https://medicalmega.com/checkout/step1`;
+    }
+})
+
+//valid input
+let intervalValid = setInterval(() => {
+    if (document.querySelector('.wrapper-checkout [name]') != null) {
+        document.querySelectorAll('.wrapper-checkout [name]').forEach(item => {
+            if (item.value != '') {
+                item.style = 'border-color: #E0E4E5!important;'
+            }
+            item.addEventListener('input', (e) => {
+                e.stopImmediatePropagation();
+                if (item.value != '') {
+                    item.style = 'border-color: #E0E4E5!important;'
+                } else {
+                    item.style = ''
+                }
+            })
+        })
     }
 })
 
