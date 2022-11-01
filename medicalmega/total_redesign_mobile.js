@@ -1589,11 +1589,13 @@ window.onload = function() {
                                 if (item.closest('.ship') != null) {
                                     document.querySelector('.col-left .head').insertAdjacentHTML('afterend', shipFormHtml(state_item, countries_ship_item,'active', 'edit'))
                                     document.querySelector('.col-left .head h4').innerHTML = obj['stepsName'][1];
+                                    document.querySelector('.btn-next').innerHTML = 'Save Shipping info';
 
                                     currentAddress('.ship-form > dd', ``, currentAddressShip)
                                 } else if (item.closest('.bill') != null) {
                                     document.querySelector('.col-left .head').insertAdjacentHTML('afterend', billFormHtml(state_item, countries_ship_item, 'active','edit'))
                                     document.querySelector('.col-left .head h4').innerHTML = 'Billing information';
+                                    document.querySelector('.btn-next').innerHTML = 'Save Billing info';
 
                                     currentAddress('.bill-form > dd', ``, currentAddressBill)
 
@@ -1730,6 +1732,14 @@ window.onload = function() {
                 el.innerHTML = el.innerHTML.split('*').join('<span class="c-red"> *</span>')
             }
         })
+        //valid input
+        document.querySelectorAll('.wrapper-checkout input:not([type="checkbox"])').forEach(item => {
+            item.addEventListener('input', (e) => {
+                if (item.value != '' && !item.parentElement.classList.contains('error')) {
+                    item.style = 'border-color: #E0E4E5!important;'
+                }
+            })
+        })
 
         let address = (type) => {
             console.log(type)
@@ -1793,7 +1803,7 @@ window.onload = function() {
                         console.log(data)
                         let dataErrors = data.errors;
                         if (dataErrors.length < 1) {
-                            window.location.href = href.includes('guest-checkout') ? '/guest-checkout2.php' : `/checkout/step2`
+                            window.location.href = href.includes('guest-checkout') ? '/guest-checkout1.php' : `/checkout/step1`;
                         } else {
                             errorsFun(dataErrors)
                         }
@@ -1848,7 +1858,7 @@ window.onload = function() {
                         console.log(data)
                         let dataErrors = data.errors;
                         if (dataErrors.length < 1) {
-                            window.location.href = href.includes('guest-checkout') ? '/guest-checkout2.php' : `/checkout/step2`;
+                            window.location.href = href.includes('guest-checkout') ? '/guest-checkout1.php' : `/checkout/step1`;
                         } else {
                             errorsFun(dataErrors)
                         }
@@ -1918,13 +1928,6 @@ window.onload = function() {
             scrollTop(e.target, document.body)
         })
 
-        document.querySelectorAll('.wrapper-checkout input:not([type="checkbox"])').forEach(item => {
-            item.addEventListener('input', (e) => {
-                if (item.value != '' && !item.parentElement.classList.contains('error')) {
-                    item.style = 'border-color: #E0E4E5!important;'
-                }
-            })
-        })
     } 
     if (!href.includes('login.php') && !href.includes('register.php') && !href.includes('/checkout') && !href.includes('/guest-checkout')) {
         //cart
