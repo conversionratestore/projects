@@ -824,7 +824,8 @@ ul.background_wrap > li p {
 
     let donationAmount = /*html */ `
     <div class="donation_amount_flex">
-        <p>Your purchase will <b>donate</b> <span class="donate_price">12.8</span> to support <span class="text_absol">Ukraine</span></p>
+        <!-- <p>Your purchase will <b>donate</b> <span class="donate_price">12.8</span> to support <span class="text_absol">Ukraine</span></p> -->
+        <p>Your purchase will help raise money for <span class="text_absol">Ukraine</span></p>
       <svg class="svg_popup" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path
           d="M7.99967 14.6666C11.6663 14.6666 14.6663 11.6666 14.6663 7.99992C14.6663 4.33325 11.6663 1.33325 7.99967 1.33325C4.33301 1.33325 1.33301 4.33325 1.33301 7.99992C1.33301 11.6666 4.33301 14.6666 7.99967 14.6666Z"
@@ -877,7 +878,8 @@ ul.background_wrap > li p {
                 <div class="steps flex justify-between items-end"></div>
                 <p class="sum"></p>
             </div>
-            <p><a class="link_text" href="#">Buy this product</a> to <b>donate</b> <span class="donate_price">12.8</span> to support Ukraine</p>
+            <!-- <p><a class="link_text" href="#">Buy this product</a> to <b>donate</b> <span class="donate_price">12.8</span> to support Ukraine</p> -->
+               <p><a class="link_text" href="#">Buy this product</a> to help raise money for Ukraine</p>
           </li>
         </ul>
       </div>
@@ -1848,40 +1850,51 @@ ul.background_wrap > li p {
     })
 
     // fix bug change color
-    // document.querySelectorAll('.variant-input-wrap[name="Color"] label:not(.disabled)')?.forEach((item) => {
-    //   item.addEventListener("click", function () {
-    //     let color = this.previousElementSibling.value.toLowerCase().replaceAll(" ", "-")
+    document.querySelectorAll('.variant-input-wrap[name="Color"] label:not(.disabled)')?.forEach((item) => {
+      item.addEventListener("click", function () {
+        let color = this.previousElementSibling.value.toLowerCase().replaceAll(" ", "-")
 
-    //     document.querySelectorAll(".product__photos a").forEach((a) => {
-    //       if (a.getAttribute("href").includes(color)) {
-    //         a.click()
-    //       }
-    //     })
-    //   })
-    // })
+        document.querySelectorAll(".product__photos a").forEach((a) => {
+          if (a.getAttribute("href").includes(color)) {
+            a.click()
+          }
+        })
+      })
+    })
 
     // document.querySelector(".product__thumbs--scroller")?.addEventListener("click", function (e) {
-    //   console.log(`product__thumbs--scroller`, e.target)
     //   if (e.target.classList.contains("product__thumbs--scroller")) {
     //     document.querySelectorAll(".product__photos a.is-active")?.forEach((item) => {
     //       document.querySelectorAll('.variant-input-wrap[name="Color"] label:not(.disabled)').forEach((a) => {
     //         let color = a.previousElementSibling.value.toLowerCase().replaceAll(" ", "-")
+
     //         if (item.getAttribute("href").includes(color)) {
     //           a.click()
+    //           if (window.innerWidth <= 768) {
+    //             document.querySelector(".product__photos").scrollIntoView()
+    //           }
     //         }
     //       })
     //     })
     //   }
     // })
 
-    // document.querySelectorAll(".product__photos a")?.forEach((item) => {
+    // document.querySelectorAll(".product__photos .product__thumb-item a")?.forEach((item) => {
     //   item.addEventListener("click", function () {
-    //     document.querySelectorAll('.variant-input-wrap[name="Color"] label:not(.disabled)').forEach((a) => {
-    //       let color = a.previousElementSibling.value.toLowerCase().replaceAll(" ", "-")
-    //       if (item.getAttribute("href").includes(color)) {
-    //         a.click()
-    //       }
-    //     })
+    //     if (item.classList.contains("is-active")) {
+    //       document.querySelectorAll('.variant-input-wrap[name="Color"] label:not(.disabled)').forEach((a) => {
+    //         let color = a.previousElementSibling.value.toLowerCase().replaceAll(" ", "-")
+    //         console.log(color)
+    //         if (item.getAttribute("href").includes(color)) {
+    //           console.log(item.getAttribute("href"))
+    //           console.log(`color>>>>>>>>>..`, color)
+    //           a.click()
+    //           if (window.innerWidth <= 768) {
+    //             document.querySelector(".product__photos").scrollIntoView()
+    //           }
+    //         }
+    //       })
+    //     }
     //   })
     // })
 
@@ -1899,6 +1912,9 @@ ul.background_wrap > li p {
 
     //         if (item.closest(".product-slideshow").querySelector(".flickity-slider .is-selected img").getAttribute("data-photoswipe-src").includes(color)) {
     //           a.click()
+    //           if (window.innerWidth <= 768) {
+    //             document.querySelector(".product__photos").scrollIntoView()
+    //           }
     //         }
     //       })
     //     }, 600)
@@ -1948,12 +1964,15 @@ ul.background_wrap > li p {
 
     //       if (item.closest("div.flickity-slider").querySelector(".is-selected img").getAttribute("data-photoswipe-src").includes(color)) {
     //         a.click()
+    //         if (window.innerWidth <= 768) {
+    //           document.querySelector(".product__photos").scrollIntoView()
+    //         }
     //       }
     //     })
     //   }, 600)
     // }
 
-    // Size
+    // // Size
     // document.querySelectorAll(".product__photos a")?.forEach((item) => {
     //   item.addEventListener("click", function () {
     //     document.querySelectorAll('.variant-input-wrap[name="Size"] label:not(.disabled)').forEach((a) => {
@@ -1963,6 +1982,9 @@ ul.background_wrap > li p {
 
     //         if (item.getAttribute("href").includes(`${size}`)) {
     //           a.click()
+    //           if (window.innerWidth <= 768) {
+    //             document.querySelector(".product__photos").scrollIntoView()
+    //           }
     //         }
     //       }
 
@@ -1971,6 +1993,9 @@ ul.background_wrap > li p {
 
     //         if (item.getAttribute("href").includes(`${size}-case`)) {
     //           a.click()
+    //           if (window.innerWidth <= 768) {
+    //             document.querySelector(".product__photos").scrollIntoView()
+    //           }
     //         }
     //       }
     //     })
@@ -1993,6 +2018,9 @@ ul.background_wrap > li p {
 
     //           if (item.closest(".product-slideshow").querySelector(".flickity-slider .is-selected img").getAttribute("data-photoswipe-src").includes(`${size}`)) {
     //             a.click()
+    //             if (window.innerWidth <= 768) {
+    //               document.querySelector(".product__photos").scrollIntoView()
+    //             }
     //           }
     //         }
 
@@ -2001,6 +2029,9 @@ ul.background_wrap > li p {
 
     //           if (item.closest(".product-slideshow").querySelector(".flickity-slider .is-selected img").getAttribute("data-photoswipe-src").includes(`${size}-case`)) {
     //             a.click()
+    //             if (window.innerWidth <= 768) {
+    //               document.querySelector(".product__photos").scrollIntoView()
+    //             }
     //           }
     //         }
     //       })
@@ -2053,6 +2084,9 @@ ul.background_wrap > li p {
 
     //         if (item.closest("div.flickity-slider").querySelector(".is-selected img").getAttribute("data-photoswipe-src").includes(`${size}`)) {
     //           a.click()
+    //           if (window.innerWidth <= 768) {
+    //             document.querySelector(".product__photos").scrollIntoView()
+    //           }
     //         }
     //       }
 
@@ -2061,6 +2095,9 @@ ul.background_wrap > li p {
 
     //         if (item.closest("div.flickity-slider").querySelector(".is-selected img").getAttribute("data-photoswipe-src").includes(`${size}-case`)) {
     //           a.click()
+    //           if (window.innerWidth <= 768) {
+    //             document.querySelector(".product__photos").scrollIntoView()
+    //           }
     //         }
     //       }
     //     })
@@ -2068,7 +2105,7 @@ ul.background_wrap > li p {
     // }
 
     //
-    fetch("https://crs-dev.fun/api/saint-javelin/total-donorbox", {
+    fetch("https://conversionrate.top/api/saint-javelin/total-donorbox", {
       headers: {
         "Content-Type": "application/json",
       },
