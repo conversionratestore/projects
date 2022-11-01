@@ -267,6 +267,19 @@ let styleMain =`
     [disabled] {
         pointer-events: none;
     }
+    @media (max-width: 340px) {
+        .header-checkout {
+            padding: 10px;
+        }
+        .header-checkout a svg {
+            width: 20px;
+            height: 20px;
+        }
+        .steps {
+            font-size: 16px;
+        }
+    }
+    
 </style>`
 let href = window.location.href;
 
@@ -1900,6 +1913,12 @@ window.onload = function() {
                 document.querySelector('#submitCheckout3').click()
             }
             scrollTop(e.target, document.body)
+        })
+
+        document.querySelectorAll('.wrapper-checkout input:not([type="checkbox"])').forEach(item => {
+            item.addEventListener('input', (e) => {
+                item.style = 'border-color: #E0E4E5!important;'
+            })
         })
     } 
     if (!href.includes('login.php') && !href.includes('register.php') && !href.includes('/checkout') && !href.includes('/guest-checkout')) {
