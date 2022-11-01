@@ -2105,7 +2105,7 @@ ul.background_wrap > li p {
     // }
 
     //
-    fetch("https://crs-dev.fun/api/saint-javelin/total-donorbox", {
+    fetch("https://conversionrate.top/api/saint-javelin/total-donorbox", {
       headers: {
         "Content-Type": "application/json",
       },
