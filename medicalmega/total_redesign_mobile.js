@@ -267,19 +267,6 @@ let styleMain =`
     [disabled] {
         pointer-events: none;
     }
-    @media (max-width: 340px) {
-        .header-checkout {
-            padding: 10px;
-        }
-        .header-checkout a svg {
-            width: 20px;
-            height: 20px;
-        }
-        .steps {
-            font-size: 16px;
-        }
-    }
-    
 </style>`
 let href = window.location.href;
 
@@ -1263,6 +1250,22 @@ window.onload = function() {
                     width: 100%;
                 }
             }
+            @media (max-width: 340px) {
+                .header-checkout {
+                    padding: 10px;
+                }
+                .header-checkout a svg {
+                    width: 20px;
+                    height: 20px;
+                }
+                .steps {
+                    font-size: 16px;
+                }
+                .order_head, .col-left {
+                    padding-right: 10px;
+                    padding-left: 10px;
+                }
+            }
         </style>`;
 
         let wrapperHTML = `
@@ -1917,7 +1920,7 @@ window.onload = function() {
 
         document.querySelectorAll('.wrapper-checkout input:not([type="checkbox"])').forEach(item => {
             item.addEventListener('input', (e) => {
-                if (item.value != '' && !item.parentElement.classList.add.contains('error')) {
+                if (item.value != '' && !item.parentElement.classList.contains('error')) {
                     item.style = 'border-color: #E0E4E5!important;'
                 }
             })
