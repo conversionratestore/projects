@@ -1531,7 +1531,7 @@ window.onload = function() {
         }
         //step 2 "Shipping Information"
         let currentAddressShip, currentAddressBill;
-        let state_item, countries_ship_item
+        let state_item, countries_ship_item, countries_bill_item;
         if (href.includes('/checkout/step1') || href.includes('/checkout/step2') || href.includes('/guest-checkout1.php')  || href.includes('/guest-checkout2.php')) {
             document.querySelector('.steps').innerHTML = `Step 2<span>/4</span> — ${obj['stepsName'][1]}`; //add steps in header
             if (document.querySelector('.tooltip') != null) {
@@ -1553,6 +1553,7 @@ window.onload = function() {
             document.querySelector('.col-left .head h4').innerHTML = obj['stepsName'][1];
             state_item = href.includes('guest-checkout1.php') ? b_state : state;
             countries_ship_item = href.includes('guest-checkout1.php') ? b_country.innerHTML : countries_ship;
+            countries_bill_item = href.includes('guest-checkout1.php') ? b_country.innerHTML : country;
            
             let shipHave = false, billHave = false;
 
@@ -1594,7 +1595,7 @@ window.onload = function() {
 
                                     currentAddress('.ship-form > dd', ``, currentAddressShip)
                                 } else if (item.closest('.bill') != null) {
-                                    document.querySelector('.col-left .head').insertAdjacentHTML('afterend', billFormHtml(state_item, country.innerHTML, 'active','edit'))
+                                    document.querySelector('.col-left .head').insertAdjacentHTML('afterend', billFormHtml(state_item, countries_bill_item, 'active','edit'))
                                     document.querySelector('.col-left .head h4').innerHTML = 'Billing information';
                                     document.querySelector('.btn-next').innerHTML = 'Save Billing info';
 
@@ -1625,7 +1626,7 @@ window.onload = function() {
                 } else {
                     //Shipping Information - not filled
                     document.querySelector('.col-left .head').insertAdjacentHTML('afterend', shipFormHtml(state_item, countries_ship_item, 'active', ''))
-                    document.querySelector('.col-left .head').insertAdjacentHTML('afterend', billFormHtml(state_item, country.innerHTML, '', ''))
+                    document.querySelector('.col-left .head').insertAdjacentHTML('afterend', billFormHtml(state_item, countries_bill_item, '', ''))
                     document.querySelector('[name="shipping"]').addEventListener('click', (e) => {
                         console.log(e.target)
                         copyFromShip(e.target, 'bill')
@@ -1899,7 +1900,7 @@ window.onload = function() {
                 setBack()
                 //add billing form html
                 console.log(state_item, countries_ship_item)
-                document.querySelector('.col-left .head').insertAdjacentHTML('afterend', billFormHtml(state_item, country.innerHTML, 'active',''))
+                document.querySelector('.col-left .head').insertAdjacentHTML('afterend', billFormHtml(state_item, countries_bill_item, 'active',''))
                 //copy from Shipping
                 document.querySelector('[name="shipping"]').addEventListener('click', (e) => copyFromShip(e.target, 'bill'))
             } else if (document.querySelector('.address.ship') == null && document.querySelector('.address.bill') != null && document.querySelector('.ship-form.active') == null) {
