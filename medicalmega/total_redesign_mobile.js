@@ -816,14 +816,14 @@ window.onload = function() {
                 font-size: 14px!important;
                 font-weight: 400!important;
                 line-height: 150%;
-                color: rgba(52, 77, 87, 0.8);
+                color: rgba(154, 166, 171, 0.8);
                 display: flex;
                 align-items: center;
                 padding-left: 16px;
                 padding-bottom: 4px;
             }
-            .c-red {
-                color: rgba(235, 87, 87, 0.8);
+            .c-red-08 {
+                color: rgba(235, 87, 87, 0.8)!important;
             }
             .forgot_password {
                 width: 100%;
@@ -1394,47 +1394,47 @@ window.onload = function() {
             return `
         <form class="ship-form ${edit} ${active}">
             <dd style="width: 50%;float:left;padding-right: 8px">
-                <label for="fname">Name <span class="c-red"> *</span></label>
+                <label for="fname">Name <span class="c-red-08"> *</span></label>
                 <input type="text" name="fname" placeholder="John">
                 <i></i>
             </dd>
             <dd style="width: 50%;float:left;padding-left: 8px">
-                <label for="lname">Surname <span class="c-red"> *</span></label>
+                <label for="lname">Surname <span class="c-red-08"> *</span></label>
                 <input type="text" name="lname" placeholder="Smith">
                 <i></i>
             </dd>
             <dd style="width: 100%;float:left;padding-right: 8px">
-                <label for="email">Email <span class="c-red"> *</span></label>
+                <label for="email">Email <span class="c-red-08"> *</span></label>
                 <input type="text" name="email">
                 <i></i>
             </dd>
             <dd style="width: 50%;float:left;padding-right: 8px">
-                <label for="country">Country <span class="c-red"> *</span></label>
+                <label for="country">Country <span class="c-red-08"> *</span></label>
                 <select name="country"> ${countries_ship}</select>
                 <i></i>
             </dd>
             <dd style="width: 50%;float:left;padding-left: 8px">
-                <label for="addr1">Address line <span class="c-red"> *</span></label>
+                <label for="addr1">Address line <span class="c-red-08"> *</span></label>
                 <input type="text" name="addr1" placeholder="Street address, building, apt, atc.">
                 <i></i>
             </dd>
             <dd style="width: 50%;float:left;padding-right: 8px">
-                <label for="city">City <span class="c-red"> *</span></label>
+                <label for="city">City <span class="c-red-08"> *</span></label>
                 <input type="text" name="city">
                 <i></i>
             </dd>
             <dd style="width: 50%;float:left;padding-left: 8px">
-                <label for="state">State (Only applicable to US) <span class="c-red"> *</span></label>
+                <label for="state">State (Only applicable to US) <span class="c-red-08"> *</span></label>
                 <select name="state"> ${state.innerHTML}</select>
                 <i></i>
             </dd>
             <dd style="width: 50%;float:left;padding-right: 8px">
-                <label for="zip">Zip / Postal Code <span class="c-red"> *</span></label>
+                <label for="zip">Zip / Postal Code <span class="c-red-08"> *</span></label>
                 <input type="text" name="zip">
                 <i></i>
             </dd>
             <dd style="width: 50%;float:left;padding-left: 8px">
-                <label for="phn">Phone <span class="c-red"> *</span></label>
+                <label for="phn">Phone <span class="c-red-08"> *</span></label>
                 <input type="text" name="phn" placeholder="+1 (XXX) XXX-XXXX">
                 <i></i>
             </dd>
@@ -1456,37 +1456,37 @@ window.onload = function() {
                     </label>
                 </dd>
                 <dd style="width: 50%;float:left;padding-right: 8px">
-                    <label for="country">Country <span class="c-red"> *</span></label>
+                    <label for="country">Country <span class="c-red-08"> *</span></label>
                     <select name="country"> ${countries_ship}</select>
                     <i></i>
                 </dd>
                 <dd style="width: 50%;float:left;padding-left: 8px">
-                    <label for="addr1">Address line <span class="c-red"> *</span></label>
+                    <label for="addr1">Address line <span class="c-red-08"> *</span></label>
                     <input type="text" name="addr1" placeholder="Street address, building, apt, atc.">
                     <i></i>
                 </dd>
                 <dd style="width: 100%;float:left;padding-right: 8px">
-                    <label for="email">Email <span class="c-red"> *</span></label>
+                    <label for="email">Email <span class="c-red-08"> *</span></label>
                     <input type="text" name="email">
                     <i></i>
                 </dd>
                 <dd style="width: 50%;float:left;padding-right: 8px">
-                    <label for="city">City <span class="c-red"> *</span></label>
+                    <label for="city">City <span class="c-red-08"> *</span></label>
                     <input type="text" name="city">
                     <i></i>
                 </dd>
                 <dd style="width: 50%;float:left;padding-left: 8px">
-                    <label for="state">State (Only applicable to US) <span class="c-red"> *</span></label>
+                    <label for="state">State (Only applicable to US) <span class="c-red-08"> *</span></label>
                     <select name="state"> ${state.innerHTML}</select>
                     <i></i>
                 </dd>
                 <dd style="width: 50%;float:left;padding-right: 8px">
-                    <label for="zip">Zip / Postal Code <span class="c-red"> *</span></label>
+                    <label for="zip">Zip / Postal Code <span class="c-red-08"> *</span></label>
                     <input type="text" name="zip">
                     <i></i>
                 </dd>
                 <dd style="width: 50%;float:left;padding-left: 8px">
-                    <label for="phn">Phone <span class="c-red"> *</span></label>
+                    <label for="phn">Phone <span class="c-red-08"> *</span></label>
                     <input type="text" name="phn" placeholder="+1 (XXX) XXX-XXXX">
                     <i></i>
                 </dd>
@@ -1708,13 +1708,13 @@ window.onload = function() {
             document.querySelector('#checkoutForm > p').innerHTML = document.querySelector('#checkoutForm > p').innerHTML.replace('Place Your Order Now','Proceed');
         }
         if (href.includes('/guest-checkout3.php')) {
-            document.querySelector('#checkoutForm > fieldset > dl > dd:nth-child(2)').innerHTML = `Credit/Debit Card<span class="c-red"> *</span>`;
+            document.querySelector('#checkoutForm > fieldset > dl > dd:nth-child(2)').innerHTML = `Credit/Debit Card<span class="c-red-08"> *</span>`;
             document.querySelector('#checkoutForm > p').style.whiteSpace = 'initial';
         }
         if (href.includes('/checkout/step3')) {
             document.querySelector('#checkoutForm h3').innerHTML = `Card Details <img src="https://conversionratestore.github.io/projects/medicalmega/img/payment-cards.png" alt="icons">`;
-            document.querySelector('#cc_block > dl > div.ccInfo > dd:nth-child(3)').innerHTML = `Credit/Debit Card<span class="c-red"> *</span>`;
-            // document.querySelector('#cc_block > dl > div.ccInfo > dd:nth-child(3)').innerHTML = `Name on card:<span class="c-red"> *</span>`;
+            document.querySelector('#cc_block > dl > div.ccInfo > dd:nth-child(3)').innerHTML = `Credit/Debit Card<span class="c-red-08"> *</span>`;
+            // document.querySelector('#cc_block > dl > div.ccInfo > dd:nth-child(3)').innerHTML = `Name on card:<span class="c-red-08"> *</span>`;
         }
         //set text for back button
         let setBack = () => {
@@ -1728,8 +1728,8 @@ window.onload = function() {
 
         //set * request for label
         document.querySelectorAll('label').forEach(el => {
-            if (el.innerHTML.includes('*') && !el.innerHTML.includes('c-red')) {
-                el.innerHTML = el.innerHTML.split('*').join('<span class="c-red"> *</span>')
+            if (el.innerHTML.includes('*') && !el.innerHTML.includes('c-red-08')) {
+                el.innerHTML = el.innerHTML.split('*').join('<span class="c-red-08"> *</span>')
             }
         })
         //valid input
