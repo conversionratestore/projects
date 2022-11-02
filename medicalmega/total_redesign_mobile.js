@@ -1390,12 +1390,12 @@ window.onload = function() {
             return body
         }
 
-        let changeSelect = (type) => {
-            document.querySelector(`${type} [name="country"]`).addEventListener('input', (e) => {
+        let changeSelect = (typeCountry, typeState) => {
+            document.querySelector(typeCountry).addEventListener('input', (e) => {
                 if (e.target.value == 'Canada') {
-                    document.querySelector(`${type} [name="state"]`).innerHTML = states_canada
+                    document.querySelector(typeState).innerHTML = states_canada
                 } else if (e.target.value == 'United States') {
-                    document.querySelector(`${type} [name="state"]`).innerHTML = states_usa
+                    document.querySelector(typeState).innerHTML = states_usa
                 } 
             })
         }
@@ -1454,7 +1454,7 @@ window.onload = function() {
                     </label>
                 </dd>
             </form>`)
-            changeSelect('ship-form')
+            changeSelect('.ship-form [name="country"]', '.ship-form [name="state"]')
         }
         let billFormHtml = (sibling, state, countries_ship, active, edit) => {
             document.querySelector(sibling).insertAdjacentHTML('afterend', `
@@ -1501,7 +1501,7 @@ window.onload = function() {
                     <i></i>
                 </dd>
             </form> `)
-            changeSelect('bill-form')
+            changeSelect('.bill-form [name="country"]','.bill-form [name="state"]')
         }
         let fname, lname, addr1, city, stateF, zip, country, phn, email; //for forms
 
