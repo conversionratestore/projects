@@ -1401,7 +1401,10 @@ window.onload = function() {
                 } else if (e.target.value == 'United States') {
                     document.querySelector(typeState).innerHTML = statesUsa;
                     document.querySelector(typeState).previousElementSibling.children[0].innerHTML = 'State (Only applicable to US)'
-                } 
+                } else {
+                    document.querySelector(typeState).innerHTML = '<option value="" selected="selected">-- Select State --</option>';
+                    document.querySelector(typeState).previousElementSibling.children[0].innerHTML = 'State (Only applicable to US)'
+                }
             })
         }
         let shipFormHtml = (sibling, state, countries_ship, active, edit) => {
@@ -1545,7 +1548,10 @@ window.onload = function() {
                             } else if (name.value == 'United States') {
                                 name.innerHTML = statesUsa;
                                 name.previousElementSibling.children[0].innerHTML = 'State (Only applicable to US)'
-                            } 
+                            } else {
+                                name.innerHTML = '<option value="" selected="selected">-- Select State --</option>';
+                                name.previousElementSibling.children[0].innerHTML = 'State (Only applicable to US)'
+                            }
                             name.value = address[keyShip]
                         }
                     }
