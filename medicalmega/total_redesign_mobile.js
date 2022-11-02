@@ -1391,6 +1391,9 @@ window.onload = function() {
         }
 
         let shipFormHtml = (state, countries_ship, active, edit) => {
+
+            let stateId = href.includes('guest-checkout1.php') ? 's_state' : 'state',
+                countryId = href.includes('guest-checkout1.php') ? 's_country' : 'country';
             return `
         <form class="ship-form ${edit} ${active}">
             <dd style="width: 50%;float:left;padding-right: 8px">
@@ -1410,7 +1413,7 @@ window.onload = function() {
             </dd>
             <dd style="width: 50%;float:left;padding-right: 8px">
                 <label for="country">Country <span class="c-red-08"> *</span></label>
-                <select name="country"> ${countries_ship}</select>
+                <select name="country" id="${countryId}"> ${countries_ship}</select>
                 <i></i>
             </dd>
             <dd style="width: 50%;float:left;padding-left: 8px">
@@ -1424,8 +1427,8 @@ window.onload = function() {
                 <i></i>
             </dd>
             <dd style="width: 50%;float:left;padding-left: 8px">
-                <label for="state">State (Only applicable to US) <span class="c-red-08"> *</span></label>
-                <select name="state"> ${state.innerHTML}</select>
+                <label for="state" id="${stateId}_label">State (Only applicable to US) <span class="c-red-08"> *</span></label>
+                <select name="state" id=""${stateId}> ${state.innerHTML}</select>
                 <i></i>
             </dd>
             <dd style="width: 50%;float:left;padding-right: 8px">
@@ -1447,6 +1450,8 @@ window.onload = function() {
         </form>`
         }
         let billFormHtml = (state, countries_ship, active, edit) => {
+            let stateId = href.includes('guest-checkout1.php') ? 'b_state' : 'state',
+                countryId = href.includes('guest-checkout1.php') ? 'b_country' : 'country';
             return `
             <form class="bill-form ${active} ${edit}">
                 <dd style="width: 100%;">
@@ -1457,7 +1462,7 @@ window.onload = function() {
                 </dd>
                 <dd style="width: 50%;float:left;padding-right: 8px">
                     <label for="country">Country <span class="c-red-08"> *</span></label>
-                    <select name="country"> ${countries_ship}</select>
+                    <select name="country" id="${countryId}"> ${countries_ship}</select>
                     <i></i>
                 </dd>
                 <dd style="width: 50%;float:left;padding-left: 8px">
@@ -1476,8 +1481,8 @@ window.onload = function() {
                     <i></i>
                 </dd>
                 <dd style="width: 50%;float:left;padding-left: 8px">
-                    <label for="state">State (Only applicable to US) <span class="c-red-08"> *</span></label>
-                    <select name="state"> ${state.innerHTML}</select>
+                    <label for="state" id="${stateId}_label">State (Only applicable to US) <span class="c-red-08"> *</span></label>
+                    <select name="state" id="${stateId}"> ${state.innerHTML}</select>
                     <i></i>
                 </dd>
                 <dd style="width: 50%;float:left;padding-right: 8px">
@@ -1553,8 +1558,7 @@ window.onload = function() {
             document.querySelector('.col-left .head h4').innerHTML = obj['stepsName'][1];
             state_item = href.includes('guest-checkout1.php') ? b_state : state;
             countries_ship_item = href.includes('guest-checkout1.php') ? b_country.innerHTML : countries_ship;
-            countries_bill_item = href.includes('guest-checkout1.php') ? b_country.innerHTML : countries_ship;
-            // countries_bill_item = href.includes('guest-checkout1.php') ? b_country.innerHTML : country.innerHTML;
+            countries_bill_item = href.includes('guest-checkout1.php') ? b_country.innerHTML : country.innerHTML;
            
             let shipHave = false, billHave = false;
 
