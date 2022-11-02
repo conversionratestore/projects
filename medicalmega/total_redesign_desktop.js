@@ -368,6 +368,8 @@ let labelForEvents = (e) => {
 }
 
 let arrMouth = ['Jan','Feb','Mar','Apr','May','Jun','Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+let counterBasket = 0;
+
 window.onload = function() {
     document.body.insertAdjacentHTML('afterbegin', styleMain)
 
@@ -433,6 +435,7 @@ window.onload = function() {
                     document.querySelector(parent).style = '';
                 }
             }
+            counterBasket = products.length
             if (products.length > 0) {
                 //product quantity changes
                 let varQty = href.includes('checkout/step2') || href.includes('checkout/step3') ? 1 : 0
@@ -1991,7 +1994,7 @@ window.onload = function() {
                                     </svg>
                                 </span>
                             </button>
-                    </div>
+                        </div>
                     </div>
                 </div>
                 <div class="footer-cart flex-center-between">
@@ -2113,41 +2116,41 @@ window.onload = function() {
         let style = `
         <style class="style-main">
         @font-face {
-        font-family: "Inter";
-        src: url(https://olha1001.github.io/medicalmega/pdp-rediesign/fonts/Inter/Inter-Light.woff) format("woff"), url(https://olha1001.github.io/medicalmega/pdp-rediesign/fonts/Inter/Inter-Light.woff2) format("woff2"), url(https://olha1001.github.io/medicalmega/pdp-rediesign/fonts/Inter/Inter-Light.ttf) format("truetype");
-        font-weight: 300;
-        font-style: "normal"; }
+            font-family: "Inter";
+            src: url(https://olha1001.github.io/medicalmega/pdp-rediesign/fonts/Inter/Inter-Light.woff) format("woff"), url(https://olha1001.github.io/medicalmega/pdp-rediesign/fonts/Inter/Inter-Light.woff2) format("woff2"), url(https://olha1001.github.io/medicalmega/pdp-rediesign/fonts/Inter/Inter-Light.ttf) format("truetype");
+            font-weight: 300;
+            font-style: "normal"; }
         @font-face {
-        font-family: "Inter";
-        src: url(https://olha1001.github.io/medicalmega/pdp-rediesign/fonts/Inter/Inter-Regular.woff) format("woff"), url(https://olha1001.github.io/medicalmega/pdp-rediesign/fonts/Inter/Inter-Regular.woff2) format("woff2"), url(https://olha1001.github.io/medicalmega/pdp-rediesign/fonts/Inter/Inter-Regular.ttf) format("truetype");
-        font-weight: 400;
-        font-style: "normal"; }
+            font-family: "Inter";
+            src: url(https://olha1001.github.io/medicalmega/pdp-rediesign/fonts/Inter/Inter-Regular.woff) format("woff"), url(https://olha1001.github.io/medicalmega/pdp-rediesign/fonts/Inter/Inter-Regular.woff2) format("woff2"), url(https://olha1001.github.io/medicalmega/pdp-rediesign/fonts/Inter/Inter-Regular.ttf) format("truetype");
+            font-weight: 400;
+            font-style: "normal"; }
         @font-face {
-        font-family: "Inter";
-        src: url(https://olha1001.github.io/medicalmega/pdp-rediesign/fonts/Inter/Inter-Medium.woff) format("woff"), url(https://olha1001.github.io/medicalmega/pdp-rediesign/fonts/Inter/Inter-Medium.woff2) format("woff2"), url(https://olha1001.github.io/medicalmega/pdp-rediesign/fonts/Inter/Inter-Medium.ttf) format("truetype");
-        font-weight: 500;
-        font-style: "normal"; }
+            font-family: "Inter";
+            src: url(https://olha1001.github.io/medicalmega/pdp-rediesign/fonts/Inter/Inter-Medium.woff) format("woff"), url(https://olha1001.github.io/medicalmega/pdp-rediesign/fonts/Inter/Inter-Medium.woff2) format("woff2"), url(https://olha1001.github.io/medicalmega/pdp-rediesign/fonts/Inter/Inter-Medium.ttf) format("truetype");
+            font-weight: 500;
+            font-style: "normal"; }
         @font-face {
-        font-family: "Inter";
-        src: url(https://olha1001.github.io/medicalmega/pdp-rediesign/fonts/Inter/Inter-SemiBold.woff) format("woff"), url(https://olha1001.github.io/medicalmega/pdp-rediesign/fonts/Inter/Inter-SemiBold.woff2) format("woff2"), url(https://olha1001.github.io/medicalmega/pdp-rediesign/fonts/Inter/Inter-SemiBold.ttf) format("truetype");
-        font-weight: 600;
-        font-style: "normal"; }
+            font-family: "Inter";
+            src: url(https://olha1001.github.io/medicalmega/pdp-rediesign/fonts/Inter/Inter-SemiBold.woff) format("woff"), url(https://olha1001.github.io/medicalmega/pdp-rediesign/fonts/Inter/Inter-SemiBold.woff2) format("woff2"), url(https://olha1001.github.io/medicalmega/pdp-rediesign/fonts/Inter/Inter-SemiBold.ttf) format("truetype");
+            font-weight: 600;
+            font-style: "normal"; }
         @font-face {
-        font-family: "Inter";
-        src: url(https://olha1001.github.io/medicalmega/pdp-rediesign/fonts/Inter/Inter-Bold.woff) format("woff"), url(https://olha1001.github.io/medicalmega/pdp-rediesign/fonts/Inter/Inter-Bold.woff2) format("woff2"), url(https://olha1001.github.io/medicalmega/pdp-rediesign/fonts/Inter/Inter-Bold.ttf) format("truetype");
-        font-weight: 700;
-        font-style: "normal"; }
+            font-family: "Inter";
+            src: url(https://olha1001.github.io/medicalmega/pdp-rediesign/fonts/Inter/Inter-Bold.woff) format("woff"), url(https://olha1001.github.io/medicalmega/pdp-rediesign/fonts/Inter/Inter-Bold.woff2) format("woff2"), url(https://olha1001.github.io/medicalmega/pdp-rediesign/fonts/Inter/Inter-Bold.ttf) format("truetype");
+            font-weight: 700;
+            font-style: "normal"; }
         @font-face {
-        font-family: "Inter";
-        src: url(https://olha1001.github.io/medicalmega/pdp-rediesign/fonts/Inter/Inter-ExtraBold.woff) format("woff"), url(https://olha1001.github.io/medicalmega/pdp-rediesign/fonts/Inter/Inter-ExtraBold.woff2) format("woff2"), url(https://olha1001.github.io/medicalmega/pdp-rediesign/fonts/Inter/Inter-ExtraBold.ttf) format("truetype");
-        font-weight: 800;
-        font-style: "normal"; }
+            font-family: "Inter";
+            src: url(https://olha1001.github.io/medicalmega/pdp-rediesign/fonts/Inter/Inter-ExtraBold.woff) format("woff"), url(https://olha1001.github.io/medicalmega/pdp-rediesign/fonts/Inter/Inter-ExtraBold.woff2) format("woff2"), url(https://olha1001.github.io/medicalmega/pdp-rediesign/fonts/Inter/Inter-ExtraBold.ttf) format("truetype");
+            font-weight: 800;
+            font-style: "normal"; }
         *, *::before, *::after {
-        -webkit-appearance: none;
-        -webkit-box-sizing: border-box;
-        box-sizing: border-box;
-        padding: 0;
-        margin: 0; }
+            -webkit-appearance: none;
+            -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+            padding: 0;
+            margin: 0; }
         ul, ol, li {
             list-style: none;
         }
@@ -2156,43 +2159,43 @@ window.onload = function() {
             text-decoration: none;
         }
         body {
-        font-size: 12px;
-        border-top: 0;
-        font-family: "Inter", sans-serif;
-        font-style: normal;
-        font-weight: normal;}
+            font-size: 12px;
+            border-top: 0;
+            font-family: "Inter", sans-serif;
+            font-style: normal;
+            font-weight: normal;}
         button {
-        border: none;
-        -webkit-appearance: none;
-        -moz-appearance: none;
-        appearance: none; }
+            border: none;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none; }
         /* Chrome, Safari, Edge, Opera */
         input::-webkit-outer-spin-button, input::-webkit-inner-spin-button {
-        -webkit-appearance: none;
-        margin: 0; }
+            -webkit-appearance: none;
+            margin: 0; }
         /* Firefox */
         input[type=number] {
-        -moz-appearance: textfield; }
+            -moz-appearance: textfield; }
         *::-webkit-input-placeholder {
-        font-family: "Inter", sans-serif;
-        font-weight: 400;
-        color: #9AA6AB;
-        line-height: 26px; }
+            font-family: "Inter", sans-serif;
+            font-weight: 400;
+            color: #9AA6AB;
+            line-height: 26px; }
         *:-moz-placeholder {
-        font-family: "Inter", sans-serif;
-        font-weight: 400;
-        color: #9AA6AB;
-        line-height: 26px; }
+            font-family: "Inter", sans-serif;
+            font-weight: 400;
+            color: #9AA6AB;
+            line-height: 26px; }
         *::-moz-placeholder {
-        font-family: "Inter", sans-serif;
-        font-weight: 400;
-        color: #9AA6AB;
-        line-height: 26px; }
+            font-family: "Inter", sans-serif;
+            font-weight: 400;
+            color: #9AA6AB;
+            line-height: 26px; }
         *:-ms-input-placeholder {
-        font-family: "Inter", sans-serif;
-        font-weight: 400;
-        color: #9AA6AB;
-        line-height: 26px; }
+            font-family: "Inter", sans-serif;
+            font-weight: 400;
+            color: #9AA6AB;
+            line-height: 26px; }
         @-webkit-keyframes autofill {
             to {
                 color: #091114;
@@ -2204,53 +2207,53 @@ window.onload = function() {
             -webkit-animation-fill-mode: both;
         }
         input {
-        -webkit-appearance: none;
-        -moz-appearance: none;
-        appearance: none;
-        border: none;
-        background-color: #E9EBEC;
-        border-radius: 30px;
-        padding: 7.5px 20px;
-        width: 100%;
-        font-size: 14px;
-        outline-color: #344D57;
-        line-height: 26px; }
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            border: none;
+            background-color: #E9EBEC;
+            border-radius: 30px;
+            padding: 7.5px 20px;
+            width: 100%;
+            font-size: 14px;
+            outline-color: #344D57;
+            line-height: 26px; }
         input[type="search"]::-webkit-search-decoration,
         input[type="search"]::-webkit-search-cancel-button,
         input[type="search"]::-webkit-search-results-button,
         input[type="search"]::-webkit-search-results-decoration {
-        display: none; }
+            display: none; }
         .container {
-        max-width: 1260px;
-        padding: 0 10px;
-        width: 100%;
-        margin: 0 auto; }
+            max-width: 1260px;
+            padding: 0 10px;
+            width: 100%;
+            margin: 0 auto; }
         #wrap, .modal {
-        display: none;}
+            display: none;}
         .main {
-        font-family: "Inter", sans-serif;
-        font-style: normal;
-        font-weight: normal;
-        color: #091114;
-        text-align: left;
-        line-height: 16px; }
+            font-family: "Inter", sans-serif;
+            font-style: normal;
+            font-weight: normal;
+            color: #091114;
+            text-align: left;
+            line-height: 16px; }
         .btn {
-        font-family: "Inter", sans-serif;
-        background-color: #1E3944;
-        border: 2px solid #1E3944;
-        border-radius: 40px;
-        color: #FBFBFB;
-        font-weight: 600;
-        text-align: center;
-        letter-spacing: 0.05em;
-        text-transform: uppercase;
-        line-height: 44px;
-        font-size: 12px;
-        padding: 0 22px;
-        cursor: pointer;
-        transition: all 0.3s ease;
-        white-space: nowrap; }
-            .btn:hover, .btn:not(.btn_white):focus  {
+            font-family: "Inter", sans-serif;
+            background-color: #1E3944;
+            border: 2px solid #1E3944;
+            border-radius: 40px;
+            color: #FBFBFB;
+            font-weight: 600;
+            text-align: center;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            line-height: 44px;
+            font-size: 12px;
+            padding: 0 22px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            white-space: nowrap; }
+        .btn:hover, .btn:not(.btn_white):focus  {
             background-color: #344D57;
             border-color: #344D57; }
         .btn[disabled] {
@@ -2271,14 +2274,14 @@ window.onload = function() {
             background-color: #FBFBFB;
             color: #9AA6AB; }
         .check {
-        border: 1px solid #6D7E85;
-        width: 16px;
-        height: 16px;
-        border-radius: 2px;
-        display: block;
-        margin-right: 8px;
-        flex-shrink: 0;
-        position: relative; }
+            border: 1px solid #6D7E85;
+            width: 16px;
+            height: 16px;
+            border-radius: 2px;
+            display: block;
+            margin-right: 8px;
+            flex-shrink: 0;
+            position: relative; }
         .check:before {
             content: none;
             width: 8px;
@@ -2292,8 +2295,8 @@ window.onload = function() {
             -ms-transform: translate(-50%, -50%);
             transform: translate(-50%, -50%); }
         .check_text {
-        font-size: 14px;
-        line-height: 150%; }
+            font-size: 14px;
+            line-height: 150%; }
         .checkbox {
             display: none; }
             .checkbox:checked ~ .check:before {
@@ -2307,18 +2310,18 @@ window.onload = function() {
             .checkbox:disabled ~ .radio-check span {
                 color: #BCC4C7; }
         .ais-RefinementList-item--selected .check:before {
-        content: ''; }
+            content: ''; }
         .header {
-        -webkit-box-shadow: 4px 8px 12px rgba(0, 0, 0, 0.1);
-        box-shadow: 4px 8px 12px rgba(0, 0, 0, 0.1);
-        position: sticky;
-        top: 0;
-        color: #1E3944;
-        z-index: 8;
-        background: #fff; }
+            -webkit-box-shadow: 4px 8px 12px rgba(0, 0, 0, 0.1);
+            box-shadow: 4px 8px 12px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            color: #1E3944;
+            z-index: 8;
+            background: #fff; }
         .supbar {
-        background: #1E3944;
-        padding: 10px 0 11px; }
+            background: #1E3944;
+            padding: 10px 0 11px; }
         .supbar p, .supbar a {
             font-size: 12px;
             line-height: 1;
@@ -2326,33 +2329,33 @@ window.onload = function() {
         .supbar img {
             margin-right: 8px; }
         .midbar {
-        padding: 20px 0; }
+            padding: 20px 0; }
         .midbar_action {
-        padding: 12px;}
+            padding: 12px;}
         .midbar_action span {
         font-weight: 600;
-        white-space: nowrap;
-        font-size: 10px;
-        text-transform: uppercase;
-        line-height: 10px;
-        color: #1E3944; }
-        .midbar .btn {
-        font-size: 12px;}
+            white-space: nowrap;
+            font-size: 10px;
+            text-transform: uppercase;
+            line-height: 10px;
+            color: #1E3944; }
+            .midbar .btn {
+            font-size: 12px;}
         .midbar_action span.cart_count {
-        color: #96280F;}
+            color: #96280F;}
         .logo {
-        font-weight: 800;
-        font-size: 24px;
-        line-height: 18px;
-        letter-spacing: 0.01em;
-        margin-right: 12px;
-        text-transform: uppercase;
-        color: #1E3944!important; }
+            font-weight: 800;
+            font-size: 24px;
+            line-height: 18px;
+            letter-spacing: 0.01em;
+            margin-right: 12px;
+            text-transform: uppercase;
+            color: #1E3944!important; }
         .logo span {
             color: #96280F; }
         .box-search {
-        position: relative;
-        width: 545px; }
+            position: relative;
+            width: 545px; }
         .form-search {
             width: 100%;}
         .main .ais-SearchBox-input {
@@ -2372,57 +2375,53 @@ window.onload = function() {
             height: 40px;
             border-radius: 50%;
             background-color: #1E3944; }
-            .ais-SearchBox-submit svg {
+        .ais-SearchBox-submit svg {
             fill: #fff;
             width: 16px;
             height: 16px;
-            pointer-events: none;
-            }
-            .ais-SearchBox-reset {
+            pointer-events: none;}
+        .ais-SearchBox-reset {
             position: absolute;
             right: 50px;
             top: 50%;
             padding: 5px;
             transform: translateY(-50%);
             background-color: transparent;
-            cursor: pointer;
-            }
-            .ais-SearchBox-loadingIndicator {
+            cursor: pointer;}
+        .ais-SearchBox-loadingIndicator {
             position: absolute;
             left: 4px;
             top: 50%;
             transform: translateY(-50%);
             width: 16px;
-            height: 16px;
-            }
+            height: 16px;}
         .subbar {
-        border-top: 1px solid #BCC4C7;
-        padding: 9px 0; }
+            border-top: 1px solid #BCC4C7;
+            padding: 9px 0; }
         .all_category {
-        cursor: pointer;
-        padding: 13px 10px 13px 8px;
-        border-radius: 100px;
-        transition: all 0.3s ease; }
+            cursor: pointer;
+            padding: 13px 10px 13px 8px;
+            border-radius: 100px;
+            transition: all 0.3s ease; }
         .dropdown_categories {
-        position: absolute;
-        top: 188px;
-        left: 0;
-        display: flex;
-        opacity: 0;
-        pointer-events: none; }
+            position: absolute;
+            top: 188px;
+            left: 0;
+            display: flex;
+            opacity: 0;
+            pointer-events: none; }
         .alphabet {
-        height: calc(100vh - 188px);
-        overflow-y: auto;
-        padding: 16px 0;
-        min-width: 61px;
-        background: #FFFFFF;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        border: 1px solid #E3E6E7; }
+            height: calc(100vh - 188px);
+            overflow-y: auto;
+            padding: 16px 0;
+            min-width: 61px;
+            background: #FFFFFF;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            border: 1px solid #E3E6E7; }
         .nav_category *::-webkit-scrollbar, .nav_category *::-webkit-scrollbar-track {
-            width: 4px;
-        }
+            width: 4px; }
         .alphabet li {
             font-size: 12px;
             line-height: 18px;
@@ -3567,11 +3566,11 @@ window.onload = function() {
                             <div class="d-flex">
                                 <button class="btn btn_white mr-16" type="button" data-button="advanced-search">Advanced Search</button>
                                 <div class="box-search"> 
-                                <div id="form-search"></div>
-                                <input type="text" id="autocomplete">
+                                    <div id="form-search"></div>
+                                    <input type="text" id="autocomplete">
                                 </div>
                             </div>
-                            <div class="align-items-center"><a class="align-items-center midbar_action mr-16" href="https://medicalmega.com/myaccount.html"><img class="mr-8" src="https://olha1001.github.io/medicalmega/pdp-rediesign/img/common/user.svg" alt="icon account"><span>Account</span></a><a class="align-items-center midbar_action" href="https://medicalmega.com/cart.html"><img class="mr-8" src="https://olha1001.github.io/medicalmega/pdp-rediesign/img/common/cart.svg" alt="icon Cart"><span>Cart (<span class="cart_count">0</span>)</span></a></div>
+                            <div class="align-items-center"><a class="align-items-center midbar_action mr-16" href="https://medicalmega.com/myaccount.html"><img class="mr-8" src="https://olha1001.github.io/medicalmega/pdp-rediesign/img/common/user.svg" alt="icon account"><span>Account</span></a><a class="align-items-center midbar_action" href="https://medicalmega.com/cart.html"><img class="mr-8" src="https://olha1001.github.io/medicalmega/pdp-rediesign/img/common/cart.svg" alt="icon Cart"><span>Cart (<span class="cart_count">${counterBasket}</span>)</span></a></div>
                         </div>
                     </div>
                 </div>
@@ -3706,7 +3705,6 @@ window.onload = function() {
                 fetch(`https://PXDJAQHDPZ-dsn.algolia.net/1/indexes/products?query=${window.location.pathname.split('/product/')[1]}`, optionFetchAlgolia).then(res => res.json()).then(data => resolve(data))
             }
         })
-
 
         function openCategoriesFoeAlphabet(item) {
             item.forEach(el => {
