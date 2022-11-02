@@ -1536,7 +1536,15 @@ window.onload = function() {
                     for (const keyShip in address) {
                         console.log(keyShip, address[keyShip])
                         if (document.querySelector(`.${formType}-form dd [name="${keyShip}"]`) != null && address[keyShip] != '') {
-                            document.querySelector(`.${formType}-form dd [name="${keyShip}"]`).value = address[keyShip]
+                            let name = document.querySelector(`.${formType}-form dd [name="${keyShip}"]`);
+                            if (name.value == 'Canada') {
+                                name.innerHTML = states_canada;
+                                name.previousElementSibling.children[0].innerHTML = 'Province / Territory'
+                            } else if (name.value == 'United States') {
+                                name.innerHTML = states_usa;
+                                name.previousElementSibling.children[0].innerHTML = 'State (Only applicable to US)'
+                            } 
+                            name.value = address[keyShip]
                         }
                     }
                 })
