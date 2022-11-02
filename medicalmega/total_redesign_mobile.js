@@ -1393,9 +1393,11 @@ window.onload = function() {
         let changeSelect = (typeCountry, typeState) => {
             document.querySelector(typeCountry).addEventListener('input', (e) => {
                 if (e.target.value == 'Canada') {
-                    document.querySelector(typeState).innerHTML = states_canada
+                    document.querySelector(typeState).innerHTML = states_canada;
+                    document.querySelector(typeState).previousElementSibling.children[0].innerHTML = 'Province / Territory'
                 } else if (e.target.value == 'United States') {
-                    document.querySelector(typeState).innerHTML = states_usa
+                    document.querySelector(typeState).innerHTML = states_usa;
+                    document.querySelector(typeState).previousElementSibling.children[0].innerHTML = 'State (Only applicable to US)'
                 } 
             })
         }
@@ -1433,7 +1435,7 @@ window.onload = function() {
                     <i></i>
                 </dd>
                 <dd style="width: 50%;float:left;padding-left: 8px">
-                    <label for="state">State (Only applicable to US) <span class="c-red-08"> *</span></label>
+                    <label for="state"><span>State (Only applicable to US)</span> <span class="c-red-08"> *</span></label>
                     <select name="state"> ${state.innerHTML}</select>
                     <i></i>
                 </dd>
@@ -1486,7 +1488,7 @@ window.onload = function() {
                     <i></i>
                 </dd>
                 <dd style="width: 50%;float:left;padding-left: 8px">
-                    <label for="state">State (Only applicable to US) <span class="c-red-08"> *</span></label>
+                    <label for="state"><span>State (Only applicable to US)</span> <span class="c-red-08"> *</span></label>
                     <select name="state"> ${state.innerHTML}</select>
                     <i></i>
                 </dd>
