@@ -1390,69 +1390,74 @@ window.onload = function() {
             return body
         }
 
-        let shipFormHtml = (state, countries_ship, active, edit) => {
-
-            let stateId = href.includes('guest-checkout1.php') ? 's_state' : 'state',
-                countryId = href.includes('guest-checkout1.php') ? 's_country' : 'country';
-            return `
-        <form class="ship-form ${edit} ${active}">
-            <dd style="width: 50%;float:left;padding-right: 8px">
-                <label for="fname">Name <span class="c-red-08"> *</span></label>
-                <input type="text" name="fname" placeholder="John">
-                <i></i>
-            </dd>
-            <dd style="width: 50%;float:left;padding-left: 8px">
-                <label for="lname">Surname <span class="c-red-08"> *</span></label>
-                <input type="text" name="lname" placeholder="Smith">
-                <i></i>
-            </dd>
-            <dd style="width: 100%;float:left;padding-right: 8px">
-                <label for="email">Email <span class="c-red-08"> *</span></label>
-                <input type="text" name="email">
-                <i></i>
-            </dd>
-            <dd style="width: 50%;float:left;padding-right: 8px">
-                <label for="country">Country <span class="c-red-08"> *</span></label>
-                <select name="country" id="${countryId}"> ${countries_ship}</select>
-                <i></i>
-            </dd>
-            <dd style="width: 50%;float:left;padding-left: 8px">
-                <label for="addr1">Address line <span class="c-red-08"> *</span></label>
-                <input type="text" name="addr1" placeholder="Street address, building, apt, atc.">
-                <i></i>
-            </dd>
-            <dd style="width: 50%;float:left;padding-right: 8px">
-                <label for="city">City <span class="c-red-08"> *</span></label>
-                <input type="text" name="city">
-                <i></i>
-            </dd>
-            <dd style="width: 50%;float:left;padding-left: 8px">
-                <label for="state" id="${stateId}_label">State (Only applicable to US) <span class="c-red-08"> *</span></label>
-                <select name="state" id=""${stateId}> ${state.innerHTML}</select>
-                <i></i>
-            </dd>
-            <dd style="width: 50%;float:left;padding-right: 8px">
-                <label for="zip">Zip / Postal Code <span class="c-red-08"> *</span></label>
-                <input type="text" name="zip">
-                <i></i>
-            </dd>
-            <dd style="width: 50%;float:left;padding-left: 8px">
-                <label for="phn">Phone <span class="c-red-08"> *</span></label>
-                <input type="text" name="phn" placeholder="+1 (XXX) XXX-XXXX">
-                <i></i>
-            </dd>
-            <dd style="width: 100%;display: ${edit != '' ? 'none':''}">
-                <label>
-                    <input name="billing" type="checkbox" class="checkbox">
-                    <span>My Billing info is different</span>
-                </label>
-            </dd>
-        </form>`
+        let changeSelect = (type) => {
+            document.querySelector(`${type} [name="country"]`).addEventListener('input', (e) => {
+                if (e.target.value == 'Canada') {
+                    document.querySelector(`${type} [name="state"]`).innerHTML = states_canada
+                } else if (e.target.value == 'United States') {
+                    document.querySelector(`${type} [name="state"]`).innerHTML = states_usa
+                } 
+            })
         }
-        let billFormHtml = (state, countries_ship, active, edit) => {
-            let stateId = href.includes('guest-checkout1.php') ? 'b_state' : 'state',
-                countryId = href.includes('guest-checkout1.php') ? 'b_country' : 'country';
-            return `
+        let shipFormHtml = (sibling, state, countries_ship, active, edit) => {
+            document.querySelector(sibling).insertAdjacentHTML('afterend', `
+            <form class="ship-form ${edit} ${active}">
+                <dd style="width: 50%;float:left;padding-right: 8px">
+                    <label for="fname">Name <span class="c-red-08"> *</span></label>
+                    <input type="text" name="fname" placeholder="John">
+                    <i></i>
+                </dd>
+                <dd style="width: 50%;float:left;padding-left: 8px">
+                    <label for="lname">Surname <span class="c-red-08"> *</span></label>
+                    <input type="text" name="lname" placeholder="Smith">
+                    <i></i>
+                </dd>
+                <dd style="width: 100%;float:left;padding-right: 8px">
+                    <label for="email">Email <span class="c-red-08"> *</span></label>
+                    <input type="text" name="email">
+                    <i></i>
+                </dd>
+                <dd style="width: 50%;float:left;padding-right: 8px">
+                    <label for="country">Country <span class="c-red-08"> *</span></label>
+                    <select name="country"> ${countries_ship}</select>
+                    <i></i>
+                </dd>
+                <dd style="width: 50%;float:left;padding-left: 8px">
+                    <label for="addr1">Address line <span class="c-red-08"> *</span></label>
+                    <input type="text" name="addr1" placeholder="Street address, building, apt, atc.">
+                    <i></i>
+                </dd>
+                <dd style="width: 50%;float:left;padding-right: 8px">
+                    <label for="city">City <span class="c-red-08"> *</span></label>
+                    <input type="text" name="city">
+                    <i></i>
+                </dd>
+                <dd style="width: 50%;float:left;padding-left: 8px">
+                    <label for="state">State (Only applicable to US) <span class="c-red-08"> *</span></label>
+                    <select name="state"> ${state.innerHTML}</select>
+                    <i></i>
+                </dd>
+                <dd style="width: 50%;float:left;padding-right: 8px">
+                    <label for="zip">Zip / Postal Code <span class="c-red-08"> *</span></label>
+                    <input type="text" name="zip">
+                    <i></i>
+                </dd>
+                <dd style="width: 50%;float:left;padding-left: 8px">
+                    <label for="phn">Phone <span class="c-red-08"> *</span></label>
+                    <input type="text" name="phn" placeholder="+1 (XXX) XXX-XXXX">
+                    <i></i>
+                </dd>
+                <dd style="width: 100%;display: ${edit != '' ? 'none':''}">
+                    <label>
+                        <input name="billing" type="checkbox" class="checkbox">
+                        <span>My Billing info is different</span>
+                    </label>
+                </dd>
+            </form>`)
+            changeSelect('ship-form')
+        }
+        let billFormHtml = (sibling, state, countries_ship, active, edit) => {
+            document.querySelector(sibling).insertAdjacentHTML('afterend', `
             <form class="bill-form ${active} ${edit}">
                 <dd style="width: 100%;">
                     <label>
@@ -1462,7 +1467,7 @@ window.onload = function() {
                 </dd>
                 <dd style="width: 50%;float:left;padding-right: 8px">
                     <label for="country">Country <span class="c-red-08"> *</span></label>
-                    <select name="country" id="${countryId}"> ${countries_ship}</select>
+                    <select name="country"> ${countries_ship}</select>
                     <i></i>
                 </dd>
                 <dd style="width: 50%;float:left;padding-left: 8px">
@@ -1481,8 +1486,8 @@ window.onload = function() {
                     <i></i>
                 </dd>
                 <dd style="width: 50%;float:left;padding-left: 8px">
-                    <label for="state" id="${stateId}_label">State (Only applicable to US) <span class="c-red-08"> *</span></label>
-                    <select name="state" id="${stateId}"> ${state.innerHTML}</select>
+                    <label for="state">State (Only applicable to US) <span class="c-red-08"> *</span></label>
+                    <select name="state"> ${state.innerHTML}</select>
                     <i></i>
                 </dd>
                 <dd style="width: 50%;float:left;padding-right: 8px">
@@ -1495,7 +1500,8 @@ window.onload = function() {
                     <input type="text" name="phn" placeholder="+1 (XXX) XXX-XXXX">
                     <i></i>
                 </dd>
-            </form> `
+            </form> `)
+            changeSelect('bill-form')
         }
         let fname, lname, addr1, city, stateF, zip, country, phn, email; //for forms
 
@@ -1558,7 +1564,7 @@ window.onload = function() {
             document.querySelector('.col-left .head h4').innerHTML = obj['stepsName'][1];
             state_item = href.includes('guest-checkout1.php') ? b_state : state;
             countries_ship_item = href.includes('guest-checkout1.php') ? b_country.innerHTML : countries_ship;
-            countries_bill_item = href.includes('guest-checkout1.php') ? b_country.innerHTML : country.innerHTML;
+            countries_bill_item = href.includes('guest-checkout1.php') ? b_country.innerHTML : countries_ship; //country.innerHTML;
            
             let shipHave = false, billHave = false;
 
@@ -1594,13 +1600,13 @@ window.onload = function() {
                             item.addEventListener('click', (e) => {
                                 e.stopImmediatePropagation()
                                 if (item.closest('.ship') != null) {
-                                    document.querySelector('.col-left .head').insertAdjacentHTML('afterend', shipFormHtml(state_item, countries_ship_item,'active', 'edit'))
+                                    shipFormHtml('.col-left .head', state_item, countries_ship_item,'active', 'edit')
                                     document.querySelector('.col-left .head h4').innerHTML = obj['stepsName'][1];
                                     document.querySelector('.btn-next').innerHTML = 'Save Shipping info';
 
                                     currentAddress('.ship-form > dd', ``, currentAddressShip)
                                 } else if (item.closest('.bill') != null) {
-                                    document.querySelector('.col-left .head').insertAdjacentHTML('afterend', billFormHtml(state_item, countries_bill_item, 'active','edit'))
+                                    billFormHtml('.col-left .head', state_item, countries_bill_item, 'active','edit')
                                     document.querySelector('.col-left .head h4').innerHTML = 'Billing information';
                                     document.querySelector('.btn-next').innerHTML = 'Save Billing info';
 
@@ -1625,13 +1631,13 @@ window.onload = function() {
                         document.querySelector('.address .link').hidden = true;
                     }
                     if (document.querySelector('.address.bill') != null && document.querySelector('.address.ship') == null) {
-                        document.querySelector('.col-left .head').insertAdjacentHTML('afterend', shipFormHtml(state_item, countries_ship_item, 'active', ''))
+                        shipFormHtml('.col-left .head', state_item, countries_ship_item, 'active', '')
                         document.querySelector('.ship-form > dd:last-child').remove();
                     }
                 } else {
                     //Shipping Information - not filled
-                    document.querySelector('.col-left .head').insertAdjacentHTML('afterend', shipFormHtml(state_item, countries_ship_item, 'active', ''))
-                    document.querySelector('.col-left .head').insertAdjacentHTML('afterend', billFormHtml(state_item, countries_bill_item, '', ''))
+                    shipFormHtml('.col-left .head', state_item, countries_ship_item, 'active', '')
+                    billFormHtml('.col-left .head', state_item, countries_bill_item, '', '')
                     document.querySelector('[name="shipping"]').addEventListener('click', (e) => {
                         console.log(e.target)
                         copyFromShip(e.target, 'bill')
@@ -1905,12 +1911,12 @@ window.onload = function() {
                 setBack()
                 //add billing form html
                 console.log(state_item, countries_ship_item)
-                document.querySelector('.col-left .head').insertAdjacentHTML('afterend', billFormHtml(state_item, countries_bill_item, 'active',''))
+                billFormHtml('.col-left .head', state_item, countries_bill_item, 'active','')
                 //copy from Shipping
                 document.querySelector('[name="shipping"]').addEventListener('click', (e) => copyFromShip(e.target, 'bill'))
             } else if (document.querySelector('.address.ship') == null && document.querySelector('.address.bill') != null && document.querySelector('.ship-form.active') == null) {
                 console.log('address.ship == null')
-                document.querySelector('.col-left .head').insertAdjacentHTML('afterend', shipFormHtml(state_item, countries_ship_item, 'active',''))
+                shipFormHtml('.col-left .head', state_item, countries_ship_item, 'active','')
             } else if (document.querySelector('.ship-form.edit') != null) {
                 console.log('edit ship form')
                 address('ship')
