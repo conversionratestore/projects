@@ -1739,6 +1739,7 @@ window.onload = function() {
             document.querySelector('#checkoutForm > p').innerHTML = document.querySelector('#checkoutForm > p').innerHTML.replace('Place Your Order Now','Proceed');
         }
         if (href.includes('/guest-checkout3.php')) {
+            document.querySelector('#checkoutForm').insertAdjacentHTML('afterbegin',`<h3>Card Details <img src="https://conversionratestore.github.io/projects/medicalmega/img/payment-cards.svg" alt="icons"></h3>`);
             document.querySelector('#checkoutForm > fieldset > dl > dd:nth-child(2)').innerHTML = `Credit/Debit Card<span class="c-red-08"> *</span>`;
             document.querySelector('#checkoutForm > p').style.whiteSpace = 'initial';
         }
