@@ -1578,7 +1578,7 @@ window.onload = function() {
             sessionStorage.setItem('routing', 0);
             document.querySelector('.col-left .head h4').innerHTML = obj['stepsName'][1];
             state_item = href.includes('guest-checkout1.php') ? b_state : state;
-            countries_ship_item = href.includes('guest-checkout1.php') ? b_country.innerHTML : countries_ship;
+            countries_ship_item = href.includes('guest-checkout1.php') ? s_country.innerHTML : countries_ship;
             countries_bill_item = href.includes('guest-checkout1.php') ? b_country.innerHTML : countries_all; //country.innerHTML;
            
             let shipHave = false, billHave = false;
