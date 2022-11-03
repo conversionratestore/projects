@@ -1399,7 +1399,7 @@ window.onload = function() {
                     document.querySelector(typeState).innerHTML = statesUsa;
                     document.querySelector(typeState).previousElementSibling.children[0].innerHTML = 'State (Only applicable to US)'
                 } else {
-                    document.querySelector(typeState).innerHTML = '<option value="" selected="selected">-- Select State --</option>';
+                    document.querySelector(typeState).innerHTML = statesUsa;
                     document.querySelector(typeState).previousElementSibling.children[0].innerHTML = 'State (Only applicable to US)'
                 }
             })
