@@ -1538,18 +1538,18 @@ window.onload = function() {
                     for (const keyShip in address) {
                         console.log(keyShip, address[keyShip])
                         if (document.querySelector(`.${formType}-form dd [name="${keyShip}"]`) != null && address[keyShip] != '') {
-                            let name = document.querySelector(`.${formType}-form dd [name="${keyShip}"]`);
-                            if (name.value == 'Canada') {
-                                name.innerHTML = statesCanada;
-                                name.previousElementSibling.children[0].innerHTML = 'Province / Territory'
-                            } else if (name.value == 'United States') {
-                                name.innerHTML = statesUsa;
-                                name.previousElementSibling.children[0].innerHTML = 'State (Only applicable to US)'
+                            let stateName = document.querySelector(`.${formType}-form dd [name="state"]`);
+                            if (stateName.value == 'Canada') {
+                                stateName.innerHTML = statesCanada;
+                                stateName.previousElementSibling.children[0].innerHTML = 'Province / Territory'
+                            } else if (stateName.value == 'United States') {
+                                stateName.innerHTML = statesUsa;
+                                stateName.previousElementSibling.children[0].innerHTML = 'State (Only applicable to US)'
                             } else {
-                                document.querySelector(`.${formType}-form dd [name="state"]`).innerHTML = statesUsa;
-                                document.querySelector(`.${formType}-form dd [name="state"]`).previousElementSibling.children[0].innerHTML = 'State (Only applicable to US)'
+                                stateName.innerHTML = statesUsa;
+                                stateName.previousElementSibling.children[0].innerHTML = 'State (Only applicable to US)'
                             }
-                            name.value = address[keyShip]
+                            document.querySelector(`.${formType}-form dd [name="${keyShip}"]`).value = address[keyShip]
                         }
                     }
                 })
