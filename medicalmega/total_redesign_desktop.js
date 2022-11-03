@@ -367,6 +367,10 @@ let labelForEvents = (e) => {
     } 
 }
 
+//add/remove active
+let addActive = (element) => document.querySelector(element).classList.add('active');
+let removeActive = (element) => document.querySelector(element).classList.remove('active');
+
 let arrMouth = ['Jan','Feb','Mar','Apr','May','Jun','Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 let counterBasket = 0;
 
@@ -1192,7 +1196,7 @@ window.onload = function() {
         if ((href.includes('/login.php') || href.includes('/register.php')) && document.querySelector('.myAccount') != null) {
             document.querySelector('.col-left .head').after(document.querySelector('.myAccount'))
             document.querySelector('.col-left .head h4').innerHTML = obj['stepsName'][0];
-            document.querySelector('.myAccountleft').classList.add('active');
+            addActive('.myAccountleft')
             addStep('.steps', 0)
 
             //click on 'Sign in/Register' button
@@ -1202,13 +1206,13 @@ window.onload = function() {
                 if (titleHead.innerHTML === 'Sign in') {
                     titleHead.innerHTML = 'Register';
                     linkHead.innerHTML = 'Sign in';
-                    document.querySelector('.myAccountright').classList.remove('active')
-                    document.querySelector('.myAccountleft').classList.add('active')
+                    removeActive('.myAccountright')
+                    addActive('.myAccountleft')
                 } else {
                     titleHead.innerHTML = 'Sign in';
                     linkHead.innerHTML = 'Register';
-                    document.querySelector('.myAccountleft').classList.remove('active')
-                    document.querySelector('.myAccountright').classList.add('active')
+                    removeActive('.myAccountleft')
+                    addActive('.myAccountright')
                 }
             })
             document.querySelector(' .myAccountleft dd:nth-child(5) input').insertAdjacentHTML('afterend',`<img class="eye" src="https://conversionratestore.github.io/projects/medicalmega/img/eye-through.svg" alt="eye icon">`)
@@ -1665,8 +1669,8 @@ window.onload = function() {
                             if (dataErrors.length < 1) {
                                 document.querySelector('.col-left .head h4').innerHTML = 'Billing information';
                                 setBack()
-                                document.querySelector('.ship-form.active').classList.remove('active')
-                                document.querySelector('.bill-form').classList.add('active')
+                                removeActive('.ship-form.active')
+                                addActive('.bill-form')
                             } else {
                                 errorsFun(dataErrors)
                             }
@@ -1974,11 +1978,11 @@ window.onload = function() {
             <div class="container">     
                 <div class="header-cart"><div class=" flex-center-between">Shopping cart <svg class="ml-auto" width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M15.4161 14L22.5939 5.44414C22.7142 5.30195 22.613 5.08594 22.4271 5.08594H20.245C20.1165 5.08594 19.9935 5.14336 19.9087 5.2418L13.9888 12.2992L8.06887 5.2418C7.98684 5.14336 7.86379 5.08594 7.73254 5.08594H5.55051C5.36457 5.08594 5.2634 5.30195 5.38372 5.44414L12.5614 14L5.38372 22.5559C5.35676 22.5876 5.33947 22.6263 5.3339 22.6675C5.32832 22.7088 5.33469 22.7507 5.35225 22.7884C5.36981 22.8262 5.39783 22.858 5.43297 22.8803C5.46812 22.9026 5.50891 22.9143 5.55051 22.9141H7.73254C7.86106 22.9141 7.98411 22.8566 8.06887 22.7582L13.9888 15.7008L19.9087 22.7582C19.9907 22.8566 20.1138 22.9141 20.245 22.9141H22.4271C22.613 22.9141 22.7142 22.698 22.5939 22.5559L15.4161 14Z" fill="#6D7E85"/></svg></div></div>
                 <div class="body-cart">
-                <ul class="list-product"></ul>
-                <div class="justify-between subtotal"></div>
+                    <ul class="list-product"></ul>
+                    <div class="justify-between subtotal"></div>
                     <div class="also-bought">
-                    <h4>Also bought with</h4>
-                    <div class="relative">
+                        <h4>Also bought with</h4>
+                        <div class="relative">
                             <button class="swiper-button swiper-button-prev" type="button">
                                 <span>
                                     <svg width="18" height="50" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -2024,22 +2028,17 @@ window.onload = function() {
         scriptCustom.async = false;
         document.head.appendChild(scriptCustom);
 
-        //show/hide cart modal
-        let showCart = () => document.querySelector('.shopping-cart').classList.add('active');
-        let hideCart = () => document.querySelector('.shopping-cart').classList.remove('active');
-
-        document.querySelector('.header-cart svg').addEventListener('click', () => {
-            hideCart()
+        document.querySelector('.header-cart svg').addEventListener('click', (e) => {
+            removeActive('.shopping-cart')
+            pushDataLayer('Click on cross button', labelForEvents(e.target))
         })
         document.querySelector('.shopping-cart').addEventListener('click', (e) => {
             if(e.target.matches('.shopping-cart')) {
-                hideCart()
+                removeActive('.shopping-cart')
+                pushDataLayer('Click on under shopping cart', labelForEvents(e.target))
             }
         })
-        document.querySelector('.shoppingcart.tooltip-cart').addEventListener('click', (e) => {
-            e.preventDefault();
-            showCart()
-        })
+
         //Click on payPal button (event)
         document.querySelector('.paypal-form-button').addEventListener('click', (e) => {
             e.stopImmediatePropagation();
@@ -2863,15 +2862,15 @@ window.onload = function() {
         .card {
         // max-width: 281px;
         // width: calc(25% - 10px);
-        background: #FFFFFF;
-        border: 1px solid #E3E6E7;
-        border-radius: 4px;
-        padding: 40px;
-        display: flex;
-        justify-content: space-between;
-        flex-direction: column;
-        transition: all 0.3s ease;
-        position: relative; }
+            background: #FFFFFF;
+            border: 1px solid #E3E6E7;
+            border-radius: 4px;
+            padding: 40px;
+            display: flex;
+            justify-content: space-between;
+            flex-direction: column;
+            transition: all 0.3s ease;
+            position: relative; }
         .card:hover {
             z-index: 1;
             box-shadow: 0px 2px 4px rgba(9, 17, 20, 0.1), 0px 12px 32px rgba(0, 0, 0, 0.05);
@@ -2897,21 +2896,19 @@ window.onload = function() {
             -webkit-box-orient: vertical;
             line-height: 15.6px;
             margin-bottom: 7px; }
-            .card_item {
-                font-size: 11px;
-                margin-bottom: 15px;
-                color: #6D7E85;
-            }
+        .card_item {
+            font-size: 11px;
+            margin-bottom: 15px;
+            color: #6D7E85;}
         .card .btn {
             padding: 0;
             font-size: 12px;
             width: 100%; }
         .ais-Breadcrumb-list, .breadcrumbs ul {  
-        display: flex;
-        align-items: center;
-        }
+            display: flex;
+            align-items: center;}
         .breadcrumbs {
-        padding: 10px 0 5px; }
+            padding: 10px 0 5px; }
         .ais-Breadcrumb-link, .breadcrumbs a {
             font-weight: normal;
             font-size: 12px;
@@ -2940,10 +2937,10 @@ window.onload = function() {
             cursor: default;
             padding: 10px 0; }
         .ml-40 {
-        margin-left: 40px; }
+            margin-left: 40px; }
         
         .mr-8 {
-        margin-right: 8px; }
+            margin-right: 8px; }
         
         .mr-16 {
         margin-right: 16px; }
@@ -3203,11 +3200,9 @@ window.onload = function() {
             background-color: transparent;
         }
         .ais-CurrentRefinements-delete:hover {
-            color: #bf0400;
-        }
+            color: #bf0400;}
         #stats-container {
-            white-space: nowrap;
-        }
+            white-space: nowrap;}
         .col_left {
             width: 456px;
             position: sticky;
@@ -3276,9 +3271,9 @@ window.onload = function() {
         .list {
             color: #344D57;
             margin-bottom: 15px; }
-            .list .fw-semi {
+        .list .fw-semi {
             color: #091114;}
-            .list li {
+        .list li {
             font-size: 16px;
             line-height: 170%; }
         .out-of-stick {
@@ -3304,21 +3299,21 @@ window.onload = function() {
             flex-direction: column;
             top: 255px; }
         .product_sidebar .btn {
-        padding: 0;
+            padding: 0;
             width: 100%;}
         .product_content { 
             font-family: 'Inter', sans-serif;
             padding-top: 28px; }
-            .product_content h2, .product_content .title {
-                padding-left: 0;
+        .product_content h2, .product_content .title {
+            padding-left: 0;
             font-weight: 600;
             font-size: 32px;
             line-height: 120%;
             margin-bottom: 24px; }
-            .product_content .col_mid {
-                padding-right: 10px;
-                width: calc(100% - 280px);
-                max-width: 426px; }
+        .product_content .col_mid {
+            padding-right: 10px;
+            width: calc(100% - 280px);
+            max-width: 426px; }
         .line {
             background: #DCE0E1;
             width: 100%;
@@ -3475,56 +3470,55 @@ window.onload = function() {
             white-space: nowrap; }
             
         .product_sidebar.disabled .product_sidebar_top, .product_sidebar.disabled .calc {
-        pointer-events: none;}
+            pointer-events: none;}
         .product_sidebar.disabled p {
-        color: #9AA6AB; }
+            color: #9AA6AB; }
         .product_sidebar.disabled .radio-check {
-        border-color: #E3E6E7; }
+            border-color: #E3E6E7; }
         .product_sidebar.disabled .radio-check span {
-        color: #BCC4C7!important; }
+            color: #BCC4C7!important; }
         .product_sidebar.disabled .calc-qty, .main .product_sidebar.disabled input.calc-qty {
-        border-color: #E3E6E7;
-        color: #BCC4C7; }
+            border-color: #E3E6E7;
+            color: #BCC4C7; }
         .scroll-x {
-        overflow-x: auto;}
+            overflow-x: auto;}
         .scroll-x::-webkit-scrollbar {
-        display: none; }
+            display: none; }
         .tns-outer {
-        margin-left: -4px;
-        margin-right: -4px; }
+            margin-left: -4px;
+            margin-right: -4px; }
         .tns-outer .scroll-x {
             margin-left: 0!important;}
         .available-options .justify-content-between label {
-        position: relative;
-        z-index: 1;
-        min-width: 95px;
-        margin: 0 4px;
-        width: 48%; }
+            position: relative;
+            z-index: 1;
+            min-width: 95px;
+            margin: 0 4px;
+            width: 48%; }
         .available-options .scroll-x {
             margin-left: -5px; }
         .available-options .justify-content-between label:last-child {
             margin-right: 0; }
         .available-options .fs-14 {
-        margin: 15px 0 5px; }
+            margin: 15px 0 5px; }
         .radio-check {
-        background: #FBFBFB;
-        border: 1px solid #E0E4E5;
-        border-radius: 2px;
-        display: block;
-        padding: 11px 0;}
+            background: #FBFBFB;
+            border: 1px solid #E0E4E5;
+            border-radius: 2px;
+            display: block;
+            padding: 11px 0;}
         .radio-check span {
-        font-size: 12px;
-        line-height: 150%;
-        text-align: center;
-        color: #344D57;
-        display: block;
-        }
+            font-size: 12px;
+            line-height: 150%;
+            text-align: center;
+            color: #344D57;
+            display: block;}
         .radio-check span.radio-check_price {
-        font-weight: 600;
-        font-size: 14px;
-        line-height: 130%;
-        color: #091114;
-        margin-top: 8px;}
+            font-weight: 600;
+            font-size: 14px;
+            line-height: 130%;
+            color: #091114;
+            margin-top: 8px;}
         @media only screen and (min-width: 1750px) {
             .nav_category {
             position: relative; }
@@ -3570,7 +3564,16 @@ window.onload = function() {
                                     <input type="text" id="autocomplete">
                                 </div>
                             </div>
-                            <div class="align-items-center"><a class="align-items-center midbar_action mr-16" href="https://medicalmega.com/myaccount.html"><img class="mr-8" src="https://olha1001.github.io/medicalmega/pdp-rediesign/img/common/user.svg" alt="icon account"><span>Account</span></a><a class="align-items-center midbar_action" href="https://medicalmega.com/cart.html"><img class="mr-8" src="https://olha1001.github.io/medicalmega/pdp-rediesign/img/common/cart.svg" alt="icon Cart"><span>Cart (<span class="cart_count">${counterBasket}</span>)</span></a></div>
+                            <div class="align-items-center">
+                                <a class="align-items-center midbar_action mr-16" href="https://medicalmega.com/myaccount.html">
+                                    <img class="mr-8" src="https://olha1001.github.io/medicalmega/pdp-rediesign/img/common/user.svg" alt="icon account">
+                                    <span>Account</span>
+                                </a>
+                                <div class="align-items-center midbar_action btn-cart">
+                                    <img class="mr-8" src="https://olha1001.github.io/medicalmega/pdp-rediesign/img/common/cart.svg" alt="icon Cart">
+                                    <span>Cart (<span class="cart_count">${counterBasket}</span>)</span>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -3812,8 +3815,8 @@ window.onload = function() {
             btnCategory.addEventListener('click', (e) => {
                 if (e.target.matches('.all_category')) {
                     e.target.parentElement.classList.toggle('active');
-                    document.querySelector('.advanced-search').classList.remove('active');
-                    document.querySelector(`[data-button="advanced-search"]`).classList.remove('active');
+                    removeActive('.advanced-search')
+                    removeActive(`[data-button="advanced-search"]`)
                     pushDataLayer(`Click on ${e.target.innerText} button`, labelForEvents(e.target));
                 }
             })
@@ -3833,7 +3836,7 @@ window.onload = function() {
                     document.querySelector(`[data-item=${getData}]`).classList.toggle('active')
                     if (getData == 'advanced-search') {
                         document.querySelector(`[data-button=${getData}]`).classList.toggle('active');
-                        document.querySelector(`.nav_category`).classList.remove('active');
+                        removeActive(`.nav_category`)
 
                         let actionDataLayer = '';
                         if (action != 'close') {
@@ -3977,7 +3980,7 @@ window.onload = function() {
                 <input class="calc-qty" type="number" name="quantity" value="1" data-max-value="${hit['variants'][count].qty}">
                 <button class="btn-calc btn-calc_plus" type="button"></button>
             </div>
-            ${hit['variants'][count].in_stock == false || hit['variants'][count].price == '0.00' ? '<button class="btn btn_white" type="button" data-button="notify"><span>Out of Stock</span></button>' : '<button class="btn btn_dark add-cart" type="submit"><span>$<span class="pr" data-price="' + hit['variants'][count].price + '">' + hit['variants'][count].price + '</span> | Add to Cart</span></button>'}
+            ${hit['variants'][count].in_stock == false || hit['variants'][count].price == '0.00' ? '<button class="btn btn_white" type="button" data-button="notify"><span>Out of Stock</span></button>' : '<button class="btn btn_dark add-cart" type="button"><span>$<span class="pr" data-price="' + hit['variants'][count].price + '">' + hit['variants'][count].price + '</span> | Add to Cart</span></button>'}
             <input type="hidden" name="product_variant_id" value="${hit['variants'][count].pv_id}">
             <input type="hidden" name="product_id" value="${hit.objectID}">
             <input type="hidden" name="add_to_cart" value="variant">
@@ -4240,10 +4243,9 @@ window.onload = function() {
                 item.addEventListener('click', (e) => {
                     toggleActive(item.getAttribute('data-close'), 'close');
                     document.querySelectorAll('.select_option p.active').forEach(el => el.classList.remove('active'))
-
-                    document.querySelector('.select_category ul li p').classList.add('active');
+                    addActive('.select_category ul li p')
                     document.querySelector('.select_category .select_current').innerHTML = `<span>Select Category</span>`;
-                    document.querySelector('.select_brand ul li p').classList.add('active');
+                    addActive('.select_brand ul li p')
                     document.querySelector('.select_brand .select_current').innerHTML = `<span>Select Manufacturer</span>`;
                 })
             })
@@ -4256,13 +4258,13 @@ window.onload = function() {
             document.addEventListener('click', (e) => {
                 if (!e.target.closest('.select')) remActiveSelect();
                 if (!e.target.closest('.nav_category')) {
-                    document.querySelector(`.nav_category`).classList.remove('active');
+                    removeActive(`.nav_category`)
                 }
             })
 
             window.addEventListener('scroll', (e) => {
                 remActiveSelect();
-                document.querySelector('.nav_category').classList.remove('active')
+                addActive('.nav_category')
                 if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
                     if (document.querySelector('.listing_content .ais-InfiniteHits-loadMore') != null && document.querySelector('.listing_content .ais-InfiniteHits-loadMore.ais-InfiniteHits-loadMore--disabled') == null) {
                         document.querySelector('.listing_content .ais-InfiniteHits-loadMore').click();
@@ -4332,10 +4334,10 @@ window.onload = function() {
 
                             document.querySelector('#form-search .ais-SearchBox-submit').addEventListener('click', (e) => {
                                 e.stopImmediatePropagation()
-                                document.querySelector('.nav_category').classList.remove('active');
+                                addActive('.nav_category')
                                 search.helper.state.hierarchicalFacetsRefinements['categories.lvl0'] = [];
                                 if (document.querySelector('.advanced-search.active') != null) {
-                                    document.querySelector('.advanced-search').classList.remove('active');
+                                    addActive('.advanced-search')
                                 }
                                 toggleListing(true)
 
@@ -4361,7 +4363,12 @@ window.onload = function() {
                 pushDataLayer(`Click on ${e.target.innerText}`, labelForEvents(e.target))
             })
             document.querySelectorAll('.midbar_action').forEach(el => {
-                el.addEventListener('click', (e) => pushDataLayer(`Click on ${e.target.innerText}`, labelForEvents(e.target)))
+                el.addEventListener('click', (e) => {
+                    if(e.target.classList.contains('btn-cart')) {
+                        addActive('.shopping-cart')
+                    }
+                    pushDataLayer(`Click on ${e.target.innerText}`, labelForEvents(e.target))
+                })
             })
 
             let requestNewProduct = index.search({
@@ -4379,24 +4386,24 @@ window.onload = function() {
             })
             Promise.all([requestNewProduct, requestOstomy, requestWoundCare]).then(res => {
                 document.querySelector('.listing_popular').insertAdjacentHTML('beforeend', `
-            <div class="new-products">
-            <h2>New Products!</h2>
-            <p class="c-gray">${res[0].nbHits} items</p>
-            <ul class="d-flex"></ul>
-            <a href="https://medicalmega.com/?products%5BhierarchicalMenu%5D%5Bcategories.lvl0%5D%5B0%5D=New%20Products!" class="btn btn_white">Show More</a>
-            </div>
-            <div class="ostomy">
-            <h2>Ostomy</h2>
-            <p class="c-gray">${res[1].nbHits} items</p>
-            <ul class="d-flex"></ul>
-            <a href="https://medicalmega.com/?products%5BhierarchicalMenu%5D%5Bcategories.lvl0%5D%5B0%5D=Ostomy" class="btn btn_white">Show More</a>
-            </div>
-            <div class="wound-care">
-            <h2>Wound Care</h2>
-            <p class="c-gray">${res[2].nbHits} items</p>
-            <ul class="d-flex"></ul>
-            <a href="https://medicalmega.com/?products%5BhierarchicalMenu%5D%5Bcategories.lvl0%5D%5B0%5D=Wound%20Care" class="btn btn_white">Show More</a>
-            </div>`);
+                <div class="new-products">
+                    <h2>New Products!</h2>
+                    <p class="c-gray">${res[0].nbHits} items</p>
+                    <ul class="d-flex"></ul>
+                    <a href="https://medicalmega.com/?products%5BhierarchicalMenu%5D%5Bcategories.lvl0%5D%5B0%5D=New%20Products!" class="btn btn_white">Show More</a>
+                </div>
+                <div class="ostomy">
+                    <h2>Ostomy</h2>
+                    <p class="c-gray">${res[1].nbHits} items</p>
+                    <ul class="d-flex"></ul>
+                    <a href="https://medicalmega.com/?products%5BhierarchicalMenu%5D%5Bcategories.lvl0%5D%5B0%5D=Ostomy" class="btn btn_white">Show More</a>
+                </div>
+                <div class="wound-care">
+                    <h2>Wound Care</h2>
+                    <p class="c-gray">${res[2].nbHits} items</p>
+                    <ul class="d-flex"></ul>
+                    <a href="https://medicalmega.com/?products%5BhierarchicalMenu%5D%5Bcategories.lvl0%5D%5B0%5D=Wound%20Care" class="btn btn_white">Show More</a>
+                </div>`);
 
                 for (let i = 0; i < 4; i++) {
                     document.querySelector(`.listing_popular .new-products ul`).insertAdjacentHTML('beforeend', `<li>${initHits(res[0].hits[i])}</li>`)
@@ -4535,7 +4542,7 @@ window.onload = function() {
                                                     <input class="calc-qty" type="number" value="1" name="quantity">
                                                     <button class="btn-calc btn-calc_plus" type="button"></button>
                                                 </div>
-                                                ${firstVariant.in_stock == false || firstVariant.price == '0:00' ? '<button class="btn btn btn_white" type="button" data-button="notify">Out of Stock</button>' : `<button class="btn btn_dark add-cart" type="submit" ><span hidden>$<span class="pr" data-price="${firstVariant.price}">${firstVariant.price}</span> | </span>Add to Cart</button>`}
+                                                ${firstVariant.in_stock == false || firstVariant.price == '0:00' ? '<button class="btn btn btn_white" type="button" data-button="notify">Out of Stock</button>' : `<button class="btn btn_dark add-cart" type="button" ><span hidden>$<span class="pr" data-price="${firstVariant.price}">${firstVariant.price}</span> | </span>Add to Cart</button>`}
                                                 <input type="hidden" name="product_variant_id" value="${firstVariant.pv_id}">
                                                 <input type="hidden" name="product_id" value="${product.objectID}">
                                                 <input type="hidden" name="add_to_cart" value="variant">
@@ -4866,8 +4873,11 @@ window.onload = function() {
                 document.querySelectorAll('.add-cart').forEach(el => {
                     el.addEventListener('click', (e) => {
                         e.stopImmediatePropagation();
+                        postFetch('/cart.html',`api=c&cart_action=add&variant_id=${el.parentElement.querySelector('[name="product_variant_id"]').value}&quantity=${el.parentElement.querySelector('[name="quantity"]').value}&product_id=${el.parentElement.querySelector('[name="product_id"]').value}&ctoken=${mm.ctoken}`,'POST').then(data => {
+                            cart();
+                            addActive('.shopping-cart');
+                        })
                         pushDataLayer(`Click on Add to cart button`, labelForEvents(e.target));
-
                     })
                 })
             }
