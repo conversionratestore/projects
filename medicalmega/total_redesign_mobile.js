@@ -1913,11 +1913,11 @@ window.onload = function() {
                 address('bill')
             } else if (document.querySelector('.address.ship') != null && document.querySelector('.address.bill') != null && document.querySelector('.bill-form.edit') == null && document.querySelector('.ship-form.edit') == null) {
                 console.log('next 2 step')
-                if (href.includes('guest-checkout')) {
+                // if (href.includes('guest-checkout')) {
                     document.querySelector('#mainbody > div > form > div > input[type=image]').click();
-                } else {
-                    window.location.href = `https://medicalmega.com/checkout/step2`;
-                }
+                // } else {
+                //     window.location.href = `https://medicalmega.com/checkout/step2`;
+                // }
             } else if (document.querySelector('.address.ship') != null && document.querySelector('.address.bill') == null && document.querySelector('.bill-form.active') == null) {
                 console.log('next 2 step')
                 document.querySelector('.address.ship').style.display = 'none'
