@@ -1720,6 +1720,21 @@ p.stock_var {
         document.querySelector(".product_details_wrap .p-support")?.after(document.querySelector(".row.no-gutters.p-product-info.pt-2"))
       }
 
+      if (document.querySelector("#personalized .related-items")) {
+        const options = {
+          root: null,
+          threshold: 1,
+        }
+
+        let observerNewHeader = new IntersectionObserver((entries) => {
+          if (!entries[0].isIntersecting) return
+          pushDataLayer(`Visibility block 'Recommended For You'`)
+          observerNewHeader.disconnect()
+        })
+
+        observerNewHeader.observe(document.querySelector("#personalized .related-items"), options)
+      }
+
       newBlock()
       //new block ------> Main PDP
       function newBlock() {
