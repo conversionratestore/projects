@@ -1824,7 +1824,7 @@ window.onload = function() {
                         console.log(data)
                         let dataErrors = data.errors;
                         if (dataErrors.length < 1) {
-                            window.location.href = href.includes('guest-checkout') ? '/guest-checkout1.php' : `/checkout/step1`;
+                            window.location.reload()
                         } else {
                             errorsFun(dataErrors)
                         }
@@ -1838,7 +1838,7 @@ window.onload = function() {
                             if (dataErrors.length < 1) {
                                 postFetch('/api/v1/addresses', saveAddress('bill',fname.value,lname.value,addr1.value,city.value,stateF.value,zip.value,country.value,phn.value,email.value),'POST').then(dataBill => {
                                     console.log(dataBill)
-                                    window.location.href = href.includes('guest-checkout') ? '/guest-checkout2.php' : `/checkout/step2`
+                                    window.location.reload()
                                 })
                             } else {
                                 errorsFun(dataErrors)
@@ -1850,7 +1850,7 @@ window.onload = function() {
                             let dataErrors = data.errors;
                             if (dataErrors.length < 1) {
                                 if (document.querySelector('.address.bill') != null) {
-                                    window.location.href = href.includes('guest-checkout') ? '/guest-checkout2.php' : `/checkout/step2`
+                                    window.location.reload()
                                 } else {
                                     document.querySelector('.col-left .head h4').innerHTML = 'Billing information';
                                     setBack()
@@ -1863,7 +1863,6 @@ window.onload = function() {
                         })
                     }
                 }
-
             } else {
                 let fnameNew, lnameNew;
                 if (fname.tagName === 'INPUT' && lname.tagName === 'INPUT') {
@@ -1879,7 +1878,7 @@ window.onload = function() {
                         console.log(data)
                         let dataErrors = data.errors;
                         if (dataErrors.length < 1) {
-                            window.location.href = href.includes('guest-checkout') ? '/guest-checkout1.php' : `/checkout/step1`;
+                            window.location.reload()
                         } else {
                             errorsFun(dataErrors)
                         }
@@ -1889,7 +1888,7 @@ window.onload = function() {
                         console.log(data)
                         let dataErrors = data.errors;
                         if (dataErrors.length < 1) {
-                            window.location.href = href.includes('guest-checkout') ? '/guest-checkout2.php' : `/checkout/step2`;
+                            window.location.reload()
                         } else {
                             errorsFun(dataErrors)
                         }
