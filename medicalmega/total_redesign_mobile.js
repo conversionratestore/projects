@@ -1546,7 +1546,7 @@ window.onload = function() {
                                 name.innerHTML = statesUsa;
                                 name.previousElementSibling.children[0].innerHTML = 'State (Only applicable to US)'
                             } else {
-                                document.querySelector(`.${formType}-form dd [name="state"]`).innerHTML = '<option value="" selected="selected">-- Select State --</option>';
+                                document.querySelector(`.${formType}-form dd [name="state"]`).innerHTML = statesUsa;
                                 document.querySelector(`.${formType}-form dd [name="state"]`).previousElementSibling.children[0].innerHTML = 'State (Only applicable to US)'
                             }
                             name.value = address[keyShip]
