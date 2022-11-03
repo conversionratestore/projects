@@ -843,9 +843,6 @@ window.onload = function() {
             .wrapper-checkout .myAccountright > form:not(#checkoutForm) > dd:nth-child(6) {
                 margin: 0!important;
             }
-            .myAccountright > form > dd:nth-child(5) {
-                display: none;
-            }
             dd input[type=checkbox] {
                 margin-right: 8px!important;
                 width: fit-content;
