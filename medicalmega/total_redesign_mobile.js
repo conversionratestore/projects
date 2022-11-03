@@ -9,7 +9,7 @@ let styleMain =`
     /* Firefox */
     input.quantity[type=number] {
       -moz-appearance: textfield; }
-    input {
+    input[type="text"] {
         -webkit-appearance: none;
         -moz-appearance: none;
         appearance: none; 
