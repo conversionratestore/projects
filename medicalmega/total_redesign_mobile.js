@@ -1378,7 +1378,7 @@ window.onload = function() {
                     "addr1": addr1,
                     "addr2": "",
                     "city": city,
-                    "state": stateF,
+                    "state": stateF == '' && type == 'bill' ? " " : stateF,
                     "zip": zip,
                     "country": country,
                     "phn": phn,
