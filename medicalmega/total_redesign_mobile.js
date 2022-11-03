@@ -343,7 +343,7 @@ let pricing = (parent, data) => {
 let product = (id, variantId, quantity, subtotal, url, imageUrl, title, varQty) => {
     return `<li class="flex product-item" data-id="${id}" data-variant-id="${variantId}">
                 <div class="relative">
-                    <a href="${url}" class="product-item_img" title="${title}" onclick="pushDataLayer('Click on products', labelForEvents(this))"> 
+                    <a href="${url}" class="product-item_img" title="${title.split('"').join("'")}" onclick="pushDataLayer('Click on products', labelForEvents(this))"> 
                         <img src="${imageUrl}" alt="${title}">
                     </a>
                     ${varQty == 0 ? `<button class="remove" type="button">
@@ -353,7 +353,7 @@ let product = (id, variantId, quantity, subtotal, url, imageUrl, title, varQty) 
                      </button>` : ''}
                 </div>
                 <div>
-                    <a href="${url}" title="${title}">${title}</a>
+                    <a href="${url}" title="${title.split('"').join("'")}">${title}</a>
                     <div class="flex-center-between">
                         ${varQty == 0 ? `<div class="items-center">
                             <button type="button" class="quantity-btn quantity-btn_minus" ${varQty == 1 ? 'disabled': ''}>−</button>
@@ -3838,7 +3838,7 @@ window.onload = function() {
                 <div>
                     <a class="card_name" href="https://medicalmega.com/product/${hit.seo}">
                         <img src="https://medicalmegaimgs.net/prod/uploaded/product/${findImageHits(hit.variants) != '' ? findImageHits(hit.variants) : 'dummyimage.jpg'}" alt="${hit.name}">
-                        <span title='${hit.name}'>${hit.name}</span>
+                        <span title='${hit.name.split('"').join("'")}'>${hit.name}</span>
                     </a>
                     <p class="card_item">Item #${hit.item_num}</p>
                 </div>
