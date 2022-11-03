@@ -9,6 +9,11 @@ let styleMain =`
     /* Firefox */
     input.quantity[type=number] {
       -moz-appearance: textfield; }
+    input {
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none; 
+    }
     .shopping-cart button {
         background: transparent;
         border: none;
