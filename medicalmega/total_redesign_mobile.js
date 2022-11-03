@@ -1399,7 +1399,7 @@ window.onload = function() {
                     document.querySelector(typeState).innerHTML = statesUsa;
                     document.querySelector(typeState).previousElementSibling.children[0].innerHTML = 'State (Only applicable to US)'
                 } else {
-                    document.querySelector(typeState).innerHTML = statesUsa;
+                    document.querySelector(typeState).innerHTML = '<option value="" selected="selected">-- Select State --</option>';
                     document.querySelector(typeState).previousElementSibling.children[0].innerHTML = 'State (Only applicable to US)'
                 }
             })
@@ -1546,7 +1546,7 @@ window.onload = function() {
                                 stateName.innerHTML = statesUsa;
                                 stateName.previousElementSibling.children[0].innerHTML = 'State (Only applicable to US)'
                             } else {
-                                stateName.innerHTML = statesUsa;
+                                stateName.innerHTML = '<option value="" selected="selected">-- Select State --</option>';
                                 stateName.previousElementSibling.children[0].innerHTML = 'State (Only applicable to US)'
                             }
                             document.querySelector(`.${formType}-form dd [name="${keyShip}"]`).value = address[keyShip]
