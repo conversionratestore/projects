@@ -6,13 +6,14 @@ let style = `
 </style>`
 
 //push data layer
-function pushDataLayer(action) {
-    console.log(action)
+function pushDataLayer(desk) {
     window.dataLayer = window.dataLayer || [];
     dataLayer.push({
-        'event': 'event-to-ga',
-        'eventCategory': 'Exp: Sticky button logic rework',
-        'eventAction': action
+        'event': 'event-to-ga4',
+        'event_name': 'exp_sticky_button_logic_rework',
+        'event_desc': desk,
+        'event_type': 'Button',
+        'event_loc': 'Listing. City'
     });
 }
 
@@ -54,7 +55,7 @@ let interval = setInterval(() => {
         //click on Book your tour button
         btnFixed.addEventListener('click', (e) => {
             e.preventDefault();
-            pushDataLayer(`Click on Book your tour button`)
+            pushDataLayer('sticky button',)
             scrollToElement(cardBtn[0], e.target)
         })
     
@@ -62,18 +63,22 @@ let interval = setInterval(() => {
         cardBtn.forEach(item => {
             item.querySelector('a').addEventListener('click', (e) => {
                 if (e.target.innerText.toLowerCase().includes('book now')) {
-                    pushDataLayer(`Click on book now button`)
+                    pushDataLayer('Book tour')
                 } else if (e.target.innerText.toLowerCase().includes('learn more')) {
-                    pushDataLayer(`Click on learn more button`)
+                    pushDataLayer('Learn more')
                 } else if (e.target.innerText.toLowerCase().includes('private tours')) {
-                    pushDataLayer(`Click on private tours button`)
+                    pushDataLayer(`Private tours`)
                 }
             })
         })     
     }
 }, 200)
 
-pushDataLayer('loaded')
+window.dataLayer = window.dataLayer || [];
+dataLayer.push({
+    'event': 'exp_sticky_button_logic_rework',
+    'event_name': 'exp_new_hp_00_loaded'
+});
 
 let isClarify = setInterval(() => {
 	if (typeof clarity == 'function') {

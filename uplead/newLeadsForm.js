@@ -102,10 +102,6 @@ let runTest = () => {
 
             document.querySelector('.style-main') == null ? document.body.insertAdjacentHTML('afterbegin', styleMainPage) : ''
 
-            //change href on buttons
-            document.querySelectorAll('header > div.elementor-container.elementor-column-gap-no > div > div.elementor-column.elementor-col-25 a.elementor-button-link').forEach(item => {
-                item.href = 'https://www.uplead.com/findleadsnow'
-            })
             document.querySelector('.elementor-form').addEventListener('submit', (e) => {
                 e.preventDefault()
                 window.location.href = 'https://www.uplead.com/findleadsnow'
