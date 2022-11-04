@@ -12,11 +12,10 @@ let pushDataLayer = (nameCount, desc, type, loc) => {
     });
 }
 let stateUrl = window.location.href
-let url = '';
 
 let runTest = () => {
     setInterval(() => {
-        url = window.location.href;
+        let url = window.location.href;
         /* main page */
         if (url == 'https://www.uplead.com/' && document.querySelector('section.elementor-element.elementor-element-954ec92 .elementor-container.elementor-column-gap-no .elementor-form .elementor-button .elementor-button-text') != null) {
             clearInterval(runTest)
