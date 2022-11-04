@@ -101,7 +101,7 @@ let runTest = () => {
             </style>`;
 
             document.querySelector('.style-main') == null ? document.body.insertAdjacentHTML('afterbegin', styleMainPage) : ''
-
+            document.querySelector('#form-field-email').type = 'text'
             document.querySelector('.elementor-form').addEventListener('submit', (e) => {
                 e.preventDefault()
                 window.location.href = 'https://www.uplead.com/findleadsnow'
