@@ -1,5 +1,19 @@
 let url = window.location.href;
 
+//push dataLayer
+let pushDataLayer = (nameCount, desc, type, loc) => {
+    console.log(actionDataLayer, labelDataLayer)
+
+    window.dataLayer = window.dataLayer || [];
+    dataLayer.push({
+        'event': 'event-to-ga4',
+        'event_name': `exp_hp_leads_form_0${nameCount}`,
+        'event_desc': desc,
+        'event_type': type,
+        'event_loc': loc
+    });
+}
+
 let runTest = setInterval(() => {
     /* main page */
     if (url == 'https://www.uplead.com/' && document.querySelector('section.elementor-element.elementor-element-954ec92 .elementor-container.elementor-column-gap-no .elementor-form .elementor-button .elementor-button-text') != null) {
@@ -101,7 +115,10 @@ let runTest = setInterval(() => {
                 window.location.href = 'https://app.uplead.com/trial-signup'
             }, 3000)
         }
-        document.addEventListener('click', (e) => window.location.href = 'https://app.uplead.com/trial-signup')
+        document.addEventListener('click', (e) => {
+            window.location.href = 'https://app.uplead.com/trial-signup'
+            pushDataLayer(1, 'Any element on page', 'Interaction', 'Contact Search') //event
+        })
     }
     /* end findleadsnow page */
 
@@ -111,8 +128,11 @@ let runTest = setInterval(() => {
 
         let styleModal = `
         <style>
+            html, body {
+                overflow: hidden;
+            }
             .modal-sign {
-                background: url(https://conversionratestore.github.io/projects/uplead/img/bg-findleadsnow-open.svg) no-repeat center / 100%;
+                background: url(https://conversionratestore.github.io/projects/uplead/img/bg-findleadsnow-open.svg) no-repeat center / 100vw;
                 font-family: 'gilroy', sans-serif;
                 position: fixed;
                 top: 0;
@@ -282,6 +302,39 @@ let runTest = setInterval(() => {
         document.querySelector('.modal-sign .col:first-child > h4').after(document.querySelector('form'))
         //add All Features & Data Included in modal
         document.querySelector('.modal-sign .col:last-child > h4').after(document.querySelector('.WwzhpJuEdC9ZWUaDw5ae'))
+        
+        //events
+        pushDataLayer(2, 'View', 'Popup', 'Popup: Get access to 107M+ B2B contacts') 
+
+        let count = 3;
+        document.querySelectorAll('.modal-sign input').forEach((item, index) => {
+            item.addEventListener('click', () => {
+                pushDataLayer(count + index, item.previousElementSibling.innerHTML, 'Input', 'Popup: Get access to 107M+ B2B contacts')
+            })
+        })
+        document.querySelector('.EbdAVLAV63Q8iq4tqgYM').addEventListener('click', () => {
+            pushDataLayer(7, 'Have a partner code', 'Button', 'Popup: Get access to 107M+ B2B contacts')
+        })
+        document.querySelector('.modal-sign [type="submit"]').addEventListener('click', () => {
+            pushDataLayer(8, 'Sign Up Now', 'Button', 'Popup: Get access to 107M+ B2B contacts')
+        })
+        document.querySelector('.ybJ38nhaJTL1t34tqwOg').addEventListener('click', () => {
+            pushDataLayer(9, 'Sign In', 'Button', 'Popup: Get access to 107M+ B2B contacts')
+        })
     }
     /* end pop-up form */
 })
+
+window.dataLayer = window.dataLayer || [];
+dataLayer.push({
+    'event': 'event-to-ga4',
+    'event_name': 'exp_hp_leads_form_loaded'
+});
+
+//clarify
+let isClarify = setInterval(() => {
+    if(typeof clarity == 'function') {
+        clearInterval(isClarify)
+        clarity("set", "hp_leads_form", "variant_1");
+    }
+}, 100)
