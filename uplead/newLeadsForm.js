@@ -324,7 +324,7 @@ let runTest = () => {
             })
             document.querySelector('.ybJ38nhaJTL1t34tqwOg').addEventListener('click', () => {
                 pushDataLayer(9, 'Sign In', 'Button', 'Popup: Get access to 107M+ B2B contacts')
-                window.location.reload();
+                window.location.href = 'https://app.uplead.com/login'
             })
 
             document.querySelector('.modal-sign form').addEventListener('submit', () => {
