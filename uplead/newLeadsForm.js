@@ -11,14 +11,15 @@ let pushDataLayer = (nameCount, desc, type, loc) => {
         'event_loc': loc
     });
 }
-let stateUrl = window.location.href
+let stateUrl = window.location.href;
+let url = ''
 
 let runTest = () => {
-    setInterval(() => {
-        let url = window.location.href;
+    let start = setInterval(() => {
+        url = window.location.href;
         /* main page */
         if (url == 'https://www.uplead.com/' && document.querySelector('section.elementor-element.elementor-element-954ec92 .elementor-container.elementor-column-gap-no .elementor-form .elementor-button .elementor-button-text') != null) {
-            clearInterval(runTest)
+            clearInterval(start)
 
             //add styles form main page
             let styleMainPage = `
@@ -109,7 +110,7 @@ let runTest = () => {
         
         /* findleadsnow page */
         if (url.includes('/findleadsnow') && document.body != null) {
-            clearInterval(runTest)
+            clearInterval(start)
             document.body.innerHTML = '';
             document.body.style = 'background: url(https://conversionratestore.github.io/projects/uplead/img/bg-findleadeshow.svg) no-repeat center top / 100vw; width: 100%; height: 100vh;'
             if (document.readyState == 'complete') {
@@ -127,7 +128,7 @@ let runTest = () => {
 
         /* pop-up form */
         if (url.includes('/trial-signup') && document.querySelector('.WwzhpJuEdC9ZWUaDw5ae') != null && document.querySelector('form') != null) {
-            clearInterval(runTest)
+            clearInterval(start)
 
             let styleModal = `
             <style>
