@@ -2,7 +2,7 @@ let url = window.location.href;
 
 //push dataLayer
 let pushDataLayer = (nameCount, desc, type, loc) => {
-    console.log(actionDataLayer, labelDataLayer)
+    console.log(nameCount + " : " + desc + " : " + type + " : " + loc)
 
     window.dataLayer = window.dataLayer || [];
     dataLayer.push({
@@ -320,6 +320,16 @@ let runTest = setInterval(() => {
         })
         document.querySelector('.ybJ38nhaJTL1t34tqwOg').addEventListener('click', () => {
             pushDataLayer(9, 'Sign In', 'Button', 'Popup: Get access to 107M+ B2B contacts')
+            window.location.reload();
+        })
+
+        document.querySelector('.modal-sign form').addEventListener('submit', () => {
+            let checkError = setInterval(() => {
+                if (window.location.href.includes('verification')) {
+                    clearInterval(checkError)
+                    window.location.reload();
+                } 
+            }, 200)
         })
     }
     /* end pop-up form */
