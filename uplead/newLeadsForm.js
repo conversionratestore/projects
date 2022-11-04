@@ -16,7 +16,6 @@ let url = ''
 
 let runTest = () => {
     let start = setInterval(() => {
-        url = window.location.href;
         /* main page */
         if (url == 'https://www.uplead.com/' && document.querySelector('section.elementor-element.elementor-element-954ec92 .elementor-container.elementor-column-gap-no .elementor-form .elementor-button .elementor-button-text') != null) {
             clearInterval(start)
@@ -110,7 +109,7 @@ let runTest = () => {
         
         /* findleadsnow page */
         if (url.includes('/findleadsnow') && document.body != null) {
-            clearInterval(start)
+            
             document.body.innerHTML = '';
             document.body.style = 'background: url(https://conversionratestore.github.io/projects/uplead/img/bg-findleadeshow.svg) no-repeat center top / 100vw; width: 100%; height: 100vh;'
             if (document.readyState == 'complete') {
@@ -338,14 +337,17 @@ let runTest = () => {
             })
         }
         /* end pop-up form */
-
-        if (url != stateUrl) {
-            stateUrl = url
-            runTest()
-        }
     })
 }
 runTest()
+
+let mutUrl = setInterval(() => {
+    url = window.location.href;
+    if (url != stateUrl) {
+        stateUrl = url
+        runTest()
+    }
+}, 100)
 
 window.dataLayer = window.dataLayer || [];
 dataLayer.push({
