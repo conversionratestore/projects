@@ -116,8 +116,8 @@ let runTest = setInterval(() => {
             }, 3000)
         }
         document.addEventListener('click', (e) => {
-            window.location.href = 'https://app.uplead.com/trial-signup'
             pushDataLayer(1, 'Any element on page', 'Interaction', 'Contact Search') //event
+            window.location.href = 'https://app.uplead.com/trial-signup';
         })
     }
     /* end findleadsnow page */
