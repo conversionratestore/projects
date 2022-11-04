@@ -109,7 +109,7 @@ let runTest = () => {
         
         /* findleadsnow page */
         if (url.includes('/findleadsnow') && document.body != null) {
-            
+            clearInterval(start)
             document.body.innerHTML = '';
             document.body.style = 'background: url(https://conversionratestore.github.io/projects/uplead/img/bg-findleadeshow.svg) no-repeat center top / 100vw; width: 100%; height: 100vh;'
             if (document.readyState == 'complete') {
@@ -126,11 +126,11 @@ let runTest = () => {
         /* end findleadsnow page */
 
         /* pop-up form */
-        if (url.includes('/trial-signup') && document.querySelector('.WwzhpJuEdC9ZWUaDw5ae') != null && document.querySelector('form') != null) {
+        if (url.includes('/trial-signup') && document.querySelector('.WwzhpJuEdC9ZWUaDw5ae') != null && document.querySelector('form') != null && document.querySelector('.modal-sign') == null) {
             clearInterval(start)
 
             let styleModal = `
-            <style>
+            <style class="style-modal">
                 html, body {
                     overflow: hidden;
                 }
