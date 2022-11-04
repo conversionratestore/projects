@@ -78,6 +78,14 @@ let runTest = setInterval(() => {
         </style>`;
         document.body.insertAdjacentHTML('afterbegin', styleMainPage)
 
+        //change href on buttons
+        document.querySelectorAll('header > div.elementor-container.elementor-column-gap-no > div > div.elementor-column.elementor-col-25 a.elementor-button-link').forEach(item => {
+            item.href = 'https://www.uplead.com/findleadsnow'
+        })
+        document.querySelector('.elementor-form').addEventListener('submit', (e) => {
+            e.preventDefault()
+            window.location.href = 'https://www.uplead.com/findleadsnow'
+        })
         //change text on button
         document.querySelector('section.elementor-element.elementor-element-954ec92 .elementor-container.elementor-column-gap-no .elementor-form .elementor-button .elementor-button-text').innerHTML = 'Find Leads Now';
     }
@@ -104,8 +112,7 @@ let runTest = setInterval(() => {
         let styleModal = `
         <style>
             .modal-sign {
-                background: rgba(0, 0, 0, 0.5);
-                display: flex;
+                background: url(https://conversionratestore.github.io/projects/uplead/img/bg-findleadsnow-open.svg) no-repeat center / 100%;
                 font-family: 'gilroy', sans-serif;
                 position: fixed;
                 top: 0;
@@ -114,15 +121,11 @@ let runTest = setInterval(() => {
                 height: 100%;
                 z-index: 99;
             }
-            .modal-sign:before {
-                content: '';
-                posisiton: absolute;
-                left: 0;
-                top: 0;
+            .modal-sign_container {
+                display: flex;
                 width: 100%;
                 height: 100%;
-                z-index: -1;
-                background: url(https://conversionratestore.github.io/projects/uplead/img/bg-findleadsnow-open.svg) no-repeat center bottom / 100%;
+                background: rgba(0, 0, 0, 0.5)
             }
             .modal-sign .container {
                 max-width: 822px;
@@ -247,27 +250,28 @@ let runTest = setInterval(() => {
 
         let formModal = `
         <div class="modal-sign">
-            <div class="container">
-                <h2 class="modal-header">Get access to 107M+ B2B contacts with a free trial</h2>
-                <div class="flex">
-                    <div class="col">
-                        <h4>Sign up and download 5 lead contacts for free</h4>
-                    </div>
-                    <div class="col">
-                        <h4>All Features & Data Included:</h4>
-                        <div class="trusted-by">
-                            <h4>Trusted by</h4>
-                            <div class="flex flex-wrap justify-between">
-                                <img src="https://conversionratestore.github.io/projects/uplead/img/microsoft.svg" alt="icon">
-                                <img src="https://conversionratestore.github.io/projects/uplead/img/dropbox.svg" alt="icon">
-                                <img src="https://conversionratestore.github.io/projects/uplead/img/amazon.svg" alt="icon">
-                                <img src="https://conversionratestore.github.io/projects/uplead/img/salesforce.svg" alt="icon">
-                                <img src="https://conversionratestore.github.io/projects/uplead/img/google.svg" alt="icon">
+            <div class="modal-sign_container">
+                <div class="container">
+                    <h2 class="modal-header">Get access to 107M+ B2B contacts with a free trial</h2>
+                    <div class="flex">
+                        <div class="col">
+                            <h4>Sign up and download 5 lead contacts for free</h4>
+                        </div>
+                        <div class="col">
+                            <h4>All Features & Data Included:</h4>
+                            <div class="trusted-by">
+                                <h4>Trusted by</h4>
+                                <div class="flex flex-wrap justify-between">
+                                    <img src="https://conversionratestore.github.io/projects/uplead/img/microsoft.svg" alt="icon">
+                                    <img src="https://conversionratestore.github.io/projects/uplead/img/dropbox.svg" alt="icon">
+                                    <img src="https://conversionratestore.github.io/projects/uplead/img/amazon.svg" alt="icon">
+                                    <img src="https://conversionratestore.github.io/projects/uplead/img/salesforce.svg" alt="icon">
+                                    <img src="https://conversionratestore.github.io/projects/uplead/img/google.svg" alt="icon">
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-
             </div>
         </div>`;
 
