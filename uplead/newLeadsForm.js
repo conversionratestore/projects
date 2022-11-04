@@ -116,11 +116,13 @@ let runTest = () => {
         if (url.includes('/findleadsnow') && document.body != null) {
             document.body.innerHTML = '';
             document.body.style = 'background: url(https://conversionratestore.github.io/projects/uplead/img/bg-findleadeshow.svg) no-repeat center top / 100vw; width: 100%; height: 100vh;'
-          
-            setTimeout(() => {
-                window.location.href = 'https://app.uplead.com/trial-signup'
-            }, 3000)
             
+            if (document.readyState == 'complete') {
+                setTimeout(() => {
+                    window.location.href = 'https://app.uplead.com/trial-signup'
+                }, 3000)
+            }
+                
             document.addEventListener('click', (e) => {
                 e.stopImmediatePropagation()
                 pushDataLayer(1, 'Any element on page', 'Interaction', 'Contact Search') //event
