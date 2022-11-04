@@ -11,6 +11,14 @@ let pushDataLayer = (nameCount, desc, type, loc) => {
         'event_loc': loc
     });
 }
+
+let ladedTest = () => {
+    window.dataLayer = window.dataLayer || [];
+    dataLayer.push({
+        'event': 'event-to-ga4',
+        'event_name': 'exp_hp_leads_form_loaded'
+    });
+}
 let stateUrl = window.location.href;
 let url = ''
 
@@ -104,6 +112,7 @@ let runTest = () => {
             })
             //change text on button
             document.querySelector('section.elementor-element.elementor-element-954ec92 .elementor-container.elementor-column-gap-no .elementor-form .elementor-button .elementor-button-text').innerHTML = 'Find Leads Now';
+            ladedTest()
         }
         /* end main page */
         
@@ -111,16 +120,17 @@ let runTest = () => {
         if (url.includes('/findleadsnow') && document.body != null) {
             document.body.innerHTML = '';
             document.body.style = 'background: url(https://conversionratestore.github.io/projects/uplead/img/bg-findleadeshow.svg) no-repeat center top / 100vw; width: 100%; height: 100vh;'
-            if (document.readyState == 'complete') {
-                setTimeout(() => {
-                    window.location.href = 'https://app.uplead.com/trial-signup'
-                }, 3000)
-            }
+          
+            setTimeout(() => {
+                window.location.href = 'https://app.uplead.com/trial-signup'
+            }, 3000)
+            
             document.addEventListener('click', (e) => {
                 e.stopImmediatePropagation()
                 pushDataLayer(1, 'Any element on page', 'Interaction', 'Contact Search') //event
                 window.location.href = 'https://app.uplead.com/trial-signup';
             })
+            ladedTest()
         }
         /* end findleadsnow page */
 
@@ -334,6 +344,8 @@ let runTest = () => {
                     } 
                 }, 200)
             })
+
+            ladedTest()
         }
         /* end pop-up form */
     })
@@ -347,12 +359,6 @@ let mutUrl = setInterval(() => {
         runTest()
     }
 }, 100)
-
-window.dataLayer = window.dataLayer || [];
-dataLayer.push({
-    'event': 'event-to-ga4',
-    'event_name': 'exp_hp_leads_form_loaded'
-});
 
 //clarify
 let isClarify = setInterval(() => {
