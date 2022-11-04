@@ -1929,32 +1929,32 @@ window.onload = function() {
             .shopping-cart button.swiper-button[disabled] {
                 opacity: 0;
             }
-            .slide {
+            .shopping-cart .slide {
                 background: #FFFFFF;
                 margin-right: 12px;
                 padding: 20px;
                 border: 1px solid #E3E6E7;
                 border-radius: 4px;
             }
-            .slide img {
+            .shopping-cart .slide img {
                 width: 80px;
                 height: 80px;
                 margin-right: 8px;
             }
-            .slide .price p {
+            .shopping-cart .slide .price p {
                 font-weight: 300;
                 font-size: 12px;
                 line-height: 150%;
                 text-decoration-line: line-through;
                 color: #666666;
             }
-            .slide .price b {
+            .shopping-cart .slide .price b {
                 font-weight: 600;
                 font-size: 16px;
                 line-height: 130%;
                 color: #091114;
             }
-            .slide .name {
+            .shopping-cart .slide .name {
                 font-weight: 400;
                 font-size: 12px;
                 line-height: 150%;
@@ -2217,7 +2217,7 @@ window.onload = function() {
             -webkit-animation-name: autofill;
             -webkit-animation-fill-mode: both;
         }
-        input {
+        input:not([name="quantity"]) {
             -webkit-appearance: none;
             -moz-appearance: none;
             appearance: none;
@@ -2342,9 +2342,10 @@ window.onload = function() {
         .midbar {
             padding: 20px 0; }
         .midbar_action {
+            pointer-events: auto;
             padding: 12px;}
         .midbar_action span {
-        font-weight: 600;
+            font-weight: 600;
             white-space: nowrap;
             font-size: 10px;
             text-transform: uppercase;
