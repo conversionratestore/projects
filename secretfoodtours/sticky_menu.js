@@ -2,7 +2,6 @@ const crsStyle = /*html*/`
     <style>
         header {
             height: 80px;
-
             position: fixed;
             top: 0;
             transform: translate(0, -90px);
@@ -15,7 +14,6 @@ const crsStyle = /*html*/`
             -ms-transition: transform .2s linear;
             -o-transition: transform .2s linear;
             transition: transform .2s linear;
-
             transform: translate(0px, 0px);
         }
         .destination_page_wr .banner_top {
@@ -35,7 +33,7 @@ const crsStyle = /*html*/`
         .crs_menu a {
             color: #212529;
         }
-        .crs_menu a.active_link {
+        .crs_menu li.active_link a{
             color: #EB6664;
         }
         .crs_anchor {
@@ -97,48 +95,6 @@ const anchors = [
     ['help_center .main_heading', 'crs_faq'],
 ]
 
-const obsSections = () => {
-    // Register IntersectionObserver
-    const io = new IntersectionObserver((entries) => {
-        entries.forEach((entry) => {
-            if (entry.intersectionRatio > 0) {
-                // Add 'active' class if observation target is inside viewport
-
-                if (entry.target.matches(obsList[0])) {
-                    addActiveLink(0)
-                }
-
-                if (entry.target.matches(obsList[1])) {
-                    addActiveLink(1)
-                }
-
-                if (entry.target.matches(obsList[2])) {
-                    addActiveLink(2)
-                }
-
-                if (entry.target.matches(obsList[3]) || entry.target.matches(obsList[4])) {
-                    addActiveLink(3)
-                }
-            } else {
-                document.querySelector('.active_link')?.classList.remove('active_link')
-            }
-        })
-    })
-
-    // Declares what to observe, and observes its properties.
-    const obsList = [
-        '.what_we_do ul', '.food_wr', '.meeting_spot iframe', '.help_center .container:last-child'
-    ]
-
-    const addActiveLink = (index) => {
-        document.querySelectorAll('.crs_menu a')[index].classList.add('active_link')
-    }
-
-    obsList.forEach((el) => {
-        io.observe(document.querySelector(el));
-    })
-}
-
 document.head.insertAdjacentHTML('beforeend', crsStyle)
 
 const intervalTimeout = 100
@@ -151,10 +107,15 @@ const waitForDOM = setInterval(() => {
 
         document.querySelector('.main_container header .container').insertAdjacentHTML('afterend', menu)
 
-        anchors.forEach(element => {
-            document.querySelector('.' + element[0]).insertAdjacentHTML('beforebegin', `<p class="crs_anchor" id="${element[1]}"></p>`)
+        anchors.forEach((element, index) => {
+            if (document.querySelector('.' + element[0])) {
+                document.querySelector('.' + element[0]).insertAdjacentHTML('beforebegin', `<p class="crs_anchor" id="${element[1]}"></p>`)
+            } else if (index === 1 && document.querySelector('.what_we_taste .main_subheading')) {
+                document.querySelector('.what_we_taste .main_subheading').insertAdjacentHTML('beforebegin', `<p class="crs_anchor" id="crs_menu"></p>`)
+            } else {
+                document.querySelectorAll('.crs_menu li')[index].hidden = true
+            }
         });
-
 
         const waitForMenu = setInterval(() => {
             if (document.querySelector('.crs_menu') && document.getElementById('li_other')) {
@@ -170,16 +131,21 @@ const waitForDOM = setInterval(() => {
                             'event_type': 'menu item',
                             'event_loc': 'header'
                         });
+
+                        document.querySelector('.active_link')?.classList.remove('active_link')
+                        e.target.closest('li').classList.add('active_link')
+
+                        setTimeout(() => {
+                            document.querySelector('.active_link')?.classList.remove('active_link')
+                        }, 1500);
                     }
                 })
 
                 document.getElementById('li_other').addEventListener('click', () => document.querySelectorAll('.breadcrumbs ul li a')[1].click())
-
-                obsSections()
             }
         }, intervalTimeout)
 
-        document.querySelector('.similar .container .row').insertAdjacentHTML('afterbegin', /*html*/`
+        document.querySelector('.load_more').insertAdjacentHTML('afterend', /*html*/`
             <div class="low_price">
                 <div><img src="https://conversionratestore.github.io/projects/secretfoodtours/img/book_direct.svg" alt="book direct"></div>
                 <div>
