@@ -1,11 +1,10 @@
 let styleMain =`
 <style>
-    .confirmation-products::-webkit-scrollbar, .body-cart::-webkit-scrollbar {
-        background: #CCCCCC;
-        width: 4px;
-        height: 4px;}
-    .confirmation-products::-webkit-scrollbar-thumb, .body-cart::-webkit-scrollbar-thumb {
-        background: #666666;}
+    html.fix {
+        overflow: hidden;}
+    html.fix body {
+        position: relative;
+        overflow: hidden;}
     /* Chrome, Safari, Edge, Opera */
     input.quantity::-webkit-outer-spin-button,
     input.quantity::-webkit-inner-spin-button {
@@ -532,6 +531,12 @@ window.onload = function() {
                 pointer-events: none;
                 background: linear-gradient(360deg, #FFFFFF 0%, rgba(255, 255, 255, 0) 100%);
             }
+            .confirmation-products::-webkit-scrollbar, .body-cart::-webkit-scrollbar {
+                background: #CCCCCC;
+                width: 4px;
+                height: 4px;}
+            .confirmation-products::-webkit-scrollbar-thumb, .body-cart::-webkit-scrollbar-thumb {
+                background: #666666;}
             .confirmation-products {
                 margin-top: -20px;
                 margin-bottom: -40px;
@@ -1779,11 +1784,13 @@ window.onload = function() {
                 transform: translateX(0);
             }
             .shopping-cart .container {
-            background: #FFFFFF;
-            margin-left: auto;
-            width: 590px;
-            transform: translateX(200px);
-            transition: all 0.3s ease;
+                background: #FFFFFF;
+                margin-left: auto;
+                margin-right: 0!important;
+                width: 590px;
+                transform: translateX(200px);
+                transition: all 0.3s ease;
+                padding: 0;
             }
             .shopping-cart svg {
                 cursor: pointer;
@@ -1842,6 +1849,9 @@ window.onload = function() {
             }
             .footer-cart .btn-next {
                 padding: 0 29px 0 39px;
+            }
+            .paypal-form-button input {
+                padding: 0;
             }
             .body-cart h4 {
                 font-weight: 600;
@@ -2030,11 +2040,13 @@ window.onload = function() {
 
         document.querySelector('.header-cart svg').addEventListener('click', (e) => {
             removeActive('.shopping-cart')
+            document.getElementsByTagName('html')[0].classList.remove('fix')
             pushDataLayer('Click on cross button', labelForEvents(e.target))
         })
         document.querySelector('.shopping-cart').addEventListener('click', (e) => {
             if(e.target.matches('.shopping-cart')) {
                 removeActive('.shopping-cart')
+                document.getElementsByTagName('html')[0].classList.remove('fix')
                 pushDataLayer('Click on under shopping cart', labelForEvents(e.target))
             }
         })
@@ -2342,6 +2354,8 @@ window.onload = function() {
             font-size: 12px;}
         .midbar_action span.cart_count {
             color: #96280F;}
+        .btn-cart * {
+            pointer-events: none;}
         .logo {
             font-weight: 800;
             font-size: 24px;
@@ -4366,6 +4380,7 @@ window.onload = function() {
                 el.addEventListener('click', (e) => {
                     if(e.target.classList.contains('btn-cart')) {
                         addActive('.shopping-cart')
+                        document.getElementsByTagName('html')[0].classList.add('fix')
                     }
                     pushDataLayer(`Click on ${e.target.innerText}`, labelForEvents(e.target))
                 })

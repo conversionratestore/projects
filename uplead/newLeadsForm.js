@@ -106,7 +106,7 @@ let runTest = setInterval(() => {
     /* end main page */
 
     /* findleadsnow page */
-    if (url.includes('/findleadsnow/') && document.body != null) {
+    if (url.includes('/findleadsnow') && document.body != null) {
         clearInterval(runTest)
         document.body.innerHTML = '';
         document.body.style = 'background: url(https://conversionratestore.github.io/projects/uplead/img/bg-findleadeshow.svg) no-repeat center / 100vw; width: 100%; height: 100vh;'
