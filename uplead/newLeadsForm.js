@@ -109,7 +109,7 @@ let runTest = setInterval(() => {
     if (url.includes('/findleadsnow') && document.body != null) {
         clearInterval(runTest)
         document.body.innerHTML = '';
-        document.body.style = 'background: url(https://conversionratestore.github.io/projects/uplead/img/bg-findleadeshow.svg) no-repeat center / 100vw; width: 100%; height: 100vh;'
+        document.body.style = 'background: url(https://conversionratestore.github.io/projects/uplead/img/bg-findleadeshow.svg) no-repeat center top / 100vw; width: 100%; height: 100vh;'
         if (document.readyState == 'complete') {
             setTimeout(() => {
                 window.location.href = 'https://app.uplead.com/trial-signup'
@@ -132,7 +132,7 @@ let runTest = setInterval(() => {
                 overflow: hidden;
             }
             .modal-sign {
-                background: url(https://conversionratestore.github.io/projects/uplead/img/bg-findleadsnow-open.svg) no-repeat center / 100vw;
+                background: url(https://conversionratestore.github.io/projects/uplead/img/bg-findleadsnow-open.svg) no-repeat center top / 100vw;
                 font-family: 'gilroy', sans-serif;
                 position: fixed;
                 top: 0;
@@ -140,11 +140,12 @@ let runTest = setInterval(() => {
                 width: 100%;
                 height: 100%;
                 z-index: 99;
+                overflow-y: auto;
             }
             .modal-sign_container {
                 display: flex;
                 width: 100%;
-                height: 100%;
+                min-height: 100%;
                 background: rgba(0, 0, 0, 0.5)
             }
             .modal-sign .container {
