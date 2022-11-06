@@ -206,22 +206,22 @@ let styleMain =`
     .flex {
         display: flex;
     }
-    .justify-between {
+    .justify-center {
         display: flex;
+        justify-content: center;
+    }
+    .justify-between {
         justify-content: space-between;
     }
     .flex-center-between {
-        display: flex!important;
         align-items: center;
         justify-content: space-between;
     }
     .flex-center {
-        display: flex;
         align-items: center;
         justify-content: center;
     }
     .items-center {
-        display: flex!important;
         align-items: center;
     }
     .relative {
@@ -279,7 +279,7 @@ let pricing = (parent, data) => {
         for (let keyData in data) {
             if (key == keyData && (data[keyData] != 0 || keyData == 'subtotal' || keyData == 'total')) {
                 document.querySelector(parent).insertAdjacentHTML('beforeend', `
-                <li class="justify-between">
+                <li class="justify-between flex">
                     <p>${pricing[key]}:</p>
                     <p>$<span>${(+data[keyData].toString().replace(/[^\d\.]/g,'')).toFixed(2)}</span></p>
                 </li>`)
@@ -289,31 +289,57 @@ let pricing = (parent, data) => {
 }
 
 //add product
-let product = (id, variantId, quantity, subtotal, url, imageUrl, title, varQty) => {
-    return `<li class="flex product-item" data-id="${id}" data-variant-id="${variantId}">
-                <div class="relative">
+let product = (parent, id, variantId, quantity, subtotal, url, imageUrl, title, varQty) => {
+    if (parent == 'cart-page') {
+        return `
+        <li class="flex product-item" data-id="${id}" data-variant-id="${variantId}">
+            <div class="flex">
+                <div class="relative mr-16">
                     <a href="${url}" class="product-item_img" title="${title}"> 
                         <img src="${imageUrl}" alt="${title}">
                     </a>
-                    ${varQty == 0 ? `<button class="remove" type="button">
+                    <button class="remove" type="button">
                         <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M6.60688 6L9.68305 2.3332C9.73461 2.27227 9.69126 2.17969 9.61157 2.17969H8.67641C8.62133 2.17969 8.5686 2.2043 8.53227 2.24648L5.99516 5.27109L3.45805 2.24648C3.4229 2.2043 3.37016 2.17969 3.31391 2.17969H2.37876C2.29907 2.17969 2.25571 2.27227 2.30727 2.3332L5.38344 6L2.30727 9.6668C2.29572 9.68038 2.28831 9.69699 2.28592 9.71466C2.28353 9.73233 2.28626 9.75031 2.29379 9.76648C2.30131 9.78264 2.31332 9.79631 2.32838 9.80585C2.34344 9.81539 2.36093 9.82041 2.37876 9.82031H3.31391C3.36899 9.82031 3.42172 9.7957 3.45805 9.75352L5.99516 6.72891L8.53227 9.75352C8.56743 9.7957 8.62016 9.82031 8.67641 9.82031H9.61157C9.69126 9.82031 9.73461 9.72774 9.68305 9.6668L6.60688 6Z" fill="#6D7E85"/>
                         </svg>
-                     </button>` : ''}
+                    </button>
                 </div>
-                <div>
-                    <a href="${url}" title="${title}">${title}</a>
-                    <div class="flex-center-between">
-                        ${varQty == 0 ? `<div class="items-center">
-                            <button type="button" class="quantity-btn quantity-btn_minus" ${varQty == 1 ? 'disabled': ''}>−</button>
-                            <input type="number" name="quantity" value="${quantity}" class="quantity" ${varQty == 1 ? 'disabled': ''}>
-                            <button type="button" class="quantity-btn quantity-btn_plus" ${varQty == 1 ? 'disabled': ''}>+</button>
-                        </div>` : '<p class="qty">Qty: ' + quantity + '</p>'}
-                        
-                        <div class="total-price flex">$<b>${(+subtotal.toString().replace(/[^\d\.]/g,'')).toFixed(2)}</b></div>
-                    </div>
+                <a href="${url}" title="${title}">${title}</a>
+            </div>
+            <div class="items-center">
+                <button type="button" class="quantity-btn quantity-btn_minus" ${varQty == 1 ? 'disabled': ''}>−</button>
+                <input type="number" name="quantity" value="${quantity}" class="quantity" ${varQty == 1 ? 'disabled': ''}>
+                <button type="button" class="quantity-btn quantity-btn_plus" ${varQty == 1 ? 'disabled': ''}>+</button>
+            </div>
+            <div class="total-price flex">$<b>${(+subtotal.toString().replace(/[^\d\.]/g,'')).toFixed(2)}</b></div>
+        </li>`
+    } else {
+        return `
+        <li class="flex product-item" data-id="${id}" data-variant-id="${variantId}">
+            <div class="relative">
+                <a href="${url}" class="product-item_img" title="${title}"> 
+                    <img src="${imageUrl}" alt="${title}">
+                </a>
+                ${varQty == 0 ? `<button class="remove" type="button">
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M6.60688 6L9.68305 2.3332C9.73461 2.27227 9.69126 2.17969 9.61157 2.17969H8.67641C8.62133 2.17969 8.5686 2.2043 8.53227 2.24648L5.99516 5.27109L3.45805 2.24648C3.4229 2.2043 3.37016 2.17969 3.31391 2.17969H2.37876C2.29907 2.17969 2.25571 2.27227 2.30727 2.3332L5.38344 6L2.30727 9.6668C2.29572 9.68038 2.28831 9.69699 2.28592 9.71466C2.28353 9.73233 2.28626 9.75031 2.29379 9.76648C2.30131 9.78264 2.31332 9.79631 2.32838 9.80585C2.34344 9.81539 2.36093 9.82041 2.37876 9.82031H3.31391C3.36899 9.82031 3.42172 9.7957 3.45805 9.75352L5.99516 6.72891L8.53227 9.75352C8.56743 9.7957 8.62016 9.82031 8.67641 9.82031H9.61157C9.69126 9.82031 9.73461 9.72774 9.68305 9.6668L6.60688 6Z" fill="#6D7E85"/>
+                    </svg>
+                </button>` : ''}
+            </div>
+            <div>
+                <a href="${url}" title="${title}">${title}</a>
+                <div class="flex-center-between">
+                    ${varQty == 0 ? `<div class="items-center">
+                        <button type="button" class="quantity-btn quantity-btn_minus" ${varQty == 1 ? 'disabled': ''}>−</button>
+                        <input type="number" name="quantity" value="${quantity}" class="quantity" ${varQty == 1 ? 'disabled': ''}>
+                        <button type="button" class="quantity-btn quantity-btn_plus" ${varQty == 1 ? 'disabled': ''}>+</button>
+                    </div>` : '<p class="qty">Qty: ' + quantity + '</p>'}
+                    
+                    <div class="total-price flex">$<b>${(+subtotal.toString().replace(/[^\d\.]/g,'')).toFixed(2)}</b></div>
                 </div>
-            </li>`
+            </div>
+        </li>`
+    }
 }
 //checkout header html 
 let headerHTML = `
@@ -442,14 +468,21 @@ window.onload = function() {
                     })
                 } else {
                     document.querySelector('.subtotal').style = '';
+                    document.querySelector('.body-cart').style = '';
+                    document.querySelector('.footer-cart').style = '';
                     document.querySelector(parent).style = '';
+                    document.querySelector('.footer-cart .btn-next').addEventListener('click', (e) => {
+                        e.stopImmediatePropagation();
+                        sessionStorage.setItem('routing', 1);
+                        pushDataLayer('Click on Proceed to checkout button', labelForEvents(e.target))
+                    })
                 }
             }
-            counterBasket = products.length
             if (products.length > 0) {
                 //product quantity changes
                 let varQty = href.includes('checkout/step2') || href.includes('checkout/step3') ? 1 : 0
                 for (let i = 0; i < products.length; i++) {
+                    counterBasket += products[i].quantity
                     //add products
                     document.querySelector(parent).insertAdjacentHTML('beforeend', product(products[i].product_id, products[i].variant_id, products[i].quantity, products[i].subtotal, products[i].url, products[i].image_url, products[i].title, varQty))
 
@@ -467,7 +500,10 @@ window.onload = function() {
 
                     varQty == 0 ? changeQuantity(plus, minus, quantity, true) : ''
                 }
+            } else {
+                counterBasket = 0;
             }
+            document.querySelector('.cart_count') != null ? document.querySelector('.cart_count').value = counterBasket : '';
         })
     }
     //Confirmation
@@ -1167,36 +1203,36 @@ window.onload = function() {
         let wrapperHTML = `
         ${headerHTML}
         <div class="wrapper-checkout">
-            <div class="container justify-between">
-                <div class="col-left justify-between">
-                        <div>
-                            ${window.location.href.includes('/login.php') || window.location.href.includes('/register.php?') ? `<div class="flex-center-between head-login"><h3>Register</h3><a href="#" class="link">Sign in</a></div>` : ''}
-                            <div class="head"><h4></h4></div>
-                        </div>
-                        <div class="foot flex-center-between">
-                            <a class="btn-back items-center" href="#">
-                                <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M15 9.32153V8.67847C15 8.5009 14.8657 8.35695 14.7 8.35695H4.998L7.668 5.50181C7.72479 5.44144 7.75674 5.35926 7.75674 5.27352C7.75674 5.18779 7.72479 5.10561 7.668 5.04524L7.242 4.59511C7.18567 4.53424 7.10899 4.5 7.029 4.5C6.94901 4.5 6.87233 4.53424 6.816 4.59511L3.132 8.537C3.04758 8.62736 3.0001 8.74995 3 8.87782V9.12218C3.00138 9.24977 3.04867 9.37186 3.132 9.463L6.816 13.4049C6.87233 13.4658 6.94901 13.5 7.029 13.5C7.10899 13.5 7.18567 13.4658 7.242 13.4049L7.668 12.9483C7.72444 12.8891 7.75624 12.8079 7.75624 12.7233C7.75624 12.6386 7.72444 12.5575 7.668 12.4982L4.998 9.64305H14.7C14.8657 9.64305 15 9.4991 15 9.32153Z" fill="#1E3944"/>
-                                </svg>
-                                <span></span>
-                            </a>
-                            <button class="btn-next items-center" type="submit">
-                                <span>Next</span>
-                                <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M3 9.32153V8.67847C3 8.5009 3.13431 8.35695 3.3 8.35695H13.002L10.332 5.50181C10.2752 5.44144 10.2433 5.35926 10.2433 5.27352C10.2433 5.18779 10.2752 5.10561 10.332 5.04524L10.758 4.59511C10.8143 4.53424 10.891 4.5 10.971 4.5C11.051 4.5 11.1277 4.53424 11.184 4.59511L14.868 8.537C14.9524 8.62736 14.9999 8.74995 15 8.87782V9.12218C14.9986 9.24977 14.9513 9.37186 14.868 9.463L11.184 13.4049C11.1277 13.4658 11.051 13.5 10.971 13.5C10.891 13.5 10.8143 13.4658 10.758 13.4049L10.332 12.9483C10.2756 12.8891 10.2438 12.8079 10.2438 12.7233C10.2438 12.6386 10.2756 12.5575 10.332 12.4982L13.002 9.64305H3.3C3.13431 9.64305 3 9.4991 3 9.32153Z" fill="#FBFBFB"/>
-                                </svg>
-                            </button>
-                        </div>
+            <div class="container justify-between flex">
+                <div class="col-left justify-between flex">
+                    <div>
+                        ${window.location.href.includes('/login.php') || window.location.href.includes('/register.php?') ? `<div class="flex-center-between head-login"><h3>Register</h3><a href="#" class="link">Sign in</a></div>` : ''}
+                        <div class="head"><h4></h4></div>
+                    </div>
+                    <div class="foot flex-center-between">
+                        <a class="btn-back items-center" href="#">
+                            <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M15 9.32153V8.67847C15 8.5009 14.8657 8.35695 14.7 8.35695H4.998L7.668 5.50181C7.72479 5.44144 7.75674 5.35926 7.75674 5.27352C7.75674 5.18779 7.72479 5.10561 7.668 5.04524L7.242 4.59511C7.18567 4.53424 7.10899 4.5 7.029 4.5C6.94901 4.5 6.87233 4.53424 6.816 4.59511L3.132 8.537C3.04758 8.62736 3.0001 8.74995 3 8.87782V9.12218C3.00138 9.24977 3.04867 9.37186 3.132 9.463L6.816 13.4049C6.87233 13.4658 6.94901 13.5 7.029 13.5C7.10899 13.5 7.18567 13.4658 7.242 13.4049L7.668 12.9483C7.72444 12.8891 7.75624 12.8079 7.75624 12.7233C7.75624 12.6386 7.72444 12.5575 7.668 12.4982L4.998 9.64305H14.7C14.8657 9.64305 15 9.4991 15 9.32153Z" fill="#1E3944"/>
+                            </svg>
+                            <span></span>
+                        </a>
+                        <button class="btn-next items-center" type="submit">
+                            <span>Next</span>
+                            <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M3 9.32153V8.67847C3 8.5009 3.13431 8.35695 3.3 8.35695H13.002L10.332 5.50181C10.2752 5.44144 10.2433 5.35926 10.2433 5.27352C10.2433 5.18779 10.2752 5.10561 10.332 5.04524L10.758 4.59511C10.8143 4.53424 10.891 4.5 10.971 4.5C11.051 4.5 11.1277 4.53424 11.184 4.59511L14.868 8.537C14.9524 8.62736 14.9999 8.74995 15 8.87782V9.12218C14.9986 9.24977 14.9513 9.37186 14.868 9.463L11.184 13.4049C11.1277 13.4658 11.051 13.5 10.971 13.5C10.891 13.5 10.8143 13.4658 10.758 13.4049L10.332 12.9483C10.2756 12.8891 10.2438 12.8079 10.2438 12.7233C10.2438 12.6386 10.2756 12.5575 10.332 12.4982L13.002 9.64305H3.3C3.13431 9.64305 3 9.4991 3 9.32153Z" fill="#FBFBFB"/>
+                            </svg>
+                        </button>
+                    </div>
                 </div>
-                <div class="order justify-between">
-                        <div>
-                            <div class="order_head flex-center-between">
-                                <h4>Your Order</h4>
-                                <a href="/" class="link">Continue Shopping</a>
-                            </div>
-                            <ul class="order_body"></ul>
+                <div class="order justify-between flex">
+                    <div>
+                        <div class="order_head flex-center-between">
+                            <h4>Your Order</h4>
+                            <a href="/" class="link">Continue Shopping</a>
                         </div>
-                        <ul class="order_pricing"></ul>
+                        <ul class="order_body"></ul>
+                    </div>
+                    <ul class="order_pricing"></ul>
                 </div>
             </div>
         </div>`;
@@ -1374,7 +1410,7 @@ window.onload = function() {
         let addressCurrentHtml = (fname, lname, addr1, city, state, zip, country, phone, type) => {
             return `
             <div class="address ${type === 'bill' ? 'bill' : 'ship'}">
-                <div class="justify-between">
+                <div class="justify-between flex">
                     <div>
                         <p>${fname} ${lname}</p>
                         <p>${addr1}</p>
@@ -1996,7 +2032,7 @@ window.onload = function() {
                 <div class="header-cart"><div class=" flex-center-between">Shopping cart <svg class="ml-auto" width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M15.4161 14L22.5939 5.44414C22.7142 5.30195 22.613 5.08594 22.4271 5.08594H20.245C20.1165 5.08594 19.9935 5.14336 19.9087 5.2418L13.9888 12.2992L8.06887 5.2418C7.98684 5.14336 7.86379 5.08594 7.73254 5.08594H5.55051C5.36457 5.08594 5.2634 5.30195 5.38372 5.44414L12.5614 14L5.38372 22.5559C5.35676 22.5876 5.33947 22.6263 5.3339 22.6675C5.32832 22.7088 5.33469 22.7507 5.35225 22.7884C5.36981 22.8262 5.39783 22.858 5.43297 22.8803C5.46812 22.9026 5.50891 22.9143 5.55051 22.9141H7.73254C7.86106 22.9141 7.98411 22.8566 8.06887 22.7582L13.9888 15.7008L19.9087 22.7582C19.9907 22.8566 20.1138 22.9141 20.245 22.9141H22.4271C22.613 22.9141 22.7142 22.698 22.5939 22.5559L15.4161 14Z" fill="#6D7E85"/></svg></div></div>
                 <div class="body-cart">
                     <ul class="list-product"></ul>
-                    <div class="justify-between subtotal"></div>
+                    <div class="justify-between subtotal flex"></div>
                     <div class="also-bought">
                         <h4>Also bought with</h4>
                         <div class="relative">
@@ -2958,39 +2994,7 @@ window.onload = function() {
             line-height: 18px;
             cursor: default;
             padding: 10px 0; }
-        .ml-40 {
-            margin-left: 40px; }
-        
-        .mr-8 {
-            margin-right: 8px; }
-        
-        .mr-16 {
-        margin-right: 16px; }
-        
-        .mt-16 {
-        margin-top: 16px; }
-        .fw-light {
-        font-weight: 300; }
-        .fw-semi {
-        font-weight: 600; }
-        .c-gray {
-        color: #6D7E85; }
-        .c-red {
-        color: #96280F; }
-        .fs-14 {
-        font-size: 14px;
-        line-height: 25px; }
-        .d-flex {
-        display: flex; }
-        .align-items-center {
-        display: flex;
-        align-items: center; }
-        .justify-content-center {
-        display: flex;
-        justify-content: center; }
-        .justify-content-between {
-        display: flex;
-        justify-content: space-between; }
+
         .justify-content-around {
         display: flex;
         -ms-flex-pack: distribute;
@@ -3382,11 +3386,11 @@ window.onload = function() {
         .content-discription table td {
             border-bottom: 1px solid #344D57;
             padding: 4px 0; }
-            .content-discription table td:first-child {
-                color: #091114;
-                width: 40%;
-                padding-right: 10px;
-                word-break: break-word; }
+        .content-discription table td:first-child {
+            color: #091114;
+            width: 40%;
+            padding-right: 10px;
+            word-break: break-word; }
         .tabs-discription li {
             text-transform: lowercase;
             font-size: 14px;
@@ -3395,13 +3399,13 @@ window.onload = function() {
             border-bottom: 1px solid #BCC4C7;
             padding: 13px 15px;
             cursor: pointer; }
-            .tabs-discription li:first-letter {
-                text-transform: uppercase;}
-            .tabs-discription li:first-child {
+        .tabs-discription li:first-letter {
+            text-transform: uppercase;}
+        .tabs-discription li:first-child {
             padding-left: 0; }
-            .tabs-discription li:last-child {
+        .tabs-discription li:last-child {
             padding-right: 0; }
-            .tabs-discription li.active {
+        .tabs-discription li.active {
             cursor: auto;
             border-bottom-color: #091114;
             font-weight: 600;
@@ -3417,16 +3421,16 @@ window.onload = function() {
             font-size: 24px;
             line-height: 29px;
             margin-bottom: 56px; }
-            .similar-products .card {
-                max-width: 281px;
-                width: calc(25% - 30px);
-                margin-right: 40px; }
-            .similar-products .card:last-child {
-                margin-right: 0;
-            }
-            .similar-products .card img {
-                width: 100%;
-                height: 200px;}
+        .similar-products .card {
+            max-width: 281px;
+            width: calc(25% - 30px);
+            margin-right: 40px; }
+        .similar-products .card:last-child {
+            margin-right: 0;
+        }
+        .similar-products .card img {
+            width: 100%;
+            height: 200px;}
         .product {
             padding-top: 17px;
             padding-bottom: 60px; }
@@ -3511,7 +3515,7 @@ window.onload = function() {
             margin-right: -4px; }
         .tns-outer .scroll-x {
             margin-left: 0!important;}
-        .available-options .justify-content-between label {
+        .available-options .justify-between label {
             position: relative;
             z-index: 1;
             min-width: 95px;
@@ -3519,7 +3523,7 @@ window.onload = function() {
             width: 48%; }
         .available-options .scroll-x {
             margin-left: -5px; }
-        .available-options .justify-content-between label:last-child {
+        .available-options .justify-between label:last-child {
             margin-right: 0; }
         .available-options .fs-14 {
             margin: 15px 0 5px; }
@@ -3566,32 +3570,31 @@ window.onload = function() {
             }
         }
         </style>`
-
-        let html = `
+        let htmlListing = `
         <div class="main">
             <header class="header">
                 <div class="supbar">
                     <div class="container flex-center-between">
-                        <a href="https://medicalmega.com/service.html" class="align-items-center"><img src="https://conversionratestore.github.io/projects/medicalmega/img/quotation.svg" alt="icon quotation">Customer Service</a>
-                        <div class="d-flex"><a href="tel:17182084380"><span class="fw-light">Local Phone #</span>1-718-208-4380</a><a class="ml-40" href="tel:18556336342"><span class="fw-light">Toll Free Phone #</span>1-855-MED-MEGA (633-6342)</a></div>
+                        <a href="https://medicalmega.com/service.html" class="items-center"><img src="https://conversionratestore.github.io/projects/medicalmega/img/quotation.svg" alt="icon quotation">Customer Service</a>
+                        <div class="flex"><a href="tel:17182084380"><span class="fw-light">Local Phone #</span>1-718-208-4380</a><a class="ml-40" href="tel:18556336342"><span class="fw-light">Toll Free Phone #</span>1-855-MED-MEGA (633-6342)</a></div>
                     </div>
                 </div>
                 <div class="midbar">
                     <div class="container">
                         <div class="flex-center-between"><a class="logo" href="#">Medical<span>Mega</span></a>
-                            <div class="d-flex">
+                            <div class="flex">
                                 <button class="btn btn_white mr-16" type="button" data-button="advanced-search">Advanced Search</button>
                                 <div class="box-search"> 
                                     <div id="form-search"></div>
                                     <input type="text" id="autocomplete">
                                 </div>
                             </div>
-                            <div class="align-items-center">
-                                <a class="align-items-center midbar_action mr-16" href="https://medicalmega.com/myaccount.html">
+                            <div class="items-center">
+                                <a class="items-center midbar_action mr-16" href="https://medicalmega.com/myaccount.html">
                                     <img class="mr-8" src="https://olha1001.github.io/medicalmega/pdp-rediesign/img/common/user.svg" alt="icon account">
                                     <span>Account</span>
                                 </a>
-                                <div class="align-items-center midbar_action btn-cart">
+                                <div class="items-center midbar_action btn-cart">
                                     <img class="mr-8" src="https://olha1001.github.io/medicalmega/pdp-rediesign/img/common/cart.svg" alt="icon Cart">
                                     <span>Cart (<span class="cart_count">${counterBasket}</span>)</span>
                                 </div>
@@ -3602,7 +3605,7 @@ window.onload = function() {
                 <form class="advanced-search" data-item="advanced-search">
                     <div class="container flex-center-between">
                         <p class="fs-14 c-gray">Advanced Search</p>
-                        <div class="d-flex">
+                        <div class="flex">
                             <input type="text" placeholder="Enter Item #" name="search_item">
                             <input type="text" placeholder="Enter Keyword" name="search_keyword">
                             <div class="select select_category">
@@ -3621,7 +3624,7 @@ window.onload = function() {
                 <div class="subbar">
                     <div class="container flex-center-between">
                         <nav class="nav_category">
-                            <div class="align-items-center all_category">
+                            <div class="items-center all_category">
                                 <img class="burger_category" src="https://olha1001.github.io/medicalmega/pdp-rediesign/img/common/burger.svg" alt="icon burger">
                                 <p class="p-main">All Categories</p>
                             </div>
@@ -3631,7 +3634,7 @@ window.onload = function() {
                                 <div id="list_categories_ex"></div>
                             </div>
                         </nav>
-                        <ul class="category_popular d-flex">
+                        <ul class="category_popular flex">
                             <li><a href="/?products%5BhierarchicalMenu%5D%5Bcategories.lvl0%5D%5B0%5D=New%20Products!">New Products!</a></li>
                             <li><a href="/?products%5BhierarchicalMenu%5D%5Bcategories.lvl0%5D%5B0%5D=Hand%20Sanitizing">Hand Sanitizing</a></li>
                             <li><a href="/?products%5BhierarchicalMenu%5D%5Bcategories.lvl0%5D%5B0%5D=Wound%20Care">Wound Care</a></li>
@@ -3818,7 +3821,7 @@ window.onload = function() {
         }
 
         if (sessionStorage.getItem('old_version') == null) {
-            document.body.insertAdjacentHTML('afterbegin', html);
+            document.body.insertAdjacentHTML('afterbegin', htmlListing);
             document.body.insertAdjacentHTML('afterbegin', style);
 
             startStuff();
@@ -4061,7 +4064,7 @@ window.onload = function() {
                     templates: {
                         item: (data) => {
                             let checkbox = `
-                            <label class="mt-16 align-items-center" onclick="pushDataLayer('Click on one of the brand items on filters','Filters')">
+                            <label class="mt-16 items-center" onclick="pushDataLayer('Click on one of the brand items on filters','Filters')">
                                 <span class="check"></span>
                                 <span class="check_text">${data.value}<span class="count_brand">(${data.count})</span></span>
                             </label>
@@ -4084,7 +4087,7 @@ window.onload = function() {
                     templates: {
                         item: (data) => {
                             let checkbox = `
-                            <label class="mt-16 align-items-center" onclick="pushDataLayer('Click on one of the price items on filters','Filters')">
+                            <label class="mt-16 items-center" onclick="pushDataLayer('Click on one of the price items on filters','Filters')">
                                 <span class="check"></span>
                                 <span class="check_text">${data.label} <span class="count_brand">(${data.count})</span></span>
                             </label> `;
@@ -4286,7 +4289,7 @@ window.onload = function() {
 
             window.addEventListener('scroll', (e) => {
                 remActiveSelect();
-                addActive('.nav_category')
+                removeActive('.nav_category')
                 if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
                     if (document.querySelector('.listing_content .ais-InfiniteHits-loadMore') != null && document.querySelector('.listing_content .ais-InfiniteHits-loadMore.ais-InfiniteHits-loadMore--disabled') == null) {
                         document.querySelector('.listing_content .ais-InfiniteHits-loadMore').click();
@@ -4412,19 +4415,19 @@ window.onload = function() {
                 <div class="new-products">
                     <h2>New Products!</h2>
                     <p class="c-gray">${res[0].nbHits} items</p>
-                    <ul class="d-flex"></ul>
+                    <ul class="flex"></ul>
                     <a href="https://medicalmega.com/?products%5BhierarchicalMenu%5D%5Bcategories.lvl0%5D%5B0%5D=New%20Products!" class="btn btn_white">Show More</a>
                 </div>
                 <div class="ostomy">
                     <h2>Ostomy</h2>
                     <p class="c-gray">${res[1].nbHits} items</p>
-                    <ul class="d-flex"></ul>
+                    <ul class="flex"></ul>
                     <a href="https://medicalmega.com/?products%5BhierarchicalMenu%5D%5Bcategories.lvl0%5D%5B0%5D=Ostomy" class="btn btn_white">Show More</a>
                 </div>
                 <div class="wound-care">
                     <h2>Wound Care</h2>
                     <p class="c-gray">${res[2].nbHits} items</p>
-                    <ul class="d-flex"></ul>
+                    <ul class="flex"></ul>
                     <a href="https://medicalmega.com/?products%5BhierarchicalMenu%5D%5Bcategories.lvl0%5D%5B0%5D=Wound%20Care" class="btn btn_white">Show More</a>
                 </div>`);
 
@@ -4473,10 +4476,10 @@ window.onload = function() {
                         //Available Options
                         let htmlAvailableOptions = `
                         <div class="available-options"> 
-                        <p class="fs-14 fw-semi">Available Options: </p> 
-                        <div class="relative">
-                            <div class="justify-content-between scroll-x"></div>
-                        </div>
+                            <p class="fs-14 fw-semi">Available Options: </p> 
+                            <div class="relative">
+                                <div class="flex justify-between scroll-x"></div>
+                            </div>
                         </div>`;
 
                         function availableOptions() {
@@ -4512,7 +4515,7 @@ window.onload = function() {
                                     <li class="ais-Breadcrumb-item ais-Breadcrumb-item--selected"><span class="ais-Breadcrumb-separator" aria-hidden="true">&gt;</span>${product.name}</li>
                                 </ul>  
                             </nav>
-                            <div class="flex-wrap w-100 justify-content-between product"> 
+                            <div class="flex-wrap w-100 justify-between flex product"> 
                                 <div class="col_left flex-wrap"> 
                                     <div class="side_one">
                                         <div class="slider-nav">${getSlidesImage()}</div>
@@ -4529,7 +4532,7 @@ window.onload = function() {
                                     </div>
                                 </div>
                                 <div class="col_right"> 
-                                    <div class="product_content justify-content-between"> 
+                                    <div class="product_content justify-between flex"> 
                                         <div class="col_mid">
                                             <h2 class="title">${product.name}</h2>
                                             <ul class="list">
@@ -4537,7 +4540,7 @@ window.onload = function() {
                                                 <li> Item Number: <span class="fw-semi">${product.item_num}</span></li>
                                                 <li> Manufacturer: <span class="fw-semi">${product.manufacturer}</span></li>
                                             </ul>
-                                            <ul class="tabs-discription d-flex"> 
+                                            <ul class="tabs-discription flex"> 
                                                 <li class="active">Product details</li>
                                             </ul>
                                             <div class="content-discription">
@@ -4548,11 +4551,11 @@ window.onload = function() {
                                             ${firstVariant.in_stock == false ? '<p class="out-of-stick">Out Of Stock</p>' : ''}
                                             <div class="product_sidebar_top">
                                             <div class="shipping_block">
-                                                <div class="align-items-center"> 
+                                                <div class="items-center"> 
                                                     <img class="mr-16 icon-car" src="https://olha1001.github.io/medicalmega/pdp-rediesign/img/common/car.svg" alt="icon shipping">
                                                     <div> 
-                                                    <p class="c-red text-up fw-semi l-t-02">Estimated shipping</p>
-                                                    <p class="c-gray">2-3 business days*</p>
+                                                        <p class="c-red text-up fw-semi l-t-02">Estimated shipping</p>
+                                                        <p class="c-gray">2-3 business days*</p>
                                                     </div>
                                                 </div>
                                                 <div class="line"></div>
@@ -4576,7 +4579,7 @@ window.onload = function() {
                             </div>
                             <section class="similar-products">
                                 <h2 class="text-center">Similar Products</h2>
-                                <div class="justify-content-center cards_similar"></div>
+                                <div class="justify-center cards_similar"></div>
                             </section>
                         </div>`
 
@@ -4697,21 +4700,21 @@ window.onload = function() {
                         }, 200);
 
                         if (product.variants.length > 2) {
-                            let contentAvailableOptions = document.querySelector('.product_sidebar .available-options .justify-content-between');
+                            let contentAvailableOptions = document.querySelector('.product_sidebar .available-options .justify-between');
 
                             contentAvailableOptions.insertAdjacentHTML('beforebegin', `
-                        <div class="arrow_buttons">
-                            <button class="arrow_button arrow_button_prev" type="button" disabled>
-                                <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M12.2868 13.8473C12.3432 13.9036 12.375 13.9803 12.375 14.0602C12.375 14.1402 12.3432 14.2169 12.2868 14.2732L11.6546 14.9091C11.6005 14.9671 11.5249 15 11.4459 15C11.3668 15 11.2912 14.9671 11.2371 14.9091L5.75621 9.39594C5.6723 9.31164 5.6251 9.19728 5.625 9.07799V8.92201C5.6251 8.80272 5.6723 8.68836 5.75621 8.60406L11.2371 3.0909C11.2912 3.0329 11.3668 3 11.4459 3C11.5249 3 11.6005 3.0329 11.6546 3.0909L12.2868 3.7268C12.3432 3.78312 12.375 3.85979 12.375 3.93977C12.375 4.01975 12.3432 4.09641 12.2868 4.15274L7.46788 9L12.2868 13.8473Z" fill="#091114"/>
-                                </svg>
-                            </button>
-                            <button class="arrow_button arrow_button_next" type="button">
-                                <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M5.71321 13.8473C5.65675 13.9036 5.625 13.9803 5.625 14.0602C5.625 14.1402 5.65675 14.2169 5.71321 14.2732L6.34539 14.9091C6.39951 14.9671 6.47506 15 6.55413 15C6.63321 15 6.70876 14.9671 6.76287 14.9091L12.2438 9.39594C12.3277 9.31164 12.3749 9.19728 12.375 9.07799V8.92201C12.3749 8.80272 12.3277 8.68836 12.2438 8.60406L6.76287 3.0909C6.70876 3.0329 6.63321 3 6.55413 3C6.47506 3 6.39951 3.0329 6.34539 3.0909L5.71321 3.7268C5.65675 3.78312 5.625 3.85979 5.625 3.93977C5.625 4.01975 5.65675 4.09641 5.71321 4.15274L10.5321 9L5.71321 13.8473Z" fill="#091114"/>
-                                </svg>
-                            </button>
-                        </div>`)
+                            <div class="arrow_buttons">
+                                <button class="arrow_button arrow_button_prev" type="button" disabled>
+                                    <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M12.2868 13.8473C12.3432 13.9036 12.375 13.9803 12.375 14.0602C12.375 14.1402 12.3432 14.2169 12.2868 14.2732L11.6546 14.9091C11.6005 14.9671 11.5249 15 11.4459 15C11.3668 15 11.2912 14.9671 11.2371 14.9091L5.75621 9.39594C5.6723 9.31164 5.6251 9.19728 5.625 9.07799V8.92201C5.6251 8.80272 5.6723 8.68836 5.75621 8.60406L11.2371 3.0909C11.2912 3.0329 11.3668 3 11.4459 3C11.5249 3 11.6005 3.0329 11.6546 3.0909L12.2868 3.7268C12.3432 3.78312 12.375 3.85979 12.375 3.93977C12.375 4.01975 12.3432 4.09641 12.2868 4.15274L7.46788 9L12.2868 13.8473Z" fill="#091114"/>
+                                    </svg>
+                                </button>
+                                <button class="arrow_button arrow_button_next" type="button">
+                                    <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M5.71321 13.8473C5.65675 13.9036 5.625 13.9803 5.625 14.0602C5.625 14.1402 5.65675 14.2169 5.71321 14.2732L6.34539 14.9091C6.39951 14.9671 6.47506 15 6.55413 15C6.63321 15 6.70876 14.9671 6.76287 14.9091L12.2438 9.39594C12.3277 9.31164 12.3749 9.19728 12.375 9.07799V8.92201C12.3749 8.80272 12.3277 8.68836 12.2438 8.60406L6.76287 3.0909C6.70876 3.0329 6.63321 3 6.55413 3C6.47506 3 6.39951 3.0329 6.34539 3.0909L5.71321 3.7268C5.65675 3.78312 5.625 3.85979 5.625 3.93977C5.625 4.01975 5.65675 4.09641 5.71321 4.15274L10.5321 9L5.71321 13.8473Z" fill="#091114"/>
+                                    </svg>
+                                </button>
+                            </div>`)
 
                             document.querySelectorAll('.arrow_button').forEach(arrow => {
                                 arrow.addEventListener('click', (e) => pushDataLayer('Click on arrow-slide button', labelForEvents(e.target)))
@@ -4762,14 +4765,14 @@ window.onload = function() {
                             checkbox.addEventListener('change', (e) => {
                                 if (checkbox.checked) {
                                     let optionPrice = checkbox.nextElementSibling.querySelector('.radio-check_price').innerText.replace('$', ''),
-                                        qty = document.querySelector('.product_sidebar .calc-qty'),
+                                        qtyOptions = document.querySelector('.product_sidebar .calc-qty'),
                                         priceProduct = document.querySelector('.product_sidebar .add-cart .pr');
 
                                     document.querySelector('.product_sidebar [name="product_variant_id"]').value = checkbox.dataset.variant;
                                     priceProduct.dataset.price = optionPrice;
 
-                                    priceProduct.innerHTML = (+optionPrice * +qty.value).toFixed(2);
-                                    if (qty.value == '') {
+                                    priceProduct.innerHTML = (+optionPrice * +qtyOptions.value).toFixed(2);
+                                    if (qtyOptions.value == '') {
                                         priceProduct.innerHTML = optionPrice
                                     }
                                 }
@@ -4788,6 +4791,16 @@ window.onload = function() {
                         })
                     }
                 })
+            }
+            if (href.includes('/cart.html')) {
+                toggleListing(false); //hide listing
+                let htmlCart = `
+                    <div class="cart">
+                        <div class="container">
+                            <ul>
+                            </ul>
+                        </div>
+                    </div>`;
             }
         }
     
