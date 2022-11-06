@@ -431,6 +431,7 @@ let pushDataLayer = (actionDataLayer, labelDataLayer) => {
     });
 }
 
+let currentPath = 'https://medicalmega.com/';
 let interval = null;
 
 let startStuff = () => {
@@ -526,7 +527,6 @@ window.onload = function() {
     let cart = () => {
         let parent = href.includes('/checkout/step') || href.includes('/login.php') || href.includes('/register.php') || href.includes('/guest-checkout') ? ['.order_body'] : href.includes('/cart.html') ? ['.cart-list', '.list-product'] : ['.list-product'];
 
-        console.log(parent)
         //get data
         postFetch('/cart.html',`api=c&cart_action=cart&ctoken=${mm.ctoken}`,'POST').then(data => {
             console.log(data)
@@ -562,6 +562,14 @@ window.onload = function() {
                             sessionStorage.setItem('routing', 1);
                             pushDataLayer('Click on Proceed to checkout button', labelForEvents(e.target))
                         })
+                    }
+                } else if (element == '.cart-list') {
+                    document.querySelector('.cart-total').innerHTML = data.subtotal != 0 ? `<p>Total:</p> <p>$<span>${(+data.subtotal.toString().replace(/[^\d\.]/g,'')).toFixed(2)}</span></p>` : '';
+                    if (products.length < 1) { 
+                        document.querySelector(element).innerHTML = `<div class="empty-cart">
+                            <p>Your cart is currently empty.</p>
+                            <button type="button" class="btn-next"><span>Shop now</span></button>
+                        </div>`;
                     }
                 }
             })
@@ -2862,6 +2870,9 @@ window.onload = function() {
             line-height: 120%;
             min-height: 43.2px;
             margin-bottom: 33px; }
+        .listing_content ol {
+            flex-wrap: wrap;
+            display: flex;}
         .listing_content {
             padding-left: 1px;
             margin-top: 13px; }
@@ -3674,8 +3685,6 @@ window.onload = function() {
         });
 
         const index = searchClient.initIndex(indexName);
-
-        let currentPath = 'https://medicalmega.com/';
 
         let categoryPageLoaded = false;
 
@@ -4852,6 +4861,9 @@ window.onload = function() {
         toggleListing(false, '#container-listing', '#container-product')
         let styleCartPage = `
         <style>
+            .cart .container {
+                max-width: 1100px;
+            }
             .cart-head p, .cart-list li > div {
                 width: 15%;
             }
@@ -4869,8 +4881,16 @@ window.onload = function() {
                         <p class="text-right">Total</p>
                     </div>
                     <ul class="cart-list"></ul>
+                    <div class="cart-total text-right"></div>
+                    <a href="/checkout/step1" class="btn btn-next">
+                        <span>checkout</span>
+                        <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M3 9.32153V8.67847C3 8.5009 3.13431 8.35695 3.3 8.35695H13.002L10.332 5.50181C10.2752 5.44144 10.2433 5.35926 10.2433 5.27352C10.2433 5.18779 10.2752 5.10561 10.332 5.04524L10.758 4.59511C10.8143 4.53424 10.891 4.5 10.971 4.5C11.051 4.5 11.1277 4.53424 11.184 4.59511L14.868 8.537C14.9524 8.62736 14.9999 8.74995 15 8.87782V9.12218C14.9986 9.24977 14.9513 9.37186 14.868 9.463L11.184 13.4049C11.1277 13.4658 11.051 13.5 10.971 13.5C10.891 13.5 10.8143 13.4658 10.758 13.4049L10.332 12.9483C10.2756 12.8891 10.2438 12.8079 10.2438 12.7233C10.2438 12.6386 10.2756 12.5575 10.332 12.4982L13.002 9.64305H3.3C3.13431 9.64305 3 9.4991 3 9.32153Z" fill="#FBFBFB"/>
+                        </svg>
+                    </a>
                 </div>
             </div>`;
+        document.body.insertAdjacentHTML('afterbegin', styleCartPage)
         document.querySelector('.main').insertAdjacentHTML('beforeend', htmlCart)
     }
     !href.includes('/checkout/step4') && !href.includes('/guest-checkout4.php') ? cart() : '';
