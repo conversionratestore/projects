@@ -1272,7 +1272,7 @@ window.onload = function() {
             <div class="container justify-between flex">
                 <div class="col-left justify-between flex">
                     <div>
-                        ${window.location.href.includes('/login.php') || window.location.href.includes('/register.php?') ? `<div class="flex-center-between head-login"><h3>Register</h3><a href="#" class="link">Sign in</a></div>` : ''}
+                        ${href.includes('/login.php') || href.includes('/register.php?') ? `<div class="flex-center-between head-login"><h3>Register</h3><a href="#" class="link">Sign in</a></div>` : ''}
                         <div class="head"><h4></h4></div>
                     </div>
                     <div class="foot flex-center-between">
@@ -2231,31 +2231,6 @@ window.onload = function() {
         })
     }
 
-    if (href.includes('/cart.html')) {
-        toggleListing(false, '#container-listing', '#container-product'); //hide listing
-        let styleCartPage = `
-        <style>
-            .cart-head p, .cart-list li > div {
-                width: 15%;
-            }
-            .cart-head p:first-child, .cart-list li > div:first-child {
-                width: 70%;
-            }  
-        </style>`
-
-        let htmlCart = `
-            <div class="cart">
-                <div class="container">
-                    <div class="cart-head fs-16 c-gray">
-                        <p>Product</p>
-                        <p>Quantity</p>
-                        <p class="text-right">Total</p>
-                    </div>
-                    <ul class="cart-list"></ul>
-                </div>
-            </div>`;
-    }
-    !href.includes('/checkout/step4') && !href.includes('/guest-checkout4.php') ? cart() : '';
 
     if (!href.includes('login.php') && !href.includes('/register.php') && !href.includes('/checkout') && !href.includes('/guest-checkout')) {
         let style = `
@@ -3695,8 +3670,8 @@ window.onload = function() {
         })
 
         let requestProduct = new Promise((resolve, reject) => {
-            if (window.location.pathname.includes('/product/')) {
-                fetch(`https://PXDJAQHDPZ-dsn.algolia.net/1/indexes/products?query=${window.location.pathname.split('/product/')[1]}`, optionFetchAlgolia).then(res => res.json()).then(data => resolve(data))
+            if (href.includes('/product/')) {
+                fetch(`https://PXDJAQHDPZ-dsn.algolia.net/1/indexes/products?query=${href.split('/product/')[1]}`, optionFetchAlgolia).then(res => res.json()).then(data => resolve(data))
             }
         })
 
@@ -4864,4 +4839,31 @@ window.onload = function() {
 
         mut.observe(document, optionMut);
     }
+
+    if (href.includes('/cart.html')) {
+        toggleListing(false, '#container-listing', '#container-product')
+        let styleCartPage = `
+        <style>
+            .cart-head p, .cart-list li > div {
+                width: 15%;
+            }
+            .cart-head p:first-child, .cart-list li > div:first-child {
+                width: 70%;
+            }  
+        </style>`
+
+        let htmlCart = `
+            <div class="cart">
+                <div class="container">
+                    <div class="cart-head fs-16 c-gray">
+                        <p>Product</p>
+                        <p>Quantity</p>
+                        <p class="text-right">Total</p>
+                    </div>
+                    <ul class="cart-list"></ul>
+                </div>
+            </div>`;
+        document.querySelector('.main').insertAdjacentHTML('beforeend', htmlCart)
+    }
+    !href.includes('/checkout/step4') && !href.includes('/guest-checkout4.php') ? cart() : '';
 };
