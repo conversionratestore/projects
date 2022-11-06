@@ -431,8 +431,15 @@ window.onload = function() {
                             <p>Your cart is currently empty.</p>
                             <button type="button" class="btn-next"><span>Shop now</span></button>
                         </div>`;
+                    document.querySelector('.footer-cart').style.display = 'none';
                     document.querySelector('.subtotal').style.display = 'none';
-                    document.querySelector(parent).style.margin = 'auto'
+                    document.querySelector(parent).style.margin = 'auto';
+                    document.querySelector('.body-cart').style.height = 'calc(100vh - 69px)';
+                    document.querySelector('.empty-cart .btn-next').addEventListener('click', (e) => {
+                        removeActive('.shopping-cart')
+                        document.getElementsByTagName('html')[0].classList.remove('fix');
+                        pushDataLayer('Click on Shop now button', labelForEvents(e.target))
+                    })
                 } else {
                     document.querySelector('.subtotal').style = '';
                     document.querySelector(parent).style = '';
