@@ -431,6 +431,22 @@ let pushDataLayer = (actionDataLayer, labelDataLayer) => {
     });
 }
 
+let interval = null;
+
+let startStuff = () => {
+    interval = setInterval(() => {
+        if (window.location.href != currentPath) {
+            document.querySelector('.listing_popular').style.display = 'none';
+        } else {
+            document.querySelector('.listing_popular').style = '';
+        }
+    }, 100);
+}
+
+let stopStuff = () => {
+    clearInterval(interval);
+}
+
 let toggleListing = (boolean, list, product) => {
     if (boolean == false) {
         document.querySelector(list).style.display = 'none';
@@ -3697,21 +3713,6 @@ window.onload = function() {
             } else {
                 element.classList.add('scroll')
             }
-        }
-        let interval = null;
-
-        function startStuff() {
-            interval = setInterval(() => {
-                if (window.location.href != currentPath) {
-                    document.querySelector('.listing_popular').style.display = 'none';
-                } else {
-                    document.querySelector('.listing_popular').style = '';
-                }
-            }, 100);
-        }
-
-        function stopStuff() {
-            clearInterval(interval);
         }
 
         //qty change
