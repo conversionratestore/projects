@@ -526,6 +526,7 @@ window.onload = function() {
     let cart = () => {
         let parent = [href.includes('/checkout/step') || href.includes('/login.php') || href.includes('/register.php') || href.includes('/guest-checkout') ? '.order_body' : href.includes('/cart.html') ? '.cart-list' + ", " + '.list-product' : '.list-product'];
 
+        console.log(parent)
         //get data
         postFetch('/cart.html',`api=c&cart_action=cart&ctoken=${mm.ctoken}`,'POST').then(data => {
             console.log(data)
@@ -572,8 +573,9 @@ window.onload = function() {
                     counterBasket += products[i].quantity
                     //add products
 
-                    parent.forEach(element => {
-                        document.querySelector(element).insertAdjacentHTML('beforeend', product(element, products[i].product_id, products[i].variant_id, products[i].quantity, products[i].subtotal, products[i].url, products[i].image_url, products[i].title, varQty))
+                    parent.forEach((element, index) => {
+                        console.log(element)
+                        document.querySelectorAll(element)[index].insertAdjacentHTML('beforeend', product(element, products[i].product_id, products[i].variant_id, products[i].quantity, products[i].subtotal, products[i].url, products[i].image_url, products[i].title, varQty))
                     })
                     
                     //remove product
@@ -2117,7 +2119,7 @@ window.onload = function() {
         let cartModalHTML = `
         <div class="shopping-cart">
             <div class="container">     
-                <div class="header-cart"><div class=" flex-center-between">Shopping cart <svg class="ml-auto" width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M15.4161 14L22.5939 5.44414C22.7142 5.30195 22.613 5.08594 22.4271 5.08594H20.245C20.1165 5.08594 19.9935 5.14336 19.9087 5.2418L13.9888 12.2992L8.06887 5.2418C7.98684 5.14336 7.86379 5.08594 7.73254 5.08594H5.55051C5.36457 5.08594 5.2634 5.30195 5.38372 5.44414L12.5614 14L5.38372 22.5559C5.35676 22.5876 5.33947 22.6263 5.3339 22.6675C5.32832 22.7088 5.33469 22.7507 5.35225 22.7884C5.36981 22.8262 5.39783 22.858 5.43297 22.8803C5.46812 22.9026 5.50891 22.9143 5.55051 22.9141H7.73254C7.86106 22.9141 7.98411 22.8566 8.06887 22.7582L13.9888 15.7008L19.9087 22.7582C19.9907 22.8566 20.1138 22.9141 20.245 22.9141H22.4271C22.613 22.9141 22.7142 22.698 22.5939 22.5559L15.4161 14Z" fill="#6D7E85"/></svg></div></div>
+                <div class="header-cart"><div class="flex flex-center-between">Shopping cart <svg class="ml-auto" width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M15.4161 14L22.5939 5.44414C22.7142 5.30195 22.613 5.08594 22.4271 5.08594H20.245C20.1165 5.08594 19.9935 5.14336 19.9087 5.2418L13.9888 12.2992L8.06887 5.2418C7.98684 5.14336 7.86379 5.08594 7.73254 5.08594H5.55051C5.36457 5.08594 5.2634 5.30195 5.38372 5.44414L12.5614 14L5.38372 22.5559C5.35676 22.5876 5.33947 22.6263 5.3339 22.6675C5.32832 22.7088 5.33469 22.7507 5.35225 22.7884C5.36981 22.8262 5.39783 22.858 5.43297 22.8803C5.46812 22.9026 5.50891 22.9143 5.55051 22.9141H7.73254C7.86106 22.9141 7.98411 22.8566 8.06887 22.7582L13.9888 15.7008L19.9087 22.7582C19.9907 22.8566 20.1138 22.9141 20.245 22.9141H22.4271C22.613 22.9141 22.7142 22.698 22.5939 22.5559L15.4161 14Z" fill="#6D7E85"/></svg></div></div>
                 <div class="body-cart">
                     <ul class="list-product"></ul>
                     <div class="justify-between subtotal flex"></div>
@@ -2142,7 +2144,7 @@ window.onload = function() {
                         </div>
                     </div>
                 </div>
-                <div class="footer-cart flex-center-between">
+                <div class="footer-cart flex flex-center-between">
                     <form action="https://medicalmega.com/guest-expresscheckout.php" method="POST" target="default" class="paypal-form-button">
                         <input type="image" name="submit" src="https://conversionratestore.github.io/projects/medicalmega/img/paypal.svg" border="0" align="top" alt="Check out with PayPal">
                     </form>
@@ -4862,7 +4864,7 @@ window.onload = function() {
         let htmlCart = `
             <div class="cart">
                 <div class="container">
-                    <div class="cart-head fs-16 c-gray">
+                    <div class="cart-head fs-16 c-gray flex">
                         <p>Product</p>
                         <p>Quantity</p>
                         <p class="text-right">Total</p>
