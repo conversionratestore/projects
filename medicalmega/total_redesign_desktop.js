@@ -524,7 +524,7 @@ window.onload = function() {
     }
     //cart product
     let cart = () => {
-        let parent = [href.includes('/checkout/step') || href.includes('/login.php') || href.includes('/register.php') || href.includes('/guest-checkout') ? '.order_body' : href.includes('/cart.html') ? '.cart-list' + ", " + '.list-product' : '.list-product'];
+        let parent = href.includes('/checkout/step') || href.includes('/login.php') || href.includes('/register.php') || href.includes('/guest-checkout') ? ['.order_body'] : href.includes('/cart.html') ? ['.cart-list', '.list-product'] : ['.list-product'];
 
         console.log(parent)
         //get data
@@ -575,7 +575,7 @@ window.onload = function() {
 
                     parent.forEach((element, index) => {
                         console.log(element)
-                        document.querySelectorAll(element)[index].insertAdjacentHTML('beforeend', product(element, products[i].product_id, products[i].variant_id, products[i].quantity, products[i].subtotal, products[i].url, products[i].image_url, products[i].title, varQty))
+                        document.querySelector(element).insertAdjacentHTML('beforeend', product(element, products[i].product_id, products[i].variant_id, products[i].quantity, products[i].subtotal, products[i].url, products[i].image_url, products[i].title, varQty))
                     })
                     
                     //remove product
