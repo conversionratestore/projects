@@ -19,6 +19,16 @@ let ladedTest = () => {
         'event_name': 'exp_hp_leads_form_loaded'
     });
 }
+
+let isUrlValid = (userInput) => {
+    let url = userInput.value;
+    let res = url.match(/(http(s)?:\/\/.)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/g);
+    if(res == null)
+        return false;
+    else
+        return true;
+}
+
 let stateUrl = window.location.href;
 let url = ''
 
@@ -67,6 +77,7 @@ let runTest = () => {
                     background: #41A3B9;
                     z-index: -1;
                 }
+                
                 .container-hero {
                     max-width: 604px;
                 }
@@ -98,13 +109,33 @@ let runTest = () => {
                     margin-right: auto;
                     display: block;
                 }
+                section.elementor-element.elementor-element-954ec92 .elementor-container.elementor-column-gap-no #form-field-email {
+                    padding-left: 64px;
+                }
+                .icon-link {
+                    position: absolute;
+                    left: 30px;
+                    top: 50%;
+                    transform: translateY(-50%);
+                }
+              
             </style>`;
 
             document.querySelector('.style-main') == null ? document.body.insertAdjacentHTML('afterbegin', styleMainPage) : ''
-            document.querySelector('#form-field-email').type = 'text'
-            document.querySelector('.elementor-form').addEventListener('submit', (e) => {
+            document.querySelector('#form-field-email').type = 'text'; //change type input
+            //add icon
+            document.querySelector('section.elementor-element.elementor-element-954ec92 .elementor-container.elementor-column-gap-no .elementor-field-type-email.elementor-field-group-email.elementor-field-required').insertAdjacentHTML('afterbegin', 
+            `<svg class="icon-link" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                <path d="M12.4609 7.78906C12.25 7.57812 12.0039 7.36719 11.7578 7.19141C11.5117 7.01562 11.2305 7.05078 11.0195 7.22656L10.2812 7.96484C10 8.28125 9.85938 8.66797 9.85938 9.01953C9.85938 9.23047 9.96484 9.37109 10.1055 9.47656C10.2109 9.54688 10.3516 9.65234 10.4922 9.75781C11.4766 10.7773 11.4766 12.3594 10.4922 13.3438L8.10156 15.6992C7.11719 16.7188 5.5 16.7188 4.51562 15.6992C3.53125 14.7148 3.56641 13.0977 4.55078 12.1133L5.00781 11.6562C5.18359 11.5156 5.21875 11.2695 5.14844 11.0586C4.9375 10.4609 4.83203 9.82812 4.79688 9.23047C4.79688 8.73828 4.19922 8.49219 3.84766 8.84375L2.54688 10.1445C0.472656 12.2188 0.472656 15.6289 2.54688 17.7031C4.62109 19.7773 8.03125 19.7773 10.1055 17.7031L12.4609 15.3477C12.4609 15.3477 12.4609 15.3477 12.4609 15.3125C14.5352 13.2734 14.5703 9.89844 12.4609 7.78906ZM17.418 2.83203C15.3438 0.757812 11.9336 0.757812 9.85938 2.83203L7.50391 5.1875C7.50391 5.1875 7.50391 5.1875 7.50391 5.22266C5.42969 7.26172 5.39453 10.6367 7.50391 12.7461C7.71484 12.957 7.96094 13.168 8.20703 13.3438C8.45312 13.5195 8.73438 13.4844 8.94531 13.3086L9.68359 12.5703C9.96484 12.2539 10.1055 11.8672 10.1055 11.5156C10.1055 11.3047 10 11.1641 9.85938 11.0586C9.75391 10.9883 9.61328 10.8828 9.47266 10.7773C8.48828 9.75781 8.48828 8.17578 9.47266 7.19141L11.8633 4.83594C12.8477 3.81641 14.4648 3.81641 15.4492 4.83594C16.4336 5.82031 16.3984 7.4375 15.4141 8.42188L14.957 8.87891C14.7812 9.01953 14.7461 9.26562 14.8164 9.47656C15.0273 10.0742 15.1328 10.707 15.168 11.3047C15.168 11.7969 15.7656 12.043 16.1172 11.6914L17.418 10.3906C19.4922 8.31641 19.4922 4.90625 17.418 2.83203Z" fill="#A6AAAF"/>
+            </svg>`)
+            //change placeholder
+            document.querySelector('section.elementor-element.elementor-element-954ec92 .elementor-container.elementor-column-gap-no #form-field-email').placeholder = 'company.com';
+
+            document.querySelector('section.elementor-element.elementor-element-954ec92 .elementor-container.elementor-column-gap-no .elementor-form .elementor-button').addEventListener('click', (e) => {
                 e.preventDefault()
-                window.location.href = 'https://www.uplead.com/findleadsnow'
+                if (isUrlValid(document.querySelector('#form-field-email')) == true) {
+                    window.location.href = 'https://www.uplead.com/findleadsnow'
+                }
             })
             //change text on button
             document.querySelector('section.elementor-element.elementor-element-954ec92 .elementor-container.elementor-column-gap-no .elementor-form .elementor-button .elementor-button-text').innerHTML = 'Find Leads Now';
