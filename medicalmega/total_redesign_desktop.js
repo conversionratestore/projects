@@ -384,7 +384,7 @@ let product = (parent, id, variantId, quantity, subtotal, url, imageUrl, title, 
             </div>
             <div>
                 <a href="${url}" title="${title}">${title}</a>
-                <div class="flex-center-between">
+                <div class="flex-center-between flex">
                     ${varQty == 0 ? `<div class="flex items-center">
                         <button type="button" class="quantity-btn quantity-btn_minus" ${varQty == 1 ? 'disabled': ''}>−</button>
                         <input type="number" name="quantity" value="${quantity}" class="quantity" ${varQty == 1 ? 'disabled': ''}>
@@ -400,7 +400,7 @@ let product = (parent, id, variantId, quantity, subtotal, url, imageUrl, title, 
 //checkout header html 
 let headerHTML = `
     <header class="header-checkout">
-        <div class="flex-center-between container">
+        <div class="flex flex-center-between container">
             <a href="/" class="logo">
                 <img src="https://conversionratestore.github.io/projects/medicalmega/img/logo-checkout.svg" alt="logo">
             </a>
@@ -573,10 +573,9 @@ window.onload = function() {
                     counterBasket += products[i].quantity
                     //add products
 
-                    parent.forEach((element, index) => {
-                        console.log(element)
-                        document.querySelector(element).insertAdjacentHTML('beforeend', product(element, products[i].product_id, products[i].variant_id, products[i].quantity, products[i].subtotal, products[i].url, products[i].image_url, products[i].title, varQty))
-                    })
+                    for (let j = 0; j < parent.length; j++) {
+                        document.querySelectorAll(parent[j]).insertAdjacentHTML('beforeend', product(parent[j], products[i].product_id, products[i].variant_id, products[i].quantity, products[i].subtotal, products[i].url, products[i].image_url, products[i].title, varQty))
+                    }
                     
                     //remove product
                     let remove = document.querySelectorAll('.remove');
@@ -1296,10 +1295,10 @@ window.onload = function() {
             <div class="container justify-between flex">
                 <div class="col-left justify-between flex">
                     <div>
-                        ${href.includes('/login.php') || href.includes('/register.php?') ? `<div class="flex-center-between head-login"><h3>Register</h3><a href="#" class="link">Sign in</a></div>` : ''}
+                        ${href.includes('/login.php') || href.includes('/register.php?') ? `<div class="flex flex-center-between head-login"><h3>Register</h3><a href="#" class="link">Sign in</a></div>` : ''}
                         <div class="head"><h4></h4></div>
                     </div>
-                    <div class="foot flex-center-between">
+                    <div class="foot flex flex-center-between">
                         <a class="btn-back items-center flex" href="#">
                             <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M15 9.32153V8.67847C15 8.5009 14.8657 8.35695 14.7 8.35695H4.998L7.668 5.50181C7.72479 5.44144 7.75674 5.35926 7.75674 5.27352C7.75674 5.18779 7.72479 5.10561 7.668 5.04524L7.242 4.59511C7.18567 4.53424 7.10899 4.5 7.029 4.5C6.94901 4.5 6.87233 4.53424 6.816 4.59511L3.132 8.537C3.04758 8.62736 3.0001 8.74995 3 8.87782V9.12218C3.00138 9.24977 3.04867 9.37186 3.132 9.463L6.816 13.4049C6.87233 13.4658 6.94901 13.5 7.029 13.5C7.10899 13.5 7.18567 13.4658 7.242 13.4049L7.668 12.9483C7.72444 12.8891 7.75624 12.8079 7.75624 12.7233C7.75624 12.6386 7.72444 12.5575 7.668 12.4982L4.998 9.64305H14.7C14.8657 9.64305 15 9.4991 15 9.32153Z" fill="#1E3944"/>
@@ -1316,7 +1315,7 @@ window.onload = function() {
                 </div>
                 <div class="order justify-between flex">
                     <div>
-                        <div class="order_head flex-center-between">
+                        <div class="order_head flex flex-center-between">
                             <h4>Your Order</h4>
                             <a href="/" class="link">Continue Shopping</a>
                         </div>
@@ -1691,7 +1690,7 @@ window.onload = function() {
 
             document.querySelector('#save_cc_info') != null ? document.querySelector('#save_cc_info').insertAdjacentHTML('afterend','<span class="check2"></span>') : '';
 
-            document.querySelector('.cc-recurring-setting').insertAdjacentHTML('beforebegin',`<label class="order-every flex-center-between"><span class="check2"></span>${document.querySelector('.cc-recurring-setting').innerHTML}</label>`)
+            document.querySelector('.cc-recurring-setting').insertAdjacentHTML('beforebegin',`<label class="order-every flex flex-center-between"><span class="check2"></span>${document.querySelector('.cc-recurring-setting').innerHTML}</label>`)
             document.querySelector('.order-every .check2').before(document.querySelector('#cc-recurring-check'))
             document.querySelector('.btn-next span').innerHTML = 'Proceed';
             document.querySelector('#checkoutForm > p').innerHTML = document.querySelector('#checkoutForm > p').innerHTML.replace('Place Your Order Now','Proceed');
