@@ -508,52 +508,58 @@ window.onload = function() {
     }
     //cart product
     let cart = () => {
-        let parent = href.includes('/checkout/step') || href.includes('/login.php') || href.includes('/register.php') || href.includes('/guest-checkout') ? '.order_body' : href.includes('/cart.html') ? '.cart-list' : '.list-product';
+        let parent = [href.includes('/checkout/step') || href.includes('/login.php') || href.includes('/register.php') || href.includes('/guest-checkout') ? '.order_body' : href.includes('/cart.html') ? '.cart-list' + ", " + '.list-product' : '.list-product'];
 
         //get data
         postFetch('/cart.html',`api=c&cart_action=cart&ctoken=${mm.ctoken}`,'POST').then(data => {
             console.log(data)
             localStorage.setItem('dataCart', JSON.stringify(data));
             let products = data['items'];
-            document.querySelector(parent).innerHTML = '';
-            if (parent == '.order_body') {
-                pricing('.order_pricing', data)  //add pricing for order
-            } else if (parent == '.list-product') {
-                document.querySelector('.subtotal').innerHTML = data.subtotal != 0 ? `<p>Total:</p> <p>$<span>${(+data.subtotal.toString().replace(/[^\d\.]/g,'')).toFixed(2)}</span></p>` : '';
-                if (products.length < 1) {
-                    document.querySelector(parent).innerHTML = `<div class="empty-cart">
-                            <p>Your cart is currently empty.</p>
-                            <button type="button" class="btn-next"><span>Shop now</span></button>
-                        </div>`;
-                    document.querySelector('.footer-cart').style.display = 'none';
-                    document.querySelector('.subtotal').style.display = 'none';
-                    document.querySelector(parent).style.margin = 'auto';
-                    document.querySelector('.body-cart').style.height = 'calc(100vh - 69px)';
-                    document.querySelector('.empty-cart .btn-next').addEventListener('click', (e) => {
-                        removeActive('.shopping-cart')
-                        document.getElementsByTagName('html')[0].classList.remove('fix');
-                        pushDataLayer('Click on Shop now button', labelForEvents(e.target))
-                    })
-                } else {
-                    document.querySelector('.subtotal').style = '';
-                    document.querySelector('.body-cart').style = '';
-                    document.querySelector('.footer-cart').style = '';
-                    document.querySelector(parent).style = '';
-                    document.querySelector('.footer-cart .btn-next').addEventListener('click', (e) => {
-                        e.stopImmediatePropagation();
-                        sessionStorage.setItem('routing', 1);
-                        pushDataLayer('Click on Proceed to checkout button', labelForEvents(e.target))
-                    })
+            parent.forEach(element => {
+                document.querySelector(element).innerHTML = '';
+                if (element == '.order_body') {
+                    pricing('.order_pricing', data)  //add pricing for order
+                } else if (element == '.list-product') {
+                    document.querySelector('.subtotal').innerHTML = data.subtotal != 0 ? `<p>Total:</p> <p>$<span>${(+data.subtotal.toString().replace(/[^\d\.]/g,'')).toFixed(2)}</span></p>` : '';
+                    if (products.length < 1) {
+                        document.querySelector(element).innerHTML = `<div class="empty-cart">
+                                <p>Your cart is currently empty.</p>
+                                <button type="button" class="btn-next"><span>Shop now</span></button>
+                            </div>`;
+                        document.querySelector('.footer-cart').style.display = 'none';
+                        document.querySelector('.subtotal').style.display = 'none';
+                        document.querySelector(element).style.margin = 'auto';
+                        document.querySelector('.body-cart').style.height = 'calc(100vh - 69px)';
+                        document.querySelector('.empty-cart .btn-next').addEventListener('click', (e) => {
+                            removeActive('.shopping-cart')
+                            document.getElementsByTagName('html')[0].classList.remove('fix');
+                            pushDataLayer('Click on Shop now button', labelForEvents(e.target))
+                        })
+                    } else {
+                        document.querySelector('.subtotal').style = '';
+                        document.querySelector('.body-cart').style = '';
+                        document.querySelector('.footer-cart').style = '';
+                        document.querySelector(element).style = '';
+                        document.querySelector('.footer-cart .btn-next').addEventListener('click', (e) => {
+                            e.stopImmediatePropagation();
+                            sessionStorage.setItem('routing', 1);
+                            pushDataLayer('Click on Proceed to checkout button', labelForEvents(e.target))
+                        })
+                    }
                 }
-            }
+            })
+
             if (products.length > 0) {
                 //product quantity changes
                 let varQty = href.includes('checkout/step2') || href.includes('checkout/step3') ? 1 : 0
                 for (let i = 0; i < products.length; i++) {
                     counterBasket += products[i].quantity
                     //add products
-                    document.querySelector(parent).insertAdjacentHTML('beforeend', product(parent, products[i].product_id, products[i].variant_id, products[i].quantity, products[i].subtotal, products[i].url, products[i].image_url, products[i].title, varQty))
 
+                    parent.forEach(element => {
+                        document.querySelector(element).insertAdjacentHTML('beforeend', product(element, products[i].product_id, products[i].variant_id, products[i].quantity, products[i].subtotal, products[i].url, products[i].image_url, products[i].title, varQty))
+                    })
+                    
                     //remove product
                     let remove = document.querySelectorAll('.remove');
                     if (remove.length > 0) {
