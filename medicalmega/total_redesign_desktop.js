@@ -582,7 +582,7 @@ window.onload = function() {
                     //add products
 
                     for (let j = 0; j < parent.length; j++) {
-                        document.querySelectorAll(parent[j]).insertAdjacentHTML('beforeend', product(parent[j], products[i].product_id, products[i].variant_id, products[i].quantity, products[i].subtotal, products[i].url, products[i].image_url, products[i].title, varQty))
+                        document.querySelector(parent[j]).insertAdjacentHTML('beforeend', product(parent[j], products[i].product_id, products[i].variant_id, products[i].quantity, products[i].subtotal, products[i].url, products[i].image_url, products[i].title, varQty))
                     }
                     
                     //remove product
