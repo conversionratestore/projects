@@ -202,12 +202,53 @@ let styleMain =`
         border-radius: 38px;
         margin: 0 12px;
     }
+    /* spacing */
+    .ml-40 {
+        margin-left: 40px; }  
+    .mr-8 {
+        margin-right: 8px; } 
+    .mr-16 {
+        margin-right: 16px; }
+    .mt-16 {
+        margin-top: 16px; }
+    .mt-22 {
+        margin-top: 22px; }
+    .mx-auto {
+        margin-right: auto;
+        margin-left: auto; }
+    /* font */
+    .fw-light {
+        font-weight: 300; }
+    
+    .fw-semi {
+        font-weight: 600; }
+    .fs-14 {
+        font-size: 14px;
+        line-height: 25px; }
+    .fs-16 {
+        font-size: 16px;
+        line-height: 24px; }
+    .fs-24 {
+        font-size: 24px;
+        line-height: 29px; }
+    .l-t-02 {
+        letter-spacing: 0.02em; }
+    .text-small {
+        font-weight: normal;
+        font-size: 8px;
+        line-height: 10px;
+        color: #6D7E85; }
+    .text-up {
+        text-transform: uppercase; }
+    .text-center {
+        text-align: center; }
+    .text-nowrap {
+        white-space: nowrap; }
     /*flex*/
     .flex {
         display: flex;
     }
     .justify-center {
-        display: flex;
         justify-content: center;
     }
     .justify-between {
@@ -224,9 +265,24 @@ let styleMain =`
     .items-center {
         align-items: center;
     }
+    .flex-end-between {
+        justify-content: space-between;
+        align-items: flex-end; }
+    .flex-wrap {
+        -ms-flex-wrap: wrap;
+        flex-wrap: wrap; }
     .relative {
         position: relative;
     }
+    .w-100 {
+        width: 100%; }
+    .max-391 {
+        width: 100%;
+        max-width: 391px; }
+    .scroll-x {
+        overflow-x: auto;}
+    .scroll-x::-webkit-scrollbar {
+        display: none; }
     [disabled] {
         pointer-events: none;
     }
@@ -290,7 +346,7 @@ let pricing = (parent, data) => {
 
 //add product
 let product = (parent, id, variantId, quantity, subtotal, url, imageUrl, title, varQty) => {
-    if (parent == 'cart-page') {
+    if (parent == '.cart-list') {
         return `
         <li class="flex product-item" data-id="${id}" data-variant-id="${variantId}">
             <div class="flex">
@@ -375,6 +431,18 @@ let pushDataLayer = (actionDataLayer, labelDataLayer) => {
     });
 }
 
+let toggleListing = (boolean, list, product) => {
+    if (boolean == false) {
+        document.querySelector(list).style.display = 'none';
+        document.querySelector(product) != null ? document.querySelector(product).style.display = 'block' : '';
+        stopStuff()
+    } else {
+        document.querySelector(list).style = '';
+        document.querySelector(product) != null ? document.querySelector(product).style.display = 'none' : '';
+        startStuff()
+    }
+}
+
 //set Label For Events
 let labelForEvents = (e) => {
     if (e.closest('.product')) {
@@ -440,7 +508,7 @@ window.onload = function() {
     }
     //cart product
     let cart = () => {
-        let parent = href.includes('/checkout/step') || href.includes('/login.php') || href.includes('/register.php') || href.includes('/guest-checkout') ? '.order_body' : '.list-product';
+        let parent = href.includes('/checkout/step') || href.includes('/login.php') || href.includes('/register.php') || href.includes('/guest-checkout') ? '.order_body' : href.includes('/cart.html') ? '.cart-list' : '.list-product';
 
         //get data
         postFetch('/cart.html',`api=c&cart_action=cart&ctoken=${mm.ctoken}`,'POST').then(data => {
@@ -450,7 +518,7 @@ window.onload = function() {
             document.querySelector(parent).innerHTML = '';
             if (parent == '.order_body') {
                 pricing('.order_pricing', data)  //add pricing for order
-            } else {
+            } else if (parent == '.list-product') {
                 document.querySelector('.subtotal').innerHTML = data.subtotal != 0 ? `<p>Total:</p> <p>$<span>${(+data.subtotal.toString().replace(/[^\d\.]/g,'')).toFixed(2)}</span></p>` : '';
                 if (products.length < 1) {
                     document.querySelector(parent).innerHTML = `<div class="empty-cart">
@@ -484,13 +552,12 @@ window.onload = function() {
                 for (let i = 0; i < products.length; i++) {
                     counterBasket += products[i].quantity
                     //add products
-                    document.querySelector(parent).insertAdjacentHTML('beforeend', product(products[i].product_id, products[i].variant_id, products[i].quantity, products[i].subtotal, products[i].url, products[i].image_url, products[i].title, varQty))
+                    document.querySelector(parent).insertAdjacentHTML('beforeend', product(parent, products[i].product_id, products[i].variant_id, products[i].quantity, products[i].subtotal, products[i].url, products[i].image_url, products[i].title, varQty))
 
                     //remove product
                     let remove = document.querySelectorAll('.remove');
                     if (remove.length > 0) {
                         remove[i].addEventListener('click', (e) => {
-                            console.log(e.target)
                             postFetch('/cart.html',`api=c&cart_action=remove&variant_id=${remove[i].closest('.product-item').dataset.variantId}&ctoken=${mm.ctoken}`,'POST').then(data => cart())
                         })
                     }
@@ -649,7 +716,7 @@ window.onload = function() {
         pricing('.order_pricing', dataCart) // set pricing
         let items = dataCart.items;
         for (let i = 0; i < items.length; i++) {
-            document.querySelector('.confirmation-products').insertAdjacentHTML('beforeend', product(items[i].product_id, items[i].variant_id, items[i].quantity, items[i].subtotal, items[i].url, items[i].image_url, items[i].title, 1))
+            document.querySelector('.confirmation-products').insertAdjacentHTML('beforeend', product('shopping-cart', items[i].product_id, items[i].variant_id, items[i].quantity, items[i].subtotal, items[i].url, items[i].image_url, items[i].title, 1))
         }
 
         let height = document.querySelector('.confirmation-order .col:first-child').clientHeight;
@@ -743,10 +810,10 @@ window.onload = function() {
                 padding: 0;
             }
             .myAccountleft dd:nth-child(2), .myAccountleft dd:nth-child(5), .myAccountright dd:nth-child(2) {
-            padding-right: 10px!important;
+                padding-right: 10px!important;
             }
             .myAccountleft dd:nth-child(3), .myAccountleft dd:nth-child(6), .myAccountright dd:nth-child(3) {
-            padding-left: 10px!important;
+                padding-left: 10px!important;
             }
             .myAccountleft dd:nth-child(5), .myAccountleft dd:nth-child(6), .myAccountright dd:nth-child(2), .myAccountright dd:nth-child(3) {
                 width: 50%;
@@ -801,7 +868,6 @@ window.onload = function() {
             .wrapper-checkout dd > select option:first-child {
                 color: #9AA6AB;
             }
-        
             .wrapper-checkout form dd label {
                 text-align: left;
                 width: 100%;
@@ -1303,105 +1369,105 @@ window.onload = function() {
 
         let shipFormHtml = (state, countries_ship, active, edit) => {
             return `
-        <form class="ship-form ${edit} ${active}">
-            <dd style="width: 50%;float:left;padding-right: 8px">
-                <label for="fname">Name <span class="c-red"> *</span></label>
-                <input type="text" name="fname" placeholder="John">
-                <i></i>
-            </dd>
-            <dd style="width: 50%;float:left;padding-left: 8px">
-                <label for="lname">Surname <span class="c-red"> *</span></label>
-                <input type="text" name="lname" placeholder="Smith">
-                <i></i>
-            </dd>
-            <dd style="width: 100%;float:left;padding-right: 8px">
-                <label for="email">Email <span class="c-red"> *</span></label>
-                <input type="text" name="email">
-                <i></i>
-            </dd>
-            <dd style="width: 50%;float:left;padding-right: 8px">
-                <label for="country">Country <span class="c-red"> *</span></label>
-                <select name="country"> ${countries_ship}</select>
-                <i></i>
-            </dd>
-            <dd style="width: 50%;float:left;padding-left: 8px">
-                <label for="addr1">Address line <span class="c-red"> *</span></label>
-                <input type="text" name="addr1" placeholder="Street address, building, apt, atc.">
-                <i></i>
-            </dd>
-            <dd style="width: 50%;float:left;padding-right: 8px">
-                <label for="city">City <span class="c-red"> *</span></label>
-                <input type="text" name="city">
-                <i></i>
-            </dd>
-            <dd style="width: 50%;float:left;padding-left: 8px">
-                <label for="state">State (Only applicable to US) <span class="c-red"> *</span></label>
-                <select name="state"> ${state.innerHTML}</select>
-                <i></i>
-            </dd>
-            <dd style="width: 50%;float:left;padding-right: 8px">
-                <label for="zip">Zip / Postal Code <span class="c-red"> *</span></label>
-                <input type="text" name="zip">
-                <i></i>
-            </dd>
-            <dd style="width: 50%;float:left;padding-left: 8px">
-                <label for="phn">Phone <span class="c-red"> *</span></label>
-                <input type="text" name="phn" placeholder="+1 (XXX) XXX-XXXX">
-                <i></i>
-            </dd>
-            <dd style="width: 100%;display: ${edit != '' ? 'none':''}">
-                <label>
-                    <input name="billing" type="checkbox" class="checkbox">
-                    <span>My Billing info is different</span>
-                </label>
-            </dd>
-        </form>`
+            <form class="ship-form ${edit} ${active}">
+                <dd style="width: 50%;float:left;padding-right: 8px">
+                    <label for="fname">Name <span class="c-red"> *</span></label>
+                    <input type="text" name="fname" placeholder="John">
+                    <i></i>
+                </dd>
+                <dd style="width: 50%;float:left;padding-left: 8px">
+                    <label for="lname">Surname <span class="c-red"> *</span></label>
+                    <input type="text" name="lname" placeholder="Smith">
+                    <i></i>
+                </dd>
+                <dd style="width: 100%;float:left;padding-right: 8px">
+                    <label for="email">Email <span class="c-red"> *</span></label>
+                    <input type="text" name="email">
+                    <i></i>
+                </dd>
+                <dd style="width: 50%;float:left;padding-right: 8px">
+                    <label for="country">Country <span class="c-red"> *</span></label>
+                    <select name="country"> ${countries_ship}</select>
+                    <i></i>
+                </dd>
+                <dd style="width: 50%;float:left;padding-left: 8px">
+                    <label for="addr1">Address line <span class="c-red"> *</span></label>
+                    <input type="text" name="addr1" placeholder="Street address, building, apt, atc.">
+                    <i></i>
+                </dd>
+                <dd style="width: 50%;float:left;padding-right: 8px">
+                    <label for="city">City <span class="c-red"> *</span></label>
+                    <input type="text" name="city">
+                    <i></i>
+                </dd>
+                <dd style="width: 50%;float:left;padding-left: 8px">
+                    <label for="state">State (Only applicable to US) <span class="c-red"> *</span></label>
+                    <select name="state"> ${state.innerHTML}</select>
+                    <i></i>
+                </dd>
+                <dd style="width: 50%;float:left;padding-right: 8px">
+                    <label for="zip">Zip / Postal Code <span class="c-red"> *</span></label>
+                    <input type="text" name="zip">
+                    <i></i>
+                </dd>
+                <dd style="width: 50%;float:left;padding-left: 8px">
+                    <label for="phn">Phone <span class="c-red"> *</span></label>
+                    <input type="text" name="phn" placeholder="+1 (XXX) XXX-XXXX">
+                    <i></i>
+                </dd>
+                <dd style="width: 100%;display: ${edit != '' ? 'none':''}">
+                    <label>
+                        <input name="billing" type="checkbox" class="checkbox">
+                        <span>My Billing info is different</span>
+                    </label>
+                </dd>
+            </form>`
         }
         let billFormHtml = (state, countries_ship, active, edit) => {
             return `
-        <form class="bill-form ${active} ${edit}">
-            <dd style="width: 100%;">
-                <label>
-                    <input name="shipping" type="checkbox" class="checkbox">
-                    <span>Copy from Shipping info</span>
-                </label>
-            </dd>
-            <dd style="width: 50%;float:left;padding-right: 8px">
-                <label for="country">Country <span class="c-red"> *</span></label>
-                <select name="country"> ${countries_ship}</select>
-                <i></i>
-            </dd>
-            <dd style="width: 50%;float:left;padding-left: 8px">
-                <label for="addr1">Address line <span class="c-red"> *</span></label>
-                <input type="text" name="addr1" placeholder="Street address, building, apt, atc.">
-                <i></i>
-            </dd>
-            <dd style="width: 100%;float:left;padding-right: 8px">
-                <label for="email">Email <span class="c-red"> *</span></label>
-                <input type="text" name="email">
-                <i></i>
-            </dd>
-            <dd style="width: 50%;float:left;padding-right: 8px">
-                <label for="city">City <span class="c-red"> *</span></label>
-                <input type="text" name="city">
-                <i></i>
-            </dd>
-            <dd style="width: 50%;float:left;padding-left: 8px">
-                <label for="state">State (Only applicable to US) <span class="c-red"> *</span></label>
-                <select name="state"> ${state.innerHTML}</select>
-                <i></i>
-            </dd>
-            <dd style="width: 50%;float:left;padding-right: 8px">
-                <label for="zip">Zip / Postal Code <span class="c-red"> *</span></label>
-                <input type="text" name="zip">
-                <i></i>
-            </dd>
-            <dd style="width: 50%;float:left;padding-left: 8px">
-                <label for="phn">Phone <span class="c-red"> *</span></label>
-                <input type="text" name="phn" placeholder="+1 (XXX) XXX-XXXX">
-                <i></i>
-            </dd>
-        </form>
+            <form class="bill-form ${active} ${edit}">
+                <dd style="width: 100%;">
+                    <label>
+                        <input name="shipping" type="checkbox" class="checkbox">
+                        <span>Copy from Shipping info</span>
+                    </label>
+                </dd>
+                <dd style="width: 50%;float:left;padding-right: 8px">
+                    <label for="country">Country <span class="c-red"> *</span></label>
+                    <select name="country"> ${countries_ship}</select>
+                    <i></i>
+                </dd>
+                <dd style="width: 50%;float:left;padding-left: 8px">
+                    <label for="addr1">Address line <span class="c-red"> *</span></label>
+                    <input type="text" name="addr1" placeholder="Street address, building, apt, atc.">
+                    <i></i>
+                </dd>
+                <dd style="width: 100%;float:left;padding-right: 8px">
+                    <label for="email">Email <span class="c-red"> *</span></label>
+                    <input type="text" name="email">
+                    <i></i>
+                </dd>
+                <dd style="width: 50%;float:left;padding-right: 8px">
+                    <label for="city">City <span class="c-red"> *</span></label>
+                    <input type="text" name="city">
+                    <i></i>
+                </dd>
+                <dd style="width: 50%;float:left;padding-left: 8px">
+                    <label for="state">State (Only applicable to US) <span class="c-red"> *</span></label>
+                    <select name="state"> ${state.innerHTML}</select>
+                    <i></i>
+                </dd>
+                <dd style="width: 50%;float:left;padding-right: 8px">
+                    <label for="zip">Zip / Postal Code <span class="c-red"> *</span></label>
+                    <input type="text" name="zip">
+                    <i></i>
+                </dd>
+                <dd style="width: 50%;float:left;padding-left: 8px">
+                    <label for="phn">Phone <span class="c-red"> *</span></label>
+                    <input type="text" name="phn" placeholder="+1 (XXX) XXX-XXXX">
+                    <i></i>
+                </dd>
+            </form>
     `
         }
         let fname, lname, addr1, city, stateF, zip, country, phn, email; //for forms
@@ -2115,7 +2181,7 @@ window.onload = function() {
                         </span>
                         <span class="name">${title}</span>
                     </a>
-                    <div class="flex-center">
+                    <div class="flex-center flex">
                         <button type="button" class="quantity-btn quantity-btn_minus">−</button>
                         <input type="number" name="quantity" value="1" class="quantity">
                         <button type="button" class="quantity-btn quantity-btn_plus" >+</button>
@@ -2163,6 +2229,31 @@ window.onload = function() {
                 swipeAngle: false,
             });
         })
+    }
+
+    if (href.includes('/cart.html')) {
+        toggleListing(false, '#container-listing', '#container-product'); //hide listing
+        let styleCartPage = `
+        <style>
+            .cart-head p, .cart-list li > div {
+                width: 15%;
+            }
+            .cart-head p:first-child, .cart-list li > div:first-child {
+                width: 70%;
+            }  
+        </style>`
+
+        let htmlCart = `
+            <div class="cart">
+                <div class="container">
+                    <div class="cart-head fs-16 c-gray">
+                        <p>Product</p>
+                        <p>Quantity</p>
+                        <p class="text-right">Total</p>
+                    </div>
+                    <ul class="cart-list"></ul>
+                </div>
+            </div>`;
     }
     !href.includes('/checkout/step4') && !href.includes('/guest-checkout4.php') ? cart() : '';
 
@@ -2600,19 +2691,19 @@ window.onload = function() {
             -ms-transform: translateY(-50%) rotate(-224deg);
             transform: translateY(-50%) rotate(-224deg); }
         .btn_reset {
-        background: transparent url("https://olha1001.github.io/medicalmega/pdp-rediesign/img/common/close.svg") no-repeat right center/contain;
-        width: 130px;
-        height: 24px;
-        cursor: pointer; }
+            background: transparent url("https://olha1001.github.io/medicalmega/pdp-rediesign/img/common/close.svg") no-repeat right center/contain;
+            width: 130px;
+            height: 24px;
+            cursor: pointer; }
         .advanced-search {
-        border-top: 1px solid #BCC4C7;
-        opacity: 0;
-        padding: 0;
-        height: 0;
-        -webkit-transition: all 0.3s ease;
-        -o-transition: all 0.3s ease;
-        transition: all 0.3s ease;
-        pointer-events: none; }
+            border-top: 1px solid #BCC4C7;
+            opacity: 0;
+            padding: 0;
+            height: 0;
+            -webkit-transition: all 0.3s ease;
+            -o-transition: all 0.3s ease;
+            transition: all 0.3s ease;
+            pointer-events: none; }
         .advanced-search.active {
             padding: 16px 0;
             height: 64px;
@@ -2653,7 +2744,7 @@ window.onload = function() {
             border-width: 4px 4px 0 4px;
             border-radius: 0.5px;
             border-color: #9AA6AB transparent transparent transparent;}
-            .select:after {
+        .select:after {
             content: none;
             position: absolute;
             top: 0;
@@ -2665,9 +2756,9 @@ window.onload = function() {
             border-radius: 30px;
             }
         .select_brand {
-        width: 165px; }
+            width: 165px; }
         .select_category {
-        width: 142px;}
+            width: 142px;}
         .select_current {
             width: 100%;
             cursor: pointer;
@@ -2741,76 +2832,61 @@ window.onload = function() {
         .select_option p:focus {
             border-color: #344D57;}
         .ais-SortBy-select {
-        background: #FBFBFB;
-        font-weight: 400;
-        font-size: 14px;
-        line-height: 150%;
-        padding: 9.5px 25px 9.5px 16px;
-        color: #344D57;
-        border: 1px solid #E0E4E5;
-        box-sizing: border-box;
-        border-radius: 100px;
-        }
+            background: #FBFBFB;
+            font-weight: 400;
+            font-size: 14px;
+            line-height: 150%;
+            padding: 9.5px 25px 9.5px 16px;
+            color: #344D57;
+            border: 1px solid #E0E4E5;
+            box-sizing: border-box;
+            border-radius: 100px;}
         .filter {
-        // position: sticky;
-        // top: 90px;
-        // height: fit-content;
-        width: 200px;
-        padding-top: 50px; }
+            width: 200px;
+            padding-top: 50px; }
         .filter_title {
             margin-bottom: 34px;
             font-weight: 600;
             font-size: 18px;
             line-height: 120%; }
         #clear-refinements {
-            margin-bottom: 34px;
-            // width: 100%;
-            // opacity: 0;
-            // pointer-events: none;
-        }
+            margin-bottom: 34px;}
         .filter .select_drop {
             padding-top: 10px; 
             margin-bottom: 10px;}
         .listing_wrapper {
-        width: calc(100% - 200px);
-        padding: 41px 0 22px 48px; }
+            width: calc(100% - 200px);
+            padding: 41px 0 22px 48px; }
         .listing_title {
-        text-align: center;
-        font-weight: 600;
-        font-size: 36px;
-        line-height: 120%;
-        min-height: 43.2px;
-        margin-bottom: 33px; }
+            text-align: center;
+            font-weight: 600;
+            font-size: 36px;
+            line-height: 120%;
+            min-height: 43.2px;
+            margin-bottom: 33px; }
         .listing_content {
-        padding-left: 1px;
-        margin-top: 13px; }
+            padding-left: 1px;
+            margin-top: 13px; }
         .listing_wrapper li {
-            width: 25%; 
-        }
-        .listing_wrapper ol{
-            display: flex;
-            flex-wrap: wrap;
-        }
+            width: 25%; }
         .listing_wrapper .card {
             border-radius: 0;
             margin-top: -1px;
             margin-left: -1px;
-            width: 100%;
-            }
-            .listing_wrapper .card img {
+            width: 100%;}
+        .listing_wrapper .card img {
             width: 150px;
             height: 150px; }
-            .listing_wrapper .card .btn_white {
-            pointer-events: none;
-            }
-            .listing_wrapper .card .btn {
+        .listing_wrapper .card .btn_white {
+            pointer-events: none;}
+        .listing_wrapper .card .btn {
             font-size: 10px;
             line-height: 36px;
             font-weight: 600; }
         .listing_wrapper .card_name {
             font-size: 12px;
             line-height: 130%; }
-            .listing_wrapper .card_name span {
+        .listing_wrapper .card_name span {
             margin-bottom: 7px; }
         .listing_wrapper .calc-qty {
             width: 32px;
@@ -2821,11 +2897,10 @@ window.onload = function() {
             height: 24px;
             margin: 0 12px; }
         .count_brand {
-        color: #9AA6AB;
-        margin-left: 4px; }
+            color: #9AA6AB;
+            margin-left: 4px; }
         .select_filter {
-        position: relative;
-        margin-bottom: 26px; }
+            margin-bottom: 26px; }
         .select_filter.active .select_item:before {
             -webkit-transform: translateY(-50%) scaleY(-1);
             -ms-transform: translateY(-50%) scaleY(-1);
@@ -2833,13 +2908,13 @@ window.onload = function() {
         .select_filter.active .select_drop {
             display: block; }
         .select_item {
-        padding: 6px 0;
-        font-size: 18px;
-        line-height: 150%;
-        color: #344D57;
-        cursor: pointer;
-        border-bottom: 1px solid #E0E4E5;
-        position: relative; }
+            padding: 6px 0;
+            font-size: 18px;
+            line-height: 150%;
+            color: #344D57;
+            cursor: pointer;
+            border-bottom: 1px solid #E0E4E5;
+            position: relative; }
         .select_item:before {
             content: '';
             position: absolute;
@@ -2858,41 +2933,41 @@ window.onload = function() {
             border-radius: 0.5px;
             border-color: #9AA6AB transparent transparent transparent; }
         .select_drop {
-        display: none; }
+            display: none; }
         .status {
-        color: #96280F;
-        position: absolute;
-        top: 16px;
-        right: 16px; }
+            color: #96280F;
+            position: absolute;
+            top: 16px;
+            right: 16px; }
         .line {
-        background: #DCE0E1;
-        width: 100%;
-        height: 1px;
-        display: block;
-        margin: 12px 0; }
+            background: #DCE0E1;
+            width: 100%;
+            height: 1px;
+            display: block;
+            margin: 12px 0; }
         .calc {
-        margin-bottom: 16px; }
+            margin-bottom: 16px; }
         .calc[disabled] {
-        pointer-events: none;
-        opacity: 0.7;}
+            pointer-events: none;
+            opacity: 0.7;}
         .calc-qty, input.calc-qty {
-        width: 40px;
-        height: 40px;
-        line-height: 40px;
-        color: #171717;
-        font-size: 12px;
-        background-color: #FBFBFB;
-        border: 1px solid #E0E4E5;
-        border-radius: 50%;
-        text-align: center;
-        padding: 0; }
+            width: 40px;
+            height: 40px;
+            line-height: 40px;
+            color: #171717;
+            font-size: 12px;
+            background-color: #FBFBFB;
+            border: 1px solid #E0E4E5;
+            border-radius: 50%;
+            text-align: center;
+            padding: 0; }
         .btn-calc {
-        position: relative;
-        background-color: transparent;
-        cursor: pointer;
-        width: 40px;
-        height: 40px;
-        margin: 0 4px; }
+            position: relative;
+            background-color: transparent;
+            cursor: pointer;
+            width: 40px;
+            height: 40px;
+            margin: 0 4px; }
         .btn-calc:hover:before, .btn-calc:hover:after {
             background: #96280F; }
         .btn-calc:before, .btn-calc:after {
@@ -2918,8 +2993,6 @@ window.onload = function() {
         .btn-calc_plus:after {
             content: ''; }
         .card {
-        // max-width: 281px;
-        // width: calc(25% - 10px);
             background: #FFFFFF;
             border: 1px solid #E3E6E7;
             border-radius: 4px;
@@ -2975,18 +3048,6 @@ window.onload = function() {
             display: flex;
             align-items: center;
         }
-        // .breadcrumbs li:last-child a:after {
-        //   content: none;
-        // }
-        // .breadcrumbs a:after{
-        //   content: '';
-        //   width: 18px;
-        //   height: 18px;
-        //   margin: 0 4px;
-        //   display: block;
-        //   color: transparent;
-        //   background: url(https://conversionratestore.github.io/projects/medicalmega/img/chevron-right.svg) no-repeat center / contain;
-        // }
         .ais-Breadcrumb-item, .breadcrumbs li {
             color: #6D7E85;
             display: flex;
@@ -2994,61 +3055,23 @@ window.onload = function() {
             line-height: 18px;
             cursor: default;
             padding: 10px 0; }
-
-        .justify-content-around {
-        display: flex;
-        -ms-flex-pack: distribute;
-        justify-content: space-around; }
-        .flex-center-between {
-        display: flex;
-        justify-content: space-between;
-        align-items: center; }
-        .flex-end-between {
-        display: flex;
-        justify-content: space-between;
-        align-items: flex-end; }
-        .flex-center-around {
-        display: flex;
-        -ms-flex-pack: distribute;
-        justify-content: space-around;
-        align-items: center; }
-        .flex-wrap {
-        display: flex;
-        -ms-flex-wrap: wrap;
-        flex-wrap: wrap; }
-        .flex-center-center {
-        display: flex;
-        justify-content: center;
-        align-items: center; }
-        .w-100 {
-        width: 100%; }
-        .relative {
-        position: relative; }
-        .max-391 {
-        width: 100%;
-        max-width: 391px; }
-        .scroll-x {
-        overflow-x: auto;}
-        .scroll-x::-webkit-scrollbar {
-        display: none; }
-        
         .arrow_buttons {
-        position: absolute;
-        top: 50%;
-        transform: translateY(-50%);
-        left: 0;
-        width: 100%;
-        z-index: 0;
-        display: flex;
-        justify-content: space-between;} 
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            left: 0;
+            width: 100%;
+            z-index: 0;
+            display: flex;
+            justify-content: space-between;} 
         .arrow_button {
-        cursor: pointer; }
+            cursor: pointer; }
         .arrow_button[disabled] svg path{
-        fill: #BCC4C7;}
+            fill: #BCC4C7;}
         .arrow_button_prev {
-        margin-left: -26px; }
+            margin-left: -26px; }
         .arrow_button_next {
-        margin-right: -26px;}
+            margin-right: -26px;}
         #list_categories .ais-HierarchicalMenu-list--child li {
             display: block!important;
         }
@@ -3434,67 +3457,10 @@ window.onload = function() {
         .product {
             padding-top: 17px;
             padding-bottom: 60px; }
-        .ml-40 {
-            margin-left: 40px; }
-            
-        .mr-8 {
-            margin-right: 8px; }
-            
-        .mr-16 {
-            margin-right: 16px; }
-            
-        .mt-16 {
-            margin-top: 16px; }
-        
-        .mt-22 {
-            margin-top: 22px; }
-        
-        .mx-auto {
-            margin-right: auto;
-            margin-left: auto; }
-        
-        .fw-light {
-            font-weight: 300; }
-        
-        .fw-semi {
-            font-weight: 600; }
-        
         .c-gray {
             color: #6D7E85; }
-        
         .c-red {
             color: #96280F; }
-        
-        .fs-14 {
-            font-size: 14px;
-            line-height: 25px; }
-        
-        .fs-16 {
-            font-size: 16px;
-            line-height: 24px; }
-        
-        .fs-24 {
-            font-size: 24px;
-            line-height: 29px; }
-        
-        .l-t-02 {
-            letter-spacing: 0.02em; }
-        
-        .text-small {
-            font-weight: normal;
-            font-size: 8px;
-            line-height: 10px;
-            color: #6D7E85; }
-        
-        .text-up {
-            text-transform: uppercase; }
-        
-        .text-center {
-            text-align: center; }
-        
-        .text-nowrap {
-            white-space: nowrap; }
-            
         .product_sidebar.disabled .product_sidebar_top, .product_sidebar.disabled .calc {
             pointer-events: none;}
         .product_sidebar.disabled p {
@@ -3574,14 +3540,14 @@ window.onload = function() {
         <div class="main">
             <header class="header">
                 <div class="supbar">
-                    <div class="container flex-center-between">
+                    <div class="container flex-center-between flex">
                         <a href="https://medicalmega.com/service.html" class="items-center"><img src="https://conversionratestore.github.io/projects/medicalmega/img/quotation.svg" alt="icon quotation">Customer Service</a>
                         <div class="flex"><a href="tel:17182084380"><span class="fw-light">Local Phone #</span>1-718-208-4380</a><a class="ml-40" href="tel:18556336342"><span class="fw-light">Toll Free Phone #</span>1-855-MED-MEGA (633-6342)</a></div>
                     </div>
                 </div>
                 <div class="midbar">
                     <div class="container">
-                        <div class="flex-center-between"><a class="logo" href="#">Medical<span>Mega</span></a>
+                        <div class="flex-center-between flex"><a class="logo" href="#">Medical<span>Mega</span></a>
                             <div class="flex">
                                 <button class="btn btn_white mr-16" type="button" data-button="advanced-search">Advanced Search</button>
                                 <div class="box-search"> 
@@ -3603,7 +3569,7 @@ window.onload = function() {
                     </div>
                 </div>
                 <form class="advanced-search" data-item="advanced-search">
-                    <div class="container flex-center-between">
+                    <div class="container flex-center-between flex">
                         <p class="fs-14 c-gray">Advanced Search</p>
                         <div class="flex">
                             <input type="text" placeholder="Enter Item #" name="search_item">
@@ -3622,7 +3588,7 @@ window.onload = function() {
                     </div>
                 </form>
                 <div class="subbar">
-                    <div class="container flex-center-between">
+                    <div class="container flex-center-between flex">
                         <nav class="nav_category">
                             <div class="items-center all_category">
                                 <img class="burger_category" src="https://olha1001.github.io/medicalmega/pdp-rediesign/img/common/burger.svg" alt="icon burger">
@@ -3651,20 +3617,20 @@ window.onload = function() {
             <div class="container" id="container-listing"> 
                 <nav id="breadcrumbs" class="breadcrumbs"></nav>
                 <div id="relatedProducts"></div>
-                <div class="flex-wrap w-100" id="listing">
+                <div class="flex-wrap w-100 flex" id="listing">
                     <div class="filter">
-                        <div class="flex-center-between">
+                        <div class="flex-center-between flex">
                             <h3 class="filter_title">Filters</h3>
                             <div id="clear-refinements"></div>
                         </div>
                         
-                        <div class="select_filter active">
+                        <div class="select_filter active relative">
                             <div class="select_item">
                                 <p>Brands</p>
                             </div>
                             <div class="select_drop" id="manufacturer"></div>
                         </div>
-                        <div class="select_filter active">
+                        <div class="select_filter active relative">
                             <div class="select_item">
                                 <p>Price</p>
                             </div>
@@ -3674,12 +3640,12 @@ window.onload = function() {
                     <div class="listing_wrapper">
                         <div class="listing_popular"></div>
                         <h2 class="listing_title">All Products</h2>
-                        <div class="flex-end-between">
+                        <div class="flex-end-between flex">
                             <p class="c-gray" id="stats-container"></p>
                             <div id="current-refinements"></div>
                         </div>
                         <div class="listing_content"> 
-                            <ol class="listing_suggestion"></ol>
+                            <ol class="listing_suggestion flex flex-wrap"></ol>
                             <div id="hits"></div>
                         </div>
                     </div>
@@ -3765,18 +3731,6 @@ window.onload = function() {
 
         function stopStuff() {
             clearInterval(interval);
-        }
-
-        function toggleListing(boolean) {
-            if (boolean == false) {
-                document.querySelector('#container-listing').style.display = 'none';
-                document.querySelector('#container-product') != null ? document.querySelector('#container-product').style.display = 'block' : '';
-                stopStuff()
-            } else {
-                document.querySelector('#container-listing').style = '';
-                document.querySelector('#container-product') != null ? document.querySelector('#container-product').style.display = 'none' : '';
-                startStuff()
-            }
         }
 
         //qty change
@@ -3992,27 +3946,26 @@ window.onload = function() {
                 }
 
                 let boxItem = `
-        <div class="card">
-            <p class="status" style="display:${hit['variants'][count].in_stock == false || hit['variants'][count].price == '0.00' ? 'block' : 'none'}">Out of Stock</p>
-            <a class="card_name" href="https://medicalmega.com/product/${hit.seo}">
-            <img src="https://medicalmegaimgs.net/prod/uploaded/product/pro_thumb/${findImageHits(hit.variants) != '' ? findImageHits(hit.variants) : 'dummyimage.jpg'}" alt="${hit.name}">
-            <span title='${hit.name}'>${hit.name}</span>
-            </a>
-            <p class="card_item">Item #${hit.item_num}</p>
-            <form action="https://medicalmega.com/cart.html" method="post">
-            <div class="flex-center-center calc" ${hit['variants'][count].in_stock == false || hit['variants'][count].price == '0:00' ? 'disabled' : ''}>
-                <button class="btn-calc btn-calc_minus" type="button" disabled=""></button>
-                <input class="calc-qty" type="number" name="quantity" value="1" data-max-value="${hit['variants'][count].qty}">
-                <button class="btn-calc btn-calc_plus" type="button"></button>
-            </div>
-            ${hit['variants'][count].in_stock == false || hit['variants'][count].price == '0.00' ? '<button class="btn btn_white" type="button" data-button="notify"><span>Out of Stock</span></button>' : '<button class="btn btn_dark add-cart" type="button"><span>$<span class="pr" data-price="' + hit['variants'][count].price + '">' + hit['variants'][count].price + '</span> | Add to Cart</span></button>'}
-            <input type="hidden" name="product_variant_id" value="${hit['variants'][count].pv_id}">
-            <input type="hidden" name="product_id" value="${hit.objectID}">
-            <input type="hidden" name="add_to_cart" value="variant">
-            
-            </form>
-        </div>
-        `
+                <div class="card">
+                    <p class="status" style="display:${hit['variants'][count].in_stock == false || hit['variants'][count].price == '0.00' ? 'block' : 'none'}">Out of Stock</p>
+                    <a class="card_name" href="https://medicalmega.com/product/${hit.seo}">
+                        <img src="https://medicalmegaimgs.net/prod/uploaded/product/pro_thumb/${findImageHits(hit.variants) != '' ? findImageHits(hit.variants) : 'dummyimage.jpg'}" alt="${hit.name}">
+                        <span title='${hit.name}'>${hit.name}</span>
+                    </a>
+                    <p class="card_item">Item #${hit.item_num}</p>
+                    <form action="https://medicalmega.com/cart.html" method="post">
+                        <div class="flex-center flex calc" ${hit['variants'][count].in_stock == false || hit['variants'][count].price == '0:00' ? 'disabled' : ''}>
+                            <button class="btn-calc btn-calc_minus" type="button" disabled=""></button>
+                            <input class="calc-qty" type="number" name="quantity" value="1" data-max-value="${hit['variants'][count].qty}">
+                            <button class="btn-calc btn-calc_plus" type="button"></button>
+                        </div>
+                        ${hit['variants'][count].in_stock == false || hit['variants'][count].price == '0.00' ? '<button class="btn btn_white" type="button" data-button="notify"><span>Out of Stock</span></button>' : '<button class="btn btn_dark add-cart" type="button"><span>$<span class="pr" data-price="' + hit['variants'][count].price + '">' + hit['variants'][count].price + '</span> | Add to Cart</span></button>'}
+                        <input type="hidden" name="product_variant_id" value="${hit['variants'][count].pv_id}">
+                        <input type="hidden" name="product_id" value="${hit.objectID}">
+                        <input type="hidden" name="add_to_cart" value="variant">
+                    </form>
+                </div>`
+
                 return boxItem
             }
 
@@ -4173,7 +4126,7 @@ window.onload = function() {
                             });
                             document.querySelector('.ais-SearchBox-reset').addEventListener('click', (e) => {
                                 e.stopImmediatePropagation()
-                                toggleListing(true)
+                                toggleListing(true, '#container-listing', '#container-product')
                                 if (!e.target.classList.contains('reset')) {
                                     pushDataLayer(`Click on reset button`, 'Search by Name')
                                 } else {
@@ -4305,7 +4258,6 @@ window.onload = function() {
                 })
             })
 
-
             document.querySelector('.advanced-search .btn').addEventListener('click', () => {
                 let categories = document.querySelector('.select_category .select_current').dataset.category;
                 let brand = document.querySelector('.select_brand .select_current').innerText.includes('Select') ? "" : `&products%5BrefinementList%5D%5Bmanufacturer%5D%5B0%5D=${document.querySelector('.select_brand .select_current').innerText}`;
@@ -4364,7 +4316,7 @@ window.onload = function() {
                                 if (document.querySelector('.advanced-search.active') != null) {
                                     addActive('.advanced-search')
                                 }
-                                toggleListing(true)
+                                toggleListing(true, '#container-listing', '#container-product')
 
                                 pushDataLayer(`Click on submit button`, 'Search by Name')
                             });
@@ -4443,7 +4395,7 @@ window.onload = function() {
 
             //pdp
             if (window.location.pathname.includes('/product/')) {
-                toggleListing(false); //hide listing
+                toggleListing(false, '#container-listing', '#container-product'); //hide listing
 
                 requestProduct.then(data => {
                     if (data.nbHits == 0) {
@@ -4516,7 +4468,7 @@ window.onload = function() {
                                 </ul>  
                             </nav>
                             <div class="flex-wrap w-100 justify-between flex product"> 
-                                <div class="col_left flex-wrap"> 
+                                <div class="col_left flex-wrap flex"> 
                                     <div class="side_one">
                                         <div class="slider-nav">${getSlidesImage()}</div>
                                         <div class="trustpilot"></div>
@@ -4560,10 +4512,10 @@ window.onload = function() {
                                                 </div>
                                                 <div class="line"></div>
                                             </div>     
-                                            ${product.variants.length < 2 ? `<div class="flex-end-between fw-semi total"> <p class="fs-14">Price:</p><p class="fs-24">$<span class="pr-state">${firstVariant.price}</span></p> </div>` : htmlAvailableOptions}
+                                            ${product.variants.length < 2 ? `<div class="flex-end-between fw-semi total flex"> <p class="fs-14">Price:</p><p class="fs-24">$<span class="pr-state">${firstVariant.price}</span></p> </div>` : htmlAvailableOptions}
                                             </div>
                                             <form action="https://medicalmega.com/cart.html" method="post">
-                                                <div class="flex-center-center calc" ${firstVariant.in_stock == false || firstVariant.price == '0:00' ? 'disabled' : ''}> 
+                                                <div class="flex-center calc flex" ${firstVariant.in_stock == false || firstVariant.price == '0:00' ? 'disabled' : ''}> 
                                                     <button class="btn-calc btn-calc_minus" type="button" disabled></button>
                                                     <input class="calc-qty" type="number" value="1" name="quantity">
                                                     <button class="btn-calc btn-calc_plus" type="button"></button>
@@ -4579,7 +4531,7 @@ window.onload = function() {
                             </div>
                             <section class="similar-products">
                                 <h2 class="text-center">Similar Products</h2>
-                                <div class="justify-center cards_similar"></div>
+                                <div class="justify-center cards_similar flex"></div>
                             </section>
                         </div>`
 
@@ -4791,16 +4743,6 @@ window.onload = function() {
                         })
                     }
                 })
-            }
-            if (href.includes('/cart.html')) {
-                toggleListing(false); //hide listing
-                let htmlCart = `
-                    <div class="cart">
-                        <div class="container">
-                            <ul>
-                            </ul>
-                        </div>
-                    </div>`;
             }
         }
     
