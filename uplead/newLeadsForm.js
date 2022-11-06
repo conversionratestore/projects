@@ -145,8 +145,8 @@ let runTest = () => {
         
         /* findleadsnow page */
         if (url.includes('/findleadsnow') && document.body != null) {
-            document.body.innerHTML = '';
-            document.body.style = 'background: url(https://conversionratestore.github.io/projects/uplead/img/bg-findleadeshow.svg) no-repeat center top / 100vw; width: 100%; height: 100vh;'
+            clearInterval(start)
+            document.body.innerHTML = '<img class="bg" src="https://conversionratestore.github.io/projects/uplead/img/bg-findleadeshow.svg" alt="image"/>'
             
             if (document.readyState == 'complete') {
                 setTimeout(() => {
