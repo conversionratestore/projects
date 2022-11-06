@@ -4858,12 +4858,20 @@ window.onload = function() {
         mut.observe(document, optionMut);
     }
 
+    !href.includes('/checkout/step4') && !href.includes('/guest-checkout4.php') ? cart() : '';
     if (href.includes('/cart.html')) {
         toggleListing(false, '#container-listing', '#container-product')
         let styleCartPage = `
         <style>
             .cart .container {
                 max-width: 1100px;
+            }
+            .cart h2 {
+                font-weight: 600;
+                font-size: 36px;
+                line-height: 120%;
+                color: #091114;
+                padding: 48px 0;
             }
             .cart-head {
                 border-bottom: 1px solid #E9EBEC;
@@ -4887,6 +4895,7 @@ window.onload = function() {
         let htmlCart = `
             <div class="cart">
                 <div class="container">
+                    <h2 class="text-center">Your cart</h2>
                     <div class="cart-head fs-16 c-gray flex">
                         <p>Product</p>
                         <p>Quantity</p>
@@ -4905,5 +4914,4 @@ window.onload = function() {
         document.body.insertAdjacentHTML('afterbegin', styleCartPage)
         document.querySelector('.main').insertAdjacentHTML('beforeend', htmlCart)
     }
-    !href.includes('/checkout/step4') && !href.includes('/guest-checkout4.php') ? cart() : '';
 };
