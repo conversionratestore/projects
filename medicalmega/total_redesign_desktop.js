@@ -362,7 +362,7 @@ let product = (parent, id, variantId, quantity, subtotal, url, imageUrl, title, 
                 </div>
                 <a href="${url}" title="${title}">${title}</a>
             </div>
-            <div class="items-center">
+            <div class="flex items-center">
                 <button type="button" class="quantity-btn quantity-btn_minus" ${varQty == 1 ? 'disabled': ''}>−</button>
                 <input type="number" name="quantity" value="${quantity}" class="quantity" ${varQty == 1 ? 'disabled': ''}>
                 <button type="button" class="quantity-btn quantity-btn_plus" ${varQty == 1 ? 'disabled': ''}>+</button>
@@ -385,7 +385,7 @@ let product = (parent, id, variantId, quantity, subtotal, url, imageUrl, title, 
             <div>
                 <a href="${url}" title="${title}">${title}</a>
                 <div class="flex-center-between">
-                    ${varQty == 0 ? `<div class="items-center">
+                    ${varQty == 0 ? `<div class="flex items-center">
                         <button type="button" class="quantity-btn quantity-btn_minus" ${varQty == 1 ? 'disabled': ''}>−</button>
                         <input type="number" name="quantity" value="${quantity}" class="quantity" ${varQty == 1 ? 'disabled': ''}>
                         <button type="button" class="quantity-btn quantity-btn_plus" ${varQty == 1 ? 'disabled': ''}>+</button>
@@ -413,7 +413,7 @@ let addStep = (query,index) => {
     for (let i = 0; i < obj['stepsName'].length; i++) {
         if (obj['stepsName'][i] != 'Billing information' && obj['stepsName'][i] != 'Delivery Method') {
             document.querySelector(query).insertAdjacentHTML('beforeend', `
-            <div class="step items-center ${i < index ? 'checked' : i == index ? 'active' : ''}">
+            <div class="step flex items-center ${i < index ? 'checked' : i == index ? 'active' : ''}">
                 <div class="circle">${i+1}</div>
                 <p>${obj['stepsName'][i]}</p>
             </div>`)
@@ -1282,13 +1282,13 @@ window.onload = function() {
                         <div class="head"><h4></h4></div>
                     </div>
                     <div class="foot flex-center-between">
-                        <a class="btn-back items-center" href="#">
+                        <a class="btn-back items-center flex" href="#">
                             <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M15 9.32153V8.67847C15 8.5009 14.8657 8.35695 14.7 8.35695H4.998L7.668 5.50181C7.72479 5.44144 7.75674 5.35926 7.75674 5.27352C7.75674 5.18779 7.72479 5.10561 7.668 5.04524L7.242 4.59511C7.18567 4.53424 7.10899 4.5 7.029 4.5C6.94901 4.5 6.87233 4.53424 6.816 4.59511L3.132 8.537C3.04758 8.62736 3.0001 8.74995 3 8.87782V9.12218C3.00138 9.24977 3.04867 9.37186 3.132 9.463L6.816 13.4049C6.87233 13.4658 6.94901 13.5 7.029 13.5C7.10899 13.5 7.18567 13.4658 7.242 13.4049L7.668 12.9483C7.72444 12.8891 7.75624 12.8079 7.75624 12.7233C7.75624 12.6386 7.72444 12.5575 7.668 12.4982L4.998 9.64305H14.7C14.8657 9.64305 15 9.4991 15 9.32153Z" fill="#1E3944"/>
                             </svg>
                             <span></span>
                         </a>
-                        <button class="btn-next items-center" type="submit">
+                        <button class="btn-next items-center flex" type="submit">
                             <span>Next</span>
                             <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M3 9.32153V8.67847C3 8.5009 3.13431 8.35695 3.3 8.35695H13.002L10.332 5.50181C10.2752 5.44144 10.2433 5.35926 10.2433 5.27352C10.2433 5.18779 10.2752 5.10561 10.332 5.04524L10.758 4.59511C10.8143 4.53424 10.891 4.5 10.971 4.5C11.051 4.5 11.1277 4.53424 11.184 4.59511L14.868 8.537C14.9524 8.62736 14.9999 8.74995 15 8.87782V9.12218C14.9986 9.24977 14.9513 9.37186 14.868 9.463L11.184 13.4049C11.1277 13.4658 11.051 13.5 10.971 13.5C10.891 13.5 10.8143 13.4658 10.758 13.4049L10.332 12.9483C10.2756 12.8891 10.2438 12.8079 10.2438 12.7233C10.2438 12.6386 10.2756 12.5575 10.332 12.4982L13.002 9.64305H3.3C3.13431 9.64305 3 9.4991 3 9.32153Z" fill="#FBFBFB"/>
@@ -1618,10 +1618,10 @@ window.onload = function() {
             return `
             <label>
                 <input type="radio" name="radio-method" class="checkbox" ${i==0?'checked':''}>
-                <span class="items-center method">
+                <span class="items-center method flex">
                     <span class="check"></span>
                     <span class="type">${type}</span>
-                    <span class="ml-auto items-center">  
+                    <span class="ml-auto items-center flex">  
                         ${text != '' ? '<span class="text">' +text+'</span>':''}
                         <span class="price">${price}</span>
                     </span>
@@ -1649,7 +1649,7 @@ window.onload = function() {
                 })
             })
             document.querySelector('.col-left .delivery-method').insertAdjacentHTML('afterend',`
-                <div class="promocode items-center">
+                <div class="promocode items-center flex">
                     <p>Promotional Code <span>(Optional):</span></p>
                     <input type="text" placeholder="Enter your code" class="ml-auto">
                 </div>`)
@@ -2131,7 +2131,7 @@ window.onload = function() {
                         <input type="image" name="submit" src="https://conversionratestore.github.io/projects/medicalmega/img/paypal.svg" border="0" align="top" alt="Check out with PayPal">
                     </form>
                     <p>or</p>
-                    <a href="https://medicalmega.com/checkout/step1" class="btn-next items-center">
+                    <a href="https://medicalmega.com/checkout/step1" class="btn-next items-center flex">
                     <span>Proceed to checkout</span>
                         <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M3 9.32153V8.67847C3 8.5009 3.13431 8.35695 3.3 8.35695H13.002L10.332 5.50181C10.2752 5.44144 10.2433 5.35926 10.2433 5.27352C10.2433 5.18779 10.2752 5.10561 10.332 5.04524L10.758 4.59511C10.8143 4.53424 10.891 4.5 10.971 4.5C11.051 4.5 11.1277 4.53424 11.184 4.59511L14.868 8.537C14.9524 8.62736 14.9999 8.74995 15 8.87782V9.12218C14.9986 9.24977 14.9513 9.37186 14.868 9.463L11.184 13.4049C11.1277 13.4658 11.051 13.5 10.971 13.5C10.891 13.5 10.8143 13.4658 10.758 13.4049L10.332 12.9483C10.2756 12.8891 10.2438 12.8079 10.2438 12.7233C10.2438 12.6386 10.2756 12.5575 10.332 12.4982L13.002 9.64305H3.3C3.13431 9.64305 3 9.4991 3 9.32153Z" fill="#FBFBFB"/>
@@ -2178,7 +2178,7 @@ window.onload = function() {
             let slide = `
                 <div class="slide">
                     <a href="${url}">
-                        <span class="items-center">
+                        <span class="items-center" flex>
                             <img src="${urlImage}" alt="${title}">
                             <span class="price">
                                 <p></p>
@@ -3522,7 +3522,7 @@ window.onload = function() {
             <header class="header">
                 <div class="supbar">
                     <div class="container flex-center-between flex">
-                        <a href="https://medicalmega.com/service.html" class="items-center"><img src="https://conversionratestore.github.io/projects/medicalmega/img/quotation.svg" alt="icon quotation">Customer Service</a>
+                        <a href="https://medicalmega.com/service.html" class="items-center flex"><img src="https://conversionratestore.github.io/projects/medicalmega/img/quotation.svg" alt="icon quotation">Customer Service</a>
                         <div class="flex"><a href="tel:17182084380"><span class="fw-light">Local Phone #</span>1-718-208-4380</a><a class="ml-40" href="tel:18556336342"><span class="fw-light">Toll Free Phone #</span>1-855-MED-MEGA (633-6342)</a></div>
                     </div>
                 </div>
@@ -3536,12 +3536,12 @@ window.onload = function() {
                                     <input type="text" id="autocomplete">
                                 </div>
                             </div>
-                            <div class="items-center">
-                                <a class="items-center midbar_action mr-16" href="https://medicalmega.com/myaccount.html">
+                            <div class="items-center flex">
+                                <a class="flex items-center midbar_action mr-16" href="https://medicalmega.com/myaccount.html">
                                     <img class="mr-8" src="https://olha1001.github.io/medicalmega/pdp-rediesign/img/common/user.svg" alt="icon account">
                                     <span>Account</span>
                                 </a>
-                                <div class="items-center midbar_action btn-cart">
+                                <div class="flex items-center midbar_action btn-cart">
                                     <img class="mr-8" src="https://olha1001.github.io/medicalmega/pdp-rediesign/img/common/cart.svg" alt="icon Cart">
                                     <span>Cart (<span class="cart_count">${counterBasket}</span>)</span>
                                 </div>
@@ -3571,7 +3571,7 @@ window.onload = function() {
                 <div class="subbar">
                     <div class="container flex-center-between flex">
                         <nav class="nav_category">
-                            <div class="items-center all_category">
+                            <div class="flex items-center all_category">
                                 <img class="burger_category" src="https://olha1001.github.io/medicalmega/pdp-rediesign/img/common/burger.svg" alt="icon burger">
                                 <p class="p-main">All Categories</p>
                             </div>
@@ -3998,7 +3998,7 @@ window.onload = function() {
                     templates: {
                         item: (data) => {
                             let checkbox = `
-                            <label class="mt-16 items-center" onclick="pushDataLayer('Click on one of the brand items on filters','Filters')">
+                            <label class="mt-16 items-center flex" onclick="pushDataLayer('Click on one of the brand items on filters','Filters')">
                                 <span class="check"></span>
                                 <span class="check_text">${data.value}<span class="count_brand">(${data.count})</span></span>
                             </label>
@@ -4021,7 +4021,7 @@ window.onload = function() {
                     templates: {
                         item: (data) => {
                             let checkbox = `
-                            <label class="mt-16 items-center" onclick="pushDataLayer('Click on one of the price items on filters','Filters')">
+                            <label class="mt-16 items-center flex" onclick="pushDataLayer('Click on one of the price items on filters','Filters')">
                                 <span class="check"></span>
                                 <span class="check_text">${data.label} <span class="count_brand">(${data.count})</span></span>
                             </label> `;
@@ -4484,7 +4484,7 @@ window.onload = function() {
                                             ${firstVariant.in_stock == false ? '<p class="out-of-stick">Out Of Stock</p>' : ''}
                                             <div class="product_sidebar_top">
                                             <div class="shipping_block">
-                                                <div class="items-center"> 
+                                                <div class="items-center flex"> 
                                                     <img class="mr-16 icon-car" src="https://olha1001.github.io/medicalmega/pdp-rediesign/img/common/car.svg" alt="icon shipping">
                                                     <div> 
                                                         <p class="c-red text-up fw-semi l-t-02">Estimated shipping</p>
