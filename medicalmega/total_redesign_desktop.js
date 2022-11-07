@@ -1885,17 +1885,20 @@ window.onload = function() {
                             console.log(data)
                             let dataErrors = data.errors;
                             if (dataErrors.length < 1) {
-                                document.querySelector('.col-left .head h4').innerHTML = 'Billing information';
-                                setBack()
-                                removeActive('.ship-form.active')
-                                addActive('.bill-form')
+                                if (document.querySelector('.address.bill') != null) {
+                                    window.location.reload()
+                                } else {
+                                    document.querySelector('.col-left .head h4').innerHTML = 'Billing information';
+                                    setBack()
+                                    document.querySelector('.ship-form.active').classList.remove('active')
+                                    addActive('.bill-form')
+                                }
                             } else {
                                 errorsFun(dataErrors)
                             }
                         })
                     }
                 }
-
             } else {
                 let fnameNew, lnameNew;
                 if (fname.tagName === 'INPUT' && lname.tagName === 'INPUT') {
