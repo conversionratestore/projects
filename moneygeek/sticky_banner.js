@@ -305,6 +305,21 @@ let stickyBanner = setInterval(() => {
       }
     }
 
+    if (document.querySelector(".sticky_banner")) {
+      const options = {
+        root: null,
+        threshold: 1,
+      }
+
+      let observerNewHeader = new IntersectionObserver((entries) => {
+        if (!entries[0].isIntersecting) return
+        pushDataLayer(`Sticky ZIP banner appearance`)
+        observerNewHeader.disconnect()
+      })
+
+      observerNewHeader.observe(document.querySelector(".sticky_banner"), options)
+    }
+
     pushDataLayer("loaded")
     const record = setInterval(() => {
       if (typeof clarity === "function") {
