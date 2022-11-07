@@ -4850,9 +4850,9 @@ window.onload = function() {
                 })
             }
             mut.observe(document, optionMut);
-            document.querySelector('.cart_count') != null ? document.querySelector('.cart_count').innerHTML = counterBasket : '';
+            // document.querySelector('.cart_count') != null ? document.querySelector('.cart_count').innerHTML = counterBasket : '';
 
-            mut.observe(document, optionMut);
+            // mut.observe(document, optionMut);
         });
 
         mut.observe(document, optionMut);
