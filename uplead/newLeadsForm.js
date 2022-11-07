@@ -32,27 +32,6 @@ let isUrlValid = (userInput) => {
 let stateUrl = window.location.href;
 let url = ''
 
-window.onload = function () {
-    document.body.insertAdjacentHTML('afterbegin',`
-    <style>
-        .loaded_hiding:after {
-            content: '';
-            position: fixed;
-            top: 0;
-            left: 0;
-            background: #fff;
-            z-index: 99999999;
-            width: 100%;
-            height: 100vh;
-        }
-    </style>`)
-    document.body.classList.add('loaded_hiding');
-    window.setTimeout(function () {
-        document.body.classList.add('loaded');
-        document.body.classList.remove('loaded_hiding');
-    }, 500);
-}
-
 let runTest = () => {
     let start = setInterval(() => {
         /* main page */
