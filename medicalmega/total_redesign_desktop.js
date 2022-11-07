@@ -4915,5 +4915,5 @@ window.onload = function() {
         document.querySelector('.main').insertAdjacentHTML('beforeend', htmlCart)
     }
 
-    document.querySelector(".exp-loading")?.remove()
+    document.querySelector(".exp-loading") != null ? document.querySelector(".exp-loading").remove() : ''
 };
