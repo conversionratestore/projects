@@ -112,6 +112,8 @@ const waitForDOM = setInterval(() => {
         anchors.forEach((element, index) => {
             if (document.querySelector('.' + element[0])) {
                 document.querySelector('.' + element[0]).insertAdjacentHTML('beforebegin', `<p class="crs_anchor" id="${element[1]}"></p>`)
+            } else if (index === 0 && document.querySelector('.what_we_do .text')) {
+                document.querySelector('.what_we_do .text').insertAdjacentHTML('beforebegin', `<p class="crs_anchor" id="crs_tour"></p>`)
             } else if (index === 1 && document.querySelector('.what_we_taste .main_subheading')) {
                 document.querySelector('.what_we_taste .main_subheading').insertAdjacentHTML('beforebegin', `<p class="crs_anchor" id="crs_menu"></p>`)
             } else {
