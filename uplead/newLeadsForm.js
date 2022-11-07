@@ -145,10 +145,10 @@ let runTest = () => {
         
         /* findleadsnow page */
         if (url.includes('/findleadsnow') && document.body != null) {
-            clearInterval(start)
             document.body.innerHTML = '<img class="bg" src="https://conversionratestore.github.io/projects/uplead/img/bg-findleadeshow.svg" alt="image"/>'
             
             if (document.readyState == 'complete') {
+                clearInterval(start)
                 setTimeout(() => {
                     window.location.href = 'https://app.uplead.com/trial-signup'
                 }, 3000)
@@ -164,7 +164,7 @@ let runTest = () => {
         /* end findleadsnow page */
 
         /* pop-up form */
-        if (url.includes('/trial-signup') && document.querySelector('.WwzhpJuEdC9ZWUaDw5ae') != null && document.querySelector('form') != null && document.querySelector('.modal-sign') == null) {
+        if (url == 'https://app.uplead.com/trial-signup' && document.querySelector('.WwzhpJuEdC9ZWUaDw5ae') != null && document.querySelector('form') != null && document.querySelector('.modal-sign') == null) {
             clearInterval(start)
 
             let styleModal = `
