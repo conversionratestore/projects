@@ -7,6 +7,7 @@ let style = `
 
 //push data layer
 function pushDataLayer(desk) {
+    console.log(desk)
     window.dataLayer = window.dataLayer || [];
     dataLayer.push({
         'event': 'event-to-ga4',
