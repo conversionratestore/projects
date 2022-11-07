@@ -7,7 +7,6 @@ let style = `
 
 //push data layer
 function pushDataLayer(desk) {
-    console.log(desk)
     window.dataLayer = window.dataLayer || [];
     dataLayer.push({
         'event': 'event-to-ga4',
@@ -62,15 +61,16 @@ let interval = setInterval(() => {
     
         //click on 'book now' and 'learn more' buttons
         cardBtn.forEach(item => {
-            item.querySelector('a').addEventListener('click', (e) => {
-                if (e.target.innerText.toLowerCase().includes('book now')) {
-                    pushDataLayer('Book tour')
-                } else if (e.target.innerText.toLowerCase().includes('learn more')) {
-                    pushDataLayer('Learn more')
-                } else if (e.target.innerText.toLowerCase().includes('private tours')) {
-                    pushDataLayer(`Private tours`)
-                }
-                console.log(e.target.innerText.toLowerCase())
+            item.querySelectorAll('a').forEach(button => {
+                button.addEventListener('click', (e) => {
+                    if (e.target.innerText.toLowerCase().includes('book now')) {
+                        pushDataLayer('Book tour')
+                    } else if (e.target.innerText.toLowerCase().includes('learn more')) {
+                        pushDataLayer('Learn more')
+                    } else if (e.target.innerText.toLowerCase().includes('private tours')) {
+                        pushDataLayer(`Private tours`)
+                    }
+                })
             })
         })     
     }
