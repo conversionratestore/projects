@@ -256,15 +256,14 @@ let styleMain =`
     /* font */
     .fw-light {
         font-weight: 300; }
-    
     .fw-semi {
         font-weight: 600; }
     .fs-14 {
         font-size: 14px;
         line-height: 25px; }
     .fs-16 {
-        font-size: 16px;
-        line-height: 24px; }
+        font-size: 16px!important;
+        line-height: 24px!important; }
     .fs-24 {
         font-size: 24px;
         line-height: 29px; }
@@ -279,6 +278,8 @@ let styleMain =`
         text-transform: uppercase; }
     .text-center {
         text-align: center; }
+    .text-right {
+        text-align: right;}
     .text-nowrap {
         white-space: nowrap; }
     /*flex*/
@@ -287,6 +288,9 @@ let styleMain =`
     }
     .justify-center {
         justify-content: center;
+    }
+    .justify-end {
+        justify-content: flex-end;
     }
     .justify-between {
         justify-content: space-between;
@@ -385,7 +389,7 @@ let pricing = (parent, data) => {
 let product = (parent, id, variantId, quantity, subtotal, url, imageUrl, title, varQty) => {
     if (parent == '.cart-list') {
         return `
-        <li class="flex product-item" data-id="${id}" data-variant-id="${variantId}">
+        <li class="flex justify-end product-item" data-id="${id}" data-variant-id="${variantId}">
             <div class="flex">
                 <div class="relative mr-16">
                     <a href="${url}" class="product-item_img" title="${title}"> 
@@ -397,14 +401,14 @@ let product = (parent, id, variantId, quantity, subtotal, url, imageUrl, title, 
                         </svg>
                     </button>
                 </div>
-                <a href="${url}" title="${title}">${title}</a>
+                <a href="${url}" title="${title}" class="fw-semi fs-16">${title}</a>
             </div>
-            <div class="flex items-center">
+            <div class="flex">
                 <button type="button" class="quantity-btn quantity-btn_minus" ${varQty == 1 ? 'disabled': ''}>−</button>
                 <input type="number" name="quantity" value="${quantity}" class="quantity" ${varQty == 1 ? 'disabled': ''}>
                 <button type="button" class="quantity-btn quantity-btn_plus" ${varQty == 1 ? 'disabled': ''}>+</button>
             </div>
-            <div class="total-price flex">$<b>${(+subtotal.toString().replace(/[^\d\.]/g,'')).toFixed(2)}</b></div>
+            <div class="total-price flex fs-16 fw-semi">$<b>${(+subtotal.toString().replace(/[^\d\.]/g,'')).toFixed(2)}</b></div>
         </li>`
     } else {
         return `
@@ -600,7 +604,7 @@ window.onload = function() {
                         })
                     }
                 } else if (element == '.cart-list') {
-                    document.querySelector('.cart-total').innerHTML = data.subtotal != 0 ? `<p>Total:</p> <p>$<span>${(+data.subtotal.toString().replace(/[^\d\.]/g,'')).toFixed(2)}</span></p>` : '';
+                    document.querySelector('.cart-total').innerHTML = data.subtotal != 0 ? `Total: $${(+data.subtotal.toString().replace(/[^\d\.]/g,'')).toFixed(2)}` : '';
                     if (products.length < 1) { 
                         document.querySelector(element).innerHTML = `<div class="empty-cart">
                             <p>Your cart is currently empty.</p>
@@ -2294,6 +2298,73 @@ window.onload = function() {
                 swipeAngle: false,
             });
         })
+
+        if (href.includes('/cart.html')) {
+            toggleListing(false, '#container-listing', '#container-product')
+            let styleCartPage = `
+            <style>
+                .cart .container {
+                    max-width: 1100px;
+                }
+                .cart h2 {
+                    font-weight: 600;
+                    font-size: 36px;
+                    line-height: 120%;
+                    color: #091114;
+                    padding: 48px 0;
+                }
+                .cart-head {
+                    border-bottom: 1px solid #E9EBEC;
+                    padding-bottom: 20px;
+                }
+                .cart-head p, .cart-list .product-item > div:last-child, .cart-list .product-item > div {
+                    width: 15%;
+                }
+                .cart-list .product-item {
+                    padding: 32px 0;
+                }
+                .cart-list .product-item_img img {
+                    width: 86px;
+                    height: 86px;
+                }
+                .cart-head p:first-child, .cart-list .product-item > div:first-child {
+                    width: 70%;
+                }  
+                .cart-total {
+                    color: #091114;
+                    padding: 20px 0 40px;
+                }
+                .cart-list .product-item:last-child {
+                    border-bottom: 1px solid #E3E6E7;
+                }
+                .cart-list .product-item > div a:not(.product-item_img) {
+                    color: #344D57;
+                }
+            </style>`
+    
+            let htmlCart = `
+                <div class="cart">
+                    <div class="container">
+                        <h2 class="text-center">Your cart</h2>
+                        <div class="cart-head fs-16 c-gray flex">
+                            <p>Product</p>
+                            <p>Quantity</p>
+                            <p class="text-right">Total</p>
+                        </div>
+                        <ul class="cart-list"></ul>
+                        <p class="cart-total text-right fw-semi fs-24"></div>
+                        <a href="/checkout/step1" class="btn btn-next flex items-center ml-auto">
+                            <span>checkout</span>
+                            <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M3 9.32153V8.67847C3 8.5009 3.13431 8.35695 3.3 8.35695H13.002L10.332 5.50181C10.2752 5.44144 10.2433 5.35926 10.2433 5.27352C10.2433 5.18779 10.2752 5.10561 10.332 5.04524L10.758 4.59511C10.8143 4.53424 10.891 4.5 10.971 4.5C11.051 4.5 11.1277 4.53424 11.184 4.59511L14.868 8.537C14.9524 8.62736 14.9999 8.74995 15 8.87782V9.12218C14.9986 9.24977 14.9513 9.37186 14.868 9.463L11.184 13.4049C11.1277 13.4658 11.051 13.5 10.971 13.5C10.891 13.5 10.8143 13.4658 10.758 13.4049L10.332 12.9483C10.2756 12.8891 10.2438 12.8079 10.2438 12.7233C10.2438 12.6386 10.2756 12.5575 10.332 12.4982L13.002 9.64305H3.3C3.13431 9.64305 3 9.4991 3 9.32153Z" fill="#FBFBFB"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>`;
+            document.body.insertAdjacentHTML('afterbegin', styleCartPage)
+            document.querySelector('.main').insertAdjacentHTML('beforeend', htmlCart)
+        }
+    
     }
 
     if (!href.includes('login.php') && !href.includes('/register.php') && !href.includes('/checkout') && !href.includes('/guest-checkout')) {
@@ -3052,8 +3123,7 @@ window.onload = function() {
             line-height: 15px;
             color: #344D57;
             display: flex;
-            align-items: center;
-        }
+            align-items: center;}
         .ais-Breadcrumb-item, .breadcrumbs li {
             color: #6D7E85;
             display: flex;
@@ -3519,27 +3589,22 @@ window.onload = function() {
             margin-top: 8px;}
         @media only screen and (min-width: 1750px) {
             .nav_category {
-            position: relative; }
+                position: relative; }
             .dropdown_categories {
-            left: -100px;
-            top: 99%;
-            padding-top: calc(1% + 9px);
-            }
+                left: -100px;
+                top: 99%;
+                padding-top: calc(1% + 9px);}
         }
         @media only screen and (max-width: 1250px) {
             .category_popular li a {
-            margin: 0 3px;
-            }
+                margin: 0 3px;}
             .box-search {
-            width: 500px;
-            }
+                width: 500px;}
             .listing_wrapper {
-            padding: 41px 0 22px 24px;
-            }
+                padding: 41px 0 22px 24px;}
             .similar-products .card {
-            width: calc(25% - 15px);
-            margin-right: 20px;
-            }
+                width: calc(25% - 15px);
+                margin-right: 20px;}
         }
         </style>`
         let htmlListing = `
@@ -4855,60 +4920,4 @@ window.onload = function() {
     }
 
     !href.includes('/checkout/step4') && !href.includes('/guest-checkout4.php') ? cart() : '';
-    if (href.includes('/cart.html')) {
-        toggleListing(false, '#container-listing', '#container-product')
-        let styleCartPage = `
-        <style>
-            .cart .container {
-                max-width: 1100px;
-            }
-            .cart h2 {
-                font-weight: 600;
-                font-size: 36px;
-                line-height: 120%;
-                color: #091114;
-                padding: 48px 0;
-            }
-            .cart-head {
-                border-bottom: 1px solid #E9EBEC;
-                padding-bottom: 20px;
-            }
-            .cart-head p, .cart-list .product-item > div:last-child, .cart-list .product-item > div {
-                width: 15%;
-            }
-            .cart-list .product-item {
-                padding: 32px 0;
-            }
-            .cart-list .product-item_img img {
-                width: 86px;
-                height: 86px;
-            }
-            .cart-head p:first-child, .cart-list .product-item > div:first-child {
-                width: 70%;
-            }  
-        </style>`
-
-        let htmlCart = `
-            <div class="cart">
-                <div class="container">
-                    <h2 class="text-center">Your cart</h2>
-                    <div class="cart-head fs-16 c-gray flex">
-                        <p>Product</p>
-                        <p>Quantity</p>
-                        <p class="text-right">Total</p>
-                    </div>
-                    <ul class="cart-list"></ul>
-                    <div class="cart-total text-right"></div>
-                    <a href="/checkout/step1" class="btn btn-next flex items-center ml-auto">
-                        <span>checkout</span>
-                        <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M3 9.32153V8.67847C3 8.5009 3.13431 8.35695 3.3 8.35695H13.002L10.332 5.50181C10.2752 5.44144 10.2433 5.35926 10.2433 5.27352C10.2433 5.18779 10.2752 5.10561 10.332 5.04524L10.758 4.59511C10.8143 4.53424 10.891 4.5 10.971 4.5C11.051 4.5 11.1277 4.53424 11.184 4.59511L14.868 8.537C14.9524 8.62736 14.9999 8.74995 15 8.87782V9.12218C14.9986 9.24977 14.9513 9.37186 14.868 9.463L11.184 13.4049C11.1277 13.4658 11.051 13.5 10.971 13.5C10.891 13.5 10.8143 13.4658 10.758 13.4049L10.332 12.9483C10.2756 12.8891 10.2438 12.8079 10.2438 12.7233C10.2438 12.6386 10.2756 12.5575 10.332 12.4982L13.002 9.64305H3.3C3.13431 9.64305 3 9.4991 3 9.32153Z" fill="#FBFBFB"/>
-                        </svg>
-                    </a>
-                </div>
-            </div>`;
-        document.body.insertAdjacentHTML('afterbegin', styleCartPage)
-        document.querySelector('.main').insertAdjacentHTML('beforeend', htmlCart)
-    }
-
 };
