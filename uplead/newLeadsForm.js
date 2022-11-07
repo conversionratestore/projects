@@ -166,7 +166,7 @@ let runTest = () => {
         
         /* findleadsnow page */
         if (url.includes('/findleadsnow') && document.body != null) {
-            document.body.innerHTML = '<img class="bg" src="https://conversionratestore.github.io/projects/uplead/img/bg-findleadeshow.svg" alt="image" width="100vw"/>'
+            document.body.innerHTML = '<img class="bg" src="https://conversionratestore.github.io/projects/uplead/img/bg-findleadeshow.svg" alt="image" width="100%"/>'
             
             if (document.readyState == 'complete') {
                 clearInterval(start)
