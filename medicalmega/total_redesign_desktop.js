@@ -4914,4 +4914,6 @@ window.onload = function() {
         document.body.insertAdjacentHTML('afterbegin', styleCartPage)
         document.querySelector('.main').insertAdjacentHTML('beforeend', htmlCart)
     }
+
+    document.querySelector(".exp-loading")?.remove()
 };
