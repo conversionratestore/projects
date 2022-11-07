@@ -70,6 +70,7 @@ let interval = setInterval(() => {
                 } else if (e.target.innerText.toLowerCase().includes('private tours')) {
                     pushDataLayer(`Private tours`)
                 }
+                console.log(e.target.innerText.toLowerCase())
             })
         })     
     }
