@@ -502,7 +502,7 @@ window.onload = function() {
             }
             if (products.length > 0) {
                 //product quantity changes
-                let varQty = href.includes('checkout/step2') || href.includes('checkout/step3') ? 1 : 0
+                let varQty = href.includes('checkout/step2') || href.includes('checkout/step3') || href.includes('guest-checkout2') || href.includes('guest-checkout3') ? 1 : 0
                 for (let i = 0; i < products.length; i++) {
                     qty += products[i].quantity
                     //add products
