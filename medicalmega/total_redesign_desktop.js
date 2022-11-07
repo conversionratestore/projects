@@ -524,6 +524,8 @@ let counterBasket = 0;
 window.onload = function() {
     document.body.insertAdjacentHTML('afterbegin', styleMain)
 
+    document.querySelector(".exp-loading")?.remove();
+    
     //changeQuantity
     let changeQuantity = (plus, minus, quantity, post=false) => {
         //update quantity
@@ -4915,5 +4917,4 @@ window.onload = function() {
         document.querySelector('.main').insertAdjacentHTML('beforeend', htmlCart)
     }
 
-    document.querySelector(".exp-loading") != null ? document.querySelector(".exp-loading").remove() : ''
 };
