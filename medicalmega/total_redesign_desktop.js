@@ -35,8 +35,43 @@ let styleMain =`
         display: block;
     }
     .btn-next svg {
-        margin-left: 8px;
-    }
+        margin-left: 8px;}
+    .btn {
+        font-family: "Inter", sans-serif;
+        background-color: #1E3944;
+        border: 2px solid #1E3944;
+        border-radius: 40px;
+        color: #FBFBFB;
+        font-weight: 600;
+        text-align: center;
+        letter-spacing: 0.05em;
+        text-transform: uppercase;
+        line-height: 44px;
+        font-size: 12px;
+        padding: 0 22px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        white-space: nowrap; }
+    .btn:hover, .btn:not(.btn_white):focus  {
+        background-color: #344D57;
+        border-color: #344D57; }
+    .btn[disabled] {
+        color: #9AA6AB;
+        background-color: #F0F1F2;
+        border-color: #F0F1F2; }
+    .btn[disabled] svg, #form-search button[disabled] svg {
+        fill: #9AA6AB; }
+    .btn_white {
+        background-color: #FFFFFF;
+        color: #1E3944; }
+    .btn_white.active {
+        background-color: #E9EBEC; }
+    .btn_white:hover {
+        background-color: #F0F1F2;}
+    .btn_white[disabled], #form-search button[disabled] {
+        border-color: #F0F1F2;
+        background-color: #FBFBFB;
+        color: #9AA6AB; }
     /*wrapper and header*/
     .header-checkout *, .wrapper-checkout * {
         box-sizing: border-box;
@@ -561,7 +596,6 @@ window.onload = function() {
                         document.querySelector(element).style = '';
                         document.querySelector('.footer-cart .btn-next').addEventListener('click', (e) => {
                             e.stopImmediatePropagation();
-                            sessionStorage.setItem('routing', 1);
                             pushDataLayer('Click on Proceed to checkout button', labelForEvents(e.target))
                         })
                     }
@@ -570,8 +604,11 @@ window.onload = function() {
                     if (products.length < 1) { 
                         document.querySelector(element).innerHTML = `<div class="empty-cart">
                             <p>Your cart is currently empty.</p>
-                            <button type="button" class="btn-next"><span>Shop now</span></button>
+                            <a href="/" class="btn-next"><span>Shop now</span></a>
                         </div>`;
+                        document.querySelector('.cart-head').style.display = 'none'
+                    } else {
+                        document.querySelector('.cart-head').style = ''
                     }
                 }
             })
@@ -2154,7 +2191,7 @@ window.onload = function() {
                         <input type="image" name="submit" src="https://conversionratestore.github.io/projects/medicalmega/img/paypal.svg" border="0" align="top" alt="Check out with PayPal">
                     </form>
                     <p>or</p>
-                    <a href="https://medicalmega.com/checkout/step1" class="btn-next items-center flex">
+                    <a href="https://medicalmega.com/cart.html" class="btn-next items-center flex">
                     <span>Proceed to checkout</span>
                         <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M3 9.32153V8.67847C3 8.5009 3.13431 8.35695 3.3 8.35695H13.002L10.332 5.50181C10.2752 5.44144 10.2433 5.35926 10.2433 5.27352C10.2433 5.18779 10.2752 5.10561 10.332 5.04524L10.758 4.59511C10.8143 4.53424 10.891 4.5 10.971 4.5C11.051 4.5 11.1277 4.53424 11.184 4.59511L14.868 8.537C14.9524 8.62736 14.9999 8.74995 15 8.87782V9.12218C14.9986 9.24977 14.9513 9.37186 14.868 9.463L11.184 13.4049C11.1277 13.4658 11.051 13.5 10.971 13.5C10.891 13.5 10.8143 13.4658 10.758 13.4049L10.332 12.9483C10.2756 12.8891 10.2438 12.8079 10.2438 12.7233C10.2438 12.6386 10.2756 12.5575 10.332 12.4982L13.002 9.64305H3.3C3.13431 9.64305 3 9.4991 3 9.32153Z" fill="#FBFBFB"/>
@@ -2259,7 +2296,6 @@ window.onload = function() {
             });
         })
     }
-
 
     if (!href.includes('login.php') && !href.includes('/register.php') && !href.includes('/checkout') && !href.includes('/guest-checkout')) {
         let style = `
@@ -2386,42 +2422,6 @@ window.onload = function() {
             color: #091114;
             text-align: left;
             line-height: 16px; }
-        .btn {
-            font-family: "Inter", sans-serif;
-            background-color: #1E3944;
-            border: 2px solid #1E3944;
-            border-radius: 40px;
-            color: #FBFBFB;
-            font-weight: 600;
-            text-align: center;
-            letter-spacing: 0.05em;
-            text-transform: uppercase;
-            line-height: 44px;
-            font-size: 12px;
-            padding: 0 22px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            white-space: nowrap; }
-        .btn:hover, .btn:not(.btn_white):focus  {
-            background-color: #344D57;
-            border-color: #344D57; }
-        .btn[disabled] {
-            color: #9AA6AB;
-            background-color: #F0F1F2;
-            border-color: #F0F1F2; }
-        .btn[disabled] svg, #form-search button[disabled] svg {
-            fill: #9AA6AB; }
-        .btn_white {
-            background-color: #FFFFFF;
-            color: #1E3944; }
-        .btn_white.active {
-            background-color: #E9EBEC; }
-        .btn_white:hover {
-            background-color: #F0F1F2;}
-        .btn_white[disabled], #form-search button[disabled] {
-            border-color: #F0F1F2;
-            background-color: #FBFBFB;
-            color: #9AA6AB; }
         .check {
             border: 1px solid #6D7E85;
             width: 16px;
@@ -4850,7 +4850,7 @@ window.onload = function() {
                 })
             }
             mut.observe(document, optionMut);
-            document.querySelector('.cart_count') != null ? document.querySelector('.cart_count').value = counterBasket : '';
+            document.querySelector('.cart_count') != null ? document.querySelector('.cart_count').innerHTML = counterBasket : '';
 
             mut.observe(document, optionMut);
         });
