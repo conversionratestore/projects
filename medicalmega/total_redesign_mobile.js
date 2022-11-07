@@ -1534,30 +1534,34 @@ window.onload = function() {
         }
         //copy from shipping
         let copyFromShip = (e, formType) => {
+            let stateName = document.querySelector(`.${formType}-form dd [name="state"]`),
+                countryName = document.querySelector(`.${formType}-form dd [name="country"]`);
+
             if (e.checked) {
                 fetch(`/api/v1/addresses&type=ship`, {
                     headers: headerFetchAddress,
                     method: "GET",
                 }).then(res => res.json()).then(data => {
-                    let address = data['addresses'][0]
+                    let address = data['addresses'][0],
+                        stateValue = address['state'];
+
                     for (const keyShip in address) {
                         console.log(keyShip, address[keyShip])
                         if (document.querySelector(`.${formType}-form dd [name="${keyShip}"]`) != null && address[keyShip] != '') {
-                            let stateName = document.querySelector(`.${formType}-form dd [name="state"]`),
-                                countryName = document.querySelector(`.${formType}-form dd [name="country"]`);
-                            if (countryName.value == 'Canada') {
-                                stateName.innerHTML = statesCanada;
-                                stateName.previousElementSibling.children[0].innerHTML = 'Province / Territory'
-                            } else if (countryName.value == 'United States') {
-                                stateName.innerHTML = statesUsa;
-                                stateName.previousElementSibling.children[0].innerHTML = 'State (Only applicable to US)'
-                            } else {
-                                stateName.innerHTML = '<option value="" selected="selected">-- Select State --</option>';
-                                stateName.previousElementSibling.children[0].innerHTML = 'State (Only applicable to US)'
-                            }
                             document.querySelector(`.${formType}-form dd [name="${keyShip}"]`).value = address[keyShip]
                         }
                     }
+                    if (countryName.value == 'Canada') {
+                        stateName.innerHTML = statesCanada;
+                        stateName.previousElementSibling.children[0].innerHTML = 'Province / Territory'
+                    } else if (countryName.value == 'United States') {
+                        stateName.innerHTML = statesUsa;
+                        stateName.previousElementSibling.children[0].innerHTML = 'State (Only applicable to US)'
+                    } else {
+                        stateName.innerHTML = '<option value="" selected="selected">-- Select State --</option>';
+                        stateName.previousElementSibling.children[0].innerHTML = 'State (Only applicable to US)'
+                    }
+                    stateName.value = stateValue
                 })
             }
         }
