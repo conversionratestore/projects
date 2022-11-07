@@ -401,7 +401,7 @@ let product = (parent, id, variantId, quantity, subtotal, url, imageUrl, title, 
                         </svg>
                     </button>
                 </div>
-                <a href="${url}" title="${title}" class="fw-semi fs-16">${title}</a>
+                <a href="${url}" title="${title.split('"').join('`')}" class="fw-semi fs-16">${title}</a>
             </div>
             <div class="flex">
                 <button type="button" class="quantity-btn quantity-btn_minus" ${varQty == 1 ? 'disabled': ''}>−</button>
@@ -424,7 +424,7 @@ let product = (parent, id, variantId, quantity, subtotal, url, imageUrl, title, 
                 </button>` : ''}
             </div>
             <div>
-                <a href="${url}" title="${title}">${title}</a>
+                <a href="${url}" title="${title.split('"').join('`')}">${title}</a>
                 <div class="flex-center-between flex">
                     ${varQty == 0 ? `<div class="flex items-center">
                         <button type="button" class="quantity-btn quantity-btn_minus" ${varQty == 1 ? 'disabled': ''}>−</button>
@@ -491,11 +491,11 @@ let stopStuff = () => {
 
 let toggleListing = (boolean, list, product) => {
     if (boolean == false) {
-        document.querySelector(list).style.display = 'none';
+        document.querySelector(list) != null ? document.querySelector(list).style.display = 'none' : '';
         document.querySelector(product) != null ? document.querySelector(product).style.display = 'block' : '';
         stopStuff()
     } else {
-        document.querySelector(list).style = '';
+        document.querySelector(list) != null ? document.querySelector(list).style = '' : '';
         document.querySelector(product) != null ? document.querySelector(product).style.display = 'none' : '';
         startStuff()
     }
