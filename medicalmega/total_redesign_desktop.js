@@ -2317,8 +2317,11 @@ window.onload = function() {
                     border-bottom: 1px solid #E9EBEC;
                     padding-bottom: 20px;
                 }
+                .cart-head p:first-child, .cart-list .product-item > div:first-child {
+                    width: 60%;
+                } 
                 .cart-head p, .cart-list .product-item > div:last-child, .cart-list .product-item > div {
-                    width: 15%;
+                    width: 20%;
                 }
                 .cart-list .product-item {
                     padding: 32px 0;
@@ -2326,10 +2329,7 @@ window.onload = function() {
                 .cart-list .product-item_img img {
                     width: 86px;
                     height: 86px;
-                }
-                .cart-head p:first-child, .cart-list .product-item > div:first-child {
-                    width: 70%;
-                }  
+                } 
                 .cart-total {
                     color: #091114;
                     padding: 20px 0 40px;
@@ -2339,6 +2339,9 @@ window.onload = function() {
                 }
                 .cart-list .product-item > div a:not(.product-item_img) {
                     color: #344D57;
+                }
+                .cart-head p:nth-child(2) {
+                    padding-left: 13px;
                 }
             </style>`
     
