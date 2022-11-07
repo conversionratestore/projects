@@ -619,7 +619,7 @@ window.onload = function() {
 
             if (products.length > 0) {
                 //product quantity changes
-                let varQty = href.includes('checkout/step2') || href.includes('checkout/step3') ? 1 : 0
+                let varQty = href.includes('checkout/step2') || href.includes('checkout/step3') || href.includes('guest-checkout2.php') || href.includes('guest-checkout3.php') ? 1 : 0
                 for (let i = 0; i < products.length; i++) {
                     counterBasket += products[i].quantity
                     //add products
@@ -1734,7 +1734,7 @@ window.onload = function() {
             }
             document.querySelector('#cc_block > dl > div.ccInfo > dd:nth-child(3)').innerHTML = `Credit/Debit Card<span class="c-red"> *</span>`;
 
-            document.querySelector('#save_cc_info')?.insertAdjacentHTML('afterend','<span class="check2"></span>');
+            document.querySelector('#save_cc_info') != null ? document.querySelector('#save_cc_info').insertAdjacentHTML('afterend','<span class="check2"></span>') : '';
 
             document.querySelector('.cc-recurring-setting').insertAdjacentHTML('beforebegin',`<label class="order-every flex flex-center-between"><span class="check2"></span>${document.querySelector('.cc-recurring-setting').innerHTML}</label>`)
             document.querySelector('.order-every .check2').before(document.querySelector('#cc-recurring-check'))
@@ -1783,7 +1783,7 @@ window.onload = function() {
                     item.classList.remove('error')
                     item.querySelector('i').innerHTML = ''
                 })
-                document.querySelector('.error-other')?.remove()
+                document.querySelector('.error-other') != null ? document.querySelector('.error-other').remove() : '';
                 if (dataErrors.length > 0) {
                     for (let i = 0; i < dataErrors.length; i++) {
                         if (dataErrors[i].includes('First name')) {
@@ -4457,7 +4457,7 @@ window.onload = function() {
                 requestProduct.then(data => {
                     if (data.nbHits == 0) {
                         document.querySelector('.main').style.display = 'none';
-                        document.querySelector('.style-main')?.remove();
+                        document.querySelector('.style-main') != null ? document.querySelector('.style-main').remove() : '';
                         document.querySelector('#wrap').style.display = 'block';
                     } else {
                         let product = data.hits[0],
@@ -4594,7 +4594,7 @@ window.onload = function() {
 
                         document.querySelector('#container-listing').insertAdjacentHTML('beforebegin', htmlProduct);
 
-                        document.querySelector('.available-options .scroll-x')?.innerHTML = availableOptions();
+                        document.querySelector('.available-options .scroll-x') != null ? document.querySelector('.available-options .scroll-x').innerHTML = availableOptions() : '';
 
                         let tabs = document.querySelectorAll('.tabs-discription li'), //tabs description
                             contents = document.querySelectorAll('.content-discription .content-item'), // content discription
