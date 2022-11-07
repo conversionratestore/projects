@@ -2797,15 +2797,15 @@ window.onload = function() {
         .btn-calc_plus:after {
             content: ''; }
         .card {
-        background: #FFFFFF;
-        border: 1px solid #E3E6E7;
-        border-radius: 4px;
-        padding: 20px;
-        display: flex;
-        justify-content: space-between;
-        flex-direction: column;
-        transition: all 0.3s ease;
-        position: relative; }
+            background: #FFFFFF;
+            border: 1px solid #E3E6E7;
+            border-radius: 4px;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            flex-direction: column;
+            transition: all 0.3s ease;
+            position: relative; }
         .card:hover {
             z-index: 1;
             box-shadow: 0px 2px 4px rgba(9, 17, 20, 0.1), 0px 12px 32px rgba(0, 0, 0, 0.05);
@@ -3674,11 +3674,21 @@ window.onload = function() {
                     priceBlock = qty.closest('.product').querySelector('.add-to-cart .add-cart .pr');
                 qtyBlock.value = qty.value;
                 priceBlock.innerHTML = (+priceBlock.dataset.price * +qty.value).toFixed(2);
+                if (qtyBlock.value > 1) {
+                    qtyBlock.previousElementSibling.disabled = false;
+                } else {
+                    qtyBlock.previousElementSibling.disabled = true;
+                }
             } else if (qty.closest('.add-to-cart')) {
                 let qtyBlock = qty.closest('.product').querySelector('.product_pricing .calc-qty'),
                     priceBlock = qty.closest('.product').querySelector('.product_pricing .add-cart .pr');
                 qtyBlock.value = qty.value;
                 priceBlock.innerHTML = (+priceBlock.dataset.price * +qty.value).toFixed(2);
+                if (qtyBlock.value > 1) {
+                    qtyBlock.previousElementSibling.disabled = false;
+                } else {
+                    qtyBlock.previousElementSibling.disabled = true;
+                }
             }
         }
 
@@ -4305,9 +4315,9 @@ window.onload = function() {
                         return `
                         <form class="${className}" action="https://medicalmega.com/cart.html" method="post">
                             <div class="flex-center calc" ${firstVariant.in_stock == false || firstVariant.price == '0.00' ? 'disabled' : ''}> 
-                            <button class="btn-calc btn-calc_minus" type="button" disabled></button>
-                            <input class="calc-qty" type="number" value="1" name="quantity">
-                            <button class="btn-calc btn-calc_plus" type="button"></button>
+                                <button class="btn-calc btn-calc_minus" type="button" disabled></button>
+                                <input class="calc-qty" type="number" value="1" name="quantity">
+                                <button class="btn-calc btn-calc_plus" type="button"></button>
                             </div>
                             ${firstVariant.in_stock == false || firstVariant.price == '0.00' ? '<button class="btn btn btn_white" type="button" data-button="notify">Out of Stock</button>' : `<button class="btn btn_dark add-cart" type="button" ><span>$<span class="pr" data-price="${firstVariant.price}">${firstVariant.price}</span> | </span>Add to Cart</button>`}
                             <input type="hidden" name="product_variant_id" value="${firstVariant.pv_id}">
