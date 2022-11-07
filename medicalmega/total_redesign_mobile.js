@@ -4535,6 +4535,8 @@ window.onload = function() {
 
         mut.observe(document, optionMut);
     }
+
+    document.querySelector(".exp-loading")?.remove()
 };
 
 let intervalCart = setInterval(() => {
