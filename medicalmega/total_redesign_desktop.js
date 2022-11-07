@@ -492,11 +492,11 @@ let stopStuff = () => {
 let toggleListing = (boolean, list, product) => {
     if (boolean == false) {
         document.querySelector(list).style.display = 'none';
-        document.querySelector(product)?.style.display = 'block';
+        document.querySelector(product) != null ? document.querySelector(product).style.display = 'block' : '';
         stopStuff()
     } else {
         document.querySelector(list).style = '';
-        document.querySelector(product)?.style.display = 'none';
+        document.querySelector(product) != null ? document.querySelector(product).style.display = 'none' : '';
         startStuff()
     }
 }
@@ -644,7 +644,7 @@ window.onload = function() {
             } else {
                 counterBasket = 0;
             }
-            document.querySelector('.cart_count')?.innerHTML = counterBasket;
+            document.querySelector('.cart_count') != null ? document.querySelector('.cart_count').innerHTML = counterBasket : '';
         })
     }
     //Confirmation
@@ -1591,7 +1591,7 @@ window.onload = function() {
         }
         function currentAddress(parent, pre, obj) {
             for (const key in obj) {
-                document.querySelector(`${parent} [name="${pre}${key}"]`)?.value = obj[key];
+                document.querySelector(`${parent} [name="${pre}${key}"]`) != null ? document.querySelector(`${parent} [name="${pre}${key}"]`).value = obj[key] : '';
             }
         }
         
