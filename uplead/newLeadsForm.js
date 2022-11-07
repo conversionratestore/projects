@@ -140,7 +140,6 @@ let runTest = () => {
             //change text on button
             document.querySelector('section.elementor-element.elementor-element-954ec92 .elementor-container.elementor-column-gap-no .elementor-form .elementor-button .elementor-button-text').innerHTML = 'Find Leads Now';
             ladedTest()
-            document.querySelector(".exp-loading")?.remove()
         }
         /* end main page */
         
@@ -154,7 +153,6 @@ let runTest = () => {
                     window.location.href = 'https://app.uplead.com/trial-signup'
                 }, 3000)
                 ladedTest()
-                document.querySelector(".exp-loading")?.remove()
             }
                 
             document.addEventListener('click', (e) => {
@@ -377,7 +375,6 @@ let runTest = () => {
             })
 
             ladedTest()
-            document.querySelector(".exp-loading")?.remove()
         }
         /* end pop-up form */
     })
