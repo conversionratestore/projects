@@ -32,6 +32,27 @@ let isUrlValid = (userInput) => {
 let stateUrl = window.location.href;
 let url = ''
 
+window.onload = function () {
+    document.body.insertAdjacentHTML('afterbegin',`
+    <style>
+        .loaded_hiding:after {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            background: #fff;
+            z-index: 99999999;
+            width: 100%;
+            height: 100vh;
+        }
+    </style>`)
+    document.body.classList.add('loaded_hiding');
+    window.setTimeout(function () {
+        document.body.classList.add('loaded');
+        document.body.classList.remove('loaded_hiding');
+    }, 500);
+}
+
 let runTest = () => {
     let start = setInterval(() => {
         /* main page */
@@ -145,13 +166,13 @@ let runTest = () => {
         
         /* findleadsnow page */
         if (url.includes('/findleadsnow') && document.body != null) {
-            document.body.innerHTML = '<img class="bg" src="https://conversionratestore.github.io/projects/uplead/img/bg-findleadeshow.svg" alt="image"/>'
+            document.body.innerHTML = '<img class="bg" src="https://conversionratestore.github.io/projects/uplead/img/bg-findleadeshow.svg" alt="image" width="100vw"/>'
             
             if (document.readyState == 'complete') {
                 clearInterval(start)
-                setTimeout(() => {
-                    window.location.href = 'https://app.uplead.com/trial-signup'
-                }, 3000)
+                // setTimeout(() => {
+                //     window.location.href = 'https://app.uplead.com/trial-signup'
+                // }, 3000)
                 ladedTest()
             }
                 
