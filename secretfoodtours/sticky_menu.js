@@ -1,5 +1,7 @@
 const crsStyle = /*html*/`
     <style>
+        html {scroll-behavior:smooth;}
+
         header {
             height: 80px;
             position: fixed;
