@@ -1429,7 +1429,7 @@ window.onload = function() {
                     "addr1": addr1,
                     "addr2": "",
                     "city": city,
-                    "state": stateF,
+                    "state": stateF == '' && type == 'bill' && country != 'Canada' && country != 'United States' ? " " : stateF,
                     "zip": zip,
                     "country": country,
                     "phn": phn,
