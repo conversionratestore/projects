@@ -92,7 +92,7 @@ let stickyBanner = setInterval(() => {
             font-weight: 400;
             font-size: 16px;
             line-height: 26px;
-            color: #B2B2B2;
+            color: #000000;
             border-left: 1px solid #D3D4D6;
             border-bottom: unset;
             border-top: unset;
