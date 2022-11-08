@@ -52,7 +52,8 @@ let styleMain =`
         cursor: pointer;
         transition: all 0.3s ease;
         white-space: nowrap; }
-    .btn:hover, .btn:not(.btn_white):focus  {
+    .btn:not(.btn_white):hover, .btn:not(.btn_white):focus {
+        color: #fff;
         background-color: #344D57;
         border-color: #344D57; }
     .btn[disabled] {
@@ -1504,7 +1505,7 @@ window.onload = function() {
             })
         }
 
-        let shipFormHtml = (state, countries_ship, active, edit) => {
+        let shipFormHtml = (sibling, state, countries_ship, active, edit) => {
             document.querySelector(sibling).insertAdjacentHTML('afterend', `
             <form class="ship-form ${edit} ${active}">
                 <dd style="width: 50%;float:left;padding-right: 8px">
@@ -1561,7 +1562,7 @@ window.onload = function() {
             </form>`);
             changeSelect('.ship-form [name="country"]', '.ship-form [name="state"]')
         }
-        let billFormHtml = (state, countries_ship, active, edit) => {
+        let billFormHtml = (sibling, state, countries_ship, active, edit) => {
             document.querySelector(sibling).insertAdjacentHTML('afterend', `
             <form class="bill-form ${active} ${edit}">
                 <dd style="width: 100%;">
@@ -1663,7 +1664,7 @@ window.onload = function() {
         }
         //step 2 "Shipping Information"
         let currentAddressShip, currentAddressBill;
-        let state_item, countries_ship_item
+        let state_item, countries_ship_item, countries_bill_item;
         if (href.includes('/checkout/step1') || href.includes('/checkout/step2') || href.includes('guest-checkout1.php') || href.includes('guest-checkout2.php')) {
             addStep('.steps', 1) //add steps in header
             if (document.querySelector('.tooltip') != null) {
@@ -1678,10 +1679,12 @@ window.onload = function() {
             }
         }
         
-        if (href.includes('/checkout/step1') || href.includes('guest-checkout1.php')) {
+        if ((href.includes('/checkout/step1') || href.includes('/guest-checkout1.php')) && document.querySelector('.myAccount') == null) {
             document.querySelector('.col-left .head h4').innerHTML = obj['stepsName'][1];
             state_item = href.includes('guest-checkout1.php') ? b_state : state;
-            countries_ship_item = href.includes('guest-checkout1.php') ? b_country.innerHTML : countries_ship;
+            countries_ship_item = href.includes('guest-checkout1.php') ? s_country.innerHTML : countries_ship;
+            countries_bill_item = href.includes('guest-checkout1.php') ? b_country.innerHTML : countries_all; //country.innerHTML;
+           
             let shipHave = false, billHave = false;
 
             fetch(`/api/v1/addresses`, {
@@ -1716,13 +1719,15 @@ window.onload = function() {
                             item.addEventListener('click', (e) => {
                                 e.stopImmediatePropagation()
                                 if (item.closest('.ship') != null) {
-                                    document.querySelector('.col-left .head').insertAdjacentHTML('afterend', shipFormHtml(state_item, countries_ship_item,'active', 'edit'))
+                                    shipFormHtml('.col-left .head', state_item, countries_ship_item,'active', 'edit')
                                     document.querySelector('.col-left .head h4').innerHTML = obj['stepsName'][1];
+                                    document.querySelector('.btn-next').innerHTML = 'Save Shipping info';
 
                                     currentAddress('.ship-form > dd', ``, currentAddressShip)
                                 } else if (item.closest('.bill') != null) {
-                                    document.querySelector('.col-left .head').insertAdjacentHTML('afterend', billFormHtml(state_item, countries_ship_item, 'active','edit'))
+                                    billFormHtml('.col-left .head', state_item, countries_bill_item, 'active','edit')
                                     document.querySelector('.col-left .head h4').innerHTML = 'Billing information';
+                                    document.querySelector('.btn-next').innerHTML = 'Save Billing info';
 
                                     currentAddress('.bill-form > dd', ``, currentAddressBill)
 
@@ -1745,13 +1750,13 @@ window.onload = function() {
                         document.querySelector('.address .link').hidden = true;
                     }
                     if (document.querySelector('.address.bill') != null && document.querySelector('.address.ship') == null) {
-                        document.querySelector('.col-left .head').insertAdjacentHTML('afterend', shipFormHtml(state_item, countries_ship_item, 'active', ''))
+                        shipFormHtml('.col-left .head', state_item, countries_ship_item, 'active', '')
                         document.querySelector('.ship-form > dd:last-child').remove();
                     }
                 } else {
                     //Shipping Information - not filled
-                    document.querySelector('.col-left .head').insertAdjacentHTML('afterend', shipFormHtml(state_item, countries_ship_item, 'active', ''))
-                    document.querySelector('.col-left .head').insertAdjacentHTML('afterend', billFormHtml(state_item, countries_ship_item, '', ''))
+                    shipFormHtml('.col-left .head', state_item, countries_ship_item, 'active', '')
+                    billFormHtml('.col-left .head', state_item, countries_bill_item, '', '')
                     document.querySelector('[name="shipping"]').addEventListener('click', (e) => {
                         console.log(e.target)
                         copyFromShip(e.target, 'bill')
@@ -1981,44 +1986,55 @@ window.onload = function() {
             }
         }
 
-        //add click on next button
-        document.querySelector('.btn-next').addEventListener('click', (e) => {
+         //add click on next button
+         document.querySelector('.btn-next').addEventListener('click', (e) => {
             if (document.querySelector('.myAccountright.active') != null) {
+                console.log('login')
                 document.querySelector('#login_btn').click()
             } else if (document.querySelector('.myAccountleft.active') != null) {
+                console.log('register')
                 document.querySelector('[name="register"]').click()
             } else if (document.querySelector('.ship-form.active') != null) {
+                console.log('ship-form.active')
                 address('ship')
             } else if (document.querySelector('.bill-form.active') != null) {
+                console.log('bill-form.active')
                 address('bill')
-            }  else if (document.querySelector('.address.ship') != null && document.querySelector('.address.bill') != null && document.querySelector('.bill-form.edit') == null && document.querySelector('.ship-form.edit') == null) {
+            } else if (document.querySelector('.address.ship') != null && document.querySelector('.address.bill') != null && document.querySelector('.bill-form.edit') == null && document.querySelector('.ship-form.edit') == null) {
                 console.log('next 2 step')
-                if (href.includes('guest-checkout')) {
+                // if (href.includes('guest-checkout')) {
                     document.querySelector('#mainbody > div > form > div > input[type=image]').click();
-                } else {
-                    window.location.href = `https://medicalmega.com/checkout/step2`;
-                }
+                // } else {
+                //     window.location.href = `https://medicalmega.com/checkout/step2`;
+                // }
             } else if (document.querySelector('.address.ship') != null && document.querySelector('.address.bill') == null && document.querySelector('.bill-form.active') == null) {
+                console.log('next 2 step')
                 document.querySelector('.address.ship').style.display = 'none'
                 document.querySelector('.col-left .head h4').innerHTML = 'Billing information'; //change title
                 //change back button
                 setBack()
                 //add billing form html
                 console.log(state_item, countries_ship_item)
-                document.querySelector('.col-left .head').insertAdjacentHTML('afterend', billFormHtml(state_item, countries_ship_item, 'active',''))
+                billFormHtml('.col-left .head', state_item, countries_bill_item, 'active','')
                 //copy from Shipping
                 document.querySelector('[name="shipping"]').addEventListener('click', (e) => copyFromShip(e.target, 'bill'))
+            } else if (document.querySelector('.address.ship') == null && document.querySelector('.address.bill') != null && document.querySelector('.ship-form.active') == null) {
+                console.log('address.ship == null')
+                shipFormHtml('.col-left .head', state_item, countries_ship_item, 'active','')
             } else if (document.querySelector('.ship-form.edit') != null) {
                 console.log('edit ship form')
                 address('ship')
             } else if (document.querySelector('.bill-form.edit') != null) {
                 console.log('edit bill form')
                 address('bill')
-            } else if (href.includes('checkout/step2') || href.includes('guest-checkout2.php')) {
+            } else if (href.includes('checkout/step2') || href.includes('/guest-checkout2.php')) {
+                console.log('checkout/step2 || /guest-checkout2')
                 document.querySelector('form > div > input[type=image]').click()
-            } else if (href.includes('checkout/step3') || href.includes('guest-checkout3.php')) {
+            } else if (href.includes('checkout/step3') || href.includes('/guest-checkout3.php')) {
+                console.log('checkout/step3 || /guest-checkout3')
                 document.querySelector('#submitCheckout3').click()
             }
+            scrollTop(e.target, document.body)
         })
     } 
     if (!href.includes('login.php') && !href.includes('register.php') && !href.includes('/checkout') && !href.includes('/guest-checkout')) {
@@ -3752,11 +3768,12 @@ window.onload = function() {
         }
 
         if (sessionStorage.getItem('old_version') == null) {
-            document.body.insertAdjacentHTML('afterbegin', htmlListing); //add listing HTML
-            document.body.insertAdjacentHTML('afterbegin', style); //add style listing 
-
             document.body.insertAdjacentHTML('afterbegin', styleCart); //add style for cart modal
+            document.body.insertAdjacentHTML('afterbegin', style); //add style  
+
+            document.body.insertAdjacentHTML('afterbegin', htmlListing); //add listing HTML
             document.body.insertAdjacentHTML('beforeend', cartModalHTML); //add cart modal
+
             startStuff();
 
             document.querySelector('.header').before(document.querySelector('#top'));
