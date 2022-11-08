@@ -237,6 +237,9 @@ let styleMain =`
         border-radius: 38px;
         margin: 0 12px;
     }
+    .popular-products {
+        padding-top: 72px;
+    }
     /* spacing */
     .ml-40 {
         margin-left: 40px; }  
@@ -408,7 +411,7 @@ let product = (parent, id, variantId, quantity, subtotal, url, imageUrl, title, 
                 <input type="number" name="quantity" value="${quantity}" class="quantity" ${varQty == 1 ? 'disabled': ''}>
                 <button type="button" class="quantity-btn quantity-btn_plus" ${varQty == 1 ? 'disabled': ''}>+</button>
             </div>
-            <div class="total-price flex fs-16 fw-semi">$<b>${(+subtotal.toString().replace(/[^\d\.]/g,'')).toFixed(2)}</b></div>
+            <div class="total-price flex fs-16 fw-semi justify-end">$<b>${(+subtotal.toString().replace(/[^\d\.]/g,'')).toFixed(2)}</b></div>
         </li>`
     } else {
         return `
@@ -4768,7 +4771,7 @@ window.onload = function() {
                                 <p class="text-right">Total</p>
                             </div>
                             <ul class="cart-list"></ul>
-                            <p class="cart-total text-right fw-semi fs-24"></div>
+                            <p class="cart-total text-right fw-semi fs-24"></p>
                             <a href="/checkout/step1" class="btn btn-next flex items-center ml-auto">
                                 <span>checkout</span>
                                 <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -4776,8 +4779,8 @@ window.onload = function() {
                                 </svg>
                             </a>
                             <div class="popular-products">
-                                <h2>Popular products</h2>
-                                <div></div>
+                                <h2 class="text-center">Popular products</h2>
+                                <div class="flex"></div>
                             </div>
                         </div>
                     </div>`;
@@ -4792,7 +4795,8 @@ window.onload = function() {
                     slideHTML(products[i].url, products[i].variants[0].image_url, products[i].title, products[i].variants[0].regular_price, products[i].variants[0].product_id, products[i].variants[0].variant_id, '.slider-products')
                     
                     if (href.includes('/cart.html') && i < 4) {
-                        document.querySelector('.popular-products').insertAdjacentHTML('afterend', initHits(products[i]))
+                        console.log(products[i])
+                        document.querySelector('.popular-products > div').insertAdjacentHTML('afterend', initHits(products[i]))
                     }
     
                     let plus = document.querySelectorAll(`.slide .quantity-btn_plus`)[i],
