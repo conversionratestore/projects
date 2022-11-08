@@ -740,6 +740,7 @@ window.onload = function() {
                 font-size: 14px;
                 line-height: 150%;
                 color: #474747;
+                box-sizing: border-box;
             }
             .confirmation h2 {
                 font-weight: 600;
