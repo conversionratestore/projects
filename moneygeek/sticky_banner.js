@@ -189,7 +189,7 @@ let stickyBanner = setInterval(() => {
     document.body.insertAdjacentHTML("afterbegin", style)
 
     if (!sessionStorage.getItem("sticky_banner")) {
-      document.querySelector("#sub-navigation").insertAdjacentHTML("afterbegin", stickyBlock)
+      document.querySelector("#sub-navigation").insertAdjacentHTML("beforeend", stickyBlock)
     }
 
     window.addEventListener("scroll", function () {
