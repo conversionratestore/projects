@@ -476,6 +476,21 @@ let pushDataLayer = (actionDataLayer, labelDataLayer) => {
     });
 }
 
+//scroll to
+let scrollTop = (targetScroll, offsetTop) => {
+    const scrollTarget = targetScroll;
+    const topOffset = offsetTop.offsetHeight;
+    const elementPosition = scrollTarget.getBoundingClientRect().top;
+    const offsetPosition = elementPosition - topOffset;
+
+    let scriptScroll= document.createElement('script');
+    scriptScroll.src = 'https://cdn.jsdelivr.net/npm/seamless-scroll-polyfill@latest/lib/bundle.min.js';
+    scriptScroll.async = false;
+    document.head.appendChild(scriptScroll);
+    seamless.polyfill();
+    seamless.scrollBy(window, { behavior: "smooth", top: offsetPosition, left: 0 });
+}
+
 let currentPath = 'https://medicalmega.com/';
 let interval = null;
 
@@ -658,9 +673,11 @@ window.onload = function() {
                             <p>Your cart is currently empty.</p>
                             <a href="/" class="btn-next mx-auto"><span>Shop now</span></a>
                         </div>`;
-                        document.querySelector('.cart-head').style.display = 'none'
+                        document.querySelector('.cart-head').style.display = 'none';
+                        document.querySelector('.cart-container .btn-next').style.display = 'none';
                     } else {
-                        document.querySelector('.cart-head').style = ''
+                        document.querySelector('.cart-head').style = '';
+                        document.querySelector('.cart-container .btn-next').style = '';
                     }
                 }
             })
@@ -3480,9 +3497,12 @@ window.onload = function() {
             margin-right: 40px; }
         .similar-products .card:last-child, .popular-products .card:last-child {
             margin-right: 0;}
-        .similar-products .card img, .popular-products .card img {
+        .similar-products .card img {
             width: 100%;
             height: 200px;}
+        .popular-products .card img {
+            width: 100%;
+            height: 100px;}
         .product {
             padding-top: 17px;
             padding-bottom: 60px; }
@@ -4972,7 +4992,11 @@ window.onload = function() {
                         e.stopImmediatePropagation();
                         postFetch('/cart.html',`api=c&cart_action=add&variant_id=${el.parentElement.querySelector('[name="product_variant_id"]').value}&quantity=${el.parentElement.querySelector('[name="quantity"]').value}&product_id=${el.parentElement.querySelector('[name="product_id"]').value}&ctoken=${mm.ctoken}`,'POST').then(data => {
                             cart('.cart_count'); //update cart
-                            addActive('.shopping-cart');
+                            if (!el.closest('.popular-products-row')) {
+                                addActive('.shopping-cart');
+                            } else {
+                                scrollTop(e.target, document.body)
+                            }
                         })
                         pushDataLayer(`Click on Add to cart button`, labelForEvents(e.target));
                     })

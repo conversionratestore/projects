@@ -321,10 +321,8 @@ let scrollTop = (targetScroll, offsetTop) => {
     const elementPosition = scrollTarget.getBoundingClientRect().top;
     const offsetPosition = elementPosition - topOffset;
 
-    window.scrollBy({
-        top: offsetPosition,
-        behavior: 'smooth'
-    });
+    seamless.polyfill();
+    seamless.scrollBy(window, { behavior: "smooth", top: offsetPosition, left: 0 });
 }
 
 //set pricing
