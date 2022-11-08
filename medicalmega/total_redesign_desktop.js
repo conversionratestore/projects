@@ -501,6 +501,51 @@ let toggleListing = (boolean, list, product) => {
     }
 }
 
+//init
+function findImageHits(variants) {
+    for (let i = 0; i < variants.length; i++) {
+        if (variants[i].image != '') {
+            return variants[i].image
+        }
+    }
+}
+
+function initHits(hit) {
+    let variants = hit.variants,
+        count = 0;
+    for (let i = 0; i < variants.length; i++) {
+        if (variants[i].in_stock == true && variants[i].price != '0:00') {
+            count = i;
+            break;
+        } else {
+            count = i;
+        }
+    }
+
+    let boxItem = `
+    <div class="card">
+        <p class="status" style="display:${hit['variants'][count].in_stock == false || hit['variants'][count].price == '0.00' ? 'block' : 'none'}">Out of Stock</p>
+        <a class="card_name" href="https://medicalmega.com/product/${hit.seo}">
+            <img src="https://medicalmegaimgs.net/prod/uploaded/product/pro_thumb/${findImageHits(hit.variants) != '' ? findImageHits(hit.variants) : 'dummyimage.jpg'}" alt="${hit.name}">
+            <span title='${hit.name}'>${hit.name}</span>
+        </a>
+        <p class="card_item">Item #${hit.item_num}</p>
+        <form action="https://medicalmega.com/cart.html" method="post">
+            <div class="flex-center flex calc" ${hit['variants'][count].in_stock == false || hit['variants'][count].price == '0:00' ? 'disabled' : ''}>
+                <button class="btn-calc btn-calc_minus" type="button" disabled=""></button>
+                <input class="calc-qty" type="number" name="quantity" value="1" data-max-value="${hit['variants'][count].qty}">
+                <button class="btn-calc btn-calc_plus" type="button"></button>
+            </div>
+            ${hit['variants'][count].in_stock == false || hit['variants'][count].price == '0.00' ? '<button class="btn btn_white" type="button" data-button="notify"><span>Out of Stock</span></button>' : '<button class="btn btn_dark add-cart" type="button"><span>$<span class="pr" data-price="' + hit['variants'][count].price + '">' + hit['variants'][count].price + '</span> | Add to Cart</span></button>'}
+            <input type="hidden" name="product_variant_id" value="${hit['variants'][count].pv_id}">
+            <input type="hidden" name="product_id" value="${hit.objectID}">
+            <input type="hidden" name="add_to_cart" value="variant">
+        </form>
+    </div>`
+
+    return boxItem
+}
+
 //set Label For Events
 let labelForEvents = (e) => {
     if (e.closest('.product')) {
@@ -2299,44 +2344,6 @@ window.onload = function() {
             document.querySelector(parent).insertAdjacentHTML('beforeend', slide)
         }
 
-        //11212 Hand Sanitizing
-        postFetch('/api/products',`offset=0&limit=6&is_featured=0&ctoken=${mm.ctoken}&category=11212`,'POST').then(data => {
-            console.log(data)
-            let products = data.products;
-            for (let i = 0; i < products.length; i++) {
-            slideHTML(products[i].url, products[i].variants[0].image_url, products[i].title, products[i].variants[0].regular_price, products[i].variants[0].product_id, products[i].variants[0].variant_id, '.slider-products')
-
-                let plus = document.querySelectorAll(`.slide .quantity-btn_plus`)[i],
-                    minus = document.querySelectorAll(`.slide .quantity-btn_minus`)[i],
-                    quantity = document.querySelectorAll(`.slide .quantity`)[i];
-
-                changeQuantity(plus, minus, quantity, false);
-                let addBtns = document.querySelectorAll('.btn-add');
-                addBtns[i].addEventListener('click', (e) => {
-                    postFetch('/cart.html',`api=c&cart_action=add&variant_id=${addBtns[i].dataset.variantId}&quantity=${addBtns[i].previousElementSibling.querySelector('.quantity').value}&product_id=${addBtns[i].dataset.id}&ctoken=${mm.ctoken}`,'POST').then(data => {
-                        console.log(data)
-                        cart()
-                    })
-                })
-            }
-            tns({
-                container: document.querySelector('.slider-products'),
-                fixedWidth: 190,
-                autoplay: false,
-                axis: 'horizontal',
-                controls: true,
-                loop: false,
-                prevButton: document.querySelector('.swiper-button-prev'),
-                nextButton: document.querySelector('.swiper-button-next'),
-                autoplayButton: false,
-                autoplayButtonOutput: false,
-                mouseDrag: true,
-                nav: false,
-                preventScrollOnTouch: 'auto',
-                swipeAngle: false,
-            });
-        })
-
         if (href.includes('/cart.html')) {
             toggleListing(false, '#container-listing', '#container-product')
             let styleCartPage = `
@@ -2400,12 +2407,56 @@ window.onload = function() {
                                 <path d="M3 9.32153V8.67847C3 8.5009 3.13431 8.35695 3.3 8.35695H13.002L10.332 5.50181C10.2752 5.44144 10.2433 5.35926 10.2433 5.27352C10.2433 5.18779 10.2752 5.10561 10.332 5.04524L10.758 4.59511C10.8143 4.53424 10.891 4.5 10.971 4.5C11.051 4.5 11.1277 4.53424 11.184 4.59511L14.868 8.537C14.9524 8.62736 14.9999 8.74995 15 8.87782V9.12218C14.9986 9.24977 14.9513 9.37186 14.868 9.463L11.184 13.4049C11.1277 13.4658 11.051 13.5 10.971 13.5C10.891 13.5 10.8143 13.4658 10.758 13.4049L10.332 12.9483C10.2756 12.8891 10.2438 12.8079 10.2438 12.7233C10.2438 12.6386 10.2756 12.5575 10.332 12.4982L13.002 9.64305H3.3C3.13431 9.64305 3 9.4991 3 9.32153Z" fill="#FBFBFB"/>
                             </svg>
                         </a>
+                        <div class="popular-products">
+                            <h2></h2>
+                            <div></div>
+                        </div>
                     </div>
                 </div>`;
             document.body.insertAdjacentHTML('afterbegin', styleCartPage)
             document.querySelector('.main').insertAdjacentHTML('beforeend', htmlCart)
         }
-    
+        //11212 Hand Sanitizing
+        postFetch('/api/products',`offset=0&limit=6&is_featured=0&ctoken=${mm.ctoken}&category=11212`,'POST').then(data => {
+            console.log(data)
+            let products = data.products;
+            for (let i = 0; i < products.length; i++) {
+                slideHTML(products[i].url, products[i].variants[0].image_url, products[i].title, products[i].variants[0].regular_price, products[i].variants[0].product_id, products[i].variants[0].variant_id, '.slider-products')
+                
+                // if (href.includes('/cart.html') && i < 4) {
+                //     document.querySelector('.popular-products').insertAdjacentHTML
+                // }
+
+                let plus = document.querySelectorAll(`.slide .quantity-btn_plus`)[i],
+                    minus = document.querySelectorAll(`.slide .quantity-btn_minus`)[i],
+                    quantity = document.querySelectorAll(`.slide .quantity`)[i];
+
+                changeQuantity(plus, minus, quantity, false);
+                let addBtns = document.querySelectorAll('.btn-add');
+                addBtns[i].addEventListener('click', (e) => {
+                    postFetch('/cart.html',`api=c&cart_action=add&variant_id=${addBtns[i].dataset.variantId}&quantity=${addBtns[i].previousElementSibling.querySelector('.quantity').value}&product_id=${addBtns[i].dataset.id}&ctoken=${mm.ctoken}`,'POST').then(data => {
+                        console.log(data)
+                        cart()
+                    })
+                })
+            }
+            tns({
+                container: document.querySelector('.slider-products'),
+                fixedWidth: 190,
+                autoplay: false,
+                axis: 'horizontal',
+                controls: true,
+                loop: false,
+                prevButton: document.querySelector('.swiper-button-prev'),
+                nextButton: document.querySelector('.swiper-button-next'),
+                autoplayButton: false,
+                autoplayButtonOutput: false,
+                mouseDrag: true,
+                nav: false,
+                preventScrollOnTouch: 'auto',
+                swipeAngle: false,
+            });
+        })
     }
 
     if (!href.includes('login.php') && !href.includes('/register.php') && !href.includes('/checkout') && !href.includes('/guest-checkout')) {
@@ -4019,50 +4070,6 @@ window.onload = function() {
                     })
                 })
             })
-
-            function findImageHits(variants) {
-                for (let i = 0; i < variants.length; i++) {
-                    if (variants[i].image != '') {
-                        return variants[i].image
-                    }
-                }
-            }
-
-            function initHits(hit) {
-                let variants = hit.variants,
-                    count = 0;
-                for (let i = 0; i < variants.length; i++) {
-                    if (variants[i].in_stock == true && variants[i].price != '0:00') {
-                        count = i;
-                        break;
-                    } else {
-                        count = i;
-                    }
-                }
-
-                let boxItem = `
-                <div class="card">
-                    <p class="status" style="display:${hit['variants'][count].in_stock == false || hit['variants'][count].price == '0.00' ? 'block' : 'none'}">Out of Stock</p>
-                    <a class="card_name" href="https://medicalmega.com/product/${hit.seo}">
-                        <img src="https://medicalmegaimgs.net/prod/uploaded/product/pro_thumb/${findImageHits(hit.variants) != '' ? findImageHits(hit.variants) : 'dummyimage.jpg'}" alt="${hit.name}">
-                        <span title='${hit.name}'>${hit.name}</span>
-                    </a>
-                    <p class="card_item">Item #${hit.item_num}</p>
-                    <form action="https://medicalmega.com/cart.html" method="post">
-                        <div class="flex-center flex calc" ${hit['variants'][count].in_stock == false || hit['variants'][count].price == '0:00' ? 'disabled' : ''}>
-                            <button class="btn-calc btn-calc_minus" type="button" disabled=""></button>
-                            <input class="calc-qty" type="number" name="quantity" value="1" data-max-value="${hit['variants'][count].qty}">
-                            <button class="btn-calc btn-calc_plus" type="button"></button>
-                        </div>
-                        ${hit['variants'][count].in_stock == false || hit['variants'][count].price == '0.00' ? '<button class="btn btn_white" type="button" data-button="notify"><span>Out of Stock</span></button>' : '<button class="btn btn_dark add-cart" type="button"><span>$<span class="pr" data-price="' + hit['variants'][count].price + '">' + hit['variants'][count].price + '</span> | Add to Cart</span></button>'}
-                        <input type="hidden" name="product_variant_id" value="${hit['variants'][count].pv_id}">
-                        <input type="hidden" name="product_id" value="${hit.objectID}">
-                        <input type="hidden" name="add_to_cart" value="variant">
-                    </form>
-                </div>`
-
-                return boxItem
-            }
 
             search.addWidgets([
                 instantsearch.widgets.configure({
