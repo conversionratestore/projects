@@ -665,6 +665,7 @@ window.onload = function() {
         for (let i = 0; i < items.length; i++) {
             document.querySelector('.confirmation-products').insertAdjacentHTML('beforeend', product(items[i].product_id, items[i].variant_id, items[i].quantity, items[i].subtotal, items[i].url, items[i].image_url, items[i].title, 1))
         }
+        document.querySelector('.exp-loading') != null ? document.querySelector('.exp-loading').remove() : '';
     }
 
     if ((href.includes('login.php') || href.includes('/register.php') || href.includes('/checkout') || href.includes('/guest-checkout')) && !href.includes('/checkout/step4') && !href.includes('/guest-checkout4.php')) {
@@ -1318,6 +1319,8 @@ window.onload = function() {
 
         document.body.insertAdjacentHTML('afterbegin', style) // add styles
         document.body.insertAdjacentHTML('afterbegin',wrapperHTML);
+
+        document.querySelector('.exp-loading') != null ? document.querySelector('.exp-loading').remove() : '';
 
         //show/hide order
         document.querySelector('.order_head').addEventListener('click', (e) => {
@@ -4041,6 +4044,8 @@ window.onload = function() {
 
                     if (isSearchStalled === false) {
                         console.log(isSearchStalled)
+
+                        document.querySelector('.exp-loading') != null ? document.querySelector('.exp-loading').remove() : '';
 
                         if (document.querySelector('#price_group li') != null) {
                             let pricesContainer = document.querySelector('#price_group ul'),
