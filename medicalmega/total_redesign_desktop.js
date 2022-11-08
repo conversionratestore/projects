@@ -467,6 +467,7 @@ let addStep = (query,index) => {
 }
 //push dataLayer
 let pushDataLayer = (actionDataLayer, labelDataLayer) => {
+    console.log(actionDataLayer + " : " + labelDataLayer)
     window.dataLayer = window.dataLayer || [];
     dataLayer.push({
         'event': 'event-to-ga',
@@ -577,6 +578,8 @@ let labelForEvents = (e) => {
         return `Header`;
     } else if (e.closest('.order_body')) {
         return `Order summary`;
+    } else if (e.closest('.cart')) {
+        return `Cart`;
     } else {
         return `Listing`;
     } 
@@ -598,12 +601,14 @@ window.onload = function() {
             if (quantity.value < 1) {
                 quantity.value = 1
             }
+            pushDataLayer('Change quantity field', labelForEvents(e.target))//event
             post == true ? postFetch('/cart.html',`api=c&cart_action=update&variant_id=${quantity.closest('.product-item').dataset.variantId}&quantity=${quantity.value}&ctoken=${mm.ctoken}`,'POST').then(data => cart('.cart_count')) : '';
         })
         plus.addEventListener('click', () => {
             quantity.value = +quantity.value + 1;
             quantity.parentElement.querySelector('.quantity-btn_minus').disabled = false;
 
+            pushDataLayer('Click plus button', labelForEvents(e.target)) //event
             post == true ? postFetch('/cart.html',`api=c&cart_action=update&variant_id=${plus.closest('.product-item').dataset.variantId}&quantity=${quantity.value}&ctoken=${mm.ctoken}`,'POST').then(data => cart('.cart_count')) : '';
         })
 
@@ -624,6 +629,7 @@ window.onload = function() {
             } else {
                 minus.nextElementSibling.value = +minus.nextElementSibling.value - 1;
             }
+            pushDataLayer('Click minus button', labelForEvents(e.target)) //event
             post == true ? postFetch('/cart.html',`api=c&cart_action=update&variant_id=${minus.closest('.product-item').dataset.variantId}&quantity=${quantity.value}&ctoken=${mm.ctoken}`,'POST').then(data => cart('.cart_count')) : '';
         })
     }
@@ -675,9 +681,11 @@ window.onload = function() {
                         </div>`;
                         document.querySelector('.cart-head').style.display = 'none';
                         document.querySelector('.btn-checkout').style.display = 'none';
+                        document.querySelector('.cart .empty-cart .btn-next').addEventListener('click', (e) => pushDataLayer('Click on Shop now button', labelForEvents(e.target))) //event
                     } else {
                         document.querySelector('.cart-head').style = '';
                         document.querySelector('.btn-checkout').style = '';
+                        document.querySelector('.btn-checkout').addEventListener('click', (e) => pushDataLayer('Click on checkout button', labelForEvents(e.target))) //event
                     }
                 }
             })
@@ -702,6 +710,7 @@ window.onload = function() {
                     let remove = document.querySelectorAll('.remove');
                     if (remove.length > 0) {
                         remove[i].addEventListener('click', (e) => {
+                            pushDataLayer('Click on remove button', labelForEvents(e.target))
                             postFetch('/cart.html',`api=c&cart_action=remove&variant_id=${remove[i].closest('.product-item').dataset.variantId}&ctoken=${mm.ctoken}`,'POST').then(data => cart('.cart_count'))
                         })
                     }
@@ -4761,7 +4770,7 @@ window.onload = function() {
             let slideHTML = (url, urlImage, title, price, id, variantId, parent) =>  {
                 let slide = `
                     <div class="slide">
-                        <a href="${url}">
+                        <a href="${url}" onclick="pushDataLayer('Click on product', labelForEvents(this))">
                             <span class="items-center flex">
                                 <img src="https://medicalmegaimgs.net/prod/uploaded/product/pro_thumb/${urlImage}" alt="${title}">
                                 <span class="price">
@@ -4887,6 +4896,7 @@ window.onload = function() {
                     changeQuantity(plus, minus, quantity, false);
                     let addBtns = document.querySelectorAll('.btn-add');
                     addBtns[i].addEventListener('click', (e) => { // add products in cart
+                        pushDataLayer('Click on Add to cart', labelForEvents(e.target))
                         postFetch('/cart.html',`api=c&cart_action=add&variant_id=${addBtns[i].dataset.variantId}&quantity=${addBtns[i].previousElementSibling.querySelector('.quantity').value}&product_id=${addBtns[i].dataset.id}&ctoken=${mm.ctoken}`,'POST').then(data => {
                             console.log(data)
                             cart('.cart_count') //update cart
