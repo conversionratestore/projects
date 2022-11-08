@@ -927,7 +927,7 @@ window.onload = function() {
                 color: #344D57;
             }
             .order_head p {
-            font-weight: 400;
+                font-weight: 400;
                 font-size: 14px;
                 line-height: 150%;
                 color: #344D57;
@@ -1103,6 +1103,9 @@ window.onload = function() {
                 text-align: right;
             }
             /*checkoutForm step 3*/
+            .primaryInfo label {
+                max-width: none;
+            }
             #checkoutForm h3 {
                 font-weight: 600;
                 font-size: 16px;
@@ -1833,8 +1836,26 @@ window.onload = function() {
                     postFetch(`/api/v1/addresses/${currentAddressShip.id}`, saveAddress('ship', fname.value,lname.value,addr1.value,city.value,stateF.value,zip.value,country.value,phn.value,email.value),'PUT').then(data => {
                         console.log(data)
                         let dataErrors = data.errors;
+                        let put = true;
+                        let nameShip = document.querySelectorAll(`.ship-form [name]`);
+                        for (let n = 0; n < nameShip.length; n++) {
+                            if (nameShip[n].value == '' || nameShip[n].value == ' ') {
+                                put = false;
+                                break;
+                            } 
+                        }
                         if (dataErrors.length < 1) {
-                            window.location.reload()
+                            if (put == true) {
+                                window.location.reload()
+                            } else {
+                                for (let n = 0; n < nameShip.length; n++) {
+                                    if (nameShip[n].value == '' || nameShip[n].value == ' ') {
+                                        nameShip[n].nextElementSibling.innerHTML = `${nameShip[n].name.toLowerCase()} is missing or not valid`
+                                    }  else {
+                                        nameShip[n].nextElementSibling.innerHTML = ''
+                                    }
+                                }
+                            }
                         } else {
                             errorsFun(dataErrors)
                         }
