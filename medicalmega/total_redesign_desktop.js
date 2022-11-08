@@ -1986,8 +1986,8 @@ window.onload = function() {
             }
         }
 
-         //add click on next button
-         document.querySelector('.btn-next').addEventListener('click', (e) => {
+        //add click on next button
+        document.querySelector('.btn-next').addEventListener('click', (e) => {
             if (document.querySelector('.myAccountright.active') != null) {
                 console.log('login')
                 document.querySelector('#login_btn').click()
@@ -2036,6 +2036,8 @@ window.onload = function() {
             }
             scrollTop(e.target, document.body)
         })
+
+        document.querySelector('.exp-loading') != null ? document.querySelector('.exp-loading').remove() : '';
     } 
     if (!href.includes('login.php') && !href.includes('register.php') && !href.includes('/checkout') && !href.includes('/guest-checkout')) {
         //cart
@@ -3677,12 +3679,6 @@ window.onload = function() {
             searchClient,
             indexName: indexName,
             routing: true,
-            // searchFunction(helper) {
-            //   const page = helper.getPage(); // Retrieve the current page
-            //   helper.setQuery(query) // this call resets the page
-            //         .setPage(page) // we re-apply the previous page
-            //         .search();
-            // },
         });
 
         const index = searchClient.initIndex(indexName);
@@ -4062,6 +4058,8 @@ window.onload = function() {
                         if (isSearchStalled === false) {
                             console.log(isSearchStalled)
 
+                            document.querySelector('.exp-loading') != null ? document.querySelector('.exp-loading').remove() : '';
+                            
                             if (document.querySelector('#price_group li') != null) {
                                 let pricesContainer = document.querySelector('#price_group ul'),
                                     para = document.querySelectorAll('#price_group li');
@@ -4805,11 +4803,15 @@ window.onload = function() {
                 document.querySelector('.main').insertAdjacentHTML('beforeend', htmlCart)
             }
             //11212 Hand Sanitizing
-            postFetch('/api/products',`offset=0&limit=6&is_featured=0&ctoken=${mm.ctoken}&category=11212`,'POST').then(data => {
+            let requestHandSanitizing = index.search({
+                facetFilters: ['categories.lvl0:Hand Sanitizing'],
+                hitsPerPage: '4',
+            })
+            requestHandSanitizing.then(data => {
                 console.log(data)
-                let products = data.products;
+                let products = data.hits;
                 for (let i = 0; i < products.length; i++) {
-                    slideHTML(products[i].url, products[i].variants[0].image_url, products[i].title, products[i].variants[0].regular_price, products[i].variants[0].product_id, products[i].variants[0].variant_id, '.slider-products')
+                    slideHTML(products[i].seo, products[i].variants[0].image, products[i].name, products[i].variants[0].price, products[i].objectID, products[i].variants[0].pv_id, '.slider-products')
                     
                     if (href.includes('/cart.html') && i < 4) {
                         console.log(products[i])
@@ -4967,7 +4969,6 @@ window.onload = function() {
         mut.observe(document, optionMut);
     }
 
-
-
     !href.includes('/checkout/step4') && !href.includes('/guest-checkout4.php') ? cart() : '';
+
 };
