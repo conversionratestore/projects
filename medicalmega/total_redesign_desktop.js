@@ -631,7 +631,7 @@ window.onload = function() {
                     if (products.length < 1) {
                         document.querySelector(element).innerHTML = `<div class="empty-cart">
                                 <p>Your cart is currently empty.</p>
-                                <button type="button" class="btn-next"><span>Shop now</span></button>
+                                <button type="button" class="btn-next mx-auto"><span>Shop now</span></button>
                             </div>`;
                         document.querySelector('.footer-cart').style.display = 'none';
                         document.querySelector('.subtotal').style.display = 'none';
@@ -657,7 +657,7 @@ window.onload = function() {
                     if (products.length < 1) { 
                         document.querySelector(element).innerHTML = `<div class="empty-cart">
                             <p>Your cart is currently empty.</p>
-                            <a href="/" class="btn-next"><span>Shop now</span></a>
+                            <a href="/" class="btn-next mx-auto"><span>Shop now</span></a>
                         </div>`;
                         document.querySelector('.cart-head').style.display = 'none'
                     } else {
@@ -2156,7 +2156,6 @@ window.onload = function() {
             }
             .empty-cart button.btn-next {
                 padding: 0 24px;
-                margin: 0 auto;
             }
             /*slider*/
             .slider-products {
@@ -4708,8 +4707,8 @@ window.onload = function() {
                 let slide = `
                     <div class="slide">
                         <a href="${url}">
-                            <span class="items-center" flex>
-                                <img src="${urlImage}" alt="${title}">
+                            <span class="items-center flex">
+                                <img src="https://medicalmegaimgs.net/prod/uploaded/product/pro_thumb/${urlImage}" alt="${title}">
                                 <span class="price">
                                     <p></p>
                                     <b>${price}</b>
@@ -4803,7 +4802,7 @@ window.onload = function() {
             //11212 Hand Sanitizing
             let requestHandSanitizing = index.search({
                 facetFilters: ['categories.lvl0:Hand Sanitizing'],
-                hitsPerPage: '4',
+                hitsPerPage: '6',
             })
             requestHandSanitizing.then(data => {
                 console.log(data)
@@ -4812,7 +4811,6 @@ window.onload = function() {
                     slideHTML(products[i].seo, products[i].variants[0].image, products[i].name, products[i].variants[0].price, products[i].objectID, products[i].variants[0].pv_id, '.slider-products')
                     
                     if (href.includes('/cart.html') && i < 4) {
-                        console.log(products[i])
                         document.querySelector('.popular-products > div.flex').insertAdjacentHTML('afterend', initHits(products[i]))
                     }
     
