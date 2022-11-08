@@ -21,21 +21,6 @@ let styleMain =`
         border: none;
         cursor: pointer;
     }
-    .btn-next {
-        background: #1E3944!important;
-        border-radius: 100px;
-        padding: 0 48px;
-        font-weight: 700;
-        font-size: 14px;
-        line-height: 48px;
-        letter-spacing: 0.05em;
-        text-transform: uppercase;
-        color: #FBFBFB;
-        width: fit-content;
-        display: block;
-    }
-    .btn-next svg {
-        margin-left: 8px;}
     .btn {
         font-family: "Inter", sans-serif;
         background-color: #1E3944;
@@ -52,7 +37,7 @@ let styleMain =`
         cursor: pointer;
         transition: all 0.3s ease;
         white-space: nowrap; }
-    .btn:not(.btn_white):hover, .btn:not(.btn_white):focus {
+    .btn:not(.btn_white):hover, .btn:not(.btn_white):focus, .btn-next:hover, .btn-next:focus {
         color: #fff;
         background-color: #344D57;
         border-color: #344D57; }
@@ -62,6 +47,20 @@ let styleMain =`
         border-color: #F0F1F2; }
     .btn[disabled] svg, #form-search button[disabled] svg {
         fill: #9AA6AB; }
+    .btn-next {
+        background: #1E3944!important;
+        border-radius: 100px;
+        padding: 0 48px;
+        font-weight: 700;
+        font-size: 14px;
+        line-height: 48px;
+        letter-spacing: 0.05em;
+        text-transform: uppercase;
+        color: #FBFBFB;
+        width: fit-content;
+        display: block;}
+    .btn-next svg {
+        margin-left: 8px;}
     .btn_white {
         background-color: #FFFFFF;
         color: #1E3944; }
@@ -2193,6 +2192,7 @@ window.onload = function() {
             }
             .footer-cart .btn-next {
                 padding: 0 29px 0 39px;
+                font-size: 14px;
             }
             .paypal-form-button input {
                 padding: 0;
@@ -2560,7 +2560,7 @@ window.onload = function() {
             text-transform: uppercase;
             line-height: 10px;
             color: #1E3944; }
-            .midbar .btn {
+        .midbar .btn {
             font-size: 12px;}
         .midbar_action span.cart_count {
             color: #96280F;}
