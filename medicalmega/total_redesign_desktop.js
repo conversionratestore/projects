@@ -671,13 +671,14 @@ window.onload = function() {
                 for (let i = 0; i < products.length; i++) {
                     counterBasket += products[i].quantity
                     //add products
-                    let plus, minus, quantity
                     for (let j = 0; j < parent.length; j++) {
                         document.querySelector(parent[j]).insertAdjacentHTML('beforeend', product(parent[j], products[i].product_id, products[i].variant_id, products[i].quantity, products[i].subtotal, products[i].url, products[i].image_url, products[i].title, varQty))
                     
-                        plus = document.querySelectorAll(`${parent[j]} .quantity-btn_plus`)[i];
-                        minus = document.querySelectorAll(`${parent[j]} .quantity-btn_minus`)[i];
-                        quantity = document.querySelectorAll(`${parent[j]} .quantity`)[i];
+                        let plus = document.querySelectorAll(`${parent[j]} .quantity-btn_plus`)[i],
+                            minus = document.querySelectorAll(`${parent[j]} .quantity-btn_minus`)[i],
+                            quantity = document.querySelectorAll(`${parent[j]} .quantity`)[i];
+
+                        varQty == 0 ? changeQuantity(plus, minus, quantity, true) : ''
                     }
                     
                     //remove product
@@ -688,7 +689,6 @@ window.onload = function() {
                         })
                     }
 
-                    varQty == 0 ? changeQuantity(plus, minus, quantity, true) : ''
                 }
             } else {
                 counterBasket = 0;
@@ -3476,14 +3476,13 @@ window.onload = function() {
             font-size: 24px;
             line-height: 29px;
             margin-bottom: 56px; }
-        .similar-products .card {
+        .similar-products .card, .popular-products .card {
             max-width: 281px;
             width: calc(25% - 30px);
             margin-right: 40px; }
-        .similar-products .card:last-child {
-            margin-right: 0;
-        }
-        .similar-products .card img {
+        .similar-products .card:last-child, .popular-products .card:last-child {
+            margin-right: 0;}
+        .similar-products .card img, .popular-products .card img {
             width: 100%;
             height: 200px;}
         .product {
@@ -4748,8 +4747,10 @@ window.onload = function() {
                 toggleListing(false, '#container-listing', '#container-product')
                 let styleCartPage = `
                 <style>
-                    .cart .container {
+                    .cart-container {
                         max-width: 1100px;
+                        width: 100%:
+                        padding: 0;
                     }
                     .cart h2 {
                         font-weight: 600;
@@ -4792,7 +4793,7 @@ window.onload = function() {
         
                 let htmlCart = `
                     <div class="cart">
-                        <div class="container">
+                        <div class="cart-container mx-auto">
                             <h2 class="text-center">Your cart</h2>
                             <div class="cart-head fs-16 c-gray flex">
                                 <p>Product</p>
@@ -4807,7 +4808,9 @@ window.onload = function() {
                                     <path d="M3 9.32153V8.67847C3 8.5009 3.13431 8.35695 3.3 8.35695H13.002L10.332 5.50181C10.2752 5.44144 10.2433 5.35926 10.2433 5.27352C10.2433 5.18779 10.2752 5.10561 10.332 5.04524L10.758 4.59511C10.8143 4.53424 10.891 4.5 10.971 4.5C11.051 4.5 11.1277 4.53424 11.184 4.59511L14.868 8.537C14.9524 8.62736 14.9999 8.74995 15 8.87782V9.12218C14.9986 9.24977 14.9513 9.37186 14.868 9.463L11.184 13.4049C11.1277 13.4658 11.051 13.5 10.971 13.5C10.891 13.5 10.8143 13.4658 10.758 13.4049L10.332 12.9483C10.2756 12.8891 10.2438 12.8079 10.2438 12.7233C10.2438 12.6386 10.2756 12.5575 10.332 12.4982L13.002 9.64305H3.3C3.13431 9.64305 3 9.4991 3 9.32153Z" fill="#FBFBFB"/>
                                 </svg>
                             </a>
-                            <div class="popular-products">
+                        </div>
+                        <div class="popular-products">
+                            <div class="container">
                                 <h2 class="text-center">Popular products</h2>
                                 <div class="flex"></div>
                             </div>
