@@ -466,10 +466,11 @@ window.onload = function() {
     //cart product
     let cart = (setCount) => {
         let parent = href.includes('/checkout/step') || href.includes('/login.php') || href.includes('/register.php')|| href.includes('/guest-checkout') ? '.order_body' : '.list-product';
-        counterBasket = 0;
+        
         //get data
         postFetch('/cart.html',`api=c&cart_action=cart&ctoken=${mm.ctoken}`,'POST').then(data => {
             console.log(data)
+            counterBasket = 0;
             localStorage.setItem('dataCart', JSON.stringify(data));
             let products = data['items'];
             document.querySelector(parent).innerHTML = '';
