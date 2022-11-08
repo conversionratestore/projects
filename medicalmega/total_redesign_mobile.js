@@ -417,6 +417,10 @@ let headerHTML = `
     </a>
 </header>`
 
+let capitalizeFirstLetter = (string) => {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+}
+
 window.onload = function() {
     document.body.insertAdjacentHTML('afterbegin', styleMain)
 
@@ -1854,7 +1858,7 @@ window.onload = function() {
                                 for (let n = 0; n < nameShip.length; n++) {
                                     if (nameShip[n].value == '' || nameShip[n].value == ' ') {
                                         nameShip[n].parentElement.classList.add('error')
-                                        nameShip[n].nextElementSibling.innerHTML = `${nameShip[n].name.toUpperCase()} is missing or not valid`
+                                        nameShip[n].nextElementSibling.innerHTML = `${capitalizeFirstLetter(nameShip[n].name)} is missing or not valid`
                                     }  else {
                                         nameShip[n].parentElement.classList.remove('error')
                                         nameShip[n].nextElementSibling.innerHTML = ''
