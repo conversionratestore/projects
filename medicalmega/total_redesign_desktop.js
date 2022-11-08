@@ -672,9 +672,13 @@ window.onload = function() {
                 for (let i = 0; i < products.length; i++) {
                     counterBasket += products[i].quantity
                     //add products
-
+                    let plus, minus, quantity
                     for (let j = 0; j < parent.length; j++) {
                         document.querySelector(parent[j]).insertAdjacentHTML('beforeend', product(parent[j], products[i].product_id, products[i].variant_id, products[i].quantity, products[i].subtotal, products[i].url, products[i].image_url, products[i].title, varQty))
+                    
+                        plus = document.querySelectorAll(`${parent[j]} .quantity-btn_plus`)[i];
+                        minus = document.querySelectorAll(`${parent[j]} .quantity-btn_minus`)[i];
+                        quantity = document.querySelectorAll(`${parent[j]} .quantity`)[i];
                     }
                     
                     //remove product
@@ -684,9 +688,6 @@ window.onload = function() {
                             postFetch('/cart.html',`api=c&cart_action=remove&variant_id=${remove[i].closest('.product-item').dataset.variantId}&ctoken=${mm.ctoken}`,'POST').then(data => cart())
                         })
                     }
-                    let plus = document.querySelectorAll(`${parent} .quantity-btn_plus`)[i],
-                        minus = document.querySelectorAll(`${parent} .quantity-btn_minus`)[i],
-                        quantity = document.querySelectorAll(`${parent} .quantity`)[i];
 
                     varQty == 0 ? changeQuantity(plus, minus, quantity, true) : ''
                 }
