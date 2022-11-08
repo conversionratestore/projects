@@ -2003,6 +2003,7 @@ window.onload = function() {
             }
         }
 
+        cart()
         //add click on next button
         document.querySelector('.btn-next').addEventListener('click', (e) => {
             if (document.querySelector('.myAccountright.active') != null) {
@@ -2053,7 +2054,6 @@ window.onload = function() {
             }
             scrollTop(e.target, document.body)
         })
-
     } 
     if (!href.includes('login.php') && !href.includes('register.php') && !href.includes('/checkout') && !href.includes('/guest-checkout')) {
         //cart
@@ -4860,6 +4860,7 @@ window.onload = function() {
                     swipeAngle: false,
                 });
             })
+            cart()
         }
 
         let optionMut = {
@@ -4980,7 +4981,4 @@ window.onload = function() {
 
         mut.observe(document, optionMut);
     }
-
-    !href.includes('/checkout/step4') && !href.includes('/guest-checkout4.php') ? cart() : '';
-
 };
