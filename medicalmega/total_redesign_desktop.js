@@ -615,7 +615,7 @@ window.onload = function() {
     //cart product
     let cart = (setCount) => {
         let parent = href.includes('/checkout/step') || href.includes('/login.php') || href.includes('/register.php') || href.includes('/guest-checkout') ? ['.order_body'] : href.includes('/cart.html') ? ['.cart-list', '.list-product'] : ['.list-product'];
-
+        counterBasket = 0;
         //get data
         postFetch('/cart.html',`api=c&cart_action=cart&ctoken=${mm.ctoken}`,'POST').then(data => {
             console.log(data)
@@ -690,8 +690,6 @@ window.onload = function() {
                     }
 
                 }
-            } else {
-                counterBasket = 0;
             }
             setCount && document.querySelector(setCount) != null ? document.querySelector(setCount).innerHTML = counterBasket : '';
             document.querySelector('.exp-loading') != null ? document.querySelector('.exp-loading').remove() : '';
@@ -4812,7 +4810,7 @@ window.onload = function() {
                         <div class="popular-products">
                             <div class="container">
                                 <h2 class="text-center">Popular products</h2>
-                                <div class="flex"></div>
+                                <div class="flex popular-products-row"></div>
                             </div>
                         </div>
                     </div>`;
@@ -4831,7 +4829,7 @@ window.onload = function() {
                     slideHTML(products[i].seo, products[i].variants[0].image, products[i].name, products[i].variants[0].price, products[i].objectID, products[i].variants[0].pv_id, '.slider-products')
                     
                     if (href.includes('/cart.html') && i < 4) {
-                        document.querySelector('.popular-products > div.flex').insertAdjacentHTML('beforeend', initHits(products[i]))
+                        document.querySelector('.popular-products-row').insertAdjacentHTML('beforeend', initHits(products[i]))
                     }
     
                     let plus = document.querySelectorAll(`.slide .quantity-btn_plus`)[i],

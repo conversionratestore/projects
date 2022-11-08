@@ -466,7 +466,7 @@ window.onload = function() {
     //cart product
     let cart = (setCount) => {
         let parent = href.includes('/checkout/step') || href.includes('/login.php') || href.includes('/register.php')|| href.includes('/guest-checkout') ? '.order_body' : '.list-product';
-
+        counterBasket = 0;
         //get data
         postFetch('/cart.html',`api=c&cart_action=cart&ctoken=${mm.ctoken}`,'POST').then(data => {
             console.log(data)
@@ -526,8 +526,6 @@ window.onload = function() {
 
                     varQty == 0 ? changeQuantity(plus, minus, quantity, true) : ''
                 }
-            } else {
-                counterBasket = 0;
             }
             setCount && document.querySelector(setCount) != null ? document.querySelector(setCount).innerHTML = counterBasket : '';
         })
