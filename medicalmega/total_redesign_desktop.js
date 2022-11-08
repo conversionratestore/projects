@@ -577,9 +577,8 @@ let counterBasket = 0;
 window.onload = function() {
     document.body.insertAdjacentHTML('afterbegin', styleMain)
 
-    //changeQuantity
+    //change quantity, update product quantity in cart
     let changeQuantity = (plus, minus, quantity, post=false) => {
-        //update quantity
         quantity.addEventListener('change', () => {
             if (quantity.value < 1) {
                 quantity.value = 1
@@ -845,7 +844,8 @@ window.onload = function() {
         }
 
         let height = document.querySelector('.confirmation-order .col:first-child').clientHeight;
-        document.querySelector('.confirmation-products').style.height = height + 60 + 'px'
+        document.querySelector('.confirmation-products').style.height = height + 60 + 'px';
+        document.querySelector('.exp-loading') != null ? document.querySelector('.exp-loading').remove() : '';
     }
 
     if ((href.includes('login.php') || href.includes('/register.php') || href.includes('/checkout') || href.includes('/guest-checkout')) && !href.includes('/checkout/step4') && !href.includes('/guest-checkout4.php')) {
@@ -2004,7 +2004,7 @@ window.onload = function() {
             }
         }
 
-        cart()
+        cart() //get products in cart
         //add click on next button
         document.querySelector('.btn-next').addEventListener('click', (e) => {
             if (document.querySelector('.myAccountright.active') != null) {
@@ -4837,10 +4837,10 @@ window.onload = function() {
     
                     changeQuantity(plus, minus, quantity, false);
                     let addBtns = document.querySelectorAll('.btn-add');
-                    addBtns[i].addEventListener('click', (e) => {
+                    addBtns[i].addEventListener('click', (e) => { // add products in cart
                         postFetch('/cart.html',`api=c&cart_action=add&variant_id=${addBtns[i].dataset.variantId}&quantity=${addBtns[i].previousElementSibling.querySelector('.quantity').value}&product_id=${addBtns[i].dataset.id}&ctoken=${mm.ctoken}`,'POST').then(data => {
                             console.log(data)
-                            cart()
+                            cart() //update cart
                         })
                     })
                 }
@@ -4861,7 +4861,7 @@ window.onload = function() {
                     swipeAngle: false,
                 });
             })
-            cart()
+            cart() //get products from cart
         }
 
         let optionMut = {
@@ -4967,10 +4967,10 @@ window.onload = function() {
                     })
                 })
                 document.querySelectorAll('.add-cart').forEach(el => {
-                    el.addEventListener('click', (e) => {
+                    el.addEventListener('click', (e) => { //add products in cart
                         e.stopImmediatePropagation();
                         postFetch('/cart.html',`api=c&cart_action=add&variant_id=${el.parentElement.querySelector('[name="product_variant_id"]').value}&quantity=${el.parentElement.querySelector('[name="quantity"]').value}&product_id=${el.parentElement.querySelector('[name="product_id"]').value}&ctoken=${mm.ctoken}`,'POST').then(data => {
-                            cart();
+                            cart(); //update cart
                             addActive('.shopping-cart');
                         })
                         pushDataLayer(`Click on Add to cart button`, labelForEvents(e.target));
