@@ -4803,6 +4803,8 @@ window.onload = function() {
                     }
                     .cart-list .product-item > div a:not(.product-item_img) {
                         color: #344D57;
+                        max-width: 520px;
+                        padding-right: 20px;
                     }
                     .cart-head p:nth-child(2) {
                         padding-left: 13px;
