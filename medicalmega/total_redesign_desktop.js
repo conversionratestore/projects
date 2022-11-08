@@ -4785,6 +4785,9 @@ window.onload = function() {
                 toggleListing(false, '#container-listing', '#container-product')
                 let styleCartPage = `
                 <style>
+                    .cart {
+                        padding-bottom: 150px;
+                    }
                     .cart-container {
                         max-width: 1100px;
                         width: 100%:
