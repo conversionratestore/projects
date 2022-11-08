@@ -1945,8 +1945,28 @@ window.onload = function() {
                     postFetch(`/api/v1/addresses/${currentAddressShip.id}`, saveAddress('ship', fname.value,lname.value,addr1.value,city.value,stateF.value,zip.value,country.value,phn.value,email.value),'PUT').then(data => {
                         console.log(data)
                         let dataErrors = data.errors;
+                        let put = true;
+                        let nameShip = document.querySelectorAll(`.ship-form [name]`);
+                        for (let n = 0; n < nameShip.length; n++) {
+                            if (nameShip[n].value == '' || nameShip[n].value == ' ') {
+                                put = false;
+                                break;
+                            } 
+                        }
                         if (dataErrors.length < 1) {
-                            window.location.href = href.includes('guest-checkout') ? '/guest-checkout2.php' : `/checkout/step2`
+                            if (put == true) {
+                                window.location.reload()
+                            } else {
+                                for (let n = 0; n < nameShip.length; n++) {
+                                    if (nameShip[n].value == '' || nameShip[n].value == ' ') {
+                                        nameShip[n].parentElement.classList.add('error')
+                                        nameShip[n].nextElementSibling.innerHTML = `${capitalizeFirstLetter(nameShip[n].name)} is missing or not valid`
+                                    }  else {
+                                        nameShip[n].parentElement.classList.remove('error')
+                                        nameShip[n].nextElementSibling.innerHTML = ''
+                                    }
+                                }
+                            }
                         } else {
                             errorsFun(dataErrors)
                         }
@@ -1960,7 +1980,7 @@ window.onload = function() {
                             if (dataErrors.length < 1) {
                                 postFetch('/api/v1/addresses', saveAddress('bill',fname.value,lname.value,addr1.value,city.value,stateF.value,zip.value,country.value,phn.value,email.value),'POST').then(dataBill => {
                                     console.log(dataBill)
-                                    window.location.href = href.includes('guest-checkout') ? '/guest-checkout2.php' : `/checkout/step2`
+                                    window.location.reload()
                                 })
                             } else {
                                 errorsFun(dataErrors)
@@ -2000,7 +2020,7 @@ window.onload = function() {
                         console.log(data)
                         let dataErrors = data.errors;
                         if (dataErrors.length < 1) {
-                            window.location.href = href.includes('guest-checkout') ? '/guest-checkout2.php' : `/checkout/step2`
+                            window.location.reload()
                         } else {
                             errorsFun(dataErrors)
                         }
@@ -2010,7 +2030,7 @@ window.onload = function() {
                         console.log(data)
                         let dataErrors = data.errors;
                         if (dataErrors.length < 1) {
-                            window.location.href = href.includes('guest-checkout') ? '/guest-checkout2.php' : `/checkout/step2`
+                            window.location.reload()
                         } else {
                             errorsFun(dataErrors)
                         }
