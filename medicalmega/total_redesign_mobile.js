@@ -1853,8 +1853,10 @@ window.onload = function() {
                             } else {
                                 for (let n = 0; n < nameShip.length; n++) {
                                     if (nameShip[n].value == '' || nameShip[n].value == ' ') {
-                                        nameShip[n].nextElementSibling.innerHTML = `${nameShip[n].name.toLowerCase()} is missing or not valid`
+                                        nameShip[n].parentElement.classList.add('error')
+                                        nameShip[n].nextElementSibling.innerHTML = `${nameShip[n].name.toUpperCase()} is missing or not valid`
                                     }  else {
+                                        nameShip[n].parentElement.classList.remove('error')
                                         nameShip[n].nextElementSibling.innerHTML = ''
                                     }
                                 }
