@@ -173,7 +173,7 @@ let runTest = () => {
                     overflow: hidden;
                 }
                 .modal-sign {
-                    background: url(https://conversionratestore.github.io/projects/uplead/img/bg-findleadsnow-open.svg) no-repeat center top / 100vw;
+                    background: url(https://conversionratestore.github.io/projects/uplead/img/bg-findleadsnow.svg) no-repeat center top / 100vw; //bg-findleadsnow-open.svg
                     font-family: 'gilroy', sans-serif;
                     position: fixed;
                     top: 0;
