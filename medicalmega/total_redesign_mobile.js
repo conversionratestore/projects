@@ -2207,16 +2207,6 @@ window.onload = function() {
             pushDataLayer('Click on payPal button', labelForEvents(e.target))
         })
 
-        let linkCustom = document.createElement('link');
-        linkCustom.href = 'https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.3/tiny-slider.css';
-        linkCustom.rel = 'stylesheet';
-        document.head.appendChild(linkCustom);
-
-        let scriptCustom = document.createElement('script');
-        scriptCustom.src = 'https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.3/min/tiny-slider.js';
-        scriptCustom.async = false;
-        document.head.appendChild(scriptCustom);
-
         document.querySelector('.header-cart svg').addEventListener('click', (e) => {
             removeActive('.shopping-cart');
             document.getElementsByTagName('html')[0].classList.remove('fix');
