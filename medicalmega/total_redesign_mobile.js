@@ -1761,7 +1761,6 @@ window.onload = function() {
         if (href.includes('/checkout/step3')) {
             document.querySelector('#checkoutForm h3').innerHTML = `Card Details <img src="https://conversionratestore.github.io/projects/medicalmega/img/payment-cards.svg" alt="icons">`;
             document.querySelector('#cc_block > dl > div.ccInfo > dd:nth-child(3)').innerHTML = `Credit/Debit Card<span class="c-red-08"> *</span>`;
-            // document.querySelector('#cc_block > dl > div.ccInfo > dd:nth-child(3)').innerHTML = `Name on card:<span class="c-red-08"> *</span>`;
         }
         //set text for back button
         let setBack = () => {
