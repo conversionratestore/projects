@@ -1324,8 +1324,6 @@ window.onload = function() {
         document.body.insertAdjacentHTML('afterbegin', style) // add styles
         document.body.insertAdjacentHTML('afterbegin',wrapperHTML);
 
-        document.querySelector('.exp-loading') != null ? document.querySelector('.exp-loading').remove() : '';
-
         //show/hide order
         document.querySelector('.order_head').addEventListener('click', (e) => {
             document.querySelector('.order').classList.toggle('active');
@@ -1937,6 +1935,8 @@ window.onload = function() {
             }
         }
 
+        document.querySelector('.exp-loading') != null ? document.querySelector('.exp-loading').remove() : '';
+        
         //add click on next button
         document.querySelector('.btn-next').addEventListener('click', (e) => {
             if (document.querySelector('.myAccountright.active') != null) {
