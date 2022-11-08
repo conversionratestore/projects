@@ -583,13 +583,13 @@ window.onload = function() {
             if (quantity.value < 1) {
                 quantity.value = 1
             }
-            post == true ? postFetch('/cart.html',`api=c&cart_action=update&variant_id=${quantity.closest('.product-item').dataset.variantId}&quantity=${quantity.value}&ctoken=${mm.ctoken}`,'POST').then(data => cart()) : '';
+            post == true ? postFetch('/cart.html',`api=c&cart_action=update&variant_id=${quantity.closest('.product-item').dataset.variantId}&quantity=${quantity.value}&ctoken=${mm.ctoken}`,'POST').then(data => cart('.cart_count')) : '';
         })
         plus.addEventListener('click', () => {
             quantity.value = +quantity.value + 1;
             quantity.parentElement.querySelector('.quantity-btn_minus').disabled = false;
 
-            post == true ? postFetch('/cart.html',`api=c&cart_action=update&variant_id=${plus.closest('.product-item').dataset.variantId}&quantity=${quantity.value}&ctoken=${mm.ctoken}`,'POST').then(data => cart()) : '';
+            post == true ? postFetch('/cart.html',`api=c&cart_action=update&variant_id=${plus.closest('.product-item').dataset.variantId}&quantity=${quantity.value}&ctoken=${mm.ctoken}`,'POST').then(data => cart('.cart_count')) : '';
         })
 
         if (!href.includes('/checkout/step2') && !href.includes('/checkout/step3') ) {
@@ -609,11 +609,11 @@ window.onload = function() {
             } else {
                 minus.nextElementSibling.value = +minus.nextElementSibling.value - 1;
             }
-            post == true ? postFetch('/cart.html',`api=c&cart_action=update&variant_id=${minus.closest('.product-item').dataset.variantId}&quantity=${quantity.value}&ctoken=${mm.ctoken}`,'POST').then(data => cart()) : '';
+            post == true ? postFetch('/cart.html',`api=c&cart_action=update&variant_id=${minus.closest('.product-item').dataset.variantId}&quantity=${quantity.value}&ctoken=${mm.ctoken}`,'POST').then(data => cart('.cart_count')) : '';
         })
     }
     //cart product
-    let cart = () => {
+    let cart = (setCount) => {
         let parent = href.includes('/checkout/step') || href.includes('/login.php') || href.includes('/register.php') || href.includes('/guest-checkout') ? ['.order_body'] : href.includes('/cart.html') ? ['.cart-list', '.list-product'] : ['.list-product'];
 
         //get data
@@ -685,7 +685,7 @@ window.onload = function() {
                     let remove = document.querySelectorAll('.remove');
                     if (remove.length > 0) {
                         remove[i].addEventListener('click', (e) => {
-                            postFetch('/cart.html',`api=c&cart_action=remove&variant_id=${remove[i].closest('.product-item').dataset.variantId}&ctoken=${mm.ctoken}`,'POST').then(data => cart())
+                            postFetch('/cart.html',`api=c&cart_action=remove&variant_id=${remove[i].closest('.product-item').dataset.variantId}&ctoken=${mm.ctoken}`,'POST').then(data => cart('.cart_count'))
                         })
                     }
 
@@ -693,7 +693,7 @@ window.onload = function() {
             } else {
                 counterBasket = 0;
             }
-            document.querySelector('.cart_count') != null ? document.querySelector('.cart_count').innerHTML = counterBasket : '';
+            setCount && document.querySelector(setCount) != null ? document.querySelector(setCount).innerHTML = counterBasket : '';
             document.querySelector('.exp-loading') != null ? document.querySelector('.exp-loading').remove() : '';
         })
     }
@@ -2004,7 +2004,7 @@ window.onload = function() {
             }
         }
 
-        cart() //get products in cart
+        cart() //get products from cart
         //add click on next button
         document.querySelector('.btn-next').addEventListener('click', (e) => {
             if (document.querySelector('.myAccountright.active') != null) {
@@ -4843,7 +4843,7 @@ window.onload = function() {
                     addBtns[i].addEventListener('click', (e) => { // add products in cart
                         postFetch('/cart.html',`api=c&cart_action=add&variant_id=${addBtns[i].dataset.variantId}&quantity=${addBtns[i].previousElementSibling.querySelector('.quantity').value}&product_id=${addBtns[i].dataset.id}&ctoken=${mm.ctoken}`,'POST').then(data => {
                             console.log(data)
-                            cart() //update cart
+                            cart('.cart_count') //update cart
                         })
                     })
                 }
@@ -4864,7 +4864,7 @@ window.onload = function() {
                     swipeAngle: false,
                 });
             })
-            cart() //get products from cart
+            cart('.cart_count') //get products from cart
         }
 
         let optionMut = {
@@ -4973,7 +4973,7 @@ window.onload = function() {
                     el.addEventListener('click', (e) => { //add products in cart
                         e.stopImmediatePropagation();
                         postFetch('/cart.html',`api=c&cart_action=add&variant_id=${el.parentElement.querySelector('[name="product_variant_id"]').value}&quantity=${el.parentElement.querySelector('[name="quantity"]').value}&product_id=${el.parentElement.querySelector('[name="product_id"]').value}&ctoken=${mm.ctoken}`,'POST').then(data => {
-                            cart(); //update cart
+                            cart('.cart_count'); //update cart
                             addActive('.shopping-cart');
                         })
                         pushDataLayer(`Click on Add to cart button`, labelForEvents(e.target));

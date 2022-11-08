@@ -403,7 +403,7 @@ let labelForEvents = (e) => {
 let addActive = (element) => document.querySelector(element).classList.add('active');
 let removeActive = (element) => document.querySelector(element).classList.remove('active');
 
-let qty = 0;
+let counterBasket = 0;
 
 let arrMouth = ['Jan','Feb','Mar','Apr','May','Jun','Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
 
@@ -432,14 +432,14 @@ window.onload = function() {
                 quantity.value = 1
             }
             pushDataLayer('Change quantity field', labelForEvents(e.target))
-            post == true ? postFetch('/cart.html',`api=c&cart_action=update&variant_id=${quantity.closest('.product-item').dataset.variantId}&quantity=${quantity.value}&ctoken=${mm.ctoken}`,'POST').then(data => cart()) : '';
+            post == true ? postFetch('/cart.html',`api=c&cart_action=update&variant_id=${quantity.closest('.product-item').dataset.variantId}&quantity=${quantity.value}&ctoken=${mm.ctoken}`,'POST').then(data => cart('.cart_count')) : '';
         })
         plus.addEventListener('click', (e) => {
             quantity.value = +quantity.value + 1;
             quantity.parentElement.querySelector('.quantity-btn_minus').disabled = false;
 
             pushDataLayer('Click plus button', labelForEvents(e.target))
-            post == true ? postFetch('/cart.html',`api=c&cart_action=update&variant_id=${plus.closest('.product-item').dataset.variantId}&quantity=${quantity.value}&ctoken=${mm.ctoken}`,'POST').then(data => cart()) : '';
+            post == true ? postFetch('/cart.html',`api=c&cart_action=update&variant_id=${plus.closest('.product-item').dataset.variantId}&quantity=${quantity.value}&ctoken=${mm.ctoken}`,'POST').then(data => cart('.cart_count')) : '';
         })
 
         if (!href.includes('/checkout/step2') && !href.includes('/checkout/step3') ) {
@@ -460,11 +460,11 @@ window.onload = function() {
                 minus.nextElementSibling.value = +minus.nextElementSibling.value - 1;
             }
             pushDataLayer('Click minus button', labelForEvents(e.target))
-            post == true ? postFetch('/cart.html',`api=c&cart_action=update&variant_id=${minus.closest('.product-item').dataset.variantId}&quantity=${quantity.value}&ctoken=${mm.ctoken}`,'POST').then(data => cart()) : '';
+            post == true ? postFetch('/cart.html',`api=c&cart_action=update&variant_id=${minus.closest('.product-item').dataset.variantId}&quantity=${quantity.value}&ctoken=${mm.ctoken}`,'POST').then(data => cart('.cart_count')) : '';
         })
     }
     //cart product
-    let cart = () => {
+    let cart = (setCount) => {
         let parent = href.includes('/checkout/step') || href.includes('/login.php') || href.includes('/register.php')|| href.includes('/guest-checkout') ? '.order_body' : '.list-product';
 
         //get data
@@ -508,7 +508,7 @@ window.onload = function() {
                 //product quantity changes
                 let varQty = href.includes('checkout/step2') || href.includes('checkout/step3') || href.includes('guest-checkout2') || href.includes('guest-checkout3') ? 1 : 0
                 for (let i = 0; i < products.length; i++) {
-                    qty += products[i].quantity
+                    counterBasket += products[i].quantity
                     //add products
                     document.querySelector(parent).insertAdjacentHTML('beforeend', product(products[i].product_id, products[i].variant_id, products[i].quantity, products[i].subtotal, products[i].url, products[i].image_url, products[i].title, varQty))
 
@@ -517,7 +517,7 @@ window.onload = function() {
                     if (remove.length > 0) {
                         remove[i].addEventListener('click', (e) => {
                             pushDataLayer('Click on remove button', labelForEvents(e.target))
-                            postFetch('/cart.html',`api=c&cart_action=remove&variant_id=${remove[i].closest('.product-item').dataset.variantId}&ctoken=${mm.ctoken}`,'POST').then(data => cart())
+                            postFetch('/cart.html',`api=c&cart_action=remove&variant_id=${remove[i].closest('.product-item').dataset.variantId}&ctoken=${mm.ctoken}`,'POST').then(data => cart('.cart_count'))
                         })
                     }
                     let plus = document.querySelectorAll(`${parent} .quantity-btn_plus`)[i],
@@ -527,9 +527,9 @@ window.onload = function() {
                     varQty == 0 ? changeQuantity(plus, minus, quantity, true) : ''
                 }
             } else {
-                qty = 0;
+                counterBasket = 0;
             }
-            document.querySelector('.cart_count') != null ? document.querySelector('.cart_count').value = qty : '';
+            setCount && document.querySelector(setCount) != null ? document.querySelector(setCount).innerHTML = counterBasket : '';
         })
     }
     //Confirmation
@@ -2256,7 +2256,7 @@ window.onload = function() {
                     pushDataLayer('Click on Add to cart', labelForEvents(e.target))
                     postFetch('/cart.html',`api=c&cart_action=add&variant_id=${addBtns[i].dataset.variantId}&quantity=${addBtns[i].previousElementSibling.querySelector('.quantity').value}&product_id=${addBtns[i].dataset.id}&ctoken=${mm.ctoken}`,'POST').then(data => {
                         console.log(data)
-                        cart()
+                        cart('.cart_count')
                     })
                 })
             }
@@ -2290,7 +2290,7 @@ window.onload = function() {
         })
     }
 
-    !href.includes('/checkout/step4') && !href.includes('/guest-checkout4.php') ? cart() : '';
+    !href.includes('/checkout/step4') && !href.includes('/guest-checkout4.php') ? cart('.cart_count') : '';
     if (!href.includes('login.php') && !href.includes('/register.php') && !href.includes('/checkout') && !href.includes('/guest-checkout')) {
         let style = `
         <style class="style-main">
@@ -3506,7 +3506,7 @@ window.onload = function() {
                     </div>
                     <button class="items-center midbar_action" type="button">
                         <img src="https://olha1001.github.io/medicalmega/pdp-rediesign/img/common/cart.svg" alt="icon Cart" style="margin-right: 2.6px">
-                        <span>(<span class="cart_count">${qty}</span>)</span>
+                        <span>(<span class="cart_count">${counterBasket}</span>)</span>
                     </button>
                 </div>
             </div>
@@ -4543,7 +4543,7 @@ window.onload = function() {
                     el.addEventListener('click', (e) => {
                         e.stopImmediatePropagation();
                         postFetch('/cart.html',`api=c&cart_action=add&variant_id=${el.parentElement.querySelector('[name="product_variant_id"]').value}&quantity=${el.parentElement.querySelector('[name="quantity"]').value}&product_id=${el.parentElement.querySelector('[name="product_id"]').value}&ctoken=${mm.ctoken}`,'POST').then(data => {
-                            cart();
+                            cart('.cart_count');
                             addActive('.shopping-cart');
                         })
                         pushDataLayer(`Click on Add button`,labelForEvents(e.target));
