@@ -145,7 +145,10 @@ const waitForDOM = setInterval(() => {
                     }
                 })
 
-                document.getElementById('li_other').addEventListener('click', () => document.querySelectorAll('.breadcrumbs ul li a')[1].click())
+                document.getElementById('li_other').addEventListener('click', (e) => {
+                    e.preventDefault()
+                    document.querySelectorAll('.breadcrumbs ul li a')[1].click()
+                })
             }
         }, intervalTimeout)
 
