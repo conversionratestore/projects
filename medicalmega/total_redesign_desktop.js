@@ -577,6 +577,8 @@ let labelForEvents = (e) => {
         return `Checkout`;
     } else if (e.closest('.cart')) {
         return `Cart`;
+    } else if (e.closest('.confirmation-products')) {
+        return `Step 4/4— Confirmation`;
     } else {
         return `Listing`;
     } 

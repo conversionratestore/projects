@@ -394,6 +394,8 @@ let labelForEvents = (e) => {
         return `Order summary`;
     } else if (e.closest('.col-left')) {
         return `Checkout`;
+    } else if (e.closest('.confirmation-products')) {
+        return `Step 4/4— Confirmation`;
     } else {
         return `Listing`;
     } 
