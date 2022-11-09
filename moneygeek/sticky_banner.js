@@ -190,10 +190,23 @@ let stickyBanner = setInterval(() => {
 
     if (!sessionStorage.getItem("sticky_banner")) {
       if (document.querySelector("#sub-navigation")) {
-        console.log(`>>>>>>>..есть блок в который отрисовать стики`)
         setTimeout(() => {
-          console.log(`>>>>>>>стики`)
           document.querySelector("#sub-navigation").insertAdjacentHTML("beforeend", stickyBlock)
+
+          if (document.querySelector(".sticky_banner")) {
+            const options = {
+              root: null,
+              threshold: 1,
+            }
+
+            let observerNewHeader = new IntersectionObserver((entries) => {
+              if (!entries[0].isIntersecting) return
+              pushDataLayer(`Sticky ZIP banner appearance`)
+              observerNewHeader.disconnect()
+            })
+
+            observerNewHeader.observe(document.querySelector(".sticky_banner"), options)
+          }
         }, 1000)
       }
     }
@@ -317,21 +330,6 @@ let stickyBanner = setInterval(() => {
           document.querySelector(".sticky_banner").classList.remove("is_fixed")
         }
       }
-    }
-
-    if (document.querySelector(".sticky_banner")) {
-      const options = {
-        root: null,
-        threshold: 1,
-      }
-
-      let observerNewHeader = new IntersectionObserver((entries) => {
-        if (!entries[0].isIntersecting) return
-        pushDataLayer(`Sticky ZIP banner appearance`)
-        observerNewHeader.disconnect()
-      })
-
-      observerNewHeader.observe(document.querySelector(".sticky_banner"), options)
     }
 
     pushDataLayer("loaded")
