@@ -1656,7 +1656,10 @@ window.onload = function() {
 
                                     currentAddress('.bill-form > dd', ``, currentAddressBill)
 
-                                    document.querySelector('[name="shipping"]').addEventListener('click', (e) => copyFromShip(e.target, 'bill'))
+                                    document.querySelector('[name="shipping"]').addEventListener('click', (e) => {
+                                        copyFromShip(e.target, 'bill')
+                                        pushDataLayer(`Click on ${e.target.nextElementSibling.innerText} checkbox`, document.querySelector('.steps').innerText) //event
+                                    })
                                 }
                                 document.querySelector('.btn-back span').innerHTML = 'Back';
                                 document.querySelector('.btn-back').href = href.includes('guest-checkout') ? '/guest-checkout1.php' : `/checkout/step1`;
@@ -1685,7 +1688,7 @@ window.onload = function() {
                     document.querySelector('[name="shipping"]').addEventListener('click', (e) => {
                         console.log(e.target)
                         copyFromShip(e.target, 'bill')
-                        pushDataLayer(`Click on ${e.target.innerText} checkbox`, document.querySelector('.steps').innerText)
+                        pushDataLayer(`Click on ${e.target.nextElementSibling.innerText} checkbox`, document.querySelector('.steps').innerText) //event
                     })
                 }
             })
@@ -1761,10 +1764,9 @@ window.onload = function() {
                 let target = e.target;
                 if (target.classList.contains('checked')) {
                     target.classList.remove('checked')
-
-                    pushDataLayer(`Click on ${e.target.parentElement.innerText.split(':')[0]} checkbox`, document.querySelector('.steps').innerText)
                     document.querySelector('#cc-recurring-check').click();
                 }
+                pushDataLayer(`Click on ${e.target.parentElement.innerText.split(':')[0]} checkbox`, document.querySelector('.steps').innerText)
             })
             document.querySelector('#checkoutForm > p').innerHTML = document.querySelector('#checkoutForm > p').innerHTML.replace('Place Your Order Now','Proceed');
         }
