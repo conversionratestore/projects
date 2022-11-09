@@ -372,7 +372,7 @@ let product = (id, variantId, quantity, subtotal, url, imageUrl, title, varQty) 
 
 //push dataLayer
 let pushDataLayer = (actionDataLayer, labelDataLayer) => {
-    console.log(actionDataLayer, labelDataLayer)
+    console.log(actionDataLayer + " : " + labelDataLayer)
     window.dataLayer = window.dataLayer || [];
     dataLayer.push({
         'event': 'event-to-ga',
@@ -1353,11 +1353,13 @@ window.onload = function() {
                     linkHead.innerHTML = 'Sign in';
                     document.querySelector('.myAccountright').classList.remove('active')
                     addActive('.myAccountleft')
+                    pushDataLayer("Click on Sign in button", labelForEvents(this))
                 } else {
                     titleHead.innerHTML = 'Sign in';
                     linkHead.innerHTML = 'Register';
                     document.querySelector('.myAccountleft').classList.remove('active')
                     addActive('.myAccountright')
+                    pushDataLayer("Click on Register button", labelForEvents(this))
                 }
             })
             document.querySelector(' .myAccountleft dd:nth-child(5) input').insertAdjacentHTML('afterend',`<img class="eye" src="https://conversionratestore.github.io/projects/medicalmega/img/eye-through.svg" alt="eye icon">`)

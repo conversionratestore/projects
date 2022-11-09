@@ -577,6 +577,8 @@ let labelForEvents = (e) => {
         return `Header`;
     } else if (e.closest('.order_body')) {
         return `Order summary`;
+    } else if (e.closest('.col-left')) {
+        return `Checkout`;
     } else if (e.closest('.cart')) {
         return `Cart`;
     } else {
@@ -1649,9 +1651,9 @@ window.onload = function() {
                         <p>${country}</p>
                         <p>${phone}</p>
                     </div>
-                    <button class="btn-edit" type="button">${type === 'ship' ? 'Edit Shipping Address' : 'Edit Billing Info'}</button>
+                    <button class="btn-edit" type="button" onclick="pushDataLayer('Click on Edit ${type === 'ship' ? 'Shipping Address' : 'Billing Info'} button', labelForEvents(this))">${type === 'ship' ? 'Edit Shipping Address' : 'Edit Billing Info'}</button>
                 </div>
-                ${type === 'ship' ? '<p class="link">View Your Billing Info</p>' : ''} 
+                ${type === 'ship' ? '<p class="link" onclick="pushDataLayer("Click on View Your Billing Info button", labelForEvents(this))">View Your Billing Info</p>' : ''} 
             </div>`
         }
 
