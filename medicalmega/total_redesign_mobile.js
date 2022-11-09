@@ -1769,6 +1769,7 @@ window.onload = function() {
                 let guestOrAccount = href.includes('guest-checkout') ? 1 : 0;
                 document.querySelector('.btn-back span').innerHTML = obj['back'][document.querySelector('.col-left .head h4').innerHTML.toLowerCase()][0];
                 document.querySelector('.btn-back').href = obj['back'][document.querySelector('.col-left .head h4').innerHTML.toLowerCase()][1][guestOrAccount];
+                document.querySelector('.btn-back').addEventListener('click', (e) => pushDataLayer(`Click on ${e.target.innerText} button`, labelForEvents(e.target)))
             }
         }
         setBack()
