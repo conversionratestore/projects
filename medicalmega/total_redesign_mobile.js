@@ -1353,13 +1353,13 @@ window.onload = function() {
                     linkHead.innerHTML = 'Sign in';
                     document.querySelector('.myAccountright').classList.remove('active')
                     addActive('.myAccountleft')
-                    pushDataLayer("Click on Sign in button", labelForEvents(e.target))
+                    pushDataLayer("Click on Register button", labelForEvents(e.target))
                 } else {
                     titleHead.innerHTML = 'Sign in';
                     linkHead.innerHTML = 'Register';
                     document.querySelector('.myAccountleft').classList.remove('active')
                     addActive('.myAccountright')
-                    pushDataLayer("Click on Register button", labelForEvents(e.target))
+                    pushDataLayer("Click on Sign in button", labelForEvents(e.target))
                 }
             })
             document.querySelector(' .myAccountleft dd:nth-child(5) input').insertAdjacentHTML('afterend',`<img class="eye" src="https://conversionratestore.github.io/projects/medicalmega/img/eye-through.svg" alt="eye icon">`)
