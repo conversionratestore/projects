@@ -661,6 +661,7 @@ window.onload = function() {
             </div>`
         document.body.insertAdjacentHTML('afterbegin', confirmationHTML)
         document.body.insertAdjacentHTML('afterbegin', styleConfirmation)
+        document.querySelector('.btn-next').addEventListener('click', (e) => pushDataLayer(`Click on ${e.target.innerText} button`, document.querySelector('.steps').innerText))
         //add steps in header
         document.querySelector('.steps').innerHTML = `Step 4<span>/4</span> — ${obj['stepsName'][3]}`;
         pricing('.order_pricing', dataCart) // set pricing
@@ -1329,8 +1330,10 @@ window.onload = function() {
             console.log(e.target.innerText)
             if (e.target.innerText.includes('Show')) {
                 document.querySelector('.order_head p').innerHTML = 'Hide order summary'
+                pushDataLayer("Click on Show order summary button", labelForEvents(e.target))
             } else {
                 document.querySelector('.order_head p').innerHTML = 'Show order summary'
+                pushDataLayer("Click on Hide order summary button", labelForEvents(e.target))
             }
         })
         
@@ -1353,25 +1356,32 @@ window.onload = function() {
                     linkHead.innerHTML = 'Sign in';
                     document.querySelector('.myAccountright').classList.remove('active')
                     addActive('.myAccountleft')
-                    pushDataLayer("Click on Register button", labelForEvents(e.target))
+                    pushDataLayer("Click on Register button", document.querySelector('.steps').innerText)
                 } else {
                     titleHead.innerHTML = 'Sign in';
                     linkHead.innerHTML = 'Register';
                     document.querySelector('.myAccountleft').classList.remove('active')
                     addActive('.myAccountright')
-                    pushDataLayer("Click on Sign in button", labelForEvents(e.target))
+                    pushDataLayer("Click on Sign in button", document.querySelector('.steps').innerText)
                 }
             })
             document.querySelector(' .myAccountleft dd:nth-child(5) input').insertAdjacentHTML('afterend',`<img class="eye" src="https://conversionratestore.github.io/projects/medicalmega/img/eye-through.svg" alt="eye icon">`)
             document.querySelector(' .myAccountleft dd:nth-child(6) input').insertAdjacentHTML('afterend',`<img class="eye" src="https://conversionratestore.github.io/projects/medicalmega/img/eye-through.svg" alt="eye icon">`)
 
             //sign in with google
-            document.querySelector('.btn-google').addEventListener('click', () => document.querySelector('.g-signin2 > div').click())
+            document.querySelector('.btn-google').addEventListener('click', () => {
+                pushDataLayer("Click on continue with google button", document.querySelector('.steps').innerText)
+                document.querySelector('.g-signin2 > div').click()
+            })
             //Checkout as a guest
-            document.querySelector('.btn-guest').addEventListener('click', () => document.querySelector('.guest_checkout_button input').click())
+            document.querySelector('.btn-guest').addEventListener('click', () => {
+                pushDataLayer("Click on Checkout as a guest button", document.querySelector('.steps').innerText)
+                document.querySelector('.guest_checkout_button input').click()
+            })
             //click on eye button for password
-            document.querySelectorAll(' .myAccountleft dd .eye').forEach(item => {
+            document.querySelectorAll('.myAccountleft dd .eye').forEach(item => {
                 item.addEventListener('click', () => {
+                    pushDataLayer(`Click on eye button`, document.querySelector('.steps').innerText)
                     if (item.previousElementSibling.type == 'password') {
                         item.previousElementSibling.type = 'text';
                         item.src = 'https://conversionratestore.github.io/projects/medicalmega/img/eye.svg'
@@ -1529,7 +1539,7 @@ window.onload = function() {
             return `
             <div class="address ${type === 'bill' ? 'bill' : 'ship'}">
                 <div>
-                    <button class="btn-edit" type="button" onclick="pushDataLayer('Click on Edit ${type === 'ship' ? 'Shipping Address' : 'Billing Info'} button', labelForEvents(this))">${type === 'ship' ? 'Edit Shipping Address' : 'Edit Billing Info'}</button>
+                    <button class="btn-edit" type="button" onclick="pushDataLayer('Click on Edit ${type === 'ship' ? 'Shipping Address' : 'Billing Info'} button', ${document.querySelector('.steps').innerText})">${type === 'ship' ? 'Edit Shipping Address' : 'Edit Billing Info'}</button>
                     <div>
                         <p>${fname} ${lname}</p>
                         <p>${addr1}</p>
@@ -1538,7 +1548,7 @@ window.onload = function() {
                         <p>${phone}</p>
                     </div>
                 </div>
-                ${type === 'ship' ? '<p class="link" onclick="pushDataLayer("Click on View Your Billing Info button", labelForEvents(this))">View Your Billing Info</p>' : ''} 
+                ${type === 'ship' ? `<p class="link" onclick="pushDataLayer("Click on View Your Billing Info button", ${document.querySelector('.steps').innerText})">View Your Billing Info</p>` : ''} 
             </div>`
         }
         //copy from shipping
@@ -1675,6 +1685,7 @@ window.onload = function() {
                     document.querySelector('[name="shipping"]').addEventListener('click', (e) => {
                         console.log(e.target)
                         copyFromShip(e.target, 'bill')
+                        pushDataLayer(`Click on ${e.target.innerText} checkbox`, document.querySelector('.steps').innerText)
                     })
                 }
             })
@@ -1711,7 +1722,8 @@ window.onload = function() {
                 }
                 document.querySelector('.delivery-method').insertAdjacentHTML('beforeend', deliveryMethodHtml(index, type, text, price))
                 document.querySelectorAll('[name="radio-method"]')[index].addEventListener('input', (e) => {
-                    document.querySelectorAll('#ship_options > li input')[index].checked = true
+                    document.querySelectorAll('#ship_options > li input')[index].checked = true;
+                    pushDataLayer(`Click on ${e.target.nextElementSibling.querySelector('.type').innerHTML} radio`, document.querySelector('.steps').innerText)
                 })
             })
             document.querySelector('.col-left .delivery-method').insertAdjacentHTML('afterend',`
@@ -1749,6 +1761,8 @@ window.onload = function() {
                 let target = e.target;
                 if (target.classList.contains('checked')) {
                     target.classList.remove('checked')
+
+                    pushDataLayer(`Click on ${e.target.parentElement.innerText.split(':')[0]} checkbox`, document.querySelector('.steps').innerText)
                     document.querySelector('#cc-recurring-check').click();
                 }
             })
@@ -1769,7 +1783,7 @@ window.onload = function() {
                 let guestOrAccount = href.includes('guest-checkout') ? 1 : 0;
                 document.querySelector('.btn-back span').innerHTML = obj['back'][document.querySelector('.col-left .head h4').innerHTML.toLowerCase()][0];
                 document.querySelector('.btn-back').href = obj['back'][document.querySelector('.col-left .head h4').innerHTML.toLowerCase()][1][guestOrAccount];
-                document.querySelector('.btn-back').addEventListener('click', (e) => pushDataLayer(`Click on ${e.target.innerText} button`, labelForEvents(e.target)))
+                document.querySelector('.btn-back').addEventListener('click', (e) => pushDataLayer(`Click on ${e.target.innerText} button`, document.querySelector('.steps').innerText))
             }
         }
         setBack()
@@ -1987,8 +2001,8 @@ window.onload = function() {
                 document.querySelector('#submitCheckout3').click()
             }
             scrollTop(e.target, document.body)
+            pushDataLayer(`Click on ${e.target.innerText} button`, document.querySelector('.steps').innerText)
         })
-
     } 
     if (!href.includes('login.php') && !href.includes('register.php') && !href.includes('/checkout') && !href.includes('/guest-checkout')) {
         //cart
@@ -3743,13 +3757,10 @@ window.onload = function() {
 
         document.querySelector('.header').before(document.querySelector('#top'));
         document.querySelector('#top img').src = 'https://conversionratestore.github.io/projects/medicalmega/img/chevron-right.svg';
-        document.querySelector('#top').addEventListener('click', (e) => {
-            actionDataLayer = `Click on Top button`;
-            labelDataLayer = `Footer`;
-            pushDataLayer(actionDataLayer, labelDataLayer);
-        })
+        document.querySelector('#top').addEventListener('click', (e) => pushDataLayer(`Click on Top button`, `Footer`)) //event
         document.querySelector('.cart_count').innerHTML = document.querySelector('.shoppingcart .by_num span').innerHTML;
 
+        //events
         document.querySelectorAll('[data-button]').forEach(item => {
             item.addEventListener('click', (e) => {
                 let data = item.dataset.button
@@ -3774,7 +3785,7 @@ window.onload = function() {
         document.querySelector('.menu').addEventListener('click', (e) => {
             if (e.target.matches('.menu')) {
                 toggleModal('.menu')
-                pushDataLayer(`Click on under menu`, `Header`);
+                pushDataLayer(`Click on under menu`, `Header`); //event
             }
         })
 
