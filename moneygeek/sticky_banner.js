@@ -40,10 +40,12 @@ let stickyBanner = setInterval(() => {
             width: 300px;
             display: none;
             z-index: 55555555;
+            margin: 0;
         }
         .sticky_banner.is_fixed{            
-            position: absolute;
             display: block;
+            margin: -15px 0 25px;
+            position: relative;
         }
         .btn_close_sticky{
             position: absolute;
@@ -132,6 +134,14 @@ let stickyBanner = setInterval(() => {
         }
 
         @media (max-width: 1110px){
+            .sticky_banner.is_fixed{            
+                position: absolute;
+                display: block;
+                margin: 0;
+            }
+            .sticky_banner.is_hidden{
+              display: none;
+            }
             .sticky_banner{
                 width: 100%;
                 top: -50px;
@@ -191,7 +201,11 @@ let stickyBanner = setInterval(() => {
     if (!sessionStorage.getItem("sticky_banner")) {
       if (document.querySelector("#sub-navigation")) {
         setTimeout(() => {
-          document.querySelector("#sub-navigation").insertAdjacentHTML("beforeend", stickyBlock)
+          if (window.innerWidth <= 1110) {
+            document.querySelector("#sub-navigation").insertAdjacentHTML("beforeend", stickyBlock)
+          } else {
+            document.querySelector("#sub-navigation").insertAdjacentHTML("afterbegin", stickyBlock)
+          }
 
           if (document.querySelector(".sticky_banner")) {
             const options = {
@@ -230,6 +244,10 @@ let stickyBanner = setInterval(() => {
         ) {
           if (!document.querySelector(".sticky_banner").classList.contains("is_fixed")) {
             document.querySelector(".sticky_banner").classList.add("is_fixed")
+            if (window.innerWidth > 1110) {
+              document.querySelector("#social-section").style.display = "none"
+              document.querySelector(".social").style.display = "none"
+            }
             if (document.querySelector(".sticky_banner")) {
               let stickyBox = document.querySelector(".sticky_banner"),
                 label = stickyBox.querySelector("label"),
@@ -244,6 +262,10 @@ let stickyBanner = setInterval(() => {
                     pushDataLayer("Sticky banner closed")
                     sessionStorage.setItem("sticky_banner", "true")
                     stickyBox.classList.add("is_hidden")
+                    if (window.innerWidth > 1110) {
+                      document.querySelector("#social-section").style.display = "block"
+                      document.querySelector(".social").style.display = "block"
+                    }
                   }
                   e.target.setAttribute("data-test", "1")
                 })
@@ -327,6 +349,10 @@ let stickyBanner = setInterval(() => {
             }
           }
         } else {
+          if (window.innerWidth > 1110) {
+            document.querySelector("#social-section").style.display = "block"
+            document.querySelector(".social").style.display = "block"
+          }
           document.querySelector(".sticky_banner").classList.remove("is_fixed")
         }
       }
