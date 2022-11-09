@@ -190,7 +190,11 @@ let stickyBanner = setInterval(() => {
 
     if (!sessionStorage.getItem("sticky_banner")) {
       if (document.querySelector("#sub-navigation")) {
-        document.querySelector("#sub-navigation").insertAdjacentHTML("beforeend", stickyBlock)
+        console.log(`>>>>>>>..есть блок в который отрисовать стики`)
+        setTimeout(() => {
+          console.log(`>>>>>>>стики`)
+          document.querySelector("#sub-navigation").insertAdjacentHTML("beforeend", stickyBlock)
+        }, 1000)
       }
     }
 
