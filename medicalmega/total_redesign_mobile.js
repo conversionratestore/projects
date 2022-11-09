@@ -392,6 +392,8 @@ let labelForEvents = (e) => {
         return `Shopping Cart`;
     } else if (e.closest('.order_body')) {
         return `Order summary`;
+    } else if (e.closest('.col-left')) {
+        return `Checkout`;
     } else {
         return `Listing`;
     } 
@@ -1525,7 +1527,7 @@ window.onload = function() {
             return `
             <div class="address ${type === 'bill' ? 'bill' : 'ship'}">
                 <div>
-                    <button class="btn-edit" type="button">${type === 'ship' ? 'Edit Shipping Address' : 'Edit Billing Info'}</button>
+                    <button class="btn-edit" type="button" onclick="pushDataLayer('Click on Edit ${type === 'ship' ? 'Shipping Address' : 'Billing Info'} button', labelForEvents(this))">${type === 'ship' ? 'Edit Shipping Address' : 'Edit Billing Info'}</button>
                     <div>
                         <p>${fname} ${lname}</p>
                         <p>${addr1}</p>
@@ -1534,7 +1536,7 @@ window.onload = function() {
                         <p>${phone}</p>
                     </div>
                 </div>
-                ${type === 'ship' ? '<p class="link">View Your Billing Info</p>' : ''} 
+                ${type === 'ship' ? '<p class="link" onclick="pushDataLayer("Click on View Your Billing Info button", labelForEvents(this))">View Your Billing Info</p>' : ''} 
             </div>`
         }
         //copy from shipping
@@ -2273,6 +2275,8 @@ window.onload = function() {
                 swipeAngle: false,
             });
         })
+
+        document.querySelector('.slider-products').addEventListener('touchend', (e) => pushDataLayer('Swipe to "Also bought with" slide', labelForEvents(e.target)))
 
         if (href.includes('cart.html')) {
             addActive('.shopping-cart');
