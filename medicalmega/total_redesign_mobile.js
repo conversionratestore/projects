@@ -917,8 +917,8 @@ window.onload = function() {
                 padding-top: 20px;
             }
             .label-subscribe {
-                padding: 0;
-                color: #091114;
+                padding: 0!important;
+                color: #091114!important;
             }
             /*order*/
             .order .order_head svg {
