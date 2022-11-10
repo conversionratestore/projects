@@ -899,17 +899,13 @@ window.onload = function() {
                 line-height: 150%;}
 
             .wrapper-checkout input[type="password"]::-webkit-input-placeholder {
-                // line-height: 1;
-                font-size: 18px;}
+                padding: 11px 16px!important}
             .wrapper-checkout input[type="password"]:-moz-placeholder {
-                // line-height: 1;
-                font-size: 18px;}
+                padding: 11px 16px!important}
             .wrapper-checkout input[type="password"]::-moz-placeholder {
-                // line-height: 1;
-                font-size: 18px;}
+                padding: 11px 16px!important}
             .wrapper-checkout input[type="password"]:-ms-input-placeholder {
-                // line-height: 1;
-                font-size: 18px;}
+                padding: 11px 16px!important}
             .btn-back, .btn-guest {
                 font-weight: 700;
                 font-size: 14px;
