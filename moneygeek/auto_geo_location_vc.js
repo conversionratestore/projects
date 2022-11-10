@@ -411,8 +411,13 @@ form.css-8atqhb button.chakra-button {
     document.body.insertAdjacentHTML("afterbegin", style)
     document.querySelector("form.css-8atqhb")?.insertAdjacentHTML("afterbegin", autoLocationBlock)
 
-    if (document.querySelector(".select_current")) {
-      if (document.querySelector(".select_current") !== "") {
+    if (document.querySelector(".auto_location_block")) {
+      let selectCurrent = document.querySelector(".select_current"),
+        btnSend = document.querySelector(".auto_location_block button"),
+        selectBody = document.querySelector(".select_body"),
+        selectList = document.querySelector(".select_body ul")
+
+      if (selectCurrent.value !== "") {
         const options = {
           root: null,
           threshold: 1,
@@ -424,26 +429,22 @@ form.css-8atqhb button.chakra-button {
           observerNewHeader.disconnect()
         })
 
-        observerNewHeader.observe(document.querySelector(".select_current"), options)
+        observerNewHeader.observe(selectCurrent, options)
       }
-    }
 
-    onClickControlVer()
-    fetchLocation()
+      onClickControlVer()
+      fetchLocation()
 
-    if (document.querySelector(".select_body ul")) {
-      arrZip.forEach((el) => {
-        document.querySelector(".select_body ul").insertAdjacentHTML("beforeend", createSelectEl(el.value, el.label))
-      })
+      if (selectList) {
+        arrZip.forEach((el) => {
+          selectList.insertAdjacentHTML("beforeend", createSelectEl(el.value, el.label))
+        })
 
-      onChooseSelect()
-    }
+        onChooseSelect()
+      }
 
-    // click on btnSend
-    function onClickControlVer() {
-      if (document.querySelector(".auto_location_block")) {
-        let btnSend = document.querySelector(".auto_location_block button")
-
+      // click on btnSend
+      function onClickControlVer() {
         if (btnSend) {
           btnSend.addEventListener("click", (e) => {
             e.preventDefault()
@@ -462,160 +463,161 @@ form.css-8atqhb button.chakra-button {
           })
         }
       }
-    }
 
-    // fetch ipinfo
-    function fetchLocation() {
-      fetch("https://ipinfo.io/json?token=625d68b69a156c")
-        .then((response) => response.json())
-        .then((jsonResponse) => {
-          console.log(jsonResponse)
+      // fetch ipinfo
+      function fetchLocation() {
+        fetch("https://ipinfo.io/json?token=625d68b69a156c")
+          .then((response) => response.json())
+          .then((jsonResponse) => {
+            console.log(jsonResponse)
 
-          onChangeInput(jsonResponse.postal)
+            onChangeInput(jsonResponse.postal)
 
-          if (document.querySelector(".select_current")) {
-            document.querySelector(".select_current").value = jsonResponse.region
-            document.querySelector(".select_current").setAttribute("data-zip", jsonResponse.postal)
-          }
-
-          if (document.querySelector(".select_body ul li")) {
-            document.querySelectorAll(".select_body ul li").forEach((item) => {
-              if (item.textContent.toLowerCase().includes(jsonResponse.region.toLowerCase())) {
-                item.setAttribute("data-value", jsonResponse.postal)
-              }
-            })
-          }
-        })
-    }
-
-    // ChangeInput[name="zip"]
-    function onChangeInput(value) {
-      var nativeInputValueSetter = Object.getOwnPropertyDescriptor(window.HTMLInputElement.prototype, "value").set
-
-      nativeInputValueSetter.call(document.querySelector('[name="zip"]'), value)
-
-      var ev2 = new Event("input", { bubbles: true })
-      document.querySelector('[name="zip"]').dispatchEvent(ev2)
-    }
-    // choose select
-    if (document.querySelector(".select_body")) {
-      filteInputText()
-
-      document.querySelector(".select_header label > input").addEventListener("input", function (e) {
-        document.querySelector(".select_body ul").innerHTML = ""
-
-        arrZip.forEach((el) => {
-          document.querySelector(".select_body ul").insertAdjacentHTML("beforeend", createSelectEl(el.value, el.label))
-        })
-
-        onChooseSelect()
-
-        filteInputText()
-        autoHeightSelectBody()
-      })
-
-      function filteInputText() {
-        let filterValue = document.querySelector(".select_header label input").value.toUpperCase()
-        let notFound = true
-
-        document.querySelectorAll(".select_body ul li").forEach(function (el) {
-          let text = el.textContent.toUpperCase()
-          if (text.includes(filterValue)) {
-            el?.classList.add("show")
-            el?.classList.remove("hide")
-            notFound = false
-            includesSymb(filterValue, text, el.firstChild)
-          } else {
-            el?.classList.add("hide")
-            el?.classList.remove("show")
-          }
-        })
-
-        if (notFound) {
-          document.querySelector(".select_body ul").innerHTML = `<li class="oops">Oops, nothing found!</li>`
-        }
-      }
-
-      function includesSymb(text, cont, element) {
-        let root = element
-        let content = cont
-
-        let rng = document.createRange()
-
-        rng.setStart(root, content.indexOf(text))
-
-        rng.setEnd(root, content.indexOf(text) + text.length)
-
-        let highlightDiv = document.createElement("strong")
-
-        rng.surroundContents(highlightDiv)
-      }
-    }
-
-    function autoHeightSelectBody() {
-      if (document.querySelectorAll(".select_body ul li.show").length > 6) {
-        document.querySelector(".select_body").classList.remove("auto_height")
-      } else {
-        document.querySelector(".select_body").classList.add("auto_height")
-      }
-    }
-
-    // ChooseSelect
-    function onChooseSelect() {
-      let selectHeader = document.querySelectorAll(".select_header")
-      let selectItem = document.querySelectorAll(".select_body li")
-
-      selectHeader.forEach((item) => {
-        item.addEventListener("click", selectToggle)
-      })
-
-      selectItem.forEach((item) => {
-        item.addEventListener("click", selectChoose)
-      })
-
-      function selectToggle() {
-        this.parentElement.classList.add("is_active")
-        if (this.parentElement.classList.contains("is_active")) {
-          document.querySelector(".select_current").focus()
-          if (!this.parentElement.getAttribute("data-test")) {
-            pushDataLayer("ZIP field selected (focus)")
-          }
-          this.parentElement.setAttribute("data-test", "1")
-          setTimeout(() => {
-            if (this.parentElement.getAttribute("data-test")) {
-              this.parentElement.removeAttribute("data-test")
+            if (selectCurrent) {
+              selectCurrent.value = jsonResponse.region
+              selectCurrent.setAttribute("data-zip", jsonResponse.postal)
             }
-          }, 100)
-        }
-        this.classList.add("rotate_arrow")
+
+            if (selectList.querySelectorAll("li")) {
+              selectList.querySelectorAll("li").forEach((item) => {
+                if (item.textContent.toLowerCase().includes(jsonResponse.region.toLowerCase())) {
+                  item.setAttribute("data-value", jsonResponse.postal)
+                }
+              })
+            }
+          })
       }
 
-      function selectChoose() {
-        let text = this.innerText,
-          zipCode = this.getAttribute("data-value"),
-          select = this.closest(".select"),
-          currentText = select.querySelector(".select_current")
+      // ChangeInput[name="zip"]
+      function onChangeInput(value) {
+        var nativeInputValueSetter = Object.getOwnPropertyDescriptor(window.HTMLInputElement.prototype, "value").set
 
-        this.closest(".select_body")
-          .querySelectorAll("li")
-          .forEach((item) => {
-            if (item.classList.contains("is_active_label")) {
-              item.classList.remove("is_active_label")
-            }
-            item.classList.remove("hide")
-            if (document.querySelector(".select_body").classList.contains("auto_height")) {
-              document.querySelector(".select_body").classList.remove("auto_height")
+        nativeInputValueSetter.call(document.querySelector('[name="zip"]'), value)
+
+        var ev2 = new Event("input", { bubbles: true })
+        document.querySelector('[name="zip"]').dispatchEvent(ev2)
+      }
+
+      // choose select
+      if (selectBody) {
+        filterInputText()
+
+        document.querySelector(".select_header label > input").addEventListener("input", function (e) {
+          selectList.innerHTML = ""
+
+          arrZip.forEach((el) => {
+            selectList.insertAdjacentHTML("beforeend", createSelectEl(el.value, el.label))
+          })
+
+          onChooseSelect()
+
+          filterInputText()
+          autoHeightSelectBody()
+        })
+
+        function filterInputText() {
+          let filterValue = selectCurrent.value.toUpperCase()
+          let notFound = true
+
+          selectList.querySelectorAll("li").forEach(function (el) {
+            let text = el.textContent.toUpperCase()
+            if (text.includes(filterValue)) {
+              el?.classList.add("show")
+              el?.classList.remove("hide")
+              notFound = false
+              includesSymb(filterValue, text, el.firstChild)
+            } else {
+              el?.classList.add("hide")
+              el?.classList.remove("show")
             }
           })
 
-        pushDataLayer(`${text} state selected from drop down`)
-        currentText.value = text
-        currentText.setAttribute("data-zip", zipCode)
-        this.classList.add("is_active_label")
-        select.classList.remove("is_active")
+          if (notFound) {
+            selectList.innerHTML = `<li class="oops">Oops, nothing found!</li>`
+          }
+        }
 
-        select.querySelector(".select_header").classList.toggle("rotate_arrow")
-        onChangeInput(zipCode)
+        function includesSymb(text, cont, element) {
+          let root = element
+          let content = cont
+
+          let rng = document.createRange()
+
+          rng.setStart(root, content.indexOf(text))
+
+          rng.setEnd(root, content.indexOf(text) + text.length)
+
+          let highlightDiv = document.createElement("strong")
+
+          rng.surroundContents(highlightDiv)
+        }
+      }
+
+      function autoHeightSelectBody() {
+        if (document.querySelectorAll(".select_body ul li.show").length > 6) {
+          selectBody.classList.remove("auto_height")
+        } else {
+          selectBody.classList.add("auto_height")
+        }
+      }
+
+      // ChooseSelect
+      function onChooseSelect() {
+        let selectHeader = document.querySelectorAll(".select_header")
+        let selectItem = document.querySelectorAll(".select_body li")
+
+        selectHeader.forEach((item) => {
+          item.addEventListener("click", selectToggle)
+        })
+
+        selectItem.forEach((item) => {
+          item.addEventListener("click", selectChoose)
+        })
+
+        function selectToggle() {
+          this.parentElement.classList.add("is_active")
+          if (this.parentElement.classList.contains("is_active")) {
+            selectCurrent.focus()
+            if (!this.parentElement.getAttribute("data-test")) {
+              pushDataLayer("ZIP field selected (focus)")
+            }
+            this.parentElement.setAttribute("data-test", "1")
+            setTimeout(() => {
+              if (this.parentElement.getAttribute("data-test")) {
+                this.parentElement.removeAttribute("data-test")
+              }
+            }, 100)
+          }
+          this.classList.add("rotate_arrow")
+        }
+
+        function selectChoose() {
+          let text = this.innerText,
+            zipCode = this.getAttribute("data-value"),
+            select = this.closest(".select"),
+            currentText = select.querySelector(".select_current")
+
+          this.closest(".select_body")
+            .querySelectorAll("li")
+            .forEach((item) => {
+              if (item.classList.contains("is_active_label")) {
+                item.classList.remove("is_active_label")
+              }
+              item.classList.remove("hide")
+              if (selectBody.classList.contains("auto_height")) {
+                selectBody.classList.remove("auto_height")
+              }
+            })
+
+          pushDataLayer(`${text} state selected from drop down`)
+          currentText.value = text
+          currentText.setAttribute("data-zip", zipCode)
+          this.classList.add("is_active_label")
+          select.classList.remove("is_active")
+
+          select.querySelector(".select_header").classList.toggle("rotate_arrow")
+          onChangeInput(zipCode)
+        }
       }
     }
 
