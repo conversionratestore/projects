@@ -897,15 +897,6 @@ window.onload = function() {
                 color: rgba(154, 166, 171, 0.8);
                 font-size: 16px;
                 line-height: 150%;}
-
-            .wrapper-checkout input[type="password"]::-webkit-input-placeholder {
-                font-size: 20px;}
-            .wrapper-checkout input[type="password"]:-moz-placeholder {
-                font-size: 20px;}
-            .wrapper-checkout input[type="password"]::-moz-placeholder {
-                font-size: 20px;}
-            .wrapper-checkout input[type="password"]:-ms-input-placeholder {
-                font-size: 20px;}
             .btn-back, .btn-guest {
                 font-weight: 700;
                 font-size: 14px;
@@ -1411,7 +1402,7 @@ window.onload = function() {
                 if (item.name == 'user_email' || item.name == 'reg_email') {
                     item.placeholder = 'email@mail.com';
                 } else if (item.name == 'user_pass' || item.name == 'user_password' || item.name == 're_user_passsword') {
-                    item.placeholder = '********';
+                    item.placeholder = '&bull;&bull;&bull;&bull;&bull;&bull;&bull;&bull;';
                 } else if (item.name == 'first_name') {
                     item.placeholder = 'John';
                 } else if (item.name == 'last_name') {
