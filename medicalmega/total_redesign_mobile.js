@@ -1364,6 +1364,8 @@ window.onload = function() {
                 Email Me Order Updates and Specials
             </label>`
 
+            document.querySelector('[name="subscribe"]').addEventListener('change', (e) => pushDataLayer("Click on Email Me Order Updates and Specials checkbox", document.querySelector('.steps').innerText)) //event
+
             //click on 'Sign in/Register' button
             let linkHead = document.querySelector('.head-login .link'),
                 titleHead = document.querySelector('.head-login h3');
