@@ -859,7 +859,7 @@ window.onload = function() {
             .wrapper-checkout .myAccountright > form:not(#checkoutForm) > dd:nth-child(6) {
                 margin: 0!important;
             }
-            dd input[type=checkbox] {
+            dd input[type=checkbox]:not([name="subscribe"]) {
                 margin-right: 8px!important;
                 width: fit-content;
                 display: block;
@@ -915,6 +915,10 @@ window.onload = function() {
             }
             .foot {
                 padding-top: 20px;
+            }
+            .label-subscribe {
+                padding: 0;
+                color: #091114;
             }
             /*order*/
             .order .order_head svg {
@@ -1352,6 +1356,13 @@ window.onload = function() {
             document.querySelector('.steps').innerHTML = `Step 1<span>/4</span> — ${obj['stepsName'][0]}`; //add steps in header
             document.querySelector('.foot').insertAdjacentHTML('afterbegin','<a href="#" class="btn-guest mb-16">Checkout as a guest</a>')
             addActive('.myAccountleft')
+
+            //change subscribe checkbox
+            document.querySelector('[name="subscribe"]').parentElement.innerHTML = `<label class="label-subscribe">
+                <input name="subscribe" type="checkbox" style="border-color: rgb(224, 228, 229) !important;">
+                <span class="check2"></span>
+                Email Me Order Updates and Specials
+            </label>`
 
             //click on 'Sign in/Register' button
             let linkHead = document.querySelector('.head-login .link'),
