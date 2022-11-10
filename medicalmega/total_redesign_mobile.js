@@ -278,6 +278,24 @@ let styleMain =`
 </style>`
 let href = window.location.href;
 
+const API_KEY = `e3a0cffec873466acf71806748550356`;
+const APPLICATION_ID = `PXDJAQHDPZ`;
+
+const searchClient = algoliasearch(
+    APPLICATION_ID,
+    API_KEY,
+);
+
+const indexName = 'products';
+
+const search = instantsearch({
+    searchClient,
+    indexName: indexName,
+    routing: true,
+});
+
+const index = searchClient.initIndex(indexName);
+
 let headerFetchAddress = {
     'Content-Type': 'application/x-www-form-urlencoded',
     'Cart-Token': mm.ctoken,
@@ -2306,11 +2324,15 @@ window.onload = function() {
         }
 
         //11212 Hand Sanitizing
-        postFetch('/api/products',`offset=0&limit=6&is_featured=0&ctoken=${mm.ctoken}&category=11212`,'POST').then(data => {
+        let requestHandSanitizing = index.search({
+            facetFilters: ['categories.lvl0:Hand Sanitizing'],
+            hitsPerPage: '6',
+        })
+        requestHandSanitizing.then(data => {
             console.log(data)
-            let products = data.products;
+            let products = data.hits;
             for (let i = 0; i < products.length; i++) {
-                slideHTML(products[i].url, products[i].variants[0].image_url, products[i].title, products[i].variants[0].regular_price, products[i].variants[0].product_id, products[i].variants[0].variant_id, '.slider-products')
+                slideHTML(products[i].seo, products[i].variants[0].image, products[i].name, products[i].variants[0].price, products[i].objectID, products[i].variants[0].pv_id, '.slider-products')
 
                 let plus = document.querySelectorAll(`.slide .quantity-btn_plus`)[i],
                     minus = document.querySelectorAll(`.slide .quantity-btn_minus`)[i],
@@ -3637,31 +3659,7 @@ window.onload = function() {
             </div>
             
         </div>
-        </div>
-    `
-        const API_KEY = `e3a0cffec873466acf71806748550356`;
-        const APPLICATION_ID = `PXDJAQHDPZ`;
-
-        const searchClient = algoliasearch(
-            APPLICATION_ID,
-            API_KEY,
-        );
-
-        const indexName = 'products';
-
-        const search = instantsearch({
-            searchClient,
-            indexName: indexName,
-            routing: true,
-            // searchFunction(helper) {
-            //   const page = helper.getPage(); // Retrieve the current page
-            //   helper.setQuery(query) // this call resets the page
-            //         .setPage(page) // we re-apply the previous page
-            //         .search();
-            // },
-        });
-
-        const index = searchClient.initIndex(indexName);
+        </div>`
 
         let currentPath = 'https://medicalmega.com/';
 
