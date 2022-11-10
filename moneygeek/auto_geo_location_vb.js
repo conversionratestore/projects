@@ -14,7 +14,7 @@ let autoGeoLocation = setInterval(() => {
         console.log(actionDataLayer + " : " + labelDataLayer)
         dataLayer.push({
           event: "event-to-ga",
-          eventCategory: `Exp: Sticky ZIP ${eventVar}`,
+          eventCategory: `Exp: Autofill ZIP ${eventVar}`,
           eventAction: `${actionDataLayer}`,
           eventLabel: `${labelDataLayer}`,
         })
@@ -22,7 +22,7 @@ let autoGeoLocation = setInterval(() => {
         console.log(actionDataLayer)
         dataLayer.push({
           event: "event-to-ga",
-          eventCategory: `Exp: Sticky ZIP ${eventVar}`,
+          eventCategory: `Exp: Autofill ZIP ${eventVar}`,
           eventAction: `${actionDataLayer}`,
         })
       }
@@ -163,6 +163,23 @@ form.css-8atqhb .chakra-form__error-message {
     document.body.insertAdjacentHTML("afterbegin", style)
     document.querySelector("form.css-8atqhb").insertAdjacentHTML("afterbegin", autoLocationBlock)
 
+    if (document.querySelector(".auto_region")) {
+      if (document.querySelector(".auto_region") !== "") {
+        const options = {
+          root: null,
+          threshold: 1,
+        }
+
+        let observerNewHeader = new IntersectionObserver((entries) => {
+          if (!entries[0].isIntersecting) return
+          pushDataLayer(`State resolved from IP and shown`)
+          observerNewHeader.disconnect()
+        })
+
+        observerNewHeader.observe(document.querySelector(".auto_region"), options)
+      }
+    }
+
     onClickControlVer()
     fetchLocation()
 
@@ -290,5 +307,14 @@ form.css-8atqhb .chakra-form__error-message {
 
       // region
     }
+
+    pushDataLayer("loaded")
+    const record = setInterval(() => {
+      if (typeof clarity === "function") {
+        clearInterval(record)
+
+        clarity("set", "autofill_zip", "variant_1")
+      }
+    }, 200)
   }
 }, 100)
