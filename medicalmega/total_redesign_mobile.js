@@ -2285,7 +2285,7 @@ window.onload = function() {
         document.body.insertAdjacentHTML('afterbegin', styleCart); //add style for cart modal
         document.body.insertAdjacentHTML('beforeend', cartModalHTML); //add cart modal
 
-        document.querySelector('.paypal-form-button').addEventListener('click', (e) => {
+        document.querySelector('.footer-cart .paypal-form-button').addEventListener('click', (e) => {
             e.stopImmediatePropagation();
             e.target.querySelector('input').click()
             pushDataLayer('Click on payPal button', labelForEvents(e.target))
