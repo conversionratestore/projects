@@ -3179,7 +3179,7 @@ window.onload = function() {
         .slider-main img {
             width: 100%;
             height: 100%;
-            object-fit: contain;}
+            object-fit: none;}
         #tns1 > .tns-item {
             height: 100%;
             border: 1px solid #E0E4E5;
