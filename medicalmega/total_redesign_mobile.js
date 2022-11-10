@@ -2440,6 +2440,18 @@ window.onload = function() {
             color: rgba(154, 166, 171, 0.8);  
             font-size: 12px;
             line-height: 20px;}
+        [type="password"]::-webkit-input-placeholder {
+            // line-height: 1;
+            font-size: 15px;}
+        [type="password"]:-moz-placeholder {
+            // line-height: 1;
+            font-size: 15px;}
+        [type="password"]::-moz-placeholder {
+            // line-height: 1;
+            font-size: 15px;}
+        [type="password"]:-ms-input-placeholder {
+            // line-height: 1;
+            font-size: 15px;}
         @-webkit-keyframes autofill {
             to {
                 color: #091114;
