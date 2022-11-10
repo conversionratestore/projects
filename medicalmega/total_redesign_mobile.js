@@ -899,13 +899,13 @@ window.onload = function() {
                 line-height: 150%;}
 
             .wrapper-checkout input[type="password"]::-webkit-input-placeholder {
-                padding: 11px 16px!important}
+                font-size: 20px;}
             .wrapper-checkout input[type="password"]:-moz-placeholder {
-                padding: 11px 16px!important}
+                font-size: 20px;}
             .wrapper-checkout input[type="password"]::-moz-placeholder {
-                padding: 11px 16px!important}
+                font-size: 20px;}
             .wrapper-checkout input[type="password"]:-ms-input-placeholder {
-                padding: 11px 16px!important}
+                font-size: 20px;}
             .btn-back, .btn-guest {
                 font-weight: 700;
                 font-size: 14px;
