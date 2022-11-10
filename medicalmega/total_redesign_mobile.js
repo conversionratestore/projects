@@ -681,8 +681,8 @@ window.onload = function() {
     if ((href.includes('login.php') || href.includes('/register.php') || href.includes('/checkout') || href.includes('/guest-checkout')) && !href.includes('/checkout/step4') && !href.includes('/guest-checkout4.php')) {
         sessionStorage.setItem('routing', 0);
 
-        let statesCanada = '<option value="" selected="selected">-- Select Province --</option><option value="AB">Alberta</option><option value="BC">British Columbia</option><option value="MB">Manitoba</option><option value="NB">New Brunswick</option><option value="NL">Newfoundland</option><option value="NS">Nova Scotia</option><option value="ON">Ontario</option><option value="PE">Prince Edward Island</option><option value="QC">Quebec</option><option value="SK">Saskatchewan</option><option value="YT">Yukon</option><option value="NT">Northwest Territories</option><option value="NV">Nunavut</option>';
-        let statesUsa = '<option value="">-- Select State --</option><option value="AL">ALABAMA</option><option value="AK">ALASKA</option><option value="AS">AMERICAN SAMOA</option><option value="AZ">ARIZONA</option><option value="AR">ARKANSAS</option><option value="CA">CALIFORNIA</option><option value="CO">COLORADO</option><option value="CT">CONNECTICUT</option><option value="DE">DELAWARE</option><option value="DC">DISTRICT OF COLUMBIA</option><option value="FM">FEDERATED STATES OF MICRONESIA</option><option value="FL">FLORIDA</option><option value="GA">GEORGIA</option><option value="GU">GUAM</option><option value="HI">HAWAII</option><option value="ID">IDAHO</option><option value="IL">ILLINOIS</option><option value="IN">INDIANA</option><option value="IA">IOWA</option><option value="KS">KANSAS</option><option value="KY">KENTUCKY</option><option value="LA">LOUISIANA</option><option value="ME">MAINE</option><option value="MH">MARSHALL ISLANDS</option><option value="MD">MARYLAND</option><option value="MA">MASSACHUSETTS</option><option value="MI">MICHIGAN</option><option value="MN">MINNESOTA</option><option value="MS">MISSISSIPPI</option><option value="MO">MISSOURI</option><option value="MT">MONTANA</option><option value="NE">NEBRASKA</option><option value="NV">NEVADA</option><option value="NH">NEW HAMPSHIRE</option><option value="NJ">NEW JERSEY</option><option value="NM">NEW MEXICO</option><option value="NY">NEW YORK</option><option value="NC">NORTH CAROLINA</option><option value="ND">NORTH DAKOTA</option><option value="MP">NORTHERN MARIANA ISLANDS</option><option value="OH">OHIO</option><option value="OK">OKLAHOMA</option><option value="OR">OREGON</option><option value="PW">PALAU</option><option value="PA">PENNSYLVANIA</option><option value="PR">PUERTO RICO</option><option value="RI">RHODE ISLAND</option><option value="SC">SOUTH CAROLINA</option><option value="SD">SOUTH DAKOTA</option><option value="TN">TENNESSEE</option><option value="TX">TEXAS</option><option value="UT">UTAH</option><option value="VT">VERMONT</option><option value="VI">VIRGIN ISLANDS</option><option value="VA">VIRGINIA</option><option value="WA">WASHINGTON</option><option value="WV">WEST VIRGINIA</option><option value="WI">WISCONSIN</option><option value="WY">WYOMING</option>'
+        let statesCanada = '<option value="" selected="selected">Select Province</option><option value="AB">Alberta</option><option value="BC">British Columbia</option><option value="MB">Manitoba</option><option value="NB">New Brunswick</option><option value="NL">Newfoundland</option><option value="NS">Nova Scotia</option><option value="ON">Ontario</option><option value="PE">Prince Edward Island</option><option value="QC">Quebec</option><option value="SK">Saskatchewan</option><option value="YT">Yukon</option><option value="NT">Northwest Territories</option><option value="NV">Nunavut</option>';
+        let statesUsa = '<option value="">Select State</option><option value="AL">ALABAMA</option><option value="AK">ALASKA</option><option value="AS">AMERICAN SAMOA</option><option value="AZ">ARIZONA</option><option value="AR">ARKANSAS</option><option value="CA">CALIFORNIA</option><option value="CO">COLORADO</option><option value="CT">CONNECTICUT</option><option value="DE">DELAWARE</option><option value="DC">DISTRICT OF COLUMBIA</option><option value="FM">FEDERATED STATES OF MICRONESIA</option><option value="FL">FLORIDA</option><option value="GA">GEORGIA</option><option value="GU">GUAM</option><option value="HI">HAWAII</option><option value="ID">IDAHO</option><option value="IL">ILLINOIS</option><option value="IN">INDIANA</option><option value="IA">IOWA</option><option value="KS">KANSAS</option><option value="KY">KENTUCKY</option><option value="LA">LOUISIANA</option><option value="ME">MAINE</option><option value="MH">MARSHALL ISLANDS</option><option value="MD">MARYLAND</option><option value="MA">MASSACHUSETTS</option><option value="MI">MICHIGAN</option><option value="MN">MINNESOTA</option><option value="MS">MISSISSIPPI</option><option value="MO">MISSOURI</option><option value="MT">MONTANA</option><option value="NE">NEBRASKA</option><option value="NV">NEVADA</option><option value="NH">NEW HAMPSHIRE</option><option value="NJ">NEW JERSEY</option><option value="NM">NEW MEXICO</option><option value="NY">NEW YORK</option><option value="NC">NORTH CAROLINA</option><option value="ND">NORTH DAKOTA</option><option value="MP">NORTHERN MARIANA ISLANDS</option><option value="OH">OHIO</option><option value="OK">OKLAHOMA</option><option value="OR">OREGON</option><option value="PW">PALAU</option><option value="PA">PENNSYLVANIA</option><option value="PR">PUERTO RICO</option><option value="RI">RHODE ISLAND</option><option value="SC">SOUTH CAROLINA</option><option value="SD">SOUTH DAKOTA</option><option value="TN">TENNESSEE</option><option value="TX">TEXAS</option><option value="UT">UTAH</option><option value="VT">VERMONT</option><option value="VI">VIRGIN ISLANDS</option><option value="VA">VIRGINIA</option><option value="WA">WASHINGTON</option><option value="WV">WEST VIRGINIA</option><option value="WI">WISCONSIN</option><option value="WY">WYOMING</option>'
 
         let style = `
         <style>
@@ -882,7 +882,7 @@ window.onload = function() {
                 padding: 0!important;
             }
             .wrapper-checkout input::-webkit-input-placeholder {
-                color: rgba(154, 166, 171, 0.8);
+                color: rgba(154, 166, 171, 0.8);  
                 font-size: 16px;
                 line-height: 150%;}
             .wrapper-checkout input:-moz-placeholder {
@@ -1397,6 +1397,18 @@ window.onload = function() {
                     }
                 })
             })
+            //add placeholder
+            document.querySelectorAll('.myAccount input[name]').forEach(item => {
+                if (item.name == 'user_email' || item.name == 'reg_email') {
+                    item.placeholder = 'email@mail.com';
+                } else if (item.name == 'user_pass' || item.name == 'user_password' || item.name == 're_user_passsword') {
+                    item.placeholder = '********';
+                } else if (item.name == 'first_name') {
+                    item.placeholder = 'John';
+                } else if (item.name == 'last_name') {
+                    item.placeholder = 'Smith';
+                } 
+            })
         }
 
         let saveAddress = (type,fname,lname,addr1,city,stateF,zip,country,phn,email) => {
@@ -1429,8 +1441,16 @@ window.onload = function() {
                     document.querySelector(typeState).innerHTML = statesUsa;
                     document.querySelector(typeState).previousElementSibling.children[0].innerHTML = 'State (Only applicable to US)'
                 } else {
-                    document.querySelector(typeState).innerHTML = '<option value="" selected="selected">-- Select State --</option>';
+                    document.querySelector(typeState).innerHTML = '<option value="" selected="selected">Select State</option>';
                     document.querySelector(typeState).previousElementSibling.children[0].innerHTML = 'State (Only applicable to US)'
+                }
+            })
+            let selects = [typeCountry, typeState];
+            selects.forEach(item => {
+                if (document.querySelector(item).selectedIndex == 0) {
+                    document.querySelector(item).style = 'color: rgba(154, 166, 171, 0.8);'
+                } else {
+                    document.querySelector(item).style = 'color: rgba(9, 17, 20, 0.8)'   
                 }
             })
         }
@@ -1449,7 +1469,7 @@ window.onload = function() {
                 </dd>
                 <dd style="width: 100%;float:left;padding-right: 8px">
                     <label for="email">Email <span class="c-red-08"> *</span></label>
-                    <input type="text" name="email">
+                    <input type="text" name="email" placeholder="email@mail.com">
                     <i></i>
                 </dd>
                 <dd style="width: 50%;float:left;padding-right: 8px">
@@ -1512,7 +1532,7 @@ window.onload = function() {
                 </dd>
                 <dd style="width: 100%;float:left;padding-right: 8px">
                     <label for="email">Email <span class="c-red-08"> *</span></label>
-                    <input type="text" name="email">
+                    <input type="text" name="email" placeholder="email@mail.com">
                     <i></i>
                 </dd>
                 <dd style="width: 50%;float:left;padding-right: 8px">
@@ -1560,8 +1580,8 @@ window.onload = function() {
         //copy from shipping
         let copyFromShip = (e, formType) => {
             let stateName = document.querySelector(`.${formType}-form dd [name="state"]`),
-                countryName = document.querySelector(`.${formType}-form dd [name="country"]`);
-
+                countryName = document.querySelector(`.${formType}-form dd [name="country"]`),
+                selects = document.querySelectorAll('select');
             if (e.checked) {
                 fetch(`/api/v1/addresses&type=ship`, {
                     headers: headerFetchAddress,
@@ -1583,10 +1603,19 @@ window.onload = function() {
                         stateName.innerHTML = statesUsa;
                         stateName.previousElementSibling.children[0].innerHTML = 'State (Only applicable to US)'
                     } else {
-                        stateName.innerHTML = '<option value="" selected="selected">-- Select State --</option>';
+                        stateName.innerHTML = '<option value="" selected="selected">Select State</option>';
                         stateName.previousElementSibling.children[0].innerHTML = 'State (Only applicable to US)'
                     }
-                    stateName.value = stateValue
+                   
+                    stateName.value = stateValue;
+
+                    selects.forEach(item => {
+                        if (item.selectedIndex == 0) {
+                            item.style = 'color: rgba(154, 166, 171, 0.8);'
+                        } else {
+                            item.style = 'color: rgba(9, 17, 20, 0.8)'   
+                        }
+                    })
                 })
             }
         }
@@ -2390,25 +2419,25 @@ window.onload = function() {
         *::-webkit-input-placeholder {
             font-family: "Inter", sans-serif;
             font-weight: 400;
-            color: #9AA6AB;
+            color: rgba(154, 166, 171, 0.8);            ;
             font-size: 12px;
             line-height: 20px; }
         *:-moz-placeholder {
             font-family: "Inter", sans-serif;
             font-weight: 400;
-            color: #9AA6AB;
+            color: rgba(154, 166, 171, 0.8);  
             font-size: 12px;
             line-height: 20px;}
         *::-moz-placeholder {
             font-family: "Inter", sans-serif;
             font-weight: 400;
-            color: #9AA6AB;
+            color: rgba(154, 166, 171, 0.8);  
             font-size: 12px;
             line-height: 20px; }
         *:-ms-input-placeholder {
             font-family: "Inter", sans-serif;
             font-weight: 400;
-            color: #9AA6AB;
+            color: rgba(154, 166, 171, 0.8);  
             font-size: 12px;
             line-height: 20px;}
         @-webkit-keyframes autofill {
