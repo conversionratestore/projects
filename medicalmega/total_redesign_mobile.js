@@ -1402,7 +1402,7 @@ window.onload = function() {
                 if (item.name == 'user_email' || item.name == 'reg_email') {
                     item.placeholder = 'email@mail.com';
                 } else if (item.name == 'user_pass' || item.name == 'user_password' || item.name == 're_user_passsword') {
-                    item.placeholder = '&bull;&bull;&bull;&bull;&bull;&bull;&bull;&bull;';
+                    item.placeholder = '••••••••';
                 } else if (item.name == 'first_name') {
                     item.placeholder = 'John';
                 } else if (item.name == 'last_name') {
