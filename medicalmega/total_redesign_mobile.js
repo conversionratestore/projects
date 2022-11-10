@@ -2301,7 +2301,7 @@ window.onload = function() {
             let slide = `
                 <div class="slide">
                     <div>
-                        <a href="${url}" onclick="pushDataLayer('Click on product', labelForEvents(this))">
+                        <a href="/product/${url}" onclick="pushDataLayer('Click on product', labelForEvents(this))">
                             <span class="items-center">
                                 <img src="https://medicalmegaimgs.net/prod/uploaded/product/pro_thumb/${urlImage}" alt="${title}">
                                 <span class="price">
@@ -3173,15 +3173,17 @@ window.onload = function() {
             position: relative;
             width: 100%;
             height: 89.33vw;
+            border: 1px solid #E0E4E5;
+            border-radius: 4px;
             margin: 40px auto 8px;}
+        .slider-main img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;}
         #tns1 > .tns-item {
             height: 100%;
             border: 1px solid #E0E4E5;
             border-radius: 4px;}
-        #tns1 > .tns-item img {
-            height: 100%;
-            width: 100%;
-            object-fit: contain;}
         .list {
             color: #344D57;
             margin: 70px 0 48px; }

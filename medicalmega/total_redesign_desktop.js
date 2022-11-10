@@ -591,6 +591,10 @@ let removeActive = (element) => document.querySelector(element).classList.remove
 let arrMouth = ['Jan','Feb','Mar','Apr','May','Jun','Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 let counterBasket = 0;
 
+if (sessionStorage.getItem('old_version') != null) {
+    document.querySelector('.exp-loading') != null ? document.querySelector('.exp-loading').remove() : '';
+}
+
 window.onload = function() {
     document.body.insertAdjacentHTML('afterbegin', styleMain)
 
@@ -2561,6 +2565,7 @@ window.onload = function() {
             padding: 20px 0; }
         .midbar_action {
             pointer-events: auto;
+            cursor: pointer;
             padding: 12px;}
         .midbar_action span {
             font-weight: 600;
@@ -4779,7 +4784,7 @@ window.onload = function() {
             let slideHTML = (url, urlImage, title, price, id, variantId, parent) =>  {
                 let slide = `
                     <div class="slide">
-                        <a href="${url}" onclick="pushDataLayer('Click on product', labelForEvents(this))">
+                        <a href="/product/${url}" onclick="pushDataLayer('Click on product', labelForEvents(this))">
                             <span class="items-center flex">
                                 <img src="https://medicalmegaimgs.net/prod/uploaded/product/pro_thumb/${urlImage}" alt="${title}">
                                 <span class="price">
@@ -4930,7 +4935,7 @@ window.onload = function() {
                 });
             })
             cart('.cart_count') //get products from cart
-        }
+        } 
 
         let optionMut = {
             childList: true,
