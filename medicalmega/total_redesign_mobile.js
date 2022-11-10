@@ -3172,7 +3172,6 @@ window.onload = function() {
         .slider-main {
             position: relative;
             width: 100%;
-            height: 89.33vw;
             border: 1px solid #E0E4E5;
             border-radius: 4px;
             margin: 40px auto 8px;}
@@ -3201,6 +3200,7 @@ window.onload = function() {
             line-height: 120%;
             margin-bottom: 20px; }
         .product .slide {
+            height: 89.33vw;
             padding: 0;}
         .product > div.flex-center-between > img {
             width: 48%; }
