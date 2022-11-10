@@ -2019,7 +2019,7 @@ window.onload = function() {
         }
 
         document.querySelector('.exp-loading') != null ? document.querySelector('.exp-loading').remove() : '';
-        document.querySelector('.header-checkout svg').addEventListener('click', (e) => pushDataLayer(`Click on cross button`, document.querySelector('.steps').innerText))
+        document.querySelector('.header-checkout a').addEventListener('click', (e) => pushDataLayer(`Click on cross button`, document.querySelector('.steps').innerText))
 
         //add click on next button
         document.querySelector('.btn-next').addEventListener('click', (e) => {
