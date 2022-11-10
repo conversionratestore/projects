@@ -596,14 +596,14 @@ window.onload = function() {
 
     //change quantity, update product quantity in cart
     let changeQuantity = (plus, minus, quantity, post=false) => {
-        quantity.addEventListener('change', () => {
+        quantity.addEventListener('change', (e) => {
             if (quantity.value < 1) {
                 quantity.value = 1
             }
             pushDataLayer('Change quantity field', labelForEvents(e.target))//event
             post == true ? postFetch('/cart.html',`api=c&cart_action=update&variant_id=${quantity.closest('.product-item').dataset.variantId}&quantity=${quantity.value}&ctoken=${mm.ctoken}`,'POST').then(data => cart('.cart_count')) : '';
         })
-        plus.addEventListener('click', () => {
+        plus.addEventListener('click', (e) => {
             quantity.value = +quantity.value + 1;
             quantity.parentElement.querySelector('.quantity-btn_minus').disabled = false;
 
@@ -621,7 +621,7 @@ window.onload = function() {
             minus.disabled = true;
         }
 
-        minus.addEventListener('click', () => {
+        minus.addEventListener('click', (e) => {
             if (minus.nextElementSibling.value < 2) {
                 minus.nextElementSibling.value = 1;
                 minus.disabled = true;
@@ -1485,7 +1485,7 @@ window.onload = function() {
             document.querySelector(' .myAccountleft dd:nth-child(6) input').insertAdjacentHTML('afterend',`<img class="eye" src="https://conversionratestore.github.io/projects/medicalmega/img/eye-through.svg" alt="eye icon">`)
 
             document.querySelectorAll(' .myAccountleft dd .eye').forEach(item => {
-                item.addEventListener('click', () => {
+                item.addEventListener('click', (e) => {
                     if (item.previousElementSibling.type == 'password') {
                         item.previousElementSibling.type = 'text';
                         item.src = 'https://conversionratestore.github.io/projects/medicalmega/img/eye.svg'
@@ -4278,7 +4278,7 @@ window.onload = function() {
                 })
             })
 
-            document.querySelector('.advanced-search .btn').addEventListener('click', () => {
+            document.querySelector('.advanced-search .btn').addEventListener('click', (e) => {
                 let categories = document.querySelector('.select_category .select_current').dataset.category;
                 let brand = document.querySelector('.select_brand .select_current').innerText.includes('Select') ? "" : `&products%5BrefinementList%5D%5Bmanufacturer%5D%5B0%5D=${document.querySelector('.select_brand .select_current').innerText}`;
 
@@ -4587,7 +4587,7 @@ window.onload = function() {
 
                         //slider nav
                         slidesNav.forEach((el, i) => {
-                            el.addEventListener('click', () => {
+                            el.addEventListener('click', (e) => {
                                 el.closest('.slider-nav').querySelector('.active').classList.remove('active');
                                 el.classList.add('active');
 
