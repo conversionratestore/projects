@@ -95,6 +95,9 @@ let styleMain =`
         padding: 20px;
         box-sizing: border-box;
     }
+    .header-checkout svg {
+        pointer-events: none;
+    }
     .steps {
         font-weight: 600;
         font-size: 18px;
@@ -671,6 +674,7 @@ window.onload = function() {
         for (let i = 0; i < items.length; i++) {
             document.querySelector('.confirmation-products').insertAdjacentHTML('beforeend', product(items[i].product_id, items[i].variant_id, items[i].quantity, items[i].subtotal, items[i].url, items[i].image_url, items[i].title, 1))
         }
+        document.querySelector('.header-checkout svg').addEventListener('click', (e) => pushDataLayer(`Click on cross button`, document.querySelector('.steps').innerText))
         document.querySelector('.exp-loading') != null ? document.querySelector('.exp-loading').remove() : '';
     }
 
@@ -1541,7 +1545,7 @@ window.onload = function() {
             return `
             <div class="address ${type === 'bill' ? 'bill' : 'ship'}">
                 <div>
-                    <button class="btn-edit" type="button" onclick="pushDataLayer('Click on Edit ${type === 'ship' ? 'Shipping Address' : 'Billing Info'} button', ${document.querySelector('.steps').innerText})">${type === 'ship' ? 'Edit Shipping Address' : 'Edit Billing Info'}</button>
+                    <button class="btn-edit" type="button" onclick="pushDataLayer('Click on Edit ${type === 'ship' ? 'Shipping Address' : 'Billing Info'} button', '${document.querySelector('.steps').innerText}')">${type === 'ship' ? 'Edit Shipping Address' : 'Edit Billing Info'}</button>
                     <div>
                         <p>${fname} ${lname}</p>
                         <p>${addr1}</p>
@@ -1550,7 +1554,7 @@ window.onload = function() {
                         <p>${phone}</p>
                     </div>
                 </div>
-                ${type === 'ship' ? `<p class="link" onclick="pushDataLayer("Click on View Your Billing Info button", ${document.querySelector('.steps').innerText})">View Your Billing Info</p>` : ''} 
+                ${type === 'ship' ? `<p class="link" onclick="pushDataLayer('Click on View Your Billing Info button', '${document.querySelector('.steps').innerText}')">View Your Billing Info</p>` : ''} 
             </div>`
         }
         //copy from shipping
@@ -1955,7 +1959,8 @@ window.onload = function() {
         }
 
         document.querySelector('.exp-loading') != null ? document.querySelector('.exp-loading').remove() : '';
-        
+        document.querySelector('.header-checkout svg').addEventListener('click', (e) => pushDataLayer(`Click on cross button`, document.querySelector('.steps').innerText))
+
         //add click on next button
         document.querySelector('.btn-next').addEventListener('click', (e) => {
             if (document.querySelector('.myAccountright.active') != null) {
