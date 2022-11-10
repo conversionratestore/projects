@@ -2303,7 +2303,7 @@ window.onload = function() {
                     <div>
                         <a href="${url}" onclick="pushDataLayer('Click on product', labelForEvents(this))">
                             <span class="items-center">
-                                <img src="${urlImage}" alt="${title}">
+                                <img src="https://medicalmegaimgs.net/prod/uploaded/product/pro_thumb/${urlImage}" alt="${title}">
                                 <span class="price">
                                     <p></p>
                                     <b>${price}</b>
