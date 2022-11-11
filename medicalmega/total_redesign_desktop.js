@@ -4910,11 +4910,14 @@ window.onload = function() {
                         font-size: 36px;
                         line-height: 120%;
                         color: #091114;
-                        padding: 48px 0;
+                        padding: 48px 0 28px;
                     }
                     .cart-head {
                         border-bottom: 1px solid #E9EBEC;
-                        padding-bottom: 20px;
+                        padding: 20px 0;
+                        position: sticky:
+                        top: 186px;
+                        background: #fff;
                     }
                     .cart-head p:first-child, .cart-list .product-item > div:first-child {
                         width: 60%;
@@ -4950,12 +4953,14 @@ window.onload = function() {
                     <div class="cart">
                         <div class="cart-container mx-auto">
                             <h2 class="text-center">Your cart</h2>
-                            <div class="cart-head fs-16 c-gray flex">
-                                <p>Product</p>
-                                <p>Quantity</p>
-                                <p class="text-right">Total</p>
+                            <div>
+                                <div class="cart-head fs-16 c-gray flex">
+                                    <p>Product</p>
+                                    <p>Quantity</p>
+                                    <p class="text-right">Total</p>
+                                </div>
+                                <ul class="cart-list"></ul>
                             </div>
-                            <ul class="cart-list"></ul>
                             <p class="cart-total text-right fw-semi fs-24"></p>
                             <div class="btn-checkout">
                                 <a href="/checkout/step1" class="btn btn-next flex items-center ml-auto">
