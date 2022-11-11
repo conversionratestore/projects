@@ -2372,8 +2372,10 @@ window.onload = function() {
                 opacity: 0;
             }
             .shopping-cart .slide {
+                padding-right: 12px;
+            }
+            .shopping-cart .slide  > div {
                 background: #FFFFFF;
-                margin-right: 12px;
                 padding: 20px;
                 border: 1px solid #E3E6E7;
                 border-radius: 4px;
@@ -4872,22 +4874,24 @@ window.onload = function() {
             let slideHTML = (url, urlImage, title, price, id, variantId, parent) =>  {
                 let slide = `
                     <div class="slide">
-                        <a href="/product/${url}" onclick="pushDataLayer('Click on product', labelForEvents(this))">
-                            <span class="items-center flex">
-                                <img src="https://medicalmegaimgs.net/prod/uploaded/product/pro_thumb/${urlImage}" alt="${title}">
-                                <span class="price">
-                                    <p></p>
-                                    <b>${price}</b>
+                        <div>
+                            <a href="/product/${url}" onclick="pushDataLayer('Click on product', labelForEvents(this))">
+                                <span class="items-center flex">
+                                    <img src="https://medicalmegaimgs.net/prod/uploaded/product/pro_thumb/${urlImage}" alt="${title}">
+                                    <span class="price">
+                                        <p></p>
+                                        <b>${price}</b>
+                                    </span>
                                 </span>
-                            </span>
-                            <span class="name">${title}</span>
-                        </a>
-                        <div class="flex-center flex">
-                            <button type="button" class="quantity-btn quantity-btn_minus">−</button>
-                            <input type="number" name="quantity" value="1" class="quantity">
-                            <button type="button" class="quantity-btn quantity-btn_plus" >+</button>
+                                <span class="name">${title}</span>
+                            </a>
+                            <div class="flex-center flex">
+                                <button type="button" class="quantity-btn quantity-btn_minus">−</button>
+                                <input type="number" name="quantity" value="1" class="quantity">
+                                <button type="button" class="quantity-btn quantity-btn_plus" >+</button>
+                            </div>
+                            <button type="button" class="btn-add" data-variant-id="${variantId}" data-id="${id}">Add to cart</button>
                         </div>
-                        <button type="button" class="btn-add" data-variant-id="${variantId}" data-id="${id}">Add to cart</button>
                     </div> `;
     
                 document.querySelector(parent).insertAdjacentHTML('beforeend', slide)
@@ -5012,7 +5016,7 @@ window.onload = function() {
                 }
                 tns({
                     container: document.querySelector('.slider-products'),
-                    fixedWidth: 190,
+                    fixedWidth: 202,
                     autoplay: false,
                     axis: 'horizontal',
                     controls: true,
