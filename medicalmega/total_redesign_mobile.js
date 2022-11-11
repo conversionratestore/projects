@@ -1374,6 +1374,12 @@ window.onload = function() {
             document.querySelector('.foot').insertAdjacentHTML('afterbegin','<a href="#" class="btn-guest mb-16">Checkout as a guest</a>')
             addActive('.myAccountleft')
 
+            //forgot password
+            document.querySelector('#forgot_pass [name="forgot_pass"]').insertAdjacentHTML('afterend',`<button class="btn-next btn-forgor" type="button"><span>Submit</span></button>`)
+            document.querySelector('.btn-forgor').addEventListener('click', (e) => {
+                pushDataLayer("Click on Submit button", document.querySelector('.steps').innerText);
+                document.querySelector('#forgot_pass .addressBookSubmit').click();
+            })
             //change subscribe checkbox
             document.querySelector('[name="subscribe"]').parentElement.innerHTML = `<label class="label-subscribe">
                 <input name="subscribe" type="checkbox" style="border-color: rgb(224, 228, 229) !important;">
@@ -2021,7 +2027,7 @@ window.onload = function() {
         document.querySelector('.header-checkout a').addEventListener('click', (e) => pushDataLayer(`Click on cross button`, document.querySelector('.steps').innerText))
 
         //add click on next button
-        document.querySelector('.btn-next').addEventListener('click', (e) => {
+        document.querySelector('.foot .btn-next').addEventListener('click', (e) => {
             if (document.querySelector('.myAccountright.active') != null) {
                 console.log('login')
                 document.querySelector('#login_btn').click()
