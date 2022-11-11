@@ -1075,6 +1075,15 @@ window.onload = function() {
                 float: right;
                 margin-top: -118px;
             }
+            .registerOnLogin .forgot_password a {
+                font-weight: 400;
+                font-size: 14px;
+                line-height: 150%;
+                border-bottom: 1px solid rgba(150, 40, 15, 0.5);
+                color: #96280F;
+                padding-bottom: 2px;
+                text-decoration: none;
+            }
             .wrapper-checkout .myAccountright > form:not(#checkoutForm) > dd:nth-child(6) {
                 margin: 0!important;
             }

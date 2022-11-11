@@ -488,7 +488,7 @@ window.onload = function() {
     }
     //cart product
     let cart = (setCount) => {
-        let parent = href.includes('/checkout/step') || href.includes('/login.php') || href.includes('/register.php')|| href.includes('/guest-checkout') ? '.order_body' : '.list-product';
+        let parent = href.includes('/checkout/step') || href.includes('/login') || href.includes('/register.php')|| href.includes('/guest-checkout') ? '.order_body' : '.list-product';
         
         //get data
         postFetch('/cart.html',`api=c&cart_action=cart&ctoken=${mm.ctoken}`,'POST').then(data => {
@@ -696,7 +696,7 @@ window.onload = function() {
         document.querySelector('.exp-loading') != null ? document.querySelector('.exp-loading').remove() : '';
     }
 
-    if ((href.includes('login.php') || href.includes('/register.php') || href.includes('/checkout') || href.includes('/guest-checkout')) && !href.includes('/checkout/step4') && !href.includes('/guest-checkout4.php')) {
+    if ((href.includes('login') || href.includes('/register.php') || href.includes('/checkout') || href.includes('/guest-checkout')) && !href.includes('/checkout/step4') && !href.includes('/guest-checkout4.php')) {
         sessionStorage.setItem('routing', 0);
 
         let statesCanada = '<option value="" selected="selected">Select Province</option><option value="AB">Alberta</option><option value="BC">British Columbia</option><option value="MB">Manitoba</option><option value="NB">New Brunswick</option><option value="NL">Newfoundland</option><option value="NS">Nova Scotia</option><option value="ON">Ontario</option><option value="PE">Prince Edward Island</option><option value="QC">Quebec</option><option value="SK">Saskatchewan</option><option value="YT">Yukon</option><option value="NT">Northwest Territories</option><option value="NV">Nunavut</option>';
@@ -707,7 +707,7 @@ window.onload = function() {
             body {
                 border: none;
             }
-            #wrap, .g-signin2, .guest_checkout_button, .savingTools, #ftr, #logo {
+            #wrap, .g-signin2, .guest_checkout_button, .savingTools, #ftr, #logo, .addressBookSubmit {
                 display: none;
             }
             button {
@@ -870,9 +870,8 @@ window.onload = function() {
             #forgot_pass {
                 padding: 20px 0;
                 text-align: left;
-                max-width: 50%;
-                float: right;
-                margin-top: -118px;
+                max-width: 100%;
+                margin-top: -85px;
             }
             .wrapper-checkout .myAccountright > form:not(#checkoutForm) > dd:nth-child(6) {
                 margin: 0!important;
@@ -1329,7 +1328,7 @@ window.onload = function() {
             </div>
             <div class="col-left">
                 <div>
-                    ${window.location.href.includes('/login.php') || window.location.href.includes('/register.php?') ? `<div class="flex-center-between head-login"><h3>Register</h3><a href="#" class="link">Sign in</a></div>` : ''}
+                    ${window.location.href.includes('/login') || window.location.href.includes('/register.php?') ? `<div class="flex-center-between head-login"><h3>Register</h3><a href="#" class="link">Sign in</a></div>` : ''}
                     <div class="head"><h4></h4></div>
                 </div>
                 <div class="foot">
@@ -1366,7 +1365,7 @@ window.onload = function() {
         })
         
         //login/register step
-        if ((href.includes('/login.php') || href.includes('/register.php')) && document.querySelector('.myAccount') != null) {
+        if ((href.includes('/login') ||  href.includes('/register.php')) && document.querySelector('.myAccount') != null) {
             document.querySelector('.col-left .head-login').after(document.querySelector('.myAccount'));
             document.querySelector('.col-left .head h4').innerHTML = obj['stepsName'][0];
             document.querySelector('.col-left .head').style = 'display: none!important;';
@@ -2073,7 +2072,7 @@ window.onload = function() {
             pushDataLayer(`Click on ${e.target.innerText} button`, document.querySelector('.steps').innerText)
         })
     } 
-    if (!href.includes('login.php') && !href.includes('register.php') && !href.includes('/checkout') && !href.includes('/guest-checkout')) {
+    if (!href.includes('login') && !href.includes('register.php') && !href.includes('/checkout') && !href.includes('/guest-checkout')) {
         //cart
         let styleCart = `
         <style>
@@ -2382,7 +2381,7 @@ window.onload = function() {
     }
 
     !href.includes('/checkout/step4') && !href.includes('/guest-checkout4.php') ? cart('.cart_count') : '';
-    if (!href.includes('login.php') && !href.includes('/register.php') && !href.includes('/checkout') && !href.includes('/guest-checkout')) {
+    if (!href.includes('login') && !href.includes('/register.php') && !href.includes('/checkout') && !href.includes('/guest-checkout')) {
         let style = `
         <style class="style-main">
         @font-face {
@@ -2546,11 +2545,11 @@ window.onload = function() {
             line-height: 150%; }
         .checkbox {
             display: none; }
-            .checkbox:checked ~ .check:before {
+        .checkbox:checked ~ .check:before {
             content: ''; }
-            .checkbox:checked ~ .radio-check {
+        .checkbox:checked ~ .radio-check {
             border-color: #96280F; }
-            .checkbox:checked ~ .radio-check .radio-check_price{
+        .checkbox:checked ~ .radio-check .radio-check_price{
             color: #96280F;}
         .checkbox:disabled ~ .radio-check {
             border-color: #E3E6E7; }
