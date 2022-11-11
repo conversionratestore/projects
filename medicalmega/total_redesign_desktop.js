@@ -595,6 +595,9 @@ if (sessionStorage.getItem('old_version') != null) {
     document.querySelector('.exp-loading') != null ? document.querySelector('.exp-loading').remove() : '';
 }
 
+let capitalizeFirstLetter = (string) => {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+}
 window.onload = function() {
     document.body.insertAdjacentHTML('afterbegin', styleMain)
 
@@ -1740,9 +1743,9 @@ window.onload = function() {
                         <p>${country}</p>
                         <p>${phone}</p>
                     </div>
-                    <button class="btn-edit" type="button" onclick="pushDataLayer('Click on Edit ${type === 'ship' ? 'Shipping Address' : 'Billing Info'} button', ${stepActive})">${type === 'ship' ? 'Edit Shipping Address' : 'Edit Billing Info'}</button>
+                    <button class="btn-edit" type="button" onclick="pushDataLayer('Click on Edit ${type === 'ship' ? 'Shipping Address' : 'Billing Info'} button', '${stepActive}')">${type === 'ship' ? 'Edit Shipping Address' : 'Edit Billing Info'}</button>
                 </div>
-                ${type === 'ship' ? `<p class="link" onclick="pushDataLayer("Click on View Your Billing Info button", ${stepActive})">View Your Billing Info</p>` : ''} 
+                ${type === 'ship' ? `<p class="link" onclick="pushDataLayer('Click on View Your Billing Info button', '${stepActive}')">View Your Billing Info</p>` : ''} 
             </div>`
         }
 
