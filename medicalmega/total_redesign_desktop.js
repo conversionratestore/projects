@@ -14,13 +14,11 @@ let styleMain =`
     
     /* Firefox */
     input.quantity[type=number] {
-      -moz-appearance: textfield;
-    }
+      -moz-appearance: textfield;}
     .shopping-cart button, .cart-list button {
         background: transparent;
         border: none;
-        cursor: pointer;
-    }
+        cursor: pointer;}
     .btn {
         font-family: "Inter", sans-serif;
         background-color: #1E3944;
@@ -886,6 +884,7 @@ window.onload = function() {
         <style>
             body {
                 border: none;
+                background: #FBFBFB;
             }
             .container {
                 width: 100%;
@@ -893,7 +892,7 @@ window.onload = function() {
                 padding-right: 15px;
                 padding-left: 15px;
             }
-            #wrap {
+            #wrap, .guest_checkout_button, .g-signin2 {
                 display: none;
             }
             button {
@@ -946,6 +945,30 @@ window.onload = function() {
             .col-left .address.bill {
                 order: 2;
                 display: none;
+            }
+            .btn-google {
+                padding: 0 48px;
+                font-size: 14px;
+            }
+            .before-line {
+                position: relative;
+                z-index: 2;
+                margin: 18px 0;
+            }
+            .before-line span {
+                background: #FBFBFB;
+                padding: 0 10px;
+            }
+            .before-line:before {
+                content: '';
+                position: absolute;
+                top: 50%;
+                transform: translateY(-50%);
+                left: 0;
+                width: 100%;
+                height: 1px;
+                z-index: -1;
+                background: #E0E4E5;
             }
             /*login*/
             .registerOnLogin dt, .myAccountright, .myAccountleft, dd button[type="submit"] {
@@ -1092,18 +1115,18 @@ window.onload = function() {
                 color: rgba(154, 166, 171, 0.8);
                 font-size: 16px;
                 line-height: 150%;}
-            .btn-back {
+            .btn-back, .btn-guest {
                 font-weight: 700;
                 font-size: 14px;
                 line-height: 20px;
                 letter-spacing: 0.05em;
                 text-transform: uppercase;
                 color: #1E3944;
-                padding: 15px 8px;
-            }
+                padding: 15px 8px;}
+            .btn-guest {
+                margin-right: 24px;}
             .btn-back svg {
-                margin-right: 8px;
-            }
+                margin-right: 8px;}
             /*order*/
             .order {
                 background: #FFFFFF;
@@ -1436,12 +1459,14 @@ window.onload = function() {
                             </svg>
                             <span></span>
                         </a>
-                        <button class="btn-next items-center flex" type="submit">
-                            <span>Next</span>
-                            <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M3 9.32153V8.67847C3 8.5009 3.13431 8.35695 3.3 8.35695H13.002L10.332 5.50181C10.2752 5.44144 10.2433 5.35926 10.2433 5.27352C10.2433 5.18779 10.2752 5.10561 10.332 5.04524L10.758 4.59511C10.8143 4.53424 10.891 4.5 10.971 4.5C11.051 4.5 11.1277 4.53424 11.184 4.59511L14.868 8.537C14.9524 8.62736 14.9999 8.74995 15 8.87782V9.12218C14.9986 9.24977 14.9513 9.37186 14.868 9.463L11.184 13.4049C11.1277 13.4658 11.051 13.5 10.971 13.5C10.891 13.5 10.8143 13.4658 10.758 13.4049L10.332 12.9483C10.2756 12.8891 10.2438 12.8079 10.2438 12.7233C10.2438 12.6386 10.2756 12.5575 10.332 12.4982L13.002 9.64305H3.3C3.13431 9.64305 3 9.4991 3 9.32153Z" fill="#FBFBFB"/>
-                            </svg>
-                        </button>
+                        <div class="flex items-center">
+                            <button class="btn-next items-center flex" type="submit">
+                                <span>Next</span>
+                                <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M3 9.32153V8.67847C3 8.5009 3.13431 8.35695 3.3 8.35695H13.002L10.332 5.50181C10.2752 5.44144 10.2433 5.35926 10.2433 5.27352C10.2433 5.18779 10.2752 5.10561 10.332 5.04524L10.758 4.59511C10.8143 4.53424 10.891 4.5 10.971 4.5C11.051 4.5 11.1277 4.53424 11.184 4.59511L14.868 8.537C14.9524 8.62736 14.9999 8.74995 15 8.87782V9.12218C14.9986 9.24977 14.9513 9.37186 14.868 9.463L11.184 13.4049C11.1277 13.4658 11.051 13.5 10.971 13.5C10.891 13.5 10.8143 13.4658 10.758 13.4049L10.332 12.9483C10.2756 12.8891 10.2438 12.8079 10.2438 12.7233C10.2438 12.6386 10.2756 12.5575 10.332 12.4982L13.002 9.64305H3.3C3.13431 9.64305 3 9.4991 3 9.32153Z" fill="#FBFBFB"/>
+                                </svg>
+                            </button>
+                        </div>
                     </div>
                 </div>
                 <div class="order justify-between flex">
@@ -1464,6 +1489,10 @@ window.onload = function() {
         if ((href.includes('/login.php') || href.includes('/register.php')) && document.querySelector('.myAccount') != null) {
             document.querySelector('.col-left .head').after(document.querySelector('.myAccount'))
             document.querySelector('.col-left .head h4').innerHTML = obj['stepsName'][0];
+            document.querySelector('.col-left .head').style = 'display: none!important;';
+            document.querySelector('.col-left .head-login').insertAdjacentHTML('afterend',`<button type="button" class="btn btn_white btn-google flex items-center mx-auto"> <img src="https://conversionratestore.github.io/projects/medicalmega/img/google.svg" class="mr-8" alt="google icon"/> continue with google</button><p class="text-center c-gray-08 mb-16 fs-14 before-line"><span>or</span></p>`)
+            document.querySelector('.foot .btn-next').insertAdjacentHTML('beforebegin','<a href="#" class="btn-guest">Checkout as a guest</a>')
+
             addActive('.myAccountleft')
             addStep('.steps', 0)
 
@@ -1488,6 +1517,16 @@ window.onload = function() {
             document.querySelector(' .myAccountleft dd:nth-child(5) input').insertAdjacentHTML('afterend',`<img class="eye" src="https://conversionratestore.github.io/projects/medicalmega/img/eye-through.svg" alt="eye icon">`)
             document.querySelector(' .myAccountleft dd:nth-child(6) input').insertAdjacentHTML('afterend',`<img class="eye" src="https://conversionratestore.github.io/projects/medicalmega/img/eye-through.svg" alt="eye icon">`)
 
+            //sign in with google
+            document.querySelector('.btn-google').addEventListener('click', () => {
+                pushDataLayer("Click on continue with google button", document.querySelector('.step.active').innerText)
+                document.querySelector('.g-signin2 > div').click()
+            })
+            //Checkout as a guest
+            document.querySelector('.btn-guest').addEventListener('click', () => {
+                pushDataLayer("Click on Checkout as a guest button", document.querySelector('.step.active').innerText)
+                document.querySelector('.guest_checkout_button input').click()
+            })
             document.querySelectorAll(' .myAccountleft dd .eye').forEach(item => {
                 item.addEventListener('click', (e) => {
                     if (item.previousElementSibling.type == 'password') {
@@ -3552,6 +3591,8 @@ window.onload = function() {
             padding-bottom: 60px; }
         .c-gray {
             color: #6D7E85; }
+        .c-gray-08 {
+            color: rgba(52, 77, 87, 0.8)}
         .c-red {
             color: #96280F; }
         .product_sidebar.disabled .product_sidebar_top, .product_sidebar.disabled .calc {
