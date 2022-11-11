@@ -1933,6 +1933,7 @@ if (window.location.pathname === "/free-workshop/") {
                             the email. We only send emails to people who have voluntarily provided us with such contact information, either directly, or through a third party. We do not send
                             unsolicited commercial emails.
                           </p>
+                          <span class="visability_last_text"></span>
                         </div>
                       </div>
                   `
@@ -1940,10 +1941,14 @@ if (window.location.pathname === "/free-workshop/") {
 
                   if (document.querySelector(".content_popup")) {
                     pushDataLayer(`Shown pop-up`)
-                    document.querySelector(".content_popup div").addEventListener("scroll", (el) => {
-                      pushDataLayer(`Scroll pop-up`)
-                    })
                   }
+
+                  let findBtn3 = setInterval(() => {
+                    if (document.querySelector(".visability_last_text")) {
+                      clearInterval(clearInterval(findBtn3))
+                      visability("Scroll pop-up", document.querySelector(".visability_last_text"))
+                    }
+                  }, 100)
                 }
 
                 function onClosePopup() {
@@ -2701,6 +2706,7 @@ if (window.location.pathname === "/mc/") {
           clarity("set", "new_reg_hyp3", "variant_1")
         }
       }, 200)
+      document.querySelector(".exp")?.remove()
     }
   })
 }
