@@ -1435,7 +1435,7 @@ window.onload = function() {
             })
             //add placeholder
             document.querySelectorAll('.myAccount input[name]').forEach(item => {
-                if (item.name == 'user_email' || item.name == 'reg_email') {
+                if (item.name == 'user_email' || item.name == 'reg_email' || item.name == 'forgot_email') {
                     item.placeholder = 'email@mail.com';
                 } else if (item.name == 'user_pass' || item.name == 'user_password' || item.name == 're_user_passsword') {
                     item.placeholder = '••••••••';

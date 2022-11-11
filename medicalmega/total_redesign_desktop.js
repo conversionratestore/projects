@@ -450,8 +450,10 @@ let headerHTML = `
         </div>
     </header> `
 
+let stepActive = '';
 //add steps in header
 let addStep = (query,index) => {
+    stepActive = obj['stepsName'][index];
     for (let i = 0; i < obj['stepsName'].length; i++) {
         if (obj['stepsName'][i] != 'Billing information' && obj['stepsName'][i] != 'Delivery Method') {
             document.querySelector(query).insertAdjacentHTML('beforeend', `
@@ -636,7 +638,7 @@ window.onload = function() {
     }
     //cart product
     let cart = (setCount) => {
-        let parent = href.includes('/checkout/step') || href.includes('/login.php') || href.includes('/register.php') || href.includes('/guest-checkout') ? ['.order_body'] : href.includes('/cart.html') ? ['.cart-list', '.list-product'] : ['.list-product'];
+        let parent = href.includes('/checkout/step') || href.includes('/login') || href.includes('/register.php') || href.includes('/guest-checkout') ? ['.order_body'] : href.includes('/cart.html') ? ['.cart-list', '.list-product'] : ['.list-product'];
         //get data
         postFetch('/cart.html',`api=c&cart_action=cart&ctoken=${mm.ctoken}`,'POST').then(data => {
             console.log(data)
@@ -863,7 +865,7 @@ window.onload = function() {
         //add steps in header
         addStep('.steps',3)
 
-        document.querySelector('.btn-next').addEventListener('click', (e) => pushDataLayer(`Click on ${e.target} button`, document.querySelector('.step.active').innerText))
+        document.querySelector('.btn-next').addEventListener('click', (e) => pushDataLayer(`Click on ${e.target} button`, stepActive))
         pricing('.order_pricing', dataCart) // set pricing
         let items = dataCart.items;
         for (let i = 0; i < items.length; i++) {
@@ -875,7 +877,7 @@ window.onload = function() {
         document.querySelector('.exp-loading') != null ? document.querySelector('.exp-loading').remove() : '';
     }
 
-    if ((href.includes('login.php') || href.includes('/register.php') || href.includes('/checkout') || href.includes('/guest-checkout')) && !href.includes('/checkout/step4') && !href.includes('/guest-checkout4.php')) {
+    if ((href.includes('login') || href.includes('/register.php') || href.includes('/checkout') || href.includes('/guest-checkout')) && !href.includes('/checkout/step4') && !href.includes('/guest-checkout4.php')) {
         //checkout
         let statesCanada = '<option value="" selected="selected">-- Select Province --</option><option value="AB">Alberta</option><option value="BC">British Columbia</option><option value="MB">Manitoba</option><option value="NB">New Brunswick</option><option value="NL">Newfoundland</option><option value="NS">Nova Scotia</option><option value="ON">Ontario</option><option value="PE">Prince Edward Island</option><option value="QC">Quebec</option><option value="SK">Saskatchewan</option><option value="YT">Yukon</option><option value="NT">Northwest Territories</option><option value="NV">Nunavut</option>';
         let statesUsa = '<option value="">-- Select State --</option><option value="AL">ALABAMA</option><option value="AK">ALASKA</option><option value="AS">AMERICAN SAMOA</option><option value="AZ">ARIZONA</option><option value="AR">ARKANSAS</option><option value="CA">CALIFORNIA</option><option value="CO">COLORADO</option><option value="CT">CONNECTICUT</option><option value="DE">DELAWARE</option><option value="DC">DISTRICT OF COLUMBIA</option><option value="FM">FEDERATED STATES OF MICRONESIA</option><option value="FL">FLORIDA</option><option value="GA">GEORGIA</option><option value="GU">GUAM</option><option value="HI">HAWAII</option><option value="ID">IDAHO</option><option value="IL">ILLINOIS</option><option value="IN">INDIANA</option><option value="IA">IOWA</option><option value="KS">KANSAS</option><option value="KY">KENTUCKY</option><option value="LA">LOUISIANA</option><option value="ME">MAINE</option><option value="MH">MARSHALL ISLANDS</option><option value="MD">MARYLAND</option><option value="MA">MASSACHUSETTS</option><option value="MI">MICHIGAN</option><option value="MN">MINNESOTA</option><option value="MS">MISSISSIPPI</option><option value="MO">MISSOURI</option><option value="MT">MONTANA</option><option value="NE">NEBRASKA</option><option value="NV">NEVADA</option><option value="NH">NEW HAMPSHIRE</option><option value="NJ">NEW JERSEY</option><option value="NM">NEW MEXICO</option><option value="NY">NEW YORK</option><option value="NC">NORTH CAROLINA</option><option value="ND">NORTH DAKOTA</option><option value="MP">NORTHERN MARIANA ISLANDS</option><option value="OH">OHIO</option><option value="OK">OKLAHOMA</option><option value="OR">OREGON</option><option value="PW">PALAU</option><option value="PA">PENNSYLVANIA</option><option value="PR">PUERTO RICO</option><option value="RI">RHODE ISLAND</option><option value="SC">SOUTH CAROLINA</option><option value="SD">SOUTH DAKOTA</option><option value="TN">TENNESSEE</option><option value="TX">TEXAS</option><option value="UT">UTAH</option><option value="VT">VERMONT</option><option value="VI">VIRGIN ISLANDS</option><option value="VA">VIRGINIA</option><option value="WA">WASHINGTON</option><option value="WV">WEST VIRGINIA</option><option value="WI">WISCONSIN</option><option value="WY">WYOMING</option>'
@@ -892,7 +894,7 @@ window.onload = function() {
                 padding-right: 15px;
                 padding-left: 15px;
             }
-            #wrap, .guest_checkout_button, .g-signin2 {
+            #wrap, .guest_checkout_button, .g-signin2, #forgot_pass .addressBookSubmit {
                 display: none;
             }
             button {
@@ -946,7 +948,7 @@ window.onload = function() {
                 order: 2;
                 display: none;
             }
-            .btn-google {
+            .btn.btn-google {
                 padding: 0 48px;
                 font-size: 14px;
             }
@@ -1069,11 +1071,11 @@ window.onload = function() {
                 max-width: 100%!important;
             }
             #forgot_pass {
-                padding: 20px 0;
+                padding: 20px 0 20px 10px;
                 text-align: left;
                 max-width: 50%;
                 float: right;
-                margin-top: -118px;
+                margin-top: -67px;
             }
             .registerOnLogin .forgot_password a {
                 font-weight: 400;
@@ -1458,7 +1460,7 @@ window.onload = function() {
             <div class="container justify-between flex">
                 <div class="col-left justify-between flex">
                     <div>
-                        ${href.includes('/login.php') || href.includes('/register.php?') ? `<div class="flex flex-center-between head-login"><h3>Register</h3><a href="#" class="link">Sign in</a></div>` : ''}
+                        ${href.includes('/login') || href.includes('/register.php?') ? `<div class="flex flex-center-between head-login"><h3>Register</h3><a href="#" class="link">Sign in</a></div>` : ''}
                         <div class="head"><h4></h4></div>
                     </div>
                     <div class="foot flex flex-center-between">
@@ -1495,7 +1497,7 @@ window.onload = function() {
         document.body.insertAdjacentHTML('afterbegin', style) // add styles
 
         //login/register step
-        if ((href.includes('/login.php') || href.includes('/register.php')) && document.querySelector('.myAccount') != null) {
+        if ((href.includes('/login') || href.includes('/register.php')) && document.querySelector('.myAccount') != null) {
             document.querySelector('.col-left .head').after(document.querySelector('.myAccount'))
             document.querySelector('.col-left .head h4').innerHTML = obj['stepsName'][0];
             document.querySelector('.col-left .head').style = 'display: none!important;';
@@ -1504,6 +1506,13 @@ window.onload = function() {
 
             addActive('.myAccountleft')
             addStep('.steps', 0)
+
+            //forgot password
+            document.querySelector('#forgot_pass [name="forgot_pass"]').insertAdjacentHTML('afterend',`<button class="btn-next btn-forgor" type="button"><span>Submit</span></button>`)
+            document.querySelector('.btn-forgor').addEventListener('click', (e) => {
+                pushDataLayer("Click on Submit button", stepActive);
+                document.querySelector('#forgot_pass .addressBookSubmit').click();
+            })
 
             //click on 'Sign in/Register' button
             let linkHead = document.querySelector('.head-login .link'),
@@ -1514,26 +1523,47 @@ window.onload = function() {
                     linkHead.innerHTML = 'Sign in';
                     removeActive('.myAccountright');
                     addActive('.myAccountleft');
-                    pushDataLayer("Click on Register button", document.querySelector('.step.active').innerText)
+                    pushDataLayer("Click on Register button", stepActive)
                 } else {
                     titleHead.innerHTML = 'Sign in';
                     linkHead.innerHTML = 'Register';
                     removeActive('.myAccountleft')
                     addActive('.myAccountright')
-                    pushDataLayer("Click on Sign in button", document.querySelector('.step.active').innerText)
+                    pushDataLayer("Click on Sign in button", stepActive)
                 }
             })
             document.querySelector(' .myAccountleft dd:nth-child(5) input').insertAdjacentHTML('afterend',`<img class="eye" src="https://conversionratestore.github.io/projects/medicalmega/img/eye-through.svg" alt="eye icon">`)
             document.querySelector(' .myAccountleft dd:nth-child(6) input').insertAdjacentHTML('afterend',`<img class="eye" src="https://conversionratestore.github.io/projects/medicalmega/img/eye-through.svg" alt="eye icon">`)
 
+            //add placeholder
+            document.querySelectorAll('.myAccount input[name]').forEach(item => {
+                if (item.name == 'user_email' || item.name == 'reg_email' || item.name == 'forgot_email') {
+                    item.placeholder = 'email@mail.com';
+                } else if (item.name == 'user_pass' || item.name == 'user_password' || item.name == 're_user_passsword') {
+                    item.placeholder = '••••••••';
+                } else if (item.name == 'first_name') {
+                    item.placeholder = 'John';
+                } else if (item.name == 'last_name') {
+                    item.placeholder = 'Smith';
+                } 
+            })
+            //change subscribe checkbox
+            document.querySelector('[name="subscribe"]').parentElement.innerHTML = `<label class="label-subscribe">
+                <input name="subscribe" type="checkbox" style="border-color: rgb(224, 228, 229) !important;">
+                <span class="check2"></span>
+                Email Me Order Updates and Specials
+            </label>`
+
+            document.querySelector('[name="subscribe"]').addEventListener('change', (e) => pushDataLayer("Click on Email Me Order Updates and Specials checkbox", stepActive)) //event
+
             //sign in with google
             document.querySelector('.btn-google').addEventListener('click', () => {
-                pushDataLayer("Click on continue with google button", document.querySelector('.step.active').innerText)
+                pushDataLayer("Click on continue with google button", stepActive)
                 document.querySelector('.g-signin2 > div').click()
             })
             //Checkout as a guest
             document.querySelector('.btn-guest').addEventListener('click', () => {
-                pushDataLayer("Click on Checkout as a guest button", document.querySelector('.step.active').innerText)
+                pushDataLayer("Click on Checkout as a guest button", stepActive)
                 document.querySelector('.guest_checkout_button input').click()
             })
             document.querySelectorAll(' .myAccountleft dd .eye').forEach(item => {
@@ -1545,7 +1575,7 @@ window.onload = function() {
                         item.previousElementSibling.type = 'password';
                         item.src = 'https://conversionratestore.github.io/projects/medicalmega/img/eye-through.svg'
                     }
-                    pushDataLayer("Click on eye button", document.querySelector('.step.active').innerText)
+                    pushDataLayer("Click on eye button", stepActive)
                 })
             })
 
@@ -1705,9 +1735,9 @@ window.onload = function() {
                         <p>${country}</p>
                         <p>${phone}</p>
                     </div>
-                    <button class="btn-edit" type="button" onclick="pushDataLayer('Click on Edit ${type === 'ship' ? 'Shipping Address' : 'Billing Info'} button', ${document.querySelector('.step.active').innerText})">${type === 'ship' ? 'Edit Shipping Address' : 'Edit Billing Info'}</button>
+                    <button class="btn-edit" type="button" onclick="pushDataLayer('Click on Edit ${type === 'ship' ? 'Shipping Address' : 'Billing Info'} button', ${stepActive})">${type === 'ship' ? 'Edit Shipping Address' : 'Edit Billing Info'}</button>
                 </div>
-                ${type === 'ship' ? `<p class="link" onclick="pushDataLayer("Click on View Your Billing Info button", ${document.querySelector('.step.active').innerText})">View Your Billing Info</p>` : ''} 
+                ${type === 'ship' ? `<p class="link" onclick="pushDataLayer("Click on View Your Billing Info button", ${stepActive})">View Your Billing Info</p>` : ''} 
             </div>`
         }
 
@@ -1842,7 +1872,7 @@ window.onload = function() {
                     document.querySelector('[name="shipping"]').addEventListener('click', (e) => {
                         console.log(e.target)
                         copyFromShip(e.target, 'bill')
-                        pushDataLayer(`Click on ${e.target.nextElementSibling.innerText} checkbox`, document.querySelector('.step.active').innerText)
+                        pushDataLayer(`Click on ${e.target.nextElementSibling.innerText} checkbox`, stepActive)
                     })
                 }
             })
@@ -1880,7 +1910,7 @@ window.onload = function() {
                 document.querySelector('.delivery-method').insertAdjacentHTML('beforeend', deliveryMethodHtml(index, type, text, price))
                 document.querySelectorAll('[name="radio-method"]')[index].addEventListener('input', (e) => {
                     document.querySelectorAll('#ship_options > li input')[index].checked = true;
-                    pushDataLayer(`Click on ${e.target.nextElementSibling.querySelector('.type').innerText} radio`, document.querySelector('.step.active').innerText)
+                    pushDataLayer(`Click on ${e.target.nextElementSibling.querySelector('.type').innerText} radio`, stepActive)
                 })
             })
             document.querySelector('.col-left .delivery-method').insertAdjacentHTML('afterend',`
@@ -1920,7 +1950,7 @@ window.onload = function() {
                     target.classList.remove('checked')
                     document.querySelector('#cc-recurring-check').click();
                 }
-                pushDataLayer(`Click on ${e.target.parentElement.innerText.split(':')[0]} checkbox`, document.querySelector('.step.active').innerText)
+                pushDataLayer(`Click on ${e.target.parentElement.innerText.split(':')[0]} checkbox`, stepActive)
             })
             document.querySelector('#checkoutForm > p').innerHTML = document.querySelector('#checkoutForm > p').innerHTML.replace('Place Your Order Now','Proceed');
         }
@@ -1941,7 +1971,7 @@ window.onload = function() {
                 let guestOrAccount = href.includes('guest-checkout') ? 1 : 0;
                 document.querySelector('.btn-back span').innerHTML = obj['back'][document.querySelector('.col-left .head h4').innerHTML.toLowerCase()][0];
                 document.querySelector('.btn-back').href = obj['back'][document.querySelector('.col-left .head h4').innerHTML.toLowerCase()][1][guestOrAccount];
-                document.querySelector('.btn-back').addEventListener('click', (e) => pushDataLayer(`Click on ${e.target.innerText} button`, document.querySelector('.step.active').innerText));
+                document.querySelector('.btn-back').addEventListener('click', (e) => pushDataLayer(`Click on ${e.target.innerText} button`, stepActive));
             }
         }
         setBack()
@@ -2110,7 +2140,7 @@ window.onload = function() {
 
         cart() //get products from cart
         //add click on next button
-        document.querySelector('.btn-next').addEventListener('click', (e) => {
+        document.querySelector('.foot .btn-next').addEventListener('click', (e) => {
             if (document.querySelector('.myAccountright.active') != null) {
                 console.log('login')
                 document.querySelector('#login_btn').click()
@@ -2158,10 +2188,10 @@ window.onload = function() {
                 document.querySelector('#submitCheckout3').click()
             }
             scrollTop(e.target, document.body)
-            pushDataLayer(`Click on ${e.target.innerText} button`, document.querySelector('.step.active').innerText)
+            pushDataLayer(`Click on ${e.target.innerText} button`, stepActive)
         })
     } 
-    if (!href.includes('login.php') && !href.includes('register.php') && !href.includes('/checkout') && !href.includes('/guest-checkout')) {
+    if (!href.includes('login') && !href.includes('register.php') && !href.includes('/checkout') && !href.includes('/guest-checkout')) {
         //cart
         let styleCart = `
         <style>
