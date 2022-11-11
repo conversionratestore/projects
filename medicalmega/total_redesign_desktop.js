@@ -1092,10 +1092,12 @@ window.onload = function() {
             .myAccountright > form > dd:nth-child(5) {
                 display: none;
             }
-            dd input[type=checkbox] {
+            dd input[type=checkbox]:not([name="subscribe"]) {
                 margin-right: 8px!important;
                 width: fit-content;
                 display: block;
+                width: 16px;
+                height: 16px;
             }
             .myAccountleft > form > dd:nth-child(7) {
                 font-size: 14px;
@@ -1138,6 +1140,9 @@ window.onload = function() {
                 margin-right: 24px;}
             .btn-back svg {
                 margin-right: 8px;}
+            .label-subscribe {
+                padding: 0!important;
+                color: #091114!important;}
             /*order*/
             .order {
                 background: #FFFFFF;
