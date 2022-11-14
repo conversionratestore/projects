@@ -1915,7 +1915,7 @@ if (window.location.pathname === "/free-workshop/") {
                 document.querySelector(".start_step")?.classList.remove("active_popup")
                 document.querySelector(".popup_new")?.classList.add("active_popup")
                 document.querySelector(".popup_new").style.display = "flex"
-                if (!localStorage.setItem("is_visited")) {
+                if (!localStorage.getItem("is_visited")) {
                   localStorage.setItem("is_visited", true)
                 }
               })
