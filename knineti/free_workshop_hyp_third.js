@@ -1849,7 +1849,7 @@ if (window.location.pathname === "/free-workshop/") {
       document.head.insertAdjacentHTML("beforeend", popupStyle)
       document.body.insertAdjacentHTML("afterbegin", popUpPrivacy)
 
-      if (localStorage.getItem("is_visited") === true) {
+      if (localStorage.getItem("is_visited")) {
         document.body.style.overflow = "unset"
       }
 
@@ -1931,7 +1931,7 @@ if (window.location.pathname === "/free-workshop/") {
                 document.querySelector(".start_step")?.classList.remove("active_popup")
                 document.querySelector(".popup_new")?.classList.add("active_popup")
                 document.querySelector(".popup_new").style.display = "flex"
-                if (!localStorage.setItem("is_visited")) {
+                if (!localStorage.getItem("is_visited")) {
                   localStorage.setItem("is_visited", true)
                 }
               })
