@@ -62,7 +62,7 @@ if (window.location.pathname === "/free-workshop/") {
       .btn_continue {
         background: #173775;
         border-radius: 10px;
-        margin: 0 0 0 auto;
+        margin: 0 0 15px auto;
         max-width: 304px;
         width: 100%;
         height: 48px;
