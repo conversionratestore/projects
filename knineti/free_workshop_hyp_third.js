@@ -1849,7 +1849,7 @@ if (window.location.pathname === "/free-workshop/") {
       document.head.insertAdjacentHTML("beforeend", popupStyle)
       document.body.insertAdjacentHTML("afterbegin", popUpPrivacy)
 
-      if (localStorage.setItem("is_visited") === true) {
+      if (localStorage.getItem("is_visited") === true) {
         document.body.style.overflow = "unset"
       }
 
