@@ -2783,7 +2783,7 @@ if (window.location.pathname === "/mc/") {
         if (typeof clarity === "function") {
           clearInterval(record)
 
-          clarity("set", "new_reg_hyp3", "variant_1")
+          clarity("set", "new_reg_hyp3", "variant_2")
         }
       }, 200)
       document.querySelector(".exp")?.remove()
