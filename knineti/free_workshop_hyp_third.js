@@ -1849,6 +1849,10 @@ if (window.location.pathname === "/free-workshop/") {
       document.head.insertAdjacentHTML("beforeend", popupStyle)
       document.body.insertAdjacentHTML("afterbegin", popUpPrivacy)
 
+      if (localStorage.setItem("is_visited") === true) {
+        document.body.style.overflow = "unset"
+      }
+
       // #firstModal
       let a = setInterval(() => {
         if (document.querySelector("#firstModal .vis-ver-0_0.modal-header.modal-header-style.modal-of-header.style-border.modal-header1")) {
@@ -1911,6 +1915,9 @@ if (window.location.pathname === "/free-workshop/") {
                 document.querySelector(".start_step")?.classList.remove("active_popup")
                 document.querySelector(".popup_new")?.classList.add("active_popup")
                 document.querySelector(".popup_new").style.display = "flex"
+                if (!localStorage.setItem("is_visited")) {
+                  localStorage.setItem("is_visited", true)
+                }
               })
 
               // click on btn My dog is a young or adult dog (aged 1 year or more)
@@ -1924,6 +1931,9 @@ if (window.location.pathname === "/free-workshop/") {
                 document.querySelector(".start_step")?.classList.remove("active_popup")
                 document.querySelector(".popup_new")?.classList.add("active_popup")
                 document.querySelector(".popup_new").style.display = "flex"
+                if (!localStorage.setItem("is_visited")) {
+                  localStorage.setItem("is_visited", true)
+                }
               })
 
               if (document.querySelector(".privacy_policy_wrap p a")) {
