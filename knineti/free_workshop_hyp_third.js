@@ -1262,6 +1262,58 @@ if (window.location.pathname === "/free-workshop/") {
           max-width: 328px !important;
         }
       }
+      @media (max-width: 320px) {
+        .start_step ul li p{
+          font-size: 15px;
+        }
+        .start_step h2{
+          font-size: 19px !important;
+        }
+        .popup_new > div:last-child .popup_first > h2{
+          font-size: 20px !important;
+        }
+        .popup_new > div:last-child .popup_second > h2{
+          font-size: 18px !important;
+        }
+        .tooltip_box p{
+          font-size: 12px;
+        }
+        .privacy_policy_wrap p{
+          font-size: 11px;
+        }
+        .last_step_title p{
+          font-size: 13px;
+        }
+        p.mobile_descr{
+          font-size: 11px !important;
+        }
+        .benefits ul li p{
+          font-size: 14px;
+        }
+        .email_text p{
+          font-size: 12px;
+        }
+      }
+      @media (max-width: 280px) {
+        .start_step ul li p{
+          font-size: 13px;
+        }
+        .start_step > p{
+          font-size: 14px;
+        }
+        .start_step h2{
+          font-size: 18px !important;
+        }
+        .popup_new > div:last-child .popup_first > h2{
+          font-size: 19px !important;
+        }
+        .popup_new > div:last-child .popup_second > h2{
+          font-size: 17px !important;
+        }
+        .tooltip_box p{
+          font-size: 11px;
+        }
+      }
 
     </style>
     `
