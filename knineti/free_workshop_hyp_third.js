@@ -1216,9 +1216,12 @@ if (window.location.pathname === "/free-workshop/") {
         }
         .content_popup h2 {
           font-size: 17px !important;
+          max-width: 355px;
+          margin-left: auto;
+          margin-right: auto;
         }
         .backdrop_popup .container_popup > svg {
-          right: 10px;
+          right: 15px;
         }
         .tippy-content .tooltip_mob_box > p {
           font-weight: 400 !important;
@@ -1437,7 +1440,7 @@ if (window.location.pathname === "/free-workshop/") {
 
               <div class="popup_first active_popup">
                 <h2>What unwanted behavior do you want to address?</h2>
-                <p>Select any problems you’ve experienced in the last 2 months</p>
+                <p>Select the problems you've experienced in the past 2 months</p>
                 <div class="first_block_checkbox">
                   <input class="custom_checkbox" id="barking" type="checkbox" name="barking" value="barking" />
                   <label for="barking" tabindex="0">Barking </label>
