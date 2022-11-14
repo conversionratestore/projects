@@ -1047,6 +1047,9 @@ if (window.location.pathname === "/free-workshop/") {
       }
 
       @media (max-width: 768px) {
+        .backdrop_popup .container_popup{
+          max-width: 350px;
+        }
         #firstModal .modal-content {
           width: 100% !important;
           padding: 0 15px !important;
@@ -1266,6 +1269,18 @@ if (window.location.pathname === "/free-workshop/") {
         }
       }
       @media (max-width: 320px) {
+        .backdrop_popup .container_popup{
+          max-width: 295px;
+        }
+        .content_popup h2{
+          font-size: 13px !important;
+        }
+        .content_popup p{
+          font-size: 10px !important;
+        }
+        .content_popup p + p {
+            margin-top: 10px;
+        }
         .start_step ul li p{
           font-size: 15px;
         }
