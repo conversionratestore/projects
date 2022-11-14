@@ -29,6 +29,7 @@ let magicComparisonTable = setInterval(() => {
                 font-size: 13px;
                 line-height: 140%;
                 color: #008CD6;
+                max-width: 79px;
             }     
             .accent_color_pink{
                 color: #FF3C7F;
@@ -159,18 +160,12 @@ let magicComparisonTable = setInterval(() => {
                     font-size: 11px;
                     padding: 0 6px;
                 }
-                .accent_color_main{
-                    font-size: 11px;
-                }
             }
             @media (max-width: 320px) {
                 .magicpatch_section h2{
                     font-size: 30px;
                 }
                 .magicpatch_list li{
-                    font-size: 9px;
-                }
-                .accent_color_main{
                     font-size: 9px;
                 }
                 .magicpatch_list li.list_var span{
