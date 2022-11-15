@@ -1,3 +1,5 @@
+let dir = 'https://conversionratestore.github.io/projects/medicalmega/img/';
+
 let styleMain =`
 <style>
     html.fix {
@@ -132,7 +134,7 @@ let styleMain =`
     }
     .step.checked .circle {
         border-color: #091114;
-        background: #091114 url('https://conversionratestore.github.io/projects/medicalmega/img/icnArrowDown.svg') no-repeat center / 12px;
+        background: #091114 url('${dir}icnArrowDown.svg') no-repeat center / 12px;
         color: transparent;
     }
     /*pricing*/
@@ -356,7 +358,9 @@ let obj = {
 }
 
 //post
-let postFetch = (host,body,method) => {
+let postFetch = (host,body,method,paymentAmount='[name="payment_amount"]') => {
+    document.querySelector(paymentAmount) != null ? document.querySelector(paymentAmount).parentElement.classList.add('loading') : ''
+
     return new Promise((resolve, reject) => {
         fetch(host, {
             headers: headerFetchAddress,
@@ -444,7 +448,7 @@ let headerHTML = `
     <header class="header-checkout">
         <div class="flex flex-center-between container">
             <a href="/" class="logo">
-                <img src="https://conversionratestore.github.io/projects/medicalmega/img/logo-checkout.svg" alt="logo">
+                <img src="${dir}logo-checkout.svg" alt="logo">
             </a>
             <div class="flex steps"></div>
         </div>
@@ -640,7 +644,7 @@ window.onload = function() {
         })
     }
     //cart product
-    let cart = (setCount) => {
+    let cart = (setCount, paymentAmount='[name="payment_amount"]') => {
         let parent = href.includes('/checkout/step') || href.includes('/login') || href.includes('/register.php') || href.includes('/guest-checkout') ? ['.order_body'] : href.includes('/cart.html') ? ['.cart-list', '.list-product'] : ['.list-product'];
         //get data
         postFetch('/cart.html',`api=c&cart_action=cart&ctoken=${mm.ctoken}`,'POST').then(data => {
@@ -723,8 +727,11 @@ window.onload = function() {
 
                 }
             }
+            if (paymentAmount && document.querySelector(paymentAmount) != null)  {
+                document.querySelector(paymentAmount).value = data.total;
+                document.querySelector(paymentAmount).parentElement.classList.remove('loading')
+            }
             setCount && document.querySelector(setCount) != null ? document.querySelector(setCount).innerHTML = counterBasket : '';
-            document.querySelector('.exp-loading') != null ? document.querySelector('.exp-loading').remove() : '';
         })
     }
     //Confirmation
@@ -1509,7 +1516,7 @@ window.onload = function() {
             document.querySelector('.col-left .head').after(document.querySelector('.myAccount'))
             document.querySelector('.col-left .head h4').innerHTML = obj['stepsName'][0];
             document.querySelector('.col-left .head').style = 'display: none!important;';
-            document.querySelector('.col-left .head-login').insertAdjacentHTML('afterend',`<button type="button" class="btn btn_white btn-google flex items-center mx-auto"> <img src="https://conversionratestore.github.io/projects/medicalmega/img/google.svg" class="mr-8" alt="google icon"/> continue with google</button><p class="text-center c-gray-08 mb-16 fs-14 before-line"><span>or</span></p>`)
+            document.querySelector('.col-left .head-login').insertAdjacentHTML('afterend',`<button type="button" class="btn btn_white btn-google flex items-center mx-auto"> <img src="${dir}google.svg" class="mr-8" alt="google icon"/> continue with google</button><p class="text-center c-gray-08 mb-16 fs-14 before-line"><span>or</span></p>`)
             document.querySelector('.foot .btn-next').insertAdjacentHTML('beforebegin','<a href="#" class="btn-guest">Checkout as a guest</a>')
 
             addActive('.myAccountleft')
@@ -1540,8 +1547,8 @@ window.onload = function() {
                     pushDataLayer("Click on Sign in button", stepActive)
                 }
             })
-            document.querySelector(' .myAccountleft dd:nth-child(5) input').insertAdjacentHTML('afterend',`<img class="eye" src="https://conversionratestore.github.io/projects/medicalmega/img/eye-through.svg" alt="eye icon">`)
-            document.querySelector(' .myAccountleft dd:nth-child(6) input').insertAdjacentHTML('afterend',`<img class="eye" src="https://conversionratestore.github.io/projects/medicalmega/img/eye-through.svg" alt="eye icon">`)
+            document.querySelector(' .myAccountleft dd:nth-child(5) input').insertAdjacentHTML('afterend',`<img class="eye" src="${dir}eye-through.svg" alt="eye icon">`)
+            document.querySelector(' .myAccountleft dd:nth-child(6) input').insertAdjacentHTML('afterend',`<img class="eye" src="${dir}eye-through.svg" alt="eye icon">`)
 
             //add placeholder
             document.querySelectorAll('.myAccount input[name]').forEach(item => {
@@ -1578,10 +1585,10 @@ window.onload = function() {
                 item.addEventListener('click', (e) => {
                     if (item.previousElementSibling.type == 'password') {
                         item.previousElementSibling.type = 'text';
-                        item.src = 'https://conversionratestore.github.io/projects/medicalmega/img/eye.svg'
+                        item.src = `${dir}eye.svg`
                     } else {
                         item.previousElementSibling.type = 'password';
-                        item.src = 'https://conversionratestore.github.io/projects/medicalmega/img/eye-through.svg'
+                        item.src = `${dir}eye-through.svg`
                     }
                     pushDataLayer("Click on eye button", stepActive)
                 })
@@ -1964,13 +1971,13 @@ window.onload = function() {
         }
 
         if (href.includes('/guest-checkout3.php')) {
-            document.querySelector('#checkoutForm').insertAdjacentHTML('afterbegin',`<h3>Card Details <img src="https://conversionratestore.github.io/projects/medicalmega/img/payment-cards.svg" alt="icons"></h3>`);
+            document.querySelector('#checkoutForm').insertAdjacentHTML('afterbegin',`<h3>Card Details <img src="${dir}payment-cards.svg" alt="icons"></h3>`);
             document.querySelector('#checkoutForm > fieldset > dl > dd:nth-child(2)').innerHTML = `Credit/Debit Card<span class="c-red-08"> *</span>`;
             document.querySelector('#checkoutForm > p').style.whiteSpace = 'initial';
         }
 
         if (href.includes('/checkout/step3') ) {
-            document.querySelector('#checkoutForm h3').innerHTML = `Card Details <img src="https://conversionratestore.github.io/projects/medicalmega/img/payment-cards.svg" alt="icons">`
+            document.querySelector('#checkoutForm h3').innerHTML = `Card Details <img src="${dir}payment-cards.svg" alt="icons">`
             document.querySelector('#cc_block > dl > div.ccInfo > dd:nth-child(3)').innerHTML = `Credit/Debit Card<span class="c-red-08"> *</span>`;
         }
         //set text for back button
@@ -2147,6 +2154,7 @@ window.onload = function() {
         }
 
         cart() //get products from cart
+        document.querySelector('.exp-loading') != null ? document.querySelector('.exp-loading').remove() : '';
         //add click on next button
         document.querySelector('.foot .btn-next').addEventListener('click', (e) => {
             if (document.querySelector('.myAccountright.active') != null) {
@@ -2293,8 +2301,23 @@ window.onload = function() {
                 padding: 0 29px 0 39px;
                 font-size: 14px;
             }
-            .paypal-form-button input {
+            .footer-cart .paypal-form-button input, .footer-cart .paypal-form-button.loading {
+                pointer-events: none;
                 padding: 0;
+            }
+            .footer-cart .paypal-form-button.loading input {
+                opacity: 0.6;
+            }
+            .footer-cart .paypal-form-button.loading:after {
+                content: '';
+                position: absolute;
+                top: 50%;
+                left: 10px;
+                transform: translateY(-50%);
+                background: url(${dir}loading-buffering.gif) no-repeat center / 100%;
+                width: 15px;
+                height: 15px;
+                z-index: 2;
             }
             .body-cart h4 {
                 font-weight: 600;
@@ -2457,7 +2480,9 @@ window.onload = function() {
                 </div>
                 <div class="footer-cart flex flex-center-between">
                     <form action="https://medicalmega.com/guest-expresscheckout.php" method="POST" target="default" class="paypal-form-button">
-                        <input type="image" name="submit" src="https://conversionratestore.github.io/projects/medicalmega/img/paypal.svg" border="0" align="top" alt="Check out with PayPal">
+                        <input type="hidden" name="payment_amount" value="">
+                        <input type="hidden" name="cart_token" value="${mm.ctoken}">
+                        <input type="image" name="submit" src="${dir}paypal.svg" border="0" align="top" alt="Check out with PayPal">
                     </form>
                     <p>or</p>
                     <a href="${href.includes('/cart.html') ? '/checkout/step1' : '/cart.html'}" class="btn-next items-center flex">
@@ -3273,7 +3298,7 @@ window.onload = function() {
             display: block;
             color: transparent;
             flex-shrink: 0;
-            background: url(https://conversionratestore.github.io/projects/medicalmega/img/chevron-right.svg) no-repeat center / contain;
+            background: url(${dir}chevron-right.svg) no-repeat center / contain;
         }
         .ais-ClearRefinements-button {
             background-color: #e9ebec;
@@ -3720,7 +3745,7 @@ window.onload = function() {
             <header class="header">
                 <div class="supbar">
                     <div class="container flex-center-between flex">
-                        <a href="https://medicalmega.com/service.html" class="items-center flex"><img src="https://conversionratestore.github.io/projects/medicalmega/img/quotation.svg" alt="icon quotation">Customer Service</a>
+                        <a href="https://medicalmega.com/service.html" class="items-center flex"><img src="${dir}quotation.svg" alt="icon quotation">Customer Service</a>
                         <div class="flex"><a href="tel:17182084380"><span class="fw-light">Local Phone #</span>1-718-208-4380</a><a class="ml-40" href="tel:18556336342"><span class="fw-light">Toll Free Phone #</span>1-855-MED-MEGA (633-6342)</a></div>
                     </div>
                 </div>
@@ -3940,7 +3965,7 @@ window.onload = function() {
             startStuff();
 
             document.querySelector('.header').before(document.querySelector('#top'));
-            document.querySelector('#top img').src = 'https://conversionratestore.github.io/projects/medicalmega/img/chevron-right.svg';
+            document.querySelector('#top img').src = `${dir}chevron-right.svg`;
             //events
             document.querySelector('#top').addEventListener('click', (e) => pushDataLayer(`Click on Top button`, `Footer`))
             document.querySelector('.supbar a').addEventListener('click', (e) => pushDataLayer(`Click on Customer Service`, labelForEvents(e.target)))
@@ -4097,7 +4122,7 @@ window.onload = function() {
                     showSubmit: true,
                     showReset: true,
                     templates: {
-                        loadingIndicator: '<img src="https://conversionratestore.github.io/projects/medicalmega/img/loading-buffering.gif" alt="icon loading">',
+                        loadingIndicator: `<img src="${dir}loading-buffering.gif" alt="icon loading">`,
                     },
                 }),
                 instantsearch.widgets.infiniteHits({
@@ -4305,7 +4330,7 @@ window.onload = function() {
                                     e.target.classList.remove('action-clean');
                                 })
                             }
-
+                            document.querySelector('.exp-loading') != null ? document.querySelector('.exp-loading').remove() : '';
                         }
                     },
                 },
@@ -4864,9 +4889,9 @@ window.onload = function() {
             })
     
             //Click on payPal button (event)
-            document.querySelector('.paypal-form-button').addEventListener('click', (e) => {
+            document.querySelector('.footer-cart .paypal-form-button').addEventListener('click', (e) => {
                 e.stopImmediatePropagation();
-                e.target.querySelector('input').click()
+                document.querySelector('.footer-cart .paypal-form-button input[name="submit"]').click()
                 pushDataLayer('Click on payPal button', labelForEvents(e.target))
             })
     

@@ -452,7 +452,7 @@ window.onload = function() {
     document.body.insertAdjacentHTML('afterbegin', styleMain)
 
     //changeQuantity
-    let changeQuantity = (plus, minus, quantity, post=false, paymentAmount='[name="payment_amount"]') => {
+    let changeQuantity = (plus, minus, quantity, post=false) => {
       
         //update quantity
         quantity.addEventListener('change', (e) => {
@@ -2203,7 +2203,7 @@ window.onload = function() {
                 top: 50%;
                 left: 10px;
                 transform: translateY(-50%);
-                background: url(${dir}loading-gif.gif) no-repeat center / 100%;
+                background: url(${dir}loading-buffering.gif) no-repeat center / 100%;
                 width: 15px;
                 height: 15px;
                 z-index: 2;
