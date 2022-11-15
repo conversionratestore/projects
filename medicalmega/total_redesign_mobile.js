@@ -455,14 +455,14 @@ window.onload = function() {
                 quantity.value = 1
             }
             pushDataLayer('Change quantity field', labelForEvents(e.target))
-            post == true ? postFetch('/cart.html',`api=c&cart_action=update&variant_id=${quantity.closest('.product-item').dataset.variantId}&quantity=${quantity.value}&ctoken=${mm.ctoken}`,'POST').then(data => cart('.cart_count')) : '';
+            post == true ? postFetch('/cart.html',`api=c&cart_action=update&variant_id=${quantity.closest('.product-item').dataset.variantId}&quantity=${quantity.value}&ctoken=${mm.ctoken}`,'POST').then(data => cart('.cart_count','[name="payment_amount"]')) : '';
         })
         plus.addEventListener('click', (e) => {
             quantity.value = +quantity.value + 1;
             quantity.parentElement.querySelector('.quantity-btn_minus').disabled = false;
 
             pushDataLayer('Click plus button', labelForEvents(e.target))
-            post == true ? postFetch('/cart.html',`api=c&cart_action=update&variant_id=${plus.closest('.product-item').dataset.variantId}&quantity=${quantity.value}&ctoken=${mm.ctoken}`,'POST').then(data => cart('.cart_count')) : '';
+            post == true ? postFetch('/cart.html',`api=c&cart_action=update&variant_id=${plus.closest('.product-item').dataset.variantId}&quantity=${quantity.value}&ctoken=${mm.ctoken}`,'POST').then(data => cart('.cart_count','[name="payment_amount"]')) : '';
         })
 
         if (!href.includes('/checkout/step2') && !href.includes('/checkout/step3') ) {
@@ -483,12 +483,14 @@ window.onload = function() {
                 minus.nextElementSibling.value = +minus.nextElementSibling.value - 1;
             }
             pushDataLayer('Click minus button', labelForEvents(e.target))
-            post == true ? postFetch('/cart.html',`api=c&cart_action=update&variant_id=${minus.closest('.product-item').dataset.variantId}&quantity=${quantity.value}&ctoken=${mm.ctoken}`,'POST').then(data => cart('.cart_count')) : '';
+            post == true ? postFetch('/cart.html',`api=c&cart_action=update&variant_id=${minus.closest('.product-item').dataset.variantId}&quantity=${quantity.value}&ctoken=${mm.ctoken}`,'POST').then(data => cart('.cart_count','[name="payment_amount"]')) : '';
         })
     }
     //cart product
-    let cart = (setCount) => {
+    let cart = (setCount, paymentAmount) => {
         let parent = href.includes('/checkout/step') || href.includes('/login') || href.includes('/register.php')|| href.includes('/guest-checkout') ? '.order_body' : '.list-product';
+        
+        paymentAmount && document.querySelector(paymentAmount) != null ? document.querySelector(paymentAmount).parentElement.classList.add('loading') : ''
         
         //get data
         postFetch('/cart.html',`api=c&cart_action=cart&ctoken=${mm.ctoken}`,'POST').then(data => {
@@ -541,7 +543,7 @@ window.onload = function() {
                     if (remove.length > 0) {
                         remove[i].addEventListener('click', (e) => {
                             pushDataLayer('Click on remove button', labelForEvents(e.target))
-                            postFetch('/cart.html',`api=c&cart_action=remove&variant_id=${remove[i].closest('.product-item').dataset.variantId}&ctoken=${mm.ctoken}`,'POST').then(data => cart('.cart_count'))
+                            postFetch('/cart.html',`api=c&cart_action=remove&variant_id=${remove[i].closest('.product-item').dataset.variantId}&ctoken=${mm.ctoken}`,'POST').then(data => cart('.cart_count','[name="payment_amount"]'))
                         })
                     }
                     let plus = document.querySelectorAll(`${parent} .quantity-btn_plus`)[i],
@@ -550,6 +552,10 @@ window.onload = function() {
 
                     varQty == 0 ? changeQuantity(plus, minus, quantity, true) : ''
                 }
+            }
+            if (paymentAmount && document.querySelector(paymentAmount) != null)  {
+                document.querySelector(paymentAmount).value = data.total;
+                document.querySelector(paymentAmount).parentElement.classList.remove('loading')
             }
             setCount && document.querySelector(setCount) != null ? document.querySelector(setCount).innerHTML = counterBasket : '';
         })
@@ -2177,12 +2183,15 @@ window.onload = function() {
                 line-height: 120%;
                 color: #344D57;
             }
-            .paypal-form-button {
+            .footer-cart .paypal-form-button {
                 background: #EEC86A;
                 border-radius: 100px;
             }
-            .paypal-form-button input {
+            .footer-cart .paypal-form-button input, .footer-cart .paypal-form-button.loading {
                 pointer-events: none;
+            }
+            .footer-cart .paypal-form-button.loading {
+                opacity: 0.6;
             }
             /*empty cart*/
             .empty-cart {
@@ -2274,7 +2283,9 @@ window.onload = function() {
                     </div>
                 </div>
                 <div class="footer-cart">
-                    <form action="https://medicalmega.com/guest-expresscheckout.php" method="POST" target="default" class="paypal-form-button">
+                    <form action="https://medicalmega.com/guest-expresscheckout.php" method="POST" target="default" class="paypal-form-button loading">
+                        <input type="hidden" name="payment_amount" value="">
+                        <input type="hidden" name="cart_token" value="${mm.ctoken}">
                         <input type="image" name="submit" src="https://conversionratestore.github.io/projects/medicalmega/img/paypal.svg" border="0" align="top" alt="Check out with PayPal">
                     </form>
                     <p>or</p>
@@ -2292,7 +2303,7 @@ window.onload = function() {
 
         document.querySelector('.footer-cart .paypal-form-button').addEventListener('click', (e) => {
             e.stopImmediatePropagation();
-            e.target.querySelector('input').click()
+            e.target.querySelector('input[name="submit"]').click()
             pushDataLayer('Click on payPal button', labelForEvents(e.target))
         })
 
@@ -2350,7 +2361,7 @@ window.onload = function() {
                     pushDataLayer('Click on Add to cart', labelForEvents(e.target))
                     postFetch('/cart.html',`api=c&cart_action=add&variant_id=${addBtns[i].dataset.variantId}&quantity=${addBtns[i].previousElementSibling.querySelector('.quantity').value}&product_id=${addBtns[i].dataset.id}&ctoken=${mm.ctoken}`,'POST').then(data => {
                         console.log(data)
-                        cart('.cart_count')
+                        cart('.cart_count','[name="payment_amount"]')
                     })
                 })
             }
@@ -2386,7 +2397,7 @@ window.onload = function() {
         })
     }
 
-    !href.includes('/checkout/step4') && !href.includes('/guest-checkout4.php') ? cart('.cart_count') : '';
+    !href.includes('/checkout/step4') && !href.includes('/guest-checkout4.php') ? cart('.cart_count', '[name="payment_amount"]') : '';
     if (!href.includes('login') && !href.includes('/register.php') && !href.includes('/checkout') && !href.includes('/guest-checkout')) {
         let style = `
         <style class="style-main">
@@ -4614,7 +4625,7 @@ window.onload = function() {
                     el.addEventListener('click', (e) => {
                         e.stopImmediatePropagation();
                         postFetch('/cart.html',`api=c&cart_action=add&variant_id=${el.parentElement.querySelector('[name="product_variant_id"]').value}&quantity=${el.parentElement.querySelector('[name="quantity"]').value}&product_id=${el.parentElement.querySelector('[name="product_id"]').value}&ctoken=${mm.ctoken}`,'POST').then(data => {
-                            cart('.cart_count');
+                            cart('.cart_count','[name="payment_amount"]');
                             addActive('.shopping-cart');
                         })
                         pushDataLayer(`Click on Add button`,labelForEvents(e.target));
