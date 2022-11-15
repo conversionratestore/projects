@@ -309,9 +309,9 @@ let obj = {
     'back' : {
         'personal information' : ['Back to Cart', ['/cart.html','/cart.html']],
         'shipping information' : ['Back to Cart',['/cart.html','/cart.html']],
-        'billing information' : ['Back to Shipping Info',['/checkout/step1','/guest-checkout1.php']],
-        'delivery method' : ['Back To Address Info',['/checkout/step1','/guest-checkout1.php']],
-        'payment method': ['Back to Delivery Method',['/checkout/step2','/guest-checkout2.php']]
+        'billing information' : ['Back to Shipping Info',['/checkout/step1', '/guest-checkout1.php', '/guest-paypal1.php']],
+        'delivery method' : ['Back To Address Info',['/checkout/step1', '/guest-checkout1.php', '/guest-paypal1.php']],
+        'payment method': ['Back to Delivery Method',['/checkout/step2', '/guest-checkout2.php', '/guest-paypal2.php']]
     },
     'pricingArr':  {
         'subtotal': 'Sub total',
@@ -470,7 +470,7 @@ window.onload = function() {
             post == true ? postFetch('/cart.html',`api=c&cart_action=update&variant_id=${plus.closest('.product-item').dataset.variantId}&quantity=${quantity.value}&ctoken=${mm.ctoken}`,'POST').then(data => cart('.cart_count')) : '';
         })
 
-        if (!href.includes('/checkout/step2') && !href.includes('/checkout/step3') ) {
+        if (!href.includes('/checkout/step2') && !href.includes('/checkout/step3') && !href.includes('/guest-paypal2.php') && !href.includes('/guest-paypal3.php')) {
             if (minus.nextElementSibling.value < 2) {
                 minus.disabled = true;
             } else {
@@ -493,7 +493,7 @@ window.onload = function() {
     }
     //cart product
     let cart = (setCount, paymentAmount='[name="payment_amount"]') => {
-        let parent = href.includes('/checkout/step') || href.includes('/login') || href.includes('/register.php')|| href.includes('/guest-checkout') ? '.order_body' : '.list-product';
+        let parent = href.includes('/checkout/step') || href.includes('/login') || href.includes('/register.php')|| href.includes('/guest-checkout') || href.includes('/guest-paypal') ? '.order_body' : '.list-product';
         
         //get data
         postFetch('/cart.html',`api=c&cart_action=cart&ctoken=${mm.ctoken}`,'POST').then(data => {
@@ -535,7 +535,7 @@ window.onload = function() {
             }
             if (products.length > 0) {
                 //product quantity changes
-                let varQty = href.includes('checkout/step2') || href.includes('checkout/step3') || href.includes('guest-checkout2') || href.includes('guest-checkout3') ? 1 : 0
+                let varQty = href.includes('checkout/step2') || href.includes('checkout/step3') || href.includes('guest-checkout2') || href.includes('guest-checkout3') || href.includes('/guest-paypal2.php') || href.includes('/guest-paypal3.php') ? 1 : 0
                 for (let i = 0; i < products.length; i++) {
                     counterBasket += products[i].quantity
                     //add products
@@ -564,7 +564,7 @@ window.onload = function() {
         })
     }
     //Confirmation
-    if (href.includes('/checkout/step4') || href.includes('/guest-checkout4.php')) {
+    if (href.includes('/checkout/step4') || href.includes('/guest-checkout4.php') || href.includes('/guest-paypal4.php')) {
         let dataCart = JSON.parse(localStorage.getItem('dataCart'));
         console.log(dataCart)
         let dates = order.deliveryDates,
@@ -705,7 +705,7 @@ window.onload = function() {
         document.querySelector('.exp-loading') != null ? document.querySelector('.exp-loading').remove() : '';
     }
 
-    if ((href.includes('login') || href.includes('/register.php') || href.includes('/checkout') || href.includes('/guest-checkout')) && !href.includes('/checkout/step4') && !href.includes('/guest-checkout4.php')) {
+    if ((href.includes('login') || href.includes('/register.php') || href.includes('/checkout') || href.includes('/guest-checkout') || href.includes('/guest-paypal')) && !href.includes('/checkout/step4') && !href.includes('/guest-checkout4.php') && !href.includes('/guest-paypal4.php')) {
         sessionStorage.setItem('routing', 0);
 
         let statesCanada = '<option value="" selected="selected">Select Province</option><option value="AB">Alberta</option><option value="BC">British Columbia</option><option value="MB">Manitoba</option><option value="NB">New Brunswick</option><option value="NL">Newfoundland</option><option value="NS">Nova Scotia</option><option value="ON">Ontario</option><option value="PE">Prince Edward Island</option><option value="QC">Quebec</option><option value="SK">Saskatchewan</option><option value="YT">Yukon</option><option value="NT">Northwest Territories</option><option value="NV">Nunavut</option>';
@@ -1667,7 +1667,7 @@ window.onload = function() {
         //step 2 "Shipping Information"
         let currentAddressShip, currentAddressBill;
         let state_item, countries_ship_item, countries_bill_item;
-        if (href.includes('/checkout/step1') || href.includes('/checkout/step2') || href.includes('/guest-checkout1.php')  || href.includes('/guest-checkout2.php')) {
+        if (href.includes('/checkout/step1') || href.includes('/checkout/step2') || href.includes('/guest-checkout1.php')  || href.includes('/guest-checkout2.php') || href.includes('/guest-paypal1') || href.includes('/guest-paypal2')) {
             document.querySelector('.steps').innerHTML = `Step 2<span>/4</span> — ${obj['stepsName'][1]}`; //add steps in header
             if (document.querySelector('.tooltip') != null) {
                 setTimeout(() => {
@@ -1683,7 +1683,7 @@ window.onload = function() {
                 }
             }
         }
-        if ((href.includes('/checkout/step1') || href.includes('/guest-checkout1.php')) && document.querySelector('.myAccount') == null) {
+        if ((href.includes('/checkout/step1') || href.includes('/guest-checkout1.php') || href.includes('/guest-paypal1')) && document.querySelector('.myAccount') == null) {
             sessionStorage.setItem('routing', 0);
             document.querySelector('.col-left .head h4').innerHTML = obj['stepsName'][1];
             state_item = href.includes('guest-checkout1.php') ? b_state : state;
@@ -1742,7 +1742,7 @@ window.onload = function() {
                                     })
                                 }
                                 document.querySelector('.btn-back span').innerHTML = 'Back';
-                                document.querySelector('.btn-back').href = href.includes('guest-checkout') ? '/guest-checkout1.php' : `/checkout/step1`;
+                                document.querySelector('.btn-back').href = href.includes('guest-checkout') ? '/guest-checkout1.php' : href.includes('/guest-paypal1.php') ? '/guest-paypal1.php' : `/checkout/step1`;
                                 document.querySelectorAll('.address').forEach(el => el.style.display = 'none');
                             })
                         })
@@ -1789,7 +1789,7 @@ window.onload = function() {
             </label>`
         }
 
-        if (href.includes('/checkout/step2') || href.includes('/guest-checkout2.php')) {
+        if (href.includes('/checkout/step2') || href.includes('/guest-checkout2.php') || href.includes('/guest-paypal2.php')) {
             document.querySelector('.col-left .head h4').innerHTML = 'Delivery Method';
             document.querySelector('.col-left .head').insertAdjacentHTML('afterend',`<div class="delivery-method"></div>`)
             document.querySelectorAll('#ship_options > li').forEach((item, index) => {
@@ -1822,7 +1822,7 @@ window.onload = function() {
                 document.querySelector('.promocode input').value = document.querySelector('.promoCode').value;
             }
         }
-        if (href.includes('/checkout/step3') || href.includes('/guest-checkout3.php')) {
+        if (href.includes('/checkout/step3') || href.includes('/guest-checkout3.php') || href.includes('/guest-paypal3.php')) {
             document.querySelector('.steps').innerHTML = `Step 3<span>/4</span> — ${obj['stepsName'][2]}`; //add steps in header
             document.querySelector('.col-left .head h4').innerHTML = obj['stepsName'][2];
             document.querySelector('.col-left .head').after(document.querySelector('#checkoutForm'))
@@ -1850,7 +1850,7 @@ window.onload = function() {
             })
             document.querySelector('#checkoutForm > p').innerHTML = document.querySelector('#checkoutForm > p').innerHTML.replace('Place Your Order Now','Proceed');
         }
-        if (href.includes('/guest-checkout3.php')) {
+        if (href.includes('/guest-checkout3.php') || href.includes('/guest-paypal3.php')) {
             document.querySelector('#checkoutForm').insertAdjacentHTML('afterbegin',`<h3>Card Details <img src="${dir}payment-cards.svg" alt="icons"></h3>`);
             document.querySelector('#checkoutForm > fieldset > dl > dd:nth-child(2)').innerHTML = `Credit/Debit Card<span class="c-red-08"> *</span>`;
             document.querySelector('#checkoutForm > p').style.whiteSpace = 'initial';
@@ -1862,7 +1862,7 @@ window.onload = function() {
         //set text for back button
         let setBack = () => {
             if (!href.includes('/checkout/step4') && !href.includes('/guest-checkout4.php')) {
-                let guestOrAccount = href.includes('guest-checkout') ? 1 : 0;
+                let guestOrAccount = href.includes('/guest-checkout') ? 1 : href.includes('/guest-paypal') ? 2 : 0;
                 document.querySelector('.btn-back span').innerHTML = obj['back'][document.querySelector('.col-left .head h4').innerHTML.toLowerCase()][0];
                 document.querySelector('.btn-back').href = obj['back'][document.querySelector('.col-left .head h4').innerHTML.toLowerCase()][1][guestOrAccount];
                 document.querySelector('.btn-back').addEventListener('click', (e) => pushDataLayer(`Click on ${e.target.innerText} button`, document.querySelector('.steps').innerText))
@@ -2076,10 +2076,10 @@ window.onload = function() {
             } else if (document.querySelector('.bill-form.edit') != null) {
                 console.log('edit bill form')
                 address('bill')
-            } else if (href.includes('checkout/step2') || href.includes('/guest-checkout2.php')) {
+            } else if (href.includes('checkout/step2') || href.includes('/guest-checkout2.php') || href.includes('/guest-paypal2.php')) {
                 console.log('checkout/step2 || /guest-checkout2')
                 document.querySelector('form > div > input[type=image]').click()
-            } else if (href.includes('checkout/step3') || href.includes('/guest-checkout3.php')) {
+            } else if (href.includes('checkout/step3') || href.includes('/guest-checkout3.php') || href.includes('/guest-paypal3.php')) {
                 console.log('checkout/step3 || /guest-checkout3')
                 document.querySelector('#submitCheckout3').click()
             }

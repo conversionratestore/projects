@@ -1996,13 +1996,13 @@ window.onload = function() {
             document.querySelector('#checkoutForm > p').innerHTML = document.querySelector('#checkoutForm > p').innerHTML.replace('Place Your Order Now','Proceed');
         }
 
-        if (href.includes('/guest-checkout3.php')) {
+        if (href.includes('/guest-checkout3.php') || href.includes('/guest-paypal3.php')) {
             document.querySelector('#checkoutForm').insertAdjacentHTML('afterbegin',`<h3>Card Details <img src="${dir}payment-cards.svg" alt="icons"></h3>`);
             document.querySelector('#checkoutForm > fieldset > dl > dd:nth-child(2)').innerHTML = `Credit/Debit Card<span class="c-red-08"> *</span>`;
             document.querySelector('#checkoutForm > p').style.whiteSpace = 'initial';
         }
 
-        if (href.includes('/checkout/step3') || href.includes('/guest-paypal3.php')) {
+        if (href.includes('/checkout/step3')) {
             document.querySelector('#checkoutForm h3').innerHTML = `Card Details <img src="${dir}payment-cards.svg" alt="icons">`
             document.querySelector('#cc_block > dl > div.ccInfo > dd:nth-child(3)').innerHTML = `Credit/Debit Card<span class="c-red-08"> *</span>`;
             document.querySelector('#save_cc_info').insertAdjacentHTML('afterend','<span class="check2"></span>')
