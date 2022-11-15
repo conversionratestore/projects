@@ -667,7 +667,7 @@ window.onload = function() {
     }
     //cart product
     let cart = (setCount, paymentAmount='[name="payment_amount"]') => {
-        let parent = href.includes('/checkout/step') || href.includes('/login') || href.includes('/register.php') || href.includes('/guest-checkout') ? ['.order_body'] : href.includes('/cart.html') ? ['.cart-list', '.list-product'] : ['.list-product'];
+        let parent = href.includes('/checkout/step') || href.includes('/login') || href.includes('/register.php') || href.includes('/guest-checkout') || href.includes('/guest-paypal') ? ['.order_body'] : href.includes('/cart.html') ? ['.cart-list', '.list-product'] : ['.list-product'];
         //get data
         postFetch('/cart.html',`api=c&cart_action=cart&ctoken=${mm.ctoken}`,'POST').then(data => {
             console.log(data)
@@ -1817,7 +1817,7 @@ window.onload = function() {
         //step 2 "Shipping Information"
         let currentAddressShip, currentAddressBill;
         let state_item, countries_ship_item, countries_bill_item;
-        if (href.includes('/checkout/step1') || href.includes('/checkout/step2') || href.includes('guest-checkout1.php') || href.includes('guest-checkout2.php')) {
+        if (href.includes('/checkout/step1') || href.includes('/checkout/step2') || href.includes('guest-checkout1.php') || href.includes('guest-checkout2.php') || href.includes('/guest-paypal1') || href.includes('/guest-paypal2')) {
             addStep('.steps', 1) //add steps in header
             if (document.querySelector('.tooltip') != null) {
                 setTimeout(() => {
@@ -1831,7 +1831,7 @@ window.onload = function() {
             }
         }
         
-        if ((href.includes('/checkout/step1') || href.includes('/guest-checkout1.php')) && document.querySelector('.myAccount') == null) {
+        if ((href.includes('/checkout/step1') || href.includes('/guest-checkout1.php') || href.includes('/guest-paypal1')) && document.querySelector('.myAccount') == null) {
             sessionStorage.setItem('routing', 0);
             document.querySelector('.col-left .head h4').innerHTML = obj['stepsName'][1];
             state_item = href.includes('guest-checkout1.php') ? b_state : state;
@@ -2009,8 +2009,8 @@ window.onload = function() {
         }
         //set text for back button
         let setBack = () => {
-            if (!href.includes('/checkout/step4') && !href.includes('/guest-checkout4.php')) {
-                let guestOrAccount = href.includes('guest-checkout') ? 1 : 0;
+            if (!href.includes('/checkout/step4') && !href.includes('/guest-checkout4.php') && !href.includes('/guest-paypal4')) {
+                let guestOrAccount = href.includes('/guest-checkout') ? 1 : href.includes('/guest-paypal') ? 2 : 0;
                 document.querySelector('.btn-back span').innerHTML = obj['back'][document.querySelector('.col-left .head h4').innerHTML.toLowerCase()][0];
                 document.querySelector('.btn-back').href = obj['back'][document.querySelector('.col-left .head h4').innerHTML.toLowerCase()][1][guestOrAccount];
                 document.querySelector('.btn-back').addEventListener('click', (e) => pushDataLayer(`Click on ${e.target.innerText} button`, stepActive));
