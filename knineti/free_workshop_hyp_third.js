@@ -760,12 +760,12 @@ if (window.location.pathname === "/free-workshop/") {
       }
       .benefits ul {
         display: flex;
-        justify-content: space-evenly;
+        justify-content: space-between;
       }
       .benefits ul li {
         display: flex;
         justify-content: flex-start;
-        width: 24%;
+        width: 26%;
       }
       .benefits ul li:nth-child(2) {
         width: 32%;
@@ -783,6 +783,14 @@ if (window.location.pathname === "/free-workshop/") {
         font-size: 16px;
         line-height: 20px;
         color: #747474 !important;
+      }
+      @media (max-width: 1340px) {
+        .benefits ul li p{
+              font-size: 13px;
+        }
+        .benefits ul li{
+          width: 30%;
+        }
       }
       .privacy_policy_wrap {
         max-width: 400px;
@@ -844,6 +852,12 @@ if (window.location.pathname === "/free-workshop/") {
         color: #a0a1a8 !important;
         max-width: 304px;
         box-shadow: none;
+      }
+      .new_block_breed input::placeholder{
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 20px;
+        color: #A0A1A8;
       }
       .new_block_breed {
         position: relative;
