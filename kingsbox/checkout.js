@@ -268,7 +268,7 @@ const style = /*html*/`
             }
 
             .checkout-paypal-btn > div {
-                padding: 0 210px;
+                padding: 0 180px;
             }
 
             app-checkout-payment .checkout-payment {
