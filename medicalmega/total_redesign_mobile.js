@@ -2201,7 +2201,7 @@ window.onload = function() {
                 content: '';
                 position: absolute;
                 top: 50%;
-                left: 0;
+                left: 10px;
                 transform: translateY(-50%);
                 background: url(${dir}loading-gif.gif) no-repeat center / 100%;
                 width: 15px;
