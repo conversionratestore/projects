@@ -343,9 +343,9 @@ let obj = {
     'back' : {
         'personal information' : ['Back to Cart', ['/cart.html','/cart.html']],
         'shipping information' : ['Back to Cart',['/cart.html','/cart.html']],
-        'billing information' : ['Back to Shipping Info',['/checkout/step1','/guest-checkout1.php']],
-        'delivery method' : ['Back To Address Info',['/checkout/step1','/guest-checkout1.php']],
-        'payment method': ['Back to Delivery Method',['/checkout/step2','/guest-checkout2.php']]
+        'billing information' : ['Back to Shipping Info',['/checkout/step1', '/guest-checkout1.php', '/guest-paypal1.php']],
+        'delivery method' : ['Back To Address Info',['/checkout/step1', '/guest-checkout1.php', '/guest-paypal1.php']],
+        'payment method': ['Back to Delivery Method',['/checkout/step2', '/guest-checkout2.php', '/guest-paypal2.php']]
     },
     'pricingArr':  {
         'subtotal': 'Sub total',
@@ -644,7 +644,7 @@ window.onload = function() {
             post == true ? postFetch('/cart.html',`api=c&cart_action=update&variant_id=${plus.closest('.product-item').dataset.variantId}&quantity=${quantity.value}&ctoken=${mm.ctoken}`,'POST').then(data => cart('.cart_count')) : '';
         })
 
-        if (!href.includes('/checkout/step2') && !href.includes('/checkout/step3') ) {
+        if (!href.includes('/checkout/step2') && !href.includes('/checkout/step3') && !href.includes('/guest-paypal2.php') && !href.includes('/guest-paypal3.php')) {
             if (minus.nextElementSibling.value < 2) {
                 minus.disabled = true;
             } else {
@@ -725,7 +725,7 @@ window.onload = function() {
 
             if (products.length > 0) {
                 //product quantity changes
-                let varQty = href.includes('checkout/step2') || href.includes('checkout/step3') || href.includes('guest-checkout2.php') || href.includes('guest-checkout3.php') ? 1 : 0
+                let varQty = href.includes('checkout/step2') || href.includes('checkout/step3') || href.includes('guest-checkout2.php') || href.includes('guest-checkout3.php') || href.includes('/guest-paypal2.php') || href.includes('/guest-paypal3.php') ? 1 : 0
                 for (let i = 0; i < products.length; i++) {
                     counterBasket += products[i].quantity
                     //add products
@@ -758,7 +758,7 @@ window.onload = function() {
         })
     }
     //Confirmation
-    if (href.includes('/checkout/step4') || href.includes('/guest-checkout4.php')) {
+    if (href.includes('/checkout/step4') || href.includes('/guest-checkout4.php') || href.includes('/guest-paypal4.php')) {
         let dataCart = JSON.parse(localStorage.getItem('dataCart'));
         let dates = order.deliveryDates,
             confirmationDates = '';
@@ -1887,7 +1887,7 @@ window.onload = function() {
                                     document.querySelector('[name="shipping"]').addEventListener('click', (e) => copyFromShip(e.target, 'bill'))
                                 }
                                 document.querySelector('.btn-back span').innerHTML = 'Back';
-                                document.querySelector('.btn-back').href = href.includes('guest-checkout') ? '/guest-checkout1.php' : `/checkout/step1`;
+                                document.querySelector('.btn-back').href = href.includes('guest-checkout') ? '/guest-checkout1.php' : href.includes('/guest-paypal1.php') ? '/guest-paypal1.php' : `/checkout/step1`;
                                 document.querySelectorAll('.address').forEach(el => el.style.display = 'none');
                             })
                         })
@@ -1934,7 +1934,7 @@ window.onload = function() {
             </label>`
         }
 
-        if (href.includes('/checkout/step2') || href.includes('guest-checkout2.php')) {
+        if (href.includes('/checkout/step2') || href.includes('guest-checkout2.php') || href.includes('/guest-paypal2.php')) {
             document.querySelector('.col-left .head h4').innerHTML = 'Delivery Method';
             document.querySelector('.col-left .head').insertAdjacentHTML('afterend',`<div class="delivery-method"></div>`)
             document.querySelectorAll('#ship_options > li').forEach((item, index) => {
@@ -1967,7 +1967,7 @@ window.onload = function() {
                 document.querySelector('.promocode input').value = document.querySelector('.promoCode').value;
             }
         }
-        if (href.includes('/checkout/step3') || href.includes('guest-checkout3.php')) {
+        if (href.includes('/checkout/step3') || href.includes('guest-checkout3.php') || href.includes('/guest-paypal3.php')) {
             addStep('.steps', 2) //add steps in header
             document.querySelector('.col-left .head h4').innerHTML = obj['stepsName'][2];
             document.querySelector('.col-left .head').after(document.querySelector('#checkoutForm'))
@@ -2002,7 +2002,7 @@ window.onload = function() {
             document.querySelector('#checkoutForm > p').style.whiteSpace = 'initial';
         }
 
-        if (href.includes('/checkout/step3') ) {
+        if (href.includes('/checkout/step3') || href.includes('/guest-paypal3.php')) {
             document.querySelector('#checkoutForm h3').innerHTML = `Card Details <img src="${dir}payment-cards.svg" alt="icons">`
             document.querySelector('#cc_block > dl > div.ccInfo > dd:nth-child(3)').innerHTML = `Credit/Debit Card<span class="c-red-08"> *</span>`;
             document.querySelector('#save_cc_info').insertAdjacentHTML('afterend','<span class="check2"></span>')
@@ -2198,11 +2198,7 @@ window.onload = function() {
                 address('bill')
             } else if (document.querySelector('.address.ship') != null && document.querySelector('.address.bill') != null && document.querySelector('.bill-form.edit') == null && document.querySelector('.ship-form.edit') == null) {
                 console.log('next 2 step')
-                // if (href.includes('guest-checkout')) {
-                    document.querySelector('#mainbody > div > form > div > input[type=image]').click();
-                // } else {
-                //     window.location.href = `https://medicalmega.com/checkout/step2`;
-                // }
+                document.querySelector('#mainbody > div > form > div > input[type=image]').click();
             } else if (document.querySelector('.address.ship') != null && document.querySelector('.address.bill') == null && document.querySelector('.bill-form.active') == null) {
                 console.log('next 2 step')
                 document.querySelector('.address.ship').style.display = 'none'
@@ -2223,10 +2219,10 @@ window.onload = function() {
             } else if (document.querySelector('.bill-form.edit') != null) {
                 console.log('edit bill form')
                 address('bill')
-            } else if (href.includes('checkout/step2') || href.includes('/guest-checkout2.php')) {
+            } else if (href.includes('checkout/step2') || href.includes('/guest-checkout2.php') || href.includes('/guest-paypal2.php')) {
                 console.log('checkout/step2 || /guest-checkout2')
                 document.querySelector('form > div > input[type=image]').click()
-            } else if (href.includes('checkout/step3') || href.includes('/guest-checkout3.php')) {
+            } else if (href.includes('checkout/step3') || href.includes('/guest-checkout3.php') || href.includes('/guest-paypal3.php')) {
                 console.log('checkout/step3 || /guest-checkout3')
                 document.querySelector('#submitCheckout3').click()
             }
@@ -2329,7 +2325,7 @@ window.onload = function() {
                 font-size: 14px;
             }
             .footer-cart .paypal-form-button {
-                postion: relative;
+                position: relative;
             }
             .footer-cart .paypal-form-button input, .footer-cart .paypal-form-button.loading {
                 pointer-events: none;
