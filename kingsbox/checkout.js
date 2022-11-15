@@ -1,3 +1,170 @@
+const translate = {
+    'en': {
+        'shop': 'Shop',
+        'shipping': 'Shipping info',
+        'delivery': 'Delivery Method',
+        'payment': 'payment',
+        'total': 'Your cart total is',
+        'summary': 'Summary',
+        'backShop': 'back to shop',
+        'continueDelivery': 'continue to delivery',
+        'backShipping': 'Back to Shipping info',
+        'continuePayment': 'continue to Payment',
+        'backDelivery': 'Back to Shipping info',
+        'pay': 'Pay now',
+        'change': 'Change',
+        'calculated': 'Calculated at next step'
+    },
+    'it': {
+        'shop': 'Negozio',
+        'shipping': 'Informazioni sulla spedizione',
+        'delivery': 'Modalità di consegna',
+        'payment': 'Pagamento',
+        'total': 'Il totale del tuo carrello è',
+        'summary': 'Sommario',
+        'backShop': 'Torna al negozio',
+        'continueDelivery': 'continuare con la spedizione',
+        'backShipping': 'Torna alle informazioni sulla spedizione',
+        'continuePayment': 'continua con il pagamento',
+        'backDelivery': 'Torna alla modalità di consegna',
+        'pay': 'Paga ora',
+        'change': 'Modifica',
+        'calculated': 'Si calcola al passo successivo'
+    },
+    'hr': {
+        'shop': 'Trgovina',
+        'shipping': 'Podaci za dostavu',
+        'delivery': 'Način dostave',
+        'payment': 'Plaćanje',
+        'total': 'Vaš ukupni iznos košarice je',
+        'summary': 'Pregled',
+        'backShop': 'Povratak u trgovinu',
+        'continueDelivery': 'nastavi na dostavu',
+        'backShipping': 'Povratak na podatke za dostavu',
+        'continuePayment': 'nastavi s plaćanjem',
+        'backDelivery': 'Povratak na način dostave',
+        'pay': 'Platite odmah',
+        'change': 'Promijeni',
+        'calculated': 'Izračunat će se u sljedećem koraku'
+    },
+    'sl': {
+        'shop': 'Nakupuj',
+        'shipping': 'Podatki o dostavi',
+        'delivery': 'Način dostave',
+        'payment': 'Plačilo',
+        'total': 'Skupen znesek nakupa je',
+        'summary': 'Povzetek',
+        'backShop': 'Nazaj v trgovino',
+        'continueDelivery': 'Nadaljuj na dostavo',
+        'backShipping': 'Nazaj na podatke o dostavi',
+        'continuePayment': 'Nadaljuj s plačilom',
+        'backDelivery': 'Nazaj na načine dostave',
+        'pay': 'Plačaj zdaj',
+        'change': 'Spremeni',
+        'calculated': 'Izračunano na naslednjem koraku'
+    },
+    'de': {
+        'shop': 'Shop',
+        'shipping': 'Versandinformation',
+        'delivery': 'Liefermethode',
+        'payment': 'Zahlung',
+        'total': 'Ihr Einkaufswagen insgesamt ist',
+        'summary': 'Zusammenfassung',
+        'backShop': 'Zurück zum Shop',
+        'continueDelivery': 'weiter zur Lieferung',
+        'backShipping': 'Zurück zu den Versandinformationen',
+        'continuePayment': 'weiter zur Zahlung',
+        'backDelivery': 'Zurück zur Liefermethode',
+        'pay': 'Zahlen Sie jetzt',
+        'change': 'Veränderung',
+        'calculated': 'Wird im nächsten Schritt berechnet'
+    },
+    'fr': {
+        'shop': 'Boutique',
+        'shipping': 'Information de livraison',
+        'delivery': 'Mode de livraison',
+        'payment': 'Paiement',
+        'total': 'Le montant de votre panier est',
+        'summary': 'Le sommaire',
+        'backShop': 'Retour à la boutique',
+        'continueDelivery': 'continuer vers la livraison',
+        'backShipping': 'Retour à l\'expédition',
+        'continuePayment': 'passer au paiement',
+        'backDelivery': 'Retour à la mode de livraison',
+        'pay': 'Payer maintenant',
+        'change': 'Changements',
+        'calculated': 'Calculé à l\'étape suivante'
+    },
+    'es': {
+        'shop': 'Comprar',
+        'shipping': 'Información de envío',
+        'delivery': 'Forma de entrega',
+        'payment': 'Pago',
+        'total': 'El total de tu carrito es',
+        'summary': 'Resumen',
+        'backShop': 'Volver a la Tienda',
+        'continueDelivery': 'continuar con el Envío',
+        'backShipping': 'Volver a la Información de Envío',
+        'continuePayment': 'continuar con Pago',
+        'backDelivery': 'Volver a la forma de entrega',
+        'pay': 'Pagar ahora',
+        'change': 'Cambiar',
+        'calculated': 'Calculado en el siguiente paso'
+    },
+    'nl': { // dutch
+        'shop': 'Shop',
+        'shipping': 'Shipping info',
+        'delivery': 'Delivery Method',
+        'payment': 'payment',
+        'total': 'Your cart total is',
+        'summary': 'Samenvatting',
+        'backShop': 'back to shop',
+        'continueDelivery': 'continue to delivery',
+        'backShipping': 'Back to Shipping info',
+        'continuePayment': 'continue to Payment',
+        'backDelivery': 'Back to Shipping info',
+        'pay': 'Pay now',
+        'change': 'Change',
+        'calculated': 'Calculated at next step'
+    },
+    'se': { // svenska
+        'shop': 'Butik',
+        'shipping': 'Fraktinformation',
+        'delivery': 'Leveransmetod',
+        'payment': 'Betalning',
+        'total': 'Din summa i varukorgen är',
+        'summary': 'Sammanfattning',
+        'backShop': 'Tillbaka till butiken',
+        'continueDelivery': 'Fortsätt till leverans',
+        'backShipping': 'Tillbaka till fraktinformation',
+        'continuePayment': 'Fortsätt till betalning',
+        'backDelivery': 'Tillbaka till leveranssätt',
+        'pay': 'Betala nu',
+        'change': 'Byt / Ändra',
+        'calculated': 'Beräknas vid nästa steg'
+    },
+    'cs': { // Czech
+        'shop': 'Obchod',
+        'shipping': 'Informace o přepravě',
+        'delivery': 'Způsob doručení',
+        'payment': 'Platba',
+        'total': 'V košíku je celkem',
+        'summary': 'Souhrn',
+        'backShop': 'Zpět do obchodu',
+        'continueDelivery': 'pokračovat k dodávce',
+        'backShipping': 'Zpět na informace o přepravě',
+        'continuePayment': 'Pokračovat v platbě',
+        'backDelivery': 'Zpět na způsob doručení',
+        'pay': 'Zaplatit nyní',
+        'change': 'Změnit',
+        'calculated': 'Vypočte se v následujícím kroku'
+    }
+}
+
+let language = location.pathname.split('/')[1] 
+language ? 'checkout' : language = 'en'
+const lang = translate[language] 
+
 const style = /*html*/`
         <style>
             .container.container-checkout {
@@ -27,7 +194,7 @@ const style = /*html*/`
             }
             .step p {
                 margin: 4px 0 0;
-                white-space: nowrap;
+                text-align: center;
                 position: absolute;
                 left: 50%;
                 transform: translateX(-50%);
@@ -556,22 +723,22 @@ const checkoutSteps = /*html*/`
             <div class="steps">
                 <div class="step black check">
                     <div class="circle"></div>
-                    <p>Shop</p>
+                    <p>${lang.shop}</p>
                 </div>
                 <div class="line"></div>
                 <div class="step black">
                     <div class="circle"></div>
-                    <p>Shipping info</p>
+                    <p>${lang.shipping}</p>
                 </div>
                 <div class="line mob_widener"></div>
                 <div class="step">
                     <div class="circle"></div>
-                    <p>delivery Method</p>
+                    <p>${lang.delivery}</p>
                 </div>
                 <div class="line"></div>
                 <div class="step">
                     <div class="circle"></div>
-                    <p>payment</p>
+                    <p>${lang.payment}</p>
                 </div>
             </div>    
         `
@@ -635,8 +802,8 @@ const waitForSummaryAndCart = setInterval(() => {
         document.querySelector('app-checkout-summary').insertAdjacentElement('afterbegin',
             document.querySelector('.checkout-shopping-cart-col')) // put cart above summary
 
-        document.querySelector('app-checkout-summary').insertAdjacentHTML('beforebegin', `<div class="mob_cart_wrapper"><p>Your cart total is <span></span></p></div>`)
-        document.querySelector('app-checkout-summary').insertAdjacentHTML('afterbegin', `<div class="mob_cart_wrapper clickable"><p>Your cart total is <span></span></p></div>`)
+        document.querySelector('app-checkout-summary').insertAdjacentHTML('beforebegin', `<div class="mob_cart_wrapper"><p>${lang.total} <span></span></p></div>`)
+        document.querySelector('app-checkout-summary').insertAdjacentHTML('afterbegin', `<div class="mob_cart_wrapper clickable"><p>${lang.total} <span></span></p></div>`)
         waitForEl('.mob_cart_wrapper.clickable p').then(el => el.addEventListener('click', () => {
             el.closest('.mob_cart_wrapper').classList.toggle('hide_cart')
             callEvent('click on cart total arrow')
@@ -648,7 +815,7 @@ const waitForSummaryAndCart = setInterval(() => {
     }
 }, intervalTimeout)
 waitForEl('.checkout-shopping-cart').then(el => el.insertAdjacentHTML('afterbegin', moneyback))
-waitForEl('.shopping-cart-product').then(el => el.insertAdjacentHTML('afterbegin', `<h2 class="my_title">Summary</h2>`))
+waitForEl('.shopping-cart-product').then(el => el.insertAdjacentHTML('afterbegin', `<h2 class="my_title">${lang.summary}</h2>`))
 const waitForCoupon = setInterval(() => {
     if (
         document.querySelectorAll('app-checkout-summary div')[2]
@@ -779,32 +946,32 @@ waitForEl('.checkout-shipping').then(el => {
     el.insertAdjacentHTML('beforeend', /*html*/`
         <div class="steps_btn_wrapper">
             <div data-stepBtn="shipping">
-                <button class="back" onclick="location.href='https://kingsbox.com/'" type="button">back to shop</button>
-                <button class="continue" onclick="showStepAndHideOther(1)" disabled>continue to delivery</button>
+                <button class="back" onclick="location.href='https://kingsbox.com/'" type="button">${lang.backShop}</button>
+                <button class="continue" onclick="showStepAndHideOther(1)" disabled>${lang.continueDelivery}</button>
             </div>
             <div data-stepBtn="delivery">
-                <button class="back" onclick="showStepAndHideOther(0)">Back to Shipping info</button>
-                <button class="continue" onclick="showStepAndHideOther(2)" disabled>continue to Payment</button>
+                <button class="back" onclick="showStepAndHideOther(0)">${lang.backShipping}</button>
+                <button class="continue" onclick="showStepAndHideOther(2)" disabled>${lang.continuePayment}</button>
             </div>
             <div data-stepBtn="pay">
-                <button class="back" onclick="showStepAndHideOther(1)" type="button">Back to delivery method</button>
-                <button class="continue" disabled>Pay now</button>
+                <button class="back" onclick="showStepAndHideOther(1)" type="button">${lang.backDelivery}</button>
+                <button class="continue" disabled>${lang.pay}</button>
             </div>
         </div>`)
-    }
+}
 )
 waitForEl('.info-section-data').then(el => {
-    el.insertAdjacentHTML('beforebegin', `<p class="shipping_title">Shipping info</p>`)
+    el.insertAdjacentHTML('beforebegin', `<p class="shipping_title">${lang.shipping}</p>`)
 
     el.insertAdjacentHTML('afterend', /*html*/`
             <div class="delivery">
                 <hr>
                 <div>
                     <div>
-                        <p class="title">Delivery Method&nbsp;</p>                   
+                        <p class="title">${lang.delivery}&nbsp;</p>                   
                         <p class="method"><span data-delivery="method"></span><span data-delivery="price"></span></p>
                     </div>
-                    <p class="change" onclick="showStepAndHideOther(1)">Change</p>
+                    <p class="change" onclick="showStepAndHideOther(1)">${lang.change}</p>
                 </div>         
             </div>
         `)
@@ -814,7 +981,7 @@ const changeDeliveryPriceAndBtn = () => {
         waitForEl('[data-stepBtn="delivery"] .continue').then((btn) => {
             if (
                 price.innerText !== '/'
-                || price.innerText !== 'Calculated at next step'
+                || price.innerText !== lang.calculated
             ) {
                 btn.removeAttribute('disabled')
 
@@ -836,7 +1003,7 @@ const changeDeliveryPriceAndBtn = () => {
                     }
                 }, intervalTimeout)
             } else {
-                price.innerText = 'Calculated at next step'
+                price.innerText = lang.calculated
                 btn.setAttribute('disabled', true)
             }
         })
