@@ -1386,7 +1386,7 @@ window.onload = function() {
                 color: rgb(124, 140, 146);
                 margin: 0!important;
             }
-            #checkoutForm > fieldset > dl > dd:nth-child(2), #cc_block > dl > div.ccInfo > dd:nth-child(3), #checkoutForm > fieldset > dl > dd:nth-child(4), #cc_block > dl > dd:nth-child(3)  {
+            #checkoutForm > fieldset > dl > dd:nth-child(2), #cc_block > dl > div.ccInfo > dd:nth-child(3), #checkoutForm > fieldset > dl > dd:nth-child(4) {
                 padding-left: 16px;
             }
             #paymentCardContainer, #paymentCardErrorContainer {
@@ -2305,6 +2305,9 @@ window.onload = function() {
             .footer-cart .btn-next {
                 padding: 0 29px 0 39px;
                 font-size: 14px;
+            }
+            .footer-cart .paypal-form-button {
+                postion: relative;
             }
             .footer-cart .paypal-form-button input, .footer-cart .paypal-form-button.loading {
                 pointer-events: none;
