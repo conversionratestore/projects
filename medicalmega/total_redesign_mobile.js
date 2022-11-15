@@ -324,7 +324,9 @@ let obj = {
 }
 
 //post
-let postFetch = (host,body,method) => {
+let postFetch = (host,body,method,paymentAmount='[name="payment_amount"]') => {
+    document.querySelector(paymentAmount) != null ? document.querySelector(paymentAmount).parentElement.classList.add('loading') : ''
+
     return new Promise((resolve, reject) => {
         fetch(host, {
             headers: headerFetchAddress,
@@ -450,7 +452,8 @@ window.onload = function() {
     document.body.insertAdjacentHTML('afterbegin', styleMain)
 
     //changeQuantity
-    let changeQuantity = (plus, minus, quantity, post=false) => {
+    let changeQuantity = (plus, minus, quantity, post=false, paymentAmount='[name="payment_amount"]') => {
+      
         //update quantity
         quantity.addEventListener('change', (e) => {
             if (quantity.value < 1) {
@@ -489,10 +492,8 @@ window.onload = function() {
         })
     }
     //cart product
-    let cart = (setCount, paymentAmount) => {
+    let cart = (setCount, paymentAmount='[name="payment_amount"]') => {
         let parent = href.includes('/checkout/step') || href.includes('/login') || href.includes('/register.php')|| href.includes('/guest-checkout') ? '.order_body' : '.list-product';
-        
-        paymentAmount && document.querySelector(paymentAmount) != null ? document.querySelector(paymentAmount).parentElement.classList.add('loading') : ''
         
         //get data
         postFetch('/cart.html',`api=c&cart_action=cart&ctoken=${mm.ctoken}`,'POST').then(data => {
@@ -2317,7 +2318,7 @@ window.onload = function() {
 
         document.querySelector('.footer-cart .paypal-form-button').addEventListener('click', (e) => {
             e.stopImmediatePropagation();
-            e.target.querySelector('input[name="submit"]').click()
+            document.querySelector('.footer-cart .paypal-form-button input[name="submit"]').click()
             pushDataLayer('Click on payPal button', labelForEvents(e.target))
         })
 
