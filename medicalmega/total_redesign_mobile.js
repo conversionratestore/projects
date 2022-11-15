@@ -1,3 +1,5 @@
+let dir = 'https://conversionratestore.github.io/projects/medicalmega/img/'
+
 let styleMain =`
 <style>
     /* Chrome, Safari, Edge, Opera */
@@ -1375,7 +1377,7 @@ window.onload = function() {
             document.querySelector('.col-left .head-login').after(document.querySelector('.myAccount'));
             document.querySelector('.col-left .head h4').innerHTML = obj['stepsName'][0];
             document.querySelector('.col-left .head').style = 'display: none!important;';
-            document.querySelector('.col-left .head-login').insertAdjacentHTML('afterend',`<button type="button" class="btn btn_white btn-google flex-center"> <img src="https://conversionratestore.github.io/projects/medicalmega/img/google.svg" class="mr-8" alt="google icon"/> continue with google</button><p class="text-center c-gray-08 mb-16 fs-14">or</p>`)
+            document.querySelector('.col-left .head-login').insertAdjacentHTML('afterend',`<button type="button" class="btn btn_white btn-google flex-center"> <img src="${dir}google.svg" class="mr-8" alt="google icon"/> continue with google</button><p class="text-center c-gray-08 mb-16 fs-14">or</p>`)
             document.querySelector('.steps').innerHTML = `Step 1<span>/4</span> — ${obj['stepsName'][0]}`; //add steps in header
             document.querySelector('.foot').insertAdjacentHTML('afterbegin','<a href="#" class="btn-guest mb-16">Checkout as a guest</a>')
             addActive('.myAccountleft')
@@ -1413,8 +1415,8 @@ window.onload = function() {
                     pushDataLayer("Click on Sign in button", document.querySelector('.steps').innerText)
                 }
             })
-            document.querySelector(' .myAccountleft dd:nth-child(5) input').insertAdjacentHTML('afterend',`<img class="eye" src="https://conversionratestore.github.io/projects/medicalmega/img/eye-through.svg" alt="eye icon">`)
-            document.querySelector(' .myAccountleft dd:nth-child(6) input').insertAdjacentHTML('afterend',`<img class="eye" src="https://conversionratestore.github.io/projects/medicalmega/img/eye-through.svg" alt="eye icon">`)
+            document.querySelector(' .myAccountleft dd:nth-child(5) input').insertAdjacentHTML('afterend',`<img class="eye" src="${dir}eye-through.svg" alt="eye icon">`)
+            document.querySelector(' .myAccountleft dd:nth-child(6) input').insertAdjacentHTML('afterend',`<img class="eye" src="${dir}eye-through.svg" alt="eye icon">`)
 
             //sign in with google
             document.querySelector('.btn-google').addEventListener('click', () => {
@@ -1432,10 +1434,10 @@ window.onload = function() {
                     pushDataLayer(`Click on eye button`, document.querySelector('.steps').innerText)
                     if (item.previousElementSibling.type == 'password') {
                         item.previousElementSibling.type = 'text';
-                        item.src = 'https://conversionratestore.github.io/projects/medicalmega/img/eye.svg'
+                        item.src = `${dir}eye.svg`
                     } else {
                         item.previousElementSibling.type = 'password';
-                        item.src = 'https://conversionratestore.github.io/projects/medicalmega/img/eye-through.svg'
+                        item.src = `${dir}eye-through.svg`
                     }
                 })
             })
@@ -1848,12 +1850,12 @@ window.onload = function() {
             document.querySelector('#checkoutForm > p').innerHTML = document.querySelector('#checkoutForm > p').innerHTML.replace('Place Your Order Now','Proceed');
         }
         if (href.includes('/guest-checkout3.php')) {
-            document.querySelector('#checkoutForm').insertAdjacentHTML('afterbegin',`<h3>Card Details <img src="https://conversionratestore.github.io/projects/medicalmega/img/payment-cards.svg" alt="icons"></h3>`);
+            document.querySelector('#checkoutForm').insertAdjacentHTML('afterbegin',`<h3>Card Details <img src="${dir}payment-cards.svg" alt="icons"></h3>`);
             document.querySelector('#checkoutForm > fieldset > dl > dd:nth-child(2)').innerHTML = `Credit/Debit Card<span class="c-red-08"> *</span>`;
             document.querySelector('#checkoutForm > p').style.whiteSpace = 'initial';
         }
         if (href.includes('/checkout/step3')) {
-            document.querySelector('#checkoutForm h3').innerHTML = `Card Details <img src="https://conversionratestore.github.io/projects/medicalmega/img/payment-cards.svg" alt="icons">`;
+            document.querySelector('#checkoutForm h3').innerHTML = `Card Details <img src="${dir}payment-cards.svg" alt="icons">`;
             document.querySelector('#cc_block > dl > div.ccInfo > dd:nth-child(3)').innerHTML = `Credit/Debit Card<span class="c-red-08"> *</span>`;
         }
         //set text for back button
@@ -2186,12 +2188,24 @@ window.onload = function() {
             .footer-cart .paypal-form-button {
                 background: #EEC86A;
                 border-radius: 100px;
+                position: relative;
             }
             .footer-cart .paypal-form-button input, .footer-cart .paypal-form-button.loading {
                 pointer-events: none;
             }
-            .footer-cart .paypal-form-button.loading {
+            .footer-cart .paypal-form-button.loading input {
                 opacity: 0.6;
+            }
+            .footer-cart .paypal-form-button.loading:after {
+                content: '';
+                position: absolute;
+                top: 50%;
+                leftL 50%;
+                transform: translate(-50%,-50%);
+                background: url(${dir}loading-gif.gif) no-repeat center / 100%;
+                width: 15px;
+                height: 15px;
+                z-index: 2;
             }
             /*empty cart*/
             .empty-cart {
@@ -2286,7 +2300,7 @@ window.onload = function() {
                     <form action="https://medicalmega.com/guest-expresscheckout.php" method="POST" target="default" class="paypal-form-button loading">
                         <input type="hidden" name="payment_amount" value="">
                         <input type="hidden" name="cart_token" value="${mm.ctoken}">
-                        <input type="image" name="submit" src="https://conversionratestore.github.io/projects/medicalmega/img/paypal.svg" border="0" align="top" alt="Check out with PayPal">
+                        <input type="image" name="submit" src="${dir}paypal.svg" border="0" align="top" alt="Check out with PayPal">
                     </form>
                     <p>or</p>
                     <a href="https://medicalmega.com/cart.html" class="btn-next flex-center">
@@ -2982,7 +2996,7 @@ window.onload = function() {
             color: transparent;
             transform: scaleX(-1);
             flex-shrink: 0;
-            background: url(https://conversionratestore.github.io/projects/medicalmega/img/chevron-right.svg) no-repeat center / contain;}
+            background: url(${dir}chevron-right.svg) no-repeat center / contain;}
         .breadcrumbs {
             padding: 10px 0 5px; }
         .ais-Breadcrumb-link, .breadcrumbs a {
@@ -3043,7 +3057,7 @@ window.onload = function() {
             color: transparent;
             transform: scaleX(-1);
             flex-shrink: 0;
-            background: url(https://conversionratestore.github.io/projects/medicalmega/img/chevron-right.svg) no-repeat center / contain;}
+            background: url(${dir}chevron-right.svg) no-repeat center / contain;}
         .ais-ClearRefinements-button {
             background-color: #e9ebec;
             padding: 5px 8px;
@@ -3560,8 +3574,8 @@ window.onload = function() {
         <nav class="menu">
             <div class="menu-conteiner">
                 <div class="flex-center-between">
-                    <a class="logo" href="#"><img src="https://conversionratestore.github.io/projects/medicalmega/img/logo-m.svg" alt="Medical Mega"></a>
-                    <button type="button" class="close-menu" data-button=".menu"><img src="https://conversionratestore.github.io/projects/medicalmega/img/close-m.svg" alt="close menu"></button>
+                    <a class="logo" href="#"><img src="${dir}logo-m.svg" alt="Medical Mega"></a>
+                    <button type="button" class="close-menu" data-button=".menu"><img src="${dir}close-m.svg" alt="close menu"></button>
                 </div>
                 <a class="items-center midbar_action" href="https://medicalmega.com/myaccount.html">
                     <img class="mr-8" src="https://olha1001.github.io/medicalmega/pdp-rediesign/img/common/user.svg" alt="account icon">
@@ -3578,13 +3592,13 @@ window.onload = function() {
                     <a href="/?products%5BhierarchicalMenu%5D%5Bcategories.lvl0%5D%5B0%5D=Instruments">Instruments</a>
                     <button type="button" class="flex-center-between all_category" data-button=".menu-conteiner"> 
                         <span>view All Categories</span> 
-                        <img src="https://conversionratestore.github.io/projects/medicalmega/img/arrow_forward-right.svg" alt="arrow right icon">
+                        <img src="${dir}arrow_forward-right.svg" alt="arrow right icon">
                     </button>
                 </div>
             
                 <div class="dropdown_categories">
                     <button type="button" class="items-center back-menu" data-button=".menu-conteiner">
-                        <img class="mr-8" src="https://conversionratestore.github.io/projects/medicalmega/img/arrowLeft.svg" alt="arrow left icon">
+                        <img class="mr-8" src="${dir}arrowLeft.svg" alt="arrow left icon">
                         <span>Main Menu</span>
                     </button>
                     
@@ -3593,7 +3607,7 @@ window.onload = function() {
                 </div>
                     
                 <div class="footer-menu">
-                    <a href="https://medicalmega.com/service.html" class="items-center"><img class="mr-8" src="https://conversionratestore.github.io/projects/medicalmega/img/help.svg" alt="icon quotation">Customer Service</a>
+                    <a href="https://medicalmega.com/service.html" class="items-center"><img class="mr-8" src="${dir}help.svg" alt="icon quotation">Customer Service</a>
                     <a href="tel:17182084380">Local Phone # <span class="underline">1-718-208-4380</span></a>
                     <a class="ml-40" href="tel:18556336342">Toll Free Phone # <span class="underline">1-855-MED-MEGA (633-6342)</span></a>
                 </div>
@@ -3823,7 +3837,7 @@ window.onload = function() {
         startStuff();
 
         document.querySelector('.header').before(document.querySelector('#top'));
-        document.querySelector('#top img').src = 'https://conversionratestore.github.io/projects/medicalmega/img/chevron-right.svg';
+        document.querySelector('#top img').src = '${dir}chevron-right.svg';
         document.querySelector('#top').addEventListener('click', (e) => pushDataLayer(`Click on Top button`, `Footer`)) //event
         document.querySelector('.cart_count').innerHTML = document.querySelector('.shoppingcart .by_num span').innerHTML;
 
@@ -3994,7 +4008,7 @@ window.onload = function() {
                 showSubmit: true,
                 showReset: true,
                 templates: {
-                    loadingIndicator: '<img src="https://conversionratestore.github.io/projects/medicalmega/img/loading-buffering.gif" alt="icon loading">',
+                    loadingIndicator: '<img src="${dir}loading-buffering.gif" alt="icon loading">',
                 },
             }),
             instantsearch.widgets.infiniteHits({
@@ -4446,8 +4460,8 @@ window.onload = function() {
                         <div class="product"> 
                             <h2 class="title">${product.name}</h2>
                             <div class="flex-center-between">
-                                <img class="mr-8" src="https://conversionratestore.github.io/projects/medicalmega/img/transpilot1.svg" alt="icon transpilot">
-                                <img src="https://conversionratestore.github.io/projects/medicalmega/img/transpilot2.svg" alt="icon transpilot">
+                                <img class="mr-8" src="${dir}transpilot1.svg" alt="icon transpilot">
+                                <img src="${dir}transpilot2.svg" alt="icon transpilot">
                             </div>
                             <div class="slider-main">${slides()}</div>
                             <p class="text-small text-center">Image shown for reference purposes only. Actual product appearance may vary.</p>
