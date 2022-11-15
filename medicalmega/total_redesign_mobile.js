@@ -2200,8 +2200,8 @@ window.onload = function() {
                 content: '';
                 position: absolute;
                 top: 50%;
-                leftL 50%;
-                transform: translate(-50%,-50%);
+                left: 0;
+                transform: translateY(-50%);
                 background: url(${dir}loading-gif.gif) no-repeat center / 100%;
                 width: 15px;
                 height: 15px;
