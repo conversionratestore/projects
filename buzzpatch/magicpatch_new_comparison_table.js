@@ -128,23 +128,23 @@ let magicComparisonTable = setInterval(() => {
             .megicpatch_btn{
                 display: flex;
                 width: 100%;
-                height: 66px;
+                max-width: 289px;
+                height: 77px;
                 align-items: center;
                 justify-content: center;
                 font-family: 'DINEngschrift LT', sans-serif;
-                font-weight: 400;
-                font-size: 16px !important;
-                line-height: 1;
+                font-size: 20px !important;
+                line-height: 24px;
                 text-align: center;
-                letter-spacing: 0.05em;
+                letter-spacing: 1.5px;
                 text-transform: uppercase;
                 color: #FFFFFF !important;
                 background: #FF3C7F;
-                box-shadow: 0px 2px 4px rgba(12, 11, 11, 0.1), 0px 12px 32px rgba(0, 0, 0, 0.05);
-                border-radius: 52px;
+                box-shadow: 0 4px 15px #48434582;
+                border-radius: 500px;
                 cursor: pointer;
                 outline: none;
-                margin-top: 40px;
+                margin: 40px auto 0;
             }    
             .megicpatch_btn:hover{
                 text-decoration: unset;
