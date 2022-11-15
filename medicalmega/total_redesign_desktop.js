@@ -357,6 +357,28 @@ let obj = {
     }
 }
 
+let intervalCart = setInterval(() => {
+    if (sessionStorage.getItem('routing') == 1 && href.includes('/cart.html')) {
+        clearInterval(intervalCart);
+        document.head.insertAdjacentHTML('beforeend',`<style>
+        body:after {
+            content: 'Loading..';
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 100vh;
+            width: 100%;
+            background: #fff url(${dir}loading-buffering.gif) no-repeat left calc(50% - 35px) center / 10px;
+            z-index: 999999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        </style>`)
+        window.location.href = `https://medicalmega.com/checkout/step1`;
+    }
+})
+
 //post
 let postFetch = (host,body,method,paymentAmount='[name="payment_amount"]') => {
     document.querySelector(paymentAmount) != null ? document.querySelector(paymentAmount).parentElement.classList.add('loading') : ''
@@ -5190,10 +5212,3 @@ window.onload = function() {
         mut.observe(document, optionMut);
     }
 };
-
-let intervalCart = setInterval(() => {
-    if (sessionStorage.getItem('routing') == 1 && href.includes('/cart.html')) {
-        clearInterval(intervalCart);
-        window.location.href = `https://medicalmega.com/checkout/step1`;
-    }
-})
