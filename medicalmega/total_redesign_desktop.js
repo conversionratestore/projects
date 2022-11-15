@@ -910,7 +910,7 @@ window.onload = function() {
         document.querySelector('.exp-loading') != null ? document.querySelector('.exp-loading').remove() : '';
     }
 
-    if ((href.includes('login') || href.includes('/register.php') || href.includes('/checkout') || href.includes('/guest-checkout')) && !href.includes('/checkout/step4') && !href.includes('/guest-checkout4.php')) {
+    if ((href.includes('login') || href.includes('/register.php') || href.includes('/checkout') || href.includes('/guest-checkout') || href.includes('/guest-paypal')) && !href.includes('/checkout/step4') && !href.includes('/guest-checkout4.php') && !href.includes('/guest-paypal4.php')) {
         //checkout
         sessionStorage.setItem('routing', 0);
 
