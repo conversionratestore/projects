@@ -460,14 +460,14 @@ window.onload = function() {
                 quantity.value = 1
             }
             pushDataLayer('Change quantity field', labelForEvents(e.target))
-            post == true ? postFetch('/cart.html',`api=c&cart_action=update&variant_id=${quantity.closest('.product-item').dataset.variantId}&quantity=${quantity.value}&ctoken=${mm.ctoken}`,'POST').then(data => cart('.cart_count','[name="payment_amount"]')) : '';
+            post == true ? postFetch('/cart.html',`api=c&cart_action=update&variant_id=${quantity.closest('.product-item').dataset.variantId}&quantity=${quantity.value}&ctoken=${mm.ctoken}`,'POST').then(data => cart('.cart_count')) : '';
         })
         plus.addEventListener('click', (e) => {
             quantity.value = +quantity.value + 1;
             quantity.parentElement.querySelector('.quantity-btn_minus').disabled = false;
 
             pushDataLayer('Click plus button', labelForEvents(e.target))
-            post == true ? postFetch('/cart.html',`api=c&cart_action=update&variant_id=${plus.closest('.product-item').dataset.variantId}&quantity=${quantity.value}&ctoken=${mm.ctoken}`,'POST').then(data => cart('.cart_count','[name="payment_amount"]')) : '';
+            post == true ? postFetch('/cart.html',`api=c&cart_action=update&variant_id=${plus.closest('.product-item').dataset.variantId}&quantity=${quantity.value}&ctoken=${mm.ctoken}`,'POST').then(data => cart('.cart_count')) : '';
         })
 
         if (!href.includes('/checkout/step2') && !href.includes('/checkout/step3') ) {
@@ -488,7 +488,7 @@ window.onload = function() {
                 minus.nextElementSibling.value = +minus.nextElementSibling.value - 1;
             }
             pushDataLayer('Click minus button', labelForEvents(e.target))
-            post == true ? postFetch('/cart.html',`api=c&cart_action=update&variant_id=${minus.closest('.product-item').dataset.variantId}&quantity=${quantity.value}&ctoken=${mm.ctoken}`,'POST').then(data => cart('.cart_count','[name="payment_amount"]')) : '';
+            post == true ? postFetch('/cart.html',`api=c&cart_action=update&variant_id=${minus.closest('.product-item').dataset.variantId}&quantity=${quantity.value}&ctoken=${mm.ctoken}`,'POST').then(data => cart('.cart_count')) : '';
         })
     }
     //cart product
@@ -546,7 +546,7 @@ window.onload = function() {
                     if (remove.length > 0) {
                         remove[i].addEventListener('click', (e) => {
                             pushDataLayer('Click on remove button', labelForEvents(e.target))
-                            postFetch('/cart.html',`api=c&cart_action=remove&variant_id=${remove[i].closest('.product-item').dataset.variantId}&ctoken=${mm.ctoken}`,'POST').then(data => cart('.cart_count','[name="payment_amount"]'))
+                            postFetch('/cart.html',`api=c&cart_action=remove&variant_id=${remove[i].closest('.product-item').dataset.variantId}&ctoken=${mm.ctoken}`,'POST').then(data => cart('.cart_count'))
                         })
                     }
                     let plus = document.querySelectorAll(`${parent} .quantity-btn_plus`)[i],
@@ -2376,7 +2376,7 @@ window.onload = function() {
                     pushDataLayer('Click on Add to cart', labelForEvents(e.target))
                     postFetch('/cart.html',`api=c&cart_action=add&variant_id=${addBtns[i].dataset.variantId}&quantity=${addBtns[i].previousElementSibling.querySelector('.quantity').value}&product_id=${addBtns[i].dataset.id}&ctoken=${mm.ctoken}`,'POST').then(data => {
                         console.log(data)
-                        cart('.cart_count','[name="payment_amount"]')
+                        cart('.cart_count')
                     })
                 })
             }
@@ -2412,7 +2412,7 @@ window.onload = function() {
         })
     }
 
-    !href.includes('/checkout/step4') && !href.includes('/guest-checkout4.php') ? cart('.cart_count', '[name="payment_amount"]') : '';
+    !href.includes('/checkout/step4') && !href.includes('/guest-checkout4.php') ? cart('.cart_count') : '';
     if (!href.includes('login') && !href.includes('/register.php') && !href.includes('/checkout') && !href.includes('/guest-checkout')) {
         let style = `
         <style class="style-main">
@@ -4640,7 +4640,7 @@ window.onload = function() {
                     el.addEventListener('click', (e) => {
                         e.stopImmediatePropagation();
                         postFetch('/cart.html',`api=c&cart_action=add&variant_id=${el.parentElement.querySelector('[name="product_variant_id"]').value}&quantity=${el.parentElement.querySelector('[name="quantity"]').value}&product_id=${el.parentElement.querySelector('[name="product_id"]').value}&ctoken=${mm.ctoken}`,'POST').then(data => {
-                            cart('.cart_count','[name="payment_amount"]');
+                            cart('.cart_count');
                             addActive('.shopping-cart');
                         })
                         pushDataLayer(`Click on Add button`,labelForEvents(e.target));
