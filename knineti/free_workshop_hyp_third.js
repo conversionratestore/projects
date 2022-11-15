@@ -1061,6 +1061,9 @@ if (window.location.pathname === "/free-workshop/") {
       }
 
       @media (max-width: 768px) {
+        .input_error_text{
+          margin: -12px 3px 10px;
+        }
         .backdrop_popup .container_popup{
           max-width: 350px;
         }
@@ -1468,7 +1471,7 @@ if (window.location.pathname === "/free-workshop/") {
               </div>
 
               <div class="popup_first active_popup">
-                <h2>What unwanted behavior do you want to address?</h2>
+                <h2>What unwanted behaviors do you want to address?</h2>
                 <p>Select the problems you've experienced in the past 2 months</p>
                 <div class="first_block_checkbox">
                   <input class="custom_checkbox" id="barking" type="checkbox" name="barking" value="barking" />
@@ -1906,7 +1909,7 @@ if (window.location.pathname === "/free-workshop/") {
                 visability("Dog`s Age", document.querySelector(".start_step"))
               }
               if (document.querySelector(".btn_continue")) {
-                visability("btn Continue on step 'What unwanted behavior do you want to address?'", document.querySelector(".visability_btn_continue"))
+                visability("btn Continue on step 'What unwanted behaviors do you want to address?'", document.querySelector(".visability_btn_continue"))
               }
               if (document.querySelector(".button_input_name").classList.contains("step_second")) {
                 visability("btn Continue on step 'We'd love to know more about your dog. Introduce us!'", document.querySelector(".button_input_name.step_second"))
@@ -2066,7 +2069,7 @@ if (window.location.pathname === "/free-workshop/") {
           //   click on first btn Continue
           if (document.querySelector(".popup_new > div:last-child .popup_first .btn_continue")) {
             document.querySelector(".popup_new > div:last-child .popup_first .btn_continue").addEventListener("click", function (el) {
-              pushDataLayer(`Click on Continue on step "What unwanted behavior do you want to address?`)
+              pushDataLayer(`Click on Continue on step "What unwanted behaviors do you want to address?`)
               if (document.querySelector(".privacy_policy_wrap p a")) {
                 document.querySelector(".privacy_policy_wrap p a").setAttribute("step", "2")
               }
@@ -2103,7 +2106,7 @@ if (window.location.pathname === "/free-workshop/") {
 
           // //   btn back first
           document.querySelector(".popup_new > div:last-child .progress_bar > div p:nth-child(1)").addEventListener("click", function () {
-            pushDataLayer(`Click on Previous on step "What unwanted behavior do you want to address?"`)
+            pushDataLayer(`Click on Previous on step "What unwanted behaviors do you want to address?"`)
 
             document.querySelector(".start_step").classList.add("active_popup")
             document.querySelector(".popup_new").classList.remove("active_popup")
