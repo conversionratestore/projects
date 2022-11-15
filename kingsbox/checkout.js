@@ -981,7 +981,7 @@ const changeDeliveryPriceAndBtn = () => {
         waitForEl('[data-stepBtn="delivery"] .continue').then((btn) => {
             if (
                 price.innerText !== '/'
-                || price.innerText !== lang.calculated
+                && price.innerText !== lang.calculated
             ) {
                 btn.removeAttribute('disabled')
 
