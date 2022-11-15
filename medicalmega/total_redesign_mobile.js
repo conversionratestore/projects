@@ -3838,7 +3838,7 @@ window.onload = function() {
         startStuff();
 
         document.querySelector('.header').before(document.querySelector('#top'));
-        document.querySelector('#top img').src = '${dir}chevron-right.svg';
+        document.querySelector('#top img').src = `${dir}chevron-right.svg`;
         document.querySelector('#top').addEventListener('click', (e) => pushDataLayer(`Click on Top button`, `Footer`)) //event
         document.querySelector('.cart_count').innerHTML = document.querySelector('.shoppingcart .by_num span').innerHTML;
 
