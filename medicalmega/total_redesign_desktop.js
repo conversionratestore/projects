@@ -4411,13 +4411,13 @@ window.onload = function() {
 
             window.addEventListener('scroll', (e) => {
                 remActiveSelect();
-                removeActive('.nav_category')
                 if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
                     if (document.querySelector('.listing_content .ais-InfiniteHits-loadMore') != null && document.querySelector('.listing_content .ais-InfiniteHits-loadMore.ais-InfiniteHits-loadMore--disabled') == null) {
                         console.log(document.querySelector('.listing_content .ais-InfiniteHits-loadMore') != null)
                         document.querySelector('.listing_content .ais-InfiniteHits-loadMore').click();
                     }
                 }
+                removeActive('.nav_category')
             })
 
             //select filter
