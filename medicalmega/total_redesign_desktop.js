@@ -20,6 +20,8 @@ const index = searchClient.initIndex(indexName);
 
 let styleMain =`
 <style>
+    body {
+        border: none;}
     html.fix {
         overflow: hidden;}
     html.fix body {
@@ -790,6 +792,9 @@ window.onload = function() {
             }
             let styleConfirmation = `
             <style>
+                body {
+                    background: #FBFBFB;
+                }
                 .confirmation * {
                     box-sizing: border-box;
                 }
@@ -854,7 +859,7 @@ window.onload = function() {
                 .confirmation-products {
                     margin-top: -20px;
                     margin-bottom: -40px;
-                    padding: 0 40px;
+                    padding: 0 40px 40px;
                     overflow-y: auto;
                 }
                 .confirmation-products .product-item > div:last-child a {
@@ -898,7 +903,7 @@ window.onload = function() {
                 ${headerHTML}
                 <div class="confirmation">
                     <h2>Thank you!</h2>
-                    <p class="confirmation-span c-gray">Your order has been successfully placed</p>
+                    <p class="confirmation-span c-gray">Your order <span class="fw-semi">#${document.querySelector('#mainbody > div.payment > fieldset > p:nth-child(1)').innerHTML.split('br>')[1]}</span> has been successfully placed</p>
                     <div class="confirmation-order flex">
                         <div class="col">
                             <h3>Your Order</h3>
@@ -939,7 +944,6 @@ window.onload = function() {
             let style = `
             <style>
                 body {
-                    border: none;
                     background: #FBFBFB;
                 }
                 .container {
@@ -1807,7 +1811,7 @@ window.onload = function() {
                 let stateName = document.querySelector(`.${formType}-form dd [name="state"]`),
                     countryName = document.querySelector(`.${formType}-form dd [name="country"]`),
                     selects = document.querySelectorAll('select');
-                    
+
                 if (e.checked) {
                     fetch(`/api/v1/addresses&type=ship`, {
                         headers: headerFetchAddress,
