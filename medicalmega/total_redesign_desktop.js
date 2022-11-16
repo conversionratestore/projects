@@ -1941,21 +1941,24 @@ window.onload = function() {
                 document.querySelector('.col-left .head h4').innerHTML = 'Delivery Method';
                 document.querySelector('.col-left .head').insertAdjacentHTML('afterend',`<div class="delivery-method"></div>`)
                 document.querySelectorAll('#ship_options > li').forEach((item, index) => {
-                    let type = item.querySelector('p > i') != null ? item.querySelector('p > i').innerText : '',
-                        text = '',
-                        price = item.querySelector('p > b') != null ? item.querySelector('p > b').innerText : item.querySelector('p > strong') != null ? item.querySelector('p > strong').innerText == 'FREE!' ? 'FREE!' : '' : '';
-                    if (index == 0) {
-                        item.querySelector('input').checked = true;
+                    if (item.children[0].tagName != 'DL') {
+                        let type = item.querySelector('p > i').innerText,
+                            text = '',
+                            price = item.querySelector('p > b') != null ? item.querySelector('p > b').innerText : item.querySelector('p > strong').innerText == 'FREE!' ? 'FREE!' : '';
+                        if (index == 0) {
+                            item.querySelector('input').checked = true;
+                        }
+        
+                        if (item.querySelectorAll('p').length > 1) {
+                            text = item.querySelectorAll('p')[1].innerHTML.split('<strong')[0]
+                        }
+                   
+                        document.querySelector('.delivery-method').insertAdjacentHTML('beforeend', deliveryMethodHtml(index, type, text, price))
+                        document.querySelectorAll('[name="radio-method"]')[index].addEventListener('input', (e) => {
+                            document.querySelectorAll('#ship_options > li input')[index].checked = true;
+                            pushDataLayer(`Click on ${e.target.nextElementSibling.querySelector('.type').innerText} radio`, stepActive)
+                        })
                     }
-    
-                    if (item.querySelectorAll('p').length > 1) {
-                        text = item.querySelectorAll('p')[1].innerHTML.split('<strong')[0]
-                    }
-                    document.querySelector('.delivery-method').insertAdjacentHTML('beforeend', deliveryMethodHtml(index, type, text, price))
-                    document.querySelectorAll('[name="radio-method"]')[index].addEventListener('input', (e) => {
-                        document.querySelectorAll('#ship_options > li input')[index].checked = true;
-                        pushDataLayer(`Click on ${e.target.nextElementSibling.querySelector('.type').innerText} radio`, stepActive)
-                    })
                 })
                 document.querySelector('.col-left .delivery-method').insertAdjacentHTML('afterend',`
                     <div class="promocode items-center flex">
