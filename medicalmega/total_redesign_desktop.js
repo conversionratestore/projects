@@ -1805,15 +1805,16 @@ window.onload = function() {
             //copy from shipping
             let copyFromShip = (e, formType) => {
                 let stateName = document.querySelector(`.${formType}-form dd [name="state"]`),
-                    countryName = document.querySelector(`.${formType}-form dd [name="country"]`);
-    
+                    countryName = document.querySelector(`.${formType}-form dd [name="country"]`),
+                    selects = document.querySelectorAll('select');
+                    
                 if (e.checked) {
                     fetch(`/api/v1/addresses&type=ship`, {
                         headers: headerFetchAddress,
                         method: "GET",
                     }).then(res => res.json()).then(data => {
                         let address = data['addresses'][0],
-                        stateValue = address['state'];
+                            stateValue = address['state'];
     
                         for (const keyShip in address) {
                             console.log(keyShip, address[keyShip])
@@ -1828,10 +1829,18 @@ window.onload = function() {
                             stateName.innerHTML = statesUsa;
                             stateName.previousElementSibling.children[0].innerHTML = 'State (Only applicable to US)'
                         } else {
-                            stateName.innerHTML = '<option value="" selected="selected">-- Select State --</option>';
+                            stateName.innerHTML = '<option value="" selected="selected">Select State</option>';
                             stateName.previousElementSibling.children[0].innerHTML = 'State (Only applicable to US)'
                         }
-                        stateName.value = stateValue
+                        stateName.value = stateValue;
+
+                        selects.forEach(item => {
+                            if (item.selectedIndex == 0) {
+                                item.style = 'color: rgba(154, 166, 171, 0.8);'
+                            } else {
+                                item.style = 'color: rgba(9, 17, 20, 0.8)'   
+                            }
+                        })
                     })
                 }
             }
