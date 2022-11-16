@@ -1686,9 +1686,9 @@ window.onload = function() {
         if ((href.includes('/checkout/step1') || href.includes('/guest-checkout1.php') || href.includes('/guest-paypal1')) && document.querySelector('.myAccount') == null) {
             sessionStorage.setItem('routing', 0);
             document.querySelector('.col-left .head h4').innerHTML = obj['stepsName'][1];
-            state_item = href.includes('guest-checkout1.php') ? b_state : state;
-            countries_ship_item = href.includes('guest-checkout1.php') ? s_country.innerHTML : countries_ship;
-            countries_bill_item = href.includes('guest-checkout1.php') ? b_country.innerHTML : countries_all; //country.innerHTML;
+            state_item = href.includes('guest-checkout1.php') || href.includes('/guest-paypal1.php') ? b_state : state;
+            countries_ship_item = href.includes('guest-checkout1.php') || href.includes('/guest-paypal1.php') ? s_country.innerHTML : countries_ship;
+            countries_bill_item = href.includes('guest-checkout1.php') || href.includes('/guest-paypal1.php') ? b_country.innerHTML : countries_all; //country.innerHTML;
            
             let shipHave = false, billHave = false;
 
@@ -2087,7 +2087,7 @@ window.onload = function() {
             pushDataLayer(`Click on ${e.target.innerText} button`, document.querySelector('.steps').innerText)
         })
     } 
-    if (!href.includes('login') && !href.includes('register.php') && !href.includes('/checkout') && !href.includes('/guest-checkout')) {
+    if (!href.includes('login') && !href.includes('register.php') && !href.includes('/checkout') && !href.includes('/guest-checkout') && !href.includes('/guest-paypal')) {
         //cart
         let styleCart = `
         <style>
