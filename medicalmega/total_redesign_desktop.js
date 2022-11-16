@@ -1,4 +1,22 @@
 let dir = 'https://conversionratestore.github.io/projects/medicalmega/img/';
+         
+const API_KEY = `e3a0cffec873466acf71806748550356`;
+const APPLICATION_ID = `PXDJAQHDPZ`;
+
+const searchClient = algoliasearch(
+    APPLICATION_ID,
+    API_KEY,
+);
+
+const indexName = 'products';
+
+const search = instantsearch({
+    searchClient,
+    indexName: indexName,
+    routing: true,
+});
+
+const index = searchClient.initIndex(indexName);
 
 let styleMain =`
 <style>
@@ -3888,24 +3906,6 @@ window.onload = function() {
                     </div>
                 </div>
             </div>`;
-            
-            const API_KEY = `e3a0cffec873466acf71806748550356`;
-            const APPLICATION_ID = `PXDJAQHDPZ`;
-    
-            const searchClient = algoliasearch(
-                APPLICATION_ID,
-                API_KEY,
-            );
-    
-            const indexName = 'products';
-    
-            const search = instantsearch({
-                searchClient,
-                indexName: indexName,
-                routing: true,
-            });
-    
-            const index = searchClient.initIndex(indexName);
     
             let categoryPageLoaded = false;
     
