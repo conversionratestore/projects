@@ -162,7 +162,7 @@ const translate = {
 }
 
 let language = location.pathname.split('/')[1] 
-language ? 'checkout' : language = 'en'
+language === 'checkout' ? language = 'en' : language
 const lang = translate[language] 
 
 const style = /*html*/`
