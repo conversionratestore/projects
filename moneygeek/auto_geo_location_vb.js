@@ -16,7 +16,7 @@ let autoGeoLocation = setInterval(() => {
         console.log(actionDataLayer + " : " + labelDataLayer)
         dataLayer.push({
           event: "event-to-ga",
-          eventCategory: `Exp: Autofill ZIP ${eventVar}`,
+          eventCategory: `Exp: Autofill ZIP Variant B ${eventVar}`,
           eventAction: `${actionDataLayer}`,
           eventLabel: `${labelDataLayer}`,
         })
@@ -24,7 +24,7 @@ let autoGeoLocation = setInterval(() => {
         console.log(actionDataLayer)
         dataLayer.push({
           event: "event-to-ga",
-          eventCategory: `Exp: Autofill ZIP ${eventVar}`,
+          eventCategory: `Exp: Autofill ZIP Variant B ${eventVar}`,
           eventAction: `${actionDataLayer}`,
         })
       }
@@ -315,7 +315,7 @@ form.css-8atqhb .chakra-form__error-message {
       if (typeof clarity === "function") {
         clearInterval(record)
 
-        clarity("set", "autofill_zip", "variant_1")
+        clarity("set", "autofill_zip_variant_b", "variant_1")
       }
     }, 200)
   }
