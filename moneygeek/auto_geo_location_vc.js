@@ -2,6 +2,8 @@ let autoGeoLocation = setInterval(() => {
   if (document.querySelector("#___gatsby")) {
     clearInterval(autoGeoLocation)
 
+    console.log(">>>>>>>>>>>>>>>Variant C")
+
     let eventVar = "desktop"
 
     if (window.innerWidth <= 768) {
