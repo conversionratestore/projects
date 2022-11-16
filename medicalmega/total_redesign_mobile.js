@@ -2415,7 +2415,7 @@ window.onload = function() {
     }
 
     !href.includes('/checkout/step4') && !href.includes('/guest-checkout4.php') ? cart('.cart_count') : '';
-    if (!href.includes('login') && !href.includes('/register.php') && !href.includes('/checkout') && !href.includes('/guest-checkout')) {
+    if (!href.includes('login') && !href.includes('/register.php') && !href.includes('/checkout') && !href.includes('/guest-checkout') && !href.includes('/guest-paypal')) {
         let style = `
         <style class="style-main">
         @font-face {
