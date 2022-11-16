@@ -2231,7 +2231,7 @@ window.onload = function() {
                 pushDataLayer(`Click on ${e.target.innerText} button`, stepActive)
             })
         } 
-        if (!href.includes('login') && !href.includes('register.php') && !href.includes('/checkout') && !href.includes('/guest-checkout')) {
+        if (!href.includes('login') && !href.includes('register.php') && !href.includes('/checkout') && !href.includes('/guest-checkout') && !href.includes('/guest-paypal')) {
             //cart
             let styleCart = `
             <style>
