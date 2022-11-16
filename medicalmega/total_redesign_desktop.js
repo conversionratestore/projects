@@ -4361,16 +4361,6 @@ window.onload = function() {
                                     e.target.classList.remove('action-clean');
                                 })
                             }
-                            window.addEventListener('scroll', (e) => {
-                                remActiveSelect();
-                                removeActive('.nav_category')
-                                if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
-                                    if (document.querySelector('.listing_content .ais-InfiniteHits-loadMore') != null && document.querySelector('.listing_content .ais-InfiniteHits-loadMore.ais-InfiniteHits-loadMore--disabled') == null) {
-                                        console.log(document.querySelector('.listing_content .ais-InfiniteHits-loadMore') != null)
-                                        document.querySelector('.listing_content .ais-InfiniteHits-loadMore').click();
-                                    }
-                                }
-                            })
                         }
                     },
                 },
@@ -4412,11 +4402,21 @@ window.onload = function() {
                 pushDataLayer(`Click on logo`, 'Header');
                 window.location.href = currentPath;
             })
-
             document.addEventListener('click', (e) => {
                 if (!e.target.closest('.select')) remActiveSelect();
                 if (!e.target.closest('.nav_category')) {
                     removeActive(`.nav_category`)
+                }
+            })
+
+            window.addEventListener('scroll', (e) => {
+                remActiveSelect();
+                removeActive('.nav_category')
+                if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
+                    if (document.querySelector('.listing_content .ais-InfiniteHits-loadMore') != null && document.querySelector('.listing_content .ais-InfiniteHits-loadMore.ais-InfiniteHits-loadMore--disabled') == null) {
+                        console.log(document.querySelector('.listing_content .ais-InfiniteHits-loadMore') != null)
+                        document.querySelector('.listing_content .ais-InfiniteHits-loadMore').click();
+                    }
                 }
             })
 
