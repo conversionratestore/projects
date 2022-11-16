@@ -1795,7 +1795,7 @@ window.onload = function() {
             document.querySelectorAll('#ship_options > li').forEach((item, index) => {
                 let type = item.querySelector('p > i') != null ? item.querySelector('p > i').innerText : '',
                     text = '',
-                    price = item.querySelector('p > b') != null ? item.querySelector('p > b').innerText : item.querySelector('p > strong').innerText == 'FREE!' ? 'FREE!' : '';
+                    price = item.querySelector('p > b') != null ? item.querySelector('p > b').innerText : item.querySelector('p > strong') != null ? item.querySelector('p > strong').innerText == 'FREE!' ? 'FREE!' : '' : '';
                 if (index == 0) {
                     item.querySelector('input').checked = true;
                 }
