@@ -4307,8 +4307,14 @@ window.onload = function() {
 
                             if (window.location.pathname.includes('/category') && !window.location.href.includes('?products') && categoryPageLoaded == false) {
                                 categoryPageLoaded = true;
-                                search.helper.state.hierarchicalFacetsRefinements['categories.lvl0'] = [document.querySelector('title').innerHTML.split(' |')[0].split('&amp;').join('&')];
-                                search.refresh()
+                                let category = document.querySelector('title').innerHTML.split(' |')[0];
+                                search.helper.state.hierarchicalFacetsRefinements['categories.lvl0'] = [category];
+                                // search.helper.state.hierarchicalFacetsRefinements['categories.lvl0'] = [document.querySelector('title').innerHTML.split(' |')[0].split('&amp;').join('&')];
+                                
+                                search.refresh();
+                                
+                                document.querySelector('#breadcrumbs').style = '';
+                                document.querySelector('.listing_title').innerHTML = category;
                             }
 
                             let crumbs = document.querySelectorAll('#breadcrumbs li');
