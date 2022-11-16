@@ -3136,11 +3136,11 @@ window.onload = function() {
                 padding-left: 1px;
                 margin-top: 13px; }
             .listing_wrapper li {
+                margin-left: -1px;
                 width: 25%; }
             .listing_wrapper .card {
                 border-radius: 0;
                 margin-top: -1px;
-                margin-left: -1px;
                 width: 100%;}
             .listing_wrapper .card img {
                 width: 150px;
