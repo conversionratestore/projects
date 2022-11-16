@@ -1286,7 +1286,7 @@ window.onload = function() {
                     height: 61px;
                     color: #091114;
                     padding: 16px 24px 16px 16px;
-                    font-size: 16px;
+                    font-size: 18px;
                     line-height: 20px;
                 }
                 .check {
@@ -1320,8 +1320,10 @@ window.onload = function() {
                 }
                 .checkbox:checked ~ .method .type, .checkbox:checked ~ .method .price, .checkbox:checked ~ .method .text {
                     border-color: #091114;
+                    font-size: 16px;
+                }
+                .checkbox:checked ~ .method .type, .checkbox:checked ~ .method .price {
                     font-weight: 600;
-                    font-size: 18px;
                 }
                 .method .type {
                     border-left: 1px solid #E0E4E5;
@@ -1336,7 +1338,7 @@ window.onload = function() {
                 .method .text {
                     border-left: 1px solid #E0E4E5;
                     font-weight: 400;
-                    font-size: 16px;
+                    font-size: 18px;
                     padding: 0 20px;
                 }
                 .promocode {
