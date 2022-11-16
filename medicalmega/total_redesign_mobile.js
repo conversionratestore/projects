@@ -1793,7 +1793,7 @@ window.onload = function() {
             document.querySelector('.col-left .head h4').innerHTML = 'Delivery Method';
             document.querySelector('.col-left .head').insertAdjacentHTML('afterend',`<div class="delivery-method"></div>`)
             document.querySelectorAll('#ship_options > li').forEach((item, index) => {
-                let type = item.querySelector('p > i').innerText,
+                let type = item.querySelector('p > i') != null ? item.querySelector('p > i').innerText : '',
                     text = '',
                     price = item.querySelector('p > b') != null ? item.querySelector('p > b').innerText : item.querySelector('p > strong').innerText == 'FREE!' ? 'FREE!' : '';
                 if (index == 0) {
