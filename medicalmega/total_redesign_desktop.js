@@ -1688,13 +1688,13 @@ window.onload = function() {
                 document.querySelector(typeCountry).addEventListener('input', (e) => {
                     if (e.target.value == 'Canada') {
                         document.querySelector(typeState).innerHTML = statesCanada;
-                        document.querySelector(typeState).previousElementSibling.children[0].innerHTML = 'Province / Territory'
+                        document.querySelector(typeState).parentElement.previousElementSibling.children[0].innerHTML = 'Province / Territory'
                     } else if (e.target.value == 'United States') {
                         document.querySelector(typeState).innerHTML = statesUsa;
-                        document.querySelector(typeState).previousElementSibling.children[0].innerHTML = 'State (Only applicable to US)'
+                        document.querySelector(typeState).parentElement.previousElementSibling.children[0].innerHTML = 'State (Only applicable to US)'
                     } else {
                         document.querySelector(typeState).innerHTML = '<option value="" selected="selected">Select State</option>';
-                        document.querySelector(typeState).previousElementSibling.children[0].innerHTML = 'State (Only applicable to US)'
+                        document.querySelector(typeState).parentElement.previousElementSibling.children[0].innerHTML = 'State (Only applicable to US)'
                     }
                 })
             }
@@ -1853,13 +1853,13 @@ window.onload = function() {
                         }
                         if (countryName.value == 'Canada') {
                             stateName.innerHTML = statesCanada;
-                            stateName.previousElementSibling.children[0].innerHTML = 'Province / Territory'
+                            stateName.parentElement.previousElementSibling.children[0].innerHTML = 'Province / Territory'
                         } else if (countryName.value == 'United States') {
                             stateName.innerHTML = statesUsa;
-                            stateName.previousElementSibling.children[0].innerHTML = 'State (Only applicable to US)'
+                            stateName.parentElement.previousElementSibling.children[0].innerHTML = 'State (Only applicable to US)'
                         } else {
                             stateName.innerHTML = '<option value="" selected="selected">Select State</option>';
-                            stateName.previousElementSibling.children[0].innerHTML = 'State (Only applicable to US)'
+                            stateName.parentElement.previousElementSibling.children[0].innerHTML = 'State (Only applicable to US)'
                         }
                         stateName.value = stateValue;
 
