@@ -536,10 +536,10 @@ const style = /*html*/`
                 align-items: flex-start;
             }
             .mob_cart_wrapper.clickable .img_wrapper {
-                padding: 5px;
-    display: flex;
-    margin-top: 4px;
-    cursor: pointer;
+                padding: 3px;
+                display: flex;
+                margin-top: 5px;
+                cursor: pointer;
             }
             .mob_cart_wrapper.clickable.hide_cart img{
                 transform: rotate(180deg);
@@ -868,7 +868,6 @@ const waitForSummaryAndCart = setInterval(() => {
             </div>
         `)
         waitForEl('.mob_cart_wrapper.clickable .img_wrapper').then(el => el.addEventListener('click', (e) => {
-            console.log(e.target);
             el.closest('.mob_cart_wrapper').classList.toggle('hide_cart')
             callEvent('click on cart total arrow')
         }))
