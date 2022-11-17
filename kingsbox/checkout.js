@@ -495,6 +495,9 @@ const style = /*html*/`
                 display: none;
                 padding: 8px 30px;
             }   
+            .mob_cart_wrapper  span {
+                white-space: nowrap;
+            }
             .mob_cart_wrapper.fixed {
                 transform-origin: top;
                 transition: transform 0.3s ease;
@@ -514,7 +517,7 @@ const style = /*html*/`
                 color: #212529;
                 margin: 0;
             }
-            .mob_cart_wrapper.clickable p::after{
+            /*.mob_cart_wrapper.clickable p::after{
                 position: absolute;
                 content: '';
                 top: 50%;
@@ -525,9 +528,18 @@ const style = /*html*/`
                 background-repeat: no-repeat;
                 object-fit: cover;
                 transform: translateY(-50%) rotate(180deg);
-            }  
-            .mob_cart_wrapper.clickable.hide_cart p::after{
-                transform: translateY(-50%);
+            }  */
+            .mob_cart_wrapper.clickable {
+                display: flex;
+                flex-direction: row;
+                justify-content: space-between;
+                align-items: flex-start;
+            }
+            .mob_cart_wrapper.clickable img {
+                margin: 8px 0 0 8px;
+            }
+            .mob_cart_wrapper.clickable.hide_cart img{
+                transform: rotate(180deg);
             }
             .hide_cart + div {display: none;}
             .hide_cart + div + div {display: none;}
@@ -842,8 +854,15 @@ const waitForSummaryAndCart = setInterval(() => {
             document.querySelector('.checkout-shopping-cart-col')) // put cart above summary
 
         document.querySelector('app-checkout-summary').insertAdjacentHTML('beforebegin', `<div class="mob_cart_wrapper"><p>${lang.total} <span></span></p></div>`)
-        document.querySelector('app-checkout-summary').insertAdjacentHTML('afterbegin', `<div class="mob_cart_wrapper clickable"><p>${lang.total} <span></span></p></div>`)
-        waitForEl('.mob_cart_wrapper.clickable p').then(el => el.addEventListener('click', () => {
+        document.querySelector('app-checkout-summary').insertAdjacentHTML('afterbegin', /*html*/`
+            <div class="mob_cart_wrapper clickable">
+                <div>
+                    <p>${lang.total} <span></span></p>
+                </div>
+                <img src="https://conversionratestore.github.io/projects/kingsbox/img/expand_more.svg" alt="arrow">
+            </div>
+        `)
+        waitForEl('.mob_cart_wrapper.clickable img').then(el => el.addEventListener('click', () => {
             el.closest('.mob_cart_wrapper').classList.toggle('hide_cart')
             callEvent('click on cart total arrow')
         }))
