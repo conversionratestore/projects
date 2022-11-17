@@ -535,8 +535,11 @@ const style = /*html*/`
                 justify-content: space-between;
                 align-items: flex-start;
             }
-            .mob_cart_wrapper.clickable img {
-                margin: 8px 0 0 8px;
+            .mob_cart_wrapper.clickable .img_wrapper {
+                padding: 5px;
+    display: flex;
+    margin-top: 4px;
+    cursor: pointer;
             }
             .mob_cart_wrapper.clickable.hide_cart img{
                 transform: rotate(180deg);
@@ -859,10 +862,13 @@ const waitForSummaryAndCart = setInterval(() => {
                 <div>
                     <p>${lang.total} <span></span></p>
                 </div>
-                <img src="https://conversionratestore.github.io/projects/kingsbox/img/expand_more.svg" alt="arrow">
+                <div class="img_wrapper">
+                    <img src="https://conversionratestore.github.io/projects/kingsbox/img/expand_more.svg" alt="arrow">
+                </div>
             </div>
         `)
-        waitForEl('.mob_cart_wrapper.clickable img').then(el => el.addEventListener('click', () => {
+        waitForEl('.mob_cart_wrapper.clickable .img_wrapper').then(el => el.addEventListener('click', (e) => {
+            console.log(e.target);
             el.closest('.mob_cart_wrapper').classList.toggle('hide_cart')
             callEvent('click on cart total arrow')
         }))
