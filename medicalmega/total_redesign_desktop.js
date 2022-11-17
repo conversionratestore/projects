@@ -1060,10 +1060,10 @@ window.onload = function() {
                     float: left;
                     position: relative;
                 }
-                dd.error {
+                .error, .select-a {
                     position: relative;
                 }
-                dd.error i {
+                .error i {
                     position: absolute;
                     left: 16px;
                     top: 100%;
@@ -1071,6 +1071,23 @@ window.onload = function() {
                     margin-top: 4px;
                     color: red;
                     font-style: normal;
+                }
+                .select-a select {
+                    appearance: none;
+                    line-height: 1;
+                }
+                .select-a:after {
+                  content: '';
+                  position: absolute;
+                  right: 20px;
+                  top: 21px;
+                  width: 0;
+                  height: 0;
+                  border-style: solid;
+                  border-width: 6px 6px 0 6px;
+                  z-index: 2;
+                  pointer-events: none;
+                  border-color: #9AA6AB transparent transparent transparent;
                 }
                 .myAccountleft dd .eye {
                     position: absolute;
@@ -1676,7 +1693,7 @@ window.onload = function() {
                         document.querySelector(typeState).innerHTML = statesUsa;
                         document.querySelector(typeState).previousElementSibling.children[0].innerHTML = 'State (Only applicable to US)'
                     } else {
-                        document.querySelector(typeState).innerHTML = '<option value="" selected="selected">-- Select State --</option>';
+                        document.querySelector(typeState).innerHTML = '<option value="" selected="selected">Select State</option>';
                         document.querySelector(typeState).previousElementSibling.children[0].innerHTML = 'State (Only applicable to US)'
                     }
                 })
@@ -1702,8 +1719,10 @@ window.onload = function() {
                     </dd>
                     <dd style="width: 50%;float:left;padding-right: 8px">
                         <label for="country">Country <span class="c-red"> *</span></label>
-                        <select name="country"> ${countries_ship}</select>
-                        <i></i>
+                        <div class="select-a">
+                             <select name="country"> ${countries_ship}</select>
+                             <i></i>
+                        </div>
                     </dd>
                     <dd style="width: 50%;float:left;padding-left: 8px">
                         <label for="addr1">Address line <span class="c-red"> *</span></label>
@@ -1717,8 +1736,10 @@ window.onload = function() {
                     </dd>
                     <dd style="width: 50%;float:left;padding-left: 8px">
                         <label for="state"><span>State (Only applicable to US)</span> <span class="c-red"> *</span></label>
-                        <select name="state"> ${state.innerHTML}</select>
-                        <i></i>
+                        <div class="select-a">
+                             <select name="state"> ${state.innerHTML}</select>
+                             <i></i>
+                        </div>
                     </dd>
                     <dd style="width: 50%;float:left;padding-right: 8px">
                         <label for="zip">Zip / Postal Code <span class="c-red"> *</span></label>
@@ -1750,8 +1771,10 @@ window.onload = function() {
                     </dd>
                     <dd style="width: 50%;float:left;padding-right: 8px">
                         <label for="country">Country <span class="c-red"> *</span></label>
-                        <select name="country"> ${countries_ship}</select>
-                        <i></i>
+                        <div class="select-a">
+                             <select name="country"> ${countries_ship}</select>
+                             <i></i>
+                        </div>
                     </dd>
                     <dd style="width: 50%;float:left;padding-left: 8px">
                         <label for="addr1">Address line <span class="c-red"> *</span></label>
@@ -1770,8 +1793,10 @@ window.onload = function() {
                     </dd>
                     <dd style="width: 50%;float:left;padding-left: 8px">
                         <label for="state"><span>State (Only applicable to US)</span> <span class="c-red"> *</span></label>
-                        <select name="state"> ${state.innerHTML}</select>
-                        <i></i>
+                        <div class="select-a">
+                             <select name="state"> ${state.innerHTML}</select>
+                             <i></i>
+                        </div>
                     </dd>
                     <dd style="width: 50%;float:left;padding-right: 8px">
                         <label for="zip">Zip / Postal Code <span class="c-red"> *</span></label>
