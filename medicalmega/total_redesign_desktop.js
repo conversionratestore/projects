@@ -776,8 +776,6 @@ window.onload = function() {
                     document.querySelector(paymentAmount).parentElement.classList.remove('loading')
                 }
                 setCount && document.querySelector(setCount) != null ? document.querySelector(setCount).innerHTML = counterBasket : '';
-                
-                document.querySelector('.exp-loading') != null ? document.querySelector('.exp-loading').remove() : '';
             })
         }
         //Confirmation
@@ -933,7 +931,6 @@ window.onload = function() {
     
             let height = document.querySelector('.confirmation-order .col:first-child').clientHeight;
             document.querySelector('.confirmation-products').style.height = height + 60 + 'px';
-            document.querySelector('.exp-loading') != null ? document.querySelector('.exp-loading').remove() : '';
         }
     
         if ((href.includes('login') || href.includes('/register.php') || href.includes('/checkout') || href.includes('/guest-checkout') || href.includes('/guest-paypal')) && !href.includes('/checkout/step4') && !href.includes('/guest-checkout4.php') && !href.includes('/guest-paypal4.php')) {
