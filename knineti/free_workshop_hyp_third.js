@@ -390,6 +390,9 @@ if (window.location.pathname === "/free-workshop/") {
         color: #193973;
         text-transform: capitalize;
       }
+      .popup_new > div:last-child .popup_second > h2 span.small_var{
+        text-transform: unset;
+      }
       .last_step_title {
         display: none;
         margin: 40px 0;
@@ -406,6 +409,9 @@ if (window.location.pathname === "/free-workshop/") {
       .last_step_title h2 .your_dog_name {
         color: #193973;
         text-transform: capitalize;
+      }
+      .last_step_title h2 .your_dog_name.small_var{
+        text-transform: unset;
       }
       .last_step_title p {
         font-weight: 400;
@@ -2233,13 +2239,13 @@ if (window.location.pathname === "/free-workshop/") {
           }
 
           //FORM
-          document.querySelector("#firstModal #subs-name").placeholder = "Enter your name"
+          document.querySelector("#firstModal #subs-name").placeholder = "Enter your first name"
           document.querySelector("#firstModal #dog-name").placeholder = "Enter your dog’s name"
           document.querySelector("#firstModal #subs-email").placeholder = "Enter your email"
           document.querySelector("#firstModal #subs-mobile").placeholder = "Enter your сontact number"
           document.querySelector("#firstModal #contact-submit").textContent = "Get workshop link"
           document.querySelector("#firstModal #dog-name-top-levels").textContent = "Dog’s name"
-          document.querySelector("#firstModal #subs-name-top-levels").textContent = "Your name"
+          document.querySelector("#firstModal #subs-name-top-levels").textContent = "Your first name"
           document.querySelector("#firstModal #subs-name").tabIndex = "0"
           document.querySelector("#firstModal #dog-name").tabIndex = "0"
           document.querySelector("#firstModal #subs-email").tabIndex = "0"
@@ -2248,11 +2254,11 @@ if (window.location.pathname === "/free-workshop/") {
 
           document
             .querySelector(`#firstModal input[name='dog_name']`)
-            .insertAdjacentHTML("afterend", `<span class="input_error_text dog_name">Please enter Your Dog’s name without spaces, numbers or special characters</span>`)
+            .insertAdjacentHTML("afterend", `<span class="input_error_text dog_name">Your dog's name field cannot be empty</span>`)
 
           document
             .querySelector(`#firstModal input[name='first_name']`)
-            .insertAdjacentHTML("afterend", `<span class="input_error_text name">Please enter Your name without spaces, numbers or special characters</span>`)
+            .insertAdjacentHTML("afterend", `<span class="input_error_text name">Please enter Your first name without spaces, numbers or special characters</span>`)
 
           document.querySelector("#firstModal #subs-email")?.insertAdjacentHTML("afterend", `<div class="email_text"><p>We’ll email you the link for the workshop</p></div>`)
           // create new element popup finalForm -> input name, email, number
@@ -2331,7 +2337,8 @@ if (window.location.pathname === "/free-workshop/") {
 
       // validate formu
       function validationDogNameForm(parent) {
-        let inputDogName = document.querySelector(`${parent} input[name='dog_name']`).value.match(/^[a-zA-Z]+$/)
+        // let inputDogName = document.querySelector(`${parent} input[name='dog_name']`).value.match(/^[a-zA-Z]+$/)
+        let inputDogName = document.querySelector(`${parent} input[name='dog_name']`).value.match(/^.{1,}$/)
         pushDataLayer(`Click on Continue on step "We'd love to know more about your dog. Introduce us!"`)
         if (document.querySelector(".privacy_policy_wrap p a")) {
           document.querySelector(".privacy_policy_wrap p a").setAttribute("step", "3")
@@ -2376,15 +2383,48 @@ if (window.location.pathname === "/free-workshop/") {
             document.querySelector("#firstModal .button_input_name").classList.add("step_third")
           }, 100)
 
-          localStorage.setItem("dogName", document.querySelector("#firstModal #dog-name").value)
+          let string = document.querySelector("#firstModal #dog-name").value
+          if (string[0] == " ") {
+            while (string[0] == " ") string = string.substr(1)
+          }
+          if (string[string.length - 1] == " ") {
+            while (string[string.length - 1] == " ") string = string.substr(0, string.length - 1)
+          }
+          if (!string) {
+            localStorage.setItem("dogName", document.querySelector("#firstModal #dog-name").value)
+          } else {
+            localStorage.setItem("dogName", string)
+          }
+
+          console.log(`string`, string)
           document.querySelector(".popup_new > div:last-child .popup_second > h2").classList.add("step_three")
 
           if (localStorage.getItem("dogName")) {
-            document.querySelector(".popup_new > div:last-child .popup_second > h2").innerHTML = `Enter your details to receive help for <span>${localStorage.getItem(
-              "dogName"
-            )}’s</span> behavior`
+            console.log(`>>>>>>>>>>>>>>>`, localStorage.getItem("dogName"))
             if (document.querySelector(".last_step_title h2 .your_dog_name")) {
-              document.querySelector(".last_step_title h2 .your_dog_name").textContent = `${localStorage.getItem("dogName")}’s`
+              let q = localStorage.getItem("dogName").match(/^[a-zA-Z]+$/)
+              if (
+                localStorage.getItem("dogName") === " " ||
+                localStorage.getItem("dogName") === "" ||
+                localStorage.getItem("dogName").length > 20 ||
+                localStorage.getItem("dogName").includes(" ") ||
+                q === null
+              ) {
+                console.log(`q`, q)
+                document.querySelector(
+                  ".popup_new > div:last-child .popup_second > h2"
+                ).innerHTML = `Enter your details to receive help for <span class="small_var">your dog’s</span> behavior`
+                document.querySelector(".last_step_title h2 .your_dog_name").classList.add("small_var")
+                document.querySelector(".last_step_title h2 .your_dog_name").textContent = `your dog's`
+              } else {
+                document.querySelector(".popup_new > div:last-child .popup_second > h2").innerHTML = `Enter your details to receive help for <span>${localStorage.getItem(
+                  "dogName"
+                )}’s</span> behavior`
+                if (document.querySelector(".last_step_title h2 .your_dog_name").classList.contains("small_var")) {
+                  document.querySelector(".last_step_title h2 .your_dog_name").classList.remove("small_var")
+                }
+                document.querySelector(".last_step_title h2 .your_dog_name").textContent = `${localStorage.getItem("dogName")}’s`
+              }
             }
           }
         }
