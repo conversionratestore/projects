@@ -1720,7 +1720,7 @@ window.onload = function() {
                     </dd>
                     <dd style="width: 100%;float:left;padding-right: 8px">
                         <label for="email">Email <span class="c-red"> *</span></label>
-                        <input type="text" name="email">
+                        <input type="text" name="email" value="${mm_e != null ? mm_e : ''}">
                         <i></i>
                     </dd>
                     <dd style="width: 50%;float:left;padding-right: 8px">
@@ -1789,7 +1789,7 @@ window.onload = function() {
                     </dd>
                     <dd style="width: 100%;float:left;padding-right: 8px">
                         <label for="email">Email <span class="c-red"> *</span></label>
-                        <input type="text" name="email">
+                        <input type="text" name="email" value="${mm_e != null ? mm_e : ''}">
                         <i></i>
                     </dd>
                     <dd style="width: 50%;float:left;padding-right: 8px">
