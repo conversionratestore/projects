@@ -1685,16 +1685,23 @@ window.onload = function() {
             }
     
             let changeSelect = (typeCountry, typeState) => {
-                document.querySelector(typeCountry).addEventListener('input', (e) => {
+                let tCountry = document.querySelector(typeCountry),
+                    tState = document.querySelector(typeState);
+                if (tCountry.value == 'Canada') {
+                    tState.parentElement.previousElementSibling.children[0].innerHTML = 'Province / Territory'
+                } else {
+                    tState.parentElement.previousElementSibling.children[0].innerHTML = 'State (Only applicable to US)'
+                }
+                tCountry.addEventListener('input', (e) => {
                     if (e.target.value == 'Canada') {
-                        document.querySelector(typeState).innerHTML = statesCanada;
-                        document.querySelector(typeState).parentElement.previousElementSibling.children[0].innerHTML = 'Province / Territory'
+                        tState.innerHTML = statesCanada;
+                        tState.parentElement.previousElementSibling.children[0].innerHTML = 'Province / Territory'
                     } else if (e.target.value == 'United States') {
-                        document.querySelector(typeState).innerHTML = statesUsa;
-                        document.querySelector(typeState).parentElement.previousElementSibling.children[0].innerHTML = 'State (Only applicable to US)'
+                        tState.innerHTML = statesUsa;
+                        tState.parentElement.previousElementSibling.children[0].innerHTML = 'State (Only applicable to US)'
                     } else {
-                        document.querySelector(typeState).innerHTML = '<option value="" selected="selected">Select State</option>';
-                        document.querySelector(typeState).parentElement.previousElementSibling.children[0].innerHTML = 'State (Only applicable to US)'
+                        tState.innerHTML = '<option value="" selected="selected">Select State</option>';
+                        tState.parentElement.previousElementSibling.children[0].innerHTML = 'State (Only applicable to US)'
                     }
                 })
             }
