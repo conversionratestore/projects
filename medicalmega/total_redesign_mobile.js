@@ -1363,7 +1363,7 @@ window.onload = function() {
         //show/hide order
         document.querySelector('.order_head').addEventListener('click', (e) => {
             document.querySelector('.order').classList.toggle('active');
-            console.log(e.target.innerText)
+
             if (e.target.innerText.includes('Show')) {
                 document.querySelector('.order_head p').innerHTML = 'Hide order summary'
                 pushDataLayer("Click on Show order summary button", labelForEvents(e.target))
@@ -1636,7 +1636,6 @@ window.onload = function() {
                         stateValue = address['state'];
 
                     for (const keyShip in address) {
-                        console.log(keyShip, address[keyShip])
                         if (document.querySelector(`.${formType}-form dd [name="${keyShip}"]`) != null && address[keyShip] != '') {
                             document.querySelector(`.${formType}-form dd [name="${keyShip}"]`).value = address[keyShip]
                         }
@@ -1766,7 +1765,6 @@ window.onload = function() {
                     shipFormHtml('.col-left .head', state_item, countries_ship_item, 'active', '')
                     billFormHtml('.col-left .head', state_item, countries_bill_item, '', '')
                     document.querySelector('[name="shipping"]').addEventListener('click', (e) => {
-                        console.log(e.target)
                         copyFromShip(e.target, 'bill')
                         pushDataLayer(`Click on ${e.target.nextElementSibling.innerText} checkbox`, document.querySelector('.steps').innerText) //event
                     })
@@ -1880,7 +1878,6 @@ window.onload = function() {
         })
    
         let address = (type) => {
-            console.log(type)
             document.querySelector(`.ship-form [name="fname"]`) != null ? fname = document.querySelector(`.ship-form [name="fname"]`) : fname;
             document.querySelector(`.ship-form [name="lname"]`)  != null ? lname = document.querySelector(`.ship-form [name="lname"]`) : fname;
 
@@ -1893,7 +1890,7 @@ window.onload = function() {
             email = document.querySelector(`.${type}-form [name="email"]`);
 
             let dataDD = document.querySelectorAll(`.${type}-form dd.error`)
-            console.log(currentAddressShip, currentAddressBill, type,fname.value,lname.value,addr1.value,city.value,stateF.value,zip.value,country.value,phn.value,email.value)
+
             let errorsFun = (dataErrors) => {
                 dataDD.forEach(item => {
                     item.classList.remove('error')
@@ -2040,49 +2037,33 @@ window.onload = function() {
         //add click on next button
         document.querySelector('.foot .btn-next').addEventListener('click', (e) => {
             if (document.querySelector('.myAccountright.active') != null) {
-                console.log('login')
                 document.querySelector('#login_btn').click()
             } else if (document.querySelector('.myAccountleft.active') != null) {
-                console.log('register')
                 document.querySelector('[name="register"]').click()
             } else if (document.querySelector('.ship-form.active') != null) {
-                console.log('ship-form.active')
                 address('ship')
             } else if (document.querySelector('.bill-form.active') != null) {
-                console.log('bill-form.active')
                 address('bill')
             } else if (document.querySelector('.address.ship') != null && document.querySelector('.address.bill') != null && document.querySelector('.bill-form.edit') == null && document.querySelector('.ship-form.edit') == null) {
-                console.log('next 2 step')
-                // if (href.includes('guest-checkout')) {
-                    document.querySelector('#mainbody > div > form > div > input[type=image]').click();
-                // } else {
-                //     window.location.href = `https://medicalmega.com/checkout/step2`;
-                // }
+                document.querySelector('#mainbody > div > form > div > input[type=image]').click();
             } else if (document.querySelector('.address.ship') != null && document.querySelector('.address.bill') == null && document.querySelector('.bill-form.active') == null) {
-                console.log('next 2 step')
                 document.querySelector('.address.ship').style.display = 'none'
                 document.querySelector('.col-left .head h4').innerHTML = 'Billing information'; //change title
                 //change back button
                 setBack()
                 //add billing form html
-                console.log(state_item, countries_ship_item)
                 billFormHtml('.col-left .head', state_item, countries_bill_item, 'active','')
                 //copy from Shipping
                 document.querySelector('[name="shipping"]').addEventListener('click', (e) => copyFromShip(e.target, 'bill'))
             } else if (document.querySelector('.address.ship') == null && document.querySelector('.address.bill') != null && document.querySelector('.ship-form.active') == null) {
-                console.log('address.ship == null')
                 shipFormHtml('.col-left .head', state_item, countries_ship_item, 'active','')
             } else if (document.querySelector('.ship-form.edit') != null) {
-                console.log('edit ship form')
                 address('ship')
             } else if (document.querySelector('.bill-form.edit') != null) {
-                console.log('edit bill form')
                 address('bill')
             } else if (href.includes('checkout/step2') || href.includes('/guest-checkout2.php') || href.includes('/guest-paypal2.php')) {
-                console.log('checkout/step2 || /guest-checkout2')
                 document.querySelector('form > div > input[type=image]').click()
             } else if (href.includes('checkout/step3') || href.includes('/guest-checkout3.php') || href.includes('/guest-paypal3.php')) {
-                console.log('checkout/step3 || /guest-checkout3')
                 document.querySelector('#submitCheckout3').click()
             }
             scrollTop(e.target, document.body)

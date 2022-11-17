@@ -776,6 +776,8 @@ window.onload = function() {
                     document.querySelector(paymentAmount).parentElement.classList.remove('loading')
                 }
                 setCount && document.querySelector(setCount) != null ? document.querySelector(setCount).innerHTML = counterBasket : '';
+                
+                document.querySelector('.exp-loading') != null ? document.querySelector('.exp-loading').remove() : '';
             })
         }
         //Confirmation
@@ -2250,7 +2252,7 @@ window.onload = function() {
             }
     
             cart() //get products from cart
-            document.querySelector('.exp-loading') != null ? document.querySelector('.exp-loading').remove() : '';
+
             //add click on next button
             document.querySelector('.foot .btn-next').addEventListener('click', (e) => {
                 if (document.querySelector('.myAccountright.active') != null) {
@@ -5142,8 +5144,6 @@ window.onload = function() {
             })
 
             cart('.cart_count') //get products from cart
-            
-            document.querySelector('.exp-loading') != null ? document.querySelector('.exp-loading').remove() : ''; //remove loading
     
             let optionMut = {
                 childList: true,
