@@ -630,7 +630,7 @@ const select = `
     <div class="select_wrapper"><p>Select size</p><ul></ul></div>
 `
 let init = setInterval(function () {
-    if(document.body) {
+    if(document.body && query('.payment-buttons')) {
         clearInterval(init)
         document.body.insertAdjacentHTML('afterbegin', test_style)
         start()
@@ -643,7 +643,7 @@ function start() {
         threshold: 0.9
     })
     const ev = new Event('change')
-    query('.payment-buttons ').insertAdjacentHTML('beforeend', customBtns)
+    query('.payment-buttons').insertAdjacentHTML('beforeend', customBtns)
     query('[data-default-text="Add to cart"]').innerText = 'Add to cart'
     document.body.insertAdjacentHTML('beforeend', sizeGuide)
     query('.mobile_size .close').addEventListener('click', function () {
