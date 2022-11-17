@@ -13,7 +13,11 @@ const translate = {
         'backDelivery': 'Back to delivery method',
         'pay': 'Pay now',
         'change': 'Change',
-        'calculated': 'Calculated at next step'
+        'calculated': 'Calculated at next step',
+        'guaranteeTitle': '30 days money back guarantee',
+        'guaranteeBody': `If you are not satisfied with your Kingsbox product,
+        you can return it within 30 days 
+        of delivery without giving a specific reason for return.`,
     },
     'it': {
         'shop': 'Negozio',
@@ -29,7 +33,11 @@ const translate = {
         'backDelivery': 'Torna alla modalità di consegna',
         'pay': 'Paga ora',
         'change': 'Modifica',
-        'calculated': 'Si calcola al passo successivo'
+        'calculated': 'Si calcola al passo successivo',
+        'guaranteeTitle': '30 giorni di garanzia sul rimborso',
+        'guaranteeBody': `Se non sei soddisfatto del tuo prodotto Kingsbox,
+        puoi restituirlo entro 30 giorni dalla 
+        dalla consegna, senza fornire un motivo specifico per la restituzione.`,
     },
     'hr': {
         'shop': 'Trgovina',
@@ -45,7 +53,9 @@ const translate = {
         'backDelivery': 'Povratak na način dostave',
         'pay': 'Platite odmah',
         'change': 'Promijeni',
-        'calculated': 'Izračunat će se u sljedećem koraku'
+        'calculated': 'Izračunat će se u sljedećem koraku',
+        'guaranteeTitle': '30 dana jamstva povrata novca',
+        'guaranteeBody': 'Ako niste zadovoljni svojim proizvodom Kingsbox, možete ga vratiti u roku od 30 dana od dostave bez navođenja razloga za povrat.',
     },
     'sl': {
         'shop': 'Nakupuj',
@@ -61,7 +71,9 @@ const translate = {
         'backDelivery': 'Nazaj na načine dostave',
         'pay': 'Plačaj zdaj',
         'change': 'Spremeni',
-        'calculated': 'Izračunano na naslednjem koraku'
+        'calculated': 'Izračunano na naslednjem koraku',
+        'guaranteeTitle': '',
+        'guaranteeBody': 'Če niste zadovoljni s KingsBox izdelkom, ga lahko v 30 dneh vrnete brez navedenega razloga.',
     },
     'de': {
         'shop': 'Shop',
@@ -77,7 +89,10 @@ const translate = {
         'backDelivery': 'Zurück zur Liefermethode',
         'pay': 'Zahlen Sie jetzt',
         'change': 'Veränderung',
-        'calculated': 'Wird im nächsten Schritt berechnet'
+        'calculated': 'Wird im nächsten Schritt berechnet',
+        'guaranteeTitle': '30 Tage Geld-zurück-Garantie',
+        'guaranteeBody': `Wenn Sie mit Ihrem Kingsbox-Produkt nicht zufrieden sind,
+        können Sie es innerhalb von 30 Tagen der Lieferung zurück geben ohne Angabe eines bestimmten Rücksendegrundes.`,
     },
     'fr': {
         'shop': 'Boutique',
@@ -93,7 +108,11 @@ const translate = {
         'backDelivery': 'Retour à la mode de livraison',
         'pay': 'Payer maintenant',
         'change': 'Changements',
-        'calculated': 'Calculé à l\'étape suivante'
+        'calculated': 'Calculé à l\'étape suivante',
+        'guaranteeTitle': 'Remboursement garanti pendant 30 jours',
+        'guaranteeBody': `Si vous n'êtes pas satisfait de votre produit Kingsbox,
+        vous pouvez le retourner dans les 30 jours 
+        à partir de la livraison sans indiquer la raison spécifique pour le retour.`,
     },
     'es': {
         'shop': 'Comprar',
@@ -109,7 +128,11 @@ const translate = {
         'backDelivery': 'Volver a la forma de entrega',
         'pay': 'Pagar ahora',
         'change': 'Cambiar',
-        'calculated': 'Calculado en el siguiente paso'
+        'calculated': 'Calculado en el siguiente paso',
+        'guaranteeTitle': '30 días de garantía de devolución del dinero',
+        'guaranteeBody': `Si no estás satisfecho con tu producto Kingsbox
+        puedes devolverlo en un plazo de 30 días 
+        de la entrega sin dar una razón específica para la devolución.`,
     },
     'nl': { // dutch
         'shop': 'Shop',
@@ -125,7 +148,9 @@ const translate = {
         'backDelivery': 'Back to Shipping info',
         'pay': 'Pay now',
         'change': 'Change',
-        'calculated': 'Calculated at next step'
+        'calculated': 'Calculated at next step',
+        'guaranteeTitle': '',
+        'guaranteeBody': '',
     },
     'se': { // svenska
         'shop': 'Butik',
@@ -141,7 +166,9 @@ const translate = {
         'backDelivery': 'Tillbaka till leveranssätt',
         'pay': 'Betala nu',
         'change': 'Byt / Ändra',
-        'calculated': 'Beräknas vid nästa steg'
+        'calculated': 'Beräknas vid nästa steg',
+        'guaranteeTitle': '30-dagars återbetalningsgaranti',
+        'guaranteeBody': 'Om du inte är nöjd med din Kingsbox-produkt kan du returnera den inom 30 dagar efter leverans utan att ange ett specifikt skäl för returen.',
     },
     'cs': { // Czech
         'shop': 'Obchod',
@@ -157,13 +184,16 @@ const translate = {
         'backDelivery': 'Zpět na způsob doručení',
         'pay': 'Zaplatit nyní',
         'change': 'Změnit',
-        'calculated': 'Vypočte se v následujícím kroku'
+        'calculated': 'Vypočte se v následujícím kroku',
+        'guaranteeTitle': '30denní záruka vrácení peněz',
+        'guaranteeBody': `Pokud nejste s produktem od Kingsboxu spokojeni,
+        můžete jej do 30 dnů od doručení vrátit bez udání konkrétního důvodu pro vrácení.`,
     }
 }
 
-let language = location.pathname.split('/')[1] 
+let language = location.pathname.split('/')[1]
 language === 'checkout' ? language = 'en' : language
-const lang = translate[language] 
+const lang = translate[language]
 
 const style = /*html*/`
         <style>
@@ -199,6 +229,7 @@ const style = /*html*/`
                 left: 50%;
                 transform: translateX(-50%);
                 text-transform: uppercase;
+                color: #A1A1A1;
             }
             .circle {
                 position: relative;
@@ -237,6 +268,10 @@ const style = /*html*/`
             .black + .line,
             .check + .line {
                 background-color: #212529;
+            }
+            .black.step p,
+            .check.step p {
+                color: #212529;
             }
 
             .checkout-shipping {
@@ -718,8 +753,8 @@ document.head.insertAdjacentHTML('beforeend', style)
 
 const moneyback = /*html*/`
     <div class="moneyback">
-        <p>30 days money back guarantee</p>
-        <p>If you are not satisfied with your Kingsbox product, you can return it within 30 days of delivery without giving a specific reason for return. </p>
+        <p>${lang.guaranteeTitle}</p>
+        <p>${lang.guaranteeBody}</p>
     </div>
 `
 const checkoutSteps = /*html*/`
