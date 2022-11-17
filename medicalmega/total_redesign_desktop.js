@@ -645,7 +645,7 @@ let capitalizeFirstLetter = (string) => {
     return string.charAt(0).toUpperCase() + string.slice(1);
 }
 window.onload = function() {
-    if (sessionStorage.getItem('old_version') == null) { 
+    if (sessionStorage.getItem('old_version') == null && document.readyState == 'complete') { 
         document.body.insertAdjacentHTML('afterbegin', styleMain)
 
         //change quantity, update product quantity in cart
