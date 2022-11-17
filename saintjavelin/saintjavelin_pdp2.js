@@ -629,40 +629,45 @@ const sizeGuide = `
 const select = `
     <div class="select_wrapper"><p>Select size</p><ul></ul></div>
 `
+let init = setInterval(function () {
+    if(document.body) {
+        clearInterval(init)
+        document.body.insertAdjacentHTML('afterbegin', test_style)
+        start()
+    }
+}, 100)
 
-document.body.insertAdjacentHTML('afterbegin', test_style)
-start()
 
-function start () {
+function start() {
     let obs = new IntersectionObserver(visibility, {
         threshold: 0.9
     })
     const ev = new Event('change')
-   query('.payment-buttons ').insertAdjacentHTML('beforeend', customBtns)
-   query('[data-default-text="Add to cart"]').innerText = 'Add to cart'
+    query('.payment-buttons ').insertAdjacentHTML('beforeend', customBtns)
+    query('[data-default-text="Add to cart"]').innerText = 'Add to cart'
     document.body.insertAdjacentHTML('beforeend', sizeGuide)
-   query('.mobile_size .close').addEventListener('click', function () {
-       mobileSizeClose()
-       pushDataLayer('Click on close Select size pop-up')
-   })
+    query('.mobile_size .close').addEventListener('click', function () {
+        mobileSizeClose()
+        pushDataLayer('Click on close Select size pop-up')
+    })
     if (query('fieldset[name="Size"]')) {
-       query('fieldset[name="Size"]')?.insertAdjacentHTML('afterend', select)
+        query('fieldset[name="Size"]')?.insertAdjacentHTML('afterend', select)
         drawSelectList()
-       query('.select_wrapper p').addEventListener('click', function (e) {
-           if(window.innerWidth > 768) {
-               slideDown(query('.select_wrapper ul'))
-               e.target.classList.add('active')
-               pushDataLayer('Click on Select size dropdown')
-           } else {
-               mobileSizeShow()
-           }
+        query('.select_wrapper p').addEventListener('click', function (e) {
+            if (window.innerWidth > 768) {
+                slideDown(query('.select_wrapper ul'))
+                e.target.classList.add('active')
+                pushDataLayer('Click on Select size dropdown')
+            } else {
+                mobileSizeShow()
+            }
         })
 
         obs.observe(query('.select_wrapper'))
         obs.observe(query('.size_guide'))
 
         document.addEventListener('click', function (e) {
-            if(query('.select_wrapper p').classList.contains('active') && !e.target.closest('.select_wrapper')) {
+            if (query('.select_wrapper p').classList.contains('active') && !e.target.closest('.select_wrapper')) {
                 slideUp(query('.select_wrapper ul'))
                 query('.select_wrapper p').classList.remove('active')
             }
@@ -670,13 +675,13 @@ function start () {
     }
 
 
-    if(query('fieldset[name="Color"]')) {
-       query('fieldset[name="Color"] input').checked = true
-       query('fieldset[name="Color"] input').dispatchEvent(ev)
+    if (query('fieldset[name="Color"]')) {
+        query('fieldset[name="Color"] input').checked = true
+        query('fieldset[name="Color"] input').dispatchEvent(ev)
         document.querySelectorAll('fieldset[name="Color"] input').forEach(item => {
             item.addEventListener('change', function () {
                 pushDataLayer('Click on item Select color', item.value)
-                if(query('fieldset[name="Size"]')){
+                if (query('fieldset[name="Size"]')) {
                     drawSelectList()
                 }
             })
@@ -684,14 +689,14 @@ function start () {
     }
 
     document.querySelectorAll('.variant-wrapper>label').forEach((item) => {
-        if(item.innerText.toLowerCase().includes('size')) {
+        if (item.innerText.toLowerCase().includes('size')) {
             item.insertAdjacentHTML("beforeend", `<p class="to_size_guide">Size guide</p>`)
             item.querySelector('.to_size_guide').addEventListener('click', function () {
                 pushDataLayer('Click on Size guide button')
-               query('.dark_bg').style.display = 'block'
+                query('.dark_bg').style.display = 'block'
                 setTimeout(function () {
-                   query('.dark_bg').style.opacity = '1'
-                   query('.size_guide').style.right = '0'
+                    query('.dark_bg').style.opacity = '1'
+                    query('.size_guide').style.right = '0'
                 }, 0)
             })
         }
@@ -700,7 +705,7 @@ function start () {
     document.querySelectorAll('[data-title]').forEach((item) => {
         item.addEventListener('click', function () {
             pushDataLayer('Click on item in Size guide pop-up', item.innerText)
-            if(this.classList.contains('active')) {
+            if (this.classList.contains('active')) {
                 slideUp(this.nextElementSibling)
             } else {
                 slideDown(this.nextElementSibling)
@@ -709,19 +714,19 @@ function start () {
         })
     })
 
-   query('.size_guide .close').addEventListener('click', function () {
+    query('.size_guide .close').addEventListener('click', function () {
         pushDataLayer('Click on close Size guide pop-up')
-       query('.size_guide').style.right = '-100%'
-       query('.dark_bg').style.opacity = '0'
+        query('.size_guide').style.right = '-100%'
+        query('.dark_bg').style.opacity = '0'
         setTimeout(function () {
-           query('.dark_bg').style.display = 'none'
+            query('.dark_bg').style.display = 'none'
         }, 300)
     })
 
-   query('button[name="add"]').insertAdjacentHTML('beforeend', `<span class="cover"></span>`)
-   query('button[name="add"] .cover').addEventListener('click', function (e) {
-        if(query('button[name="add"]').getAttribute('disabled')) {
-            if(window.innerWidth > 768) {
+    query('button[name="add"]').insertAdjacentHTML('beforeend', `<span class="cover"></span>`)
+    query('button[name="add"] .cover').addEventListener('click', function (e) {
+        if (query('button[name="add"]').getAttribute('disabled')) {
+            if (window.innerWidth > 768) {
                 setTimeout(function () {
                     slideDown(query('.select_wrapper ul'))
                     query('.select_wrapper p').classList.add('active')
@@ -733,37 +738,50 @@ function start () {
     })
 
 
-
-   query('.buy_it_now').addEventListener('click', function (e) {
+    query('.buy_it_now').addEventListener('click', function (e) {
         e.preventDefault()
         setTimeout(function () {
-            if(query('button[name="add"]').getAttribute('disabled')) {
+            if (query('button[name="add"]').getAttribute('disabled')) {
                 slideDown(query('.select_wrapper ul'))
-               query('.select_wrapper p').classList.add('active')
+                query('.select_wrapper p').classList.add('active')
             } else {
-               query('.shopify-payment-button__more-options').click()
+                query('.shopify-payment-button__more-options').click()
             }
-        },100)
+        }, 100)
     })
 
-
-   query('.product-slideshow').addEventListener('changeSlider', function(e){
-        let imgUrl = e.target.querySelector('.is-selected img').getAttribute('data-photoswipe-src')
-        console.log(imgUrl)
-        document.querySelectorAll('fieldset[name="Color"] input').forEach(item => {
-            const color = item.value.toLowerCase().trim().replaceAll(' ', '-')
-            if(imgUrl.includes(color) && item.checked !== true) {
-                item.checked = true
-                item.dispatchEvent(ev)
-            }
+    if (query('fieldset[name="Color"]')) {
+        query('.product-slideshow').addEventListener('changeSlider', function (e) {
+            console.log(e)
+            let imgUrl = e.target.querySelector('.is-selected img').getAttribute('data-photoswipe-src')
+            document.querySelectorAll('fieldset[name="Color"] input').forEach(item => {
+                const color = item.value.toLowerCase().trim().replaceAll(' ', '-')
+                if (imgUrl.includes(color) && item.checked !== true) {
+                    item.checked = true
+                    item.dispatchEvent(ev)
+                }
+            })
         })
-    })
 
-    function visibility (entries) {
+
+
+        obs.observe(query('fieldset[name="Color"]'))
+        obs.observe(query('.buy_it_now'))
+        obs.observe(query('button[name="add"]'))
+        obs.observe(query('.mobile_size'))
+    }
+
+    if (window.innerWidth < 768) {
+        document.querySelectorAll('.page-width>.grid>.grid__item')[0].insertAdjacentHTML('beforebegin', `<div class="new_h1"></div>`)
+        query('.new_h1').append(query('.product-single__title'))
+        query('.new_h1').append(query('.product-single__prices'))
+    }
+
+    function visibility(entries) {
         entries.forEach(i => {
-            if(i.isIntersecting) {
+            if (i.isIntersecting) {
                 console.log(i)
-                if(i.target.classList.contains('size_guide')) {
+                if (i.target.classList.contains('size_guide')) {
                     pushDataLayer('View element on screen', 'Size guide')
                 }
                 if (i.target.classList.contains('buy_it_now')) {
@@ -785,65 +803,54 @@ function start () {
             }
         })
     }
-
-    obs.observe(query('fieldset[name="Color"]'))
-    obs.observe(query('.buy_it_now'))
-    obs.observe(query('button[name="add"]'))
-    obs.observe(query('.mobile_size'))
-
-    if(window.innerWidth < 768) {
-        document.querySelectorAll('.page-width>.grid>.grid__item')[0].insertAdjacentHTML('beforebegin', `<div class="new_h1"></div>`)
-        document.querySelector('.new_h1').append(document.querySelector('.product-single__title'))
-        document.querySelector('.new_h1').append(document.querySelector('.product-single__prices'))
-    }
 }
 
 function drawSelectList() {
-   query('.select_wrapper ul').innerHTML = ''
-   query('.mobile_size ul').innerHTML = ''
+    query('.select_wrapper ul').innerHTML = ''
+    query('.mobile_size ul').innerHTML = ''
     document.querySelectorAll('fieldset[name="Size"] input').forEach(item => {
-        if(item.value !== 'default') {
-           query('.select_wrapper ul').insertAdjacentHTML('beforeend', `<li data-value="${item.value}" data-disabled="${item.classList.contains('disabled')}" data-checked="${item.checked}">${item.value}</li>`)
-           query('.mobile_size ul').insertAdjacentHTML('beforeend', `<li data-value="${item.value}" data-disabled="${item.classList.contains('disabled')}" data-checked="${item.checked}">${item.value}</li>`)
+        if (item.value !== 'default') {
+            query('.select_wrapper ul').insertAdjacentHTML('beforeend', `<li data-value="${item.value}" data-disabled="${item.classList.contains('disabled')}" data-checked="${item.checked}">${item.value}</li>`)
+            query('.mobile_size ul').insertAdjacentHTML('beforeend', `<li data-value="${item.value}" data-disabled="${item.classList.contains('disabled')}" data-checked="${item.checked}">${item.value}</li>`)
         }
-        if(item.checked && item.value !== 'default') {
-           query('.select_wrapper p').innerText = item.value
+        if (item.checked && item.value !== 'default') {
+            query('.select_wrapper p').innerText = item.value
         }
     })
     document.querySelectorAll('.select_wrapper ul li').forEach(item => {
         item.addEventListener('click', function () {
-            if(item.getAttribute('data-checked') !== 'true') {
-               query('.select_wrapper ul li[data-checked="true"]')?.setAttribute('data-checked', 'false')
+            if (item.getAttribute('data-checked') !== 'true') {
+                query('.select_wrapper ul li[data-checked="true"]')?.setAttribute('data-checked', 'false')
                 item.setAttribute('data-checked', 'true')
             }
             let change = new Event('change')
-           query(`fieldset[name="Size"] input[value="${item.getAttribute('data-value')}"]`).checked = true
-           query(`fieldset[name="Size"] input[value="${item.getAttribute('data-value')}"]`).dispatchEvent(change)
-           query('.select_wrapper p').innerText = item.getAttribute('data-value')
-           slideUp(query('.select_wrapper ul'))
-           query('.select_wrapper p').classList.remove('active')
-           pushDataLayer('Click on item Select color', item.value)
+            query(`fieldset[name="Size"] input[value="${item.getAttribute('data-value')}"]`).checked = true
+            query(`fieldset[name="Size"] input[value="${item.getAttribute('data-value')}"]`).dispatchEvent(change)
+            query('.select_wrapper p').innerText = item.getAttribute('data-value')
+            slideUp(query('.select_wrapper ul'))
+            query('.select_wrapper p').classList.remove('active')
+            pushDataLayer('Click on item Select color', item.value)
         })
     })
 
     document.querySelectorAll('.mobile_size ul li').forEach(item => {
         item.addEventListener('click', function () {
-            if(item.getAttribute('data-checked') !== 'true') {
-               query('.mobile_size ul li[data-checked="true"]')?.setAttribute('data-checked', 'false')
+            if (item.getAttribute('data-checked') !== 'true') {
+                query('.mobile_size ul li[data-checked="true"]')?.setAttribute('data-checked', 'false')
                 item.setAttribute('data-checked', 'true')
             }
             let change = new Event('change')
-           query(`fieldset[name="Size"] input[value="${item.getAttribute('data-value')}"]`).checked = true
-           query(`fieldset[name="Size"] input[value="${item.getAttribute('data-value')}"]`).dispatchEvent(change)
-           query('.select_wrapper p').innerText = item.getAttribute('data-value')
-           pushDataLayer('Click on item in Select size pop-up', item.value)
-           mobileSizeClose()
+            query(`fieldset[name="Size"] input[value="${item.getAttribute('data-value')}"]`).checked = true
+            query(`fieldset[name="Size"] input[value="${item.getAttribute('data-value')}"]`).dispatchEvent(change)
+            query('.select_wrapper p').innerText = item.getAttribute('data-value')
+            pushDataLayer('Click on item in Select size pop-up', item.value)
+            mobileSizeClose()
         })
     })
 }
 
 function slideUp(item) {
-    item.style.height = item.scrollHeight+'px'
+    item.style.height = item.scrollHeight + 'px'
     item.style.overflow = 'hidden'
     item.style.transition = 'height 0.3s ease-in-out'
     setTimeout(function () {
@@ -860,15 +867,15 @@ function slideDown(item) {
     item.style.display = 'block'
     item.style.transition = 'height 0.3s ease-in-out'
     setTimeout(function () {
-        item.style.height = item.scrollHeight+'px'
+        item.style.height = item.scrollHeight + 'px'
     }, 0)
 }
 
 function mobileSizeShow() {
-   query('.dark_bg').style.display = 'block'
+    query('.dark_bg').style.display = 'block'
     setTimeout(function () {
-       query('.dark_bg').style.opacity = '1'
-       query('.mobile_size').style.bottom = '0'
+        query('.dark_bg').style.opacity = '1'
+        query('.mobile_size').style.bottom = '0'
     }, 0)
 }
 
@@ -887,7 +894,7 @@ function query(selector) {
 let record = setInterval(function () {
     if (typeof clarity === 'function') {
         clearInterval(record)
-        clarity("set", "new_pdp", "variant_1");
+        clarity("set", "new_pdp", "variant_1")
     }
 }, 100)
 
