@@ -1117,7 +1117,7 @@ window.onload = function() {
                     border-radius: 4px;
                     font-weight: 400;
                     font-size: 16px;
-                    line-height: 150%;
+                    line-height: 1;
                     color: rgba(9, 17, 20, 0.8);
                     height: 48px;
                     padding: 14px 48px 13px 16px;
