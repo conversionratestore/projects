@@ -1720,7 +1720,7 @@ window.onload = function() {
                     <dd style="width: 50%;float:left;padding-right: 8px">
                         <label for="country">Country <span class="c-red"> *</span></label>
                         <div class="select-a">
-                             <select name="country"> ${countries_ship}</select>
+                             <select name="country"> ${countries_ship.split('--').join('')}</select>
                              <i></i>
                         </div>
                     </dd>
@@ -1737,7 +1737,7 @@ window.onload = function() {
                     <dd style="width: 50%;float:left;padding-left: 8px">
                         <label for="state"><span>State (Only applicable to US)</span> <span class="c-red"> *</span></label>
                         <div class="select-a">
-                             <select name="state"> ${state.innerHTML}</select>
+                             <select name="state"> ${state.innerHTML.split('--').join('')}</select>
                              <i></i>
                         </div>
                     </dd>
@@ -1772,7 +1772,7 @@ window.onload = function() {
                     <dd style="width: 50%;float:left;padding-right: 8px">
                         <label for="country">Country <span class="c-red"> *</span></label>
                         <div class="select-a">
-                             <select name="country"> ${countries_ship}</select>
+                             <select name="country"> ${countries_ship.split('--').join('')}</select>
                              <i></i>
                         </div>
                     </dd>
@@ -1794,7 +1794,7 @@ window.onload = function() {
                     <dd style="width: 50%;float:left;padding-left: 8px">
                         <label for="state"><span>State (Only applicable to US)</span> <span class="c-red"> *</span></label>
                         <div class="select-a">
-                             <select name="state"> ${state.innerHTML}</select>
+                             <select name="state"> ${state.innerHTML.split('--').join('')}</select>
                              <i></i>
                         </div>
                     </dd>
