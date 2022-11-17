@@ -10,7 +10,7 @@ const translate = {
         'continueDelivery': 'continue to delivery',
         'backShipping': 'Back to Shipping info',
         'continuePayment': 'continue to Payment',
-        'backDelivery': 'Back to Shipping info',
+        'backDelivery': 'Back to delivery method',
         'pay': 'Pay now',
         'change': 'Change',
         'calculated': 'Calculated at next step'
@@ -204,7 +204,7 @@ const style = /*html*/`
                 position: relative;
                 width: 50px;
                 height: 50px;
-                border: 2px solid #ccc;
+                border: 2px solid #A1A1A1;
                 border-radius: 50%;
             }
             .circle::after {
@@ -216,7 +216,7 @@ const style = /*html*/`
                 transform: translate(-50%, -50%);
                 font-weight: 600;
                 font-size: 16px;
-                color: #212529;
+                color: #A1A1A1;
             }
             .check .circle::after {
                 content: url('https://conversionratestore.github.io/projects/kingsbox/img/check_arr.svg');
@@ -224,15 +224,19 @@ const style = /*html*/`
             .line {
                 height: 2px;
                 width: 100%;
-                background-color: #ccc;
+                background-color: #A1A1A1;
             }
             .black .circle,
             .check .circle {
-                border-color: #000;
+                border-color: #212529;
+            }
+            .black .circle::after,
+            .check .circle::after {
+                color: #212529;
             }
             .black + .line,
             .check + .line {
-                background-color: #000;
+                background-color: #212529;
             }
 
             .checkout-shipping {
