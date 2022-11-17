@@ -2100,7 +2100,7 @@ window.onload = function() {
                 phn = document.querySelector(`.${type}-form [name="phn"]`);
                 email = document.querySelector(`.${type}-form [name="email"]`);
     
-                let dataDD = document.querySelectorAll(`.${type}-form dd.error`)
+                let dataDD = document.querySelectorAll(`.${type}-form .error`)
                 console.log(currentAddressShip,type,fname.value,lname.value,addr1.value,city.value,stateF.value,zip.value,country.value,phn.value,email.value)
                 let errorsFun = (dataErrors) => {
                     dataDD.forEach(item => {
