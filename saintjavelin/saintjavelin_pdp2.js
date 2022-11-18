@@ -781,20 +781,19 @@ function start() {
 
     if(query('fieldset[name="Size"]') && !query('fieldset[name="Color"]')) {
         document.querySelectorAll('fieldset[name="Size"] input')[0].click()
-        drawSelectList()
+        query('fieldset[name="Size"]').style.display = 'block'
+        query('.select_wrapper').style.display = 'none'
         query('.to_size_guide').style.display = 'none'
         query('.product-slideshow').addEventListener('changeSlider', function (e) {
             let imgUrl = e.target.querySelector('.is-selected img').getAttribute('data-photoswipe-src')
             console.log(imgUrl)
-            document.querySelectorAll('fieldset[name="Size"] input').forEach(item => {
+            document.querySelectorAll('fieldset[name="Size"] input:not([value="default"])').forEach(item => {
                 const size = item.value.toLowerCase().trim().replaceAll('″', '').replaceAll('×','x')
                 console.log(imgUrl.includes(size))
                 console.log(size)
                 if (imgUrl.includes(size) && item.checked !== true) {
                     console.log('>>>')
                     item.checked = true
-                    item.dispatchEvent(ev)
-                    drawSelectList()
                 }
             })
         })
