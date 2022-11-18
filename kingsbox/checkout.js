@@ -898,8 +898,10 @@ const waitForCoupon = setInterval(() => {
 
 /** STEPS */
 const showStepAndHideOther = (stepNumber) => {
-    window.scrollTo(0, 0);
-
+    if(device === 'desktop') {
+        window.scrollTo(0, 0);
+    }
+    
     const steps = [
         'app-checkout-shipping-info',
         'app-checkout-delivery-method',
