@@ -898,7 +898,7 @@ const waitForCoupon = setInterval(() => {
 
 /** STEPS */
 const showStepAndHideOther = (stepNumber) => {
-    console.log('call func');
+    window.scrollTo(0, 0);
 
     const steps = [
         'app-checkout-shipping-info',
@@ -1156,3 +1156,8 @@ const record = setInterval(() => {
         clarity('set', `checkout_hypothesis_${device}`, 'variant_1')
     }
 }, intervalTimeout)
+
+waitForEl('checkout-empty-container').then(() => {
+    callEvent('cart is empty')
+    sessionStorage.setItem('checkout_step', 0)
+})
