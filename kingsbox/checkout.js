@@ -1157,7 +1157,7 @@ const record = setInterval(() => {
     }
 }, intervalTimeout)
 
-waitForEl('checkout-empty-container').then(() => {
+waitForEl('.checkout-empty-container').then(() => {
     callEvent('cart is empty')
     sessionStorage.setItem('checkout_step', 0)
 })
