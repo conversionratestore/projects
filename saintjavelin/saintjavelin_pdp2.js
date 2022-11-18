@@ -277,6 +277,14 @@ const test_style = `
           .new_h1 .product-single__prices {
             justify-content: flex-start !important;
           }
+          
+          .select_wrapper p {
+            text-align: left;
+          }
+          
+          .sales-point .icon-and-text {
+            justify-content:flex-start;
+          }
         }
     </style>
 `
@@ -769,6 +777,27 @@ function start() {
         obs.observe(query('.buy_it_now'))
         obs.observe(query('button[name="add"]'))
         obs.observe(query('.mobile_size'))
+    }
+
+    if(query('fieldset[name="Size"]') && !query('fieldset[name="Color"]')) {
+        document.querySelectorAll('fieldset[name="Size"] input')[0].click()
+        drawSelectList()
+        query('.to_size_guide').style.display = 'none'
+        query('.product-slideshow').addEventListener('changeSlider', function (e) {
+            let imgUrl = e.target.querySelector('.is-selected img').getAttribute('data-photoswipe-src')
+            console.log(imgUrl)
+            document.querySelectorAll('fieldset[name="Size"] input').forEach(item => {
+                const size = item.value.toLowerCase().trim().replaceAll('″', '').replaceAll('×','x')
+                console.log(imgUrl.includes(size))
+                console.log(size)
+                if (imgUrl.includes(size) && item.checked !== true) {
+                    console.log('>>>')
+                    item.checked = true
+                    item.dispatchEvent(ev)
+                    drawSelectList()
+                }
+            })
+        })
     }
 
     if (window.innerWidth < 768) {
