@@ -771,11 +771,7 @@ function start() {
             })
         })
 
-
-
         obs.observe(query('fieldset[name="Color"]'))
-        obs.observe(query('.buy_it_now'))
-        obs.observe(query('button[name="add"]'))
         obs.observe(query('.mobile_size'))
     }
 
@@ -798,6 +794,9 @@ function start() {
             })
         })
     }
+
+    obs.observe(query('.buy_it_now'))
+    obs.observe(query('button[name="add"]'))
 
     if (window.innerWidth < 768) {
         document.querySelectorAll('.page-width>.grid>.grid__item')[0].insertAdjacentHTML('beforebegin', `<div class="new_h1"></div>`)
@@ -822,6 +821,7 @@ function start() {
                     pushDataLayer('View element on screen', 'Select size')
                 }
                 if (i.target.name === 'add') {
+                    console.log('>>> test')
                     pushDataLayer('View element on screen', 'Add to card button')
                 }
                 if (i.target.classList.contains('mobile_size')) {
@@ -917,6 +917,7 @@ function mobileSizeClose() {
 
 function query(selector) {
     return document.querySelector(selector)
+
 }
 
 let record = setInterval(function () {
