@@ -678,6 +678,7 @@ function start() {
             if (query('.select_wrapper p').classList.contains('active') && !e.target.closest('.select_wrapper')) {
                 slideUp(query('.select_wrapper ul'))
                 query('.select_wrapper p').classList.remove('active')
+                pushDataLayer('Close Select size dropdown without select item')
             }
         })
     }
@@ -804,6 +805,15 @@ function start() {
         query('.new_h1').append(query('.product-single__prices'))
     }
 
+    query('.dark_bg').addEventListener('click', function () {
+        if(query('.mobile_size').style.bottom === '0px') {
+            mobileSizeClose()
+        }
+        if(query('.size_guide').style.right === '0px') {
+            query('.size_guide .close').click()
+        }
+    })
+
     function visibility(entries) {
         entries.forEach(i => {
             if (i.isIntersecting) {
@@ -857,7 +867,7 @@ function drawSelectList() {
             query('.select_wrapper p').innerText = item.getAttribute('data-value')
             slideUp(query('.select_wrapper ul'))
             query('.select_wrapper p').classList.remove('active')
-            pushDataLayer('Click on item Select color', item.value)
+            pushDataLayer('Click on item Select color', item.innerText)
         })
     })
 
@@ -871,7 +881,7 @@ function drawSelectList() {
             query(`fieldset[name="Size"] input[value="${item.getAttribute('data-value')}"]`).checked = true
             query(`fieldset[name="Size"] input[value="${item.getAttribute('data-value')}"]`).dispatchEvent(change)
             query('.select_wrapper p').innerText = item.getAttribute('data-value')
-            pushDataLayer('Click on item in Select size pop-up', item.value)
+            pushDataLayer('Click on item in Select size pop-up', item.innerText)
             mobileSizeClose()
         })
     })
