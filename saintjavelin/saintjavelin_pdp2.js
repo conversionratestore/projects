@@ -652,6 +652,9 @@ function start() {
     })
     const ev = new Event('change')
     query('.payment-buttons').insertAdjacentHTML('beforeend', customBtns)
+    document.querySelectorAll('[data-default-text="Add to cart"]').forEach(i => {
+        i.innerText = ''
+    })
     query('[data-default-text="Add to cart"]').innerText = 'Add to cart'
     document.body.insertAdjacentHTML('beforeend', sizeGuide)
     query('.mobile_size .close').addEventListener('click', function () {
@@ -751,8 +754,13 @@ function start() {
         e.preventDefault()
         setTimeout(function () {
             if (query('button[name="add"]').getAttribute('disabled')) {
-                slideDown(query('.select_wrapper ul'))
-                query('.select_wrapper p').classList.add('active')
+                if(window.innerWidth > 768) {
+                    slideDown(query('.select_wrapper ul'))
+                    query('.select_wrapper p').classList.add('active')
+                } else {
+                    mobileSizeShow()
+                }
+
             } else {
                 query('.shopify-payment-button__more-options').click()
             }
