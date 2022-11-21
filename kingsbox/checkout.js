@@ -533,7 +533,6 @@ const style = /*html*/ `
                 transform: translateY(-50%) rotate(180deg);
             }  */
             .mob_cart_wrapper.clickable {
-                display: flex;
                 flex-direction: row;
                 justify-content: space-between;
                 align-items: flex-start;
@@ -606,7 +605,7 @@ const style = /*html*/ `
             }
 
             @media only screen and (max-width: 1200px) {
-                .mob_cart_wrapper {display: block;}
+                .mob_cart_wrapper {display: flex;}
 
                 .checkout-body {padding-top: 0 !important;}
                 .checkout-header-wrapper {position: relative;}
@@ -1178,6 +1177,6 @@ waitForEl('.checkout-empty-container').then(() => {
     callEvent('cart is empty');
 });
 
-window.addEventListener('beforeunload', () => {
-    sessionStorage.setItem('checkout_step', 0)
-})
+// window.addEventListener('beforeunload', () => {
+//     sessionStorage.setItem('checkout_step', 0);
+// });
