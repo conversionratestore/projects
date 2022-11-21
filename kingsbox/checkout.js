@@ -1,201 +1,206 @@
 const translate = {
-    'en': {
-        'shop': 'Shop',
-        'shipping': 'Shipping info',
-        'delivery': 'Delivery Method',
-        'payment': 'payment',
-        'total': 'Your cart total is',
-        'summary': 'Summary',
-        'backShop': 'back to shop',
-        'continueDelivery': 'continue to delivery',
-        'backShipping': 'Back to Shipping info',
-        'continuePayment': 'continue to Payment',
-        'backDelivery': 'Back to delivery method',
-        'pay': 'Pay now',
-        'change': 'Change',
-        'calculated': 'Calculated at next step',
-        'guaranteeTitle': '30 days money back guarantee',
-        'guaranteeBody': `If you are not satisfied with your Kingsbox product,
+    en: {
+        shop: 'Shop',
+        shipping: 'Shipping info',
+        delivery: 'Delivery Method',
+        payment: 'payment',
+        total: 'Your cart total is',
+        summary: 'Summary',
+        backShop: 'back to shop',
+        continueDelivery: 'continue to delivery',
+        backShipping: 'Back to Shipping info',
+        continuePayment: 'continue to Payment',
+        backDelivery: 'Back to delivery method',
+        pay: 'Pay now',
+        change: 'Change',
+        calculated: 'Calculated at next step',
+        guaranteeTitle: '30 days money back guarantee',
+        guaranteeBody: `If you are not satisfied with your Kingsbox product,
         you can return it within 30 days 
         of delivery without giving a specific reason for return.`,
     },
-    'it': {
-        'shop': 'Negozio',
-        'shipping': 'Informazioni sulla spedizione',
-        'delivery': 'Modalità di consegna',
-        'payment': 'Pagamento',
-        'total': 'Il totale del tuo carrello è',
-        'summary': 'Sommario',
-        'backShop': 'Torna al negozio',
-        'continueDelivery': 'continuare con la spedizione',
-        'backShipping': 'Torna alle informazioni sulla spedizione',
-        'continuePayment': 'continua con il pagamento',
-        'backDelivery': 'Torna alla modalità di consegna',
-        'pay': 'Paga ora',
-        'change': 'Modifica',
-        'calculated': 'Si calcola al passo successivo',
-        'guaranteeTitle': '30 giorni di garanzia sul rimborso',
-        'guaranteeBody': `Se non sei soddisfatto del tuo prodotto Kingsbox,
+    it: {
+        shop: 'Negozio',
+        shipping: 'Informazioni sulla spedizione',
+        delivery: 'Modalità di consegna',
+        payment: 'Pagamento',
+        total: 'Il totale del tuo carrello è',
+        summary: 'Sommario',
+        backShop: 'Torna al negozio',
+        continueDelivery: 'continuare con la spedizione',
+        backShipping: 'Torna alle informazioni sulla spedizione',
+        continuePayment: 'continua con il pagamento',
+        backDelivery: 'Torna alla modalità di consegna',
+        pay: 'Paga ora',
+        change: 'Modifica',
+        calculated: 'Si calcola al passo successivo',
+        guaranteeTitle: '30 giorni di garanzia sul rimborso',
+        guaranteeBody: `Se non sei soddisfatto del tuo prodotto Kingsbox,
         puoi restituirlo entro 30 giorni dalla 
         dalla consegna, senza fornire un motivo specifico per la restituzione.`,
     },
-    'hr': {
-        'shop': 'Trgovina',
-        'shipping': 'Podaci za dostavu',
-        'delivery': 'Način dostave',
-        'payment': 'Plaćanje',
-        'total': 'Vaš ukupni iznos košarice je',
-        'summary': 'Pregled',
-        'backShop': 'Povratak u trgovinu',
-        'continueDelivery': 'nastavi na dostavu',
-        'backShipping': 'Povratak na podatke za dostavu',
-        'continuePayment': 'nastavi s plaćanjem',
-        'backDelivery': 'Povratak na način dostave',
-        'pay': 'Platite odmah',
-        'change': 'Promijeni',
-        'calculated': 'Izračunat će se u sljedećem koraku',
-        'guaranteeTitle': '30 dana jamstva povrata novca',
-        'guaranteeBody': 'Ako niste zadovoljni svojim proizvodom Kingsbox, možete ga vratiti u roku od 30 dana od dostave bez navođenja razloga za povrat.',
+    hr: {
+        shop: 'Trgovina',
+        shipping: 'Podaci za dostavu',
+        delivery: 'Način dostave',
+        payment: 'Plaćanje',
+        total: 'Vaš ukupni iznos košarice je',
+        summary: 'Pregled',
+        backShop: 'Povratak u trgovinu',
+        continueDelivery: 'nastavi na dostavu',
+        backShipping: 'Povratak na podatke za dostavu',
+        continuePayment: 'nastavi s plaćanjem',
+        backDelivery: 'Povratak na način dostave',
+        pay: 'Platite odmah',
+        change: 'Promijeni',
+        calculated: 'Izračunat će se u sljedećem koraku',
+        guaranteeTitle: '30 dana jamstva povrata novca',
+        guaranteeBody:
+            'Ako niste zadovoljni svojim proizvodom Kingsbox, možete ga vratiti u roku od 30 dana od dostave bez navođenja razloga za povrat.',
     },
-    'sl': {
-        'shop': 'Nakupuj',
-        'shipping': 'Podatki o dostavi',
-        'delivery': 'Način dostave',
-        'payment': 'Plačilo',
-        'total': 'Skupen znesek nakupa je',
-        'summary': 'Povzetek',
-        'backShop': 'Nazaj v trgovino',
-        'continueDelivery': 'Nadaljuj na dostavo',
-        'backShipping': 'Nazaj na podatke o dostavi',
-        'continuePayment': 'Nadaljuj s plačilom',
-        'backDelivery': 'Nazaj na načine dostave',
-        'pay': 'Plačaj zdaj',
-        'change': 'Spremeni',
-        'calculated': 'Izračunano na naslednjem koraku',
-        'guaranteeTitle': '',
-        'guaranteeBody': 'Če niste zadovoljni s KingsBox izdelkom, ga lahko v 30 dneh vrnete brez navedenega razloga.',
+    sl: {
+        shop: 'Nakupuj',
+        shipping: 'Podatki o dostavi',
+        delivery: 'Način dostave',
+        payment: 'Plačilo',
+        total: 'Skupen znesek nakupa je',
+        summary: 'Povzetek',
+        backShop: 'Nazaj v trgovino',
+        continueDelivery: 'Nadaljuj na dostavo',
+        backShipping: 'Nazaj na podatke o dostavi',
+        continuePayment: 'Nadaljuj s plačilom',
+        backDelivery: 'Nazaj na načine dostave',
+        pay: 'Plačaj zdaj',
+        change: 'Spremeni',
+        calculated: 'Izračunano na naslednjem koraku',
+        guaranteeTitle: '',
+        guaranteeBody: 'Če niste zadovoljni s KingsBox izdelkom, ga lahko v 30 dneh vrnete brez navedenega razloga.',
     },
-    'de': {
-        'shop': 'Shop',
-        'shipping': 'Versandinformation',
-        'delivery': 'Liefermethode',
-        'payment': 'Zahlung',
-        'total': 'Ihr Einkaufswagen insgesamt ist',
-        'summary': 'Zusammenfassung',
-        'backShop': 'Zurück zum Shop',
-        'continueDelivery': 'weiter zur Lieferung',
-        'backShipping': 'Zurück zu den Versandinformationen',
-        'continuePayment': 'weiter zur Zahlung',
-        'backDelivery': 'Zurück zur Liefermethode',
-        'pay': 'Zahlen Sie jetzt',
-        'change': 'Veränderung',
-        'calculated': 'Wird im nächsten Schritt berechnet',
-        'guaranteeTitle': '30 Tage Geld-zurück-Garantie',
-        'guaranteeBody': `Wenn Sie mit Ihrem Kingsbox-Produkt nicht zufrieden sind,
+    de: {
+        shop: 'Shop',
+        shipping: 'Versandinformation',
+        delivery: 'Liefermethode',
+        payment: 'Zahlung',
+        total: 'Ihr Einkaufswagen insgesamt ist',
+        summary: 'Zusammenfassung',
+        backShop: 'Zurück zum Shop',
+        continueDelivery: 'weiter zur Lieferung',
+        backShipping: 'Zurück zu den Versandinformationen',
+        continuePayment: 'weiter zur Zahlung',
+        backDelivery: 'Zurück zur Liefermethode',
+        pay: 'Zahlen Sie jetzt',
+        change: 'Veränderung',
+        calculated: 'Wird im nächsten Schritt berechnet',
+        guaranteeTitle: '30 Tage Geld-zurück-Garantie',
+        guaranteeBody: `Wenn Sie mit Ihrem Kingsbox-Produkt nicht zufrieden sind,
         können Sie es innerhalb von 30 Tagen der Lieferung zurück geben ohne Angabe eines bestimmten Rücksendegrundes.`,
     },
-    'fr': {
-        'shop': 'Boutique',
-        'shipping': 'Information de livraison',
-        'delivery': 'Mode de livraison',
-        'payment': 'Paiement',
-        'total': 'Le montant de votre panier est',
-        'summary': 'Le sommaire',
-        'backShop': 'Retour à la boutique',
-        'continueDelivery': 'continuer vers la livraison',
-        'backShipping': 'Retour à l\'expédition',
-        'continuePayment': 'passer au paiement',
-        'backDelivery': 'Retour à la mode de livraison',
-        'pay': 'Payer maintenant',
-        'change': 'Changements',
-        'calculated': 'Calculé à l\'étape suivante',
-        'guaranteeTitle': 'Remboursement garanti pendant 30 jours',
-        'guaranteeBody': `Si vous n'êtes pas satisfait de votre produit Kingsbox,
+    fr: {
+        shop: 'Boutique',
+        shipping: 'Information de livraison',
+        delivery: 'Mode de livraison',
+        payment: 'Paiement',
+        total: 'Le montant de votre panier est',
+        summary: 'Le sommaire',
+        backShop: 'Retour à la boutique',
+        continueDelivery: 'continuer vers la livraison',
+        backShipping: "Retour à l'expédition",
+        continuePayment: 'passer au paiement',
+        backDelivery: 'Retour à la mode de livraison',
+        pay: 'Payer maintenant',
+        change: 'Changements',
+        calculated: "Calculé à l'étape suivante",
+        guaranteeTitle: 'Remboursement garanti pendant 30 jours',
+        guaranteeBody: `Si vous n'êtes pas satisfait de votre produit Kingsbox,
         vous pouvez le retourner dans les 30 jours 
         à partir de la livraison sans indiquer la raison spécifique pour le retour.`,
     },
-    'es': {
-        'shop': 'Comprar',
-        'shipping': 'Información de envío',
-        'delivery': 'Forma de entrega',
-        'payment': 'Pago',
-        'total': 'El total de tu carrito es',
-        'summary': 'Resumen',
-        'backShop': 'Volver a la Tienda',
-        'continueDelivery': 'continuar con el Envío',
-        'backShipping': 'Volver a la Información de Envío',
-        'continuePayment': 'continuar con Pago',
-        'backDelivery': 'Volver a la forma de entrega',
-        'pay': 'Pagar ahora',
-        'change': 'Cambiar',
-        'calculated': 'Calculado en el siguiente paso',
-        'guaranteeTitle': '30 días de garantía de devolución del dinero',
-        'guaranteeBody': `Si no estás satisfecho con tu producto Kingsbox
+    es: {
+        shop: 'Comprar',
+        shipping: 'Información de envío',
+        delivery: 'Forma de entrega',
+        payment: 'Pago',
+        total: 'El total de tu carrito es',
+        summary: 'Resumen',
+        backShop: 'Volver a la Tienda',
+        continueDelivery: 'continuar con el Envío',
+        backShipping: 'Volver a la Información de Envío',
+        continuePayment: 'continuar con Pago',
+        backDelivery: 'Volver a la forma de entrega',
+        pay: 'Pagar ahora',
+        change: 'Cambiar',
+        calculated: 'Calculado en el siguiente paso',
+        guaranteeTitle: '30 días de garantía de devolución del dinero',
+        guaranteeBody: `Si no estás satisfecho con tu producto Kingsbox
         puedes devolverlo en un plazo de 30 días 
         de la entrega sin dar una razón específica para la devolución.`,
     },
-    'nl': { // dutch
-        'shop': 'Shop',
-        'shipping': 'Shipping info',
-        'delivery': 'Delivery Method',
-        'payment': 'payment',
-        'total': 'Your cart total is',
-        'summary': 'Samenvatting',
-        'backShop': 'back to shop',
-        'continueDelivery': 'continue to delivery',
-        'backShipping': 'Back to Shipping info',
-        'continuePayment': 'continue to Payment',
-        'backDelivery': 'Back to Shipping info',
-        'pay': 'Pay now',
-        'change': 'Change',
-        'calculated': 'Calculated at next step',
-        'guaranteeTitle': '',
-        'guaranteeBody': '',
+    nl: {
+        // dutch
+        shop: 'Shop',
+        shipping: 'Shipping info',
+        delivery: 'Delivery Method',
+        payment: 'payment',
+        total: 'Your cart total is',
+        summary: 'Samenvatting',
+        backShop: 'back to shop',
+        continueDelivery: 'continue to delivery',
+        backShipping: 'Back to Shipping info',
+        continuePayment: 'continue to Payment',
+        backDelivery: 'Back to Shipping info',
+        pay: 'Pay now',
+        change: 'Change',
+        calculated: 'Calculated at next step',
+        guaranteeTitle: '',
+        guaranteeBody: '',
     },
-    'se': { // svenska
-        'shop': 'Butik',
-        'shipping': 'Fraktinformation',
-        'delivery': 'Leveransmetod',
-        'payment': 'Betalning',
-        'total': 'Din summa i varukorgen är',
-        'summary': 'Sammanfattning',
-        'backShop': 'Tillbaka till butiken',
-        'continueDelivery': 'Fortsätt till leverans',
-        'backShipping': 'Tillbaka till fraktinformation',
-        'continuePayment': 'Fortsätt till betalning',
-        'backDelivery': 'Tillbaka till leveranssätt',
-        'pay': 'Betala nu',
-        'change': 'Byt / Ändra',
-        'calculated': 'Beräknas vid nästa steg',
-        'guaranteeTitle': '30-dagars återbetalningsgaranti',
-        'guaranteeBody': 'Om du inte är nöjd med din Kingsbox-produkt kan du returnera den inom 30 dagar efter leverans utan att ange ett specifikt skäl för returen.',
+    se: {
+        // svenska
+        shop: 'Butik',
+        shipping: 'Fraktinformation',
+        delivery: 'Leveransmetod',
+        payment: 'Betalning',
+        total: 'Din summa i varukorgen är',
+        summary: 'Sammanfattning',
+        backShop: 'Tillbaka till butiken',
+        continueDelivery: 'Fortsätt till leverans',
+        backShipping: 'Tillbaka till fraktinformation',
+        continuePayment: 'Fortsätt till betalning',
+        backDelivery: 'Tillbaka till leveranssätt',
+        pay: 'Betala nu',
+        change: 'Byt / Ändra',
+        calculated: 'Beräknas vid nästa steg',
+        guaranteeTitle: '30-dagars återbetalningsgaranti',
+        guaranteeBody:
+            'Om du inte är nöjd med din Kingsbox-produkt kan du returnera den inom 30 dagar efter leverans utan att ange ett specifikt skäl för returen.',
     },
-    'cs': { // Czech
-        'shop': 'Obchod',
-        'shipping': 'Informace o přepravě',
-        'delivery': 'Způsob doručení',
-        'payment': 'Platba',
-        'total': 'V košíku je celkem',
-        'summary': 'Souhrn',
-        'backShop': 'Zpět do obchodu',
-        'continueDelivery': 'pokračovat k dodávce',
-        'backShipping': 'Zpět na informace o přepravě',
-        'continuePayment': 'Pokračovat v platbě',
-        'backDelivery': 'Zpět na způsob doručení',
-        'pay': 'Zaplatit nyní',
-        'change': 'Změnit',
-        'calculated': 'Vypočte se v následujícím kroku',
-        'guaranteeTitle': '30denní záruka vrácení peněz',
-        'guaranteeBody': `Pokud nejste s produktem od Kingsboxu spokojeni,
+    cs: {
+        // Czech
+        shop: 'Obchod',
+        shipping: 'Informace o přepravě',
+        delivery: 'Způsob doručení',
+        payment: 'Platba',
+        total: 'V košíku je celkem',
+        summary: 'Souhrn',
+        backShop: 'Zpět do obchodu',
+        continueDelivery: 'pokračovat k dodávce',
+        backShipping: 'Zpět na informace o přepravě',
+        continuePayment: 'Pokračovat v platbě',
+        backDelivery: 'Zpět na způsob doručení',
+        pay: 'Zaplatit nyní',
+        change: 'Změnit',
+        calculated: 'Vypočte se v následujícím kroku',
+        guaranteeTitle: '30denní záruka vrácení peněz',
+        guaranteeBody: `Pokud nejste s produktem od Kingsboxu spokojeni,
         můžete jej do 30 dnů od doručení vrátit bez udání konkrétního důvodu pro vrácení.`,
-    }
-}
+    },
+};
 
-let language = location.pathname.split('/')[1]
-language === 'checkout' ? language = 'en' : language
-const lang = translate[language]
+let language = location.pathname.split('/')[1];
+language === 'checkout' ? (language = 'en') : language;
+const lang = translate[language];
 
-const style = /*html*/`
+const style = /*html*/ `
         <style>
             .container.container-checkout {
                 padding-bottom: 30px;
@@ -215,7 +220,6 @@ const style = /*html*/`
                 display: flex;
                 flex-direction: row;
                 align-items: center;
-                counter-reset: my-step-counter;
                 max-width: 478px;
                 margin: 40px 0 55px;
             }
@@ -239,8 +243,7 @@ const style = /*html*/`
                 border-radius: 50%;
             }
             .circle::after {
-                counter-increment: my-step-counter;
-                content: counter(my-step-counter);
+                content: attr(data-number);
                 position: absolute;
                 top: 50%;
                 left: 50%;
@@ -712,8 +715,8 @@ const style = /*html*/`
                 }
             }
         </style>
-        `
-const waitForEl = (selector) => {
+        `;
+const waitForEl = selector => {
     return new Promise(resolve => {
         if (document.querySelector(selector)) {
             return resolve(document.querySelector(selector));
@@ -727,7 +730,7 @@ const waitForEl = (selector) => {
 
             for (let mutation of mutations) {
                 for (let node of mutation.addedNodes) {
-                    if (!(node instanceof HTMLElement)) continue
+                    if (!(node instanceof HTMLElement)) continue;
 
                     if (node.matches(selector)) {
                         resolve(document.querySelector(selector));
@@ -735,44 +738,45 @@ const waitForEl = (selector) => {
                     }
                 }
             }
-        })
+        });
 
         observer.observe(document.body, {
             childList: true,
-            subtree: true
-        })
-    })
-}
-const intervalTimeout = 100
+            subtree: true,
+        });
+    });
+};
+const intervalTimeout = 100;
 
-let device = 'desktop'
+let device = 'desktop';
 
 if (window.innerWidth < 768) {
-    device = 'mobile'
+    device = 'mobile';
 }
 
-const callEvent = (eventAction, eventLabel = '') => { // GO Event
-    window.dataLayer = window.dataLayer || []
+const callEvent = (eventAction, eventLabel = '') => {
+    // GO Event
+    window.dataLayer = window.dataLayer || [];
     const obj = {
-        'event': 'event-to-ga',
-        'eventCategory': `Exp: Checkout hypothesis ${device}`,
+        event: 'event-to-ga',
+        eventCategory: `Exp: Checkout hypothesis ${device}`,
         eventAction,
-        eventLabel
-    }
+        eventLabel,
+    };
 
-    dataLayer.push(obj)
+    dataLayer.push(obj);
     console.log(obj);
-}
+};
 /** SUMMARY */
-document.head.insertAdjacentHTML('beforeend', style)
+document.head.insertAdjacentHTML('beforeend', style);
 
-const moneyback = /*html*/`
+const moneyback = /*html*/ `
     <div class="moneyback">
         <p>${lang.guaranteeTitle}</p>
         <p>${lang.guaranteeBody}</p>
     </div>
-`
-const checkoutSteps = /*html*/`
+`;
+const checkoutSteps = /*html*/ `
             ${moneyback}
             <div class="steps">
                 <div class="step black check">
@@ -781,83 +785,87 @@ const checkoutSteps = /*html*/`
                 </div>
                 <div class="line"></div>
                 <div class="step black">
-                    <div class="circle"></div>
+                    <div class="circle" data-number="2"></div>
                     <p>${lang.shipping}</p>
                 </div>
                 <div class="line mob_widener"></div>
                 <div class="step">
-                    <div class="circle"></div>
+                    <div class="circle" data-number="3"></div>
                     <p>${lang.delivery}</p>
                 </div>
                 <div class="line"></div>
                 <div class="step">
-                    <div class="circle"></div>
+                    <div class="circle" data-number="4"></div>
                     <p>${lang.payment}</p>
                 </div>
             </div>    
-        `
+        `;
 
 waitForEl('.checkout-shipping').then(el => {
-    el.insertAdjacentHTML('afterbegin', checkoutSteps)
-})
+    el.insertAdjacentHTML('afterbegin', checkoutSteps);
+});
 waitForEl('.checkout-shipping-info-col').then(el => {
-    el.classList.remove('col-xl-4')
-    el.classList.add('col-xl-7')
-})
+    el.classList.remove('col-xl-4');
+    el.classList.add('col-xl-7');
+});
 waitForEl('.checkout-shipping-info-col + div').then(el => {
-    el.classList.remove('col-xl-4')
-    el.classList.add('col-xl-5')
-})
-waitForEl('.checkout-shopping-cart-col').then(el => el.classList.remove('col-xl-4'))
+    el.classList.remove('col-xl-4');
+    el.classList.add('col-xl-5');
+});
+waitForEl('.checkout-shopping-cart-col').then(el => el.classList.remove('col-xl-4'));
 const obsSummary = () => {
     // define an observer instance
     const observer1 = new IntersectionObserver(onIntersection, {
-        root: null,   // default is the viewport
+        root: null, // default is the viewport
         threshold: 0.1, // percentage of target's visible area. Triggers "onIntersection"
-    })
+    });
 
     // callback is called on intersection change
     function onIntersection(entries) {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
-                document.querySelector('.mob_cart_wrapper:not(.clickable)').classList.remove('fixed')
+                document.querySelector('.mob_cart_wrapper:not(.clickable)').classList.remove('fixed');
             } else {
-                document.querySelector('.mob_cart_wrapper:not(.clickable)').classList.add('fixed')
+                document.querySelector('.mob_cart_wrapper:not(.clickable)').classList.add('fixed');
             }
-        })
+        });
     }
 
     // Use the observer to observe an element
-    observer1.observe(document.querySelector('app-checkout-summary'))
-}
+    observer1.observe(document.querySelector('app-checkout-summary'));
+};
 const changeCartTotalPrice = () => {
     const waitForWr = setInterval(() => {
-        if (
-            document.querySelectorAll('.mob_cart_wrapper p span')[1]
-            && document.querySelectorAll('.total')[1]
-        ) {
-            clearInterval(waitForWr)
+        if (document.querySelectorAll('.mob_cart_wrapper p span')[1] && document.querySelectorAll('.total')[1]) {
+            clearInterval(waitForWr);
 
             document.querySelectorAll('.mob_cart_wrapper p span').forEach(element => {
-                element.innerText = document.querySelectorAll('.total')[1].innerText
-            })
-
+                element.innerText = document.querySelectorAll('.total')[1].innerText;
+            });
         }
-    }, intervalTimeout)
-}
+    }, intervalTimeout);
+};
 const waitForSummaryAndCart = setInterval(() => {
     if (
-        document.querySelector('app-checkout-summary')
-        && document.querySelector('.checkout-shopping-cart-col')
-        && document.querySelector('.checkout-summary')
+        document.querySelector('app-checkout-summary') &&
+        document.querySelector('.checkout-shopping-cart-col') &&
+        document.querySelector('.checkout-summary')
     ) {
-        clearInterval(waitForSummaryAndCart)
+        clearInterval(waitForSummaryAndCart);
 
-        document.querySelector('app-checkout-summary').insertAdjacentElement('afterbegin',
-            document.querySelector('.checkout-shopping-cart-col')) // put cart above summary
+        document
+            .querySelector('app-checkout-summary')
+            .insertAdjacentElement('afterbegin', document.querySelector('.checkout-shopping-cart-col')); // put cart above summary
 
-        document.querySelector('app-checkout-summary').insertAdjacentHTML('beforebegin', `<div class="mob_cart_wrapper"><p>${lang.total} <span></span></p></div>`)
-        document.querySelector('app-checkout-summary').insertAdjacentHTML('afterbegin', /*html*/`
+        document
+            .querySelector('app-checkout-summary')
+            .insertAdjacentHTML(
+                'beforebegin',
+                `<div class="mob_cart_wrapper"><p>${lang.total} <span></span></p></div>`,
+            );
+        document.querySelector('app-checkout-summary').insertAdjacentHTML(
+            'afterbegin',
+            /*html*/ `
             <div class="mob_cart_wrapper clickable">
                 <div>
                     <p>${lang.total} <span></span></p>
@@ -866,149 +874,153 @@ const waitForSummaryAndCart = setInterval(() => {
                     <img src="https://conversionratestore.github.io/projects/kingsbox/img/expand_more.svg" alt="arrow">
                 </div>
             </div>
-        `)
-        waitForEl('.mob_cart_wrapper.clickable .img_wrapper').then(el => el.addEventListener('click', (e) => {
-            el.closest('.mob_cart_wrapper').classList.toggle('hide_cart')
-            callEvent('click on cart total arrow')
-        }))
+        `,
+        );
+        waitForEl('.mob_cart_wrapper.clickable .img_wrapper').then(el =>
+            el.addEventListener('click', e => {
+                el.closest('.mob_cart_wrapper').classList.toggle('hide_cart');
+                callEvent('click on cart total arrow');
+            }),
+        );
 
-        changeCartTotalPrice()
+        changeCartTotalPrice();
 
-        obsSummary()
+        obsSummary();
     }
-}, intervalTimeout)
-waitForEl('.checkout-shopping-cart').then(el => el.insertAdjacentHTML('afterbegin', moneyback))
-waitForEl('.shopping-cart-product').then(el => el.insertAdjacentHTML('afterbegin', `<h2 class="my_title">${lang.summary}</h2>`))
+}, intervalTimeout);
+waitForEl('.checkout-shopping-cart').then(el => el.insertAdjacentHTML('afterbegin', moneyback));
+waitForEl('.shopping-cart-product').then(el =>
+    el.insertAdjacentHTML('afterbegin', `<h2 class="my_title">${lang.summary}</h2>`),
+);
 const waitForCoupon = setInterval(() => {
     if (
-        document.querySelectorAll('app-checkout-summary div')[2]
-        && document.querySelector('.coupons-form')
-        && document.querySelector('.coupons-form div')
+        document.querySelectorAll('app-checkout-summary div')[2] &&
+        document.querySelector('.coupons-form') &&
+        document.querySelector('.coupons-form div')
     ) {
-        clearInterval(waitForCoupon)
+        clearInterval(waitForCoupon);
 
         document.querySelector('.coupons-form div').addEventListener('click', () => {
-            document.querySelector('.coupons-form').classList.toggle('opened')
-            callEvent('click on promo code/gift card')
-        })
+            document.querySelector('.coupons-form').classList.toggle('opened');
+            callEvent('click on promo code/gift card');
+        });
 
-        document.querySelector('.coupons-form').previousElementSibling.insertAdjacentElement('beforebegin', document.querySelector('.coupons-form'))
+        document
+            .querySelector('.coupons-form')
+            .previousElementSibling.insertAdjacentElement('beforebegin', document.querySelector('.coupons-form'));
     }
-}, intervalTimeout)
+}, intervalTimeout);
 
 /** STEPS */
-const showStepAndHideOther = (stepNumber) => {
-    if(device === 'desktop') {
+const showStepAndHideOther = stepNumber => {
+    if (device === 'desktop') {
         window.scrollTo(0, 0);
     }
-    
-    const steps = [
-        'app-checkout-shipping-info',
-        'app-checkout-delivery-method',
-        'app-checkout-payment'
-    ]
 
-    Promise.all([
-        steps.forEach((item) => waitForEl(item).then(el => el.hidden = true))
-    ]).then(() => {
+    const steps = ['app-checkout-shipping-info', 'app-checkout-delivery-method', 'app-checkout-payment'];
+
+    Promise.all([steps.forEach(item => waitForEl(item).then(el => (el.hidden = true)))]).then(() => {
         if (stepNumber === 0) {
-            waitForEl(steps[0] + ' .card-title').then(el => el.hidden = false)
-            waitForEl(steps[0] + ' .shipping_title').then(el => el.hidden = true)
+            waitForEl(steps[0] + ' .card-title').then(el => (el.hidden = false));
+            waitForEl(steps[0] + ' .shipping_title').then(el => (el.hidden = true));
 
-            if (window.matchMedia("(max-width: 1200px)").matches) {
-                waitForEl('.checkout-shipping-info').then(el => el.hidden = false)
+            if (window.matchMedia('(max-width: 1200px)').matches) {
+                waitForEl('.checkout-shipping-info').then(el => (el.hidden = false));
             }
         } else {
-            waitForEl(steps[0] + ' .card-title').then(el => el.hidden = true)
-            waitForEl(steps[0] + ' .shipping_title').then(el => el.hidden = false)
+            waitForEl(steps[0] + ' .card-title').then(el => (el.hidden = true));
+            waitForEl(steps[0] + ' .shipping_title').then(el => (el.hidden = false));
 
-            if (window.matchMedia("(max-width: 1200px)").matches) {
-                waitForEl('.checkout-shipping-info').then(el => el.hidden = true)
+            if (window.matchMedia('(max-width: 1200px)').matches) {
+                waitForEl('.checkout-shipping-info').then(el => (el.hidden = true));
             }
         }
 
         if (stepNumber === 1 || stepNumber === 2) {
-            waitForEl(steps[0]).then(el => el.hidden = false)
-            waitForEl(steps[0] + ' .card-title').then(el => el.hidden = true)
+            waitForEl(steps[0]).then(el => (el.hidden = false));
+            waitForEl(steps[0] + ' .card-title').then(el => (el.hidden = true));
         }
 
         if (stepNumber === 2) {
-            waitForEl('.delivery').then(el => el.hidden = false)
+            waitForEl('.delivery').then(el => (el.hidden = false));
         } else {
-            waitForEl('.delivery').then(el => el.hidden = true)
+            waitForEl('.delivery').then(el => (el.hidden = true));
         }
-        waitForEl(steps[stepNumber]).then(el => el.hidden = false)
-    })
+        waitForEl(steps[stepNumber]).then(el => (el.hidden = false));
+    });
 
     const waitForStepBar = setInterval(() => {
         if (document.querySelectorAll('.steps .step')[3]) {
-            clearInterval(waitForStepBar)
+            clearInterval(waitForStepBar);
 
             document.querySelectorAll('.steps .step:not(:first-child)').forEach((step, index) => {
-
                 if (stepNumber === index) {
-                    step.classList.add('black')
+                    step.classList.add('black');
                 } else if (stepNumber < index) {
-                    step.classList.remove('black', 'check')
+                    step.classList.remove('black', 'check');
                 } else {
-                    step.classList.add('check')
+                    step.classList.add('check');
                 }
-            })
+            });
         }
-    }, intervalTimeout)
+    }, intervalTimeout);
 
     const waitForBtns = setInterval(() => {
         if (document.querySelectorAll('.steps_btn_wrapper button')[5]) {
-            clearInterval(waitForBtns)
+            clearInterval(waitForBtns);
 
             document.querySelectorAll('.steps_btn_wrapper div').forEach((div, index) => {
                 if (index === stepNumber) {
-                    div.hidden = false
+                    div.hidden = false;
                 } else {
-                    div.hidden = true
+                    div.hidden = true;
                 }
-            })
+            });
         }
-    }, intervalTimeout)
+    }, intervalTimeout);
 
-    waitForEl('.info-section-data').then(() => waitForEl('[data-stepbtn="shipping"] .continue')).then(el => el.removeAttribute('disabled'))
+    waitForEl('.info-section-data')
+        .then(() => waitForEl('[data-stepbtn="shipping"] .continue'))
+        .then(el => el.removeAttribute('disabled'));
 
-    sessionStorage.setItem('checkout_step', stepNumber)
-}
+    sessionStorage.setItem('checkout_step', stepNumber);
+};
 
 const waitForBtns = setInterval(() => {
     if (document.querySelectorAll('.steps_btn_wrapper button')[5]) {
-        clearInterval(waitForBtns)
+        clearInterval(waitForBtns);
 
         document.querySelector('.steps_btn_wrapper').addEventListener('click', e => {
             if (e.target.matches('button')) {
-                callEvent(`click on button — ${e.target.innerText}`)
+                callEvent(`click on button — ${e.target.innerText}`);
             }
-        })
+        });
     }
-}, intervalTimeout)
+}, intervalTimeout);
 
 if (sessionStorage.getItem('checkout_step')) {
     switch (sessionStorage.getItem('checkout_step')) {
         case '0':
-            showStepAndHideOther(0)
+            showStepAndHideOther(0);
             break;
         case '1':
-            showStepAndHideOther(1)
+            showStepAndHideOther(1);
             break;
         case '2':
-            showStepAndHideOther(2)
+            showStepAndHideOther(2);
             break;
 
         default:
             break;
     }
 } else {
-    showStepAndHideOther(0)
+    showStepAndHideOther(0);
 }
 
 waitForEl('.checkout-shipping').then(el => {
-    el.insertAdjacentHTML('beforeend', /*html*/`
+    el.insertAdjacentHTML(
+        'beforeend',
+        /*html*/ `
         <div class="steps_btn_wrapper">
             <div data-stepBtn="shipping">
                 <button class="back" onclick="location.href='https://kingsbox.com/'" type="button">${lang.backShop}</button>
@@ -1022,13 +1034,15 @@ waitForEl('.checkout-shipping').then(el => {
                 <button class="back" onclick="showStepAndHideOther(1)" type="button">${lang.backDelivery}</button>
                 <button class="continue" disabled>${lang.pay}</button>
             </div>
-        </div>`)
-}
-)
+        </div>`,
+    );
+});
 waitForEl('.info-section-data').then(el => {
-    el.insertAdjacentHTML('beforebegin', `<p class="shipping_title">${lang.shipping}</p>`)
+    el.insertAdjacentHTML('beforebegin', `<p class="shipping_title">${lang.shipping}</p>`);
 
-    el.insertAdjacentHTML('afterend', /*html*/`
+    el.insertAdjacentHTML(
+        'afterend',
+        /*html*/ `
             <div class="delivery">
                 <hr>
                 <div>
@@ -1039,127 +1053,131 @@ waitForEl('.info-section-data').then(el => {
                     <p class="change" onclick="showStepAndHideOther(1)">${lang.change}</p>
                 </div>         
             </div>
-        `)
-})
+        `,
+    );
+});
 const changeDeliveryPriceAndBtn = () => {
-    waitForEl('div.d-flex.flex-row.justify-content-between.align-items-center.mb-4.ng-tns-c106-7 p:last-child').then((price) => {
-        waitForEl('[data-stepBtn="delivery"] .continue').then((btn) => {
-            if (
-                price.innerText !== '/'
-                && price.innerText !== lang.calculated
-            ) {
-                btn.removeAttribute('disabled')
+    waitForEl('div.d-flex.flex-row.justify-content-between.align-items-center.mb-4.ng-tns-c106-7 p:last-child').then(
+        price => {
+            waitForEl('[data-stepBtn="delivery"] .continue').then(btn => {
+                if (price.innerText !== '/' && price.innerText !== lang.calculated) {
+                    btn.removeAttribute('disabled');
 
-                const waitForEl = setInterval(() => {
-                    if (
-                        (document.querySelector('.active .value') || document.querySelector('.active h6'))
-                        && document.querySelector('[data-delivery="method"]')
-                        && document.querySelector('[data-delivery="price"]')
-                        && price
-                    ) {
-                        clearInterval(waitForEl)
+                    const waitForEl = setInterval(() => {
+                        if (
+                            (document.querySelector('.active .value') || document.querySelector('.active h6')) &&
+                            document.querySelector('[data-delivery="method"]') &&
+                            document.querySelector('[data-delivery="price"]') &&
+                            price
+                        ) {
+                            clearInterval(waitForEl);
 
-                        document.querySelector('[data-delivery="method"]').innerText =
+                            document.querySelector('[data-delivery="method"]').innerText =
+                                (document.querySelector('.active .value')?.innerText ||
+                                    document.querySelector('.active h6')?.innerText) + ' — ';
 
-                            (document.querySelector('.active .value')?.innerText || document.querySelector('.active h6')?.innerText)
-                            + ' — '
-
-                        document.querySelector('[data-delivery="price"]').innerText = price.innerText
-                    }
-                }, intervalTimeout)
-            } else {
-                price.innerText = lang.calculated
-                btn.setAttribute('disabled', true)
-            }
-        })
-    }
-    )
-    changeCartTotalPrice()
-}
+                            document.querySelector('[data-delivery="price"]').innerText = price.innerText;
+                        }
+                    }, intervalTimeout);
+                } else {
+                    price.innerText = lang.calculated;
+                    btn.setAttribute('disabled', true);
+                }
+            });
+        },
+    );
+    changeCartTotalPrice();
+};
 waitForEl('.checkout-summary').then(el => {
-    changeDeliveryPriceAndBtn()
+    changeDeliveryPriceAndBtn();
 
-    const target = el
+    const target = el;
     const config = {
         childList: true,
-        subtree: true
-    }
+        subtree: true,
+    };
     let observer = new MutationObserver(mutations => {
         for (let mutation of mutations) {
             for (let node of mutation.addedNodes) {
-                if (!(node instanceof HTMLElement)) continue
+                if (!(node instanceof HTMLElement)) continue;
 
                 if (node.matches('.item-price')) {
-                    changeDeliveryPriceAndBtn()
+                    changeDeliveryPriceAndBtn();
                 }
             }
         }
-    })
-    observer.observe(target, config)
-})
+    });
+    observer.observe(target, config);
+});
 const waitForPay = setInterval(() => {
-    if (
-        document.querySelector('.checkout-submit')
-        && document.querySelector('[data-stepBtn="pay"] .continue')
-    ) {
-        clearInterval(waitForPay)
+    if (document.querySelector('.checkout-submit') && document.querySelector('[data-stepBtn="pay"] .continue')) {
+        clearInterval(waitForPay);
 
-        document.querySelector('[data-stepBtn="pay"] .continue').hidden = false
+        document.querySelector('[data-stepBtn="pay"] .continue').hidden = false;
 
         document.querySelector('[data-stepBtn="pay"] .continue').onclick = () => {
-            document.querySelector('.checkout-submit-btn').click()
-        }
+            document.querySelector('.checkout-submit-btn').click();
+        };
 
-        const target = document.querySelector('.checkout-submit')
+        const target = document.querySelector('.checkout-submit');
         const config = {
             childList: true,
             subtree: true,
-            attributes: true
-        }
+            attributes: true,
+        };
         let observer = new MutationObserver(mutations => {
             for (let mutation of mutations) {
                 for (let node of mutation.addedNodes) {
-                    if (!(node instanceof HTMLElement)) continue
+                    if (!(node instanceof HTMLElement)) continue;
 
                     if (node.matches('.checkout-paypal-btn')) {
-                        document.querySelector('[data-stepBtn="pay"] .continue').insertAdjacentElement('afterend', document.querySelector('#paypal-button'))
-                        document.querySelector('[data-stepBtn="pay"] .continue').hidden = true
+                        document
+                            .querySelector('[data-stepBtn="pay"] .continue')
+                            .insertAdjacentElement('afterend', document.querySelector('#paypal-button'));
+                        document.querySelector('[data-stepBtn="pay"] .continue').hidden = true;
                     }
                     if (node.matches('.checkout-submit-btn')) {
-                        document.querySelector('[data-stepBtn="pay"] .continue').hidden = false
+                        document.querySelector('[data-stepBtn="pay"] .continue').hidden = false;
                         document.querySelector('[data-stepBtn="pay"] .continue').onclick = () => {
-                            document.querySelector('.checkout-submit-btn').click()
-                        }
+                            document.querySelector('.checkout-submit-btn').click();
+                        };
                     }
                 }
             }
-        })
-        observer.observe(target, config)
+        });
+        observer.observe(target, config);
     }
-}, 100)
+}, 100);
 const waitForPayBtn = setInterval(() => {
     if (document.querySelector('.checkout-payment') && document.querySelector('[data-stepbtn="pay"] .continue')) {
-        clearInterval(waitForPayBtn)
+        clearInterval(waitForPayBtn);
 
-        document.querySelector('.checkout-payment').addEventListener('click', (e) => {
-            if (e.target.closest('.payment-method-wrapper')) {
-                document.querySelector('[data-stepbtn="pay"] .continue').removeAttribute('disabled')
-            }
-        }, { once: true })
+        document.querySelector('.checkout-payment').addEventListener(
+            'click',
+            e => {
+                if (e.target.closest('.payment-method-wrapper')) {
+                    document.querySelector('[data-stepbtn="pay"] .continue').removeAttribute('disabled');
+                }
+            },
+            { once: true },
+        );
     }
-}, intervalTimeout)
+}, intervalTimeout);
 
-callEvent('loaded')
+callEvent('loaded');
 
 const record = setInterval(() => {
     if (typeof clarity === 'function') {
-        clearInterval(record)
+        clearInterval(record);
 
-        clarity('set', `checkout_hypothesis_${device}`, 'variant_1')
+        clarity('set', `checkout_hypothesis_${device}`, 'variant_1');
     }
-}, intervalTimeout)
+}, intervalTimeout);
 
 waitForEl('.checkout-empty-container').then(() => {
-    callEvent('cart is empty')
+    callEvent('cart is empty');
+});
+
+window.addEventListener('beforeunload', () => {
     sessionStorage.setItem('checkout_step', 0)
 })
