@@ -742,32 +742,32 @@ function start() {
         }, 300)
     })
     let btn = query('button[name="add"]')
-    if(query('button[name="add"].bold_clone')) {
-        btn = query('button[name="add"].bold_clone')
-    }
+   
     btn.querySelector('[data-default-text="Add to cart"]').innerText = 'Add to cart'
     btn.insertAdjacentHTML('beforeend', `<span class="cover"></span>`)
     setTimeout(function () {
-        query('button[name="add"].bold_clone .cover').addEventListener('click', function (e) {
-            if (btn.getAttribute('disabled')) {
-                if (window.innerWidth > 768) {
-                    setTimeout(function () {
-                        slideDown(query('.select_wrapper ul'))
-                        query('.select_wrapper p').classList.add('active')
-                        query('.select_wrapper p').scrollIntoView({
-                            behavior:"smooth",
-                            block: "center"
-                        })
-                    }, 100)
-                } else {
-                    mobileSizeShow()
+        document.querySelectorAll('button[name="add"] .cover').forEach(item => {
+            item.addEventListener('click', function (e) {
+                if (btn.getAttribute('disabled')) {
+                    if (window.innerWidth > 768) {
+                        setTimeout(function () {
+                            slideDown(query('.select_wrapper ul'))
+                            query('.select_wrapper p').classList.add('active')
+                            query('.select_wrapper p').scrollIntoView({
+                                behavior:"smooth",
+                                block: "center"
+                            })
+                        }, 100)
+                    } else {
+                        mobileSizeShow()
+                    }
                 }
-            }
+            })
         })
     }, 2000)
-    
-    
-    
+
+
+
 
 
     query('.buy_it_now').addEventListener('click', function (e) {
