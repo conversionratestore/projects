@@ -747,22 +747,27 @@ function start() {
     }
     btn.querySelector('[data-default-text="Add to cart"]').innerText = 'Add to cart'
     btn.insertAdjacentHTML('beforeend', `<span class="cover"></span>`)
-    query('button[name="add"] .cover').addEventListener('click', function (e) {
-        if (btn.getAttribute('disabled')) {
-            if (window.innerWidth > 768) {
-                setTimeout(function () {
-                    slideDown(query('.select_wrapper ul'))
-                    query('.select_wrapper p').classList.add('active')
-                    query('.select_wrapper p').scrollIntoView({
-                        behavior:"smooth",
-                        block: "center"
-                    })
-                }, 100)
-            } else {
-                mobileSizeShow()
+    setTimeout(function () {
+        query('button[name="add"].bold_clone .cover').addEventListener('click', function (e) {
+            if (btn.getAttribute('disabled')) {
+                if (window.innerWidth > 768) {
+                    setTimeout(function () {
+                        slideDown(query('.select_wrapper ul'))
+                        query('.select_wrapper p').classList.add('active')
+                        query('.select_wrapper p').scrollIntoView({
+                            behavior:"smooth",
+                            block: "center"
+                        })
+                    }, 100)
+                } else {
+                    mobileSizeShow()
+                }
             }
-        }
-    })
+        })
+    }, 2000)
+    
+    
+    
 
 
     query('.buy_it_now').addEventListener('click', function (e) {
