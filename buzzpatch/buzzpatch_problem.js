@@ -1,28 +1,28 @@
 let problemStart = setInterval(() => {
-    if (document.querySelector("#flowers")) {
-        clearInterval(problemStart)
+  if (document.querySelector("#flowers")) {
+    clearInterval(problemStart)
 
-        function pushDataLayer(actionDataLayer, labelDataLayer) {
-            window.dataLayer = window.dataLayer || []
-            if (labelDataLayer) {
-                console.log(actionDataLayer + " : " + labelDataLayer)
-                dataLayer.push({
-                    event: "event-to-ga",
-                    eventCategory: `Exp: - Personalized content intent`,
-                    eventAction: `${actionDataLayer}`,
-                    eventLabel: `${labelDataLayer}`,
-                })
-            } else {
-                console.log(actionDataLayer)
-                dataLayer.push({
-                    event: "event-to-ga",
-                    eventCategory: `Exp: - Personalized content intent`,
-                    eventAction: `${actionDataLayer}`,
-                })
-            }
-        }
+    function pushDataLayer(actionDataLayer, labelDataLayer) {
+      window.dataLayer = window.dataLayer || []
+      if (labelDataLayer) {
+        console.log(actionDataLayer + " : " + labelDataLayer)
+        dataLayer.push({
+          event: "event-to-ga",
+          eventCategory: `Exp: - Personalized content intent`,
+          eventAction: `${actionDataLayer}`,
+          eventLabel: `${labelDataLayer}`,
+        })
+      } else {
+        console.log(actionDataLayer)
+        dataLayer.push({
+          event: "event-to-ga",
+          eventCategory: `Exp: - Personalized content intent`,
+          eventAction: `${actionDataLayer}`,
+        })
+      }
+    }
 
-        let problemStyle = /*html */ `
+    let problemStyle = /*html */ `
       <style>
           .buzzpatch_problems{
               background: #FFFFFF;
@@ -188,7 +188,7 @@ let problemStart = setInterval(() => {
       </style>
       `
 
-        let problemHtml = /*html */ `
+    let problemHtml = /*html */ `
       <div class="buzzpatch_problems">
         <h2>
           <span>What</span>
@@ -199,14 +199,12 @@ let problemStart = setInterval(() => {
         <ul class="buzzpatch_accardion">
           <li class="buzzpatch_accardion_block">
             <div class="buzzpatch_accardion_link">
-              <p>I want <strong>my kids/grandkids protected from mosquito bites</strong> at all times</p>
+              <p>I want my <strong>kids/grandkids protected from mosquito bites</strong> at all times</p>
               <span></span>
             </div>
             <div class="buzzpatch_accardion_lists">
               <div>
-                <p>
-                With BuzzPatch, keeping your child protected from mosquitos at all times becomes as easy as putting a sticker on them.
-                </p>
+                <p>With BuzzPatch, keeping your child protected from mosquitos at all times becomes as easy as putting a sticker on them.</p>
                 <p>The BuzzPatch will work even if your child spends a lot of time outdoors or encounters a lot of mosquitos, and remains effective for up to 12 hours.</p>
                 <a href="#getNow" class="buzzpatch_accardion_btn" data-btn="1">GET Buzzpatch</a>
               </div>
@@ -261,7 +259,7 @@ let problemStart = setInterval(() => {
             </div>
             <div class="buzzpatch_accardion_lists">
               <div>
-                <p>BuzzPatch is a chemical-free and organic mosquito repellent that works for everyone - regardless of age.</p>
+                <p>BuzzPatch is a chemical-free and organic mosquito repellent that works for everyone - regardless of age</p>
                 <p>Simply apply the patch, and you'll be protected from nearby mosquitos.</p>
                 <a href="#getNow" class="buzzpatch_accardion_btn" data-btn="5">GET Buzzpatch</a>
               </div>
@@ -275,7 +273,7 @@ let problemStart = setInterval(() => {
             <div class="buzzpatch_accardion_lists">
               <div>
                 <p>If you're travelling, the last thing you want is a spray or cream that explodes and leaks chemicals all over your luggage, staining clothes and damaging valuables.</p>
-                <p>Fortunately, BuzzPatch is portable, and you can even leave it in your pocket without any leaking, exploding or staining. </p>
+                <p>Fortunately, BuzzPatch is portable, and you can even leave it in your pocket without any leaking, exploding or staining.</p>
                 <p>Easy-to-use, made with kids in mind, and natural, chemical-free ingredients.</p>
                 <a href="#getNow" class="buzzpatch_accardion_btn" data-btn="5">GET Buzzpatch</a>
               </div>
@@ -299,78 +297,70 @@ let problemStart = setInterval(() => {
       </div>
       `
 
-        document.head.insertAdjacentHTML("beforeend", problemStyle)
-        document.querySelector("#flowers").insertAdjacentHTML("afterend", problemHtml)
+    document.head.insertAdjacentHTML("beforeend", problemStyle)
+    document.querySelector("#flowers").insertAdjacentHTML("afterend", problemHtml)
 
-        if (document.querySelector(".buzzpatch_accardion")) {
-            let obs = new IntersectionObserver(visibility, {
-                threshold: 0.9
-            })
+    if (document.querySelector(".buzzpatch_accardion")) {
+      let obs = new IntersectionObserver(visibility, {
+        threshold: 0.9
+      })
 
-            obs.observe(document.querySelector('.buzzpatch_accardion'))
+      obs.observe(document.querySelector('.buzzpatch_accardion'))
 
-            function visibility(entries) {
-                entries.forEach(i => {
-                    if (i.isIntersecting) {
-                        if (i.target.classList.contains('buzzpatch_accardion')) {
-                            pushDataLayer('Visibility block Mosquito bite problems')
-                        }
-
-                        obs.unobserve(i.target)
-                    }
-                })
+      function visibility(entries) {
+        entries.forEach(i => {
+          if (i.isIntersecting) {
+            if (i.target.classList.contains('buzzpatch_accardion')) {
+              pushDataLayer('Visibility block Mosquito bite problems')
             }
-        }
 
-        $(document).ready(function () {
-            $(".buzzpatch_accardion_lists").on("click", "a", function (event) {
-                event.preventDefault()
-
-                pushDataLayer("Click on Get Buzzpatch button", `${event.target.closest("li").querySelector(".buzzpatch_accardion_link p").textContent}`)
-
-                let id = $(this).attr("href"),
-                    top = $(id).offset().top - 10
-
-                $("body,html").animate({ scrollTop: top }, 1000)
-            })
+            obs.unobserve(i.target)
+          }
         })
-
-
-
-        $(".buzzpatch_accardion_link").click(function (e) {
-            $(this).toggleClass("active")
-            $(this).closest('li').toggleClass("active")
-            $(this).next(".buzzpatch_accardion_lists").slideToggle()
-            if ($(".buzzpatch_accardion_link").not(this)) {
-                $(".buzzpatch_accardion_link").not(this).next(".buzzpatch_accardion_lists").css("display", "none")
-                $(".buzzpatch_accardion_link").not(this).removeClass("active")
-                $(".buzzpatch_accardion_link").not(this).closest('li').removeClass("active")
-            }
-
-            if (e.currentTarget.classList.contains("active")) {
-                pushDataLayer("Open block", `${e.currentTarget.querySelector("p").textContent}`)
-            } else {
-                pushDataLayer("Close block", `${e.currentTarget.querySelector("p").textContent}`)
-            }
-
-            const scrollTarget = $(this).next(".buzzpatch_accardion_lists")[0]
-
-            let topOffset = 175
-
-            if (innerWidth <= 320) {
-                topOffset = 160
-            }
-
-            const elementPosition = scrollTarget.getBoundingClientRect().top
-            const offsetPosition = elementPosition - topOffset
-
-            window.scrollBy({
-                top: offsetPosition,
-                behavior: "smooth",
-            })
-        })
-
-        pushDataLayer("loaded")
-        clarity("set", "personalized_content", "variant_1")
+      }
     }
+
+    $(document).ready(function () {
+      $(".buzzpatch_accardion_lists").on("click", "a", function (event) {
+        event.preventDefault()
+
+        pushDataLayer("Click on Get Buzzpatch button", `${event.target.closest("li").querySelector(".buzzpatch_accardion_link p").textContent}`)
+
+        let id = $(this).attr("href"),
+          top = $(id).offset().top - 10
+
+        $("body,html").animate({ scrollTop: top }, 1000)
+      })
+    })
+
+
+
+    $(".buzzpatch_accardion_link").click(function (e) {
+      $(this).toggleClass("active")
+      $(this).closest('li').toggleClass("active")
+      $(this).next(".buzzpatch_accardion_lists").slideToggle()
+      if ($(".buzzpatch_accardion_link").not(this)) {
+        $(".buzzpatch_accardion_link").not(this).next(".buzzpatch_accardion_lists").css("display", "none")
+        $(".buzzpatch_accardion_link").not(this).removeClass("active")
+        $(".buzzpatch_accardion_link").not(this).closest('li').removeClass("active")
+      }
+
+      if (e.currentTarget.classList.contains("active")) {
+        pushDataLayer("Open block", `${e.currentTarget.querySelector("p").textContent}`)
+      } else {
+        pushDataLayer("Close block", `${e.currentTarget.querySelector("p").textContent}`)
+      }
+
+      const headerOffset = 100;
+      const elementPosition = this.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: "smooth",
+      });
+    })
+
+    pushDataLayer("loaded")
+    clarity("set", "personalized_content", "variant_1")
+  }
 }, 10)
