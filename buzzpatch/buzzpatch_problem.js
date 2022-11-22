@@ -144,8 +144,9 @@ let problemStart = setInterval(() => {
               border-radius: 52px;
               font-family: 'DINEngschrift LT', sans-serif;
               font-weight: 400;
-              font-size: 20px;
+              font-size: 18px;
               line-height: 120%;
+              letter-spacing: .015em;
               letter-spacing: 1.5px;
               text-transform: uppercase;
               color: #FFFFFF;
