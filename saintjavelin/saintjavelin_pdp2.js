@@ -742,7 +742,9 @@ function start() {
         }, 300)
     })
     let btn = query('button[name="add"]')
-   
+    if(query('button[name="add"].bold_clone')) {
+        btn = query('button[name="add"].bold_clone')
+    }
     btn.querySelector('[data-default-text="Add to cart"]').innerText = 'Add to cart'
     btn.insertAdjacentHTML('beforeend', `<span class="cover"></span>`)
     setTimeout(function () {
