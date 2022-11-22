@@ -209,7 +209,7 @@ let problemStart = setInterval(() => {
               <p>I want my <strong>kids/grandkids protected from mosquito bites</strong> at all times</p>
               <span></span>
             </div>
-            <div class="buzzpatch_accardion_lists">
+            <div class="buzzpatch_accardion_lists" data-visability-open='1'>
               <div>
                 <p>With BuzzPatch, keeping your child protected from mosquitoes at all times becomes as easy as putting a sticker on them.</p>
                 <p>BuzzPatch will work even if your child spends a lot of time outdoors or encounters a lot of mosquitoes, and remains effective for up to 12 hours.</p>
@@ -222,7 +222,7 @@ let problemStart = setInterval(() => {
               <p><strong>My child is sensitive and/or allergic to mosquito bites,</strong> and needs an effective, <strong>soy-free,</strong> and allergen-free anti-mosquito solution</p>
               <span></span>
             </div>
-            <div class="buzzpatch_accardion_lists">
+            <div class="buzzpatch_accardion_lists" data-visability-open='2'>
               <div>
                 <p>Unlike other mosquito repellents, <strong>BuzzPatch uses a natural soy-free formula</strong> to disrupt mosquitoes’ sensory organs, effectively keeping your child hidden from mosquitoes so that they won’t be bitten.</p>
                 <p>For children who are sensitive or allergy prone, just a single mosquito bite can be all it takes to ruin their day.</p>
@@ -236,7 +236,7 @@ let problemStart = setInterval(() => {
               <p>I am looking for a <strong>chemical-free, natural, and organic anti-mosquito solution</strong> that is safe for regular use</p>
               <span></span>
             </div>
-            <div class="buzzpatch_accardion_lists">
+            <div class="buzzpatch_accardion_lists" data-visability-open='3'>
               <div>
                 <p>Kids nowadays face more chemicals, artificial ingredients, and pollutants than ever. Most repellents add to the problem by exposing your child to additional toxins and chemicals.</p>
                 <p>Fortunately, unlike most other repellent solutions, BuzzPatch uses natural ingredients to shield your child from mosquitoes and prevent bites.</p>
@@ -250,7 +250,7 @@ let problemStart = setInterval(() => {
               <p><strong>My child dislikes putting on sprays,</strong> so I’m looking for an effective alternative</p>
               <span></span>
             </div>
-            <div class="buzzpatch_accardion_lists">
+            <div class="buzzpatch_accardion_lists" data-visability-open='4'>
               <div>
                 <p>When your child doesn't like sprays, it's usually because of the smell, the sticky residue it leaves behind, or because their lungs are sensitive to the chemical clouds produced.</p>
                 <p>Either way, you need a new solution that works without having to spray chemicals all over your kids.</p>
@@ -264,7 +264,7 @@ let problemStart = setInterval(() => {
               <p>I am looking for an anti-mosquito <strong>solution suitable for both kids and adults</strong></p>
               <span></span>
             </div>
-            <div class="buzzpatch_accardion_lists">
+            <div class="buzzpatch_accardion_lists" data-visability-open='5'>
               <div>
                 <p>BuzzPatch is a chemical-free and organic mosquito repellent that works for everyone - regardless of age.</p>
                 <p>Simply apply the patch, and you'll be protected from nearby mosquitoes.</p>
@@ -277,7 +277,7 @@ let problemStart = setInterval(() => {
               <p><strong>I am planning to travel/go on vacation/to a camp,</strong> so I need a portable and effective anti-mosquito solution</p>
               <span></span>
             </div>
-            <div class="buzzpatch_accardion_lists">
+            <div class="buzzpatch_accardion_lists" data-visability-open='6'>
               <div>
                 <p>If you're travelling, the last thing you want is a spray or cream that explodes and leaks chemicals all over your luggage, staining clothes and damaging valuables.</p>
                 <p>Fortunately, BuzzPatch is portable, and you can even leave it in your pocket without any leaking, exploding or staining.</p>
@@ -291,7 +291,7 @@ let problemStart = setInterval(() => {
               <p><strong>I'm planning an outdoor event</strong> and need protection for me/my family</p>
               <span></span>
             </div>
-            <div class="buzzpatch_accardion_lists">
+            <div class="buzzpatch_accardion_lists" data-visability-open='7'>
               <div>
                 <p>Keeping outdoor events bug bite free is pretty easy when you have BuzzPatch on your side.</p>
                 <p>Simply keep a tray of BuzzPatches in a visible location so that your guests can apply them as they arrive, and stay protected for the entire duration of your event (up to 12 hours per patch).</p>
@@ -312,19 +312,73 @@ let problemStart = setInterval(() => {
         threshold: 1
       })
 
-      obs.observe(document.querySelector('.buzzpatch_accardion'))
-      // obs.observe(document.querySelector('.buzzpatch_accardion li'))
+      obs.observe(document.querySelector('.buzzpatch_problems'))
+      obs.observe(document.querySelector('.buzzpatch_accardion li[data-visability="1"]'))
+      obs.observe(document.querySelector('.buzzpatch_accardion li[data-visability="2"]'))
+      obs.observe(document.querySelector('.buzzpatch_accardion li[data-visability="3"]'))
+      obs.observe(document.querySelector('.buzzpatch_accardion li[data-visability="4"]'))
+      obs.observe(document.querySelector('.buzzpatch_accardion li[data-visability="5"]'))
+      obs.observe(document.querySelector('.buzzpatch_accardion li[data-visability="6"]'))
+      obs.observe(document.querySelector('.buzzpatch_accardion li[data-visability="7"]'))
+
+      obs.observe(document.querySelector('.buzzpatch_accardion_lists[data-visability-open="1"]'))
+      obs.observe(document.querySelector('.buzzpatch_accardion_lists[data-visability-open="2"]'))
+      obs.observe(document.querySelector('.buzzpatch_accardion_lists[data-visability-open="3"]'))
+      obs.observe(document.querySelector('.buzzpatch_accardion_lists[data-visability-open="4"]'))
+      obs.observe(document.querySelector('.buzzpatch_accardion_lists[data-visability-open="5"]'))
+      obs.observe(document.querySelector('.buzzpatch_accardion_lists[data-visability-open="6"]'))
+      obs.observe(document.querySelector('.buzzpatch_accardion_lists[data-visability-open="7"]'))
 
       function visibility(entries) {
         entries.forEach(i => {
           if (i.isIntersecting) {
-            if (i.target.classList.contains('buzzpatch_accardion')) {
+            if (i.target.classList.contains('buzzpatch_problems')) {
               pushDataLayer('Visibility block Mosquito bite problems')
             }
-            // if (i.target.getAttribute('data-visability')) {
-            //   console.log(first)
-            //   pushDataLayer(`${i.target}`)
-            // }
+            if (i.target.getAttribute('data-visability') === "1") {
+              pushDataLayer(`Visibility block ${i.target.getAttribute('data-visability')}`)
+            }
+            if (i.target.getAttribute('data-visability') === "2") {
+              pushDataLayer(`Visibility block ${i.target.getAttribute('data-visability')}`)
+            }
+            if (i.target.getAttribute('data-visability') === "3") {
+              pushDataLayer(`Visibility block ${i.target.getAttribute('data-visability')}`)
+            }
+            if (i.target.getAttribute('data-visability') === "4") {
+              pushDataLayer(`Visibility block ${i.target.getAttribute('data-visability')}`)
+            }
+            if (i.target.getAttribute('data-visability') === "5") {
+              pushDataLayer(`Visibility block ${i.target.getAttribute('data-visability')}`)
+            }
+            if (i.target.getAttribute('data-visability') === "6") {
+              pushDataLayer(`Visibility block ${i.target.getAttribute('data-visability')}`)
+            }
+            if (i.target.getAttribute('data-visability') === "7") {
+              pushDataLayer(`Visibility block ${i.target.getAttribute('data-visability')}`)
+            }
+
+            if (i.target.getAttribute('data-visability-open') === "1") {
+              pushDataLayer(`Visibility block opened ${i.target.getAttribute('data-visability-open')}`)
+            }
+            if (i.target.getAttribute('data-visability-open') === "2") {
+              pushDataLayer(`Visibility block opened ${i.target.getAttribute('data-visability-open')}`)
+            }
+            if (i.target.getAttribute('data-visability-open') === "3") {
+              pushDataLayer(`Visibility block opened ${i.target.getAttribute('data-visability-open')}`)
+            }
+            if (i.target.getAttribute('data-visability-open') === "4") {
+              pushDataLayer(`Visibility block opened ${i.target.getAttribute('data-visability-open')}`)
+            }
+            if (i.target.getAttribute('data-visability-open') === "5") {
+              pushDataLayer(`Visibility block opened ${i.target.getAttribute('data-visability-open')}`)
+            }
+            if (i.target.getAttribute('data-visability-open') === "6") {
+              pushDataLayer(`Visibility block opened ${i.target.getAttribute('data-visability-open')}`)
+            }
+            if (i.target.getAttribute('data-visability-open') === "7") {
+              pushDataLayer(`Visibility block opened ${i.target.getAttribute('data-visability-open')}`)
+            }
+
 
             obs.unobserve(i.target)
           }
