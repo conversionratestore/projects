@@ -666,9 +666,15 @@ function start() {
         drawSelectList()
         query('.select_wrapper p').addEventListener('click', function (e) {
             if (window.innerWidth > 768) {
-                slideDown(query('.select_wrapper ul'))
-                e.target.classList.add('active')
-                pushDataLayer('Click on Select size dropdown')
+
+                if(e.target.classList.contains('active')) {
+                    slideUp(query('.select_wrapper ul'))
+                    pushDataLayer('Close Select size dropdown without select item')
+                } else {
+                    slideDown(query('.select_wrapper ul'))
+                    pushDataLayer('Click on Select size dropdown')
+                }
+                e.target.classList.toggle('active')
             } else {
                 mobileSizeShow()
             }
@@ -742,6 +748,10 @@ function start() {
                 setTimeout(function () {
                     slideDown(query('.select_wrapper ul'))
                     query('.select_wrapper p').classList.add('active')
+                    query('.select_wrapper p').scrollIntoView({
+                        behavior:"smooth",
+                        block: "center"
+                    })
                 }, 100)
             } else {
                 mobileSizeShow()
@@ -757,6 +767,10 @@ function start() {
                 if(window.innerWidth > 768) {
                     slideDown(query('.select_wrapper ul'))
                     query('.select_wrapper p').classList.add('active')
+                    query('.select_wrapper p').scrollIntoView({
+                        behavior:"smooth",
+                        block: "center"
+                    })
                 } else {
                     mobileSizeShow()
                 }
