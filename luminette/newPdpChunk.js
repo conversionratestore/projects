@@ -376,6 +376,7 @@ const styles = `
     }
   }
   @media (max-width: 767px) {
+    /* Section 1 */
     .days-test:before, .days-test:after {
       content: none;
     }
