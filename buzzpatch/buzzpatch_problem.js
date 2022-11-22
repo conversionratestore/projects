@@ -44,7 +44,7 @@ let problemStart = setInterval(() => {
           }
            .buzzpatch_problems h2 span.accent_color{
               font-family: 'DINEngschrift LT', sans-serif;
-              font-weight: 700;
+              font-weight: 400;
               font-size: 36px;
               line-height: 43px;
               letter-spacing: 0.02em;
@@ -204,8 +204,8 @@ let problemStart = setInterval(() => {
             </div>
             <div class="buzzpatch_accardion_lists">
               <div>
-                <p>With BuzzPatch, keeping your child protected from mosquitos at all times becomes as easy as putting a sticker on them.</p>
-                <p>The BuzzPatch will work even if your child spends a lot of time outdoors or encounters a lot of mosquitos, and remains effective for up to 12 hours.</p>
+                <p>With BuzzPatch, keeping your child protected from mosquitoes at all times becomes as easy as putting a sticker on them.</p>
+                <p>BuzzPatch will work even if your child spends a lot of time outdoors or encounters a lot of mosquitoes, and remains effective for up to 12 hours.</p>
                 <a href="#getNow" class="buzzpatch_accardion_btn" data-btn="1">GET Buzzpatch</a>
               </div>
             </div>
@@ -246,7 +246,7 @@ let problemStart = setInterval(() => {
             <div class="buzzpatch_accardion_lists">
               <div>
                 <p>When your child doesn't like sprays, it's usually because of the smell, the sticky residue it leaves behind, or because their lungs are sensitive to the chemical clouds produced.</p>
-                <p>Either way, you need new a solution that works without having to spray chemicals all over your kids.</p>
+                <p>Either way, you need a new solution that works without having to spray chemicals all over your kids.</p>
                 <p>Fortunately, BuzzPatch operates without any irritant sprays or creams. Simply stick it onto a piece of clothing, and you'll have natural protection for your child for up to 12 hours.</p>
                 <a href="#getNow" class="buzzpatch_accardion_btn" data-btn="4">GET Buzzpatch</a>
               </div>
@@ -259,15 +259,15 @@ let problemStart = setInterval(() => {
             </div>
             <div class="buzzpatch_accardion_lists">
               <div>
-                <p>BuzzPatch is a chemical-free and organic mosquito repellent that works for everyone - regardless of age</p>
-                <p>Simply apply the patch, and you'll be protected from nearby mosquitos.</p>
+                <p>BuzzPatch is a chemical-free and organic mosquito repellent that works for everyone - regardless of age.</p>
+                <p>Simply apply the patch, and you'll be protected from nearby mosquitoes.</p>
                 <a href="#getNow" class="buzzpatch_accardion_btn" data-btn="5">GET Buzzpatch</a>
               </div>
             </div>
           </li>
           <li class="buzzpatch_accardion_block">
             <div class="buzzpatch_accardion_link">
-              <p><strong>I am planning to travel/go on vacation/in a camp,</strong> so I need a portable and effective anti-mosquito solution</p>
+              <p><strong>I am planning to travel/go on vacation/to a camp,</strong> so I need a portable and effective anti-mosquito solution</p>
               <span></span>
             </div>
             <div class="buzzpatch_accardion_lists">
