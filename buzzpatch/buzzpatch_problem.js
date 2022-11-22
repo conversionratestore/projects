@@ -8,7 +8,7 @@ let problemStart = setInterval(() => {
         console.log(actionDataLayer + " : " + labelDataLayer)
         dataLayer.push({
           event: "event-to-ga",
-          eventCategory: `Exp: - Personalized content intent`,
+          eventCategory: `Exp: - Problem based layout bp`,
           eventAction: `${actionDataLayer}`,
           eventLabel: `${labelDataLayer}`,
         })
@@ -16,7 +16,7 @@ let problemStart = setInterval(() => {
         console.log(actionDataLayer)
         dataLayer.push({
           event: "event-to-ga",
-          eventCategory: `Exp: - Personalized content intent`,
+          eventCategory: `Exp: - Problem based layout bp`,
           eventAction: `${actionDataLayer}`,
         })
       }
@@ -362,6 +362,6 @@ let problemStart = setInterval(() => {
     })
 
     pushDataLayer("loaded")
-    clarity("set", "personalized_content", "variant_1")
+    clarity("set", "problem_based_layout_bp", "variant_1")
   }
 }, 10)
