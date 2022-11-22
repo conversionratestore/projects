@@ -94,6 +94,9 @@ let problemStart = setInterval(() => {
               color: #0C0B0B;
               margin: 0;
            }
+           .buzzpatch_accardion_link p strong{
+            font-weight: 700 !important;
+           }
            .buzzpatch_accardion_link span{
               position: relative;
               background: #FFEBF2;
@@ -129,6 +132,9 @@ let problemStart = setInterval(() => {
               line-height: 150% !important;
               color: #212529;
               margin: 0;
+           }
+           .buzzpatch_accardion_lists p strong{
+             font-weight: 700 !important;
            }
            .buzzpatch_accardion_lists p + p{
               margin-top: 15px;
@@ -198,7 +204,7 @@ let problemStart = setInterval(() => {
         </h2>
   
         <ul class="buzzpatch_accardion">
-          <li class="buzzpatch_accardion_block">
+          <li class="buzzpatch_accardion_block" data-visability='1'>
             <div class="buzzpatch_accardion_link">
               <p>I want my <strong>kids/grandkids protected from mosquito bites</strong> at all times</p>
               <span></span>
@@ -211,7 +217,7 @@ let problemStart = setInterval(() => {
               </div>
             </div>
           </li>
-          <li class="buzzpatch_accardion_block">
+          <li class="buzzpatch_accardion_block" data-visability='2'>
             <div class="buzzpatch_accardion_link">
               <p><strong>My child is sensitive and/or allergic to mosquito bites,</strong> and needs an effective, <strong>soy-free,</strong> and allergen-free anti-mosquito solution</p>
               <span></span>
@@ -225,7 +231,7 @@ let problemStart = setInterval(() => {
               </div>
             </div>
           </li>
-          <li class="buzzpatch_accardion_block">
+          <li class="buzzpatch_accardion_block" data-visability='3'>
             <div class="buzzpatch_accardion_link">
               <p>I am looking for a <strong>chemical-free, natural, and organic anti-mosquito solution</strong> that is safe for regular use</p>
               <span></span>
@@ -239,7 +245,7 @@ let problemStart = setInterval(() => {
               </div>
             </div>
           </li>
-          <li class="buzzpatch_accardion_block">
+          <li class="buzzpatch_accardion_block" data-visability='4'>
             <div class="buzzpatch_accardion_link">
               <p><strong>My child dislikes putting on sprays,</strong> so I’m looking for an effective alternative</p>
               <span></span>
@@ -253,7 +259,7 @@ let problemStart = setInterval(() => {
               </div>
             </div>
           </li>
-          <li class="buzzpatch_accardion_block">
+          <li class="buzzpatch_accardion_block" data-visability='5'>
             <div class="buzzpatch_accardion_link">
               <p>I am looking for an anti-mosquito <strong>solution suitable for both kids and adults</strong></p>
               <span></span>
@@ -266,7 +272,7 @@ let problemStart = setInterval(() => {
               </div>
             </div>
           </li>
-          <li class="buzzpatch_accardion_block">
+          <li class="buzzpatch_accardion_block" data-visability='6'>
             <div class="buzzpatch_accardion_link">
               <p><strong>I am planning to travel/go on vacation/to a camp,</strong> so I need a portable and effective anti-mosquito solution</p>
               <span></span>
@@ -280,7 +286,7 @@ let problemStart = setInterval(() => {
               </div>
             </div>
           </li>
-          <li class="buzzpatch_accardion_block">
+          <li class="buzzpatch_accardion_block" data-visability='7'>
             <div class="buzzpatch_accardion_link">
               <p><strong>I'm planning an outdoor event</strong> and need protection for me/my family</p>
               <span></span>
@@ -303,10 +309,11 @@ let problemStart = setInterval(() => {
 
     if (document.querySelector(".buzzpatch_accardion")) {
       let obs = new IntersectionObserver(visibility, {
-        threshold: 0.9
+        threshold: 1
       })
 
       obs.observe(document.querySelector('.buzzpatch_accardion'))
+      // obs.observe(document.querySelector('.buzzpatch_accardion li'))
 
       function visibility(entries) {
         entries.forEach(i => {
@@ -314,6 +321,10 @@ let problemStart = setInterval(() => {
             if (i.target.classList.contains('buzzpatch_accardion')) {
               pushDataLayer('Visibility block Mosquito bite problems')
             }
+            // if (i.target.getAttribute('data-visability')) {
+            //   console.log(first)
+            //   pushDataLayer(`${i.target}`)
+            // }
 
             obs.unobserve(i.target)
           }
