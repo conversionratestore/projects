@@ -710,6 +710,7 @@ function start() {
         if (item.innerText.toLowerCase().includes('size')) {
             item.insertAdjacentHTML("beforeend", `<p class="to_size_guide">Size guide</p>`)
             item.querySelector('.to_size_guide').addEventListener('click', function () {
+                document.body.style.overflow = 'hidden'
                 pushDataLayer('Click on Size guide button')
                 query('.dark_bg').style.display = 'block'
                 setTimeout(function () {
@@ -733,6 +734,7 @@ function start() {
     })
 
     query('.size_guide .close').addEventListener('click', function () {
+        document.body.style.overflow = 'auto'
         pushDataLayer('Click on close Size guide pop-up')
         query('.size_guide').style.right = '-100%'
         query('.dark_bg').style.opacity = '0'
@@ -827,12 +829,14 @@ function start() {
         query('.new_h1').append(query('.product-single__prices'))
     }
 
-    query('.dark_bg').addEventListener('click', function () {
-        if(query('.mobile_size').style.bottom === '0px') {
-            mobileSizeClose()
-        }
-        if(query('.size_guide').style.right === '0px') {
-            query('.size_guide .close').click()
+    query('.dark_bg').addEventListener('click', function (e) {
+        if(e.target.classList.contains('dark_bg')) {
+            if(query('.mobile_size').style.bottom === '0px') {
+                mobileSizeClose()
+            }
+            if(query('.size_guide').style.right === '0px') {
+                query('.size_guide .close').click()
+            }
         }
     })
 
