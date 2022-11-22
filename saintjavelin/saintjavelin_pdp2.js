@@ -655,7 +655,6 @@ function start() {
     document.querySelectorAll('[data-default-text="Add to cart"]').forEach(i => {
         i.innerText = ''
     })
-    query('[data-default-text="Add to cart"]').innerText = 'Add to cart'
     document.body.insertAdjacentHTML('beforeend', sizeGuide)
     query('.mobile_size .close').addEventListener('click', function () {
         mobileSizeClose()
@@ -742,10 +741,14 @@ function start() {
             query('.dark_bg').style.display = 'none'
         }, 300)
     })
-
-    query('button[name="add"]').insertAdjacentHTML('beforeend', `<span class="cover"></span>`)
+    let btn = query('button[name="add"]')
+    if(query('button[name="add"].bold_clone')) {
+        btn = query('button[name="add"].bold_clone')
+    }
+    btn.querySelector('[data-default-text="Add to cart"]').innerText = 'Add to cart'
+    btn.insertAdjacentHTML('beforeend', `<span class="cover"></span>`)
     query('button[name="add"] .cover').addEventListener('click', function (e) {
-        if (query('button[name="add"]').getAttribute('disabled')) {
+        if (btn.getAttribute('disabled')) {
             if (window.innerWidth > 768) {
                 setTimeout(function () {
                     slideDown(query('.select_wrapper ul'))
@@ -765,7 +768,7 @@ function start() {
     query('.buy_it_now').addEventListener('click', function (e) {
         e.preventDefault()
         setTimeout(function () {
-            if (query('button[name="add"]').getAttribute('disabled')) {
+            if (btn.getAttribute('disabled')) {
                 if(window.innerWidth > 768) {
                     slideDown(query('.select_wrapper ul'))
                     query('.select_wrapper p').classList.add('active')
@@ -821,7 +824,7 @@ function start() {
     }
 
     obs.observe(query('.buy_it_now'))
-    obs.observe(query('button[name="add"]'))
+    obs.observe(btn)
 
     if (window.innerWidth < 768) {
         document.querySelectorAll('.page-width>.grid>.grid__item')[0].insertAdjacentHTML('beforebegin', `<div class="new_h1"></div>`)
