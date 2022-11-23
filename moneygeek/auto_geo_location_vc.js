@@ -419,21 +419,6 @@ form.css-8atqhb button.chakra-button {
         selectBody = document.querySelector(".select_body"),
         selectList = document.querySelector(".select_body ul")
 
-      if (selectCurrent.value !== "") {
-        const options = {
-          root: null,
-          threshold: 1,
-        }
-
-        let observerNewHeader = new IntersectionObserver((entries) => {
-          if (!entries[0].isIntersecting) return
-          pushDataLayer(`State resolved from IP and shown`)
-          observerNewHeader.disconnect()
-        })
-
-        observerNewHeader.observe(selectCurrent, options)
-      }
-
       onClickControlVer()
       fetchLocation()
 
@@ -476,6 +461,20 @@ form.css-8atqhb button.chakra-button {
             onChangeInput(jsonResponse.postal)
 
             if (selectCurrent) {
+
+              const options = {
+                root: null,
+                threshold: 1,
+              }
+
+              let observerNewHeader = new IntersectionObserver((entries) => {
+                if (!entries[0].isIntersecting) return
+                pushDataLayer(`State resolved from IP and shown`)
+                observerNewHeader.disconnect()
+              })
+
+              observerNewHeader.observe(selectCurrent, options)
+
               selectCurrent.value = jsonResponse.region
               selectCurrent.setAttribute("data-zip", jsonResponse.postal)
             }
