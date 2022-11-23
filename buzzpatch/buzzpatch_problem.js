@@ -96,7 +96,8 @@ let problemStart = setInterval(() => {
               margin: 0;
            }
            .buzzpatch_accardion_link p strong{
-            font-weight: 700 !important;
+              font-weight: 700 !important;
+              font-family: "Roboto", sans-serif !important;
            }
            .buzzpatch_accardion_link span{
               position: relative;
@@ -137,6 +138,7 @@ let problemStart = setInterval(() => {
            }
            .buzzpatch_accardion_lists p strong{
              font-weight: 700 !important;
+             font-family: "Roboto", sans-serif !important;
            }
            .buzzpatch_accardion_lists p + p{
               margin-top: 15px;
