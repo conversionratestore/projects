@@ -39,8 +39,8 @@ let problemStart = setInterval(() => {
           }
           .buzzpatch_problems h2 span{
               display: block;
-              font-weight: 600;
-              font-family: "Roboto", sans-serif;
+              font-weight: 700;
+              font-family: "Roboto", sans-serif !important;
           }
            .buzzpatch_problems h2 span.accent_color{
               font-family: 'DINEngschrift LT', sans-serif;
@@ -88,6 +88,7 @@ let problemStart = setInterval(() => {
               justify-content: flex-start;
            }
           .buzzpatch_accardion_link p{
+              font-family: "Roboto", sans-serif !important;
               font-weight: 400;
               font-size: 16px !important;
               line-height: 150% !important;
@@ -127,6 +128,7 @@ let problemStart = setInterval(() => {
               padding-top: 16px;
            }
            .buzzpatch_accardion_lists p{
+              font-family: "Roboto", sans-serif !important;
               font-weight: 400;
               font-size: 16px !important;
               line-height: 150% !important;
@@ -321,14 +323,6 @@ let problemStart = setInterval(() => {
       obs.observe(document.querySelector('.buzzpatch_accardion li[data-visability="6"]'))
       obs.observe(document.querySelector('.buzzpatch_accardion li[data-visability="7"]'))
 
-      obs.observe(document.querySelector('.buzzpatch_accardion_lists[data-visability-open="1"]'))
-      obs.observe(document.querySelector('.buzzpatch_accardion_lists[data-visability-open="2"]'))
-      obs.observe(document.querySelector('.buzzpatch_accardion_lists[data-visability-open="3"]'))
-      obs.observe(document.querySelector('.buzzpatch_accardion_lists[data-visability-open="4"]'))
-      obs.observe(document.querySelector('.buzzpatch_accardion_lists[data-visability-open="5"]'))
-      obs.observe(document.querySelector('.buzzpatch_accardion_lists[data-visability-open="6"]'))
-      obs.observe(document.querySelector('.buzzpatch_accardion_lists[data-visability-open="7"]'))
-
       function visibility(entries) {
         entries.forEach(i => {
           if (i.isIntersecting) {
@@ -356,29 +350,6 @@ let problemStart = setInterval(() => {
             if (i.target.getAttribute('data-visability') === "7") {
               pushDataLayer(`Visibility block ${i.target.getAttribute('data-visability')}`)
             }
-
-            if (i.target.getAttribute('data-visability-open') === "1") {
-              pushDataLayer(`Visibility block opened ${i.target.getAttribute('data-visability-open')}`)
-            }
-            if (i.target.getAttribute('data-visability-open') === "2") {
-              pushDataLayer(`Visibility block opened ${i.target.getAttribute('data-visability-open')}`)
-            }
-            if (i.target.getAttribute('data-visability-open') === "3") {
-              pushDataLayer(`Visibility block opened ${i.target.getAttribute('data-visability-open')}`)
-            }
-            if (i.target.getAttribute('data-visability-open') === "4") {
-              pushDataLayer(`Visibility block opened ${i.target.getAttribute('data-visability-open')}`)
-            }
-            if (i.target.getAttribute('data-visability-open') === "5") {
-              pushDataLayer(`Visibility block opened ${i.target.getAttribute('data-visability-open')}`)
-            }
-            if (i.target.getAttribute('data-visability-open') === "6") {
-              pushDataLayer(`Visibility block opened ${i.target.getAttribute('data-visability-open')}`)
-            }
-            if (i.target.getAttribute('data-visability-open') === "7") {
-              pushDataLayer(`Visibility block opened ${i.target.getAttribute('data-visability-open')}`)
-            }
-
 
             obs.unobserve(i.target)
           }
