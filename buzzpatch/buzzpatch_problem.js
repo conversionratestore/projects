@@ -92,6 +92,7 @@ let problemStart = setInterval(() => {
               font-weight: 400;
               font-size: 16px !important;
               line-height: 150% !important;
+              letter-spacing: 0 !important;
               color: #0C0B0B;
               margin: 0;
            }
@@ -132,6 +133,7 @@ let problemStart = setInterval(() => {
               font-family: "Roboto", sans-serif !important;
               font-weight: 400;
               font-size: 16px !important;
+              letter-spacing: 0 !important;
               line-height: 150% !important;
               color: #212529;
               margin: 0;
