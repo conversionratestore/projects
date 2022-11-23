@@ -43,7 +43,7 @@ let problemStart = setInterval(() => {
               font-family: "Roboto", sans-serif !important;
           }
            .buzzpatch_problems h2 span.accent_color{
-              font-family: 'DINEngschrift LT', sans-serif;
+              font-family: 'DINEngschrift LT', sans-serif !important;
               font-weight: 400;
               font-size: 36px;
               line-height: 43px;
