@@ -310,6 +310,7 @@ let problemStart = setInterval(() => {
       </div>
       `
 
+    document.head.insertAdjacentHTML('beforeend', `<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">`)
     document.head.insertAdjacentHTML("beforeend", problemStyle)
     document.querySelector("#flowers").insertAdjacentHTML("afterend", problemHtml)
 
