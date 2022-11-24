@@ -17,13 +17,24 @@ let modalLimitHTML = `
                     <h4 class="upgradeModal__title">Please upgrade your Signaturely account!</h4>
                     <p class="upgradeModal__text">You've signed your first document! <br>Please upgrade your account to request more signatures.</p>
                 </div>
-                <a href="https://next-app.signaturely.com/settings/billing/plan" class="button button--primary">
+                <a href="https://next-app.signaturely.com/settings/billing/plan" class="button button--primary" onclick="pushDataLayer('Click on Upgrade Account button', 'Popup: Please upgrade your Signaturely account!')">
                     <span class="button__text">Upgrade Account</span>
                 </a>
             </div>
         </div>
     </div>
 </div>`
+
+//push DataLayer
+function pushDataLayer(action, label) {
+    window.dataLayer = window.dataLayer || [];
+    dataLayer.push({
+        'event': 'event-to-ga',
+        'eventCategory': 'Exp — 1 document for free instead of 3',
+        'eventAction': action,
+        'eventLabel': label
+    });
+}
 
 // change text on pages
 let changeText = setInterval(() => {
@@ -131,8 +142,8 @@ function initModalInterval() {
             clearInterval(modalInterval)
             document.querySelector('.interactModal__header-send button.button--primary').addEventListener('click', (e) => {
                 e.stopImmediatePropagation();
-                console.log(e)
                 document.body.insertAdjacentHTML('beforeend', modalLimitHTML)
+                pushDataLayer('View popup', 'Popup: Please upgrade your Signaturely account!') 
             })
         }
     })  
@@ -145,10 +156,17 @@ let closeModalInterval = setInterval(() => {
         clearInterval(closeModalInterval)
         document.addEventListener('click', (e) => {
             if (document.querySelector('.modal-limit') != null && (!e.target.closest('.upgradeModal') || e.target.classList.contains('modal__close-button') || e.target.closest('.modal__close-button'))) {
-                console.log(e)
                 document.querySelector('.modal-limit').remove(); //remove modal
+                pushDataLayer('Closing popup', 'Popup: Please upgrade your Signaturely account!') 
                 initModalInterval() //init modal
             }
         })
     }
 })
+
+let isClarity = setInterval(() => {
+	if(typeof clarity === 'function') {
+		clearInterval(isClarity)
+		clarity('set', 'one_document_for_free', 'variant_1');
+	}
+}, 100)
