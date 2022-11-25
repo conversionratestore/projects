@@ -17,7 +17,7 @@ let modalLimitHTML = `
                     <h4 class="upgradeModal__title">Please upgrade your Signaturely account!</h4>
                     <p class="upgradeModal__text">You've signed your first document! <br>Please upgrade your account to request more signatures.</p>
                 </div>
-                <a href="https://next-app.signaturely.com/settings/billing/plan" class="button button--primary" onclick="pushDataLayer('Click on Upgrade Account button', 'Popup: Please upgrade your Signaturely account!')">
+                <a href="https://app.signaturely.com/settings/billing/plan" class="button button--primary" onclick="pushDataLayer('Click on Upgrade Account button', 'Popup: Please upgrade your Signaturely account!')">
                     <span class="button__text">Upgrade Account</span>
                 </a>
             </div>
@@ -136,7 +136,7 @@ function init() {
             let month = document.querySelector('.header__month-counter');
             if (month.innerText.includes('0 of 3 signature requests') || month.innerText.includes('1 of 3 signature requests')) {
                 month.innerHTML = month.innerHTML.replace('of 3', 'of 1');
-                month.querySelector('span').remove()
+                month.querySelector('span').remove();
             }
 
             if (month.innerText.includes('1 of 1 signature requests')) {
@@ -162,7 +162,7 @@ function init() {
                     if (document.querySelector('.successSendModal__button') != null) {
                         clearInterval(modalInterval)
                         sessionStorage.setItem('documents', '1');
-                        window.location.reload()
+                        document.querySelector('.header__month-counter').innerHTML = '1 of 1 signature requests'
                     }
                 }
             }
