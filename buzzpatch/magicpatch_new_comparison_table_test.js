@@ -461,5 +461,6 @@ let magicComparisonTable = setInterval(() => {
                 clarity("set", "comparison table_mp")
             }
         }, 200)
+        
     }
 })
