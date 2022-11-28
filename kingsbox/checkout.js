@@ -306,8 +306,8 @@ const style = /*html*/ `
                 display: none !important;
             }
 
-            .checkout-shopping-cart .moneyback {
-                background: #28A9E2;
+            .moneyback {
+                background: #28A9E2 !important;
                 padding: 20px 40px;
                 text-align: center;
             }
