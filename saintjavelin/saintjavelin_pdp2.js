@@ -12,7 +12,7 @@ const test_style = `
           font-weight: 600;
         }
         .payment-buttons [data-shopify="payment-button"] {
-          display: none;
+          display: block !important;
         }
         .buy_it_now {
           width: 100%;
@@ -173,7 +173,7 @@ const test_style = `
           top: 100%;
           left: 0;
           width: 100%;
-          z-index: 1;
+          z-index: 2;
         }
         
         .select_wrapper ul li,  .mobile_size ul li{
@@ -260,6 +260,19 @@ const test_style = `
           margin: 0;
         }
         
+        .shopify-payment-button__more-options {
+          position:relative;
+        }
+        
+        .shopify-payment-button__more-options span {
+          position: absolute;
+          display: block;
+          width: 100%;
+          height: 100%;
+          top: 0;
+          left: 0;
+        }
+        
         @media (max-width: 768px) {
           .variant-input-wrap {
             text-align: left;
@@ -289,9 +302,6 @@ const test_style = `
     </style>
 `
 
-const customBtns = `
-      <button class="buy_it_now">buy it now</button>
-`
 
 const sizeGuide = `
     <div class="dark_bg">
@@ -651,11 +661,12 @@ function start() {
         threshold: 0.9
     })
     const ev = new Event('change')
-    query('.payment-buttons').insertAdjacentHTML('beforeend', customBtns)
     document.querySelectorAll('[data-default-text="Add to cart"]').forEach(i => {
         i.innerText = ''
     })
     document.body.insertAdjacentHTML('beforeend', sizeGuide)
+    query('.shopify-payment-button__more-options').removeAttribute('disabled')
+    query('.shopify-payment-button__more-options').insertAdjacentHTML('beforeend', `<span></span>`)
     query('.mobile_size .close').addEventListener('click', function () {
         mobileSizeClose()
         pushDataLayer('Click on close Select size pop-up')
@@ -769,11 +780,7 @@ function start() {
     }, 2000)
 
 
-
-
-
-    query('.buy_it_now').addEventListener('click', function (e) {
-        e.preventDefault()
+    query('[data-testid="upstream-button"]').addEventListener('click', function (e) {
         setTimeout(function () {
             if (btn.getAttribute('disabled')) {
                 if(window.innerWidth > 768) {
@@ -786,7 +793,26 @@ function start() {
                 } else {
                     mobileSizeShow()
                 }
+            }
+        }, 100)
+    })
 
+
+    query('.shopify-payment-button__more-options span').addEventListener('click', function (e) {
+        e.preventDefault()
+        e.stopPropagation()
+        setTimeout(function () {
+            if (btn.getAttribute('disabled')) {
+                if(window.innerWidth > 768) {
+                    slideDown(query('.select_wrapper ul'))
+                    query('.select_wrapper p').classList.add('active')
+                    query('.select_wrapper p').scrollIntoView({
+                        behavior:"smooth",
+                        block: "center"
+                    })
+                } else {
+                    mobileSizeShow()
+                }
             } else {
                 query('.shopify-payment-button__more-options').click()
             }
@@ -830,7 +856,8 @@ function start() {
         })
     }
 
-    obs.observe(query('.buy_it_now'))
+    obs.observe(query('[data-testid="upstream-button"]'))
+    obs.observe(query('.shopify-payment-button__more-options'))
     obs.observe(btn)
 
     if (window.innerWidth < 768) {
@@ -857,8 +884,8 @@ function start() {
                 if (i.target.classList.contains('size_guide')) {
                     pushDataLayer('View element on screen', 'Size guide')
                 }
-                if (i.target.classList.contains('buy_it_now')) {
-                    pushDataLayer('View element on screen', 'Buy it now button')
+                if (i.target.classList.contains('shopify-payment-button__more-options')) {
+                    pushDataLayer('View element on screen', 'More payment option')
                 }
                 if (i.target.name === 'Color') {
                     pushDataLayer('View element on screen', 'Select color')
@@ -872,6 +899,9 @@ function start() {
                 }
                 if (i.target.classList.contains('mobile_size')) {
                     pushDataLayer('View element on screen', 'Select size pop-up')
+                }
+                if (i.target.classList.contains('shopify-payment-button__button')) {
+                    pushDataLayer('View element on screen', 'Payment button')
                 }
                 obs.unobserve(i.target)
             }
