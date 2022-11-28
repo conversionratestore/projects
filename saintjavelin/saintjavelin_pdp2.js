@@ -665,8 +665,6 @@ function start() {
         i.innerText = ''
     })
     document.body.insertAdjacentHTML('beforeend', sizeGuide)
-    query('.shopify-payment-button__more-options').removeAttribute('disabled')
-    query('.shopify-payment-button__more-options').insertAdjacentHTML('beforeend', `<span></span>`)
     query('.mobile_size .close').addEventListener('click', function () {
         mobileSizeClose()
         pushDataLayer('Click on close Select size pop-up')
@@ -799,31 +797,34 @@ function start() {
                 }, 100)
             })
             obs.observe(query('[data-testid="upstream-button"]'))
+            
+            query('.shopify-payment-button__more-options').removeAttribute('disabled')
+            query('.shopify-payment-button__more-options').insertAdjacentHTML('beforeend', `<span></span>`)
+            query('.shopify-payment-button__more-options span').addEventListener('click', function (e) {
+                e.preventDefault()
+                e.stopPropagation()
+                setTimeout(function () {
+                    if (btn.getAttribute('disabled')) {
+                        if(window.innerWidth > 768) {
+                            slideDown(query('.select_wrapper ul'))
+                            query('.select_wrapper p').classList.add('active')
+                            query('.select_wrapper p').scrollIntoView({
+                                behavior:"smooth",
+                                block: "center"
+                            })
+                        } else {
+                            mobileSizeShow()
+                        }
+                    } else {
+                        query('.shopify-payment-button__more-options').click()
+                    }
+                }, 100)
+            })
         }
     }, 100)
 
 
-
-    query('.shopify-payment-button__more-options span').addEventListener('click', function (e) {
-        e.preventDefault()
-        e.stopPropagation()
-        setTimeout(function () {
-            if (btn.getAttribute('disabled')) {
-                if(window.innerWidth > 768) {
-                    slideDown(query('.select_wrapper ul'))
-                    query('.select_wrapper p').classList.add('active')
-                    query('.select_wrapper p').scrollIntoView({
-                        behavior:"smooth",
-                        block: "center"
-                    })
-                } else {
-                    mobileSizeShow()
-                }
-            } else {
-                query('.shopify-payment-button__more-options').click()
-            }
-        }, 100)
-    })
+    
 
     if (query('fieldset[name="Color"]')) {
         query('.product-slideshow').addEventListener('changeSlider', function (e) {
