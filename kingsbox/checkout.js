@@ -143,14 +143,12 @@ const translate = {
         payment: 'Betaling',
         total: 'Het totaal van uw winkelwagen is',        
         summary: 'Samenvatting',
-
         backShop: 'Terug naar de winkel',
         continueDelivery: 'verder naar levering',
         backShipping: 'Terug naar Verzendinfo',
         continuePayment: 'verder naar Betaling',
         backDelivery: 'Terug naar leveringsmethode',
         pay: 'Betaal nu',
-
         change: 'Wijzig',
         calculated: 'Berekend bij de volgende stap',
         guaranteeTitle: '30 dagen geld terug garantie',
@@ -1170,6 +1168,12 @@ const waitForPayBtn = setInterval(() => {
         );
     }
 }, intervalTimeout);
+
+if(language === 'en') {
+    waitForEl('.checkout-delivery-method .description .value').then(el => {
+        el.innerHTML = 'Some items in your cart aren’t available at the moment. Firstly, we will ship everything in stock. As soon as other options become available we will ship them too.'
+    })
+}
 
 callEvent('loaded');
 
