@@ -779,23 +779,29 @@ function start() {
         })
     }, 2000)
 
+    let payment = setInterval(function () {
+        if(query('[data-testid="upstream-button"]')) {
+            clearInterval(payment)
+            query('[data-testid="upstream-button"]').addEventListener('click', function (e) {
+                setTimeout(function () {
+                    if (btn.getAttribute('disabled')) {
+                        if (window.innerWidth > 768) {
+                            slideDown(query('.select_wrapper ul'))
+                            query('.select_wrapper p').classList.add('active')
+                            query('.select_wrapper p').scrollIntoView({
+                                behavior: "smooth",
+                                block: "center"
+                            })
+                        } else {
+                            mobileSizeShow()
+                        }
+                    }
+                }, 100)
+            })
+            obs.observe(query('[data-testid="upstream-button"]'))
+        }
+    }, 100)
 
-    query('[data-testid="upstream-button"]').addEventListener('click', function (e) {
-        setTimeout(function () {
-            if (btn.getAttribute('disabled')) {
-                if(window.innerWidth > 768) {
-                    slideDown(query('.select_wrapper ul'))
-                    query('.select_wrapper p').classList.add('active')
-                    query('.select_wrapper p').scrollIntoView({
-                        behavior:"smooth",
-                        block: "center"
-                    })
-                } else {
-                    mobileSizeShow()
-                }
-            }
-        }, 100)
-    })
 
 
     query('.shopify-payment-button__more-options span').addEventListener('click', function (e) {
@@ -856,7 +862,7 @@ function start() {
         })
     }
 
-    obs.observe(query('[data-testid="upstream-button"]'))
+
     obs.observe(query('.shopify-payment-button__more-options'))
     obs.observe(btn)
 
