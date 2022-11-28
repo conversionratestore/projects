@@ -220,7 +220,7 @@ const style = /*html*/ `
                 display: flex;
                 flex-direction: row;
                 align-items: center;
-                max-width: 478px;
+                max-width: 530px;
                 margin: 40px 0 55px;
             }
             .step {
@@ -1176,7 +1176,3 @@ const record = setInterval(() => {
 waitForEl('.checkout-empty-container').then(() => {
     callEvent('cart is empty');
 });
-
-// window.addEventListener('beforeunload', () => {
-//     sessionStorage.setItem('checkout_step', 0);
-// });
