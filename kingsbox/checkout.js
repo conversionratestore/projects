@@ -137,22 +137,24 @@ const translate = {
     },
     nl: {
         // dutch
-        shop: 'Shop',
-        shipping: 'Shipping info',
-        delivery: 'Delivery Method',
-        payment: 'payment',
-        total: 'Your cart total is',
+        shop: 'Winkel',
+        shipping: 'Verzendinfo',
+        delivery: 'Levering',
+        payment: 'Betaling',
+        total: 'Het totaal van uw winkelwagen is',        
         summary: 'Samenvatting',
-        backShop: 'back to shop',
-        continueDelivery: 'continue to delivery',
-        backShipping: 'Back to Shipping info',
-        continuePayment: 'continue to Payment',
-        backDelivery: 'Back to Shipping info',
-        pay: 'Pay now',
-        change: 'Change',
-        calculated: 'Calculated at next step',
-        guaranteeTitle: '',
-        guaranteeBody: '',
+
+        backShop: 'Terug naar de winkel',
+        continueDelivery: 'verder naar levering',
+        backShipping: 'Terug naar Verzendinfo',
+        continuePayment: 'verder naar Betaling',
+        backDelivery: 'Terug naar leveringsmethode',
+        pay: 'Betaal nu',
+
+        change: 'Wijzig',
+        calculated: 'Berekend bij de volgende stap',
+        guaranteeTitle: '30 dagen geld terug garantie',
+        guaranteeBody: `Als u niet tevreden bent met uw Kingsbox product, kunt u het binnen 30 dagen na levering zonder een specifieke reden op te geven.`,
     },
     se: {
         // svenska
@@ -298,11 +300,15 @@ const style = /*html*/ `
                 padding: 0 !important;
             }
 
+            .checkout-shopping-cart div {
+                background-color: #f4f4f4;
+            }
+
             .checkout-shopping-cart hr {
                 display: none !important;
             }
 
-            .moneyback {
+            .checkout-shopping-cart .moneyback {
                 background: #28A9E2;
                 padding: 20px 40px;
                 text-align: center;
