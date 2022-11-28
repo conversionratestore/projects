@@ -982,7 +982,7 @@ const showStepAndHideOther = stepNumber => {
         .then(() => waitForEl('[data-stepbtn="shipping"] .continue'))
         .then(el => el.removeAttribute('disabled'));
 
-    sessionStorage.setItem('checkout_step', stepNumber);
+    // sessionStorage.setItem('checkout_step', stepNumber);
 };
 
 const waitForBtns = setInterval(() => {
@@ -997,24 +997,26 @@ const waitForBtns = setInterval(() => {
     }
 }, intervalTimeout);
 
-if (sessionStorage.getItem('checkout_step')) {
-    switch (sessionStorage.getItem('checkout_step')) {
-        case '0':
-            showStepAndHideOther(0);
-            break;
-        case '1':
-            showStepAndHideOther(1);
-            break;
-        case '2':
-            showStepAndHideOther(2);
-            break;
+// if (sessionStorage.getItem('checkout_step')) {
+//     switch (sessionStorage.getItem('checkout_step')) {
+//         case '0':
+//             showStepAndHideOther(0);
+//             break;
+//         case '1':
+//             showStepAndHideOther(1);
+//             break;
+//         case '2':
+//             showStepAndHideOther(2);
+//             break;
 
-        default:
-            break;
-    }
-} else {
-    showStepAndHideOther(0);
-}
+//         default:
+//             break;
+//     }
+// } else {
+//     showStepAndHideOther(0);
+// }
+
+showStepAndHideOther(0)
 
 waitForEl('.checkout-shipping').then(el => {
     el.insertAdjacentHTML(
