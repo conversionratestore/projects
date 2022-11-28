@@ -797,7 +797,7 @@ function start() {
                 }, 100)
             })
             obs.observe(query('[data-testid="upstream-button"]'))
-            
+
             query('.shopify-payment-button__more-options').removeAttribute('disabled')
             query('.shopify-payment-button__more-options').insertAdjacentHTML('beforeend', `<span></span>`)
             query('.shopify-payment-button__more-options span').addEventListener('click', function (e) {
@@ -820,11 +820,14 @@ function start() {
                     }
                 }, 100)
             })
+            if(query('fieldset[name="Size"]') && !query('fieldset[name="Color"]')) {
+                document.querySelectorAll('fieldset[name="Size"] input')[0].click()
+            }
         }
     }, 100)
 
 
-    
+
 
     if (query('fieldset[name="Color"]')) {
         query('.product-slideshow').addEventListener('changeSlider', function (e) {
@@ -853,10 +856,7 @@ function start() {
             console.log(imgUrl)
             document.querySelectorAll('fieldset[name="Size"] input:not([value="default"])').forEach(item => {
                 const size = item.value.toLowerCase().trim().replaceAll('″', '').replaceAll('×','x')
-                console.log(imgUrl.includes(size))
-                console.log(size)
                 if (imgUrl.includes(size) && item.checked !== true) {
-                    console.log('>>>')
                     item.checked = true
                 }
             })
