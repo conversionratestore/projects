@@ -710,6 +710,12 @@ const style = /*html*/ `
                 .mob_widener{padding: 0 25px;}
             }
 
+            /* @media(min-width: 768px) and (max-width: 1445px){
+                .checkout-paypal-btn > div {
+                    padding: 0 170px;
+                }
+            }*/         
+
             @media(min-width: 768px) and (max-width: 1200px){
                 .mob_cart_wrapper.fixed {
                     max-width: 800px;
