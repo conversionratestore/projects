@@ -547,7 +547,7 @@ const style = /*html*/ `
                 margin-top: 5px;
                 cursor: pointer;
             }
-            .mob_cart_wrapper.clickable.hide_cart img{
+            .mob_cart_wrapper.clickable:not(.hide_cart) img{
                 transform: rotate(180deg);
             }
             .hide_cart + div {display: none;}
