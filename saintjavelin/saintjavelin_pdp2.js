@@ -782,7 +782,7 @@ function start() {
             clearInterval(payment)
             query('[data-testid="upstream-button"]').addEventListener('click', function (e) {
                 setTimeout(function () {
-                    if (btn.getAttribute('disabled')) {
+                    if (query('[data-testid="upstream-button"] [role="button"]').getAttribute('aria-disabled')) {
                         if (window.innerWidth > 768) {
                             slideDown(query('.select_wrapper ul'))
                             query('.select_wrapper p').classList.add('active')
@@ -822,6 +822,8 @@ function start() {
             })
             if(query('fieldset[name="Size"]') && !query('fieldset[name="Color"]')) {
                 document.querySelectorAll('fieldset[name="Size"] input')[0].click()
+            } else {
+                document.querySelectorAll('fieldset[name="Color"] input')[0].click()
             }
         }
     }, 100)
