@@ -141,7 +141,7 @@ const translate = {
         shipping: 'Verzendinfo',
         delivery: 'Levering',
         payment: 'Betaling',
-        total: 'Het totaal van uw winkelwagen is',        
+        total: 'Het totaal van uw winkelwagen is',
         summary: 'Samenvatting',
         backShop: 'Terug naar de winkel',
         continueDelivery: 'verder naar levering',
@@ -447,6 +447,9 @@ const style = /*html*/ `
                 top: 20px;
                 right: 20px;
             }
+            .delivery.hide_delivery {
+                display: none !important;
+            }
             .delivery {width: 100%;}
             .delivery hr {border-color: #C4C4C4;}
             .shipping_title,
@@ -570,6 +573,15 @@ const style = /*html*/ `
             .product-actions i {
                 margin-left: 1.5rem !important;
                 margin-right: 0 !important;
+            }
+
+            .checkout-missing-data {
+                padding-bottom: 25px;
+            }
+
+            .checkout-missing-data p {
+                color: red;
+                font-weight: 700;
             }
 
             @media (min-width: 1640px) {
@@ -915,6 +927,8 @@ const waitForCoupon = setInterval(() => {
 }, intervalTimeout);
 
 /** STEPS */
+let isDeliveryStep = false
+
 const showStepAndHideOther = stepNumber => {
     if (device === 'desktop') {
         window.scrollTo(0, 0);
@@ -944,8 +958,15 @@ const showStepAndHideOther = stepNumber => {
             waitForEl(steps[0] + ' .card-title').then(el => (el.hidden = true));
         }
 
+        if (stepNumber === 1) {
+            isDeliveryStep = true
+        } else {
+            isDeliveryStep = false
+        }
+
         if (stepNumber === 2) {
             waitForEl('.delivery').then(el => (el.hidden = false));
+
         } else {
             waitForEl('.delivery').then(el => (el.hidden = true));
         }
@@ -985,8 +1006,6 @@ const showStepAndHideOther = stepNumber => {
     waitForEl('.info-section-data')
         .then(() => waitForEl('[data-stepbtn="shipping"] .continue'))
         .then(el => el.removeAttribute('disabled'));
-
-    // sessionStorage.setItem('checkout_step', stepNumber);
 };
 
 const waitForBtns = setInterval(() => {
@@ -1001,25 +1020,6 @@ const waitForBtns = setInterval(() => {
     }
 }, intervalTimeout);
 
-// if (sessionStorage.getItem('checkout_step')) {
-//     switch (sessionStorage.getItem('checkout_step')) {
-//         case '0':
-//             showStepAndHideOther(0);
-//             break;
-//         case '1':
-//             showStepAndHideOther(1);
-//             break;
-//         case '2':
-//             showStepAndHideOther(2);
-//             break;
-
-//         default:
-//             break;
-//     }
-// } else {
-//     showStepAndHideOther(0);
-// }
-
 showStepAndHideOther(0)
 
 waitForEl('.checkout-shipping').then(el => {
@@ -1033,7 +1033,7 @@ waitForEl('.checkout-shipping').then(el => {
             </div>
             <div data-stepBtn="delivery">
                 <button class="back" onclick="showStepAndHideOther(0)">${lang.backShipping}</button>
-                <button class="continue" onclick="showStepAndHideOther(2)" disabled>${lang.continuePayment}</button>
+                <button class="continue" onclick="showStepAndHideOther(2)">${lang.continuePayment}</button>
             </div>
             <div data-stepBtn="pay">
                 <button class="back" onclick="showStepAndHideOther(1)" type="button">${lang.backDelivery}</button>
@@ -1062,33 +1062,54 @@ waitForEl('.info-section-data').then(el => {
     );
 });
 const changeDeliveryPriceAndBtn = () => {
+    // console.log('changeDeliveryPriceAndBtn');
     waitForEl('div.d-flex.flex-row.justify-content-between.align-items-center.mb-4.ng-tns-c106-7 p:last-child').then(
         price => {
-            waitForEl('[data-stepBtn="delivery"] .continue').then(btn => {
-                if (price.innerText !== '/' && price.innerText !== lang.calculated) {
-                    btn.removeAttribute('disabled');
+            // waitForEl('[data-stepBtn="delivery"] .continue').then(btn => {
+                const waitForElA = setInterval(() => {
+                    if (
+                        (document.querySelector('.active .value') || document.querySelector('.active h6')) &&
+                        document.querySelector('[data-delivery="method"]') &&
+                        document.querySelector('[data-delivery="price"]') &&
+                        price
+                    ) {
+                        clearInterval(waitForElA);
 
-                    const waitForEl = setInterval(() => {
-                        if (
-                            (document.querySelector('.active .value') || document.querySelector('.active h6')) &&
-                            document.querySelector('[data-delivery="method"]') &&
-                            document.querySelector('[data-delivery="price"]') &&
-                            price
-                        ) {
-                            clearInterval(waitForEl);
+                        // console.log(document.querySelector('.active .value')?.innerText || document.querySelector('.active h6')?.innerText);
 
-                            document.querySelector('[data-delivery="method"]').innerText =
-                                (document.querySelector('.active .value')?.innerText ||
-                                    document.querySelector('.active h6')?.innerText) + ' — ';
+                        document.querySelector('[data-delivery="method"]').innerText =
+                            (document.querySelector('.active .value')?.innerText || document.querySelector('.active h6')?.innerText);
 
-                            document.querySelector('[data-delivery="price"]').innerText = price.innerText;
+
+                        console.log(price.innerText);
+
+                        if (price.innerText !== '/') {
+                            
+                            document.querySelector('[data-delivery="price"]').innerText = ' — ' + price.innerText;
                         }
-                    }, intervalTimeout);
-                } else {
-                    price.innerText = lang.calculated;
-                    btn.setAttribute('disabled', true);
-                }
-            });
+
+                        // console.log('function >>>>>>>>>>>');
+
+                        // if (isDeliveryStep) {
+                        waitForEl('.checkout-payment .card-title-wrapper + div > div').then(el => {
+                            const waitForDelivery = setInterval(() => {
+                                // if (document.querySelector('.delivery')) {
+                                    clearInterval(waitForDelivery)
+
+                                    if (el.classList.contains('checkout-missing-data')) {
+                                        document.querySelector('.delivery').classList.add('hide_delivery')
+                                        // console.log('contains');
+
+                                    } else {
+                                        document.querySelector('.delivery').classList.remove('hide_delivery')
+                                        // console.log('NOT contains');
+                                    }
+                                // }
+                            }, intervalTimeout)
+                        })
+                    }
+                }, intervalTimeout);
+            // });
         },
     );
     changeCartTotalPrice();
@@ -1169,7 +1190,7 @@ const waitForPayBtn = setInterval(() => {
     }
 }, intervalTimeout);
 
-if(language === 'en') {
+if (language === 'en') {
     waitForEl('.checkout-delivery-method .description .value').then(el => {
         el.innerHTML = 'Some items in your cart aren’t available at the moment. Firstly, we will ship everything in stock. As soon as other options become available we will ship them too.'
     })
