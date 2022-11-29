@@ -579,7 +579,7 @@ const style = /*html*/ `
                 padding-bottom: 25px;
             }
 
-            .checkout-missing-data p {
+            app-checkout-payment .checkout-missing-data p {
                 color: red;
                 font-weight: 700;
             }
@@ -710,11 +710,11 @@ const style = /*html*/ `
                 .mob_widener{padding: 0 25px;}
             }
 
-            /* @media(min-width: 768px) and (max-width: 1445px){
+            @media(min-width: 1200px) and (max-width: 1445px){
                 .checkout-paypal-btn > div {
-                    padding: 0 170px;
+                    padding: 0 155px;
                 }
-            }*/         
+            }      
 
             @media(min-width: 768px) and (max-width: 1200px){
                 .mob_cart_wrapper.fixed {
@@ -737,6 +737,7 @@ const style = /*html*/ `
             }
         </style>
         `;
+        
 const waitForEl = selector => {
     return new Promise(resolve => {
         if (document.querySelector(selector)) {
@@ -1089,9 +1090,10 @@ const changeDeliveryPriceAndBtn = () => {
 
                         console.log(price.innerText);
 
-                        if (price.innerText !== '/') {
-                            
+                        if (price.innerText !== '/') {                            
                             document.querySelector('[data-delivery="price"]').innerText = ' — ' + price.innerText;
+                        } else {
+                            document.querySelector('[data-delivery="price"]').innerText = ''
                         }
 
                         // console.log('function >>>>>>>>>>>');
