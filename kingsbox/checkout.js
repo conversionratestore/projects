@@ -73,7 +73,7 @@ const translate = {
         pay: 'Plačaj zdaj',
         change: 'Spremeni',
         calculated: 'Izračunano na naslednjem koraku',
-        guaranteeTitle: '',
+        guaranteeTitle: '30 dnevno jamstvo vračila denarja',
         guaranteeBody: 'Če niste zadovoljni s KingsBox izdelkom, ga lahko v 30 dneh vrnete brez navedenega razloga.',
     },
     de: {
