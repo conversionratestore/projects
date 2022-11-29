@@ -10,7 +10,7 @@ let startFunk = setInterval(() => {
                 console.log(actionDataLayer + " : " + labelDataLayer)
                 dataLayer.push({
                     event: "event-to-ga",
-                    eventCategory: `Exp: - Sell the call (inform)`,
+                    eventCategory: `Exp: - Sell the call`,
                     eventAction: `${actionDataLayer}`,
                     eventLabel: `${labelDataLayer}`,
                 })
@@ -18,7 +18,7 @@ let startFunk = setInterval(() => {
                 console.log(actionDataLayer)
                 dataLayer.push({
                     event: "event-to-ga",
-                    eventCategory: `Exp: - Sell the call (inform)`,
+                    eventCategory: `Exp: - Sell the call`,
                     eventAction: `${actionDataLayer}`,
                 })
             }
@@ -106,28 +106,45 @@ let startFunk = setInterval(() => {
                     padding: 16px;
                 }
             }
+            @media (max-width: 320px) {
+                .accent_wrap {
+                    padding: 10px;
+                }
+                .accent_wrap p{
+                    font-size: 14px;
+                }
+                .new_text_wrap h2{
+                    font-size: 13px !important;
+                }
+                .new_text_wrap ul span{
+                    font-size: 12px;
+                }
+                .new_text_wrap > p{
+                    font-size: 12px;
+                }
+            }
         </style>
         `
 
         let newBlock = /*html */`
         <div class="new_text_wrap" data-visability="1">
             <div class="accent_wrap" data-event>
-                <p data-event>We have a market-leading</p>
-                <p class="accent_green" data-event>90% loan approval rate</p>
+                <p data-event>Temos uma taxa de aprovação líder</p>
+                <p class="accent_green" data-event>no mercado, de 90%</p>
             </div>
-            <h2 class="new_title" data-event>You'll be given the following information when our team contacts you:</h2>
+            <h2 class="new_title" data-event>Vamos dar-lhe as seguintes informações quando a nossa equipa entrar em contacto consigo:</h2>
             <ul class="new_list">
                 <li class="new_link">
-                    <span data-event>How to secure a good loan offer.</span>
+                    <span data-event>Como conseguir a melhor oferta.</span>
                 </li>
                 <li class="new_link">
-                    <span data-event>The documents you'll need to secure a good loan offer.</span>
+                    <span data-event>Os documentos que precisa para receber as melhores propostas.</span>
                 </li>
                 <li class="new_link">
-                    <span data-event>Information on the best loan offers available to you.</span>
+                    <span data-event>Quais os melhores créditos habitação disponíveis para si.</span>
                 </li>
             </ul>
-            <p class="new_text" data-event>Fill out the form below and we'll contact you within the next few hours!</p>
+            <p class="new_text" data-event>Preencha o formulário seguinte e será contactado nas próximas horas!</p>
         </div>
         `
         document.head.insertAdjacentHTML('beforeend', newStyle)
@@ -259,7 +276,7 @@ let startFunk = setInterval(() => {
                         if (i.isIntersecting) {
                             setTimeout(function () {
                                 obs2.observe(i.target)
-                            }, 1000)
+                            }, 800)
                         }
                     })
                 }
@@ -268,13 +285,54 @@ let startFunk = setInterval(() => {
                     entries.forEach(i => {
                         if (i.isIntersecting) {
                             if (i.target.getAttribute('data-visability') === "1") {
-                                pushDataLayer(`Visibility block`)
+                                pushDataLayer(`view the block`)
                             }
+
+                            // if (window.innerWidth <= 768) {
+                            //     if (i.target.getAttribute('data-visability') === "1") {
+                            //         pushDataLayer(`10 seconds of the block view`)
+                            //     }
+                            // }
 
                             obs.unobserve(i.target)
                         }
                         obs2.unobserve(i.target)
                     })
+                }
+                // 
+                if (window.innerWidth <= 768) {
+                    let obsMob = new IntersectionObserver(visibilityMob, {
+                        threshold: 0.9
+                    })
+
+                    let obsMob2 = new IntersectionObserver(visibilityMob2, {
+                        threshold: 0.9
+                    })
+
+                    obsMob.observe(document.querySelector('.new_text_wrap[data-visability="1"]'))
+
+                    function visibilityMob(entries) {
+                        entries.forEach(i => {
+                            if (i.isIntersecting) {
+                                setTimeout(function () {
+                                    obsMob2.observe(i.target)
+                                }, 10000)
+                            }
+                        })
+                    }
+
+                    function visibilityMob2(entries) {
+                        entries.forEach(i => {
+                            if (i.isIntersecting) {
+                                if (i.target.getAttribute('data-visability') === "1") {
+                                    pushDataLayer(`10 seconds of the block view`)
+                                }
+
+                                obsMob.unobserve(i.target)
+                            }
+                            obsMob2.unobserve(i.target)
+                        })
+                    }
                 }
             }
         }, 100)
@@ -285,7 +343,7 @@ let startFunk = setInterval(() => {
             if (typeof clarity === "function") {
                 clearInterval(record)
 
-                clarity("set", "", "variant_1")
+                clarity("set", "sell_the_call", "variant_1")
             }
         }, 200)
 
