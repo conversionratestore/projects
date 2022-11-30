@@ -417,7 +417,7 @@ const style = /*html*/ `
                 flex-wrap: wrap;
                 position: relative;
             }
-            .info-section div:first-child > div {
+            .info-section:first-child div:first-child > div {
                 display: none !important;
             }
             .info-section-data p:nth-child(4),
