@@ -413,11 +413,20 @@ const style = /*html*/ `
             .checkout-delivery-method, .checkout-payment {padding: 0;}
 
             .info-section {
-                display: flex;
                 flex-wrap: wrap;
                 position: relative;
                 align-items: flex-start;
             }
+            .info-section:first-child {
+                display: flex;
+            }
+
+            .info-section:first-child .change-shipping-info {
+                position: absolute;
+                top: 20px;
+                right: 20px;
+            }
+
             .info-section:first-child div:first-child > div {
                 display: none !important;
             }
@@ -442,12 +451,6 @@ const style = /*html*/ `
                 right: 1px;
             }
 
-
-            .change-shipping-info {
-                position: absolute;
-                top: 20px;
-                right: 20px;
-            }
             .delivery.hide_delivery {
                 display: none !important;
             }
@@ -482,6 +485,8 @@ const style = /*html*/ `
                 color: #32AAE0;
                 cursor: pointer;
                 font-size: 14px !important;
+                padding-left: 5px; 
+                text-align: right;
             }
 
             .checkout-paypal-btn > div {
@@ -738,7 +743,7 @@ const style = /*html*/ `
             }
         </style>
         `;
-        
+
 const waitForEl = selector => {
     return new Promise(resolve => {
         if (document.querySelector(selector)) {
@@ -1074,50 +1079,50 @@ const changeDeliveryPriceAndBtn = () => {
     waitForEl('div.d-flex.flex-row.justify-content-between.align-items-center.mb-4.ng-tns-c106-7 p:last-child').then(
         price => {
             // waitForEl('[data-stepBtn="delivery"] .continue').then(btn => {
-                const waitForElA = setInterval(() => {
-                    if (
-                        (document.querySelector('.active .value') || document.querySelector('.active h6')) &&
-                        document.querySelector('[data-delivery="method"]') &&
-                        document.querySelector('[data-delivery="price"]') &&
-                        price
-                    ) {
-                        clearInterval(waitForElA);
+            const waitForElA = setInterval(() => {
+                if (
+                    (document.querySelector('.active .value') || document.querySelector('.active h6')) &&
+                    document.querySelector('[data-delivery="method"]') &&
+                    document.querySelector('[data-delivery="price"]') &&
+                    price
+                ) {
+                    clearInterval(waitForElA);
 
-                        // console.log(document.querySelector('.active .value')?.innerText || document.querySelector('.active h6')?.innerText);
+                    // console.log(document.querySelector('.active .value')?.innerText || document.querySelector('.active h6')?.innerText);
 
-                        document.querySelector('[data-delivery="method"]').innerText =
-                            (document.querySelector('.active .value')?.innerText || document.querySelector('.active h6')?.innerText);
+                    document.querySelector('[data-delivery="method"]').innerText =
+                        (document.querySelector('.active .value')?.innerText || document.querySelector('.active h6')?.innerText);
 
 
-                        console.log(price.innerText);
+                    console.log(price.innerText);
 
-                        if (price.innerText !== '/') {                            
-                            document.querySelector('[data-delivery="price"]').innerText = ' — ' + price.innerText;
-                        } else {
-                            document.querySelector('[data-delivery="price"]').innerText = ''
-                        }
-
-                        // console.log('function >>>>>>>>>>>');
-
-                        // if (isDeliveryStep) {
-                        waitForEl('.checkout-payment .card-title-wrapper + div > div').then(el => {
-                            const waitForDelivery = setInterval(() => {
-                                // if (document.querySelector('.delivery')) {
-                                    clearInterval(waitForDelivery)
-
-                                    if (el.classList.contains('checkout-missing-data')) {
-                                        document.querySelector('.delivery').classList.add('hide_delivery')
-                                        // console.log('contains');
-
-                                    } else {
-                                        document.querySelector('.delivery').classList.remove('hide_delivery')
-                                        // console.log('NOT contains');
-                                    }
-                                // }
-                            }, intervalTimeout)
-                        })
+                    if (price.innerText !== '/') {
+                        document.querySelector('[data-delivery="price"]').innerText = ' — ' + price.innerText;
+                    } else {
+                        document.querySelector('[data-delivery="price"]').innerText = ''
                     }
-                }, intervalTimeout);
+
+                    // console.log('function >>>>>>>>>>>');
+
+                    // if (isDeliveryStep) {
+                    waitForEl('.checkout-payment .card-title-wrapper + div > div').then(el => {
+                        const waitForDelivery = setInterval(() => {
+                            // if (document.querySelector('.delivery')) {
+                            clearInterval(waitForDelivery)
+
+                            if (el.classList.contains('checkout-missing-data')) {
+                                document.querySelector('.delivery').classList.add('hide_delivery')
+                                // console.log('contains');
+
+                            } else {
+                                document.querySelector('.delivery').classList.remove('hide_delivery')
+                                // console.log('NOT contains');
+                            }
+                            // }
+                        }, intervalTimeout)
+                    })
+                }
+            }, intervalTimeout);
             // });
         },
     );
