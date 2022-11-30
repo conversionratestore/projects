@@ -78,7 +78,7 @@ let interval = setInterval(() => {
 
 window.dataLayer = window.dataLayer || [];
 dataLayer.push({
-    'event': 'exp_sticky_button_logic_rework',
+    'event': 'event-to-ga4',
     'event_name': 'exp_new_hp_00_loaded'
 });
 
