@@ -416,6 +416,7 @@ const style = /*html*/ `
                 display: flex;
                 flex-wrap: wrap;
                 position: relative;
+                align-items: flex-start;
             }
             .info-section:first-child div:first-child > div {
                 display: none !important;
