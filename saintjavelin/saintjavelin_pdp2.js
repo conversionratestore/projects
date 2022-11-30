@@ -821,9 +821,9 @@ function start() {
                 }, 100)
             })
             if(query('fieldset[name="Size"]') && !query('fieldset[name="Color"]')) {
-                document.querySelectorAll('fieldset[name="Size"] input')[0].click()
+                document.querySelectorAll('fieldset[name="Size"] input')[0].dispatchEvent(ev)
             } else {
-                document.querySelectorAll('fieldset[name="Color"] input')[0].click()
+                document.querySelectorAll('fieldset[name="Color"] input')[0].dispatchEvent(ev)
             }
         }
     }, 100)
