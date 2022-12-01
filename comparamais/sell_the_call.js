@@ -253,6 +253,12 @@ let startFunk = setInterval(() => {
                                 if (document.querySelector('.container--hero .header-list').classList.contains('is_hidden')) {
                                     document.querySelector('.container--hero .header-list').classList.remove('is_hidden')
                                 }
+                                if (window.innerWidth <= 768) {
+                                    setTimeout(() => {
+                                        console.log('scroll')
+                                        document.querySelector(".simulator-container")?.scrollIntoView()
+                                    }, 100)
+                                }
                             }
                         }
                     }
