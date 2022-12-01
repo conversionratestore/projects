@@ -134,12 +134,12 @@ function init() {
         if (document.querySelector('.header__month-counter') != null) {
             clearInterval(headerinterval)
             let month = document.querySelector('.header__month-counter');
-            if (month.innerText.includes('0 of 3 signature requests') || month.innerText.includes('1 of 3 signature requests')) {
-                month.innerHTML = month.innerHTML.replace('of 3', 'of 1');
+            if (month.innerText.includes('0 of 3 signature request') || month.innerText.includes('1 of 3 signature request')) {
+                month.innerHTML = month.innerHTML.replace('of 3', 'of 1').replace('requests', 'request');
                 month.querySelector('span').remove();
             }
 
-            if (month.innerText.includes('1 of 1 signature requests')) {
+            if (month.innerText.includes('1 of 1 signature request')) {
                 sessionStorage.setItem('documents', '1');
             } else {
                 sessionStorage.setItem('documents', '0');
@@ -162,7 +162,7 @@ function init() {
                     if (document.querySelector('.successSendModal__button') != null) {
                         clearInterval(modalInterval)
                         sessionStorage.setItem('documents', '1');
-                        document.querySelector('.header__month-counter').innerHTML = '1 of 1 signature requests'
+                        document.querySelector('.header__month-counter').innerHTML = '1 of 1 signature request'
                     }
                 }
             }
