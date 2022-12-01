@@ -263,9 +263,12 @@ let startFunk = setInterval(() => {
         }
 
 
-        if (document.querySelector('.simulator-wrapper')) {
-            runObserver()
-        }
+        let startI = setInterval(() => {
+            if (document.querySelector('.simulator-wrapper')) {
+                clearInterval(startI)
+                runObserver()
+            }
+        }, 100)
 
         let i = setInterval(() => {
             if (document.querySelector(".new_text_wrap")) {
