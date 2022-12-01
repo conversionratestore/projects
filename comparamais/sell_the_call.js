@@ -256,7 +256,10 @@ let startFunk = setInterval(() => {
             observer.observe(target, config)
         }
 
-        runObserver()
+
+        if (document.querySelector('.simulator-wrapper')) {
+            runObserver()
+        }
 
         let i = setInterval(() => {
             if (document.querySelector(".new_text_wrap")) {
