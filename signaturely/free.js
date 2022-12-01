@@ -94,7 +94,7 @@ function init() {
             })
         }
         //billing plan
-        if (document.querySelector('.billing__table-row') != null && document.querySelector('.header__month-counter') != null && document.querySelector('.header__month-counter').innerHTML.includes('of 1 signature requests')) {
+        if (document.querySelector('.billing__table-row') != null && document.querySelector('.header__month-counter') != null && document.querySelector('.header__month-counter').innerHTML.includes('of 1 signature request')) {
             clearInterval(changeText)
             document.querySelectorAll('.billing__table-row').forEach(el => {
                 if (el.querySelector('.billing__table-column--name').innerHTML == 'Documents per month') {
