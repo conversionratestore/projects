@@ -4,13 +4,19 @@ let startFunk = setInterval(() => {
 
         const imgFolderUrl = "https://conversionratestore.github.io/projects/comparamais/img/"
 
+        let eventVar = "desktop"
+
+        if (window.innerWidth <= 768) {
+            eventVar = "mobile"
+        }
+
         function pushDataLayer(actionDataLayer, labelDataLayer) {
             window.dataLayer = window.dataLayer || []
             if (labelDataLayer) {
                 console.log(actionDataLayer + " : " + labelDataLayer)
                 dataLayer.push({
                     event: "event-to-ga",
-                    eventCategory: `Exp: - Sell the call`,
+                    eventCategory: `Exp: - Sell the call ${eventVar}`,
                     eventAction: `${actionDataLayer}`,
                     eventLabel: `${labelDataLayer}`,
                 })
@@ -18,7 +24,7 @@ let startFunk = setInterval(() => {
                 console.log(actionDataLayer)
                 dataLayer.push({
                     event: "event-to-ga",
-                    eventCategory: `Exp: - Sell the call`,
+                    eventCategory: `Exp: - Sell the call ${eventVar}`,
                     eventAction: `${actionDataLayer}`,
                 })
             }
@@ -346,7 +352,7 @@ let startFunk = setInterval(() => {
             if (typeof clarity === "function") {
                 clearInterval(record)
 
-                clarity("set", "sell_the_call", "variant_1")
+                clarity("set", `sell_the_call_${eventVar}`, "variant_1")
             }
         }, 200)
 
