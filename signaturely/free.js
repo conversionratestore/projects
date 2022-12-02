@@ -48,6 +48,8 @@ let routing = setInterval(() => {
     }
 })
 
+let loaded = false;
+
 init();
 
 function init() {
@@ -58,6 +60,7 @@ function init() {
             if (document.querySelector('.elementor-heading-title') != null) {
                 clearInterval(changeText)
                 document.querySelector('.elementor-heading-title').innerHTML = 'Sign 1 document for free!';
+                pushDataLayer('loaded', '') 
             }
         }
         //title form
@@ -70,6 +73,10 @@ function init() {
                     item.innerHTML = 'Sign 1 document for free!';
                 }
             })
+            if (loaded == false) {
+                loaded = true;
+                pushDataLayer('loaded', '') 
+            }
         }
         //pricing
         if (href.includes('/pricing') && document.querySelectorAll('section .popular-pricing') && document.querySelectorAll('.elementor-widget-wrap > .elementor-widget .elementor-accordion-item')) {
@@ -92,6 +99,7 @@ function init() {
                     contentTab.innerHTML = contentTab.innerHTML.replace('up to 3 documents for e-signature each month','1 document for e-signature per account')
                 }
             })
+            pushDataLayer('loaded', '') 
         }
         //billing plan
         if (document.querySelector('.billing__table-row') != null && document.querySelector('.header__month-counter') != null && document.querySelector('.header__month-counter').innerHTML.includes('of 1 signature request')) {
@@ -144,6 +152,11 @@ function init() {
             } else {
                 sessionStorage.setItem('documents', '0');
             }
+            if (loaded == false) {
+                loaded = true;
+                pushDataLayer('loaded', '') 
+            }
+           
         }
     })
 
@@ -183,7 +196,7 @@ function init() {
         }
     })
 }
-pushDataLayer('loaded', '') 
+
 
 let isClarity = setInterval(() => {
 	if(typeof clarity === 'function') {
