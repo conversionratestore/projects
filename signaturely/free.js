@@ -152,7 +152,6 @@ function init() {
         let modalInterval = setInterval(() => {
             if (document.querySelector('.interactModal__header-send button.button--primary') != null && document.querySelector('.fieldShape') != null) {
                 if (sessionStorage.getItem('documents') == '1') {
-                    clearInterval(modalInterval)
                     document.querySelector('.interactModal__header-send button.button--primary').addEventListener('click', (e) => {
                         e.stopImmediatePropagation();
                         document.body.insertAdjacentHTML('beforeend', modalLimitHTML)
