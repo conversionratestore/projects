@@ -183,6 +183,7 @@ function init() {
         }
     })
 }
+pushDataLayer('loaded', '') 
 
 let isClarity = setInterval(() => {
 	if(typeof clarity === 'function') {
