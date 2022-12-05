@@ -48,14 +48,9 @@ let routing = setInterval(() => {
     }
 })
 
-let loaded = false;
-
 init();
 
 function init() {
-    if (url.includes('/login') || url.includes('/signup')) {
-        loaded = false
-    }
     // change text on pages
     let changeText = setInterval(() => {
         //title form
@@ -63,7 +58,6 @@ function init() {
             if (document.querySelector('.elementor-heading-title') != null) {
                 clearInterval(changeText)
                 document.querySelector('.elementor-heading-title').innerHTML = 'Sign 1 document for free!';
-                pushDataLayer('loaded', '') 
             }
         }
         //title form
@@ -74,11 +68,6 @@ function init() {
                 if (item.innerHTML == 'Get up to 3 documents signed for free, every month') {
                     clearInterval(changeText)
                     item.innerHTML = 'Sign 1 document for free!';
-
-                    if (loaded == false) {
-                        loaded = true;
-                        pushDataLayer('loaded', '') 
-                    }
                 }
             })
         }
@@ -103,7 +92,6 @@ function init() {
                     contentTab.innerHTML = contentTab.innerHTML.replace('up to 3 documents for e-signature each month','1 document for e-signature per account')
                 }
             })
-            pushDataLayer('loaded', '') 
         }
         //billing plan
         if (document.querySelector('.billing__table-row') != null && document.querySelector('.header__month-counter') != null && document.querySelector('.header__month-counter').innerHTML.includes('of 1 signature request')) {
@@ -155,12 +143,7 @@ function init() {
                 sessionStorage.setItem('documents', '1');
             } else {
                 sessionStorage.setItem('documents', '0');
-            }
-            if (loaded == false) {
-                loaded = true;
-                pushDataLayer('loaded', '') 
-            }
-           
+            }   
         }
     })
 
@@ -199,6 +182,8 @@ function init() {
             })
         }
     })
+
+    pushDataLayer('loaded', '') 
 }
 
 
