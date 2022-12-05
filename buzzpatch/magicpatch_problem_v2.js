@@ -82,7 +82,7 @@ let problemStart = setInterval(() => {
          .magicpatch_accardion_link{
             display: flex;
             align-items: flex-start;
-            justify-content: flex-start;
+            justify-content: space-between;
          }
         .magicpatch_accardion_link p{
             font-weight: 400;
