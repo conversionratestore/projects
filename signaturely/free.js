@@ -37,6 +37,8 @@ function pushDataLayer(action, label) {
     });
 }
 
+let loaded = false;
+
 let stateUrl = href, 
     url = href;
 
@@ -44,9 +46,17 @@ let routing = setInterval(() => {
     url = window.location.href;
     if (stateUrl != url) {
         stateUrl = url;
+        if (stateUrl.includes('/sign') && loaded == false) {
+            loaded = true;
+            pushDataLayer('loaded', '') 
+        }
+        if (stateUrl.includes('/login') || stateUrl.includes('/signup') || stateUrl.includes('/pricing') || stateUrl.includes('/online-signature/draw') || stateUrl.includes('/online-signature/type') ) {
+            loaded = false
+        }
         init();
     }
 })
+
 
 init();
 
@@ -183,7 +193,9 @@ function init() {
         }
     })
 
-    pushDataLayer('loaded', '') 
+    if (loaded == false) {
+        pushDataLayer('loaded', '') 
+    }
 }
 
 
