@@ -46,6 +46,9 @@ let routing = setInterval(() => {
         stateUrl = url;
         init();
     }
+    if () {
+
+    }
 })
 
 let loaded = false;
@@ -53,6 +56,9 @@ let loaded = false;
 init();
 
 function init() {
+    if (href.includes('/login')) {
+        loaded = false
+    }
     // change text on pages
     let changeText = setInterval(() => {
         //title form
@@ -71,12 +77,13 @@ function init() {
                 if (item.innerHTML == 'Get up to 3 documents signed for free, every month') {
                     clearInterval(changeText)
                     item.innerHTML = 'Sign 1 document for free!';
+
+                    if (loaded == false) {
+                        loaded = true;
+                        pushDataLayer('loaded', '') 
+                    }
                 }
             })
-            if (loaded == false) {
-                loaded = true;
-                pushDataLayer('loaded', '') 
-            }
         }
         //pricing
         if (href.includes('/pricing') && document.querySelectorAll('section .popular-pricing') && document.querySelectorAll('.elementor-widget-wrap > .elementor-widget .elementor-accordion-item')) {
