@@ -37,8 +37,6 @@ function pushDataLayer(action, label) {
     });
 }
 
-let loaded = false;
-
 let stateUrl = href, 
     url = href;
 
@@ -46,13 +44,6 @@ let routing = setInterval(() => {
     url = window.location.href;
     if (stateUrl != url) {
         stateUrl = url;
-        if (stateUrl.includes('/sign') && loaded == false) {
-            loaded = true;
-            pushDataLayer('loaded', '') 
-        }
-        if (stateUrl.includes('/login') || stateUrl.includes('/signup') || stateUrl.includes('/pricing') || stateUrl.includes('/online-signature/draw') || stateUrl.includes('/online-signature/type') ) {
-            loaded = false
-        }
         init();
     }
 })
@@ -61,6 +52,14 @@ let routing = setInterval(() => {
 init();
 
 function init() {
+    if (sessionStorage.getItem('rout-main') == null && stateUrl.includes('/signaturely.com')) {
+        sessionStorage.setItem('rout-main', 'true')
+        pushDataLayer('loaded', '') 
+    }
+    if (sessionStorage.getItem('rout-app') == null && stateUrl.includes('/app.signaturely.com')) {
+        sessionStorage.setItem('rout-app', 'true')
+        pushDataLayer('loaded', '') 
+    }
     // change text on pages
     let changeText = setInterval(() => {
         //title form
@@ -192,10 +191,6 @@ function init() {
             })
         }
     })
-
-    if (loaded == false) {
-        pushDataLayer('loaded', '') 
-    }
 }
 
 
