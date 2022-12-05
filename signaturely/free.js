@@ -46,9 +46,6 @@ let routing = setInterval(() => {
         stateUrl = url;
         init();
     }
-    if () {
-
-    }
 })
 
 let loaded = false;
@@ -56,7 +53,7 @@ let loaded = false;
 init();
 
 function init() {
-    if (href.includes('/login')) {
+    if (href.includes('/login') || href.includes('/signup')) {
         loaded = false
     }
     // change text on pages
