@@ -676,4 +676,4 @@ let startFunk = setInterval(() => {
         }
 
     }
-}, 100)
+}, 600)
