@@ -53,7 +53,7 @@ let loaded = false;
 init();
 
 function init() {
-    if (href.includes('/login') || href.includes('/signup')) {
+    if (url.includes('/login') || url.includes('/signup')) {
         loaded = false
     }
     // change text on pages
