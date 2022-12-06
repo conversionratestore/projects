@@ -705,7 +705,7 @@ function start() {
         query('fieldset[name="Color"] input').checked = true
         query('fieldset[name="Color"] input').dispatchEvent(ev)
         document.querySelectorAll('fieldset[name="Color"] input').forEach(item => {
-            item.addEventListener('change', function () {
+            item.addEventListener('click', function () {
                 pushDataLayer('Click on item Select color', item.value)
                 if (query('fieldset[name="Size"]')) {
                     drawSelectList()
