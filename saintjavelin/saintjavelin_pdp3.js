@@ -705,7 +705,7 @@ function start() {
         query('fieldset[name="Color"] input').checked = true
         query('fieldset[name="Color"] input').dispatchEvent(ev)
         document.querySelectorAll('fieldset[name="Color"] input').forEach(item => {
-            item.addEventListener('change', function () {
+            item.addEventListener('click', function () {
                 pushDataLayer('Click on item Select color', item.value)
                 if (query('fieldset[name="Size"]')) {
                     drawSelectList()
@@ -943,9 +943,6 @@ function drawSelectList() {
             slideUp(query('.select_wrapper ul'))
             query('.select_wrapper p').classList.remove('active')
             pushDataLayer('Click on item Select color', item.innerText)
-            setTimeout(function () {
-                drawSelectList()
-            },300)
         })
     })
 
@@ -961,9 +958,6 @@ function drawSelectList() {
             query('.select_wrapper p').innerText = item.getAttribute('data-value')
             pushDataLayer('Click on item in Select size pop-up', item.innerText)
             mobileSizeClose()
-            setTimeout(function () {
-                drawSelectList()
-            },300)
         })
     })
 }
