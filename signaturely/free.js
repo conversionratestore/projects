@@ -153,7 +153,7 @@ function init() {
             } else {
                 sessionStorage.setItem('documents', '0');
             }   
-            if (document.querySelector('.dropDownMenu__list .dropDownMenu__trigger-arrow') != null) {
+            if (document.querySelector('.dropDownMenu__trigger-arrow') != null) {
                 document.querySelector('.dropDownMenu__trigger-arrow').addEventListener('click', () => init())
             }
         }
