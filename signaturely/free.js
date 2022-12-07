@@ -119,18 +119,19 @@ function init() {
                 document.querySelectorAll('.billing__plans-slider-dots > div').forEach((dot,i) => {
                     dot.addEventListener('click', (e) => {
                         console.log(e.target)
-                        document.querySelectorAll('.billing__table-row').forEach(el => {
-                            if (el.querySelector('.billing__table-column--name').innerHTML == 'Signature requests') {
-                                if (i == 0) {
-                                    el.querySelector('.billing__table-column--name').nextElementSibling.innerHTML = '1'
-                                } else if (i == 1) {
-                                    el.querySelector('.billing__table-column--name').nextElementSibling.innerHTML = 'Unlimited'
-        
-                                } else if (i == 2) {
-                                    el.querySelector('.billing__table-column--name').nextElementSibling.innerHTML = 'Unlimited'
+                        let it = setInterval(() => {
+                            document.querySelectorAll('.billing__table-row').forEach(el => {
+                                if (el.querySelector('.billing__table-column--name').innerHTML == 'Signature requests') {
+                                    if (i == 0) {
+                                        el.querySelector('.billing__table-column--name').nextElementSibling.innerHTML = '1'
+                                    } else if (i == 1) {
+                                        el.querySelector('.billing__table-column--name').nextElementSibling.innerHTML = 'Unlimited'
+                                    } else if (i == 2) {
+                                        el.querySelector('.billing__table-column--name').nextElementSibling.innerHTML = 'Unlimited'
+                                    }
                                 }
-                            }
-                        })
+                            })
+                        });
                     })
                 })
             }
