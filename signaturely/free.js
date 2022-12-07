@@ -122,8 +122,8 @@ function init() {
                         let it = setInterval(() => {
                             document.querySelectorAll('.billing__table-row').forEach(el => {
                                 if (el.querySelector('.billing__table-column--name').innerHTML == 'Signature requests') {
-                                    clearInterval(it)
                                     if (el.querySelector('.billing__table-column--name').nextElementSibling.innerHTML == '3') {
+                                        clearInterval(it)
                                         el.querySelector('.billing__table-column--name').nextElementSibling.innerHTML = '1'
                                     } 
                                 }
