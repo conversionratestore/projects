@@ -118,7 +118,7 @@ function init() {
                 document.querySelector('.billing__plans-slider-dots > div:first-child').addEventListener('click', (e) => {
                     let it = setInterval(() => {
                         document.querySelectorAll('.billing__table-row').forEach(el => {
-                            if (el.querySelector('.billing__table-column--name').innerHTML == 'Signature requests' && i == 0) {
+                            if (el.querySelector('.billing__table-column--name').innerHTML == 'Signature requests') {
                                 if (el.querySelector('.billing__table-column--name').nextElementSibling.innerHTML == '3') {
                                     clearInterval(it)
                                     console.log(e.target)
