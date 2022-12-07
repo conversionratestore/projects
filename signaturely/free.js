@@ -102,7 +102,7 @@ function init() {
             })
         }
         //billing plan
-        if (document.querySelector('.billing__table-row') != null && document.querySelector('.header__month-counter') != null) {
+        if (document.querySelector('.billing__table-row') != null) {
             clearInterval(changeText)
             document.querySelectorAll('.billing__table-row').forEach(el => {
                 if (el.querySelector('.billing__table-column--name').innerHTML == 'Documents per month') {
