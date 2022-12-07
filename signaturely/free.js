@@ -115,21 +115,19 @@ function init() {
             })
             document.querySelector('.billing__table--description').innerHTML = 'Sign 1 document for free!';
             if (document.querySelector('.billing__plans-slider-dots > div') != null) {
-                let item = document.querySelector('div.billing__info-table > div > div > div:nth-child(3) > div:nth-child(2)');
-                document.querySelectorAll('.billing__plans-slider-dots > div').forEach((dot,i) => {
-                    dot.addEventListener('click', (e) => {
-                        console.log(e.target)
-                        let it = setInterval(() => {
-                            document.querySelectorAll('.billing__table-row').forEach(el => {
-                                if (el.querySelector('.billing__table-column--name').innerHTML == 'Signature requests') {
+                document.querySelectorAll('.billing__plans-slider-dots > div:first-child').addEventListener('click', (e) => {
+                    let it = setInterval(() => {
+                        document.querySelectorAll('.billing__table-row').forEach(el => {
+                            if (el.querySelector('.billing__table-column--name').innerHTML == 'Signature requests' && i == 0) {
+                                if (el.querySelector('.billing__table-column--name').nextElementSibling.innerHTML == '3') {
                                     clearInterval(it)
-                                    if (el.querySelector('.billing__table-column--name').nextElementSibling.innerHTML == '3') {
-                                        el.querySelector('.billing__table-column--name').nextElementSibling.innerHTML = '1'
-                                    } 
-                                }
-                            })
-                        });
-                    })
+                                    console.log(e.target)
+                                    console.log(el.querySelector('.billing__table-column--name').nextElementSibling.innerHTML)
+                                    el.querySelector('.billing__table-column--name').nextElementSibling.innerHTML = '1'
+                                } 
+                            }
+                        })
+                    });
                 })
             }
         }
