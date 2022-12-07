@@ -111,7 +111,7 @@ function init() {
                 }
             })
             document.querySelector('.billing__table--description').innerHTML = 'Sign 1 document for free!';
-            document.querySelector('.billing__plans-slider-dot') != null ? document.querySelector('.billing__plans-slider-dot').addEventListener('click', () => init()) : ''
+            document.querySelector('.billing__plans-slider-dots > div') != null ? document.querySelector('billing__plans-slider-dots > div').addEventListener('click', () => init()) : ''
         }
     })
 
