@@ -109,6 +109,9 @@ function init() {
                     el.querySelector('.billing__table-column--name').innerHTML = 'Signature requests';
                     el.querySelector('.billing__table-column--name').nextElementSibling.innerHTML = '1';
                 }
+                if (el.querySelector('.billing__table-column--name').innerHTML == 'Signature requests') {
+                    el.querySelector('.billing__table-column--name').nextElementSibling.innerHTML = '1';
+                }
             })
             document.querySelector('.billing__table--description').innerHTML = 'Sign 1 document for free!';
             document.querySelector('.billing__plans-slider-dots > div') != null ? document.querySelector('.billing__plans-slider-dots > div').addEventListener('click', () => init()) : ''
