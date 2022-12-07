@@ -107,22 +107,24 @@ function init() {
             document.querySelectorAll('.billing__table-row').forEach(el => {
                 if (el.querySelector('.billing__table-column--name').innerHTML == 'Documents per month') {
                     el.querySelector('.billing__table-column--name').innerHTML = 'Signature requests';
-                    el.querySelector('.billing__table-column--name').nextElementSibling.innerHTML = '1';
+                    if (window.matchMedia('(min-width: 768px)')) {
+                        el.querySelector('.billing__table-column--name').nextElementSibling.innerHTML = '1';
+                    }
                 }
-                if (el.querySelector('.billing__table-column--name').innerHTML == 'Signature requests') { // && document.querySelector('.billing__plans-slider-dots > div:first-child') != null && document.querySelector('.billing__plans-slider-dots > div:first-child').classList.contains('billing__plans-slider-dot--selected')
+                if (el.querySelector('.billing__table-column--name').innerHTML == 'Signature requests' && window.matchMedia('(max-width: 767px)') && document.querySelector('.billing__plans-slider-dots > div:first-child') != null && document.querySelector('.billing__plans-slider-dots > div:first-child').classList.contains('billing__plans-slider-dot--selected')) { 
                     el.querySelector('.billing__table-column--name').nextElementSibling.innerHTML = '1';
                 }
             })
             document.querySelector('.billing__table--description').innerHTML = 'Sign 1 document for free!';
             if (document.querySelector('.billing__plans-slider-dots > div') != null) {
-                document.querySelector('.billing__plans-slider-dots > div:first-child').addEventListener('click', (e) => {
-                    setTimeout(() => {
-                        if (document.querySelectorAll('.billing__table-row > div:last-child')[1].innerHTML == '3') {
-                            console.log(e.target)
-                            console.log(document.querySelectorAll('.billing__table-row > div:last-child')[1].innerHTML)
-                            document.querySelectorAll('.billing__table-row > div:last-child')[1].innerHTML = '1'
-                        } 
-                    }, 100);
+                document.querySelector('.billing__plans-slider-dots > div').forEach((el,i) => {
+                    el.addEventListener('click', (e) => {
+                        if (i == 0 && document.querySelectorAll('.billing__table-row > div:last-child')[1].innerHTML == '3') {
+                           document.querySelectorAll('.billing__table-row > div:last-child')[1].innerHTML = '1'
+                        } else if (i == 1 || i == 2) {
+                            document.querySelectorAll('.billing__table-row > div:last-child')[1].innerHTML = 'Unlimited'
+                        }
+                    })
                 })
             }
         }
