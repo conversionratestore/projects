@@ -48,7 +48,6 @@ let routing = setInterval(() => {
     }
 })
 
-
 init();
 
 function init() {
@@ -103,7 +102,7 @@ function init() {
             })
         }
         //billing plan
-        if (document.querySelector('.billing__table-row') != null && document.querySelector('.header__month-counter') != null && document.querySelector('.header__month-counter').innerHTML.includes('of 1 signature request')) {
+        if (document.querySelector('.billing__table-row') != null && document.querySelector('.header__month-counter') != null) {
             clearInterval(changeText)
             document.querySelectorAll('.billing__table-row').forEach(el => {
                 if (el.querySelector('.billing__table-column--name').innerHTML == 'Documents per month') {
@@ -157,6 +156,9 @@ function init() {
             }   
             if (document.querySelector('.dropDownMenu__trigger-arrow') != null) {
                 document.querySelector('.dropDownMenu__trigger-arrow').addEventListener('click', () => init())
+            }
+            if (document.querySelector('.dropDownMenu__list .button--primary') != null){
+                document.addEventListener('click', () => init())
             }
         }
      
