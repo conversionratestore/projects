@@ -116,16 +116,21 @@ function init() {
             document.querySelector('.billing__table--description').innerHTML = 'Sign 1 document for free!';
             if (document.querySelector('.billing__plans-slider-dots > div') != null) {
                 let item = document.querySelector('div.billing__info-table > div > div > div:nth-child(3) > div:nth-child(2)');
-                document.querySelectorAll('.billing__plans-slider-dots > div').forEach((el,i) => {
-                    el.addEventListener('click', () => {
-                        if (i == 0) {
-                            item.innerHTML = '1'
-                        } else if (i == 1) {
-                            item.innerHTML = 'Unlimited'
-
-                        } else if (i == 2) {
-                            item.innerHTML = 'Unlimited'
-                        }
+                document.querySelectorAll('.billing__plans-slider-dots > div').forEach((dot,i) => {
+                    dot.addEventListener('click', () => {
+                        document.querySelectorAll('.billing__table-row').forEach(el => {
+                            if (el.querySelector('.billing__table-column--name').innerHTML == 'Signature requests') {
+                                if (i == 0) {
+                                    el.querySelector('.billing__table-column--name').nextElementSibling.innerHTML = '1'
+                                } else if (i == 1) {
+                                    el.querySelector('.billing__table-column--name').nextElementSibling.innerHTML = 'Unlimited'
+        
+                                } else if (i == 2) {
+                                    el.querySelector('.billing__table-column--name').nextElementSibling.innerHTML = 'Unlimited'
+                                }
+                            }
+                        })
+                 
                     })
                 })
             }
