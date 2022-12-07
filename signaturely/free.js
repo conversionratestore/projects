@@ -109,7 +109,7 @@ function init() {
                     el.querySelector('.billing__table-column--name').innerHTML = 'Signature requests';
                     el.querySelector('.billing__table-column--name').nextElementSibling.innerHTML = '1';
                 }
-                if (el.querySelector('.billing__table-column--name').innerHTML == 'Signature requests' && document.querySelector('.billing__plans-slider-dots > div:first-child') != null && document.querySelector('.billing__plans-slider-dots > div:first-child').classList.contains('billing__plans-slider-dot--selected')) {
+                if (el.querySelector('.billing__table-column--name').innerHTML == 'Signature requests') { // && document.querySelector('.billing__plans-slider-dots > div:first-child') != null && document.querySelector('.billing__plans-slider-dots > div:first-child').classList.contains('billing__plans-slider-dot--selected')
                     el.querySelector('.billing__table-column--name').nextElementSibling.innerHTML = '1';
                 }
             })
@@ -121,8 +121,8 @@ function init() {
                         console.log(e.target)
                         let it = setInterval(() => {
                             document.querySelectorAll('.billing__table-row').forEach(el => {
-                                clearInterval(it)
                                 if (el.querySelector('.billing__table-column--name').innerHTML == 'Signature requests') {
+                                clearInterval(it)
                                     if (i == 0) {
                                         el.querySelector('.billing__table-column--name').nextElementSibling.innerHTML = '1'
                                     } else if (i == 1) {
