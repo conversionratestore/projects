@@ -145,7 +145,9 @@ function init() {
             let month = document.querySelector('.header__month-counter');
             if (month.innerText.includes('0 of 3 signature request') || month.innerText.includes('1 of 3 signature request')) {
                 month.innerHTML = month.innerHTML.replace('of 3', 'of 1').replace('requests', 'request');
-                month.querySelector('span').remove();
+                if (window.matchMedia("(min-width: 769px)").matches) {
+                    month.querySelector('span').remove();
+                }
             }
 
             if (month.innerText.includes('1 of 1 signature request')) {
