@@ -82,6 +82,9 @@ let newFunk = setInterval(() => {
                 width: 8.4px;
                 height: 8.4px;
             }
+            .payment_inform_box .payment_plan_wrapp .input_wrapper > div.monthly_sec label > span:nth-child(2) > span:nth-child(1){
+                margin-left: 2px;
+            }
             section .reviews_box{
                 margin-top: 60px !important;
             }
