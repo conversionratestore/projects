@@ -411,8 +411,7 @@ let newFunk = setInterval(() => {
                 margin: 0 auto !important;
             }
             .payment_inform_box li{
-                width: 100% !important;
-                transition: .7s linear;  
+                width: 100% !important;  
             }
                 #address-form > .row{
                     display: none;
