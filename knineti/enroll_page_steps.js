@@ -703,7 +703,7 @@ let newFunk = setInterval(() => {
             if (document.querySelector('#phone')) {
                 clearInterval(intNumber)
                 document.querySelector('#phone').value = '00000000000'
-                console.log(`>>>>>>>>>>>>>TEL`,document.querySelector('#phone').value)
+                console.log(`>>>>>>>>>>>>>TEL`, document.querySelector('#phone').value)
             }
         }, 100)
 
@@ -980,6 +980,12 @@ let newFunk = setInterval(() => {
 
                 document.querySelector('#address-form > .row').style.display = 'block'
                 e.closest('.btn_continue_wrap').classList.add('is_hidden')
+
+
+                if (document.querySelector('#phone').value === "") {
+                    document.querySelector('#phone').value = '00000000000'
+                    console.log(`>>>>>>>>>>>>>TEL еще раз`, document.querySelector('#phone').value)
+                }
 
                 onScrollTop()
 
