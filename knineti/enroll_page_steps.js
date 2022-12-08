@@ -881,8 +881,11 @@ let newFunk = setInterval(() => {
 
 
         if (document.querySelector('#submit')) {
-            document.querySelector('#submit').addEventListener('click', () => {
+            document.querySelector('#submit').addEventListener('click', (e) => {
                 window.alert = function () { };
+                if (!e.target.classList.contains("on_click")) {
+                    pushDataLayer('Click on btn Enroll now')
+                }
             })
         }
 
@@ -921,7 +924,14 @@ let newFunk = setInterval(() => {
         }
 
         function validateBtnStepSecond(el, item, e) {
+            document.querySelector('#submit').classList.add("on_click")
             document.querySelector('#submit').click()
+
+            setTimeout(() => {
+                if (document.querySelector('#submit').classList.contains("on_click")) {
+                    document.querySelector('#submit').classList.remove("on_click")
+                }
+            }, 7000)
 
             let fName = $('#first-name').next().is(':visible')
             let lName = $('#last-name').next().is(':visible')
