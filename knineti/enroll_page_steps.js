@@ -793,6 +793,10 @@ let newFunk = setInterval(() => {
                         if (e.target.getAttribute('data-count') === `2`) {
                             if (!e.currentTarget.getAttribute("data-test")) {
                                 pushDataLayer('Click on btn Continue step "Contact information')
+                                if (document.querySelector('#phone').value === "") {
+                                    document.querySelector('#phone').value = '00000000000'
+                                    console.log(`>>>>>>>>>>>>>TEL еще раз`, document.querySelector('#phone').value)
+                                }
                             }
                             e.currentTarget.setAttribute("data-test", "1")
                             validateBtnStepSecond(el, item, e.target)
@@ -980,12 +984,6 @@ let newFunk = setInterval(() => {
 
                 document.querySelector('#address-form > .row').style.display = 'block'
                 e.closest('.btn_continue_wrap').classList.add('is_hidden')
-
-
-                if (document.querySelector('#phone').value === "") {
-                    document.querySelector('#phone').value = '00000000000'
-                    console.log(`>>>>>>>>>>>>>TEL еще раз`, document.querySelector('#phone').value)
-                }
 
                 onScrollTop()
 
