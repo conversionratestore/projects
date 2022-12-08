@@ -698,9 +698,14 @@ let newFunk = setInterval(() => {
         if (document.querySelector("#selected-state-us option:last-child")) {
             document.querySelector("#selected-state-us option:last-child").textContent = 'Select State'
         }
-        if (document.querySelector('#phone')) {
-            document.querySelector('#phone').value = '00000000000'
-        }
+
+        let intNumber = setInterval(() => {
+            if (document.querySelector('#phone')) {
+                clearInterval(intNumber)
+                document.querySelector('#phone').value = '00000000000'
+                console.log(`>>>>>>>>>>>>>TEL`,document.querySelector('#phone').value)
+            }
+        }, 100)
 
         document.querySelector('.payment_inform_box .payment_plan_wrapp .input_wrapper > div.monthly_sec label span:nth-child(2)')?.insertAdjacentHTML('beforeend', `<span class="tooltip_box" data-tolltip
                 data-title="If you choose the 3 month installment payment plan when you purchase, your card will automatically be charged the same amount as your initial installment payment 30 days and 60 days after your initial installment payment.">
