@@ -119,11 +119,15 @@ function init() {
             if (document.querySelector('.billing__plans-slider-dots > div') != null) {
                 document.querySelectorAll('.billing__plans-slider-dots > div').forEach((el,i) => {
                     el.addEventListener('click', (e) => {
-                        if (i == 0 && document.querySelectorAll('.billing__table-row > div:last-child')[1].innerHTML == '3') {
-                           document.querySelectorAll('.billing__table-row > div:last-child')[1].innerHTML = '1'
-                        } else if (i == 1 || i == 2) {
-                            document.querySelectorAll('.billing__table-row > div:last-child')[1].innerHTML = 'Unlimited'
-                        }
+                        let interval = setInterval(() => {
+                            if (i == 0 && document.querySelectorAll('.billing__table-row > div:last-child')[1].innerHTML == '3') {
+                                clearInterval(interval)
+                                document.querySelectorAll('.billing__table-row > div:last-child')[1].innerHTML = '1'
+                             } else if (i == 1 || i == 2) {
+                                clearInterval(interval)
+                                document.querySelectorAll('.billing__table-row > div:last-child')[1].innerHTML = 'Unlimited'
+                             }
+                        }, 100)
                     })
                 })
             }
@@ -177,7 +181,6 @@ function init() {
                 document.addEventListener('click', () => init())
             }
         }
-     
     })
 
     //init modal - limit to 1 document for users of the "free" plan 
@@ -194,7 +197,7 @@ function init() {
                     if (document.querySelector('.successSendModal__button') != null) {
                         clearInterval(modalInterval)
                         sessionStorage.setItem('documents', '1');
-                        document.querySelector('.header__month-counter').innerHTML = '1 of 1 signature request'
+                        document.querySelector('.header__month-counter').innerHTML = '1 of 1 signature request';
                     }
                 }
             }
