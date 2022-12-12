@@ -20,15 +20,6 @@ let ladedTest = () => {
     });
 }
 
-let isUrlValid = (userInput) => {
-    let url = userInput.value;
-    let res = url.match(/(http(s)?:\/\/.)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/g);
-    if(res == null)
-        return false;
-    else
-        return true;
-}
-
 let stateUrl = window.location.href;
 let url = ''
 
@@ -133,7 +124,7 @@ let runTest = () => {
 
             document.querySelector('section.elementor-element.elementor-element-954ec92 .elementor-container.elementor-column-gap-no .elementor-form .elementor-button').addEventListener('click', (e) => {
                 e.preventDefault()
-                if (isUrlValid(document.querySelector('#form-field-email')) == true) {
+                if (document.querySelector('#form-field-email').value != '') {
                     window.location.href = 'https://www.uplead.com/findleadsnow'
                 }
             })
