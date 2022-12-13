@@ -1,5 +1,3 @@
-let href = window.location.href;
-
 // modal (html)
 let modalLimitHTML = `
 <div class="ReactModalPortal modal-limit">
@@ -37,8 +35,8 @@ function pushDataLayer(action, label) {
     });
 }
 
-let stateUrl = href, 
-    url = href;
+let stateUrl = window.location.href, 
+    url = window.location.href;
 
 let routing = setInterval(() => {
     url = window.location.href;
@@ -62,7 +60,7 @@ function init() {
     // change text on pages
     let changeText = setInterval(() => {
         //title form
-        if (href.includes('/online-signature/draw') || href.includes('/online-signature/type')) {
+        if (stateUrl.includes('/online-signature/draw') || stateUrl.includes('/online-signature/type')) {
             if (document.querySelector('.elementor-heading-title') != null) {
                 clearInterval(changeText)
                 document.querySelector('.elementor-heading-title').innerHTML = 'Sign 1 document for free!';
@@ -80,7 +78,7 @@ function init() {
             })
         }
         //pricing
-        if (href.includes('/pricing') && document.querySelectorAll('section .popular-pricing') && document.querySelectorAll('.elementor-widget-wrap > .elementor-widget .elementor-accordion-item')) {
+        if (stateUrl.includes('/pricing') && document.querySelectorAll('section .popular-pricing') && document.querySelectorAll('.elementor-widget-wrap > .elementor-widget .elementor-accordion-item')) {
             clearInterval(changeText)
             document.querySelectorAll('section .popular-pricing').forEach(item => {
                 item.querySelectorAll('.elementor-text-editor')[1].innerHTML = 'Get your document signed today. It’s free!';
@@ -187,6 +185,7 @@ function init() {
     function initModalInterval() {
         let modalInterval = setInterval(() => {
             if (localStorage.getItem('page_counter_l') != 'old' && document.querySelector('.interactModal__header-send button.button--primary') != null && document.querySelector('.fieldShape') != null) {
+                console.log(localStorage.getItem('page_counter_l'))
                 if (sessionStorage.getItem('documents') == '1') {
                     document.querySelector('.interactModal__header-send button.button--primary').addEventListener('click', (e) => {
                         e.stopImmediatePropagation();
@@ -203,6 +202,8 @@ function init() {
             }
         })  
     }
+    
+    initModalInterval()
 
     //close modal
     let closeModalInterval = setInterval(() => {
