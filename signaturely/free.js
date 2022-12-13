@@ -102,7 +102,7 @@ function init() {
             })
         }
         //billing plan
-        if (document.querySelector('.billing__table-row') != null) {
+        if (document.querySelector('.billing__table-row') != null && localStorage.getItem('page_counter_l') != 'old') {
             clearInterval(changeText)
             document.querySelectorAll('.billing__table-row').forEach(el => {
                 if (el.querySelector('.billing__table-column--name').innerHTML == 'Documents per month') {
@@ -186,7 +186,7 @@ function init() {
     //init modal - limit to 1 document for users of the "free" plan 
     function initModalInterval() {
         let modalInterval = setInterval(() => {
-            if (document.querySelector('.interactModal__header-send button.button--primary') != null && document.querySelector('.fieldShape') != null) {
+            if (localStorage.getItem('page_counter_l') != 'old' && document.querySelector('.interactModal__header-send button.button--primary') != null && document.querySelector('.fieldShape') != null) {
                 if (sessionStorage.getItem('documents') == '1') {
                     document.querySelector('.interactModal__header-send button.button--primary').addEventListener('click', (e) => {
                         e.stopImmediatePropagation();
@@ -202,9 +202,6 @@ function init() {
                 }
             }
         })  
-    }
-    if (localStorage.getItem('page_counter_l') != 'old') {
-        initModalInterval()
     }
 
     //close modal
