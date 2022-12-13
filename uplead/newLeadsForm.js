@@ -12,7 +12,7 @@ let pushDataLayer = (nameCount, desc, type, loc) => {
     });
 }
 
-let ladedTest = () => {
+let loadedTest = () => {
     window.dataLayer = window.dataLayer || [];
     dataLayer.push({
         'event': 'event-to-ga4',
@@ -122,15 +122,18 @@ let runTest = () => {
             //change placeholder
             document.querySelector('section.elementor-element.elementor-element-954ec92 .elementor-container.elementor-column-gap-no #form-field-email').placeholder = 'company.com';
 
+            sessionStorage.setItem('routing','0')
+
             document.querySelector('section.elementor-element.elementor-element-954ec92 .elementor-container.elementor-column-gap-no .elementor-form .elementor-button').addEventListener('click', (e) => {
                 e.preventDefault()
                 if (document.querySelector('#form-field-email').value != '') {
+                    sessionStorage.setItem('routing','1')
                     window.location.href = 'https://www.uplead.com/findleadsnow'
                 }
             })
             //change text on button
             document.querySelector('section.elementor-element.elementor-element-954ec92 .elementor-container.elementor-column-gap-no .elementor-form .elementor-button .elementor-button-text').innerHTML = 'Find Leads Now';
-            ladedTest()
+            loadedTest()
         }
         /* end main page */
         
@@ -143,7 +146,7 @@ let runTest = () => {
                 setTimeout(() => {
                     window.location.href = 'https://app.uplead.com/trial-signup'
                 }, 3000)
-                ladedTest()
+                loadedTest()
             }
                 
             document.addEventListener('click', (e) => {
@@ -155,7 +158,7 @@ let runTest = () => {
         /* end findleadsnow page */
 
         /* pop-up form */
-        if (url == 'https://app.uplead.com/trial-signup' && document.querySelector('.WwzhpJuEdC9ZWUaDw5ae') != null && document.querySelector('form') != null && document.querySelector('.modal-sign') == null) {
+        if (sessionStorage.getItem('routing') == '1' && url == 'https://app.uplead.com/trial-signup' && document.querySelector('.WwzhpJuEdC9ZWUaDw5ae') != null && document.querySelector('form') != null && document.querySelector('.modal-sign') == null) {
             clearInterval(start)
 
             let styleModal = `
@@ -365,7 +368,7 @@ let runTest = () => {
                 }, 200)
             })
 
-            ladedTest()
+            loadedTest()
         }
         /* end pop-up form */
     })
