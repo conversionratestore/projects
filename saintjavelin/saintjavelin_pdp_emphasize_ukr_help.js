@@ -1140,7 +1140,7 @@ ul.main_popup_list>li p {
             tippy(el, {
               content: el.getAttribute("data-title"),
               placement: "bottom-end",
-              trigger: "click",
+              // trigger: "click",
               appendTo: function () {
                 return el.parentElement
               },
