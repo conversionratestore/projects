@@ -107,6 +107,8 @@ document.querySelector('.scientific > div > div:nth-child(2) > div').innerHTML =
 document.querySelectorAll('#js-accordion-scientific .card').forEach((elem, index) => {
     elem.querySelector('.card-link').innerHTML = `<b style="font-weight: 500;"><span class="arrow down"></span> ${textObj['accordion2'][index]["title"]}</b>`;
     elem.querySelector('.card-body').innerHTML = textObj['accordion2'][index]["text"];
+    elem.querySelector('.collapse').style = "background: transparent;"
+    elem.querySelector('.card-body').style = "padding-left: 40px; padding-top: 0;"
 })
 
 document.querySelector('.effectiveness h3').innerHTML = textObj.title4;
