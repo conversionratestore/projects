@@ -203,7 +203,9 @@ function init() {
             }
         })  
     }
-    initModalInterval()
+    if (localStorage.getItem('page_counter_l') != 'old') {
+        initModalInterval()
+    }
 
     //close modal
     let closeModalInterval = setInterval(() => {
