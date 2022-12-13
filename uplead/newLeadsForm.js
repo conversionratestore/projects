@@ -158,6 +158,8 @@ let runTest = () => {
         if (url == 'https://app.uplead.com/trial-signup' && document.querySelector('.WwzhpJuEdC9ZWUaDw5ae') != null && document.querySelector('form') != null && document.querySelector('.modal-sign') == null) {
             clearInterval(start)
 
+            sessionStorage.setItem('linkForLogin', url)
+
             let styleModal = `
             <style class="style-modal">
                 html, body {
@@ -368,6 +370,13 @@ let runTest = () => {
             loadedTest()
         }
         /* end pop-up form */
+
+        if (url.includes('https://app.uplead.com/trial-signup?_ga')) {
+            sessionStorage.setItem('linkForLogin', url)
+        }
+        if (url.includes('app.uplead.com/login')) {
+            document.querySelector('.loginForm__footer .btn-link').href = sessionStorage.getItem('linkForLogin')
+        }
     })
 }
 runTest()
