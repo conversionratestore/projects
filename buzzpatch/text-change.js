@@ -88,7 +88,7 @@ function setAccordion(count, title, text) {
             </button>
         </div>
         <div id="collapse${count}${count}${count}${count}" class="collapse" data-parent="#accordion-SP">
-            <div class="card-SP-body">${text} </div>
+            <div class="card-SP-body" style="border: none;padding-top:0;">${text} </div>
         </div>
     </div>`
 }
