@@ -121,13 +121,10 @@ let runTest = () => {
             </svg>`)
             //change placeholder
             document.querySelector('section.elementor-element.elementor-element-954ec92 .elementor-container.elementor-column-gap-no #form-field-email').placeholder = 'company.com';
-
-            sessionStorage.setItem('routing','0')
-
+            
             document.querySelector('section.elementor-element.elementor-element-954ec92 .elementor-container.elementor-column-gap-no .elementor-form .elementor-button').addEventListener('click', (e) => {
                 e.preventDefault()
                 if (document.querySelector('#form-field-email').value != '') {
-                    sessionStorage.setItem('routing','1')
                     window.location.href = 'https://www.uplead.com/findleadsnow'
                 }
             })
@@ -158,7 +155,7 @@ let runTest = () => {
         /* end findleadsnow page */
 
         /* pop-up form */
-        if (sessionStorage.getItem('routing') == '1' && url == 'https://app.uplead.com/trial-signup' && document.querySelector('.WwzhpJuEdC9ZWUaDw5ae') != null && document.querySelector('form') != null && document.querySelector('.modal-sign') == null) {
+        if (url == 'https://app.uplead.com/trial-signup' && document.querySelector('.WwzhpJuEdC9ZWUaDw5ae') != null && document.querySelector('form') != null && document.querySelector('.modal-sign') == null) {
             clearInterval(start)
 
             let styleModal = `
