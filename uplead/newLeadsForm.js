@@ -47,6 +47,16 @@ let runTest = () => {
         /* main page */
         if (stateUrl == 'https://www.uplead.com/' && document.querySelector('section.elementor-element.elementor-element-954ec92 .elementor-container.elementor-column-gap-no .elementor-form .elementor-button .elementor-button-text') != null) {
             clearInterval(start)
+            document.body.insertAdjacentHTML('afterbegin', `
+            <style>
+                .error-message {
+                    position: absolute;
+                    left: 0;
+                    top: 100%;
+                    font-size: 10px;
+                    line-height: 1;
+                }
+            </style>`);
 
             //add styles form main page
             let styleMainPage = `
@@ -133,6 +143,8 @@ let runTest = () => {
 
             document.querySelector('.style-main') == null ? document.body.insertAdjacentHTML('afterbegin', styleMainPage) : ''
             document.querySelector('#form-field-email').type = 'text'; //change type input
+            document.querySelector('#form-field-email').insertAdjacentHTML('afterend', '<p class="error-message" style="display: none;">Please enter a valid company URL</p>')
+               
             //add icon
             document.querySelector('section.elementor-element.elementor-element-954ec92 .elementor-container.elementor-column-gap-no .elementor-field-type-email.elementor-field-group-email.elementor-field-required').insertAdjacentHTML('afterbegin', 
             `<svg class="icon-link" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
@@ -144,7 +156,10 @@ let runTest = () => {
             document.querySelector('section.elementor-element.elementor-element-954ec92 .elementor-container.elementor-column-gap-no .elementor-form .elementor-button').addEventListener('click', (e) => {
                 e.preventDefault()
                 if (isUrlValid(document.querySelector('#form-field-email')) == true) {
-                    window.location.href = 'https://www.uplead.com/findleadsnow'
+                    document.querySelector('.error-message').style = "display: none;";
+                    window.location.href = 'https://www.uplead.com/findleadsnow';
+                } else {
+                    document.querySelector('.error-message').style = "display: block;";
                 }
             })
             //change text on button
