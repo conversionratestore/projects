@@ -51,10 +51,10 @@ let runTest = () => {
             <style>
                 .error-message {
                     position: absolute;
-                    left: 0;
+                    left: 30px;
                     top: 100%;
-                    font-size: 10px;
-                    line-height: 1;
+                    font-size: 11px;
+                    color: red;
                 }
             </style>`);
 
@@ -430,9 +430,10 @@ let runTest = () => {
                 .error-message {
                     position: absolute;
                     left: 0;
-                    top: 100%;
+                    top: calc(100% - 14px);
                     font-size: 10px;
                     line-height: 1;
+                    color: red;
                 }
                 .modal-exp {
                     background: #FFFFFF;
