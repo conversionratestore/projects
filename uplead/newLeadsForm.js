@@ -165,7 +165,8 @@ let runTest = () => {
         if (stateUrl == 'https://app.uplead.com/trial-signup' && document.querySelector('.WwzhpJuEdC9ZWUaDw5ae') != null && document.querySelector('form') != null && document.querySelector('.modal-sign') == null) {
             clearInterval(start)
 
-            sessionStorage.setItem('linkForLogin', url)
+            sessionStorage.setItem('linkForLogin', stateUrl)
+            console.log(stateUrl)
 
             let styleModal = `
             <style class="style-modal">
@@ -378,6 +379,7 @@ let runTest = () => {
         }
         /* end pop-up form */
 
+        /* Search for qualified leads form */
         if (stateUrl.includes('/meeting-request-emails')) {
             clearInterval(start)
             document.body.insertAdjacentHTML('afterbegin', `
@@ -435,16 +437,20 @@ let runTest = () => {
                 </style>
             `);
 
-            document.querySelector('#main > div > div > section.elementor-section.elementor-top-section.elementor-element.elementor-element-81ee34c.elementor-section-boxed.elementor-section-height-default.elementor-section-height-default.jet-parallax-section > div.elementor-container.elementor-column-gap-default > div').insertAdjacentHTML('beforeend', formHTML)
-
+            document.querySelector('#main > div > div > section.elementor-section.elementor-top-section.elementor-element.elementor-element-81ee34c.elementor-section-boxed.elementor-section-height-default.elementor-section-height-default.jet-parallax-section > div.elementor-container.elementor-column-gap-default > div').insertAdjacentHTML('beforeend', formHTML);
         }
+        /* end Search for qualified leads form */
+
         /* for users who have taken a different path */
         if (stateUrl.includes('https://app.uplead.com/trial-signup?_ga')) {
-            sessionStorage.setItem('linkForLogin', url)
+            sessionStorage.setItem('linkForLogin', stateUrl)
+            console.log(stateUrl)
         }
         if (stateUrl.includes('app.uplead.com/login')) {
+            console.log(stateUrl)
             document.querySelector('.loginForm__footer .btn-link').addEventListener('click', (e) => {
                 e.stopImmediatePropagation()
+                console.log(sessionStorage.getItem('linkForLogin'))
                 window.location.href = sessionStorage.getItem('linkForLogin');
             })
            
