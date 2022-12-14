@@ -162,7 +162,7 @@ let runTest = () => {
         /* end findleadsnow page */
 
         /* pop-up form */
-        if (!sessionStorage.getItem('linkForLogin').includes('?_ga') && stateUrl == 'https://app.uplead.com/trial-signup' && document.querySelector('.WwzhpJuEdC9ZWUaDw5ae') != null && document.querySelector('form') != null && document.querySelector('.modal-sign') == null) {
+        if ((sessionStorage.getItem('linkForLogin') == null || !sessionStorage.getItem('linkForLogin').includes('?_ga')) && stateUrl == 'https://app.uplead.com/trial-signup' && document.querySelector('.WwzhpJuEdC9ZWUaDw5ae') != null && document.querySelector('form') != null && document.querySelector('.modal-sign') == null) {
             clearInterval(start)
 
             sessionStorage.setItem('linkForLogin', stateUrl)
