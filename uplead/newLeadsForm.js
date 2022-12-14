@@ -27,7 +27,7 @@ let formHTML = `
 <div class="modal-exp">
     <h3>Search for qualified leads</h3>
     <input type="text" placeholder="Search leads by company URL">
-    <a href="https://app.uplead.com/trial-signup">Grab 5 free leads now</a>
+    <a href="https://www.uplead.com/findleadsnow">Grab 5 free leads now</a>
 </div>`;
 
 let runTest = () => {
