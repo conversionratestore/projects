@@ -162,220 +162,223 @@ let runTest = () => {
         /* end findleadsnow page */
 
         /* pop-up form */
-        if ((sessionStorage.getItem('linkForLogin') == null || !sessionStorage.getItem('linkForLogin').includes('?_ga')) && stateUrl == 'https://app.uplead.com/trial-signup' && document.querySelector('.WwzhpJuEdC9ZWUaDw5ae') != null && document.querySelector('form') != null && document.querySelector('.modal-sign') == null) {
-            clearInterval(start)
+        if ((sessionStorage.getItem('linkForLogin') != null && !sessionStorage.getItem('linkForLogin').includes('?_ga')) || sessionStorage.getItem('linkForLogin') == null) {
 
-            sessionStorage.setItem('linkForLogin', stateUrl)
-            console.log(stateUrl)
+            if (stateUrl == 'https://app.uplead.com/trial-signup' && document.querySelector('.WwzhpJuEdC9ZWUaDw5ae') != null && document.querySelector('form') != null && document.querySelector('.modal-sign') == null) {
+                clearInterval(start)
 
-            let styleModal = `
-            <style class="style-modal">
-                html, body {
-                    overflow: hidden;
-                }
-                .modal-sign {
-                    background: url(https://conversionratestore.github.io/projects/uplead/img/bg-findleadeshow.svg) no-repeat center top / 100vw; //bg-findleadsnow-open.svg
-                    font-family: 'gilroy', sans-serif;
-                    position: fixed;
-                    top: 0;
-                    left: 0;
-                    width: 100%;
-                    height: 100%;
-                    z-index: 99;
-                    overflow-y: auto;
-                }
-                .modal-sign_container {
-                    display: flex;
-                    width: 100%;
-                    min-height: 100%;
-                    background: rgba(0, 0, 0, 0.5)
-                }
-                .modal-sign .container {
-                    max-width: 822px;
-                    margin: auto;
-                    background: #FFFFFF;
-                    box-shadow: 0 24px 38px rgba(8, 15, 52, 0.06);
-                    border-radius: 16px;
-                    overflow-y: auto;
-                }
-                .modal-header {
-                    font-weight: 700;
-                    font-size: 24px;
-                    line-height: 31px;
-                    padding: 24px 40px;
-                    color: #14142B;
-                    border-bottom: 1px solid #E1EBEE;
-                }
-                .modal-sign .col h4 {
-                    font-weight: 700;
-                    font-size: 18px;
-                    line-height: 24px;
-                    color: #091D30;
-                    margin-bottom: 25px;
-                }
-                .modal-sign form {
-                    padding: 0;
-                    width: 100%;
-                }
-                .modal-sign .col {
-                    padding: 25px 40px;
-                }
-                .modal-sign .col:first-child {
-                    width: 471px;
-                }
-                .modal-sign .col:last-child {
-                    width: 351px;
-                    background: #F8FBFB;
-                }
-                .modal-sign input {
-                    width: 100%!important;
-                    height: auto!important;
-                    font-size: 16px!important;
-                    padding: 14px 24px!important;
-                    margin-bottom: 0px!important;
-                    box-shadow: none!important;
-                }
-                .modal-sign input[type="tel"] {
-                    padding-left: 70px!important;
-                }
-                .modal-sign label {
-                    font-weight: 600!important;
-                    font-size: 16px!important;
-                    margin-bottom: 6px!important;
-                }
-                .react-tel-input .flag-dropdown {
-                    height: auto!important;
-                    box-shadow: none!important;
-                }
-                .F2DyT6jjjkH4eBSExcH4 {
-                    align-items: flex-start;
-                }
-                .oy4M8Xq3A6chKn0pmXTt {
-                    height: 12px;
-                }
-                .jstwZ3bUxfDulJ7Bkbga {
-                    max-width: 200px;
-                    font-weight: 500;
-                    line-height: 20px;
-                }
-                .trusted-by {
-                    padding-top: 40px;
-                    border-top: 1px solid #E1EBEE;
-                    margin-top: 20px;
-                }
-                .trusted-by img {
-                    margin-bottom: 19px;
-                }
-                .WwzhpJuEdC9ZWUaDw5ae {
-                    gap: 20px;
-                }
-                .cO98tMz831zEgmUg_ng5 {
-                    gap: 0;
-                }
-                .Os71zjSj2xDr22ogTMr1 {
-                    gap: 15px;
-                }
-                .Os71zjSj2xDr22ogTMr1 .EbdAVLAV63Q8iq4tqgYM {
-                    font-weight: 700;
-                    font-size: 14px;
-                    line-height: 16px;
-                    margin-bottom: -5px;
-                }
-                .Os71zjSj2xDr22ogTMr1 .leog3VMitSyE0HVGVoMr {
-                    font-weight: 500;
-                    font-size: 12px;
-                    line-height: 20px;
-                    margin-bottom: 15px;
-                }
-                .cD02q96rHTjYm9KAUpQY .vCenklqa2IbXcZFtBtUj {
-                    line-height: 27px;
-                    width: 100%;
-                    height: 50px;
-                }
-                .cD02q96rHTjYm9KAUpQY .dOalaiO_Gnu9XMwMsLzZ {
-                    font-weight: 500;
-                    font-size: 14px;
-                    line-height: 16px;
-                    margin-top: 15px;
-                    padding-bottom: 7px;
-                }
-                /* flex */
-                .flex {
-                    display: flex;
-                }
-                .flex-wrap {
-                    flex-wrap: wrap;
-                }
-                .justify-between {
-                    justify-content: space-between;
-                }
-            </style>`;
+                sessionStorage.setItem('linkForLogin', stateUrl)
+                console.log(stateUrl)
 
-            let formModal = `
-            <div class="modal-sign">
-                <div class="modal-sign_container">
-                    <div class="container">
-                        <h2 class="modal-header">Get access to 107M+ B2B contacts with a free trial</h2>
-                        <div class="flex">
-                            <div class="col">
-                                <h4>Sign up and download 5 lead contacts for free</h4>
-                            </div>
-                            <div class="col">
-                                <h4>All Features & Data Included:</h4>
-                                <div class="trusted-by">
-                                    <h4>Trusted by</h4>
-                                    <div class="flex flex-wrap justify-between">
-                                        <img src="https://conversionratestore.github.io/projects/uplead/img/microsoft.svg" alt="icon">
-                                        <img src="https://conversionratestore.github.io/projects/uplead/img/dropbox.svg" alt="icon">
-                                        <img src="https://conversionratestore.github.io/projects/uplead/img/amazon.svg" alt="icon">
-                                        <img src="https://conversionratestore.github.io/projects/uplead/img/salesforce.svg" alt="icon">
-                                        <img src="https://conversionratestore.github.io/projects/uplead/img/google.svg" alt="icon">
+                let styleModal = `
+                <style class="style-modal">
+                    html, body {
+                        overflow: hidden;
+                    }
+                    .modal-sign {
+                        background: url(https://conversionratestore.github.io/projects/uplead/img/bg-findleadeshow.svg) no-repeat center top / 100vw; //bg-findleadsnow-open.svg
+                        font-family: 'gilroy', sans-serif;
+                        position: fixed;
+                        top: 0;
+                        left: 0;
+                        width: 100%;
+                        height: 100%;
+                        z-index: 99;
+                        overflow-y: auto;
+                    }
+                    .modal-sign_container {
+                        display: flex;
+                        width: 100%;
+                        min-height: 100%;
+                        background: rgba(0, 0, 0, 0.5)
+                    }
+                    .modal-sign .container {
+                        max-width: 822px;
+                        margin: auto;
+                        background: #FFFFFF;
+                        box-shadow: 0 24px 38px rgba(8, 15, 52, 0.06);
+                        border-radius: 16px;
+                        overflow-y: auto;
+                    }
+                    .modal-header {
+                        font-weight: 700;
+                        font-size: 24px;
+                        line-height: 31px;
+                        padding: 24px 40px;
+                        color: #14142B;
+                        border-bottom: 1px solid #E1EBEE;
+                    }
+                    .modal-sign .col h4 {
+                        font-weight: 700;
+                        font-size: 18px;
+                        line-height: 24px;
+                        color: #091D30;
+                        margin-bottom: 25px;
+                    }
+                    .modal-sign form {
+                        padding: 0;
+                        width: 100%;
+                    }
+                    .modal-sign .col {
+                        padding: 25px 40px;
+                    }
+                    .modal-sign .col:first-child {
+                        width: 471px;
+                    }
+                    .modal-sign .col:last-child {
+                        width: 351px;
+                        background: #F8FBFB;
+                    }
+                    .modal-sign input {
+                        width: 100%!important;
+                        height: auto!important;
+                        font-size: 16px!important;
+                        padding: 14px 24px!important;
+                        margin-bottom: 0px!important;
+                        box-shadow: none!important;
+                    }
+                    .modal-sign input[type="tel"] {
+                        padding-left: 70px!important;
+                    }
+                    .modal-sign label {
+                        font-weight: 600!important;
+                        font-size: 16px!important;
+                        margin-bottom: 6px!important;
+                    }
+                    .react-tel-input .flag-dropdown {
+                        height: auto!important;
+                        box-shadow: none!important;
+                    }
+                    .F2DyT6jjjkH4eBSExcH4 {
+                        align-items: flex-start;
+                    }
+                    .oy4M8Xq3A6chKn0pmXTt {
+                        height: 12px;
+                    }
+                    .jstwZ3bUxfDulJ7Bkbga {
+                        max-width: 200px;
+                        font-weight: 500;
+                        line-height: 20px;
+                    }
+                    .trusted-by {
+                        padding-top: 40px;
+                        border-top: 1px solid #E1EBEE;
+                        margin-top: 20px;
+                    }
+                    .trusted-by img {
+                        margin-bottom: 19px;
+                    }
+                    .WwzhpJuEdC9ZWUaDw5ae {
+                        gap: 20px;
+                    }
+                    .cO98tMz831zEgmUg_ng5 {
+                        gap: 0;
+                    }
+                    .Os71zjSj2xDr22ogTMr1 {
+                        gap: 15px;
+                    }
+                    .Os71zjSj2xDr22ogTMr1 .EbdAVLAV63Q8iq4tqgYM {
+                        font-weight: 700;
+                        font-size: 14px;
+                        line-height: 16px;
+                        margin-bottom: -5px;
+                    }
+                    .Os71zjSj2xDr22ogTMr1 .leog3VMitSyE0HVGVoMr {
+                        font-weight: 500;
+                        font-size: 12px;
+                        line-height: 20px;
+                        margin-bottom: 15px;
+                    }
+                    .cD02q96rHTjYm9KAUpQY .vCenklqa2IbXcZFtBtUj {
+                        line-height: 27px;
+                        width: 100%;
+                        height: 50px;
+                    }
+                    .cD02q96rHTjYm9KAUpQY .dOalaiO_Gnu9XMwMsLzZ {
+                        font-weight: 500;
+                        font-size: 14px;
+                        line-height: 16px;
+                        margin-top: 15px;
+                        padding-bottom: 7px;
+                    }
+                    /* flex */
+                    .flex {
+                        display: flex;
+                    }
+                    .flex-wrap {
+                        flex-wrap: wrap;
+                    }
+                    .justify-between {
+                        justify-content: space-between;
+                    }
+                </style>`;
+
+                let formModal = `
+                <div class="modal-sign">
+                    <div class="modal-sign_container">
+                        <div class="container">
+                            <h2 class="modal-header">Get access to 107M+ B2B contacts with a free trial</h2>
+                            <div class="flex">
+                                <div class="col">
+                                    <h4>Sign up and download 5 lead contacts for free</h4>
+                                </div>
+                                <div class="col">
+                                    <h4>All Features & Data Included:</h4>
+                                    <div class="trusted-by">
+                                        <h4>Trusted by</h4>
+                                        <div class="flex flex-wrap justify-between">
+                                            <img src="https://conversionratestore.github.io/projects/uplead/img/microsoft.svg" alt="icon">
+                                            <img src="https://conversionratestore.github.io/projects/uplead/img/dropbox.svg" alt="icon">
+                                            <img src="https://conversionratestore.github.io/projects/uplead/img/amazon.svg" alt="icon">
+                                            <img src="https://conversionratestore.github.io/projects/uplead/img/salesforce.svg" alt="icon">
+                                            <img src="https://conversionratestore.github.io/projects/uplead/img/google.svg" alt="icon">
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
-            </div>`;
+                </div>`;
 
-            //add styles form main page
-            document.body.insertAdjacentHTML('afterbegin', styleModal)
-            //add modal html
-            document.querySelector('.app-layout__content').insertAdjacentHTML('beforeend', formModal)
-            document.querySelector('.modal-sign .col:first-child > h4').after(document.querySelector('form'))
-            //add All Features & Data Included in modal
-            document.querySelector('.modal-sign .col:last-child > h4').after(document.querySelector('.WwzhpJuEdC9ZWUaDw5ae'))
-            
-            //events
-            pushDataLayer(2, 'View', 'Popup', 'Popup: Get access to 107M+ B2B contacts') 
+                //add styles form main page
+                document.body.insertAdjacentHTML('afterbegin', styleModal)
+                //add modal html
+                document.querySelector('.app-layout__content').insertAdjacentHTML('beforeend', formModal)
+                document.querySelector('.modal-sign .col:first-child > h4').after(document.querySelector('form'))
+                //add All Features & Data Included in modal
+                document.querySelector('.modal-sign .col:last-child > h4').after(document.querySelector('.WwzhpJuEdC9ZWUaDw5ae'))
+                
+                //events
+                pushDataLayer(2, 'View', 'Popup', 'Popup: Get access to 107M+ B2B contacts') 
 
-            let count = 3;
-            document.querySelectorAll('.modal-sign input').forEach((item, index) => {
-                item.addEventListener('click', () => {
-                    pushDataLayer(count + index, item.previousElementSibling.innerHTML, 'Input', 'Popup: Get access to 107M+ B2B contacts')
+                let count = 3;
+                document.querySelectorAll('.modal-sign input').forEach((item, index) => {
+                    item.addEventListener('click', () => {
+                        pushDataLayer(count + index, item.previousElementSibling.innerHTML, 'Input', 'Popup: Get access to 107M+ B2B contacts')
+                    })
                 })
-            })
-            document.querySelector('.EbdAVLAV63Q8iq4tqgYM').addEventListener('click', () => {
-                pushDataLayer(7, 'Have a partner code', 'Button', 'Popup: Get access to 107M+ B2B contacts')
-            })
-            document.querySelector('.modal-sign [type="submit"]').addEventListener('click', () => {
-                pushDataLayer(8, 'Sign Up Now', 'Button', 'Popup: Get access to 107M+ B2B contacts')
-            })
-            document.querySelector('.ybJ38nhaJTL1t34tqwOg').addEventListener('click', () => {
-                pushDataLayer(9, 'Sign In', 'Button', 'Popup: Get access to 107M+ B2B contacts')
-                window.location.href = 'https://app.uplead.com/login'
-            })
+                document.querySelector('.EbdAVLAV63Q8iq4tqgYM').addEventListener('click', () => {
+                    pushDataLayer(7, 'Have a partner code', 'Button', 'Popup: Get access to 107M+ B2B contacts')
+                })
+                document.querySelector('.modal-sign [type="submit"]').addEventListener('click', () => {
+                    pushDataLayer(8, 'Sign Up Now', 'Button', 'Popup: Get access to 107M+ B2B contacts')
+                })
+                document.querySelector('.ybJ38nhaJTL1t34tqwOg').addEventListener('click', () => {
+                    pushDataLayer(9, 'Sign In', 'Button', 'Popup: Get access to 107M+ B2B contacts')
+                    window.location.href = 'https://app.uplead.com/login'
+                })
 
-            document.querySelector('.modal-sign form').addEventListener('submit', () => {
-                let checkError = setInterval(() => {
-                    if (window.location.href.includes('verification')) {
-                        clearInterval(checkError)
-                        window.location.reload();
-                    } 
-                }, 200)
-            })
+                document.querySelector('.modal-sign form').addEventListener('submit', () => {
+                    let checkError = setInterval(() => {
+                        if (window.location.href.includes('verification')) {
+                            clearInterval(checkError)
+                            window.location.reload();
+                        } 
+                    }, 200)
+                })
 
-            loadedTest()
+                loadedTest()
+            }
         }
         /* end pop-up form */
 
@@ -441,12 +444,6 @@ let runTest = () => {
         }
         /* end Search for qualified leads form */
 
-        /* for users who have taken a different path */
-        if (stateUrl.includes('https://app.uplead.com/trial-signup?_ga')) {
-            clearInterval(start)
-            sessionStorage.setItem('linkForLogin', stateUrl)
-            console.log(stateUrl)
-        }
         if (stateUrl.includes('app.uplead.com/login') && document.querySelector('.loginForm__footer .btn-link') != null) {
             clearInterval(start)
             console.log(stateUrl)
