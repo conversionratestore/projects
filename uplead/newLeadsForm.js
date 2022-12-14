@@ -23,14 +23,23 @@ let loadedTest = () => {
 let stateUrl = window.location.href;
 let url = ''
 
+let isUrlValid = (userInput) => {
+    let url = userInput.value;
+    let res = url.match(/(http(s)?:\/\/.)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/g);
+    if(res == null)
+        return false;
+    else
+        return true;
+}
+
 let formHTML = `
-<form class="modal-exp" action="https://www.uplead.com/findleadsnow">
+<form class="modal-exp">
     <h3>Search for qualified leads</h3>
     <div class="relative">
-        <input type="text" placeholder="Search leads by company URL" required>
-        <p class="error-message" style="display: none;">Cannot be empty</p>
+        <input type="text" placeholder="Search leads by company URL" >
+        <p class="error-message" style="display: none;">Please enter a valid company URL</p>
     </div>
-    <button type="submit">Grab 5 free leads now</button>
+    <button type="button">Grab 5 free leads now</button>
 </div>`;
 
 let runTest = () => {
@@ -134,7 +143,7 @@ let runTest = () => {
             
             document.querySelector('section.elementor-element.elementor-element-954ec92 .elementor-container.elementor-column-gap-no .elementor-form .elementor-button').addEventListener('click', (e) => {
                 e.preventDefault()
-                if (document.querySelector('#form-field-email').value != '') {
+                if (isUrlValid(document.querySelector('#form-field-email')) == true) {
                     window.location.href = 'https://www.uplead.com/findleadsnow'
                 }
             })
@@ -454,6 +463,15 @@ let runTest = () => {
             `);
 
             document.querySelector('#main > div > div > section.elementor-section.elementor-top-section.elementor-element.elementor-element-81ee34c.elementor-section-boxed.elementor-section-height-default.elementor-section-height-default.jet-parallax-section > div.elementor-container.elementor-column-gap-default > div').insertAdjacentHTML('beforeend', formHTML);
+       
+            document.querySelector('.modal-exp button').addEventListener('click', (e) => {
+                if (isUrlValid(document.querySelector('.modal-exp input')) == true) {
+                    document.querySelector('.modal-exp .error-message').style = "display: none;"
+                    window.location.href = 'https://www.uplead.com/findleadsnow'
+                } else {
+                    document.querySelector('.modal-exp .error-message').style = ""
+                }
+            })
         }
         /* end Search for qualified leads form */
         if (stateUrl.includes('https://app.uplead.com/trial-signup?_ga')) {
