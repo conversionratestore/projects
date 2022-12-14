@@ -380,7 +380,7 @@ let runTest = () => {
         /* end pop-up form */
 
         /* Search for qualified leads form */
-        if (stateUrl.includes('/meeting-request-emails')) {
+        if (stateUrl.includes('/meeting-request-emails') && document.querySelector('.modal-exp') == null) {
             clearInterval(start)
             document.body.insertAdjacentHTML('afterbegin', `
                 <style>
