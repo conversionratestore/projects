@@ -446,7 +446,7 @@ let runTest = () => {
             sessionStorage.setItem('linkForLogin', stateUrl)
             console.log(stateUrl)
         }
-        if (stateUrl.includes('app.uplead.com/login')) {
+        if (stateUrl.includes('app.uplead.com/login') && document.querySelector('.loginForm__footer .btn-link') != null) {
             console.log(stateUrl)
             document.querySelector('.loginForm__footer .btn-link').addEventListener('click', (e) => {
                 e.stopImmediatePropagation()
