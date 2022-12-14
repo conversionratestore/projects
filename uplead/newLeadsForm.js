@@ -380,7 +380,7 @@ let runTest = () => {
         /* end pop-up form */
 
         /* Search for qualified leads form */
-        if (stateUrl.includes('/meeting-request-emails') && document.querySelector('.modal-exp') == null) {
+        if (stateUrl.includes('/meeting-request-emails') && document.querySelector('.modal-exp') == null && document.querySelector('#main > div > div > section.elementor-section.elementor-top-section.elementor-element.elementor-element-81ee34c.elementor-section-boxed.elementor-section-height-default.elementor-section-height-default.jet-parallax-section > div.elementor-container.elementor-column-gap-default > div') != null) {
             clearInterval(start)
             document.body.insertAdjacentHTML('afterbegin', `
                 <style>
