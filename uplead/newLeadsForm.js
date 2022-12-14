@@ -23,10 +23,17 @@ let loadedTest = () => {
 let stateUrl = window.location.href;
 let url = ''
 
+let formHTML = `
+<div class="modal-exp">
+    <h3>Search for qualified leads</h3>
+    <input type="text" placeholder="Search leads by company URL">
+    <a href="https://app.uplead.com/trial-signup">Grab 5 free leads now</a>
+</div>`;
+
 let runTest = () => {
     let start = setInterval(() => {
         /* main page */
-        if (url == 'https://www.uplead.com/' && document.querySelector('section.elementor-element.elementor-element-954ec92 .elementor-container.elementor-column-gap-no .elementor-form .elementor-button .elementor-button-text') != null) {
+        if (stateUrl == 'https://www.uplead.com/' && document.querySelector('section.elementor-element.elementor-element-954ec92 .elementor-container.elementor-column-gap-no .elementor-form .elementor-button .elementor-button-text') != null) {
             clearInterval(start)
 
             //add styles form main page
@@ -135,7 +142,7 @@ let runTest = () => {
         /* end main page */
         
         /* findleadsnow page */
-        if (url.includes('/findleadsnow') && document.body != null) {
+        if (stateUrl.includes('/findleadsnow') && document.body != null) {
             document.body.innerHTML = '<img class="bg" src="https://conversionratestore.github.io/projects/uplead/img/bg-findleadeshow.svg" alt="image" width="100%"/>'
             
             if (document.readyState == 'complete') {
@@ -155,7 +162,7 @@ let runTest = () => {
         /* end findleadsnow page */
 
         /* pop-up form */
-        if (url == 'https://app.uplead.com/trial-signup' && document.querySelector('.WwzhpJuEdC9ZWUaDw5ae') != null && document.querySelector('form') != null && document.querySelector('.modal-sign') == null) {
+        if (stateUrl == 'https://app.uplead.com/trial-signup' && document.querySelector('.WwzhpJuEdC9ZWUaDw5ae') != null && document.querySelector('form') != null && document.querySelector('.modal-sign') == null) {
             clearInterval(start)
 
             sessionStorage.setItem('linkForLogin', url)
@@ -371,11 +378,71 @@ let runTest = () => {
         }
         /* end pop-up form */
 
+        if (stateUrl.includes('/meeting-request-emails')) {
+            clearInterval(start)
+            document.body.insertAdjacentHTML('afterbegin', `
+                <style>
+                .elementor-7517 .elementor-element.elementor-element-81ee34c>.elementor-container {
+                    max-width: 1120px;
+                }
+                #main > div > div > section.elementor-section.elementor-top-section.elementor-element.elementor-element-81ee34c.elementor-section-boxed.elementor-section-height-default.elementor-section-height-default.jet-parallax-section > div.elementor-container.elementor-column-gap-default > div > div.elementor-column.elementor-col-100.elementor-top-column.elementor-element.elementor-element-24928d7 > div > div {
+                    padding: 0 20px 0 0;
+                }
+                #main > div > div > section.elementor-section.elementor-top-section.elementor-element.elementor-element-81ee34c.elementor-section-boxed.elementor-section-height-default.elementor-section-height-default.jet-parallax-section > div.elementor-container.elementor-column-gap-default > div > div.elementor-column.elementor-col-100.elementor-top-column.elementor-element.elementor-element-24928d7 {
+                    width: calc(100% - 320px);
+                }
+                .modal-exp {
+                    background: #FFFFFF;
+                    border: 1px solid #EFF0F7;
+                    box-shadow: 0px 24px 38px rgba(8, 15, 52, 0.06);
+                    border-radius: 8px;
+                    padding: 28px;
+                    width: 320px;
+                    height: fit-content;
+                    position: sticky;
+                    top: 90px;
+                }
+                .modal-exp h3 {
+                    font-size: 24px!important;
+                    line-height: 31px!important;
+                    margin-bottom: 20px;
+                    text-align: center;
+                }
+                .modal-exp input {
+                    padding: 15px 24px;
+                    background: #FFFFFF;
+                    border: 1px solid #E1EBEE;
+                    border-radius: 50px;
+                    font-weight: 400;
+                    font-size: 14px;
+                    line-height: 17px;
+                    margin-bottom: 16px;
+                    width: 100%;
+                }
+                .modal-exp a {
+                    background: #00A2BB;
+                    border-radius: 50px;
+                    width: 100%;
+                    color: #FFFFFF;
+                    font-weight: 700;
+                    font-size: 18px;
+                    line-height: 27px;
+                    display: block;
+                    text-align: center;
+                    padding: 11.5px;
+                }
+
+                </style>
+            `);
+
+            document.querySelector('#main > div > div > section.elementor-section.elementor-top-section.elementor-element.elementor-element-81ee34c.elementor-section-boxed.elementor-section-height-default.elementor-section-height-default.jet-parallax-section > div.elementor-container.elementor-column-gap-default > div').insertAdjacentHTML('beforeend', formHTML)
+
+        }
         /* for users who have taken a different path */
-        if (url.includes('https://app.uplead.com/trial-signup?_ga')) {
+        if (stateUrl.includes('https://app.uplead.com/trial-signup?_ga')) {
             sessionStorage.setItem('linkForLogin', url)
         }
-        if (url.includes('app.uplead.com/login')) {
+        if (stateUrl.includes('app.uplead.com/login')) {
             document.querySelector('.loginForm__footer .btn-link').addEventListener('click', (e) => {
                 e.stopImmediatePropagation()
                 window.location.href = sessionStorage.getItem('linkForLogin');
