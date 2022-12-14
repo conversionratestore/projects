@@ -24,10 +24,13 @@ let stateUrl = window.location.href;
 let url = ''
 
 let formHTML = `
-<div class="modal-exp">
+<form class="modal-exp" action="https://www.uplead.com/findleadsnow">
     <h3>Search for qualified leads</h3>
-    <input type="text" placeholder="Search leads by company URL">
-    <a href="https://www.uplead.com/findleadsnow">Grab 5 free leads now</a>
+    <div class="relative">
+        <input type="text" placeholder="Search leads by company URL" required>
+        <p class="error-message" style="display: none;">Cannot be empty</p>
+    </div>
+    <button type="submit">Grab 5 free leads now</button>
 </div>`;
 
 let runTest = () => {
@@ -396,6 +399,17 @@ let runTest = () => {
                 #main > div > div > section.elementor-section.elementor-top-section.elementor-element.elementor-element-81ee34c.elementor-section-boxed.elementor-section-height-default.elementor-section-height-default.jet-parallax-section > div.elementor-container.elementor-column-gap-default > div > div.elementor-column.elementor-col-100.elementor-top-column.elementor-element.elementor-element-24928d7 {
                     width: calc(100% - 320px);
                 }
+                .relative {
+                    position: relative;
+                    width: 100%;
+                }
+                .error-message {
+                    position: absolute;
+                    left: 0;
+                    top: 100%;
+                    font-size: 10px;
+                    line-height: 1;
+                }
                 .modal-exp {
                     background: #FFFFFF;
                     border: 1px solid #EFF0F7;
@@ -424,7 +438,7 @@ let runTest = () => {
                     margin-bottom: 16px;
                     width: 100%;
                 }
-                .modal-exp a {
+                .modal-exp button {
                     background: #00A2BB;
                     border-radius: 50px;
                     width: 100%;
@@ -436,7 +450,6 @@ let runTest = () => {
                     text-align: center;
                     padding: 11.5px;
                 }
-
                 </style>
             `);
 
