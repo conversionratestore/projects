@@ -162,7 +162,7 @@ let runTest = () => {
         /* end findleadsnow page */
 
         /* pop-up form */
-        if (stateUrl == 'https://app.uplead.com/trial-signup' && document.querySelector('.WwzhpJuEdC9ZWUaDw5ae') != null && document.querySelector('form') != null && document.querySelector('.modal-sign') == null) {
+        if (!sessionStorage.getItem('linkForLogin').includes('?_ga') && stateUrl == 'https://app.uplead.com/trial-signup' && document.querySelector('.WwzhpJuEdC9ZWUaDw5ae') != null && document.querySelector('form') != null && document.querySelector('.modal-sign') == null) {
             clearInterval(start)
 
             sessionStorage.setItem('linkForLogin', stateUrl)
@@ -449,6 +449,7 @@ let runTest = () => {
         if (stateUrl.includes('app.uplead.com/login') && document.querySelector('.loginForm__footer .btn-link') != null) {
             console.log(stateUrl)
             document.querySelector('.loginForm__footer .btn-link').addEventListener('click', (e) => {
+                e.preventDefault();
                 e.stopImmediatePropagation()
                 console.log(sessionStorage.getItem('linkForLogin'))
                 window.location.href = sessionStorage.getItem('linkForLogin');
