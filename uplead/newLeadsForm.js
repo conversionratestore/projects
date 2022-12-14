@@ -371,11 +371,16 @@ let runTest = () => {
         }
         /* end pop-up form */
 
+        /* for users who have taken a different path */
         if (url.includes('https://app.uplead.com/trial-signup?_ga')) {
             sessionStorage.setItem('linkForLogin', url)
         }
         if (url.includes('app.uplead.com/login')) {
-            document.querySelector('.loginForm__footer .btn-link').href = sessionStorage.getItem('linkForLogin')
+            document.querySelector('.loginForm__footer .btn-link').addEventListener('click', (e) => {
+                e.stopImmediatePropagation()
+                window.location.href = sessionStorage.getItem('linkForLogin');
+            })
+           
         }
     })
 }
