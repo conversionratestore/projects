@@ -443,7 +443,10 @@ let runTest = () => {
             document.querySelector('#main > div > div > section.elementor-section.elementor-top-section.elementor-element.elementor-element-81ee34c.elementor-section-boxed.elementor-section-height-default.elementor-section-height-default.jet-parallax-section > div.elementor-container.elementor-column-gap-default > div').insertAdjacentHTML('beforeend', formHTML);
         }
         /* end Search for qualified leads form */
-
+        if (stateUrl.includes('https://app.uplead.com/trial-signup?_ga')) {
+            clearInterval(start)
+            sessionStorage.setItem('linkForLogin', stateUrl)
+        }
         if (stateUrl.includes('app.uplead.com/login') && document.querySelector('.loginForm__footer .btn-link') != null) {
             clearInterval(start)
             console.log(stateUrl)
