@@ -443,10 +443,12 @@ let runTest = () => {
 
         /* for users who have taken a different path */
         if (stateUrl.includes('https://app.uplead.com/trial-signup?_ga')) {
+            clearInterval(start)
             sessionStorage.setItem('linkForLogin', stateUrl)
             console.log(stateUrl)
         }
         if (stateUrl.includes('app.uplead.com/login') && document.querySelector('.loginForm__footer .btn-link') != null) {
+            clearInterval(start)
             console.log(stateUrl)
             document.querySelector('.loginForm__footer .btn-link').addEventListener('click', (e) => {
                 e.preventDefault();
