@@ -123,3 +123,14 @@ document.querySelector('.sleepy-box .sleepy-heading > div > p:nth-child(2)').inn
 document.querySelector('.sleepy-box .sleepy-heading > div > p:nth-child(3)').remove();
 
 document.querySelector('#night-trial > div > div:nth-child(2) > div:nth-child(2) > p').innerHTML = textObj.simples2
+
+window.dataLayer = window.dataLayer || []; 
+dataLayer.push({ 'event': 'event-to-ga4', 'event_name': 'exp_new_text_content_loaded' }); 
+
+//clarify
+let isClarify = setInterval(() => {
+    if(typeof clarity == 'function') {
+        clearInterval(isClarify)
+        clarity("set", "new_text_content", "variant_1");
+    }
+}, 100)
