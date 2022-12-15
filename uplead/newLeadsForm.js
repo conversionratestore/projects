@@ -525,7 +525,11 @@ let runTest = () => {
                     window.location.href = 'https://www.uplead.com/findleadsnow';
                 } else {
                     document.querySelector('.modal-exp .relative').classList.add('error');
+                    pushDataLayer('exp_new_form_5grab_err', 'Form 5grab', 'Error', 'Form') //event
                 }
+            })
+            document.querySelector('.modal-exp input').addEventListener('click', () => {
+                pushDataLayer('exp_new_form_ingrab5', 'Click Grab 5 Free Leads Now', 'Input', 'Form') //event
             })
         }
         /* end Search for qualified leads form */
