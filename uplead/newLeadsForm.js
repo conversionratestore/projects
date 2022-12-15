@@ -397,7 +397,7 @@ let runTest = () => {
                     })
                 })
                 document.querySelector('.EbdAVLAV63Q8iq4tqgYM').addEventListener('click', () => {
-                    pushDataLayer('exp_new_form_pop_hpc', 'Have a partner code', 'Button', 'Popup: Get access to 107M+ B2B contacts')
+                    pushDataLayer('exp_new_form_pop_parcode', 'Have a partner code', 'Button', 'Form')
                 })
                 document.querySelector('.modal-sign [type="submit"]').addEventListener('click', () => {
                     pushDataLayer('exp_new_form_pop_sun', 'Sign Up Now', 'Button', 'Form')
@@ -413,9 +413,8 @@ let runTest = () => {
                     pushDataLayer('exp_new_form_pop_pp', 'Privacy Policy', 'Input', 'Form')
                 })
                 document.querySelectorAll('.oy4M8Xq3A6chKn0pmXTt').forEach(item => {
-                    pushDataLayer('exp_new_form_pop_t', item.parentElement.previousElementSibling.innerText, 'Tips', 'Form')
+                    pushDataLayer('exp_new_form_pop_tips', item.parentElement.previousElementSibling.innerText, 'Tips', 'Form')
                 })
-
                 document.querySelector('.modal-sign form').addEventListener('submit', () => {
                     let checkError = setInterval(() => {
                         if (window.location.href.includes('verification')) {
