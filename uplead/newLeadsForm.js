@@ -461,8 +461,8 @@ let runTest = () => {
                     display: block;
                 }
                 .error input {
-                    border-color: red;
-                    margin-bottom: 4px;
+                    border-color: red!important;
+                    margin-bottom: 4px!important;
                 }
                 .error-message {
                     padding-left: 14px;
