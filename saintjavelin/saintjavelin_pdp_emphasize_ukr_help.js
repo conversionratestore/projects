@@ -931,9 +931,28 @@ ul.main_popup_list>li p {
       body = document.body,
       overlay = document.querySelector(".backdrop_modal")
 
-    if (!document.querySelector("[name='add'].btn--tertiary.btn--full span").textContent.includes("Sold")) {
-      priceBlock.insertAdjacentHTML("afterend", donationAmount)
+
+    let obs = new IntersectionObserver(visibility, {
+      threshold: 0
+    })
+
+    obs.observe(document.querySelector("[name='add'].btn--tertiary.btn--full"))
+
+    function visibility(entries) {
+      entries.forEach(i => {
+        if (i.isIntersecting) {
+          console.log(i.target)
+          if (i.target.classList.contains("btn--full")) {
+            if (!document.querySelector("[name='add'].btn--tertiary.btn--full span").textContent.includes("Sold")) {
+              priceBlock.insertAdjacentHTML("afterend", donationAmount)
+            }
+          }
+
+          obs.unobserve(i.target)
+        }
+      })
     }
+
 
     if (innerWidth <= 768) {
       imgBlock.closest(".product-block").insertAdjacentHTML("beforebegin", donationInform)
@@ -941,86 +960,93 @@ ul.main_popup_list>li p {
       boxForDonationInform.insertAdjacentHTML("beforeend", donationInform)
     }
 
-    document.querySelector(".donation_amount_flex")?.addEventListener("click", () => {
-      pushDataLayer("Сlick on donate to support Ukraine")
-      onOpenPopup(contentpopup)
-      let clonedNodeBar = document.querySelector(".range_bar_wrap").cloneNode(true)
 
-      setTimeout(() => {
-        if (clonedNodeBar) {
-          if (!document.querySelector(".bar .range_bar_wrap")) {
-            document.querySelector(".bar")?.appendChild(clonedNodeBar)
-          }
-        }
-      }, 100)
+    let findBlock = setInterval(() => {
+      if (document.querySelector(".donation_amount_flex")) {
+        clearInterval(findBlock)
+        document.querySelector(".donation_amount_flex")?.addEventListener("click", () => {
+          pushDataLayer("Сlick on donate to support Ukraine")
+          onOpenPopup(contentpopup)
+          let clonedNodeBar = document.querySelector(".range_bar_wrap").cloneNode(true)
 
-      if (document.querySelector(".backdrop_modal .content_popup")) {
-        let errColor = ""
-        let errType = ""
-        let errPatchType = ""
-        let errSize = ""
-        document.querySelectorAll(".product-block .variant__label.hidden-label").forEach((el) => {
-          if (el.textContent.includes("Color")) {
-            errColor = "color"
-          }
-          if (el.textContent.includes("PATCH TYPE")) {
-            errPatchType = "patch type"
-          }
-
-          if (el.textContent.includes("Type")) {
-            errType = "type"
-          }
-
-          if (el.textContent.includes("Size")) {
-            errSize = "size"
-          }
-        })
-
-        if (errColor !== "" && errPatchType === "" && errType === "" && errSize === "") {
-          document.querySelector(".error_block span").textContent = `Please select ${errColor} first`
-        } else if (errColor === "" && errPatchType !== "" && errType === "" && errSize === "") {
-          document.querySelector(".error_block span").textContent = `Please select ${errPatchType} first`
-        } else if (errColor === "" && errPatchType === "" && errType !== "" && errSize === "") {
-          document.querySelector(".error_block span").textContent = `Please select ${errType} first`
-        } else if (errColor === "" && errPatchType === "" && errType === "" && errSize !== "") {
-          document.querySelector(".error_block span").textContent = `Please select ${errSize} first`
-        } else if (errColor !== "" && errPatchType === "" && errType === "" && errSize !== "") {
-          document.querySelector(".error_block span").textContent = `Please select ${errColor} and ${errSize} first`
-        }
-
-        document.querySelector(".backdrop_modal .content_popup .by_it_now_btn")?.addEventListener("click", (e) => {
-          if (!e.target.getAttribute("data-test")) {
-            e.preventDefault()
-            pushDataLayer("Сlick on Buy it now button", "Pop up All profits go towards helping Ukraine resist the invasion")
-            if (document.querySelector("[name='add'].btn--tertiary.btn--full.bold_hidden")) {
-              if (!document.querySelector("[name='add'].btn--tertiary.btn--full.bold_hidden").getAttribute("disabled")) {
-                document.querySelector("[name='add'].btn--tertiary.btn--full.bold_hidden").click()
-                onClosePopup()
-              } else {
-                if (document.querySelector(".error_block").classList.contains("is_hidden")) {
-                  document.querySelector(".error_block").classList.remove("is_hidden")
-                }
-              }
-            } else if (!document.querySelector("[name='add'].btn--tertiary.btn--full.bold_hidden")) {
-              if (!document.querySelector("[name='add'].btn--tertiary.btn--full").getAttribute("disabled")) {
-                document.querySelector("[name='add'].btn--tertiary.btn--full").click()
-                onClosePopup()
-              } else {
-                if (document.querySelector(".error_block").classList.contains("is_hidden")) {
-                  document.querySelector(".error_block").classList.remove("is_hidden")
-                }
+          setTimeout(() => {
+            if (clonedNodeBar) {
+              if (!document.querySelector(".bar .range_bar_wrap")) {
+                document.querySelector(".bar")?.appendChild(clonedNodeBar)
               }
             }
+          }, 100)
+
+          if (document.querySelector(".backdrop_modal .content_popup")) {
+            let errColor = ""
+            let errType = ""
+            let errPatchType = ""
+            let errSize = ""
+            document.querySelectorAll(".product-block .variant__label.hidden-label").forEach((el) => {
+              if (el.textContent.includes("Color")) {
+                errColor = "color"
+              }
+              if (el.textContent.includes("PATCH TYPE")) {
+                errPatchType = "patch type"
+              }
+
+              if (el.textContent.includes("Type")) {
+                errType = "type"
+              }
+
+              if (el.textContent.includes("Size")) {
+                errSize = "size"
+              }
+            })
+
+            if (errColor !== "" && errPatchType === "" && errType === "" && errSize === "") {
+              document.querySelector(".error_block span").textContent = `Please select ${errColor} first`
+            } else if (errColor === "" && errPatchType !== "" && errType === "" && errSize === "") {
+              document.querySelector(".error_block span").textContent = `Please select ${errPatchType} first`
+            } else if (errColor === "" && errPatchType === "" && errType !== "" && errSize === "") {
+              document.querySelector(".error_block span").textContent = `Please select ${errType} first`
+            } else if (errColor === "" && errPatchType === "" && errType === "" && errSize !== "") {
+              document.querySelector(".error_block span").textContent = `Please select ${errSize} first`
+            } else if (errColor !== "" && errPatchType === "" && errType === "" && errSize !== "") {
+              document.querySelector(".error_block span").textContent = `Please select ${errColor} and ${errSize} first`
+            }
+
+            document.querySelector(".backdrop_modal .content_popup .by_it_now_btn")?.addEventListener("click", (e) => {
+              if (!e.target.getAttribute("data-test")) {
+                e.preventDefault()
+                pushDataLayer("Сlick on Buy it now button", "Pop up All profits go towards helping Ukraine resist the invasion")
+                if (document.querySelector("[name='add'].btn--tertiary.btn--full.bold_hidden")) {
+                  if (!document.querySelector("[name='add'].btn--tertiary.btn--full.bold_hidden").getAttribute("disabled")) {
+                    document.querySelector("[name='add'].btn--tertiary.btn--full.bold_hidden").click()
+                    onClosePopup()
+                  } else {
+                    if (document.querySelector(".error_block").classList.contains("is_hidden")) {
+                      document.querySelector(".error_block").classList.remove("is_hidden")
+                    }
+                  }
+                } else if (!document.querySelector("[name='add'].btn--tertiary.btn--full.bold_hidden")) {
+                  if (!document.querySelector("[name='add'].btn--tertiary.btn--full").getAttribute("disabled")) {
+                    document.querySelector("[name='add'].btn--tertiary.btn--full").click()
+                    onClosePopup()
+                  } else {
+                    if (document.querySelector(".error_block").classList.contains("is_hidden")) {
+                      document.querySelector(".error_block").classList.remove("is_hidden")
+                    }
+                  }
+                }
+              }
+              e.target.setAttribute("data-test", "1")
+            })
           }
-          e.target.setAttribute("data-test", "1")
+          if (innerWidth <= 768) {
+            if (document.querySelector(".content_popup p.goal_text br")) {
+              document.querySelector(".content_popup p.goal_text br").remove()
+            }
+          }
         })
       }
-      if (innerWidth <= 768) {
-        if (document.querySelector(".content_popup p.goal_text br")) {
-          document.querySelector(".content_popup p.goal_text br").remove()
-        }
-      }
-    })
+
+    }, 10)
 
     let findBtnAddToCart = setInterval(() => {
       if (document.querySelector("[name='add'].btn--tertiary.btn--full.bold_hidden")) {
@@ -1037,6 +1063,7 @@ ul.main_popup_list>li p {
         }
       }
     }, 10)
+
 
     // click on Make a Selection
     let findBtnMakeSelect = setInterval(() => {
