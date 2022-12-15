@@ -1,11 +1,11 @@
 //push dataLayer
-let pushDataLayer = (nameCount, desc, type, loc) => {
+let pushDataLayer = (name, desc, type, loc) => {
     console.log(nameCount + " : " + desc + " : " + type + " : " + loc)
 
     window.dataLayer = window.dataLayer || [];
     dataLayer.push({
         'event': 'event-to-ga4',
-        'event_name': `exp_hp_leads_form_0${nameCount}`,
+        'event_name': name,
         'event_desc': desc,
         'event_type': type,
         'event_loc': loc
@@ -13,10 +13,10 @@ let pushDataLayer = (nameCount, desc, type, loc) => {
 }
 
 let loadedTest = () => {
-    window.dataLayer = window.dataLayer || [];
-    dataLayer.push({
-        'event': 'event-to-ga4',
-        'event_name': 'exp_hp_leads_form_loaded'
+    window.dataLayer = window.dataLayer || []; 
+    dataLayer.push ({ 
+        'event': 'event-to-ga4', 
+        'event_name': 'exp_new_form_loaded' 
     });
 }
 
@@ -157,15 +157,22 @@ let runTest = () => {
             //change placeholder
             document.querySelector('section.elementor-element.elementor-element-954ec92 .elementor-container.elementor-column-gap-no #form-field-email').placeholder = 'company.com';
             
+            document.querySelector('section.elementor-element.elementor-element-954ec92 .elementor-container.elementor-column-gap-no #form-field-email').addEventListener('click', (e) => {
+                pushDataLayer('exp_new_form_find_input', 'Form leads input', 'Input', 'First screen'); //event
+            })
+
             document.querySelector('section.elementor-element.elementor-element-954ec92 .elementor-container.elementor-column-gap-no .elementor-form .elementor-button').addEventListener('click', (e) => {
                 e.preventDefault()
+
+                pushDataLayer('exp_new_form_find_leads', 'Submit button', 'Button', 'First screen'); //event
                 if (isUrlValid(document.querySelector('#form-field-email')) == true) {
                     document.querySelector('#form-field-email').style = ''
                     document.querySelector('.error-message').style = '';
                     window.location.href = 'https://www.uplead.com/findleadsnow';
                 } else {
                     document.querySelector('.error-message').style = 'display: block';
-                    document.querySelector('#form-field-email').style = 'border-color: red'
+                    document.querySelector('#form-field-email').style = 'border-color: red';
+                    pushDataLayer('exp_new_form_err', 'Form leads', 'Error', 'First screen'); //event
                 }
             })
             //change text on button
@@ -188,7 +195,7 @@ let runTest = () => {
                 
             document.addEventListener('click', (e) => {
                 e.stopImmediatePropagation()
-                pushDataLayer(1, 'Any element on page', 'Interaction', 'Contact Search') //event
+                pushDataLayer('exp_new_form_any', 'Findleadsnow', 'Click', 'On page') //event
                 window.location.href = 'https://app.uplead.com/trial-signup';
             })  
         }
@@ -381,22 +388,22 @@ let runTest = () => {
                 document.querySelector('.modal-sign .col:last-child > h4').after(document.querySelector('.WwzhpJuEdC9ZWUaDw5ae'))
                 
                 //events
-                pushDataLayer(2, 'View', 'Popup', 'Popup: Get access to 107M+ B2B contacts') 
+                pushDataLayer('exp_new_form_pop_vis', 'Registration pop up', 'Pop up', 'Form') 
 
                 let count = 3;
                 document.querySelectorAll('.modal-sign input').forEach((item, index) => {
                     item.addEventListener('click', () => {
-                        pushDataLayer(count + index, item.previousElementSibling.innerHTML, 'Input', 'Popup: Get access to 107M+ B2B contacts')
+                        pushDataLayer('exp_new_form_pop_inp', item.previousElementSibling.innerHTML, 'Input', 'Form')
                     })
                 })
                 document.querySelector('.EbdAVLAV63Q8iq4tqgYM').addEventListener('click', () => {
-                    pushDataLayer(7, 'Have a partner code', 'Button', 'Popup: Get access to 107M+ B2B contacts')
+                    // pushDataLayer(7, 'Have a partner code', 'Button', 'Popup: Get access to 107M+ B2B contacts')
                 })
                 document.querySelector('.modal-sign [type="submit"]').addEventListener('click', () => {
-                    pushDataLayer(8, 'Sign Up Now', 'Button', 'Popup: Get access to 107M+ B2B contacts')
+                    // pushDataLayer(8, 'Sign Up Now', 'Button', 'Popup: Get access to 107M+ B2B contacts')
                 })
                 document.querySelector('.ybJ38nhaJTL1t34tqwOg').addEventListener('click', () => {
-                    pushDataLayer(9, 'Sign In', 'Button', 'Popup: Get access to 107M+ B2B contacts')
+                    // pushDataLayer(9, 'Sign In', 'Button', 'Popup: Get access to 107M+ B2B contacts')
                     window.location.href = 'https://app.uplead.com/login'
                 })
 
@@ -538,6 +545,6 @@ let mutUrl = setInterval(() => {
 let isClarify = setInterval(() => {
     if(typeof clarity == 'function') {
         clearInterval(isClarify)
-        clarity("set", "hp_leads_form", "variant_1");
+        clarity("set", "new_leads_form", "variant_1");
     }
 }, 100)
