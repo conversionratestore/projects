@@ -56,7 +56,7 @@ let runTest = () => {
                     position: absolute;
                     left: 30px;
                     top: 100%;
-                    font-size: 11px;
+                    font-size: 12px;
                     color: red;
                 }
             </style>`);
@@ -159,10 +159,12 @@ let runTest = () => {
             document.querySelector('section.elementor-element.elementor-element-954ec92 .elementor-container.elementor-column-gap-no .elementor-form .elementor-button').addEventListener('click', (e) => {
                 e.preventDefault()
                 if (isUrlValid(document.querySelector('#form-field-email')) == true) {
+                    document.querySelector('#form-field-email').style = ''
                     document.querySelector('.error-message').style = "display: none;";
                     window.location.href = 'https://www.uplead.com/findleadsnow';
                 } else {
                     document.querySelector('.error-message').style = "display: block;";
+                    document.querySelector('#form-field-email').style = 'border-color: red'
                 }
             })
             //change text on button
@@ -429,13 +431,20 @@ let runTest = () => {
                     position: relative;
                     width: 100%;
                 }
+                .error .error-message {
+                    display: block;
+                }
+                .error input {
+                    border-color: red;
+                    margin-bottom: 4px;
+                }
                 .error-message {
-                    position: absolute;
-                    left: 0;
-                    top: calc(100% - 14px);
-                    font-size: 10px;
+                    padding-left: 14px;
+                    font-size: 11px;
                     line-height: 1;
                     color: red;
+                    margin-bottom: 16px;
+                    display: none;
                 }
                 .modal-exp {
                     background: #FFFFFF;
@@ -484,10 +493,10 @@ let runTest = () => {
        
             document.querySelector('.modal-exp button').addEventListener('click', (e) => {
                 if (isUrlValid(document.querySelector('.modal-exp input')) == true) {
-                    document.querySelector('.modal-exp .error-message').style = "display: none;"
-                    window.location.href = 'https://www.uplead.com/findleadsnow'
+                    document.querySelector('.modal-exp .relative').classList.add('error');
+                    window.location.href = 'https://www.uplead.com/findleadsnow';
                 } else {
-                    document.querySelector('.modal-exp .error-message').style = ""
+                    document.querySelector('.modal-exp .relative').classList.remove('error');
                 }
             })
         }
