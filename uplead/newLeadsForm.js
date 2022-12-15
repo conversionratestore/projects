@@ -511,6 +511,7 @@ let runTest = () => {
                     display: block;
                     text-align: center;
                     padding: 11.5px;
+                    text-transform: capitalize;
                 }
                 </style>
             `);
@@ -518,7 +519,7 @@ let runTest = () => {
             document.querySelector('#main > div > div > section.elementor-section.elementor-top-section.elementor-element.elementor-element-81ee34c.elementor-section-boxed.elementor-section-height-default.elementor-section-height-default.jet-parallax-section > div.elementor-container.elementor-column-gap-default > div').insertAdjacentHTML('beforeend', formHTML);
        
             document.querySelector('.modal-exp button').addEventListener('click', (e) => {
-              
+              pushDataLayer('exp_new_form_grab5', 'Click Grab 5 Free Leads Now', 'Button', 'Form') //event
                 if (isUrlValid(document.querySelector('.modal-exp input')) == true) {
                     document.querySelector('.modal-exp .relative').classList.remove('error');
                     window.location.href = 'https://www.uplead.com/findleadsnow';
@@ -530,20 +531,16 @@ let runTest = () => {
         /* end Search for qualified leads form */
 
         if (stateUrl == 'https://app.uplead.com/trial-signup') {
-            console.log(stateUrl)
             sessionStorage.setItem('linkForLogin', stateUrl)
         }
         if (stateUrl.includes('https://app.uplead.com/trial-signup?_ga')) {
-            console.log(stateUrl)
             sessionStorage.setItem('linkForLogin', stateUrl)
         } 
         if (stateUrl.includes('app.uplead.com/login') && document.querySelector('.loginForm__footer .btn-link') != null) {
             clearInterval(start)
-            console.log(stateUrl)
             document.querySelector('.loginForm__footer .btn-link').addEventListener('click', (e) => {
                 e.preventDefault();
                 e.stopImmediatePropagation()
-                console.log(sessionStorage.getItem('linkForLogin'))
                 window.location.href = sessionStorage.getItem('linkForLogin');
             })
            
