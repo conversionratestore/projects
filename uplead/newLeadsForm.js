@@ -161,10 +161,10 @@ let runTest = () => {
                 e.preventDefault()
                 if (isUrlValid(document.querySelector('#form-field-email')) == true) {
                     document.querySelector('#form-field-email').style = ''
-                    document.querySelector('.error-message').style = "";
+                    document.querySelector('.error-message').style = '';
                     window.location.href = 'https://www.uplead.com/findleadsnow';
                 } else {
-                    document.querySelector('.error-message').style = "display: block;";
+                    document.querySelector('.error-message').style = 'display: block';
                     document.querySelector('#form-field-email').style = 'border-color: red'
                 }
             })
