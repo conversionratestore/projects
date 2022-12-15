@@ -60,6 +60,9 @@ let runTest = () => {
                     color: red;
                     display: none;
                 }
+                section.elementor-element.elementor-element-954ec92 .elementor-container.elementor-column-gap-no #form-field-email {
+                    box-shadow: 0px 10px 20px rgb(126 203 220 / 60%);
+                }
             </style>`);
 
             //add styles form main page
@@ -515,6 +518,7 @@ let runTest = () => {
             document.querySelector('#main > div > div > section.elementor-section.elementor-top-section.elementor-element.elementor-element-81ee34c.elementor-section-boxed.elementor-section-height-default.elementor-section-height-default.jet-parallax-section > div.elementor-container.elementor-column-gap-default > div').insertAdjacentHTML('beforeend', formHTML);
        
             document.querySelector('.modal-exp button').addEventListener('click', (e) => {
+              
                 if (isUrlValid(document.querySelector('.modal-exp input')) == true) {
                     document.querySelector('.modal-exp .relative').classList.remove('error');
                     window.location.href = 'https://www.uplead.com/findleadsnow';
