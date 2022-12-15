@@ -56,7 +56,7 @@ let runTest = () => {
                     position: absolute;
                     left: 30px;
                     top: 100%;
-                    font-size: 12px;
+                    font-size: 13px;
                     color: red;
                     display: none;
                 }
