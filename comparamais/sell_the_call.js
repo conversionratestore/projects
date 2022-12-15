@@ -2,6 +2,8 @@ let startFunk = setInterval(() => {
     if (document.querySelector('#hlApp')) {
         clearInterval(startFunk)
 
+
+
         const imgFolderUrl = "https://conversionratestore.github.io/projects/comparamais/img/"
 
         let eventVar = "desktop"
@@ -28,9 +30,10 @@ let startFunk = setInterval(() => {
                     eventAction: `${actionDataLayer}`,
                 })
             }
-        }
 
-        let newStyle =/*html */ `
+            location.search = "?experiement=HL-Simulator-Sell_the_call"
+
+            let newStyle =/*html */ `
         <style>
             .is_hidden{
                 display: none;
@@ -132,7 +135,7 @@ let startFunk = setInterval(() => {
         </style>
         `
 
-        let newBlock = /*html */`
+            let newBlock = /*html */`
         <div class="new_text_wrap" data-visability="1">
             <div class="accent_wrap" data-event>
                 <p data-event>Temos uma taxa de aprovação líder</p>
@@ -153,66 +156,27 @@ let startFunk = setInterval(() => {
             <p class="new_text" data-event>Preencha o formulário seguinte e será contactado nas próximas horas!</p>
         </div>
         `
-        document.head.insertAdjacentHTML('beforeend', newStyle)
+            document.head.insertAdjacentHTML('beforeend', newStyle)
 
-        const runObserver = () => {
-            // Mutation Observer
-            const target = document.querySelector('.simulator-wrapper')
-            const config = {
-                childList: true,
-                subtree: true,
-            }
+            const runObserver = () => {
+                // Mutation Observer
+                const target = document.querySelector('.simulator-wrapper')
+                const config = {
+                    childList: true,
+                    subtree: true,
+                }
 
-            let observer = new MutationObserver((mutations) => {
-                for (let mutation of mutations) {
-                    for (let node of mutation.addedNodes) {
+                let observer = new MutationObserver((mutations) => {
+                    for (let mutation of mutations) {
+                        for (let node of mutation.addedNodes) {
 
-                        if (!(node instanceof HTMLElement)) continue
-                        // console.log(`added`, node)
+                            if (!(node instanceof HTMLElement)) continue
+                            // console.log(`added`, node)
 
-                        // TODO: uncomment this line if we need to handle the mutation
-                        if (node.matches('.simulator-container__capture-form')) {
-                            document.querySelector('.page__title').insertAdjacentHTML('beforeend', newBlock)
-                            document.querySelector('.container--hero .header-list').classList.add('is_hidden')
-                            if (window.innerWidth <= 768) {
-                                setTimeout(() => {
-                                    console.log('scroll')
-                                    document.querySelector(".new_text_wrap")?.scrollIntoView()
-                                }, 100)
-                            }
-
-                            let evTxt = 'Hover'
-                            let ev = 'mouseenter'
-
-                            if (window.innerWidth <= 768) {
-                                evTxt = 'Click'
-                                ev = 'click'
-                            }
-
-                            document.querySelectorAll('[data-event]').forEach(el => {
-                                el.addEventListener(`${ev}`, (e) => {
-                                    if (!e.target.getAttribute("data-test")) {
-                                        if (e.target.classList.contains('accent_wrap')) {
-                                            pushDataLayer(`${evTxt} on gray color block"`)
-                                        } else {
-                                            pushDataLayer(`${evTxt} on text "${e.target.textContent}"`)
-                                        }
-                                    }
-                                    e.target.setAttribute("data-test", "1")
-
-                                    setTimeout(() => {
-                                        if (e.target.getAttribute("data-test")) {
-                                            e.target.removeAttribute("data-test")
-                                        }
-                                    }, 500)
-                                })
-                            })
-                        } else if (node.matches('.simulator-container')) {
-                            if (document.querySelector('.message--success')) {
-                                console.log('Yes');
+                            // TODO: uncomment this line if we need to handle the mutation
+                            if (node.matches('.simulator-container__capture-form')) {
                                 document.querySelector('.page__title').insertAdjacentHTML('beforeend', newBlock)
                                 document.querySelector('.container--hero .header-list').classList.add('is_hidden')
-
                                 if (window.innerWidth <= 768) {
                                     setTimeout(() => {
                                         console.log('scroll')
@@ -244,126 +208,165 @@ let startFunk = setInterval(() => {
                                                 e.target.removeAttribute("data-test")
                                             }
                                         }, 500)
-
                                     })
                                 })
-                            } else {
-                                console.log('>>>>NO');
-                                document.querySelector('.new_text_wrap')?.remove()
-                                if (document.querySelector('.container--hero .header-list').classList.contains('is_hidden')) {
-                                    document.querySelector('.container--hero .header-list').classList.remove('is_hidden')
-                                }
-                                if (window.innerWidth <= 768) {
-                                    setTimeout(() => {
-                                        console.log('scroll')
-                                        document.querySelector(".simulator-container")?.scrollIntoView()
-                                    }, 100)
+                            } else if (node.matches('.simulator-container')) {
+                                if (document.querySelector('.message--success')) {
+                                    console.log('Yes');
+                                    document.querySelector('.page__title').insertAdjacentHTML('beforeend', newBlock)
+                                    document.querySelector('.container--hero .header-list').classList.add('is_hidden')
+
+                                    if (window.innerWidth <= 768) {
+                                        setTimeout(() => {
+                                            console.log('scroll')
+                                            document.querySelector(".new_text_wrap")?.scrollIntoView()
+                                        }, 100)
+                                    }
+
+                                    let evTxt = 'Hover'
+                                    let ev = 'mouseenter'
+
+                                    if (window.innerWidth <= 768) {
+                                        evTxt = 'Click'
+                                        ev = 'click'
+                                    }
+
+                                    document.querySelectorAll('[data-event]').forEach(el => {
+                                        el.addEventListener(`${ev}`, (e) => {
+                                            if (!e.target.getAttribute("data-test")) {
+                                                if (e.target.classList.contains('accent_wrap')) {
+                                                    pushDataLayer(`${evTxt} on gray color block"`)
+                                                } else {
+                                                    pushDataLayer(`${evTxt} on text "${e.target.textContent}"`)
+                                                }
+                                            }
+                                            e.target.setAttribute("data-test", "1")
+
+                                            setTimeout(() => {
+                                                if (e.target.getAttribute("data-test")) {
+                                                    e.target.removeAttribute("data-test")
+                                                }
+                                            }, 500)
+
+                                        })
+                                    })
+                                } else {
+                                    console.log('>>>>NO');
+                                    document.querySelector('.new_text_wrap')?.remove()
+                                    if (document.querySelector('.container--hero .header-list').classList.contains('is_hidden')) {
+                                        document.querySelector('.container--hero .header-list').classList.remove('is_hidden')
+                                    }
+                                    if (window.innerWidth <= 768) {
+                                        setTimeout(() => {
+                                            console.log('scroll')
+                                            document.querySelector(".simulator-container")?.scrollIntoView()
+                                        }, 100)
+                                    }
                                 }
                             }
                         }
                     }
-                }
-            })
+                })
 
-            observer.observe(target, config)
-        }
-
-
-        let startI = setInterval(() => {
-            if (document.querySelector('.simulator-wrapper')) {
-                clearInterval(startI)
-                runObserver()
+                observer.observe(target, config)
             }
-        }, 100)
 
-        let i = setInterval(() => {
-            if (document.querySelector(".new_text_wrap")) {
-                clearInterval(i)
-                let obs = new IntersectionObserver(visibility, {
-                    threshold: 0.9
-                })
 
-                let obs2 = new IntersectionObserver(visibility2, {
-                    threshold: 0.9
-                })
-
-                obs.observe(document.querySelector('.new_text_wrap[data-visability="1"]'))
-
-                function visibility(entries) {
-                    entries.forEach(i => {
-                        if (i.isIntersecting) {
-                            setTimeout(function () {
-                                obs2.observe(i.target)
-                            }, 800)
-                        }
-                    })
+            let startI = setInterval(() => {
+                if (document.querySelector('.simulator-wrapper')) {
+                    clearInterval(startI)
+                    runObserver()
                 }
+            }, 100)
 
-                function visibility2(entries) {
-                    entries.forEach(i => {
-                        if (i.isIntersecting) {
-                            if (i.target.getAttribute('data-visability') === "1") {
-                                pushDataLayer(`view the block`)
-                            }
-
-                            // if (window.innerWidth <= 768) {
-                            //     if (i.target.getAttribute('data-visability') === "1") {
-                            //         pushDataLayer(`10 seconds of the block view`)
-                            //     }
-                            // }
-
-                            obs.unobserve(i.target)
-                        }
-                        obs2.unobserve(i.target)
-                    })
-                }
-                // 
-                if (window.innerWidth <= 768) {
-                    let obsMob = new IntersectionObserver(visibilityMob, {
+            let i = setInterval(() => {
+                if (document.querySelector(".new_text_wrap")) {
+                    clearInterval(i)
+                    let obs = new IntersectionObserver(visibility, {
                         threshold: 0.9
                     })
 
-                    let obsMob2 = new IntersectionObserver(visibilityMob2, {
+                    let obs2 = new IntersectionObserver(visibility2, {
                         threshold: 0.9
                     })
 
-                    obsMob.observe(document.querySelector('.new_text_wrap[data-visability="1"]'))
+                    obs.observe(document.querySelector('.new_text_wrap[data-visability="1"]'))
 
-                    function visibilityMob(entries) {
+                    function visibility(entries) {
                         entries.forEach(i => {
                             if (i.isIntersecting) {
                                 setTimeout(function () {
-                                    obsMob2.observe(i.target)
-                                }, 10000)
+                                    obs2.observe(i.target)
+                                }, 800)
                             }
                         })
                     }
 
-                    function visibilityMob2(entries) {
+                    function visibility2(entries) {
                         entries.forEach(i => {
                             if (i.isIntersecting) {
                                 if (i.target.getAttribute('data-visability') === "1") {
-                                    pushDataLayer(`10 seconds of the block view`)
+                                    pushDataLayer(`view the block`)
                                 }
 
-                                obsMob.unobserve(i.target)
+                                // if (window.innerWidth <= 768) {
+                                //     if (i.target.getAttribute('data-visability') === "1") {
+                                //         pushDataLayer(`10 seconds of the block view`)
+                                //     }
+                                // }
+
+                                obs.unobserve(i.target)
                             }
-                            obsMob2.unobserve(i.target)
+                            obs2.unobserve(i.target)
                         })
                     }
+                    // 
+                    if (window.innerWidth <= 768) {
+                        let obsMob = new IntersectionObserver(visibilityMob, {
+                            threshold: 0.9
+                        })
+
+                        let obsMob2 = new IntersectionObserver(visibilityMob2, {
+                            threshold: 0.9
+                        })
+
+                        obsMob.observe(document.querySelector('.new_text_wrap[data-visability="1"]'))
+
+                        function visibilityMob(entries) {
+                            entries.forEach(i => {
+                                if (i.isIntersecting) {
+                                    setTimeout(function () {
+                                        obsMob2.observe(i.target)
+                                    }, 10000)
+                                }
+                            })
+                        }
+
+                        function visibilityMob2(entries) {
+                            entries.forEach(i => {
+                                if (i.isIntersecting) {
+                                    if (i.target.getAttribute('data-visability') === "1") {
+                                        pushDataLayer(`10 seconds of the block view`)
+                                    }
+
+                                    obsMob.unobserve(i.target)
+                                }
+                                obsMob2.unobserve(i.target)
+                            })
+                        }
+                    }
                 }
-            }
-        }, 100)
+            }, 100)
 
 
-        pushDataLayer("loaded")
-        const record = setInterval(() => {
-            if (typeof clarity === "function") {
-                clearInterval(record)
+            pushDataLayer("loaded")
+            const record = setInterval(() => {
+                if (typeof clarity === "function") {
+                    clearInterval(record)
 
-                clarity("set", `sell_the_call_${eventVar}`, "variant_1")
-            }
-        }, 200)
+                    clarity("set", `sell_the_call_${eventVar}`, "variant_1")
+                }
+            }, 200)
 
-    }
-}, 100)
+        }
+    }, 100)
