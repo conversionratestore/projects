@@ -70,25 +70,28 @@ function setAccordion(count, title, text) {
     <div class="card-SP">
         <div class="card-SP-header" id="heading${count}">
             <button class="collapsed card-SP-link" data-toggle="collapse" data-target="#collapse${count}${count}${count}${count}" aria-expanded="false" href="#collapse${count}${count}${count}${count}">
-            <span class="arrow down"></span>
-            <b style="color: #515151;font-weight: 500;">${title}</b>
-            <span class="arrow-down">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <g clip-path="url(#clip0_1545_2995)">
-                        <path d="M0 12C0 5.37258 5.37258 0 12 0C18.6274 0 24 5.37258 24 12C24 18.6274 18.6274 24 12 24C5.37258 24 0 18.6274 0 12Z" fill="#F1F5FF"></path>
-                        <path d="M15.825 14.1748L12 10.3581L8.175 14.1748L7 12.9998L12 7.9998L17 12.9998L15.825 14.1748Z" fill="#2B489B"></path>
-                    </g>
-                    <defs>
-                        <clipPath id="clip0_1545_2995">
-                            <rect width="24" height="24" fill="white"></rect>
-                        </clipPath>
-                    </defs>
-                </svg>
-            </span>
+                <span class="arrow down"></span>
+                <b style="color: #515151;font-weight: 500;">${title}</b>
+                <span class="arrow-down">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <g clip-path="url(#clip0_1545_2995)">
+                            <path d="M0 12C0 5.37258 5.37258 0 12 0C18.6274 0 24 5.37258 24 12C24 18.6274 18.6274 24 12 24C5.37258 24 0 18.6274 0 12Z" fill="#F1F5FF"></path>
+                            <path d="M15.825 14.1748L12 10.3581L8.175 14.1748L7 12.9998L12 7.9998L17 12.9998L15.825 14.1748Z" fill="#2B489B"></path>
+                        </g>
+                        <defs>
+                            <clipPath id="clip0_1545_2995">
+                                <rect width="24" height="24" fill="white"></rect>
+                            </clipPath>
+                        </defs>
+                    </svg>
+                </span>
             </button>
         </div>
         <div id="collapse${count}${count}${count}${count}" class="collapse" data-parent="#accordion-SP">
-            <div class="card-SP-body" style="border: none;padding-top:0;">${text} </div>
+            <div class="card-SP-body" style="border: none;padding-top:0;">
+                ${text} 
+                <a href="#getNow" class="btn-accordion-SP">Get SleepyPatch</a>
+            </div>
         </div>
     </div>`
 }
