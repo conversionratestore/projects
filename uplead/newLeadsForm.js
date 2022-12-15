@@ -49,6 +49,9 @@ let runTest = () => {
             clearInterval(start)
             document.body.insertAdjacentHTML('afterbegin', `
             <style>
+                #trial-btn {
+                    min-width: 260px;
+                }
                 .error-message {
                     position: absolute;
                     left: 30px;
@@ -190,11 +193,10 @@ let runTest = () => {
 
         /* pop-up form */
         if ((sessionStorage.getItem('linkForLogin') != null && !sessionStorage.getItem('linkForLogin').includes('?_ga')) || sessionStorage.getItem('linkForLogin') == null) {
-
+            
             if (stateUrl == 'https://app.uplead.com/trial-signup' && document.querySelector('.WwzhpJuEdC9ZWUaDw5ae') != null && document.querySelector('form') != null && document.querySelector('.modal-sign') == null) {
                 clearInterval(start)
 
-                sessionStorage.setItem('linkForLogin', stateUrl)
                 console.log(stateUrl)
 
                 let styleModal = `
@@ -490,10 +492,15 @@ let runTest = () => {
             })
         }
         /* end Search for qualified leads form */
-        if (stateUrl.includes('https://app.uplead.com/trial-signup?_ga')) {
-            clearInterval(start)
+
+        if (stateUrl == 'https://app.uplead.com/trial-signup') {
+            console.log(stateUrl)
             sessionStorage.setItem('linkForLogin', stateUrl)
         }
+        if (stateUrl.includes('https://app.uplead.com/trial-signup?_ga')) {
+            console.log(stateUrl)
+            sessionStorage.setItem('linkForLogin', stateUrl)
+        } 
         if (stateUrl.includes('app.uplead.com/login') && document.querySelector('.loginForm__footer .btn-link') != null) {
             clearInterval(start)
             console.log(stateUrl)
