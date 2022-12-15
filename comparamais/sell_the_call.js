@@ -31,7 +31,7 @@ let startFunk = setInterval(() => {
                 })
             }
 
-            location.search = "?experiement=HL-Simulator-Sell_the_call"
+            window.history.replaceState(null, null, '?experiement=HL-Simulator-Sell_the_call');
 
             let newStyle =/*html */ `
         <style>
