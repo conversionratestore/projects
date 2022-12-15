@@ -397,14 +397,23 @@ let runTest = () => {
                     })
                 })
                 document.querySelector('.EbdAVLAV63Q8iq4tqgYM').addEventListener('click', () => {
-                    // pushDataLayer(7, 'Have a partner code', 'Button', 'Popup: Get access to 107M+ B2B contacts')
+                    pushDataLayer('exp_new_form_pop_hpc', 'Have a partner code', 'Button', 'Popup: Get access to 107M+ B2B contacts')
                 })
                 document.querySelector('.modal-sign [type="submit"]').addEventListener('click', () => {
-                    // pushDataLayer(8, 'Sign Up Now', 'Button', 'Popup: Get access to 107M+ B2B contacts')
+                    pushDataLayer('exp_new_form_pop_sun', 'Sign Up Now', 'Button', 'Form')
                 })
                 document.querySelector('.ybJ38nhaJTL1t34tqwOg').addEventListener('click', () => {
-                    // pushDataLayer(9, 'Sign In', 'Button', 'Popup: Get access to 107M+ B2B contacts')
+                    pushDataLayer('exp_new_form_pop_si', 'Sign In', 'Input', 'Form')
                     window.location.href = 'https://app.uplead.com/login'
+                })
+                document.querySelector('.modal-sign form > div.Os71zjSj2xDr22ogTMr1 > div.leog3VMitSyE0HVGVoMr > a:nth-child(1)').addEventListener('click', () => {
+                    pushDataLayer('exp_new_form_pop_ta', 'Trial Agreement', 'Input', 'Form')
+                })
+                document.querySelector('.modal-sign form > div.Os71zjSj2xDr22ogTMr1 > div.leog3VMitSyE0HVGVoMr > a:nth-child(2)').addEventListener('click', () => {
+                    pushDataLayer('exp_new_form_pop_pp', 'Privacy Policy', 'Input', 'Form')
+                })
+                document.querySelectorAll('.oy4M8Xq3A6chKn0pmXTt').forEach(item => {
+                    pushDataLayer('exp_new_form_pop_t', item.parentElement.previousElementSibling.innerText, 'Tips', 'Form')
                 })
 
                 document.querySelector('.modal-sign form').addEventListener('submit', () => {
