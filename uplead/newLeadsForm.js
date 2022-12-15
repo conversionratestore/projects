@@ -37,7 +37,7 @@ let formHTML = `
     <h3>Search for qualified leads</h3>
     <div class="relative">
         <input type="text" placeholder="Search leads by company URL" >
-        <p class="error-message" style="display: none;">Please enter a valid company URL</p>
+        <p class="error-message">Please enter a valid company URL</p>
     </div>
     <button type="button">Grab 5 free leads now</button>
 </div>`;
@@ -58,6 +58,7 @@ let runTest = () => {
                     top: 100%;
                     font-size: 12px;
                     color: red;
+                    display: none;
                 }
             </style>`);
 
@@ -160,7 +161,7 @@ let runTest = () => {
                 e.preventDefault()
                 if (isUrlValid(document.querySelector('#form-field-email')) == true) {
                     document.querySelector('#form-field-email').style = ''
-                    document.querySelector('.error-message').style = "display: none;";
+                    document.querySelector('.error-message').style = "";
                     window.location.href = 'https://www.uplead.com/findleadsnow';
                 } else {
                     document.querySelector('.error-message').style = "display: block;";
