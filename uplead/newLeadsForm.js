@@ -412,8 +412,15 @@ let runTest = () => {
                 document.querySelector('.modal-sign form > div.Os71zjSj2xDr22ogTMr1 > div.leog3VMitSyE0HVGVoMr > a:nth-child(2)').addEventListener('click', () => {
                     pushDataLayer('exp_new_form_pop_pp', 'Privacy Policy', 'Input', 'Form')
                 })
+                let hover = false
                 document.querySelectorAll('.oy4M8Xq3A6chKn0pmXTt').forEach(item => {
-                    pushDataLayer('exp_new_form_pop_tips', item.parentElement.previousElementSibling.innerText, 'Tips', 'Form')
+                    item.addEventListener('mouseover', () => {
+                        if (hover == false) {
+                            hover = true;
+                            pushDataLayer('exp_new_form_pop_tips', item.parentElement.previousElementSibling.innerText, 'Tips', 'Form');
+                        }
+                    })
+                    item.addEventListener('mouseout', () => hover = false)
                 })
                 document.querySelector('.modal-sign form').addEventListener('submit', () => {
                     let checkError = setInterval(() => {
