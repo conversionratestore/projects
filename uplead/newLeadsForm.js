@@ -494,10 +494,10 @@ let runTest = () => {
        
             document.querySelector('.modal-exp button').addEventListener('click', (e) => {
                 if (isUrlValid(document.querySelector('.modal-exp input')) == true) {
-                    document.querySelector('.modal-exp .relative').classList.add('error');
+                    document.querySelector('.modal-exp .relative').classList.remove('error');
                     window.location.href = 'https://www.uplead.com/findleadsnow';
                 } else {
-                    document.querySelector('.modal-exp .relative').classList.remove('error');
+                    document.querySelector('.modal-exp .relative').classList.add('error');
                 }
             })
         }
