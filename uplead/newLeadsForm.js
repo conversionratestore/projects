@@ -1,6 +1,6 @@
 //push dataLayer
 let pushDataLayer = (name, desc, type, loc) => {
-    console.log(nameCount + " : " + desc + " : " + type + " : " + loc)
+    console.log(name + " : " + desc + " : " + type + " : " + loc)
 
     window.dataLayer = window.dataLayer || [];
     dataLayer.push({
