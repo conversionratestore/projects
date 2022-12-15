@@ -529,6 +529,9 @@ let runTest = () => {
             })
            
         }
+        if (document.querySelector('.modal-sign') != null && stateUrl.includes('/verification')) {
+            document.querySelector('.modal-sign').remove();
+        }
     })
 }
 runTest()
