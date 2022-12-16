@@ -78,7 +78,7 @@ function init() {
             })
         }
         //pricing
-        if (stateUrl.includes('/pricing') && document.querySelectorAll('section .popular-pricing') && document.querySelectorAll('.elementor-widget-wrap > .elementor-widget .elementor-accordion-item')) {
+        if (stateUrl.includes('/pricing') && !stateUrl.includes('/pricing-api') && document.querySelectorAll('section .popular-pricing') && document.querySelectorAll('.elementor-widget-wrap > .elementor-widget .elementor-accordion-item')) {
             clearInterval(changeText)
             document.querySelectorAll('section .popular-pricing').forEach(item => {
                 item.querySelectorAll('.elementor-text-editor')[1].innerHTML = 'Get your document signed today. It’s free!';
