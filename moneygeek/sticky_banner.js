@@ -280,7 +280,9 @@ let stickyBanner = setInterval(() => {
                 btnSend.addEventListener("click", (e) => {
                   e.preventDefault()
                   if (!e.target.getAttribute("data-test")) {
-                    pushDataLayer("Compare Quoutes clicked")
+                    if (!e.target.classList.contains("on_click")) {
+                      pushDataLayer("Compare Quoutes clicked")
+                    }
 
                     if (window.location.pathname === "/insurance/auto/how-much-car-insurance-do-you-need/") {
                       document.querySelector("form.css-1lpx304 button").click()
@@ -346,6 +348,7 @@ let stickyBanner = setInterval(() => {
                 })
               }
 
+
               if (input) {
                 input.addEventListener("focus", (e) => {
                   if (!e.target.getAttribute("data-test")) {
@@ -371,6 +374,30 @@ let stickyBanner = setInterval(() => {
                   }
                   var ev2 = new Event("input", { bubbles: true })
                   document.querySelector('[name="zip"]').dispatchEvent(ev2)
+                })
+
+                document.querySelector('.sticky_banner input').addEventListener("keydown", (e) => {
+                  if (e.keyCode === 13 || e.which === 13) {
+                    e.preventDefault()
+                    if (!e.target.getAttribute("data-test")) {
+                      pushDataLayer('Enter on input')
+                      btnSend.classList.add("on_click")
+                      btnSend.click()
+
+                      setTimeout(() => {
+                        if (btnSend.classList.contains("on_click")) {
+                          btnSend.classList.remove("on_click")
+                        }
+                      }, 7000)
+                    }
+                    e.target.setAttribute("data-test", "1")
+
+                    setTimeout(() => {
+                      if (e.target.getAttribute("data-test")) {
+                        e.target.removeAttribute("data-test")
+                      }
+                    }, 500)
+                  }
                 })
               }
 
