@@ -39,7 +39,7 @@ let stickyBanner = setInterval(() => {
             left: 0;
             width: 300px;
             display: none;
-            z-index: 55555555;
+            z-index: 55;
             margin: 0;
         }
         .sticky_banner.is_fixed{            
