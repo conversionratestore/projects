@@ -30,6 +30,9 @@ let stickyBanner = setInterval(() => {
 
     let style = /*html */ `
     <style>
+        .css-15hxzhe{
+          z-index: 1;
+        }
         .sticky_banner{
             background: #FFFFFF;
             box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.26);
