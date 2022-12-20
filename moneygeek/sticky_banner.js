@@ -201,7 +201,7 @@ let stickyBanner = setInterval(() => {
     if (!sessionStorage.getItem("sticky_banner")) {
       if (document.querySelector("#sub-navigation")) {
         let s = setInterval(() => {
-          if (document.querySelector('.css-1qeb3kj')) {
+          if (document.querySelector('#social-section')) {
             clearInterval(s)
             setTimeout(() => {
               if (window.innerWidth <= 1110) {
