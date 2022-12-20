@@ -239,8 +239,9 @@ let stickyBanner = setInterval(() => {
 
       if (document.querySelector(".sticky_banner")) {
         if (
-          document.querySelector(".css-2s6hek")?.getBoundingClientRect().bottom <= positionVar ||
-          document.querySelector(".css-1ih2ha8")?.getBoundingClientRect().bottom <= positionVar
+          document.querySelector(".css-2s6hek")?.getBoundingClientRect().bottom <= positionVar && window.location.pathname !== "/insurance/auto/car-insurance-estimate-calculator/" ||
+          document.querySelector(".css-1ih2ha8")?.getBoundingClientRect().bottom <= positionVar && window.location.pathname !== "/insurance/auto/car-insurance-estimate-calculator/" ||
+          window.location.pathname === "/insurance/auto/car-insurance-estimate-calculator/" && document.querySelector(".css-1ngo9xx")?.getBoundingClientRect().bottom <= positionVar
         ) {
           if (!document.querySelector(".sticky_banner").classList.contains("is_fixed")) {
             document.querySelector(".sticky_banner").classList.add("is_fixed")
