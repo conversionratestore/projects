@@ -282,11 +282,43 @@ let stickyBanner = setInterval(() => {
                       window.location.pathname === "/insurance/auto/temporary-and-month-to-month-car-insurance/" ||
                       window.location.pathname === "/insurance/auto/non-owner-car-insurance-north-carolina/" ||
                       window.location.pathname === "/insurance/auto/high-risk-car-insurance/" ||
-                      window.location.pathname === "/insurance/auto/cheapest-car-insurance-texas/"
+                      window.location.pathname === "/insurance/auto/cheapest-car-insurance-texas/" ||
+                      window.location.pathname === "/insurance/auto/cheapest-full-coverage-car-insurance/" ||
+                      window.location.pathname === "/insurance/auto/best-home-auto-bundle/" ||
+                      window.location.pathname === "/insurance/auto/cheapest-car-insurance-california/" ||
+
+                      window.location.pathname === "/insurance/auto/cheap-car-insurance-no-deposit/" ||
+                      window.location.pathname === "/insurance/auto/cheap-sr22-car-insurance/" ||
+                      window.location.pathname === "/insurance/auto/best-cheap-car-insurance-after-tickets-accidents/" ||
+                      window.location.pathname === "/insurance/auto/best-cheap-car-insurance-new-drivers/" ||
+                      window.location.pathname === "/insurance/auto/cheapest-liability-only-car-insurance/" ||
+                      window.location.pathname === "/insurance/auto/cheapest-car-insurance-quotes-companies/" ||
+                      window.location.pathname === "/insurance/auto/best-cheap-car-insurance-after-a-dui/" ||
+                      window.location.pathname === "/insurance/auto/best-cheapest-car-insurance-for-students/" ||
+                      window.location.pathname === "/insurance/auto/best-cheap-car-insurance-under-25-year-old/" ||
+                      window.location.pathname === "/insurance/auto/cheapest-car-insurance-florida/" ||
+                      window.location.pathname === "/insurance/auto/compare-quotes/" ||
+                      window.location.pathname === "/insurance/auto/best-cheap-car-insurance-for-18-year-olds/" ||
+                      window.location.pathname === "/insurance/auto/cheapest-car-insurance-pennsylvania/" ||
+                      window.location.pathname === "/insurance/auto/cheapest-car-insurance-georgia/" ||
+                      window.location.pathname === "/insurance/auto/best-cheap-car-insurance-houston-tx/" ||
+                      window.location.pathname === "/insurance/auto/chevrolet-corvette-insurance/" ||
+                      window.location.pathname === "/insurance/auto/best-cheap-car-insurance-for-19-year-olds/" ||
+                      window.location.pathname === "/insurance/auto/how-to-get-car-insurance-with-bad-credit/" ||
+                      window.location.pathname === "/insurance/auto/first-time-drivers-buyers-car-insurance/" ||
+                      window.location.pathname === "/insurance/auto/best-car-insurance-guide/" ||
+                      window.location.pathname === "/insurance/auto/best-cheap-car-insurance-for-21-year-olds/" ||
+                      window.location.pathname === "/insurance/auto/cheapest-car-insurance-ohio/" ||
+                      window.location.pathname === "/insurance/auto/best-cheap-car-insurance-miami-fl/" ||
+                      window.location.pathname === "/insurance/auto/best-cheap-car-insurance-atlanta-ga/" ||
+                      window.location.pathname === "/insurance/auto/best-cheap-car-insurance-tampa-fl/"
                     ) {
                       document.querySelector("form.css-8atqhb button").click()
                     } else if (window.location.pathname === "/insurance/auto/resources/protecting-against-fraud/") {
                       document.querySelector("form.css-6d9zwi button").click()
+                    } else if (window.location.pathname === "/insurance/auto/anonymous-car-insurance-quote-no-personal-information/" ||
+                      window.location.pathname === "/insurance/auto/car-insurance-estimate-calculator/") {
+                      document.querySelector("form.css-nbmzhw button").click()
                     }
 
                     if (document.querySelector(".chakra-form__error-message.css-vamxt0") !== null) {
