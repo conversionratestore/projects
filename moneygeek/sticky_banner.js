@@ -200,28 +200,33 @@ let stickyBanner = setInterval(() => {
 
     if (!sessionStorage.getItem("sticky_banner")) {
       if (document.querySelector("#sub-navigation")) {
-        setTimeout(() => {
-          if (window.innerWidth <= 1110) {
-            document.querySelector("#sub-navigation").insertAdjacentHTML("beforeend", stickyBlock)
-          } else {
-            document.querySelector("#sub-navigation").insertAdjacentHTML("afterbegin", stickyBlock)
+        let s = setInterval(() => {
+          if (document.querySelector('#social-section')) {
+            clearInterval(s)
+            setTimeout(() => {
+              if (window.innerWidth <= 1110) {
+                document.querySelector("#sub-navigation").insertAdjacentHTML("beforeend", stickyBlock)
+              } else {
+                document.querySelector("#sub-navigation").insertAdjacentHTML("afterbegin", stickyBlock)
+              }
+
+              if (document.querySelector(".sticky_banner")) {
+                const options = {
+                  root: null,
+                  threshold: 1,
+                }
+
+                let observerNewHeader = new IntersectionObserver((entries) => {
+                  if (!entries[0].isIntersecting) return
+                  pushDataLayer(`Sticky ZIP banner appearance`)
+                  observerNewHeader.disconnect()
+                })
+
+                observerNewHeader.observe(document.querySelector(".sticky_banner"), options)
+              }
+            }, 1000)
           }
-
-          if (document.querySelector(".sticky_banner")) {
-            const options = {
-              root: null,
-              threshold: 1,
-            }
-
-            let observerNewHeader = new IntersectionObserver((entries) => {
-              if (!entries[0].isIntersecting) return
-              pushDataLayer(`Sticky ZIP banner appearance`)
-              observerNewHeader.disconnect()
-            })
-
-            observerNewHeader.observe(document.querySelector(".sticky_banner"), options)
-          }
-        }, 1000)
+        }, 10)
       }
     }
 
