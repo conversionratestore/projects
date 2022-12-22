@@ -392,7 +392,6 @@ form.css-8atqhb .chakra-form__error-message {
         if (window.innerWidth <= 1110) {
           positionVar = 60
         }
-
         if (document.querySelector(".sticky_banner")) {
           if (
             (document.querySelector(".css-2s6hek")?.getBoundingClientRect().bottom <= positionVar &&
