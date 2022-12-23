@@ -72,7 +72,7 @@ let stickyBanner = setInterval(() => {
               display: flex;
               align-items: center;
               justify-content: center;
-              background: #526EFF;
+              background: #FFC65A;
               border-radius: 6px;
               width: 100%;
               height: 48px;
@@ -80,7 +80,7 @@ let stickyBanner = setInterval(() => {
               font-size: 16px;
               line-height: 19px;
               text-transform: uppercase;
-              color: #FFFFFF;
+              color: #1e1b4d;
           }
           .sticky_banner label{
               display: flex;
