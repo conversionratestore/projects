@@ -1290,17 +1290,14 @@ display: none;
       })
         .then((res) => res.json())
         .then((data) => {
-          console.log(data)
-
-          // add on page
-          // document.body.insertAdjacentHTML("afterbegin", style)
-          // document.body.insertAdjacentHTML("afterbegin", progressBarHTML)
+          // console.log(data)
           if (document.querySelector(".range_bar_wrap").classList.contains("is_hidden")) {
             document.querySelector(".range_bar_wrap").classList.remove("is_hidden")
           }
           if (document.querySelector(".range-wrapper > .steps").classList.contains("is_hidden")) {
             document.querySelector(".range-wrapper > .steps").classList.remove("is_hidden")
           }
+          pushDataLayer('Get information progressBar')
 
           let donated = +data[0]["total_raised"],
             sum = +data[0]["goal_amt"],
