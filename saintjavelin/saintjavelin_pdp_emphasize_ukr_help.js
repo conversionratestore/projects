@@ -1348,7 +1348,10 @@ display: none;
     })
 
     obs.observe(document.querySelector('.baner_help'))
-    obs.observe(document.querySelector('.donation_amount_flex'))
+
+    if (document.querySelector('.donation_amount_flex')) {
+      obs.observe(document.querySelector('.donation_amount_flex'))
+    }
     obs.observe(document.querySelector('.donation_inform  ul.background_wrap>li:nth-child(1)'))
     obs.observe(document.querySelector('.donation_inform ul.background_wrap>li:nth-child(2)'))
 
