@@ -327,6 +327,7 @@ ul.main_popup_list .already_donat_list li+li {
   line-height: 24px;
   color: #3f3f3f;
   margin: 0;
+  max-width: 330px;
 }
 
 .content_popup .text_absol::after {
@@ -627,7 +628,7 @@ ul.main_popup_list .already_donat_list li+li {
 
 @media only screen and ( min-width: 1160px ) and ( max-width: 1178px ) {
   .tippy-tooltip {
-    left: 5px !important;
+    left: 10px !important;
   }
 }
 @media only screen and ( min-width: 1155px ) and ( max-width: 1160px ) {
@@ -636,23 +637,34 @@ ul.main_popup_list .already_donat_list li+li {
   }
 }
 
+@media (min-width: 1130px) {
+  .tippy-tooltip[data-placement^=bottom]>.tippy-arrow {
+    right: 15px !important;
+    left: unset !important;
+  }
+}
+
 @media only screen and ( min-width: 1100px ) and ( max-width: 1155px ) {
+  .tippy-tooltip[data-placement^=bottom]>.tippy-arrow {
+    right: 110px !important;
+    left: unset !important;
+  }
   .tippy-tooltip {
     left: 2px !important;
   }
 }
 
-@media (min-width: 1130px) {
-  .tippy-tooltip[data-placement^=bottom]>.tippy-arrow {
-    left: unset !important;
-    right: 15px !important;
-  }
-}
-
-@media only screen and ( min-width: 1060px ) and ( max-width: 1155px ) {
+@media ( max-width: 1006px ) {
   .baner_help>ul li[data-tolltip] h2{
     font-size: 20px;
   }
+}
+
+@media (max-width: 887px) {
+  .baner_help>ul li[data-tolltip] h2{
+    font-size: 21px;
+  }
+}
 }
 
 @media (max-width: 887px) {
