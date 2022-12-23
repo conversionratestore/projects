@@ -57,6 +57,7 @@ let startFunk = setInterval(() => {
   justify-content: space-between;
   padding: 5px 12px;
   margin-bottom: 16px;
+  margin-top: -20px;
   cursor: pointer;
 }
 
