@@ -1081,7 +1081,14 @@ display: none;
                 pushDataLayer("Сlick on btn 'BUY NOW TO DONATE'", "Pop up All profits go towards helping Ukraine resist the invasion")
                 if (document.querySelector("[name='add'].btn--tertiary.btn--full.bold_hidden")) {
                   if (!document.querySelector("[name='add'].btn--tertiary.btn--full.bold_hidden").getAttribute("disabled")) {
+                    document.querySelector("[name='add'].btn--tertiary.btn--full.bold_hidden").classList.add("on_click")
                     document.querySelector("[name='add'].btn--tertiary.btn--full.bold_hidden").click()
+
+                    setTimeout(() => {
+                      if (document.querySelector("[name='add'].btn--tertiary.btn--full.bold_hidden").classList.contains("on_click")) {
+                        document.querySelector("[name='add'].btn--tertiary.btn--full.bold_hidden").classList.remove("on_click")
+                      }
+                    }, 1000)
                     onClosePopup()
                   } else {
                     if (document.querySelector(".error_block").classList.contains("is_hidden")) {
@@ -1091,7 +1098,14 @@ display: none;
                   }
                 } else if (!document.querySelector("[name='add'].btn--tertiary.btn--full.bold_hidden")) {
                   if (!document.querySelector("[name='add'].btn--tertiary.btn--full").getAttribute("disabled")) {
+                    document.querySelector("[name='add'].btn--tertiary.btn--full").classList.add("on_click")
                     document.querySelector("[name='add'].btn--tertiary.btn--full").click()
+
+                    setTimeout(() => {
+                      if (document.querySelector("[name='add'].btn--tertiary.btn--full").classList.contains("on_click")) {
+                        document.querySelector("[name='add'].btn--tertiary.btn--full").classList.remove("on_click")
+                      }
+                    }, 1000)
                     onClosePopup()
                   } else {
                     if (document.querySelector(".error_block").classList.contains("is_hidden")) {
@@ -1342,7 +1356,6 @@ display: none;
     }
 
 
-    // if (document.querySelector(".buzzpatch_accardion")) {
     let obs = new IntersectionObserver(visibility, {
       threshold: 1
     })
@@ -1383,7 +1396,104 @@ display: none;
         }
       })
     }
-    // }
+
+
+    // observer
+    let observer = new MutationObserver(() => {
+      if (document) {
+        observer.disconnect()
+        document.querySelector('form [data-testid="Checkout-button"')?.addEventListener("click", (e) => {
+          if (!e.target.getAttribute("data-test")) {
+            if (!e.target.classList.contains("on_click")) {
+              pushDataLayer("Сlick on Buy it now button")
+            }
+          }
+          e.target.setAttribute("data-test", "1")
+
+
+          setTimeout(() => {
+            if (e.target.getAttribute('data-test')) {
+              e.target.removeAttribute('data-test');
+            }
+          }, 500);
+        })
+
+        document.querySelector(".shopify-payment-button__more-options[data-testid='sheet-open-button']")?.addEventListener("click", (e) => {
+          if (!e.target.getAttribute("data-test")) {
+            if (!e.target.classList.contains("on_click")) {
+              pushDataLayer("Сlick on More payment options")
+            }
+          }
+          e.target.setAttribute("data-test", "1")
+
+
+          setTimeout(() => {
+            if (e.target.getAttribute('data-test')) {
+              e.target.removeAttribute('data-test');
+            }
+          }, 500);
+        })
+        document.querySelector('[data-testid="ShopifyPay-button"]')?.addEventListener("click", (e) => {
+          if (!e.target.getAttribute("data-test")) {
+            if (!e.target.classList.contains("on_click")) {
+              pushDataLayer("Сlick on Buy now with ShopPay")
+            }
+          }
+          e.target.setAttribute("data-test", "1")
+        })
+        document.querySelector("[data-testid='ApplePay-button']")?.addEventListener("click", (e) => {
+          if (!e.target.getAttribute("data-test")) {
+            if (!e.target.classList.contains("on_click")) {
+              pushDataLayer("Сlick on ApplePay")
+            }
+          }
+          e.target.setAttribute("data-test", "1")
+
+          setTimeout(() => {
+            if (e.target.getAttribute('data-test')) {
+              e.target.removeAttribute('data-test');
+            }
+          }, 500);
+        })
+        document.querySelector("[data-testid='GooglePay-button']")?.addEventListener("click", (e) => {
+          if (!e.target.getAttribute("data-test")) {
+            pushDataLayer("Сlick on GooglePay")
+          }
+          e.target.setAttribute("data-test", "1")
+
+          setTimeout(() => {
+            if (e.target.getAttribute('data-test')) {
+              e.target.removeAttribute('data-test');
+            }
+          }, 500);
+        })
+
+        document.querySelector("[data-button_style=shadow] .btn--tertiary.btn--full")?.addEventListener("click", (e) => {
+          if (!e.target.getAttribute("data-test")) {
+            if (!e.target.classList.contains("on_click")) {
+              pushDataLayer("Сlick on Add to cart button")
+            }
+          }
+          e.target.setAttribute("data-test", "1")
+
+          setTimeout(() => {
+            if (e.target.getAttribute('data-test')) {
+              e.target.removeAttribute('data-test');
+            }
+          }, 500);
+        })
+      }
+
+      observer.observe(document, {
+        childList: true,
+        subtree: true,
+      })
+    })
+
+    observer.observe(document, {
+      childList: true,
+      subtree: true,
+    })
 
     pushDataLayer("loaded")
     clarity("set", "pdp_emphasize_ukr_help", "variant_1")
