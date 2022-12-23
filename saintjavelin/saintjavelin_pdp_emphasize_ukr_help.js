@@ -1294,8 +1294,8 @@ display: none;
     }, 500)
 
     fetchBar()
-    function fetchBar() {
-      fetch("https://conversionrate.top/api/saint-javelin/total-donorbox", {
+    async function fetchBar() {
+      await fetch("https://conversionrate.top/api/saint-javelin/total-donorbox", {
         headers: {
           "Content-Type": "application/json",
         },
