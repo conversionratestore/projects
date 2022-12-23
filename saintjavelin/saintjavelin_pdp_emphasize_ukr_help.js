@@ -1250,7 +1250,7 @@ display: none;
             tippy(el, {
               content: el.getAttribute("data-title"),
               placement: "bottom-end",
-              trigger: "click",
+              // trigger: "click",
               appendTo: function () {
                 return el.parentElement
               },
