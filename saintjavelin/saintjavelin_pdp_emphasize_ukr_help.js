@@ -1164,6 +1164,7 @@ display: none;
         }
 
         document.querySelector(".over_click")?.addEventListener("click", () => {
+          pushDataLayer("Сlick on btn 'Make a selection'")
           document.querySelector(".product-block").scrollIntoView({ block: "start", behavior: "smooth" })
         })
       } else if (
@@ -1176,6 +1177,7 @@ display: none;
         }
 
         document.querySelector(".over_click")?.addEventListener("click", () => {
+          pushDataLayer("Сlick on btn 'Make a selection'")
           document.querySelector(".product-block").scrollIntoView({ block: "start", behavior: "smooth" })
         })
       }
