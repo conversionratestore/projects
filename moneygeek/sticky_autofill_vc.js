@@ -316,6 +316,13 @@ form.css-8atqhb .chakra-form__error-message {
       </section>
       `
 
+    let autoLocationTest = /*html */ `
+    <div class="auto_location_test">
+      <div></div>
+      <div></div>
+    </div>
+`
+
     let autoLocationBlock = /*html */ `
 <div class="auto_location_block">
     <div></div>
@@ -601,8 +608,11 @@ form.css-8atqhb .chakra-form__error-message {
     }
 
     function onAutoFillLocation() {
+      if (!document.querySelector("form.css-8atqhb .auto_location_test")) {
+        document.querySelector("form.css-8atqhb").insertAdjacentHTML("afterbegin", autoLocationTest)
+      }
       if (!document.querySelector("form.css-8atqhb .auto_location_block")) {
-        document.querySelector("form.css-8atqhb").insertAdjacentHTML("afterbegin", autoLocationBlock)
+        document.querySelector("form.css-8atqhb .auto_location_test")?.insertAdjacentHTML("afterend", autoLocationBlock)
       }
 
       if (document.querySelector(".auto_region.var_auto_loc")) {
