@@ -827,4 +827,4 @@ form.css-8atqhb .chakra-form__error-message {
       }
     }, 200)
   }
-}, 500)
+}, 700)
