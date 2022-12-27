@@ -278,6 +278,7 @@ form.css-8atqhb .chakra-form__error-message {
     max-width: 145px;
   }
 }
+
       </style>
       `
 
