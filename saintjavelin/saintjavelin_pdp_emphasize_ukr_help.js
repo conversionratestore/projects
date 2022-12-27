@@ -674,6 +674,9 @@ ul.main_popup_list .already_donat_list li+li {
 }
 
 @media (max-width: 768px) {
+  [data-product-blocks] > .donation_inform{
+    margin-bottom: -40px;
+  }
   .content_popup>p{
     max-width: 300px;
   }
@@ -1021,7 +1024,7 @@ display: none;
     // }
 
     document.querySelectorAll("[name='add'].btn--tertiary.btn--full").forEach(el => {
-      if (!el.querySelector("span").textContent.includes("Sold")) {
+      if (!el.querySelector("span").textContent.includes("Sold") && !document.querySelectorAll('.product-block.product-block--sales-point')[1].classList.contains('hide')) {
         console.log(`>>>>>>>>>>>>>>>>btn--full`)
         if (!document.querySelector('[data-product-blocks] .donation_amount_flex')) {
           priceBlock.insertAdjacentHTML("afterend", donationAmount)
@@ -1032,7 +1035,12 @@ display: none;
 
 
     if (innerWidth <= 768) {
-      imgBlock.closest(".product-block").insertAdjacentHTML("beforebegin", donationInform)
+      if (imgBlock.closest(".product-block.product-block--sales-point")?.classList.contains('hide')) {
+        console.log(`>>>hide`)
+        imgBlock.closest(".product-block.product-block--sales-point.hide")?.insertAdjacentHTML("afterend", donationInform)
+      } else {
+        imgBlock.closest(".product-block").insertAdjacentHTML("beforebegin", donationInform)
+      }
     } else {
       boxForDonationInform.insertAdjacentHTML("beforeend", donationInform)
     }
