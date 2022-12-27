@@ -239,10 +239,11 @@ let newFunk = setInterval(() => {
             }
             img.ssl-logo{
                 top: 0 !important;
+                display: none;
             }
             body .payment_inform_box li > div.paypament-details .row:nth-child(1), 
             body .payment_inform_box li > div.paypament-details .row:nth-child(2){
-                margin-top: 110px !important;
+                margin-top: 0px !important;
                 margin-bottom: 22px !important;
                 width: 48.6% !important;
             }
@@ -449,7 +450,47 @@ let newFunk = setInterval(() => {
                     width: 100%;
                     margin: 0 0 0 auto !important;
                 }
+                ul.img_pay{
+                  border: 1px solid #754E0C;
+                    border-radius: 4px;
+                    position: relative;
+                    padding: 22px 10px 14px !important;
+                    margin: 20px 0 34px;
+                }
+                ul.img_pay::before{
+                  position: absolute;
+                  content: 'Fully secured SSL Checkout';
+                  font-weight: 700;
+                  font-size: 14px;
+                  line-height: 24px;
+                  color: #233973;
+                  top: -15px;
+                  left: 50%;
+                  transform: translateX(-50%);
+                  padding: 0 8px;
+                  background: #FFFFFF;
+                }
+                ul.img_pay li{
+                  margin: 0 auto !important;
+                  max-width: 405px !important;
+                }
+                ul.img_pay li img.mob_var{
+                  display: none;
+                }
                 @media (max-width: 768px) {
+                  ul.img_pay li img.desk_var{
+                  display: none;
+                }
+                  ul.img_pay li img.mob_var{
+                  display: block;
+                }
+                ul.img_pay{
+                  padding: 22px 14px 14px !important;
+                  margin: 20px 0 26px;
+                }
+                ul.img_pay::before{
+                  width: max-content;
+                }
                     .payment_inform_box .payment_plan_wrapp.payment_plan  .input_wrapper > div label{
                         align-items: flex-start;
                     }
@@ -564,7 +605,7 @@ let newFunk = setInterval(() => {
                         width: 100% !important;   
                     }
                     body .payment_inform_box li > div.paypament-details .row:nth-child(1){
-                        margin-top: 70px !important;
+                        margin-top: 0px !important;
                         margin-bottom: 0 !important;
                     }
                     body .payment_inform_box li > div.paypament-details .row:nth-child(2){
@@ -684,10 +725,21 @@ let newFunk = setInterval(() => {
             </div>
         `
 
+
+    let imgPay = /*html */`
+<ul class="img_pay">
+  <li>
+    <img class="desk_var" src="https://conversionratestore.github.io/projects/knineti/img/Icons-D.png" alt="secured">
+    <img class="mob_var" src="https://conversionratestore.github.io/projects/knineti/img/Icons-M.png" alt="secured">
+  </li>
+</ul>
+    `
+
     document.head.insertAdjacentHTML("beforeend", newStyle)
     document.querySelector("form#address-form")?.insertAdjacentHTML("beforebegin", steps)
     document.querySelector("form#address-form")?.insertAdjacentHTML("afterbegin", checkStep)
     document.querySelector("form#address-form")?.insertAdjacentHTML("afterend", newBtnContinue)
+    document.querySelector('.paymen_method')?.insertAdjacentHTML('afterbegin', imgPay)
 
     if (document.querySelector(".payment_plan_wrapp #payment_plan_id")) {
       document.querySelector(".payment_plan_wrapp #payment_plan_id").textContent = "Choose Payment plan"
@@ -889,7 +941,7 @@ let newFunk = setInterval(() => {
 
     if (document.querySelector("#submit")) {
       document.querySelector("#submit").addEventListener("click", (e) => {
-        window.alert = function () {}
+        window.alert = function () { }
         if (!e.target.classList.contains("on_click")) {
           pushDataLayer("Click on btn Enroll now")
         }
@@ -1096,6 +1148,31 @@ let newFunk = setInterval(() => {
         })
       }
     }
+
+    if (window.innerWidth <= 768) {
+      if (document.querySelector(".scroll_bar_box")) {
+        let obs2 = new IntersectionObserver(visibility, {
+          threshold: 1,
+        })
+
+        obs2.observe(document.querySelector('.scroll_bar_box li:last-child'))
+
+        function visibility(entries) {
+          entries.forEach((i) => {
+            if (i.isIntersecting) {
+              if (document.querySelector('.btn_continue[data-count="1"]')) {
+                pushDataLayer("Scroll on scroll bar step 1")
+              } else if (document.querySelector('.btn_continue[data-count="2"]')) {
+                pushDataLayer("Scroll on scroll bar step 2")
+              } else if (document.querySelector('.btn_continue[data-count="3"]')) {
+                pushDataLayer("Scroll on scroll bar step 3")
+              }
+            }
+          })
+        }
+      }
+    }
+
 
     pushDataLayer("loaded")
 
