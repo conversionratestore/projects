@@ -1378,6 +1378,10 @@ display: none;
       threshold: 1
     })
 
+    let obs2 = new IntersectionObserver(visibility2, {
+      threshold: 1
+    })
+
     obs.observe(document.querySelector('.baner_help'))
 
     if (document.querySelector('.donation_amount_flex')) {
@@ -1390,8 +1394,18 @@ display: none;
       obs.observe(document.querySelector('.main_popup_list'))
     }
 
-
     function visibility(entries) {
+      entries.forEach(i => {
+        if (i.isIntersecting) {
+          setTimeout(function () {
+            obs2.observe(i.target)
+          }, 600)
+        }
+      })
+    }
+
+
+    function visibility2(entries) {
       entries.forEach(i => {
         if (i.isIntersecting) {
           if (i.target.classList.contains('baner_help')) {
@@ -1412,6 +1426,8 @@ display: none;
 
           obs.unobserve(i.target)
         }
+
+        obs2.unobserve(i.target)
       })
     }
 
