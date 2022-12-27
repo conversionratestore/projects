@@ -843,6 +843,26 @@ form.css-8atqhb .chakra-form__error-message {
       }
     }
 
+    // observer
+    let observer = new MutationObserver(() => {
+      if (document.querySelector("form.css-8atqhbr")) {
+        observer.disconnect()
+        console.log(`mut`)
+        fetchLocation()
+        onClickControlVer()
+
+        observer.observe(document.querySelector("form.css-8atqhbr"), {
+          childList: true,
+          subtree: true,
+        })
+      }
+    })
+
+    observer.observe(document.querySelector("form.css-8atqhb"), {
+      childList: true,
+      subtree: true,
+    })
+
     pushDataLayer("loaded")
     const record = setInterval(() => {
       if (typeof clarity === "function") {
