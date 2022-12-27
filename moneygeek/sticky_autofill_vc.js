@@ -603,7 +603,9 @@ form.css-8atqhb .chakra-form__error-message {
     }
 
     function onAutoFillLocation() {
-      document.querySelector("form.css-8atqhb").insertAdjacentHTML("afterbegin", autoLocationBlock)
+      if (!document.querySelector("form.css-8atqhb .auto_location_block")) {
+        document.querySelector("form.css-8atqhb").insertAdjacentHTML("afterbegin", autoLocationBlock)
+      }
 
       if (document.querySelector(".auto_region.var_auto_loc")) {
         if (document.querySelector(".auto_region.var_auto_loc") !== "") {
