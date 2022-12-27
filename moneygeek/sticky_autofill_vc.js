@@ -316,6 +316,7 @@ form.css-8atqhb .chakra-form__error-message {
       `
 
     let autoLocationBlock = /*html */ `
+<div></div>
 <div class="auto_location_block">
     <div></div>
     <p>Your Zip Code</p>
