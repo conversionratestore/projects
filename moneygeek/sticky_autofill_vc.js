@@ -273,10 +273,6 @@ form.css-8atqhb .chakra-form__error-message {
   .auto_location_block label {
     padding: 8px 12px;
   }
-  .sticky_banner input,
-  .auto_location_block input{
-    max-width: 200px;
-  }
 }
       </style>
       `
