@@ -611,10 +611,18 @@ form.css-8atqhb .chakra-form__error-message {
         document.querySelector("form.css-8atqhb").insertAdjacentHTML("afterbegin", autoLocationTest)
       }
       if (!document.querySelector("form.css-8atqhb .auto_location_block")) {
-        setTimeout(() => {
-          document.querySelector("form.css-8atqhb .auto_location_test")?.insertAdjacentHTML("afterend", autoLocationBlock)
-        }, 100)
+        document.querySelector("form.css-8atqhb .auto_location_test")?.insertAdjacentHTML("afterend", autoLocationBlock)
       }
+
+
+      let testik = setInterval(() => {
+        if (!document.querySelector("form.css-8atqhb .auto_location_block")) {
+          clearInterval(testik)
+          console.log(`>>>>>>>>>>>СКУШАЛ ТВОЙ БЛОК`)
+          document.querySelector("form.css-8atqhb")?.insertAdjacentHTML("beforeend", autoLocationBlock)
+        }
+
+      }, 10)
 
       if (document.querySelector(".auto_region.var_auto_loc")) {
         if (document.querySelector(".auto_region.var_auto_loc") !== "") {
