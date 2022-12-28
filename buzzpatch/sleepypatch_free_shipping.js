@@ -134,7 +134,7 @@ if (window.innerWidth <= 768) {
                 const record = setInterval(() => {
                     if (typeof clarity === "function") {
                         clearInterval(record)
-                        clarity("set", "enroll_improvements", "variant_1")
+                        clarity("set", "sleepypatch_free_shipping", "variant_1")
                     }
                 }, 200)
             }
