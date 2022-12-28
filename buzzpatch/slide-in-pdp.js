@@ -265,7 +265,7 @@ document.querySelector('.navbar .btn-primary').href = '#popup_slide-in';
 document.querySelector('.js-heading .btn-primary').href = '#popup_slide-in';
 
 document.addEventListener('click', (e) => {
-    if (((e.target.closest('.navbar') || e.target.closest('.js-heading')) && e.target.classList.contains('btn-primary')) || e.target.classList.contains('btn-close') || e.target.classList.contains('popup_slide-in')) {
+    if (((e.target.closest('.navbar') || e.target.closest('header')) && e.target.classList.contains('btn-primary')) || e.target.classList.contains('btn-close') || e.target.classList.contains('popup_slide-in')) {
         e.preventDefault();
         document.querySelector('.popup_slide-in').classList.toggle('active');
     }
