@@ -196,7 +196,7 @@ let packages = [
         "savePrice": getpack3SavePrice,
         "offPrice": getpack3OffPrice,
         "topSeller": true,
-        "image": "pack3.png"
+        "image": "pack3.svg"
     },
     {
         "id": "39307589058604",
@@ -206,7 +206,7 @@ let packages = [
         "salePrice": getpack2SalePrice,
         "savePrice": getpack2SavePrice,
         "offPrice": getpack2OffPrice,
-        "image": "pack2.png"
+        "image": "pack2.svg"
     },
     {
         "id": "34767547138092",
@@ -216,7 +216,7 @@ let packages = [
         "salePrice": getpack1SalePrice,
         "savePrice": getpack1SavePrice,
         "offPrice": getpack1OffPrice,
-        "image": "pack1.png"
+        "image": "pack1.svg"
     }
 ]
 
