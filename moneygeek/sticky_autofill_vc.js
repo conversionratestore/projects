@@ -35,6 +35,9 @@ let stickyBanner = setInterval(() => {
           .css-15hxzhe{
             z-index: 1;
           }
+          header{
+            z-index: 10 !important;
+          }
           .sticky_banner{
               background: #FFFFFF;
               box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.26);
@@ -735,7 +738,6 @@ form.css-8atqhb .chakra-form__error-message {
               }
             }, 10)
           }
-
         })
     }
 
