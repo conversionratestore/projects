@@ -222,7 +222,7 @@ let packages = [
 
 
 let run = setInterval(() => {
-    if (document.querySelector('.navbar .btn-primary') != null && document.querySelector('.popup_slide-in') == null) {
+    if (document.querySelector('.navbar .btn-primary') != null && document.querySelector('.popup_slide-in') == null && document.querySelector('.js-packs label > span') != null) {
         let currency = document.querySelector('.js-packs label > span').innerHTML.charAt(0);
 
         let popupHTML = `
