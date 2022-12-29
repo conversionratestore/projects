@@ -566,6 +566,6 @@ let interval = setInterval(() => {
 let isClarify = setInterval(() => {
     if(typeof clarity == 'function') {
         clearInterval(isClarify)
-        clarity("set", `booking_form_flow_${}`, "variant_1");
+        clarity("set", `booking_form_flow_${device}`, "variant_1");
     }
 }, 100)
