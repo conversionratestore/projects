@@ -475,7 +475,7 @@ let interval = setInterval(() => {
         if (document.querySelector('.destination_descr') != null) {
             document.querySelector('.destination_descr').after(document.querySelector('.tour-drinks'));
             document.querySelector('.tour-drinks').classList.add('container');
-            document.querySelector('.tour-drinks').style = 'padding-top: 42p';
+            document.querySelector('.tour-drinks').style = 'padding-top: 42px';
         }
     
         let drinks = document.querySelectorAll('.tour-drinks .food_block .title');
