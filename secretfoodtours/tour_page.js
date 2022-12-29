@@ -113,6 +113,12 @@
         border-color: #C39958;
     }
     /* pop-up */
+    .popup_booking-flow .plugin {
+        margin: 0 auto;
+        display: block;
+        min-height: 60vh;
+        overflow-y: auto;
+    }
     .popup_booking-flow {
         position: fixed;
         top: 0;
@@ -328,6 +334,61 @@
     }
     </style>`;
 
+function detectMob() {
+    const toMatch = [
+        /Android/i,
+        /webOS/i,
+        /iPhone/i,
+        /iPad/i,
+        /iPod/i,
+        /BlackBerry/i,
+        /Windows Phone/i
+    ];
+    
+    return toMatch.some((toMatchItem) => {
+        return navigator.userAgent.match(toMatchItem);
+    });
+}
+
+let device = detectMob() == true ? 'mobile' : 'desctop';
+
+function pushDataLayer(action, label = '') {
+  window.dataLayer = window.dataLayer || [];
+  dataLayer.push({
+      'event': 'event-to-ga',
+      'eventCategory': `Exp: booking_form_flow_${device}`,
+      'eventAction': action,
+      'eventLabel': label
+  });
+}
+
+let countTimer = 0;
+
+let timer = (popup) => {
+    let intervalTimer = setInterval(() => {
+        if (popup.classList.contains('active')) {
+            countTimer += 1;
+        } else {
+            clearInterval(intervalTimer)
+            pushDataLayer('pop up Calendar', countTimer)
+        }
+    }, 1000) 
+}
+
+//comes into view
+function isScrolledIntoView(el) {
+    let rect = el.getBoundingClientRect(),
+        elemTop = rect.top,
+        elemBottom = rect.bottom;
+
+    let isVisible = (elemTop >= 0) && (elemBottom <= window.innerHeight);
+
+    return isVisible;
+}
+let viewed1 = false;
+let viewed2 = false;
+let viewed3 = false;
+
 let interval = setInterval(() => { 
 
     if (document.querySelector('.form_tour') == null && document.querySelector('.tour-drinks .food_block .title') != null && document.querySelector('.plugin iframe') != null) {
@@ -379,7 +440,7 @@ let interval = setInterval(() => {
         document.querySelector('#plugin').insertAdjacentHTML('afterend', formHTML);
     
         //add iframe in pop-up
-        document.querySelector('.suggested-tours').after(document.querySelector('.plugin iframe'))
+        document.querySelector('.suggested-tours').after(document.querySelector('#plugin .plugin'))
     
         //set price tour
         let price = document.querySelector('.price');
@@ -418,7 +479,50 @@ let interval = setInterval(() => {
             if (e.target.classList.contains('btn-green') || e.target.classList.contains('btn-close') || e.target.classList.contains('popup_booking-flow')) {
                 document.querySelector('.popup_booking-flow').classList.toggle('active')
             }
+            if (e.target.classList.contains('btn-green')) {
+                pushDataLayer('Pop up Book your Tour','Check availability button')
+                pushDataLayer( 'Visibility pop up Calendar')
+                countTimer = 0;
+                timer(document.querySelector('.popup_booking-flow'))
+            } 
+            if (e.target.classList.contains('btn-close') || e.target.classList.contains('popup_booking-flow')) {
+                pushDataLayer('Close pop up Calendar')
+                
+            }
         })
+
+        //events
+        document.querySelectorAll('.form_tour .btn-gold').forEach((item, index) => {
+            item.addEventListener('click', (e) => {
+                if (index == 0) {
+                    pushDataLayer('pop up Book your Tour','Buy as a gift button')
+                } else {
+                    pushDataLayer('pop up Book your Tour','Book a private tour button')
+                }
+            })
+        })
+        window.addEventListener('scroll', () => {
+            if (isScrolledIntoView(document.querySelector('.form_tour')) == true && viewed3 == false) {
+                viewed3 = true;
+                pushDataLayer('Pop up Book your Tour','Visibility');
+            }
+            if (isScrolledIntoView(document.querySelector('.food_block .title')) == true) {
+                document.querySelectorAll('.food_block .title').forEach(item => {
+                    if (item.innerText == 'THE FOOD' && viewed1 == false) {
+                        viewed1 = true;
+                        pushDataLayer('Visibility What youll taste text block');
+                    } else if (item.innerText == 'DRINKS' && viewed2 == false) {
+                        viewed2 = true;
+                        pushDataLayer( 'Visibility Optional drinks text block');
+                    }
+                })
+            }   
+        })
+        document.querySelectorAll('.udp').forEach(item => {
+            item.addEventListener('click', () => pushDataLayer('Click on upgrade drink package link'))
+        })
+  
+        pushDataLayer('loaded')
     }
 
     // //sort best reviews
@@ -457,3 +561,11 @@ let interval = setInterval(() => {
     // }
 
 })
+
+//clarify
+let isClarify = setInterval(() => {
+    if(typeof clarity == 'function') {
+        clearInterval(isClarify)
+        clarity("set", `booking_form_flow_${}`, "variant_1");
+    }
+}, 100)
