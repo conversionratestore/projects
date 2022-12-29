@@ -429,7 +429,7 @@ let interval = setInterval(() => {
         <div class="popup_form_tour">
             <div class="form_tour">
                 <h3 class="d-xl-block d-none">Book your tour</h3>
-                <p class="pr"><a style="color: #fff;" href="/private-bookings">Currently we're just accepting private tours at the moment. Click Here!</a></p>
+                <p class="pr"></p>
                 <p class="d-xl-block d-none">Available daily at: 11.00, 13.00, 15.00, 19.00</p>
                 <div class="d-xl-block d-flex">
                     <button type="button" class=" btn-green">Check availability</button>
@@ -479,12 +479,14 @@ let interval = setInterval(() => {
 
         //set price tour
         if (document.querySelector('.price') != null) {
-
             let price = document.querySelector('.price');
             let currency = price.innerText.trim().charAt(0);
-            document.querySelector('.form_tour .pr').insertAdjacentHTML('beforeend', `<span class="currency">${currency}</span>${price.innerHTML.replace(currency,'')}`)
+            document.querySelector('.form_tour .pr').innerHTML = `<span class="currency">${currency}</span>${price.innerHTML.replace(currency,'')}`
         
+        } else {
+            document.querySelector('.form_tour .pr').innerHTML = `<a href="/private-bookings">Currently we're just accepting private tours at the moment. Click Here!</a>`;
         }
+        
         //rearrange the image logo
         document.querySelector('.form_tour').after(document.querySelector('.awards-desktop'));
     
