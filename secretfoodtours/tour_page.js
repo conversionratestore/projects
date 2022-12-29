@@ -12,9 +12,13 @@
         width: 100%;
         z-index: 20;
     }
-    #plugin {
-        display: none;
-    }
+    // #plugin .heading, #plugin .price, #plugin .text-red, #plugin .text-pt, #plugin .text-pt-disclaimer, #plugin .buy {
+    //     display: none;
+    // }
+    // #plugin {
+    //     // margin: 0 auto;
+    //     background-color: transparent;
+    // }
     .destination_page_wr .tour-intro .plugin-col {
         display: block;
         background: none;
@@ -454,7 +458,7 @@ let interval = setInterval(() => {
         document.querySelector('#plugin').insertAdjacentHTML('afterend', formHTML);
     
         //add iframe in pop-up
-        document.querySelector('.suggested-tours').after(document.querySelector('#plugin .plugin'))
+        document.querySelector('.suggested-tours').after(document.querySelector('#plugin'))
 
         //set price tour
         let price = document.querySelector('.price');
@@ -465,7 +469,14 @@ let interval = setInterval(() => {
         document.querySelector('.form_tour').after(document.querySelector('.awards-desktop'));
     
         //tour drinks
-        document.querySelector('.destination-info').after(document.querySelector('.tour-drinks'));
+        if (document.querySelector('.destination-info') != null) {
+            document.querySelector('.destination-info').after(document.querySelector('.tour-drinks'));
+        }
+        if (document.querySelector('.destination_descr') != null) {
+            document.querySelector('.destination_descr').after(document.querySelector('.tour-drinks'));
+            document.querySelector('.tour-drinks').classList.add('container');
+            document.querySelector('.tour-drinks').style = 'padding-top: 42p';
+        }
     
         let drinks = document.querySelectorAll('.tour-drinks .food_block .title');
         drinks.forEach(item => {
