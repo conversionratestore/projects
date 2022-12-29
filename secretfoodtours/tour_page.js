@@ -1,6 +1,17 @@
 
     let style = `
     <style>
+    .destination_page_wr .destination_content .popup_form_tour {
+        position: absolute;
+        /* top: -240px; */
+        top: -160px;
+        right: -1px;
+        background: #fff;
+        padding: 40px 75px;
+        max-width: 470px;
+        width: 100%;
+        z-index: 20;
+    }
     #plugin {
         display: none;
     }
@@ -290,6 +301,9 @@
         }
     }
     @media (max-width: 1199px) {
+        .awards-desktop {
+            display: none;
+        }
         .form_tour {
             position: fixed;
             bottom: 0;
@@ -394,43 +408,45 @@ let interval = setInterval(() => {
     if (document.querySelector('.price') != null && document.querySelector('.form_tour') == null && document.querySelector('.tour-drinks .food_block .title') != null && document.querySelector('.plugin iframe') != null) {
         clearInterval(interval)
         let formHTML = `
-        <div class="form_tour">
-            <h3 class="d-xl-block d-none">Book your tour</h3>
-            <p class="pr"></p>
-            <p class="d-xl-block d-none">Available daily at: 11.00, 13.00, 15.00, 19.00</p>
-            <div class="d-xl-block d-flex">
-                <button type="button" class=" btn-green">Check availability</button>
-                <a href="/buy-gift/" class=" btn-gold">
-                    <svg width="14" height="12" viewBox="0 0 14 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M0.875 11.1429C0.875 11.625 1.25781 12 1.75 12H6.125V7.71429H0.875V11.1429ZM7.875 12H12.25C12.7148 12 13.125 11.625 13.125 11.1429V7.71429H7.875V12ZM13.125 3.42857H11.9492C12.1406 3.10714 12.25 2.75893 12.25 2.35714C12.25 1.07143 11.1562 0 9.84375 0C8.69531 0 7.95703 0.589286 7.02734 1.84821C6.07031 0.589286 5.33203 0 4.21094 0C2.87109 0 1.80469 1.07143 1.80469 2.35714C1.80469 2.75893 1.88672 3.10714 2.07812 3.42857H0.875C0.382812 3.42857 0 3.83036 0 4.28571V6.42857C0 6.66964 0.191406 6.85714 0.4375 6.85714H13.5625C13.7812 6.85714 14 6.66964 14 6.42857V4.28571C14 3.83036 13.5898 3.42857 13.125 3.42857ZM4.18359 3.42857C3.58203 3.42857 3.08984 2.97321 3.08984 2.35714C3.08984 1.76786 3.58203 1.28571 4.18359 1.28571C4.73047 1.28571 5.14062 1.39286 6.5625 3.42857H4.18359ZM9.84375 3.42857H7.46484C8.88672 1.39286 9.26953 1.28571 9.84375 1.28571C10.4453 1.28571 10.9375 1.76786 10.9375 2.35714C10.9375 2.97321 10.4453 3.42857 9.84375 3.42857Z" fill="#C39958"/>
-                    </svg>
-                    <span class="d-xl-block d-none">Buy as a gift</span>
-                </a>
-                <a href="/private-bookings" class=" btn-gold">
-                    <svg width="14" height="18" viewBox="0 0 14 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M12.5138 7.75794V5.49791C12.5138 2.46634 10.0474 0 7.01586 0C3.98429 0 1.51795 2.46634 1.51795 5.49791V7.73662C1.17609 7.86704 0.837891 8.16127 0.837891 8.74412V11.822C0.837891 15.2285 3.60936 18 7.0159 18C10.4224 18 13.1938 15.2285 13.1938 11.822V8.74412C13.1938 8.19108 12.8639 7.8979 12.5138 7.75794ZM8.19009 14.3714C8.20943 14.4739 8.13995 14.5577 8.03568 14.5577H6.0193C5.91503 14.5577 5.84555 14.4739 5.86489 14.3714L6.18783 12.6598C5.94134 12.435 5.78664 12.1113 5.78664 11.7514C5.78664 11.0725 6.33698 10.5222 7.01586 10.5222C7.69473 10.5222 8.24507 11.0725 8.24507 11.7514C8.24507 12.1015 8.09848 12.4172 7.86359 12.6411L8.19009 14.3714ZM10.618 7.64822H3.41371V5.49791C3.41371 3.51171 5.02962 1.89576 7.01586 1.89576C9.00205 1.89576 10.618 3.51171 10.618 5.49791V7.64822Z" fill="#C39958"/>
-                    </svg>
-                    <span class="d-xl-block d-none">Book a private tour</span>
-                </a>
-            </div>
-        </div>
-        <div class="popup_booking-flow">
-            <div class="container">
-                <button type="button" class="btn-close">
-                    <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M12.3957 8.97447L17.5021 3.86808C18.166 3.25532 18.166 2.23404 17.5021 1.62128L16.3787 0.497872C15.766 -0.165957 14.7447 -0.165957 14.1319 0.497872L9.02553 5.60426L3.86808 0.497872C3.25532 -0.165957 2.23404 -0.165957 1.62128 0.497872L0.497872 1.62128C-0.165957 2.23404 -0.165957 3.25532 0.497872 3.86808L5.60426 8.97447L0.497872 14.1319C-0.165957 14.7447 -0.165957 15.766 0.497872 16.3787L1.62128 17.5021C2.23404 18.166 3.25532 18.166 3.86808 17.5021L9.02553 12.3957L14.1319 17.5021C14.7447 18.166 15.766 18.166 16.3787 17.5021L17.5021 16.3787C18.166 15.766 18.166 14.7447 17.5021 14.1319L12.3957 8.97447Z" fill="#144732"/>
-                    </svg>
-                </button>
-                <div class="progressbar" style="display: none;">
-                    <div class="line">
-                        <span class="active"></span><span></span><span></span><span></span><span></span><span></span><span></span>
-                    </div>
-                    <p class="text-center">Choose your date</p>
+        <div class="popup_form_tour">
+            <div class="form_tour">
+                <h3 class="d-xl-block d-none">Book your tour</h3>
+                <p class="pr"></p>
+                <p class="d-xl-block d-none">Available daily at: 11.00, 13.00, 15.00, 19.00</p>
+                <div class="d-xl-block d-flex">
+                    <button type="button" class=" btn-green">Check availability</button>
+                    <a href="/buy-gift/" class=" btn-gold">
+                        <svg width="14" height="12" viewBox="0 0 14 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M0.875 11.1429C0.875 11.625 1.25781 12 1.75 12H6.125V7.71429H0.875V11.1429ZM7.875 12H12.25C12.7148 12 13.125 11.625 13.125 11.1429V7.71429H7.875V12ZM13.125 3.42857H11.9492C12.1406 3.10714 12.25 2.75893 12.25 2.35714C12.25 1.07143 11.1562 0 9.84375 0C8.69531 0 7.95703 0.589286 7.02734 1.84821C6.07031 0.589286 5.33203 0 4.21094 0C2.87109 0 1.80469 1.07143 1.80469 2.35714C1.80469 2.75893 1.88672 3.10714 2.07812 3.42857H0.875C0.382812 3.42857 0 3.83036 0 4.28571V6.42857C0 6.66964 0.191406 6.85714 0.4375 6.85714H13.5625C13.7812 6.85714 14 6.66964 14 6.42857V4.28571C14 3.83036 13.5898 3.42857 13.125 3.42857ZM4.18359 3.42857C3.58203 3.42857 3.08984 2.97321 3.08984 2.35714C3.08984 1.76786 3.58203 1.28571 4.18359 1.28571C4.73047 1.28571 5.14062 1.39286 6.5625 3.42857H4.18359ZM9.84375 3.42857H7.46484C8.88672 1.39286 9.26953 1.28571 9.84375 1.28571C10.4453 1.28571 10.9375 1.76786 10.9375 2.35714C10.9375 2.97321 10.4453 3.42857 9.84375 3.42857Z" fill="#C39958"/>
+                        </svg>
+                        <span class="d-xl-block d-none">Buy as a gift</span>
+                    </a>
+                    <a href="/private-bookings" class=" btn-gold">
+                        <svg width="14" height="18" viewBox="0 0 14 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M12.5138 7.75794V5.49791C12.5138 2.46634 10.0474 0 7.01586 0C3.98429 0 1.51795 2.46634 1.51795 5.49791V7.73662C1.17609 7.86704 0.837891 8.16127 0.837891 8.74412V11.822C0.837891 15.2285 3.60936 18 7.0159 18C10.4224 18 13.1938 15.2285 13.1938 11.822V8.74412C13.1938 8.19108 12.8639 7.8979 12.5138 7.75794ZM8.19009 14.3714C8.20943 14.4739 8.13995 14.5577 8.03568 14.5577H6.0193C5.91503 14.5577 5.84555 14.4739 5.86489 14.3714L6.18783 12.6598C5.94134 12.435 5.78664 12.1113 5.78664 11.7514C5.78664 11.0725 6.33698 10.5222 7.01586 10.5222C7.69473 10.5222 8.24507 11.0725 8.24507 11.7514C8.24507 12.1015 8.09848 12.4172 7.86359 12.6411L8.19009 14.3714ZM10.618 7.64822H3.41371V5.49791C3.41371 3.51171 5.02962 1.89576 7.01586 1.89576C9.00205 1.89576 10.618 3.51171 10.618 5.49791V7.64822Z" fill="#C39958"/>
+                        </svg>
+                        <span class="d-xl-block d-none">Book a private tour</span>
+                    </a>
                 </div>
-                <h2 class="text-center">${document.querySelector('.dest_title').innerText}</h2>
-                <div class="suggested-tours" style="display: none;">
-                    <h3>Learn more about other available tours</h3>
-                    <ul></ul>
+            </div>
+            <div class="popup_booking-flow">
+                <div class="container">
+                    <button type="button" class="btn-close">
+                        <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M12.3957 8.97447L17.5021 3.86808C18.166 3.25532 18.166 2.23404 17.5021 1.62128L16.3787 0.497872C15.766 -0.165957 14.7447 -0.165957 14.1319 0.497872L9.02553 5.60426L3.86808 0.497872C3.25532 -0.165957 2.23404 -0.165957 1.62128 0.497872L0.497872 1.62128C-0.165957 2.23404 -0.165957 3.25532 0.497872 3.86808L5.60426 8.97447L0.497872 14.1319C-0.165957 14.7447 -0.165957 15.766 0.497872 16.3787L1.62128 17.5021C2.23404 18.166 3.25532 18.166 3.86808 17.5021L9.02553 12.3957L14.1319 17.5021C14.7447 18.166 15.766 18.166 16.3787 17.5021L17.5021 16.3787C18.166 15.766 18.166 14.7447 17.5021 14.1319L12.3957 8.97447Z" fill="#144732"/>
+                        </svg>
+                    </button>
+                    <div class="progressbar" style="display: none;">
+                        <div class="line">
+                            <span class="active"></span><span></span><span></span><span></span><span></span><span></span><span></span>
+                        </div>
+                        <p class="text-center">Choose your date</p>
+                    </div>
+                    <h2 class="text-center">${document.querySelector('.dest_title').innerText}</h2>
+                    <div class="suggested-tours" style="display: none;">
+                        <h3>Learn more about other available tours</h3>
+                        <ul></ul>
+                    </div>
                 </div>
             </div>
         </div>`;
