@@ -229,7 +229,7 @@ function pushDataLayer(action) {
 }
 
 let run = setInterval(() => {
-    if (document.querySelector('[name="packages-radio"]') != null && document.querySelector('.popup_slide-in') == null && document.querySelector('.js-packs label > span') != null && document.querySelector('.js-heading .btn-primary') != null) {
+    if (document.querySelector('.popup_slide-in') == null && document.querySelector('.js-packs label > span') != null && document.querySelector('.js-heading .btn-primary') != null) {
 
         let currency = document.querySelector('.js-packs label > span').innerHTML.charAt(0);
 
