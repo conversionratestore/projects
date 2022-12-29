@@ -1,32 +1,31 @@
 if (window.innerWidth <= 768) {
-    if (window.location.pathname === "/pages/sleepypatch") {
-        let startFunkShippingh = setInterval(() => {
-            if (document.querySelector(".shipping-noti")) {
-                clearInterval(startFunkShippingh)
+  if (window.location.pathname === "/pages/sleepypatch") {
+    let startFunkShippingh = setInterval(() => {
+      if (document.querySelector(".shipping-noti")) {
+        clearInterval(startFunkShippingh)
 
-                // event
-                function pushDataLayer(actionDataLayer, labelDataLayer) {
-                    window.dataLayer = window.dataLayer || []
-                    if (labelDataLayer) {
-                        console.log(actionDataLayer + " : " + labelDataLayer)
-                        dataLayer.push({
-                            event: "event-to-ga",
-                            eventCategory: `Exp: sleepypatch_free_shipping`,
-                            eventAction: `${actionDataLayer}`,
-                            eventLabel: `${labelDataLayer}`,
-                        })
-                    } else {
-                        console.log(actionDataLayer)
-                        dataLayer.push({
-                            event: "event-to-ga",
-                            eventCategory: `Exp: sleepypatch_free_shipping`,
-                            eventAction: `${actionDataLayer}`,
-                        })
-                    }
-                }
+        // event
+        function pushDataLayer(actionDataLayer, labelDataLayer) {
+          window.dataLayer = window.dataLayer || []
+          if (labelDataLayer) {
+            console.log(actionDataLayer + " : " + labelDataLayer)
+            dataLayer.push({
+              event: "event-to-ga",
+              eventCategory: `Exp: sleepypatch_free_shipping`,
+              eventAction: `${actionDataLayer}`,
+              eventLabel: `${labelDataLayer}`,
+            })
+          } else {
+            console.log(actionDataLayer)
+            dataLayer.push({
+              event: "event-to-ga",
+              eventCategory: `Exp: sleepypatch_free_shipping`,
+              eventAction: `${actionDataLayer}`,
+            })
+          }
+        }
 
-
-                let styleMob = /*html*/`
+        let styleMob = /*html*/ `
                 <style>
                 .shipping-noti{
                     display: none !important;
@@ -77,98 +76,105 @@ if (window.innerWidth <= 768) {
                 </style>
                 `
 
-                document.head.insertAdjacentHTML("beforeend", styleMob)
-                document.querySelector(".hand-banner").insertAdjacentHTML('beforeend', `<div class="new_free_shipping"><p>FREE shipping <span>|</span>30-day Money Back Guarantee</p></div>`)
-                document.querySelector('#addToCart').insertAdjacentHTML('beforebegin', `<div class="new_free_shipping_btn"><img src="https://conversionratestore.github.io/projects/buzzpatch/img/free_delivery.svg" alt="truck"><p><b>FREE Shipping</b> Worldwide</p></div><div class="testik"></div>`)
+        document.head.insertAdjacentHTML("beforeend", styleMob)
+        document
+          .querySelector(".hand-banner")
+          .insertAdjacentHTML("beforeend", `<div class="new_free_shipping"><p>FREE shipping <span>|</span>30-day Money Back Guarantee</p></div>`)
+        document
+          .querySelector("#addToCart")
+          .insertAdjacentHTML(
+            "beforebegin",
+            `<div class="new_free_shipping_btn"><img src="https://conversionratestore.github.io/projects/buzzpatch/img/free_delivery.svg" alt="truck"><p><b>FREE Shipping</b> Worldwide</p></div><div class="testik"></div>`
+          )
 
-                let obs = new IntersectionObserver(visibility, {
-                    threshold: 1
-                })
+        let obs = new IntersectionObserver(visibility, {
+          threshold: 1,
+        })
 
-                let obs2 = new IntersectionObserver(visibility2, {
-                    threshold: 1
-                })
+        let obs2 = new IntersectionObserver(visibility2, {
+          threshold: 1,
+        })
 
-                if (document.querySelector('.new_free_shipping')) {
-                    obs.observe(document.querySelector('.new_free_shipping'))
-                }
-                if (document.querySelector('#addToCart')) {
-                    obs.observe(document.querySelector('#addToCart'))
-                }
-                if (document.querySelector('.testik')) {
-                    obs.observe(document.querySelector('.testik'))
-                }
+        if (document.querySelector(".new_free_shipping")) {
+          obs.observe(document.querySelector(".new_free_shipping"))
+        }
+        if (document.querySelector("#addToCart")) {
+          obs.observe(document.querySelector("#addToCart"))
+        }
+        if (document.querySelector(".testik")) {
+          obs.observe(document.querySelector(".testik"))
+        }
 
-                function visibility(entries) {
-                    entries.forEach(i => {
-                        if (i.isIntersecting) {
-                            setTimeout(function () {
-                                obs2.observe(i.target)
-                            }, 600)
-                        }
-                    })
-                }
-
-
-                function visibility2(entries) {
-                    entries.forEach(i => {
-                        if (i.isIntersecting) {
-                            if (i.target.classList.contains('new_free_shipping')) {
-                                pushDataLayer('Visibility block `FREE shipping | 30-day Money Back Guarantee`')
-                            }
-                            if (i.target.classList.contains('testik')) {
-                                pushDataLayer('Visibility block `FREE Shipping Worldwide`')
-                            }
-                            if (i.target.getAttribute('id') === "addToCart") {
-                                pushDataLayer('Visibility btn `PROCEED TO CHECKOUT`')
-                            }
-
-                            obs.unobserve(i.target)
-                        }
-
-                        obs2.unobserve(i.target)
-                    })
-                }
-
-                pushDataLayer("loaded")
-                const record = setInterval(() => {
-                    if (typeof clarity === "function") {
-                        clearInterval(record)
-                        clarity("set", "sleepypatch_free_shipping", "variant_1")
-                    }
-                }, 200)
+        function visibility(entries) {
+          entries.forEach((i) => {
+            if (i.isIntersecting) {
+              setTimeout(function () {
+                obs2.observe(i.target)
+              }, 600)
             }
-        }, 100)
-    }
+          })
+        }
 
-    if (window.location.pathname.includes("/checkouts/")) {
-        let startCheckouts = setInterval(() => {
-            if (document.querySelector('.banner')) {
-                clearInterval(startCheckouts)
+        function visibility2(entries) {
+          entries.forEach((i) => {
+            if (i.isIntersecting) {
+              if (i.target.classList.contains("new_free_shipping")) {
+                pushDataLayer("Visibility block `FREE shipping | 30-day Money Back Guarantee`")
+              }
+              if (i.target.classList.contains("testik")) {
+                pushDataLayer("Visibility block `FREE Shipping Worldwide`")
+              }
+              if (i.target.getAttribute("id") === "addToCart") {
+                pushDataLayer("Visibility btn `PROCEED TO CHECKOUT`")
+              }
 
-                // event
-                function pushDataLayer(actionDataLayer, labelDataLayer) {
-                    window.dataLayer = window.dataLayer || []
-                    if (labelDataLayer) {
-                        console.log(actionDataLayer + " : " + labelDataLayer)
-                        dataLayer.push({
-                            event: "event-to-ga",
-                            eventCategory: `Exp: sleepypatch_free_shipping`,
-                            eventAction: `${actionDataLayer}`,
-                            eventLabel: `${labelDataLayer}`,
-                        })
-                    } else {
-                        console.log(actionDataLayer)
-                        dataLayer.push({
-                            event: "event-to-ga",
-                            eventCategory: `Exp: sleepypatch_free_shipping`,
-                            eventAction: `${actionDataLayer}`,
-                        })
-                    }
-                }
+              obs.unobserve(i.target)
+            }
 
+            obs2.unobserve(i.target)
+          })
+        }
 
-                let styleMobCheckouts = /*html*/`
+        pushDataLayer("loaded")
+        const record = setInterval(() => {
+          if (typeof clarity === "function") {
+            clearInterval(record)
+            clarity("set", "sleepypatch_free_shipping", "variant_1")
+          }
+        }, 200)
+
+        document.querySelector(".exp")?.remove()
+      }
+    }, 100)
+  }
+
+  if (window.location.pathname.includes("/checkouts/")) {
+    let startCheckouts = setInterval(() => {
+      if (document.querySelector(".banner")) {
+        clearInterval(startCheckouts)
+
+        // event
+        function pushDataLayer(actionDataLayer, labelDataLayer) {
+          window.dataLayer = window.dataLayer || []
+          if (labelDataLayer) {
+            console.log(actionDataLayer + " : " + labelDataLayer)
+            dataLayer.push({
+              event: "event-to-ga",
+              eventCategory: `Exp: sleepypatch_free_shipping`,
+              eventAction: `${actionDataLayer}`,
+              eventLabel: `${labelDataLayer}`,
+            })
+          } else {
+            console.log(actionDataLayer)
+            dataLayer.push({
+              event: "event-to-ga",
+              eventCategory: `Exp: sleepypatch_free_shipping`,
+              eventAction: `${actionDataLayer}`,
+            })
+          }
+        }
+
+        let styleMobCheckouts = /*html*/ `
                 <style>
                 .total-line__price span[data-checkout-total-shipping-target]{
                     font-weight: 700 !important;
@@ -179,29 +185,30 @@ if (window.innerWidth <= 768) {
                 </style>
                 `
 
-                document.head.insertAdjacentHTML("beforeend", styleMobCheckouts)
+        document.head.insertAdjacentHTML("beforeend", styleMobCheckouts)
 
-                if (document.querySelector('.total-line__price span[data-checkout-total-shipping-target]')) {
-                    document.querySelector('.total-line__price span[data-checkout-total-shipping-target]').textContent = 'Free'
-                }
+        if (document.querySelector(".total-line__price span[data-checkout-total-shipping-target]")) {
+          document.querySelector(".total-line__price span[data-checkout-total-shipping-target]").textContent = "Free"
+        }
 
-                document.querySelector('[aria-controls="order-summary"]').addEventListener('click', (e) => {
-                    if (e.currentTarget.classList.contains('order-summary-toggle--show')) {
-                        pushDataLayer("click on Show order summary")
-                    } else {
-                        pushDataLayer("click on Hide order summary")
-                    }
-                })
+        document.querySelector('[aria-controls="order-summary"]').addEventListener("click", (e) => {
+          if (e.currentTarget.classList.contains("order-summary-toggle--show")) {
+            pushDataLayer("click on Show order summary")
+          } else {
+            pushDataLayer("click on Hide order summary")
+          }
+        })
 
+        pushDataLayer("loaded")
+        const record = setInterval(() => {
+          if (typeof clarity === "function") {
+            clearInterval(record)
+            clarity("set", "sleepypatch_free_shipping", "variant_1")
+          }
+        }, 200)
 
-                pushDataLayer("loaded")
-                const record = setInterval(() => {
-                    if (typeof clarity === "function") {
-                        clearInterval(record)
-                        clarity("set", "sleepypatch_free_shipping", "variant_1")
-                    }
-                }, 200)
-            }
-        }, 100)
-    }
+        document.querySelector(".exp")?.remove()
+      }
+    }, 100)
+  }
 }
