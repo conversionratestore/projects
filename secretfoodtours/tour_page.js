@@ -30,7 +30,7 @@
         background: none;
     }
     .tour-drinks {
-        padding: 42px 0 34px;
+        padding: 42px 0 34px!important;
     }
     .tour-drinks::before {
         content: none;
@@ -385,13 +385,14 @@ function detectMob() {
 let device = detectMob() == true ? 'mobile' : 'desktop';
 
 function pushDataLayer(action, label = '') {
-  window.dataLayer = window.dataLayer || [];
-  dataLayer.push({
-      'event': 'event-to-ga',
-      'eventCategory': `Exp: booking_form_flow_${device}`,
-      'eventAction': action,
-      'eventLabel': label
-  });
+    console.log(action + " : " + label )
+    window.dataLayer = window.dataLayer || [];
+    dataLayer.push({
+        'event': 'event-to-ga',
+        'eventCategory': `Exp: booking_form_flow_${device}`,
+        'eventAction': action,
+        'eventLabel': label
+    });
 }
 
 let countTimer = 0;
@@ -486,7 +487,7 @@ let interval = setInterval(() => {
         } else {
             document.querySelector('.form_tour .pr').innerHTML = `<a href="/private-bookings">Currently we're just accepting private tours at the moment. Click Here!</a>`;
         }
-        
+
         //rearrange the image logo
         document.querySelector('.form_tour').after(document.querySelector('.awards-desktop'));
     
