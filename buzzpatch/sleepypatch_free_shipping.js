@@ -191,7 +191,7 @@ if (window.innerWidth <= 768) {
 
         function start() {
           if (document.querySelector(".total-line__price span[data-checkout-total-shipping-target]")) {
-            if (document.querySelector(".total-line__price span[data-checkout-total-shipping-target]").textContent !== "Free") {
+            if (document.querySelector(".total-line__price span[data-checkout-total-shipping-target]").textContent.includes("Calculated at next step")) {
               document.querySelector(".total-line__price span[data-checkout-total-shipping-target]").textContent = "Free"
             }
           }
