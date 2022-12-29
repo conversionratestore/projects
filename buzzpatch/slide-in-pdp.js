@@ -174,22 +174,22 @@ let currency = '$';
 let packages = [
     {
         "id": "39307595546668",
-        "price": "395.75",
+        "price": "396.00",
         "packs": "4 Packs",
-        "oldPrice": "3,767.00",
-        "sum": "1,583.00",
-        "saveRs": "2,186",
+        "oldPrice": "3,769.00",
+        "sum": "1,584.00",
+        "saveRs": "2,185",
         "savePs": "57%",
         "bestDeal": true,
         "image": "pack4.svg"
     },
     {
         "id": "39307593187372",
-        "price": "452.33",
+        "price": "452.66",
         "packs": "3 Packs",
-        "oldPrice": "2,826.00",
-        "sum": "1,357.00",
-        "saveRs": "1,470",
+        "oldPrice": "2,827.00",
+        "sum": "1,358.00",
+        "saveRs": "1,469",
         "savePs": "51%",
         "topSeller": true,
         "image": "pack3.png"
@@ -198,7 +198,7 @@ let packages = [
         "id": "39307589058604",
         "price": "509.00",
         "packs": "2 Packs",
-        "oldPrice": "1,884.00",
+        "oldPrice": "1,885.00",
         "sum": "1,018.00",
         "saveRs": "867",
         "savePs": "45%",
@@ -206,12 +206,12 @@ let packages = [
     },
     {
         "id": "34767547138092",
-        "price": "565.00",
+        "price": "566.00",
         "packs": "1 Pack",
-        "oldPrice": "942.00",
-        "sum": "565.00",
+        "oldPrice": "943.00",
+        "sum": "566.00",
         "saveRs": "377",
-        "savePs": "40%",
+        "savePs": "39%",
         "image": "pack1.png"
     }
 ]
