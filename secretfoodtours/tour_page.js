@@ -405,7 +405,7 @@ let timer = (popup) => {
             countTimer += 1;
         } else {
             clearInterval(intervalTimer)
-            pushDataLayer('pop up Calendar', countTimer)
+            pushDataLayer('pop up Calendar', countTimer + ' second')
         }
     }, 1000) 
 }
@@ -480,7 +480,7 @@ let interval = setInterval(() => {
         //add iframe in pop-up
         document.querySelector('.suggested-tours').after(document.querySelector('#plugin'))
         if (window.location.href.includes('paris/paris-le-marais')) {
-            document.querySelector('#plugin iframe ').style = 'min-height: 1230px!important;' 
+            document.querySelector('#plugin iframe').insertAdjacentHTML('beforebegin',`<style> #plugin iframe { min-height: 1230px!important;}</style>`)
         }
 
         //set price tour
