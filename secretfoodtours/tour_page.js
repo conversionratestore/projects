@@ -22,7 +22,7 @@
         padding: 0!important;
     }
     #plugin iframe {
-        min-height: 80vh!important;
+        min-height: 1230px!important;
         margin: 0!important;
     }
     .destination_page_wr .tour-intro .plugin-col {
