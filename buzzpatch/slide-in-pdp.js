@@ -220,44 +220,45 @@ let packages = [
     }
 ]
 
-let popupHTML = `
-<div class="popup_slide-in" id="popup_slide-in">
-    <div class="container d-flex flex-column justify-content-between">
-        <div>
-            <div class="popup_head d-flex align-items-center justify-content-between">
-                <h3>Select package</h3>
-                <button type="button" class="btn-close">
-                    <svg class="mx-auto d-flex" width="8" height="24" viewBox="0 0 8 9" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M8 1.30571L7.19429 0.5L4 3.69429L0.805714 0.5L0 1.30571L3.19429 4.5L0 7.69429L0.805714 8.5L4 5.30571L7.19429 8.5L8 7.69429L4.80571 4.5L8 1.30571Z" fill="#FF3C7F"/>
-                    </svg>
-                </button>
-            </div>
-            <div class="packages"></div>
-            <div class="packages_total text-center">
-                ${currency}<span class="pr">${packages[1].salePrice}</span> (<span class="ps">${packages[1].offPrice}%</span> OFF)
-            </div>
-            <div class="packages_regular text-center">
-                Reg. Price: ${currency}<span class="rp">${packages[1].regularPrice}</span> (Save <span class="rs">${packages[1].savePrice}</span>)
-            </div>
-            <a href="/cart/39307593187372:1" class="btn js-btn btn-primary" >PROCEED TO CHECKOUT</a>
-        </div>
-
-        <div class="popup_foot">
-            <hr>
-            <img src="${dir}icons.svg" width="100%" alt="icons">
-        </div>
-    </div>
-</div>`;
 
 let run = setInterval(() => {
     if (document.querySelector('.navbar .btn-primary') != null && document.querySelector('.popup_slide-in') == null) {
-        currency = document.querySelector('.js-packs label > span').innerHTML.charAt(0);
+        let currency = document.querySelector('.js-packs label > span').innerHTML.charAt(0);
+
+        let popupHTML = `
+        <div class="popup_slide-in" id="popup_slide-in">
+            <div class="container d-flex flex-column justify-content-between">
+                <div>
+                    <div class="popup_head d-flex align-items-center justify-content-between">
+                        <h3>Select package</h3>
+                        <button type="button" class="btn-close">
+                            <svg class="mx-auto d-flex" width="8" height="24" viewBox="0 0 8 9" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M8 1.30571L7.19429 0.5L4 3.69429L0.805714 0.5L0 1.30571L3.19429 4.5L0 7.69429L0.805714 8.5L4 5.30571L7.19429 8.5L8 7.69429L4.80571 4.5L8 1.30571Z" fill="#FF3C7F"/>
+                            </svg>
+                        </button>
+                    </div>
+                    <div class="packages"></div>
+                    <div class="packages_total text-center">
+                        ${currency}<span class="pr">${packages[1].salePrice}</span> (<span class="ps">${packages[1].offPrice}%</span> OFF)
+                    </div>
+                    <div class="packages_regular text-center">
+                        Reg. Price: ${currency}<span class="rp">${packages[1].regularPrice}</span> (Save <span class="rs">${packages[1].savePrice}</span>)
+                    </div>
+                    <a href="/cart/39307593187372:1" class="btn js-btn btn-primary" >PROCEED TO CHECKOUT</a>
+                </div>
+
+                <div class="popup_foot">
+                    <hr>
+                    <img src="${dir}icons.svg" width="100%" alt="icons">
+                </div>
+            </div>
+        </div>`;
 
         document.body.insertAdjacentHTML('afterbegin', styles);
         document.body.insertAdjacentHTML('beforeend', popupHTML);
 
         for (let i = 0; i < packages.length; i++) {
-            document.querySelector('.packages').insertAdjacentHTML('beforeend', setPack(packages[i].image, packages[i].price, packages[i].packs, packages[i].regularPrice, packages[i].salePrice, packages[i].offPrice, packages[i].bestDeal, packages[i].topSeller))
+            document.querySelector('.packages').insertAdjacentHTML('beforeend', setPack(currency, packages[i].image, packages[i].price, packages[i].packs, packages[i].regularPrice, packages[i].salePrice, packages[i].offPrice, packages[i].bestDeal, packages[i].topSeller))
             document.querySelectorAll('[name="packages-radio"]')[i].addEventListener('click', (e) => {
                 console.log(e.target)
                 if (e.target.checked) {
@@ -315,7 +316,7 @@ function pushDataLayer(action) {
 }
 
 
-function setPack(image, price, packs, regularPrice, salePrice, offPrice , bestDeal = false, topSeller = false) {
+function setPack(currency, image, price, packs, regularPrice, salePrice, offPrice , bestDeal = false, topSeller = false) {
     return `
     <label class="d-flex justify-content-between">
         <input type="radio" name="packages-radio" ${topSeller == true ? 'checked class="active"': ''}>
