@@ -12,13 +12,19 @@
         width: 100%;
         z-index: 20;
     }
-    // #plugin .heading, #plugin .price, #plugin .text-red, #plugin .text-pt, #plugin .text-pt-disclaimer, #plugin .buy {
-    //     display: none;
-    // }
-    // #plugin {
-    //     // margin: 0 auto;
-    //     background-color: transparent;
-    // }
+    #plugin .heading, #plugin .price, #plugin .text-red, #plugin .text-pt, #plugin .text-pt-disclaimer, #plugin .buy {
+        display: none;
+    }
+    #plugin {
+        position: initial!important;
+        margin: 0 auto;
+        background-color: transparent;
+        padding: 0!important;
+    }
+    #plugin iframe {
+        min-height: 70vh!important;
+        margin: 0!important;
+    }
     .destination_page_wr .tour-intro .plugin-col {
         display: block;
         background: none;
@@ -164,6 +170,7 @@
         padding: 24px;
         transform: translateY(100px);
         transition: all 0.25s ease;
+        display: block!important;
     }
     .popup_booking-flow .container h2 {
         font-family: 'JosefinSans-Bold', sans-serif;
