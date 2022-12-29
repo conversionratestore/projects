@@ -125,10 +125,8 @@
     }
     /* pop-up */
     .popup_booking-flow .plugin {
-        margin: 0 auto;
-        display: block;
-        min-height: 60vh;
-        overflow-y: auto;
+        display: flex;
+        justify-content: center;
     }
     .popup_booking-flow {
         position: fixed;
@@ -457,7 +455,7 @@ let interval = setInterval(() => {
     
         //add iframe in pop-up
         document.querySelector('.suggested-tours').after(document.querySelector('#plugin .plugin'))
-    
+
         //set price tour
         let price = document.querySelector('.price');
         let currency = price.innerText.trim().charAt(0);
