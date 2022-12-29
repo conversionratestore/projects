@@ -23,7 +23,7 @@
     }
     #plugin iframe {
         height: auto!important;
-        min-height: 1230px!important;
+        min-height: 600px!important;
         margin: 0!important;
     }
     .destination_page_wr .tour-intro .plugin-col {
@@ -479,6 +479,9 @@ let interval = setInterval(() => {
     
         //add iframe in pop-up
         document.querySelector('.suggested-tours').after(document.querySelector('#plugin'))
+        if (window.location.href.includes('paris/paris-le-marais')) {
+            document.querySelector('#plugin iframe ').style = 'min-height: 1230px!important;' 
+        }
 
         //set price tour
         if (document.querySelector('.price') != null) {
