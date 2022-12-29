@@ -243,33 +243,60 @@ let popupHTML = `
             <img src="${dir}icons.svg" width="100%" alt="icons">
         </div>
     </div>
-</div>`
+</div>`;
 
-document.body.insertAdjacentHTML('afterbegin', styles);
-document.body.insertAdjacentHTML('beforeend', popupHTML);
+let run = setInterval(() => {
+    if (document.querySelector('.navbar .btn-primary') != null && document.querySelector('.popup_slide-in') == null) {
+        
+        document.body.insertAdjacentHTML('afterbegin', styles);
+        document.body.insertAdjacentHTML('beforeend', popupHTML);
 
-for (let i = 0; i < packages.length; i++) {
-  document.querySelector('.packages').insertAdjacentHTML('beforeend', setPack(packages[i].image, currency, packages[i].price, packages[i].packs, packages[i].oldPrice, packages[i].sum, packages[i].savePs, packages[i].bestDeal, packages[i].topSeller))
-  document.querySelectorAll('[name="packages-radio"]')[i].addEventListener('change', (e) => {
-    if (e.target.checked) {
-        document.querySelector('.packages_total .pr').innerHTML = packages[i].sum;
-        document.querySelector('.packages_total .ps').innerHTML = packages[i].savePs;
-        document.querySelector('.packages_regular .rp').innerHTML = packages[i].oldPrice;
-        document.querySelector('.packages_regular .rs').innerHTML = packages[i].saveRs;
-        document.querySelector('.popup_slide-in .btn').href = `/cart/${packages[i].id}:1`;
-    }
-  })
+        for (let i = 0; i < packages.length; i++) {
+            document.querySelector('.packages').insertAdjacentHTML('beforeend', setPack(packages[i].image, currency, packages[i].price, packages[i].packs, packages[i].oldPrice, packages[i].sum, packages[i].savePs, packages[i].bestDeal, packages[i].topSeller))
+            document.querySelectorAll('[name="packages-radio"]')[i].addEventListener('change', (e) => {
+                if (e.target.checked) {
+                    document.querySelector('.packages_total .pr').innerHTML = packages[i].sum;
+                    document.querySelector('.packages_total .ps').innerHTML = packages[i].savePs;
+                    document.querySelector('.packages_regular .rp').innerHTML = packages[i].oldPrice;
+                    document.querySelector('.packages_regular .rs').innerHTML = packages[i].saveRs;
+                    document.querySelector('.popup_slide-in .btn').href = `/cart/${packages[i].id}:1`;
+                    pushDataLayer('Click on product on slide-in PDP')
+                }
+            })
+        }
+
+        document.querySelector('.navbar .btn-primary').href = '#popup_slide-in';
+        document.querySelector('.js-heading .btn-primary').href = '#popup_slide-in';
+        
+        document.addEventListener('click', (e) => {
+            if (((e.target.closest('.navbar') || e.target.closest('header')) && e.target.classList.contains('btn-primary')) || e.target.classList.contains('btn-close') || e.target.classList.contains('popup_slide-in')) {
+                e.preventDefault();
+                document.querySelector('.popup_slide-in').classList.toggle('active');
+
+                if (document.querySelector('.popup_slide-in').classList.contains('active')) {
+                    pushDataLayer('Visibility slide-in PDP')
+                } else {
+                    pushDataLayer('Close slide-in PDP')
+                }
+            }
+            if (e.target.closest('.popup_slide-in') && e.target.classList.contains('btn-primary') ) {
+                pushDataLayer('Click on Proceed to checkout button on slide-in PDP')
+            }
+        })  
+        pushDataLayer('loaded')
+    }  
+}, 100)
+
+//push dataLayer
+function pushDataLayer(action) {
+    window.dataLayer = window.dataLayer || [];
+    dataLayer.push({
+        'event': 'event-to-ga',
+        'eventCategory': 'Exp: magicpatch_slide_in_pdp',
+        'eventAction': action
+    });
 }
 
-document.querySelector('.navbar .btn-primary').href = '#popup_slide-in';
-document.querySelector('.js-heading .btn-primary').href = '#popup_slide-in';
-
-document.addEventListener('click', (e) => {
-    if (((e.target.closest('.navbar') || e.target.closest('header')) && e.target.classList.contains('btn-primary')) || e.target.classList.contains('btn-close') || e.target.classList.contains('popup_slide-in')) {
-        e.preventDefault();
-        document.querySelector('.popup_slide-in').classList.toggle('active');
-    }
-})
 
 function setPack(image, currency, price, packs, oldPrice, sum, savePs , bestDeal = false, topSeller = false) {
     return `
@@ -296,3 +323,11 @@ function setPack(image, currency, price, packs, oldPrice, sum, savePs , bestDeal
         </div>
     </label>`
 }
+
+//clarify
+let isClarify = setInterval(() => {
+    if(typeof clarity == 'function') {
+        clearInterval(isClarify)
+        clarity("set", "magicpatch_slide_in_pdp", "variant_1");
+    }
+}, 100)
