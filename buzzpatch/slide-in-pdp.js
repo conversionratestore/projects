@@ -239,8 +239,8 @@ let run = setInterval(() => {
                 <div>
                     <div class="popup_head d-flex align-items-center justify-content-between">
                         <h3>Select package</h3>
-                        <button type="button" class="btn-close">
-                            <svg class="mx-auto d-flex" width="8" height="24" viewBox="0 0 8 9" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <button type="button" class="btn-close d-flex">
+                            <svg class="m-auto" width="8" height="9" viewBox="0 0 8 9" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M8 1.30571L7.19429 0.5L4 3.69429L0.805714 0.5L0 1.30571L3.19429 4.5L0 7.69429L0.805714 8.5L4 5.30571L7.19429 8.5L8 7.69429L4.80571 4.5L8 1.30571Z" fill="#FF3C7F"/>
                             </svg>
                         </button>
