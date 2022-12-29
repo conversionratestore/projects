@@ -173,12 +173,12 @@ let styles = `
 }
 </style>`
 
-let currency = getProductCurrency == 'CAD' || getProductCurrency == 'USD' ? '$' : getProductCurrency;
+let currency = '$';
 
 let packages = [
     {
         "id": "39307595546668",
-        "price": (getpack4SalePrice / 4).toFixed(2),
+        "price": (getpack4SalePrice.split(',').join('') / 4).toFixed(2),
         "packs": "4 Packs",
         "regularPrice": getpack4RegularPrice,
         "salePrice": getpack4SalePrice,
@@ -189,7 +189,7 @@ let packages = [
     },
     {
         "id": "39307593187372",
-        "price": (getpack3SalePrice / 3).toFixed(2),
+        "price": (getpack3SalePrice.split(',').join('') / 3).toFixed(2),
         "packs": "3 Packs",
         "regularPrice": getpack3RegularPrice,
         "salePrice": getpack3SalePrice,
@@ -200,7 +200,7 @@ let packages = [
     },
     {
         "id": "39307589058604",
-        "price": (getpack2SalePrice / 2).toFixed(2),
+        "price": (getpack2SalePrice.split(',').join('') / 2).toFixed(2),
         "packs": "2 Packs",
         "regularPrice": getpack2RegularPrice,
         "salePrice": getpack2SalePrice,
@@ -251,6 +251,7 @@ let popupHTML = `
 
 let run = setInterval(() => {
     if (document.querySelector('.navbar .btn-primary') != null && document.querySelector('.popup_slide-in') == null) {
+        currency = document.querySelector('.js-packs label > span').innerHTML.charAt(0);
 
         document.body.insertAdjacentHTML('afterbegin', styles);
         document.body.insertAdjacentHTML('beforeend', popupHTML);
