@@ -194,6 +194,10 @@ if (window.innerWidth <= 768) {
             if (document.querySelector(".total-line__price span[data-checkout-total-shipping-target]").textContent.includes("Calculated at next step")) {
               document.querySelector(".total-line__price span[data-checkout-total-shipping-target]").textContent = "Free"
               document.querySelector(".total-line__price span[data-checkout-total-shipping-target]").classList.add("is_visible")
+            } else if (document.querySelector(".total-line__price span[data-checkout-total-shipping-target]").textContent.includes("Free")) {
+              if (!document.querySelector(".total-line__price span[data-checkout-total-shipping-target]").classList.contains("is_visible")) {
+                document.querySelector(".total-line__price span[data-checkout-total-shipping-target]").classList.add("is_visible")
+              }
             } else {
               if (document.querySelector(".total-line__price span[data-checkout-total-shipping-target]").classList.contains("is_visible")) {
                 document.querySelector(".total-line__price span[data-checkout-total-shipping-target]").classList.remove("is_visible")
