@@ -269,6 +269,15 @@
     .d-none {
         display: none;
     }
+    @media screen and (max-width: 1400px) {
+        .destination_page_wr .destination_content .popup_form_tour {
+            background: #fff;
+            padding: 40px 10px 10px 20px!important;
+            max-width: 360px!important;
+            margin-right: 0px!important;
+            z-index: 20;
+        }
+    }
     @media (min-width: 768px) {
         .tour-drinks .food_block {
             width: 50%;
@@ -471,6 +480,7 @@ let interval = setInterval(() => {
         //tour drinks
         if (document.querySelector('.destination-info') != null) {
             document.querySelector('.destination-info').after(document.querySelector('.tour-drinks'));
+            document.querySelector('.tour-drinks').style = 'padding: 0';
         }
         if (document.querySelector('.destination_descr') != null) {
             document.querySelector('.destination_descr').after(document.querySelector('.tour-drinks'));
