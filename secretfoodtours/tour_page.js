@@ -350,7 +350,7 @@ function detectMob() {
     });
 }
 
-let device = detectMob() == true ? 'mobile' : 'desctop';
+let device = detectMob() == true ? 'mobile' : 'desktop';
 
 function pushDataLayer(action, label = '') {
   window.dataLayer = window.dataLayer || [];
