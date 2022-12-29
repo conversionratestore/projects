@@ -168,6 +168,9 @@ let styles = `
     width: 100%;
     padding: 20px 10px 16px;
 }
+.pointer-none {
+    pointer-events: none;
+}
 </style>`
 
 let currency = getProductCurrency == 'CAD' || getProductCurrency == 'USD' ? '$' : getProductCurrency;
@@ -177,10 +180,10 @@ let packages = [
         "id": "39307595546668",
         "price": (getpack4SalePrice / 4).toFixed(2),
         "packs": "4 Packs",
-        "oldPrice": getpack4RegularPrice,
-        "sum": getpack4SalePrice,
-        "saveRs": getpack4SavePrice,
-        "savePs": getpack4OffPrice,
+        "regularPrice": getpack4RegularPrice,
+        "salePrice": getpack4SalePrice,
+        "savePrice": getpack4SavePrice,
+        "offPrice": getpack4OffPrice,
         "bestDeal": true,
         "image": "pack4.svg"
     },
@@ -188,10 +191,10 @@ let packages = [
         "id": "39307593187372",
         "price": (getpack3SalePrice / 3).toFixed(2),
         "packs": "3 Packs",
-        "oldPrice": getpack3RegularPrice,
-        "sum": getpack3SalePrice,
-        "saveRs": getpack3SavePrice,
-        "savePs": getpack3OffPrice,
+        "regularPrice": getpack3RegularPrice,
+        "salePrice": getpack3SalePrice,
+        "savePrice": getpack3SavePrice,
+        "offPrice": getpack3OffPrice,
         "topSeller": true,
         "image": "pack3.png"
     },
@@ -199,20 +202,20 @@ let packages = [
         "id": "39307589058604",
         "price": (getpack2SalePrice / 2).toFixed(2),
         "packs": "2 Packs",
-        "oldPrice": getpack2RegularPrice,
-        "sum": getpack2SalePrice,
-        "saveRs": getpack2SavePrice,
-        "savePs": getpack2OffPrice,
+        "regularPrice": getpack2RegularPrice,
+        "salePrice": getpack2SalePrice,
+        "savePrice": getpack2SavePrice,
+        "offPrice": getpack2OffPrice,
         "image": "pack2.png"
     },
     {
         "id": "34767547138092",
         "price": getpack1SalePrice,
         "packs": "1 Pack",
-        "oldPrice": getpack1RegularPrice,
-        "sum": getpack1SalePrice,
-        "saveRs": getpack1SavePrice,
-        "savePs": getpack1OffPrice,
+        "regularPrice": getpack1RegularPrice,
+        "salePrice": getpack1SalePrice,
+        "savePrice": getpack1SavePrice,
+        "offPrice": getpack1OffPrice,
         "image": "pack1.png"
     }
 ]
@@ -231,10 +234,10 @@ let popupHTML = `
             </div>
             <div class="packages"></div>
             <div class="packages_total text-center">
-                ${currency}<span class="pr">${packages[1].sum}</span> (<span class="ps">${packages[1].savePs}%</span> OFF)
+                ${currency}<span class="pr">${packages[1].salePrice}</span> (<span class="ps">${packages[1].offPrice}%</span> OFF)
             </div>
             <div class="packages_regular text-center">
-                Reg. Price: ${currency}<span class="rp">${packages[1].oldPrice}</span> (Save <span class="rs">${packages[1].saveRs}</span>)
+                Reg. Price: ${currency}<span class="rp">${packages[1].regularPrice}</span> (Save <span class="rs">${packages[1].savePrice}</span>)
             </div>
             <a href="/cart/39307593187372:1" class="btn js-btn btn-primary" >PROCEED TO CHECKOUT</a>
         </div>
@@ -253,16 +256,28 @@ let run = setInterval(() => {
         document.body.insertAdjacentHTML('beforeend', popupHTML);
 
         for (let i = 0; i < packages.length; i++) {
-            document.querySelector('.packages').insertAdjacentHTML('beforeend', setPack(packages[i].image, packages[i].price, packages[i].packs, packages[i].oldPrice, packages[i].sum, packages[i].savePs, packages[i].bestDeal, packages[i].topSeller))
-            document.querySelectorAll('[name="packages-radio"]')[i].addEventListener('change', (e) => {
+            document.querySelector('.packages').insertAdjacentHTML('beforeend', setPack(packages[i].image, packages[i].price, packages[i].packs, packages[i].regularPrice, packages[i].salePrice, packages[i].offPrice, packages[i].bestDeal, packages[i].topSeller))
+            document.querySelectorAll('[name="packages-radio"]')[i].addEventListener('click', (e) => {
+                console.log(e.target)
                 if (e.target.checked) {
-                    document.querySelector('.packages_total .pr').innerHTML = packages[i].sum;
-                    document.querySelector('.packages_total .ps').innerHTML = packages[i].savePs;
-                    document.querySelector('.packages_regular .rp').innerHTML = packages[i].oldPrice;
-                    document.querySelector('.packages_regular .rs').innerHTML = packages[i].saveRs;
+                    document.querySelector('.packages_total .pr').innerHTML = packages[i].salePrice;
+                    document.querySelector('.packages_total .ps').innerHTML = packages[i].offPrice;
+                    document.querySelector('.packages_regular .rp').innerHTML = packages[i].regularPrice;
+                    document.querySelector('.packages_regular .rs').innerHTML = packages[i].savePrice;
                     document.querySelector('.popup_slide-in .btn').href = `/cart/${packages[i].id}:1`;
                     pushDataLayer('Click on product on slide-in PDP')
                 }
+                if (!e.target.classList.contains('active')) {
+                    document.querySelector('.active[name="packages-radio"]').classList.remove('active');
+                }
+
+                if (e.target.classList.contains('active') && e.target.checked) {
+                    console.log(e.target)
+                    pushDataLayer('Second click on the selected product on slide-in PDP');
+                    window.location.href = document.querySelector('.popup_slide-in a.btn-primary').href;
+                }
+
+                e.target.classList.add('active');
             })
         }
 
@@ -299,12 +314,12 @@ function pushDataLayer(action) {
 }
 
 
-function setPack(image, price, packs, oldPrice, sum, savePs , bestDeal = false, topSeller = false) {
+function setPack(image, price, packs, regularPrice, salePrice, offPrice , bestDeal = false, topSeller = false) {
     return `
     <label class="d-flex justify-content-between">
-        <input type="radio" name="packages-radio" ${topSeller == true ? 'checked': ''}>
+        <input type="radio" name="packages-radio" ${topSeller == true ? 'checked class="active"': ''}>
         <span class="packages_check"></span>
-        <div class="d-flex align-items-center">
+        <div class="d-flex align-items-center pointer-none">
             <img src="${dir + image}" alt="image">
             <div>
                 <div class="packages_price">
@@ -312,13 +327,13 @@ function setPack(image, price, packs, oldPrice, sum, savePs , bestDeal = false, 
                 </div>
                 <div class="packages_packs">${packs}</div>
                 <div class="packages_prices">
-                    <span>${currency + oldPrice}</span>
-                    <span>${currency + sum}</span>
+                    <span>${currency + regularPrice}</span>
+                    <span>${currency + salePrice}</span>
                 </div>
             </div>
         </div>
-        <div>
-            <div class="packages_save">Save ${savePs}%</div>
+        <div class="pointer-none">
+            <div class="packages_save">Save ${offPrice}%</div>
             ${bestDeal == true ? '<div class="packages_best-deal">best deal</div>' : ''}
             ${topSeller == true ? '<div class="packages_top-seller">Top seller</div>' : ''}
         </div>
