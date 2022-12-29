@@ -391,7 +391,7 @@ let viewed3 = false;
 
 let interval = setInterval(() => { 
 
-    if (document.querySelector('.form_tour') == null && document.querySelector('.tour-drinks .food_block .title') != null && document.querySelector('.plugin iframe') != null) {
+    if (document.querySelector('.price') != null && document.querySelector('.form_tour') == null && document.querySelector('.tour-drinks .food_block .title') != null && document.querySelector('.plugin iframe') != null) {
         clearInterval(interval)
         let formHTML = `
         <div class="form_tour">
