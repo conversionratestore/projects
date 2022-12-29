@@ -79,6 +79,7 @@ window.onload  = function () {
         height: 75px;
         border-radius: 3px;
         margin-right: 8px;
+        object-fit: contain;
     }
     .packages_price {
         font-family: 'DINEngschrift LT', sans-serif;
