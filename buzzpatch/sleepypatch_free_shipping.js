@@ -187,16 +187,49 @@ if (window.innerWidth <= 768) {
 
         document.head.insertAdjacentHTML("beforeend", styleMobCheckouts)
 
-        if (document.querySelector(".total-line__price span[data-checkout-total-shipping-target]")) {
-          document.querySelector(".total-line__price span[data-checkout-total-shipping-target]").textContent = "Free"
+        start()
+
+        function start() {
+          if (document.querySelector(".total-line__price span[data-checkout-total-shipping-target]")) {
+            if (document.querySelector(".total-line__price span[data-checkout-total-shipping-target]").textContent !== "Free") {
+              document.querySelector(".total-line__price span[data-checkout-total-shipping-target]").textContent = "Free"
+            }
+          }
         }
 
         document.querySelector('[aria-controls="order-summary"]').addEventListener("click", (e) => {
-          if (e.currentTarget.classList.contains("order-summary-toggle--show")) {
-            pushDataLayer("click on Show order summary")
-          } else {
-            pushDataLayer("click on Hide order summary")
+          if (!e.target.getAttribute("data-test")) {
+            if (e.currentTarget.classList.contains("order-summary-toggle--show")) {
+              pushDataLayer("click on Show order summary")
+            } else {
+              pushDataLayer("click on Hide order summary")
+            }
           }
+          e.target.setAttribute("data-test", "1")
+
+          setTimeout(() => {
+            if (e.target.getAttribute("data-test")) {
+              e.target.removeAttribute("data-test")
+            }
+          }, 200)
+        })
+
+        let observer = new MutationObserver(() => {
+          if (document.querySelector("body")) {
+            observer.disconnect()
+
+            start()
+
+            observer.observe(document.querySelector("body"), {
+              childList: true,
+              subtree: true,
+            })
+          }
+        })
+
+        observer.observe(document.querySelector("body"), {
+          childList: true,
+          subtree: true,
         })
 
         pushDataLayer("loaded")
