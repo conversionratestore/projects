@@ -22,6 +22,7 @@
         padding: 0!important;
     }
     #plugin iframe {
+        height: auto!important;
         min-height: 1230px!important;
         margin: 0!important;
     }
@@ -181,6 +182,7 @@
         text-transform: uppercase;
         color: #212529;
         margin-bottom: 24px;
+        padding: 0 20px;
     }
     .btn-close {
         position: absolute;
