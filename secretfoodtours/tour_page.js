@@ -330,8 +330,8 @@
 
 let interval = setInterval(() => { 
 
-    if (document.querySelector('.form_tour') == null && document.querySelectorAll('.tour-drinks .food_block .title') != null) {
-
+    if (document.querySelector('.form_tour') == null && document.querySelector('.tour-drinks .food_block .title') != null && document.querySelector('.plugin iframe') != null) {
+        clearInterval(interval)
         let formHTML = `
         <div class="form_tour">
             <h3 class="d-xl-block d-none">Book your tour</h3>
