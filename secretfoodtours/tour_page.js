@@ -145,7 +145,7 @@
         width: 100%;
         height: 100vh;
         overflow-y: auto;
-        z-index: 9999;
+        z-index: 999999;
         background: rgba(0, 0, 0, 0.7);
         padding: 10px;
         display: flex;
@@ -447,24 +447,25 @@ let interval = setInterval(() => {
                     </a>
                 </div>
             </div>
-            <div class="popup_booking-flow">
-                <div class="container">
-                    <button type="button" class="btn-close">
-                        <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M12.3957 8.97447L17.5021 3.86808C18.166 3.25532 18.166 2.23404 17.5021 1.62128L16.3787 0.497872C15.766 -0.165957 14.7447 -0.165957 14.1319 0.497872L9.02553 5.60426L3.86808 0.497872C3.25532 -0.165957 2.23404 -0.165957 1.62128 0.497872L0.497872 1.62128C-0.165957 2.23404 -0.165957 3.25532 0.497872 3.86808L5.60426 8.97447L0.497872 14.1319C-0.165957 14.7447 -0.165957 15.766 0.497872 16.3787L1.62128 17.5021C2.23404 18.166 3.25532 18.166 3.86808 17.5021L9.02553 12.3957L14.1319 17.5021C14.7447 18.166 15.766 18.166 16.3787 17.5021L17.5021 16.3787C18.166 15.766 18.166 14.7447 17.5021 14.1319L12.3957 8.97447Z" fill="#144732"/>
-                        </svg>
-                    </button>
-                    <div class="progressbar" style="display: none;">
-                        <div class="line">
-                            <span class="active"></span><span></span><span></span><span></span><span></span><span></span><span></span>
-                        </div>
-                        <p class="text-center">Choose your date</p>
+        </div>
+        
+        <div class="popup_booking-flow">
+            <div class="container">
+                <button type="button" class="btn-close">
+                    <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12.3957 8.97447L17.5021 3.86808C18.166 3.25532 18.166 2.23404 17.5021 1.62128L16.3787 0.497872C15.766 -0.165957 14.7447 -0.165957 14.1319 0.497872L9.02553 5.60426L3.86808 0.497872C3.25532 -0.165957 2.23404 -0.165957 1.62128 0.497872L0.497872 1.62128C-0.165957 2.23404 -0.165957 3.25532 0.497872 3.86808L5.60426 8.97447L0.497872 14.1319C-0.165957 14.7447 -0.165957 15.766 0.497872 16.3787L1.62128 17.5021C2.23404 18.166 3.25532 18.166 3.86808 17.5021L9.02553 12.3957L14.1319 17.5021C14.7447 18.166 15.766 18.166 16.3787 17.5021L17.5021 16.3787C18.166 15.766 18.166 14.7447 17.5021 14.1319L12.3957 8.97447Z" fill="#144732"/>
+                    </svg>
+                </button>
+                <div class="progressbar" style="display: none;">
+                    <div class="line">
+                        <span class="active"></span><span></span><span></span><span></span><span></span><span></span><span></span>
                     </div>
-                    <h2 class="text-center">${document.querySelector('.dest_title').innerText}</h2>
-                    <div class="suggested-tours" style="display: none;">
-                        <h3>Learn more about other available tours</h3>
-                        <ul></ul>
-                    </div>
+                    <p class="text-center">Choose your date</p>
+                </div>
+                <h2 class="text-center">${document.querySelector('.dest_title').innerText}</h2>
+                <div class="suggested-tours" style="display: none;">
+                    <h3>Learn more about other available tours</h3>
+                    <ul></ul>
                 </div>
             </div>
         </div>`;
