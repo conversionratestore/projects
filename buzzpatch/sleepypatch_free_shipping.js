@@ -176,7 +176,7 @@ if (window.innerWidth <= 768) {
 
         let styleMobCheckouts = /*html*/ `
                 <style>
-                .total-line__price span[data-checkout-total-shipping-target]{
+                .total-line__price span[data-checkout-total-shipping-target].is_visible{
                     font-weight: 700 !important;
                     font-size: 14px !important;
                     line-height: 16px !important;
@@ -193,6 +193,11 @@ if (window.innerWidth <= 768) {
           if (document.querySelector(".total-line__price span[data-checkout-total-shipping-target]")) {
             if (document.querySelector(".total-line__price span[data-checkout-total-shipping-target]").textContent.includes("Calculated at next step")) {
               document.querySelector(".total-line__price span[data-checkout-total-shipping-target]").textContent = "Free"
+              document.querySelector(".total-line__price span[data-checkout-total-shipping-target]").classList.add("is_visible")
+            } else {
+              if (document.querySelector(".total-line__price span[data-checkout-total-shipping-target]").classList.contains("is_visible")) {
+                document.querySelector(".total-line__price span[data-checkout-total-shipping-target]").classList.remove("is_visible")
+              }
             }
           }
         }
