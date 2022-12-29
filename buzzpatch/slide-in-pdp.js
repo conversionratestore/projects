@@ -173,8 +173,6 @@ window.onload  = function () {
     }
     </style>`
 
-    let currency = '$';
-
     let packages = [
         {
             "id": "39307595546668",
@@ -219,7 +217,6 @@ window.onload  = function () {
             "image": "pack1.svg"
         }
     ]
-
 
     let currency = document.querySelector('.js-packs label > span').innerHTML.charAt(0);
 
