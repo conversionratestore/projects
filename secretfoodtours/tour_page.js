@@ -23,7 +23,7 @@
     }
     #plugin iframe {
         height: auto!important;
-        min-height: 600px!important;
+        min-height: 660px!important;
         margin: 0!important;
     }
     .destination_page_wr .tour-intro .plugin-col {
@@ -426,7 +426,7 @@ let viewed3 = false;
 
 let interval = setInterval(() => { 
 
-    if (document.querySelector('.form_tour') == null && document.querySelector('.tour-drinks .food_block .title') != null && document.querySelector('.plugin iframe') != null) {
+    if (document.querySelector('.form_tour') == null && document.querySelector('.tour-drinks .food_block .title') != null) {
         clearInterval(interval)
         let formHTML = `
         <div class="popup_form_tour">
@@ -478,9 +478,11 @@ let interval = setInterval(() => {
         document.querySelector('#plugin').insertAdjacentHTML('afterend', formHTML);
     
         //add iframe in pop-up
-        document.querySelector('.suggested-tours').after(document.querySelector('#plugin'))
-        if (window.location.href.includes('paris/paris-le-marais')) {
-            document.querySelector('#plugin iframe').insertAdjacentHTML('beforebegin',`<style> #plugin iframe { min-height: 1230px!important;}</style>`)
+        if (document.querySelector('.plugin iframe') != null) {
+            document.querySelector('.suggested-tours').after(document.querySelector('#plugin'))
+            if (window.location.href.includes('paris/')) {
+                document.querySelector('#plugin').insertAdjacentHTML('beforebegin',`<style> #plugin iframe { min-height: 1230px!important;}</style>`)
+            }
         }
 
         //set price tour
@@ -488,7 +490,6 @@ let interval = setInterval(() => {
             let price = document.querySelector('.price');
             let currency = price.innerText.trim().charAt(0);
             document.querySelector('.form_tour .pr').innerHTML = `<span class="currency">${currency}</span>${price.innerHTML.replace(currency,'')}`
-        
         } else {
             document.querySelector('.form_tour .pr').innerHTML = `<a href="/private-bookings">Currently we're just accepting private tours at the moment. Click Here!</a>`;
         }
