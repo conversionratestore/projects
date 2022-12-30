@@ -1,7 +1,111 @@
 let dir = 'https://conversionratestore.github.io/projects/secretfoodtours/img/';
 
+let styleFood = ` 
+<style> 
+.tour-drinks {
+    padding: 42px 0 34px!important;
+}
+.tour-drinks::before {
+    content: none;
+}
+.tour-drinks .food_block {
+    margin-top: 25px;
+}
+.tour-drinks .food_block .title, .tour-options-drinks .title-drinks {
+    font-family: 'JosefinSans-Bold', sans-serif;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 24px;
+    text-transform: uppercase;
+    color: #212529;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+}
+.tour-options-drinks .title-drinks span {
+    font-family: 'JosefinSans-Regular', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 24px;
+    display: block;
+    color: #212529;
+    text-transform: none;
+    margin-top: 2px;
+}
+.tour-drinks .food_block .title svg, .tour-options-drinks .title-drinks svg {
+    margin-right: 10px;
+}
+.tour-options-drinks .title {
+    font-family: 'JosefinSans-Regular', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 22px;
+}
+.tour-options-drinks .mini_ul {
+    padding: 4px 0 16px;
+}
+.tour-options-drinks .note {
+    font-family: 'JosefinSans-light', sans-serif;
+    font-style: normal;
+    font-weight: 300;
+    font-size: 14px;
+    line-height: 22px;
+    margin-top: 10px;
+    color: #8A9E95;
+}
+.tour-drinks .food_block li, .mini_ul li {
+    font-size: 16px;
+    line-height: 28px;
+    color: #212529;
+    padding-left: 14px;
+    position: relative;
+}
+.tour-drinks .food_block li::before, .mini_ul li::before {
+    content: "•"; 
+    position: absolute;
+    top: 0;
+    left: 0;
+    color: #C39958;}
+.tour-drinks p {
+    font-family: 'JosefinSans-Light', sans-serif;
+    font-weight: 300;
+    font-size: 14px;
+    line-height: 14px;
+    color: #8A9E95;
+}
+.tour-drinks p em {
+    font-style: normal;
+    font-size: 14px;
+    line-height: 14px;
+}
+
+@media (min-width: 768px) {
+    .tour-drinks .food_block {
+        width: 50%;
+    }
+    .tour-drinks .food_wr {
+        display: flex;
+    }
+}
+
+@media (max-width: 767px) {
+    .tour-drinks .food_block .title {
+        font-size: 16px;
+    }
+    .tour-drinks p em {
+        line-height: 20px;
+    }
+    .form_tour .pr, .form_tour .pr span:not(.currency) {
+        font-size: 16px;
+    }        
+}
+</style>`
+
 let style = `
-    <style>
+    <style class="js-style">
     .destination_page_wr .destination_content .popup_form_tour {
         position: absolute;
         /* top: -240px; */
@@ -29,85 +133,6 @@ let style = `
     .destination_page_wr .tour-intro .plugin-col {
         display: block;
         background: none;
-    }
-    .tour-drinks {
-        padding: 42px 0 34px!important;
-    }
-    .tour-drinks::before {
-        content: none;
-    }
-    .tour-drinks .food_block {
-        margin-top: 25px;
-    }
-    .tour-drinks .food_block .title, .tour-options-drinks .title-drinks {
-        font-family: 'JosefinSans-Bold', sans-serif;
-        font-style: normal;
-        font-weight: 700;
-        font-size: 18px;
-        line-height: 24px;
-        text-transform: uppercase;
-        color: #212529;
-        margin-bottom: 12px;
-        display: flex;
-        align-items: center;
-    }
-    .tour-options-drinks .title-drinks span {
-        font-family: 'JosefinSans-Regular', sans-serif;
-        font-style: normal;
-        font-weight: 400;
-        font-size: 18px;
-        line-height: 24px;
-        display: block;
-        color: #212529;
-        text-transform: none;
-        margin-top: 2px;
-    }
-    .tour-drinks .food_block .title svg, .tour-options-drinks .title-drinks svg {
-        margin-right: 10px;
-    }
-    .tour-options-drinks .title {
-        font-family: 'JosefinSans-Regular', sans-serif;
-        font-style: normal;
-        font-weight: 400;
-        font-size: 14px;
-        line-height: 22px;
-    }
-    .tour-options-drinks .mini_ul {
-        padding: 4px 0 16px;
-    }
-    .tour-options-drinks .note {
-        font-family: 'JosefinSans-light', sans-serif;
-        font-style: normal;
-        font-weight: 300;
-        font-size: 14px;
-        line-height: 22px;
-        margin-top: 10px;
-        color: #8A9E95;
-    }
-    .tour-drinks .food_block li, .mini_ul li {
-        font-size: 16px;
-        line-height: 28px;
-        color: #212529;
-        padding-left: 14px;
-        position: relative;
-    }
-    .tour-drinks .food_block li::before, .mini_ul li::before {
-        content: "•"; 
-        position: absolute;
-        top: 0;
-        left: 0;
-        color: #C39958;}
-    .tour-drinks p {
-        font-family: 'JosefinSans-Light', sans-serif;
-        font-weight: 300;
-        font-size: 14px;
-        line-height: 14px;
-        color: #8A9E95;
-    }
-    .tour-drinks p em {
-        font-style: normal;
-        font-size: 14px;
-        line-height: 14px;
     }
     /*form*/
     .form_tour {
@@ -299,15 +324,6 @@ let style = `
         align-items: center;
         justify-content: space-between;
     }
-    .d-flex {
-        display: flex;
-    }
-    .items-center {
-        align-items: center;
-    }
-    .d-none {
-        display: none;
-    }
     @media screen and (max-width: 1400px) {
         .destination_page_wr .destination_content .popup_form_tour {
             background: #fff;
@@ -315,14 +331,6 @@ let style = `
             max-width: 360px!important;
             margin-right: 0px!important;
             z-index: 20;
-        }
-    }
-    @media (min-width: 768px) {
-        .tour-drinks .food_block {
-            width: 50%;
-        }
-        .tour-drinks .food_wr {
-            display: flex;
         }
     }
     @media (min-width: 1200px) {
@@ -335,9 +343,6 @@ let style = `
             text-transform: uppercase;
             color: #C39958;
             margin-bottom: 20px;
-        }
-        .d-xl-block {
-            display: block;
         }
         .form_tour {
             margin: 50px -15px 0;
@@ -392,12 +397,6 @@ let style = `
     }
 
     @media (max-width: 767px) {
-        .tour-drinks .food_block .title {
-            font-size: 16px;
-        }
-        .tour-drinks p em {
-            line-height: 20px;
-        }
         .form_tour .pr, .form_tour .pr span:not(.currency) {
             font-size: 16px;
         }        
@@ -474,6 +473,8 @@ let intervalIframe = setInterval(() => {
 let intervalFood = setInterval(() => {
     if (document.querySelector('.tour-drinks .food_block .title') != null) {
         clearInterval(intervalFood)
+        document.querySelector('.js-style') == null ? document.body.insertAdjacentHTML('afterbegin', styleFood) : ''
+
         //tour drinks
         if (document.querySelector('.tour-drinks') != null) {
             if (document.querySelector('.destination-info') != null) {
@@ -521,6 +522,8 @@ let intervalDrinks= setInterval(() => {
 
     if (document.querySelector('.mini_ul') != null && document.querySelector('.what_we_do') != null) {
         clearInterval(intervalDrinks)
+        document.querySelector('.js-style') == null ? document.body.insertAdjacentHTML('afterbegin', styleFood) : ''
+
         document.querySelector('.what_we_do').insertAdjacentHTML('beforebegin',`
         <div class="tour-options-drinks">
             <div class="title-drinks">
@@ -687,7 +690,7 @@ let interval = setInterval(() => {
     //     <li>
     //         <a href="${url}">
     //             <object class="flex-center-between">
-    //                 <div class="d-flex items-center">
+    //                 <div class="d-flex align-items-center">
     //                     <p class="title">${title}</p>
     //                     <p class="rating">
     //                         <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -696,7 +699,7 @@ let interval = setInterval(() => {
     //                         ${rating}
     //                     </p>
     //                 </div>
-    //                 <div class="d-flex items-center">
+    //                 <div class="d-flex align-items-center">
     //                     <div class="pr">${price}</div>
     //                     <svg width="7" height="12" viewBox="0 0 7 12" fill="none" xmlns="http://www.w3.org/2000/svg">
     //                         <path d="M6.82136 6.45361C7.05955 6.20619 7.05955 5.79381 6.82136 5.54639L1.68715 0.185568C1.42249 -0.0618554 1.02552 -0.0618554 0.787334 0.185568L0.178638 0.81787C-0.0595468 1.06529 -0.0595468 1.47766 0.178639 1.75258L4.25425 5.98625L0.178639 10.2474C-0.0595464 10.5223 -0.0595464 10.9347 0.178639 11.1821L0.787335 11.8144C1.02552 12.0619 1.4225 12.0619 1.68715 11.8144L6.82136 6.45361Z" fill="#C39958"/>
