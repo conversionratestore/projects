@@ -112,6 +112,10 @@ let styleFood = `
 
 let style = `
     <style class="js-style">
+    .popup_form_tour {
+        position: sticky;
+        top: 140px;
+    }
     .destination_page_wr .destination_content .popup_form_tour {
         position: absolute;
         /* top: -240px; */
