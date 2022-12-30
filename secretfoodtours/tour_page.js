@@ -1,7 +1,7 @@
 let dir = 'https://conversionratestore.github.io/projects/secretfoodtours/img/';
 
 let styleFood = ` 
-<style> 
+<style class="js-style"> 
 .buy-2 {
     padding: 15px 40px;
     display: block;
@@ -111,7 +111,7 @@ let styleFood = `
 </style>`
 
 let style = `
-    <style class="js-style">
+    <style>
     .popup_form_tour {
         position: sticky;
         top: 140px;
