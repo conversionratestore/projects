@@ -492,6 +492,12 @@ let intervalFood = setInterval(() => {
                 </svg>`)
             }
         })
+        window.addEventListener('scroll', () => {
+            if (isScrolledIntoView(document.querySelector('.tour-drinks .food_block .title')) == true && viewed1 == false) {
+                viewed1 = true;
+                pushDataLayer('Visibility What youll taste text block');
+            } 
+        })
     }
 })
 let intervalDrinks= setInterval(() => {
@@ -528,6 +534,15 @@ let intervalDrinks= setInterval(() => {
             document.querySelector('.mini_ul').after(document.querySelector('.what_we_do .title'));
         }
 
+        window.addEventListener('scroll', () => {
+            if (isScrolledIntoView(document.querySelector('.tour-options-drinks')) == true && viewed2 == false) {
+                viewed2 = true;
+                pushDataLayer( 'Visibility Optional drinks text block');
+            }
+        })
+        document.querySelectorAll('.udp').forEach(item => {
+            item.addEventListener('click', () => pushDataLayer('Click on upgrade drink package link'))
+        })
     }
 
 
@@ -625,24 +640,13 @@ let interval = setInterval(() => {
                 }
             })
         })
+  
         window.addEventListener('scroll', () => {
             if (isScrolledIntoView(document.querySelector('.form_tour')) == true && viewed3 == false) {
                 viewed3 = true;
                 pushDataLayer('Pop up Book your Tour','Visibility');
             }
-            if (isScrolledIntoView(document.querySelector('.food_block .title')) == true && viewed1 == false) {
-                viewed1 = true;
-                pushDataLayer('Visibility What youll taste text block');
-            }   
-            if (isScrolledIntoView(document.querySelector('.tour-options-drinks')) == true && viewed2 == false) {
-                viewed2 = true;
-                pushDataLayer( 'Visibility Optional drinks text block');
-            }
         })
-        document.querySelectorAll('.udp').forEach(item => {
-            item.addEventListener('click', () => pushDataLayer('Click on upgrade drink package link'))
-        })
-  
         pushDataLayer('loaded')
     }
 
