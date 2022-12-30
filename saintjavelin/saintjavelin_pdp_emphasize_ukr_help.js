@@ -459,7 +459,7 @@ ul.main_popup_list .already_donat_list li+li {
 }
 
 .steps:after {
-  content: "31 Dec";
+  content: "25 Jan";
   right: 9px;
   position: absolute;
   bottom: -5px;
@@ -904,7 +904,7 @@ display: none;
     let banerHelp = /*html */ `
       <div class="baner_help">
         <ul>
-          <li data-tolltip data-title="Our goal is to fundraise $1 million by Dec 31st to buy winter clothing and generators for 3,000 Ukrainian soldiers">
+          <li data-tolltip data-title="Our goal is to fundraise $1 million by Jan 25th to buy winter clothing and generators for 3,000 Ukrainian soldiers">
             <h2 >Shop to help Ukraine keep warm this winter
               <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path
@@ -951,10 +951,10 @@ display: none;
       <div class="content_popup">
           <img src="${imgFolderUrl}ukrainian_flag.png" alt="ukrainian flag" />
           <h2>All profits go towards helping Ukraine resist the invasion</h2>
-          <p>Our new campaign aims to fundraise $1 million by Dec 31st to buy winter clothing and generators for 3,000 Ukrainian soldiers</p>
+          <p>Our new campaign aims to fundraise $1 million by Jan 25th to buy winter clothing and generators for 3,000 Ukrainian soldiers</p>
           <div>
             <p class="goal_text">
-            Fundraising goal by the end of December 2022: <strong>$1 million</strong>
+            Fundraising goal by January 25th: <strong>$1 million</strong>
             </p>
           </div>
           <div class="bar"></div>
