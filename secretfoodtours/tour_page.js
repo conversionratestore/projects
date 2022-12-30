@@ -444,10 +444,21 @@ let viewed1 = false;
 let viewed2 = false;
 let viewed3 = false;
 
+let intervalIframe = setInterval(() => {
+    //add iframe in pop-up
+    if (document.querySelector('.plugin iframe') != null && document.querySelector('.suggested-tours') != null) {
+        clearInterval(intervalIframe)
+        document.querySelector('.suggested-tours').after(document.querySelector('#plugin'))
+        if (window.location.href.includes('paris/')) {
+            document.querySelector('#plugin').insertAdjacentHTML('beforebegin',`<style> #plugin iframe { min-height: 1230px!important;}</style>`)
+        }
+    }
+})
 let interval = setInterval(() => { 
 
     if (document.querySelector('.form_tour') == null && document.querySelector('.tour-drinks .food_block .title') != null) {
         clearInterval(interval)
+
         let formHTML = `
         <div class="popup_form_tour">
             <div class="form_tour">
@@ -497,14 +508,6 @@ let interval = setInterval(() => {
         document.body.insertAdjacentHTML('afterbegin', style);
         document.querySelector('#plugin').insertAdjacentHTML('afterend', formHTML);
     
-        //add iframe in pop-up
-        if (document.querySelector('.plugin iframe') != null) {
-            document.querySelector('.suggested-tours').after(document.querySelector('#plugin'))
-            if (window.location.href.includes('paris/')) {
-                document.querySelector('#plugin').insertAdjacentHTML('beforebegin',`<style> #plugin iframe { min-height: 1230px!important;}</style>`)
-            }
-        }
-
         //set price tour
         if (document.querySelector('.price') != null) {
             let price = document.querySelector('.price');
