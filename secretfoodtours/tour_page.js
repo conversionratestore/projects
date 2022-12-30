@@ -612,7 +612,7 @@ let interval = setInterval(() => {
                     <h3>Learn more about other available tours</h3>
                     <ul></ul>
                 </div>
-                <img src="${dir}logos.svg" alt="logos">
+                <img class="mx-auto d-block" src="${dir}logos.svg" alt="logos">
             </div>
         </div>`;
     
