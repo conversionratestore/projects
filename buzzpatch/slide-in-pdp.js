@@ -172,52 +172,7 @@ let styles = `
     pointer-events: none;
 }
 </style>`
-
-let packages = [
-    {
-        "id": "39307595546668",
-        "price": (getpack4SalePrice.split(',').join('') / 4).toFixed(2),
-        "packs": "4 Packs",
-        "regularPrice": getpack4RegularPrice,
-        "salePrice": getpack4SalePrice,
-        "savePrice": getpack4SavePrice,
-        "offPrice": getpack4OffPrice,
-        "bestDeal": true,
-        "image": "pack4.png"
-    },
-    {
-        "id": "39307593187372",
-        "price": (getpack3SalePrice.split(',').join('') / 3).toFixed(2),
-        "packs": "3 Packs",
-        "regularPrice": getpack3RegularPrice,
-        "salePrice": getpack3SalePrice,
-        "savePrice": getpack3SavePrice,
-        "offPrice": getpack3OffPrice,
-        "topSeller": true,
-        "image": "pack3.svg"
-    },
-    {
-        "id": "39307589058604",
-        "price": (getpack2SalePrice.split(',').join('') / 2).toFixed(2),
-        "packs": "2 Packs",
-        "regularPrice": getpack2RegularPrice,
-        "salePrice": getpack2SalePrice,
-        "savePrice": getpack2SavePrice,
-        "offPrice": getpack2OffPrice,
-        "image": "pack2.svg"
-    },
-    {
-        "id": "34767547138092",
-        "price": getpack1SalePrice,
-        "packs": "1 Pack",
-        "regularPrice": getpack1RegularPrice,
-        "salePrice": getpack1SalePrice,
-        "savePrice": getpack1SavePrice,
-        "offPrice": getpack1OffPrice,
-        "image": "pack1.svg"
-    }
-]
-        
+    
 //push dataLayer
 function pushDataLayer(action) {
     window.dataLayer = window.dataLayer || [];
@@ -231,6 +186,51 @@ function pushDataLayer(action) {
 let run = setInterval(() => {
     if (document.querySelector('.popup_slide-in') == null && document.querySelector('.js-packs label > span') != null && document.querySelector('.js-heading .btn-primary') != null) {
 
+        let packages = [
+            {
+                "id": "39307595546668",
+                "price": (getpack4SalePrice.split(',').join('') / 4).toFixed(2),
+                "packs": "4 Packs",
+                "regularPrice": getpack4RegularPrice,
+                "salePrice": getpack4SalePrice,
+                "savePrice": getpack4SavePrice,
+                "offPrice": getpack4OffPrice,
+                "bestDeal": true,
+                "image": "pack4.png"
+            },
+            {
+                "id": "39307593187372",
+                "price": (getpack3SalePrice.split(',').join('') / 3).toFixed(2),
+                "packs": "3 Packs",
+                "regularPrice": getpack3RegularPrice,
+                "salePrice": getpack3SalePrice,
+                "savePrice": getpack3SavePrice,
+                "offPrice": getpack3OffPrice,
+                "topSeller": true,
+                "image": "pack3.svg"
+            },
+            {
+                "id": "39307589058604",
+                "price": (getpack2SalePrice.split(',').join('') / 2).toFixed(2),
+                "packs": "2 Packs",
+                "regularPrice": getpack2RegularPrice,
+                "salePrice": getpack2SalePrice,
+                "savePrice": getpack2SavePrice,
+                "offPrice": getpack2OffPrice,
+                "image": "pack2.svg"
+            },
+            {
+                "id": "34767547138092",
+                "price": getpack1SalePrice,
+                "packs": "1 Pack",
+                "regularPrice": getpack1RegularPrice,
+                "salePrice": getpack1SalePrice,
+                "savePrice": getpack1SavePrice,
+                "offPrice": getpack1OffPrice,
+                "image": "pack1.svg"
+            }
+        ]
+    
         let currency = document.querySelector('.js-packs label > span').innerHTML.charAt(0);
 
         let popupHTML = `
@@ -271,7 +271,7 @@ let run = setInterval(() => {
                 console.log(e.target)
                 if (e.target.checked) {
                     document.querySelector('.packages_total .pr').innerHTML = packages[i].salePrice;
-                    document.querySelector('.packages_total .ps').innerHTML = packages[i].offPrice;
+                    document.querySelector('.packages_total .ps').innerHTML = packages[i].offPrice + '%';
                     document.querySelector('.packages_regular .rp').innerHTML = packages[i].regularPrice;
                     document.querySelector('.packages_regular .rs').innerHTML = packages[i].savePrice;
                     document.querySelector('.popup_slide-in .btn').href = `/cart/${packages[i].id}:1`;
@@ -295,7 +295,7 @@ let run = setInterval(() => {
         document.querySelector('.js-heading .btn-primary').href = '#popup_slide-in';
         
         document.addEventListener('click', (e) => {
-            if (((e.target.closest('.navbar') || e.target.closest('header')) && e.target.classList.contains('btn-primary')) || e.target.classList.contains('btn-close') || e.target.classList.contains('popup_slide-in')) {
+            if (((e.target.closest('.navbar') || e.target.closest('header') || e.target.closest('#included')) && e.target.classList.contains('btn-primary')) || e.target.classList.contains('btn-close') || e.target.classList.contains('popup_slide-in')) {
                 e.preventDefault();
                 document.querySelector('.popup_slide-in').classList.toggle('active');
 
