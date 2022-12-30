@@ -192,7 +192,7 @@ function pushDataLayer(action) {
 }
 
 let run = setInterval(() => {
-    if (document.querySelector('.popup_slide-in') == null && document.querySelector('.js-packs label > span') != null && document.querySelector('.js-heading .btn-primary') != null) {
+    if (document.querySelector('.popup_slide-in') == null && document.querySelector('.js-packs label > span') != null && document.querySelector('.js-heading .btn-primary') != null && document.querySelector('#getNow > img.js-mobile.days.lazyautosizes.lazyloaded') != null) {
 
         let packages = [
             {
