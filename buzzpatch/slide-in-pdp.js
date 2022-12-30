@@ -293,6 +293,9 @@ let run = setInterval(() => {
 
         document.querySelector('.navbar .btn-primary').href = '#popup_slide-in';
         document.querySelector('.js-heading .btn-primary').href = '#popup_slide-in';
+        document.querySelectorAll('#included .btn-primary').forEach(item => {
+            item.href = '#popup_slide-in';
+        })
         
         document.addEventListener('click', (e) => {
             if (((e.target.closest('.navbar') || e.target.closest('header') || e.target.closest('#included')) && e.target.classList.contains('btn-primary')) || e.target.classList.contains('btn-close') || e.target.classList.contains('popup_slide-in')) {
