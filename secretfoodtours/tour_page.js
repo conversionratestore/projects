@@ -15,12 +15,9 @@
     #plugin .heading, #plugin .price, #plugin .text-red, #plugin .text-pt, #plugin .text-pt-disclaimer, #plugin .buy {
         display: none;
     }
-    .destination_page_wr .tour-intro .plugin_right .plugin {
-        margin: 0;
-    }
     #plugin {
         position: initial!important;
-        margin: 0 auto;
+        margin: 0 auto!important;
         background-color: transparent;
         padding: 0!important;
     }
