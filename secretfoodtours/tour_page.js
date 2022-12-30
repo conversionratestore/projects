@@ -412,7 +412,7 @@ let style = `
 let styleBook = `
 <style>
     body {
-        padding: 0 24px;
+        padding: 0 24px 60px;
     }
     .main_container, .col-md-5, .col-md-12, .country_tours, footer, .help_center {
         display: none;
@@ -474,6 +474,9 @@ let styleBook = `
         }
         .btn-gold {
             padding: 11px;
+        }
+        .p_100 {
+            padding: 0;
         }
     }
 </style>`
