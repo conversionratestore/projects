@@ -637,8 +637,8 @@ let interval = setInterval(() => {
             let currency = price.innerText.trim().charAt(0);
             document.querySelector('.form_tour .pr').innerHTML = `<span class="currency">${currency}</span>${price.innerHTML.replace(currency,'')}`
         } else {
-            if (document.querySelector('[href="/private-bookings"]') != null) {
-                document.querySelector('.form_tour .pr').innerHTML = `<a href="/private-bookings">${document.querySelector('[href="/private-bookings"]').innerHTML}</a>`;
+            if (document.querySelector('#plugin [href="/private-bookings"]') != null) {
+                document.querySelector('.form_tour .pr').innerHTML = `<a href="/private-bookings">${document.querySelector('#plugin [href="/private-bookings"]').innerHTML}</a>`;
             }
         }
 
