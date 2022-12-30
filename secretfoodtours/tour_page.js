@@ -122,7 +122,7 @@ let style = `
         width: 100%;
         z-index: 20;
     }
-    #plugin .heading, #plugin .price, #plugin .text-red, #plugin .text-pt, #plugin .text-pt-disclaimer, #plugin .buy {
+    #plugin .heading, #plugin .price, #plugin .text-red, #plugin .text-pt, #plugin .text-pt-disclaimer, #plugin a {
         display: none;
     }
     #plugin {
@@ -637,7 +637,9 @@ let interval = setInterval(() => {
             let currency = price.innerText.trim().charAt(0);
             document.querySelector('.form_tour .pr').innerHTML = `<span class="currency">${currency}</span>${price.innerHTML.replace(currency,'')}`
         } else {
-            document.querySelector('.form_tour .pr').innerHTML = `<a href="/private-bookings">Currently we're just accepting private tours at the moment. Click Here!</a>`;
+            if (document.querySelector('[href="/private-bookings"]') != null) {
+                document.querySelector('.form_tour .pr').innerHTML = `<a href="/private-bookings">${document.querySelector('[href="/private-bookings"]').innerHTML}</a>`;
+            }
         }
 
         //rearrange the image logo
