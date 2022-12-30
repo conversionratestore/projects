@@ -409,6 +409,45 @@ let style = `
     }
     </style>`;
 
+let styleBook = `
+<style>
+    .main_container, .col-md-5, .col-md-12, .country_tours, .right_help, .left_help, footer {
+        display: none;
+    }
+    h1 {
+        font-size: 24px;
+        line-height: 24px;
+        text-transform: uppercase;
+        text-align: center;
+        color: #212529;
+        padding: 20px 0;
+        margin: 0 0 4px 0;
+    }
+    .col-md-4 {
+        flex: 0 0 100%!important;
+        max-width: 100%!important;
+        display: flex;
+        justify-content: center;
+    }
+    .btn-gold {
+        border: 3px solid;
+        font-family: 'JosefinSans-Bold', sans-serif;
+        font-style: normal;
+        font-weight: 700;
+        font-size: 16px;
+        line-height: 16px;
+        text-transform: uppercase;
+        font-weight: 700;
+        padding: 15px 27px 11px;
+        width: 100%;
+        color: #C39958;
+        border-color: #C39958;
+        width: fit-content;
+    }
+    .btn-gold svg {
+        margin: -4px 10px 0 0;
+    }
+</style>`
 function detectMob() {
     const toMatch = [
         /Android/i,
@@ -436,19 +475,6 @@ function pushDataLayer(action, label = '') {
         'eventAction': action,
         'eventLabel': label
     });
-}
-
-let countTimer = 0;
-
-let timer = (popup) => {
-    let intervalTimer = setInterval(() => {
-        if (popup.classList.contains('active')) {
-            countTimer += 1;
-        } else {
-            clearInterval(intervalTimer)
-            pushDataLayer('pop up Calendar', countTimer + ' second')
-        }
-    }, 1000) 
 }
 
 //comes into view
@@ -576,6 +602,40 @@ let intervalDrinks= setInterval(() => {
 
 
 })
+let intervalBook = setInterval(() => {
+    if (window.location.href.includes('/book')) {
+        clearInterval(intervalBook)
+
+        document.body.insertAdjacentHTML('afterbegin', `
+        <header class="header">
+            <div class="container d-flex align-items-center juctify-content-between">
+                <a href="/" class="">
+                    <img src="/img/logo.png?v3" srcset="/img/logo.png?v3 1x, /img/logo@2x.png?v3 2x" alt="Secret Food Tours" width="251" height="auto">
+                </a>
+                <a href="${document.referrer}" class="d-flex align-items-center btn-gold">
+                    <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M8.0379 12.6438C8.35006 12.3459 8.31884 11.8992 8.0379 11.6014L4.26087 8.1764H13.2508C13.6566 8.1764 14 7.87858 14 7.46163V6.50859C14 6.12142 13.6566 5.79381 13.2508 5.79381H4.26087L8.0379 2.39863C8.31884 2.1008 8.35006 1.65407 8.0379 1.35624L7.35117 0.701031C7.07023 0.43299 6.57079 0.43299 6.28986 0.701031L0.234114 6.50859C-0.0780379 6.77663 -0.0780379 7.22337 0.234114 7.49141L6.28986 13.299C6.57079 13.567 7.03902 13.567 7.35117 13.299L8.0379 12.6438Z" fill="#C39958"/>
+                    </svg>
+                    <span>Back to tour details</span>
+                </a>
+            </div>
+        </header>`)
+        document.body.insertAdjacentHTML('afterbegin', styleBook)
+
+        pushDataLayer( 'Visibility pop up Calendar')
+
+        //timer
+        let countTimer = 0;
+        let intervalTimer = setInterval(() => {
+            countTimer += 1;
+        }, 1000) 
+
+        document.querySelector('.btn-gold').addEventListener('click', (e) => {
+            pushDataLayer('Close pop up Calendar')
+            pushDataLayer('pop up Calendar', countTimer + ' second')
+        })
+    }
+})
 let interval = setInterval(() => { 
 
     if (document.querySelector('.form_tour') == null && document.querySelector('#plugin') != null) {
@@ -647,23 +707,10 @@ let interval = setInterval(() => {
 
         //hide/show popup
         document.addEventListener('click', (e) => {
-            if (e.target.classList.contains('btn-green') || e.target.classList.contains('btn-close') || e.target.classList.contains('popup_booking-flow')) {
-                document.querySelector('.popup_booking-flow').classList.toggle('active')
-            }
             if (e.target.classList.contains('btn-green')) {
                 pushDataLayer('Pop up Book your Tour','Check availability button')
-                if (window.matchMedia("(max-width: 1199px)").matches) {
-                    window.location.pathname.split('/')[1] + '/book'
-                } else {
-                    pushDataLayer( 'Visibility pop up Calendar')
-                    countTimer = 0;
-                    timer(document.querySelector('.popup_booking-flow'))
-                }
+                window.location.href =  'https://www.secretfoodtours.com/' + window.location.pathname.split('/')[1] + '/book'
             } 
-            if (e.target.classList.contains('btn-close') || e.target.classList.contains('popup_booking-flow')) {
-                pushDataLayer('Close pop up Calendar')
-                
-            }
         })
 
         //events
