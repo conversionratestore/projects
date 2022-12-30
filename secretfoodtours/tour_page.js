@@ -15,6 +15,9 @@
     #plugin .heading, #plugin .price, #plugin .text-red, #plugin .text-pt, #plugin .text-pt-disclaimer, #plugin .buy {
         display: none;
     }
+    .destination_page_wr .tour-intro .plugin_right .plugin {
+        margin: 0;
+    }
     #plugin {
         position: initial!important;
         margin: 0 auto;
@@ -23,7 +26,7 @@
     }
     #plugin iframe {
         height: auto!important;
-        min-height: 660px!important;
+        min-height: 820px!important;
         margin: 0!important;
     }
     .destination_page_wr .tour-intro .plugin-col {
@@ -74,6 +77,15 @@
     }
     .tour-options-drinks .mini_ul {
         padding: 4px 0 16px;
+    }
+    .tour-options-drinks .note {
+        font-family: 'JosefinSans-light', sans-serif;
+        font-style: normal;
+        font-weight: 300;
+        font-size: 14px;
+        line-height: 22px;
+        margin-top: 10px;
+        color: #8A9E95;
     }
     .tour-drinks .food_block li, .mini_ul li {
         font-size: 16px;
