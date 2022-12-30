@@ -2,6 +2,9 @@ let dir = 'https://conversionratestore.github.io/projects/buzzpatch/img/'
 
 let styles = `
 <style>
+body.fix-scroll {
+    overflow: hidden;
+}
 .popup_slide-in {
     position: fixed;
     left: 0;
@@ -290,20 +293,20 @@ let run = setInterval(() => {
                 e.target.classList.add('active');
             })
         }
-
+        
         document.querySelector('.navbar .btn-primary').href = '#popup_slide-in';
         document.querySelector('.js-heading .btn-primary').href = '#popup_slide-in';
-        document.querySelectorAll('#included .btn-primary').forEach(item => {
-            item.href = '#popup_slide-in';
-        })
+        document.querySelector('.js-mobile .btn-primary').href = '#popup_slide-in';
+        document.querySelector('#included .btn-primary').href = '#popup_slide-in';
         
         document.addEventListener('click', (e) => {
-            if (((e.target.closest('.navbar') || e.target.closest('header') || e.target.closest('#included')) && e.target.classList.contains('btn-primary')) || e.target.classList.contains('btn-close') || e.target.classList.contains('popup_slide-in')) {
+            if (((e.target.closest('.navbar') || e.target.closest('header') || e.target.closest('#included')  || e.target.closest('.js-mobile')) && e.target.classList.contains('btn-primary')) || e.target.classList.contains('btn-close') || e.target.classList.contains('popup_slide-in')) {
                 e.preventDefault();
                 document.querySelector('.popup_slide-in').classList.toggle('active');
+                document.body.classList.toggle('fix-scroll')
 
                 if (document.querySelector('.popup_slide-in').classList.contains('active')) {
-                    pushDataLayer('Visibility slide-in PDP')
+                    pushDataLayer('Visibility slide-in PDP');
                 } else {
                     pushDataLayer('Close slide-in PDP')
                 }
@@ -312,7 +315,12 @@ let run = setInterval(() => {
                 pushDataLayer('Click on Proceed to checkout button on slide-in PDP')
             }
         })  
-        
+        const appHeight = () => {
+            document.querySelector('.popup_slide-in').style.height = window.innerHeight + 'px';
+        }
+        window.addEventListener('resize', appHeight)
+        appHeight()
+
         pushDataLayer('loaded')
 
         function setPack(currency, image, price, packs, regularPrice, salePrice, offPrice , bestDeal = false, topSeller = false) {
