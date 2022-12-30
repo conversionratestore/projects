@@ -183,7 +183,7 @@ let packages = [
         "savePrice": getpack4SavePrice,
         "offPrice": getpack4OffPrice,
         "bestDeal": true,
-        "image": "pack4.svg"
+        "image": "pack4.png"
     },
     {
         "id": "39307593187372",

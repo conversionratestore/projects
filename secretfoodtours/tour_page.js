@@ -7,7 +7,6 @@ let style = `
         /* top: -240px; */
         top: -160px;
         right: -1px;
-        background: #fff;
         padding: 40px 75px;
         max-width: 470px;
         width: 100%;
