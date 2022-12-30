@@ -477,7 +477,8 @@ let intervalFood = setInterval(() => {
             if (document.querySelector('.destination_descr') != null) {
                 document.querySelector('.destination_descr').after(document.querySelector('.tour-drinks'));
                 document.querySelector('.tour-drinks').classList.add('container');
-                document.querySelector('.tour-drinks .food_wr').classList.add('col-md-12', 'col-xl-8', 'px-0');
+                document.querySelector('.tour-drinks > div').classList.add('col-md-12', 'col-xl-8');
+                document.querySelector('.tour-drinks > p').classList.add('col-md-12', 'col-xl-8');
                 document.querySelector('.tour-drinks').style = 'padding-top: 42px';
             }
         }
