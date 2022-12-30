@@ -422,7 +422,7 @@ let styleBook = `
         display: none;
     }
     .about-cont {
-        padding: 0!important;
+        padding: 0 0 60px 0!important;
     }
     .header-book {
         padding: 30px 0;
@@ -664,7 +664,7 @@ let intervalBook = setInterval(() => {
         </div>`)
         document.body.insertAdjacentHTML('afterbegin', styleBook)
 
-        document.body.insertAdjacentHTML('beforeend', `<img class="mx-auto d-block" src="${dir}logos.svg" alt="logos">`)
+        document.querySelector('.about-cont').insertAdjacentHTML('beforeend', `<img class="mx-auto d-block" src="${dir}logos.svg" alt="logos">`)
 
         pushDataLayer( 'Visibility pop up Calendar')
 
