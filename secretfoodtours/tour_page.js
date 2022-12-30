@@ -1,5 +1,4 @@
-
-    let style = `
+let style = `
     <style>
     .destination_page_wr .destination_content .popup_form_tour {
         position: absolute;
@@ -17,7 +16,7 @@
     }
     #plugin {
         position: initial!important;
-        margin: 0 auto!important;
+        margin: 0 auto 10px!important;
         background-color: transparent;
         padding: 0!important;
     }
@@ -386,6 +385,9 @@
         .destination_page_wr .tour_fixed_btn {
             bottom: 120px!important;
         }
+        #tour_f_btn {
+            display: none;
+        }
     }
 
     @media (max-width: 767px) {
@@ -395,6 +397,9 @@
         .tour-drinks p em {
             line-height: 20px;
         }
+        .form_tour .pr, .form_tour .pr span:not(.currency) {
+            font-size: 16px;
+        }        
     }
     </style>`;
 
@@ -605,6 +610,7 @@ let interval = setInterval(() => {
                     <h3>Learn more about other available tours</h3>
                     <ul></ul>
                 </div>
+                <img src="${dir}logos.svg" alt="logos">
             </div>
         </div>`;
     
@@ -631,9 +637,13 @@ let interval = setInterval(() => {
             }
             if (e.target.classList.contains('btn-green')) {
                 pushDataLayer('Pop up Book your Tour','Check availability button')
-                pushDataLayer( 'Visibility pop up Calendar')
-                countTimer = 0;
-                timer(document.querySelector('.popup_booking-flow'))
+                if (window.matchMedia("(max-width: 1199px)").matches) {
+                    window.location.pathname.split('/')[1] + '/book'
+                } else {
+                    pushDataLayer( 'Visibility pop up Calendar')
+                    countTimer = 0;
+                    timer(document.querySelector('.popup_booking-flow'))
+                }
             } 
             if (e.target.classList.contains('btn-close') || e.target.classList.contains('popup_booking-flow')) {
                 pushDataLayer('Close pop up Calendar')
