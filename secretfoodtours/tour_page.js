@@ -414,13 +414,16 @@ let styleBook = `
     .main_container, .col-md-5, .col-md-12, .country_tours, .right_help, .left_help, footer {
         display: none;
     }
+    .header-book {
+        padding: 30px 0;
+    }
     h1 {
         font-size: 24px;
         line-height: 24px;
         text-transform: uppercase;
         text-align: center;
         color: #212529;
-        padding: 20px 0;
+        padding: 20px 0!important;
         margin: 0 0 4px 0;
     }
     .col-md-4 {
@@ -446,6 +449,9 @@ let styleBook = `
     }
     .btn-gold svg {
         margin: -4px 10px 0 0;
+    }
+    iframe {
+        margin-bottom: 16px;
     }
 </style>`
 function detectMob() {
@@ -607,7 +613,7 @@ let intervalBook = setInterval(() => {
         clearInterval(intervalBook)
 
         document.body.insertAdjacentHTML('afterbegin', `
-        <header class="header">
+        <div class="header-book">
             <div class="container d-flex align-items-center juctify-content-between">
                 <a href="/" class="">
                     <img src="/img/logo.png?v3" srcset="/img/logo.png?v3 1x, /img/logo@2x.png?v3 2x" alt="Secret Food Tours" width="251" height="auto">
@@ -619,8 +625,10 @@ let intervalBook = setInterval(() => {
                     <span>Back to tour details</span>
                 </a>
             </div>
-        </header>`)
+        </div>`)
         document.body.insertAdjacentHTML('afterbegin', styleBook)
+
+        document.body.insertAdjacentHTML('beforeend', `<img class="mx-auto d-block" src="${dir}logos.svg" alt="logos">`)
 
         pushDataLayer( 'Visibility pop up Calendar')
 
