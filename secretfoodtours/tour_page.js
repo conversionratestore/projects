@@ -8,7 +8,7 @@ let style = `
         top: -160px;
         right: -1px;
         padding: 40px 75px;
-        max-width: 470px;
+        max-width: 500px;
         width: 100%;
         z-index: 20;
     }
@@ -566,7 +566,7 @@ let intervalDrinks= setInterval(() => {
 })
 let interval = setInterval(() => { 
 
-    if (document.querySelector('.form_tour') == null && document.querySelector('.tour-drinks .food_block .title') != null) {
+    if (document.querySelector('.form_tour') == null && document.querySelector('#plugin') != null) {
         clearInterval(interval)
 
         let formHTML = `
