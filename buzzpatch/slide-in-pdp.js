@@ -303,7 +303,10 @@ let run = setInterval(() => {
         document.querySelector('.js-heading .btn-primary').href = '#popup_slide-in';
         document.querySelector('.js-mobile .btn-primary').href = '#popup_slide-in';
         document.querySelector('#included .btn-primary').href = '#popup_slide-in';
-        
+
+        document.querySelectorAll('#getNow > img.js-mobile.days.lazyautosizes.lazyloaded').srcset = '';
+        document.querySelectorAll('#getNow > img.js-mobile.days.lazyautosizes.lazyloaded').src = dir + 'icons.svg';
+
         document.addEventListener('click', (e) => {
             if (((e.target.closest('.navbar') || e.target.closest('header') || e.target.closest('#included')  || e.target.closest('.js-mobile')) && e.target.classList.contains('btn-primary')) || e.target.classList.contains('btn-close') || e.target.classList.contains('popup_slide-in')) {
                 e.preventDefault();
