@@ -517,7 +517,7 @@ let intervalFood = setInterval(() => {
             }
         })
         window.addEventListener('scroll', () => {
-            if (isScrolledIntoView(document.querySelector('.tour-drinks .food_block .title')) == true && viewed1 == false) {
+            if (isScrolledIntoView(document.querySelector('.tour-drinks')) == true && viewed1 == false) {
                 viewed1 = true;
                 pushDataLayer('Visibility What youll taste text block');
             } 
