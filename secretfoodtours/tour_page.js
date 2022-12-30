@@ -60,6 +60,7 @@
         display: block;
         color: #212529;
         text-transform: none;
+        margin-top: 2px;
     }
     .tour-drinks .food_block .title svg, .tour-options-drinks .title-drinks svg {
         margin-right: 10px;
