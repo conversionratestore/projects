@@ -3,7 +3,12 @@ let dir = 'https://conversionratestore.github.io/projects/buzzpatch/img/'
 let styles = `
 <style>
 body.fix-scroll {
+    height: 100%;
     overflow: hidden;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
 }
 .popup_slide-in {
     position: fixed;
