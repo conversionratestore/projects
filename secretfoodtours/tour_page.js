@@ -491,8 +491,16 @@ let intervalFood = setInterval(() => {
                     </div>
                 </div>
             </div>`)
-            document.querySelector('.tour-options-drinks > div').after(document.querySelector('.mini_ul'));
-            document.querySelector('.mini_ul').after(document.querySelector('.what_we_do .title'));
+
+            if (document.querySelector('.what_we_do .note')) {
+                document.querySelector('.tour-options-drinks > div').after(document.querySelector('.what_we_do .note'));
+            }
+            if (document.querySelector('.mini_ul') != null) {
+                document.querySelector('.tour-options-drinks > div').after(document.querySelector('.mini_ul'));
+            }
+            if (document.querySelector('.what_we_do .title') != null) {
+                document.querySelector('.mini_ul').after(document.querySelector('.what_we_do .title'));
+            }
 
         }
     
