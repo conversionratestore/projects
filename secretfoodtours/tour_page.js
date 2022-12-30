@@ -737,7 +737,7 @@ let interval = setInterval(() => {
     
         //set price tour
         if (document.querySelector('.price') != null) {
-            let price = document.querySelector('.price');
+            let price = document.querySelectorAll('.price')[document.querySelectorAll('.price').length - 1];
             let currency = price.innerText.trim().charAt(0);
             document.querySelector('.form_tour .pr').innerHTML = `<span class="currency">${currency}</span>${price.innerHTML.replace(currency,'')}`
         } else {
