@@ -2,6 +2,12 @@ let dir = 'https://conversionratestore.github.io/projects/secretfoodtours/img/';
 
 let styleFood = ` 
 <style> 
+.buy-2 {
+    padding: 15px 40px;
+    display: block;
+    width: fit-content;
+    height: fit-content;
+}
 .tour-drinks {
     padding: 42px 0 34px!important;
 }
@@ -524,6 +530,9 @@ let intervalDrinks= setInterval(() => {
         clearInterval(intervalDrinks)
         document.querySelector('.js-style') == null ? document.body.insertAdjacentHTML('afterbegin', styleFood) : ''
 
+        if (document.querySelector('.tour-drinks') == null) {
+            document.querySelector('.tour-options-drinks').style = 'padding-top: 40px;'
+        }
         document.querySelector('.what_we_do').insertAdjacentHTML('beforebegin',`
         <div class="tour-options-drinks">
             <div class="title-drinks">
