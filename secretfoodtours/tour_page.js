@@ -411,6 +411,9 @@ let style = `
 
 let styleBook = `
 <style>
+    body {
+        padding: 0 24px;
+    }
     .main_container, .col-md-5, .col-md-12, .country_tours, .right_help, .left_help, footer {
         display: none;
     }
@@ -452,6 +455,26 @@ let styleBook = `
     }
     iframe {
         margin-bottom: 16px;
+    }
+    @media (max-width: 767px) {
+        .header-book {
+            padding: 16px 0;
+        }
+        h1 {
+            font-size: 18px;
+            line-height: 18px;
+            padding: 14px 0!important;
+            margin: 0 0 2px 0;
+        }
+        .header-book .logo {
+            width: 150px;
+        }
+        .btn-gold svg {
+            margin: 0;
+        }
+        .btn-gold {
+            padding: 11px;
+        }
     }
 </style>`
 function detectMob() {
@@ -614,15 +637,15 @@ let intervalBook = setInterval(() => {
 
         document.body.insertAdjacentHTML('afterbegin', `
         <div class="header-book">
-            <div class="container d-flex align-items-center juctify-content-between">
-                <a href="/" class="">
+            <div class="container d-flex align-items-center justify-content-between">
+                <a href="/" class="logo">
                     <img src="/img/logo.png?v3" srcset="/img/logo.png?v3 1x, /img/logo@2x.png?v3 2x" alt="Secret Food Tours" width="251" height="auto">
                 </a>
                 <a href="${document.referrer}" class="d-flex align-items-center btn-gold">
                     <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M8.0379 12.6438C8.35006 12.3459 8.31884 11.8992 8.0379 11.6014L4.26087 8.1764H13.2508C13.6566 8.1764 14 7.87858 14 7.46163V6.50859C14 6.12142 13.6566 5.79381 13.2508 5.79381H4.26087L8.0379 2.39863C8.31884 2.1008 8.35006 1.65407 8.0379 1.35624L7.35117 0.701031C7.07023 0.43299 6.57079 0.43299 6.28986 0.701031L0.234114 6.50859C-0.0780379 6.77663 -0.0780379 7.22337 0.234114 7.49141L6.28986 13.299C6.57079 13.567 7.03902 13.567 7.35117 13.299L8.0379 12.6438Z" fill="#C39958"/>
                     </svg>
-                    <span>Back to tour details</span>
+                    <span class="d-md-block d-none">Back to tour details</span>
                 </a>
             </div>
         </div>`)
