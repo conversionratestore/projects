@@ -39,7 +39,7 @@
     .tour-drinks .food_block {
         margin-top: 25px;
     }
-    .tour-drinks .food_block .title {
+    .tour-drinks .food_block .title, .tour-options-drinks .title-drinks {
         font-family: 'JosefinSans-Bold', sans-serif;
         font-style: normal;
         font-weight: 700;
@@ -51,17 +51,37 @@
         display: flex;
         align-items: center;
     }
-    .tour-drinks .food_block .title svg {
+    .tour-options-drinks .title-drinks span {
+        font-family: 'JosefinSans-Regular', sans-serif;
+        font-style: normal;
+        font-weight: 400;
+        font-size: 18px;
+        line-height: 24px;
+        display: block;
+        color: #212529;
+        text-transform: none;
+    }
+    .tour-drinks .food_block .title svg, .tour-options-drinks .title-drinks svg {
         margin-right: 10px;
     }
-    .tour-drinks .food_block li {
+    .tour-options-drinks .title {
+        font-family: 'JosefinSans-Regular', sans-serif;
+        font-style: normal;
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 22px;
+    }
+    .tour-options-drinks .mini_ul {
+        padding: 4px 0 16px;
+    }
+    .tour-drinks .food_block li, .mini_ul li {
         font-size: 16px;
         line-height: 28px;
         color: #212529;
         padding-left: 14px;
         position: relative;
     }
-    .tour-drinks .food_block li::before {
+    .tour-drinks .food_block li::before, .mini_ul li::before {
         content: "•"; 
         position: absolute;
         top: 0;
@@ -507,6 +527,30 @@ let interval = setInterval(() => {
             document.querySelector('.tour-drinks').classList.add('container');
             document.querySelector('.tour-drinks').style = 'padding-top: 42px';
         }
+        if (document.querySelector('.mini_ul') != null) {
+            document.querySelector('.what_we_do').insertAdjacentHTML('beforebegin',`
+            <div class="tour-options-drinks">
+                <div class="title-drinks">
+                    <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M30 13.6456C30 12.9852 29.4646 12.4497 28.8041 12.4497H27.2437C27.2326 12.4022 27.2153 12.3562 27.1925 12.313L25.3018 8.89618L24.8235 2.99072C24.7997 2.69409 24.5515 2.46587 24.254 2.4668H21.3326C21.035 2.46587 20.7869 2.69409 20.7631 2.99072L20.2847 8.8791L18.8952 11.4019L17.5057 8.8791L17.0273 2.99072C17.0036 2.69409 16.7554 2.46587 16.4579 2.4668H13.5364C13.2389 2.46587 12.9907 2.69409 12.967 2.99072L12.4943 8.8791L11.1048 11.4019L9.71526 8.8791L9.2369 2.99072C9.21313 2.69409 8.96498 2.46587 8.66743 2.4668H5.74601C5.44846 2.46587 5.20031 2.69409 5.17654 2.99072L4.69818 8.8791L2.80752 12.296C2.78467 12.3391 2.76744 12.3851 2.75626 12.4326H1.1959C0.53545 12.4326 0 12.9681 0 13.6285V19.3689C0.00491173 19.5916 0.0719675 19.8086 0.193622 19.9953C0.0760251 20.1831 0.0128844 20.4 0.0113895 20.6217V26.3449C0.0144505 26.9988 0.54207 27.5289 1.1959 27.5351H28.8041C29.4646 27.5351 30 26.9997 30 26.3392V20.6217C29.9991 20.4 29.9359 20.1829 29.8178 19.9953C29.9359 19.8076 29.9991 19.5906 30 19.3689V13.6456ZM21.8337 3.61714H23.7073L23.844 5.32557H21.7198L21.8337 3.61714ZM21.3212 9.3119C21.3598 9.24164 21.383 9.16398 21.3895 9.08411L21.623 6.46452H23.9579L24.1686 9.0955C24.175 9.17537 24.1983 9.25303 24.2369 9.32329L25.9453 12.4497H19.6241L21.3212 9.3119ZM14.0661 3.61714H15.9396L16.0763 5.32557H13.9237L14.0661 3.61714ZM13.5535 9.3119C13.5921 9.24164 13.6154 9.16398 13.6219 9.08411L13.8326 6.46452H16.1674L16.3781 9.0955C16.3846 9.17537 16.4079 9.25303 16.4465 9.32329L18.1549 12.4497H11.828L13.5535 9.3119ZM6.26993 3.61714H8.16629L8.30296 5.32557H6.13326L6.26993 3.61714ZM5.7574 9.3119C5.79598 9.24164 5.81926 9.16398 5.82574 9.08411L6.03645 6.46452H8.3713L8.582 9.0955C8.58848 9.17537 8.61176 9.25303 8.65034 9.32329L10.3588 12.4497H4.03759L5.7574 9.3119ZM28.861 26.3449C28.861 26.3764 28.8356 26.4019 28.8041 26.4019H1.1959C1.16444 26.4019 1.13895 26.3764 1.13895 26.3449V20.6217C1.13895 20.5902 1.16444 20.5648 1.1959 20.5648H28.8041C28.8356 20.5648 28.861 20.5902 28.861 20.6217V26.3449ZM28.861 19.3689C28.861 19.4003 28.8356 19.4258 28.8041 19.4258H1.1959C1.16444 19.4258 1.13895 19.4003 1.13895 19.3689V13.6456C1.13895 13.6142 1.16444 13.5887 1.1959 13.5887H28.8041C28.8356 13.5887 28.861 13.6142 28.861 13.6456V19.3689Z" fill="#C39958"/>
+                    <path d="M2.7223 15.3645C3.04625 15.3645 3.30886 15.1019 3.30886 14.778C3.30886 14.454 3.04625 14.1914 2.7223 14.1914C2.39835 14.1914 2.13574 14.454 2.13574 14.778C2.13574 15.1019 2.39835 15.3645 2.7223 15.3645Z" fill="#C39958"/>
+                    <path d="M2.7223 18.8157C3.04625 18.8157 3.30886 18.5531 3.30886 18.2291C3.30886 17.9052 3.04625 17.6426 2.7223 17.6426C2.39835 17.6426 2.13574 17.9052 2.13574 18.2291C2.13574 18.5531 2.39835 18.8157 2.7223 18.8157Z" fill="#C39958"/>
+                    <path d="M2.7223 22.345C3.04625 22.345 3.30886 22.0824 3.30886 21.7584C3.30886 21.4345 3.04625 21.1719 2.7223 21.1719C2.39835 21.1719 2.13574 21.4345 2.13574 21.7584C2.13574 22.0824 2.39835 22.345 2.7223 22.345Z" fill="#C39958"/>
+                    <path d="M2.7223 25.7981C3.04625 25.7981 3.30886 25.5355 3.30886 25.2116C3.30886 24.8876 3.04625 24.625 2.7223 24.625C2.39835 24.625 2.13574 24.8876 2.13574 25.2116C2.13574 25.5355 2.39835 25.7981 2.7223 25.7981Z" fill="#C39958"/>
+                    <path d="M27.278 15.3645C27.6019 15.3645 27.8645 15.1019 27.8645 14.778C27.8645 14.454 27.6019 14.1914 27.278 14.1914C26.954 14.1914 26.6914 14.454 26.6914 14.778C26.6914 15.1019 26.954 15.3645 27.278 15.3645Z" fill="#C39958"/>
+                    <path d="M27.278 18.8157C27.6019 18.8157 27.8645 18.5531 27.8645 18.2291C27.8645 17.9052 27.6019 17.6426 27.278 17.6426C26.954 17.6426 26.6914 17.9052 26.6914 18.2291C26.6914 18.5531 26.954 18.8157 27.278 18.8157Z" fill="#C39958"/>
+                    <path d="M27.278 22.345C27.6019 22.345 27.8645 22.0824 27.8645 21.7584C27.8645 21.4345 27.6019 21.1719 27.278 21.1719C26.954 21.1719 26.6914 21.4345 26.6914 21.7584C26.6914 22.0824 26.954 22.345 27.278 22.345Z" fill="#C39958"/>
+                    <path d="M27.278 25.7981C27.6019 25.7981 27.8645 25.5355 27.8645 25.2116C27.8645 24.8876 27.6019 24.625 27.278 24.625C26.954 24.625 26.6914 24.8876 26.6914 25.2116C26.6914 25.5355 26.954 25.7981 27.278 25.7981Z" fill="#C39958"/>
+                    </svg>
+                    <div>Optional Drinks Package Upgrade
+                        <span>Get additional drinks - you can add upgrade at checkout</span>
+                    </div>
+                </div>
+            </div>`)
+            document.querySelector('.tour-options-drinks > div').after(document.querySelector('.mini_ul'));
+            document.querySelector('.mini_ul').after(document.querySelector('.what_we_do .title'));
+
+        }
     
         let drinks = document.querySelectorAll('.tour-drinks .food_block .title');
         drinks.forEach(item => {
@@ -561,17 +605,14 @@ let interval = setInterval(() => {
                 viewed3 = true;
                 pushDataLayer('Pop up Book your Tour','Visibility');
             }
-            if (isScrolledIntoView(document.querySelector('.food_block .title')) == true) {
-                document.querySelectorAll('.food_block .title').forEach(item => {
-                    if (item.innerText == 'THE FOOD' && viewed1 == false) {
-                        viewed1 = true;
-                        pushDataLayer('Visibility What youll taste text block');
-                    } else if (item.innerText == 'DRINKS' && viewed2 == false) {
-                        viewed2 = true;
-                        pushDataLayer( 'Visibility Optional drinks text block');
-                    }
-                })
+            if (isScrolledIntoView(document.querySelector('.food_block .title')) == true && viewed1 == false) {
+                viewed1 = true;
+                pushDataLayer('Visibility What youll taste text block');
             }   
+            if (isScrolledIntoView(document.querySelector('.tour-options-drinks')) == true && viewed2 == false) {
+                viewed2 = true;
+                pushDataLayer( 'Visibility Optional drinks text block');
+            }
         })
         document.querySelectorAll('.udp').forEach(item => {
             item.addEventListener('click', () => pushDataLayer('Click on upgrade drink package link'))
