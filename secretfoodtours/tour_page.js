@@ -1,3 +1,5 @@
+let dir = 'https://conversionratestore.github.io/projects/secretfoodtours/img/';
+
 let style = `
     <style>
     .destination_page_wr .destination_content .popup_form_tour {
