@@ -530,9 +530,6 @@ let intervalDrinks= setInterval(() => {
         clearInterval(intervalDrinks)
         document.querySelector('.js-style') == null ? document.body.insertAdjacentHTML('afterbegin', styleFood) : ''
 
-        if (document.querySelector('.tour-drinks') == null) {
-            document.querySelector('.tour-options-drinks').style = 'padding-top: 40px;'
-        }
         document.querySelector('.what_we_do').insertAdjacentHTML('beforebegin',`
         <div class="tour-options-drinks">
             <div class="title-drinks">
@@ -553,6 +550,9 @@ let intervalDrinks= setInterval(() => {
             </div>
         </div>`)
 
+        if (document.querySelector('.tour-drinks') == null) {
+            document.querySelector('.tour-options-drinks').style = 'padding-top: 40px;'
+        }
         if (document.querySelector('.what_we_do .note')) {
             document.querySelector('.tour-options-drinks > div').after(document.querySelector('.what_we_do .note'));
         }
