@@ -417,6 +417,9 @@ let styleBook = `
     .main_container, .col-md-5, .col-md-12, .country_tours, footer, .help_center {
         display: none;
     }
+    .about-cont {
+        padding: 0!important;
+    }
     .header-book {
         padding: 30px 0;
     }
@@ -476,7 +479,7 @@ let styleBook = `
             padding: 11px;
         }
         .p_100 {
-            padding: 0;
+            padding: 0!important;
         }
     }
 </style>`
