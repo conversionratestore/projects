@@ -3,12 +3,7 @@ let dir = 'https://conversionratestore.github.io/projects/buzzpatch/img/'
 let styles = `
 <style>
 body.fix-scroll {
-    height: 100%;
     overflow: hidden;
-    width: 100%;
-    position: fixed;
-    top: 0;
-    left: 0;
 }
 .popup_slide-in {
     position: fixed;
@@ -195,10 +190,12 @@ function pushDataLayer(action, label = '') {
 let run = setInterval(function () {
     if (document.querySelector('.js-heading .btn-primary') != null && document.querySelector('#getNow > img.js-mobile.days') != null) {
         clearInterval(run)
+        
+
         let packages = [
             {
                 "id": "39307595546668",
-                "price": (getpack4SalePrice.split(',').join('') / 4).toFixed(2),
+                "price": getpack4SalePrice.includes('.') ? (getpack4SalePrice.replace(',', '') / 4).toFixed(2) : (Math.floor(getpack4SalePrice.replace(',', '') / 4) / 100).toFixed(2),
                 "packs": "4 Packs",
                 "regularPrice": getpack4RegularPrice,
                 "salePrice": getpack4SalePrice,
@@ -209,7 +206,7 @@ let run = setInterval(function () {
             },
             {
                 "id": "39307593187372",
-                "price": (getpack3SalePrice.split(',').join('') / 3).toFixed(2),
+                "price": getpack3SalePrice.includes('.') ? (getpack3SalePrice.replace(',', '') / 3).toFixed(2) : (Math.floor(getpack3SalePrice.replace(',', '') / 3) / 100).toFixed(2),
                 "packs": "3 Packs",
                 "regularPrice": getpack3RegularPrice,
                 "salePrice": getpack3SalePrice,
@@ -220,7 +217,7 @@ let run = setInterval(function () {
             },
             {
                 "id": "39307589058604",
-                "price": (getpack2SalePrice.split(',').join('') / 2).toFixed(2),
+                "price": getpack2SalePrice.includes('.') ? (getpack2SalePrice.replace(',', '') / 2).toFixed(2) : (Math.floor(getpack2SalePrice.replace(',', '') / 2) / 100).toFixed(2),
                 "packs": "2 Packs",
                 "regularPrice": getpack2RegularPrice,
                 "salePrice": getpack2SalePrice,
@@ -230,7 +227,7 @@ let run = setInterval(function () {
             },
             {
                 "id": "34767547138092",
-                "price": getpack1SalePrice,
+                "price": getpack1SalePrice.includes('.') ? getpack1SalePrice : getpack1SalePrice.replace(',', '.'),
                 "packs": "1 Pack",
                 "regularPrice": getpack1RegularPrice,
                 "salePrice": getpack1SalePrice,
@@ -304,8 +301,8 @@ let run = setInterval(function () {
         document.querySelector('.js-mobile .btn-primary').href = '#popup_slide-in';
         document.querySelector('#included .btn-primary').href = '#popup_slide-in';
 
-        document.querySelector('#getNow > img.js-mobile.days').srcset = '';
-        document.querySelector('#getNow > img.js-mobile.days').src = dir + 'icons.svg';
+        document.querySelector('#getNow > img.js-mobile.days').dataset.srcset = dir + 'icons.png';
+        document.querySelector('#getNow > img.js-mobile.days').srcset = dir + 'icons.png';
 
         document.addEventListener('click', (e) => {
             if (((e.target.closest('.navbar') || e.target.closest('header') || e.target.closest('#included')  || e.target.closest('.js-mobile')) && e.target.classList.contains('btn-primary')) || e.target.classList.contains('btn-close') || e.target.classList.contains('popup_slide-in')) {
