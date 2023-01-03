@@ -191,9 +191,9 @@ function pushDataLayer(action) {
     });
 }
 
-let run = setInterval(() => {
+let run = setInterval(function () {
     if (document.querySelector('.popup_slide-in') == null && document.querySelector('.js-packs label > span') != null && document.querySelector('.js-heading .btn-primary') != null && document.querySelector('#getNow > img.js-mobile.days.lazyautosizes.lazyloaded') != null && document.readyState == 'complete') {
-
+        clearInterval(run)
         let packages = [
             {
                 "id": "39307595546668",
@@ -204,7 +204,7 @@ let run = setInterval(() => {
                 "savePrice": getpack4SavePrice,
                 "offPrice": getpack4OffPrice,
                 "bestDeal": true,
-                "image": "pack4.png"
+                "image": "pack4.svg"
             },
             {
                 "id": "39307593187372",
@@ -357,7 +357,7 @@ let run = setInterval(() => {
             </label>`
         }
     }
-})
+}, 50)
 
 
 //clarify
