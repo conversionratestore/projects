@@ -192,7 +192,7 @@ function pushDataLayer(action) {
 }
 
 let run = setInterval(function () {
-    if (document.querySelector('.popup_slide-in') == null && document.querySelector('.js-packs label > span') != null && document.querySelector('.js-heading .btn-primary') != null && document.querySelector('#getNow > img.js-mobile.days.lazyautosizes.lazyloaded') != null && document.readyState == 'complete') {
+    if (document.querySelector('.js-heading .btn-primary') != null && document.querySelector('#getNow > img.js-mobile.days') != null) {
         clearInterval(run)
         let packages = [
             {
@@ -304,8 +304,8 @@ let run = setInterval(function () {
         document.querySelector('.js-mobile .btn-primary').href = '#popup_slide-in';
         document.querySelector('#included .btn-primary').href = '#popup_slide-in';
 
-        document.querySelector('#getNow > img.js-mobile.days.lazyautosizes.lazyloaded').srcset = '';
-        document.querySelector('#getNow > img.js-mobile.days.lazyautosizes.lazyloaded').src = dir + 'icons.svg';
+        document.querySelector('#getNow > img.js-mobile.days').srcset = '';
+        document.querySelector('#getNow > img.js-mobile.days').src = dir + 'icons.svg';
 
         document.addEventListener('click', (e) => {
             if (((e.target.closest('.navbar') || e.target.closest('header') || e.target.closest('#included')  || e.target.closest('.js-mobile')) && e.target.classList.contains('btn-primary')) || e.target.classList.contains('btn-close') || e.target.classList.contains('popup_slide-in')) {
