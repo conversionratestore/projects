@@ -182,12 +182,13 @@ body.fix-scroll {
 </style>`
     
 //push dataLayer
-function pushDataLayer(action) {
+function pushDataLayer(action, label = '') {
     window.dataLayer = window.dataLayer || [];
     dataLayer.push({
         'event': 'event-to-ga',
         'eventCategory': 'Exp: magicpatch_slide_in_pdp',
-        'eventAction': action
+        'eventAction': action,
+        'eventLabel': label
     });
 }
 
@@ -276,14 +277,13 @@ let run = setInterval(function () {
         for (let i = 0; i < packages.length; i++) {
             document.querySelector('.packages').insertAdjacentHTML('beforeend', setPack(currency, packages[i].image, packages[i].price, packages[i].packs, packages[i].regularPrice, packages[i].salePrice, packages[i].offPrice, packages[i].bestDeal, packages[i].topSeller))
             document.querySelectorAll('[name="packages-radio"]')[i].addEventListener('click', (e) => {
-                console.log(e.target)
                 if (e.target.checked) {
                     document.querySelector('.packages_total .pr').innerHTML = packages[i].salePrice;
                     document.querySelector('.packages_total .ps').innerHTML = packages[i].offPrice + '%';
                     document.querySelector('.packages_regular .rp').innerHTML = packages[i].regularPrice;
                     document.querySelector('.packages_regular .rs').innerHTML = packages[i].savePrice;
                     document.querySelector('.popup_slide-in .btn').href = `/cart/${packages[i].id}:1`;
-                    pushDataLayer('Click on product on slide-in PDP')
+                    pushDataLayer('Click on product on slide-in PDP', e.target.dataset.packs)
                 }
                 if (!e.target.classList.contains('active')) {
                     document.querySelector('.active[name="packages-radio"]').classList.remove('active');
@@ -334,7 +334,7 @@ let run = setInterval(function () {
         function setPack(currency, image, price, packs, regularPrice, salePrice, offPrice , bestDeal = false, topSeller = false) {
             return `
             <label class="d-flex justify-content-between">
-                <input type="radio" name="packages-radio" ${topSeller == true ? 'checked class="active"': ''}>
+                <input type="radio" name="packages-radio" ${topSeller == true ? 'checked class="active"': ''} data-packs="${packs}">
                 <span class="packages_check"></span>
                 <div class="d-flex align-items-center pointer-none">
                     <img src="${dir + image}" alt="image">
