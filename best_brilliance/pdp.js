@@ -258,6 +258,7 @@ let startFunk = setInterval(() => {
                 line-height: 45px;
                 color: #313131;
                 margin-top: 2px;
+                margin-bottom: 2px;
             }
             /*more_inform_price */
             .more_inform_price{
@@ -314,6 +315,20 @@ let startFunk = setInterval(() => {
                 line-height: 21px;
                 color: #313131;
                 margin: 0 5px;
+            }
+            /*discount_block */
+            .discount_block{
+                background: #F0F1A6;
+                border-radius: 4px;
+                padding: 4px 10px;
+                max-width: max-content;
+            }
+            .discount_block p{
+                font-family: 'Nunito Sans';
+                font-weight: 600;
+                font-size: 12px;
+                line-height: 22px;
+                color: #101010;
             }
             /*select_free_ring_sizer */
             .select_free_ring_sizer{
@@ -493,7 +508,8 @@ let startFunk = setInterval(() => {
             .pdp-description,
             .sale-msg-box-light,
             .settingsmsg,
-            .affirm-as-low-as{
+            .affirm-as-low-as,
+            .under-price{
                 display: none;
             }
             /*certified_popup */
@@ -730,6 +746,9 @@ let startFunk = setInterval(() => {
                 .answer_questions_block ul li{
                     font-size: 13px;
                 }
+                .discount_block p{
+                    font-size: 11px;
+                }
             }
             @media (max-width: 320px) {
                 .ProductMeta__Title.Heading.u-h2{
@@ -763,6 +782,9 @@ let startFunk = setInterval(() => {
                 }
                 .inform_wrap button{
                     font-size: 11px;
+                }
+                .discount_block p{
+                    font-size: 10px;
                 }
             }
             @media (max-width: 280px) {
@@ -801,6 +823,9 @@ let startFunk = setInterval(() => {
                 }
                 .answer_questions_block ul li {
                     font-size: 9px;
+                }
+                .discount_block p{
+                    font-size: 8px;
                 }
             }
         </style>
@@ -847,7 +872,7 @@ let startFunk = setInterval(() => {
                             <div class="img_wrap">
                                 <img src="${dir}chat.svg" alt="chat">
                             </div>
-                            <a class="new_btn_chat" href="#">Live chat 24/7</a>
+                            <a class="new_btn_chat open_chat" href="#">Live chat 24/7</a>
                         </li>
                     </ul>
                 </div>
@@ -874,7 +899,7 @@ let startFunk = setInterval(() => {
             </div>
         `
 
-    let discont = /*html */ `
+    let discount = /*html */ `
         <div class="more_inform_price">
             <div class="price_includes_block">
                 <img src="${dir}diamond.svg" alt="diamond" />
@@ -890,6 +915,9 @@ let startFunk = setInterval(() => {
                 />
                 </svg>
             </div>
+        </div>
+        <div class="discount_block">
+            <p>Extra 20% off will be automatically applied at checkout</p>
         </div>
     `
     let popUp = /*html */ `
@@ -925,7 +953,7 @@ let startFunk = setInterval(() => {
                             <img src="${dir}chat.svg" alt="chat" />
                         </div>
                         <span>Chat with a diamond expert</span>
-                        <a class="new_btn_chat" href="#">Contact us</a>
+                        <a class="" href="#">Contact us</a>
                     </li>
                     </ul>
                 </div>
@@ -939,15 +967,15 @@ let startFunk = setInterval(() => {
     document.querySelector("#section-text-with-image-product")?.insertAdjacentHTML("beforebegin", newBlock)
 
     document.querySelector(".Product__InfoWrapper form .ProductForm__Variants")?.after(document.querySelector(".ProductMeta__PriceList.Heading"))
-    document.querySelector(".ProductMeta__PriceList.Heading")?.insertAdjacentHTML("afterend", discont)
-    document.querySelector(".more_inform_price")?.after(document.querySelector(".under-price"))
+    document.querySelector(".ProductMeta__PriceList.Heading")?.insertAdjacentHTML("afterend", discount)
+    // document.querySelector(".more_inform_price")?.after(document.querySelector(".under-price"))
 
     if (document.querySelector(".sale-msg-box-light")) {
       document.querySelector("#cb-atc-btn")?.insertAdjacentHTML("beforebegin", presentBlock)
     }
 
     document
-      .querySelector(".Product__Info form")
+      .querySelector(".Product__Info form #cb-atc-btn")
       ?.insertAdjacentHTML(
         "afterend",
         `<button class="expert__new_btn" onclick="Calendly.initPopupWidget({url: 'https://calendly.com/support-bestbrilliance/15min?hide_landing_page_details=1&hide_gdpr_banner=1&text_color=242424&primary_color=492e6b'});return false;">Book appointment with expert</button>`
@@ -969,6 +997,11 @@ let startFunk = setInterval(() => {
         i.textContent = s[0]
         i.closest("a").insertAdjacentHTML("beforeend", `<p class="new_color_text">${s[1]}</p>`)
       }
+    })
+
+    document.querySelector(".new_btn_chat")?.addEventListener("click", (e) => {
+      e.preventDefault()
+      zE("messenger", "open")
     })
 
     if (window.innerWidth < 768) {
