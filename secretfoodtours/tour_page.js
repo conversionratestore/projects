@@ -1,13 +1,15 @@
 let dir = 'https://conversionratestore.github.io/projects/secretfoodtours/img/';
 
-let styleFood = ` 
+let styleFood = /* html */` 
 <style class="js-style"> 
 .buy-2 {
-    padding: 15px 40px;
+    /*padding: 15px 40px;
     display: block;
     width: fit-content;
-    height: fit-content;
+    height: fit-content; */
+    display: none;
 }
+
 .tour-drinks {
     padding: 42px 0 34px!important;
 }
@@ -54,9 +56,8 @@ let styleFood = `
     padding: 4px 0 16px;
 }
 .tour-options-drinks .note {
-    font-family: 'JosefinSans-light', sans-serif;
+    font-family: 'JosefinSans-Regular', sans-serif;
     font-style: normal;
-    font-weight: 300;
     font-size: 14px;
     line-height: 22px;
     margin-top: 10px;
@@ -76,7 +77,7 @@ let styleFood = `
     left: 0;
     color: #C39958;}
 .tour-drinks p {
-    font-family: 'JosefinSans-Light', sans-serif;
+    font-family: 'JosefinSans-Regular', sans-serif;
     font-weight: 300;
     font-size: 14px;
     line-height: 14px;
@@ -88,6 +89,16 @@ let styleFood = `
     line-height: 14px;
 }
 
+.destination_page_wr .similar {
+    margin-top: 80px;
+}
+
+.heading.no-mobile+div {
+    display: none;
+}
+.whatsapp-link {
+    bottom: 120px;
+}
 @media (min-width: 768px) {
     .tour-drinks .food_block {
         width: 50%;
@@ -98,6 +109,9 @@ let styleFood = `
 }
 
 @media (max-width: 767px) {
+    .tour-drinks {
+        padding: 42px 30px 34px !important;
+    }
     .tour-drinks .food_block .title {
         font-size: 16px;
     }
@@ -110,11 +124,12 @@ let styleFood = `
 }
 </style>`
 
-let style = `
+let style = /* html */`
     <style>
     .popup_form_tour {
         position: sticky;
         top: 140px;
+        z-index: 20;
     }
     .destination_page_wr .destination_content .popup_form_tour {
         position: absolute;
@@ -413,7 +428,7 @@ let style = `
     }
     </style>`;
 
-let styleBook = `
+let styleBook = /* html */`
 <style>
     body {
         padding: 0 24px 60px;
@@ -497,7 +512,7 @@ function detectMob() {
         /BlackBerry/i,
         /Windows Phone/i
     ];
-    
+
     return toMatch.some((toMatchItem) => {
         return navigator.userAgent.match(toMatchItem);
     });
@@ -506,7 +521,7 @@ function detectMob() {
 let device = detectMob() == true ? 'mobile' : 'desktop';
 
 function pushDataLayer(action, label = '') {
-    console.log(action + " : " + label )
+    console.log(action + " : " + label)
     window.dataLayer = window.dataLayer || [];
     dataLayer.push({
         'event': 'event-to-ga',
@@ -536,13 +551,13 @@ let intervalIframe = setInterval(() => {
         clearInterval(intervalIframe)
         document.querySelector('.suggested-tours').after(document.querySelector('#plugin'))
         if (window.location.href.includes('paris/')) {
-            document.querySelector('#plugin').insertAdjacentHTML('beforebegin',`<style> #plugin iframe { min-height: 1230px!important;}</style>`)
+            document.querySelector('#plugin').insertAdjacentHTML('beforebegin', `<style> #plugin iframe { min-height: 1230px!important;}</style>`)
         }
     }
 })
 
 let intervalFood = setInterval(() => {
-    if (document.querySelector('.tour-drinks .food_block .title') != null) {
+    if (document.querySelector('.tour-drinks .food_block .title') != null && document.querySelector('.tour-drinks > p')) {
         clearInterval(intervalFood)
         document.querySelector('.js-style') == null ? document.body.insertAdjacentHTML('afterbegin', styleFood) : ''
 
@@ -567,13 +582,13 @@ let intervalFood = setInterval(() => {
         drinks.forEach(item => {
             let title = item.innerText.trim().toUpperCase()
             if (title == 'THE FOOD') {
-                item.insertAdjacentHTML('afterbegin',`
+                item.insertAdjacentHTML('afterbegin', /* html */`
                 <svg width="30" height="20" viewBox="0 0 30 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M19.6532 6.07178C21.5636 7.00318 23.1371 8.46985 24.2028 10.3125C24.3761 10.6116 24.2736 10.9937 23.9751 11.1664C23.8762 11.2238 23.7688 11.2506 23.6627 11.2506C23.4466 11.2506 23.2366 11.139 23.1212 10.9388C22.1801 9.31219 20.7909 8.01762 19.1051 7.19485C18.795 7.0435 18.6662 6.66932 18.8177 6.3593C18.9678 6.04922 19.3407 5.9192 19.6532 6.07178Z" fill="#C39958"/>
                     <path d="M0.625019 15H1.90664C2.20887 8.63039 7.06078 3.44367 13.2841 2.62541C13.1831 2.39525 13.125 2.14207 13.125 1.875C13.125 0.841055 13.9661 0 15 0C16.0339 0 16.875 0.841055 16.875 1.875C16.875 2.14213 16.8169 2.39525 16.7159 2.62541C22.9392 3.44367 27.7911 8.63039 28.0934 15H29.375C29.7204 15 30 15.2796 30 15.625V16.2513C30 17.1918 29.7241 18.1031 29.2017 18.8868C28.7372 19.5838 27.9596 20 27.1216 20H2.87842C2.041 20 1.26281 19.5838 0.797752 18.8862C0.275858 18.1024 0 17.1918 0 16.2513V15.625C0 15.2796 0.279551 15 0.625019 15ZM15 1.25004C14.6552 1.25004 14.375 1.53018 14.375 1.87506C14.375 2.21988 14.6551 2.50008 15 2.50008C15.3449 2.50008 15.625 2.21994 15.625 1.87506C15.625 1.53018 15.3448 1.25004 15 1.25004ZM15 3.75C8.66309 3.75 3.4848 8.74336 3.15668 15H26.8433C26.5152 8.74336 21.3369 3.75 15 3.75ZM1.24998 16.2513C1.24998 16.944 1.45324 17.616 1.83838 18.1934C2.07094 18.5419 2.45971 18.7501 2.87842 18.7501H27.1216C27.5403 18.7501 27.9297 18.5419 28.1622 18.1928C28.5468 17.6154 28.75 16.944 28.75 16.2513V16.2501H1.24998V16.2513Z" fill="#C39958"/>
                 </svg>`)
             } else if (title == 'DRINKS') {
-                item.insertAdjacentHTML('afterbegin',`
+                item.insertAdjacentHTML('afterbegin', /* html */`
                 <svg width="30" height="30" viewBox="0 0 20 30" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M19.375 9.84375C19.375 6.09797 18.4698 0.622969 18.4309 0.391406C18.4126 0.282038 18.3562 0.182698 18.2715 0.111037C18.1869 0.0393749 18.0796 3.25538e-05 17.9688 0H2.03125C1.92036 3.25538e-05 1.81308 0.0393749 1.72846 0.111037C1.64384 0.182698 1.58736 0.282038 1.56906 0.391406C1.53016 0.622969 0.625 6.09797 0.625 9.84375C0.625 13.4419 1.48797 18.1542 8.59375 18.697V26.7188C8.59375 26.8431 8.54436 26.9623 8.45646 27.0502C8.36855 27.1381 8.24932 27.1875 8.125 27.1875H5.78125C5.15988 27.1882 4.56417 27.4354 4.12479 27.8748C3.68541 28.3142 3.43824 28.9099 3.4375 29.5312C3.4375 29.6556 3.48689 29.7748 3.57479 29.8627C3.6627 29.9506 3.78193 30 3.90625 30H16.0938C16.2181 30 16.3373 29.9506 16.4252 29.8627C16.5131 29.7748 16.5625 29.6556 16.5625 29.5312C16.5618 28.9099 16.3146 28.3142 15.8752 27.8748C15.4358 27.4354 14.8401 27.1882 14.2188 27.1875H11.875C11.7507 27.1875 11.6315 27.1381 11.5435 27.0502C11.4556 26.9623 11.4062 26.8431 11.4062 26.7188V18.697C18.512 18.1542 19.375 13.4419 19.375 9.84375ZM2.43109 0.9375H17.5689C17.7325 1.98422 18.1713 4.95 18.3545 7.67812C17.8513 7.25943 17.2171 7.03052 16.5625 7.03125C14.5094 7.03125 12.2111 8.63344 11.4062 9.24844C10.5855 8.63344 8.21875 7.03125 5.78125 7.03125C4.30635 6.99948 2.85538 7.40743 1.61312 8.20312C1.77016 5.34375 2.25672 2.05219 2.43109 0.9375ZM18.4375 9.84375C18.4375 10.341 18.24 10.8179 17.8883 11.1696C17.5367 11.5212 17.0598 11.7188 16.5625 11.7188C14.9556 11.7188 13.0469 10.4761 12.1769 9.84375C13.0469 9.21141 14.9556 7.96875 16.5625 7.96875C17.0598 7.96875 17.5367 8.16629 17.8883 8.51793C18.24 8.86956 18.4375 9.34647 18.4375 9.84375ZM1.5625 9.84375C1.5625 8.99438 3.44453 7.96875 5.78125 7.96875C8.38703 7.96875 11.0781 10.1817 11.1063 10.2037C11.2263 10.3041 14.0781 12.6562 16.5625 12.6562C17.1855 12.6562 17.7907 12.448 18.2819 12.0647C17.8047 15.067 16.0042 17.8125 10 17.8125C2.52156 17.8125 1.5625 13.5539 1.5625 9.84375ZM11.875 28.125H14.2188C14.5095 28.1254 14.793 28.2156 15.0304 28.3835C15.2679 28.5513 15.4475 28.7885 15.5448 29.0625H4.45516C4.55246 28.7885 4.73214 28.5513 4.96956 28.3835C5.20697 28.2156 5.4905 28.1254 5.78125 28.125H8.125C8.49796 28.125 8.85565 27.9768 9.11937 27.7131C9.38309 27.4494 9.53125 27.0917 9.53125 26.7188V18.7411C9.68641 18.7448 9.83922 18.75 10 18.75C10.1608 18.75 10.3136 18.7448 10.4688 18.7411V26.7188C10.4688 27.0917 10.6169 27.4494 10.8806 27.7131C11.1444 27.9768 11.502 28.125 11.875 28.125Z" fill="#C39958"/>
                     <path d="M3.51372 3.2757C3.53501 3.27852 3.55646 3.27993 3.57794 3.27992C3.69108 3.27972 3.80033 3.23862 3.88553 3.16418C3.97074 3.08975 4.02614 2.987 4.04153 2.87492L4.10716 2.40617C4.12469 2.28303 4.09258 2.15797 4.0179 2.0585C3.98093 2.00925 3.93461 1.96776 3.8816 1.93641C3.82859 1.90506 3.76992 1.88446 3.70895 1.87578C3.58581 1.85825 3.46075 1.89035 3.36129 1.96503C3.26182 2.03971 3.19609 2.15084 3.17856 2.27398L3.11294 2.74273C3.10388 2.80409 3.10709 2.86664 3.12238 2.92675C3.13767 2.98686 3.16474 3.04334 3.20202 3.09292C3.23929 3.14249 3.28604 3.18417 3.33955 3.21555C3.39305 3.24693 3.45225 3.26737 3.51372 3.2757Z" fill="#C39958"/>
@@ -588,17 +603,17 @@ let intervalFood = setInterval(() => {
             if (isScrolledIntoView(document.querySelector('.tour-drinks')) == true && viewed1 == false) {
                 viewed1 = true;
                 pushDataLayer('Visibility What youll taste text block');
-            } 
+            }
         })
     }
-})
-let intervalDrinks= setInterval(() => {
+}, 50)
+let intervalDrinks = setInterval(() => {
 
     if (document.querySelector('.mini_ul') != null && document.querySelector('.what_we_do') != null) {
         clearInterval(intervalDrinks)
         document.querySelector('.js-style') == null ? document.body.insertAdjacentHTML('afterbegin', styleFood) : ''
 
-        document.querySelector('.what_we_do').insertAdjacentHTML('beforebegin',`
+        document.querySelector('.what_we_do').insertAdjacentHTML('beforebegin',/* html */`
         <div class="tour-options-drinks">
             <div class="title-drinks">
                 <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -634,7 +649,7 @@ let intervalDrinks= setInterval(() => {
         window.addEventListener('scroll', () => {
             if (isScrolledIntoView(document.querySelector('.tour-options-drinks')) == true && viewed2 == false) {
                 viewed2 = true;
-                pushDataLayer( 'Visibility Optional drinks text block');
+                pushDataLayer('Visibility Optional drinks text block');
             }
         })
         document.querySelectorAll('.udp').forEach(item => {
@@ -648,7 +663,7 @@ let intervalBook = setInterval(() => {
     if (window.location.href.includes('/book')) {
         clearInterval(intervalBook)
 
-        document.body.insertAdjacentHTML('afterbegin', `
+        document.body.insertAdjacentHTML('afterbegin', /* html */`
         <div class="header-book">
             <div class="container d-flex align-items-center justify-content-between">
                 <a href="/" class="logo">
@@ -666,13 +681,13 @@ let intervalBook = setInterval(() => {
 
         document.querySelector('.about-cont').insertAdjacentHTML('beforeend', `<img class="mx-auto d-block" src="${dir}logos.svg" alt="logos">`)
 
-        pushDataLayer( 'Visibility pop up Calendar')
+        pushDataLayer('Visibility pop up Calendar')
 
         //timer
         let countTimer = 0;
         let intervalTimer = setInterval(() => {
             countTimer += 1;
-        }, 1000) 
+        }, 1000)
 
         document.querySelector('.btn-gold').addEventListener('click', (e) => {
             pushDataLayer('Close pop up Calendar')
@@ -680,12 +695,12 @@ let intervalBook = setInterval(() => {
         })
     }
 })
-let interval = setInterval(() => { 
+let interval = setInterval(() => {
 
     if (document.querySelector('.form_tour') == null && document.querySelector('#plugin') != null) {
         clearInterval(interval)
 
-        let formHTML = `
+        let formHTML = /* html */`
         <div class="popup_form_tour">
             <div class="form_tour">
                 <h3 class="d-xl-block d-none">Book your tour</h3>
@@ -708,7 +723,6 @@ let interval = setInterval(() => {
                 </div>
             </div>
         </div>
-        
         <div class="popup_booking-flow">
             <div class="container">
                 <button type="button" class="btn-close">
@@ -730,16 +744,16 @@ let interval = setInterval(() => {
                 <img class="mx-auto d-block" src="${dir}logos.svg" alt="logos">
             </div>
         </div>`;
-    
+
         //add style/html
         document.body.insertAdjacentHTML('afterbegin', style);
         document.querySelector('#plugin').insertAdjacentHTML('afterend', formHTML);
-    
+
         //set price tour
         if (document.querySelector('.price') != null) {
             let price = document.querySelectorAll('.price')[document.querySelectorAll('.price').length - 1];
             let currency = price.innerText.trim().charAt(0);
-            document.querySelector('.form_tour .pr').innerHTML = `<span class="currency">${currency}</span>${price.innerHTML.replace(currency,'')}`
+            document.querySelector('.form_tour .pr').innerHTML = `<span class="currency">${currency}</span>${price.innerHTML.replace(currency, '')}`
         } else {
             if (document.querySelector('#plugin [href="/private-bookings"]') != null) {
                 document.querySelector('.form_tour .pr').innerHTML = `<a href="/private-bookings">${document.querySelector('#plugin [href="/private-bookings"]').innerHTML}</a>`;
@@ -752,26 +766,26 @@ let interval = setInterval(() => {
         //hide/show popup
         document.addEventListener('click', (e) => {
             if (e.target.classList.contains('btn-green')) {
-                pushDataLayer('Pop up Book your Tour','Check availability button')
-                window.location.href =  'https://www.secretfoodtours.com/' + window.location.pathname.split('/')[1] + '/book'
-            } 
+                pushDataLayer('Pop up Book your Tour', 'Check availability button')
+                window.location.href = 'https://www.secretfoodtours.com/' + window.location.pathname.split('/')[1] + '/book'
+            }
         })
 
         //events
         document.querySelectorAll('.form_tour .btn-gold').forEach((item, index) => {
             item.addEventListener('click', (e) => {
                 if (index == 0) {
-                    pushDataLayer('pop up Book your Tour','Buy as a gift button')
+                    pushDataLayer('pop up Book your Tour', 'Buy as a gift button')
                 } else {
-                    pushDataLayer('pop up Book your Tour','Book a private tour button')
+                    pushDataLayer('pop up Book your Tour', 'Book a private tour button')
                 }
             })
         })
-  
+
         window.addEventListener('scroll', () => {
             if (isScrolledIntoView(document.querySelector('.form_tour')) == true && viewed3 == false) {
                 viewed3 = true;
-                pushDataLayer('Pop up Book your Tour','Visibility');
+                pushDataLayer('Pop up Book your Tour', 'Visibility');
             }
         })
         pushDataLayer('loaded')
@@ -816,7 +830,7 @@ let interval = setInterval(() => {
 
 //clarify
 let isClarify = setInterval(() => {
-    if(typeof clarity == 'function') {
+    if (typeof clarity == 'function') {
         clearInterval(isClarify)
         clarity("set", `booking_form_flow_${device}`, "variant_1");
     }
