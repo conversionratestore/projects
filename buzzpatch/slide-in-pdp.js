@@ -304,7 +304,7 @@ let run = setInterval(function () {
         document.querySelector('#getNow > img.js-mobile.days').dataset.srcset = dir + 'icons.png';
         document.querySelector('#getNow > img.js-mobile.days').srcset = dir + 'icons.png';
 
-        document.querySelectorAll('a[href="#getNow"]').forEach(item => {
+        document.querySelectorAll('a[href="#getNow"]:not(.get-it)').forEach(item => {
             item.addEventListener('click', function(e) {
                 e.preventDefault();
                 document.querySelector('.popup_slide-in').classList.toggle('active')
