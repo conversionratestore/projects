@@ -304,6 +304,18 @@ let run = setInterval(function () {
         document.querySelector('#getNow > img.js-mobile.days').dataset.srcset = dir + 'icons.png';
         document.querySelector('#getNow > img.js-mobile.days').srcset = dir + 'icons.png';
 
+        document.querySelectorAll('a[href="#getNow"]').forEach(item => {
+            item.addEventListener('click', function(e) {
+                e.preventDefault();
+                document.querySelector('.popup_slide-in').classList.toggle('active')
+                document.body.classList.toggle('fix-scroll')
+                if (document.querySelector('.popup_slide-in').classList.contains('active')) {
+                    pushDataLayer('Visibility slide-in PDP');
+                }
+                pushDataLayer('Click on get MagickPatch in "Problem" block')
+            })
+        })
+
         document.addEventListener('click', (e) => {
             if (((e.target.closest('.navbar') || e.target.closest('header') || e.target.closest('#included')  || e.target.closest('.js-mobile')) && e.target.classList.contains('btn-primary')) || e.target.classList.contains('btn-close') || e.target.classList.contains('popup_slide-in')) {
                 e.preventDefault();
