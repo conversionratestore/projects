@@ -129,11 +129,10 @@ const waitForDOM = setInterval(() => {
                     if (e.target.closest('li')) {
                         window.dataLayer = window.dataLayer || [];
                         dataLayer.push({
-                            'event': 'event-to-ga4',
-                            'event_name': 'exp_sticky_button_logic_rework',
-                            'event_desc': e.target.innerText,
-                            'event_type': 'menu item',
-                            'event_loc': 'header'
+                            'event': 'event-to-ga',
+                            'eventCategory': 'Exp: Sticky menu',
+                            'eventAction': 'Menu item',
+                            'eventLabel': e.target.innerText
                         });
 
                         document.querySelector('.active_link')?.classList.remove('active_link')
@@ -166,8 +165,9 @@ const waitForDOM = setInterval(() => {
 
 window.dataLayer = window.dataLayer || [];
 dataLayer.push({
-    'event': 'event-to-ga4',
-    'event_name': 'exp_sticky_button_logic_rework_loaded'
+    'event': 'event-to-ga',
+    'eventCategory': 'Exp: Sticky menu',
+    'eventAction': 'loaded'
 });
 
 const record = setInterval(() => {
