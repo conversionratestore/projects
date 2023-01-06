@@ -121,7 +121,12 @@ let styleFood = /* html */`
     }
     .form_tour .pr, .form_tour .pr span:not(.currency) {
         font-size: 16px;
-    }        
+    } 
+    .title-drinks+span {
+        font-family: 'JosefinSans-Regular', sans-serif;
+        font-size: 16px;
+        padding: 10px 0 16px !important;
+    }
 }
 </style>`
 
@@ -606,6 +611,11 @@ let intervalFood = setInterval(() => {
                 pushDataLayer('Visibility What youll taste text block');
             }
         })
+        if(document.querySelector('.title-drinks div span') && window.innerWidth < 768){
+            document.querySelector('.title-drinks div span').innerText = 'You can add upgrade at checkout'
+            document.querySelector('.title-drinks').after(document.querySelector('.title-drinks div span'))
+            
+        }
     }
 }, 50)
 let intervalDrinks = setInterval(() => {
