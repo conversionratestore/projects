@@ -444,17 +444,17 @@ let startFunk = setInterval(() => {
                     showSeconds: true,
                     callbacks: {
                       start: function () {
-                        return console.log("The clock has started!")
+                        // return console.log("The clock has started!")
                       },
                       stop: function () {
                         pushDataLayer(`Time spent on Pop-up ${10 * 60 - this.factory.getTime().time}s`)
-                        return console.log("The clock has stopped!")
+                        // return console.log("The clock has stopped!")
                       },
                       interval: function () {
                         let time
                         time = this.factory.getTime().time
                         if (time) {
-                          return console.log("Clock interval", time)
+                          // return console.log("Clock interval", time)
                         }
                       },
                     },
