@@ -563,7 +563,7 @@ let intervalIframe = setInterval(() => {
 })
 
 let intervalFood = setInterval(() => {
-    if (document.querySelector('.tour-drinks .food_block .title') != null && document.querySelector('.tour-drinks > p')) {
+    if (document.querySelector('.tour-drinks .food_block .title') != null && document.querySelector('.tour-drinks > p') && !window.location.href.includes('upgraded-drinks')) {
         clearInterval(intervalFood)
         document.querySelector('.js-style') == null ? document.body.insertAdjacentHTML('afterbegin', styleFood) : ''
 
@@ -620,7 +620,7 @@ let intervalFood = setInterval(() => {
 }, 50)
 let intervalDrinks = setInterval(() => {
 
-    if (document.querySelector('.mini_ul') != null && document.querySelector('.what_we_do') != null) {
+    if (document.querySelector('.mini_ul') != null && document.querySelector('.what_we_do') != null && !window.location.href.includes('upgraded-drinks')) {
         clearInterval(intervalDrinks)
         document.querySelector('.js-style') == null ? document.body.insertAdjacentHTML('afterbegin', styleFood) : ''
 
