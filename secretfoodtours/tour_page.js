@@ -44,6 +44,7 @@ let styleFood = /* html */`
 }
 .tour-drinks .food_block .title svg, .tour-options-drinks .title-drinks svg {
     margin-right: 10px;
+    flex-shrink: 0;
 }
 .tour-options-drinks .title {
     font-family: 'JosefinSans-Regular', sans-serif;
