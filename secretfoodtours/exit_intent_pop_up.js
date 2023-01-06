@@ -137,8 +137,8 @@ let startFunk = setInterval(() => {
     }
     .voucher_block span.copied{
         position: absolute;
-        top: 0;
-        left: 118px;
+        top: 15px;
+        left: 80px;
         font-weight: 500;
         font-size: 9px;
         line-height: 14px;
@@ -301,7 +301,7 @@ let startFunk = setInterval(() => {
             display: none;
         }
         .voucher_block span.copied{
-          left: 56px;
+          left: 20px;
         }
     }
     @media (max-width: 320px) {
@@ -312,7 +312,7 @@ let startFunk = setInterval(() => {
         font-size: 16px;
       }
       .voucher_block span.copied{
-        left: 36px;
+        left: 3px;
       }
     }
     @media (max-width: 280px) {
@@ -327,6 +327,7 @@ let startFunk = setInterval(() => {
       }
       .voucher_block span.copied{
         left: 16px;
+        top: 0;
       }
     }
 
@@ -539,7 +540,7 @@ let startFunk = setInterval(() => {
 
             setTimeout(() => {
               document.querySelector(".copied")?.remove()
-            }, 800)
+            }, 3000)
           })
         }
       }, 1000)
