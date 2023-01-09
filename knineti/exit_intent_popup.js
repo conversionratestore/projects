@@ -246,11 +246,6 @@ if (sessionStorage.getItem('popupAppeared') == null) { // show popup
             }
 
             document.addEventListener('scroll', scrollSpeed)
-
-            setTimeout(() => {
-                document.removeEventListener('scroll', scrollSpeed)
-                sessionStorage.getItem('popupAppeared') == null ? showPopup() : null
-            }, 10000);
             break;
         default:
             break;
