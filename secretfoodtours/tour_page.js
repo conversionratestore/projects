@@ -709,10 +709,25 @@ let interval = setInterval(() => {
             .heading.no-mobile+div {display: none;}
             footer{padding-bottom: 150px;}
             @media (max-width: 768px) {
-            .whatsapp-link{bottom: 120px;}
+            .whatsapp-link{bottom: 120px !important;}
             }
         </style>`)
 
+        const mut = new MutationObserver((muts) => {
+           muts.forEach(item => {
+            console.log(item.target.classList)
+            if(item.target.classList.contains('show')) {
+                document.querySelector('.form_tour').style.bottom = '90px'
+            } else {
+                document.querySelector('.form_tour').style.bottom = '0'
+            }
+           })
+        })
+
+        mut.observe(document.querySelector('.cookiealert'), {
+            attributes: true
+        })
+        
         let formHTML = /* html */`
         <div class="popup_form_tour">
             <div class="form_tour">
