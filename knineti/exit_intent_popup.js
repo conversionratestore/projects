@@ -260,11 +260,35 @@ if (sessionStorage.getItem('popupAppeared') == null) { // show popup
 waitForEl('.my_popup_close_wrapper').then(el => el.addEventListener('click', () => hidePopup('close')))
 waitForEl('.content_no').then(el => el.addEventListener('click', () => hidePopup('No thanks')))
 
-waitForEl('.content_btn').then(el => el.addEventListener('click', () => {
-    document.querySelector('.my_overlay').classList.remove('show_popup')
-    document.querySelector('.submit_btn input').click()
-    sendEvent('click on Complete purchase button')
-}))
+const waitForBtns = setInterval(() => {
+    if (
+        document.querySelector('.submit_btn input')
+        && document.querySelector('.content_btn')
+    ) {
+        clearInterval(waitForBtns)
+
+        document.querySelector('.content_btn').addEventListener('click', () => {
+            document.querySelector('.my_overlay').classList.remove('show_popup')
+            sendEvent('click on Complete purchase button')
+
+            const filledInputs = [...document.querySelectorAll('.payment_inform_box input:not(#onetime_pay):not(#monthly_pay)')].every((input) => {
+                return input.value.length
+            })
+
+            if (filledInputs) {
+                document.querySelector('.submit_btn input').focus()
+                document.querySelector('.submit_btn input').click()
+            } else {
+                for (const input of document.querySelectorAll('.payment_inform_box input:not(#onetime_pay):not(#monthly_pay)')) {
+                    if (!input.value.length) {
+                        input.focus()
+                        break
+                    }
+                }
+            }
+        })
+    }
+}, 100)
 
 sendEvent('loaded')
 const record = setInterval(() => {
