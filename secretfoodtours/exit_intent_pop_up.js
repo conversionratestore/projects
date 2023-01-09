@@ -232,6 +232,17 @@ let startFunk = setInterval(() => {
     .info_block .flip-clock-wrapper ul.play li.flip-clock-before .down .shadow{
         background: unset;
     }
+    .text_after_countdown{
+        background: #EBEBE7;
+        padding: 16px 24px;
+        max-width: max-content;
+        margin: 40px auto -8px;
+        font-family: 'Josefin Sans', sans-serif;
+        font-weight: 500;
+        font-size: 20px;
+        line-height: 20px;
+        color: #144732;
+    }
     @media only screen and ( min-width: 768px ) and ( max-width: 1000px ) {
       .info_block{
         padding: 20px;
@@ -303,6 +314,9 @@ let startFunk = setInterval(() => {
         .voucher_block span.copied{
           left: 20px;
         }
+        .text_after_countdown{
+            margin: 0 auto 44px;
+        }
     }
     @media (max-width: 320px) {
       .overlay_popup .container_popup{
@@ -328,6 +342,9 @@ let startFunk = setInterval(() => {
       .voucher_block span.copied{
         left: 16px;
         top: 0;
+      }
+      .text_after_countdown{
+        font-size: 16px;
       }
     }
 
@@ -434,6 +451,7 @@ let startFunk = setInterval(() => {
             let clock = setInterval(() => {
               if (typeof FlipClock === "function") {
                 clearInterval(clock)
+
                 let countdown, init_countdown, set_countdown
 
                 countdown = init_countdown = function () {
@@ -445,25 +463,50 @@ let startFunk = setInterval(() => {
                     showSeconds: true,
                     callbacks: {
                       start: function () {
+                        timerEventDesk(document.querySelector(".info_block"), "start")
                         // return console.log("The clock has started!")
                       },
                       stop: function () {
-                        pushDataLayer(`Time spent on Pop-up ${10 * 60 - this.factory.getTime().time}s`)
+                        if (this.factory.getTime().time === 0) {
+                          document.querySelector(".countdown-wrapper")?.remove()
+                          if (!document.querySelector(".info_block > .text_after_countdown")) {
+                            document.querySelector(".info_block > h2").insertAdjacentHTML("afterend", `<div class="text_after_countdown">Time is slipping away...</div>`)
+                          }
+                        }
                         // return console.log("The clock has stopped!")
                       },
                       interval: function () {
                         let time
                         time = this.factory.getTime().time
                         if (time) {
-                          // return console.log("Clock interval", time)
+                          //   console.log("Clock interval", time)
                         }
                       },
                     },
                   })
+
+                  function timerEventDesk(el, trigger) {
+                    let time = 0
+                    let currentTime = 0
+
+                    let s = setInterval(() => {
+                      if (trigger === "start") {
+                        currentTime = ++time
+                        el.setAttribute("data-time", currentTime)
+                      }
+
+                      if (trigger === "stop") {
+                        clearInterval(s)
+                        currentTime = el.getAttribute("data-time")
+                        pushDataLayer("Time spent on Pop-up", `${currentTime}s`)
+                      }
+                    }, 1000)
+                  }
                   // click on btn close popup
                   btnClose.addEventListener("click", (e) => {
                     countdown.stop()
                     pushDataLayer("Сlick on btn close")
+                    timerEventDesk(document.querySelector(".info_block"), "stop")
                     onClosePopup()
                   })
 
@@ -472,6 +515,7 @@ let startFunk = setInterval(() => {
                     if (e.target.matches(".overlay_popup")) {
                       countdown.stop()
                       pushDataLayer("Сlick on overlay close")
+                      timerEventDesk(document.querySelector(".info_block"), "stop")
                       onClosePopup()
                     }
                   })
@@ -479,6 +523,7 @@ let startFunk = setInterval(() => {
                   document.querySelector(".info_block > button")?.addEventListener("click", () => {
                     countdown.stop()
                     pushDataLayer("Сlick on the Finish booking button")
+                    timerEventDesk(document.querySelector(".info_block"), "stop")
                     onClosePopup()
                   })
                   return countdown
@@ -496,6 +541,7 @@ let startFunk = setInterval(() => {
                   left_secs = Math.round((end - now.getTime()) / 1000)
                   elapsed = false
                   if (left_secs < 0) {
+                    console.log(`left_secs`, left_secs)
                     left_secs *= -1
                     elapsed = true
                   }
@@ -506,7 +552,7 @@ let startFunk = setInterval(() => {
 
                 init_countdown()
 
-                set_countdown(10, new Date())
+                set_countdown(1, new Date())
               }
             }, 300)
           }
