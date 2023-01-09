@@ -712,21 +712,6 @@ let interval = setInterval(() => {
             .whatsapp-link{bottom: 120px !important;}
             }
         </style>`)
-
-        const mut = new MutationObserver((muts) => {
-           muts.forEach(item => {
-            console.log(item.target.classList)
-            if(item.target.classList.contains('show')) {
-                document.querySelector('.form_tour').style.bottom = '75px'
-            } else {
-                document.querySelector('.form_tour').style.bottom = '0'
-            }
-           })
-        })
-
-        mut.observe(document.querySelector('.cookiealert'), {
-            attributes: true
-        })
         
         let formHTML = /* html */`
         <div class="popup_form_tour">
@@ -817,6 +802,20 @@ let interval = setInterval(() => {
             }
         })
         pushDataLayer('loaded')
+        const mut = new MutationObserver((muts) => {
+           muts.forEach(item => {
+            console.log(item.target.classList)
+            if(item.target.classList.contains('show')) {
+                document.querySelector('.form_tour').style.bottom = '75px'
+            } else {
+                document.querySelector('.form_tour').style.bottom = '0'
+            }
+           })
+        })
+
+        mut.observe(document.querySelector('.cookiealert'), {
+            attributes: true
+        })
     }
 
     // //sort best reviews
