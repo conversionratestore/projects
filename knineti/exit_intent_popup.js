@@ -162,6 +162,9 @@ const popup = /*html*/`
     </div>
 `
 
+let seconds = 1
+let isStopped = false
+
 /** Functions */
 const waitForEl = selector => {
     return new Promise(resolve => {
@@ -208,14 +211,34 @@ const sendEvent = (eventAction, eventLabel = '') => { // GO Event
     console.log(obj);
 }
 
+const stopTimeout = () => {
+    if (!isStopped) {
+        isStopped = true
+
+        clearInterval(myTimerCRS)
+        sendEvent('Duration of visibility of the pop up', seconds)
+    }
+}
+
 const showPopup = () => {
     sessionStorage.setItem('popupAppeared', 'true')
     document.querySelector('.my_overlay').classList.add('show_popup')
     sendEvent('Visibility')
+
+    myTimerCRS = setInterval(() => {
+        console.log(seconds, 'seconds');
+        seconds = seconds + 1
+    }, 1000);
+
+    setTimeout(() => {
+        stopTimeout()
+    }, 120000);
 }
 const hidePopup = (label) => {
     document.querySelector('.my_overlay').classList.remove('show_popup')
     sendEvent('Close pop up', label)
+
+    stopTimeout()
 }
 
 /** Parse HTML, CSS and run functions. */
@@ -265,6 +288,8 @@ const waitForBtns = setInterval(() => {
         document.querySelector('.content_btn').addEventListener('click', () => {
             document.querySelector('.my_overlay').classList.remove('show_popup')
             sendEvent('click on Complete purchase button')
+
+            stopTimeout()
 
             const filledInputs = [...document.querySelectorAll('.payment_inform_box input:not(#onetime_pay):not(#monthly_pay)')].every((input) => {
                 return input.value.length
