@@ -1,5 +1,5 @@
 let startFunk = setInterval(() => {
-  if (document.querySelector('.tour-intro')) {
+  if (document.querySelector(".tour-intro")) {
     clearInterval(startFunk)
 
     let scriptCustomSlider = document.createElement("script")
@@ -361,7 +361,7 @@ let startFunk = setInterval(() => {
                     </svg>
                     <span>BOOK10</span>
                 </div>
-                <button>Find a tour</button>
+                <button>BOOK a tour</button>
                 <p>The discount does not apply to private tours or bookings</p>
             </div>
             <div class="img_wrap">
