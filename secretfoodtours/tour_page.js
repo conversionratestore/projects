@@ -717,7 +717,7 @@ let interval = setInterval(() => {
            muts.forEach(item => {
             console.log(item.target.classList)
             if(item.target.classList.contains('show')) {
-                document.querySelector('.form_tour').style.bottom = '90px'
+                document.querySelector('.form_tour').style.bottom = '75px'
             } else {
                 document.querySelector('.form_tour').style.bottom = '0'
             }
