@@ -93,13 +93,6 @@ let styleFood = /* html */`
 .destination_page_wr .similar {
     margin-top: 80px;
 }
-
-.heading.no-mobile+div {
-    display: none;
-}
-.whatsapp-link {
-    bottom: 120px;
-}
 @media (min-width: 768px) {
     .tour-drinks .food_block {
         width: 50%;
@@ -711,6 +704,13 @@ let interval = setInterval(() => {
     if (document.querySelector('.form_tour') == null && document.querySelector('#plugin') != null) {
         clearInterval(interval)
 
+        document.body.insertAdjacentHTML('afterbegin', /* html */`
+        <style>
+            .heading.no-mobile+div {display: none;}
+            footer{padding-bottom: 150px;}
+            .whatsapp-link{bottom: 120px;}
+        </style>`)
+
         let formHTML = /* html */`
         <div class="popup_form_tour">
             <div class="form_tour">
@@ -764,7 +764,7 @@ let interval = setInterval(() => {
         if (document.querySelector('.price') != null) {
             let price = document.querySelectorAll('.price')[document.querySelectorAll('.price').length - 1];
             let currency = price.innerText.trim().charAt(0);
-            document.querySelector('.form_tour .pr').innerHTML = `<span class="currency">${currency}</span>${price.innerHTML.replace(currency, '')}`
+            document.querySelector('.form_tour .pr').innerHTML = `${price.innerHTML}`
         } else {
             if (document.querySelector('#plugin [href="/private-bookings"]') != null) {
                 document.querySelector('.form_tour .pr').innerHTML = `<a href="/private-bookings">${document.querySelector('#plugin [href="/private-bookings"]').innerHTML}</a>`;
