@@ -862,3 +862,16 @@ let isClarify = setInterval(() => {
         clarity("set", `booking_form_flow_${device}`, "variant_1");
     }
 }, 100)
+
+let listing = setInterval(function(){
+    if (document.querySelectorAll('.country_tours') && document.querySelector('.country_banner')) {
+        clearInterval(listing)
+        document.querySelector('footer').before(document.querySelector('.country_banner'))
+        document.querySelector('.country_banner').style.marginBottom = '100px'
+        document.querySelector('.country_tours').style.paddingTop = '0px'
+    }
+}, 50)
+setTimeout(function(){
+    clearInterval(listing)
+}, 5000)
+
