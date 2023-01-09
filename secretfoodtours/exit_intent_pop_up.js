@@ -31,7 +31,7 @@ let startFunk = setInterval(() => {
         console.log(actionDataLayer + " : " + labelDataLayer)
         dataLayer.push({
           event: "event-to-ga",
-          eventCategory: `Exp: ${eventVar}`,
+          eventCategory: `Exp: Exit intent book now pop up ${eventVar}`,
           eventAction: `${actionDataLayer}`,
           eventLabel: `${labelDataLayer}`,
         })
@@ -39,7 +39,7 @@ let startFunk = setInterval(() => {
         console.log(actionDataLayer)
         dataLayer.push({
           event: "event-to-ga",
-          eventCategory: `Exp: ${eventVar}`,
+          eventCategory: `Exp: Exit intent book now pop up ${eventVar}`,
           eventAction: `${actionDataLayer}`,
         })
       }
@@ -448,8 +448,9 @@ let startFunk = setInterval(() => {
             containerPopup?.insertAdjacentHTML("beforeend", contentPopup)
           }
           if (document.querySelector(".overlay_popup .content_popup")) {
+            pushDataLayer("Visibility Book now pop up")
             let clock = setInterval(() => {
-              if (typeof FlipClock === "function") {
+              if (typeof FlipClock === "function" && typeof jQuery === "function" && document.querySelector("#countdown")) {
                 clearInterval(clock)
 
                 let countdown, init_countdown, set_countdown
@@ -498,7 +499,7 @@ let startFunk = setInterval(() => {
                       if (trigger === "stop") {
                         clearInterval(s)
                         currentTime = el.getAttribute("data-time")
-                        pushDataLayer("Time spent on Pop-up", `${currentTime}s`)
+                        pushDataLayer("Duration of visibility of the pop up", `${currentTime}s`)
                       }
                     }, 1000)
                   }
@@ -514,7 +515,7 @@ let startFunk = setInterval(() => {
                   overlay.addEventListener("click", (e) => {
                     if (e.target.matches(".overlay_popup")) {
                       countdown.stop()
-                      pushDataLayer("Сlick on overlay close")
+                      с("Сlick on overlay close")
                       timerEventDesk(document.querySelector(".info_block"), "stop")
                       onClosePopup()
                     }
@@ -522,7 +523,7 @@ let startFunk = setInterval(() => {
 
                   document.querySelector(".info_block > button")?.addEventListener("click", () => {
                     countdown.stop()
-                    pushDataLayer("Сlick on the Finish booking button")
+                    pushDataLayer("Click on Book a tour button")
                     timerEventDesk(document.querySelector(".info_block"), "stop")
                     onClosePopup()
                   })
@@ -552,9 +553,9 @@ let startFunk = setInterval(() => {
 
                 init_countdown()
 
-                set_countdown(1, new Date())
+                set_countdown(10, new Date())
               }
-            }, 300)
+            }, 500)
           }
         }
 
@@ -578,7 +579,7 @@ let startFunk = setInterval(() => {
             // console.info("Action:", e.action)
             // console.info("Text:", e.text)
             // console.info("Trigger:", e.trigger)
-            pushDataLayer("Сlick on btn copy voucher")
+            pushDataLayer("Click on copy promo code")
 
             document.querySelector(".copied")?.remove()
             document.querySelector(".voucher_block").insertAdjacentHTML("beforeend", `<span class="copied">copied!</span>`)
@@ -597,7 +598,7 @@ let startFunk = setInterval(() => {
       if (typeof clarity === "function") {
         clearInterval(record)
 
-        clarity("set", "", "variant_1")
+        clarity("set", "exit_intent_book_now_pop_up”", "variant_1")
       }
     }, 200)
   }
