@@ -708,7 +708,9 @@ let interval = setInterval(() => {
         <style>
             .heading.no-mobile+div {display: none;}
             footer{padding-bottom: 150px;}
+            @media (max-width: 768px) {
             .whatsapp-link{bottom: 120px;}
+            }
         </style>`)
 
         let formHTML = /* html */`
