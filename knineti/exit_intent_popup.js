@@ -207,8 +207,6 @@ const sendEvent = (eventAction, eventLabel = '') => { // GO Event
 
     window.dataLayer = window.dataLayer || []
     dataLayer.push(obj)
-
-    console.log(obj);
 }
 
 const stopTimeout = () => {
@@ -226,7 +224,6 @@ const showPopup = () => {
     sendEvent('Visibility')
 
     myTimerCRS = setInterval(() => {
-        console.log(seconds, 'seconds');
         seconds = seconds + 1
     }, 1000);
 
