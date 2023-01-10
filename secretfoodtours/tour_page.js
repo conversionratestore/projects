@@ -875,6 +875,13 @@ let listing = setInterval(function(){
         document.querySelector('footer').before(document.querySelector('.country_banner'))
         document.querySelector('.country_banner').style.marginBottom = '100px'
         document.querySelector('.country_tours').style.paddingTop = '0px'
+
+        document.querySelectorAll('.cardx-tags+.card-buttons a').forEach(item => {
+            if(item.innerText.toLowerCase() === 'book now') {
+                item.innerText = 'Check availability'
+                item.style.width = 'fit-content'
+            }
+        })
     }
 }, 50)
 setTimeout(function(){
