@@ -46,6 +46,7 @@ const style = /*html*/`
             width: 100%;
             max-height: 300px;
             object-fit: cover;
+            object-position: 0 -15px;
         }
 
         .my_popup_content {
@@ -89,6 +90,8 @@ const style = /*html*/`
         }
 
         .content_no {
+            width: fit-content;
+            margin: 0 auto !important;
             font-weight: 400;
             font-size: 14px;
             line-height: 18px;
@@ -140,7 +143,7 @@ const popup = /*html*/`
     <div class="my_overlay">
         <div class="my_popup">
             <div class="my_popup_img">
-                <img src="https://conversionratestore.github.io/projects/knineti/img/popup_img.png" alt="">
+                <img src="https://conversionratestore.github.io/projects/knineti/img/popup_img.jpg" alt="">
             </div>
             <div class="my_popup_content">
                 <p class="content_title">Try it risk-free for <span>90 days</span></p>
@@ -240,37 +243,14 @@ const hidePopup = (label) => {
 
 /** Parse HTML, CSS and run functions. */
 document.head.insertAdjacentHTML('beforeend', style)
-document.body.insertAdjacentHTML('beforeend', popup)
 
-if (sessionStorage.getItem('popupAppeared') == null) { // show popup
-    switch (device) {
-        case 'Desktop':
-            waitForEl('.my_overlay').then(() => document.documentElement.addEventListener('mouseleave', () => showPopup(), { once: true }))
-            break;
-        case 'Mobile':
-            let lastPosition = 0,
-                newPosition = 0,
-                currentSpeed = 0
+const waitForBody = setInterval(() => {
+    if (document.body) {
+        clearInterval(waitForBody)
 
-            let scrollSpeed = () => {
-                lastPosition = window.scrollY
-                setTimeout(() => {
-                    newPosition = window.scrollY
-                }, 70)
-                currentSpeed = newPosition - lastPosition
-
-                if (currentSpeed > 70) {
-                    document.removeEventListener('scroll', scrollSpeed)
-                    showPopup()
-                }
-            }
-
-            document.addEventListener('scroll', scrollSpeed)
-            break;
-        default:
-            break;
+        document.body.insertAdjacentHTML('afterbegin', popup)
     }
-}
+}, 100)
 
 waitForEl('.my_popup_close_wrapper').then(el => el.addEventListener('click', () => hidePopup('close')))
 waitForEl('.content_no').then(el => el.addEventListener('click', () => hidePopup('No thanks')))
@@ -304,6 +284,36 @@ const waitForBtns = setInterval(() => {
                 }
             }
         })
+
+        if (sessionStorage.getItem('popupAppeared') == null) { // show popup
+            switch (device) {
+                case 'Desktop':
+                    document.body.addEventListener('mouseleave', () => showPopup(), { once: true })
+                    break;
+                case 'Mobile':
+                    let lastPosition = 0,
+                        newPosition = 0,
+                        currentSpeed = 0
+
+                    let scrollSpeed = () => {
+                        lastPosition = window.scrollY
+                        setTimeout(() => {
+                            newPosition = window.scrollY
+                        }, 70)
+                        currentSpeed = newPosition - lastPosition
+
+                        if (currentSpeed > 70) {
+                            document.removeEventListener('scroll', scrollSpeed)
+                            showPopup()
+                        }
+                    }
+
+                    document.addEventListener('scroll', scrollSpeed)
+                    break;
+                default:
+                    break;
+            }
+        }
     }
 }, 100)
 
