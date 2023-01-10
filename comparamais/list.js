@@ -802,7 +802,14 @@ const styles = `
 
 const stylesEl = document.createElement('style');
 stylesEl.innerHTML = styles;
-document.body.appendChild(stylesEl);
+
+const waitForBody = setInterval(() => {
+    if(document.body) {
+        clearInterval(waitForBody)
+
+        document.body.appendChild(stylesEl);
+    }
+}, 200)
 /*** STYLES / end ***/
 
 let banks = [
