@@ -802,20 +802,26 @@ let interval = setInterval(() => {
             }
         })
         pushDataLayer('loaded')
-        const mut = new MutationObserver((muts) => {
-           muts.forEach(item => {
-            console.log(item.target.classList)
-            if(item.target.classList.contains('show')) {
-                document.querySelector('.form_tour').style.bottom = '75px'
-            } else {
-                document.querySelector('.form_tour').style.bottom = '0'
+        let coockies = setInterval(function(){
+            if(document.querySelector('.cookiealert')) {
+                clearInterval(coockies)
+                const mut = new MutationObserver((muts) => {
+                    muts.forEach(item => {
+                     console.log(item.target.classList)
+                     if(item.target.classList.contains('show')) {
+                         document.querySelector('.form_tour').style.bottom = `${document.querySelector('.cookiealert').clientHeight}px`
+                     } else {
+                         document.querySelector('.form_tour').style.bottom = '0'
+                     }
+                    })
+                 })
+         
+                 mut.observe(document.querySelector('.cookiealert'), {
+                     attributes: true
+                 })
             }
-           })
-        })
-
-        mut.observe(document.querySelector('.cookiealert'), {
-            attributes: true
-        })
+        }, 30)
+        
     }
 
     // //sort best reviews
