@@ -140,9 +140,16 @@ if (settings.observe) {
         }
     });
 
-    let observeEl = document.querySelector('body');
+    let initObserveInterval = setInterval(() => {
+        if (document.querySelector('body')) {
+            clearInterval(initObserveInterval);
 
-    observer.observe(observeEl, { childList: true, subtree: true });
+            observer.observe(document.querySelector('body'), {
+                childList: true,
+                subtree: true,
+            });
+        }
+    }, 200);
 }
 
 // Styles
