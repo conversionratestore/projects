@@ -5,6 +5,8 @@ let style = `
     .needsclick.kl-teaser-RCtjPB.kl-private-reset-css-Xuajs1 {
         opacity: 0;
         pointer-events: none;
+        width: 0!important;
+        height: 0!important;
     }
     .gifts-image {
         width: 100%;
@@ -144,6 +146,7 @@ let style = `
         width: 100%;
         text-align: left;
         text-transform: uppercase;
+        cursor: pointer;
     }
     .main-content .btn-coupon {
         letter-spacing: 2px;
