@@ -403,8 +403,6 @@ form.css-8atqhb .chakra-form__error-message {
               document.querySelector(".css-1ngo9xx")?.getBoundingClientRect().bottom <= positionVar) ||
             (window.location.pathname !== "/insurance/auto/car-insurance-estimate-calculator/" &&
               document.querySelector(".css-polczn")?.getBoundingClientRect().bottom <= positionVar) ||
-            (window.location.pathname === "/insurance/auto/car-insurance-estimate-calculator/" &&
-              document.querySelector(".css-polczn")?.getBoundingClientRect().bottom <= positionVar) ||
             (window.location.pathname !== "/insurance/auto/car-insurance-estimate-calculator/" &&
               document.querySelector(".css-1ohdh4c")?.getBoundingClientRect().bottom <= positionVar)
           ) {
