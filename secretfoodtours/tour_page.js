@@ -786,8 +786,11 @@ let interval = setInterval(() => {
             document.querySelector('.form_tour .pr').innerHTML = `${price.innerHTML}`
         } else {
             if (document.querySelector('#plugin [href="/private-bookings"]') != null) {
-                document.querySelector('.form_tour').style = 'display: block!important';
-                document.querySelector('.form_tour .pr').innerHTML = `<a href="/private-bookings" style="white-space: normal;padding-bottom: 10px;display: block;">${document.querySelector('#plugin [href="/private-bookings"]').innerHTML}</a>`;
+
+                if (detectMob() == true) {
+                    document.querySelector('.form_tour').style = 'display: block!important';
+                }
+                document.querySelector('.form_tour .pr').innerHTML = `<a href="/private-bookings" ${detectMob() == true ? 'style="white-space: normal;padding-bottom: 10px;display: block;"' : ''}>${document.querySelector('#plugin [href="/private-bookings"]').innerHTML}</a>`;
             }
         }
 
