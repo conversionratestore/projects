@@ -1,6 +1,10 @@
 let startFunk = setInterval(() => {
   if (document.querySelector(".tour-intro")) {
     clearInterval(startFunk)
+    let script = document.createElement("script")
+    script.src = "https://code.jquery.com/jquery-3.4.1.min.js"
+    script.async = false
+    document.head.appendChild(script)
 
     let scriptCustomSlider = document.createElement("script")
     scriptCustomSlider.src = "https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.10/clipboard.min.js"
@@ -18,13 +22,10 @@ let startFunk = setInterval(() => {
     document.head.appendChild(scriptCustomTimerStyle)
 
     let dir = "https://conversionratestore.github.io/projects/secretfoodtours/img/"
-
     let eventVar = "desktop"
-
     if (window.innerWidth <= 768) {
       eventVar = "mobile"
     }
-
     function pushDataLayer(actionDataLayer, labelDataLayer) {
       window.dataLayer = window.dataLayer || []
       if (labelDataLayer) {
@@ -44,9 +45,12 @@ let startFunk = setInterval(() => {
         })
       }
     }
-
     let popupStyle = /*html */ `
     <style>
+        body .CampaignType--popup,
+        body .om-effect-overlay .CampaignType--popup {
+            display: none !important;
+        }
     .overlay_popup {
         position: fixed;
         top: 0;
@@ -555,7 +559,7 @@ let startFunk = setInterval(() => {
 
                 set_countdown(10, new Date())
               }
-            }, 1000)
+            }, 500)
           }
         }
 
@@ -576,9 +580,6 @@ let startFunk = setInterval(() => {
           let clipboard = new ClipboardJS(".voucher_block svg")
 
           clipboard.on("success", function (e) {
-            // console.info("Action:", e.action)
-            // console.info("Text:", e.text)
-            // console.info("Trigger:", e.trigger)
             pushDataLayer("Click on copy promo code")
 
             document.querySelector(".copied")?.remove()
