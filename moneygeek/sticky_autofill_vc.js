@@ -404,7 +404,9 @@ form.css-8atqhb .chakra-form__error-message {
             (window.location.pathname !== "/insurance/auto/car-insurance-estimate-calculator/" &&
               document.querySelector(".css-polczn")?.getBoundingClientRect().bottom <= positionVar) ||
             (window.location.pathname === "/insurance/auto/car-insurance-estimate-calculator/" &&
-              document.querySelector(".css-polczn")?.getBoundingClientRect().bottom <= positionVar)
+              document.querySelector(".css-polczn")?.getBoundingClientRect().bottom <= positionVar) ||
+            (window.location.pathname !== "/insurance/auto/car-insurance-estimate-calculator/" &&
+              document.querySelector(".css-1ohdh4c")?.getBoundingClientRect().bottom <= positionVar)
           ) {
             console.log(`document.querySelector(".sticky_banner")`)
             if (!document.querySelector(".sticky_banner").classList.contains("is_fixed_var")) {
