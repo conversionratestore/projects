@@ -17,6 +17,10 @@ const style = `
             font-size: 16px;
             color: #000000;
         }
+
+        .my_txt p:first-child {
+            display:none;
+        }
     </style>
 `
 
