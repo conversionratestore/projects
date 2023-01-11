@@ -432,7 +432,7 @@ let style = /* html */`
             font-size: 18px;
             line-height: 24px;
         }
-        .form_tour .pr span.currency {
+        .form_tour .pr:first-letter {
             font-size: 14px;
         }
         .destination_page_wr .tour_fixed_btn {
