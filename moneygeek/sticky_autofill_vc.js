@@ -400,7 +400,7 @@ form.css-8atqhb .chakra-form__error-message {
             (document.querySelector(".css-1ih2ha8")?.getBoundingClientRect().bottom <= positionVar &&
               window.location.pathname !== "/insurance/auto/car-insurance-estimate-calculator/") ||
             (window.location.pathname === "/insurance/auto/car-insurance-estimate-calculator/" &&
-              document.querySelector(".css-1ngo9xx")?.getBoundingClientRect().bottom <= positionVar) ||
+              document.querySelector(".css-1h9j791")?.getBoundingClientRect().bottom <= positionVar) ||
             (window.location.pathname !== "/insurance/auto/car-insurance-estimate-calculator/" &&
               document.querySelector(".css-polczn")?.getBoundingClientRect().bottom <= positionVar) ||
             (window.location.pathname !== "/insurance/auto/car-insurance-estimate-calculator/" &&
@@ -528,7 +528,11 @@ form.css-8atqhb .chakra-form__error-message {
                         window.location.pathname === "/insurance/auto/anonymous-car-insurance-quote-no-personal-information/" ||
                         window.location.pathname === "/insurance/auto/car-insurance-estimate-calculator/"
                       ) {
-                        document.querySelector("form.css-nbmzhw button[type='submit']").click()
+                        if (document.querySelector("form.css-nbmzhw button[type='submit']")) {
+                          document.querySelector("form.css-nbmzhw button[type='submit']").click()
+                        } else {
+                          document.querySelector("form.css-pup90p button[type='submit']").click()
+                        }
                       } else if (
                         window.location.pathname === "/insurance/homeowners/reviews/travelers/" ||
                         window.location.pathname === "/insurance/homeowners/reviews/progressive/"
