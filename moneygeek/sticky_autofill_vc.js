@@ -354,7 +354,6 @@ form.css-8atqhb .chakra-form__error-message {
           let s = setInterval(() => {
             if (document.querySelector("#social-section")) {
               clearInterval(s)
-              console.log(`first`)
               setTimeout(() => {
                 if (window.innerWidth <= 1110) {
                   document.querySelector("#sub-navigation").insertAdjacentHTML("beforeend", stickyBlock)
@@ -406,7 +405,6 @@ form.css-8atqhb .chakra-form__error-message {
             (window.location.pathname !== "/insurance/auto/car-insurance-estimate-calculator/" &&
               document.querySelector(".css-1ohdh4c")?.getBoundingClientRect().bottom <= positionVar)
           ) {
-            console.log(`document.querySelector(".sticky_banner")`)
             if (!document.querySelector(".sticky_banner").classList.contains("is_fixed_var")) {
               document.querySelector(".sticky_banner").classList.add("is_fixed_var")
               if (window.innerWidth > 1110) {
@@ -601,7 +599,6 @@ form.css-8atqhb .chakra-form__error-message {
               document.querySelector("#social-section").style.display = "block"
               document.querySelector(".social").style.display = "block"
             }
-            console.log(`awsedrtyujuhgfds`)
             document.querySelector(".sticky_banner").classList.remove("is_fixed_var")
           }
         }
