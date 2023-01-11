@@ -555,7 +555,7 @@ let startFunk = setInterval(() => {
 
                 set_countdown(10, new Date())
               }
-            }, 500)
+            }, 1000)
           }
         }
 
