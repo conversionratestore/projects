@@ -327,7 +327,7 @@ function start() {
     })
 
     let isPDP = setInterval(() => {
-        if (stateUrl.includes('/collections/') && document.querySelector('.product-single__form') != null && document.querySelector('.btn-coupon') == null) {
+        if ((stateUrl.includes('/collections/') || stateUrl.includes('/products/')) && document.querySelector('.product-single__form') != null && document.querySelector('.btn-coupon') == null) {
             clearInterval(isPDP)
             setCouponBtn('.product__price.on-sale')
             document.querySelector('[name="add"]').addEventListener('click', () => {
