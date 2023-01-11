@@ -796,6 +796,7 @@ let interval = setInterval(() => {
 
         //rearrange the image logo
         document.querySelector('.form_tour').after(document.querySelector('.awards-desktop'));
+        document.querySelector('.awards-desktop img').src = dir + 'awards-mobile.svg';
 
         //hide/show popup
         document.addEventListener('click', (e) => {
