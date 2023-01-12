@@ -296,24 +296,13 @@ function isScrolledIntoView(el) {
     return isVisible;
 }
 
-function setCouponBtn(selector, buttonSelector = '.btn-coupon-access', giftSelector = '.needsclick.kl-teaser-RCtjPB.kl-private-reset-css-Xuajs1') {
+function setCouponBtn(selector) {
     let viewedForms = JSON.parse(localStorage.getItem('klaviyoOnsite'));
 
     if (Object.keys(viewedForms["viewedForms"]["modal"]["disabledForms"]).length > 0 && viewedForms["viewedForms"]["modal"]["disabledForms"]["RCtjPB"]["successActionTypes"] != undefined  && viewedForms["viewedForms"]["modal"]["disabledForms"]["RCtjPB"]["successActionTypes"][0] == 'SUBMIT_TO_LIST_AND_TRANSITION_VIEW') {
         document.querySelector(selector).insertAdjacentHTML('afterend', appliedBonus)
     } else {
         document.querySelector(selector).insertAdjacentHTML('afterend', accessBonus)
-        document.querySelectorAll(buttonSelector).forEach(item => {
-            item.addEventListener('click', (e) => {
-                document.querySelector(giftSelector).click();
-
-                if (e.target.closest('.drawer__cart')) {
-                    pushDataLayer('Click on Access bonus discount block','Cart')
-                } else {
-                    pushDataLayer('Click on Access bonus discount block','PDP')
-                }
-            })
-        })
     }
 }
 
@@ -407,6 +396,11 @@ function start() {
                 }
             })
 
+            document.querySelector('.product-single__meta .btn-coupon-access').addEventListener('click', (e) => {
+                document.querySelector('.needsclick.kl-teaser-RCtjPB.kl-private-reset-css-Xuajs1').click();
+                pushDataLayer('Click on Access bonus discount block','PDP') 
+            })
+
             window.addEventListener('scroll', () => {
                 if (isScrolledIntoView(document.querySelector('.product-single__meta .btn-coupon-access')) == true && viewed1 == false) {
                     viewed1 = true;
@@ -425,6 +419,11 @@ function start() {
         if (document.querySelector('.cart .btn-coupon') == null && document.querySelector('.cart') != null && document.querySelector('.ajaxcart__product') != null) {
             let lastProduct = document.querySelectorAll('.ajaxcart__product')[document.querySelectorAll('.ajaxcart__product').length - 1].className.split(' ').join('.')
             setCouponBtn(`.${lastProduct}`)
+
+            document.querySelector('.drawer__cart .btn-coupon-access').addEventListener('click', (e) => {
+                document.querySelector('.needsclick.kl-teaser-RCtjPB.kl-private-reset-css-Xuajs1').click();
+                pushDataLayer('Click on Access bonus discount block','Cart')
+            })
 
             window.addEventListener('scroll', () => {
                 if (isScrolledIntoView(document.querySelector('.drawer__cart .btn-coupon-access')) == true && viewed2 == false) {
