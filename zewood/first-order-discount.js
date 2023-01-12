@@ -327,6 +327,9 @@ function start() {
 
             // sessionStorage.setItem('giftPopup', 'true')
 
+            if (document.querySelector('.product-single__meta .btn-coupon') != null) {
+                document.querySelector('.product-single__meta .btn-coupon').remove()
+            }
             if (document.querySelector('button.needsclick.go3894874857.kl-private-reset-css-Xuajs1') != null && form.querySelector('[name="email"]') != null) {
                     form.querySelector('#ele_sE4nXZrhG0x > p > span').innerHTML = 'Unlock your bonus discount!';
                     form.querySelector('[name="email"]').insertAdjacentHTML('beforebegin', `<label>Enter your email</label>`)
