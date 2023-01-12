@@ -403,22 +403,23 @@ function start() {
                 })
             }
 
-            window.addEventListener('scroll', () => {
-                if (isScrolledIntoView(document.querySelector('.product-single__meta .btn-coupon-access')) == true && viewed1 == false) {
+            function isVisible() {
+                if (document.querySelector('.product-single__meta .btn-coupon-access') != null && isScrolledIntoView(document.querySelector('.product-single__meta .btn-coupon-access')) == true && viewed1 == false) {
                     viewed1 = true;
                     pushDataLayer('Visibility Access bonus discount block','PDP')
                 }
-                if (isScrolledIntoView(document.querySelector('.product-single__meta .btn-coupon-applied')) == true && viewed11 == false) {
+                if (document.querySelector('.product-single__meta .btn-coupon-applied') != null && isScrolledIntoView(document.querySelector('.product-single__meta .btn-coupon-applied')) == true && viewed11 == false) {
                     viewed11 = true;
                     pushDataLayer('Visibility 5% Bonus discount applied','PDP')
                 }
-        
-            })
+            }
+            isVisible()
+            window.addEventListener('scroll', () => isVisible())
         }
     })
 
     let isCart = setInterval(() => {
-        if (document.querySelector('.cart .btn-coupon') == null && document.querySelector('.cart') != null && document.querySelector('.ajaxcart__product') != null) {
+        if (document.querySelector('.drawer--is-open') != null &&  document.querySelector('.cart .btn-coupon') == null && document.querySelector('.cart') != null && document.querySelector('.ajaxcart__product') != null) {
             let lastProduct = document.querySelectorAll('.ajaxcart__product')[document.querySelectorAll('.ajaxcart__product').length - 1].className.split(' ').join('.')
             setCouponBtn(`.${lastProduct}`)
 
@@ -429,16 +430,16 @@ function start() {
                 })
             }
 
-            window.addEventListener('scroll', () => {
-                if (isScrolledIntoView(document.querySelector('.drawer__cart .btn-coupon-access')) == true && viewed2 == false) {
-                    viewed2 = true;
-                    pushDataLayer('Visibility Access bonus discount block','Cart')
-                }
-                if (isScrolledIntoView(document.querySelector('.drawer__cart .btn-coupon-applied')) == true && viewed22 == false) {
-                    viewed22 = true;
-                    pushDataLayer('Visibility 5% Bonus discount applied','Cart')
-                }
-            })
+            if (document.querySelector('.drawer__cart .btn-coupon-access') != null && isScrolledIntoView(document.querySelector('.drawer__cart .btn-coupon-access')) == true && viewed2 == false) {
+                viewed2 = true;
+                pushDataLayer('Visibility Access bonus discount block','Cart')
+            }
+            
+            if (document.querySelector('.drawer__cart .btn-coupon-applied') != null && isScrolledIntoView(document.querySelector('.drawer__cart .btn-coupon-applied')) == true && viewed22 == false) {
+                viewed22 = true;
+                pushDataLayer('Visibility 5% Bonus discount applied','Cart')
+            }
+        
         }
     })
 }
