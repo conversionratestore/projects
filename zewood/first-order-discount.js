@@ -374,7 +374,7 @@ function start() {
 
             document.addEventListener('click', (e) => {
                 if (!e.target.closest('[aria-label="POPUP Form"]')) {
-                    if (document.querySelector('button.needsclick.go3894874857.kl-private-reset-css-Xuajs1') != null) {
+                    if (document.querySelector('button.needsclick.go3894874857.kl-private-reset-css-Xuajs1') != null && form.querySelector('[name="email"]') != null) {
                         pushDataLayer('Close Unlock your bonus discount pop up','Unlock your bonus discount')
                     }
                     if (form.querySelector('div > div:nth-child(4) > div > div > div:nth-child(2) > div') != null && form.querySelector('div > div:nth-child(4) > div > div > div:nth-child(2) > div').innerHTML.includes('LETSSTART')) {
@@ -387,7 +387,7 @@ function start() {
     })
 
     let isPDP = setInterval(() => {
-        if ((stateUrl.includes('/collections/') || stateUrl.includes('/products/')) && document.querySelector('.product-single__form') != null && document.querySelector('.btn-coupon') == null) {
+        if ((stateUrl.includes('/collections/') || stateUrl.includes('/products/')) && document.querySelector('.product-single__form') != null && document.querySelector('.product-single__meta .btn-coupon') == null) {
             clearInterval(isPDP)
             setCouponBtn('.product__price.on-sale')
             document.querySelector('[name="add"]').addEventListener('click', () => {
@@ -425,6 +425,7 @@ function start() {
 
             if (document.querySelector('.drawer__cart .btn-coupon-access') != null) {
                 document.querySelector('.drawer__cart .btn-coupon-access').addEventListener('click', (e) => {
+                    document.querySelector('#CartDrawer .drawer__close-button').click()
                     document.querySelector('.needsclick.kl-teaser-RCtjPB.kl-private-reset-css-Xuajs1').click();
                     pushDataLayer('Click on Access bonus discount block','Cart')
                 })
