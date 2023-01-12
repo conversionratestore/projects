@@ -305,8 +305,9 @@ function isScrolledIntoView(el) {
     return isVisible;
 }
 
-function setCouponBtn(selector, insert = 'afterend') {
-    let viewedForms = JSON.parse(localStorage.getItem('klaviyoOnsite'));
+function setCouponBtn(selector, klaviyoOnsite, insert = 'afterend', ) {
+    let viewedForms = JSON.parse(localStorage.getItem(klaviyoOnsite));
+    console.log(viewedForms)
 
     if (Object.keys(viewedForms["viewedForms"]["modal"]["disabledForms"]).length > 0 && viewedForms["viewedForms"]["modal"]["disabledForms"]["RCtjPB"]["successActionTypes"] != undefined  && viewedForms["viewedForms"]["modal"]["disabledForms"]["RCtjPB"]["successActionTypes"][0] == 'SUBMIT_TO_LIST_AND_TRANSITION_VIEW') {
         document.querySelector(selector).insertAdjacentHTML(insert, appliedBonus)
@@ -404,9 +405,9 @@ function start() {
     })
 
     let isPDP = setInterval(() => {
-        if ((stateUrl.includes('/collections/') || stateUrl.includes('/products/')) && document.querySelector('.product-single__form') != null && document.querySelector('.product-single__meta .btn-coupon') == null) {
+        if ((stateUrl.includes('/collections/') || stateUrl.includes('/products/')) && document.querySelector('.product-single__form') != null && document.querySelector('.product-single__meta .btn-coupon') == null && document.querySelector('.product__price.on-sale') != null && localStorage.getItem('klaviyoOnsite') != null) {
             clearInterval(isPDP)
-            setCouponBtn('.product__price.on-sale')
+            setCouponBtn('.product__price.on-sale', 'klaviyoOnsite')
             document.querySelector('[name="add"]').addEventListener('click', () => {
                 if (document.querySelector('.cart .btn-coupon') != null) {
                     document.querySelector('.cart .btn-coupon').remove()
@@ -436,9 +437,9 @@ function start() {
     })
 
     let isCart = setInterval(() => {
-        if (document.querySelector('.drawer--is-open') != null &&  document.querySelector('.cart .btn-coupon') == null && document.querySelector('.drawer__footer') != null) {
+        if (document.querySelector('.drawer--is-open') != null &&  document.querySelector('.cart .btn-coupon') == null && document.querySelector('.drawer__footer') != null && localStorage.getItem('klaviyoOnsite') != null) {
             
-            setCouponBtn(`.drawer__footer`, 'afterbegin')
+            setCouponBtn(`.drawer__footer`, 'klaviyoOnsite', 'afterbegin')
 
             if (document.querySelector('.drawer__footer .btn-coupon-access') != null) {
                 document.querySelector('.drawer__footer .btn-coupon-access').addEventListener('click', (e) => {
