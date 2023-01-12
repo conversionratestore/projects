@@ -833,7 +833,6 @@ let interval = setInterval(() => {
 
             document.querySelector('.special-options h2').after(document.querySelectorAll('.form_tour .btn-gold')[1])
             document.querySelector('.special-options h2').after(document.querySelectorAll('.form_tour .btn-gold')[0])
-            
         }
 
         pushDataLayer('loaded')

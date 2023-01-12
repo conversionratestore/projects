@@ -69,7 +69,7 @@ let style = `
         margin-right: 10px;
     }
     form.needsclick.klaviyo-form > div > div:nth-child(7) > div > button {
-        padding: 4px 0 14px!important;
+        padding: 4px 0 0!important;
         line-height: 24px!important;
         border-bottom: 1px solid #000!important;
         width: fit-content!important;
