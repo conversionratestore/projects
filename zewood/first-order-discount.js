@@ -316,7 +316,7 @@ function start() {
 
             form.firstChild.insertAdjacentHTML('afterbegin',`<img src="${dir}gifts.png" alt="gifts image" class="gifts-image">`)
 
-            if (document.querySelector('button.needsclick.go3894874857.kl-private-reset-css-Xuajs1') != null) {
+            if (document.querySelector('button.needsclick.go3894874857.kl-private-reset-css-Xuajs1') != null && form.querySelector('[name="email"]') != null) {
                     form.querySelector('#ele_sE4nXZrhG0x > p > span').innerHTML = 'Unlock your bonus discount!';
                     form.querySelector('[name="email"]').insertAdjacentHTML('beforebegin', `<label>Enter your email</label>`)
                     form.querySelector('[name="email"]').placeholder = '';
