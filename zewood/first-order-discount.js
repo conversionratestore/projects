@@ -73,7 +73,7 @@ let style = `
         line-height: 24px!important;
         border-bottom: 1px solid #000!important;
         width: fit-content!important;
-        margin: 0 auto;
+        margin: 0 auto 14px;
         display: block;
     }
     form.needsclick.klaviyo-form div > div:nth-child(3) > div > div > div:nth-child(2) > svg:first-child, form.needsclick.klaviyo-form svg.needsclick {
@@ -168,7 +168,16 @@ let style = `
         flex-shrink: 0;x
     }
     .btn-coupon svg {
-        margin: 0 5px 0 auto;
+        margin: 0 5px 0 20px;
+    }
+    .drawer__footer {
+        padding-top: 12px;
+    }
+    .drawer__footer .btn-coupon  {
+        margin: 0 0 20px 0;
+    }
+    .text-nowrap {
+        white-space: nowrap;
     }
     @media (max-width: 350px) {
         form.needsclick.klaviyo-form {
@@ -262,7 +271,7 @@ start()
 let accessBonus = `
 <button type="button" class="btn-coupon btn-coupon-access">
     <img src="${dir}coupon.svg" alt="coupon icon">
-    <span>Access bonus discount</span>
+    <span>Access <span class="text-nowrap">bonus discount</span></span>
     <svg width="7" height="12" viewBox="0 0 7 12" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path fill-rule="evenodd" clip-rule="evenodd" d="M4.64657 6L0 1.13389L1.2707 0L7 6L1.2707 12L0 10.8661L4.64657 6Z" fill="black"/>
     </svg>
@@ -272,7 +281,7 @@ let accessBonus = `
 let appliedBonus = `
 <div class="btn-coupon btn-coupon-applied">
     <img src="${dir}coupon.svg" alt="coupon icon">
-    <span>5% Bonus discount ${window.innerWidth > 768 ? '' : '<br>'} applied at checkout</span>
+    <span>5% Bonus discount ${window.innerWidth > 768 ? '' : '<br>'} <span class="text-nowrap">applied at checkout</span></span>
     <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
         <circle cx="9" cy="9" r="9" fill="#3DB39E"/>
         <path d="M4.5 8.95159L7.66216 12.0855L13.5 6.2998" stroke="white" stroke-width="2"/>
@@ -296,13 +305,13 @@ function isScrolledIntoView(el) {
     return isVisible;
 }
 
-function setCouponBtn(selector) {
+function setCouponBtn(selector, insert = 'afterend') {
     let viewedForms = JSON.parse(localStorage.getItem('klaviyoOnsite'));
 
     if (Object.keys(viewedForms["viewedForms"]["modal"]["disabledForms"]).length > 0 && viewedForms["viewedForms"]["modal"]["disabledForms"]["RCtjPB"]["successActionTypes"] != undefined  && viewedForms["viewedForms"]["modal"]["disabledForms"]["RCtjPB"]["successActionTypes"][0] == 'SUBMIT_TO_LIST_AND_TRANSITION_VIEW') {
-        document.querySelector(selector).insertAdjacentHTML('afterend', appliedBonus)
+        document.querySelector(selector).insertAdjacentHTML(insert, appliedBonus)
     } else {
-        document.querySelector(selector).insertAdjacentHTML('afterend', accessBonus)
+        document.querySelector(selector).insertAdjacentHTML(insert, accessBonus)
     }
 }
 
@@ -315,6 +324,8 @@ function start() {
             let form = document.querySelector('form.needsclick.klaviyo-form');
 
             form.firstChild.insertAdjacentHTML('afterbegin',`<img src="${dir}gifts.png" alt="gifts image" class="gifts-image">`)
+
+            // sessionStorage.setItem('giftPopup', 'true')
 
             if (document.querySelector('button.needsclick.go3894874857.kl-private-reset-css-Xuajs1') != null && form.querySelector('[name="email"]') != null) {
                     form.querySelector('#ele_sE4nXZrhG0x > p > span').innerHTML = 'Unlock your bonus discount!';
@@ -364,6 +375,8 @@ function start() {
                         pushDataLayer('Click on Continue button','Congratulations')
                         close = '';
                     }
+
+                    sessionStorage.setItem('giftPopup', 'false')
                 })
                 document.querySelector('[data-testid="form-component"]').addEventListener('click', () => {
                     pushDataLayer('Click on discount code','Congratulations')
@@ -420,11 +433,11 @@ function start() {
 
     let isCart = setInterval(() => {
         if (document.querySelector('.drawer--is-open') != null &&  document.querySelector('.cart .btn-coupon') == null && document.querySelector('.cart') != null && document.querySelector('.ajaxcart__product') != null) {
-            let lastProduct = document.querySelectorAll('.ajaxcart__product')[document.querySelectorAll('.ajaxcart__product').length - 1].className.split(' ').join('.')
-            setCouponBtn(`.${lastProduct}`)
+            
+            setCouponBtn(`.drawer__footer`, 'afterbegin')
 
-            if (document.querySelector('.drawer__cart .btn-coupon-access') != null) {
-                document.querySelector('.drawer__cart .btn-coupon-access').addEventListener('click', (e) => {
+            if (document.querySelector('.drawer__footer .btn-coupon-access') != null) {
+                document.querySelector('.drawer__footer .btn-coupon-access').addEventListener('click', (e) => {
                     document.querySelector('#CartDrawer .drawer__close-button').click()
                     document.querySelector('.needsclick.kl-teaser-RCtjPB.kl-private-reset-css-Xuajs1').click();
                     pushDataLayer('Click on Access bonus discount block','Cart')
@@ -443,6 +456,12 @@ function start() {
         
         }
     })
+
+    // let isExitIntentPop = setInterval(() => {
+    //     if (sessionStorage.getItem('giftPopup') == 'true' && document.querySelector('.overlay_popup').classList.contains('is_hidden') && document.querySelector('.needsclick.kl-teaser-RCtjPB.kl-private-reset-css-Xuajs1') != null) {
+    //         document.querySelector('.needsclick.kl-teaser-RCtjPB.kl-private-reset-css-Xuajs1').click();
+    //     }
+    // })
 }
 
 pushDataLayer('loaded')
