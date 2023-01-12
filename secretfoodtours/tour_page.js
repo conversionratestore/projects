@@ -112,7 +112,7 @@ let styleFood = /* html */`
     .tour-drinks p em {
         line-height: 20px;
     }
-    .form_tour .pr, .form_tour .pr span:not(.currency) {
+    .form_tour .pr, .form_tour .pr span:not(.not-tour) {
         font-size: 16px;
     } 
     .title-drinks+span {
@@ -182,13 +182,14 @@ let style = /* html */`
         width: 100%;
         display: block;
     }
-    .form_tour .pr a {
-        font-weight: 400;
+    .form_tour .pr span:not(.not-tour):first-letter {
+        font-size: 24px!important;
+    }
+    .form_tour .pr span.not-tour {
         font-size: 14px;
         line-height: 22px;
-        color: #144732;
     }
-    .form_tour .pr span:not(.currency) {
+    .form_tour .pr span:not(.not-tour) {
         font-size: 36px;
         line-height: 36px;
     }
@@ -435,11 +436,11 @@ let style = /* html */`
         .form_tour .btn-gold {
            display: none;
         }
-        .form_tour .pr, .form_tour .pr span:not(.currency) {
+        .form_tour .pr, .form_tour .pr span:not(.not-tour) {
             font-size: 18px;
             line-height: 24px;
         }
-        .form_tour .pr:first-letter {
+        .form_tour .pr span:not(.not-tour):first-letter {
             font-size: 14px;
         }
         .destination_page_wr .tour_fixed_btn {
@@ -789,7 +790,6 @@ let interval = setInterval(() => {
         //set price tour
         if (document.querySelector('.price') != null) {
             let price = document.querySelectorAll('.price')[document.querySelectorAll('.price').length - 1];
-            let currency = price.innerText.trim().charAt(0);
             document.querySelector('.form_tour .pr').innerHTML = `${price.innerHTML}`
         } else {
             if (document.querySelector('#plugin [href="/private-bookings"]') != null) {
@@ -801,7 +801,7 @@ let interval = setInterval(() => {
                 }
                 document.querySelector('.available-daily').remove();
                 document.querySelector('.btn-green').remove();
-                document.querySelector('.form_tour .pr').innerHTML = `<a href="/private-bookings" style="${detectMob() == true ? 'padding-bottom: 10px;': ''}">Currently, we're just accepting private tours.</a>`;
+                document.querySelector('.form_tour .pr').innerHTML = `<span class="not-tour" style="${detectMob() == true ? 'padding-bottom: 10px;': ''}">Currently, we're just accepting private tours.</span>`;
             }
         }
 
