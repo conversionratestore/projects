@@ -393,6 +393,7 @@ function start() {
                     if (form.querySelector('div > div:nth-child(4) > div > div > div:nth-child(2) > div') != null && form.querySelector('div > div:nth-child(4) > div > div > div:nth-child(2) > div').innerHTML.includes('LETSSTART')) {
                         pushDataLayer( 'Close Congratulations pop up','Congratulations')
                     }
+                    start()
                 }
             })
 
@@ -432,7 +433,7 @@ function start() {
     })
 
     let isCart = setInterval(() => {
-        if (document.querySelector('.drawer--is-open') != null &&  document.querySelector('.cart .btn-coupon') == null && document.querySelector('.cart') != null && document.querySelector('.ajaxcart__product') != null) {
+        if (document.querySelector('.drawer--is-open') != null &&  document.querySelector('.cart .btn-coupon') == null && document.querySelector('.drawer__footer') != null) {
             
             setCouponBtn(`.drawer__footer`, 'afterbegin')
 
@@ -444,12 +445,12 @@ function start() {
                 })
             }
 
-            if (document.querySelector('.drawer__cart .btn-coupon-access') != null && isScrolledIntoView(document.querySelector('.drawer__cart .btn-coupon-access')) == true && viewed2 == false) {
+            if (document.querySelector('.drawer__footer .btn-coupon-access') != null && isScrolledIntoView(document.querySelector('.drawer__footer .btn-coupon-access')) == true && viewed2 == false) {
                 viewed2 = true;
                 pushDataLayer('Visibility Access bonus discount block','Cart')
             }
             
-            if (document.querySelector('.drawer__cart .btn-coupon-applied') != null && isScrolledIntoView(document.querySelector('.drawer__cart .btn-coupon-applied')) == true && viewed22 == false) {
+            if (document.querySelector('.drawer__footer .btn-coupon-applied') != null && isScrolledIntoView(document.querySelector('.drawer__footer .btn-coupon-applied')) == true && viewed22 == false) {
                 viewed22 = true;
                 pushDataLayer('Visibility 5% Bonus discount applied','Cart')
             }
