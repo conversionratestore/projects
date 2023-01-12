@@ -396,10 +396,12 @@ function start() {
                 }
             })
 
-            document.querySelector('.product-single__meta .btn-coupon-access').addEventListener('click', (e) => {
-                document.querySelector('.needsclick.kl-teaser-RCtjPB.kl-private-reset-css-Xuajs1').click();
-                pushDataLayer('Click on Access bonus discount block','PDP') 
-            })
+            if (document.querySelector('.product-single__meta .btn-coupon-access') != null) {
+                document.querySelector('.product-single__meta .btn-coupon-access').addEventListener('click', (e) => {
+                    document.querySelector('.needsclick.kl-teaser-RCtjPB.kl-private-reset-css-Xuajs1').click();
+                    pushDataLayer('Click on Access bonus discount block','PDP') 
+                })
+            }
 
             window.addEventListener('scroll', () => {
                 if (isScrolledIntoView(document.querySelector('.product-single__meta .btn-coupon-access')) == true && viewed1 == false) {
@@ -420,10 +422,12 @@ function start() {
             let lastProduct = document.querySelectorAll('.ajaxcart__product')[document.querySelectorAll('.ajaxcart__product').length - 1].className.split(' ').join('.')
             setCouponBtn(`.${lastProduct}`)
 
-            document.querySelector('.drawer__cart .btn-coupon-access').addEventListener('click', (e) => {
-                document.querySelector('.needsclick.kl-teaser-RCtjPB.kl-private-reset-css-Xuajs1').click();
-                pushDataLayer('Click on Access bonus discount block','Cart')
-            })
+            if (document.querySelector('.drawer__cart .btn-coupon-access') != null) {
+                document.querySelector('.drawer__cart .btn-coupon-access').addEventListener('click', (e) => {
+                    document.querySelector('.needsclick.kl-teaser-RCtjPB.kl-private-reset-css-Xuajs1').click();
+                    pushDataLayer('Click on Access bonus discount block','Cart')
+                })
+            }
 
             window.addEventListener('scroll', () => {
                 if (isScrolledIntoView(document.querySelector('.drawer__cart .btn-coupon-access')) == true && viewed2 == false) {
