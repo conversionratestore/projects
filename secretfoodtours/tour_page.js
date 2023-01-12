@@ -178,9 +178,15 @@ let style = /* html */`
         line-height: 16px;
         color: #144732;
         border: 3px dashed #EBEBE7;
-        padding: 13px 11px 11px;
+        padding: 13px 7px 11px;
         width: 100%;
         display: block;
+    }
+    .form_tour .pr a {
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 22px;
+        color: #144732;
     }
     .form_tour .pr span:not(.currency) {
         font-size: 36px;
@@ -397,6 +403,7 @@ let style = /* html */`
         }
         .form_tour .pr {
             margin-bottom: 16px;
+            min-height: 60px;
         }
     }
     @media (max-width: 1199px) {
@@ -734,21 +741,21 @@ let interval = setInterval(() => {
         <div class="popup_form_tour">
             <div class="form_tour">
                 <h3 class="d-xl-block d-none">Book your tour</h3>
-                <p class="pr"></p>
-                <p class="d-xl-block d-none">Available daily at: 11.00, 13.00, 15.00, 19.00</p>
+                <p class="pr d-flex justify-content-center align-items-center"></p>
+                <p class="d-xl-block d-none available-daily">Available daily at: 11.00, 13.00, 15.00, 19.00</p>
                 <div class="d-xl-block d-flex">
                     <button type="button" class="btn-green">Check availability</button>
-                    <a href="/buy-gift/" class=" btn-gold">
-                        <svg width="14" height="12" viewBox="0 0 14 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M0.875 11.1429C0.875 11.625 1.25781 12 1.75 12H6.125V7.71429H0.875V11.1429ZM7.875 12H12.25C12.7148 12 13.125 11.625 13.125 11.1429V7.71429H7.875V12ZM13.125 3.42857H11.9492C12.1406 3.10714 12.25 2.75893 12.25 2.35714C12.25 1.07143 11.1562 0 9.84375 0C8.69531 0 7.95703 0.589286 7.02734 1.84821C6.07031 0.589286 5.33203 0 4.21094 0C2.87109 0 1.80469 1.07143 1.80469 2.35714C1.80469 2.75893 1.88672 3.10714 2.07812 3.42857H0.875C0.382812 3.42857 0 3.83036 0 4.28571V6.42857C0 6.66964 0.191406 6.85714 0.4375 6.85714H13.5625C13.7812 6.85714 14 6.66964 14 6.42857V4.28571C14 3.83036 13.5898 3.42857 13.125 3.42857ZM4.18359 3.42857C3.58203 3.42857 3.08984 2.97321 3.08984 2.35714C3.08984 1.76786 3.58203 1.28571 4.18359 1.28571C4.73047 1.28571 5.14062 1.39286 6.5625 3.42857H4.18359ZM9.84375 3.42857H7.46484C8.88672 1.39286 9.26953 1.28571 9.84375 1.28571C10.4453 1.28571 10.9375 1.76786 10.9375 2.35714C10.9375 2.97321 10.4453 3.42857 9.84375 3.42857Z" fill="#C39958"/>
-                        </svg>
-                        <span>Buy this tour as a gift</span>
-                    </a>
                     <a href="/private-bookings" class="btn-gold">
                         <svg width="14" height="18" viewBox="0 0 14 18" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M12.5138 7.75794V5.49791C12.5138 2.46634 10.0474 0 7.01586 0C3.98429 0 1.51795 2.46634 1.51795 5.49791V7.73662C1.17609 7.86704 0.837891 8.16127 0.837891 8.74412V11.822C0.837891 15.2285 3.60936 18 7.0159 18C10.4224 18 13.1938 15.2285 13.1938 11.822V8.74412C13.1938 8.19108 12.8639 7.8979 12.5138 7.75794ZM8.19009 14.3714C8.20943 14.4739 8.13995 14.5577 8.03568 14.5577H6.0193C5.91503 14.5577 5.84555 14.4739 5.86489 14.3714L6.18783 12.6598C5.94134 12.435 5.78664 12.1113 5.78664 11.7514C5.78664 11.0725 6.33698 10.5222 7.01586 10.5222C7.69473 10.5222 8.24507 11.0725 8.24507 11.7514C8.24507 12.1015 8.09848 12.4172 7.86359 12.6411L8.19009 14.3714ZM10.618 7.64822H3.41371V5.49791C3.41371 3.51171 5.02962 1.89576 7.01586 1.89576C9.00205 1.89576 10.618 3.51171 10.618 5.49791V7.64822Z" fill="#C39958"/>
                         </svg>
                         <span>Book a private tour</span>
+                    </a>
+                    <a href="/buy-gift/" class=" btn-gold">
+                        <svg width="14" height="12" viewBox="0 0 14 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M0.875 11.1429C0.875 11.625 1.25781 12 1.75 12H6.125V7.71429H0.875V11.1429ZM7.875 12H12.25C12.7148 12 13.125 11.625 13.125 11.1429V7.71429H7.875V12ZM13.125 3.42857H11.9492C12.1406 3.10714 12.25 2.75893 12.25 2.35714C12.25 1.07143 11.1562 0 9.84375 0C8.69531 0 7.95703 0.589286 7.02734 1.84821C6.07031 0.589286 5.33203 0 4.21094 0C2.87109 0 1.80469 1.07143 1.80469 2.35714C1.80469 2.75893 1.88672 3.10714 2.07812 3.42857H0.875C0.382812 3.42857 0 3.83036 0 4.28571V6.42857C0 6.66964 0.191406 6.85714 0.4375 6.85714H13.5625C13.7812 6.85714 14 6.66964 14 6.42857V4.28571C14 3.83036 13.5898 3.42857 13.125 3.42857ZM4.18359 3.42857C3.58203 3.42857 3.08984 2.97321 3.08984 2.35714C3.08984 1.76786 3.58203 1.28571 4.18359 1.28571C4.73047 1.28571 5.14062 1.39286 6.5625 3.42857H4.18359ZM9.84375 3.42857H7.46484C8.88672 1.39286 9.26953 1.28571 9.84375 1.28571C10.4453 1.28571 10.9375 1.76786 10.9375 2.35714C10.9375 2.97321 10.4453 3.42857 9.84375 3.42857Z" fill="#C39958"/>
+                        </svg>
+                        <span>Buy this tour as a gift</span>
                     </a>
                 </div>
             </div>
@@ -789,8 +796,12 @@ let interval = setInterval(() => {
 
                 if (detectMob() == true) {
                     document.querySelector('.form_tour').style = 'display: block!important';
+                    document.querySelectorAll('.form_tour .btn-gold')[0].style = 'display: block';
+                    document.querySelector('.form_tour .pr').style = 'width: 100%; padding: 0;';
                 }
-                document.querySelector('.form_tour .pr').innerHTML = `<a href="/private-bookings" ${detectMob() == true ? 'style="white-space: normal;padding-bottom: 10px;display: block;"' : ''}>${document.querySelector('#plugin [href="/private-bookings"]').innerHTML}</a>`;
+                document.querySelector('.available-daily').remove();
+                document.querySelector('.btn-green').remove();
+                document.querySelector('.form_tour .pr').innerHTML = `<a href="/private-bookings" style="${detectMob() == true ? 'padding-bottom: 10px;': ''}">Currently, we're just accepting private tours.</a>`;
             }
         }
 
@@ -831,8 +842,12 @@ let interval = setInterval(() => {
                 <img src="${dir}awards-mobile.svg" alt="awards icons">
             </div>`)
 
-            document.querySelector('.special-options h2').after(document.querySelectorAll('.form_tour .btn-gold')[1])
-            document.querySelector('.special-options h2').after(document.querySelectorAll('.form_tour .btn-gold')[0])
+            if (document.querySelector('.price') != null) {
+                document.querySelector('.special-options h2').after(document.querySelectorAll('.form_tour .btn-gold')[1])
+                document.querySelector('.special-options h2').after(document.querySelectorAll('.form_tour .btn-gold')[0])
+            } else {
+                document.querySelector('.special-options h2').after(document.querySelectorAll('.form_tour .btn-gold')[1])
+            }
         }
 
         pushDataLayer('loaded')
@@ -915,6 +930,8 @@ let listing = setInterval(function(){
                 item.innerText = 'Check availability'
                 item.style.width = 'fit-content'
             }
+            let letterUpper = item.innerText.charAt(0);
+            item.innerHTML = item.innerHTML.replace(letterUpper, letterUpper.toUpperCase());
         })
     }
 }, 50)
