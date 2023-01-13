@@ -416,10 +416,10 @@ function start() {
                             }
                             start()
                         }
+                        localStorage.setItem('isVisible', 'false')
                     }
                 }
             }
-            localStorage.setItem('isVisible', 'false')
         }
     })
 
