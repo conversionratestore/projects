@@ -321,20 +321,17 @@ function start() {
         document.body.insertAdjacentHTML('afterbegin', style)
     }
     let isModal = setInterval(() => {
-        if (document.querySelector('[aria-label="POPUP Form"] form.needsclick.klaviyo-form.klaviyo-form-version-cid_1.kl-private-reset-css-Xuajs1') != null && document.querySelector('.gifts-image') == null) {
+        if (document.querySelector('[aria-label="POPUP Form"] form.needsclick.klaviyo-form.klaviyo-form-version-cid_1.kl-private-reset-css-Xuajs1') != null) {
             let form = document.querySelector('[aria-label="POPUP Form"] form.needsclick.klaviyo-form.klaviyo-form-version-cid_1.kl-private-reset-css-Xuajs1');
 
             let parent = form.closest('[aria-label="POPUP Form"]').parentElement;
-
-            form.firstChild.insertAdjacentHTML('afterbegin',`<img src="${dir}gifts.png" alt="gifts image" class="gifts-image">`)
-
+            if (document.querySelector('.gifts-image') == null) {
+                form.firstChild.insertAdjacentHTML('afterbegin',`<img src="${dir}gifts.png" alt="gifts image" class="gifts-image">`);    
+            }
             // sessionStorage.setItem('giftPopup', 'true')
 
             if (parent.style.display != 'none') {
-                if (document.querySelector('.product-single__meta .btn-coupon') != null) {
-                    document.querySelector('.product-single__meta .btn-coupon').remove()
-                }
-                if (document.querySelector('button.needsclick.go3894874857.kl-private-reset-css-Xuajs1') != null && form.querySelector('[name="email"]') != null) {
+                if (document.querySelector('button.needsclick.go3894874857.kl-private-reset-css-Xuajs1') != null && form.querySelector('[name="email"]') != null && form.querySelector('div > div:nth-child(6) > div > button svg') == null) {
                         form.querySelector('#ele_sE4nXZrhG0x > p > span').innerHTML = 'Unlock your bonus discount!';
                         form.querySelector('[name="email"]').insertAdjacentHTML('beforebegin', `<label>Enter your email</label>`)
                         form.querySelector('[name="email"]').placeholder = '';
@@ -354,7 +351,7 @@ function start() {
                             pushDataLayer('Click on No thanks button','Unlock your bonus discount')
                         })
                 } 
-                if (form.querySelector('div > div:nth-child(4) > div > div > div:nth-child(2) > div') != null && form.querySelector('div > div:nth-child(4) > div > div > div:nth-child(2) > div').innerHTML.includes('LETSSTART')) {
+                if (form.querySelector('div > div:nth-child(4) > div > div > div:nth-child(2) > div') != null && form.querySelector('div > div:nth-child(4) > div > div > div:nth-child(2) > div').innerHTML.includes('LETSSTART') && form.querySelector('div > div:nth-child(3) > div > div > p .title-bold') == null) {
                     form.querySelector('div > div:nth-child(3) > div > div > p').innerHTML = `
                     <span class="title-bold fw-bold">Congratulations!</span> 
                     <span class="text-normal">
@@ -385,7 +382,7 @@ function start() {
     
                         sessionStorage.setItem('giftPopup', 'false')
                     })
-                    document.querySelector('[data-testid="form-component"]').addEventListener('click', () => {
+                    document.querySelector('[data-testid="form-component"]').childNodes[0].addEventListener('click', () => {
                         pushDataLayer('Click on discount code','Congratulations')
                     })
     
@@ -400,7 +397,11 @@ function start() {
                         if (form.querySelector('div > div:nth-child(4) > div > div > div:nth-child(2) > div') != null && form.querySelector('div > div:nth-child(4) > div > div > div:nth-child(2) > div').innerHTML.includes('LETSSTART')) {
                             pushDataLayer( 'Close Congratulations pop up','Congratulations')
                         }
-                        start()
+
+                        if (document.querySelector('.product-single__meta .btn-coupon') != null) {
+                            document.querySelector('.product-single__meta .btn-coupon').remove()
+                            start()
+                        }
                     }
                 })
     
