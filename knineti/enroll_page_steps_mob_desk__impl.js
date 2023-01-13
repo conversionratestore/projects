@@ -15,7 +15,12 @@ let newFunk = setInterval(() => {
     document.body.appendChild(scriptTippy)
 
     //event
-    let eventVar = "mobile"
+    let eventVar = "desktop"
+
+    if (window.innerWidth <= 768) {
+      eventVar = "mobile"
+    }
+
     function pushDataLayer(actionDataLayer, labelDataLayer) {
       window.dataLayer = window.dataLayer || []
       if (labelDataLayer) {
