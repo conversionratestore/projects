@@ -332,11 +332,12 @@ function start() {
                         </svg>`)
 
                         document.querySelector('form.needsclick.klaviyo-form div > div:nth-child(6) > div > button').addEventListener('click', () => {
-                            pushDataLayer('Click on Reveal discount button','Unlock your bonus discount')
+                            pushDataLayer('Click on Reveal discount button','Unlock your bonus discount');
+                            start()
                         })
                     
                         form.querySelector('[name="email"]').addEventListener('click', () => {
-                            pushDataLayer('Click on Enter your email input','Unlock your bonus discount')
+                            pushDataLayer('Click on Enter your email input','Unlock your bonus discount');
                         })
                         document.querySelector('form.needsclick.klaviyo-form > div:nth-child(1) > div:nth-child(7) > div > button').addEventListener('click', (e) => {
                             e.stopImmediatePropagation()
@@ -367,7 +368,7 @@ function start() {
         
                         form.firstChild.insertAdjacentHTML('beforeend', '<p class="text-bottom">Use the above discount code at checkout</p><button type="button" class="btn-continue">Continue Shopping</button>')
                         let close = '';
-                        document.querySelector('.btn-continue').addEventListener('click', () => {
+                        document.querySelector('.btn-continue').addEventListener('click', (e) => {
                             close = 'continue';
                             document.querySelector('.klaviyo-close-form').click()
                         })
@@ -398,33 +399,25 @@ function start() {
     
                 }
             } else {
-                if (localStorage.getItem('klaviyoOnsite') != null && parent.style.display == 'none' && (isVisibilityPopTwo == true || isVisibilityPopOne == true)) {
-                    
-                    clearInterval(isModal)
-                    let viewedForms = JSON.parse(localStorage.getItem('klaviyoOnsite'));
-                
-                    if (clickOnNoThanksBtn != true) {
-                        if (Object.keys(viewedForms["viewedForms"]["modal"]["disabledForms"]).length > 0 && viewedForms["viewedForms"]["modal"]["disabledForms"]["RCtjPB"]["successActionTypes"] != undefined  && viewedForms["viewedForms"]["modal"]["disabledForms"]["RCtjPB"]["successActionTypes"][0] == 'SUBMIT_TO_LIST_AND_TRANSITION_VIEW') {
-                            if (isVisibilityPopTwo == true) {
-                                pushDataLayer( 'Close Congratulations pop up','Congratulations');
-                                isVisibilityPopTwo = false;
+                if (clickOnNoThanksBtn != true && isVisibilityPopOne == true) {
+                    pushDataLayer('Close Unlock your bonus discount pop up','Unlock your bonus discount')
+                    isVisibilityPopOne = false;
+                }
+            }
+        } else {
+            if (clickOnNoThanksBtn != true && localStorage.getItem('klaviyoOnsite') != null ) {
+                let viewedForms = JSON.parse(localStorage.getItem('klaviyoOnsite'));
+                if (Object.keys(viewedForms["viewedForms"]["modal"]["disabledForms"]).length > 0 && viewedForms["viewedForms"]["modal"]["disabledForms"]["RCtjPB"]["successActionTypes"] != undefined  && viewedForms["viewedForms"]["modal"]["disabledForms"]["RCtjPB"]["successActionTypes"][0] == 'SUBMIT_TO_LIST_AND_TRANSITION_VIEW') {
+                    if (isVisibilityPopTwo == true) {
+                        pushDataLayer( 'Close Congratulations pop up','Congratulations');
+                        isVisibilityPopTwo = false;
 
-                                if (document.querySelector('.product-single__meta .btn-coupon') != null) {
-                                    document.querySelector('.product-single__meta .btn-coupon').remove();
-                                    start()
-                                }
-                            }
-                        } else {
-                            if (isVisibilityPopOne == true) {
-                                pushDataLayer('Close Unlock your bonus discount pop up','Unlock your bonus discount')
-                                isVisibilityPopOne = false;
-                            }
+                        if (document.querySelector('.product-single__meta .btn-coupon') != null) {
+                            document.querySelector('.product-single__meta .btn-coupon').remove();
+                            start()
                         }
                     }
-
-                   
                 }
-                
             }
         }
     })
