@@ -1,43 +1,207 @@
-if (window.innerWidth <= 768) {
-  let newFunk = setInterval(() => {
-    if (document.querySelector(".payment_inform_box")) {
-      clearInterval(newFunk)
 
-      // script tooltip
-      let scriptPopper = document.createElement("script")
-      scriptPopper.src = "https://unpkg.com/popper.js@1"
-      scriptPopper.async = false
-      document.body.appendChild(scriptPopper)
+let newFunk = setInterval(() => {
+  if (document.querySelector(".payment_inform_box")) {
+    clearInterval(newFunk)
 
-      let scriptTippy = document.createElement("script")
-      scriptTippy.src = "https://unpkg.com/tippy.js@5"
-      scriptTippy.async = false
-      document.body.appendChild(scriptTippy)
+    // script tooltip
+    let scriptPopper = document.createElement("script")
+    scriptPopper.src = "https://unpkg.com/popper.js@1"
+    scriptPopper.async = false
+    document.body.appendChild(scriptPopper)
 
-      //event
-      let eventVar = "mobile"
-      function pushDataLayer(actionDataLayer, labelDataLayer) {
-        window.dataLayer = window.dataLayer || []
-        if (labelDataLayer) {
-          console.log(actionDataLayer + " : " + labelDataLayer)
-          dataLayer.push({
-            event: "event-to-ga",
-            eventCategory: `Exp: Enroll Improvements ${eventVar}`,
-            eventAction: `${actionDataLayer}`,
-            eventLabel: `${labelDataLayer}`,
-          })
-        } else {
-          console.log(actionDataLayer)
-          dataLayer.push({
-            event: "event-to-ga",
-            eventCategory: `Exp: Enroll Improvements ${eventVar}`,
-            eventAction: `${actionDataLayer}`,
-          })
+    let scriptTippy = document.createElement("script")
+    scriptTippy.src = "https://unpkg.com/tippy.js@5"
+    scriptTippy.async = false
+    document.body.appendChild(scriptTippy)
+
+    //event
+    let eventVar = "mobile"
+    function pushDataLayer(actionDataLayer, labelDataLayer) {
+      window.dataLayer = window.dataLayer || []
+      if (labelDataLayer) {
+        console.log(actionDataLayer + " : " + labelDataLayer)
+        dataLayer.push({
+          event: "event-to-ga",
+          eventCategory: `Exp: Enroll Improvements ${eventVar}`,
+          eventAction: `${actionDataLayer}`,
+          eventLabel: `${labelDataLayer}`,
+        })
+      } else {
+        console.log(actionDataLayer)
+        dataLayer.push({
+          event: "event-to-ga",
+          eventCategory: `Exp: Enroll Improvements ${eventVar}`,
+          eventAction: `${actionDataLayer}`,
+        })
+      }
+    }
+
+    let newStyle = /*html */ `
+      <style>
+        .text_mobile,
+        .customer_information_wrapper>.row:nth-child(9),
+        .hover_box {
+          display: none !important;
+        }
+      @media (min-width: 768px) {
+        section .scroll_bar{
+          margin-bottom: 10px !important;
+        }
+        .new_guarantee_mob {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          padding: 18px 22px;
+          background: #E9F1F9;
+          border-radius: 8px;
+          margin: 0 auto 30px;
+          max-width: max-content;
+        }
+        .new_guarantee_mob svg:nth-child(1) {
+          flex: 0 0 40px;
+          width: 100%;
+          height: 100%;
+        }
+        .new_guarantee_mob p {
+          margin: 0 16px;
+          font-weight: 700;
+          font-size: 16px;
+          line-height: 22px;
+          color: #16377B !important;
+        }
+        .new_guarantee_mob .tooltip_box {
+          flex: 0 0 20px;
+          height: 100%;
+          width: 100%;
+          margin: 0 0 0 auto !important;
+          display: unset;
+          padding: 0;
+          position: unset
+        }
+        .new_guarantee_mob .tippy-popper{
+          top: -24px !important;
+        }
+        .tippy-tooltip{
+                max-width: 424px !important;
+                background: #FFFFFF;
+                border-radius: 8px;
+                font-weight: 400;
+                font-size: 14px;
+                line-height: 150%;
+                color: #808080;
+                box-shadow: 0px 2px 8px 2px rgba(0, 0, 0, 0.15);
+                filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.15));
+        }
+        .tippy-content{
+                padding: 16px;
+            }
+            .tippy-tooltip[data-placement^=bottom]>.tippy-arrow{
+                border-bottom-color: #FFFFFF;
+                left: 380px !important;
+            }
+            .tippy-tooltip[data-placement^="top"] > .tippy-arrow {
+                border-top-color: #ffffff;
+                left: 380px;
+            }
+            .payment_inform_box .payment_plan_wrapp .input_wrapper > div label{
+                font-size: 14px;
+                line-height: 19px;
+                color: #16377B !important;
+            }
+            .payment_inform_box .payment_plan_wrapp .input_wrapper > div.monthly_sec label{
+                color: #808080 !important;
+            }
+            .payment_inform_box .payment_plan_wrapp .input_wrapper > div >input:checked + label .radio_style .ellipse{
+                width: 8.4px;
+                height: 8.4px;
+            }
+            .payment_inform_box .payment_plan_wrapp .input_wrapper > div.monthly_sec label > span:nth-child(2) > span:nth-child(1){
+                margin-left: 2px;
+            }
+            .payment_inform_box .payment_plan_wrapp .input_wrapper > div.monthly_sec label > span:nth-child(2){
+                display: flex;
+                align-items: center;
+            }
+            .tooltip_box {
+                width: 14px;
+                height: 14px;
+                margin-left: 4px;
+                cursor: pointer;
+            }
+            img.ssl-logo{
+                top: 0 !important;
+                display: none;
+            }
+            ul.img_pay{
+                  border: 1px solid #754E0C;
+                    border-radius: 4px;
+                    position: relative;
+                    padding: 22px 10px 14px !important;
+                    margin: 20px 0 34px;
+                }
+                ul.img_pay::before{
+                  position: absolute;
+                  content: 'Fully secured SSL Checkout';
+                  font-weight: 700;
+                  font-size: 14px;
+                  line-height: 24px;
+                  color: #233973;
+                  top: -15px;
+                  left: 50%;
+                  transform: translateX(-50%);
+                  padding: 0 8px;
+                  background: #FFFFFF;
+                  width: max-content;
+                }
+                ul.img_pay li{
+                  margin: 0 auto !important;
+                  max-width: 405px !important;
+                  width: 100%;
+                }
+            ul.img_pay li img.mob_var{
+                  display: none;
+            }
+            body .payment_inform_box li > div.paypament-details .row:nth-child(1), 
+            body .payment_inform_box li > div.paypament-details .row:nth-child(2){
+                margin-top: 0px !important;
+            }
+      }
+      @media (min-width: 1030px) and (max-width: 1112px){
+        .payment_inform_box li > div{
+          padding: 20px 10px !important;
+        }
+        .monthly_sec .tippy-tooltip {
+            left: 5px !important;
+        }
+        .monthly_sec .tippy-tooltip[data-placement^="top"] > .tippy-arrow {
+              left: 394px !important;
+          }
+          .monthly_sec .tippy-tooltip[data-placement^=bottom]>.tippy-arrow {
+    left: 391px !important;
+}
+      }
+      @media (min-width: 767px) and (max-width: 1030px){
+        .payment_inform_box li > div{
+          padding: 10px 10px !important;
+        }
+        .payment_inform_box .payment_plan_wrapp .input_wrapper > div label {
+          font-size: 10px;
         }
       }
 
-      let newStyle = /*html */ `
-      <style>
+      @media (min-width: 1113px){
+        .monthly_sec .tippy-tooltip{
+              left: 55px !important;
+            }
+            .monthly_sec .tippy-tooltip[data-placement^=bottom]>.tippy-arrow {
+                left: 343px !important;
+            }
+            .monthly_sec .tippy-tooltip[data-placement^="top"] > .tippy-arrow {
+                left: 343px !important;
+            }
+      }
+
+      @media (max-width: 768px) {
         .payment_inform_wrapp p.subtitle_text,
         .payment_inform_wrapp .cus_info,
         .payment_order p.subtitle_text,
@@ -48,10 +212,6 @@ if (window.innerWidth <= 768) {
         }
         .payment_inform_wrapp {
           margin: 19px 0px -20px !important;
-        }
-        .text_mobile,
-        .customer_information_wrapper>.row:nth-child(9) {
-          display: none !important;
         }
         .payment_order {
           margin-bottom: 30px !important;
@@ -470,6 +630,12 @@ if (window.innerWidth <= 768) {
           padding: 0;
           position: unset
         }
+        ul.img_pay li img.desk_var{
+          display: none;
+        }
+        ul.img_pay li img.mob_var{
+          display: block;
+        }
         ul.img_pay {
           border: 1px solid #754E0C;
           border-radius: 4px;
@@ -511,6 +677,7 @@ if (window.innerWidth <= 768) {
         .monthly_sec .tippy-tooltip[data-placement^=bottom]>.tippy-arrow {
           left: 82px !important;
         }
+      }
         @media (max-width: 320px) {
           .new_guarantee_mob {
             padding: 12px 17px;
@@ -549,7 +716,7 @@ if (window.innerWidth <= 768) {
       </style>
 `
 
-      let steps = /*html */ `
+    let steps = /*html */ `
             <div class="steps">
                 <ul>
                     <li data-step="1" class="active_step">
@@ -577,7 +744,7 @@ if (window.innerWidth <= 768) {
             </div>
         `
 
-      let checkStep = /*html */ `
+    let checkStep = /*html */ `
             <div class="check_step">
                 <ul>
                     <li class="active_step"  data-checkStep="1">
@@ -601,26 +768,33 @@ if (window.innerWidth <= 768) {
             </div>
         `
 
-      let newBtnContinue = /*html */ `
+    let newBtnContinue = /*html */ `
             <div class="btn_continue_wrap">
                 <button class="btn_continue" data-count="1">Continue</button>
             </div>
         `
 
 
-      let imgPay = /*html */`
-            <ul class="img_pay">
-              <li>
-                <img class="mob_var" src="https://conversionratestore.github.io/projects/knineti/img/Icons-M.png" alt="secured">
-              </li>
-            </ul>
+    let imgPay = /*html */`
+<ul class="img_pay">
+  <li>
+    <img class="desk_var" src="https://conversionratestore.github.io/projects/knineti/img/Icons-D.png" alt="secured">
+    <img class="mob_var" src="https://conversionratestore.github.io/projects/knineti/img/Icons-M.png" alt="secured">
+  </li>
+</ul>
     `
 
-      document.head.insertAdjacentHTML("beforeend", newStyle)
+    document.head.insertAdjacentHTML("beforeend", newStyle)
+    if (window.innerWidth <= 768) {
+      document.querySelector('.paymen_method')?.insertAdjacentHTML('afterbegin', imgPay)
+    } else {
+      document.querySelector('.paypament-details')?.insertAdjacentHTML('beforebegin', imgPay)
+    }
+
+    if (window.innerWidth <= 768) {
       document.querySelector("form#address-form")?.insertAdjacentHTML("beforebegin", steps)
       document.querySelector("form#address-form")?.insertAdjacentHTML("afterbegin", checkStep)
       document.querySelector("form#address-form")?.insertAdjacentHTML("afterend", newBtnContinue)
-      document.querySelector('.paymen_method')?.insertAdjacentHTML('afterbegin', imgPay)
 
       if (document.querySelector(".payment_plan_wrapp #payment_plan_id")) {
         document.querySelector(".payment_plan_wrapp #payment_plan_id").textContent = "Choose Payment plan"
@@ -628,63 +802,6 @@ if (window.innerWidth <= 768) {
       if (document.querySelector("#selected-state-us option:last-child")) {
         document.querySelector("#selected-state-us option:last-child").textContent = "Select State"
       }
-
-      //set phone value
-      let intNumber = setInterval(() => {
-        if (document.querySelector("#phone")) {
-          clearInterval(intNumber)
-          document.querySelector("#phone").value = "00000000000"
-          console.log(`>>>>>>>>>>>>>TEL`, document.querySelector("#phone").value)
-        }
-      }, 100)
-
-      document.querySelector(".payment_inform_box .payment_plan_wrapp .input_wrapper > div.monthly_sec label span:nth-child(2)")?.insertAdjacentHTML(
-        "beforeend",
-        `<span class="tooltip_box" data-tolltip
-                data-title="If you choose the 3 month installment payment plan when you purchase, your card will automatically be charged the same amount as your initial installment payment 30 days and 60 days after your initial installment payment.">
-                <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path fill-rule="evenodd" clip-rule="evenodd"
-                    d="M12.6 7C12.6 10.0928 10.0928 12.6 7 12.6C3.90721 12.6 1.4 10.0928 1.4 7C1.4 3.90721 3.90721 1.4 7 1.4C10.0928 1.4 12.6 3.90721 12.6 7ZM14 7C14 10.866 10.866 14 7 14C3.13401 14 0 10.866 0 7C0 3.13401 3.13401 0 7 0C10.866 0 14 3.13401 14 7ZM6.29954 4.2C6.29954 3.8134 6.61295 3.5 6.99954 3.5C7.38614 3.5 7.69954 3.8134 7.69954 4.2C7.69954 4.5866 7.38614 4.9 6.99954 4.9C6.61295 4.9 6.29954 4.5866 6.29954 4.2ZM6.29954 6.3C6.29954 5.9134 6.61295 5.6 6.99954 5.6C7.38614 5.6 7.69954 5.9134 7.69954 6.3V9.8C7.69954 10.1866 7.38614 10.5 6.99954 10.5C6.61295 10.5 6.29954 10.1866 6.29954 9.8V6.3Z"
-                    fill="#16377B" />
-                </svg>
-            </span>`
-      )
-
-
-      document.querySelector(".text_mobile")?.insertAdjacentHTML(
-        "afterend",
-        `<div class="scroll_test"></div><div data-tolltipMob  data-titlemob="If you are not satisfied with the masterclass, please contact us within 90 days of your enrollment to get a full refund" class="new_guarantee_mob">
-                        <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-                          <g clip-path="url(#clip0_181_3455)">
-                            <path
-                              d="M39.6565 30.8994L35.3623 26.6047C34.9195 27.5367 34.0725 28.2528 32.9979 28.5081L32.4129 28.647L32.2739 29.2325C32.0365 30.2324 30.9198 32.1154 28.5692 31.9243L27.9691 31.8755L27.6562 32.3892C27.1293 33.2538 26.2449 33.8447 25.2617 34.02L30.8991 39.6568C31.1863 39.944 31.6017 40.062 31.997 39.9686C32.3923 39.8754 32.7111 39.584 32.8395 39.1987L34.4291 34.4293L39.1985 32.8397C39.5838 32.7113 39.8752 32.3925 39.9684 31.9972C40.0617 31.602 39.9437 31.1865 39.6565 30.8994Z"
-                              fill="#16377B" />
-                            <path
-                              d="M12.3436 32.3892L12.0306 31.8755L11.4305 31.9243C9.07999 32.1154 7.96327 30.2324 7.72584 29.2325L7.58686 28.647L7.00186 28.5081C5.92725 28.2528 5.0803 27.5367 4.63749 26.6047L0.343267 30.8993C0.0560797 31.1865 -0.0619672 31.6019 0.0313922 31.9972C0.124673 32.3925 0.41608 32.7113 0.801314 32.8397L5.57069 34.4293L7.1603 39.1987C7.28874 39.584 7.60749 39.8754 8.0028 39.9686C8.39811 40.0619 8.8135 39.944 9.10069 39.6568L14.7381 34.02C13.7548 33.8447 12.8705 33.2538 12.3436 32.3892Z"
-                              fill="#16377B" />
-                            <path
-                              d="M25.6548 31.1695L26.7194 29.4227L28.7585 29.5883C29.3341 29.6349 29.8598 29.2541 29.9934 28.691L30.4662 26.7005L32.4561 26.2279C33.019 26.0942 33.4001 25.5695 33.3533 24.9928L33.1876 22.9542L34.9344 21.8897C35.4285 21.5886 35.6289 20.972 35.4062 20.438L34.6191 18.55L35.9512 16.9978C36.328 16.5588 36.3281 15.9105 35.9514 15.4714L34.6191 13.9187L35.4062 12.0306C35.6289 11.4966 35.4285 10.8799 34.9344 10.5788L33.1876 9.51432L33.3533 7.47572C33.4001 6.899 33.019 6.37439 32.4561 6.24064L30.4662 5.76807L29.9934 3.77752C29.8598 3.21447 29.3341 2.83361 28.7585 2.88025L26.7194 3.04588L25.6548 1.299C25.3537 0.804785 24.7367 0.604707 24.2029 0.827285L22.3151 1.61494L20.763 0.282598C20.324 -0.0941992 19.6755 -0.0941992 19.2365 0.282598L17.6844 1.61479L15.7966 0.827129C15.2625 0.604394 14.6459 0.804707 14.3448 1.29885L13.2801 3.04572L11.241 2.8801C10.6643 2.83393 10.1398 3.21432 10.0061 3.77736L9.53335 5.76791L7.54343 6.24064C6.98054 6.37439 6.59936 6.899 6.64624 7.47572L6.81187 9.51432L5.06507 10.5788C4.57101 10.8799 4.37062 11.4965 4.59327 12.0306L5.38046 13.9187L4.04812 15.4714C3.6714 15.9105 3.67147 16.5588 4.04827 16.9978L5.38046 18.55L4.59343 20.438C4.37077 20.972 4.57116 21.5886 5.06522 21.8897L6.81202 22.9542L6.6464 24.9928C6.5996 25.5695 6.98069 26.0942 7.54358 26.2279L9.53351 26.7005L10.0062 28.691C10.14 29.2541 10.6645 29.6345 11.2412 29.5883L13.2803 29.4227L14.3449 31.1695C14.646 31.6637 15.2626 31.864 15.7968 31.6413L17.6846 30.8536L19.2366 32.1857C19.6756 32.5625 20.3241 32.5625 20.7631 32.1857L22.3151 30.8536L24.203 31.6413C24.7367 31.8638 25.3537 31.6637 25.6548 31.1695ZM19.5732 24.5943C19.1157 25.0519 18.3736 25.0521 17.9159 24.5943L11.0123 17.6906C10.5546 17.2331 10.5546 16.491 11.0123 16.0334L14.5626 12.483C15.0201 12.0253 15.7622 12.0253 16.2198 12.483L18.7445 15.0076L24.4072 9.34494C24.8648 8.88729 25.6068 8.88729 26.0644 9.34494L29.6148 12.8953C30.0724 13.3529 30.0724 14.0949 29.6148 14.5525L19.5732 24.5943Z"
-                              fill="#629DD9" />
-                            <path
-                              d="M19.573 17.4935C19.1155 17.9511 18.3734 17.9511 17.9158 17.4935L15.3911 14.9689L13.498 16.8619L18.7445 22.1082L27.1288 13.7239L25.2358 11.8308L19.573 17.4935Z"
-                              fill="#16377B" />
-                          </g>
-                          <defs>
-                            <clipPath id="clip0_181_3455">
-                              <rect width="40" height="40" fill="white" />
-                            </clipPath>
-                          </defs>
-                        </svg>
-                        <p>90 days unconditional money-back guarantee</p>
-                        <svg class="tooltip_box"
-                          width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                          <path fill-rule="evenodd" clip-rule="evenodd"
-                            d="M18 10C18 14.4183 14.4183 18 10 18C5.58172 18 2 14.4183 2 10C2 5.58172 5.58172 2 10 2C14.4183 2 18 5.58172 18 10ZM20 10C20 15.5228 15.5228 20 10 20C4.47715 20 0 15.5228 0 10C0 4.47715 4.47715 0 10 0C15.5228 0 20 4.47715 20 10ZM8.99935 6C8.99935 5.44772 9.44706 5 9.99935 5C10.5516 5 10.9993 5.44772 10.9993 6C10.9993 6.55228 10.5516 7 9.99935 7C9.44706 7 8.99935 6.55228 8.99935 6ZM8.99935 9C8.99935 8.44772 9.44706 8 9.99935 8C10.5516 8 10.9993 8.44772 10.9993 9V14C10.9993 14.5523 10.5516 15 9.99935 15C9.44706 15 8.99935 14.5523 8.99935 14V9Z"
-                            fill="#16377B" />
-                        </svg>
-                      </div>`
-      )
-
 
       // click btn_continue
       if (document.querySelector(".btn_continue")) {
@@ -925,59 +1042,6 @@ if (window.innerWidth <= 768) {
         }
       }
 
-      // tooltip
-      let tippyRunMob = setInterval(() => {
-        if (typeof tippy === "function" && document.querySelector("[data-titlemob]")) {
-          clearInterval(tippyRunMob)
-          document.querySelectorAll("[data-titlemob]").forEach((el) => {
-            if (innerWidth <= 768) {
-              tippy(el, {
-                content: el.getAttribute("data-titlemob"),
-                trigger: "click",
-                placement: "bottom-end",
-                appendTo: function () {
-                  return el
-                },
-                onTrigger(inst, e) {
-                  e.stopPropagation()
-                  e.preventDefault()
-                  pushDataLayer(`Clicks on hints '90 days unconditional money-back guarantee'`)
-                },
-                onShown(e) {
-                  pushDataLayer(`Shown 'If you are not satisfied with the masterclass, please contact us within 90 days of your enrollment to get a full refund'`)
-                },
-              })
-            }
-          })
-        }
-      }, 500)
-
-      let tippyRun = setInterval(() => {
-        if (typeof tippy === "function" && document.querySelector("[data-tolltip]")) {
-          clearInterval(tippyRun)
-          document.querySelectorAll("[data-title]").forEach((el) => {
-            if (innerWidth <= 768) {
-              tippy(el, {
-                content: el.getAttribute("data-title"),
-                trigger: "click",
-                placement: "top",
-                appendTo: function () {
-                  return el.parentElement
-                },
-                onTrigger(inst, e) {
-                  e.stopPropagation()
-                  e.preventDefault()
-                  pushDataLayer(`Clicks on hints '3 monthly payments'`)
-                },
-                onShown(e) {
-                  pushDataLayer(`Shown '3 monthly payments'`)
-                },
-              })
-            }
-          })
-        }
-      }, 500)
-
       // IntersectionObserver
       if (document.querySelector(".steps")) {
         let obs = new IntersectionObserver(visibility, {
@@ -1039,18 +1103,140 @@ if (window.innerWidth <= 768) {
           })
         }
       }
-
-      pushDataLayer("loaded")
-
-      window._mfq.push(["setVariable", "go_exp", "var1"])
-
-      const record = setInterval(() => {
-        if (typeof clarity === "function") {
-          clearInterval(record)
-          clarity("set", "enroll_improvements", "variant_1")
-        }
-      }, 200)
-      document.querySelector(".exp")?.remove()
     }
-  }, 10)
-}
+
+    //set phone value
+    let intNumber = setInterval(() => {
+      if (document.querySelector("#phone")) {
+        clearInterval(intNumber)
+        document.querySelector("#phone").value = "00000000000"
+        console.log(`>>>>>>>>>>>>>TEL`, document.querySelector("#phone").value)
+      }
+    }, 100)
+
+    document.querySelector(".payment_inform_box .payment_plan_wrapp .input_wrapper > div.monthly_sec label span:nth-child(2)")?.insertAdjacentHTML(
+      "beforeend",
+      `<span class="tooltip_box payment_inform_tooltip" data-tolltip
+                data-title="If you choose the 3 month installment payment plan when you purchase, your card will automatically be charged the same amount as your initial installment payment 30 days and 60 days after your initial installment payment.">
+                <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd" clip-rule="evenodd"
+                    d="M12.6 7C12.6 10.0928 10.0928 12.6 7 12.6C3.90721 12.6 1.4 10.0928 1.4 7C1.4 3.90721 3.90721 1.4 7 1.4C10.0928 1.4 12.6 3.90721 12.6 7ZM14 7C14 10.866 10.866 14 7 14C3.13401 14 0 10.866 0 7C0 3.13401 3.13401 0 7 0C10.866 0 14 3.13401 14 7ZM6.29954 4.2C6.29954 3.8134 6.61295 3.5 6.99954 3.5C7.38614 3.5 7.69954 3.8134 7.69954 4.2C7.69954 4.5866 7.38614 4.9 6.99954 4.9C6.61295 4.9 6.29954 4.5866 6.29954 4.2ZM6.29954 6.3C6.29954 5.9134 6.61295 5.6 6.99954 5.6C7.38614 5.6 7.69954 5.9134 7.69954 6.3V9.8C7.69954 10.1866 7.38614 10.5 6.99954 10.5C6.61295 10.5 6.29954 10.1866 6.29954 9.8V6.3Z"
+                    fill="#16377B" />
+                </svg>
+            </span>`
+    )
+
+
+    document.querySelector(".text_mobile")?.insertAdjacentHTML(
+      "afterend",
+      `<div class="scroll_test"></div><div data-tolltipMob  data-titlemob="If you are not satisfied with the masterclass, please contact us within 90 days of your enrollment to get a full refund" class="new_guarantee_mob">
+                        <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <g clip-path="url(#clip0_181_3455)">
+                            <path
+                              d="M39.6565 30.8994L35.3623 26.6047C34.9195 27.5367 34.0725 28.2528 32.9979 28.5081L32.4129 28.647L32.2739 29.2325C32.0365 30.2324 30.9198 32.1154 28.5692 31.9243L27.9691 31.8755L27.6562 32.3892C27.1293 33.2538 26.2449 33.8447 25.2617 34.02L30.8991 39.6568C31.1863 39.944 31.6017 40.062 31.997 39.9686C32.3923 39.8754 32.7111 39.584 32.8395 39.1987L34.4291 34.4293L39.1985 32.8397C39.5838 32.7113 39.8752 32.3925 39.9684 31.9972C40.0617 31.602 39.9437 31.1865 39.6565 30.8994Z"
+                              fill="#16377B" />
+                            <path
+                              d="M12.3436 32.3892L12.0306 31.8755L11.4305 31.9243C9.07999 32.1154 7.96327 30.2324 7.72584 29.2325L7.58686 28.647L7.00186 28.5081C5.92725 28.2528 5.0803 27.5367 4.63749 26.6047L0.343267 30.8993C0.0560797 31.1865 -0.0619672 31.6019 0.0313922 31.9972C0.124673 32.3925 0.41608 32.7113 0.801314 32.8397L5.57069 34.4293L7.1603 39.1987C7.28874 39.584 7.60749 39.8754 8.0028 39.9686C8.39811 40.0619 8.8135 39.944 9.10069 39.6568L14.7381 34.02C13.7548 33.8447 12.8705 33.2538 12.3436 32.3892Z"
+                              fill="#16377B" />
+                            <path
+                              d="M25.6548 31.1695L26.7194 29.4227L28.7585 29.5883C29.3341 29.6349 29.8598 29.2541 29.9934 28.691L30.4662 26.7005L32.4561 26.2279C33.019 26.0942 33.4001 25.5695 33.3533 24.9928L33.1876 22.9542L34.9344 21.8897C35.4285 21.5886 35.6289 20.972 35.4062 20.438L34.6191 18.55L35.9512 16.9978C36.328 16.5588 36.3281 15.9105 35.9514 15.4714L34.6191 13.9187L35.4062 12.0306C35.6289 11.4966 35.4285 10.8799 34.9344 10.5788L33.1876 9.51432L33.3533 7.47572C33.4001 6.899 33.019 6.37439 32.4561 6.24064L30.4662 5.76807L29.9934 3.77752C29.8598 3.21447 29.3341 2.83361 28.7585 2.88025L26.7194 3.04588L25.6548 1.299C25.3537 0.804785 24.7367 0.604707 24.2029 0.827285L22.3151 1.61494L20.763 0.282598C20.324 -0.0941992 19.6755 -0.0941992 19.2365 0.282598L17.6844 1.61479L15.7966 0.827129C15.2625 0.604394 14.6459 0.804707 14.3448 1.29885L13.2801 3.04572L11.241 2.8801C10.6643 2.83393 10.1398 3.21432 10.0061 3.77736L9.53335 5.76791L7.54343 6.24064C6.98054 6.37439 6.59936 6.899 6.64624 7.47572L6.81187 9.51432L5.06507 10.5788C4.57101 10.8799 4.37062 11.4965 4.59327 12.0306L5.38046 13.9187L4.04812 15.4714C3.6714 15.9105 3.67147 16.5588 4.04827 16.9978L5.38046 18.55L4.59343 20.438C4.37077 20.972 4.57116 21.5886 5.06522 21.8897L6.81202 22.9542L6.6464 24.9928C6.5996 25.5695 6.98069 26.0942 7.54358 26.2279L9.53351 26.7005L10.0062 28.691C10.14 29.2541 10.6645 29.6345 11.2412 29.5883L13.2803 29.4227L14.3449 31.1695C14.646 31.6637 15.2626 31.864 15.7968 31.6413L17.6846 30.8536L19.2366 32.1857C19.6756 32.5625 20.3241 32.5625 20.7631 32.1857L22.3151 30.8536L24.203 31.6413C24.7367 31.8638 25.3537 31.6637 25.6548 31.1695ZM19.5732 24.5943C19.1157 25.0519 18.3736 25.0521 17.9159 24.5943L11.0123 17.6906C10.5546 17.2331 10.5546 16.491 11.0123 16.0334L14.5626 12.483C15.0201 12.0253 15.7622 12.0253 16.2198 12.483L18.7445 15.0076L24.4072 9.34494C24.8648 8.88729 25.6068 8.88729 26.0644 9.34494L29.6148 12.8953C30.0724 13.3529 30.0724 14.0949 29.6148 14.5525L19.5732 24.5943Z"
+                              fill="#629DD9" />
+                            <path
+                              d="M19.573 17.4935C19.1155 17.9511 18.3734 17.9511 17.9158 17.4935L15.3911 14.9689L13.498 16.8619L18.7445 22.1082L27.1288 13.7239L25.2358 11.8308L19.573 17.4935Z"
+                              fill="#16377B" />
+                          </g>
+                          <defs>
+                            <clipPath id="clip0_181_3455">
+                              <rect width="40" height="40" fill="white" />
+                            </clipPath>
+                          </defs>
+                        </svg>
+                        <p>90 days unconditional money-back guarantee</p>
+                        <svg class="tooltip_box"
+                          width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path fill-rule="evenodd" clip-rule="evenodd"
+                            d="M18 10C18 14.4183 14.4183 18 10 18C5.58172 18 2 14.4183 2 10C2 5.58172 5.58172 2 10 2C14.4183 2 18 5.58172 18 10ZM20 10C20 15.5228 15.5228 20 10 20C4.47715 20 0 15.5228 0 10C0 4.47715 4.47715 0 10 0C15.5228 0 20 4.47715 20 10ZM8.99935 6C8.99935 5.44772 9.44706 5 9.99935 5C10.5516 5 10.9993 5.44772 10.9993 6C10.9993 6.55228 10.5516 7 9.99935 7C9.44706 7 8.99935 6.55228 8.99935 6ZM8.99935 9C8.99935 8.44772 9.44706 8 9.99935 8C10.5516 8 10.9993 8.44772 10.9993 9V14C10.9993 14.5523 10.5516 15 9.99935 15C9.44706 15 8.99935 14.5523 8.99935 14V9Z"
+                            fill="#16377B" />
+                        </svg>
+                      </div>`
+    )
+
+    // tooltip
+    let tippyRunMob = setInterval(() => {
+      if (typeof tippy === "function" && document.querySelector("[data-titlemob]")) {
+        clearInterval(tippyRunMob)
+        document.querySelectorAll("[data-titlemob]").forEach((el) => {
+          tippy(el, {
+            content: el.getAttribute("data-titlemob"),
+            // trigger: "click",
+            placement: "bottom-end",
+            appendTo: function () {
+              return el
+            },
+            onTrigger(inst, e) {
+              e.stopPropagation()
+              e.preventDefault()
+              pushDataLayer(`Clicks on hints '90 days unconditional money-back guarantee'`)
+            },
+            onShown(e) {
+              pushDataLayer(`Shown 'If you are not satisfied with the masterclass, please contact us within 90 days of your enrollment to get a full refund'`)
+            },
+          })
+        })
+      }
+    }, 500)
+
+    let tippyRun = setInterval(() => {
+      if (typeof tippy === "function" && document.querySelector("[data-tolltip]")) {
+        clearInterval(tippyRun)
+        document.querySelectorAll("[data-title]").forEach((el) => {
+          if (innerWidth <= 768) {
+            tippy(el, {
+              content: el.getAttribute("data-title"),
+              trigger: "click",
+              placement: "top",
+              appendTo: function () {
+                return el.parentElement
+              },
+              onTrigger(inst, e) {
+                e.stopPropagation()
+                e.preventDefault()
+                pushDataLayer(`Clicks on hints '3 monthly payments'`)
+              },
+              onShown(e) {
+                pushDataLayer(`Shown '3 monthly payments'`)
+              },
+            })
+          } else {
+            tippy(el, {
+              content: el.getAttribute("data-title"),
+              placement: "top-end",
+              // trigger: "click",
+              appendTo: function () {
+                return document.querySelector(".payment_inform_tooltip")
+              },
+              onTrigger(e) {
+                pushDataLayer(`Hover on hints '3 monthly payments'`)
+              },
+              onShown(e) {
+                pushDataLayer(`Shown '3 monthly payments'`)
+              },
+            })
+          }
+        })
+      }
+    }, 500)
+
+    pushDataLayer("loaded")
+
+    window._mfq.push(["setVariable", "go_exp", "var1"])
+
+    const record = setInterval(() => {
+      if (typeof clarity === "function") {
+        clearInterval(record)
+        clarity("set", "enroll_improvements", "variant_1")
+      }
+    }, 200)
+    document.querySelector(".exp")?.remove()
+  }
+}, 10)
