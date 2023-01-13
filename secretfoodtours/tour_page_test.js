@@ -863,6 +863,7 @@ let interval = setInterval(() => {
         } else {
             document.querySelector('.top_menu .your_tour').addEventListener('click', (e) => {
                 e.stopImmediatePropagation();
+                
                 scrollToElement(e.target, document.querySelector('.form_tour'))
             })
         }
