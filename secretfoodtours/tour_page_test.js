@@ -603,6 +603,9 @@ let intervalFood = setInterval(() => {
                 }
                 document.querySelector('.tour-drinks').style = 'padding-top: 42px';
             }
+            if (document.querySelector('[style="background-color: #0a88ff; padding:10px;margin-bottom:10px;"]') != null) {
+                document.querySelector('.tour-drinks').before(document.querySelector('[style="background-color: #0a88ff; padding:10px;margin-bottom:10px;"]'))
+            }
         }
         let drinks = document.querySelectorAll('.tour-drinks .food_block .title');
         drinks.forEach(item => {
