@@ -182,9 +182,9 @@ let style = /* html */`
         width: 100%;
         display: block;
     }
-    .form_tour .pr span:not(.not-tour):first-letter {
-        font-size: 24px!important;
-    }
+    // .form_tour .pr span.currency:not(.not-tour):first-letter {
+    //     font-size: 24px!important;
+    // }
     .form_tour .pr span.not-tour {
         font-size: 14px;
         line-height: 22px;
@@ -440,9 +440,9 @@ let style = /* html */`
             font-size: 18px;
             line-height: 24px;
         }
-        .form_tour .pr span:not(.not-tour):first-letter {
-            font-size: 14px;
-        }
+        // .form_tour .pr span:not(.not-tour):first-letter {
+        //     font-size: 14px;
+        // }
         .destination_page_wr .tour_fixed_btn {
             bottom: 120px!important;
         }

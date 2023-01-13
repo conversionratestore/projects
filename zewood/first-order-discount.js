@@ -280,8 +280,6 @@ let appliedBonus = `
 
 let viewed1 = false;
 let viewed11 = false;
-let viewed2 = false;
-let viewed22 = false;
 
 //comes into view
 function isScrolledIntoView(el) {
@@ -483,17 +481,14 @@ function start() {
                 })
             }
 
-            if (document.querySelector('.drawer__footer .btn-coupon-access') != null && isScrolledIntoView(document.querySelector('.drawer__footer .btn-coupon-access')) == true && viewed2 == false) {
-                viewed2 = true;
+            if (document.querySelector('.drawer__footer .btn-coupon-access') != null) {
                 pushDataLayer('Visibility Access bonus discount block','Cart')
             }
             
-            if (document.querySelector('.drawer__footer .btn-coupon-applied') != null && isScrolledIntoView(document.querySelector('.drawer__footer .btn-coupon-applied')) == true && viewed22 == false) {
-                viewed22 = true;
+            if (document.querySelector('.drawer__footer .btn-coupon-applied') != null) {
                 pushDataLayer('Visibility 5% Bonus discount applied','Cart')
             }
-        
-        }
+        } 
     })
 
     // let isExitIntentPop = setInterval(() => {
