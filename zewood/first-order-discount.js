@@ -398,16 +398,16 @@ function start() {
             if (localStorage.getItem('klaviyoOnsite') != null ) {
                 let viewedForms = JSON.parse(localStorage.getItem('klaviyoOnsite'));
                 if (Object.keys(viewedForms["viewedForms"]["modal"]["disabledForms"]).length > 0 && viewedForms["viewedForms"]["modal"]["disabledForms"]["RCtjPB"]["successActionTypes"] != undefined  && viewedForms["viewedForms"]["modal"]["disabledForms"]["RCtjPB"]["successActionTypes"][0] == 'SUBMIT_TO_LIST_AND_TRANSITION_VIEW') {
-                    if (isVisibilityPopTwo == true && clickOnContinueBtn != true) {
-                        pushDataLayer( 'Close Congratulations pop up','Congratulations');
+                    if (isVisibilityPopTwo == true) {
+                        if (clickOnContinueBtn != true) {
+                            pushDataLayer( 'Close Congratulations pop up','Congratulations');
+                        }
                         isVisibilityPopTwo = false;
 
-                    }
-
-                    if (document.querySelector('.product-single__meta .btn-coupon') != null && isVisibilityPopTwo == true) {
-                        document.querySelector('.product-single__meta .btn-coupon').remove();
-                        isVisibilityPopTwo = false;
-                        start()
+                        if (document.querySelector('.product-single__meta .btn-coupon') != null) {
+                            document.querySelector('.product-single__meta .btn-coupon').remove();
+                            start()
+                        }
                     }
                 }
             }
