@@ -321,8 +321,8 @@ function start() {
         document.body.insertAdjacentHTML('afterbegin', style)
     }
     let isModal = setInterval(() => {
-        if (document.querySelector('form.needsclick.klaviyo-form') != null && document.querySelector('.gifts-image') == null) {
-            let form = document.querySelector('form.needsclick.klaviyo-form.klaviyo-form-version-cid_1.kl-private-reset-css-Xuajs1');
+        if (document.querySelector('[aria-label="POPUP Form"] form.needsclick.klaviyo-form.klaviyo-form-version-cid_1.kl-private-reset-css-Xuajs1') != null && document.querySelector('.gifts-image') == null) {
+            let form = document.querySelector('[aria-label="POPUP Form"] form.needsclick.klaviyo-form.klaviyo-form-version-cid_1.kl-private-reset-css-Xuajs1');
 
             let parent = form.closest('[aria-label="POPUP Form"]').parentElement;
 
