@@ -382,15 +382,13 @@ function start() {
     
                         sessionStorage.setItem('giftPopup', 'false')
                     })
-                    document.querySelector('[data-testid="form-component"]').childNodes[0].addEventListener('click', () => {
-                        pushDataLayer('Click on discount code','Congratulations')
-                    })
     
                     pushDataLayer('Visibility pop up','Congratulations')
                 }
     
                 document.addEventListener('click', (e) => {
-                    if (!e.target.closest('[aria-label="POPUP Form"]')) {
+                    e.stopImmediatePropagation();
+                    if (!e.target.closest('[aria-label="POPUP Form"]') && parent.style.display != 'none') {
                         if (document.querySelector('button.needsclick.go3894874857.kl-private-reset-css-Xuajs1') != null && form.querySelector('[name="email"]') != null) {
                             pushDataLayer('Close Unlock your bonus discount pop up','Unlock your bonus discount')
                         }
@@ -402,6 +400,9 @@ function start() {
                             document.querySelector('.product-single__meta .btn-coupon').remove()
                             start()
                         }
+                    }
+                    if (e.target.closest('[data-testid="form-component"]') && e.target.closest('[data-testid="form-component"]').querySelector('div > div:nth-child(2) > div') != null && e.target.closest('[data-testid="form-component"]').querySelector('div > div:nth-child(2) > div').innerHTML == 'LETSSTART') {
+                        pushDataLayer('Click on discount code','Congratulations')
                     }
                 })
     
