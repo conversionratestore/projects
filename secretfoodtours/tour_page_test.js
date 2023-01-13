@@ -132,7 +132,6 @@ let style = /* html */`
     }
     .destination_page_wr .destination_content .popup_form_tour {
         position: absolute;
-        /* top: -240px; */
         top: -160px;
         right: -1px;
         padding: 40px 75px;
@@ -412,13 +411,17 @@ let style = /* html */`
             display: none;
         }
         .form_tour {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            z-index: 9999;
             padding: 16px 20px;
             display: flex;
             align-items: center;
+        }
+        .popup_form_tour {
+            position: fixed;
+            top: auto;
+            width: 100%;
+            bottom: 0;
+            left: 0;
+            z-index: 9999;
         }
         .form_tour .pr {
             border: none;
