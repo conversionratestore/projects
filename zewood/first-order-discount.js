@@ -255,17 +255,6 @@ function pushDataLayer(action, label = '') {
 }
 
 let stateUrl = window.location.href;
-let newUrl = window.location.href;
-
-let changeUrl = setInterval(() => {
-    newUrl = window.location.href;
-    if (newUrl != stateUrl) {
-        stateUrl = newUrl
-        start()
-    }
-})
-
-start()
 
 //buttons HTML (PDP)
 let accessBonus = `
@@ -514,7 +503,10 @@ function start() {
     // })
 }
 
-pushDataLayer('loaded')
+window.onload = () => {
+    start()
+    pushDataLayer('loaded')
+}
 
 //clarify
 let isClarify = setInterval(() => {
