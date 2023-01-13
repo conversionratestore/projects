@@ -728,17 +728,6 @@ let intervalBook = setInterval(() => {
     }
 })
 
-//scroll to
-function scrollToElement(targetScroll, offsetTop) {
-    const scrollTarget = targetScroll;
-    const topOffset = offsetTop.offsetHeight;
-    const elementPosition = scrollTarget.getBoundingClientRect().top;
-    const offsetPosition = elementPosition - topOffset - 60;
-
-    seamless.polyfill();
-    seamless.scrollBy(window, { behavior: "smooth", top: offsetPosition, left: 0 });
-}
-
 let interval = setInterval(() => {
 
     if (document.querySelector('.form_tour') == null && document.querySelector('#plugin') != null) {
@@ -865,9 +854,14 @@ let interval = setInterval(() => {
             }
         } else {
             document.querySelector('.top_menu .your_tour').addEventListener('click', (e) => {
-                e.stopImmediatePropagation();
+                e.preventDefault();
                 
-                scrollToElement(e.target, document.querySelector('.form_tour'))
+                seamless.polyfill();
+                seamless.scrollIntoView(document.querySelector(".form_tour"), {
+                    behavior: "smooth",
+                    block: "center",
+                    inline: "center",
+                });
             })
         }
 
