@@ -140,11 +140,12 @@ let style = /* html */`
         z-index: 20;
     }
     #plugin  {
-        display: none!important;
-        position: initial!important;
+        position: absolute!important;
         margin: 0 auto 10px!important;
         background-color: transparent;
         padding: 0!important;
+        opacity: 0;
+        pointer-events: none!important;
     }
     #plugin iframe {
         height: auto!important;
@@ -850,18 +851,7 @@ let interval = setInterval(() => {
             } else {
                 document.querySelector('.special-options h2').after(document.querySelectorAll('.form_tour .btn-gold')[1])
             }
-        } else {
-            // document.querySelector('.top_menu .your_tour').addEventListener('click', (e) => {
-            //     e.stopImmediatePropagation();
-                
-            //     seamless.polyfill();
-            //     seamless.scrollIntoView(document.querySelector(".form_tour"), {
-            //         behavior: "smooth",
-            //         block: "center",
-            //         inline: "center",
-            //     });
-            // })
-        }
+        } 
 
         pushDataLayer('loaded')
         let coockies = setInterval(function(){
