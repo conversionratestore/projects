@@ -190,6 +190,10 @@ let style = `
     }
 
     @media (min-width: 768px) {
+        .drawer--has-fixed-footer .drawer__inner {
+            bottom: 0!important;
+            padding-bottom: 215px;
+        }
         .main-content .btn-coupon {
             width: fit-content;
             margin-bottom: 20px;
@@ -197,6 +201,9 @@ let style = `
         .main-content .btn-coupon svg {
             margin-right: 3px;
             margin-left: 13px;
+        }
+        .drawer__cart .btn-coupon svg {
+            margin-left: auto;
         }
         .product-section > div > div > div > div:nth-child(2) > div > div:nth-child(4) > hr {
             display: none;
