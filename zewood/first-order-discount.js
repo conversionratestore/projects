@@ -406,6 +406,10 @@ function start() {
 
                         if (document.querySelector('.product-single__meta .btn-coupon') != null) {
                             document.querySelector('.product-single__meta .btn-coupon').remove();
+
+                            if (document.querySelector('.drawer__footer .btn-coupon') != null) {
+                                document.querySelector('.drawer__footer .btn-coupon').remove();
+                            }
                             start()
                         }
                     }
