@@ -315,6 +315,10 @@ function setCouponBtn(selector, klaviyoOnsite, insert = 'afterend', ) {
         document.querySelector(selector).insertAdjacentHTML(insert, accessBonus)
     }
 }
+let isVisibilityPop = false;
+let isVisibilityPopOne = false;
+let isVisibilityPopTwo = false;
+let clickOnNoThanksBtn = false;
 
 function start() {
     if (document.querySelector('.js-style') == null) {
@@ -329,9 +333,9 @@ function start() {
                 form.firstChild.insertAdjacentHTML('afterbegin',`<img src="${dir}gifts.png" alt="gifts image" class="gifts-image">`);    
             }
             // sessionStorage.setItem('giftPopup', 'true')
-
             if (parent.style.display != 'none') {
-                if (document.querySelector('button.needsclick.go3894874857.kl-private-reset-css-Xuajs1') != null && form.querySelector('[name="email"]') != null && form.querySelector('div > div:nth-child(6) > div > button svg') == null) {
+                if (document.querySelector('button.needsclick.go3894874857.kl-private-reset-css-Xuajs1') != null && form.querySelector('[name="email"]') != null) {
+                    if (form.querySelector('div > div:nth-child(6) > div > button svg') == null) {
                         form.querySelector('#ele_sE4nXZrhG0x > p > span').innerHTML = 'Unlock your bonus discount!';
                         form.querySelector('[name="email"]').insertAdjacentHTML('beforebegin', `<label>Enter your email</label>`)
                         form.querySelector('[name="email"]').placeholder = '';
@@ -339,7 +343,7 @@ function start() {
                         <svg width="21" height="24" viewBox="0 0 21 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M19.5754 8.33427L17.2228 7.47801C18.0734 6.77516 18.4366 5.66033 18.1762 4.60096C17.6645 2.51957 15.1267 1.72944 13.5234 3.1468L11.8991 4.58268L11.5778 2.42924C11.2601 0.309132 8.80554 -0.710868 7.07881 0.552413C6.21542 1.18405 5.75613 2.27291 5.95981 3.37851L3.74178 2.57123C2.65053 2.17396 1.43932 2.73871 1.04206 3.8301L0.0815885 6.46902C-0.0510208 6.83338 0.136854 7.23632 0.50126 7.36888C0.649057 7.42265 11.3173 11.3056 11.4739 11.3626C11.0299 11.3626 1.30662 11.3626 0.878839 11.3626C0.491089 11.3626 0.176745 11.6769 0.176745 12.0647V21.8938C0.176745 23.0552 1.1216 24 2.28298 24H7.89964H10.708H16.3246C17.486 24 18.4309 23.0552 18.4309 21.8938V13.8947L18.974 14.0924C19.3367 14.2245 19.7406 14.0387 19.8739 13.6728L20.8344 11.0339C21.2315 9.94251 20.6668 8.73149 19.5754 8.33427ZM7.19749 22.5959H2.28293C1.89579 22.5959 1.58084 22.2809 1.58084 21.8938V12.7668H7.19749V22.5959ZM10.0058 22.5959H8.60168V12.7668H10.0058V22.5959ZM14.4534 4.19887C15.2678 3.47882 16.5536 3.88274 16.8126 4.93626C17.0889 6.05952 16.0032 7.03349 14.9165 6.63862C13.9922 6.30219 13.5591 6.14455 12.6335 5.80766L14.4534 4.19887ZM7.90784 1.68576C8.78534 1.04385 10.0283 1.56473 10.1892 2.63746L10.5492 5.04894C10.29 4.95463 8.52125 4.3108 8.26639 4.21808C7.17964 3.82232 6.97437 2.36854 7.90784 1.68576ZM8.23859 8.69076L1.64121 6.28949L2.36159 4.31034C2.49401 3.94654 2.89774 3.75838 3.26149 3.89071C3.99978 4.1594 8.97139 5.96891 9.19906 6.05179L8.23859 8.69076ZM10.8776 9.65132L9.55807 9.17104L10.5186 6.53212L11.8381 7.0124L10.8776 9.65132ZM17.0266 21.8938C17.0266 22.2809 16.7117 22.5959 16.3245 22.5959H11.41V12.7668H15.3319L17.0267 13.3836V21.8938H17.0266ZM19.5147 10.5536L18.7944 12.5328L12.197 10.1315L13.1576 7.49259L19.0952 9.65366C19.459 9.78609 19.6472 10.1898 19.5147 10.5536Z" fill="white"/>
                         </svg>`)
-                        pushDataLayer('Visibility pop up','Unlock your bonus discount')
+
                         document.querySelector('form.needsclick.klaviyo-form div > div:nth-child(6) > div > button').addEventListener('click', () => {
                             pushDataLayer('Click on Reveal discount button','Unlock your bonus discount')
                         })
@@ -347,65 +351,93 @@ function start() {
                         form.querySelector('[name="email"]').addEventListener('click', () => {
                             pushDataLayer('Click on Enter your email input','Unlock your bonus discount')
                         })
-                        document.querySelector('form.needsclick.klaviyo-form > div:nth-child(1) > div:nth-child(7) > div > button').addEventListener('click', () => {
-                            pushDataLayer('Click on No thanks button','Unlock your bonus discount')
-                        })
-                } 
-                if (form.querySelector('div > div:nth-child(4) > div > div > div:nth-child(2) > div') != null && form.querySelector('div > div:nth-child(4) > div > div > div:nth-child(2) > div').innerHTML.includes('LETSSTART') && form.querySelector('div > div:nth-child(3) > div > div > p .title-bold') == null) {
-                    form.querySelector('div > div:nth-child(3) > div > div > p').innerHTML = `
-                    <span class="title-bold fw-bold">Congratulations!</span> 
-                    <span class="text-normal">
-                        You' ve unlocked a <span class="fw-bold c-red">5% OFF</span> bonus discount for your first order
-                    </span>`;
-    
-                    form.querySelector(' div > div:nth-child(4) > div > div > div:nth-child(2) > div').insertAdjacentHTML('afterend', `
-                    <svg width="20" height="24" viewBox="0 0 20 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M13.4449 4.19727H2.28782C1.24092 4.19727 0.390625 5.04756 0.390625 6.09446V22.1026C0.390625 23.1495 1.24092 23.9998 2.28782 23.9998H13.4449C14.4918 23.9998 15.3421 23.1495 15.3421 22.1026V6.09446C15.3372 5.04756 14.4869 4.19727 13.4449 4.19727ZM14.0101 22.0977C14.0101 22.4123 13.7545 22.6679 13.44 22.6679H2.2829C1.96834 22.6679 1.71276 22.4123 1.71276 22.0977V6.09446C1.71276 5.7799 1.96834 5.52432 2.2829 5.52432H13.44C13.7545 5.52432 14.0101 5.7799 14.0101 6.09446V22.0977Z" fill="black"/>
-                        <path d="M17.7105 0H6.55344C5.50655 0 4.65625 0.850297 4.65625 1.89719C4.65625 2.26582 4.95115 2.56072 5.31978 2.56072C5.6884 2.56072 5.9833 2.26582 5.9833 1.89719C5.9833 1.58263 6.23888 1.32705 6.55344 1.32705H17.7105C18.0251 1.32705 18.2807 1.58263 18.2807 1.89719V17.9054C18.2807 18.2199 18.0251 18.4755 17.7105 18.4755C17.3419 18.4755 17.047 18.7704 17.047 19.1391C17.047 19.5077 17.3419 19.8026 17.7105 19.8026C18.7574 19.8026 19.6077 18.9523 19.6077 17.9054V1.89719C19.6077 0.850297 18.7574 0 17.7105 0Z" fill="black"/>
-                    </svg>`)
-    
-                    form.firstChild.insertAdjacentHTML('beforeend', '<p class="text-bottom">Use the above discount code at checkout</p><button type="button" class="btn-continue">Continue Shopping</button>')
-                    let close = '';
-                    document.querySelector('.btn-continue').addEventListener('click', () => {
-                        close = 'continue'
-                        document.querySelector('.klaviyo-close-form').click()
-                    })
-                    document.querySelector('.klaviyo-close-form').addEventListener('click', () => {
-                        if (document.querySelector('.btn-coupon') != null) {
-                            document.querySelector('.btn-coupon').remove()
-                            start()
-                        }
-                        if (close == 'continue') {
-                            pushDataLayer('Click on Continue button','Congratulations')
-                            close = '';
-                        }
-    
-                        sessionStorage.setItem('giftPopup', 'false')
-                    })
-    
-                    pushDataLayer('Visibility pop up','Congratulations')
-                }
-    
-                document.addEventListener('click', (e) => {
-                    e.stopImmediatePropagation();
-                    if (!e.target.closest('[aria-label="POPUP Form"]') && parent.style.display != 'none') {
-                        if (document.querySelector('button.needsclick.go3894874857.kl-private-reset-css-Xuajs1') != null && form.querySelector('[name="email"]') != null) {
-                            pushDataLayer('Close Unlock your bonus discount pop up','Unlock your bonus discount')
-                        }
-                        if (form.querySelector('div > div:nth-child(4) > div > div > div:nth-child(2) > div') != null && form.querySelector('div > div:nth-child(4) > div > div > div:nth-child(2) > div').innerHTML.includes('LETSSTART')) {
-                            pushDataLayer( 'Close Congratulations pop up','Congratulations')
-                        }
+                        document.querySelector('form.needsclick.klaviyo-form > div:nth-child(1) > div:nth-child(7) > div > button').addEventListener('click', (e) => {
+                            e.stopImmediatePropagation()
 
-                        if (document.querySelector('.product-single__meta .btn-coupon') != null) {
-                            document.querySelector('.product-single__meta .btn-coupon').remove()
-                            start()
+                            pushDataLayer('Click on No thanks button','Unlock your bonus discount');
+                            clickOnNoThanksBtn = true;
+                        })
+                    } 
+                    if (isVisibilityPopOne == false) {
+                        isVisibilityPopOne = true;
+                        pushDataLayer('Visibility pop up','Unlock your bonus discount')
+                    }
+                } 
+
+                if (form.querySelector('div > div:nth-child(4) > div > div > div:nth-child(2) > div') != null && form.querySelector('div > div:nth-child(4) > div > div > div:nth-child(2) > div').innerHTML.includes('LETSSTART')) {
+                    if (form.querySelector('div > div:nth-child(3) > div > div > p .title-bold') == null) {
+                        form.querySelector('div > div:nth-child(3) > div > div > p').innerHTML = `
+                        <span class="title-bold fw-bold">Congratulations!</span> 
+                        <span class="text-normal">
+                            You' ve unlocked a <span class="fw-bold c-red">5% OFF</span> bonus discount for your first order
+                        </span>`;
+        
+                        form.querySelector(' div > div:nth-child(4) > div > div > div:nth-child(2) > div').insertAdjacentHTML('afterend', `
+                        <svg width="20" height="24" viewBox="0 0 20 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M13.4449 4.19727H2.28782C1.24092 4.19727 0.390625 5.04756 0.390625 6.09446V22.1026C0.390625 23.1495 1.24092 23.9998 2.28782 23.9998H13.4449C14.4918 23.9998 15.3421 23.1495 15.3421 22.1026V6.09446C15.3372 5.04756 14.4869 4.19727 13.4449 4.19727ZM14.0101 22.0977C14.0101 22.4123 13.7545 22.6679 13.44 22.6679H2.2829C1.96834 22.6679 1.71276 22.4123 1.71276 22.0977V6.09446C1.71276 5.7799 1.96834 5.52432 2.2829 5.52432H13.44C13.7545 5.52432 14.0101 5.7799 14.0101 6.09446V22.0977Z" fill="black"/>
+                            <path d="M17.7105 0H6.55344C5.50655 0 4.65625 0.850297 4.65625 1.89719C4.65625 2.26582 4.95115 2.56072 5.31978 2.56072C5.6884 2.56072 5.9833 2.26582 5.9833 1.89719C5.9833 1.58263 6.23888 1.32705 6.55344 1.32705H17.7105C18.0251 1.32705 18.2807 1.58263 18.2807 1.89719V17.9054C18.2807 18.2199 18.0251 18.4755 17.7105 18.4755C17.3419 18.4755 17.047 18.7704 17.047 19.1391C17.047 19.5077 17.3419 19.8026 17.7105 19.8026C18.7574 19.8026 19.6077 18.9523 19.6077 17.9054V1.89719C19.6077 0.850297 18.7574 0 17.7105 0Z" fill="black"/>
+                        </svg>`)
+        
+                        form.firstChild.insertAdjacentHTML('beforeend', '<p class="text-bottom">Use the above discount code at checkout</p><button type="button" class="btn-continue">Continue Shopping</button>')
+                        let close = '';
+                        document.querySelector('.btn-continue').addEventListener('click', () => {
+                            close = 'continue';
+                            document.querySelector('.klaviyo-close-form').click()
+                        })
+                        document.querySelector('.klaviyo-close-form').addEventListener('click', () => {
+                            if (document.querySelector('.btn-coupon') != null) {
+                                document.querySelector('.btn-coupon').remove()
+                                start()
+                            }
+                            if (close == 'continue') {
+                                pushDataLayer('Click on Continue button','Congratulations')
+                                close = '';
+                            }
+        
+                            sessionStorage.setItem('giftPopup', 'false')
+                        })
+
+                        document.addEventListener('click', (e) => {
+                            e.stopImmediatePropagation();
+                            if (e.target.closest('[data-testid="form-component"]') && e.target.closest('[data-testid="form-component"]').querySelector('div > div:nth-child(2) > div') != null && e.target.closest('[data-testid="form-component"]').querySelector('div > div:nth-child(2) > div').innerHTML == 'LETSSTART') {
+                                pushDataLayer('Click on discount code','Congratulations')
+                            }
+                        })
+                    }
+                    if (isVisibilityPopTwo == false) {
+                        isVisibilityPopTwo = true;
+                        pushDataLayer('Visibility pop up','Congratulations')
+                    }
+    
+                }
+            } else {
+                if (localStorage.getItem('klaviyoOnsite') != null && parent.style.display == 'none' && (isVisibilityPopTwo == true || isVisibilityPopOne == true)) {
+                    
+                    clearInterval(isModal)
+                    let viewedForms = JSON.parse(localStorage.getItem('klaviyoOnsite'));
+                
+                    if (clickOnNoThanksBtn != true) {
+                        if (Object.keys(viewedForms["viewedForms"]["modal"]["disabledForms"]).length > 0 && viewedForms["viewedForms"]["modal"]["disabledForms"]["RCtjPB"]["successActionTypes"] != undefined  && viewedForms["viewedForms"]["modal"]["disabledForms"]["RCtjPB"]["successActionTypes"][0] == 'SUBMIT_TO_LIST_AND_TRANSITION_VIEW') {
+                            if (isVisibilityPopTwo == true) {
+                                pushDataLayer( 'Close Congratulations pop up','Congratulations');
+                                isVisibilityPopTwo = false;
+
+                                if (document.querySelector('.product-single__meta .btn-coupon') != null) {
+                                    document.querySelector('.product-single__meta .btn-coupon').remove();
+                                    start()
+                                }
+                            }
+                        } else {
+                            if (isVisibilityPopOne == true) {
+                                pushDataLayer('Close Unlock your bonus discount pop up','Unlock your bonus discount')
+                                isVisibilityPopOne = false;
+                            }
                         }
                     }
-                    if (e.target.closest('[data-testid="form-component"]') && e.target.closest('[data-testid="form-component"]').querySelector('div > div:nth-child(2) > div') != null && e.target.closest('[data-testid="form-component"]').querySelector('div > div:nth-child(2) > div').innerHTML == 'LETSSTART') {
-                        pushDataLayer('Click on discount code','Congratulations')
-                    }
-                })
-    
+
+                   
+                }
+                
             }
         }
     })
@@ -424,6 +456,10 @@ function start() {
                 document.querySelector('.product-single__meta .btn-coupon-access').addEventListener('click', (e) => {
                     document.querySelector('.needsclick.kl-teaser-RCtjPB.kl-private-reset-css-Xuajs1').click();
                     pushDataLayer('Click on Access bonus discount block','PDP') 
+                    clickOnNoThanksBtn = false;
+                    isVisibilityPopOne = false;
+                    start()
+                    
                 })
             }
 
@@ -452,6 +488,9 @@ function start() {
                     document.querySelector('#CartDrawer .drawer__close-button').click()
                     document.querySelector('.needsclick.kl-teaser-RCtjPB.kl-private-reset-css-Xuajs1').click();
                     pushDataLayer('Click on Access bonus discount block','Cart')
+                    clickOnNoThanksBtn = false;
+                    isVisibilityPopOne = false;
+                    start()
                 })
             }
 
