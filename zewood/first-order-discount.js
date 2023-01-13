@@ -294,7 +294,7 @@ function isScrolledIntoView(el) {
 
 function setCouponBtn(selector, klaviyoOnsite, insert = 'afterend', ) {
     let viewedForms = JSON.parse(localStorage.getItem(klaviyoOnsite));
-    console.log(viewedForms)
+
 
     if (Object.keys(viewedForms["viewedForms"]["modal"]["disabledForms"]).length > 0 && viewedForms["viewedForms"]["modal"]["disabledForms"]["RCtjPB"]["successActionTypes"] != undefined  && viewedForms["viewedForms"]["modal"]["disabledForms"]["RCtjPB"]["successActionTypes"][0] == 'SUBMIT_TO_LIST_AND_TRANSITION_VIEW') {
         document.querySelector(selector).insertAdjacentHTML(insert, appliedBonus)
@@ -395,17 +395,19 @@ function start() {
                 }
             }
         } else {
-            if (clickOnNoThanksBtn != true && localStorage.getItem('klaviyoOnsite') != null ) {
+            if (localStorage.getItem('klaviyoOnsite') != null ) {
                 let viewedForms = JSON.parse(localStorage.getItem('klaviyoOnsite'));
                 if (Object.keys(viewedForms["viewedForms"]["modal"]["disabledForms"]).length > 0 && viewedForms["viewedForms"]["modal"]["disabledForms"]["RCtjPB"]["successActionTypes"] != undefined  && viewedForms["viewedForms"]["modal"]["disabledForms"]["RCtjPB"]["successActionTypes"][0] == 'SUBMIT_TO_LIST_AND_TRANSITION_VIEW') {
                     if (isVisibilityPopTwo == true && clickOnContinueBtn != true) {
                         pushDataLayer( 'Close Congratulations pop up','Congratulations');
                         isVisibilityPopTwo = false;
-                    } else {
-                        if (clickOnContinueBtn == true && document.querySelector('.product-single__meta .btn-coupon') != null) {
-                            document.querySelector('.product-single__meta .btn-coupon').remove();
-                            start()
-                        }
+
+                    }
+
+                    if (document.querySelector('.product-single__meta .btn-coupon') != null && isVisibilityPopTwo == true) {
+                        document.querySelector('.product-single__meta .btn-coupon').remove();
+                        isVisibilityPopTwo = false;
+                        start()
                     }
                 }
             }
