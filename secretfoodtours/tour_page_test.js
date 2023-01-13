@@ -139,10 +139,8 @@ let style = /* html */`
         width: 100%;
         z-index: 20;
     }
-    #plugin .heading, #plugin .price, #plugin .text-red, #plugin .text-pt, #plugin .text-pt-disclaimer, #plugin a {
-        display: none;
-    }
-    #plugin {
+    #plugin  {
+        display: none!important;
         position: initial!important;
         margin: 0 auto 10px!important;
         background-color: transparent;
@@ -572,16 +570,16 @@ let viewed1 = false;
 let viewed2 = false;
 let viewed3 = false;
 
-let intervalIframe = setInterval(() => {
-    //add iframe in pop-up
-    if (document.querySelector('.plugin iframe') != null && document.querySelector('.suggested-tours') != null) {
-        clearInterval(intervalIframe)
-        document.querySelector('.suggested-tours').after(document.querySelector('#plugin'))
-        if (window.location.href.includes('paris/')) {
-            document.querySelector('#plugin').insertAdjacentHTML('beforebegin', `<style> #plugin iframe { min-height: 1230px!important;}</style>`)
-        }
-    }
-})
+// let intervalIframe = setInterval(() => {
+//     //add iframe in pop-up
+//     if (document.querySelector('.plugin iframe') != null && document.querySelector('.suggested-tours') != null) {
+//         clearInterval(intervalIframe)
+//         document.querySelector('.suggested-tours').after(document.querySelector('#plugin'))
+//         if (window.location.href.includes('paris/')) {
+//             document.querySelector('#plugin').insertAdjacentHTML('beforebegin', `<style> #plugin iframe { min-height: 1230px!important;}</style>`)
+//         }
+//     }
+// })
 
 let intervalFood = setInterval(() => {
     if (document.querySelector('.tour-drinks .food_block .title') != null && document.querySelector('.tour-drinks > p') && !window.location.href.includes('upgraded-drinks')) {
@@ -853,16 +851,16 @@ let interval = setInterval(() => {
                 document.querySelector('.special-options h2').after(document.querySelectorAll('.form_tour .btn-gold')[1])
             }
         } else {
-            document.querySelector('.top_menu .your_tour').addEventListener('click', (e) => {
-                e.preventDefault();
+            // document.querySelector('.top_menu .your_tour').addEventListener('click', (e) => {
+            //     e.stopImmediatePropagation();
                 
-                seamless.polyfill();
-                seamless.scrollIntoView(document.querySelector(".form_tour"), {
-                    behavior: "smooth",
-                    block: "center",
-                    inline: "center",
-                });
-            })
+            //     seamless.polyfill();
+            //     seamless.scrollIntoView(document.querySelector(".form_tour"), {
+            //         behavior: "smooth",
+            //         block: "center",
+            //         inline: "center",
+            //     });
+            // })
         }
 
         pushDataLayer('loaded')

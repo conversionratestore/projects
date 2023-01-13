@@ -172,6 +172,7 @@ let style = `
     }
     .drawer__footer {
         padding-top: 12px;
+        height: auto!important;
     }
     .drawer__footer .btn-coupon  {
         margin: 0 0 20px 0;
@@ -350,6 +351,7 @@ function start() {
                     if (isVisibilityPopOne == false) {
                         isVisibilityPopOne = true;
                         pushDataLayer('Visibility pop up','Unlock your bonus discount')
+                        localStorage.setItem('isVisible', 'true')
                     }
                 } 
 
@@ -385,6 +387,7 @@ function start() {
                     if (isVisibilityPopTwo == false) {
                         isVisibilityPopTwo = true;
                         pushDataLayer('Visibility pop up','Congratulations')
+                        localStorage.setItem('isVisible', 'true')
                     }
     
                 }
@@ -392,6 +395,7 @@ function start() {
                 if (clickOnNoThanksBtn != true && isVisibilityPopOne == true) {
                     pushDataLayer('Close Unlock your bonus discount pop up','Unlock your bonus discount')
                     isVisibilityPopOne = false;
+                    localStorage.setItem('isVisible', 'false')
                 }
             }
         } else {
@@ -415,6 +419,7 @@ function start() {
                     }
                 }
             }
+            localStorage.setItem('isVisible', 'false')
         }
     })
 
@@ -481,11 +486,13 @@ function start() {
         } 
     })
 
-    // let isExitIntentPop = setInterval(() => {
-    //     if (sessionStorage.getItem('giftPopup') == 'true' && document.querySelector('.overlay_popup').classList.contains('is_hidden') && document.querySelector('.needsclick.kl-teaser-RCtjPB.kl-private-reset-css-Xuajs1') != null) {
-    //         document.querySelector('.needsclick.kl-teaser-RCtjPB.kl-private-reset-css-Xuajs1').click();
-    //     }
-    // })
+    let isExitIntentPop = setInterval(() => {
+        if (localStorage.getItem('isVisible') == 'true' && sessionStorage.getItem('exit_popup_loaded') != null && sessionStorage.getItem('exit_popup_loaded') == 'true'  &&  document.querySelector('.overlay_popup').classList.contains('is_hidden') && document.querySelector('.needsclick.kl-teaser-RCtjPB.kl-private-reset-css-Xuajs1') != null) {
+            clearInterval(isExitIntentPop);
+            document.querySelector('#CartDrawer .drawer__close-button').click()
+            document.querySelector('.needsclick.kl-teaser-RCtjPB.kl-private-reset-css-Xuajs1').click();
+        }
+    })
 }
 
 window.onload = () => {
