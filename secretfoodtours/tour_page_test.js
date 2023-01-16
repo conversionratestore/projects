@@ -250,6 +250,12 @@ let style = /* html */`
         margin: 24px auto 0;
         display: block;
     }
+    .popup_form_tour .img-awards {
+        margin: 20px auto;
+    }
+    .awards-desktop {
+        display: none;
+    }
     @media screen and (max-width: 1400px) {
         .destination_page_wr .destination_content .popup_form_tour {
             background: #fff;
@@ -280,7 +286,7 @@ let style = /* html */`
         }
     }
     @media (max-width: 1199px) {
-        .awards-desktop {
+        .popup_form_tour .img-awards {
             display: none;
         }
         .form_tour {
@@ -664,8 +670,7 @@ let interval = setInterval(() => {
         }
 
         //rearrange the image logo
-        document.querySelector('.form_tour').after(document.querySelector('.awards-desktop'));
-        document.querySelector('.awards-desktop img').src = dir + 'awards-mobile.svg';
+        document.querySelector('.form_tour').insertAdjacentHTML('afterend', `<img class="img-awards" src="${dir + 'awards-mobile.svg'}" alt="Awards" width="100%">`)
 
         //hide/show popup
         document.addEventListener('click', (e) => {
