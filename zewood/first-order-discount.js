@@ -513,31 +513,35 @@ function start() {
 
     if (detectMob() == false) {
         let isExitIntentPop = setInterval(() => {
-            if (isVisibilityPopOne == true && closeExitPop == false && sessionStorage.getItem('exit_popup_loaded') != null && sessionStorage.getItem('exit_popup_loaded') == 'true'  &&  document.querySelector('.overlay_popup').classList.contains('is_hidden') && document.querySelector('.main-content .btn-coupon-access') != null && document.querySelector('.needsclick.kl-teaser-RCtjPB.undefined.kl-private-reset-css-Xuajs1') != null) {
-               
-                if (document.querySelector('#CartDrawer.drawer--is-open') != null && document.querySelector('#CartDrawer .drawer__close-button') != null) {
-                    document.querySelector('#CartDrawer .drawer__close-button').click()
-                }
-
-                setTimeout(() => {
-                    if (document.querySelector('[aria-label="POPUP Form"] .klaviyo-close-form') != null && isVisibilityPopOne == true) {
-                        closeExitPop = true;
-                        console.log('1')
-                        document.querySelector('[aria-label="POPUP Form"] .klaviyo-close-form').click()
-
-                        if (document.querySelector('.needsclick.kl-teaser-RCtjPB.undefined.kl-private-reset-css-Xuajs1') != null) {
-                            console.log('11')
-                            document.querySelector('.needsclick.kl-teaser-RCtjPB.undefined.kl-private-reset-css-Xuajs1').click()
+            if (isVisibilityPopOne == true && sessionStorage.getItem('exit_popup_loaded') != null && sessionStorage.getItem('exit_popup_loaded') == 'true' && document.querySelector('.overlay_popup').classList.contains('is_hidden') && document.querySelector('.main-content .btn-coupon-access') != null) {
+            
+                // setTimeout(() => {
+                    // isVisibilityPopOne = false;
+                    if (closeExitPop == false) {
+                        if (document.querySelector('#CartDrawer.drawer--is-open') != null && document.querySelector('#CartDrawer .drawer__close-button') != null) {
+                            document.querySelector('#CartDrawer .drawer__close-button').click()
                         }
-                    } else {
-                        console.log('2')
-                        closeExitPop = true;
-                        if (document.querySelector('.needsclick.kl-teaser-RCtjPB.undefined.kl-private-reset-css-Xuajs1') != null) {
-                            console.log('22')
-                            document.querySelector('.needsclick.kl-teaser-RCtjPB.undefined.kl-private-reset-css-Xuajs1').click()
+                        if (document.querySelector('[aria-label="POPUP Form"] .klaviyo-close-form') != null) {
+                            
+                            console.log('1')
+                            document.querySelector('[aria-label="POPUP Form"] .klaviyo-close-form').click()
+                            setTimeout(() => {
+                                if (document.querySelector('.needsclick.kl-teaser-RCtjPB.undefined.kl-private-reset-css-Xuajs1') != null && closeExitPop == false ) {
+                                    console.log('11')
+                                    closeExitPop = true;
+                                    document.querySelector('.needsclick.kl-teaser-RCtjPB.undefined.kl-private-reset-css-Xuajs1').click()
+                                }
+                            }, 300)
+                        } else {
+                            console.log('2')
+                            if (document.querySelector('.needsclick.kl-teaser-RCtjPB.undefined.kl-private-reset-css-Xuajs1') != null) {
+                                console.log('22')
+                                closeExitPop = true;
+                                document.querySelector('.needsclick.kl-teaser-RCtjPB.undefined.kl-private-reset-css-Xuajs1').click()
+                            }
                         }
                     }
-                }, 300)
+                // }, 300)
             }
         }, 200)
     }
