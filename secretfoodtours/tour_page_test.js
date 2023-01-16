@@ -741,8 +741,9 @@ let listing = setInterval(function(){
         document.querySelectorAll('.cardx-tags+.card-buttons a').forEach(item => {
             if(item.innerText.toLowerCase() === 'book now') {
                 item.innerText = 'Check availability'
-                item.style = 'width: fit-content; min-height: 39px;height: auto!important; '
             }
+            item.style = 'width: fit-content; min-height: 39px;height: auto!important; '
+            
             let letterUpper = item.innerText.charAt(0);
             item.innerHTML = item.innerHTML.replace(letterUpper, letterUpper.toUpperCase());
         })
