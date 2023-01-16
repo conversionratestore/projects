@@ -173,6 +173,7 @@ let style = `
     .drawer__footer {
         padding-top: 12px;
         height: auto!important;
+        background: #fff;
     }
     .drawer__footer .btn-coupon  {
         margin: 0 0 20px 0;
@@ -315,6 +316,7 @@ let isVisibilityPopOne = false;
 let isVisibilityPopTwo = false;
 let clickOnNoThanksBtn = false;
 let clickOnContinueBtn = false;
+let closeExitPop = false;
 
 function start() {
     if (document.querySelector('.js-style') == null) {
@@ -355,10 +357,9 @@ function start() {
                             clickOnNoThanksBtn = true;
                         })
                     } 
-                    if (isVisibilityPopOne == false) {
+                    if (isVisibilityPopOne == false && closeExitPop == false) {
                         isVisibilityPopOne = true;
-                        pushDataLayer('Visibility pop up','Unlock your bonus discount')
-                        localStorage.setItem('isVisible', 'true')
+                        pushDataLayer('Visibility pop up','Unlock your bonus discount');
                     }
                 } 
 
@@ -394,15 +395,13 @@ function start() {
                     if (isVisibilityPopTwo == false) {
                         isVisibilityPopTwo = true;
                         pushDataLayer('Visibility pop up','Congratulations')
-                        localStorage.setItem('isVisible', 'true')
                     }
     
                 }
             } else {
-                if (clickOnNoThanksBtn != true && isVisibilityPopOne == true) {
+                if (clickOnNoThanksBtn != true && isVisibilityPopOne == true && closeExitPop != true) {
                     pushDataLayer('Close Unlock your bonus discount pop up','Unlock your bonus discount')
                     isVisibilityPopOne = false;
-                    localStorage.setItem('isVisible', 'false')
                 }
             }
         } else {
@@ -410,7 +409,7 @@ function start() {
                 let viewedForms = JSON.parse(localStorage.getItem('klaviyoOnsite'));
                 if (Object.keys(viewedForms["viewedForms"]["modal"]["disabledForms"]).length > 0 && viewedForms["viewedForms"]["modal"]["disabledForms"]["RCtjPB"]["successActionTypes"] != undefined  && viewedForms["viewedForms"]["modal"]["disabledForms"]["RCtjPB"]["successActionTypes"][0] == 'SUBMIT_TO_LIST_AND_TRANSITION_VIEW') {
                     if (isVisibilityPopTwo == true) {
-                        if (clickOnContinueBtn != true) {
+                        if (clickOnContinueBtn != true && closeExitPop != true) {
                             pushDataLayer( 'Close Congratulations pop up','Congratulations');
                         }
                         isVisibilityPopTwo = false;
@@ -423,7 +422,6 @@ function start() {
                             }
                             start()
                         }
-                        localStorage.setItem('isVisible', 'false')
                     }
                 }
             }
@@ -443,12 +441,15 @@ function start() {
             if (document.querySelector('.product-single__meta .btn-coupon-access') != null) {
                 document.querySelector('.product-single__meta .btn-coupon-access').addEventListener('click', (e) => {
                     document.querySelector('.needsclick.kl-teaser-RCtjPB.kl-private-reset-css-Xuajs1').click();
-                    pushDataLayer('Click on Access bonus discount block','PDP') 
+                    if (closeExitPop != true) {
+                        pushDataLayer('Click on Access bonus discount block','PDP') 
+                    }
                     clickOnNoThanksBtn = false;
                     isVisibilityPopOne = false;
                     clickOnContinueBtn = false;
                     start()
                     
+                    closeExitPop = false;
                 })
             }
 
@@ -480,6 +481,7 @@ function start() {
                     clickOnNoThanksBtn = false;
                     isVisibilityPopOne = false;
                     start()
+                    closeExitPop = false;
                 })
             }
 
@@ -494,9 +496,20 @@ function start() {
     })
 
     let isExitIntentPop = setInterval(() => {
-        if (localStorage.getItem('isVisible') == 'true' && sessionStorage.getItem('exit_popup_loaded') != null && sessionStorage.getItem('exit_popup_loaded') == 'true'  &&  document.querySelector('.overlay_popup').classList.contains('is_hidden') && document.querySelector('.main-content .btn-coupon-access') != null) {
-            localStorage.setItem('isVisible', 'false')
-            document.querySelector('.main-content .btn-coupon-access').click()
+        if (isVisibilityPopOne == true && closeExitPop == false && sessionStorage.getItem('exit_popup_loaded') != null && sessionStorage.getItem('exit_popup_loaded') == 'true'  &&  document.querySelector('.overlay_popup').classList.contains('is_hidden') && document.querySelector('.main-content .btn-coupon-access') != null && document.querySelector('.needsclick.kl-teaser-RCtjPB.undefined.kl-private-reset-css-Xuajs1') != null) {
+            closeExitPop = true;
+            setTimeout(() => {
+
+                if (document.querySelector('#CartDrawer.drawer--is-open') != null && document.querySelector('#CartDrawer .drawer__close-button') != null) {
+                    document.querySelector('#CartDrawer .drawer__close-button').click()
+                }
+                if (document.querySelector('[aria-label="POPUP Form"] form.needsclick.klaviyo-form.klaviyo-form-version-cid_1.kl-private-reset-css-Xuajs1 .klaviyo-close-form') != null && isVisibilityPopOne == false) {
+                    document.querySelector('[aria-label="POPUP Form"] form.needsclick.klaviyo-form.klaviyo-form-version-cid_1.kl-private-reset-css-Xuajs1 .klaviyo-close-form').click()
+                }
+                if (document.querySelector('.needsclick.kl-teaser-RCtjPB.undefined.kl-private-reset-css-Xuajs1') != null) {
+                    document.querySelector('.needsclick.kl-teaser-RCtjPB.undefined.kl-private-reset-css-Xuajs1').click()
+                }
+            }, 300)
         }
     })
 }
