@@ -219,134 +219,8 @@ let style = /* html */`
         color: #C39958;
         border-color: #C39958;
     }
-    /* pop-up */
-    .popup_booking-flow .plugin {
-        display: flex;
-        justify-content: center;
-    }
-    .popup_booking-flow {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100vh;
-        overflow-y: auto;
-        z-index: 999999;
-        background: rgba(0, 0, 0, 0.7);
-        padding: 10px;
-        display: flex;
-        opacity: 0;
-        pointer-events: none;
-        transition: all 0.2s ease;
-    }
-    .popup_booking-flow.active {
-        opacity: 1;
-        pointer-events: auto;
-    }
-    .popup_booking-flow.active .container {
-        transform: translateY(0);
-    }
-    .popup_booking-flow .container {
-        background: #FAFAFA;
-        box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.1), 0px 2px 30px rgba(0, 0, 0, 0.15);
-        max-width: 640px;
-        margin: auto;
-        width: 100%;
-        position: relative;
-        padding: 24px;
-        transform: translateY(100px);
-        transition: all 0.25s ease;
-        display: block!important;
-    }
-    .popup_booking-flow .container h2 {
-        font-family: 'JosefinSans-Bold', sans-serif;
-        font-style: normal;
-        font-weight: 700;
-        font-size: 24px;
-        line-height: 24px;
-        text-transform: uppercase;
-        color: #212529;
-        margin-bottom: 24px;
-        padding: 0 20px;
-    }
-    .btn-close {
-        position: absolute;
-        top: 14px;
-        right: 14px;
-        padding: 10px;
-        border: none;
-        background-color: transparent;
-    }
-    .btn-close svg {
-        pointer-events: none;
-    }
-    .progressbar {
-        margin-bottom: 30px;
-    }
-    .progressbar .line span {
-        background: #E9EBED;
-        width: 50px;
-        height: 10px;
-        margin: 0 0.5px;
-    }
-    .progressbar .line span:first-child {
-        border-radius: 20px 0 0 20px;
-    }
-    .progressbar .line span:last-child {
-        border-radius: 0 20px 20px 0;
-    }
     .text-center {
         text-align: center;
-    }
-    .progressbar p {
-        font-size: 14px;
-        line-height: 14px;
-        color: #144732;
-        margin-top: 6px;
-    }
-    .suggested-tours {
-        padding-top: 30px;
-    }
-    .suggested-tours h3 {
-        font-family: 'JosefinSans-Bold', sans-serif;
-        font-weight: 700;
-        font-size: 20px;
-        line-height: 20px;
-        text-transform: uppercase;
-        color: #212529;
-        margin-bottom: 14px;
-    }
-    .suggested-tours li {
-        padding: 17px 0;
-        border-bottom: 1px solid #EEEEEE;
-    }
-    .suggested-tours .title {
-        font-family: 'JosefinSans-Semi', sans-serif;
-        font-style: normal;
-        font-weight: 600;
-        font-size: 18px;
-        line-height: 18px;
-        text-decoration-line: underline;
-        color: #144732;
-        margin-right: 16px;
-    }
-
-    .suggested-tours .pr {
-        font-family: 'JosefinSans-Bold', sans-serif;
-        font-weight: 700;
-        font-size: 18px;
-        line-height: 18px;
-        text-transform: uppercase;
-        color: #144732;
-        margin-right: 16px;
-    }
-    .rating {
-        font-size: 18px;
-        line-height: 18px;
-        color: #212529;
-    }
-    .rating svg {
-        margin-right: 3px;
     }
     /* flex */
     .flex-center-between {
@@ -571,17 +445,6 @@ let viewed1 = false;
 let viewed2 = false;
 let viewed3 = false;
 
-// let intervalIframe = setInterval(() => {
-//     //add iframe in pop-up
-//     if (document.querySelector('.plugin iframe') != null && document.querySelector('.suggested-tours') != null) {
-//         clearInterval(intervalIframe)
-//         document.querySelector('.suggested-tours').after(document.querySelector('#plugin'))
-//         if (window.location.href.includes('paris/')) {
-//             document.querySelector('#plugin').insertAdjacentHTML('beforebegin', `<style> #plugin iframe { min-height: 1230px!important;}</style>`)
-//         }
-//     }
-// })
-
 let intervalFood = setInterval(() => {
     if (document.querySelector('.tour-drinks .food_block .title') != null && document.querySelector('.tour-drinks > p') && !window.location.href.includes('upgraded-drinks')) {
         clearInterval(intervalFood)
@@ -766,27 +629,6 @@ let interval = setInterval(() => {
                     </a>
                 </div>
             </div>
-        </div>
-        <div class="popup_booking-flow">
-            <div class="container">
-                <button type="button" class="btn-close">
-                    <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M12.3957 8.97447L17.5021 3.86808C18.166 3.25532 18.166 2.23404 17.5021 1.62128L16.3787 0.497872C15.766 -0.165957 14.7447 -0.165957 14.1319 0.497872L9.02553 5.60426L3.86808 0.497872C3.25532 -0.165957 2.23404 -0.165957 1.62128 0.497872L0.497872 1.62128C-0.165957 2.23404 -0.165957 3.25532 0.497872 3.86808L5.60426 8.97447L0.497872 14.1319C-0.165957 14.7447 -0.165957 15.766 0.497872 16.3787L1.62128 17.5021C2.23404 18.166 3.25532 18.166 3.86808 17.5021L9.02553 12.3957L14.1319 17.5021C14.7447 18.166 15.766 18.166 16.3787 17.5021L17.5021 16.3787C18.166 15.766 18.166 14.7447 17.5021 14.1319L12.3957 8.97447Z" fill="#144732"/>
-                    </svg>
-                </button>
-                <div class="progressbar" style="display: none;">
-                    <div class="line">
-                        <span class="active"></span><span></span><span></span><span></span><span></span><span></span><span></span>
-                    </div>
-                    <p class="text-center">Choose your date</p>
-                </div>
-                <h2 class="text-center">${document.querySelector('.dest_title').innerText}</h2>
-                <div class="suggested-tours" style="display: none;">
-                    <h3>Learn more about other available tours</h3>
-                    <ul></ul>
-                </div>
-                <img class="mx-auto d-block" src="${dir}logos.svg" alt="logos">
-            </div>
         </div>`;
 
         //add style/html
@@ -794,7 +636,7 @@ let interval = setInterval(() => {
         document.querySelector('#plugin').insertAdjacentHTML('afterend', formHTML);
 
         //set price tour
-        if (document.querySelector('.price') != null) {
+        if (document.querySelector('.price') != null && document.querySelectorAll('.price')[document.querySelectorAll('.price').length - 1].innerHTML.trim() == 'Available only for <a href="/private-bookings">private bookings</a>') {
             let price = document.querySelectorAll('.price')[document.querySelectorAll('.price').length - 1];
             document.querySelector('.form_tour .pr').innerHTML = `${price.innerHTML}`
         } else {
