@@ -15,31 +15,31 @@ let newFunk = setInterval(() => {
     document.body.appendChild(scriptTippy)
 
     //event
-    let eventVar = "desktop"
+    // let eventVar = "desktop"
 
-    if (window.innerWidth <= 768) {
-      eventVar = "mobile"
-    }
+    // if (window.innerWidth <= 768) {
+    //   eventVar = "mobile"
+    // }
 
-    function pushDataLayer(actionDataLayer, labelDataLayer) {
-      window.dataLayer = window.dataLayer || []
-      if (labelDataLayer) {
-        console.log(actionDataLayer + " : " + labelDataLayer)
-        dataLayer.push({
-          event: "event-to-ga",
-          eventCategory: `Exp: Enroll Improvements ${eventVar}`,
-          eventAction: `${actionDataLayer}`,
-          eventLabel: `${labelDataLayer}`,
-        })
-      } else {
-        console.log(actionDataLayer)
-        dataLayer.push({
-          event: "event-to-ga",
-          eventCategory: `Exp: Enroll Improvements ${eventVar}`,
-          eventAction: `${actionDataLayer}`,
-        })
-      }
-    }
+    // function pushDataLayer(actionDataLayer, labelDataLayer) {
+    //   window.dataLayer = window.dataLayer || []
+    //   if (labelDataLayer) {
+    //     console.log(actionDataLayer + " : " + labelDataLayer)
+    //     dataLayer.push({
+    //       event: "event-to-ga",
+    //       eventCategory: `Exp: Enroll Improvements ${eventVar}`,
+    //       eventAction: `${actionDataLayer}`,
+    //       eventLabel: `${labelDataLayer}`,
+    //     })
+    //   } else {
+    //     console.log(actionDataLayer)
+    //     dataLayer.push({
+    //       event: "event-to-ga",
+    //       eventCategory: `Exp: Enroll Improvements ${eventVar}`,
+    //       eventAction: `${actionDataLayer}`,
+    //     })
+    //   }
+    // }
 
     let newStyle = /*html */ `
       <style>
@@ -816,7 +816,7 @@ let newFunk = setInterval(() => {
             document.querySelectorAll(".check_step ul li").forEach((item) => {
               if (e.target.getAttribute("data-count") === `1`) {
                 if (!e.currentTarget.getAttribute("data-test")) {
-                  pushDataLayer('Click on btn Continue step "Order summary')
+                  // pushDataLayer('Click on btn Continue step "Order summary')
                 }
                 e.currentTarget.setAttribute("data-test", "1")
                 if (el.getAttribute("data-step") === "1") {
@@ -851,7 +851,7 @@ let newFunk = setInterval(() => {
               }
               if (e.target.getAttribute("data-count") === `2`) {
                 if (!e.currentTarget.getAttribute("data-test")) {
-                  pushDataLayer('Click on btn Continue step "Contact information')
+                  // pushDataLayer('Click on btn Continue step "Contact information')
                   if (document.querySelector("#phone").value === "") {
                     document.querySelector("#phone").value = "00000000000"
                     console.log(`>>>>>>>>>>>>>TEL еще раз`, document.querySelector("#phone").value)
@@ -878,7 +878,7 @@ let newFunk = setInterval(() => {
             if (el.currentTarget.getAttribute("data-checkStep") === `2` && el.currentTarget.classList.contains("active_step")) {
               document.querySelectorAll(".steps ul li").forEach((i) => {
                 if (!el.currentTarget.getAttribute("data-test")) {
-                  pushDataLayer('Click on btn Back step "Contact information')
+                  // pushDataLayer('Click on btn Back step "Contact information')
                 }
                 el.currentTarget.setAttribute("data-test", "1")
                 if (i.getAttribute("data-step") === "1") {
@@ -908,7 +908,7 @@ let newFunk = setInterval(() => {
             if (el.currentTarget.getAttribute("data-checkStep") === `3` && el.currentTarget.classList.contains("active_step")) {
               document.querySelectorAll(".steps ul li").forEach((i) => {
                 if (!el.currentTarget.getAttribute("data-test")) {
-                  pushDataLayer('Click on btn Back step "Payment method"')
+                  // pushDataLayer('Click on btn Back step "Payment method"')
                 }
                 el.currentTarget.setAttribute("data-test", "1")
                 if (i.getAttribute("data-step") === "2" && i.classList.contains("visited_step")) {
@@ -950,7 +950,7 @@ let newFunk = setInterval(() => {
         document.querySelector("#submit").addEventListener("click", (e) => {
           window.alert = function () { }
           if (!e.target.classList.contains("on_click")) {
-            pushDataLayer("Click on btn Enroll now")
+            // pushDataLayer("Click on btn Enroll now")
           }
         })
       }
@@ -1069,16 +1069,16 @@ let newFunk = setInterval(() => {
           entries.forEach((i) => {
             if (i.isIntersecting) {
               if (i.target.classList.contains("payment_plan_wrapp")) {
-                pushDataLayer("Visibility block Choose Payment plan")
+                // pushDataLayer("Visibility block Choose Payment plan")
               }
               if (i.target.getAttribute("data-count") === "1") {
-                pushDataLayer(`Visibility btn Continue 1 ${i.target.getAttribute("data-count")}`)
+                // pushDataLayer(`Visibility btn Continue 1 ${i.target.getAttribute("data-count")}`)
               }
               if (i.target.classList.contains("testik")) {
-                pushDataLayer(`Visibility btn Continue 2`)
+                // pushDataLayer(`Visibility btn Continue 2`)
               }
               if (i.target.getAttribute("id") === "submit") {
-                pushDataLayer("Visibility btn Enroll now")
+                // pushDataLayer("Visibility btn Enroll now")
               }
 
               obs.unobserve(i.target)
@@ -1098,11 +1098,11 @@ let newFunk = setInterval(() => {
           entries.forEach((i) => {
             if (i.isIntersecting) {
               if (document.querySelector('.btn_continue[data-count="1"]')) {
-                pushDataLayer("Scroll on scroll bar step 1")
+                // pushDataLayer("Scroll on scroll bar step 1")
               } else if (document.querySelector('.btn_continue[data-count="2"]')) {
-                pushDataLayer("Scroll on scroll bar step 2")
+                // pushDataLayer("Scroll on scroll bar step 2")
               } else if (document.querySelector('.btn_continue[data-count="3"]')) {
-                pushDataLayer("Scroll on scroll bar step 3")
+                // pushDataLayer("Scroll on scroll bar step 3")
               }
             }
           })
@@ -1181,10 +1181,10 @@ let newFunk = setInterval(() => {
             onTrigger(inst, e) {
               e.stopPropagation()
               e.preventDefault()
-              pushDataLayer(`Clicks on hints '90 days unconditional money-back guarantee'`)
+              // pushDataLayer(`Clicks on hints '90 days unconditional money-back guarantee'`)
             },
             onShown(e) {
-              pushDataLayer(`Shown 'If you are not satisfied with the masterclass, please contact us within 90 days of your enrollment to get a full refund'`)
+              // pushDataLayer(`Shown 'If you are not satisfied with the masterclass, please contact us within 90 days of your enrollment to get a full refund'`)
             },
           })
         })
@@ -1206,10 +1206,10 @@ let newFunk = setInterval(() => {
               onTrigger(inst, e) {
                 e.stopPropagation()
                 e.preventDefault()
-                pushDataLayer(`Clicks on hints '3 monthly payments'`)
+                // pushDataLayer(`Clicks on hints '3 monthly payments'`)
               },
               onShown(e) {
-                pushDataLayer(`Shown '3 monthly payments'`)
+                // pushDataLayer(`Shown '3 monthly payments'`)
               },
             })
           } else {
@@ -1221,10 +1221,10 @@ let newFunk = setInterval(() => {
                 return document.querySelector(".payment_inform_tooltip")
               },
               onTrigger(e) {
-                pushDataLayer(`Hover on hints '3 monthly payments'`)
+                // pushDataLayer(`Hover on hints '3 monthly payments'`)
               },
               onShown(e) {
-                pushDataLayer(`Shown '3 monthly payments'`)
+                // pushDataLayer(`Shown '3 monthly payments'`)
               },
             })
           }
@@ -1232,16 +1232,16 @@ let newFunk = setInterval(() => {
       }
     }, 500)
 
-    pushDataLayer("loaded")
+    // pushDataLayer("loaded")
 
-    window._mfq.push(["setVariable", "go_exp", "var1"])
+    // window._mfq.push(["setVariable", "go_exp", "var1"])
 
-    const record = setInterval(() => {
-      if (typeof clarity === "function") {
-        clearInterval(record)
-        clarity("set", "enroll_improvements", "variant_1")
-      }
-    }, 200)
-    document.querySelector(".exp")?.remove()
+    // const record = setInterval(() => {
+    //   if (typeof clarity === "function") {
+    //     clearInterval(record)
+    //     clarity("set", "enroll_improvements", "variant_1")
+    //   }
+    // }, 200)
+    // document.querySelector(".exp")?.remove()
   }
 }, 10)
