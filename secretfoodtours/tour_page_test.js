@@ -100,6 +100,10 @@ let styleFood = /* html */`
     .tour-drinks .food_wr {
         display: flex;
     }
+    .cardx-buttons-one {
+        min-height: 39px;
+        height: auto!important;
+    }
 }
 
 @media (max-width: 767px) {
@@ -721,42 +725,6 @@ let interval = setInterval(() => {
         }, 30)
         
     }
-
-    // //sort best reviews
-    // let sorBestReviews = [].slice.call(document.querySelectorAll('.country_tours .cardx-container-details')).sort(function (a, b) {
-    //     return b.querySelector('.rate-tours').innerHTML.replace('(', '').replace(')', '') - a.querySelector('.rate-tours').innerHTML.replace('(', '').replace(')', '');  
-    // });
-
-    // let filterBestReviews = sorBestReviews.filter((item) => {
-    //     return item.querySelector('.cardx-buttons-one').innerText.includes('book now')
-    // })
-
-    // // step 2
-    // function setSuggestedTours(url, title, rating, price) {
-    //     return `
-    //     <li>
-    //         <a href="${url}">
-    //             <object class="flex-center-between">
-    //                 <div class="d-flex align-items-center">
-    //                     <p class="title">${title}</p>
-    //                     <p class="rating">
-    //                         <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-    //                             <path d="M8.09375 1.5625L6.0625 5.71875L1.46875 6.375C0.65625 6.5 0.34375 7.5 0.9375 8.09375L4.21875 11.3125L3.4375 15.8438C3.3125 16.6562 4.1875 17.2812 4.90625 16.9062L9 14.75L13.0625 16.9062C13.7812 17.2812 14.6562 16.6562 14.5312 15.8438L13.75 11.3125L17.0312 8.09375C17.625 7.5 17.3125 6.5 16.5 6.375L11.9375 5.71875L9.875 1.5625C9.53125 0.84375 8.46875 0.8125 8.09375 1.5625Z" fill="#F0AD4E"/>
-    //                         </svg>
-    //                         ${rating}
-    //                     </p>
-    //                 </div>
-    //                 <div class="d-flex align-items-center">
-    //                     <div class="pr">${price}</div>
-    //                     <svg width="7" height="12" viewBox="0 0 7 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-    //                         <path d="M6.82136 6.45361C7.05955 6.20619 7.05955 5.79381 6.82136 5.54639L1.68715 0.185568C1.42249 -0.0618554 1.02552 -0.0618554 0.787334 0.185568L0.178638 0.81787C-0.0595468 1.06529 -0.0595468 1.47766 0.178639 1.75258L4.25425 5.98625L0.178639 10.2474C-0.0595464 10.5223 -0.0595464 10.9347 0.178639 11.1821L0.787335 11.8144C1.02552 12.0619 1.4225 12.0619 1.68715 11.8144L6.82136 6.45361Z" fill="#C39958"/>
-    //                     </svg>
-    //                 </div>
-    //             </object>
-    //         </a>
-    //     </li>`
-    // }
-
 })
 
 //clarify
