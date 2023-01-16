@@ -521,7 +521,7 @@ function start() {
                         document.querySelector('#CartDrawer .drawer__close-button').click()
                     }
                   
-                    if (document.querySelector('[aria-label="POPUP Form"] form.needsclick.klaviyo-form.klaviyo-form-version-cid_1.kl-private-reset-css-Xuajs1 .klaviyo-close-form') != null && isVisibilityPopOne == false) {
+                    if (document.querySelector('[aria-label="POPUP Form"] form.needsclick.klaviyo-form.klaviyo-form-version-cid_1.kl-private-reset-css-Xuajs1 .klaviyo-close-form') != null && isVisibilityPopOne == true) {
                         closeExitPop = true;
                         document.querySelector('[aria-label="POPUP Form"] form.needsclick.klaviyo-form.klaviyo-form-version-cid_1.kl-private-reset-css-Xuajs1 .klaviyo-close-form').click()
                     }
