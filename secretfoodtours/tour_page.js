@@ -132,7 +132,6 @@ let style = /* html */`
     }
     .destination_page_wr .destination_content .popup_form_tour {
         position: absolute;
-        /* top: -240px; */
         top: -160px;
         right: -1px;
         padding: 40px 75px;
@@ -140,14 +139,13 @@ let style = /* html */`
         width: 100%;
         z-index: 20;
     }
-    #plugin .heading, #plugin .price, #plugin .text-red, #plugin .text-pt, #plugin .text-pt-disclaimer, #plugin a {
-        display: none;
-    }
-    #plugin {
-        position: initial!important;
+    #plugin  {
+        position: absolute!important;
         margin: 0 auto 10px!important;
         background-color: transparent;
         padding: 0!important;
+        opacity: 0;
+        pointer-events: none!important;
     }
     #plugin iframe {
         height: auto!important;
@@ -221,134 +219,8 @@ let style = /* html */`
         color: #C39958;
         border-color: #C39958;
     }
-    /* pop-up */
-    .popup_booking-flow .plugin {
-        display: flex;
-        justify-content: center;
-    }
-    .popup_booking-flow {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100vh;
-        overflow-y: auto;
-        z-index: 999999;
-        background: rgba(0, 0, 0, 0.7);
-        padding: 10px;
-        display: flex;
-        opacity: 0;
-        pointer-events: none;
-        transition: all 0.2s ease;
-    }
-    .popup_booking-flow.active {
-        opacity: 1;
-        pointer-events: auto;
-    }
-    .popup_booking-flow.active .container {
-        transform: translateY(0);
-    }
-    .popup_booking-flow .container {
-        background: #FAFAFA;
-        box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.1), 0px 2px 30px rgba(0, 0, 0, 0.15);
-        max-width: 640px;
-        margin: auto;
-        width: 100%;
-        position: relative;
-        padding: 24px;
-        transform: translateY(100px);
-        transition: all 0.25s ease;
-        display: block!important;
-    }
-    .popup_booking-flow .container h2 {
-        font-family: 'JosefinSans-Bold', sans-serif;
-        font-style: normal;
-        font-weight: 700;
-        font-size: 24px;
-        line-height: 24px;
-        text-transform: uppercase;
-        color: #212529;
-        margin-bottom: 24px;
-        padding: 0 20px;
-    }
-    .btn-close {
-        position: absolute;
-        top: 14px;
-        right: 14px;
-        padding: 10px;
-        border: none;
-        background-color: transparent;
-    }
-    .btn-close svg {
-        pointer-events: none;
-    }
-    .progressbar {
-        margin-bottom: 30px;
-    }
-    .progressbar .line span {
-        background: #E9EBED;
-        width: 50px;
-        height: 10px;
-        margin: 0 0.5px;
-    }
-    .progressbar .line span:first-child {
-        border-radius: 20px 0 0 20px;
-    }
-    .progressbar .line span:last-child {
-        border-radius: 0 20px 20px 0;
-    }
     .text-center {
         text-align: center;
-    }
-    .progressbar p {
-        font-size: 14px;
-        line-height: 14px;
-        color: #144732;
-        margin-top: 6px;
-    }
-    .suggested-tours {
-        padding-top: 30px;
-    }
-    .suggested-tours h3 {
-        font-family: 'JosefinSans-Bold', sans-serif;
-        font-weight: 700;
-        font-size: 20px;
-        line-height: 20px;
-        text-transform: uppercase;
-        color: #212529;
-        margin-bottom: 14px;
-    }
-    .suggested-tours li {
-        padding: 17px 0;
-        border-bottom: 1px solid #EEEEEE;
-    }
-    .suggested-tours .title {
-        font-family: 'JosefinSans-Semi', sans-serif;
-        font-style: normal;
-        font-weight: 600;
-        font-size: 18px;
-        line-height: 18px;
-        text-decoration-line: underline;
-        color: #144732;
-        margin-right: 16px;
-    }
-
-    .suggested-tours .pr {
-        font-family: 'JosefinSans-Bold', sans-serif;
-        font-weight: 700;
-        font-size: 18px;
-        line-height: 18px;
-        text-transform: uppercase;
-        color: #144732;
-        margin-right: 16px;
-    }
-    .rating {
-        font-size: 18px;
-        line-height: 18px;
-        color: #212529;
-    }
-    .rating svg {
-        margin-right: 3px;
     }
     /* flex */
     .flex-center-between {
@@ -377,6 +249,12 @@ let style = /* html */`
     .special-options img {
         margin: 24px auto 0;
         display: block;
+    }
+    .popup_form_tour .img-awards {
+        margin: 20px auto;
+    }
+    .awards-desktop {
+        display: none;
     }
     @media screen and (max-width: 1400px) {
         .destination_page_wr .destination_content .popup_form_tour {
@@ -408,17 +286,21 @@ let style = /* html */`
         }
     }
     @media (max-width: 1199px) {
-        .awards-desktop {
+        .popup_form_tour .img-awards {
             display: none;
         }
         .form_tour {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            z-index: 9999;
             padding: 16px 20px;
             display: flex;
             align-items: center;
+        }
+        .popup_form_tour {
+            position: fixed;
+            top: auto;
+            width: 100%;
+            bottom: 0;
+            left: 0;
+            z-index: 9999;
         }
         .form_tour .pr {
             border: none;
@@ -569,17 +451,6 @@ let viewed1 = false;
 let viewed2 = false;
 let viewed3 = false;
 
-let intervalIframe = setInterval(() => {
-    //add iframe in pop-up
-    if (document.querySelector('.plugin iframe') != null && document.querySelector('.suggested-tours') != null) {
-        clearInterval(intervalIframe)
-        document.querySelector('.suggested-tours').after(document.querySelector('#plugin'))
-        if (window.location.href.includes('paris/')) {
-            document.querySelector('#plugin').insertAdjacentHTML('beforebegin', `<style> #plugin iframe { min-height: 1230px!important;}</style>`)
-        }
-    }
-})
-
 let intervalFood = setInterval(() => {
     if (document.querySelector('.tour-drinks .food_block .title') != null && document.querySelector('.tour-drinks > p') && !window.location.href.includes('upgraded-drinks')) {
         clearInterval(intervalFood)
@@ -600,6 +471,10 @@ let intervalFood = setInterval(() => {
                     document.querySelector('.food_wr').classList.add('col-md-12', 'col-xl-8', 'px-0');
                 }
                 document.querySelector('.tour-drinks').style = 'padding-top: 42px';
+            }
+            if (document.querySelector('[style="background-color: #0a88ff; padding:10px;margin-bottom:10px;"]') != null) {
+                document.querySelector('.tour-drinks').before(document.querySelector('[style="background-color: #0a88ff; padding:10px;margin-bottom:10px;"]'))
+                document.querySelector('[style="background-color: #0a88ff; padding:10px;margin-bottom:10px;"]').style.margin = 'margin: 15px 0 0 0;'
             }
         }
         let drinks = document.querySelectorAll('.tour-drinks .food_block .title');
@@ -724,6 +599,7 @@ let intervalBook = setInterval(() => {
         })
     }
 })
+
 let interval = setInterval(() => {
 
     if (document.querySelector('.form_tour') == null && document.querySelector('#plugin') != null) {
@@ -760,27 +636,6 @@ let interval = setInterval(() => {
                     </a>
                 </div>
             </div>
-        </div>
-        <div class="popup_booking-flow">
-            <div class="container">
-                <button type="button" class="btn-close">
-                    <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M12.3957 8.97447L17.5021 3.86808C18.166 3.25532 18.166 2.23404 17.5021 1.62128L16.3787 0.497872C15.766 -0.165957 14.7447 -0.165957 14.1319 0.497872L9.02553 5.60426L3.86808 0.497872C3.25532 -0.165957 2.23404 -0.165957 1.62128 0.497872L0.497872 1.62128C-0.165957 2.23404 -0.165957 3.25532 0.497872 3.86808L5.60426 8.97447L0.497872 14.1319C-0.165957 14.7447 -0.165957 15.766 0.497872 16.3787L1.62128 17.5021C2.23404 18.166 3.25532 18.166 3.86808 17.5021L9.02553 12.3957L14.1319 17.5021C14.7447 18.166 15.766 18.166 16.3787 17.5021L17.5021 16.3787C18.166 15.766 18.166 14.7447 17.5021 14.1319L12.3957 8.97447Z" fill="#144732"/>
-                    </svg>
-                </button>
-                <div class="progressbar" style="display: none;">
-                    <div class="line">
-                        <span class="active"></span><span></span><span></span><span></span><span></span><span></span><span></span>
-                    </div>
-                    <p class="text-center">Choose your date</p>
-                </div>
-                <h2 class="text-center">${document.querySelector('.dest_title').innerText}</h2>
-                <div class="suggested-tours" style="display: none;">
-                    <h3>Learn more about other available tours</h3>
-                    <ul></ul>
-                </div>
-                <img class="mx-auto d-block" src="${dir}logos.svg" alt="logos">
-            </div>
         </div>`;
 
         //add style/html
@@ -788,7 +643,7 @@ let interval = setInterval(() => {
         document.querySelector('#plugin').insertAdjacentHTML('afterend', formHTML);
 
         //set price tour
-        if (document.querySelector('.price') != null) {
+        if (document.querySelector('.price') != null && !document.querySelectorAll('.price')[document.querySelectorAll('.price').length - 1].innerHTML.trim().includes('private bookings')) {
             let price = document.querySelectorAll('.price')[document.querySelectorAll('.price').length - 1];
             document.querySelector('.form_tour .pr').innerHTML = `${price.innerHTML}`
         } else {
@@ -796,8 +651,17 @@ let interval = setInterval(() => {
 
                 if (detectMob() == true) {
                     document.querySelector('.form_tour').style = 'display: block!important';
-                    document.querySelectorAll('.form_tour .btn-gold')[0].style = 'display: block';
+                    document.querySelectorAll('.form_tour .btn-gold')[0].style = 'display: flex';
                     document.querySelector('.form_tour .pr').style = 'width: 100%; padding: 0;';
+                } else {
+                    if (window.matchMedia("(max-width: 1200px)").matches) {
+                        document.querySelectorAll('.form_tour .btn-gold').forEach(item => {
+                            item.querySelector('span').remove();
+                            item.querySelector('svg').style.marginRight = '0';
+                            item.style = 'width: 46px; margin-left: 10px; display: flex;';
+                            item.parentElement.style = 'margin-left: auto; width: fit-content;';
+                        })
+                    }
                 }
                 document.querySelector('.available-daily').remove();
                 document.querySelector('.btn-green').remove();
@@ -806,8 +670,7 @@ let interval = setInterval(() => {
         }
 
         //rearrange the image logo
-        document.querySelector('.form_tour').after(document.querySelector('.awards-desktop'));
-        document.querySelector('.awards-desktop img').src = dir + 'awards-mobile.svg';
+        document.querySelector('.form_tour').insertAdjacentHTML('afterend', `<img class="img-awards" src="${dir + 'awards-mobile.svg'}" alt="Awards" width="100%">`)
 
         //hide/show popup
         document.addEventListener('click', (e) => {
@@ -848,7 +711,7 @@ let interval = setInterval(() => {
             } else {
                 document.querySelector('.special-options h2').after(document.querySelectorAll('.form_tour .btn-gold')[1])
             }
-        }
+        } 
 
         pushDataLayer('loaded')
         let coockies = setInterval(function(){
@@ -872,42 +735,6 @@ let interval = setInterval(() => {
         }, 30)
         
     }
-
-    // //sort best reviews
-    // let sorBestReviews = [].slice.call(document.querySelectorAll('.country_tours .cardx-container-details')).sort(function (a, b) {
-    //     return b.querySelector('.rate-tours').innerHTML.replace('(', '').replace(')', '') - a.querySelector('.rate-tours').innerHTML.replace('(', '').replace(')', '');  
-    // });
-
-    // let filterBestReviews = sorBestReviews.filter((item) => {
-    //     return item.querySelector('.cardx-buttons-one').innerText.includes('book now')
-    // })
-
-    // // step 2
-    // function setSuggestedTours(url, title, rating, price) {
-    //     return `
-    //     <li>
-    //         <a href="${url}">
-    //             <object class="flex-center-between">
-    //                 <div class="d-flex align-items-center">
-    //                     <p class="title">${title}</p>
-    //                     <p class="rating">
-    //                         <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-    //                             <path d="M8.09375 1.5625L6.0625 5.71875L1.46875 6.375C0.65625 6.5 0.34375 7.5 0.9375 8.09375L4.21875 11.3125L3.4375 15.8438C3.3125 16.6562 4.1875 17.2812 4.90625 16.9062L9 14.75L13.0625 16.9062C13.7812 17.2812 14.6562 16.6562 14.5312 15.8438L13.75 11.3125L17.0312 8.09375C17.625 7.5 17.3125 6.5 16.5 6.375L11.9375 5.71875L9.875 1.5625C9.53125 0.84375 8.46875 0.8125 8.09375 1.5625Z" fill="#F0AD4E"/>
-    //                         </svg>
-    //                         ${rating}
-    //                     </p>
-    //                 </div>
-    //                 <div class="d-flex align-items-center">
-    //                     <div class="pr">${price}</div>
-    //                     <svg width="7" height="12" viewBox="0 0 7 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-    //                         <path d="M6.82136 6.45361C7.05955 6.20619 7.05955 5.79381 6.82136 5.54639L1.68715 0.185568C1.42249 -0.0618554 1.02552 -0.0618554 0.787334 0.185568L0.178638 0.81787C-0.0595468 1.06529 -0.0595468 1.47766 0.178639 1.75258L4.25425 5.98625L0.178639 10.2474C-0.0595464 10.5223 -0.0595464 10.9347 0.178639 11.1821L0.787335 11.8144C1.02552 12.0619 1.4225 12.0619 1.68715 11.8144L6.82136 6.45361Z" fill="#C39958"/>
-    //                     </svg>
-    //                 </div>
-    //             </object>
-    //         </a>
-    //     </li>`
-    // }
-
 })
 
 //clarify
@@ -928,8 +755,9 @@ let listing = setInterval(function(){
         document.querySelectorAll('.cardx-tags+.card-buttons a').forEach(item => {
             if(item.innerText.toLowerCase() === 'book now') {
                 item.innerText = 'Check availability'
-                item.style.width = 'fit-content'
             }
+            item.style = 'width: fit-content; min-height: 39px;height: auto!important; '
+            
             let letterUpper = item.innerText.charAt(0);
             item.innerHTML = item.innerHTML.replace(letterUpper, letterUpper.toUpperCase());
         })
@@ -938,4 +766,3 @@ let listing = setInterval(function(){
 setTimeout(function(){
     clearInterval(listing)
 }, 5000)
-
