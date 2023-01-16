@@ -515,7 +515,7 @@ function start() {
         let isExitIntentPop = setInterval(() => {
             if (isVisibilityPopOne == true && closeExitPop == false && sessionStorage.getItem('exit_popup_loaded') != null && sessionStorage.getItem('exit_popup_loaded') == 'true'  &&  document.querySelector('.overlay_popup').classList.contains('is_hidden') && document.querySelector('.main-content .btn-coupon-access') != null && document.querySelector('.needsclick.kl-teaser-RCtjPB.undefined.kl-private-reset-css-Xuajs1') != null) {
                 closeExitPop = true;
-                setTimeout(() => {
+                // setTimeout(() => {
     
                     if (document.querySelector('#CartDrawer.drawer--is-open') != null && document.querySelector('#CartDrawer .drawer__close-button') != null) {
                         document.querySelector('#CartDrawer .drawer__close-button').click()
@@ -526,7 +526,7 @@ function start() {
                     if (document.querySelector('.needsclick.kl-teaser-RCtjPB.undefined.kl-private-reset-css-Xuajs1') != null) {
                         document.querySelector('.needsclick.kl-teaser-RCtjPB.undefined.kl-private-reset-css-Xuajs1').click()
                     }
-                }, 300)
+                // }, 200)
             }
         })
     }
