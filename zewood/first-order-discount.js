@@ -18,6 +18,9 @@ function detectMob() {
 
 let style = `
 <style class="js-style">
+    .needsclick:not(.bottom) {
+        transition: none!important;
+    }
     .needsclick.kl-teaser-RCtjPB.kl-private-reset-css-Xuajs1 {
         opacity: 0;
         pointer-events: none;
@@ -397,7 +400,7 @@ function start() {
                             <path d="M17.7105 0H6.55344C5.50655 0 4.65625 0.850297 4.65625 1.89719C4.65625 2.26582 4.95115 2.56072 5.31978 2.56072C5.6884 2.56072 5.9833 2.26582 5.9833 1.89719C5.9833 1.58263 6.23888 1.32705 6.55344 1.32705H17.7105C18.0251 1.32705 18.2807 1.58263 18.2807 1.89719V17.9054C18.2807 18.2199 18.0251 18.4755 17.7105 18.4755C17.3419 18.4755 17.047 18.7704 17.047 19.1391C17.047 19.5077 17.3419 19.8026 17.7105 19.8026C18.7574 19.8026 19.6077 18.9523 19.6077 17.9054V1.89719C19.6077 0.850297 18.7574 0 17.7105 0Z" fill="black"/>
                         </svg>`)
         
-                        form.firstChild.insertAdjacentHTML('beforeend', '<p class="text-bottom">Use the above discount code at checkout</p><button type="button" class="btn-continue">Continue Shopping</button>')
+                        form.firstChild.insertAdjacentHTML('beforeend', '<p class="text-bottom">Use the above discount code<span class="text-nowrap"> at checkout<span></p><button type="button" class="btn-continue">Continue Shopping</button>')
                         
                         document.querySelector('.btn-continue').addEventListener('click', (e) => {
                             clickOnContinueBtn = true;
