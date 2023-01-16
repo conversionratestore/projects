@@ -648,12 +648,14 @@ let interval = setInterval(() => {
                     document.querySelectorAll('.form_tour .btn-gold')[0].style = 'display: flex';
                     document.querySelector('.form_tour .pr').style = 'width: 100%; padding: 0;';
                 } else {
-                    document.querySelectorAll('.form_tour .btn-gold').forEach(item => {
-                        item.querySelector('span').remove();
-                        item.querySelector('svg').style.marginRight = '0';
-                        item.style = 'width: 46px; margin-left: 10px;';
-                        item.parentElement.style = 'margin-left: auto; width: fit-content;';
-                    })
+                    if (window.matchMedia("(max-width: 1200px)").matches) {
+                        document.querySelectorAll('.form_tour .btn-gold').forEach(item => {
+                            item.querySelector('span').remove();
+                            item.querySelector('svg').style.marginRight = '0';
+                            item.style = 'width: 46px; margin-left: 10px;';
+                            item.parentElement.style = 'margin-left: auto; width: fit-content;';
+                        })
+                    }
                 }
                 document.querySelector('.available-daily').remove();
                 document.querySelector('.btn-green').remove();
