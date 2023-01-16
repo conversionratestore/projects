@@ -100,10 +100,6 @@ let styleFood = /* html */`
     .tour-drinks .food_wr {
         display: flex;
     }
-    .cardx-buttons-one {
-        min-height: 39px;
-        height: auto!important;
-    }
 }
 
 @media (max-width: 767px) {
@@ -745,7 +741,7 @@ let listing = setInterval(function(){
         document.querySelectorAll('.cardx-tags+.card-buttons a').forEach(item => {
             if(item.innerText.toLowerCase() === 'book now') {
                 item.innerText = 'Check availability'
-                item.style.width = 'fit-content'
+                item.style = 'width: fit-content; min-height: 39px;height: auto!important; '
             }
             let letterUpper = item.innerText.charAt(0);
             item.innerHTML = item.innerHTML.replace(letterUpper, letterUpper.toUpperCase());
