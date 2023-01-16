@@ -520,8 +520,8 @@ function start() {
                 }
 
                 closeExitPop = true;
-                if (document.querySelector('[aria-label="POPUP Form"] form.needsclick.klaviyo-form.klaviyo-form-version-cid_1.kl-private-reset-css-Xuajs1 .klaviyo-close-form') != null && isVisibilityPopOne == true) {
-                    document.querySelector('[aria-label="POPUP Form"] form.needsclick.klaviyo-form.klaviyo-form-version-cid_1.kl-private-reset-css-Xuajs1 .klaviyo-close-form').click()
+                if (document.querySelector('[aria-label="POPUP Form"] .klaviyo-close-form') != null && isVisibilityPopOne == true) {
+                    document.querySelector('[aria-label="POPUP Form"] .klaviyo-close-form').click()
                 }
                 setTimeout(() => {
                     if (document.querySelector('.needsclick.kl-teaser-RCtjPB.undefined.kl-private-reset-css-Xuajs1') != null) {
