@@ -636,7 +636,7 @@ let interval = setInterval(() => {
         document.querySelector('#plugin').insertAdjacentHTML('afterend', formHTML);
 
         //set price tour
-        if (document.querySelector('.price') != null && document.querySelectorAll('.price')[document.querySelectorAll('.price').length - 1].innerHTML.trim() == 'Available only for <a href="/private-bookings">private bookings</a>') {
+        if (document.querySelector('.price') != null && document.querySelectorAll('.price')[document.querySelectorAll('.price').length - 1].innerHTML.trim() != 'Available only for <a href="/private-bookings">private bookings</a>') {
             let price = document.querySelectorAll('.price')[document.querySelectorAll('.price').length - 1];
             document.querySelector('.form_tour .pr').innerHTML = `${price.innerHTML}`
         } else {
