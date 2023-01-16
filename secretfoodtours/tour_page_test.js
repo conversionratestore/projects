@@ -468,6 +468,7 @@ let intervalFood = setInterval(() => {
             }
             if (document.querySelector('[style="background-color: #0a88ff; padding:10px;margin-bottom:10px;"]') != null) {
                 document.querySelector('.tour-drinks').before(document.querySelector('[style="background-color: #0a88ff; padding:10px;margin-bottom:10px;"]'))
+                document.querySelector('[style="background-color: #0a88ff; padding:10px;margin-bottom:10px;"]').style.margin = 'margin: 15px 0 0 0;'
             }
         }
         let drinks = document.querySelectorAll('.tour-drinks .food_block .title');
