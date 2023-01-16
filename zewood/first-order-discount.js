@@ -519,17 +519,27 @@ function start() {
                     document.querySelector('#CartDrawer .drawer__close-button').click()
                 }
 
-                closeExitPop = true;
-                if (document.querySelector('[aria-label="POPUP Form"] .klaviyo-close-form') != null && isVisibilityPopOne == true) {
-                    document.querySelector('[aria-label="POPUP Form"] .klaviyo-close-form').click()
-                }
                 setTimeout(() => {
-                    if (document.querySelector('.needsclick.kl-teaser-RCtjPB.undefined.kl-private-reset-css-Xuajs1') != null) {
-                        document.querySelector('.needsclick.kl-teaser-RCtjPB.undefined.kl-private-reset-css-Xuajs1').click()
+                    if (document.querySelector('[aria-label="POPUP Form"] .klaviyo-close-form') != null && isVisibilityPopOne == true) {
+                        closeExitPop = true;
+                        console.log('1')
+                        document.querySelector('[aria-label="POPUP Form"] .klaviyo-close-form').click()
+
+                        if (document.querySelector('.needsclick.kl-teaser-RCtjPB.undefined.kl-private-reset-css-Xuajs1') != null) {
+                            console.log('11')
+                            document.querySelector('.needsclick.kl-teaser-RCtjPB.undefined.kl-private-reset-css-Xuajs1').click()
+                        }
+                    } else {
+                        console.log('2')
+                        closeExitPop = true;
+                        if (document.querySelector('.needsclick.kl-teaser-RCtjPB.undefined.kl-private-reset-css-Xuajs1') != null) {
+                            console.log('22')
+                            document.querySelector('.needsclick.kl-teaser-RCtjPB.undefined.kl-private-reset-css-Xuajs1').click()
+                        }
                     }
-                }, 200)
+                }, 300)
             }
-        })
+        }, 200)
     }
 }
 
