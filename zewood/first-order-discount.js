@@ -334,6 +334,8 @@ let clickOnNoThanksBtn = false;
 let clickOnContinueBtn = false;
 let closeExitPop = false;
 
+let clickOnClose = false;
+
 function start() {
     if (document.querySelector('.js-style') == null) {
         document.body.insertAdjacentHTML('afterbegin', style)
@@ -463,9 +465,9 @@ function start() {
                     clickOnNoThanksBtn = false;
                     isVisibilityPopOne = false;
                     clickOnContinueBtn = false;
+                    closeExitPop = false;
                     start()
                     
-                    closeExitPop = false;
                 })
             }
 
@@ -496,8 +498,8 @@ function start() {
                     pushDataLayer('Click on Access bonus discount block','Cart')
                     clickOnNoThanksBtn = false;
                     isVisibilityPopOne = false;
-                    start()
                     closeExitPop = false;
+                    start()
                 })
             }
 
@@ -513,34 +515,42 @@ function start() {
 
     if (detectMob() == false) {
         let isExitIntentPop = setInterval(() => {
-            if (isVisibilityPopOne == true && sessionStorage.getItem('exit_popup_loaded') != null && sessionStorage.getItem('exit_popup_loaded') == 'true' && document.querySelector('.overlay_popup').classList.contains('is_hidden') && document.querySelector('.main-content .btn-coupon-access') != null) {
+            if (sessionStorage.getItem('isVisible') == null && isVisibilityPopOne == true && sessionStorage.getItem('exit_popup_loaded') != null && sessionStorage.getItem('exit_popup_loaded') == 'true' && document.querySelector('.overlay_popup').classList.contains('is_hidden') && document.querySelector('.main-content .btn-coupon-access') != null) {
             
                 // setTimeout(() => {
                     // isVisibilityPopOne = false;
-                    if (closeExitPop == false) {
-                        if (document.querySelector('#CartDrawer.drawer--is-open') != null && document.querySelector('#CartDrawer .drawer__close-button') != null) {
+                   
+                        if (document.querySelector('#CartDrawer.drawer--is-open') != null && document.querySelector('#CartDrawer .drawer__close-button') != null && closeExitPop == false) {
                             document.querySelector('#CartDrawer .drawer__close-button').click()
                         }
                         if (document.querySelector('[aria-label="POPUP Form"] .klaviyo-close-form') != null) {
                             
                             console.log('1')
-                            document.querySelector('[aria-label="POPUP Form"] .klaviyo-close-form').click()
+                            if (clickOnClose == false) {
+                                clickOnClose = true;
+                                closeExitPop = true;
+                                document.querySelector('[aria-label="POPUP Form"] .klaviyo-close-form').click()
+                            }
                             setTimeout(() => {
-                                if (document.querySelector('.needsclick.kl-teaser-RCtjPB.undefined.kl-private-reset-css-Xuajs1') != null && closeExitPop == false ) {
+                                if (document.querySelector('.needsclick.kl-teaser-RCtjPB.undefined.kl-private-reset-css-Xuajs1') != null ) {
                                     console.log('11')
                                     closeExitPop = true;
                                     document.querySelector('.needsclick.kl-teaser-RCtjPB.undefined.kl-private-reset-css-Xuajs1').click()
+                                    sessionStorage.setItem('isVisible', 'true');
+                                    start()
                                 }
                             }, 300)
                         } else {
                             console.log('2')
-                            if (document.querySelector('.needsclick.kl-teaser-RCtjPB.undefined.kl-private-reset-css-Xuajs1') != null) {
+                            if (document.querySelector('.needsclick.kl-teaser-RCtjPB.undefined.kl-private-reset-css-Xuajs1') != null && closeExitPop == false) {
                                 console.log('22')
                                 closeExitPop = true;
                                 document.querySelector('.needsclick.kl-teaser-RCtjPB.undefined.kl-private-reset-css-Xuajs1').click()
+                                sessionStorage.setItem('isVisible', 'true');
+                                start()
                             }
                         }
-                    }
+                    
                 // }, 300)
             }
         }, 200)
