@@ -658,7 +658,7 @@ let interval = setInterval(() => {
                         document.querySelectorAll('.form_tour .btn-gold').forEach(item => {
                             item.querySelector('span').remove();
                             item.querySelector('svg').style.marginRight = '0';
-                            item.style = 'width: 46px; margin-left: 10px;';
+                            item.style = 'width: 46px; margin-left: 10px; display: flex;';
                             item.parentElement.style = 'margin-left: auto; width: fit-content;';
                         })
                     }
