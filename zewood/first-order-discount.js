@@ -493,19 +493,12 @@ function start() {
         } 
     })
 
-    // let isExitIntentPop = setInterval(() => {
-    //     if (localStorage.getItem('isVisible') == 'true' && sessionStorage.getItem('exit_popup_loaded') != null && sessionStorage.getItem('exit_popup_loaded') == 'true'  &&  document.querySelector('.overlay_popup').classList.contains('is_hidden') && document.querySelector('.needsclick.kl-teaser-RCtjPB.kl-private-reset-css-Xuajs1') != null) {
-    //         localStorage.setItem('isVisible', 'false')
-    //         document.querySelector('#CartDrawer .drawer__close-button').click()
-    //         let form = document.querySelector('[aria-label="POPUP Form"] form.needsclick.klaviyo-form.klaviyo-form-version-cid_1.kl-private-reset-css-Xuajs1');
-
-    //         let parent = form.closest('[aria-label="POPUP Form"]').parentElement;
-    //         parent.style = 'opacity: 1!important'
-    //         parent.querySelectorAll('.needsclick.kl-private-reset-css-Xuajs1').forEach(item => {
-    //             item.style = 'opacity: 1!important'
-    //         })
-    //     }
-    // })
+    let isExitIntentPop = setInterval(() => {
+        if (localStorage.getItem('isVisible') == 'true' && sessionStorage.getItem('exit_popup_loaded') != null && sessionStorage.getItem('exit_popup_loaded') == 'true'  &&  document.querySelector('.overlay_popup').classList.contains('is_hidden') && document.querySelector('.main-content .btn-coupon-access') != null) {
+            localStorage.setItem('isVisible', 'false')
+            document.querySelector('.main-content .btn-coupon-access').click()
+        }
+    })
 }
 
 window.onload = () => {
