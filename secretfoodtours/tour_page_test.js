@@ -637,7 +637,7 @@ let interval = setInterval(() => {
         document.querySelector('#plugin').insertAdjacentHTML('afterend', formHTML);
 
         //set price tour
-        if (document.querySelector('.price') != null && document.querySelectorAll('.price')[document.querySelectorAll('.price').length - 1].innerHTML.trim().includes('private bookings')) {
+        if (document.querySelector('.price') != null && !document.querySelectorAll('.price')[document.querySelectorAll('.price').length - 1].innerHTML.trim().includes('private bookings')) {
             let price = document.querySelectorAll('.price')[document.querySelectorAll('.price').length - 1];
             document.querySelector('.form_tour .pr').innerHTML = `${price.innerHTML}`
         } else {
@@ -645,7 +645,7 @@ let interval = setInterval(() => {
 
                 if (detectMob() == true) {
                     document.querySelector('.form_tour').style = 'display: block!important';
-                    document.querySelectorAll('.form_tour .btn-gold')[0].style = 'display: block';
+                    document.querySelectorAll('.form_tour .btn-gold')[0].style = 'display: flex';
                     document.querySelector('.form_tour .pr').style = 'width: 100%; padding: 0;';
                 }
                 document.querySelector('.available-daily').remove();
