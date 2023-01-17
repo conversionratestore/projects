@@ -330,6 +330,34 @@ const waitForBtns = setInterval(() => {
   }
 }, 100)
 
+// observer
+$(".paypament-details .order_form_field").keyup(function () {
+  if (sessionStorage.getItem("popupAppeared") == null) {
+    // show popup
+    switch (device) {
+      case "Desktop":
+        let x = 0,
+          y = 0
+        window.addEventListener("mousemove", function (e) {
+          x = e.clientX
+          y = e.clientY
+        })
+        document.body.addEventListener(
+          "mouseleave",
+          function () {
+            if (x < 50 || y < 50 || x > window.innerWidth - 50 || y > window.innerHeight - 50) {
+              showPopup()
+            }
+          },
+          { once: true }
+        )
+        break
+      default:
+        break
+    }
+  }
+})
+
 sendEvent("loaded")
 const record = setInterval(() => {
   if (typeof clarity === "function") {
