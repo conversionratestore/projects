@@ -643,31 +643,35 @@ let interval = setInterval(() => {
         document.querySelector('#plugin').insertAdjacentHTML('afterend', formHTML);
 
         //set price tour
-        if (document.querySelector('.price') != null && !document.querySelectorAll('.price')[document.querySelectorAll('.price').length - 1].innerHTML.trim().includes('private bookings')) {
-            let price = document.querySelectorAll('.price')[document.querySelectorAll('.price').length - 1];
-            document.querySelector('.form_tour .pr').innerHTML = `${price.innerHTML}`
-        } else {
-            if (document.querySelector('#plugin [href="/private-bookings"]') != null) {
-
-                if (detectMob() == true) {
-                    document.querySelector('.form_tour').style = 'display: block!important';
-                    document.querySelectorAll('.form_tour .btn-gold')[0].style = 'display: flex';
-                    document.querySelector('.form_tour .pr').style = 'width: 100%; padding: 0;';
-                } else {
-                    if (window.matchMedia("(max-width: 1200px)").matches) {
-                        document.querySelectorAll('.form_tour .btn-gold').forEach(item => {
-                            item.querySelector('span').remove();
-                            item.querySelector('svg').style.marginRight = '0';
-                            item.style = 'width: 46px; margin-left: 10px; display: flex;';
-                            item.parentElement.style = 'margin-left: auto; width: fit-content;';
-                        })
+        function resizeForm() {
+            if (document.querySelector('.price') != null && !document.querySelectorAll('.price')[document.querySelectorAll('.price').length - 1].innerHTML.trim().includes('private bookings')) {
+                let price = document.querySelectorAll('.price')[document.querySelectorAll('.price').length - 1];
+                document.querySelector('.form_tour .pr').innerHTML = `${price.innerHTML}`
+            } else {
+                if (document.querySelector('#plugin [href="/private-bookings"]') != null) {
+    
+                    if (detectMob() == true) {
+                        document.querySelector('.form_tour').style = 'display: block!important';
+                        document.querySelectorAll('.form_tour .btn-gold')[0].style = 'display: flex';
+                        document.querySelector('.form_tour .pr').style = 'width: 100%; padding: 0;';
+                    } else {
+                        if (window.matchMedia("(max-width: 1200px)").matches) {
+                            document.querySelectorAll('.form_tour .btn-gold').forEach(item => {
+                                item.querySelector('span').remove();
+                                item.querySelector('svg').style.marginRight = '0';
+                                item.style = 'width: 46px; margin-left: 10px; display: flex;';
+                                item.parentElement.style = 'margin-left: auto; width: fit-content;';
+                            })
+                        }
                     }
+                    document.querySelector('.available-daily').remove();
+                    document.querySelector('.btn-green').remove();
+                    document.querySelector('.form_tour .pr').innerHTML = `<span class="not-tour" style="${detectMob() == true ? 'padding-bottom: 10px;': ''}">Currently, we're just accepting private tours.</span>`;
                 }
-                document.querySelector('.available-daily').remove();
-                document.querySelector('.btn-green').remove();
-                document.querySelector('.form_tour .pr').innerHTML = `<span class="not-tour" style="${detectMob() == true ? 'padding-bottom: 10px;': ''}">Currently, we're just accepting private tours.</span>`;
             }
         }
+        resizeForm()
+        window.addEventListener('resize', () => resizeForm())
 
         //rearrange the image logo
         document.querySelector('.form_tour').insertAdjacentHTML('afterend', `<img class="img-awards" src="${dir + 'awards-mobile.svg'}" alt="Awards" width="100%">`)
@@ -766,4 +770,3 @@ let listing = setInterval(function(){
 setTimeout(function(){
     clearInterval(listing)
 }, 5000)
-

@@ -668,7 +668,7 @@ let interval = setInterval(() => {
                 document.querySelector('.form_tour .pr').innerHTML = `<span class="not-tour" style="${detectMob() == true ? 'padding-bottom: 10px;': ''}">Currently, we're just accepting private tours.</span>`;
             }
         }
-
+        
         //rearrange the image logo
         document.querySelector('.form_tour').insertAdjacentHTML('afterend', `<img class="img-awards" src="${dir + 'awards-mobile.svg'}" alt="Awards" width="100%">`)
 
