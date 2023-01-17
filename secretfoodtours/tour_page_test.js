@@ -613,7 +613,7 @@ let interval = setInterval(() => {
             .heading.no-mobile+div {display: none;}
             footer{padding-bottom: 150px;}
             @media (max-width: 768px) {
-            .whatsapp-link{bottom: 120px !important;}
+                // .whatsapp-link{bottom: 120px !important;}
             }
         </style>`)
         
@@ -740,12 +740,13 @@ let interval = setInterval(() => {
                      console.log(item.target.classList)
                      if(item.target.classList.contains('show')) {
                          document.querySelector('.popup_form_tour').style.bottom = `${document.querySelector('.cookiealert').clientHeight}px`;
-                         document.querySelector('.whatsapp-link') != null ? document.querySelector('.whatsapp-link').style.bottom = `${document.querySelector('.cookiealert').clientHeight + document.querySelector('.popup_form_tour').clientHeight + 10}px!important` : '';
-                         
+                         document.querySelector('.whatsapp-link').style.bottom = `${document.querySelector('.cookiealert').clientHeight + document.querySelector('.popup_form_tour').clientHeight + 10}px!important`;
+                         console.log(document.querySelector('.cookiealert').clientHeight + document.querySelector('.popup_form_tour').clientHeight + 10 + '_1');
                      } else {
                          document.querySelector('.popup_form_tour').style.bottom = '0';
-                         document.querySelector('.whatsapp-link') != null ? document.querySelector('.whatsapp-link').style.bottom = `${document.querySelector('.popup_form_tour').clientHeight + 10}px!important` : '';
-                     }
+                         document.querySelector('.whatsapp-link').style.bottom = `${document.querySelector('.popup_form_tour').clientHeight + 10}px!important`;
+                        console.log(document.querySelector('.popup_form_tour').clientHeight + 10 + '_2')
+                        }
                     })
                  })
          
