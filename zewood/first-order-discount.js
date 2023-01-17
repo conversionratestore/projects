@@ -18,6 +18,9 @@ function detectMob() {
 
 let style = `
 <style class="js-style">
+    .go2922898903 [role="alert"]:first-child {
+        display: none!important;
+    }
     .needsclick:not(.bottom) {
         transition: none!important;
     }
@@ -423,6 +426,13 @@ function start() {
                             e.stopImmediatePropagation();
                             if (e.target.closest('[data-testid="form-component"]') && e.target.closest('[data-testid="form-component"]').querySelector('div > div:nth-child(2) > div') != null && e.target.closest('[data-testid="form-component"]').querySelector('div > div:nth-child(2) > div').innerHTML == 'LETSSTART') {
                                 pushDataLayer('Click on discount code','Congratulations')
+                                let couped = setInterval( () => {
+                                    if (form.querySelector('.go2922898903 [role="alert"]').innerHTML.includes('Coupon applied to checkout!')) {
+                                        clearInterval(couped)
+                                        form.querySelector('.go2922898903 [role="alert"]').insertAdjacentHTML('afterend',`      
+                                            <span role="alert" class="needsclick  kl-private-reset-css-Xuajs1" style="font-size: 14px; font-family: Poppins, &quot;Helvetica Neue&quot;, Helvetica, Arial, sans-serif; text-align: center; color: white; padding: 8px; height: 30px; box-sizing: border-box; white-space: nowrap;">Coupone code copied!</span>`)
+                                    }
+                                })
                             }
                         })
                     }
