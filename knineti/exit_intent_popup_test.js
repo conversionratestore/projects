@@ -331,7 +331,32 @@ const waitForBtns = setInterval(() => {
 }, 100)
 
 // observer
+const runObserver = () => {
+  // Mutation Observer
+  const target = document.body
+  const config = {
+    childList: true,
+    subtree: true,
+  }
+
+  let observer = new MutationObserver((mutations) => {
+    for (let mutation of mutations) {
+      console.log(mutation)
+    }
+  })
+
+  observer.observe(target, config)
+}
+
 $(".paypament-details .order_form_field").keyup(function () {
+  onEventDesk()
+})
+
+$(".paypament-details .order_form_field").blur(function () {
+  onEventDesk()
+})
+
+function onEventDesk() {
   if (sessionStorage.getItem("popupAppeared") == null) {
     // show popup
     switch (device) {
@@ -356,7 +381,7 @@ $(".paypament-details .order_form_field").keyup(function () {
         break
     }
   }
-})
+}
 
 sendEvent("loaded")
 const record = setInterval(() => {
