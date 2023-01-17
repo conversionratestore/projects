@@ -1,7 +1,7 @@
 /** Variables */
-let device = screen.width <= 768 ? 'Mobile' : 'Desktop'
+let device = screen.width <= 768 ? "Mobile" : "Desktop"
 // CSS
-const style = /*html*/` 
+const style = /*html*/ ` 
     <style>
         .my_overlay {
             position: fixed;
@@ -139,7 +139,7 @@ const style = /*html*/`
     </style>
 `
 /* HTML elements */
-const popup = /*html*/`
+const popup = /*html*/ `
     <div class="my_overlay">
         <div class="my_popup">
             <div class="my_popup_img">
@@ -169,159 +169,225 @@ let seconds = 1
 let isStopped = false
 
 /** Functions */
-const waitForEl = selector => {
-    return new Promise(resolve => {
-        if (document.querySelector(selector)) {
-            return resolve(document.querySelector(selector));
-        }
-
-        const observer = new MutationObserver(mutations => {
-            if (document.querySelector(selector)) {
-                resolve(document.querySelector(selector));
-                observer.disconnect();
-            }
-
-            for (let mutation of mutations) {
-                for (let node of mutation.addedNodes) {
-                    if (!(node instanceof HTMLElement)) continue;
-
-                    if (node.matches(selector)) {
-                        resolve(document.querySelector(selector));
-                        observer.disconnect();
-                    }
-                }
-            }
-        })
-
-        observer.observe(document.body, {
-            childList: true,
-            subtree: true,
-        })
-    })
-}
-
-const sendEvent = (eventAction, eventLabel = '') => { // GO Event
-    const obj = {
-        'event': 'event-to-ga',
-        'eventCategory': 'Exp: Exit intent pop up. ' + device,
-        eventAction,
-        eventLabel
+const waitForEl = (selector) => {
+  return new Promise((resolve) => {
+    if (document.querySelector(selector)) {
+      return resolve(document.querySelector(selector))
     }
 
-    window.dataLayer = window.dataLayer || []
-    dataLayer.push(obj)
+    const observer = new MutationObserver((mutations) => {
+      if (document.querySelector(selector)) {
+        resolve(document.querySelector(selector))
+        observer.disconnect()
+      }
+
+      for (let mutation of mutations) {
+        for (let node of mutation.addedNodes) {
+          if (!(node instanceof HTMLElement)) continue
+
+          if (node.matches(selector)) {
+            resolve(document.querySelector(selector))
+            observer.disconnect()
+          }
+        }
+      }
+    })
+
+    observer.observe(document.body, {
+      childList: true,
+      subtree: true,
+    })
+  })
+}
+
+const sendEvent = (eventAction, eventLabel = "") => {
+  // GO Event
+  const obj = {
+    event: "event-to-ga",
+    eventCategory: "Exp: Exit intent pop up. " + device,
+    eventAction,
+    eventLabel,
+  }
+
+  window.dataLayer = window.dataLayer || []
+  dataLayer.push(obj)
 }
 
 const stopTimeout = () => {
-    if (!isStopped) {
-        isStopped = true
+  if (!isStopped) {
+    isStopped = true
 
-        clearInterval(myTimerCRS)
-        sendEvent('Duration of visibility of the pop up', seconds)
-    }
+    clearInterval(myTimerCRS)
+    sendEvent("Duration of visibility of the pop up", seconds)
+  }
 }
 
 const showPopup = () => {
-    sessionStorage.setItem('popupAppeared', 'true')
-    document.querySelector('.my_overlay').classList.add('show_popup')
-    sendEvent('Visibility')
+  sessionStorage.setItem("popupAppeared", "true")
+  document.querySelector(".my_overlay").classList.add("show_popup")
+  sendEvent("Visibility")
 
-    myTimerCRS = setInterval(() => {
-        seconds = seconds + 1
-    }, 1000);
+  myTimerCRS = setInterval(() => {
+    seconds = seconds + 1
+  }, 1000)
 
-    setTimeout(() => {
-        stopTimeout()
-    }, 120000);
+  setTimeout(() => {
+    stopTimeout()
+  }, 120000)
 }
 const hidePopup = (label) => {
-    document.querySelector('.my_overlay').classList.remove('show_popup')
-    sendEvent('Close pop up', label)
+  document.querySelector(".my_overlay").classList.remove("show_popup")
+  sendEvent("Close pop up", label)
 
-    stopTimeout()
+  stopTimeout()
 }
 
 /** Parse HTML, CSS and run functions. */
-document.head.insertAdjacentHTML('beforeend', style)
+document.head.insertAdjacentHTML("beforeend", style)
 
 const waitForBody = setInterval(() => {
-    if (document.body) {
-        clearInterval(waitForBody)
+  if (document.body) {
+    clearInterval(waitForBody)
 
-        document.body.insertAdjacentHTML('afterbegin', popup)
-    }
+    document.body.insertAdjacentHTML("afterbegin", popup)
+  }
 }, 100)
 
-waitForEl('.my_popup_close_wrapper').then(el => el.addEventListener('click', () => hidePopup('close')))
-waitForEl('.content_no').then(el => el.addEventListener('click', () => hidePopup('No thanks')))
+waitForEl(".my_popup_close_wrapper").then((el) => el.addEventListener("click", () => hidePopup("close")))
+waitForEl(".content_no").then((el) => el.addEventListener("click", () => hidePopup("No thanks")))
 
 const waitForBtns = setInterval(() => {
-    if (
-        document.querySelector('.submit_btn input')
-        && document.querySelector('.content_btn')
-    ) {
-        clearInterval(waitForBtns)
+  if (document.querySelector(".submit_btn input") && document.querySelector(".content_btn")) {
+    clearInterval(waitForBtns)
 
-        document.querySelector('.content_btn').addEventListener('click', () => {
-            document.querySelector('.my_overlay').classList.remove('show_popup')
-            sendEvent('click on Complete purchase button')
+    document.querySelector(".content_btn").addEventListener("click", () => {
+      document.querySelector(".my_overlay").classList.remove("show_popup")
+      sendEvent("click on Complete purchase button")
 
-            stopTimeout()
+      stopTimeout()
 
-            const filledInputs = [...document.querySelectorAll('.payment_inform_box input:not(#onetime_pay):not(#monthly_pay)')].every((input) => {
-                return input.value.length
-            })
+      const filledInputs = [...document.querySelectorAll(".payment_inform_box input:not(#onetime_pay):not(#monthly_pay)")].every((input) => {
+        return input.value.length
+      })
 
-            if (filledInputs) {
-                document.querySelector('.submit_btn input').focus()
-                document.querySelector('.submit_btn input').click()
-            } else {
-                for (const input of document.querySelectorAll('.payment_inform_box input:not(#onetime_pay):not(#monthly_pay)')) {
-                    if (!input.value.length) {
-                        input.focus()
-                        break
-                    }
-                }
-            }
-        })
-
-        if (sessionStorage.getItem('popupAppeared') == null) { // show popup
-            switch (device) {
-                case 'Desktop':
-                    document.body.addEventListener('mouseleave', () => showPopup(), { once: true })
-                    break;
-                case 'Mobile':
-                    let lastPosition = 0,
-                        newPosition = 0,
-                        currentSpeed = 0
-
-                    let scrollSpeed = () => {
-                        lastPosition = window.scrollY
-                        setTimeout(() => {
-                            newPosition = window.scrollY
-                        }, 70)
-                        currentSpeed = newPosition - lastPosition
-
-                        if (currentSpeed > 70) {
-                            document.removeEventListener('scroll', scrollSpeed)
-                            showPopup()
-                        }
-                    }
-
-                    document.addEventListener('scroll', scrollSpeed)
-                    break;
-                default:
-                    break;
-            }
+      if (filledInputs) {
+        document.querySelector(".submit_btn input").focus()
+        document.querySelector(".submit_btn input").click()
+      } else {
+        for (const input of document.querySelectorAll(".payment_inform_box input:not(#onetime_pay):not(#monthly_pay)")) {
+          if (!input.value.length) {
+            input.focus()
+            break
+          }
         }
+      }
+    })
+
+    if (sessionStorage.getItem("popupAppeared") == null) {
+      // show popup
+      switch (device) {
+        case "Desktop":
+          let x = 0,
+            y = 0
+          window.addEventListener("mousemove", function (e) {
+            x = e.clientX
+            y = e.clientY
+          })
+          document.body.addEventListener(
+            "mouseleave",
+            function () {
+              if (x < 50 || y < 50 || x > window.innerWidth - 50 || y > window.innerHeight - 50) {
+                showPopup()
+              }
+            },
+            { once: true }
+          )
+          break
+        case "Mobile":
+          let lastPosition = 0,
+            newPosition = 0,
+            currentSpeed = 0
+
+          let scrollSpeed = () => {
+            lastPosition = window.scrollY
+            setTimeout(() => {
+              newPosition = window.scrollY
+            }, 70)
+            currentSpeed = newPosition - lastPosition
+
+            if (currentSpeed > 70) {
+              document.removeEventListener("scroll", scrollSpeed)
+              showPopup()
+            }
+          }
+
+          document.addEventListener("scroll", scrollSpeed)
+          break
+        default:
+          break
+      }
     }
+  }
 }, 100)
 
-sendEvent('loaded')
-const record = setInterval(() => {
-    if (typeof clarity === 'function') {
-        clearInterval(record)
+// observer
+const runObserver = () => {
+  // Mutation Observer
+  const target = document.body
+  const config = {
+    childList: true,
+    subtree: true,
+  }
 
-        clarity('set', `exit_intent_pop_up_${device.toLowerCase()}`, 'variant_1')
+  let observer = new MutationObserver((mutations) => {
+    for (let mutation of mutations) {
+      console.log(mutation)
     }
+  })
+
+  observer.observe(target, config)
+}
+
+$(".paypament-details .order_form_field").keyup(function () {
+  onEventDesk()
+})
+
+$(".paypament-details .order_form_field").blur(function () {
+  onEventDesk()
+})
+
+function onEventDesk() {
+  if (sessionStorage.getItem("popupAppeared") == null) {
+    // show popup
+    switch (device) {
+      case "Desktop":
+        let x = 0,
+          y = 0
+        window.addEventListener("mousemove", function (e) {
+          x = e.clientX
+          y = e.clientY
+        })
+        document.body.addEventListener(
+          "mouseleave",
+          function () {
+            if (x < 50 || y < 50 || x > window.innerWidth - 50 || y > window.innerHeight - 50) {
+              showPopup()
+            }
+          },
+          { once: true }
+        )
+        break
+      default:
+        break
+    }
+  }
+}
+
+sendEvent("loaded")
+const record = setInterval(() => {
+  if (typeof clarity === "function") {
+    clearInterval(record)
+
+    clarity("set", `exit_intent_pop_up_${device.toLowerCase()}`, "variant_1")
+  }
 }, 100)
