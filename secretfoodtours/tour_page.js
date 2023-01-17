@@ -294,12 +294,15 @@ let style = /* html */`
             display: flex;
             align-items: center;
         }
-        .popup_form_tour {
-            position: fixed;
-            top: auto;
-            width: 100%;
+        .popup_form_tour, .destination_page_wr .destination_content .popup_form_tour {
+            position: fixed!important;
+            top: auto!important;
+            width: 100%!important;
+            max-width: 100%!important;
             bottom: 0;
-            left: 0;
+            left: 0!important;
+            padding: 0!important;
+            right: auto!important;
             z-index: 9999;
         }
         .form_tour .pr {
