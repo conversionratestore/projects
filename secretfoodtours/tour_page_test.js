@@ -613,7 +613,7 @@ let interval = setInterval(() => {
             .heading.no-mobile+div {display: none;}
             footer{padding-bottom: 150px;}
             @media (max-width: 768px) {
-                .whatsapp-link{bottom: 70px!important;}
+                .whatsapp-link{bottom: 130px!important;}
             }
         </style>`)
         
