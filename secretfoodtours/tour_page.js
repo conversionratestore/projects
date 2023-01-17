@@ -605,7 +605,7 @@ let intervalBook = setInterval(() => {
 
 let interval = setInterval(() => {
 
-    if (document.querySelector('.form_tour') == null && document.querySelector('#plugin') != null) {
+    if (document.querySelector('.form_tour') == null && document.querySelector('#plugin') != null && document.querySelector('.what_we_do') != null) {
         clearInterval(interval)
 
         document.body.insertAdjacentHTML('afterbegin', /* html */`
@@ -613,7 +613,7 @@ let interval = setInterval(() => {
             .heading.no-mobile+div {display: none;}
             footer{padding-bottom: 150px;}
             @media (max-width: 768px) {
-            .whatsapp-link{bottom: 120px !important;}
+                .whatsapp-link{bottom: 130px!important;}
             }
         </style>`)
         
@@ -646,32 +646,47 @@ let interval = setInterval(() => {
         document.querySelector('#plugin').insertAdjacentHTML('afterend', formHTML);
 
         //set price tour
-        if (document.querySelector('.price') != null && !document.querySelectorAll('.price')[document.querySelectorAll('.price').length - 1].innerHTML.trim().includes('private bookings')) {
-            let price = document.querySelectorAll('.price')[document.querySelectorAll('.price').length - 1];
-            document.querySelector('.form_tour .pr').innerHTML = `${price.innerHTML}`
-        } else {
-            if (document.querySelector('#plugin [href="/private-bookings"]') != null) {
-
-                if (detectMob() == true) {
-                    document.querySelector('.form_tour').style = 'display: block!important';
-                    document.querySelectorAll('.form_tour .btn-gold')[0].style = 'display: flex';
-                    document.querySelector('.form_tour .pr').style = 'width: 100%; padding: 0;';
-                } else {
-                    if (window.matchMedia("(max-width: 1200px)").matches) {
-                        document.querySelectorAll('.form_tour .btn-gold').forEach(item => {
-                            item.querySelector('span').remove();
-                            item.querySelector('svg').style.marginRight = '0';
-                            item.style = 'width: 46px; margin-left: 10px; display: flex;';
-                            item.parentElement.style = 'margin-left: auto; width: fit-content;';
-                        })
+        function resizeForm() {
+            if (document.querySelector('.price') != null && !document.querySelectorAll('.price')[document.querySelectorAll('.price').length - 1].innerHTML.trim().includes('private bookings')) {
+                let price = document.querySelectorAll('.price')[document.querySelectorAll('.price').length - 1];
+                document.querySelector('.form_tour .pr').innerHTML = `${price.innerHTML}`
+            } else {
+                if (document.querySelector('#plugin [href="/private-bookings"]') != null) {
+    
+                    if (detectMob() == true) {
+                        document.querySelector('.form_tour').style = 'display: block!important';
+                        document.querySelectorAll('.form_tour .btn-gold')[0].style = 'display: flex';
+                        document.querySelector('.form_tour .pr').style = 'width: 100%; padding: 0;';
+                    } else {
+                        if (window.matchMedia("(max-width: 1200px)").matches) {
+                            document.querySelectorAll('.form_tour .btn-gold').forEach(item => {
+                                item.querySelector('span').style.display = 'none';
+                                item.querySelector('svg').style.marginRight = '0';
+                                item.style = 'width: 46px; margin-left: 10px; display: flex;';
+                                item.parentElement.style = 'margin-left: auto; width: fit-content;';
+                            })
+                        } else {
+                            document.querySelectorAll('.form_tour .btn-gold').forEach(item => {
+                                item.querySelector('span').style = '';
+                                item.querySelector('svg').style = '';
+                                item.style = '';
+                                item.parentElement.style = '';
+                            })
+                        }
                     }
+                    document.querySelector('.available-daily').style.display = 'none';
+                    document.querySelector('.btn-green').style.display = 'none';
+                    document.querySelector('.form_tour .pr').innerHTML = `<span class="not-tour" style="${detectMob() == true ? 'padding-bottom: 10px;': ''}">Currently, we're just accepting private tours.</span>`;
+                } else {
+                    document.querySelector('.available-daily').style = '';
+                    document.querySelector('.btn-green').style = '';
+
                 }
-                document.querySelector('.available-daily').remove();
-                document.querySelector('.btn-green').remove();
-                document.querySelector('.form_tour .pr').innerHTML = `<span class="not-tour" style="${detectMob() == true ? 'padding-bottom: 10px;': ''}">Currently, we're just accepting private tours.</span>`;
             }
         }
-        
+        resizeForm()
+        window.addEventListener('resize', () => resizeForm())
+
         //rearrange the image logo
         document.querySelector('.form_tour').insertAdjacentHTML('afterend', `<img class="img-awards" src="${dir + 'awards-mobile.svg'}" alt="Awards" width="100%">`)
 
@@ -702,18 +717,23 @@ let interval = setInterval(() => {
         })
 
         if (detectMob() == true) {
-            document.querySelector('.what_we_do').insertAdjacentHTML('beforebegin', `
-            <div class="special-options">
-                <h2>Special options</h2>
-                <img src="${dir}awards-mobile.svg" alt="awards icons">
-            </div>`)
-
-            if (document.querySelector('.price') != null) {
-                document.querySelector('.special-options h2').after(document.querySelectorAll('.form_tour .btn-gold')[1])
-                document.querySelector('.special-options h2').after(document.querySelectorAll('.form_tour .btn-gold')[0])
-            } else {
-                document.querySelector('.special-options h2').after(document.querySelectorAll('.form_tour .btn-gold')[1])
-            }
+            let findWhatWeDo = setInterval(() => {
+                if ( document.querySelector('.what_we_do') != null) {
+                    clearInterval(findWhatWeDo)
+                    document.querySelector('.what_we_do').insertAdjacentHTML('beforebegin', `
+                    <div class="special-options">
+                        <h2>Special options</h2>
+                        <img src="${dir}awards-mobile.svg" alt="awards icons">
+                    </div>`)
+        
+                    if (document.querySelector('.price') != null) {
+                        document.querySelector('.special-options h2').after(document.querySelectorAll('.form_tour .btn-gold')[1])
+                        document.querySelector('.special-options h2').after(document.querySelectorAll('.form_tour .btn-gold')[0])
+                    } else {
+                        document.querySelector('.special-options h2').after(document.querySelectorAll('.form_tour .btn-gold')[1])
+                    }
+                }
+            })
         } 
 
         pushDataLayer('loaded')
@@ -724,10 +744,12 @@ let interval = setInterval(() => {
                     muts.forEach(item => {
                      console.log(item.target.classList)
                      if(item.target.classList.contains('show')) {
-                         document.querySelector('.popup_form_tour').style.bottom = `${document.querySelector('.cookiealert').clientHeight}px`
+                         document.querySelector('.popup_form_tour').style.bottom = `${document.querySelector('.cookiealert').clientHeight}px`;
+                         document.querySelector('.whatsapp-link').style = `bottom: ${document.querySelector('.cookiealert').clientHeight + document.querySelector('.popup_form_tour').clientHeight + 10}px!important`;
                      } else {
-                         document.querySelector('.popup_form_tour').style.bottom = '0'
-                     }
+                         document.querySelector('.popup_form_tour').style.bottom = '0';
+                         document.querySelector('.whatsapp-link').style = `bottom: ${document.querySelector('.popup_form_tour').clientHeight + 10}px!important`;
+                        }
                     })
                  })
          
