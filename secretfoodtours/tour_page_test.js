@@ -657,16 +657,27 @@ let interval = setInterval(() => {
                     } else {
                         if (window.matchMedia("(max-width: 1200px)").matches) {
                             document.querySelectorAll('.form_tour .btn-gold').forEach(item => {
-                                item.querySelector('span').remove();
+                                item.querySelector('span').style.display = 'none';
                                 item.querySelector('svg').style.marginRight = '0';
                                 item.style = 'width: 46px; margin-left: 10px; display: flex;';
                                 item.parentElement.style = 'margin-left: auto; width: fit-content;';
                             })
+                        } else {
+                            document.querySelectorAll('.form_tour .btn-gold').forEach(item => {
+                                item.querySelector('span').style = '';
+                                item.querySelector('svg').style = '';
+                                item.style = '';
+                                item.parentElement.style = '';
+                            })
                         }
                     }
-                    document.querySelector('.available-daily').remove();
-                    document.querySelector('.btn-green').remove();
+                    document.querySelector('.available-daily').style.display = 'none';
+                    document.querySelector('.btn-green').style.display = 'none';
                     document.querySelector('.form_tour .pr').innerHTML = `<span class="not-tour" style="${detectMob() == true ? 'padding-bottom: 10px;': ''}">Currently, we're just accepting private tours.</span>`;
+                } else {
+                    document.querySelector('.available-daily').style = '';
+                    document.querySelector('.btn-green').style = '';
+
                 }
             }
         }
