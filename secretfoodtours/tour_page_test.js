@@ -717,18 +717,23 @@ let interval = setInterval(() => {
         })
 
         if (detectMob() == true) {
-            document.querySelector('.what_we_do').insertAdjacentHTML('beforebegin', `
-            <div class="special-options">
-                <h2>Special options</h2>
-                <img src="${dir}awards-mobile.svg" alt="awards icons">
-            </div>`)
-
-            if (document.querySelector('.price') != null) {
-                document.querySelector('.special-options h2').after(document.querySelectorAll('.form_tour .btn-gold')[1])
-                document.querySelector('.special-options h2').after(document.querySelectorAll('.form_tour .btn-gold')[0])
-            } else {
-                document.querySelector('.special-options h2').after(document.querySelectorAll('.form_tour .btn-gold')[1])
-            }
+            let findWhatWeDo = setInterval(() => {
+                if ( document.querySelector('.what_we_do') != null) {
+                    clearInterval(findWhatWeDo)
+                    document.querySelector('.what_we_do').insertAdjacentHTML('beforebegin', `
+                    <div class="special-options">
+                        <h2>Special options</h2>
+                        <img src="${dir}awards-mobile.svg" alt="awards icons">
+                    </div>`)
+        
+                    if (document.querySelector('.price') != null) {
+                        document.querySelector('.special-options h2').after(document.querySelectorAll('.form_tour .btn-gold')[1])
+                        document.querySelector('.special-options h2').after(document.querySelectorAll('.form_tour .btn-gold')[0])
+                    } else {
+                        document.querySelector('.special-options h2').after(document.querySelectorAll('.form_tour .btn-gold')[1])
+                    }
+                }
+            })
         } 
 
         pushDataLayer('loaded')
