@@ -745,11 +745,10 @@ let interval = setInterval(() => {
                      console.log(item.target.classList)
                      if(item.target.classList.contains('show')) {
                          document.querySelector('.popup_form_tour').style.bottom = `${document.querySelector('.cookiealert').clientHeight}px`;
-                         document.querySelector('.whatsapp-link').style.bottom = `${document.querySelector('.cookiealert').clientHeight + document.querySelector('.popup_form_tour').clientHeight + 10}px!important`;
-
+                         document.querySelector('.whatsapp-link').style = `bottom: ${document.querySelector('.cookiealert').clientHeight + document.querySelector('.popup_form_tour').clientHeight + 10}px!important`;
                      } else {
                          document.querySelector('.popup_form_tour').style.bottom = '0';
-                         document.querySelector('.whatsapp-link').style.bottom = `${document.querySelector('.popup_form_tour').clientHeight + 10}px!important`;
+                         document.querySelector('.whatsapp-link').style = `bottom: ${document.querySelector('.popup_form_tour').clientHeight + 10}px!important`;
                         }
                     })
                  })
