@@ -605,7 +605,7 @@ let intervalBook = setInterval(() => {
 
 let interval = setInterval(() => {
 
-    if (document.querySelector('.form_tour') == null && document.querySelector('#plugin') != null) {
+    if (document.querySelector('.form_tour') == null && document.querySelector('#plugin') != null && document.querySelector('.what_we_do') != null) {
         clearInterval(interval)
 
         document.body.insertAdjacentHTML('afterbegin', /* html */`
