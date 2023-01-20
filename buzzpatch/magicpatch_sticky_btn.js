@@ -50,7 +50,7 @@ let startBtn = setInterval(() => {
             align-items: center;
             justify-content: center;
             flex-direction: column;
-            background: #EC4F81;
+            background: #FF3C81;
             box-shadow: 0px 2px 4px rgba(12, 11, 11, 0.1), 0px 24px 60px rgba(12, 11, 11, 0.05), 0px 12px 24px rgba(12, 11, 11, 0.05);
             border-radius: 52px;
         }
