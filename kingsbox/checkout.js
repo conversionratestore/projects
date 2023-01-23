@@ -1195,11 +1195,10 @@ const waitForPayBtn = setInterval(() => {
         document.querySelector('.checkout-payment').addEventListener(
             'click',
             e => {
-                if (e.target.closest('.payment-method-wrapper')) {
-                    document.querySelector('[data-stepbtn="pay"] .continue').removeAttribute('disabled');
+                if (e.target.closest('.payment-method-wrapper') || e.target.matches('i')) {
+                    document.querySelector('[data-stepbtn="pay"] .continue')?.removeAttribute('disabled');
                 }
-            },
-            { once: true },
+            }
         );
     }
 }, intervalTimeout);
