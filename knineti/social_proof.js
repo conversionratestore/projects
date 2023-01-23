@@ -425,25 +425,25 @@ let socialProof = setInterval(() => {
                                 pushDataLayer(`Visibility video block`)
                                 break
                             case "2":
-                                pushDataLayer(`Visibility review ${i.target.getAttribute('data-visability')}`)
+                                pushDataLayer(`Visibility on reviews`, `${i.target.getAttribute('data-visability')}`)
                                 break
                             case "3":
-                                pushDataLayer(`Visibility reviews ${i.target.getAttribute('data-visability')}`)
+                                pushDataLayer(`Visibility on reviews`, `${i.target.getAttribute('data-visability')}`)
                                 break
                             case "4":
-                                pushDataLayer(`Visibility reviews ${i.target.getAttribute('data-visability')}`)
+                                pushDataLayer(`Visibility on reviews`, `${i.target.getAttribute('data-visability')}`)
                                 break
                             case "5":
-                                pushDataLayer(`Visibility reviews ${i.target.getAttribute('data-visability')}`)
+                                pushDataLayer(`Visibility on reviews`, `${i.target.getAttribute('data-visability')}`)
                                 break
                             case "6":
-                                pushDataLayer(`Visibility reviews ${i.target.getAttribute('data-visability')}`)
+                                pushDataLayer(`Visibility on reviews`, `${i.target.getAttribute('data-visability')}`)
                                 break
                             case "7":
-                                pushDataLayer(`Visibility reviews ${i.target.getAttribute('data-visability')}`)
+                                pushDataLayer(`Visibility on reviews`, `${i.target.getAttribute('data-visability')}`)
                                 break
                             case "8":
-                                pushDataLayer(`Visibility reviews ${i.target.getAttribute('data-visability')}`)
+                                pushDataLayer(`Visibility on reviews`, `${i.target.getAttribute('data-visability')}`)
                                 break
                             default:
                                 break
