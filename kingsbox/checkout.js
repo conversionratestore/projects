@@ -1189,7 +1189,11 @@ const waitForPay = setInterval(() => {
     }
 }, 100);
 const waitForPayBtn = setInterval(() => {
-    if (document.querySelector('.checkout-payment') && document.querySelector('[data-stepbtn="pay"] .continue')) {
+    if (
+        document.querySelector('.checkout-payment')
+        && document.querySelector('.payment-method-wrapper')
+        && document.querySelector('[data-stepbtn="pay"] .continue')
+    ) {
         clearInterval(waitForPayBtn);
 
         document.querySelector('.checkout-payment').addEventListener(
