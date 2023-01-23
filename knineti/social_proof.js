@@ -3,11 +3,7 @@ let socialProof = setInterval(() => {
         clearInterval(socialProof)
 
         //event
-        let eventVar = "desktop"
-
-        if (window.innerWidth <= 768) {
-            eventVar = "mobile"
-        }
+        let eventVar = screen.width <= 768 ? "Mobile" : "Desktop"
 
         function pushDataLayer(actionDataLayer, labelDataLayer) {
             window.dataLayer = window.dataLayer || []
@@ -15,7 +11,7 @@ let socialProof = setInterval(() => {
                 console.log(actionDataLayer + " : " + labelDataLayer)
                 dataLayer.push({
                     event: "event-to-ga",
-                    eventCategory: `Exp: Social proof' ${eventVar}`,
+                    eventCategory: `Exp: Social proof ${eventVar}`,
                     eventAction: `${actionDataLayer}`,
                     eventLabel: `${labelDataLayer}`,
                 })
@@ -23,7 +19,7 @@ let socialProof = setInterval(() => {
                 console.log(actionDataLayer)
                 dataLayer.push({
                     event: "event-to-ga",
-                    eventCategory: `Exp: Social proof' ${eventVar}`,
+                    eventCategory: `Exp: Social proof ${eventVar}`,
                     eventAction: `${actionDataLayer}`,
                 })
             }
@@ -390,7 +386,7 @@ let socialProof = setInterval(() => {
 
             document.querySelector('ul.reviews_wrap.part_two')?.after(document.querySelector('.contacts_us'))
             document.querySelector('.show_more_btn')?.addEventListener('click', (e) => {
-                pushDataLayer('Click')
+                pushDataLayer('Click on Show more link')
                 e.currentTarget.style.display = 'none'
                 document.querySelector('.social_proof ul.reviews_wrap.part_two').style.display = 'flex'
                 document.querySelector("ul.reviews_wrap.part_two")?.scrollIntoView({ block: "start", behavior: "smooth" })
@@ -426,28 +422,28 @@ let socialProof = setInterval(() => {
                         }
                         switch (i.target.getAttribute('data-visability')) {
                             case "1":
-                                pushDataLayer(`Visibility block ${i.target.getAttribute('data-visability')}`)
+                                pushDataLayer(`Visibility video block`)
                                 break
                             case "2":
-                                pushDataLayer(`Visibility block ${i.target.getAttribute('data-visability')}`)
+                                pushDataLayer(`Visibility review ${i.target.getAttribute('data-visability')}`)
                                 break
                             case "3":
-                                pushDataLayer(`Visibility block ${i.target.getAttribute('data-visability')}`)
+                                pushDataLayer(`Visibility reviews ${i.target.getAttribute('data-visability')}`)
                                 break
                             case "4":
-                                pushDataLayer(`Visibility block ${i.target.getAttribute('data-visability')}`)
+                                pushDataLayer(`Visibility reviews ${i.target.getAttribute('data-visability')}`)
                                 break
                             case "5":
-                                pushDataLayer(`Visibility block ${i.target.getAttribute('data-visability')}`)
+                                pushDataLayer(`Visibility reviews ${i.target.getAttribute('data-visability')}`)
                                 break
                             case "6":
-                                pushDataLayer(`Visibility block ${i.target.getAttribute('data-visability')}`)
+                                pushDataLayer(`Visibility reviews ${i.target.getAttribute('data-visability')}`)
                                 break
                             case "7":
-                                pushDataLayer(`Visibility block ${i.target.getAttribute('data-visability')}`)
+                                pushDataLayer(`Visibility reviews ${i.target.getAttribute('data-visability')}`)
                                 break
                             case "8":
-                                pushDataLayer(`Visibility block ${i.target.getAttribute('data-visability')}`)
+                                pushDataLayer(`Visibility reviews ${i.target.getAttribute('data-visability')}`)
                                 break
                             default:
                                 break
@@ -466,7 +462,7 @@ let socialProof = setInterval(() => {
         const record = setInterval(() => {
             if (typeof clarity === "function") {
                 clearInterval(record)
-                clarity("set", "social proof'", "variant_1")
+                clarity("set", "exp_social_proof", "variant_1")
             }
         }, 200)
         document.querySelector(".exp")?.remove()
