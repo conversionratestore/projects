@@ -502,7 +502,7 @@ let socialProof = setInterval(() => {
 
     pushDataLayer("loaded")
 
-    window._mfq.push(["setVariable", "go_exp", "var1"])
+    window._mfq.push(["setVariable", "exp_social_proof", "var1"])
 
     const record = setInterval(() => {
       if (typeof clarity === "function") {
