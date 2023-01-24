@@ -184,6 +184,22 @@ let style = `
         font-weight: 500;
         letter-spacing: initial!important;
     }
+    .head-prices .sale {
+        margin-left: 0;
+        margin-bottom: 6px;
+    }
+    .head-prices .l-through {
+        font-size: 20px;
+        text-decoration-line: line-through;
+        color: #5E788D;
+        line-height: 38px;
+    }
+    .head-prices .total_price {
+        font-weight: 700;
+        font-size: 32px;
+        line-height: 38px;
+        color: #1E415F;
+    }
     /* flex */
     .d-flex {
         display: flex;
@@ -269,7 +285,8 @@ document.querySelectorAll('.aside_product_item').forEach(item => {
     objItems.push({
         'variantId': item.dataset.variant,
         'title': item.dataset.title,
-        'subheading': item.dataset.subheading,
+        'week': item.dataset.week,
+        'strips': item.dataset.qty,
         'planid': item.dataset.planid,
         'price': item.dataset.price,
         'nosale': item.classList.contains('no_sale') ? true : false,
@@ -299,7 +316,16 @@ if (detectMob() == true) {/* mobile */
     </div>`);
 } else { /* desktop */
     document.querySelector('.part1').insertAdjacentHTML('beforeend', `<div class="parent-items"></div>`)
-    document.querySelector('.middle-block p:first-child b').insertAdjacentHTML('afterend','<span class="price_sale" style="display: block;">(<span>22%</span> OFF)</span>')
+    document.querySelector('.middle-block p:first-child b').insertAdjacentHTML('afterend','<span class="price_sale" style="display: block; padding-left: 5px;">(<span>22%</span> OFF)</span>')
+    document.querySelector('.part2').insertAdjacentHTML('afterbegin',` 
+    <div class="head-prices">
+        <div class="sale" style="display: none">Save 22%</div>
+        <div class="d-flex">
+            <p class="l-through">$71.97</p>
+        </div>
+    </div>`)
+   
+    document.querySelector('.head-prices .l-through').after( document.querySelector('.total_price'))
 }
 
 document.querySelector('.aside_wrapper').insertAdjacentHTML('beforeend', `
@@ -316,27 +342,24 @@ document.querySelector('.aside_wrapper .prices').after(document.querySelector(".
 document.querySelector('.aside_subscribe').after(document.querySelector(".aside_to_checkout"))
 
 for (let i = 0; i < objItems.length; i++) {
-    let strips = objItems[i].subheading.split(' strips')[0].split('(')[1],
-        week = +objItems[i].subheading.split(' week')[0];
-
     let item =`
-    <div class="swatchCustom__item flx items-center ${objItems[i].nosale == true ? 'nosale' : ''} ${week == 12 ? 'swatchCustom__item--active' : ''}" onclick="addActiveItem(this)"  
+    <div class="swatchCustom__item flx items-center ${objItems[i].nosale == true ? 'nosale' : ''} ${objItems[i].week == 12 ? 'swatchCustom__item--active' : ''}" onclick="addActiveItem(this)"  
         data-variant="${objItems[i].variantId}" 
         data-title="${objItems[i].title}" 
         data-price="${objItems[i].price}" 
         data-subheading="${objItems[i].subheading}" 
         data-planid="${objItems[i].planid}"> 
         <div class="flx items-center">
-            ${strips == '364' ? icon364 : strips == '84' ? icon84 : strips == '28' ? icon28 : ''}
+            ${objItems[i].strips == '364' ? icon364 : objItems[i].strips == '84' ? icon84 : objItems[i].strips == '28' ? icon28 : ''}
             <div>
-                <p class="for-week">$${(objItems[i].price / week).toFixed(2)} / week</p>
+                <p class="for-week">$${(objItems[i].price / objItems[i].week).toFixed(2)} / week</p>
                 <p class="item_total">Total: ${objItems[i].compare != '' ? '<span class="l-through">' + objItems[i].compare + '</span>' : ''} <span>$${objItems[i].price}</span></p>
             </div>
         </div> 
         <div>
-            ${week == 52 ? '<div class="best-deal">Best deal</div>' : week == 12 ? '<div class="top-seller">Top-seller</div>' : ''}
+            ${objItems[i].week == 52 ? '<div class="best-deal">Best deal</div>' : objItems[i].week == 12 ? '<div class="top-seller">Top-seller</div>' : ''}
             ${objItems[i].nosale != true ? '<div class="sale">' + objItems[i].sale + '</div>' : ''}
-            <p class="months">${week / 4} months</p>
+            <p class="months">${objItems[i].week / 4} months</p>
         </div>
     </div>`
 
@@ -355,16 +378,23 @@ function addActiveItem(target) {
             if (detectMob() == true) {
                 document.querySelector('.footer-prices .sale').innerHTML = `Save ${sale}`;
                 document.querySelector('.footer-prices .sale').style.display = 'block';
+            } else {
+                document.querySelector('.head-prices .sale').innerHTML = `Save ${sale}`;
+                document.querySelector('.head-prices .sale').style.display = 'block';
             }
         } else {
             document.querySelector('.price_sale').style.display = 'none';
             if (detectMob() == true) {
                 document.querySelector('.footer-prices .sale').style.display = 'none';
+            } else {
+                document.querySelector('.head-prices .sale').style.display = 'none';
             }
         }
         //set prices bottom
         if (detectMob() == true) {
             document.querySelector('.footer-prices p').innerHTML = target.querySelector('.item_total').innerHTML.replace('Total: ','');
+        } else {
+            document.querySelector('.head-prices .l-through').innerHTML = target.querySelector('.l-through') != null ? target.querySelector('.l-through').innerHTML : '';
         }
         document.querySelector(`.${device} [data-variant="${target.dataset.variant}"]:not(.items-center)`).click();
     } else {
