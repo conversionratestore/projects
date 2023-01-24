@@ -202,6 +202,7 @@ const lang = translate[language];
 
 const style = /*html*/ `
         <style>
+            .cc-window.cc-invisible {display: none;}
             .container.container-checkout {
                 padding-bottom: 30px;
             }
