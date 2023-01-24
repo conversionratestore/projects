@@ -32,8 +32,13 @@ let style = `
         padding: 7px 10px!important;
         min-height: 74px;
     }
-    .mobile .parent-items .swatchCustom__item:not(.swatchCustom__item--active) {
+    .mobile .parent-items .swatchCustom__item:not(.active) {
         background: #F5F6F7!important;
+    }
+    .swatchCustom__item.active {
+        cursor: default;
+        background: #F1F7FC;
+        border: 2px solid #4090D1;
     }
     .top-seller, .best-deal, .sale, .footer-prices .sale {
         font-size: 10px;
@@ -66,10 +71,10 @@ let style = `
     .svg-strips {
         margin-right: 24px;
     }
-    .swatchCustom__item--active .svg-strips path {
+    .swatchCustom__item.active .svg-strips path {
         fill: #F0752D
     }
-    .swatchCustom__item.swatchCustom__item--active {
+    .swatchCustom__item.active {
         border-radius: 15px;
     }
     .mobile .checklist {
@@ -346,7 +351,7 @@ window.onload = () => {
 
     for (let i = 0; i < objItems.length; i++) {
         let item =`
-        <div class="swatchCustom__item flx items-center ${objItems[i].nosale == true ? 'nosale' : ''} ${objItems[i].week == 12 ? 'swatchCustom__item--active' : ''}" onclick="addActiveItem(this)"  
+        <div class="swatchCustom__item flx items-center ${objItems[i].nosale == true ? 'nosale' : ''} ${objItems[i].week == 12 ? 'active' : ''}" onclick="addActiveItem(this)"  
             data-variant="${objItems[i].variantId}" 
             data-title="${objItems[i].title}" 
             data-price="${objItems[i].price}" 
@@ -411,14 +416,14 @@ window.onload = () => {
         }
 
         //add/remove active class
-        if (!target.classList.contains('swatchCustom__item--active')) {
-            target.parentElement.querySelector('.swatchCustom__item--active').classList.remove('swatchCustom__item--active')
-            target.classList.add('swatchCustom__item--active')
+        if (!target.classList.contains('active')) {
+            target.parentElement.querySelector('.active').classList.remove('active')
+            target.classList.add('active')
         }
     }
 
     if (href.includes('/products/')) {
-        addActiveItem(document.querySelector('.parent-items .swatchCustom__item--active'))
+        addActiveItem(document.querySelector('.parent-items .swatchCustom__item.active'))
     }
-    addActiveItem(document.querySelector('.aside_wrapper .swatchCustom__item--active'))
+    addActiveItem(document.querySelector('.aside_wrapper .swatchCustom__item.active'))
 };
