@@ -1,31 +1,31 @@
 let socialProof = setInterval(() => {
-    if (document.querySelector('.reviews_box')) {
-        clearInterval(socialProof)
+  if (document.querySelector(".reviews_box")) {
+    clearInterval(socialProof)
 
-        //event
-        let eventVar = screen.width <= 768 ? "Mobile" : "Desktop"
+    //event
+    let eventVar = screen.width <= 768 ? "Mobile" : "Desktop"
 
-        function pushDataLayer(actionDataLayer, labelDataLayer) {
-            window.dataLayer = window.dataLayer || []
-            if (labelDataLayer) {
-                console.log(actionDataLayer + " : " + labelDataLayer)
-                dataLayer.push({
-                    event: "event-to-ga",
-                    eventCategory: `Exp: Social proof ${eventVar}`,
-                    eventAction: `${actionDataLayer}`,
-                    eventLabel: `${labelDataLayer}`,
-                })
-            } else {
-                console.log(actionDataLayer)
-                dataLayer.push({
-                    event: "event-to-ga",
-                    eventCategory: `Exp: Social proof ${eventVar}`,
-                    eventAction: `${actionDataLayer}`,
-                })
-            }
-        }
+    function pushDataLayer(actionDataLayer, labelDataLayer) {
+      window.dataLayer = window.dataLayer || []
+      if (labelDataLayer) {
+        console.log(actionDataLayer + " : " + labelDataLayer)
+        dataLayer.push({
+          event: "event-to-ga",
+          eventCategory: `Exp: Social proof ${eventVar}`,
+          eventAction: `${actionDataLayer}`,
+          eventLabel: `${labelDataLayer}`,
+        })
+      } else {
+        console.log(actionDataLayer)
+        dataLayer.push({
+          event: "event-to-ga",
+          eventCategory: `Exp: Social proof ${eventVar}`,
+          eventAction: `${actionDataLayer}`,
+        })
+      }
+    }
 
-        let newStyle = /*html */`
+    let newStyle = /*html */ `
         <style>
             .reviews_box{
                 display: none !important;
@@ -66,6 +66,7 @@ let socialProof = setInterval(() => {
             }
             .social_proof .all_inform_wrap > div{
                 width: 50%;
+                z-index: 5;
             }
             .social_proof .all_inform_wrap .text_wrap h3{
                 font-weight: 700;
@@ -289,7 +290,7 @@ let socialProof = setInterval(() => {
             }
         </style>
         `
-        let sectionSocialProof = /*html */`
+    let sectionSocialProof = /*html */ `
             <section class="social_proof">
                 <div>
                     <div class="about_master_class_box container">
@@ -330,23 +331,63 @@ let socialProof = setInterval(() => {
             </section>
         `
 
-        let arrReviewsPartOne = {
-            'Olivia Campbell, GB': [5, 'Was hesitant about paying for a course', `“Was a little hesitant paying for this course as it's not cheap, but I was also at the end of my tether with my dog and running out of options. It's been three weeks and there's already been a huge difference in his behavior and find the weekly calls really motivating and helpful.“`, '1'],
-            'John Suchland, US': [5, 'This program should be mandatory for dog ownership. Worth every penny!', `“As a breeder of Aussiedoodles, we looked long and hard to find a quality and effective training program we could recommend, and this one is excellent! In fact, we took three puppies from last spring’s litter through the program, started them about 12 weeks. They did marvellously and all found wonderful homes as trained puppies at 20-24 weeks, the most well-behaved dogs you would ever want to meet. This program should be mandatory for dog ownership. Worth every penny!“`, '2'],
-            'Lorraine Bernard, CA': [5, `One of the commands saved my puppy's life`, `“I am only on my third lesson with this organization and one of their key lesson commands saved my puppy’s life this week. She managed to pull her leash out of my hand — a mistake of mine that will never happen again — and she took off toward a main road. Because I had been following the lessons, I shouted the command and she stopped, turned around and came barrelling back to me. Thank you!“`, '3'],
-            'Tammy Ochoa, US': [5, `Our puppy became an emotional support dog`, `“I have a very high spirited 11 week old German Shepherd that is super smart and learns very quickly. I want her to be an emotional support dog for my husband who is a combat veteran and has PTSD and some health problems. This program shows another way of training to accomplish that calm, well-behaved dog that is desired.“`, '4'],
-        }
-        let arrReviewsPartTwo = {
-            'Dorothy Alspaugh, US': [5, 'Wish I had seen this 3 dogs ago', `“The course gives you the best information about how to manage and train a dog not to bark, not to jump up on people and how to get along with other dogs! It is a must learning tool for anyone who owns a dog. Wish I had seen this 3 dogs ago.“`, '5'],
-            'Rubya Braun, AU': [5, 'She no longer barks at visitors', `“I have been telling every person I know with a dog to use this program because of the results that I got... She is a completely changed dog... Whenever somebody comes, instead of barking... she goes on her bed and she waits for me. Then when I take her for a walk, instead of pulling like crazy, she is looking at me all the time for attention, for cues, and to see what to do. She is a joy to walk with.“`, '6'],
-            'Samantha Morgan, US': [5, `The masterclass made walks enjoyable`, `“Walking with Carlo (our German Shepherd puppy) has become so much more enjoyable now because of your masterclass! Instead of constantly pulling on his leash like he used to, he now always walks at our side.
+    let arrReviewsPartOne = {
+      "Olivia Campbell, GB": [
+        5,
+        "Was hesitant about paying for a course",
+        `“Was a little hesitant paying for this course as it's not cheap, but I was also at the end of my tether with my dog and running out of options. It's been three weeks and there's already been a huge difference in his behavior and find the weekly calls really motivating and helpful.“`,
+        "1",
+      ],
+      "John Suchland, US": [
+        5,
+        "This program should be mandatory for dog ownership. Worth every penny!",
+        `“As a breeder of Aussiedoodles, we looked long and hard to find a quality and effective training program we could recommend, and this one is excellent! In fact, we took three puppies from last spring’s litter through the program, started them about 12 weeks. They did marvellously and all found wonderful homes as trained puppies at 20-24 weeks, the most well-behaved dogs you would ever want to meet. This program should be mandatory for dog ownership. Worth every penny!“`,
+        "2",
+      ],
+      "Lorraine Bernard, CA": [
+        5,
+        `One of the commands saved my puppy's life`,
+        `“I am only on my third lesson with this organization and one of their key lesson commands saved my puppy’s life this week. She managed to pull her leash out of my hand — a mistake of mine that will never happen again — and she took off toward a main road. Because I had been following the lessons, I shouted the command and she stopped, turned around and came barrelling back to me. Thank you!“`,
+        "3",
+      ],
+      "Tammy Ochoa, US": [
+        5,
+        `Our puppy became an emotional support dog`,
+        `“I have a very high spirited 11 week old German Shepherd that is super smart and learns very quickly. I want her to be an emotional support dog for my husband who is a combat veteran and has PTSD and some health problems. This program shows another way of training to accomplish that calm, well-behaved dog that is desired.“`,
+        "4",
+      ],
+    }
+    let arrReviewsPartTwo = {
+      "Dorothy Alspaugh, US": [
+        5,
+        "Wish I had seen this 3 dogs ago",
+        `“The course gives you the best information about how to manage and train a dog not to bark, not to jump up on people and how to get along with other dogs! It is a must learning tool for anyone who owns a dog. Wish I had seen this 3 dogs ago.“`,
+        "5",
+      ],
+      "Rubya Braun, AU": [
+        5,
+        "She no longer barks at visitors",
+        `“I have been telling every person I know with a dog to use this program because of the results that I got... She is a completely changed dog... Whenever somebody comes, instead of barking... she goes on her bed and she waits for me. Then when I take her for a walk, instead of pulling like crazy, she is looking at me all the time for attention, for cues, and to see what to do. She is a joy to walk with.“`,
+        "6",
+      ],
+      "Samantha Morgan, US": [
+        5,
+        `The masterclass made walks enjoyable`,
+        `“Walking with Carlo (our German Shepherd puppy) has become so much more enjoyable now because of your masterclass! Instead of constantly pulling on his leash like he used to, he now always walks at our side.
             <span>And instead of trying to run away every time we open the front door (and almost getting run over by a car once because of this), he now sits patiently in front of the door even without a leash on until I give him permission to go out.</span>
-            He has become so well-trained and seems to almost behave like a service dog now!“`, '7'],
-            'Barbara Wilson, US': [5, `He focuses on me and ignores other dogs`, `“I've been training Oscar for the last couple of weeks now using what I learned from your program about how to get him to remain calm when there are distractions. The change in him is almost unbelievable! When I take him out for a walk, he now ignores every other dog that we meet and maintains constant eye contact with me. And this was a dog who (before your program) used to get over-excited and bark like crazy at the sight of each and every animal!“`, '8']
-        }
+            He has become so well-trained and seems to almost behave like a service dog now!“`,
+        "7",
+      ],
+      "Barbara Wilson, US": [
+        5,
+        `He focuses on me and ignores other dogs`,
+        `“I've been training Oscar for the last couple of weeks now using what I learned from your program about how to get him to remain calm when there are distractions. The change in him is almost unbelievable! When I take him out for a walk, he now ignores every other dog that we meet and maintains constant eye contact with me. And this was a dog who (before your program) used to get over-excited and bark like crazy at the sight of each and every animal!“`,
+        "8",
+      ],
+    }
 
-        function setReviews(name, star, title, text, count) {
-            return ` <li data-visability=${count}>
+    function setReviews(name, star, title, text, count) {
+      return ` <li data-visability=${count}>
                         <div class="descr_block">
                             <div data-star="${star}" class="star_wrap"></div>
                             <h3>${title}</h3>
@@ -356,115 +397,251 @@ let socialProof = setInterval(() => {
                             <span>${name}</span>
                         </div>
                     </li>`
-        }
-
-        document.head.insertAdjacentHTML('beforeend', newStyle)
-        document.querySelector('.entry-content')?.insertAdjacentHTML('beforeend', sectionSocialProof)
-
-        // render reviews and stars
-        if (document.querySelector('.reviews_wrap')) {
-            if (document.querySelector('.reviews_wrap.part_one')) {
-                for (let key in arrReviewsPartOne) {
-                    document.querySelector(".reviews_wrap.part_one").insertAdjacentHTML("beforeend", setReviews(key, arrReviewsPartOne[key][0], arrReviewsPartOne[key][1], arrReviewsPartOne[key][2], arrReviewsPartOne[key][3]))
-                }
-            }
-            if (document.querySelector('.reviews_wrap.part_two')) {
-                for (let key in arrReviewsPartTwo) {
-                    document.querySelector(".reviews_wrap.part_two").insertAdjacentHTML("beforeend", setReviews(key, arrReviewsPartTwo[key][0], arrReviewsPartTwo[key][1], arrReviewsPartTwo[key][2], arrReviewsPartTwo[key][3]))
-                }
-            }
-
-            if (document.querySelector('.star_wrap')) {
-                let stars
-                document.querySelectorAll('.star_wrap').forEach(el => {
-                    stars = +el.getAttribute('data-star')
-                    for (let i = 0; i < stars; i++) {
-                        el.insertAdjacentHTML('beforeend', `<span class="star"></span>`)
-                    }
-                })
-            }
-
-            document.querySelector('ul.reviews_wrap.part_two')?.after(document.querySelector('.contacts_us'))
-            document.querySelector('.show_more_btn')?.addEventListener('click', (e) => {
-                pushDataLayer('Click on Show more link')
-                e.currentTarget.style.display = 'none'
-                document.querySelector('.social_proof ul.reviews_wrap.part_two').style.display = 'flex'
-                document.querySelector("ul.reviews_wrap.part_two")?.scrollIntoView({ block: "start", behavior: "smooth" })
-            })
-        }
-
-        if (document.querySelector(".social_proof")) {
-            let obs = new IntersectionObserver(visibility, {
-                threshold: 1,
-            })
-
-            obs.observe(document.querySelector('.reviews_wrap li[data-visability="1"]'))
-            obs.observe(document.querySelector('.reviews_wrap li[data-visability="2"]'))
-            obs.observe(document.querySelector('.reviews_wrap li[data-visability="3"]'))
-            obs.observe(document.querySelector('.reviews_wrap li[data-visability="4"]'))
-            obs.observe(document.querySelector('.reviews_wrap li[data-visability="5"]'))
-            obs.observe(document.querySelector('.reviews_wrap li[data-visability="6"]'))
-            obs.observe(document.querySelector('.reviews_wrap li[data-visability="7"]'))
-            obs.observe(document.querySelector('.reviews_wrap li[data-visability="8"]'))
-
-            let int = setInterval(() => {
-                if (document.querySelector(".testik")) {
-                    clearInterval(int)
-                    obs.observe(document.querySelector(".testik"))
-                }
-            }, 100)
-
-            function visibility(entries) {
-                entries.forEach((i) => {
-                    if (i.isIntersecting) {
-                        if (i.target.classList.contains("testik")) {
-                            pushDataLayer(`Visibility block "Ariel Summers, US")}`)
-                        }
-                        switch (i.target.getAttribute('data-visability')) {
-                            case "1":
-                                pushDataLayer(`Visibility video block`)
-                                break
-                            case "2":
-                                pushDataLayer(`Visibility on reviews`, `${i.target.getAttribute('data-visability')}`)
-                                break
-                            case "3":
-                                pushDataLayer(`Visibility on reviews`, `${i.target.getAttribute('data-visability')}`)
-                                break
-                            case "4":
-                                pushDataLayer(`Visibility on reviews`, `${i.target.getAttribute('data-visability')}`)
-                                break
-                            case "5":
-                                pushDataLayer(`Visibility on reviews`, `${i.target.getAttribute('data-visability')}`)
-                                break
-                            case "6":
-                                pushDataLayer(`Visibility on reviews`, `${i.target.getAttribute('data-visability')}`)
-                                break
-                            case "7":
-                                pushDataLayer(`Visibility on reviews`, `${i.target.getAttribute('data-visability')}`)
-                                break
-                            case "8":
-                                pushDataLayer(`Visibility on reviews`, `${i.target.getAttribute('data-visability')}`)
-                                break
-                            default:
-                                break
-                        }
-
-                        obs.unobserve(i.target)
-                    }
-                })
-            }
-        }
-
-        pushDataLayer("loaded")
-
-        window._mfq.push(["setVariable", "go_exp", "var1"])
-
-        const record = setInterval(() => {
-            if (typeof clarity === "function") {
-                clearInterval(record)
-                clarity("set", "exp_social_proof", "variant_1")
-            }
-        }, 200)
-        document.querySelector(".exp")?.remove()
     }
+
+    document.head.insertAdjacentHTML("beforeend", newStyle)
+    document.querySelector(".entry-content")?.insertAdjacentHTML("beforeend", sectionSocialProof)
+
+    // render reviews and stars
+    if (document.querySelector(".reviews_wrap")) {
+      if (document.querySelector(".reviews_wrap.part_one")) {
+        for (let key in arrReviewsPartOne) {
+          document
+            .querySelector(".reviews_wrap.part_one")
+            .insertAdjacentHTML("beforeend", setReviews(key, arrReviewsPartOne[key][0], arrReviewsPartOne[key][1], arrReviewsPartOne[key][2], arrReviewsPartOne[key][3]))
+        }
+      }
+      if (document.querySelector(".reviews_wrap.part_two")) {
+        for (let key in arrReviewsPartTwo) {
+          document
+            .querySelector(".reviews_wrap.part_two")
+            .insertAdjacentHTML("beforeend", setReviews(key, arrReviewsPartTwo[key][0], arrReviewsPartTwo[key][1], arrReviewsPartTwo[key][2], arrReviewsPartTwo[key][3]))
+        }
+      }
+
+      if (document.querySelector(".star_wrap")) {
+        let stars
+        document.querySelectorAll(".star_wrap").forEach((el) => {
+          stars = +el.getAttribute("data-star")
+          for (let i = 0; i < stars; i++) {
+            el.insertAdjacentHTML("beforeend", `<span class="star"></span>`)
+          }
+        })
+      }
+
+      document.querySelector("ul.reviews_wrap.part_two")?.after(document.querySelector(".contacts_us"))
+      document.querySelector(".show_more_btn")?.addEventListener("click", (e) => {
+        pushDataLayer("Click on Show more link")
+        e.currentTarget.style.display = "none"
+        document.querySelector(".social_proof ul.reviews_wrap.part_two").style.display = "flex"
+        document.querySelector("ul.reviews_wrap.part_two")?.scrollIntoView({ block: "start", behavior: "smooth" })
+      })
+    }
+
+    if (document.querySelector(".social_proof")) {
+      window.flowplayerObj = flowplayer(container, {
+        /*ga: {
+                      ga_instances:["UA-148724098-1"],//UA-129535204-1
+                      media_title: ["Free_Workshop_Video"],
+                    },*/
+        clip: {
+          sources: [
+            {
+              type: "video/mp4",
+              src: vdo_src,
+            },
+          ],
+        },
+        autoplay: true,
+        // splash: posters,
+        fullscreen: true,
+        autoBuffering: true,
+        keyboard: false,
+        tooltip: false,
+        ratio: 0.55,
+      })
+        .on("load", function () {
+          flowplayerObj.sliders.timeline.disable(0)
+          console.log("load")
+
+          setCookie("time10", "", -1)
+          setCookie("time15", "", -1)
+          setCookie("time20", "", -1)
+          setCookie("time30", "", -1)
+
+          /*setCookie("mv_jwpos",0,-1),*/
+          setCookie("completeVed", 1, 365)
+          var t = getCookie("completeVed")
+          setCookie("close", 1, 365)
+        })
+        .on("pause", function () {
+          $('[href="https://flowplayer.com/hello/?from=player"]').hide()
+          $(".fp-play").addClass("fp-visible")
+          $(".fp-pause").removeClass("fp-visible")
+          $(".fp-play svg").css("opacity", "1")
+          $(".fp-play svg").width(100)
+
+          /* video player tracing */
+          gtag("event", "action", {
+            event_category: window.location,
+            event_action: "pause",
+            event_label: "time: " + flowplayerObj.video.time + " sec",
+          })
+          /* video player tracing */
+        })
+        .on("resume", function () {
+          if (getCookie("tapped_ver") == "") {
+            setCookie("tapped_ver", "Yes", 1)
+            wp_action_update_video_cta("tapped")
+          }
+          $('[href="https://flowplayer.com/hello/?from=player"]').hide()
+          flowplayerObj.mute(false)
+          $(".fp-pause").removeClass("fp-visible")
+          $(".fp-play svg").css("opacity", "0")
+
+          /* video player tracing */
+          gtag("event", "action", {
+            event_category: window.location,
+            event_action: "resume",
+            event_label: "time: " + flowplayerObj.video.time + " sec",
+          })
+          /* video player tracing */
+        })
+        .on("ready", function (e, i) {
+          flowplayerObj.sliders.timeline.disable(!0), getCookie("mv_jwpos") && flowplayerObj.seek(getCookie("mv_jwpos")), flowplayerObj.mute(!1)
+        })
+        .on("finish", function (e, i) {
+          /* video player tracing */
+          gtag("event", "action", {
+            event_category: window.location,
+            event_action: "finish",
+            event_label: "time: " + flowplayerObj.video.time + " sec",
+          })
+          /* video player tracing */
+          setCookie("mv_jwpos", 0, -1), setCookie("completeVed", 1, 365)
+          var t = getCookie("completeVed")
+          //videoCompleted(t);
+          $(".after-refresh").show()
+        })
+        .on("progress", function (e, i) {
+          if (Math.round(flowplayerObj.video.time) > 2) {
+            if (getCookie("played_ver") == "") {
+              setCookie("played_ver", "Yes", 1)
+              wp_action_update_video_cta("played")
+            }
+          }
+          if (getCookie("close") == 1) {
+            if (Math.round(flowplayerObj.video.time) == 300 && getCookie("time10") == "") {
+              console.log("5 min")
+              gtag("event", "action", {
+                event_category: window.location,
+                event_action: "5 min",
+              })
+              setCookie("time10", "yes", 365)
+            }
+
+            if (Math.round(flowplayerObj.video.time) == 900 && getCookie("time15") == "") {
+              console.log("15 min")
+              gtag("event", "action", {
+                event_category: window.location,
+                event_action: "15 min",
+              })
+              setCookie("time15", "yes", 365)
+            }
+
+            if (Math.round(flowplayerObj.video.time) == 1800 && getCookie("time20") == "") {
+              console.log("30 min")
+              gtag("event", "action", {
+                event_category: window.location,
+                event_action: "30 min",
+              })
+              setCookie("time20", "yes", 365)
+            }
+
+            if (Math.round(flowplayerObj.video.time) == 3000 && getCookie("time30") == "") {
+              console.log("50 min")
+              gtag("event", "action", {
+                event_category: window.location,
+                event_action: "50 min",
+              })
+              setCookie("time30", "yes", 365)
+              setCookie("close", 0, -1)
+            }
+          }
+          setCookie("mv_jwpos", flowplayerObj.video.time, 7), updateValues()
+        })
+
+      let obs = new IntersectionObserver(visibility, {
+        threshold: 1,
+      })
+
+      obs.observe(document.querySelector('.reviews_wrap li[data-visability="1"]'))
+      obs.observe(document.querySelector('.reviews_wrap li[data-visability="2"]'))
+      obs.observe(document.querySelector('.reviews_wrap li[data-visability="3"]'))
+      obs.observe(document.querySelector('.reviews_wrap li[data-visability="4"]'))
+      obs.observe(document.querySelector('.reviews_wrap li[data-visability="5"]'))
+      obs.observe(document.querySelector('.reviews_wrap li[data-visability="6"]'))
+      obs.observe(document.querySelector('.reviews_wrap li[data-visability="7"]'))
+      obs.observe(document.querySelector('.reviews_wrap li[data-visability="8"]'))
+
+      let int = setInterval(() => {
+        if (document.querySelector(".testik")) {
+          clearInterval(int)
+          obs.observe(document.querySelector(".testik"))
+        }
+      }, 100)
+
+      function visibility(entries) {
+        entries.forEach((i) => {
+          if (i.isIntersecting) {
+            if (i.target.classList.contains("testik")) {
+              pushDataLayer(`Visibility block "Ariel Summers, US")}`)
+            }
+            switch (i.target.getAttribute("data-visability")) {
+              case "1":
+                pushDataLayer(`Visibility video block`)
+                break
+              case "2":
+                pushDataLayer(`Visibility on reviews`, `${i.target.getAttribute("data-visability")}`)
+                break
+              case "3":
+                pushDataLayer(`Visibility on reviews`, `${i.target.getAttribute("data-visability")}`)
+                break
+              case "4":
+                pushDataLayer(`Visibility on reviews`, `${i.target.getAttribute("data-visability")}`)
+                break
+              case "5":
+                pushDataLayer(`Visibility on reviews`, `${i.target.getAttribute("data-visability")}`)
+                break
+              case "6":
+                pushDataLayer(`Visibility on reviews`, `${i.target.getAttribute("data-visability")}`)
+                break
+              case "7":
+                pushDataLayer(`Visibility on reviews`, `${i.target.getAttribute("data-visability")}`)
+                break
+              case "8":
+                pushDataLayer(`Visibility on reviews`, `${i.target.getAttribute("data-visability")}`)
+                break
+              default:
+                break
+            }
+
+            obs.unobserve(i.target)
+          }
+        })
+      }
+    }
+
+    pushDataLayer("loaded")
+
+    window._mfq.push(["setVariable", "go_exp", "var1"])
+
+    const record = setInterval(() => {
+      if (typeof clarity === "function") {
+        clearInterval(record)
+        clarity("set", "exp_social_proof", "variant_1")
+      }
+    }, 200)
+    document.querySelector(".exp")?.remove()
+  }
 }, 100)
