@@ -1,4 +1,5 @@
-let dir = 'https://conversionratestore.github.io/projects/somnifix/img/'
+let dir = 'https://conversionratestore.github.io/projects/somnifix/img/';
+let href = window.location.href;
 
 function detectMob() {
     const toMatch = [
@@ -93,7 +94,7 @@ let style = `
         font-size: 13px;
         line-height: 19px;
     }
-    .item_total span.l-through, .footer-card .l-through {
+    .l-through {
         text-decoration-line: line-through;
         color: #5E788D;
     }
@@ -112,8 +113,6 @@ let style = `
     .footer-prices p span.l-through {
         font-size: 20px;
         line-height: 38px;
-        text-decoration-line: line-through;
-        color: #5E788D;
         margin-right: 8px;
     }
     .footer-prices p span:last-child {
@@ -130,6 +129,21 @@ let style = `
     }
     .on-card-dwrapper {
         padding: 12px;
+    }
+    .head-prices .sale {
+        margin-left: 0;
+        margin-bottom: 6px;
+    }
+    .head-prices .l-through {
+        font-size: 20px;
+        line-height: 38px;
+        margin-right: 8px;
+    }
+    .head-prices span:not(.l-through) {
+        font-weight: 700;
+        font-size: 32px;
+        line-height: 38px;
+        color: #1E415F;
     }
     /* slide in */
     .aside_wrapper .swatchCustom__item {
@@ -183,22 +197,6 @@ let style = `
     .aside_subscribe__header {
         font-weight: 500;
         letter-spacing: initial!important;
-    }
-    .head-prices .sale {
-        margin-left: 0;
-        margin-bottom: 6px;
-    }
-    .head-prices .l-through {
-        font-size: 20px;
-        text-decoration-line: line-through;
-        color: #5E788D;
-        line-height: 38px;
-    }
-    .head-prices .total_price {
-        font-weight: 700;
-        font-size: 32px;
-        line-height: 38px;
-        color: #1E415F;
     }
     /* flex */
     .d-flex {
@@ -280,134 +278,147 @@ let modal = `
 `
 let objItems = [];
 
-document.querySelectorAll('.aside_product_item').forEach(item => {
-    item.style.display = 'none!important';
-    objItems.push({
-        'variantId': item.dataset.variant,
-        'title': item.dataset.title,
-        'week': item.dataset.week,
-        'strips': item.dataset.qty,
-        'planid': item.dataset.planid,
-        'price': item.dataset.price,
-        'nosale': item.classList.contains('no_sale') ? true : false,
-        'active': item.classList.contains('active') ? true : false,
-        'sale': item.querySelector('.item_name').innerHTML.includes('Save') ? item.querySelector('.item_name').innerHTML : '',
-        'compare': item.querySelector('.item_compare') != null ? item.querySelector('.item_compare').innerHTML.split(' ')[0] : '',
+window.onload = () => {
+
+    document.querySelectorAll('.aside_product_item').forEach(item => {
+        item.style.display = 'none!important';
+        objItems.push({
+            'variantId': item.dataset.variant,
+            'title': item.dataset.title,
+            'week': item.dataset.week,
+            'strips': item.dataset.qty,
+            'planid': item.dataset.planid,
+            'price': item.dataset.price,
+            'nosale': item.classList.contains('no_sale') ? true : false,
+            'active': item.classList.contains('active') ? true : false,
+            'sale': item.querySelector('.item_name').innerHTML.includes('Save') ? item.querySelector('.item_name').innerHTML : '',
+            'compare': item.querySelector('.item_compare') != null ? item.querySelector('.item_compare').innerHTML.split(' ')[0] : '',
+        })
     })
-})
 
-document.body.insertAdjacentHTML('afterbegin', style);
+    document.body.insertAdjacentHTML('afterbegin', style);
 
-if (detectMob() == true) {/* mobile */
-    document.querySelector('.mobile .total_price').before(document.querySelector('.mobile .checklist'))
-    document.querySelector('.mobile .total_price').insertAdjacentHTML('beforebegin', `
-    <div class="price-js d-flex">
-        <p>Price: </p> 
-        <p class="price_sale" style="display: none">(<span>22%</span> OFF)</p>
+    if (href.includes('/products/')) {
+        if (detectMob() == true) {/* mobile */
+            document.querySelector('.mobile .total_price').before(document.querySelector('.mobile .checklist'))
+            document.querySelector('.mobile .total_price').insertAdjacentHTML('beforebegin', `
+            <div class="price-js d-flex">
+                <p>Price: </p> 
+                <p class="price_sale" style="display: none">(<span>22%</span> OFF)</p>
+            </div>`)
+            document.querySelector('.price-js p').after(document.querySelector('.mobile .total_price'))
+
+            document.querySelector('.price-js').insertAdjacentHTML('afterend', `
+            <p class="choose-pack">Choose your pack</p>
+            <div class="parent-items"></div>
+            <div class="footer-prices">
+                <div class="sale" style="display: none">Save 22%</div>
+                <p class="d-flex"></p>
+            </div>`);
+        } else { /* desktop */
+            document.querySelector('.part1').insertAdjacentHTML('beforeend', `<div class="parent-items"></div>`)
+            document.querySelector('.middle-block p:first-child b').insertAdjacentHTML('afterend','<span class="price_sale" style="display: block; padding-left: 5px;">(<span>22%</span> OFF)</span>')
+            document.querySelector('.part2').insertAdjacentHTML('afterbegin',` 
+            <div class="head-prices">
+                <div class="sale" style="display: none">Save 22%</div>
+                <div class="d-flex"> 
+                    <div class="l-through"></div>
+                </div>
+            </div>`)
+
+            document.querySelector('.head-prices .l-through').after(document.querySelector('.part2 .total_price'))
+            document.querySelector('.part2 .total_price').innerHTML = document.querySelector('.part2 .total_price').innerHTML.replace(' USD', '');
+        }
+    }
+
+    document.querySelector('.aside_wrapper').insertAdjacentHTML('beforeend', `
+    <div class="footer-card">
+        <div class="a"></div>
     </div>`)
-    document.querySelector('.price-js p').after(document.querySelector('.mobile .total_price'))
 
-    document.querySelector('.price-js').insertAdjacentHTML('afterend', `
-    <p class="choose-pack">Choose your pack</p>
-    <div class="parent-items"></div>
-    <div class="footer-prices">
-        <div class="sale" style="display: none">Save 22%</div>
-        <p class="d-flex"></p>
-    </div>`);
-} else { /* desktop */
-    document.querySelector('.part1').insertAdjacentHTML('beforeend', `<div class="parent-items"></div>`)
-    document.querySelector('.middle-block p:first-child b').insertAdjacentHTML('afterend','<span class="price_sale" style="display: block; padding-left: 5px;">(<span>22%</span> OFF)</span>')
-    document.querySelector('.part2').insertAdjacentHTML('afterbegin',` 
-    <div class="head-prices">
-        <div class="sale" style="display: none">Save 22%</div>
-        <div class="d-flex">
-            <p class="l-through">$71.97</p>
-        </div>
-    </div>`)
-   
-    document.querySelector('.head-prices .l-through').after( document.querySelector('.total_price'))
-}
+    document.querySelector('.footer-card').before(document.querySelector('.aside_wrapper .total'))
+    document.querySelector('.aside_wrapper .total').classList.remove('flx')
+    document.querySelector('.aside_wrapper .a ').insertAdjacentHTML('afterend',`<div class="d-flex justify-center prices"> <div class="l-through"></div></div>`)
+    document.querySelector('.aside_wrapper .a').remove();
+    document.querySelector('.aside_wrapper .prices .l-through').after(document.querySelector('.aside_wrapper .total .summ'))
+    document.querySelector('.aside_wrapper .prices').after(document.querySelector(".aside_subscribe"))
+    document.querySelector('.aside_subscribe').after(document.querySelector(".aside_to_checkout"))
 
-document.querySelector('.aside_wrapper').insertAdjacentHTML('beforeend', `
-<div class="footer-card">
-    <div class="a"></div>
-</div>`)
-
-document.querySelector('.footer-card').before(document.querySelector('.aside_wrapper .total'))
-document.querySelector('.aside_wrapper .total').classList.remove('flx')
-document.querySelector('.aside_wrapper .a ').insertAdjacentHTML('afterend',`<div class="d-flex justify-center prices"> <div class="l-through"></div></div>`)
-document.querySelector('.aside_wrapper .a').remove();
-document.querySelector('.aside_wrapper .prices .l-through').after(document.querySelector('.aside_wrapper .total .summ'))
-document.querySelector('.aside_wrapper .prices').after(document.querySelector(".aside_subscribe"))
-document.querySelector('.aside_subscribe').after(document.querySelector(".aside_to_checkout"))
-
-for (let i = 0; i < objItems.length; i++) {
-    let item =`
-    <div class="swatchCustom__item flx items-center ${objItems[i].nosale == true ? 'nosale' : ''} ${objItems[i].week == 12 ? 'swatchCustom__item--active' : ''}" onclick="addActiveItem(this)"  
-        data-variant="${objItems[i].variantId}" 
-        data-title="${objItems[i].title}" 
-        data-price="${objItems[i].price}" 
-        data-subheading="${objItems[i].subheading}" 
-        data-planid="${objItems[i].planid}"> 
-        <div class="flx items-center">
-            ${objItems[i].strips == '364' ? icon364 : objItems[i].strips == '84' ? icon84 : objItems[i].strips == '28' ? icon28 : ''}
+    for (let i = 0; i < objItems.length; i++) {
+        let item =`
+        <div class="swatchCustom__item flx items-center ${objItems[i].nosale == true ? 'nosale' : ''} ${objItems[i].week == 12 ? 'swatchCustom__item--active' : ''}" onclick="addActiveItem(this)"  
+            data-variant="${objItems[i].variantId}" 
+            data-title="${objItems[i].title}" 
+            data-price="${objItems[i].price}" 
+            data-subheading="${objItems[i].subheading}" 
+            data-planid="${objItems[i].planid}"> 
+            <div class="flx items-center">
+                ${objItems[i].strips == '364' ? icon364 : objItems[i].strips == '84' ? icon84 : objItems[i].strips == '28' ? icon28 : ''}
+                <div>
+                    <p class="for-week">$${(objItems[i].price / objItems[i].week).toFixed(2)} / week</p>
+                    <p class="item_total">Total: ${objItems[i].compare != '' ? '<span class="l-through">' + objItems[i].compare + '</span>' : ''} <span>$${objItems[i].price}</span></p>
+                </div>
+            </div> 
             <div>
-                <p class="for-week">$${(objItems[i].price / objItems[i].week).toFixed(2)} / week</p>
-                <p class="item_total">Total: ${objItems[i].compare != '' ? '<span class="l-through">' + objItems[i].compare + '</span>' : ''} <span>$${objItems[i].price}</span></p>
+                ${objItems[i].week == 52 ? '<div class="best-deal">Best deal</div>' : objItems[i].week == 12 ? '<div class="top-seller">Top-seller</div>' : ''}
+                ${objItems[i].nosale != true ? '<div class="sale">' + objItems[i].sale + '</div>' : ''}
+                <p class="months">${objItems[i].week / 4} months</p>
             </div>
-        </div> 
-        <div>
-            ${objItems[i].week == 52 ? '<div class="best-deal">Best deal</div>' : objItems[i].week == 12 ? '<div class="top-seller">Top-seller</div>' : ''}
-            ${objItems[i].nosale != true ? '<div class="sale">' + objItems[i].sale + '</div>' : ''}
-            <p class="months">${objItems[i].week / 4} months</p>
-        </div>
-    </div>`
+        </div>`
 
-   document.querySelector('.parent-items').insertAdjacentHTML('afterbegin', item)
-   document.querySelector('.aside_wrapper').insertAdjacentHTML('afterbegin', item)
-}
-
-function addActiveItem(target) {
-    if (target.closest('.product__information')) {
-        //show/hide sale
-        if (target.querySelector('.sale') != null) {
-            let sale = target.querySelector('.sale').innerHTML.split(' ')[1];
-
-            document.querySelector('.price_sale span').innerHTML = sale;
-            document.querySelector('.price_sale').style.display = 'inline';
-            if (detectMob() == true) {
-                document.querySelector('.footer-prices .sale').innerHTML = `Save ${sale}`;
-                document.querySelector('.footer-prices .sale').style.display = 'block';
-            } else {
-                document.querySelector('.head-prices .sale').innerHTML = `Save ${sale}`;
-                document.querySelector('.head-prices .sale').style.display = 'block';
-            }
-        } else {
-            document.querySelector('.price_sale').style.display = 'none';
-            if (detectMob() == true) {
-                document.querySelector('.footer-prices .sale').style.display = 'none';
-            } else {
-                document.querySelector('.head-prices .sale').style.display = 'none';
-            }
+        if (href.includes('/products/')) {
+            document.querySelector('.parent-items').insertAdjacentHTML('afterbegin', item)
         }
-        //set prices bottom
-        if (detectMob() == true) {
-            document.querySelector('.footer-prices p').innerHTML = target.querySelector('.item_total').innerHTML.replace('Total: ','');
-        } else {
-            document.querySelector('.head-prices .l-through').innerHTML = target.querySelector('.l-through') != null ? target.querySelector('.l-through').innerHTML : '';
-        }
-        document.querySelector(`.${device} [data-variant="${target.dataset.variant}"]:not(.items-center)`).click();
-    } else {
-        document.querySelector(`.aside_product_item[data-variant="${target.dataset.variant}"]`).click();
-        document.querySelector('.footer-card .l-through').innerHTML = target.querySelector('.l-through') != null ? target.querySelector('.l-through').innerHTML : '';
+        document.querySelector('.aside_wrapper').insertAdjacentHTML('afterbegin', item)
     }
 
-    //add/remove active class
-    if (!target.classList.contains('swatchCustom__item--active')) {
-        target.parentElement.querySelector('.swatchCustom__item--active').classList.remove('swatchCustom__item--active')
-        target.classList.add('swatchCustom__item--active')
-    }
-}
+    function addActiveItem(target) {
+        if (target.closest('.product__information')) {
+            //show/hide sale
+            if (target.querySelector('.sale') != null) {
+                let sale = target.querySelector('.sale').innerHTML.split(' ')[1];
 
-addActiveItem(document.querySelector('.parent-items .swatchCustom__item--active'))
-addActiveItem(document.querySelector('.aside_wrapper .swatchCustom__item--active'))
+                document.querySelector('.price_sale span').innerHTML = sale;
+                document.querySelector('.price_sale').style.display = 'inline';
+                if (detectMob() == true) {
+                    document.querySelector('.footer-prices .sale').innerHTML = `Save ${sale}`;
+                    document.querySelector('.footer-prices .sale').style.display = 'block';
+                } else {
+                    document.querySelector('.head-prices .sale').innerHTML = `Save ${sale}`;
+                    document.querySelector('.head-prices .sale').style.display = 'block';
+                }
+            } else {
+                document.querySelector('.price_sale').style.display = 'none';
+                if (detectMob() == true) {
+                    document.querySelector('.footer-prices .sale').style.display = 'none';
+                } else {
+                    document.querySelector('.head-prices .sale').style.display = 'none';
+                }
+            }
+            //set prices bottom/top
+            let total = target.querySelector('.item_total').innerHTML.replace('Total: ','');
+            if (detectMob() == true) {
+                document.querySelector('.footer-prices p').innerHTML = total;
+            } else {
+                document.querySelector('.head-prices .l-through').innerHTML = target.querySelector('.l-through') != null ? target.querySelector('.l-through').innerHTML : '';
+                document.querySelector('.head-prices .l-through').style.marginRight = target.querySelector('.l-through') != null ? '8px' : '0px';
+
+            }
+            document.querySelector(`.${device} [data-variant="${target.dataset.variant}"]:not(.items-center)`).click();
+        } else {
+            document.querySelector(`.aside_product_item[data-variant="${target.dataset.variant}"]`).click();
+            document.querySelector('.footer-card .l-through').innerHTML = target.querySelector('.l-through') != null ? target.querySelector('.l-through').innerHTML : '';
+        }
+
+        //add/remove active class
+        if (!target.classList.contains('swatchCustom__item--active')) {
+            target.parentElement.querySelector('.swatchCustom__item--active').classList.remove('swatchCustom__item--active')
+            target.classList.add('swatchCustom__item--active')
+        }
+    }
+
+    if (href.includes('/products/')) {
+        addActiveItem(document.querySelector('.parent-items .swatchCustom__item--active'))
+    }
+    addActiveItem(document.querySelector('.aside_wrapper .swatchCustom__item--active'))
+};
