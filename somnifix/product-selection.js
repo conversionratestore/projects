@@ -282,6 +282,7 @@ let modal = `
     </div>
 `
 let objItems = [];
+let doubleTap = false;
 
 window.onload = () => {
 
@@ -419,6 +420,8 @@ window.onload = () => {
         if (!target.classList.contains('active')) {
             target.parentElement.querySelector('.active').classList.remove('active')
             target.classList.add('active')
+        } else {
+            detectMob() == true && doubleTap == true ? document.querySelector(`.popup_btn`).click() : '';
         }
     }
 
@@ -426,4 +429,6 @@ window.onload = () => {
         addActiveItem(document.querySelector('.parent-items .swatchCustom__item.active'))
     }
     addActiveItem(document.querySelector('.aside_wrapper .swatchCustom__item.active'))
+
+    doubleTap = true;
 };
