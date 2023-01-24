@@ -440,7 +440,11 @@ let socialProof = setInterval(() => {
 
     if (document.querySelector(".social_proof")) {
       let obs = new IntersectionObserver(visibility, {
-        threshold: 1,
+        threshold: 0.5,
+      })
+
+      let obs2 = new IntersectionObserver(visibility2, {
+        threshold: 0.5,
       })
 
       obs.observe(document.querySelector('.reviews_wrap li[data-visability="1"]'))
@@ -462,12 +466,22 @@ let socialProof = setInterval(() => {
       function visibility(entries) {
         entries.forEach((i) => {
           if (i.isIntersecting) {
+            setTimeout(function () {
+              obs2.observe(i.target)
+            }, 3000)
+          }
+        })
+      }
+
+      function visibility2(entries) {
+        entries.forEach((i) => {
+          if (i.isIntersecting) {
             if (i.target.classList.contains("testik")) {
-              pushDataLayer(`Visibility block "Ariel Summers, US")}`)
+              pushDataLayer(`Visibility video block")}`)
             }
             switch (i.target.getAttribute("data-visability")) {
               case "1":
-                pushDataLayer(`Visibility video block`)
+                pushDataLayer(`Visibility on reviews`, `${i.target.getAttribute("data-visability")}`)
                 break
               case "2":
                 pushDataLayer(`Visibility on reviews`, `${i.target.getAttribute("data-visability")}`)
@@ -496,6 +510,7 @@ let socialProof = setInterval(() => {
 
             obs.unobserve(i.target)
           }
+          obs2.unobserve(i.target)
         })
       }
     }
