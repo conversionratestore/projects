@@ -45,12 +45,12 @@ let problemBlockStart = setInterval(() => {
               font-family: 'Din Condensed',Roboto,sans-serif !important;
               font-weight: 700;
               font-size: 40px;
-              line-height: 48px !important;
+              line-height: 32px !important;
               text-transform: uppercase;
               color: #FFFFFF;
               background: #2C7C73;
               margin: 8px 0 !important;
-              padding: 0 !important;
+              padding: 12px 0 0 !important;
            }
            .buzzpatch_accardion{
               list-style-type: none;
