@@ -49,7 +49,7 @@ let problemBlockStart = setInterval(() => {
               text-transform: uppercase;
               color: #FFFFFF;
               background: #2C7C73;
-              margin: 8px 0 !important;
+              margin: 0 !important;
               padding: 12px 0 0 !important;
            }
            .buzzpatch_accardion{
@@ -258,9 +258,7 @@ let problemBlockStart = setInterval(() => {
     let problemHtml = /*html */ `
       <div class="buzzpatch_problems">
         <h2>
-          <span>What</span>
-          <span class="accent_color">problems</span>
-          <span>are you looking to solve?</span>
+          <span class="accent_color">ZenPatch is perfect if</span>
         </h2>
   
         <ul class="buzzpatch_accardion"></ul>
