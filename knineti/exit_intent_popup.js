@@ -170,224 +170,237 @@ let isStopped = false
 
 /** Functions */
 const waitForEl = (selector) => {
-  return new Promise((resolve) => {
-    if (document.querySelector(selector)) {
-      return resolve(document.querySelector(selector))
-    }
-
-    const observer = new MutationObserver((mutations) => {
-      if (document.querySelector(selector)) {
-        resolve(document.querySelector(selector))
-        observer.disconnect()
-      }
-
-      for (let mutation of mutations) {
-        for (let node of mutation.addedNodes) {
-          if (!(node instanceof HTMLElement)) continue
-
-          if (node.matches(selector)) {
-            resolve(document.querySelector(selector))
-            observer.disconnect()
-          }
+    return new Promise((resolve) => {
+        if (document.querySelector(selector)) {
+            return resolve(document.querySelector(selector))
         }
-      }
-    })
 
-    observer.observe(document.body, {
-      childList: true,
-      subtree: true,
+        const observer = new MutationObserver((mutations) => {
+            if (document.querySelector(selector)) {
+                resolve(document.querySelector(selector))
+                observer.disconnect()
+            }
+
+            for (let mutation of mutations) {
+                for (let node of mutation.addedNodes) {
+                    if (!(node instanceof HTMLElement)) continue
+
+                    if (node.matches(selector)) {
+                        resolve(document.querySelector(selector))
+                        observer.disconnect()
+                    }
+                }
+            }
+        })
+
+        observer.observe(document.body, {
+            childList: true,
+            subtree: true,
+        })
     })
-  })
 }
 
 const sendEvent = (eventAction, eventLabel = "") => {
-  // GO Event
-  const obj = {
-    event: "event-to-ga",
-    eventCategory: "Exp: Exit intent pop up. " + device,
-    eventAction,
-    eventLabel,
-  }
+    // GO Event
+    const obj = {
+        event: "event-to-ga",
+        eventCategory: "Exp: Exit intent pop up. " + device,
+        eventAction,
+        eventLabel,
+    }
 
-  window.dataLayer = window.dataLayer || []
-  dataLayer.push(obj)
+    window.dataLayer = window.dataLayer || []
+    dataLayer.push(obj)
 }
 
 const stopTimeout = () => {
-  if (!isStopped) {
-    isStopped = true
+    if (!isStopped) {
+        isStopped = true
 
-    clearInterval(myTimerCRS)
-    sendEvent("Duration of visibility of the pop up", seconds)
-  }
+        clearInterval(myTimerCRS)
+        sendEvent("Duration of visibility of the pop up", seconds)
+    }
 }
 
 const showPopup = () => {
-  sessionStorage.setItem("popupAppeared", "true")
-  document.querySelector(".my_overlay").classList.add("show_popup")
-  sendEvent("Visibility")
+    sessionStorage.setItem("popupAppeared", "true")
+    document.querySelector(".my_overlay").classList.add("show_popup")
+    sendEvent("Visibility")
 
-  myTimerCRS = setInterval(() => {
-    seconds = seconds + 1
-  }, 1000)
+    myTimerCRS = setInterval(() => {
+        seconds = seconds + 1
+    }, 1000)
 
-  setTimeout(() => {
-    stopTimeout()
-  }, 120000)
+    setTimeout(() => {
+        stopTimeout()
+    }, 120000)
 }
 const hidePopup = (label) => {
-  document.querySelector(".my_overlay").classList.remove("show_popup")
-  sendEvent("Close pop up", label)
+    document.querySelector(".my_overlay").classList.remove("show_popup")
+    sendEvent("Close pop up", label)
 
-  stopTimeout()
+    stopTimeout()
+}
+
+function onEventDesk() {
+    if (sessionStorage.getItem("popupAppeared") == null) {
+        // show popup
+        switch (device) {
+            case "Desktop":
+                let x = 0,
+                    y = 0
+                window.addEventListener("mousemove", function (e) {
+                    x = e.clientX
+                    y = e.clientY
+                })
+                document.body.addEventListener(
+                    "mouseleave",
+                    function () {
+                        if (x < 50 || y < 50 || x > window.innerWidth - 50 || y > window.innerHeight - 50) {
+                            showPopup()
+                        }
+                    },
+                    { once: true }
+                )
+                break
+            default:
+                break
+        }
+    }
+}
+
+const getMobileOS = () => {
+    const ua = navigator.userAgent
+    if (/android/i.test(ua)) {
+        return "Android"
+    }
+    else if (/iPad|iPhone|iPod/.test(ua)
+        || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1)) {
+        return "iOS"
+    }
+    return "Other"
 }
 
 /** Parse HTML, CSS and run functions. */
 document.head.insertAdjacentHTML("beforeend", style)
 
 const waitForBody = setInterval(() => {
-  if (document.body) {
-    clearInterval(waitForBody)
+    if (document.body) {
+        clearInterval(waitForBody)
 
-    document.body.insertAdjacentHTML("afterbegin", popup)
-  }
-}, 100)
+        document.body.insertAdjacentHTML("afterbegin", popup)
 
-waitForEl(".my_popup_close_wrapper").then((el) => el.addEventListener("click", () => hidePopup("close")))
-waitForEl(".content_no").then((el) => el.addEventListener("click", () => hidePopup("No thanks")))
+        waitForEl(".my_popup_close_wrapper").then((el) => el.addEventListener("click", () => hidePopup("close")))
+        waitForEl(".content_no").then((el) => el.addEventListener("click", () => hidePopup("No thanks")))
 
-const waitForBtns = setInterval(() => {
-  if (document.querySelector(".submit_btn input") && document.querySelector(".content_btn")) {
-    clearInterval(waitForBtns)
+        const waitForBtns = setInterval(() => {
+            if (document.querySelector(".submit_btn input") && document.querySelector(".content_btn")) {
+                clearInterval(waitForBtns)
 
-    document.querySelector(".content_btn").addEventListener("click", () => {
-      document.querySelector(".my_overlay").classList.remove("show_popup")
-      sendEvent("click on Complete purchase button")
+                document.querySelector(".content_btn").addEventListener("click", () => {
+                    document.querySelector(".my_overlay").classList.remove("show_popup")
+                    sendEvent("click on Complete purchase button")
 
-      stopTimeout()
+                    stopTimeout()
 
-      const filledInputs = [...document.querySelectorAll(".payment_inform_box input:not(#onetime_pay):not(#monthly_pay)")].every((input) => {
-        return input.value.length
-      })
+                    const filledInputs = [...document.querySelectorAll(".payment_inform_box input:not(#onetime_pay):not(#monthly_pay)")].every((input) => {
+                        return input.value.length
+                    })
 
-      if (filledInputs) {
-        document.querySelector(".submit_btn input").focus()
-        document.querySelector(".submit_btn input").click()
-      } else {
-        for (const input of document.querySelectorAll(".payment_inform_box input:not(#onetime_pay):not(#monthly_pay)")) {
-          if (!input.value.length) {
-            input.focus()
-            break
-          }
-        }
-      }
-    })
+                    if (filledInputs) {
+                        document.querySelector(".submit_btn input").focus()
+                        document.querySelector(".submit_btn input").click()
+                    } else {
+                        for (const input of document.querySelectorAll(".payment_inform_box input:not(#onetime_pay):not(#monthly_pay)")) {
+                            if (!input.value.length) {
+                                input.focus()
+                                break
+                            }
+                        }
+                    }
+                })
 
-    if (sessionStorage.getItem("popupAppeared") == null) {
-      // show popup
-      switch (device) {
-        case "Desktop":
-          let x = 0,
-            y = 0
-          window.addEventListener("mousemove", function (e) {
-            x = e.clientX
-            y = e.clientY
-          })
-          document.body.addEventListener(
-            "mouseleave",
-            function () {
-              if (x < 50 || y < 50 || x > window.innerWidth - 50 || y > window.innerHeight - 50) {
-                showPopup()
-              }
-            },
-            { once: true }
-          )
-          break
-        case "Mobile":
-          let lastPosition = 0,
-            newPosition = 0,
-            currentSpeed = 0
+                if (sessionStorage.getItem("popupAppeared") == null) {
+                    // show popup
+                    switch (device) {
+                        case "Desktop":
+                            let x = 0,
+                                y = 0
+                            window.addEventListener("mousemove", function (e) {
+                                x = e.clientX
+                                y = e.clientY
+                            })
+                            document.body.addEventListener(
+                                "mouseleave",
+                                function () {
+                                    if (x < 50 || y < 50 || x > window.innerWidth - 50 || y > window.innerHeight - 50) {
+                                        showPopup()
+                                    }
+                                },
+                                { once: true }
+                            )
+                            break
+                        case "Mobile":
+                            let speedValue = getMobileOS() === 'Android' ? 200 : 160
 
-          let scrollSpeed = () => {
-            lastPosition = window.scrollY
-            setTimeout(() => {
-              newPosition = window.scrollY
-            }, 85)
-            currentSpeed = newPosition - lastPosition
+                            let lastPosition = 0,
+                                newPosition = 0,
+                                currentSpeed = 0
 
-            if (currentSpeed > 85) {
-              document.removeEventListener("scroll", scrollSpeed)
-              showPopup()
+                            let scrollSpeed = () => {
+                                lastPosition = window.scrollY
+                                setTimeout(() => {
+                                    newPosition = window.scrollY
+                                }, 100)
+
+                                currentSpeed = newPosition - lastPosition
+
+                                if (currentSpeed > speedValue) {
+                                    document.removeEventListener("scroll", scrollSpeed)
+                                    showPopup()
+                                }
+                            }
+
+                            document.addEventListener("scroll", scrollSpeed)
+
+                            waitForEl('#submit').then(el => {
+                                el.addEventListener('click', () => {
+                                    document.removeEventListener("scroll", scrollSpeed)
+
+                                    if (sessionStorage.getItem("popupAppeared") == null) {
+                                        lastPosition = 0,
+                                        newPosition = 0,
+                                        currentSpeed = 0
+
+                                        document.addEventListener("scroll", scrollSpeed)
+
+                                    }
+                                })
+                            })
+
+                            break
+                        default:
+                            break
+                    }
+                }
             }
-          }
+        }, 100)
 
-          document.addEventListener("scroll", scrollSpeed)
-          break
-        default:
-          break
-      }
-    }
-  }
-}, 100)
-
-// observer
-const runObserver = () => {
-  // Mutation Observer
-  const target = document.body
-  const config = {
-    childList: true,
-    subtree: true,
-  }
-
-  let observer = new MutationObserver((mutations) => {
-    for (let mutation of mutations) {
-      console.log(mutation)
-    }
-  })
-
-  observer.observe(target, config)
-}
-
-$(".paypament-details .order_form_field").keyup(function () {
-  onEventDesk()
-})
-
-$(".paypament-details .order_form_field").blur(function () {
-  onEventDesk()
-})
-
-function onEventDesk() {
-  if (sessionStorage.getItem("popupAppeared") == null) {
-    // show popup
-    switch (device) {
-      case "Desktop":
-        let x = 0,
-          y = 0
-        window.addEventListener("mousemove", function (e) {
-          x = e.clientX
-          y = e.clientY
+        $(".paypament-details .order_form_field").keyup(function () {
+            onEventDesk()
         })
-        document.body.addEventListener(
-          "mouseleave",
-          function () {
-            if (x < 50 || y < 50 || x > window.innerWidth - 50 || y > window.innerHeight - 50) {
-              showPopup()
-            }
-          },
-          { once: true }
-        )
-        break
-      default:
-        break
+
+        $(".paypament-details .order_form_field").blur(function () {
+            onEventDesk()
+        })
     }
-  }
-}
+}, 100)
 
 sendEvent("loaded")
 const record = setInterval(() => {
-  if (typeof clarity === "function") {
-    clearInterval(record)
+    if (typeof clarity === "function") {
+        clearInterval(record)
 
-    clarity("set", `exit_intent_pop_up_${device.toLowerCase()}`, "variant_1")
-  }
+        clarity("set", `exit_intent_pop_up_${device.toLowerCase()}`, "variant_1")
+    }
 }, 100)
