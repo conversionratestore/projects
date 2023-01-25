@@ -312,10 +312,10 @@ const waitForBtns = setInterval(() => {
             lastPosition = window.scrollY
             setTimeout(() => {
               newPosition = window.scrollY
-            }, 70)
+            }, 85)
             currentSpeed = newPosition - lastPosition
 
-            if (currentSpeed > 70) {
+            if (currentSpeed > 85) {
               document.removeEventListener("scroll", scrollSpeed)
               showPopup()
             }
