@@ -269,17 +269,6 @@ function onEventDesk() {
     }
 }
 
-const getMobileOS = () => {
-    const ua = navigator.userAgent
-    if (/android/i.test(ua)) {
-        return "Android"
-    }
-    else if (/iPad|iPhone|iPod/.test(ua)) {
-        return "iOS"
-    }
-    return "Other"
-}
-
 /** Parse HTML, CSS and run functions. */
 document.head.insertAdjacentHTML("beforeend", style)
 
@@ -340,7 +329,7 @@ const waitForBody = setInterval(() => {
                             )
                             break
                         case "Mobile":
-                            let speedValue = getMobileOS() === 'Android' ? 200 : 160
+                            let speedValue = /android/i.test(navigator.userAgent) ? 190 : 160
 
                             let lastPosition = 0,
                                 newPosition = 0,
@@ -367,8 +356,8 @@ const waitForBody = setInterval(() => {
                                     document.removeEventListener("scroll", scrollSpeed)
 
                                     if (sessionStorage.getItem("popupAppeared") == null) {
-                                        lastPosition = 0,
-                                        newPosition = 0,
+                                        lastPosition = 0
+                                        newPosition = 0
                                         currentSpeed = 0
 
                                         document.addEventListener("scroll", scrollSpeed)
