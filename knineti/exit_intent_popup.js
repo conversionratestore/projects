@@ -211,6 +211,7 @@ const sendEvent = (eventAction, eventLabel = "") => {
 
     window.dataLayer = window.dataLayer || []
     dataLayer.push(obj)
+    console.log(obj)
 }
 
 const stopTimeout = () => {
@@ -361,7 +362,6 @@ const waitForBody = setInterval(() => {
                                         currentSpeed = 0
 
                                         document.addEventListener("scroll", scrollSpeed)
-
                                     }
                                 })
                             })
