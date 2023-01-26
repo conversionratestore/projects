@@ -340,7 +340,7 @@ let problemBlockStart = setInterval(() => {
         let id = $(this).attr("href"),
           top = $(id).offset().top - 10
 
-        $("body,html").animate({ scrollTop: top }, 2000)
+        $("body,html").animate({ scrollTop: top }, 300)
       })
     })
 
