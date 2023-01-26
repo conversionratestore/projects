@@ -248,7 +248,7 @@ let problemBlockStart = setInterval(() => {
                     <div class="buzzpatch_accardion_lists" data-visability-open='${count}'>
                         <div>
                             ${text}
-                            <a href="#getNow" class="buzzpatch_accardion_btn" data-btn="${count}">Get Sleepypatch</a>
+                            <a href="#getNow" class="buzzpatch_accardion_btn" data-btn="${count}">Get Zenpatch</a>
                         </div>
                     </div>
                 </li>
@@ -335,7 +335,7 @@ let problemBlockStart = setInterval(() => {
       $(".buzzpatch_accardion_lists").on("click", "a", function (event) {
         event.preventDefault()
 
-        pushDataLayer("Click on Get sleepypatch button", `${event.target.closest("li").querySelector(".buzzpatch_accardion_link p").textContent}`)
+        pushDataLayer("Click on Get Zenpatch button", `${event.target.closest("li").querySelector(".buzzpatch_accardion_link p").textContent}`)
 
         let id = $(this).attr("href"),
           top = $(id).offset().top - 10
