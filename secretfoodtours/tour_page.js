@@ -771,11 +771,14 @@ let isClarify = setInterval(() => {
 }, 100)
 
 let listing = setInterval(function(){
-    if (document.querySelectorAll('.country_tours') && document.querySelector('.country_banner')) {
+    if (document.querySelectorAll('.cardx-tags+.card-buttons a')) {
         clearInterval(listing)
-        document.querySelector('footer').before(document.querySelector('.country_banner'))
-        document.querySelector('.country_banner').style.marginBottom = '100px'
-        document.querySelector('.country_tours').style.paddingTop = '0px'
+        if (document.querySelectorAll('.country_tours') && document.querySelector('.country_banner')) {
+            
+            document.querySelector('footer').before(document.querySelector('.country_banner'))
+            document.querySelector('.country_banner').style.marginBottom = '100px'
+            document.querySelector('.country_tours').style.paddingTop = '0px'
+        }
 
         document.querySelectorAll('.cardx-tags+.card-buttons a').forEach(item => {
             if(item.innerText.toLowerCase() === 'book now') {
