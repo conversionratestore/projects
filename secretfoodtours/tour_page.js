@@ -726,7 +726,7 @@ let interval = setInterval(() => {
                         <img src="${dir}awards-mobile.svg" alt="awards icons">
                     </div>`)
         
-                    if (document.querySelector('.price') != null) {
+                    if (document.querySelector('.price') != null && !document.querySelectorAll('.price')[document.querySelectorAll('.price').length - 1].innerHTML.trim().includes('private bookings')) {
                         document.querySelector('.special-options h2').after(document.querySelectorAll('.form_tour .btn-gold')[1])
                         document.querySelector('.special-options h2').after(document.querySelectorAll('.form_tour .btn-gold')[0])
                     } else {
