@@ -435,6 +435,7 @@ window.onload = () => {
             }
             document.querySelector(`.${device} [data-variant="${target.dataset.variant}"]:not(.items-center)`).click();
         } else {
+            console.log(target.dataset.variant)
             document.querySelector(`.aside_product_item[data-variant="${target.dataset.variant}"]`).click();
             document.querySelector('.footer-card .l-through').innerHTML = target.querySelector('.l-through') != null ? target.querySelector('.l-through').innerHTML : '';
         }
