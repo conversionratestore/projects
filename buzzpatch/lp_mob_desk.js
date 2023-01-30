@@ -99,6 +99,10 @@ const waitForHeader = setInterval(() => {
                     display: none;
                 }
 
+                .my_heading li {
+                    text-shadow: none !important;
+                }
+
                 header .navbar.fixed-top a {
                     color: #fff !important;
                     transition: none;
