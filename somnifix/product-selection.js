@@ -372,6 +372,34 @@ window.onload = () => {
     document.querySelector('.aside_wrapper .prices').after(document.querySelector(".aside_subscribe"))
     document.querySelector('.aside_subscribe').after(document.querySelector(".aside_to_checkout"))
 
+    for (let i = 0; i < objItems.length; i++) {
+        let item =`
+        <div class="swatchCustom__item flx items-center ${objItems[i].nosale == true ? 'nosale' : ''} ${objItems[i].week == 12 ? 'active' : ''}" 
+            data-variant="${objItems[i].variantId}" 
+            data-title="${objItems[i].title}" 
+            data-price="${objItems[i].price}" 
+            data-subheading="${objItems[i].subheading}" 
+            data-planid="${objItems[i].planid}"> 
+            <div class="flx items-center">
+                ${objItems[i].strips == '364' ? icon364 : objItems[i].strips == '84' ? icon84 : objItems[i].strips == '28' ? icon28 : ''}
+                <div>
+                    <p class="for-week">$${(objItems[i].price / objItems[i].week).toFixed(2)} / week</p>
+                    <p class="item_total">Total: ${objItems[i].compare != '' ? '<span class="l-through">' + objItems[i].compare + '</span>' : ''} <span>$${objItems[i].price}</span></p>
+                </div>
+            </div> 
+            <div>
+                ${objItems[i].week == 52 ? '<div class="best-deal">Best deal</div>' : objItems[i].week == 12 ? '<div class="top-seller">Top-seller</div>' : ''}
+                ${objItems[i].nosale != true ? '<div class="sale">' + objItems[i].sale + '</div>' : ''}
+                <p class="months">${objItems[i].week / 4} months</p>
+            </div>
+        </div>`
+
+        if (href.includes('/products/')) {
+            document.querySelector('.parent-items').insertAdjacentHTML('afterbegin', item)
+        }
+        document.querySelector('.aside_wrapper').insertAdjacentHTML('afterbegin', item)
+    }
+
 
     function addActiveItem(target) {
         if (target.closest('.product__information')) {
@@ -422,37 +450,17 @@ window.onload = () => {
             }
         }
     }
-    
-    for (let i = 0; i < objItems.length; i++) {
-        let item =`
-        <div class="swatchCustom__item flx items-center ${objItems[i].nosale == true ? 'nosale' : ''} ${objItems[i].week == 12 ? 'active' : ''}" onclick="addActiveItem(this)"  
-            data-variant="${objItems[i].variantId}" 
-            data-title="${objItems[i].title}" 
-            data-price="${objItems[i].price}" 
-            data-subheading="${objItems[i].subheading}" 
-            data-planid="${objItems[i].planid}"> 
-            <div class="flx items-center">
-                ${objItems[i].strips == '364' ? icon364 : objItems[i].strips == '84' ? icon84 : objItems[i].strips == '28' ? icon28 : ''}
-                <div>
-                    <p class="for-week">$${(objItems[i].price / objItems[i].week).toFixed(2)} / week</p>
-                    <p class="item_total">Total: ${objItems[i].compare != '' ? '<span class="l-through">' + objItems[i].compare + '</span>' : ''} <span>$${objItems[i].price}</span></p>
-                </div>
-            </div> 
-            <div>
-                ${objItems[i].week == 52 ? '<div class="best-deal">Best deal</div>' : objItems[i].week == 12 ? '<div class="top-seller">Top-seller</div>' : ''}
-                ${objItems[i].nosale != true ? '<div class="sale">' + objItems[i].sale + '</div>' : ''}
-                <p class="months">${objItems[i].week / 4} months</p>
-            </div>
-        </div>`
 
-        if (href.includes('/products/')) {
-            document.querySelector('.parent-items').insertAdjacentHTML('afterbegin', item)
-        }
-        document.querySelector('.aside_wrapper').insertAdjacentHTML('afterbegin', item)
-    }
+    document.querySelectorAll('.aside_wrapper .swatchCustom__item').forEach(item => {
+        item.addEventListener('click', (e) => addActiveItem(e.target))
+    })
 
     if (href.includes('/products/')) {
         addActiveItem(document.querySelector('.parent-items .swatchCustom__item.active'))
+
+        document.querySelectorAll('.parent-items .swatchCustom__item').forEach(item => {
+            item.addEventListener('click', (e) => addActiveItem(e.target))
+        })
     }
     addActiveItem(document.querySelector('.aside_wrapper .swatchCustom__item.active'))
 
