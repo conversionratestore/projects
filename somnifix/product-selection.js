@@ -32,6 +32,9 @@ let style = `
         padding: 7px 10px!important;
         min-height: 74px;
     }
+    .swatchCustom__item * {
+        pointer-events: none;
+    }
     .mobile .parent-items .swatchCustom__item:not(.active) {
         background: #F5F6F7!important;
     }
@@ -457,13 +460,13 @@ window.onload = () => {
         addActiveItem(document.querySelector('.parent-items .swatchCustom__item.active'))
 
         document.querySelectorAll('.parent-items .swatchCustom__item').forEach(item => {
-            item.addEventListener('click', (e) => addActiveItem(e.target))
+            item.addEventListener('click', (e) => addActiveItem(item))
         })
     }
     addActiveItem(document.querySelector('.aside_wrapper .swatchCustom__item.active'))
 
     document.querySelectorAll('.aside_wrapper .swatchCustom__item').forEach(item => {
-        item.addEventListener('click', (e) => addActiveItem(e.target))
+        item.addEventListener('click', (e) => addActiveItem(item))
     })
     doubleTap = true;
 
