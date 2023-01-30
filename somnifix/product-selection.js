@@ -32,9 +32,6 @@ let style = `
         padding: 7px 10px!important;
         min-height: 74px;
     }
-    .swatchCustom__item * {
-        pointer-events: none;
-    }
     .mobile .parent-items .swatchCustom__item:not(.active) {
         background: #F5F6F7!important;
     }
