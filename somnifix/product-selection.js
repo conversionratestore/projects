@@ -284,6 +284,28 @@ let modal = `
 let objItems = [];
 let doubleTap = false;
 
+function pushDataLayer(action, label = '') {
+  window.dataLayer = window.dataLayer || [];
+  dataLayer.push({
+      'event': 'event-to-ga',
+      'eventCategory': 'Exp: new_product_prices',
+      'eventAction': action,
+      'eventLabel': label
+  });
+}
+//comes into view
+function isScrolledIntoView(el) {
+    let rect = el.getBoundingClientRect(),
+        elemTop = rect.top,
+        elemBottom = rect.bottom;
+
+    let isVisible = (elemTop >= 0) && (elemBottom <= window.innerHeight);
+
+    return isVisible;
+}
+let viewed1 = false;
+let viewed2 = false;
+
 window.onload = () => {
 
     document.querySelectorAll('.aside_product_item').forEach(item => {
@@ -350,33 +372,6 @@ window.onload = () => {
     document.querySelector('.aside_wrapper .prices').after(document.querySelector(".aside_subscribe"))
     document.querySelector('.aside_subscribe').after(document.querySelector(".aside_to_checkout"))
 
-    for (let i = 0; i < objItems.length; i++) {
-        let item =`
-        <div class="swatchCustom__item flx items-center ${objItems[i].nosale == true ? 'nosale' : ''} ${objItems[i].week == 12 ? 'active' : ''}" onclick="addActiveItem(this)"  
-            data-variant="${objItems[i].variantId}" 
-            data-title="${objItems[i].title}" 
-            data-price="${objItems[i].price}" 
-            data-subheading="${objItems[i].subheading}" 
-            data-planid="${objItems[i].planid}"> 
-            <div class="flx items-center">
-                ${objItems[i].strips == '364' ? icon364 : objItems[i].strips == '84' ? icon84 : objItems[i].strips == '28' ? icon28 : ''}
-                <div>
-                    <p class="for-week">$${(objItems[i].price / objItems[i].week).toFixed(2)} / week</p>
-                    <p class="item_total">Total: ${objItems[i].compare != '' ? '<span class="l-through">' + objItems[i].compare + '</span>' : ''} <span>$${objItems[i].price}</span></p>
-                </div>
-            </div> 
-            <div>
-                ${objItems[i].week == 52 ? '<div class="best-deal">Best deal</div>' : objItems[i].week == 12 ? '<div class="top-seller">Top-seller</div>' : ''}
-                ${objItems[i].nosale != true ? '<div class="sale">' + objItems[i].sale + '</div>' : ''}
-                <p class="months">${objItems[i].week / 4} months</p>
-            </div>
-        </div>`
-
-        if (href.includes('/products/')) {
-            document.querySelector('.parent-items').insertAdjacentHTML('afterbegin', item)
-        }
-        document.querySelector('.aside_wrapper').insertAdjacentHTML('afterbegin', item)
-    }
 
     function addActiveItem(target) {
         if (target.closest('.product__information')) {
@@ -421,8 +416,39 @@ window.onload = () => {
             target.parentElement.querySelector('.active').classList.remove('active')
             target.classList.add('active')
         } else {
-            detectMob() == true && doubleTap == true ? document.querySelector(`.popup_btn`).click() : '';
+            if (detectMob() == true && doubleTap == true) { 
+                document.querySelector(`.popup_btn`).click();
+                pushDataLayer('Second Tap on the selected option', target.dataset.title);
+            }
         }
+    }
+    
+    for (let i = 0; i < objItems.length; i++) {
+        let item =`
+        <div class="swatchCustom__item flx items-center ${objItems[i].nosale == true ? 'nosale' : ''} ${objItems[i].week == 12 ? 'active' : ''}" onclick="addActiveItem(this)"  
+            data-variant="${objItems[i].variantId}" 
+            data-title="${objItems[i].title}" 
+            data-price="${objItems[i].price}" 
+            data-subheading="${objItems[i].subheading}" 
+            data-planid="${objItems[i].planid}"> 
+            <div class="flx items-center">
+                ${objItems[i].strips == '364' ? icon364 : objItems[i].strips == '84' ? icon84 : objItems[i].strips == '28' ? icon28 : ''}
+                <div>
+                    <p class="for-week">$${(objItems[i].price / objItems[i].week).toFixed(2)} / week</p>
+                    <p class="item_total">Total: ${objItems[i].compare != '' ? '<span class="l-through">' + objItems[i].compare + '</span>' : ''} <span>$${objItems[i].price}</span></p>
+                </div>
+            </div> 
+            <div>
+                ${objItems[i].week == 52 ? '<div class="best-deal">Best deal</div>' : objItems[i].week == 12 ? '<div class="top-seller">Top-seller</div>' : ''}
+                ${objItems[i].nosale != true ? '<div class="sale">' + objItems[i].sale + '</div>' : ''}
+                <p class="months">${objItems[i].week / 4} months</p>
+            </div>
+        </div>`
+
+        if (href.includes('/products/')) {
+            document.querySelector('.parent-items').insertAdjacentHTML('afterbegin', item)
+        }
+        document.querySelector('.aside_wrapper').insertAdjacentHTML('afterbegin', item)
     }
 
     if (href.includes('/products/')) {
@@ -431,4 +457,23 @@ window.onload = () => {
     addActiveItem(document.querySelector('.aside_wrapper .swatchCustom__item.active'))
 
     doubleTap = true;
+
+    window.addEventListener('scroll', () => {
+        if (document.querySelector('.parent-items .nosale') != null && isScrolledIntoView(document.querySelector('.parent-items .nosale')) == true && viewed1 == false) {
+            viewed1 = true;
+            pushDataLayer('Visibility choose your pack', 'PDP')
+        }
+        if (document.querySelector('.on-open-card') != null && isScrolledIntoView(document.querySelector('.aside_wrapper .nosale')) == true && viewed2 == false) {
+            viewed2 = true;
+            pushDataLayer('Visibility choose your pack', 'Card')
+        }
+    })
+    pushDataLayer('loaded')
 };
+
+let isClarity = setTimeout(function(){
+    if(typeof clarity === 'function'){
+        clearInterval(isClarity)
+        clarity("set", "new_product_prices", "variant_1");
+}
+}, 100)
