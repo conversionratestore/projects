@@ -452,9 +452,6 @@ window.onload = () => {
         }
     }
 
-    document.querySelectorAll('.aside_wrapper .swatchCustom__item').forEach(item => {
-        item.addEventListener('click', (e) => addActiveItem(e.target))
-    })
 
     if (href.includes('/products/')) {
         addActiveItem(document.querySelector('.parent-items .swatchCustom__item.active'))
@@ -465,6 +462,9 @@ window.onload = () => {
     }
     addActiveItem(document.querySelector('.aside_wrapper .swatchCustom__item.active'))
 
+    document.querySelectorAll('.aside_wrapper .swatchCustom__item').forEach(item => {
+        item.addEventListener('click', (e) => addActiveItem(e.target))
+    })
     doubleTap = true;
 
     window.addEventListener('scroll', () => {
