@@ -436,7 +436,7 @@ const waitForHeader = setInterval(() => {
                         display: flex;
                         align-items: center;
                         width: calc(100% + 30px);
-                        min-height: 355px;
+                        min-height: 388px;
                         max-height: 388px;
                         background-image: url(${imgFolderUrl}hand_mobile.png);
                         margin: 0 -15px;
