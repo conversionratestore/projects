@@ -279,6 +279,7 @@ const waitForHeader = setInterval(() => {
                     font-size: 16px;
                     line-height: 24px;
                     color: #010101;
+                    margin-bottom: 0 !important;
                 }
         
                 .gimme {
