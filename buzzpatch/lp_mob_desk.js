@@ -183,6 +183,7 @@ const waitForHeader = setInterval(() => {
                     text-transform: uppercase;
                     color: #010101;
                     margin-bottom: 28px;
+                    max-width: 940px;
                 }
         
                 .my_title img {
@@ -236,7 +237,7 @@ const waitForHeader = setInterval(() => {
                 }
         
                 section.steps .my_title {
-                    margin: 24px 0 40px;
+                    margin: 24px auto 40px;
                 }
         
                 .steps_wrapper {
@@ -293,9 +294,31 @@ const waitForHeader = setInterval(() => {
                     padding: 19px 35px !important;
                     width: fit-content;
                 }
-        
-                .trust_img {
-                    border-radius: 17px;
+
+                .my_trust {
+                    width: 100%;
+                    background-color: #fff;
+                    border-radius: 15px;
+                    padding: 18px 22px;
+                    font-size: 15px;
+                    color: #010101;
+                    line-height: 1.2;
+                }
+
+                .my_trust p {
+                    margin: 0 !important;
+                }
+
+                .my_trust .img_block {
+                    display: flex;
+                    justify-content: space-between;
+                    flex-direction: row;
+                    align-items: flex-end;
+                    margin-top: 5px;
+                }
+
+                .my_trust img {
+                    max-width: 150px !important;
                 }
             }
             </style>
@@ -341,7 +364,13 @@ const waitForHeader = setInterval(() => {
                                     <li>And they actually work.</li>
                                     <li><a class="event_link" href="#reviews">Check our 300+ five-star customer reviews.</a></li>
                                 </ul>
-                                <img class="trust_img" src="${imgFolderUrl}reviews_trust.jpg">
+                                <div class="my_trust">
+                                    <p>Our customers rate <br>us as <b>Excellent</b></p>
+                                    <div class="img_block">
+                                        <img src="https://cdn.shopify.com/s/files/1/0387/0749/4956/files/stars-5-1_250x.png?v=7045619438355628008" alt="stars">
+                                        <span><b>Reviews 233</b></span>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -446,6 +475,7 @@ const waitForHeader = setInterval(() => {
                 }
         
                 .my_h3 {
+                    width: 100%;
                     font-family: 'DINEngschrift LT', 'Roboto', sans-serif !important;
                     font-weight: 400;
                     font-size: 22px;
@@ -537,6 +567,7 @@ const waitForHeader = setInterval(() => {
                     color: #010101;
                     margin: 0;
                     max-width: 200px;
+                    margin-bottom: 0 !important;
                 }
         
                 .small_img {
@@ -588,7 +619,7 @@ const waitForHeader = setInterval(() => {
                             <li>Smell amazing :)</li>
                             <li>No mess, no fuss.</li>
                             <li>And they actually work.</li>
-                            <li><a href="#reviews">Check our 300+ five-star customer reviews.</a></li>
+                            <li><a class="event_link" href="#reviews">Check our 300+ five-star customer reviews.</a></li>
                         </ul>
                     </div>
                 </div>        
