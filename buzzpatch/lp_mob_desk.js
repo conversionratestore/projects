@@ -353,7 +353,7 @@ const waitForHeader = setInterval(() => {
                         <p class="my_heading__free">FREE SHIPPING<span>|</span>30-day money back guarantee</p>
                         <h2 class="my_title">Mosquitoes <img src="${imgFolderUrl}mosquito_animal.png"> are the worst<br>And
                             these stickers <img src="${imgFolderUrl}smile_heart.png"> are THE BEST</h2>
-                        <h3>What makes Buzz Patch stickers SO GREAT?</h3>
+                        <h3>What makes BuzzPatch stickers SO GREAT?</h3>
                         <div class="my_heading__content">
                             <div>
                                 <ul>
@@ -394,7 +394,7 @@ const waitForHeader = setInterval(() => {
                                         <div class="step">
                                             <img src="${imgFolderUrl}kid1.jpg" alt="kid 1">
                                             <p class="step_number">STEP 1:</p>
-                                            <p>Put a Buzz Patch sticker or two on your shirt or pants.</p>
+                                            <p>Put a BuzzPatch sticker or two on your shirt or pants.</p>
                                         </div>
                                         <div class="line">
                                             <img src="${imgFolderUrl}line_between_img.svg" alt="line">
@@ -597,6 +597,10 @@ const waitForHeader = setInterval(() => {
                 .wave_wrapper img {
                     width: 100%;
                 }
+
+                .trust-rating .rate img {
+                    max-height: 29px;
+                } 
             </style>
                 `
                 document.head.insertAdjacentHTML('beforeend', styleMobile)
@@ -618,7 +622,7 @@ const waitForHeader = setInterval(() => {
                         <div class="small_img">
                             <img src="${imgFolderUrl}smile_pink.png" alt="pink smile">
                         </div>
-                        <h3 class="my_h3">What makes Buzz Patch stickers SO GREAT?</h3>
+                        <h3 class="my_h3">What makes BuzzPatch stickers SO GREAT?</h3>
                         <ul>
                             <li>All natural ingredients - super safe for kids and adults.</li>
                             <li>Non toxic and DEET free.</li>
@@ -645,7 +649,7 @@ const waitForHeader = setInterval(() => {
                             <div class="step">
                                 <img src="${imgFolderUrl}kid1.jpg" alt="kid 1">
                                 <p class="step_number">STEP 1:</p>
-                                <p>Put a Buzz Patch sticker or two on your shirt or pants.</p>
+                                <p>Put a BuzzPatch sticker or two on your shirt or pants.</p>
                             </div>
                             <div class="step step_two">
                                 <img src="${imgFolderUrl}kid2.jpg" alt="kid 2">
