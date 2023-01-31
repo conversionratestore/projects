@@ -144,7 +144,7 @@ const waitForHeader = setInterval(() => {
                     line-height: 32px !important;
                     font-family: 'DINEngschrift LT','Roboto',sans-serif !important;
                     padding: 9px 35px !important;
-                    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+                    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2) !important;
                 }
                 
                 .bitepatch-template .js-logo img {width: 90px !important;}
@@ -154,7 +154,7 @@ const waitForHeader = setInterval(() => {
                 }
         
                 .my_heading {
-                    max-width: 55%;
+                    max-width: 65%;
                     padding-bottom: 65px;
                 }
         
@@ -207,7 +207,7 @@ const waitForHeader = setInterval(() => {
                 }
         
                 .my_heading__content div:first-child {
-                    margin-right: 15px;
+                    margin-right: 6%;
                 }
         
                 .my_heading__content div {
@@ -217,13 +217,14 @@ const waitForHeader = setInterval(() => {
                 }
         
                 .my_heading__content ul li {
-                    max-width: 310px;
+                    max-width: 240px;
                     font-family: 'Roboto', sans-serif !important;
                     font-weight: 600;
-                    font-size: 16px;
-                    line-height: 24px;
+                    font-size: 16px !important;
+                    padding-left: 3px;
+                    line-height: 24px !important;
                     color: #010101;
-                    margin-bottom: 16px;
+                    margin-bottom: 16px !important;
                     list-style-image: url(${imgFolderUrl}check_arrow_pink.svg);
                 }
         
@@ -303,6 +304,7 @@ const waitForHeader = setInterval(() => {
                     font-size: 15px;
                     color: #010101;
                     line-height: 1.2;
+                    min-width: 300px;
                 }
 
                 .my_trust p {
@@ -319,6 +321,10 @@ const waitForHeader = setInterval(() => {
 
                 .my_trust img {
                     max-width: 150px !important;
+                }
+
+                .my_trust .img_block span {
+                    font-size: 12px;
                 }
             }
             </style>
@@ -430,8 +436,8 @@ const waitForHeader = setInterval(() => {
                         display: flex;
                         align-items: center;
                         width: calc(100% + 30px);
-                        min-height: 350px;
-                        max-height: 385px;
+                        min-height: 355px;
+                        max-height: 388px;
                         background-image: url(${imgFolderUrl}hand_mobile.png);
                         margin: 0 -15px;
                         background-size: cover;
@@ -443,16 +449,16 @@ const waitForHeader = setInterval(() => {
                         margin: 47% auto 0;
                         max-height: 70px;
                         font-size: 24px !important;                        
-                        background: #FF3C81;
-                        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
-                        border-radius: 70px;
+                        background: #FF3C81 !important;
+                        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2) !important;
+                        border-radius: 70px !important;
                         font-family: 'DINEngschrift LT',  'Roboto', sans-serif !important;
                         font-weight: 400 !important;
                         font-size: 24px !important;
                         line-height: 32px !important;
-                        letter-spacing: 0.3px;
-                        text-transform: uppercase;
-                        color: #FFFFFF;
+                        letter-spacing: 0.3px !important;
+                        text-transform: uppercase !important;
+                        color: #FFFFFF !important;
                         padding: 19px 35px !important;
                         width: fit-content !important;                
                     }
@@ -501,6 +507,7 @@ const waitForHeader = setInterval(() => {
                     color: #010101;
                     list-style-image: url(${imgFolderUrl}check_arrow_pink.svg);
                     margin-bottom: 12px;
+                    padding-left: 3px;
                 }
         
                 section.list ul li a {
