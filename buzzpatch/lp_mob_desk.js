@@ -74,7 +74,7 @@ const checkVisibilityAfterMs = (el, ms = 2000) => {
 
 /** Parse HTML, CSS and run functions. */
 const waitForHeader = setInterval(() => {
-    if (document.querySelector('header')) {
+    if (document.querySelector('.js-main header')) {
         clearInterval(waitForHeader)
 
         switch (device) {
@@ -386,7 +386,7 @@ const waitForHeader = setInterval(() => {
                 }))
 
                 waitForEl('.js-heading.js-desktop .row').then(el => el.insertAdjacentHTML('afterbegin', heading))
-                document.querySelector('header').insertAdjacentHTML('afterend', steps)
+                document.querySelector('.js-main header').insertAdjacentHTML('afterend', steps)
 
                 break;
             case 'Mobile':
@@ -628,7 +628,7 @@ const waitForHeader = setInterval(() => {
                 waitForEl('.js-heading.js-mobile h1').then(el => el.innerHTML = `Mosquitoes <img src="${imgFolderUrl}mosquito_animal.png"> are the worst<br>And these stickers <img src="${imgFolderUrl}smile_heart.png"> are THE BEST`)
 
                 waitForEl('.hand-banner a').then(el => el.innerText = `Gimme those stickers!`)
-                document.querySelector('header').insertAdjacentHTML('afterend', elsMobile)
+                document.querySelector('.js-main header').insertAdjacentHTML('afterend', elsMobile)
 
                 waitForEl('.trust-rating').then(el => el.insertAdjacentHTML('afterend', headerImgWithBtn))
 
