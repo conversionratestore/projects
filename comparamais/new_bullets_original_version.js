@@ -148,12 +148,55 @@ if (settings.observe) {
   }, 200);
 }
 
+const waitForScore = setInterval(() => {
+    if(document.querySelector('.reviews-score') && document.querySelector('.page__simulator')) {
+        clearInterval(waitForScore)
+
+        document.querySelector('.reviews-score').innerHTML = '<p class="my_score_num"><span>4.6</span><span>(2,374 Avaliações)</span></a></p>'
+
+        document.querySelector('.received-badges--side')
+
+        if(window.innerWidth < 768) {
+            document.querySelector('.page__simulator').insertAdjacentElement('afterend', document.querySelector('.received-badges--side'))
+        }
+    }
+}, 100)
+
+
 // Styles
 const styles = `
+.my_score_num {display: flex; align-items: center;}
+.my_score_num span {display: inline !important; margin-right: 4px;}
+.my_score_num span:first-child{
+    font-weight: 700;
+font-size: 18px;
+color: #1F1F1F;
+}
+.my_score_num span:last-child{
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 18px;   
+    color: #0071EB;
+}
+.received-badges--side .reviews-stars {margin-bottom: 0 !important; }
+  .in__grid .reviews__widget-container a {text-align: left;}
+  .in__grid .reviews__widget-container {margin-top: 0 !important;}
+  .received-badges--side .cinco-estrelas-escuro img {max-height: 120px;}
+  .received-badges--side figure {text-align: left !important;}
+  .received-badges--side {margin-top: 55px !important;}
+  .container--listing .page__title .received-badges {display: none;}
   .container--hero .page__title { padding-top: 0px !important; }
   .container--listing .in__grid .page__title .header-list, .container--edit .in__grid .page__title .header-list {
     display: none;
   }
+
+  @media(max-width: 768px) {
+    .received-badges--side {
+        margin-top: 35px !important;
+        margin-bottom: 0;
+    }
+}
+
   .container--hero.container--edit .page__title {
     padding-top: 50px;
   }
@@ -831,7 +874,7 @@ function init() {
   gaEvent('loaded');
 
   const initTopChange = setInterval(() => {
-    if (document.querySelector('.container--listing .reviews-counter')) {
+    if (document.querySelector('.container--listing .page__title')) {
       clearInterval(initTopChange);
       initTopInfo();
     }
@@ -960,8 +1003,8 @@ function initTopInfo() {
 
   if (!document.querySelector('.lav-list__wrap')) {
     document
-      .querySelector('.container--listing .reviews-counter')
-      .insertAdjacentHTML('afterend', el);
+      .querySelector('.container--listing .page__title')
+      .insertAdjacentHTML('beforeend', el);
     gaEvent('View element on screen', 'Click Learn how to apply');
 
     document.querySelectorAll('#simulation-results .card').forEach((card) => {
@@ -1655,8 +1698,8 @@ let startFunk = setInterval(() => {
             // TODO: uncomment this line if we need to handle the mutation
             if (node.matches('.simulator-container__capture-form')) {
               document
-                .querySelector('.page__title')
-                .insertAdjacentHTML('beforeend', newBlock);
+                .querySelector('.page__title h2')
+                .insertAdjacentHTML('afterend', newBlock);
               document
                 .querySelector('.container--hero .header-list')
                 .classList.add('is_hidden');
