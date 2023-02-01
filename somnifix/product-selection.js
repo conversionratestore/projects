@@ -226,7 +226,7 @@ let style = `
         pointer-events: auto;
     }
     .popup_sub button {
-        background-color: #1E415C;
+        background-color: #1E415C!important;
     }
     /* flex */
     .d-flex {
