@@ -150,6 +150,7 @@ if (settings.observe) {
 
 // Styles
 const styles = `
+  .hide_list {display: none;}
   .my_list {
     margin-top: 30px;
   }
@@ -1504,7 +1505,7 @@ let startFunk = setInterval(() => {
             eventVar = 'mobile';
         }
 
-        function pushDataLayer(actionDataLayer, labelDataLayer) {
+        function pushDataLayer(actionDataLayer, labelDataLayer = '') {
             window.dataLayer = window.dataLayer || [];
             if (labelDataLayer) {
                 console.log(actionDataLayer + ' : ' + labelDataLayer);
@@ -1681,7 +1682,9 @@ let startFunk = setInterval(() => {
 
                         // TODO: uncomment this line if we need to handle the mutation
                         if (node.matches('.simulator-container__capture-form')) {
-                            console.log('here! 1');
+                            if(document.querySelector('.my_list')) {
+                                document.querySelector('.my_list').classList.add('hide_list')
+                            } 
 
                             document
                                 .querySelector('.page__title')
@@ -1729,7 +1732,7 @@ let startFunk = setInterval(() => {
                                 console.log('Yes');
 
                                 if(document.querySelector('.my_list')) {
-                                    document.querySelector('.my_list').style.display = "none"
+                                    document.querySelector('.my_list').classList.add('hide_list')
                                 } 
 
                                 document
@@ -1778,7 +1781,7 @@ let startFunk = setInterval(() => {
                                 console.log('>>>>NO');
 
                                 if(document.querySelector('.my_list')) {
-                                    document.querySelector('.my_list').style.display = "block"
+                                    document.querySelector('.my_list').classList.remove('hide_list')
                                 } 
 
                                 document.querySelector('.new_text_wrap')?.remove();
