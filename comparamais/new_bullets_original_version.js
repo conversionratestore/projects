@@ -185,6 +185,7 @@ color: #1F1F1F;
   .received-badges--side figure {text-align: left !important;}
   .received-badges--side {margin-top: 55px !important;}
   .container--listing .page__title .received-badges {display: none;}
+
   .container--hero .page__title { padding-top: 0px !important; }
   .container--listing .in__grid .page__title .header-list, .container--edit .in__grid .page__title .header-list {
     display: none;
@@ -239,7 +240,7 @@ color: #1F1F1F;
     display: none;
   }
   .container--hero.container--listing {
-    padding-bottom: 120px;
+    padding-bottom: 80px;
   }
   .lav-list__wrap {
     margin: 45px auto 0;
@@ -1562,7 +1563,7 @@ let startFunk = setInterval(() => {
               display: none;
           }
           .new_text_wrap{
-              padding: 28px 0;
+              padding: 28px 0 0;
           }
           .accent_wrap{
               background: #E6EDF0;
