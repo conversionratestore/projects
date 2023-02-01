@@ -1,7 +1,23 @@
 console.log('initExp');
 
-if (!location.search.includes('experiement')) {
-    location.search = '?experiement=HL-Simulator-Personalized_offer';
+const myUrl = 'experiment=HL-Simulator-New_Bullets'
+
+if (
+    !location.search.includes(myUrl)
+) {
+    if (location.search) {
+        window.history.replaceState(
+            null,
+            null,
+            location.search + '&' + myUrl
+        );
+    } else {
+        window.history.replaceState(
+            null,
+            null,
+            `?${myUrl}`
+        );
+    }
 }
 
 /********* Settings **********/
@@ -17,7 +33,7 @@ if (settings.clarity) {
         if (typeof clarity == 'function') {
             clearInterval(clarityInterval);
             try {
-                clarity('set', 'new_bullets', 'variant_1');
+                clarity('set', 'new_bullets', 'alternative');
             } catch (error) {
                 console.log(error);
             }
