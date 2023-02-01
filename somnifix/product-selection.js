@@ -425,8 +425,7 @@ window.onload = () => {
     }
 
     function addActiveItem(target) {
-        target.stopImmediatePropagation()
-        
+
         if (target.closest('.parent-items')) {
             //show/hide sale
             if (target.querySelector('.sale') != null) {
@@ -486,13 +485,19 @@ window.onload = () => {
         addActiveItem(document.querySelector('.parent-items .swatchCustom__item.active'))
 
         document.querySelectorAll('.parent-items .swatchCustom__item').forEach(item => {
-            item.addEventListener('click', (e) => addActiveItem(item))
+            item.addEventListener('click', (e) => {
+                e.stopImmediatePropagation()
+                addActiveItem(item)
+            })
         })
     }
     addActiveItem(document.querySelector('.aside_wrapper .swatchCustom__item.active'))
 
     document.querySelectorAll('.aside_wrapper .swatchCustom__item').forEach(item => {
-        item.addEventListener('click', (e) => addActiveItem(item))
+        item.addEventListener('click', (e) => {
+            e.stopImmediatePropagation()
+            addActiveItem(item)
+        })
     })
     doubleTap = true;
 
