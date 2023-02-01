@@ -149,14 +149,12 @@ if (settings.observe) {
 }
 
 const waitForScore = setInterval(() => {
-    if(document.querySelector('.reviews-score') && document.querySelector('.page__simulator')) {
+    if (document.querySelector('.reviews-score') && document.querySelector('.page__simulator')) {
         clearInterval(waitForScore)
 
         document.querySelector('.reviews-score').innerHTML = '<p class="my_score_num"><span>4.6</span><span>(2,374 Avaliações)</span></a></p>'
 
-        document.querySelector('.received-badges--side')
-
-        if(window.innerWidth < 768) {
+        if (window.innerWidth < 768) {
             document.querySelector('.page__simulator').insertAdjacentElement('afterend', document.querySelector('.received-badges--side'))
         }
     }
@@ -903,8 +901,21 @@ function init() {
             clearInterval(initTopChange);
 
             initTopInfo();
+            document.querySelector('.my_list').classList.add('hide_list')
+
+            if (window.innerWidth < 768) {
+                const waitForScore = setInterval(() => {
+                    if (document.querySelector('.reviews-score') && document.getElementById('results')) {
+                        clearInterval(waitForScore)
+        
+                        document.querySelector('.reviews-score').innerHTML = '<p class="my_score_num"><span>4.6</span><span>(2,374 Avaliações)</span></a></p>'
+        
+                        document.getElementById('results').insertAdjacentElement('afterend', document.querySelector('.received-badges--side'))
+                    }
+                }, 100)
+            }
         }
-    }, 500);
+    }, 200);   
 
     changeCardView();
 
@@ -917,7 +928,7 @@ function init() {
         ) {
             // document.querySelector(".card .card__logo img[src*='https://www.comparam']")
             changeCardView();
-            document.querySelector('.my_list').classList.add('hide_list')
+            
         }
     }, 500);
 
@@ -1591,7 +1602,7 @@ let startFunk = setInterval(() => {
               display: none;
           }
           .new_text_wrap{
-              padding: 28px 0 0;
+              margin: 28px 0;
           }
           .accent_wrap{
               background: #E6EDF0;
@@ -1726,13 +1737,13 @@ let startFunk = setInterval(() => {
 
                         // TODO: uncomment this line if we need to handle the mutation
                         if (node.matches('.simulator-container__capture-form')) {
-                            if(document.querySelector('.my_list')) {
+                            if (document.querySelector('.my_list')) {
                                 document.querySelector('.my_list').classList.add('hide_list')
-                            } 
+                            }
 
                             document
-                .querySelector('.page__title h2')
-                .insertAdjacentHTML('afterend', newBlock);
+                                .querySelector('.page__title h2')
+                                .insertAdjacentHTML('afterend', newBlock);
                             document
                                 .querySelector('.container--hero .header-list')
                                 .classList.add('is_hidden');
@@ -1775,9 +1786,9 @@ let startFunk = setInterval(() => {
                             if (document.querySelector('.message--success')) {
                                 console.log('Yes');
 
-                                if(document.querySelector('.my_list')) {
+                                if (document.querySelector('.my_list')) {
                                     document.querySelector('.my_list').classList.add('hide_list')
-                                } 
+                                }
 
                                 document
                                     .querySelector('.page__title')
@@ -1824,9 +1835,9 @@ let startFunk = setInterval(() => {
                             } else {
                                 console.log('>>>>NO');
 
-                                if(document.querySelector('.my_list.hide_list')) {
+                                if (document.querySelector('.my_list.hide_list')) {
                                     document.querySelector('.my_list').classList.remove('hide_list')
-                                } 
+                                }
 
                                 document.querySelector('.new_text_wrap')?.remove();
                                 if (
@@ -1891,7 +1902,7 @@ let startFunk = setInterval(() => {
                     entries.forEach((i) => {
                         if (i.isIntersecting) {
                             if (i.target.getAttribute('data-visability') === '1') {
-                                pushDataLayer(`view the block`);                               
+                                pushDataLayer(`view the block`);
                             }
 
                             // if (window.innerWidth <= 768) {
