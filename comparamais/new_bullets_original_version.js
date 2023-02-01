@@ -150,6 +150,7 @@ if (settings.observe) {
 
 // Styles
 const styles = `
+  .container--hero .page__title { padding-top: 0px !important; }
   .container--listing .in__grid .page__title .header-list, .container--edit .in__grid .page__title .header-list {
     display: none;
   }
