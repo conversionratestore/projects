@@ -1681,6 +1681,8 @@ let startFunk = setInterval(() => {
 
                         // TODO: uncomment this line if we need to handle the mutation
                         if (node.matches('.simulator-container__capture-form')) {
+                            console.log('here! 1');
+
                             document
                                 .querySelector('.page__title')
                                 .insertAdjacentHTML('beforeend', newBlock);
@@ -1725,6 +1727,11 @@ let startFunk = setInterval(() => {
                         } else if (node.matches('.simulator-container')) {
                             if (document.querySelector('.message--success')) {
                                 console.log('Yes');
+
+                                if(document.querySelector('.my_list')) {
+                                    document.querySelector('.my_list').style.display = "none"
+                                } 
+
                                 document
                                     .querySelector('.page__title')
                                     .insertAdjacentHTML('beforeend', newBlock);
@@ -1769,6 +1776,11 @@ let startFunk = setInterval(() => {
                                 });
                             } else {
                                 console.log('>>>>NO');
+
+                                if(document.querySelector('.my_list')) {
+                                    document.querySelector('.my_list').style.display = "block"
+                                } 
+
                                 document.querySelector('.new_text_wrap')?.remove();
                                 if (
                                     document
@@ -1832,11 +1844,7 @@ let startFunk = setInterval(() => {
                     entries.forEach((i) => {
                         if (i.isIntersecting) {
                             if (i.target.getAttribute('data-visability') === '1') {
-                                pushDataLayer(`view the block`);
-
-                                if(document.querySelector('.my_list')) {
-                                    document.querySelector('.my_list').style.display = "none"
-                                }                                
+                                pushDataLayer(`view the block`);                               
                             }
 
                             // if (window.innerWidth <= 768) {
