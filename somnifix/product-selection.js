@@ -41,7 +41,7 @@ let style = `
     }
     .swatchCustom__item.active {
         cursor: default;
-        background: #F1F7FC;
+        background: #F1F7FC!important;
         border: 2px solid #4090D1;
     }
     .top-seller, .best-deal, .sale, .footer-prices .sale {
