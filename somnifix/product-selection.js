@@ -378,7 +378,6 @@ window.onload = () => {
             data-variant="${objItems[i].variantId}" 
             data-title="${objItems[i].title}" 
             data-price="${objItems[i].price}" 
-            data-subheading="${objItems[i].subheading}" 
             data-planid="${objItems[i].planid}"> 
             <div class="flx items-center">
                 ${objItems[i].strips == '364' ? icon364 : objItems[i].strips == '84' ? icon84 : objItems[i].strips == '28' ? icon28 : ''}
@@ -390,7 +389,7 @@ window.onload = () => {
             <div>
                 ${objItems[i].week == 52 ? '<div class="best-deal">Best deal</div>' : objItems[i].week == 12 ? '<div class="top-seller">Top-seller</div>' : ''}
                 ${objItems[i].nosale != true ? '<div class="sale">' + objItems[i].sale + '</div>' : ''}
-                <p class="months">${objItems[i].week / 4} months</p>
+                <p class="months">${Math.round(objItems[i].week * 7 / 30)} month${objItems[i].week <= 4 ? '' : 's'}</p>
             </div>
         </div>`
 
