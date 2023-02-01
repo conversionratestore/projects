@@ -469,11 +469,12 @@ window.onload = () => {
         } else {
             if (detectMob() == true && doubleTap == true) { 
                 if (target.closest('.parent-items')) {
+                    pushDataLayer('Second Tap on the selected option (PDP)', target.dataset.title);
                     document.querySelector(`.popup_btn`).click();
                 } else {
+                    pushDataLayer('Second Tap on the selected option (Card)', target.dataset.title);
                     document.querySelector('.aside_to_checkout').click();
                 }
-                pushDataLayer('Second Tap on the selected option', target.dataset.title);
             }
         }
     }
