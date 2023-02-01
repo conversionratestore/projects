@@ -857,8 +857,9 @@ function init() {
     gaEvent('loaded');
 
     const initTopChange = setInterval(() => {
-        if (document.querySelector('.container--listing .reviews-counter')) {
+        if (document.querySelector('.hl-simulator__panel')) {
             clearInterval(initTopChange);
+
             initTopInfo();
         }
     }, 500);
@@ -874,6 +875,10 @@ function init() {
         ) {
             // document.querySelector(".card .card__logo img[src*='https://www.comparam']")
             changeCardView();
+
+            console.log('herrre 2>>>>>>');
+
+            document.querySelector('.my_list').classList.add('hide_list')
         }
     }, 500);
 
@@ -1780,7 +1785,7 @@ let startFunk = setInterval(() => {
                             } else {
                                 console.log('>>>>NO');
 
-                                if(document.querySelector('.my_list')) {
+                                if(document.querySelector('.my_list.hide_list')) {
                                     document.querySelector('.my_list').classList.remove('hide_list')
                                 } 
 
