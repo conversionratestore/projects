@@ -35,6 +35,10 @@ let style = `
     .mobile .parent-items .swatchCustom__item:not(.active) {
         background: #F5F6F7!important;
     }
+    .aside_wrapper .swatchCustom__item {
+        background: #fff!important;
+        border-radius: 15px;
+    }
     .swatchCustom__item.active {
         cursor: default;
         background: #F1F7FC;
@@ -380,10 +384,7 @@ window.onload = () => {
         }
     }
 
-    document.querySelector('.aside_wrapper').insertAdjacentHTML('beforeend', `
-    <div class="footer-card">
-        <div class="a"></div>
-    </div>`)
+    document.querySelector('.aside_wrapper').insertAdjacentHTML('beforeend', `<div class="footer-card"><div class="a"></div></div>`)
 
     document.querySelector('.footer-card').before(document.querySelector('.aside_wrapper .total'))
     document.querySelector('.aside_wrapper .total').classList.remove('flx')
@@ -422,9 +423,8 @@ window.onload = () => {
         document.querySelector('.aside_wrapper').insertAdjacentHTML('afterbegin', item)
     }
 
-
     function addActiveItem(target) {
-        if (target.closest('.product__information')) {
+        if (target.closest('.parent-items')) {
             //show/hide sale
             if (target.querySelector('.sale') != null) {
                 let sale = target.querySelector('.sale').innerHTML.split(' ')[1];
@@ -468,12 +468,15 @@ window.onload = () => {
             target.classList.add('active')
         } else {
             if (detectMob() == true && doubleTap == true) { 
-                document.querySelector(`.popup_btn`).click();
+                if (target.closest('.parent-items')) {
+                    document.querySelector(`.popup_btn`).click();
+                } else {
+                    document.querySelector('.aside_to_checkout').click();
+                }
                 pushDataLayer('Second Tap on the selected option', target.dataset.title);
             }
         }
     }
-
 
     if (href.includes('/products/')) {
         addActiveItem(document.querySelector('.parent-items .swatchCustom__item.active'))
