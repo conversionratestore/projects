@@ -191,6 +191,7 @@ let style = `
         text-transform: uppercase;
         color: #FFFFFF;
         margin-top: 10px;
+        cursor: pointer;
     }
     .aside_subscribe {
         background: #FEF7E8;
@@ -202,6 +203,30 @@ let style = `
     .aside_subscribe__header {
         font-weight: 500;
         letter-spacing: initial!important;
+    }
+    .dark_bg_exp {
+        background: rgba(0, 0, 0, 0.3);
+        backdrop-filter: blur(3px);
+    }
+    .overflow-bg {
+        background: rgba(0, 0, 0, 0.3);
+        backdrop-filter: blur(3px);
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100vh;
+        z-index: 9999;
+        opacity: 0;
+        pointer-events: none;
+        transition: all 0.2s ease;
+    }
+    .on-open-card .overflow-bg {
+        opacity: 1;
+        pointer-events: auto;
+    }
+    .popup_sub button {
+        background-color: #1E415C;
     }
     /* flex */
     .d-flex {
@@ -371,6 +396,8 @@ window.onload = () => {
     document.querySelector('.aside_wrapper .prices .l-through').after(document.querySelector('.aside_wrapper .total .summ'))
     document.querySelector('.aside_wrapper .prices').after(document.querySelector(".aside_subscribe"))
     document.querySelector('.aside_subscribe').after(document.querySelector(".aside_to_checkout"))
+
+    document.body.insertAdjacentHTML('afterbegin',`<div class="overflow-bg"></div>`)
 
     for (let i = 0; i < objItems.length; i++) {
         let item =`
