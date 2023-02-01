@@ -425,6 +425,8 @@ window.onload = () => {
     }
 
     function addActiveItem(target) {
+        target.stopImmediatePropagation()
+        
         if (target.closest('.parent-items')) {
             //show/hide sale
             if (target.querySelector('.sale') != null) {
