@@ -310,13 +310,14 @@ let objItems = [];
 let doubleTap = false;
 
 function pushDataLayer(action, label = '') {
-  window.dataLayer = window.dataLayer || [];
-  dataLayer.push({
-      'event': 'event-to-ga',
-      'eventCategory': 'Exp: new_product_prices',
-      'eventAction': action,
-      'eventLabel': label
-  });
+    console.log(action + " : " + label)
+    window.dataLayer = window.dataLayer || [];
+    dataLayer.push({
+        'event': 'event-to-ga',
+        'eventCategory': 'Exp: new_product_prices',
+        'eventAction': action,
+        'eventLabel': label
+    });
 }
 //comes into view
 function isScrolledIntoView(el) {
