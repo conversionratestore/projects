@@ -878,6 +878,18 @@ function init() {
     if (document.querySelector('.container--listing .page__title')) {
       clearInterval(initTopChange);
       initTopInfo();
+
+      if (window.innerWidth < 768) {
+        const waitForScore = setInterval(() => {
+            if (document.querySelector('.reviews-score') && document.getElementById('results')) {
+                clearInterval(waitForScore)
+
+                document.querySelector('.reviews-score').innerHTML = '<p class="my_score_num"><span>4.6</span><span>(2,374 Avaliações)</span></a></p>'
+
+                document.getElementById('results').insertAdjacentElement('afterend', document.querySelector('.received-badges--side'))
+            }
+        }, 100)
+    }
     }
   }, 500);
 
@@ -1563,7 +1575,7 @@ let startFunk = setInterval(() => {
               display: none;
           }
           .new_text_wrap{
-              padding: 28px 0 0;
+            margin: 28px 0;
           }
           .accent_wrap{
               background: #E6EDF0;
