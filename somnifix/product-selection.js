@@ -204,10 +204,6 @@ let style = `
         font-weight: 500;
         letter-spacing: initial!important;
     }
-    .dark_bg_exp {
-        background: rgba(0, 0, 0, 0.3);
-        backdrop-filter: blur(3px);
-    }
     .overflow-bg {
         background: rgba(0, 0, 0, 0.3);
         backdrop-filter: blur(3px);
