@@ -194,7 +194,7 @@ color: #1F1F1F;
 
   .hide_list {display: none;}
   .my_list {
-    margin-top: 30px;
+    margin: 30px 0;
   }
   .my_list li {
     margin-bottom: 22px;
