@@ -403,7 +403,9 @@ window.onload = () => {
             data-variant="${objItems[i].variantId}" 
             data-title="${objItems[i].title}" 
             data-price="${objItems[i].price}" 
-            data-planid="${objItems[i].planid}"> 
+            data-planid="${objItems[i].planid}"
+            data-strips="${objItems[i].strips}"
+            data-week="${objItems[i].week}"> 
             <div class="flx items-center">
                 ${objItems[i].strips == '364' ? icon364 : objItems[i].strips == '84' ? icon84 : objItems[i].strips == '28' ? icon28 : ''}
                 <div>
@@ -425,6 +427,9 @@ window.onload = () => {
     }
 
     function addActiveItem(target) {
+
+        let subscribeInfo = `Auto delivery every ${Math.round(target.dataset.week * 7 / 30)} months for $${(target.dataset.price - (target.dataset.price * 10 / 100)).toFixed(2)}`
+        let price = target.dataset.price;
 
         if (target.closest('.parent-items')) {
             //show/hide sale
@@ -452,16 +457,28 @@ window.onload = () => {
             let total = target.querySelector('.item_total').innerHTML.replace('Total: ','');
             if (detectMob() == true) {
                 document.querySelector('.footer-prices p').innerHTML = total;
+                document.querySelector('.price-js .total_price > span').innerHTML = price;
             } else {
                 document.querySelector('.head-prices .l-through').innerHTML = target.querySelector('.l-through') != null ? target.querySelector('.l-through').innerHTML : '';
                 document.querySelector('.head-prices .l-through').style.marginRight = target.querySelector('.l-through') != null ? '8px' : '0px';
 
+                document.querySelector('.part2 .total_price span').innerHTML = price;
+                document.querySelector('.middle-block__price-output').innerHTML = price;
             }
-            document.querySelector(`.${device} [data-variant="${target.dataset.variant}"]:not(.items-center)`).click();
+
+            document.querySelector(`.${device} .stock__pack`).innerHTML = `${target.dataset.title} = <span>${target.dataset.strips}</span> strips`;
+            document.querySelector(`.${device} .subscibe-custom__info`).innerHTML = subscribeInfo;
+
+            // document.querySelector(`.${device} [data-variant="${target.dataset.variant}"]:not(.items-center)`).click();
         } else {
             console.log(target.dataset.variant)
-            document.querySelector(`.aside_product_item[data-variant="${target.dataset.variant}"]`).click();
+            // document.querySelector(`.aside_product_item[data-variant="${target.dataset.variant}"]`).click();
             document.querySelector('.footer-card .l-through').innerHTML = target.querySelector('.l-through') != null ? target.querySelector('.l-through').innerHTML : '';
+
+            document.querySelector('.aside_wrapper .qty>p').innerHTML = `${target.dataset.strips} Strips = ${target.dataset.week} Weeks`;
+            document.querySelector('.aside_subscribe__info').innerHTML = subscribeInfo;
+
+            document.querySelector('.prices .summ').innerHTML = '$' + target.dataset.price
         }
 
         //add/remove active class
@@ -479,6 +496,15 @@ window.onload = () => {
                 }
             }
         }
+
+        document.querySelector('.mobile .subscribe-custom').style.display = target.classList.contains('nosale') ? 'none' : 'block';
+        document.querySelector('.part2 .subscribe-custom').style.display = target.classList.contains('nosale') ? 'none' : 'block';
+        if (target.classList.contains('nosale')) {
+            document.querySelector('.subscribe-custom').classList.remove('active')
+        } else {
+            document.querySelector('.subscribe-custom').classList.add('active')
+        }
+     
     }
 
     if (href.includes('/products/')) {
@@ -489,6 +515,39 @@ window.onload = () => {
                 e.stopImmediatePropagation()
                 addActiveItem(item)
             })
+        })
+
+        function fetch(id, quantity, planId = '') {
+            fetch('/cart/clear.js', {
+                type: 'POST'
+                }).then(() => {
+                fetch('/cart/add.js', {
+                    method: 'POST',
+                    headers: {
+                    'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                    "id": id,
+                    "quantity": quantity,
+                    "selling_plan": planId
+                    })
+                }).then(r => {
+                    window.location.pathname = '/checkout'
+                })
+            })
+        }
+        document.querySelector('.popup_btn').addEventListener('click', (e) => {
+            e.stopImmediatePropagation()
+            let id = document.querySelector('.parent-items .swatchCustom__item.active').dataset.variant;
+            let quantity = document.querySelector(`.${device} .stock__select`).dataset.variant;
+            let planId = document.querySelector(`.parent-items .swatchCustom__item.active`).dataset.planId;
+
+            if (document.querySelector(`.${device} .subscribe-custom__checkbox`).checked) {
+                document.querySelector('.dark_bg_exp').classList.add('active')
+            } else {
+                fetch(id, quantity, planId)
+            }
+          
         })
     }
     addActiveItem(document.querySelector('.aside_wrapper .swatchCustom__item.active'))
