@@ -195,12 +195,13 @@ color: #1F1F1F;
     margin: 30px 0;
   }
   .my_list li {
-    margin-bottom: 22px;
+    margin-bottom: 16px;
     background-repeat: no-repeat;
-    padding-left: 35px;
+    padding-left: 36px;
     font-weight: 400;
     font-size: 16px;
-    line-height: 20px;
+    line-height: 24px;
+    background-size: contain;
     color: #1F1F1F;
   }
   .my_list li:first-child {
@@ -907,15 +908,15 @@ function init() {
                 const waitForScore = setInterval(() => {
                     if (document.querySelector('.reviews-score') && document.getElementById('results')) {
                         clearInterval(waitForScore)
-        
+
                         document.querySelector('.reviews-score').innerHTML = '<p class="my_score_num"><span>4.6</span><span>(2,374 Avaliações)</span></a></p>'
-        
+
                         document.getElementById('results').insertAdjacentElement('afterend', document.querySelector('.received-badges--side'))
                     }
                 }, 100)
             }
         }
-    }, 200);   
+    }, 200);
 
     changeCardView();
 
@@ -928,7 +929,6 @@ function init() {
         ) {
             // document.querySelector(".card .card__logo img[src*='https://www.comparam']")
             changeCardView();
-            
         }
     }, 500);
 
@@ -1995,6 +1995,7 @@ function addList() {
 
                     if (screen.width <= 768) {
                         let timer
+
                         const config = {
                             root: null,
                             threshold: 0.9
@@ -2003,11 +2004,27 @@ function addList() {
                         const observer = new IntersectionObserver((entries) => {
                             entries.forEach((entry) => {
                                 if (entry.isIntersecting) {
-                                    timer = setTimeout(() => {
-                                        gaEvent('visibility on bullets items', document.querySelector('.simulator-step strong')?.innerText.trim())
-                                    }, 10000)
+                                    if (!document.querySelector('.simulator-step strong')) {
+                                        timer = setTimeout(() => {
+                                            gaEvent('visibility on bullets items', 'Step 0')
+                                        }, 5000)
+
+                                        const waitForStepForm = setInterval(() => {
+                                            if (document.querySelector('.simulator-container .simulator-navigation')) {
+                                                clearInterval(waitForStepForm)
+
+                                                clearTimeout(timer)
+                                            }
+                                        }, 300)
+
+                                        setTimeout(() => {
+                                            clearInterval(waitForStepForm)
+                                        }, 5500)
+                                    } else if (!document.querySelector('.simulator-step strong')?.innerText.includes('4')) {
+                                        gaEvent('visibility on bullets items', document.querySelector('.simulator-step strong').innerText.trim())
+                                    }
                                 } else {
-                                    clearTimeout(timer);
+                                    clearTimeout(timer)
                                 }
                             })
                         }, config)
