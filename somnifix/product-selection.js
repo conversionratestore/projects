@@ -500,6 +500,7 @@ window.onload = () => {
             document.querySelector('.prices .summ').innerHTML = '$' + target.dataset.price;
 
             document.querySelector('.aside_subscribe__checkbox').checked = false;
+            document.querySelector('.aside_wrapper .qty').classList.remove('disabled');
             document.querySelector('.minus+span').innerHTML = '1';
             target.dataset.week >= 12 ? document.querySelector('.aside_subscribe').classList.add('active') : document.querySelector('.aside_subscribe').classList.remove('active')
         }
