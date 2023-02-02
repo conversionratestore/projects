@@ -427,7 +427,7 @@ window.onload = () => {
     }
 
     function addActiveItem(target) {
-
+        console.log(target)
         let subscribeInfo = `Auto delivery every ${Math.round(target.dataset.week * 7 / 30)} months for $${(target.dataset.price - (target.dataset.price * 10 / 100)).toFixed(2)}`
         let price = target.dataset.price;
 
@@ -470,7 +470,8 @@ window.onload = () => {
             document.querySelector(`.${device} .subscibe-custom__info`).innerHTML = subscribeInfo;
 
             // document.querySelector(`.${device} [data-variant="${target.dataset.variant}"]:not(.items-center)`).click();
-        } else {
+        } 
+        if (target.closest('.aside_wrapper')) {
             console.log(target.dataset.variant)
             // document.querySelector(`.aside_product_item[data-variant="${target.dataset.variant}"]`).click();
             document.querySelector('.footer-card .l-through').innerHTML = target.querySelector('.l-through') != null ? target.querySelector('.l-through').innerHTML : '';
@@ -538,6 +539,7 @@ window.onload = () => {
         }
         document.querySelector('.popup_btn').addEventListener('click', (e) => {
             e.stopImmediatePropagation()
+            console.log('e.target')
             let id = document.querySelector('.parent-items .swatchCustom__item.active').dataset.variant;
             let quantity = document.querySelector(`.${device} .stock__select`).dataset.variant;
             let planId = document.querySelector(`.parent-items .swatchCustom__item.active`).dataset.planId;
