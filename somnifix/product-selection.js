@@ -519,14 +519,47 @@ window.onload = () => {
                 addActiveItem(item)
             })
         })
+
+        //subscribe checked 
+        document.querySelector(`.${device} .subscribe-custom__checkbox`).addEventListener('change', (e) => {
+            let week = document.querySelector(`.${device} .swatchCustom__item_new.active`).dataset.week;
+            let priceItem = document.querySelector(`.${device} .swatchCustom__item_new.active`).dataset.price;
+            let subscribePrice = document.querySelector(`.${device} .subscibe-custom__info`).innerHTML.split('$')[1];
+        
+            if (e.target.checked) {
+                if (detectMob() == true) {
+                    document.querySelector('.footer-prices .sale').innerHTML = `Save ${week == '12' ? '30' : week == '52' ? '37' : ''}%`;
+                    document.querySelector('.footer-prices p span:not(.l-through)').innerHTML = '$' + subscribePrice;
+                    document.querySelector('.price-js .total_price span').innerHTML = priceItem;
+                } else {
+                    document.querySelector('.head-prices .sale').innerHTML = `Save ${week == '12' ? '30' : week == '52' ? '37' : ''}%`
+                }
+            } else {
+                if (detectMob() == true) {
+                    document.querySelector('.footer-prices .sale').innerHTML = `Save ${week == '12' ? '22' : week == '52' ? '30' : ''}%`;
+                    document.querySelector('.footer-prices p span:not(.l-through)').innerHTML = '$' + priceItem;
+                } else {
+                    document.querySelector('.head-prices .sale').innerHTML = `Save ${week == '12' ? '22' : week == '52' ? '30' : ''}%`
+                }
+            }
+        })
+        //qty select (mobile)
+        document.querySelector(`.${device} .stock__select`).addEventListener('change', (e) => {
+            e.stopImmediatePropagation()
+            let priceItem = document.querySelector(`.${device} .swatchCustom__item_new.active`).dataset.price,
+                qty = e.target.value;
+
+            if (detectMob() == true) {
+                document.querySelector('.footer-prices p span:not(.l-through)').innerHTML = '$' + (priceItem * qty).toFixed(2);
+                document.querySelector('.price-js .total_price span').innerHTML = priceItem;
+            }
+        })
     }
 
     addActiveItem(document.querySelector('.aside_parent .swatchCustom__item_new.active'))
 
     document.querySelectorAll('.aside_parent .swatchCustom__item_new').forEach(item => {
-        item.addEventListener('click', (e) => {
-            addActiveItem(item)
-        })
+        item.addEventListener('click', (e) => addActiveItem(item))
     })
     doubleTap = true;
 
