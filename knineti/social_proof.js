@@ -3,7 +3,11 @@ let socialProof = setInterval(() => {
     clearInterval(socialProof)
 
     //event
-    let eventVar = screen.width <= 768 ? "Mobile" : "Desktop"
+    let eventVar = "desktop"
+
+    if (window.innerWidth <= 768) {
+      eventVar = "mobile"
+    }
 
     function pushDataLayer(actionDataLayer, labelDataLayer) {
       window.dataLayer = window.dataLayer || []
@@ -400,7 +404,9 @@ let socialProof = setInterval(() => {
     }
 
     document.head.insertAdjacentHTML("beforeend", newStyle)
-    document.querySelector(".entry-content")?.insertAdjacentHTML("beforeend", sectionSocialProof)
+    if (document.querySelector(".entry-content")) {
+      document.querySelector(".entry-content").insertAdjacentHTML("beforeend", sectionSocialProof)
+    }
 
     // render reviews and stars
     if (document.querySelector(".reviews_wrap")) {
@@ -429,13 +435,17 @@ let socialProof = setInterval(() => {
         })
       }
 
-      document.querySelector("ul.reviews_wrap.part_two")?.after(document.querySelector(".contacts_us"))
-      document.querySelector(".show_more_btn")?.addEventListener("click", (e) => {
-        pushDataLayer("Click on Show more link")
-        e.currentTarget.style.display = "none"
-        document.querySelector(".social_proof ul.reviews_wrap.part_two").style.display = "flex"
-        document.querySelector("ul.reviews_wrap.part_two")?.scrollIntoView({ block: "start", behavior: "smooth" })
-      })
+      if (document.querySelector("ul.reviews_wrap.part_two")) {
+        document.querySelector("ul.reviews_wrap.part_two").after(document.querySelector(".contacts_us"))
+      }
+      if (document.querySelector(".show_more_btn")) {
+        document.querySelector(".show_more_btn").addEventListener("click", (e) => {
+          pushDataLayer("Click on Show more link")
+          e.currentTarget.style.display = "none"
+          document.querySelector(".social_proof ul.reviews_wrap.part_two").style.display = "flex"
+          document.querySelector("ul.reviews_wrap.part_two").scrollIntoView({ block: "start", behavior: "smooth" })
+        })
+      }
     }
 
     if (document.querySelector(".social_proof")) {
@@ -525,6 +535,8 @@ let socialProof = setInterval(() => {
         clarity("set", "exp_social_proof", "variant_1")
       }
     }, 200)
-    document.querySelector(".exp")?.remove()
+    if (document.querySelector(".exp")) {
+      document.querySelector(".exp").remove()
+    }
   }
 }, 100)
