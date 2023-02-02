@@ -544,16 +544,16 @@ window.onload = () => {
             }
         })
         //qty select (mobile)
-        document.querySelector(`.${device} .stock__select`).addEventListener('change', (e) => {
-            e.stopImmediatePropagation()
-            let priceItem = document.querySelector(`.${device} .swatchCustom__item_new.active`).dataset.price,
-                qty = e.target.value;
+        if (detectMob() == true) {
+            document.querySelector(`.${device} .stock__select`).addEventListener('change', (e) => {
+                e.stopImmediatePropagation()
+                let priceItem = document.querySelector(`.${device} .swatchCustom__item_new.active`).dataset.price,
+                    qty = e.target.value;
 
-            if (detectMob() == true) {
-                document.querySelector('.footer-prices p span:not(.l-through)').innerHTML = '$' + (priceItem * qty).toFixed(2);
-                document.querySelector('.price-js .total_price span').innerHTML = priceItem;
-            }
-        })
+                    document.querySelector('.footer-prices p span:not(.l-through)').innerHTML = '$' + (priceItem * qty).toFixed(2);
+                    document.querySelector('.price-js .total_price span').innerHTML = priceItem;
+            })
+        }
     }
 
     addActiveItem(document.querySelector('.aside_parent .swatchCustom__item_new.active'))
