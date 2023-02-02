@@ -482,6 +482,10 @@ window.onload = () => {
             // document.querySelector(`.${device} .subscibe-custom__info`).innerHTML = subscribeInfo;
 
             document.querySelector(`.${device} [data-variant="${target.dataset.variant}"]:not(.items-center)`).click();
+
+
+        // document.querySelector('.mobile .subscribe-custom').style.display = target.classList.contains('nosale') ? 'none' : 'block';
+        // document.querySelector('.part2 .subscribe-custom').style.display = target.classList.contains('nosale') ? 'none' : 'block';
         } 
         if (target.closest('.slide_in_pdp')) {
             console.log(target.dataset.variant)
@@ -515,15 +519,6 @@ window.onload = () => {
                 }
             }
         }
-
-        document.querySelector('.mobile .subscribe-custom').style.display = target.classList.contains('nosale') ? 'none' : 'block';
-        document.querySelector('.part2 .subscribe-custom').style.display = target.classList.contains('nosale') ? 'none' : 'block';
-        if (target.classList.contains('nosale')) {
-            document.querySelector('.subscribe-custom').classList.remove('active')
-        } else {
-            document.querySelector('.subscribe-custom').classList.add('active')
-        }
-     
     }
 
     if (href.includes('/products/')) {
