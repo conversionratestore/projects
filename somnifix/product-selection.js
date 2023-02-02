@@ -28,18 +28,20 @@ let style = `
         font-weight: 400;
         color: #1E415F;
     }
-    .swatchCustom__item {
+    .swatchCustom__item_new {
         padding: 7px 10px!important;
         min-height: 74px;
-    }
-    .mobile .parent-items .swatchCustom__item:not(.active) {
-        background: #F5F6F7!important;
-    }
-    .aside_wrapper .swatchCustom__item {
         background: #fff!important;
         border-radius: 15px;
+        margin-bottom: 12px;
     }
-    .swatchCustom__item.active {
+    .swatchCustom__item_new:last-child {
+        margin-bottom: 0;
+    }
+    .mobile .parent-items .swatchCustom__item_new:not(.active) {
+        background: #F5F6F7!important;
+    }
+    .swatchCustom__item_new.active {
         cursor: default;
         background: #F1F7FC!important;
         border: 2px solid #4090D1;
@@ -75,10 +77,10 @@ let style = `
     .svg-strips {
         margin-right: 24px;
     }
-    .swatchCustom__item.active .svg-strips path {
+    .swatchCustom__item_new.active .svg-strips path {
         fill: #F0752D
     }
-    .swatchCustom__item.active {
+    .swatchCustom__item_new.active {
         border-radius: 15px;
     }
     .mobile .checklist {
@@ -155,7 +157,7 @@ let style = `
         color: #1E415F;
     }
     /* slide in */
-    .aside_wrapper .swatchCustom__item {
+    .aside_wrapper .swatchCustom__item_new {
         margin: 8px 0;
     }
     .aside_wrapper {
@@ -399,7 +401,7 @@ window.onload = () => {
 
     for (let i = 0; i < objItems.length; i++) {
         let item =`
-        <div class="swatchCustom__item flx items-center ${objItems[i].nosale == true ? 'nosale' : ''} ${objItems[i].week == 12 ? 'active' : ''}" 
+        <div class="swatchCustom__item_new flx items-center ${objItems[i].nosale == true ? 'nosale' : ''} ${objItems[i].week == 12 ? 'active' : ''}" 
             data-variant="${objItems[i].variantId}" 
             data-title="${objItems[i].title}" 
             data-price="${objItems[i].price}" 
@@ -462,24 +464,24 @@ window.onload = () => {
                 document.querySelector('.head-prices .l-through').innerHTML = target.querySelector('.l-through') != null ? target.querySelector('.l-through').innerHTML : '';
                 document.querySelector('.head-prices .l-through').style.marginRight = target.querySelector('.l-through') != null ? '8px' : '0px';
 
-                document.querySelector('.part2 .total_price span').innerHTML = price;
-                document.querySelector('.middle-block__price-output').innerHTML = price;
+                // document.querySelector('.part2 .total_price span').innerHTML = price;
+                // document.querySelector('.middle-block__price-output').innerHTML = price;
             }
 
-            document.querySelector(`.${device} .stock__pack`).innerHTML = `${target.dataset.title} = <span>${target.dataset.strips}</span> strips`;
-            document.querySelector(`.${device} .subscibe-custom__info`).innerHTML = subscribeInfo;
+            // document.querySelector(`.${device} .stock__pack`).innerHTML = `${target.dataset.title} = <span>${target.dataset.strips}</span> strips`;
+            // document.querySelector(`.${device} .subscibe-custom__info`).innerHTML = subscribeInfo;
 
-            // document.querySelector(`.${device} [data-variant="${target.dataset.variant}"]:not(.items-center)`).click();
+            document.querySelector(`.${device} [data-variant="${target.dataset.variant}"]:not(.items-center)`).click();
         } 
         if (target.closest('.aside_wrapper')) {
             console.log(target.dataset.variant)
-            // document.querySelector(`.aside_product_item[data-variant="${target.dataset.variant}"]`).click();
+            document.querySelector(`.aside_product_item[data-variant="${target.dataset.variant}"]`).click();
             document.querySelector('.footer-card .l-through').innerHTML = target.querySelector('.l-through') != null ? target.querySelector('.l-through').innerHTML : '';
 
-            document.querySelector('.aside_wrapper .qty>p').innerHTML = `${target.dataset.strips} Strips = ${target.dataset.week} Weeks`;
-            document.querySelector('.aside_subscribe__info').innerHTML = subscribeInfo;
+            // document.querySelector('.aside_wrapper .qty>p').innerHTML = `${target.dataset.strips} Strips = ${target.dataset.week} Weeks`;
+            // document.querySelector('.aside_subscribe__info').innerHTML = subscribeInfo;
 
-            document.querySelector('.prices .summ').innerHTML = '$' + target.dataset.price
+            // document.querySelector('.prices .summ').innerHTML = '$' + target.dataset.price
         }
 
         //add/remove active class
@@ -509,52 +511,19 @@ window.onload = () => {
     }
 
     if (href.includes('/products/')) {
-        addActiveItem(document.querySelector('.parent-items .swatchCustom__item.active'))
+        addActiveItem(document.querySelector('.parent-items .swatchCustom__item_new.active'))
 
-        document.querySelectorAll('.parent-items .swatchCustom__item').forEach(item => {
+        document.querySelectorAll('.parent-items .swatchCustom__item_new').forEach(item => {
             item.addEventListener('click', (e) => {
                 e.stopImmediatePropagation()
                 addActiveItem(item)
             })
         })
-
-        function fetch(id, quantity, planId = '') {
-            fetch('/cart/clear.js', {
-                type: 'POST'
-                }).then(() => {
-                fetch('/cart/add.js', {
-                    method: 'POST',
-                    headers: {
-                    'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({
-                    "id": id,
-                    "quantity": quantity,
-                    "selling_plan": planId
-                    })
-                }).then(r => {
-                    window.location.pathname = '/checkout'
-                })
-            })
-        }
-        document.querySelector('.popup_btn').addEventListener('click', (e) => {
-            e.stopImmediatePropagation()
-            console.log('e.target')
-            let id = document.querySelector('.parent-items .swatchCustom__item.active').dataset.variant;
-            let quantity = document.querySelector(`.${device} .stock__select`).dataset.variant;
-            let planId = document.querySelector(`.parent-items .swatchCustom__item.active`).dataset.planId;
-
-            if (document.querySelector(`.${device} .subscribe-custom__checkbox`).checked) {
-                document.querySelector('.dark_bg_exp').classList.add('active')
-            } else {
-                fetch(id, quantity, planId)
-            }
-          
-        })
     }
-    addActiveItem(document.querySelector('.aside_wrapper .swatchCustom__item.active'))
+    
+    addActiveItem(document.querySelector('.aside_wrapper .swatchCustom__item_new.active'))
 
-    document.querySelectorAll('.aside_wrapper .swatchCustom__item').forEach(item => {
+    document.querySelectorAll('.aside_wrapper .swatchCustom__item_new').forEach(item => {
         item.addEventListener('click', (e) => {
             e.stopImmediatePropagation()
             addActiveItem(item)
