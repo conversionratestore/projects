@@ -439,7 +439,6 @@ window.onload = () => {
     }
 
     function addActiveItem(target) {
-        console.log(target)
         let subscribeInfo = `Auto delivery every ${Math.round(target.dataset.week * 7 / 30)} months for $${(target.dataset.price - (target.dataset.price * 10 / 100)).toFixed(2)}`
         let price = target.dataset.price;
 
@@ -473,22 +472,11 @@ window.onload = () => {
             } else {
                 document.querySelector('.head-prices .l-through').innerHTML = target.querySelector('.l-through') != null ? target.querySelector('.l-through').innerHTML : '';
                 document.querySelector('.head-prices .l-through').style.marginRight = target.querySelector('.l-through') != null ? '8px' : '0px';
-
-                // document.querySelector('.part2 .total_price span').innerHTML = price;
-                // document.querySelector('.middle-block__price-output').innerHTML = price;
             }
 
-            // document.querySelector(`.${device} .stock__pack`).innerHTML = `${target.dataset.title} = <span>${target.dataset.strips}</span> strips`;
-            // document.querySelector(`.${device} .subscibe-custom__info`).innerHTML = subscribeInfo;
-
             document.querySelector(`.${device} [data-variant="${target.dataset.variant}"]:not(.items-center)`).click();
-
-
-        // document.querySelector('.mobile .subscribe-custom').style.display = target.classList.contains('nosale') ? 'none' : 'block';
-        // document.querySelector('.part2 .subscribe-custom').style.display = target.classList.contains('nosale') ? 'none' : 'block';
         } 
         if (target.closest('.slide_in_pdp')) {
-            console.log(target.dataset.variant)
             // document.querySelector(`.aside_wrapper .aside_product_item[data-variant="${target.dataset.variant}"]`).click();
             document.querySelector(`.aside_wrapper .aside_product_item.active`).classList.remove('active')
             document.querySelector(`.aside_wrapper .aside_product_item[data-variant="${target.dataset.variant}"]`).classList.add('active')
@@ -537,7 +525,6 @@ window.onload = () => {
 
     document.querySelectorAll('.aside_parent .swatchCustom__item_new').forEach(item => {
         item.addEventListener('click', (e) => {
-            console.log(item)
             addActiveItem(item)
         })
     })
