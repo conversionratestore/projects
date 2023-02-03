@@ -476,7 +476,7 @@ let startFunkPopup = setInterval(() => {
                     <h2>Congratulations!</h2>
                     <p>You've unlocked an additional <span>10% OFF + FREE SHIPPING</span> for your first order</p>
                     <div class="voucher_block">
-                        <span>tnpc7680ae65</span>
+                        <span>NATURAL10</span>
                     </div>
                     <p>Discount code will be automatically applied at checkout</p>
                     <button class="green_btn" data-close="Continue shopping button">Continue shopping</button>
@@ -729,7 +729,7 @@ let startFunkPopup = setInterval(() => {
 
           setTimeout(() => {
             if (!localStorage.getItem("restartFunc")) {
-              window.location.href = "/checkout?discount=tnpc7680ae65"
+              window.location.href = "/checkout?discount=NATURAL10"
               localStorage.setItem("restartFunc", "true")
             } else {
               window.location.pathname = "/checkout"
@@ -819,12 +819,37 @@ let startFunkPopup = setInterval(() => {
         }
 
         if (inputValueEmail !== null) {
-          countdown.stop()
-          localStorage.setItem("appliedDiscount", "yes")
-          changeVisabilityApplieddiscount()
+          mailToKlavio(document.querySelector(`input[name='myEmail']`).value)
+
+          async function mailToKlavio(email) {
+            formData = {
+              "email": email,
+              "listId": "Rn9LMT"
+            }
+            await fetch("https://conversionrate.top/api/naturalpatch/klavio/emailsend", {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify(formData),
+            })
+              .then((response) => {
+                countdown.stop()
+                localStorage.setItem("appliedDiscount", "yes")
+                changeVisabilityApplieddiscount()
+                return response.json()
+              })
+              .catch((error) => {
+                console.error("Error:", error)
+              })
+
+          }
+
         }
       }
     }
+
+
 
     pushDataLayer("loaded")
     const record = setInterval(() => {
