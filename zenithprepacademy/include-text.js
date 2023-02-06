@@ -1,0 +1,171 @@
+let dir = 'https://conversionratestore.github.io/projects/zenithprepacademy/img/';
+
+let html1 = `
+<section class="offer-section">
+    <div class="container">
+        <h1 class="fw-bold">Free 'Roadmap To College' Call</h1>
+        <p class="fw-bold fs-18">A FREE 45-minute college admission strategy call where you’ll get:</p>
+        <ul class="list">
+            <li class="d-flex">
+                <img src="${dir}search-user.svg">
+                <span>A detailed breakdown of your child's profile & suitability for our program</span>
+            </li>
+            <li class="d-flex">
+                <img src="${dir}check-list.svg">
+                <span>A personalized year-by-year plan for your child to follow to gain entrance to their dream college</span>
+            </li>
+            <li class="d-flex">
+                <img src="${dir}goal.svg">
+                <span>The milestones your child needs to achieve to become attractive to top universities</span>
+            </li>
+        </ul>
+        <p class="fw-bold">Additionally, we'll debunk rumours & myths, clear up any confusion, and answer all your questions.</p>
+        <div class="d-flex items-center block_no-free">
+            <img src="${dir}no-fee.svg">
+            <p>No prior commitments, no hidden fees</p>
+        </div>
+        <div class="block_please-note">
+            <p><span class="fw-bold">Please note:</span> Due to high demand and limited availability, these meetings are first come, first serve and are not guaranteed throughout the year as we provide these meetings based on our Admissions Counselors’ schedule and bandwidth.</p>
+            <p>The only requirement is that you do not miss your scheduled appointment time and take an availability away from another parent, like you, who is waiting to meet with us. If you need to reschedule, please do so no less than 24 hours before your scheduled meeting.</p>
+        </div>    
+    </div>
+</section>`;
+
+let html2 = `
+<section class="select-section">
+    <div class="container">
+        <h2 class="fw-bold">We select only 1000 students per year</h2>
+        <div class="pb-8">
+            <p>We invest heavily into each of our student's futures, which is why we're highly selective about who is allowed into Zenith Prep Academy.</p>
+            <p>Our process requires us to establish a close and long-term partnership with the student's family. That way, there are multiple support and accountability systems for your child to rely on.</p>
+            <p>The reason why this is important is because even the best plan will fail if people aren't willing to stick with it. </p>
+            <p>So while we're confident that we can reverse-engineer your child into a top university, we first need to see that both the child and family are committed to the process and a good fit.</p>
+        </div>
+        <p class="text-center fw-bold">Discover whether your child is suitable for Zenith Prep Academy</p>
+        <button type="button" class="btn-orange">Book a consultation call</button>
+    </div>
+</section>`;
+
+//add seamless scroll polyfill
+let scriptScroll = document.createElement('script');
+scriptScroll.src = 'https://cdn.jsdelivr.net/npm/seamless-scroll-polyfill@latest/lib/bundle.min.js';
+scriptScroll.async = 'false';
+document.head.appendChild(scriptScroll);
+
+//add style
+document.body.insertAdjacentHTML('afterbegin',`
+<style>
+    #section-1852710000 {
+        display: none;
+    }
+    .offer-section {
+        background-color: #F7F7F7;
+    }
+    .offer-section, .select-section {
+        padding: 24px 5px 14px;
+        color: #2D2D2D;
+        font-family: 'Oxygen', sans-serif;
+        font-style: normal;
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 24px;
+    }
+    .offer-section p, .select-section p {
+        margin: 0;
+    }
+    .offer-section h1 {
+        font-size: 30px;
+        line-height: 38px;
+        margin-bottom: 16px;
+    }
+    .list {
+        padding: 20px 0 0 0;
+    }
+    .list li {
+        margin-bottom: 16px;
+        color: #505050;
+    }
+    .list img, .block_no-free img {
+        width: 40px;
+        height: 40px;
+        margin-right: 12px;
+        flex-shrink: 0;
+    }
+    .block_no-free {
+        margin: 16px 0;
+        padding: 12px 0;
+        border-top: 2px solid #D2DFED;
+        border-bottom: 2px solid #D2DFED;
+    }
+    /* select-section */
+    .select-section h2 {
+        font-size: 24px;
+        line-height: 32px;
+        text-align: center;
+        margin-bottom: 24px;
+    }
+    .select-section p, .block_please-note p {
+        color: #505050;
+        margin-bottom: 16px;
+    }
+    .btn-orange {
+        font-weight: 700;
+        font-size: 16px;
+        line-height: 54px;
+        text-align: center;
+        letter-spacing: 0.05em;
+        text-transform: uppercase;
+        color: #2D2D2D;
+        width: 100%;
+        background: #F29B38;
+        border: 2px solid #C27C2D;
+        box-shadow: 0px 2px 10px rgba(255, 255, 255, 0.3);
+        border-radius: 35px;
+        margin: 8px auto 0;
+        max-width: 350px;
+        display: block;
+    }
+    .select-section .container {
+        max-width: 685px;
+        width: 100%;
+    }
+    .pb-8 {
+        padding-bottom: 8px;
+    }
+    /* flex */
+    .d-flex {
+        display: flex;
+    }
+    .items-center {
+        align-items: center;
+    }
+    /* fonts */
+    .fs-18 {
+        font-size: 18px;
+        line-height: 26px;
+    }
+    .fw-bold {
+        font-weight: 700;
+    }
+    .text-center {
+        text-align: center;
+    }
+</style>`)
+
+document.querySelector('.containerWrapper').insertAdjacentHTML('beforebegin', html1)
+document.querySelector('#section--75088').insertAdjacentHTML('afterend', html2)
+
+//scroll to
+function scrollToElement(targetScroll, offsetTop) {
+    const scrollTarget = targetScroll;
+    const topOffset = offsetTop.offsetHeight;
+    const elementPosition = scrollTarget.getBoundingClientRect().top;
+    const offsetPosition = elementPosition - topOffset;
+
+    seamless.polyfill();
+    seamless.scrollBy(window, { behavior: "smooth", top: offsetPosition, left: 0 });
+}
+
+document.querySelector('.btn-orange').addEventListener('click', (e) => {
+    scrollToElement(document.querySelector('#row--80328'), e.target)
+})
