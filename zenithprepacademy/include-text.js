@@ -4,30 +4,35 @@ let html1 = `
 <section class="offer-section">
     <div class="container">
         <h1 class="fw-bold">Free 'Roadmap To College' Call</h1>
-        <p class="fw-bold fs-18">A FREE 45-minute college admission strategy call where you’ll get:</p>
-        <ul class="list">
-            <li class="d-flex">
-                <img src="${dir}search-user.svg">
-                <span>A detailed breakdown of your child's profile & suitability for our program</span>
-            </li>
-            <li class="d-flex">
-                <img src="${dir}check-list.svg">
-                <span>A personalized year-by-year plan for your child to follow to gain entrance to their dream college</span>
-            </li>
-            <li class="d-flex">
-                <img src="${dir}goal.svg">
-                <span>The milestones your child needs to achieve to become attractive to top universities</span>
-            </li>
-        </ul>
-        <p class="fw-bold">Additionally, we'll debunk rumours & myths, clear up any confusion, and answer all your questions.</p>
-        <div class="d-flex items-center block_no-free">
-            <img src="${dir}no-fee.svg">
-            <p>No prior commitments, no hidden fees</p>
-        </div>
-        <div class="block_please-note">
-            <p><span class="fw-bold">Please note:</span> Due to high demand and limited availability, these meetings are first come, first serve and are not guaranteed throughout the year as we provide these meetings based on our Admissions Counselors’ schedule and bandwidth.</p>
-            <p>The only requirement is that you do not miss your scheduled appointment time and take an availability away from another parent, like you, who is waiting to meet with us. If you need to reschedule, please do so no less than 24 hours before your scheduled meeting.</p>
-        </div>    
+        <div class="d-flex">
+            <div class="col-lg-6">
+                <p class="fw-bold fs-18">A FREE 45-minute college admission strategy call where you’ll get:</p>
+                <ul class="list">
+                    <li class="d-flex">
+                        <img src="${dir}search-user.svg">
+                        <span>A detailed breakdown of your child's profile & suitability for our program</span>
+                    </li>
+                    <li class="d-flex">
+                        <img src="${dir}check-list.svg">
+                        <span>A personalized year-by-year plan for your child to follow to gain entrance to their dream college</span>
+                    </li>
+                    <li class="d-flex">
+                        <img src="${dir}goal.svg">
+                        <span>The milestones your child needs to achieve to become attractive to top universities</span>
+                    </li>
+                </ul>
+                <p class="fw-bold">Additionally, we'll debunk rumours & myths, clear up any confusion, and answer all your questions.</p>
+                <div class="d-flex items-center block_no-free">
+                    <img src="${dir}no-fee.svg">
+                    <p>No prior commitments, no hidden fees</p>
+                </div>
+                <div class="block_please-note">
+                    <p><span class="fw-bold">Please note:</span> Due to high demand and limited availability, these meetings are first come, first serve and are not guaranteed throughout the year as we provide these meetings based on our Admissions Counselors’ schedule and bandwidth.</p>
+                    <p>The only requirement is that you do not miss your scheduled appointment time and take an availability away from another parent, like you, who is waiting to meet with us. If you need to reschedule, please do so no less than 24 hours before your scheduled meeting.</p>
+                </div>  
+            </div>
+            <div class="col-lg-6"></div>
+        </div>  
     </div>
 </section>`;
 
@@ -125,6 +130,10 @@ document.body.insertAdjacentHTML('afterbegin',`
         max-width: 350px;
         display: block;
     }
+    .offer-section .container {
+        max-width: 970px;
+        width: 100%;
+    }
     .select-section .container {
         max-width: 685px;
         width: 100%;
@@ -149,6 +158,31 @@ document.body.insertAdjacentHTML('afterbegin',`
     }
     .text-center {
         text-align: center;
+    }
+    @media (min-width: 992px) {
+        .col-lg-6 {
+            width: calc(50% - 19px);
+            margin-right: 38px;
+        }
+        .col-lg-6:nth-child(2n+2) {
+            margin-right: 0;
+        }
+        .offer-section h1 {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .list {
+            padding-top: 24px;
+        }
+        .list li {
+            margin-bottom: 20px;
+        }
+        .block_no-free {
+            margin: 20px 0;
+        }
+        .offer-section, .select-section {
+            padding: 30px 5px 34px;
+        } 
     }
 </style>`)
 
