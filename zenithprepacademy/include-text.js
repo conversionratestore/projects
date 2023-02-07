@@ -4,7 +4,7 @@ let html1 = `
 <section class="offer-section">
     <div class="container">
         <h1 class="fw-bold">Free 'Roadmap To College' Call</h1>
-        <div class="d-flex">
+        <div class="d-lg-flex">
             <div class="col-lg-6">
                 <p class="fw-bold fs-18">A FREE 45-minute college admission strategy call where you’ll get:</p>
                 <ul class="list">
@@ -26,12 +26,17 @@ let html1 = `
                     <img src="${dir}no-fee.svg">
                     <p>No prior commitments, no hidden fees</p>
                 </div>
+
+                <iframe src="https://calendly.com/d/g7j-x3x-pnr/meeting-w-college-admissions-counselor-zoom?hide_event_type_details=1&hide_gdpr_banner=1" width="100%" height="100%" class="calendly-iframe d-lg-none"></iframe>
+
                 <div class="block_please-note">
                     <p><span class="fw-bold">Please note:</span> Due to high demand and limited availability, these meetings are first come, first serve and are not guaranteed throughout the year as we provide these meetings based on our Admissions Counselors’ schedule and bandwidth.</p>
                     <p>The only requirement is that you do not miss your scheduled appointment time and take an availability away from another parent, like you, who is waiting to meet with us. If you need to reschedule, please do so no less than 24 hours before your scheduled meeting.</p>
                 </div>  
             </div>
-            <div class="col-lg-6"></div>
+            <div class="col-lg-6">
+                <iframe src="https://calendly.com/d/g7j-x3x-pnr/meeting-w-college-admissions-counselor-zoom?hide_event_type_details=1&hide_gdpr_banner=1" width="100%" class="calendly-iframe d-lg-block d-none"></iframe>
+            </div>
         </div>  
     </div>
 </section>`;
@@ -51,155 +56,188 @@ let html2 = `
     </div>
 </section>`;
 
-//add seamless scroll polyfill
-let scriptScroll = document.createElement('script');
-scriptScroll.src = 'https://cdn.jsdelivr.net/npm/seamless-scroll-polyfill@latest/lib/bundle.min.js';
-scriptScroll.async = 'false';
-document.head.appendChild(scriptScroll);
+window.onload = function() {
 
-//add style
-document.body.insertAdjacentHTML('afterbegin',`
-<style>
-    #section-1852710000 {
-        display: none;
-    }
-    .offer-section {
-        background-color: #F7F7F7;
-    }
-    .offer-section, .select-section {
-        padding: 24px 5px 14px;
-        color: #2D2D2D;
-        font-family: 'Oxygen', sans-serif;
-        font-style: normal;
-        font-weight: 400;
-        font-size: 16px;
-        line-height: 24px;
-    }
-    .offer-section p, .select-section p {
-        margin: 0;
-    }
-    .offer-section h1 {
-        font-size: 30px;
-        line-height: 38px;
-        margin-bottom: 16px;
-    }
-    .list {
-        padding: 20px 0 0 0;
-    }
-    .list li {
-        margin-bottom: 16px;
-        color: #505050;
-    }
-    .list img, .block_no-free img {
-        width: 40px;
-        height: 40px;
-        margin-right: 12px;
-        flex-shrink: 0;
-    }
-    .block_no-free {
-        margin: 16px 0;
-        padding: 12px 0;
-        border-top: 2px solid #D2DFED;
-        border-bottom: 2px solid #D2DFED;
-    }
-    /* select-section */
-    .select-section h2 {
-        font-size: 24px;
-        line-height: 32px;
-        text-align: center;
-        margin-bottom: 24px;
-    }
-    .select-section p, .block_please-note p {
-        color: #505050;
-        margin-bottom: 16px;
-    }
-    .btn-orange {
-        font-weight: 700;
-        font-size: 16px;
-        line-height: 54px;
-        text-align: center;
-        letter-spacing: 0.05em;
-        text-transform: uppercase;
-        color: #2D2D2D;
-        width: 100%;
-        background: #F29B38;
-        border: 2px solid #C27C2D;
-        box-shadow: 0px 2px 10px rgba(255, 255, 255, 0.3);
-        border-radius: 35px;
-        margin: 8px auto 0;
-        max-width: 350px;
-        display: block;
-    }
-    .offer-section .container {
-        max-width: 970px;
-        width: 100%;
-    }
-    .select-section .container {
-        max-width: 685px;
-        width: 100%;
-    }
-    .pb-8 {
-        padding-bottom: 8px;
-    }
-    /* flex */
-    .d-flex {
-        display: flex;
-    }
-    .items-center {
-        align-items: center;
-    }
-    /* fonts */
-    .fs-18 {
-        font-size: 18px;
-        line-height: 26px;
-    }
-    .fw-bold {
-        font-weight: 700;
-    }
-    .text-center {
-        text-align: center;
-    }
-    @media (min-width: 992px) {
-        .col-lg-6 {
-            width: calc(50% - 19px);
-            margin-right: 38px;
+    //add seamless scroll polyfill
+    let scriptScroll = document.createElement('script');
+    scriptScroll.src = 'https://cdn.jsdelivr.net/npm/seamless-scroll-polyfill@latest/lib/bundle.min.js';
+    scriptScroll.async = 'false';
+    document.head.appendChild(scriptScroll);
+
+    //add style
+    document.body.insertAdjacentHTML('afterbegin',`
+    <style>
+        #row--80328 {
+            max-width: 725px;
+            margin: 0 auto!important;
         }
-        .col-lg-6:nth-child(2n+2) {
-            margin-right: 0;
+        .calendly-iframe {
+            width: 100%;
+            min-height: 605px;
+            border: 2px solid #D2DFED;
+            border-radius: 16px;
+            margin-bottom: 10px;
         }
-        .offer-section h1 {
-            text-align: center;
-            margin-bottom: 30px;
+        #section-1852710000 {
+            display: none;
         }
-        .list {
-            padding-top: 24px;
-        }
-        .list li {
-            margin-bottom: 20px;
-        }
-        .block_no-free {
-            margin: 20px 0;
+        .offer-section {
+            background-color: #F7F7F7;
         }
         .offer-section, .select-section {
-            padding: 30px 5px 34px;
-        } 
+            padding: 24px 5px 14px;
+            color: #2D2D2D;
+            font-family: 'Oxygen', sans-serif;
+            font-style: normal;
+            font-weight: 400;
+            font-size: 16px;
+            line-height: 24px;
+        }
+        .offer-section p, .select-section p {
+            margin: 0;
+        }
+        .offer-section h1 {
+            font-size: 30px;
+            line-height: 38px;
+            margin-bottom: 16px;
+        }
+        .list {
+            padding: 20px 0 0 0;
+        }
+        .list li {
+            margin-bottom: 16px;
+            color: #505050;
+        }
+        .list img, .block_no-free img {
+            width: 40px;
+            height: 40px;
+            margin-right: 12px;
+            flex-shrink: 0;
+        }
+        .block_no-free {
+            margin: 16px 0 4px;
+            padding: 12px 0;
+            border-top: 2px solid #D2DFED;
+        }
+        /* select-section */
+        .select-section h2 {
+            font-size: 24px;
+            line-height: 32px;
+            text-align: center;
+            margin-bottom: 24px;
+        }
+        .select-section p, .block_please-note p {
+            color: #505050;
+            margin-bottom: 16px;
+        }
+        .btn-orange {
+            font-weight: 700;
+            font-size: 16px;
+            line-height: 54px;
+            text-align: center;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            color: #2D2D2D;
+            width: 100%;
+            background: #F29B38;
+            border: 2px solid #C27C2D;
+            box-shadow: 0px 2px 10px rgba(255, 255, 255, 0.3);
+            border-radius: 35px;
+            margin: 8px auto 0;
+            max-width: 350px;
+            display: block;
+        }
+        .offer-section .container {
+            max-width: 970px;
+            width: 100%;
+        }
+        .select-section .container {
+            max-width: 685px;
+            width: 100%;
+        }
+        .pb-8 {
+            padding-bottom: 8px;
+        }
+        /* flex */
+        .d-flex {
+            display: flex;
+        }
+        .items-center {
+            align-items: center;
+        }
+        /* fonts */
+        .fs-18 {
+            font-size: 18px;
+            line-height: 26px;
+        }
+        .fw-bold {
+            font-weight: 700;
+        }
+        .text-center {
+            text-align: center;
+        }
+        .col-lg-6 {
+            padding: 0!important;
+        }
+        .d-none {
+            display: none;
+        }
+        @media (min-width: 992px) {
+            .d-lg-none {
+                display: none;
+            }
+            .d-lg-block {
+                display: block;
+            }
+            .d-lg-flex {
+                display: flex;
+            }
+            .col-lg-6 {
+                width: calc(50% - 19px);
+                margin-right: 38px;
+            }
+            .col-lg-6:nth-child(2n+2) {
+                margin-right: 0;
+            }
+            .offer-section h1 {
+                text-align: center;
+                margin-bottom: 30px;
+            }
+            .list {
+                padding-top: 24px;
+            }
+            .list li {
+                margin-bottom: 20px;
+            }
+            .block_no-free {
+                margin: 20px 0;
+                border-bottom: 2px solid #D2DFED;
+            }
+            .offer-section, .select-section {
+                padding: 30px 5px 34px;
+            } 
+        }
+    </style>`)
+
+    document.querySelector('.containerWrapper').insertAdjacentHTML('beforebegin', html1)
+    document.querySelector('#section--75088').insertAdjacentHTML('afterend', html2)
+
+    //scroll to
+    function scrollToElement(targetScroll, offsetTop) {
+        const scrollTarget = targetScroll;
+        const topOffset = offsetTop.offsetHeight;
+        const elementPosition = scrollTarget.getBoundingClientRect().top;
+        const offsetPosition = elementPosition - topOffset;
+
+        seamless.polyfill();
+        seamless.scrollBy(window, { behavior: "smooth", top: offsetPosition, left: 0 });
     }
-</style>`)
 
-document.querySelector('.containerWrapper').insertAdjacentHTML('beforebegin', html1)
-document.querySelector('#section--75088').insertAdjacentHTML('afterend', html2)
-
-//scroll to
-function scrollToElement(targetScroll, offsetTop) {
-    const scrollTarget = targetScroll;
-    const topOffset = offsetTop.offsetHeight;
-    const elementPosition = scrollTarget.getBoundingClientRect().top;
-    const offsetPosition = elementPosition - topOffset;
-
-    seamless.polyfill();
-    seamless.scrollBy(window, { behavior: "smooth", top: offsetPosition, left: 0 });
-}
-
-document.querySelector('.btn-orange').addEventListener('click', (e) => {
-    scrollToElement(document.querySelector('#row--80328'), e.target)
-})
+    document.querySelector('.btn-orange').addEventListener('click', (e) => {
+        if (window.matchMedia("(min-width: 992px)").matches) {
+            scrollToElement(document.querySelector('.col-lg-6 > .calendly-iframe'), e.target)
+        } else {
+            scrollToElement(document.querySelector('.calendly-iframe.d-lg-none'), e.target)
+        }
+    })
+};
