@@ -1,5 +1,5 @@
 let startFunkPopup = setInterval(() => {
-  if (document) {
+  if (document.querySelector('#zenpatch-mood-calming-stickers-the-natural-patch-co')) {
     clearInterval(startFunkPopup)
 
     function pushDataLayer(actionDataLayer, labelDataLayer) {
@@ -859,4 +859,4 @@ let startFunkPopup = setInterval(() => {
       }
     }, 200)
   }
-}, 100)
+}, 400)
