@@ -832,12 +832,20 @@ let startFunkPopup = setInterval(() => {
                 "Content-Type": "application/json",
               },
               body: JSON.stringify(formData),
-            })
-              .then((response) => {
-                countdown.stop()
-                localStorage.setItem("appliedDiscount", "yes")
-                changeVisabilityApplieddiscount()
-                return response.json()
+            }).then(response => response.json())
+              .then((data) => {
+                console.log(data)
+                if (data.status === 'error') {
+                  document.querySelector('.input_validation_email').textContent = "You've already given us that email address before"
+                  document.querySelector(`.input_validation_email`).style.display = "block"
+                  document.querySelector(`input[name='email']`).classList.remove("error")
+                } else {
+                  document.querySelector(`input[name='email']`).classList.remove("error")
+                  document.querySelector(`.input_validation_email`).style.display = "none"
+                  countdown.stop()
+                  localStorage.setItem("appliedDiscount", "yes")
+                  changeVisabilityApplieddiscount()
+                }
               })
               .catch((error) => {
                 console.error("Error:", error)
