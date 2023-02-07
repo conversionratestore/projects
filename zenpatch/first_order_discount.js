@@ -563,6 +563,10 @@ let startFunkPopup = setInterval(() => {
               e.preventDefault()
               pushDataLayer("Claim bonus offer button")
               validationForm()
+              if (document.querySelector('.input_validation_email').textContent === "You've already given us that email address before") {
+                document.querySelector('.input_validation_email').textContent = "Your email doesn't seem to be valid"
+                validationForm()
+              }
             }
             e.target.setAttribute("data-test", "1")
 
@@ -839,7 +843,10 @@ let startFunkPopup = setInterval(() => {
                   document.querySelector('.input_validation_email').textContent = "You've already given us that email address before"
                   document.querySelector(`.input_validation_email`).style.display = "block"
                   document.querySelector(`input[name='email']`).classList.remove("error")
+                  console.log(`dfghgfdfgh`)
                 } else {
+                  document.querySelector('.input_validation_email').textContent = "Your email doesn't seem to be valid"
+
                   document.querySelector(`input[name='email']`).classList.remove("error")
                   document.querySelector(`.input_validation_email`).style.display = "none"
                   countdown.stop()
