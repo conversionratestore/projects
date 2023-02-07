@@ -385,11 +385,16 @@ form.css-8atqhb .chakra-form__error-message {
         }
       }
 
+      let s = setInterval(() => {
+        if (document.querySelector(".sticky_banner")) {
+          clearInterval(s)
+          onLoadStickyBanner()
+        }
+      }, 200)
+
       window.addEventListener("scroll", function () {
         onLoadStickyBanner()
       })
-
-      onLoadStickyBanner()
 
       function onLoadStickyBanner() {
         let positionVar = 0
@@ -521,7 +526,22 @@ form.css-8atqhb .chakra-form__error-message {
                         window.location.pathname === "/insurance/auto/cheapest-car-insurance-new-jersey/" ||
                         window.location.pathname === "/insurance/auto/state-laws-minimum-requirements-florida/" ||
                         window.location.pathname === "/insurance/auto/best-cheap-car-insurance-for-16-year-olds/" ||
-                        window.location.pathname === "/insurance/auto/cheapest-car-insurance-new-york/"
+                        window.location.pathname === "/insurance/auto/cheapest-car-insurance-new-york/" ||
+                        window.location.pathname === "/insurance/how-to-get-car-insurance-before-buying-a-car/" ||
+                        window.location.pathname === "/insurance/auto/tesla-model-y-insurance/" ||
+                        window.location.pathname === "/insurance/auto/best-cheap-car-insurance-for-veterans-military/" ||
+                        window.location.pathname === "/insurance/auto/6-month-vs-12-month-car-insurance/" ||
+                        window.location.pathname === "/insurance/auto/sr22-car-insurance-california/" ||
+                        window.location.pathname === "/insurance/auto/best-car-insurance-california/" ||
+                        window.location.pathname === "/insurance/auto/why-is-your-car-insurance-so-expensive/florida/" ||
+                        window.location.pathname === "/insurance/auto/liability-vs-full-coverage/" ||
+                        window.location.pathname === "/insurance/auto/do-i-need-comprehensive-collision/" ||
+                        window.location.pathname === "/insurance/auto/best-cheap-car-insurance-for-teens/" ||
+                        window.location.pathname === "/insurance/auto/car-insurance-after-cancellation/" ||
+                        window.location.pathname === "/insurance/auto/tesla-car-insurance-costs/" ||
+                        window.location.pathname === "/insurance/auto/cancel-car-insurance-at-any-time/" ||
+                        window.location.pathname === "/insurance/auto/tesla-model-3-insurance/" ||
+                        window.location.pathname === "/insurance/auto/how-to-get-car-insurance-salvage-title/"
                       ) {
                         document.querySelector("section .css-1qsp2gq form.css-8atqhb button[type='submit']").click()
                       } else if (window.location.pathname === "/insurance/auto/resources/protecting-against-fraud/") {
@@ -821,8 +841,8 @@ form.css-8atqhb .chakra-form__error-message {
     }
 
     function removeErrMainInput(input, error, label) {
-      if (document.querySelectorAll('[name="zip"]')[0]) {
-        document.querySelectorAll('[name="zip"]')[0].addEventListener("input", (e) => {
+      if (document.querySelector('section .css-1qsp2gq .css-8atqhb [name="zip"]')) {
+        document.querySelector('section .css-1qsp2gq .css-8atqhb [name="zip"]').addEventListener("input", (e) => {
           input.value = e.target.value
 
           if (document.querySelector(".chakra-form__error-message.css-vamxt0")) {
