@@ -453,6 +453,7 @@ function isScrolledIntoView(el) {
 let viewed1 = false;
 let viewed2 = false;
 let viewed3 = false;
+let viewed4 = false;
 
 let intervalFood = setInterval(() => {
     if (document.querySelector('.tour-drinks .food_block .title') != null && document.querySelector('.tour-drinks > p') && !window.location.href.includes('upgraded-drinks')) {
@@ -713,6 +714,10 @@ let interval = setInterval(() => {
             if (isScrolledIntoView(document.querySelector('.form_tour')) == true && viewed3 == false) {
                 viewed3 = true;
                 pushDataLayer('Pop up Book your Tour', 'Visibility');
+            }
+            if(document.querySelector('.not-tour') != null && isScrolledIntoView(document.querySelector('.not-tour')) == true && viewed4 == false) {
+                viewed4 = true;
+                pushDataLayer('Visibility Currently, were just accepting private tours');
             }
         })
 
