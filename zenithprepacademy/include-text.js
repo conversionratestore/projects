@@ -1,4 +1,5 @@
 let dir = 'https://conversionratestore.github.io/projects/zenithprepacademy/img/';
+let href = window.location.href;
 
 let html1 = `
 <section class="offer-section">
@@ -89,212 +90,200 @@ function isScrolledIntoView(el) {
 }
 
 window.onload = function() {
-    //add style
-    document.body.insertAdjacentHTML('afterbegin',`
-    <style>
-        #row--80328 {
-            max-width: 725px;
-            margin: 0 auto!important;
-        }
-        .calendly-iframe {
-            width: 100%;
-            min-height: 605px;
-            border: 2px solid #D2DFED;
-            border-radius: 16px;
-            margin-bottom: 10px;
-        }
-        #section-1852710000 {
-            display: none;
-        }
-        .offer-section {
-            background-color: #F7F7F7;
-        }
-        .offer-section, .select-section {
-            padding: 24px 5px 14px;
-            color: #2D2D2D;
-            font-family: 'Oxygen', sans-serif;
-            font-style: normal;
-            font-weight: 400;
-            font-size: 16px;
-            line-height: 24px;
-        }
-        .offer-section p, .select-section p {
-            margin: 0;
-        }
-        .offer-section h1 {
-            font-size: 30px;
-            line-height: 38px;
-            margin-bottom: 16px;
-        }
-        .list {
-            padding: 20px 0 0 0;
-        }
-        .list li {
-            margin-bottom: 16px;
-            color: #505050;
-        }
-        .list img, .block_no-free img {
-            width: 40px;
-            height: 40px;
-            margin-right: 12px;
-            flex-shrink: 0;
-        }
-        .block_no-free {
-            margin: 16px 0 4px;
-            padding: 12px 0;
-            border-top: 2px solid #D2DFED;
-        }
-        /* select-section */
-        .select-section h2 {
-            font-size: 24px;
-            line-height: 32px;
-            text-align: center;
-            margin-bottom: 24px;
-        }
-        .select-section p, .block_please-note p {
-            color: #505050;
-            margin-bottom: 16px;
-        }
-        .btn-orange {
-            font-weight: 700;
-            font-size: 16px;
-            line-height: 54px;
-            text-align: center;
-            letter-spacing: 0.05em;
-            text-transform: uppercase;
-            color: #2D2D2D;
-            width: 100%;
-            background: #F29B38;
-            border: 2px solid #C27C2D;
-            box-shadow: 0px 2px 10px rgba(255, 255, 255, 0.3);
-            border-radius: 35px;
-            margin: 8px auto 0;
-            max-width: 350px;
-            display: block;
-        }
-        .offer-section .container {
-            max-width: 970px;
-            width: 100%;
-        }
-        .select-section .container {
-            max-width: 685px;
-            width: 100%;
-        }
-        .pb-8 {
-            padding-bottom: 8px;
-        }
-        /* flex */
-        .d-flex {
-            display: flex;
-        }
-        .items-center {
-            align-items: center;
-        }
-        /* fonts */
-        .fs-18 {
-            font-size: 18px;
-            line-height: 26px;
-        }
-        .fw-bold {
-            font-weight: 700;
-        }
-        .text-center {
-            text-align: center;
-        }
-        .col-lg-6 {
-            padding: 0!important;
-        }
-        .d-none {
-            display: none;
-        }
-        @media (min-width: 992px) {
-            .d-lg-none {
+    if (href.includes('/booking-page')) {
+        //add style
+        document.body.insertAdjacentHTML('afterbegin',`
+        <style>
+            #row--80328 {
+                max-width: 725px;
+                margin: 0 auto!important;
+            }
+            .calendly-iframe {
+                width: 100%;
+                min-height: 605px;
+                border: 2px solid #D2DFED;
+                border-radius: 16px;
+                margin-bottom: 10px;
+            }
+            #section-1852710000 {
                 display: none;
             }
-            .d-lg-block {
-                display: block;
-            }
-            .d-lg-flex {
-                display: flex;
-            }
-            .col-lg-6 {
-                width: calc(50% - 19px);
-                margin-right: 38px;
-            }
-            .col-lg-6:nth-child(2n+2) {
-                margin-right: 0;
-            }
-            .offer-section h1 {
-                text-align: center;
-                margin-bottom: 30px;
-            }
-            .list {
-                padding-top: 24px;
-            }
-            .list li {
-                margin-bottom: 20px;
-            }
-            .block_no-free {
-                margin: 20px 0;
-                border-bottom: 2px solid #D2DFED;
+            .offer-section {
+                background-color: #F7F7F7;
             }
             .offer-section, .select-section {
-                padding: 30px 5px 34px;
-            } 
-        }
-    </style>`)
+                padding: 24px 5px 14px;
+                color: #2D2D2D;
+                font-family: 'Oxygen', sans-serif;
+                font-style: normal;
+                font-weight: 400;
+                font-size: 16px;
+                line-height: 24px;
+            }
+            .offer-section p, .select-section p {
+                margin: 0;
+            }
+            .offer-section h1 {
+                font-size: 30px;
+                line-height: 38px;
+                margin-bottom: 16px;
+            }
+            .list {
+                padding: 20px 0 0 0;
+            }
+            .list li {
+                margin-bottom: 16px;
+                color: #505050;
+            }
+            .list img, .block_no-free img {
+                width: 40px;
+                height: 40px;
+                margin-right: 12px;
+                flex-shrink: 0;
+            }
+            .block_no-free {
+                margin: 16px 0 4px;
+                padding: 12px 0;
+                border-top: 2px solid #D2DFED;
+            }
+            /* select-section */
+            .select-section h2 {
+                font-size: 24px;
+                line-height: 32px;
+                text-align: center;
+                margin-bottom: 24px;
+            }
+            .select-section p, .block_please-note p {
+                color: #505050;
+                margin-bottom: 16px;
+            }
+            .btn-orange {
+                font-weight: 700;
+                font-size: 16px;
+                line-height: 54px;
+                text-align: center;
+                letter-spacing: 0.05em;
+                text-transform: uppercase;
+                color: #2D2D2D;
+                width: 100%;
+                background: #F29B38;
+                border: 2px solid #C27C2D;
+                box-shadow: 0px 2px 10px rgba(255, 255, 255, 0.3);
+                border-radius: 35px;
+                margin: 8px auto 0;
+                max-width: 350px;
+                display: block;
+            }
+            .offer-section .container {
+                max-width: 970px;
+                width: 100%;
+            }
+            .select-section .container {
+                max-width: 685px;
+                width: 100%;
+            }
+            .pb-8 {
+                padding-bottom: 8px;
+            }
+            /* flex */
+            .d-flex {
+                display: flex;
+            }
+            .items-center {
+                align-items: center;
+            }
+            /* fonts */
+            .fs-18 {
+                font-size: 18px;
+                line-height: 26px;
+            }
+            .fw-bold {
+                font-weight: 700;
+            }
+            .text-center {
+                text-align: center;
+            }
+            .col-lg-6 {
+                padding: 0!important;
+            }
+            .d-none {
+                display: none;
+            }
+            @media (min-width: 992px) {
+                .d-lg-none {
+                    display: none;
+                }
+                .d-lg-block {
+                    display: block;
+                }
+                .d-lg-flex {
+                    display: flex;
+                }
+                .col-lg-6 {
+                    width: calc(50% - 19px);
+                    margin-right: 38px;
+                }
+                .col-lg-6:nth-child(2n+2) {
+                    margin-right: 0;
+                }
+                .offer-section h1 {
+                    text-align: center;
+                    margin-bottom: 30px;
+                }
+                .list {
+                    padding-top: 24px;
+                }
+                .list li {
+                    margin-bottom: 20px;
+                }
+                .block_no-free {
+                    margin: 20px 0;
+                    border-bottom: 2px solid #D2DFED;
+                }
+                .offer-section, .select-section {
+                    padding: 30px 5px 34px;
+                } 
+            }
+        </style>`)
 
-    document.querySelector('.containerWrapper').insertAdjacentHTML('beforebegin', html1)
-    document.querySelector('#section--75088').insertAdjacentHTML('afterend', html2)
+        document.querySelector('.containerWrapper').insertAdjacentHTML('beforebegin', html1)
+        document.querySelector('#section--75088').insertAdjacentHTML('afterend', html2)
 
-    document.querySelector('.btn-orange').addEventListener('click', (e) => {
-        if (window.matchMedia("(min-width: 992px)").matches) {
-            scrollToElement(document.querySelector('.col-lg-6 > .calendly-iframe'), e.target)
-        } else {
-            scrollToElement(document.querySelector('.calendly-iframe.d-lg-none'), e.target)
-        }
-    })
-    
-    //events
-    document.querySelector('.list').addEventListener('click', (e) => {
-        if (e.target.closest('li')) {
-            pushDatalayer('Click or Tap on new bullets', e.target.closest('li').innerText)
-        }
-    })
-    document.querySelector('.block_no-free').addEventListener('click', (e) => {
-       pushDatalayer('Click or Tap on new bullets', e.target.innerText)
-    })
-    document.querySelector('.btn-orange').addEventListener('click', (e) => {
-        pushDatalayer('Click on book a consultation call button')
-     })
-    if (window.matchMedia("(min-width: 992px)").matches) {
-        document.querySelector('.list').addEventListener('mouseover', (e) => {
+        document.querySelector('.btn-orange').addEventListener('click', (e) => {
+            if (window.matchMedia("(min-width: 992px)").matches) {
+                scrollToElement(document.querySelector('.col-lg-6 > .calendly-iframe'), e.target)
+            } else {
+                scrollToElement(document.querySelector('.calendly-iframe.d-lg-none'), e.target)
+            }
+        })
+        
+        //events
+        document.querySelector('.list').addEventListener('click', (e) => {
             if (e.target.closest('li')) {
-                pushDatalayer('Hover on new bullets', e.target.closest('li').innerText)
+                pushDatalayer('Click or Tap on new bullets', e.target.closest('li').innerText)
             }
         })
-        document.querySelector('.block_no-free').addEventListener('mouseover', (e) => {
-           pushDatalayer('Hover on new bullets', e.target.innerText)
+        document.querySelector('.block_no-free').addEventListener('click', (e) => {
+        pushDatalayer('Click or Tap on new bullets', e.target.innerText)
         })
-    }
+        document.querySelector('.btn-orange').addEventListener('click', (e) => {
+            pushDatalayer('Click on book a consultation call button')
+        })
+        if (window.matchMedia("(min-width: 992px)").matches) {
+            document.querySelector('.list').addEventListener('mouseover', (e) => {
+                if (e.target.closest('li')) {
+                    pushDatalayer('Hover on new bullets', e.target.closest('li').innerText)
+                }
+            })
+            document.querySelector('.block_no-free').addEventListener('mouseover', (e) => {
+            pushDatalayer('Hover on new bullets', e.target.innerText)
+            })
+        }
 
-    let viewedBullets = false, 
-        viewedSelect = false,
-        viewedBtn = false;
+        let viewedBullets = false, 
+            viewedSelect = false,
+            viewedBtn = false;
 
-    if ((isScrolledIntoView('.list') == true && viewedBullets == false) || (isScrolledIntoView('.select-section') == true && viewedSelect == false)) {
-        setTimeout(() => {
-            if (isScrolledIntoView('.list') == true && viewedBullets == false) {
-                viewedBullets = true;
-                pushDatalayer('Visibility new bullets')
-            }
-            if (isScrolledIntoView('.select-section') == true && viewedSelect == false) {
-                viewedSelect = true;
-                pushDatalayer('Visibility select only 1000 text')
-            }
-        }, 5000)
-    }
-    window.addEventListener('scroll', (e) => {
         if ((isScrolledIntoView('.list') == true && viewedBullets == false) || (isScrolledIntoView('.select-section') == true && viewedSelect == false)) {
             setTimeout(() => {
                 if (isScrolledIntoView('.list') == true && viewedBullets == false) {
@@ -307,10 +296,24 @@ window.onload = function() {
                 }
             }, 5000)
         }
-        if (isScrolledIntoView('.btn-orange') == true && viewedBtn == false) {
-            viewedBtn = true;
-            pushDatalayer('Visibility book a consultation call button')
-        }
-    })
-    pushDatalayer('loaded')
+        window.addEventListener('scroll', (e) => {
+            if ((isScrolledIntoView('.list') == true && viewedBullets == false) || (isScrolledIntoView('.select-section') == true && viewedSelect == false)) {
+                setTimeout(() => {
+                    if (isScrolledIntoView('.list') == true && viewedBullets == false) {
+                        viewedBullets = true;
+                        pushDatalayer('Visibility new bullets')
+                    }
+                    if (isScrolledIntoView('.select-section') == true && viewedSelect == false) {
+                        viewedSelect = true;
+                        pushDatalayer('Visibility select only 1000 text')
+                    }
+                }, 5000)
+            }
+            if (isScrolledIntoView('.btn-orange') == true && viewedBtn == false) {
+                viewedBtn = true;
+                pushDatalayer('Visibility book a consultation call button')
+            }
+        })
+        pushDatalayer('loaded')
+    }
 };
