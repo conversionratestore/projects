@@ -416,7 +416,9 @@ form.css-8atqhb .chakra-form__error-message {
             (window.location.pathname !== "/insurance/auto/car-insurance-estimate-calculator/" &&
               document.querySelector(".css-polczn")?.getBoundingClientRect().bottom <= positionVar) ||
             (window.location.pathname !== "/insurance/auto/car-insurance-estimate-calculator/" &&
-              document.querySelector(".css-1ohdh4c")?.getBoundingClientRect().bottom <= positionVar)
+              document.querySelector(".css-1ohdh4c")?.getBoundingClientRect().bottom <= positionVar) ||
+            (window.location.pathname !== "/insurance/auto/car-insurance-estimate-calculator/" &&
+              document.querySelector(".banner-container")?.getBoundingClientRect().bottom <= positionVar)
           ) {
             if (!document.querySelector(".sticky_banner").classList.contains("is_fixed_var")) {
               document.querySelector(".sticky_banner").classList.add("is_fixed_var")
