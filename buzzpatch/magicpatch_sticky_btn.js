@@ -1,5 +1,5 @@
 let startBtn = setInterval(() => {
-  if (document.querySelector("#mainContent")) {
+  if (document.querySelector("#mainContent") && getpack3SalePrice) {
     clearInterval(startBtn)
 
     //event
@@ -32,7 +32,7 @@ let startBtn = setInterval(() => {
             width: 100%;
         }
         header .js-heading .js-btn.btn-primary {
-          margin-top: -175px !important;
+          margin-top: -125px !important;
         }
         .sticky_wrapp{
             position: fixed;
@@ -53,6 +53,7 @@ let startBtn = setInterval(() => {
             background: #FF3C81;
             box-shadow: 0px 2px 4px rgba(12, 11, 11, 0.1), 0px 24px 60px rgba(12, 11, 11, 0.05), 0px 12px 24px rgba(12, 11, 11, 0.05);
             border-radius: 52px;
+            color: #FFFFFF;
         }
         .sticky_mob span:nth-child(1){
             font-family: 'Din Condensed', Roboto, sans-serif;
@@ -61,7 +62,6 @@ let startBtn = setInterval(() => {
             line-height: 120% !important;
             letter-spacing: 1.5px;
             text-transform: uppercase;
-            color: #FFFFFF;
             margin: 0 0 6px;
         }
         .sticky_mob span:nth-child(2){
@@ -69,12 +69,19 @@ let startBtn = setInterval(() => {
             font-weight: 400;
             font-size: 16px !important;
             line-height: 130% !important;
-            color: #FFFFFF;
             margin: 0;
         }
         a.sticky_mob:hover {
-            color: inherit;
             text-decoration: unset;
+            background-color: #0C0B0B;
+            box-shadow: none;
+            color: #515151;
+        }
+        a.sticky_mob:active{
+            text-decoration: unset;
+            background-color: #0C0B0B;
+            box-shadow: none;
+            color: #515151;
         }
     </style>
     `
@@ -124,4 +131,4 @@ let startBtn = setInterval(() => {
       }
     }, 100)
   }
-}, 100)
+}, 300)
