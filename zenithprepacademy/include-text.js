@@ -56,14 +56,39 @@ let html2 = `
     </div>
 </section>`;
 
+function pushDatalayer(action, label = '') {
+    console.log(action + ' : ' + label)
+    window.dataLayer = window.dataLayer || [];
+    dataLayer.push({
+        'event': 'event-to-ga',
+        'eventCategory': 'Exp: Include text',
+        'eventAction': action,
+        'eventLabel': label
+    });
+}
+
+//scroll to
+function scrollToElement(targetScroll, offsetTop) {
+    const scrollTarget = targetScroll;
+    const topOffset = offsetTop.offsetHeight;
+    const elementPosition = scrollTarget.getBoundingClientRect().top;
+    const offsetPosition = elementPosition - topOffset;
+
+    seamless.polyfill();
+    seamless.scrollBy(window, { behavior: "smooth", top: offsetPosition, left: 0 });
+}
+//comes into view
+function isScrolledIntoView(el) {
+    let rect = document.querySelector(el).getBoundingClientRect(),
+        elemTop = rect.top,
+        elemBottom = rect.bottom;
+
+    let isVisible = (elemTop >= 0) && (elemBottom <= window.innerHeight) ;
+
+    return isVisible;
+}
+
 window.onload = function() {
-
-    //add seamless scroll polyfill
-    let scriptScroll = document.createElement('script');
-    scriptScroll.src = 'https://cdn.jsdelivr.net/npm/seamless-scroll-polyfill@latest/lib/bundle.min.js';
-    scriptScroll.async = 'false';
-    document.head.appendChild(scriptScroll);
-
     //add style
     document.body.insertAdjacentHTML('afterbegin',`
     <style>
@@ -222,17 +247,6 @@ window.onload = function() {
     document.querySelector('.containerWrapper').insertAdjacentHTML('beforebegin', html1)
     document.querySelector('#section--75088').insertAdjacentHTML('afterend', html2)
 
-    //scroll to
-    function scrollToElement(targetScroll, offsetTop) {
-        const scrollTarget = targetScroll;
-        const topOffset = offsetTop.offsetHeight;
-        const elementPosition = scrollTarget.getBoundingClientRect().top;
-        const offsetPosition = elementPosition - topOffset;
-
-        seamless.polyfill();
-        seamless.scrollBy(window, { behavior: "smooth", top: offsetPosition, left: 0 });
-    }
-
     document.querySelector('.btn-orange').addEventListener('click', (e) => {
         if (window.matchMedia("(min-width: 992px)").matches) {
             scrollToElement(document.querySelector('.col-lg-6 > .calendly-iframe'), e.target)
@@ -240,4 +254,63 @@ window.onload = function() {
             scrollToElement(document.querySelector('.calendly-iframe.d-lg-none'), e.target)
         }
     })
+    
+    //events
+    document.querySelector('.list').addEventListener('click', (e) => {
+        if (e.target.closest('li')) {
+            pushDatalayer('Click or Tap on new bullets', e.target.closest('li').innerText)
+        }
+    })
+    document.querySelector('.block_no-free').addEventListener('click', (e) => {
+       pushDatalayer('Click or Tap on new bullets', e.target.innerText)
+    })
+    document.querySelector('.btn-orange').addEventListener('click', (e) => {
+        pushDatalayer('Click on book a consultation call button')
+     })
+    if (window.matchMedia("(min-width: 992px)").matches) {
+        document.querySelector('.list').addEventListener('mouseover', (e) => {
+            if (e.target.closest('li')) {
+                pushDatalayer('Hover on new bullets', e.target.closest('li').innerText)
+            }
+        })
+        document.querySelector('.block_no-free').addEventListener('mouseover', (e) => {
+           pushDatalayer('Hover on new bullets', e.target.innerText)
+        })
+    }
+
+    let viewedBullets = false, 
+        viewedSelect = false,
+        viewedBtn = false;
+
+    if ((isScrolledIntoView('.list') == true && viewedBullets == false) || (isScrolledIntoView('.select-section') == true && viewedSelect == false)) {
+        setTimeout(() => {
+            if (isScrolledIntoView('.list') == true && viewedBullets == false) {
+                viewedBullets = true;
+                pushDatalayer('Visibility new bullets')
+            }
+            if (isScrolledIntoView('.select-section') == true && viewedSelect == false) {
+                viewedSelect = true;
+                pushDatalayer('Visibility select only 1000 text')
+            }
+        }, 5000)
+    }
+    window.addEventListener('scroll', (e) => {
+        if ((isScrolledIntoView('.list') == true && viewedBullets == false) || (isScrolledIntoView('.select-section') == true && viewedSelect == false)) {
+            setTimeout(() => {
+                if (isScrolledIntoView('.list') == true && viewedBullets == false) {
+                    viewedBullets = true;
+                    pushDatalayer('Visibility new bullets')
+                }
+                if (isScrolledIntoView('.select-section') == true && viewedSelect == false) {
+                    viewedSelect = true;
+                    pushDatalayer('Visibility select only 1000 text')
+                }
+            }, 5000)
+        }
+        if (isScrolledIntoView('.btn-orange') == true && viewedBtn == false) {
+            viewedBtn = true;
+            pushDatalayer('Visibility book a consultation call button')
+        }
+    })
+    pushDatalayer('loaded')
 };
