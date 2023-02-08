@@ -647,7 +647,7 @@ let interval = setInterval(() => {
 
         //set price tour
         function resizeForm() {
-            if (document.querySelector('.price') != null && !document.querySelectorAll('.price')[document.querySelectorAll('.price').length - 1].innerHTML.trim().includes('private bookings')) {
+            if (document.querySelector('.price') != null && !document.querySelectorAll('.price')[document.querySelectorAll('.price').length - 1].innerHTML.trim().includes('private bookings') && document.querySelector('.plugin_right [style="background-color: #0a88ff; padding:10px;"]') == null) {
                 let price = document.querySelectorAll('.price')[document.querySelectorAll('.price').length - 1];
                 document.querySelector('.form_tour .pr').innerHTML = `${price.innerHTML}`
             } else {
