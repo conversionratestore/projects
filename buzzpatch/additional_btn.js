@@ -60,6 +60,20 @@ const style = /*html*/`
         footer .my_button img {
             filter: brightness(0) saturate(100%) invert(6%) sepia(10%) saturate(370%) hue-rotate(314deg) brightness(95%) contrast(103%);
         }
+        footer .my_button:hover {
+            background: rgba(239, 174, 21, 0.1) !important;
+            color: #0D0B0B !important;
+        }
+        footer .my_button:hover img{
+            filter: brightness(0) saturate(100%) invert(6%) sepia(10%) saturate(370%) hue-rotate(314deg) brightness(95%) contrast(103%);
+        }
+        footer .my_button:active {
+            background: rgba(239, 174, 21, 0.1) !important;
+            color: #EFAE15 !important;
+        }
+        footer .my_button:active img {
+            filter: brightness(0) saturate(100%) invert(72%) sepia(25%) saturate(2184%) hue-rotate(345deg) brightness(98%) contrast(84%);
+        }
 
         .my_btn_wrap {
             text-align:  center;
@@ -176,32 +190,30 @@ const sendEvent = (eventAction, eventLabel = '') => { // GO Event
     console.log(obj);
 }
 
-const checkVisibility = (el) => {
+const checkVisibilityAfterMs = (el, ms = 2000) => {
+    let timer;
+
     const config = {
         root: null,
-        threshold: 0.8
+        threshold: 1
     };
-
-    let timer
 
     const observer = new IntersectionObserver((entries) => {
         entries.forEach((entry) => {
             if (entry.isIntersecting) {
-                if (entry.isIntersecting) {
-                    timer = setTimeout(() => {
-                        let position = 'First screen'
+                timer = setTimeout(() => {
+                    let position = 'First screen'
 
-                        if (entry.target.closest('.my_btn_wrap')) {
-                            position = 'Footer'
-                        }
+                    if (entry.target.closest('.my_btn_wrap')) {
+                        position = 'Footer'
+                    }
 
-                        sendEvent(`Visibility on Become a reseller button`, position)
-                    }, 2000);
-                } else {
-                    clearTimeout(timer);
-                }
+                    sendEvent(`Visibility on Become a reseller button`, position)
+                }, ms);
+            } else {
+                clearTimeout(timer);
             }
-        })
+        });
     }, config);
 
     observer.observe(el);
@@ -245,7 +257,7 @@ const waitForBody = setInterval(async () => {
 
                 document.querySelectorAll('.my_button').forEach(btn => {
                     btn.addEventListener('click', (e) => clickBtnHandler(e.target))
-                    checkVisibility(btn)
+                    checkVisibilityAfterMs(btn)
                 })
             }
         }, intervalTimeout)
