@@ -149,7 +149,7 @@ const checkVisibility = (el) => {
     const observer = new IntersectionObserver((entries) => {
         entries.forEach((entry) => {
             if (entry.isIntersecting) {
-                if (entry.target.closest('my_btn_wrap')) {
+                if (entry.target.closest('.my_btn_wrap')) {
                     sendEvent('visible footer btn')
                 } else {
                     sendEvent('visible header btn')
