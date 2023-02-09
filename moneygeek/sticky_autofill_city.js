@@ -117,7 +117,7 @@ let stickyBanner = setInterval(() => {
               border-right: unset;
               padding: 0 0 0 12px;
               margin: 0;
-              max-width: 126px;
+              max-width: 105px;
           }
           .sticky_banner input:focus,
           .sticky_banner input:hover{
