@@ -18,6 +18,23 @@ const style = /*html*/`
             color: #FFFFFF !important;
             padding: 17px 42px;
             text-decoration: none !important;
+            opacity: 1 !important;
+        }
+
+        .my_button:hover{
+            background: #FFFFFF;
+            color: #E69B29 !important;
+        }
+        .my_button:active{
+            background: #FFFFFF;
+            color: #0D0B0B !important;
+        }
+
+        .my_button:hover img {
+            filter: brightness(0) saturate(100%) invert(72%) sepia(25%) saturate(2184%) hue-rotate(345deg) brightness(98%) contrast(84%);
+        }
+        .my_button:active img {
+            filter: brightness(0) saturate(100%) invert(6%) sepia(10%) saturate(370%) hue-rotate(314deg) brightness(95%) contrast(103%);
         }
 
         .js-heading.js-desktop .get-it {
@@ -31,7 +48,7 @@ const style = /*html*/`
             margin-left: 25px;
         }
 
-        .my_button svg {
+        .my_button img {
             margin: 0 0 6px 4px;
         }
 
@@ -40,9 +57,25 @@ const style = /*html*/`
             border-color: #EFAE15;
         }
 
+        footer .my_button img {
+            filter: brightness(0) saturate(100%) invert(6%) sepia(10%) saturate(370%) hue-rotate(314deg) brightness(95%) contrast(103%);
+        }
+
         .my_btn_wrap {
             text-align:  center;
             margin-bottom: 47px;
+        }
+
+        @media only screen and (max-width: 950px) and (min-width: 760px) {
+            .js-heading.js-desktop .get-it + .my_button {
+                margin-left: 15px;
+            }
+            header .my_button {
+                font-size: 20px;
+            }
+            header .my_button img {
+                display: none;
+            }
         }
     </style>
 `
@@ -68,6 +101,12 @@ const mobileStyle = /*html*/`
         max-width: 331px;
         position: relative;
         margin: 0 auto;
+        opacity: 1 !important;
+    }
+    
+    .my_button:active, .my_button:hover {
+        background: rgba(254, 194, 212, 0.95); 
+        color: #0D0B0B;
     }
 
     .my_button + .get-it {
@@ -83,14 +122,11 @@ const mobileStyle = /*html*/`
 `
 
 /* HTML elements */
-const btn = (svgColor) =>
+const btn = (isArrow) =>
     /*html*/`
     <a class="my_button" href="https://naturalpatch.com/pages/retail2023v1">Become a reseller
-        ${svgColor
-        ? `
-            <svg xmlns="http://www.w3.org/2000/svg" width="9" height="16" viewBox="0 0 9 16" fill="none">
-                <path d="M-6.17205e-07 1.88L5.56275 8L-8.21774e-08 14.12L1.71255 16L9 8L1.71255 -7.4858e-08L-6.17205e-07 1.88Z" fill="${svgColor}"/>
-            </svg>`
+        ${isArrow
+        ? '<img src="https://conversionratestore.github.io/projects/buzzpatch/img/btn_arrow_right.svg" alt="">'
         : ''
     }
     </a>`
@@ -130,7 +166,7 @@ const waitForEl = selector => {
 const sendEvent = (eventAction, eventLabel = '') => { // GO Event
     const obj = {
         event: "event-to-ga",
-        eventCategory: "Exp: Additional Button. " + device,
+        eventCategory: "Exp: Wholesale option. " + device,
         eventAction,
         eventLabel,
     }
@@ -146,27 +182,39 @@ const checkVisibility = (el) => {
         threshold: 0.8
     };
 
+    let timer
+
     const observer = new IntersectionObserver((entries) => {
         entries.forEach((entry) => {
             if (entry.isIntersecting) {
-                if (entry.target.closest('.my_btn_wrap')) {
-                    sendEvent('visible footer btn')
+                if (entry.isIntersecting) {
+                    timer = setTimeout(() => {
+                        let position = 'First screen'
+
+                        if (entry.target.closest('.my_btn_wrap')) {
+                            position = 'Footer'
+                        }
+
+                        sendEvent(`Visibility on Become a reseller button`, position)
+                    }, 2000);
                 } else {
-                    sendEvent('visible header btn')
+                    clearTimeout(timer);
                 }
             }
-        });
+        })
     }, config);
 
     observer.observe(el);
 }
 
 const clickBtnHandler = (target) => {
-    if (target.closest('my_btn_wrap')) {
-        sendEvent('click on footer btn')
-    } else {
-        sendEvent('click on header btn')
+    let position = 'First screen'
+
+    if (target.closest('.my_btn_wrap')) {
+        position = 'Footer'
     }
+
+    sendEvent('Click on Become a reseller button', position)
 }
 
 /** Parse HTML, CSS and run functions. */
@@ -210,6 +258,6 @@ const record = setInterval(() => {
     if (typeof clarity === 'function') {
         clearInterval(record)
 
-        clarity('set', `additional_button_${device.toLowerCase()}`, 'variant_1')
+        clarity('set', `exp_wholesale_option_${device.toLowerCase()} `, 'variant_1')
     }
 }, intervalTimeout)
