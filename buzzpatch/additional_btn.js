@@ -127,6 +127,19 @@ const waitForEl = selector => {
     })
 }
 
+const sendEvent = (eventAction, eventLabel = '') => { // GO Event
+    const obj = {
+        event: "event-to-ga",
+        eventCategory: "Exp: Additional Button. " + device,
+        eventAction,
+        eventLabel,
+    }
+
+    window.dataLayer = window.dataLayer || []
+    dataLayer.push(obj)
+    console.log(obj);
+}
+
 const checkVisibility = (el) => {
     const config = {
         root: null,
@@ -146,19 +159,6 @@ const checkVisibility = (el) => {
     }, config);
 
     observer.observe(el);
-}
-
-const sendEvent = (eventAction, eventLabel = '') => { // GO Event
-    const obj = {
-        event: "event-to-ga",
-        eventCategory: "Exp: Button. " + device,
-        eventAction,
-        eventLabel,
-    }
-
-    window.dataLayer = window.dataLayer || []
-    dataLayer.push(obj)
-    console.log(obj);
 }
 
 const clickBtnHandler = (target) => {
@@ -210,6 +210,6 @@ const record = setInterval(() => {
     if (typeof clarity === 'function') {
         clearInterval(record)
 
-        clarity('set', `button_${device.toLowerCase()}`, 'variant_1')
+        clarity('set', `additional_button_${device.toLowerCase()}`, 'variant_1')
     }
 }, intervalTimeout)
