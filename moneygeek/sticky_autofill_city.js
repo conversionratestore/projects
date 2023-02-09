@@ -358,33 +358,33 @@ form.css-8atqhb .chakra-form__error-message {
           if (document.querySelector("#sub-navigation")) {
             clearInterval(intNav)
             console.log(`for sticky`, document.querySelector("#sub-navigation"))
-            let s = setInterval(() => {
-              if (document.querySelector("#social-section")) {
-                clearInterval(s)
-                setTimeout(() => {
-                  if (window.innerWidth <= 1110) {
-                    document.querySelector("#sub-navigation").insertAdjacentHTML("beforeend", stickyBlock)
-                  } else {
-                    document.querySelector("#sub-navigation").insertAdjacentHTML("afterbegin", stickyBlock)
-                  }
-
-                  if (document.querySelector(".sticky_banner")) {
-                    const options = {
-                      root: null,
-                      threshold: 1,
-                    }
-
-                    let observerNewHeader = new IntersectionObserver((entries) => {
-                      if (!entries[0].isIntersecting) return
-                      pushDataLayer(`Sticky banner appearance`)
-                      observerNewHeader.disconnect()
-                    })
-
-                    observerNewHeader.observe(document.querySelector(".sticky_banner"), options)
-                  }
-                }, 1000)
+            // let s = setInterval(() => {
+            //   if (document.querySelector("#social-section")) {
+            // clearInterval(s)
+            setTimeout(() => {
+              if (window.innerWidth <= 1110) {
+                document.querySelector("#sub-navigation").insertAdjacentHTML("beforeend", stickyBlock)
+              } else {
+                document.querySelector("#sub-navigation").insertAdjacentHTML("afterbegin", stickyBlock)
               }
-            }, 10)
+
+              if (document.querySelector(".sticky_banner")) {
+                const options = {
+                  root: null,
+                  threshold: 1,
+                }
+
+                let observerNewHeader = new IntersectionObserver((entries) => {
+                  if (!entries[0].isIntersecting) return
+                  pushDataLayer(`Sticky banner appearance`)
+                  observerNewHeader.disconnect()
+                })
+
+                observerNewHeader.observe(document.querySelector(".sticky_banner"), options)
+              }
+            }, 1000)
+            //   }
+            // }, 10)
           }
         }, 100)
       }
