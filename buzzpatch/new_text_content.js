@@ -29,6 +29,7 @@ header .rev.trust-rating {
     color: #FFFFFF;
     margin-bottom: 8px !important;
     list-style-image: url(${dir}check_arrow_yellow_q.svg);
+    padding-left: 7px;
 }
 .js-mobile.header-shipping {
     position: relative;
@@ -154,6 +155,10 @@ body #flowers .flowers-bg img {
 }
 .white_wave {
     margin-top: -63px;
+}
+
+.js-mobile.effectiveness .container .row:first-child {
+    display: none;
 }
 </style>
 `
