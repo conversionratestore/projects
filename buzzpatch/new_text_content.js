@@ -169,10 +169,10 @@ const ul = /*html*/`
 
 const mySection = /*html*/`
 <section class="my_section">
-        <img class="gray_wave my_wave" src="${dir}/my_wave_gray.svg" alt="">
+        <img class="gray_wave my_wave" src="${dir}my_wave_gray.svg" alt="">
         <div class="container my_science">
             <div>
-                <img src="${dir}/microscope_blue.png" alt="">
+                <img src="${dir}microscope_blue.png" alt="">
                 <h3>The Science Behind<br>Fuss-Free, Easy Bedtime Routines:</h3>
             </div>
 
@@ -189,10 +189,10 @@ const mySection = /*html*/`
                 </li>
             </ol>
         </div>
-        <img class="my_wave white_wave" src="${dir}/my_wave_white.svg" alt="">
+        <img class="my_wave white_wave" src="${dir}my_wave_white.svg" alt="">
         <div class="container">
             <div>
-                <img src="${dir}/sleeptime_bed.png" alt="">
+                <img src="${dir}sleeptime_bed.png" alt="">
                 <h3>Helps promote an easier and faster bedtime routine:</h3>
             </div>
             <p>
