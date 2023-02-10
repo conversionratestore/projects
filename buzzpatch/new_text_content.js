@@ -99,7 +99,7 @@ body #flowers .flowers-bg {
 }
 
 body #flowers .flowers-bg img {
-    margin-bottom: -60px;
+    margin-bottom: -65px;
     height: 240px;
 }
 
