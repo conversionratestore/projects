@@ -293,11 +293,13 @@ const init = setInterval(() => {
 }, intervalTimeout)
 
 window.dataLayer = window.dataLayer || []
-dataLayer.push({
+const obj = {
     event: "event-to-ga",
     eventCategory: "Exp: Text content",
     eventAction: 'loaded'
-})
+}
+dataLayer.push(obj)
+console.log(obj);
 
 const record = setInterval(() => {
     if (typeof clarity === 'function') {
