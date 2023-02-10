@@ -66,11 +66,12 @@ header .js-heading .js-btn.btn-primary {
     content: '';
 position: absolute;
 right: 0;
-bottom: -30px;
+bottom: -50px;
 background-image: url(${dir}flowers_right.png);
 background-repeat: no-repeat;
-width: 117px;
-    height: 143px;
+background-size: cover;
+width: 120px;
+    height: 180px;
 
 }
 
@@ -98,6 +99,7 @@ body #flowers .flowers-bg {
 
 body #flowers .flowers-bg img {
     margin-bottom: -60px;
+    height: 240px;
 }
 
 .js-mobile.scientific {
