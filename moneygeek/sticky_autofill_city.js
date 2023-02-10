@@ -33,8 +33,12 @@ let stickyBanner = setInterval(() => {
     let style = /*html */ `
       <style>
           .chakra-text.css-1chw4q3,
-          #stickywidgetdiv{
+          #stickywidgetdiv,
+          #KAWIB_Zip_input{
             display: none !important;
+          }
+          .chakra-image.css-x3wokz + p{
+            margin: 5px 0 25px;
           }
           .css-15hxzhe{
             z-index: 1;
@@ -44,11 +48,9 @@ let stickyBanner = setInterval(() => {
           }
           .sticky_banner{
               background: #FFFFFF;
-              box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.26);
+              box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
               border-radius: 5px;
-              padding: 16px;
-              top: 12px;
-              left: 0;
+              padding: 1.5rem;
               width: 300px;
               display: none;
               z-index: 55;
@@ -56,47 +58,47 @@ let stickyBanner = setInterval(() => {
           }
           .sticky_banner.is_fixed_var{            
               display: block;
-              margin: -15px 0 25px;
-              position: relative;
+              position: fixed;
           }
           .btn_close_sticky{
               position: absolute;
-              right: 11px;
-              top: 11px;
+              right: 1.7rem;
+              top: 1.7rem;
+              width: 1.1em;
+              height: 1.1em;
               cursor: pointer;
           }
           .sticky_banner p{
               font-family: "Brandon Grotesque", sans-serif;
-              font-weight: 600;
-              font-size: 20px;
-              line-height: 22px;
+              font-weight: 700;
+              font-size: 22px;
+              line-height: 1.3;
               color: #555555;
-              margin-bottom: 16px;
-              max-width: 208px;
+              margin-bottom: 15px;
+              max-width: 225px;
           }
           .sticky_banner button{
-              margin: 8px 0 0;
+              margin: 0.75rem 0 0;
               display: flex;
               align-items: center;
               justify-content: center;
               background: #FFC65A;
               border-radius: 6px;
               width: 100%;
-              height: 48px;
+              height: 40px;
               font-weight: 600;
               font-size: 16px;
-              line-height: 19px;
               text-transform: uppercase;
-              color: #1e1b4d;
+              color: #000000;
           }
           .sticky_banner label{
               display: flex;
               justify-content: space-between;
               background: #FFFFFF;
-              border: 1px solid #D3D4D6;
+              border: 1px solid #e2e8f0;
               border-radius: 4px;
               align-items: center;
-              padding: 7px 12px;
+              padding: 7px 5px 7px 12px;
           }
           .sticky_banner label svg{
               flex: 1 0 16px;
@@ -110,12 +112,12 @@ let stickyBanner = setInterval(() => {
               font-size: 16px;
               line-height: 26px;
               color: #000000;
-              border-left: 1px solid #D3D4D6;
+              border-left: unset;
               border-bottom: unset;
               border-top: unset;
               border-radius: 0;
               border-right: unset;
-              padding: 0 0 0 12px;
+              padding: 0;
               margin: 0;
               max-width: 105px;
           }
@@ -162,125 +164,121 @@ let stickyBanner = setInterval(() => {
                   width: 100%;
                   top: -50px;
                   border-radius: unset;
-                  box-shadow: 0px 2px 0px #EFEFF1;
+                  border: unset;
+                  box-shadow: unset;
               }
               .sticky_banner p{
-                  max-width: 311px;
                   font-size: 24px;
-                  line-height: 28px;
-                  margin-bottom: 12px;
+                  max-width: 299px;
+                  margin-bottom: 10px;
+                  line-height: 30px;
               }
-              .sticky_banner button{
-                  margin-top: 10px;
+              .btn_close_sticky{
+                width: 1em;
+                height: 1em;
               }
               .sticky_banner label{
-                  padding: 8px 12px;
+                padding: 6px 5px 6px 12px;
               }
           }
 
           .css-amzw5g {
-  height: fit-content !important;
-}
-form.css-8atqhb .chakra-input__group,
-form.css-8atqhb button.chakra-button,
-form.css-8atqhb .chakra-form__error-message {
-  display: none !important;
-}
-.auto_location_block p {
-  font-family: "Brandon Grotesque", sans-serif;
-  font-weight: 600;
-  font-size: 16px;
-  line-height: 24px;
-  color: #ffffff;
-  margin-bottom: 4px;
-}
-.auto_location_block button {
-  margin: 12px 0 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: #ffc659;
-  border-radius: 6px;
-  width: 100%;
-  height: 56px;
-  font-weight: 600;
-  font-size: 16px;
-  line-height: 19px;
-  text-transform: uppercase;
-  color: #1e1b4d;
-}
-.auto_location_block label {
-  display: flex;
-  justify-content: space-between;
-  background: #ffffff;
-  border: 1px solid #d3d4d6;
-  border-radius: 4px;
-  align-items: center;
-  padding: 7px 12px;
-}
-.auto_location_block label svg {
-  width: 100%;
-  max-width: 16px;
-  margin-right: 12px;
-}
-.auto_location_block input {
-  font-style: normal;
-  font-weight: 400;
-  font-size: 16px;
-  line-height: 26px;
-  color: #555555;
-  border-left: 1px solid #d3d4d6;
-  border-bottom: unset;
-  border-top: unset;
-  border-radius: 0;
-  border-right: unset;
-  padding: 0 0 0 12px;
-  margin: 0;
-  max-width: 105px;
-  width: 100%;
-}
-.auto_location_block input:focus,
-.auto_location_block input:hover {
-  border-color: #d3d4d6;
-}
-.auto_location_block input::placeholder {
-  font-style: normal;
-  font-weight: 400;
-  font-size: 16px;
-  line-height: 26px;
-  color: #b2b2b2;
-}
-.auto_city {
-  font-family: 'Brandon Grotesque', 'Segoe UI','Roboto','Oxygen','Ubuntu','Cantarell','Fira Sans','Droid Sans','Helvetica Neue',sans-serif;
-  font-weight: 700;
-  font-size: 16px;
-  line-height: 26px;
-  text-align: right;
-  color: #555555;
-  width: max-content;
-  margin: 0 0 0 auto;
-}
-.zip_error {
-  display: none;
-  font-family: "Brandon Grotesque", sans-serif;
-  font-weight: 600;
-  font-size: 12px;
-  line-height: 16px;
-  color: #db3732;
-  margin: 0;
-}
-.zip_error.is_error {
-  display: block;
-}
-.auto_location_block label.is_error {
-  border-color: #db3732;
-}
+            height: fit-content !important;
+          }
+          form.css-8atqhb .chakra-input__group,
+          form.css-8atqhb button.chakra-button,
+          form.css-8atqhb .chakra-form__error-message {
+            display: none !important;
+          }
+          .auto_location_block p {
+            font-size: 95%;
+            color: #ffffff;
+            margin-bottom: unset;
+          }
+          .auto_location_block button {
+            margin: 12px 0 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #ffc659;
+            border-radius: 6px;
+            width: 100%;
+            height: 40px;
+            font-weight: 600;
+            font-size: 16px;
+            line-height: 19px;
+            text-transform: uppercase;
+            color: #1e1b4d;
+          }
+          .auto_location_block label {
+            display: flex;
+            justify-content: space-between;
+            background: #ffffff;
+            border: 1px solid #d3d4d6;
+            border-radius: 4px;
+            align-items: center;
+            padding: 7px 5px 7px 12px;
+          }
+          .auto_location_block label svg {
+            width: 100%;
+            max-width: 16px;
+            margin-right: 12px;
+          }
+          .auto_location_block input {
+            font-style: normal;
+            font-weight: 400;
+            font-size: 16px;
+            color: #000000;
+            border-left: unset;
+            border-bottom: unset;
+            border-top: unset;
+            border-radius: 0;
+            border-right: unset;
+            padding: 0;
+            margin: 0;
+            max-width: 105px;
+            width: 100%;
+          }
+          .auto_location_block input:focus,
+          .auto_location_block input:hover {
+            border-color: #d3d4d6;
+          }
+          .auto_location_block input::placeholder {
+            font-style: normal;
+            font-weight: 400;
+            font-size: 16px;
+            line-height: 26px;
+            color: #b2b2b2;
+          }
+          .auto_city {
+            font-weight: 700;
+            font-size: 95%;
+            text-align: right;
+            color: #000000;
+            width: max-content;
+            margin: 0 0 0 auto;
+          }
+          .zip_error {
+            display: none;
+            font-family: "Brandon Grotesque", sans-serif;
+            font-weight: 600;
+            font-size: 12px;
+            line-height: 16px;
+            color: #db3732;
+            margin: 0;
+          }
+          .zip_error.is_error {
+            display: block;
+          }
+          .auto_location_block label.is_error {
+            border-color: #db3732;
+          }
 
-@media (max-width: 1110px) {
-  .auto_location_block label {
-    padding: 8px 12px;
-  }
-}
+          @media (max-width: 1110px) {
+            .chakra-image.css-x3wokz + p {
+                margin: 16px 0 39px;
+            }
+          }
       </style>
       `
 
@@ -297,7 +295,7 @@ form.css-8atqhb .chakra-form__error-message {
               </clipPath>
               </defs>
           </svg>
-          <p>Compare rates and save on auto insurance today!</p>
+          <p>Compare Rates and Save On Auto Insurance</p>
           <label>
               <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <g clip-path="url(#clip0_82_998)">
