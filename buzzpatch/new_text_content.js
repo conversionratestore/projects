@@ -156,7 +156,9 @@ body #flowers .flowers-bg img {
 .white_wave {
     margin-top: -63px;
 }
-
+.js-mobile.effectiveness {
+    margin-top: -50px;
+}
 .js-mobile.effectiveness .container .row:first-child {
     display: none;
 }
