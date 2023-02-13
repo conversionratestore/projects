@@ -250,7 +250,7 @@ window.onload = function() {
 
     document.querySelector('.btn-orange').addEventListener('click', (e) => {
         if (window.matchMedia("(min-width: 992px)").matches) {
-            scrollToElement(document.querySelector('.col-lg-6 > .calendly-iframe'), e.target)
+            scrollToElement(document.querySelector('.offer-section .col-lg-6'), e.target)
         } else {
             scrollToElement(document.querySelector('.calendly-iframe.d-lg-none'), e.target)
         }
