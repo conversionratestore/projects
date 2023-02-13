@@ -452,6 +452,7 @@ let stickyBanner = setInterval(() => {
                     if (!e.target.getAttribute("data-test")) {
                       if (!e.target.classList.contains("on_click")) {
                         pushDataLayer("Sticky Compare Quoutes clicked")
+                        pushDataLayer("Compare quotes", "Stiky Form. Compare Rates and Save On Auto Insurance")
                       }
 
                       if (window.location.pathname === "/insurance/auto/how-much-car-insurance-do-you-need/") {
