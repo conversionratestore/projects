@@ -103,7 +103,6 @@ window.onload = function() {
             border: 2px solid #D2DFED;
             border-radius: 16px;
             margin-bottom: 10px;
-            height: fit-content;
         }
         #section-1852710000 {
             display: none;
@@ -209,7 +208,6 @@ window.onload = function() {
         .d-none {
             display: none;
         }
-
         @media (min-width: 992px) {
             .d-lg-none {
                 display: none;
@@ -289,23 +287,27 @@ window.onload = function() {
         viewedSelect = false,
         viewedBtn = false;
 
-    if (isScrolledIntoView('.list') == true || isScrolledIntoView('.select-section') == true) {
+    if ((isScrolledIntoView('.list') == true && viewedBullets == false) || (isScrolledIntoView('.select-section') == true && viewedSelect == false)) {
         setTimeout(() => {
-            if (isScrolledIntoView('.list') == true) {
+            if (isScrolledIntoView('.list') == true && viewedBullets == false) {
+                viewedBullets = true;
                 pushDatalayer('Visibility new bullets')
             }
-            if (isScrolledIntoView('.select-section') == true) {
+            if (isScrolledIntoView('.select-section') == true && viewedSelect == false) {
+                viewedSelect = true;
                 pushDatalayer('Visibility select only 1000 text')
             }
         }, 5000)
     }
     window.addEventListener('scroll', (e) => {
-        if (isScrolledIntoView('.list') == true || isScrolledIntoView('.select-section') == true) {
+        if ((isScrolledIntoView('.list') == true && viewedBullets == false) || (isScrolledIntoView('.select-section') == true && viewedSelect == false)) {
             setTimeout(() => {
-                if (isScrolledIntoView('.list') == true) {
+                if (isScrolledIntoView('.list') == true && viewedBullets == false) {
+                    viewedBullets = true;
                     pushDatalayer('Visibility new bullets')
                 }
-                if (isScrolledIntoView('.select-section') == true) {
+                if (isScrolledIntoView('.select-section') == true && viewedSelect == false) {
+                    viewedSelect = true;
                     pushDatalayer('Visibility select only 1000 text')
                 }
             }, 5000)
