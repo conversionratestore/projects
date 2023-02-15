@@ -27,8 +27,9 @@ let html1 = `
                     <img src="${dir}no-fee.svg">
                     <p>No prior commitments, no hidden fees</p>
                 </div>
-
-                <iframe src="https://calendly.com/d/g7j-x3x-pnr/meeting-w-college-admissions-counselor-zoom?hide_event_type_details=1&hide_gdpr_banner=1" width="100%" height="100%" class="calendly-iframe d-lg-none"></iframe>
+                
+                // <iframe src="https://calendly.com/d/g7j-x3x-pnr/meeting-w-college-admissions-counselor-zoom?hide_event_type_details=1&hide_gdpr_banner=1" width="100%" height="100%" class="calendly-iframe d-lg-none"></iframe>
+                <iframe src="https://calendly.com/d/g6c-sbg-ync/college-planning-audit-session-w-zenith-prep-academy?hide_event_type_details=1&hide_gdpr_banner=1&embed_domain=webinar.zenithprepacademy.com&embed_type=Inline" width="100%" height="100%" class="calendly-iframe d-lg-none"></iframe>
 
                 <div class="block_please-note">
                     <p><span class="fw-bold">Please note:</span> Due to high demand and limited availability, these meetings are first come, first serve and are not guaranteed throughout the year as we provide these meetings based on our Admissions Counselors’ schedule and bandwidth.</p>
@@ -36,7 +37,7 @@ let html1 = `
                 </div>  
             </div>
             <div class="col-lg-6">
-                <iframe src="https://calendly.com/d/g7j-x3x-pnr/meeting-w-college-admissions-counselor-zoom?hide_event_type_details=1&hide_gdpr_banner=1" width="100%" class="calendly-iframe d-lg-block d-none"></iframe>
+                <iframe src="https://calendly.com/d/g6c-sbg-ync/college-planning-audit-session-w-zenith-prep-academy?hide_event_type_details=1&hide_gdpr_banner=1&embed_domain=webinar.zenithprepacademy.com&embed_type=Inline" width="100%" height="100%" class="calendly-iframe d-lg-block d-none"></iframe>
             </div>
         </div>  
     </div>
@@ -248,6 +249,10 @@ window.onload = function() {
     document.querySelector('.containerWrapper').insertAdjacentHTML('beforebegin', html1)
     document.querySelector('#section--75088').insertAdjacentHTML('afterend', html2)
 
+    let srcIframe = document.querySelector('#section-1852710000 iframe').src + '&hide_event_type_details=1&hide_gdpr_banner=1';
+
+    document.querySelectorAll('.offer-section iframe').forEach(item => item.src = srcIframe)
+    
     document.querySelector('.btn-orange').addEventListener('click', (e) => {
         if (window.matchMedia("(min-width: 992px)").matches) {
             scrollToElement(document.querySelector('.offer-section .col-lg-6'), e.target)
