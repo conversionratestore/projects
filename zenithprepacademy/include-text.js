@@ -100,7 +100,7 @@ window.onload = function() {
         .calendly-iframe {
             width: 100%;
             height: fit-content;
-            min-height: 510px;
+            min-height: 605px;
             border: 2px solid #D2DFED;
             border-radius: 16px;
             margin-bottom: 10px;
