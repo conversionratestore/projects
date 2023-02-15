@@ -288,26 +288,26 @@ window.onload = function() {
         viewedSelect = false,
         viewedBtn = false;
 
-    if ((isScrolledIntoView('.list') == true && viewedBullets == false) || (isScrolledIntoView('.select-section') == true && viewedSelect == false)) {
+    if ((isScrolledIntoView('.list') == true && viewedBullets == false) || (isScrolledIntoView('.select-section h2') == true && viewedSelect == false)) {
         setTimeout(() => {
             if (isScrolledIntoView('.list') == true && viewedBullets == false) {
                 viewedBullets = true;
                 pushDatalayer('Visibility new bullets')
             }
-            if (isScrolledIntoView('.select-section') == true && viewedSelect == false) {
+            if (isScrolledIntoView('.select-section h2') == true && viewedSelect == false) {
                 viewedSelect = true;
                 pushDatalayer('Visibility select only 1000 text')
             }
         }, 5000)
     }
     window.addEventListener('scroll', (e) => {
-        if ((isScrolledIntoView('.list') == true && viewedBullets == false) || (isScrolledIntoView('.select-section') == true && viewedSelect == false)) {
+        if ((isScrolledIntoView('.list') == true && viewedBullets == false) || (isScrolledIntoView('.select-section h2') == true && viewedSelect == false)) {
             setTimeout(() => {
                 if (isScrolledIntoView('.list') == true && viewedBullets == false) {
                     viewedBullets = true;
                     pushDatalayer('Visibility new bullets')
                 }
-                if (isScrolledIntoView('.select-section') == true && viewedSelect == false) {
+                if (isScrolledIntoView('.select-section h2') == true && viewedSelect == false) {
                     viewedSelect = true;
                     pushDatalayer('Visibility select only 1000 text')
                 }
