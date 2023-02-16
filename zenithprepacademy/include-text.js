@@ -318,6 +318,9 @@ let start = setInterval(() => {
                 pushDatalayer('Visibility book a consultation call button')
             }
         })
+        if (document.querySelector('.exp-loading') != null) {
+            document.querySelector('.exp-loading').remove()
+        }
         pushDatalayer('loaded')
     }
 });
