@@ -9,15 +9,15 @@ let html1 = `
             <div class="col-lg-6">
                 <p class="fw-bold fs-18">A FREE 45-minute college admission strategy call where you’ll get:</p>
                 <ul class="list">
-                    <li class="d-flex">
+                    <li class="d-flex items-center">
                         <img src="${dir}search-user.svg">
                         <span>A detailed breakdown of your child's profile & suitability for our program</span>
                     </li>
-                    <li class="d-flex">
+                    <li class="d-flex items-center">
                         <img src="${dir}check-list.svg">
                         <span>A personalized year-by-year plan for your child to follow to gain entrance to their dream college</span>
                     </li>
-                    <li class="d-flex">
+                    <li class="d-flex items-center">
                         <img src="${dir}goal.svg">
                         <span>The milestones your child needs to achieve to become attractive to top universities</span>
                     </li>
@@ -247,6 +247,11 @@ let start = setInterval(() => {
                 .offer-section, .select-section {
                     padding: 30px 5px 34px;
                 } 
+            }
+            @media (max-width: 991px) {
+                .offer-section .container {
+                    max-width: 680px;
+                }
             }
         </style>`)
 
