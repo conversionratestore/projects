@@ -1,44 +1,44 @@
 let paymentCheckout = setInterval(() => {
-  if (document.querySelector(".payment_inform_box")) {
-    clearInterval(paymentCheckout)
+    if (document.querySelector(".payment_inform_box")) {
+        clearInterval(paymentCheckout)
 
-    let scriptPopper = document.createElement("script")
-    scriptPopper.src = "https://unpkg.com/popper.js@1"
-    scriptPopper.async = false
-    document.body.appendChild(scriptPopper)
+        let scriptPopper = document.createElement("script")
+        scriptPopper.src = "https://unpkg.com/popper.js@1"
+        scriptPopper.async = false
+        document.body.appendChild(scriptPopper)
 
-    let scriptTippy = document.createElement("script")
-    scriptTippy.src = "https://unpkg.com/tippy.js@5"
-    scriptTippy.async = false
-    document.body.appendChild(scriptTippy)
+        let scriptTippy = document.createElement("script")
+        scriptTippy.src = "https://unpkg.com/tippy.js@5"
+        scriptTippy.async = false
+        document.body.appendChild(scriptTippy)
 
-    let eventVar = "desktop"
+        let eventVar = "desktop"
 
-    if (window.innerWidth <= 768) {
-      eventVar = "mobile"
-    }
+        if (window.innerWidth <= 768) {
+            eventVar = "mobile"
+        }
 
-    function pushDataLayer(actionDataLayer, labelDataLayer) {
-      window.dataLayer = window.dataLayer || []
-      if (labelDataLayer) {
-        console.log(actionDataLayer + " : " + labelDataLayer)
-        dataLayer.push({
-          event: "event-to-ga",
-          eventCategory: `Exp:  ${eventVar}`,
-          eventAction: `${actionDataLayer}`,
-          eventLabel: `${labelDataLayer}`,
-        })
-      } else {
-        console.log(actionDataLayer)
-        dataLayer.push({
-          event: "event-to-ga",
-          eventCategory: `Exp:  ${eventVar}`,
-          eventAction: `${actionDataLayer}`,
-        })
-      }
-    }
+        function pushDataLayer(actionDataLayer, labelDataLayer) {
+            window.dataLayer = window.dataLayer || []
+            if (labelDataLayer) {
+                console.log(actionDataLayer + " : " + labelDataLayer)
+                dataLayer.push({
+                    event: "event-to-ga",
+                    eventCategory: `Exp: Installment payment ${eventVar}`,
+                    eventAction: `${actionDataLayer}`,
+                    eventLabel: `${labelDataLayer}`,
+                })
+            } else {
+                console.log(actionDataLayer)
+                dataLayer.push({
+                    event: "event-to-ga",
+                    eventCategory: `Exp: Installment payment ${eventVar}`,
+                    eventAction: `${actionDataLayer}`,
+                })
+            }
+        }
 
-    let paymentCheckoutStyle = /*html */ `
+        let paymentCheckoutStyle = /*html */ `
         <style>
             .payment_plan_wrapp.payment_plan .input_wrapper{
                 display: flex !important;
@@ -153,36 +153,36 @@ let paymentCheckout = setInterval(() => {
         </style>
         `
 
-    document.head.insertAdjacentHTML("beforeend", paymentCheckoutStyle)
+        document.head.insertAdjacentHTML("beforeend", paymentCheckoutStyle)
 
-    if (document.querySelector(".payment_inform_box .payment_plan_wrapp .input_wrapper > div.monthly_sec >input:checked") == null && !sessionStorage.getItem("data-checked")) {
-      document.querySelector(".payment_inform_box .payment_plan_wrapp .input_wrapper > div.monthly_sec >input").checked = true
-      sessionStorage.setItem("data-checked", "onetime_pay")
-    }
+        if (document.querySelector(".payment_inform_box .payment_plan_wrapp .input_wrapper > div.monthly_sec >input:checked") == null && !sessionStorage.getItem("data-checked")) {
+            document.querySelector(".payment_inform_box .payment_plan_wrapp .input_wrapper > div.monthly_sec >input").checked = true
+            sessionStorage.setItem("data-checked", "onetime_pay")
+        }
 
-    let price = +document.querySelector(".total_price").textContent.split("$")[1]
-    let oldPrice = +document.querySelector(".total_actual").textContent.split("$")[1]
-    let diffPrice = (oldPrice - price).toFixed(2)
-    let percent = Math.floor(100 - (price * 100) / oldPrice)
+        let price = +document.querySelector(".total_price").textContent.split("$")[1]
+        let oldPrice = +document.querySelector(".total_actual").textContent.split("$")[1]
+        let diffPrice = (oldPrice - price).toFixed(2)
+        let percent = Math.floor(100 - (price * 100) / oldPrice)
 
-    if (diffPrice) {
-      document
-        .querySelector(".discount_row")
-        .insertAdjacentHTML(
-          "beforebegin",
-          `<p class="saved_box">You just saved $<span class="diff_price">${diffPrice}</span> (<span class="percent_var">${percent}</span>% off)</p>`
-        )
-    }
+        if (diffPrice) {
+            document
+                .querySelector(".discount_row")
+                .insertAdjacentHTML(
+                    "beforebegin",
+                    `<p class="saved_box">You just saved $<span class="diff_price">${diffPrice}</span> (<span class="percent_var">${percent}</span>% off)</p>`
+                )
+        }
 
-    document.querySelector("#payment_plan_id").textContent = "Choose Payment plan"
-    document.querySelector(".payment_inform_box .payment_plan_wrapp .input_wrapper > div.monthly_sec label span:nth-child(2)").textContent = ""
-    document.querySelector(".payment_inform_box .payment_plan_wrapp .input_wrapper > div.onetime_sec label span:nth-child(2)").textContent = ""
+        document.querySelector("#payment_plan_id").textContent = "Choose Payment plan"
+        document.querySelector(".payment_inform_box .payment_plan_wrapp .input_wrapper > div.monthly_sec label span:nth-child(2)").textContent = ""
+        document.querySelector(".payment_inform_box .payment_plan_wrapp .input_wrapper > div.onetime_sec label span:nth-child(2)").textContent = ""
 
-    document.querySelector(".payment_inform_box .payment_plan_wrapp .input_wrapper > div.monthly_sec label span:nth-child(2)")?.insertAdjacentHTML(
-      "afterend",
-      `<div class="new_text_radio_btn"><span class="new_full_price">$${(oldPrice / 3).toFixed(2)}/month</span> <span class="new_your_price">$${(price / 3).toFixed(
-        0
-      )}</span><span class="accent_var">/month, 3 installments</span> <span class="text_var">(immediate access, three payments spread over 3 months) <span class="tooltip_box" data-newtolltip
+        document.querySelector(".payment_inform_box .payment_plan_wrapp .input_wrapper > div.monthly_sec label span:nth-child(2)")?.insertAdjacentHTML(
+            "afterend",
+            `<div class="new_text_radio_btn"><span class="new_full_price">$${(oldPrice / 3).toFixed(2)}/month</span> <span class="new_your_price">$${(price / 3).toFixed(
+                0
+            )}</span><span class="accent_var">/month, 3 installments</span> <span class="text_var">(immediate access, three payments spread over 3 months) <span class="tooltip_box" data-newtolltip
                 data-title="If you choose the 3 month installment payment plan when you purchase, your card will automatically be charged the same amount as your initial installment payment 30 days and 60 days after your initial installment payment.">
                 <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path fill-rule="evenodd" clip-rule="evenodd"
@@ -190,127 +190,197 @@ let paymentCheckout = setInterval(() => {
                     fill="#16377B" />
                 </svg>
             </span></span></div>`
-    )
+        )
 
-    document
-      .querySelector(".payment_inform_box .payment_plan_wrapp .input_wrapper > div.onetime_sec label span:nth-child(2)")
-      ?.insertAdjacentHTML(
-        "afterend",
-        `<div class="new_text_radio_btn onetime_var"><span class="new_full_price">$${oldPrice.toFixed(2)}</span> <span class="new_your_price">$${price.toFixed(
-          0
-        )}</span> <span>one-time payment</span></div>`
-      )
+        document
+            .querySelector(".payment_inform_box .payment_plan_wrapp .input_wrapper > div.onetime_sec label span:nth-child(2)")
+            ?.insertAdjacentHTML(
+                "afterend",
+                `<div class="new_text_radio_btn onetime_var"><span class="new_full_price">$${oldPrice.toFixed(2)}</span> <span class="new_your_price">$${price.toFixed(
+                    0
+                )}</span> <span>one-time payment</span></div>`
+            )
 
-    let tippyRun = setInterval(() => {
-      if (typeof tippy === "function" && document.querySelector("[data-newtolltip]")) {
-        clearInterval(tippyRun)
-        document.querySelectorAll("[data-title]").forEach((el) => {
-          if (innerWidth <= 768) {
-            tippy(el, {
-              content: el.getAttribute("data-title"),
-              trigger: "click",
-              placement: "top",
-              appendTo: function () {
-                return el.parentElement
-              },
-              onTrigger(inst, e) {
-                e.stopPropagation()
-                e.preventDefault()
-                pushDataLayer(`Clicks on hints '3 monthly payments'`)
-              },
-              onShown(e) {
-                pushDataLayer(`Shown '3 monthly payments'`)
-              },
-            })
-          } else {
-            tippy(el, {
-              content: el.getAttribute("data-title"),
-              placement: "bottom-end",
-              //   trigger: "click",
-              appendTo: function () {
-                return el
-              },
-              onTrigger(e) {
-                pushDataLayer(`Hover on hints '3 monthly payments'`)
-              },
-              onShown(e) {
-                pushDataLayer(`Shown '3 monthly payments'`)
-              },
-            })
-          }
-        })
-      }
-    }, 500)
-
-    if (window.innerWidth <= 768) {
-      if ($("#submit").is(":visible")) {
-        getLocalStor()
-      }
-
-      if (document.querySelector(".check_step")) {
-        document.querySelectorAll(".check_step ul li").forEach((e) => {
-          e.addEventListener("click", (el) => {
-            document.querySelector(".payment_var")?.remove()
-          })
-        })
-      }
-
-      arr = []
-      document.querySelectorAll(".btn_continue")?.forEach((el) => {
-        el.addEventListener("click", (e) => {
-          if (e.target.getAttribute("data-count") === "2") {
-            if ($("#submit").is(":visible")) {
-              getLocalStor()
+        let tippyRun = setInterval(() => {
+            if (typeof tippy === "function" && document.querySelector("[data-newtolltip]")) {
+                clearInterval(tippyRun)
+                document.querySelectorAll("[data-title]").forEach((el) => {
+                    if (innerWidth <= 768) {
+                        tippy(el, {
+                            content: el.getAttribute("data-title"),
+                            trigger: "click",
+                            placement: "top",
+                            appendTo: function () {
+                                return el.parentElement
+                            },
+                            onTrigger(inst, e) {
+                                e.stopPropagation()
+                                e.preventDefault()
+                                pushDataLayer(`Payment inform tooltip  tap`)
+                            },
+                            onShown(e) {
+                                pushDataLayer(`Shown 'Payment inform tooltip'`)
+                            },
+                        })
+                    } else {
+                        tippy(el, {
+                            content: el.getAttribute("data-title"),
+                            placement: "bottom-end",
+                            //   trigger: "click",
+                            appendTo: function () {
+                                return el
+                            },
+                            onTrigger(e) {
+                                pushDataLayer(`Payment inform tooltip hover`)
+                            },
+                            onShown(e) {
+                                pushDataLayer(`Shown 'Payment inform tooltip'`)
+                            },
+                        })
+                    }
+                })
             }
-          }
-        })
-      })
+        }, 500)
 
-      function getLocalStor() {
-        document.querySelector(".payment_var")?.remove()
-        let text = ""
-        let textContent = ""
-        if (document.querySelector(".payment_inform_box .payment_plan_wrapp .input_wrapper>div>input:checked+label[for='monthly_pay']")) {
-          text = "monthly_pay"
-        }
-        if (document.querySelector(".payment_inform_box .payment_plan_wrapp .input_wrapper>div>input:checked+label[for='onetime_pay']")) {
-          text = "onetime_pay"
-        }
-        if (sessionStorage.getItem("data-payment")) {
-          sessionStorage.removeItem("data-payment")
-          sessionStorage.setItem("data-payment", text)
-        } else {
-          sessionStorage.setItem("data-payment", text)
-        }
+        if (window.innerWidth <= 768) {
+            if ($("#submit").is(":visible")) {
+                getLocalStor()
+            }
 
-        if (sessionStorage.getItem("data-payment").includes("onetime_pay")) {
-          textContent = `<b>$${price.toFixed(0)} one-time payment</b>`
-        } else {
-          textContent = `<b>$${(price / 3).toFixed(0)}/month for 3 months</b><br>(immediate access today, pay the rest later)`
-        }
+            if (document.querySelector(".check_step")) {
+                document.querySelectorAll(".check_step ul li").forEach((e) => {
+                    e.addEventListener("click", (el) => {
+                        document.querySelector(".payment_var")?.remove()
+                    })
+                })
+            }
 
-        document.querySelector("body .payment_inform_box").insertAdjacentHTML("afterend", `<div class="payment_var"><p>${textContent}</p></div>`)
+            arr = []
+            document.querySelectorAll(".btn_continue")?.forEach((el) => {
+                el.addEventListener("click", (e) => {
+                    if (e.target.getAttribute("data-count") === "2") {
+                        if ($("#submit").is(":visible")) {
+                            getLocalStor()
+                        }
+                    }
+                })
+            })
 
-        if (document.querySelector(".payment_var")) {
-          let obs = new IntersectionObserver(visibility, {
-            threshold: 1,
-          })
-
-          obs.observe(document.querySelector(".payment_var"))
-
-          function visibility(entries) {
-            entries.forEach((i) => {
-              if (i.isIntersecting) {
-                if (i.target.classList.contains("payment_var")) {
-                  pushDataLayer("Visibility info regarding the payment plan")
+            function getLocalStor() {
+                document.querySelector(".payment_var")?.remove()
+                let class_var = ""
+                let text = ""
+                let textContent = ""
+                if (document.querySelector(".payment_inform_box .payment_plan_wrapp .input_wrapper>div>input:checked+label[for='monthly_pay']")) {
+                    text = "monthly_pay"
+                }
+                if (document.querySelector(".payment_inform_box .payment_plan_wrapp .input_wrapper>div>input:checked+label[for='onetime_pay']")) {
+                    text = "onetime_pay"
+                }
+                if (sessionStorage.getItem("data-payment")) {
+                    sessionStorage.removeItem("data-payment")
+                    sessionStorage.setItem("data-payment", text)
+                } else {
+                    sessionStorage.setItem("data-payment", text)
                 }
 
-                obs.unobserve(i.target)
-              }
-            })
-          }
+                if (sessionStorage.getItem("data-payment").includes("onetime_pay")) {
+                    textContent = `<b>$${price.toFixed(0)} one-time payment</b>`
+                    class_var = 'onetime_pay_var'
+                } else {
+                    textContent = `<b>$${(price / 3).toFixed(0)}/month for 3 months</b><br>(immediate access today, pay the rest later)`
+                    class_var = 'monthly_pay_var'
+                }
+
+                document.querySelector("body .payment_inform_box").insertAdjacentHTML("afterend", `<div class="payment_var"><p class=${class_var}>${textContent}</p></div>`)
+
+                // visibility
+                if (document.querySelector('.payment_var')) {
+                    let obs = new IntersectionObserver(visibility1, {
+                        threshold: 1,
+                    })
+
+                    let int = setInterval(() => {
+                        if (document.querySelector(".onetime_pay_var")) {
+                            clearInterval(int)
+                            obs.observe(document.querySelector(".onetime_pay_var"))
+                        }
+                    }, 100)
+
+                    let int2 = setInterval(() => {
+                        if (document.querySelector(".monthly_pay_var")) {
+                            clearInterval(int2)
+                            obs.observe(document.querySelector(".monthly_pay_var"))
+                        }
+                    }, 100)
+
+                    function visibility1(entries) {
+                        entries.forEach((i) => {
+                            if (i.isIntersecting) {
+                                if (i.target.classList.contains("onetime_pay_var") && sessionStorage.getItem("data-plan") !== 'onetime_pay') {
+                                    pushDataLayer("Selected plan visibility", `${price.toFixed(0)}`)
+                                    sessionStorage.setItem("data-plan", 'onetime_pay')
+                                }
+
+                                if (i.target.classList.contains("monthly_pay_var") && sessionStorage.getItem("data-plan") !== 'monthly_pay') {
+                                    pushDataLayer("Selected plan visibility", `${(price / 3).toFixed(0)}`)
+                                    sessionStorage.setItem("data-plan", 'monthly_pay')
+                                }
+
+                                obs.unobserve(i.target)
+                            }
+                        })
+                    }
+                }
+            }
         }
-      }
+
+        // Choose payment plan Click
+        document.querySelectorAll(".payment_inform_box .payment_plan_wrapp .input_wrapper>div>label").forEach(el => {
+            el.addEventListener('click', (e) => {
+                if (e.currentTarget.getAttribute("for") === "onetime_pay") {
+                    pushDataLayer('Choose payment plan Click', `${price.toFixed(0)}`)
+                } else {
+                    pushDataLayer('Choose payment plan Click', `${(price / 3).toFixed(0)}`)
+                }
+            })
+        })
+
+        // visibility
+        let obs = new IntersectionObserver(visibility, {
+            threshold: 1,
+        })
+
+        obs.observe(document.querySelector(".payment_inform_box .payment_plan_wrapp .input_wrapper>div>label[for='onetime_pay']"))
+        obs.observe(document.querySelector(".payment_inform_box .payment_plan_wrapp .input_wrapper>div>label[for='monthly_pay']"))
+        obs.observe(document.querySelector(".saved_box"))
+
+        function visibility(entries) {
+            entries.forEach((i) => {
+                if (i.isIntersecting) {
+                    if (i.target.classList.contains("saved_box")) {
+                        pushDataLayer("Visibility info 'You just saved..'")
+                    }
+                    if (i.target.getAttribute("for") === "onetime_pay") {
+                        pushDataLayer("Choose payment plan visibility", `${price.toFixed(0)}`)
+                    }
+                    if (i.target.getAttribute("for") === "monthly_pay") {
+                        pushDataLayer("Choose payment plan visibility", `${(price / 3).toFixed(0)}`)
+                    }
+
+                    obs.unobserve(i.target)
+                }
+            })
+        }
+
+
+        pushDataLayer("loaded")
+        const record = setInterval(() => {
+            if (typeof clarity === "function") {
+                clearInterval(record)
+                clarity("set", "installment_payment", "variant_1")
+            }
+        }, 200)
+        document.querySelector(".exp")?.remove()
     }
-  }
 }, 500)
