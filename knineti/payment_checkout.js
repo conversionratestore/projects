@@ -111,6 +111,14 @@ let paymentCheckout = setInterval(() => {
                 color: #FFFFFF !important;
                 text-transform: unset !important;
             }
+            @media ( min-width: 1111px ) and ( max-width: 1137px ) {
+                .payment_plan_wrapp.payment_plan {
+                    margin-top: -105px;
+                }
+                .new_text_radio_btn{
+                    font-size: 13px;
+                }
+            }
             @media (max-width: 1066px) {
                 .text_var{
                     display: unset;
