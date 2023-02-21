@@ -111,7 +111,7 @@ let paymentCheckout = setInterval(() => {
                 color: #FFFFFF !important;
                 text-transform: unset !important;
             }
-            @media ( min-width: 1111px ) and ( max-width: 1150px ) {
+            @media only screen and ( min-width: 1111px ) and ( max-width: 1150px ) {
                 .payment_plan_wrapp.payment_plan {
                     margin-top: -105px;
                 }
@@ -124,7 +124,7 @@ let paymentCheckout = setInterval(() => {
                     display: unset;
                 }
             }
-            @media ( min-width: 863px ) and ( max-width: 940px ) {
+            @media only screen and ( min-width: 863px ) and ( max-width: 940px ) {
                 .monthly_sec .new_text_radio_btn .tippy-tooltip{
                     left: 28px;
                 }
