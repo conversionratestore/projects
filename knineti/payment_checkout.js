@@ -182,7 +182,7 @@ let paymentCheckout = setInterval(() => {
             "afterend",
             `<div class="new_text_radio_btn"><span class="new_full_price">$${(oldPrice / 3).toFixed(2)}/month</span> <span class="new_your_price">$${(price / 3).toFixed(
                 0
-            )}</span><span class="accent_var">/month, 3 installments</span> <span class="text_var">(immediate access, three payments spread over 3 months) <span class="tooltip_box" data-newtolltip
+            )}</span><span class="accent_var">/month, 3 installments</span> <span class="text_var">(immediate access; payments taken monthly in 3 installments) <span class="tooltip_box" data-newtolltip
                 data-title="If you choose the 3 month installment payment plan when you purchase, your card will automatically be charged the same amount as your initial installment payment 30 days and 60 days after your initial installment payment.">
                 <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path fill-rule="evenodd" clip-rule="evenodd"
@@ -288,7 +288,7 @@ let paymentCheckout = setInterval(() => {
                     textContent = `<b>$${price.toFixed(0)} one-time payment</b>`
                     class_var = 'onetime_pay_var'
                 } else {
-                    textContent = `<b>$${(price / 3).toFixed(0)}/month for 3 months</b><br>(immediate access today, pay the rest later)`
+                    textContent = `<b>$${(price / 3).toFixed(0)}/month, 3 installments</b><br>(immediate access today, pay the rest later)`
                     class_var = 'monthly_pay_var'
                 }
 
