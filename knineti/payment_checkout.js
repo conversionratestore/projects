@@ -296,7 +296,7 @@ let paymentCheckout = setInterval(() => {
                     class_var = 'monthly_pay_var'
                 }
 
-                document.querySelector("body .payment_inform_box").insertAdjacentHTML("afterend", `<div class="payment_var"><p class=${class_var}>${textContent}</p></div>`)
+                document.querySelector("body .submit_btn")?.insertAdjacentHTML("beforebegin", `<div class="payment_var"><p class=${class_var}>${textContent}</p></div>`)
 
                 // visibility
                 if (document.querySelector('.payment_var')) {
