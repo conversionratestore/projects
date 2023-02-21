@@ -111,9 +111,14 @@ let paymentCheckout = setInterval(() => {
                 color: #FFFFFF !important;
                 text-transform: unset !important;
             }
+            @media (min-width: 1150px)   {
+                .payment_plan_wrapp.payment_plan{
+                    margin-top: -85px;
+                }
+             }
             @media only screen and ( min-width: 1111px ) and ( max-width: 1150px ) {
                 .payment_plan_wrapp.payment_plan {
-                    margin-top: -105px;
+                    margin-top: -34px;
                 }
                 .new_text_radio_btn{
                     font-size: 13px;
@@ -132,9 +137,14 @@ let paymentCheckout = setInterval(() => {
                     left: 344px !important;
                 }
             }
-             @media only screen and ( min-width: 768px ) and ( max-width: 1111px )  {
+             @media only screen and ( min-width: 988px ) and ( max-width: 1111px )  {
                 .payment_plan_wrapp.payment_plan{
                     margin-top: -85px;
+                }
+             }
+             @media only screen and ( min-width: 786px ) and ( max-width: 988px )  {
+                .payment_plan_wrapp.payment_plan{
+                    margin-top: -185px;
                 }
              }
             @media (max-width: 768px) {
