@@ -132,7 +132,7 @@ let paymentCheckout = setInterval(() => {
                     left: 344px !important;
                 }
             }
-             @media (min-width: 768px) {
+             @media only screen and ( min-width: 768px ) and ( max-width: 1111px )  {
                 .payment_plan_wrapp.payment_plan{
                     margin-top: -85px;
                 }
