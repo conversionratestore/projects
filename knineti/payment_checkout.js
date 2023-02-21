@@ -139,7 +139,13 @@ let paymentCheckout = setInterval(() => {
                     top: -59px !important;
                 }
             }
-            @media (max-width: 392px) {
+            @media (max-width: 400px) {
+                .monthly_sec .new_text_radio_btn .tippy-tooltip{
+                    left: 30px !important;
+                    top: -77px !important;
+                }
+            }
+            @media (max-width: 391px) {
                 .monthly_sec .new_text_radio_btn .tippy-tooltip{
                     left: 23px !important;
                     top: -77px !important;
