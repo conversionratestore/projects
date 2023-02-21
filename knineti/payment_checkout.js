@@ -40,6 +40,9 @@ let paymentCheckout = setInterval(() => {
 
         let paymentCheckoutStyle = /*html */ `
         <style>
+            .payment_inform_box .input_wrapper > div label .radio_style + span{
+                display: none !important;
+            }
             .payment_plan_wrapp.payment_plan .input_wrapper{
                 display: flex !important;
                 flex-direction: column-reverse;
@@ -145,6 +148,7 @@ let paymentCheckout = setInterval(() => {
             @media (max-width: 320px) {
                 .monthly_sec .new_text_radio_btn .tippy-tooltip{
                     left: -17px !important;
+                    font-size: 13px;
                 }
                 .payment_var p{
                     font-size: 13px;
