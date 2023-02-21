@@ -111,7 +111,7 @@ let paymentCheckout = setInterval(() => {
                 color: #FFFFFF !important;
                 text-transform: unset !important;
             }
-            @media ( min-width: 1111px ) and ( max-width: 1137px ) {
+            @media ( min-width: 1111px ) and ( max-width: 1150px ) {
                 .payment_plan_wrapp.payment_plan {
                     margin-top: -105px;
                 }
