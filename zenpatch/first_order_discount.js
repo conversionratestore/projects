@@ -97,13 +97,19 @@ let startFunkPopup = setInterval(() => {
             height: 24px;
             outline: none;
             cursor: pointer;
-            background: url(https://conversionratestore.github.io/projects/zenpatch/img/btn_close.svg) left 4.5px top 4.3px no-repeat, rgba(55, 63, 71, 0.7);
-            background-size: initial;
+            background: rgba(55, 63, 71, 0.7);
             display: flex;
             align-items: center;
             justify-content: center;
             border-radius: 50%;
             z-index: 1111;
+        }
+        .overlay_popup .container_popup > .btn_close span{
+          background: url(https://conversionratestore.github.io/projects/zenpatch/img/btn_close.svg) center center no-repeat;
+          background-size: contain;
+          width: 14px;
+          height: 14px;
+          display: block;
         }
         .content_popup{
             background: #FFFFFF;
@@ -444,6 +450,7 @@ let startFunkPopup = setInterval(() => {
                 <div class="overlay_popup is_hidden">
                     <div class="container_popup">
                         <div class="btn_close" data-close="Close extra 10 percent popup">
+                          <span></span>
                         </div>
                     </div>
                 </div>
