@@ -229,7 +229,7 @@ color: #1F1F1F;
     display: flex;
     align-items: center;
     cursor: pointer;
-    top: 0;
+    top: -40px;
     left: 0;
     font-weight: 700;
     font-size: 14px;
