@@ -161,7 +161,7 @@ let paymentCheckout = setInterval(() => {
             }
             @media (max-width: 496px) {
                 .monthly_sec .new_text_radio_btn .tippy-tooltip{
-                    left: -24px !important;
+                    left: -40px !important;
                     top: -59px !important;
                 }
             }
@@ -173,13 +173,21 @@ let paymentCheckout = setInterval(() => {
             }
             @media (max-width: 391px) {
                 .monthly_sec .new_text_radio_btn .tippy-tooltip{
-                    left: 23px !important;
+                    left: 30px !important;
                     top: -77px !important;
+                }
+            }
+            @media (max-width: 380px) {
+                .monthly_sec .new_text_radio_btn .tippy-tooltip{
+                    left: 23px !important;
                 }
             }
             @media (max-width: 320px) {
                 .monthly_sec .new_text_radio_btn .tippy-tooltip{
-                    left: -17px !important;
+                    left: -10px !important;
+                    font-size: 13px;
+                }
+                .new_text_radio_btn{
                     font-size: 13px;
                 }
                 .payment_var p{
