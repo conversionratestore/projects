@@ -251,13 +251,12 @@ let style = `
     }
     .sticky-btn p {
         line-height: 21px;
+        font-weight: 500;
+        font-size: 14px;
     }
     .select-pack {
         width: 135px;
         position: relative;
-        font-weight: 500;
-        font-size: 14px;
-        line-height: 21px;
         color: #1E415C;
         font-family: 'Rubik', sans-serif;
     }
@@ -285,6 +284,9 @@ let style = `
         transform: translateY(100%);
         opacity: 0;
         transition: all 0.3s ease;
+    }
+    .select-drop p {
+        font-weight: 400;
     }
     .select-pack.active .select-drop {
         transform: translateY(0);
@@ -368,6 +370,17 @@ let style = `
     }
     .items-center {
         align-items: center!important;
+    }
+    @media screen and (max-width: 350px) {
+        .svg-strips {
+            margin-right: 14px;
+            width: 42px;
+            height: 35px;
+        }
+        .btn-cart {
+            width: 41px;
+            height: 41px;
+        }
     }
 </style>`;
 
@@ -587,14 +600,6 @@ window.onload = () => {
                     <p>${objItems[i].week} week pack</p>
                     <p>$${(objItems[i].price / objItems[i].week).toFixed(2)} / week</p>
             </div>`)
-            //click on current select (sticky button)
-            document.querySelector('.select-current').addEventListener('click', () => {
-                document.querySelector('.select-pack').classList.toggle('active');
-            })
-            //click on cart button (sticky button)
-            document.querySelector('.btn-cart').addEventListener('click', () => {
-                document.querySelector(`.popup_btn`).click();
-            })
         }
         document.querySelector('.aside_parent').insertAdjacentHTML('afterbegin', item)
     }
@@ -636,7 +641,6 @@ window.onload = () => {
             document.querySelector(`.${device} [data-variant="${target.dataset.variant}"]:not(.items-center)`).click();
         } 
         if (target.closest('.slide_in_pdp')) {
-            // document.querySelector(`.aside_wrapper .aside_product_item[data-variant="${target.dataset.variant}"]`).click();
             document.querySelector(`.aside_wrapper .aside_product_item.active`).classList.remove('active')
             document.querySelector(`.aside_wrapper .aside_product_item[data-variant="${target.dataset.variant}"]`).classList.add('active')
             document.querySelector('.footer-card .l-through').innerHTML = target.querySelector('.l-through') != null ? target.querySelector('.l-through').innerHTML : '';
@@ -713,8 +717,24 @@ window.onload = () => {
             })
             addActiveItem(document.querySelector('.select-drop > div.active'))
         }
+
+        //click on current select (sticky button)
+        document.querySelector('.select-current').addEventListener('click', () => {
+            document.querySelector('.select-pack').classList.toggle('active');
+        })
+        //click on cart button (sticky button)
+        document.querySelector('.btn-cart').addEventListener('click', () => {
+            document.querySelector(`.popup_btn`).click();
+        })
+        //click on option dropdown (sticky button)
         document.querySelectorAll('.select-drop > div').forEach(item => {
             item.addEventListener('click', (e) => addActiveItem(item))
+        })
+
+        document.addEventListener('click', (e) => {
+            if (!e.target.closest('.select-pack') && document.querySelector('.select-pack.active') != null) {
+                document.querySelector('.select-pack').classList.remove('active');
+            }
         })
 
     }
