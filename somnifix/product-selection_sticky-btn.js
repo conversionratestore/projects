@@ -332,13 +332,7 @@ let style = `
     }
     .get-now .sale {
         font-weight: 400;
-        font-size: 10px;
-        line-height: 18px;
-        color: #FFFFFF;
-        background: #F0752D;
-        border-radius: 5px;     
-        padding: 0 6px;
-        margin-left: 8px;
+        margin: 0 0 0 8px;
     }
     .get-now > div p {
         font-weight: 400;
@@ -508,7 +502,7 @@ let viewed2 = false;
 
 let stateVariantId = sessionStorage.getItem('storedVariantId') != null ? JSON.parse(sessionStorage.getItem('storedVariantId')) : '';
 let storedVariantId = stateVariantId;
-window.onload = () => {
+// window.onload = () => {
   
     document.querySelectorAll('.aside_product_item').forEach(item => {
         item.style.display = 'none!important';
@@ -762,7 +756,7 @@ window.onload = () => {
         }
     })
     pushDataLayer('loaded')
-};
+// };
 
 let observStorage = setInterval(() => {
     if (storedVariantId != '' && (stateVariantId == '' || storedVariantId[0]['variantId'] != stateVariantId[0]['variantId'] )) {
@@ -771,7 +765,7 @@ let observStorage = setInterval(() => {
         if (storedVariantId[0]['parent'] == 'parent-items') {
             addActiveItem(document.querySelector(`.aside_parent .swatchCustom__item_new[data-variant="${storedVariantId[0]['variantId']}"]`))
             addActiveItem(document.querySelector(`.select-drop > div[data-variant="${storedVariantId[0]['variantId']}"]`))
-        } else if (storedVariantId[0]['parent'] == 'aside_parent') {
+        } else if (storedVariantId[0]['parent'] == 'aside_parent' && href.includes('/products/')) {
             addActiveItem(document.querySelector(`.parent-items .swatchCustom__item_new[data-variant="${storedVariantId[0]['variantId']}"]`))
             addActiveItem(document.querySelector(`.select-drop > div[data-variant="${storedVariantId[0]['variantId']}"]`))
         } else if (storedVariantId[0]['parent'] == 'select-drop') {
@@ -786,5 +780,5 @@ let isClarity = setTimeout(function(){
     if(typeof clarity === 'function'){
         clearInterval(isClarity)
         clarity("set", "new_product_prices", "variant_1");
-}
+    }
 }, 100)
