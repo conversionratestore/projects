@@ -418,6 +418,7 @@ let paymentCheckout = setInterval(() => {
     }
 
     pushDataLayer("loaded")
+    window._mfq.push(["setVariable", "installment_payment", "variant_1"])
     const record = setInterval(() => {
       if (typeof clarity === "function") {
         clearInterval(record)
