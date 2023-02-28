@@ -166,10 +166,14 @@ function addDays(frDay, lstDay) {
         result.push([dayNumber + ' ' + month])
     }
 
+    // console.log('frDay',frDay);
+
     if (lstDay !== null) {
         return `${result[0]} - ${result[1]}`
-    } else {
+    } else if (frDay === 20) {
         return `up to ${result[0]}`
+    } else {
+        return `${result[0]}`
     }
 }
 
