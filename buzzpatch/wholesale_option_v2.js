@@ -29,15 +29,15 @@ let styles = `
         border-radius: 100px 0 0 100px;
         transition: all 0.25s ease;
     }
-    .btns_head input.a-link.active, .btns_head input.a-link.active:hover  {
-        background: rgba(254, 194, 212, 0.95);
-        color: #0D0B0B;
-        box-shadow: none;
-        border-color: transparent;
-    }
     .btns_head input.a-link:hover, .btns_head input.a-link:hover  {
         background: #FEC2D4;
         color: #FF3C81;
+        box-shadow: none;
+        border-color: transparent;
+    }
+    .btns_head input.a-link:active {
+        background: rgba(254, 194, 212, 0.95);
+        color: #0D0B0B;
         box-shadow: none;
         border-color: transparent;
     }
