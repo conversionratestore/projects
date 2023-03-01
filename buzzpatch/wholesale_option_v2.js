@@ -138,8 +138,8 @@ function clickOnBecomeReseller(target) {
     target.classList.add('active')
     setTimeout(() => {
         target.classList.remove('active')
-    }, 500);
-    window.location.href = '/pages/retail2023v1';
+        window.location.href = '/pages/retail2023v1';
+    }, 300);
 }
 
 //push dataLayer
