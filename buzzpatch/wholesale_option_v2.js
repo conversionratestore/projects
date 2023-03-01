@@ -185,14 +185,14 @@ let start = setInterval(() => {
         })
 
         function isBtn() {
-            if (isScrolledIntoView('.btns_head input') == true && viewed1 == false || sScrolledIntoView('.btn_become_reseller') == true && viewed2 == false) {
+            if (isScrolledIntoView('.btns_head input') == true && viewedHeader == false || sScrolledIntoView('.btn_become_reseller') == true && viewedFooter == false) {
                 setTimeout(() => {
-                    if (isScrolledIntoView('.btns_head input') == true && viewed1 == false) {
-                        viewed1 = true;
+                    if (isScrolledIntoView('.btns_head input') == true && viewedHeader == false) {
+                        viewedHeader = true;
                         pushDataLayer('Visibility on Become a reseller button', `Header`);
                     }
-                    if (isScrolledIntoView('.btn_become_reseller') == true && viewed2 == false) {
-                        viewed2 = true;
+                    if (isScrolledIntoView('.btn_become_reseller') == true && viewedFooter == false) {
+                        viewedFooter = true;
                         pushDataLayer('Visibility on Become a reseller button', `Footer`);
                     }
                 }, 2000)
