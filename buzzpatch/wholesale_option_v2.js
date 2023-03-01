@@ -60,17 +60,17 @@ let styles = `
         transition: all 0.2s ease;
         padding: 12px;
     }
-    .btn_become_reseller.active, .btn_become_reseller.active:hover {
-        background-color: rgba(254, 194, 212, 0.95)!important;
-        border: 2px solid #FEC2D4!important;
-        box-shadow: none!important;
-        color: #0D0B0B!important;
-    }
     .btn_become_reseller:hover {
         background-color: #FEC2D4!important;
         border: 2px solid #FEC2D4!important;
         color: #FF3C81!important;
         box-shadow: none!important;
+    }
+    .btn_become_reseller:active {
+        background-color: rgba(254, 194, 212, 0.95)!important;
+        border: 2px solid #FEC2D4!important;
+        box-shadow: none!important;
+        color: #0D0B0B!important;
     }
     .footer-nav ul {
         margin-right: 17px;
