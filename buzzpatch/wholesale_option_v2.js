@@ -138,7 +138,7 @@ function clickOnBecomeReseller(target) {
 
 //push dataLayer
 function pushDataLayer(action, label = '') {
-    console.log(action)
+    console.log(action + " : " + label)
     window.dataLayer = window.dataLayer || [];
     dataLayer.push({
         'event': 'event-to-ga',
@@ -185,7 +185,7 @@ let start = setInterval(() => {
         })
 
         function isBtn() {
-            if (isScrolledIntoView(document.querySelector('.btns_head input')) == true && viewed1 == false || sScrolledIntoView(document.querySelector('.btn_become_reseller')) == true && viewed2 == false) {
+            if (isScrolledIntoView('.btns_head input') == true && viewed1 == false || sScrolledIntoView('.btn_become_reseller') == true && viewed2 == false) {
                 setTimeout(() => {
                     if (isScrolledIntoView('.btns_head input') == true && viewed1 == false) {
                         viewed1 = true;
