@@ -98,6 +98,9 @@ let styles = `
             padding: 0 2px!important;
             white-space: nowrap;
         }
+        .btn_become_reseller {
+            margin: 0 auto 25px;
+        }
     }
 
     @media only screen and (min-width: 1265px) {
