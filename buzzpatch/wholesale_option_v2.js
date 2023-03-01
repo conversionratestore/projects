@@ -136,6 +136,9 @@ let btnGetNowInHeader = window.matchMedia(`(max-width: 768px)`).matches ? '.icar
 
 function clickOnBecomeReseller(target) {
     target.classList.add('active')
+    setTimeout(() => {
+        target.classList.remove('active')
+    }, 500);
     window.location.href = '/pages/retail2023v1';
 }
 
@@ -203,7 +206,7 @@ let start = setInterval(() => {
         }
         isBtn()
         window.addEventListener('scroll', (e) => isBtn())
-       
+        
         pushDataLayer('loaded')
 
     }
