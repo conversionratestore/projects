@@ -130,17 +130,9 @@ let styles = `
 
 </style>`
 
-let htmlBtn = (className) => `<input type="button" class="a-link nav-link ${className}" value="Become a reseller" onclick="clickOnBecomeReseller(this)" />`
+let htmlBtn = (className) => `<input type="button" class="a-link nav-link ${className}" value="Become a reseller" onclick="location.href='/pages/retail2023v1';" />`
 
 let btnGetNowInHeader = window.matchMedia(`(max-width: 768px)`).matches ? '.icartShopifyCartContent > div > header > nav > div > div > div.col-lg-9.col-sm-5.col-xs-5 > a[href="#getNow"]' : '.icartShopifyCartContent > div > header > nav > div > div > div.col-lg-2.col-sm-3.col-xs-3.no-mob > a';
-
-function clickOnBecomeReseller(target) {
-    target.classList.add('active')
-    setTimeout(() => {
-        target.classList.remove('active')
-        window.location.href = '/pages/retail2023v1';
-    }, 300);
-}
 
 //push dataLayer
 function pushDataLayer(action, label = '') {
