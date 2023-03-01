@@ -185,7 +185,7 @@ let start = setInterval(() => {
         })
 
         function isBtn() {
-            if (isScrolledIntoView('.btns_head input') == true && viewedHeader == false || sScrolledIntoView('.btn_become_reseller') == true && viewedFooter == false) {
+            if (isScrolledIntoView('.btns_head input') == true && viewedHeader == false || isScrolledIntoView('.btn_become_reseller') == true && viewedFooter == false) {
                 setTimeout(() => {
                     if (isScrolledIntoView('.btns_head input') == true && viewedHeader == false) {
                         viewedHeader = true;
