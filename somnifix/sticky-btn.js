@@ -189,6 +189,8 @@ function isScrolledIntoView(el) {
 
     return isVisible;
 }
+let viewed = false;
+
 //visibility popup
 function openPopup(view) {
     let viewed = view;
@@ -197,7 +199,8 @@ function openPopup(view) {
         if (document.querySelector('.dark_bg_exp.active') != null && isScrolledIntoView('.dark_bg_exp.active') &&  viewed == false) {
             clearInterval(visibilityPopup)
             viewed = true;
-            pushDataLayer('Visibility save 10% popup after new sticky button')
+            pushDataLayer('Visibility save 10% popup after new sticky button') 
+            count = 0
         }
     }, 200);
 }
@@ -240,12 +243,14 @@ window.onload = () => {
             }
         }
     }
-
+    let count = 0;
     function addActiveItem(target) {
-       
-        let price = target.dataset.price;
 
-        openPopup(false)
+        let price = target.dataset.price;
+        if (count == 0) {
+            openPopup(false)
+        }
+        count++
 
         document.querySelector('.select-current p:first-child').innerHTML = target.dataset.week;
         document.querySelector('.select-current p:last-child').innerHTML = `$${(price / +target.dataset.week.split(' week')[0]).toFixed(2)} / week`;
@@ -287,6 +292,7 @@ window.onload = () => {
         //click on option dropdown (sticky button)
         document.querySelectorAll('.select-drop > div').forEach(item => {
             item.addEventListener('click', (e) => {
+                e.stopImmediatePropagation();
                 addActiveItem(item)
                 pushDataLayer('Click on choose the price', item.dataset.week)
             })
