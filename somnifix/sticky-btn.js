@@ -1,6 +1,5 @@
-let dir = 'https://conversionratestore.github.io/projects/somnifix/img/';
 let href = window.location.href;
-
+let objItems = [];
 
 let style = `
 <style>
@@ -170,8 +169,6 @@ let stickyBtn = `
         </div>
     </div>`
 
-let objItems = [];
-
 function pushDataLayer(action, label = '') {
     console.log(action + " : " + label)
     window.dataLayer = window.dataLayer || [];
@@ -192,7 +189,7 @@ function isScrolledIntoView(el) {
 
     return isVisible;
 }
-
+//visibility popup
 function openPopup(view) {
     let viewed = view;
 
@@ -204,6 +201,7 @@ function openPopup(view) {
         }
     }, 200);
 }
+
 window.onload = () => {
     document.querySelectorAll('.parent-items .swatchCustom__item_new').forEach(item => {
         objItems.push({
@@ -216,7 +214,7 @@ window.onload = () => {
             'nosale': item.classList.contains('no_sale') ? true : false,
             'active': item.classList.contains('active') ? true : false,
             'sale': item.querySelector('.sale') != null ? item.querySelector('.sale').innerHTML : '',
-            'compare': item.dataset.compare,
+            'compare': item.dataset.compare
         })
     })
 
@@ -242,7 +240,6 @@ window.onload = () => {
             }
         }
     }
-
 
     function addActiveItem(target) {
        
@@ -271,7 +268,6 @@ window.onload = () => {
             document.querySelector('.get-now .sale').style.display = target.querySelector('.sale') == null ?  'none' : '';
             document.querySelector('.get-now .sale').innerHTML = target.querySelector('.sale') != null ? target.querySelector('.sale').innerHTML : '';
         }
-
     }
 
     if (href.includes('/products/')) {
