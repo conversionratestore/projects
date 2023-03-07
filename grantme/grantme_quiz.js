@@ -1034,9 +1034,9 @@ let myFunk = setInterval(() => {
     if (document.querySelector("#edit-what-school-are-you-interested-in-attending").value === "") {
       document.querySelector("#edit-cards-next--11").disabled = true
     }
-    if (document.querySelector("#edit-what-field-of-study-are-you-looking-to-study-currently-studying").value === "") {
-      document.querySelector("#edit-cards-next--12").disabled = true
-    }
+    // if (document.querySelector("#edit-what-field-of-study-are-you-looking-to-study-currently-studying").value === "") {
+    //   document.querySelector("#edit-cards-next--12").disabled = true
+    // }
 
     document
       .querySelector("#edit-actions-13")
