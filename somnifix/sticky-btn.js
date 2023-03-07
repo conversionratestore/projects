@@ -205,118 +205,122 @@ function openPopup(view) {
     }, 200);
 }
 
-window.onload = () => {
-    document.querySelectorAll('.parent-items .swatchCustom__item_new').forEach(item => {
-        objItems.push({
-            'variantId': item.dataset.variant,
-            'title': item.dataset.title,
-            'week': item.dataset.week,
-            'strips': item.dataset.qty,
-            'planid': item.dataset.planid,
-            'price': item.dataset.price,
-            'nosale': item.classList.contains('no_sale') ? true : false,
-            'active': item.classList.contains('active') ? true : false,
-            'sale': item.querySelector('.sale') != null ? item.querySelector('.sale').innerHTML : '',
-            'compare': item.dataset.compare
-        })
-    })
+let init = setInterval(() => {
+    if (document.querySelectorAll('.parent-items .swatchCustom__item_new').length > 2 && document.querySelector('.sticky-btn') == null && document.querySelector('.section') != null) {
+        clearInterval(init)
 
-    document.body.insertAdjacentHTML('afterbegin', style);
-
-    if (href.includes('/products/')) {
-        //add sticky button
-        document.querySelector('.section').insertAdjacentHTML('beforeend', stickyBtn)
-        //add options select
-        for (let i = 0; i < objItems.length; i++) {
-            if (href.includes('/products/')) {
-                document.querySelector('.select-drop').insertAdjacentHTML('beforeend', `
-                <div class="${objItems[i].nosale == true ? 'nosale' : ''} ${objItems[i].active == true ? 'active' : ''}" 
-                    data-variant="${objItems[i].variantId}" 
-                    data-sale="${objItems[i].sale}" 
-                    data-price="${objItems[i].price}" 
-                    data-week="${objItems[i].week}" 
-                    data-compare="${objItems[i].compare}"
-                    data-planid="${objItems[i].planid}">
-                        <p>${objItems[i].week}</p>
-                        <p>$${(objItems[i].price / +objItems[i].week.split(' week')[0]).toFixed(2)} / week</p>
-                </div>`)
-            }
-        }
-    }
-    let count = 0;
-    function addActiveItem(target) {
-
-        let price = target.dataset.price;
-        if (count == 0) {
-            openPopup(false)
-        }
-        count++
-
-        document.querySelector('.select-current p:first-child').innerHTML = target.dataset.week;
-        document.querySelector('.select-current p:last-child').innerHTML = `$${(price / +target.dataset.week.split(' week')[0]).toFixed(2)} / week`;
-      
-        document.querySelector('.get-now > div p .pr-old').innerHTML = target.dataset.compare;
-        document.querySelector('.get-now > div p .pr span').innerHTML = price;
-        
-        if (target.closest('.sticky-btn')) {
-            document.querySelector('.get-now .sale').style.display = target.dataset.sale == '' ? 'none' : '';
-            document.querySelector('.get-now .sale').innerHTML = target.dataset.sale;
-
-            //add/remove active class
-            if (!target.classList.contains('active')) {
-                target.parentElement.querySelector('.active').classList.remove('active')
-                target.classList.add('active')
-                document.querySelector(`.parent-items .swatchCustom__item_new[data-variant="${target.dataset.variant}"]`).click()
-
-            } 
-        } else {
-            document.querySelector('.get-now .sale').style.display = target.querySelector('.sale') == null ?  'none' : '';
-            document.querySelector('.get-now .sale').innerHTML = target.querySelector('.sale') != null ? target.querySelector('.sale').innerHTML : '';
-        }
-    }
-
-    if (href.includes('/products/')) {
-        //set active (sticky button)
-        addActiveItem(document.querySelector('.select-drop > div.active'))
-        
-        //click on current select (sticky button)
-        document.querySelector('.select-current').addEventListener('click', () => {
-            document.querySelector('.select-pack').classList.toggle('active');
-            pushDataLayer('Click on choose the price')
-        })
-        //click on cart button (sticky button)
-        document.querySelector('.get-now').addEventListener('click', () => {
-            document.querySelector('.mobile .stock__select').value = '1';
-            document.querySelector(`.popup_btn`).click();
-            pushDataLayer('Click on new get now sticky')
-        })
-        //click on option dropdown (sticky button)
-        document.querySelectorAll('.select-drop > div').forEach(item => {
-            item.addEventListener('click', (e) => {
-                e.stopImmediatePropagation();
-                addActiveItem(item)
-                pushDataLayer('Click on choose the price', item.dataset.week)
+        document.querySelectorAll('.parent-items .swatchCustom__item_new').forEach(item => {
+            objItems.push({
+                'variantId': item.dataset.variant,
+                'title': item.dataset.title,
+                'week': item.dataset.week,
+                'strips': item.dataset.qty,
+                'planid': item.dataset.planid,
+                'price': item.dataset.price,
+                'nosale': item.classList.contains('no_sale') ? true : false,
+                'active': item.classList.contains('active') ? true : false,
+                'sale': item.querySelector('.sale') != null ? item.querySelector('.sale').innerHTML : '',
+                'compare': item.dataset.compare
             })
-            
         })
 
-        document.addEventListener('click', (e) => {
-            if (!e.target.closest('.select-pack') && document.querySelector('.select-pack.active') != null) {
-                document.querySelector('.select-pack').classList.remove('active');
+        document.body.insertAdjacentHTML('afterbegin', style);
+
+        if (href.includes('/products/')) {
+            //add sticky button
+            document.querySelector('.section').insertAdjacentHTML('beforeend', stickyBtn)
+            //add options select
+            for (let i = 0; i < objItems.length; i++) {
+                if (href.includes('/products/')) {
+                    document.querySelector('.select-drop').insertAdjacentHTML('beforeend', `
+                    <div class="${objItems[i].nosale == true ? 'nosale' : ''} ${objItems[i].active == true ? 'active' : ''}" 
+                        data-variant="${objItems[i].variantId}" 
+                        data-sale="${objItems[i].sale}" 
+                        data-price="${objItems[i].price}" 
+                        data-week="${objItems[i].week}" 
+                        data-compare="${objItems[i].compare}"
+                        data-planid="${objItems[i].planid}">
+                            <p>${objItems[i].week}</p>
+                            <p>$${(objItems[i].price / +objItems[i].week.split(' week')[0]).toFixed(2)} / week</p>
+                    </div>`)
+                }
             }
-        })
-    }
+        }
+        let count = 0;
+        function addActiveItem(target) {
 
-    document.querySelectorAll('.swatchCustom__item_new').forEach(item => {
-        item.addEventListener('click', (e) => addActiveItem(item))
-    })
-    
-    pushDataLayer('loaded')
-};
+            let price = target.dataset.price;
+            if (count == 0) {
+                openPopup(false)
+            }
+            count++
+
+            document.querySelector('.select-current p:first-child').innerHTML = target.dataset.week;
+            document.querySelector('.select-current p:last-child').innerHTML = `$${(price / +target.dataset.week.split(' week')[0]).toFixed(2)} / week`;
+        
+            document.querySelector('.get-now > div p .pr-old').innerHTML = target.dataset.compare;
+            document.querySelector('.get-now > div p .pr span').innerHTML = price;
+            
+            if (target.closest('.sticky-btn')) {
+                document.querySelector('.get-now .sale').style.display = target.dataset.sale == '' ? 'none' : '';
+                document.querySelector('.get-now .sale').innerHTML = target.dataset.sale;
+
+                //add/remove active class
+                if (!target.classList.contains('active')) {
+                    target.parentElement.querySelector('.active').classList.remove('active')
+                    target.classList.add('active')
+                    document.querySelector(`.parent-items .swatchCustom__item_new[data-variant="${target.dataset.variant}"]`).click()
+
+                } 
+            } else {
+                document.querySelector('.get-now .sale').style.display = target.querySelector('.sale') == null ?  'none' : '';
+                document.querySelector('.get-now .sale').innerHTML = target.querySelector('.sale') != null ? target.querySelector('.sale').innerHTML : '';
+            }
+        }
+
+        if (href.includes('/products/')) {
+            //set active (sticky button)
+            addActiveItem(document.querySelector('.select-drop > div.active'))
+            
+            //click on current select (sticky button)
+            document.querySelector('.select-current').addEventListener('click', () => {
+                document.querySelector('.select-pack').classList.toggle('active');
+                pushDataLayer('Click on choose the price')
+            })
+            //click on cart button (sticky button)
+            document.querySelector('.get-now').addEventListener('click', () => {
+                document.querySelector('.mobile .stock__select').value = '1';
+                document.querySelector(`.popup_btn`).click();
+                pushDataLayer('Click on new get now sticky')
+            })
+            //click on option dropdown (sticky button)
+            document.querySelectorAll('.select-drop > div').forEach(item => {
+                item.addEventListener('click', (e) => {
+                    e.stopImmediatePropagation();
+                    addActiveItem(item)
+                    pushDataLayer('Click on choose the price', item.dataset.week)
+                })
+                
+            })
+
+            document.addEventListener('click', (e) => {
+                if (!e.target.closest('.select-pack') && document.querySelector('.select-pack.active') != null) {
+                    document.querySelector('.select-pack').classList.remove('active');
+                }
+            })
+        }
+
+        document.querySelectorAll('.swatchCustom__item_new').forEach(item => {
+            item.addEventListener('click', (e) => addActiveItem(item))
+        })
+        
+        pushDataLayer('loaded')
+    }
+});
 
 let isClarity = setTimeout(function(){
     if(typeof clarity === 'function'){
         clearInterval(isClarity)
-        clarity("set", "“new_product_selection_process”", "variant_1");
+        clarity("set", "new_product_selection_process", "variant_1");
     }
 }, 100)
