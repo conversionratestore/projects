@@ -284,7 +284,7 @@ window.onload = () => {
             document.querySelector('.select-pack').classList.toggle('active');
         })
         //click on cart button (sticky button)
-        document.querySelector('.btn-cart').addEventListener('click', () => {
+        document.querySelector('.get-now').addEventListener('click', () => {
             document.querySelector('.mobile .stock__select').value = '1';
             document.querySelector(`.popup_btn`).click();
             pushDataLayer('Click on new get now sticky')
