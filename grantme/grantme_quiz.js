@@ -1285,6 +1285,11 @@ let myFunk = setInterval(() => {
       document.querySelector(".other_textarea").addEventListener("blur", () => {
         pushDataLayer("event blur on textarea 'Description'")
       })
+      document.querySelector(".other_textarea").addEventListener("click", () => {
+        if (document.querySelector('input[id="other2"]').checked !== true) {
+          document.querySelector('input[id="other2"]').checked = true
+        }
+      })
     }
 
     document.querySelector("#edit-processed-text-10").insertAdjacentHTML("beforebegin", guaranteeBlock)
