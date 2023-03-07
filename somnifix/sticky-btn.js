@@ -290,6 +290,12 @@ let init = setInterval(() => {
             //click on cart button (sticky button)
             document.querySelector('.get-now').addEventListener('click', () => {
                 document.querySelector('.mobile .stock__select').value = '1';
+
+                document.querySelector('.mobile .subscribe-custom__checkbox').checked = false;
+                document.querySelector('.footer-prices p span:last-child').innerHTML = `$` + document.querySelector('.parent-items .swatchCustom__item_new.active').dataset.price;
+                document.querySelector('.footer-prices .sale').innerHTML = document.querySelector('.parent-items .swatchCustom__item_new.active .sale').innerHTML;
+                document.querySelector('.mobile .stock__select').disabled = false;
+
                 document.querySelector(`.popup_btn`).click();
                 pushDataLayer('Click on new get now sticky')
             })
