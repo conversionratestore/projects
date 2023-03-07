@@ -733,6 +733,7 @@ let myFunk = setInterval(() => {
             border: 2px solid #3d78ba;
             line-height: 0;
             font-size: 0;
+            background: #F3F3F3 !important;
           }
           .new_reviews .slick-arrow.slick-prev {
             left: 45%;
