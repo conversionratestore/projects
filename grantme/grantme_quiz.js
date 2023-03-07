@@ -533,9 +533,10 @@ let myFunk = setInterval(() => {
           text-align: left;
         }
 
-        .checkbox_block .custom_checkbox + label::before {
-          content: "";
-          display: inline-block;
+        .checkbox_block .custom_checkbox + label span{
+          display: flex;
+          align-items: center;
+          justify-content: center;
           width: 22px;
           height: 22px;
           flex-shrink: 0;
@@ -545,12 +546,15 @@ let myFunk = setInterval(() => {
           border-radius: 4px;
           margin-right: 12px;
         }
-
-        .checkbox_block .custom_checkbox:checked + label::before {
+        
+        .checkbox_block .custom_checkbox:checked + label span::before {
+          content: "";
           background-image: url(https://conversionratestore.github.io/projects/grantme/img/checkbox.svg);
           background-size: auto;
           background-repeat: no-repeat;
-          background-position: center center;
+          width: 14px;
+          height: 14px;
+          display: block;
         }
         #edit-cards-next--11,
         #edit-cards-next--12 {
@@ -575,8 +579,10 @@ let myFunk = setInterval(() => {
           padding: 0;
           width: max-content;
         }
-        .checkbox_block .custom_checkbox + label[for="skip_school_are_you_interested_in_attending_var"]::before,
-        .checkbox_block .custom_checkbox + label[for="skip_study_are_you_looking_to_study_currently_studying_var"]::before {
+        .checkbox_block .custom_checkbox + label[for="skip_school_are_you_interested_in_attending_var"] span::before,
+        .checkbox_block .custom_checkbox + label[for="skip_school_are_you_interested_in_attending_var"] span,
+        .checkbox_block .custom_checkbox + label[for="skip_study_are_you_looking_to_study_currently_studying_var"] span,
+        .checkbox_block .custom_checkbox + label[for="skip_study_are_you_looking_to_study_currently_studying_var"] span::before {
           display: none;
         }
         #edit-actions-13,
@@ -817,9 +823,6 @@ let myFunk = setInterval(() => {
             border-radius: 6px;
             line-height: 22px;
           }
-          .checkbox_block .custom_checkbox:checked + label::before {
-            background-size: auto 73%;
-          }
           #edit-what-field-of-study-are-you-looking-to-study-currently-studying- .quiz-right-wrap,
           #edit-what-school-are-you-interested-in-attending- .quiz-right-wrap,
           #edit-how-many-extracurricular-or-volunteer-activities-do-you-particip .quiz-right-wrap {
@@ -998,7 +1001,7 @@ let myFunk = setInterval(() => {
     function renderLabelCheckBox(selector, text, id, value) {
       return `<div class="checkbox_block ${selector}">
                <input class="custom_checkbox" id="${id}" type="radio" name="${selector}" value="${value}" />
-                <label for="${id}" tabindex="0">${text}</label>
+                <label for="${id}" tabindex="0"><span class=""></span>${text}</label>
               </div>`
     }
 
