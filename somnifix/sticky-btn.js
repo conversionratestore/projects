@@ -282,6 +282,7 @@ window.onload = () => {
         //click on current select (sticky button)
         document.querySelector('.select-current').addEventListener('click', () => {
             document.querySelector('.select-pack').classList.toggle('active');
+            pushDataLayer('Click on choose the price')
         })
         //click on cart button (sticky button)
         document.querySelector('.get-now').addEventListener('click', () => {
