@@ -25,7 +25,7 @@ let myFunk = setInterval(() => {
         console.log(actionDataLayer + " : " + labelDataLayer)
         dataLayer.push({
           event: "event-to-ga",
-          eventCategory: `Exp: Exp: Remove barriers on quiz ${eventVar}`,
+          eventCategory: `Exp: Remove barriers on quiz ${eventVar}`,
           eventAction: `${actionDataLayer}`,
           eventLabel: `${labelDataLayer}`,
         })
@@ -33,7 +33,7 @@ let myFunk = setInterval(() => {
         console.log(actionDataLayer)
         dataLayer.push({
           event: "event-to-ga",
-          eventCategory: `Exp: Exp: Remove barriers on quiz ${eventVar}`,
+          eventCategory: `Exp: Remove barriers on quiz ${eventVar}`,
           eventAction: `${actionDataLayer}`,
         })
       }
