@@ -41,6 +41,9 @@ let myFunk = setInterval(() => {
 
     let newStyle = /*html */ `
     <style>
+      .i_dont_know_var {
+        display: none !important;
+      }
         .program_assessment_var {
           font-weight: 700;
           font-size: 18px;
@@ -196,6 +199,9 @@ let myFunk = setInterval(() => {
           line-height: 19px;
           height: 44px;
           margin: 0;
+        }
+        .skip_var{
+          display: none !important;
         }
         .skip_var label {
           background: unset !important;
