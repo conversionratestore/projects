@@ -41,6 +41,13 @@ let myFunk = setInterval(() => {
 
     let newStyle = /*html */ `
     <style>
+      .webform-submission-grantme-program-assessment-form .webform-button--submit:after, 
+      .custom-ajax-throbber-submit:after,
+       .path-request-consultation .acuity-booking .form-submit:after{
+        right: 50% !important;
+        top: 44px !important;
+        transform: translateX(10px) !important;
+       }
       .i_dont_know_var {
         display: none !important;
       }
