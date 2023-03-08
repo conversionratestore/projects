@@ -41,6 +41,9 @@ let myFunk = setInterval(() => {
 
     let newStyle = /*html */ `
     <style>
+      .dialog-off-canvas-main-canvas{
+        
+      }
       .webform-submission-grantme-program-assessment-form .webform-button--submit:after, 
       .custom-ajax-throbber-submit:after,
        .path-request-consultation .acuity-booking .form-submit:after{
