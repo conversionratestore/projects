@@ -41,8 +41,8 @@ let myFunk = setInterval(() => {
 
     let newStyle = /*html */ `
     <style>
-      body.keyboard {
-        height: calc(100% + 500px); /* add padding for keyboard */
+      html, body {
+       height: 100vh;
       }
       .webform-submission-grantme-program-assessment-form .webform-button--submit:after, 
       .custom-ajax-throbber-submit:after,
@@ -1043,6 +1043,7 @@ let myFunk = setInterval(() => {
     }
 
     document.head.insertAdjacentHTML("beforeend", `<link href="https://fonts.googleapis.com/css2?family=Lato:wght@900&display=swap" rel="stylesheet">`)
+    document.head.insertAdjacentHTML("beforeend", '<meta name="viewport" content="width=device-width, height=device-height, initial-scale=1">')
     document.head.insertAdjacentHTML("beforeend", newStyle)
 
     document.querySelectorAll("#edit-actions-13").forEach((el) => {
@@ -1307,22 +1308,12 @@ let myFunk = setInterval(() => {
     if (document.querySelector(".other_textarea")) {
       document.querySelectorAll(".other_textarea").forEach((el) => {
         el.addEventListener("focus", (i) => {
-          if (window.innerWidth < 768) {
-            document.body.classList.add("keyboard")
+          if (window.innerWidth >= 991) {
+            i.currentTarget.previousElementSibling.scrollIntoView({ block: "start", behavior: "smooth" })
           }
           pushDataLayer("event focus on textarea 'Description'", i.currentTarget.closest("section").querySelector("h4").textContent)
         })
       })
-    }
-
-    if (window.innerWidth < 768) {
-      document.body.addEventListener(
-        "blur",
-        () => {
-          document.body.classList.remove("keyboard")
-        },
-        true
-      )
     }
 
     document.querySelector("#edit-processed-text-10").insertAdjacentHTML("beforebegin", guaranteeBlock)
