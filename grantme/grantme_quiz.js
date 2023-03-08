@@ -1308,9 +1308,9 @@ let myFunk = setInterval(() => {
     if (document.querySelector(".other_textarea")) {
       document.querySelectorAll(".other_textarea").forEach((el) => {
         el.addEventListener("focus", (i) => {
-          if (window.innerWidth < 991) {
-            i.currentTarget.previousElementSibling.scrollIntoView({ block: "start", behavior: "smooth" })
-          }
+          // if (window.innerWidth < 991) {
+          //   i.currentTarget.previousElementSibling.scrollIntoView({ block: "start", behavior: "smooth" })
+          // }
           pushDataLayer("event focus on textarea 'Description'", i.currentTarget.closest("section").querySelector("h4").textContent)
         })
       })
