@@ -41,6 +41,9 @@ let myFunk = setInterval(() => {
 
     let newStyle = /*html */ `
     <style>
+      body.keyboard {
+        height: calc(100% + 500px); /* add padding for keyboard */
+      }
       .webform-submission-grantme-program-assessment-form .webform-button--submit:after, 
       .custom-ajax-throbber-submit:after,
        .path-request-consultation .acuity-booking .form-submit:after{
@@ -614,7 +617,7 @@ let myFunk = setInterval(() => {
           min-height: 74px;
           color: #3d78ba;
           font-weight: 400;
-          font-size: 14px;
+          font-size: 16px;
           line-height: 24px;
         }
         textarea.other_textarea::placeholder {
@@ -1303,10 +1306,23 @@ let myFunk = setInterval(() => {
     // input on textarea
     if (document.querySelector(".other_textarea")) {
       document.querySelectorAll(".other_textarea").forEach((el) => {
-        el.addEventListener("blur", (i) => {
-          pushDataLayer("event blur on textarea 'Description'", i.currentTarget.closest("section").querySelector("h4").textContent)
+        el.addEventListener("focus", (i) => {
+          if (window.innerWidth < 768) {
+            document.body.classList.add("keyboard")
+          }
+          pushDataLayer("event focus on textarea 'Description'", i.currentTarget.closest("section").querySelector("h4").textContent)
         })
       })
+    }
+
+    if (window.innerWidth < 768) {
+      document.body.addEventListener(
+        "blur",
+        () => {
+          document.body.classList.remove("keyboard")
+        },
+        true
+      )
     }
 
     document.querySelector("#edit-processed-text-10").insertAdjacentHTML("beforebegin", guaranteeBlock)
