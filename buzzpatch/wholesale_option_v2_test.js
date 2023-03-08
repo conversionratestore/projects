@@ -67,6 +67,7 @@ let styles = `
         border: 2px solid #FEC2D4!important;
         color: #FF3C81!important;
         box-shadow: none!important;
+        opacity: 1;
     }
     .btn_become_reseller:active {
         background-color: rgba(254, 194, 212, 0.95)!important;
@@ -78,19 +79,19 @@ let styles = `
         margin-right: 17px;
     }
 
-    #mainContent > div.icartShopifyCartContent > div > header > nav > div > div.row.no-gutters  {
+    header > nav > div > div.row.no-gutters  {
         flex-wrap: nowrap;
         justify-content: space-between;
         align-items: center;
     }
 
-    #mainContent > div.icartShopifyCartContent > div > header > nav > div > div.row.no-gutters > div {
+    header > nav > div > div.row.no-gutters > div {
         width: auto!important;
         flex: 0!important;
         max-width: none!important;
     }
     @media only screen and (min-width: 768px) {
-        #mainContent > div.icartShopifyCartContent > div > header > nav > div > div.row.no-gutters > div.col-lg-9 {
+        header > nav > div > div.row.no-gutters > div.col-lg-9 {
             margin: 0 auto!important;
             display: flex;
         }
@@ -111,7 +112,7 @@ let styles = `
         }
     }
     @media (min-width: 768px) and (max-width: 991px) {
-        #mainContent > div.icartShopifyCartContent > div > header > nav > div > div > div.col-lg-9.col-sm-5.col-xs-5 {
+        header > nav > div > div > div.col-lg-9.col-sm-5.col-xs-5 {
             display: none;
         }
     }
