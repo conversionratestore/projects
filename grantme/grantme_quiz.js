@@ -42,7 +42,7 @@ let myFunk = setInterval(() => {
     let newStyle = /*html */ `
     <style>
       html, body {
-       height: 100vh;
+       height: max-content;
       }
       .webform-submission-grantme-program-assessment-form .webform-button--submit:after, 
       .custom-ajax-throbber-submit:after,
