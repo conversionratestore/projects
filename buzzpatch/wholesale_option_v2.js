@@ -28,12 +28,14 @@ let styles = `
         width: 143px;
         border-radius: 100px 0 0 100px;
         transition: all 0.25s ease;
+        border: none;
     }
     .btns_head input.a-link:hover, .btns_head input.a-link:hover  {
         background: #FEC2D4;
         color: #FF3C81;
         box-shadow: none;
         border-color: transparent;
+        opacity: 1;
     }
     .btns_head input.a-link:active {
         background: rgba(254, 194, 212, 0.95);
@@ -65,6 +67,7 @@ let styles = `
         border: 2px solid #FEC2D4!important;
         color: #FF3C81!important;
         box-shadow: none!important;
+        opacity: 1;
     }
     .btn_become_reseller:active {
         background-color: rgba(254, 194, 212, 0.95)!important;
@@ -76,19 +79,19 @@ let styles = `
         margin-right: 17px;
     }
 
-    #mainContent > div.icartShopifyCartContent > div > header > nav > div > div.row.no-gutters  {
+    header > nav > div > div.row.no-gutters  {
         flex-wrap: nowrap;
         justify-content: space-between;
         align-items: center;
     }
 
-    #mainContent > div.icartShopifyCartContent > div > header > nav > div > div.row.no-gutters > div {
+    header > nav > div > div.row.no-gutters > div {
         width: auto!important;
         flex: 0!important;
         max-width: none!important;
     }
     @media only screen and (min-width: 768px) {
-        #mainContent > div.icartShopifyCartContent > div > header > nav > div > div.row.no-gutters > div.col-lg-9 {
+        header > nav > div > div.row.no-gutters > div.col-lg-9 {
             margin: 0 auto!important;
             display: flex;
         }
@@ -109,7 +112,7 @@ let styles = `
         }
     }
     @media (min-width: 768px) and (max-width: 991px) {
-        #mainContent > div.icartShopifyCartContent > div > header > nav > div > div > div.col-lg-9.col-sm-5.col-xs-5 {
+        header > nav > div > div > div.col-lg-9.col-sm-5.col-xs-5 {
             display: none;
         }
     }
@@ -132,7 +135,7 @@ let styles = `
 
 let htmlBtn = (className) => `<input type="button" class="a-link nav-link ${className}" value="Become a reseller" onclick="location.href='/pages/retail2023v1';" />`
 
-let btnGetNowInHeader = window.matchMedia(`(max-width: 768px)`).matches ? '.icartShopifyCartContent > div > header > nav > div > div > div.col-lg-9.col-sm-5.col-xs-5 > a[href="#getNow"]' : '.icartShopifyCartContent > div > header > nav > div > div > div.col-lg-2.col-sm-3.col-xs-3.no-mob > a';
+let btnGetNowInHeader = window.matchMedia(`(max-width: 768px)`).matches ? 'header > nav > div > div > div.col-lg-9.col-sm-5.col-xs-5 > a' : 'header > nav > div > div > div.col-lg-2.col-sm-3.col-xs-3.no-mob > a';
 
 //push dataLayer
 function pushDataLayer(action, label = '') {
