@@ -41,9 +41,6 @@ let myFunk = setInterval(() => {
 
     let newStyle = /*html */ `
     <style>
-      html, body {
-       height: max-content;
-      }
       .webform-submission-grantme-program-assessment-form .webform-button--submit:after, 
       .custom-ajax-throbber-submit:after,
        .path-request-consultation .acuity-booking .form-submit:after{
