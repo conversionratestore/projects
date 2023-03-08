@@ -117,6 +117,9 @@ let myFunk = setInterval(() => {
         .path-scholarship-eligibility-quiz .webform-progress ul li + li {
           margin-left: 1px;
         }
+        .path-scholarship-eligibility-quiz .webform-progress ul li:first-of-type{
+          background: rgb(62, 120, 186);
+        }
         .path-scholarship-eligibility-quiz .webform-progress ul li:last-of-type,
         .path-scholarship-eligibility-quiz .webform-progress ul li:first-of-type {
           border-radius: 0;
@@ -143,7 +146,7 @@ let myFunk = setInterval(() => {
         }
         #edit-q1,
         #edit-qa17-wrap {
-          margin-bottom: 130px !important;
+          margin-bottom: 30px !important;
         }
         #edit-qa2-wrap,
         #edit-qa3-wrap,
@@ -406,6 +409,7 @@ let myFunk = setInterval(() => {
         }
         .new_reviews .reviews_link > p.date_experience_var {
           margin-top: 16px;
+          display: none;
         }
         .inform_box {
           display: flex;
@@ -550,7 +554,7 @@ let myFunk = setInterval(() => {
           flex-grow: 0;
           background: #ffffff;
           border: 2px solid #3d78ba;
-          border-radius: 4px;
+          border-radius: 50%;
           margin-right: 12px;
         }
         
@@ -562,6 +566,7 @@ let myFunk = setInterval(() => {
           width: 14px;
           height: 14px;
           display: block;
+          border-radius: 50%;
         }
         #edit-cards-next--11,
         #edit-cards-next--12 {
@@ -597,6 +602,7 @@ let myFunk = setInterval(() => {
           margin: 30px 0 !important;
         }
         textarea.other_textarea {
+          display: none;
           resize: none;
           border-radius: 6px;
           border: 2px solid #3d78ba;
@@ -842,6 +848,8 @@ let myFunk = setInterval(() => {
     let text2 = "you're"
     let text3 = "you"
     let text4 = ""
+    let text5 = "qualify"
+    let text6 = "your"
 
     let reviews = /*html */ `
     <div class="reviews_block ative_right">
@@ -899,14 +907,14 @@ let myFunk = setInterval(() => {
             />
           </svg>
         </div>
-        <p><b>GrantMe students are guaranteed admission to their top universities.</b> See if <span class="text_third">${text3}</span> qualify.</p>
+        <p><b>GrantMe students are guaranteed admission to their top universities.</b> See if <span class="text_third">${text3}</span> <span class="text_fifth">${text5}</span>.</p>
       </div>
       <div class="benefits_wrap">
         <p>Your results are ready. You’ll get:</p>
         <ul>
-          <li><span>Your <span class="text_first">${text1}</span> current chances of getting into your ideal university</span></li>
-          <li><span>An estimate of how much funding <span class="text_third">${text3}</span> qualify for</span></li>
-          <li><span>A roadmap for maximizing your <span class="text_fourth">${text4}</span> acceptance chances</span></li>
+          <li><span>Your <span class="text_first">${text1}</span> current chances of getting into <span class="text_sixth">${text6}</span> ideal university</span></li>
+          <li><span>An estimate of how much funding <span class="text_third">${text3}</span> <span class="text_fifth">${text5}</span> for</span></li>
+          <li><span>A roadmap for maximizing your <span class="text_first">${text1}</span> acceptance chances</span></li>
           <li><span>Strategic tools that will help <span class="text_third">${text3}</span> graduate debt-free</span></li>
         </ul>
       </div>
@@ -934,14 +942,14 @@ let myFunk = setInterval(() => {
         `Date of experience: February 24, 2023`,
         "2",
       ],
-      "Thomas Satosek ": [
-        `https://conversionratestore.github.io/projects/grantme/img/review1.png`,
+      "Zuriel Ogundare": [
+        `https://conversionratestore.github.io/projects/grantme/img/review3.png`,
         "2 reviews",
-        `US`,
+        `CA`,
         5,
-        `Jan 5, 2023`,
-        `<b>Great for helping students with applications</b> GrantMe is a great tool for any student that wants help with University or Scholarship applications. They give it to you on one easy to use website and all the resources that you will ever need to succeed. My only complaint is the three or four texts and emails I get for my appointments.`,
-        `Date of experience: January 04, 2023`,
+        `Jan 7, 2023`,
+        `<b>Grant me experience.</b> All of my questions have been thoroughly answered.They have given me many opportunities to make sure I stand out from other college applicants. I very much appreciate the fact they support all my actions and decisions.`,
+        `Date of experience: January 06, 2023`,
         "3",
       ],
     }
@@ -1026,7 +1034,7 @@ let myFunk = setInterval(() => {
       "Psychology (BA)": ["psychology", "497"],
       "Law (BA)": ["law", "489"],
       "Accounting and Finance": ["finance", "2413"],
-      "Business (Bcom)": ["business", "442"],
+      "Business (BCom)": ["business", "442"],
       "Kinesiology (BKin)": ["kinesiology", "517"],
       Other: ["other2", "521"],
     }
@@ -1046,6 +1054,7 @@ let myFunk = setInterval(() => {
       }
     })
 
+    document.querySelector("#edit-actions-13").insertAdjacentHTML("beforebegin", `<textarea class="other_textarea" placeholder="Description"></textarea>`)
     document.querySelector("#edit-actions-14").insertAdjacentHTML("beforebegin", `<textarea class="other_textarea" placeholder="Description"></textarea>`)
 
     if (document.querySelector("#edit-what-school-are-you-interested-in-attending").value === "") {
@@ -1293,13 +1302,10 @@ let myFunk = setInterval(() => {
 
     // input on textarea
     if (document.querySelector(".other_textarea")) {
-      document.querySelector(".other_textarea").addEventListener("blur", () => {
-        pushDataLayer("event blur on textarea 'Description'")
-      })
-      document.querySelector(".other_textarea").addEventListener("click", () => {
-        if (document.querySelector('input[id="other2"]').checked !== true) {
-          document.querySelector('input[id="other2"]').checked = true
-        }
+      document.querySelectorAll(".other_textarea").forEach((el) => {
+        el.addEventListener("blur", (i) => {
+          pushDataLayer("event blur on textarea 'Description'", i.currentTarget.closest("section").querySelector("h4").textContent)
+        })
       })
     }
 
@@ -1336,8 +1342,6 @@ let myFunk = setInterval(() => {
 
           if (i.currentTarget.closest("#edit-are-you-a-current-student-")) {
             document.querySelector("#edit-cards-next").click()
-            i.currentTarget.closest("section").querySelector(".back_btn_var").style.opacity = "1"
-            i.currentTarget.closest("section").querySelector(".back_btn_var").style.visibility = "unset"
             localStorage.setItem("name", i.currentTarget.getAttribute("value"))
             if (localStorage.getItem("name") === "Parent of Student") {
               document.querySelectorAll(".guarantee_block .text_first").forEach((el) => {
@@ -1352,6 +1356,12 @@ let myFunk = setInterval(() => {
               document.querySelectorAll(".guarantee_block .text_fourth").forEach((el) => {
                 el.textContent = "child"
               })
+              document.querySelectorAll(".guarantee_block .text_fifth").forEach((el) => {
+                el.textContent = "qualifies"
+              })
+              document.querySelectorAll(".guarantee_block .text_sixth").forEach((el) => {
+                el.textContent = " their"
+              })
             } else {
               document.querySelectorAll(".guarantee_block .text_first").forEach((el) => {
                 el.textContent = ""
@@ -1364,6 +1374,12 @@ let myFunk = setInterval(() => {
               })
               document.querySelectorAll(".guarantee_block .text_fourth").forEach((el) => {
                 el.textContent = ""
+              })
+              document.querySelectorAll(".guarantee_block .text_fifth").forEach((el) => {
+                el.textContent = "qualify"
+              })
+              document.querySelectorAll(".guarantee_block .text_sixth").forEach((el) => {
+                el.textContent = " your"
               })
             }
           }
@@ -1465,6 +1481,12 @@ let myFunk = setInterval(() => {
             document.querySelector("#edit-what-school-are-you-interested-in-attending").value = i.target.getAttribute("value")
             if (document.querySelector("#edit-what-school-are-you-interested-in-attending").value !== "") {
               document.querySelector("#edit-cards-next--11").disabled = false
+
+              if (i.currentTarget.getAttribute("id") === "other") {
+                i.currentTarget.closest("#edit-qa9-wrap").querySelector("textarea.other_textarea").style.display = "block"
+              } else {
+                i.currentTarget.closest("#edit-qa9-wrap").querySelector("textarea.other_textarea").style.display = "none"
+              }
             }
             pushDataLayer(`checked ${i.currentTarget.nextElementSibling.textContent}`, i.currentTarget.closest("section").querySelector("h4").textContent)
             if (i.target.getAttribute("id") === "skip_school_are_you_interested_in_attending_var") {
@@ -1475,9 +1497,12 @@ let myFunk = setInterval(() => {
           if (i.currentTarget.closest("#edit-qa10-wrap")) {
             document.querySelector("#edit-what-field-of-study-are-you-looking-to-study-currently-studying").value = i.target.getAttribute("value")
             pushDataLayer(`checked ${i.currentTarget.nextElementSibling.textContent}`, i.currentTarget.closest("section").querySelector("h4").textContent)
-            // if (document.querySelector("#edit-what-field-of-study-are-you-looking-to-study-currently-studying").value !== "") {
-            //   document.querySelector("#edit-cards-next--12").disabled = false
-            // }
+
+            if (i.currentTarget.getAttribute("id") === "other2") {
+              i.currentTarget.closest("#edit-qa10-wrap").querySelector("textarea.other_textarea").style.display = "block"
+            } else {
+              i.currentTarget.closest("#edit-qa10-wrap").querySelector("textarea.other_textarea").style.display = "none"
+            }
             if (i.target.getAttribute("id") === "skip_study_are_you_looking_to_study_currently_studying_var") {
               document.querySelector("#edit-cards-next--12").click()
             }
@@ -1576,7 +1601,7 @@ let myFunk = setInterval(() => {
                   el.textContent = "child"
                 })
               }
-              document.querySelector(".loader_list")?.scrollIntoView({ block: "start", behavior: "smooth" })
+              document.querySelector("#navbar")?.scrollIntoView({ block: "start", behavior: "smooth" })
               startPreloader()
               function startPreloader() {
                 console.log("startPreloader")
@@ -1609,7 +1634,7 @@ let myFunk = setInterval(() => {
                           document.querySelector(".loader_wrap").style.display = "none"
                           document.querySelector("#edit-qa13-wrap").style.display = "block"
                           document.querySelector(".path-scholarship-eligibility-quiz .webform-progress ul li:last-child").style.background = "#3e78ba"
-                          document.querySelector(".scroll_var")?.scrollIntoView({ block: "start", behavior: "smooth" })
+                          document.querySelector("#navbar")?.scrollIntoView({ block: "start", behavior: "smooth" })
                         }
                       }, 300)
                     }, idx * delay * 1000 + 3000)
