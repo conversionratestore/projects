@@ -35,6 +35,7 @@ let styles = `
         color: #FF3C81;
         box-shadow: none;
         border-color: transparent;
+        opacity: 1;
     }
     .btns_head input.a-link:active {
         background: rgba(254, 194, 212, 0.95);
