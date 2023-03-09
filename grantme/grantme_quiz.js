@@ -528,6 +528,8 @@ let myFunk = setInterval(() => {
 
         .checkbox_block {
           margin: 10px 0;
+          z-index: 2;
+          position: relative;
         }
         .checkbox_block input.custom_checkbox {
           position: absolute;
@@ -587,6 +589,11 @@ let myFunk = setInterval(() => {
           width: 100%;
           display: none !important;
         }
+        #edit-cards-next--11.active_btn,
+        #edit-cards-next--12.active_btn{
+          display: block !important;
+          margin-top: 30px;
+        }
         #edit-cards-next--11.btn-default[disabled],
         #edit-cards-next--11.btn-default[disabled]:hover,
         #edit-cards-next--11.btn-default[disabled]:focus {
@@ -625,13 +632,15 @@ let myFunk = setInterval(() => {
           border-top-left-radius: unset;
           border-top-right-radius: unset;
           width: 100%;
-          margin-top: -4px;
+          margin-top: -14px;
           padding: 12px 16px;
           min-height: 74px;
           color: #3d78ba;
           font-weight: 400;
           font-size: 16px;
           line-height: 24px;
+          z-index: 1;
+          position: relative;
         }
         textarea.other_textarea::placeholder {
           font-weight: 400;
@@ -867,6 +876,9 @@ let myFunk = setInterval(() => {
           }
           #edit-processed-text-37, #edit-processed-text-48 {
             margin-bottom: 30px;
+          }
+          textarea.other_textarea{
+            margin-top: -21px;
           }
         }
     </style>
@@ -1518,28 +1530,37 @@ let myFunk = setInterval(() => {
               // document.querySelector("#edit-cards-next--11").click()
             }
             if (document.querySelector("#edit-what-school-are-you-interested-in-attending").value !== "") {
-              document.querySelector("#edit-cards-next--11").click()
-              // document.querySelector("#edit-cards-next--11").disabled = false
+              if (i.currentTarget.getAttribute("id") !== "other") {
+                document.querySelector("#edit-cards-next--11").click()
+              }
 
-              // if (i.currentTarget.getAttribute("id") === "other") {
-              //   i.currentTarget.closest("#edit-qa9-wrap").querySelector("textarea.other_textarea").style.display = "block"
-              // } else {
-              //   i.currentTarget.closest("#edit-qa9-wrap").querySelector("textarea.other_textarea").style.display = "none"
-              // }
+              if (i.currentTarget.getAttribute("id") === "other") {
+                i.currentTarget.closest("#edit-qa9-wrap").querySelector("textarea.other_textarea").style.display = "block"
+                document.querySelector("button#edit-cards-next--11").classList.add("active_btn")
+              } else {
+                i.currentTarget.closest("#edit-qa9-wrap").querySelector("textarea.other_textarea").style.display = "none"
+                document.querySelector("button#edit-cards-next--11").classList.remove("active_btn")
+              }
             }
             pushDataLayer(`checked ${i.currentTarget.nextElementSibling.textContent}`, i.currentTarget.closest("section").querySelector("h4").textContent)
           }
           if (i.currentTarget.closest("#edit-qa10-wrap")) {
             document.querySelector("#edit-what-field-of-study-are-you-looking-to-study-currently-studying").value = i.target.getAttribute("value")
             pushDataLayer(`checked ${i.currentTarget.nextElementSibling.textContent}`, i.currentTarget.closest("section").querySelector("h4").textContent)
-            document.querySelector("#edit-cards-next--12").click()
 
-            // if (i.currentTarget.getAttribute("id") === "other2") {
-            //   i.currentTarget.closest("#edit-qa10-wrap").querySelector("textarea.other_textarea").style.display = "block"
-            // } else {
-            //   i.currentTarget.closest("#edit-qa10-wrap").querySelector("textarea.other_textarea").style.display = "none"
-            // }
-            // if (i.target.getAttribute("id") === "skip_study_are_you_looking_to_study_currently_studying_var") {
+            if (i.currentTarget.getAttribute("id") !== "other2") {
+              document.querySelector("#edit-cards-next--12").click()
+            }
+
+            if (i.currentTarget.getAttribute("id") === "other2") {
+              console.log(`first`)
+              i.currentTarget.closest("#edit-qa10-wrap").querySelector("textarea.other_textarea").style.display = "block"
+              document.querySelector("button#edit-cards-next--12").classList.add("active_btn")
+            } else {
+              i.currentTarget.closest("#edit-qa10-wrap").querySelector("textarea.other_textarea").style.display = "none"
+              document.querySelector("button#edit-cards-next--12").classList.remove("active_btn")
+            }
+            // if (i.target.getAttribute("id") === "other2") {
             //   document.querySelector("#edit-cards-next--12").click()
             // }
           }
