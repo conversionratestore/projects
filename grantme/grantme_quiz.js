@@ -42,7 +42,7 @@ let myFunk = setInterval(() => {
     let newStyle = /*html */ `
     <style>
       .dialog-off-canvas-main-canvas{
-        
+
       }
       .webform-submission-grantme-program-assessment-form .webform-button--submit:after, 
       .custom-ajax-throbber-submit:after,
@@ -521,9 +521,13 @@ let myFunk = setInterval(() => {
         .is_hidden {
           display: none;
         }
+        #edit-processed-text-37,
+        #edit-processed-text-48{
+          margin-bottom: 20px;
+        }
 
-        .checkbox_block + .checkbox_block {
-          margin-top: 12px;
+        .checkbox_block {
+          margin: 10px 0;
         }
         .checkbox_block input.custom_checkbox {
           position: absolute;
@@ -532,17 +536,18 @@ let myFunk = setInterval(() => {
         }
         .checkbox_block label {
           width: 100%;
-          border: 2px solid #3d78ba;
+          border: 2px solid #3e78ba;
           border-radius: 6px;
-          padding: 12px;
+          padding: 8px 16px;
           margin: 0 auto !important;
           font-weight: 700;
           font-size: 16px !important;
-          line-height: 22px !important;
-          color: #3d78ba !important;
+          line-height: 24px !important;
+          color: #3e78ba !important;
           user-select: none;
           display: flex;
           align-items: center;
+          justify-content: center;
           cursor: pointer;
           text-align: left;
         }
@@ -559,6 +564,7 @@ let myFunk = setInterval(() => {
           border: 2px solid #3d78ba;
           border-radius: 50%;
           margin-right: 12px;
+          display: none;
         }
         
         .checkbox_block .custom_checkbox:checked + label span::before {
@@ -571,9 +577,15 @@ let myFunk = setInterval(() => {
           display: block;
           border-radius: 50%;
         }
+        .checkbox_block .custom_checkbox:checked + label:not([for="skip_school_are_you_interested_in_attending_var"], [for="skip_study_are_you_looking_to_study_currently_studying_var"]) {
+          background: #3e78ba;
+          border: 2px solid #3e78ba;
+          color: #fff !important;
+        }
         #edit-cards-next--11,
         #edit-cards-next--12 {
           width: 100%;
+          display: none !important;
         }
         #edit-cards-next--11.btn-default[disabled],
         #edit-cards-next--11.btn-default[disabled]:hover,
@@ -585,7 +597,8 @@ let myFunk = setInterval(() => {
         }
         .checkbox_block label[for="skip_school_are_you_interested_in_attending_var"],
         .checkbox_block label[for="skip_study_are_you_looking_to_study_currently_studying_var"] {
-          border: unset;
+          border: unset !important;
+          background: unset !important;
           text-align: center;
           color: #8c8c8c !important;
           font-size: 14px !important;
@@ -602,7 +615,7 @@ let myFunk = setInterval(() => {
         }
         #edit-actions-13,
         #edit-actions-14 {
-          margin: 30px 0 !important;
+          margin: 0 !important;
         }
         textarea.other_textarea {
           display: none;
@@ -625,6 +638,10 @@ let myFunk = setInterval(() => {
           font-size: 14px;
           line-height: 24px;
           color: #999999;
+        }
+        .checkbox_block.school_are_you_interested_in_attending_var.skip_checkbox_var,
+        .checkbox_block.study_are_you_looking_to_study_currently_studying_var.skip_checkbox_var{
+          display: none !important;
         }
         @media (min-width: 991px) {
           .path-grantme-program-assessment #block-landingpageheaderquiz .col-md-4.bluebg {
@@ -833,16 +850,23 @@ let myFunk = setInterval(() => {
           .form-group {
             margin-bottom: 14px;
           }
-          .path-scholarship-eligibility-quiz .js-webform-radios label:not(.error) {
+          .path-scholarship-eligibility-quiz .js-webform-radios label:not(.error)\,
+          .checkbox_block label {
             height: 46px;
             border: 2px solid #3d78ba;
             border-radius: 6px;
-            line-height: 22px;
+            line-height: 22px !important;
           }
           #edit-what-field-of-study-are-you-looking-to-study-currently-studying- .quiz-right-wrap,
           #edit-what-school-are-you-interested-in-attending- .quiz-right-wrap,
           #edit-how-many-extracurricular-or-volunteer-activities-do-you-particip .quiz-right-wrap {
             min-height: 100vh;
+          }
+          .checkbox_block{
+            margin: 16px 0;
+          }
+          #edit-processed-text-37, #edit-processed-text-48 {
+            margin-bottom: 30px;
           }
         }
     </style>
@@ -1061,22 +1085,25 @@ let myFunk = setInterval(() => {
     document.querySelector("#edit-actions-13").insertAdjacentHTML("beforebegin", `<textarea class="other_textarea" placeholder="Description"></textarea>`)
     document.querySelector("#edit-actions-14").insertAdjacentHTML("beforebegin", `<textarea class="other_textarea" placeholder="Description"></textarea>`)
 
-    if (document.querySelector("#edit-what-school-are-you-interested-in-attending").value === "") {
-      document.querySelector("#edit-cards-next--11").disabled = true
-    }
+    // if (document.querySelector("#edit-what-school-are-you-interested-in-attending").value === "") {
+    //   document.querySelector("#edit-cards-next--11").disabled = true
+    // }
     // if (document.querySelector("#edit-what-field-of-study-are-you-looking-to-study-currently-studying").value === "") {
     //   document.querySelector("#edit-cards-next--12").disabled = true
     // }
 
     document
       .querySelector("#edit-actions-13")
-      .insertAdjacentHTML("afterend", renderLabelCheckBox("school_are_you_interested_in_attending_var", "Skip", "skip_school_are_you_interested_in_attending_var", "2913"))
+      .insertAdjacentHTML(
+        "afterend",
+        renderLabelCheckBox("school_are_you_interested_in_attending_var skip_checkbox_var", "Skip", "skip_school_are_you_interested_in_attending_var", "2913")
+      )
 
     document
       .querySelector("#edit-actions-14")
       .insertAdjacentHTML(
         "afterend",
-        renderLabelCheckBox("study_are_you_looking_to_study_currently_studying_var", "Skip", "skip_study_are_you_looking_to_study_currently_studying_var", "521")
+        renderLabelCheckBox("study_are_you_looking_to_study_currently_studying_var skip_checkbox_var", "Skip", "skip_study_are_you_looking_to_study_currently_studying_var", "521")
       )
 
     // render text Program Assessment
@@ -1486,33 +1513,35 @@ let myFunk = setInterval(() => {
           }
           if (i.currentTarget.closest("#edit-qa9-wrap")) {
             document.querySelector("#edit-what-school-are-you-interested-in-attending").value = i.target.getAttribute("value")
-            if (document.querySelector("#edit-what-school-are-you-interested-in-attending").value !== "") {
-              document.querySelector("#edit-cards-next--11").disabled = false
-
-              if (i.currentTarget.getAttribute("id") === "other") {
-                i.currentTarget.closest("#edit-qa9-wrap").querySelector("textarea.other_textarea").style.display = "block"
-              } else {
-                i.currentTarget.closest("#edit-qa9-wrap").querySelector("textarea.other_textarea").style.display = "none"
-              }
-            }
-            pushDataLayer(`checked ${i.currentTarget.nextElementSibling.textContent}`, i.currentTarget.closest("section").querySelector("h4").textContent)
             if (i.target.getAttribute("id") === "skip_school_are_you_interested_in_attending_var") {
               document.querySelector("#edit-what-school-are-you-interested-in-attending").setAttribute("skip", true)
-              document.querySelector("#edit-cards-next--11").click()
+              // document.querySelector("#edit-cards-next--11").click()
             }
+            if (document.querySelector("#edit-what-school-are-you-interested-in-attending").value !== "") {
+              document.querySelector("#edit-cards-next--11").click()
+              // document.querySelector("#edit-cards-next--11").disabled = false
+
+              // if (i.currentTarget.getAttribute("id") === "other") {
+              //   i.currentTarget.closest("#edit-qa9-wrap").querySelector("textarea.other_textarea").style.display = "block"
+              // } else {
+              //   i.currentTarget.closest("#edit-qa9-wrap").querySelector("textarea.other_textarea").style.display = "none"
+              // }
+            }
+            pushDataLayer(`checked ${i.currentTarget.nextElementSibling.textContent}`, i.currentTarget.closest("section").querySelector("h4").textContent)
           }
           if (i.currentTarget.closest("#edit-qa10-wrap")) {
             document.querySelector("#edit-what-field-of-study-are-you-looking-to-study-currently-studying").value = i.target.getAttribute("value")
             pushDataLayer(`checked ${i.currentTarget.nextElementSibling.textContent}`, i.currentTarget.closest("section").querySelector("h4").textContent)
+            document.querySelector("#edit-cards-next--12").click()
 
-            if (i.currentTarget.getAttribute("id") === "other2") {
-              i.currentTarget.closest("#edit-qa10-wrap").querySelector("textarea.other_textarea").style.display = "block"
-            } else {
-              i.currentTarget.closest("#edit-qa10-wrap").querySelector("textarea.other_textarea").style.display = "none"
-            }
-            if (i.target.getAttribute("id") === "skip_study_are_you_looking_to_study_currently_studying_var") {
-              document.querySelector("#edit-cards-next--12").click()
-            }
+            // if (i.currentTarget.getAttribute("id") === "other2") {
+            //   i.currentTarget.closest("#edit-qa10-wrap").querySelector("textarea.other_textarea").style.display = "block"
+            // } else {
+            //   i.currentTarget.closest("#edit-qa10-wrap").querySelector("textarea.other_textarea").style.display = "none"
+            // }
+            // if (i.target.getAttribute("id") === "skip_study_are_you_looking_to_study_currently_studying_var") {
+            //   document.querySelector("#edit-cards-next--12").click()
+            // }
           }
           if (i.currentTarget.closest("#edit-if-selected-for-our-program")) {
             document.querySelector("#edit-cards-next--13").click()
@@ -1762,7 +1791,7 @@ let myFunk = setInterval(() => {
             pushDataLayer("Back", i.currentTarget.closest("section").querySelector("h4").textContent)
             if (document.querySelector("#edit-what-school-are-you-interested-in-attending").getAttribute("skip") === "true") {
               document.querySelector("#edit-what-school-are-you-interested-in-attending").value = ""
-              document.querySelector("#edit-cards-next--11").disabled = true
+              // document.querySelector("#edit-cards-next--11").disabled = true
               document.querySelector("#edit-what-school-are-you-interested-in-attending").removeAttribute("skip")
             }
           }
