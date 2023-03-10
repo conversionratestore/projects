@@ -96,7 +96,7 @@ let startNewFunk = setInterval(() => {
             text-transform: uppercase;
             color: #0C0B0B !important;
         }
-        .try_new_btn{
+        a.try_new_btn{
             padding: 20px 10px;
             width: 100%;
             max-width: 331px;
@@ -115,6 +115,13 @@ let startNewFunk = setInterval(() => {
             align-items: center;
             justify-content: center;
             margin: 50px auto;
+        }
+        a.try_new_btn:hover,
+        a.try_new_btn:active{
+            background-color: #0c0b0b;
+            border: none;
+            color: #fff;
+            text-decoration: unset;
         }
         .new_row.sticky_header_tabl .cell_wrap img{
             display: block;
