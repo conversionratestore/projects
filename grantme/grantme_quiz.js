@@ -974,7 +974,7 @@ let myFunk = setInterval(() => {
       "Tula quian sarsons": [
         `https://conversionratestore.github.io/projects/grantme/img/review2.png`,
         "2 reviews",
-        `US`,
+        `CA`,
         5,
         `Feb 21, 2023`,
         `<b>My experience so far with Grant Me Canada.</b> My Grant Me helper has been so wonderful to work with. Staring out with Grant Me, I knew so little about applying for scholarships and grants, at school I had only been told that there were very few I could apply for. But with their help, I've already learned so much in just the past two weeks! I'm super lucky to be working with Grant Me Canada and my helper and I believe that I'll have a super bright future continuing with them.`,
