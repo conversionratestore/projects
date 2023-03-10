@@ -239,9 +239,17 @@ let startNewFunk = setInterval(() => {
     }
 
     //   click on btn TRY ZENPATCH STICKERS
-    document.querySelector(".try_new_btn").addEventListener("click", (e) => {
-      e.preventDefault()
-      document.querySelector(".bp-comparison .js-mobile.bp-mob-table-container .btn.js-btn.btn-primary.get-it").click()
+    $(document).ready(function () {
+      $(".new_table").on("click", "a", function (event) {
+        event.preventDefault()
+
+        console.log(`first`)
+
+        let id = $(this).attr("href"),
+          top = $(id).offset().top - 10
+
+        $("body,html").animate({ scrollTop: top }, 600)
+      })
     })
 
     // sticky header table
@@ -291,11 +299,11 @@ let startNewFunk = setInterval(() => {
 
     //   visibility event
     let obs = new IntersectionObserver(visibility, {
-      threshold: 1,
+      threshold: 0.9,
     })
 
     let obs2 = new IntersectionObserver(visibility2, {
-      threshold: 1,
+      threshold: 0.9,
     })
 
     obs.observe(document.querySelector(".new_row.is_visability"))
