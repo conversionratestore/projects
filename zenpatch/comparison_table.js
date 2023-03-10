@@ -69,7 +69,6 @@ let startNewFunk = setInterval(() => {
             line-height: 18px;
             color: #515151;
             text-align: center;
-            word-break: break-word;
         }
         .cell_wrap span.accent_var{
             color: #2A7C72;
@@ -333,6 +332,7 @@ let startNewFunk = setInterval(() => {
             pushDataLayer(`Visibility H2 comparison table`)
           }
           if (i.target.classList.contains("try_new_btn")) {
+            console.log(`try_new_btn`)
             pushDataLayer(`Visibility Try zenpatch stickers button comparison table`)
           }
           if (i.target.classList.contains("is_visability")) {
