@@ -299,8 +299,14 @@ let startNewFunk = setInterval(() => {
     })
 
     obs.observe(document.querySelector(".new_row.is_visability"))
-    obs.observe(document.querySelector(".try_new_btn"))
-    obs.observe(document.querySelector(".bp-comparison.js-mobile .js-title.text-dark"))
+    let int = setInterval(() => {
+      if (document.querySelector("a.try_new_btn")) {
+        clearInterval(int)
+        obs.observe(document.querySelector("a.try_new_btn"))
+      }
+    }, 10)
+
+    obs.observe(document.querySelector(".bp-comparison.js-mobile h2.js-title.text-dark"))
 
     function visibility(entries) {
       entries.forEach((i) => {
