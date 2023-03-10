@@ -168,13 +168,13 @@ let startNewFunk = setInterval(() => {
         `Loose bowel movements, headache, sleepiness`,
         ``,
       ],
-      "Easiness of usage": [
+      "Ease of use": [
         ``,
         ``,
         ``,
         `Apply sticker close to the head on your clothes`,
         `Requires diffusers. Potential skin and inhalation irritant, or stains bedding & clothes.`,
-        `Tables or Drops(Requires Supervision)(Potential choking hazard)`,
+        `Tables or drops(Requires Supervision)(Potential choking hazard)`,
         `is_visability`,
       ],
       "Long-lasting effects": [
