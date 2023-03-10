@@ -946,7 +946,7 @@ let myFunk = setInterval(() => {
             />
           </svg>
         </div>
-        <p><b>GrantMe students are guaranteed admission to their top universities.</b> See if <span class="text_third">${text3}</span> <span class="text_fifth">${text5}</span>.</p>
+        <p><b>GrantMe students are guaranteed admission to one of their top universities.</b> See if <span class="text_third">${text3}</span> <span class="text_fifth">${text5}</span>.</p>
       </div>
       <div class="benefits_wrap">
         <p>Your results are ready. You’ll get:</p>
@@ -964,7 +964,7 @@ let myFunk = setInterval(() => {
       "Thomas Satosek": [
         `https://conversionratestore.github.io/projects/grantme/img/review1.png`,
         "2 reviews",
-        `US`,
+        `CA`,
         5,
         `Feb 17, 2023`,
         `<b>One of the best decisions I have made</b> I think that this program has been one of the best decisions I have ever made. GrantMe and the everyone on the team, from the editors to the advisors really try their hardest to make you succeed. They are all very friendly and extremely helpful. Amy my advisor, was extremely helpful, and she really tried her hardest and pushed me to be successful. At our meetings she would always put on a friendly smile and worked with me rather than for or directing me.To the rest of the team, just keep up the great work!`,
@@ -1394,7 +1394,7 @@ let myFunk = setInterval(() => {
                 el.textContent = "child’s"
               })
               document.querySelectorAll(".guarantee_block .text_second").forEach((el) => {
-                el.textContent = "you child is"
+                el.textContent = "your child is"
               })
               document.querySelectorAll(".guarantee_block .text_third").forEach((el) => {
                 el.textContent = "your child"
@@ -1649,7 +1649,7 @@ let myFunk = setInterval(() => {
                   el.textContent = "child’s"
                 })
                 document.querySelectorAll(".loader_wrap .text_second")?.forEach((el) => {
-                  el.textContent = "you child is"
+                  el.textContent = "your child is"
                 })
                 document.querySelectorAll(".loader_wrap .text_third")?.forEach((el) => {
                   el.textContent = "your child"
