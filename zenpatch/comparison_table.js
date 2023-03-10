@@ -190,7 +190,7 @@ let startNewFunk = setInterval(() => {
         ``,
         `Up to 8 hours`,
         `Depends on method of application and equipment used`,
-        `May have no effect, or last too long - leaving your child tired & groggy the next day.`,
+        `May have no effect, or last too long - leaving your child tired & groggy the next day`,
         ``,
       ],
       "Easy for all ages to use": [``, ``, ``, `0+`, `Must be kept away from children`, `Must be kept away from children`, ``],
