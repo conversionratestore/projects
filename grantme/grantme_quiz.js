@@ -1941,7 +1941,7 @@ let myFunk = setInterval(() => {
     const record = setInterval(() => {
       if (typeof clarity === "function") {
         clearInterval(record)
-        clarity("set", "remove_barriers_on_quiz", "variant_1")
+        clarity("set", `remove_barriers_on_quiz_${eventVar}`, "variant_1")
       }
     }, 200)
   }
