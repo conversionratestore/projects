@@ -52,11 +52,12 @@ const style = /*html*/`
             margin: 20px 0 !important;
         }
 
-        .total_price  {
+        .total_price .total_label  {
             font-weight: 400;
             font-size: 13px;
             line-height: 22px;
             color: #5C5C5C;
+            margin-right: 8px;
         }
 
         .total_price span {
@@ -68,15 +69,11 @@ const style = /*html*/`
 
         .total_price span.total_discount_price {
             color: #3CBE1A;
-            margin: 0 8px;
+            margin-right: 8px;
         }
 
         .total_price .total_regular_price {            
             text-decoration-line:line-through;
-        }
-
-        .total_price .total_standard_price {
-            margin-left: 8px;
         }
 
         .add_btn {
@@ -229,7 +226,7 @@ const style = /*html*/`
         }
 
         .disabled_option .inner_select,
-        .select_field.disabled_option {
+        .item .select_field.disabled_option {
             background: #F1F4F5;
             border: none;
             padding: 5px 10px !important;
@@ -387,7 +384,7 @@ const style = /*html*/`
         }
         .Drawer__Main .select_field {
             min-width: initial;
-            max-width: initial;
+            max-width: initial !important;
             width: 100%;
         }
 
@@ -569,10 +566,6 @@ const style = /*html*/`
 
         .Cart--expanded .custom_select .select_field  {
             padding: 5px 22px 5px 10px;
-        }
-
-        .Cart--expanded .info {
-            overflow: initial;
         }
 
         .Cart--expanded .info_bottom > p {
@@ -1033,14 +1026,10 @@ const customSelectHTML = (options, isCart = false) => {
     let optionsHTML
     let firstAvailableIndex
 
-    console.log(options)
-
     if (isCart) {
         optionsHTML = options.map((option, index) => {
             if (firstAvailableIndex === undefined && option.available) {
                 firstAvailableIndex = index
-                console.log(firstAvailableIndex)
-
             }
 
             return `<li class="${index === firstAvailableIndex ? 'active_option' : ''} ${option.available ? '' : 'out_of_stock'}" 
@@ -1060,8 +1049,6 @@ const customSelectHTML = (options, isCart = false) => {
     }
 
     let inner
-
-
 
     if (isCart) {
         inner = `
@@ -1083,13 +1070,20 @@ const customSelectHTML = (options, isCart = false) => {
         </div>`
     }
 
+    let mobileLabel = 'Size'
+
+    if (isCart && (options[0]?.text?.includes('/') || options[0]?.title?.includes('/'))) {
+        console.log(options[0]);
+        mobileLabel = 'Color / Size'
+    }
+
     return /*html*/`
     <div class="custom_select">
         <div class="select_field${options.length < 2 ? ' disabled_option' : ''}">
             ${inner}
         </div>
         <ul class="options">
-            <span class="mobile_size_label">Size</span>
+            <span class="mobile_size_label">${mobileLabel}</span>
             ${optionsHTML}
         </ul>
     </div>
@@ -1172,7 +1166,7 @@ const pdpUpsellContainer = (items, isTwoImages) => {
         const product = path.substring("/products/".length)
         const productSet = getProductSet(product)
 
-        title = `<p class="upsell_title save">Upgrade to the matching <a href="/products/${productSet}">Walk Set</a> and <span class="green_status">Save 20%</span></p></p>`
+        title = `<p class="upsell_title save">Upgrade to the matching <a href="/products/${productSet}">Walk Set</a> and <span class="green_status">Save 25%</span></p></p>`
 
         let msgSvg = `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
         <path d="M15.75 8C15.75 12.2812 12.2799 15.75 8 15.75C3.72009 15.75 0.25 12.2812 0.25 8C0.25 3.72134 3.72009 0.25 8 0.25C12.2799 0.25 15.75 3.72134 15.75 8ZM8 9.5625C7.20609 9.5625 6.5625 10.2061 6.5625 11C6.5625 11.7939 7.20609 12.4375 8 12.4375C8.79391 12.4375 9.4375 11.7939 9.4375 11C9.4375 10.2061 8.79391 9.5625 8 9.5625ZM6.63522 4.39544L6.86703 8.64544C6.87787 8.84431 7.04231 9 7.24147 9H8.75853C8.95769 9 9.12213 8.84431 9.13297 8.64544L9.36478 4.39544C9.3765 4.18063 9.20547 4 8.99034 4H7.00962C6.7945 4 6.6235 4.18063 6.63522 4.39544Z" fill="#3CBE1A"/>
@@ -1235,7 +1229,7 @@ const pdpUpsellContainer = (items, isTwoImages) => {
             <div class="preview">
                 ${images}
             </div>
-            <p class="total_price">Total Price:<span class="total_standard_price">${totalStandardPrice}</span><span class="total_discount_price">${totalDiscountPrice}</span> <span class="total_regular_price">${totalRegularPrice}</span></p>
+            <p class="total_price"><span class="total_label">Total Price:</span><span class="total_standard_price">${totalStandardPrice}</span><span class="total_discount_price">${totalDiscountPrice}</span> <span class="total_regular_price">${totalRegularPrice}</span></p>
             <button class="add_btn" data-name="Add select to card">Add selected to card</button>
             <div class="upsell_items_wrap">
                 ${upsellItemHTML}
@@ -1251,12 +1245,12 @@ const pdpUpsellContainer = (items, isTwoImages) => {
 // FUNCTIONS
 // -------------------------------------
 
-const checkVisibilityAfterMs = (el, ms = 3000) => { // Checks element visibility after a specified time. 
+const checkVisibilityAfterMs = (el, threshold = 1) => { // Checks element visibility after a specified time. 
     let timer
 
     const config = {
         root: null,
-        threshold: 1,
+        threshold
     }
 
     const observer = new IntersectionObserver((entries) => {
@@ -1264,7 +1258,7 @@ const checkVisibilityAfterMs = (el, ms = 3000) => { // Checks element visibility
             if (entry.isIntersecting) {
                 timer = setTimeout(() => {
                     sendGAEvent(`Visibility ${el.dataset.name}`)
-                }, ms)
+                }, 3000)
             } else {
                 clearTimeout(timer)
             }
@@ -1530,8 +1524,11 @@ const hideText = () => {
     const elementsToHide = [...rteElement.querySelectorAll('p, div')]
         .filter(el => el.textContent.toLowerCase().includes('set comes with')
             || el.textContent.toLowerCase().includes('save 20%')
+            || el.textContent.toLowerCase().includes('save 25%')
             || el.textContent.toLowerCase().includes('your dog with')
-            || el.textContent.toLowerCase().includes('grab the matching'))
+            || el.textContent.toLowerCase().includes('grab a matching')
+            || el.textContent.toLowerCase().includes('grab the matching')
+        )
 
     elementsToHide.forEach(el => el.style.display = 'none')
 }
@@ -1732,7 +1729,20 @@ const addUpsellsToCart = (upsells, cartItems) => {
     }
 
     setupCustomSelectCartLogic(upsells.length)
-    waitForElement('.upsells_container').then(el => checkVisibilityAfterMs(el))
+    waitForElement('.upsells_container').then(el => {
+        checkVisibilityAfterMs(el, 0.2)
+
+        let place = isExpandedCart ? 'cart page' : 'slider cart'
+
+        el.addEventListener('click', (e) => {
+            if (e.target.tagName.toLowerCase() === 'img') {
+                sendGAEvent(`Click on product image - ${place}`, e.target.closest('.item').querySelector('.info_title').textContent)
+            }
+            if (e.target.classList.contains('info_title')) {
+                sendGAEvent(`Click on product title - ${place}`, e.target.closest('.item').querySelector('.info_title').textContent)
+            }
+        })
+    })
 }
 
 const refreshCart = () => {
@@ -1835,12 +1845,23 @@ waitForElement('.cbb-frequently-bought-total-price-sale-price', '.cbb-frequently
                 pdpUpsellContainer(items, isTwoImages))
 
             waitForElement('.free_shipping').then(el => checkVisibilityAfterMs(el))
-            waitForElement('.upsell_container').then(el => checkVisibilityAfterMs(el))
+            waitForElement('.upsell_container').then(el => {
+                checkVisibilityAfterMs(el, 0.5)
+
+                el.addEventListener('click', (e) => {
+                    if (e.target.tagName.toLowerCase() === 'img') {
+                        sendGAEvent(`Click on product image - pdp`, e.target.closest('.upsell_item').querySelector('.upsell_item_name').textContent)
+                    }
+                    if (e.target.classList.contains('upsell_item_name')) {
+                        sendGAEvent('Click on product title - pdp', e.target.closest('.upsell_item').querySelector('.upsell_item_name').textContent)
+                    }
+                })
+            })
 
             waitForElement('.upsell_container .upsell_title').then(el => {
                 el.addEventListener('click', (e) => {
                     if (e.target.tagName.toLowerCase() === 'a') {
-                        sendGAEvent(`Click on ${e.target.textContent} link pdp`)
+                        sendGAEvent(`Click on matching link pdp`, e.target.textContent)
                     }
                 })
             })
@@ -1875,7 +1896,7 @@ waitForElement(`${isExpandedCart ? '.PageContent' : '#sidebar-cart'}`).then(cart
 
             const variantId = e.target.closest('.item').querySelector('.active_option').dataset.variantId
 
-            sendGAEvent(`Click on Add button ${isExpandedCart ? 'cart' : 'slider cart'}`)
+            sendGAEvent(`Click on Add button ${isExpandedCart ? 'cart page' : 'slider cart'}`)
 
             try {
                 await addItem(variantId)
@@ -1890,10 +1911,3 @@ waitForElement(`${isExpandedCart ? '.PageContent' : '#sidebar-cart'}`).then(cart
 observeCartNodes(main)
 
 sendGAEvent('loaded')
-
-const recordClarity = setInterval(() => {
-    if (typeof clarity === 'function') {
-        clearInterval(recordClarity)
-        clarity('set', `upsell_pdp_and_cart_${DEVICE}`, 'variant_1')
-    }
-}, WAIT_INTERVAL_TIMEOUT);
