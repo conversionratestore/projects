@@ -696,6 +696,10 @@ const style = /*html*/`
                 margin-top: 12px;
             }
 
+            .Cart--expanded .custom_select ul {
+                max-width: initial;
+            }
+
             /* free shipping */
 
             .free_shipping {
@@ -1894,4 +1898,3 @@ const recordClarity = setInterval(() => {
         clarity('set', `upsell_pdp_and_cart_${DEVICE}`, 'variant_1');
     }
 }, WAIT_INTERVAL_TIMEOUT);
-
