@@ -356,6 +356,7 @@ let myFunk = setInterval(() => {
         }
         .benefits_wrap ul li {
           position: relative;
+          min-height: 40px;
           padding-left: 52px;
         }
         .benefits_wrap ul li::before {
@@ -652,6 +653,13 @@ let myFunk = setInterval(() => {
         .checkbox_block.study_are_you_looking_to_study_currently_studying_var.skip_checkbox_var{
           display: none !important;
         }
+        @media (min-width: 510px) {
+          .benefits_wrap ul li {
+              display: flex;
+              align-items: center;
+              width: max-content;
+            }
+          }
         @media (min-width: 991px) {
           .path-grantme-program-assessment #block-landingpageheaderquiz .col-md-4.bluebg {
             margin: 0;
@@ -732,12 +740,7 @@ let myFunk = setInterval(() => {
           .guarantee_block .scroll_var {
             margin-top: 30px;
           }
-          .benefits_wrap ul li {
-            min-height: 40px;
-            display: flex;
-            align-items: center;
-            width: max-content;
-          }
+
           .loader_wrap {
             max-width: 600px;
             margin: 0 auto;
