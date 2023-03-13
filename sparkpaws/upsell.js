@@ -1,7 +1,7 @@
 // -------------------------------------
 // CONSTANTS
 // -------------------------------------
-const DEVICE = screen.width < 768 ? 'mobile' : 'desktop';
+const DEVICE = screen.width < 768 ? 'mobile' : 'desktop'
 const WAIT_INTERVAL_TIMEOUT = 100
 
 const style = /*html*/`
@@ -1019,9 +1019,9 @@ const matchingProductHandles = [
         'yellow-blue-green-sky-dye-t-shirt',
         'yellow-blue-green-sky-dye-cooling-bandana'
     ]
-];
+]
 
-let cachedUpsellData = null;
+let cachedUpsellData = null
 
 let lastCartItemHandle = document.querySelector('.CartItem__Title.Heading a')?.href
 let cartItemsLength = document.querySelectorAll('.Cart__ItemList .CartItem').length || null
@@ -1033,13 +1033,13 @@ const customSelectHTML = (options, isCart = false) => {
     let optionsHTML
     let firstAvailableIndex
 
-    console.log(options);
+    console.log(options)
 
     if (isCart) {
         optionsHTML = options.map((option, index) => {
             if (firstAvailableIndex === undefined && option.available) {
                 firstAvailableIndex = index
-                console.log(firstAvailableIndex);
+                console.log(firstAvailableIndex)
 
             }
 
@@ -1150,7 +1150,7 @@ const previewImages = (items) => {
         }
 
         return img
-    }).join('');
+    }).join('')
 
     return images
 }
@@ -1168,7 +1168,7 @@ const pdpUpsellContainer = (items, isTwoImages) => {
     let msg = ''
 
     if (isSale) {
-        const path = window.location.pathname;
+        const path = window.location.pathname
         const product = path.substring("/products/".length)
         const productSet = getProductSet(product)
 
@@ -1252,26 +1252,26 @@ const pdpUpsellContainer = (items, isTwoImages) => {
 // -------------------------------------
 
 const checkVisibilityAfterMs = (el, ms = 3000) => { // Checks element visibility after a specified time. 
-    let timer;
+    let timer
 
     const config = {
         root: null,
         threshold: 1,
-    };
+    }
 
     const observer = new IntersectionObserver((entries) => {
         entries.forEach((entry) => {
             if (entry.isIntersecting) {
                 timer = setTimeout(() => {
-                    sendGAEvent(`Visibility ${el.dataset.name}`);
-                }, ms);
+                    sendGAEvent(`Visibility ${el.dataset.name}`)
+                }, ms)
             } else {
-                clearTimeout(timer);
+                clearTimeout(timer)
             }
-        });
-    }, config);
+        })
+    }, config)
 
-    observer.observe(el);
+    observer.observe(el)
 }
 
 const sendGAEvent = (eventAction, eventLabel = '') => { // Send a Google Analytics event
@@ -1280,25 +1280,25 @@ const sendGAEvent = (eventAction, eventLabel = '') => { // Send a Google Analyti
         eventCategory: `Exp: Upsell pdp and cart. ${DEVICE}`,
         eventAction,
         eventLabel,
-    };
+    }
 
-    window.dataLayer = window.dataLayer || [];
-    dataLayer.push(eventData);
-    console.log(eventData);
+    window.dataLayer = window.dataLayer || []
+    dataLayer.push(eventData)
+    console.log(eventData)
 }
 
 // PDP FUNCTIONS
 
 const waitForElement = async (selector) => { // Wait for an element to appear on the page
-    let count = 0;
+    let count = 0
     while (!document.querySelector(selector)) {
-        await new Promise(resolve => setTimeout(resolve, WAIT_INTERVAL_TIMEOUT));
-        count++;
+        await new Promise(resolve => setTimeout(resolve, WAIT_INTERVAL_TIMEOUT))
+        count++
         if (count >= 300) { // Wait for a maximum of 30 seconds (300 * 100ms)
-            break;
+            break
         }
     }
-    return document.querySelector(selector);
+    return document.querySelector(selector)
 }
 
 const parseImgSrcFromBg = (index) => document.querySelectorAll('.cbb-frequently-bought-product-image')[index].style.backgroundImage.match(/url\("(.+)"\)/)?.[1] || ''
@@ -1311,7 +1311,7 @@ const createUpsellItem = (li, index) => {
             value: option.value,
             variantId: option.dataset.variantId,
             text: option.text
-        }));
+        }))
 
     const standardPrice = document.querySelectorAll('.cbb-frequently-bought-selector-label-regular-price')[index]?.textContent || ''
     let regularPrice
@@ -1337,11 +1337,11 @@ const createUpsellItem = (li, index) => {
 
     // Add href link to item, except the first
     if (index !== 0) {
-        const href = document.querySelectorAll('.cbb-frequently-bought-product-image-link')[index - 1]?.dataset?.href.replace(/(\?variant=)[^&]+/, '');
+        const href = document.querySelectorAll('.cbb-frequently-bought-product-image-link')[index - 1]?.dataset?.href.replace(/(\?variant=)[^&]+/, '')
         item.href = href
     }
 
-    return item;
+    return item
 }
 
 const changePrice = (index) => {
@@ -1373,14 +1373,14 @@ const setupCustomCheckboxLogic = (length) => {
 
             document.querySelectorAll('.custom_checkbox').forEach((checkbox, index) => {
                 checkbox.addEventListener('click', () => {
-                    checkbox.classList.toggle('checked');
+                    checkbox.classList.toggle('checked')
 
-                    const previewImg = document.querySelectorAll('.preview img')[index];
+                    const previewImg = document.querySelectorAll('.preview img')[index]
                     if (!checkbox.classList.contains('checked') && !previewImg.classList.contains('blur_img')) {
-                        previewImg.classList.add('blur_img');
+                        previewImg.classList.add('blur_img')
                         document.querySelector('.msg')?.classList.add('active')
                     } else if (checkbox.classList.contains('checked')) {
-                        previewImg.classList.remove('blur_img');
+                        previewImg.classList.remove('blur_img')
                         document.querySelector('.msg')?.classList.remove('active')
                     }
 
@@ -1396,21 +1396,21 @@ const setupCustomCheckboxLogic = (length) => {
 
 // Set the maximum height of the options list based on the viewport height
 function setMaxHeight(customSelect) {
-    const options = customSelect.querySelector('.options');
-    const customSelectRect = customSelect.getBoundingClientRect();
-    const vh = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
-    const spaceBelow = vh - (customSelectRect.top + customSelectRect.height); // Calculate the space remaining below the custom select
-    const spaceAbove = customSelectRect.top - document.querySelector('.Header__Wrapper').clientHeight - 15; // Add offset from the top
+    const options = customSelect.querySelector('.options')
+    const customSelectRect = customSelect.getBoundingClientRect()
+    const vh = Math.max(document.documentElement.clientHeight, window.innerHeight || 0)
+    const spaceBelow = vh - (customSelectRect.top + customSelectRect.height) // Calculate the space remaining below the custom select
+    const spaceAbove = customSelectRect.top - document.querySelector('.Header__Wrapper').clientHeight - 15 // Add offset from the top
 
-    const maxHeight = Math.max(spaceBelow, spaceAbove);
+    const maxHeight = Math.max(spaceBelow, spaceAbove)
 
-    options.style.maxHeight = `${maxHeight - 15}px`; // Subtract 15px from the maxHeight to add the 15px offset from the bottom
-    options.style.overflowY = "auto"; // Set overflow property to "auto" to enable scrolling if the content exceeds the maximum height
+    options.style.maxHeight = `${maxHeight - 15}px` // Subtract 15px from the maxHeight to add the 15px offset from the bottom
+    options.style.overflowY = "auto" // Set overflow property to "auto" to enable scrolling if the content exceeds the maximum height
 
     if (maxHeight === spaceAbove) { // If the options list is positioned above the select, add a class to show the arrow pointing up
-        customSelect.classList.add('options-top');
+        customSelect.classList.add('options-top')
     } else { // Otherwise, remove the class
-        customSelect.classList.remove('options-top');
+        customSelect.classList.remove('options-top')
     }
 }
 
@@ -1434,7 +1434,7 @@ const setupCustomSelectsLogic = (length) => {
                     sendGAEvent('Click on size choose pdp', select.closest('.upsell_item_info').querySelector('.upsell_item_name').textContent)
 
                     if (DEVICE === 'desktop') {
-                        setMaxHeight(select);
+                        setMaxHeight(select)
                     } else {
                         overlay?.classList.toggle('active')
                     }
@@ -1444,7 +1444,7 @@ const setupCustomSelectsLogic = (length) => {
                 options.forEach(function (option) {
                     option.addEventListener('click', function () {
                         // change value
-                        value.textContent = this.textContent;
+                        value.textContent = this.textContent
 
                         sendGAEvent('Click on size dropdown pdp', option.textContent)
 
@@ -1457,9 +1457,9 @@ const setupCustomSelectsLogic = (length) => {
                         // imitate app value change
                         const selectElement = document.querySelectorAll('.cbb-recommendations-variant-select')[index]
 
-                        selectElement.value = option.dataset.value;
-                        const event = new Event('change', { bubbles: true });
-                        selectElement.dispatchEvent(event);
+                        selectElement.value = option.dataset.value
+                        const event = new Event('change', { bubbles: true })
+                        selectElement.dispatchEvent(event)
 
                         changePrice(index)
 
@@ -1486,14 +1486,14 @@ const setupCustomSelectsLogic = (length) => {
                 // Close the options list when clicking outside of it
                 document.addEventListener('click', function (event) {
                     if (!select.contains(event.target)) {
-                        select.classList.remove('active');
+                        select.classList.remove('active')
                     }
                 })
 
                 // Close the custom select when the user scrolls
                 window.addEventListener('scroll', () => {
                     if (select.classList.contains('active')) {
-                        select.classList.remove('active');
+                        select.classList.remove('active')
                     }
                     if (overlay?.classList.contains('active')) {
                         overlay.classList.remove('active')
@@ -1507,49 +1507,49 @@ const setupCustomSelectsLogic = (length) => {
 }
 
 function getProductSet(nameproductId) {
-    const productName = nameproductId.replace('/products/', '');
-    const set = Object.entries(setObj).find(([key]) => productName.includes(key));
-    return set ? set[1] : null;
+    const productName = nameproductId.replace('/products/', '')
+    const set = Object.entries(setObj).find(([key]) => productName.includes(key))
+    return set ? set[1] : null
 }
 
 function textBeforeDash(productName) {
-    const dashIndex = productName.indexOf('-');
-    const secondDashIndex = productName.indexOf('-', dashIndex + 1);
+    const dashIndex = productName.indexOf('-')
+    const secondDashIndex = productName.indexOf('-', dashIndex + 1)
 
     if (secondDashIndex !== -1) {
-        return productName.slice(0, secondDashIndex).trim();
+        return productName.slice(0, secondDashIndex).trim()
     } else if (dashIndex !== -1) {
-        return productName.slice(0, dashIndex).trim();
+        return productName.slice(0, dashIndex).trim()
     } else {
-        return productName;
+        return productName
     }
 }
 
 const hideText = () => {
-    const rteElement = document.querySelector('.Rte');
+    const rteElement = document.querySelector('.Rte')
     const elementsToHide = [...rteElement.querySelectorAll('p, div')]
         .filter(el => el.textContent.toLowerCase().includes('set comes with')
             || el.textContent.toLowerCase().includes('save 20%')
             || el.textContent.toLowerCase().includes('your dog with')
-            || el.textContent.toLowerCase().includes('grab the matching'));
+            || el.textContent.toLowerCase().includes('grab the matching'))
 
-    elementsToHide.forEach(el => el.style.display = 'none');
-};
+    elementsToHide.forEach(el => el.style.display = 'none')
+}
 
 // CART FUNCTIONS
 
 const getProduct = async (handle) => {
-    const response = await fetch(`/products/${handle}.js`);
-    if (!response.ok) throw new Error(`Failed to get product ${handle}. ${response.status} ${response.statusText}`);
-    const product = await response.json();
-    return product;
-};
+    const response = await fetch(`/products/${handle}.js`)
+    if (!response.ok) throw new Error(`Failed to get product ${handle}. ${response.status} ${response.statusText}`)
+    const product = await response.json()
+    return product
+}
 
 const getCart = async () => {
-    const response = await fetch('/cart.json');
-    if (!response.ok) throw new Error(`Failed to get cart. ${response.status} ${response.statusText}`);
-    return response.json();
-};
+    const response = await fetch('/cart.json')
+    if (!response.ok) throw new Error(`Failed to get cart. ${response.status} ${response.statusText}`)
+    return response.json()
+}
 
 const addItem = async (id, quantity = 1) => {
     const response = await fetch("/cart/add.json", {
@@ -1563,7 +1563,7 @@ const addItem = async (id, quantity = 1) => {
             quantity,
         }),
     })
-    if (!response.ok) throw new Error(`Failed to add item to cart. ${response.status} ${response.statusText}`);
+    if (!response.ok) throw new Error(`Failed to add item to cart. ${response.status} ${response.statusText}`)
 }
 
 const formatPrice = (number) => {
@@ -1618,14 +1618,14 @@ const setupCustomSelectCartLogic = (length) => {
                     select.classList.toggle('active')
                     // select.closest('item').querySelector('img')?.src
                     imgOldSrc = img?.src
-                    setMaxHeight(select);
+                    setMaxHeight(select)
                 })
 
                 // Update the selected option when an option is clicked
                 options.forEach(function (option) {
                     option.addEventListener('click', () => {
                         // change values
-                        value.textContent = option.textContent;
+                        value.textContent = option.textContent
 
                         sendGAEvent(`Click on size dropdown ${isExpandedCart ? 'cart' : 'slider cart'}`, option.textContent)
 
@@ -1644,9 +1644,9 @@ const setupCustomSelectCartLogic = (length) => {
                         // change href
                         for (const link of linksOnProduct) {
                             if (link.href.includes("?variant=")) {
-                                link.href = link.href.replace(/variant=\d+/, `variant=${variantId}`);
+                                link.href = link.href.replace(/variant=\d+/, `variant=${variantId}`)
                             } else {
-                                link.href = `${link.href}?variant=${variantId}`;
+                                link.href = `${link.href}?variant=${variantId}`
                             }
                         }
 
@@ -1668,7 +1668,7 @@ const setupCustomSelectCartLogic = (length) => {
                 // Close the options list when clicking outside of it
                 document.addEventListener('click', function (event) {
                     if (!select.contains(event.target)) {
-                        select.classList.remove('active');
+                        select.classList.remove('active')
                     }
                 })
 
@@ -1677,9 +1677,9 @@ const setupCustomSelectCartLogic = (length) => {
 
             document.body.addEventListener('wheel', (e) => {
                 if (!e.target.closest('.custom_select.active') && document.querySelector('.custom_select.active')) {
-                    document.querySelector('.custom_select.active').classList.remove('active');
+                    document.querySelector('.custom_select.active').classList.remove('active')
                 }
-            });
+            })
         }
     }, WAIT_INTERVAL_TIMEOUT)
 }
@@ -1738,25 +1738,25 @@ const addUpsellsToCart = (upsells, cartItems) => {
 const refreshCart = () => {
     document.documentElement.dispatchEvent(new CustomEvent("cart:refresh", {
         bubbles: true,
-    }));
+    }))
 }
 
 const observeCartNodes = (callback) => {
-    const targetNode = document.body;
+    const targetNode = document.body
     const observer = new MutationObserver(function (mutations) {
         mutations.forEach(function (mutation) {
             mutation.addedNodes.forEach(async function (addedNode) {
                 if (addedNode.classList && addedNode.classList.contains('Cart') && !document.querySelector('.Cart__Empty')) {
                     observer.disconnect()
-                    console.log('observer....');
+                    console.log('observer....')
                     await callback()
-                    observer.observe(targetNode, config);
+                    observer.observe(targetNode, config)
                 }
-            });
-        });
-    });
-    const config = { childList: true, subtree: true };
-    observer.observe(targetNode, config);
+            })
+        })
+    })
+    const config = { childList: true, subtree: true }
+    observer.observe(targetNode, config)
 }
 
 const main = async () => {
@@ -1766,20 +1766,20 @@ const main = async () => {
             && document.querySelectorAll('.Cart__ItemList .CartItem').length === cartItemsLength
             && cachedUpsellData
         ) {
-            console.log('%c Using CASHED upsell data', 'color: green');
+            console.log('%c Using CASHED upsell data', 'color: green')
             // Render the cached data
             addUpsellsToCart(cachedUpsellData)
         } else {
-            console.log('%c FETCH NEW the suggested products', 'color: green');
+            console.log('%c FETCH NEW the suggested products', 'color: green')
 
-            const cart = await getCart();
-            const handle = cart.items[0].handle;
+            const cart = await getCart()
+            const handle = cart.items[0].handle
 
-            const filteredArr = matchingProductHandles.filter((subArr) => subArr.includes(handle)).flatMap((subArr) => subArr.filter((val) => val !== handle));
-            const uniqueArr = [...new Set(filteredArr)];
+            const filteredArr = matchingProductHandles.filter((subArr) => subArr.includes(handle)).flatMap((subArr) => subArr.filter((val) => val !== handle))
+            const uniqueArr = [...new Set(filteredArr)]
 
             if (uniqueArr.length) {
-                const products = await Promise.all(uniqueArr.map(getProduct));
+                const products = await Promise.all(uniqueArr.map(getProduct))
 
                 addUpsellsToCart(products, cart.items)
 
@@ -1798,15 +1798,15 @@ const main = async () => {
                     }
                 }
             } else {
-                console.log('There are not suggestions for this product.');
+                console.log('There are not suggestions for this product.')
             }
         }
 
-        console.log("All requests have been made.");
+        console.log("All requests have been made.")
     } catch (error) {
-        console.error(error);
+        console.error(error)
     }
-};
+}
 
 // -------------------------------------
 // MAKE DOM CHANGES
@@ -1819,7 +1819,7 @@ waitForElement('.cbb-frequently-bought-total-price-sale-price', '.cbb-frequently
     // Get frequently bought items information from DOM
     const upsellsPdp = document.querySelectorAll('.cbb-frequently-bought-selector-list li')
     const upsellsLength = upsellsPdp.length
-    const isTwoImages = upsellsLength < 3;
+    const isTwoImages = upsellsLength < 3
 
     const waitForEl = setInterval(() => {
         if (
@@ -1828,7 +1828,7 @@ waitForElement('.cbb-frequently-bought-total-price-sale-price', '.cbb-frequently
         ) {
             clearInterval(waitForEl)
 
-            const items = [...upsellsPdp].map(createUpsellItem);
+            const items = [...upsellsPdp].map(createUpsellItem)
 
             // Insert HTML for upsell items in DOM
             document.querySelector('.cbb-frequently-bought-container').insertAdjacentHTML('afterend',
@@ -1862,8 +1862,8 @@ waitForElement('.cbb-frequently-bought-total-price-sale-price', '.cbb-frequently
     }, WAIT_INTERVAL_TIMEOUT)
 
     if (DEVICE === 'mobile') {
-        const overlay = `<div class="custom_overlay"></div>`;
-        document.body.insertAdjacentHTML('beforeend', overlay);
+        const overlay = `<div class="custom_overlay"></div>`
+        document.body.insertAdjacentHTML('beforeend', overlay)
     }
 })
 
@@ -1878,13 +1878,13 @@ waitForElement(`${isExpandedCart ? '.PageContent' : '#sidebar-cart'}`).then(cart
             sendGAEvent(`Click on Add button ${isExpandedCart ? 'cart' : 'slider cart'}`)
 
             try {
-                await addItem(variantId);
-                refreshCart();
+                await addItem(variantId)
+                refreshCart()
             } catch (error) {
-                console.error(error);
+                console.error(error)
             }
         }
-    });
+    })
 })
 
 observeCartNodes(main)
@@ -1893,7 +1893,7 @@ sendGAEvent('loaded')
 
 const recordClarity = setInterval(() => {
     if (typeof clarity === 'function') {
-        clearInterval(recordClarity);
-        clarity('set', `upsell_pdp_and_cart_${DEVICE}`, 'variant_1');
+        clearInterval(recordClarity)
+        clarity('set', `upsell_pdp_and_cart_${DEVICE}`, 'variant_1')
     }
 }, WAIT_INTERVAL_TIMEOUT);
