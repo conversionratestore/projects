@@ -1863,7 +1863,7 @@ let myFunk = setInterval(() => {
     let observer = new MutationObserver(() => {
       if (document.querySelector("#edit-qa13-wrap")) {
         observer.disconnect()
-        console.log(`observer`)
+        // console.log(`observer`)
 
         if ($("strong.error").is(":visible")) {
           if (!document.querySelector("form #edit-actions-10-submit").classList.contains("disabled")) {
@@ -1933,6 +1933,12 @@ let myFunk = setInterval(() => {
         obs.observe(document.querySelector('.reviews_link[data-count="3"]'))
       }
     }, 100)
+    let int4 = setInterval(() => {
+      if (document.querySelector(".reviews_block")) {
+        clearInterval(int4)
+        obs.observe(document.querySelector(".reviews_block"))
+      }
+    }, 100)
 
     function visibility(entries) {
       entries.forEach((i) => {
@@ -1958,13 +1964,13 @@ let myFunk = setInterval(() => {
           }
           switch (i.target.getAttribute("data-count")) {
             case "1":
-              pushDataLayer("Visibility reviews section", "Reviews", `Reviews sections ${i.target.getAttribute("data-count")}`)
+              pushDataLayer("Visibility reviews section", "Reviews", `Reviews block ${i.target.getAttribute("data-count")}`)
               break
             case "2":
-              pushDataLayer("Visibility reviews section", "Reviews", `Reviews sections ${i.target.getAttribute("data-count")}`)
+              pushDataLayer("Visibility reviews section", "Reviews", `Reviews block ${i.target.getAttribute("data-count")}`)
               break
             case "3":
-              pushDataLayer("Visibility reviews section", "Reviews", `Reviews sections ${i.target.getAttribute("data-count")}`)
+              pushDataLayer("Visibility reviews section", "Reviews", `Reviews block ${i.target.getAttribute("data-count")}`)
               break
             default:
               break
