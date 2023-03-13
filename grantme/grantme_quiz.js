@@ -22,20 +22,20 @@ let myFunk = setInterval(() => {
     function pushDataLayer(deskDataLayer, typeDataLayer, actionDataLayer, labelDataLayer) {
       window.dataLayer = window.dataLayer || []
       if (labelDataLayer) {
-        console.log(actionDataLayer + " : " + labelDataLayer)
+        console.log(deskDataLayer + typeDataLayer + actionDataLayer + " : " + labelDataLayer)
         dataLayer.push({
           event: "event-to-ga4",
-          event_name: `exp_remove_barriers_on_quiz_${eventVar}`,
+          event_name: `exp_remove_barriers_on_quiz_s ${eventVar}`,
           event_desc: `${deskDataLayer}`,
           event_type: `${typeDataLayer}`,
           event_loc: `${actionDataLayer}`,
           eventLabel: `${labelDataLayer}`,
         })
       } else {
-        console.log(actionDataLayer)
+        console.log(deskDataLayer + " " + typeDataLayer + " " + actionDataLayer)
         dataLayer.push({
           event: "event-to-ga4",
-          event_name: `exp_remove_barriers_on_quiz_${eventVar}`,
+          event_name: `exp_remove_barriers_on_quiz_s ${eventVar}`,
           event_desc: `${deskDataLayer}`,
           event_type: `${typeDataLayer}`,
           event_loc: `${actionDataLayer}`,
