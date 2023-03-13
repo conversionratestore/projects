@@ -19,13 +19,13 @@ let myFunk = setInterval(() => {
       eventVar = "mobile"
     }
 
-    function pushDataLayer(deskDataLayer, typeDataLayer, actionDataLayer, labelDataLayer) {
+    function pushDataLayer(nameDataLayer, deskDataLayer, typeDataLayer, actionDataLayer, labelDataLayer) {
       window.dataLayer = window.dataLayer || []
       if (labelDataLayer) {
         console.log(deskDataLayer + typeDataLayer + actionDataLayer + " : " + labelDataLayer)
         dataLayer.push({
           event: "event-to-ga4",
-          event_name: `exp_remove_barriers_on_quiz_s ${eventVar}`,
+          event_name: `${nameDataLayer} ${eventVar}`,
           event_desc: `${deskDataLayer}`,
           event_type: `${typeDataLayer}`,
           event_loc: `${actionDataLayer}`,
@@ -35,7 +35,7 @@ let myFunk = setInterval(() => {
         console.log(deskDataLayer + " " + typeDataLayer + " " + actionDataLayer)
         dataLayer.push({
           event: "event-to-ga4",
-          event_name: `exp_remove_barriers_on_quiz_s ${eventVar}`,
+          event_name: `${nameDataLayer} ${eventVar}`,
           event_desc: `${deskDataLayer}`,
           event_type: `${typeDataLayer}`,
           event_loc: `${actionDataLayer}`,
