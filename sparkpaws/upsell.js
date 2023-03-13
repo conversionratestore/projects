@@ -544,7 +544,6 @@ const style = /*html*/`
         }
 
         .Cart--expanded .custom_select ul {
-            max-width: initial;
             width: 100%;
             max-width: 340px;
         }
