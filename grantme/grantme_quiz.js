@@ -1344,7 +1344,7 @@ let myFunk = setInterval(() => {
       // click on load more btn
       if (document.querySelector(".load_more_btn")) {
         document.querySelector(".load_more_btn").addEventListener("click", (e) => {
-          pushDataLayer("Load more", `Button`, `Under reviews`)
+          pushDataLayer(`exp_remove_barriers_on_quiz_l`, "Load more", `Button`, `Under reviews`)
           e.target.style.display = "none"
           document.querySelector('[data-count="3"]').style.display = "block"
           document.querySelector('[data-count="3"]')?.scrollIntoView({ block: "start", behavior: "smooth" })
@@ -1381,7 +1381,12 @@ let myFunk = setInterval(() => {
       el.addEventListener("click", (i) => {
         if (!i.currentTarget.getAttribute("data-test")) {
           if (i.currentTarget.closest("div").classList.contains("skip_var") || i.currentTarget.closest("div").classList.contains("i_dont_know_var")) {
-            pushDataLayer(`${i.currentTarget.closest("label").textContent}`, `Button`, i.currentTarget.closest("section").querySelector("h4").textContent)
+            pushDataLayer(
+              `exp_remove_barriers_on_quiz_s`,
+              `${i.currentTarget.closest("label").textContent}`,
+              `Button`,
+              i.currentTarget.closest("section").querySelector("h4").textContent
+            )
           }
           document.querySelectorAll(".webform-progress ul li").forEach((el) => {
             let int = setInterval(() => {
@@ -1551,11 +1556,21 @@ let myFunk = setInterval(() => {
               //   document.querySelector("button#edit-cards-next--11").classList.remove("active_btn")
               // }
             }
-            pushDataLayer(`checked ${i.currentTarget.nextElementSibling.textContent}`, `Checkbox`, i.currentTarget.closest("section").querySelector("h4").textContent)
+            pushDataLayer(
+              `exp_remove_barriers_on_quiz_c`,
+              `checked ${i.currentTarget.nextElementSibling.textContent}`,
+              `Checkbox`,
+              i.currentTarget.closest("section").querySelector("h4").textContent
+            )
           }
           if (i.currentTarget.closest("#edit-qa10-wrap")) {
             document.querySelector("#edit-what-field-of-study-are-you-looking-to-study-currently-studying").value = i.target.getAttribute("value")
-            pushDataLayer(`checked ${i.currentTarget.nextElementSibling.textContent}`, `Checkbox`, i.currentTarget.closest("section").querySelector("h4").textContent)
+            pushDataLayer(
+              `exp_remove_barriers_on_quiz_c`,
+              `checked ${i.currentTarget.nextElementSibling.textContent}`,
+              `Checkbox`,
+              i.currentTarget.closest("section").querySelector("h4").textContent
+            )
 
             document.querySelector("#edit-cards-next--12").click()
             // if (i.currentTarget.getAttribute("id") !== "other2") {
@@ -1719,7 +1734,7 @@ let myFunk = setInterval(() => {
 
                 document.querySelector(".path-scholarship-eligibility-quiz .webform-progress ul li:last-child").style.background = "rgb(233, 243, 250)"
                 document.querySelector("#edit-cards-prev--15").click()
-                pushDataLayer("Back", `Button`, i.currentTarget.closest("section").querySelector("h4").textContent)
+                pushDataLayer(`exp_remove_barriers_on_quiz_b`, "Back", `Button`, i.currentTarget.closest("section").querySelector("h4").textContent)
                 document.querySelector("#edit-qa13-wrap").style.display = "none"
                 if (document.querySelector(".loader_wrap")) {
                   document.querySelector(".loader_wrap").remove()
@@ -1754,7 +1769,7 @@ let myFunk = setInterval(() => {
             }, 100)
           })
           if (i.currentTarget.closest("#edit-are-you-a-current-student-")) {
-            pushDataLayer("Back", `Button`, i.currentTarget.closest("section").querySelector("h4").textContent)
+            pushDataLayer(`exp_remove_barriers_on_quiz_b`, "Back", `Button`, i.currentTarget.closest("section").querySelector("h4").textContent)
             i.currentTarget.closest("section").querySelector(".back_btn_var").style.opacity = "0"
             i.currentTarget.closest("section").querySelector(".back_btn_var").style.visibility = "hidden"
             document.querySelectorAll("#edit-are-you-a-current-student.js-webform-radios input[type=radio]").forEach((input) => {
@@ -1778,47 +1793,47 @@ let myFunk = setInterval(() => {
           }
           if (i.currentTarget.closest("#edit-what-were-you-looking-for-today-")) {
             document.querySelector("#edit-cards-prev--2").click()
-            pushDataLayer("Back", `Button`, i.currentTarget.closest("section").querySelector("h4").textContent)
+            pushDataLayer(`exp_remove_barriers_on_quiz_b`, "Back", `Button`, i.currentTarget.closest("section").querySelector("h4").textContent)
           }
           if (i.currentTarget.closest("#edit-what-is-your-citizenship-")) {
             document.querySelector("#edit-cards-prev--3").click()
-            pushDataLayer("Back", `Button`, i.currentTarget.closest("section").querySelector("h4").textContent)
+            pushDataLayer(`exp_remove_barriers_on_quiz_b`, "Back", `Button`, i.currentTarget.closest("section").querySelector("h4").textContent)
           }
           if (i.currentTarget.closest("#edit-what-year-of-university-are-you-currently-in-") || i.currentTarget.closest("#edit-what-year-of-study-are-you-currently-in-")) {
             document.querySelector("#edit-cards-prev--4").click()
-            pushDataLayer("Back", `Button`, i.currentTarget.closest("section").querySelector("h4").textContent)
+            pushDataLayer(`exp_remove_barriers_on_quiz_b`, "Back", `Button`, i.currentTarget.closest("section").querySelector("h4").textContent)
           }
           if (i.currentTarget.closest("#edit-are-you-currently-studying-in-canada-")) {
             document.querySelector("#edit-cards-prev--5").click()
-            pushDataLayer("Back", `Button`, i.currentTarget.closest("section").querySelector("h4").textContent)
+            pushDataLayer(`exp_remove_barriers_on_quiz_b`, "Back", `Button`, i.currentTarget.closest("section").querySelector("h4").textContent)
           }
           if (i.currentTarget.closest("#edit-what-year-of-university-are-you-currently-in-")) {
             document.querySelector("#edit-cards-prev--6").click()
-            pushDataLayer("Back", `Button`, i.currentTarget.closest("section").querySelector("h4").textContent)
+            pushDataLayer(`exp_remove_barriers_on_quiz_b`, "Back", `Button`, i.currentTarget.closest("section").querySelector("h4").textContent)
           }
           if (i.currentTarget.closest("#edit-how-old-are-you-")) {
             document.querySelector("#edit-cards-prev--7").click()
-            pushDataLayer("Back", `Button`, i.currentTarget.closest("section").querySelector("h4").textContent)
+            pushDataLayer(`exp_remove_barriers_on_quiz_b`, "Back", `Button`, i.currentTarget.closest("section").querySelector("h4").textContent)
           }
           if (i.currentTarget.closest("#edit-what-is-your-gpa-")) {
             document.querySelector("#edit-cards-prev--8").click()
-            pushDataLayer("Back", `Button`, i.currentTarget.closest("section").querySelector("h4").textContent)
+            pushDataLayer(`exp_remove_barriers_on_quiz_b`, "Back", `Button`, i.currentTarget.closest("section").querySelector("h4").textContent)
           }
           if (i.currentTarget.closest("#edit-what-program-are-you-looking-to-study-currently-studying-")) {
             document.querySelector("#edit-cards-prev--9").click()
-            pushDataLayer("Back", `Button`, i.currentTarget.closest("section").querySelector("h4").textContent)
+            pushDataLayer(`exp_remove_barriers_on_quiz_b`, "Back", `Button`, i.currentTarget.closest("section").querySelector("h4").textContent)
           }
           if (i.currentTarget.closest("#edit-how-many-extracurricular-or-volunteer-activities-do-you-particip")) {
             document.querySelector("#edit-cards-prev--10").click()
-            pushDataLayer("Back", `Button`, i.currentTarget.closest("section").querySelector("h4").textContent)
+            pushDataLayer(`exp_remove_barriers_on_quiz_b`, "Back", `Button`, i.currentTarget.closest("section").querySelector("h4").textContent)
           }
           if (i.currentTarget.closest("#edit-what-school-are-you-interested-in-attending-")) {
             document.querySelector("#edit-cards-prev--11").click()
-            pushDataLayer("Back", `Button`, i.currentTarget.closest("section").querySelector("h4").textContent)
+            pushDataLayer(`exp_remove_barriers_on_quiz_b`, "Back", `Button`, i.currentTarget.closest("section").querySelector("h4").textContent)
           }
           if (i.currentTarget.closest("#edit-what-field-of-study-are-you-looking-to-study-currently-studying-")) {
             document.querySelector("#edit-cards-prev--12").click()
-            pushDataLayer("Back", `Button`, i.currentTarget.closest("section").querySelector("h4").textContent)
+            pushDataLayer(`exp_remove_barriers_on_quiz_b`, "Back", `Button`, i.currentTarget.closest("section").querySelector("h4").textContent)
             if (document.querySelector("#edit-what-school-are-you-interested-in-attending").getAttribute("skip") === "true") {
               document.querySelector("#edit-what-school-are-you-interested-in-attending").value = ""
               // document.querySelector("#edit-cards-next--11").disabled = true
@@ -1827,14 +1842,14 @@ let myFunk = setInterval(() => {
           }
           if (i.currentTarget.closest("#edit-if-selected-for-our-program")) {
             document.querySelector("#edit-cards-prev--13").click()
-            pushDataLayer("Back", `Button`, i.currentTarget.closest("section").querySelector("h4").textContent)
+            pushDataLayer(`exp_remove_barriers_on_quiz_b`, "Back", `Button`, i.currentTarget.closest("section").querySelector("h4").textContent)
           }
           if (i.currentTarget.closest("#edit-what-is-your-family-s-approximate-yearly-household-income-")) {
             document.querySelector("#edit-cards-prev--14").click()
-            pushDataLayer("Back", `Button`, i.currentTarget.closest("section").querySelector("h4").textContent)
+            pushDataLayer(`exp_remove_barriers_on_quiz_b`, "Back", `Button`, i.currentTarget.closest("section").querySelector("h4").textContent)
           }
           if (i.currentTarget.closest(".guarantee_block")) {
-            pushDataLayer("Back", `Button`, i.currentTarget.closest("section").querySelector("h4").textContent)
+            pushDataLayer(`exp_remove_barriers_on_quiz_b`, "Back", `Button`, i.currentTarget.closest("section").querySelector("h4").textContent)
             document.querySelector("#edit-cards-prev--15").click()
 
             document.querySelector("form > .row > .col.col-md-8").classList.remove("last_step_var")
@@ -1900,7 +1915,7 @@ let myFunk = setInterval(() => {
 
     document.querySelectorAll(".benefits_wrap ul li").forEach((el) => {
       el.addEventListener(`${ev}`, (e) => {
-        pushDataLayer(`${e.currentTarget.querySelector("span").textContent}`, `${evTxt}`, `Summary`)
+        pushDataLayer(`exp_remove_barriers_on_quiz_h`, `${e.currentTarget.querySelector("span").textContent}`, `${evTxt}`, `Summary`)
       })
     })
 
@@ -1954,27 +1969,27 @@ let myFunk = setInterval(() => {
       entries.forEach((i) => {
         if (i.isIntersecting) {
           if (i.target.classList.contains("policy_var")) {
-            pushDataLayer("Visibility new text", "Text area", `under CTA button`)
+            pushDataLayer(`exp_remove_barriers_on_quiz_vcta`, "Visibility new text", "Text area", `under CTA button`)
           }
           if (i.target.classList.contains("reviews_block")) {
-            pushDataLayer("Visibility reviews section", "Reviews", `Reviews sections`)
+            pushDataLayer("exp_remove_barriers_on_quiz_vr", "Visibility reviews section", "Reviews", `Reviews sections`)
           }
           if (i.target.classList.contains("guarantee_block")) {
-            pushDataLayer(`Visibility summary flow`, `Bullets box`, `Summary`)
+            pushDataLayer(`exp_remove_barriers_on_quiz_vs`, `Visibility summary flow`, `Bullets box`, `Summary`)
           }
-          switch (i.target.getAttribute("data-count")) {
-            case "1":
-              pushDataLayer("Visibility reviews section", "Reviews", `Reviews block ${i.target.getAttribute("data-count")}`)
-              break
-            case "2":
-              pushDataLayer("Visibility reviews section", "Reviews", `Reviews block ${i.target.getAttribute("data-count")}`)
-              break
-            case "3":
-              pushDataLayer("Visibility reviews section", "Reviews", `Reviews block ${i.target.getAttribute("data-count")}`)
-              break
-            default:
-              break
-          }
+          // switch (i.target.getAttribute("data-count")) {
+          //   case "1":
+          //     pushDataLayer("exp_remove_barriers_on_quiz_vr", "Visibility reviews section", "Reviews", `Reviews block ${i.target.getAttribute("data-count")}`)
+          //     break
+          //   case "2":
+          //     pushDataLayer("exp_remove_barriers_on_quiz_vr", "Visibility reviews section", "Reviews", `Reviews block ${i.target.getAttribute("data-count")}`)
+          //     break
+          //   case "3":
+          //     pushDataLayer("exp_remove_barriers_on_quiz_vr", "Visibility reviews section", "Reviews", `Reviews block ${i.target.getAttribute("data-count")}`)
+          //     break
+          //   default:
+          //     break
+          // }
 
           obs.unobserve(i.target)
         }
