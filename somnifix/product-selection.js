@@ -305,7 +305,8 @@ window.onload = () => {
 
 
     function addActiveItem(target) {
-        let subscribeInfo = `Auto delivery every ${Math.round(target.dataset.week * 7 / 30)} months for $${(target.dataset.price - (target.dataset.price * 10 / 100)).toFixed(2)}`
+        let weekNumber = +target.dataset.week.split(' ')[0];
+        let subscribeInfo = `Auto delivery every ${Math.round(weekNumber * 7 / 30)} months for $${(target.dataset.price - (target.dataset.price * 10 / 100)).toFixed(2)}`
 
         if (target.closest('.parent-items')) {
             //show/hide sale
@@ -331,13 +332,13 @@ window.onload = () => {
             document.querySelector(`.aside_wrapper .aside_product_item.active`).classList.remove('active')
             document.querySelector(`.aside_wrapper .aside_product_item[data-variant="${target.dataset.variant}"]`).classList.add('active')
             
-            document.querySelector('.aside_wrapper .qty>p').innerHTML = `${target.dataset.strips} Strips = ${target.dataset.week.split(' ')[0]} Weeks`;
+            document.querySelector('.aside_wrapper .qty>p').innerHTML = `${target.dataset.strips} Strips = ${weekNumber} Weeks`;
             document.querySelector('.aside_subscribe__info').innerHTML = subscribeInfo;
 
             document.querySelector('.aside_subscribe__checkbox').checked = false;
             document.querySelector('.aside_wrapper .qty').classList.remove('disabled');
             document.querySelector('.minus+span').innerHTML = '1';
-            target.dataset.week.split(' ')[0] >= 12 ? document.querySelector('.mobile .aside_subscribe').classList.add('active') : document.querySelector('.mobile .aside_subscribe').classList.remove('active')
+            weekNumber >= 12 ? document.querySelector('.mobile .aside_subscribe').classList.add('active') : document.querySelector('.mobile .aside_subscribe').classList.remove('active')
         }
 
         //add/remove active class
@@ -360,7 +361,7 @@ window.onload = () => {
 
         //subscribe checked 
         document.querySelector(`.desktop .subscribe-custom__checkbox`).addEventListener('change', (e) => {
-            let week = document.querySelector(`.desktop .swatchCustom__item_new.active`).dataset.week;
+            let week = document.querySelector(`.desktop .swatchCustom__item_new.active`).dataset.week.split(' ')[0];
         
             if (e.target.checked) {
                 document.querySelector('.head-prices .sale').innerHTML = `Save ${week == '12' ? '30' : week == '52' ? '37' : ''}%`
