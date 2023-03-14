@@ -192,11 +192,12 @@ function isScrolledIntoView(el) {
 let viewed = false;
 
 //visibility popup
+let clickOnStickyBtn = false;
 function openPopup(view) {
     let viewed = view;
 
     let visibilityPopup = setInterval(() => {
-        if (document.querySelector('.dark_bg_exp.active') != null && isScrolledIntoView('.dark_bg_exp.active') &&  viewed == false) {
+        if (clickOnStickyBtn == true && document.querySelector('.dark_bg_exp.active') != null && isScrolledIntoView('.dark_bg_exp.active') &&  viewed == false) {
             clearInterval(visibilityPopup)
             viewed = true;
             pushDataLayer('Visibility save 10% popup after new sticky button') 
@@ -289,11 +290,12 @@ let init = setInterval(() => {
             })
             //click on cart button (sticky button)
             document.querySelector('.get-now').addEventListener('click', () => {
+                clickOnStickyBtn = true;
                 document.querySelector('.mobile .stock__select').value = '1';
 
                 document.querySelector('.mobile .subscribe-custom__checkbox').checked = false;
                 document.querySelector('.footer-prices p span:last-child').innerHTML = `$` + document.querySelector('.parent-items .swatchCustom__item_new.active').dataset.price;
-                document.querySelector('.footer-prices .sale').innerHTML = document.querySelector('.parent-items .swatchCustom__item_new.active .sale').innerHTML;
+                document.querySelector('.footer-prices .sale').innerHTML = document.querySelector('.parent-items .swatchCustom__item_new.active .sale') != null ? document.querySelector('.parent-items .swatchCustom__item_new.active .sale').innerHTML : '';
                 document.querySelector('.mobile .stock__select').disabled = false;
 
                 document.querySelector(`.popup_btn`).click();
@@ -317,7 +319,10 @@ let init = setInterval(() => {
         }
 
         document.querySelectorAll('.swatchCustom__item_new').forEach(item => {
-            item.addEventListener('click', (e) => addActiveItem(item))
+            item.addEventListener('click', (e) => {
+                clickOnStickyBtn = false;
+                addActiveItem(item)
+            })
         })
         
         pushDataLayer('loaded')
