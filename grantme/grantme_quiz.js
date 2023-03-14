@@ -2,6 +2,11 @@ let myFunk = setInterval(() => {
   if (document.querySelector("#webform-submission-grantme-program-assessment-add-form")) {
     clearInterval(myFunk)
 
+    let script = document.createElement("script")
+    script.src = "https://code.jquery.com/jquery-3.4.1.min.js"
+    script.async = false
+    document.head.appendChild(script)
+
     // cdn slider
     let scriptCustomSlider = document.createElement("script")
     scriptCustomSlider.src = "https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.js"
@@ -1878,24 +1883,42 @@ let myFunk = setInterval(() => {
     let observer = new MutationObserver(() => {
       if (document.querySelector("#edit-qa13-wrap")) {
         observer.disconnect()
-        // console.log(`observer`)
+        console.log(`observer`)
 
         if ($("strong.error").is(":visible")) {
           if (!document.querySelector("form #edit-actions-10-submit").classList.contains("disabled")) {
             document.querySelector("form #edit-actions-10-submit").classList.add("disabled")
           }
           document.querySelector("form #edit-actions-10-submit").disabled = true
+          console.log(document.querySelector("form #edit-actions-10-submit").disabled)
         } else {
+          document.querySelector("form #edit-actions-10-submit").disabled = false
           if (document.querySelector("form #edit-actions-10-submit").classList.contains("disabled")) {
             document.querySelector("form #edit-actions-10-submit").classList.remove("disabled")
+            console.log(`second`, document.querySelector("form #edit-actions-10-submit").disabled)
           }
-          document.querySelector("form #edit-actions-10-submit").disabled = false
         }
 
         observer.observe(document.querySelector("#edit-qa13-wrap"), {
           childList: true,
           subtree: true,
         })
+      }
+    })
+
+    document.querySelector("form #edit-actions-10-submit").addEventListener("click", () => {
+      if ($("strong.error").is(":visible")) {
+        if (!document.querySelector("form #edit-actions-10-submit").classList.contains("disabled")) {
+          document.querySelector("form #edit-actions-10-submit").classList.add("disabled")
+        }
+        document.querySelector("form #edit-actions-10-submit").disabled = true
+        console.log(document.querySelector("form #edit-actions-10-submit").disabled)
+      } else {
+        document.querySelector("form #edit-actions-10-submit").disabled = false
+        if (document.querySelector("form #edit-actions-10-submit").classList.contains("disabled")) {
+          document.querySelector("form #edit-actions-10-submit").classList.remove("disabled")
+          console.log(`second`, document.querySelector("form #edit-actions-10-submit").disabled)
+        }
       }
     })
 
