@@ -167,7 +167,7 @@ let style = `
         margin-top: 0!important;
         border-radius: 0 0 22px 22px!important;
     }
-    .aside_parent {
+    .asides_parent {
         border-radius: 22px 22px 0 0;
         margin-top: 20px;
         padding: 14px 14px 0;
@@ -405,7 +405,7 @@ window.onload = () => {
     document.querySelector('.aside_wrapper .prices').after(document.querySelector(".aside_subscribe"))
     document.querySelector('.aside_subscribe').after(document.querySelector(".aside_to_checkout"))
 
-    document.querySelector('.aside_wrapper').insertAdjacentHTML('beforebegin', '<div class="aside_parent"></div>')
+    document.querySelector('.aside_wrapper').insertAdjacentHTML('beforebegin', '<div class="asides_parent"></div>')
 
     document.body.insertAdjacentHTML('afterbegin',`<div class="overflow-bg"></div>`)
 
@@ -435,7 +435,7 @@ window.onload = () => {
         if (href.includes('/products/')) {
             document.querySelector('.parent-items').insertAdjacentHTML('afterbegin', item)
         }
-        document.querySelector('.aside_parent').insertAdjacentHTML('afterbegin', item)
+        document.querySelector('.asides_parent').insertAdjacentHTML('afterbegin', item)
     }
 
     function addActiveItem(target) {
@@ -556,9 +556,9 @@ window.onload = () => {
         }
     }
 
-    addActiveItem(document.querySelector('.aside_parent .swatchCustom__item_new.active'))
+    addActiveItem(document.querySelector('.asides_parent .swatchCustom__item_new.active'))
 
-    document.querySelectorAll('.aside_parent .swatchCustom__item_new').forEach(item => {
+    document.querySelectorAll('.asides_parent .swatchCustom__item_new').forEach(item => {
         item.addEventListener('click', (e) => addActiveItem(item))
     })
     doubleTap = true;
