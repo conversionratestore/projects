@@ -402,8 +402,8 @@ window.onload = () => {
     document.querySelector('.footer-cards .a ').insertAdjacentHTML('afterend',`<div class="d-flex justify-center prices"> <div class="l-through"></div></div>`)
     document.querySelector('.footer-cards .a').remove();
     document.querySelector('.footer-cards .prices .l-through').after(document.querySelector('.aside_wrapper .total .summ'))
-    document.querySelector('.footer-cards .prices').after(document.querySelector(".aside_subscribe"))
-    document.querySelector('.aside_subscribe').after(document.querySelector(".aside_to_checkout"))
+    document.querySelector('.footer-cards .prices').after(document.querySelector(".aside_subscribe.desktop"))
+    document.querySelector('.aside_subscribe.desktop').after(document.querySelector(".aside_to_checkout"))
 
     document.querySelector('.aside_wrapper').insertAdjacentHTML('beforebegin', '<div class="asides_parent"></div>')
 
@@ -483,14 +483,14 @@ window.onload = () => {
             document.querySelector('.footer-cards .l-through').innerHTML = target.querySelector('.l-through') != null ? target.querySelector('.l-through').innerHTML : '';
 
             document.querySelector('.aside_wrapper .qty>p').innerHTML = `${target.dataset.strips} Strips = ${target.dataset.week} Weeks`;
-            document.querySelector('.aside_subscribe__info').innerHTML = subscribeInfo;
+            document.querySelector('.aside_subscribe.desktop .aside_subscribe__info').innerHTML = subscribeInfo;
 
             document.querySelector('.footer-cards .prices .summ').innerHTML = '$' + target.dataset.price;
 
-            document.querySelector('.aside_subscribe__checkbox').checked = false;
+            document.querySelector('.aside_subscribe.desktop .aside_subscribe__checkbox').checked = false;
             document.querySelector('.aside_wrapper .qty').classList.remove('disabled');
             document.querySelector('.minus+span').innerHTML = '1';
-            target.dataset.week >= 12 ? document.querySelector('.aside_subscribe').classList.add('active') : document.querySelector('.aside_subscribe').classList.remove('active')
+            target.dataset.week >= 12 ? document.querySelector('.aside_subscribe.desktop').classList.add('active') : document.querySelector('.aside_subscribe.desktop').classList.remove('active')
         }
 
         //add/remove active class
