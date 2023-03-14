@@ -180,12 +180,12 @@ let style = `
         margin: 0 auto 25px;
         width: 140px;
     }
-    .footer-card .l-through { 
+    .footer-cards .l-through { 
         font-size: 20px;
         padding: 0 3px;
         line-height: 26px;
     }
-    .footer-card .summ {
+    .footer-cards .summ {
         padding: 0 3px;
         font-weight: 700;
         font-size: 24px;
@@ -395,9 +395,9 @@ window.onload = () => {
         }
     }
 
-    document.querySelector('.aside_wrapper').insertAdjacentHTML('beforeend', `<div class="footer-card"><div class="a"></div></div>`)
+    document.querySelector('.aside_wrapper').insertAdjacentHTML('beforeend', `<div class="footer-cards"><div class="a"></div></div>`)
 
-    document.querySelector('.footer-card').before(document.querySelector('.aside_wrapper .total'))
+    document.querySelector('.footer-cards').before(document.querySelector('.aside_wrapper .total'))
     document.querySelector('.aside_wrapper .total').classList.remove('flx')
     document.querySelector('.aside_wrapper .a ').insertAdjacentHTML('afterend',`<div class="d-flex justify-center prices"> <div class="l-through"></div></div>`)
     document.querySelector('.aside_wrapper .a').remove();
@@ -480,7 +480,7 @@ window.onload = () => {
             // document.querySelector(`.aside_wrapper .aside_product_item[data-variant="${target.dataset.variant}"]`).click();
             document.querySelector(`.aside_wrapper .aside_product_item.active`).classList.remove('active')
             document.querySelector(`.aside_wrapper .aside_product_item[data-variant="${target.dataset.variant}"]`).classList.add('active')
-            document.querySelector('.footer-card .l-through').innerHTML = target.querySelector('.l-through') != null ? target.querySelector('.l-through').innerHTML : '';
+            document.querySelector('.footer-cards .l-through').innerHTML = target.querySelector('.l-through') != null ? target.querySelector('.l-through').innerHTML : '';
 
             document.querySelector('.aside_wrapper .qty>p').innerHTML = `${target.dataset.strips} Strips = ${target.dataset.week} Weeks`;
             document.querySelector('.aside_subscribe__info').innerHTML = subscribeInfo;
