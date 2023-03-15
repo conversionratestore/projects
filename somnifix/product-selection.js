@@ -312,12 +312,6 @@ function init() {
                 }
             })
 
-            addActiveItem(document.querySelector('.aside_parent .swatchCustom__item_new.active'))
-
-            document.querySelectorAll('.aside_parent .swatchCustom__item_new').forEach(item => {
-                item.addEventListener('click', (e) => addActiveItem(item))
-            })
-
             window.addEventListener('scroll', () => {
                 if (document.querySelector('.parent-items .nosale') != null && isScrolledIntoView(document.querySelector('.parent-items .nosale')) == true && viewed1 == false) {
                     viewed1 = true;
@@ -335,6 +329,12 @@ function init() {
 
             document.querySelector('.footer-card .l-through').remove();
 
+            addActiveItem(document.querySelector('.aside_parent .swatchCustom__item_new.active'))
+
+            document.querySelectorAll('.aside_parent .swatchCustom__item_new').forEach(item => {
+                item.addEventListener('click', (e) => addActiveItem(item))
+            })
+
             window.addEventListener('scroll', () => {
                 if (document.querySelector('.on-open-card') && isScrolledIntoView(document.querySelector('.aside_parent .nosale')) == true && viewed2 == false) {
                     viewed2 = true;
@@ -349,6 +349,8 @@ function init() {
 init()
 
 function addActiveItem(target) {
+    console.log(target)
+
     let weekNumber = +target.dataset.week.split(' ')[0];
     let subscribeInfo = `Auto delivery every ${Math.round(weekNumber * 7 / 30)} months for $${(target.dataset.price - (target.dataset.price * 10 / 100)).toFixed(2)}`
 
