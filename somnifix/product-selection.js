@@ -361,8 +361,6 @@ function init() {
 init()
 
 function addActiveItem(target) {
-    console.log(target)
-
     let weekNumber = +target.dataset.week.split(' ')[0];
     let subscribeInfo = `Auto delivery every ${Math.round(weekNumber * 7 / 30)} months for $${(target.dataset.price - (target.dataset.price * 10 / 100)).toFixed(2)}`
 
