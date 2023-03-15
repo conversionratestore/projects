@@ -10,7 +10,7 @@ const style = /*html*/`
         .upsell_container {
             background: #F9F9F9;
             border: 1px solid #E7E7E7;
-            padding: 25px;
+            padding: 28px 32px;
         }
 
         .upsell_container p {
@@ -47,7 +47,7 @@ const style = /*html*/`
 
         .total_price {
             display: flex;
-            align-items: center;
+            align-items: flex-end;
             justify-content: center;
             margin: 20px 0 !important;
         }
@@ -62,9 +62,13 @@ const style = /*html*/`
 
         .total_price span {
             font-weight: 400;
-            font-size: 17px;
-            line-height: 28px;
+            font-size: 16px;
+            
             color: #939393;
+        }
+
+        .total_price span.total_standard_price {
+            color: #3CBE1A;
         }
 
         .total_price span.total_discount_price {
@@ -98,7 +102,7 @@ const style = /*html*/`
             min-width: 90px;
             max-width: 90px;
             height: auto;
-            margin: 0 11px;
+            margin: 0 8px;
         }
 
         p.curr_item {
@@ -131,6 +135,12 @@ const style = /*html*/`
             text-decoration: underline;
         }
 
+        .upsell_title a[href="#"] {
+            color: inherit;
+            text-decoration: none;
+            pointer-events: none;
+        }
+
         .upsell_title .green_status {
             font-weight: 700;
             font-size: 10px;
@@ -140,7 +150,7 @@ const style = /*html*/`
             padding: 3px 10px;
             display: inline-block;
             vertical-align: middle;
-            margin-bottom: 3px;
+            margin: 0 0 3px 3px;
             text-transform: uppercase;
         }
 
@@ -156,6 +166,10 @@ const style = /*html*/`
             font-size: 13px;
             line-height: 19px;
             color: #5C5555;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
         }
 
         .upsell_container .upsell_item_info_bottom {
@@ -169,19 +183,26 @@ const style = /*html*/`
         }
 
         .upsell_item_price {
-            margin-left: auto;
+            display: flex;
+            flex-direction: column;
+            align-items:flex-end;
+            margin-left: 10px;
         }
 
         .upsell_item_price span {
             font-weight: 400;
             font-size: 13px;
-            line-height: 22px;
+            line-height: 13px;
             color: #939393;
-            margin-left: 4px;
+        }
+
+        .upsell_item_price span.standard_price {
+            margin-top: -5px;
         }
 
         .upsell_item_price span.regular_price {
             text-decoration-line: line-through;
+            margin-top: 5px;
         }
 
         .upsell_item_price span.discount_price {
@@ -214,24 +235,29 @@ const style = /*html*/`
             box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.05);
         }
 
+        .upsell_container  .inner_select {
+            max-width: 58px;
+            min-width: 58px;
+        }
+
+        .upsell_container .custom_select {
+            width: 100%;
+        }
+
+        .full_width .inner_select{
+            max-width: initial;
+            min-width: initial;
+        }
+
         .custom_select p {
             margin: 0;
         }
 
         .selected_option {
-            display: inline-block;
-            text-overflow: ellipsis;
-            white-space: nowrap;
+            display: -webkit-box;
+            -webkit-line-clamp: 1;
+            -webkit-box-orient: vertical;
             overflow: hidden;
-        }
-
-        .disabled_option .inner_select,
-        .item .select_field.disabled_option {
-            background: #F1F4F5;
-            border: none;
-            padding: 5px 10px !important;
-            max-width: 67px;
-            min-width: 67px;
         }
 
         .disabled_option svg {
@@ -253,6 +279,7 @@ const style = /*html*/`
             border: 1px solid #E7E7E7;
             filter: drop-shadow(0px 4px 12px rgba(0, 0, 0, 0.05));
             overflow: auto;
+            z-index: 2;
         }
         
         .options-top .options {
@@ -320,6 +347,7 @@ const style = /*html*/`
             height: 18px;
             position: relative;
             margin: auto;
+            flex-shrink: 0;
         }
 
         .custom_checkbox svg {
@@ -455,8 +483,11 @@ const style = /*html*/`
         
         .info {
             margin-left: 24px;
-            overflow: hidden;
             width: 100%;
+        }
+
+        .Drawer__Main .info {
+            overflow: hidden;
         }
 
         .info .info_title {
@@ -605,7 +636,12 @@ const style = /*html*/`
 
         .free_shipping span img {
             position: absolute;
-            bottom: -4px;
+            bottom: -3px;
+        }
+                    
+        .upsell_info_inner {
+            display: flex;
+            flex-direction: row;
         }
 
         @media only screen and (min-width: 768px) {
@@ -642,6 +678,11 @@ const style = /*html*/`
             .upsell_container {
                 margin: 0 -24px;
             }
+
+            .upsell_container {
+                padding: 20px 24px;
+            }
+
             .upsell_container .custom_select ul {                
                 position: fixed;
                 top: auto;
@@ -723,9 +764,9 @@ const setObj = {
     'neoprene-dog-leash-green': 'tactical-collar-and-leash-set-green',
     'poop-bag-holder-green': 'tactical-collar-and-leash-set-green',
 
-    'tactical-collar-with-handle-pink': 'tactical-collar-and-leash-set-pink',
-    'neoprene-dog-leash-pink': 'tactical-collar-and-leash-set-pink',
-    'poop-bag-holder-pink': 'tactical-collar-and-leash-set-pink',
+    // 'tactical-collar-with-handle-pink': 'tactical-collar-and-leash-set-pink',
+    // 'neoprene-dog-leash-pink': 'tactical-collar-and-leash-set-pink',
+    // 'poop-bag-holder-pink': 'tactical-collar-and-leash-set-pink',
 
     'athleisure-dog-harness-green': 'athleisure-dog-harness-set-army-green-1',
     'waterproof-dog-leash-green': 'athleisure-dog-harness-set-army-green-1',
@@ -735,20 +776,9 @@ const setObj = {
 
     'athleisure-dog-harness-lilac': 'athleisure-dog-harness-set-lilac',
 
-    'athleisure-dog-harness-red': 'athleisure-dog-harness-set-red',
-    'waterproof-dog-leash-red': 'athleisure-dog-harness-set-red',
-    'poop-bag-holder-red': 'athleisure-dog-harness-set-red',
-
-    'athleisure-dog-harness-pink': 'athleisure-dog-harness-set-pink',
-    'waterproof-dog-leash-pink': 'athleisure-dog-harness-set-pink',
-
-    'athleisure-dog-harness-blue': 'athleisure-dog-harness-set-blue',
-    'waterproof-dog-leash-blue': 'athleisure-dog-harness-set-blue',
-    'poop-bag-holder-blue': 'athleisure-dog-harness-set-blue',
-
-    'comfort-control-big-dog-harness-black': 'comfort-control-big-dog-harness-set-black',
-
-    'comfort-control-big-dog-harness-pink': 'comfort-control-big-dog-harness-set-pink',
+    'athleisure-dog-harness-red': '#',
+    'waterproof-dog-leash-red': '#',
+    'poop-bag-holder-red': '#',
 
     'comfort-control-big-dog-harness-tan': 'comfort-control-big-dog-harness-set-tan',
 
@@ -756,12 +786,11 @@ const setObj = {
 
     'comfort-control-big-dog-harness-green': 'comfort-control-big-dog-harness-set-green',
 
-    'anti-pull-y-harness-black': 'anti-pull-y-harness-set-black',
+    // 'comfort-control-no-pull-dog-harness-multi-color': 'comfort-control-no-pull-dog-harness-set-multi-color',
 
     'comfort-control-no-pull-dog-harness-lilac': 'comfort-control-no-pull-dog-harness-set-lilac',
     'comfort-control-no-pull-dog-harness-army-green': 'comfort-control-no-pull-dog-harness-set-army-green',
     'comfort-control-no-pull-dog-harness-tan': 'comfort-control-no-pull-dog-harness-set-tan',
-    'comfort-control-no-pull-dog-harness-pink': 'comfort-control-no-pull-dog-harness-pink',
 }
 
 // CART CONSTANTS
@@ -778,10 +807,6 @@ const waitForCurrency = setInterval(() => {
 
 
 const matchingProductHandles = [
-    [
-        'velvet-dog-hoodie-blue-checkered',
-        'velvet-human-hoodie-blue-checkered'
-    ],
     [
         'pink-blue-sky-human-hoodie-matching',
         'pink-blue-sky-dye-dog-hoodie'
@@ -801,9 +826,6 @@ const matchingProductHandles = [
         'yellow-navy-sky-dye-human-hoodie-matching'
     ],
     ['red-skydye-dog-hoodie', 'red-skydye-human-hoodie'],
-    ['essential-dog-hoodie-pink', 'essential-human-hoodie-pink'],
-    ['essential-dog-hoodie-mocha', 'essential-human-hoodie-mocha'],
-    ['essential-dog-hoodie-teal', 'essential-human-hoodie-teal'],
     [
         'purple-teal-mango-black-color-block-human-hoodie-dog-matching',
         'purple-teal-blush-black-color-block-dog-hoodie'
@@ -840,11 +862,23 @@ const matchingProductHandles = [
     ],
     [
         'teddy-sherpa-dog-jacket-maroon',
+        'teddy-sherpa-dog-jacket-dark-grey'
+    ],
+    [
         'teddy-sherpa-dog-jacket-black',
-        'teddy-sherpa-dog-jacket-dark-grey',
+        'teddy-sherpa-dog-jacket-dark-grey'
+    ],
+    [
         'sherpa-dog-jacket-brown',
+        'teddy-sherpa-dog-jacket-dark-grey'
+    ],
+    [
         'sherpa-dog-jacket-pink',
+        'teddy-sherpa-dog-jacket-dark-grey'
+    ],
+    [
         'teddy-sherpa-dog-jacket-pine-green',
+        'teddy-sherpa-dog-jacket-dark-grey'
     ],
     [
         'tactical-collar-with-handle-lilac',
@@ -933,7 +967,7 @@ const matchingProductHandles = [
         'poop-bag-holder-green'
     ],
     [
-        'anti-pull-y-harness-black',
+        'comfort-control-no-pull-dog-harness-multi-color',
         'neoprene-dog-leash-black',
         'poop-bag-holder-black'
     ],
@@ -957,12 +991,12 @@ const matchingProductHandles = [
         'neoprene-dog-leash-pink',
         'poop-bag-holder-pink'
     ],
-    ['tactical-collar-and-leash-set-lilac', 'anti-pull-y-harness-lilac'],
-    ['tactical-collar-and-leash-set-black', 'anti-pull-y-harness-black'],
+    ['tactical-collar-and-leash-set-lilac', 'comfort-control-no-pull-dog-harness-lilac'],
+    ['tactical-collar-and-leash-set-black', 'comfort-control-no-pull-dog-harness-multi-color'],
     ['comfort-control-no-pull-dog-harness-set-black', 'comfort-control-no-pull-dog-harness-black'],
-    ['tactical-collar-and-leash-set-tan', 'anti-pull-y-harness-tan'],
-    ['tactical-collar-and-leash-set-green', 'anti-pull-y-harness-green'],
-    ['tactical-collar-and-leash-set-pink', 'anti-pull-y-harness-pink'],
+    ['tactical-collar-and-leash-set-tan', 'comfort-control-no-pull-dog-harness-tan'],
+    ['tactical-collar-and-leash-set-green', 'comfort-control-no-pull-dog-harness-army-green'],
+    ['tactical-collar-and-leash-set-pink', 'comfort-control-no-pull-dog-harness-pink'],
     ['athleisure-dog-harness-set-army-green-1', 'water-resistant-dog-jacket-vest-olive2'],
     ['athleisure-dog-harness-set-salt-and-pepper', 'winter-dog-jacket-vest-black'],
     ['athleisure-dog-harness-set-lilac', 'winter-dog-jacket-vest-black'],
@@ -970,16 +1004,16 @@ const matchingProductHandles = [
     ['athleisure-dog-harness-set-red', 'water-resistant-dog-jacket-vest-red2'],
     ['athleisure-dog-harness-set-pink', 'water-resistant-dog-jacket-vest-red2'],
     ['athleisure-dog-harness-set-blue', 'winter-dog-jacket-vest-black'],
-    ['comfort-control-big-dog-harness-set-black', 'anti-pull-y-harness-black'],
-    ['comfort-control-big-dog-harness-set-pink', 'anti-pull-y-harness-pink'],
-    ['comfort-control-big-dog-harness-set-tan', 'anti-pull-y-harness-tan'],
-    ['control-big-dog-harness-set-lilac', 'anti-pull-y-harness-lilac'],
-    ['comfort-control-big-dog-harness-set-green', 'anti-pull-y-harness-green'],
-    ['anti-pull-y-harness-set-black', 'tactical-collar-with-handle-black'],
-    ['anti-pull-y-harness-set-lilac', 'tactical-collar-with-handle-lilac'],
-    ['anti-pull-y-harness-set-green', 'tactical-collar-with-handle-green'],
-    ['anti-pull-y-harness-set-tan', 'tactical-collar-with-handle-tan'],
-    ['anti-pull-y-harness-set-pink', 'tactical-collar-with-handle-pink'],
+    ['comfort-control-big-dog-harness-set-black', 'comfort-control-no-pull-dog-harness-multi-color'],
+    ['comfort-control-big-dog-harness-set-pink', 'comfort-control-no-pull-dog-harness-pink'],
+    ['comfort-control-big-dog-harness-set-tan', 'comfort-control-no-pull-dog-harness-tan'],
+    ['control-big-dog-harness-set-lilac', 'comfort-control-no-pull-dog-harness-lilac'],
+    ['comfort-control-big-dog-harness-set-green', 'comfort-control-no-pull-dog-harness-army-green'],
+    ['comfort-control-no-pull-dog-harness-set-multi-color', 'tactical-collar-with-handle-black'],
+    ['comfort-control-no-pull-dog-harness-set-lilac', 'tactical-collar-with-handle-lilac'],
+    ['comfort-control-no-pull-dog-harness-set-army-green', 'tactical-collar-with-handle-green'],
+    ['comfort-control-no-pull-dog-harness-set-tan', 'tactical-collar-with-handle-tan'],
+    // ['anti-pull-y-harness-set-pink', 'tactical-collar-with-handle-pink'],
     ['cuban-link-20mm-gold-chain',
         'cuban-link-gold-dog-leash',
         'initial-letter-jewelry-tags'],
@@ -1010,20 +1044,13 @@ const matchingProductHandles = [
         'dog-leg-warmer-socks'],
     ['bear-knit-sweater', 'teddy-sherpa-dog-jacket-black'],
     ['dog-pajama-navy-turquoise-pink', 'dog-pajama-cotton-candy'],
-    ['dog-pajama-cotton-candy', 'dog-pajama-navy-turquoise-pink'],
-    [
-        'dog-pajama-black-green-pink',
-        'dog-pajama-christmas-limited-edition'
-    ],
     [
         'dog-pajama-christmas-limited-edition',
         'dog-pajama-black-green-pink'
     ],
     ['dog-pajama-purple-green-yellow', 'dog-pajama-yellow-blue-pink'],
-    ['dog-pajama-yellow-blue-pink', 'dog-pajama-purple-green-yellow'],
     ['blue-cloud-knit-dog-sweater', 'lilac-cloud-knit-dog-sweater'],
-    ['pink-checkered-knit-sweater', 'navy-checkered-knit-sweater'],
-    ['pineapple-dog-knit-sweater', ''],
+    ['pink-checkered-knit-sweater', 'navy-checkered-knit-sweater', 'pineapple-dog-knit-sweater'],
     [
         'pink-and-blue-sky-dye-t-shirt',
         'pink-and-blue-sky-dye-cooling-bandana'
@@ -1070,21 +1097,23 @@ const customSelectHTML = (options, isCart = false) => {
             data-variant-old-price="${option?.compare_at_price || ''}"
             data-variant-img-src="${option?.featured_image?.src || ''}"
         >
-            ${option.title}${option.available ? '' : ' (out of stock)'}
+            ${convertOptionTxt(option.title)}${option.available ? '' : ' (out of stock)'}
         </li>`
         }).join('')
     } else {
         optionsHTML = options.map((option, index) => `
         <li class="${index === 0 ? 'active_option' : ''}" 
             data-value="${option.value}" 
-            data-variant="${option.variantId}">${option.text}</li>`).join('')
+            data-variant="${option.variantId}">${convertOptionTxt(option.text)}</li>`).join('')
     }
 
     let inner
 
     if (isCart) {
+        let txt = options[firstAvailableIndex].text || options[firstAvailableIndex].title
+
         inner = `
-        <p class="selected_option">Size: <span class="value">${options[firstAvailableIndex].text || options[firstAvailableIndex].title}</span></p>            
+        <p class="selected_option"><span class="value">${convertOptionTxt(txt)}</span></p>            
             <svg xmlns="http://www.w3.org/2000/svg" width="10" height="6" viewBox="0 0 10 6" fill="none">
                 <path
                     d="M5.07892 3.86875L1.5432 0.15625L0.533203 1.21675L5.07892 5.98975L9.62465 1.21675L8.61465 0.156251L5.07892 3.86875Z"
@@ -1092,8 +1121,10 @@ const customSelectHTML = (options, isCart = false) => {
             </svg>
         `
     } else {
+        let txt = options[0].text || options[0].title
+
         inner = `<div class="inner_select">
-        <p class="selected_option">Size: <span class="value">${options[0].text || options[0].title}</span></p>            
+        <p class="selected_option"><span class="value">${convertOptionTxt(txt)}</span></p>            
             <svg xmlns="http://www.w3.org/2000/svg" width="10" height="6" viewBox="0 0 10 6" fill="none">
                 <path
                     d="M5.07892 3.86875L1.5432 0.15625L0.533203 1.21675L5.07892 5.98975L9.62465 1.21675L8.61465 0.156251L5.07892 3.86875Z"
@@ -1104,13 +1135,13 @@ const customSelectHTML = (options, isCart = false) => {
 
     let mobileLabel = 'Size'
 
-    if (isCart && (options[0]?.text?.includes('/') || options[0]?.title?.includes('/'))) {
-        mobileLabel = 'Color / Size'
+    if (options[0]?.text?.includes('/') || options[0]?.title?.includes('/')) {
+        mobileLabel = 'Size & Color'
     }
 
     return /*html*/`
     <div class="custom_select">
-        <div class="select_field${options.length < 2 ? ' disabled_option' : ''}">
+        <div class="select_field${options.length < 2 ? ' disabled_option' : ''} ${options[0]?.text?.length > 3 || options[0]?.title?.length > 3 ? ' full_width' : ''}">
             ${inner}
         </div>
         <ul class="options">
@@ -1141,17 +1172,19 @@ const pdpUpsellItem = ({ id, name, imgSrc, sizes, standardPrice, discountPrice, 
             ${img}
         </div>        
         <div class="upsell_item_info">
-            <div>
-                ${id == 0 ? '<p class="curr_item">Current Item:</p>' : ''}
-                ${itemName}
-            </div>
-            <div class="upsell_item_info_bottom">
-                ${customSelectHTML(sizes)}
+            <div class="upsell_info_inner">
+                <div>
+                    ${id == 0 ? '<p class="curr_item">Current Item:</p>' : ''}
+                    ${itemName}
+                </div>
                 <div class="upsell_item_price">
                     <span class="discount_price">${discountPrice}</span>
                     <span class="regular_price">${regularPrice}</span>
                     <span class="standard_price">${standardPrice}</span>
                 </div>
+            </div>
+            <div class="upsell_item_info_bottom">
+                ${customSelectHTML(sizes)}
             </div>
         </div>
     </div>
@@ -1180,6 +1213,18 @@ const previewImages = (items) => {
     return images
 }
 
+function findMatch(text) {
+    if (text.includes("Collar")) {
+        return "Collar"
+    } else if (text.includes("Leash")) {
+        return "Leash"
+    } else if (text.includes("Initial Letter")) {
+        return "Initial Letter"
+    } else {
+        return null // no match found
+    }
+}
+
 const pdpUpsellContainer = (items, isTwoImages) => {
     const totalStandardPrice = document.querySelector('.cbb-frequently-bought-total-price-regular-price')?.textContent
     const totalRegularPrice = document.querySelector('.cbb-frequently-bought-total-price-was-price')?.textContent
@@ -1192,6 +1237,12 @@ const pdpUpsellContainer = (items, isTwoImages) => {
     let title = ''
     let msg = ''
 
+    let link
+
+    if (document.querySelector('.cbb-frequently-bought-selector-link')) {
+        link = document.querySelector('.cbb-frequently-bought-selector-link')
+    }
+
     if (isSale) {
         const path = window.location.pathname
         const product = path.substring("/products/".length)
@@ -1203,51 +1254,25 @@ const pdpUpsellContainer = (items, isTwoImages) => {
         <path d="M15.75 8C15.75 12.2812 12.2799 15.75 8 15.75C3.72009 15.75 0.25 12.2812 0.25 8C0.25 3.72134 3.72009 0.25 8 0.25C12.2799 0.25 15.75 3.72134 15.75 8ZM8 9.5625C7.20609 9.5625 6.5625 10.2061 6.5625 11C6.5625 11.7939 7.20609 12.4375 8 12.4375C8.79391 12.4375 9.4375 11.7939 9.4375 11C9.4375 10.2061 8.79391 9.5625 8 9.5625ZM6.63522 4.39544L6.86703 8.64544C6.87787 8.84431 7.04231 9 7.24147 9H8.75853C8.95769 9 9.12213 8.84431 9.13297 8.64544L9.36478 4.39544C9.3765 4.18063 9.20547 4 8.99034 4H7.00962C6.7945 4 6.6235 4.18063 6.63522 4.39544Z" fill="#3CBE1A"/>
         </svg>`
         msg = `<div class="msg">${msgSvg}<p>Choose all products to receive <b>a 20%</b> discount on the walk set.</p></div>`
+    } else if (window.location.pathname.includes('-set-')) {
+        title = `<p class="upsell_title">Upgrade your walk set with <a href="${link.href}">${textBeforeDash(link.textContent)}</a> <span class="green_status">best deal</span></p>`
     } else if (!isSale && isTwoImages) {
-        const link = document.querySelector('.cbb-frequently-bought-selector-link')
-
         title = `<p class="upsell_title">Match your dog with a <a href="${link.href}">${textBeforeDash(link.textContent)}</a> <span class="green_status">best deal</span></p>`
     } else {
-        const link = document.querySelector('.cbb-frequently-bought-selector-link')
         const link2 = document.querySelectorAll('.cbb-frequently-bought-selector-link')[1]
 
-        title = `<p class="upsell_title">Match it with a <a href="${link.href}">${textBeforeDash(link.textContent)}</a> and <a href="${link2.href}">${textBeforeDash(link2.textContent)}</a> to complete the look. <span class="green_status">best deal</span></p>`
+        title = `<p class="upsell_title">Match it with a <a href="${link.href}">${textBeforeDash(findMatch(link.textContent))}</a> and <a href="${link2.href}">${textBeforeDash(findMatch(link2.textContent))}</a> to complete the look. <span class="green_status">best deal</span></p>`
     }
-
-    const truckSVG = `<svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <g clip-path="url(#clip0_256_434)">
-    <path d="M34.3423 31.074C33.6644 31.0745 33.0017 30.874 32.4378 30.4978C31.874 30.1215 31.4344 29.5865 31.1746 28.9604C30.9149 28.3343 30.8467 27.6453 30.9786 26.9804C31.1106 26.3155 31.4367 25.7047 31.9159 25.2252C32.395 24.7458 33.0055 24.4192 33.6703 24.2867C34.3351 24.1543 35.0242 24.222 35.6505 24.4813C36.2768 24.7406 36.8121 25.1798 37.1887 25.7434C37.5654 26.3069 37.7664 26.9695 37.7664 27.6474C37.766 28.5556 37.4052 29.4266 36.7632 30.069C36.1212 30.7115 35.2505 31.0729 34.3423 31.074ZM34.3423 25.4707C33.9116 25.4702 33.4906 25.5974 33.1323 25.8363C32.774 26.0752 32.4946 26.415 32.3295 26.8127C32.1644 27.2104 32.1209 27.6481 32.2046 28.0705C32.2883 28.4929 32.4954 28.881 32.7997 29.1856C33.104 29.4903 33.4919 29.6978 33.9142 29.782C34.3365 29.8662 34.7743 29.8233 35.1722 29.6586C35.57 29.4939 35.9101 29.2149 36.1494 28.8569C36.3887 28.4989 36.5164 28.078 36.5164 27.6474C36.5162 27.0706 36.2871 26.5174 35.8795 26.1094C35.4719 25.7013 34.919 25.4716 34.3423 25.4707Z" fill="#1C1B1B"/>
-    <path d="M16.2855 31.074C15.6076 31.0747 14.9448 30.8743 14.3808 30.4982C13.8169 30.122 13.3771 29.5871 13.1173 28.961C12.8574 28.3349 12.7891 27.6458 12.9209 26.9809C13.0527 26.316 13.3788 25.7051 13.8579 25.2255C14.337 24.746 14.9476 24.4193 15.6124 24.2868C16.2772 24.1543 16.9664 24.222 17.5927 24.4812C18.219 24.7405 18.7544 25.1797 19.1311 25.7433C19.5077 26.3069 19.7088 26.9695 19.7088 27.6474C19.7081 28.5554 19.3474 29.4261 18.7056 30.0685C18.0638 30.7109 17.1935 31.0725 16.2855 31.074ZM16.2855 25.4707C15.8548 25.47 15.4337 25.5971 15.0753 25.8359C14.7169 26.0747 14.4374 26.4144 14.2721 26.8121C14.1069 27.2098 14.0633 27.6475 14.1469 28.07C14.2305 28.4924 14.4375 28.8806 14.7418 29.1853C15.0461 29.4901 15.4339 29.6977 15.8563 29.782C16.2786 29.8662 16.7164 29.8233 17.1143 29.6587C17.5123 29.494 17.8524 29.215 18.0917 28.857C18.3311 28.499 18.4588 28.078 18.4588 27.6474C18.4584 27.0708 18.2294 26.5179 17.822 26.1099C17.4146 25.7019 16.862 25.472 16.2855 25.4707Z" fill="#1C1B1B"/>
-    <path d="M38.8507 28.2722H37.1415C36.9757 28.2722 36.8168 28.2064 36.6996 28.0892C36.5823 27.972 36.5165 27.813 36.5165 27.6472C36.5165 27.4815 36.5823 27.3225 36.6996 27.2053C36.8168 27.0881 36.9757 27.0222 37.1415 27.0222H38.674V23.7081C38.6736 23.26 38.5589 22.8194 38.3407 22.4281L34.9573 16.3622C34.9284 16.3105 34.8862 16.2674 34.8351 16.2373C34.784 16.2073 34.7258 16.1914 34.6665 16.1914H30.0557V27.0247H31.544C31.7098 27.0247 31.8687 27.0906 31.9859 27.2078C32.1031 27.325 32.169 27.484 32.169 27.6497C32.169 27.8155 32.1031 27.9745 31.9859 28.0917C31.8687 28.2089 31.7098 28.2747 31.544 28.2747H29.4307C29.2649 28.2747 29.1059 28.2089 28.9887 28.0917C28.8715 27.9745 28.8057 27.8155 28.8057 27.6497V15.5664C28.8057 15.4006 28.8715 15.2417 28.9887 15.1245C29.1059 15.0073 29.2649 14.9414 29.4307 14.9414H34.6665C34.9485 14.9413 35.2253 15.0164 35.4685 15.1591C35.7117 15.3018 35.9124 15.5069 36.0498 15.7531L39.4323 21.8197C39.7539 22.3972 39.9228 23.0471 39.9232 23.7081V27.1997C39.9227 27.484 39.8096 27.7566 39.6085 27.9576C39.4075 28.1587 39.135 28.2718 38.8507 28.2722Z" fill="#1C1B1B"/>
-    <path d="M13.4859 28.2715H7.49341C7.32765 28.2715 7.16868 28.2057 7.05147 28.0885C6.93426 27.9712 6.86841 27.8123 6.86841 27.6465V22.8398C6.86841 22.6741 6.93426 22.5151 7.05147 22.3979C7.16868 22.2807 7.32765 22.2148 7.49341 22.2148C7.65917 22.2148 7.81814 22.2807 7.93535 22.3979C8.05256 22.5151 8.11841 22.6741 8.11841 22.8398V27.0215H13.4859C13.6517 27.0215 13.8106 27.0874 13.9278 27.2046C14.0451 27.3218 14.1109 27.4807 14.1109 27.6465C14.1109 27.8123 14.0451 27.9712 13.9278 28.0885C13.8106 28.2057 13.6517 28.2715 13.4859 28.2715Z" fill="#1C1B1B"/>
-    <path d="M7.49341 20.6224C7.32765 20.6224 7.16868 20.5566 7.05147 20.4394C6.93426 20.3222 6.86841 20.1632 6.86841 19.9974V15.8008C6.86841 15.635 6.93426 15.476 7.05147 15.3588C7.16868 15.2416 7.32765 15.1758 7.49341 15.1758C7.65917 15.1758 7.81814 15.2416 7.93535 15.3588C8.05256 15.476 8.11841 15.635 8.11841 15.8008V19.9999C8.11775 20.1653 8.05161 20.3236 7.93447 20.4403C7.81733 20.5569 7.65874 20.6224 7.49341 20.6224Z" fill="#1C1B1B"/>
-    <path d="M29.4307 28.2708H19.0832C18.9174 28.2708 18.7584 28.2049 18.6412 28.0877C18.524 27.9705 18.4582 27.8115 18.4582 27.6458C18.4582 27.48 18.524 27.321 18.6412 27.2038C18.7584 27.0866 18.9174 27.0208 19.0832 27.0208H28.8057V10.6699H8.11816V13.2441C8.11816 13.4098 8.05232 13.5688 7.93511 13.686C7.8179 13.8032 7.65892 13.8691 7.49316 13.8691C7.3274 13.8691 7.16843 13.8032 7.05122 13.686C6.93401 13.5688 6.86816 13.4098 6.86816 13.2441V10.5549C6.86861 10.2539 6.98844 9.96533 7.20138 9.75255C7.41432 9.53977 7.70297 9.42014 8.004 9.41992H28.9207C29.2216 9.42036 29.51 9.54008 29.7227 9.75284C29.9355 9.9656 30.0552 10.254 30.0557 10.5549V27.6458C30.0557 27.8115 29.9898 27.9705 29.8726 28.0877C29.7554 28.2049 29.5964 28.2708 29.4307 28.2708Z" fill="#1C1B1B"/>
-    <path d="M9.96375 23.4648H2.03125C1.86549 23.4648 1.70652 23.399 1.58931 23.2818C1.4721 23.1646 1.40625 23.0056 1.40625 22.8398C1.40625 22.6741 1.4721 22.5151 1.58931 22.3979C1.70652 22.2807 1.86549 22.2148 2.03125 22.2148H9.96375C10.1295 22.2148 10.2885 22.2807 10.4057 22.3979C10.5229 22.5151 10.5887 22.6741 10.5887 22.8398C10.5887 23.0056 10.5229 23.1646 10.4057 23.2818C10.2885 23.399 10.1295 23.4648 9.96375 23.4648Z" fill="#1C1B1B"/>
-    <path d="M16.285 20.623H5.21582C5.05006 20.623 4.89109 20.5572 4.77388 20.44C4.65667 20.3228 4.59082 20.1638 4.59082 19.998C4.59082 19.8323 4.65667 19.6733 4.77388 19.5561C4.89109 19.4389 5.05006 19.373 5.21582 19.373H16.285C16.4507 19.373 16.6097 19.4389 16.7269 19.5561C16.8441 19.6733 16.91 19.8323 16.91 19.998C16.91 20.1638 16.8441 20.3228 16.7269 20.44C16.6097 20.5572 16.4507 20.623 16.285 20.623Z" fill="#1C1B1B"/>
-    <path d="M4.87133 17.3223H0.548828C0.383068 17.3223 0.224097 17.2564 0.106886 17.1392C-0.0103239 17.022 -0.0761719 16.863 -0.0761719 16.6973C-0.0761719 16.5315 -0.0103239 16.3725 0.106886 16.2553C0.224097 16.1381 0.383068 16.0723 0.548828 16.0723H4.87133C5.03709 16.0723 5.19606 16.1381 5.31327 16.2553C5.43048 16.3725 5.49633 16.5315 5.49633 16.6973C5.49633 16.863 5.43048 17.022 5.31327 17.1392C5.19606 17.2564 5.03709 17.3223 4.87133 17.3223Z" fill="#1C1B1B"/>
-    <path d="M11.8029 13.8691H4.17285C4.00709 13.8691 3.84812 13.8033 3.73091 13.6861C3.6137 13.5689 3.54785 13.4099 3.54785 13.2441C3.54785 13.0784 3.6137 12.9194 3.73091 12.8022C3.84812 12.685 4.00709 12.6191 4.17285 12.6191H11.8029C11.9686 12.6191 12.1276 12.685 12.2448 12.8022C12.362 12.9194 12.4279 13.0784 12.4279 13.2441C12.4279 13.4099 12.362 13.5689 12.2448 13.6861C12.1276 13.8033 11.9686 13.8691 11.8029 13.8691Z" fill="#1C1B1B"/>
-    </g>
-    <defs>
-    <clipPath id="clip0_256_434">
-    <rect width="40" height="40" fill="white"/>
-    </clipPath>
-    </defs>
-    </svg>
-    `
 
     let country = 'US'
 
-    if (
-        Shopify.country === 'US'
-        || Shopify.country === 'UK'
-        || Shopify.country === 'CA'
-    ) {
+    if (Shopify.country === 'UK' || Shopify.country === 'CA') {
         country = Shopify.country
     }
 
     return /*html*/`
         <div class="free_shipping" data-name="Free delivery">
-            ${truckSVG}
+            <img src="https://conversionratestore.github.io/projects/sparkpaws/img/delivery_truck.svg" alt="">
             <p>Free standard delivery<br>on order <b>over $50 in </b><span><img src="https://conversionratestore.github.io/projects/sparkpaws/img/${country}.svg" alt=""></span></p>
         </div>
         <div class="upsell_container ${isTwoImages ? ' two_images' : ''}" data-name="upsell section pdp">
@@ -1270,6 +1295,15 @@ const pdpUpsellContainer = (items, isTwoImages) => {
 // -------------------------------------
 // FUNCTIONS
 // -------------------------------------
+
+function convertOptionTxt(optionTxt) {
+    const parts = optionTxt.split(" / ")
+    if (parts.length === 2) {
+        return `${parts[1]}, ${parts[0]}`
+    } else {
+        return optionTxt
+    }
+}
 
 const checkVisibilityAfterMs = (el, threshold = 1) => { // Checks element visibility after a specified time. 
     let timer
