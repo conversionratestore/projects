@@ -733,6 +733,10 @@ const style = /*html*/`
                 max-width: initial;
             }
 
+            .Cart--expanded .info {
+                overflow: hidden;
+            }
+
             /* free shipping */
 
             .free_shipping {
@@ -786,7 +790,7 @@ const setObj = {
 
     'comfort-control-big-dog-harness-green': 'comfort-control-big-dog-harness-set-green',
 
-    // 'comfort-control-no-pull-dog-harness-multi-color': 'comfort-control-no-pull-dog-harness-set-multi-color',
+    'comfort-control-no-pull-dog-harness-multi-color': 'comfort-control-no-pull-dog-harness-set-multi-color',
 
     'comfort-control-no-pull-dog-harness-lilac': 'comfort-control-no-pull-dog-harness-set-lilac',
     'comfort-control-no-pull-dog-harness-army-green': 'comfort-control-no-pull-dog-harness-set-army-green',
