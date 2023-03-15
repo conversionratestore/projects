@@ -768,10 +768,6 @@ const setObj = {
     'neoprene-dog-leash-green': 'tactical-collar-and-leash-set-green',
     'poop-bag-holder-green': 'tactical-collar-and-leash-set-green',
 
-    // 'tactical-collar-with-handle-pink': 'tactical-collar-and-leash-set-pink',
-    // 'neoprene-dog-leash-pink': 'tactical-collar-and-leash-set-pink',
-    // 'poop-bag-holder-pink': 'tactical-collar-and-leash-set-pink',
-
     'athleisure-dog-harness-green': 'athleisure-dog-harness-set-army-green-1',
     'waterproof-dog-leash-green': 'athleisure-dog-harness-set-army-green-1',
 
@@ -783,12 +779,6 @@ const setObj = {
     'athleisure-dog-harness-red': '#',
     'waterproof-dog-leash-red': '#',
     'poop-bag-holder-red': '#',
-
-    'comfort-control-big-dog-harness-tan': 'comfort-control-big-dog-harness-set-tan',
-
-    'comfort-control-big-dog-harness-lilac': 'control-big-dog-harness-set-lilac',
-
-    'comfort-control-big-dog-harness-green': 'comfort-control-big-dog-harness-set-green',
 
     'comfort-control-no-pull-dog-harness-multi-color': 'comfort-control-no-pull-dog-harness-set-multi-color',
 
@@ -909,11 +899,11 @@ const matchingProductHandles = [
         'neoprene-dog-leash-green',
         'poop-bag-holder-green'
     ],
-    [
-        'tactical-collar-with-handle-pink',
-        'neoprene-dog-leash-pink',
-        'poop-bag-holder-pink'
-    ],
+    // [
+    //     'tactical-collar-with-handle-pink',
+    //     'neoprene-dog-leash-pink',
+    //     'poop-bag-holder-pink'
+    // ],
     [
         'athleisure-cushioned-dog-harness',
         'waterproof-dog-leash-black',
@@ -939,22 +929,6 @@ const matchingProductHandles = [
         'waterproof-dog-leash-pink',
         'poop-bag-holder-pink'
     ],
-
-    [
-        'athleisure-dog-harness-blue',
-        'waterproof-dog-leash-blue',
-        'poop-bag-holder-blue'
-    ],
-    [
-        'comfort-control-big-dog-harness-black',
-        'neoprene-dog-leash-black',
-        'poop-bag-holder-black'
-    ],
-    [
-        'comfort-control-big-dog-harness-pink',
-        'neoprene-dog-leash-pink',
-        'poop-bag-holder-pink'
-    ],
     [
         'comfort-control-big-dog-harness-tan',
         'neoprene-dog-leash-tan',
@@ -972,8 +946,8 @@ const matchingProductHandles = [
     ],
     [
         'comfort-control-no-pull-dog-harness-multi-color',
-        'neoprene-dog-leash-black',
-        'poop-bag-holder-black'
+        'comfort-control-dog-leash-multi-colors',
+        'poop-bags'
     ],
     [
         'comfort-control-no-pull-dog-harness-lilac',
@@ -990,29 +964,23 @@ const matchingProductHandles = [
         'neoprene-dog-leash-tan',
         'poop-bag-holder-tan'
     ],
-    [
-        'comfort-control-no-pull-dog-harness-pink',
-        'neoprene-dog-leash-pink',
-        'poop-bag-holder-pink'
-    ],
+    // [
+    //     'comfort-control-no-pull-dog-harness-pink',
+    //     'neoprene-dog-leash-pink',
+    //     'poop-bag-holder-pink'
+    // ],
     ['tactical-collar-and-leash-set-lilac', 'comfort-control-no-pull-dog-harness-lilac'],
     ['tactical-collar-and-leash-set-black', 'comfort-control-no-pull-dog-harness-multi-color'],
     ['comfort-control-no-pull-dog-harness-set-black', 'comfort-control-no-pull-dog-harness-black'],
     ['tactical-collar-and-leash-set-tan', 'comfort-control-no-pull-dog-harness-tan'],
     ['tactical-collar-and-leash-set-green', 'comfort-control-no-pull-dog-harness-army-green'],
-    ['tactical-collar-and-leash-set-pink', 'comfort-control-no-pull-dog-harness-pink'],
+    // ['tactical-collar-and-leash-set-pink', 'comfort-control-no-pull-dog-harness-pink'],
     ['athleisure-dog-harness-set-army-green-1', 'water-resistant-dog-jacket-vest-olive2'],
     ['athleisure-dog-harness-set-salt-and-pepper', 'winter-dog-jacket-vest-black'],
     ['athleisure-dog-harness-set-lilac', 'winter-dog-jacket-vest-black'],
     ['athleisure-cushioned-harness-set', 'winter-dog-jacket-vest-black'],
-    ['athleisure-dog-harness-set-red', 'water-resistant-dog-jacket-vest-red2'],
+    // ['athleisure-dog-harness-set-red', 'water-resistant-dog-jacket-vest-red2'],
     ['athleisure-dog-harness-set-pink', 'water-resistant-dog-jacket-vest-red2'],
-    ['athleisure-dog-harness-set-blue', 'winter-dog-jacket-vest-black'],
-    ['comfort-control-big-dog-harness-set-black', 'comfort-control-no-pull-dog-harness-multi-color'],
-    ['comfort-control-big-dog-harness-set-pink', 'comfort-control-no-pull-dog-harness-pink'],
-    ['comfort-control-big-dog-harness-set-tan', 'comfort-control-no-pull-dog-harness-tan'],
-    ['control-big-dog-harness-set-lilac', 'comfort-control-no-pull-dog-harness-lilac'],
-    ['comfort-control-big-dog-harness-set-green', 'comfort-control-no-pull-dog-harness-army-green'],
     ['comfort-control-no-pull-dog-harness-set-multi-color', 'tactical-collar-with-handle-black'],
     ['comfort-control-no-pull-dog-harness-set-lilac', 'tactical-collar-with-handle-lilac'],
     ['comfort-control-no-pull-dog-harness-set-army-green', 'tactical-collar-with-handle-green'],
@@ -1055,26 +1023,6 @@ const matchingProductHandles = [
     ['dog-pajama-purple-green-yellow', 'dog-pajama-yellow-blue-pink'],
     ['blue-cloud-knit-dog-sweater', 'lilac-cloud-knit-dog-sweater'],
     ['pink-checkered-knit-sweater', 'navy-checkered-knit-sweater', 'pineapple-dog-knit-sweater'],
-    [
-        'pink-and-blue-sky-dye-t-shirt',
-        'pink-and-blue-sky-dye-cooling-bandana'
-    ],
-    ['olive-cream-t-shirt', 'olive-cream-cooling-bandana'],
-    ['cotton-candy-t-shirt', 'cotton-candy-cooling-bandana'],
-    ['navy-olive-pink-t-shirt', 'navy-olive-pink-cooling-bandana'],
-    ['cyber-punk-t-shirt', 'cyber-punk-cooling-bandana'],
-    [
-        'vintage-grey-sky-dye-t-shirt',
-        'vintage-grey-sky-dye-cooling-bandana'
-    ],
-    [
-        'green-blue-peach-sky-dye-t-shirt',
-        'green-blue-peach-sky-dye-cooling-bandana'
-    ],
-    [
-        'yellow-blue-green-sky-dye-t-shirt',
-        'yellow-blue-green-sky-dye-cooling-bandana'
-    ]
 ]
 
 let cachedUpsellData = null
