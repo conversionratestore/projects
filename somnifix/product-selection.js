@@ -312,12 +312,18 @@ function init() {
                 }
             })
 
-            window.addEventListener('scroll', () => {
+            function eventVisibility() {
                 if (document.querySelector('.parent-items .nosale') != null && isScrolledIntoView(document.querySelector('.parent-items .nosale')) == true && viewed1 == false) {
-                    viewed1 = true;
-                    pushDataLayer('Visibility choose your pack', 'PDP')
+                    setTimeout(() => {
+                        if (document.querySelector('.parent-items .nosale') != null && isScrolledIntoView(document.querySelector('.parent-items .nosale')) == true && viewed1 == false) {
+                            viewed1 = true;
+                            pushDataLayer('Visibility choose your pack', 'PDP')
+                        }
+                    }, 2000)
                 }
-            })
+            }
+            eventVisibility()
+            window.addEventListener('scroll', () => eventVisibility())
         }  
         if (document.querySelector('.aside_parent .nosale') && document.querySelectorAll('.aside_parent .swatchCustom__item_new') && document.querySelector('.overflow-bg') == null) {
             clearInterval(init)
@@ -335,12 +341,18 @@ function init() {
                 item.addEventListener('click', (e) => addActiveItem(item))
             })
 
-            window.addEventListener('scroll', () => {
+            function eventVisibility() {
                 if (document.querySelector('.on-open-card') && isScrolledIntoView(document.querySelector('.aside_parent .nosale')) == true && viewed2 == false) {
-                    viewed2 = true;
-                    pushDataLayer('Visibility choose your pack', 'Card')
+                    setTimeout(() => {
+                        if (document.querySelector('.on-open-card') && isScrolledIntoView(document.querySelector('.aside_parent .nosale')) == true && viewed2 == false) {
+                            viewed2 = true;
+                            pushDataLayer('Visibility choose your pack', 'Card')
+                        }
+                    }, 2000)
                 }
-            })
+            }
+            eventVisibility()
+            window.addEventListener('scroll', () => eventVisibility())
         }
     });
 
