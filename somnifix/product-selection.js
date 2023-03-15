@@ -313,9 +313,9 @@ function init() {
             })
 
             function eventVisibility() {
-                if (document.querySelector('.parent-items .nosale') != null && isScrolledIntoView(document.querySelector('.parent-items .nosale')) == true && viewed1 == false) {
+                if (document.querySelector('.desktop .parent-items .nosale') != null && isScrolledIntoView(document.querySelector('.desktop .parent-items .nosale')) == true && viewed1 == false) {
                     setTimeout(() => {
-                        if (document.querySelector('.parent-items .nosale') != null && isScrolledIntoView(document.querySelector('.parent-items .nosale')) == true && viewed1 == false) {
+                        if (document.querySelector('.desktop .parent-items .nosale') != null && isScrolledIntoView(document.querySelector('.desktop .parent-items .nosale')) == true && viewed1 == false) {
                             viewed1 = true;
                             pushDataLayer('Visibility choose your pack', 'PDP')
                         }
@@ -352,7 +352,7 @@ function init() {
                 }
             }
             eventVisibility()
-            window.addEventListener('scroll', () => eventVisibility())
+            document.querySelector('.on-button-get-sominifix').addEventListener('click', () => eventVisibility())
         }
     });
 
