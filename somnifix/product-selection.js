@@ -1,4 +1,3 @@
-let dir = 'https://conversionratestore.github.io/projects/somnifix/img/';
 let href = window.location.href;
 
 let style = `
@@ -273,7 +272,7 @@ let viewed2 = false;
 
 function init() {
     let init = setInterval(() => {
-        if (href.includes('/products/') && document.querySelector('.part2 .total_price') &&  document.querySelectorAll('.part1 .parent-items .swatchCustom__item_new') && document.querySelectorAll('.aside_parent .swatchCustom__item_new') && document.querySelector('.head-prices') == null) {
+        if (href.includes('/products/') && document.querySelector('.part2 .total_price') &&  document.querySelector('.part1 .parent-items .swatchCustom__item_new') == null && document.querySelectorAll('.aside_parent .swatchCustom__item_new') && document.querySelector('.head-prices') == null) {
             
             document.querySelector('.part1').insertAdjacentHTML('beforeend', `<div class="parent-items"></div>`)
             document.querySelector('.middle-block p:first-child b').insertAdjacentHTML('afterend','<span class="price_sale" style="display: block; padding-left: 5px;">(<span>22%</span> OFF)</span>')
