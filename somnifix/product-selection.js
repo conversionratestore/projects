@@ -17,6 +17,7 @@ let style = `
         background: #fff!important;
         border-radius: 15px;
         margin-bottom: 12px;
+        cursor: pointer;
     }
     .mobile .parent-items .swatchCustom__item_new:not(.active) {
         background: #F5F6F7!important;
@@ -270,125 +271,127 @@ function isScrolledIntoView(el) {
 let viewed1 = false;
 let viewed2 = false;
 
-window.onload = () => {
-
-    document.body.insertAdjacentHTML('afterbegin', style);
-
-    if (href.includes('/products/')) {
-        document.querySelector('.part1').insertAdjacentHTML('beforeend', `<div class="parent-items"></div>`)
-        document.querySelector('.middle-block p:first-child b').insertAdjacentHTML('afterend','<span class="price_sale" style="display: block; padding-left: 5px;">(<span>22%</span> OFF)</span>')
-        document.querySelector('.part2').insertAdjacentHTML('afterbegin',` 
-        <div class="head-prices">
-            <div class="sale" style="display: none">Save 22%</div>
-            <div class="d-flex"> 
-                <div class="l-through"></div>
-            </div>
-        </div>`)
-
-        document.querySelector('.head-prices .l-through').after(document.querySelector('.part2 .total_price'))
-        document.querySelector('.part2 .total_price').innerHTML = document.querySelector('.part2 .total_price').innerHTML.replace(' USD', '');
-    }
-
-    document.body.insertAdjacentHTML('afterbegin',`<div class="overflow-bg"></div>`)
-    document.querySelector('.footer-card .l-through').remove();
-
-
-    if (href.includes('/products/')) {
-        document.querySelector('.part1 .parent-items').innerHTML = document.querySelector('.mobile .parent-items').innerHTML;
-    }
-    
-    document.querySelector('.aside_parent .swatchCustom__item_new.active').classList.remove('active')
-    document.querySelector('.aside_parent .swatchCustom__item_new[data-variant="32115046023283"]').classList.add('active')
-
-    document.querySelector('.part1 .parent-items .swatchCustom__item_new.active').classList.remove('active')
-    document.querySelector('.part1 .parent-items .swatchCustom__item_new[data-variant="32115046023283"]').classList.add('active')
-
-
-    function addActiveItem(target) {
-        let weekNumber = +target.dataset.week.split(' ')[0];
-        let subscribeInfo = `Auto delivery every ${Math.round(weekNumber * 7 / 30)} months for $${(target.dataset.price - (target.dataset.price * 10 / 100)).toFixed(2)}`
-
-        if (target.closest('.parent-items')) {
-            //show/hide sale
-            if (target.querySelector('.sale') != null) {
-                let sale = target.querySelector('.sale').innerHTML.split(' ')[1];
-
-                document.querySelector('.price_sale span').innerHTML = sale;
-                document.querySelector('.price_sale').style.display = 'inline';
-                document.querySelector('.head-prices .sale').innerHTML = `Save ${sale}`;
-                document.querySelector('.head-prices .sale').style.display = 'block';
-                
-            } else {
-                document.querySelector('.price_sale').style.display = 'none';
-                document.querySelector('.head-prices .sale').style.display = 'none';
-            }
-            //set prices bottom/top
-            document.querySelector('.head-prices .l-through').innerHTML = target.querySelector('.l-through') != null ? target.querySelector('.l-through').innerHTML : '';
-            document.querySelector('.head-prices .l-through').style.marginRight = target.querySelector('.l-through') != null ? '8px' : '0px';
-
-            document.querySelector(`.desktop .swatchCustom__item[data-variant="${target.dataset.variant}"]`).click();
-        } 
-        if (target.closest('.slide_in_pdp')) {
-            document.querySelector(`.aside_wrapper .aside_product_item.active`).classList.remove('active')
-            document.querySelector(`.aside_wrapper .aside_product_item[data-variant="${target.dataset.variant}"]`).classList.add('active')
+function init() {
+    let init = setInterval(() => {
+        if (href.includes('/products/') && document.querySelector('.part2 .total_price') &&  document.querySelectorAll('.part1 .parent-items .swatchCustom__item_new') && document.querySelectorAll('.aside_parent .swatchCustom__item_new') && document.querySelector('.head-prices') == null) {
             
-            document.querySelector('.aside_wrapper .qty>p').innerHTML = `${target.dataset.strips} Strips = ${weekNumber} Weeks`;
-            document.querySelector('.aside_subscribe__info').innerHTML = subscribeInfo;
+            document.querySelector('.part1').insertAdjacentHTML('beforeend', `<div class="parent-items"></div>`)
+            document.querySelector('.middle-block p:first-child b').insertAdjacentHTML('afterend','<span class="price_sale" style="display: block; padding-left: 5px;">(<span>22%</span> OFF)</span>')
+            document.querySelector('.part2').insertAdjacentHTML('afterbegin',` 
+            <div class="head-prices">
+                <div class="sale" style="display: none">Save 22%</div>
+                <div class="d-flex"> 
+                    <div class="l-through"></div>
+                </div>
+            </div>`)
 
-            document.querySelector('.aside_subscribe__checkbox').checked = false;
-            document.querySelector('.aside_wrapper .qty').classList.remove('disabled');
-            document.querySelector('.minus+span').innerHTML = '1';
-            weekNumber >= 12 ? document.querySelector('.mobile .aside_subscribe').classList.add('active') : document.querySelector('.mobile .aside_subscribe').classList.remove('active')
-        }
+            document.querySelector('.head-prices .l-through').after(document.querySelector('.part2 .total_price'))
+            document.querySelector('.part2 .total_price').innerHTML = document.querySelector('.part2 .total_price').innerHTML.replace(' USD', '');
 
-        //add/remove active class
-        if (!target.classList.contains('active')) {
-            target.parentElement.querySelector('.active').classList.remove('active')
-            target.classList.add('active')
-        }
-    }
-
-    if (href.includes('/products/')) {
-        addActiveItem(document.querySelector('.part1 .parent-items .swatchCustom__item_new.active'))
-
-        document.querySelectorAll('.parent-items .swatchCustom__item_new').forEach(item => {
-            item.addEventListener('click', (e) => {
-                e.stopImmediatePropagation()
-                document.querySelector(`.aside_parent .swatchCustom__item_new[data-variant="${item.dataset.variant}"]`).click();
-                addActiveItem(item)
-            })
-        })
-
-        //subscribe checked 
-        document.querySelector(`.desktop .subscribe-custom__checkbox`).addEventListener('change', (e) => {
-            let week = document.querySelector(`.desktop .swatchCustom__item_new.active`).dataset.week.split(' ')[0];
+            document.querySelector('.part1 .parent-items').innerHTML = document.querySelector('.mobile .parent-items').innerHTML;
+            document.querySelector('.part1 .parent-items .swatchCustom__item_new.active').classList.remove('active')
+            document.querySelector('.part1 .parent-items .swatchCustom__item_new[data-variant="32115046023283"]').classList.add('active')
         
-            if (e.target.checked) {
-                document.querySelector('.head-prices .sale').innerHTML = `Save ${week == '12' ? '30' : week == '52' ? '37' : ''}%`
-            } else {
-                document.querySelector('.head-prices .sale').innerHTML = `Save ${week == '12' ? '22' : week == '52' ? '30' : ''}%`
-            }
-        })
+            addActiveItem(document.querySelector('.part1 .parent-items .swatchCustom__item_new.active'))
+
+            document.querySelectorAll('.parent-items .swatchCustom__item_new').forEach(item => {
+                item.addEventListener('click', (e) => {
+                    e.stopImmediatePropagation()
+                    document.querySelector(`.aside_parent .swatchCustom__item_new[data-variant="${item.dataset.variant}"]`).click();
+                    addActiveItem(item)
+                })
+            })
+
+            //subscribe checked 
+            document.querySelector(`.desktop .subscribe-custom__checkbox`).addEventListener('change', (e) => {
+                let week = document.querySelector(`.desktop .swatchCustom__item_new.active`).dataset.week.split(' ')[0];
+            
+                if (e.target.checked) {
+                    document.querySelector('.head-prices .sale').innerHTML = `Save ${week == '12' ? '30' : week == '52' ? '37' : ''}%`
+                } else {
+                    document.querySelector('.head-prices .sale').innerHTML = `Save ${week == '12' ? '22' : week == '52' ? '30' : ''}%`
+                }
+            })
+
+            addActiveItem(document.querySelector('.aside_parent .swatchCustom__item_new.active'))
+
+            document.querySelectorAll('.aside_parent .swatchCustom__item_new').forEach(item => {
+                item.addEventListener('click', (e) => addActiveItem(item))
+            })
+
+            window.addEventListener('scroll', () => {
+                if (document.querySelector('.parent-items .nosale') != null && isScrolledIntoView(document.querySelector('.parent-items .nosale')) == true && viewed1 == false) {
+                    viewed1 = true;
+                    pushDataLayer('Visibility choose your pack', 'PDP')
+                }
+            })
+        }  
+        if (document.querySelector('.aside_parent .nosale') && document.querySelectorAll('.aside_parent .swatchCustom__item_new') && document.querySelector('.overflow-bg') == null) {
+            clearInterval(init)
+            document.body.insertAdjacentHTML('afterbegin',`<div class="overflow-bg"></div>`)
+            document.body.insertAdjacentHTML('afterbegin', style);
+
+            document.querySelector('.aside_parent .swatchCustom__item_new.active').classList.remove('active')
+            document.querySelector('.aside_parent .swatchCustom__item_new[data-variant="32115046023283"]').classList.add('active')
+
+            document.querySelector('.footer-card .l-through').remove();
+
+            window.addEventListener('scroll', () => {
+                if (document.querySelector('.on-open-card') && isScrolledIntoView(document.querySelector('.aside_parent .nosale')) == true && viewed2 == false) {
+                    viewed2 = true;
+                    pushDataLayer('Visibility choose your pack', 'Card')
+                }
+            })
+        }
+    });
+
+    pushDataLayer('loaded')
+}
+init()
+
+function addActiveItem(target) {
+    let weekNumber = +target.dataset.week.split(' ')[0];
+    let subscribeInfo = `Auto delivery every ${Math.round(weekNumber * 7 / 30)} months for $${(target.dataset.price - (target.dataset.price * 10 / 100)).toFixed(2)}`
+
+    if (target.closest('.parent-items')) {
+        //show/hide sale
+        if (target.querySelector('.sale') != null) {
+            let sale = target.querySelector('.sale').innerHTML.split(' ')[1];
+
+            document.querySelector('.price_sale span').innerHTML = sale;
+            document.querySelector('.price_sale').style.display = 'inline';
+            document.querySelector('.head-prices .sale').innerHTML = `Save ${sale}`;
+            document.querySelector('.head-prices .sale').style.display = 'block';
+            
+        } else {
+            document.querySelector('.price_sale').style.display = 'none';
+            document.querySelector('.head-prices .sale').style.display = 'none';
+        }
+        //set prices bottom/top
+        document.querySelector('.head-prices .l-through').innerHTML = target.querySelector('.l-through') != null ? target.querySelector('.l-through').innerHTML : '';
+        document.querySelector('.head-prices .l-through').style.marginRight = target.querySelector('.l-through') != null ? '8px' : '0px';
+
+        document.querySelector(`.desktop .swatchCustom__item[data-variant="${target.dataset.variant}"]`).click();
+    } 
+    if (target.closest('.slide_in_pdp')) {
+        document.querySelector(`.aside_wrapper .aside_product_item.active`).classList.remove('active')
+        document.querySelector(`.aside_wrapper .aside_product_item[data-variant="${target.dataset.variant}"]`).classList.add('active')
+        
+        document.querySelector('.aside_wrapper .qty>p').innerHTML = `${target.dataset.strips} Strips = ${weekNumber} Weeks`;
+        document.querySelector('.aside_subscribe__info').innerHTML = subscribeInfo;
+
+        document.querySelector('.aside_subscribe__checkbox').checked = false;
+        document.querySelector('.aside_wrapper .qty').classList.remove('disabled');
+        document.querySelector('.minus+span').innerHTML = '1';
+        weekNumber >= 12 ? document.querySelector('.mobile .aside_subscribe').classList.add('active') : document.querySelector('.mobile .aside_subscribe').classList.remove('active')
     }
 
-    addActiveItem(document.querySelector('.aside_parent .swatchCustom__item_new.active'))
-
-    document.querySelectorAll('.aside_parent .swatchCustom__item_new').forEach(item => {
-        item.addEventListener('click', (e) => addActiveItem(item))
-    })
-
-    window.addEventListener('scroll', () => {
-        if (document.querySelector('.parent-items .nosale') != null && isScrolledIntoView(document.querySelector('.parent-items .nosale')) == true && viewed1 == false) {
-            viewed1 = true;
-            pushDataLayer('Visibility choose your pack', 'PDP')
-        }
-        if (document.querySelector('.on-open-card') != null && isScrolledIntoView(document.querySelector('.aside_wrapper .nosale')) == true && viewed2 == false) {
-            viewed2 = true;
-            pushDataLayer('Visibility choose your pack', 'Card')
-        }
-    })
-    pushDataLayer('loaded')
-};
+    //add/remove active class
+    if (!target.classList.contains('active')) {
+        target.parentElement.querySelector('.active').classList.remove('active')
+        target.classList.add('active')
+    }
+}
 
 let isClarity = setTimeout(function(){
     if(typeof clarity === 'function'){
