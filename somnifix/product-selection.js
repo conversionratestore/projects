@@ -272,7 +272,7 @@ let viewed2 = false;
 
 function init() {
     let init = setInterval(() => {
-        if (href.includes('/products/') && document.querySelector('.part2 .total_price') && document.querySelectorAll('.part1 .parent-items .swatchCustom__item_new').length > 2 && document.querySelectorAll('.aside_parent .swatchCustom__item_new') && document.querySelector('.head-prices') == null && document.querySelectorAll('.mobile .parent-items .swatchCustom__item_new').length > 2) {
+        if (href.includes('/products/') && document.querySelector('.part2 .total_price') && document.querySelectorAll('.aside_parent .swatchCustom__item_new').length > 2 && document.querySelector('.head-prices') == null && document.querySelectorAll('.mobile .parent-items .swatchCustom__item_new').length > 2) {
             
             document.querySelector('.part1').insertAdjacentHTML('beforeend', `<div class="parent-items"></div>`)
             document.querySelector('.middle-block p:first-child b').insertAdjacentHTML('afterend','<span class="price_sale" style="display: block; padding-left: 5px;">(<span>22%</span> OFF)</span>')
@@ -325,7 +325,7 @@ function init() {
             eventVisibility()
             window.addEventListener('scroll', () => eventVisibility())
         }  
-        if (document.querySelector('.aside_parent .nosale') && document.querySelectorAll('.aside_parent .swatchCustom__item_new') && document.querySelector('.overflow-bg') == null) {
+        if (document.querySelector('.aside_parent .nosale') && document.querySelectorAll('.aside_parent .swatchCustom__item_new').length > 2 && document.querySelector('.overflow-bg') == null) {
             
             document.body.insertAdjacentHTML('afterbegin',`<div class="overflow-bg"></div>`)
             document.body.insertAdjacentHTML('afterbegin', style);
