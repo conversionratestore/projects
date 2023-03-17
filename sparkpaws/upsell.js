@@ -642,6 +642,7 @@ const style = /*html*/`
         .upsell_info_inner {
             display: flex;
             flex-direction: row;
+            justify-content: space-between;
         }
 
         @media only screen and (min-width: 768px) {
@@ -1233,7 +1234,7 @@ const pdpUpsellContainer = (items, isTwoImages) => {
                 ${images}
             </div>
             <p class="total_price"><span class="total_label">Total Price:</span><span class="total_standard_price">${totalStandardPrice}</span><span class="total_discount_price">${totalDiscountPrice}</span> <span class="total_regular_price">${totalRegularPrice}</span></p>
-            <button class="add_btn" data-name="Add select to card">Add selected to card</button>
+            <button class="add_btn" data-name="Add select to cart">Add selected to cart</button>
             <div class="upsell_items_wrap">
                 ${upsellItemHTML}
             </div>            
@@ -1701,8 +1702,6 @@ const addUpsellsToCart = (upsells, cartItems) => {
             isOldPrice = true
         }
 
-        let expandedPosition = isExpandedCart && DEVICE === 'desktop' ? 'up' : 'down'
-
         const upsellItem = `
         <div class="item" ${isHandleExists(cartItems, item.handle) ? 'hidden="true"' : ''}>
             <div class="info_wrap">
@@ -1781,6 +1780,8 @@ const observeCartNodes = (callback) => {
     observer.observe(targetNode, config)
 }
 
+let cachedCartData
+
 const main = async () => {
     try {
         if (
@@ -1789,8 +1790,13 @@ const main = async () => {
             && cachedUpsellData
         ) {
             console.log('%c Using CASHED upsell data', 'color: green')
+            const filteredArr = cachedUpsellData.filter(obj2 => !cachedCartData.some(obj1 => obj1.handle === obj2.handle))
+            const uniqueArr = [...new Set(filteredArr)]
+
+            console.log(uniqueArr);
+
             // Render the cached data
-            addUpsellsToCart(cachedUpsellData)
+            addUpsellsToCart(uniqueArr)
         } else {
             console.log('%c FETCH NEW the suggested products', 'color: green')
 
@@ -1800,6 +1806,8 @@ const main = async () => {
             const filteredArr = matchingProductHandles.filter((subArr) => subArr.includes(handle)).flatMap((subArr) => subArr.filter((val) => val !== handle))
             const uniqueArr = [...new Set(filteredArr)]
 
+            console.log(uniqueArr);
+
             if (uniqueArr.length) {
                 const products = await Promise.all(uniqueArr.map(getProduct))
 
@@ -1808,6 +1816,7 @@ const main = async () => {
                 // Update the cached data
                 cachedUpsellData = products
                 lastCartItemHandle = handle
+                cachedCartData = cart.items
                 cartItemsLength = cart.items.length
 
                 if (document.querySelector('.upsells_title')) {
