@@ -238,6 +238,7 @@ const style = /*html*/`
         .upsell_container  .inner_select {
             max-width: 58px;
             min-width: 58px;
+            background: transparent;
         }
 
         .upsell_container .custom_select {
@@ -542,7 +543,7 @@ const style = /*html*/`
             letter-spacing: 2.2px;
             text-transform: uppercase;
             color: #344D79;
-            width: 124px;
+            max-width: 124px;
             background-color: #fff;
             margin: 0;
         }
@@ -1177,6 +1178,21 @@ function findMatch(text) {
     }
 }
 
+const getTopLevelDomain = () => {
+    const hostname = location.hostname
+    const suffixMatch = hostname.match(/\.([a-z]{2,3})(?:\.([a-z]{2}))?$/i)
+    const suffix = suffixMatch ? suffixMatch[0].slice(1) : ''
+
+    switch (suffix) {
+        case 'ca':
+        case 'uk':
+            return suffix
+        default:
+            return 'us'
+    }
+}
+
+
 const pdpUpsellContainer = (items, isTwoImages) => {
     const totalStandardPrice = document.querySelector('.cbb-frequently-bought-total-price-regular-price')?.textContent
     const totalRegularPrice = document.querySelector('.cbb-frequently-bought-total-price-was-price')?.textContent
@@ -1216,16 +1232,19 @@ const pdpUpsellContainer = (items, isTwoImages) => {
         title = `<p class="upsell_title">Match it with a <a href="${link.href}">${textBeforeDash(findMatch(link.textContent))}</a> and <a href="${link2.href}">${textBeforeDash(findMatch(link2.textContent))}</a> to complete the look. <span class="green_status">best deal</span></p>`
     }
 
-    let country = 'US'
 
-    if (Shopify.country === 'UK' || Shopify.country === 'CA') {
-        country = Shopify.country
+    let country = getTopLevelDomain().toUpperCase()
+
+    let shippingPrice = {
+        'US': '$50',
+        'UK': '£40',
+        'CA': '$60'
     }
 
     return /*html*/`
         <div class="free_shipping" data-name="Free delivery">
             <img src="https://conversionratestore.github.io/projects/sparkpaws/img/delivery_truck.svg" alt="">
-            <p>Free standard delivery<br>on order <b>over $50 in </b><span><img src="https://conversionratestore.github.io/projects/sparkpaws/img/${country}.svg" alt=""></span></p>
+            <p>Free standard delivery<br>on order <b>over ${shippingPrice[country]} in </b><span><img src="https://conversionratestore.github.io/projects/sparkpaws/img/${country}.svg" alt=""></span></p>
         </div>
         <div class="upsell_container ${isTwoImages ? ' two_images' : ''}" data-name="upsell section pdp">
             ${title}
@@ -1546,16 +1565,18 @@ const hideText = () => {
 }
 
 // CART FUNCTIONS
+let isRunning = false
+let controller = null
 
 const getProduct = async (handle) => {
-    const response = await fetch(`/products/${handle}.js`)
+    const response = await fetch(`/products/${handle}.js`, { signal: controller.signal })
     if (!response.ok) throw new Error(`Failed to get product ${handle}. ${response.status} ${response.statusText}`)
     const product = await response.json()
     return product
 }
 
 const getCart = async () => {
-    const response = await fetch('/cart.json')
+    const response = await fetch('/cart.json', { signal: controller.signal })
     if (!response.ok) throw new Error(`Failed to get cart. ${response.status} ${response.statusText}`)
     return response.json()
 }
@@ -1793,11 +1814,28 @@ const getOneRandomSubArr = (matchingProductHandles, handle) => {
 }
 
 const main = async () => {
+    if (isRunning) {
+        console.log('Async function is already running')
+
+        // Abort the previous request using the AbortController interface
+        controller.abort()
+
+        // Create a new AbortController instance for the new request
+        controller = new AbortController()
+        console.log('isRunning')
+    } else {
+        // Create an AbortController instance for the first request
+        controller = new AbortController()
+        isRunning = true
+        console.log('NOT Running')
+    }
+
     try {
         if (
             document.querySelector('.CartItem__Title.Heading a')?.href.includes(lastCartItemHandle)
             && document.querySelectorAll('.Cart__ItemList .CartItem').length === cartItemsLength
             && cachedUpsellData
+            && !document.querySelector('.upsells_container')
         ) {
             // Render the cached data
             addUpsellsToCart(cachedUpsellData)
@@ -1836,6 +1874,8 @@ const main = async () => {
         console.log("All requests have been made.")
     } catch (error) {
         console.error(error)
+    } finally {
+        isRunning = false
     }
 }
 
@@ -1966,6 +2006,8 @@ waitForElement(`${isExpandedCart ? '.PageContent' : '#sidebar-cart'}`).then(cart
         }
     })
 })
+
+main()
 
 observeCartNodes(main)
 
