@@ -757,9 +757,9 @@ const setObj = {
     'comfort-control-dog-leash-multi-colors': 'tactical-collar-and-leash-set-black',
     'poop-bags': 'tactical-collar-and-leash-set-black',
 
-    'tactical-dog-collar-black-2-5cm': 'comfort-control-no-pull-dog-harness-set-black',
-    'neoprene-dog-leash-black': 'comfort-control-no-pull-dog-harness-set-black',
-    'poop-bag-holder-black': 'comfort-control-no-pull-dog-harness-set-black',
+    'tactical-dog-collar-black-2-5cm': 'tactical-dog-collar-set-black-2-5cm',
+    'neoprene-dog-leash-black': 'tactical-dog-collar-set-black-2-5cm',
+    'poop-bag-holder-black': 'tactical-dog-collar-set-black-2-5cm',
 
     'tactical-collar-with-handle-tan': 'tactical-collar-and-leash-set-tan',
     'neoprene-dog-leash-tan': 'tactical-collar-and-leash-set-tan',
@@ -777,9 +777,9 @@ const setObj = {
 
     'athleisure-dog-harness-lilac': 'athleisure-dog-harness-set-lilac',
 
-    'athleisure-dog-harness-red': '#',
-    'waterproof-dog-leash-red': '#',
-    'poop-bag-holder-red': '#',
+    // 'athleisure-dog-harness-red': '#',
+    // 'waterproof-dog-leash-red': '#',
+    // 'poop-bag-holder-red': '#',
 
     'comfort-control-no-pull-dog-harness-multi-color': 'comfort-control-no-pull-dog-harness-set-multi-color',
 
@@ -799,7 +799,6 @@ const waitForCurrency = setInterval(() => {
         currency = afterpay_shop_money_format.split('{')[0]
     }
 }, WAIT_INTERVAL_TIMEOUT)
-
 
 const matchingProductHandles = [
     [
@@ -972,7 +971,7 @@ const matchingProductHandles = [
     // ],
     ['tactical-collar-and-leash-set-lilac', 'comfort-control-no-pull-dog-harness-lilac'],
     ['tactical-collar-and-leash-set-black', 'comfort-control-no-pull-dog-harness-multi-color'],
-    ['comfort-control-no-pull-dog-harness-set-black', 'comfort-control-no-pull-dog-harness-black'],
+    ['tactical-dog-collar-set-black-2-5cm', 'comfort-control-no-pull-dog-harness-black'],
     ['tactical-collar-and-leash-set-tan', 'comfort-control-no-pull-dog-harness-tan'],
     ['tactical-collar-and-leash-set-green', 'comfort-control-no-pull-dog-harness-army-green'],
     // ['tactical-collar-and-leash-set-pink', 'comfort-control-no-pull-dog-harness-pink'],
@@ -1562,6 +1561,7 @@ const getCart = async () => {
 }
 
 const addItem = async (id, quantity = 1) => {
+    console.log('adding...')
     const response = await fetch("/cart/add.json", {
         method: "POST",
         headers: {
@@ -1681,8 +1681,6 @@ const setupCustomSelectCartLogic = (length) => {
                         select.classList.remove('active')
                     }
                 })
-
-
             })
 
             document.body.addEventListener('wheel', (e) => {
@@ -1780,7 +1778,19 @@ const observeCartNodes = (callback) => {
     observer.observe(targetNode, config)
 }
 
-let cachedCartData
+const getOneRandomSubArr = (matchingProductHandles, handle) => {
+    const filteredArr = matchingProductHandles
+        .filter((subArr) => subArr.includes(handle))
+        .flatMap((subArr) => subArr.filter((val) => val !== handle))
+
+    if (filteredArr.length > 0) {
+        const randomIndex = Math.floor(Math.random() * filteredArr.length)
+        const randomSubArr = [filteredArr[randomIndex]]
+        return randomSubArr
+    } else {
+        return []
+    }
+}
 
 const main = async () => {
     try {
@@ -1789,24 +1799,15 @@ const main = async () => {
             && document.querySelectorAll('.Cart__ItemList .CartItem').length === cartItemsLength
             && cachedUpsellData
         ) {
-            console.log('%c Using CASHED upsell data', 'color: green')
-            const filteredArr = cachedUpsellData.filter(obj2 => !cachedCartData.some(obj1 => obj1.handle === obj2.handle))
-            const uniqueArr = [...new Set(filteredArr)]
-
-            console.log(uniqueArr);
-
             // Render the cached data
-            addUpsellsToCart(uniqueArr)
+            addUpsellsToCart(cachedUpsellData)
         } else {
             console.log('%c FETCH NEW the suggested products', 'color: green')
 
             const cart = await getCart()
             const handle = cart.items[0].handle
 
-            const filteredArr = matchingProductHandles.filter((subArr) => subArr.includes(handle)).flatMap((subArr) => subArr.filter((val) => val !== handle))
-            const uniqueArr = [...new Set(filteredArr)]
-
-            console.log(uniqueArr);
+            const uniqueArr = getOneRandomSubArr(matchingProductHandles, handle)
 
             if (uniqueArr.length) {
                 const products = await Promise.all(uniqueArr.map(getProduct))
@@ -1816,7 +1817,6 @@ const main = async () => {
                 // Update the cached data
                 cachedUpsellData = products
                 lastCartItemHandle = handle
-                cachedCartData = cart.items
                 cartItemsLength = cart.items.length
 
                 if (document.querySelector('.upsells_title')) {
@@ -1890,8 +1890,46 @@ waitForElement('.cbb-frequently-bought-total-price-sale-price', '.cbb-frequently
             waitForElement('.add_btn').then(btn => {
                 checkVisibilityAfterMs(btn)
 
-                btn.addEventListener('click', () => {
-                    document.querySelector('.cbb-frequently-bought-add-button').click()
+                btn.addEventListener('click', async () => {
+                    if (document.querySelector('.cbb-frequently-bought-discount-message')?.textContent.length <= 0) {
+                        const variantIds = [...document.querySelectorAll('.upsell_container .options .active_option')].map(el => el.dataset.variant)
+                        const results = []
+                        for (const variantId of variantIds) {
+                            try {
+                                const result = await addItem(variantId)
+                                results.push(result)
+                            } catch (error) {
+                                console.error(`Error adding item with variant ID ${variantId}:`, error)
+                            }
+                        }
+                    } else {
+                        const values = [...document.querySelectorAll('.upsell_container .value')]
+                        let textContent
+
+                        for (const el of values) {
+                            if (el.textContent !== "OS") {
+                                textContent = el.textContent
+                                break
+                            }
+                        }
+
+                        if (textContent) {
+                            console.log(textContent)
+                        } else {
+                            console.log("No matching element found")
+                        }
+
+                        const set = await getProduct(document.querySelector('.upsell_title a')?.href.split('products/')[1])
+                        const matchingVariant = set.variants.find(obj => obj.title === textContent)
+
+                        await addItem(matchingVariant.id)
+                        refreshCart()
+                    }
+
+
+                    refreshCart()
+                    document.querySelector('[aria-label="Open cart"]').click()
+
                     sendGAEvent('Click on Add select to cart button pdp')
                 })
             })
