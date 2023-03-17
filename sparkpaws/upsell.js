@@ -1106,7 +1106,6 @@ const customSelectHTML = (options, isCart = false) => {
 }
 
 // PDP ELEMENTS
-
 const pdpUpsellItem = ({ id, name, imgSrc, sizes, standardPrice, discountPrice, regularPrice, href }) => {
     const img = href ? `<a href="${href}"><img src="${imgSrc}" alt=""></a>` : `<img src="${imgSrc}" alt="">`
     const itemName = href ? `<a href="${href}" class="upsell_item_name">${name}</a>` : `<p class="upsell_item_name">${name}</p>`
@@ -1191,7 +1190,6 @@ const getTopLevelDomain = () => {
             return 'us'
     }
 }
-
 
 const pdpUpsellContainer = (items, isTwoImages) => {
     const totalStandardPrice = document.querySelector('.cbb-frequently-bought-total-price-regular-price')?.textContent
@@ -1471,7 +1469,7 @@ const setupCustomSelectsLogic = (length) => {
                         // change value
                         value.textContent = this.textContent
 
-                        sendGAEvent('Click on size dropdown pdp', option.textContent)
+                        sendGAEvent('Click on size dropdown pdp', option.innerText)
 
                         select.querySelector('.active_option')?.classList.remove('active_option')
                         option.classList.add('active_option')
@@ -1658,7 +1656,7 @@ const setupCustomSelectCartLogic = (length) => {
                         // change values
                         value.textContent = option.textContent
 
-                        sendGAEvent(`Click on size dropdown ${isExpandedCart ? 'cart' : 'slider cart'}`, option.textContent)
+                        sendGAEvent(`Click on size dropdown ${isExpandedCart ? 'cart' : 'slider cart'}`, option.innerText)
 
                         const { variantId, variantPrice, variantOldPrice, variantImgSrc } = option.dataset
 
