@@ -10,6 +10,14 @@ let newPage = setInterval(() => {
 .after-refresh .count_sec:nth-of-type(26) {
   display: none !important;
 }
+svg.fp-play-rounded-fill{
+  background: url(https://conversionratestore.github.io/projects/knineti/img/new_btn_videoplay.svg) no-repeat center center !important;
+      background-size: 95% !important;
+      height: 85px !important;
+      webkit-transform: scale(1.2) !important;
+    -ms-transform: scale(1.5) !important;
+    transform: scale(1.2) !important;
+}
 .content .page h2 {
   font-weight: 700 !important;
   font-size: 32px !important;
@@ -490,7 +498,7 @@ p.dash_logo_text > img {
 .after-refresh .count_sec:nth-of-type(25) h2 {
   margin-bottom: 2px;
 }
-@media (min-width: 769px){
+@media (min-width: 992px){
   .after-refresh .count_sec:nth-of-type(25) .flowplayer_video_container.interview_video,
 .after-refresh .count_sec:nth-of-type(8) .flowplayer_video_container.interview_video_in{
   padding-top: 51.25%;
@@ -645,6 +653,7 @@ body .special_gift_box p span {
   border-radius: 16px;
   padding: 40px;
   max-width: 1000px;
+  width: 90%;
   margin: 0 auto !important;
 }
 .reviews_wrap.is_true {
@@ -1147,7 +1156,7 @@ body .question_second_wrap h2 {
 .new_block_impulse_control .text_descr_var p:first-child,
 .new_block_stop_barking .text_descr_var p:first-child,
 .new_block_sit_stay .text_descr_var p:first-child,
-.after-refresh > section.count_sec:nth-child(27) .new_block_without_treats .all_text_var p:first-child{
+.new_block_without_treats .all_text_var p:first-child{
   margin-top: 0 !important;
   margin-bottom: 0 !important;
 }
@@ -1163,7 +1172,7 @@ body .question_second_wrap h2 {
   margin-top: 12px !important;
 }
 .new_block_sit_stay .text_descr_var p +p,
-.after-refresh > section.count_sec:nth-child(27) .new_block_without_treats .all_text_var p + p{
+.new_block_without_treats .all_text_var p + p{
   margin-top: 16px !important;
   margin-bottom: 0 !important;
 }
@@ -1177,7 +1186,7 @@ body .question_second_wrap h2 {
 .new_block_impulse_control .img_wrap,
 .new_block_stop_barking .img_wrap,
 .new_block_sit_stay .img_wrap,
-.new_block_without_treats .all_img_var .img_wrap{
+.new_block_without_treats .all_img_var{
   flex: 1 0 318px;
 }
 .new_block_without_treats .all_img_var .img_wrap + .img_wrap{
@@ -1245,6 +1254,15 @@ p.italic_text_var::after{
 .after-refresh .count_sec:nth-of-type(2) .white-block.trd_red_spc > .row.row1030,
 .after-refresh .count_sec:nth-of-type(24) .all_content.eighttn_red_spc > .row.row1030   {
   display: block;
+}
+.after-refresh .count_sec .pattern-block{
+  padding: 0 !important;
+}
+svg.fp-play-rounded-fill{
+  background-size: 100% !important;
+  max-height: 100% !important;
+  transform: scale(0.7) !important;
+  width: 85px !important;
 }
 .new_block_transform, .new_block_jump, .new_block_save, .new_block_come_to_you, .new_block_leash_pulling, .new_bloc_two_commands, .new_block_pay_attention, .new_block_impulse_control, .new_block_stop_barking, .new_block_sit_stay, .new_block_without_treats{
   display: none;
@@ -2085,7 +2103,7 @@ body .after-refresh .count_sec:nth-of-type(25) .quick_transcript {
     </div>
     `
 
-    let newBlockTransform =/*html */ `
+    let newBlockTransform = /*html */ `
     <div class="new_block_transform">
     <div class="text_descr_var">
       <p>While the methods taught in the masterclass are extremely powerful and yet easy to use, before you enroll for
@@ -2106,7 +2124,7 @@ body .after-refresh .count_sec:nth-of-type(25) .quick_transcript {
   </div>
     `
 
-    let newBlockJump =/*html */ `
+    let newBlockJump = /*html */ `
     <div class="new_block_jump">
     <div class="text_descr_var">
       <p>Every Saturday at 3 pm Eastern time, we’ll have a live Q&A call for all our masterclass participants where you
@@ -2124,7 +2142,7 @@ body .after-refresh .count_sec:nth-of-type(25) .quick_transcript {
   </div>
     `
 
-    let newBlockSave = /*html */`
+    let newBlockSave = /*html */ `
     <div class="new_block_save">
     <div class="text_descr_var">
       <p>Auto SIT means that during your walks, your dog will be automatically programmed to sit as soon as you stop
@@ -2143,7 +2161,7 @@ body .after-refresh .count_sec:nth-of-type(25) .quick_transcript {
   </div>
     `
 
-    let newBlockComeToYou = /*html */`
+    let newBlockComeToYou = /*html */ `
     <div class="new_block_come_to_you">
     <div class="text_descr_var">
       <p>This is precisely where the training of just about every “normal” dog completely falls apart.</p>
@@ -2162,7 +2180,7 @@ body .after-refresh .count_sec:nth-of-type(25) .quick_transcript {
   </div>
     `
 
-    let newBlockLeashPulling = /*html */`
+    let newBlockLeashPulling = /*html */ `
     <div class="new_block_leash_pulling">
     <div class="text_descr_var">
       <p>Once your dog has learned how to tune out distractions, you’ll then train them to focus their entire attention
@@ -2179,7 +2197,7 @@ body .after-refresh .count_sec:nth-of-type(25) .quick_transcript {
   </div>
     `
 
-    let newBlockTwoCommands = /*html */`
+    let newBlockTwoCommands = /*html */ `
     <div class="new_bloc_two_commands">
     <div class="text_descr_var">
       <p>Have you noticed how highly trained dogs maintain constant eye contact with their handlers?</p>
@@ -2204,7 +2222,7 @@ body .after-refresh .count_sec:nth-of-type(25) .quick_transcript {
   </div>
     `
 
-    let newBlockPayAttention = /*html */`
+    let newBlockPayAttention = /*html */ `
     <div class="new_block_pay_attention">
     <div class="text_descr_var">
       <p>It’s one thing to train your dog to focus on you inside a quiet room in your house.</p>
@@ -2225,7 +2243,7 @@ body .after-refresh .count_sec:nth-of-type(25) .quick_transcript {
   </div>
     `
 
-    let newBlockStopBarking = /*html */`
+    let newBlockStopBarking = /*html */ `
     <div class="new_block_stop_barking">
     <div class="text_descr_var">
       <p>When you come across other dogs and people in public, and you want your dog to interact with them, you’ll first
@@ -2244,7 +2262,7 @@ body .after-refresh .count_sec:nth-of-type(25) .quick_transcript {
   </div>
     `
 
-    let newBlockImpulseControl = /*html */`
+    let newBlockImpulseControl = /*html */ `
     <div class="new_block_impulse_control">
     <div class="text_descr_var">
       <p>If you tell a service dog to sit in a particular location, they will automatically stay in that position
@@ -2267,7 +2285,7 @@ body .after-refresh .count_sec:nth-of-type(25) .quick_transcript {
     </div>
   </div>
     `
-    let newBlockSitStay = /*html */`
+    let newBlockSitStay = /*html */ `
     <div class="new_block_sit_stay">
     <div class="text_descr_var paw_wrap_var">
       <p>They use commands based on body language, and not verbal commands.</p>
@@ -2282,7 +2300,7 @@ body .after-refresh .count_sec:nth-of-type(25) .quick_transcript {
   </div>
     `
 
-    let newBlockWithoutTreats = /*html */`
+    let newBlockWithoutTreats = /*html */ `
     <div class="new_block_without_treats">
     <div class="all_text_var">
       <div class="text_descr_var">
@@ -2333,6 +2351,16 @@ body .after-refresh .count_sec:nth-of-type(25) .quick_transcript {
         localStorage.setItem("notFirstTime", true)
       }
     }
+
+    //     if (!document.querySelector(".new_svg_var")) {
+    //       document.querySelector(".flowplayer .fp-play .fp-playbtn")?.insertAdjacentHTML(
+    //         "afterend",
+    //         `<svg class="fp-play-rounded-fill new_svg_var" width="120" height="85" viewBox="0 0 120 85" fill="none" xmlns="http://www.w3.org/2000/svg">
+    // <path d="M115.323 7.5236C110.991 2.37443 102.994 0.274048 87.7204 0.274048H32.2785C16.6556 0.274048 8.52271 2.50992 4.20735 7.99199C0 13.337 0 21.2125 0 32.1124V52.8875C0 74.004 4.992 84.7254 32.2785 84.7254H87.7208C100.966 84.7254 108.305 82.872 113.053 78.3279C117.922 73.668 120 66.0596 120 52.8875V32.1124C120 20.6175 119.674 12.6956 115.323 7.5236ZM77.0404 45.3681L51.8644 58.5259C51.3015 58.8201 50.6861 58.9661 50.0714 58.9661C49.3754 58.9661 48.6809 58.7787 48.0658 58.4063C46.9076 57.7045 46.2004 56.4492 46.2004 55.0951V28.8639C46.2004 27.5121 46.9057 26.2579 48.0615 25.5557C49.2178 24.8535 50.6559 24.8055 51.8555 25.4288L77.0315 38.5018C78.3124 39.1668 79.1168 40.4892 79.1187 41.9319C79.1203 43.3757 78.3194 44.7 77.0404 45.3681Z" fill="#EB0504"/>
+    // </svg>`
+    //       )
+    //     }
+
     // Step 1
     // src=tpst and it’s the first time the user is visiting the page ///////////////////////////////////
     document.querySelectorAll(".want-to-obey .count_sec")[0].insertAdjacentHTML("beforebegin", specialGift)
@@ -2564,49 +2592,48 @@ body .after-refresh .count_sec:nth-of-type(25) .quick_transcript {
     document.querySelectorAll(".after-refresh section.count_sec")[23].querySelector("h2").textContent = `Get your dog to listen to you even without treats`
     document.querySelectorAll(".after-refresh section.count_sec")[24].querySelector("h2").textContent = `“...he listens to me all the time now...”`
 
-
     // render new block
     if (!document.querySelector(".after-refresh .count_sec:nth-of-type(24) .new_block_without_treats")) {
-      document.querySelector('.after-refresh .count_sec:nth-of-type(24) h2').insertAdjacentHTML('afterend', newBlockWithoutTreats)
+      document.querySelector(".after-refresh .count_sec:nth-of-type(24) h2").insertAdjacentHTML("afterend", newBlockWithoutTreats)
     }
     if (!document.querySelector(".after-refresh .count_sec:nth-of-type(2) .new_block_sit_stay")) {
-      document.querySelector('.after-refresh .count_sec:nth-of-type(2) h2').insertAdjacentHTML('afterend', newBlockSitStay)
+      document.querySelector(".after-refresh .count_sec:nth-of-type(2) h2").insertAdjacentHTML("afterend", newBlockSitStay)
     }
     if (!document.querySelector(".after-refresh .count_sec:nth-of-type(15) .new_block_impulse_control")) {
-      document.querySelector('.after-refresh .count_sec:nth-of-type(15) h2').insertAdjacentHTML('afterend', newBlockImpulseControl)
+      document.querySelector(".after-refresh .count_sec:nth-of-type(15) h2").insertAdjacentHTML("afterend", newBlockImpulseControl)
     }
     if (!document.querySelector(".after-refresh .count_sec:nth-of-type(15) .new_block_stop_barking")) {
-      document.querySelector('.after-refresh .count_sec:nth-of-type(13) h2').insertAdjacentHTML('afterend', newBlockStopBarking)
+      document.querySelector(".after-refresh .count_sec:nth-of-type(13) h2").insertAdjacentHTML("afterend", newBlockStopBarking)
     }
     if (!document.querySelector(".after-refresh .count_sec:nth-of-type(10) .new_block_pay_attention")) {
-      document.querySelector('.after-refresh .count_sec:nth-of-type(10) h2').insertAdjacentHTML('afterend', newBlockPayAttention)
+      document.querySelector(".after-refresh .count_sec:nth-of-type(10) h2").insertAdjacentHTML("afterend", newBlockPayAttention)
     }
     if (!document.querySelector(".after-refresh .count_sec:nth-of-type(9) .new_bloc_two_commands")) {
-      document.querySelector('.after-refresh .count_sec:nth-of-type(9) h2').insertAdjacentHTML('afterend', newBlockTwoCommands)
+      document.querySelector(".after-refresh .count_sec:nth-of-type(9) h2").insertAdjacentHTML("afterend", newBlockTwoCommands)
     }
     if (!document.querySelector(".after-refresh .count_sec:nth-of-type(11) .new_block_leash_pulling")) {
-      document.querySelector('.after-refresh .count_sec:nth-of-type(11) h2').insertAdjacentHTML('afterend', newBlockLeashPulling)
+      document.querySelector(".after-refresh .count_sec:nth-of-type(11) h2").insertAdjacentHTML("afterend", newBlockLeashPulling)
     }
     if (!document.querySelector(".after-refresh .count_sec:nth-of-type(12) .new_block_come_to_you")) {
-      document.querySelector('.after-refresh .count_sec:nth-of-type(12) h2').insertAdjacentHTML('afterend', newBlockComeToYou)
+      document.querySelector(".after-refresh .count_sec:nth-of-type(12) h2").insertAdjacentHTML("afterend", newBlockComeToYou)
     }
     if (!document.querySelector(".after-refresh .count_sec:nth-of-type(14) .new_block_save")) {
-      document.querySelector('.after-refresh .count_sec:nth-of-type(14) h2').insertAdjacentHTML('afterend', newBlockSave)
+      document.querySelector(".after-refresh .count_sec:nth-of-type(14) h2").insertAdjacentHTML("afterend", newBlockSave)
     }
     if (!document.querySelector(".after-refresh .count_sec:nth-of-type(19) .new_block_jump")) {
-      document.querySelector('.after-refresh .count_sec:nth-of-type(19) h2').insertAdjacentHTML('afterend', newBlockJump)
+      document.querySelector(".after-refresh .count_sec:nth-of-type(19) h2").insertAdjacentHTML("afterend", newBlockJump)
     }
     if (!document.querySelector(".after-refresh .count_sec:nth-of-type(20) .new_block_transform")) {
-      document.querySelector('.after-refresh .count_sec:nth-of-type(20) h2').insertAdjacentHTML('afterend', newBlockTransform)
+      document.querySelector(".after-refresh .count_sec:nth-of-type(20) h2").insertAdjacentHTML("afterend", newBlockTransform)
     }
 
     if (window.innerWidth <= 768) {
-      document.querySelector('.after-refresh .count_sec:nth-of-type(1) img').src = 'https://conversionratestore.github.io/projects/knineti/img/var1_mob.png'
-      document.querySelector('.after-refresh .count_sec:nth-of-type(9) .image_left > img').src = 'https://conversionratestore.github.io/projects/knineti/img/var2_mob.png'
-      document.querySelector('.after-refresh .count_sec:nth-of-type(12) .image_left > img').src = 'https://conversionratestore.github.io/projects/knineti/img/var3_mob.png'
-      document.querySelector('.after-refresh .count_sec:nth-of-type(20) .image_left > img').src = 'https://conversionratestore.github.io/projects/knineti/img/var4_mob.png'
-      document.querySelector('.after-refresh .count_sec:nth-of-type(24) .disc-img1 > img').src = 'https://conversionratestore.github.io/projects/knineti/img/var5_mob.png'
-      document.querySelector('.after-refresh .count_sec:nth-of-type(24) .card.image1 > img').src = 'https://conversionratestore.github.io/projects/knineti/img/var6_mob.png'
+      document.querySelector(".after-refresh .count_sec:nth-of-type(1) img").src = "https://conversionratestore.github.io/projects/knineti/img/var1_mob.png"
+      document.querySelector(".after-refresh .count_sec:nth-of-type(9) .image_left > img").src = "https://conversionratestore.github.io/projects/knineti/img/var2_mob.png"
+      document.querySelector(".after-refresh .count_sec:nth-of-type(12) .image_left > img").src = "https://conversionratestore.github.io/projects/knineti/img/var3_mob.png"
+      document.querySelector(".after-refresh .count_sec:nth-of-type(20) .image_left > img").src = "https://conversionratestore.github.io/projects/knineti/img/var4_mob.png"
+      document.querySelector(".after-refresh .count_sec:nth-of-type(24) .disc-img1 > img").src = "https://conversionratestore.github.io/projects/knineti/img/var5_mob.png"
+      document.querySelector(".after-refresh .count_sec:nth-of-type(24) .card.image1 > img").src = "https://conversionratestore.github.io/projects/knineti/img/var6_mob.png"
       document.querySelector(".after-refresh .count_sec:nth-of-type(22) img").src = "https://conversionratestore.github.io/projects/knineti/img/ASPCA_new_mob.png"
     }
     // accardion ten_week_bgr
