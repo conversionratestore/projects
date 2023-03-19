@@ -1269,7 +1269,22 @@ const pdpUpsellContainer = (items, isTwoImages) => {
 // -------------------------------------
 
 function convertOptionTxt(optionTxt) {
-    const parts = optionTxt.split(" / ")
+    const parts = optionTxt.split(/ \/ |-/)
+    const sizes = ["OS", "S", "M", "L", "XL", "2XL", "3XL", "4XL"]
+    
+    for (let i = 0; i < parts.length; i++) {
+        if (sizes.includes(parts[i])) {
+            const sizeIndex = i;
+            let secondPart = "";
+            if (i === 0 && parts.length > 1) {
+                secondPart = `, ${parts[1]}`
+            } else if (i === 1) {
+                secondPart = `, ${parts[0]}`
+            }
+            return parts[sizeIndex] + secondPart;
+        }
+    }
+    
     if (parts.length === 2) {
         return `${parts[1]}, ${parts[0]}`
     } else {
