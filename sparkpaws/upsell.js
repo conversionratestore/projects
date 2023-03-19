@@ -450,7 +450,7 @@ const style = /*html*/`
         }
 
         .upsells_container .upsells_title {
-            padding: 10px 24px;
+            padding: 10px 30px;
             font-weight: 400;
             font-size: 13px;
             line-height: 22px;
@@ -701,6 +701,9 @@ const style = /*html*/`
             }
 
             /* cart */
+            .upsells_title {
+                padding: 10px 24px;
+            }
             .Cart .item {
                 padding: 15px 24px;
             }
