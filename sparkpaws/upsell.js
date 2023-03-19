@@ -1928,7 +1928,7 @@ waitForElement('.cbb-frequently-bought-total-price-sale-price', '.cbb-frequently
                 })
             })
 
-            waitForElement('.add_btn').then(btn => {
+            waitForElement('.upsell_container .add_btn').then(btn => {
                 checkVisibilityAfterMs(btn)
 
                 btn.addEventListener('click', async () => {
