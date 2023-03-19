@@ -2007,6 +2007,6 @@ waitForElement(`${isExpandedCart ? '.PageContent' : '#sidebar-cart'}`).then(cart
 
 main()
 
-observeCartNodes(main)
+waitForElement('body').then(() => observeCartNodes(main))
 
 sendGAEvent('loaded')
