@@ -2026,12 +2026,15 @@ waitForElement('.cbb-frequently-bought-total-price-sale-price', '.cbb-frequently
                         await addItem(matchingVariant.id)
                         // refreshCart()
                     } else {
-                        const variantIds = [...document.querySelectorAll('.upsell_container .options .active_option')].map(el => {
-                            if (el.closest('.upsell_item')?.querySelector('.custom_checkbox.checked')) {
-                                console.log(el)
-                                return el.dataset.variant
-                            }
-                        })
+                        const variantIds = [...document.querySelectorAll('.upsell_container .options .active_option')]
+                            .map(el => {
+                                if (el.closest('.upsell_item')?.querySelector('.custom_checkbox.checked')) {
+                                    console.log(el)
+                                    return el.dataset.variant
+                                }
+                            })
+                            .filter(id => id !== undefined)
+                            console.log(variantIds)
                         const results = []
                         for (const variantId of variantIds) {
                             try {
