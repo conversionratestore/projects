@@ -2133,7 +2133,7 @@ body .after-refresh .count_sec:nth-of-type(25) .quick_transcript {
       <div class="special_gift_box">
         <h2>Eliminate your dog's behavior problems today!</h2>
         <p>Click the play button above to watch your free workshop.</p>
-        <p>
+        <p class="special_gift_box_visab">
           Get a
           <svg width="22" height="19" viewBox="0 0 22 19" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path
@@ -2776,6 +2776,12 @@ body .after-refresh .count_sec:nth-of-type(25) .quick_transcript {
         $('.new_accardion_link[data-selector="tenWeek"]').not(this).closest("li").removeClass("active")
       }
 
+      if (e.currentTarget.classList.contains("active")) {
+        pushDataLayer(`Open weeks card. ${e.currentTarget.querySelector("p").textContent}`, "Long page. Have a question? Reach out to us or find some answers below")
+      } else {
+        pushDataLayer(`Close  weeks card. ${e.currentTarget.querySelector("p").textContent}`, "Long page. Have a question? Reach out to us or find some answers below")
+      }
+
       const elementPosition = this.getBoundingClientRect().top
       const offsetPosition = elementPosition + window.pageYOffset - headerOffset
       window.scrollTo({
@@ -2796,6 +2802,12 @@ body .after-refresh .count_sec:nth-of-type(25) .quick_transcript {
         $('.new_accardion_link[data-selector="questionFirst"]').not(this).closest("li").removeClass("active")
       }
 
+      if (e.currentTarget.classList.contains("active")) {
+        pushDataLayer(`Open FAQ card. ${e.currentTarget.querySelector("p").textContent}`, "Long page. Have a question? Reach out to us or find some answers below")
+      } else {
+        pushDataLayer(`Close FAQ card. ${e.currentTarget.querySelector("p").textContent}`, "Long page. Have a question? Reach out to us or find some answers below")
+      }
+
       const elementPosition = this.getBoundingClientRect().top
       const offsetPosition = elementPosition + window.pageYOffset - headerOffset
       window.scrollTo({
@@ -2814,6 +2826,15 @@ body .after-refresh .count_sec:nth-of-type(25) .quick_transcript {
         $('.new_accardion_link[data-selector="questionSecond"]').not(this).next(".new_accardion_lists").css("display", "none")
         $('.new_accardion_link[data-selector="questionSecond"]').not(this).removeClass("active")
         $('.new_accardion_link[data-selector="questionSecond"]').not(this).closest("li").removeClass("active")
+      }
+
+      if (e.currentTarget.classList.contains("active")) {
+        pushDataLayer(`Open FAQ card. ${e.currentTarget.querySelector("p").textContent}`, "Long page. Our best customers are those who ask the most questions. Find answers below ")
+      } else {
+        pushDataLayer(
+          `Close FAQ card. ${e.currentTarget.querySelector("p").textContent}`,
+          "Long page. Our best customers are those who ask the most questions. Find answers below "
+        )
       }
 
       const elementPosition = this.getBoundingClientRect().top
@@ -3032,74 +3053,90 @@ body .after-refresh .count_sec:nth-of-type(25) .quick_transcript {
       threshold: 0.9,
     })
 
-    // obs.observe(document.querySelector("#player"))
-    // obs.observe(document.querySelector("body .want-to-obey .special_gift_box h2"))
-    // obs.observe(document.querySelector("body .special_gift_box p + p"))
-    // obs.observe(document.querySelector(".first_visit_block button.watch_free_workshop_btn"))
-    // obs.observe(document.querySelector(".ten_week_visab"))
-    // obs.observe(document.querySelector(".all_inform_wrap .img_wrap"))
-    // obs.observe(document.querySelector(".all_inform_wrap .text_descr"))
-    // obs.observe(document.querySelector(".time_offer_box .heder_wrap"))
-    // obs.observe(document.querySelector(".time_offer_box .body_wrap .price_wrap"))
-    // obs.observe(document.querySelector(".time_offer_box .body_wrap .date_ends_text"))
-    // obs.observe(document.querySelector(".time_offer_box .body_wrap .img_guarantee"))
-    // obs.observe(document.querySelector(".mini_text_guarantee"))
-    // obs.observe(document.querySelector(".after-refresh > .reviews_bgr.first_var_bgr"))
-    // obs.observe(document.querySelector("#below_video_text"))
-    //
-    // obs.observe(document.querySelector(".after-refresh .count_sec:nth-of-type(1)[data-visab='1'] img"))
-    // obs.observe(document.querySelector(".after-refresh .count_sec:nth-of-type(7)[data-visab='7'] img"))
-    // obs.observe(document.querySelector(".after-refresh .count_sec:nth-of-type(10)[data-visab='10'] img"))
-    // obs.observe(document.querySelector(".after-refresh .count_sec:nth-of-type(12)[data-visab='12'] img"))
-    // obs.observe(document.querySelector(".after-refresh .count_sec:nth-of-type(14)[data-visab='14'] img"))
-    // obs.observe(document.querySelector(".after-refresh .count_sec:nth-of-type(20)[data-visab='20'] img"))
-    // obs.observe(document.querySelector(".after-refresh .count_sec:nth-of-type(22)[data-visab='22'] img"))
-    //
-    // obs.observe(document.querySelector(".after-refresh .count_sec:nth-of-type(2)[data-visab='2'] p:last-child"))
-    //
-    // obs.observe(document.querySelector(".after-refresh .count_sec:nth-of-type(1) h2"))
-    // obs.observe(document.querySelector(".after-refresh .count_sec:nth-of-type(2) h2"))
-    // obs.observe(document.querySelector(".after-refresh .count_sec:nth-of-type(3) h2"))
-    // obs.observe(document.querySelector(".question_first_wrap h2"))
-    // obs.observe(document.querySelector(".after-refresh .count_sec:nth-of-type(5) h2"))
-    // obs.observe(document.querySelector(".after-refresh .count_sec:nth-of-type(6) h2"))
-    // obs.observe(document.querySelector(".after-refresh .count_sec:nth-of-type(7) h2"))
-    // obs.observe(document.querySelector(".after-refresh .count_sec:nth-of-type(8) h2"))
-    // obs.observe(document.querySelector(".after-refresh .count_sec:nth-of-type(9) h2"))
-    // obs.observe(document.querySelector(".after-refresh .count_sec:nth-of-type(10) h2"))
-    // obs.observe(document.querySelector(".after-refresh .count_sec:nth-of-type(11) h2"))
-    // obs.observe(document.querySelector(".after-refresh .count_sec:nth-of-type(12) h2"))
-    // obs.observe(document.querySelector(".after-refresh .count_sec:nth-of-type(13) h2"))
-    // obs.observe(document.querySelector(".after-refresh .count_sec:nth-of-type(14) h2"))
-    // obs.observe(document.querySelector(".after-refresh .count_sec:nth-of-type(15) h2"))
-    // obs.observe(document.querySelector(".after-refresh .count_sec:nth-of-type(16) h2"))
-    // obs.observe(document.querySelector(".after-refresh .count_sec:nth-of-type(17) h2"))
-    // obs.observe(document.querySelector(".after-refresh .count_sec:nth-of-type(19)"))
-    // obs.observe(document.querySelector(".after-refresh .count_sec:nth-of-type(20) h2"))
-    // obs.observe(document.querySelector(".after-refresh .count_sec:nth-of-type(21) h2"))
-    // obs.observe(document.querySelector(".after-refresh .count_sec:nth-of-type(24) h2"))
-    // obs.observe(document.querySelector(".after-refresh .count_sec:nth-of-type(25) h2"))
-    // obs.observe(document.querySelector("body .question_second_wrap h2"))
-    // obs.observe(document.querySelector(".time_offer_box .body_wrap button.new_enroll_now_btn"))
-    // obs.observe(document.querySelector(".after-refresh .count_sec:nth-of-type(3)[data-visab='3'] .enroll_now_main a"))
-    // obs.observe(document.querySelector(".question_first_wrap button.new_enroll_now_btn"))
-    // obs.observe(document.querySelector(".after-refresh .count_sec:nth-of-type(6)[data-visab='6'] .enroll_now_main a"))
-    // obs.observe(document.querySelector(".after-refresh .count_sec:nth-of-type(8)[data-visab='8'] .enroll_now_main a"))
-    // obs.observe(document.querySelector(".after-refresh .count_sec:nth-of-type(11)[data-visab='11'] .enroll_now_main a"))
-    // obs.observe(document.querySelector(".after-refresh .count_sec:nth-of-type(15)[data-visab='15'] .enroll_now_main a"))
-    // obs.observe(document.querySelector(".after-refresh .count_sec:nth-of-type(16)[data-visab='16'] button"))
-    // obs.observe(document.querySelector(".after-refresh .count_sec:nth-of-type(17)[data-visab='17'] button"))
-    // obs.observe(document.querySelector(".after-refresh .count_sec:nth-of-type(21)[data-visab='21'] .enroll_now_main a"))
-    // obs.observe(document.querySelector(".after-refresh .count_sec:nth-of-type(23)[data-visab='23'] .enroll_now_main a"))
-    // obs.observe(document.querySelector(".after-refresh .count_sec:nth-of-type(25)[data-visab='25'] .enroll_now_main a"))
-    // obs.observe(document.querySelector(".question_second_wrap button.new_enroll_now_btn"))
-    // obs.observe(document.querySelector("#myHeaderr"))
-    // obs.observe(document.querySelector(".learn_more_scroll_btn"))
+    obs.observe(document.querySelector("#player"))
+    obs.observe(document.querySelector("body .want-to-obey .special_gift_box h2"))
+    obs.observe(document.querySelector("body .special_gift_box .special_gift_box_visab"))
+    obs.observe(document.querySelector(".first_visit_block button.watch_free_workshop_btn"))
+    obs.observe(document.querySelector(".ten_week_visab"))
+    obs.observe(document.querySelector(".all_inform_wrap .img_wrap"))
+    obs.observe(document.querySelector(".all_inform_wrap .text_descr"))
+    obs.observe(document.querySelector(".time_offer_box .heder_wrap"))
+    obs.observe(document.querySelector(".time_offer_box .body_wrap .price_wrap"))
+    obs.observe(document.querySelector(".time_offer_box .body_wrap .date_ends_text"))
+    obs.observe(document.querySelector(".time_offer_box .body_wrap .img_guarantee"))
+    obs.observe(document.querySelector(".mini_text_guarantee"))
+    obs.observe(document.querySelector("#below_video_text"))
+    // //
+    obs.observe(document.querySelector(".after-refresh .count_sec:nth-of-type(1)[data-visab='1'] img"))
+    obs.observe(document.querySelector(".after-refresh .count_sec:nth-of-type(7)[data-visab='7'] img"))
+    obs.observe(document.querySelector(".after-refresh .count_sec:nth-of-type(10)[data-visab='10'] img"))
+    obs.observe(document.querySelector(".after-refresh .count_sec:nth-of-type(12)[data-visab='12'] img"))
+    obs.observe(document.querySelector(".after-refresh .count_sec:nth-of-type(14)[data-visab='14'] img"))
+    obs.observe(document.querySelector(".after-refresh .count_sec:nth-of-type(20)[data-visab='20'] img"))
+    obs.observe(document.querySelector(".after-refresh .count_sec:nth-of-type(22)[data-visab='22'] img"))
+    // //
+    obs.observe(document.querySelector(".after-refresh .count_sec:nth-of-type(2)[data-visab='2']"))
+    obs.observe(document.querySelector(".currently_table th.left_th"))
+    // //
+    // //
+    obs.observe(document.querySelector(".after-refresh .count_sec:nth-of-type(1) h2"))
+    obs.observe(document.querySelector(".after-refresh .count_sec:nth-of-type(2) h2"))
+    obs.observe(document.querySelector(".after-refresh .count_sec:nth-of-type(3) h2"))
+    obs.observe(document.querySelector(".question_first_wrap h2"))
+    obs.observe(document.querySelector(".after-refresh .count_sec:nth-of-type(5) h2"))
+    obs.observe(document.querySelector(".after-refresh .count_sec:nth-of-type(6) h2"))
+    obs.observe(document.querySelector(".after-refresh .count_sec:nth-of-type(7) h2"))
+    obs.observe(document.querySelector(".after-refresh .count_sec:nth-of-type(8) h2"))
+    obs.observe(document.querySelector(".after-refresh .count_sec:nth-of-type(9) h2"))
+    obs.observe(document.querySelector(".after-refresh .count_sec:nth-of-type(10) h2"))
+    obs.observe(document.querySelector(".after-refresh .count_sec:nth-of-type(11) h2"))
+    obs.observe(document.querySelector(".after-refresh .count_sec:nth-of-type(12) h2"))
+    obs.observe(document.querySelector(".after-refresh .count_sec:nth-of-type(13) h2"))
+    obs.observe(document.querySelector(".after-refresh .count_sec:nth-of-type(14) h2"))
+    obs.observe(document.querySelector(".after-refresh .count_sec:nth-of-type(15) h2"))
+    obs.observe(document.querySelector(".after-refresh .count_sec:nth-of-type(16) h2"))
+    obs.observe(document.querySelector(".after-refresh .count_sec:nth-of-type(17) h2"))
+    obs.observe(document.querySelector(".after-refresh .count_sec:nth-of-type(19)"))
+    obs.observe(document.querySelector(".after-refresh .count_sec:nth-of-type(20) h2"))
+    obs.observe(document.querySelector(".after-refresh .count_sec:nth-of-type(21) h2"))
+    obs.observe(document.querySelector(".after-refresh .count_sec:nth-of-type(22) h2"))
+    obs.observe(document.querySelector(".after-refresh .count_sec:nth-of-type(23) h2"))
+    obs.observe(document.querySelector(".after-refresh .count_sec:nth-of-type(24) h2"))
+    obs.observe(document.querySelector(".after-refresh .count_sec:nth-of-type(25) h2"))
+    obs.observe(document.querySelector("body .question_second_wrap h2"))
+    obs.observe(document.querySelector(".time_offer_box .body_wrap button.new_enroll_now_btn"))
+    obs.observe(document.querySelector(".after-refresh .count_sec:nth-of-type(3)[data-visab='3'] .enroll_now_main a"))
+    obs.observe(document.querySelector(".question_first_wrap button.new_enroll_now_btn"))
+    obs.observe(document.querySelector(".after-refresh .count_sec:nth-of-type(6)[data-visab='6'] .enroll_now_main a"))
+    obs.observe(document.querySelector(".after-refresh .count_sec:nth-of-type(8)[data-visab='8'] .enroll_now_main a"))
+    obs.observe(document.querySelector(".after-refresh .count_sec:nth-of-type(11)[data-visab='11'] .enroll_now_main a"))
+    obs.observe(document.querySelector(".after-refresh .count_sec:nth-of-type(15)[data-visab='15'] .enroll_now_main a"))
+    obs.observe(document.querySelector(".after-refresh .count_sec:nth-of-type(21)[data-visab='21'] .enroll_now_main a"))
+    obs.observe(document.querySelector(".after-refresh .count_sec:nth-of-type(23)[data-visab='23'] .enroll_now_main a"))
+    obs.observe(document.querySelector(".after-refresh .count_sec:nth-of-type(25)[data-visab='25'] .enroll_now_main a"))
+    obs.observe(document.querySelector(".after-refresh .count_sec:nth-of-type(18)[data-visab='18']"))
+    obs.observe(document.querySelector(".question_second_wrap button.new_enroll_now_btn"))
+    obs.observe(document.querySelector("#myHeaderr"))
+    obs.observe(document.querySelector(".learn_more_scroll_btn"))
 
     let int = setInterval(() => {
-      if (document.querySelector(".testik")) {
+      if (document.querySelector(".first_var_bgr")) {
         clearInterval(int)
-        obs.observe(document.querySelector(".testik"))
+        obs.observe(document.querySelector(".after-refresh > .reviews_bgr.first_var_bgr"))
+      }
+    }, 100)
+
+    let int2 = setInterval(() => {
+      if (document.querySelector(".after-refresh .count_sec:nth-of-type(16) .row1030 > .col-md-12:not(.aftermasterclass) > p:nth-child(4) + .new_enroll_now_btn")) {
+        clearInterval(int2)
+        obs.observe(document.querySelector(".after-refresh .count_sec:nth-of-type(16) .row1030 > .col-md-12:not(.aftermasterclass) > p:nth-child(4) + .new_enroll_now_btn"))
+      }
+    }, 100)
+
+    let int3 = setInterval(() => {
+      if (document.querySelector(".after-refresh .count_sec:nth-of-type(17)[data-visab='17'] button")) {
+        clearInterval(int3)
+        obs.observe(document.querySelector(".after-refresh .count_sec:nth-of-type(17)[data-visab='17'] button"))
       }
     }, 100)
 
@@ -3122,7 +3159,7 @@ body .after-refresh .count_sec:nth-of-type(25) .quick_transcript {
           if (i.target.tagName === "H2" && i.target.closest("div").classList.contains("special_gift_bgr")) {
             pushDataLayer(`View element on screen`, `Short page. Eliminate your dog's behavior problems today!`)
           }
-          if (i.target.tagName === "P" && i.target.closest("div").classList.contains("special_gift_bgr")) {
+          if (i.target.classList.contains("special_gift_box_visab")) {
             pushDataLayer(`View element on screen`, `Short page. Get a special gift at the end of the workshop`)
           }
           if (i.target.classList.contains("watch_free_workshop_btn")) {
@@ -3184,9 +3221,12 @@ body .after-refresh .count_sec:nth-of-type(25) .quick_transcript {
             pushDataLayer(`View element on screen`, `Long page. Picture of logo American humane`)
           }
 
-          // if (i.target.tagName === "P" && i.target.closest("section").getAttribute("data-visab") === "2") {
-          //   pushDataLayer(`View element on screen`, `Long page. And, they use a specific 6-step process that’s usually only known to people in the service dog training industry.`)
-          // }
+          if (i.target.getAttribute("data-visab") === "2") {
+            pushDataLayer(`View element on screen`, `Long page. And, they use a specific 6-step process that’s usually only known to people in the service dog training industry.`)
+          }
+          if (i.target.classList.contains("left_th")) {
+            pushDataLayer(`View element on screen`, `Long page. Start of table in section Say goodbye to all naughty behavior problems`)
+          }
 
           if (i.target.tagName === "H2" && i.target.textContent === "Why starting your dog’s training with “sit”, “stay”, etc. sets your dog up to FAIL") {
             pushDataLayer(`View element on screen`, `Long page. Why starting your dog’s training with “sit”, “stay”, etc. sets your dog up to FAIL`)
@@ -3248,6 +3288,12 @@ body .after-refresh .count_sec:nth-of-type(25) .quick_transcript {
           if (i.target.tagName === "H2" && i.target.textContent === `Transform your dog in as little as 10 to 15 minutes per day`) {
             pushDataLayer(`View element on screen`, `Long page. Transform your dog in as little as 10 to 15 minutes per day`)
           }
+          if (i.target.tagName === "H2" && i.target.textContent === `Help us save rescue dogs’ lives`) {
+            pushDataLayer(`View element on screen`, `Long page. Help us save rescue dogs’ lives`)
+          }
+          if (i.target.tagName === "H2" && i.target.textContent === `Get all your money back within 90 days if this isn’t right for you`) {
+            pushDataLayer(`View element on screen`, `Long page. Get all your money back within 90 days if this isn’t right for you`)
+          }
           if (i.target.tagName === "H2" && i.target.classList.contains("much_cheaper")) {
             pushDataLayer(`View element on screen`, `Long page. Save up to $3,703 on dog training fees`)
           }
@@ -3308,6 +3354,9 @@ body .after-refresh .count_sec:nth-of-type(25) .quick_transcript {
           if (i.target.classList.contains("learn_more_scroll_btn")) {
             pushDataLayer(`View element on screen`, `Long page (version 2). Learn more about our special offer`)
           }
+          if (i.target.getAttribute("data-visab") === "18") {
+            pushDataLayer(`View element on screen`, `Long page. Learn from the comfort of your home at your own pace`)
+          }
 
           obs.unobserve(i.target)
         }
@@ -3329,4 +3378,4 @@ body .after-refresh .count_sec:nth-of-type(25) .quick_transcript {
 
     document.querySelector(".exp")?.remove()
   }
-}, 500)
+}, 800)
