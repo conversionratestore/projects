@@ -2082,9 +2082,9 @@ waitForElement(`${isExpandedCart ? '.PageContent' : '#sidebar-cart'}`).then(cart
     })
 })
 
-if (document.querySelector('.Cart__ItemList')) {
+waitForElement('.Cart__ItemList').then(() => {
     main()
-}
+})
 
 waitForElement('body').then(() => observeCartNodes(main))
 
