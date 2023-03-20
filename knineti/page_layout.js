@@ -1,6 +1,32 @@
 let newPage = setInterval(() => {
   if (document.querySelector("#player")) {
     clearInterval(newPage)
+    //event
+    let eventVar = "desktop"
+
+    if (window.innerWidth <= 768) {
+      eventVar = "mobile"
+    }
+
+    function pushDataLayer(actionDataLayer, labelDataLayer) {
+      window.dataLayer = window.dataLayer || []
+      if (labelDataLayer) {
+        console.log(actionDataLayer + " : " + labelDataLayer)
+        dataLayer.push({
+          event: "event-to-ga",
+          eventCategory: `Experiment. New FW page layout ${eventVar}`,
+          eventAction: `${actionDataLayer}`,
+          eventLabel: `${labelDataLayer}`,
+        })
+      } else {
+        console.log(actionDataLayer)
+        dataLayer.push({
+          event: "event-to-ga",
+          eventCategory: `Experiment. New FW page layout  ${eventVar}`,
+          eventAction: `${actionDataLayer}`,
+        })
+      }
+    }
     let styleFreeWorkShop = /*html */ `
     <style>
     .count_sec .white-block.fst_red_spc .content > .col-md-8,
@@ -646,6 +672,7 @@ body .special_gift_box p span {
 .ten_week_bgr .reviews_bgr {
   border-radius: 16px;
   margin-top: 60px;
+  background: #ffffff;
 }
 .reviews_wrap {
   background: rgba(255, 255, 255, 0.6);
@@ -2377,6 +2404,7 @@ body .after-refresh .count_sec:nth-of-type(25) .quick_transcript {
     // scrollToVideo
     function scrollToVideo(el) {
       console.log(`scrollToVideo`)
+      pushDataLayer("Click on button Watch free workshop", "Short page. Watch free workshop")
 
       if (document.querySelector(".flowplayer.is-paused .fp-ui")) {
         if (!document.querySelector("video")) {
@@ -2441,12 +2469,14 @@ body .after-refresh .count_sec:nth-of-type(25) .quick_transcript {
       document.querySelector(".ten_week_bgr .reviews_wrap").classList.add("is_true")
 
       document.querySelector(".time_offer_box .body_wrap button.new_enroll_now_btn").addEventListener("click", () => {
+        pushDataLayer("Click on button Enroll now", "Long page. Enroll now in section Limited time offer")
         document.querySelector(".Breed-Specific.count_sec .enroll_now_main .button-blue-large.showModal.grab_butn.enroll_now_btn.dsk_ntn_onen").click()
       })
     }
 
     if (document.querySelector(".learn_more_scroll_btn")) {
       document.querySelector(".learn_more_scroll_btn").addEventListener("click", () => {
+        pushDataLayer("Click on button Learn more about our special offer", "Long page (version 2). Learn more about our special offer")
         let headerOffset = 80
         if (window.innerWidth <= 768) {
           headerOffset = 150
@@ -2473,18 +2503,6 @@ body .after-refresh .count_sec:nth-of-type(25) .quick_transcript {
                       <path d="M1.23984 8.23356L4.47318 5.00023L1.23984 1.76689C0.914844 1.44189 0.914844 0.916894 1.23984 0.591895C1.56484 0.266895 2.08984 0.266895 2.41484 0.591895L6.23984 4.41689C6.56484 4.74189 6.56484 5.26689 6.23984 5.59189L2.41484 9.41689C2.08984 9.74189 1.56484 9.74189 1.23984 9.41689C0.923177 9.09189 0.914844 8.55856 1.23984 8.23356Z" fill="white"/>
                       </svg></button></div></div>`
     )
-
-    if (document.querySelector(".question_first_bgr")) {
-      document.querySelector(".question_first_wrap button.new_enroll_now_btn").addEventListener("click", () => {
-        document.querySelector(".enroll_now_main .button-blue-large.showModal.grab_butn.enroll_now_btn.dst_fsq_btl").click()
-      })
-    }
-
-    if (document.querySelector(".question_second_bgr")) {
-      document.querySelector(".question_second_wrap button.new_enroll_now_btn").addEventListener("click", () => {
-        document.querySelector(".enroll_now_main .button-blue-large.showModal.grab_butn.enroll_now_btn.dst_fsq_btl").click()
-      })
-    }
 
     if (document.querySelector(".new_accardion")) {
       for (let key in arrInfo) {
@@ -2546,18 +2564,6 @@ body .after-refresh .count_sec:nth-of-type(25) .quick_transcript {
                         <path d="M1.23984 8.23356L4.47318 5.00023L1.23984 1.76689C0.914844 1.44189 0.914844 0.916894 1.23984 0.591895C1.56484 0.266895 2.08984 0.266895 2.41484 0.591895L6.23984 4.41689C6.56484 4.74189 6.56484 5.26689 6.23984 5.59189L2.41484 9.41689C2.08984 9.74189 1.56484 9.74189 1.23984 9.41689C0.923177 9.09189 0.914844 8.55856 1.23984 8.23356Z" fill="white"/>
                         </svg></button>`
       )
-    }
-
-    if (document.querySelector(".after-refresh .count_sec:nth-of-type(16) .new_enroll_now_btn")) {
-      document.querySelector(".after-refresh .count_sec:nth-of-type(16) .new_enroll_now_btn").addEventListener("click", () => {
-        document.querySelector(".enroll_now_main .button-blue-large.showModal.grab_butn.enroll_now_btn.dst_fsq_btl").click()
-      })
-    }
-
-    if (document.querySelector(".after-refresh .count_sec:nth-of-type(17) .new_enroll_now_btn")) {
-      document.querySelector(".after-refresh .count_sec:nth-of-type(17) .new_enroll_now_btn").addEventListener("click", () => {
-        document.querySelector(".enroll_now_main .button-blue-large.showModal.grab_butn.enroll_now_btn.dst_fsq_btl").click()
-      })
     }
     document.querySelector(".after-refresh .count_sec:nth-of-type(22) img").src = "https://conversionratestore.github.io/projects/knineti/img/ASPCA_new.png"
     // title
@@ -2834,6 +2840,180 @@ body .after-refresh .count_sec:nth-of-type(25) .quick_transcript {
         }
       }, 100)
     }
+    // click on btn
+    document.querySelector("#below_video_text .button-header a").addEventListener("click", () => {
+      pushDataLayer("Click on button Enroll now", "Long page. Enroll now + 90-day refund policy")
+    })
+    document.querySelector("#myHeaderr a.blue-large").addEventListener("click", () => {
+      pushDataLayer("Click on button Enroll now", "Long page (version 2). Enroll now in section Special Offer: Save $200. Ends in 6 days.")
+    })
+    document.querySelector(".after-refresh .count_sec:nth-of-type(3) .white-block .enroll_now_main  a.button-blue-large").addEventListener("click", () => {
+      pushDataLayer("Click on button Enroll now", "Long page. Enroll now in section Enroll for the masterclass today and get 3 bonus classes (worth US $209.10) free of charge")
+    })
+    document.querySelector(".after-refresh .count_sec:nth-of-type(6) .enroll_now_main  a.button-blue-large").addEventListener("click", () => {
+      pushDataLayer("Click on button Enroll now", "Long page. Enroll now in section Watch the amazing results dog owners get after using this program")
+    })
+    document.querySelector(".after-refresh .count_sec:nth-of-type(8) .enroll_now_main  a.button-blue-large").addEventListener("click", () => {
+      pushDataLayer("Click on button Enroll now", `Long page. Enroll now in section "... instead of barking, she goes on her bed and waits for me."`)
+    })
+    document.querySelector(".after-refresh .count_sec:nth-of-type(11) .enroll_now_main  a.button-blue-large").addEventListener("click", () => {
+      pushDataLayer("Click on button Enroll now", `Long page. Enroll now in section Transform your dog from a leash-pulling nightmare into a zen master that’s a joy to walk with`)
+    })
+    document.querySelector(".after-refresh .count_sec:nth-of-type(15) .enroll_now_main  a.button-blue-large").addEventListener("click", () => {
+      pushDataLayer("Click on button Enroll now", `Long page. Enroll now in section Train your dog to have the same level of impulse control as service dogs`)
+    })
+    document.querySelector(".after-refresh .count_sec:nth-of-type(21) .enroll_now_main  a.button-blue-large").addEventListener("click", () => {
+      pushDataLayer("Click on button Enroll now", `Long page. Enroll now in section Save up to $3,703 on dog training fees`)
+    })
+    document.querySelector(".after-refresh .count_sec:nth-of-type(23) .enroll_now_main  a.button-blue-large").addEventListener("click", () => {
+      pushDataLayer("Click on button Enroll now", `Long page. Enroll now in section Get all your money back within 90 days if this isn’t right for you`)
+    })
+    document.querySelector(".after-refresh .count_sec:nth-of-type(25) .enroll_now_main  a.button-blue-large").addEventListener("click", () => {
+      pushDataLayer("Click on button Enroll now", `Long page. Enroll now in section “...he listens to me all the time now...”`)
+    })
+    if (document.querySelector(".after-refresh .count_sec:nth-of-type(16) .new_enroll_now_btn")) {
+      document.querySelector(".after-refresh .count_sec:nth-of-type(16) .new_enroll_now_btn").addEventListener("click", () => {
+        pushDataLayer("Click on button Enroll now", "Long page. Enroll now in section Long page. Say goodbye to all naughty behavior problems")
+        document.querySelector(".enroll_now_main .button-blue-large.showModal.grab_butn.enroll_now_btn.dst_fsq_btl").click()
+      })
+    }
+    if (document.querySelector(".after-refresh .count_sec:nth-of-type(17) .new_enroll_now_btn")) {
+      document.querySelector(".after-refresh .count_sec:nth-of-type(17) .new_enroll_now_btn").addEventListener("click", () => {
+        pushDataLayer("Click on button Enroll now", "Long page. Enroll now in section Enroll now to get instant access to the online masterclass")
+        document.querySelector(".enroll_now_main .button-blue-large.showModal.grab_butn.enroll_now_btn.dst_fsq_btl").click()
+      })
+    }
+    if (document.querySelector(".question_first_bgr")) {
+      document.querySelector(".question_first_wrap button.new_enroll_now_btn").addEventListener("click", () => {
+        pushDataLayer("Click on button Enroll now", "Long page. Enroll now in section Have a question? Reach out to us or find some answers below")
+        document.querySelector(".enroll_now_main .button-blue-large.showModal.grab_butn.enroll_now_btn.dst_fsq_btl").click()
+      })
+    }
+    if (document.querySelector(".question_second_bgr")) {
+      document.querySelector(".question_second_wrap button.new_enroll_now_btn").addEventListener("click", () => {
+        pushDataLayer("Click on button Enroll now", "Long page. Enroll now in section Our best customers are those who ask the most questions. Find answers below ")
+        document.querySelector(".enroll_now_main .button-blue-large.showModal.grab_butn.enroll_now_btn.dst_fsq_btl").click()
+      })
+    }
+
+    // if (document.querySelector(".social_proof")) {
+    let obs = new IntersectionObserver(visibility, {
+      threshold: 0.5,
+    })
+
+    let obs2 = new IntersectionObserver(visibility2, {
+      threshold: 0.5,
+    })
+
+    obs.observe(document.querySelector("#player"))
+    obs.observe(document.querySelector("body .want-to-obey .special_gift_box h2"))
+    obs.observe(document.querySelector("body .special_gift_box p + p"))
+    obs.observe(document.querySelector(".first_visit_block button.watch_free_workshop_btn"))
+
+    obs.observe(document.querySelector(".after-refresh .count_sec:nth-of-type(1) h2"))
+    obs.observe(document.querySelector(".after-refresh .count_sec:nth-of-type(2) h2"))
+    obs.observe(document.querySelector(".after-refresh .count_sec:nth-of-type(3) h2"))
+
+    //
+
+    obs.observe(document.querySelector(".after-refresh .count_sec:nth-of-type(19)"))
+    obs.observe(document.querySelector(".after-refresh .count_sec:nth-of-type(21) h2"))
+    obs.observe(document.querySelector(".after-refresh .count_sec:nth-of-type(24) h2"))
+    obs.observe(document.querySelector(".after-refresh .count_sec:nth-of-type(25) h2"))
+    // obs.observe(document.querySelector(".after-refresh .count_sec:nth-of-type(25) .enroll_now_main  a.button-blue-large"))
+    obs.observe(document.querySelector("body .question_second_wrap h2"))
+    obs.observe(document.querySelector(".question_second_wrap button.new_enroll_now_btn"))
+    obs.observe(document.querySelector("#myHeaderr"))
+    obs.observe(document.querySelector(".learn_more_scroll_btn"))
+
+    let int = setInterval(() => {
+      if (document.querySelector(".testik")) {
+        clearInterval(int)
+        obs.observe(document.querySelector(".testik"))
+      }
+    }, 100)
+
+    function visibility(entries) {
+      entries.forEach((i) => {
+        if (i.isIntersecting) {
+          setTimeout(function () {
+            obs2.observe(i.target)
+          }, 500)
+        }
+      })
+    }
+
+    function visibility2(entries) {
+      entries.forEach((i) => {
+        if (i.isIntersecting) {
+          if (i.target.getAttribute("id") === "player") {
+            pushDataLayer(`View element on screen`, `Video on first screen`)
+          }
+          if (i.target.tagName === "H2" && i.target.closest("div").classList.contains("special_gift_bgr")) {
+            pushDataLayer(`View element on screen`, `Short page. Eliminate your dog's behavior problems today!`)
+          }
+          if (i.target.tagName === "P" && i.target.closest("div").classList.contains("special_gift_bgr")) {
+            pushDataLayer(`View element on screen`, `Short page. Get a special gift at the end of the workshop`)
+          }
+          if (i.target.classList.contains("watch_free_workshop_btn")) {
+            pushDataLayer(`View element on screen`, `Short page. Watch free workshop`)
+          }
+
+          if (i.target.tagName === "H2" && i.target.textContent === "Why starting your dog’s training with “sit”, “stay”, etc. sets your dog up to FAIL") {
+            pushDataLayer(`View element on screen`, `Long page. Why starting your dog’s training with “sit”, “stay”, etc. sets your dog up to FAIL`)
+          }
+          if (i.target.tagName === "H2" && i.target.textContent === "So if not “sit”, “stay” etc., what do service dog training pros actually use?") {
+            pushDataLayer(`View element on screen`, `Long page. So if not “sit”, “stay” etc., what do service dog training pros actually use?`)
+          }
+          if (i.target.tagName === "H2" && i.target.textContent === "Enroll for the masterclass today and get 3 bonus classes (worth US $209.10) free of charge:") {
+            pushDataLayer(`View element on screen`, `Long page. Enroll for the masterclass today and get 3 bonus classes (worth US $209.10) free of charge`)
+          }
+
+          if (i.target.getAttribute("id") === "unlimited_personal_coaching") {
+            pushDataLayer(`View element on screen`, `Long page. 10 weeks of personalized guidance & coaching`)
+          }
+          if (i.target.tagName === "H2" && i.target.classList.contains("much_cheaper")) {
+            pushDataLayer(`View element on screen`, `Long page. Save up to $3,703 on dog training fees`)
+          }
+          if (i.target.tagName === "H2" && i.target.classList.contains("without_treats")) {
+            pushDataLayer(`View element on screen`, `Long page. Get your dog to listen to you even without treats`)
+          }
+          if (i.target.tagName === "H2" && i.target.classList.contains("another_interview")) {
+            pushDataLayer(`View element on screen`, `Long page. “...he listens to me all the time now...”`)
+          }
+          // if (i.target.tagName === "BUTTON" && i.target.closest("section").querySelector("h2.another_interview")) {
+          //   pushDataLayer(`View element on screen`, `Long page. Enroll now in section “...he listens to me all the time now...”`)
+          // }
+          if (i.target.tagName === "H2" && i.target.closest("div").classList.contains("question_second_wrap")) {
+            pushDataLayer(`View element on screen`, `Long page. Our best customers are those who ask the most questions. Find answers below `)
+          }
+          if (i.target.tagName === "BUTTON" && i.target.closest("div").classList.contains("question_second_wrap")) {
+            pushDataLayer(`View element on screen`, `Long page. Enroll now in section Our best customers are those who ask the most questions. Find answers below `)
+          }
+          if (i.target.classList.contains("header")) {
+            pushDataLayer(`View element on screen`, `Long page (version 2). Special Offer: Save $200. Ends in 6 days.`)
+          }
+          if (i.target.classList.contains("learn_more_scroll_btn")) {
+            pushDataLayer(`View element on screen`, `Long page (version 2). Learn more about our special offer`)
+          }
+
+          obs.unobserve(i.target)
+        }
+        obs2.unobserve(i.target)
+      })
+    }
+    // }
+
+    pushDataLayer("loaded")
+
+    window._mfq.push(["setVariable", "new_fw_page_layout", "var1"])
+
+    const record = setInterval(() => {
+      if (typeof clarity === "function") {
+        clearInterval(record)
+        clarity("set", "new_fw_page_layout", "variant_1")
+      }
+    }, 200)
 
     document.querySelector(".exp")?.remove()
   }
