@@ -1292,24 +1292,25 @@ const pdpUpsellContainer = (items, isTwoImages) => {
 // -------------------------------------
 
 function convertOptionTxt(optionTxt) {
-    const parts = optionTxt.split(/ \/ |-/)
+    const parts = optionTxt.split(/ \/ | - /)
     const sizes = ["OS", "XS", "S", "M", "L", "XL", "2XL", "3XL", "4XL"]
 
-    for (let i = 0; i < parts.length; i++) {
-        if (sizes.includes(parts[i])) {
-            const sizeIndex = i
-            let secondPart = ""
-            if (i === 0 && parts.length > 1) {
-                secondPart = `, ${parts[1]}`
-            } else if (i === 1) {
-                secondPart = `, ${parts[0]}`
-            }
-            return parts[sizeIndex] + secondPart
-        }
-    }
-
     if (parts.length === 2) {
-        return `${parts[1]}, ${parts[0]}`
+        let txt
+
+        sizes.forEach(size => {
+            if (parts[0] === size) {
+                txt = `${parts[0]}, ${parts[1]}`
+            } else if (parts[1] === size) {
+                txt = `${parts[1]}, ${parts[0]}`
+            }
+        })
+
+        if (txt) {
+            return txt
+        } else {
+            return optionTxt
+        }
     } else {
         return optionTxt
     }
@@ -1587,6 +1588,8 @@ const setupCustomSelectsLogic = (length) => {
             })
 
             overlay?.addEventListener('click', () => overlay.classList.remove('active'))
+
+            initSelectColors()
         }
     }, WAIT_INTERVAL_TIMEOUT)
 }
@@ -1650,6 +1653,8 @@ function initSelectColors() {
 function changeColorVariant(colorSectionIndex) {
     // Get the selected color value
     const selectedColor = document.querySelectorAll('.ProductForm__Option:not(.no-js)')[colorSectionIndex].querySelector('.SizeSwatch__Radio:checked').value
+
+    console.log(selectedColor)
 
     // Get all li elements in the options list
     let customSelects = document.querySelectorAll('.upsell_container .custom_select')
@@ -2082,10 +2087,23 @@ waitForElement('.cbb-frequently-bought-total-price-sale-price', '.cbb-frequently
                         }
 
                         const set = await getProduct(document.querySelector('.upsell_title a')?.href.split('products/')[1])
-                        const matchingVariant = set.variants.find(obj => obj.title === innerText)
 
-                        await addItem(matchingVariant.id)
-                        // refreshCart()
+                        let matchingVariant
+
+                        if (innerText.length > 3) {
+                            const [size, color] = innerText.split(', ')
+                            matchingVariant = set.variants.find(obj => obj.title === `${color} / ${size}`)
+
+                        } else {
+                            matchingVariant = set.variants.find(obj => obj.title === innerText)
+                        }
+
+                        if (matchingVariant) {
+                            await addItem(matchingVariant.id)    
+                        } else {
+                            // alert('Please, choose another set')
+                            console.warn('Please, choose another set');
+                        }                        
                     } else {
                         const variantIds = [...document.querySelectorAll('.upsell_container .options .active_option')]
                             .map(el => {
@@ -2117,8 +2135,6 @@ waitForElement('.cbb-frequently-bought-total-price-sale-price', '.cbb-frequently
 
             setupCustomCheckboxLogic(upsellsLength)
             setupCustomSelectsLogic(upsellsLength)
-
-            waitForElement('.cbb-frequently-bought-discount-message').then(el => initSelectColors())
 
             hideText()
         }
