@@ -60,6 +60,9 @@ svg.fp-play-rounded-fill{
   margin-bottom: 16px;
   position: relative;
 }
+.after-refresh .count_sec:nth-of-type(1){
+background: #DDE8F1 !important;
+}
 .after-refresh > section.count_sec:nth-child(27) img {
   border-radius: 16px;
 }
@@ -862,6 +865,9 @@ body .all_inform_wrap > p + p {
   color: #193973 !important;
   margin: 8px 0 !important;
 }
+.price_wrap p:nth-child(2) span{
+  text-decoration: line-through;
+}
 .price_wrap p:nth-child(3) {
   font-weight: 400 !important;
   font-size: 16px !important;
@@ -982,7 +988,7 @@ li.new_accardion_block + li {
   transform: rotate(180deg);
 }
 .new_accardion_link.active span::before {
-  transform: rotate(0deg);
+  transform: rotate(360deg);
 }
 .new_accardion_link.active {
 }
@@ -1378,6 +1384,7 @@ svg.fp-play-rounded-fill{
   }
   .all_inform_wrap > span{
     margin: 0 0 19px;
+    font-weight: 400;
   }
   .all_inform_wrap .img_wrap{
         margin: 0 0 31px;
@@ -1448,6 +1455,9 @@ ul.new_accardion{
 }
 .reviews_wrap{
   padding: 16px;
+}
+.reviews_wrap.is_true{
+      width: 100%;
 }
 body .want-to-obey .reviews_wrap h3{
   font-size: 16px !important;
@@ -2053,7 +2063,7 @@ body .after-refresh .count_sec:nth-of-type(25) .quick_transcript {
                     <div class="body_wrap">
                       <div class="price_wrap">
                           <p>Limited time offer:</p>
-                          <p><b>Just</b> $497 <b>$297 (save $200)</b></p>
+                          <p><b>Just</b> <span>$497</span> <b>$297 (save $200)</b></p>
                           <p>or $99/month, 3 installments</p>
                       </div>
                       <button class="new_enroll_now_btn">Enroll NOW <svg width="7" height="10" viewBox="0 0 7 10" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -2761,6 +2771,9 @@ body .after-refresh .count_sec:nth-of-type(25) .quick_transcript {
     // dog Age
     let dogAge = new URL(document.location).searchParams.get("age")
     if (document.querySelector(".dog_age_var")) {
+      if (dogAge === "puppy") {
+        dogAge = "new puppy"
+      }
       document.querySelector(".dog_age_var").textContent = dogAge
     }
 
@@ -2913,7 +2926,18 @@ body .after-refresh .count_sec:nth-of-type(25) .quick_transcript {
     obs.observe(document.querySelector(".after-refresh .count_sec:nth-of-type(1) h2"))
     obs.observe(document.querySelector(".after-refresh .count_sec:nth-of-type(2) h2"))
     obs.observe(document.querySelector(".after-refresh .count_sec:nth-of-type(3) h2"))
-
+    obs.observe(document.querySelector(".question_first_wrap h2"))
+    obs.observe(document.querySelector(".after-refresh .count_sec:nth-of-type(5) h2"))
+    obs.observe(document.querySelector(".after-refresh .count_sec:nth-of-type(6) h2"))
+    obs.observe(document.querySelector(".after-refresh .count_sec:nth-of-type(7) h2"))
+    obs.observe(document.querySelector(".after-refresh .count_sec:nth-of-type(8) h2"))
+    obs.observe(document.querySelector(".after-refresh .count_sec:nth-of-type(9) h2"))
+    obs.observe(document.querySelector(".after-refresh .count_sec:nth-of-type(10) h2"))
+    obs.observe(document.querySelector(".after-refresh .count_sec:nth-of-type(11) h2"))
+    obs.observe(document.querySelector(".after-refresh .count_sec:nth-of-type(12) h2"))
+    obs.observe(document.querySelector(".after-refresh .count_sec:nth-of-type(13) h2"))
+    obs.observe(document.querySelector(".after-refresh .count_sec:nth-of-type(14) h2"))
+    obs.observe(document.querySelector(".after-refresh .count_sec:nth-of-type(15) h2"))
     //
 
     obs.observe(document.querySelector(".after-refresh .count_sec:nth-of-type(19)"))
@@ -2967,6 +2991,45 @@ body .after-refresh .count_sec:nth-of-type(25) .quick_transcript {
           }
           if (i.target.tagName === "H2" && i.target.textContent === "Enroll for the masterclass today and get 3 bonus classes (worth US $209.10) free of charge:") {
             pushDataLayer(`View element on screen`, `Long page. Enroll for the masterclass today and get 3 bonus classes (worth US $209.10) free of charge`)
+          }
+          if (i.target.tagName === "H2" && i.target.textContent === "Have a question? Reach out to us or find some answers below") {
+            pushDataLayer(`View element on screen`, `Long page. Have a question? Reach out to us or find some answers below`)
+          }
+          if (i.target.tagName === "H2" && i.target.textContent === "Learn from the best in the dog training industry") {
+            pushDataLayer(`View element on screen`, `Long page. Learn from the best in the dog training industry`)
+          }
+          if (i.target.tagName === "H2" && i.target.textContent === "Watch the amazing results dog owners get after using this program") {
+            pushDataLayer(`View element on screen`, `Long page. Watch the amazing results dog owners get after using this program`)
+          }
+          if (
+            i.target.tagName === "H2" &&
+            i.target.textContent === "ANY regular dog owner can achieve this kind of transformation… you don’t need a degree in animal behavior 🙂"
+          ) {
+            pushDataLayer(`View element on screen`, `Long page. ANY regular dog owner can achieve this kind of transformation… you don’t need a degree in animal behavior 🙂`)
+          }
+          if (i.target.tagName === "H2" && i.target.textContent === `"... instead of barking, she goes on her bed and waits for me."`) {
+            pushDataLayer(`View element on screen`, `Long page. "... instead of barking, she goes on her bed and waits for me."`)
+          }
+          if (i.target.tagName === "H2" && i.target.textContent === `Discover the two foundational commands to get your dog to look up to you`) {
+            pushDataLayer(`View element on screen`, `Long page. Discover the two foundational commands to get your dog to look up to you`)
+          }
+          if (i.target.tagName === "H2" && i.target.textContent === `Teach your pup to pay attention to you even when there's a squirrel nearby`) {
+            pushDataLayer(`View element on screen`, `Long page. Teach your pup to pay attention to you even when there's a squirrel nearby`)
+          }
+          if (i.target.tagName === "H2" && i.target.textContent === `Transform your dog from a leash-pulling nightmare into a zen master that’s a joy to walk with`) {
+            pushDataLayer(`View element on screen`, `Long page. Transform your dog from a leash-pulling nightmare into a zen master that’s a joy to walk with`)
+          }
+          if (i.target.tagName === "H2" && i.target.textContent === `Train your dog to come to you – whenever and wherever you call them`) {
+            pushDataLayer(`View element on screen`, `Long page. Train your dog to come to you – whenever and wherever you call them`)
+          }
+          if (i.target.tagName === "H2" && i.target.textContent === `Teach your pooch to stop barking and calmly say hello to other dogs and people`) {
+            pushDataLayer(`View element on screen`, `Long page. Teach your pooch to stop barking and calmly say hello to other dogs and people`)
+          }
+          if (i.target.tagName === "H2" && i.target.textContent === `Save your furry friend from a fatal road accident`) {
+            pushDataLayer(`View element on screen`, `Long page. Save your furry friend from a fatal road accident`)
+          }
+          if (i.target.tagName === "H2" && i.target.textContent === `Train your dog to have the same level of impulse control as service dogs`) {
+            pushDataLayer(`View element on screen`, `Long page. Train your dog to have the same level of impulse control as service dogs`)
           }
 
           if (i.target.getAttribute("id") === "unlimited_personal_coaching") {
