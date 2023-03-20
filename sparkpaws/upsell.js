@@ -2028,7 +2028,7 @@ waitForElement('.cbb-frequently-bought-total-price-sale-price', '.cbb-frequently
                     } else {
                         const variantIds = [...document.querySelectorAll('.upsell_container .options .active_option')].map(el => {
                             if (el.closest('.upsell_item')?.querySelector('.custom_checkbox.checked')) {
-                                console.log('el')
+                                console.log(el)
                                 return el.dataset.variant
                             }
                         })
