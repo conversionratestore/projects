@@ -1852,6 +1852,7 @@ const observeCartNodes = (callback) => {
                     addedNode.classList
                     && addedNode.classList.contains('Cart')
                     && document.querySelector('.Cart__ItemList')
+                    && !document.querySelector('.Cart__Empty')
                 ) {
                     observer.disconnect()
                     console.log('observer....')
@@ -2082,7 +2083,7 @@ waitForElement(`${isExpandedCart ? '.PageContent' : '#sidebar-cart'}`).then(cart
     })
 })
 
-waitForElement('.Cart__ItemList').then(() => {
+waitForElement('.Cart__ItemList div').then(() => {
     main()
 })
 
