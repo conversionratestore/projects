@@ -12,6 +12,10 @@ const style = /*html*/`
             display: block !important;
         }
 
+        li.hidden_li {
+            display: none !important;
+        }
+
         /* pdp upsell */
         .upsell_container {
             background: #F9F9F9;
@@ -1040,15 +1044,15 @@ const matchingProductHandles = [
     ['pink-checkered-knit-sweater', 'navy-checkered-knit-sweater', 'pineapple-dog-knit-sweater'],
 ]
 
-let cachedUpsellData = JSON.parse(sessionStorage.getItem('myUpsellsArray'))
+// let cachedUpsellData = JSON.parse(sessionStorage.getItem('myUpsellsArray'))
 
-let lastCartData = JSON.parse(sessionStorage.getItem('myCartItemsArray'))
+// let lastCartData = JSON.parse(sessionStorage.getItem('myCartItemsArray'))
 let lastCartItemHandle
 let cartItemsLength
 
-if (lastCartData) {
-    lastCartItemHandle = lastCartData[0].handle
-    cartItemsLength = lastCartData.length
+if (JSON.parse(sessionStorage.getItem('myCartItemsArray'))) {
+    lastCartItemHandle = JSON.parse(sessionStorage.getItem('myCartItemsArray'))[0].handle
+    cartItemsLength = JSON.parse(sessionStorage.getItem('myCartItemsArray')).length
 }
 
 // -------------------------------------
@@ -1347,8 +1351,6 @@ const sendGAEvent = (eventAction, eventLabel = '') => { // Send a Google Analyti
     console.log(eventData)
 }
 
-// PDP FUNCTIONS
-
 const waitForElement = async (selector) => { // Wait for an element to appear on the page
     let count = 0
     while (!document.querySelector(selector)) {
@@ -1360,6 +1362,8 @@ const waitForElement = async (selector) => { // Wait for an element to appear on
     }
     return document.querySelector(selector)
 }
+
+// PDP FUNCTIONS
 
 const parseImgSrcFromBg = (index) => document.querySelectorAll('.cbb-frequently-bought-product-image')[index].style.backgroundImage.match(/url\("(.+)"\)/)?.[1] || ''
 
@@ -1618,6 +1622,60 @@ const hideText = () => {
         )
 
     elementsToHide.forEach(el => el.style.display = 'none')
+}
+
+function initSelectColors() {
+    if (
+        document.querySelectorAll('.ProductForm__Option:not(.no-js)').length > 1
+        && document.querySelector('.cbb-frequently-bought-discount-message')?.textContent.length >= 1
+    ) {
+        let sectionIndex
+
+        document.querySelectorAll('.ProductForm__Label').forEach((label, index) => {
+            if (label.innerText.toLowerCase().includes('color')) {
+                sectionIndex = index
+            }
+        })
+
+        changeColorVariant(sectionIndex)
+
+        document.querySelectorAll('.ProductForm__Option:not(.no-js)')[sectionIndex]?.addEventListener('click', (e) => {
+            if (e.target.closest('.HorizontalList__Item')) {
+                changeColorVariant(sectionIndex)
+            }
+        })
+    }
+}
+
+function changeColorVariant(colorSectionIndex) {
+    // Get the selected color value
+    const selectedColor = document.querySelectorAll('.ProductForm__Option:not(.no-js)')[colorSectionIndex].querySelector('.SizeSwatch__Radio:checked').value
+
+    // Get all li elements in the options list
+    let customSelects = document.querySelectorAll('.upsell_container .custom_select')
+
+    for (const customSelect of customSelects) {
+        const listItems = customSelect.querySelectorAll('li')
+
+        customSelect.querySelector('.active_option')?.classList.remove('active_option')
+
+        for (const li of listItems) {
+            if (!li.innerText.includes(selectedColor)) {
+                // Add the 'active' class to the matching li element
+                li.classList.add('hidden_li')
+            } else {
+                // Remove the 'active' class from any non-matching li elements
+                li.classList.remove('hidden_li')
+
+                if (!customSelect.querySelector('.active_option')) {
+                    li.classList.add('active_option')
+                    customSelect.querySelector('.selected_option .value').innerText = li.innerText
+
+                    li.click()
+                }
+            }
+        }
+    }
 }
 
 // CART FUNCTIONS
@@ -1900,13 +1958,14 @@ const main = async () => {
         if (
             document.querySelector('.CartItem__Title.Heading a')?.href.includes(lastCartItemHandle)
             && document.querySelectorAll('.Cart__ItemList .CartItem').length === cartItemsLength
-            && cachedUpsellData
-            && lastCartData
+            && JSON.parse(sessionStorage.getItem('myUpsellsArray'))
+            && JSON.parse(sessionStorage.getItem('myCartItemsArray'))
             && !document.querySelector('.upsells_container')
         ) {
             // Render the cached data
             console.log('%c GET CACHED products', 'color: green')
-            addUpsellsToCart(cachedUpsellData, lastCartData)
+
+            addUpsellsToCart(JSON.parse(sessionStorage.getItem('myUpsellsArray')), JSON.parse(sessionStorage.getItem('myCartItemsArray')))
         } else {
             console.log('%c FETCH NEW the suggested products', 'color: green')
 
@@ -1914,7 +1973,6 @@ const main = async () => {
 
             if (cart.items.length) {
                 const handle = cart.items[0].handle
-
                 const uniqueArr = getOneRandomSubArr(handle)
 
                 if (uniqueArr.length) {
@@ -1926,12 +1984,15 @@ const main = async () => {
                     lastCartItemHandle = handle
 
                     sessionStorage.setItem('myUpsellsArray', JSON.stringify(products))
-                    cachedUpsellData = JSON.parse(sessionStorage.getItem('myUpsellsArray'))
+                    // cachedUpsellData = JSON.parse(sessionStorage.getItem('myUpsellsArray'))
 
                     sessionStorage.setItem('myCartItemsArray', JSON.stringify(cart.items))
-                    lastCartItems = JSON.parse(sessionStorage.getItem('myCartItemsArray'))
+                    // lastCartItems = JSON.parse(sessionStorage.getItem('myCartItemsArray'))
 
-                    cartItemsLength = cart.items.length
+                    cartItemsLength = JSON.parse(sessionStorage.getItem('myCartItemsArray')).length
+
+                    // console.log(cachedUpsellData);
+                    // console.log(lastCartItems);
 
                 } else {
                     console.log('There are not suggestions for this product.')
@@ -2034,7 +2095,8 @@ waitForElement('.cbb-frequently-bought-total-price-sale-price', '.cbb-frequently
                                 }
                             })
                             .filter(id => id !== undefined)
-                            console.log(variantIds)
+
+                        console.log(variantIds)
                         const results = []
                         for (const variantId of variantIds) {
                             try {
@@ -2046,7 +2108,6 @@ waitForElement('.cbb-frequently-bought-total-price-sale-price', '.cbb-frequently
                         }
                     }
 
-
                     refreshCart()
                     document.querySelector('[aria-label="Open cart"]').click()
 
@@ -2056,6 +2117,8 @@ waitForElement('.cbb-frequently-bought-total-price-sale-price', '.cbb-frequently
 
             setupCustomCheckboxLogic(upsellsLength)
             setupCustomSelectsLogic(upsellsLength)
+
+            waitForElement('.cbb-frequently-bought-discount-message').then(el => initSelectColors())
 
             hideText()
         }
