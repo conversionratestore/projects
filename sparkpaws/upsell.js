@@ -1501,7 +1501,7 @@ const setupCustomSelectsLogic = (length) => {
 
             const overlay = document.querySelector('.custom_overlay') || null
 
-            document.querySelectorAll('.custom_select').forEach((select, index) => {
+            document.querySelectorAll('.upsell_container .custom_select').forEach((select, index) => {
                 // Get the necessary elements
                 const selectField = select.querySelector('.select_field')
                 const options = select.querySelectorAll('.options li')
@@ -1536,6 +1536,7 @@ const setupCustomSelectsLogic = (length) => {
 
                         // imitate app value change
                         const selectElement = document.querySelectorAll('.cbb-recommendations-variant-select')[index]
+
 
                         selectElement.value = option.dataset.value
                         const event = new Event('change', { bubbles: true })
@@ -1676,7 +1677,7 @@ const formatPrice = (number) => {
 
 const isHandleExists = (arr, customHandle) => {
     if (arr) {
-        return arr.some(obj => obj.handle == customHandle)
+        return arr.some(obj => obj.handle == customHandle || obj.handle == setObj[customHandle])
     }
 }
 
@@ -1866,7 +1867,7 @@ const observeCartNodes = (callback) => {
     observer.observe(targetNode, config)
 }
 
-const getOneRandomSubArr = (matchingProductHandles, handle) => {
+const getOneRandomSubArr = (handle) => {
     const filteredArr = matchingProductHandles
         .filter((subArr) => subArr.includes(handle))
         .flatMap((subArr) => subArr.filter((val) => val !== handle))
@@ -1914,7 +1915,7 @@ const main = async () => {
             if (cart.items.length) {
                 const handle = cart.items[0].handle
 
-                const uniqueArr = getOneRandomSubArr(matchingProductHandles, handle)
+                const uniqueArr = getOneRandomSubArr(handle)
 
                 if (uniqueArr.length) {
                     const products = await Promise.all(uniqueArr.map(getProduct))
