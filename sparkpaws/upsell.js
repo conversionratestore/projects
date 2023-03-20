@@ -1290,20 +1290,20 @@ const pdpUpsellContainer = (items, isTwoImages) => {
 function convertOptionTxt(optionTxt) {
     const parts = optionTxt.split(/ \/ |-/)
     const sizes = ["OS", "XS", "S", "M", "L", "XL", "2XL", "3XL", "4XL"]
-    
+
     for (let i = 0; i < parts.length; i++) {
         if (sizes.includes(parts[i])) {
-            const sizeIndex = i;
-            let secondPart = "";
+            const sizeIndex = i
+            let secondPart = ""
             if (i === 0 && parts.length > 1) {
                 secondPart = `, ${parts[1]}`
             } else if (i === 1) {
                 secondPart = `, ${parts[0]}`
             }
-            return parts[sizeIndex] + secondPart;
+            return parts[sizeIndex] + secondPart
         }
     }
-    
+
     if (parts.length === 2) {
         return `${parts[1]}, ${parts[0]}`
     } else {
@@ -1848,7 +1848,11 @@ const observeCartNodes = (callback) => {
     const observer = new MutationObserver(function (mutations) {
         mutations.forEach(function (mutation) {
             mutation.addedNodes.forEach(async function (addedNode) {
-                if (addedNode.classList && addedNode.classList.contains('Cart') && !document.querySelector('.Cart__Empty')) {
+                if (
+                    addedNode.classList
+                    && addedNode.classList.contains('Cart')
+                    && document.querySelector('.Cart__ItemList')
+                ) {
                     observer.disconnect()
                     console.log('observer....')
                     await callback()
@@ -2078,7 +2082,9 @@ waitForElement(`${isExpandedCart ? '.PageContent' : '#sidebar-cart'}`).then(cart
     })
 })
 
-main()
+if (document.querySelector('.Cart__ItemList')) {
+    main()
+}
 
 waitForElement('body').then(() => observeCartNodes(main))
 
