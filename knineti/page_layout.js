@@ -60,8 +60,35 @@ svg.fp-play-rounded-fill{
   margin-bottom: 16px;
   position: relative;
 }
-.after-refresh .count_sec:nth-of-type(1){
+.after-refresh .count_sec:nth-of-type(1),
+.after-refresh .count_sec:nth-of-type(3),
+.after-refresh .count_sec:nth-of-type(6),
+.after-refresh .count_sec:nth-of-type(8),
+.after-refresh .count_sec:nth-of-type(10),
+.after-refresh .count_sec:nth-of-type(12),
+.after-refresh .count_sec:nth-of-type(14),
+.after-refresh .count_sec:nth-of-type(16),
+.after-refresh .count_sec:nth-of-type(18),
+.after-refresh .count_sec:nth-of-type(21),
+.after-refresh .count_sec:nth-of-type(23),
+.after-refresh .count_sec:nth-of-type(25){
 background: #DDE8F1 !important;
+}
+
+.want-to-obey > .count_sec,
+.after-refresh .count_sec:nth-of-type(2),
+.after-refresh .count_sec:nth-of-type(5),
+.after-refresh .count_sec:nth-of-type(7),
+.after-refresh .count_sec:nth-of-type(9),
+.after-refresh .count_sec:nth-of-type(11),
+.after-refresh .count_sec:nth-of-type(13),
+.after-refresh .count_sec:nth-of-type(15),
+.after-refresh .count_sec:nth-of-type(17),
+.after-refresh .count_sec:nth-of-type(19),
+.after-refresh .count_sec:nth-of-type(20),
+.after-refresh .count_sec:nth-of-type(22),
+.after-refresh .count_sec:nth-of-type(24){
+background: #FFFFFF !important;
 }
 .after-refresh > section.count_sec:nth-child(27) img {
   border-radius: 16px;
@@ -966,6 +993,10 @@ li.new_accardion_block + li {
 }
 .new_accardion_lists p + p {
   margin-top: 16px;
+}
+.new_accardion_lists p a{
+  text-decoration: underline !important;
+    color: #4B4B4B !important;
 }
 .new_accardion_link > span {
   position: relative;
@@ -1943,7 +1974,7 @@ body .after-refresh .count_sec:nth-of-type(25) .quick_transcript {
         <p>a) You don’t have the time right now to spend around 10 - 15 minutes per day training your dog.</p>
         <p>b) You are looking to have your dog become legally certified as a service dog. This program is not about certifying your dog to become a service dog - instead, it’s about how to get your dog to become as calm, obedient, and well-behaved as a service dog.</p>
         <p>So if you fall into one of these 2 categories, this masterclass might not be for you.</p>
-        <p>If you have already signed up and would like a refund, please contact us.</p>`,
+        <p>If you have already signed up and would like a refund, please <a target="_blank" rel="noopener noreferrer" href="/contact-us/">contact us</a>.</p>`,
       ],
       8: [`8. Do I need to travel somewhere to attend the masterclass?`, `<p>No - this is an online masterclass, so you’ll be attending it from home.</p>`],
       9: [
@@ -2643,7 +2674,83 @@ body .after-refresh .count_sec:nth-of-type(25) .quick_transcript {
     if (!document.querySelector(".after-refresh .count_sec:nth-of-type(20) .new_block_transform")) {
       document.querySelector(".after-refresh .count_sec:nth-of-type(20) h2").insertAdjacentHTML("afterend", newBlockTransform)
     }
-
+    // setAttr for visability
+    if (!document.querySelector(".after-refresh .count_sec:nth-of-type(1)").getAttribute("data-visab")) {
+      document.querySelector(".after-refresh .count_sec:nth-of-type(1)").setAttribute("data-visab", 1)
+    }
+    if (!document.querySelector(".after-refresh .count_sec:nth-of-type(2)").getAttribute("data-visab")) {
+      document.querySelector(".after-refresh .count_sec:nth-of-type(2)").setAttribute("data-visab", 2)
+    }
+    if (!document.querySelector(".after-refresh .count_sec:nth-of-type(3)").getAttribute("data-visab")) {
+      document.querySelector(".after-refresh .count_sec:nth-of-type(3)").setAttribute("data-visab", 3)
+    }
+    if (!document.querySelector(".after-refresh .count_sec:nth-of-type(4)").getAttribute("data-visab")) {
+      document.querySelector(".after-refresh .count_sec:nth-of-type(4)").setAttribute("data-visab", 4)
+    }
+    if (!document.querySelector(".after-refresh .count_sec:nth-of-type(5)").getAttribute("data-visab")) {
+      document.querySelector(".after-refresh .count_sec:nth-of-type(5)").setAttribute("data-visab", 5)
+    }
+    if (!document.querySelector(".after-refresh .count_sec:nth-of-type(6)").getAttribute("data-visab")) {
+      document.querySelector(".after-refresh .count_sec:nth-of-type(6)").setAttribute("data-visab", 6)
+    }
+    if (!document.querySelector(".after-refresh .count_sec:nth-of-type(7)").getAttribute("data-visab")) {
+      document.querySelector(".after-refresh .count_sec:nth-of-type(7)").setAttribute("data-visab", 7)
+    }
+    if (!document.querySelector(".after-refresh .count_sec:nth-of-type(8)").getAttribute("data-visab")) {
+      document.querySelector(".after-refresh .count_sec:nth-of-type(8)").setAttribute("data-visab", 8)
+    }
+    if (!document.querySelector(".after-refresh .count_sec:nth-of-type(9)").getAttribute("data-visab")) {
+      document.querySelector(".after-refresh .count_sec:nth-of-type(9)").setAttribute("data-visab", 9)
+    }
+    if (!document.querySelector(".after-refresh .count_sec:nth-of-type(10)").getAttribute("data-visab")) {
+      document.querySelector(".after-refresh .count_sec:nth-of-type(10)").setAttribute("data-visab", 10)
+    }
+    if (!document.querySelector(".after-refresh .count_sec:nth-of-type(11)").getAttribute("data-visab")) {
+      document.querySelector(".after-refresh .count_sec:nth-of-type(11)").setAttribute("data-visab", 11)
+    }
+    if (!document.querySelector(".after-refresh .count_sec:nth-of-type(12)").getAttribute("data-visab")) {
+      document.querySelector(".after-refresh .count_sec:nth-of-type(12)").setAttribute("data-visab", 12)
+    }
+    if (!document.querySelector(".after-refresh .count_sec:nth-of-type(13)").getAttribute("data-visab")) {
+      document.querySelector(".after-refresh .count_sec:nth-of-type(13)").setAttribute("data-visab", 13)
+    }
+    if (!document.querySelector(".after-refresh .count_sec:nth-of-type(14)").getAttribute("data-visab")) {
+      document.querySelector(".after-refresh .count_sec:nth-of-type(14)").setAttribute("data-visab", 14)
+    }
+    if (!document.querySelector(".after-refresh .count_sec:nth-of-type(15)").getAttribute("data-visab")) {
+      document.querySelector(".after-refresh .count_sec:nth-of-type(15)").setAttribute("data-visab", 15)
+    }
+    if (!document.querySelector(".after-refresh .count_sec:nth-of-type(16)").getAttribute("data-visab")) {
+      document.querySelector(".after-refresh .count_sec:nth-of-type(16)").setAttribute("data-visab", 16)
+    }
+    if (!document.querySelector(".after-refresh .count_sec:nth-of-type(17)").getAttribute("data-visab")) {
+      document.querySelector(".after-refresh .count_sec:nth-of-type(17)").setAttribute("data-visab", 17)
+    }
+    if (!document.querySelector(".after-refresh .count_sec:nth-of-type(18)").getAttribute("data-visab")) {
+      document.querySelector(".after-refresh .count_sec:nth-of-type(18)").setAttribute("data-visab", 18)
+    }
+    if (!document.querySelector(".after-refresh .count_sec:nth-of-type(19)").getAttribute("data-visab")) {
+      document.querySelector(".after-refresh .count_sec:nth-of-type(19)").setAttribute("data-visab", 19)
+    }
+    if (!document.querySelector(".after-refresh .count_sec:nth-of-type(20)").getAttribute("data-visab")) {
+      document.querySelector(".after-refresh .count_sec:nth-of-type(20)").setAttribute("data-visab", 20)
+    }
+    if (!document.querySelector(".after-refresh .count_sec:nth-of-type(21)").getAttribute("data-visab")) {
+      document.querySelector(".after-refresh .count_sec:nth-of-type(21)").setAttribute("data-visab", 21)
+    }
+    if (!document.querySelector(".after-refresh .count_sec:nth-of-type(22)").getAttribute("data-visab")) {
+      document.querySelector(".after-refresh .count_sec:nth-of-type(22)").setAttribute("data-visab", 22)
+    }
+    if (!document.querySelector(".after-refresh .count_sec:nth-of-type(23)").getAttribute("data-visab")) {
+      document.querySelector(".after-refresh .count_sec:nth-of-type(23)").setAttribute("data-visab", 23)
+    }
+    if (!document.querySelector(".after-refresh .count_sec:nth-of-type(24)").getAttribute("data-visab")) {
+      document.querySelector(".after-refresh .count_sec:nth-of-type(24)").setAttribute("data-visab", 24)
+    }
+    if (!document.querySelector(".after-refresh .count_sec:nth-of-type(25)").getAttribute("data-visab")) {
+      document.querySelector(".after-refresh .count_sec:nth-of-type(25)").setAttribute("data-visab", 25)
+    }
+    //
     if (window.innerWidth <= 768) {
       document.querySelector(".after-refresh .count_sec:nth-of-type(1) img").src = "https://conversionratestore.github.io/projects/knineti/img/var1_mob.png"
       document.querySelector(".after-refresh .count_sec:nth-of-type(9) .image_left > img").src = "https://conversionratestore.github.io/projects/knineti/img/var2_mob.png"
@@ -2795,6 +2902,9 @@ body .after-refresh .count_sec:nth-of-type(25) .quick_transcript {
       if (!document.querySelector(".after-refresh > .reviews_bgr")) {
         document.querySelectorAll(".after-refresh section.count_sec")[0]?.insertAdjacentHTML("beforebegin", reviewsBox)
       }
+      if (document.querySelector(".after-refresh > .reviews_bgr")) {
+        document.querySelector(".after-refresh > .reviews_bgr").classList.add("first_var_bgr")
+      }
       document.querySelector(".ten_week_bgr .reviews_bgr").style.display = "none"
       document.querySelector(".learn_more_bgr").style.display = "none"
       if (window.innerWidth <= 768) {
@@ -2812,7 +2922,7 @@ body .after-refresh .count_sec:nth-of-type(25) .quick_transcript {
 
           setTimeout(() => {
             // let counter
-            // document.querySelector("video").currentTime = 35 * 60
+            // document.querySelector("video").currentTime = 35.74 * 60
             const videoItem = document.querySelector("video")
 
             function timeUpdate() {
@@ -2836,6 +2946,9 @@ body .after-refresh .count_sec:nth-of-type(25) .quick_transcript {
                 document.querySelector(".special_gift_bgr").style.display = "none"
                 if (!document.querySelector(".after-refresh > .reviews_bgr")) {
                   document.querySelectorAll(".after-refresh section.count_sec")[0]?.insertAdjacentHTML("beforebegin", reviewsBox)
+                }
+                if (document.querySelector(".after-refresh > .reviews_bgr")) {
+                  document.querySelector(".after-refresh > .reviews_bgr").classList.add("first_var_bgr")
                 }
                 document.querySelector(".ten_week_bgr .reviews_bgr").style.display = "none"
                 document.querySelector(".learn_more_bgr").style.display = "none"
@@ -2912,53 +3025,76 @@ body .after-refresh .count_sec:nth-of-type(25) .quick_transcript {
 
     // if (document.querySelector(".social_proof")) {
     let obs = new IntersectionObserver(visibility, {
-      threshold: 0.5,
+      threshold: 0.9,
     })
 
     let obs2 = new IntersectionObserver(visibility2, {
-      threshold: 0.5,
+      threshold: 0.9,
     })
 
-    obs.observe(document.querySelector("#player"))
-    obs.observe(document.querySelector("body .want-to-obey .special_gift_box h2"))
-    obs.observe(document.querySelector("body .special_gift_box p + p"))
-    obs.observe(document.querySelector(".first_visit_block button.watch_free_workshop_btn"))
-    obs.observe(document.querySelector(".ten_week_visab"))
-    obs.observe(document.querySelector(".all_inform_wrap .img_wrap"))
-    obs.observe(document.querySelector(".all_inform_wrap .text_descr"))
-    obs.observe(document.querySelector(".time_offer_box .heder_wrap"))
-    obs.observe(document.querySelector(".time_offer_box .body_wrap .price_wrap"))
-    obs.observe(document.querySelector(".time_offer_box .body_wrap .date_ends_text"))
-    obs.observe(document.querySelector(".time_offer_box .body_wrap .img_guarantee"))
+    // obs.observe(document.querySelector("#player"))
+    // obs.observe(document.querySelector("body .want-to-obey .special_gift_box h2"))
+    // obs.observe(document.querySelector("body .special_gift_box p + p"))
+    // obs.observe(document.querySelector(".first_visit_block button.watch_free_workshop_btn"))
+    // obs.observe(document.querySelector(".ten_week_visab"))
+    // obs.observe(document.querySelector(".all_inform_wrap .img_wrap"))
+    // obs.observe(document.querySelector(".all_inform_wrap .text_descr"))
+    // obs.observe(document.querySelector(".time_offer_box .heder_wrap"))
+    // obs.observe(document.querySelector(".time_offer_box .body_wrap .price_wrap"))
+    // obs.observe(document.querySelector(".time_offer_box .body_wrap .date_ends_text"))
+    // obs.observe(document.querySelector(".time_offer_box .body_wrap .img_guarantee"))
+    // obs.observe(document.querySelector(".mini_text_guarantee"))
+    // obs.observe(document.querySelector(".after-refresh > .reviews_bgr.first_var_bgr"))
+    // obs.observe(document.querySelector("#below_video_text"))
     //
-
-    obs.observe(document.querySelector(".after-refresh .count_sec:nth-of-type(1) h2"))
-    obs.observe(document.querySelector(".after-refresh .count_sec:nth-of-type(2) h2"))
-    obs.observe(document.querySelector(".after-refresh .count_sec:nth-of-type(3) h2"))
-    obs.observe(document.querySelector(".question_first_wrap h2"))
-    obs.observe(document.querySelector(".after-refresh .count_sec:nth-of-type(5) h2"))
-    obs.observe(document.querySelector(".after-refresh .count_sec:nth-of-type(6) h2"))
-    obs.observe(document.querySelector(".after-refresh .count_sec:nth-of-type(7) h2"))
-    obs.observe(document.querySelector(".after-refresh .count_sec:nth-of-type(8) h2"))
-    obs.observe(document.querySelector(".after-refresh .count_sec:nth-of-type(9) h2"))
-    obs.observe(document.querySelector(".after-refresh .count_sec:nth-of-type(10) h2"))
-    obs.observe(document.querySelector(".after-refresh .count_sec:nth-of-type(11) h2"))
-    obs.observe(document.querySelector(".after-refresh .count_sec:nth-of-type(12) h2"))
-    obs.observe(document.querySelector(".after-refresh .count_sec:nth-of-type(13) h2"))
-    obs.observe(document.querySelector(".after-refresh .count_sec:nth-of-type(14) h2"))
-    obs.observe(document.querySelector(".after-refresh .count_sec:nth-of-type(15) h2"))
-    obs.observe(document.querySelector(".after-refresh .count_sec:nth-of-type(16) h2"))
-    obs.observe(document.querySelector(".after-refresh .count_sec:nth-of-type(17) h2"))
-    obs.observe(document.querySelector(".after-refresh .count_sec:nth-of-type(19)"))
-    obs.observe(document.querySelector(".after-refresh .count_sec:nth-of-type(20) h2"))
-    obs.observe(document.querySelector(".after-refresh .count_sec:nth-of-type(21) h2"))
-    obs.observe(document.querySelector(".after-refresh .count_sec:nth-of-type(24) h2"))
-    obs.observe(document.querySelector(".after-refresh .count_sec:nth-of-type(25) h2"))
-    // obs.observe(document.querySelector(".after-refresh .count_sec:nth-of-type(25) .enroll_now_main  a.button-blue-large"))
-    obs.observe(document.querySelector("body .question_second_wrap h2"))
-    obs.observe(document.querySelector(".question_second_wrap button.new_enroll_now_btn"))
-    obs.observe(document.querySelector("#myHeaderr"))
-    obs.observe(document.querySelector(".learn_more_scroll_btn"))
+    // obs.observe(document.querySelector(".after-refresh .count_sec:nth-of-type(1)[data-visab='1'] img"))
+    // obs.observe(document.querySelector(".after-refresh .count_sec:nth-of-type(7)[data-visab='7'] img"))
+    // obs.observe(document.querySelector(".after-refresh .count_sec:nth-of-type(10)[data-visab='10'] img"))
+    // obs.observe(document.querySelector(".after-refresh .count_sec:nth-of-type(12)[data-visab='12'] img"))
+    // obs.observe(document.querySelector(".after-refresh .count_sec:nth-of-type(14)[data-visab='14'] img"))
+    // obs.observe(document.querySelector(".after-refresh .count_sec:nth-of-type(20)[data-visab='20'] img"))
+    // obs.observe(document.querySelector(".after-refresh .count_sec:nth-of-type(22)[data-visab='22'] img"))
+    //
+    // obs.observe(document.querySelector(".after-refresh .count_sec:nth-of-type(2)[data-visab='2'] p:last-child"))
+    //
+    // obs.observe(document.querySelector(".after-refresh .count_sec:nth-of-type(1) h2"))
+    // obs.observe(document.querySelector(".after-refresh .count_sec:nth-of-type(2) h2"))
+    // obs.observe(document.querySelector(".after-refresh .count_sec:nth-of-type(3) h2"))
+    // obs.observe(document.querySelector(".question_first_wrap h2"))
+    // obs.observe(document.querySelector(".after-refresh .count_sec:nth-of-type(5) h2"))
+    // obs.observe(document.querySelector(".after-refresh .count_sec:nth-of-type(6) h2"))
+    // obs.observe(document.querySelector(".after-refresh .count_sec:nth-of-type(7) h2"))
+    // obs.observe(document.querySelector(".after-refresh .count_sec:nth-of-type(8) h2"))
+    // obs.observe(document.querySelector(".after-refresh .count_sec:nth-of-type(9) h2"))
+    // obs.observe(document.querySelector(".after-refresh .count_sec:nth-of-type(10) h2"))
+    // obs.observe(document.querySelector(".after-refresh .count_sec:nth-of-type(11) h2"))
+    // obs.observe(document.querySelector(".after-refresh .count_sec:nth-of-type(12) h2"))
+    // obs.observe(document.querySelector(".after-refresh .count_sec:nth-of-type(13) h2"))
+    // obs.observe(document.querySelector(".after-refresh .count_sec:nth-of-type(14) h2"))
+    // obs.observe(document.querySelector(".after-refresh .count_sec:nth-of-type(15) h2"))
+    // obs.observe(document.querySelector(".after-refresh .count_sec:nth-of-type(16) h2"))
+    // obs.observe(document.querySelector(".after-refresh .count_sec:nth-of-type(17) h2"))
+    // obs.observe(document.querySelector(".after-refresh .count_sec:nth-of-type(19)"))
+    // obs.observe(document.querySelector(".after-refresh .count_sec:nth-of-type(20) h2"))
+    // obs.observe(document.querySelector(".after-refresh .count_sec:nth-of-type(21) h2"))
+    // obs.observe(document.querySelector(".after-refresh .count_sec:nth-of-type(24) h2"))
+    // obs.observe(document.querySelector(".after-refresh .count_sec:nth-of-type(25) h2"))
+    // obs.observe(document.querySelector("body .question_second_wrap h2"))
+    // obs.observe(document.querySelector(".time_offer_box .body_wrap button.new_enroll_now_btn"))
+    // obs.observe(document.querySelector(".after-refresh .count_sec:nth-of-type(3)[data-visab='3'] .enroll_now_main a"))
+    // obs.observe(document.querySelector(".question_first_wrap button.new_enroll_now_btn"))
+    // obs.observe(document.querySelector(".after-refresh .count_sec:nth-of-type(6)[data-visab='6'] .enroll_now_main a"))
+    // obs.observe(document.querySelector(".after-refresh .count_sec:nth-of-type(8)[data-visab='8'] .enroll_now_main a"))
+    // obs.observe(document.querySelector(".after-refresh .count_sec:nth-of-type(11)[data-visab='11'] .enroll_now_main a"))
+    // obs.observe(document.querySelector(".after-refresh .count_sec:nth-of-type(15)[data-visab='15'] .enroll_now_main a"))
+    // obs.observe(document.querySelector(".after-refresh .count_sec:nth-of-type(16)[data-visab='16'] button"))
+    // obs.observe(document.querySelector(".after-refresh .count_sec:nth-of-type(17)[data-visab='17'] button"))
+    // obs.observe(document.querySelector(".after-refresh .count_sec:nth-of-type(21)[data-visab='21'] .enroll_now_main a"))
+    // obs.observe(document.querySelector(".after-refresh .count_sec:nth-of-type(23)[data-visab='23'] .enroll_now_main a"))
+    // obs.observe(document.querySelector(".after-refresh .count_sec:nth-of-type(25)[data-visab='25'] .enroll_now_main a"))
+    // obs.observe(document.querySelector(".question_second_wrap button.new_enroll_now_btn"))
+    // obs.observe(document.querySelector("#myHeaderr"))
+    // obs.observe(document.querySelector(".learn_more_scroll_btn"))
 
     let int = setInterval(() => {
       if (document.querySelector(".testik")) {
@@ -3013,6 +3149,44 @@ body .after-refresh .count_sec:nth-of-type(25) .quick_transcript {
           if (i.target.classList.contains("img_guarantee")) {
             pushDataLayer(`View element on screen`, `Long page. Try risk-free with our unconditional 90-day money back guarantee`)
           }
+          if (i.target.classList.contains("mini_text_guarantee")) {
+            pushDataLayer(`View element on screen`, `Long page. Text Try risk-free with our unconditional 90-day money back guarantee`)
+          }
+          if (i.target.classList.contains("first_var_bgr")) {
+            pushDataLayer(`View element on screen`, `Long page. 50,000+ dog owners have already trained their dogs with The Total Transformation Masterclass`)
+          }
+          if (i.target.getAttribute("id") === "below_video_text") {
+            pushDataLayer(`View element on screen`, `Long page. Enroll now + 90-day refund policy`)
+          }
+
+          if (i.target.tagName === "IMG" && i.target.closest("section").getAttribute("data-visab") === "1") {
+            pushDataLayer(`View element on screen`, `Long page. Picture of barking dog after section Why starting your dog’s training`)
+          }
+          if (i.target.tagName === "IMG" && i.target.closest("section").getAttribute("data-visab") === "7") {
+            pushDataLayer(
+              `View element on screen`,
+              `Long page. Picture of pool after section ANY regular dog owner can achieve this kind of transformation… you don’t need a degree in animal behavior 🙂`
+            )
+          }
+          if (i.target.tagName === "IMG" && i.target.closest("section").getAttribute("data-visab") === "10") {
+            pushDataLayer(`View element on screen`, `Long page. Picture of running dog after section Teach your pup to pay attention to you even when there's a squirrel nearby`)
+          }
+          if (i.target.tagName === "IMG" && i.target.closest("section").getAttribute("data-visab") === "12") {
+            pushDataLayer(`View element on screen`, `Long page. Picture of running dog after section Train your dog to come to you – whenever and wherever you call them`)
+          }
+          if (i.target.tagName === "IMG" && i.target.closest("section").getAttribute("data-visab") === "14") {
+            pushDataLayer(`View element on screen`, `Long page. Picture of sitting dog after section Save your furry friend from a fatal road accident`)
+          }
+          if (i.target.tagName === "IMG" && i.target.closest("section").getAttribute("data-visab") === "20") {
+            pushDataLayer(`View element on screen`, `Long page. Picture of sitting dog after section Transform your dog in as little as 10 to 15 minutes per day`)
+          }
+          if (i.target.tagName === "IMG" && i.target.closest("section").getAttribute("data-visab") === "22") {
+            pushDataLayer(`View element on screen`, `Long page. Picture of logo American humane`)
+          }
+
+          // if (i.target.tagName === "P" && i.target.closest("section").getAttribute("data-visab") === "2") {
+          //   pushDataLayer(`View element on screen`, `Long page. And, they use a specific 6-step process that’s usually only known to people in the service dog training industry.`)
+          // }
 
           if (i.target.tagName === "H2" && i.target.textContent === "Why starting your dog’s training with “sit”, “stay”, etc. sets your dog up to FAIL") {
             pushDataLayer(`View element on screen`, `Long page. Why starting your dog’s training with “sit”, “stay”, etc. sets your dog up to FAIL`)
@@ -3074,7 +3248,6 @@ body .after-refresh .count_sec:nth-of-type(25) .quick_transcript {
           if (i.target.tagName === "H2" && i.target.textContent === `Transform your dog in as little as 10 to 15 minutes per day`) {
             pushDataLayer(`View element on screen`, `Long page. Transform your dog in as little as 10 to 15 minutes per day`)
           }
-
           if (i.target.tagName === "H2" && i.target.classList.contains("much_cheaper")) {
             pushDataLayer(`View element on screen`, `Long page. Save up to $3,703 on dog training fees`)
           }
@@ -3084,11 +3257,47 @@ body .after-refresh .count_sec:nth-of-type(25) .quick_transcript {
           if (i.target.tagName === "H2" && i.target.classList.contains("another_interview")) {
             pushDataLayer(`View element on screen`, `Long page. “...he listens to me all the time now...”`)
           }
-          // if (i.target.tagName === "BUTTON" && i.target.closest("section").querySelector("h2.another_interview")) {
-          //   pushDataLayer(`View element on screen`, `Long page. Enroll now in section “...he listens to me all the time now...”`)
-          // }
           if (i.target.tagName === "H2" && i.target.closest("div").classList.contains("question_second_wrap")) {
             pushDataLayer(`View element on screen`, `Long page. Our best customers are those who ask the most questions. Find answers below `)
+          }
+          if (i.target.tagName === "BUTTON" && i.target.closest("div").classList.contains("time_offer_box")) {
+            pushDataLayer(`View element on screen`, `Long page. Enroll now in section Limited time offer`)
+          }
+          if (i.target.tagName === "BUTTON" && i.target.closest("div").classList.contains("question_first_wrap")) {
+            pushDataLayer(`View element on screen`, `Long page. Enroll now in section Have a question? Reach out to us or find some answers below`)
+          }
+          if (i.target.tagName === "A" && i.target.closest("section").getAttribute("data-visab") === "3") {
+            pushDataLayer(`View element on screen`, `Long page. Enroll now in section Enroll for the masterclass today and get 3 bonus classes (worth US $209.10) free of charge`)
+          }
+          if (i.target.tagName === "A" && i.target.closest("section").getAttribute("data-visab") === "6") {
+            pushDataLayer(`View element on screen`, `Long page. Enroll now in section Watch the amazing results dog owners get after using this program`)
+          }
+          if (i.target.tagName === "A" && i.target.closest("section").getAttribute("data-visab") === "8") {
+            pushDataLayer(`View element on screen`, `Long page. Enroll now in section "... instead of barking, she goes on her bed and waits for me."`)
+          }
+          if (i.target.tagName === "A" && i.target.closest("section").getAttribute("data-visab") === "11") {
+            pushDataLayer(
+              `View element on screen`,
+              `Long page. Enroll now in section Transform your dog from a leash-pulling nightmare into a zen master that’s a joy to walk with`
+            )
+          }
+          if (i.target.tagName === "A" && i.target.closest("section").getAttribute("data-visab") === "15") {
+            pushDataLayer(`View element on screen`, `Long page. Enroll now in section Train your dog to have the same level of impulse control as service dogs`)
+          }
+          if (i.target.tagName === "BUTTON" && i.target.closest("section").getAttribute("data-visab") === "16") {
+            pushDataLayer(`View element on screen`, `Long page. Enroll now in section Long page. Say goodbye to all naughty behavior problems`)
+          }
+          if (i.target.tagName === "BUTTON" && i.target.closest("section").getAttribute("data-visab") === "17") {
+            pushDataLayer(`View element on screen`, `Long page. Enroll now in section Enroll now to get instant access to the online masterclass`)
+          }
+          if (i.target.tagName === "A" && i.target.closest("section").getAttribute("data-visab") === "21") {
+            pushDataLayer(`View element on screen`, `Long page. Enroll now in section Save up to $3,703 on dog training fees`)
+          }
+          if (i.target.tagName === "A" && i.target.closest("section").getAttribute("data-visab") === "23") {
+            pushDataLayer(`View element on screen`, `Long page. Enroll now in section Get all your money back within 90 days if this isn’t right for you`)
+          }
+          if (i.target.tagName === "A" && i.target.closest("section").getAttribute("data-visab") === "25") {
+            pushDataLayer(`View element on screen`, `Long page. Enroll now in section “...he listens to me all the time now...”`)
           }
           if (i.target.tagName === "BUTTON" && i.target.closest("div").classList.contains("question_second_wrap")) {
             pushDataLayer(`View element on screen`, `Long page. Enroll now in section Our best customers are those who ask the most questions. Find answers below `)
