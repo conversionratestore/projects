@@ -2750,6 +2750,25 @@ body .after-refresh .count_sec:nth-of-type(25) .quick_transcript {
     if (!document.querySelector(".after-refresh .count_sec:nth-of-type(25)").getAttribute("data-visab")) {
       document.querySelector(".after-refresh .count_sec:nth-of-type(25)").setAttribute("data-visab", 25)
     }
+    if (!document.querySelector(".after-refresh .count_sec:nth-of-type(16) .row1030 > .col-md-12:not(.aftermasterclass) > p:nth-child(1)").getAttribute("data-visab")) {
+      document.querySelector(".after-refresh .count_sec:nth-of-type(16) .row1030 > .col-md-12:not(.aftermasterclass) > p:nth-child(1)").setAttribute("data-visab", 26)
+    }
+    if (!document.querySelectorAll(".after-refresh .count_sec:nth-of-type(5)[data-visab='5'] .row.row1030 > .col-md-6")[0].getAttribute("data-visab")) {
+      document.querySelectorAll(".after-refresh .count_sec:nth-of-type(5)[data-visab='5'] .row.row1030 > .col-md-6")[0].setAttribute("data-visab", 27)
+    }
+    if (!document.querySelectorAll(".after-refresh .count_sec:nth-of-type(5)[data-visab='5'] .row.row1030 > .col-md-6")[1].getAttribute("data-visab")) {
+      document.querySelectorAll(".after-refresh .count_sec:nth-of-type(5)[data-visab='5'] .row.row1030 > .col-md-6")[1].setAttribute("data-visab", 28)
+    }
+    if (!document.querySelectorAll(".after-refresh .count_sec:nth-of-type(3)[data-visab='3'] .row.row1030> .content > .col-md-4")[0].getAttribute("data-visab")) {
+      document.querySelectorAll(".after-refresh .count_sec:nth-of-type(3)[data-visab='3'] .row.row1030> .content > .col-md-4")[0].setAttribute("data-visab", 29)
+    }
+    if (!document.querySelectorAll(".after-refresh .count_sec:nth-of-type(3)[data-visab='3'] .row.row1030> .content > .col-md-4")[1].getAttribute("data-visab")) {
+      document.querySelectorAll(".after-refresh .count_sec:nth-of-type(3)[data-visab='3'] .row.row1030> .content > .col-md-4")[1].setAttribute("data-visab", 30)
+    }
+    if (!document.querySelectorAll(".after-refresh .count_sec:nth-of-type(3)[data-visab='3'] .row.row1030> .content > .col-md-4")[2].getAttribute("data-visab")) {
+      document.querySelectorAll(".after-refresh .count_sec:nth-of-type(3)[data-visab='3'] .row.row1030> .content > .col-md-4")[2].setAttribute("data-visab", 31)
+    }
+
     //
     if (window.innerWidth <= 768) {
       document.querySelector(".after-refresh .count_sec:nth-of-type(1) img").src = "https://conversionratestore.github.io/projects/knineti/img/var1_mob.png"
@@ -3076,7 +3095,23 @@ body .after-refresh .count_sec:nth-of-type(25) .quick_transcript {
     obs.observe(document.querySelector(".after-refresh .count_sec:nth-of-type(22)[data-visab='22'] img"))
     // //
     obs.observe(document.querySelector(".after-refresh .count_sec:nth-of-type(2)[data-visab='2']"))
+    obs.observe(document.querySelector(".after-refresh .count_sec:nth-of-type(24)[data-visab='24']"))
+    obs.observe(document.querySelector(".after-refresh .count_sec:nth-of-type(16) .row1030 > .col-md-12:not(.aftermasterclass) > p:nth-child(1)"))
+    obs.observe(document.querySelectorAll(".after-refresh .count_sec:nth-of-type(15)[data-visab='15'] p span:nth-child(2)")[0])
+    obs.observe(document.querySelectorAll(".after-refresh .count_sec:nth-of-type(15)[data-visab='15'] p span:nth-child(2)")[1])
+    obs.observe(document.querySelector(".after-refresh .count_sec:nth-of-type(9)[data-visab='9']"))
+    obs.observe(document.querySelector(".after-refresh .count_sec:nth-of-type(6)[data-visab='6']"))
     obs.observe(document.querySelector(".currently_table th.left_th"))
+    obs.observe(document.querySelectorAll(".responsive-iframe")[1])
+    obs.observe(document.querySelectorAll(".responsive-iframe")[3])
+    obs.observe(document.querySelectorAll(".responsive-iframe")[5])
+    obs.observe(document.querySelectorAll(".responsive-iframe")[7])
+    obs.observe(document.querySelectorAll(".after-refresh .count_sec:nth-of-type(5)[data-visab='5'] .row.row1030 > .col-md-6")[0])
+    obs.observe(document.querySelectorAll(".after-refresh .count_sec:nth-of-type(5)[data-visab='5'] .row.row1030 > .col-md-6")[1])
+    obs.observe(document.querySelectorAll(".after-refresh .count_sec:nth-of-type(3)[data-visab='3'] .row.row1030> .content > .col-md-4")[0])
+    obs.observe(document.querySelectorAll(".after-refresh .count_sec:nth-of-type(3)[data-visab='3'] .row.row1030> .content > .col-md-4")[1])
+    obs.observe(document.querySelectorAll(".after-refresh .count_sec:nth-of-type(3)[data-visab='3'] .row.row1030> .content > .col-md-4")[2])
+
     // //
     // //
     obs.observe(document.querySelector(".after-refresh .count_sec:nth-of-type(1) h2"))
@@ -3129,16 +3164,17 @@ body .after-refresh .count_sec:nth-of-type(25) .quick_transcript {
     let int2 = setInterval(() => {
       if (document.querySelector(".after-refresh .count_sec:nth-of-type(16) .row1030 > .col-md-12:not(.aftermasterclass) > p:nth-child(4) + .new_enroll_now_btn")) {
         clearInterval(int2)
+        console.log(`RTYUIOPOIUYTRTYUIO`)
         obs.observe(document.querySelector(".after-refresh .count_sec:nth-of-type(16) .row1030 > .col-md-12:not(.aftermasterclass) > p:nth-child(4) + .new_enroll_now_btn"))
       }
-    }, 100)
+    }, 200)
 
     let int3 = setInterval(() => {
       if (document.querySelector(".after-refresh .count_sec:nth-of-type(17)[data-visab='17'] button")) {
         clearInterval(int3)
         obs.observe(document.querySelector(".after-refresh .count_sec:nth-of-type(17)[data-visab='17'] button"))
       }
-    }, 100)
+    }, 200)
 
     function visibility(entries) {
       entries.forEach((i) => {
@@ -3223,6 +3259,48 @@ body .after-refresh .count_sec:nth-of-type(25) .quick_transcript {
 
           if (i.target.getAttribute("data-visab") === "2") {
             pushDataLayer(`View element on screen`, `Long page. And, they use a specific 6-step process that’s usually only known to people in the service dog training industry.`)
+          }
+          if (i.target.getAttribute("data-visab") === "24") {
+            pushDataLayer(`View element on screen`, `Long page. End of section Get your dog to listen to you even without treats`)
+          }
+          if (i.target.getAttribute("data-visab") === "26") {
+            pushDataLayer(`View element on screen`, `Long page. Start of review from Mark Amori`)
+          }
+          if (i.target.getAttribute("data-visab") === "27") {
+            pushDataLayer(`View element on screen`, `Long page. Dr. Alexa Diaz, PhD`)
+          }
+          if (i.target.getAttribute("data-visab") === "28") {
+            pushDataLayer(`View element on screen`, `Long page. Eric Presnall`)
+          }
+          if (i.target.getAttribute("data-visab") === "29") {
+            pushDataLayer(`View element on screen`, `Long page. Bonus #1: How to Housetrain Your Dog (worth $69.70)`)
+          }
+          if (i.target.getAttribute("data-visab") === "30") {
+            pushDataLayer(`View element on screen`, `Long page. Bonus #2: Cure Your Dog's Separation Anxiety (worth $69.70)`)
+          }
+          if (i.target.getAttribute("data-visab") === "31") {
+            pushDataLayer(`View element on screen`, `Long page. Bonus #3: How to Get Kids to Interact with Your Dog (worth $69.70)`)
+          }
+          if (i.target.textContent === "Boca Raton, Florida" && i.target.closest("section").getAttribute("data-visab") === "15") {
+            pushDataLayer(`View element on screen`, `Long page. Review from Jessica Kendricks`)
+          }
+          if (i.target.getAttribute("data-visab") === "9") {
+            pushDataLayer(`View element on screen`, `Long page. End of section Discover the two foundational commands to get your dog to look up to you`)
+          }
+          if (i.target.getAttribute("data-visab") === "6") {
+            pushDataLayer(`View element on screen`, `Long page. Review from Samantha Morgan`)
+          }
+          if (i.target.getAttribute("src") === "https://player.vimeo.com/video/492934644") {
+            pushDataLayer(`View element on screen`, `Long page. Barking at the Door`)
+          }
+          if (i.target.getAttribute("src") === "https://player.vimeo.com/video/492934697") {
+            pushDataLayer(`View element on screen`, `Long page. Jumping`)
+          }
+          if (i.target.getAttribute("src") === "https://player.vimeo.com/video/492934583") {
+            pushDataLayer(`View element on screen`, `Long page. Barking at Other Dogs`)
+          }
+          if (i.target.getAttribute("src") === "https://player.vimeo.com/video/492934755") {
+            pushDataLayer(`View element on screen`, `Long page. Pulling on Leash`)
           }
           if (i.target.classList.contains("left_th")) {
             pushDataLayer(`View element on screen`, `Long page. Start of table in section Say goodbye to all naughty behavior problems`)
