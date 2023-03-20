@@ -6,6 +6,12 @@ const WAIT_INTERVAL_TIMEOUT = 100
 
 const style = /*html*/`
     <style>
+        body .cbb-frequently-bought-container,
+        body .cbb-frequently-bought-container ul, 
+        body .cbb-frequently-bought-form, body .cbb-frequently-bought-selector-list {
+            display: block !important;
+        }
+
         /* pdp upsell */
         .upsell_container {
             background: #F9F9F9;
@@ -91,6 +97,11 @@ const style = /*html*/`
             padding: 14px;
             width: 100%;
             background: #344D79;
+        }
+
+        .add_btn.disabled_btn {
+            opacity: 0.3;
+            pointer-events: none;
         }
 
         .upsell_item {
@@ -1029,10 +1040,16 @@ const matchingProductHandles = [
     ['pink-checkered-knit-sweater', 'navy-checkered-knit-sweater', 'pineapple-dog-knit-sweater'],
 ]
 
-let cachedUpsellData = null
+let cachedUpsellData = JSON.parse(sessionStorage.getItem('myUpsellsArray'))
 
-let lastCartItemHandle = document.querySelector('.CartItem__Title.Heading a')?.href
-let cartItemsLength = document.querySelectorAll('.Cart__ItemList .CartItem').length || null
+let lastCartData = JSON.parse(sessionStorage.getItem('myCartItemsArray'))
+let lastCartItemHandle
+let cartItemsLength
+
+if (lastCartData) {
+    lastCartItemHandle = lastCartData[0].handle
+    cartItemsLength = lastCartData.length
+}
 
 // -------------------------------------
 // HTML ELEMENTS
@@ -1057,10 +1074,14 @@ const customSelectHTML = (options, isCart = false) => {
         </li>`
         }).join('')
     } else {
-        optionsHTML = options.map((option, index) => `
-        <li class="${index === 0 ? 'active_option' : ''}" 
-            data-value="${option.value}" 
-            data-variant="${option.variantId}">${convertOptionTxt(option.text)}</li>`).join('')
+        optionsHTML = options.map((option, index) => {
+            return `<li class="${index === 0 ? 'active_option' : ''}" 
+                data-value="${option.value}" 
+                data-variant="${option.variantId}">
+                    ${convertOptionTxt(option.text)}
+                </li>`
+        }
+        ).join('')
     }
 
     let inner
@@ -1222,7 +1243,7 @@ const pdpUpsellContainer = (items, isTwoImages) => {
         let msgSvg = `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
         <path d="M15.75 8C15.75 12.2812 12.2799 15.75 8 15.75C3.72009 15.75 0.25 12.2812 0.25 8C0.25 3.72134 3.72009 0.25 8 0.25C12.2799 0.25 15.75 3.72134 15.75 8ZM8 9.5625C7.20609 9.5625 6.5625 10.2061 6.5625 11C6.5625 11.7939 7.20609 12.4375 8 12.4375C8.79391 12.4375 9.4375 11.7939 9.4375 11C9.4375 10.2061 8.79391 9.5625 8 9.5625ZM6.63522 4.39544L6.86703 8.64544C6.87787 8.84431 7.04231 9 7.24147 9H8.75853C8.95769 9 9.12213 8.84431 9.13297 8.64544L9.36478 4.39544C9.3765 4.18063 9.20547 4 8.99034 4H7.00962C6.7945 4 6.6235 4.18063 6.63522 4.39544Z" fill="#3CBE1A"/>
         </svg>`
-        msg = `<div class="msg">${msgSvg}<p>Choose all products to receive <b>a 20%</b> discount on the walk set.</p></div>`
+        msg = `<div class="msg">${msgSvg}<p>Choose all products to receive <b>a 25%</b> discount on the walk set.</p></div>`
     } else if (window.location.pathname.includes('-set-')) {
         title = `<p class="upsell_title">Upgrade your walk set with <a href="${link.href}">${textBeforeDash(link.textContent)}</a> <span class="green_status">best deal</span></p>`
     } else if (!isSale && isTwoImages) {
@@ -1262,15 +1283,13 @@ const pdpUpsellContainer = (items, isTwoImages) => {
     `
 }
 
-// CART ELEMENTS
-
 // -------------------------------------
 // FUNCTIONS
 // -------------------------------------
 
 function convertOptionTxt(optionTxt) {
     const parts = optionTxt.split(/ \/ |-/)
-    const sizes = ["OS", "S", "M", "L", "XL", "2XL", "3XL", "4XL"]
+    const sizes = ["OS", "XS", "S", "M", "L", "XL", "2XL", "3XL", "4XL"]
     
     for (let i = 0; i < parts.length; i++) {
         if (sizes.includes(parts[i])) {
@@ -1386,14 +1405,14 @@ const createUpsellItem = (li, index) => {
 }
 
 const changePrice = (index) => {
-    if (document.querySelector('.total_standard_price') && document.querySelector('.cbb-frequently-bought-total-price-regular-price .money')) {
-        document.querySelector('.total_standard_price').textContent = document.querySelector('.cbb-frequently-bought-total-price-regular-price .money').textContent
+    if (document.querySelector('.total_standard_price')) {
+        document.querySelector('.total_standard_price').textContent = document.querySelector('.cbb-frequently-bought-total-price-regular-price .money')?.textContent || ''
     }
-    if (document.querySelector('.total_discount_price') && document.querySelector('.cbb-frequently-bought-total-price-sale-price .money')) {
-        document.querySelector('.total_discount_price').textContent = document.querySelector('.cbb-frequently-bought-total-price-sale-price .money').textContent
+    if (document.querySelector('.total_discount_price')) {
+        document.querySelector('.total_discount_price').textContent = document.querySelector('.cbb-frequently-bought-total-price-sale-price .money')?.textContent || ''
     }
-    if (document.querySelector('.total_regular_price') && document.querySelector('.cbb-frequently-bought-total-price-was-price .money')) {
-        document.querySelector('.total_regular_price').textContent = document.querySelector('.cbb-frequently-bought-total-price-was-price .money').textContent
+    if (document.querySelector('.total_regular_price')) {
+        document.querySelector('.total_regular_price').textContent = document.querySelector('.cbb-frequently-bought-total-price-was-price .money')?.textContent || ''
     }
     if (document.querySelectorAll('.upsell_item_price .regular_price')[index].textContent
         && document.querySelectorAll('.cbb-frequently-bought-selector-label-compare-at-price .money')[index]
@@ -1412,6 +1431,8 @@ const setupCustomCheckboxLogic = (length) => {
         if (document.querySelectorAll('.custom_checkbox')[length - 1]) {
             clearInterval(waitForEl)
 
+            let isSet = document.querySelector('.cbb-frequently-bought-discount-message')?.textContent.length >= 1
+
             document.querySelectorAll('.custom_checkbox').forEach((checkbox, index) => {
                 checkbox.addEventListener('click', () => {
                     checkbox.classList.toggle('checked')
@@ -1419,13 +1440,31 @@ const setupCustomCheckboxLogic = (length) => {
                     const previewImg = document.querySelectorAll('.preview img')[index]
                     if (!checkbox.classList.contains('checked') && !previewImg.classList.contains('blur_img')) {
                         previewImg.classList.add('blur_img')
-                        document.querySelector('.msg')?.classList.add('active')
+                        // document.querySelector('.msg')?.classList.add('active')
                     } else if (checkbox.classList.contains('checked')) {
                         previewImg.classList.remove('blur_img')
-                        document.querySelector('.msg')?.classList.remove('active')
+                        // document.querySelector('.msg')?.classList.remove('active')
+                    }
+
+                    if (isSet) {
+                        if (
+                            document.querySelectorAll('.custom_checkbox')?.length === document.querySelectorAll('.custom_checkbox.checked')?.length
+                            && document.querySelectorAll('.custom_checkbox.checked')?.length > 0
+                        ) {
+                            document.querySelector('.msg')?.classList.remove('active')
+                        } else {
+                            document.querySelector('.msg')?.classList.add('active')
+                        }
                     }
 
                     document.querySelectorAll('.cbb-frequently-bought-selector-input')[index].click()
+
+                    if (document.querySelectorAll('.custom_checkbox.checked').length < 1) {
+                        document.querySelector('.upsell_container .add_btn').classList.add('disabled_btn')
+                    } else {
+                        document.querySelector('.upsell_container .add_btn.disabled_btn')?.classList.remove('disabled_btn')
+                    }
+
                     changePrice(index)
 
                     sendGAEvent('Click on checkbox pdp', checkbox.closest('.upsell_item').querySelector('.upsell_item_name').textContent)
@@ -1628,6 +1667,7 @@ const formatPrice = (number) => {
         const formattedNumber = `${formattedWholeNumber}.${formattedDecimalPart}`
 
         // Return the formatted number
+
         return `${currency}${formattedNumber}`
     } else {
         return ''
@@ -1730,6 +1770,8 @@ const setupCustomSelectCartLogic = (length) => {
 }
 
 const addUpsellsToCart = (upsells, cartItems) => {
+    let isLastItemHidden = false
+
     const upsellHTML = (item) => {
         let isOldPrice = false
 
@@ -1758,13 +1800,17 @@ const addUpsellsToCart = (upsells, cartItems) => {
         </div>
         `
 
+        isLastItemHidden = isHandleExists(cartItems, item.handle)
+
         return upsellItem
     }
 
+    const allUpsellsHTML = upsells.map(upsellHTML).join('')
+
     const productsWrap = `
         <div class="upsells_container" data-name="upsell section ${isExpandedCart ? 'cart' : 'slider cart'}">
-            <p class="upsells_title">Frequently bought together</p>
-            ${upsells.map(upsellHTML).join('')}
+            <p class="upsells_title" ${isLastItemHidden ? 'hidden="true"' : ''}>Frequently bought together</p>
+            ${allUpsellsHTML}
         </div>
         `
 
@@ -1838,12 +1884,10 @@ const main = async () => {
 
         // Create a new AbortController instance for the new request
         controller = new AbortController()
-        console.log('isRunning')
     } else {
         // Create an AbortController instance for the first request
         controller = new AbortController()
         isRunning = true
-        console.log('NOT Running')
     }
 
     try {
@@ -1851,39 +1895,41 @@ const main = async () => {
             document.querySelector('.CartItem__Title.Heading a')?.href.includes(lastCartItemHandle)
             && document.querySelectorAll('.Cart__ItemList .CartItem').length === cartItemsLength
             && cachedUpsellData
+            && lastCartData
             && !document.querySelector('.upsells_container')
         ) {
             // Render the cached data
-            addUpsellsToCart(cachedUpsellData)
+            console.log('%c GET CACHED products', 'color: green')
+            addUpsellsToCart(cachedUpsellData, lastCartData)
         } else {
             console.log('%c FETCH NEW the suggested products', 'color: green')
 
             const cart = await getCart()
-            const handle = cart.items[0].handle
 
-            const uniqueArr = getOneRandomSubArr(matchingProductHandles, handle)
+            if (cart.items.length) {
+                const handle = cart.items[0].handle
 
-            if (uniqueArr.length) {
-                const products = await Promise.all(uniqueArr.map(getProduct))
+                const uniqueArr = getOneRandomSubArr(matchingProductHandles, handle)
 
-                addUpsellsToCart(products, cart.items)
+                if (uniqueArr.length) {
+                    const products = await Promise.all(uniqueArr.map(getProduct))
 
-                // Update the cached data
-                cachedUpsellData = products
-                lastCartItemHandle = handle
-                cartItemsLength = cart.items.length
+                    addUpsellsToCart(products, cart.items)
 
-                if (document.querySelector('.upsells_title')) {
-                    document.querySelector('.upsells_title.hide')?.classList.remove('hide')
+                    // Update the cached data
+                    lastCartItemHandle = handle
 
-                    if (document.querySelectorAll('.item')[uniqueArr.length - 1]?.getAttribute('hidden') === 'true') {
-                        document.querySelector('.upsells_title').classList.add('hide')
-                    } else {
-                        document.querySelector('.upsells_title').classList.remove('hide')
-                    }
+                    sessionStorage.setItem('myUpsellsArray', JSON.stringify(products))
+                    cachedUpsellData = JSON.parse(sessionStorage.getItem('myUpsellsArray'))
+
+                    sessionStorage.setItem('myCartItemsArray', JSON.stringify(cart.items))
+                    lastCartItems = JSON.parse(sessionStorage.getItem('myCartItemsArray'))
+
+                    cartItemsLength = cart.items.length
+
+                } else {
+                    console.log('There are not suggestions for this product.')
                 }
-            } else {
-                console.log('There are not suggestions for this product.')
             }
         }
 
@@ -1947,8 +1993,39 @@ waitForElement('.cbb-frequently-bought-total-price-sale-price', '.cbb-frequently
                 checkVisibilityAfterMs(btn)
 
                 btn.addEventListener('click', async () => {
-                    if (document.querySelector('.cbb-frequently-bought-discount-message')?.textContent.length <= 0) {
-                        const variantIds = [...document.querySelectorAll('.upsell_container .options .active_option')].map(el => el.dataset.variant)
+                    if (
+                        document.querySelector('.cbb-frequently-bought-discount-message')?.textContent.length >= 1
+                        && document.querySelectorAll('.custom_checkbox')?.length === document.querySelectorAll('.custom_checkbox.checked')?.length
+                        && document.querySelectorAll('.custom_checkbox.checked')?.length > 0
+                    ) {
+                        const values = [...document.querySelectorAll('.upsell_container .value')]
+                        let innerText
+
+                        for (const el of values) {
+                            if (el.innerText !== "OS") {
+                                innerText = el.innerText
+                                break
+                            }
+                        }
+
+                        if (innerText) {
+                            console.log(innerText)
+                        } else {
+                            console.log("No matching element found")
+                        }
+
+                        const set = await getProduct(document.querySelector('.upsell_title a')?.href.split('products/')[1])
+                        const matchingVariant = set.variants.find(obj => obj.title === innerText)
+
+                        await addItem(matchingVariant.id)
+                        // refreshCart()
+                    } else {
+                        const variantIds = [...document.querySelectorAll('.upsell_container .options .active_option')].map(el => {
+                            if (el.closest('.upsell_item')?.querySelector('.custom_checkbox.checked')) {
+                                console.log('el')
+                                return el.dataset.variant
+                            }
+                        })
                         const results = []
                         for (const variantId of variantIds) {
                             try {
@@ -1958,28 +2035,6 @@ waitForElement('.cbb-frequently-bought-total-price-sale-price', '.cbb-frequently
                                 console.error(`Error adding item with variant ID ${variantId}:`, error)
                             }
                         }
-                    } else {
-                        const values = [...document.querySelectorAll('.upsell_container .value')]
-                        let textContent
-
-                        for (const el of values) {
-                            if (el.textContent !== "OS") {
-                                textContent = el.textContent
-                                break
-                            }
-                        }
-
-                        if (textContent) {
-                            console.log(textContent)
-                        } else {
-                            console.log("No matching element found")
-                        }
-
-                        const set = await getProduct(document.querySelector('.upsell_title a')?.href.split('products/')[1])
-                        const matchingVariant = set.variants.find(obj => obj.title === textContent)
-
-                        await addItem(matchingVariant.id)
-                        refreshCart()
                     }
 
 
