@@ -2041,7 +2041,7 @@ body .after-refresh .count_sec:nth-of-type(25) .quick_transcript {
                 <div class="all_inform_wrap">
                     <p class="color_var">Get the skills and confidence you need to train your <span class="dog_age_var">new puppy</span> to be as calm and obedient as a service dog – without shedding thousands for an expensive trainer</p>
                     <p>Ditch those basic SIT and STAY commands from the internet that don’t work.</p>
-                    <p class="10_week_visab">
+                    <p class="ten_week_visab">
                     Take a deep dive into service dog training secrets to stop your naughty best friend from barking, jumping, and pulling on their leash - and become a calm, obedient
                     companion that comes to you whenever you call.
                     </p>
@@ -2923,7 +2923,7 @@ body .after-refresh .count_sec:nth-of-type(25) .quick_transcript {
     obs.observe(document.querySelector("body .want-to-obey .special_gift_box h2"))
     obs.observe(document.querySelector("body .special_gift_box p + p"))
     obs.observe(document.querySelector(".first_visit_block button.watch_free_workshop_btn"))
-    obs.observe(document.querySelector(".10_week_visab"))
+    obs.observe(document.querySelector(".ten_week_visab"))
     obs.observe(document.querySelector(".all_inform_wrap .img_wrap"))
     obs.observe(document.querySelector(".all_inform_wrap .text_descr"))
     obs.observe(document.querySelector(".time_offer_box .heder_wrap"))
@@ -2992,7 +2992,7 @@ body .after-refresh .count_sec:nth-of-type(25) .quick_transcript {
           if (i.target.classList.contains("watch_free_workshop_btn")) {
             pushDataLayer(`View element on screen`, `Short page. Watch free workshop`)
           }
-          if (i.target.classList.contains("10_week_visab")) {
+          if (i.target.classList.contains("ten_week_visab")) {
             pushDataLayer(`View element on screen`, `Long page. 10-week dog training program`)
           }
           if (i.target.classList.contains("img_wrap")) {
