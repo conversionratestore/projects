@@ -2834,5 +2834,7 @@ body .after-refresh .count_sec:nth-of-type(25) .quick_transcript {
         }
       }, 100)
     }
+
+    document.querySelector(".exp")?.remove()
   }
 }, 500)
