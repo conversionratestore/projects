@@ -688,6 +688,7 @@ body .special_gift_box p span {
 }
 .reviews_wrap.is_true {
   background: #dde8f1;
+  width: 100%;
 }
 body .want-to-obey .reviews_wrap h3 {
   font-weight: 700 !important;
@@ -2040,7 +2041,7 @@ body .after-refresh .count_sec:nth-of-type(25) .quick_transcript {
                 <div class="all_inform_wrap">
                     <p class="color_var">Get the skills and confidence you need to train your <span class="dog_age_var">new puppy</span> to be as calm and obedient as a service dog – without shedding thousands for an expensive trainer</p>
                     <p>Ditch those basic SIT and STAY commands from the internet that don’t work.</p>
-                    <p>
+                    <p class="10_week_visab">
                     Take a deep dive into service dog training secrets to stop your naughty best friend from barking, jumping, and pulling on their leash - and become a calm, obedient
                     companion that comes to you whenever you call.
                     </p>
@@ -2922,6 +2923,14 @@ body .after-refresh .count_sec:nth-of-type(25) .quick_transcript {
     obs.observe(document.querySelector("body .want-to-obey .special_gift_box h2"))
     obs.observe(document.querySelector("body .special_gift_box p + p"))
     obs.observe(document.querySelector(".first_visit_block button.watch_free_workshop_btn"))
+    obs.observe(document.querySelector(".10_week_visab"))
+    obs.observe(document.querySelector(".all_inform_wrap .img_wrap"))
+    obs.observe(document.querySelector(".all_inform_wrap .text_descr"))
+    obs.observe(document.querySelector(".time_offer_box .heder_wrap"))
+    obs.observe(document.querySelector(".time_offer_box .body_wrap .price_wrap"))
+    obs.observe(document.querySelector(".time_offer_box .body_wrap .date_ends_text"))
+    obs.observe(document.querySelector(".time_offer_box .body_wrap .img_guarantee"))
+    //
 
     obs.observe(document.querySelector(".after-refresh .count_sec:nth-of-type(1) h2"))
     obs.observe(document.querySelector(".after-refresh .count_sec:nth-of-type(2) h2"))
@@ -2938,9 +2947,10 @@ body .after-refresh .count_sec:nth-of-type(25) .quick_transcript {
     obs.observe(document.querySelector(".after-refresh .count_sec:nth-of-type(13) h2"))
     obs.observe(document.querySelector(".after-refresh .count_sec:nth-of-type(14) h2"))
     obs.observe(document.querySelector(".after-refresh .count_sec:nth-of-type(15) h2"))
-    //
-
+    obs.observe(document.querySelector(".after-refresh .count_sec:nth-of-type(16) h2"))
+    obs.observe(document.querySelector(".after-refresh .count_sec:nth-of-type(17) h2"))
     obs.observe(document.querySelector(".after-refresh .count_sec:nth-of-type(19)"))
+    obs.observe(document.querySelector(".after-refresh .count_sec:nth-of-type(20) h2"))
     obs.observe(document.querySelector(".after-refresh .count_sec:nth-of-type(21) h2"))
     obs.observe(document.querySelector(".after-refresh .count_sec:nth-of-type(24) h2"))
     obs.observe(document.querySelector(".after-refresh .count_sec:nth-of-type(25) h2"))
@@ -2981,6 +2991,27 @@ body .after-refresh .count_sec:nth-of-type(25) .quick_transcript {
           }
           if (i.target.classList.contains("watch_free_workshop_btn")) {
             pushDataLayer(`View element on screen`, `Short page. Watch free workshop`)
+          }
+          if (i.target.classList.contains("10_week_visab")) {
+            pushDataLayer(`View element on screen`, `Long page. 10-week dog training program`)
+          }
+          if (i.target.classList.contains("img_wrap")) {
+            pushDataLayer(`View element on screen`, `Long page. Here’s what you’ll learn in this 10-week masterclass`)
+          }
+          if (i.target.classList.contains("text_descr")) {
+            pushDataLayer(`View element on screen`, `Long page. Get help every step of the way`)
+          }
+          if (i.target.classList.contains("heder_wrap")) {
+            pushDataLayer(`View element on screen`, `Long page. Get LIFETIME ACCESS to the online 10-week Total Transformation Masterclass`)
+          }
+          if (i.target.classList.contains("price_wrap")) {
+            pushDataLayer(`View element on screen`, `Long page. Limited time offer`)
+          }
+          if (i.target.classList.contains("date_ends_text")) {
+            pushDataLayer(`View element on screen`, `Long page. This offer ends ....`)
+          }
+          if (i.target.classList.contains("img_guarantee")) {
+            pushDataLayer(`View element on screen`, `Long page. Try risk-free with our unconditional 90-day money back guarantee`)
           }
 
           if (i.target.tagName === "H2" && i.target.textContent === "Why starting your dog’s training with “sit”, “stay”, etc. sets your dog up to FAIL") {
@@ -3031,10 +3062,19 @@ body .after-refresh .count_sec:nth-of-type(25) .quick_transcript {
           if (i.target.tagName === "H2" && i.target.textContent === `Train your dog to have the same level of impulse control as service dogs`) {
             pushDataLayer(`View element on screen`, `Long page. Train your dog to have the same level of impulse control as service dogs`)
           }
-
+          if (i.target.tagName === "H2" && i.target.textContent === `Say goodbye to all naughty behavior problems`) {
+            pushDataLayer(`View element on screen`, `Long page. Say goodbye to all naughty behavior problems`)
+          }
+          if (i.target.tagName === "H2" && i.target.textContent === `Enroll now to get instant access to the online masterclass`) {
+            pushDataLayer(`View element on screen`, `Long page. Enroll now to get instant access to the online masterclass`)
+          }
           if (i.target.getAttribute("id") === "unlimited_personal_coaching") {
             pushDataLayer(`View element on screen`, `Long page. 10 weeks of personalized guidance & coaching`)
           }
+          if (i.target.tagName === "H2" && i.target.textContent === `Transform your dog in as little as 10 to 15 minutes per day`) {
+            pushDataLayer(`View element on screen`, `Long page. Transform your dog in as little as 10 to 15 minutes per day`)
+          }
+
           if (i.target.tagName === "H2" && i.target.classList.contains("much_cheaper")) {
             pushDataLayer(`View element on screen`, `Long page. Save up to $3,703 on dog training fees`)
           }
