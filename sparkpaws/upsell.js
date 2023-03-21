@@ -1249,7 +1249,7 @@ const pdpUpsellContainer = (items, isTwoImages) => {
     } else {
         const link2 = document.querySelectorAll('.cbb-frequently-bought-selector-link')[1]
 
-        title = `<p class="upsell_title">Match it with a <a href="${link.href}">${textBeforeDash(findMatch(link.textContent))}</a> and <a href="${link2.href}">${textBeforeDash(findMatch(link2.textContent))}</a> to complete the look. <span class="green_status">best deal</span></p>`
+        title = `<p class="upsell_title">Match it with a <a href="${link.href}">${textBeforeDash(findMatch(link.textContent))}</a> and <a href="${link2.href}">${textBeforeDash(findMatch(link2.textContent))}</a> to complete the look <span class="green_status">best deal</span></p>`
     }
 
 
@@ -1828,8 +1828,6 @@ const setupCustomSelectCartLogic = (length) => {
 }
 
 const addUpsellsToCart = (upsells, cartItems) => {
-    let isLastItemHidden = false
-
     const upsellHTML = (item) => {
         let isOldPrice = false
 
@@ -1858,8 +1856,6 @@ const addUpsellsToCart = (upsells, cartItems) => {
         </div>
         `
 
-        isLastItemHidden = isHandleExists(cartItems, item.handle)
-
         return upsellItem
     }
 
@@ -1867,7 +1863,7 @@ const addUpsellsToCart = (upsells, cartItems) => {
 
     const productsWrap = `
         <div class="upsells_container" data-name="upsell section ${isExpandedCart ? 'cart' : 'slider cart'}">
-            <p class="upsells_title" ${isLastItemHidden ? 'hidden="true"' : ''}>Frequently bought together</p>
+            <p class="upsells_title">Frequently bought together</p>
             ${allUpsellsHTML}
         </div>
         `
@@ -1877,6 +1873,28 @@ const addUpsellsToCart = (upsells, cartItems) => {
     } else {
         document.querySelector('#sidebar-cart .Drawer__Main')?.insertAdjacentHTML('beforeend', productsWrap)
     }
+
+    const waitForItemsAndTitle = setInterval(() => {
+        if (document.querySelectorAll('.Drawer__Main .item')[upsells.length - 1] && document.querySelector('.upsells_title')) {
+            clearInterval(waitForItemsAndTitle)
+
+            const items = document.querySelectorAll('.Drawer__Main .item')
+
+            let allHidden = true
+
+            items.forEach(item => {
+                if (!item.hidden) {
+                    allHidden = false
+                }
+            })
+
+            if (allHidden) {
+                document.querySelector('.upsells_title').hidden = true
+            } else {
+                document.querySelector('.upsells_title').hidden = false
+            }
+        }
+    }, WAIT_INTERVAL_TIMEOUT)
 
     setupCustomSelectCartLogic(upsells.length)
     waitForElement('.upsells_container').then(el => {
@@ -1925,22 +1943,22 @@ const observeCartNodes = (callback) => {
 }
 
 const getOneRandomSubArr = (handle) => {
-    const filteredArr = matchingProductHandles
-        .filter((subArr) => subArr.includes(handle))
-        .flatMap((subArr) => subArr.filter((val) => val !== handle))
+    // Find the subarray that contains the handle
+    const matchingSubarray = matchingProductHandles.find(subarray => subarray.includes(handle))
 
-    if (filteredArr.length > 0) {
-        const randomIndex = Math.floor(Math.random() * filteredArr.length)
-        const randomSubArr = [filteredArr[randomIndex]]
-        return randomSubArr
-    } else {
+    // If no matching subarray is found, return an empty array
+    if (!matchingSubarray) {
         return []
+    } else {
+        // Return all values in the subarray except for the handle
+        const otherHandles = matchingSubarray.filter(subHandle => subHandle !== handle)
+        console.log(otherHandles)
+        return otherHandles
     }
 }
 
 const main = async () => {
     if (isRunning) {
-
         // Abort the previous request using the AbortController interface
         controller.abort()
 
