@@ -6,12 +6,6 @@ const WAIT_INTERVAL_TIMEOUT = 100
 
 const style = /*html*/`
     <style>
-        body .cbb-frequently-bought-container,
-        body .cbb-frequently-bought-container ul, 
-        body .cbb-frequently-bought-form, body .cbb-frequently-bought-selector-list {
-            display: block !important;
-        }
-
         li.hidden_li {
             display: none !important;
         }
@@ -1681,6 +1675,29 @@ function changeColorVariant(colorSectionIndex) {
             }
         }
     }
+
+    let activeOptions = [...document.querySelectorAll('.upsell_container .selected_option')]
+    let isEqual = true
+
+    for (let i = 0; i < activeOptions.length - 1; i++) {
+        for (let j = i + 1; j < activeOptions.length; j++) {
+            if (activeOptions[i].innerText.split(', ')[1] === activeOptions[j].innerText.split(', ')[1]) {
+                // the options are equal
+                isEqual = true
+            } else {
+                isEqual = false
+            }
+        }
+    }
+
+    console.log('isEqual', isEqual);
+
+    if (isEqual) {
+        document.querySelector('.upsell_container').hidden = false
+    } else {
+        document.querySelector('.upsell_container').hidden = true
+    }
+
 }
 
 // CART FUNCTIONS
@@ -2080,11 +2097,11 @@ waitForElement('.cbb-frequently-bought-total-price-sale-price', '.cbb-frequently
                             }
                         }
 
-                        if (innerText) {
-                            console.log(innerText)
-                        } else {
-                            console.log("No matching element found")
-                        }
+                        // if (innerText) {
+                        //     console.log(innerText)
+                        // } else {
+                        //     console.log("No matching element found")
+                        // }
 
                         const set = await getProduct(document.querySelector('.upsell_title a')?.href.split('products/')[1])
 
@@ -2097,28 +2114,23 @@ waitForElement('.cbb-frequently-bought-total-price-sale-price', '.cbb-frequently
                             matchingVariant = set.variants.find(obj => obj.title === innerText)
                         }
 
-                        console.log('<----------------------->');
-                        console.log('Set variants: ', set.variants);
-                        console.log(matchingVariant);
-                        console.log('<----------------------->');
+                        console.log('<----------------------->')
+                        console.log('Set variants: ', set.variants)
+                        console.log(matchingVariant)
+                        console.log('<----------------------->')
 
                         if (matchingVariant) {
-                            await addItem(matchingVariant.id)    
-                        } else {
-                            // alert('Please, choose another set')
-                            console.warn('Please, choose another set');
-                        }                        
+                            await addItem(matchingVariant.id)
+                        }
                     } else {
                         const variantIds = [...document.querySelectorAll('.upsell_container .options .active_option')]
                             .map(el => {
                                 if (el.closest('.upsell_item')?.querySelector('.custom_checkbox.checked')) {
-                                    console.log(el)
                                     return el.dataset.variant
                                 }
                             })
                             .filter(id => id !== undefined)
 
-                        console.log(variantIds)
                         const results = []
                         for (const variantId of variantIds) {
                             try {
