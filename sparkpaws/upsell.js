@@ -1758,7 +1758,7 @@ const setupCustomSelectCartLogic = (length) => {
 
                 // Show/hide the options list when the select field is clicked
                 selectField.addEventListener('click', () => {
-                    sendGAEvent(`Click on size choose ${isExpandedCart ? 'cart' : 'slider cart'}`, select.closest('.item').querySelector('.info_title').textContent)
+                    sendGAEvent(`Click on size dropdown ${isExpandedCart ? 'cart' : 'slider cart'}`, select.closest('.item').querySelector('.info_title').textContent)
 
                     select.classList.toggle('active')
                     // select.closest('item').querySelector('img')?.src
@@ -1772,7 +1772,7 @@ const setupCustomSelectCartLogic = (length) => {
                         // change values
                         value.textContent = option.textContent
 
-                        sendGAEvent(`Click on size dropdown ${isExpandedCart ? 'cart' : 'slider cart'}`, option.innerText)
+                        sendGAEvent(`Click on size choose ${isExpandedCart ? 'cart' : 'slider cart'}`, option.innerText)
 
                         const { variantId, variantPrice, variantOldPrice, variantImgSrc } = option.dataset
 
