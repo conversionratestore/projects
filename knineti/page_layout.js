@@ -2408,14 +2408,6 @@ body .after-refresh .count_sec:nth-of-type(25) .quick_transcript {
         }
       }
     }
-    if ($(".after-refresh").is(":visible")) {
-      if (document.querySelectorAll(".want-to-obey > .count_sec")[0]) {
-        document.querySelectorAll(".want-to-obey > .count_sec")[0].style.display = "none"
-      }
-      if (document.querySelector(".special_gift_bgr")) {
-        document.querySelector(".special_gift_bgr").style.display = "none"
-      }
-    }
     document.querySelectorAll(".want-to-obey .count_sec")[0].insertAdjacentHTML("beforebegin", specialGift)
     document.querySelectorAll(".want-to-obey .count_sec")[0].querySelector("h2").textContent =
       "There is a reason why service dogs always form extraordinarily strong bonds with their human partners..."
@@ -2445,6 +2437,15 @@ body .after-refresh .count_sec:nth-of-type(25) .quick_transcript {
 
       if (document.querySelector("video")) {
         document.querySelector("video").scrollIntoView({ block: "center", behavior: "smooth" })
+      }
+    }
+
+    if ($(".after-refresh").is(":visible")) {
+      if (document.querySelectorAll(".want-to-obey > .count_sec")[0]) {
+        document.querySelectorAll(".want-to-obey > .count_sec")[0].style.display = "none"
+      }
+      if (document.querySelector(".special_gift_bgr")) {
+        document.querySelector(".special_gift_bgr").style.display = "none"
       }
     }
     document.querySelectorAll(".after-refresh section.count_sec")[0]?.insertAdjacentHTML(
