@@ -1486,6 +1486,7 @@ ul.new_accardion{
 }
 .reviews_wrap{
   padding: 16px;
+  width: 100%;
 }
 .reviews_wrap.is_true{
       width: 100%;
