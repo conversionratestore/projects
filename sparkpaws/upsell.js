@@ -1272,7 +1272,7 @@ const pdpUpsellContainer = (items, isTwoImages) => {
                 ${images}
             </div>
             <p class="total_price"><span class="total_label">Total Price:</span><span class="total_standard_price">${totalStandardPrice}</span><span class="total_discount_price">${totalDiscountPrice}</span> <span class="total_regular_price">${totalRegularPrice}</span></p>
-            <button class="add_btn" data-name="Add select to cart">Add selected to cart</button>
+            <button class="add_btn" data-name="Add select to cart button">Add selected to cart</button>
             <div class="upsell_items_wrap">
                 ${upsellItemHTML}
             </div>            
@@ -1510,7 +1510,7 @@ const setupCustomSelectsLogic = (length) => {
                 selectField.addEventListener('click', () => {
                     select.classList.toggle('active')
 
-                    sendGAEvent('Click on size choose pdp', select.closest('.upsell_item_info').querySelector('.upsell_item_name').textContent)
+                    sendGAEvent('Click on size dropdown pdp', select.closest('.upsell_item_info').querySelector('.upsell_item_name').textContent)
 
                     if (DEVICE === 'desktop') {
                         setMaxHeight(select)
@@ -1525,7 +1525,7 @@ const setupCustomSelectsLogic = (length) => {
                         // change value
                         value.textContent = this.textContent
 
-                        sendGAEvent('Click on size dropdown pdp', option.innerText)
+                        sendGAEvent('Click on size choose pdp', option.innerText)
 
                         select.querySelector('.active_option')?.classList.remove('active_option')
                         option.classList.add('active_option')
@@ -1648,8 +1648,6 @@ function changeColorVariant(colorSectionIndex) {
     // Get the selected color value
     const selectedColor = document.querySelectorAll('.ProductForm__Option:not(.no-js)')[colorSectionIndex].querySelector('.SizeSwatch__Radio:checked').value
 
-    console.log(selectedColor)
-
     // Get all li elements in the options list
     let customSelects = document.querySelectorAll('.upsell_container .custom_select')
 
@@ -1698,7 +1696,6 @@ const getCart = async () => {
 }
 
 const addItem = async (id, quantity = 1) => {
-    console.log('adding...')
     const response = await fetch("/cart/add.json", {
         method: "POST",
         headers: {
@@ -1916,7 +1913,7 @@ const observeCartNodes = (callback) => {
                     && !document.querySelector('.Cart__Empty')
                 ) {
                     observer.disconnect()
-                    console.log('observer....')
+                    // console.log('observer....')
                     await callback()
                     observer.observe(targetNode, config)
                 }
@@ -1943,7 +1940,6 @@ const getOneRandomSubArr = (handle) => {
 
 const main = async () => {
     if (isRunning) {
-        console.log('Async function is already running')
 
         // Abort the previous request using the AbortController interface
         controller.abort()
@@ -1965,11 +1961,11 @@ const main = async () => {
             && !document.querySelector('.upsells_container')
         ) {
             // Render the cached data
-            console.log('%c GET CACHED products', 'color: green')
+            // console.log('%c GET CACHED products', 'color: green')
 
             addUpsellsToCart(JSON.parse(sessionStorage.getItem('myUpsellsArray')), JSON.parse(sessionStorage.getItem('myCartItemsArray')))
         } else {
-            console.log('%c FETCH NEW the suggested products', 'color: green')
+            // console.log('%c FETCH NEW the suggested products', 'color: green')
 
             const cart = await getCart()
 
@@ -1992,17 +1988,9 @@ const main = async () => {
                     // lastCartItems = JSON.parse(sessionStorage.getItem('myCartItemsArray'))
 
                     cartItemsLength = JSON.parse(sessionStorage.getItem('myCartItemsArray')).length
-
-                    // console.log(cachedUpsellData);
-                    // console.log(lastCartItems);
-
-                } else {
-                    console.log('There are not suggestions for this product.')
                 }
             }
         }
-
-        console.log("All requests have been made.")
     } catch (error) {
         console.error(error)
     } finally {
@@ -2077,12 +2065,6 @@ waitForElement('.cbb-frequently-bought-total-price-sale-price', '.cbb-frequently
                             }
                         }
 
-                        // if (innerText) {
-                        //     console.log(innerText)
-                        // } else {
-                        //     console.log("No matching element found")
-                        // }
-
                         const set = await getProduct(document.querySelector('.upsell_title a')?.href.split('products/')[1])
 
                         let matchingVariant
@@ -2093,11 +2075,6 @@ waitForElement('.cbb-frequently-bought-total-price-sale-price', '.cbb-frequently
                         } else {
                             matchingVariant = set.variants.find(obj => obj.title === innerText)
                         }
-
-                        console.log('<----------------------->')
-                        console.log('Set variants: ', set.variants)
-                        console.log(matchingVariant)
-                        console.log('<----------------------->')
 
                         if (matchingVariant) {
                             await addItem(matchingVariant.id)
