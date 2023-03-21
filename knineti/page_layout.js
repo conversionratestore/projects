@@ -1,13 +1,10 @@
 let newPage = setInterval(() => {
   if (document.querySelector("#player")) {
     clearInterval(newPage)
-    //event
     let eventVar = "desktop"
-
     if (window.innerWidth <= 768) {
       eventVar = "mobile"
     }
-
     function pushDataLayer(actionDataLayer, labelDataLayer) {
       window.dataLayer = window.dataLayer || []
       if (labelDataLayer) {
@@ -74,7 +71,6 @@ svg.fp-play-rounded-fill{
 .after-refresh .count_sec:nth-of-type(25){
 background: #DDE8F1 !important;
 }
-
 .want-to-obey > .count_sec,
 .after-refresh .count_sec:nth-of-type(2),
 .after-refresh .count_sec:nth-of-type(5),
@@ -210,7 +206,6 @@ background: #FFFFFF !important;
 .after-refresh .count_sec:nth-of-type(23) .guarantee img {
   padding-bottom: 32px !important;
 }
-
 .after-refresh .count_sec:nth-of-type(1) .all_content .content > .col-md-4 {
   padding: 0 15px 0 0;
 }
@@ -251,7 +246,6 @@ background: #FFFFFF !important;
 .after-refresh .count_sec:nth-of-type(5) .testi_img.lead_img {
   margin-bottom: 16px;
 }
-
 .after-refresh .count_sec:nth-of-type(5) .testi_img.lead_img + p > b {
   font-size: 20px;
   line-height: 27px;
@@ -265,7 +259,6 @@ background: #FFFFFF !important;
 .after-refresh .count_sec .pattern-block {
   padding: 60px 0;
 }
-
 .after-refresh .count_sec:nth-of-type(6) .pattern-block p {
   margin-top: 12px !important;
 }
@@ -446,7 +439,6 @@ i.fa.fa-quote-right {
 .after-refresh .count_sec:nth-of-type(13) .twlv_red_spc {
   padding: 60px 0;
 }
-
 .after-refresh .count_sec .white-block {
   padding: 60px 0;
 }
@@ -550,7 +542,6 @@ p.dash_logo_text > img {
 .after-refresh .count_sec:nth-of-type(23) .enroll_now_main > a {
   margin-top: 32px !important;
 }
-
 .after-refresh .count_sec:nth-of-type(25) h2 {
   margin-bottom: 2px;
 }
@@ -601,8 +592,6 @@ body .after-refresh .count_sec:nth-of-type(25) .enroll_now_main > a {
   font-size: 16px;
   line-height: 22px;
 }
-
-/* */
 button.new_enroll_now_btn,
 .white-block a.button-blue-large,
 .pattern-block a.button-blue-large {
@@ -663,6 +652,7 @@ body .special_gift_box p > svg {
 body .special_gift_box p span {
   color: rgba(115, 79, 34, 1) !important;
   font-weight: 700;
+  margin-right: 5px;
 }
 .white-block p:first-child {
   margin-top: unset !important;
@@ -1007,7 +997,6 @@ li.new_accardion_block + li {
   margin-left: 10px;
   padding: 12px;
 }
-
 .new_accardion_link > span::before {
   position: absolute;
   content: "";
@@ -1307,6 +1296,9 @@ p.italic_text_var::after{
   margin-bottom: 0 !important;
 }
 @media (max-width: 768px) {
+  body .special_gift_box p span{
+    margin: 0;
+  }
   .after-refresh .count_sec:nth-of-type(20) .all_content.fiftn_red_spc > .row.row1030.bottom_space_add,
 .after-refresh .count_sec:nth-of-type(19) .all_content > .row.row1030,
 .after-refresh .count_sec:nth-of-type(14) .all_content.trtn_red_spc > .row.row1030.bottom_space_add,
@@ -2045,7 +2037,6 @@ body .after-refresh .count_sec:nth-of-type(25) .quick_transcript {
         `<p>Learn to handle 'leash reactivity' and aggression towards other dogs using WATCH, TOUCH and other techniques. Discover how to have your dog automatically sit when you stop walking, as well as stop at curbs to wait for instructions before crossing a road – which can save your dog's life.</p>`,
       ],
     }
-
     let reviewsBox = /*html */ `
         <div class="reviews_bgr">
             <div class="reviews_wrap">
@@ -2064,7 +2055,6 @@ body .after-refresh .count_sec:nth-of-type(25) .quick_transcript {
             </div>  
         </div>
     `
-
     let tenWeekBox = /*html */ `
         <div class="ten_week_bgr">
             <div class="ten_week_box">
@@ -2111,7 +2101,6 @@ body .after-refresh .count_sec:nth-of-type(25) .quick_transcript {
             </div>
         </div>
       `
-
     function setList(count, title, text, dataSelector) {
       return `
                 <li class="new_accardion_block" data-visability='${count}'>
@@ -2127,7 +2116,6 @@ body .after-refresh .count_sec:nth-of-type(25) .quick_transcript {
                 </li>
         `
     }
-
     let specialGift = /*html */ `
         <div class="special_gift_bgr">
       <div class="special_gift_box">
@@ -2145,7 +2133,6 @@ body .after-refresh .count_sec:nth-of-type(25) .quick_transcript {
         </p>
       </div>
     </div>`
-
     let firstVisitNewBlock = /*html */ `
         <div class="first_visit_block">
       <div class="descr_box">
@@ -2171,7 +2158,6 @@ body .after-refresh .count_sec:nth-of-type(25) .quick_transcript {
       <button class="new_enroll_now_btn watch_free_workshop_btn">Watch free workshop</button>
     </div>
     `
-
     let newBlockTransform = /*html */ `
     <div class="new_block_transform">
     <div class="text_descr_var">
@@ -2192,7 +2178,6 @@ body .after-refresh .count_sec:nth-of-type(25) .quick_transcript {
     </div>
   </div>
     `
-
     let newBlockJump = /*html */ `
     <div class="new_block_jump">
     <div class="text_descr_var">
@@ -2210,7 +2195,6 @@ body .after-refresh .count_sec:nth-of-type(25) .quick_transcript {
     </div>
   </div>
     `
-
     let newBlockSave = /*html */ `
     <div class="new_block_save">
     <div class="text_descr_var">
@@ -2229,7 +2213,6 @@ body .after-refresh .count_sec:nth-of-type(25) .quick_transcript {
     </div>
   </div>
     `
-
     let newBlockComeToYou = /*html */ `
     <div class="new_block_come_to_you">
     <div class="text_descr_var">
@@ -2248,7 +2231,6 @@ body .after-refresh .count_sec:nth-of-type(25) .quick_transcript {
     </div>
   </div>
     `
-
     let newBlockLeashPulling = /*html */ `
     <div class="new_block_leash_pulling">
     <div class="text_descr_var">
@@ -2265,7 +2247,6 @@ body .after-refresh .count_sec:nth-of-type(25) .quick_transcript {
     </div>
   </div>
     `
-
     let newBlockTwoCommands = /*html */ `
     <div class="new_bloc_two_commands">
     <div class="text_descr_var">
@@ -2290,7 +2271,6 @@ body .after-refresh .count_sec:nth-of-type(25) .quick_transcript {
     </div>
   </div>
     `
-
     let newBlockPayAttention = /*html */ `
     <div class="new_block_pay_attention">
     <div class="text_descr_var">
@@ -2311,7 +2291,6 @@ body .after-refresh .count_sec:nth-of-type(25) .quick_transcript {
     </div>
   </div>
     `
-
     let newBlockStopBarking = /*html */ `
     <div class="new_block_stop_barking">
     <div class="text_descr_var">
@@ -2330,7 +2309,6 @@ body .after-refresh .count_sec:nth-of-type(25) .quick_transcript {
     </div>
   </div>
     `
-
     let newBlockImpulseControl = /*html */ `
     <div class="new_block_impulse_control">
     <div class="text_descr_var">
@@ -2368,7 +2346,6 @@ body .after-refresh .count_sec:nth-of-type(25) .quick_transcript {
     </div>
   </div>
     `
-
     let newBlockWithoutTreats = /*html */ `
     <div class="new_block_without_treats">
     <div class="all_text_var">
@@ -2403,15 +2380,10 @@ body .after-refresh .count_sec:nth-of-type(25) .quick_transcript {
     </div>
   </div>
     `
-
     document.head.insertAdjacentHTML("beforeend", styleFreeWorkShop)
-
-    //is the first time
     if (!localStorage.getItem("firstTime")) {
       localStorage.setItem("firstTime", true)
     }
-
-    // is NOT the first time
     window.onunload = unloadPage
     function unloadPage() {
       console.log("unload event detected!")
@@ -2420,18 +2392,6 @@ body .after-refresh .count_sec:nth-of-type(25) .quick_transcript {
         localStorage.setItem("notFirstTime", true)
       }
     }
-
-    //     if (!document.querySelector(".new_svg_var")) {
-    //       document.querySelector(".flowplayer .fp-play .fp-playbtn")?.insertAdjacentHTML(
-    //         "afterend",
-    //         `<svg class="fp-play-rounded-fill new_svg_var" width="120" height="85" viewBox="0 0 120 85" fill="none" xmlns="http://www.w3.org/2000/svg">
-    // <path d="M115.323 7.5236C110.991 2.37443 102.994 0.274048 87.7204 0.274048H32.2785C16.6556 0.274048 8.52271 2.50992 4.20735 7.99199C0 13.337 0 21.2125 0 32.1124V52.8875C0 74.004 4.992 84.7254 32.2785 84.7254H87.7208C100.966 84.7254 108.305 82.872 113.053 78.3279C117.922 73.668 120 66.0596 120 52.8875V32.1124C120 20.6175 119.674 12.6956 115.323 7.5236ZM77.0404 45.3681L51.8644 58.5259C51.3015 58.8201 50.6861 58.9661 50.0714 58.9661C49.3754 58.9661 48.6809 58.7787 48.0658 58.4063C46.9076 57.7045 46.2004 56.4492 46.2004 55.0951V28.8639C46.2004 27.5121 46.9057 26.2579 48.0615 25.5557C49.2178 24.8535 50.6559 24.8055 51.8555 25.4288L77.0315 38.5018C78.3124 39.1668 79.1168 40.4892 79.1187 41.9319C79.1203 43.3757 78.3194 44.7 77.0404 45.3681Z" fill="#EB0504"/>
-    // </svg>`
-    //       )
-    //     }
-
-    // Step 1
-    // src=tpst and it’s the first time the user is visiting the page ///////////////////////////////////
     document.querySelectorAll(".want-to-obey .count_sec")[0].insertAdjacentHTML("beforebegin", specialGift)
     document.querySelectorAll(".want-to-obey .count_sec")[0].querySelector("h2").textContent =
       "There is a reason why service dogs always form extraordinarily strong bonds with their human partners..."
@@ -2442,8 +2402,6 @@ body .after-refresh .count_sec:nth-of-type(25) .quick_transcript {
         scrollToVideo(el)
       })
     })
-
-    // scrollToVideo
     function scrollToVideo(el) {
       console.log(`scrollToVideo`)
       pushDataLayer("Click on button Watch free workshop", "Short page. Watch free workshop")
@@ -2465,9 +2423,6 @@ body .after-refresh .count_sec:nth-of-type(25) .quick_transcript {
         document.querySelector("video").scrollIntoView({ block: "center", behavior: "smooth" })
       }
     }
-    // Step 2
-
-    // ///////////////////////////////////////////////////////////////////////////////
     document.querySelectorAll(".after-refresh section.count_sec")[0]?.insertAdjacentHTML(
       "beforebegin",
       `<div class="learn_more_bgr"><div class="learn_more_scroll_btn">
@@ -2515,7 +2470,6 @@ body .after-refresh .count_sec:nth-of-type(25) .quick_transcript {
         document.querySelector(".Breed-Specific.count_sec .enroll_now_main .button-blue-large.showModal.grab_butn.enroll_now_btn.dsk_ntn_onen").click()
       })
     }
-
     if (document.querySelector(".learn_more_scroll_btn")) {
       document.querySelector(".learn_more_scroll_btn").addEventListener("click", () => {
         pushDataLayer("Click on button Learn more about our special offer", "Long page (version 2). Learn more about our special offer")
@@ -2531,7 +2485,6 @@ body .after-refresh .count_sec:nth-of-type(25) .quick_transcript {
         })
       })
     }
-
     document.querySelectorAll(".after-refresh section.count_sec")[3]?.insertAdjacentHTML(
       "beforebegin",
       `<div class="question_first_bgr"><div class="question_first_wrap"><h2>Have a question? Reach out to us or find some answers below</h2><ol class="question_accardion"></ol><button class="new_enroll_now_btn">Enroll NOW <svg width="7" height="10" viewBox="0 0 7 10" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -2545,7 +2498,6 @@ body .after-refresh .count_sec:nth-of-type(25) .quick_transcript {
                       <path d="M1.23984 8.23356L4.47318 5.00023L1.23984 1.76689C0.914844 1.44189 0.914844 0.916894 1.23984 0.591895C1.56484 0.266895 2.08984 0.266895 2.41484 0.591895L6.23984 4.41689C6.56484 4.74189 6.56484 5.26689 6.23984 5.59189L2.41484 9.41689C2.08984 9.74189 1.56484 9.74189 1.23984 9.41689C0.923177 9.09189 0.914844 8.55856 1.23984 8.23356Z" fill="white"/>
                       </svg></button></div></div>`
     )
-
     if (document.querySelector(".new_accardion")) {
       for (let key in arrInfo) {
         document.querySelector(".new_accardion").insertAdjacentHTML("beforeend", setList(key, arrInfo[key][0], arrInfo[key][1], "tenWeek"))
@@ -2563,7 +2515,6 @@ body .after-refresh .count_sec:nth-of-type(25) .quick_transcript {
           .insertAdjacentHTML("beforeend", setList(key, arrQuestion[key][0], arrQuestion[key][1], "questionSecond"))
       }
     }
-
     if (!document.querySelector(".mini_text_guarantee")) {
       document
         .querySelector(".after-refresh .count_sec:nth-of-type(3) .white-block > .enroll_now_main")
@@ -2608,7 +2559,6 @@ body .after-refresh .count_sec:nth-of-type(25) .quick_transcript {
       )
     }
     document.querySelector(".after-refresh .count_sec:nth-of-type(22) img").src = "https://conversionratestore.github.io/projects/knineti/img/ASPCA_new.png"
-    // title
     document
       .querySelectorAll(".after-refresh section.count_sec")[2]
       .querySelector("h2").textContent = `Enroll for the masterclass today and get 3 bonus classes (worth US $209.10) free of charge:`
@@ -2639,8 +2589,6 @@ body .after-refresh .count_sec:nth-of-type(25) .quick_transcript {
     document.querySelectorAll(".after-refresh section.count_sec")[22].querySelector("h2").textContent = `Get all your money back within 90 days if this isn’t right for you`
     document.querySelectorAll(".after-refresh section.count_sec")[23].querySelector("h2").textContent = `Get your dog to listen to you even without treats`
     document.querySelectorAll(".after-refresh section.count_sec")[24].querySelector("h2").textContent = `“...he listens to me all the time now...”`
-
-    // render new block
     if (!document.querySelector(".after-refresh .count_sec:nth-of-type(24) .new_block_without_treats")) {
       document.querySelector(".after-refresh .count_sec:nth-of-type(24) h2").insertAdjacentHTML("afterend", newBlockWithoutTreats)
     }
@@ -2674,7 +2622,6 @@ body .after-refresh .count_sec:nth-of-type(25) .quick_transcript {
     if (!document.querySelector(".after-refresh .count_sec:nth-of-type(20) .new_block_transform")) {
       document.querySelector(".after-refresh .count_sec:nth-of-type(20) h2").insertAdjacentHTML("afterend", newBlockTransform)
     }
-    // setAttr for visability
     if (!document.querySelector(".after-refresh .count_sec:nth-of-type(1)").getAttribute("data-visab")) {
       document.querySelector(".after-refresh .count_sec:nth-of-type(1)").setAttribute("data-visab", 1)
     }
@@ -2768,8 +2715,6 @@ body .after-refresh .count_sec:nth-of-type(25) .quick_transcript {
     if (!document.querySelectorAll(".after-refresh .count_sec:nth-of-type(3)[data-visab='3'] .row.row1030> .content > .col-md-4")[2].getAttribute("data-visab")) {
       document.querySelectorAll(".after-refresh .count_sec:nth-of-type(3)[data-visab='3'] .row.row1030> .content > .col-md-4")[2].setAttribute("data-visab", 31)
     }
-
-    //
     if (window.innerWidth <= 768) {
       document.querySelector(".after-refresh .count_sec:nth-of-type(1) img").src = "https://conversionratestore.github.io/projects/knineti/img/var1_mob.png"
       document.querySelector(".after-refresh .count_sec:nth-of-type(9) .image_left > img").src = "https://conversionratestore.github.io/projects/knineti/img/var2_mob.png"
@@ -2779,7 +2724,6 @@ body .after-refresh .count_sec:nth-of-type(25) .quick_transcript {
       document.querySelector(".after-refresh .count_sec:nth-of-type(24) .card.image1 > img").src = "https://conversionratestore.github.io/projects/knineti/img/var6_mob.png"
       document.querySelector(".after-refresh .count_sec:nth-of-type(22) img").src = "https://conversionratestore.github.io/projects/knineti/img/ASPCA_new_mob.png"
     }
-    // accardion ten_week_bgr
     let headerOffset = 10
     if (window.innerWidth <= 768) {
       headerOffset = 20
@@ -2808,8 +2752,6 @@ body .after-refresh .count_sec:nth-of-type(25) .quick_transcript {
         behavior: "smooth",
       })
     })
-
-    // accardion question_first_bgr
     $('.new_accardion_link[data-selector="questionFirst"]').click(function (e) {
       console.log(e.currentTarget)
       $(this).toggleClass("active")
@@ -2820,13 +2762,11 @@ body .after-refresh .count_sec:nth-of-type(25) .quick_transcript {
         $('.new_accardion_link[data-selector="questionFirst"]').not(this).removeClass("active")
         $('.new_accardion_link[data-selector="questionFirst"]').not(this).closest("li").removeClass("active")
       }
-
       if (e.currentTarget.classList.contains("active")) {
         pushDataLayer(`Open FAQ card. ${e.currentTarget.querySelector("p").textContent}`, "Long page. Have a question? Reach out to us or find some answers below")
       } else {
         pushDataLayer(`Close FAQ card. ${e.currentTarget.querySelector("p").textContent}`, "Long page. Have a question? Reach out to us or find some answers below")
       }
-
       const elementPosition = this.getBoundingClientRect().top
       const offsetPosition = elementPosition + window.pageYOffset - headerOffset
       window.scrollTo({
@@ -2834,8 +2774,6 @@ body .after-refresh .count_sec:nth-of-type(25) .quick_transcript {
         behavior: "smooth",
       })
     })
-
-    // accardion question_second_bgr
     $('.new_accardion_link[data-selector="questionSecond"]').click(function (e) {
       console.log(e.currentTarget)
       $(this).toggleClass("active")
@@ -2846,7 +2784,6 @@ body .after-refresh .count_sec:nth-of-type(25) .quick_transcript {
         $('.new_accardion_link[data-selector="questionSecond"]').not(this).removeClass("active")
         $('.new_accardion_link[data-selector="questionSecond"]').not(this).closest("li").removeClass("active")
       }
-
       if (e.currentTarget.classList.contains("active")) {
         pushDataLayer(`Open FAQ card. ${e.currentTarget.querySelector("p").textContent}`, "Long page. Our best customers are those who ask the most questions. Find answers below ")
       } else {
@@ -2855,7 +2792,6 @@ body .after-refresh .count_sec:nth-of-type(25) .quick_transcript {
           "Long page. Our best customers are those who ask the most questions. Find answers below "
         )
       }
-
       const elementPosition = this.getBoundingClientRect().top
       const offsetPosition = elementPosition + window.pageYOffset - headerOffset
       window.scrollTo({
@@ -2863,14 +2799,11 @@ body .after-refresh .count_sec:nth-of-type(25) .quick_transcript {
         behavior: "smooth",
       })
     })
-
-    // day Seven
     let params = new URLSearchParams(window.location.search)
     let dQueryDate = atob(params.get("d"))
     let dsp = dQueryDate.split("-")
     let daySeven = new Date(new Date().setDate(new Date(dsp[0], dsp[1] - 1, dsp[2]).getDate() + 7)).toDateString().split(" ")
     let month = ""
-
     switch (daySeven[1]) {
       case "Jan":
         month = "January"
@@ -2911,12 +2844,10 @@ body .after-refresh .count_sec:nth-of-type(25) .quick_transcript {
       default:
         break
     }
-
     if (document.querySelector(".date_ends_text span")) {
       document.querySelector(".date_ends_text span").textContent = `${month} ${daySeven[2]}, ${daySeven[3]}`
       console.log(`daySeven`, daySeven, `${month} ${daySeven[2]}, ${daySeven[3]}`)
     }
-    // dog Age
     let dogAge = new URL(document.location).searchParams.get("age")
     if (document.querySelector(".dog_age_var")) {
       if (dogAge === "puppy") {
@@ -2924,7 +2855,6 @@ body .after-refresh .count_sec:nth-of-type(25) .quick_transcript {
       }
       document.querySelector(".dog_age_var").textContent = dogAge
     }
-
     if (localStorage.getItem("notFirstTime")) {
       headerOffset = 80
       if (window.innerWidth <= 768) {
@@ -2935,7 +2865,6 @@ body .after-refresh .count_sec:nth-of-type(25) .quick_transcript {
       }
       document.querySelector(".special_gift_bgr").style.display = "none"
     }
-
     if (localStorage.getItem("notTime")) {
       document.querySelectorAll(".want-to-obey .count_sec")[0].style.display = "none"
       document.querySelector(".special_gift_bgr").style.display = "none"
@@ -2951,29 +2880,20 @@ body .after-refresh .count_sec:nth-of-type(25) .quick_transcript {
         document.querySelector("body #myCarousel .item_mc.show_mobile").style.height = "370px"
       }
     }
-
-    // timer
     timerVideo()
-
     function timerVideo() {
       let intevalVideo = setInterval(() => {
         if (document.querySelector("video")) {
           clearInterval(intevalVideo)
-
           setTimeout(() => {
-            // let counter
             // document.querySelector("video").currentTime = 35.74 * 60
             const videoItem = document.querySelector("video")
-
             function timeUpdate() {
               console.log(videoItem.currentTime)
               let timer = 35.74 * 60
               // let timer = 1 * 60
-
               let currentTime = Math.floor(videoItem.currentTime)
-
               timer -= currentTime
-
               if (timer < 0) {
                 if (!localStorage.getItem("notTime")) {
                   localStorage.setItem("notTime", true)
@@ -3001,13 +2921,11 @@ body .after-refresh .count_sec:nth-of-type(25) .quick_transcript {
                 }, 10)
               }
             }
-
             videoItem.addEventListener("timeupdate", timeUpdate)
           }, 1000)
         }
       }, 100)
     }
-    // click on btn
     document.querySelector("#below_video_text .button-header a").addEventListener("click", () => {
       pushDataLayer("Click on button Enroll now", "Long page. Enroll now + 90-day refund policy")
     })
@@ -3062,16 +2980,12 @@ body .after-refresh .count_sec:nth-of-type(25) .quick_transcript {
         document.querySelector(".enroll_now_main .button-blue-large.showModal.grab_butn.enroll_now_btn.dst_fsq_btl").click()
       })
     }
-
-    // if (document.querySelector(".social_proof")) {
     let obs = new IntersectionObserver(visibility, {
       threshold: 0.9,
     })
-
     let obs2 = new IntersectionObserver(visibility2, {
       threshold: 0.9,
     })
-
     obs.observe(document.querySelector("#player"))
     obs.observe(document.querySelector("body .want-to-obey .special_gift_box h2"))
     obs.observe(document.querySelector("body .special_gift_box .special_gift_box_visab"))
@@ -3085,7 +2999,6 @@ body .after-refresh .count_sec:nth-of-type(25) .quick_transcript {
     obs.observe(document.querySelector(".time_offer_box .body_wrap .img_guarantee"))
     obs.observe(document.querySelector(".mini_text_guarantee"))
     obs.observe(document.querySelector("#below_video_text"))
-    // //
     obs.observe(document.querySelector(".after-refresh .count_sec:nth-of-type(1)[data-visab='1'] img"))
     obs.observe(document.querySelector(".after-refresh .count_sec:nth-of-type(7)[data-visab='7'] img"))
     obs.observe(document.querySelector(".after-refresh .count_sec:nth-of-type(10)[data-visab='10'] img"))
@@ -3093,7 +3006,6 @@ body .after-refresh .count_sec:nth-of-type(25) .quick_transcript {
     obs.observe(document.querySelector(".after-refresh .count_sec:nth-of-type(14)[data-visab='14'] img"))
     obs.observe(document.querySelector(".after-refresh .count_sec:nth-of-type(20)[data-visab='20'] img"))
     obs.observe(document.querySelector(".after-refresh .count_sec:nth-of-type(22)[data-visab='22'] img"))
-    // //
     obs.observe(document.querySelector(".after-refresh .count_sec:nth-of-type(2)[data-visab='2']"))
     obs.observe(document.querySelector(".after-refresh .count_sec:nth-of-type(24)[data-visab='24']"))
     obs.observe(document.querySelector(".after-refresh .count_sec:nth-of-type(16) .row1030 > .col-md-12:not(.aftermasterclass) > p:nth-child(1)"))
@@ -3111,9 +3023,6 @@ body .after-refresh .count_sec:nth-of-type(25) .quick_transcript {
     obs.observe(document.querySelectorAll(".after-refresh .count_sec:nth-of-type(3)[data-visab='3'] .row.row1030> .content > .col-md-4")[0])
     obs.observe(document.querySelectorAll(".after-refresh .count_sec:nth-of-type(3)[data-visab='3'] .row.row1030> .content > .col-md-4")[1])
     obs.observe(document.querySelectorAll(".after-refresh .count_sec:nth-of-type(3)[data-visab='3'] .row.row1030> .content > .col-md-4")[2])
-
-    // //
-    // //
     obs.observe(document.querySelector(".after-refresh .count_sec:nth-of-type(1) h2"))
     obs.observe(document.querySelector(".after-refresh .count_sec:nth-of-type(2) h2"))
     obs.observe(document.querySelector(".after-refresh .count_sec:nth-of-type(3) h2"))
@@ -3153,29 +3062,25 @@ body .after-refresh .count_sec:nth-of-type(25) .quick_transcript {
     obs.observe(document.querySelector(".question_second_wrap button.new_enroll_now_btn"))
     obs.observe(document.querySelector("#myHeaderr"))
     obs.observe(document.querySelector(".learn_more_scroll_btn"))
-
     let int = setInterval(() => {
       if (document.querySelector(".first_var_bgr")) {
         clearInterval(int)
         obs.observe(document.querySelector(".after-refresh > .reviews_bgr.first_var_bgr"))
       }
     }, 100)
-
     let int2 = setInterval(() => {
-      if (document.querySelector(".after-refresh .count_sec:nth-of-type(16) .row1030 > .col-md-12:not(.aftermasterclass) > p:nth-child(4) + .new_enroll_now_btn")) {
+      if (document.querySelector(".after-refresh .count_sec:nth-of-type(16) .new_enroll_now_btn")) {
         clearInterval(int2)
         console.log(`RTYUIOPOIUYTRTYUIO`)
-        obs.observe(document.querySelector(".after-refresh .count_sec:nth-of-type(16) .row1030 > .col-md-12:not(.aftermasterclass) > p:nth-child(4) + .new_enroll_now_btn"))
+        obs.observe(document.querySelector(".after-refresh .count_sec:nth-of-type(16) .new_enroll_now_btn"))
       }
     }, 200)
-
     let int3 = setInterval(() => {
       if (document.querySelector(".after-refresh .count_sec:nth-of-type(17)[data-visab='17'] button")) {
         clearInterval(int3)
         obs.observe(document.querySelector(".after-refresh .count_sec:nth-of-type(17)[data-visab='17'] button"))
       }
     }, 200)
-
     function visibility(entries) {
       entries.forEach((i) => {
         if (i.isIntersecting) {
@@ -3185,7 +3090,6 @@ body .after-refresh .count_sec:nth-of-type(25) .quick_transcript {
         }
       })
     }
-
     function visibility2(entries) {
       entries.forEach((i) => {
         if (i.isIntersecting) {
@@ -3408,10 +3312,10 @@ body .after-refresh .count_sec:nth-of-type(25) .quick_transcript {
           if (i.target.tagName === "A" && i.target.closest("section").getAttribute("data-visab") === "15") {
             pushDataLayer(`View element on screen`, `Long page. Enroll now in section Train your dog to have the same level of impulse control as service dogs`)
           }
-          if (i.target.tagName === "BUTTON" && i.target.closest("section").getAttribute("data-visab") === "16") {
+          if (i.target.tagName === "BUTTON" && i.target.closest("section")?.getAttribute("data-visab") === "16") {
             pushDataLayer(`View element on screen`, `Long page. Enroll now in section Long page. Say goodbye to all naughty behavior problems`)
           }
-          if (i.target.tagName === "BUTTON" && i.target.closest("section").getAttribute("data-visab") === "17") {
+          if (i.target.tagName === "BUTTON" && i.target.closest("section")?.getAttribute("data-visab") === "17") {
             pushDataLayer(`View element on screen`, `Long page. Enroll now in section Enroll now to get instant access to the online masterclass`)
           }
           if (i.target.tagName === "A" && i.target.closest("section").getAttribute("data-visab") === "21") {
@@ -3435,25 +3339,19 @@ body .after-refresh .count_sec:nth-of-type(25) .quick_transcript {
           if (i.target.getAttribute("data-visab") === "18") {
             pushDataLayer(`View element on screen`, `Long page. Learn from the comfort of your home at your own pace`)
           }
-
           obs.unobserve(i.target)
         }
         obs2.unobserve(i.target)
       })
     }
-    // }
-
     pushDataLayer("loaded")
-
     window._mfq.push(["setVariable", "new_fw_page_layout", "var1"])
-
     const record = setInterval(() => {
       if (typeof clarity === "function") {
         clearInterval(record)
         clarity("set", "new_fw_page_layout", "variant_1")
       }
     }, 200)
-
     document.querySelector(".exp")?.remove()
   }
 }, 800)
