@@ -2408,7 +2408,6 @@ body .after-refresh .count_sec:nth-of-type(25) .quick_transcript {
         }
       }
     }
-
     if ($(".after-refresh").is(":visible")) {
       if (document.querySelectorAll(".want-to-obey > .count_sec")[0]) {
         document.querySelectorAll(".want-to-obey > .count_sec")[0].style.display = "none"
