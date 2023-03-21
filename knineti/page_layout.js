@@ -2710,20 +2710,20 @@ body .after-refresh .count_sec:nth-of-type(25) .quick_transcript {
     if (!document.querySelector(".after-refresh .count_sec:nth-of-type(16) .row1030 > .col-md-12:not(.aftermasterclass) > p:nth-child(1)").getAttribute("data-visab")) {
       document.querySelector(".after-refresh .count_sec:nth-of-type(16) .row1030 > .col-md-12:not(.aftermasterclass) > p:nth-child(1)").setAttribute("data-visab", 26)
     }
-    if (!document.querySelectorAll(".after-refresh .count_sec:nth-of-type(5)[data-visab='5'] .row.row1030 > .col-md-6")[0].getAttribute("data-visab")) {
-      document.querySelectorAll(".after-refresh .count_sec:nth-of-type(5)[data-visab='5'] .row.row1030 > .col-md-6")[0].setAttribute("data-visab", 27)
+    if (!document.querySelectorAll(".after-refresh .count_sec[data-visab='5'] .row.row1030 > .col-md-6")[0].getAttribute("data-visab")) {
+      document.querySelectorAll(".after-refresh .count_sec[data-visab='5'] .row.row1030 > .col-md-6")[0].setAttribute("data-visab", 27)
     }
-    if (!document.querySelectorAll(".after-refresh .count_sec:nth-of-type(5)[data-visab='5'] .row.row1030 > .col-md-6")[1].getAttribute("data-visab")) {
-      document.querySelectorAll(".after-refresh .count_sec:nth-of-type(5)[data-visab='5'] .row.row1030 > .col-md-6")[1].setAttribute("data-visab", 28)
+    if (!document.querySelectorAll(".after-refresh .count_sec[data-visab='5'] .row.row1030 > .col-md-6")[1].getAttribute("data-visab")) {
+      document.querySelectorAll(".after-refresh .count_sec[data-visab='5'] .row.row1030 > .col-md-6")[1].setAttribute("data-visab", 28)
     }
-    if (!document.querySelectorAll(".after-refresh .count_sec:nth-of-type(3)[data-visab='3'] .row.row1030> .content > .col-md-4")[0].getAttribute("data-visab")) {
-      document.querySelectorAll(".after-refresh .count_sec:nth-of-type(3)[data-visab='3'] .row.row1030> .content > .col-md-4")[0].setAttribute("data-visab", 29)
+    if (!document.querySelectorAll(".after-refresh .count_sec[data-visab='3'] .row.row1030> .content > .col-md-4")[0].getAttribute("data-visab")) {
+      document.querySelectorAll(".after-refresh .count_sec[data-visab='3'] .row.row1030> .content > .col-md-4")[0].setAttribute("data-visab", 29)
     }
-    if (!document.querySelectorAll(".after-refresh .count_sec:nth-of-type(3)[data-visab='3'] .row.row1030> .content > .col-md-4")[1].getAttribute("data-visab")) {
-      document.querySelectorAll(".after-refresh .count_sec:nth-of-type(3)[data-visab='3'] .row.row1030> .content > .col-md-4")[1].setAttribute("data-visab", 30)
+    if (!document.querySelectorAll(".after-refresh .count_sec[data-visab='3'] .row.row1030> .content > .col-md-4")[1].getAttribute("data-visab")) {
+      document.querySelectorAll(".after-refresh .count_sec[data-visab='3'] .row.row1030> .content > .col-md-4")[1].setAttribute("data-visab", 30)
     }
-    if (!document.querySelectorAll(".after-refresh .count_sec:nth-of-type(3)[data-visab='3'] .row.row1030> .content > .col-md-4")[2].getAttribute("data-visab")) {
-      document.querySelectorAll(".after-refresh .count_sec:nth-of-type(3)[data-visab='3'] .row.row1030> .content > .col-md-4")[2].setAttribute("data-visab", 31)
+    if (!document.querySelectorAll(".after-refresh .count_sec[data-visab='3'] .row.row1030> .content > .col-md-4")[2].getAttribute("data-visab")) {
+      document.querySelectorAll(".after-refresh .count_sec[data-visab='3'] .row.row1030> .content > .col-md-4")[2].setAttribute("data-visab", 31)
     }
     if (window.innerWidth <= 768) {
       document.querySelector(".ten_week_bgr .ten_week_box h2 span").innerHTML = "10-week<br/>dog training program"
@@ -3012,22 +3012,21 @@ body .after-refresh .count_sec:nth-of-type(25) .quick_transcript {
     obs.observe(document.querySelector(".time_offer_box .body_wrap .img_guarantee"))
     obs.observe(document.querySelector(".mini_text_guarantee"))
     obs.observe(document.querySelector("#below_video_text"))
-    obs.observe(document.querySelector(".after-refresh .count_sec:nth-of-type(1)[data-visab='1'] img"))
-    obs.observe(document.querySelector(".after-refresh .count_sec:nth-of-type(7)[data-visab='7'] img"))
-    obs.observe(document.querySelectorAll(".after-refresh .count_sec:nth-of-type(10)[data-visab='10'] img")[0])
-    obs.observe(document.querySelectorAll(".after-refresh .count_sec:nth-of-type(10)[data-visab='10'] img")[1])
-    obs.observe(document.querySelectorAll(".after-refresh .count_sec:nth-of-type(12)[data-visab='12'] img")[0])
-    obs.observe(document.querySelectorAll(".after-refresh .count_sec:nth-of-type(12)[data-visab='12'] img")[1])
-    obs.observe(document.querySelectorAll(".after-refresh .count_sec:nth-of-type(14)[data-visab='14'] img")[0])
-    obs.observe(document.querySelectorAll(".after-refresh .count_sec:nth-of-type(14)[data-visab='14'] img")[1])
-    obs.observe(document.querySelectorAll(".after-refresh .count_sec:nth-of-type(20)[data-visab='20'] img")[0])
-    obs.observe(document.querySelectorAll(".after-refresh .count_sec:nth-of-type(20)[data-visab='20'] img")[1])
-    obs.observe(document.querySelector(".after-refresh .count_sec:nth-of-type(22)[data-visab='22'] img"))
-    obs.observe(document.querySelector(".after-refresh .count_sec:nth-of-type(2)[data-visab='2']"))
-
+    obs.observe(document.querySelector(".after-refresh .count_sec[data-visab='1'] img"))
+    obs.observe(document.querySelector(".after-refresh .count_sec[data-visab='7'] img"))
+    obs.observe(document.querySelectorAll(".after-refresh .count_sec[data-visab='10'] img")[0])
+    obs.observe(document.querySelectorAll(".after-refresh .count_sec[data-visab='10'] img")[1])
+    obs.observe(document.querySelectorAll(".after-refresh .count_sec[data-visab='12'] img")[0])
+    obs.observe(document.querySelectorAll(".after-refresh .count_sec[data-visab='12'] img")[1])
+    obs.observe(document.querySelectorAll(".after-refresh .count_sec[data-visab='14'] img")[0])
+    obs.observe(document.querySelectorAll(".after-refresh .count_sec[data-visab='14'] img")[1])
+    obs.observe(document.querySelectorAll(".after-refresh .count_sec[data-visab='20'] img")[0])
+    obs.observe(document.querySelectorAll(".after-refresh .count_sec[data-visab='20'] img")[1])
+    obs.observe(document.querySelector(".after-refresh .count_sec[data-visab='22'] img"))
+    obs.observe(document.querySelector(".after-refresh .count_sec[data-visab='2']"))
     obs.observe(document.querySelector(".after-refresh .count_sec:nth-of-type(16) .row1030 > .col-md-12:not(.aftermasterclass) > p:nth-child(1)"))
-    obs.observe(document.querySelectorAll(".after-refresh .count_sec:nth-of-type(13)[data-visab='13'] p span:nth-child(2)")[0])
-    obs.observe(document.querySelectorAll(".after-refresh .count_sec:nth-of-type(13)[data-visab='13'] p span:nth-child(2)")[1])
+    obs.observe(document.querySelectorAll(".after-refresh .count_sec[data-visab='13'] p span:nth-child(2)")[0])
+    obs.observe(document.querySelectorAll(".after-refresh .count_sec[data-visab='13'] p span:nth-child(2)")[1])
     obs.observe(document.querySelectorAll(".after-refresh .count_sec:nth-of-type(9) p:last-child")[0])
     obs.observe(document.querySelectorAll(".after-refresh .count_sec:nth-of-type(9) p:last-child")[1])
     obs.observe(document.querySelector(".after-refresh .count_sec:nth-of-type(6) .pattern-block .row1030 .col-md-12 > p:not(.sub_head_examples):nth-child(4) span:nth-child(1)"))
@@ -3036,11 +3035,11 @@ body .after-refresh .count_sec:nth-of-type(25) .quick_transcript {
     obs.observe(document.querySelectorAll(".responsive-iframe")[3])
     obs.observe(document.querySelectorAll(".responsive-iframe")[5])
     obs.observe(document.querySelectorAll(".responsive-iframe")[7])
-    obs.observe(document.querySelectorAll(".after-refresh .count_sec:nth-of-type(5)[data-visab='5'] .row.row1030 > .col-md-6")[0])
-    obs.observe(document.querySelectorAll(".after-refresh .count_sec:nth-of-type(5)[data-visab='5'] .row.row1030 > .col-md-6")[1])
-    obs.observe(document.querySelectorAll(".after-refresh .count_sec:nth-of-type(3)[data-visab='3'] .row.row1030> .content > .col-md-4")[0])
-    obs.observe(document.querySelectorAll(".after-refresh .count_sec:nth-of-type(3)[data-visab='3'] .row.row1030> .content > .col-md-4")[1])
-    obs.observe(document.querySelectorAll(".after-refresh .count_sec:nth-of-type(3)[data-visab='3'] .row.row1030> .content > .col-md-4")[2])
+    obs.observe(document.querySelectorAll(".after-refresh .count_sec[data-visab='5'] .row.row1030 > .col-md-6")[0])
+    obs.observe(document.querySelectorAll(".after-refresh .count_sec[data-visab='5'] .row.row1030 > .col-md-6")[1])
+    obs.observe(document.querySelectorAll(".after-refresh .count_sec[data-visab='3'] .row.row1030> .content > .col-md-4")[0])
+    obs.observe(document.querySelectorAll(".after-refresh .count_sec[data-visab='3'] .row.row1030> .content > .col-md-4")[1])
+    obs.observe(document.querySelectorAll(".after-refresh .count_sec[data-visab='3'] .row.row1030> .content > .col-md-4")[2])
     obs.observe(document.querySelector(".after-refresh .count_sec:nth-of-type(1) h2"))
     obs.observe(document.querySelector(".after-refresh .count_sec:nth-of-type(2) h2"))
     obs.observe(document.querySelector(".after-refresh .count_sec:nth-of-type(3) h2"))
@@ -3067,16 +3066,16 @@ body .after-refresh .count_sec:nth-of-type(25) .quick_transcript {
     obs.observe(document.querySelector(".after-refresh .count_sec:nth-of-type(25) h2"))
     obs.observe(document.querySelector("body .question_second_wrap h2"))
     obs.observe(document.querySelector(".time_offer_box .body_wrap button.new_enroll_now_btn"))
-    obs.observe(document.querySelector(".after-refresh .count_sec:nth-of-type(3)[data-visab='3'] .enroll_now_main a"))
+    obs.observe(document.querySelector(".after-refresh .count_sec[data-visab='3'] .enroll_now_main a"))
     obs.observe(document.querySelector(".question_first_wrap button.new_enroll_now_btn"))
-    obs.observe(document.querySelector(".after-refresh .count_sec:nth-of-type(6)[data-visab='6'] .enroll_now_main a"))
-    obs.observe(document.querySelector(".after-refresh .count_sec:nth-of-type(8)[data-visab='8'] .enroll_now_main a"))
-    obs.observe(document.querySelector(".after-refresh .count_sec:nth-of-type(11)[data-visab='11'] .enroll_now_main a"))
-    obs.observe(document.querySelector(".after-refresh .count_sec:nth-of-type(15)[data-visab='15'] .enroll_now_main a"))
-    obs.observe(document.querySelector(".after-refresh .count_sec:nth-of-type(21)[data-visab='21'] .enroll_now_main a"))
-    obs.observe(document.querySelector(".after-refresh .count_sec:nth-of-type(23)[data-visab='23'] .enroll_now_main a"))
-    obs.observe(document.querySelector(".after-refresh .count_sec:nth-of-type(25)[data-visab='25'] .enroll_now_main a"))
-    obs.observe(document.querySelector(".after-refresh .count_sec:nth-of-type(18)[data-visab='18']"))
+    obs.observe(document.querySelector(".after-refresh .count_sec[data-visab='6'] .enroll_now_main a"))
+    obs.observe(document.querySelector(".after-refresh .count_sec[data-visab='8'] .enroll_now_main a"))
+    obs.observe(document.querySelector(".after-refresh .count_sec[data-visab='11'] .enroll_now_main a"))
+    obs.observe(document.querySelector(".after-refresh .count_sec[data-visab='15'] .enroll_now_main a"))
+    obs.observe(document.querySelector(".after-refresh .count_sec[data-visab='21'] .enroll_now_main a"))
+    obs.observe(document.querySelector(".after-refresh .count_sec[data-visab='23'] .enroll_now_main a"))
+    obs.observe(document.querySelector(".after-refresh .count_sec[data-visab='25'] .enroll_now_main a"))
+    obs.observe(document.querySelector(".after-refresh .count_sec[data-visab='18']"))
     obs.observe(document.querySelector(".question_second_wrap button.new_enroll_now_btn"))
     obs.observe(document.querySelector("#myHeaderr"))
     obs.observe(document.querySelector(".learn_more_scroll_btn"))
@@ -3094,13 +3093,23 @@ body .after-refresh .count_sec:nth-of-type(25) .quick_transcript {
       }
     }, 200)
     let int3 = setInterval(() => {
-      if (document.querySelector(".after-refresh .count_sec:nth-of-type(17)[data-visab='17'] button")) {
+      if (document.querySelector(".after-refresh .count_sec[data-visab='17'] button")) {
         clearInterval(int3)
-        obs.observe(document.querySelector(".after-refresh .count_sec:nth-of-type(17)[data-visab='17'] button"))
+        obs.observe(document.querySelector(".after-refresh .count_sec[data-visab='17'] button"))
       }
     }, 200)
-    obs.observe(document.querySelectorAll(".after-refresh > section.count_sec:nth-child(27) .text_descr_var p:last-child")[2])
-    obs.observe(document.querySelector(".after-refresh > section.count_sec:nth-child(27) .calmness p:last-child"))
+    let int4 = setInterval(() => {
+      if (document.querySelectorAll(".after-refresh > section.count_sec[data-visab='24'] .text_descr_var p:last-child")[2]) {
+        clearInterval(int4)
+        obs.observe(document.querySelectorAll(".after-refresh > section.count_sec[data-visab='24'] .text_descr_var p:last-child")[2])
+      }
+    }, 200)
+    let int5 = setInterval(() => {
+      if (document.querySelector(".after-refresh .count_sec[data-visab='24'] .calmness p:last-child")) {
+        clearInterval(int5)
+        obs.observe(document.querySelector(".after-refresh > section.count_sec[data-visab='24'] .calmness p:last-child"))
+      }
+    }, 200)
     function visibility(entries) {
       entries.forEach((i) => {
         if (i.isIntersecting) {
