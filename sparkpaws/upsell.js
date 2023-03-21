@@ -1676,28 +1676,8 @@ function changeColorVariant(colorSectionIndex) {
         }
     }
 
-    let activeOptions = [...document.querySelectorAll('.upsell_container .selected_option')]
-    let isEqual = true
-
-    for (let i = 0; i < activeOptions.length - 1; i++) {
-        for (let j = i + 1; j < activeOptions.length; j++) {
-            if (activeOptions[i].innerText.split(', ')[1] === activeOptions[j].innerText.split(', ')[1]) {
-                // the options are equal
-                isEqual = true
-            } else {
-                isEqual = false
-            }
-        }
-    }
-
-    console.log('isEqual', isEqual);
-
-    if (isEqual) {
-        document.querySelector('.upsell_container').hidden = false
-    } else {
-        document.querySelector('.upsell_container').hidden = true
-    }
-
+    let activeOptions = [...document.querySelectorAll('.upsell_container .selected_option')].map(option => option.innerText.split(', ')[1])
+    document.querySelector('.upsell_container').hidden = (new Set(activeOptions).size === 1) ? false : true
 }
 
 // CART FUNCTIONS
