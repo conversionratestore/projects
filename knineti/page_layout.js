@@ -2400,9 +2400,20 @@ body .after-refresh .count_sec:nth-of-type(25) .quick_transcript {
         localStorage.setItem("notFirstTime", true)
       }
       if (localStorage.getItem("firstTime") && localStorage.getItem("notFirstTime")) {
-        if (document.querySelectorAll(".want-to-obey .count_sec")[0]) {
-          document.querySelectorAll(".want-to-obey .count_sec")[0].style.display = "none"
+        if (document.querySelectorAll(".want-to-obey > .count_sec")[0]) {
+          document.querySelectorAll(".want-to-obey > .count_sec")[0].style.display = "none"
         }
+        if (document.querySelector(".special_gift_bgr")) {
+          document.querySelector(".special_gift_bgr").style.display = "none"
+        }
+      }
+    }
+
+    if ($(".after-refresh").is(":visible")) {
+      if (document.querySelectorAll(".want-to-obey > .count_sec")[0]) {
+        document.querySelectorAll(".want-to-obey > .count_sec")[0].style.display = "none"
+      }
+      if (document.querySelector(".special_gift_bgr")) {
         document.querySelector(".special_gift_bgr").style.display = "none"
       }
     }
