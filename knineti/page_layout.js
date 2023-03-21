@@ -2716,7 +2716,7 @@ body .after-refresh .count_sec:nth-of-type(25) .quick_transcript {
       document.querySelectorAll(".after-refresh .count_sec:nth-of-type(3)[data-visab='3'] .row.row1030> .content > .col-md-4")[2].setAttribute("data-visab", 31)
     }
     if (window.innerWidth <= 768) {
-      document.querySelector(".first_visit_block .descr_box .img_wrap > img").src = "https://conversionratestore.github.io/projects/knineti/img/first_time_img_mob.png"
+      document.querySelector(".first_visit_block .descr_box .img_wrap > img").src = "https://conversionratestore.github.io/projects/knineti/img/first_time_img_mob.jpg"
       document.querySelector(".after-refresh .count_sec:nth-of-type(1) img").src = "https://conversionratestore.github.io/projects/knineti/img/var1_mob.png"
       document.querySelector(".after-refresh .count_sec:nth-of-type(9) .image_left > img").src = "https://conversionratestore.github.io/projects/knineti/img/var2_mob.png"
       document.querySelector(".after-refresh .count_sec:nth-of-type(12) .image_left > img").src = "https://conversionratestore.github.io/projects/knineti/img/var3_mob.png"
