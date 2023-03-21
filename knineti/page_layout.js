@@ -325,6 +325,7 @@ i.fa.fa-quote-right {
 }
 .after-refresh .count_sec:nth-of-type(8) h2 {
   margin-bottom: 2px;
+  font-style: italic;
 }
 .after-refresh .count_sec:nth-of-type(8) .enroll_now_main {
   padding: 0;
@@ -544,6 +545,7 @@ p.dash_logo_text > img {
 }
 .after-refresh .count_sec:nth-of-type(25) h2 {
   margin-bottom: 2px;
+  font-style: italic;
 }
 @media (min-width: 992px){
   .after-refresh .count_sec:nth-of-type(25) .flowplayer_video_container.interview_video,
@@ -997,6 +999,7 @@ li.new_accardion_block + li {
   margin-left: 10px;
   padding: 12px;
 }
+
 .new_accardion_link > span::before {
   position: absolute;
   content: "";
@@ -1016,6 +1019,7 @@ li.new_accardion_block + li {
 .ten_week_bgr li.new_accardion_block:nth-child(1) .new_accardion_lists {
   display: block;
 }
+
 /*question_first_bgr */
 .question_first_bgr,
 .question_second_bgr {
@@ -1056,7 +1060,7 @@ body .question_second_wrap h2 {
 }
 .question_first_wrap .new_accardion_link p,
 .question_second_wrap .new_accardion_link p {
-  font-weight: 700;
+  font-weight: 700 !important;
   font-size: 16px;
   line-height: 22px;
   color: #193973 !important;
@@ -1390,7 +1394,6 @@ svg.fp-play-rounded-fill{
     border-radius: 0;
   }
   .ten_week_bgr .ten_week_box h2 span{
-    max-width: 208px;
     display: block;
     margin: 0 auto;
   }
@@ -2716,6 +2719,7 @@ body .after-refresh .count_sec:nth-of-type(25) .quick_transcript {
       document.querySelectorAll(".after-refresh .count_sec:nth-of-type(3)[data-visab='3'] .row.row1030> .content > .col-md-4")[2].setAttribute("data-visab", 31)
     }
     if (window.innerWidth <= 768) {
+      document.querySelector(".ten_week_bgr .ten_week_box h2 span").innerHTML = "10-week<br/>dog training program"
       document.querySelector(".first_visit_block .descr_box .img_wrap > img").src = "https://conversionratestore.github.io/projects/knineti/img/first_time_img_mob.png"
       document.querySelector(".after-refresh .count_sec:nth-of-type(1) img").src = "https://conversionratestore.github.io/projects/knineti/img/var1_mob.png"
       document.querySelector(".after-refresh .count_sec:nth-of-type(9) .image_left > img").src = "https://conversionratestore.github.io/projects/knineti/img/var2_mob.png"
