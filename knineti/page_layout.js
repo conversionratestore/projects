@@ -1014,8 +1014,12 @@ li.new_accardion_block + li {
 .new_accardion_link.active span::before {
   transform: rotate(360deg);
 }
+.new_accardion_link.first_active span::before {
+  transform: rotate(360deg);
+}
 .new_accardion_link.active {
 }
+
 .ten_week_bgr li.new_accardion_block:nth-child(1) .new_accardion_lists {
   display: block;
 }
@@ -2561,6 +2565,9 @@ body .after-refresh .count_sec:nth-of-type(25) .quick_transcript {
                         </svg></button>`
       )
     }
+    if (document.querySelector(".ten_week_bgr li.new_accardion_block:nth-child(1) .new_accardion_link")) {
+      document.querySelector(".ten_week_bgr li.new_accardion_block:nth-child(1) .new_accardion_link").classList.add("active")
+    }
     document.querySelector(".after-refresh .count_sec:nth-of-type(22) img").src = "https://conversionratestore.github.io/projects/knineti/img/ASPCA_new.png"
     document
       .querySelectorAll(".after-refresh section.count_sec")[2]
@@ -2735,6 +2742,7 @@ body .after-refresh .count_sec:nth-of-type(25) .quick_transcript {
     }
     $('.new_accardion_link[data-selector="tenWeek"]').click(function (e) {
       console.log(e.currentTarget)
+      // $('.new_accardion_link[data-selector="tenWeek"]').removeClass("first_active")
       $(this).toggleClass("active")
       $(this).closest("li").toggleClass("active")
       $(this).next(".new_accardion_lists").slideToggle()
