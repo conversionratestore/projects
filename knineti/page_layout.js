@@ -2399,6 +2399,12 @@ body .after-refresh .count_sec:nth-of-type(25) .quick_transcript {
       if (localStorage.getItem("firstTime") && !localStorage.getItem("notFirstTime")) {
         localStorage.setItem("notFirstTime", true)
       }
+      if (localStorage.getItem("firstTime") && localStorage.getItem("notFirstTime")) {
+        if (document.querySelectorAll(".want-to-obey .count_sec")[0]) {
+          document.querySelectorAll(".want-to-obey .count_sec")[0].style.display = "none"
+        }
+        document.querySelector(".special_gift_bgr").style.display = "none"
+      }
     }
     document.querySelectorAll(".want-to-obey .count_sec")[0].insertAdjacentHTML("beforebegin", specialGift)
     document.querySelectorAll(".want-to-obey .count_sec")[0].querySelector("h2").textContent =
