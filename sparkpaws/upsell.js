@@ -1688,7 +1688,7 @@ let isRunning = false
 let controller = null
 
 const getProduct = async (handle) => {
-    const response = await fetch(`/products/${handle}.js`, { signal: controller.signal })
+    const response = await fetch(`/products/${handle}.js`)
     if (!response.ok) throw new Error(`Failed to get product ${handle}. ${response.status} ${response.statusText}`)
     const product = await response.json()
     return product
@@ -2074,7 +2074,7 @@ waitForElement('.cbb-frequently-bought-total-price-sale-price', '.cbb-frequently
                         let innerText
 
                         for (const el of values) {
-                            if (el.innerText !== "OS") {
+                            if (el.innerText.split(',')[0] !== "OS") {
                                 innerText = el.innerText
                                 break
                             }
@@ -2093,10 +2093,14 @@ waitForElement('.cbb-frequently-bought-total-price-sale-price', '.cbb-frequently
                         if (innerText.length > 3) {
                             const [size, color] = innerText.split(', ')
                             matchingVariant = set.variants.find(obj => obj.title === `${color} / ${size}`)
-
                         } else {
                             matchingVariant = set.variants.find(obj => obj.title === innerText)
                         }
+
+                        console.log('<----------------------->');
+                        console.log('Set variants: ', set.variants);
+                        console.log(matchingVariant);
+                        console.log('<----------------------->');
 
                         if (matchingVariant) {
                             await addItem(matchingVariant.id)    
