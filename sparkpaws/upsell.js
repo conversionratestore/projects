@@ -828,12 +828,9 @@ const fbt_urls = [
     'winter-dog-jacket-vest-black',
     'knit-pom-pom-dog-beanie-hat-grey',
     'teddy-sherpa-dog-jacket-dark-grey',
-    'ear-protector-scarf-black',
-    'dog-leg-warmer-socks?variant=42515837943989',
-    'ear-protector-scarf-grey',
-    'dog-leg-warmer-socks?variant=42515838140597',
-    'copy-of-ear-protector-scarf-black',
-    'dog-leg-warmer-socks?variant=42515838042293'
+    'ear-protector-scarf',
+    'dog-leg-warmer-socks',
+    'copy-of-ear-protector-scarf-black'
 ]
 
 const matchingProductHandles = [
@@ -1253,7 +1250,7 @@ const pdpUpsellContainer = (items, isTwoImages) => {
     if (document.querySelector('.cbb-frequently-bought-selector-link')) {
         link = document.querySelector('.cbb-frequently-bought-selector-link')
     }
-
+    console.log(link.textContent)
     if (isSale) {
         const path = window.location.pathname
         const product = path.substring("/products/".length)
@@ -1282,7 +1279,7 @@ const pdpUpsellContainer = (items, isTwoImages) => {
     } else {
         const link2 = document.querySelectorAll('.cbb-frequently-bought-selector-link')[1]
 
-        title = `<p class="upsell_title">Match it with a <a href="${link.href}">${textBeforeDash(findMatch(link.textContent))}</a> and <a href="${link2.href}">${textBeforeDash(findMatch(link2.textContent))}</a> to complete the look <span class="green_status">best deal</span></p>`
+        title = `<p class="upsell_title">Match it with a <a href="${link.href}">${textBeforeDash(link.textContent)}</a> and <a href="${link2.href}">${textBeforeDash(link2.textContent)}</a> to complete the look <span class="green_status">best deal</span></p>`
     }
 
 
