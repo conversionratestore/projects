@@ -475,10 +475,6 @@ const style = /*html*/`
             border-bottom: 1px solid #E7E7E7;
         }
 
-        .Cart--expanded .upsells_container {
-            border-top: 1px solid #E7E7E7;
-        }
-
         .info_wrap {
             display: flex;
         }     
@@ -1556,7 +1552,7 @@ const setupCustomSelectsLogic = (length) => {
                         // change value
                         value.textContent = this.textContent
 
-                        sendGAEvent('Click on size choose pdp', option.innerText)
+                        // sendGAEvent('Click on size choose pdp', option.innerText)
 
                         select.querySelector('.active_option')?.classList.remove('active_option')
                         option.classList.add('active_option')
@@ -1707,6 +1703,20 @@ function changeColorVariant(colorSectionIndex) {
 
     let activeOptions = [...document.querySelectorAll('.upsell_container .selected_option')].map(option => option.innerText.split(', ')[1])
     document.querySelector('.upsell_container').hidden = (new Set(activeOptions).size === 1) ? false : true
+}
+
+function checkItemInUpsell() {
+    let mut = new MutationObserver((muts) => {
+        if( muts.length === 1 ) {
+            sendGAEvent('Click on size choose pdp', muts[0].target.innerText)
+        }
+    })
+
+    document.querySelectorAll('.upsell_items_wrap .selected_option .value').forEach(item => {
+        mut.observe(item, {
+            childList: true
+        })
+    })
 }
 
 // CART FUNCTIONS
@@ -2159,6 +2169,8 @@ waitForElement('.cbb-frequently-bought-total-price-sale-price', '.cbb-frequently
             setupCustomSelectsLogic(upsellsLength)
 
             hideText()
+
+            checkItemInUpsell()
         }
     }, WAIT_INTERVAL_TIMEOUT)
 
