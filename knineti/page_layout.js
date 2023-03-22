@@ -1279,6 +1279,9 @@ p.italic_text_var span{
   display: block;
   margin-top: 16px;
 }
+p.italic_text_var b{
+  font-style: normal;
+}
 p.italic_text_var::before,
 p.italic_text_var::after{
   content: "";
@@ -2330,7 +2333,7 @@ body .after-refresh .count_sec:nth-of-type(25) .quick_transcript {
       <p>Once again, these techniques are not difficult to teach - any regular dog owner can use these techniques once
         they know how.</p>
       <p class="italic_text_var">Wow - having had dogs throughout my life, I thought I knew everything that there was to
-        know about dog training. Clearly, I was wrong! 🙂 I had no idea that normal dogs could have the kind of impulse
+        know about dog training. Clearly, I was wrong! <b>🙂</b> I had no idea that normal dogs could have the kind of impulse
         control that I've only seen service dogs have. Your masterclass has been a complete eye-opener for me. Buddy is
         so much better behaved than all my previous dogs had been.</p>
       <p class="about_person_var"><span>Jennifer Aumand</span><span>Boca Raton, Florida</span></p>
