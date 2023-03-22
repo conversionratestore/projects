@@ -374,6 +374,13 @@ let selectHTML = `
     padding: 20px 24px;
     margin-bottom: 20px;
 }
+
+@media (max-width: 600px) {
+    .select-current {
+        font-size: 12px;
+        line-height: 14px;
+    }
+}
 </style>
 <div class="select relative">
     <div class="select-current flx-between">
@@ -415,6 +422,16 @@ let styleBase = `
 }
 .flex-wrap {
     flex-wrap: wrap;
+} 
+@media (min-width: 601px) {
+    .mobile {
+        display: none;
+    }
+}
+@media (max-width: 600px) {
+    .desk {
+        display: none;
+    }
 }
 </style>`;
 
@@ -469,11 +486,30 @@ let progressbarHTML = (firstName, lastName) => {
     .progressbar_item svg.bg path {
         fill: #fff;
     }
+
+    @media (max-width: 600px) {
+        .progressbar {
+            margin-bottom: 18px;
+        }
+        .progressbar_item {
+            min-width: 158px;
+            font-size: 12px;
+            line-height: 32px;
+            padding-left: 18px;
+        }
+        .progressbar_item:last-child {
+            padding-left: 34px;
+            margin-left: -10px;
+        }
+    }
     </style>
     <div class="progressbar flx">
         <div class="progressbar_item active d-flex items-center">
-            <svg class="bg" width="209" height="32" viewBox="0 0 209 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <svg class="bg desk" width="209" height="32" viewBox="0 0 209 32" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M0.5 5C0.5 2.51472 2.51472 0.5 5 0.5H190.194C190.546 0.5 190.888 0.624154 191.158 0.850671L207.851 14.8507C208.566 15.4502 208.566 16.5498 207.851 17.1493L191.158 31.1493C190.887 31.3758 190.546 31.5 190.194 31.5H5C2.51472 31.5 0.5 29.4853 0.5 27V5Z" fill="#00A2BB" stroke="#00A2BB"/>
+            </svg>
+            <svg class="bg mobile" width="158" height="32" viewBox="0 0 158 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M0.5 5C0.5 2.51472 2.51472 0.5 5 0.5H142.753C143.179 0.5 143.585 0.681181 143.87 0.99831L156.43 14.9983C156.941 15.5682 156.941 16.4318 156.43 17.0017L143.87 31.0017C143.585 31.3188 143.179 31.5 142.753 31.5H5C2.51472 31.5 0.5 29.4853 0.5 27V5Z" fill="#00A2BB" stroke="#00A2BB"/>
             </svg>
             1. ${firstName}
             <svg class="check" width="16" height="17" viewBox="0 0 16 17" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -481,8 +517,11 @@ let progressbarHTML = (firstName, lastName) => {
             </svg>
         </div>
         <div class="progressbar_item">
-            <svg class="bg" width="209" height="32" viewBox="0 0 209 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <svg class="bg desk" width="209" height="32" viewBox="0 0 209 32" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M1.48991 1.38731C1.12571 1.08998 1.33596 0.5 1.80612 0.5H204C206.485 0.5 208.5 2.51472 208.5 5V16V27C208.5 29.4853 206.485 31.5 204 31.5H1.80612C1.33596 31.5 1.12571 30.91 1.48991 30.6127L17.9654 17.1619C18.7006 16.5617 18.7006 15.4383 17.9654 14.8381L1.48991 1.38731Z" fill="#fff" stroke="#00A2BB"/>
+            </svg>
+            <svg class="bg mobile" width="157" height="32" viewBox="0 0 157 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M1.28146 0.5H152C154.485 0.5 156.5 2.51472 156.5 5V16V27C156.5 29.4853 154.485 31.5 152 31.5H1.28146C0.845778 31.5 0.61853 30.9815 0.913786 30.6612L13.4883 17.0165C14.0176 16.4422 14.0176 15.5578 13.4883 14.9835L0.913786 1.33884C0.61853 1.01846 0.845778 0.5 1.28146 0.5Z" fill="white" stroke="#00A2BB"/>
             </svg>
             2. ${lastName}
         </div>
@@ -569,6 +608,20 @@ let init = () => {
                 .block-new .link-hero:hover {
                     color: #fff;
                     background-color: #008da4;
+                }
+                @media (max-width: 600px) {
+                    .block-new {
+                        max-width: 259px;
+                        margin: 5px auto 0;
+                        display: grid;
+                    }
+                    .block-new > p {
+                        order: 2;
+                        margin: 12px 0 0 0;
+                    }
+                    .block-new .link-hero {
+                        margin: 12px 0;
+                    }
                 }
             </style>`
             document.body.insertAdjacentHTML('afterbegin', styles);
@@ -930,6 +983,131 @@ let init = () => {
                     color: #00A2BB;
                     font-weight: 700;
                 }
+                .text-mob {
+                    display: none;
+                }
+
+                @media (max-width: 600px) {
+                    .elementor-5910 .elementor-element.elementor-element-ffdba61 img {
+                        display: none;
+                    }
+                    .elementor-column-gap-wide>.elementor-row>.elementor-column>.elementor-element-populated>.elementor-widget-wrap {
+                        padding: 0;
+                    }
+                    .ast-single-post .entry-header.ast-no-title.ast-no-thumbnail {
+                        margin: 0;
+                    }
+                    article#post-5910 {
+                        padding: 0;
+                    }
+                    .elementor-5910 .elementor-element.elementor-element-c47438c .elementor-heading-title{
+                        line-height: 40px;
+                        margin-bottom: 16px;
+                    }
+                    .text-mob {
+                        display: block;
+                        font-family: 'Gilroy', sans-serif;
+                        font-style: normal;
+                        font-weight: 500;
+                        font-size: 14px;
+                        line-height: 22px;
+                        color: #69727A;
+                        margin-bottom: 22px;
+                    }
+                    .block_new {
+                        padding: 28px 15px;
+                        background: #FFFFFF;
+                        border-radius: 16px;
+                        margin-bottom: 22px;
+                    }
+                    .form h2 {
+                        font-size: 28px;
+                        line-height: 35px;
+                        margin-bottom: 30px;
+                    }
+                    .form label {
+                        font-size: 14px;
+                    }
+                    .form input {
+                        font-size: 12px;
+                        line-height: 14px;
+                        margin-bottom: 24px;
+                    }
+                    .flag-dropdown {
+                        height: calc(100% - 26px);
+                    }
+                    .block_consultants {
+                        flex-direction: column;
+                        text-align: center;
+                        padding: 0 30px;
+                    }
+                    .block_consultants span {
+                        font-size: 14px;
+                        line-height: 17px;
+                        margin: 8px 0 0 0;
+                    }
+                    .block_consultants img {
+                        max-width: 69px;
+                    }
+                    .entry-content p:first-child{
+                        margin-bottom: 22px;
+                    }
+                    .entry-content p:last-child {
+                        margin-bottom: 0;
+                    }
+                    .entry-content p {
+                        font-size: 16px;
+                    }
+                    .entry-content p:last-child  {
+                        font-size: 18px;
+                    }
+                    #post-5910 > div > div > div > div > section > div > div > div.elementor-column.elementor-col-50.elementor-top-column.elementor-element.elementor-element-6c97007 > div > div > section > div > div {
+                        flex-wrap: nowrap;
+                    }
+                    section.elementor-section.elementor-element-dc4598b .elementor-column.elementor-col-33:last-child {
+                        margin: 0;
+                    }
+                    section.elementor-section.elementor-element-dc4598b.elementor-section-boxed {
+                        padding-top: 0;
+                    }
+                    .elementor-element-212f3961 .elementor-heading-title.elementor-size-default {
+                        font-size: 26px;
+                        line-height: 36px;
+                    }
+                    .elementor-8847 .elementor-element {
+                        font-size: 16px;
+                        line-height: 24px;
+                    }
+                    .elementor-8850 .elementor-element.elementor-element-64aab27a, .elementor-8850 .elementor-element.elementor-element-4755af9d, .elementor-8850 .elementor-element.elementor-element-8df94c7, .elementor-8850 .elementor-element.elementor-element-5a259942 {
+                        width: 100%;
+                        text-align: center;
+                    }
+                    .elementor-8850 .elementor-element>.elementor-element-populated>.elementor-widget-wrap {
+                        padding: 0!important;
+                    }
+                    section.elementor-element.elementor-element-2ffe8e81 .elementor-widget-image {
+                        text-align: center;
+                        margin-bottom: 10px;
+                    }
+                    .elementor-element-1310dfe7 > div > div > .elementor-element > .elementor-element-populated>.elementor-widget-wrap {
+                        padding: 20px!important;
+                    }
+                    section.elementor-element.elementor-element-2ffe8e81 > div > div > div > div > div > div > div > div > div > div > section > div > div > div.elementor-column.elementor-col-33.elementor-top-column.elementor-element > div > div > div.elementor-element.elementor-widget.elementor-widget-text-editor {
+                        margin-top: -20px;
+                    }
+                    section.elementor-section.elementor-element-dc4598b .elementor-column.elementor-col-33, section.elementor-section.elementor-element-dc4598b .elementor-column[data-col="33"] {
+                        margin-right: 16px;
+                    }
+                    .block_call span {
+                        font-size: 14px;
+                        line-height: 22px;
+                        padding-left: 10px;
+                    }
+                    .block_call svg {
+                        width: 26px;
+                        height: 26px;
+                    }
+                }
             </style>
             ${styleBase}`
             document.body.insertAdjacentHTML('afterbegin', styles);
@@ -940,6 +1118,8 @@ let init = () => {
             document.head.appendChild(link)
 
             document.querySelector('.elementor-5910 .elementor-element.elementor-element-c47438c .elementor-heading-title').innerHTML = 'All-in-One B2B prospecting tool';
+
+            document.querySelector('.elementor-5910 .elementor-element.elementor-element-c47438c .elementor-heading-title').insertAdjacentHTML('afterend', `<div class="text-mob">Let us show you how our accurate B2B company and contact data can help you reach the right decision makers and close more deals.</div>`)
 
             //text arr
             let youCanArr = ['Find out how you can:','Build highly targeted prospect lists using UpLead','Search for specific contacts to engage in account-based marketing','Enrich and enhance contact data to get more context about your prospects','Get access to prospect email addresses that are verified in real-time'];
@@ -990,10 +1170,10 @@ let init = () => {
                     <div class="calendly-inline-widget-new" data-url="https://calendly.com/upleadhq/phone-call?hide_event_type_details=1&hide_gdpr_banner=1" style="min-width:320px;height:510px;"></div>
                 </div>
                 <div class="d-flex items-center block_call" style="display: none;">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <svg style="flex-shrink:0;" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M12 0C9.62664 0 7.30656 0.7038 5.33316 2.02236C3.35976 3.34092 1.82172 5.21508 0.913436 7.40778C0.005216 9.60054 -0.232444 12.0133 0.230576 14.3411C0.693596 16.6688 1.83648 18.8071 3.51474 20.4853C5.19294 22.1635 7.33116 23.3064 9.65892 23.7694C11.9867 24.2324 14.3995 23.9948 16.5922 23.0866C18.7849 22.1783 20.6591 20.6402 21.9776 18.6668C23.2962 16.6934 24 14.3734 24 12C23.9966 8.81844 22.7312 5.76822 20.4815 3.51852C18.2318 1.26882 15.1816 0.00342 12 0ZM12 19C11.7034 19 11.4133 18.912 11.1667 18.7472C10.92 18.5824 10.7277 18.3481 10.6142 18.074C10.5007 17.8 10.471 17.4983 10.5288 17.2073C10.5867 16.9164 10.7296 16.6491 10.9393 16.4393C11.1491 16.2296 11.4164 16.0867 11.7074 16.0288C11.9983 15.9709 12.2999 16.0006 12.574 16.1142C12.8481 16.2277 13.0824 16.42 13.2472 16.6666C13.412 16.9133 13.5 17.2033 13.5 17.5C13.5 17.8978 13.342 18.2794 13.0607 18.5606C12.7793 18.842 12.3978 19 12 19ZM13.6 12.92C13.4216 12.9979 13.2698 13.1261 13.1632 13.289C13.0567 13.4519 12.9999 13.6423 13 13.837C13 14.1022 12.8947 14.3566 12.7071 14.5441C12.5196 14.7316 12.2652 14.837 12 14.837C11.7348 14.837 11.4805 14.7316 11.2929 14.5441C11.1053 14.3566 11 14.1022 11 13.837C10.9999 13.2532 11.1702 12.682 11.4899 12.1936C11.8096 11.7051 12.265 11.3205 12.8 11.087C13.1305 10.9427 13.4159 10.7118 13.6259 10.4186C13.8359 10.1255 13.9627 9.78096 13.993 9.42162C14.0232 9.06228 13.9557 8.70144 13.7977 8.37732C13.6396 8.0532 13.3968 7.7778 13.095 7.58034C12.7933 7.38294 12.4437 7.27074 12.0834 7.25568C11.7231 7.24068 11.3654 7.32336 11.0482 7.49496C10.7311 7.66656 10.4662 7.92072 10.2817 8.23056C10.0972 8.5404 9.99984 8.8944 10 9.255C10 9.5202 9.89466 9.77454 9.7071 9.9621C9.5196 10.1497 9.2652 10.255 9 10.255C8.7348 10.255 8.48046 10.1497 8.2929 9.9621C8.10534 9.77454 7.99998 9.5202 7.99998 9.255C7.99998 8.53386 8.19492 7.8261 8.56422 7.20666C8.93352 6.58722 9.46338 6.07914 10.0978 5.73618C10.7322 5.39322 11.4475 5.22816 12.1681 5.25846C12.8885 5.28876 13.5875 5.51328 14.1908 5.90826C14.7943 6.3033 15.2796 6.85404 15.5956 7.50228C15.9116 8.15052 16.0464 8.87214 15.9859 9.59076C15.9253 10.3094 15.6716 10.9982 15.2516 11.5845C14.8316 12.1708 14.261 12.6325 13.6 12.921V12.92Z" fill="#00A2BB"/>
                     </svg>
-                    <span>No suitable times for you? Call us <a href="tel:8004934084">(800) 493-4084</a></span>
+                    <span>No suitable times for you? <br class="mobile d-flex"> Call us <a href="tel:8004934084">(800) 493-4084</a></span>
                 </div>
                 <div class="flx block_consultants">
                     <img src="${dir}/img/group-consultants.svg" alt="image">
@@ -1002,6 +1182,10 @@ let init = () => {
             </div>
            `)
 
+                      
+            if (window.matchMedia("(max-width: 600px)").matches) {
+                document.querySelector('.text-mob').after(document.querySelector('.block_new'))
+            }
             let newBlock = document.querySelector('.block_new'),
                 inputPhone = document.querySelector('#phoneCode'),
                 inputName = document.querySelector('[name="full-name"]'),
