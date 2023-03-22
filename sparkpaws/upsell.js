@@ -813,6 +813,29 @@ const waitForCurrency = setInterval(() => {
     }
 }, WAIT_INTERVAL_TIMEOUT)
 
+const fbt_urls = [
+    'dog-pajama',
+    'cloud-knit-dog-sweater',
+    'checkered-knit-sweater',
+    'dog-knit-sweater',
+    'bear-knit-sweater',
+    'teddy-sherpa-dog-jacket-black',
+    'winter-dog-jacket-vest-black',
+    'all-weather-water-resistant-dog-shoes-4pc-set',
+    'water-resistant-dog-jacket-vest-olive2',
+    'all-weather-water-resistant-dog-shoes-4pc-set-red',
+    'water-resistant-dog-jacket-vest-red2',
+    'winter-dog-jacket-vest-black',
+    'knit-pom-pom-dog-beanie-hat-grey',
+    'teddy-sherpa-dog-jacket-dark-grey',
+    'ear-protector-scarf-black',
+    'dog-leg-warmer-socks?variant=42515837943989',
+    'ear-protector-scarf-grey',
+    'dog-leg-warmer-socks?variant=42515838140597',
+    'copy-of-ear-protector-scarf-black',
+    'dog-leg-warmer-socks?variant=42515838042293'
+]
+
 const matchingProductHandles = [
     [
         'pink-blue-sky-human-hoodie-matching',
@@ -1244,8 +1267,18 @@ const pdpUpsellContainer = (items, isTwoImages) => {
         msg = `<div class="msg">${msgSvg}<p>Choose all products to receive <b>a 25%</b> discount on the walk set.</p></div>`
     } else if (window.location.pathname.includes('-set-')) {
         title = `<p class="upsell_title">Upgrade your walk set with <a href="${link.href}">${textBeforeDash(link.textContent)}</a> <span class="green_status">best deal</span></p>`
+        fbt_urls.forEach(function(item) {
+            if(window.location.pathname.includes(item)) {
+                title = `<p class="upsell_title">Frequently bought together <span class="green_status">best deal</span></p>`
+            }
+        })
     } else if (!isSale && isTwoImages) {
         title = `<p class="upsell_title">Match your dog with a <a href="${link.href}">${textBeforeDash(link.textContent)}</a> <span class="green_status">best deal</span></p>`
+        fbt_urls.forEach(function(item) {
+            if(window.location.pathname.includes(item)) {
+                title = `<p class="upsell_title">Frequently bought together <span class="green_status">best deal</span></p>`
+            }
+        })
     } else {
         const link2 = document.querySelectorAll('.cbb-frequently-bought-selector-link')[1]
 
