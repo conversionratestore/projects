@@ -417,9 +417,6 @@ const style = /*html*/`
             border: none !important;
         }
 
-        .Cart--expanded .upsells_title {
-            display: none;
-        }
         .Drawer__Main .select_field {
             min-width: initial;
             max-width: initial !important;
@@ -1250,7 +1247,7 @@ const pdpUpsellContainer = (items, isTwoImages) => {
     if (document.querySelector('.cbb-frequently-bought-selector-link')) {
         link = document.querySelector('.cbb-frequently-bought-selector-link')
     }
-    console.log(link.textContent)
+    
     if (isSale) {
         const path = window.location.pathname
         const product = path.substring("/products/".length)
@@ -1278,8 +1275,12 @@ const pdpUpsellContainer = (items, isTwoImages) => {
         })
     } else {
         const link2 = document.querySelectorAll('.cbb-frequently-bought-selector-link')[1]
-
         title = `<p class="upsell_title">Match it with a <a href="${link.href}">${textBeforeDash(link.textContent)}</a> and <a href="${link2.href}">${textBeforeDash(link2.textContent)}</a> to complete the look <span class="green_status">best deal</span></p>`
+        fbt_urls.forEach(function(item) {
+            if(window.location.pathname.includes(item)) {
+                title = `<p class="upsell_title">Frequently bought together <span class="green_status">best deal</span></p>`
+            }
+        })
     }
 
 
