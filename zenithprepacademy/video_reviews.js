@@ -436,9 +436,11 @@ a.schedule_new_btn {
     margin: 0;
     padding: 72px 0;
   }
+
   .review_nav {
     padding: 0 135px;
   }
+
   #reviewsBlock > h2 {
     font-size: 42px;
     line-height: 50px;
@@ -787,10 +789,9 @@ a.schedule_new_btn {
           //  slider
           let slider = jQuery(".review_nav").slick({
             slidesToShow: 2.55,
-            slidesToScroll: 1,
+            slidesToScroll: 2,
             arrows: true,
             dots: true,
-            // adaptiveHeight: true,
             infinite: false,
           })
           slider.on("swipe", function () {
