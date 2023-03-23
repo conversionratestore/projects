@@ -1307,6 +1307,9 @@ p.italic_text_var::after{
   margin-bottom: 0 !important;
 }
 @media (max-width: 768px) {
+  .after-refresh .count_sec:nth-of-type(1) .content .col-md-8 > p:nth-child(5){
+    margin-bottom: 16px !important;
+  }
   body .special_gift_box p span{
     margin: 0;
   }
