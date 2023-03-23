@@ -264,6 +264,17 @@ const state = new Promise((resolve, reject) => {
     });
 })
 
+//push dataLayer
+let pushDataLayer = (action) => {
+    console.log(action)
+    window.dataLayer = window.dataLayer || [];
+    dataLayer.push({
+        'event': 'event-to-ga',
+        'eventCategory': 'Exp: New design alt flow',
+        'eventAction': action
+    });
+}
+
 //mask phome
 const mask = (inputName, mask, evt) => {
     try {
@@ -572,6 +583,18 @@ let changePosition = (itemMob, after, maxInnerWidth, itemDesk) => {
     }
 }
 
+//comes into view
+let isScrolledIntoView = (el) => {
+    let rect = el.getBoundingClientRect(),
+        elemTop = rect.top,
+        elemBottom = rect.bottom;
+
+    let isVisible = (elemTop >= 0) && (elemBottom <= window.innerHeight);
+
+    return isVisible;
+}
+let viewedReview = false;
+
 let init = () => {
     let run = setInterval(() => {
         // Homepage
@@ -656,7 +679,12 @@ let init = () => {
             </div>`);
 
             document.querySelector('.block-new p').before(parent.querySelector('.elementor-icon-list-text'))
-            document.querySelector('#jet-menu-item-10054').insertAdjacentHTML('afterend',`<li id="" class="jet-menu-item jet-menu-item-type-custom jet-menu-item-object-custom jet-has-roll-up jet-simple-menu-item jet-regular-item jet-menu-item-10054"><a href="https://www.uplead.com/enterprise/" class="top-level-link menu-link" data-wpel-link="internal"><div class="jet-menu-item-wrapper"><div class="jet-menu-title">Enterprise</div></div></a></li>`)
+            document.querySelector('#jet-menu-item-10054').insertAdjacentHTML('afterend',`<li id="" class="jet-menu-item jet-menu-item-type-custom jet-menu-item-object-custom jet-has-roll-up jet-simple-menu-item jet-regular-item jet-menu-item-10054"><a href="https://www.uplead.com/enterprise/" class="top-level-link menu-link" data-wpel-link="internal" onclikc="pushDataLayer('Click on Menu item Enterprise')"><div class="jet-menu-item-wrapper"><div class="jet-menu-title">Enterprise</div></div></a></li>`)
+            document.querySelector('#menu-2-4bb144a > li.menu-item.menu-item-type-custom.menu-item-object-custom.menu-item-10066').insertAdjacentHTML('afterend',`<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-10066"><a href="https://www.uplead.com/enterprise/" class="elementor-item menu-link" tabindex="0" data-wpel-link="internal" onclikc="pushDataLayer('Click on Menu item Enterprise')">Enterprise</a></li>`)
+       
+            document.querySelector('.block-new  a.link-hero').addEventListener('click', () => pushDataLayer('Click on Book a demo button'))
+           
+            pushDataLayer('loaded')
         }
         //Contact form
         //2 required fields are shown. Added a field with a phone number. A new field with the ability to call directly
@@ -1239,6 +1267,19 @@ let init = () => {
                 if (document.querySelector('.flag-dropdown.active') && !e.target.closest('.flag-dropdown')) {
                     toggleActive(document.querySelector('.flag-dropdown'))
                 }
+                if (e.target.name == "full-name") {
+                    pushDataLayer('Click on the input Full name')
+                } else if (e.target.name == "email") {
+                    pushDataLayer('Click on the input Email')
+                } else if (e.target.closest('.flag-dropdown')) {
+                    pushDataLayer('Click on country selection')
+                } else if (e.target.name == "phone") {
+                    pushDataLayer('Click on the input phone')
+                } else if (e.target.closest('.select')) {
+                    pushDataLayer('Click on the Number of prospects')
+                } else if (e.target.classList.contains('btn-get')) {
+                    pushDataLayer('Click on the Get a Free Demo button')
+                }
             })
 
             //state events
@@ -1286,8 +1327,22 @@ let init = () => {
                         url: `https://calendly.com/upleadhq/phone-call/?name=${inputName.value}&email=${inputEmail.value}&hide_event_type_details=1&hide_gdpr_banner=1`,
                         parentElement: document.querySelector(".calendly-inline-widget-new")
                     })
+                    pushDataLayer('Visibility of the second step of the form')
                 }
             })
+
+            //events
+            document.querySelector('.block_call a').addEventListener('click', () => pushDataLayer('Click on phone numbe'))
+            window.addEventListener('scroll', () => {
+                if (isScrolledIntoView(document.querySelector('.elementor-element-2ffe8e81')) && viewedReview == false) {
+                    setTimeout(() => {
+                        if (isScrolledIntoView(document.querySelector('.elementor-element-2ffe8e81')) && viewedReview == false) {
+                            pushDataLayer('Review section visibility')
+                        }
+                    }, 3000) 
+                }
+            })
+            pushDataLayer('loaded')
         }
 
         //Create an account
@@ -1380,6 +1435,8 @@ let init = () => {
             document.querySelector('.btn--largeV2').addEventListener('click', () => {
                 sessionStorage.setItem('numberProspects', selectCurrent.dataset.current)
             })
+
+            pushDataLayer('loaded')
         }
         //Activate your trial
         //Option activate your trial if the user selected  1000+ monthly credits
@@ -1614,6 +1671,8 @@ let init = () => {
             } else {
                 document.querySelector('.verificationEmail__wrapper').style.display = 'block'
             }
+
+            pushDataLayer('loaded')
         }
     })
 }
@@ -1627,3 +1686,11 @@ let routing = setInterval(() => {
         init() 
     }
 })
+
+//clarify
+let isClarify = setInterval(() => {
+    if(typeof clarity == 'function') {
+        clearInterval(isClarify)
+        clarity("set", "new_design_alt_flow", "variant_1");
+    }
+}, 100)
