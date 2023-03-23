@@ -378,7 +378,7 @@ a.schedule_new_btn {
   display: flex;
   align-items: center;
   justify-content: center;
-  flex: 1 0 42px;
+  flex: 0 0 42px;
 }
 .review_card_info span.review_card_email {
   font-family: "Oxygen", sans-serif;
