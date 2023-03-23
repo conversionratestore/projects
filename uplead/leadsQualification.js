@@ -364,6 +364,9 @@ let selectHTML = `
 .select-drop li:hover, .select-drop li.active {
     color: #00A2BB;
 }
+.select.active .select-current {
+    border-color: #00A2BB;
+}
 .select.active .select-drop {
     display: block;
 }
@@ -405,6 +408,9 @@ let styleBase = `
 .relative {
     position: relative;
 }
+.text-nowrap {
+    white-space: nowrap;
+}
 /* flex */
 .d-flex {
     display: flex;
@@ -423,12 +429,12 @@ let styleBase = `
 .flex-wrap {
     flex-wrap: wrap;
 } 
-@media (min-width: 601px) {
+@media (min-width: 769px) {
     .mobile {
         display: none;
     }
 }
-@media (max-width: 600px) {
+@media (max-width: 768px) {
     .desk {
         display: none;
     }
@@ -487,7 +493,7 @@ let progressbarHTML = (firstName, lastName) => {
         fill: #fff;
     }
 
-    @media (max-width: 600px) {
+    @media (max-width: 768px) {
         .progressbar {
             margin-bottom: 18px;
         }
@@ -556,6 +562,14 @@ const selectChange = (select, selectCurrent) => {
             selectCurrent.innerHTML = item.innerHTML;
         })
     })
+}
+
+let changePosition = (itemMob, after, maxInnerWidth, itemDesk) => {
+    if (window.matchMedia(`(max-width: ${maxInnerWidth}px)`).matches) {
+        document.querySelector(itemMob).after(document.querySelector(after))
+    } else {
+        document.querySelector(itemDesk).after(document.querySelector(after))
+    }
 }
 
 let init = () => {
@@ -987,12 +1001,10 @@ let init = () => {
                     display: none;
                 }
 
-                @media (max-width: 600px) {
-                    .elementor-5910 .elementor-element.elementor-element-ffdba61 img {
-                        display: none;
-                    }
-                    .elementor-column-gap-wide>.elementor-row>.elementor-column>.elementor-element-populated>.elementor-widget-wrap {
-                        padding: 0;
+                @media (max-width: 991px) {
+
+                    .elementor-5910 .elementor-element.elementor-element-25abc2b:not(.elementor-motion-effects-element-type-background)>.elementor-column-wrap {
+                        background: transparent;
                     }
                     .ast-single-post .entry-header.ast-no-title.ast-no-thumbnail {
                         margin: 0;
@@ -1067,9 +1079,6 @@ let init = () => {
                     section.elementor-section.elementor-element-dc4598b .elementor-column.elementor-col-33:last-child {
                         margin: 0;
                     }
-                    section.elementor-section.elementor-element-dc4598b.elementor-section-boxed {
-                        padding-top: 0;
-                    }
                     .elementor-element-212f3961 .elementor-heading-title.elementor-size-default {
                         font-size: 26px;
                         line-height: 36px;
@@ -1078,7 +1087,7 @@ let init = () => {
                         font-size: 16px;
                         line-height: 24px;
                     }
-                    .elementor-8850 .elementor-element.elementor-element-64aab27a, .elementor-8850 .elementor-element.elementor-element-4755af9d, .elementor-8850 .elementor-element.elementor-element-8df94c7, .elementor-8850 .elementor-element.elementor-element-5a259942 {
+                    .elementor-8850 .elementor-element.elementor-element-741991e3, .elementor-8850 .elementor-element.elementor-element-93e7646, .elementor-8850 .elementor-element.elementor-element-64aab27a, .elementor-8850 .elementor-element.elementor-element-4755af9d, .elementor-8850 .elementor-element.elementor-element-8df94c7, .elementor-8850 .elementor-element.elementor-element-5a259942 {
                         width: 100%;
                         text-align: center;
                     }
@@ -1106,6 +1115,23 @@ let init = () => {
                     .block_call svg {
                         width: 26px;
                         height: 26px;
+                    }
+                    .elementor-5910 .elementor-element.elementor-element-25abc2b:not(.elementor-motion-effects-element-type-background)>.elementor-column-wrap {
+                        margin-left: 20px;
+                    }
+                }
+                @media (max-width: 768px) {
+                    .elementor-5910 .elementor-element.elementor-element-ffdba61 img {
+                        display: none;
+                    }
+                    .elementor-column-gap-wide>.elementor-row>.elementor-column>.elementor-element-populated>.elementor-widget-wrap {
+                        padding: 0;
+                    }
+                    section.elementor-section.elementor-element-dc4598b.elementor-section-boxed {
+                        padding-top: 0;
+                    }
+                    .elementor-5910 .elementor-element.elementor-element-25abc2b:not(.elementor-motion-effects-element-type-background)>.elementor-column-wrap {
+                        margin-left: 0;
                     }
                 }
             </style>
@@ -1182,10 +1208,11 @@ let init = () => {
             </div>
            `)
 
-                      
-            if (window.matchMedia("(max-width: 600px)").matches) {
-                document.querySelector('.text-mob').after(document.querySelector('.block_new'))
-            }
+            changePosition('.text-mob', '.block_new', '767', '.elementor iframe')
+            window.addEventListener('resize', () => {
+                changePosition('.text-mob', '.block_new', '767', '.elementor iframe')
+            })
+
             let newBlock = document.querySelector('.block_new'),
                 inputPhone = document.querySelector('#phoneCode'),
                 inputName = document.querySelector('[name="full-name"]'),
@@ -1265,32 +1292,84 @@ let init = () => {
 
         //Create an account
         //Dropdown list for selection number of prospects you would like to reach monthly
-        if (hrefLocation.includes('app.uplead.com/trial-signup') && document.querySelector('.cO98tMz831zEgmUg_ng5') != null) {
+        if (hrefLocation.includes('app.uplead.com/trial-signup') && document.querySelector('.cO98tMz831zEgmUg_ng5') != null && document.querySelector('.dropdown') == null) {
             clearInterval(run)
-            document.body.insertAdjacentHTML('afterbegin', `
-            <style>
-                .verificationEmail__wrapper {
-                    display: none;
-                }
-                .btns {
-                    position: relative;
-                }
-                .to_trial {
-                    position: absolute;
-                    width: calc(100% + 8px);
-                    height: 66px;
-                    z-index: 5;
-                    top: -2px;
-                    left: -2px;
-                    background: transparent;
-                    cursor: no-drop;
-                }
-            </style>
-            ${styleBase}`)
+
+            if (document.querySelector('.style-trial') == null) {
+                document.body.insertAdjacentHTML('afterbegin', `
+                <style class="style-trial">
+                    .verificationEmail__wrapper {
+                        display: none;
+                    }
+                    .btns {
+                        position: relative;
+                    }
+                    .to_trial {
+                        position: absolute;
+                        width: calc(100% + 8px);
+                        height: 66px;
+                        z-index: 5;
+                        top: -2px;
+                        left: -2px;
+                        background: transparent;
+                        cursor: no-drop;
+                    }
+
+                    @media (max-width: 1100px) {
+                        .kr4tbt22uvtr4CW57A9u {
+                            display: none;
+                        }
+                    }
+                    @media (max-width: 730px) {
+                        .K8FFStZLPiRjE1Zq3yX4 {
+                            display: none;
+                        }
+                        .ZJTKvk_PikRPjgNCOU0N {
+                            margin: 0;
+                        }
+                        .kmLE6xfKFa1uDt71e_Nd {
+                            flex-wrap: wrap;
+                        }
+                        .dE5r6_NUqu34f8PRKakO, .q5UmgJHGuXZFCyzhcPAu .ypwCcjUz6FXe0IofDPdC, .cD02q96rHTjYm9KAUpQY .vCenklqa2IbXcZFtBtUj, .react-tel-input .form-control {
+                            width: 100%;
+                            box-shadow: none!important;
+                        }
+                        .kmLE6xfKFa1uDt71e_Nd {
+                            box-shadow: none;
+                        }
+                        .dE5r6_NUqu34f8PRKakO, .kmLE6xfKFa1uDt71e_Nd {
+                            background: transparent;
+                        }
+                        .cD02q96rHTjYm9KAUpQY {
+                            background: #fff;
+                            border-radius: 16px;
+                        }
+                        .cD02q96rHTjYm9KAUpQY {
+                            padding: 28px 19px 40px;
+                        }
+                        .cO98tMz831zEgmUg_ng5 .UPD_LV9906a8Dv8LszE5, .q5UmgJHGuXZFCyzhcPAu .BEJl8O7ZexnXXM12l5cB {
+                            font-size: 14px;
+                            line-height: 20px!important;
+                            font-weight: 600;
+                        }
+                        .q5UmgJHGuXZFCyzhcPAu .select-current, .q5UmgJHGuXZFCyzhcPAu .ypwCcjUz6FXe0IofDPdC, .B3edf5Xp27PPH_M9VFml  {
+                            padding: 16.5px 24px;
+                            height: auto;
+                            font-size: 12px!important;
+                            line-height: 14px!important;
+                        }
+                        .OiO2_J_KVZo2xuKCWICq, .B3edf5Xp27PPH_M9VFml {
+                            height: 49px!important;
+                            box-shadow: none!important;
+                        }
+                    }
+                </style>
+                ${styleBase}`)
+            }
 
             document.querySelector('.cO98tMz831zEgmUg_ng5').insertAdjacentHTML('afterend',`
-            <div class="q5UmgJHGuXZFCyzhcPAu" style="padding-top: 20px;">
-                <label class="BEJl8O7ZexnXXM12l5cB" style="line-height: 24px">Number of prospects you would like to reach <span style="color: #00A2BB">monthly</span></label>
+            <div class="q5UmgJHGuXZFCyzhcPAu dropdown" style="padding-top: 20px;">
+                <label class="BEJl8O7ZexnXXM12l5cB" style="line-height: 24px">Number of prospects you would like to <span class="text-nowrap">reach <span style="color: #00A2BB">monthly</span></span></label>
                 ${selectHTML}
             </div>`)
 
@@ -1396,6 +1475,8 @@ let init = () => {
                     width: fit-content;
                     margin: 12px 0 32px;
                     font-weight: 500;
+                    font-size: 18px;
+                    line-height: 22px;      
                 }
                 .w-40 {
                     width: 40%;
@@ -1405,6 +1486,72 @@ let init = () => {
                     border: 1px solid #00A2BB;
                     border-radius: 10px;
                     padding: 52px;
+                }
+
+                @media (max-width: 991px) {
+                    .wrapper-can > div {
+                        width: calc(50% - 20px)!important;
+                    }
+                    .body_contact_team .btn {
+                        margin: 64px 0 0 0;
+                        width: 100%;
+                    }
+                }
+                @media (max-width: 768px) {
+                    .body_contact_team, .body_start_trial {
+                        padding: 28px;
+                    }
+                    .body_start_trial {
+                        flex-wrap: wrap;
+                    }
+                    .body_start_trial .btn {
+                        width: 100%;
+                        margin: 22px 0 0 0;
+                    }
+                    .wrapper-can > div {
+                        width: 100%!important;
+                        margin-right: 0!important;
+                    }
+                    .your-trial .btn-back {
+                        display: none;
+                    }
+                    .your-trial .progressbar_item {
+                        min-width: 174px;
+                        line-height: 35px;
+                    }
+                }
+                @media (max-width: 600px) {
+                   
+                    .your-trial h2 {
+                        font-size: 20px;
+                        line-height: 25px;
+                    }
+                    .body_contact_team .block {
+                        margin: 22px 0;
+                        font-size: 16px;
+                        line-height: 22px;
+                    }
+                    .wrapper-can p {
+                        font-size: 14px;
+                        line-height: 22px;
+                    }
+                    .your-trial p.fw-bold {
+                        font-size: 16px;
+                        line-height: 20px;
+                    }
+                    .wrapper-can > div svg {
+                        width: 14px;
+                        height: 14px;
+                    }
+                    .your-trial .btn {
+                        font-size: 16px;
+                        line-height: 49px;
+                    }
+                }
+                @media (max-width: 500px) {
+                    .your-trial {
+                        min-height: calc(100vh - 58px - 87.13px);
+                    }
                 }
                 </style>
     
@@ -1423,16 +1570,14 @@ let init = () => {
                         </div>
                         <div class="body_contact_team">
                             <div class="d-flex justify-between">
-                                <div>
+                                <div class="head_team">
                                     <h2>High-Volume Sales Team? <br>We’ve got you covered!</h2>
                                     <div class="block">Reach more qualified leads with our Enterprise plan</div>
                                 </div>
                                 <a href="https://www.uplead.com/uplead-demo/" class="btn">Contact Sales Team</a>
                             </div>
                             <p class="fw-bold">Find out how you can:</p>
-                            <div class="d-flex flex-wrap wrapper-can">
-                               
-                            </div>
+                            <div class="d-flex flex-wrap wrapper-can"></div>
                         </div>
                         <div class="body_start_trial flx-between">
                             <h2>Want to try before?<br>
@@ -1449,7 +1594,7 @@ let init = () => {
                 for (let i = 0; i < youCanTrialArr.length; i++) {
                     document.querySelector('.body_contact_team .wrapper-can').insertAdjacentHTML('beforeend',`
                     <div class="d-flex" style="margin:20px 20px 0 0;width: 37%">
-                        <svg style="flex-shrink: 0;margin-right: 8px;" width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <svg style="flex-shrink: 0;margin-right: 8px;margin-top: 3px;" width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path fill-rule="evenodd" clip-rule="evenodd" d="M9 0C4.02923 0 0 4.02923 0 9C0 13.9708 4.02923 18 9 18C13.9708 18 18 13.9708 18 9C18 4.02923 13.9708 0 9 0ZM13.1762 5.60875C13.5581 5.92697 13.6097 6.49456 13.2915 6.87634L8.79126 12.2764C8.63426 12.4651 8.4069 12.5812 8.16207 12.5981C7.91723 12.6151 7.67614 12.5314 7.49443 12.3662L4.79455 9.91161C4.42676 9.57727 4.39965 9.00803 4.73398 8.64024C5.06832 8.27245 5.63756 8.24534 6.00535 8.57967L8.0102 10.4022L11.9087 5.7238C12.2269 5.342 12.7943 5.29033 13.1761 5.60854L13.1762 5.60875Z" fill="#00A2BB"/>
                         </svg>
                         <p style="color: #69727A;">${youCanTrialArr[i]}</p>
@@ -1460,6 +1605,12 @@ let init = () => {
                     document.querySelector('.your-trial').style.display = 'none';
                     document.querySelector('.verificationEmail__wrapper').style.display = 'block';
                 })
+
+                changePosition('.wrapper-can', '.body_contact_team .btn', '991', '.head_team')
+                window.addEventListener('resize', () => {
+                    changePosition('.wrapper-can', '.body_contact_team .btn', '991', '.head_team')
+                })
+
             } else {
                 document.querySelector('.verificationEmail__wrapper').style.display = 'block'
             }
