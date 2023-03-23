@@ -1373,7 +1373,7 @@ let myFunk = setInterval(() => {
       `<p class="policy_var">By clicking, “Submit” I Agree to GrantMe’s 
         <a href="https://grantme.ca/privacy-policy/?__hstc=166450401.d0807ef5d572f44bbd6f27a9bad53784.1677748614911.1677748614911.1677754299636.2&amp;__hssc=166450401.4.1677754299636&amp;__hsfp=2335833925" target="_blank">Privacy Policy</a>,
         <a href="https://grantme.ca/terms-of-use/?__hstc=166450401.d0807ef5d572f44bbd6f27a9bad53784.1677748614911.1677748614911.1677754299636.2&amp;__hssc=166450401.4.1677754299636&amp;__hsfp=2335833925" target="_blank">Terms of Use</a> 
-        and consent to receiving promotional messages.<br />A copy of your assessment results will be sent to you by email.
+        and consent to receiving promotional messages.
     </p>`
     )
     //click input
