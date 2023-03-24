@@ -981,7 +981,7 @@ let init = () => {
                     width: 100%;
                     margin-bottom: 22px;
                 }
-                .block_consultants span {
+                .block_consultants > span {
                     font-family: 'Gilroy';
                     font-style: normal;
                     font-weight: 500;
