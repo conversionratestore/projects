@@ -1003,7 +1003,7 @@ let init = () => {
                 }
                 .block_calendly {
                     display: none;
-                    margin-top: -30px;
+                    margin-top: -25px;
                 }
                 .block_call {
                     background: #E4F9FD;
@@ -1188,9 +1188,12 @@ let init = () => {
             document.querySelector('.entry-content .elementor-text-editor').insertAdjacentHTML('beforeend',`<p>We'll also help you narrow down on the most cost-effective solutions for your unique & specific needs.</p>`);
 
             document.querySelector('article#post-5910').insertAdjacentHTML('afterend', review)
-
+            document.querySelector('.elementor-element-25abc2b > div > div > div > div.elementor-widget-container iframe').insertAdjacentHTML('beforebegin', '<div class="sibling"></div>')
+            document.querySelector('.elementor-element-25abc2b > div > div > div > div.elementor-widget-container iframe').remove()
+            document.querySelector('.elementor-element-25abc2b > div > div > div > div.elementor-widget-container script').remove()
+            
             //form
-            document.querySelector('.calendly-inline-widget').insertAdjacentHTML('beforebegin', `
+            document.querySelector('.sibling').insertAdjacentHTML('afterbegin', `
             <div class="block_new">
                 ${progressbarHTML('Contact info','Calendar')}
                 <div class="form">
@@ -1236,9 +1239,9 @@ let init = () => {
             </div>
            `)
 
-            changePosition('.text-mob', '.block_new', '767', '.elementor iframe')
+            changePosition('.text-mob', '.block_new', '767', '.sibling')
             window.addEventListener('resize', () => {
-                changePosition('.text-mob', '.block_new', '767', '.elementor iframe')
+                changePosition('.text-mob', '.block_new', '767', '.sibling')
             })
 
             let newBlock = document.querySelector('.block_new'),
@@ -1323,6 +1326,7 @@ let init = () => {
                     newBlock.querySelector('.form').style.display = 'none';
                     newBlock.querySelector('.block_call').style = '';
                     document.querySelector('.block_calendly').style.display = 'block';
+                    console.log('calendly init')
                     Calendly.initInlineWidget({
                         url: `https://calendly.com/upleadhq/phone-call/?name=${inputName.value}&email=${inputEmail.value}&hide_event_type_details=1&hide_gdpr_banner=1`,
                         parentElement: document.querySelector(".calendly-inline-widget-new")
