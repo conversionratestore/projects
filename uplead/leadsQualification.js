@@ -1334,15 +1334,13 @@ let init = () => {
                     newBlock.querySelector('.block_call').style = '';
                     document.querySelector('.block_calendly').style = 'height: auto; margin-bottom: 0;';
                     console.log('calendly init')
-                    // Calendly.initInlineWidget({
-                    //     url: `https://calendly.com/upleadhq/phone-call/?name=${inputName.value}&email=${inputEmail.value}&hide_event_type_details=1&hide_gdpr_banner=1`,
-                    //     parentElement: document.querySelector(".calendly-inline-widget-new")
-                    // })
-                    Calendly.initPopupWidget({
-                        url: 'https://calendly.com/upleadhq/phone-call/?name=${inputName.value}&email=${inputEmail.value}&hide_event_type_details=1&hide_gdpr_banner=1',
+                    Calendly.initInlineWidget({
+                        url: `https://calendly.com/upleadhq/phone-call/?name=${inputName.value}&email=${inputEmail.value}&hide_event_type_details=1&hide_gdpr_banner=1`,
                         parentElement: document.querySelector(".calendly-inline-widget-new")
-                    });
+                    })
                     pushDataLayer('Visibility of the second step of the form')
+
+                    return false
                 }
             })
 
