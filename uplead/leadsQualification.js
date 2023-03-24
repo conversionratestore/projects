@@ -1238,7 +1238,7 @@ let init = () => {
                 </div>
                 <div class="flx block_consultants">
                     <img src="${dir}/img/group-consultants.svg" alt="image">
-                    <span>Our product consultants are ready to help you</span>
+                    <span>Our product consultants are ready <span class="text-nowrap">to help you</span></span>
                 </div>
             </div>
            `)
@@ -1256,11 +1256,11 @@ let init = () => {
                 selectCurrent = document.querySelector('.select-current span');
 
             //add calendly script
-            let scriptCalendly = document.createElement('script');
-            scriptCalendly.type = 'text/javascript';
-            scriptCalendly.async = true;
-            scriptCalendly.src = 'https://assets.calendly.com/assets/external/widget.js';
-            document.querySelector('.block_calendly').appendChild(scriptCalendly)
+            // let scriptCalendly = document.createElement('script');
+            // scriptCalendly.type = 'text/javascript';
+            // scriptCalendly.async = true;
+            // scriptCalendly.src = 'https://assets.calendly.com/assets/external/widget.js';
+            // document.querySelector('.block_calendly').appendChild(scriptCalendly)
 
             inputPhone.addEventListener('keyup', (event) => {
                 mask('phoneCode', event.currentTarget.dataset.mask, event);
