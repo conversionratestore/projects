@@ -47,7 +47,7 @@ let html = `
         <h2>Sign your document for FREE!</h2>
         <p>Create signature and sign your document for free in a few clicks</p>
     </div>
-    <a href="https://app.signaturely.com/signup" class="btn">Start My 7-day Free Trial</a>
+    <a href="https://app.signaturely.com/signup" class="btn">Create free account</a>
 </div>`
 
 let hrefLocation = window.location.href;
