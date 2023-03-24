@@ -1,0 +1,150 @@
+let html = `
+<style>
+    .chakra-portal, .elementor.elementor-5997.elementor-location-footer > div > section.elementor-section.elementor-element-2cfd820{
+        display: none;
+    }
+    #content > div.ast-container {
+        margin: 40px 0!important;
+    }
+    .block-trial {
+        background: #00A3FA;
+        border-radius: 20px;
+        padding: 40px;   
+        color: #FFFFFF;
+        font-weight: 700;
+        font-size: 18px;
+        line-height: 120.69%;
+        max-width: 1216px;
+        width: 97%;
+        margin: 0 auto 0;
+    }
+    .block-trial h2 {
+        font-weight: 700;
+        font-size: 36px;
+        margin-bottom: 16px;
+        color: #FFFFFF;
+    }
+    .block-trial a.btn {
+        background: #FFFFFF;
+        border: 1px solid #E4E7EB;
+        border-radius: 50px;
+        line-height: 59px;
+        text-align: center;
+        color: #00A3FA;
+        display: block;
+        width: 396px;
+        height: fit-content;
+    }
+    .flx {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+</style>
+
+<div class="block-trial flx">
+    <div>
+        <h2>Sign your document for FREE!</h2>
+        <p>Create signature and sign your document for free in a few clicks</p>
+    </div>
+    <a href="https://app.signaturely.com/signup" class="btn">Start My 7-day Free Trial</a>
+</div>`
+
+let hrefLocation = window.location.href;
+
+let init = setInterval(() => {
+    if (hrefLocation.includes('/online-signature/type') && document.querySelector('.post-1599') != null) {
+        clearInterval(init)
+        document.querySelector('.post-1599').insertAdjacentHTML('beforebegin', html)
+
+        downloadESignature()
+    }
+    if (hrefLocation.includes('/online-signature/draw') && document.querySelector('.post-1597') != null) {
+        clearInterval(init)
+        document.querySelector('.post-1597').insertAdjacentHTML('beforebegin', html) 
+        downloadESignature()
+        
+    }
+    if (hrefLocation.includes('/signup') && document.querySelector('.sign-up--top-layer') != null) {
+        clearInterval(init)
+        document.body.insertAdjacentHTML('afterbegin',`
+        <style>
+            .sign-up {
+                flex-direction: row-reverse;
+            }
+            .sign-up__title {
+                display: none;
+            }
+            .sign-up__right-side {
+                justify-content: space-around;
+                padding: 7.5vh 0;
+            }
+            .sign-up--head {
+                color: #FFFFFF;
+                font-weight: 500;
+                font-size: 18px;
+            }
+            .sign-up--head h2 {
+                font-weight: 700;
+                font-size: 36px;
+                margin-bottom: 20px;
+                line-height: 120.69%;
+            }
+            .sign-up--head p {
+                font-weight: 500;
+                font-size: 24px;
+                margin-bottom: 40px;
+                line-height: 120.69%;
+            }
+            .sign-up--head ul > li {
+                line-height: 120%;
+                margin-bottom: 24px;
+                display: block;
+                position: relative;
+                padding-left: 34px;
+            }
+            .sign-up--head ul > li:last-child {
+                margin: 0;
+            }
+            .sign-up--head ul > li:before {
+                content: '';
+                position: absolute;
+                left: 0;
+                top: 50%;
+                width: 24px;
+                height: 24px;
+                transform: translateY(-50%);
+                background: url('https://conversionratestore.github.io/projects/signaturely/img/check.svg') no-repeat center / 100%;
+            }
+        </style>`)
+
+        document.querySelector('.sign-up--top-layer').insertAdjacentHTML('beforebegin', `
+            <div class="sign-up--head">
+                <h2>Sign your documents now</h2>
+                <p>1st document - for FREE!</p>
+                <ul>
+                    <li>Create signature and sign 1 document for free in a few clicks</li>
+                    <li>Works for single or multiple signature documents.</li>
+                    <li>Super easy and simple to use</li>
+                </ul>
+            </div>
+        `)
+    }
+})
+
+function downloadESignature() {
+    let findModal = setInterval(() => {
+        if (document.querySelector('.chakra-button.css-btnror')) {
+            clearInterval(findModal)
+            let btnSignup = document.querySelector('.chakra-button.css-btnror'),
+                btnDowload = document.querySelector('.chakra-button.css-1gzwy8o');
+    
+            btnSignup.href = btnDowload.href;
+            btnSignup.download = btnDowload.download;
+    
+            btnSignup.click()
+           
+            window.location.href = 'https://app.signaturely.com/signup'
+        }
+    });
+}
