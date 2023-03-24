@@ -1341,6 +1341,7 @@ let init = () => {
                 if (isScrolledIntoView(document.querySelector('.elementor-element-2ffe8e81')) && viewedReview == false) {
                     setTimeout(() => {
                         if (isScrolledIntoView(document.querySelector('.elementor-element-2ffe8e81')) && viewedReview == false) {
+                            viewedReview = true;
                             pushDataLayer('Review section visibility')
                         }
                     }, 3000) 
