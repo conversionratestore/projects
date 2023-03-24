@@ -484,10 +484,10 @@ a.schedule_new_btn {
     min-height: 40px;
   }
   .review_nav .slick-arrow.slick-prev {
-    left: 37%;
+    left: 31%;
   }
   .review_nav .slick-arrow.slick-next {
-    right: 37%;
+    right: 31%;
   }
   .review_nav .slick-arrow.slick-next::after,
   .review_nav .slick-arrow.slick-prev::after {
@@ -606,9 +606,32 @@ a.schedule_new_btn {
     height: 79%;
   }
 }
+@media (min-width: 930px) {
+.review_nav .slick-arrow.slick-prev {
+    left: 37%;
+}
+.review_nav .slick-arrow.slick-next {
+    right: 37%;
+}
+}
 @media (min-width: 1220px) {
   .timeline_list_new {
     height: 83%;
+  }
+}
+@media (min-width: 1139px){
+      .review_card_descr {
+    min-height: 591px;
+  }
+}
+@media (min-width: 1230px){
+      .review_card_descr {
+    min-height: 527px;
+  }
+}
+@media (min-width: 1470px){
+      .review_card_descr {
+    min-height: 422px;
   }
 }
     </style>
@@ -721,6 +744,7 @@ a.schedule_new_btn {
             </div>
         `
     }
+
     document.head.insertAdjacentHTML("beforeend", styleNew)
     document.querySelector(".mobile-iframe").src = "https://player.vimeo.com/video/790201146?h=eda73cb7b6&loop=1&title=0&byline=0&portrait=0"
     document.querySelector("#row-165 iframe").src = "https://player.vimeo.com/video/790201146?h=eda73cb7b6&loop=1&title=0&byline=0&portrait=0"
@@ -793,6 +817,14 @@ a.schedule_new_btn {
             arrows: true,
             dots: true,
             infinite: false,
+            responsive: [
+              {
+                breakpoint: 1086,
+                settings: {
+                  slidesToShow: 1.55,
+                },
+              },
+            ],
           })
           slider.on("swipe", function () {
             pushDataLayer("Swipe slider")
