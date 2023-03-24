@@ -1177,7 +1177,7 @@ let init = () => {
             document.head.appendChild(link)
 
             document.querySelector('meta[name="viewport"]').setAttribute('content','width=device-width, initial-scale=1, user-scalable=0')
-            
+
             document.querySelector('.elementor-5910 .elementor-element.elementor-element-c47438c .elementor-heading-title').innerHTML = 'All-in-One B2B prospecting tool';
 
             document.querySelector('.elementor-5910 .elementor-element.elementor-element-c47438c .elementor-heading-title').insertAdjacentHTML('afterend', `<div class="text-mob">Let us show you how our accurate B2B company and contact data can help you reach the right decision makers and close more deals.</div>`)
@@ -1356,10 +1356,348 @@ let init = () => {
             })
             pushDataLayer('loaded')
         }
+
+        //Create an account
+        //Dropdown list for selection number of prospects you would like to reach monthly
+        if (hrefLocation.includes('app.uplead.com/trial-signup') && document.querySelector('.cO98tMz831zEgmUg_ng5') != null && document.querySelector('.dropdown') == null) {
+            clearInterval(run)
+
+            if (document.querySelector('.style-trial') == null) {
+                document.body.insertAdjacentHTML('afterbegin', `
+                <style class="style-trial">
+                    .verificationEmail__wrapper {
+                        display: none;
+                    }
+                    .btns {
+                        position: relative;
+                    }
+                    .to_trial {
+                        position: absolute;
+                        width: calc(100% + 8px);
+                        height: 66px;
+                        z-index: 5;
+                        top: -2px;
+                        left: -2px;
+                        background: transparent;
+                        cursor: no-drop;
+                    }
+
+                    @media (max-width: 1100px) {
+                        .kr4tbt22uvtr4CW57A9u {
+                            display: none;
+                        }
+                    }
+                    @media (max-width: 730px) {
+                        .K8FFStZLPiRjE1Zq3yX4 {
+                            display: none;
+                        }
+                        .ZJTKvk_PikRPjgNCOU0N {
+                            margin: 0;
+                        }
+                        .kmLE6xfKFa1uDt71e_Nd {
+                            flex-wrap: wrap;
+                        }
+                        .dE5r6_NUqu34f8PRKakO, .q5UmgJHGuXZFCyzhcPAu .ypwCcjUz6FXe0IofDPdC, .cD02q96rHTjYm9KAUpQY .vCenklqa2IbXcZFtBtUj, .react-tel-input .form-control {
+                            width: 100%;
+                            box-shadow: none!important;
+                        }
+                        .kmLE6xfKFa1uDt71e_Nd {
+                            box-shadow: none;
+                        }
+                        .dE5r6_NUqu34f8PRKakO, .kmLE6xfKFa1uDt71e_Nd {
+                            background: transparent;
+                        }
+                        .cD02q96rHTjYm9KAUpQY {
+                            background: #fff;
+                            border-radius: 16px;
+                        }
+                        .cD02q96rHTjYm9KAUpQY {
+                            padding: 28px 19px 40px;
+                        }
+                        .cO98tMz831zEgmUg_ng5 .UPD_LV9906a8Dv8LszE5, .q5UmgJHGuXZFCyzhcPAu .BEJl8O7ZexnXXM12l5cB {
+                            font-size: 14px;
+                            line-height: 20px!important;
+                            font-weight: 600;
+                        }
+                        .q5UmgJHGuXZFCyzhcPAu .select-current, .q5UmgJHGuXZFCyzhcPAu .ypwCcjUz6FXe0IofDPdC, .B3edf5Xp27PPH_M9VFml  {
+                            padding: 16.5px 24px;
+                            height: auto;
+                            font-size: 12px!important;
+                            line-height: 14px!important;
+                        }
+                        .OiO2_J_KVZo2xuKCWICq, .B3edf5Xp27PPH_M9VFml {
+                            height: 49px!important;
+                            box-shadow: none!important;
+                        }
+                    }
+                </style>
+                ${styleBase}`)
+            }
+
+            document.querySelector('.cO98tMz831zEgmUg_ng5').insertAdjacentHTML('afterend',`
+            <div class="q5UmgJHGuXZFCyzhcPAu dropdown" style="padding-top: 20px;">
+                <label class="BEJl8O7ZexnXXM12l5cB" style="line-height: 24px">Number of prospects you would like to <span class="text-nowrap">reach <span style="color: #00A2BB">monthly</span></span></label>
+                ${selectHTML}
+            </div>`)
+
+            let select = document.querySelector('.select'),
+                selectCurrent = select.querySelector('.select-current span');
+
+            selectChange(select, selectCurrent) 
+            document.querySelector('.btn--largeV2').addEventListener('click', () => {
+                sessionStorage.setItem('numberProspects', selectCurrent.dataset.current)
+            })
+
+            pushDataLayer('loaded')
+        }
+        //Activate your trial
+        //Option activate your trial if the user selected  1000+ monthly credits
+        if (hrefLocation.includes('/verification') && document.querySelector('.verificationEmail__wrapper') != null) {
+            clearInterval(run)
+           
+            console.log('verification true')
+            console.log(sessionStorage.getItem('numberProspects'))
+            if (sessionStorage.getItem('numberProspects') != null && sessionStorage.getItem('numberProspects') == 3) {
+                let youCanTrialArr = ['Use UpLead to build highly targeted prospect lists','Search for specific contacts to engage in account-based marketing','Enrich and enhance contact data to get more context about your prospects','Get access to prospect email addresses that are verified in real-time'];
+  
+                document.querySelector('.verificationEmail__wrapper').style.display = 'none';
+                document.querySelector('.app-layout__content-inner').insertAdjacentHTML('afterbegin',`
+                <style>
+                .your-trial {
+                    background: #F8FBFB;
+                    padding: 34px 19px;
+                    font-family: 'Gilroy', sans-serif;
+                    font-style: normal;
+                    min-height: calc(100vh - 87.13px - 78px);
+                }
+                .your-trial .container {
+                    max-width: 1182px;
+                    margin: 0 auto;
+                }
+                .your-trial .head {
+                    margin-bottom: 35px;
+                    position: relative;
+                    min-height: 51px;
+                }
+                .your-trial .btn-back {
+                    border: 1px solid #00A2BB;
+                    border-radius: 50px;
+                    padding: 12px 24px;
+                    font-weight: 500;
+                    font-size: 16px;
+                    line-height: 27px;
+                    color: #00A2BB;
+                    position: absolute;
+                    left: 0;
+                    top: 0;
+                    background: transparent;
+                }
+                .your-trial .progressbar {
+                    margin: 0 auto;
+                }
+                .your-trial h2 {
+                    font-family: 'Gilroy', sans-serif;
+                    font-style: normal;
+                    font-weight: 700;
+                    font-size: 32px;
+                    line-height: 40px;
+                    color: #091D30;
+                }
+                .your-trial p {
+                    font-family: 'Gilroy';
+                    font-style: normal;
+                    font-size: 18px;
+                    line-height: 26px;
+                    color: #091D30;
+                }
+                .body_contact_team {
+                    border: 1px solid #00A2BB;
+                    border-radius: 10px;
+                    padding: 52px 52px 18px;
+                    margin-bottom: 28px;
+                }
+                .your-trial .btn {
+                    border-radius: 50px;
+                    font-family: 'Gilroy', sans-serif;
+                    font-style: normal;
+                    font-weight: 700;
+                    font-size: 18px;
+                    line-height: 65px;
+                    text-align: center;
+                    border: 1.5px solid #00A1BB;
+                    width: 362px;
+                    height: auto;
+                    display: block;
+                }
+                .body_contact_team .btn {
+                    background: #00A2BB;
+                    color: #FFFFFF;
+                }
+                .body_start_trial .btn {
+                    color: #00A2BB;
+                    background: #FFFFFF;
+                }
+                .body_contact_team .block {
+                    background: #E4F9FD;
+                    border-radius: 5px;
+                    padding: 10px 12px;
+                    width: fit-content;
+                    margin: 12px 0 32px;
+                    font-weight: 500;
+                    font-size: 18px;
+                    line-height: 22px;      
+                }
+                .w-40 {
+                    width: 40%;
+                }
+                .body_start_trial {
+                    background: #F0FBFD;
+                    border: 1px solid #00A2BB;
+                    border-radius: 10px;
+                    padding: 52px;
+                }
+
+                @media (max-width: 991px) {
+                    .wrapper-can > div {
+                        width: calc(50% - 20px)!important;
+                    }
+                    .body_contact_team .btn {
+                        margin: 64px 0 0 0;
+                        width: 100%;
+                    }
+                }
+                @media (max-width: 768px) {
+                    .body_contact_team, .body_start_trial {
+                        padding: 28px;
+                    }
+                    .body_start_trial {
+                        flex-wrap: wrap;
+                    }
+                    .body_start_trial .btn {
+                        width: 100%;
+                        margin: 22px 0 0 0;
+                    }
+                    .wrapper-can > div {
+                        width: 100%!important;
+                        margin-right: 0!important;
+                    }
+                    .your-trial .btn-back {
+                        display: none;
+                    }
+                    .your-trial .progressbar_item {
+                        min-width: 174px;
+                        line-height: 35px;
+                    }
+                }
+                @media (max-width: 600px) {
+                   
+                    .your-trial h2 {
+                        font-size: 20px;
+                        line-height: 25px;
+                    }
+                    .body_contact_team .block {
+                        margin: 22px 0;
+                        font-size: 16px;
+                        line-height: 22px;
+                    }
+                    .wrapper-can p {
+                        font-size: 14px;
+                        line-height: 22px;
+                    }
+                    .your-trial p.fw-bold {
+                        font-size: 16px;
+                        line-height: 20px;
+                    }
+                    .wrapper-can > div svg {
+                        width: 14px;
+                        height: 14px;
+                    }
+                    .your-trial .btn {
+                        font-size: 16px;
+                        line-height: 49px;
+                    }
+                }
+                @media (max-width: 500px) {
+                    .your-trial {
+                        min-height: calc(100vh - 58px - 87.13px);
+                    }
+                }
+                </style>
+    
+                ${styleBase}
+    
+                <div class="your-trial">
+                    <div class="container">
+                        <div class="head d-flex items-center">
+                            <a href="/trial-signup" class="btn-back"> 
+                                <svg width="15" height="9" viewBox="0 0 15 9" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M0.646446 4.14645C0.451184 4.34171 0.451184 4.65829 0.646446 4.85355L3.82843 8.03553C4.02369 8.2308 4.34027 8.2308 4.53553 8.03553C4.7308 7.84027 4.7308 7.52369 4.53553 7.32843L1.70711 4.5L4.53553 1.67157C4.7308 1.47631 4.7308 1.15973 4.53553 0.964466C4.34027 0.769204 4.02369 0.769204 3.82843 0.964466L0.646446 4.14645ZM15 4L1 4V5L15 5V4Z" fill="#00A2BB"/>
+                                </svg> 
+                                Back
+                            </a>
+                            ${progressbarHTML('Create an account','Activate your trial')}
+                        </div>
+                        <div class="body_contact_team">
+                            <div class="d-flex justify-between">
+                                <div class="head_team">
+                                    <h2>High-Volume Sales Team? <br>We’ve got you covered!</h2>
+                                    <div class="block">Reach more qualified leads with our Enterprise plan</div>
+                                </div>
+                                <a href="https://www.uplead.com/uplead-demo/" class="btn">Contact Sales Team</a>
+                            </div>
+                            <p class="fw-bold">Find out how you can:</p>
+                            <div class="d-flex flex-wrap wrapper-can"></div>
+                        </div>
+                        <div class="body_start_trial flx-between">
+                            <h2>Want to try before?<br>
+                                Continue and start 7-day trial</h2>
+                            <button type="button" class="btn">Continue & Start Free Trial</button>
+                        </div>
+                    </div>
+                </div>`);
+    
+                document.querySelector('.progressbar_item.active').classList.add('done');
+                document.querySelector('.progressbar_item.done').classList.remove('active');
+                document.querySelector('.progressbar_item:not(.done)').classList.add('active');
+    
+                for (let i = 0; i < youCanTrialArr.length; i++) {
+                    document.querySelector('.body_contact_team .wrapper-can').insertAdjacentHTML('beforeend',`
+                    <div class="d-flex" style="margin:20px 20px 0 0;width: 37%">
+                        <svg style="flex-shrink: 0;margin-right: 8px;margin-top: 3px;" width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" clip-rule="evenodd" d="M9 0C4.02923 0 0 4.02923 0 9C0 13.9708 4.02923 18 9 18C13.9708 18 18 13.9708 18 9C18 4.02923 13.9708 0 9 0ZM13.1762 5.60875C13.5581 5.92697 13.6097 6.49456 13.2915 6.87634L8.79126 12.2764C8.63426 12.4651 8.4069 12.5812 8.16207 12.5981C7.91723 12.6151 7.67614 12.5314 7.49443 12.3662L4.79455 9.91161C4.42676 9.57727 4.39965 9.00803 4.73398 8.64024C5.06832 8.27245 5.63756 8.24534 6.00535 8.57967L8.0102 10.4022L11.9087 5.7238C12.2269 5.342 12.7943 5.29033 13.1761 5.60854L13.1762 5.60875Z" fill="#00A2BB"/>
+                        </svg>
+                        <p style="color: #69727A;">${youCanTrialArr[i]}</p>
+                    </div>`)
+                }
+
+                document.querySelector('.body_start_trial .btn').addEventListener('click', () => {
+                    document.querySelector('.your-trial').style.display = 'none';
+                    document.querySelector('.verificationEmail__wrapper').style.display = 'block';
+                })
+
+                changePosition('.wrapper-can', '.body_contact_team .btn', '991', '.head_team')
+                window.addEventListener('resize', () => {
+                    changePosition('.wrapper-can', '.body_contact_team .btn', '991', '.head_team')
+                })
+
+            } else {
+                document.querySelector('.verificationEmail__wrapper').style.display = 'block'
+            }
+
+            pushDataLayer('loaded')
+        }
     })
 }
 
 init() 
+
+let routing = setInterval(() => {
+    let newHref = window.location.href;
+    if (hrefLocation != newHref) {
+        hrefLocation = newHref;
+        init() 
+    }
+})
 
 //clarify
 let isClarify = setInterval(() => {
