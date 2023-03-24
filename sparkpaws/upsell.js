@@ -196,6 +196,7 @@ const style = /*html*/`
             flex-direction: column;
             align-items:flex-end;
             margin-left: 10px;
+            flex-shrink: 0;
         }
 
         .upsell_item_price span {
@@ -1227,9 +1228,10 @@ const getTopLevelDomain = () => {
 }
 
 const pdpUpsellContainer = (items, isTwoImages) => {
-    const totalStandardPrice = document.querySelector('.cbb-frequently-bought-total-price-regular-price')?.textContent
-    const totalRegularPrice = document.querySelector('.cbb-frequently-bought-total-price-was-price')?.textContent
-    const totalDiscountPrice = document.querySelector('.cbb-frequently-bought-total-price-sale-price')?.textContent
+    let totalStandardPrice = document.querySelector('.cbb-frequently-bought-total-price-regular-price')?.textContent
+    let totalRegularPrice = document.querySelector('.cbb-frequently-bought-total-price-was-price')?.textContent
+    let totalDiscountPrice = document.querySelector('.cbb-frequently-bought-total-price-sale-price')?.textContent
+
     const isSale = document.querySelector('.cbb-frequently-bought-discount-message')?.textContent.length > 0
     const images = previewImages(items)
 
@@ -1285,7 +1287,12 @@ const pdpUpsellContainer = (items, isTwoImages) => {
     let shippingPrice = {
         'US': '$50',
         'UK': '£40',
-        'CA': '$60'
+        'CA': '$60 CAD'
+    }
+    if(country === 'CA') {
+        totalStandardPrice = totalStandardPrice !== '' ? totalStandardPrice + ' CAD' : ''
+        totalRegularPrice = totalRegularPrice !== '' ? totalRegularPrice + ' CAD' : ''
+        totalDiscountPrice = totalDiscountPrice !== '' ? totalDiscountPrice + ' CAD' : ''
     }
 
     return /*html*/`
@@ -1399,7 +1406,7 @@ const createUpsellItem = (li, index) => {
             text: option.text
         }))
 
-    const standardPrice = document.querySelectorAll('.cbb-frequently-bought-selector-label-regular-price')[index]?.textContent || ''
+    let standardPrice = document.querySelectorAll('.cbb-frequently-bought-selector-label-regular-price')[index]?.textContent || ''
     let regularPrice
     let discountPrice
 
@@ -1409,6 +1416,17 @@ const createUpsellItem = (li, index) => {
     } else {
         regularPrice = ''
         discountPrice = ''
+    }
+
+    const country = getTopLevelDomain().toUpperCase() 
+
+    if(country === 'CA' && standardPrice !== '') {
+        standardPrice += ' CAD' 
+    }
+
+    if(country === 'CA' && !standardPrice) {
+        regularPrice += ' CAD' 
+        discountPrice += ' CAD' 
     }
 
     const item = {
