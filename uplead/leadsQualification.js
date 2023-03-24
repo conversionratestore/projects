@@ -1176,7 +1176,8 @@ let init = () => {
             link.href = 'https://cdn.jsdelivr.net/gh/lipis/flag-icons@6.6.6/css/flag-icons.min.css'
             document.head.appendChild(link)
 
-            document.querySelector('meta[name="viewport"]').setAttribute('user-scalable','0')
+            document.querySelector('meta[name="viewport"]').setAttribute('content','width=device-width, initial-scale=1, user-scalable=0')
+            
             document.querySelector('.elementor-5910 .elementor-element.elementor-element-c47438c .elementor-heading-title').innerHTML = 'All-in-One B2B prospecting tool';
 
             document.querySelector('.elementor-5910 .elementor-element.elementor-element-c47438c .elementor-heading-title').insertAdjacentHTML('afterend', `<div class="text-mob">Let us show you how our accurate B2B company and contact data can help you reach the right decision makers and close more deals.</div>`)
