@@ -1227,7 +1227,7 @@ let init = () => {
                     <button type="button" class="btn-get">Get a Free Demo</button>
                 </div>
                 <div class="block_calendly">
-                    <div class="calendly-inline-widget-new" data-url="https://calendly.com/upleadhq/phone-call?hide_event_type_details=1&hide_gdpr_banner=1" style="min-width:320px;height:510px;"></div>
+                    <div class="calendly-inline-widget-new lazyloaded" data-url="https://calendly.com/upleadhq/phone-call?hide_event_type_details=1&hide_gdpr_banner=1" data-processed="true" style="min-width:320px;height:510px;"></div>
                 </div>
                 <div class="d-flex items-center block_call" style="display: none;">
                     <svg style="flex-shrink:0;" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
