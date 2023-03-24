@@ -1283,7 +1283,7 @@ let init = () => {
                 } else if (e.target.name == "phone") {
                     pushDataLayer('Click on the input phone')
                 } else if (e.target.closest('.select')) {
-                    pushDataLayer('Click on the Number of prospects')
+                    pushDataLayer(`Click on the Number of prospects ${e.target.tagName == 'LI' ? ': ' + e.target.innerText : ''}`)
                 } else if (e.target.classList.contains('btn-get')) {
                     pushDataLayer('Click on the Get a Free Demo button')
                 }
