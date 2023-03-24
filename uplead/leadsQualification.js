@@ -997,6 +997,7 @@ let init = () => {
                     font-size: 12px;
                     color: red;
                     display: none;
+                    pointer-events: none;
                 }
                 .error .error-message {
                     display: block;
@@ -1205,12 +1206,12 @@ let init = () => {
                     <h2>Book a demo</h2>
                     <div class="relative">
                         <label>Full Name*</label>
-                        <input type="text" placeholder="John Carter" name="full-name">
+                        <input type="text" placeholder="John Carter" id="full-name">
                         <div class="error-message">Full Name cannot be empty</div>
                     </div>
                     <div class="relative">
                         <label>Email*</label>
-                        <input type="text" placeholder="youremail@business.com" name="email">
+                        <input type="text" placeholder="youremail@business.com" id="input-email">
                         <div class="error-message">Not a valid e-mail address</div>
                     </div>
                     <label>Phone</label>
@@ -1222,7 +1223,7 @@ let init = () => {
                             <span class="arrow-drop"></span>
                             <ul class="country-list"></ul>
                         </div>
-                        <input type="text" id="phoneCode" name="phone" placeholder="+1" data-mask="+1 (000) 000 0000" value="+1 " required>
+                        <input type="text" id="phoneCode" placeholder="+1" data-mask="+1 (000) 000 0000" value="+1 " required>
                     </div>
                     <label>Number of prospects you would like to reach monthly</label>
                     ${selectHTML}
@@ -1251,8 +1252,8 @@ let init = () => {
 
             let newBlock = document.querySelector('.block_new'),
                 inputPhone = document.querySelector('#phoneCode'),
-                inputName = document.querySelector('[name="full-name"]'),
-                inputEmail = document.querySelector('.form [name="email"]'),
+                inputName = document.querySelector('#full-name'),
+                inputEmail = document.querySelector('#input-email'),
                 flagCurrent = document.querySelector('.selected-flag'),
                 selectCurrent = document.querySelector('.select-current span');
 
@@ -1275,13 +1276,13 @@ let init = () => {
                 if (document.querySelector('.flag-dropdown.active') && !e.target.closest('.flag-dropdown')) {
                     toggleActive(document.querySelector('.flag-dropdown'))
                 }
-                if (e.target.name == "full-name") {
+                if (e.target.id == "full-name") {
                     pushDataLayer('Click on the input Full name')
-                } else if (e.target.name == "email") {
+                } else if (e.target.id == "input-email") {
                     pushDataLayer('Click on the input Email')
                 } else if (e.target.closest('.flag-dropdown')) {
                     pushDataLayer('Click on country selection')
-                } else if (e.target.name == "phone") {
+                } else if (e.target.id == "phone") {
                     pushDataLayer('Click on the input phone')
                 } else if (e.target.closest('.select')) {
                     pushDataLayer(`Click on the Number of prospects ${e.target.tagName == 'LI' ? ': ' + e.target.innerText : ''}`)
