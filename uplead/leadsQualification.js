@@ -1161,6 +1161,9 @@ let init = () => {
                     .elementor-5910 .elementor-element.elementor-element-25abc2b:not(.elementor-motion-effects-element-type-background)>.elementor-column-wrap {
                         margin-left: 0;
                     }
+                    .block_calendly {
+                        margin-top: -18px;
+                    }
                 }
             </style>
             ${styleBase}`
