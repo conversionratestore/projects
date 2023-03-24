@@ -902,7 +902,7 @@ let init = () => {
                 .form input:focus {
                     border-color: #00A2BB;
                 }
-                .form input[name="phone"] {
+                .form input#phoneCode {
                     padding-left: 61px
                 }
                 .flag-dropdown {
@@ -1282,7 +1282,7 @@ let init = () => {
                     pushDataLayer('Click on the input Email')
                 } else if (e.target.closest('.flag-dropdown')) {
                     pushDataLayer('Click on country selection')
-                } else if (e.target.id == "phone") {
+                } else if (e.target.id == "phoneCode") {
                     pushDataLayer('Click on the input phone')
                 } else if (e.target.closest('.select')) {
                     pushDataLayer(`Click on the Number of prospects ${e.target.tagName == 'LI' ? ': ' + e.target.innerText : ''}`)
