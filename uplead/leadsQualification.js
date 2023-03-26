@@ -1196,6 +1196,13 @@ let init = () => {
             document.querySelector('.elementor-element-25abc2b > div > div > div > div.elementor-widget-container iframe').remove()
             document.querySelector('.elementor-element-25abc2b > div > div > div > div.elementor-widget-container script').remove()
             
+            function initCalendly(event, calendly, name, email) {
+                console.log(event, calendly, name, email)
+                Calendly.initInlineWidget({
+                    url: `https://calendly.com/upleadhq/phone-call/?name=${event.parent.querySelector(name).value}&email=${event.parent.querySelector(email).value}&hide_event_type_details=1&hide_gdpr_banner=1`,
+                    parentElement: document.querySelector(calendly)
+                })
+            }
             //form
             document.querySelector('.sibling').insertAdjacentHTML('afterbegin', `
             <div class="block_new">
@@ -1204,12 +1211,12 @@ let init = () => {
                     <h2>Book a demo</h2>
                     <div class="relative">
                         <label>Full Name*</label>
-                        <input type="text" placeholder="John Carter" id="full-name" class="elementor-field elementor-size-lg elementor-field-textual">
+                        <input type="text" placeholder="John Carter" id="full-name">
                         <div class="error-message">Full Name cannot be empty</div>
                     </div>
                     <div class="relative">
                         <label>Email*</label>
-                        <input type="text" placeholder="youremail@business.com" id="input-email" class="elementor-field elementor-size-lg elementor-field-textual">
+                        <input type="text" placeholder="youremail@business.com" id="input-email">
                         <div class="error-message">Not a valid e-mail address</div>
                     </div>
                     <label>Phone</label>
@@ -1225,7 +1232,7 @@ let init = () => {
                     </div>
                     <label>Number of prospects you would like to reach monthly</label>
                     ${selectHTML}
-                    <button type="button" class="btn-get">Get a Free Demo</button>
+                    <button type="button" class="btn-get" onclick="initCalendly(e.target, '.calendly-inline-widget-new', '#full-name', '#input-email')">Get a Free Demo</button>
                 </div>
                 <div class="block_calendly">
                     <div class="calendly-inline-widget-new" data-auto-load="false"  style="min-width:320px;height:510px;"></div>
@@ -1242,6 +1249,10 @@ let init = () => {
                 </div>
             </div>
            `)
+             // Calendly.initInlineWidget({
+                    //     url: `https://calendly.com/upleadhq/phone-call/?name=${inputName.value}&email=${inputEmail.value}&hide_event_type_details=1&hide_gdpr_banner=1`,
+                    //     parentElement: document.querySelector(".calendly-inline-widget-new")
+                    // })
 
             changePosition('.text-mob', '.block_new', '767', '.sibling')
             window.addEventListener('resize', () => {
@@ -1261,6 +1272,13 @@ let init = () => {
             scriptCalendly.async = true;
             scriptCalendly.src = 'https://assets.calendly.com/assets/external/widget.js';
             document.querySelector('.block_calendly').appendChild(scriptCalendly)
+
+
+            document.querySelectorAll('.formBook input').forEach(item => {
+                item.addEventListener('click', (e) => {
+                    e.stopImmediatePropagation();
+                })
+            })
 
             inputPhone.addEventListener('keyup', (event) => {
                 mask('phoneCode', event.currentTarget.dataset.mask, event);
@@ -1332,10 +1350,10 @@ let init = () => {
                     newBlock.querySelector('.block_call').style = '';
                     document.querySelector('.block_calendly').style = 'height: auto; margin-bottom: 0;';
                     console.log('calendly init')
-                    Calendly.initInlineWidget({
-                        url: `https://calendly.com/upleadhq/phone-call/?name=${inputName.value}&email=${inputEmail.value}&hide_event_type_details=1&hide_gdpr_banner=1`,
-                        parentElement: document.querySelector(".calendly-inline-widget-new")
-                    })
+                    // Calendly.initInlineWidget({
+                    //     url: `https://calendly.com/upleadhq/phone-call/?name=${inputName.value}&email=${inputEmail.value}&hide_event_type_details=1&hide_gdpr_banner=1`,
+                    //     parentElement: document.querySelector(".calendly-inline-widget-new")
+                    // })
                     pushDataLayer('Visibility of the second step of the form')
 
                 }
