@@ -899,9 +899,9 @@ let init = () => {
                     width: 100%;
                     outline: none;
                 }
-                .formBook input:focus {
-                    border-color: #00A2BB;
-                }
+                // .formBook input:focus {
+                //     border-color: #00A2BB;
+                // }
                 .formBook input#phoneCode {
                     padding-left: 61px
                 }
