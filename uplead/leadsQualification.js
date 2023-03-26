@@ -860,11 +860,11 @@ let init = () => {
                     padding: 4px 55px 50px;
                 }
                 /* form */
-                .form {
+                .formBook {
                     max-width: 394px;
                     margin: 0 auto;
                 }
-                .form h2{
+                .formBook h2{
                     font-family: 'Gilroy';
                     font-style: normal;
                     font-weight: 700;
@@ -874,7 +874,7 @@ let init = () => {
                     color: #091D30;
                     margin-bottom: 25px;
                 }
-                .form label {
+                .formBook label {
                     display: block;
                     font-family: 'Gilroy', sans-serif;
                     font-style: normal;
@@ -884,7 +884,7 @@ let init = () => {
                     color: #091D30;
                     margin-bottom: 6px;
                 }
-                .form input {
+                .formBook input {
                     background: #FFFFFF;
                     border: 1px solid #E1EBEE;
                     border-radius: 50px;
@@ -899,10 +899,10 @@ let init = () => {
                     width: 100%;
                     outline: none;
                 }
-                .form input:focus {
+                .formBook input:focus {
                     border-color: #00A2BB;
                 }
-                .form input#phoneCode {
+                .formBook input#phoneCode {
                     padding-left: 61px
                 }
                 .flag-dropdown {
@@ -1062,15 +1062,15 @@ let init = () => {
                         border-radius: 16px;
                         margin-bottom: 22px;
                     }
-                    .form h2 {
+                    .formBook h2 {
                         font-size: 28px;
                         line-height: 35px;
                         margin-bottom: 30px;
                     }
-                    .form label {
+                    .formBook label {
                         font-size: 14px;
                     }
-                    .form input {
+                    .formBook input {
                         font-size: 12px;
                         line-height: 14px;
                         margin-bottom: 24px;
@@ -1203,7 +1203,7 @@ let init = () => {
             document.querySelector('.sibling').insertAdjacentHTML('afterbegin', `
             <div class="block_new">
                 ${progressbarHTML('Contact info','Calendar')}
-                <div class="form">
+                <div class="formBook">
                     <h2>Book a demo</h2>
                     <div class="relative">
                         <label>Full Name*</label>
@@ -1231,7 +1231,7 @@ let init = () => {
                     <button type="button" class="btn-get">Get a Free Demo</button>
                 </div>
                 <div class="block_calendly">
-                    <div class="calendly-inline-widget-new " data-url="https://calendly.com/upleadhq/phone-call?hide_event_type_details=1&hide_gdpr_banner=1" data-processed="false" style="min-width:320px;height:510px;"></div>
+                    <div class="calendly-inline-widget-new" data-auto-load="false"  style="min-width:320px;height:510px;"></div>
                 </div>
                 <div class="d-flex items-center block_call" style="display: none;">
                     <svg style="flex-shrink:0;" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -1258,6 +1258,9 @@ let init = () => {
                 flagCurrent = document.querySelector('.selected-flag'),
                 selectCurrent = document.querySelector('.select-current span');
 
+                document.querySelectorAll('.formBook input').addEventListener('click', (e) => {
+                    e.stopImmediatePropagation();
+                })
             //add calendly script
             // let scriptCalendly = document.createElement('script');
             // scriptCalendly.type = 'text/javascript';
@@ -1330,7 +1333,7 @@ let init = () => {
                     document.querySelector('.progressbar_item.active').classList.add('done')
                     document.querySelector('.progressbar_item.done').classList.remove('active')
                     document.querySelector('.progressbar_item:not(.done)').classList.add('active')
-                    newBlock.querySelector('.form').style.display = 'none';
+                    newBlock.querySelector('.formBook').style.display = 'none';
                     newBlock.querySelector('.block_call').style = '';
                     document.querySelector('.block_calendly').style = 'height: auto; margin-bottom: 0;';
                     console.log('calendly init')
