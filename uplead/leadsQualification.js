@@ -1258,9 +1258,6 @@ let init = () => {
                 flagCurrent = document.querySelector('.selected-flag'),
                 selectCurrent = document.querySelector('.select-current span');
 
-                document.querySelectorAll('.formBook input').addEventListener('click', (e) => {
-                    e.stopImmediatePropagation();
-                })
             //add calendly script
             // let scriptCalendly = document.createElement('script');
             // scriptCalendly.type = 'text/javascript';
