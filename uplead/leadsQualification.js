@@ -396,7 +396,7 @@ let selectHTML = `
     }
 }
 </style>
-<div class="select relative">
+<div class="select relativeParent">
     <div class="select-current flx-between">
         <span data-current="">Number of prospects</span>
         <svg width="14" height="9" viewBox="0 0 14 9" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -416,7 +416,7 @@ let styleBase = `
 .fw-bold {
     font-weight: 700;
 }
-.relative {
+.relativeParent {
     position: relative;
 }
 .text-nowrap {
@@ -987,16 +987,19 @@ let init = () => {
                     margin-left: 8px;
                     color: #69727A;
                 }
-                .error-message {
+                p.error-message {
                     position: absolute;
                     left: 0;
                     bottom: 9px;
                     font-size: 12px;
+                    line-height: 1;
                     color: red;
                     display: none;
                     pointer-events: none;
+                    font-weight: 400;
+                    margin-bottom: 0;
                 }
-                .error .error-message {
+                .error p.error-message {
                     display: block;
                 }
                 .block_calendly {
@@ -1193,29 +1196,28 @@ let init = () => {
 
             document.querySelector('article#post-5910').insertAdjacentHTML('afterend', review)
             document.querySelector('.elementor-element-25abc2b > div > div > div > div.elementor-widget-container iframe').insertAdjacentHTML('beforebegin', '<div class="sibling"></div>')
-            document.querySelector('.elementor-element-25abc2b > div > div > div > div.elementor-widget-container iframe').remove()
-            document.querySelector('.elementor-element-25abc2b > div > div > div > div.elementor-widget-container script').remove()
+            document.querySelector('.elementor-element-25abc2b > div > div > div > div.elementor-widget-container > iframe').style = 'display: none';
+            // document.querySelector('.elementor-element-25abc2b > div > div > div > div.elementor-widget-container > iframe').remove()
+            // document.querySelector('.elementor-element-25abc2b > div > div > div > div.elementor-widget-container script').remove()
             
-            let media = window.matchMedia(`(max-width: 767px)`).matches;
-
             //form
             document.querySelector('.sibling').insertAdjacentHTML('afterbegin', `
             <div class="block_new">
                 ${progressbarHTML('Contact info','Calendar')}
                 <div class="formBook">
                     <h2>Book a demo</h2>
-                    <div class="relative">
+                    <div class="relativeParent">
                         <label>Full Name*</label>
-                        <input type="text" placeholder="John Carter" id="full-name">
-                        <div class="error-message">Full Name cannot be empty</div>
+                        <input type="text" placeholder="John Carter" id="full-name"/ required>
+                        <p class="error-message">Full Name cannot be empty</p>
                     </div>
-                    <div class="relative">
+                    <div class="relativeParent">
                         <label>Email*</label>
-                        <input type="text" placeholder="youremail@business.com" id="input-email">
-                        <div class="error-message">Not a valid e-mail address</div>
+                        <input type="text" placeholder="youremail@business.com" id="input-email" required>
+                        <p class="error-message">Not a valid e-mail address</p>
                     </div>
                     <label>Phone</label>
-                    <div class="relative">
+                    <div class="relativeParent">
                         <div class="flag-dropdown flx">
                             <span class="selected-flag">
                                 <span class="fi fi-us"></span>
@@ -1333,7 +1335,7 @@ let init = () => {
                     document.querySelector('.block_calendly').style = 'position:relative; opacity:1;pointer-events:auto;min-width:320px;height:510px;';
                     console.log('calendly init')
                     window.Calendly.initInlineWidget({
-                        url: `https://calendly.com/upleadhq/phone-call`, //                        url: `https://calendly.com/upleadhq/phone-call/?name=${inputName.value}&email=${inputEmail.value}&hide_event_type_details=1&hide_gdpr_banner=1`,
+                        url: `https://calendly.com/upleadhq/phone-call/?name=${inputName.value}&email=${inputEmail.value}&hide_event_type_details=1&hide_gdpr_banner=1`,
                         parentElement: document.querySelector(".block_calendly")
                     })
 
