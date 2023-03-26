@@ -899,9 +899,6 @@ let init = () => {
                     width: 100%;
                     outline: none;
                 }
-                // .formBook input:focus {
-                //     border-color: #00A2BB;
-                // }
                 .formBook input#phoneCode {
                     padding-left: 61px
                 }
@@ -1207,12 +1204,12 @@ let init = () => {
                     <h2>Book a demo</h2>
                     <div class="relative">
                         <label>Full Name*</label>
-                        <input type="text" placeholder="John Carter" id="full-name">
+                        <input type="text" placeholder="John Carter" id="full-name" class="elementor-field elementor-size-lg elementor-field-textual">
                         <div class="error-message">Full Name cannot be empty</div>
                     </div>
                     <div class="relative">
                         <label>Email*</label>
-                        <input type="text" placeholder="youremail@business.com" id="input-email">
+                        <input type="text" placeholder="youremail@business.com" id="input-email" class="elementor-field elementor-size-lg elementor-field-textual">
                         <div class="error-message">Not a valid e-mail address</div>
                     </div>
                     <label>Phone</label>
@@ -1224,7 +1221,7 @@ let init = () => {
                             <span class="arrow-drop"></span>
                             <ul class="country-list"></ul>
                         </div>
-                        <input type="text" id="phoneCode" placeholder="+1" data-mask="+1 (000) 000 0000" value="+1 " required>
+                        <input type="text" id="phoneCode" placeholder="+1" data-mask="+1 (000) 000 0000" value="+1 " >
                     </div>
                     <label>Number of prospects you would like to reach monthly</label>
                     ${selectHTML}
@@ -1259,11 +1256,11 @@ let init = () => {
                 selectCurrent = document.querySelector('.select-current span');
 
             //add calendly script
-            // let scriptCalendly = document.createElement('script');
-            // scriptCalendly.type = 'text/javascript';
-            // scriptCalendly.async = true;
-            // scriptCalendly.src = 'https://assets.calendly.com/assets/external/widget.js';
-            // document.querySelector('.block_calendly').appendChild(scriptCalendly)
+            let scriptCalendly = document.createElement('script');
+            scriptCalendly.type = 'text/javascript';
+            scriptCalendly.async = true;
+            scriptCalendly.src = 'https://assets.calendly.com/assets/external/widget.js';
+            document.querySelector('.block_calendly').appendChild(scriptCalendly)
 
             inputPhone.addEventListener('keyup', (event) => {
                 mask('phoneCode', event.currentTarget.dataset.mask, event);
@@ -1327,6 +1324,7 @@ let init = () => {
                 }
 
                 if (document.querySelector('.error') == null) {
+                    console.log('not error')
                     document.querySelector('.progressbar_item.active').classList.add('done')
                     document.querySelector('.progressbar_item.done').classList.remove('active')
                     document.querySelector('.progressbar_item:not(.done)').classList.add('active')
@@ -1340,7 +1338,6 @@ let init = () => {
                     })
                     pushDataLayer('Visibility of the second step of the form')
 
-                    return false
                 }
             })
 
