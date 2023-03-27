@@ -265,13 +265,14 @@ const state = new Promise((resolve, reject) => {
 })
 
 //push dataLayer
-let pushDataLayer = (action) => {
-    console.log(action)
+let pushDataLayer = (action, label = '') => {
+    console.log(action + " : " + label)
     window.dataLayer = window.dataLayer || [];
     dataLayer.push({
         'event': 'event-to-ga',
         'eventCategory': 'Exp: New design alt flow',
-        'eventAction': action
+        'eventAction': action,
+        'eventLabel': label
     });
 }
 
@@ -1323,7 +1324,8 @@ let init = () => {
 
             document.querySelector('.btn-get').addEventListener('click', (e) => {
 
-                pushDataLayer('Click on the Get a Free Demo button')
+                pushDataLayer('Click on the Get a Free Demo button', selectCurrent.innerText);
+                
                 if (inputName.value == '' || inputName.value.length < 2) {
                     inputName.parentElement.classList.add('error')
                 }  else {
