@@ -149,6 +149,7 @@ let init = setInterval(() => {
             </div>
         `)
 
+        //events
         document.querySelectorAll('.slider__button').forEach(item => {
             item.addEventListener('click', () => {
                 pushDataLayer('Click on navigation in review button')
@@ -158,6 +159,21 @@ let init = setInterval(() => {
             item.addEventListener('click', () => {
                 pushDataLayer(`Click on ${item.closest('.form__field').querySelector('.form__label').innerText} input`)
             })
+        })
+
+        document.querySelectorAll('.auth__acception > a').forEach((item, index) => {
+            item.addEventListener('click', () => {    
+                pushDataLayer(`Click on ${item.innerText} link`)
+            })
+        })
+        document.querySelector('.auth__submitButton .button').addEventListener('click', () => {    
+            pushDataLayer(`Click on Create free account button`)
+        })
+        document.querySelector('.auth__check-account .auth__link').addEventListener('click', () => {    
+            pushDataLayer(`Click on Sign in link`)
+        })
+        document.querySelector('.sign-up__footer .sign-up__link').addEventListener('click', () => {    
+            pushDataLayer(`Click on Terms and Conditions link`)
         })
 
         pushDataLayer('loaded')

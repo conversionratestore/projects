@@ -525,7 +525,7 @@ let progressbarHTML = (firstName, lastName) => {
             <svg class="bg desk" width="209" height="32" viewBox="0 0 209 32" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M0.5 5C0.5 2.51472 2.51472 0.5 5 0.5H190.194C190.546 0.5 190.888 0.624154 191.158 0.850671L207.851 14.8507C208.566 15.4502 208.566 16.5498 207.851 17.1493L191.158 31.1493C190.887 31.3758 190.546 31.5 190.194 31.5H5C2.51472 31.5 0.5 29.4853 0.5 27V5Z" fill="#00A2BB" stroke="#00A2BB"/>
             </svg>
-            <svg class="bg mobile" width="158" height="32" viewBox="0 0 158 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <svg class="bg mobile" width="158" height="33" viewBox="0 0 158 32" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M0.5 5C0.5 2.51472 2.51472 0.5 5 0.5H142.753C143.179 0.5 143.585 0.681181 143.87 0.99831L156.43 14.9983C156.941 15.5682 156.941 16.4318 156.43 17.0017L143.87 31.0017C143.585 31.3188 143.179 31.5 142.753 31.5H5C2.51472 31.5 0.5 29.4853 0.5 27V5Z" fill="#00A2BB" stroke="#00A2BB"/>
             </svg>
             1. ${firstName}
@@ -1167,6 +1167,13 @@ let init = () => {
                     }
                     .section_new {
                         padding: 30px 19px;
+                    }
+                    .max-w-420 > img {
+                        width: calc(33.33% - 11px);
+                        margin-right: 16px;
+                    }
+                    .max-w-420 > img:last-child {
+                        margin-right: 0;
                     }
                 }
             </style>
