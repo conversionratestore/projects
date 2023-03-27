@@ -1270,6 +1270,7 @@ let init = () => {
             scriptCalendly.type = 'text/javascript';
             scriptCalendly.async = true;
             scriptCalendly.src = 'https://assets.calendly.com/assets/external/widget.js';
+            document.body.appendChild(scriptCalendly)
 
             inputPhone.addEventListener('keyup', (event) => {
                 mask('phoneCode', event.currentTarget.dataset.mask, event);
@@ -1344,7 +1345,6 @@ let init = () => {
                         parentElement: document.querySelector(".block_calendly")
                     })
 
-                    // document.querySelector('.block_calendly').appendChild(scriptCalendly)
                     pushDataLayer('Visibility of the second step of the form')
 
                 }
