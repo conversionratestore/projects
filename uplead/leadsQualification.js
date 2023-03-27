@@ -906,7 +906,7 @@ let init = () => {
                     line-height: 19px;
                     margin-bottom: 28px;
                     width: 100%;
-                    outline: none;
+                    // outline: none;
                 }
                 .formBook input#phoneCode {
                     padding-left: 61px
@@ -1103,20 +1103,15 @@ let init = () => {
                     .block_consultants img {
                         max-width: 69px;
                     }
-                    .entry-content p:first-child{
-                        margin-bottom: 22px;
-                    }
-                    .entry-content p:last-child {
+                    .section_new .left > p {
                         margin-bottom: 0;
-                    }
-                    .entry-content p {
-                        font-size: 16px;
-                    }
-                    .entry-content p:last-child  {
                         font-size: 18px;
                     }
-                    #post-5910 > div > div > div > div > section > div > div > div.elementor-column.elementor-col-50.elementor-top-column.elementor-element.elementor-element-6c97007 > div > div > section > div > div {
-                        flex-wrap: nowrap;
+                    .list_text p {
+                        font-size: 16px;
+                    }
+                    .list_text p:first-child{
+                        margin-bottom: 22px;
                     }
                     section.elementor-section.elementor-element-dc4598b .elementor-column.elementor-col-33:last-child {
                         margin: 0;
@@ -1256,6 +1251,8 @@ let init = () => {
                 document.querySelector('.list_text').insertAdjacentHTML('beforeend',`<p>${i == 0 ? youCanArr[i] : '<span class="bulletDemo">•</span>' + youCanArr[i]}</p>`)
             }
 
+            document.querySelector('article#post-5910').insertAdjacentHTML('afterend', review)
+
             changePosition('.text-mob', '.block_new', '767', '.sibling')
             // window.addEventListener('resize', () => {
             //     changePosition('.text-mob', '.block_new', '767', '.sibling')
@@ -1340,8 +1337,7 @@ let init = () => {
                     document.querySelector('.progressbar_item:not(.done)').classList.add('active')
                     newBlock.querySelector('.formBook').style.display = 'none';
                     newBlock.querySelector('.block_call').style = '';
-                    let media = window.innerWidth < 768 ? '700' : '510';
-                    document.querySelector('.block_calendly').style = `position:initial; opacity:1;pointer-events:auto;min-width:320px;height:${media}px;`;
+                    document.querySelector('.block_calendly').style = `position:initial; opacity:1;pointer-events:auto;min-width:320px;height:510px;`;
                     console.log('calendly init')
                     window.Calendly.initInlineWidget({
                         url: `https://calendly.com/upleadhq/phone-call/?name=${inputName.value}&email=${inputEmail.value}&hide_event_type_details=1&hide_gdpr_banner=1`,
