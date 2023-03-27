@@ -1332,7 +1332,8 @@ let init = () => {
                     document.querySelector('.progressbar_item:not(.done)').classList.add('active')
                     newBlock.querySelector('.formBook').style.display = 'none';
                     newBlock.querySelector('.block_call').style = '';
-                    document.querySelector('.block_calendly').style = 'position:relative; opacity:1;pointer-events:auto;min-width:320px;height:510px;';
+                    let media = window.innerWidth < 768 ? '700' : '510';
+                    document.querySelector('.block_calendly').style = `position:initial; opacity:1;pointer-events:auto;min-width:320px;height:${media}px;`;
                     console.log('calendly init')
                     window.Calendly.initInlineWidget({
                         url: `https://calendly.com/upleadhq/phone-call/?name=${inputName.value}&email=${inputEmail.value}&hide_event_type_details=1&hide_gdpr_banner=1`,
