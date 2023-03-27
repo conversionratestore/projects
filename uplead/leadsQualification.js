@@ -1261,9 +1261,6 @@ let init = () => {
             document.querySelector('article#post-5910').insertAdjacentHTML('afterend', review)
 
             changePosition('.text-mob', '.block_new', '767', '.sibling')
-            // window.addEventListener('resize', () => {
-            //     changePosition('.text-mob', '.block_new', '767', '.sibling')
-            // })
 
             let newBlock = document.querySelector('.block_new'),
                 inputPhone = document.querySelector('#phoneCode'),
@@ -1299,9 +1296,7 @@ let init = () => {
                     pushDataLayer('Click on country selection')
                 } else if (e.target.id == "phoneCode") {
                     pushDataLayer('Click on the input phone')
-                } else if (e.target.classList.contains('btn-get')) {
-                    pushDataLayer('Click on the Get a Free Demo button')
-                }
+                } 
             })
 
             //state events
@@ -1326,7 +1321,9 @@ let init = () => {
                 } 
             })
 
-            document.querySelector('.btn-get').addEventListener('click', () => {
+            document.querySelector('.btn-get').addEventListener('click', (e) => {
+
+                pushDataLayer('Click on the Get a Free Demo button')
                 if (inputName.value == '' || inputName.value.length < 2) {
                     inputName.parentElement.classList.add('error')
                 }  else {
@@ -1339,18 +1336,24 @@ let init = () => {
                 }
 
                 if (document.querySelector('.error') == null) {
-                    console.log('not error')
                     document.querySelector('.progressbar_item.active').classList.add('done')
                     document.querySelector('.progressbar_item.done').classList.remove('active')
                     document.querySelector('.progressbar_item:not(.done)').classList.add('active')
                     newBlock.querySelector('.formBook').style.display = 'none';
                     newBlock.querySelector('.block_call').style = '';
-                    document.querySelector('.block_calendly').style = `position:initial; opacity:1;pointer-events:auto;min-width:320px;height:510px;`;
-                    console.log('calendly init')
+                    document.querySelector('.block_calendly').style = `position:initial; opacity:1;pointer-events:auto;height:510px;`;
+                   
                     window.Calendly.initInlineWidget({
                         url: `https://calendly.com/upleadhq/phone-call/?name=${inputName.value}&email=${inputEmail.value}&hide_event_type_details=1&hide_gdpr_banner=1`,
                         parentElement: document.querySelector(".block_calendly")
                     })
+
+                    const topOffset = e.target.offsetHeight;
+                    const elementPosition = newBlock.getBoundingClientRect().top;
+                    const offsetPosition = elementPosition - topOffset - 82;
+
+                    seamless.polyfill();
+                    seamless.scrollBy(window, { behavior: "smooth", top: offsetPosition, left: 0 });
 
                     pushDataLayer('Visibility of the second step of the form')
 
@@ -1470,8 +1473,6 @@ let init = () => {
         if (hrefLocation.includes('/verification') && document.querySelector('.verificationEmail__wrapper') != null) {
             clearInterval(run)
            
-            console.log('verification true')
-            console.log(sessionStorage.getItem('numberProspects'))
             if (sessionStorage.getItem('numberProspects') != null && sessionStorage.getItem('numberProspects') == 3) {
                 let youCanTrialArr = ['Use UpLead to build highly targeted prospect lists','Search for specific contacts to engage in account-based marketing','Enrich and enhance contact data to get more context about your prospects','Get access to prospect email addresses that are verified in real-time'];
   
