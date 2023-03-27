@@ -1200,6 +1200,14 @@ let init = () => {
             // document.querySelector('.elementor-element-25abc2b > div > div > div > div.elementor-widget-container > iframe').remove()
             // document.querySelector('.elementor-element-25abc2b > div > div > div > div.elementor-widget-container script').remove()
             
+            document.body.insertAdjacentHTML('afterbegin',`<input type="text" placeholder="youremail@business.com" style="margin: 100px 0;"> <div class="block_calendly_test"></div>`)
+            
+            window.Calendly.initInlineWidget({
+                url: `https://calendly.com/upleadhq/phone-call/?name=test&email=test&hide_event_type_details=1&hide_gdpr_banner=1`,
+                parentElement: document.querySelector(".block_calendly_test")
+            })
+            document.body.appendChild(scriptCalendly)
+            
             //form
             document.querySelector('.sibling').insertAdjacentHTML('afterbegin', `
             <div class="block_new">
@@ -1208,12 +1216,12 @@ let init = () => {
                     <h2>Book a demo</h2>
                     <div class="relativeParent">
                         <label>Full Name*</label>
-                        <input type="text" placeholder="John Carter" id="full-name"/ required>
+                        <input type="text" placeholder="John Carter" id="full-name">
                         <p class="error-message">Full Name cannot be empty</p>
                     </div>
                     <div class="relativeParent">
                         <label>Email*</label>
-                        <input type="text" placeholder="youremail@business.com" id="input-email" required>
+                        <input type="text" placeholder="youremail@business.com" id="input-email" >
                         <p class="error-message">Not a valid e-mail address</p>
                     </div>
                     <label>Phone</label>
