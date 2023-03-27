@@ -562,6 +562,9 @@ const selectChange = (select, selectCurrent) => {
                 selectCurrent.innerHTML = 'Number of prospects'
             }
         }
+        if (e.target.closest('.select') && e.target.tagName != 'LI') {
+            pushDataLayer(`Click on the Number of prospects`)
+        }
     })
     select.querySelectorAll('.select-drop li').forEach((item, index) => {
         item.addEventListener('click', () => {
@@ -571,6 +574,8 @@ const selectChange = (select, selectCurrent) => {
             item.classList.add('active');
             selectCurrent.dataset.current = index;
             selectCurrent.innerHTML = item.innerHTML;
+
+            pushDataLayer(`Click on the Number of prospects ${item.innerText}`)
         })
     })
 }
@@ -693,62 +698,64 @@ let init = () => {
          
             let styles = `
             <style>
-                .calendly-inline-widget {
+                article#post-5910 {
                     display: none;
                 }
-                article#post-5910 {
+                .section_new {
+                    padding: 88px 19px 70px;
                     background: #F8FBFB;
-                    padding: 18px 0 48px;
                 }
-                .elementor-5910 .elementor-element.elementor-element-13094ea {
-                    padding: 0px 24px 0px 24px;
+                .section_new .container {
+                    max-width: 1173px;
+                    margin: 0 auto;
                 }
-                .elementor-section.elementor-section-boxed>.elementor-container {
-                    max-width: 1170px;
+                .section_new .left {
+                    width: calc(100% - 545px);
+                    padding-right: 60px;
                 }
-                .elementor-column-gap-wide>.elementor-row>.elementor-column>.elementor-element-populated>.elementor-widget-wrap {
-                    padding: 38px 0 0 0;
+                .section_new .right {
+                    width: 545px;
                 }
-                .elementor-5910 .elementor-element.elementor-element-ffdba61 img {
-                    width: 50px;
-                }
-                .elementor-element-6c97007 .elementor-widget:not(:last-child){
-                    margin-bottom: 14px;
-                }
-                .elementor-5910 .elementor-element.elementor-element-c47438c .elementor-heading-title {
-                    font-size: 32px;
-                }
-                .entry-content p {
+                .section_new .left h1 {
+                    margin: 14px 0;
                     font-family: 'Gilroy';
+                    font-style: normal;
+                    font-weight: 700;
+                    font-size: 32px;
+                    line-height: 40px;
+                    color: #091D30; 
+                }
+                .list_text p {
+                    font-family: 'Gilroy', sans-serif;
                     font-weight: 500;
                     font-size: 20px;
                     line-height: 26px;
                     margin-bottom: 16px;
                 }
-                .entry-content p:first-child, .entry-content p:last-child {
+                .list_text p:first-child, .section_new .left > p {
+                    font-family: 'Gilroy', sans-serif;
                     font-weight: 600;
                     font-size: 20px;
                     line-height: 26px;
                     color: #091D30;
                     margin-bottom: 24px;
                 }
-                .entry-content p:last-child {
+                .section_new .left > p {
                     line-height: 32px;
                     padding-top: 8px;
                 }
                 .bulletDemo {
                     margin-right: 6px;
                 }
-                section.elementor-section.elementor-element-dc4598b.elementor-section-boxed {
-                    padding-top: 40px;
+                .max-w-420 {
                     max-width: 420px;
+                    padding-top: 40px;
                 }
-                section.elementor-section.elementor-element-dc4598b .elementor-widget-wrap {
-                    padding: 0!important;
-                }
-                section.elementor-section.elementor-element-dc4598b .elementor-column.elementor-col-33, section.elementor-section.elementor-element-dc4598b .elementor-column[data-col="33"] {
+                .max-w-420 > img {
+                    width: calc(33.33% - 20px);
                     margin-right: 20px;
                 }
+
                 /* review */
                 .elementor-element-1310dfe7 .elementor-container {
                     max-width: 1225px!important;
@@ -857,7 +864,9 @@ let init = () => {
                     border: none;
                 }
                 .block_new {
-                    padding: 4px 55px 50px;
+                    padding: 37px 55px 40px;
+                    background: #FFFFFF;
+                    border-radius: 20px;
                 }
                 /* form */
                 .formBook {
@@ -1031,20 +1040,25 @@ let init = () => {
                     display: none;
                 }
 
-                @media (max-width: 991px) {
-
-                    .elementor-5910 .elementor-element.elementor-element-25abc2b:not(.elementor-motion-effects-element-type-background)>.elementor-column-wrap {
-                        background: transparent;
+                @media (max-width: 1024px) {
+                    .section_new .left {
+                        width: calc(100% - 400px);
+                        padding-right: 20px;
                     }
+                    .section_new .right {
+                        width: 400px;
+                    }
+                    .block_new {
+                        padding: 25px 15px;
+                    }
+                }
+                @media (max-width: 991px) {
                     .ast-single-post .entry-header.ast-no-title.ast-no-thumbnail {
                         margin: 0;
                     }
-                    article#post-5910 {
-                        padding: 0;
-                    }
-                    .elementor-5910 .elementor-element.elementor-element-c47438c .elementor-heading-title{
+                    .section_new .left h1 {
                         line-height: 40px;
-                        margin-bottom: 16px;
+                        margin: 0 0 16px;
                     }
                     .text-mob {
                         display: block;
@@ -1057,8 +1071,6 @@ let init = () => {
                         margin-bottom: 22px;
                     }
                     .block_new {
-                        padding: 28px 15px;
-                        background: #FFFFFF;
                         border-radius: 16px;
                         margin-bottom: 22px;
                     }
@@ -1134,9 +1146,6 @@ let init = () => {
                     section.elementor-element.elementor-element-2ffe8e81 > div > div > div > div > div > div > div > div > div > div > section > div > div > div.elementor-column.elementor-col-33.elementor-top-column.elementor-element > div > div > div.elementor-element.elementor-widget.elementor-widget-text-editor {
                         margin-top: -20px;
                     }
-                    section.elementor-section.elementor-element-dc4598b .elementor-column.elementor-col-33, section.elementor-section.elementor-element-dc4598b .elementor-column[data-col="33"] {
-                        margin-right: 16px;
-                    }
                     .block_call span {
                         font-size: 14px;
                         line-height: 22px;
@@ -1146,25 +1155,23 @@ let init = () => {
                         width: 26px;
                         height: 26px;
                     }
-                    .elementor-5910 .elementor-element.elementor-element-25abc2b:not(.elementor-motion-effects-element-type-background)>.elementor-column-wrap {
-                        margin-left: 20px;
-                    }
                 }
                 @media (max-width: 768px) {
-                    .elementor-5910 .elementor-element.elementor-element-ffdba61 img {
+                    .section_new .left > img {
                         display: none;
                     }
                     .elementor-column-gap-wide>.elementor-row>.elementor-column>.elementor-element-populated>.elementor-widget-wrap {
                         padding: 0;
                     }
-                    section.elementor-section.elementor-element-dc4598b.elementor-section-boxed {
-                        padding-top: 0;
-                    }
-                    .elementor-5910 .elementor-element.elementor-element-25abc2b:not(.elementor-motion-effects-element-type-background)>.elementor-column-wrap {
-                        margin-left: 0;
-                    }
                     .block_calendly {
                         margin-top: -18px;
+                    }
+                    .section_new .left {
+                        width: 100%;
+                        padding-right: 0;
+                    }
+                    .section_new {
+                        padding: 30px 19px;
                     }
                 }
             </style>
@@ -1178,81 +1185,76 @@ let init = () => {
 
             document.querySelector('meta[name="viewport"]').setAttribute('content','width=device-width, initial-scale=1, user-scalable=0')
 
-            document.querySelector('.elementor-5910 .elementor-element.elementor-element-c47438c .elementor-heading-title').innerHTML = 'All-in-One B2B prospecting tool';
-
-            document.querySelector('.elementor-5910 .elementor-element.elementor-element-c47438c .elementor-heading-title').insertAdjacentHTML('afterend', `<div class="text-mob">Let us show you how our accurate B2B company and contact data can help you reach the right decision makers and close more deals.</div>`)
-
-            //text arr
-            let youCanArr = ['Find out how you can:','Build highly targeted prospect lists using UpLead','Search for specific contacts to engage in account-based marketing','Enrich and enhance contact data to get more context about your prospects','Get access to prospect email addresses that are verified in real-time'];
-         
-            document.querySelectorAll('.entry-content p').forEach((item, index) => {
-                if (index == 0) {
-                    item.innerHTML = youCanArr[index]
-                } else {
-                    item.innerHTML = '<span class="bulletDemo">•</span>' + youCanArr[index]
-                }
-            })
-            document.querySelector('.entry-content .elementor-text-editor').insertAdjacentHTML('beforeend',`<p>We'll also help you narrow down on the most cost-effective solutions for your unique & specific needs.</p>`);
-
-            document.querySelector('article#post-5910').insertAdjacentHTML('afterend', review)
-            document.querySelector('.elementor-element-25abc2b > div > div > div > div.elementor-widget-container iframe').insertAdjacentHTML('beforebegin', '<div class="sibling"></div>')
-            document.querySelector('.elementor-element-25abc2b > div > div > div > div.elementor-widget-container > iframe').style = 'display: none';
-            // document.querySelector('.elementor-element-25abc2b > div > div > div > div.elementor-widget-container > iframe').remove()
-            // document.querySelector('.elementor-element-25abc2b > div > div > div > div.elementor-widget-container script').remove()
-            
-            document.body.insertAdjacentHTML('afterbegin',`<input type="text" placeholder="youremail@business.com" style="margin: 100px 0;"> <div class="block_calendly_test"></div>`)
-            
-            window.Calendly.initInlineWidget({
-                url: `https://calendly.com/upleadhq/phone-call/?name=test&email=test&hide_event_type_details=1&hide_gdpr_banner=1`,
-                parentElement: document.querySelector(".block_calendly_test")
-            })
-            document.body.appendChild(scriptCalendly)
-            
-            //form
-            document.querySelector('.sibling').insertAdjacentHTML('afterbegin', `
-            <div class="block_new">
-                ${progressbarHTML('Contact info','Calendar')}
-                <div class="formBook">
-                    <h2>Book a demo</h2>
-                    <div class="relativeParent">
-                        <label>Full Name*</label>
-                        <input type="text" placeholder="John Carter" id="full-name">
-                        <p class="error-message">Full Name cannot be empty</p>
-                    </div>
-                    <div class="relativeParent">
-                        <label>Email*</label>
-                        <input type="text" placeholder="youremail@business.com" id="input-email" >
-                        <p class="error-message">Not a valid e-mail address</p>
-                    </div>
-                    <label>Phone</label>
-                    <div class="relativeParent">
-                        <div class="flag-dropdown flx">
-                            <span class="selected-flag">
-                                <span class="fi fi-us"></span>
-                            </span>
-                            <span class="arrow-drop"></span>
-                            <ul class="country-list"></ul>
+            //section new
+            document.querySelector('article#post-5910').insertAdjacentHTML('beforebegin', `
+            <div class="section_new">
+                <div class="container d-flex flex-wrap">
+                    <div class="left">
+                        <img width="50px" height="50px" alt="" data-src="https://www.uplead.com/wp-content/uploads/2020/03/Calendar-Icon.svg" class="attachment-full size-full ls-is-cached lazyloaded" src="https://www.uplead.com/wp-content/uploads/2020/03/Calendar-Icon.svg">
+                        <h1>All-in-One B2B prospecting tool</h1>
+                        <div class="text-mob">Let us show you how our accurate B2B company and contact data can help you reach the right decision makers and close more deals.</div>
+                        <div class="list_text"></div>
+                        <p>We'll also help you narrow down on the most cost-effective solutions for your unique & specific needs.</p>
+                        <div class="d-flex max-w-420">
+                            <img width="770" height="1000" alt="" data-srcset="https://www.uplead.com/wp-content/uploads/2022/12/medal-59.png 770w, https://www.uplead.com/wp-content/uploads/2022/12/medal-59-231x300.png 231w, https://www.uplead.com/wp-content/uploads/2022/12/medal-59-768x997.png 768w" data-src="https://www.uplead.com/wp-content/uploads/2022/12/medal-59.png" data-sizes="(max-width: 770px) 100vw, 770px" class="attachment-large size-large ls-is-cached lazyloaded" src="https://www.uplead.com/wp-content/uploads/2022/12/medal-59.png" sizes="(max-width: 770px) 100vw, 770px" srcset="https://www.uplead.com/wp-content/uploads/2022/12/medal-59.png 770w, https://www.uplead.com/wp-content/uploads/2022/12/medal-59-231x300.png 231w, https://www.uplead.com/wp-content/uploads/2022/12/medal-59-768x997.png 768w">
+                            <img width="770" height="1000" alt="" data-srcset="https://www.uplead.com/wp-content/uploads/2022/12/medal-56.png 770w, https://www.uplead.com/wp-content/uploads/2022/12/medal-56-231x300.png 231w, https://www.uplead.com/wp-content/uploads/2022/12/medal-56-768x997.png 768w" data-src="https://www.uplead.com/wp-content/uploads/2022/12/medal-56.png" data-sizes="(max-width: 770px) 100vw, 770px" class="attachment-large size-large ls-is-cached lazyloaded" src="https://www.uplead.com/wp-content/uploads/2022/12/medal-56.png" sizes="(max-width: 770px) 100vw, 770px" srcset="https://www.uplead.com/wp-content/uploads/2022/12/medal-56.png 770w, https://www.uplead.com/wp-content/uploads/2022/12/medal-56-231x300.png 231w, https://www.uplead.com/wp-content/uploads/2022/12/medal-56-768x997.png 768w">
+                            <img width="770" height="1000" alt="" data-srcset="https://www.uplead.com/wp-content/uploads/2022/12/medal-55.png 770w, https://www.uplead.com/wp-content/uploads/2022/12/medal-55-231x300.png 231w, https://www.uplead.com/wp-content/uploads/2022/12/medal-55-768x997.png 768w" data-src="https://www.uplead.com/wp-content/uploads/2022/12/medal-55.png" data-sizes="(max-width: 770px) 100vw, 770px" class="attachment-large size-large ls-is-cached lazyloaded" src="https://www.uplead.com/wp-content/uploads/2022/12/medal-55.png" sizes="(max-width: 770px) 100vw, 770px" srcset="https://www.uplead.com/wp-content/uploads/2022/12/medal-55.png 770w, https://www.uplead.com/wp-content/uploads/2022/12/medal-55-231x300.png 231w, https://www.uplead.com/wp-content/uploads/2022/12/medal-55-768x997.png 768w">
                         </div>
-                        <input type="text" id="phoneCode" placeholder="+1" data-mask="+1 (000) 000 0000" value="+1 " >
                     </div>
-                    <label>Number of prospects you would like to reach monthly</label>
-                    ${selectHTML}
-                    <button type="button" class="btn-get">Get a Free Demo</button>
-                </div>
-                <div class="block_calendly"></div>
-                <div class="d-flex items-center block_call" style="display: none;">
-                    <svg style="flex-shrink:0;" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M12 0C9.62664 0 7.30656 0.7038 5.33316 2.02236C3.35976 3.34092 1.82172 5.21508 0.913436 7.40778C0.005216 9.60054 -0.232444 12.0133 0.230576 14.3411C0.693596 16.6688 1.83648 18.8071 3.51474 20.4853C5.19294 22.1635 7.33116 23.3064 9.65892 23.7694C11.9867 24.2324 14.3995 23.9948 16.5922 23.0866C18.7849 22.1783 20.6591 20.6402 21.9776 18.6668C23.2962 16.6934 24 14.3734 24 12C23.9966 8.81844 22.7312 5.76822 20.4815 3.51852C18.2318 1.26882 15.1816 0.00342 12 0ZM12 19C11.7034 19 11.4133 18.912 11.1667 18.7472C10.92 18.5824 10.7277 18.3481 10.6142 18.074C10.5007 17.8 10.471 17.4983 10.5288 17.2073C10.5867 16.9164 10.7296 16.6491 10.9393 16.4393C11.1491 16.2296 11.4164 16.0867 11.7074 16.0288C11.9983 15.9709 12.2999 16.0006 12.574 16.1142C12.8481 16.2277 13.0824 16.42 13.2472 16.6666C13.412 16.9133 13.5 17.2033 13.5 17.5C13.5 17.8978 13.342 18.2794 13.0607 18.5606C12.7793 18.842 12.3978 19 12 19ZM13.6 12.92C13.4216 12.9979 13.2698 13.1261 13.1632 13.289C13.0567 13.4519 12.9999 13.6423 13 13.837C13 14.1022 12.8947 14.3566 12.7071 14.5441C12.5196 14.7316 12.2652 14.837 12 14.837C11.7348 14.837 11.4805 14.7316 11.2929 14.5441C11.1053 14.3566 11 14.1022 11 13.837C10.9999 13.2532 11.1702 12.682 11.4899 12.1936C11.8096 11.7051 12.265 11.3205 12.8 11.087C13.1305 10.9427 13.4159 10.7118 13.6259 10.4186C13.8359 10.1255 13.9627 9.78096 13.993 9.42162C14.0232 9.06228 13.9557 8.70144 13.7977 8.37732C13.6396 8.0532 13.3968 7.7778 13.095 7.58034C12.7933 7.38294 12.4437 7.27074 12.0834 7.25568C11.7231 7.24068 11.3654 7.32336 11.0482 7.49496C10.7311 7.66656 10.4662 7.92072 10.2817 8.23056C10.0972 8.5404 9.99984 8.8944 10 9.255C10 9.5202 9.89466 9.77454 9.7071 9.9621C9.5196 10.1497 9.2652 10.255 9 10.255C8.7348 10.255 8.48046 10.1497 8.2929 9.9621C8.10534 9.77454 7.99998 9.5202 7.99998 9.255C7.99998 8.53386 8.19492 7.8261 8.56422 7.20666C8.93352 6.58722 9.46338 6.07914 10.0978 5.73618C10.7322 5.39322 11.4475 5.22816 12.1681 5.25846C12.8885 5.28876 13.5875 5.51328 14.1908 5.90826C14.7943 6.3033 15.2796 6.85404 15.5956 7.50228C15.9116 8.15052 16.0464 8.87214 15.9859 9.59076C15.9253 10.3094 15.6716 10.9982 15.2516 11.5845C14.8316 12.1708 14.261 12.6325 13.6 12.921V12.92Z" fill="#00A2BB"/>
-                    </svg>
-                    <span>No suitable times for you? <br class="mobile d-flex"> Call us <a href="tel:8004934084">(800) 493-4084</a></span>
-                </div>
-                <div class="flx block_consultants">
-                    <img src="${dir}/img/group-consultants.svg" alt="image">
-                    <span>Our product consultants are ready <span class="text-nowrap">to help you</span></span>
+                    <div class="right">
+                        <div class="sibling"></div>
+                        <div class="block_new">
+                            ${progressbarHTML('Contact info','Calendar')}
+                            <div class="formBook">
+                                <h2>Book a demo</h2>
+                                <div class="relativeParent">
+                                    <label>Full Name*</label>
+                                    <input type="text" placeholder="John Carter" id="full-name">
+                                    <p class="error-message">Full Name cannot be empty</p>
+                                </div>
+                                <div class="relativeParent">
+                                    <label>Email*</label>
+                                    <input type="email" placeholder="youremail@business.com" id="input-email" >
+                                    <p class="error-message">Not a valid e-mail address</p>
+                                </div>
+                                <label>Phone</label>
+                                <div class="relativeParent">
+                                    <div class="flag-dropdown flx">
+                                        <span class="selected-flag">
+                                            <span class="fi fi-us"></span>
+                                        </span>
+                                        <span class="arrow-drop"></span>
+                                        <ul class="country-list"></ul>
+                                    </div>
+                                    <input type="text" id="phoneCode" placeholder="+1" data-mask="+1 (000) 000 0000" value="+1 " >
+                                </div>
+                                <label>Number of prospects you would like to reach monthly</label>
+                                ${selectHTML}
+                                <button type="button" class="btn-get">Get a Free Demo</button>
+                            </div>
+                            <div class="block_calendly"></div>
+                            <div class="d-flex items-center block_call" style="display: none;">
+                                <svg style="flex-shrink:0;" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M12 0C9.62664 0 7.30656 0.7038 5.33316 2.02236C3.35976 3.34092 1.82172 5.21508 0.913436 7.40778C0.005216 9.60054 -0.232444 12.0133 0.230576 14.3411C0.693596 16.6688 1.83648 18.8071 3.51474 20.4853C5.19294 22.1635 7.33116 23.3064 9.65892 23.7694C11.9867 24.2324 14.3995 23.9948 16.5922 23.0866C18.7849 22.1783 20.6591 20.6402 21.9776 18.6668C23.2962 16.6934 24 14.3734 24 12C23.9966 8.81844 22.7312 5.76822 20.4815 3.51852C18.2318 1.26882 15.1816 0.00342 12 0ZM12 19C11.7034 19 11.4133 18.912 11.1667 18.7472C10.92 18.5824 10.7277 18.3481 10.6142 18.074C10.5007 17.8 10.471 17.4983 10.5288 17.2073C10.5867 16.9164 10.7296 16.6491 10.9393 16.4393C11.1491 16.2296 11.4164 16.0867 11.7074 16.0288C11.9983 15.9709 12.2999 16.0006 12.574 16.1142C12.8481 16.2277 13.0824 16.42 13.2472 16.6666C13.412 16.9133 13.5 17.2033 13.5 17.5C13.5 17.8978 13.342 18.2794 13.0607 18.5606C12.7793 18.842 12.3978 19 12 19ZM13.6 12.92C13.4216 12.9979 13.2698 13.1261 13.1632 13.289C13.0567 13.4519 12.9999 13.6423 13 13.837C13 14.1022 12.8947 14.3566 12.7071 14.5441C12.5196 14.7316 12.2652 14.837 12 14.837C11.7348 14.837 11.4805 14.7316 11.2929 14.5441C11.1053 14.3566 11 14.1022 11 13.837C10.9999 13.2532 11.1702 12.682 11.4899 12.1936C11.8096 11.7051 12.265 11.3205 12.8 11.087C13.1305 10.9427 13.4159 10.7118 13.6259 10.4186C13.8359 10.1255 13.9627 9.78096 13.993 9.42162C14.0232 9.06228 13.9557 8.70144 13.7977 8.37732C13.6396 8.0532 13.3968 7.7778 13.095 7.58034C12.7933 7.38294 12.4437 7.27074 12.0834 7.25568C11.7231 7.24068 11.3654 7.32336 11.0482 7.49496C10.7311 7.66656 10.4662 7.92072 10.2817 8.23056C10.0972 8.5404 9.99984 8.8944 10 9.255C10 9.5202 9.89466 9.77454 9.7071 9.9621C9.5196 10.1497 9.2652 10.255 9 10.255C8.7348 10.255 8.48046 10.1497 8.2929 9.9621C8.10534 9.77454 7.99998 9.5202 7.99998 9.255C7.99998 8.53386 8.19492 7.8261 8.56422 7.20666C8.93352 6.58722 9.46338 6.07914 10.0978 5.73618C10.7322 5.39322 11.4475 5.22816 12.1681 5.25846C12.8885 5.28876 13.5875 5.51328 14.1908 5.90826C14.7943 6.3033 15.2796 6.85404 15.5956 7.50228C15.9116 8.15052 16.0464 8.87214 15.9859 9.59076C15.9253 10.3094 15.6716 10.9982 15.2516 11.5845C14.8316 12.1708 14.261 12.6325 13.6 12.921V12.92Z" fill="#00A2BB"/>
+                                </svg>
+                                <span>No suitable times for you? <br class="mobile d-flex"> Call us <a href="tel:8004934084">(800) 493-4084</a></span>
+                            </div>
+                            <div class="flx block_consultants">
+                                <img src="${dir}/img/group-consultants.svg" alt="image">
+                                <span>Our product consultants are ready <span class="text-nowrap">to help you</span></span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
            `)
           
+            //text arr
+            let youCanArr = ['Find out how you can:','Build highly targeted prospect lists using UpLead','Search for specific contacts to engage in account-based marketing','Enrich and enhance contact data to get more context about your prospects','Get access to prospect email addresses that are verified in real-time'];
+         
+            for (let i = 0; i < youCanArr.length; i++) {
+                document.querySelector('.list_text').insertAdjacentHTML('beforeend',`<p>${i == 0 ? youCanArr[i] : '<span class="bulletDemo">•</span>' + youCanArr[i]}</p>`)
+            }
 
             changePosition('.text-mob', '.block_new', '767', '.sibling')
             window.addEventListener('resize', () => {
@@ -1292,8 +1294,6 @@ let init = () => {
                     pushDataLayer('Click on country selection')
                 } else if (e.target.id == "phoneCode") {
                     pushDataLayer('Click on the input phone')
-                } else if (e.target.closest('.select')) {
-                    pushDataLayer(`Click on the Number of prospects ${e.target.tagName == 'LI' ? ': ' + e.target.innerText : ''}`)
                 } else if (e.target.classList.contains('btn-get')) {
                     pushDataLayer('Click on the Get a Free Demo button')
                 }
@@ -1348,7 +1348,7 @@ let init = () => {
                         parentElement: document.querySelector(".block_calendly")
                     })
 
-                    document.querySelector('.block_calendly').appendChild(scriptCalendly)
+                    // document.querySelector('.block_calendly').appendChild(scriptCalendly)
                     pushDataLayer('Visibility of the second step of the form')
 
                 }
@@ -1690,6 +1690,16 @@ let init = () => {
                 changePosition('.wrapper-can', '.body_contact_team .btn', '991', '.head_team')
                 window.addEventListener('resize', () => {
                     changePosition('.wrapper-can', '.body_contact_team .btn', '991', '.head_team')
+                })
+                //events
+                document.querySelector('.body_contact_team .btn').addEventListener('click', () => {
+                    pushDataLayer('Click on Contact Sales Team button')
+                })  
+                document.querySelector('.your-trial .btn-back').addEventListener('click', () => {
+                    pushDataLayer('Click on Back button')
+                })  
+                document.querySelector('.body_start_trial .btn').addEventListener('click', () => {
+                    pushDataLayer('Click on Continue start free trial button')
                 })
 
             } else {
