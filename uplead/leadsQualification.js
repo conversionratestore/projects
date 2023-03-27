@@ -1257,9 +1257,9 @@ let init = () => {
             }
 
             changePosition('.text-mob', '.block_new', '767', '.sibling')
-            window.addEventListener('resize', () => {
-                changePosition('.text-mob', '.block_new', '767', '.sibling')
-            })
+            // window.addEventListener('resize', () => {
+            //     changePosition('.text-mob', '.block_new', '767', '.sibling')
+            // })
 
             let newBlock = document.querySelector('.block_new'),
                 inputPhone = document.querySelector('#phoneCode'),

@@ -52,17 +52,36 @@ let html = `
 
 let hrefLocation = window.location.href;
 
+//push dataLayer
+let pushDataLayer = (action) => {
+    console.log(action)
+    window.dataLayer = window.dataLayer || [];
+    dataLayer.push({
+        'event': 'event-to-ga',
+        'eventCategory': 'Exp: New design alt flow',
+        'eventAction': action
+    });
+}
+
 let init = setInterval(() => {
     if (hrefLocation.includes('/online-signature/type') && document.querySelector('.post-1599') != null) {
         clearInterval(init)
         document.querySelector('.post-1599').insertAdjacentHTML('beforebegin', html)
 
         downloadESignature()
+
+        document.querySelector('.block-trial a').addEventListener('click', () => {
+            pushDataLayer('Click on Create free account button')
+        })
+
+        pushDataLayer('loaded')
     }
     if (hrefLocation.includes('/online-signature/draw') && document.querySelector('.post-1597') != null) {
         clearInterval(init)
         document.querySelector('.post-1597').insertAdjacentHTML('beforebegin', html) 
         downloadESignature()
+
+        pushDataLayer('loaded')
         
     }
     if (hrefLocation.includes('/signup') && document.querySelector('.sign-up--top-layer') != null) {
@@ -129,6 +148,19 @@ let init = setInterval(() => {
                 </ul>
             </div>
         `)
+
+        document.querySelectorAll('.slider__button').forEach(item => {
+            item.addEventListener('click', () => {
+                pushDataLayer('Click on navigation in review button')
+            })
+        })
+        document.querySelectorAll('.form__input').forEach(item => {
+            item.addEventListener('click', () => {
+                pushDataLayer(`Click on ${item.closest('.form__field').querySelector('.form__label').innerText} input`)
+            })
+        })
+
+        pushDataLayer('loaded')
     }
 })
 
@@ -148,3 +180,11 @@ function downloadESignature() {
         }
     });
 }
+
+//clarify
+let isClarify = setInterval(() => {
+    if(typeof clarity == 'function') {
+        clearInterval(isClarify)
+        clarity("set", "emphasize_signing_doc_free", "variant_1");
+    }
+}, 100)
