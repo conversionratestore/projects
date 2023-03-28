@@ -478,7 +478,7 @@ a.schedule_new_btn {
     margin-top: 0;
   }
   .review_card_descr {
-    min-height: 485px;
+    min-height: 422px;
   }
   .review_card .review_card_title {
     min-height: 40px;
@@ -619,17 +619,42 @@ a.schedule_new_btn {
     height: 83%;
   }
 }
+@media (min-width: 1085px){
+.review_card_descr {
+     min-height: 590px;
+  }
+}
+@media (min-width: 1110px){
+.review_card_descr {
+     min-height: 569px;
+  }
+}
 @media (min-width: 1139px){
       .review_card_descr {
-    min-height: 591px;
+    min-height: 545px;
   }
 }
 @media (min-width: 1230px){
       .review_card_descr {
-    min-height: 527px;
+    min-height: 505px;
   }
 }
-@media (min-width: 1470px){
+@media (min-width: 1249px){
+      .review_card_descr {
+    min-height: 485px;
+  }
+}
+@media (min-width: 1342px){
+      .review_card_descr {
+    min-height: 464px;
+  }
+}
+@media (min-width: 1370px){
+      .review_card_descr {
+    min-height: 443px;
+  }
+}
+@media (min-width: 1451px){
       .review_card_descr {
     min-height: 422px;
   }
@@ -779,15 +804,17 @@ a.schedule_new_btn {
           >Schedule A Free<br/>College Planning Session Now</a></div>`
         )
       }
-      const element = document.querySelector("#container-60629")
+      const element = document.querySelector(".timeline_new_note")
       function visible(target) {
-        if (target.getBoundingClientRect().bottom < 0) {
+        if (target.getBoundingClientRect().top < 0) {
           if (document.querySelector(".is_sticky_box")) {
+            document.querySelector(".schedule_new_btn.second_var").style.display = "none"
             document.querySelector(".is_sticky_box").style.display = "block"
             document.querySelector("#reviewsBlock").style.paddingBottom = "130px"
           }
         } else {
           if (document.querySelector(".is_sticky_box")) {
+            document.querySelector(".schedule_new_btn.second_var").style.display = "block"
             document.querySelector(".is_sticky_box").style.display = "none"
             document.querySelector("#reviewsBlock").style.paddingBottom = "32px"
           }
@@ -1071,5 +1098,7 @@ a.schedule_new_btn {
         clarity("set", "new_video_and_reviews", "variant_1")
       }
     }, 200)
+
+    document.querySelector(".exp")?.remove()
   }
 }, 500)
