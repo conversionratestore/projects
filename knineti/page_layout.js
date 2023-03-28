@@ -3407,7 +3407,12 @@ body .after-refresh .count_sec:nth-of-type(25) .quick_transcript {
       })
     }
     pushDataLayer("loaded")
-    window._mfq.push(["setVariable", "new_fw_page_layout", "var1"])
+    const recordMF = setInterval(() => {
+      if (typeof window._mfq === "object") {
+        clearInterval(recordMF)
+        window._mfq.push(["setVariable", "new_fw_page_layout", "var1"])
+      }
+    }, 200)
     const record = setInterval(() => {
       if (typeof clarity === "function") {
         clearInterval(record)
