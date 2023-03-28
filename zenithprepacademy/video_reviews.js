@@ -857,6 +857,12 @@ a.schedule_new_btn {
             pushDataLayer("Swipe slider")
           })
 
+          document.querySelectorAll(".slick-dots li").forEach((el) => {
+            el.addEventListener("click", (i, idx) => {
+              pushDataLayer(`Click ${i.target.getAttribute("id")}`)
+            })
+          })
+
           document.querySelectorAll(".review_nav .slick-arrow").forEach((el) => {
             el.addEventListener("click", (i) => {
               if (i.target.classList.contains("slick-prev")) {
@@ -988,12 +994,6 @@ a.schedule_new_btn {
       threshold: 1,
     })
 
-    let intTime = setInterval(() => {
-      if (document.querySelector(".timeline_new")) {
-        clearInterval(intTime)
-        obs.observe(document.querySelector(".timeline_new"))
-      }
-    }, 100)
     let int = setInterval(() => {
       if (document.querySelector('[data-visab="1"]')) {
         clearInterval(int)
@@ -1088,6 +1088,43 @@ a.schedule_new_btn {
           obs.unobserve(i.target)
         }
         obs2.unobserve(i.target)
+      })
+    }
+
+    //
+    let obs3 = new IntersectionObserver(visibility3, {
+      threshold: 1,
+    })
+    let obs4 = new IntersectionObserver(visibility4, {
+      threshold: 1,
+    })
+
+    let intTime = setInterval(() => {
+      if (document.querySelector(".timeline_new")) {
+        clearInterval(intTime)
+        obs3.observe(document.querySelector(".timeline_new"))
+      }
+    }, 100)
+
+    function visibility3(entries) {
+      entries.forEach((i) => {
+        if (i.isIntersecting) {
+          setTimeout(function () {
+            obs4.observe(i.target)
+          }, 3000)
+        }
+      })
+    }
+    function visibility4(entries) {
+      entries.forEach((i) => {
+        if (i.isIntersecting) {
+          if (i.target.classList.contains("timeline_new")) {
+            pushDataLayer(`Timeline section (visibility)`)
+          }
+
+          obs3.unobserve(i.target)
+        }
+        obs4.unobserve(i.target)
       })
     }
     //   document.querySelector("video").currentTime
