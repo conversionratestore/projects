@@ -2409,11 +2409,14 @@ body .after-refresh .count_sec:nth-of-type(25) .quick_transcript {
       if (localStorage.getItem("firstTime") && !localStorage.getItem("notFirstTime")) {
         localStorage.setItem("notFirstTime", true)
       }
+
+      headerOffset = 80
+      if (window.innerWidth <= 768) {
+        headerOffset = 150
+        console.log(headerOffset, `headerOffset notFirstTime firstTime`)
+      }
+
       if (localStorage.getItem("firstTime") && localStorage.getItem("notFirstTime")) {
-        headerOffset = 80
-        if (window.innerWidth <= 768) {
-          headerOffset = 150
-        }
         if (document.querySelectorAll(".want-to-obey > .count_sec")[0]) {
           document.querySelectorAll(".want-to-obey > .count_sec")[0].style.display = "none"
         }
@@ -2901,6 +2904,7 @@ body .after-refresh .count_sec:nth-of-type(25) .quick_transcript {
       headerOffset = 80
       if (window.innerWidth <= 768) {
         headerOffset = 150
+        console.log(headerOffset, `headerOffset notFirstTime`)
       }
       if (document.querySelectorAll(".want-to-obey .count_sec")[0]) {
         document.querySelectorAll(".want-to-obey .count_sec")[0].style.display = "none"
