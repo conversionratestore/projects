@@ -51,7 +51,7 @@ let videoReviews = setInterval(() => {
 }
 #headline-94582-131-125 .elHeadline {
   font-family: "Oxygen", sans-serif;
-  font-size: 15px !important;
+  font-size: 14px !important;
   line-height: 24px;
   color: #9e0031;
 }
