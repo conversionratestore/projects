@@ -190,6 +190,14 @@ function downloadESignature() {
             btnSignup.href = btnDowload.href;
             btnSignup.download = btnDowload.download;
     
+            document.head.insertAdjacentHTML('beforeend',`
+            <style>
+            body {
+                overflow-y: auto!important;
+                position: initial!important;
+            }
+            </style>`)
+            
             btnSignup.click()
            
             window.location.href = 'https://app.signaturely.com/signup'
