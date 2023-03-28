@@ -804,7 +804,7 @@ a.schedule_new_btn {
           >Schedule A Free<br/>College Planning Session Now</a></div>`
         )
       }
-      const element = document.querySelector(".timeline_new_note")
+      const element = document.querySelectorAll(".timeline_item_new")[2]
       function visible(target) {
         if (target.getBoundingClientRect().top < 0) {
           if (document.querySelector(".is_sticky_box")) {
