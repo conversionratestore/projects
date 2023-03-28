@@ -1,5 +1,23 @@
 
-let signatureHTML = `
+let hrefLocation = window.location.href;
+
+//push dataLayer
+let pushDataLayer = (action) => {
+    console.log(action)
+    window.dataLayer = window.dataLayer || [];
+    dataLayer.push({
+        'event': 'event-to-ga',
+        'eventCategory': 'Exp: New design alt flow',
+        'eventAction': action
+    });
+}
+
+function init(){
+
+let init = setInterval(() => {
+    if (hrefLocation.includes('/online-signature/type') && document.querySelector('.post-1599') != null && document.querySelector('.block-trial') == null) {
+        clearInterval(init)
+        let signatureHTML = `
 <style>
     .chakra-portal, .elementor.elementor-5997.elementor-location-footer > div > section.elementor-section.elementor-element-2cfd820{
         display: none;
@@ -50,25 +68,6 @@ let signatureHTML = `
     </div>
     <a href="https://app.signaturely.com/signup" class="btn">Create free account</a>
 </div>`;
-
-let hrefLocation = window.location.href;
-
-//push dataLayer
-let pushDataLayer = (action) => {
-    console.log(action)
-    window.dataLayer = window.dataLayer || [];
-    dataLayer.push({
-        'event': 'event-to-ga',
-        'eventCategory': 'Exp: New design alt flow',
-        'eventAction': action
-    });
-}
-
-function init(){
-
-let init = setInterval(() => {
-    if (hrefLocation.includes('/online-signature/type') && document.querySelector('.post-1599') != null && document.querySelector('.block-trial') == null) {
-        clearInterval(init)
         document.querySelector('.post-1599').insertAdjacentHTML('beforebegin', signatureHTML)
         downloadESignature()
 
@@ -80,6 +79,57 @@ let init = setInterval(() => {
     }
     if (hrefLocation.includes('/online-signature/draw') && document.querySelector('.post-1597') != null && document.querySelector('.block-trial') == null) {
         clearInterval(init)
+        let signatureHTML = `
+<style>
+    .chakra-portal, .elementor.elementor-5997.elementor-location-footer > div > section.elementor-section.elementor-element-2cfd820{
+        display: none;
+    }
+    #content > div.ast-container {
+        margin: 40px 0!important;
+    }
+    .block-trial {
+        background: #00A3FA;
+        border-radius: 20px;
+        padding: 40px;   
+        color: #FFFFFF;
+        font-weight: 700;
+        font-size: 18px;
+        line-height: 120.69%;
+        max-width: 1216px;
+        width: 97%;
+        margin: 0 auto 0;
+    }
+    .block-trial h2 {
+        font-weight: 700;
+        font-size: 36px;
+        margin-bottom: 16px;
+        color: #FFFFFF;
+    }
+    .block-trial a.btn {
+        background: #FFFFFF;
+        border: 1px solid #E4E7EB;
+        border-radius: 50px;
+        line-height: 59px;
+        text-align: center;
+        color: #00A3FA;
+        display: block;
+        width: 396px;
+        height: fit-content;
+    }
+    .flx {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+</style>
+
+<div class="block-trial flx">
+    <div>
+        <h2>Sign your document for FREE!</h2>
+        <p>Create signature and sign your document for free in a few clicks</p>
+    </div>
+    <a href="https://app.signaturely.com/signup" class="btn">Create free account</a>
+</div>`;
         document.querySelector('.post-1597').insertAdjacentHTML('beforebegin', signatureHTML) 
         downloadESignature()
 
