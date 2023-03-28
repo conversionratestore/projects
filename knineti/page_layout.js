@@ -2464,6 +2464,12 @@ body .after-refresh .count_sec:nth-of-type(25) .quick_transcript {
       if (document.querySelector(".special_gift_bgr")) {
         document.querySelector(".special_gift_bgr").style.display = "none"
       }
+
+      headerOffset = 80
+      if (window.innerWidth <= 768) {
+        headerOffset = 150
+        console.log(headerOffset, `headerOffset is(":visible")`)
+      }
     }
     document.querySelectorAll(".after-refresh section.count_sec")[0]?.insertAdjacentHTML(
       "beforebegin",
