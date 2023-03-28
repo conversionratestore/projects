@@ -293,7 +293,7 @@ a.schedule_new_btn {
 }
 .is_sticky_box {
   padding: 20px;
-  position: fixed;
+  position: sticky;
   bottom: 0;
   left: 0;
   right: 0;
@@ -804,9 +804,9 @@ a.schedule_new_btn {
           >Schedule A Free<br/>College Planning Session Now</a></div>`
         )
       }
-      const element = document.querySelectorAll(".timeline_item_new")[2]
+      const element = document.querySelectorAll(".timeline_item_new")[7]
       function visible(target) {
-        if (target.getBoundingClientRect().top < 0) {
+        if (target.getBoundingClientRect().y < window.innerHeight - target.clientHeight - 110) {
           if (document.querySelector(".is_sticky_box")) {
             document.querySelector(".schedule_new_btn.second_var").style.display = "none"
             document.querySelector(".is_sticky_box").style.display = "block"
