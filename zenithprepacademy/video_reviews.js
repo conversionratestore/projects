@@ -1100,9 +1100,9 @@ a.schedule_new_btn {
     })
 
     let intTime = setInterval(() => {
-      if (document.querySelector(".timeline_new")) {
+      if (document.querySelector(".timeline_new_note")) {
         clearInterval(intTime)
-        obs3.observe(document.querySelector(".timeline_new"))
+        obs3.observe(document.querySelector(".timeline_new_note"))
       }
     }, 100)
 
@@ -1118,7 +1118,7 @@ a.schedule_new_btn {
     function visibility4(entries) {
       entries.forEach((i) => {
         if (i.isIntersecting) {
-          if (i.target.classList.contains("timeline_new")) {
+          if (i.target.classList.contains("timeline_new_note")) {
             pushDataLayer(`Timeline section (visibility)`)
           }
 
