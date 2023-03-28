@@ -2398,6 +2398,10 @@ body .after-refresh .count_sec:nth-of-type(25) .quick_transcript {
     if (!localStorage.getItem("firstTime")) {
       localStorage.setItem("firstTime", true)
     }
+    let headerOffset = 10
+    if (window.innerWidth <= 768) {
+      headerOffset = 20
+    }
     window.onunload = unloadPage
     function unloadPage() {
       console.log("unload event detected!")
@@ -2406,6 +2410,10 @@ body .after-refresh .count_sec:nth-of-type(25) .quick_transcript {
         localStorage.setItem("notFirstTime", true)
       }
       if (localStorage.getItem("firstTime") && localStorage.getItem("notFirstTime")) {
+        headerOffset = 80
+        if (window.innerWidth <= 768) {
+          headerOffset = 150
+        }
         if (document.querySelectorAll(".want-to-obey > .count_sec")[0]) {
           document.querySelectorAll(".want-to-obey > .count_sec")[0].style.display = "none"
         }
@@ -2504,12 +2512,12 @@ body .after-refresh .count_sec:nth-of-type(25) .quick_transcript {
     if (document.querySelector(".learn_more_scroll_btn")) {
       document.querySelector(".learn_more_scroll_btn").addEventListener("click", () => {
         pushDataLayer("Click on button Learn more about our special offer", "Long page (version 2). Learn more about our special offer")
-        let headerOffset = 80
+        let headerOffsetV = 80
         if (window.innerWidth <= 768) {
-          headerOffset = 150
+          headerOffsetV = 150
         }
         const elementPosition = document.querySelector(".ten_week_bgr").getBoundingClientRect().top
-        const offsetPosition = elementPosition + window.pageYOffset - headerOffset
+        const offsetPosition = elementPosition + window.pageYOffset - headerOffsetV
         window.scrollTo({
           top: offsetPosition,
           behavior: "smooth",
@@ -2760,10 +2768,7 @@ body .after-refresh .count_sec:nth-of-type(25) .quick_transcript {
       document.querySelector(".after-refresh .count_sec:nth-of-type(24) .card.image1 > img").src = "https://conversionratestore.github.io/projects/knineti/img/var6_mob.png"
       document.querySelector(".after-refresh .count_sec:nth-of-type(22) img").src = "https://conversionratestore.github.io/projects/knineti/img/ASPCA_new_mob.png"
     }
-    let headerOffset = 10
-    if (window.innerWidth <= 768) {
-      headerOffset = 20
-    }
+
     $('.new_accardion_link[data-selector="tenWeek"]').click(function (e) {
       console.log(e.currentTarget)
       // $('.new_accardion_link[data-selector="tenWeek"]').removeClass("first_active")
