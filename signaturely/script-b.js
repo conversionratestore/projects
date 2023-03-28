@@ -1,4 +1,5 @@
-let html = `
+
+let signatureHTML = `
 <style>
     .chakra-portal, .elementor.elementor-5997.elementor-location-footer > div > section.elementor-section.elementor-element-2cfd820{
         display: none;
@@ -48,7 +49,7 @@ let html = `
         <p>Create signature and sign your document for free in a few clicks</p>
     </div>
     <a href="https://app.signaturely.com/signup" class="btn">Create free account</a>
-</div>`
+</div>`;
 
 let hrefLocation = window.location.href;
 
@@ -63,11 +64,12 @@ let pushDataLayer = (action) => {
     });
 }
 
-let init = setInterval(() => {
-    if (hrefLocation.includes('/online-signature/type') && document.querySelector('.post-1599') != null) {
-        clearInterval(init)
-        document.querySelector('.post-1599').insertAdjacentHTML('beforebegin', html)
+function init(){
 
+let init = setInterval(() => {
+    if (hrefLocation.includes('/online-signature/type') && document.querySelector('.post-1599') != null && document.querySelector('.block-trial') == null) {
+        clearInterval(init)
+        document.querySelector('.post-1599').insertAdjacentHTML('beforebegin', signatureHTML)
         downloadESignature()
 
         document.querySelector('.block-trial a').addEventListener('click', () => {
@@ -76,66 +78,68 @@ let init = setInterval(() => {
 
         pushDataLayer('loaded')
     }
-    if (hrefLocation.includes('/online-signature/draw') && document.querySelector('.post-1597') != null) {
+    if (hrefLocation.includes('/online-signature/draw') && document.querySelector('.post-1597') != null && document.querySelector('.block-trial') == null) {
         clearInterval(init)
-        document.querySelector('.post-1597').insertAdjacentHTML('beforebegin', html) 
+        document.querySelector('.post-1597').insertAdjacentHTML('beforebegin', signatureHTML) 
         downloadESignature()
 
         pushDataLayer('loaded')
         
     }
-    if (hrefLocation.includes('/signup') && document.querySelector('.sign-up--top-layer') != null) {
+    if (hrefLocation.includes('/signup') && document.querySelector('.sign-up--top-layer') != null && document.querySelector('.sign-up__footer .sign-up__link') != null && document.querySelector('.sign-up--head') == null) {
         clearInterval(init)
-        document.body.insertAdjacentHTML('afterbegin',`
-        <style>
-            .sign-up {
-                flex-direction: row-reverse;
-            }
-            .sign-up__title {
-                display: none;
-            }
-            .sign-up__right-side {
-                justify-content: space-around;
-                padding: 7.5vh 0;
-            }
-            .sign-up--head {
-                color: #FFFFFF;
-                font-weight: 500;
-                font-size: 18px;
-            }
-            .sign-up--head h2 {
-                font-weight: 700;
-                font-size: 36px;
-                margin-bottom: 20px;
-                line-height: 120.69%;
-            }
-            .sign-up--head p {
-                font-weight: 500;
-                font-size: 24px;
-                margin-bottom: 40px;
-                line-height: 120.69%;
-            }
-            .sign-up--head ul > li {
-                line-height: 120%;
-                margin-bottom: 24px;
-                display: block;
-                position: relative;
-                padding-left: 34px;
-            }
-            .sign-up--head ul > li:last-child {
-                margin: 0;
-            }
-            .sign-up--head ul > li:before {
-                content: '';
-                position: absolute;
-                left: 0;
-                top: 50%;
-                width: 24px;
-                height: 24px;
-                transform: translateY(-50%);
-                background: url('https://conversionratestore.github.io/projects/signaturely/img/check.svg') no-repeat center / 100%;
-            }
-        </style>`)
+        if (document.querySelector('.style-signin') == null) {
+            document.body.insertAdjacentHTML('afterbegin',`
+            <style class="style-signin">
+                .sign-up {
+                    flex-direction: row-reverse;
+                }
+                .sign-up__title {
+                    display: none;
+                }
+                .sign-up__right-side {
+                    justify-content: space-around;
+                    padding: 7.5vh 0;
+                }
+                .sign-up--head {
+                    color: #FFFFFF;
+                    font-weight: 500;
+                    font-size: 18px;
+                }
+                .sign-up--head h2 {
+                    font-weight: 700;
+                    font-size: 36px;
+                    margin-bottom: 20px;
+                    line-height: 120.69%;
+                }
+                .sign-up--head p {
+                    font-weight: 500;
+                    font-size: 24px;
+                    margin-bottom: 40px;
+                    line-height: 120.69%;
+                }
+                .sign-up--head ul > li {
+                    line-height: 120%;
+                    margin-bottom: 24px;
+                    display: block;
+                    position: relative;
+                    padding-left: 34px;
+                }
+                .sign-up--head ul > li:last-child {
+                    margin: 0;
+                }
+                .sign-up--head ul > li:before {
+                    content: '';
+                    position: absolute;
+                    left: 0;
+                    top: 50%;
+                    width: 24px;
+                    height: 24px;
+                    transform: translateY(-50%);
+                    background: url('https://conversionratestore.github.io/projects/signaturely/img/check.svg') no-repeat center / 100%;
+                }
+            </style>`)
+        }
 
         document.querySelector('.sign-up--top-layer').insertAdjacentHTML('beforebegin', `
             <div class="sign-up--head">
@@ -179,10 +183,10 @@ let init = setInterval(() => {
         pushDataLayer('loaded')
     }
 })
-
+}
 function downloadESignature() {
     let findModal = setInterval(() => {
-        if (document.querySelector('.chakra-button.css-btnror')) {
+        if (document.querySelector('.chakra-button.css-btnror') && document.querySelector('.chakra-modal__close-btn')) {
             clearInterval(findModal)
             let btnSignup = document.querySelector('.chakra-button.css-btnror'),
                 btnDowload = document.querySelector('.chakra-button.css-1gzwy8o');
@@ -190,20 +194,23 @@ function downloadESignature() {
             btnSignup.href = btnDowload.href;
             btnSignup.download = btnDowload.download;
     
-            document.head.insertAdjacentHTML('beforeend',`
-            <style>
-            body {
-                overflow-y: auto!important;
-                position: initial!important;
-            }
-            </style>`)
-            
             btnSignup.click()
            
+            document.querySelector('.chakra-modal__close-btn').click();
             window.location.href = 'https://app.signaturely.com/signup'
+            init()
         }
     });
 }
+
+init()
+let routing = setInterval(() => {
+    let newHref = window.location.href;
+    if (newHref != hrefLocation) {
+        hrefLocation = newHref;
+        init()
+    }
+})
 
 //clarify
 let isClarify = setInterval(() => {
