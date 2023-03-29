@@ -46,7 +46,7 @@ let styles = `
     border-color: #C39958;
 }
 
-header > .container > ul > li:nth-child(2), .banner_top {
+header > .container > ul > li:nth-child(2), .banner_top, .tour-intro {
     display: none!important;
 }
 /* header */
@@ -86,7 +86,6 @@ header .search_btn {
 }
 .social-fixed a {
     padding: 15px;
-    display: block;
 }
 /* tour-section */
 .tour-section {
@@ -113,6 +112,7 @@ header .search_btn {
 }
 .tour-section .right iframe {
     width: 100%!important;
+    min-height: 500px;
 }
 .tour-section h1 {
     font-family: 'Josefin Sans';
@@ -193,6 +193,7 @@ header .search_btn {
     line-height: 48px;
     color: #FFFFFF;
 }
+/* right */
 .right-header {
     padding: 16px 24px;
 }
@@ -234,6 +235,34 @@ header .search_btn {
 }
 .right .awards-desktop {
     margin: 0;
+}
+.right-footer {
+    background: #F3F3F3;
+    border-radius: 0 0 20px 20px;
+    padding: 24px;
+    color: #333333;
+    line-height: 20px;
+}
+.right-footer > p {
+    font-family: 'Josefin Sans';
+    font-weight: 700;
+    font-size: 16px;
+}
+.right-footer > div {
+    margin-top: 20px;
+}
+.right-footer > div > svg {
+    flex-shrink: 0;
+    margin-right: 12px;
+}
+.right-footer > div > p {
+    font-size: 14px;
+    border-left: 2px solid #333333;
+    padding-left: 12px;
+}
+.right-footer > div > p svg {
+    display: block;
+    margin-bottom: 4px;
 }
 /* descr */
 .descr {
@@ -284,15 +313,27 @@ header .search_btn {
     background: #F3F3F3;
     border-radius: 20px;
 }
-.tour-drinks .main_subheading {
+.tour-drinks .main_subheading, .tour-do .title {
     font-weight: 700;
     font-size: 30px;
     line-height: 42px;
     text-transform: uppercase;
     color: #333333;
     margin: 0 0 24px 0;
+    position: relative;
+    z-index: 1;
 }
-.tour-drinks .main_subheading span {
+.tour-drinks .main_subheading:before, .tour-do .title:before {
+    content: '';
+    width: 100%;
+    height: 6px;
+    position: absolute;
+    left: 0;
+    bottom: 13px;
+    z-index: -1;
+    background: linear-gradient(90deg, #F3F3F3 0%, rgba(243, 243, 243, 0) 100%);
+}
+.tour-drinks .main_subheading span, .tour-do .title span {
     color: #C39958;
 }
 .food_wr {
@@ -354,6 +395,7 @@ header .search_btn {
     background: #F3F3F3;
     border-radius: 20px;
     padding: 30px 40px;
+    margin-bottom: 60px;
 }
 .drinks .title {
     font-weight: 700;
@@ -366,10 +408,14 @@ header .search_btn {
     font-weight: 400;
     display: block;
     color: #5B5B5B;
+    margin-top: 2px;
 }
 .drinks .title svg {
     flex-shrink: 0;
     margin-right: 10px;
+}
+.drinks ul {
+    margin-bottom: 27px;
 }
 .drinks .buy-2 {
     border: 1.5px solid #144732;
@@ -377,19 +423,66 @@ header .search_btn {
     font-weight: 700;
     line-height: 14px;
     margin: 0 24px 0 0;
+    padding: 13px 18px 10px;
+}
+.drinks .buy-2 svg {
+    margin-right: 8px;
 }
 .drinks .text {
     font-weight: 400;
     font-size: 16px;
     line-height: 26px;
     color: #5B5B5B;
+    max-width: 450px;
+}
+.content-text {
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 26px;
+    color: #5B5B5B;
+}
+.content-text .text {
+    margin-bottom: 14px;
+}
+.tour-do ul {
+    background: #F3F3F3;
+    border-radius: 20px;
+    padding: 30px;
+}
+.tour-do ul li {
+    display: flex;
+    align-items: center;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 24px;
+    color: #333333;
+}
+.tour-do ul li:not(:last-child) {
+    padding-bottom: 30px;
+    position: relative;
+}
+.tour-do ul li:not(:last-child):before {
+    content: '';
+    position: absolute;
+    left: 14px;
+    bottom: 4px;
+    height: 22px;
+    width: 2px;
+    border-left: 2px dashed #C39958;;
+}
+.tour-do ul li svg {
+    margin-right: 23px;
+    flex-shrink: 0;
 }
 </style>`
 
+let circleSvg = ` <svg style="margin-right: 4px;" width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+<circle cx="7" cy="7" r="6" stroke="#333333" stroke-width="2"/>
+<circle cx="7" cy="7" r="3" fill="#333333"/>
+</svg>`
 let init = setInterval(() => {
     if (document.querySelector('.plugin iframe') != null && document.querySelector('header .main_menu') != null) {
         clearInterval(init)
-
         document.head.insertAdjacentHTML('beforeend',`<link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300;400;500;600;700&family=Roboto:wght@300;400;500;700;900&display=swap" rel="stylesheet">`)
@@ -398,7 +491,7 @@ let init = setInterval(() => {
 
         //add Book a private tour button (header)
         document.querySelector('header .main_menu').insertAdjacentHTML('afterend', `
-        <a class="btn-customer btn-private-tour d-flex align-items-center justify-content-center">
+        <a href="#" class="btn-customer btn-private-tour d-flex align-items-center justify-content-center">
             <svg width="17" height="12" viewBox="0 0 17 12" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M0 12V9.90001C0 9.47501 0.1095 9.08426 0.328499 8.72776C0.547499 8.37126 0.837999 8.09951 1.2 7.91251C1.975 7.52501 2.7625 7.23426 3.56249 7.04026C4.36249 6.84626 5.17499 6.74951 5.99999 6.75001C6.82499 6.75001 7.63749 6.84701 8.43749 7.04101C9.23749 7.23501 10.025 7.52551 10.8 7.91251C11.1625 8.10001 11.4532 8.37201 11.6722 8.72851C11.8912 9.085 12.0005 9.47551 12 9.90001V12H0ZM13.5 12V9.75C13.5 9.20001 13.3467 8.67176 13.0402 8.16526C12.7337 7.65876 12.2995 7.22451 11.7375 6.86251C12.375 6.93751 12.975 7.06576 13.5375 7.24726C14.1 7.42876 14.625 7.65051 15.1125 7.91251C15.5625 8.16251 15.9062 8.44051 16.1437 8.74651C16.3812 9.05251 16.5 9.387 16.5 9.75V12H13.5ZM5.99999 6.00001C5.17499 6.00001 4.46874 5.70626 3.88124 5.11876C3.29375 4.53126 3 3.82501 3 3.00001C3 2.17502 3.29375 1.46877 3.88124 0.881268C4.46874 0.293769 5.17499 1.92305e-05 5.99999 1.92305e-05C6.82499 1.92305e-05 7.53124 0.293769 8.11874 0.881268C8.70624 1.46877 8.99999 2.17502 8.99999 3.00001C8.99999 3.82501 8.70624 4.53126 8.11874 5.11876C7.53124 5.70626 6.82499 6.00001 5.99999 6.00001ZM13.5 3.00001C13.5 3.82501 13.2062 4.53126 12.6187 5.11876C12.0312 5.70626 11.325 6.00001 10.5 6.00001C10.3625 6.00001 10.1875 5.98426 9.97499 5.95276C9.76249 5.92126 9.58749 5.88701 9.44999 5.85001C9.78749 5.45001 10.047 5.00626 10.2285 4.51876C10.41 4.03126 10.5005 3.52501 10.5 3.00001C10.5 2.47502 10.4095 1.96877 10.2285 1.48127C10.0475 0.993768 9.78799 0.550018 9.44999 0.150019C9.62499 0.087519 9.79998 0.0467693 9.97499 0.0277693C10.15 0.00876935 10.325 -0.000480769 10.5 1.92305e-05C11.325 1.92305e-05 12.0312 0.293769 12.6187 0.881268C13.2062 1.46877 13.5 2.17502 13.5 3.00001Z" fill="#144732"/>
             </svg>
@@ -407,17 +500,17 @@ let init = setInterval(() => {
 
         document.querySelector('.main_container').insertAdjacentHTML('afterend',`
         <div class="social-fixed">
-            <a href="https://www.facebook.com/secretfoodtours" target="_blank">
+            <a href="https://www.facebook.com/secretfoodtours" target="_blank" class="d-flex align-items-center">
                 <svg width="11" height="19" viewBox="0 0 11 19" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M9.76306 10.6943L10.2552 7.45996H7.12634V5.35059C7.12634 4.43652 7.54822 3.59277 8.95447 3.59277H10.3959V0.81543C10.3959 0.81543 9.09509 0.569336 7.86462 0.569336C5.29822 0.569336 3.61072 2.15137 3.61072 4.96387V7.45996H0.727905V10.6943H3.61072V18.5693H7.12634V10.6943H9.76306Z" fill="#C39958"/>
                 </svg>
             </a>
-            <a href="https://twitter.com/secretfoodtours" target="_blank">
+            <a href="https://twitter.com/secretfoodtours" target="_blank" class="d-flex align-items-center">
                 <svg width="19" height="15" viewBox="0 0 19 15" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M17.0912 3.91309C17.7943 3.38574 18.4271 2.75293 18.9193 2.01465C18.2865 2.2959 17.5482 2.50684 16.8099 2.57715C17.5834 2.12012 18.1459 1.41699 18.4271 0.538086C17.724 0.959961 16.9154 1.27637 16.1068 1.45215C15.4037 0.713867 14.4545 0.291992 13.3998 0.291992C11.3607 0.291992 9.70837 1.94434 9.70837 3.9834C9.70837 4.26465 9.74353 4.5459 9.81384 4.82715C6.75525 4.65137 4.01306 3.1748 2.18494 0.959961C1.86853 1.4873 1.69275 2.12012 1.69275 2.82324C1.69275 4.08887 2.32556 5.21387 3.34509 5.88184C2.74744 5.84668 2.14978 5.70605 1.65759 5.4248V5.45996C1.65759 7.25293 2.92322 8.72949 4.61072 9.08105C4.32947 9.15137 3.97791 9.22168 3.6615 9.22168C3.41541 9.22168 3.20447 9.18652 2.95837 9.15137C3.41541 10.6279 4.7865 11.6826 6.40369 11.7178C5.13806 12.7021 3.55603 13.2998 1.83337 13.2998C1.51697 13.2998 1.23572 13.2646 0.954468 13.2295C2.57166 14.2842 4.50525 14.8818 6.61462 14.8818C13.3998 14.8818 17.0912 9.29199 17.0912 4.40527C17.0912 4.22949 17.0912 4.08887 17.0912 3.91309Z" fill="#C39958"/>
                 </svg>                
             </a>
-            <a href="https://www.instagram.com/secretfoodtours/" target="_blank">
+            <a href="https://www.instagram.com/secretfoodtours/" target="_blank" class="d-flex align-items-center">
                 <svg width="17" height="17" viewBox="0 0 17 17" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M8.82947 4.52637C6.57947 4.52637 4.7865 6.35449 4.7865 8.56934C4.7865 10.8193 6.57947 12.6123 8.82947 12.6123C11.0443 12.6123 12.8724 10.8193 12.8724 8.56934C12.8724 6.35449 11.0443 4.52637 8.82947 4.52637ZM8.82947 11.2061C7.38806 11.2061 6.19275 10.0459 6.19275 8.56934C6.19275 7.12793 7.35291 5.96777 8.82947 5.96777C10.2709 5.96777 11.431 7.12793 11.431 8.56934C11.431 10.0459 10.2709 11.2061 8.82947 11.2061ZM13.9623 4.38574C13.9623 3.8584 13.5404 3.43652 13.0131 3.43652C12.4857 3.43652 12.0638 3.8584 12.0638 4.38574C12.0638 4.91309 12.4857 5.33496 13.0131 5.33496C13.5404 5.33496 13.9623 4.91309 13.9623 4.38574ZM16.6342 5.33496C16.5638 4.06934 16.2826 2.94434 15.3685 2.03027C14.4545 1.11621 13.3295 0.834961 12.0638 0.764648C10.7631 0.694336 6.86072 0.694336 5.55994 0.764648C4.29431 0.834961 3.20447 1.11621 2.25525 2.03027C1.34119 2.94434 1.05994 4.06934 0.989624 5.33496C0.919312 6.63574 0.919312 10.5381 0.989624 11.8389C1.05994 13.1045 1.34119 14.1943 2.25525 15.1436C3.20447 16.0576 4.29431 16.3389 5.55994 16.4092C6.86072 16.4795 10.7631 16.4795 12.0638 16.4092C13.3295 16.3389 14.4545 16.0576 15.3685 15.1436C16.2826 14.1943 16.5638 13.1045 16.6342 11.8389C16.7045 10.5381 16.7045 6.63574 16.6342 5.33496ZM14.9467 13.21C14.7006 13.9131 14.1381 14.4404 13.4701 14.7217C12.4154 15.1436 9.95447 15.0381 8.82947 15.0381C7.66931 15.0381 5.20837 15.1436 4.18884 14.7217C3.48572 14.4404 2.95837 13.9131 2.67712 13.21C2.25525 12.1904 2.36072 9.72949 2.36072 8.56934C2.36072 7.44434 2.25525 4.9834 2.67712 3.92871C2.95837 3.26074 3.48572 2.7334 4.18884 2.45215C5.20837 2.03027 7.66931 2.13574 8.82947 2.13574C9.95447 2.13574 12.4154 2.03027 13.4701 2.45215C14.1381 2.69824 14.6654 3.26074 14.9467 3.92871C15.3685 4.9834 15.2631 7.44434 15.2631 8.56934C15.2631 9.72949 15.3685 12.1904 14.9467 13.21Z" fill="#C39958"/>
                 </svg>
@@ -461,6 +554,7 @@ let init = setInterval(() => {
                     <div class="brands">
                         <img src="${dir}/brands.png" alt="">
                     </div>
+                    <div class="tour-do"></div>
                 </div>
                 <div class="right">
                     <div class="right-header d-flex align-items-center justify-content-between">
@@ -480,6 +574,47 @@ let init = setInterval(() => {
                             <span class="underline"> Help with booking</span>
                         </a>
                     </div>
+                    <div class="right-footer">
+                        <p>Over 21,000 Reviews</p>
+                        <div class="d-flex align-items-center">
+                            <svg width="60" height="38" viewBox="0 0 60 38" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M55.0961 11.0677L60 5.80483H49.1252C43.681 2.13646 37.1061 0 29.9954 0C22.8938 0 16.3372 2.14106 10.9021 5.80483H0L4.90389 11.0677C1.89804 13.773 0.01367 17.6698 0.01367 21.9965C0.01367 30.1618 6.72481 36.7817 15.0024 36.7817C18.9346 36.7817 22.5171 35.2857 25.1916 32.8402L29.9956 38L34.7995 32.8447C37.474 35.2902 41.052 36.7817 44.9842 36.7817C53.2617 36.7817 59.9819 30.1618 59.9819 21.9965C59.9863 17.6653 58.1021 13.7686 55.0961 11.0677ZM15.0068 32.0026C9.40362 32.0026 4.86311 27.5237 4.86311 21.9965C4.86311 16.4694 9.40374 11.9904 15.0068 11.9904C20.6099 11.9904 25.1506 16.4694 25.1506 21.9965C25.1506 27.5237 20.6099 32.0026 15.0068 32.0026ZM30 21.7054C30 15.1212 25.1461 9.46871 18.7392 7.05447C22.2037 5.6256 26.0042 4.83284 29.9954 4.83284C33.9867 4.83284 37.7916 5.6256 41.2562 7.05447C34.854 9.4732 30 15.1213 30 21.7054ZM44.9887 32.0026C39.3855 32.0026 34.8449 27.5237 34.8449 21.9965C34.8449 16.4694 39.3855 11.9904 44.9887 11.9904C50.5919 11.9904 55.1324 16.4694 55.1324 21.9965C55.1324 27.5237 50.5918 32.0026 44.9887 32.0026ZM44.9887 16.747C42.0509 16.747 39.6715 19.0941 39.6715 21.992C39.6715 24.8899 42.0509 27.2369 44.9887 27.2369C47.9265 27.2369 50.3058 24.8899 50.3058 21.992C50.3057 19.0985 47.9265 16.747 44.9887 16.747ZM20.3239 21.9965C20.3239 24.8944 17.9446 27.2414 15.0068 27.2414C12.0691 27.2414 9.68977 24.8944 9.68977 21.9965C9.68977 19.0985 12.0691 16.7515 15.0068 16.7515C17.9446 16.747 20.3239 19.0985 20.3239 21.9965Z" fill="#333333"/>
+                            </svg>
+                            <p>
+                                <svg width="86" height="14" viewBox="0 0 86 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <circle cx="7" cy="7" r="6" stroke="#333333" stroke-width="2"/>
+                                    <circle cx="7" cy="7" r="3" fill="#333333"/>
+                                    <circle cx="25" cy="7" r="6" stroke="#333333" stroke-width="2"/>
+                                    <circle cx="25" cy="7" r="3" fill="#333333"/>
+                                    <circle cx="43" cy="7" r="6" stroke="#333333" stroke-width="2"/>
+                                    <circle cx="43" cy="7" r="3" fill="#333333"/>
+                                    <circle cx="61" cy="7" r="6" stroke="#333333" stroke-width="2"/>
+                                    <circle cx="61" cy="7" r="3" fill="#333333"/>
+                                    <circle cx="79" cy="7" r="6" stroke="#333333" stroke-width="2"/>
+                                    <circle cx="79" cy="7" r="3" fill="#333333"/>
+                                </svg>
+                                As recommended by 99% of users on TripAdvisor
+                            </p>
+                        </div>
+                        <div class="d-flex align-items-center">
+                            <svg width="60" height="50" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M47 25.5205C47 23.8955 46.8542 22.333 46.5833 20.833H25V29.708H37.3333C36.7917 32.5622 35.1667 34.9788 32.7292 36.6038V42.3747H40.1667C44.5 38.3747 47 32.4997 47 25.5205Z" fill="#333333"/>
+                                <path d="M24.9993 47.9167C31.1868 47.9167 36.3743 45.875 40.166 42.375L32.7285 36.6042C30.6868 37.9792 28.0827 38.8125 24.9993 38.8125C19.041 38.8125 13.9785 34.7917 12.166 29.375H4.54102V35.2917C8.31185 42.7708 16.041 47.9167 24.9993 47.9167Z" fill="#333333"/>
+                                <path d="M12.1673 29.3545C11.709 27.9795 11.4382 26.5212 11.4382 25.0003C11.4382 23.4795 11.709 22.0212 12.1673 20.6462V14.7295H4.54232C2.97982 17.8128 2.08398 21.292 2.08398 25.0003C2.08398 28.7087 2.97982 32.1878 4.54232 35.2712L10.4798 30.6462L12.1673 29.3545Z" fill="#333333"/>
+                                <path d="M24.9993 11.208C28.3743 11.208 31.3743 12.3747 33.7702 14.6247L40.3327 8.06217C36.3535 4.35384 31.1868 2.08301 24.9993 2.08301C16.041 2.08301 8.31185 7.22884 4.54102 14.7288L12.166 20.6455C13.9785 15.2288 19.041 11.208 24.9993 11.208Z" fill="#333333"/>
+                            </svg>
+                            <p>
+                                <svg width="78" height="14" viewBox="0 0 78 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M7 0L8.6458 4.73475L13.6574 4.83688L9.66296 7.86525L11.1145 12.6631L7 9.8L2.8855 12.6631L4.33704 7.86525L0.342604 4.83688L5.3542 4.73475L7 0Z" fill="#333333"/>
+                                    <path d="M23 0L24.6458 4.73475L29.6574 4.83688L25.663 7.86525L27.1145 12.6631L23 9.8L18.8855 12.6631L20.337 7.86525L16.3426 4.83688L21.3542 4.73475L23 0Z" fill="#333333"/>
+                                    <path d="M39 0L40.6458 4.73475L45.6574 4.83688L41.663 7.86525L43.1145 12.6631L39 9.8L34.8855 12.6631L36.337 7.86525L32.3426 4.83688L37.3542 4.73475L39 0Z" fill="#333333"/>
+                                    <path d="M55 0L56.6458 4.73475L61.6574 4.83688L57.663 7.86525L59.1145 12.6631L55 9.8L50.8855 12.6631L52.337 7.86525L48.3426 4.83688L53.3542 4.73475L55 0Z" fill="#333333"/>
+                                    <path d="M71 0L72.6458 4.73475L77.6574 4.83688L73.663 7.86525L75.1145 12.6631L71 9.8L66.8855 12.6631L68.337 7.86525L64.3426 4.83688L69.3542 4.73475L71 0Z" fill="#333333"/>
+                                </svg>
+                                As recommended by 99% of users on Google reviews
+                            </p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
@@ -491,7 +626,7 @@ let init = setInterval(() => {
         let descrObj = ['clock_ic/Duration','library_ic/Type of tour','cutlery_ic/How much stops?','group_ic/Tour size','smile_ic/Awards','world_ic/language'];
 
         document.querySelector('.right-header').after(document.querySelector('.plugin'));
-        document.querySelector('.right-header .price').innerHTML = document.querySelector('#plugin .price')!= null ? document.querySelector('#plugin .price').innerHTML.replace('/','') : '';
+        document.querySelector('.right-header .price').innerHTML = document.querySelector('#plugin .price') != null ? document.querySelector('#plugin .price').innerHTML.replace('/','') : '';
 
         document.querySelector('.right .link-customer').after(document.querySelector('.awards-desktop'))
 
@@ -514,18 +649,16 @@ let init = setInterval(() => {
             }
         }
     }
-}, 200);
+});
 
 let taste = setInterval(() => {
     if (document.querySelector('.tour-drinks') != null && document.querySelector('.brands') != null) {
         clearInterval(taste)
         document.querySelector('.brands').after(document.querySelector('.tour-drinks'))
-
         let titleDrinks = document.querySelector('.tour-drinks .main_subheading');
         let sptArr = titleDrinks.innerHTML.trim().split(' ')
-
         titleDrinks.innerHTML = titleDrinks.innerHTML.replace(sptArr[sptArr.length - 1], `<span> ${sptArr[sptArr.length - 1]}</span>`)
-    
+
         document.querySelectorAll('.food_block .title').forEach(item => {
             if (item.innerHTML.trim().includes('THE FOOD')) {
                 item.insertAdjacentHTML('afterbegin',`
@@ -560,12 +693,12 @@ let taste = setInterval(() => {
             }
         })
     }
-}, 100)
+});
 
 let drink = setInterval(() => {
     if (document.querySelector('.mini_ul') != null && document.querySelector('.tour-section .left') != null) {
         clearInterval(drink)
-        document.querySelector('.tour-section .left').insertAdjacentHTML('beforeend',`
+        document.querySelector('.tour-section .tour-do').insertAdjacentHTML('beforebegin',`
         <div class="drinks">
             <div class="title d-flex align-items-center">
                 <svg width="42" height="36" viewBox="0 0 42 36" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -577,9 +710,36 @@ let drink = setInterval(() => {
             </div>
             <ul>${document.querySelector('.mini_ul').innerHTML} </ul>
             <div class="d-flex align-items-center">
-                <a href="/paris/upgraded-drinks-package/" class="buy-2">Add Upgraded Drinks Package</a>
+                <a href="/paris/upgraded-drinks-package/" class="buy-2">
+                    <svg width="17" height="16" viewBox="0 0 17 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M16.3594 2.26452L14.2355 0.140556C14.0481 -0.0468521 13.7357 -0.0468521 13.5171 0.140556L12.8299 0.858956C12.6113 1.04636 12.6113 1.35871 12.8299 1.54612L10.4248 3.9512C8.95681 3.3265 7.2389 3.60761 6.05198 4.79453L1.08565 9.76086C0.304783 10.5417 0.304783 11.7911 1.08565 12.572L3.92801 15.4143C4.70888 16.1952 5.95827 16.1952 6.73914 15.4143L11.7055 10.448C12.8924 9.2611 13.1735 7.54319 12.5488 6.07516L14.9539 3.67008C15.1413 3.88873 15.4536 3.88873 15.641 3.67008L16.3594 2.98292C16.5469 2.76428 16.5469 2.45193 16.3594 2.26452ZM6.11445 13.2279L3.27208 10.3856L7.08272 6.57491L9.92509 9.41728L6.11445 13.2279Z" fill="white"/>
+                    </svg>
+                    Add Upgraded Drinks Package
+                </a>
                 <p class="text">When you purchase our upgraded drink package, you'll enjoy the following in addition to what is already served on the tour:</p>
             </div>
         </div>`)
     }
-}, 100);
+});
+
+let tourDo = setInterval(() => {
+    if (document.querySelector('.tour-do') != null && document.querySelector('.what_we_do') != null) {
+        clearInterval(tourDo)
+        document.querySelector('.tour-do').insertAdjacentHTML('afterbegin',`<h2 class="title">WHAT YOU'LL <span>Do</span></h2><div class="content-text"></div>`)
+        document.querySelectorAll('.what_we_do .text').forEach(item => {
+            document.querySelector('.tour-do .content-text').insertAdjacentHTML('beforeend', `<p class="text">${item.innerText}</p>`)
+        })
+        document.querySelector('.tour-do .content-text').after(document.querySelector('.what_we_do .note'))
+        document.querySelector('.tour-do .content-text').after(document.querySelector('.what_we_do .load_more'))
+        document.querySelector('.tour-do .content-text').after(document.querySelector('.what_we_do > ul'))
+
+        document.querySelectorAll('.tour-do ul li').forEach(item => {
+            item.insertAdjacentHTML('afterbegin',`<svg width="30" height="36" viewBox="0 0 30 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M15.0009 36C15.3719 36 15.7155 35.8051 15.906 35.4868L19.7089 29.1305C25.6544 27.1582 29.9452 21.5541 29.9452 14.9443C29.9452 6.69078 23.2544 3.8147e-06 15.0009 3.8147e-06C6.74742 3.8147e-06 0.0566406 6.69078 0.0566406 14.9443C0.0566406 21.5541 4.34749 27.1582 10.2929 29.1305L14.0959 35.4868C14.2863 35.8051 14.63 36 15.0009 36ZM15.0009 32.8911L11.8977 27.7042C11.7627 27.4786 11.5483 27.3115 11.2966 27.2358C6.01304 25.6457 2.16602 20.7432 2.16602 14.9443C2.16602 7.85576 7.91239 2.10938 15.0009 2.10938C22.0895 2.10938 27.8358 7.85576 27.8358 14.9443C27.8358 20.7432 23.9888 25.6457 18.7053 27.2358C18.4535 27.3115 18.2392 27.4786 18.1042 27.7042L15.0009 32.8911Z" fill="#C39958"/>
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M5.89062 17.4443C5.89062 18.0268 6.36282 18.499 6.94531 18.499H23.0573C23.6398 18.499 24.112 18.0268 24.112 17.4443C24.112 16.8618 23.6398 16.3896 23.0573 16.3896H6.94531C6.36282 16.3896 5.89062 16.8618 5.89062 17.4443Z" fill="#C39958"/>
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M8.45508 18.5166C9.03757 18.5166 9.50977 18.0444 9.50977 17.4619V16.3969C9.50977 13.3795 11.9829 10.9064 15.0003 10.9064C18.0176 10.9064 20.4908 13.3798 20.4908 16.3969V17.4619C20.4908 18.0444 20.9629 18.5166 21.5454 18.5166C22.1279 18.5166 22.6001 18.0444 22.6001 17.4619V16.3969C22.6001 12.2149 19.1826 8.79702 15.0003 8.79702C10.8179 8.79702 7.40039 12.2145 7.40039 16.3969V17.4619C7.40039 18.0444 7.87259 18.5166 8.45508 18.5166Z" fill="#C39958"/>
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M15 10.8691C15.5825 10.8691 16.0547 10.3969 16.0547 9.81445V8.74043C16.0547 8.15794 15.5825 7.68574 15 7.68574C14.4175 7.68574 13.9453 8.15794 13.9453 8.74043V9.81445C13.9453 10.3969 14.4175 10.8691 15 10.8691Z" fill="#C39958"/>
+            </svg>`)
+        })
+    }
+});
