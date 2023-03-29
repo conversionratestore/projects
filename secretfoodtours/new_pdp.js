@@ -46,7 +46,7 @@ let styles = `
     border-color: #C39958;
 }
 
-header > .container > ul > li:nth-child(2), .banner_top, .tour-intro, .parallax-mirror {
+header > .container > ul > li:nth-child(2), .banner_top, .parallax-mirror, body > div.global_wr > div > div.tour-intro > div.container > div > div.col-md-12.col-xl-8, .destination_page_wr .tour-intro .plugin_right .heading, .text-red, .text-pt, .text-pt-disclaimer, .destination_page_wr .tour-intro .plugin_right .buy {
     display: none!important;
 }
 /* header */
@@ -103,16 +103,6 @@ header .search_btn {
 .tour-section .left {
     width: calc(100% - 342px);
     padding-right: 24px;
-}
-.tour-section .right {
-    width: 342px;
-    border: 2px solid #F3F3F3;
-    border-radius: 20px;
-    height: fit-content;
-}
-.tour-section .right iframe {
-    width: 100%!important;
-    min-height: 500px;
 }
 .tour-section h1 {
     font-family: 'Josefin Sans';
@@ -219,7 +209,7 @@ header .search_btn {
     color: #A9A9A9;
     display: block;
 }
-.right .plugin {
+#plugin iframe {
     width: calc(100% + 2px);
     margin: 0 -1px;
 }
@@ -230,10 +220,10 @@ header .search_btn {
     font-size: 12px;
     padding: 14px 13px 12px;
 }
-.right .link-customer {
+.link-customer {
     margin-bottom: 11px;
 }
-.right .awards-desktop {
+.awards-desktop {
     margin: 0;
 }
 .right-footer {
@@ -313,7 +303,7 @@ header .search_btn {
     background: #F3F3F3;
     border-radius: 20px;
 }
-.tour-drinks .main_subheading, .tour-do .title {
+.tour-drinks .main_subheading, .tour-do .title , .meeting-spot .title {
     font-weight: 700;
     font-size: 30px;
     line-height: 42px;
@@ -323,7 +313,7 @@ header .search_btn {
     position: relative;
     z-index: 1;
 }
-.tour-drinks .main_subheading:before, .tour-do .title:before {
+.tour-drinks .main_subheading:before, .tour-do .title:before, .meeting-spot .title:before {
     content: '';
     width: 100%;
     height: 6px;
@@ -564,67 +554,18 @@ let init = setInterval(() => {
                         <img src="${dir}/brands.png" alt="">
                     </div>
                     <div class="tour-do"></div>
+                    <div class="meeting-spot"> 
+                        <div class=" row">
+                            <div class="col-8">
+                                <h2 class="title">Meeting spot</h2>
+
+                            </div>
+                            <div class="col-4"></div>
+                        </div>
+                    </div>
+                    
                 </div>
-                <div class="right">
-                    <div class="right-header d-flex align-items-center justify-content-between">
-                        <h2>Book your tour</h2>
-                        <p class="price"></p>
-                    </div>
-                    <div class="right-content">
-                        <div class="d-flex justify-content-between">
-                            <button type="button" class="btn-customer">Book a private tour</button>
-                            <button type="button" class="btn-customer gold">Buy as a giftr</button>
-                        </div>
-                        <hr>
-                        <a href="#" class="link-customer text-center d-block">
-                            <svg width="15" height="16" viewBox="0 0 15 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M7.91176 16L7.70588 13.6H7.5C5.55098 13.6 3.89706 12.94 2.53824 11.62C1.17941 10.3 0.5 8.69333 0.5 6.8C0.5 4.90667 1.17941 3.3 2.53824 1.98C3.89706 0.66 5.55098 0 7.5 0C8.47451 0 9.38396 0.176533 10.2284 0.5296C11.0727 0.882667 11.8139 1.36933 12.4519 1.9896C13.0898 2.60987 13.5905 3.32987 13.954 4.1496C14.3175 4.96933 14.4995 5.8528 14.5 6.8C14.5 7.8 14.3317 8.76 13.9952 9.68C13.6586 10.6 13.1988 11.4533 12.6158 12.24C12.0327 13.0267 11.3396 13.74 10.5364 14.38C9.73314 15.02 8.85827 15.56 7.91176 16ZM7.47941 11.18C7.71275 11.18 7.91176 11.1 8.07647 10.94C8.24118 10.78 8.32353 10.5867 8.32353 10.36C8.32353 10.1333 8.24118 9.94 8.07647 9.78C7.91176 9.62 7.71275 9.54 7.47941 9.54C7.24608 9.54 7.04706 9.62 6.88235 9.78C6.71765 9.94 6.63529 10.1333 6.63529 10.36C6.63529 10.5867 6.71765 10.78 6.88235 10.94C7.04706 11.1 7.24608 11.18 7.47941 11.18ZM6.88235 8.64H8.11765C8.11765 8.24 8.15882 7.96 8.24118 7.8C8.32353 7.64 8.58431 7.34667 9.02353 6.92C9.27059 6.68 9.47647 6.42 9.64118 6.14C9.80588 5.86 9.88824 5.56 9.88824 5.24C9.88824 4.56 9.65133 4.04987 9.17753 3.7096C8.70372 3.36933 8.14455 3.19947 7.5 3.2C6.89608 3.2 6.38824 3.36347 5.97647 3.6904C5.56471 4.01733 5.27647 4.41387 5.11176 4.88L6.26471 5.32C6.33333 5.09333 6.46373 4.86987 6.65588 4.6496C6.84804 4.42933 7.12941 4.31947 7.5 4.32C7.87059 4.32 8.14839 4.42 8.33341 4.62C8.51843 4.82 8.61122 5.04 8.61176 5.28C8.61176 5.50667 8.54314 5.71013 8.40588 5.8904C8.26863 6.07067 8.10392 6.25387 7.91176 6.44C7.43137 6.84 7.13957 7.1568 7.03635 7.3904C6.93314 7.624 6.8818 8.04053 6.88235 8.64Z" fill="#333333"/>
-                            </svg>
-                            <span class="underline"> Help with booking</span>
-                        </a>
-                    </div>
-                    <div class="right-footer">
-                        <p>Over 21,000 Reviews</p>
-                        <div class="d-flex align-items-center">
-                            <svg width="60" height="38" viewBox="0 0 60 38" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M55.0961 11.0677L60 5.80483H49.1252C43.681 2.13646 37.1061 0 29.9954 0C22.8938 0 16.3372 2.14106 10.9021 5.80483H0L4.90389 11.0677C1.89804 13.773 0.01367 17.6698 0.01367 21.9965C0.01367 30.1618 6.72481 36.7817 15.0024 36.7817C18.9346 36.7817 22.5171 35.2857 25.1916 32.8402L29.9956 38L34.7995 32.8447C37.474 35.2902 41.052 36.7817 44.9842 36.7817C53.2617 36.7817 59.9819 30.1618 59.9819 21.9965C59.9863 17.6653 58.1021 13.7686 55.0961 11.0677ZM15.0068 32.0026C9.40362 32.0026 4.86311 27.5237 4.86311 21.9965C4.86311 16.4694 9.40374 11.9904 15.0068 11.9904C20.6099 11.9904 25.1506 16.4694 25.1506 21.9965C25.1506 27.5237 20.6099 32.0026 15.0068 32.0026ZM30 21.7054C30 15.1212 25.1461 9.46871 18.7392 7.05447C22.2037 5.6256 26.0042 4.83284 29.9954 4.83284C33.9867 4.83284 37.7916 5.6256 41.2562 7.05447C34.854 9.4732 30 15.1213 30 21.7054ZM44.9887 32.0026C39.3855 32.0026 34.8449 27.5237 34.8449 21.9965C34.8449 16.4694 39.3855 11.9904 44.9887 11.9904C50.5919 11.9904 55.1324 16.4694 55.1324 21.9965C55.1324 27.5237 50.5918 32.0026 44.9887 32.0026ZM44.9887 16.747C42.0509 16.747 39.6715 19.0941 39.6715 21.992C39.6715 24.8899 42.0509 27.2369 44.9887 27.2369C47.9265 27.2369 50.3058 24.8899 50.3058 21.992C50.3057 19.0985 47.9265 16.747 44.9887 16.747ZM20.3239 21.9965C20.3239 24.8944 17.9446 27.2414 15.0068 27.2414C12.0691 27.2414 9.68977 24.8944 9.68977 21.9965C9.68977 19.0985 12.0691 16.7515 15.0068 16.7515C17.9446 16.747 20.3239 19.0985 20.3239 21.9965Z" fill="#333333"/>
-                            </svg>
-                            <p>
-                                <svg width="86" height="14" viewBox="0 0 86 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <circle cx="7" cy="7" r="6" stroke="#333333" stroke-width="2"/>
-                                    <circle cx="7" cy="7" r="3" fill="#333333"/>
-                                    <circle cx="25" cy="7" r="6" stroke="#333333" stroke-width="2"/>
-                                    <circle cx="25" cy="7" r="3" fill="#333333"/>
-                                    <circle cx="43" cy="7" r="6" stroke="#333333" stroke-width="2"/>
-                                    <circle cx="43" cy="7" r="3" fill="#333333"/>
-                                    <circle cx="61" cy="7" r="6" stroke="#333333" stroke-width="2"/>
-                                    <circle cx="61" cy="7" r="3" fill="#333333"/>
-                                    <circle cx="79" cy="7" r="6" stroke="#333333" stroke-width="2"/>
-                                    <circle cx="79" cy="7" r="3" fill="#333333"/>
-                                </svg>
-                                As recommended by 99% of users on TripAdvisor
-                            </p>
-                        </div>
-                        <div class="d-flex align-items-center">
-                            <svg width="60" height="50" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M47 25.5205C47 23.8955 46.8542 22.333 46.5833 20.833H25V29.708H37.3333C36.7917 32.5622 35.1667 34.9788 32.7292 36.6038V42.3747H40.1667C44.5 38.3747 47 32.4997 47 25.5205Z" fill="#333333"/>
-                                <path d="M24.9993 47.9167C31.1868 47.9167 36.3743 45.875 40.166 42.375L32.7285 36.6042C30.6868 37.9792 28.0827 38.8125 24.9993 38.8125C19.041 38.8125 13.9785 34.7917 12.166 29.375H4.54102V35.2917C8.31185 42.7708 16.041 47.9167 24.9993 47.9167Z" fill="#333333"/>
-                                <path d="M12.1673 29.3545C11.709 27.9795 11.4382 26.5212 11.4382 25.0003C11.4382 23.4795 11.709 22.0212 12.1673 20.6462V14.7295H4.54232C2.97982 17.8128 2.08398 21.292 2.08398 25.0003C2.08398 28.7087 2.97982 32.1878 4.54232 35.2712L10.4798 30.6462L12.1673 29.3545Z" fill="#333333"/>
-                                <path d="M24.9993 11.208C28.3743 11.208 31.3743 12.3747 33.7702 14.6247L40.3327 8.06217C36.3535 4.35384 31.1868 2.08301 24.9993 2.08301C16.041 2.08301 8.31185 7.22884 4.54102 14.7288L12.166 20.6455C13.9785 15.2288 19.041 11.208 24.9993 11.208Z" fill="#333333"/>
-                            </svg>
-                            <p>
-                                <svg width="78" height="14" viewBox="0 0 78 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M7 0L8.6458 4.73475L13.6574 4.83688L9.66296 7.86525L11.1145 12.6631L7 9.8L2.8855 12.6631L4.33704 7.86525L0.342604 4.83688L5.3542 4.73475L7 0Z" fill="#333333"/>
-                                    <path d="M23 0L24.6458 4.73475L29.6574 4.83688L25.663 7.86525L27.1145 12.6631L23 9.8L18.8855 12.6631L20.337 7.86525L16.3426 4.83688L21.3542 4.73475L23 0Z" fill="#333333"/>
-                                    <path d="M39 0L40.6458 4.73475L45.6574 4.83688L41.663 7.86525L43.1145 12.6631L39 9.8L34.8855 12.6631L36.337 7.86525L32.3426 4.83688L37.3542 4.73475L39 0Z" fill="#333333"/>
-                                    <path d="M55 0L56.6458 4.73475L61.6574 4.83688L57.663 7.86525L59.1145 12.6631L55 9.8L50.8855 12.6631L52.337 7.86525L48.3426 4.83688L53.3542 4.73475L55 0Z" fill="#333333"/>
-                                    <path d="M71 0L72.6458 4.73475L77.6574 4.83688L73.663 7.86525L75.1145 12.6631L71 9.8L66.8855 12.6631L68.337 7.86525L64.3426 4.83688L69.3542 4.73475L71 0Z" fill="#333333"/>
-                                </svg>
-                                As recommended by 99% of users on Google reviews
-                            </p>
-                        </div>
-                    </div>
-                </div>
+                <div class="right"> </div>
             </div>
         </section>
         `)
@@ -634,10 +575,72 @@ let init = setInterval(() => {
 
         let descrObj = ['clock_ic/Duration','library_ic/Type of tour','cutlery_ic/How much stops?','group_ic/Tour size','smile_ic/Awards','world_ic/language'];
 
-        document.querySelector('.right-header').after(document.querySelector('.plugin'));
+        document.querySelector('#plugin').insertAdjacentHTML('afterbegin',`
+            <div class="right-header d-flex align-items-center justify-content-between">
+                <h2>Book your tour</h2>
+                <p class="price"></p>
+            </div>`)
+        document.querySelector('#plugin iframe').insertAdjacentHTML('afterend', `
+            <div class="right-content">
+                <div class="d-flex justify-content-between">
+                    <a href="#" class="btn-customer">Book a private tour</a>
+                    <a href="/buy-gift/" class="btn-customer gold">Buy as a giftr</a>
+                </div>
+                <hr>
+                <a href="#" class="link-customer text-center d-block">
+                    <svg width="15" height="16" viewBox="0 0 15 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M7.91176 16L7.70588 13.6H7.5C5.55098 13.6 3.89706 12.94 2.53824 11.62C1.17941 10.3 0.5 8.69333 0.5 6.8C0.5 4.90667 1.17941 3.3 2.53824 1.98C3.89706 0.66 5.55098 0 7.5 0C8.47451 0 9.38396 0.176533 10.2284 0.5296C11.0727 0.882667 11.8139 1.36933 12.4519 1.9896C13.0898 2.60987 13.5905 3.32987 13.954 4.1496C14.3175 4.96933 14.4995 5.8528 14.5 6.8C14.5 7.8 14.3317 8.76 13.9952 9.68C13.6586 10.6 13.1988 11.4533 12.6158 12.24C12.0327 13.0267 11.3396 13.74 10.5364 14.38C9.73314 15.02 8.85827 15.56 7.91176 16ZM7.47941 11.18C7.71275 11.18 7.91176 11.1 8.07647 10.94C8.24118 10.78 8.32353 10.5867 8.32353 10.36C8.32353 10.1333 8.24118 9.94 8.07647 9.78C7.91176 9.62 7.71275 9.54 7.47941 9.54C7.24608 9.54 7.04706 9.62 6.88235 9.78C6.71765 9.94 6.63529 10.1333 6.63529 10.36C6.63529 10.5867 6.71765 10.78 6.88235 10.94C7.04706 11.1 7.24608 11.18 7.47941 11.18ZM6.88235 8.64H8.11765C8.11765 8.24 8.15882 7.96 8.24118 7.8C8.32353 7.64 8.58431 7.34667 9.02353 6.92C9.27059 6.68 9.47647 6.42 9.64118 6.14C9.80588 5.86 9.88824 5.56 9.88824 5.24C9.88824 4.56 9.65133 4.04987 9.17753 3.7096C8.70372 3.36933 8.14455 3.19947 7.5 3.2C6.89608 3.2 6.38824 3.36347 5.97647 3.6904C5.56471 4.01733 5.27647 4.41387 5.11176 4.88L6.26471 5.32C6.33333 5.09333 6.46373 4.86987 6.65588 4.6496C6.84804 4.42933 7.12941 4.31947 7.5 4.32C7.87059 4.32 8.14839 4.42 8.33341 4.62C8.51843 4.82 8.61122 5.04 8.61176 5.28C8.61176 5.50667 8.54314 5.71013 8.40588 5.8904C8.26863 6.07067 8.10392 6.25387 7.91176 6.44C7.43137 6.84 7.13957 7.1568 7.03635 7.3904C6.93314 7.624 6.8818 8.04053 6.88235 8.64Z" fill="#333333"/>
+                    </svg>
+                    <span class="underline"> Help with booking</span>
+                </a>
+            </div>
+            <div class="right-footer">
+                <p>Over 21,000 Reviews</p>
+                <div class="d-flex align-items-center">
+                    <svg width="60" height="38" viewBox="0 0 60 38" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M55.0961 11.0677L60 5.80483H49.1252C43.681 2.13646 37.1061 0 29.9954 0C22.8938 0 16.3372 2.14106 10.9021 5.80483H0L4.90389 11.0677C1.89804 13.773 0.01367 17.6698 0.01367 21.9965C0.01367 30.1618 6.72481 36.7817 15.0024 36.7817C18.9346 36.7817 22.5171 35.2857 25.1916 32.8402L29.9956 38L34.7995 32.8447C37.474 35.2902 41.052 36.7817 44.9842 36.7817C53.2617 36.7817 59.9819 30.1618 59.9819 21.9965C59.9863 17.6653 58.1021 13.7686 55.0961 11.0677ZM15.0068 32.0026C9.40362 32.0026 4.86311 27.5237 4.86311 21.9965C4.86311 16.4694 9.40374 11.9904 15.0068 11.9904C20.6099 11.9904 25.1506 16.4694 25.1506 21.9965C25.1506 27.5237 20.6099 32.0026 15.0068 32.0026ZM30 21.7054C30 15.1212 25.1461 9.46871 18.7392 7.05447C22.2037 5.6256 26.0042 4.83284 29.9954 4.83284C33.9867 4.83284 37.7916 5.6256 41.2562 7.05447C34.854 9.4732 30 15.1213 30 21.7054ZM44.9887 32.0026C39.3855 32.0026 34.8449 27.5237 34.8449 21.9965C34.8449 16.4694 39.3855 11.9904 44.9887 11.9904C50.5919 11.9904 55.1324 16.4694 55.1324 21.9965C55.1324 27.5237 50.5918 32.0026 44.9887 32.0026ZM44.9887 16.747C42.0509 16.747 39.6715 19.0941 39.6715 21.992C39.6715 24.8899 42.0509 27.2369 44.9887 27.2369C47.9265 27.2369 50.3058 24.8899 50.3058 21.992C50.3057 19.0985 47.9265 16.747 44.9887 16.747ZM20.3239 21.9965C20.3239 24.8944 17.9446 27.2414 15.0068 27.2414C12.0691 27.2414 9.68977 24.8944 9.68977 21.9965C9.68977 19.0985 12.0691 16.7515 15.0068 16.7515C17.9446 16.747 20.3239 19.0985 20.3239 21.9965Z" fill="#333333"/>
+                    </svg>
+                    <p>
+                        <svg width="86" height="14" viewBox="0 0 86 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="7" cy="7" r="6" stroke="#333333" stroke-width="2"/>
+                            <circle cx="7" cy="7" r="3" fill="#333333"/>
+                            <circle cx="25" cy="7" r="6" stroke="#333333" stroke-width="2"/>
+                            <circle cx="25" cy="7" r="3" fill="#333333"/>
+                            <circle cx="43" cy="7" r="6" stroke="#333333" stroke-width="2"/>
+                            <circle cx="43" cy="7" r="3" fill="#333333"/>
+                            <circle cx="61" cy="7" r="6" stroke="#333333" stroke-width="2"/>
+                            <circle cx="61" cy="7" r="3" fill="#333333"/>
+                            <circle cx="79" cy="7" r="6" stroke="#333333" stroke-width="2"/>
+                            <circle cx="79" cy="7" r="3" fill="#333333"/>
+                        </svg>
+                        As recommended by 99% of users on TripAdvisor
+                    </p>
+                </div>
+                <div class="d-flex align-items-center">
+                    <svg width="60" height="50" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M47 25.5205C47 23.8955 46.8542 22.333 46.5833 20.833H25V29.708H37.3333C36.7917 32.5622 35.1667 34.9788 32.7292 36.6038V42.3747H40.1667C44.5 38.3747 47 32.4997 47 25.5205Z" fill="#333333"/>
+                        <path d="M24.9993 47.9167C31.1868 47.9167 36.3743 45.875 40.166 42.375L32.7285 36.6042C30.6868 37.9792 28.0827 38.8125 24.9993 38.8125C19.041 38.8125 13.9785 34.7917 12.166 29.375H4.54102V35.2917C8.31185 42.7708 16.041 47.9167 24.9993 47.9167Z" fill="#333333"/>
+                        <path d="M12.1673 29.3545C11.709 27.9795 11.4382 26.5212 11.4382 25.0003C11.4382 23.4795 11.709 22.0212 12.1673 20.6462V14.7295H4.54232C2.97982 17.8128 2.08398 21.292 2.08398 25.0003C2.08398 28.7087 2.97982 32.1878 4.54232 35.2712L10.4798 30.6462L12.1673 29.3545Z" fill="#333333"/>
+                        <path d="M24.9993 11.208C28.3743 11.208 31.3743 12.3747 33.7702 14.6247L40.3327 8.06217C36.3535 4.35384 31.1868 2.08301 24.9993 2.08301C16.041 2.08301 8.31185 7.22884 4.54102 14.7288L12.166 20.6455C13.9785 15.2288 19.041 11.208 24.9993 11.208Z" fill="#333333"/>
+                    </svg>
+                    <p>
+                        <svg width="78" height="14" viewBox="0 0 78 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M7 0L8.6458 4.73475L13.6574 4.83688L9.66296 7.86525L11.1145 12.6631L7 9.8L2.8855 12.6631L4.33704 7.86525L0.342604 4.83688L5.3542 4.73475L7 0Z" fill="#333333"/>
+                            <path d="M23 0L24.6458 4.73475L29.6574 4.83688L25.663 7.86525L27.1145 12.6631L23 9.8L18.8855 12.6631L20.337 7.86525L16.3426 4.83688L21.3542 4.73475L23 0Z" fill="#333333"/>
+                            <path d="M39 0L40.6458 4.73475L45.6574 4.83688L41.663 7.86525L43.1145 12.6631L39 9.8L34.8855 12.6631L36.337 7.86525L32.3426 4.83688L37.3542 4.73475L39 0Z" fill="#333333"/>
+                            <path d="M55 0L56.6458 4.73475L61.6574 4.83688L57.663 7.86525L59.1145 12.6631L55 9.8L50.8855 12.6631L52.337 7.86525L48.3426 4.83688L53.3542 4.73475L55 0Z" fill="#333333"/>
+                            <path d="M71 0L72.6458 4.73475L77.6574 4.83688L73.663 7.86525L75.1145 12.6631L71 9.8L66.8855 12.6631L68.337 7.86525L64.3426 4.83688L69.3542 4.73475L71 0Z" fill="#333333"/>
+                        </svg>
+                        As recommended by 99% of users on Google reviews
+                    </p>
+                </div>
+            </div>`)
+        // document.querySelector('.right-header').after(document.querySelector('.plugin'));
         document.querySelector('.right-header .price').innerHTML = document.querySelector('#plugin .price') != null ? document.querySelector('#plugin .price').innerHTML.replace('/','') : '';
 
-        document.querySelector('.right .link-customer').after(document.querySelector('.awards-desktop'))
+        document.querySelector('#plugin [style="background-color: #0a88ff; padding:10px;"]') != null ? document.querySelector('.right-header').after(document.querySelector('#plugin [style="background-color: #0a88ff; padding:10px;"]')) : ''
+        
+        document.querySelector('.link-customer').after(document.querySelector('.awards-desktop'))
 
         for (let i = 0; i < descrObj.length; i++) {
             let icon = descrObj[i].split('/')[0];
@@ -646,7 +649,6 @@ let init = setInterval(() => {
             if (document.querySelector(`.destination_page_wr .destination_descr .${icon}`) != null) {
                 let info = document.querySelector(`.destination_page_wr .destination_descr .${icon}`).nextElementSibling.innerText.trim();
             
-                console.log(info)
                 document.querySelector(`.left .descr .row`).insertAdjacentHTML('beforeend',`
                 <div class="col-4">
                     <p class="name">${iconName}</p>
@@ -752,4 +754,22 @@ let tourDo = setInterval(() => {
         })
     }
 });
+
+let meeting_spot = setInterval(() => {
+    if (document.querySelector('.notate') != null) {
+        clearInterval(meeting_spot)
+        document.querySelector('.meeting-spot .title').after(document.querySelector('.notate'))
+        document.querySelector('.meeting-spot .title').after(document.querySelector('#spot_beer_tour_amsterdam'))
+
+        document.querySelectorAll('.grey_block').forEach(item => {
+            let spt = item.querySelector('a').innerHTML.split('<br>');
+            let res = `<span>${spt[0]}</span><a href="${item.querySelector('a').href}">${spt[1]}</a>`;
+
+            item.querySelector('.right .item > p').innerHTML = res;
+
+            document.querySelector('.notate').insertAdjacentHTML('afterend',`<div class="grey_block"> ${item.innerHTML}</div>`)
+        })
+
+    }
+})
 
