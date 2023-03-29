@@ -19,7 +19,10 @@ let init = setInterval(() => {
         clearInterval(init)
         let signatureHTML = `
 <style>
-    .chakra-portal, .elementor.elementor-5997.elementor-location-footer > div > section.elementor-section.elementor-element-2cfd820{
+    .chakra-portal {
+        opacity: 0;
+    }
+    .elementor.elementor-5997.elementor-location-footer > div > section.elementor-section.elementor-element-2cfd820{
         display: none;
     }
     #content > div.ast-container {
@@ -81,7 +84,10 @@ let init = setInterval(() => {
         clearInterval(init)
         let signatureHTML = `
 <style>
-    .chakra-portal, .elementor.elementor-5997.elementor-location-footer > div > section.elementor-section.elementor-element-2cfd820{
+        .chakra-portal {
+            opacity: 0;
+        }
+    .elementor.elementor-5997.elementor-location-footer > div > section.elementor-section.elementor-element-2cfd820{
         display: none;
     }
     #content > div.ast-container {
@@ -230,15 +236,13 @@ let init = setInterval(() => {
             pushDataLayer(`Click on Terms and Conditions link`)
         })
 
-        downloadESignature()
-
         pushDataLayer('loaded')
     }
 })
 }
 function downloadESignature() {
     let findModal = setInterval(() => {
-        if (document.querySelector('.chakra-button.css-btnror') && document.querySelector('.chakra-modal__close-btn')) {
+        if (document.querySelector('.chakra-button.css-1gzwy8o') != null && document.querySelector('.chakra-button.css-btnror') != null && document.querySelector('.chakra-modal__close-btn') != null) {
             clearInterval(findModal)
             let btnSignup = document.querySelector('.chakra-button.css-btnror'),
                 btnDowload = document.querySelector('.chakra-button.css-1gzwy8o');
@@ -248,7 +252,7 @@ function downloadESignature() {
     
             btnSignup.click()
            
-            document.querySelector('.chakra-modal__close-btn').click();
+            localStorage.setItem('routing', 'to_signup')
             window.location.href = 'https://app.signaturely.com/signup'
         }
     });
@@ -260,6 +264,13 @@ let routing = setInterval(() => {
     if (newHref != hrefLocation) {
         hrefLocation = newHref;
         init()
+    }
+    if (localStorage.getItem('routing') != null && localStorage.getItem('routing') == 'to_signup') {
+        localStorage.removeItem('routing');
+        setTimeout(() => {
+            location.reload()
+        }, 100)
+       
     }
 })
 
