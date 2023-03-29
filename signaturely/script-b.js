@@ -230,6 +230,8 @@ let init = setInterval(() => {
             pushDataLayer(`Click on Terms and Conditions link`)
         })
 
+        downloadESignature()
+
         pushDataLayer('loaded')
     }
 })
@@ -248,7 +250,6 @@ function downloadESignature() {
            
             document.querySelector('.chakra-modal__close-btn').click();
             window.location.href = 'https://app.signaturely.com/signup'
-            init()
         }
     });
 }
