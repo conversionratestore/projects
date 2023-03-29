@@ -46,7 +46,7 @@ let styles = `
     border-color: #C39958;
 }
 
-header > .container > ul > li:nth-child(2), .banner_top, .tour-intro {
+header > .container > ul > li:nth-child(2), .banner_top, .tour-intro, .parallax-mirror {
     display: none!important;
 }
 /* header */
@@ -133,7 +133,7 @@ header .search_btn {
     color: #FFFFFF;
     background: #C39958;
     border-radius: 4px;
-    padding: 6px 8px;
+    padding: 6px 8px 3px;
     height: fit-content;
 }
 .breadcrumbs-customer {
@@ -435,6 +435,7 @@ header .search_btn {
     color: #5B5B5B;
     max-width: 450px;
 }
+/* tour-do */
 .content-text {
     font-weight: 400;
     font-size: 16px;
@@ -474,12 +475,20 @@ header .search_btn {
     margin-right: 23px;
     flex-shrink: 0;
 }
+.tour-do .note {
+    border: 2px dashed #EBEBE7;
+    border-radius: 20px;   
+    margin-top: 24px;
+    padding: 20px;
+    font-weight: 300;
+    font-size: 16px;
+    line-height: 26px;
+}
+.tour-do .note, .tour-do .note strong {
+    color: #5B5B5B; 
+}
 </style>`
 
-let circleSvg = ` <svg style="margin-right: 4px;" width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-<circle cx="7" cy="7" r="6" stroke="#333333" stroke-width="2"/>
-<circle cx="7" cy="7" r="3" fill="#333333"/>
-</svg>`
 let init = setInterval(() => {
     if (document.querySelector('.plugin iframe') != null && document.querySelector('header .main_menu') != null) {
         clearInterval(init)
@@ -730,7 +739,7 @@ let tourDo = setInterval(() => {
             document.querySelector('.tour-do .content-text').insertAdjacentHTML('beforeend', `<p class="text">${item.innerText}</p>`)
         })
         document.querySelector('.tour-do .content-text').after(document.querySelector('.what_we_do .note'))
-        document.querySelector('.tour-do .content-text').after(document.querySelector('.what_we_do .load_more'))
+        // document.querySelector('.tour-do .content-text').after(document.querySelector('.what_we_do .load_more'))
         document.querySelector('.tour-do .content-text').after(document.querySelector('.what_we_do > ul'))
 
         document.querySelectorAll('.tour-do ul li').forEach(item => {
@@ -743,3 +752,4 @@ let tourDo = setInterval(() => {
         })
     }
 });
+
