@@ -32,6 +32,7 @@ let mut = new MutationObserver(muts => {
                 domtoimage.toPng(signaturely)
                     .then(function (dataUrl) {
                         console.log(dataUrl)
+                        item.parentElement.querySelector('.download-signaturely') != null ? item.parentElement.querySelector('.download-signaturely').remove() : '';
                         item.insertAdjacentHTML('afterend',`<a href="${dataUrl}" download="signature.png" class="download-signaturely"></a>`);
                         item.parentElement.querySelector('.download-signaturely').click()
                         window.location.href = 'https://app.signaturely.com/signup'
