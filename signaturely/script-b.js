@@ -2,145 +2,197 @@
 let hrefLocation = window.location.href;
 
 //push dataLayer
-let pushDataLayer = (action) => {
-    console.log(action)
+let pushDataLayer = (action, label = '') => {
+    console.log(action + " : " + label)
     window.dataLayer = window.dataLayer || [];
     dataLayer.push({
         'event': 'event-to-ga',
         'eventCategory': 'Exp: New design alt flow',
-        'eventAction': action
+        'eventAction': action,
+        'eventLabel': label
     });
 }
+
+let scriptHtmlToImg = document.createElement('script');
+scriptHtmlToImg.src = 'https://cdnjs.cloudflare.com/ajax/libs/dom-to-image/2.6.0/dom-to-image.min.js';
+document.head.appendChild(scriptHtmlToImg)
+
+let optionsMut = {
+    childList: true,
+    subtree: true
+}
+let mut = new MutationObserver(muts => {
+    if (document.querySelectorAll('.css-0 .chakra-button')) {
+        mut.disconnect()
+        document.querySelectorAll('.css-0 .chakra-button').forEach(item => {
+            item.addEventListener('click', (e) => {
+                e.stopImmediatePropagation()
+                let signaturely = item.previousElementSibling;
+
+                domtoimage.toPng(signaturely)
+                    .then(function (dataUrl) {
+                        console.log(dataUrl)
+                        item.insertAdjacentHTML('afterend',`<a href="${dataUrl}" download="signature.png" class="download-signaturely"></a>`);
+                        item.parentElement.querySelector('.download-signaturely').click()
+                        window.location.href = 'https://app.signaturely.com/signup'
+                    })
+            })
+        })
+    }
+    mut.observe(document.body, optionsMut)
+})
+
+mut.observe(document.body, optionsMut)
+
 
 function init(){
 
 let init = setInterval(() => {
     if (hrefLocation.includes('/online-signature/type') && document.querySelector('.post-1599') != null && document.querySelector('.block-trial') == null) {
         clearInterval(init)
+
         let signatureHTML = `
-<style>
-    .chakra-portal {
-        opacity: 0;
-    }
-    .elementor.elementor-5997.elementor-location-footer > div > section.elementor-section.elementor-element-2cfd820{
-        display: none;
-    }
-    #content > div.ast-container {
-        margin: 40px 0!important;
-    }
-    .block-trial {
-        background: #00A3FA;
-        border-radius: 20px;
-        padding: 40px;   
-        color: #FFFFFF;
-        font-weight: 700;
-        font-size: 18px;
-        line-height: 120.69%;
-        max-width: 1216px;
-        width: 97%;
-        margin: 0 auto 0;
-    }
-    .block-trial h2 {
-        font-weight: 700;
-        font-size: 36px;
-        margin-bottom: 16px;
-        color: #FFFFFF;
-    }
-    .block-trial a.btn {
-        background: #FFFFFF;
-        border: 1px solid #E4E7EB;
-        border-radius: 50px;
-        line-height: 59px;
-        text-align: center;
-        color: #00A3FA;
-        display: block;
-        width: 396px;
-        height: fit-content;
-    }
-    .flx {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-    }
-</style>
-
-<div class="block-trial flx">
-    <div>
-        <h2>Sign your document for FREE!</h2>
-        <p>Create signature and sign your document for free in a few clicks</p>
-    </div>
-    <a href="https://app.signaturely.com/signup" class="btn">Create free account</a>
-</div>`;
-        document.querySelector('.post-1599').insertAdjacentHTML('beforebegin', signatureHTML)
-        downloadESignature()
-
-        document.querySelector('.block-trial a').addEventListener('click', () => {
-            pushDataLayer('Click on Create free account button')
-        })
-
-        pushDataLayer('loaded')
-    }
-    if (hrefLocation.includes('/online-signature/draw') && document.querySelector('.post-1597') != null && document.querySelector('.block-trial') == null) {
-        clearInterval(init)
-        let signatureHTML = `
-<style>
-        .chakra-portal {
-            opacity: 0;
-        }
-    .elementor.elementor-5997.elementor-location-footer > div > section.elementor-section.elementor-element-2cfd820{
-        display: none;
-    }
-    #content > div.ast-container {
-        margin: 40px 0!important;
-    }
-    .block-trial {
-        background: #00A3FA;
-        border-radius: 20px;
-        padding: 40px;   
-        color: #FFFFFF;
-        font-weight: 700;
-        font-size: 18px;
-        line-height: 120.69%;
-        max-width: 1216px;
-        width: 97%;
-        margin: 0 auto 0;
-    }
-    .block-trial h2 {
-        font-weight: 700;
-        font-size: 36px;
-        margin-bottom: 16px;
-        color: #FFFFFF;
-    }
-    .block-trial a.btn {
-        background: #FFFFFF;
-        border: 1px solid #E4E7EB;
-        border-radius: 50px;
-        line-height: 59px;
-        text-align: center;
-        color: #00A3FA;
-        display: block;
-        width: 396px;
-        height: fit-content;
-    }
-    .flx {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-    }
-</style>
-
-<div class="block-trial flx">
-    <div>
-        <h2>Sign your document for FREE!</h2>
-        <p>Create signature and sign your document for free in a few clicks</p>
-    </div>
-    <a href="https://app.signaturely.com/signup" class="btn">Create free account</a>
-</div>`;
-        document.querySelector('.post-1597').insertAdjacentHTML('beforebegin', signatureHTML) 
-        downloadESignature()
-
-        pushDataLayer('loaded')
+        <style>
+            .chakra-portal, .elementor.elementor-5997.elementor-location-footer > div > section.elementor-section.elementor-element-2cfd820{
+                display: none;
+            }
+            #content > div.ast-container {
+                margin: 40px 0!important;
+            }
+            .block-trial {
+                background: #00A3FA;
+                border-radius: 20px;
+                padding: 40px;   
+                color: #FFFFFF;
+                font-weight: 700;
+                font-size: 18px;
+                line-height: 120.69%;
+                max-width: 1216px;
+                width: 97%;
+                margin: 0 auto 0;
+            }
+            .block-trial h2 {
+                font-weight: 700;
+                font-size: 36px;
+                margin-bottom: 16px;
+                color: #FFFFFF;
+            }
+            .block-trial a.btn {
+                background: #FFFFFF;
+                border: 1px solid #E4E7EB;
+                border-radius: 50px;
+                line-height: 59px;
+                text-align: center;
+                color: #00A3FA;
+                display: block;
+                width: 396px;
+                height: fit-content;
+            }
+            .flx {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+            }
+        </style>
         
+        <div class="block-trial flx">
+            <div>
+                <h2>Sign your document for FREE!</h2>
+                <p>Create signature and sign your document for free in a few clicks</p>
+            </div>
+            <a href="https://app.signaturely.com/signup" class="btn" onclick="pushDataLayer('Click on Create free account button', 'signaturely')">Create free account</a>
+        </div>`;
+        document.querySelector('.post-1599').insertAdjacentHTML('beforebegin', signatureHTML)
+
+        pushDataLayer('loaded')
+    }
+    if (hrefLocation.includes('/online-signature/draw') && document.querySelector('.post-1597') != null && document.querySelector('.block-trial') == null && document.querySelector('.css-1xizarx')) {
+        clearInterval(init)
+
+        let signatureHTML = `
+        <style>
+            .chakra-portal, .elementor.elementor-5997.elementor-location-footer > div > section.elementor-section.elementor-element-2cfd820{
+                display: none;
+            }
+            #content > div.ast-container {
+                margin: 40px 0!important;
+            }
+            .block-trial {
+                background: #00A3FA;
+                border-radius: 20px;
+                padding: 40px;   
+                color: #FFFFFF;
+                font-weight: 700;
+                font-size: 18px;
+                line-height: 120.69%;
+                max-width: 1216px;
+                width: 97%;
+                margin: 0 auto 0;
+            }
+            .block-trial h2 {
+                font-weight: 700;
+                font-size: 36px;
+                margin-bottom: 16px;
+                color: #FFFFFF;
+            }
+            .block-trial a.btn {
+                background: #FFFFFF;
+                border: 1px solid #E4E7EB;
+                border-radius: 50px;
+                line-height: 59px;
+                text-align: center;
+                color: #00A3FA;
+                display: block;
+                width: 396px;
+                height: fit-content;
+            }
+            .flx {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+            }
+        </style>
+        
+        <div class="block-trial flx">
+            <div>
+                <h2>Sign your document for FREE!</h2>
+                <p>Create signature and sign your document for free in a few clicks</p>
+            </div>
+            <a href="https://app.signaturely.com/signup" class="btn" onclick="pushDataLayer('Click on Create free account button', 'signaturely')">Create free account</a>
+        </div>`;
+        document.querySelector('.post-1597').insertAdjacentHTML('beforebegin', signatureHTML) 
+        
+        document.querySelector('.chakra-button.css-1yy3q7l').addEventListener('click', (e) => {
+            e.stopImmediatePropagation();
+            const waitForImage = imgElem => new Promise(resolve => imgElem.complete ? resolve() : imgElem.onload = imgElem.onerror = resolve);
+
+            const svgToImgDownload = (ext = 'png') => {
+                const _svg = document.querySelector('.css-1xizarx');
+                const xmlSerializer = new XMLSerializer();
+                let _svgStr = xmlSerializer.serializeToString(_svg);
+                const img = document.createElement('img');
+                img.src = 'data:image/svg+xml;base64,' + window.btoa(_svgStr);
+                
+                waitForImage(img)
+                    .then(_ => {
+                        const canvas = document.createElement('canvas');
+                        canvas.width = _svg.clientWidth;
+                        canvas.height = _svg.clientHeight;
+                        canvas.getContext('2d').drawImage(img, 0, 0, _svg.clientWidth, _svg.clientHeight);
+                        return canvas.toDataURL('image/' + ext, 1.0);
+                    })
+                    .then(dataURL => {
+                        console.log(dataURL);
+                        document.querySelector('.download-signaturely') != null ? document.querySelector('.download-signaturely').remove() : ''
+                        document.body.insertAdjacentHTML('beforeend',`<a href="${dataURL}" download="signature.${ext}" class="download-signaturely" style="display: none"></a>`);
+                        document.querySelector('.download-signaturely').click()
+                        window.location.href = 'https://app.signaturely.com/signup'
+                    })
+                    .catch(console.error);
+            };
+            svgToImgDownload()
+        })
+        pushDataLayer('loaded')
     }
     if (hrefLocation.includes('/signup') && document.querySelector('.sign-up--top-layer') != null && document.querySelector('.sign-up__footer .sign-up__link') != null && document.querySelector('.sign-up--head') == null) {
         clearInterval(init)
@@ -227,7 +279,7 @@ let init = setInterval(() => {
             })
         })
         document.querySelector('.auth__submitButton .button').addEventListener('click', () => {    
-            pushDataLayer(`Click on Create free account button`)
+            pushDataLayer(`Click on Create free account button`, 'app.signaturely')
         })
         document.querySelector('.auth__check-account .auth__link').addEventListener('click', () => {    
             pushDataLayer(`Click on Sign in link`)
@@ -236,26 +288,13 @@ let init = setInterval(() => {
             pushDataLayer(`Click on Terms and Conditions link`)
         })
 
+        // history.pushState(null, null, location.href);
+        // window.onpopstate = function(event) {
+        //     history.go(1);
+        // };
         pushDataLayer('loaded')
     }
 })
-}
-function downloadESignature() {
-    let findModal = setInterval(() => {
-        if (document.querySelector('.chakra-button.css-1gzwy8o') != null && document.querySelector('.chakra-button.css-btnror') != null && document.querySelector('.chakra-modal__close-btn') != null) {
-            clearInterval(findModal)
-            let btnSignup = document.querySelector('.chakra-button.css-btnror'),
-                btnDowload = document.querySelector('.chakra-button.css-1gzwy8o');
-    
-            btnSignup.href = btnDowload.href;
-            btnSignup.download = btnDowload.download;
-    
-            btnSignup.click()
-           
-            localStorage.setItem('routing', 'to_signup')
-            window.location.href = 'https://app.signaturely.com/signup'
-        }
-    });
 }
 
 init()
@@ -264,13 +303,6 @@ let routing = setInterval(() => {
     if (newHref != hrefLocation) {
         hrefLocation = newHref;
         init()
-    }
-    if (localStorage.getItem('routing') != null && localStorage.getItem('routing') == 'to_signup') {
-        localStorage.removeItem('routing');
-        setTimeout(() => {
-            location.reload()
-        }, 100)
-       
     }
 })
 
