@@ -1324,7 +1324,13 @@ let init = () => {
 
             document.querySelector('.btn-get').addEventListener('click', (e) => {
 
-                pushDataLayer('Click on the Get a Free Demo button', selectCurrent.innerText);
+                let info = {
+                    "full_name": inputName.value,
+                    "email": inputEmail.value,
+                    "phone": document.querySelector('#phoneCode').value,
+                    "number_of_prospects": selectCurrent.innerText
+                }
+                pushDataLayer('Click on the Get a Free Demo button', JSON.stringify(info));
                 
                 if (inputName.value == '' || inputName.value.length < 2) {
                     inputName.parentElement.classList.add('error')
