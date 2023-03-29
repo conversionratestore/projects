@@ -1323,15 +1323,6 @@ let init = () => {
             })
 
             document.querySelector('.btn-get').addEventListener('click', (e) => {
-
-                let info = {
-                    "full_name": inputName.value,
-                    "email": inputEmail.value,
-                    "phone": document.querySelector('#phoneCode').value,
-                    "number_of_prospects": selectCurrent.innerText
-                }
-                pushDataLayer('Click on the Get a Free Demo button', JSON.stringify(info));
-                
                 if (inputName.value == '' || inputName.value.length < 2) {
                     inputName.parentElement.classList.add('error')
                 }  else {
@@ -1342,8 +1333,19 @@ let init = () => {
                 } else {
                     inputEmail.parentElement.classList.remove('error')
                 }
-
+                if (document.querySelector('.error') != null) {
+                    pushDataLayer('Click on the Get a Free Demo button');
+                }
                 if (document.querySelector('.error') == null) {
+
+                    let info = {
+                        "full_name": inputName.value,
+                        "email": inputEmail.value,
+                        "phone": document.querySelector('#phoneCode').value,
+                        "number_of_prospects": selectCurrent.innerText
+                    }
+                    pushDataLayer('Click on the Get a Free Demo button', JSON.stringify(info));
+
                     document.querySelector('.progressbar_item.active').classList.add('done')
                     document.querySelector('.progressbar_item.done').classList.remove('active')
                     document.querySelector('.progressbar_item:not(.done)').classList.add('active')
@@ -1363,9 +1365,10 @@ let init = () => {
                     seamless.polyfill();
                     seamless.scrollBy(window, { behavior: "smooth", top: offsetPosition, left: 0 });
 
+
                     pushDataLayer('Visibility of the second step of the form')
 
-                }
+                } 
             })
 
             //events
