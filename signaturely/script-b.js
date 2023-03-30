@@ -295,6 +295,9 @@ function init(){
             pushDataLayer('loaded')
         }
     })
+    if (document.querySelector('.exp-loading') != null) {
+        document.querySelector('.exp-loading').remove()
+    }
 }
 
 init()
