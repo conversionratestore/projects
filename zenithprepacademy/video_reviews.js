@@ -1056,6 +1056,7 @@ a.schedule_new_btn {
           clearInterval(intervalVimeo)
           const iframe = document.querySelector(".mobile-iframe")
           const player = new Vimeo.Player(iframe)
+          console.log(player, `player>>>>>>>>>>>>>>>>`)
 
           if (player.setVolume) {
             player.setVolume(1)
