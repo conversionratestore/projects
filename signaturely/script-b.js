@@ -47,7 +47,6 @@ mut.observe(document.body, optionsMut)
 let hrefLocation = window.location.href;
 
 function init(){
-
     let init = setInterval(() => {
         if (hrefLocation.includes('/online-signature/type') && document.querySelector('.post-1599') != null && document.querySelector('.block-trial') == null) {
             clearInterval(init)
@@ -104,9 +103,7 @@ function init(){
                 <a href="https://app.signaturely.com/signup" class="btn" onclick="pushDataLayer('Click on Create free account button', 'signaturely')">Create free account</a>
             </div>`;
             document.querySelector('.post-1599').insertAdjacentHTML('beforebegin', signatureHTML)
-            if (document.querySelector('.exp-loading') != null) {
-                document.querySelector('.exp-loading').remove()
-            }
+
             pushDataLayer('loaded')
         }
         if (hrefLocation.includes('/online-signature/draw') && document.querySelector('.post-1597') != null && document.querySelector('.block-trial') == null && document.querySelector('.css-1xizarx')) {
@@ -195,9 +192,6 @@ function init(){
                 };
                 svgToImgDownload()
             })
-            if (document.querySelector('.exp-loading') != null) {
-                document.querySelector('.exp-loading').remove()
-            }
             pushDataLayer('loaded')
         }
         if (hrefLocation.includes('/signup') && document.querySelector('.sign-up--top-layer') != null && document.querySelector('.sign-up__footer .sign-up__link') != null && document.querySelector('.sign-up--head') == null) {
@@ -298,9 +292,6 @@ function init(){
             // window.onpopstate = function(event) {
             //     history.go(1);
             // };
-            if (document.querySelector('.exp-loading') != null) {
-                document.querySelector('.exp-loading').remove()
-            }
             pushDataLayer('loaded')
         }
     })
@@ -312,6 +303,9 @@ let routing = setInterval(() => {
     let newHref = window.location.href;
     if (newHref != hrefLocation) {
         hrefLocation = newHref;
+        if (document.querySelector('.exp-loading') != null) {
+            document.querySelector('.exp-loading').remove()
+        }
         init()
     }
 })
