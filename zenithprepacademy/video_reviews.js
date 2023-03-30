@@ -478,7 +478,7 @@ a.schedule_new_btn {
     margin-top: 0;
   }
   .review_card_descr {
-    min-height: 422px;
+    min-height: 524px;
   }
   .review_card .review_card_title {
     min-height: 40px;
@@ -619,9 +619,34 @@ a.schedule_new_btn {
     height: 83%;
   }
 }
+@media (min-width: 1010px){
+.review_card_descr {
+     min-height: 515px;
+  }
+}
+@media (min-width: 1020px){
+.review_card_descr {
+     min-height: 506px;
+  }
+}
+@media (min-width: 1037px){
+.review_card_descr {
+     min-height: 484px;
+  }
+}
 @media (min-width: 1085px){
 .review_card_descr {
-     min-height: 590px;
+     min-height: 483px;
+  }
+}
+@media (min-width: 1086px){
+.review_card_descr {
+     min-height: 592px;
+  }
+}
+@media (min-width: 1100px){
+.review_card_descr {
+     min-height: 566px;
   }
 }
 @media (min-width: 1110px){
@@ -926,7 +951,13 @@ a.schedule_new_btn {
     }
 
     document.head.insertAdjacentHTML("beforeend", styleNew)
-    document.querySelector(".mobile-iframe").src = "https://player.vimeo.com/video/790201146?h=eda73cb7b6&loop=1&title=0&byline=0&portrait=0"
+    let intV = setInterval(() => {
+      if (document.querySelector(".mobile-iframe")) {
+        clearInterval(intV)
+        document.querySelector(".mobile-iframe").src = "https://player.vimeo.com/video/790201146?h=eda73cb7b6&loop=1&title=0&byline=0&portrait=0"
+        console.log(`change src`, document.querySelector(".mobile-iframe").src)
+      }
+    }, 100)
     document.querySelector("#row-165 iframe").src = "https://player.vimeo.com/video/790201146?h=eda73cb7b6&loop=1&title=0&byline=0&portrait=0"
     document.querySelector(".timeline").insertAdjacentHTML("afterend", timelineEl)
     if (!document.querySelector("#reviewsBlock")) {
@@ -1001,9 +1032,9 @@ a.schedule_new_btn {
             infinite: false,
             responsive: [
               {
-                breakpoint: 1086,
+                breakpoint: 1087,
                 settings: {
-                  slidesToShow: 1.55,
+                  slidesToShow: 2,
                 },
               },
             ],
