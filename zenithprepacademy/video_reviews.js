@@ -1066,7 +1066,7 @@ a.schedule_new_btn {
             handleTimeline()
           })
         }
-      }, 400)
+      }, 100)
     }
     function handleTimeline() {
       if (!document.querySelector(".timeline_item_new.active")) {
