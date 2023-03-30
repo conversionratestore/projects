@@ -951,13 +951,7 @@ a.schedule_new_btn {
     }
 
     document.head.insertAdjacentHTML("beforeend", styleNew)
-    let intV = setInterval(() => {
-      if (document.querySelector(".mobile-iframe")) {
-        clearInterval(intV)
-        document.querySelector(".mobile-iframe").src = "https://player.vimeo.com/video/790201146?h=eda73cb7b6&loop=1&title=0&byline=0&portrait=0"
-        console.log(`change src`, document.querySelector(".mobile-iframe").src)
-      }
-    }, 100)
+    document.querySelector(".mobile-iframe").src = "https://player.vimeo.com/video/790201146?h=eda73cb7b6&loop=1&title=0&byline=0&portrait=0"
     document.querySelector("#row-165 iframe").src = "https://player.vimeo.com/video/790201146?h=eda73cb7b6&loop=1&title=0&byline=0&portrait=0"
     document.querySelector(".timeline").insertAdjacentHTML("afterend", timelineEl)
     if (!document.querySelector("#reviewsBlock")) {
