@@ -1057,7 +1057,7 @@ a.schedule_new_btn {
       }, 200)
     } else {
       let intervalVimeo = setInterval(() => {
-        if (typeof Vimeo == "object" && document.querySelector(".mobile-iframe")) {
+        if (typeof Vimeo == "object") {
           clearInterval(intervalVimeo)
           const iframe = document.querySelector(".mobile-iframe")
           const player = new Vimeo.Player(iframe)
@@ -1071,7 +1071,7 @@ a.schedule_new_btn {
             handleTimeline()
           })
         }
-      }, 400)
+      }, 100)
     }
     function handleTimeline() {
       if (!document.querySelector(".timeline_item_new.active")) {
