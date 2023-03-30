@@ -100,7 +100,7 @@ function init(){
                     <h2>Sign your document for FREE!</h2>
                     <p>Create signature and sign your document for free in a few clicks</p>
                 </div>
-                <a href="https://app.signaturely.com/signup" class="btn" onclick="pushDataLayer('Click on Create free account button', 'signaturely')">Create free account</a>
+                <a href="https://app.signaturely.com/signup" class="btn" onclick="pushDataLayer('Click on Create free account button', 'signaturely')">Create a free account</a>
             </div>`;
             document.querySelector('.post-1599').insertAdjacentHTML('beforebegin', signatureHTML)
 
@@ -158,7 +158,7 @@ function init(){
                     <h2>Sign your document for FREE!</h2>
                     <p>Create signature and sign your document for free in a few clicks</p>
                 </div>
-                <a href="https://app.signaturely.com/signup" class="btn" onclick="pushDataLayer('Click on Create free account button', 'signaturely')">Create free account</a>
+                <a href="https://app.signaturely.com/signup" class="btn" onclick="pushDataLayer('Click on Create free account button', 'signaturely')">Create a free account</a>
             </div>`;
             document.querySelector('.post-1597').insertAdjacentHTML('beforebegin', signatureHTML) 
             
@@ -261,6 +261,8 @@ function init(){
                 </div>
             `)
 
+            document.querySelector('.auth__submitButton .button .button__text').innerHTML = `Create a free account`;
+            
             //events
             document.querySelectorAll('.slider__button').forEach(item => {
                 item.addEventListener('click', () => {
