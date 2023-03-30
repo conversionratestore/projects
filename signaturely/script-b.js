@@ -306,9 +306,6 @@ let routing = setInterval(() => {
     let newHref = window.location.href;
     if (newHref != hrefLocation) {
         hrefLocation = newHref;
-        if (document.querySelector('.exp-loading') != null) {
-            document.querySelector('.exp-loading').remove()
-        }
         init()
     }
 })
