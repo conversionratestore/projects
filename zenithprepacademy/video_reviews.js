@@ -1065,7 +1065,7 @@ a.schedule_new_btn {
             handleTimeline()
           })
         }
-      }, 200)
+      }, 400)
     }
     function handleTimeline() {
       if (!document.querySelector(".timeline_item_new.active")) {
@@ -1293,4 +1293,4 @@ a.schedule_new_btn {
 
     document.querySelector(".exp")?.remove()
   }
-}, 500)
+}, 600)
