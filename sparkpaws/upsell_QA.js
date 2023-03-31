@@ -1324,7 +1324,10 @@ function convertOptionTxt(optionTxt) {
     const parts = optionTxt.split(/ \/ | - /)
     const sizes = ["OS", "XS", "S", "M", "L", "XL", "2XL", "3XL", "4XL"]
 
-    if (parts.length === 2) {
+    if (parts.length === 3) {
+        // D (7.6cm-8.5cm / 3.0"-3.3")
+        return `${parts[0]}, ${parts[1]} / ${parts[2]}`
+    } else if (parts.length === 2) {
         let txt
 
         // Check if the second part matches the "S (10-15lbs/4.5-7kg)" format
@@ -1349,9 +1352,6 @@ function convertOptionTxt(optionTxt) {
         } else {
             return optionTxt
         }
-    } else if (parts.length === 3) {
-        // D (7.6cm-8.5cm / 3.0"-3.3")
-        return `${parts[0]}, ${parts[1]} / ${parts[2]}`
     } else {
         return optionTxt
     }
