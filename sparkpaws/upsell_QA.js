@@ -1325,13 +1325,22 @@ function convertOptionTxt(optionTxt) {
     if (parts.length === 2) {
         let txt
 
-        sizes.forEach(size => {
-            if (parts[0] === size) {
-                txt = `${parts[0]}, ${parts[1]}`
-            } else if (parts[1] === size) {
-                txt = `${parts[1]}, ${parts[0]}`
-            }
-        })
+        // Check if the second part matches the "S (10-15lbs/4.5-7kg)" format
+        const sizeRegEx = /^([A-Z]+) \(([\d.-]+)lbs\/([\d.-]+)kg\)$/
+        const match = sizeRegEx.exec(parts[1])
+        if (match !== null) {
+            // If the second part matches the format, swap it with the first part and format it
+            txt = `${match[1]} (${match[2]}lbs/${match[3]}kg), ${parts[0]}`
+        } else {
+            // If the second part doesn't match the format, check if either part matches a size and format accordingly
+            sizes.forEach(size => {
+                if (parts[0] === size) {
+                    txt = `${parts[0]}, ${parts[1]}`
+                } else if (parts[1] === size) {
+                    txt = `${parts[1]}, ${parts[0]}`
+                }
+            })
+        }
 
         if (txt) {
             return txt
