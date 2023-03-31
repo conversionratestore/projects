@@ -70,7 +70,7 @@ let styles = `
     font-style: normal;
     font-weight: 700;
     font-size: 16px;
-    line-height: 36px;
+    line-height: 34px;
     text-align: center;
     letter-spacing: 1px;
     color: #FFFFFF;
@@ -113,18 +113,23 @@ let styles = `
     font-weight: 500;
     width: 100%;
 }
+.item_product:last-child {
+    margin: 0;
+}
 .item_product > div {
     width: calc(100% - 134px);
 }
-.item_product img {
+.item_product > a, .item_product img  {
     width: 120px;
     height: 120px;
-    object-fit: cover;
     margin-right: 14px;
+}
+.item_product img {
+    object-fit: cover;
 }
 
 p.item_product__price {
-    margin: 6px 0 14px;
+    margin: 5px 0 13px;
 }
 .item_product__price .compare {
     color: #939393;
@@ -202,12 +207,14 @@ input.clac_qty {
     margin-bottom: 2px;
 }
 /* discount */
-.slide_in__discount {
-    background: #F5F5F5;
+.slide_in__bundle {
     padding: 16px 20px;
+    background: #F5F5F5;
 }
-.slide_in__discount > p {
-    font-weight: 600;
+.slide_in__bundle img {
+    background: #FFFFFF;
+}
+.slide_in__bundle > p {
     line-height: 19px;
     margin-bottom: 16px;
 }
@@ -234,7 +241,13 @@ input.clac_qty {
 }
 .slide_in__subtotal .loading:before {
     content: '';
-    
+    position: absolute;
+    right: 100%;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 19px;
+    height: 19px;
+    background: url(https://conversionratestore.github.io/projects/novaalab/img/loading.gif) no-repeat center / 100%;
 }
 .slide_in__total > div p:first-child {
     letter-spacing: 1.4px;
@@ -246,6 +259,30 @@ input.clac_qty {
     padding: 10px 0 12px;
 }
 
+/* may_like */
+.may_like {
+    background: #F5F5F5;
+    padding: 20px;
+    margin-top: 20px;
+}
+.may_like h4 {
+    font-size: 16px;
+    line-height: 19px;
+    color: #212121;
+    margin-bottom: 16px;
+}
+/* footer cart */
+.slide_in__footer {
+    padding: 20px;
+    position: sticky;
+    bottom: 0;
+    background: #fff;
+    z-index: 2;
+}
+.slide_in__to_checkout {
+    font-size: 18px;
+    line-height: 48px;
+}
 /* fonts */
 .fw-bold {
     font-weight: 700!important;
@@ -285,6 +322,9 @@ let emtySlideInHTML = `
     <p>Our red light therapy products can help reduce pain, improve circulation, and relieve muscle tension</p>
     <a href="/pages/red-light-therapy-home-catalog" class="btn-purple">Shop all products</a>
 </li>`;
+
+
+let productHaveBundle = {32854816784438:'', 39782656311350:'', 40322897838134:''};
 
 function priceSubstr(price) {
     let str = price.toString();
@@ -327,11 +367,14 @@ function getCart(cartDrawer = document.querySelector('.slide_in__cart')) {
 
             cartDrawer.querySelector('.slide_in__subtotal .pr').innerHTML = '$'+subtotal;
 
+            cartDrawer.querySelector('.slide_in__bundle').innerHTML = '';
+            cartDrawer.querySelector('.slide_in__bundle').style.display = 'none';
+            cartDrawer.querySelector('.slide_in__header > p span').innerHTML = itemCount;
             if (itemCount == 0) {
                 parent.innerHTML = emtySlideInHTML;
                 cartDrawer.querySelector('.slide_in__total').style.display = 'none';
 
-                let item = cartDrawer.querySelector('.may_like'),
+                let item = cartDrawer.querySelector('.slide_in__message.guarantee'),
                     position = 'afterend';
 
                 new Message(item, position, 'freeshipping').render()
@@ -340,23 +383,29 @@ function getCart(cartDrawer = document.querySelector('.slide_in__cart')) {
                 if (cartDrawer.querySelector('.freeshipping') != null) {
                     cartDrawer.querySelector('.freeshipping').remove()
                 }
+
                 for (let i = 0; i < items.length; i++) {
                     let link = items[i].url, 
                         image = items[i].image, 
                         title = items[i].title, 
                         compare = '', //priceSubstr(items[i].original_line_price), 
-                        price = priceSubstr(items[i].discounted_price), 
+                        price = items[i].discounted_price, 
+                        id = items[i].id,
                         variantId = items[i].variant_id,
                         hasVariant = items[i].product_has_only_default_variant;
                         qty = items[i].quantity;
         
-                    console.log(items[i].url)
-        
-                    console.log(parent)
-                    new ProductItem(parent, link, image, title, compare, price, variantId, hasVariant, qty).render()
+                    new ProductItem(parent, link, image, title, compare, price, variantId, id, hasVariant, qty).render()
+
+                    if (productHaveBundle[variantId] != null && qty < 2) {
+                        console.log('bundle')
+                        new ProductItem(cartDrawer.querySelector('.slide_in__bundle'), bundleObj.url, bundleObj.img, bundleObj.title, bundleObj.compare, bundleObj.price, bundleObj.variantId, bundleObj.id, 'false', 1, 'addToCart').render()
+                        cartDrawer.querySelector('.slide_in__bundle').style.display = 'block';
+                    } 
                 }
 
                 cartDrawer.querySelector('.slide_in__total').style = '';
+               
 
             }
             cartDrawer.querySelector('.slide_in__subtotal .pr').classList.remove('loading')
@@ -366,21 +415,23 @@ function getCart(cartDrawer = document.querySelector('.slide_in__cart')) {
 }
 
 class ProductItem {
-    constructor(parent, link, image, name, compare, price, variantId, hasVariant, qty) {
+    constructor(parent, link, image, name, compare, price, variantId, id, hasVariant, qty, type = '') {
         this.parent = parent;
         this.link = link;
         this.image = image;
         this.name = name;
-        this.compare = compare;
-        this.price = price;
+        this.compare = compare != '' ? '$'+priceSubstr(compare) : '';
+        this.price = priceSubstr(price);
         this.variantId = variantId;
+        this.id = id;
         this.hasVariant = hasVariant;
         this.qty = qty;
+        this.type = type;
         this.renderBottom();
     }
     renderBottom() {
-        if (this.variantId == '') {
-            return `<button type="button" class="btn-purple add-to-cart" data-variant-id="${this.variantId}">Add to cart</button>`
+        if (this.type == 'addToCart') {
+            return `<button type="button" class="btn-purple add-to-cart" data-id="${this.id}" data-variant-id="${this.variantId}">Add to cart</button>`
         } else {
             return `<div class="flx-between">
                         <div class="d-flex calc_block">
@@ -399,7 +450,7 @@ class ProductItem {
     updateProduct(id, qty = 0) {
         console.log(id)
         this.parent.closest('.slide_in__cart').querySelector('.slide_in__subtotal .pr').classList.add('loading')
-        $.ajax({
+        $.ajax({ 
           type: "POST",
           url: "/cart/change.js",
           dataType: "json",
@@ -440,6 +491,11 @@ class ProductItem {
         let element = document.createElement('li');
         element.classList.add('d-flex', 'item_product');
         element.dataset.variantId = this.variantId;
+        element.dataset.id = this.id;
+
+        if (this.id == bundleObj.id) {
+            this.parent.insertAdjacentHTML('afterbegin', '<p class="c-purple fw-semi">Upgrade your order and get Nova Light Pro for only $100</p>')
+        }
 
         element.innerHTML = `
             <a href="${this.link}">
@@ -452,12 +508,23 @@ class ProductItem {
             </div>`;
 
         this.parent.appendChild(element);
-        document.querySelector(`.slide_in__products [data-variant-id="${this.variantId}"] .item_product__delate`).addEventListener('click', (e) => {
-            this.updateProduct(this.variantId)
-        })
-        document.querySelectorAll(`.slide_in__products [data-variant-id="${this.variantId}"] .calc_action`).forEach(button => {
-            this.changeQtyProduct(button, this.variantId)
-        })
+       
+        if (this.type == false) {
+            document.querySelector(`.slide_in__products [data-variant-id="${this.variantId}"] .item_product__delate`).addEventListener('click', (e) => {
+                this.updateProduct(this.variantId)
+            })
+            document.querySelectorAll(`.slide_in__products [data-variant-id="${this.variantId}"] .calc_action`).forEach(button => {
+                this.changeQtyProduct(button, this.variantId)
+            })
+        } else {
+            document.querySelector(`[data-variant-id="${this.variantId}"] .add-to-cart`).addEventListener('click', (e) => {
+                console.log(e.target.dataset.variantId)
+                if (this.variantId == '39758302806070') {
+                    this.updateProduct('32854816784438')
+                }
+                addCart(e.target.dataset.variantId, 1)
+            })
+        }
     }
 }
 
@@ -527,45 +594,20 @@ class Message {
     }
 }
 
-let producthaveBundle =['32854816784438', '39782656311350', '40322897838134']
-let bundleObj = { 
-        'title': 'Novaa Deep Healing Pad + Novaa Light Pro',
-        'url': '/products/novaa-knee-deep-healing-therapy%E2%84%A2-novaa-light-pro%E2%84%A2?variant=39758302806070',
-        'img': 'https://cdn.shopify.com/s/files/1/0156/6529/9510/products/ProductBundlev23_2.png?v=1673519733',
-        'compare': '90000',
-        'price': '399.90',
-        'variantId': '39758302806070',
-        'hasVariant': 'false',
-        'qty': 1
-}
-
-let bundleHTML = `
-<div class="slide_in__discount">
-    <p class="c-purple">Upgrade your order and get Nova Light Pro for only $100</p>
-    <div class="d-flex item_product">
-        <a href="">
-            <img src="" alt="">
-        </a>
-        <div>
-            <a href="#" class="item_product__name">The Novaa Deep Healing Therapy Pad</a>
-            <p class="item_product__price"><span class="compare"></span> <span class="pr"></span></p>
-            <button type="button" class="btn-purple add-to-cart" data-id="">Add to cart</button>
-        </div>
-    </div>
-</div>`
 
 let slideInCartHTML = `
-<div class="slide_in__cart active">
+<div class="slide_in__cart">
     <div class="container">
-        <div class="slide_in__header flx-between">
-            <p>Cart (<span>0</span>)</p>
-            <svg class="slide_in__cart_close" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path fill-rule="evenodd" clip-rule="evenodd" d="M8.00022 6.54509L1.45508 0L0.000548353 1.45452L6.54569 7.99961L0 14.5453L1.45453 15.9998L8.00022 9.45413L14.5458 15.9997L16.0004 14.5452L9.45475 7.99961L15.9998 1.45459L14.5453 7.21945e-05L8.00022 6.54509Z" fill="#773BD9"/>
-            </svg>
-        </div>
+        <div>
+            <div class="slide_in__header flx-between">
+                <p>Cart (<span>0</span>)</p>
+                <svg class="slide_in__cart_close" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" clip-rule="evenodd" d="M8.00022 6.54509L1.45508 0L0.000548353 1.45452L6.54569 7.99961L0 14.5453L1.45453 15.9998L8.00022 9.45413L14.5458 15.9997L16.0004 14.5452L9.45475 7.99961L15.9998 1.45459L14.5453 7.21945e-05L8.00022 6.54509Z" fill="#773BD9"/>
+                </svg>
+            </div>
         <div class="slide_in__body">
             <ul class="slide_in__products"></ul>
-
+            <div class="slide_in__bundle"></div>
             <div class="slide_in__total">
                 <button type="button" class="btn-discount c-purple fw-bold">Apply discount code</button>
                 <div class="slide_in__shipping flx-between">
@@ -580,20 +622,10 @@ let slideInCartHTML = `
             </div>
             <div class="may_like">
                 <h4>You may also like</h4>
-                <div class="d-flex item_product">
-                    <a href="">
-                        <img src="" alt="">
-                    </a>
-                    <div>
-                        <a href="#" class="item_product__name"></a>
-                        <p class="item_product__price"><span class="compare"></span> <span class="pr"></span></p>
-                        <button type="button" class="btn-purple add-to-cart" data-id="">Add to cart</button>
-                    </div>
-                </div>
             </div>
         </div>
         <div class="slide_in__footer">
-            <a href="/checkout" class="slide_in__to_checkout btn-purple"></a>
+            <a href="/checkout" class="slide_in__to_checkout btn-purple">Checkout >></a>
         </div>
     </div>
 </div>
@@ -612,11 +644,20 @@ document.body.insertAdjacentHTML('beforeend', slideInCartHTML)
 
 new Message(document.querySelector('.may_like'), 'beforebegin', 'guarantee').render()
 
+for (let i = 0; i < upsellObj.length; i++) {
+    new ProductItem(document.querySelector('.may_like'), upsellObj[i].url, upsellObj[i].img, upsellObj[i].title, upsellObj[i].compare, upsellObj[i].price, upsellObj[i].variantId, upsellObj[i].id, 'false', upsellObj[i].qty, 'addToCart').render() 
+}
+
 getCart()
 document.querySelector('.slide_in__cart_close').addEventListener('click', (e) => {
     toggleActive(false)
 })
+document.querySelector('#AccessibleNav > li:nth-child(3) > a').addEventListener('click', (e) => {
+    e.preventDefault();
+    toggleActive(true)
+})
 document.querySelector('.cart-link').addEventListener('click', (e) => {
+    e.preventDefault();
     toggleActive(true)
 })
 
@@ -628,6 +669,7 @@ document.querySelectorAll('[data-key="product"] [name="add"]').forEach(item => {
        
     })
 })
+//update
 
 // let script = document.createElement('script')
 // script.setAttribute('api-key','2231f54e-7201-410c-97c5-0efb61b60027');
@@ -656,4 +698,3 @@ document.querySelectorAll('[data-key="product"] [name="add"]').forEach(item => {
 // sptOneLiner.setAttribute('installments','12');
 // sptOneLiner.setAttribute('learn_more_color','#cb1515');
 // document.body.appendChild(sptOneLiner)
-
