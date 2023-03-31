@@ -1102,7 +1102,7 @@ a.schedule_new_btn {
             }
           })
         }
-      }, 100)
+      }, 300)
     } else {
       let intervalVimeo = setInterval(() => {
         if (typeof Vimeo == "object") {
