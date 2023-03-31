@@ -1320,15 +1320,8 @@ const pdpUpsellContainer = (items, isTwoImages) => {
 // FUNCTIONS
 // -------------------------------------
 
-function convertOptionTxt(optionTxt, isOnlySize = false) {
-    let parts
-
-    if (isOnlySize) {
-        parts = optionTxt.split(', ')
-    } else {
-        parts = optionTxt.split(/ \/ | - /)
-    }
-
+function convertOptionTxt(optionTxt) {
+    const parts = optionTxt.split(/ \/ | - /)
     const sizes = ["OS", "XS", "S", "M", "L", "XL", "2XL", "3XL", "4XL"]
 
     if (parts.length === 2) {
@@ -1339,26 +1332,14 @@ function convertOptionTxt(optionTxt, isOnlySize = false) {
         const match = sizeRegEx.exec(parts[1])
         if (match !== null) {
             // If the second part matches the format, swap it with the first part and format it
-            if (isOnlySize) {
-                txt = `${match[1]} (${match[2]}lbs/${match[3]}kg)`
-            } else {
-                txt = `${match[1]} (${match[2]}lbs/${match[3]}kg), ${parts[0]}`
-            }
+            txt = `${match[1]} (${match[2]}lbs/${match[3]}kg), ${parts[0]}`
         } else {
             // If the second part doesn't match the format, check if either part matches a size and format accordingly
             sizes.forEach(size => {
                 if (parts[0] === size) {
-                    if (isOnlySize) {
-                        txt = `${parts[0]}`
-                    } else {
-                        txt = `${parts[0]}, ${parts[1]}`
-                    }
+                    txt = `${parts[0]}, ${parts[1]}`
                 } else if (parts[1] === size) {
-                    if (isOnlySize) {
-                        txt = `${parts[1]}`
-                    } else {
-                        txt = `${parts[1]}, ${parts[0]}`
-                    }
+                    txt = `${parts[1]}, ${parts[0]}`
                 }
             })
         }
@@ -1740,7 +1721,7 @@ function changeColorVariant(colorSectionIndex, isSet = true) {
         customSelect.querySelector('.active_option')?.classList.remove('active_option')
 
         for (const li of listItems) {
-            li.innerText = convertOptionTxt(li.innerText, true)
+            li.innerText = li.innerText.split(', ')[0]
 
             if (!li.dataset.text.includes(selectedColor)) {
                 // Add the 'active' class to the matching li element
@@ -2032,7 +2013,6 @@ const observeCartNodes = (callback) => {
                     && !document.querySelector('.Cart__Empty')
                 ) {
                     observer.disconnect()
-                    // console.log('observer....')
                     await callback()
                     observer.observe(targetNode, config)
                 }
@@ -2053,7 +2033,6 @@ const getOneRandomSubArr = (handle) => {
     } else {
         // Return all values in the subarray except for the handle
         const otherHandles = matchingSubarray.filter(subHandle => subHandle !== handle)
-        console.log(otherHandles)
         return otherHandles
     }
 }
