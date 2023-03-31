@@ -1677,9 +1677,7 @@ const hideText = () => {
 }
 
 function initSelectColors() {
-    if (
-        document.querySelectorAll('.ProductForm__Option:not(.no-js)').length > 1
-    ) {
+    if (document.querySelectorAll('.ProductForm__Option:not(.no-js)').length > 1) {
         let sectionIndex
 
         document.querySelectorAll('.ProductForm__Label').forEach((label, index) => {
@@ -2158,7 +2156,7 @@ waitForElement('.cbb-frequently-bought-total-price-sale-price', '.cbb-frequently
 
                         for (const el of values) {
                             if (el.innerText.split(',')[0] !== "OS") {
-                                innerText = el.innerText
+                                innerText = el.closest('.custom_select').querySelector('.active_option').dataset.text
                                 break
                             }
                         }
