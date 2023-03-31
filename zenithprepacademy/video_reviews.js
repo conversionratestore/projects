@@ -40,7 +40,8 @@ let videoReviews = setInterval(() => {
 
     let styleNew = /*html */ `
     <style>
- .timeline {
+ .timeline,
+ .mobile-iframe:not(.new_iframe) {
   display: none !important;
 }
 #col-full-100-165-114 .elHeadline.hsSize3 {
@@ -951,20 +952,33 @@ a.schedule_new_btn {
     }
 
     document.head.insertAdjacentHTML("beforeend", styleNew)
+    // if (window.innerWidth <= 768) {
+    //   let intTimeSrc = setInterval(() => {
+    //     if (document.querySelector(".mobile-iframe")) {
+    //       clearInterval(intTimeSrc)
+    //       if (document.querySelector(".mobile-iframe").src !== "https://player.vimeo.com/video/790201146?h=eda73cb7b6&loop=1&title=0&byline=0&portrait=0") {
+    //         document.querySelector(".mobile-iframe").src = "https://player.vimeo.com/video/790201146?h=eda73cb7b6&loop=1&title=0&byline=0&portrait=0"
+    //       }
+    //       console.log(`changed src`)
+    //     }
+    //   }, 10)
+    // }
     if (window.innerWidth <= 768) {
       let intTimeSrc = setInterval(() => {
-        if (document.querySelector(".mobile-iframe")) {
+        if (document.querySelector(".elCustomJS_code > div")) {
           clearInterval(intTimeSrc)
-          if (document.querySelector(".mobile-iframe").src !== "https://player.vimeo.com/video/790201146?h=eda73cb7b6&loop=1&title=0&byline=0&portrait=0") {
-            document.querySelector(".mobile-iframe").src = "https://player.vimeo.com/video/790201146?h=eda73cb7b6&loop=1&title=0&byline=0&portrait=0"
+          if (!document.querySelector(".new_iframe")) {
+            document
+              .querySelector(".elCustomJS_code > div")
+              .insertAdjacentHTML(
+                "beforeend",
+                `<iframe class="mobile-iframe new_iframe" src="https://player.vimeo.com/video/790201146?h=eda73cb7b6&title=0&byline=0&portrait=0" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%;" title="ZPA - National Webinar (August 2022)" data-ready="true"></iframe>`
+              )
           }
-          console.log(`changed src`)
+          console.log(`render new iframe`)
         }
       }, 10)
     }
-    // if (document.querySelector(".mobile-iframe").src !== "https://player.vimeo.com/video/790201146?h=eda73cb7b6&loop=1&title=0&byline=0&portrait=0") {
-    //   document.querySelector(".mobile-iframe").src = "https://player.vimeo.com/video/790201146?h=eda73cb7b6&loop=1&title=0&byline=0&portrait=0"
-    // }
 
     document.querySelector("#row-165 iframe").src = "https://player.vimeo.com/video/790201146?h=eda73cb7b6&loop=1&title=0&byline=0&portrait=0"
     document.querySelector(".timeline")?.insertAdjacentHTML("afterend", timelineEl)
@@ -1070,18 +1084,6 @@ a.schedule_new_btn {
         }
       }, 100)
     }
-
-    if (window.innerWidth <= 768) {
-      let intTimeSrcSecond = setInterval(() => {
-        if (document.querySelector(".mobile-iframe")) {
-          clearInterval(intTimeSrcSecond)
-          if (document.querySelector(".mobile-iframe").src !== "https://player.vimeo.com/video/790201146?h=eda73cb7b6&loop=1&title=0&byline=0&portrait=0") {
-            document.querySelector(".mobile-iframe").src = "https://player.vimeo.com/video/790201146?h=eda73cb7b6&loop=1&title=0&byline=0&portrait=0"
-          }
-          console.log(`changed src second`)
-        }
-      }, 10)
-    }
     if (window.innerWidth > 768) {
       let waitVideo = setInterval(() => {
         if (document.querySelector(".start-session")) {
@@ -1105,10 +1107,10 @@ a.schedule_new_btn {
       let intervalVimeo = setInterval(() => {
         if (typeof Vimeo == "object") {
           clearInterval(intervalVimeo)
-          const iframe = document.querySelector(".mobile-iframe")
+          const iframe = document.querySelector(".new_iframe")
           const player = new Vimeo.Player(iframe)
           console.log(player, `player`)
-          console.log(document.querySelector(".mobile-iframe").src, `src`)
+          console.log(document.querySelector(".new_iframe").src, `src`)
 
           if (player.setVolume) {
             player.setVolume(1)
