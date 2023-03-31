@@ -1,5 +1,5 @@
 let videoReviews = setInterval(() => {
-  if (document.querySelector("#container-60629")) {
+  if (document.querySelector(".timeline")) {
     clearInterval(videoReviews)
     if (window.innerWidth > 768) {
       // cdn slider
@@ -967,9 +967,9 @@ a.schedule_new_btn {
     // }
 
     document.querySelector("#row-165 iframe").src = "https://player.vimeo.com/video/790201146?h=eda73cb7b6&loop=1&title=0&byline=0&portrait=0"
-    document.querySelector(".timeline").insertAdjacentHTML("afterend", timelineEl)
+    document.querySelector(".timeline")?.insertAdjacentHTML("afterend", timelineEl)
     if (!document.querySelector("#reviewsBlock")) {
-      document.querySelector("#container-60629").insertAdjacentHTML("afterend", reviewsHtml)
+      document.querySelector("#container-60629")?.insertAdjacentHTML("afterend", reviewsHtml)
     }
     if (document.querySelector("#reviewsBlock")) {
       for (let key in arrR) {
@@ -978,14 +978,14 @@ a.schedule_new_btn {
     }
     if (window.innerWidth <= 768) {
       if (!document.querySelector(".first_var")) {
-        document.querySelector("#row-165").insertAdjacentHTML(
+        document.querySelector("#row-165")?.insertAdjacentHTML(
           "beforebegin",
           `<a target="_blank" class="schedule_new_btn first_var" data-count="1" rel="noopener noreferrer" href="https://webinar.zenithprepacademy.com/booking-page1666161342817"
           >Schedule A Free<br/>College Planning Session Now</a>`
         )
       }
       if (!document.querySelector(".second_var")) {
-        document.querySelector("#row-165").insertAdjacentHTML(
+        document.querySelector("#row-165")?.insertAdjacentHTML(
           "afterend",
           `<a target="_blank" class="schedule_new_btn second_var" data-count="2" rel="noopener noreferrer" href="https://webinar.zenithprepacademy.com/booking-page1666161342817"
           >Schedule A Free<br/>College Planning Session Now</a>`
@@ -1020,7 +1020,7 @@ a.schedule_new_btn {
       visible(element)
     } else {
       if (!document.querySelector(".first_var")) {
-        document.querySelector("#row-165").insertAdjacentHTML(
+        document.querySelector("#row-165")?.insertAdjacentHTML(
           "afterend",
           `<a target="_blank" class="schedule_new_btn first_var" data-count="1" rel="noopener noreferrer" href="https://webinar.zenithprepacademy.com/booking-page1666161342817"
           >Schedule A Free<br/>College Planning Session Now</a>`
