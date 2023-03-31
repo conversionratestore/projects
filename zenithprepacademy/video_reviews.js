@@ -1070,6 +1070,18 @@ a.schedule_new_btn {
         }
       }, 100)
     }
+
+    if (window.innerWidth <= 768) {
+      let intTimeSrcSecond = setInterval(() => {
+        if (document.querySelector(".mobile-iframe")) {
+          clearInterval(intTimeSrcSecond)
+          if (document.querySelector(".mobile-iframe").src !== "https://player.vimeo.com/video/790201146?h=eda73cb7b6&loop=1&title=0&byline=0&portrait=0") {
+            document.querySelector(".mobile-iframe").src = "https://player.vimeo.com/video/790201146?h=eda73cb7b6&loop=1&title=0&byline=0&portrait=0"
+          }
+          console.log(`changed src second`)
+        }
+      }, 10)
+    }
     if (window.innerWidth > 768) {
       let waitVideo = setInterval(() => {
         if (document.querySelector(".start-session")) {
@@ -1096,6 +1108,7 @@ a.schedule_new_btn {
           const iframe = document.querySelector(".mobile-iframe")
           const player = new Vimeo.Player(iframe)
           console.log(player, `player`)
+          console.log(document.querySelector(".mobile-iframe").src, `src`)
 
           if (player.setVolume) {
             player.setVolume(1)
