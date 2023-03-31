@@ -887,7 +887,7 @@ a.schedule_new_btn {
       <div class='timeline_list_new'>
         <div class='timeline_item_new'>
           <div class='timeline_item_new_title'>Intro</div>
-          <div class='timeline_item_new_time'>(0:50)</div>
+          <div class='timeline_item_new_time'>(0:58)</div>
         </div>
 
         <div class='timeline_item_new'>
@@ -896,7 +896,7 @@ a.schedule_new_btn {
         </div>
 
         <div class='timeline_item_new'>
-          <div class='timeline_item_new_title'>Strategies and 5 factors that сontrol сollege application process</div>
+          <div class='timeline_item_new_title'>Strategies and five factors that affect the college application process</div>
           <div class='timeline_item_new_time'>(10:52)</div>
         </div>
 
@@ -1102,7 +1102,7 @@ a.schedule_new_btn {
             }
           })
         }
-      }, 200)
+      }, 100)
     } else {
       let intervalVimeo = setInterval(() => {
         if (typeof Vimeo == "object") {
@@ -1123,19 +1123,20 @@ a.schedule_new_btn {
       }, 100)
     }
     function handleTimeline() {
-      if (!document.querySelector(".timeline_item_new.active")) {
-        document.querySelector(".timeline_item_new").classList.add("active")
-      }
+      // if (!document.querySelector(".timeline_item_new.active")) {
+      //   document.querySelector(".timeline_item_new").classList.add("active")
+      // }
       let iframe = document.querySelector(".fluid-width-video-wrapper iframe")
       if (window.innerWidth < 768) {
-        iframe = document.querySelector(".mobile-iframe")
+        iframe = document.querySelector(".new_iframe")
       }
       let playerEl = new Vimeo.Player(iframe)
       setInterval(() => {
         playerEl.getCurrentTime().then(function (time) {
-          if (!document.querySelector(".timeline_item_new.active")) return false
+          // if (!document.querySelector(".timeline_item_new.active")) return false
 
-          if (time >= 50 && time < 3 * 60 + 56) {
+          if (time >= 58 && time < 3 * 60 + 56) {
+            document.querySelector(".timeline_item_new:nth-child(1)").classList.add("active")
           } else if (time >= 3 * 60 + 56 && time < 10 * 60 + 52) {
             if (time >= 3 * 60 + 56) {
               console.log(`TIME>>>>>`)
