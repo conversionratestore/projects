@@ -696,7 +696,7 @@ const style = /*html*/`
                 width: 100%;
                 max-height: 50vh;
                 background-color: white;
-                z-index: 999;   
+                z-index: 9999999;   
             }
 
             .upsell_container .mobile_size_label {
@@ -1089,7 +1089,9 @@ const customSelectHTML = (options, isCart = false) => {
         optionsHTML = options.map((option, index) => {
             return `<li class="${index === 0 ? 'active_option' : ''}" 
                 data-value="${option.value}" 
-                data-variant="${option.variantId}">
+                data-variant="${option.variantId}"
+                data-text="${convertOptionTxt(option.text)}"
+                >
                     ${convertOptionTxt(option.text)}
                 </li>`
         }
@@ -1245,7 +1247,7 @@ const pdpUpsellContainer = (items, isTwoImages) => {
     if (document.querySelector('.cbb-frequently-bought-selector-link')) {
         link = document.querySelector('.cbb-frequently-bought-selector-link')
     }
-    
+
     if (isSale) {
         const path = window.location.pathname
         const product = path.substring("/products/".length)
@@ -1259,28 +1261,27 @@ const pdpUpsellContainer = (items, isTwoImages) => {
         msg = `<div class="msg">${msgSvg}<p>Choose all products to receive <b>a 25%</b> discount on the walk set.</p></div>`
     } else if (window.location.pathname.includes('-set-')) {
         title = `<p class="upsell_title">Upgrade your walk set with <a href="${link.href}">${textBeforeDash(link.textContent)}</a> <span class="green_status">best deal</span></p>`
-        fbt_urls.forEach(function(item) {
-            if(window.location.pathname.includes(item)) {
+        fbt_urls.forEach(function (item) {
+            if (window.location.pathname.includes(item)) {
                 title = `<p class="upsell_title">Frequently bought together <span class="green_status">best deal</span></p>`
             }
         })
     } else if (!isSale && isTwoImages) {
         title = `<p class="upsell_title">Match your dog with a <a href="${link.href}">${textBeforeDash(link.textContent)}</a> <span class="green_status">best deal</span></p>`
-        fbt_urls.forEach(function(item) {
-            if(window.location.pathname.includes(item)) {
+        fbt_urls.forEach(function (item) {
+            if (window.location.pathname.includes(item)) {
                 title = `<p class="upsell_title">Frequently bought together <span class="green_status">best deal</span></p>`
             }
         })
     } else {
         const link2 = document.querySelectorAll('.cbb-frequently-bought-selector-link')[1]
-        title = `<p class="upsell_title">Match it with a <a href="${link.href}">${textBeforeDash(link.textContent)}</a> and <a href="${link2.href}">${textBeforeDash(link2.textContent)}</a> to complete the look <span class="green_status">best deal</span></p>`
-        fbt_urls.forEach(function(item) {
-            if(window.location.pathname.includes(item)) {
+        title = `<p class="upsell_title">Match it with a <a href="${link.href}">${findMatch(textBeforeDash(link.textContent))}</a> and <a href="${link2.href}">${findMatch(textBeforeDash(link2.textContent))}</a> to complete the look <span class="green_status">best deal</span></p>`
+        fbt_urls.forEach(function (item) {
+            if (window.location.pathname.includes(item)) {
                 title = `<p class="upsell_title">Frequently bought together <span class="green_status">best deal</span></p>`
             }
         })
     }
-
 
     let country = getTopLevelDomain().toUpperCase()
 
@@ -1289,7 +1290,7 @@ const pdpUpsellContainer = (items, isTwoImages) => {
         'UK': '£40',
         'CA': '$60 CAD'
     }
-    if(country === 'CA') {
+    if (country === 'CA') {
         totalStandardPrice = totalStandardPrice !== '' ? totalStandardPrice + ' CAD' : ''
         totalRegularPrice = totalRegularPrice !== '' ? totalRegularPrice + ' CAD' : ''
         totalDiscountPrice = totalDiscountPrice !== '' ? totalDiscountPrice + ' CAD' : ''
@@ -1326,13 +1327,22 @@ function convertOptionTxt(optionTxt) {
     if (parts.length === 2) {
         let txt
 
-        sizes.forEach(size => {
-            if (parts[0] === size) {
-                txt = `${parts[0]}, ${parts[1]}`
-            } else if (parts[1] === size) {
-                txt = `${parts[1]}, ${parts[0]}`
-            }
-        })
+        // Check if the second part matches the "S (10-15lbs/4.5-7kg)" format
+        const sizeRegEx = /^([A-Z]+) \(([\d.-]+)lbs\/([\d.-]+)kg\)$/
+        const match = sizeRegEx.exec(parts[1])
+        if (match !== null) {
+            // If the second part matches the format, swap it with the first part and format it
+            txt = `${match[1]} (${match[2]}lbs/${match[3]}kg), ${parts[0]}`
+        } else {
+            // If the second part doesn't match the format, check if either part matches a size and format accordingly
+            sizes.forEach(size => {
+                if (parts[0] === size) {
+                    txt = `${parts[0]}, ${parts[1]}`
+                } else if (parts[1] === size) {
+                    txt = `${parts[1]}, ${parts[0]}`
+                }
+            })
+        }
 
         if (txt) {
             return txt
@@ -1418,15 +1428,15 @@ const createUpsellItem = (li, index) => {
         discountPrice = ''
     }
 
-    const country = getTopLevelDomain().toUpperCase() 
+    const country = getTopLevelDomain().toUpperCase()
 
-    if(country === 'CA' && standardPrice !== '') {
-        standardPrice += ' CAD' 
+    if (country === 'CA' && standardPrice !== '') {
+        standardPrice += ' CAD'
     }
 
-    if(country === 'CA' && !standardPrice) {
-        regularPrice += ' CAD' 
-        discountPrice += ' CAD' 
+    if (country === 'CA' && !standardPrice) {
+        regularPrice += ' CAD'
+        discountPrice += ' CAD'
     }
 
     const item = {
@@ -1667,10 +1677,7 @@ const hideText = () => {
 }
 
 function initSelectColors() {
-    if (
-        document.querySelectorAll('.ProductForm__Option:not(.no-js)').length > 1
-        && document.querySelector('.cbb-frequently-bought-discount-message')?.textContent.length >= 1
-    ) {
+    if (document.querySelectorAll('.ProductForm__Option:not(.no-js)').length > 1) {
         let sectionIndex
 
         document.querySelectorAll('.ProductForm__Label').forEach((label, index) => {
@@ -1679,30 +1686,42 @@ function initSelectColors() {
             }
         })
 
-        changeColorVariant(sectionIndex)
+        if (document.querySelector('.cbb-frequently-bought-discount-message')?.textContent.length >= 1) {
+            changeColorVariant(sectionIndex)
 
-        document.querySelectorAll('.ProductForm__Option:not(.no-js)')[sectionIndex]?.addEventListener('click', (e) => {
-            if (e.target.closest('.HorizontalList__Item')) {
-                changeColorVariant(sectionIndex)
-            }
-        })
+            document.querySelectorAll('.ProductForm__Option:not(.no-js)')[sectionIndex]?.addEventListener('change', (e) => {
+                if (e.target.closest('.HorizontalList__Item')) {
+                    changeColorVariant(sectionIndex)
+                }
+            })
+        } else {
+            changeColorVariant(sectionIndex, false)
+
+            document.querySelector('.ProductForm__Variants').addEventListener('change', (e) => {
+                if (e.target.closest('.HorizontalList__Item')) {
+                    changeColorVariant(sectionIndex, false)
+                }
+            })
+        }
     }
 }
 
-function changeColorVariant(colorSectionIndex) {
+function changeColorVariant(colorSectionIndex, isSet = true) {
     // Get the selected color value
     const selectedColor = document.querySelectorAll('.ProductForm__Option:not(.no-js)')[colorSectionIndex].querySelector('.SizeSwatch__Radio:checked').value
 
     // Get all li elements in the options list
-    let customSelects = document.querySelectorAll('.upsell_container .custom_select')
+    const customSelects = isSet ? document.querySelectorAll('.upsell_container .custom_select') : [document.querySelector('.upsell_container .custom_select')]
 
-    for (const customSelect of customSelects) {
+    customSelects.forEach(customSelect => {
         const listItems = customSelect.querySelectorAll('li')
 
         customSelect.querySelector('.active_option')?.classList.remove('active_option')
 
         for (const li of listItems) {
-            if (!li.innerText.includes(selectedColor)) {
+            li.innerText = li.innerText.split(', ')[0]
+
+            if (!li.dataset.text.includes(selectedColor)) {
                 // Add the 'active' class to the matching li element
                 li.classList.add('hidden_li')
             } else {
@@ -1717,15 +1736,17 @@ function changeColorVariant(colorSectionIndex) {
                 }
             }
         }
-    }
+    })
 
-    let activeOptions = [...document.querySelectorAll('.upsell_container .selected_option')].map(option => option.innerText.split(', ')[1])
-    document.querySelector('.upsell_container').hidden = (new Set(activeOptions).size === 1) ? false : true
+    if (isSet) {
+        let activeOptions = [...document.querySelectorAll('.upsell_container .selected_option')].map(option => option.innerText.split(', ')[1])
+        document.querySelector('.upsell_container').hidden = (new Set(activeOptions).size === 1) ? false : true
+    }
 }
 
 function checkItemInUpsell() {
     let mut = new MutationObserver((muts) => {
-        if( muts.length === 1 ) {
+        if (muts.length === 1) {
             sendGAEvent('Click on size choose pdp', muts[0].target.innerText)
         }
     })
@@ -1990,7 +2011,6 @@ const observeCartNodes = (callback) => {
                     && !document.querySelector('.Cart__Empty')
                 ) {
                     observer.disconnect()
-                    // console.log('observer....')
                     await callback()
                     observer.observe(targetNode, config)
                 }
@@ -2011,7 +2031,6 @@ const getOneRandomSubArr = (handle) => {
     } else {
         // Return all values in the subarray except for the handle
         const otherHandles = matchingSubarray.filter(subHandle => subHandle !== handle)
-        console.log(otherHandles)
         return otherHandles
     }
 }
@@ -2137,7 +2156,7 @@ waitForElement('.cbb-frequently-bought-total-price-sale-price', '.cbb-frequently
 
                         for (const el of values) {
                             if (el.innerText.split(',')[0] !== "OS") {
-                                innerText = el.innerText
+                                innerText = el.closest('.custom_select').querySelector('.active_option').dataset.text
                                 break
                             }
                         }
