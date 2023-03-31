@@ -1089,7 +1089,9 @@ const customSelectHTML = (options, isCart = false) => {
         optionsHTML = options.map((option, index) => {
             return `<li class="${index === 0 ? 'active_option' : ''}" 
                 data-value="${option.value}" 
-                data-variant="${option.variantId}">
+                data-variant="${option.variantId}"
+                data-text="${convertOptionTxt(option.text)}"
+                >
                     ${convertOptionTxt(option.text)}
                 </li>`
         }
@@ -1318,8 +1320,15 @@ const pdpUpsellContainer = (items, isTwoImages) => {
 // FUNCTIONS
 // -------------------------------------
 
-function convertOptionTxt(optionTxt) {
-    const parts = optionTxt.split(/ \/ | - /)
+function convertOptionTxt(optionTxt, isOnlySize = false) {
+    let parts
+
+    if (isOnlySize) {
+        parts = optionTxt.split(', ')
+    } else {
+        parts = optionTxt.split(/ \/ | - /)
+    }
+
     const sizes = ["OS", "XS", "S", "M", "L", "XL", "2XL", "3XL", "4XL"]
 
     if (parts.length === 2) {
@@ -1330,14 +1339,26 @@ function convertOptionTxt(optionTxt) {
         const match = sizeRegEx.exec(parts[1])
         if (match !== null) {
             // If the second part matches the format, swap it with the first part and format it
-            txt = `${match[1]} (${match[2]}lbs/${match[3]}kg), ${parts[0]}`
+            if (isOnlySize) {
+                txt = `${match[1]} (${match[2]}lbs/${match[3]}kg)`
+            } else {
+                txt = `${match[1]} (${match[2]}lbs/${match[3]}kg), ${parts[0]}`
+            }
         } else {
             // If the second part doesn't match the format, check if either part matches a size and format accordingly
             sizes.forEach(size => {
                 if (parts[0] === size) {
-                    txt = `${parts[0]}, ${parts[1]}`
+                    if (isOnlySize) {
+                        txt = `${parts[0]}`
+                    } else {
+                        txt = `${parts[0]}, ${parts[1]}`
+                    }
                 } else if (parts[1] === size) {
-                    txt = `${parts[1]}, ${parts[0]}`
+                    if (isOnlySize) {
+                        txt = `${parts[1]}`
+                    } else {
+                        txt = `${parts[1]}, ${parts[0]}`
+                    }
                 }
             })
         }
@@ -1718,8 +1739,12 @@ function changeColorVariant(colorSectionIndex, isSet = true) {
 
         customSelect.querySelector('.active_option')?.classList.remove('active_option')
 
+        console.log('here')
+
         for (const li of listItems) {
-            if (!li.innerText.includes(selectedColor)) {
+            li.innerText = convertOptionTxt(li.innerText, true)
+
+            if (!li.dataset.text.includes(selectedColor)) {
                 // Add the 'active' class to the matching li element
                 li.classList.add('hidden_li')
             } else {
