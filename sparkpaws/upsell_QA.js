@@ -1678,7 +1678,6 @@ function initSelectColors() {
     if (
         document.querySelectorAll('.ProductForm__Option:not(.no-js)').length > 1
     ) {
-
         let sectionIndex
 
         document.querySelectorAll('.ProductForm__Label').forEach((label, index) => {
@@ -1696,47 +1695,25 @@ function initSelectColors() {
                 }
             })
         } else {
+            changeColorVariant(sectionIndex, false)
+
             document.querySelector('.ProductForm__Variants').addEventListener('change', (e) => {
                 if (e.target.closest('.HorizontalList__Item')) {
-                    const selectedColor = document.querySelectorAll('.ProductForm__Option:not(.no-js)')[sectionIndex].querySelector('.SizeSwatch__Radio:checked').value
-
-                    // Get all li elements in the options list
-                    let customSelect = document.querySelectorAll('.upsell_container .custom_select')[0]
-
-                    const listItems = customSelect.querySelectorAll('li')
-
-                    customSelect.querySelector('.active_option')?.classList.remove('active_option')
-
-                    for (const li of listItems) {
-                        if (!li.innerText.includes(selectedColor)) {
-                            // Add the 'active' class to the matching li element
-                            li.classList.add('hidden_li')
-                        } else {
-                            // Remove the 'active' class from any non-matching li elements
-                            li.classList.remove('hidden_li')
-
-                            if (!customSelect.querySelector('.active_option')) {
-                                li.classList.add('active_option')
-                                customSelect.querySelector('.selected_option .value').innerText = li.innerText
-
-                                li.click()
-                            }
-                        }
-                    }
+                    changeColorVariant(sectionIndex, false)
                 }
             })
         }
     }
 }
 
-function changeColorVariant(colorSectionIndex) {
+function changeColorVariant(colorSectionIndex, isSet = true) {
     // Get the selected color value
     const selectedColor = document.querySelectorAll('.ProductForm__Option:not(.no-js)')[colorSectionIndex].querySelector('.SizeSwatch__Radio:checked').value
 
     // Get all li elements in the options list
-    let customSelects = document.querySelectorAll('.upsell_container .custom_select')
+    const customSelects = isSet ? document.querySelectorAll('.upsell_container .custom_select') : [document.querySelector('.upsell_container .custom_select')]
 
-    for (const customSelect of customSelects) {
+    customSelects.forEach(customSelect => {
         const listItems = customSelect.querySelectorAll('li')
 
         customSelect.querySelector('.active_option')?.classList.remove('active_option')
@@ -1757,10 +1734,12 @@ function changeColorVariant(colorSectionIndex) {
                 }
             }
         }
-    }
+    })
 
-    let activeOptions = [...document.querySelectorAll('.upsell_container .selected_option')].map(option => option.innerText.split(', ')[1])
-    document.querySelector('.upsell_container').hidden = (new Set(activeOptions).size === 1) ? false : true
+    if (isSet) {
+        let activeOptions = [...document.querySelectorAll('.upsell_container .selected_option')].map(option => option.innerText.split(', ')[1])
+        document.querySelector('.upsell_container').hidden = (new Set(activeOptions).size === 1) ? false : true
+    }
 }
 
 function checkItemInUpsell() {
