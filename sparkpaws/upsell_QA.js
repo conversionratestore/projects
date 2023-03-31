@@ -1349,6 +1349,9 @@ function convertOptionTxt(optionTxt) {
         } else {
             return optionTxt
         }
+    } else if (parts.length === 3) {
+        // D (7.6cm-8.5cm / 3.0"-3.3")
+        return `${parts[0]}, ${parts[1]} / ${parts[2]}`
     } else {
         return optionTxt
     }
