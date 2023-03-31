@@ -1088,7 +1088,7 @@ a.schedule_new_btn {
       let waitVideo = setInterval(() => {
         if (document.querySelector(".start-session")) {
           clearInterval(waitVideo)
-          document.querySelector(".start-session").addEventListener("click", function (e) {
+          document.querySelector(".start-session")?.addEventListener("click", function (e) {
             console.log(`click`)
             console.log(this)
             handleTimeline()
