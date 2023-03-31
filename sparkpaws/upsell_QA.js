@@ -1739,8 +1739,6 @@ function changeColorVariant(colorSectionIndex, isSet = true) {
 
         customSelect.querySelector('.active_option')?.classList.remove('active_option')
 
-        console.log('here')
-
         for (const li of listItems) {
             li.innerText = convertOptionTxt(li.innerText, true)
 
