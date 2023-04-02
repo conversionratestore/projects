@@ -59,6 +59,19 @@ let styles = `
     font-weight: 600;
     color: #0A0A0A
 }
+.slide_in__header p {
+    position: relative;
+}
+.slide_in__header .loading:before {
+    content: '';
+    position: absolute;
+    left: 100%;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 19px;
+    height: 19px;
+    background: url(https://conversionratestore.github.io/projects/novaalab/img/loading.gif) no-repeat center / 100%;
+}
 .slide_in__products {
     padding: 20px;
 }
@@ -239,16 +252,6 @@ input.clac_qty {
     color: #252726;
     position: relative;
 }
-.slide_in__subtotal .loading:before {
-    content: '';
-    position: absolute;
-    right: 100%;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 19px;
-    height: 19px;
-    background: url(https://conversionratestore.github.io/projects/novaalab/img/loading.gif) no-repeat center / 100%;
-}
 .slide_in__total > div p:first-child {
     letter-spacing: 1.4px;
 }
@@ -342,15 +345,39 @@ function addCart(id, qty) {
             getCart()
             toggleActive(true)
         },
-        error : function(err0r) {
-            
+        error : function(error) {
+            console.log(error)
         }
     });
 }
-
+function updateCart(type, id, qty = 0) {
+    console.log(id)
+    document.querySelector('.slide_in__header > p').classList.add('loading')
+    $.ajax({ 
+        type: "POST",
+        url: "/cart/change.js",
+        dataType: "json",
+        data: {
+            id: parseFloat(id),
+            quantity: qty,
+        },
+        success: function (success_data) {
+                console.log(success_data)
+                if (type == 'bunlde') {
+                    addCart(39758302806070, 1)
+                } else {
+                    getCart() 
+                }
+                return false;
+            },
+            error: function (data) {
+                alert(data.responseJSON.description);
+            }
+        });
+}
 function getCart(cartDrawer = document.querySelector('.slide_in__cart')) {
     // get cart
-    cartDrawer.querySelector('.slide_in__subtotal .pr').classList.add('loading')
+    cartDrawer.querySelector('.slide_in__header > p').classList.add('loading')
     $.ajax({
         'url' : '/cart?view=cw-cart',
         'dataType' : 'json',
@@ -370,6 +397,8 @@ function getCart(cartDrawer = document.querySelector('.slide_in__cart')) {
             cartDrawer.querySelector('.slide_in__bundle').innerHTML = '';
             cartDrawer.querySelector('.slide_in__bundle').style.display = 'none';
             cartDrawer.querySelector('.slide_in__header > p span').innerHTML = itemCount;
+
+            cartDrawer.querySelector('.slide_in__header > p').classList.remove('loading')
             if (itemCount == 0) {
                 parent.innerHTML = emtySlideInHTML;
                 cartDrawer.querySelector('.slide_in__total').style.display = 'none';
@@ -383,7 +412,6 @@ function getCart(cartDrawer = document.querySelector('.slide_in__cart')) {
                 if (cartDrawer.querySelector('.freeshipping') != null) {
                     cartDrawer.querySelector('.freeshipping').remove()
                 }
-
                 for (let i = 0; i < items.length; i++) {
                     let link = items[i].url, 
                         image = items[i].image, 
@@ -392,23 +420,40 @@ function getCart(cartDrawer = document.querySelector('.slide_in__cart')) {
                         price = items[i].discounted_price, 
                         id = items[i].id,
                         variantId = items[i].variant_id,
-                        hasVariant = items[i].product_has_only_default_variant;
+                        hasVariant = items[i].product_has_only_default_variant,
                         qty = items[i].quantity;
         
                     new ProductItem(parent, link, image, title, compare, price, variantId, id, hasVariant, qty).render()
 
+                }
+                let bundle = false;
+                for (let i = 0; i < items.length; i++) {
+                    let variantId = items[i].variant_id;
+
+                    if (variantId == '39758302806070') {
+                        bundle = false;
+                        return
+                    }
+                }
+                for (let i = 0; i < items.length; i++) {
+                    let variantId = items[i].variant_id,
+                        qty = items[i].quantity;
+
                     if (productHaveBundle[variantId] != null && qty < 2) {
-                        console.log('bundle')
-                        new ProductItem(cartDrawer.querySelector('.slide_in__bundle'), bundleObj.url, bundleObj.img, bundleObj.title, bundleObj.compare, bundleObj.price, bundleObj.variantId, bundleObj.id, 'false', 1, 'addToCart').render()
-                        cartDrawer.querySelector('.slide_in__bundle').style.display = 'block';
+                        bundle = true;
+                        break;
                     } 
                 }
-
+                console.log(bundle)
+                if (bundle == true) {
+                    new ProductItem(cartDrawer.querySelector('.slide_in__bundle'), bundleObj.url, bundleObj.img, bundleObj.title, bundleObj.compare, bundleObj.price, bundleObj.variantId, bundleObj.id, 'false', 1, 'addToCart').render()
+                    cartDrawer.querySelector('.slide_in__bundle').style.display = 'block';
+                } 
                 cartDrawer.querySelector('.slide_in__total').style = '';
                
-
             }
-            cartDrawer.querySelector('.slide_in__subtotal .pr').classList.remove('loading')
+
+
     
         }
     });
@@ -447,28 +492,6 @@ class ProductItem {
                     </div>`
         }
     }
-    updateProduct(id, qty = 0) {
-        console.log(id)
-        this.parent.closest('.slide_in__cart').querySelector('.slide_in__subtotal .pr').classList.add('loading')
-        $.ajax({ 
-          type: "POST",
-          url: "/cart/change.js",
-          dataType: "json",
-          data: {
-            id: parseFloat(id),
-            quantity: qty,
-          },
-          success: function (success_data) {
-                console.log(success_data)
-                getCart() 
-
-                return false;
-            },
-            error: function (data) {
-                alert(data.responseJSON.description);
-            }
-        });
-    }
     changeQtyProduct(button, id) {
         button.addEventListener('click', (e) => {
             console.log(e.target)
@@ -483,8 +506,7 @@ class ProductItem {
                     inputQty.value = +inputQty.value - 1;
                 }
             }
-            
-            this.updateProduct(id, +inputQty.value)
+            updateCart('update', id, +inputQty.value)
         })
     }
     render() {
@@ -511,18 +533,32 @@ class ProductItem {
        
         if (this.type == false) {
             document.querySelector(`.slide_in__products [data-variant-id="${this.variantId}"] .item_product__delate`).addEventListener('click', (e) => {
-                this.updateProduct(this.variantId)
+                updateCart('remove', this.variantId)
             })
             document.querySelectorAll(`.slide_in__products [data-variant-id="${this.variantId}"] .calc_action`).forEach(button => {
                 this.changeQtyProduct(button, this.variantId)
             })
         } else {
             document.querySelector(`[data-variant-id="${this.variantId}"] .add-to-cart`).addEventListener('click', (e) => {
-                console.log(e.target.dataset.variantId)
-                if (this.variantId == '39758302806070') {
-                    this.updateProduct('32854816784438')
+
+                if (e.target.dataset.variantId == '39758302806070') {
+                    let pr_1 = e.target.closest('.slide_in__body').querySelector('.slide_in__products [data-variant-id="39782656311350"]') != null ? e.target.closest('.slide_in__body').querySelector('.slide_in__products [data-variant-id="39782656311350"]') : '';
+                    let pr_2 = e.target.closest('.slide_in__body').querySelector('.slide_in__products [data-variant-id="32854816784438"]') != null ? e.target.closest('.slide_in__body').querySelector('.slide_in__products [data-variant-id="32854816784438"]') : '';
+                    let pr_3 = e.target.closest('.slide_in__body').querySelector('.slide_in__products [data-variant-id="40322897838134"]') != null ? e.target.closest('.slide_in__body').querySelector('.slide_in__products [data-variant-id="40322897838134"]') : '';
+                
+                    if ( pr_1 != '' && pr_1.querySelector('.clac_qty').value < 2) {
+                        updateCart('bundle', 39782656311350)
+                    }
+                    if (pr_2 != '' && pr_2.querySelector('.clac_qty').value < 2) {
+                        updateCart('bundle', 32854816784438)
+                    }
+                    if (pr_3 != '' && pr_3.querySelector('.clac_qty').value < 2 ) {
+                        updateCart('bundle', 40322897838134)
+                    }
+                } else {
+                    addCart(e.target.dataset.variantId, 1)
                 }
-                addCart(e.target.dataset.variantId, 1)
+                
             })
         }
     }
@@ -669,7 +705,6 @@ document.querySelectorAll('[data-key="product"] [name="add"]').forEach(item => {
        
     })
 })
-//update
 
 // let script = document.createElement('script')
 // script.setAttribute('api-key','2231f54e-7201-410c-97c5-0efb61b60027');
@@ -698,3 +733,9 @@ document.querySelectorAll('[data-key="product"] [name="add"]').forEach(item => {
 // sptOneLiner.setAttribute('installments','12');
 // sptOneLiner.setAttribute('learn_more_color','#cb1515');
 // document.body.appendChild(sptOneLiner)
+
+// fetch('https://novaalab.com/discount/LETSSTART').then(function(response) {
+//     return response.text();
+//   }).then(function(data) {
+//       console.log(data)
+//   });
