@@ -18,7 +18,7 @@ let styles = `
     height: 100vh;
     width: 100%;
     background-color: rgba(0,0,0,0.5);
-    z-index: 999;
+    z-index: 99999999;
     opacity: 0;
     pointer-events: none;
     transition: all 0.3s ease;
@@ -33,6 +33,9 @@ let styles = `
 }
 .slide_in__cart.active > .container {
     transform: translateX(0);
+}
+.slide_in__cart_close {
+    cursor: pointer;
 }
 .slide_in__cart p, .slide_in__cart ul {
     margin: 0;
@@ -62,7 +65,7 @@ let styles = `
 .slide_in__header p {
     position: relative;
 }
-.slide_in__header .loading:before {
+.slide_in__header .loading:before, .btn-purple.loading_discount:before {
     content: '';
     position: absolute;
     left: 100%;
@@ -71,6 +74,10 @@ let styles = `
     width: 19px;
     height: 19px;
     background: url(https://conversionratestore.github.io/projects/novaalab/img/loading.gif) no-repeat center / 100%;
+}
+.btn-purple.loading_discount:before {
+    left: auto;
+    right: calc(100% + 5px);
 }
 .slide_in__products {
     padding: 20px;
@@ -90,6 +97,11 @@ let styles = `
     border: none;
     width: 100%;
     display: block;
+    position: relative;
+}
+.btn-purple:hover, .btn-purple:active {
+    background: #691BEA;
+    color: #FFFFFF;
 }
 /* empty */
 .slide_in__empty {
@@ -129,10 +141,10 @@ let styles = `
 .item_product:last-child {
     margin: 0;
 }
-.item_product > div {
+.item_product > div:not(.slide_in__message) > div {
     width: calc(100% - 134px);
 }
-.item_product > a, .item_product img  {
+.item_product > div > a, .item_product img  {
     width: 120px;
     height: 120px;
     margin-right: 14px;
@@ -140,7 +152,10 @@ let styles = `
 .item_product img {
     object-fit: cover;
 }
-
+.item_product__name:hover {
+    text-decoration-line: underline;
+    color: #773BD9;
+}
 p.item_product__price {
     margin: 5px 0 13px;
 }
@@ -149,15 +164,12 @@ p.item_product__price {
     padding-right: 4px;
     text-decoration: line-through;
 }
-.calc_block {
-    border: 1px solid #E2E2E2;
-    border-radius: 4px;
-}
 .calc_action {
     width: 35px;
-    height: 34px;
+    height: 36px;
     border: none;
     position: relative;
+    border: 1px solid #E2E2E2;
 }
 .calc_action:after, .calc_action:before {
     content: '';
@@ -165,12 +177,24 @@ p.item_product__price {
     left: 50%;
     top: 50%;
     transform: translate(-50%,-50%);
-    background-color: #E2E2E2;
+    background-color: #0A0A0A;
     pointer-events: none;
 }
 .calc_action:before {
     width: 12px;
     height: 2px;
+}
+.calc_action:hover {
+    border-color: #773BD9;
+}
+.calc_action:hover:before, .calc_action:hover:after  {
+    background-color: #773BD9;
+}
+.calc_action.calc_action__minus {
+    border-radius: 4px 0 0 4px;
+}
+.calc_action.calc_action__plus {
+    border-radius: 0 4px 4px 0;
 }
 .calc_action.calc_action__plus:after {
     width: 2px;
@@ -185,8 +209,8 @@ input.clac_qty {
     padding: 0;
     text-align: center;
     border: none;
-    border-left: 1px solid #E2E2E2;
-    border-right: 1px solid #E2E2E2;
+    border-top: 1px solid #E2E2E2;
+    border-bottom: 1px solid #E2E2E2;
     background: transparent;
     font-weight: 700;
     font-size: 16px;
@@ -198,19 +222,23 @@ input.clac_qty {
     width: 36px;
     height: 36px;
 }
-.item_product__delate:hover svg {
-    fill: #0A0A0A;
+.item_product__delate:hover svg path {
+    fill: #773BD9;
+}
+.item_product__delate:hover {
+    border-color: #773BD9;
 }
 /* message block*/
 .slide_in__message {
     background: #F5F5FD;
     border-radius: 6px;
-    padding: 12px;
+    padding: 8px 12px;
     max-width: 311px;
     margin: 0 auto 10px;
     font-size: 14px;
     line-height: 19px;
     font-weight: 500;
+    min-height: 42px;
 }
 .slide_in__message svg {
     flex-shrink: 0;
@@ -218,24 +246,6 @@ input.clac_qty {
 }
 .slide_in__message .c-grey-300 {
     margin-bottom: 2px;
-}
-/* discount */
-.slide_in__bundle {
-    padding: 16px 20px;
-    background: #F5F5F5;
-}
-.slide_in__bundle img {
-    background: #FFFFFF;
-}
-.slide_in__bundle > p {
-    line-height: 19px;
-    margin-bottom: 16px;
-}
-.btn-discount {
-    font-size: 14px;
-    line-height: 10px;
-    text-decoration-line: underline;
-    padding: 13px 0;
 }
 /* total */
 .slide_in__total {
@@ -252,7 +262,15 @@ input.clac_qty {
     color: #252726;
     position: relative;
 }
-.slide_in__total > div p:first-child {
+.slide_in__subtotal .compare {
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 20px;
+    color: #939393;
+    text-decoration: line-through;
+    margin-right: 4px;
+}
+.slide_in__total > div:not(.slide_in__discount) p:first-child {
     letter-spacing: 1.4px;
 }
 .slide_in__shipping {
@@ -260,19 +278,131 @@ input.clac_qty {
     font-size: 14px;
     line-height: 15px;
     padding: 10px 0 12px;
+    order: -1;
 }
-
+.slide_in__saved {
+    background: rgba(216, 68, 50, 0.2);
+    padding: 5px 6px 4px 12px;
+    position: relative;
+    font-size: 14px;
+    line-height: 17px;
+    color: #D84432;
+    margin-left: auto;
+    width: fit-content;
+}
+.slide_in__saved:before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 11px 0 11px 8px;
+    border-color: transparent transparent transparent #fff;
+}
+/* discount */
+.slide_in__bundle {
+    padding: 16px 20px;
+    background: #F5F5F5;
+    box-shadow: inset 0px 0px 8px rgba(107, 29, 235, 0.16);
+    margin-bottom: 20px!important;
+}
+.slide_in__bundle li > div > a {
+    background: #FFFFFF;
+    padding: 10px;
+}
+.slide_in__bundle img {
+    width: 100px;
+    height: 100px;
+}
+.slide_in__bundle > p {
+    line-height: 19px;
+    margin-bottom: 16px;
+}
+.btn-discount {
+    font-size: 14px;
+    line-height: 10px;
+    text-decoration-line: underline;
+    padding: 13px 0;
+    cursor: pointer;
+}
+.slide_in__discount {
+    position: relative;
+    margin-bottom: 4px;
+}
+.slide_in__discount_message {
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 17px;
+    color: #FF0000;
+    margin-top: 4px;
+    display: none;
+}
+.slide_in__discount.error .slide_in__discount_message {
+    display: block;
+}
+.slide_in__discount.error input {
+    border-color: #FF0000;
+}
+.slide_in__discount input {
+    background: #FFFFFF;
+    border: 1px solid #E2E2E2;
+    border-radius: 4px;
+    padding: 9px 10px;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 17px;
+    width: 100%;
+    outline: none;
+    font-style: initial;
+}
+.slide_in__discount input:focus, .slide_in__discount input:valid {
+    border-color: #773BD9;
+}
+.slide_in__discount button {
+    width: 86px;
+    position: absolute;
+    right: 0;
+    top: 0;
+    height: 37px;
+}
+.slide_in__discount_completed {
+    letter-spacing: 1.4px;
+}
+.slide_in__discount_completed, .slide_in__discount_item {
+    font-size: 14px;
+    line-height: 15px;
+    text-transform: uppercase;
+}
+.slide_in__discount_delete {
+   padding: 8px;
+   cursor: pointer;
+}
+.slide_in__discount_delete svg {
+    pointer-events: none;
+}
 /* may_like */
 .may_like {
     background: #F5F5F5;
     padding: 20px;
     margin-top: 20px;
+    box-shadow: inset 0px 0px 8px rgba(107, 29, 235, 0.16);
 }
 .may_like h4 {
     font-size: 16px;
     line-height: 19px;
     color: #212121;
     margin-bottom: 16px;
+    font-family: 'Urbanist';
+    text-transform: none;
+
+    letter-spacing: normal;
+}
+.may_like li > div > a {
+    background: #FFFFFF;
+    border: 1px solid #EAEBEA;
 }
 /* footer cart */
 .slide_in__footer {
@@ -281,6 +411,7 @@ input.clac_qty {
     bottom: 0;
     background: #fff;
     z-index: 2;
+    box-shadow: 0px 0px 16px rgba(107, 28, 235, 0.16);
 }
 .slide_in__to_checkout {
     font-size: 18px;
@@ -292,6 +423,9 @@ input.clac_qty {
 }
 .fw-semi {
     font-weight: 600!important;
+}
+.fw-medium {
+    font-weight: 500!important;
 }
 .c-purple {
     color: #773BD9;
@@ -317,6 +451,9 @@ input.clac_qty {
 .m-auto {
     margin: auto;
 }
+.mb-auto {
+    margin-bottom: auto;
+}
 </style>`
 
 let emtySlideInHTML = `
@@ -327,14 +464,14 @@ let emtySlideInHTML = `
 </li>`;
 
 
-let productHaveBundle = {32854816784438:'', 39782656311350:'', 40322897838134:''};
+let productHaveBundle = {32854816784438:'', 39782656311350:'', 40322897838134:'', 39737414484022:''};
 
 function priceSubstr(price) {
     let str = price.toString();
     return str.substr(0, str.length - 2) + '.' + str.substr(str.length - 2, str.length);
 }
 
-function addCart(id, qty) {
+function addCart(id, qty, typeId = '') {
     $.ajax({
         url : "/cart/add.js",
         data : {id : id, quantity : qty},
@@ -342,7 +479,11 @@ function addCart(id, qty) {
         dataType : "JSON",            
         success  : function(data) {
             console.log(data)
-            getCart()
+            if (typeId != '') {
+                updateCart(typeId)
+            } else {
+                getCart()
+            }
             toggleActive(true)
         },
         error : function(error) {
@@ -350,8 +491,8 @@ function addCart(id, qty) {
         }
     });
 }
-function updateCart(type, id, qty = 0) {
-    console.log(id)
+
+function updateCart(id, qty = 0) {
     document.querySelector('.slide_in__header > p').classList.add('loading')
     $.ajax({ 
         type: "POST",
@@ -362,12 +503,8 @@ function updateCart(type, id, qty = 0) {
             quantity: qty,
         },
         success: function (success_data) {
-                console.log(success_data)
-                if (type == 'bunlde') {
-                    addCart(39758302806070, 1)
-                } else {
-                    getCart() 
-                }
+                console.log(success_data);
+                getCart() 
                 return false;
             },
             error: function (data) {
@@ -375,6 +512,7 @@ function updateCart(type, id, qty = 0) {
             }
         });
 }
+
 function getCart(cartDrawer = document.querySelector('.slide_in__cart')) {
     // get cart
     cartDrawer.querySelector('.slide_in__header > p').classList.add('loading')
@@ -386,7 +524,8 @@ function getCart(cartDrawer = document.querySelector('.slide_in__cart')) {
             console.log(data)
             let items = data.items,
                 subtotal = priceSubstr(data.items_subtotal_price),
-                total_price = priceSubstr(data.total_price),
+                totalPrice = 0,
+                compareTotalPrice = 0,
                 itemCount = data.item_count;
     
             console.log(items)
@@ -399,6 +538,7 @@ function getCart(cartDrawer = document.querySelector('.slide_in__cart')) {
             cartDrawer.querySelector('.slide_in__header > p span').innerHTML = itemCount;
 
             cartDrawer.querySelector('.slide_in__header > p').classList.remove('loading')
+            cartDrawer.querySelector('.slide_in__discount').classList.remove('error')
             if (itemCount == 0) {
                 parent.innerHTML = emtySlideInHTML;
                 cartDrawer.querySelector('.slide_in__total').style.display = 'none';
@@ -412,20 +552,64 @@ function getCart(cartDrawer = document.querySelector('.slide_in__cart')) {
                 if (cartDrawer.querySelector('.freeshipping') != null) {
                     cartDrawer.querySelector('.freeshipping').remove()
                 }
+
+                let completed = appikon['discounts']['additional_discount_value'] != null && appikon['discounts']['additional_discount_value'] != 0 ? true : false;
+                new Discount(cartDrawer.querySelector('.slide_in__discount'), completed).render()
+    
                 for (let i = 0; i < items.length; i++) {
                     let link = items[i].url, 
                         image = items[i].image, 
                         title = items[i].title, 
-                        compare = '', //priceSubstr(items[i].original_line_price), 
                         price = items[i].discounted_price, 
                         id = items[i].id,
                         variantId = items[i].variant_id,
                         hasVariant = items[i].product_has_only_default_variant,
+                        compare = allProducts[variantId].compare,
                         qty = items[i].quantity;
         
                     new ProductItem(parent, link, image, title, compare, price, variantId, id, hasVariant, qty).render()
 
+                    if (discountShopacado[variantId] != null) {
+                        let initialElement = cartDrawer.querySelector(`li[data-variant-id="${variantId}"]`),  
+                            priceProduct = price, 
+                            details = discountShopacado[variantId]['details'],
+                            priceDiscount = '', 
+                            qtyDiscount = '';
+                        
+                            if (qty == 2) {
+                                priceDiscount = details[1].split('/')[1];
+                                qtyDiscount = details[1].split('/')[0];
+
+                                initialElement.querySelector('.item_product__price .pr').innerHTML = '$'+ details[0].split('/')[1]
+                                priceProduct = details[0].split('/')[1]
+                            } else if (qty == 1) {
+                                priceDiscount = details[0].split('/')[1];
+                                qtyDiscount = details[0].split('/')[0];
+                            } else {
+                                initialElement.querySelector('.item_product__price .pr').innerHTML = '$'+ details[1].split('/')[1]
+                                priceProduct = details[1].split('/')[1]
+                            }
+
+                        console.log(initialElement, priceProduct, priceSubstr(compare), qty, priceDiscount, qtyDiscount)
+                        new DiscountProduct(initialElement, priceProduct, priceSubstr(compare), qty, priceDiscount, qtyDiscount).render()
+                    }
                 }
+
+                //SUBTOTAL
+                cartDrawer.querySelectorAll('.slide_in__products li').forEach(item => {
+                    let qty = +item.querySelector('.clac_qty').value,
+                        price = +item.querySelector('.item_product__price .pr').innerHTML.replace('$',''),
+                        compare = +item.querySelector('.item_product__price .compare').innerHTML.replace('$','');
+
+                    totalPrice += qty * price;
+                    compareTotalPrice += qty * compare;
+                })
+                
+                cartDrawer.querySelector('.slide_in__subtotal .pr').innerHTML = '$' + totalPrice.toFixed(2);
+                cartDrawer.querySelector('.slide_in__subtotal .compare').innerHTML = '$' + compareTotalPrice.toFixed(2);
+                cartDrawer.querySelector('.slide_in__saved').innerHTML = 'You just saved $' + (compareTotalPrice - totalPrice).toFixed(2);
+                                
+
                 let bundle = false;
                 for (let i = 0; i < items.length; i++) {
                     let variantId = items[i].variant_id;
@@ -444,7 +628,7 @@ function getCart(cartDrawer = document.querySelector('.slide_in__cart')) {
                         break;
                     } 
                 }
-                console.log(bundle)
+               
                 if (bundle == true) {
                     new ProductItem(cartDrawer.querySelector('.slide_in__bundle'), bundleObj.url, bundleObj.img, bundleObj.title, bundleObj.compare, bundleObj.price, bundleObj.variantId, bundleObj.id, 'false', 1, 'addToCart').render()
                     cartDrawer.querySelector('.slide_in__bundle').style.display = 'block';
@@ -452,9 +636,6 @@ function getCart(cartDrawer = document.querySelector('.slide_in__cart')) {
                 cartDrawer.querySelector('.slide_in__total').style = '';
                
             }
-
-
-    
         }
     });
 }
@@ -484,8 +665,8 @@ class ProductItem {
                             <input type="number" readonly value="${this.qty}" class="clac_qty">
                             <button type="button" class="calc_action calc_action__plus"></button>
                         </div>
-                        <button type="button" class="item_product__delate">
-                            <svg width="12" height="14" viewBox="0 0 12 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <button type="button" class="item_product__delate d-flex">
+                            <svg class="m-auto" width="12" height="14" viewBox="0 0 12 14" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M0.857143 12.6875C0.857143 13.4258 1.41964 14 2.14286 14H9.85714C10.5536 14 11.1429 13.4258 11.1429 12.6875V3.5H0.857143V12.6875ZM8.14286 5.6875C8.14286 5.46875 8.33036 5.25 8.57143 5.25C8.78571 5.25 9 5.46875 9 5.6875V11.8125C9 12.0586 8.78571 12.25 8.57143 12.25C8.33036 12.25 8.14286 12.0586 8.14286 11.8125V5.6875ZM5.57143 5.6875C5.57143 5.46875 5.75893 5.25 6 5.25C6.21429 5.25 6.42857 5.46875 6.42857 5.6875V11.8125C6.42857 12.0586 6.21429 12.25 6 12.25C5.75893 12.25 5.57143 12.0586 5.57143 11.8125V5.6875ZM3 5.6875C3 5.46875 3.1875 5.25 3.42857 5.25C3.64286 5.25 3.85714 5.46875 3.85714 5.6875V11.8125C3.85714 12.0586 3.64286 12.25 3.42857 12.25C3.1875 12.25 3 12.0586 3 11.8125V5.6875ZM11.5714 0.875H8.35714L8.08929 0.382812C7.98214 0.164062 7.76786 0 7.52679 0H4.44643C4.20536 0 3.99107 0.164062 3.88393 0.382812L3.64286 0.875H0.428571C0.1875 0.875 0 1.09375 0 1.3125V2.1875C0 2.43359 0.1875 2.625 0.428571 2.625H11.5714C11.7857 2.625 12 2.43359 12 2.1875V1.3125C12 1.09375 11.7857 0.875 11.5714 0.875Z" fill="#BBBBBB"/>
                             </svg> 
                         </button>
@@ -506,34 +687,36 @@ class ProductItem {
                     inputQty.value = +inputQty.value - 1;
                 }
             }
-            updateCart('update', id, +inputQty.value)
+            updateCart(id, +inputQty.value)
         })
     }
     render() {
         let element = document.createElement('li');
-        element.classList.add('d-flex', 'item_product');
+        element.classList.add('item_product');
         element.dataset.variantId = this.variantId;
         element.dataset.id = this.id;
 
         if (this.id == bundleObj.id) {
-            this.parent.insertAdjacentHTML('afterbegin', '<p class="c-purple fw-semi">Upgrade your order and get Nova Light Pro for only $100</p>')
+            this.parent.insertAdjacentHTML('afterbegin', '<p class="c-purple fw-medium"><span class="fw-bold">Bundle up and save</span>: get $400 off when you buy our package deal!</p>')
         }
 
         element.innerHTML = `
-            <a href="${this.link}">
-                <img src="${this.image}" alt="${this.name}">
-            </a>
-            <div>
-                <a href="${this.link}" class="item_product__name">${this.name}</a>
-                <p class="item_product__price"><span class="compare">${this.compare}</span> <span class="pr c-purple fw-bold">$${this.price}</span></p>
-                ${this.renderBottom()}
+            <div class="d-flex">
+                <a href="${this.link}">
+                    <img src="${this.image}" alt="${this.name}">
+                </a>
+                <div>
+                    <a href="${this.link}" class="item_product__name">${this.name}</a>
+                    <p class="item_product__price"><span class="compare">${this.compare}</span> <span class="pr c-purple fw-bold">$${this.price}</span></p>
+                    ${this.renderBottom()}
+                </div>
             </div>`;
 
         this.parent.appendChild(element);
        
         if (this.type == false) {
             document.querySelector(`.slide_in__products [data-variant-id="${this.variantId}"] .item_product__delate`).addEventListener('click', (e) => {
-                updateCart('remove', this.variantId)
+                updateCart(this.variantId)
             })
             document.querySelectorAll(`.slide_in__products [data-variant-id="${this.variantId}"] .calc_action`).forEach(button => {
                 this.changeQtyProduct(button, this.variantId)
@@ -545,16 +728,21 @@ class ProductItem {
                     let pr_1 = e.target.closest('.slide_in__body').querySelector('.slide_in__products [data-variant-id="39782656311350"]') != null ? e.target.closest('.slide_in__body').querySelector('.slide_in__products [data-variant-id="39782656311350"]') : '';
                     let pr_2 = e.target.closest('.slide_in__body').querySelector('.slide_in__products [data-variant-id="32854816784438"]') != null ? e.target.closest('.slide_in__body').querySelector('.slide_in__products [data-variant-id="32854816784438"]') : '';
                     let pr_3 = e.target.closest('.slide_in__body').querySelector('.slide_in__products [data-variant-id="40322897838134"]') != null ? e.target.closest('.slide_in__body').querySelector('.slide_in__products [data-variant-id="40322897838134"]') : '';
+                    let pr_4 = e.target.closest('.slide_in__body').querySelector('.slide_in__products [data-variant-id="39737414484022"]') != null ? e.target.closest('.slide_in__body').querySelector('.slide_in__products [data-variant-id="39737414484022"]') : '';
                 
                     if ( pr_1 != '' && pr_1.querySelector('.clac_qty').value < 2) {
-                        updateCart('bundle', 39782656311350)
+                        addCart(this.variantId, 1, 39782656311350)
                     }
                     if (pr_2 != '' && pr_2.querySelector('.clac_qty').value < 2) {
-                        updateCart('bundle', 32854816784438)
+                        addCart(this.variantId, 1, 32854816784438)
                     }
                     if (pr_3 != '' && pr_3.querySelector('.clac_qty').value < 2 ) {
-                        updateCart('bundle', 40322897838134)
+                        addCart(this.variantId, 1, 40322897838134)
                     }
+                    if (pr_4 != '' && pr_4.querySelector('.clac_qty').value < 2 ) {
+                        addCart(this.variantId, 1, 39737414484022)
+                    }
+                    
                 } else {
                     addCart(e.target.dataset.variantId, 1)
                 }
@@ -564,17 +752,91 @@ class ProductItem {
     }
 }
 
+let discountShopacado = {
+    40365298679862: { //Novaa Oral Care Pro (varinat id)
+        'nameOffer':'Oral Care Pro - Black Friday Bundle discount',
+        'details': ['2/99.90','3/89.90']
+    },
+    40156488761398: { //Novaa Extra-Strength Healing Laser
+        'nameOffer':'Laser - Black Friday Bundle discount',
+        'details': ['2/269.9','3/229.90']
+    },
+    32854816784438: { //Novaa Light Pro™ - Limited sale price
+        'nameOffer': 'Light Pro - Black Friday Bundle discount',
+        'details': ['2/129.90','3/99.90']
+    },
+    '': { //The Novaa Deep Healing Therapy Pad™
+        'nameOffer': 'Deep Healing Pad for Knee - Black Friday Bundle discount',
+        'details': ['2/239.90','3/199.90']
+    },
+    40322897838134: { //The Novaa Deep Healing Therapy Pad™
+        'nameOffer': 'Deep Healing Pad - Black Friday Bundle discount',
+        'details': ['2/249.90','3/229.90']
+    },
+    39413432909878: { //Novaa Deep Healing Pad™ for professionals
+        'nameOffer': 'RLT Pad for Professionals - Volume Discount',
+        'details': ['3/209.90','5/199.90']
+    },
+    33084012134454: { //Novaa Light Pro™ - for Professionals
+        'nameOffer': 'RLT HH for Professionals - Volume Discount',
+        'details': ['5/99.90','10/94.90']
+    }
+}
+
+class DiscountProduct {
+    constructor(initialElement, priceProduct, compareProduct, qtyProduct, priceDiscount, qtyDiscount) {
+        this.initialElement = initialElement;
+        this.priceProduct = +priceProduct;
+        this.compareProduct = +compareProduct;
+        this.qtyProduct = +qtyProduct;
+        this.priceDiscount = (+priceDiscount).toFixed(2);
+        this.qtyDiscount = +qtyDiscount;
+
+    }//899.7
+    renderDiscount() {
+        let saved = ((this.compareProduct * this.qtyProduct) - (this.priceProduct * this.qtyProduct)).toFixed(2)
+
+        if (this.qtyProduct == 1 || this.qtyDiscount == 5 || this.qtyDiscount == 10) {
+            return `<p class="text-center fw-bold" style="width: 100%;"> Buy ${this.qtyDiscount} to get them for <span class="c-purple">$${this.priceDiscount}</span> each</p>`
+        } else if (this.qtyProduct == 2) {
+            return `
+                <svg class="mb-auto" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" clip-rule="evenodd" d="M9.68929 15.8074C10.0554 16.1736 10.649 16.1736 11.0151 15.8074L17.3045 9.51804C17.6706 9.15192 17.6706 8.55833 17.3045 8.19221C16.9384 7.8261 16.3448 7.8261 15.9787 8.19221L10.3522 13.8187L8.02106 11.4876C7.65494 11.1215 7.06135 11.1215 6.69524 11.4876C6.32912 11.8537 6.32913 12.4473 6.69525 12.8134L9.68929 15.8074Z" fill="#773BD9"/>
+                    <g mask="url(#mask1_78_3134)">
+                        <path fill-rule="evenodd" clip-rule="evenodd" d="M0 12C0 18.6274 5.37259 24 12 24C18.6274 24 24 18.6274 24 12C24 5.37259 18.6274 1.43051e-06 12 1.43051e-06C5.37259 1.43051e-06 0 5.37259 0 12ZM12 22.125C6.40813 22.125 1.875 17.5919 1.875 12C1.875 6.40813 6.40813 1.875 12 1.875C17.5919 1.875 22.125 6.40813 22.125 12C22.125 17.5919 17.5919 22.125 12 22.125Z" fill="#773BD9"/>
+                    </g>
+                </svg>
+                <div>
+                    <p class="c-grey-300">Yay! You just saved <span>$${saved}</span> </p>
+                    <p class="fw-bold">Buy ${this.qtyDiscount} and get each for <span class="c-purple">$${this.priceDiscount}</span>,<br> saving even more</p>
+                <div>`
+        } else if (this.qtyProduct >= 3 && this.qtyDiscount != 10 && this.qtyDiscount != 5) {
+            return `
+                <svg class="mb-auto" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" clip-rule="evenodd" d="M9.68929 15.8074C10.0554 16.1736 10.649 16.1736 11.0151 15.8074L17.3045 9.51804C17.6706 9.15192 17.6706 8.55833 17.3045 8.19221C16.9384 7.8261 16.3448 7.8261 15.9787 8.19221L10.3522 13.8187L8.02106 11.4876C7.65494 11.1215 7.06135 11.1215 6.69524 11.4876C6.32912 11.8537 6.32913 12.4473 6.69525 12.8134L9.68929 15.8074Z" fill="#773BD9"/>
+                    <g mask="url(#mask1_78_3134)">
+                        <path fill-rule="evenodd" clip-rule="evenodd" d="M0 12C0 18.6274 5.37259 24 12 24C18.6274 24 24 18.6274 24 12C24 5.37259 18.6274 1.43051e-06 12 1.43051e-06C5.37259 1.43051e-06 0 5.37259 0 12ZM12 22.125C6.40813 22.125 1.875 17.5919 1.875 12C1.875 6.40813 6.40813 1.875 12 1.875C17.5919 1.875 22.125 6.40813 22.125 12C22.125 17.5919 17.5919 22.125 12 22.125Z" fill="#773BD9"/>
+                    </g>
+                </svg>
+                <p class="fw-bold">Yay! You just saved <span class="c-purple">$${saved}</span> </p> `
+        }
+    }
+    render() {
+        let element = `<div class="slide_in__message d-flex items-center ${this.qtyProduct}" style="margin-top: 16px;">${this.renderDiscount()}</div>`;
+
+        this.initialElement.insertAdjacentHTML('beforeend', element);
+    }
+}
 class Message {
-    constructor(item, position, style, price = '', saved = '') {
+    constructor(item, position, style) {
         this.item = item;
         this.position = position;
         this.style = style;
-        this.price = price;
-        this.saved = saved;
         this.getVariantMessage();
     }
 
     getVariantMessage() {
+
         if (this.style == 'freeshipping') {
             return `
                 <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -599,34 +861,87 @@ class Message {
                     <path d="M13.0044 10.6284L10.1256 13.5159L8.9969 12.3784C8.91532 12.2968 8.81846 12.2321 8.71187 12.188C8.60527 12.1438 8.49103 12.1211 8.37565 12.1211C8.26027 12.1211 8.14603 12.1438 8.03943 12.188C7.93284 12.2321 7.83598 12.2968 7.7544 12.3784C7.67282 12.46 7.6081 12.5569 7.56395 12.6635C7.51979 12.77 7.49707 12.8843 7.49707 12.9997C7.49707 13.1151 7.51979 13.2293 7.56395 13.3359C7.6081 13.4425 7.67282 13.5393 7.7544 13.6209L9.5044 15.3709C9.58574 15.4529 9.68252 15.518 9.78915 15.5625C9.89577 15.6069 10.0101 15.6297 10.1256 15.6297C10.2412 15.6297 10.3555 15.6069 10.4622 15.5625C10.5688 15.518 10.6656 15.4529 10.7469 15.3709L14.2469 11.8709C14.3285 11.7893 14.3932 11.6925 14.4374 11.5859C14.4815 11.4793 14.5042 11.3651 14.5042 11.2497C14.5042 11.1343 14.4815 11.02 14.4374 10.9135C14.3932 10.8069 14.3285 10.71 14.2469 10.6284C14.1653 10.5468 14.0685 10.4821 13.9619 10.438C13.8553 10.3938 13.741 10.3711 13.6256 10.3711C13.5103 10.3711 13.396 10.3938 13.2894 10.438C13.1828 10.4821 13.086 10.5468 13.0044 10.6284Z" fill="#773BD9"/>
                 </svg>
                 <p style="text-transform: uppercase;">Shop confidently <br> <span class="fw-bold">60-day money back guarantee</span></p>`
-        }
-        if (this.style == 1) {
-            return `<p class="text-center fw-bold"> Buy 2 to get them for <span class="c-purple">$${this.price}</span> each</p>`
-        } else if (this.style == 2) {
-            return `
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path fill-rule="evenodd" clip-rule="evenodd" d="M9.68929 15.8074C10.0554 16.1736 10.649 16.1736 11.0151 15.8074L17.3045 9.51804C17.6706 9.15192 17.6706 8.55833 17.3045 8.19221C16.9384 7.8261 16.3448 7.8261 15.9787 8.19221L10.3522 13.8187L8.02106 11.4876C7.65494 11.1215 7.06135 11.1215 6.69524 11.4876C6.32912 11.8537 6.32913 12.4473 6.69525 12.8134L9.68929 15.8074Z" fill="#773BD9"/>
-                    <g mask="url(#mask1_78_3134)">
-                        <path fill-rule="evenodd" clip-rule="evenodd" d="M0 12C0 18.6274 5.37259 24 12 24C18.6274 24 24 18.6274 24 12C24 5.37259 18.6274 1.43051e-06 12 1.43051e-06C5.37259 1.43051e-06 0 5.37259 0 12ZM12 22.125C6.40813 22.125 1.875 17.5919 1.875 12C1.875 6.40813 6.40813 1.875 12 1.875C17.5919 1.875 22.125 6.40813 22.125 12C22.125 17.5919 17.5919 22.125 12 22.125Z" fill="#773BD9"/>
-                    </g>
-                </svg>
-                <p class="c-grey-300">Yay! You just saved <span>$${this.saved}</span> </p>
-                <p class="fw-bold">Buy 3 and get each for <span class="c-purple">$${this.price}</span>, saving even more</p>`
-        } else {
-            return `
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path fill-rule="evenodd" clip-rule="evenodd" d="M9.68929 15.8074C10.0554 16.1736 10.649 16.1736 11.0151 15.8074L17.3045 9.51804C17.6706 9.15192 17.6706 8.55833 17.3045 8.19221C16.9384 7.8261 16.3448 7.8261 15.9787 8.19221L10.3522 13.8187L8.02106 11.4876C7.65494 11.1215 7.06135 11.1215 6.69524 11.4876C6.32912 11.8537 6.32913 12.4473 6.69525 12.8134L9.68929 15.8074Z" fill="#773BD9"/>
-                    <g mask="url(#mask1_78_3134)">
-                        <path fill-rule="evenodd" clip-rule="evenodd" d="M0 12C0 18.6274 5.37259 24 12 24C18.6274 24 24 18.6274 24 12C24 5.37259 18.6274 1.43051e-06 12 1.43051e-06C5.37259 1.43051e-06 0 5.37259 0 12ZM12 22.125C6.40813 22.125 1.875 17.5919 1.875 12C1.875 6.40813 6.40813 1.875 12 1.875C17.5919 1.875 22.125 6.40813 22.125 12C22.125 17.5919 17.5919 22.125 12 22.125Z" fill="#773BD9"/>
-                    </g>
-                </svg>
-                <p class="fw-bold">Yay! You just saved <span class="c-purple">$${this.saved}</span> </p> `
-        }
+        } 
     }
     render() {
         let element = `<div class="slide_in__message d-flex items-center ${this.style}">${this.getVariantMessage()}</div>`;
 
         this.item.insertAdjacentHTML(this.position, element);
+    }
+}
+
+class Discount {
+    constructor(parent, completed) {
+        this.parent = parent;
+        this.completed = completed;
+    }
+    renderCompleted(code, price) {
+        return `
+        <p>
+            <span class="slide_in__discount_completed c-purple fw-bold">${code}</span>
+            <span class="slide_in__discount_delete">
+                <svg width="10" height="10" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" clip-rule="evenodd" d="M5.00091 3.58579L1.46537 0.0502526L0.0511592 1.46447L3.58669 5L0.0511588 8.53553L1.46537 9.94975L5.00091 6.41421L8.53644 9.94975L9.95065 8.53553L6.41512 5L9.95065 1.46447L8.53644 0.0502526L5.00091 3.58579Z" fill="#FF0000"/>
+                </svg>
+            </span>
+        </p>
+        <p class="slide_in__discount_item c-purple">-$${price}</p>`
+    }
+    render() {
+        console.log(this.completed)
+        if (this.completed == false) {
+            this.parent.innerHTML = ` <p class="btn-discount c-purple fw-bold">Apply discount code</p>`
+            console.log(this.parent.innerHTML )
+            this.parent.querySelector('.btn-discount').addEventListener('click', (e) => {
+                e.stopImmediatePropagation()
+                this.parent.innerHTML = `
+                <input type="text" placeholder="Discount code" required>
+                <button type="button" class="btn-purple">Apply</button>
+                <p class="slide_in__discount_message"></p>`;
+
+                this.parent.querySelector('.btn-purple').addEventListener('click', (e) => {
+                    let discount = e.target.previousElementSibling.value.trim();
+
+                    window.appikon.discount_code = discount;  
+                    window.appikonDiscount.triggerDiscountCalculation($)
+
+                    this.parent.querySelector('.btn-purple').classList.add('loading_discount')
+                    
+                    setTimeout(()=> {
+                        if (appikon['discount_code'] != '') {
+                            if (window.appikon['discounts']['discount_code_error'] != null && window.appikon['discounts']['discount_code_error'] != '') {
+                                e.target.parentElement.classList.add('error')
+                                this.parent.querySelector('.slide_in__discount_message').innerHTML = window.appikon['discounts']['discount_code_error'];
+                                this.parent.querySelector('.btn-purple').classList.remove('loading_discount')
+                            } else {
+                                e.target.parentElement.classList.remove('error')
+                                this.parent.classList.add('flx-between')
+                                this.parent.style = 'padding: 3px 0 15px;margin: 0';
+                                this.parent.querySelector('button').style = 'top: 3px;';
+                                this.parent.parentElement.style.display = 'grid';
+                                this.parent.innerHTML = this.renderCompleted(discount, window.appikon['discounts']['additional_discount_value'])
+                                this.parent.querySelector('.slide_in__discount_delete').addEventListener('click', (e) => {
+                                    console.log(e.target)
+                                    window.appikonDiscount.deleteCookie("appikon_discount_" + window.appikonDiscount.settings.shop);
+                                    delete window.appikon.discount_code;
+                                    window.appikonDiscount.triggerDiscountCalculation($);
+    
+                                    getCart()
+                                })
+                            }
+                        } else {
+                            e.target.parentElement.classList.add('error')
+                            this.parent.querySelector('.btn-purple').classList.remove('loading_discount') ;
+                            this.parent.querySelector('.slide_in__discount_message').innerHTML = 'Discount Code not found'
+                        }
+                    }, 2000)
+                })
+            })
+        } else {
+            this.parent.classList.add('flx-between')
+            this.parent.innerHTML = this.renderCompleted(window.appikon.discount_code, window.appikon['discounts']['additional_discount_value']);
+        }
+        
     }
 }
 
@@ -643,9 +958,9 @@ let slideInCartHTML = `
             </div>
         <div class="slide_in__body">
             <ul class="slide_in__products"></ul>
-            <div class="slide_in__bundle"></div>
+            <ul class="slide_in__bundle"></ul>
             <div class="slide_in__total">
-                <button type="button" class="btn-discount c-purple fw-bold">Apply discount code</button>
+                <div class="slide_in__discount"> </div>
                 <div class="slide_in__shipping flx-between">
                     <p>SHIPPING</p>
                     <p class="fw-semi">FREE US shipping</p>
@@ -654,11 +969,11 @@ let slideInCartHTML = `
                     <p> Subtotal</p>
                     <p><span class="compare"></span><span class="pr c-purple fw-bold"></span> </p>
                 </div>
-                <div class="slide_in__saved"></div>
+                <div class="slide_in__saved fw-semi"></div>
             </div>
-            <div class="may_like">
-                <h4>You may also like</h4>
-            </div>
+            <ul class="may_like">
+                <h4 class="fw-semi">You may also like</h4>
+            </ul>
         </div>
         <div class="slide_in__footer">
             <a href="/checkout" class="slide_in__to_checkout btn-purple">Checkout >></a>
@@ -688,13 +1003,22 @@ getCart()
 document.querySelector('.slide_in__cart_close').addEventListener('click', (e) => {
     toggleActive(false)
 })
+document.addEventListener('click', (e) => {
+    if (!e.target.closest('.container') && document.querySelector('.slide_in__cart.active') != null || e.target.classList.contains('slide_in__cart')) {
+        toggleActive(false)
+    }
+})
 document.querySelector('#AccessibleNav > li:nth-child(3) > a').addEventListener('click', (e) => {
     e.preventDefault();
+    e.stopImmediatePropagation();
     toggleActive(true)
 })
-document.querySelector('.cart-link').addEventListener('click', (e) => {
-    e.preventDefault();
-    toggleActive(true)
+document.querySelectorAll('.cart-link').forEach(item => {
+    item.addEventListener('click', (e) => {
+        e.preventDefault();
+        e.stopImmediatePropagation();
+        toggleActive(true)
+    })
 })
 
 document.querySelectorAll('[data-key="product"] [name="add"]').forEach(item => {
@@ -733,9 +1057,3 @@ document.querySelectorAll('[data-key="product"] [name="add"]').forEach(item => {
 // sptOneLiner.setAttribute('installments','12');
 // sptOneLiner.setAttribute('learn_more_color','#cb1515');
 // document.body.appendChild(sptOneLiner)
-
-// fetch('https://novaalab.com/discount/LETSSTART').then(function(response) {
-//     return response.text();
-//   }).then(function(data) {
-//       console.log(data)
-//   });
