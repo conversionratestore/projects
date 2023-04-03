@@ -1092,7 +1092,7 @@ let videoReviews = setInterval(() => {
                 console.log('>>> videowait start')
                 if (document.querySelector(".start-session")) {
                     clearInterval(waitVideo)
-                    document.querySelector(".start-session")?.addEventListener("click", function (e) {
+                    document.querySelector(".start-session").addEventListener("click", function (e) {
                         console.log(`click`)
                         console.log(this)
                         handleTimeline()
