@@ -441,6 +441,11 @@ let styleBase = `
 .flex-wrap {
     flex-wrap: wrap;
 } 
+@media (min-width: 1025px) {
+    .d-xl-none {
+        display: none!important;
+    }
+}
 @media (min-width: 769px) {
     .mobile {
         display: none;
@@ -1019,10 +1024,10 @@ let init = () => {
                 }
                 .block_call {
                     background: #E4F9FD;
-                    border-radius: 5px;
                     padding: 12px 14px;
                     width: 100%;
-                    margin-bottom: 22px;
+                    margin: 0 -55px 22px;
+                    width: calc(100% + 110px);
                 }
                 .block_call span {
                     font-family: 'Gilroy', sans-serif;
@@ -1051,6 +1056,12 @@ let init = () => {
                     }
                     .block_new {
                         padding: 25px 15px;
+                    }
+                    .block_call {
+                        margin: 0 -15px 22px;
+                        width: calc(100% + 30px);
+                        justify-content: flex-start!important;
+                        padding: 12px 28px;
                     }
                 }
                 @media (max-width: 991px) {
@@ -1142,11 +1153,6 @@ let init = () => {
                     section.elementor-element.elementor-element-2ffe8e81 > div > div > div > div > div > div > div > div > div > div > section > div > div > div.elementor-column.elementor-col-33.elementor-top-column.elementor-element > div > div > div.elementor-element.elementor-widget.elementor-widget-text-editor {
                         margin-top: -20px;
                     }
-                    .block_call span {
-                        font-size: 14px;
-                        line-height: 22px;
-                        padding-left: 10px;
-                    }
                     .block_call svg {
                         width: 26px;
                         height: 26px;
@@ -1175,6 +1181,10 @@ let init = () => {
                     }
                     .max-w-420 > img:last-child {
                         margin-right: 0;
+                    }
+                    .block_call span {
+                        font-size: 14px;
+                        line-height: 22px;
                     }
                 }
             </style>
@@ -1236,11 +1246,11 @@ let init = () => {
                                 <button type="button" class="btn-get">Get a Free Demo</button>
                             </div>
                             <div class="block_calendly"></div>
-                            <div class="d-flex items-center block_call" style="display: none;">
+                            <div class="flx block_call" style="display: none;">
                                 <svg style="flex-shrink:0;" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M12 0C9.62664 0 7.30656 0.7038 5.33316 2.02236C3.35976 3.34092 1.82172 5.21508 0.913436 7.40778C0.005216 9.60054 -0.232444 12.0133 0.230576 14.3411C0.693596 16.6688 1.83648 18.8071 3.51474 20.4853C5.19294 22.1635 7.33116 23.3064 9.65892 23.7694C11.9867 24.2324 14.3995 23.9948 16.5922 23.0866C18.7849 22.1783 20.6591 20.6402 21.9776 18.6668C23.2962 16.6934 24 14.3734 24 12C23.9966 8.81844 22.7312 5.76822 20.4815 3.51852C18.2318 1.26882 15.1816 0.00342 12 0ZM12 19C11.7034 19 11.4133 18.912 11.1667 18.7472C10.92 18.5824 10.7277 18.3481 10.6142 18.074C10.5007 17.8 10.471 17.4983 10.5288 17.2073C10.5867 16.9164 10.7296 16.6491 10.9393 16.4393C11.1491 16.2296 11.4164 16.0867 11.7074 16.0288C11.9983 15.9709 12.2999 16.0006 12.574 16.1142C12.8481 16.2277 13.0824 16.42 13.2472 16.6666C13.412 16.9133 13.5 17.2033 13.5 17.5C13.5 17.8978 13.342 18.2794 13.0607 18.5606C12.7793 18.842 12.3978 19 12 19ZM13.6 12.92C13.4216 12.9979 13.2698 13.1261 13.1632 13.289C13.0567 13.4519 12.9999 13.6423 13 13.837C13 14.1022 12.8947 14.3566 12.7071 14.5441C12.5196 14.7316 12.2652 14.837 12 14.837C11.7348 14.837 11.4805 14.7316 11.2929 14.5441C11.1053 14.3566 11 14.1022 11 13.837C10.9999 13.2532 11.1702 12.682 11.4899 12.1936C11.8096 11.7051 12.265 11.3205 12.8 11.087C13.1305 10.9427 13.4159 10.7118 13.6259 10.4186C13.8359 10.1255 13.9627 9.78096 13.993 9.42162C14.0232 9.06228 13.9557 8.70144 13.7977 8.37732C13.6396 8.0532 13.3968 7.7778 13.095 7.58034C12.7933 7.38294 12.4437 7.27074 12.0834 7.25568C11.7231 7.24068 11.3654 7.32336 11.0482 7.49496C10.7311 7.66656 10.4662 7.92072 10.2817 8.23056C10.0972 8.5404 9.99984 8.8944 10 9.255C10 9.5202 9.89466 9.77454 9.7071 9.9621C9.5196 10.1497 9.2652 10.255 9 10.255C8.7348 10.255 8.48046 10.1497 8.2929 9.9621C8.10534 9.77454 7.99998 9.5202 7.99998 9.255C7.99998 8.53386 8.19492 7.8261 8.56422 7.20666C8.93352 6.58722 9.46338 6.07914 10.0978 5.73618C10.7322 5.39322 11.4475 5.22816 12.1681 5.25846C12.8885 5.28876 13.5875 5.51328 14.1908 5.90826C14.7943 6.3033 15.2796 6.85404 15.5956 7.50228C15.9116 8.15052 16.0464 8.87214 15.9859 9.59076C15.9253 10.3094 15.6716 10.9982 15.2516 11.5845C14.8316 12.1708 14.261 12.6325 13.6 12.921V12.92Z" fill="#00A2BB"/>
                                 </svg>
-                                <span>No suitable times for you? <br class="mobile d-flex"> Call us <a href="tel:8004934084">(800) 493-4084</a></span>
+                                <span>Need a demo sooner? <br class="d-xl-none d-flex">Call Jeremy Perez: <a href="tel:8106237427">(810) 623-7427</a></span>
                             </div>
                             <div class="flx block_consultants">
                                 <img src="${dir}/img/group-consultants.svg" alt="image">
