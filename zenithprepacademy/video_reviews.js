@@ -1,8 +1,6 @@
 let videoReviews = setInterval(() => {
-    console.log('>>> start')
     if (document.querySelector(".timeline")) {
         clearInterval(videoReviews)
-        console.log('>>> innerW' + window.innerWidth)
         if (window.innerWidth > 768) {
             // cdn slider
             let scriptCustomSlider = document.createElement("script")
@@ -1087,11 +1085,11 @@ let videoReviews = setInterval(() => {
             }, 100)
         }
         if (window.innerWidth > 768) {
-            console.log('>>> videowait start')
             let waitVideo = setInterval(() => {
-                console.log('>>> videowait start')
                 if (document.querySelector(".start-session")) {
                     clearInterval(waitVideo)
+                    console.log('>>>')
+                    console.log(document.querySelector(".start-session"))
                     document.querySelector(".start-session").addEventListener("click", function (e) {
                         console.log(`click`)
                         console.log(this)
