@@ -1088,12 +1088,6 @@ let videoReviews = setInterval(() => {
             let waitVideo = setInterval(() => {
                 if (document.querySelector(".start-session")) {
                     clearInterval(waitVideo)
-                    let check = setInterval( function() {
-                        console.log(document.querySelector(".start-session"))
-                    }, 10)
-                    setTimeout(function() {
-                        clearInterval(check)
-                    }, 3000)
                     setTimeout(function() {
                         document.querySelector(".start-session").addEventListener("click", function (e) {
                             console.log(`click`)
@@ -1108,7 +1102,7 @@ let videoReviews = setInterval(() => {
                                 return false
                             }
                         })
-                    }, 500)
+                    }, 1000)
                 }
             }, 300)
         } else {
