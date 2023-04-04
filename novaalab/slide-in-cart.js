@@ -600,10 +600,10 @@ function getCart(cartDrawer = document.querySelector('.slide_in__cart')) {
                     totalPrice += qty * price;
                     compareTotalPrice += qty * compare;
                 })
-                
-                cartDrawer.querySelector('.slide_in__subtotal .pr').innerHTML = '$' + totalPrice.toFixed(2);
+                let freeShippingPrice = document.querySelector('.slide_in__discount_item') != null ? +document.querySelector('.slide_in__discount_item').innerHTML.split('$')[1] : ''
+                cartDrawer.querySelector('.slide_in__subtotal .pr').innerHTML = '$' + (totalPrice - freeShippingPrice).toFixed(2);
                 cartDrawer.querySelector('.slide_in__subtotal .compare').innerHTML = '$' + compareTotalPrice.toFixed(2);
-                cartDrawer.querySelector('.slide_in__saved').innerHTML = 'You just saved $' + (compareTotalPrice - totalPrice).toFixed(2);
+                cartDrawer.querySelector('.slide_in__saved').innerHTML = 'You just saved $' + (compareTotalPrice - totalPrice - freeShippingPrice).toFixed(2);
                                 
 
                 let bundle = false;
@@ -824,6 +824,7 @@ class DiscountProduct {
         this.initialElement.insertAdjacentHTML('beforeend', element);
     }
 }
+
 class Message {
     constructor(item, position, style) {
         this.item = item;
