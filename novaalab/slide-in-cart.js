@@ -991,7 +991,7 @@ function toggleActive(method) {
 }
 
 let run = setInterval(() => {
-    if (document.querySelector('#AccessibleNav > li:nth-child(3) > a') != null && document.querySelectorAll('.cart-link') && document.querySelectorAll('[data-key="product"] [name="add"]')) {
+    if (document.querySelector('#AccessibleNav > li:nth-child(3) > a') != null && document.querySelectorAll('.cart-link') && document.querySelectorAll('[data-key="product"] [name="add"]') && appikon['discounts'] != null) {
         clearInterval(run)
 
         document.body.insertAdjacentHTML('afterbegin', styles);
