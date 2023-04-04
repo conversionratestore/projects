@@ -456,7 +456,7 @@ input.clac_qty {
 }
 </style>`
 
-let emtySlideInHTML = `
+let emptySlideInHTML = `
 <li class="slide_in__empty">
     <p class="name">Your cart is empty</p>
     <p>Our red light therapy products can help reduce pain, improve circulation, and relieve muscle tension</p>
@@ -528,7 +528,6 @@ function getCart(cartDrawer = document.querySelector('.slide_in__cart')) {
                 compareTotalPrice = 0,
                 itemCount = data.item_count;
     
-            console.log(items)
             let parent =  cartDrawer.querySelector('.slide_in__products');
 
             cartDrawer.querySelector('.slide_in__subtotal .pr').innerHTML = '$'+subtotal;
@@ -540,8 +539,9 @@ function getCart(cartDrawer = document.querySelector('.slide_in__cart')) {
             cartDrawer.querySelector('.slide_in__header > p').classList.remove('loading')
             cartDrawer.querySelector('.slide_in__discount').classList.remove('error')
             if (itemCount == 0) {
-                parent.innerHTML = emtySlideInHTML;
+                parent.innerHTML = emptySlideInHTML;
                 cartDrawer.querySelector('.slide_in__total').style.display = 'none';
+                cartDrawer.querySelector('.slide_in__footer').style.display = 'none';
 
                 let item = cartDrawer.querySelector('.slide_in__message.guarantee'),
                     position = 'afterend';
@@ -552,9 +552,6 @@ function getCart(cartDrawer = document.querySelector('.slide_in__cart')) {
                 if (cartDrawer.querySelector('.freeshipping') != null) {
                     cartDrawer.querySelector('.freeshipping').remove()
                 }
-
-                let completed = appikon['discounts']['additional_discount_value'] != null && appikon['discounts']['additional_discount_value'] != 0 ? true : false;
-                new Discount(cartDrawer.querySelector('.slide_in__discount'), completed).render()
     
                 for (let i = 0; i < items.length; i++) {
                     let link = items[i].url, 
@@ -590,7 +587,6 @@ function getCart(cartDrawer = document.querySelector('.slide_in__cart')) {
                                 priceProduct = details[1].split('/')[1]
                             }
 
-                        console.log(initialElement, priceProduct, priceSubstr(compare), qty, priceDiscount, qtyDiscount)
                         new DiscountProduct(initialElement, priceProduct, priceSubstr(compare), qty, priceDiscount, qtyDiscount).render()
                     }
                 }
@@ -634,6 +630,7 @@ function getCart(cartDrawer = document.querySelector('.slide_in__cart')) {
                     cartDrawer.querySelector('.slide_in__bundle').style.display = 'block';
                 } 
                 cartDrawer.querySelector('.slide_in__total').style = '';
+                cartDrawer.querySelector('.slide_in__footer').style = '';
                
             }
         }
@@ -675,7 +672,6 @@ class ProductItem {
     }
     changeQtyProduct(button, id) {
         button.addEventListener('click', (e) => {
-            console.log(e.target)
             let inputQty = button.closest('.calc_block').querySelector('.clac_qty');
             
             if (button.classList.contains('calc_action__plus')) {
@@ -714,11 +710,12 @@ class ProductItem {
 
         this.parent.appendChild(element);
        
-        if (this.type == false) {
-            document.querySelector(`.slide_in__products [data-variant-id="${this.variantId}"] .item_product__delate`).addEventListener('click', (e) => {
+        console.log(this.type)
+        if (this.type != 'addToCart') {
+            this.parent.querySelector(`[data-variant-id="${this.variantId}"] .item_product__delate`).addEventListener('click', (e) => {
                 updateCart(this.variantId)
             })
-            document.querySelectorAll(`.slide_in__products [data-variant-id="${this.variantId}"] .calc_action`).forEach(button => {
+            this.parent.querySelectorAll(`[data-variant-id="${this.variantId}"] .calc_action`).forEach(button => {
                 this.changeQtyProduct(button, this.variantId)
             })
         } else {
@@ -891,7 +888,7 @@ class Discount {
         console.log(this.completed)
         if (this.completed == false) {
             this.parent.innerHTML = ` <p class="btn-discount c-purple fw-bold">Apply discount code</p>`
-            console.log(this.parent.innerHTML )
+            console.log(this.parent.innerHTML)
             this.parent.querySelector('.btn-discount').addEventListener('click', (e) => {
                 e.stopImmediatePropagation()
                 this.parent.innerHTML = `
@@ -900,51 +897,54 @@ class Discount {
                 <p class="slide_in__discount_message"></p>`;
 
                 this.parent.querySelector('.btn-purple').addEventListener('click', (e) => {
-                    let discount = e.target.previousElementSibling.value.trim();
+                    e.stopImmediatePropagation()
+                    let discountCode = e.target.previousElementSibling.value.trim();
 
-                    window.appikon.discount_code = discount;  
-                    window.appikonDiscount.triggerDiscountCalculation($)
+                    console.log(discountCode)
+                    window.appikonDiscount.setCookieMinutes("appikon_discount_" + window.appikonDiscount.settings.shop, discountCode, 5);
+                    window.appikon.discount_code = discountCode;  
+                    window.appikonDiscount.triggerDiscountCalculation($);
 
                     this.parent.querySelector('.btn-purple').classList.add('loading_discount')
-                    
-                    setTimeout(()=> {
-                        if (appikon['discount_code'] != '') {
-                            if (window.appikon['discounts']['discount_code_error'] != null && window.appikon['discounts']['discount_code_error'] != '') {
-                                e.target.parentElement.classList.add('error')
-                                this.parent.querySelector('.slide_in__discount_message').innerHTML = window.appikon['discounts']['discount_code_error'];
-                                this.parent.querySelector('.btn-purple').classList.remove('loading_discount')
-                            } else {
-                                e.target.parentElement.classList.remove('error')
-                                this.parent.classList.add('flx-between')
-                                this.parent.style = 'padding: 3px 0 15px;margin: 0';
-                                this.parent.querySelector('button').style = 'top: 3px;';
-                                this.parent.parentElement.style.display = 'grid';
-                                this.parent.innerHTML = this.renderCompleted(discount, window.appikon['discounts']['additional_discount_value'])
-                                this.parent.querySelector('.slide_in__discount_delete').addEventListener('click', (e) => {
-                                    console.log(e.target)
-                                    window.appikonDiscount.deleteCookie("appikon_discount_" + window.appikonDiscount.settings.shop);
-                                    delete window.appikon.discount_code;
-                                    window.appikonDiscount.triggerDiscountCalculation($);
-    
-                                    getCart()
-                                })
-                            }
-                        } else {
-                            e.target.parentElement.classList.add('error')
-                            this.parent.querySelector('.btn-purple').classList.remove('loading_discount') ;
-                            this.parent.querySelector('.slide_in__discount_message').innerHTML = 'Discount Code not found'
-                        }
-                    }, 2000)
+
+                    if (discountCode != '') {
+                        let isDiscount = setInterval(() => {
+                                if (window.appikon['discounts']['discount_code_error'] != null && window.appikon['discounts']['discount_code_error'] != '') {
+                                    clearInterval(isDiscount)
+                                    e.target.parentElement.classList.add('error')
+                                    this.parent.querySelector('.slide_in__discount_message').innerHTML = window.appikon['discounts']['discount_code_error'];
+                                    this.parent.querySelector('.btn-purple').classList.remove('loading_discount')
+                                } 
+                                if (window.appikon['discounts']['additional_discount_value'] != null && window.appikon['discounts']['additional_discount_value'] != 0) {
+                                    clearInterval(isDiscount)
+                                    e.target.parentElement.classList.remove('error')
+                                    this.parent.classList.add('flx-between')
+                                    this.parent.style = 'padding: 3px 0 15px;margin: 0';
+                                    this.parent.querySelector('button').style = 'top: 3px;';
+                                    this.parent.parentElement.style.display = 'grid';
+                                    this.parent.innerHTML = this.renderCompleted(discountCode, window.appikon['discounts']['additional_discount_value'])
+                                  
+                                    this.parent.querySelector('.slide_in__discount_delete').addEventListener('click', (e) => {
+                                        window.appikonDiscount.deleteCookie("appikon_discount_" + window.appikonDiscount.settings.shop);
+                                        delete window.appikon.discount_code;
+                                        window.appikonDiscount.triggerDiscountCalculation($);
+                                        getCart()
+                                    })
+                                }
+                        }, 100);
+                    } else {
+                        e.target.parentElement.classList.add('error')
+                        this.parent.querySelector('.btn-purple').classList.remove('loading_discount') ;
+                        this.parent.querySelector('.slide_in__discount_message').innerHTML = 'Discount Code not found';
+                    }
                 })
             })
         } else {
             this.parent.classList.add('flx-between')
             this.parent.innerHTML = this.renderCompleted(window.appikon.discount_code, window.appikon['discounts']['additional_discount_value']);
         }
-        
     }
 }
-
 
 let slideInCartHTML = `
 <div class="slide_in__cart">
@@ -966,7 +966,7 @@ let slideInCartHTML = `
                     <p class="fw-semi">FREE US shipping</p>
                 </div>
                 <div class="slide_in__subtotal flx-between">
-                    <p> Subtotal</p>
+                    <p>Subtotal</p>
                     <p><span class="compare"></span><span class="pr c-purple fw-bold"></span> </p>
                 </div>
                 <div class="slide_in__saved fw-semi"></div>
@@ -979,8 +979,7 @@ let slideInCartHTML = `
             <a href="/checkout" class="slide_in__to_checkout btn-purple">Checkout >></a>
         </div>
     </div>
-</div>
-`
+</div>`
 
 function toggleActive(method) {
     if (method == true) {
@@ -990,45 +989,53 @@ function toggleActive(method) {
     }
 }
 
-document.body.insertAdjacentHTML('afterbegin', styles);
-document.body.insertAdjacentHTML('beforeend', slideInCartHTML)
+let run = setInterval(() => {
+    if (document.querySelector('#AccessibleNav > li:nth-child(3) > a') != null && document.querySelectorAll('.cart-link') && document.querySelectorAll('[data-key="product"] [name="add"]')) {
+        clearInterval(run)
 
-new Message(document.querySelector('.may_like'), 'beforebegin', 'guarantee').render()
+        document.body.insertAdjacentHTML('afterbegin', styles);
+        document.body.insertAdjacentHTML('beforeend', slideInCartHTML)
 
-for (let i = 0; i < upsellObj.length; i++) {
-    new ProductItem(document.querySelector('.may_like'), upsellObj[i].url, upsellObj[i].img, upsellObj[i].title, upsellObj[i].compare, upsellObj[i].price, upsellObj[i].variantId, upsellObj[i].id, 'false', upsellObj[i].qty, 'addToCart').render() 
-}
+        new Message(document.querySelector('.may_like'), 'beforebegin', 'guarantee').render()
 
-getCart()
-document.querySelector('.slide_in__cart_close').addEventListener('click', (e) => {
-    toggleActive(false)
-})
-document.addEventListener('click', (e) => {
-    if (!e.target.closest('.container') && document.querySelector('.slide_in__cart.active') != null || e.target.classList.contains('slide_in__cart')) {
-        toggleActive(false)
+        for (let i = 0; i < upsellObj.length; i++) {
+            new ProductItem(document.querySelector('.may_like'), upsellObj[i].url, upsellObj[i].img, upsellObj[i].title, upsellObj[i].compare, upsellObj[i].price, upsellObj[i].variantId, upsellObj[i].id, 'false', upsellObj[i].qty, 'addToCart').render() 
+        }
+
+        getCart()
+
+        let completed = appikon['discounts']['additional_discount_value'] != null && appikon['discounts']['additional_discount_value'] != 0 ;
+        new Discount(document.querySelector('.slide_in__discount'), completed).render()
+
+        document.querySelector('.slide_in__cart_close').addEventListener('click', (e) => {
+            toggleActive(false)
+        })
+        document.addEventListener('click', (e) => {
+            if (!e.target.closest('.container') && document.querySelector('.slide_in__cart.active') != null || e.target.classList.contains('slide_in__cart')) {
+                toggleActive(false)
+            }
+        })
+
+        document.querySelector('#AccessibleNav > li:nth-child(3) > a').addEventListener('click', (e) => {
+            e.preventDefault();
+            e.stopImmediatePropagation();
+            toggleActive(true)
+        })
+        document.querySelectorAll('.cart-link').forEach(item => {
+            item.addEventListener('click', (e) => {
+                e.preventDefault();
+                e.stopImmediatePropagation();
+                toggleActive(true)
+            })
+        })
+        document.querySelectorAll('[data-key="product"] [name="add"]').forEach(item => {
+            item.addEventListener('click', (e) => {
+                e.preventDefault()
+                addCart(item.closest('form').querySelector('input[name="id"]').value, 1)
+            })
+        })
     }
-})
-document.querySelector('#AccessibleNav > li:nth-child(3) > a').addEventListener('click', (e) => {
-    e.preventDefault();
-    e.stopImmediatePropagation();
-    toggleActive(true)
-})
-document.querySelectorAll('.cart-link').forEach(item => {
-    item.addEventListener('click', (e) => {
-        e.preventDefault();
-        e.stopImmediatePropagation();
-        toggleActive(true)
-    })
-})
-
-document.querySelectorAll('[data-key="product"] [name="add"]').forEach(item => {
-    item.addEventListener('click', (e) => {
-        e.preventDefault()
-        console.log(item.closest('form').querySelector('input[name="id"]').value)
-        addCart(item.closest('form').querySelector('input[name="id"]').value, 1)
-       
-    })
-})
+});
 
 // let script = document.createElement('script')
 // script.setAttribute('api-key','2231f54e-7201-410c-97c5-0efb61b60027');
