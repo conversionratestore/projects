@@ -308,40 +308,6 @@ const getPacksInfo = () => {
     return [packsInfo, packsInfo[1]]
 }
 
-const waitForElement = async (selector) => { // Wait for an element to appear on the page
-    while (!document.querySelector(selector)) {
-        await new Promise(resolve => setTimeout(resolve, WAIT_INTERVAL_TIMEOUT))
-    }
-    return document.querySelector(selector)
-}
-
-// const checkVisibilityAfterMs = (el, ms = 3000) => { // Checks element visibility after a specified time. 
-//     let timer
-
-//     const config = {
-//         root: null,
-//         threshold: 1,
-//     }
-
-//     const observer = new IntersectionObserver((entries) => {
-//         entries.forEach((entry) => {
-//             if (entry.isIntersecting) {
-//                 timer = setTimeout(() => {
-//                     if (el.dataset.name) {
-//                         sendGAEvent(`Visibility ${el.dataset.name} section`)
-//                     } else {
-//                         console.error('The dataset name is missing')
-//                     }
-//                 }, ms)
-//             } else {
-//                 clearTimeout(timer)
-//             }
-//         })
-//     }, config)
-
-//     observer.observe(el)
-// }
-
 const purchaseObserver = new IntersectionObserver(entries => {
     entries.forEach(entry => {
         if (entry.isIntersecting) {
@@ -467,7 +433,6 @@ const waitForLastPack = setInterval(() => {
             if (document.querySelectorAll('.pack')[3]) {
                 clearInterval(waitForStickyPacks)
 
-                // checkVisibilityAfterMs(document.querySelector('.sticky_wrapper'))
                 handleClicks()
 
                 purchaseObserver.observe(document.querySelector('#purchase'))
