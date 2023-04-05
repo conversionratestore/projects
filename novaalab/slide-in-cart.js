@@ -600,7 +600,8 @@ function getCart(cartDrawer = document.querySelector('.slide_in__cart')) {
                     totalPrice += qty * price;
                     compareTotalPrice += qty * compare;
                 })
-                let freeShippingPrice = document.querySelector('.slide_in__discount_item') != null ? +document.querySelector('.slide_in__discount_item').innerHTML.split('$')[1] : ''
+                let freeShippingPrice = cartDrawer.querySelector('.slide_in__discount_item') != null ? +cartDrawer.querySelector('.slide_in__discount_item').innerHTML.split('$')[1] : ''
+                console.log(freeShippingPrice)
                 cartDrawer.querySelector('.slide_in__subtotal .pr').innerHTML = '$' + (totalPrice - freeShippingPrice).toFixed(2);
                 cartDrawer.querySelector('.slide_in__subtotal .compare').innerHTML = '$' + compareTotalPrice.toFixed(2);
                 cartDrawer.querySelector('.slide_in__saved').innerHTML = 'You just saved $' + (compareTotalPrice - totalPrice - freeShippingPrice).toFixed(2);
@@ -925,6 +926,12 @@ class Discount {
                                     this.parent.parentElement.style.display = 'grid';
                                     this.parent.innerHTML = this.renderCompleted(discountCode, window.appikon['discounts']['additional_discount_value'])
                                   
+                                    let subtotal = this.parent.parentElement.querySelector('.slide_in__subtotal .pr');
+                                    subtotal.innerHTML = '$' + (+subtotal.innerHTML.replace('$','') - window.appikon['discounts']['additional_discount_value']).toFixed(2);
+
+                                    let saved = this.parent.parentElement.querySelector('.slide_in__saved');
+                                    saved.innerHTML = `You just saved $` + (+subtotal.previousElementSibling.innerHTML.replace('$','') - +subtotal.innerHTML.replace('$','')).toFixed(2)
+
                                     this.parent.querySelector('.slide_in__discount_delete').addEventListener('click', (e) => {
                                         window.appikonDiscount.deleteCookie("appikon_discount_" + window.appikonDiscount.settings.shop);
                                         delete window.appikon.discount_code;
@@ -1032,7 +1039,12 @@ let run = setInterval(() => {
         document.querySelectorAll('[data-key="product"] [name="add"]').forEach(item => {
             item.addEventListener('click', (e) => {
                 e.preventDefault()
-                addCart(item.closest('form').querySelector('input[name="id"]').value, 1)
+                if (item.closest('form').querySelector('[name="quantity"]') != null) {
+                    let qty = +item.closest('form').querySelector('[name="quantity"]').value;
+                    addCart(item.closest('form').querySelector('input[name="id"]').value, qty)
+                }  else {
+                    addCart(item.closest('form').querySelector('input[name="id"]').value, 1)
+                }
             })
         })
     }
