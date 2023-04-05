@@ -1373,13 +1373,14 @@ let init = () => {
                             return gacid;
                         } else return "n/a";
                     }
+                    let utm_term = setUtm()
 
+                    console.log(utm_term)
                     window.Calendly.initInlineWidget({
-                        url: `https://calendly.com/upleadhq/phone-call/?${setUtm()}&name=${inputName.value}&email=${inputEmail.value}&hide_event_type_details=1&hide_gdpr_banner=1`,
+                        url: `https://calendly.com/upleadhq/phone-call/?utm_term=${utm_term}&name=${inputName.value}&email=${inputEmail.value}&hide_event_type_details=1&hide_gdpr_banner=1`,
                         parentElement: document.querySelector(".block_calendly")
                     })
-                    console.log(setUtm())
-                    
+
                     const topOffset = e.target.offsetHeight;
                     const elementPosition = newBlock.getBoundingClientRect().top;
                     const offsetPosition = elementPosition - topOffset - 82;
