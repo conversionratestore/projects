@@ -1362,12 +1362,24 @@ let init = () => {
                     newBlock.querySelector('.formBook').style.display = 'none';
                     newBlock.querySelector('.block_call').style = '';
                     document.querySelector('.block_calendly').style = `position:initial; opacity:1;pointer-events:auto;height:510px;`;
-                   
+                    function setUtm() {
+                        var match = document.cookie.match('(?:^|;)\\s*_ga=([^;]*)');
+                        var raw = (match) ? decodeURIComponent(match[1]) : null;
+                        if (raw) {
+                            match = raw.match(/(\d+\.\d+)$/);
+                        }
+                        var gacid = (match) ? match[1] : null;
+                        if (gacid) {
+                            return gacid;
+                        } else return "n/a";
+                    }
+
                     window.Calendly.initInlineWidget({
-                        url: `https://calendly.com/upleadhq/phone-call/?name=${inputName.value}&email=${inputEmail.value}&hide_event_type_details=1&hide_gdpr_banner=1`,
+                        url: `https://calendly.com/upleadhq/phone-call/?${setUtm()}&name=${inputName.value}&email=${inputEmail.value}&hide_event_type_details=1&hide_gdpr_banner=1`,
                         parentElement: document.querySelector(".block_calendly")
                     })
-
+                    console.log(setUtm())
+                    
                     const topOffset = e.target.offsetHeight;
                     const elementPosition = newBlock.getBoundingClientRect().top;
                     const offsetPosition = elementPosition - topOffset - 82;
