@@ -112,6 +112,7 @@ let styles = `
     font-style: normal;
     text-align: center;
     color: #474444;
+    margin-bottom: 20px;
 }
 .slide_in__empty p {
     font-weight: 400;
@@ -289,6 +290,7 @@ input.clac_qty {
     color: #D84432;
     margin-left: auto;
     width: fit-content;
+    margin-bottom: 16px;
 }
 .slide_in__saved:before {
     content: '';
@@ -559,6 +561,10 @@ function getCart(cartDrawer = document.querySelector('.slide_in__cart')) {
 
             cartDrawer.querySelector('.slide_in__header > p').classList.remove('loading')
             cartDrawer.querySelector('.slide_in__discount').classList.remove('error')
+            
+            if (cartDrawer.querySelector('.may_like') != null) {
+                cartDrawer.querySelector('.may_like').remove()
+            }
             if (itemCount == 0) {
                 parent.innerHTML = emptySlideInHTML;
                 cartDrawer.querySelector('.slide_in__total').style.display = 'none';
@@ -571,12 +577,26 @@ function getCart(cartDrawer = document.querySelector('.slide_in__cart')) {
                 cartDrawer.querySelector('.slide_in__empty .btn-purple').addEventListener('click', (e) => {
                     pushDataLayer('Click on shop all product in empty cart')
                 })
+               
+                new ProductItem(cartDrawer.querySelector('.slide_in__products'), allProducts[40322897838134].url, allProducts[40322897838134].img, allProducts[40322897838134].title, allProducts[40322897838134].compare, allProducts[40322897838134].price, allProducts[40322897838134].variantId, allProducts[40322897838134].id, 'false', allProducts[40322897838134].qty, 'addToCart').render() 
+                new ProductItem(cartDrawer.querySelector('.slide_in__products'), allProducts[39782656311350].url, allProducts[39782656311350].img, allProducts[39782656311350].title, allProducts[39782656311350].compare, allProducts[39782656311350].price, allProducts[39782656311350].variantId, allProducts[39782656311350].id, 'false', allProducts[39782656311350].qty, 'addToCart').render() 
+                
             } else {
                 parent.innerHTML = '';
                 if (cartDrawer.querySelector('.freeshipping') != null) {
                     cartDrawer.querySelector('.freeshipping').remove()
                 }
-    
+                let mayLikeCreate = document.createElement('ul');
+                mayLikeCreate.classList.add('may_like')
+                mayLikeCreate.innerHTML = '<h4 class="fw-semi">You may also like</h4>'
+                cartDrawer.querySelector('.slide_in__body').appendChild(mayLikeCreate)
+
+                console.log(cartDrawer.querySelector('.may_like'))
+                console.log(mayLikeCreate)
+                console.log(upsellObj)
+                for (let i = 0; i < upsellObj.length; i++) {
+                    new ProductItem(mayLikeCreate, upsellObj[i].url, upsellObj[i].img, upsellObj[i].title, upsellObj[i].compare, upsellObj[i].price, upsellObj[i].variantId, upsellObj[i].id, 'false', upsellObj[i].qty, 'addToCart').render() 
+                }
                 for (let i = 0; i < items.length; i++) {
                     let link = items[i].url, 
                         image = items[i].image, 
@@ -1028,9 +1048,6 @@ let slideInCartHTML = `
                 </div>
                 <div class="slide_in__saved fw-semi"></div>
             </div>
-            <ul class="may_like">
-                <h4 class="fw-semi">You may also like</h4>
-            </ul>
         </div>
         <div class="slide_in__footer">
             <a href="/checkout" class="slide_in__to_checkout btn-purple">Checkout >></a>
@@ -1092,11 +1109,7 @@ let run = setInterval(() => {
         document.body.insertAdjacentHTML('afterbegin', styles);
         document.body.insertAdjacentHTML('beforeend', slideInCartHTML)
 
-        new Message(document.querySelector('.may_like'), 'beforebegin', 'guarantee').render()
-
-        for (let i = 0; i < upsellObj.length; i++) {
-            new ProductItem(document.querySelector('.may_like'), upsellObj[i].url, upsellObj[i].img, upsellObj[i].title, upsellObj[i].compare, upsellObj[i].price, upsellObj[i].variantId, upsellObj[i].id, 'false', upsellObj[i].qty, 'addToCart').render() 
-        }
+        new Message(document.querySelector('.slide_in__total'), 'afterend', 'guarantee').render()
 
         getCart()
 
