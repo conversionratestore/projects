@@ -466,14 +466,26 @@ let emptySlideInHTML = `
 
 let productHaveBundle = {32854816784438:'', 39782656311350:'', 40322897838134:'', 39737414484022:''};
 
+//comes into view
+function isScrolledIntoView(el) {
+    let rect = document.querySelector(el).getBoundingClientRect(),
+        elemTop = rect.top,
+        elemBottom = rect.bottom;
+
+    let isVisible = (elemTop >= 0) && (elemBottom <= window.innerHeight);
+
+    return isVisible;
+}
+
 function pushDataLayer(action, label = '') {
-  window.dataLayer = window.dataLayer || [];
-  dataLayer.push({
-      'event': 'event-to-ga',
-      'eventCategory': 'Exp: Slide in cart',
-      'eventAction': action,
-      'eventLabel': label
-  });
+    console.log(action + " : " + label)
+    window.dataLayer = window.dataLayer || [];
+    dataLayer.push({
+        'event': 'event-to-ga',
+        'eventCategory': 'Exp: Slide in cart',
+        'eventAction': action,
+        'eventLabel': label
+    });
 }
 function priceSubstr(price) {
     let str = price.toString();
@@ -555,7 +567,10 @@ function getCart(cartDrawer = document.querySelector('.slide_in__cart')) {
                 let item = cartDrawer.querySelector('.slide_in__message.guarantee'),
                     position = 'afterend';
 
-                new Message(item, position, 'freeshipping').render()
+                new Message(item, position, 'freeshipping').render();
+                cartDrawer.querySelector('.slide_in__empty .btn-purple').addEventListener('click', (e) => {
+                    pushDataLayer('Click on shop all product in empty cart')
+                })
             } else {
                 parent.innerHTML = '';
                 if (cartDrawer.querySelector('.freeshipping') != null) {
@@ -638,6 +653,7 @@ function getCart(cartDrawer = document.querySelector('.slide_in__cart')) {
                 if (bundle == true) {
                     new ProductItem(cartDrawer.querySelector('.slide_in__bundle'), bundleObj.url, bundleObj.img, bundleObj.title, bundleObj.compare, bundleObj.price, bundleObj.variantId, bundleObj.id, 'false', 1, 'addToCart').render()
                     cartDrawer.querySelector('.slide_in__bundle').style.display = 'block';
+                    pushDataLayer('Visibility of Bundle items in the cart')
                 } 
                 cartDrawer.querySelector('.slide_in__total').style = '';
                 cartDrawer.querySelector('.slide_in__footer').style = '';
@@ -755,9 +771,10 @@ class ProductItem {
                     if (pr_4 != '' && pr_4.querySelector('.clac_qty').value < 2 ) {
                         addCart(this.variantId, 1, 39737414484022)
                     }
-                    
+                    pushDataLayer('Add to cart button on the Bundle offer')
                 } else {
                     addCart(e.target.dataset.variantId, 1)
+                    pushDataLayer('Click on Add to cart button in the Upsale block')
                 }
                 
             })
@@ -805,7 +822,7 @@ class DiscountProduct {
         this.priceDiscount = (+priceDiscount).toFixed(2);
         this.qtyDiscount = +qtyDiscount;
 
-    }//899.7
+    }
     renderDiscount() {
         let saved = ((this.compareProduct * this.qtyProduct) - (this.priceProduct * this.qtyProduct)).toFixed(2)
 
@@ -836,8 +853,10 @@ class DiscountProduct {
     }
     render() {
         let element = `<div class="slide_in__message d-flex items-center ${this.qtyProduct}" style="margin-top: 16px;">${this.renderDiscount()}</div>`;
-
+      
         this.initialElement.insertAdjacentHTML('beforeend', element);
+        let message = this.initialElement.querySelector('.slide_in__message').innerText;
+        pushDataLayer('Visibility of messages when buying', message)
     }
 }
 
@@ -908,11 +927,18 @@ class Discount {
             console.log(this.parent.innerHTML)
             this.parent.querySelector('.btn-discount').addEventListener('click', (e) => {
                 e.stopImmediatePropagation()
+
+                pushDataLayer('Click on the Apply discount code')
+
                 this.parent.innerHTML = `
                 <input type="text" placeholder="Discount code" required>
                 <button type="button" class="btn-purple">Apply</button>
                 <p class="slide_in__discount_message"></p>`;
 
+                pushDataLayer('Visibility of discount code input')
+                this.parent.querySelector('input').addEventListener('click', (e) => {
+                    pushDataLayer('Click on discount code input')
+                })
                 this.parent.querySelector('.btn-purple').addEventListener('click', (e) => {
                     e.stopImmediatePropagation()
                     let discountCode = e.target.previousElementSibling.value.trim();
@@ -923,7 +949,7 @@ class Discount {
                     window.appikonDiscount.triggerDiscountCalculation($);
 
                     this.parent.querySelector('.btn-purple').classList.add('loading_discount')
-
+                    pushDataLayer('Click on Apply button discount code')
                     if (discountCode != '') {
                         let isDiscount = setInterval(() => {
                                 if (window.appikon['discounts']['discount_code_error'] != null && window.appikon['discounts']['discount_code_error'] != '') {
@@ -931,6 +957,7 @@ class Discount {
                                     e.target.parentElement.classList.add('error')
                                     this.parent.querySelector('.slide_in__discount_message').innerHTML = window.appikon['discounts']['discount_code_error'];
                                     this.parent.querySelector('.btn-purple').classList.remove('loading_discount')
+                                    pushDataLayer('Visibility of error messages on discount code')
                                 } 
                                 if (window.appikon['discounts']['additional_discount_value'] != null && window.appikon['discounts']['additional_discount_value'] != 0) {
                                     clearInterval(isDiscount)
@@ -946,12 +973,18 @@ class Discount {
 
                                     let saved = this.parent.parentElement.querySelector('.slide_in__saved');
                                     saved.innerHTML = `You just saved $` + (+subtotal.previousElementSibling.innerHTML.replace('$','') - +subtotal.innerHTML.replace('$','')).toFixed(2)
+                                    
+                                    pushDataLayer('Visibility of applied code')
 
                                     this.parent.querySelector('.slide_in__discount_delete').addEventListener('click', (e) => {
                                         window.appikonDiscount.deleteCookie("appikon_discount_" + window.appikonDiscount.settings.shop);
                                         delete window.appikon.discount_code;
                                         window.appikonDiscount.triggerDiscountCalculation($);
+
+                                        pushDataLayer('Click on the button to remove the discount')
+
                                         getCart()
+                                        
                                     })
                                 }
                         }, 100);
@@ -959,6 +992,7 @@ class Discount {
                         e.target.parentElement.classList.add('error')
                         this.parent.querySelector('.btn-purple').classList.remove('loading_discount') ;
                         this.parent.querySelector('.slide_in__discount_message').innerHTML = 'Discount Code not found';
+                        pushDataLayer('Visibility of error messages on discount code')
                     }
                 })
             })
@@ -1004,10 +1038,47 @@ let slideInCartHTML = `
     </div>
 </div>`
 
+let visibilityUpsel = false;
+let visibilityShipping = false;
+let visibilityGuarante = false;
+let visibilitySaved = false;
+let visibilityApplyDiscount = false;
+
+function isVisible() {
+    if (visibilityUpsel == false && isScrolledIntoView('.may_like h4')) {
+        visibilityUpsel = true;
+        pushDataLayer('Visibility Upsale block')
+    }
+    if (visibilityShipping == false && isScrolledIntoView('.slide_in__shipping')) {
+        visibilityShipping = true;
+        pushDataLayer('Free US shipping visibility')
+    }
+    if (visibilityGuarante == false && isScrolledIntoView('.slide_in__message.guarantee')) {
+        visibilityGuarante = true;
+        pushDataLayer('60 day money back visibility')
+    }
+    if (visibilitySaved == false && isScrolledIntoView('.slide_in__saved')) {
+        visibilitySaved = true;
+        pushDataLayer(`You just saved ${document.querySelector('.slide_in__saved').innerHTML.split('$')[1]} visibility`)
+    }
+    if (visibilityApplyDiscount == false && isScrolledIntoView('.slide_in__discount')) {
+        visibilityApplyDiscount = true;
+        pushDataLayer(`Visibility of Apply discount code`)
+    }
+}
 function toggleActive(method) {
     if (method == true) {
         document.querySelector('.slide_in__cart').classList.add('active')
         pushDataLayer('Slide cart visibility')
+
+        visibilityUpsel = false;
+        visibilityShipping = false;
+        visibilityGuarante = false;
+        visibilitySaved = false;
+        visibilityApplyDiscount = false;
+
+        window.addEventListener('scroll', () => isVisible())
+        isVisible()
     } else {
         document.querySelector('.slide_in__cart').classList.remove('active')
         pushDataLayer('Slide cart closing')
@@ -1067,6 +1138,25 @@ let run = setInterval(() => {
                     
                 }  else {
                     addCart(item.closest('form').querySelector('input[name="id"]').value, 1)
+                }
+            })
+        })
+        document.querySelector('.slide_in__to_checkout').addEventListener('click', (e) => {
+            let objCart = []
+            $.ajax({
+                'url' : '/cart?view=cw-cart',
+                'dataType' : 'json',
+                'method' : 'GET',
+                'success' : function(data) {
+                    let items = data.items;
+
+                    for (let i = 0; i < items.length; i++) {
+                        let obj = items[i].title + ':' + items[i].quantity;
+
+                        objCart.push(obj)
+                    }
+                   
+                    pushDataLayer('Click on checkout button', objCart)
                 }
             })
         })
