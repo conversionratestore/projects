@@ -342,7 +342,7 @@ const sendGAEvent = (eventAction, eventLabel = '') => { // Send a Google Analyti
 const convertPackIdToClient = (number) => {
     let clientPackId
 
-    switch (number) {
+    switch (+number) {
         case 0:
             clientPackId = 1
             break
@@ -362,9 +362,19 @@ const convertPackIdToClient = (number) => {
     return clientPackId
 }
 
+const handlePackClickEvent = (e) => {
+    const packsList = document.querySelector('.packs_list')
+    const packIndex = [...packsList.querySelectorAll('.pack')].findIndex(pack => pack.contains(e.target))
+
+    if (packIndex >= 0) {
+        sendGAEvent(`Selected ${document.querySelectorAll('.pack')[packIndex].querySelector('.pack_name').innerText.toLowerCase()} option`)
+    }
+}
+
 const handleClicks = () => {
     const currentSelectedPack = document.querySelector('.current_selected_pack')
     const packsSelector = document.querySelector('.packs_selector')
+    const packsList = document.querySelector('.packs_list')
 
     currentSelectedPack.addEventListener('click', () => {
         packsSelector.classList.toggle('visible')
@@ -384,8 +394,6 @@ const handleClicks = () => {
     const packElements = document.querySelectorAll('.pack')
     packElements.forEach((packElement, index) => {
         packElement.addEventListener('click', () => {
-            sendGAEvent(`Selected ${packElement.querySelector('.pack_name').innerText.toLowerCase()} option`)
-
             // Change price in the get now btn 
             document.querySelectorAll('.js-packs input[type="radio"]')[convertPackIdToClient(index)].click()
             document.querySelectorAll('.js-packs input[type="radio"]')[convertPackIdToClient(index)].checked = true
@@ -414,11 +422,25 @@ const handleClicks = () => {
         })
     })
 
+    // Send event by clicking on pack
+    packsList.addEventListener('click', handlePackClickEvent)
+
     // Add click event listener to Get now btn
     document.querySelector('.get_now_btn').addEventListener('click', () => {
         document.getElementById('addToCart').click()
         document.querySelector('.overlay').classList.add('show_overlay')
         sendGAEvent('Click on CTA button', document.querySelector('.pack.active .pack_name').innerText.toLowerCase())
+    })
+
+    // Add change event listener to PDP packs and change my packs accordingly
+    document.querySelector('.form-group').addEventListener('change', (e) => {
+        const pdpPackId = e.target.id.split('-')[1]
+
+        packsList.removeEventListener('click', handlePackClickEvent)
+
+        document.querySelectorAll('.pack')[convertPackIdToClient(pdpPackId)].click()
+
+        packsList.addEventListener('click', handlePackClickEvent)
     })
 }
 
