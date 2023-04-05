@@ -33,7 +33,6 @@ const style = /*html*/`
 
             .packs_selector {
                 position: relative;
-                width: fit-content;
                 cursor: pointer;
             }
 
@@ -75,6 +74,7 @@ const style = /*html*/`
                 border-bottom: none;
                 border-radius: 31px 31px 0 0;
                 padding: 6px 0 36px;
+                width: 100%;
             }
 
             .visible .packs_list {
@@ -137,6 +137,10 @@ const style = /*html*/`
                 line-height: 110% !important;
                 letter-spacing: 0.02em;
                 font-weight: 400;
+            }
+
+            .get_now_btn span[data-pack-price="regular"] {
+                text-decoration: line-through;
             }
 
             /* loader */
@@ -275,7 +279,7 @@ const stickyBtns = () => {
                 </div>
                 <div class="get_now_btn">
                     <p>Get now and save <span data-pack-price="discount">${currPackDiscountPercent}%</span></p>
-                    <p>for <span data-pack-price="regular"><s>${currPackRegular}</s></span> <span data-pack-price="current">${currPackPrice}</span></p>
+                    <p>for <span data-pack-price="regular">${currPackRegular}</span> <span data-pack-price="current">${currPackPrice}</span></p>
                 </div>
             </div>
             <div class="overlay">                
@@ -422,6 +426,23 @@ const handleClicks = () => {
 // MAKE DOM CHANGES
 // -------------------------------------
 document.head.insertAdjacentHTML('beforeend', style)
+
+// Hide the loader when the page is shown
+window.addEventListener("pageshow", function (event) {
+    // Check if the page is being shown due to navigation from the second page
+    if (event.persisted) {
+        // Hide the loader if the user has returned from page 2
+        const waitForLoader = setInterval(() => {
+            if (document.querySelector('.overlay')) {
+                clearInterval(waitForLoader)
+
+                if (document.querySelector('.overlay.show_overlay')) {
+                    document.querySelector('.overlay').classList.remove('show_overlay')
+                }
+            }
+        }, WAIT_INTERVAL_TIMEOUT)
+    }
+})
 
 const waitForLastPack = setInterval(() => {
     if (document.querySelectorAll('.form-group .js-packs label span')[3] && document.querySelector('.prices .js-strike')) {
