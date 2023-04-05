@@ -1039,9 +1039,15 @@ let run = setInterval(() => {
         document.querySelectorAll('[data-key="product"] [name="add"]').forEach(item => {
             item.addEventListener('click', (e) => {
                 e.preventDefault()
-                if (item.closest('form').querySelector('[name="quantity"]') != null) {
+                e.stopImmediatePropagation();
+                if (item.closest('.gf_row').querySelector('[name="quantity"]') != null) {
+                    let qty = +item.closest('.gf_row').querySelector('[name="quantity"]').value;
+                    addCart(item.closest('form').querySelector('input[name="id"]').value, qty)
+
+                } else if (item.closest('form').querySelector('[name="quantity"]') != null) {
                     let qty = +item.closest('form').querySelector('[name="quantity"]').value;
                     addCart(item.closest('form').querySelector('input[name="id"]').value, qty)
+                    
                 }  else {
                     addCart(item.closest('form').querySelector('input[name="id"]').value, 1)
                 }
