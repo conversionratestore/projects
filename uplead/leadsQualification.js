@@ -1385,9 +1385,10 @@ let init = () => {
                     const elementPosition = newBlock.getBoundingClientRect().top;
                     const offsetPosition = elementPosition - topOffset - 82;
 
-                    seamless.polyfill();
-                    seamless.scrollBy(window, { behavior: "smooth", top: offsetPosition, left: 0 });
-
+                    if (window.matchMedia(`(max-width: 769px)`).matches) {
+                        seamless.polyfill();
+                        seamless.scrollBy(window, { behavior: "smooth", top: offsetPosition, left: 0 });
+                    }
 
                     pushDataLayer('Visibility of the second step of the form')
 
