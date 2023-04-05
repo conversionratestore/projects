@@ -466,6 +466,15 @@ let emptySlideInHTML = `
 
 let productHaveBundle = {32854816784438:'', 39782656311350:'', 40322897838134:'', 39737414484022:''};
 
+function pushDataLayer(action, label = '') {
+  window.dataLayer = window.dataLayer || [];
+  dataLayer.push({
+      'event': 'event-to-ga',
+      'eventCategory': 'Exp: Slide in cart',
+      'eventAction': action,
+      'eventLabel': label
+  });
+}
 function priceSubstr(price) {
     let str = price.toString();
     return str.substr(0, str.length - 2) + '.' + str.substr(str.length - 2, str.length);
@@ -660,7 +669,7 @@ class ProductItem {
             return `<div class="flx-between">
                         <div class="d-flex calc_block">
                             <button type="button" class="calc_action calc_action__minus"></button>
-                            <input type="number" readonly value="${this.qty}" class="clac_qty">
+                            <input type="number" value="${this.qty}" class="clac_qty">
                             <button type="button" class="calc_action calc_action__plus"></button>
                         </div>
                         <button type="button" class="item_product__delate d-flex">
@@ -685,6 +694,7 @@ class ProductItem {
                 }
             }
             updateCart(id, +inputQty.value)
+            pushDataLayer('Changing the quantity', inputQty.value)
         })
     }
     render() {
@@ -715,9 +725,14 @@ class ProductItem {
         if (this.type != 'addToCart') {
             this.parent.querySelector(`[data-variant-id="${this.variantId}"] .item_product__delate`).addEventListener('click', (e) => {
                 updateCart(this.variantId)
+                pushDataLayer('Removal of product from the cart', this.name)
             })
             this.parent.querySelectorAll(`[data-variant-id="${this.variantId}"] .calc_action`).forEach(button => {
                 this.changeQtyProduct(button, this.variantId)
+            })
+            this.parent.querySelector(`[data-variant-id="${this.variantId}"] .clac_qty`).addEventListener('input', (e) => {
+                updateCart(this.variantId, +e.target.value)
+                pushDataLayer('Changing the quantity', e.target.value)
             })
         } else {
             document.querySelector(`[data-variant-id="${this.variantId}"] .add-to-cart`).addEventListener('click', (e) => {
@@ -992,8 +1007,10 @@ let slideInCartHTML = `
 function toggleActive(method) {
     if (method == true) {
         document.querySelector('.slide_in__cart').classList.add('active')
+        pushDataLayer('Slide cart visibility')
     } else {
         document.querySelector('.slide_in__cart').classList.remove('active')
+        pushDataLayer('Slide cart closing')
     }
 }
 
@@ -1053,8 +1070,17 @@ let run = setInterval(() => {
                 }
             })
         })
+        pushDataLayer('loaded')
     }
 });
+
+let isClarify = setInterval(() => {
+    if(typeof clarity == 'function') {
+        clearInterval(isClarify)
+        clarity("set", "slide_in_cart", "variant_1");
+    }
+}, 100)
+
 
 // let script = document.createElement('script')
 // script.setAttribute('api-key','2231f54e-7201-410c-97c5-0efb61b60027');
