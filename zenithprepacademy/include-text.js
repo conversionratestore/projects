@@ -57,6 +57,18 @@ let html2 = `
     </div>
 </section>`;
 
+let html3 = `
+<div class="content-text">
+    <p>In a recent admissions cycle, Zenith Prep Academy had:</p>
+    <ul>
+        <li><b>1 in 5 students</b> accepted into an <b>Ivy League / Top 15 University</b> (Stanford, Harvard, Princeton, Yale, Caltech, MIT, Johns Hopkins, University of Chicago, Duke, and more)</li>
+        <li>More than <b>50%+</b> were accepted into a <b>Top 25 University</b> (6x higher than the national average)</li>
+        <li><b>90%+</b> were accepted into a <b>Top 50 University</b></li>
+        <li><b>98%+</b> were accepted into a <b>Top 100 University</b></li>
+    </ul>
+</div>
+`
+
 function pushDatalayer(action, label = '') {
     console.log(action + ' : ' + label)
     window.dataLayer = window.dataLayer || [];
@@ -89,14 +101,39 @@ function isScrolledIntoView(el) {
     return isVisible;
 }
 
-
 let start = setInterval(() => {
-    if ( document.querySelector('.containerWrapper') != null && document.querySelector('#section--75088') != null) {
+    if ( document.querySelector('.containerWrapper') != null && document.querySelector('#section--75088') != null && document.querySelector('#headline-48298') != null) {
         clearInterval(start)
     
         //add style
         document.body.insertAdjacentHTML('afterbegin',`
         <style>
+            .content-text {
+                font-family: 'Oxygen';
+                font-style: normal;
+                font-weight: 400;
+                font-size: 16px;
+                line-height: 24px;
+                color: #505050;
+                padding-top: 28px;
+            }
+            .content-text ul {
+                padding-left: 16px;
+            }
+            .content-text li {
+                margin-bottom: 12px;
+            }
+            #headline-48298 {
+                margin-top: 0!important;
+            }
+            #tmp_divider-80481, #headline-16877, #headline-24255, #tmp_subheadline-48784, #headline-86927 {
+                display: none;
+            }
+            #headline-48298 .elHeadline b {
+                font-size: 24px;
+                line-height: 32px;
+                text-transform: initial;
+            }
             #row--80328 {
                 max-width: 725px;
                 margin: 0 auto!important;
@@ -326,6 +363,9 @@ let start = setInterval(() => {
         if (document.querySelector('.exp-loading') != null) {
             document.querySelector('.exp-loading').remove()
         }
+
+        document.querySelector('#headline-48298').insertAdjacentHTML('afterend', html3)
+        document.querySelector('#headline-48298 .elHeadline b').innerHTML = 'Our track record';
         pushDatalayer('loaded')
     }
 });
