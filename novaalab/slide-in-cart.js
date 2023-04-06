@@ -798,9 +798,16 @@ class ProductItem {
                 this.changeQtyProduct(button, this.variantId)
             })
             this.parent.querySelector(`[data-variant-id="${this.variantId}"] .clac_qty`).addEventListener('input', (e) => {
-                updateCart(this.variantId, e.target.value != '' ? +e.target.value : 1)
+                if (e.target.value != '') {
+                    updateCart(this.variantId, e.target.value)
+                }
                
                 pushDataLayer('Changing the quantity', e.target.value)
+            })
+            this.parent.querySelector(`[data-variant-id="${this.variantId}"] .clac_qty`).addEventListener('blur', (e) => {
+                if (e.target.value == '') {
+                    updateCart(this.variantId, 1)
+                }
             })
         } else {
             document.querySelector(`[data-variant-id="${this.variantId}"] .add-to-cart`).addEventListener('click', (e) => {
@@ -1165,7 +1172,7 @@ function toggleActive(method, eventNon = '') {
 }
 
 let run = setInterval(() => {
-    if (document.querySelector('#AccessibleNav > li:nth-child(3) > a') != null && document.querySelectorAll('.cart-link') && document.querySelectorAll('[data-key="product"] [name="add"]') && appikon['discounts'] != null) {
+    if (document.querySelector('#AccessibleNav > li:nth-child(3) > a') != null && document.querySelectorAll('.cart-link') && document.querySelectorAll('[data-key="product"] [name="add"]') && appikon != null && appikon['discounts'] != null) {
         clearInterval(run)
 
         document.body.insertAdjacentHTML('afterbegin', styles);
