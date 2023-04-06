@@ -525,7 +525,7 @@ function addCart(id, qty, typeId = '') {
             } else {
                 getCart()
             }
-            toggleActive(true)
+            toggleActive(true, eventNon)
         },
         error : function(error) {
             console.log(error)
@@ -1125,17 +1125,19 @@ function isVisible() {
         pushDataLayer(`Visibility of Apply discount code`)
     }
 }
-function toggleActive(method) {
+function toggleActive(method, eventNon = '') {
     if (method == true) {
         document.querySelector('.slide_in__cart').classList.add('active')
         pushDataLayer('Slide cart visibility')
         document.querySelector('html').classList.add('fixed_body')
 
-        visibilityUpsel = false;
-        visibilityShipping = false;
-        visibilityGuarante = false;
-        visibilitySaved = false;
-        visibilityApplyDiscount = false;
+        if (eventNon == '') {
+            visibilityUpsel = false;
+            visibilityShipping = false;
+            visibilityGuarante = false;
+            visibilitySaved = false;
+            visibilityApplyDiscount = false;
+        }
 
         window.addEventListener('scroll', () => isVisible())
         isVisible()
