@@ -1253,38 +1253,13 @@ let run = setInterval(() => {
     }
 });
 
-let isClarify = setInterval(() => {
-    if(typeof clarity == 'function') {
-        clearInterval(isClarify)
-        clarity("set", "slide_in_cart", "variant_1");
-    }
-}, 100)
-
-
-// let script = document.createElement('script')
-// script.setAttribute('api-key','2231f54e-7201-410c-97c5-0efb61b60027');
-// script.lang = "en-US";
-// script.currency = "USD";
-// script.env = "sandbox";
-// script.src = "//web-components.splitit.com/upstream.js";
-// script.setAttribute("default-installments","4")
-// document.body.appendChild(script)
-
-// let spt = document.createElement('spt-strip')
-// spt.setAttribute('strip_text','Pay every month with no application or fees');
-// spt.setAttribute('button_text','Learn more');
-// spt.setAttribute('text_size','13');
-// spt.setAttribute('position','top');
-// spt.setAttribute('text_alignment','center');
-// spt.setAttribute('background_color','#2a2323');
-// spt.setAttribute('text_button_color','#181616');
-// spt.setAttribute('button_reverse_icon','true');
-// document.body.appendChild(spt)
-
-// let sptOneLiner = document.createElement('spt-one-liner')
-// sptOneLiner.setAttribute('text_option','payment-fourtnightly-number-of-payments');
-// sptOneLiner.setAttribute('text_size','250');
-// sptOneLiner.setAttribute('currency_code','USD');
-// sptOneLiner.setAttribute('installments','12');
-// sptOneLiner.setAttribute('learn_more_color','#cb1515');
-// document.body.appendChild(sptOneLiner)
+(function(h,o,t,j,a,r){
+    h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
+    h._hjSettings={hjid:2363391,hjsv:6};
+    a=o.getElementsByTagName('head')[0];
+    r=o.createElement('script');r.async=1;
+    r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
+    a.appendChild(r);
+})(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
+window.hj=window.hj||function(){(hj.q=hj.q||[]).push(arguments)};
+hj('event', 'pdp_shoppay');
