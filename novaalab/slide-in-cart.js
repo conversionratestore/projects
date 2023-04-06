@@ -11,6 +11,10 @@ let styles = `
 .slide_in__cart input[type=number] {
   -moz-appearance: textfield;
 }
+html.fixed_body, html.gemapp.video.fixed_body {
+    width: 100%;
+    overflow: hidden!important;
+}
 .slide_in__cart {
     position: fixed;
     right: 0;
@@ -384,6 +388,16 @@ input.clac_qty {
 }
 .slide_in__discount_delete svg {
     pointer-events: none;
+}
+.slide_in__discount.completed {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 3px 0 15px;
+    margin: 0;
+}
+.slide_in__discount.completed button {
+    top: 3px;
 }
 /* may_like */
 .may_like {
@@ -947,7 +961,7 @@ class Discount {
             console.log(this.parent.innerHTML)
             this.parent.querySelector('.btn-discount').addEventListener('click', (e) => {
                 e.stopImmediatePropagation()
-
+                this.parent.classList.remove('completed')
                 pushDataLayer('Click on the Apply discount code')
 
                 this.parent.innerHTML = `
@@ -967,6 +981,7 @@ class Discount {
                     window.appikonDiscount.setCookieMinutes("appikon_discount_" + window.appikonDiscount.settings.shop, discountCode, 5);
                     window.appikon.discount_code = discountCode;  
                     window.appikonDiscount.triggerDiscountCalculation($);
+                    window.appikonDiscount.reloadCurrency()
 
                     this.parent.querySelector('.btn-purple').classList.add('loading_discount')
                     pushDataLayer('Click on Apply button discount code')
@@ -975,16 +990,18 @@ class Discount {
                                 if (window.appikon['discounts']['discount_code_error'] != null && window.appikon['discounts']['discount_code_error'] != '') {
                                     clearInterval(isDiscount)
                                     e.target.parentElement.classList.add('error')
-                                    this.parent.querySelector('.slide_in__discount_message').innerHTML = window.appikon['discounts']['discount_code_error'];
+                                    let firstLetter = window.appikon['discounts']['discount_code_error'].charAt(0)
+                                    this.parent.querySelector('.slide_in__discount_message').innerHTML = window.appikon['discounts']['discount_code_error'].toLowerCase().replace(firstLetter.toLowerCase(),firstLetter.toUpperCase());
                                     this.parent.querySelector('.btn-purple').classList.remove('loading_discount')
                                     pushDataLayer('Visibility of error messages on discount code')
+                                    
                                 } 
                                 if (window.appikon['discounts']['additional_discount_value'] != null && window.appikon['discounts']['additional_discount_value'] != 0) {
                                     clearInterval(isDiscount)
                                     e.target.parentElement.classList.remove('error')
-                                    this.parent.classList.add('flx-between')
-                                    this.parent.style = 'padding: 3px 0 15px;margin: 0';
-                                    this.parent.querySelector('button').style = 'top: 3px;';
+                                    this.parent.classList.add('completed')
+                                   
+                                    
                                     this.parent.parentElement.style.display = 'grid';
                                     this.parent.innerHTML = this.renderCompleted(discountCode, window.appikon['discounts']['additional_discount_value'])
                                   
@@ -1000,10 +1017,17 @@ class Discount {
                                         window.appikonDiscount.deleteCookie("appikon_discount_" + window.appikonDiscount.settings.shop);
                                         delete window.appikon.discount_code;
                                         window.appikonDiscount.triggerDiscountCalculation($);
+                                        window.appikonDiscount.reloadCurrency()
 
                                         pushDataLayer('Click on the button to remove the discount')
-
-                                        getCart()
+                                        let deletedInterval = setInterval(() => {
+                                            if (window.appikon.discount_code == null) {
+                                                clearInterval(deletedInterval)
+                                                new Discount(this.parent, false).render()
+                                                getCart()
+                                            }
+                                        })
+                                       
                                         
                                     })
                                 }
@@ -1011,7 +1035,7 @@ class Discount {
                     } else {
                         e.target.parentElement.classList.add('error')
                         this.parent.querySelector('.btn-purple').classList.remove('loading_discount') ;
-                        this.parent.querySelector('.slide_in__discount_message').innerHTML = 'Discount Code not found';
+                        this.parent.querySelector('.slide_in__discount_message').innerHTML = 'Discount code not found';
                         pushDataLayer('Visibility of error messages on discount code')
                     }
                 })
@@ -1087,6 +1111,7 @@ function toggleActive(method) {
     if (method == true) {
         document.querySelector('.slide_in__cart').classList.add('active')
         pushDataLayer('Slide cart visibility')
+        document.querySelector('html').classList.add('fixed_body')
 
         visibilityUpsel = false;
         visibilityShipping = false;
@@ -1099,6 +1124,7 @@ function toggleActive(method) {
     } else {
         document.querySelector('.slide_in__cart').classList.remove('active')
         pushDataLayer('Slide cart closing')
+        document.querySelector('html').classList.remove('fixed_body')
     }
 }
 
