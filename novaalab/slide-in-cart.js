@@ -229,6 +229,12 @@ input.clac_qty {
     border-radius: 4px;
     width: 36px;
     height: 36px;
+    padding: 0!important;
+}
+.item_product__delate svg {
+    flex-shrink: 0;
+    width: 12px;
+    height: 14px;
 }
 .item_product__delate:hover svg path {
     fill: #773BD9;
