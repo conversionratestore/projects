@@ -22,7 +22,7 @@ html.fixed_body, html.gemapp.video.fixed_body {
     height: 100vh;
     width: 100%;
     background-color: rgba(0,0,0,0.5);
-    z-index: 99999999;
+    z-index: 9999999999;
     opacity: 0;
     pointer-events: none;
     transition: all 0.3s ease;
@@ -40,6 +40,9 @@ html.fixed_body, html.gemapp.video.fixed_body {
 }
 .slide_in__cart_close {
     cursor: pointer;
+}
+.slide_in__cart_close:hover path {
+    fill: #212121;
 }
 .slide_in__cart p, .slide_in__cart ul {
     margin: 0;
@@ -781,7 +784,8 @@ class ProductItem {
                 this.changeQtyProduct(button, this.variantId)
             })
             this.parent.querySelector(`[data-variant-id="${this.variantId}"] .clac_qty`).addEventListener('input', (e) => {
-                updateCart(this.variantId, +e.target.value)
+                updateCart(this.variantId, e.target.value != '' ? +e.target.value : 1)
+               
                 pushDataLayer('Changing the quantity', e.target.value)
             })
         } else {
@@ -1199,6 +1203,12 @@ let run = setInterval(() => {
                 }
             })
         })
+        const appHeight = () => {
+            document.querySelector('.slide_in__cart').style.height = window.innerHeight + 'px';
+        }
+        window.addEventListener('resize', appHeight)
+        appHeight()
+
         pushDataLayer('loaded')
     }
 });
