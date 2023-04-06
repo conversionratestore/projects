@@ -525,7 +525,7 @@ function addCart(id, qty, typeId = '') {
             } else {
                 getCart()
             }
-            toggleActive(true, eventNon)
+            toggleActive(true, 'eventNon')
         },
         error : function(error) {
             console.log(error)
