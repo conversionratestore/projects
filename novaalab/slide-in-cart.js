@@ -676,11 +676,13 @@ function getCart(cartDrawer = document.querySelector('.slide_in__cart')) {
                     compareTotalPrice += qty * compare;
                 })
                 let freeShippingPrice = cartDrawer.querySelector('.slide_in__discount_item') != null ? +cartDrawer.querySelector('.slide_in__discount_item').innerHTML.split('$')[1] : ''
-                console.log(freeShippingPrice)
+               
                 cartDrawer.querySelector('.slide_in__subtotal .pr').innerHTML = '$' + (totalPrice - freeShippingPrice).toFixed(2);
                 cartDrawer.querySelector('.slide_in__subtotal .compare').innerHTML = '$' + compareTotalPrice.toFixed(2);
                 cartDrawer.querySelector('.slide_in__saved').innerHTML = 'You just saved $' + (compareTotalPrice - totalPrice - freeShippingPrice).toFixed(2);
                                 
+                cartDrawer.querySelector('.slide_in__total').style = '';
+                cartDrawer.querySelector('.slide_in__footer').style = '';
 
                 let bundle = false;
                 for (let i = 0; i < items.length; i++) {
@@ -706,8 +708,6 @@ function getCart(cartDrawer = document.querySelector('.slide_in__cart')) {
                     cartDrawer.querySelector('.slide_in__bundle').style.display = 'block';
                     pushDataLayer('Visibility of Bundle items in the cart')
                 } 
-                cartDrawer.querySelector('.slide_in__total').style = '';
-                cartDrawer.querySelector('.slide_in__footer').style = '';
                
             }
         }
@@ -1210,6 +1210,7 @@ let run = setInterval(() => {
             item.addEventListener('click', (e) => {
                 e.preventDefault()
                 e.stopImmediatePropagation();
+         
                 if (item.closest('.gf_row').querySelector('[name="quantity"]') != null) {
                     let qty = +item.closest('.gf_row').querySelector('[name="quantity"]').value;
                     addCart(item.closest('form').querySelector('input[name="id"]').value, qty)
@@ -1217,7 +1218,7 @@ let run = setInterval(() => {
                 } else if (item.closest('form').querySelector('[name="quantity"]') != null) {
                     let qty = +item.closest('form').querySelector('[name="quantity"]').value;
                     addCart(item.closest('form').querySelector('input[name="id"]').value, qty)
-                    
+                   
                 }  else {
                     addCart(item.closest('form').querySelector('input[name="id"]').value, 1)
                 }
