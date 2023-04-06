@@ -110,6 +110,12 @@ html.fixed_body, html.gemapp.video.fixed_body {
     background: #691BEA;
     color: #FFFFFF;
 }
+.btn-purple[disabled] {
+    background: radial-gradient(90.92% 2726% at 2.15% 56%, #691BEA 0%, #9E41EF 100%)!important;
+    opacity: 0.5!important;
+    cursor: no-drop;
+}
+
 /* empty */
 .slide_in__empty {
     border: 1px dashed #E2E2E2;
@@ -631,6 +637,10 @@ function getCart(cartDrawer = document.querySelector('.slide_in__cart')) {
         
                     new ProductItem(parent, link, image, title, compare, price, variantId, id, hasVariant, qty).render()
 
+                    if (document.querySelector(`.may_like [data-variant-id="${variantId}"]`) != null) {
+                        document.querySelector(`.may_like [data-variant-id="${variantId}"] .add-to-cart`).disabled = true;
+                        document.querySelector(`.may_like [data-variant-id="${variantId}"] .add-to-cart`).innerHTML = 'Added';
+                    }
                     if (discountShopacado[variantId] != null) {
                         let initialElement = cartDrawer.querySelector(`li[data-variant-id="${variantId}"]`),  
                             priceProduct = price, 
