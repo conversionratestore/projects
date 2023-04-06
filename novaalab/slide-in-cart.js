@@ -487,6 +487,7 @@ let productHaveBundle = {32854816784438:'', 39782656311350:'', 40322897838134:''
 
 //comes into view
 function isScrolledIntoView(el) {
+    if (document.querySelector(el) == null) return false
     let rect = document.querySelector(el).getBoundingClientRect(),
         elemTop = rect.top,
         elemBottom = rect.bottom;
@@ -1115,11 +1116,11 @@ function isVisible() {
         visibilityGuarante = true;
         pushDataLayer('60 day money back visibility')
     }
-    if (visibilitySaved == false && isScrolledIntoView('.slide_in__saved')) {
+    if (visibilitySaved == false && isScrolledIntoView('.slide_in__saved') && document.querySelector('.slide_in__empty') == null) {
         visibilitySaved = true;
         pushDataLayer(`You just saved ${document.querySelector('.slide_in__saved').innerHTML.split('$')[1]} visibility`)
     }
-    if (visibilityApplyDiscount == false && isScrolledIntoView('.slide_in__discount')) {
+    if (visibilityApplyDiscount == false && isScrolledIntoView('.slide_in__discount') && document.querySelector('.slide_in__empty') == null) {
         visibilityApplyDiscount = true;
         pushDataLayer(`Visibility of Apply discount code`)
     }
