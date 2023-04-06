@@ -1236,7 +1236,7 @@ let run = setInterval(() => {
             })
         })
         const appHeight = () => {
-            document.querySelector('.slide_in__cart > container').style.height = window.innerHeight + 'px';
+            document.querySelector('.slide_in__cart > .container').style.height = window.innerHeight + 'px';
         }
         window.addEventListener('resize', appHeight)
         appHeight()
