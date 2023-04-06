@@ -608,9 +608,6 @@ function getCart(cartDrawer = document.querySelector('.slide_in__cart')) {
                 mayLikeCreate.innerHTML = '<h4 class="fw-semi">You may also like</h4>'
                 cartDrawer.querySelector('.slide_in__body').appendChild(mayLikeCreate)
 
-                console.log(cartDrawer.querySelector('.may_like'))
-                console.log(mayLikeCreate)
-                console.log(upsellObj)
                 for (let i = 0; i < upsellObj.length; i++) {
                     new ProductItem(mayLikeCreate, upsellObj[i].url, upsellObj[i].img, upsellObj[i].title, upsellObj[i].compare, upsellObj[i].price, upsellObj[i].variantId, upsellObj[i].id, 'false', upsellObj[i].qty, 'addToCart').render() 
                 }
@@ -812,9 +809,12 @@ class ProductItem {
                     pushDataLayer('Add to cart button on the Bundle offer')
                 } else {
                     addCart(e.target.dataset.variantId, 1)
-                    pushDataLayer('Click on Add to cart button in the Upsale block')
+                    if (this.parent.classList.contains('slide_in__products')) {
+                        pushDataLayer('Click on add to cart in empty cart')
+                    } else {
+                        pushDataLayer('Click on Add to cart button in the Upsale block')
+                    }
                 }
-                
             })
         }
     }
@@ -859,6 +859,7 @@ class DiscountProduct {
         this.qtyProduct = +qtyProduct;
         this.priceDiscount = (+priceDiscount).toFixed(2);
         this.qtyDiscount = +qtyDiscount;
+        this.isVisible = false;
 
     }
     renderDiscount() {
@@ -889,12 +890,24 @@ class DiscountProduct {
                 <p class="fw-bold">Yay! You just saved <span class="c-purple">$${saved}</span> </p> `
         }
     }
+    isVisibleDataLayer(message) {
+        let isActiveCart = setInterval(() => {
+            if (this.isVisible == false && isScrolledIntoView(`.slide_in__message._${this.qtyProduct}`) && document.querySelector('.slide_in__cart.active') != null) {
+                clearInterval(isActiveCart)
+                this.isVisible = true;
+                pushDataLayer('Visibility of messages when buying', message)
+            }
+        }, 100)
+    }
     render() {
-        let element = `<div class="slide_in__message d-flex items-center ${this.qtyProduct}" style="margin-top: 16px;">${this.renderDiscount()}</div>`;
+        let element = `<div class="slide_in__message d-flex items-center _${this.qtyProduct}" style="margin-top: 16px;">${this.renderDiscount()}</div>`;
       
         this.initialElement.insertAdjacentHTML('beforeend', element);
         let message = this.initialElement.querySelector('.slide_in__message').innerText;
-        pushDataLayer('Visibility of messages when buying', message)
+       
+
+        document.querySelector('.slide_in__cart > .container').addEventListener('scroll', () => this.isVisibleDataLayer(message))
+        this.isVisibleDataLayer(message)
     }
 }
 
