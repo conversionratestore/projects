@@ -134,6 +134,7 @@ html.fixed_body, html.gemapp.video.fixed_body {
     padding: 0 10px;
 }
 .slide_in__empty p.name {
+    font-size: 18px;
     font-weight: 600;
     line-height: 28px;
 }
@@ -158,7 +159,7 @@ html.fixed_body, html.gemapp.video.fixed_body {
 .item_product > div:not(.slide_in__message) > div {
     width: calc(100% - 134px);
 }
-.item_product > div > a, .item_product img  {
+.item_product img  {
     width: 120px;
     height: 120px;
     margin-right: 14px;
@@ -166,10 +167,10 @@ html.fixed_body, html.gemapp.video.fixed_body {
 .item_product img {
     object-fit: cover;
 }
-.item_product__name:hover {
-    text-decoration-line: underline;
-    color: #773BD9;
-}
+// .item_product__name:hover {
+//     text-decoration-line: underline;
+//     color: #773BD9;
+// }
 p.item_product__price {
     margin: 5px 0 13px;
 }
@@ -309,7 +310,6 @@ input.clac_qty {
     color: #D84432;
     margin-left: auto;
     width: fit-content;
-    margin-bottom: 16px;
 }
 .slide_in__saved:before {
     content: '';
@@ -418,7 +418,7 @@ input.clac_qty {
 .may_like {
     background: #F5F5F5;
     padding: 20px;
-    margin-top: 20px;
+    margin-top: 16px!important;
     box-shadow: inset 0px 0px 8px rgba(107, 29, 235, 0.16);
 }
 .may_like h4 {
@@ -776,11 +776,9 @@ class ProductItem {
 
         element.innerHTML = `
             <div class="d-flex">
-                <a href="${this.link}">
-                    <img src="${this.image}" alt="${this.name}">
-                </a>
+                <img src="${this.image}" alt="${this.name}">
                 <div>
-                    <a href="${this.link}" class="item_product__name">${this.name}</a>
+                    <p class="item_product__name">${this.name}</p>
                     <p class="item_product__price"><span class="compare">${this.compare}</span> <span class="pr c-purple fw-bold">$${this.price}</span></p>
                     ${this.renderBottom()}
                 </div>
@@ -831,6 +829,9 @@ class ProductItem {
                         addCart(this.variantId, 1, 39737414484022)
                     }
                     pushDataLayer('Add to cart button on the Bundle offer')
+
+                    seamless.polyfill();
+                    seamless.scrollBy(window, { behavior: "smooth", top: 0, left: 0 });
                 } else {
                     addCart(e.target.dataset.variantId, 1)
                     if (this.parent.classList.contains('slide_in__products')) {
