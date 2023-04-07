@@ -816,7 +816,6 @@ class ProductItem {
                     let pr_3 = e.target.closest('.slide_in__body').querySelector('.slide_in__products [data-variant-id="40322897838134"]') != null ? e.target.closest('.slide_in__body').querySelector('.slide_in__products [data-variant-id="40322897838134"]') : '';
                     let pr_4 = e.target.closest('.slide_in__body').querySelector('.slide_in__products [data-variant-id="39737414484022"]') != null ? e.target.closest('.slide_in__body').querySelector('.slide_in__products [data-variant-id="39737414484022"]') : '';
                 
-                    this.parent.closest('.container').scrollTo(0, 0);
 
                     if ( pr_1 != '' && pr_1.querySelector('.clac_qty').value < 2) {
                         addCart(this.variantId, 1, 39782656311350)
@@ -831,6 +830,8 @@ class ProductItem {
                         addCart(this.variantId, 1, 39737414484022)
                     }
                     pushDataLayer('Add to cart button on the Bundle offer')
+
+                    this.parent.closest('.container').scrollTo(0, 0);
 
                 } else {
                     addCart(e.target.dataset.variantId, 1)
