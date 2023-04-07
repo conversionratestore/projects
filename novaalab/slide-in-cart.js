@@ -465,7 +465,7 @@ input.clac_qty {
     pointer-events: auto;
 }
 .slide_in__splitit {
-    margin-bottom: 12px;
+    // margin-bottom: 12px;
 }
 .slide_in__splitit p {
     font-weight: 600;
