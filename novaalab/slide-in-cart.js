@@ -816,6 +816,8 @@ class ProductItem {
                     let pr_3 = e.target.closest('.slide_in__body').querySelector('.slide_in__products [data-variant-id="40322897838134"]') != null ? e.target.closest('.slide_in__body').querySelector('.slide_in__products [data-variant-id="40322897838134"]') : '';
                     let pr_4 = e.target.closest('.slide_in__body').querySelector('.slide_in__products [data-variant-id="39737414484022"]') != null ? e.target.closest('.slide_in__body').querySelector('.slide_in__products [data-variant-id="39737414484022"]') : '';
                 
+                    this.parent.closest('.container').scrollTo(0, 0);
+
                     if ( pr_1 != '' && pr_1.querySelector('.clac_qty').value < 2) {
                         addCart(this.variantId, 1, 39782656311350)
                     }
@@ -830,8 +832,6 @@ class ProductItem {
                     }
                     pushDataLayer('Add to cart button on the Bundle offer')
 
-                    seamless.polyfill();
-                    seamless.scrollBy(window, { behavior: "smooth", top: 0, left: 0 });
                 } else {
                     addCart(e.target.dataset.variantId, 1)
                     if (this.parent.classList.contains('slide_in__products')) {
@@ -852,7 +852,7 @@ let discountShopacado = {
     },
     40156488761398: { //Novaa Extra-Strength Healing Laser
         'nameOffer':'Laser - Black Friday Bundle discount',
-        'details': ['2/269.9','3/229.90']
+        'details': ['2/269.90','3/229.90']
     },
     32854816784438: { //Novaa Light Pro™ - Limited sale price
         'nameOffer': 'Light Pro - Black Friday Bundle discount',
