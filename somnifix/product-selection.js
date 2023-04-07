@@ -154,11 +154,18 @@ let style = `
         padding: 14px 14px 0;
         background-color: #F5F6F7;
     }
-    .swatchCustom__item_new[data-title="1 Pack"] {
+    .parent-items .swatchCustom__item_new[data-title="2 Pack"] {
+        order: 1; 
+    }
+    .parent-items .swatchCustom__item_new[data-title="3 Pack"] {
+        order: 2;
+        margin-bottom: 0;
+    }
+    .aside_parent .swatchCustom__item_new[data-title="1 Pack"] {
         order: 2; 
         margin-bottom: 0;
     }
-    .swatchCustom__item_new[data-title="3 Pack"] {
+    .aside_parent .swatchCustom__item_new[data-title="3 Pack"] {
         order: 1;
     }
     .aside_wrapper .total {
@@ -296,7 +303,7 @@ function init() {
             document.querySelectorAll('.parent-items .swatchCustom__item_new').forEach(item => {
                 item.addEventListener('click', (e) => {
                     e.stopImmediatePropagation()
-                    document.querySelector(`.aside_parent .swatchCustom__item_new[data-variant="${item.dataset.variant}"]`).click();
+                    // document.querySelector(`.aside_parent .swatchCustom__item_new[data-variant="${item.dataset.variant}"]`).click();
                     addActiveItem(item)
                 })
             })
@@ -338,7 +345,9 @@ function init() {
             addActiveItem(document.querySelector('.aside_parent .swatchCustom__item_new.active'))
 
             document.querySelectorAll('.aside_parent .swatchCustom__item_new').forEach(item => {
-                item.addEventListener('click', (e) => addActiveItem(item))
+                item.addEventListener('click', (e) => {
+                    addActiveItem(item)
+                })
             })
 
             function eventVisibility() {
