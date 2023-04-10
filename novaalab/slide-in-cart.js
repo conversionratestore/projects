@@ -167,10 +167,6 @@ html.fixed_body, html.gemapp.video.fixed_body {
 .item_product img {
     object-fit: cover;
 }
-// .item_product__name:hover {
-//     text-decoration-line: underline;
-//     color: #773BD9;
-// }
 p.item_product__price {
     margin: 5px 0 13px;
 }
@@ -533,6 +529,11 @@ input.clac_qty {
         text-align: center;
     }
 }
+.gf_product-quantity-minus, .gf_product-quantity-plus {
+    display: flex!important;
+    justify-content: center!important;
+    align-items: center!important;
+}
 </style>`
 
 let emptySlideInHTML = `
@@ -759,14 +760,22 @@ function getCart(cartDrawer = document.querySelector('.slide_in__cart')) {
                 </div>`)
 
                 cartDrawer.querySelector('.slide_in__splitit a').addEventListener('click', () => {
+                    pushDataLayer('Click on learn more')
                     cartDrawer.parentElement.querySelector('.splitit-iframe-popup').classList.add('active')
                 })
 
-                function removeSelected(target) {
-                    cartDrawer.parentElement.querySelector('.splitit-iframe-popup .single-option').classList.add('selected-wrapper')
-                    cartDrawer.parentElement.querySelector('.splitit-iframe-popup .single-option').children[0].classList.add('selected')
-                    target.closest('.svelte-41engz').querySelector('.single').classList.remove('notSelected')
-                    target.closest('.svelte-41engz').querySelector('.single').classList.add('selected')
+                function removeSelected(target, boolean = false) {
+                    if (boolean) {
+                        target.classList.add('selected-wrapper')
+                        target.children[0].classList.add('selected')
+                        target.closest('.svelte-41engz').querySelector('.single').classList.remove('notSelected')
+                        target.closest('.svelte-41engz').querySelector('.single').classList.add('selected')
+                    } else {
+                        target.classList.remove('selected-wrapper')
+                        target.children[0].classList.remove('selected')
+                        target.closest('.svelte-41engz').querySelector('.single').classList.add('notSelected')
+                        target.closest('.svelte-41engz').querySelector('.single').classList.remove('selected')
+                    }
                 }
 
                 cartDrawer.parentElement.querySelector('.splitit-iframe-popup img[alt="close"]').addEventListener('click', () => {
@@ -789,9 +798,9 @@ function getCart(cartDrawer = document.querySelector('.slide_in__cart')) {
                 })
 
                 cartDrawer.parentElement.querySelector('.splitit-iframe-popup .single-option').addEventListener('click', (e) => {
-                    removeSelected(e.currentTarget)
+                    removeSelected(e.currentTarget ,true)
                 })
-               document.addEventListener('click', (e) => {
+                document.addEventListener('click', (e) => {
                     if (!e.target.closest('.splitit-iframe-popup .splitit-modal') && document.querySelector('.splitit-iframe-popup.active') != null || e.target.classList.contains('splitit-iframe-popup')) {
                         if (e.target.tagName != 'A') {
                             document.querySelector('.splitit-iframe-popup').classList.remove('active')
