@@ -806,6 +806,7 @@ function getCart(cartDrawer = document.querySelector('.slide_in__cart')) {
                     }
                 })
 
+                discountRun()
                 let bundle = false;
                 for (let i = 0; i < items.length; i++) {
                     let variantId = items[i].variant_id;
@@ -1187,12 +1188,12 @@ class Discount {
                                         delete window.appikon.discount_code;
                                         window.appikonDiscount.triggerDiscountCalculation($);
                                         window.appikonDiscount.reloadCurrency()
+                                        console.log( window.appikon)
 
                                         pushDataLayer('Click on the button to remove the discount')
                                         let deletedInterval = setInterval(() => {
                                             if (window.appikon.discount_code == null) {
                                                 clearInterval(deletedInterval)
-                                                new Discount(this.parent, false).render()
                                                 getCart()
                                             }
                                         })
@@ -1214,6 +1215,17 @@ class Discount {
             this.parent.innerHTML = this.renderCompleted(window.appikon.discount_code, window.appikon['discounts']['additional_discount_value']);
         }
     }
+}
+
+function discountRun() {
+    let discountRun = setInterval(() => {
+        if (appikon != null) {
+            clearInterval(discountRun)
+            let completed = appikon['discounts']['additional_discount_value'] != null && appikon['discounts']['additional_discount_value'] != 0 ;
+            new Discount(document.querySelector('.slide_in__discount'), completed).render()
+        }
+    }, 200)
+    
 }
 
 let slideInCartHTML = `
@@ -1276,17 +1288,6 @@ function isVisible() {
         visibilityApplyDiscount = true;
         pushDataLayer(`Visibility of Apply discount code`)
     }
-}
-
-function discountRun() {
-    let discountRun = setInterval(() => {
-        if (appikon != null) {
-            clearInterval(discountRun)
-            let completed = appikon['discounts']['additional_discount_value'] != null && appikon['discounts']['additional_discount_value'] != 0 ;
-            new Discount(document.querySelector('.slide_in__discount'), completed).render()
-        }
-    }, 200)
-    
 }
 
 function toggleActive(method, eventNon = '') {
