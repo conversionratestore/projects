@@ -782,7 +782,7 @@ function getCart(cartDrawer = document.querySelector('.slide_in__cart')) {
                     cartDrawer.parentElement.querySelector('.splitit-iframe-popup').classList.remove('active')
                     removeSelected(cartDrawer.parentElement.querySelector('.splitit-iframe-popup .single-option'))
                 })
-                cartDrawer.parentElement.querySelector( '#heal-faster-from-home-with-red-light-therapy > div.splitit-iframe-popup > div > main > div > div > div > img.absolute.top-5.left-5.z-10').addEventListener('click', () => {
+                cartDrawer.parentElement.querySelector( '.splitit-iframe-popup > div > main > div > div > div > img[alt="back"]').addEventListener('click', () => {
                     console.log('hide popup')
                     closePopup = true
                     cartDrawer.parentElement.querySelector('.splitit-iframe-popup').classList.remove('active')
