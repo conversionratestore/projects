@@ -770,23 +770,26 @@ function getCart(cartDrawer = document.querySelector('.slide_in__cart')) {
                     target.closest('.svelte-41engz').querySelector('.single').classList.add('selected')
                 }
 
-                cartDrawer.parentElement.querySelector('.splitit-iframe-popup > div > main > div > div > div > img.absolute.right-2.top-2.z-10.hidden.cursor-pointer').addEventListener('click', () => {
+                cartDrawer.parentElement.querySelector('.splitit-iframe-popup img[alt="close"]').addEventListener('click', () => {
                     console.log('hide popup')
                     closePopup = true
                     cartDrawer.parentElement.querySelector('.splitit-iframe-popup').classList.remove('active')
                     removeSelected(cartDrawer.parentElement.querySelector('.splitit-iframe-popup .single-option'))
+                    pushDataLayer('Сlose popup: Click X','Popup: Splitit')
                 })
                 cartDrawer.parentElement.querySelector('.splitit-iframe-popup > div > main > div > div > div > section > div.flex.items-end.justify-between.pb-4 > div.ml-2.cursor-pointer.rounded.bg-black.px-4.py-2.text-center.text-base.font-bold.text-white').addEventListener('click', () => {
                     console.log('hide popup')
                     closePopup = true
                     cartDrawer.parentElement.querySelector('.splitit-iframe-popup').classList.remove('active')
                     removeSelected(cartDrawer.parentElement.querySelector('.splitit-iframe-popup .single-option'))
+                    pushDataLayer('Continue shopping','Popup: Splitit')
                 })
-                cartDrawer.parentElement.querySelector( '.splitit-iframe-popup > div > main > div > div > div > img[alt="back"]').addEventListener('click', () => {
+                cartDrawer.parentElement.querySelector( '.splitit-iframe-popup img[alt="back"]').addEventListener('click', () => {
                     console.log('hide popup')
                     closePopup = true
                     cartDrawer.parentElement.querySelector('.splitit-iframe-popup').classList.remove('active')
                     removeSelected(cartDrawer.parentElement.querySelector('.splitit-iframe-popup .single-option'))
+                    pushDataLayer('Return to cart','Popup: Splitit')
                 })
 
                 cartDrawer.parentElement.querySelector('.splitit-iframe-popup .single-option').addEventListener('click', (e) => {
@@ -797,6 +800,7 @@ function getCart(cartDrawer = document.querySelector('.slide_in__cart')) {
                         if (e.target.tagName != 'A') {
                             console.log(e.target)
                             document.querySelector('.splitit-iframe-popup').classList.remove('active')
+                            pushDataLayer('Сlose popup: Click out of popup','Popup: Splitit')
                         }
                     }
                 })
