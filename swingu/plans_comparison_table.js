@@ -749,9 +749,9 @@ const waitForVideoSection = setInterval(() => {
                         const selectedPack = document.querySelector('.annual_checkbox_wrapper .checkbox_active_plan').dataset.pack
 
                         if (selectedPack === 'annual_pro') {
-                            document.querySelector('[data-cta-product-id*="swingu_plus.yearly"] a').dispatchEvent(new Event('click'))
-                        } else {
                             document.querySelector('[data-cta-product-id*="swingu_pro.yearly"] a').dispatchEvent(new Event('click'))
+                        } else {
+                            document.querySelector('[data-cta-product-id*="swingu_plus.yearly"] a').dispatchEvent(new Event('click'))                            
                         }
                     }
                 })
