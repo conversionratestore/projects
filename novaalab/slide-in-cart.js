@@ -543,6 +543,7 @@ let emptySlideInHTML = `
 </li>`;
 
 let closePopup = false;
+let bundleScroll = false;
 let productHaveBundle = {32854816784438:'', 39782656311350:'', 40322897838134:'', 39737414484022:''};
 
 //comes into view
@@ -582,6 +583,7 @@ function addCart(id, qty, typeId = '') {
             console.log(data)
             if (typeId != '') {
                 updateCart(typeId)
+
             } else {
                 getCart()
             }
@@ -613,6 +615,9 @@ function updateCart(id, qty = 0) {
             }
         });
 }
+
+
+let elementPosition = 0;
 
 function getCart(cartDrawer = document.querySelector('.slide_in__cart')) {
     // get cart
@@ -796,6 +801,8 @@ function getCart(cartDrawer = document.querySelector('.slide_in__cart')) {
                     }
                 })
                 
+                cartDrawer.querySelector('.container').scrollTo(0, elementPosition);
+
                 let bundle = false;
                 for (let i = 0; i < items.length; i++) {
                     let variantId = items[i].variant_id;
@@ -818,6 +825,7 @@ function getCart(cartDrawer = document.querySelector('.slide_in__cart')) {
                 if (bundle == true) {
                     new ProductItem(cartDrawer.querySelector('.slide_in__bundle'), bundleObj.url, bundleObj.img, bundleObj.title, bundleObj.compare, bundleObj.price, bundleObj.variantId, bundleObj.id, 'false', 1, 'addToCart').render()
                     cartDrawer.querySelector('.slide_in__bundle').style.display = 'block';
+                    bundleScroll = false;
                     pushDataLayer('Visibility of Bundle items in the cart')
                 } 
                
@@ -942,9 +950,15 @@ class ProductItem {
                     }
                     pushDataLayer('Add to cart button on the Bundle offer')
 
-                    this.parent.closest('.container').scrollTo(0, 0);
+                    elementPosition = 0;
 
                 } else {
+                    if (e.target.dataset.variantId == '40322897838134' || e.target.dataset.variantId == '39782656311350') {
+                        elementPosition = 0;
+                    } else {
+                        elementPosition = e.target.getBoundingClientRect().top;
+                    }
+
                     addCart(e.target.dataset.variantId, 1)
                     if (this.parent.classList.contains('slide_in__products')) {
                         pushDataLayer('Click on add to cart in empty cart')
