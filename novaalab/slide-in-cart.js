@@ -1192,7 +1192,7 @@ class Discount {
                                     saved.innerHTML = `You just saved $` + (+subtotal.previousElementSibling.innerHTML.replace('$','') - +subtotal.innerHTML.replace('$','')).toFixed(2)
                                     
                                     pushDataLayer('Visibility of applied code')
-                                    getCart(true)
+                                    new Discount(this.parent, true).render()
                                 }
                         }, 100);
                     } else {
