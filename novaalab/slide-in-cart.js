@@ -759,7 +759,6 @@ function getCart(cartDrawer = document.querySelector('.slide_in__cart')) {
                 </div>`)
 
                 cartDrawer.querySelector('.slide_in__splitit a').addEventListener('click', () => {
-                    console.log('show popup')
                     cartDrawer.parentElement.querySelector('.splitit-iframe-popup').classList.add('active')
                 })
 
@@ -771,21 +770,18 @@ function getCart(cartDrawer = document.querySelector('.slide_in__cart')) {
                 }
 
                 cartDrawer.parentElement.querySelector('.splitit-iframe-popup img[alt="close"]').addEventListener('click', () => {
-                    console.log('hide popup')
                     closePopup = true
                     cartDrawer.parentElement.querySelector('.splitit-iframe-popup').classList.remove('active')
                     removeSelected(cartDrawer.parentElement.querySelector('.splitit-iframe-popup .single-option'))
                     pushDataLayer('Сlose popup: Click X','Popup: Splitit')
                 })
                 cartDrawer.parentElement.querySelector('.splitit-iframe-popup > div > main > div > div > div > section > div.flex.items-end.justify-between.pb-4 > div.ml-2.cursor-pointer.rounded.bg-black.px-4.py-2.text-center.text-base.font-bold.text-white').addEventListener('click', () => {
-                    console.log('hide popup')
                     closePopup = true
                     cartDrawer.parentElement.querySelector('.splitit-iframe-popup').classList.remove('active')
                     removeSelected(cartDrawer.parentElement.querySelector('.splitit-iframe-popup .single-option'))
                     pushDataLayer('Continue shopping','Popup: Splitit')
                 })
                 cartDrawer.parentElement.querySelector( '.splitit-iframe-popup img[alt="back"]').addEventListener('click', () => {
-                    console.log('hide popup')
                     closePopup = true
                     cartDrawer.parentElement.querySelector('.splitit-iframe-popup').classList.remove('active')
                     removeSelected(cartDrawer.parentElement.querySelector('.splitit-iframe-popup .single-option'))
@@ -798,7 +794,6 @@ function getCart(cartDrawer = document.querySelector('.slide_in__cart')) {
                document.addEventListener('click', (e) => {
                     if (!e.target.closest('.splitit-iframe-popup .splitit-modal') && document.querySelector('.splitit-iframe-popup.active') != null || e.target.classList.contains('splitit-iframe-popup')) {
                         if (e.target.tagName != 'A') {
-                            console.log(e.target)
                             document.querySelector('.splitit-iframe-popup').classList.remove('active')
                             pushDataLayer('Сlose popup: Click out of popup','Popup: Splitit')
                         }
@@ -910,9 +905,9 @@ class ProductItem {
 
         this.parent.appendChild(element);
        
-        console.log(this.type)
         if (this.type != 'addToCart') {
             this.parent.querySelector(`[data-variant-id="${this.variantId}"] .item_product__delate`).addEventListener('click', (e) => {
+                elementPosition = 0;
                 updateCart(this.variantId)
                 pushDataLayer('Removal of product from the cart', this.name)
             })
@@ -1130,7 +1125,7 @@ class Discount {
         console.log(this.completed)
         if (this.completed == false) {
             this.parent.innerHTML = ` <p class="btn-discount c-purple fw-bold">Apply discount code</p>`
-            console.log(this.parent.innerHTML)
+
             this.parent.querySelector('.btn-discount').addEventListener('click', (e) => {
                 e.stopImmediatePropagation()
                 this.parent.classList.remove('completed')
@@ -1149,7 +1144,6 @@ class Discount {
                     e.stopImmediatePropagation()
                     let discountCode = e.target.previousElementSibling.value.trim();
 
-                    console.log(discountCode)
                     window.appikonDiscount.setCookieMinutes("appikon_discount_" + window.appikonDiscount.settings.shop, discountCode, 5);
                     window.appikon.discount_code = discountCode;  
                     window.appikonDiscount.triggerDiscountCalculation($);
