@@ -385,6 +385,7 @@ const style = /*html*/`
             box-shadow: 0px -2px 8px rgba(37, 49, 57, 0.1);
             z-index: 9999;
             text-align: center;
+            display: none;
         }
 
         .fixed_div > div {
@@ -746,8 +747,22 @@ const waitForVideoSection = setInterval(() => {
             }
         }, WAIT_INTERVAL_TIMEOUT)
 
+        const waitForBtn = setInterval(() => {
+            if(document.querySelector('[data-cta-product-id*="swingu_pro.monthly"]')) {
+                clearInterval(waitForBtn)
+        
+                document.head.insertAdjacentHTML('beforebegin', /*html*/`
+                    <style>
+                        .fixed_div {
+                            display: block !important;
+                        }
+                    </style>
+                `)
+            }
+        }, WAIT_INTERVAL_TIMEOUT)
+
         setTimeout(() => {
-            clearInterval(waitForPlans)
+            clearInterval(waitForBtn)
         }, 60000)
 
         waitForElement('#plans_comparison_table').then(() => drawTable())
