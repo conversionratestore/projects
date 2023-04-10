@@ -1308,6 +1308,7 @@ function toggleActive(method, eventNon = '') {
         window.addEventListener('scroll', () => isVisible())
         isVisible()
      
+        getCart(true)
     } else {
         document.querySelector('.slide_in__cart').classList.remove('active')
         pushDataLayer('Slide cart closing')
@@ -1324,7 +1325,6 @@ let run = setInterval(() => {
 
         new Message(document.querySelector('.slide_in__total'), 'afterend', 'guarantee').render()
 
-        getCart(true)
 
         document.querySelector('.slide_in__cart_close').addEventListener('click', (e) => {
             toggleActive(false)
@@ -1367,6 +1367,20 @@ let run = setInterval(() => {
             })
         })
         document.querySelector('.slide_in__to_checkout').addEventListener('click', (e) => {
+            e.preventDefault()
+            let discountCode = document.querySelector('.slide_in__discount_completed') != null ? document.querySelector('.slide_in__discount_completed').innerHTML.trim() : '';
+
+            console.log(discountCode)
+         
+            if (discountCode != '') {
+                fetch(`https://novaalab.com/discount/${discountCode}`).then(function(response) {
+                    return response.text();
+                }).then(function(data) {
+                    window.location.href = '/checkout'
+                })
+            } else {
+                window.location.href = '/checkout'
+            }
             let objCart = []
             $.ajax({
                 'url' : '/cart?view=cw-cart',
