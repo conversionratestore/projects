@@ -551,6 +551,7 @@ let bundleScroll = false;
 let productHaveBundle = {32854816784438:'', 39782656311350:'', 40322897838134:'', 39737414484022:''};
 
 let discountChange = true;
+let isCompleted;
 
 //comes into view
 function isScrolledIntoView(el) {
@@ -589,7 +590,6 @@ function addCart(id, qty, typeId = '') {
             console.log(data)
             if (typeId != '') {
                 updateCart(typeId)
-
             } else {
                 getCart()
             }
@@ -811,10 +811,24 @@ function getCart(discountChange = false, cartDrawer = document.querySelector('.s
                     }
                 })
 
-                if (discountChange == true) {
-                    let completed = appikon['discounts']['additional_discount_value'] != null && appikon['discounts']['additional_discount_value'] != 0 ? true : false;
-                    new Discount(document.querySelector('.slide_in__discount'), completed).render()
-                }
+                setTimeout(() => {
+                    if (discountChange == true && appikon['discounts'] != null) {
+                        let completed = appikon['discounts']['additional_discount_value'] != null && appikon['discounts']['additional_discount_value'] != 0 ? true : false;
+                        
+                        if (isCompleted == true) {
+                            let dis = setInterval(() => {
+                                if (appikon['discounts']['additional_discount_value'] != null && appikon['discounts']['additional_discount_value'] != 0) {
+                                    clearInterval(dis)
+                                    new Discount(document.querySelector('.slide_in__discount'), true).render()
+                                }
+                    
+                            }, 200);
+                        } else {
+                            new Discount(document.querySelector('.slide_in__discount'), completed).render()
+                        }
+                    }
+                }, 500)
+               
                
                 let bundle = false;
                 for (let i = 0; i < items.length; i++) {
@@ -1177,6 +1191,7 @@ class Discount {
                                     this.parent.querySelector('.slide_in__discount_message').innerHTML = window.appikon['discounts']['discount_code_error'].toLowerCase().replace(firstLetter.toLowerCase(),firstLetter.toUpperCase());
                                     this.parent.querySelector('.btn-purple').classList.remove('loading_discount')
                                     pushDataLayer('Visibility of error messages on discount code')
+                                    isCompleted = false;
                                 } 
                                 if (window.appikon['discounts']['additional_discount_value'] != null && window.appikon['discounts']['additional_discount_value'] != 0) {
                                     clearInterval(isDiscount)
@@ -1193,6 +1208,7 @@ class Discount {
                                     
                                     pushDataLayer('Visibility of applied code')
                                     new Discount(this.parent, true).render()
+                                    isCompleted = true;
                                 }
                         }, 100);
                     } else {
@@ -1221,6 +1237,7 @@ class Discount {
                 let deletedInterval = setInterval(() => {
                     if (window.appikon.discount_code == null) {
                         clearInterval(deletedInterval)
+                        isCompleted = false;
                         getCart(true)
                     }
                 })
