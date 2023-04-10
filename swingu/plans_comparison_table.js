@@ -7,6 +7,10 @@ const IMAGE_DIR_URL = 'https://conversionratestore.github.io/projects/swingu/img
 // Define CSS styles
 const style = /*html*/`
     <style>
+        .page-template-page-sections .main-container .main-column {
+            padding-bottom: 90px !important;
+        }
+
         .header-type-in-app,
         .price-comparison-table,
         .video-hero__content,
