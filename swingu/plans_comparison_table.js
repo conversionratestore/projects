@@ -124,20 +124,36 @@ const style = /*html*/`
             justify-content: space-between;
         }
 
+        .annual_checkbox_wrapper {
+            margin-bottom: 42px;
+            position: relative;
+        }
+
+        .monthly_checkbox_wrapper {
+            margin-bottom: 16px;
+        }
+
         .annual_checkbox_wrapper .plan_checkbox {
             width: 50%;
+            text-align: left;
         }
 
         .annual_checkbox_wrapper .plan_checkbox:first-child {
             margin-right: 10px;
         }
 
+        .monthly_checkbox_wrapper .plan_checkbox {
+            padding: 22px 16px;
+        }
+
         .plan_checkbox {
+            position: relative;
             background: #F5F8FA;
             border: 1px solid #D9E1E8;
             border-radius: 10px;
             padding: 16px;
             transition: all .3s ease-in-out;
+            z-index: 1;
         }
 
         .plan_checkbox.checkbox_active_plan {
@@ -153,6 +169,44 @@ const style = /*html*/`
         .plan_checkbox p {
             color: #2B2B2B;
             margin: 0;
+        }
+
+        .check_circle {
+            display: flex;
+            position: absolute;
+            top: 12px;
+            right: 12px;
+        }
+
+        .check_circle img {
+            width: 18px;
+            height: 18px;
+        }
+
+        .monthly_checkbox_wrapper .check_circle {
+            top: 22px;
+        }
+
+        .plan_checkbox:not(.checkbox_active_plan) .check_circle img:first-child {
+            display: none;
+        }
+
+        .plan_checkbox.checkbox_active_plan .check_circle img:last-child {
+            display: none;
+        }
+
+        .plan_checkbox p.free_trial {
+            position: absolute;
+            top: -11px;
+            left: 12px;
+            background: #FFC803;
+            border-radius: 28px;
+            padding: 4px 12px;
+            font-family: 'SF Pro Display', 'Roboto', sans-serif;
+            font-weight: 600;
+            font-size: 12px;
+            line-height: 14px;
+            color: #000000;
         }
 
         .plan_checkbox .title {
@@ -178,14 +232,64 @@ const style = /*html*/`
         }
 
         .plan_checkbox .month_price s {
+            color: #596974;
+        }
+
+        .plan_checkbox.checkbox_active_plan .month_price s {
             color: #D9D9D9;
+        }
+
+        .plan_checkbox p.price_off {
+            position: absolute;
+            top: 44px;
+            right: -1px;
+            font-family: 'SF Pro Display', 'Roboto', sans-serif;
+            font-weight: 600;
+            font-size: 12px;
+            line-height: 14px;
+            color: #2B2B2B;
+            padding: 5px;
+            background: #FFC803;
+            border-radius: 28px 0px 0px 28px;
+        }
+
+        .pro_pack_bottom {
+            position: absolute;
+            width: calc(50% - 6px);
+            left: 0;
+            bottom: -28px;
+            padding-top: 16px;
+            background: #F5F8FA;
+            border: 1px solid #F5F8FA;
+            border-radius: 0 0 10px 10px; 
+            transform: translateY(-100%);
+            transition: all .3s ease-in-out;  
+        } 
+
+        .pro_pack_bottom p {
+            font-family: 'SF Pro Display', 'Roboto', sans-serif;
+            font-weight: 400;
+            font-size: 12px;
+            line-height: 14px;
+            text-align: center;
+            letter-spacing: -0.01em;
+            color: #596974; 
+            margin-bottom: 6px;
+        }
+
+        .pro_pack_bottom p span {
+            font-weight: 600;
+        }
+
+        .checkbox_active_plan + .pro_pack_bottom {
+            transform: translateY(0);
         }
 
         /* TABLE */
 
         #plans_comparison_table {
             border-collapse: collapse;
-            margin: 16px 0 35px 20px;
+            margin: 0 0 35px 20px;
         }
 
         #plans_comparison_table th,
@@ -310,6 +414,20 @@ const style = /*html*/`
             letter-spacing: 0.38px;
             color: #FFFFFF;
         }
+
+        @media only screen and (max-width: 385px) {
+            .plan_checkbox p.price_off,
+            .pro_pack_bottom p {
+                font-size: 11px;
+            }
+        }
+
+        @media only screen and (max-width: 375px) {
+            .plan_checkbox p.price_off,
+            .pro_pack_bottom p {
+                font-size: 10px;
+            }
+        }
     </style>
 `
 
@@ -332,12 +450,25 @@ const content = /*html*/`
         </div>
         <div class="plans_checkbox_container show_annual">
             <div class="annual_checkbox_wrapper">
-                <div class="plan_checkbox checkbox_active_plan" data-pack="annual_pro">
+                <div class="plan_checkbox checkbox_active_plan" data-pack="annual_pro">                    
+                    <p class="free_trial">7-day Free Trial</p>
+                    <div class="check_circle">
+                        <img src="${IMAGE_DIR_URL}/check_circle_yellow_png.png" alt="">
+                        <img src="${IMAGE_DIR_URL}/ellipse.svg" alt="">
+                    </div>
                     <p class="title">Pro</p>
                     <p class="price"><b>$99.99</b>/year</p>
+                    <p class="price_off">58% OFF*</p>
                     <p class="month_price">(<s>$19.99</s> $8.33/month)</p>
                 </div>
+                <div class="pro_pack_bottom">
+                    <p><span>*58%</span> OFF compared to monthly</p>
+                </div>                
                 <div class="plan_checkbox" data-pack="annual_plus">
+                    <div class="check_circle">
+                        <img src="${IMAGE_DIR_URL}/check_circle_yellow_png.png" alt="">
+                        <img src="${IMAGE_DIR_URL}/ellipse.svg" alt="">
+                    </div>
                     <p class="title">Plus</p>
                     <p class="price"><b>$49.99</b>/year</p>
                     <p class="month_price">($4.16/month)</p>
@@ -345,9 +476,12 @@ const content = /*html*/`
             </div>
             <div class="monthly_checkbox_wrapper">
                 <div class="plan_checkbox checkbox_active_plan" data-pack="monthly_pro">
-                    <p class="title">Plus</p>
-                    <p class="price"><b>$49.99</b>/year</p>
-                    <p class="month_price">($4.16/month)</p>
+                    <div class="check_circle">
+                        <img src="${IMAGE_DIR_URL}/check_circle_yellow_png.png" alt="">
+                        <img src="${IMAGE_DIR_URL}/ellipse.svg" alt="">
+                    </div>
+                    <p class="title">Pro</p>
+                    <p class="price"><b>$19.99</b>/month</p>
                 </div>
             </div>
 
@@ -614,7 +748,7 @@ const waitForVideoSection = setInterval(() => {
 
         setTimeout(() => {
             clearInterval(waitForPlans)
-        }, 60000);
+        }, 60000)
 
         waitForElement('#plans_comparison_table').then(() => drawTable())
 
