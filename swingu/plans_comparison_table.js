@@ -287,6 +287,10 @@ const style = /*html*/`
 
         /* TABLE */
 
+        .plans_comparison_table_container {
+            border-top: 1px solid #F5F8FA;
+        }
+
         #plans_comparison_table {
             border-collapse: collapse;
             margin: 0 0 35px 20px;
