@@ -325,6 +325,7 @@ const style = /*html*/`
             font-weight: 700;
             font-size: 16px;
             line-height: 20px;
+            padding-bottom: 8px;
         }
 
         #plans_comparison_table tr th:nth-child(2) {
@@ -354,11 +355,17 @@ const style = /*html*/`
 
         #plans_comparison_table td:not(:first-child) {
             text-align: center;
+            vertical-align: middle;
+        }
+
+        #plans_comparison_table td:not(:first-child) img {
+            display: inline-block;
+            vertical-align: middle;
         }
 
         #plans_comparison_table th:first-child,
         #plans_comparison_table td:first-child {
-            padding-right: 20px;
+            padding-right: 16px;
             text-align: left;
         }
 
