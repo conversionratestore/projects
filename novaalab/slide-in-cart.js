@@ -811,10 +811,11 @@ function getCart(discountChange = false, cartDrawer = document.querySelector('.s
                     }
                 })
 
-                setTimeout(() => {
-                    if (discountChange == true && appikon['discounts'] != null) {
+                let findAppikon = setInterval(() => {
+                    if (appikon['discounts'] != null) {
+                        clearInterval(findAppikon)
                         let completed = appikon['discounts']['additional_discount_value'] != null && appikon['discounts']['additional_discount_value'] != 0 ? true : false;
-                        
+                            
                         if (isCompleted == true) {
                             let dis = setInterval(() => {
                                 if (appikon['discounts']['additional_discount_value'] != null && appikon['discounts']['additional_discount_value'] != 0) {
@@ -826,6 +827,7 @@ function getCart(discountChange = false, cartDrawer = document.querySelector('.s
                         } else {
                             new Discount(document.querySelector('.slide_in__discount'), completed).render()
                         }
+                        
                     }
                 }, 500)
                
@@ -1384,20 +1386,20 @@ let run = setInterval(() => {
             })
         })
         document.querySelector('.slide_in__to_checkout').addEventListener('click', (e) => {
-            e.preventDefault()
+            // e.preventDefault()
             let discountCode = document.querySelector('.slide_in__discount_completed') != null ? document.querySelector('.slide_in__discount_completed').innerHTML.trim() : '';
 
             console.log(discountCode)
          
-            if (discountCode != '') {
-                fetch(`https://novaalab.com/discount/${discountCode}`).then(function(response) {
-                    return response.text();
-                }).then(function(data) {
-                    window.location.href = '/checkout'
-                })
-            } else {
-                window.location.href = '/checkout'
-            }
+            // if (discountCode != '') {
+            //     fetch(`https://novaalab.com/discount/${discountCode}`).then(function(response) {
+            //         return response.text();
+            //     }).then(function(data) {
+            //         window.location.href = '/checkout'
+            //     })
+            // } else {
+                // window.location.href = '/checkout'
+            // }
             let objCart = []
             $.ajax({
                 'url' : '/cart?view=cw-cart',
