@@ -701,6 +701,10 @@ function getCart(discountChange = false, cartDrawer = document.querySelector('.s
                             cartDrawer.querySelector('.freeshipping').remove()
                         }
 
+                        if (cartDrawer.querySelector('.may_like') != null) {
+                            cartDrawer.querySelector('.may_like').remove()
+                        }
+                        
                         let mayLikeCreate = document.createElement('ul');
                         mayLikeCreate.classList.add('may_like')
                         mayLikeCreate.innerHTML = '<h4 class="fw-semi">You may also like</h4>'
