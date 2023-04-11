@@ -553,6 +553,7 @@ let productHaveBundle = {32854816784438:'', 39782656311350:'', 40322897838134:''
 let discountChange = true;
 let isCompleted;
 
+
 //comes into view
 function isScrolledIntoView(el) {
     if (document.querySelector(el) == null) return false
@@ -1386,6 +1387,13 @@ function toggleActive(method, eventNon = '') {
 let run = setInterval(() => {
     if (document.querySelector('#AccessibleNav > li:nth-child(3) > a') != null && document.querySelectorAll('.cart-link') && document.querySelectorAll('[data-key="product"] [name="add"]') && appikon != null && appikon['discounts'] != null) {
         clearInterval(run)
+
+        let isDiscount = setInterval(() => {
+            if (appikon['discounts'] != null && appikon['discounts']['additional_discount_value'] != null && appikon['discounts']['additional_discount_value'] != 0) {
+                clearInterval(isDiscount)
+                isCompleted = true
+            } 
+        })
 
         document.body.insertAdjacentHTML('afterbegin', styles);
         document.body.insertAdjacentHTML('beforeend', slideInCartHTML)
