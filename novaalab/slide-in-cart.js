@@ -849,7 +849,11 @@ function getCart(discountChange = false, cartDrawer = document.querySelector('.s
 
                         if (appikon['discounts']['additional_discount_value'] != null && appikon['discounts']['additional_discount_value'] != 0) {
                             isCompleted = true;
+
+                            console.log(appikon['discounts']['additional_discount_value'])
                         }
+
+                        console.log(isCompleted)
                         if (isCompleted == true) {
                             let completedIntervat = setInterval(() => {
                                 if (appikon['discounts']['additional_discount_value'] != null && appikon['discounts']['additional_discount_value'] != 0) {
@@ -866,7 +870,7 @@ function getCart(discountChange = false, cartDrawer = document.querySelector('.s
                             }, 200)
                         }
                     }
-                })
+                }, 500)
 
                 splititPopup(cartDrawer, document.querySelector('.splitit-iframe-popup'))
 
