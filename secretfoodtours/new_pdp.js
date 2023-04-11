@@ -74,7 +74,7 @@ header .main_menu {
 header .search_btn {
     width: 20px;
     height: 20px;
-    background: url(${dir}/search-icon.svg) no-repeat center / 100%;
+    background: url(${dir}search-icon.svg) no-repeat center / 100%;
     margin-left: 20px;
 }
 /* social-fixed  */
@@ -100,7 +100,7 @@ header .search_btn {
     padding: 0 20px;
     margin: 0 auto;
 }
-.tour-section .left {
+.tour-section > .container > div > .left {
     width: calc(100% - 342px);
     padding-right: 24px;
 }
@@ -185,7 +185,7 @@ header .search_btn {
 }
 /* right */
 .right-header {
-    padding: 16px 24px;
+    padding: 12px 24px;
 }
 .right-header h2 {
     font-family: 'Josefin Sans';
@@ -196,29 +196,49 @@ header .search_btn {
     white-space: nowrap;
     color: #C39958;
 }
-.right-header .price {
+.destination_page_wr .tour-intro .plugin_right .price.no-mobile {
+    display: none!important;
+}
+.right-header .price span, .destination_page_wr .tour-intro .plugin_right .price span {
     font-weight: 700;
     font-size: 32px;
     line-height: 1;
     color: #144732;
     text-align: right;
-}
-.right-header .price span span {
-    font-weight: 400;
-    font-size: 16px;
-    color: #A9A9A9;
     display: block;
 }
+.right-header .price, .destination_page_wr .tour-intro .plugin_right .price {
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 16px;
+    color: #A9A9A9;
+    display: block;
+    margin: 0;
+}
+.destination_page_wr .tour-intro .plugin_right .plugin {
+    margin: 0;
+}
+#plugin {
+    position: absolute;
+    top: 122px;
+    padding: 0!important;ч
+    border: 2px solid #F3F3F3;
+    border-radius: 20px;
+    max-width: 342px!important;
+}
+.destination_page_wr .tour-intro .plugin-col, .plugin-col {
+    position: inherit!important;
+}
 #plugin iframe {
-    width: calc(100% + 2px);
+    width: calc(100% + 2px)!important;
     margin: 0 -1px;
 }
 .right-content {
-    padding: 0 14px 14px;
+    padding: 0 16px 14px;
 }
 .right-content .btn-customer {
     font-size: 12px;
-    padding: 14px 13px 12px;
+    padding: 14px 13.5px 12px;
 }
 .link-customer {
     margin-bottom: 11px;
@@ -294,6 +314,7 @@ header .search_btn {
     position: relative;
     padding-bottom: 40px;
     margin-bottom: 24px;
+    max-width: 860px;
 }
 .tour-drinks::before {
     right: 0;
@@ -386,6 +407,7 @@ header .search_btn {
     border-radius: 20px;
     padding: 30px 40px;
     margin-bottom: 60px;
+    max-width: 860px;
 }
 .drinks .title {
     font-weight: 700;
@@ -435,6 +457,10 @@ header .search_btn {
 .content-text .text {
     margin-bottom: 14px;
 }
+.tour-do {
+    margin-bottom: 60px;
+    max-width: 860px;
+}
 .tour-do ul {
     background: #F3F3F3;
     border-radius: 20px;
@@ -477,6 +503,209 @@ header .search_btn {
 .tour-do .note, .tour-do .note strong {
     color: #5B5B5B; 
 }
+/* spot */
+.meeting-spot {
+    margin-bottom: 90px;
+}
+#spot_beer_tour_amsterdam {
+    font-family: 'Josefin Sans', sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 22px;
+    color: #5B5B5B;
+}
+.meeting-spot .notate {
+    border: 2px dashed #EBEBE7;
+    border-radius: 20px;
+    padding: 20px;
+    font-family: 'Josefin Sans';
+    font-style: normal;
+    font-weight: 300;
+    font-size: 16px;
+    line-height: 22px;
+    color: #5B5B5B;
+    margin: 24px 0;
+}
+.meeting-spot .grey_block {
+    background: #F3F3F3;
+    border: 2px solid #EBEBE7;
+    border-radius: 20px;
+    padding: 21px 30px; 
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 16px;
+}
+.meeting-spot .grey_block .left p {
+    font-family: 'Josefin Sans';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 24px;
+    text-transform: uppercase;
+    color: #333333;
+}
+.meeting-spot .grey_block .left .item {
+    display: flex;
+}
+.meeting-spot .grey_block .left .item:before {
+    content: '';
+    background: url('${dir}calendar.svg') no-repeat left top / 30px;
+    width: 30px;
+    height: 30px;
+    margin-right: 16px;
+}
+.meeting-spot .grey_block .left p span {
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+    color: #5B5B5B;
+    display: block;
+    margin-top: 5px;
+    text-transform: initial;
+}
+.meeting-spot .grey_block .right .item p span {
+    font-family: 'Josefin Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+    color: #333333;
+    position: relative;
+}
+.meeting-spot .grey_block .right .item p span:before {
+    content: '';
+    background: url('${dir}pin.svg') no-repeat center / contain;
+    width: 13px;
+    height: 16px;
+    position: absolute;
+    right: calc(100% + 10px);
+    top: 0;
+}
+.meeting-spot .grey_block .right .item p a {
+    font-family: 'Josefin Sans';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 24px;
+    text-decoration-line: underline;
+    color: #144732;
+    margin-top: 5px;
+    display: block;
+}
+.meeting-spot .grey_block .right .item p a:after {
+    content: '';
+    background: url('${dir}arrow.svg') no-repeat center / contain;
+    width: 6px;
+    height: 11px;
+    margin-left: 8px;
+}
+.meeting-spot__left {
+    width: calc(100% - 420px);
+    padding-top: 19px;
+    padding-right: 20px;
+}
+.meeting-spot__right {
+    width: 420px;
+}
+
+.meeting-spot__covid, .meeting-spot__contact {
+    border: 2px solid #EBEBE7;
+    border-radius: 20px;
+    padding: 24px;
+    min-height: 230px;
+}
+.meeting-spot__covid {
+    margin-bottom: 24px;
+}
+.meeting-spot__covid .main_subheading {
+    font-family: 'Josefin Sans';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 32px;
+    text-transform: uppercase;
+    color: #333333;
+    display: flex;
+    margin-bottom: 20px;
+}
+.meeting-spot__contact {
+    display: flex;
+    flex-direction: column;
+}
+.meeting-spot__covid img {
+    display: none;
+}
+.meeting-spot__covid .main_subheading img {
+    margin-right: 19px;
+    width: 64px;
+    height: auto;
+    display: block;
+}
+.meeting-spot__covid .text {
+    font-size: 16px;
+    line-height: 22px;
+    color: #5B5B5B;
+}
+.meeting-spot__covid .buy-covid {
+    border: 2px solid #144732;
+    border-radius: 49px;
+    font-family: 'Josefin Sans';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 16px;
+    padding: 16px 5px 12px;
+    width: 100%;
+    text-transform: uppercase;
+    color: #144732;
+    background: transparent;
+    margin-top: 24px;
+}
+.meeting-spot__contact .title-guide {
+    font-size: 16px;
+    line-height: 32px;
+    color: #333333;
+}
+.meeting-spot__contact .name {
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 32px;
+    text-transform: uppercase;
+    color: #C39958;
+}
+.meeting-spot__contact .PT_link_black {
+    background: transparent;
+    max-width: 100%;
+    margin-top: auto;
+}
+.meeting-spot__contact .PT_link_black a {
+    background: #144732;
+    border-radius: 49px;
+    width: 100%;
+    display: block;
+    font-family: 'Josefin Sans';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 16px;
+    text-transform: uppercase;
+    color: #FFFFFF;
+    text-align: center;
+    padding: 18px 16px 14px!important;
+}
+/* video-section */
+.video-section h2 {
+    font-family: 'Josefin Sans';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 30px;
+    line-height: 48px;
+    margin-bottom: 26px;
+    text-transform: uppercase;
+    color: #333333;
+    margin-bottom: 90px;
+}
 </style>`
 
 let init = setInterval(() => {
@@ -516,60 +745,68 @@ let init = setInterval(() => {
             </a>
         </div>
         <section class="tour-section">
-            <div class="container d-flex flex-wrap">
-                <div class="left">
-                    <ul class="breadcrumbs-customer"></ul>
-                    <div class="d-flex align-items-center">
-                        <h1></h1>
-                        <div class="best-seller">Best seller</div>
-                    </div>
-                    <div class="rating"></div>
-                    <div class="gallery d-flex align-items-end">
-                        <div class="d-flex align-items-center justify-content-between w-100">
-                            <button type="button" class="btn-gallery">
-                                <svg width="16" height="13" viewBox="0 0 16 13" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M13.125 11.125H3.9375C2.70703 11.125 1.75 10.168 1.75 8.9375V3.25H1.3125C0.574219 3.25 0 3.85156 0 4.5625V11.5625C0 12.3008 0.574219 12.875 1.3125 12.875H11.8125C12.5234 12.875 13.125 12.3008 13.125 11.5625V11.125ZM15.75 8.9375V1.9375C15.75 1.22656 15.1484 0.625 14.4375 0.625H3.9375C3.19922 0.625 2.625 1.22656 2.625 1.9375V8.9375C2.625 9.67578 3.19922 10.25 3.9375 10.25H14.4375C15.1484 10.25 15.75 9.67578 15.75 8.9375ZM7 3.25C7 3.98828 6.39844 4.5625 5.6875 4.5625C4.94922 4.5625 4.375 3.98828 4.375 3.25C4.375 2.53906 4.94922 1.9375 5.6875 1.9375C6.39844 1.9375 7 2.53906 7 3.25ZM4.375 7.1875L5.87891 5.68359C6.01562 5.54688 6.20703 5.54688 6.34375 5.68359L7.4375 6.75L11.1289 3.05859C11.2656 2.92188 11.457 2.92188 11.5938 3.05859L14 5.4375V8.5H4.375V7.1875Z" fill="white"/>
-                                </svg>
-                                Watch gallery
-                            </button>
-                            <div class="d-flex align-items-center">
-                                <button type="button" class="btn-arrow btn-arrow-prev d-flex">
-                                    <svg class="m-auto" width="9" height="14" viewBox="0 0 9 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M8 1L2 7L8 13" stroke="white" stroke-width="2" stroke-linecap="round"/>
+            <div class="container">
+                <div class="d-flex flex-wrap">
+                    <div class="left">
+                        <ul class="breadcrumbs-customer"></ul>
+                        <div class="d-flex align-items-center">
+                            <h1></h1>
+                            <div class="best-seller">Best seller</div>
+                        </div>
+                        <div class="rating"></div>
+                        <div class="gallery d-flex align-items-end">
+                            <div class="d-flex align-items-center justify-content-between w-100">
+                                <button type="button" class="btn-gallery">
+                                    <svg width="16" height="13" viewBox="0 0 16 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M13.125 11.125H3.9375C2.70703 11.125 1.75 10.168 1.75 8.9375V3.25H1.3125C0.574219 3.25 0 3.85156 0 4.5625V11.5625C0 12.3008 0.574219 12.875 1.3125 12.875H11.8125C12.5234 12.875 13.125 12.3008 13.125 11.5625V11.125ZM15.75 8.9375V1.9375C15.75 1.22656 15.1484 0.625 14.4375 0.625H3.9375C3.19922 0.625 2.625 1.22656 2.625 1.9375V8.9375C2.625 9.67578 3.19922 10.25 3.9375 10.25H14.4375C15.1484 10.25 15.75 9.67578 15.75 8.9375ZM7 3.25C7 3.98828 6.39844 4.5625 5.6875 4.5625C4.94922 4.5625 4.375 3.98828 4.375 3.25C4.375 2.53906 4.94922 1.9375 5.6875 1.9375C6.39844 1.9375 7 2.53906 7 3.25ZM4.375 7.1875L5.87891 5.68359C6.01562 5.54688 6.20703 5.54688 6.34375 5.68359L7.4375 6.75L11.1289 3.05859C11.2656 2.92188 11.457 2.92188 11.5938 3.05859L14 5.4375V8.5H4.375V7.1875Z" fill="white"/>
                                     </svg>
+                                    Watch gallery
                                 </button>
-                                <p class="gallery-count">1/6</p>
-                                <button type="button" class="btn-arrow btn-arrow-next d-flex">
-                                    <svg class="m-auto" width="9" height="14" viewBox="0 0 9 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M0.999999 13L7 7L1 1" stroke="white" stroke-width="2" stroke-linecap="round"/>
-                                    </svg>
-                                </button>
+                                <div class="d-flex align-items-center">
+                                    <button type="button" class="btn-arrow btn-arrow-prev d-flex">
+                                        <svg class="m-auto" width="9" height="14" viewBox="0 0 9 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M8 1L2 7L8 13" stroke="white" stroke-width="2" stroke-linecap="round"/>
+                                        </svg>
+                                    </button>
+                                    <p class="gallery-count">1/6</p>
+                                    <button type="button" class="btn-arrow btn-arrow-next d-flex">
+                                        <svg class="m-auto" width="9" height="14" viewBox="0 0 9 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M0.999999 13L7 7L1 1" stroke="white" stroke-width="2" stroke-linecap="round"/>
+                                        </svg>
+                                    </button>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="descr "> 
-                        <div class="row "> </div>
-                    </div>
-                    <div class="brands">
-                        <img src="${dir}/brands.png" alt="">
-                    </div>
-                    <div class="tour-do"></div>
-                    <div class="meeting-spot"> 
-                        <div class=" row">
-                            <div class="col-8">
-                                <h2 class="title">Meeting spot</h2>
-
-                            </div>
-                            <div class="col-4"></div>
+                        <div class="descr "> 
+                            <div class="row "> </div>
                         </div>
+                        <div class="brands">
+                            <img src="${dir}/brands.png" alt="">
+                        </div>
+                        <div class="tour-do"></div>
+                        
                     </div>
-                    
+                    <div class="right"> </div>
                 </div>
-                <div class="right"> </div>
+
+                <div class="meeting-spot"> 
+                    <div class="d-flex flex-wrap">
+                        <div class="meeting-spot__left">
+                            <h2 class="title">Meeting spot</h2>
+                        </div>
+                        <div class="meeting-spot__right">
+                            <div class="meeting-spot__covid"></div>
+                            <div class="meeting-spot__contact"></div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </section>
         `)
 
+        let tourLeft = document.querySelector('.tour-section > .container > div > .left');
+        document.querySelector('#plugin').style = `left: ${tourLeft.offsetLeft + tourLeft.clientWidth}px`
+        
         document.querySelector('.tour-section .breadcrumbs-customer').innerHTML = document.querySelector('.breadcrumbs ul').innerHTML; //breadcrumb
         document.querySelector('.tour-section h1').innerHTML = document.querySelector('h1.dest_title').innerHTML; //title
 
@@ -636,7 +873,7 @@ let init = setInterval(() => {
                 </div>
             </div>`)
         // document.querySelector('.right-header').after(document.querySelector('.plugin'));
-        document.querySelector('.right-header .price').innerHTML = document.querySelector('#plugin .price') != null ? document.querySelector('#plugin .price').innerHTML.replace('/','') : '';
+        document.querySelector('.right-header .price').innerHTML = document.querySelector('#plugin .price.no-mobile') != null ? `${document.querySelector('#plugin .price.no-mobile').innerHTML.split('/ ')[0]} per adult` : '';
 
         document.querySelector('#plugin [style="background-color: #0a88ff; padding:10px;"]') != null ? document.querySelector('.right-header').after(document.querySelector('#plugin [style="background-color: #0a88ff; padding:10px;"]')) : ''
         
@@ -756,7 +993,7 @@ let tourDo = setInterval(() => {
 });
 
 let meeting_spot = setInterval(() => {
-    if (document.querySelector('.notate') != null) {
+    if (document.querySelector('.notate') != null && document.querySelector('.tour-features .covid') != null && document.querySelector('.tour-features .contact_info') != null) {
         clearInterval(meeting_spot)
         document.querySelector('.meeting-spot .title').after(document.querySelector('.notate'))
         document.querySelector('.meeting-spot .title').after(document.querySelector('#spot_beer_tour_amsterdam'))
@@ -770,6 +1007,26 @@ let meeting_spot = setInterval(() => {
             document.querySelector('.notate').insertAdjacentHTML('afterend',`<div class="grey_block"> ${item.innerHTML}</div>`)
         })
 
+        document.querySelector('.meeting-spot__covid').innerHTML = document.querySelector('.tour-features .covid').innerHTML;
+        document.querySelector('.meeting-spot__contact').innerHTML = document.querySelector('.tour-features .contact_info').innerHTML;
+
+        document.querySelector('.meeting-spot__covid .main_subheading').insertAdjacentHTML('afterbegin', document.querySelector('.meeting-spot__covid [alt="good to go logo"]').parentElement.innerHTML)
+        
+
     }
 })
+
+let video = setInterval(() => {
+    if (document.querySelector('.youtube[data-embed]') != null) {
+        clearInterval(video)
+        let embed = document.querySelector('.youtube[data-embed]').dataset.embed;
+        let linkVideo = `https://www.youtube.com/embed/${embed}`
+        
+        document.querySelector('.meeting-spot').insertAdjacentHTML('afterend',`
+        <div class="video-section">
+            <h2>VIDEO OF SECRET FOOD TOUR: MONTMARTRE</h2>
+            <iframe width="1080" height="715" src="${linkVideo}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+        </div>`)
+    }
+});
 
