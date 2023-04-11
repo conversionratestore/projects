@@ -620,6 +620,8 @@ const checkVisibilityAfterMs = (el) => { // Checks element visibility after a sp
             if (entry.isIntersecting) {
                 timer = setTimeout(() => {
                     if (el.classList.contains('video-hero__player')) {
+                        observer.disconnect()
+
                         sendGAEvent({
                             'event': 'event-to-ga4',
                             'event_name': 'exp_pick_a_plan_video_visibility',
@@ -629,6 +631,8 @@ const checkVisibilityAfterMs = (el) => { // Checks element visibility after a sp
                         })
                     }
                     if (el.classList.contains('testimonials')) {
+                        observer.disconnect()
+
                         sendGAEvent({
                             'event': 'event-to-ga4',
                             'event_name': 'exp_pick_a_plan_review_visibility',
@@ -638,6 +642,8 @@ const checkVisibilityAfterMs = (el) => { // Checks element visibility after a sp
                         })
                     }
                 }, 2000)
+            } else {
+                clearTimeout(timer)
             }
         })
     }, config)
@@ -754,7 +760,7 @@ const waitForVideoSection = setInterval(() => {
                         if (selectedPack === 'annual_pro') {
                             document.querySelector('[data-cta-product-id*="swingu_pro.yearly"] a').dispatchEvent(new Event('click'))
                         } else {
-                            document.querySelector('[data-cta-product-id*="swingu_plus.yearly"] a').dispatchEvent(new Event('click'))                            
+                            document.querySelector('[data-cta-product-id*="swingu_plus.yearly"] a').dispatchEvent(new Event('click'))
                         }
                     }
                 })
