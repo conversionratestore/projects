@@ -1,6 +1,6 @@
 // -------------------------------------
 // CONSTANTS
-// -------------------------------------
+// ------------------------------------
 const WAIT_INTERVAL_TIMEOUT = 100
 const IMAGE_DIR_URL = 'https://conversionratestore.github.io/projects/swingu/img'
 
