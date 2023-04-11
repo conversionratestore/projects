@@ -622,6 +622,32 @@ function updateCart(id, qty = 0) {
         });
 }
 
+function splititPopup(cartParent, parentSplitit) {
+
+    let subtotal = +cartParent.querySelector(`.slide_in__subtotal`).dataset.subtotal;
+    let discountValue = 0;
+    if (cartParent.querySelector('.slide_in__discount_completed') != null && window.appikon['discounts']['additional_discount_value'] != null) {
+        discountValue = window.appikon['discounts']['additional_discount_value']
+    } else {
+        discountValue = +cartParent.querySelector(`.slide_in__subtotal`).dataset.discount;
+    }
+    let sum = (subtotal - discountValue).toFixed(2);
+    let onePayment = (sum / 6).toFixed(2);
+    let compare = +cartParent.querySelector(`.slide_in__subtotal .compare`).innerHTML.replace('$','');
+
+    cartParent.querySelector(`.slide_in__subtotal .pr`).innerHTML = '$'+sum;
+    cartParent.querySelector(`.slide_in__saved`).innerHTML = 'You just saved $' + (compare - sum).toFixed(2);
+    cartParent.querySelector('.slide_in__splitit p > span').innerHTML = onePayment;
+
+
+    cartParent.querySelector('.slide_in__header p').classList.remove('loading')
+
+    parentSplitit.querySelector('.total__splitit').innerHTML = `$`+sum;
+    parentSplitit.querySelectorAll('.payment__splitit').forEach(item => {
+        item.innerHTML = '$'+onePayment;
+    })
+}
+
 function getCart(discountChange = false, cartDrawer = document.querySelector('.slide_in__cart')) {
     // get cart
     cartDrawer.querySelector('.slide_in__header > p').classList.add('loading')
@@ -644,8 +670,6 @@ function getCart(discountChange = false, cartDrawer = document.querySelector('.s
             cartDrawer.querySelector('.slide_in__bundle').innerHTML = '';
             cartDrawer.querySelector('.slide_in__bundle').style.display = 'none';
             cartDrawer.querySelector('.slide_in__header > p span').innerHTML = itemCount;
-
-            cartDrawer.querySelector('.slide_in__header > p').classList.remove('loading')
             cartDrawer.querySelector('.slide_in__discount').classList.remove('error')
             
             if (cartDrawer.querySelector('.may_like') != null) {
@@ -673,6 +697,7 @@ function getCart(discountChange = false, cartDrawer = document.querySelector('.s
                 if (cartDrawer.querySelector('.freeshipping') != null) {
                     cartDrawer.querySelector('.freeshipping').remove()
                 }
+
                 let mayLikeCreate = document.createElement('ul');
                 mayLikeCreate.classList.add('may_like')
                 mayLikeCreate.innerHTML = '<h4 class="fw-semi">You may also like</h4>'
@@ -732,14 +757,18 @@ function getCart(discountChange = false, cartDrawer = document.querySelector('.s
                     totalPrice += qty * price;
                     compareTotalPrice += qty * compare;
                 })
-                let freeShippingPrice = cartDrawer.querySelector('.slide_in__discount_item') != null ? +cartDrawer.querySelector('.slide_in__discount_item').innerHTML.split('$')[1] : 0
-                let priceSplitit = ((totalPrice - freeShippingPrice)/6).toFixed(2)
+                let discountValue = cartDrawer.querySelector('.slide_in__discount_item') != null && appikon['discounts']['additional_discount_value'] != null ? appikon['discounts']['additional_discount_value'] : 0
+                let priceSplitit = ((totalPrice - discountValue)/6).toFixed(2)
 
-                cartDrawer.querySelector('.slide_in__subtotal .pr').innerHTML = '$' + (totalPrice - freeShippingPrice).toFixed(2);
+                console.log(discountValue)
+                cartDrawer.querySelector('.slide_in__subtotal .pr').innerHTML = '$' + (totalPrice - discountValue).toFixed(2);
+                cartDrawer.querySelector('.slide_in__subtotal').dataset.subtotal = totalPrice.toFixed(2);
+                cartDrawer.querySelector('.slide_in__subtotal').dataset.discount = discountValue;
+
                 cartDrawer.querySelector('.slide_in__subtotal .compare').innerHTML = '$' + compareTotalPrice.toFixed(2);
-                cartDrawer.querySelector('.slide_in__saved').innerHTML = 'You just saved $' + (compareTotalPrice - totalPrice - freeShippingPrice).toFixed(2);
+                cartDrawer.querySelector('.slide_in__saved').innerHTML = 'You just saved $' + (compareTotalPrice - totalPrice - discountValue).toFixed(2);
                            
-                cartDrawer.querySelector('.slide_in__splitit').innerHTML = `<p class="flx">Pay $${priceSplitit}/month with 
+                cartDrawer.querySelector('.slide_in__splitit').innerHTML = `<p class="flx">Pay $<span>${priceSplitit}</span>/month with 
                 <img src="https://conversionratestore.github.io/projects/novaalab/img/splitit.svg" alt="splitit image"><a href="#">Learn more</a></p>`
                 
                 cartDrawer.querySelector('.slide_in__total').style = '';
@@ -748,6 +777,7 @@ function getCart(discountChange = false, cartDrawer = document.querySelector('.s
                 if (document.querySelector('.splitit-iframe-popup') != null) {
                     document.querySelector('.splitit-iframe-popup').remove()
                 } 
+
                 cartDrawer.insertAdjacentHTML('afterend', `
                 <div class="splitit-iframe-popup">
                     <style>.splitit-modal.svelte-1yc61tn{position:relative;height:-moz-fit-content;height:fit-content;width:100%;max-width:56rem;overflow:hidden;border-width:1px;--tw-bg-opacity:1;background-color:rgb(255 255 255 / var(--tw-bg-opacity));padding:0}@media (min-width: 600px){.splitit-modal.svelte-1yc61tn{width:83.333333%;border-radius:.5rem;padding-top:2rem;--tw-shadow:0 4px 10px rgb(0 0 0 / 25%);--tw-shadow-colored:0 4px 10px var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000),var(--tw-ring-shadow, 0 0 #0000),var(--tw-shadow)}}.splitit-modal-wrapper.svelte-1yc61tn{position:absolute;inset:0;display:flex;justify-content:center;background-color:#f3f4f6b3;padding:0}@media (min-width: 600px){.splitit-modal-wrapper.svelte-1yc61tn{overflow:auto;padding-top:20px;padding-bottom:20px}}
@@ -758,7 +788,7 @@ function getCart(discountChange = false, cartDrawer = document.querySelector('.s
                     <link href="https://documents.production.splitit.com/_app/immutable/assets/_page.4dc6b50c.css" rel="stylesheet">
                     <link href="https://documents.production.splitit.com/_app/immutable/assets/InfoContainerV2.ce274ac5.css" rel="stylesheet">
                     <link href="https://documents.production.splitit.com/_app/immutable/assets/Loader.588f1967.css" rel="stylesheet">
-                    <div class="h-full w-full overflow-auto"> <main class="h-full w-full"><div class="h-full w-full font-noto"><div class="svelte-1yc61tn splitit-modal-wrapper"><div class="flex w-full flex-col bg-bg-pale sm:bg-white sm:pt-4 svelte-1yc61tn splitit-modal"><img src="https://documents.production.splitit.com/assets/svgs/close.svg" alt="close" class="absolute right-2 top-2 z-10 hidden cursor-pointer sm:block"> <img src="https://documents.production.splitit.com/assets/svgs/back.svg" alt="back" class="absolute top-5 left-5 z-10 sm:hidden"> <div class="hidden items-center px-4 sm:flex sm:px-10"><div class="mr-4 flex h-10 w-10 justify-center rounded-full bg-secondary/30"><img src="https://documents.production.splitit.com/assets/svgs/split.svg" alt="split" class="w-6"></div> <div class="pl-16 text-2xl font-semibold text-black sm:pl-0">Мonthly payments on your credit card </div></div> <div class="flex h-16 w-full items-center bg-main-dark px-5 sm:hidden"><div class="text-white pl-16"> </div></div> <div class="bg-bg-lighter py-5 sm:bg-white"><section class="text-lg"><div class="flex items-start px-4 text-base text-text-dark sm:px-10 sm:text-lg"><img src="https://documents.production.splitit.com/assets/svgs/split.svg" alt="split" class="mr-1 sm:hidden"> <p class="leading-5">Use your existing credit card to split your purchase into smaller payment amounts.</p></div> <section class="px-4 sm:px-10"><p class="pt-3 text-base font-bold text-text-dark sm:text-lg">How does it work?</p> <div class="grid grid-cols-1 py-3 sm:grid-cols-4 sm:pt-3 sm:pb-0"><div class="my-2 flex items-center sm:my-0 sm:flex-col"><div class="order-1 mr-4 flex h-8 w-8 min-w-[32px] items-center justify-center rounded-full bg-secondary/40 text-base font-bold text-black sm:order-2 sm:bg-transparent">1</div> <img src="https://documents.production.splitit.com/assets/svgs/select_step.svg" alt="select_step" class="order-1 h-20 w-20"> <div class="order-3 flex flex-col items-start text-left text-sm sm:items-center sm:text-center"><div class="my-1 mx-2 text-sm-center">Add your item(s) to cart </div>  <div class="my-1 mx-2 flex items-center rounded bg-secondary-light pt-1 pl-1 pb-2 pr-2 sm:my-0 sm:mx-0"><img src="https://documents.production.splitit.com/assets/svgs/split.svg" alt="split"> <div class="pt-1 pl-[2px] text-left"><div class="text-xs font-medium leading-2 text-main-dark">Monthly</div> <div class="text-xs font-medium leading-2 text-main-dark">Рayments</div></div></div></div> </div><div class="my-2 flex items-center sm:my-0 sm:flex-col"><div class="order-1 mr-4 flex h-8 w-8 min-w-[32px] items-center justify-center rounded-full bg-secondary/40 text-base font-bold text-black sm:order-2 sm:bg-transparent">2</div> <img src="https://documents.production.splitit.com/assets/svgs/pay_step.svg" alt="pay_step" class="order-1 h-20 w-20"> <div class="order-3 flex flex-col items-start text-left text-sm sm:items-center sm:text-center"><div class="my-1 mx-2 text-sm-center">Enter your credit card details </div>  </div> </div><div class="my-2 flex items-center sm:my-0 sm:flex-col"><div class="order-1 mr-4 flex h-8 w-8 min-w-[32px] items-center justify-center rounded-full bg-secondary/40 text-base font-bold text-black sm:order-2 sm:bg-transparent">3</div> <img src="https://documents.production.splitit.com/assets/svgs/choose_step.svg" alt="choose_step" class="order-1 h-20 w-20"> <div class="order-3 flex flex-col items-start text-left text-sm sm:items-center sm:text-center"><div class="my-1 mx-2 text-sm-center">Choose the number of installments </div>  </div> </div><div class="my-2 flex items-center sm:my-0 sm:flex-col"><div class="order-1 mr-4 flex h-8 w-8 min-w-[32px] items-center justify-center rounded-full bg-secondary/40 text-base font-bold text-black sm:order-2 sm:bg-transparent">4</div> <img src="https://documents.production.splitit.com/assets/svgs/held_step.svg" alt="held_step" class="order-1 h-20 w-20"> <div class="order-3 flex flex-col items-start text-left text-sm sm:items-center sm:text-center"><div class="my-1 mx-2 text-sm-center">Make your first payment. </div>  </div> </div></div></section> <div class="px-4 sm:mt-4 sm:px-10"><div class="flex flex-col items-center justify-center rounded bg-main-pale/30 py-3 text-center text-sm text-main-dark sm:flex-row sm:bg-secondary-light sm:text-base"> <span class="mx-2">No new loans</span> <p class="h-[6px] w-[6px] rounded-full bg-black"></p> <span class="mx-2">No applications</span> <p class="h-[6px] w-[6px] rounded-full bg-black"></p> <span class="mx-2">No additional interest or fees</span> </div></div> <div class="py-4 svelte-41engz"><div><section class="flex justify-center"><div class="grid w-full max-w-3xl grid-rows-1 gap-1 px-4 pb-4 sm:grid-cols-4 sm:gap-4 sm:pb-2 md:w-[750px] svelte-5no3ze grid-cols-1 md:px-10"><section class="cursor-pointer sm:col-span-2 svelte-5no3ze single-option"><div class="h-full rounded-lg border border-gray-border px-3 py-4 text-main-dark transition svelte-5no3ze"><p class="block text-sm sm:flex sm:text-base"><span class="pr-1">$${priceSplitit}</span> <span>/month</span></p> <p class="text-xs sm:text-base"><span class="lowercase">6 Рayments</span></p></div> </section></div></section> <section class="flex w-full flex-col space-y-2 xl:max-w-4xl"><div class="grid grid-cols-1 gap-4 bg-white px-4 sm:px-10 md:py-4 sm:grid-cols-4 md:px-32"><section class="flex flex-col justify-between rounded p-3 pr-5 sm:bg-gray-bg sm:py-3 sm:pl-6 svelte-1kctpzc notSelected single"><div class="text-sm"><div class="svelte-1kctpzc"><div class="grid grid-cols-4 py-1"><div class="col-span-3 flex"><p class="mr-1 flex font-bold"><span>1</span> <span class="text-xs">st</span></p> <span class="font-bold capitalize">now</span></div> <span class="">$${priceSplitit}</span> </div><div class="grid grid-cols-4 py-1"><div class="col-span-3 flex"><p class="mr-1 flex font-bold"><span>2</span> <span class="text-xs">nd</span></p> <span class="ml-1">payment</span></div> <span class="">$${priceSplitit}</span> </div><div class="grid grid-cols-4 py-1"><div class="col-span-3 flex"><p class="mr-1 flex font-bold"><span>3</span> <span class="text-xs">rd</span></p> <span class="ml-1">payment</span></div> <span class="">$${priceSplitit}</span> </div><div class="grid grid-cols-4 py-1"><div class="col-span-3 flex"><p class="mr-1 flex font-bold"><span>4</span> <span class="text-xs">th</span></p> <span class="ml-1">payment</span></div> <span class="">$${priceSplitit}</span> </div><div class="grid grid-cols-4 py-1"><div class="col-span-3 flex"><p class="mr-1 flex font-bold"><span>5</span> <span class="text-xs">th</span></p> <span class="ml-1">payment</span></div> <span class="">$${priceSplitit}</span> </div><div class="grid grid-cols-4 py-1"><div class="col-span-3 flex"><p class="mr-1 flex font-bold"><span>6</span> <span class="text-xs">th</span></p> <span class="ml-1">payment</span></div> <span class="">$${priceSplitit}</span> </div></div></div> <div class="grid grid-cols-4 items-center border-gray-border sm:border-t sm:pt-2"><span class="col-span-2 text-sm font-bold sm:font-normal">Total</span> <span class="col-span-2 text-sm font-bold sm:text-base flex justify-end pr-2">$${(totalPrice-freeShippingPrice).toFixed(2)}</span></div></section></div></section></div></div></section></div> <section class="bg-bg-lighter px-5 sm:flex sm:flex-col sm:bg-white sm:px-10"><div class="border-gray-border pt-2 text-sm opacity-70 sm:order-2 sm:border-t">Things you need to know:</div> <div class="pb-2 text-xs opacity-50 sm:order-3"> <p class="pb-1">* Payments will be made automatically according to your agreed installment schedule. You must maintain sufficient available funds on your card until the plan is completed.</p> <p>* We will not charge you interest or fees. Your standard credit card terms and conditions apply.</p></div> <div class="flex items-end justify-between pb-4 sm:order-1"><div class="flex flex-col items-center text-center text-xs text-text-dark xsm:flex-row xsm:space-x-1 sm:items-end sm:pb-1 sm:text-base"><div>Powered by</div> <img src="https://documents.production.splitit.com/assets/svgs/logo.svg" alt="logo" class="mt-[2px] mr-0 w-11 sm:ml-2 sm:w-[75px]"></div> <div class="ml-2 min-w-[180px] cursor-pointer rounded bg-black px-4 py-2 text-center text-base font-bold text-white sm:px-5 sm:py-3">Continue shopping</div></div></section></div></div></div></main> <div id="svelte-announcer" aria-live="assertive" aria-atomic="true" style="position: absolute; left: 0px; top: 0px; clip: rect(0px, 0px, 0px, 0px); clip-path: inset(50%); overflow: hidden; white-space: nowrap; width: 1px; height: 1px;"></div></div>
+                    <div class="h-full w-full overflow-auto"> <main class="h-full w-full"><div class="h-full w-full font-noto"><div class="svelte-1yc61tn splitit-modal-wrapper"><div class="flex w-full flex-col bg-bg-pale sm:bg-white sm:pt-4 svelte-1yc61tn splitit-modal"><img src="https://documents.production.splitit.com/assets/svgs/close.svg" alt="close" class="absolute right-2 top-2 z-10 hidden cursor-pointer sm:block"> <img src="https://documents.production.splitit.com/assets/svgs/back.svg" alt="back" class="absolute top-5 left-5 z-10 sm:hidden"> <div class="hidden items-center px-4 sm:flex sm:px-10"><div class="mr-4 flex h-10 w-10 justify-center rounded-full bg-secondary/30"><img src="https://documents.production.splitit.com/assets/svgs/split.svg" alt="split" class="w-6"></div> <div class="pl-16 text-2xl font-semibold text-black sm:pl-0">Мonthly payments on your credit card </div></div> <div class="flex h-16 w-full items-center bg-main-dark px-5 sm:hidden"><div class="text-white pl-16"> </div></div> <div class="bg-bg-lighter py-5 sm:bg-white"><section class="text-lg"><div class="flex items-start px-4 text-base text-text-dark sm:px-10 sm:text-lg"><img src="https://documents.production.splitit.com/assets/svgs/split.svg" alt="split" class="mr-1 sm:hidden"> <p class="leading-5">Use your existing credit card to split your purchase into smaller payment amounts.</p></div> <section class="px-4 sm:px-10"><p class="pt-3 text-base font-bold text-text-dark sm:text-lg">How does it work?</p> <div class="grid grid-cols-1 py-3 sm:grid-cols-4 sm:pt-3 sm:pb-0"><div class="my-2 flex items-center sm:my-0 sm:flex-col"><div class="order-1 mr-4 flex h-8 w-8 min-w-[32px] items-center justify-center rounded-full bg-secondary/40 text-base font-bold text-black sm:order-2 sm:bg-transparent">1</div> <img src="https://documents.production.splitit.com/assets/svgs/select_step.svg" alt="select_step" class="order-1 h-20 w-20"> <div class="order-3 flex flex-col items-start text-left text-sm sm:items-center sm:text-center"><div class="my-1 mx-2 text-sm-center">Add your item(s) to cart </div>  <div class="my-1 mx-2 flex items-center rounded bg-secondary-light pt-1 pl-1 pb-2 pr-2 sm:my-0 sm:mx-0"><img src="https://documents.production.splitit.com/assets/svgs/split.svg" alt="split"> <div class="pt-1 pl-[2px] text-left"><div class="text-xs font-medium leading-2 text-main-dark">Monthly</div> <div class="text-xs font-medium leading-2 text-main-dark">Рayments</div></div></div></div> </div><div class="my-2 flex items-center sm:my-0 sm:flex-col"><div class="order-1 mr-4 flex h-8 w-8 min-w-[32px] items-center justify-center rounded-full bg-secondary/40 text-base font-bold text-black sm:order-2 sm:bg-transparent">2</div> <img src="https://documents.production.splitit.com/assets/svgs/pay_step.svg" alt="pay_step" class="order-1 h-20 w-20"> <div class="order-3 flex flex-col items-start text-left text-sm sm:items-center sm:text-center"><div class="my-1 mx-2 text-sm-center">Enter your credit card details </div>  </div> </div><div class="my-2 flex items-center sm:my-0 sm:flex-col"><div class="order-1 mr-4 flex h-8 w-8 min-w-[32px] items-center justify-center rounded-full bg-secondary/40 text-base font-bold text-black sm:order-2 sm:bg-transparent">3</div> <img src="https://documents.production.splitit.com/assets/svgs/choose_step.svg" alt="choose_step" class="order-1 h-20 w-20"> <div class="order-3 flex flex-col items-start text-left text-sm sm:items-center sm:text-center"><div class="my-1 mx-2 text-sm-center">Choose the number of installments </div>  </div> </div><div class="my-2 flex items-center sm:my-0 sm:flex-col"><div class="order-1 mr-4 flex h-8 w-8 min-w-[32px] items-center justify-center rounded-full bg-secondary/40 text-base font-bold text-black sm:order-2 sm:bg-transparent">4</div> <img src="https://documents.production.splitit.com/assets/svgs/held_step.svg" alt="held_step" class="order-1 h-20 w-20"> <div class="order-3 flex flex-col items-start text-left text-sm sm:items-center sm:text-center"><div class="my-1 mx-2 text-sm-center">Make your first payment. </div>  </div> </div></div></section> <div class="px-4 sm:mt-4 sm:px-10"><div class="flex flex-col items-center justify-center rounded bg-main-pale/30 py-3 text-center text-sm text-main-dark sm:flex-row sm:bg-secondary-light sm:text-base"> <span class="mx-2">No new loans</span> <p class="h-[6px] w-[6px] rounded-full bg-black"></p> <span class="mx-2">No applications</span> <p class="h-[6px] w-[6px] rounded-full bg-black"></p> <span class="mx-2">No additional interest or fees</span> </div></div> <div class="py-4 svelte-41engz"><div><section class="flex justify-center"><div class="grid w-full max-w-3xl grid-rows-1 gap-1 px-4 pb-4 sm:grid-cols-4 sm:gap-4 sm:pb-2 md:w-[750px] svelte-5no3ze grid-cols-1 md:px-10"><section class="cursor-pointer sm:col-span-2 svelte-5no3ze single-option"><div class="h-full rounded-lg border border-gray-border px-3 py-4 text-main-dark transition svelte-5no3ze"><p class="block text-sm sm:flex sm:text-base"><span class="pr-1 payment__splitit">$${priceSplitit}</span> <span>/month</span></p> <p class="text-xs sm:text-base"><span class="lowercase">6 Рayments</span></p></div> </section></div></section> <section class="flex w-full flex-col space-y-2 xl:max-w-4xl"><div class="grid grid-cols-1 gap-4 bg-white px-4 sm:px-10 md:py-4 sm:grid-cols-4 md:px-32"><section class="flex flex-col justify-between rounded p-3 pr-5 sm:bg-gray-bg sm:py-3 sm:pl-6 svelte-1kctpzc notSelected single"><div class="text-sm"><div class="svelte-1kctpzc"><div class="grid grid-cols-4 py-1"><div class="col-span-3 flex"><p class="mr-1 flex font-bold"><span>1</span> <span class="text-xs">st</span></p> <span class="font-bold capitalize">now</span></div> <span class="payment__splitit">$${priceSplitit}</span> </div><div class="grid grid-cols-4 py-1"><div class="col-span-3 flex"><p class="mr-1 flex font-bold"><span>2</span> <span class="text-xs">nd</span></p> <span class="ml-1">payment</span></div> <span class="payment__splitit">$${priceSplitit}</span> </div><div class="grid grid-cols-4 py-1"><div class="col-span-3 flex"><p class="mr-1 flex font-bold"><span>3</span> <span class="text-xs">rd</span></p> <span class="ml-1">payment</span></div> <span class="payment__splitit">$${priceSplitit}</span> </div><div class="grid grid-cols-4 py-1"><div class="col-span-3 flex"><p class="mr-1 flex font-bold"><span>4</span> <span class="text-xs">th</span></p> <span class="ml-1">payment</span></div> <span class="payment__splitit">$${priceSplitit}</span> </div><div class="grid grid-cols-4 py-1"><div class="col-span-3 flex"><p class="mr-1 flex font-bold"><span>5</span> <span class="text-xs">th</span></p> <span class="ml-1">payment</span></div> <span class="payment__splitit">$${priceSplitit}</span> </div><div class="grid grid-cols-4 py-1"><div class="col-span-3 flex"><p class="mr-1 flex font-bold"><span>6</span> <span class="text-xs">th</span></p> <span class="ml-1">payment</span></div> <span class="payment__splitit">$${priceSplitit}</span> </div></div></div> <div class="grid grid-cols-4 items-center border-gray-border sm:border-t sm:pt-2"><span class="col-span-2 text-sm font-bold sm:font-normal">Total</span> <span class="col-span-2 text-sm font-bold sm:text-base flex justify-end pr-2 total__splitit">$${(totalPrice-discountValue).toFixed(2)}</span></div></section></div></section></div></div></section></div> <section class="bg-bg-lighter px-5 sm:flex sm:flex-col sm:bg-white sm:px-10"><div class="border-gray-border pt-2 text-sm opacity-70 sm:order-2 sm:border-t">Things you need to know:</div> <div class="pb-2 text-xs opacity-50 sm:order-3"> <p class="pb-1">* Payments will be made automatically according to your agreed installment schedule. You must maintain sufficient available funds on your card until the plan is completed.</p> <p>* We will not charge you interest or fees. Your standard credit card terms and conditions apply.</p></div> <div class="flex items-end justify-between pb-4 sm:order-1"><div class="flex flex-col items-center text-center text-xs text-text-dark xsm:flex-row xsm:space-x-1 sm:items-end sm:pb-1 sm:text-base"><div>Powered by</div> <img src="https://documents.production.splitit.com/assets/svgs/logo.svg" alt="logo" class="mt-[2px] mr-0 w-11 sm:ml-2 sm:w-[75px]"></div> <div class="ml-2 min-w-[180px] cursor-pointer rounded bg-black px-4 py-2 text-center text-base font-bold text-white sm:px-5 sm:py-3">Continue shopping</div></div></section></div></div></div></main> <div id="svelte-announcer" aria-live="assertive" aria-atomic="true" style="position: absolute; left: 0px; top: 0px; clip: rect(0px, 0px, 0px, 0px); clip-path: inset(50%); overflow: hidden; white-space: nowrap; width: 1px; height: 1px;"></div></div>
                 </div>`)
 
                 cartDrawer.querySelector('.slide_in__splitit a').addEventListener('click', () => {
@@ -810,28 +840,36 @@ function getCart(discountChange = false, cartDrawer = document.querySelector('.s
                         }
                     }
                 })
+               
+                console.log(isCompleted)
 
                 let findAppikon = setInterval(() => {
                     if (appikon['discounts'] != null) {
                         clearInterval(findAppikon)
-                        let completed = appikon['discounts']['additional_discount_value'] != null && appikon['discounts']['additional_discount_value'] != 0 ? true : false;
-                            
-                        if (isCompleted == true) {
-                            let dis = setInterval(() => {
-                                if (appikon['discounts']['additional_discount_value'] != null && appikon['discounts']['additional_discount_value'] != 0) {
-                                    clearInterval(dis)
-                                    new Discount(document.querySelector('.slide_in__discount'), true).render()
-                                }
-                    
-                            }, 200);
-                        } else {
-                            new Discount(document.querySelector('.slide_in__discount'), completed).render()
+
+                        if (appikon['discounts']['additional_discount_value'] != null && appikon['discounts']['additional_discount_value'] != 0) {
+                            isCompleted = true;
                         }
-                        
+                        if (isCompleted == true) {
+                            let completedIntervat = setInterval(() => {
+                                if (appikon['discounts']['additional_discount_value'] != null && appikon['discounts']['additional_discount_value'] != 0) {
+                                    clearInterval(completedIntervat)
+                                    new Discount(cartDrawer.querySelector('.slide_in__discount'), true).render()
+                                }
+                            }, 200)
+                        } else {
+                            let notCompletedIntervat = setInterval(() => {
+                                if (appikon['discounts']['additional_discount_value'] == null || appikon['discounts']['additional_discount_value'] == 0) {
+                                    clearInterval(notCompletedIntervat)
+                                    new Discount(cartDrawer.querySelector('.slide_in__discount'), false).render()
+                                }
+                            }, 200)
+                        }
                     }
-                }, 500)
-               
-               
+                })
+
+                splititPopup(cartDrawer, document.querySelector('.splitit-iframe-popup'))
+
                 let bundle = false;
                 for (let i = 0; i < items.length; i++) {
                     let variantId = items[i].variant_id;
@@ -859,6 +897,8 @@ function getCart(discountChange = false, cartDrawer = document.querySelector('.s
                 } 
                
             }
+
+            cartDrawer.querySelector('.slide_in__header > p').classList.remove('loading')
         }
     });
 }
@@ -1153,7 +1193,6 @@ class Discount {
     }
     render() {
         console.log(this.completed)
-        
         if (this.completed == false) {
             this.parent.innerHTML = ` <p class="btn-discount c-purple fw-bold">Apply discount code</p>`
 
@@ -1188,7 +1227,7 @@ class Discount {
                         let isDiscount = setInterval(() => {
                                 if (window.appikon['discounts']['discount_code_error'] != null && window.appikon['discounts']['discount_code_error'] != '') {
                                     clearInterval(isDiscount)
-                                    e.target.parentElement.classList.add('error')
+                                    this.parent.classList.add('error')
                                     let firstLetter = window.appikon['discounts']['discount_code_error'].charAt(0)
                                     this.parent.querySelector('.slide_in__discount_message').innerHTML = window.appikon['discounts']['discount_code_error'].toLowerCase().replace(firstLetter.toLowerCase(),firstLetter.toUpperCase());
                                     this.parent.querySelector('.btn-purple').classList.remove('loading_discount')
@@ -1197,7 +1236,7 @@ class Discount {
                                 } 
                                 if (window.appikon['discounts']['additional_discount_value'] != null && window.appikon['discounts']['additional_discount_value'] != 0) {
                                     clearInterval(isDiscount)
-                                    e.target.parentElement.classList.remove('error')
+                                    this.parent.classList.remove('error')
                                     this.parent.classList.add('completed')
                                 
                                     this.parent.innerHTML = this.renderCompleted(discountCode, window.appikon['discounts']['additional_discount_value'])
@@ -1214,7 +1253,7 @@ class Discount {
                                 }
                         }, 100);
                     } else {
-                        e.target.parentElement.classList.add('error')
+                        this.parent.classList.add('error')
                         this.parent.querySelector('.btn-purple').classList.remove('loading_discount') ;
                         this.parent.querySelector('.slide_in__discount_message').innerHTML = 'Discount code not found';
                         pushDataLayer('Visibility of error messages on discount code')
@@ -1223,7 +1262,9 @@ class Discount {
             })
         } else {
             this.parent.classList.add('flx-between')
+            console.log(window.appikon['discounts']['additional_discount_value'])
             this.parent.innerHTML = this.renderCompleted(window.appikon.discount_code, window.appikon['discounts']['additional_discount_value']);
+            
         }
 
         if (this.parent.querySelector('.slide_in__discount_delete') != null) {
@@ -1240,11 +1281,14 @@ class Discount {
                     if (window.appikon.discount_code == null) {
                         clearInterval(deletedInterval)
                         isCompleted = false;
+                        this.parent.closest('.slide_in__cart').querySelector('.slide_in__subtotal').dataset.discount = 0
                         getCart(true)
                     }
                 })
             })
         }
+
+        splititPopup(this.parent.closest('.slide_in__cart'), document.querySelector('.splitit-iframe-popup'))
     }
 }
 
