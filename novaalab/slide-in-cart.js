@@ -704,7 +704,7 @@ function getCart(discountChange = false, cartDrawer = document.querySelector('.s
                         if (cartDrawer.querySelector('.may_like') != null) {
                             cartDrawer.querySelector('.may_like').remove()
                         }
-                        
+
                         let mayLikeCreate = document.createElement('ul');
                         mayLikeCreate.classList.add('may_like')
                         mayLikeCreate.innerHTML = '<h4 class="fw-semi">You may also like</h4>'
@@ -876,20 +876,17 @@ function getCart(discountChange = false, cartDrawer = document.querySelector('.s
 
                         splititPopup(cartDrawer, document.querySelector('.splitit-iframe-popup'))
 
-                        setTimeout(() => {
-                            if (sessionStorage.getItem('scrollTo') != null) {
-                                cartDrawer.querySelector('.container').scrollTo(0, +sessionStorage.getItem('scrollTo'));
-                                sessionStorage.removeItem('scrollTo')
-                            }
-                        }, 200)
-                       
                         let bundle = false;
                         for (let i = 0; i < items.length; i++) {
                             let variantId = items[i].variant_id;
 
                             if (variantId == '39758302806070') {
                                 bundle = false;
-                                console.log(bundle)
+                                
+                                if (sessionStorage.getItem('scrollTo') != null) {
+                                    cartDrawer.querySelector('.container').scrollTo(0, +sessionStorage.getItem('scrollTo'));
+                                    sessionStorage.removeItem('scrollTo')
+                                }
                                 return
                             }
                         }
@@ -911,6 +908,12 @@ function getCart(discountChange = false, cartDrawer = document.querySelector('.s
                             pushDataLayer('Visibility of Bundle items in the cart')
 
                         }  
+
+                        if (sessionStorage.getItem('scrollTo') != null) {
+                            cartDrawer.querySelector('.container').scrollTo(0, +sessionStorage.getItem('scrollTo'));
+                            sessionStorage.removeItem('scrollTo')
+                        }
+                       
                         
                     }
                 })
