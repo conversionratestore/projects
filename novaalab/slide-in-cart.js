@@ -547,7 +547,6 @@ let emptySlideInHTML = `
 </li>`;
 
 let closePopup = false;
-let bundleScroll = false;
 let productHaveBundle = {32854816784438:'', 39782656311350:'', 40322897838134:'', 39737414484022:''};
 
 let discountChange = true;
@@ -873,12 +872,20 @@ function getCart(discountChange = false, cartDrawer = document.querySelector('.s
 
                         splititPopup(cartDrawer, document.querySelector('.splitit-iframe-popup'))
 
+                        setTimeout(() => {
+                            if (sessionStorage.getItem('scrollTo') != null) {
+                                cartDrawer.querySelector('.container').scrollTo(0, +sessionStorage.getItem('scrollTo'));
+                                sessionStorage.removeItem('scrollTo')
+                            }
+                        }, 200)
+                       
                         let bundle = false;
                         for (let i = 0; i < items.length; i++) {
                             let variantId = items[i].variant_id;
 
                             if (variantId == '39758302806070') {
                                 bundle = false;
+                                console.log(bundle)
                                 return
                             }
                         }
@@ -888,6 +895,7 @@ function getCart(discountChange = false, cartDrawer = document.querySelector('.s
 
                             if (productHaveBundle[variantId] != null && qty < 2) {
                                 bundle = true;
+                                console.log(bundle)
                                 break;
                             } 
                         }
@@ -895,12 +903,14 @@ function getCart(discountChange = false, cartDrawer = document.querySelector('.s
                         if (bundle == true) {
                             new ProductItem(cartDrawer.querySelector('.slide_in__bundle'), bundleObj.url, bundleObj.img, bundleObj.title, bundleObj.compare, bundleObj.price, bundleObj.variantId, bundleObj.id, 'false', 1, 'addToCart').render()
                             cartDrawer.querySelector('.slide_in__bundle').style.display = 'block';
-                            bundleScroll = false;
+                            
                             pushDataLayer('Visibility of Bundle items in the cart')
-                        } 
+
+                        }  
+                        
                     }
                 })
-               
+
             }
 
             cartDrawer.querySelector('.slide_in__header > p').classList.remove('loading')
@@ -964,8 +974,14 @@ class ProductItem {
         element.dataset.variantId = this.variantId;
         element.dataset.id = this.id;
 
+        if (this.parent.classList.contains('slide_in__bundle')) {
+            console.log(this.parent.classList.contains('slide_in__bundle'))
+            this.parent.innerHTML = ''
+            this.parent.style.display = 'none';
+        }
         if (this.id == bundleObj.id) {
             this.parent.insertAdjacentHTML('afterbegin', '<p class="c-purple fw-medium"><span class="fw-bold">Bundle up and save</span>: get $400 off when you buy our package deal!</p>')
+            this.parent.style = '';
         }
 
         element.innerHTML = `
@@ -1022,14 +1038,13 @@ class ProductItem {
                         addCart(this.variantId, 1, 39737414484022)
                     }
                     pushDataLayer('Add to cart button on the Bundle offer')
-                    this.parent.closest('.container').scrollTo(0, 0);
-
+                    sessionStorage.setItem('scrollTo', 0)
                 } else {
                     if (e.target.closest('.may_like')) { 
                         let bottom =  this.parent.closest('.container').scrollHeight;
-                        this.parent.closest('.container').scrollTo(0, bottom);
+                        sessionStorage.setItem('scrollTo', bottom)
                     } else {
-                        this.parent.closest('.container').scrollTo(0, 0);
+                        sessionStorage.setItem('scrollTo', 0)
                     }
 
                     addCart(e.target.dataset.variantId, 1)
