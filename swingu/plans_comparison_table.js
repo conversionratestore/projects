@@ -619,9 +619,9 @@ const checkVisibilityAfterMs = (el) => { // Checks element visibility after a sp
         entries.forEach((entry) => {
             if (entry.isIntersecting) {
                 timer = setTimeout(() => {
-                    if (el.classList.contains('video-hero__player')) {
-                        observer.disconnect()
+                    observer.disconnect()
 
+                    if (el.classList.contains('video-hero__player')) {
                         sendGAEvent({
                             'event': 'event-to-ga4',
                             'event_name': 'exp_pick_a_plan_video_visibility',
@@ -631,8 +631,6 @@ const checkVisibilityAfterMs = (el) => { // Checks element visibility after a sp
                         })
                     }
                     if (el.classList.contains('testimonials')) {
-                        observer.disconnect()
-
                         sendGAEvent({
                             'event': 'event-to-ga4',
                             'event_name': 'exp_pick_a_plan_review_visibility',
