@@ -156,6 +156,12 @@ html.fixed_body, html.gemapp.video.fixed_body {
 .item_product:last-child {
     margin: 0;
 }
+.item_product__name {
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 22px;
+    color: #212121;
+}
 .item_product > div:not(.slide_in__message) > div {
     width: calc(100% - 134px);
 }
@@ -329,9 +335,13 @@ input.clac_qty {
     box-shadow: inset 0px 0px 8px rgba(107, 29, 235, 0.16);
     margin-bottom: 20px!important;
 }
-.slide_in__bundle li > div > a {
+.slide_in__bundle li > div > p {
     background: #FFFFFF;
     padding: 10px;
+    width: 120px;
+    height: 120px;
+    flex-shrink: 0;
+    margin-right: 14px;
 }
 .slide_in__bundle img {
     width: 100px;
@@ -667,18 +677,20 @@ function getCart(discountChange = false, cartDrawer = document.querySelector('.s
 
             cartDrawer.querySelector('.slide_in__subtotal .pr').innerHTML = '$'+subtotal;
 
-            cartDrawer.querySelector('.slide_in__bundle').innerHTML = '';
-            cartDrawer.querySelector('.slide_in__bundle').style.display = 'none';
             cartDrawer.querySelector('.slide_in__header > p span').innerHTML = itemCount;
             cartDrawer.querySelector('.slide_in__discount').classList.remove('error')
             
-            if (cartDrawer.querySelector('.may_like') != null) {
-                cartDrawer.querySelector('.may_like').remove()
-            }
             if (itemCount == 0) {
                 parent.innerHTML = emptySlideInHTML;
                 cartDrawer.querySelector('.slide_in__total').style.display = 'none';
                 cartDrawer.querySelector('.slide_in__footer').style.display = 'none';
+
+                if (cartDrawer.querySelector('.may_like') != null) {
+                    cartDrawer.querySelector('.may_like').remove()
+                }
+
+                cartDrawer.querySelector('.slide_in__bundle').innerHTML = '';
+                cartDrawer.querySelector('.slide_in__bundle').style.display = 'none';
 
                 let item = cartDrawer.querySelector('.slide_in__message.guarantee'),
                     position = 'afterend';
@@ -701,17 +713,15 @@ function getCart(discountChange = false, cartDrawer = document.querySelector('.s
                             cartDrawer.querySelector('.freeshipping').remove()
                         }
 
-                        if (cartDrawer.querySelector('.may_like') != null) {
-                            cartDrawer.querySelector('.may_like').remove()
-                        }
+                        if (cartDrawer.querySelector('.may_like') == null) {
+                            let mayLikeCreate = document.createElement('ul');
+                            mayLikeCreate.classList.add('may_like')
+                            mayLikeCreate.innerHTML = '<h4 class="fw-semi">You may also like</h4>'
+                            cartDrawer.querySelector('.slide_in__body').appendChild(mayLikeCreate)
 
-                        let mayLikeCreate = document.createElement('ul');
-                        mayLikeCreate.classList.add('may_like')
-                        mayLikeCreate.innerHTML = '<h4 class="fw-semi">You may also like</h4>'
-                        cartDrawer.querySelector('.slide_in__body').appendChild(mayLikeCreate)
-
-                        for (let i = 0; i < upsellObj.length; i++) {
-                            new ProductItem(mayLikeCreate, upsellObj[i].url, upsellObj[i].img, upsellObj[i].title, upsellObj[i].compare, upsellObj[i].price, upsellObj[i].variantId, upsellObj[i].id, 'false', upsellObj[i].qty, 'addToCart').render() 
+                            for (let i = 0; i < upsellObj.length; i++) {
+                                new ProductItem(mayLikeCreate, upsellObj[i].url, upsellObj[i].img, upsellObj[i].title, upsellObj[i].compare, upsellObj[i].price, upsellObj[i].variantId, upsellObj[i].id, 'false', upsellObj[i].qty, 'addToCart').render() 
+                            }
                         }
                         for (let i = 0; i < items.length; i++) {
                             let link = items[i].url, 
@@ -884,17 +894,14 @@ function getCart(discountChange = false, cartDrawer = document.querySelector('.s
 
                         splititPopup(cartDrawer, document.querySelector('.splitit-iframe-popup'))
 
+
                         let bundle = false;
                         for (let i = 0; i < items.length; i++) {
                             let variantId = items[i].variant_id;
 
                             if (variantId == '39758302806070') {
                                 bundle = false;
-                                
-                                if (sessionStorage.getItem('scrollTo') != null) {
-                                    cartDrawer.querySelector('.container').scrollTop = sessionStorage.getItem('scrollTo');
-                                    sessionStorage.removeItem('scrollTo')
-                                }
+                                cartDrawer.querySelector('.slide_in__bundle').style.display = 'none';
                                 return
                             }
                         }
@@ -904,25 +911,16 @@ function getCart(discountChange = false, cartDrawer = document.querySelector('.s
 
                             if (productHaveBundle[variantId] != null && qty < 2) {
                                 bundle = true;
-                                console.log(bundle)
                                 break;
                             } 
                         }
                     
                         if (bundle == true) {
                             new ProductItem(cartDrawer.querySelector('.slide_in__bundle'), bundleObj.url, bundleObj.img, bundleObj.title, bundleObj.compare, bundleObj.price, bundleObj.variantId, bundleObj.id, 'false', 1, 'addToCart').render()
-                            cartDrawer.querySelector('.slide_in__bundle').style.display = 'block';
                             
                             pushDataLayer('Visibility of Bundle items in the cart')
 
                         }  
-
-                        if (sessionStorage.getItem('scrollTo') != null) {
-                            cartDrawer.querySelector('.container').scrollTop = sessionStorage.getItem('scrollTo');
-                            sessionStorage.removeItem('scrollTo')
-                        }
-                       
-                        
                     }
                 })
 
@@ -989,19 +987,9 @@ class ProductItem {
         element.dataset.variantId = this.variantId;
         element.dataset.id = this.id;
 
-        if (this.parent.classList.contains('slide_in__bundle')) {
-            console.log(this.parent.classList.contains('slide_in__bundle'))
-            this.parent.innerHTML = ''
-            this.parent.style.display = 'none';
-        }
-        if (this.id == bundleObj.id) {
-            this.parent.insertAdjacentHTML('afterbegin', '<p class="c-purple fw-medium"><span class="fw-bold">Bundle up and save</span>: get $400 off when you buy our package deal!</p>')
-            this.parent.style = '';
-        }
-
-        element.innerHTML = `
+        let htmlElement = `
             <div class="d-flex">
-                <img src="${this.image}" alt="${this.name}">
+                <p><img src="${this.image}" alt="${this.name}"></p>
                 <div>
                     <p class="item_product__name">${this.name}</p>
                     <p class="item_product__price"><span class="compare">${this.compare}</span> <span class="pr c-purple fw-bold">$${this.price}</span></p>
@@ -1009,7 +997,13 @@ class ProductItem {
                 </div>
             </div>`;
 
-        this.parent.appendChild(element);
+        if (this.parent.classList.contains('slide_in__bundle') && this.id == bundleObj.id) {
+            this.parent.innerHTML = `<p class="c-purple fw-medium"><span class="fw-bold">Bundle up and save</span>: get $400 off when you buy our package deal!</p><li data-variant-id="${this.variantId}" data-id="${this.id}">${htmlElement}</li>`;
+            this.parent.style = '';
+        } else {
+            element.innerHTML = htmlElement;
+            this.parent.appendChild(element);
+        }
        
         if (this.type != 'addToCart') {
             this.parent.querySelector(`[data-variant-id="${this.variantId}"] .item_product__delete`).addEventListener('click', (e) => {
@@ -1053,15 +1047,7 @@ class ProductItem {
                         addCart(this.variantId, 1, 39737414484022)
                     }
                     pushDataLayer('Add to cart button on the Bundle offer')
-                    sessionStorage.setItem('scrollTo', 0)
                 } else {
-                    if (e.target.closest('.may_like')) { 
-                        let bottom =  this.parent.closest('.container').scrollHeight;
-                        sessionStorage.setItem('scrollTo', bottom)
-                    } else {
-                        sessionStorage.setItem('scrollTo', 0)
-                    }
-
                     addCart(e.target.dataset.variantId, 1)
                     if (this.parent.classList.contains('slide_in__products')) {
                         pushDataLayer('Click on add to cart in empty cart')
