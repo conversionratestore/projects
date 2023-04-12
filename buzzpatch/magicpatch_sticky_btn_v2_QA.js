@@ -1,11 +1,16 @@
 // -------------------------------------
 // CONSTANTS
-// ------------------------------------
+// -------------------------------------
 const WAIT_INTERVAL_TIMEOUT = 100
 
 // Define CSS styles
 const style = /*html*/`
     <style>
+            #provesrc-notification-container.bottom-left {
+                bottom: auto !important;
+                top: 90px;
+            }
+            
             .sticky_wrapper {
                 position: fixed;
                 bottom: 0;
