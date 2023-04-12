@@ -1421,21 +1421,19 @@ function isVisible() {
 
 function toggleActive(method, eventNon = '') {
     if (method == true) {
+        document.querySelector('.slide_in__cart').classList.add('active')
+        pushDataLayer('Slide cart visibility')
+        document.querySelector('html').classList.add('fixed_body')
+
+        document.querySelector('.slide_in__cart').classList.add('loading')
+
         if (eventNon == '') {
-            document.querySelector('.container').scrollTop = 0;
             visibilityUpsel = false;
             visibilityShipping = false;
             visibilityGuarante = false;
             visibilitySaved = false;
             visibilityApplyDiscount = false;
         }
-
-        document.querySelector('.slide_in__cart').classList.add('active')
-        pushDataLayer('Slide cart visibility')
-        
-        document.querySelector('html').classList.add('fixed_body')
-
-        document.querySelector('.slide_in__cart').classList.add('loading')
 
         window.addEventListener('scroll', () => isVisible())
         isVisible()
@@ -1478,12 +1476,15 @@ let run = setInterval(() => {
         document.querySelector('#AccessibleNav > li:nth-child(3) > a').addEventListener('click', (e) => {
             e.preventDefault();
             e.stopImmediatePropagation();
+
+            document.querySelector('.slide_in__cart .container').scrollTop = 0;
             toggleActive(true)
         })
         document.querySelectorAll('.cart-link').forEach(item => {
             item.addEventListener('click', (e) => {
                 e.preventDefault();
                 e.stopImmediatePropagation();
+                document.querySelector('.slide_in__cart .container').scrollTop = 0;
                 toggleActive(true)
             })
         })
