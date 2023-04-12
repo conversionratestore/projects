@@ -56,8 +56,20 @@ let styles = `
     font-size: 24px;
     color: #333333;
 }
-header > .container > ul > li:nth-child(2), .banner_top, .parallax-mirror, body > div.global_wr > div > div.tour-intro > div.container > div > div.col-md-12.col-xl-8, .destination_page_wr .tour-intro .plugin_right .heading, .text-red, .text-pt, .text-pt-disclaimer, .destination_page_wr .tour-intro .plugin_right .buy {
+header .btn-customer.gold, .tour-features, .similar, header > .container > ul > li:nth-child(2), .banner_top, .parallax-mirror, body > div.global_wr > div > div.tour-intro > div.container > div > div.col-md-12.col-xl-8, .destination_page_wr .tour-intro .plugin_right .heading, .text-red, .text-pt, .text-pt-disclaimer, .destination_page_wr .tour-intro .plugin_right .buy {
     display: none!important;
+}
+header.destinations-active .btn-customer.gold {
+    display: flex!important;
+}
+header .search_header {
+    background-color: transparent;
+}
+header .search_header input {
+    width: 400px;
+    margin-left: 30px;
+    border: 1px solid #EBEBE7;
+    border-radius: 20px;
 }
 /* header */
 header {
@@ -804,7 +816,7 @@ header .search_btn {
     border-radius: 20px;
 }
 .why-tour .btns {
-    padding-right: 30px;
+    padding-right: 55px;
 }
 /* other-tours */
 .other-tours {
@@ -813,7 +825,7 @@ header .search_btn {
 .other-tours .row {
     margin: 0;
 }
-.other-tours .cardx:not([style="display:none"]) {
+.other-tours .cardx {
     background: #FFFFFF;
     box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.1), 0px 2px 30px rgba(0, 0, 0, 0.15);
     border-radius: 20px;
@@ -822,8 +834,10 @@ header .search_btn {
     padding: 0;
     position: relative;
     flex: auto;
+    margin-bottom: 20px;
+    max-width: 420px!important;
 }
-.other-tours .cardx:not([style="display:none"]):nth-child(3n+3) {
+.other-tours .cardx:nth-child(3n+3) {
     margin-right: 0;
 }
 .other-tours .cardx a img {
@@ -842,22 +856,30 @@ header .search_btn {
     font-style: normal;
     font-weight: 600;
     font-size: 14px!important;
-    line-height: 14px;
-    border-radius: 30px 0 0 30px;
+    padding: 0 10px!important;
+    line-height: 30px;
+    border-radius: 30px 0 0 30px!important;
 }
 .other-tours .cardx-container-details {
-    padding: 5px 24px 24px;
+    padding: 10px 24px 24px;
     margin: 0;
+    box-shadow: none!important;
+    background-color: transparent!important;
+    height: auto;
+    min-height: 312px;
+    display: flex;
+    flex-direction: column;
 }
 .other-tours .cardx-price {
     padding: 0;
-    margin-top: -8px;
+    margin-top: -10px;
     transform: translateY(-50%);
-    font-family: 'Playfair Display';
+    font-family: 'Playfair Display', serif;
+    font-feature-settings: 'pnum' on, 'lnum' on;
     font-style: normal;
     font-weight: 700;
     font-size: 24px;
-    line-height: 40px;
+    line-height: 36px;
     color: #144732;
     padding: 0 10px 0 28px;
     z-index: 2;
@@ -868,7 +890,7 @@ header .search_btn {
 }
 .other-tours .cardx-price span {
     font-size: 16px;
-    line-height: 35px;
+    line-height: 29px;
 }
 .other-tours .cardx-title {
     font-family: 'Josefin Sans';
@@ -898,6 +920,64 @@ header .search_btn {
 }
 .other-tours .cardx-tags {
     margin-top: 16px;
+}
+.other-tours .star-ratings {
+    height: fit-content;
+    display: flex;
+    align-items: center;
+    margin-bottom: 16px;
+}
+.other-tours .star-ratings .fa {
+    margin-right: 4px;
+    color: #F4B75B;
+    font-size: 18px;
+}
+.other-tours .rate-tours {
+    color: #333333;
+}
+.other-tours .cardx-tags span {
+    padding: 0;
+    width: 50%;
+    margin-bottom: 12px;
+    display: block;
+}
+.other-tours .cardx-tags span img {
+    margin-right: 7px;
+}
+
+.other-tours .cardx-buttons-one, .other-tours .cardx-buttons-tow {
+    border-radius: 29px;
+    flex: inherit;
+    width: 48%;
+    font-weight: 700;
+    font-size: 16px;
+    text-transform: uppercase;
+    height: auto;
+    margin-top: 4px;
+}
+.other-tours .cardx-buttons-one {
+    padding: 12px 5px 9px;
+}
+.other-tours .cardx-buttons-tow {
+    border: 3px solid #C39958;
+    padding: 10px 5px 7px;
+    color: #C39958;
+}
+.other-tours .card-buttons .cultural-tours {
+    background-color: #144732!important;
+    max-width: initial!important;
+    border-radius: 29px;
+    width: fit-content!important;
+    font-family: 'Josefin Sans';
+    padding: 12px 40px 9px;
+}
+.card-buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: auto;
+}
+.other-tours .star-ratings::before {
+    content: none!important;
 }
 /* review */
 .review .review-from {
@@ -982,6 +1062,11 @@ header .search_btn {
     font-size: 14px;
     line-height: 22px;
     color: #5B5B5B;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 10;
+    line-clamp: 10;
+    -webkit-box-orient: vertical;
 }
 .slider-review .text b {
     font-weight: 700;
@@ -994,25 +1079,70 @@ header .search_btn {
 .slider-review .swiper-button-next, .slider-review .swiper-button-prev, .slider-review .swiper-pagination.swiper-pagination-fraction {
     bottom: 88px;
 }
+.slider-review .author {
+    font-family: 'Josefin Sans';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 24px;
+    line-height: 24px;
+    margin-bottom: 12px;
+    color: #333333;
+}
+.slider-review  .reviews-user-stars {
+    font-family: 'Font Awesome\ 5 Free';
+    font-style: normal;
+    font-weight: 900;
+    font-size: 16px;
+    line-height: 18px;
+    color: #F4B75B;
+}
 </style>`
 
 let init = setInterval(() => {
     if (document.querySelector('.plugin iframe') != null && document.querySelector('header .main_menu') != null) {
         clearInterval(init)
-        document.head.insertAdjacentHTML('beforeend',`<link rel="preconnect" href="https://fonts.googleapis.com">
+        document.head.insertAdjacentHTML('beforeend',`
+        <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800&display=swap" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300;400;500;600;700&family=Roboto:wght@300;400;500;700;900&display=swap" rel="stylesheet">`)
 
         document.body.insertAdjacentHTML('afterbegin', styles);
 
-        //add Book a private tour button (header)
+        let starLink = document.createElement('link');
+        starLink.href = 'https://use.fontawesome.com/releases/v5.0.1/css/all.css';
+        starLink.rel = 'stylesheet';
+        document.head.appendChild(starLink)
+
+        //add "Book a private tour" and "Buy as a gift" button (header)
         document.querySelector('header .main_menu').insertAdjacentHTML('afterend', `
         <a href="#" class="btn-customer btn-private-tour d-flex align-items-center justify-content-center">
             <svg width="17" height="12" viewBox="0 0 17 12" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M0 12V9.90001C0 9.47501 0.1095 9.08426 0.328499 8.72776C0.547499 8.37126 0.837999 8.09951 1.2 7.91251C1.975 7.52501 2.7625 7.23426 3.56249 7.04026C4.36249 6.84626 5.17499 6.74951 5.99999 6.75001C6.82499 6.75001 7.63749 6.84701 8.43749 7.04101C9.23749 7.23501 10.025 7.52551 10.8 7.91251C11.1625 8.10001 11.4532 8.37201 11.6722 8.72851C11.8912 9.085 12.0005 9.47551 12 9.90001V12H0ZM13.5 12V9.75C13.5 9.20001 13.3467 8.67176 13.0402 8.16526C12.7337 7.65876 12.2995 7.22451 11.7375 6.86251C12.375 6.93751 12.975 7.06576 13.5375 7.24726C14.1 7.42876 14.625 7.65051 15.1125 7.91251C15.5625 8.16251 15.9062 8.44051 16.1437 8.74651C16.3812 9.05251 16.5 9.387 16.5 9.75V12H13.5ZM5.99999 6.00001C5.17499 6.00001 4.46874 5.70626 3.88124 5.11876C3.29375 4.53126 3 3.82501 3 3.00001C3 2.17502 3.29375 1.46877 3.88124 0.881268C4.46874 0.293769 5.17499 1.92305e-05 5.99999 1.92305e-05C6.82499 1.92305e-05 7.53124 0.293769 8.11874 0.881268C8.70624 1.46877 8.99999 2.17502 8.99999 3.00001C8.99999 3.82501 8.70624 4.53126 8.11874 5.11876C7.53124 5.70626 6.82499 6.00001 5.99999 6.00001ZM13.5 3.00001C13.5 3.82501 13.2062 4.53126 12.6187 5.11876C12.0312 5.70626 11.325 6.00001 10.5 6.00001C10.3625 6.00001 10.1875 5.98426 9.97499 5.95276C9.76249 5.92126 9.58749 5.88701 9.44999 5.85001C9.78749 5.45001 10.047 5.00626 10.2285 4.51876C10.41 4.03126 10.5005 3.52501 10.5 3.00001C10.5 2.47502 10.4095 1.96877 10.2285 1.48127C10.0475 0.993768 9.78799 0.550018 9.44999 0.150019C9.62499 0.087519 9.79998 0.0467693 9.97499 0.0277693C10.15 0.00876935 10.325 -0.000480769 10.5 1.92305e-05C11.325 1.92305e-05 12.0312 0.293769 12.6187 0.881268C13.2062 1.46877 13.5 2.17502 13.5 3.00001Z" fill="#144732"/>
             </svg>
             <span>Book a private tour</span>
+        </a>
+        <a href="#" class="btn-customer gold align-items-center justify-content-center">
+            <svg width="14" height="12" viewBox="0 0 14 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M0.875 11.1429C0.875 11.625 1.25781 12 1.75 12H6.125V7.71429H0.875V11.1429ZM7.875 12H12.25C12.7148 12 13.125 11.625 13.125 11.1429V7.71429H7.875V12ZM13.125 3.42857H11.9492C12.1406 3.10714 12.25 2.75893 12.25 2.35714C12.25 1.07143 11.1562 0 9.84375 0C8.69531 0 7.95703 0.589286 7.02734 1.84821C6.07031 0.589286 5.33203 0 4.21094 0C2.87109 0 1.80469 1.07143 1.80469 2.35714C1.80469 2.75893 1.88672 3.10714 2.07812 3.42857H0.875C0.382812 3.42857 0 3.83036 0 4.28571V6.42857C0 6.66964 0.191406 6.85714 0.4375 6.85714H13.5625C13.7812 6.85714 14 6.66964 14 6.42857V4.28571C14 3.83036 13.5898 3.42857 13.125 3.42857ZM4.18359 3.42857C3.58203 3.42857 3.08984 2.97321 3.08984 2.35714C3.08984 1.76786 3.58203 1.28571 4.18359 1.28571C4.73047 1.28571 5.14062 1.39286 6.5625 3.42857H4.18359ZM9.84375 3.42857H7.46484C8.88672 1.39286 9.26953 1.28571 9.84375 1.28571C10.4453 1.28571 10.9375 1.76786 10.9375 2.35714C10.9375 2.97321 10.4453 3.42857 9.84375 3.42857Z" fill="#C39958"/>
+            </svg>
+            <span>Buy as a gift</span>
         </a>`)
+
+        //header
+        document.querySelector('header .search_header input').placeholder = 'Type you destination';
+        document.querySelectorAll('.search_btn').forEach(button => {
+            button.addEventListener('click', (e) => {
+                if (document.querySelector('#close_ic_desktop').style.display != 'block !important') {
+                    document.querySelector('.search_header.visible_search').style = 'width: 100%; padding-left: 200px'
+                } else {
+                    document.querySelector('.search_header.visible_search').style = ''
+                }
+            })
+        })
+        document.querySelector('.main_menu .droped').addEventListener('click', (e) => {
+            e.target.classList.add('destinations-active')
+        })
 
         document.querySelector('.main_container').insertAdjacentHTML('afterend',`
         <div class="social-fixed">
@@ -1225,11 +1355,11 @@ let init = setInterval(() => {
 
             document.querySelector('body').insertAdjacentElement('beforeend', rateEl); 
 
-            document.querySelector('.tour-section .review .review-from > div > img').after(document.querySelector('.reviews-first-container'))
-
             document.querySelector('body').insertAdjacentElement('beforeend', reviewsEl)
             document.querySelector('body').insertAdjacentElement('beforeend', scriptEl)
         
+            document.querySelector('.tour-section .review .review-from > div > img').after(document.querySelector('.reviews-first-container'))
+
             console.log('Reviews Array:', customers_reviews)
         
             for (let i = 0; i < customers_reviews.length; i++) {
@@ -1239,8 +1369,14 @@ let init = setInterval(() => {
                 <div class="d-flex align-items-center">
                     <img src="${customers_reviews[i][0]}">
                     <div>
-                        <p>${customers_reviews[i][1]}</p>
-                        <div class="reviews-user-stars">★★★★★</div>
+                        <p class="author">${customers_reviews[i][1]}</p>
+                        <div class="reviews-user-stars d-flex">
+                            <div class="fa-star"></div>
+                            <div class="fa-star"></div>
+                            <div class="fa-star"></div>
+                            <div class="fa-star"></div>
+                            <div class="fa-star"></div>
+                        </div>
                     </div>
                 </div>
                 <p class="text">
@@ -1255,7 +1391,6 @@ let init = setInterval(() => {
                 slidesPerView: 3,
                 loop: true,
                 spaceBetween: 20,
-                centeredSlides: false,
                 pagination: {
                     el: ".slider-review .swiper-pagination",
                     type: "fraction",
@@ -1495,14 +1630,44 @@ let otherTours = setInterval(() => {
          ${document.querySelector(`${tours} .container`).innerHTML}
         `
 
-        document.querySelectorAll('.cardx-container-details').forEach(item => {
-            if (item.querySelector('.cardx-price') != null) {
+        document.querySelectorAll('.other-tours .cardx-container-details').forEach(item => {
+            if (item.querySelector('.cardx-price') != null && item.querySelector('.cardx-price').innerHTML != '') {
                 let price = item.querySelector('.cardx-price').innerText.replace(/[^\d\.]*/g, '')
                 let currency = item.querySelector('.cardx-price').innerText.replace(price, '')
 
                 item.querySelector('.cardx-price').innerHTML = `
                     <svg width="78" height="40" viewBox="0 0 78 40" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M18.5452 0C16.8361 0 15.2081 0.72886 14.0698 2.00368L1.56852 16.0037C-0.464246 18.2801 -0.464248 21.7199 1.56852 23.9963L14.0698 37.9963C15.2081 39.2711 16.8361 40 18.5452 40H72C75.3137 40 78 37.3137 78 34V6C78 2.68629 75.3137 0 72 0H18.5452Z" fill="#E9EBED"/></svg>
                     <span>${currency}</span> ${price}`
+            }
+
+            if (item.querySelector('.rate-tours') != null) {
+                let rate = item.querySelector('.rate-tours').innerHTML.replace(/[^\d\.]*/g, '');
+                let ratehalf = rate.split('.')[1]
+                item.querySelector('.rate-tours').innerHTML = rate;
+
+                for (let i = 0; i < Math.floor(rate); i++) {
+                    item.querySelector('.star-ratings .rate-tours').insertAdjacentHTML('beforebegin', `<i class="fa fa-star"></i>`) 
+                }
+                if (ratehalf > 0) {
+                    item.querySelector('.star-ratings .rate-tours').insertAdjacentHTML('beforebegin', `<i class="fa fa-star fa-star-half"></i>`) 
+                }
+
+            }
+            item.querySelectorAll('.card-buttons > a').forEach(button => {
+                if (button.innerText.toLowerCase().includes('our cultural tours')) {
+                    button.classList.add('cultural-tours')
+                }
+            })
+        })
+        document.querySelectorAll('.other-tours .cardx-tags > span > img').forEach(item => {
+            if (item.src.includes('/img/icons/clock.svg')) {
+                item.src = dir + 'clock_ic.svg';
+            } else if (item.src.includes('/img/icons/location-maincolor.svg')) {
+                item.src = dir + 'library_ic.svg';
+            } else if (item.src.includes('/img/icons/cutlery.svg')) {
+                item.src = dir + 'restaurant.svg';
+            } else if (item.src.includes('/img/icons/group.svg')) {
+                item.src = dir + 'group_ic.svg';
             }
         })
     }
