@@ -318,7 +318,7 @@ let paymentCheckout = setInterval(() => {
           .new_text_label .new_text_label_list .new_text_label_link .circle_wrapp {
             position: absolute;
             right: 0;
-            top: 14px;
+            top: 20px;
             display: flex;
           }
           .new_text_label .new_text_label_list .new_text_label_link .circle_wrapp span {
