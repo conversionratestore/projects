@@ -8,7 +8,7 @@ const style = /*html*/`
     <style>
             #provesrc-notification-container.bottom-left {
                 bottom: auto !important;
-                top: 90px;
+                top: 87px;
             }
             
             .sticky_wrapper {
