@@ -1,6 +1,6 @@
 // -------------------------------------
 // CONSTANTS
-// ------------------------------------
+// -------------------------------------
 const WAIT_INTERVAL_TIMEOUT = 100
 const IMAGE_DIR_URL = 'https://conversionratestore.github.io/projects/swingu/img'
 
@@ -745,7 +745,7 @@ const waitForVideoSection = setInterval(() => {
                     sendGAEvent({
                         'event': 'event-to-ga4',
                         'event_name': 'exp_pick_a_plan_cta',
-                        'event_desc': 'Sticky CTA',
+                        'event_desc': payBtn.innerText,
                         'event_type': 'Button',
                         'event_loc': 'Bottom of screen'
                     })
