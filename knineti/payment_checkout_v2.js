@@ -223,7 +223,6 @@ let paymentCheckout = setInterval(() => {
           }
           .payment_var {
             background: #ffffff;
-            border: 1px dashed #e7e7e7;
             border-radius: 10px 10px 0 0;
             margin: 0 auto -8px;
             padding: 12px 12px 20px;
@@ -233,6 +232,18 @@ let paymentCheckout = setInterval(() => {
           }
           .first_block .submit_btn input#submit {
             max-width: 345px !important;
+          }
+          .first_block .submit_btn input#submit_disabled{
+            margin-bottom: 12px !important;
+          }
+          form > div.row:last-child > .col-md-12{
+            border: 1px dashed #DDE8F1;
+            border-radius: 10px;
+            max-width: 345px;
+            margin: 0 auto !important;
+            text-align: center;
+            float: unset;
+            padding: 0;
           }
           .payment_var p {
             margin: 0 !important;
