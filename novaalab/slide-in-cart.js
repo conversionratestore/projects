@@ -722,6 +722,11 @@ function getCart(discountChange = false, cartDrawer = document.querySelector('.s
                             for (let i = 0; i < upsellObj.length; i++) {
                                 new ProductItem(mayLikeCreate, upsellObj[i].url, upsellObj[i].img, upsellObj[i].title, upsellObj[i].compare, upsellObj[i].price, upsellObj[i].variantId, upsellObj[i].id, 'false', upsellObj[i].qty, 'addToCart').render() 
                             }
+                        } else {
+                            for (let i = 0; i < upsellObj.length; i++) {
+                                document.querySelector(`.may_like [data-variant-id="${upsellObj[i].variantId}"] .add-to-cart`).disabled = false;
+                                document.querySelector(`.may_like [data-variant-id="${upsellObj[i].variantId}"] .add-to-cart`).innerHTML = 'Add to cart';
+                            }
                         }
                         for (let i = 0; i < items.length; i++) {
                             let link = items[i].url, 
