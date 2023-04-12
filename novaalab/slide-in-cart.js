@@ -899,14 +899,13 @@ function getCart(discountChange = false, cartDrawer = document.querySelector('.s
 
                         splititPopup(cartDrawer, document.querySelector('.splitit-iframe-popup'))
 
-
+                        cartDrawer.querySelector('.slide_in__bundle').style.display = 'none';
                         let bundle = false;
                         for (let i = 0; i < items.length; i++) {
                             let variantId = items[i].variant_id;
 
                             if (variantId == '39758302806070') {
                                 bundle = false;
-                                cartDrawer.querySelector('.slide_in__bundle').style.display = 'none';
                                 return
                             }
                         }
