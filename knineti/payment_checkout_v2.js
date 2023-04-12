@@ -472,6 +472,7 @@ let paymentCheckout = setInterval(() => {
             }
             .new_text_label .new_text_label_list {
               padding-left: 38px !important;
+              justify-content: flex-start;
             }
             .new_text_label .new_text_label_list .new_text_label_link .circle_wrapp span:nth-child(3),
             .new_text_label .new_text_label_list .new_text_label_link .circle_wrapp span:nth-child(4) {
@@ -483,17 +484,21 @@ let paymentCheckout = setInterval(() => {
               display: none;
             }
             .new_text_label .new_text_label_list .new_text_label_link:nth-child(1) {
-              width: 14%;
+              width: 15%;
+              margin-right: 54px !important;
+            }
+            .new_text_label .new_text_label_list .new_text_label_link:nth-child(3){
+              margin-right: 41px !important;
             }
             .new_text_label .new_text_label_list .new_text_label_link:nth-child(3),
             .new_text_label .new_text_label_list .new_text_label_link:nth-child(4) {
               width: 30%;
             }
             .new_text_label .new_text_label_list .new_text_label_link:nth-child(1) .circle_wrapp {
-              right: -47px;
+              right: -52px;
             }
             .new_text_label .new_text_label_list .new_text_label_link:nth-child(3) .circle_wrapp {
-              right: -32px;
+              right: -35px;
             }
             .new_text_label .new_text_label_list .new_text_label_link:nth-child(4) .circle_wrapp {
               display: none;
