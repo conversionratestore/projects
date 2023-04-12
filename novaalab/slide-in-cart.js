@@ -1421,21 +1421,21 @@ function isVisible() {
 
 function toggleActive(method, eventNon = '') {
     if (method == true) {
-        
-        document.querySelector('.container').scrollTop = 0;
-        document.querySelector('.slide_in__cart').classList.add('active')
-        pushDataLayer('Slide cart visibility')
-        document.querySelector('html').classList.add('fixed_body')
-
-        document.querySelector('.slide_in__cart').classList.add('loading')
-
         if (eventNon == '') {
+            document.querySelector('.container').scrollTop = 0;
             visibilityUpsel = false;
             visibilityShipping = false;
             visibilityGuarante = false;
             visibilitySaved = false;
             visibilityApplyDiscount = false;
         }
+
+        document.querySelector('.slide_in__cart').classList.add('active')
+        pushDataLayer('Slide cart visibility')
+        
+        document.querySelector('html').classList.add('fixed_body')
+
+        document.querySelector('.slide_in__cart').classList.add('loading')
 
         window.addEventListener('scroll', () => isVisible())
         isVisible()
