@@ -31,6 +31,20 @@ html.fixed_body, html.gemapp.video.fixed_body {
     font-size: 16px;
     line-height: 16px;
 }
+.slide_in__cart.loading:after {
+    content: 'loading...';
+    position: absolute;
+    right: 0;
+    top: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 351px;
+    background: rgba(255,255,255,0.8);
+    height: 100vh;
+    color: #000;
+    z-index: 99;
+}
 .slide_in__cart.active {
     opacity: 1;
     pointer-events: auto;
@@ -161,6 +175,7 @@ html.fixed_body, html.gemapp.video.fixed_body {
     font-size: 14px;
     line-height: 22px;
     color: #212121;
+    max-width: 173px;
 }
 .item_product > div:not(.slide_in__message) > div {
     width: calc(100% - 134px);
@@ -677,7 +692,7 @@ function splititPopup(cartParent, parentSplitit) {
 
 function getCart(discountChange = false, cartDrawer = document.querySelector('.slide_in__cart'), isScroll = 1) {
     // get cart
-    console.log(isScroll)
+    cartDrawer.classList.add('loading')
     cartDrawer.querySelector('.slide_in__header > p').classList.add('loading')
     $.ajax({
         'url' : '/cart?view=cw-cart',
@@ -721,6 +736,7 @@ function getCart(discountChange = false, cartDrawer = document.querySelector('.s
                 new ProductItem(cartDrawer.querySelector('.slide_in__products'), allProducts[40322897838134].url, allProducts[40322897838134].img, allProducts[40322897838134].title, allProducts[40322897838134].compare, allProducts[40322897838134].price, allProducts[40322897838134].variantId, allProducts[40322897838134].id, 'false', allProducts[40322897838134].qty, 'addToCart').render() 
                 new ProductItem(cartDrawer.querySelector('.slide_in__products'), allProducts[39782656311350].url, allProducts[39782656311350].img, allProducts[39782656311350].title, allProducts[39782656311350].compare, allProducts[39782656311350].price, allProducts[39782656311350].variantId, allProducts[39782656311350].id, 'false', allProducts[39782656311350].qty, 'addToCart').render() 
                 
+                cartDrawer.classList.remove('loading')
             } else {
 
                 let findAppikon = setInterval(() => {
@@ -788,9 +804,7 @@ function getCart(discountChange = false, cartDrawer = document.querySelector('.s
                             }
                         }
 
-                        console.log(isScroll)
                         if (isScroll == 0) {
-                            console.log(isScroll)
                             cartDrawer.querySelector('.container').scrollTop = isScroll;
                         }
 
@@ -919,12 +933,16 @@ function getCart(discountChange = false, cartDrawer = document.querySelector('.s
                         splititPopup(cartDrawer, document.querySelector('.splitit-iframe-popup'))
 
                         cartDrawer.querySelector('.slide_in__bundle').style.display = 'none';
+
                         let bundle = false;
                         for (let i = 0; i < items.length; i++) {
                             let variantId = items[i].variant_id;
 
                             if (variantId == '39758302806070') {
                                 bundle = false;
+                                setTimeout(() => {
+                                    cartDrawer.classList.remove('loading')
+                                }, 200);
                                 return
                             }
                         }
@@ -944,6 +962,10 @@ function getCart(discountChange = false, cartDrawer = document.querySelector('.s
                             pushDataLayer('Visibility of Bundle items in the cart')
 
                         }  
+
+                        setTimeout(() => {
+                            cartDrawer.classList.remove('loading')
+                        }, 200);
                     }
                 })
 
@@ -1399,9 +1421,13 @@ function isVisible() {
 
 function toggleActive(method, eventNon = '') {
     if (method == true) {
+        
+        document.querySelector('.container').scrollTop = 0;
         document.querySelector('.slide_in__cart').classList.add('active')
         pushDataLayer('Slide cart visibility')
         document.querySelector('html').classList.add('fixed_body')
+
+        document.querySelector('.slide_in__cart').classList.add('loading')
 
         if (eventNon == '') {
             visibilityUpsel = false;
@@ -1413,7 +1439,7 @@ function toggleActive(method, eventNon = '') {
 
         window.addEventListener('scroll', () => isVisible())
         isVisible()
-     
+
         getCart(true)
     } else {
         document.querySelector('.slide_in__cart').classList.remove('active')
