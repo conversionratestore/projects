@@ -599,7 +599,7 @@ function addCart(id, qty, typeId = '') {
             dataType : "JSON",            
             success  : function(data) {
                 console.log(data)
-                updateCart(typeId)
+                updateCart(typeId, 0, 0)
             },
             error : function(error) {
                 console.log(error)
@@ -623,7 +623,7 @@ function addCart(id, qty, typeId = '') {
     }
 }
 
-function updateCart(id, qty = 0) {
+function updateCart(id, qty = 0, isScroll = 1) {
     document.querySelector('.slide_in__header > p').classList.add('loading')
     $.ajax({ 
         type: "POST",
@@ -635,7 +635,12 @@ function updateCart(id, qty = 0) {
         },
         success: function (success_data) {
                 console.log(success_data);
-                getCart()
+                console.log(isScroll)
+                if (isScroll == 0) {
+                    getCart(false, document.querySelector('.slide_in__cart'), 0)
+                } else {
+                    getCart()
+                }
                 return false;
             },
             error: function (data) {
@@ -670,8 +675,9 @@ function splititPopup(cartParent, parentSplitit) {
     })
 }
 
-function getCart(discountChange = false, cartDrawer = document.querySelector('.slide_in__cart')) {
+function getCart(discountChange = false, cartDrawer = document.querySelector('.slide_in__cart'), isScroll = 1) {
     // get cart
+    console.log(isScroll)
     cartDrawer.querySelector('.slide_in__header > p').classList.add('loading')
     $.ajax({
         'url' : '/cart?view=cw-cart',
@@ -782,6 +788,12 @@ function getCart(discountChange = false, cartDrawer = document.querySelector('.s
                             }
                         }
 
+                        console.log(isScroll)
+                        if (isScroll == 0) {
+                            console.log(isScroll)
+                            cartDrawer.querySelector('.container').scrollTop = isScroll;
+                        }
+
                         //SUBTOTAL
                         cartDrawer.querySelectorAll('.slide_in__products li').forEach(item => {
                             let qty = +item.querySelector('.clac_qty').value,
@@ -794,7 +806,6 @@ function getCart(discountChange = false, cartDrawer = document.querySelector('.s
                         let discountValue = cartDrawer.querySelector('.slide_in__discount_item') != null && appikon['discounts']['additional_discount_value'] != null ? appikon['discounts']['additional_discount_value'] : 0
                         let priceSplitit = ((totalPrice - discountValue)/6).toFixed(2)
 
-                        console.log(discountValue)
                         cartDrawer.querySelector('.slide_in__subtotal .pr').innerHTML = '$' + (totalPrice - discountValue).toFixed(2);
                         cartDrawer.querySelector('.slide_in__subtotal').dataset.subtotal = totalPrice.toFixed(2);
                         cartDrawer.querySelector('.slide_in__subtotal').dataset.discount = discountValue;
@@ -883,16 +894,12 @@ function getCart(discountChange = false, cartDrawer = document.querySelector('.s
                             }
                         })
                     
-                        console.log(isCompleted)
-
-
                         if (appikon['discounts']['additional_discount_value'] != null && appikon['discounts']['additional_discount_value'] != 0) {
                             isCompleted = true;
 
                             console.log(appikon['discounts']['additional_discount_value'])
                         }
 
-                        console.log(isCompleted)
                         if (isCompleted == true) {
                             let completedIntervat = setInterval(() => {
                                 if (appikon['discounts']['additional_discount_value'] != null && appikon['discounts']['additional_discount_value'] != 0) {
@@ -1062,7 +1069,6 @@ class ProductItem {
                     if (pr_4 != '' && pr_4.querySelector('.clac_qty').value < 2 ) {
                         addCart(this.variantId, 1, 39737414484022)
                     }
-                    this.parent.closest('.slide_in__cart').querySelector('.container').scrollTop = 0;
                     pushDataLayer('Add to cart button on the Bundle offer')
                 } else {
                     addCart(e.target.dataset.variantId, 1)
@@ -1230,7 +1236,6 @@ class Discount {
         <p class="slide_in__discount_item c-purple">-$${price}</p>`
     }
     render() {
-        console.log(this.completed)
         if (this.completed == false) {
             this.parent.innerHTML = ` <p class="btn-discount c-purple fw-bold">Apply discount code</p>`
 
