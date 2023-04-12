@@ -591,24 +591,36 @@ function priceSubstr(price) {
 }
 
 function addCart(id, qty, typeId = '') {
-    $.ajax({
-        url : "/cart/add.js",
-        data : {id : id, quantity : qty},
-        method : "POST",
-        dataType : "JSON",            
-        success  : function(data) {
-            console.log(data)
-            if (typeId != '') {
+    if (typeId != '') {
+        $.ajax({
+            url : "/cart/add.js",
+            data : {id : id, quantity : qty},
+            method : "POST",
+            dataType : "JSON",            
+            success  : function(data) {
+                console.log(data)
                 updateCart(typeId)
-            } else {
-                getCart()
+            },
+            error : function(error) {
+                console.log(error)
             }
-            toggleActive(true, 'eventNon')
-        },
-        error : function(error) {
-            console.log(error)
-        }
-    });
+        });
+    } else {
+        $.ajax({
+            url : "/cart/add.js",
+            data : {id : id, quantity : qty},
+            method : "POST",
+            dataType : "JSON",            
+            success  : function(data) {
+                console.log(data)
+                getCart()
+                toggleActive(true, 'eventNon')
+            },
+            error : function(error) {
+                console.log(error)
+            }
+        });
+    }
 }
 
 function updateCart(id, qty = 0) {
