@@ -236,7 +236,7 @@ let paymentCheckout = setInterval(() => {
           .first_block .submit_btn input#submit_disabled{
             margin-bottom: 12px !important;
           }
-          form > div.row:last-child > .col-md-12{
+          form > div.row:last-child > .col-md-12 .submit_btn{
             border: 1px dashed #DDE8F1;
             border-radius: 10px;
             max-width: 345px;
@@ -773,7 +773,7 @@ let paymentCheckout = setInterval(() => {
         class_var = "monthly_pay_var";
       }
 
-      document.querySelector("body .submit_btn")?.insertAdjacentHTML("beforebegin", `<div class="payment_var"><p class=${class_var}>${textContent}</p></div>`);
+      document.querySelector("body .submit_btn")?.insertAdjacentHTML("afterbegin", `<div class="payment_var"><p class=${class_var}>${textContent}</p></div>`);
 
       // visibility
       if (document.querySelector(".payment_var")) {
