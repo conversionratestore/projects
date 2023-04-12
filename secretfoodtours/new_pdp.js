@@ -45,7 +45,17 @@ let styles = `
     color: #C39958!important;
     border-color: #C39958;
 }
+.c-gold {
+    color: #C39958!important;
+}
 
+.why-tour h2, .meeting-spot__covid .main_subheading, .meeting-spot__contact .name, .slider-gallery .swiper-pagination.swiper-pagination-fraction  {
+    font-family: 'Josefin Sans';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 24px;
+    color: #333333;
+}
 header > .container > ul > li:nth-child(2), .banner_top, .parallax-mirror, body > div.global_wr > div > div.tour-intro > div.container > div > div.col-md-12.col-xl-8, .destination_page_wr .tour-intro .plugin_right .heading, .text-red, .text-pt, .text-pt-disclaimer, .destination_page_wr .tour-intro .plugin_right .buy {
     display: none!important;
 }
@@ -100,7 +110,7 @@ header .search_btn {
     padding: 0 20px;
     margin: 0 auto;
 }
-.tour-section > .container > div > .left {
+.tour-section > .container > div:not(.why-tour) > .left {
     width: calc(100% - 342px);
     padding-right: 24px;
 }
@@ -221,7 +231,7 @@ header .search_btn {
 #plugin {
     position: absolute;
     top: 122px;
-    padding: 0!important;ч
+    padding: 0!important;
     border: 2px solid #F3F3F3;
     border-radius: 20px;
     max-width: 342px!important;
@@ -324,7 +334,7 @@ header .search_btn {
     background: #F3F3F3;
     border-radius: 20px;
 }
-.tour-drinks .main_subheading, .tour-do .title , .meeting-spot .title {
+.tour-drinks .main_subheading, .tour-do .title , .meeting-spot .title, .other-tours h2, .video-section h2, .fotos-gallery h2, .tour-section .review h2 {
     font-weight: 700;
     font-size: 30px;
     line-height: 42px;
@@ -334,7 +344,7 @@ header .search_btn {
     position: relative;
     z-index: 1;
 }
-.tour-drinks .main_subheading:before, .tour-do .title:before, .meeting-spot .title:before {
+.tour-drinks .main_subheading:before, .tour-do .title:before, .meeting-spot .title:before, .other-tours h2:before, .tour-section .review h2:before {
     content: '';
     width: 100%;
     height: 6px;
@@ -343,9 +353,6 @@ header .search_btn {
     bottom: 13px;
     z-index: -1;
     background: linear-gradient(90deg, #F3F3F3 0%, rgba(243, 243, 243, 0) 100%);
-}
-.tour-drinks .main_subheading span, .tour-do .title span {
-    color: #C39958;
 }
 .food_wr {
     padding: 40px 40px 30px;
@@ -435,7 +442,8 @@ header .search_btn {
     font-weight: 700;
     line-height: 14px;
     margin: 0 24px 0 0;
-    padding: 13px 18px 10px;
+    padding: 13px 15px 10px;
+    letter-spacing: inherit;
 }
 .drinks .buy-2 svg {
     margin-right: 8px;
@@ -564,6 +572,9 @@ header .search_btn {
     margin-top: 5px;
     text-transform: initial;
 }
+.meeting-spot .grey_block .right {
+    min-width: 270px;
+}
 .meeting-spot .grey_block .right .item p span {
     font-family: 'Josefin Sans';
     font-style: normal;
@@ -591,12 +602,13 @@ header .search_btn {
     text-decoration-line: underline;
     color: #144732;
     margin-top: 5px;
-    display: block;
+    display: flex;
+    align-items: center;
 }
 .meeting-spot .grey_block .right .item p a:after {
     content: '';
     background: url('${dir}arrow.svg') no-repeat center / contain;
-    width: 6px;
+    width: 11px;
     height: 11px;
     margin-left: 8px;
 }
@@ -619,13 +631,7 @@ header .search_btn {
     margin-bottom: 24px;
 }
 .meeting-spot__covid .main_subheading {
-    font-family: 'Josefin Sans';
-    font-style: normal;
-    font-weight: 700;
-    font-size: 24px;
     line-height: 32px;
-    text-transform: uppercase;
-    color: #333333;
     display: flex;
     margin-bottom: 20px;
 }
@@ -668,10 +674,7 @@ header .search_btn {
     color: #333333;
 }
 .meeting-spot__contact .name {
-    font-weight: 700;
-    font-size: 24px;
     line-height: 32px;
-    text-transform: uppercase;
     color: #C39958;
 }
 .meeting-spot__contact .PT_link_black {
@@ -694,17 +697,302 @@ header .search_btn {
     text-align: center;
     padding: 18px 16px 14px!important;
 }
-/* video-section */
+/* video-section, fotos-gallery */
+.video-section {
+    margin-bottom: 90px;
+}
 .video-section h2 {
+    line-height: 48px;
+    margin: 0 0 26px;
+}
+.video-section iframe, .slider-gallery .swiper-slide img {
+    border-radius: 20px;
+}
+.fotos-gallery {
+    margin-bottom: 50px;
+}
+.fotos-gallery h2 {
+    line-height: 48px;
+    margin: 0 0 22px;
+}
+.slider-gallery  {
+    overflow: hidden;
+    position: relative;
+    padding-bottom: 80px;
+}
+.swiper-button-next, .swiper-button-prev {
+    top: auto!important;
+    bottom: 0;
+    left: 50%!important;
+    margin-top: 0!important;
+    border: 2px solid rgba(20, 71, 50, 0.3);
+    border-radius: 50%;
+    display: flex;
+    width: 42px!important;
+    height: 42px!important;
+    background: none!important;
+}
+.swiper-button-next {
+    transform: translateX(calc(-50% + 58px));
+}
+.swiper-button-prev {
+    transform: translateX(calc(-50% - 58px));
+}
+.swiper-button-next:after, .swiper-button-prev:after {
+    color: #144732;
+    margin: auto;
+    font-size: 16px!important;
+}
+.swiper-pagination.swiper-pagination-fraction {
+    line-height: 42px;
+    color: #333333!important;
+    bottom: 0;
+    display: flex;
+    justify-content: center;
+}
+/* why-tour */
+.why-tour {
+    margin-bottom: 90px;
+    position: relative;
+    z-index: 1;
+}
+.why-tour:before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    background: #F3F3F3;
+    border-radius: 20px;
+    width: 80%;
+    height: 288px;
+    z-index: -1;
+}
+.why-tour .title {
+    padding: 40px 40px 16px 40px;
+}
+.why-tour h2 {
+    line-height: 44px;
+    padding-left: 20px;
+    margin: 0;
+}
+.why-tour .text {
+    font-family: 'Josefin Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 22px;
+    color: #5B5B5B;
+    padding: 0 30px 40px 40px;
+    min-height: 172px;
+}
+.why-tour .btn-customer {
+    padding: 17px 10px 13px;
+    width: 49%;
+    margin-top: 40px;
+}
+.why-tour .btn-customer:not(.gold) {
+    background: #144732;
+    color: #fff!important;
+}
+.why-tour > div {
+    width: 50%;
+}
+.why-tour .right {
+    padding: 40px 0 0 10px;
+}
+.why-tour .right img {
+    border-radius: 20px;
+}
+.why-tour .btns {
+    padding-right: 30px;
+}
+/* other-tours */
+.other-tours {
+    margin-bottom: 55px;
+}
+.other-tours .row {
+    margin: 0;
+}
+.other-tours .cardx:not([style="display:none"]) {
+    background: #FFFFFF;
+    box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.1), 0px 2px 30px rgba(0, 0, 0, 0.15);
+    border-radius: 20px;
+    margin-right: 20px;
+    width: calc(33.33% - 14px);
+    padding: 0;
+    position: relative;
+    flex: auto;
+}
+.other-tours .cardx:not([style="display:none"]):nth-child(3n+3) {
+    margin-right: 0;
+}
+.other-tours .cardx a img {
+    padding: 0;
+    height: 205px;
+    width: 100%;
+    object-fit: cover;
+    border-radius: 20px 20px 0 0;
+}
+.other-tours .cardx-container-details .cardx-desc ~ span[style] {
+    position: absolute;
+    top: 19px;
+    right: 0;
+    background-color: #ED6664!important;
+    font-family: 'Josefin Sans';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 14px!important;
+    line-height: 14px;
+    border-radius: 30px 0 0 30px;
+}
+.other-tours .cardx-container-details {
+    padding: 5px 24px 24px;
+    margin: 0;
+}
+.other-tours .cardx-price {
+    padding: 0;
+    margin-top: -8px;
+    transform: translateY(-50%);
+    font-family: 'Playfair Display';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 40px;
+    color: #144732;
+    padding: 0 10px 0 28px;
+    z-index: 2;
+    position: relative;
+    display: flex;
+    height: fit-content;
+    align-items: flex-end;
+}
+.other-tours .cardx-price span {
+    font-size: 16px;
+    line-height: 35px;
+}
+.other-tours .cardx-title {
+    font-family: 'Josefin Sans';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 24px;
+    line-height: 24px;
+    color: #333333;
+    padding: 0 0 12px 0;
+}
+.other-tours .cardx-price svg {
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: -1;
+}
+.other-tours .cardx-desc {
+    line-height: 22px;
+    color: #5B5B5B;
+    overflow: hidden;
+   display: -webkit-box;
+   -webkit-line-clamp: 3; /* number of lines to show */
+           line-clamp: 3; 
+   -webkit-box-orient: vertical;
+   min-height: 66px;
+   padding: 0;
+}
+.other-tours .cardx-tags {
+    margin-top: 16px;
+}
+/* review */
+.review .review-from {
+    background: #FFFFFF;
+    border: 2px dashed #EBEBE7;
+    border-radius: 20px;
+    padding: 24px 30px 18px;
+}
+.review .reviews-Verified {
+    font-family: 'Josefin Sans';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 18px;
+    color: #333333;
+    margin-bottom: 16px;
+}
+.review .reviews-logos {
+    display: flex;
+    justify-content: space-between;
+}
+.tour-section .review h2 {
+    margin: 0;
+    line-height: 48px;
+}
+.tour-section .review .reviews-logos, #load_more_reviews {
+    display: none;
+}
+.review .reviews-logos img:first-child {
+    height: 46px;
+}
+.review .reviews-logos img {
+    width: auto;
+}
+.tour-section .review .reviews-first-container {
+    display: flex;
+    align-items: center;
+}
+.tour-section .review .reviews-first-container .reviews-total {
     font-family: 'Josefin Sans';
     font-style: normal;
     font-weight: 700;
-    font-size: 30px;
-    line-height: 48px;
-    margin-bottom: 26px;
-    text-transform: uppercase;
+    font-size: 36px;
+    line-height: 36px;
     color: #333333;
-    margin-bottom: 90px;
+    background: url(${dir}Google__G__Logo.svg) no-repeat left center / 46px 43.4px;
+    padding: 16px 10px 12px 60px;
+    margin-left: 50px;
+}
+.tour-section .review .reviews-based-reviews {
+    font-size: 14px;
+    line-height: 22px;
+    color: #5B5B5B;
+}
+.tour-section .review .reviews-stars {
+    color: #FFB446;
+}
+.reviews-Verified {
+    display: none
+}
+.all-reviews {
+    display: none;
+}
+.slider-review {
+    overflow: auto;
+    position: relative;
+    padding: 40px 20px 160px;
+}
+.slider-review .swiper-slide {
+    background: #FFFFFF;
+    box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.1), 0px 2px 30px rgba(0, 0, 0, 0.15);
+    border-radius: 20px;
+    padding: 24px;
+}
+.slider-review img {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    margin-right: 16px;
+}
+.slider-review .text {
+    font-size: 14px;
+    line-height: 22px;
+    color: #5B5B5B;
+}
+.slider-review .text b {
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 18px;
+    margin: 24px 0 12px;
+    color: #333333;
+    display: block;
+}
+.slider-review .swiper-button-next, .slider-review .swiper-button-prev, .slider-review .swiper-pagination.swiper-pagination-fraction {
+    bottom: 88px;
 }
 </style>`
 
@@ -800,6 +1088,11 @@ let init = setInterval(() => {
                         </div>
                     </div>
                 </div>
+                <div class="video-section text-center"></div>
+                <div class="fotos-gallery"></div>
+                <div class="review"></div>
+                <div class="why-tour d-flex flex-wrap"></div>
+                <div class="other-tours"></div>
             </div>
         </section>
         `)
@@ -896,6 +1189,110 @@ let init = setInterval(() => {
                 </div>`)
             }
         }
+
+        //review 
+
+        document.querySelector('.tour-section .review').innerHTML = `
+        <div class="d-flex align-items-center justify-content-between">
+            <h2>Review <span class="c-gold">What people say</span></h2>
+            <div class="review-from">
+                <p>Review from</p>
+                <div class="d-flex justify-content-between align-items-center">
+                    <img src="${dir}TripAdvisor_Logo.svg" alt="icon">
+                </div>
+            </div>
+        </div> 
+
+        <div class="block-reviews">
+            <div class="slider-review">
+                <div class="swiper-wrapper"> </div>
+                <div class="swiper-pagination"></div>
+                <div class="swiper-button-prev" tabindex="0" role="button" aria-label="Previous slide"></div>
+                <div class="swiper-button-next" tabindex="0" role="button" aria-label="Next slide"></div>
+            </div>
+        </div>
+        `
+
+        initExp()
+        
+        async function initExp() {
+            const [reviewsEl, scriptEl, rateEl] = await fetchReviews(); // 2 element: html for reviews block and scripts for loading reviews items
+        
+            /* Use existing markup or variable 'customers_reviews' for build your own markup */ 
+            console.log(rateEl)
+            console.log(reviewsEl)
+            console.log(scriptEl)
+
+            document.querySelector('body').insertAdjacentElement('beforeend', rateEl); 
+
+            document.querySelector('.tour-section .review .review-from > div > img').after(document.querySelector('.reviews-first-container'))
+
+            document.querySelector('body').insertAdjacentElement('beforeend', reviewsEl)
+            document.querySelector('body').insertAdjacentElement('beforeend', scriptEl)
+        
+            console.log('Reviews Array:', customers_reviews)
+        
+            for (let i = 0; i < customers_reviews.length; i++) {
+                let slide = document.createElement('div');
+                slide.classList.add('swiper-slide')
+                slide.innerHTML = `
+                <div class="d-flex align-items-center">
+                    <img src="${customers_reviews[i][0]}">
+                    <div>
+                        <p>${customers_reviews[i][1]}</p>
+                        <div class="reviews-user-stars">★★★★★</div>
+                    </div>
+                </div>
+                <p class="text">
+                    <b>${customers_reviews[i][2]}</b>
+                    ${customers_reviews[i][3]}
+                </p> `
+                document.querySelector('.slider-review .swiper-wrapper').appendChild(slide)
+            }
+          
+
+            new Swiper(".slider-review", {
+                slidesPerView: 3,
+                loop: true,
+                spaceBetween: 20,
+                centeredSlides: false,
+                pagination: {
+                    el: ".slider-review .swiper-pagination",
+                    type: "fraction",
+                },
+                navigation: {
+                    nextEl: ".slider-review .swiper-button-next",
+                    prevEl: ".slider-review .swiper-button-prev",
+                }
+            }); 
+            if (typeof loadReviews !== 'function') return false
+        
+            loadReviews();
+        }
+        
+        async function fetchReviews() {
+            let requestUrl = location.href.match(/^(.*?\/\/[^\/]+\/[^\/]+\/).*$/);
+        
+            if (!requestUrl) return;
+        
+            console.log("** RequestUrl **", requestUrl)
+        
+            const res = await fetch(requestUrl[1]);
+            const data = await res.text();
+        
+            const DOM = new DOMParser().parseFromString(data, 'text/html');
+        
+            const reviewsEl = DOM.querySelector('.all-reviews')
+            const scriptEl = DOM.querySelector('.reviews')?.nextElementSibling
+            const rateEl = DOM.querySelector('.country_tours')?.querySelector(`[href="${location.pathname}"]`)?.closest('.cardx')?.querySelector('.star-ratings')
+        
+
+            if (!reviewsEl || !scriptEl || !rateEl) return;
+        
+            scriptEl.type = 'text/javascript'
+        
+            return [reviewsEl, scriptEl, rateEl]
+        }
     }
 });
 
@@ -905,7 +1302,7 @@ let taste = setInterval(() => {
         document.querySelector('.brands').after(document.querySelector('.tour-drinks'))
         let titleDrinks = document.querySelector('.tour-drinks .main_subheading');
         let sptArr = titleDrinks.innerHTML.trim().split(' ')
-        titleDrinks.innerHTML = titleDrinks.innerHTML.replace(sptArr[sptArr.length - 1], `<span> ${sptArr[sptArr.length - 1]}</span>`)
+        titleDrinks.innerHTML = titleDrinks.innerHTML.replace(sptArr[sptArr.length - 1], `<span class="c-gold"> ${sptArr[sptArr.length - 1]}</span>`)
 
         document.querySelectorAll('.food_block .title').forEach(item => {
             if (item.innerHTML.trim().includes('THE FOOD')) {
@@ -973,7 +1370,7 @@ let drink = setInterval(() => {
 let tourDo = setInterval(() => {
     if (document.querySelector('.tour-do') != null && document.querySelector('.what_we_do') != null) {
         clearInterval(tourDo)
-        document.querySelector('.tour-do').insertAdjacentHTML('afterbegin',`<h2 class="title">WHAT YOU'LL <span>Do</span></h2><div class="content-text"></div>`)
+        document.querySelector('.tour-do').insertAdjacentHTML('afterbegin',`<h2 class="title">WHAT YOU'LL <span class="c-gold">Do</span></h2><div class="content-text"></div>`)
         document.querySelectorAll('.what_we_do .text').forEach(item => {
             document.querySelector('.tour-do .content-text').insertAdjacentHTML('beforeend', `<p class="text">${item.innerText}</p>`)
         })
@@ -993,19 +1390,27 @@ let tourDo = setInterval(() => {
 });
 
 let meeting_spot = setInterval(() => {
-    if (document.querySelector('.notate') != null && document.querySelector('.tour-features .covid') != null && document.querySelector('.tour-features .contact_info') != null) {
+    if (document.querySelector('.notate') != null && document.querySelector('.tour-features .covid') != null && document.querySelector('.tour-features .contact_info') != null && document.querySelector('.meeting-spot') != null) {
         clearInterval(meeting_spot)
         document.querySelector('.meeting-spot .title').after(document.querySelector('.notate'))
         document.querySelector('.meeting-spot .title').after(document.querySelector('#spot_beer_tour_amsterdam'))
 
-        document.querySelectorAll('.grey_block').forEach(item => {
-            let spt = item.querySelector('a').innerHTML.split('<br>');
-            let res = `<span>${spt[0]}</span><a href="${item.querySelector('a').href}">${spt[1]}</a>`;
-
-            item.querySelector('.right .item > p').innerHTML = res;
-
-            document.querySelector('.notate').insertAdjacentHTML('afterend',`<div class="grey_block"> ${item.innerHTML}</div>`)
-        })
+        if (document.querySelector('.grey_block') != null) {
+            document.querySelectorAll('.grey_block').forEach(item => {
+                let spt = item.querySelector('a').innerHTML.split('<br>');
+                let res = `<span>${spt[0]}</span><a href="${item.querySelector('a').href}">${spt[1]}</a>`;
+    
+                item.querySelector('.right .item > p').innerHTML = res;
+    
+                document.querySelector('.notate').insertAdjacentHTML('afterend',`<div class="grey_block"> ${item.innerHTML}</div>`)
+            })
+        } else {
+            if (document.querySelector('.meeting_spot > iframe') != null) {
+                document.querySelector('.notate').after(document.querySelector('.meeting_spot > .text-disclaimer'))
+                document.querySelector('.notate').after(document.querySelector('.meeting_spot > .text'))
+                document.querySelector('.notate').after(document.querySelector('.meeting_spot > iframe'))
+            }
+        }
 
         document.querySelector('.meeting-spot__covid').innerHTML = document.querySelector('.tour-features .covid').innerHTML;
         document.querySelector('.meeting-spot__contact').innerHTML = document.querySelector('.tour-features .contact_info').innerHTML;
@@ -1017,16 +1422,88 @@ let meeting_spot = setInterval(() => {
 })
 
 let video = setInterval(() => {
-    if (document.querySelector('.youtube[data-embed]') != null) {
+    if (document.querySelector('.youtube[data-embed]') != null && document.querySelector('.video-section') != null) {
         clearInterval(video)
         let embed = document.querySelector('.youtube[data-embed]').dataset.embed;
         let linkVideo = `https://www.youtube.com/embed/${embed}`
         
-        document.querySelector('.meeting-spot').insertAdjacentHTML('afterend',`
-        <div class="video-section">
+        document.querySelector('.video-section').innerHTML =`
             <h2>VIDEO OF SECRET FOOD TOUR: MONTMARTRE</h2>
-            <iframe width="1080" height="715" src="${linkVideo}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-        </div>`)
+            <iframe width="1080" height="715" src="${linkVideo}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>`
     }
 });
 
+let fotos = setInterval(() => {
+    if (document.querySelector('#my-gallery') != null && document.querySelector('.fotos-gallery') != null) {
+        clearInterval(fotos)
+        document.querySelector('.fotos-gallery').innerHTML = `
+        <h2>PHOTOS OF SECRET FOOD TOUR: <br>
+        <span class="c-gold">MONTMARTRE</span></h2>
+        <div class="slider-gallery">
+            ${document.querySelector('#my-gallery').innerHTML}
+        </div>`
+
+        new Swiper(".slider-gallery", {
+            slidesPerView: 2.5,
+            loop: true,
+            spaceBetween: 20,
+            pagination: {
+                el: ".slider-gallery .swiper-pagination",
+                type: "fraction",
+            },
+            navigation: {
+                nextEl: ".slider-gallery .swiper-button-next",
+                prevEl: ".slider-gallery .swiper-button-prev",
+            },
+        });                     
+                            
+    }
+})
+
+let whyTour = setInterval(() => {
+    if (document.querySelector('.why-tour') != null && document.querySelector('.about-tour .left_info .title') != null) {
+        clearInterval(whyTour)
+        document.querySelector('.why-tour').innerHTML = `
+        <div class="left">
+            <div class="title d-flex align-items-center">
+                <img src="${dir}logo_line.svg" alt="icon">
+                <h2>${document.querySelector('.about-tour .left_info .title').innerHTML}</h2>  
+            </div>
+            <p class="text">${document.querySelector('.about-tour .left_info .text p').innerHTML}</p>
+            <div class="d-flex justify-content-between btns">
+                <a href="#" class="btn-customer">Book tour</a>
+                <a href="#" class="btn-customer gold d-flex align-items-center justify-content-center">
+                    <svg width="15" height="12" viewBox="0 0 15 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M1.375 11.1429C1.375 11.625 1.75781 12 2.25 12H6.625V7.71429H1.375V11.1429ZM8.375 12H12.75C13.2148 12 13.625 11.625 13.625 11.1429V7.71429H8.375V12ZM13.625 3.42857H12.4492C12.6406 3.10714 12.75 2.75893 12.75 2.35714C12.75 1.07143 11.6562 0 10.3438 0C9.19531 0 8.45703 0.589286 7.52734 1.84821C6.57031 0.589286 5.83203 0 4.71094 0C3.37109 0 2.30469 1.07143 2.30469 2.35714C2.30469 2.75893 2.38672 3.10714 2.57812 3.42857H1.375C0.882812 3.42857 0.5 3.83036 0.5 4.28571V6.42857C0.5 6.66964 0.691406 6.85714 0.9375 6.85714H14.0625C14.2812 6.85714 14.5 6.66964 14.5 6.42857V4.28571C14.5 3.83036 14.0898 3.42857 13.625 3.42857ZM4.68359 3.42857C4.08203 3.42857 3.58984 2.97321 3.58984 2.35714C3.58984 1.76786 4.08203 1.28571 4.68359 1.28571C5.23047 1.28571 5.64062 1.39286 7.0625 3.42857H4.68359ZM10.3438 3.42857H7.96484C9.38672 1.39286 9.76953 1.28571 10.3438 1.28571C10.9453 1.28571 11.4375 1.76786 11.4375 2.35714C11.4375 2.97321 10.9453 3.42857 10.3438 3.42857Z" fill="#C39958"/>
+                    </svg>
+                    Buy this tour as a gift
+                </a>
+            </div>
+        </div>
+        <div class="right">
+            <img src="${document.querySelector('.about-tour .left_info .text img').src}" alt="image tour">
+        </div>`
+    }
+});
+
+let otherTours = setInterval(() => {
+    if (document.querySelector('.other-tours') != null && (document.querySelector('.country_tours') != null || document.querySelector('.similar_tours') != null)) {
+        clearInterval(otherTours)
+        let tours = document.querySelector('.country_tours') != null ? '.country_tours' : '.similar_tours';
+        document.querySelector('.other-tours').innerHTML = `
+         <h2>See our other secret tours <span class="c-gold">In paris</span></h2>
+         ${document.querySelector(`${tours} .container`).innerHTML}
+        `
+
+        document.querySelectorAll('.cardx-container-details').forEach(item => {
+            if (item.querySelector('.cardx-price') != null) {
+                let price = item.querySelector('.cardx-price').innerText.replace(/[^\d\.]*/g, '')
+                let currency = item.querySelector('.cardx-price').innerText.replace(price, '')
+
+                item.querySelector('.cardx-price').innerHTML = `
+                    <svg width="78" height="40" viewBox="0 0 78 40" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M18.5452 0C16.8361 0 15.2081 0.72886 14.0698 2.00368L1.56852 16.0037C-0.464246 18.2801 -0.464248 21.7199 1.56852 23.9963L14.0698 37.9963C15.2081 39.2711 16.8361 40 18.5452 40H72C75.3137 40 78 37.3137 78 34V6C78 2.68629 75.3137 0 72 0H18.5452Z" fill="#E9EBED"/></svg>
+                    <span>${currency}</span> ${price}`
+            }
+        })
+    }
+})
