@@ -892,7 +892,7 @@ function getCart(discountChange = false, cartDrawer = document.querySelector('.s
                                 bundle = false;
                                 
                                 if (sessionStorage.getItem('scrollTo') != null) {
-                                    cartDrawer.querySelector('.container').scrollTo(0, +sessionStorage.getItem('scrollTo'));
+                                    cartDrawer.querySelector('.container').scrollTop = sessionStorage.getItem('scrollTo');
                                     sessionStorage.removeItem('scrollTo')
                                 }
                                 return
@@ -918,7 +918,7 @@ function getCart(discountChange = false, cartDrawer = document.querySelector('.s
                         }  
 
                         if (sessionStorage.getItem('scrollTo') != null) {
-                            cartDrawer.querySelector('.container').scrollTo(0, +sessionStorage.getItem('scrollTo'));
+                            cartDrawer.querySelector('.container').scrollTop = sessionStorage.getItem('scrollTo');
                             sessionStorage.removeItem('scrollTo')
                         }
                        
