@@ -1050,6 +1050,7 @@ class ProductItem {
                     if (pr_4 != '' && pr_4.querySelector('.clac_qty').value < 2 ) {
                         addCart(this.variantId, 1, 39737414484022)
                     }
+                    this.parent.closest('.slide_in__cart').querySelector('.container').scrollTop = 0;
                     pushDataLayer('Add to cart button on the Bundle offer')
                 } else {
                     addCart(e.target.dataset.variantId, 1)
