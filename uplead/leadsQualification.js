@@ -329,6 +329,14 @@ const isUrlValid = (userInput) => {
     else
         return true;
 }
+const isValidDomen = (userInput) => {
+    let url = userInput.value;
+    let res = url.match(/(http(s)?:\/\/.)?(www\.)?([\w.-]+)@(\[(\d{1,3}\.){3}|(?!outlook|gmail|yahoo|aol|ymail|titan|icloud|proton|zoho|yandex|gmx|hubspot|mail|tutanota|10minutemail)(([a-zA-Z\d-]+\.)+))([a-zA-Z]{2,15}|\d{1,3})(\]?)$/);
+    if(res == null)
+        return false;
+    else
+        return true;
+}
 
 let selectHTML = `
 <style>
@@ -1340,8 +1348,14 @@ let init = () => {
                 }
                 if (isUrlValid(inputEmail) != true) {
                     inputEmail.parentElement.classList.add('error')
+                    inputEmail.nextElementSibling.innerHTML = 'Not a valid e-mail address'
                 } else {
-                    inputEmail.parentElement.classList.remove('error')
+                    if (isValidDomen(inputEmail) != true) {
+                        inputEmail.parentElement.classList.add('error')
+                        inputEmail.nextElementSibling.innerHTML = 'Please enter a business email'
+                    } else {
+                        inputEmail.parentElement.classList.remove('error')
+                    }
                 }
                 if (document.querySelector('.error') != null) {
                     pushDataLayer('Click on the Get a Free Demo button');
