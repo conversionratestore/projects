@@ -1375,6 +1375,17 @@ let init = () => {
                     }
                     let utm_term = setUtm()
 
+                    var xhr = new XMLHttpRequest();
+                    xhr.open("POST", "https://hooks.zapier.com/hooks/catch/15010393/32ckvp4/", true);
+                    xhr.setRequestHeader('Content-Type', 'application/json');
+                    xhr.send(JSON.stringify({
+                      full_name: inputName.value,
+                      email: inputEmail.value, 
+                      phone: inputPhone.value,
+                      prospects: selectCurrent.innerHTML ,
+                      client_id: utm_term
+                    }))
+
                     console.log(utm_term)
                     window.Calendly.initInlineWidget({
                         url: `https://calendly.com/upleadhq/phone-call/?utm_term=${utm_term}&name=${inputName.value}&email=${inputEmail.value}&hide_event_type_details=1&hide_gdpr_banner=1`,
