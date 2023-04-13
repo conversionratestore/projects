@@ -3,14 +3,18 @@ let dir = `https://conversionratestore.github.io/projects/secretfoodtours/img/`;
 let styles = `
 <style>
 /* customer */
-.swiper-slide [
+.searchdroptop {
+    max-width: 100%;
+}
+.swiper-slide {
     height: auto!important;
-]
+}
 .destination_page_wr .destination_content .main_container {
     position: initial;
 }
 .main_container {
     max-width: 100%;
+    padding: 0;
 }
 .link-customer {
     font-family: 'Josefin Sans';
@@ -62,27 +66,263 @@ let styles = `
     font-size: 24px;
     color: #333333;
 }
-#plugin [style="background-color: #0a88ff; padding:10px;"], .destination_content, .breadcrumbs, .destination_page_wr .destination_content .plugin_right > .price, .destination_page_wr .destination_content .plugin_right .heading, header .btn-customer.gold, .tour-features, .similar, header > .container > ul > li:nth-child(2), .banner_top, .parallax-mirror, body > div.global_wr > div > div.tour-intro > div.container > div > div.col-md-12.col-xl-8, .destination_page_wr .tour-intro .plugin_right .heading, .text-red, .text-pt, .text-pt-disclaimer, .destination_page_wr .tour-intro .plugin_right .buy {
+.destination_page_wr .destination_content .destination_descr {
+    padding: 0;
+}
+.destination_content > .container, .destination_descr .container, #plugin [style="background-color: #0a88ff; padding:10px;"], .breadcrumbs, .destination_page_wr .destination_content .plugin_right > .price, .destination_page_wr .destination_content .plugin_right .heading, .tour-features, .similar, header > .container > ul > li:nth-child(2), .banner_top, .parallax-mirror, body > div.global_wr > div > div.tour-intro > div.container > div > div.col-md-12.col-xl-8, .destination_page_wr .tour-intro .plugin_right .heading, .text-red, .text-pt, .text-pt-disclaimer, .destination_page_wr .tour-intro .plugin_right .buy {
     display: none!important;
 }
-header.destinations-active .btn-customer.gold {
+/* header */
+
+.popular_tours_row > div {
+    width: 25%;
+    padding-right: 20px;
+    font-family: 'Josefin Sans';
+    font-style: normal;
+    font-weight: 400;
+}
+.popular_tours_row img {
+    background: #D9D9D9;
+    border-radius: 20px;
+    width: 100px;
+    height: 100px;
+    margin-right: 16px;
+    flex-shrink: 0;
+    object-fit: cover;
+}
+.popular_tours_row .name {
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 24px;
+    color: #333333;
+    margin-top: 6px;
+}
+.popular_tours_row .rate {
+    font-size: 14px;
+    line-height: 22px;
+    color: #333333;
+    margin-left: 8px;
+}
+.popular_tours_row .more {
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 16px;
+    text-transform: uppercase;
+    color: #C39958;
+    margin-top: 8px;
+}
+.popular_tours_row .more svg {
+    margin-left: 10px;
+}
+.popular_tours {
+    background: #EBEBE7;
+    padding: 30px 0;
+}
+.popular_tours .title {
+    font-family: 'Josefin Sans';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 24px;
+    margin-bottom: 16px;
+    color: #333333;
+}
+.popular_tours .title svg {
+    margin-right: 10px;
+    margin-top: -2px;
+}
+.header_dropdown_top {
+    background: #FFFFFF;
+    border-top: 1px solid #EBEBE7;
+}
+.header_dropdown .city_wr {
+    padding: 6px 0 30px;
+}
+.header_dropdown .block .heading div {
+    background: none!important;
+    margin-left: 10px;
+    width: 10px;
+    height: auto;
+}
+.header_dropdown .block .heading div svg {
+    display: block;
+}
+.header_dropdown .country_wr {
+    max-width: 100%;
+    width: fit-content;
+    margin: 0;
+}
+.right-menu a {
+    font-family: 'Josefin Sans';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 16px;
+    color: #333333;
+    padding: 15px 0;
+    margin-left: 30px;
+}
+.right-menu a:hover {
+    color: #C39958;
+}
+.header_dropdown {
+    padding: 0;
+    background: #F3F3F3;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+.header_dropdown .block .heading {
+    margin: 0 40px 0 0;
+    height: auto;
+}
+.header_dropdown .block ul li {
+    margin: 0;
+}
+.header_dropdown .block ul li.country-16-title a, .header_dropdown .block ul li.country-16-title-nmt a {
+    font-family: 'Josefin Sans';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 18px;
+    color: #333333;
+    margin: 24px 0 12px;
+    display: flex;
+    align-items: center;
+}
+.header_dropdown .block ul li a i {
+    margin-right: 8px;
+    margin-top: -4px;
+    width: 24px;
+    height: 18px;
+}
+.header_dropdown .block ul li.mt5 {
+    padding-left: 45px;
+    position: relative;
+    margin-bottom: 12px;
+}
+.header_dropdown .block ul li.mt5:before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 33px;
+    transform: translateY(-50%);
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: #C39958;
+}
+.header_dropdown .block .heading a {
+    font-family: 'Josefin Sans';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 14px;
+    text-transform: uppercase;
+    color: #333333;
+    display: block;
+    padding: 15px 0;
+}
+.header_dropdown .block .heading.active a {
+    color: #C39958;
+}
+.header_dropdown .block .heading.active svg path {
+    fill: #C39958;
+}
+.destinations-active {
+    position: relative;
+    z-index: 99;
+}
+.destinations-active:before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    z-index: 1;
+    background-color: rgba(0,0,0,0.6);
+}
+.destinations-active .btn-customer.gold {
     display: flex!important;
 }
 header .search_header {
     background-color: transparent;
+    margin-top: 0;
+    top: 0;
 }
 header .search_header input {
     width: 400px;
     margin-left: 30px;
     border: 1px solid #EBEBE7;
     border-radius: 20px;
+    font-size: 14px;
+    height: auto;
+    padding: 14px 14px 12px 42px;
+    line-height: 14px;
+    background: url(${dir}search-icon-gray.svg) no-repeat 12px center / 20px
 }
-/* header */
+header .search_header input::-webkit-input-placeholder {
+    font-family: 'Josefin Sans';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 14px;
+    color: #A9A9A9;
+}
+  
+header .search_header input:-ms-input-placeholder {
+    font-family: 'Josefin Sans';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 14px;
+    color: #A9A9A9;
+ }
+  
+header .search_header input::-ms-input-placeholder {
+    font-family: 'Josefin Sans';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 14px;
+    color: #A9A9A9;
+ }
+  
+header .search_header input::placeholder {
+    font-family: 'Josefin Sans';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 14px;
+    color: #A9A9A9;
+}
+.destinations-active .header_dropdown {
+    display: block!important;
+}
+.destinations-active .btns-header {
+    position: absolute; 
+    top: 0; 
+    right: 0; 
+    z-index: 999999;
+    background: #fff;
+}
+.destinations-active .search_header {
+    width: calc(100% - 240px);
+    z-index: 99999;
+}
+.destinations-active #close_ic_desktop {
+    display: none!important;
+}
+.destinations-active .gold {
+    display: flex!important;
+}
+header .btns-header a {
+    margin-left: 16px;
+}
 header {
     background: #FFFFFF;
     box-shadow: 0px 2px 16px rgba(20, 71, 50, 0.15);
     transform: none!important;
-    position: initial!important;
+    position: relative!important;
 }
 header .logo img {
     max-width: 200px;
@@ -141,15 +381,29 @@ header .search_btn {
     margin: 0 16px 0 0;
 }
 .rating {
-    margin-top: 20px;
+    margin: 20px 0 24px;
+    font-family: 'Josefin Sans';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 20px;
+    color: #333333;
 }
 .rating .star {
     margin-right: 4px;
 }
 .rating .star-ratings {
-    margin-left: 12px;
+    display: none;
 }
-.rating .to-rating, .rating .star-ratings {
+.rating svg:not(.star) {
+    margin-right: 8px;
+}
+.rating .to-rating {
+    padding-right: 14px;
+    margin-right: 14px;
+    border-right: 1px solid #333333;
+}
+.rating .to-rating, .rating .rate-tours {
     font-family: 'Josefin Sans';
     font-style: normal;
     font-weight: 600;
@@ -200,7 +454,26 @@ header .search_btn {
     margin-bottom: 24px;
     background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.16) 84.45%, rgba(0, 0, 0, 0.4) 100%);
     border-radius: 20px;
+    padding: 0;
+    overflow: hidden;
+    position: relative;
+}
+.gallery > div {
+    position: absolute;
+    left: 0;
+    bottom: 0;
     padding: 20px;
+    width: 100%;
+    z-index: 2;
+}
+.gallery .swiper-slide {
+    width: 100%;
+    height: 100%;
+}
+.gallery .swiper-slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 .btn-gallery {
     font-weight: 700;
@@ -218,6 +491,7 @@ header .search_btn {
     border-radius: 33px;
     width: 42px;
     height: 42px;
+    flex-shrink: 0;
 }
 .gallery-count {
     padding: 0 12px;
@@ -225,6 +499,7 @@ header .search_btn {
     font-size: 20px;
     line-height: 48px;
     color: #FFFFFF;
+    display: flex;
 }
 /* right */
 .right-header {
@@ -280,7 +555,7 @@ header .search_btn {
     margin: 0 -1px;
 }
 .right-content {
-    padding: 0 16px 14px;
+    padding: 0 14px 14px;
 }
 .right-content .btn-customer {
     font-size: 12px;
@@ -774,6 +1049,9 @@ header .search_btn {
     height: 42px!important;
     background: none!important;
 }
+.swiper-button-next svg, .swiper-button-prev svg {
+    margin: auto;
+}
 .swiper-button-next {
     transform: translateX(calc(-50% + 58px));
 }
@@ -781,9 +1059,8 @@ header .search_btn {
     transform: translateX(calc(-50% - 58px));
 }
 .swiper-button-next:after, .swiper-button-prev:after {
-    color: #144732;
-    margin: auto;
-    font-size: 16px!important;
+    content: none;
+    display: none!important;
 }
 .swiper-pagination.swiper-pagination-fraction {
     line-height: 42px;
@@ -957,10 +1234,8 @@ header .search_btn {
     align-items: center;
     margin-bottom: 16px;
 }
-.other-tours .star-ratings .fa {
+.other-tours .star-ratings svg {
     margin-right: 4px;
-    color: #F4B75B;
-    font-size: 18px;
 }
 .other-tours .rate-tours {
     color: #333333;
@@ -1008,6 +1283,7 @@ header .search_btn {
 }
 .other-tours .star-ratings::before {
     content: none!important;
+    display: none;
 }
 .other-tours .tour_link .label {
     position: absolute;
@@ -1166,16 +1442,191 @@ header .search_btn {
     margin-bottom: 12px;
     color: #333333;
 }
-.slider-review  .reviews-user-stars {
-    font-family: 'Font Awesome\ 5 Free';
+.sreviews-user-stars svg {
+    margin-right: 4px;
+}
+.help_center .container:first-child .left_help {
+    flex-basis: 100%;
+    display: flex;
+}
+.help_center .container:first-child .left_help .main_heading, .help_center .container:first-child .left_help .main_subheading {
+    font-family: 'Josefin Sans';
     font-style: normal;
-    font-weight: 900;
-    font-size: 16px;
-    line-height: 18px;
-    color: #F4B75B;
+    font-weight: 700;
+    font-size: 30px;
+    line-height: 48px;
+    text-transform: uppercase;
+    margin: 0 0 30px 0;
+    padding: 0;
+}
+.help_center .container:first-child .left_help .main_heading {
+    color: #333333;
+}
+.help_center:after {
+    width: 100%;
+    background: #F3F3F3;
 }
 </style>`
 
+const state = new Promise((resolve, reject) => {
+    fetch(`https://conversionratestore.github.io/projects/uplead/state.json`).then(res => res.json()).then(data => {
+        resolve(data)
+    }).catch((error) => {
+        console.error('Error:', error);
+    });
+})
+
+let isStar = `<svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M8.09375 1.5625L6.0625 5.71875L1.46875 6.375C0.65625 6.5 0.34375 7.5 0.9375 8.09375L4.21875 11.3125L3.4375 15.8438C3.3125 16.6562 4.1875 17.2812 4.90625 16.9062L9 14.75L13.0625 16.9062C13.7812 17.2812 14.6562 16.6562 14.5312 15.8438L13.75 11.3125L17.0312 8.09375C17.625 7.5 17.3125 6.5 16.5 6.375L11.9375 5.71875L9.875 1.5625C9.53125 0.84375 8.46875 0.8125 8.09375 1.5625Z" fill="#F4B75B"/>
+</svg>`
+
+let isStarHalf = `<svg width="9" height="17" viewBox="0 0 9 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M9 0C8.625 0 8.28125 0.1875 8.09375 0.5625L6.0625 4.71875L1.46875 5.375C0.65625 5.5 0.34375 6.5 0.9375 7.0625L4.21875 10.2812L3.4375 14.8438C3.3125 15.6562 4.15625 16.2812 4.90625 15.9062L9 13.75V0Z" fill="#F4B75B"/>
+</svg>`
+
+let popularTout = (image, rate, name, link) =>  {
+    let stars = ''
+    let ratehalf = rate.split('.')[1]
+
+    for (let i = 0; i < Math.floor(rate); i++) {
+        stars += isStar
+    }
+    if (ratehalf > 0) {
+        stars += isStarHalf
+    }
+    
+    return `
+   
+        <div class="d-flex align-items-cneter">
+            <img src="${image}">
+            <div>
+                <div class="d-flex align-items-center">
+                    <div class="stars">${stars}</div>
+                    <div class="rate">${rate}</div>
+                </div>
+                <a href="${link}" class="name">${name}</a>
+                <a href="${link}" class="more d-flex align-items-center">Learn more
+                    <svg width="9" height="14" viewBox="0 0 9 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M0.999999 13L7 7L1 1" stroke="#C39958" stroke-width="2" stroke-linecap="round"/>
+                    </svg>
+                </a>
+            </div>
+        </div>`
+}
+
+let objPopularTours = {
+    'asia': [
+        {
+            'image': '/img/seoul/secret-food-tours-seoul.jpg',
+            'link': '/seoul/food-tours-seoul/',
+            'name': 'Seoul Food Tours',
+            'rate': '4.98'
+        },
+        {
+            'image': '/img/istanbul/secret-food-tours-istanbul.jpg',
+            'link': '/istanbul/food-tours-istanbul/',
+            'name': 'Lunch Food Tour Istanbul-kadikoy',
+            'rate': '4.96'
+        },
+        {
+            'image': '/img/bangkok/secret-food-tours-bangkok.jpg',
+            'link': '/bangkok/food-tours-bangkok/',
+            'name': 'Bangkok Food Tour',
+            'rate': '4.97'
+        },
+        {
+            'image': '/img/singapore/secret-food-tours-singapore.jpg',
+            'link': '/singapore/food-tours-singapore/',
+            'name': 'Singapore Food Tours',
+            'rate': '4.95'
+        }
+    ],
+    'australia': [
+        {
+
+            'image': '/img/sydney/secret-food-tours-sydney.jpg',
+            'link': '/sydney/food-tours-sydney/',
+            'name': 'Sydney Food Tour',
+            'rate': '4.98'
+        }
+    ],
+    'europe': [
+        {
+
+            'image': '/img/paris/montmarte-morning-2.jpg?v2',
+            'link': '/paris/paris-montmartre/',
+            'name': 'Paris Montmartre Food Tours',
+            'rate': '4.99'
+        },
+        {
+
+            'image': '/img/paris/paris-marais-tour%20.jpg',
+            'link': '/paris/paris-le-marais/',
+            'name': 'Paris, Le Marais Food Tours',
+            'rate': '4.85'
+        },
+        {
+
+            'image': '/img/london/secret-food-tours-london-bridge.jpg',
+            'link': '/london/london-bridge-food-tour/',
+            'name': 'Secret Food Tours: London Bridge',
+            'rate': '5.00'
+        },
+        {
+
+            'image': '/img/paris/chocolate-pastry-2.jpg',
+            'link': '/paris/chocolate-and-pastry-tour/',
+            'name': 'Pastry & Chocolate Tours Paris',
+            'rate': '4.97'
+        }
+    ],
+    'north-america': [
+        {
+
+            'image': '/img/charleston/secret-food-tours-charleston.jpg?v4',
+            'link': '/charleston/food-tours-charleston/',
+            'name': 'Charleston Food Tour',
+            'rate': '4.95'
+        }, 
+        {
+
+            'image': '/img/austin/secret-food-tours-austin.jpg',
+            'link': '/austin/food-tours-austin/',
+            'name': 'Austin Food Tour',
+            'rate': '4.96'
+        }, 
+        {
+
+            'image': '/img/nashville/new-gallery/nashville-food-tour-gallery-01.jpg',
+            'link': '/nashville/food-tours-nashville/',
+            'name': 'East Nashville Food Tour',
+            'rate': '4.96'
+        }, 
+        {
+
+            'image': '/img/boston/secret-food-tours-boston.jpg',
+            'link': '/boston/food-tours-boston/',
+            'name': 'Boston Food Tour',
+            'rate': '4.92'
+        }
+    ],
+    'south-america': [
+        {
+
+            'image': '/img/rio/eat-rio/Eat-Rio-Food-Tours-1.jpg',
+            'link': '/rio-de-janerio/eat-rio-food-tour/',
+            'name': 'Secret Food Tours Rio de janerio',
+            'rate': '4.9'
+        }, 
+        {
+
+            'image': '/img/lima/secret-food-tours-lima.jpg',
+            'link': '/lima/food-tours-lima/',
+            'name': 'Lima Food Tour',
+            'rate': '4.97'
+        }
+    ]
+}
 let init = setInterval(() => {
     if (document.querySelector('#plugin iframe') != null && document.querySelector('header .main_menu') != null) {
         clearInterval(init)
@@ -1187,39 +1638,130 @@ let init = setInterval(() => {
 
         document.body.insertAdjacentHTML('afterbegin', styles);
 
+        //icons
         let starLink = document.createElement('link');
         starLink.href = 'https://use.fontawesome.com/releases/v5.0.1/css/all.css';
         starLink.rel = 'stylesheet';
         document.head.appendChild(starLink)
 
-        //add "Book a private tour" and "Buy as a gift" button (header)
-        document.querySelector('header .main_menu').insertAdjacentHTML('afterend', `
-        <a href="#" class="btn-customer btn-private-tour d-flex align-items-center justify-content-center">
-            <svg width="17" height="12" viewBox="0 0 17 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M0 12V9.90001C0 9.47501 0.1095 9.08426 0.328499 8.72776C0.547499 8.37126 0.837999 8.09951 1.2 7.91251C1.975 7.52501 2.7625 7.23426 3.56249 7.04026C4.36249 6.84626 5.17499 6.74951 5.99999 6.75001C6.82499 6.75001 7.63749 6.84701 8.43749 7.04101C9.23749 7.23501 10.025 7.52551 10.8 7.91251C11.1625 8.10001 11.4532 8.37201 11.6722 8.72851C11.8912 9.085 12.0005 9.47551 12 9.90001V12H0ZM13.5 12V9.75C13.5 9.20001 13.3467 8.67176 13.0402 8.16526C12.7337 7.65876 12.2995 7.22451 11.7375 6.86251C12.375 6.93751 12.975 7.06576 13.5375 7.24726C14.1 7.42876 14.625 7.65051 15.1125 7.91251C15.5625 8.16251 15.9062 8.44051 16.1437 8.74651C16.3812 9.05251 16.5 9.387 16.5 9.75V12H13.5ZM5.99999 6.00001C5.17499 6.00001 4.46874 5.70626 3.88124 5.11876C3.29375 4.53126 3 3.82501 3 3.00001C3 2.17502 3.29375 1.46877 3.88124 0.881268C4.46874 0.293769 5.17499 1.92305e-05 5.99999 1.92305e-05C6.82499 1.92305e-05 7.53124 0.293769 8.11874 0.881268C8.70624 1.46877 8.99999 2.17502 8.99999 3.00001C8.99999 3.82501 8.70624 4.53126 8.11874 5.11876C7.53124 5.70626 6.82499 6.00001 5.99999 6.00001ZM13.5 3.00001C13.5 3.82501 13.2062 4.53126 12.6187 5.11876C12.0312 5.70626 11.325 6.00001 10.5 6.00001C10.3625 6.00001 10.1875 5.98426 9.97499 5.95276C9.76249 5.92126 9.58749 5.88701 9.44999 5.85001C9.78749 5.45001 10.047 5.00626 10.2285 4.51876C10.41 4.03126 10.5005 3.52501 10.5 3.00001C10.5 2.47502 10.4095 1.96877 10.2285 1.48127C10.0475 0.993768 9.78799 0.550018 9.44999 0.150019C9.62499 0.087519 9.79998 0.0467693 9.97499 0.0277693C10.15 0.00876935 10.325 -0.000480769 10.5 1.92305e-05C11.325 1.92305e-05 12.0312 0.293769 12.6187 0.881268C13.2062 1.46877 13.5 2.17502 13.5 3.00001Z" fill="#144732"/>
-            </svg>
-            <span>Book a private tour</span>
-        </a>
-        <a href="#" class="btn-customer gold align-items-center justify-content-center">
-            <svg width="14" height="12" viewBox="0 0 14 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M0.875 11.1429C0.875 11.625 1.25781 12 1.75 12H6.125V7.71429H0.875V11.1429ZM7.875 12H12.25C12.7148 12 13.125 11.625 13.125 11.1429V7.71429H7.875V12ZM13.125 3.42857H11.9492C12.1406 3.10714 12.25 2.75893 12.25 2.35714C12.25 1.07143 11.1562 0 9.84375 0C8.69531 0 7.95703 0.589286 7.02734 1.84821C6.07031 0.589286 5.33203 0 4.21094 0C2.87109 0 1.80469 1.07143 1.80469 2.35714C1.80469 2.75893 1.88672 3.10714 2.07812 3.42857H0.875C0.382812 3.42857 0 3.83036 0 4.28571V6.42857C0 6.66964 0.191406 6.85714 0.4375 6.85714H13.5625C13.7812 6.85714 14 6.66964 14 6.42857V4.28571C14 3.83036 13.5898 3.42857 13.125 3.42857ZM4.18359 3.42857C3.58203 3.42857 3.08984 2.97321 3.08984 2.35714C3.08984 1.76786 3.58203 1.28571 4.18359 1.28571C4.73047 1.28571 5.14062 1.39286 6.5625 3.42857H4.18359ZM9.84375 3.42857H7.46484C8.88672 1.39286 9.26953 1.28571 9.84375 1.28571C10.4453 1.28571 10.9375 1.76786 10.9375 2.35714C10.9375 2.97321 10.4453 3.42857 9.84375 3.42857Z" fill="#C39958"/>
-            </svg>
-            <span>Buy as a gift</span>
-        </a>`)
+        //flags country
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = 'https://cdn.jsdelivr.net/gh/lipis/flag-icons@6.6.6/css/flag-icons.min.css'
+        document.head.appendChild(link)
 
         //header
+        //add "Book a private tour" and "Buy as a gift" button (header)
+        document.querySelector('header .main_menu').insertAdjacentHTML('afterend', `
+        <div class="d-flex btns-header">
+            <a href="#" class="btn-customer btn-private-tour d-flex align-items-center justify-content-center">
+                <svg width="17" height="12" viewBox="0 0 17 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M0 12V9.90001C0 9.47501 0.1095 9.08426 0.328499 8.72776C0.547499 8.37126 0.837999 8.09951 1.2 7.91251C1.975 7.52501 2.7625 7.23426 3.56249 7.04026C4.36249 6.84626 5.17499 6.74951 5.99999 6.75001C6.82499 6.75001 7.63749 6.84701 8.43749 7.04101C9.23749 7.23501 10.025 7.52551 10.8 7.91251C11.1625 8.10001 11.4532 8.37201 11.6722 8.72851C11.8912 9.085 12.0005 9.47551 12 9.90001V12H0ZM13.5 12V9.75C13.5 9.20001 13.3467 8.67176 13.0402 8.16526C12.7337 7.65876 12.2995 7.22451 11.7375 6.86251C12.375 6.93751 12.975 7.06576 13.5375 7.24726C14.1 7.42876 14.625 7.65051 15.1125 7.91251C15.5625 8.16251 15.9062 8.44051 16.1437 8.74651C16.3812 9.05251 16.5 9.387 16.5 9.75V12H13.5ZM5.99999 6.00001C5.17499 6.00001 4.46874 5.70626 3.88124 5.11876C3.29375 4.53126 3 3.82501 3 3.00001C3 2.17502 3.29375 1.46877 3.88124 0.881268C4.46874 0.293769 5.17499 1.92305e-05 5.99999 1.92305e-05C6.82499 1.92305e-05 7.53124 0.293769 8.11874 0.881268C8.70624 1.46877 8.99999 2.17502 8.99999 3.00001C8.99999 3.82501 8.70624 4.53126 8.11874 5.11876C7.53124 5.70626 6.82499 6.00001 5.99999 6.00001ZM13.5 3.00001C13.5 3.82501 13.2062 4.53126 12.6187 5.11876C12.0312 5.70626 11.325 6.00001 10.5 6.00001C10.3625 6.00001 10.1875 5.98426 9.97499 5.95276C9.76249 5.92126 9.58749 5.88701 9.44999 5.85001C9.78749 5.45001 10.047 5.00626 10.2285 4.51876C10.41 4.03126 10.5005 3.52501 10.5 3.00001C10.5 2.47502 10.4095 1.96877 10.2285 1.48127C10.0475 0.993768 9.78799 0.550018 9.44999 0.150019C9.62499 0.087519 9.79998 0.0467693 9.97499 0.0277693C10.15 0.00876935 10.325 -0.000480769 10.5 1.92305e-05C11.325 1.92305e-05 12.0312 0.293769 12.6187 0.881268C13.2062 1.46877 13.5 2.17502 13.5 3.00001Z" fill="#144732"/>
+                </svg>
+                <span>Book a private tour</span>
+            </a>
+            <a href="#" class="btn-customer gold align-items-center justify-content-center" style="display: none;">
+                <svg width="14" height="12" viewBox="0 0 14 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M0.875 11.1429C0.875 11.625 1.25781 12 1.75 12H6.125V7.71429H0.875V11.1429ZM7.875 12H12.25C12.7148 12 13.125 11.625 13.125 11.1429V7.71429H7.875V12ZM13.125 3.42857H11.9492C12.1406 3.10714 12.25 2.75893 12.25 2.35714C12.25 1.07143 11.1562 0 9.84375 0C8.69531 0 7.95703 0.589286 7.02734 1.84821C6.07031 0.589286 5.33203 0 4.21094 0C2.87109 0 1.80469 1.07143 1.80469 2.35714C1.80469 2.75893 1.88672 3.10714 2.07812 3.42857H0.875C0.382812 3.42857 0 3.83036 0 4.28571V6.42857C0 6.66964 0.191406 6.85714 0.4375 6.85714H13.5625C13.7812 6.85714 14 6.66964 14 6.42857V4.28571C14 3.83036 13.5898 3.42857 13.125 3.42857ZM4.18359 3.42857C3.58203 3.42857 3.08984 2.97321 3.08984 2.35714C3.08984 1.76786 3.58203 1.28571 4.18359 1.28571C4.73047 1.28571 5.14062 1.39286 6.5625 3.42857H4.18359ZM9.84375 3.42857H7.46484C8.88672 1.39286 9.26953 1.28571 9.84375 1.28571C10.4453 1.28571 10.9375 1.76786 10.9375 2.35714C10.9375 2.97321 10.4453 3.42857 9.84375 3.42857Z" fill="#C39958"/>
+                </svg>
+                <span>Buy as a gift</span>
+            </a>
+        </div>`)
+
+        //search
         document.querySelector('header .search_header input').placeholder = 'Type you destination';
         document.querySelectorAll('.search_btn').forEach(button => {
             button.addEventListener('click', (e) => {
                 if (document.querySelector('#close_ic_desktop').style.display != 'block !important') {
-                    document.querySelector('.search_header.visible_search').style = 'width: 100%; padding-left: 200px'
+                    document.querySelector('.search_header.visible_search').style = 'width: calc(100% - 240px);'
                 } else {
                     document.querySelector('.search_header.visible_search').style = ''
                 }
             })
         })
+
+        //dropdown
+        //add menu right
+        document.querySelector('.header_dropdown .main_container').insertAdjacentHTML('afterbegin', `
+        <div class="header_dropdown_top">
+            <div class="container">
+                <ul class="right-menu d-flex">
+                    <li><a href="/blocg">Blog</a></li>
+                    <li><a href="/read-about-us">About Us</a></li>
+                    <li><a href="/covid">Health & Safety</a></li>
+                    <li><a href="https://www.secrettours.com/">Historical Tours</a></li>
+                </ul>
+            </div>
+        </div>`)
+        document.querySelector('.header_dropdown .right-menu').before(document.querySelector('.country_wr'))
+
+        //add popular tour block
+        document.querySelector('.header_dropdown .city_wr').insertAdjacentHTML('afterend',`
+        <div class="popular_tours" style="display: none">
+            <div class="container d-block">
+                <div class="d-flex align-items-center title">
+                    <svg width="14" height="19" viewBox="0 0 14 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M7.875 0.865861C7.875 0.0111783 6.74479 -0.323263 6.23438 0.382779C1.75 7.10876 8.16667 7.40604 8.16667 10.6761C8.16667 12.0139 7.07292 13.0915 5.79688 13.0544C4.48438 13.0544 3.5 11.9767 3.5 10.6761V7.48036C3.5 6.66284 2.51562 6.29124 1.96875 6.8858C0.984375 7.92628 0 9.70997 0 11.8653C0 15.8042 3.13542 19 7 19C10.8281 19 14 15.8042 14 11.8653C14 5.54804 7.875 4.69335 7.875 0.865861Z" fill="#DB4446"/>
+                    </svg>
+                    <p>Popular tours in Europe</p>
+                </div>
+                <div class="popular_tours_col">
+                    <div class="flex-wrap popular_tours_row asia" style="display: none"></div>
+                    <div class="flex-wrap popular_tours_row australia" style="display: none"></div>
+                    <div class="flex-wrap popular_tours_row europe" style="display: none"></div>
+                    <div class="flex-wrap popular_tours_row north-america" style="display: none"></div>
+                    <div class="flex-wrap popular_tours_row south-america" style="display: none"></div>
+                </div>
+            </div>
+        </div>`)
+
+        //state events
+        state.then(state => {
+            for (let i = 0; i < state.length; i++) {
+                document.querySelectorAll('.header_dropdown .block ul li a').forEach(item => {
+                    if (state[i].name.toLowerCase() == item.innerHTML.toLowerCase().trim()) {
+                        item.insertAdjacentHTML('afterbegin',`<i class="fi fi-${state[i].abbr}"></i>`)
+                    }
+                    if (item.innerHTML.toLowerCase().trim() == 'united states of america') {
+                        item.insertAdjacentHTML('afterbegin',`<i class="fi fi-us"></i>`)
+                    }
+                })
+            } 
+        })
+
+        for (const key in objPopularTours) {
+            document.querySelectorAll(`.popular_tours_row`).forEach(item => {
+                if (item.classList.contains(key)) {
+                    for (let i = 0; i < objPopularTours[key].length; i++) {
+                        if (i < 4) {
+                            let tour = objPopularTours[key][i]
+                            item.insertAdjacentHTML('beforeend', popularTout(tour.image, tour.rate, tour.name, tour.link))
+                        }
+                    }
+                }
+            })
+        }
+      
         document.querySelector('.main_menu .droped').addEventListener('click', (e) => {
-            e.target.classList.add('destinations-active')
+            e.target.closest('header').parentElement.classList.toggle('destinations-active');
+        })
+
+        document.querySelectorAll('.header_dropdown .block .heading div').forEach((item, index) => {
+            item.innerHTML = `
+                <svg width="10" height="6" viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M10 0.943848L5 5.94385L0 0.943848L0.8875 0.0563478L5 4.16885L9.1125 0.0563478L10 0.943848Z" fill="#333333"/>
+                </svg>`
+
+            item.previousElementSibling.addEventListener('click', (e) => {
+                if (e.target.closest('.block_wr').querySelector('.active') != null) {
+                    e.target.closest('.block_wr').querySelector('.active').classList.remove('active')
+                    document.querySelectorAll(`.popular_tours_row`).forEach(el => el.style.display = 'none')
+                }
+
+                e.target.parentElement.classList.add('active')
+                document.querySelectorAll(`.popular_tours_row`)[index].style.display = 'flex';
+                document.querySelector('.popular_tours').style = ''
+           })
         })
 
         document.querySelector('.main_container').insertAdjacentHTML('afterend',`
@@ -1250,29 +1792,7 @@ let init = setInterval(() => {
                             <div class="best-seller">Best seller</div>
                         </div>
                         <div class="rating d-flex align-items-center"></div>
-                        <div class="gallery d-flex align-items-end">
-                            <div class="d-flex align-items-center justify-content-between w-100">
-                                <button type="button" class="btn-gallery">
-                                    <svg width="16" height="13" viewBox="0 0 16 13" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M13.125 11.125H3.9375C2.70703 11.125 1.75 10.168 1.75 8.9375V3.25H1.3125C0.574219 3.25 0 3.85156 0 4.5625V11.5625C0 12.3008 0.574219 12.875 1.3125 12.875H11.8125C12.5234 12.875 13.125 12.3008 13.125 11.5625V11.125ZM15.75 8.9375V1.9375C15.75 1.22656 15.1484 0.625 14.4375 0.625H3.9375C3.19922 0.625 2.625 1.22656 2.625 1.9375V8.9375C2.625 9.67578 3.19922 10.25 3.9375 10.25H14.4375C15.1484 10.25 15.75 9.67578 15.75 8.9375ZM7 3.25C7 3.98828 6.39844 4.5625 5.6875 4.5625C4.94922 4.5625 4.375 3.98828 4.375 3.25C4.375 2.53906 4.94922 1.9375 5.6875 1.9375C6.39844 1.9375 7 2.53906 7 3.25ZM4.375 7.1875L5.87891 5.68359C6.01562 5.54688 6.20703 5.54688 6.34375 5.68359L7.4375 6.75L11.1289 3.05859C11.2656 2.92188 11.457 2.92188 11.5938 3.05859L14 5.4375V8.5H4.375V7.1875Z" fill="white"/>
-                                    </svg>
-                                    Watch gallery
-                                </button>
-                                <div class="d-flex align-items-center">
-                                    <button type="button" class="btn-arrow btn-arrow-prev d-flex">
-                                        <svg class="m-auto" width="9" height="14" viewBox="0 0 9 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                            <path d="M8 1L2 7L8 13" stroke="white" stroke-width="2" stroke-linecap="round"/>
-                                        </svg>
-                                    </button>
-                                    <p class="gallery-count">1/6</p>
-                                    <button type="button" class="btn-arrow btn-arrow-next d-flex">
-                                        <svg class="m-auto" width="9" height="14" viewBox="0 0 9 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                            <path d="M0.999999 13L7 7L1 1" stroke="white" stroke-width="2" stroke-linecap="round"/>
-                                        </svg>
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
+                        <div class="gallery d-flex align-items-end"></div>
                         <div class="descr-section "> 
                             <div class="row "> </div>
                         </div>
@@ -1305,8 +1825,18 @@ let init = setInterval(() => {
         </section>
         `)
 
-        let tourLeft = document.querySelector('.tour-section > .container > div > .left');
-        document.querySelector('#plugin').style = `left: ${tourLeft.offsetLeft + tourLeft.clientWidth}px`
+        document.addEventListener('click', (e) => {
+            if (document.querySelector('.destinations-active') != null && !e.target.closest('header')) {
+                e.stopImmediatePropagation()
+                document.querySelector('header.destinations-active').classList.remove('destinations-active')
+            }
+        })
+        let resizeLeft = () => {
+            let tourLeft = document.querySelector('.tour-section > .container > div > .left');
+            document.querySelector('#plugin').style = `left: ${tourLeft.offsetLeft + tourLeft.clientWidth}px; top: ${tourLeft.offsetTop}px;`
+        }
+        resizeLeft()
+        window.addEventListener('resize', () => resizeLeft())
         
         document.querySelector('.tour-section .breadcrumbs-customer').innerHTML = document.querySelector('.breadcrumbs ul').innerHTML; //breadcrumb
         document.querySelector('.tour-section h1').innerHTML = document.querySelector('h1.dest_title').innerHTML; //title
@@ -1402,134 +1932,159 @@ let init = setInterval(() => {
 
         //review 
 
-        document.querySelector('.tour-section .review').innerHTML = `
-        <div class="d-flex align-items-center justify-content-between">
-            <h2>Review <span class="c-gold">What people say</span></h2>
-            <div class="review-from">
-                <p>Review from</p>
-                <div class="d-flex justify-content-between align-items-center">
-                    <img src="${dir}TripAdvisor_Logo.svg" alt="icon">
-                </div>
-            </div>
-        </div> 
-
-        <div class="block-reviews">
-            <div class="slider-review">
-                <div class="swiper-wrapper"> </div>
-                <div class="swiper-pagination"></div>
-                <div class="swiper-button-prev" tabindex="0" role="button" aria-label="Previous slide"></div>
-                <div class="swiper-button-next" tabindex="0" role="button" aria-label="Next slide"></div>
-            </div>
-        </div>
-        `
-
         initExp()
         
         async function initExp() {
-            const [reviewsEl, scriptEl, rateEl] = await fetchReviews(); // 2 element: html for reviews block and scripts for loading reviews items
-        
+            const [reviewsEl, scriptEl, rateEl] = await fetchReviews();
+
             /* Use existing markup or variable 'customers_reviews' for build your own markup */ 
-            console.log(rateEl)
-            console.log(reviewsEl)
-            console.log(scriptEl)
+            if (rateEl) {
+                document.querySelector('body').insertAdjacentElement('beforeend', rateEl); 
 
-            document.querySelector('.rating').insertAdjacentElement('beforeend', rateEl)
-            document.querySelector('.rating').insertAdjacentHTML('beforeend', `<p class="to-rating">/5 Rating </p>
-                <svg width="23" height="15" viewBox="0 0 23 15" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M20.2986 4.57758L22.1053 2.63862H18.0988C16.093 1.28712 13.6707 0.5 11.051 0.5C8.43456 0.5 6.01898 1.28881 4.01654 2.63862H0L1.8067 4.57758C0.699278 5.57425 0.00503632 7.00992 0.00503632 8.60398C0.00503632 11.6122 2.47756 14.0512 5.5272 14.0512C6.97591 14.0512 8.29577 13.5 9.2811 12.599L11.051 14.5L12.8209 12.6007C13.8062 13.5017 15.1244 14.0512 16.5731 14.0512C19.6227 14.0512 22.0986 11.6122 22.0986 8.60398C22.1002 7.00827 21.406 5.57264 20.2986 4.57758ZM5.52883 12.2904C3.46449 12.2904 1.79167 10.6403 1.79167 8.60398C1.79167 6.56766 3.46453 4.9175 5.52883 4.9175C7.59313 4.9175 9.266 6.56766 9.266 8.60398C9.266 10.6403 7.59313 12.2904 5.52883 12.2904ZM11.0526 8.49672C11.0526 6.07095 9.26436 3.98847 6.90393 3.09902C8.18031 2.57259 9.58051 2.28052 11.051 2.28052C12.5214 2.28052 13.9232 2.57259 15.1997 3.09902C12.8409 3.99013 11.0526 6.071 11.0526 8.49672ZM16.5748 12.2904C14.5105 12.2904 12.8376 10.6403 12.8376 8.60398C12.8376 6.56766 14.5105 4.9175 16.5748 4.9175C18.6391 4.9175 20.312 6.56766 20.312 8.60398C20.312 10.6403 18.6391 12.2904 16.5748 12.2904ZM16.5748 6.66995C15.4924 6.66995 14.6158 7.53465 14.6158 8.60233C14.6158 9.66996 15.4924 10.5347 16.5748 10.5347C17.6571 10.5347 18.5337 9.66996 18.5337 8.60233C18.5337 7.53631 17.6571 6.66995 16.5748 6.66995ZM7.48775 8.60398C7.48775 9.67162 6.61116 10.5363 5.52883 10.5363C4.44651 10.5363 3.56992 9.67162 3.56992 8.60398C3.56992 7.53631 4.44651 6.67161 5.52883 6.67161C6.61116 6.66995 7.48775 7.53631 7.48775 8.60398Z" fill="#144732"/>
-                </svg>
-                <svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <g clip-path="url(#clip0_521_34)">
-                        <path d="M13.2653 7.64551C13.2653 7.19051 13.2245 6.75301 13.1486 6.33301H7.10529V8.81801H10.5586C10.407 9.61717 9.95195 10.2938 9.26945 10.7488V12.3647H11.352C12.5653 11.2447 13.2653 9.59967 13.2653 7.64551Z" fill="#144732"/>
-                        <path d="M7.1051 13.9163C8.8376 13.9163 10.2901 13.3446 11.3518 12.3646L9.26927 10.7488C8.6976 11.1338 7.96844 11.3671 7.1051 11.3671C5.43677 11.3671 4.01927 10.2413 3.51177 8.72461H1.37677V10.3813C2.4326 12.4754 4.59677 13.9163 7.1051 13.9163Z" fill="#144732"/>
-                        <path d="M3.5126 8.71902C3.38427 8.33402 3.30844 7.92569 3.30844 7.49986C3.30844 7.07402 3.38427 6.66569 3.5126 6.28069V4.62402H1.3776C0.940103 5.48736 0.68927 6.46152 0.68927 7.49986C0.68927 8.53819 0.940103 9.51236 1.3776 10.3757L3.0401 9.08069L3.5126 8.71902Z" fill="#144732"/>
-                        <path d="M7.1051 3.63801C8.0501 3.63801 8.8901 3.96467 9.56094 4.59467L11.3984 2.75717C10.2843 1.71884 8.8376 1.08301 7.1051 1.08301C4.59677 1.08301 2.4326 2.52384 1.37677 4.62384L3.51177 6.28051C4.01927 4.76384 5.43677 3.63801 7.1051 3.63801Z" fill="#144732"/>
-                    </g>
-                    <defs>
-                        <clipPath id="clip0_521_34">
-                            <rect width="14" height="14" fill="white" transform="translate(0.105286 0.5)"/>
-                        </clipPath>
-                    </defs>
-                </svg>
-                <p>Recommended by 99% of travelers</p>
-            `)
-                        
-            let star = `<svg class="star" width="20" height="19" viewBox="0 0 20 19" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M3.825 19L5.45 11.975L0 7.25L7.2 6.625L10 0L12.8 6.625L20 7.25L14.55 11.975L16.175 19L10 15.275L3.825 19Z" fill="#C39958"/>
-            </svg>`
-            let starHalf = `<svg class="star star-half" width="20" height="19" viewBox="0 0 20 19" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M10 5.125V12.925L13.15 14.85L12.325 11.25L15.1 8.85L11.45 8.525L10 5.125ZM3.825 19L5.45 11.975L0 7.25L7.2 6.625L10 0L12.8 6.625L20 7.25L14.55 11.975L16.175 19L10 15.275L3.825 19Z" fill="#C39958"/>
-            </svg>`
-            let rate = document.querySelector('.rating .rate-tours').innerHTML.replace(/[^\d\.]*/g, '');
-            let ratehalf = rate.split('.')[1]
-            document.querySelector('.rating .rate-tours').innerHTML = rate;
+                document.querySelector('.rating').insertAdjacentElement('beforeend', rateEl)
+                document.querySelector('.rating').insertAdjacentHTML('beforeend', `<p class="to-rating">/5 Rating </p>
+                    <svg width="23" height="15" viewBox="0 0 23 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M20.2986 4.57758L22.1053 2.63862H18.0988C16.093 1.28712 13.6707 0.5 11.051 0.5C8.43456 0.5 6.01898 1.28881 4.01654 2.63862H0L1.8067 4.57758C0.699278 5.57425 0.00503632 7.00992 0.00503632 8.60398C0.00503632 11.6122 2.47756 14.0512 5.5272 14.0512C6.97591 14.0512 8.29577 13.5 9.2811 12.599L11.051 14.5L12.8209 12.6007C13.8062 13.5017 15.1244 14.0512 16.5731 14.0512C19.6227 14.0512 22.0986 11.6122 22.0986 8.60398C22.1002 7.00827 21.406 5.57264 20.2986 4.57758ZM5.52883 12.2904C3.46449 12.2904 1.79167 10.6403 1.79167 8.60398C1.79167 6.56766 3.46453 4.9175 5.52883 4.9175C7.59313 4.9175 9.266 6.56766 9.266 8.60398C9.266 10.6403 7.59313 12.2904 5.52883 12.2904ZM11.0526 8.49672C11.0526 6.07095 9.26436 3.98847 6.90393 3.09902C8.18031 2.57259 9.58051 2.28052 11.051 2.28052C12.5214 2.28052 13.9232 2.57259 15.1997 3.09902C12.8409 3.99013 11.0526 6.071 11.0526 8.49672ZM16.5748 12.2904C14.5105 12.2904 12.8376 10.6403 12.8376 8.60398C12.8376 6.56766 14.5105 4.9175 16.5748 4.9175C18.6391 4.9175 20.312 6.56766 20.312 8.60398C20.312 10.6403 18.6391 12.2904 16.5748 12.2904ZM16.5748 6.66995C15.4924 6.66995 14.6158 7.53465 14.6158 8.60233C14.6158 9.66996 15.4924 10.5347 16.5748 10.5347C17.6571 10.5347 18.5337 9.66996 18.5337 8.60233C18.5337 7.53631 17.6571 6.66995 16.5748 6.66995ZM7.48775 8.60398C7.48775 9.67162 6.61116 10.5363 5.52883 10.5363C4.44651 10.5363 3.56992 9.67162 3.56992 8.60398C3.56992 7.53631 4.44651 6.67161 5.52883 6.67161C6.61116 6.66995 7.48775 7.53631 7.48775 8.60398Z" fill="#144732"/>
+                    </svg>
+                    <svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <g clip-path="url(#clip0_521_34)">
+                            <path d="M13.2653 7.64551C13.2653 7.19051 13.2245 6.75301 13.1486 6.33301H7.10529V8.81801H10.5586C10.407 9.61717 9.95195 10.2938 9.26945 10.7488V12.3647H11.352C12.5653 11.2447 13.2653 9.59967 13.2653 7.64551Z" fill="#144732"/>
+                            <path d="M7.1051 13.9163C8.8376 13.9163 10.2901 13.3446 11.3518 12.3646L9.26927 10.7488C8.6976 11.1338 7.96844 11.3671 7.1051 11.3671C5.43677 11.3671 4.01927 10.2413 3.51177 8.72461H1.37677V10.3813C2.4326 12.4754 4.59677 13.9163 7.1051 13.9163Z" fill="#144732"/>
+                            <path d="M3.5126 8.71902C3.38427 8.33402 3.30844 7.92569 3.30844 7.49986C3.30844 7.07402 3.38427 6.66569 3.5126 6.28069V4.62402H1.3776C0.940103 5.48736 0.68927 6.46152 0.68927 7.49986C0.68927 8.53819 0.940103 9.51236 1.3776 10.3757L3.0401 9.08069L3.5126 8.71902Z" fill="#144732"/>
+                            <path d="M7.1051 3.63801C8.0501 3.63801 8.8901 3.96467 9.56094 4.59467L11.3984 2.75717C10.2843 1.71884 8.8376 1.08301 7.1051 1.08301C4.59677 1.08301 2.4326 2.52384 1.37677 4.62384L3.51177 6.28051C4.01927 4.76384 5.43677 3.63801 7.1051 3.63801Z" fill="#144732"/>
+                        </g>
+                        <defs>
+                            <clipPath id="clip0_521_34">
+                                <rect width="14" height="14" fill="white" transform="translate(0.105286 0.5)"/>
+                            </clipPath>
+                        </defs>
+                    </svg>
+                    <p>Recommended by 99% of travelers</p>
+                `)
+                            
+                let star = `<svg class="star" width="20" height="19" viewBox="0 0 20 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M3.825 19L5.45 11.975L0 7.25L7.2 6.625L10 0L12.8 6.625L20 7.25L14.55 11.975L16.175 19L10 15.275L3.825 19Z" fill="#C39958"/>
+                </svg>`
+                let starHalf = `<svg class="star star-half" width="20" height="19" viewBox="0 0 20 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M10 5.125V12.925L13.15 14.85L12.325 11.25L15.1 8.85L11.45 8.525L10 5.125ZM3.825 19L5.45 11.975L0 7.25L7.2 6.625L10 0L12.8 6.625L20 7.25L14.55 11.975L16.175 19L10 15.275L3.825 19Z" fill="#C39958"/>
+                </svg>`
+                let rate = document.querySelector('.rating .rate-tours').innerHTML.replace(/[^\d\.]*/g, '');
+                let ratehalf = rate.split('.')[1]
+                document.querySelector('.rating .rate-tours').innerHTML = rate;
 
-            for (let i = 0; i < Math.floor(rate); i++) {
-                document.querySelector('.rating .star-ratings').insertAdjacentHTML('beforebegin', star) 
-            }
-            if (ratehalf > 0) {
-                document.querySelector('.rating .star-ratings').insertAdjacentHTML('beforebegin', starHalf) 
-            }
+                for (let i = 0; i < Math.floor(rate); i++) {
+                    document.querySelector('.rating .star-ratings').insertAdjacentHTML('beforebegin', star) 
+                }
+                if (ratehalf > 0) {
+                    document.querySelector('.rating .star-ratings').insertAdjacentHTML('beforebegin', starHalf) 
+                }
+                
+                document.querySelector('.rating .to-rating').before( document.querySelector('.rating .rate-tours'))
             
-            document.querySelector('body').insertAdjacentElement('beforeend', reviewsEl)
-            document.querySelector('body').insertAdjacentElement('beforeend', scriptEl)
-        
+            }
+            if (reviewsEl && scriptEl) {
+                document.querySelector('body').insertAdjacentElement('beforeend', reviewsEl);
+                document.querySelector('body').insertAdjacentElement('beforeend', scriptEl)
 
-            document.querySelector('.tour-section .review .review-from > div > img').after(document.querySelector('.reviews-first-container'))
-
-            console.log('Reviews Array:', customers_reviews)
-        
-            for (let i = 0; i < customers_reviews.length; i++) {
-                let slide = document.createElement('div');
-                slide.classList.add('swiper-slide')
-                slide.innerHTML = `
-                <div class="d-flex align-items-center">
-                    <img src="${customers_reviews[i][0]}">
-                    <div>
-                        <p class="author">${customers_reviews[i][1]}</p>
-                        <div class="reviews-user-stars d-flex">
-                            <div class="fa-star"></div>
-                            <div class="fa-star"></div>
-                            <div class="fa-star"></div>
-                            <div class="fa-star"></div>
-                            <div class="fa-star"></div>
+                document.querySelector('.tour-section .review').innerHTML = `
+                <div class="d-flex align-items-center justify-content-between">
+                    <h2>Review <span class="c-gold">What people say</span></h2>
+                    <div class="review-from">
+                        <p>Review from</p>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <img src="${dir}TripAdvisor_Logo.svg" alt="icon">
                         </div>
                     </div>
-                </div>
-                <p class="text">
-                    <b>${customers_reviews[i][2]}</b>
-                    ${customers_reviews[i][3]}
-                </p> `
-                document.querySelector('.slider-review .swiper-wrapper').appendChild(slide)
-            }
-          
-
-            new Swiper(".slider-review", {
-                slidesPerView: 3,
-                loop: true,
-                spaceBetween: 20,
-                pagination: {
-                    el: ".slider-review .swiper-pagination",
-                    type: "fraction",
-                },
-                navigation: {
-                    nextEl: ".slider-review .swiper-button-next",
-                    prevEl: ".slider-review .swiper-button-prev",
-                }
-            }); 
-            if (typeof loadReviews !== 'function') return false
+                </div> 
         
+                <div class="block-reviews">
+                    <div class="slider-review">
+                        <div class="swiper-wrapper"> </div>
+                        <div class="swiper-pagination"></div>
+                        <div class="swiper-button-prev">
+                            <svg width="9" height="14" viewBox="0 0 9 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M8 1L2 7L8 13" stroke="#144732" stroke-width="2" stroke-linecap="round"/>
+                            </svg>
+                        </div>
+                        <div class="swiper-button-next">
+                            <svg width="9" height="14" viewBox="0 0 9 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M0.999999 13L7 7L1 1" stroke="#144732" stroke-width="2" stroke-linecap="round"/>
+                            </svg>
+                        </div>
+                    </div>
+                </div> `
+
+                document.querySelector('.tour-section .review .review-from > div > img').after(document.querySelector('.reviews-first-container'))
+
+            }
+
+            if (customers_reviews) {
+                console.log('Reviews Array:', customers_reviews)
+                        
+                for (let i = 0; i < customers_reviews.length; i++) {
+                    let slide = document.createElement('div');
+                    slide.classList.add('swiper-slide')
+                    slide.innerHTML = `
+                    <div class="d-flex align-items-center">
+                        <img src="${customers_reviews[i][0]}">
+                        <div>
+                            <p class="author">${customers_reviews[i][1]}</p>
+                            <div class="reviews-user-stars d-flex">
+                                <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M8.09375 1.5625L6.0625 5.71875L1.46875 6.375C0.65625 6.5 0.34375 7.5 0.9375 8.09375L4.21875 11.3125L3.4375 15.8438C3.3125 16.6562 4.1875 17.2812 4.90625 16.9062L9 14.75L13.0625 16.9062C13.7812 17.2812 14.6562 16.6562 14.5312 15.8438L13.75 11.3125L17.0312 8.09375C17.625 7.5 17.3125 6.5 16.5 6.375L11.9375 5.71875L9.875 1.5625C9.53125 0.84375 8.46875 0.8125 8.09375 1.5625Z" fill="#F4B75B"/>
+                                </svg>
+                                <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M8.09375 1.5625L6.0625 5.71875L1.46875 6.375C0.65625 6.5 0.34375 7.5 0.9375 8.09375L4.21875 11.3125L3.4375 15.8438C3.3125 16.6562 4.1875 17.2812 4.90625 16.9062L9 14.75L13.0625 16.9062C13.7812 17.2812 14.6562 16.6562 14.5312 15.8438L13.75 11.3125L17.0312 8.09375C17.625 7.5 17.3125 6.5 16.5 6.375L11.9375 5.71875L9.875 1.5625C9.53125 0.84375 8.46875 0.8125 8.09375 1.5625Z" fill="#F4B75B"/>
+                                </svg>
+                                <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M8.09375 1.5625L6.0625 5.71875L1.46875 6.375C0.65625 6.5 0.34375 7.5 0.9375 8.09375L4.21875 11.3125L3.4375 15.8438C3.3125 16.6562 4.1875 17.2812 4.90625 16.9062L9 14.75L13.0625 16.9062C13.7812 17.2812 14.6562 16.6562 14.5312 15.8438L13.75 11.3125L17.0312 8.09375C17.625 7.5 17.3125 6.5 16.5 6.375L11.9375 5.71875L9.875 1.5625C9.53125 0.84375 8.46875 0.8125 8.09375 1.5625Z" fill="#F4B75B"/>
+                                </svg>
+                                <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M8.09375 1.5625L6.0625 5.71875L1.46875 6.375C0.65625 6.5 0.34375 7.5 0.9375 8.09375L4.21875 11.3125L3.4375 15.8438C3.3125 16.6562 4.1875 17.2812 4.90625 16.9062L9 14.75L13.0625 16.9062C13.7812 17.2812 14.6562 16.6562 14.5312 15.8438L13.75 11.3125L17.0312 8.09375C17.625 7.5 17.3125 6.5 16.5 6.375L11.9375 5.71875L9.875 1.5625C9.53125 0.84375 8.46875 0.8125 8.09375 1.5625Z" fill="#F4B75B"/>
+                                </svg>
+                                <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M8.09375 1.5625L6.0625 5.71875L1.46875 6.375C0.65625 6.5 0.34375 7.5 0.9375 8.09375L4.21875 11.3125L3.4375 15.8438C3.3125 16.6562 4.1875 17.2812 4.90625 16.9062L9 14.75L13.0625 16.9062C13.7812 17.2812 14.6562 16.6562 14.5312 15.8438L13.75 11.3125L17.0312 8.09375C17.625 7.5 17.3125 6.5 16.5 6.375L11.9375 5.71875L9.875 1.5625C9.53125 0.84375 8.46875 0.8125 8.09375 1.5625Z" fill="#F4B75B"/>
+                                </svg>
+                                                                                                                            
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text">
+                        <b>${customers_reviews[i][2]}</b>
+                        ${customers_reviews[i][3]}
+                    </p> `
+                    if (document.querySelector('.slider-review .swiper-wrapper') != null) {
+                        document.querySelector('.slider-review .swiper-wrapper').appendChild(slide)
+                    }
+                }
+            
+                new Swiper(".slider-review", {
+                    slidesPerView: 3,
+                    loop: true,
+                    spaceBetween: 20,
+                    pagination: {
+                        el: ".slider-review .swiper-pagination",
+                        type: "fraction",
+                    },
+                    navigation: {
+                        nextEl: ".slider-review .swiper-button-next",
+                        prevEl: ".slider-review .swiper-button-prev",
+                    }
+                }); 
+            }
+
+            if (typeof loadReviews !== 'function') return false
+
             loadReviews();
+    
         }
         
         async function fetchReviews() {
-            let requestUrl = location.href.match(/^(.*?\/\/[^\/]+\/[^\/]+\/).*$/);
-        
+            let requestUrl = document.querySelector('.ret_back')?.href || location.href.match(/^(.*?\/\/[^\/]+\/[^\/]+\/).*$/)[1];
+
             if (!requestUrl) return;
         
-            console.log("** RequestUrl **", requestUrl)
-        
-            const res = await fetch(requestUrl[1]);
+            const res = await fetch(requestUrl);
             const data = await res.text();
         
             const DOM = new DOMParser().parseFromString(data, 'text/html');
@@ -1538,10 +2093,9 @@ let init = setInterval(() => {
             const scriptEl = DOM.querySelector('.reviews')?.nextElementSibling
             const rateEl = DOM.querySelector('.country_tours')?.querySelector(`[href="${location.pathname}"]`)?.closest('.cardx')?.querySelector('.star-ratings')
         
-
-            if (!reviewsEl || !scriptEl || !rateEl) return;
-        
-            scriptEl.type = 'text/javascript'
+            if (scriptEl) {
+                scriptEl.type = 'text/javascript'
+            }
         
             return [reviewsEl, scriptEl, rateEl]
         }
@@ -1657,8 +2211,10 @@ let meeting_spot = setInterval(() => {
     
                 document.querySelector('.notate').insertAdjacentHTML('afterend',`<div class="grey_block"> ${item.innerHTML}</div>`)
                 if (item.querySelector('a') == null) {
-                    document.querySelector('.grey_block').after(document.querySelector('.meeting_spot > iframe'))
-                    document.querySelector('.meeting-spot iframe').style.marginTop = '16px'
+                    if (document.querySelector('.meeting_spot > iframe') != null) {
+                        document.querySelector('.grey_block').after(document.querySelector('.meeting_spot > iframe'))
+                        document.querySelector('.meeting-spot iframe').style.marginTop = '16px'
+                    } 
                 }
             })
         } else {
@@ -1691,14 +2247,78 @@ let video = setInterval(() => {
 });
 
 let fotos = setInterval(() => {
-    if (document.querySelector('#my-gallery') != null && document.querySelector('.fotos-gallery') != null) {
+    if ((document.querySelector('#my-gallery') != null || document.querySelector('.w3-content.w3-display-container') != null) && document.querySelector('.fotos-gallery') != null) {
         clearInterval(fotos)
+
         document.querySelector('.fotos-gallery').innerHTML = `
         <h2>PHOTOS OF SECRET FOOD TOUR: <br>
         <span class="c-gold">MONTMARTRE</span></h2>
         <div class="slider-gallery">
-            ${document.querySelector('#my-gallery').innerHTML}
+            <ul class="swiper-wrapper"></ul>
+            <div class="swiper-pagination swiper-pagination-fraction"></div>
+            <div class="swiper-button-prev">
+                <svg width="9" height="14" viewBox="0 0 9 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M8 1L2 7L8 13" stroke="#144732" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+            </div>
+            <div class="swiper-button-next">
+                <svg width="9" height="14" viewBox="0 0 9 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M0.999999 13L7 7L1 1" stroke="#144732" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+            </div>
         </div>`
+        let slide = ``;
+
+        document.querySelector('.gallery').innerHTML = `
+        <ul class="swiper-wrapper"></ul>
+        <div class="d-flex align-items-center justify-content-between w-100">
+            <button type="button" class="btn-gallery">
+                <svg width="16" height="13" viewBox="0 0 16 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M13.125 11.125H3.9375C2.70703 11.125 1.75 10.168 1.75 8.9375V3.25H1.3125C0.574219 3.25 0 3.85156 0 4.5625V11.5625C0 12.3008 0.574219 12.875 1.3125 12.875H11.8125C12.5234 12.875 13.125 12.3008 13.125 11.5625V11.125ZM15.75 8.9375V1.9375C15.75 1.22656 15.1484 0.625 14.4375 0.625H3.9375C3.19922 0.625 2.625 1.22656 2.625 1.9375V8.9375C2.625 9.67578 3.19922 10.25 3.9375 10.25H14.4375C15.1484 10.25 15.75 9.67578 15.75 8.9375ZM7 3.25C7 3.98828 6.39844 4.5625 5.6875 4.5625C4.94922 4.5625 4.375 3.98828 4.375 3.25C4.375 2.53906 4.94922 1.9375 5.6875 1.9375C6.39844 1.9375 7 2.53906 7 3.25ZM4.375 7.1875L5.87891 5.68359C6.01562 5.54688 6.20703 5.54688 6.34375 5.68359L7.4375 6.75L11.1289 3.05859C11.2656 2.92188 11.457 2.92188 11.5938 3.05859L14 5.4375V8.5H4.375V7.1875Z" fill="white"/>
+                </svg>
+                Watch gallery
+            </button>
+            <div class="d-flex align-items-center">
+                <button type="button" class="btn-arrow btn-arrow-prev d-flex">
+                    <svg class="m-auto" width="9" height="14" viewBox="0 0 9 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M8 1L2 7L8 13" stroke="white" stroke-width="2" stroke-linecap="round"/>
+                    </svg>
+                </button>
+                <p class="gallery-count">1/6</p>
+                <button type="button" class="btn-arrow btn-arrow-next d-flex">
+                    <svg class="m-auto" width="9" height="14" viewBox="0 0 9 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M0.999999 13L7 7L1 1" stroke="white" stroke-width="2" stroke-linecap="round"/>
+                    </svg>
+                </button>
+            </div>
+        </div>`
+
+        if (document.querySelector('#my-gallery') != null) {
+            document.querySelectorAll('#my-gallery ul li').forEach(item => {
+                slide += `<li class="swiper-slide">${item.innerHTML}</li>`
+            })
+           
+        } else if (document.querySelector('.w3-content.w3-display-container') != null) {
+            document.querySelectorAll('.w3-content.w3-display-container > img').forEach(item => {
+                slide += `<li class="swiper-slide"><img src="${item.src}" alt="item.alt"></li>`
+            })
+        }
+
+        document.querySelector('.slider-gallery ul').insertAdjacentHTML('beforeend', slide)
+        document.querySelector('.gallery ul.swiper-wrapper').insertAdjacentHTML('beforeend', slide)
+        new Swiper(".gallery", {
+            slidesPerView: 1,
+            loop: true,
+            spaceBetween: 0,
+            pagination: {
+                el: ".gallery .gallery-count",
+                type: "fraction",
+            },
+            navigation: {
+                nextEl: ".gallery .btn-arrow-next",
+                prevEl: ".gallery .btn-arrow-prev ",
+            },
+        }); 
 
         new Swiper(".slider-gallery", {
             slidesPerView: 2.5,
@@ -1768,10 +2388,10 @@ let otherTours = setInterval(() => {
                 item.querySelector('.rate-tours').innerHTML = rate;
 
                 for (let i = 0; i < Math.floor(rate); i++) {
-                    item.querySelector('.star-ratings .rate-tours').insertAdjacentHTML('beforebegin', `<i class="fa fa-star"></i>`) 
+                    item.querySelector('.star-ratings .rate-tours').insertAdjacentHTML('beforebegin', isStar) 
                 }
                 if (ratehalf > 0) {
-                    item.querySelector('.star-ratings .rate-tours').insertAdjacentHTML('beforebegin', `<i class="fa fa-star fa-star-half"></i>`) 
+                    item.querySelector('.star-ratings .rate-tours').insertAdjacentHTML('beforebegin', isStarHalf) 
                 }
 
             }
