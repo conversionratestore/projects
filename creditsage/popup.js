@@ -11,6 +11,17 @@ if (window.location.pathname.includes('/a/')) {
     // Define CSS styles
     const style = /*html*/`
   <style>
+    .overlay {  
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(95, 107, 122, 0.5);
+        z-index: 99;
+        display: none;
+    }
+
     .popup {
         position: fixed;
         bottom: -100%;
@@ -21,7 +32,7 @@ if (window.location.pathname.includes('/a/')) {
         box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
         transition: bottom 0.3s ease-out;    
         border-radius: 14px 14px 0px 0px;
-        z-index: 99;  
+        z-index: 100;  
         width: 100%;
         overflow: auto;
         max-height: 90%;
@@ -94,6 +105,7 @@ if (window.location.pathname.includes('/a/')) {
     // HTML ELEMENTS
     // -------------------------------------
     const popupHTML = /*html*/`
+    <div class="overlay"></div>
     <div class="popup">
         <img class="popup-close" src="${IMAGE_DIR_URL}/close_x.svg" alt="x">
         <p class="title">Did you know?</p>
@@ -133,9 +145,8 @@ if (window.location.pathname.includes('/a/')) {
     const showPopup = (seconds) => {
         if (!sessionStorage.getItem('popupShown')) {
             document.querySelector('.popup').classList.add('show')
+            document.querySelector('.overlay').style.display = 'block';
             sessionStorage.setItem('popupShown', 'true')
-
-            console.log(seconds)
 
             window.dataLayer = window.dataLayer || []
             dataLayer.push({
@@ -161,6 +172,7 @@ if (window.location.pathname.includes('/a/')) {
 
     const closePopup = () => {
         document.querySelector('.popup').classList.remove('show')
+        document.querySelector('.overlay').style.display = 'none';
 
         window.dataLayer = window.dataLayer || []
         dataLayer.push({
