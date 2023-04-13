@@ -3,6 +3,12 @@ let dir = `https://conversionratestore.github.io/projects/secretfoodtours/img/`;
 let styles = `
 <style>
 /* customer */
+.swiper-slide [
+    height: auto!important;
+]
+.destination_page_wr .destination_content .main_container {
+    position: initial;
+}
 .main_container {
     max-width: 100%;
 }
@@ -56,7 +62,7 @@ let styles = `
     font-size: 24px;
     color: #333333;
 }
-header .btn-customer.gold, .tour-features, .similar, header > .container > ul > li:nth-child(2), .banner_top, .parallax-mirror, body > div.global_wr > div > div.tour-intro > div.container > div > div.col-md-12.col-xl-8, .destination_page_wr .tour-intro .plugin_right .heading, .text-red, .text-pt, .text-pt-disclaimer, .destination_page_wr .tour-intro .plugin_right .buy {
+#plugin [style="background-color: #0a88ff; padding:10px;"], .destination_content, .breadcrumbs, .destination_page_wr .destination_content .plugin_right > .price, .destination_page_wr .destination_content .plugin_right .heading, header .btn-customer.gold, .tour-features, .similar, header > .container > ul > li:nth-child(2), .banner_top, .parallax-mirror, body > div.global_wr > div > div.tour-intro > div.container > div > div.col-md-12.col-xl-8, .destination_page_wr .tour-intro .plugin_right .heading, .text-red, .text-pt, .text-pt-disclaimer, .destination_page_wr .tour-intro .plugin_right .buy {
     display: none!important;
 }
 header.destinations-active .btn-customer.gold {
@@ -136,6 +142,21 @@ header .search_btn {
 }
 .rating {
     margin-top: 20px;
+}
+.rating .star {
+    margin-right: 4px;
+}
+.rating .star-ratings {
+    margin-left: 12px;
+}
+.rating .to-rating, .rating .star-ratings {
+    font-family: 'Josefin Sans';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 14px;
+    text-decoration-line: underline;
+    color: #333333;
 }
 .best-seller {
     font-weight: 600;
@@ -231,11 +252,14 @@ header .search_btn {
 }
 .right-header .price, .destination_page_wr .tour-intro .plugin_right .price {
     font-weight: 400;
-    font-size: 16px;
-    line-height: 16px;
-    color: #A9A9A9;
+    font-size: 16px!important;
+    line-height: 16px!important;
+    color: #A9A9A9!important;
     display: block;
-    margin: 0;
+    margin: 0!important;
+}
+.destination_page_wr .destination_content .plugin_right .plugin {
+    margin: 0!important;
 }
 .destination_page_wr .tour-intro .plugin_right .plugin {
     margin: 0;
@@ -297,7 +321,7 @@ header .search_btn {
     margin-bottom: 4px;
 }
 /* descr */
-.descr {
+.descr-section {
     background: #F3F3F3;
     border-radius: 24px;
     padding: 0 40px 24px;
@@ -305,12 +329,12 @@ header .search_btn {
     font-style: normal;
     margin-bottom: 24px;
 }
-.descr img {
+.descr-section img {
     height: 18px;
     flex-shrink: 0;
     margin-right: 6px;
 }
-.descr .name {
+.descr-section .name {
     font-weight: 400;
     font-size: 14px;
     line-height: 14px;
@@ -318,7 +342,7 @@ header .search_btn {
     margin-bottom: 6px;
     margin-top: 24px;
 }
-.descr .info {
+.descr-section .info {
     font-weight: 600;
     font-size: 18px;
     line-height: 18px;
@@ -594,9 +618,11 @@ header .search_btn {
     font-size: 16px;
     line-height: 24px;
     color: #333333;
+}
+.meeting-spot .grey_block .right .item p {
     position: relative;
 }
-.meeting-spot .grey_block .right .item p span:before {
+.meeting-spot .grey_block .right .item p:before {
     content: '';
     background: url('${dir}pin.svg') no-repeat center / contain;
     width: 13px;
@@ -645,7 +671,11 @@ header .search_btn {
 .meeting-spot__covid .main_subheading {
     line-height: 32px;
     display: flex;
+    align-items: center;
     margin-bottom: 20px;
+}
+.meeting-spot__covid li {
+    list-style-type: disc;
 }
 .meeting-spot__contact {
     display: flex;
@@ -979,6 +1009,45 @@ header .search_btn {
 .other-tours .star-ratings::before {
     content: none!important;
 }
+.other-tours .tour_link .label {
+    position: absolute;
+    z-index: 5;
+    top: 20px;
+    left: 20px;
+    color: #c49959;
+    font: 12px/14px JosefinSans-Regular;
+    letter-spacing: 1.1px;
+    text-transform: uppercase;
+    background: #fff;
+    padding: 7px 12px;
+}
+.other-tours > div > .col-md-6 {
+    padding: 0;
+}
+.other-tours .tour_link .descr {
+    background-color: rgba(0,0,0,.5);
+    padding: 10px 15px;
+    position: absolute;
+    z-index: 5;
+    bottom: 20px;
+    left: unset;
+    color: #fff;
+    -webkit-transition: all .4s linear;
+    -moz-transition: all .4s linear;
+    -ms-transition: all .4s linear;
+    -o-transition: all .4s linear;
+    transition: all .4s linear;
+}
+.other-tours .tour_link .descr p {
+    font: 24px/32px PlayfairDisplay-Regular;
+    padding-bottom: 5px;
+}
+.other-tours .tour_link .descr span {
+    font: 16px/19px JosefinSans-Regular;
+    font-size: 16px;
+    position: relative;
+    padding-left: 20px;
+}
 /* review */
 .review .review-from {
     background: #FFFFFF;
@@ -1042,15 +1111,24 @@ header .search_btn {
     display: none;
 }
 .slider-review {
-    overflow: auto;
+    // overflow: auto;
     position: relative;
-    padding: 40px 20px 160px;
+    padding: 40px 0px 160px;
 }
 .slider-review .swiper-slide {
     background: #FFFFFF;
     box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.1), 0px 2px 30px rgba(0, 0, 0, 0.15);
     border-radius: 20px;
     padding: 24px;
+    opacity: 0;
+    height: auto!important;
+    transition: all 0.2s ease;
+}
+.slider-review .swiper-slide.swiper-slide-active, .slider-review .swiper-slide.swiper-slide-next, .slider-review .swiper-slide.swiper-slide-next + div {
+    opacity: 1;
+}
+.slider-review *, .slider-review *:before, .slider-review *:after {
+    box-sizing: border-box;
 }
 .slider-review img {
     width: 80px;
@@ -1099,7 +1177,7 @@ header .search_btn {
 </style>`
 
 let init = setInterval(() => {
-    if (document.querySelector('.plugin iframe') != null && document.querySelector('header .main_menu') != null) {
+    if (document.querySelector('#plugin iframe') != null && document.querySelector('header .main_menu') != null) {
         clearInterval(init)
         document.head.insertAdjacentHTML('beforeend',`
         <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -1171,7 +1249,7 @@ let init = setInterval(() => {
                             <h1></h1>
                             <div class="best-seller">Best seller</div>
                         </div>
-                        <div class="rating"></div>
+                        <div class="rating d-flex align-items-center"></div>
                         <div class="gallery d-flex align-items-end">
                             <div class="d-flex align-items-center justify-content-between w-100">
                                 <button type="button" class="btn-gallery">
@@ -1195,7 +1273,7 @@ let init = setInterval(() => {
                                 </div>
                             </div>
                         </div>
-                        <div class="descr "> 
+                        <div class="descr-section "> 
                             <div class="row "> </div>
                         </div>
                         <div class="brands">
@@ -1298,8 +1376,10 @@ let init = setInterval(() => {
         // document.querySelector('.right-header').after(document.querySelector('.plugin'));
         document.querySelector('.right-header .price').innerHTML = document.querySelector('#plugin .price.no-mobile') != null ? `${document.querySelector('#plugin .price.no-mobile').innerHTML.split('/ ')[0]} per adult` : '';
 
-        document.querySelector('#plugin [style="background-color: #0a88ff; padding:10px;"]') != null ? document.querySelector('.right-header').after(document.querySelector('#plugin [style="background-color: #0a88ff; padding:10px;"]')) : ''
-        
+        if (document.querySelector('#plugin [style="background-color: #0a88ff; padding:10px;"]') != null ) {
+            document.querySelector('.right-header .price').innerHTML = `Currently, we're just accepting private tours.`;
+            document.querySelector('.right-header .price').parentElement.style = 'display: block!important'
+        }
         document.querySelector('.link-customer').after(document.querySelector('.awards-desktop'))
 
         for (let i = 0; i < descrObj.length; i++) {
@@ -1309,7 +1389,7 @@ let init = setInterval(() => {
             if (document.querySelector(`.destination_page_wr .destination_descr .${icon}`) != null) {
                 let info = document.querySelector(`.destination_page_wr .destination_descr .${icon}`).nextElementSibling.innerText.trim();
             
-                document.querySelector(`.left .descr .row`).insertAdjacentHTML('beforeend',`
+                document.querySelector(`.left .descr-section .row`).insertAdjacentHTML('beforeend',`
                 <div class="col-4">
                     <p class="name">${iconName}</p>
                     <div class="d-flex align-items-center">
@@ -1353,11 +1433,48 @@ let init = setInterval(() => {
             console.log(reviewsEl)
             console.log(scriptEl)
 
-            document.querySelector('body').insertAdjacentElement('beforeend', rateEl); 
+            document.querySelector('.rating').insertAdjacentElement('beforeend', rateEl)
+            document.querySelector('.rating').insertAdjacentHTML('beforeend', `<p class="to-rating">/5 Rating </p>
+                <svg width="23" height="15" viewBox="0 0 23 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M20.2986 4.57758L22.1053 2.63862H18.0988C16.093 1.28712 13.6707 0.5 11.051 0.5C8.43456 0.5 6.01898 1.28881 4.01654 2.63862H0L1.8067 4.57758C0.699278 5.57425 0.00503632 7.00992 0.00503632 8.60398C0.00503632 11.6122 2.47756 14.0512 5.5272 14.0512C6.97591 14.0512 8.29577 13.5 9.2811 12.599L11.051 14.5L12.8209 12.6007C13.8062 13.5017 15.1244 14.0512 16.5731 14.0512C19.6227 14.0512 22.0986 11.6122 22.0986 8.60398C22.1002 7.00827 21.406 5.57264 20.2986 4.57758ZM5.52883 12.2904C3.46449 12.2904 1.79167 10.6403 1.79167 8.60398C1.79167 6.56766 3.46453 4.9175 5.52883 4.9175C7.59313 4.9175 9.266 6.56766 9.266 8.60398C9.266 10.6403 7.59313 12.2904 5.52883 12.2904ZM11.0526 8.49672C11.0526 6.07095 9.26436 3.98847 6.90393 3.09902C8.18031 2.57259 9.58051 2.28052 11.051 2.28052C12.5214 2.28052 13.9232 2.57259 15.1997 3.09902C12.8409 3.99013 11.0526 6.071 11.0526 8.49672ZM16.5748 12.2904C14.5105 12.2904 12.8376 10.6403 12.8376 8.60398C12.8376 6.56766 14.5105 4.9175 16.5748 4.9175C18.6391 4.9175 20.312 6.56766 20.312 8.60398C20.312 10.6403 18.6391 12.2904 16.5748 12.2904ZM16.5748 6.66995C15.4924 6.66995 14.6158 7.53465 14.6158 8.60233C14.6158 9.66996 15.4924 10.5347 16.5748 10.5347C17.6571 10.5347 18.5337 9.66996 18.5337 8.60233C18.5337 7.53631 17.6571 6.66995 16.5748 6.66995ZM7.48775 8.60398C7.48775 9.67162 6.61116 10.5363 5.52883 10.5363C4.44651 10.5363 3.56992 9.67162 3.56992 8.60398C3.56992 7.53631 4.44651 6.67161 5.52883 6.67161C6.61116 6.66995 7.48775 7.53631 7.48775 8.60398Z" fill="#144732"/>
+                </svg>
+                <svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <g clip-path="url(#clip0_521_34)">
+                        <path d="M13.2653 7.64551C13.2653 7.19051 13.2245 6.75301 13.1486 6.33301H7.10529V8.81801H10.5586C10.407 9.61717 9.95195 10.2938 9.26945 10.7488V12.3647H11.352C12.5653 11.2447 13.2653 9.59967 13.2653 7.64551Z" fill="#144732"/>
+                        <path d="M7.1051 13.9163C8.8376 13.9163 10.2901 13.3446 11.3518 12.3646L9.26927 10.7488C8.6976 11.1338 7.96844 11.3671 7.1051 11.3671C5.43677 11.3671 4.01927 10.2413 3.51177 8.72461H1.37677V10.3813C2.4326 12.4754 4.59677 13.9163 7.1051 13.9163Z" fill="#144732"/>
+                        <path d="M3.5126 8.71902C3.38427 8.33402 3.30844 7.92569 3.30844 7.49986C3.30844 7.07402 3.38427 6.66569 3.5126 6.28069V4.62402H1.3776C0.940103 5.48736 0.68927 6.46152 0.68927 7.49986C0.68927 8.53819 0.940103 9.51236 1.3776 10.3757L3.0401 9.08069L3.5126 8.71902Z" fill="#144732"/>
+                        <path d="M7.1051 3.63801C8.0501 3.63801 8.8901 3.96467 9.56094 4.59467L11.3984 2.75717C10.2843 1.71884 8.8376 1.08301 7.1051 1.08301C4.59677 1.08301 2.4326 2.52384 1.37677 4.62384L3.51177 6.28051C4.01927 4.76384 5.43677 3.63801 7.1051 3.63801Z" fill="#144732"/>
+                    </g>
+                    <defs>
+                        <clipPath id="clip0_521_34">
+                            <rect width="14" height="14" fill="white" transform="translate(0.105286 0.5)"/>
+                        </clipPath>
+                    </defs>
+                </svg>
+                <p>Recommended by 99% of travelers</p>
+            `)
+                        
+            let star = `<svg class="star" width="20" height="19" viewBox="0 0 20 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M3.825 19L5.45 11.975L0 7.25L7.2 6.625L10 0L12.8 6.625L20 7.25L14.55 11.975L16.175 19L10 15.275L3.825 19Z" fill="#C39958"/>
+            </svg>`
+            let starHalf = `<svg class="star star-half" width="20" height="19" viewBox="0 0 20 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M10 5.125V12.925L13.15 14.85L12.325 11.25L15.1 8.85L11.45 8.525L10 5.125ZM3.825 19L5.45 11.975L0 7.25L7.2 6.625L10 0L12.8 6.625L20 7.25L14.55 11.975L16.175 19L10 15.275L3.825 19Z" fill="#C39958"/>
+            </svg>`
+            let rate = document.querySelector('.rating .rate-tours').innerHTML.replace(/[^\d\.]*/g, '');
+            let ratehalf = rate.split('.')[1]
+            document.querySelector('.rating .rate-tours').innerHTML = rate;
 
+            for (let i = 0; i < Math.floor(rate); i++) {
+                document.querySelector('.rating .star-ratings').insertAdjacentHTML('beforebegin', star) 
+            }
+            if (ratehalf > 0) {
+                document.querySelector('.rating .star-ratings').insertAdjacentHTML('beforebegin', starHalf) 
+            }
+            
             document.querySelector('body').insertAdjacentElement('beforeend', reviewsEl)
             document.querySelector('body').insertAdjacentElement('beforeend', scriptEl)
         
+
             document.querySelector('.tour-section .review .review-from > div > img').after(document.querySelector('.reviews-first-container'))
 
             console.log('Reviews Array:', customers_reviews)
@@ -1532,17 +1649,22 @@ let meeting_spot = setInterval(() => {
 
         if (document.querySelector('.grey_block') != null) {
             document.querySelectorAll('.grey_block').forEach(item => {
-                let spt = item.querySelector('a').innerHTML.split('<br>');
-                let res = `<span>${spt[0]}</span><a href="${item.querySelector('a').href}">${spt[1]}</a>`;
-    
-                item.querySelector('.right .item > p').innerHTML = res;
+                if (item.querySelector('a') != null) {
+                    let spt = item.querySelector('a').innerHTML.split('<br>');
+                    let res = `<span>${spt[0]}</span><a href="${item.querySelector('a').href}">${spt[1]}</a>`;  
+                    item.querySelector('.right .item > p').innerHTML = res;  
+                }
     
                 document.querySelector('.notate').insertAdjacentHTML('afterend',`<div class="grey_block"> ${item.innerHTML}</div>`)
+                if (item.querySelector('a') == null) {
+                    document.querySelector('.grey_block').after(document.querySelector('.meeting_spot > iframe'))
+                    document.querySelector('.meeting-spot iframe').style.marginTop = '16px'
+                }
             })
         } else {
             if (document.querySelector('.meeting_spot > iframe') != null) {
-                document.querySelector('.notate').after(document.querySelector('.meeting_spot > .text-disclaimer'))
-                document.querySelector('.notate').after(document.querySelector('.meeting_spot > .text'))
+                // document.querySelector('.notate').after(document.querySelector('.meeting_spot > .text-disclaimer'))
+                // document.querySelector('.notate').after(document.querySelector('.meeting_spot > .text'))
                 document.querySelector('.notate').after(document.querySelector('.meeting_spot > iframe'))
             }
         }
@@ -1626,7 +1748,7 @@ let otherTours = setInterval(() => {
         clearInterval(otherTours)
         let tours = document.querySelector('.country_tours') != null ? '.country_tours' : '.similar_tours';
         document.querySelector('.other-tours').innerHTML = `
-         <h2>See our other secret tours <span class="c-gold">In paris</span></h2>
+         <h2>See our other secret tours <span class="c-gold">in ${document.querySelector('.top_menu .ret_back').innerText}</span></h2>
          ${document.querySelector(`${tours} .container`).innerHTML}
         `
 
