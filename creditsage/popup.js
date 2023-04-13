@@ -1,12 +1,15 @@
-// -------------------------------------
-// CONSTANTS
-// -------------------------------------
-const WAIT_INTERVAL_TIMEOUT = 100
-const IMAGE_DIR_URL = 'https://conversionratestore.github.io/projects/creditsage/img'
-let timeoutId
+if (window.location.pathname.includes('/a/')) {
+    window.location = 'https://collections.creditsage.com/b/11-charter-communications'
+} else {
+    // -------------------------------------
+    // CONSTANTS
+    // -------------------------------------
+    const WAIT_INTERVAL_TIMEOUT = 100
+    const IMAGE_DIR_URL = 'https://conversionratestore.github.io/projects/creditsage/img'
+    let timeoutId
 
-// Define CSS styles
-const style = /*html*/`
+    // Define CSS styles
+    const style = /*html*/`
   <style>
     .popup {
         position: fixed;
@@ -83,10 +86,10 @@ const style = /*html*/`
   </style>
 `
 
-// -------------------------------------
-// HTML ELEMENTS
-// -------------------------------------
-const popupHTML = /*html*/`
+    // -------------------------------------
+    // HTML ELEMENTS
+    // -------------------------------------
+    const popupHTML = /*html*/`
     <div class="popup">
         <img class="popup-close" src="${IMAGE_DIR_URL}/close_x.svg" alt="x">
         <p class="title">Did you know?</p>
@@ -113,105 +116,106 @@ const popupHTML = /*html*/`
     </div>
 `
 
-// -------------------------------------
-// FUNCTIONS
-// -------------------------------------
-const waitForElement = async (selector) => { // Wait for an element to appear on the page
-    while (!document.querySelector(selector)) {
-        await new Promise(resolve => setTimeout(resolve, WAIT_INTERVAL_TIMEOUT))
+    // -------------------------------------
+    // FUNCTIONS
+    // -------------------------------------
+    const waitForElement = async (selector) => { // Wait for an element to appear on the page
+        while (!document.querySelector(selector)) {
+            await new Promise(resolve => setTimeout(resolve, WAIT_INTERVAL_TIMEOUT))
+        }
+        return document.querySelector(selector)
     }
-    return document.querySelector(selector)
-}
 
-const showPopup = (seconds) => {
-    if (!sessionStorage.getItem('popupShown')) {
-        document.querySelector('.popup').classList.add('show')
-        sessionStorage.setItem('popupShown', 'true')
+    const showPopup = (seconds) => {
+        if (!sessionStorage.getItem('popupShown')) {
+            document.querySelector('.popup').classList.add('show')
+            sessionStorage.setItem('popupShown', 'true')
 
-        console.log(seconds)
-
-        window.dataLayer = window.dataLayer || []
-        dataLayer.push({
-            'event': 'event-to-ga4',
-            'event_name': 'exp_value_proposition_popup_vis',
-            'event_desc': 'Did you know',
-            'event_type': 'Popup',
-            'event_loc': seconds
-        })
-    }
-}
-
-const resetTimeout = () => {
-    clearTimeout(timeoutId)
-    timeoutId = setTimeout(() => showPopup(5000), 5000)
-}
-
-const handleOutsideClick = (event) => {
-    if (!event.target.closest('.popup')) {
-        closePopup()
-    }
-}
-
-const closePopup = () => {
-    document.querySelector('.popup').classList.remove('show')
-
-    window.dataLayer = window.dataLayer || []
-    dataLayer.push({
-        'event': 'event-to-ga4',
-        'event_name': 'exp_value_proposition_popup_close',
-        'event_desc': 'Close',
-        'event_type': 'Popup',
-        'event_loc': 'Landing page'
-    })
-
-    document.removeEventListener('click', handleOutsideClick)
-}
-
-// -------------------------------------
-// MAKE DOM CHANGES
-// -------------------------------------
-document.head.insertAdjacentHTML('beforeend', style)
-
-const waitForBody = setInterval(() => {
-    if (document.body) {
-        clearInterval(waitForBody)
-
-        document.body.insertAdjacentHTML('beforeend', popupHTML)
-
-        waitForElement('.popup-close').then(() => {
-            const popup = document.querySelector('.popup')
-            const closeButton = popup.querySelector('.popup-close')
-
-            closeButton.addEventListener('click', () => {
-                closePopup()
-            })
-
-            setTimeout(() => showPopup(10000), 10000)
-
-            window.addEventListener('click', resetTimeout, { once: true })
-            window.addEventListener('scroll', resetTimeout, { once: true })
-
-            document.addEventListener('click', handleOutsideClick, { once: true })
-        })
-
-        waitForElement('.tap_to_call').then(el => el.addEventListener('click', () => {
+            console.log(seconds)
 
             window.dataLayer = window.dataLayer || []
             dataLayer.push({
                 'event': 'event-to-ga4',
-                'event_name': 'exp_value_proposition_popup_call',
-                'event_desc': 'Click',
-                'event_type': 'Button',
-                'event_loc': 'Landing page'
+                'event_name': 'exp_value_proposition_popup_vis',
+                'event_desc': 'Did you know',
+                'event_type': 'Popup',
+                'event_loc': seconds
             })
-        }))
+        }
     }
-}, WAIT_INTERVAL_TIMEOUT)
 
-// Add Clarity
-const recordClarity = setInterval(() => {
-    if (typeof clarity === 'function') {
-        clearInterval(recordClarity)
-        clarity('set', `value_proposition`, 'variant_1')
+    const resetTimeout = () => {
+        clearTimeout(timeoutId)
+        timeoutId = setTimeout(() => showPopup(5000), 5000)
     }
-}, WAIT_INTERVAL_TIMEOUT)
+
+    const handleOutsideClick = (event) => {
+        if (!event.target.closest('.popup')) {
+            closePopup()
+        }
+    }
+
+    const closePopup = () => {
+        document.querySelector('.popup').classList.remove('show')
+
+        window.dataLayer = window.dataLayer || []
+        dataLayer.push({
+            'event': 'event-to-ga4',
+            'event_name': 'exp_value_proposition_popup_close',
+            'event_desc': 'Close',
+            'event_type': 'Popup',
+            'event_loc': 'Landing page'
+        })
+
+        document.removeEventListener('click', handleOutsideClick)
+    }
+
+    // -------------------------------------
+    // MAKE DOM CHANGES
+    // -------------------------------------
+    document.head.insertAdjacentHTML('beforeend', style)
+
+    const waitForBody = setInterval(() => {
+        if (document.body) {
+            clearInterval(waitForBody)
+
+            document.body.insertAdjacentHTML('beforeend', popupHTML)
+
+            waitForElement('.popup-close').then(() => {
+                const popup = document.querySelector('.popup')
+                const closeButton = popup.querySelector('.popup-close')
+
+                closeButton.addEventListener('click', () => {
+                    closePopup()
+                })
+
+                setTimeout(() => showPopup(10000), 10000)
+
+                window.addEventListener('click', resetTimeout, { once: true })
+                window.addEventListener('scroll', resetTimeout, { once: true })
+
+                document.addEventListener('click', handleOutsideClick, { once: true })
+            })
+
+            waitForElement('.tap_to_call').then(el => el.addEventListener('click', () => {
+
+                window.dataLayer = window.dataLayer || []
+                dataLayer.push({
+                    'event': 'event-to-ga4',
+                    'event_name': 'exp_value_proposition_popup_call',
+                    'event_desc': 'Click',
+                    'event_type': 'Button',
+                    'event_loc': 'Landing page'
+                })
+            }))
+        }
+    }, WAIT_INTERVAL_TIMEOUT)
+
+    // Add Clarity
+    const recordClarity = setInterval(() => {
+        if (typeof clarity === 'function') {
+            clearInterval(recordClarity)
+            clarity('set', `value_proposition`, 'variant_1')
+        }
+    }, WAIT_INTERVAL_TIMEOUT)
+}
