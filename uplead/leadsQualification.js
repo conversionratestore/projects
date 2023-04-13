@@ -1376,15 +1376,9 @@ let init = () => {
                     let utm_term = setUtm()
 
                     var xhr = new XMLHttpRequest();
-                    xhr.open("POST", "https://hooks.zapier.com/hooks/catch/15010393/32ckvp4/", true);
+                    xhr.open("POST", `https://hooks.zapier.com/hooks/catch/15010393/32ckvp4?full_name=${inputName.value}&email=${inputEmail.value}&phone=${inputPhone.value}&prospects=${selectCurrent.innerHTML}&client_id=${utm_term}`, true);
                     xhr.setRequestHeader('Content-Type', 'application/json');
-                    xhr.send(JSON.stringify({
-                      full_name: inputName.value,
-                      email: inputEmail.value, 
-                      phone: inputPhone.value,
-                      prospects: selectCurrent.innerHTML ,
-                      client_id: utm_term
-                    }))
+                    xhr.send()
 
                     console.log(utm_term)
                     window.Calendly.initInlineWidget({
