@@ -13,21 +13,51 @@ let styles = `
     position: initial;
 }
 .main_container {
-    max-width: 100%;
+    max-width: 100%!important;
     padding: 0;
 }
 .link-customer {
     font-family: 'Josefin Sans';
     font-style: normal;
+    font-size: 14px;
+    line-height: 14px;
+    color: #333333;
+    padding: 0 0 16px;
+    margin-bottom: 11px;
+}
+.link-customer > a {
     font-weight: 700;
     font-size: 14px;
     line-height: 14px;
     text-transform: uppercase;
     color: #333333;
-    padding: 0 0 16px;
 }
 .link-customer svg {
     margin-right: 8px;
+}
+.tooltipe {
+    position: relative;
+}
+.tooltipe:hover .tooltipe-content {
+    opacity: 1;
+    pointer-events: auto;
+}
+.tooltipe-content {
+    opacity: 0;
+    pointer-events: none;
+    position: absolute;
+    background: #fff;
+    border-radius: 20px;
+    z-index: 2;
+    left: 50%;
+    line-height: 16px;
+    transform: translateX(-50%);
+    bottom: calc(100% + 5px);
+    width: 260px;
+    padding: 20px;
+    transition: all 0.2s ease;
+    box-shadow: 0px 2px 16px rgba(20, 71, 50, 0.15);
+    text-transfom: 
 }
 .underline {
     text-decoration-line: underline;
@@ -148,9 +178,9 @@ let styles = `
     display: block;
 }
 .header_dropdown .country_wr {
-    max-width: 100%;
-    width: fit-content;
-    margin: 0;
+    max-width: 100%!important;
+    width: fit-content!important;
+    margin: 0!important;
 }
 .right-menu a {
     font-family: 'Josefin Sans';
@@ -166,13 +196,13 @@ let styles = `
     color: #C39958;
 }
 .header_dropdown {
-    padding: 0;
-    background: #F3F3F3;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    padding: 0!important;
+    background: #F3F3F3!important;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25)!important;
 }
 .header_dropdown .block .heading {
-    margin: 0 40px 0 0;
-    height: auto;
+    margin: 0 40px 0 0!important;
+    height: auto!important;
 }
 .header_dropdown .block ul li {
     margin: 0;
@@ -250,15 +280,15 @@ header .search_header {
     top: 0;
 }
 header .search_header input {
-    width: 400px;
+    width: 400px!important;
     margin-left: 30px;
-    border: 1px solid #EBEBE7;
-    border-radius: 20px;
-    font-size: 14px;
-    height: auto;
-    padding: 14px 14px 12px 42px;
-    line-height: 14px;
-    background: url(${dir}search-icon-gray.svg) no-repeat 12px center / 20px
+    border: 1px solid #EBEBE7!important;
+    border-radius: 20px!important;
+    font-size: 14px!important;
+    height: auto!important;
+    padding: 14px 14px 12px 42px!important;
+    line-height: 14px!important;
+    background: url(${dir}search-icon-gray.svg) no-repeat 12px center / 20px;
 }
 header .search_header input::-webkit-input-placeholder {
     font-family: 'Josefin Sans';
@@ -351,6 +381,7 @@ header .search_btn {
     top: 50%;
     left: 0;
     transform: translateY(-50%);
+    z-index: 3;
 }
 .social-fixed a {
     padding: 15px;
@@ -422,6 +453,7 @@ header .search_btn {
     border-radius: 4px;
     padding: 6px 8px 3px;
     height: fit-content;
+    white-space: nowrap;
 }
 .breadcrumbs-customer {
     margin-bottom: 20px;
@@ -452,11 +484,20 @@ header .search_btn {
     width: 100%;
     height: 557px;
     margin-bottom: 24px;
-    background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.16) 84.45%, rgba(0, 0, 0, 0.4) 100%);
     border-radius: 20px;
     padding: 0;
     overflow: hidden;
     position: relative;
+}
+.gallery:after {
+    content: '';
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.16) 84.45%, rgba(0, 0, 0, 0.4) 100%);
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
 }
 .gallery > div {
     position: absolute;
@@ -560,9 +601,6 @@ header .search_btn {
 .right-content .btn-customer {
     font-size: 12px;
     padding: 14px 13.5px 12px;
-}
-.link-customer {
-    margin-bottom: 11px;
 }
 .awards-desktop {
     margin: 0;
@@ -1627,6 +1665,9 @@ let objPopularTours = {
         }
     ]
 }
+
+let bestSellers = ['/paris/paris-montmartre','/paris/paris-le-marais','/paris/saint-germain-food-tour','/london/london-bridge-food-tour','/barcelona/food-tours-barcelona','/paris/chocolate-and-pastry-tour','/rome/food-tours-rome','/austin/food-tours-austin','/nashville/food-tours-nashville','/boston/food-tours-boston','/new-york/food-tours-new-york','/dublin/food-tours-dublin','/bologna/food-tours-bologna','/las-vegas/food-tours-las-vegas','florence/food-tours-florence','/montreal/food-tours-montreal','/charleston/food-tours-charleston','/amsterdam/food-tours-amsterdam','/edinburgh/food-tours-edinburgh','/san-francisco/food-tours-san-francisco/'];
+
 let init = setInterval(() => {
     if (document.querySelector('#plugin iframe') != null && document.querySelector('header .main_menu') != null) {
         clearInterval(init)
@@ -1654,7 +1695,7 @@ let init = setInterval(() => {
         //add "Book a private tour" and "Buy as a gift" button (header)
         document.querySelector('header .main_menu').insertAdjacentHTML('afterend', `
         <div class="d-flex btns-header">
-            <a href="#" class="btn-customer btn-private-tour d-flex align-items-center justify-content-center">
+            <a href="/private-bookings" class="btn-customer btn-private-tour d-flex align-items-center justify-content-center">
                 <svg width="17" height="12" viewBox="0 0 17 12" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M0 12V9.90001C0 9.47501 0.1095 9.08426 0.328499 8.72776C0.547499 8.37126 0.837999 8.09951 1.2 7.91251C1.975 7.52501 2.7625 7.23426 3.56249 7.04026C4.36249 6.84626 5.17499 6.74951 5.99999 6.75001C6.82499 6.75001 7.63749 6.84701 8.43749 7.04101C9.23749 7.23501 10.025 7.52551 10.8 7.91251C11.1625 8.10001 11.4532 8.37201 11.6722 8.72851C11.8912 9.085 12.0005 9.47551 12 9.90001V12H0ZM13.5 12V9.75C13.5 9.20001 13.3467 8.67176 13.0402 8.16526C12.7337 7.65876 12.2995 7.22451 11.7375 6.86251C12.375 6.93751 12.975 7.06576 13.5375 7.24726C14.1 7.42876 14.625 7.65051 15.1125 7.91251C15.5625 8.16251 15.9062 8.44051 16.1437 8.74651C16.3812 9.05251 16.5 9.387 16.5 9.75V12H13.5ZM5.99999 6.00001C5.17499 6.00001 4.46874 5.70626 3.88124 5.11876C3.29375 4.53126 3 3.82501 3 3.00001C3 2.17502 3.29375 1.46877 3.88124 0.881268C4.46874 0.293769 5.17499 1.92305e-05 5.99999 1.92305e-05C6.82499 1.92305e-05 7.53124 0.293769 8.11874 0.881268C8.70624 1.46877 8.99999 2.17502 8.99999 3.00001C8.99999 3.82501 8.70624 4.53126 8.11874 5.11876C7.53124 5.70626 6.82499 6.00001 5.99999 6.00001ZM13.5 3.00001C13.5 3.82501 13.2062 4.53126 12.6187 5.11876C12.0312 5.70626 11.325 6.00001 10.5 6.00001C10.3625 6.00001 10.1875 5.98426 9.97499 5.95276C9.76249 5.92126 9.58749 5.88701 9.44999 5.85001C9.78749 5.45001 10.047 5.00626 10.2285 4.51876C10.41 4.03126 10.5005 3.52501 10.5 3.00001C10.5 2.47502 10.4095 1.96877 10.2285 1.48127C10.0475 0.993768 9.78799 0.550018 9.44999 0.150019C9.62499 0.087519 9.79998 0.0467693 9.97499 0.0277693C10.15 0.00876935 10.325 -0.000480769 10.5 1.92305e-05C11.325 1.92305e-05 12.0312 0.293769 12.6187 0.881268C13.2062 1.46877 13.5 2.17502 13.5 3.00001Z" fill="#144732"/>
                 </svg>
@@ -1789,7 +1830,6 @@ let init = setInterval(() => {
                         <ul class="breadcrumbs-customer"></ul>
                         <div class="d-flex align-items-center">
                             <h1></h1>
-                            <div class="best-seller">Best seller</div>
                         </div>
                         <div class="rating d-flex align-items-center"></div>
                         <div class="gallery d-flex align-items-end"></div>
@@ -1822,13 +1862,22 @@ let init = setInterval(() => {
                 <div class="why-tour d-flex flex-wrap"></div>
                 <div class="other-tours"></div>
             </div>
-        </section>
-        `)
+        </section> `)
 
+        for (let i = 0; i < bestSellers.length; i++) {
+            if (window.location.href.includes(bestSellers[i])) {
+                document.querySelector('.tour-section h1').insertAdjacentHTML('afterend','<div class="best-seller">Best seller</div>')
+            }
+        }
+        window.addEventListener('scroll', (e) => {
+            if (document.querySelector('.destinations-active') != null) {
+                document.querySelector('.destinations-active').classList.remove('destinations-active')
+            }
+        })
         document.addEventListener('click', (e) => {
             if (document.querySelector('.destinations-active') != null && !e.target.closest('header')) {
                 e.stopImmediatePropagation()
-                document.querySelector('header.destinations-active').classList.remove('destinations-active')
+                document.querySelector('.destinations-active').classList.remove('destinations-active')
             }
         })
         let resizeLeft = () => {
@@ -1851,16 +1900,19 @@ let init = setInterval(() => {
         document.querySelector('#plugin iframe').insertAdjacentHTML('afterend', `
             <div class="right-content">
                 <div class="d-flex justify-content-between">
-                    <a href="#" class="btn-customer">Book a private tour</a>
+                    <a href="/private-bookings" class="btn-customer">Book a private tour</a>
                     <a href="/buy-gift/" class="btn-customer gold">Buy as a giftr</a>
                 </div>
                 <hr>
-                <a href="#" class="link-customer text-center d-block">
-                    <svg width="15" height="16" viewBox="0 0 15 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M7.91176 16L7.70588 13.6H7.5C5.55098 13.6 3.89706 12.94 2.53824 11.62C1.17941 10.3 0.5 8.69333 0.5 6.8C0.5 4.90667 1.17941 3.3 2.53824 1.98C3.89706 0.66 5.55098 0 7.5 0C8.47451 0 9.38396 0.176533 10.2284 0.5296C11.0727 0.882667 11.8139 1.36933 12.4519 1.9896C13.0898 2.60987 13.5905 3.32987 13.954 4.1496C14.3175 4.96933 14.4995 5.8528 14.5 6.8C14.5 7.8 14.3317 8.76 13.9952 9.68C13.6586 10.6 13.1988 11.4533 12.6158 12.24C12.0327 13.0267 11.3396 13.74 10.5364 14.38C9.73314 15.02 8.85827 15.56 7.91176 16ZM7.47941 11.18C7.71275 11.18 7.91176 11.1 8.07647 10.94C8.24118 10.78 8.32353 10.5867 8.32353 10.36C8.32353 10.1333 8.24118 9.94 8.07647 9.78C7.91176 9.62 7.71275 9.54 7.47941 9.54C7.24608 9.54 7.04706 9.62 6.88235 9.78C6.71765 9.94 6.63529 10.1333 6.63529 10.36C6.63529 10.5867 6.71765 10.78 6.88235 10.94C7.04706 11.1 7.24608 11.18 7.47941 11.18ZM6.88235 8.64H8.11765C8.11765 8.24 8.15882 7.96 8.24118 7.8C8.32353 7.64 8.58431 7.34667 9.02353 6.92C9.27059 6.68 9.47647 6.42 9.64118 6.14C9.80588 5.86 9.88824 5.56 9.88824 5.24C9.88824 4.56 9.65133 4.04987 9.17753 3.7096C8.70372 3.36933 8.14455 3.19947 7.5 3.2C6.89608 3.2 6.38824 3.36347 5.97647 3.6904C5.56471 4.01733 5.27647 4.41387 5.11176 4.88L6.26471 5.32C6.33333 5.09333 6.46373 4.86987 6.65588 4.6496C6.84804 4.42933 7.12941 4.31947 7.5 4.32C7.87059 4.32 8.14839 4.42 8.33341 4.62C8.51843 4.82 8.61122 5.04 8.61176 5.28C8.61176 5.50667 8.54314 5.71013 8.40588 5.8904C8.26863 6.07067 8.10392 6.25387 7.91176 6.44C7.43137 6.84 7.13957 7.1568 7.03635 7.3904C6.93314 7.624 6.8818 8.04053 6.88235 8.64Z" fill="#333333"/>
-                    </svg>
-                    <span class="underline"> Help with booking</span>
-                </a>
+                <div class="link-customer d-flex align-items-center justify-content-center">
+                    <p class="tooltipe">
+                        <svg width="15" height="16" viewBox="0 0 15 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M7.91176 16L7.70588 13.6H7.5C5.55098 13.6 3.89706 12.94 2.53824 11.62C1.17941 10.3 0.5 8.69333 0.5 6.8C0.5 4.90667 1.17941 3.3 2.53824 1.98C3.89706 0.66 5.55098 0 7.5 0C8.47451 0 9.38396 0.176533 10.2284 0.5296C11.0727 0.882667 11.8139 1.36933 12.4519 1.9896C13.0898 2.60987 13.5905 3.32987 13.954 4.1496C14.3175 4.96933 14.4995 5.8528 14.5 6.8C14.5 7.8 14.3317 8.76 13.9952 9.68C13.6586 10.6 13.1988 11.4533 12.6158 12.24C12.0327 13.0267 11.3396 13.74 10.5364 14.38C9.73314 15.02 8.85827 15.56 7.91176 16ZM7.47941 11.18C7.71275 11.18 7.91176 11.1 8.07647 10.94C8.24118 10.78 8.32353 10.5867 8.32353 10.36C8.32353 10.1333 8.24118 9.94 8.07647 9.78C7.91176 9.62 7.71275 9.54 7.47941 9.54C7.24608 9.54 7.04706 9.62 6.88235 9.78C6.71765 9.94 6.63529 10.1333 6.63529 10.36C6.63529 10.5867 6.71765 10.78 6.88235 10.94C7.04706 11.1 7.24608 11.18 7.47941 11.18ZM6.88235 8.64H8.11765C8.11765 8.24 8.15882 7.96 8.24118 7.8C8.32353 7.64 8.58431 7.34667 9.02353 6.92C9.27059 6.68 9.47647 6.42 9.64118 6.14C9.80588 5.86 9.88824 5.56 9.88824 5.24C9.88824 4.56 9.65133 4.04987 9.17753 3.7096C8.70372 3.36933 8.14455 3.19947 7.5 3.2C6.89608 3.2 6.38824 3.36347 5.97647 3.6904C5.56471 4.01733 5.27647 4.41387 5.11176 4.88L6.26471 5.32C6.33333 5.09333 6.46373 4.86987 6.65588 4.6496C6.84804 4.42933 7.12941 4.31947 7.5 4.32C7.87059 4.32 8.14839 4.42 8.33341 4.62C8.51843 4.82 8.61122 5.04 8.61176 5.28C8.61176 5.50667 8.54314 5.71013 8.40588 5.8904C8.26863 6.07067 8.10392 6.25387 7.91176 6.44C7.43137 6.84 7.13957 7.1568 7.03635 7.3904C6.93314 7.624 6.8818 8.04053 6.88235 8.64Z" fill="#333333"/>
+                        </svg>
+                        <span class="tooltipe-content"> </span>
+                    </p>
+                    <a href="mailto:contact@secrettours.com" class="underline"> Help with booking</a>
+                </div>
             </div>
             <div class="right-footer">
                 <p>Over 21,000 Reviews</p>
@@ -1903,7 +1955,8 @@ let init = setInterval(() => {
                     </p>
                 </div>
             </div>`)
-        // document.querySelector('.right-header').after(document.querySelector('.plugin'));
+
+        document.querySelector('.tooltipe-content').innerHTML = document.querySelector('#plugin .text-red').innerHTML;
         document.querySelector('.right-header .price').innerHTML = document.querySelector('#plugin .price.no-mobile') != null ? `${document.querySelector('#plugin .price.no-mobile').innerHTML.split('/ ')[0]} per adult` : '';
 
         if (document.querySelector('#plugin [style="background-color: #0a88ff; padding:10px;"]') != null ) {
