@@ -96,7 +96,8 @@ if (window.location.pathname.includes('/a/')) {
         line-height: 22px;
         text-align: center;
         color: #1E2F44;
-        margin: 12px 0;
+        margin: 12px auto;
+        max-width: 304px;
     }
   </style>
 `
