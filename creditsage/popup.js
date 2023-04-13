@@ -44,8 +44,9 @@ if (window.location.pathname.includes('/a/')) {
 
     .popup-close {
         position: absolute;
-        right: 16px;
-        top: 16px;
+        right: 12px;
+        top: 12px;
+        padding: 4px;
     }
 
     .popup .title {
