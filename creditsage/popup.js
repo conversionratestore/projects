@@ -21,7 +21,10 @@ if (window.location.pathname.includes('/a/')) {
         box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
         transition: bottom 0.3s ease-out;    
         border-radius: 14px 14px 0px 0px;
-        z-index: 99;        
+        z-index: 99;  
+        width: 100%;
+        overflow: auto;
+        max-height: 90%;
     }
 
     .popup.show {
@@ -58,6 +61,7 @@ if (window.location.pathname.includes('/a/')) {
     }
 
     .graph {
+        display: block;
         margin: 15px auto 10px;
     }
 
