@@ -1901,7 +1901,7 @@ let init = setInterval(() => {
             <div class="right-content">
                 <div class="d-flex justify-content-between">
                     <a href="/private-bookings" class="btn-customer">Book a private tour</a>
-                    <a href="/buy-gift/" class="btn-customer gold">Buy as a giftr</a>
+                    <a href="/buy-gift/" class="btn-customer gold">Buy as a gift</a>
                 </div>
                 <hr>
                 <div class="link-customer d-flex align-items-center justify-content-center">
