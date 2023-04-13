@@ -73,7 +73,7 @@ if (window.location.pathname.includes('/a/')) {
 
     .graph {
         display: block;
-        margin: 15px auto 10px;
+        margin: 12px auto 11px;
     }
 
     p.green_div {
