@@ -371,6 +371,15 @@ header .search_btn {
     background: url(${dir}search-icon.svg) no-repeat center / 100%;
     margin-left: 20px;
 }
+@media screen and (max-width: 1335px) {
+    header .btns-header a {
+        margin-left: 0;
+    }
+    ul.main_menu li {
+        margin: 10px 7px;
+    }
+}
+
 </style>
 `
 let styles = `
@@ -718,6 +727,11 @@ header .main_menu {
     border: 2px solid #F3F3F3;
     border-radius: 20px;
     max-width: 342px!important;
+    display: block!important;
+    height: auto!important;
+}
+.destination_page_wr .destination_content .plugin_right .close_btn {
+    display: none!important;
 }
 .destination_page_wr .tour-intro .plugin-col, .plugin-col {
     position: inherit!important;
