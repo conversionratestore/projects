@@ -761,7 +761,7 @@ header .search_btn {
     background: #F3F3F3;
     border-radius: 20px;
 }
-.tour-drinks .main_subheading, .tour-do .title , .meeting-spot .title, .other-tours h2, .video-section h2, .fotos-gallery h2, .tour-section .review h2 {
+.tour-drinks .main_subheading, .tour-do .title , .meeting-spot .title, .other-tours h2, .video-section h2, .photos-gallery h2, .tour-section .review h2 {
     font-weight: 700;
     font-size: 30px;
     line-height: 42px;
@@ -1130,7 +1130,7 @@ header .search_btn {
     text-align: center;
     padding: 18px 16px 14px!important;
 }
-/* video-section, fotos-gallery */
+/* video-section, photos-gallery */
 .video-section {
     margin-bottom: 90px;
     background: url(${dir}bg-dashed.svg) no-repeat center calc(50% + 74px) / 100%;
@@ -1142,10 +1142,10 @@ header .search_btn {
 .video-section iframe, .slider-gallery .swiper-slide img {
     border-radius: 20px;
 }
-.fotos-gallery {
+.photos-gallery {
     margin-bottom: 50px;
 }
-.fotos-gallery h2 {
+.photos-gallery h2 {
     line-height: 48px;
     margin: 0 0 22px;
 }
@@ -2020,7 +2020,7 @@ let init = setInterval(() => {
                 <div class="container"></div>
             </div>
             <div class="container">
-                <div class="fotos-gallery"></div>
+                <div class="photos-gallery"></div>
                 <div class="review" id="review"></div>
                 <div class="why-tour d-flex flex-wrap"></div>
                 <div class="other-tours" id="other-tours"></div>
@@ -2498,13 +2498,13 @@ let video = setInterval(() => {
     }
 });
 
-let fotos = setInterval(() => {
-    if ((document.querySelector('#my-gallery') != null || document.querySelector('.w3-content.w3-display-container') != null) && document.querySelector('.fotos-gallery') != null) {
-        clearInterval(fotos)
+let photos = setInterval(() => {
+    if ((document.querySelector('#my-gallery') != null || document.querySelector('.w3-content.w3-display-container') != null) && document.querySelector('.photos-gallery') != null && document.querySelectorAll('.breadcrumbs-customer li a')) {
+        clearInterval(photos)
 
-        document.querySelector('.fotos-gallery').innerHTML = `
+        document.querySelector('.photos-gallery').innerHTML = `
         <h2>PHOTOS OF SECRET FOOD TOUR: <br>
-        <span class="c-gold">MONTMARTRE</span></h2>
+        <span class="c-gold">${document.querySelectorAll('.breadcrumbs-customer li a')[document.querySelectorAll('.breadcrumbs-customer li a').length - 2].innerHTML}</span></h2>
         <div class="slider-gallery">
             <ul class="swiper-wrapper"></ul>
             <div class="swiper-pagination swiper-pagination-fraction"></div>
