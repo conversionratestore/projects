@@ -355,6 +355,7 @@ header .search_header {
     background-color: transparent;
     margin-top: 0;
     top: 0;
+    z-index: 2;
 }
 header .search_header input {
     width: 400px!important;
@@ -1993,6 +1994,7 @@ let init = setInterval(() => {
         window.addEventListener('scroll', (e) => {
             if (document.querySelector('.destinations-active') != null) {
                 document.querySelector('.destinations-active').classList.remove('destinations-active')
+                document.querySelector('.droped.active_menu').classList.remove('active_menu')
             }
             if (window.pageYOffset > 970) {
                 if (document.querySelector('.header_sticky.fixed') == null) {
