@@ -379,6 +379,13 @@ header .search_btn {
         margin: 10px 7px;
     }
 }
+@media screen and (max-width: 767px) {
+    header .search_btn {
+        display: block!important;
+        margin-left: auto;
+        margin-right: 24px;
+    }
+}
 
 </style>
 `
@@ -2021,7 +2028,7 @@ let init = setInterval(() => {
         //header
         //add "Book a private tour" and "Buy as a gift" button (header)
         document.querySelector('header .main_menu').insertAdjacentHTML('afterend', `
-        <div class="d-flex btns-header">
+        <div class="d-md-flex d-none btns-header">
             <a href="/private-bookings" class="btn-customer btn-private-tour d-flex align-items-center justify-content-center">
                 <svg width="17" height="12" viewBox="0 0 17 12" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M0 12V9.90001C0 9.47501 0.1095 9.08426 0.328499 8.72776C0.547499 8.37126 0.837999 8.09951 1.2 7.91251C1.975 7.52501 2.7625 7.23426 3.56249 7.04026C4.36249 6.84626 5.17499 6.74951 5.99999 6.75001C6.82499 6.75001 7.63749 6.84701 8.43749 7.04101C9.23749 7.23501 10.025 7.52551 10.8 7.91251C11.1625 8.10001 11.4532 8.37201 11.6722 8.72851C11.8912 9.085 12.0005 9.47551 12 9.90001V12H0ZM13.5 12V9.75C13.5 9.20001 13.3467 8.67176 13.0402 8.16526C12.7337 7.65876 12.2995 7.22451 11.7375 6.86251C12.375 6.93751 12.975 7.06576 13.5375 7.24726C14.1 7.42876 14.625 7.65051 15.1125 7.91251C15.5625 8.16251 15.9062 8.44051 16.1437 8.74651C16.3812 9.05251 16.5 9.387 16.5 9.75V12H13.5ZM5.99999 6.00001C5.17499 6.00001 4.46874 5.70626 3.88124 5.11876C3.29375 4.53126 3 3.82501 3 3.00001C3 2.17502 3.29375 1.46877 3.88124 0.881268C4.46874 0.293769 5.17499 1.92305e-05 5.99999 1.92305e-05C6.82499 1.92305e-05 7.53124 0.293769 8.11874 0.881268C8.70624 1.46877 8.99999 2.17502 8.99999 3.00001C8.99999 3.82501 8.70624 4.53126 8.11874 5.11876C7.53124 5.70626 6.82499 6.00001 5.99999 6.00001ZM13.5 3.00001C13.5 3.82501 13.2062 4.53126 12.6187 5.11876C12.0312 5.70626 11.325 6.00001 10.5 6.00001C10.3625 6.00001 10.1875 5.98426 9.97499 5.95276C9.76249 5.92126 9.58749 5.88701 9.44999 5.85001C9.78749 5.45001 10.047 5.00626 10.2285 4.51876C10.41 4.03126 10.5005 3.52501 10.5 3.00001C10.5 2.47502 10.4095 1.96877 10.2285 1.48127C10.0475 0.993768 9.78799 0.550018 9.44999 0.150019C9.62499 0.087519 9.79998 0.0467693 9.97499 0.0277693C10.15 0.00876935 10.325 -0.000480769 10.5 1.92305e-05C11.325 1.92305e-05 12.0312 0.293769 12.6187 0.881268C13.2062 1.46877 13.5 2.17502 13.5 3.00001Z" fill="#144732"/>
@@ -2489,7 +2496,7 @@ let taste = setInterval(() => {
 });
 
 let drink = setInterval(() => {
-    if (document.querySelector('.mini_ul') != null && document.querySelector('.tour-section .left') != null) {
+    if (document.querySelector('.mini_ul') != null && document.querySelector('.tour-section .left') != null && document.querySelectorAll('.breadcrumbs-customer li a')) {
         clearInterval(drink)
         document.querySelector('.tour-section .tour-do').insertAdjacentHTML('beforebegin',`
         <div class="drinks">
@@ -2503,7 +2510,7 @@ let drink = setInterval(() => {
             </div>
             <ul>${document.querySelector('.mini_ul').innerHTML} </ul>
             <div class="d-flex align-items-center">
-                <a href="/paris/upgraded-drinks-package/" class="buy-2">
+                <a href="/${document.querySelectorAll('.breadcrumbs-customer li a')[document.querySelectorAll('.breadcrumbs-customer li a').length - 2].innerHTML.toLowerCase()}/upgraded-drinks-package/" class="buy-2">
                     <svg width="17" height="16" viewBox="0 0 17 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M16.3594 2.26452L14.2355 0.140556C14.0481 -0.0468521 13.7357 -0.0468521 13.5171 0.140556L12.8299 0.858956C12.6113 1.04636 12.6113 1.35871 12.8299 1.54612L10.4248 3.9512C8.95681 3.3265 7.2389 3.60761 6.05198 4.79453L1.08565 9.76086C0.304783 10.5417 0.304783 11.7911 1.08565 12.572L3.92801 15.4143C4.70888 16.1952 5.95827 16.1952 6.73914 15.4143L11.7055 10.448C12.8924 9.2611 13.1735 7.54319 12.5488 6.07516L14.9539 3.67008C15.1413 3.88873 15.4536 3.88873 15.641 3.67008L16.3594 2.98292C16.5469 2.76428 16.5469 2.45193 16.3594 2.26452ZM6.11445 13.2279L3.27208 10.3856L7.08272 6.57491L9.92509 9.41728L6.11445 13.2279Z" fill="white"/>
                     </svg>
