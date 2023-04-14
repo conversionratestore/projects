@@ -2496,7 +2496,7 @@ let taste = setInterval(() => {
 });
 
 let drink = setInterval(() => {
-    if (document.querySelector('.mini_ul') != null && document.querySelector('.tour-section .left') != null && document.querySelectorAll('.breadcrumbs-customer li a')) {
+    if (document.querySelector('.mini_ul') != null && document.querySelector('.tour-section .left') != null) {
         clearInterval(drink)
         document.querySelector('.tour-section .tour-do').insertAdjacentHTML('beforebegin',`
         <div class="drinks">
@@ -2510,7 +2510,7 @@ let drink = setInterval(() => {
             </div>
             <ul>${document.querySelector('.mini_ul').innerHTML} </ul>
             <div class="d-flex align-items-center">
-                <a href="/${document.querySelectorAll('.breadcrumbs-customer li a')[document.querySelectorAll('.breadcrumbs-customer li a').length - 2].innerHTML.toLowerCase()}/upgraded-drinks-package/" class="buy-2">
+                <a href="#" class="buy-2">
                     <svg width="17" height="16" viewBox="0 0 17 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M16.3594 2.26452L14.2355 0.140556C14.0481 -0.0468521 13.7357 -0.0468521 13.5171 0.140556L12.8299 0.858956C12.6113 1.04636 12.6113 1.35871 12.8299 1.54612L10.4248 3.9512C8.95681 3.3265 7.2389 3.60761 6.05198 4.79453L1.08565 9.76086C0.304783 10.5417 0.304783 11.7911 1.08565 12.572L3.92801 15.4143C4.70888 16.1952 5.95827 16.1952 6.73914 15.4143L11.7055 10.448C12.8924 9.2611 13.1735 7.54319 12.5488 6.07516L14.9539 3.67008C15.1413 3.88873 15.4536 3.88873 15.641 3.67008L16.3594 2.98292C16.5469 2.76428 16.5469 2.45193 16.3594 2.26452ZM6.11445 13.2279L3.27208 10.3856L7.08272 6.57491L9.92509 9.41728L6.11445 13.2279Z" fill="white"/>
                     </svg>
@@ -2519,6 +2519,8 @@ let drink = setInterval(() => {
                 <p class="text">When you purchase our upgraded drink package, you'll enjoy the following in addition to what is already served on the tour:</p>
             </div>
         </div>`)
+
+        document.querySelector('.drinks a.buy-2').href = document.querySelector('.mini_ul+.buy-2').href;
     }
 });
 
