@@ -358,7 +358,6 @@ header .search_header {
     background-color: transparent;
     margin-top: 0;
     top: 0;
-    z-index: 2;
 }
 header .search_header input {
     width: 400px!important;
@@ -434,6 +433,7 @@ header {
     box-shadow: 0px 2px 16px rgba(20, 71, 50, 0.15);
     transform: none!important;
     position: relative!important;
+    z-index: 2;
 }
 header .logo img {
     max-width: 200px;
