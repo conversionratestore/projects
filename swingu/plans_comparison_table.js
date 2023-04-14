@@ -7,6 +7,11 @@ const IMAGE_DIR_URL = 'https://conversionratestore.github.io/projects/swingu/img
 // Define CSS styles
 const style = /*html*/`
     <style>
+        .in-app-upgrade-state--show:before,
+        .in-app-upgrade-ctas {
+            display: none;
+        }
+
         .page-template-page-sections .main-container .main-column {
             padding-bottom: 90px !important;
         }
@@ -137,6 +142,15 @@ const style = /*html*/`
             margin-bottom: 16px;
         }
 
+        .annual_checkbox_wrapper.subs {
+            pointer-events: none;
+            margin-bottom: 16px;
+        }
+
+        .subs .pro_pack_bottom {
+            bottom: 0;
+        }
+
         .annual_checkbox_wrapper .plan_checkbox {
             width: 50%;
             text-align: left;
@@ -147,7 +161,7 @@ const style = /*html*/`
         }
 
         .monthly_checkbox_wrapper .plan_checkbox {
-            padding: 22px 16px;
+            padding: 26px 16px;
         }
 
         .plan_checkbox {
@@ -158,6 +172,7 @@ const style = /*html*/`
             padding: 16px;
             transition: all .3s ease-in-out;
             z-index: 1;
+            align-self: flex-start;
         }
 
         .plan_checkbox.checkbox_active_plan {
@@ -227,6 +242,10 @@ const style = /*html*/`
             line-height: 17px;
         }
 
+        .plan_checkbox .month_price p.price {
+            margin-bottom: 0 !important;
+        }
+
         .plan_checkbox .month_price {
             font-family: 'SF Pro Display', 'Roboto', sans-serif;
             font-style: normal;
@@ -287,6 +306,41 @@ const style = /*html*/`
 
         .checkbox_active_plan + .pro_pack_bottom {
             transform: translateY(0);
+        }
+
+        .curr_plan {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+            padding: 6px;
+            background: #F5F8FA;
+            border-top: 1px solid #D9E1E8;
+            margin: 16px -16px -16px;
+            border-radius: 0 0 9px 9px;
+        }
+
+        .curr_plan.hide_curr_label {
+            display: none;
+        }
+        
+        .monthly_checkbox_wrapper .curr_plan {
+            margin-bottom: -26px;
+        }
+
+        .curr_plan p {            
+            font-family: 'SF Pro Display', 'Roboto', sans-serif;
+            font-weight: 600;
+            font-size: 12px;
+            line-height: 14px;
+            text-align: center;
+            letter-spacing: -0.01em;
+            color: #2B2B2B !important;
+            margin-left: 4px;
+        }
+
+        .checkbox_active_plan .curr_plan {
+            border-color: #FFC803;
         }
 
         /* TABLE */
@@ -449,6 +503,11 @@ const style = /*html*/`
 // -------------------------------------
 // HTML ELEMENTS
 // -------------------------------------
+const smallCheckSvg = `<svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M6.02 8.26L4.4975 6.7375C4.36917 6.60917 4.21167 6.545 4.025 6.545C3.83833 6.545 3.675 6.615 3.535 6.755C3.40667 6.88333 3.3425 7.04667 3.3425 7.245C3.3425 7.44333 3.40667 7.60667 3.535 7.735L5.53 9.73C5.65833 9.85833 5.82167 9.9225 6.02 9.9225C6.21833 9.9225 6.38167 9.85833 6.51 9.73L10.4825 5.7575C10.6108 5.62917 10.675 5.47167 10.675 5.285C10.675 5.09833 10.605 4.935 10.465 4.795C10.3367 4.66667 10.1733 4.6025 9.975 4.6025C9.77667 4.6025 9.61333 4.66667 9.485 4.795L6.02 8.26ZM7 14C6.03167 14 5.12167 13.8161 4.27 13.4484C3.41833 13.0811 2.6775 12.5825 2.0475 11.9525C1.4175 11.3225 0.918867 10.5817 0.5516 9.73C0.183867 8.87833 0 7.96833 0 7C0 6.03167 0.183867 5.12167 0.5516 4.27C0.918867 3.41833 1.4175 2.6775 2.0475 2.0475C2.6775 1.4175 3.41833 0.918633 4.27 0.5509C5.12167 0.183633 6.03167 0 7 0C7.96833 0 8.87833 0.183633 9.73 0.5509C10.5817 0.918633 11.3225 1.4175 11.9525 2.0475C12.5825 2.6775 13.0811 3.41833 13.4484 4.27C13.8161 5.12167 14 6.03167 14 7C14 7.96833 13.8161 8.87833 13.4484 9.73C13.0811 10.5817 12.5825 11.3225 11.9525 11.9525C11.3225 12.5825 10.5817 13.0811 9.73 13.4484C8.87833 13.8161 7.96833 14 7 14Z" fill="#49BB54"/>
+</svg>
+`
+
 const content = /*html*/`
     <section class="choose_plan" data-name="example-section">
         <div class="my_header">
@@ -475,6 +534,10 @@ const content = /*html*/`
                     <p class="price"><b>$99.99</b>/year</p>
                     <p class="price_off">58% OFF*</p>
                     <p class="month_price">(<s>$19.99</s> $8.33/month)</p>
+                    <div class="curr_plan hide_curr_label">
+                        ${smallCheckSvg}
+                        <p>Current plan</p>
+                    </div>
                 </div>
                 <div class="pro_pack_bottom">
                     <p><span>*58%</span> OFF compared to monthly</p>
@@ -487,6 +550,10 @@ const content = /*html*/`
                     <p class="title">Plus</p>
                     <p class="price"><b>$49.99</b>/year</p>
                     <p class="month_price">($4.16/month)</p>
+                    <div class="curr_plan hide_curr_label">
+                        ${smallCheckSvg}
+                        <p>Current plan</p>
+                    </div>
                 </div>
             </div>
             <div class="monthly_checkbox_wrapper">
@@ -497,6 +564,10 @@ const content = /*html*/`
                     </div>
                     <p class="title">Pro</p>
                     <p class="price"><b>$19.99</b>/month</p>
+                    <div class="curr_plan hide_curr_label">
+                        ${smallCheckSvg}
+                        <p>Current plan</p>
+                    </div>
                 </div>
             </div>
 
@@ -509,7 +580,7 @@ const content = /*html*/`
     <div class="fixed_div">
         <div>
         <p>No commitment. Cancel anytime</p>
-        <button>Start 7-day free trial</button>
+        <button></button>
         </div>
     </div>
 `
@@ -654,18 +725,43 @@ const checkVisibilityAfterMs = (el) => { // Checks element visibility after a sp
 // -------------------------------------
 document.head.insertAdjacentHTML('beforeend', style)
 
-const waitForVideoSection = setInterval(() => {
-    if (document.querySelector('.video-hero')) {
-        clearInterval(waitForVideoSection)
+const waitForMainColumn = setInterval(() => {
+    if (document.querySelector('.main-column')) {
+        clearInterval(waitForMainColumn)
 
-        document.querySelector('.video-hero').insertAdjacentHTML('beforebegin', content)
+        document.querySelector('.main-column').insertAdjacentHTML('afterbegin', content)
 
         const waitForPlans = setInterval(() => {
             const togglePlanElement = document.querySelector('.toggle_plan')
             const plansCheckboxContainer = document.querySelector('.plans_checkbox_container')
             const payBtn = document.querySelector('.fixed_div button')
-            if (togglePlanElement && plansCheckboxContainer && payBtn) {
+            if (togglePlanElement && plansCheckboxContainer && payBtn && document.querySelector('.in-app-upgrade-ctas__manage-subscriptions')) {
                 clearInterval(waitForPlans)
+
+                const isSubscriptionActive = document.querySelector('.cta-group__active')
+
+                if (isSubscriptionActive) {
+                    payBtn.innerText = 'Manage subscriptions'
+
+                    document.querySelector('.annual_checkbox_wrapper').classList.add('subs')                
+
+                    if (document.querySelector('.cta-group__active').closest('.cta-group__heading').innerText.includes('Pro')) {
+                        document.querySelector('[data-pack="annual_pro"] .hide_curr_label').classList.remove('hide_curr_label')
+                        document.querySelector('.monthly_checkbox_wrapper .plan_checkbox .hide_curr_label').classList.remove('hide_curr_label')
+
+                        document.querySelector('.pro_pack_bottom').style.display = 'none'
+                    } else {
+                        document.querySelector('.checkbox_active_plan').classList.remove('checkbox_active_plan')
+                        document.querySelector('[data-pack="annual_plus"').classList.add('checkbox_active_plan')   
+
+                        document.querySelector('.pro_pack_bottom').style.transform = 'translateY(0)'
+                        
+                        document.querySelector('[data-pack="annual_plus"] .hide_curr_label').classList.remove('hide_curr_label')
+                    }
+
+                } else {
+                    payBtn.innerText = 'Start 7-day free trial'
+                }
 
                 // Annual/Monthly switcher
                 togglePlanElement.addEventListener('click', (event) => {
@@ -675,10 +771,13 @@ const waitForVideoSection = setInterval(() => {
                             // the 'annual' span was clicked
                             togglePlanElement.classList.remove('monthly_active')
                             plansCheckboxContainer.classList.add('show_annual')
-                            payBtn.innerText = 'Start 7-day free trial'
 
-                            if (document.querySelector('.annual_checkbox_wrapper .checkbox_active_plan').dataset.pack === 'annual_plus') {
+                            if (!isSubscriptionActive) {
                                 payBtn.innerText = 'Start 7-day free trial'
+
+                                if (document.querySelector('.annual_checkbox_wrapper .checkbox_active_plan').dataset.pack === 'annual_plus') {
+                                    payBtn.innerText = 'Start 7-day free trial'
+                                }
                             }
 
                             sendGAEvent({
@@ -693,7 +792,9 @@ const waitForVideoSection = setInterval(() => {
                             togglePlanElement.classList.add('monthly_active')
                             plansCheckboxContainer.classList.remove('show_annual')
 
-                            payBtn.innerText = 'Continue'
+                            if (!isSubscriptionActive) {
+                                payBtn.innerText = 'Continue'
+                            }
 
                             sendGAEvent({
                                 'event': 'event-to-ga4',
@@ -750,15 +851,19 @@ const waitForVideoSection = setInterval(() => {
                         'event_loc': 'Bottom of screen'
                     })
 
-                    if (isMonthlyActive) {
-                        document.querySelector('[data-cta-product-id*="swingu_pro.monthly"] a').dispatchEvent(new Event('click'))
+                    if (isSubscriptionActive) {
+                        window.location = document.querySelector('.in-app-upgrade-ctas__manage-subscriptions a')?.href                        
                     } else {
-                        const selectedPack = document.querySelector('.annual_checkbox_wrapper .checkbox_active_plan').dataset.pack
-
-                        if (selectedPack === 'annual_pro') {
-                            document.querySelector('[data-cta-product-id*="swingu_pro.yearly"] a').dispatchEvent(new Event('click'))
+                        if (isMonthlyActive) {
+                            document.querySelector('[data-cta-product-id*="swingu_pro.monthly"] a').dispatchEvent(new Event('click'))
                         } else {
-                            document.querySelector('[data-cta-product-id*="swingu_plus.yearly"] a').dispatchEvent(new Event('click'))
+                            const selectedPack = document.querySelector('.annual_checkbox_wrapper .checkbox_active_plan').dataset.pack
+
+                            if (selectedPack === 'annual_pro') {
+                                document.querySelector('[data-cta-product-id*="swingu_pro.yearly"] a').dispatchEvent(new Event('click'))
+                            } else {
+                                document.querySelector('[data-cta-product-id*="swingu_plus.yearly"] a').dispatchEvent(new Event('click'))
+                            }
                         }
                     }
                 })
