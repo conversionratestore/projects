@@ -1886,9 +1886,9 @@ let initHeader = setInterval(() => {
         document.querySelectorAll('.search_btn').forEach(button => {
             button.addEventListener('click', (e) => {
                 if (document.querySelector('#close_ic_desktop').style.display.includes('block')) {
-                    document.querySelector('.search_header.visible_search').style = 'width: calc(100% - 240px);'
+                    document.querySelector('.search_header').style = 'width: calc(100% - 240px);'
                 } else {
-                    document.querySelector('.search_header.visible_search').style = ''
+                    document.querySelector('.search_header').style = ''
                 }
             })
         })
