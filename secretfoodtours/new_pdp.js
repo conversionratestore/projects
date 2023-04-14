@@ -950,6 +950,13 @@ header .main_menu {
     padding: 13px 15px 10px;
     letter-spacing: inherit;
 }
+.drinks .buy-2:hover {
+    color: #144732!important;
+    background-color: #fff!important;
+}
+.drinks .buy-2:hover svg path {
+    fill: #144732!important;
+}
 .drinks .buy-2 svg {
     margin-right: 8px;
 }
