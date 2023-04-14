@@ -355,6 +355,7 @@ header .search_header {
     background-color: transparent;
     margin-top: 0;
     top: 0;
+    z-index: 2;
 }
 header .search_header input {
     width: 400px!important;
@@ -430,7 +431,6 @@ header {
     box-shadow: 0px 2px 16px rgba(20, 71, 50, 0.15);
     transform: none!important;
     position: relative!important;
-    z-index: 2;
 }
 header .logo img {
     max-width: 200px;
@@ -808,7 +808,6 @@ header .search_btn {
     line-height: 28px;
     color: #5B5B5B;
     display: flex;
-    align-items: center;
 }
 .food_wr ul li:before, .drinks ul li:before {
     content: '';
@@ -818,13 +817,14 @@ header .search_btn {
     height: 4px;
     border-radius: 50%;
     margin-right: 10px;
+    margin-top: 11px;
 }
 .tour-drinks > p {
     border: 2px dashed #EBEBE7;
     border-radius: 20px;    
     padding: 20px;
     font-weight: 300;
-    font-size: 16px;
+    font-size: 16px!important;
     line-height: 26px;
     color: #5B5B5B;
     max-width: calc(100% - 80px)!important;
@@ -2345,6 +2345,8 @@ let taste = setInterval(() => {
         let titleDrinks = document.querySelector('.tour-drinks .main_subheading');
         let sptArr = titleDrinks.innerHTML.trim().split(' ')
         titleDrinks.innerHTML = titleDrinks.innerHTML.replace(sptArr[sptArr.length - 1], `<span class="c-gold"> ${sptArr[sptArr.length - 1]}</span>`)
+       
+        //titleDrinks.innerHTML = `WHAT YOU'LL <span class="c-gold"> TASTE</span>`
 
         document.querySelectorAll('.food_block .title').forEach(item => {
             if (item.innerHTML.trim().includes('THE FOOD')) {
@@ -2379,6 +2381,14 @@ let taste = setInterval(() => {
                 </svg> `)
             }
         })
+        if (document.querySelectorAll('.tour-drinks > p').length > 1) {
+            let text = document.querySelectorAll('.tour-drinks > p');
+            text.forEach((item, index)=> {
+                if (index < text.length - 1) {
+                    item.style = 'margin-bottom: 16px';
+                } 
+            })
+        }
 
         document.querySelector('.header_sticky_bottom .menu ul').insertAdjacentHTML('beforeend',`<li><a href="#tour-drinks" onclick="menuToElement(event)">What you will taste</a></li>`)
     }
