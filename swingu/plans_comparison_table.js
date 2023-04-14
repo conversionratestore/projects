@@ -148,7 +148,7 @@ const style = /*html*/`
         }
 
         .subs .pro_pack_bottom {
-            bottom: 0;
+            display: none !important;
         }
 
         .annual_checkbox_wrapper .plan_checkbox {
@@ -748,14 +748,10 @@ const waitForMainColumn = setInterval(() => {
                     if (document.querySelector('.cta-group__active').closest('.cta-group__heading').innerText.includes('Pro')) {
                         document.querySelector('[data-pack="annual_pro"] .hide_curr_label').classList.remove('hide_curr_label')
                         document.querySelector('.monthly_checkbox_wrapper .plan_checkbox .hide_curr_label').classList.remove('hide_curr_label')
-
-                        document.querySelector('.pro_pack_bottom').style.display = 'none'
                     } else {
                         document.querySelector('.checkbox_active_plan').classList.remove('checkbox_active_plan')
-                        document.querySelector('[data-pack="annual_plus"').classList.add('checkbox_active_plan')   
+                        document.querySelector('[data-pack="annual_plus"').classList.add('checkbox_active_plan') 
 
-                        document.querySelector('.pro_pack_bottom').style.transform = 'translateY(0)'
-                        
                         document.querySelector('[data-pack="annual_plus"] .hide_curr_label').classList.remove('hide_curr_label')
                     }
 
