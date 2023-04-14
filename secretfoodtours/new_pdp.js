@@ -1278,7 +1278,7 @@ header .search_btn {
     position: absolute;
     top: 19px;
     right: 0;
-    background-color: #ED6664!important;
+    // background-color: #ED6664!important;
     font-family: 'Josefin Sans';
     font-style: normal;
     font-weight: 600;
@@ -2665,6 +2665,7 @@ let otherTours = setInterval(() => {
                 item.src = dir + 'library_ic.svg';
             } else if (item.src.includes('/img/icons/cutlery.svg')) {
                 item.src = dir + 'restaurant.svg';
+                item.parentElement.style = 'order: 1';
             } else if (item.src.includes('/img/icons/group.svg')) {
                 item.src = dir + 'group_ic.svg';
             }
