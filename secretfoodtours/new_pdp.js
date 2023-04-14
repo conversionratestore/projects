@@ -1584,6 +1584,34 @@ header .search_btn {
     width: 100%;
     background: #F3F3F3;
 }
+.help_center .container .left_help, .help_center .container .right_help {
+    flex-basis: 49%;
+}
+.help_center .container .block_wr .block_title.health {
+    background: #fff;
+    color: #144733;
+}
+.help_center .container .block_wr .block_title {
+    font-family: 'Josefin Sans';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 24px;
+    color: #333333;
+    padding: 13px 16px;
+}
+.help_center .container .block_wr .block_title .calc_ico {
+    background: url('https://www.secretfoodtours.com/img/icons/plus.svg') no-repeat center / 12px;
+    border: 2px solid #EBEBE7;
+    border-radius: 6px;
+    width: 30px;
+    height: 30px;
+    margin-left: 8px;
+    flex-shrink: 0;
+}
+.help_center .container .active_help .block_title .calc_ico {
+    background: url(https://www.secretfoodtours.com/img/icons/minus_white.svg) no-repeat center / 12px!important;
+}
 </style>`
 
 const state = new Promise((resolve, reject) => {
