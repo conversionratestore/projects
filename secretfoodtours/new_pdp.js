@@ -1014,7 +1014,7 @@ header .main_menu {
     background: #F3F3F3;
     border: 2px solid #EBEBE7;
     border-radius: 20px;
-    padding: 21px 30px; 
+    padding: 21px 30px 19px; 
     display: flex;
     justify-content: space-between;
     align-items: center;
