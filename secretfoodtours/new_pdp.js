@@ -2503,7 +2503,7 @@ let taste = setInterval(() => {
 });
 
 let drink = setInterval(() => {
-    if (document.querySelector('.mini_ul') != null && document.querySelector('.tour-section .left') != null) {
+    if (document.querySelector('.mini_ul') != null && document.querySelector('.tour-section .left') != null && document.querySelectorAll('.breadcrumbs-customer li a')[1] != null) {
         clearInterval(drink)
         document.querySelector('.tour-section .tour-do').insertAdjacentHTML('beforebegin',`
         <div class="drinks">
@@ -2527,7 +2527,7 @@ let drink = setInterval(() => {
             </div>
         </div>`)
 
-        document.querySelector('.drinks a.buy-2').href = document.querySelector('.mini_ul+.buy-2').href;
+        document.querySelector('.drinks a.buy-2').href = document.querySelectorAll('.breadcrumbs-customer li a')[1].href;
     }
 });
 
