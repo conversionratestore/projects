@@ -331,8 +331,12 @@ header {
     background: #FFFFFF;
     box-shadow: 0px 2px 16px rgba(20, 71, 50, 0.15);
     transform: none!important;
-    z-index: 2;
+    z-index: 9;
     position: relative;
+}
+header .visible_search .close_ic {
+    top: 50%!important;
+    transform: translateY(-50%);
 }
 header .logo img {
     max-width: 200px;
