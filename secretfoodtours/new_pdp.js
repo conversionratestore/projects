@@ -345,6 +345,11 @@ header .main_menu li a {
     color: #333333!important;
     letter-spacing: initial;
 }
+header .main_menu li {
+    display: flex;
+    align-items: center;
+    padding-top: 10px;
+}
 header .container {
     max-width: 1340px;
     padding: 0 20px;
