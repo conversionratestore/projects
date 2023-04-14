@@ -2527,7 +2527,7 @@ let drink = setInterval(() => {
             </div>
         </div>`)
 
-        document.querySelector('.drinks a.buy-2').href = document.querySelectorAll('.breadcrumbs-customer li a')[1].href;
+        document.querySelector('.drinks a.buy-2').href = document.querySelectorAll('.breadcrumbs-customer li a')[1].href + 'upgraded-drinks-package/';
     }
 });
 
