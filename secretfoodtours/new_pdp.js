@@ -85,6 +85,9 @@ let styles = `
     color: #C39958!important;
     border-color: #C39958;
 }
+.btn-customer.gold svg {
+    margin-top: -3px;
+}
 .btn-customer.gold-full {
     background: #C39958;
     border: 1.5px solid #C39958;
