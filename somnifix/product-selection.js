@@ -154,19 +154,12 @@ let style = `
         padding: 14px 14px 0;
         background-color: #F5F6F7;
     }
-    .parent-items .swatchCustom__item_new[data-title="2 Pack"] {
+    .swatchCustom__item_new[data-title="3 Pack"] {
         order: 1; 
     }
-    .parent-items .swatchCustom__item_new[data-title="3 Pack"] {
+    .swatchCustom__item_new[data-title="12 Pack"] {
         order: 2;
         margin-bottom: 0;
-    }
-    .aside_parent .swatchCustom__item_new[data-title="1 Pack"] {
-        order: 2; 
-        margin-bottom: 0;
-    }
-    .aside_parent .swatchCustom__item_new[data-title="3 Pack"] {
-        order: 1;
     }
     .aside_wrapper .total {
         margin: 16px 0 auto;
