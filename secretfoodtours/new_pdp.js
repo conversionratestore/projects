@@ -1,117 +1,15 @@
 let dir = `https://conversionratestore.github.io/projects/secretfoodtours/img/`;
 
-let styles = `
+/* header */
+let headerStyle = `
 <style>
-/* customer */
 .searchdroptop {
     max-width: 100%;
-}
-.swiper-slide {
-    height: auto!important;
-}
-.destination_page_wr .destination_content .main_container {
-    position: initial;
 }
 .main_container {
     max-width: 100%!important;
     padding: 0;
 }
-.link-customer {
-    font-family: 'Josefin Sans';
-    font-style: normal;
-    font-size: 14px;
-    line-height: 14px;
-    color: #333333;
-    padding: 0 0 16px;
-    margin-bottom: 11px;
-}
-.link-customer > a {
-    font-weight: 700;
-    font-size: 14px;
-    line-height: 14px;
-    text-transform: uppercase;
-    color: #333333;
-}
-.link-customer svg {
-    margin-right: 8px;
-}
-.tooltipe {
-    position: relative;
-}
-.tooltipe:hover .tooltipe-content {
-    opacity: 1;
-    pointer-events: auto;
-}
-.tooltipe-content {
-    opacity: 0;
-    pointer-events: none;
-    position: absolute;
-    background: #fff;
-    border-radius: 20px;
-    z-index: 2;
-    left: 50%;
-    line-height: 16px;
-    transform: translateX(-50%);
-    bottom: calc(100% + 5px);
-    width: 260px;
-    padding: 20px;
-    transition: all 0.2s ease;
-    box-shadow: 0px 2px 16px rgba(20, 71, 50, 0.15);
-    text-transfom: 
-}
-.underline {
-    text-decoration-line: underline;
-}
-.btn-customer {
-    font-family: 'Josefin Sans', sans-serif;
-    font-weight: 700;
-    font-size: 14px;
-    line-height: 1;
-    text-transform: uppercase;
-    color: #144732!important;
-    border: 2px solid #144732;
-    border-radius: 60px;
-    text-align: center;
-    padding: 0 24px;
-}
-.btn-customer span {
-    padding: 13px 0 11px;
-}
-.btn-customer svg {
-    margin-right: 8px;
-    flex-shrink: 0;
-}
-.btn-customer.gold {
-    color: #C39958!important;
-    border-color: #C39958;
-}
-.btn-customer.gold svg {
-    margin-top: -3px;
-}
-.btn-customer.gold-full {
-    background: #C39958;
-    border: 1.5px solid #C39958;
-    color: #FFFFFF!important;
-    padding: 14px 24px 11px;
-}
-.c-gold {
-    color: #C39958!important;
-}
-
-.header_sticky .title, .why-tour h2, .meeting-spot__covid .main_subheading, .meeting-spot__contact .name, .slider-gallery .swiper-pagination.swiper-pagination-fraction, .slider-review .swiper-pagination.swiper-pagination-fraction  {
-    font-family: 'Josefin Sans';
-    font-style: normal;
-    font-weight: 700;
-    font-size: 24px;
-    color: #333333;
-}
-.destination_page_wr .destination_content .destination_descr {
-    padding: 0;
-}
-.destination_page_wr .destination_content .plugin_right .buy, .destination_content > .container, .destination_descr .container, #plugin [style="background-color: #0a88ff; padding:10px;"], .breadcrumbs, .destination_page_wr .destination_content .plugin_right > .price, .destination_page_wr .destination_content .plugin_right .heading, .tour-features, .similar, header > .container > ul > li:nth-child(2), .banner_top, .parallax-mirror, body > div.global_wr > div > div.tour-intro > div.container > div > div.col-md-12.col-xl-8, .destination_page_wr .tour-intro .plugin_right .heading, .text-red, .text-pt, .text-pt-disclaimer, .destination_page_wr .tour-intro .plugin_right .buy {
-    display: none!important;
-}
-/* header */
 
 .header_sticky {
     position: fixed;
@@ -206,6 +104,7 @@ let styles = `
     line-height: 24px;
     color: #333333;
     margin-top: 6px;
+    display: block;
 }
 .popular_tours_row .rate {
     font-size: 14px;
@@ -432,8 +331,6 @@ header {
     background: #FFFFFF;
     box-shadow: 0px 2px 16px rgba(20, 71, 50, 0.15);
     transform: none!important;
-    position: relative!important;
-    z-index: 2;
 }
 header .logo img {
     max-width: 200px;
@@ -447,7 +344,6 @@ header .container {
     padding: 0 20px;
 }
 header .main_menu {
-    flex-basis: 56%!important;
     margin: 0 auto;
 }
 header .search_btn {
@@ -456,6 +352,122 @@ header .search_btn {
     background: url(${dir}search-icon.svg) no-repeat center / 100%;
     margin-left: 20px;
 }
+</style>
+`
+let styles = `
+<style>
+
+header {
+    position: relative!important;
+    z-index: 2;
+}
+header .main_menu {
+    flex-basis: 56%!important;
+}
+/* customer */
+
+.swiper-slide {
+    height: auto!important;
+}
+.destination_page_wr .destination_content .main_container {
+    position: initial;
+}
+.link-customer {
+    font-family: 'Josefin Sans';
+    font-style: normal;
+    font-size: 14px;
+    line-height: 14px;
+    color: #333333;
+    padding: 0 0 16px;
+    margin-bottom: 11px;
+}
+.link-customer > a {
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 14px;
+    text-transform: uppercase;
+    color: #333333;
+}
+.link-customer svg {
+    margin-right: 8px;
+}
+.tooltipe {
+    position: relative;
+}
+.tooltipe:hover .tooltipe-content {
+    opacity: 1;
+    pointer-events: auto;
+}
+.tooltipe-content {
+    opacity: 0;
+    pointer-events: none;
+    position: absolute;
+    background: #fff;
+    border-radius: 20px;
+    z-index: 2;
+    left: 50%;
+    line-height: 16px;
+    transform: translateX(-50%);
+    bottom: calc(100% + 5px);
+    width: 260px;
+    padding: 20px;
+    transition: all 0.2s ease;
+    box-shadow: 0px 2px 16px rgba(20, 71, 50, 0.15);
+    text-transfom: 
+}
+.underline {
+    text-decoration-line: underline;
+}
+.btn-customer {
+    font-family: 'Josefin Sans', sans-serif;
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 1;
+    text-transform: uppercase;
+    color: #144732!important;
+    border: 2px solid #144732;
+    border-radius: 60px;
+    text-align: center;
+    padding: 0 24px;
+}
+.btn-customer span {
+    padding: 13px 0 11px;
+}
+.btn-customer svg {
+    margin-right: 8px;
+    flex-shrink: 0;
+}
+.btn-customer.gold {
+    color: #C39958!important;
+    border-color: #C39958;
+}
+.btn-customer.gold svg {
+    margin-top: -3px;
+}
+.btn-customer.gold-full {
+    background: #C39958;
+    border: 1.5px solid #C39958;
+    color: #FFFFFF!important;
+    padding: 14px 24px 11px;
+}
+.c-gold {
+    color: #C39958!important;
+}
+
+.header_sticky .title, .why-tour h2, .meeting-spot__covid .main_subheading, .meeting-spot__contact .name, .slider-gallery .swiper-pagination.swiper-pagination-fraction, .slider-review .swiper-pagination.swiper-pagination-fraction  {
+    font-family: 'Josefin Sans';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 24px;
+    color: #333333;
+}
+.destination_page_wr .destination_content .destination_descr {
+    padding: 0;
+}
+.destination_page_wr .destination_content .plugin_right .buy, .destination_content > .container, .destination_descr .container, #plugin [style="background-color: #0a88ff; padding:10px;"], .breadcrumbs, .destination_page_wr .destination_content .plugin_right > .price, .destination_page_wr .destination_content .plugin_right .heading, .tour-features, .similar, header > .container > ul > li:nth-child(2), .banner_top, .parallax-mirror, body > div.global_wr > div > div.tour-intro > div.container > div > div.col-md-12.col-xl-8, .destination_page_wr .tour-intro .plugin_right .heading, .text-red, .text-pt, .text-pt-disclaimer, .destination_page_wr .tour-intro .plugin_right .buy {
+    display: none!important;
+}
+
 /* social-fixed  */
 .social-fixed {
     position: fixed;
@@ -654,6 +666,7 @@ header .search_btn {
     color: #A9A9A9!important;
     display: block;
     margin: 0!important;
+    text-align: right;
 }
 .destination_page_wr .destination_content .plugin_right .plugin {
     margin: 0!important;
@@ -1650,8 +1663,7 @@ let popularTout = (image, rate, name, link) =>  {
     }
     
     return `
-   
-        <div class="d-flex align-items-cneter">
+        <div class="d-flex align-items-center">
             <img src="${image}">
             <div>
                 <div class="d-flex align-items-center">
@@ -1794,36 +1806,15 @@ let menuToElement = (event) => {
     event.target.classList.add('active')
 }
 
-let price = setInterval(() => {
-    if (document.querySelector('#plugin iframe') != null && document.querySelector('.right-header .price') != null &&  document.querySelector('.header_sticky .is_price') != null) {
-        if (document.querySelector('#plugin .price.no-mobile') != null ) {
-            clearInterval(price)
-            document.querySelector('.right-header .price').innerHTML = `${document.querySelector('#plugin .price.no-mobile').innerHTML.split('/ ')[0]} per adult`
-            document.querySelector('.header_sticky .is_price').innerHTML = document.querySelector('#plugin .price.no-mobile').innerHTML;
-        } else if (document.querySelector('#plugin [style="background-color: #0a88ff; padding:10px;"]') != null ) {
-            clearInterval(price)
-            document.querySelector('.right-header .price').innerHTML = `Currently, we're just accepting private tours.`;
-            document.querySelector('.header_sticky .is_price').innerHTML = `Currently, we're just accepting private tours.`;
-            document.querySelector('.right-header .price').parentElement.style = 'display: block!important'
-        }
-    }
-});
-let init = setInterval(() => {
-    if (document.querySelector('#plugin iframe') != null && document.querySelector('header .main_menu') != null) {
-        clearInterval(init)
+let initHeader = setInterval(() => {
+    if (  document.querySelector('header .search_header input') != null && document.querySelector('.header_dropdown .city_wr') != null) {
+        clearInterval(initHeader)
+        //fonts
         document.head.insertAdjacentHTML('beforeend',`
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800&display=swap" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300;400;500;600;700&family=Roboto:wght@300;400;500;700;900&display=swap" rel="stylesheet">`)
-
-        document.body.insertAdjacentHTML('afterbegin', styles);
-
-        //icons
-        let starLink = document.createElement('link');
-        starLink.href = 'https://use.fontawesome.com/releases/v5.0.1/css/all.css';
-        starLink.rel = 'stylesheet';
-        document.head.appendChild(starLink)
 
         //flags country
         const link = document.createElement('link')
@@ -1831,23 +1822,7 @@ let init = setInterval(() => {
         link.href = 'https://cdn.jsdelivr.net/gh/lipis/flag-icons@6.6.6/css/flag-icons.min.css'
         document.head.appendChild(link)
 
-        //header
-        //add "Book a private tour" and "Buy as a gift" button (header)
-        document.querySelector('header .main_menu').insertAdjacentHTML('afterend', `
-        <div class="d-flex btns-header">
-            <a href="/private-bookings" class="btn-customer btn-private-tour d-flex align-items-center justify-content-center">
-                <svg width="17" height="12" viewBox="0 0 17 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M0 12V9.90001C0 9.47501 0.1095 9.08426 0.328499 8.72776C0.547499 8.37126 0.837999 8.09951 1.2 7.91251C1.975 7.52501 2.7625 7.23426 3.56249 7.04026C4.36249 6.84626 5.17499 6.74951 5.99999 6.75001C6.82499 6.75001 7.63749 6.84701 8.43749 7.04101C9.23749 7.23501 10.025 7.52551 10.8 7.91251C11.1625 8.10001 11.4532 8.37201 11.6722 8.72851C11.8912 9.085 12.0005 9.47551 12 9.90001V12H0ZM13.5 12V9.75C13.5 9.20001 13.3467 8.67176 13.0402 8.16526C12.7337 7.65876 12.2995 7.22451 11.7375 6.86251C12.375 6.93751 12.975 7.06576 13.5375 7.24726C14.1 7.42876 14.625 7.65051 15.1125 7.91251C15.5625 8.16251 15.9062 8.44051 16.1437 8.74651C16.3812 9.05251 16.5 9.387 16.5 9.75V12H13.5ZM5.99999 6.00001C5.17499 6.00001 4.46874 5.70626 3.88124 5.11876C3.29375 4.53126 3 3.82501 3 3.00001C3 2.17502 3.29375 1.46877 3.88124 0.881268C4.46874 0.293769 5.17499 1.92305e-05 5.99999 1.92305e-05C6.82499 1.92305e-05 7.53124 0.293769 8.11874 0.881268C8.70624 1.46877 8.99999 2.17502 8.99999 3.00001C8.99999 3.82501 8.70624 4.53126 8.11874 5.11876C7.53124 5.70626 6.82499 6.00001 5.99999 6.00001ZM13.5 3.00001C13.5 3.82501 13.2062 4.53126 12.6187 5.11876C12.0312 5.70626 11.325 6.00001 10.5 6.00001C10.3625 6.00001 10.1875 5.98426 9.97499 5.95276C9.76249 5.92126 9.58749 5.88701 9.44999 5.85001C9.78749 5.45001 10.047 5.00626 10.2285 4.51876C10.41 4.03126 10.5005 3.52501 10.5 3.00001C10.5 2.47502 10.4095 1.96877 10.2285 1.48127C10.0475 0.993768 9.78799 0.550018 9.44999 0.150019C9.62499 0.087519 9.79998 0.0467693 9.97499 0.0277693C10.15 0.00876935 10.325 -0.000480769 10.5 1.92305e-05C11.325 1.92305e-05 12.0312 0.293769 12.6187 0.881268C13.2062 1.46877 13.5 2.17502 13.5 3.00001Z" fill="#144732"/>
-                </svg>
-                <span>Book a private tour</span>
-            </a>
-            <a href="/buy-gift/" class="btn-customer gold align-items-center justify-content-center" style="display: none;">
-                <svg width="14" height="12" viewBox="0 0 14 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M0.875 11.1429C0.875 11.625 1.25781 12 1.75 12H6.125V7.71429H0.875V11.1429ZM7.875 12H12.25C12.7148 12 13.125 11.625 13.125 11.1429V7.71429H7.875V12ZM13.125 3.42857H11.9492C12.1406 3.10714 12.25 2.75893 12.25 2.35714C12.25 1.07143 11.1562 0 9.84375 0C8.69531 0 7.95703 0.589286 7.02734 1.84821C6.07031 0.589286 5.33203 0 4.21094 0C2.87109 0 1.80469 1.07143 1.80469 2.35714C1.80469 2.75893 1.88672 3.10714 2.07812 3.42857H0.875C0.382812 3.42857 0 3.83036 0 4.28571V6.42857C0 6.66964 0.191406 6.85714 0.4375 6.85714H13.5625C13.7812 6.85714 14 6.66964 14 6.42857V4.28571C14 3.83036 13.5898 3.42857 13.125 3.42857ZM4.18359 3.42857C3.58203 3.42857 3.08984 2.97321 3.08984 2.35714C3.08984 1.76786 3.58203 1.28571 4.18359 1.28571C4.73047 1.28571 5.14062 1.39286 6.5625 3.42857H4.18359ZM9.84375 3.42857H7.46484C8.88672 1.39286 9.26953 1.28571 9.84375 1.28571C10.4453 1.28571 10.9375 1.76786 10.9375 2.35714C10.9375 2.97321 10.4453 3.42857 9.84375 3.42857Z" fill="#C39958"/>
-                </svg>
-                <span>Buy as a gift</span>
-            </a>
-        </div>`)
+        document.body.insertAdjacentHTML('afterbegin', headerStyle);
 
         //search
         document.querySelector('header .search_header input').placeholder = 'Type you destination';
@@ -1944,6 +1919,52 @@ let init = setInterval(() => {
                 document.querySelector('.popular_tours').style = ''
            })
         })
+
+        document.addEventListener('click', (e) => {
+            if (document.querySelector('.destinations-active') != null && !e.target.closest('header')) {
+                e.stopImmediatePropagation()
+                document.querySelector('.destinations-active').classList.remove('destinations-active')
+            }
+        })
+    }
+})
+let price = setInterval(() => {
+    if (document.querySelector('#plugin iframe') != null && document.querySelector('.right-header .price') != null &&  document.querySelector('.header_sticky .is_price') != null) {
+        if (document.querySelector('#plugin .price.no-mobile') != null ) {
+            clearInterval(price)
+            document.querySelector('.right-header .price').innerHTML = `${document.querySelector('#plugin .price.no-mobile').innerHTML.split('/ ')[0]} per adult`
+            document.querySelector('.header_sticky .is_price').innerHTML = document.querySelector('#plugin .price.no-mobile').innerHTML;
+        } else if (document.querySelector('#plugin [style="background-color: #0a88ff; padding:10px;"]') != null ) {
+            clearInterval(price)
+            document.querySelector('.right-header .price').innerHTML = `Currently, we're just accepting private tours.`;
+            document.querySelector('.header_sticky .is_price').innerHTML = `Currently, we're just accepting private tours.`;
+            document.querySelector('.right-header .price').parentElement.style = 'display: block!important'
+        }
+    }
+});
+let init = setInterval(() => {
+    if (document.querySelector('#plugin iframe') != null && document.querySelector('header .main_menu') != null) {
+        clearInterval(init)
+        document.body.insertAdjacentHTML('afterbegin', styles);
+
+        //header
+        //add "Book a private tour" and "Buy as a gift" button (header)
+        document.querySelector('header .main_menu').insertAdjacentHTML('afterend', `
+        <div class="d-flex btns-header">
+            <a href="/private-bookings" class="btn-customer btn-private-tour d-flex align-items-center justify-content-center">
+                <svg width="17" height="12" viewBox="0 0 17 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M0 12V9.90001C0 9.47501 0.1095 9.08426 0.328499 8.72776C0.547499 8.37126 0.837999 8.09951 1.2 7.91251C1.975 7.52501 2.7625 7.23426 3.56249 7.04026C4.36249 6.84626 5.17499 6.74951 5.99999 6.75001C6.82499 6.75001 7.63749 6.84701 8.43749 7.04101C9.23749 7.23501 10.025 7.52551 10.8 7.91251C11.1625 8.10001 11.4532 8.37201 11.6722 8.72851C11.8912 9.085 12.0005 9.47551 12 9.90001V12H0ZM13.5 12V9.75C13.5 9.20001 13.3467 8.67176 13.0402 8.16526C12.7337 7.65876 12.2995 7.22451 11.7375 6.86251C12.375 6.93751 12.975 7.06576 13.5375 7.24726C14.1 7.42876 14.625 7.65051 15.1125 7.91251C15.5625 8.16251 15.9062 8.44051 16.1437 8.74651C16.3812 9.05251 16.5 9.387 16.5 9.75V12H13.5ZM5.99999 6.00001C5.17499 6.00001 4.46874 5.70626 3.88124 5.11876C3.29375 4.53126 3 3.82501 3 3.00001C3 2.17502 3.29375 1.46877 3.88124 0.881268C4.46874 0.293769 5.17499 1.92305e-05 5.99999 1.92305e-05C6.82499 1.92305e-05 7.53124 0.293769 8.11874 0.881268C8.70624 1.46877 8.99999 2.17502 8.99999 3.00001C8.99999 3.82501 8.70624 4.53126 8.11874 5.11876C7.53124 5.70626 6.82499 6.00001 5.99999 6.00001ZM13.5 3.00001C13.5 3.82501 13.2062 4.53126 12.6187 5.11876C12.0312 5.70626 11.325 6.00001 10.5 6.00001C10.3625 6.00001 10.1875 5.98426 9.97499 5.95276C9.76249 5.92126 9.58749 5.88701 9.44999 5.85001C9.78749 5.45001 10.047 5.00626 10.2285 4.51876C10.41 4.03126 10.5005 3.52501 10.5 3.00001C10.5 2.47502 10.4095 1.96877 10.2285 1.48127C10.0475 0.993768 9.78799 0.550018 9.44999 0.150019C9.62499 0.087519 9.79998 0.0467693 9.97499 0.0277693C10.15 0.00876935 10.325 -0.000480769 10.5 1.92305e-05C11.325 1.92305e-05 12.0312 0.293769 12.6187 0.881268C13.2062 1.46877 13.5 2.17502 13.5 3.00001Z" fill="#144732"/>
+                </svg>
+                <span>Book a private tour</span>
+            </a>
+            <a href="/buy-gift/" class="btn-customer gold align-items-center justify-content-center" style="display: none;">
+                <svg width="14" height="12" viewBox="0 0 14 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M0.875 11.1429C0.875 11.625 1.25781 12 1.75 12H6.125V7.71429H0.875V11.1429ZM7.875 12H12.25C12.7148 12 13.125 11.625 13.125 11.1429V7.71429H7.875V12ZM13.125 3.42857H11.9492C12.1406 3.10714 12.25 2.75893 12.25 2.35714C12.25 1.07143 11.1562 0 9.84375 0C8.69531 0 7.95703 0.589286 7.02734 1.84821C6.07031 0.589286 5.33203 0 4.21094 0C2.87109 0 1.80469 1.07143 1.80469 2.35714C1.80469 2.75893 1.88672 3.10714 2.07812 3.42857H0.875C0.382812 3.42857 0 3.83036 0 4.28571V6.42857C0 6.66964 0.191406 6.85714 0.4375 6.85714H13.5625C13.7812 6.85714 14 6.66964 14 6.42857V4.28571C14 3.83036 13.5898 3.42857 13.125 3.42857ZM4.18359 3.42857C3.58203 3.42857 3.08984 2.97321 3.08984 2.35714C3.08984 1.76786 3.58203 1.28571 4.18359 1.28571C4.73047 1.28571 5.14062 1.39286 6.5625 3.42857H4.18359ZM9.84375 3.42857H7.46484C8.88672 1.39286 9.26953 1.28571 9.84375 1.28571C10.4453 1.28571 10.9375 1.76786 10.9375 2.35714C10.9375 2.97321 10.4453 3.42857 9.84375 3.42857Z" fill="#C39958"/>
+                </svg>
+                <span>Buy as a gift</span>
+            </a>
+        </div>`)
+
 
         document.querySelector('.main_container').insertAdjacentHTML('afterend',`
         <div class="social-fixed">
@@ -2052,12 +2073,6 @@ let init = setInterval(() => {
                 }
             } else {
                 document.querySelector('.header_sticky').classList.remove('active')
-            }
-        })
-        document.addEventListener('click', (e) => {
-            if (document.querySelector('.destinations-active') != null && !e.target.closest('header')) {
-                e.stopImmediatePropagation()
-                document.querySelector('.destinations-active').classList.remove('destinations-active')
             }
         })
         let resizeLeft = () => {
