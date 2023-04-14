@@ -331,6 +331,8 @@ header {
     background: #FFFFFF;
     box-shadow: 0px 2px 16px rgba(20, 71, 50, 0.15);
     transform: none!important;
+    z-index: 2;
+    position: relative;
 }
 header .logo img {
     max-width: 200px;
@@ -359,7 +361,6 @@ let styles = `
 
 header {
     position: relative!important;
-    z-index: 2;
 }
 header .main_menu {
     flex-basis: 56%!important;
