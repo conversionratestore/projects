@@ -743,14 +743,14 @@ const waitForMainColumn = setInterval(() => {
                 if (isSubscriptionActive) {
                     payBtn.innerText = 'Manage subscriptions'
 
-                    document.querySelector('.annual_checkbox_wrapper').classList.add('subs')                
+                    document.querySelector('.annual_checkbox_wrapper').classList.add('subs')
 
                     if (document.querySelector('.cta-group__active').closest('.cta-group__heading').innerText.includes('Pro')) {
                         document.querySelector('[data-pack="annual_pro"] .hide_curr_label').classList.remove('hide_curr_label')
                         document.querySelector('.monthly_checkbox_wrapper .plan_checkbox .hide_curr_label').classList.remove('hide_curr_label')
                     } else {
                         document.querySelector('.checkbox_active_plan').classList.remove('checkbox_active_plan')
-                        document.querySelector('[data-pack="annual_plus"').classList.add('checkbox_active_plan') 
+                        document.querySelector('[data-pack="annual_plus"').classList.add('checkbox_active_plan')
 
                         document.querySelector('[data-pack="annual_plus"] .hide_curr_label').classList.remove('hide_curr_label')
                     }
@@ -848,7 +848,7 @@ const waitForMainColumn = setInterval(() => {
                     })
 
                     if (isSubscriptionActive) {
-                        window.location = document.querySelector('.in-app-upgrade-ctas__manage-subscriptions a')?.href                        
+                        document.querySelector('.in-app-upgrade-ctas__manage-subscriptions a').dispatchEvent(new Event('click'))
                     } else {
                         if (isMonthlyActive) {
                             document.querySelector('[data-cta-product-id*="swingu_pro.monthly"] a').dispatchEvent(new Event('click'))
