@@ -2172,13 +2172,13 @@ let init = setInterval(() => {
 
                 document.querySelector('.rating_header').insertAdjacentHTML('beforeend', `<p class="header_sticky_to-rating">${rate}/5 Rating </p>`)
 
-                for (let i = 0; i < Math.floor(rate); i++) {
-                    document.querySelector('.rating ').insertAdjacentHTML('afterbegin', star) 
-                    document.querySelector('.header_sticky_to-rating').insertAdjacentHTML('beforebegin', star) 
-                }
                 if (ratehalf > 0) {
                     document.querySelector('.rating').insertAdjacentHTML('afterbegin', starHalf) 
-                    document.querySelector('.header_sticky_to-rating').insertAdjacentHTML('beforebegin', starHalf) 
+                    document.querySelector('.rating_header').insertAdjacentHTML('afterbegin', starHalf) 
+                }
+                for (let i = 0; i < Math.floor(rate); i++) {
+                    document.querySelector('.rating ').insertAdjacentHTML('afterbegin', star) 
+                    document.querySelector('.rating_header').insertAdjacentHTML('afterbegin', star) 
                 }
                 
                 document.querySelector('.rating .to-rating').before( document.querySelector('.rating .rate-tours'))
