@@ -439,6 +439,14 @@ header .main_menu {
     border-radius: 60px;
     text-align: center;
     padding: 0 24px;
+    transition: all 0.2s ease;
+}
+.btn-customer:hover {
+    color: #fff!important;
+    background: #144732!important;
+}
+.btn-customer:hover svg path {
+    fill: #fff!important;
 }
 .btn-customer span {
     padding: 13px 0 11px;
@@ -454,11 +462,22 @@ header .main_menu {
 .btn-customer.gold svg {
     margin-top: -3px;
 }
+.btn-customer.gold:hover {
+    background: #C39958!important;
+    color: #fff!important;
+}
+.btn-customer.gold:hover svg path {
+    fill: #fff!important;
+}
 .btn-customer.gold-full {
     background: #C39958;
     border: 1.5px solid #C39958;
     color: #FFFFFF!important;
     padding: 14px 24px 11px;
+}
+.btn-customer.gold-full:hover {
+    background: #fff;
+    color: #C39958!important;
 }
 .c-gold {
     color: #C39958!important;
@@ -1154,11 +1173,17 @@ header .main_menu {
     font-style: normal;
     font-weight: 700;
     font-size: 16px;
-    line-height: 16px;
+    line-height: 14px;
     text-transform: uppercase;
     color: #FFFFFF;
     text-align: center;
     padding: 18px 16px 14px!important;
+    border: 1px solid #144732;
+}
+.meeting-spot__contact .PT_link_black a:hover {
+    color: #144732!important;
+    background: #fff;
+    opacity: 1;
 }
 /* video-section, photos-gallery */
 .video-section {
@@ -1195,6 +1220,9 @@ header .main_menu {
     width: 42px!important;
     height: 42px!important;
     background: none!important;
+}
+.swiper-button-next:hover, .swiper-button-prev:hover {
+    background-color: rgba(20, 71, 50, 0.15);
 }
 .swiper-button-next svg, .swiper-button-prev svg {
     margin: auto;
@@ -1259,6 +1287,10 @@ header .main_menu {
 .why-tour .btn-customer:not(.gold) {
     background: #144732;
     color: #fff!important;
+}
+.why-tour .btn-customer:not(.gold):hover {
+    color: #144732!important;
+    background: #fff!important;
 }
 
 .why-tour > div {
@@ -1407,13 +1439,20 @@ header .main_menu {
     text-transform: uppercase;
     height: auto;
     margin-top: 4px;
+    transition: all 0.2s ease;
+    border-width: 2px;
+    padding: 10px 5px 7px;
 }
-.other-tours .cardx-buttons-one {
-    padding: 12px 5px 9px;
+.other-tours .cardx-buttons-one:hover, .other-tours .card-buttons .cultural-tours:hover {
+    color: #134633!important;
+    background-color: #fff!important;
+}
+.other-tours .cardx-buttons-tow:hover {
+    background-color: #C39958!important;
+    color: #fff;!important;
 }
 .other-tours .cardx-buttons-tow {
     border: 3px solid #C39958;
-    padding: 10px 5px 7px;
     color: #C39958;
 }
 .other-tours .card-buttons .cultural-tours {
