@@ -1758,6 +1758,20 @@ let menuToElement = (event) => {
     event.target.classList.add('active')
 }
 
+let price = setInterval(() => {
+    if (document.querySelector('#plugin iframe') != null && document.querySelector('.right-header .price') != null &&  document.querySelector('.header_sticky .is_price') != null) {
+        if (document.querySelector('#plugin .price.no-mobile') != null ) {
+            clearInterval(price)
+            document.querySelector('.right-header .price').innerHTML = `${document.querySelector('#plugin .price.no-mobile').innerHTML.split('/ ')[0]} per adult`
+            document.querySelector('.header_sticky .is_price').innerHTML = document.querySelector('#plugin .price.no-mobile').innerHTML;
+        } else if (document.querySelector('#plugin [style="background-color: #0a88ff; padding:10px;"]') != null ) {
+            clearInterval(price)
+            document.querySelector('.right-header .price').innerHTML = `Currently, we're just accepting private tours.`;
+            document.querySelector('.header_sticky .is_price').innerHTML = `Currently, we're just accepting private tours.`;
+            document.querySelector('.right-header .price').parentElement.style = 'display: block!important'
+        }
+    }
+});
 let init = setInterval(() => {
     if (document.querySelector('#plugin iframe') != null && document.querySelector('header .main_menu') != null) {
         clearInterval(init)
@@ -2020,8 +2034,8 @@ let init = setInterval(() => {
         document.querySelector('.tour-section .breadcrumbs-customer').innerHTML = document.querySelector('.breadcrumbs ul').innerHTML; //breadcrumb
         document.querySelector('.tour-section h1').innerHTML = document.querySelector('h1.dest_title').innerHTML; //title
         document.querySelector('.header_sticky .title').innerHTML = document.querySelector('h1.dest_title').innerHTML; //title sticky header
-        document.querySelector('.header_sticky .back span').innerHTML = 'All ' + document.querySelector('.ret_back').innerHTML + ' tours'; //back text
-        document.querySelector('.header_sticky .back').href = document.querySelector('.ret_back').href; //back
+        document.querySelector('.header_sticky .back span').innerHTML = 'All ' + document.querySelectorAll('.breadcrumbs-customer li a')[document.querySelectorAll('.breadcrumbs-customer li a').length - 2].innerHTML + ' tours'; //back text
+        document.querySelector('.header_sticky .back').href = document.querySelectorAll('.breadcrumbs-customer li a')[document.querySelectorAll('.breadcrumbs-customer li a').length - 2].href; //back
 
         let descrObj = ['clock_ic/Duration','library_ic/Type of tour','cutlery_ic/How much stops?','group_ic/Tour size','smile_ic/Awards','world_ic/language'];
 
@@ -2090,16 +2104,7 @@ let init = setInterval(() => {
             </div>`)
 
         document.querySelector('.tooltipe-content').innerHTML = document.querySelector('#plugin .text-red').innerHTML;
-        if (document.querySelector('#plugin .price.no-mobile') != null ) {
-            document.querySelector('.right-header .price').innerHTML = `${document.querySelector('#plugin .price.no-mobile').innerHTML.split('/ ')[0]} per adult`
-            document.querySelector('.header_sticky .is_price').innerHTML = document.querySelector('#plugin .price.no-mobile').innerHTML;
-        }
 
-        if (document.querySelector('#plugin [style="background-color: #0a88ff; padding:10px;"]') != null ) {
-            document.querySelector('.right-header .price').innerHTML = `Currently, we're just accepting private tours.`;
-            document.querySelector('.header_sticky .is_price').innerHTML = `Currently, we're just accepting private tours.`;
-            document.querySelector('.right-header .price').parentElement.style = 'display: block!important'
-        }
         document.querySelector('.link-customer').after(document.querySelector('.awards-desktop'))
 
         for (let i = 0; i < descrObj.length; i++) {
@@ -2576,7 +2581,8 @@ let otherTours = setInterval(() => {
     if (document.querySelector('.other-tours') != null && (document.querySelector('.country_tours') != null || document.querySelector('.similar_tours') != null)) {
         clearInterval(otherTours)
         let tours = document.querySelector('.country_tours') != null ? '.country_tours' : '.similar_tours';
-        let capital = document.querySelector('.top_menu .ret_back').innerText
+        let capital = document.querySelectorAll('.breadcrumbs-customer li a')[document.querySelectorAll('.breadcrumbs-customer li a').length - 2].innerText;
+
         document.querySelector('.other-tours').innerHTML = `
          <h2>See our other secret tours <span class="c-gold">in ${capital}</span></h2>
          ${document.querySelector(`${tours} .container`).innerHTML}
