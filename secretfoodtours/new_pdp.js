@@ -3,6 +3,14 @@ let dir = `https://conversionratestore.github.io/projects/secretfoodtours/img/`;
 /* header */
 let headerStyle = `
 <style>
+a.new:after {
+    border-radius: 25px;
+    width: 34px;
+    height: 18px;
+    background-size: 100%;
+    margin-top: -9px;
+    right: -42px;
+}
 .searchdroptop {
     max-width: 100%;
 }
@@ -1856,7 +1864,7 @@ let menuToElement = (event) => {
 }
 
 let initHeader = setInterval(() => {
-    if (  document.querySelector('header .search_header input') != null && document.querySelector('.header_dropdown .city_wr') != null) {
+    if (  document.querySelector('header .search_header input') != null && document.querySelector('.header_dropdown .city_wr') != null && document.querySelector('.search_header.visible_search') != null) {
         clearInterval(initHeader)
         //fonts
         document.head.insertAdjacentHTML('beforeend',`
