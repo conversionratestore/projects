@@ -1864,7 +1864,7 @@ let menuToElement = (event) => {
 }
 
 let initHeader = setInterval(() => {
-    if (  document.querySelector('header .search_header input') != null && document.querySelector('.header_dropdown .city_wr') != null && document.querySelector('.search_header.visible_search') != null) {
+    if (  document.querySelector('header .search_header input') != null && document.querySelector('.header_dropdown .city_wr') != null) {
         clearInterval(initHeader)
         //fonts
         document.head.insertAdjacentHTML('beforeend',`
@@ -1885,7 +1885,7 @@ let initHeader = setInterval(() => {
         document.querySelector('header .search_header input').placeholder = 'Type you destination';
         document.querySelectorAll('.search_btn').forEach(button => {
             button.addEventListener('click', (e) => {
-                if (document.querySelector('#close_ic_desktop').style.display != 'block !important') {
+                if (document.querySelector('#close_ic_desktop').style.display.includes('block')) {
                     document.querySelector('.search_header.visible_search').style = 'width: calc(100% - 240px);'
                 } else {
                     document.querySelector('.search_header.visible_search').style = ''
