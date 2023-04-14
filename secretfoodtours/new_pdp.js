@@ -1203,7 +1203,7 @@ header .search_btn {
     background: #F3F3F3;
     border-radius: 20px;
     width: 80%;
-    height: 288px;
+    height: var(--height);
     z-index: -1;
 }
 .why-tour .title {
@@ -2615,6 +2615,8 @@ let whyTour = setInterval(() => {
         <div class="right">
             <img src="${document.querySelector('.about-tour .left_info .text img').src}" alt="image tour">
         </div>`
+        //set height bg gray
+        document.querySelector('.why-tour').style = `--height:${document.querySelector('.why-tour > .left .title').clientHeight + document.querySelector('.why-tour > .left .text').clientHeight}px`;
     }
 });
 
