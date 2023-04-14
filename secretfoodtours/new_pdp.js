@@ -85,11 +85,17 @@ let styles = `
     color: #C39958!important;
     border-color: #C39958;
 }
+.btn-customer.gold-full {
+    background: #C39958;
+    border: 1.5px solid #C39958;
+    color: #FFFFFF!important;
+    padding: 14px 24px 11px;
+}
 .c-gold {
     color: #C39958!important;
 }
 
-.why-tour h2, .meeting-spot__covid .main_subheading, .meeting-spot__contact .name, .slider-gallery .swiper-pagination.swiper-pagination-fraction  {
+.header_sticky .title, .why-tour h2, .meeting-spot__covid .main_subheading, .meeting-spot__contact .name, .slider-gallery .swiper-pagination.swiper-pagination-fraction, .slider-review .swiper-pagination.swiper-pagination-fraction  {
     font-family: 'Josefin Sans';
     font-style: normal;
     font-weight: 700;
@@ -104,6 +110,77 @@ let styles = `
 }
 /* header */
 
+.header_sticky {
+    position: fixed;
+    z-index: 9999;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: #FFFFFF;
+    box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.1), 0px 2px 30px rgba(0, 0, 0, 0.15);
+    transition: all 0.2s ease;
+    transform: translateY(-100%);
+}
+.header_sticky.active {
+    transform: translateY(0);
+}
+.header_sticky_top {
+    background: #144732;
+    font-family: 'Josefin Sans';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 16px;
+    color: #FFFFFF;
+}
+.header_sticky .back {
+    color: #FFFFFF;
+    padding: 30px 30px 30px 0;
+    border-right: 1px solid #fff;
+    margin-right: 30px;
+}
+.header_sticky .back svg {
+    margin-right: 20px;
+}
+.header_sticky .title {
+    color: #FFFFFF;
+}
+.header_sticky .menu a {
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 16px;
+    color: #5B5B5B;
+    padding: 17px 0;
+    border-bottom: 1px solid transparent;
+    margin-right: 24px;
+    display: block;
+}
+.header_sticky .menu a.active {
+    border-color: #C39958;
+    color: #C39958;
+}
+.header_sticky .star {
+    margin-left: 4px;
+}
+.header_sticky .is_price {
+    font-weight: 400;
+    margin-right: 24px;
+}
+.header_sticky .is_price span {
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 24px;
+}
+.header_sticky_to-rating {
+    font-family: 'Josefin Sans';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 14px;
+    text-decoration-line: underline;
+    color: #333333;
+    margin-left: 12px;
+}
 .popular_tours_row > div {
     width: 25%;
     padding-right: 20px;
@@ -1055,6 +1132,7 @@ header .search_btn {
 /* video-section, fotos-gallery */
 .video-section {
     margin-bottom: 90px;
+    background: url(${dir}bg-dashed.svg) no-repeat center calc(50% + 74px) / 100%;
 }
 .video-section h2 {
     line-height: 48px;
@@ -1494,8 +1572,9 @@ header .search_btn {
     font-size: 30px;
     line-height: 48px;
     text-transform: uppercase;
-    margin: 0 0 30px 0;
+    margin: 0 8px 30px 0;
     padding: 0;
+    letter-spacing: normal;
 }
 .help_center .container:first-child .left_help .main_heading {
     color: #333333;
@@ -1668,6 +1747,16 @@ let objPopularTours = {
 
 let bestSellers = ['/paris/paris-montmartre','/paris/paris-le-marais','/paris/saint-germain-food-tour','/london/london-bridge-food-tour','/barcelona/food-tours-barcelona','/paris/chocolate-and-pastry-tour','/rome/food-tours-rome','/austin/food-tours-austin','/nashville/food-tours-nashville','/boston/food-tours-boston','/new-york/food-tours-new-york','/dublin/food-tours-dublin','/bologna/food-tours-bologna','/las-vegas/food-tours-las-vegas','florence/food-tours-florence','/montreal/food-tours-montreal','/charleston/food-tours-charleston','/amsterdam/food-tours-amsterdam','/edinburgh/food-tours-edinburgh','/san-francisco/food-tours-san-francisco/'];
 
+let menuToElement = (event) => {
+    event.preventDefault()
+    let href = event.target.href.split('#')[1];
+    document.querySelector('html').scrollTop = document.querySelector(`#${href}`).offsetTop - 130;
+    if (event.target.closest('ul').querySelector('.active') != null) {
+        event.target.closest('ul').querySelector('.active').classList.remove('active')
+    }
+    event.target.classList.add('active')
+}
+
 let init = setInterval(() => {
     if (document.querySelector('#plugin iframe') != null && document.querySelector('header .main_menu') != null) {
         clearInterval(init)
@@ -1823,6 +1912,33 @@ let init = setInterval(() => {
                 </svg>
             </a>
         </div>
+        <div class="header_sticky">
+            <div class="header_sticky_top">
+                <div class="container d-flex justify-content-between ">
+                    <div class="d-flex align-items-center">
+                        <a href="" class="back d-flex align-items-center">
+                            <svg width="15" height="16" viewBox="0 0 15 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M0.292893 7.29289C-0.0976315 7.68342 -0.0976315 8.31658 0.292893 8.70711L6.65685 15.0711C7.04738 15.4616 7.68054 15.4616 8.07107 15.0711C8.46159 14.6805 8.46159 14.0474 8.07107 13.6569L2.41421 8L8.07107 2.34315C8.46159 1.95262 8.46159 1.31946 8.07107 0.928932C7.68054 0.538408 7.04738 0.538408 6.65685 0.928932L0.292893 7.29289ZM15 7L1 7V9L15 9V7Z" fill="white"/>
+                            </svg>
+                            <span>All tours</span>
+                        </a>
+                        <p class="title"></p>
+                    </div>
+                    <div class="d-flex align-items-center">
+                        <div class="is_price"></div>
+                        <a href="#plugin" class="btn-customer gold-full">Book a tour</a>
+                    </div>
+                </div>
+            </div>
+            <div class="header_sticky_bottom">
+                <div class="container d-flex justify-content-between">
+                    <nav class="menu">
+                        <ul class="d-flex"> </ul>
+                    </nav>
+                    <div class="rating_header d-flex align-items-center"></div>
+                </div>
+            </div>
+        </div>
         <section class="tour-section">
             <div class="container">
                 <div class="d-flex flex-wrap">
@@ -1839,13 +1955,13 @@ let init = setInterval(() => {
                         <div class="brands">
                             <img src="${dir}/brands.png" alt="">
                         </div>
-                        <div class="tour-do"></div>
+                        <div class="tour-do" id="tour-do"></div>
                         
                     </div>
                     <div class="right"> </div>
                 </div>
 
-                <div class="meeting-spot"> 
+                <div class="meeting-spot" id="meeting-spot"> 
                     <div class="d-flex flex-wrap">
                         <div class="meeting-spot__left">
                             <h2 class="title">Meeting spot</h2>
@@ -1856,11 +1972,15 @@ let init = setInterval(() => {
                         </div>
                     </div>
                 </div>
-                <div class="video-section text-center"></div>
+            </div>
+            <div class="video-section text-center" id="video">
+                <div class="container"></div>
+            </div>
+            <div class="container">
                 <div class="fotos-gallery"></div>
-                <div class="review"></div>
+                <div class="review" id="review"></div>
                 <div class="why-tour d-flex flex-wrap"></div>
-                <div class="other-tours"></div>
+                <div class="other-tours" id="other-tours"></div>
             </div>
         </section> `)
 
@@ -1869,9 +1989,17 @@ let init = setInterval(() => {
                 document.querySelector('.tour-section h1').insertAdjacentHTML('afterend','<div class="best-seller">Best seller</div>')
             }
         }
+
         window.addEventListener('scroll', (e) => {
             if (document.querySelector('.destinations-active') != null) {
                 document.querySelector('.destinations-active').classList.remove('destinations-active')
+            }
+            if (window.pageYOffset > 970) {
+                if (document.querySelector('.header_sticky.fixed') == null) {
+                    document.querySelector('.header_sticky').classList.add('active')
+                }
+            } else {
+                document.querySelector('.header_sticky').classList.remove('active')
             }
         })
         document.addEventListener('click', (e) => {
@@ -1889,6 +2017,9 @@ let init = setInterval(() => {
         
         document.querySelector('.tour-section .breadcrumbs-customer').innerHTML = document.querySelector('.breadcrumbs ul').innerHTML; //breadcrumb
         document.querySelector('.tour-section h1').innerHTML = document.querySelector('h1.dest_title').innerHTML; //title
+        document.querySelector('.header_sticky .title').innerHTML = document.querySelector('h1.dest_title').innerHTML; //title sticky header
+        document.querySelector('.header_sticky .back span').innerHTML = 'All ' + document.querySelector('.ret_back').innerHTML + ' tours'; //back text
+        document.querySelector('.header_sticky .back').href = document.querySelector('.ret_back').href; //back
 
         let descrObj = ['clock_ic/Duration','library_ic/Type of tour','cutlery_ic/How much stops?','group_ic/Tour size','smile_ic/Awards','world_ic/language'];
 
@@ -1957,10 +2088,14 @@ let init = setInterval(() => {
             </div>`)
 
         document.querySelector('.tooltipe-content').innerHTML = document.querySelector('#plugin .text-red').innerHTML;
-        document.querySelector('.right-header .price').innerHTML = document.querySelector('#plugin .price.no-mobile') != null ? `${document.querySelector('#plugin .price.no-mobile').innerHTML.split('/ ')[0]} per adult` : '';
+        if (document.querySelector('#plugin .price.no-mobile') != null ) {
+            document.querySelector('.right-header .price').innerHTML = `${document.querySelector('#plugin .price.no-mobile').innerHTML.split('/ ')[0]} per adult`
+            document.querySelector('.header_sticky .is_price').innerHTML = document.querySelector('#plugin .price.no-mobile').innerHTML;
+        }
 
         if (document.querySelector('#plugin [style="background-color: #0a88ff; padding:10px;"]') != null ) {
             document.querySelector('.right-header .price').innerHTML = `Currently, we're just accepting private tours.`;
+            document.querySelector('.header_sticky .is_price').innerHTML = `Currently, we're just accepting private tours.`;
             document.querySelector('.right-header .price').parentElement.style = 'display: block!important'
         }
         document.querySelector('.link-customer').after(document.querySelector('.awards-desktop'))
@@ -1992,8 +2127,10 @@ let init = setInterval(() => {
 
             /* Use existing markup or variable 'customers_reviews' for build your own markup */ 
             if (rateEl) {
+                console.log('rateEl: ', rateEl)
                 document.querySelector('body').insertAdjacentElement('beforeend', rateEl); 
 
+                //body rate
                 document.querySelector('.rating').insertAdjacentElement('beforeend', rateEl)
                 document.querySelector('.rating').insertAdjacentHTML('beforeend', `<p class="to-rating">/5 Rating </p>
                     <svg width="23" height="15" viewBox="0 0 23 15" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -2014,7 +2151,8 @@ let init = setInterval(() => {
                     </svg>
                     <p>Recommended by 99% of travelers</p>
                 `)
-                            
+                           
+                //header rate
                 let star = `<svg class="star" width="20" height="19" viewBox="0 0 20 19" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M3.825 19L5.45 11.975L0 7.25L7.2 6.625L10 0L12.8 6.625L20 7.25L14.55 11.975L16.175 19L10 15.275L3.825 19Z" fill="#C39958"/>
                 </svg>`
@@ -2025,17 +2163,23 @@ let init = setInterval(() => {
                 let ratehalf = rate.split('.')[1]
                 document.querySelector('.rating .rate-tours').innerHTML = rate;
 
+                document.querySelector('.rating_header').insertAdjacentHTML('beforeend', `<p class="header_sticky_to-rating">${rate}/5 Rating </p>`)
+
                 for (let i = 0; i < Math.floor(rate); i++) {
-                    document.querySelector('.rating .star-ratings').insertAdjacentHTML('beforebegin', star) 
+                    document.querySelector('.rating ').insertAdjacentHTML('afterbegin', star) 
+                    document.querySelector('.header_sticky_to-rating').insertAdjacentHTML('beforebegin', star) 
                 }
                 if (ratehalf > 0) {
-                    document.querySelector('.rating .star-ratings').insertAdjacentHTML('beforebegin', starHalf) 
+                    document.querySelector('.rating').insertAdjacentHTML('afterbegin', starHalf) 
+                    document.querySelector('.header_sticky_to-rating').insertAdjacentHTML('beforebegin', starHalf) 
                 }
                 
                 document.querySelector('.rating .to-rating').before( document.querySelector('.rating .rate-tours'))
             
+
             }
             if (reviewsEl && scriptEl) {
+                console.log('reviewsEl && scriptEl: ', reviewsEl, scriptEl)
                 document.querySelector('body').insertAdjacentElement('beforeend', reviewsEl);
                 document.querySelector('body').insertAdjacentElement('beforeend', scriptEl)
 
@@ -2073,7 +2217,8 @@ let init = setInterval(() => {
 
             if (customers_reviews) {
                 console.log('Reviews Array:', customers_reviews)
-                        
+                document.querySelector('.header_sticky_bottom .menu ul').insertAdjacentHTML('beforeend',`<li><a href="#review" onclick="menuToElement(event)">Reviews</a></li>`)
+
                 for (let i = 0; i < customers_reviews.length; i++) {
                     let slide = document.createElement('div');
                     slide.classList.add('swiper-slide')
@@ -2159,6 +2304,7 @@ let taste = setInterval(() => {
     if (document.querySelector('.tour-drinks') != null && document.querySelector('.brands') != null) {
         clearInterval(taste)
         document.querySelector('.brands').after(document.querySelector('.tour-drinks'))
+        document.querySelector('.tour-drinks').id = 'tour-drinks';
         let titleDrinks = document.querySelector('.tour-drinks .main_subheading');
         let sptArr = titleDrinks.innerHTML.trim().split(' ')
         titleDrinks.innerHTML = titleDrinks.innerHTML.replace(sptArr[sptArr.length - 1], `<span class="c-gold"> ${sptArr[sptArr.length - 1]}</span>`)
@@ -2196,6 +2342,8 @@ let taste = setInterval(() => {
                 </svg> `)
             }
         })
+
+        document.querySelector('.header_sticky_bottom .menu ul').insertAdjacentHTML('beforeend',`<li><a href="#tour-drinks" onclick="menuToElement(event)">What you will taste</a></li>`)
     }
 });
 
@@ -2245,6 +2393,8 @@ let tourDo = setInterval(() => {
                 <path fill-rule="evenodd" clip-rule="evenodd" d="M15 10.8691C15.5825 10.8691 16.0547 10.3969 16.0547 9.81445V8.74043C16.0547 8.15794 15.5825 7.68574 15 7.68574C14.4175 7.68574 13.9453 8.15794 13.9453 8.74043V9.81445C13.9453 10.3969 14.4175 10.8691 15 10.8691Z" fill="#C39958"/>
             </svg>`)
         })
+        document.querySelector('.header_sticky_bottom .menu ul').insertAdjacentHTML('beforeend',`<li><a href="#tour-do" onclick="menuToElement(event)">What you will do</a></li>`)
+
     }
 });
 
@@ -2282,8 +2432,8 @@ let meeting_spot = setInterval(() => {
         document.querySelector('.meeting-spot__contact').innerHTML = document.querySelector('.tour-features .contact_info').innerHTML;
 
         document.querySelector('.meeting-spot__covid .main_subheading').insertAdjacentHTML('afterbegin', document.querySelector('.meeting-spot__covid [alt="good to go logo"]').parentElement.innerHTML)
-        
-
+       
+        document.querySelector('.header_sticky_bottom .menu ul').insertAdjacentHTML('beforeend',`<li><a href="#meeting-spot" onclick="menuToElement(event)">Meeting spot</a></li>`)
     }
 })
 
@@ -2293,9 +2443,11 @@ let video = setInterval(() => {
         let embed = document.querySelector('.youtube[data-embed]').dataset.embed;
         let linkVideo = `https://www.youtube.com/embed/${embed}`
         
-        document.querySelector('.video-section').innerHTML =`
+        document.querySelector('.video-section > .container').innerHTML =`
             <h2>VIDEO OF SECRET FOOD TOUR: MONTMARTRE</h2>
-            <iframe width="1080" height="715" src="${linkVideo}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>`
+            <iframe width="1080" height="715" src="${linkVideo}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>`;
+
+        document.querySelector('.header_sticky_bottom .menu ul').insertAdjacentHTML('beforeend',`<li><a href="#video" onclick="menuToElement(event)">Video</a></li>`)
     }
 });
 
@@ -2420,8 +2572,9 @@ let otherTours = setInterval(() => {
     if (document.querySelector('.other-tours') != null && (document.querySelector('.country_tours') != null || document.querySelector('.similar_tours') != null)) {
         clearInterval(otherTours)
         let tours = document.querySelector('.country_tours') != null ? '.country_tours' : '.similar_tours';
+        let capital = document.querySelector('.top_menu .ret_back').innerText
         document.querySelector('.other-tours').innerHTML = `
-         <h2>See our other secret tours <span class="c-gold">in ${document.querySelector('.top_menu .ret_back').innerText}</span></h2>
+         <h2>See our other secret tours <span class="c-gold">in ${capital}</span></h2>
          ${document.querySelector(`${tours} .container`).innerHTML}
         `
 
@@ -2465,5 +2618,7 @@ let otherTours = setInterval(() => {
                 item.src = dir + 'group_ic.svg';
             }
         })
+
+        document.querySelector('.header_sticky_bottom .menu ul').insertAdjacentHTML('beforeend',`<li><a href="#other-tours" onclick="menuToElement(event)">Other ${capital} tours</a></li>`)
     }
 })
