@@ -853,11 +853,15 @@ header .search_btn {
     color: #333333;
     margin-bottom: 20px;
 }
+.drinks .title {
+    text-transform: uppercase;
+}
 .drinks .title span {
     font-weight: 400;
     display: block;
     color: #5B5B5B;
     margin-top: 2px;
+    text-transform: initial;
 }
 .drinks .title svg {
     flex-shrink: 0;
@@ -1233,6 +1237,7 @@ header .search_btn {
     background: #144732;
     color: #fff!important;
 }
+
 .why-tour > div {
     width: 50%;
 }
