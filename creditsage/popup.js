@@ -35,7 +35,7 @@ if (window.location.pathname.includes('/a/')) {
         z-index: 100;  
         width: 100%;
         overflow: auto;
-        max-height: 100%;
+        max-height: 90%;
     }
 
     .popup.show {
@@ -89,6 +89,11 @@ if (window.location.pathname.includes('/a/')) {
         border-radius: 18px;
     }
 
+    p.green_div span.asterisk {
+        color: #5F6B7A;
+        font-family: sans-serif;
+    }
+
     p.call_to_fix {
         font-family: 'Circe', sans-serif;
         font-style: normal;
@@ -100,8 +105,21 @@ if (window.location.pathname.includes('/a/')) {
         margin: 12px auto;
         max-width: 304px;
     }
+
+    .popup .btn_green {
+        padding: 16px;
+    }
+
+    .popup .btn_green .btn-txt.mobile{
+        font-size: 24px;
+    }
+
+    .popup .btn_green .ic {
+        width: 1.5em;
+        height: 1.5em;
+    }
   </style>
-`
+    `
 
     // -------------------------------------
     // HTML ELEMENTS
@@ -115,24 +133,13 @@ if (window.location.pathname.includes('/a/')) {
             your credit
             score, <span>even if you pay the debt.</span></p>
         <img class="graph" src="${IMAGE_DIR_URL}/graph.svg" alt="">
-        <p class="green_div">* CreditSage's experts <span>can potentially remove</span> negative items from your report
+        <p class="green_div"><span class="asterisk">*</span> CreditSage's experts <span>can potentially remove</span> negative items from your report
             or provide a full
             refund (minus
             setup fee) if none are removed <span>within the first 100 days.</span></p>
         <p class="call_to_fix">Call now to fix your credit report and reclaim financial freedom today!</p>
-        <a href="tel:(844)442-0573" class="btn btn_green w-inline-block tap_to_call">
-            <div class="ic ic_btn w-embed"><svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path
-                        d="M8.83333 14.3933C10.7533 18.1667 13.84 21.2533 17.62 23.1733L20.5533 20.2333C20.92 19.8667 21.4467 19.76 21.9067 19.9067C23.4 20.4 25.0067 20.6667 26.6667 20.6667C27.4067 20.6667 28 21.26 28 22V26.6667C28 27.4067 27.4067 28 26.6667 28C14.1467 28 4 17.8533 4 5.33333C4 4.59333 4.6 4 5.33333 4H10C10.74 4 11.3333 4.59333 11.3333 5.33333C11.3333 6.99333 11.6 8.6 12.0933 10.0933C12.24 10.5533 12.1333 11.08 11.7667 11.4467L8.83333 14.3933Z"
-                        fill="currentColor"></path>
-                </svg></div>
-            <div class="btn-txt mobile">Tap To Call</div>
-            <div class="w-embed">
-                <p class="btn-txt">Call (844) 442-0573</p>
-            </div>
-        </a>
     </div>
-`
+    `
 
     // -------------------------------------
     // FUNCTIONS
@@ -147,7 +154,7 @@ if (window.location.pathname.includes('/a/')) {
     const showPopup = (seconds) => {
         if (!sessionStorage.getItem('popupShown')) {
             document.querySelector('.popup').classList.add('show')
-            document.querySelector('.overlay').style.display = 'block';
+            document.querySelector('.overlay').style.display = 'block'
             sessionStorage.setItem('popupShown', 'true')
 
             window.dataLayer = window.dataLayer || []
@@ -174,7 +181,7 @@ if (window.location.pathname.includes('/a/')) {
 
     const closePopup = () => {
         document.querySelector('.popup').classList.remove('show')
-        document.querySelector('.overlay').style.display = 'none';
+        document.querySelector('.overlay').style.display = 'none'
 
         window.dataLayer = window.dataLayer || []
         dataLayer.push({
@@ -193,9 +200,9 @@ if (window.location.pathname.includes('/a/')) {
     // -------------------------------------
     document.head.insertAdjacentHTML('beforeend', style)
 
-    const waitForBody = setInterval(() => {
-        if (document.body) {
-            clearInterval(waitForBody)
+    const waitForBtn = setInterval(() => {
+        if (document.querySelector('.btn_green')) {
+            clearInterval(waitForBtn)
 
             document.body.insertAdjacentHTML('beforeend', popupHTML)
 
@@ -213,10 +220,14 @@ if (window.location.pathname.includes('/a/')) {
                 window.addEventListener('scroll', resetTimeout, { once: true })
 
                 document.addEventListener('click', handleOutsideClick, { once: true })
+
+                // add btn                
+                const greenBtn = document.querySelector('.btn_green').cloneNode(true)
+                popup.appendChild(greenBtn)
             })
 
-            waitForElement('.tap_to_call').then(el => el.addEventListener('click', () => {
-
+            waitForElement('.popup .btn_green').then(el => el.addEventListener('click', () => {
+                console.log('click');
                 window.dataLayer = window.dataLayer || []
                 dataLayer.push({
                     'event': 'event-to-ga4',
