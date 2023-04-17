@@ -1,5 +1,5 @@
 if (window.location.pathname.includes('/a/')) {
-    window.location = 'https://collections.creditsage.com/b/11-charter-communications'
+    window.location = `https://collections.creditsage.com/b/${window.location.pathname.split('/a/')[1]}`
 } else {
     // -------------------------------------
     // CONSTANTS
@@ -7,6 +7,8 @@ if (window.location.pathname.includes('/a/')) {
     const WAIT_INTERVAL_TIMEOUT = 100
     const IMAGE_DIR_URL = 'https://conversionratestore.github.io/projects/creditsage/img'
     let timeoutId
+
+    const startTime = Date.now()
 
     // Define CSS styles
     const style = /*html*/`
@@ -151,7 +153,7 @@ if (window.location.pathname.includes('/a/')) {
         return document.querySelector(selector)
     }
 
-    const showPopup = (seconds) => {
+    const showPopup = () => {
         if (!sessionStorage.getItem('popupShown')) {
             document.querySelector('.popup').classList.add('show')
             document.querySelector('.overlay').style.display = 'block'
@@ -163,34 +165,36 @@ if (window.location.pathname.includes('/a/')) {
                 'event_name': 'exp_value_proposition_popup_vis',
                 'event_desc': 'Did you know',
                 'event_type': 'Popup',
-                'event_loc': seconds
+                'event_loc': Math.round((Date.now() - startTime) / 1000)
             })
         }
     }
 
     const resetTimeout = () => {
         clearTimeout(timeoutId)
-        timeoutId = setTimeout(() => showPopup(5000), 5000)
+        timeoutId = setTimeout(() => showPopup(), 5000)
     }
 
     const handleOutsideClick = (event) => {
-        if (!event.target.closest('.popup')) {
+        if (!event.target.closest('.popup') && document.querySelector('.popup.show')) {
             closePopup()
         }
     }
 
-    const closePopup = () => {
+    const closePopup = (sendEventOnClose = true) => {
         document.querySelector('.popup').classList.remove('show')
         document.querySelector('.overlay').style.display = 'none'
 
-        window.dataLayer = window.dataLayer || []
-        dataLayer.push({
-            'event': 'event-to-ga4',
-            'event_name': 'exp_value_proposition_popup_close',
-            'event_desc': 'Close',
-            'event_type': 'Popup',
-            'event_loc': 'Landing page'
-        })
+        if (sendEventOnClose) {
+            window.dataLayer = window.dataLayer || []
+            dataLayer.push({
+                'event': 'event-to-ga4',
+                'event_name': 'exp_value_proposition_popup_close',
+                'event_desc': 'Close',
+                'event_type': 'Popup',
+                'event_loc': 'Landing page'
+            })
+        }
 
         document.removeEventListener('click', handleOutsideClick)
     }
@@ -214,12 +218,12 @@ if (window.location.pathname.includes('/a/')) {
                     closePopup()
                 })
 
-                setTimeout(() => showPopup(10000), 10000)
+                setTimeout(() => showPopup(), 10000)
 
                 window.addEventListener('click', resetTimeout, { once: true })
                 window.addEventListener('scroll', resetTimeout, { once: true })
 
-                document.addEventListener('click', handleOutsideClick, { once: true })
+                document.addEventListener('click', handleOutsideClick)
 
                 // add btn                
                 const greenBtn = document.querySelector('.btn_green').cloneNode(true)
@@ -235,6 +239,8 @@ if (window.location.pathname.includes('/a/')) {
                     'event_type': 'Button',
                     'event_loc': 'Landing page'
                 })
+
+                closePopup(false)
             }))
         }
     }, WAIT_INTERVAL_TIMEOUT)
