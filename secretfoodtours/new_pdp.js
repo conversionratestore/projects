@@ -556,7 +556,7 @@ header .main_menu {
 .destination_page_wr .destination_content .destination_descr {
     padding: 0;
 }
-.destination_page_wr .destination_content .plugin_right .buy, .destination_content > .container, .destination_descr .container, #plugin [style="background-color: #0a88ff; padding:10px;"], .breadcrumbs, .destination_page_wr .destination_content .plugin_right > .price, .destination_page_wr .destination_content .plugin_right .heading, .tour-features, .similar, header > .container > ul > li:nth-child(2), .banner_top, .parallax-mirror, body > div.global_wr > div > div.tour-intro > div.container > div > div.col-md-12.col-xl-8, .destination_page_wr .tour-intro .plugin_right .heading, .text-red, .text-pt, .text-pt-disclaimer, .destination_page_wr .tour-intro .plugin_right .buy {
+.what_we_taste, .destination_page_wr .destination_content .plugin_right .buy, .destination_content > .container, .destination_descr .container, #plugin [style="background-color: #0a88ff; padding:10px;"], .breadcrumbs, .destination_page_wr .destination_content .plugin_right > .price, .destination_page_wr .destination_content .plugin_right .heading, .tour-features, .similar, header > .container > ul > li:nth-child(2), .banner_top, .parallax-mirror, body > div.global_wr > div > div.tour-intro > div.container > div > div.col-md-12.col-xl-8, .destination_page_wr .tour-intro .plugin_right .heading, .text-red, .text-pt, .text-pt-disclaimer, .destination_page_wr .tour-intro .plugin_right .buy {
     display: none!important;
 }
 
@@ -992,8 +992,11 @@ header .main_menu {
     font-size: 14px!important;
     line-height: 14px;
     margin: 0 24px 0 0;
-    padding: 13px 15px 10px;
+    padding: 13px 12px 10px;
     letter-spacing: inherit;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 .drinks .buy-2:hover {
     color: #144732!important;
@@ -2004,6 +2007,9 @@ header .main_menu {
     .slider-gallery {
         margin-right: -20px;
     }
+    .slider-gallery .swiper-button-next, .slider-gallery .swiper-button-prev {
+        display: none!important;
+    }
     
 }
 </style>`
@@ -2957,10 +2963,10 @@ let tourDo = setInterval(() => {
 });
 
 let meeting_spot = setInterval(() => {
-    if (document.querySelector('.notate') != null && document.querySelector('.tour-features .covid') != null && document.querySelector('.tour-features .contact_info') != null && document.querySelector('.meeting-spot') != null) {
+    if (document.querySelector('.notate') != null && document.querySelector('.meeting_spot .covid') != null && document.querySelector('.meeting_spot .contact_info') != null && document.querySelector('.meeting-spot') != null) {
         clearInterval(meeting_spot)
         document.querySelector('.meeting-spot .title').after(document.querySelector('.notate'))
-        document.querySelector('.meeting-spot .title').after(document.querySelector('#spot_beer_tour_amsterdam'))
+        document.querySelector('.meeting-spot .title').after(document.querySelector('#meeting_spot + .text'))
 
         if (document.querySelector('.grey_block') != null) {
             document.querySelectorAll('.grey_block').forEach(item => {
@@ -2986,33 +2992,42 @@ let meeting_spot = setInterval(() => {
             }
         }
 
-        document.querySelector('.meeting-spot__covid').innerHTML = document.querySelector('.tour-features .covid').innerHTML;
-        document.querySelector('.meeting-spot__contact').innerHTML = document.querySelector('.tour-features .contact_info').innerHTML;
+        document.querySelector('.meeting-spot__covid').innerHTML = document.querySelector('.meeting_spot .covid').innerHTML;
+        document.querySelector('.meeting-spot__contact').innerHTML = document.querySelector('.meeting_spot .contact_info').innerHTML;
 
         document.querySelector('.meeting-spot__covid .main_subheading').insertAdjacentHTML('afterbegin', document.querySelector('.meeting-spot__covid [alt="good to go logo"]').parentElement.innerHTML)
        
         document.querySelector('.header_sticky_bottom .menu ul').insertAdjacentHTML('beforeend',`<li><a href="#meeting-spot" onclick="menuToElement(event)">Meeting spot</a></li>`)
 
+        if (document.querySelector('.meeting-spot__contact .PT_link_black a') == null) {
+            document.querySelector('.meeting-spot__contact').insertAdjacentHTML('beforeend',`<div class="PT_link_black"><a style="color:#fff;padding-top:4px;" href="/private-bookings">Private Tours</a></div>`)
+        }
         document.querySelector('.meeting-spot__contact .PT_link_black a').addEventListener('click', (e) => pushDataLayer('Click on Private Tours in Contact Us'))
+        
     }
 })
+        
+let getCity = (crumb, string) => {
+    let capital = crumb.innerHTML.trim();
+    let city = string.innerHTML.split(' ').filter(text => {
+        if (text != 'Food' && text != 'Tour' && text != 'Tours' && text != 'Tours:' && text != ':' && text != '-' && text != 'Secret') {
+            return text
+        }
+    })
+    city = city.join(' ');
+    if (city != '' && city.includes(capital) && city.length != capital.length) {
+        city = city.replace(capital, '')
+    }
+    return city
+}
 
 let video = setInterval(() => {
     if (document.querySelector('.youtube[data-embed]') != null && document.querySelector('.video-section') != null &&  document.querySelector('.breadcrumbs-customer li:last-child a') != null) {
         clearInterval(video)
         let embed = document.querySelector('.youtube[data-embed]').dataset.embed;
         let linkVideo = `https://www.youtube.com/embed/${embed}`
-        
-        let capital = document.querySelector('.breadcrumbs-customer li:nth-child(2) a').innerHTML.trim();
-        let city = document.querySelector('.breadcrumbs-customer li:last-child a').innerHTML.split(' ').filter(text => {
-            if (text != 'Food' && text != 'Tour' && text != 'Tours' && text != 'Tours:' && text != ':' && text != '-' && text != 'Secret') {
-                return text
-            }
-        })
-        city = city.join(' ');
-        if (city != '' && city.includes(capital) && city.length != capital.length) {
-            city = city.replace(capital, '')
-        }
+       
+        let city =  getCity(document.querySelector('.breadcrumbs-customer li:nth-child(2) a'), document.querySelector('.breadcrumbs-customer li:last-child a'));
 
         document.querySelector('.video-section > .container').innerHTML =`
             <h2>VIDEO OF SECRET FOOD TOUR: ${city}</h2>
@@ -3028,24 +3043,15 @@ let video = setInterval(() => {
 let photos = setInterval(() => {
     if ((document.querySelector('#my-gallery') != null || document.querySelector('.w3-content.w3-display-container') != null || document.querySelector('.parallax-mirror img') != null) && document.querySelector('.photos-gallery') != null && document.querySelectorAll('.breadcrumbs-customer li a')[2] != null) {
         clearInterval(photos)
-         
-        let capital = document.querySelector('.breadcrumbs-customer li:nth-child(2) a').innerHTML.trim();
-        let city = document.querySelector('.breadcrumbs-customer li:last-child a').innerHTML.split(' ').filter(text => {
-            if (text != 'Food' && text != 'Tour' && text != 'Tours' && text != 'Tours:' && text != ':' && text != '-' && text != 'Secret') {
-                return text
-            }
-        })
-        city = city.join(' ');
-        if (city != '' && city.includes(capital) && city.length != capital.length) {
-            city = city.replace(capital, '')
-        }
 
+        let city = getCity(document.querySelector('.breadcrumbs-customer li:nth-child(2) a'), document.querySelector('.breadcrumbs-customer li:last-child a'))
+        
         document.querySelector('.photos-gallery').innerHTML = `
         <h2>PHOTOS OF SECRET FOOD TOUR: <br class="d-md-block d-none">
         <span class="c-gold">${city}</span></h2>
         <div class="slider-gallery">
             <ul class="swiper-wrapper"></ul>
-            <div class="swiper-pagination swiper-pagination-fraction"></div>
+            <div class="swiper-pagination"></div>
             <div class="swiper-button-prev" onclick="pushDataLayer('Click on navigation button in Engagement Photo','Previous slide')">
                 <svg width="9" height="14" viewBox="0 0 9 14" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M8 1L2 7L8 13" stroke="#144732" stroke-width="2" stroke-linecap="round"/>
@@ -3194,8 +3200,10 @@ let whyTour = setInterval(() => {
             <img src="${document.querySelector('.about-tour .left_info .text img').src}" alt="image tour">
         </div>`
         //set height bg gray
-        document.querySelector('.why-tour').style = `--height:${document.querySelector('.why-tour > .left .title').offsetHeight + document.querySelector('.why-tour > .left .text').offsetHeight}px`;
-    }
+        setTimeout(()=> {
+            document.querySelector('.why-tour').style = `--height:${document.querySelector('.why-tour > .left .title').offsetHeight + document.querySelector('.why-tour > .left .text').offsetHeight}px`;
+        }, 150)
+     }
 });
 
 let otherTours = setInterval(() => {
