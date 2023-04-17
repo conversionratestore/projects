@@ -897,6 +897,9 @@ header .main_menu {
 .food_block {
     width: 100%;
 }
+.food_block:first-child {
+    padding-right: 20px;
+}
 .food_block .title {
     font-weight: 700;
     font-size: 18px;
@@ -1889,6 +1892,7 @@ header .main_menu {
     }
     .food_block {
         margin-bottom: 20px;
+        padding-right: 0!important;
     }
     .tour-drinks {
         padding-bottom: 36px;
@@ -2244,7 +2248,7 @@ let initHeader = setInterval(() => {
 })
 let price = setInterval(() => {
     if ((document.querySelector('#plugin iframe') != null || window.matchMedia("(max-width: 767px)").matches) && document.querySelector('.right-header .price') != null &&  document.querySelector('.header_sticky .is_price') != null) {
-        if (document.querySelector('#plugin .price.no-mobile') != null ) {
+        if (document.querySelector('#plugin .price.no-mobile') != null && document.querySelector('#plugin [style="background-color: #0a88ff; padding:10px;"]') == null ) {
             clearInterval(price)
             console.log('price')
             document.querySelectorAll('.plugin_right .price.no-mobile').forEach(item => {
@@ -2259,7 +2263,8 @@ let price = setInterval(() => {
             clearInterval(price)
             document.querySelector('.right-header .price').innerHTML = `Currently, we're just accepting private tours.`;
             document.querySelector('.header_sticky .is_price').innerHTML = `Currently, we're just accepting private tours.`;
-            document.querySelector('.right-header .price').parentElement.style = 'display: block!important'
+            document.querySelector('.right-header .price').parentElement.style = 'display: block!important;'
+            document.querySelector('.right-header .price').style = 'text-align: left;'
         }
     }
 });
@@ -2859,7 +2864,7 @@ let video = setInterval(() => {
 });
 
 let photos = setInterval(() => {
-    if ((document.querySelector('#my-gallery') != null || document.querySelector('.w3-content.w3-display-container') != null) && document.querySelector('.photos-gallery') != null && document.querySelectorAll('.breadcrumbs-customer li a')) {
+    if ((document.querySelector('#my-gallery') != null || document.querySelector('.w3-content.w3-display-container') != null || document.querySelector('.parallax-mirror img') != null) && document.querySelector('.photos-gallery') != null && document.querySelectorAll('.breadcrumbs-customer li a')) {
         clearInterval(photos)
 
         document.querySelector('.photos-gallery').innerHTML = `
@@ -2914,8 +2919,11 @@ let photos = setInterval(() => {
             document.querySelectorAll('.w3-content.w3-display-container > img').forEach(item => {
                 slide += `<li class="swiper-slide"><img src="${item.src}" alt="item.alt"></li>`
             })
+        } else {
+            slide = `<li class="swiper-slide"><img src="${document.querySelector('.parallax-mirror img').src}" alt="item.alt"></li>` 
         }
 
+        console.log(slide)
         document.querySelector('.slider-gallery ul').insertAdjacentHTML('beforeend', slide)
         document.querySelector('.gallery ul.swiper-wrapper').insertAdjacentHTML('beforeend', slide)
         new Swiper(".gallery", {
@@ -2973,7 +2981,7 @@ let whyTour = setInterval(() => {
             <img src="${document.querySelector('.about-tour .left_info .text img').src}" alt="image tour">
         </div>`
         //set height bg gray
-        document.querySelector('.why-tour').style = `--height:${document.querySelector('.why-tour > .left .title').clientHeight + document.querySelector('.why-tour > .left .text').clientHeight}px`;
+        document.querySelector('.why-tour').style = `--height:${document.querySelector('.why-tour > .left .title').offsetHeight + document.querySelector('.why-tour > .left .text').offsetHeight}px`;
     }
 });
 
