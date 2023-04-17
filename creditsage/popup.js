@@ -35,7 +35,7 @@ if (window.location.pathname.includes('/a/')) {
         z-index: 100;  
         width: 100%;
         overflow: auto;
-        max-height: 90%;
+        max-height: 100%;
     }
 
     .popup.show {
