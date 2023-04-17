@@ -371,6 +371,9 @@ header .search_btn {
 }
 
 @media screen and (min-width: 768px) {
+    .help_center .container:first-child .left_help {
+        display: flex;
+    }
     header .search_header input {
         width: 400px!important;
         margin-left: 30px;
@@ -381,7 +384,10 @@ header .search_btn {
         margin-left: 0;
     }
     ul.main_menu li {
-        margin: 10px 7px;
+        margin: 10px 7px!important;
+    }
+    ul.main_menu li:last-child {
+        margin-right: 0!important;
     }
 }
 @media screen and (max-width: 767px) {
@@ -545,7 +551,6 @@ header .main_menu {
 .c-gold {
     color: #C39958!important;
 }
-
 .header_sticky .title, .why-tour h2, .meeting-spot__covid .main_subheading, .meeting-spot__contact .name, .slider-gallery .swiper-pagination.swiper-pagination-fraction, .slider-review .swiper-pagination.swiper-pagination-fraction  {
     font-family: 'Josefin Sans';
     font-style: normal;
@@ -575,6 +580,7 @@ header .main_menu {
 .tour-section {
     font-family: 'Josefin Sans', sans-serif;
     padding: 42px 0;
+    overflow: hidden;
 }
 .tour-section button {
     background-color: transparent;
@@ -1658,7 +1664,6 @@ header .main_menu {
     display: none;
 }
 .slider-review {
-    // overflow: auto;
     position: relative;
     padding: 40px 0px 160px;
 }
@@ -1718,7 +1723,6 @@ header .main_menu {
 }
 .help_center .container:first-child .left_help {
     flex-basis: 100%;
-    display: flex;
 }
 .help_center .container:first-child .left_help .main_heading, .help_center .container:first-child .left_help .main_subheading {
     font-family: 'Josefin Sans';
@@ -1753,6 +1757,9 @@ header .main_menu {
     line-height: 24px;
     color: #333333;
     padding: 13px 16px;
+    border: 2px solid #EBEBE7;
+    border-radius: 10px;
+    background: #FFFFFF;
 }
 .help_center .container .block_wr .block_title .calc_ico {
     background: url('https://www.secretfoodtours.com/img/icons/plus.svg') no-repeat center / 12px;
@@ -1768,7 +1775,10 @@ header .main_menu {
 }
 
 @media screen and (max-width: 767px) {
-    .header_sticky {
+    .inner_page .container {
+        padding: 0 20px!important;
+    }
+    .header_sticky, .slider-review .swiper-button-next, .slider-review .swiper-button-prev {
         display: none;
     }
     .tour-section > .container > div:not(.why-tour) > .left {
@@ -1882,10 +1892,11 @@ header .main_menu {
         order: 2;
     }
     .awards-desktop {
-        display: block;
+        display: block!important;
         border: 2px solid #F3F3F3;
         border-radius: 20px 20px 0 0;
         padding: 16px 7px 8px;
+        margin: 0!important;
     }
     .brands {
         margin: 25px 0 60px;
@@ -2006,11 +2017,127 @@ header .main_menu {
     }
     .slider-gallery {
         margin-right: -20px;
+        padding-bottom: 36px;
+        margin-bottom: 60px;
     }
     .slider-gallery .swiper-button-next, .slider-gallery .swiper-button-prev {
         display: none!important;
     }
-    
+    .review .review-from {
+        padding: 20px 20px 14px;
+    }
+    .tour-section .review .reviews-first-container {
+        margin-top: 15px;
+    }
+    .tour-section .review .reviews-first-container .reviews-total {
+        margin-left: 0;
+    }
+    .slider-review {
+        padding: 24px 0 36px;
+        margin-bottom: 60px;
+    }
+    .slider-review .swiper-slide {
+        padding: 16px;
+    }
+    .slider-review .author {
+        font-size: 20px;
+        line-height: 20px;
+        margin-bottom: 10px;
+    }
+    .slider-review .text b {
+        margin: 16px 0 12px;
+    }
+    .slider-review .text {
+        -webkit-line-clamp: 13;
+        line-clamp: 13;
+    }
+    .why-tour > div {
+        width: 100%;
+    }
+    .why-tour:before {
+         width: 100%;
+         border-radius: 20px 20px 0 0;
+    }
+    .why-tour .title {
+        padding: 20px 20px 16px;
+    }
+    .why-tour .text {
+        padding: 0 20px 60px;
+    }
+    .why-tour .right {
+        padding: 0;
+        margin-top: -40px;
+    }
+    .why-tour .right img {
+        width: 100%;
+        height: 50.6vw;
+    }
+    .why-tour .btns {
+        padding: 8px 0 0 0;
+    }
+    .why-tour .btn-customer {
+        width: 100%;
+        display: block;
+        margin-top: 16px;
+    }
+    .why-tour h2 {
+        font-size: 20px;
+        line-height: 30px;
+    }
+    .other-tours {
+        margin-bottom: 30px;
+    }
+    #plugin {
+        display: none!important;
+    }
+    .slider-review .swiper-pagination.swiper-pagination-fraction {
+        bottom: 0;
+    }
+    .swiper-pagination-bullet {
+        background: #EBEBE7;
+        width: 12px;
+        height: 12px;    
+        margin: 0 4px;
+    }
+    .swiper-pagination-bullet-active {
+        background: #144732;
+        border-radius: 34px;
+        width: 24px;
+    }
+    .other-tours .cardx {
+        width: 100%;
+        margin-right: 0;
+    }
+    .other-tours .cardx-container-details {
+        padding: 10px 16px 16px;
+        min-height: auto;
+    }
+    .other-tours .card-buttons .cultural-tours {
+        width: 100%!important;
+    }
+    .destination_page_wr .help_center {
+        margin-top: 0;
+    }
+    .destination_page_wr .tour-intro {
+        margin-bottom: 0;
+    }
+    .help_center:after {
+        background-color: transparent!important;
+    }
+    .destination_page_wr .help_center {
+        padding: 20px 0 0 0;
+    }
+    .help_center .container:first-child .left_help .main_heading, .help_center .container:first-child .left_help .main_subheading {
+        margin: 0;
+        font-size: 24px;
+        line-height: 32px;
+    }
+    .mob-version-only {
+        padding: 0;
+    }
+    .help_center .container .left_help {
+        margin-bottom: 16px;
+    }
 }
 </style>`
 let pushDataLayer = (action, label = '') => {
@@ -2715,11 +2842,11 @@ let init = setInterval(() => {
                 document.querySelector('body').insertAdjacentElement('beforeend', scriptEl)
 
                 document.querySelector('.tour-section .review').innerHTML = `
-                <div class="d-flex align-items-center justify-content-between">
-                    <h2>Review <span class="c-gold">What people say</span></h2>
+                <div class="d-md-flex align-items-md-center justify-content-md-between">
+                    <h2>Review <span class="c-gold d-md-inline d-block">What people say</span></h2>
                     <div class="review-from">
                         <p>Review from</p>
-                        <div class="d-flex justify-content-between align-items-center">
+                        <div class="d-md-flex justify-content-md-between align-items-md-center">
                             <img src="${dir}TripAdvisor_Logo.svg" alt="icon">
                         </div>
                     </div>
@@ -2788,8 +2915,8 @@ let init = setInterval(() => {
                     }
                 
                     new Swiper(".slider-review", {
-                        slidesPerView: 3,
                         loop: true,
+                        slidesPerView: 3,
                         spaceBetween: 20,
                         pagination: {
                             el: ".slider-review .swiper-pagination",
@@ -2798,7 +2925,18 @@ let init = setInterval(() => {
                         navigation: {
                             nextEl: ".slider-review .swiper-button-next",
                             prevEl: ".slider-review .swiper-button-prev",
-                        }
+                        },
+                        // breakpoints: {
+                        //     // when window width is >= 767px
+                        //     768: {
+                        //         slidesPerView: 1.1,
+                        //         spaceBetween: 16,
+                        //         pagination: {
+                        //           el: '.slider-review .swiper-pagination"',
+                        //           type: 'bullets',
+                        //         }
+                        //     }
+                        //   }
                     }); 
                 }
 
@@ -3149,17 +3287,17 @@ let photos = setInterval(() => {
                 nextEl: ".slider-gallery .swiper-button-next",
                 prevEl: ".slider-gallery .swiper-button-prev",
             },
-            breakpoints: {
-                // when window width is >= 767px
-                767: {
-                  slidesPerView: 1.1,
-                  spaceBetween: 16,
-                  pagination: {
-                    el: '.slider-gallery .swiper-pagination"',
-                    type: 'bullets',
-                  },
-                }
-              }
+            // breakpoints: {
+            //     // when window width is >= 767px
+            //     767: {
+            //       slidesPerView: 1.1,
+            //       spaceBetween: 16,
+            //       pagination: {
+            //         el: '.slider-gallery .swiper-pagination"',
+            //         type: 'bullets',
+            //       },
+            //     }
+            //   }
         });    
         
         
@@ -3186,7 +3324,7 @@ let whyTour = setInterval(() => {
                 <h2>${document.querySelector('.about-tour .left_info .title').innerHTML}</h2>  
             </div>
             <p class="text">${document.querySelector('.about-tour .left_info .text p').innerHTML}</p>
-            <div class="d-flex justify-content-between btns">
+            <div class="d-md-flex justify-content-md-between btns">
                 <a href="#plugin" class="btn-customer" onclick="pushDataLayer('Click on button on Why section','Book tour')">Book tour</a>
                 <a href="/buy-gift/" class="btn-customer gold d-flex align-items-center justify-content-center" onclick="pushDataLayer('Click on button on Why section',' Buy this tour as a gift')">
                     <svg width="15" height="12" viewBox="0 0 15 12" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -3203,6 +3341,10 @@ let whyTour = setInterval(() => {
         setTimeout(()=> {
             document.querySelector('.why-tour').style = `--height:${document.querySelector('.why-tour > .left .title').offsetHeight + document.querySelector('.why-tour > .left .text').offsetHeight}px`;
         }, 150)
+
+        if (window.matchMedia("(max-width: 767px)").matches) {
+            document.querySelector('.why-tour .right').after(document.querySelector('.why-tour .btns'))
+        }
      }
 });
 
@@ -3274,4 +3416,21 @@ let otherTours = setInterval(() => {
     }
 })
 
+let faq = setInterval(() => {
+    if (document.querySelectorAll('.help_center .container .block_wr') && window.matchMedia("(max-width: 767px)").matches) {
+        clearInterval(faq)
+        let faqItems =  document.querySelectorAll('.help_center .container .block_wr');
+        if ( faqItems.length > 7) {
+            faqItems[faqItems.length - 1].insertAdjacentHTML('afterend',`<button type="button" class="btn-customer d-flex align-items-center justify-content-center">
+                <svg width="17" height="12" viewBox="0 0 17 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M0.25 12V9.90001C0.25 9.47501 0.3595 9.08426 0.578499 8.72776C0.797499 8.37126 1.088 8.09951 1.45 7.91251C2.225 7.52501 3.0125 7.23426 3.81249 7.04026C4.61249 6.84626 5.42499 6.74951 6.24999 6.75001C7.07499 6.75001 7.88749 6.84701 8.68749 7.04101C9.48749 7.23501 10.275 7.52551 11.05 7.91251C11.4125 8.10001 11.7032 8.37201 11.9222 8.72851C12.1412 9.085 12.2505 9.47551 12.25 9.90001V12H0.25ZM13.75 12V9.75C13.75 9.20001 13.5967 8.67176 13.2902 8.16526C12.9837 7.65876 12.5495 7.22451 11.9875 6.86251C12.625 6.93751 13.225 7.06576 13.7875 7.24726C14.35 7.42876 14.875 7.65051 15.3625 7.91251C15.8125 8.16251 16.1562 8.44051 16.3937 8.74651C16.6312 9.05251 16.75 9.387 16.75 9.75V12H13.75ZM6.24999 6.00001C5.42499 6.00001 4.71874 5.70626 4.13124 5.11876C3.54375 4.53126 3.25 3.82501 3.25 3.00001C3.25 2.17502 3.54375 1.46877 4.13124 0.881268C4.71874 0.293769 5.42499 1.92305e-05 6.24999 1.92305e-05C7.07499 1.92305e-05 7.78124 0.293769 8.36874 0.881268C8.95624 1.46877 9.24999 2.17502 9.24999 3.00001C9.24999 3.82501 8.95624 4.53126 8.36874 5.11876C7.78124 5.70626 7.07499 6.00001 6.24999 6.00001ZM13.75 3.00001C13.75 3.82501 13.4562 4.53126 12.8687 5.11876C12.2812 5.70626 11.575 6.00001 10.75 6.00001C10.6125 6.00001 10.4375 5.98426 10.225 5.95276C10.0125 5.92126 9.83749 5.88701 9.69999 5.85001C10.0375 5.45001 10.297 5.00626 10.4785 4.51876C10.66 4.03126 10.7505 3.52501 10.75 3.00001C10.75 2.47502 10.6595 1.96877 10.4785 1.48127C10.2975 0.993768 10.038 0.550018 9.69999 0.150019C9.87499 0.087519 10.05 0.0467693 10.225 0.0277693C10.4 0.00876935 10.575 -0.000480769 10.75 1.92305e-05C11.575 1.92305e-05 12.2812 0.293769 12.8687 0.881268C13.4562 1.46877 13.75 2.17502 13.75 3.00001Z" fill="#144732"/>
+                </svg>
+                <span>Load more</span>
+            </button>`)
+        }
+        // document.querySelectorAll('.help_center .container .block_wr').forEach(item => {
+
+        // })
+    }
+}, 100);
 pushDataLayer('loaded')
