@@ -462,6 +462,9 @@ header .main_menu {
 .tooltipe {
     position: relative;
 }
+.tooltipe * {
+    pointer-events: none;
+}
 .tooltipe:hover .tooltipe-content {
     opacity: 1;
     pointer-events: auto;
@@ -474,14 +477,16 @@ header .main_menu {
     border-radius: 20px;
     z-index: 2;
     left: 50%;
-    line-height: 16px;
+    line-height: 16px!important;
+    font-size: 14px!important;
+    font-weight: 400!important;
     transform: translateX(-50%);
     bottom: calc(100% + 5px);
     width: 260px;
     padding: 20px;
     transition: all 0.2s ease;
     box-shadow: 0px 2px 16px rgba(20, 71, 50, 0.15);
-    text-transfom: 
+    text-align: left!important; 
 }
 .underline {
     text-decoration-line: underline;
@@ -1999,6 +2004,28 @@ header .main_menu {
     
 }
 </style>`
+let pushDataLayer = (action, label = '') => {
+    console.log(action + " : " + label)
+    window.dataLayer = window.dataLayer || [];
+    dataLayer.push({
+        'event': 'event-to-ga',
+        'eventCategory': 'Exp: new design PDP',
+        'eventAction': action,
+        'eventLabel': label
+    });
+}
+
+//comes into view
+let isScrolledIntoView = (el) => {
+    if (document.querySelector(el) == null) return false
+    let rect = document.querySelector(el).getBoundingClientRect(),
+        elemTop = rect.top,
+        elemBottom = rect.bottom;
+
+    let isVisible = (elemTop >= 0) && (elemBottom <= window.innerHeight);
+
+    return isVisible;
+}
 
 const state = new Promise((resolve, reject) => {
     fetch(`https://conversionratestore.github.io/projects/uplead/state.json`).then(res => res.json()).then(data => {
@@ -2460,6 +2487,12 @@ let init = setInterval(() => {
         window.addEventListener('resize', () => resizeLeft())
         
         document.querySelector('.tour-section .breadcrumbs-customer').innerHTML = document.querySelector('.breadcrumbs ul').innerHTML; //breadcrumb
+
+        //event Click on Bredcrumb item
+        document.querySelectorAll('.breadcrumbs-customer a').forEach(crumb => {
+            crumb.addEventListener('click', (e) => pushDataLayer('Click on Bredcrumb item', crumb.href))
+        })
+
         document.querySelector('.tour-section h1').innerHTML = document.querySelector('h1.dest_title').innerHTML; //title
         document.querySelector('.header_sticky .title').innerHTML = document.querySelector('h1.dest_title').innerHTML; //title sticky header
         document.querySelector('.header_sticky .back span').innerHTML = 'All ' + document.querySelectorAll('.breadcrumbs-customer li a')[document.querySelectorAll('.breadcrumbs-customer li a').length - 2].innerHTML + ' tours'; //back text
@@ -2541,6 +2574,35 @@ let init = setInterval(() => {
                 document.querySelector('.tooltipe-content').innerHTML = document.querySelector('#plugin .text-red').innerHTML;
         
                 document.querySelector('.link-customer').after(document.querySelector('.awards-desktop'))
+
+                let hoverHtlp = false;
+                document.querySelector('.link-customer .tooltipe').addEventListener('mouseover', (e) => {
+                    if (hoverHtlp == false) {
+                        hoverHtlp = true;
+                        pushDataLayer('Visibility hover over Help with booking')
+                    }
+                })
+                document.querySelector('.link-customer .tooltipe').addEventListener('mouseout', (e) => hoverHtlp = false)
+
+                let isVisibleBooking = false;
+                let isVisibleHelp = false;
+
+                let isVisibleDataLayer = () => {
+                    setTimeout(() => {
+                        if (isVisibleHelp == false && isScrolledIntoView(`.right-content .link-customer`)) {
+                            isVisibleHelp = true;
+                            pushDataLayer('Visibility Help with booking')
+                        }
+                    }, 3000)
+
+                    if (isScrolledIntoView('.right-content') == true && isVisibleBooking == false) {
+                        isVisibleBooking = true;
+                        pushDataLayer('Visibility booking section')
+                    }
+                }
+
+                isVisibleDataLayer()
+                window.addEventListener('scroll',() => isVisibleDataLayer())
         }
 
 
@@ -2562,6 +2624,17 @@ let init = setInterval(() => {
             }
         }
 
+        let isVisibleInfo = false;
+
+        let isVisibleDataLayer = () => {
+            if (isScrolledIntoView('.descr-section') == true && isVisibleInfo == false) {
+                isVisibleInfo = true;
+                pushDataLayer('Visibility info section')
+            }
+        }
+
+        isVisibleDataLayer()
+        window.addEventListener('scroll',() => isVisibleDataLayer())
         //review 
 
         initExp()
@@ -2646,12 +2719,12 @@ let init = setInterval(() => {
                     <div class="slider-review">
                         <div class="swiper-wrapper"> </div>
                         <div class="swiper-pagination"></div>
-                        <div class="swiper-button-prev">
+                        <div class="swiper-button-prev" onclick="pushDataLayer('Click on navigation button in Review','Previous slide')">
                             <svg width="9" height="14" viewBox="0 0 9 14" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M8 1L2 7L8 13" stroke="#144732" stroke-width="2" stroke-linecap="round"/>
                             </svg>
                         </div>
-                        <div class="swiper-button-next">
+                        <div class="swiper-button-next" onclick="pushDataLayer('Click on navigation button in Review','Next slide')">
                             <svg width="9" height="14" viewBox="0 0 9 14" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M0.999999 13L7 7L1 1" stroke="#144732" stroke-width="2" stroke-linecap="round"/>
                             </svg>
@@ -2718,6 +2791,18 @@ let init = setInterval(() => {
                         }
                     }); 
                 }
+
+                let isVisibleReview = false;
+
+                let isVisibleReviewDataLayer = () => {
+                    if (isScrolledIntoView('.tour-section .review h2') == true && isVisibleReview == false) {
+                        isVisibleReview = true;
+                        pushDataLayer('Visibility review section')
+                    }
+                }
+
+                isVisibleReviewDataLayer()
+                window.addEventListener('scroll',() => isVisibleReviewDataLayer())
 
             }
 
@@ -2822,7 +2907,7 @@ let drink = setInterval(() => {
             </div>
             <ul>${document.querySelector('.mini_ul').innerHTML} </ul>
             <div class="d-md-flex align-items-center">
-                <a href="#" class="buy-2">
+                <a href="#" class="buy-2" onclick="pushDataLayer('Click on Add upgraded drink package link')">
                     <svg width="17" height="16" viewBox="0 0 17 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M16.3594 2.26452L14.2355 0.140556C14.0481 -0.0468521 13.7357 -0.0468521 13.5171 0.140556L12.8299 0.858956C12.6113 1.04636 12.6113 1.35871 12.8299 1.54612L10.4248 3.9512C8.95681 3.3265 7.2389 3.60761 6.05198 4.79453L1.08565 9.76086C0.304783 10.5417 0.304783 11.7911 1.08565 12.572L3.92801 15.4143C4.70888 16.1952 5.95827 16.1952 6.73914 15.4143L11.7055 10.448C12.8924 9.2611 13.1735 7.54319 12.5488 6.07516L14.9539 3.67008C15.1413 3.88873 15.4536 3.88873 15.641 3.67008L16.3594 2.98292C16.5469 2.76428 16.5469 2.45193 16.3594 2.26452ZM6.11445 13.2279L3.27208 10.3856L7.08272 6.57491L9.92509 9.41728L6.11445 13.2279Z" fill="white"/>
                     </svg>
@@ -2832,6 +2917,13 @@ let drink = setInterval(() => {
             </div>
         </div>`)
 
+        let isVisibleBuy2 = false;
+        window.addEventListener('scroll', (e) => {
+            if (isScrolledIntoView('.buy-2') == true && isVisibleBuy2 == false) {
+                isVisibleBuy2 = true;
+                pushDataLayer('Visibility Add upgraded drinks package button')
+            }
+        })
         document.querySelector('.drinks a.buy-2').href = document.querySelectorAll('.breadcrumbs-customer li a')[1].href + 'upgraded-drinks-package/';
     }
 });
@@ -2896,6 +2988,8 @@ let meeting_spot = setInterval(() => {
         document.querySelector('.meeting-spot__covid .main_subheading').insertAdjacentHTML('afterbegin', document.querySelector('.meeting-spot__covid [alt="good to go logo"]').parentElement.innerHTML)
        
         document.querySelector('.header_sticky_bottom .menu ul').insertAdjacentHTML('beforeend',`<li><a href="#meeting-spot" onclick="menuToElement(event)">Meeting spot</a></li>`)
+
+        document.querySelector('.meeting-spot__contact .PT_link_black a').addEventListener('click', (e) => pushDataLayer('Click on Private Tours in Contact Us'))
     }
 })
 
@@ -2910,6 +3004,9 @@ let video = setInterval(() => {
             <iframe width="1080" height="715" src="${linkVideo}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>`;
 
         document.querySelector('.header_sticky_bottom .menu ul').insertAdjacentHTML('beforeend',`<li><a href="#video" onclick="menuToElement(event)">Video</a></li>`)
+        document.querySelector('.video-section iframe').addEventListener('click', (e) => {
+            pushDataLayer('Click on video')
+        })
     }
 });
 
@@ -2923,12 +3020,12 @@ let photos = setInterval(() => {
         <div class="slider-gallery">
             <ul class="swiper-wrapper"></ul>
             <div class="swiper-pagination swiper-pagination-fraction"></div>
-            <div class="swiper-button-prev">
+            <div class="swiper-button-prev" onclick="pushDataLayer('Click on navigation button in Engagement Photo','Previous slide')">
                 <svg width="9" height="14" viewBox="0 0 9 14" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M8 1L2 7L8 13" stroke="#144732" stroke-width="2" stroke-linecap="round"/>
                 </svg>
             </div>
-            <div class="swiper-button-next">
+            <div class="swiper-button-next" onclick="pushDataLayer('Click on navigation button in Engagement Photo','Next slide')">
                 <svg width="9" height="14" viewBox="0 0 9 14" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M0.999999 13L7 7L1 1" stroke="#144732" stroke-width="2" stroke-linecap="round"/>
                 </svg>
@@ -2939,20 +3036,20 @@ let photos = setInterval(() => {
         document.querySelector('.gallery').innerHTML = `
         <ul class="swiper-wrapper"></ul>
         <div class="d-flex align-items-center justify-content-between w-100">
-            <button type="button" class="btn-gallery">
+            <button type="button" class="btn-gallery" onclick="pushDataLayer('Click on Gallery','Watch gallery button')">
                 <svg width="16" height="13" viewBox="0 0 16 13" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M13.125 11.125H3.9375C2.70703 11.125 1.75 10.168 1.75 8.9375V3.25H1.3125C0.574219 3.25 0 3.85156 0 4.5625V11.5625C0 12.3008 0.574219 12.875 1.3125 12.875H11.8125C12.5234 12.875 13.125 12.3008 13.125 11.5625V11.125ZM15.75 8.9375V1.9375C15.75 1.22656 15.1484 0.625 14.4375 0.625H3.9375C3.19922 0.625 2.625 1.22656 2.625 1.9375V8.9375C2.625 9.67578 3.19922 10.25 3.9375 10.25H14.4375C15.1484 10.25 15.75 9.67578 15.75 8.9375ZM7 3.25C7 3.98828 6.39844 4.5625 5.6875 4.5625C4.94922 4.5625 4.375 3.98828 4.375 3.25C4.375 2.53906 4.94922 1.9375 5.6875 1.9375C6.39844 1.9375 7 2.53906 7 3.25ZM4.375 7.1875L5.87891 5.68359C6.01562 5.54688 6.20703 5.54688 6.34375 5.68359L7.4375 6.75L11.1289 3.05859C11.2656 2.92188 11.457 2.92188 11.5938 3.05859L14 5.4375V8.5H4.375V7.1875Z" fill="white"/>
                 </svg>
                 Watch gallery
             </button>
             <div class="d-flex align-items-center">
-                <button type="button" class="btn-arrow btn-arrow-prev d-flex">
+                <button type="button" class="btn-arrow btn-arrow-prev d-flex" onclick="pushDataLayer('Click on Gallery','Previous slide')">
                     <svg class="m-auto" width="9" height="14" viewBox="0 0 9 14" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M8 1L2 7L8 13" stroke="white" stroke-width="2" stroke-linecap="round"/>
                     </svg>
                 </button>
                 <p class="gallery-count">1/6</p>
-                <button type="button" class="btn-arrow btn-arrow-next d-flex">
+                <button type="button" class="btn-arrow btn-arrow-next d-flex" onclick="pushDataLayer('Click on Gallery','Next slide')">
                     <svg class="m-auto" width="9" height="14" viewBox="0 0 9 14" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M0.999999 13L7 7L1 1" stroke="white" stroke-width="2" stroke-linecap="round"/>
                     </svg>
@@ -2975,6 +3072,18 @@ let photos = setInterval(() => {
 
         if (document.querySelector('#my-gallery') != null || document.querySelector('.w3-content.w3-display-container') != null) {
             document.querySelector('.photos-gallery').style = ''
+
+            let isVisiblePhotos = false;
+
+            let isVisibleDataLayer = () => {
+                if (isScrolledIntoView('.photos-gallery h2') == true && isVisiblePhotos == false) {
+                    isVisiblePhotos = true;
+                    pushDataLayer('Visibility photo section')
+                }
+            }
+
+            isVisibleDataLayer()
+            window.addEventListener('scroll',() => isVisibleDataLayer())
         } else {
             document.querySelector('.photos-gallery').style.display = 'none'
         }
@@ -3019,7 +3128,18 @@ let photos = setInterval(() => {
                   },
                 }
               }
-        });                     
+        });    
+        
+        
+        document.querySelectorAll('.slider-gallery .swiper-slide').forEach(item => {
+            item.addEventListener('click', () => {
+                if (item.querySelector('a') != null) {
+                    pushDataLayer('Click on Engagement Photo', item.querySelector('a').href)
+                } else {
+                    pushDataLayer('Click on Engagement Photo', item.querySelector('img').src)
+                }
+            })
+        })
                             
     }
 })
@@ -3035,8 +3155,8 @@ let whyTour = setInterval(() => {
             </div>
             <p class="text">${document.querySelector('.about-tour .left_info .text p').innerHTML}</p>
             <div class="d-flex justify-content-between btns">
-                <a href="#plugin" class="btn-customer">Book tour</a>
-                <a href="/buy-gift/" class="btn-customer gold d-flex align-items-center justify-content-center">
+                <a href="#plugin" class="btn-customer" onclick="pushDataLayer('Click on button on Why section','Book tour')">Book tour</a>
+                <a href="/buy-gift/" class="btn-customer gold d-flex align-items-center justify-content-center" onclick="pushDataLayer('Click on button on Why section',' Buy this tour as a gift')">
                     <svg width="15" height="12" viewBox="0 0 15 12" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M1.375 11.1429C1.375 11.625 1.75781 12 2.25 12H6.625V7.71429H1.375V11.1429ZM8.375 12H12.75C13.2148 12 13.625 11.625 13.625 11.1429V7.71429H8.375V12ZM13.625 3.42857H12.4492C12.6406 3.10714 12.75 2.75893 12.75 2.35714C12.75 1.07143 11.6562 0 10.3438 0C9.19531 0 8.45703 0.589286 7.52734 1.84821C6.57031 0.589286 5.83203 0 4.71094 0C3.37109 0 2.30469 1.07143 2.30469 2.35714C2.30469 2.75893 2.38672 3.10714 2.57812 3.42857H1.375C0.882812 3.42857 0.5 3.83036 0.5 4.28571V6.42857C0.5 6.66964 0.691406 6.85714 0.9375 6.85714H14.0625C14.2812 6.85714 14.5 6.66964 14.5 6.42857V4.28571C14.5 3.83036 14.0898 3.42857 13.625 3.42857ZM4.68359 3.42857C4.08203 3.42857 3.58984 2.97321 3.58984 2.35714C3.58984 1.76786 4.08203 1.28571 4.68359 1.28571C5.23047 1.28571 5.64062 1.39286 7.0625 3.42857H4.68359ZM10.3438 3.42857H7.96484C9.38672 1.39286 9.76953 1.28571 10.3438 1.28571C10.9453 1.28571 11.4375 1.76786 11.4375 2.35714C11.4375 2.97321 10.9453 3.42857 10.3438 3.42857Z" fill="#C39958"/>
                     </svg>
@@ -3106,5 +3226,18 @@ let otherTours = setInterval(() => {
         })
 
         document.querySelector('.header_sticky_bottom .menu ul').insertAdjacentHTML('beforeend',`<li><a href="#other-tours" onclick="menuToElement(event)">Other ${capital} tours</a></li>`)
+        let isVisibleOtherTours = false;
+
+        let isVisibleDataLayer = () => {
+            if (isScrolledIntoView('.other-tours h2') == true && isVisibleOtherTours == false) {
+                isVisibleOtherTours = true;
+                pushDataLayer('Visibility Other tour section')
+            }
+        }
+
+        isVisibleDataLayer()
+        window.addEventListener('scroll',() => isVisibleDataLayer())
     }
 })
+
+pushDataLayer('loaded')
