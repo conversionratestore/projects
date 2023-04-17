@@ -1128,6 +1128,7 @@ header .main_menu {
     width: 30px;
     height: 30px;
     margin-right: 16px;
+    margin-bottom: 5px;
 }
 .meeting-spot .grey_block .left p span {
     font-weight: 400;
