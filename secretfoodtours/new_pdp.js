@@ -2435,7 +2435,7 @@ let initHeader = setInterval(() => {
         state.then(state => {
             for (let i = 0; i < state.length; i++) {
                 document.querySelectorAll('.header_dropdown .block ul li a').forEach(item => {
-                    if (state[i].name.toLowerCase() == item.innerHTML.toLowerCase().trim()) {
+                    if (state[i].name.toLowerCase() == item.innerHTML.toLowerCase().trim() && item.parentElement.className.includes('country-16-title') ) {
                         item.insertAdjacentHTML('afterbegin',`<i class="fi fi-${state[i].abbr}"></i>`)
                     }
                     if (item.innerHTML.toLowerCase().trim() == 'united states of america') {
@@ -3460,7 +3460,7 @@ let otherTours = setInterval(() => {
 })
 
 let faq = setInterval(() => {
-    if (document.querySelectorAll('.help_center .container .block_wr') && window.matchMedia("(max-width: 767px)").matches) {
+    if (document.querySelector('.help_center .container .block_wr') != null && window.matchMedia("(max-width: 767px)").matches) {
         clearInterval(faq)
         let faqItems =  document.querySelectorAll('.help_center .container .block_wr');
         if ( faqItems.length > 7) {
@@ -3486,4 +3486,310 @@ let faq = setInterval(() => {
         })
     }
 }, 100);
+
+
+state.then(state => {
+    let menuMobile = setInterval(() => {
+        if (document.querySelector('header .menu_btn') != null) {
+            clearInterval(menuMobile)
+
+            document.body.insertAdjacentHTML('afterbegin', `
+            <style>
+            .is_menu {
+                width: 100%;
+                position: fixed;
+                top: calc(51.87px + 60px);
+                left: 0;
+                z-index: 9999999;
+                background-color: #fff;
+                height: calc(100vh - 51.87px + 60px);
+                overflow-y: auto;
+                display: none;
+            }
+            .is_menu_continent {
+                background: #EBEBE7;
+                font-weight: 700;
+                font-size: 16px;
+                line-height: 16px;
+                text-transform: uppercase;
+                color: #333333;
+            }
+            .is_menu_tours li p {
+                padding: 16px 20px;
+                font-family: 'Josefin Sans';
+                font-style: normal;
+                font-weight: 700;
+                font-size: 16px;
+                line-height: 16px;
+                text-transform: uppercase;
+                color: #333333;
+            }
+            .is_menu_tours li {
+                position: relative;
+            }
+            .is_menu_tours li::after {
+                content: '';
+                position: absolute;
+                left: 20px;
+                bottom: 0;
+                width: calc(100% - 40px);
+                background: #fff;
+                height: 1px;
+            }
+            .is_menu_tours li p .plus {
+                position: relative;
+                width: 12px;
+                height: 12px;
+                margin-left: auto
+            }
+            .is_menu_tours li p .plus:before, .is_menu li p .plus:after {
+                content: '';
+                position: absolute;
+                left: 50%;
+                top: 50%;
+                transform: translate(-50%, -50%);
+                background: #144732;
+            }
+            .is_menu_tours li p .plus:before {
+                width: 12px;
+                height: 2px;
+            }
+            .is_menu_tours li p .plus:after {
+                height: 12px;
+                width: 2px;
+            }
+            .is_menu_tours li ul {
+                display: none;
+            }
+            .is_menu_tours > li > ul > li:not(.is_menu_popular) > p {
+                background: #F3F3F3;
+            }
+            .is_menu_tours li.active > ul {
+                display: block;
+            }
+            .is_menu_tours li[data-continent].active > p {
+                background: #144732;
+                color: #fff;
+            }
+            .is_menu_tours li.active > p .plus:after {
+                transform: translate(-50%, -50%) rotate(90deg);
+            }
+            .is_menu_tours li[data-continent].active > p .plus:after {
+                background: #fff;
+            }
+            .is_menu_tours li[data-continent].active > p .plus:before {
+                background: #fff;
+            }
+            .is_menu_items {
+                padding-top: 12px;
+            }
+            .is_menu_items a {
+                font-weight: 700;
+                font-size: 16px;
+                line-height: 16px;
+                padding: 12px 20px;
+                color: #333333;
+                display: block;
+           }
+           .is_menu .btn-customer {
+                display: block;
+                padding: 12px 24px 10px;
+                width: fit-content;
+                margin-top: 16px;
+                margin-left: 20px;
+           }
+           .is_menu_social {
+                margin-top: 31px;
+                background: #EBEBE7
+           }
+           .is_menu_social a {
+                padding: 18px 21px;
+           }
+           .is_menu_tours li.is_menu_popular > p {
+                background: #C39958;
+                color: #fff;
+                text-transform: none;
+           }
+           .is_menu_tours li.is_menu_popular > p svg,  .is_menu_tours i {
+                margin-right: 8px;
+           }
+           .is_menu_tours li.is_menu_popular > p > span > span {
+                text-transform: capitalize;
+           }
+           .is_menu_tours li.is_menu_popular.active > p {
+                background: #fff;
+                color: #C39958;
+            }
+            .is_menu_tours li.is_menu_popular.active > p .plus:after, .is_menu_tours li.is_menu_popular.active > p .plus:before {
+                background: #333333;
+            }
+            .is_menu_tours > li > ul > li > ul > li a.fs16 {
+                display: block;
+                font-family: 'Josefin Sans';
+                font-style: normal;
+                font-weight: 600;
+                font-size: 18px!important;
+                line-height: 19px;
+                color: #5B5B5B;
+                padding: 16px 20px 16px 52px;
+            }
+            .is_menu_tours > li > ul > li > ul > li a:before {
+                content: '';
+                position: absolute;
+                top: 50%;
+                left: 40px;
+                transform: translateY(-50%);
+                width: 4px;
+                height: 4px;
+                border-radius: 50%;
+                background: #C39958;
+            }
+            .is_menu_tours > li > ul > li > ul > liafter {
+                background: #EBEBE7;
+            }
+            .is_menu_tours .popular_tours_row {
+                padding: 0 20px;
+            }
+            .is_menu_tours .popular_tours_row > div {
+                width: 100%;
+                padding: 10px 0;
+                border-bottom: 1px solid #EBEBE7;
+            }
+            .menu_btn {
+                display: none!important;
+            }
+            .menu_burger {
+                cursor: pointer;
+                width: 25px;
+                border: none;
+                height: 14px;
+                background: url(https://www.secretfoodtours.com/img/icons/menu.svg) no-repeat;
+            }
+            .menu_burger svg {
+                display: none;
+            }
+            .menu_burger.active {
+                background-image: none;
+            }
+            .menu_burger.active svg {
+                display: block;
+            }
+            </style>
+            <div class="is_menu flex-column justify-content-between">
+                <div>
+                    <ul class="is_menu_tours"></ul>
+                    <ul class="is_menu_items">
+                        <li><a href="#">Blog</a></li>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Health & Safety</a></li>
+                        <li><a href="#">Historical Tours</a></li>
+                    </ul>
+                    <a href="#" class="btn-customer"> 
+                        <svg width="18" height="12" viewBox="0 0 18 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M0.75 12V9.90001C0.75 9.47501 0.8595 9.08426 1.0785 8.72776C1.2975 8.37126 1.588 8.09951 1.95 7.91251C2.725 7.52501 3.5125 7.23426 4.31249 7.04026C5.11249 6.84626 5.92499 6.74951 6.74999 6.75001C7.57499 6.75001 8.38749 6.84701 9.18749 7.04101C9.98749 7.23501 10.775 7.52551 11.55 7.91251C11.9125 8.10001 12.2032 8.37201 12.4222 8.72851C12.6412 9.085 12.7505 9.47551 12.75 9.90001V12H0.75ZM14.25 12V9.75C14.25 9.20001 14.0967 8.67176 13.7902 8.16526C13.4837 7.65876 13.0495 7.22451 12.4875 6.86251C13.125 6.93751 13.725 7.06576 14.2875 7.24726C14.85 7.42876 15.375 7.65051 15.8625 7.91251C16.3125 8.16251 16.6562 8.44051 16.8937 8.74651C17.1312 9.05251 17.25 9.387 17.25 9.75V12H14.25ZM6.74999 6.00001C5.92499 6.00001 5.21874 5.70626 4.63124 5.11876C4.04375 4.53126 3.75 3.82501 3.75 3.00001C3.75 2.17502 4.04375 1.46877 4.63124 0.881268C5.21874 0.293769 5.92499 1.92305e-05 6.74999 1.92305e-05C7.57499 1.92305e-05 8.28124 0.293769 8.86874 0.881268C9.45624 1.46877 9.74999 2.17502 9.74999 3.00001C9.74999 3.82501 9.45624 4.53126 8.86874 5.11876C8.28124 5.70626 7.57499 6.00001 6.74999 6.00001ZM14.25 3.00001C14.25 3.82501 13.9562 4.53126 13.3687 5.11876C12.7812 5.70626 12.075 6.00001 11.25 6.00001C11.1125 6.00001 10.9375 5.98426 10.725 5.95276C10.5125 5.92126 10.3375 5.88701 10.2 5.85001C10.5375 5.45001 10.797 5.00626 10.9785 4.51876C11.16 4.03126 11.2505 3.52501 11.25 3.00001C11.25 2.47502 11.1595 1.96877 10.9785 1.48127C10.7975 0.993768 10.538 0.550018 10.2 0.150019C10.375 0.087519 10.55 0.0467693 10.725 0.0277693C10.9 0.00876935 11.075 -0.000480769 11.25 1.92305e-05C12.075 1.92305e-05 12.7812 0.293769 13.3687 0.881268C13.9562 1.46877 14.25 2.17502 14.25 3.00001Z" fill="#144732"/>
+                        </svg>
+                        <span>Book a private tour</span>
+                    </a>
+                    <a href="#" class="btn-customer gold">
+                        <svg width="14" height="12" viewBox="0 0 14 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M0.875 11.1429C0.875 11.625 1.25781 12 1.75 12H6.125V7.71429H0.875V11.1429ZM7.875 12H12.25C12.7148 12 13.125 11.625 13.125 11.1429V7.71429H7.875V12ZM13.125 3.42857H11.9492C12.1406 3.10714 12.25 2.75893 12.25 2.35714C12.25 1.07143 11.1562 0 9.84375 0C8.69531 0 7.95703 0.589286 7.02734 1.84821C6.07031 0.589286 5.33203 0 4.21094 0C2.87109 0 1.80469 1.07143 1.80469 2.35714C1.80469 2.75893 1.88672 3.10714 2.07812 3.42857H0.875C0.382812 3.42857 0 3.83036 0 4.28571V6.42857C0 6.66964 0.191406 6.85714 0.4375 6.85714H13.5625C13.7812 6.85714 14 6.66964 14 6.42857V4.28571C14 3.83036 13.5898 3.42857 13.125 3.42857ZM4.18359 3.42857C3.58203 3.42857 3.08984 2.97321 3.08984 2.35714C3.08984 1.76786 3.58203 1.28571 4.18359 1.28571C4.73047 1.28571 5.14062 1.39286 6.5625 3.42857H4.18359ZM9.84375 3.42857H7.46484C8.88672 1.39286 9.26953 1.28571 9.84375 1.28571C10.4453 1.28571 10.9375 1.76786 10.9375 2.35714C10.9375 2.97321 10.4453 3.42857 9.84375 3.42857Z" fill="#C39958"/>
+                        </svg>
+
+                        <span>Buy as a gift</span>
+                    </a>
+                </div>
+                <div class="is_menu_social d-flex align-items-center justify-content-center">
+                    <a href="#" class="">  
+                        <svg width="11" height="19" viewBox="0 0 11 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M9.80859 10.375L10.3008 7.14062H7.17188V5.03125C7.17188 4.11719 7.59375 3.27344 9 3.27344H10.4414V0.496094C10.4414 0.496094 9.14062 0.25 7.91016 0.25C5.34375 0.25 3.65625 1.83203 3.65625 4.64453V7.14062H0.773438V10.375H3.65625V18.25H7.17188V10.375H9.80859Z" fill="#C39958"/>
+                        </svg>
+                    </a>
+                    <a href="#" class="">
+                        <svg width="18" height="16" viewBox="0 0 18 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M16.1367 4.59375C16.8398 4.06641 17.4727 3.43359 17.9648 2.69531C17.332 2.97656 16.5938 3.1875 15.8555 3.25781C16.6289 2.80078 17.1914 2.09766 17.4727 1.21875C16.7695 1.64062 15.9609 1.95703 15.1523 2.13281C14.4492 1.39453 13.5 0.972656 12.4453 0.972656C10.4062 0.972656 8.75391 2.625 8.75391 4.66406C8.75391 4.94531 8.78906 5.22656 8.85938 5.50781C5.80078 5.33203 3.05859 3.85547 1.23047 1.64062C0.914062 2.16797 0.738281 2.80078 0.738281 3.50391C0.738281 4.76953 1.37109 5.89453 2.39062 6.5625C1.79297 6.52734 1.19531 6.38672 0.703125 6.10547V6.14062C0.703125 7.93359 1.96875 9.41016 3.65625 9.76172C3.375 9.83203 3.02344 9.90234 2.70703 9.90234C2.46094 9.90234 2.25 9.86719 2.00391 9.83203C2.46094 11.3086 3.83203 12.3633 5.44922 12.3984C4.18359 13.3828 2.60156 13.9805 0.878906 13.9805C0.5625 13.9805 0.28125 13.9453 0 13.9102C1.61719 14.9648 3.55078 15.5625 5.66016 15.5625C12.4453 15.5625 16.1367 9.97266 16.1367 5.08594C16.1367 4.91016 16.1367 4.76953 16.1367 4.59375Z" fill="#C39958"/>
+                        </svg>
+                    </a>
+                    <a href="#" class="">
+                        <svg width="17" height="17" viewBox="0 0 17 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M8.875 4.20703C6.625 4.20703 4.83203 6.03516 4.83203 8.25C4.83203 10.5 6.625 12.293 8.875 12.293C11.0898 12.293 12.918 10.5 12.918 8.25C12.918 6.03516 11.0898 4.20703 8.875 4.20703ZM8.875 10.8867C7.43359 10.8867 6.23828 9.72656 6.23828 8.25C6.23828 6.80859 7.39844 5.64844 8.875 5.64844C10.3164 5.64844 11.4766 6.80859 11.4766 8.25C11.4766 9.72656 10.3164 10.8867 8.875 10.8867ZM14.0078 4.06641C14.0078 3.53906 13.5859 3.11719 13.0586 3.11719C12.5312 3.11719 12.1094 3.53906 12.1094 4.06641C12.1094 4.59375 12.5312 5.01562 13.0586 5.01562C13.5859 5.01562 14.0078 4.59375 14.0078 4.06641ZM16.6797 5.01562C16.6094 3.75 16.3281 2.625 15.4141 1.71094C14.5 0.796875 13.375 0.515625 12.1094 0.445312C10.8086 0.375 6.90625 0.375 5.60547 0.445312C4.33984 0.515625 3.25 0.796875 2.30078 1.71094C1.38672 2.625 1.10547 3.75 1.03516 5.01562C0.964844 6.31641 0.964844 10.2188 1.03516 11.5195C1.10547 12.7852 1.38672 13.875 2.30078 14.8242C3.25 15.7383 4.33984 16.0195 5.60547 16.0898C6.90625 16.1602 10.8086 16.1602 12.1094 16.0898C13.375 16.0195 14.5 15.7383 15.4141 14.8242C16.3281 13.875 16.6094 12.7852 16.6797 11.5195C16.75 10.2188 16.75 6.31641 16.6797 5.01562ZM14.9922 12.8906C14.7461 13.5938 14.1836 14.1211 13.5156 14.4023C12.4609 14.8242 10 14.7188 8.875 14.7188C7.71484 14.7188 5.25391 14.8242 4.23438 14.4023C3.53125 14.1211 3.00391 13.5938 2.72266 12.8906C2.30078 11.8711 2.40625 9.41016 2.40625 8.25C2.40625 7.125 2.30078 4.66406 2.72266 3.60938C3.00391 2.94141 3.53125 2.41406 4.23438 2.13281C5.25391 1.71094 7.71484 1.81641 8.875 1.81641C10 1.81641 12.4609 1.71094 13.5156 2.13281C14.1836 2.37891 14.7109 2.94141 14.9922 3.60938C15.4141 4.66406 15.3086 7.125 15.3086 8.25C15.3086 9.41016 15.4141 11.8711 14.9922 12.8906Z" fill="#C39958"/>
+                        </svg>
+                    </a>
+                </div>
+            </div> ` )
+
+            for (const key in objPopularTours) {
+                document.querySelector('.is_menu_tours').insertAdjacentHTML('beforeend', `
+                <li data-continent="${key}">
+                    <p class="is_menu_continent d-flex align-items-center justify-content-between">${key.split('-').join(' ')}<span class="plus"></span></p>
+                    <ul>
+                        <li class="is_menu_popular">
+                            <p class="d-flex align-items-center"></p>
+                            <ul></ul>
+                        </li>
+                    </ul>
+                </li>`)
+
+                for (let i = 0; i < objPopularTours[key].length; i++) {
+                    if (i < 4) {
+                        let tour = objPopularTours[key][i]
+                       
+                        document.querySelector(`.is_menu_tours [data-continent="${key}"] .is_menu_popular > p`).innerHTML = ` 
+                            <svg width="14" height="19" viewBox="0 0 14 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M7.875 0.865861C7.875 0.0111783 6.74479 -0.323263 6.23438 0.382779C1.75 7.10876 8.16667 7.40604 8.16667 10.6761C8.16667 12.0139 7.07292 13.0915 5.79688 13.0544C4.48438 13.0544 3.5 11.9767 3.5 10.6761V7.48036C3.5 6.66284 2.51562 6.29124 1.96875 6.8858C0.984375 7.92628 0 9.70997 0 11.8653C0 15.8042 3.13542 19 7 19C10.8281 19 14 15.8042 14 11.8653C14 5.54804 7.875 4.69335 7.875 0.865861Z" fill="#DB4446"/>
+                            </svg>
+                            <span>Popular tours in <span>${key.split('-').join(' ')}</span></span><span class="plus"></span>`
+                        document.querySelector(`.is_menu_tours [data-continent="${key}"] .is_menu_popular > ul`).insertAdjacentHTML('beforeend', `<li class="popular_tours_row ">${popularTout(tour.image, tour.rate, tour.name, tour.link)}</li>`)
+                    }
+                }
+
+                let citys = document.querySelectorAll(`.city_wr [data-name="${key}"] .block li`);
+                let listCountry = ''
+                for (let i = 0; i < citys.length; i++) {
+                    if (citys[i].classList.contains('country-16-title') || citys[i].classList.contains('country-16-title-nmt')) {
+                        let title = citys[i].querySelector('a').innerHTML
+                        if (i == citys.length - 1) {
+                            listCountry += `</ul></li>`
+                        } else {
+                            if (i != 0) {
+                                listCountry += `</ul><li><p class="d-flex align-items-center">${title} <span class="plus"></span></p><ul>`
+                            } else {
+                                listCountry += `<li><p class="d-flex align-items-center">${title}<span class="plus"></span></p><ul>`
+                            }
+                        }
+                    } else {
+                        listCountry += `<li>${citys[i].innerHTML}</li>`  
+                    }
+                    
+                }
+
+                document.querySelector(`.is_menu_tours [data-continent="${key}"] > ul`).insertAdjacentHTML('beforeend', listCountry)
+            }
+
+            document.querySelectorAll('.is_menu_tours li p').forEach(item => {
+                item.addEventListener('click', (e) => {
+                    e.currentTarget.parentElement.classList.toggle('active')
+                })
+            })
+            document.querySelector('.menu_btn').insertAdjacentHTML('afterend',`
+            <button type="button" class="menu_burger">
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect width="25.9735" height="2.16446" transform="matrix(0.703417 0.710777 -0.703417 0.710777 1.52246 0)" fill="#144732"/>
+                    <rect width="25.9735" height="2.16446" transform="matrix(-0.703417 0.710777 -0.703417 -0.710777 20 1.53857)" fill="#144732"/>
+                </svg>
+            </button>`);
+
+            document.querySelector('header .menu_burger').addEventListener('click', (e) => {
+                document.querySelector('header .search_btn').click()
+                e.currentTarget.classList.toggle('active');
+                if (e.currentTarget.classList.contains('active')) {
+                    document.querySelector('.is_menu').style.display = 'flex';
+                } else {
+                    document.querySelector('.is_menu').style = '';
+                }
+            })
+
+        
+        }   
+    });
+});
 pushDataLayer('loaded')
