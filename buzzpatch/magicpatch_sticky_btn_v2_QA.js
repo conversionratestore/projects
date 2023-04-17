@@ -308,7 +308,7 @@ const stickyBtns = () => {
 const getPacksInfo = () => {
     let packsInfo = []
 
-    const newPacks = document.querySelectorAll('.js-heading .list-packs')
+    const newPacks = document.querySelectorAll('#purchase .list-packs')
 
     for (const pack of newPacks) {
         const packPrice = pack.querySelector('.pcs').innerText.toUpperCase()
