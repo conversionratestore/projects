@@ -2973,9 +2973,15 @@ let photos = setInterval(() => {
             slide = `<li class="swiper-slide"><img src="${document.querySelector('.parallax-mirror img').src}" alt="item.alt"></li>` 
         }
 
-        console.log(slide)
+        if (document.querySelector('#my-gallery') != null || document.querySelector('.w3-content.w3-display-container') != null) {
+            document.querySelector('.photos-gallery').style = ''
+        } else {
+            document.querySelector('.photos-gallery').style.display = 'none'
+        }
+
         document.querySelector('.slider-gallery ul').insertAdjacentHTML('beforeend', slide)
         document.querySelector('.gallery ul.swiper-wrapper').insertAdjacentHTML('beforeend', slide)
+
         new Swiper(".gallery", {
             slidesPerView: 1,
             loop: true,
