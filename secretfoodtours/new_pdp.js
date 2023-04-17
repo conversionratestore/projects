@@ -3668,6 +3668,7 @@ state.then(state => {
                 display: none!important;
             }
             .menu_burger {
+                display: none;
                 cursor: pointer;
                 width: 25px;
                 border: none;
@@ -3682,6 +3683,12 @@ state.then(state => {
             }
             .menu_burger.active svg {
                 display: block;
+            }
+
+            @media screen and (max-width: 991px) {
+                .menu_burger {
+                    display: block;
+                }
             }
             </style>
             <div class="is_menu flex-column justify-content-between">
