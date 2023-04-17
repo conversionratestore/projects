@@ -2228,7 +2228,7 @@ let popularTout = (image, rate, name, link) =>  {
                     <div class="rate">${rate}</div>
                 </div>
                 <a href="${link}" class="name">${name}</a>
-                <a href="${link}" class="more d-flex align-items-center">Learn more
+                <a href="${link}" class="more d-flex align-items-center" onclick="pushDataLayer('Click on Learn more in Popular Tours', '${link}')">Learn more
                     <svg width="9" height="14" viewBox="0 0 9 14" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M0.999999 13L7 7L1 1" stroke="#C39958" stroke-width="2" stroke-linecap="round"/>
                     </svg>
@@ -2361,6 +2361,7 @@ let menuToElement = (event) => {
         event.target.closest('ul').querySelector('.active').classList.remove('active')
     }
     event.target.classList.add('active')
+    pushDataLayer('Click on navigation button in sticky menu', href.split('-').join(' '))
 }
 
 let initHeader = setInterval(() => {
@@ -2446,7 +2447,7 @@ let initHeader = setInterval(() => {
         })
 
         for (const key in objPopularTours) {
-            document.querySelectorAll(`.popular_tours_row`).forEach(item => {
+            document.querySelectorAll(`.popular_tours_col .popular_tours_row`).forEach(item => {
                 if (item.classList.contains(key)) {
                     for (let i = 0; i < objPopularTours[key].length; i++) {
                         if (i < 4) {
@@ -2471,13 +2472,13 @@ let initHeader = setInterval(() => {
             item.previousElementSibling.addEventListener('click', (e) => {
                 if (e.target.closest('.block_wr').querySelector('.active') != null) {
                     e.target.closest('.block_wr').querySelector('.active').classList.remove('active')
-                    document.querySelectorAll(`.popular_tours_row`).forEach(el => el.style.display = 'none')
+                    document.querySelectorAll(`.popular_tours_col .popular_tours_row`).forEach(el => el.style.display = 'none')
                 }
 
                 e.target.parentElement.classList.add('active')
-                document.querySelectorAll(`.popular_tours_row`)[index].style.display = 'flex';
+                document.querySelectorAll(`.popular_tours_col .popular_tours_row`)[index].style.display = 'flex';
                 document.querySelector('.popular_tours').style = '';
-                document.querySelector('.popular_tours .title > p').innerHTML = 'Popular tours in ' + document.querySelectorAll(`.popular_tours_row`)[index].dataset.continent
+                document.querySelector('.popular_tours .title > p').innerHTML = 'Popular tours in ' + document.querySelectorAll(`.popular_tours_col .popular_tours_row`)[index].dataset.continent
            })
         })
 
@@ -2520,13 +2521,13 @@ let init = setInterval(() => {
         //add "Book a private tour" and "Buy as a gift" button (header)
         document.querySelector('header .main_menu').insertAdjacentHTML('afterend', `
         <div class="d-md-flex d-none btns-header">
-            <a href="/private-bookings" class="btn-customer btn-private-tour d-flex align-items-center justify-content-center">
+            <a href="/private-bookings" class="btn-customer btn-private-tour d-flex align-items-center justify-content-center" onclick="pushDataLayer('Click on Book a Private Tour in header')">
                 <svg width="17" height="12" viewBox="0 0 17 12" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M0 12V9.90001C0 9.47501 0.1095 9.08426 0.328499 8.72776C0.547499 8.37126 0.837999 8.09951 1.2 7.91251C1.975 7.52501 2.7625 7.23426 3.56249 7.04026C4.36249 6.84626 5.17499 6.74951 5.99999 6.75001C6.82499 6.75001 7.63749 6.84701 8.43749 7.04101C9.23749 7.23501 10.025 7.52551 10.8 7.91251C11.1625 8.10001 11.4532 8.37201 11.6722 8.72851C11.8912 9.085 12.0005 9.47551 12 9.90001V12H0ZM13.5 12V9.75C13.5 9.20001 13.3467 8.67176 13.0402 8.16526C12.7337 7.65876 12.2995 7.22451 11.7375 6.86251C12.375 6.93751 12.975 7.06576 13.5375 7.24726C14.1 7.42876 14.625 7.65051 15.1125 7.91251C15.5625 8.16251 15.9062 8.44051 16.1437 8.74651C16.3812 9.05251 16.5 9.387 16.5 9.75V12H13.5ZM5.99999 6.00001C5.17499 6.00001 4.46874 5.70626 3.88124 5.11876C3.29375 4.53126 3 3.82501 3 3.00001C3 2.17502 3.29375 1.46877 3.88124 0.881268C4.46874 0.293769 5.17499 1.92305e-05 5.99999 1.92305e-05C6.82499 1.92305e-05 7.53124 0.293769 8.11874 0.881268C8.70624 1.46877 8.99999 2.17502 8.99999 3.00001C8.99999 3.82501 8.70624 4.53126 8.11874 5.11876C7.53124 5.70626 6.82499 6.00001 5.99999 6.00001ZM13.5 3.00001C13.5 3.82501 13.2062 4.53126 12.6187 5.11876C12.0312 5.70626 11.325 6.00001 10.5 6.00001C10.3625 6.00001 10.1875 5.98426 9.97499 5.95276C9.76249 5.92126 9.58749 5.88701 9.44999 5.85001C9.78749 5.45001 10.047 5.00626 10.2285 4.51876C10.41 4.03126 10.5005 3.52501 10.5 3.00001C10.5 2.47502 10.4095 1.96877 10.2285 1.48127C10.0475 0.993768 9.78799 0.550018 9.44999 0.150019C9.62499 0.087519 9.79998 0.0467693 9.97499 0.0277693C10.15 0.00876935 10.325 -0.000480769 10.5 1.92305e-05C11.325 1.92305e-05 12.0312 0.293769 12.6187 0.881268C13.2062 1.46877 13.5 2.17502 13.5 3.00001Z" fill="#144732"/>
                 </svg>
                 <span>Book a private tour</span>
             </a>
-            <a href="/buy-gift/" class="btn-customer gold align-items-center justify-content-center" style="display: none;">
+            <a href="/buy-gift/" class="btn-customer gold align-items-center justify-content-center" style="display: none;" onclick="pushDataLayer('Click on Buy as a gift in header')">
                 <svg width="14" height="12" viewBox="0 0 14 12" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M0.875 11.1429C0.875 11.625 1.25781 12 1.75 12H6.125V7.71429H0.875V11.1429ZM7.875 12H12.25C12.7148 12 13.125 11.625 13.125 11.1429V7.71429H7.875V12ZM13.125 3.42857H11.9492C12.1406 3.10714 12.25 2.75893 12.25 2.35714C12.25 1.07143 11.1562 0 9.84375 0C8.69531 0 7.95703 0.589286 7.02734 1.84821C6.07031 0.589286 5.33203 0 4.21094 0C2.87109 0 1.80469 1.07143 1.80469 2.35714C1.80469 2.75893 1.88672 3.10714 2.07812 3.42857H0.875C0.382812 3.42857 0 3.83036 0 4.28571V6.42857C0 6.66964 0.191406 6.85714 0.4375 6.85714H13.5625C13.7812 6.85714 14 6.66964 14 6.42857V4.28571C14 3.83036 13.5898 3.42857 13.125 3.42857ZM4.18359 3.42857C3.58203 3.42857 3.08984 2.97321 3.08984 2.35714C3.08984 1.76786 3.58203 1.28571 4.18359 1.28571C4.73047 1.28571 5.14062 1.39286 6.5625 3.42857H4.18359ZM9.84375 3.42857H7.46484C8.88672 1.39286 9.26953 1.28571 9.84375 1.28571C10.4453 1.28571 10.9375 1.76786 10.9375 2.35714C10.9375 2.97321 10.4453 3.42857 9.84375 3.42857Z" fill="#C39958"/>
                 </svg>
@@ -2557,7 +2558,7 @@ let init = setInterval(() => {
             <div class="header_sticky_top">
                 <div class="container d-flex justify-content-between ">
                     <div class="d-flex align-items-center">
-                        <a href="" class="back d-flex align-items-center">
+                        <a href="" class="back d-flex align-items-center" >
                             <svg width="15" height="16" viewBox="0 0 15 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M0.292893 7.29289C-0.0976315 7.68342 -0.0976315 8.31658 0.292893 8.70711L6.65685 15.0711C7.04738 15.4616 7.68054 15.4616 8.07107 15.0711C8.46159 14.6805 8.46159 14.0474 8.07107 13.6569L2.41421 8L8.07107 2.34315C8.46159 1.95262 8.46159 1.31946 8.07107 0.928932C7.68054 0.538408 7.04738 0.538408 6.65685 0.928932L0.292893 7.29289ZM15 7L1 7V9L15 9V7Z" fill="white"/>
                             </svg>
@@ -2567,7 +2568,7 @@ let init = setInterval(() => {
                     </div>
                     <div class="d-md-flex align-items-md-center d-none">
                         <div class="is_price"></div>
-                        <a href="#plugin" class="btn-customer gold-full">Book a tour</a>
+                        <a href="#plugin" class="btn-customer gold-full" onclick="pushDataLayer('Click on Book a tour in sticky menu')">Book a tour</a>
                     </div>
                 </div>
             </div>
@@ -2664,6 +2665,9 @@ let init = setInterval(() => {
         document.querySelector('.header_sticky .back span').innerHTML = 'All ' + document.querySelectorAll('.breadcrumbs-customer li a')[document.querySelectorAll('.breadcrumbs-customer li a').length - 2].innerHTML + ' tours'; //back text
         document.querySelector('.header_sticky .back').href = document.querySelectorAll('.breadcrumbs-customer li a')[document.querySelectorAll('.breadcrumbs-customer li a').length - 2].href; //back
 
+        document.querySelector('.header_sticky .back').addEventListener('click', (e) => {
+            pushDataLayer(`Click on ${e.currentTarget.innerText} in sticky menu`)
+        })
         let descrObj = ['clock_ic/Duration','library_ic/Type of tour','cutlery_ic/How much stops?','group_ic/Tour size','smile_ic/Awards','world_ic/language'];
 
         document.querySelector('#plugin').insertAdjacentHTML('afterbegin',`
@@ -3160,8 +3164,6 @@ let meeting_spot = setInterval(() => {
             })
         } else {
             if (document.querySelector('.meeting_spot > iframe') != null) {
-                // document.querySelector('.notate').after(document.querySelector('.meeting_spot > .text-disclaimer'))
-                // document.querySelector('.notate').after(document.querySelector('.meeting_spot > .text'))
                 document.querySelector('.notate').after(document.querySelector('.meeting_spot > iframe'))
             }
         }
@@ -3210,6 +3212,13 @@ let video = setInterval(() => {
         document.querySelector('.header_sticky_bottom .menu ul').insertAdjacentHTML('beforeend',`<li><a href="#video" onclick="menuToElement(event)">Video</a></li>`)
         document.querySelector('.video-section iframe').addEventListener('click', (e) => {
             pushDataLayer('Click on video')
+        })
+        let isVisibleVideo = false;
+        window.addEventListener('scroll', (e) => {
+            if (isScrolledIntoView('.video-section h2') == true && isVisibleVideo == false) {
+                isVisibleVideo = true;
+                pushDataLayer('Visibility video section')
+            }
         })
     }
 });
