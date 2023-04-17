@@ -2167,14 +2167,6 @@ header .main_menu {
         margin-right: -20px;
         padding-left: 20px;
     }
-    .help_center .container .right_help {
-        margin-top: 0;
-    }
-    .help_center .btn-customer {
-        width: calc(100% - 40px);
-        margin: 19px auto 45px;
-        background-color: #fff;
-    }
 }
 </style>`
 let pushDataLayer = (action, label = '') => {
