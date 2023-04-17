@@ -2139,6 +2139,14 @@ header .main_menu {
     .help_center .container .left_help {
         margin-bottom: 16px;
     }
+    .help_center .container .right_help {
+        margin-top: 0;
+    }
+    .help_center .btn-customer {
+        width: calc(100% - 40px);
+        margin: 19px auto 45px;
+        background-color: #fff;
+    }
 }
 </style>`
 let pushDataLayer = (action, label = '') => {
@@ -2927,17 +2935,24 @@ let init = setInterval(() => {
                             nextEl: ".slider-review .swiper-button-next",
                             prevEl: ".slider-review .swiper-button-prev",
                         },
-                        // breakpoints: {
-                        //     // when window width is >= 767px
-                        //     768: {
-                        //         slidesPerView: 1.1,
-                        //         spaceBetween: 16,
-                        //         pagination: {
-                        //           el: '.slider-review .swiper-pagination"',
-                        //           type: 'bullets',
-                        //         }
-                        //     }
-                        //   }
+                        breakpoints: {
+                            768: {
+                                slidesPerView: 1.1,
+                                spaceBetween: 16,
+                                pagination: {
+                                el: '.slider-review .swiper-pagination"',
+                                type: 'bullets',
+                                }
+                            },
+                            769: {
+                                slidesPerView: 2.5,
+                                spaceBetween: 20,
+                                pagination: {
+                                    el: ".slider-review .swiper-pagination",
+                                    type: "fraction",
+                                }
+                            }
+                        }
                     }); 
                 }
 
@@ -3278,27 +3293,34 @@ let photos = setInterval(() => {
 
         new Swiper(".slider-gallery", {
             slidesPerView: 2.5,
-            loop: true,
             spaceBetween: 20,
+            loop: true,
+            navigation: {
+                nextEl: ".slider-gallery .swiper-button-next",
+                prevEl: ".slider-gallery .swiper-button-prev",
+            }, 
             pagination: {
                 el: ".slider-gallery .swiper-pagination",
                 type: "fraction",
             },
-            navigation: {
-                nextEl: ".slider-gallery .swiper-button-next",
-                prevEl: ".slider-gallery .swiper-button-prev",
-            },
-            // breakpoints: {
-            //     // when window width is >= 767px
-            //     767: {
-            //       slidesPerView: 1.1,
-            //       spaceBetween: 16,
-            //       pagination: {
-            //         el: '.slider-gallery .swiper-pagination"',
-            //         type: 'bullets',
-            //       },
-            //     }
-            //   }
+            breakpoints: {
+                768: {
+                    slidesPerView: 1.1,
+                    spaceBetween: 16,
+                    pagination: {
+                      el: '.slider-gallery .swiper-pagination"',
+                      type: 'bullets',
+                    }
+                },
+                769: {
+                    slidesPerView: 2.5,
+                    spaceBetween: 20,
+                    pagination: {
+                        el: ".slider-gallery .swiper-pagination",
+                        type: "fraction",
+                    }
+                }
+              }
         });    
         
         
@@ -3422,16 +3444,26 @@ let faq = setInterval(() => {
         clearInterval(faq)
         let faqItems =  document.querySelectorAll('.help_center .container .block_wr');
         if ( faqItems.length > 7) {
-            faqItems[faqItems.length - 1].insertAdjacentHTML('afterend',`<button type="button" class="btn-customer d-flex align-items-center justify-content-center">
+           document.querySelector('.help_center').insertAdjacentHTML('beforeend',`<button type="button" class="btn-customer d-flex align-items-center justify-content-center">
                 <svg width="17" height="12" viewBox="0 0 17 12" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M0.25 12V9.90001C0.25 9.47501 0.3595 9.08426 0.578499 8.72776C0.797499 8.37126 1.088 8.09951 1.45 7.91251C2.225 7.52501 3.0125 7.23426 3.81249 7.04026C4.61249 6.84626 5.42499 6.74951 6.24999 6.75001C7.07499 6.75001 7.88749 6.84701 8.68749 7.04101C9.48749 7.23501 10.275 7.52551 11.05 7.91251C11.4125 8.10001 11.7032 8.37201 11.9222 8.72851C12.1412 9.085 12.2505 9.47551 12.25 9.90001V12H0.25ZM13.75 12V9.75C13.75 9.20001 13.5967 8.67176 13.2902 8.16526C12.9837 7.65876 12.5495 7.22451 11.9875 6.86251C12.625 6.93751 13.225 7.06576 13.7875 7.24726C14.35 7.42876 14.875 7.65051 15.3625 7.91251C15.8125 8.16251 16.1562 8.44051 16.3937 8.74651C16.6312 9.05251 16.75 9.387 16.75 9.75V12H13.75ZM6.24999 6.00001C5.42499 6.00001 4.71874 5.70626 4.13124 5.11876C3.54375 4.53126 3.25 3.82501 3.25 3.00001C3.25 2.17502 3.54375 1.46877 4.13124 0.881268C4.71874 0.293769 5.42499 1.92305e-05 6.24999 1.92305e-05C7.07499 1.92305e-05 7.78124 0.293769 8.36874 0.881268C8.95624 1.46877 9.24999 2.17502 9.24999 3.00001C9.24999 3.82501 8.95624 4.53126 8.36874 5.11876C7.78124 5.70626 7.07499 6.00001 6.24999 6.00001ZM13.75 3.00001C13.75 3.82501 13.4562 4.53126 12.8687 5.11876C12.2812 5.70626 11.575 6.00001 10.75 6.00001C10.6125 6.00001 10.4375 5.98426 10.225 5.95276C10.0125 5.92126 9.83749 5.88701 9.69999 5.85001C10.0375 5.45001 10.297 5.00626 10.4785 4.51876C10.66 4.03126 10.7505 3.52501 10.75 3.00001C10.75 2.47502 10.6595 1.96877 10.4785 1.48127C10.2975 0.993768 10.038 0.550018 9.69999 0.150019C9.87499 0.087519 10.05 0.0467693 10.225 0.0277693C10.4 0.00876935 10.575 -0.000480769 10.75 1.92305e-05C11.575 1.92305e-05 12.2812 0.293769 12.8687 0.881268C13.4562 1.46877 13.75 2.17502 13.75 3.00001Z" fill="#144732"/>
                 </svg>
                 <span>Load more</span>
             </button>`)
         }
-        // document.querySelectorAll('.help_center .container .block_wr').forEach(item => {
-
-        // })
+        document.querySelectorAll('.help_center .container .block_wr').forEach((item, index) => {
+            if (index > 7) {
+                item.style.display = 'none'
+            }
+        })
+        document.querySelector('.help_center .btn-customer').addEventListener('click', (e) => {
+            e.currentTarget.style = 'display: none!important;'
+            document.querySelectorAll('.help_center .container .block_wr').forEach((item, index) => {
+                if (index > 7) {
+                    item.style = ''
+                }
+            })
+        })
     }
 }, 100);
 pushDataLayer('loaded')
