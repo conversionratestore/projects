@@ -267,8 +267,6 @@ header .search_header {
     top: 0;
 }
 header .search_header input {
-    width: 400px!important;
-    margin-left: 30px;
     border: 1px solid #EBEBE7!important;
     border-radius: 20px!important;
     font-size: 14px!important;
@@ -371,6 +369,13 @@ header .search_btn {
     background: url(${dir}search-icon.svg) no-repeat center / 100%;
     margin-left: 20px;
 }
+
+@media screen and (min-width: 768px) {
+    header .search_header input {
+        width: 400px!important;
+        margin-left: 30px;
+    }
+}
 @media screen and (max-width: 1335px) {
     header .btns-header a {
         margin-left: 0;
@@ -380,10 +385,39 @@ header .search_btn {
     }
 }
 @media screen and (max-width: 767px) {
+    header {
+        padding: 10px 20px!important;
+        height: auto;
+    }
+    .inner_page header .container {
+        position: initial;
+        padding: 0!important;
+    }
     header .search_btn {
         display: block!important;
         margin-left: auto;
         margin-right: 24px;
+    }
+    header .search_header {
+        width: 100%!important;
+        display: flex!important;
+        right: 0;
+        top: 0;
+        opacity: 0;
+        padding: 9px 20px;
+        pointer-events: none;
+        background: #fff;
+    }
+    header .search_header.visible_search {
+        top: 100%;
+        opacity: 1;
+        pointer-events: auto;
+    }
+    #close_ic_desktop {
+        width: 12px;
+        height: 12px;
+        background: url('https://www.secretfoodtours.com/img/icons/close_green.svg') no-repeat center / contain;
+        right: 36px!important;
     }
 }
 
@@ -600,6 +634,7 @@ header .main_menu {
     padding: 6px 8px 3px;
     height: fit-content;
     white-space: nowrap;
+    width: fit-content;
 }
 .breadcrumbs-customer {
     margin-bottom: 20px;
@@ -701,8 +736,8 @@ header .main_menu {
     white-space: nowrap;
     color: #C39958;
 }
-.destination_page_wr .tour-intro .plugin_right .price.no-mobile {
-    display: none!important;
+.destination_page_wr .tour-intro .plugin_right .right-header .price .price.no-mobile {
+    display: block!important;
 }
 .right-header .price span, .destination_page_wr .tour-intro .plugin_right .price span {
     font-weight: 700;
@@ -1003,9 +1038,9 @@ header .main_menu {
     position: absolute;
     left: 14px;
     bottom: 4px;
-    height: 22px;
+    height: calc(100% - 8px - 36px);
     width: 2px;
-    border-left: 2px dashed #C39958;;
+    border-left: 2px dotted #C39958;;
 }
 .tour-do ul li svg {
     margin-right: 23px;
@@ -1718,6 +1753,197 @@ header .main_menu {
 .help_center .container .active_help .block_title .calc_ico {
     background: url(https://www.secretfoodtours.com/img/icons/minus_white.svg) no-repeat center / 12px!important;
 }
+
+@media screen and (max-width: 767px) {
+    .header_sticky {
+        display: none;
+    }
+    .tour-section > .container > div:not(.why-tour) > .left {
+        width: 100%;
+        padding-right: 0;
+    }
+    .breadcrumbs-customer li a, .breadcrumbs-customer li:not(:last-child):after {
+        font-size: 12px;
+        line-height: 12px;      
+    }
+    .tour-section {
+        padding: 24px 0;
+    }
+    .breadcrumbs-customer {
+        margin-bottom: 10px;
+    }
+    .best-seller {
+        font-size: 12px;
+        line-height: 12px;
+        margin-bottom: 6px;
+    }
+    .tour-section h1 {
+        font-size: 24px;
+        line-height: 38px;
+    }
+    .rating {
+        margin: 12px 0 20px;
+    }
+    .rating .to-rating {
+        border-right: none;
+        margin: 0;
+        padding: 0;
+    }
+    .star-row {
+        margin-bottom: 12px;
+    }
+    .gallery .swiper-wrapper {
+        height: 74.66vw;
+        margin-bottom: auto;
+        border-radius: 20px;
+    }
+    .gallery:after {
+        height: calc(100% - 80px);
+    }
+    .gallery {
+        height: calc(74.66vw + 80px);
+        background: #F3F3F3;
+    }
+    .gallery > div {
+        padding: 16px 12px;
+    }
+    .btn-gallery {
+        color: #C39958;
+        border-color: #C39958;
+        padding: 11px;
+    }
+    .btn-gallery svg path{
+        fill: #C39958;
+    }
+    .gallery-count {
+        color: #144732;
+        padding: 0 5px;
+        min-width: 38px;
+        justify-content: center;
+        font-size: 16px;
+    }
+    .btn-arrow {
+        border-color: rgba(20, 71, 50, 0.3);
+    }
+    .btn-arrow svg path {
+        stroke: #144732;
+    }
+    .descr-section {
+        padding: 8px 20px;
+        margin-left: -20px;
+        margin-right: -20px;
+        width: calc(100% + 40px);
+        border-radius: 0;
+    }
+    .descr-section .row > div {
+        padding-top: 12px;
+        padding-bottom: 12px;
+        border-bottom: 1px solid #EBEBE7;
+    }
+    .descr-section .name {
+        margin: 0 0 6px;
+        padding: 0;
+    }
+    .descr-section .info {
+        font-size: 16px;
+        line-height: 22px;
+    }
+    .descr-section img {
+        max-width: 20px;
+    }
+    .item-group_ic {
+        order: 6;
+        border: none;
+    }
+    .item-cutlery_ic {
+        order: 5;
+        border: none;
+    }
+    .item-world_ic {
+        order: 4;
+    }
+    .item-library_ic {
+        order: 3;
+    }
+    .item-smile_ic {
+        order: 2;
+    }
+    .awards-desktop {
+        display: block;
+        border: 2px solid #F3F3F3;
+        border-radius: 20px 20px 0 0;
+        padding: 16x 7px 8px;
+    }
+    .brands {
+        margin: 25px 0 60px;
+        padding: 16px;
+    }
+    .tour-drinks .main_subheading, .tour-do .title, .meeting-spot .title, .other-tours h2, .video-section h2, .photos-gallery h2, .tour-section .review h2 {
+        font-size: 24px;
+        line-height: 32px;
+        margin: 0 0 16px 0;
+    }
+    .food_wr, .drinks {
+        padding: 20px 20px 0 20px;
+        flex-wrap: wrap;
+    }
+    .food_block {
+        margin-bottom: 20px;
+    }
+    .tour-drinks {
+        padding-bottom: 36px;
+        margin-bottom: 0;
+    }
+    .tour-drinks::before {
+        top: 48px;
+    }
+    .tour-drinks > p {
+        max-width: calc(100% - 40px)!important;
+        padding: 16px;
+    }
+    .drinks {
+        padding-bottom: 20px;
+    }
+    .drinks .title {
+        line-height: 26px;
+    }
+    .drinks ul {
+        margin-bottom: 20px;
+    }
+    .drinks .buy-2 {
+        width: 100%;
+        margin: 0 0 20px 0;
+        height: auto;
+    }
+    .tour-do ul {
+        margin-top: 20px;
+        padding: 24px 20px;
+        margin-left: -20px;
+        margin-right: -20px;
+        border-radius: 0;
+    }
+    .tour-do ul li {
+        align-items: flex-start;
+    }
+    .tour-do ul li:not(:last-child):before {
+        bottom: 7px;
+        height: calc(100% - 14px - 36px);
+    }
+    .tour-do ul li:not(:last-child) {
+        padding-bottom: 24px;
+    }
+    .tour-do .note {
+        margin-top: 16px;
+        padding: 20px 16px;
+    }
+    .meeting-spot__left {
+        width: 100%;
+        padding: 0;
+    }
+    .meeting-spot .notate {
+        margin: 16px 0;
+    }
+}
 </style>`
 
 const state = new Promise((resolve, reject) => {
@@ -1920,6 +2146,9 @@ let initHeader = setInterval(() => {
                 }
             })
         })
+        document.querySelector('#close_ic_desktop').addEventListener('click', () => {
+            document.querySelector('.search_header').classList.remove('visible_search')
+        })
 
         //dropdown
         //add menu right
@@ -2014,9 +2243,16 @@ let initHeader = setInterval(() => {
     }
 })
 let price = setInterval(() => {
-    if (document.querySelector('#plugin iframe') != null && document.querySelector('.right-header .price') != null &&  document.querySelector('.header_sticky .is_price') != null) {
+    if ((document.querySelector('#plugin iframe') != null || window.matchMedia("(max-width: 767px)").matches) && document.querySelector('.right-header .price') != null &&  document.querySelector('.header_sticky .is_price') != null) {
         if (document.querySelector('#plugin .price.no-mobile') != null ) {
             clearInterval(price)
+            console.log('price')
+            document.querySelectorAll('.plugin_right .price.no-mobile').forEach(item => {
+                console.log(item.innerHTML)
+                if (!item.innerHTML.includes('price no-mobile')) {
+                    item.style = 'display: none';
+                }
+            })
             document.querySelector('.right-header .price').innerHTML = `${document.querySelector('#plugin .price.no-mobile').innerHTML.split('/ ')[0]} per adult`
             document.querySelector('.header_sticky .is_price').innerHTML = document.querySelector('#plugin .price.no-mobile').innerHTML;
         } else if (document.querySelector('#plugin [style="background-color: #0a88ff; padding:10px;"]') != null ) {
@@ -2028,7 +2264,7 @@ let price = setInterval(() => {
     }
 });
 let init = setInterval(() => {
-    if (document.querySelector('#plugin iframe') != null && document.querySelector('header .main_menu') != null) {
+    if ((document.querySelector('#plugin iframe') != null || window.matchMedia("(max-width: 767px)").matches) && document.querySelector('header .main_menu') != null) {
         clearInterval(init)
         document.body.insertAdjacentHTML('afterbegin', styles);
 
@@ -2052,7 +2288,7 @@ let init = setInterval(() => {
 
 
         document.querySelector('.main_container').insertAdjacentHTML('afterend',`
-        <div class="social-fixed">
+        <div class="social-fixed d-md-block d-none">
             <a href="https://www.facebook.com/secretfoodtours" target="_blank" class="d-flex align-items-center">
                 <svg class="m-auto" width="11" height="19" viewBox="0 0 11 19" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M9.76306 10.6943L10.2552 7.45996H7.12634V5.35059C7.12634 4.43652 7.54822 3.59277 8.95447 3.59277H10.3959V0.81543C10.3959 0.81543 9.09509 0.569336 7.86462 0.569336C5.29822 0.569336 3.61072 2.15137 3.61072 4.96387V7.45996H0.727905V10.6943H3.61072V18.5693H7.12634V10.6943H9.76306Z" fill="#C39958"/>
@@ -2101,16 +2337,17 @@ let init = setInterval(() => {
                 <div class="d-flex flex-wrap">
                     <div class="left">
                         <ul class="breadcrumbs-customer"></ul>
-                        <div class="d-flex align-items-center">
+                        <div class="d-flex align-items-md-center flex-md-row flex-column-reverse">
                             <h1></h1>
                         </div>
-                        <div class="rating d-flex align-items-center"></div>
+                        <div class="rating d-md-flex align-items-center"></div>
                         <div class="gallery d-flex align-items-end"></div>
                         <div class="descr-section "> 
                             <div class="row "> </div>
                         </div>
                         <div class="brands">
-                            <img src="${dir}/brands.png" alt="">
+                            <img src="${dir}/brands.png" alt="brands" class="d-md-block d-none">
+                            <img src="${dir}/brands-mob.png" alt="brands" class="d-md-none">
                         </div>
                         <div class="tour-do" id="tour-do"></div>
                         
@@ -2180,68 +2417,77 @@ let init = setInterval(() => {
                 <h2>Book your tour</h2>
                 <p class="price"></p>
             </div>`)
-        document.querySelector('#plugin iframe').insertAdjacentHTML('afterend', `
-            <div class="right-content">
-                <div class="d-flex justify-content-between">
-                    <a href="/private-bookings" class="btn-customer">Book a private tour</a>
-                    <a href="/buy-gift/" class="btn-customer gold">Buy as a gift</a>
-                </div>
-                <hr>
-                <div class="link-customer d-flex align-items-center justify-content-center">
-                    <p class="tooltipe">
-                        <svg width="15" height="16" viewBox="0 0 15 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M7.91176 16L7.70588 13.6H7.5C5.55098 13.6 3.89706 12.94 2.53824 11.62C1.17941 10.3 0.5 8.69333 0.5 6.8C0.5 4.90667 1.17941 3.3 2.53824 1.98C3.89706 0.66 5.55098 0 7.5 0C8.47451 0 9.38396 0.176533 10.2284 0.5296C11.0727 0.882667 11.8139 1.36933 12.4519 1.9896C13.0898 2.60987 13.5905 3.32987 13.954 4.1496C14.3175 4.96933 14.4995 5.8528 14.5 6.8C14.5 7.8 14.3317 8.76 13.9952 9.68C13.6586 10.6 13.1988 11.4533 12.6158 12.24C12.0327 13.0267 11.3396 13.74 10.5364 14.38C9.73314 15.02 8.85827 15.56 7.91176 16ZM7.47941 11.18C7.71275 11.18 7.91176 11.1 8.07647 10.94C8.24118 10.78 8.32353 10.5867 8.32353 10.36C8.32353 10.1333 8.24118 9.94 8.07647 9.78C7.91176 9.62 7.71275 9.54 7.47941 9.54C7.24608 9.54 7.04706 9.62 6.88235 9.78C6.71765 9.94 6.63529 10.1333 6.63529 10.36C6.63529 10.5867 6.71765 10.78 6.88235 10.94C7.04706 11.1 7.24608 11.18 7.47941 11.18ZM6.88235 8.64H8.11765C8.11765 8.24 8.15882 7.96 8.24118 7.8C8.32353 7.64 8.58431 7.34667 9.02353 6.92C9.27059 6.68 9.47647 6.42 9.64118 6.14C9.80588 5.86 9.88824 5.56 9.88824 5.24C9.88824 4.56 9.65133 4.04987 9.17753 3.7096C8.70372 3.36933 8.14455 3.19947 7.5 3.2C6.89608 3.2 6.38824 3.36347 5.97647 3.6904C5.56471 4.01733 5.27647 4.41387 5.11176 4.88L6.26471 5.32C6.33333 5.09333 6.46373 4.86987 6.65588 4.6496C6.84804 4.42933 7.12941 4.31947 7.5 4.32C7.87059 4.32 8.14839 4.42 8.33341 4.62C8.51843 4.82 8.61122 5.04 8.61176 5.28C8.61176 5.50667 8.54314 5.71013 8.40588 5.8904C8.26863 6.07067 8.10392 6.25387 7.91176 6.44C7.43137 6.84 7.13957 7.1568 7.03635 7.3904C6.93314 7.624 6.8818 8.04053 6.88235 8.64Z" fill="#333333"/>
-                        </svg>
-                        <span class="tooltipe-content"> </span>
-                    </p>
-                    <a href="mailto:contact@secrettours.com" class="underline"> Help with booking</a>
-                </div>
+
+        let footerRightHTML = `
+        <div class="right-footer">
+            <p>Over 21,000 Reviews</p>
+            <div class="d-flex align-items-center">
+                <svg width="60" height="38" viewBox="0 0 60 38" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M55.0961 11.0677L60 5.80483H49.1252C43.681 2.13646 37.1061 0 29.9954 0C22.8938 0 16.3372 2.14106 10.9021 5.80483H0L4.90389 11.0677C1.89804 13.773 0.01367 17.6698 0.01367 21.9965C0.01367 30.1618 6.72481 36.7817 15.0024 36.7817C18.9346 36.7817 22.5171 35.2857 25.1916 32.8402L29.9956 38L34.7995 32.8447C37.474 35.2902 41.052 36.7817 44.9842 36.7817C53.2617 36.7817 59.9819 30.1618 59.9819 21.9965C59.9863 17.6653 58.1021 13.7686 55.0961 11.0677ZM15.0068 32.0026C9.40362 32.0026 4.86311 27.5237 4.86311 21.9965C4.86311 16.4694 9.40374 11.9904 15.0068 11.9904C20.6099 11.9904 25.1506 16.4694 25.1506 21.9965C25.1506 27.5237 20.6099 32.0026 15.0068 32.0026ZM30 21.7054C30 15.1212 25.1461 9.46871 18.7392 7.05447C22.2037 5.6256 26.0042 4.83284 29.9954 4.83284C33.9867 4.83284 37.7916 5.6256 41.2562 7.05447C34.854 9.4732 30 15.1213 30 21.7054ZM44.9887 32.0026C39.3855 32.0026 34.8449 27.5237 34.8449 21.9965C34.8449 16.4694 39.3855 11.9904 44.9887 11.9904C50.5919 11.9904 55.1324 16.4694 55.1324 21.9965C55.1324 27.5237 50.5918 32.0026 44.9887 32.0026ZM44.9887 16.747C42.0509 16.747 39.6715 19.0941 39.6715 21.992C39.6715 24.8899 42.0509 27.2369 44.9887 27.2369C47.9265 27.2369 50.3058 24.8899 50.3058 21.992C50.3057 19.0985 47.9265 16.747 44.9887 16.747ZM20.3239 21.9965C20.3239 24.8944 17.9446 27.2414 15.0068 27.2414C12.0691 27.2414 9.68977 24.8944 9.68977 21.9965C9.68977 19.0985 12.0691 16.7515 15.0068 16.7515C17.9446 16.747 20.3239 19.0985 20.3239 21.9965Z" fill="#333333"/>
+                </svg>
+                <p>
+                    <svg width="86" height="14" viewBox="0 0 86 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="7" cy="7" r="6" stroke="#333333" stroke-width="2"/>
+                        <circle cx="7" cy="7" r="3" fill="#333333"/>
+                        <circle cx="25" cy="7" r="6" stroke="#333333" stroke-width="2"/>
+                        <circle cx="25" cy="7" r="3" fill="#333333"/>
+                        <circle cx="43" cy="7" r="6" stroke="#333333" stroke-width="2"/>
+                        <circle cx="43" cy="7" r="3" fill="#333333"/>
+                        <circle cx="61" cy="7" r="6" stroke="#333333" stroke-width="2"/>
+                        <circle cx="61" cy="7" r="3" fill="#333333"/>
+                        <circle cx="79" cy="7" r="6" stroke="#333333" stroke-width="2"/>
+                        <circle cx="79" cy="7" r="3" fill="#333333"/>
+                    </svg>
+                    As recommended by 99% of users on TripAdvisor
+                </p>
             </div>
-            <div class="right-footer">
-                <p>Over 21,000 Reviews</p>
-                <div class="d-flex align-items-center">
-                    <svg width="60" height="38" viewBox="0 0 60 38" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M55.0961 11.0677L60 5.80483H49.1252C43.681 2.13646 37.1061 0 29.9954 0C22.8938 0 16.3372 2.14106 10.9021 5.80483H0L4.90389 11.0677C1.89804 13.773 0.01367 17.6698 0.01367 21.9965C0.01367 30.1618 6.72481 36.7817 15.0024 36.7817C18.9346 36.7817 22.5171 35.2857 25.1916 32.8402L29.9956 38L34.7995 32.8447C37.474 35.2902 41.052 36.7817 44.9842 36.7817C53.2617 36.7817 59.9819 30.1618 59.9819 21.9965C59.9863 17.6653 58.1021 13.7686 55.0961 11.0677ZM15.0068 32.0026C9.40362 32.0026 4.86311 27.5237 4.86311 21.9965C4.86311 16.4694 9.40374 11.9904 15.0068 11.9904C20.6099 11.9904 25.1506 16.4694 25.1506 21.9965C25.1506 27.5237 20.6099 32.0026 15.0068 32.0026ZM30 21.7054C30 15.1212 25.1461 9.46871 18.7392 7.05447C22.2037 5.6256 26.0042 4.83284 29.9954 4.83284C33.9867 4.83284 37.7916 5.6256 41.2562 7.05447C34.854 9.4732 30 15.1213 30 21.7054ZM44.9887 32.0026C39.3855 32.0026 34.8449 27.5237 34.8449 21.9965C34.8449 16.4694 39.3855 11.9904 44.9887 11.9904C50.5919 11.9904 55.1324 16.4694 55.1324 21.9965C55.1324 27.5237 50.5918 32.0026 44.9887 32.0026ZM44.9887 16.747C42.0509 16.747 39.6715 19.0941 39.6715 21.992C39.6715 24.8899 42.0509 27.2369 44.9887 27.2369C47.9265 27.2369 50.3058 24.8899 50.3058 21.992C50.3057 19.0985 47.9265 16.747 44.9887 16.747ZM20.3239 21.9965C20.3239 24.8944 17.9446 27.2414 15.0068 27.2414C12.0691 27.2414 9.68977 24.8944 9.68977 21.9965C9.68977 19.0985 12.0691 16.7515 15.0068 16.7515C17.9446 16.747 20.3239 19.0985 20.3239 21.9965Z" fill="#333333"/>
+            <div class="d-flex align-items-center">
+                <svg width="60" height="50" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M47 25.5205C47 23.8955 46.8542 22.333 46.5833 20.833H25V29.708H37.3333C36.7917 32.5622 35.1667 34.9788 32.7292 36.6038V42.3747H40.1667C44.5 38.3747 47 32.4997 47 25.5205Z" fill="#333333"/>
+                    <path d="M24.9993 47.9167C31.1868 47.9167 36.3743 45.875 40.166 42.375L32.7285 36.6042C30.6868 37.9792 28.0827 38.8125 24.9993 38.8125C19.041 38.8125 13.9785 34.7917 12.166 29.375H4.54102V35.2917C8.31185 42.7708 16.041 47.9167 24.9993 47.9167Z" fill="#333333"/>
+                    <path d="M12.1673 29.3545C11.709 27.9795 11.4382 26.5212 11.4382 25.0003C11.4382 23.4795 11.709 22.0212 12.1673 20.6462V14.7295H4.54232C2.97982 17.8128 2.08398 21.292 2.08398 25.0003C2.08398 28.7087 2.97982 32.1878 4.54232 35.2712L10.4798 30.6462L12.1673 29.3545Z" fill="#333333"/>
+                    <path d="M24.9993 11.208C28.3743 11.208 31.3743 12.3747 33.7702 14.6247L40.3327 8.06217C36.3535 4.35384 31.1868 2.08301 24.9993 2.08301C16.041 2.08301 8.31185 7.22884 4.54102 14.7288L12.166 20.6455C13.9785 15.2288 19.041 11.208 24.9993 11.208Z" fill="#333333"/>
+                </svg>
+                <p>
+                    <svg width="78" height="14" viewBox="0 0 78 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M7 0L8.6458 4.73475L13.6574 4.83688L9.66296 7.86525L11.1145 12.6631L7 9.8L2.8855 12.6631L4.33704 7.86525L0.342604 4.83688L5.3542 4.73475L7 0Z" fill="#333333"/>
+                        <path d="M23 0L24.6458 4.73475L29.6574 4.83688L25.663 7.86525L27.1145 12.6631L23 9.8L18.8855 12.6631L20.337 7.86525L16.3426 4.83688L21.3542 4.73475L23 0Z" fill="#333333"/>
+                        <path d="M39 0L40.6458 4.73475L45.6574 4.83688L41.663 7.86525L43.1145 12.6631L39 9.8L34.8855 12.6631L36.337 7.86525L32.3426 4.83688L37.3542 4.73475L39 0Z" fill="#333333"/>
+                        <path d="M55 0L56.6458 4.73475L61.6574 4.83688L57.663 7.86525L59.1145 12.6631L55 9.8L50.8855 12.6631L52.337 7.86525L48.3426 4.83688L53.3542 4.73475L55 0Z" fill="#333333"/>
+                        <path d="M71 0L72.6458 4.73475L77.6574 4.83688L73.663 7.86525L75.1145 12.6631L71 9.8L66.8855 12.6631L68.337 7.86525L64.3426 4.83688L69.3542 4.73475L71 0Z" fill="#333333"/>
                     </svg>
-                    <p>
-                        <svg width="86" height="14" viewBox="0 0 86 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <circle cx="7" cy="7" r="6" stroke="#333333" stroke-width="2"/>
-                            <circle cx="7" cy="7" r="3" fill="#333333"/>
-                            <circle cx="25" cy="7" r="6" stroke="#333333" stroke-width="2"/>
-                            <circle cx="25" cy="7" r="3" fill="#333333"/>
-                            <circle cx="43" cy="7" r="6" stroke="#333333" stroke-width="2"/>
-                            <circle cx="43" cy="7" r="3" fill="#333333"/>
-                            <circle cx="61" cy="7" r="6" stroke="#333333" stroke-width="2"/>
-                            <circle cx="61" cy="7" r="3" fill="#333333"/>
-                            <circle cx="79" cy="7" r="6" stroke="#333333" stroke-width="2"/>
-                            <circle cx="79" cy="7" r="3" fill="#333333"/>
-                        </svg>
-                        As recommended by 99% of users on TripAdvisor
-                    </p>
-                </div>
-                <div class="d-flex align-items-center">
-                    <svg width="60" height="50" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M47 25.5205C47 23.8955 46.8542 22.333 46.5833 20.833H25V29.708H37.3333C36.7917 32.5622 35.1667 34.9788 32.7292 36.6038V42.3747H40.1667C44.5 38.3747 47 32.4997 47 25.5205Z" fill="#333333"/>
-                        <path d="M24.9993 47.9167C31.1868 47.9167 36.3743 45.875 40.166 42.375L32.7285 36.6042C30.6868 37.9792 28.0827 38.8125 24.9993 38.8125C19.041 38.8125 13.9785 34.7917 12.166 29.375H4.54102V35.2917C8.31185 42.7708 16.041 47.9167 24.9993 47.9167Z" fill="#333333"/>
-                        <path d="M12.1673 29.3545C11.709 27.9795 11.4382 26.5212 11.4382 25.0003C11.4382 23.4795 11.709 22.0212 12.1673 20.6462V14.7295H4.54232C2.97982 17.8128 2.08398 21.292 2.08398 25.0003C2.08398 28.7087 2.97982 32.1878 4.54232 35.2712L10.4798 30.6462L12.1673 29.3545Z" fill="#333333"/>
-                        <path d="M24.9993 11.208C28.3743 11.208 31.3743 12.3747 33.7702 14.6247L40.3327 8.06217C36.3535 4.35384 31.1868 2.08301 24.9993 2.08301C16.041 2.08301 8.31185 7.22884 4.54102 14.7288L12.166 20.6455C13.9785 15.2288 19.041 11.208 24.9993 11.208Z" fill="#333333"/>
-                    </svg>
-                    <p>
-                        <svg width="78" height="14" viewBox="0 0 78 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M7 0L8.6458 4.73475L13.6574 4.83688L9.66296 7.86525L11.1145 12.6631L7 9.8L2.8855 12.6631L4.33704 7.86525L0.342604 4.83688L5.3542 4.73475L7 0Z" fill="#333333"/>
-                            <path d="M23 0L24.6458 4.73475L29.6574 4.83688L25.663 7.86525L27.1145 12.6631L23 9.8L18.8855 12.6631L20.337 7.86525L16.3426 4.83688L21.3542 4.73475L23 0Z" fill="#333333"/>
-                            <path d="M39 0L40.6458 4.73475L45.6574 4.83688L41.663 7.86525L43.1145 12.6631L39 9.8L34.8855 12.6631L36.337 7.86525L32.3426 4.83688L37.3542 4.73475L39 0Z" fill="#333333"/>
-                            <path d="M55 0L56.6458 4.73475L61.6574 4.83688L57.663 7.86525L59.1145 12.6631L55 9.8L50.8855 12.6631L52.337 7.86525L48.3426 4.83688L53.3542 4.73475L55 0Z" fill="#333333"/>
-                            <path d="M71 0L72.6458 4.73475L77.6574 4.83688L73.663 7.86525L75.1145 12.6631L71 9.8L66.8855 12.6631L68.337 7.86525L64.3426 4.83688L69.3542 4.73475L71 0Z" fill="#333333"/>
-                        </svg>
-                        As recommended by 99% of users on Google reviews
-                    </p>
-                </div>
-            </div>`)
+                    As recommended by 99% of users on Google reviews
+                </p>
+            </div>
+        </div>`
+        if (window.matchMedia("(max-width: 767px)").matches) {
+            document.querySelector('.descr-section').insertAdjacentHTML('afterend', footerRightHTML)
 
-        document.querySelector('.tooltipe-content').innerHTML = document.querySelector('#plugin .text-red').innerHTML;
+            document.querySelector('.descr-section').after(document.querySelector('.awards-desktop'))
+        } else {
+            document.querySelector('#plugin iframe').insertAdjacentHTML('afterend', `
+                <div class="right-content">
+                    <div class="d-flex justify-content-between">
+                        <a href="/private-bookings" class="btn-customer">Book a private tour</a>
+                        <a href="/buy-gift/" class="btn-customer gold">Buy as a gift</a>
+                    </div>
+                    <hr>
+                    <div class="link-customer d-flex align-items-center justify-content-center">
+                        <p class="tooltipe">
+                            <svg width="15" height="16" viewBox="0 0 15 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M7.91176 16L7.70588 13.6H7.5C5.55098 13.6 3.89706 12.94 2.53824 11.62C1.17941 10.3 0.5 8.69333 0.5 6.8C0.5 4.90667 1.17941 3.3 2.53824 1.98C3.89706 0.66 5.55098 0 7.5 0C8.47451 0 9.38396 0.176533 10.2284 0.5296C11.0727 0.882667 11.8139 1.36933 12.4519 1.9896C13.0898 2.60987 13.5905 3.32987 13.954 4.1496C14.3175 4.96933 14.4995 5.8528 14.5 6.8C14.5 7.8 14.3317 8.76 13.9952 9.68C13.6586 10.6 13.1988 11.4533 12.6158 12.24C12.0327 13.0267 11.3396 13.74 10.5364 14.38C9.73314 15.02 8.85827 15.56 7.91176 16ZM7.47941 11.18C7.71275 11.18 7.91176 11.1 8.07647 10.94C8.24118 10.78 8.32353 10.5867 8.32353 10.36C8.32353 10.1333 8.24118 9.94 8.07647 9.78C7.91176 9.62 7.71275 9.54 7.47941 9.54C7.24608 9.54 7.04706 9.62 6.88235 9.78C6.71765 9.94 6.63529 10.1333 6.63529 10.36C6.63529 10.5867 6.71765 10.78 6.88235 10.94C7.04706 11.1 7.24608 11.18 7.47941 11.18ZM6.88235 8.64H8.11765C8.11765 8.24 8.15882 7.96 8.24118 7.8C8.32353 7.64 8.58431 7.34667 9.02353 6.92C9.27059 6.68 9.47647 6.42 9.64118 6.14C9.80588 5.86 9.88824 5.56 9.88824 5.24C9.88824 4.56 9.65133 4.04987 9.17753 3.7096C8.70372 3.36933 8.14455 3.19947 7.5 3.2C6.89608 3.2 6.38824 3.36347 5.97647 3.6904C5.56471 4.01733 5.27647 4.41387 5.11176 4.88L6.26471 5.32C6.33333 5.09333 6.46373 4.86987 6.65588 4.6496C6.84804 4.42933 7.12941 4.31947 7.5 4.32C7.87059 4.32 8.14839 4.42 8.33341 4.62C8.51843 4.82 8.61122 5.04 8.61176 5.28C8.61176 5.50667 8.54314 5.71013 8.40588 5.8904C8.26863 6.07067 8.10392 6.25387 7.91176 6.44C7.43137 6.84 7.13957 7.1568 7.03635 7.3904C6.93314 7.624 6.8818 8.04053 6.88235 8.64Z" fill="#333333"/>
+                            </svg>
+                            <span class="tooltipe-content"> </span>
+                        </p>
+                        <a href="mailto:contact@secrettours.com" class="underline"> Help with booking</a>
+                    </div>
+                </div>
+                ${footerRightHTML}`)
+                document.querySelector('.tooltipe-content').innerHTML = document.querySelector('#plugin .text-red').innerHTML;
+        
+                document.querySelector('.link-customer').after(document.querySelector('.awards-desktop'))
+        }
 
-        document.querySelector('.link-customer').after(document.querySelector('.awards-desktop'))
 
         for (let i = 0; i < descrObj.length; i++) {
             let icon = descrObj[i].split('/')[0];
@@ -2251,9 +2497,9 @@ let init = setInterval(() => {
                 let info = document.querySelector(`.destination_page_wr .destination_descr .${icon}`).nextElementSibling.innerText.trim();
             
                 document.querySelector(`.left .descr-section .row`).insertAdjacentHTML('beforeend',`
-                <div class="col-4">
+                <div class="col-md-4 col-6 item-${icon}">
                     <p class="name">${iconName}</p>
-                    <div class="d-flex align-items-center">
+                    <div class="d-flex align-items-md-center">
                         <img src="${dir+icon}.svg">
                         <p class="info">${info}</p>
                     </div>
@@ -2275,7 +2521,10 @@ let init = setInterval(() => {
 
                 //body rate
                 document.querySelector('.rating').insertAdjacentElement('beforeend', rateEl)
-                document.querySelector('.rating').insertAdjacentHTML('beforeend', `<p class="to-rating">/5 Rating </p>
+                document.querySelector('.rating').insertAdjacentHTML('beforeend', `<div class="star-row d-flex align-items-center">
+                    <p class="to-rating">/5 Rating </p>
+                </div>
+                <div class="d-flex align-items-center">
                     <svg width="23" height="15" viewBox="0 0 23 15" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M20.2986 4.57758L22.1053 2.63862H18.0988C16.093 1.28712 13.6707 0.5 11.051 0.5C8.43456 0.5 6.01898 1.28881 4.01654 2.63862H0L1.8067 4.57758C0.699278 5.57425 0.00503632 7.00992 0.00503632 8.60398C0.00503632 11.6122 2.47756 14.0512 5.5272 14.0512C6.97591 14.0512 8.29577 13.5 9.2811 12.599L11.051 14.5L12.8209 12.6007C13.8062 13.5017 15.1244 14.0512 16.5731 14.0512C19.6227 14.0512 22.0986 11.6122 22.0986 8.60398C22.1002 7.00827 21.406 5.57264 20.2986 4.57758ZM5.52883 12.2904C3.46449 12.2904 1.79167 10.6403 1.79167 8.60398C1.79167 6.56766 3.46453 4.9175 5.52883 4.9175C7.59313 4.9175 9.266 6.56766 9.266 8.60398C9.266 10.6403 7.59313 12.2904 5.52883 12.2904ZM11.0526 8.49672C11.0526 6.07095 9.26436 3.98847 6.90393 3.09902C8.18031 2.57259 9.58051 2.28052 11.051 2.28052C12.5214 2.28052 13.9232 2.57259 15.1997 3.09902C12.8409 3.99013 11.0526 6.071 11.0526 8.49672ZM16.5748 12.2904C14.5105 12.2904 12.8376 10.6403 12.8376 8.60398C12.8376 6.56766 14.5105 4.9175 16.5748 4.9175C18.6391 4.9175 20.312 6.56766 20.312 8.60398C20.312 10.6403 18.6391 12.2904 16.5748 12.2904ZM16.5748 6.66995C15.4924 6.66995 14.6158 7.53465 14.6158 8.60233C14.6158 9.66996 15.4924 10.5347 16.5748 10.5347C17.6571 10.5347 18.5337 9.66996 18.5337 8.60233C18.5337 7.53631 17.6571 6.66995 16.5748 6.66995ZM7.48775 8.60398C7.48775 9.67162 6.61116 10.5363 5.52883 10.5363C4.44651 10.5363 3.56992 9.67162 3.56992 8.60398C3.56992 7.53631 4.44651 6.67161 5.52883 6.67161C6.61116 6.66995 7.48775 7.53631 7.48775 8.60398Z" fill="#144732"/>
                     </svg>
@@ -2293,6 +2542,7 @@ let init = setInterval(() => {
                         </defs>
                     </svg>
                     <p>Recommended by 99% of travelers</p>
+                </div>
                 `)
                            
                 //header rate
@@ -2309,11 +2559,11 @@ let init = setInterval(() => {
                 document.querySelector('.rating_header').insertAdjacentHTML('beforeend', `<p class="header_sticky_to-rating">${rate}/5 Rating </p>`)
 
                 if (ratehalf > 0) {
-                    document.querySelector('.rating').insertAdjacentHTML('afterbegin', starHalf) 
+                    document.querySelector('.rating .star-row').insertAdjacentHTML('afterbegin', starHalf) 
                     document.querySelector('.rating_header').insertAdjacentHTML('afterbegin', starHalf) 
                 }
                 for (let i = 0; i < Math.floor(rate); i++) {
-                    document.querySelector('.rating ').insertAdjacentHTML('afterbegin', star) 
+                    document.querySelector('.rating .star-row').insertAdjacentHTML('afterbegin', star) 
                     document.querySelector('.rating_header').insertAdjacentHTML('afterbegin', star) 
                 }
                 
@@ -2507,7 +2757,7 @@ let drink = setInterval(() => {
         clearInterval(drink)
         document.querySelector('.tour-section .tour-do').insertAdjacentHTML('beforebegin',`
         <div class="drinks">
-            <div class="title d-flex align-items-center">
+            <div class="title d-flex align-items-md-center">
                 <svg width="42" height="36" viewBox="0 0 42 36" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M42 16.104C42 15.1793 41.2504 14.4297 40.3257 14.4297H38.1412C38.1256 14.3631 38.1015 14.2987 38.0695 14.2384L35.4226 9.45476L34.7528 1.1871C34.7196 0.771826 34.3722 0.452322 33.9556 0.453617H29.8656C29.449 0.452322 29.1016 0.771826 29.0683 1.1871L28.3986 9.43084L26.4533 12.9627L24.508 9.43084L23.8383 1.1871C23.805 0.771826 23.4576 0.452322 23.041 0.453617H18.951C18.5345 0.452322 18.187 0.771826 18.1538 1.1871L17.492 9.43084L15.5467 12.9627L13.6014 9.43084L12.9317 1.1871C12.8984 0.771826 12.551 0.452322 12.1344 0.453617H8.04442C7.62785 0.452322 7.28044 0.771826 7.24715 1.1871L6.57745 9.43084L3.93052 14.2144C3.89853 14.2748 3.87442 14.3392 3.85877 14.4058H1.67426C0.74963 14.4058 0 15.1554 0 16.08V24.1165C0.00687642 24.4283 0.100755 24.7321 0.271071 24.9935C0.106435 25.2565 0.0180382 25.5601 0.0159453 25.8705V33.883C0.0202306 34.7984 0.758898 35.5406 1.67426 35.5493H40.3257C41.2504 35.5493 42 34.7997 42 33.875V25.8705C41.9987 25.56 41.9103 25.2562 41.7449 24.9935C41.9103 24.7308 41.9987 24.4269 42 24.1165V16.104ZM30.5672 2.0641H33.1902L33.3815 4.4559H30.4077L30.5672 2.0641ZM29.8497 10.0368C29.9037 9.9384 29.9363 9.82967 29.9453 9.71785L30.2722 6.05043H33.541L33.836 9.7338C33.8451 9.84562 33.8776 9.95434 33.9317 10.0527L36.3235 14.4297H27.4738L29.8497 10.0368ZM19.6925 2.0641H22.3155L22.5068 4.4559H19.4932L19.6925 2.0641ZM18.9749 10.0368C19.029 9.9384 19.0615 9.82967 19.0706 9.71785L19.3656 6.05043H22.6344L22.9294 9.7338C22.9385 9.84562 22.971 9.95434 23.0251 10.0527L25.4169 14.4297H16.5592L18.9749 10.0368ZM8.7779 2.0641H11.4328L11.6241 4.4559H8.58656L8.7779 2.0641ZM8.06036 10.0368C8.11438 9.9384 8.14697 9.82967 8.15604 9.71785L8.45103 6.05043H11.7198L12.0148 9.7338C12.0239 9.84562 12.0565 9.95434 12.1105 10.0527L14.5023 14.4297H5.65262L8.06036 10.0368ZM40.4055 33.883C40.4055 33.9271 40.3698 33.9627 40.3257 33.9627H1.67426C1.63021 33.9627 1.59453 33.9271 1.59453 33.883V25.8705C1.59453 25.8264 1.63021 25.7907 1.67426 25.7907H40.3257C40.3698 25.7907 40.4055 25.8264 40.4055 25.8705V33.883ZM40.4055 24.1165C40.4055 24.1605 40.3698 24.1962 40.3257 24.1962H1.67426C1.63021 24.1962 1.59453 24.1605 1.59453 24.1165V16.104C1.59453 16.0599 1.63021 16.0242 1.67426 16.0242H40.3257C40.3698 16.0242 40.4055 16.0599 40.4055 16.104V24.1165Z" fill="#C39958"/>
                 </svg> 
@@ -2516,7 +2766,7 @@ let drink = setInterval(() => {
                 </p>                    
             </div>
             <ul>${document.querySelector('.mini_ul').innerHTML} </ul>
-            <div class="d-flex align-items-center">
+            <div class="d-md-flex align-items-center">
                 <a href="#" class="buy-2">
                     <svg width="17" height="16" viewBox="0 0 17 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M16.3594 2.26452L14.2355 0.140556C14.0481 -0.0468521 13.7357 -0.0468521 13.5171 0.140556L12.8299 0.858956C12.6113 1.04636 12.6113 1.35871 12.8299 1.54612L10.4248 3.9512C8.95681 3.3265 7.2389 3.60761 6.05198 4.79453L1.08565 9.76086C0.304783 10.5417 0.304783 11.7911 1.08565 12.572L3.92801 15.4143C4.70888 16.1952 5.95827 16.1952 6.73914 15.4143L11.7055 10.448C12.8924 9.2611 13.1735 7.54319 12.5488 6.07516L14.9539 3.67008C15.1413 3.88873 15.4536 3.88873 15.641 3.67008L16.3594 2.98292C16.5469 2.76428 16.5469 2.45193 16.3594 2.26452ZM6.11445 13.2279L3.27208 10.3856L7.08272 6.57491L9.92509 9.41728L6.11445 13.2279Z" fill="white"/>
