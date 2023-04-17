@@ -2998,13 +2998,20 @@ let meeting_spot = setInterval(() => {
 })
 
 let video = setInterval(() => {
-    if (document.querySelector('.youtube[data-embed]') != null && document.querySelector('.video-section') != null &&  document.querySelectorAll('.breadcrumbs-customer li a')[1] != null) {
+    if (document.querySelector('.youtube[data-embed]') != null && document.querySelector('.video-section') != null &&  document.querySelector('.breadcrumbs-customer li:last-child a') != null) {
         clearInterval(video)
         let embed = document.querySelector('.youtube[data-embed]').dataset.embed;
         let linkVideo = `https://www.youtube.com/embed/${embed}`
         
+        let capital = document.querySelector('.breadcrumbs-customer li:nth-child(2) a').innerHTML;
+        let city = document.querySelector('.breadcrumbs-customer li:last-child a').innerHTML.split(' ').filter(text => {
+            if (text != 'Food' && text != 'Tour' && text != 'Tours' && text != 'Tours:' && text != ':' && text != '-' && text != 'Secret' && text != capital) {
+                return text
+            }
+        })
+        
         document.querySelector('.video-section > .container').innerHTML =`
-            <h2>VIDEO OF SECRET FOOD TOUR: ${document.querySelectorAll('.breadcrumbs-customer li a')[1].innerHTML}</h2>
+            <h2>VIDEO OF SECRET FOOD TOUR: ${city.join(' ')}</h2>
             <iframe width="1080" height="715" src="${linkVideo}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>`;
 
         document.querySelector('.header_sticky_bottom .menu ul').insertAdjacentHTML('beforeend',`<li><a href="#video" onclick="menuToElement(event)">Video</a></li>`)
@@ -3015,12 +3022,19 @@ let video = setInterval(() => {
 });
 
 let photos = setInterval(() => {
-    if ((document.querySelector('#my-gallery') != null || document.querySelector('.w3-content.w3-display-container') != null || document.querySelector('.parallax-mirror img') != null) && document.querySelector('.photos-gallery') != null && document.querySelectorAll('.breadcrumbs-customer li a')[1] != null) {
+    if ((document.querySelector('#my-gallery') != null || document.querySelector('.w3-content.w3-display-container') != null || document.querySelector('.parallax-mirror img') != null) && document.querySelector('.photos-gallery') != null && document.querySelectorAll('.breadcrumbs-customer li a')[2] != null) {
         clearInterval(photos)
+        
+        let capital = document.querySelector('.breadcrumbs-customer li:nth-child(2) a').innerHTML;
+        let city = document.querySelector('.breadcrumbs-customer li:last-child a').innerHTML.split(' ').filter(text => {
+            if (text != 'Food' && text != 'Tour' && text != 'Tours' && text != 'Tours:' && text != ':' && text != '-' && text != 'Secret' && text != capital) {
+                return text
+            }
+        })
 
         document.querySelector('.photos-gallery').innerHTML = `
         <h2>PHOTOS OF SECRET FOOD TOUR: <br class="d-md-block d-none">
-        <span class="c-gold">${document.querySelectorAll('.breadcrumbs-customer li a')[1].innerHTML}</span></h2>
+        <span class="c-gold">${city.join(' ')}</span></h2>
         <div class="slider-gallery">
             <ul class="swiper-wrapper"></ul>
             <div class="swiper-pagination swiper-pagination-fraction"></div>
