@@ -1,5 +1,5 @@
 if (window.location.pathname.includes('/a/')) {
-    window.location = `https://collections.creditsage.com/b/${window.location.pathname.split('/a/')[1]}`
+    window.location = window.location.href.replace('/a/', '/b/')
 } else {
     // -------------------------------------
     // CONSTANTS
