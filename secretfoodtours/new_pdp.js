@@ -556,7 +556,7 @@ header .main_menu {
 .destination_page_wr .destination_content .destination_descr {
     padding: 0;
 }
-.what_we_taste, .destination_page_wr .destination_content .plugin_right .buy, .destination_content > .container, .destination_descr .container, #plugin [style="background-color: #0a88ff; padding:10px;"], .breadcrumbs, .destination_page_wr .destination_content .plugin_right > .price, .destination_page_wr .destination_content .plugin_right .heading, .tour-features, .similar, header > .container > ul > li:nth-child(2), .banner_top, .parallax-mirror, body > div.global_wr > div > div.tour-intro > div.container > div > div.col-md-12.col-xl-8, .destination_page_wr .tour-intro .plugin_right .heading, .text-red, .text-pt, .text-pt-disclaimer, .destination_page_wr .tour-intro .plugin_right .buy {
+.get_in_touched, .what_we_taste, .destination_page_wr .destination_content .plugin_right .buy, .destination_content > .container, .destination_descr .container, #plugin [style="background-color: #0a88ff; padding:10px;"], .breadcrumbs, .destination_page_wr .destination_content .plugin_right > .price, .destination_page_wr .destination_content .plugin_right .heading, .tour-features, .similar, header > .container > ul > li:nth-child(2), .banner_top, .parallax-mirror, body > div.global_wr > div > div.tour-intro > div.container > div > div.col-md-12.col-xl-8, .destination_page_wr .tour-intro .plugin_right .heading, .text-red, .text-pt, .text-pt-disclaimer, .destination_page_wr .tour-intro .plugin_right .buy {
     display: none!important;
 }
 
