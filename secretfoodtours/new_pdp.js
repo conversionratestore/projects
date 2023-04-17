@@ -1779,7 +1779,7 @@ header .main_menu {
     .inner_page .container {
         padding: 0 20px!important;
     }
-    .header_sticky, .slider-review .swiper-button-next, .slider-review .swiper-button-prev {
+    .slider-review .swiper-button-next, .slider-review .swiper-button-prev {
         display: none;
     }
     .tour-section > .container > div:not(.why-tour) > .left {
@@ -2138,6 +2138,34 @@ header .main_menu {
     }
     .help_center .container .left_help {
         margin-bottom: 16px;
+    }
+    .help_center .container .right_help {
+        margin-top: 0;
+    }
+    .help_center .btn-customer {
+        width: calc(100% - 40px);
+        margin: 19px auto 45px;
+        background-color: #fff;
+    }
+    .header_sticky .header_sticky_top {
+        background: #F3F3F3;
+    }
+    .header_sticky .header_sticky_top .back { 
+        padding: 14px 0;
+        border: none;
+        color: #144732;
+    }
+    .header_sticky .back svg path {
+        fill: #144732;
+    }
+    .header_sticky .menu a {
+        white-space: nowrap;
+    }
+    .header_sticky_bottom .menu {
+        overflow-x: auto;
+        margin-left: -20px;
+        margin-right: -20px;
+        padding-left: 20px;
     }
     .help_center .container .right_help {
         margin-top: 0;
@@ -2543,9 +2571,9 @@ let init = setInterval(() => {
                             </svg>
                             <span>All tours</span>
                         </a>
-                        <p class="title"></p>
+                        <p class="title d-md-block d-none"></p>
                     </div>
-                    <div class="d-flex align-items-center">
+                    <div class="d-md-flex align-items-md-center d-none">
                         <div class="is_price"></div>
                         <a href="#plugin" class="btn-customer gold-full">Book a tour</a>
                     </div>
@@ -2556,7 +2584,7 @@ let init = setInterval(() => {
                     <nav class="menu">
                         <ul class="d-flex"> </ul>
                     </nav>
-                    <div class="rating_header d-flex align-items-center"></div>
+                    <div class="rating_header d-md-flex align-items-md-center d-none"></div>
                 </div>
             </div>
         </div>
