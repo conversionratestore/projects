@@ -1774,7 +1774,61 @@ header .main_menu {
 .help_center .container .active_help .block_title .calc_ico {
     background: url(https://www.secretfoodtours.com/img/icons/minus_white.svg) no-repeat center / 12px!important;
 }
-
+.popup_gallery {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background: rgba(0,0,0,0.8);
+    display: flex;
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.2s ease;
+    z-index: 9999;
+}
+.popup_gallery.active {
+    opacity: 1;
+    pointer-events: auto;
+}
+.popup_gallery_close {
+    position: absolute;
+    border: none;
+    background: transparent;
+    top: 0;
+    right: 0;
+    padding: 20px;
+}
+.popup_gallery_count {
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 20px;
+    color: #fff;
+}
+.popup_gallery .swiper-wrapper {
+    margin: auto;
+    height: fit-content;
+}
+.popup_gallery .swiper-slide img {
+    height: 85vh;
+    width: 100%;
+    object-fit: contain;
+}
+.popup_gallery .swiper-button-next, .popup_gallery .swiper-button-prev {
+    margin-bottom: 30px;
+    top: 50%!important;
+    transform: translateY(-50%)!important;
+    border: none;
+}
+.popup_gallery .swiper-button-next {
+    right: 0!important;
+    left: auto!important;
+}
+.popup_gallery .swiper-button-prev {
+    left: 0!important;
+    right: auto!important;
+}
 @media screen and (max-width: 767px) {
     .inner_page .container {
         padding: 0 20px!important;
@@ -2537,6 +2591,26 @@ let init = setInterval(() => {
 
 
         document.querySelector('.main_container').insertAdjacentHTML('afterend',`
+        <div class="popup_gallery">
+            <div class="popup_gallery_count"></div>
+            <button type="button" class="popup_gallery_close" onclick="pushDataLayer('Click on close button in gallery popup')">
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect width="25.9735" height="2.16446" transform="matrix(0.703417 0.710777 -0.703417 0.710777 1.52246 0)" fill="#fff"></rect>
+                    <rect width="25.9735" height="2.16446" transform="matrix(-0.703417 0.710777 -0.703417 -0.710777 20 1.53857)" fill="#fff"></rect>
+                </svg>
+            </button>
+            <ul class="swiper-wrapper"></ul>
+            <div class="swiper-button-prev" onclick="pushDataLayer('Click on navigation button in gallery popup','Previous slide')">
+                <svg width="19" height="24" viewBox="0 0 9 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M8 1L2 7L8 13" stroke="#fff" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+            </div>
+            <div class="swiper-button-next" onclick="pushDataLayer('Click on navigation button  in gallery popup','Next slide')">
+                <svg width="19" height="24" viewBox="0 0 9 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M0.999999 13L7 7L1 1" stroke="#fff" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+            </div>
+        </div>
         <div class="social-fixed d-md-block d-none">
             <a href="https://www.facebook.com/secretfoodtours" target="_blank" class="d-flex align-items-center">
                 <svg class="m-auto" width="11" height="19" viewBox="0 0 11 19" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -3306,7 +3380,29 @@ let photos = setInterval(() => {
         document.querySelector('.slider-gallery ul').insertAdjacentHTML('beforeend', slide)
         document.querySelector('.gallery ul.swiper-wrapper').insertAdjacentHTML('beforeend', slide)
 
-        new Swiper(".gallery", {
+        document.querySelector('.popup_gallery ul.swiper-wrapper').insertAdjacentHTML('beforeend', slide)
+
+        document.querySelector('.btn-gallery').addEventListener('click', () => {
+            document.querySelector('.popup_gallery').classList.add('active')
+        })
+        document.querySelector('.popup_gallery_close').addEventListener('click', () => {
+            document.querySelector('.popup_gallery').classList.remove('active')
+        })
+        var swiperPopup = new Swiper(".popup_gallery", {
+            loop: true,
+            slidesPerView: 1,
+            spaceBetween: 0,
+            pagination: {
+                el: ".popup_gallery_count",
+                type: "fraction",
+            },
+            navigation: {
+                nextEl: ".popup_gallery .swiper-button-next",
+                prevEl: ".popup_gallery .swiper-button-prev",
+            }, 
+        });
+
+        var swiper = new Swiper(".gallery", {
             slidesPerView: 1,
             loop: true,
             spaceBetween: 0,
@@ -3317,8 +3413,10 @@ let photos = setInterval(() => {
             navigation: {
                 nextEl: ".gallery .btn-arrow-next",
                 prevEl: ".gallery .btn-arrow-prev ",
-            },
+            }
         }); 
+        swiperPopup.controller.control = swiper;
+        swiper.controller.control = swiperPopup;
 
         new Swiper(".slider-gallery", {
             slidesPerView: 2.5,
@@ -3401,10 +3499,10 @@ let whyTour = setInterval(() => {
 });
 
 let otherTours = setInterval(() => {
-    if (document.querySelector('.other-tours') != null && (document.querySelector('.country_tours') != null || document.querySelector('.similar_tours') != null)) {
+    if (document.querySelector('.other-tours') != null && (document.querySelector('.country_tours') != null || document.querySelector('.similar_tours') != null && document.querySelectorAll('.breadcrumbs-customer li a')[1] != null)) {
         clearInterval(otherTours)
         let tours = document.querySelector('.country_tours') != null ? '.country_tours' : '.similar_tours';
-        let capital = document.querySelectorAll('.breadcrumbs-customer li a')[document.querySelectorAll('.breadcrumbs-customer li a').length - 2].innerText;
+        let capital = document.querySelectorAll('.breadcrumbs-customer li a')[1].innerText;
 
         document.querySelector('.other-tours').innerHTML = `
          <h2>See our other secret tours <span class="c-gold">in ${capital}</span></h2>
