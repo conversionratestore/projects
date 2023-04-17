@@ -1970,8 +1970,11 @@ header .main_menu {
         left: 0;
         right: auto;
     }
-    .meeting-spot .grey_block .right .item p span {
+    .meeting-spot .grey_block .right .item p {
         padding-left: 22px;
+    }
+    .meeting-spot .grey_block .right .item p a {
+        margin-left: -22px;
     }
     .meeting-spot__right {
         margin-top: 20px;
@@ -2186,7 +2189,7 @@ let objPopularTours = {
     ]
 }
 
-let bestSellers = ['/paris/paris-montmartre','/paris/paris-le-marais','/paris/saint-germain-food-tour','/london/london-bridge-food-tour','/barcelona/food-tours-barcelona','/paris/chocolate-and-pastry-tour','/rome/food-tours-rome','/austin/food-tours-austin','/nashville/food-tours-nashville','/boston/food-tours-boston','/new-york/food-tours-new-york','/dublin/food-tours-dublin','/bologna/food-tours-bologna','/las-vegas/food-tours-las-vegas','florence/food-tours-florence','/montreal/food-tours-montreal','/charleston/food-tours-charleston','/amsterdam/food-tours-amsterdam','/edinburgh/food-tours-edinburgh','/san-francisco/food-tours-san-francisco/'];
+let bestSellers = ['lisbon/food-tours-lisbon','/paris/paris-montmartre','/paris/paris-le-marais','/paris/saint-germain-food-tour','/london/london-bridge-food-tour','/barcelona/food-tours-barcelona','/paris/chocolate-and-pastry-tour','/rome/food-tours-rome','/austin/food-tours-austin','/nashville/food-tours-nashville','/boston/food-tours-boston','/new-york/food-tours-new-york','/dublin/food-tours-dublin','/bologna/food-tours-bologna','/las-vegas/food-tours-las-vegas','florence/food-tours-florence','/montreal/food-tours-montreal','/charleston/food-tours-charleston','/amsterdam/food-tours-amsterdam','/edinburgh/food-tours-edinburgh','/san-francisco/food-tours-san-francisco/'];
 
 let menuToElement = (event) => {
     event.preventDefault()
@@ -2257,11 +2260,11 @@ let initHeader = setInterval(() => {
                     <p>Popular tours in Europe</p>
                 </div>
                 <div class="popular_tours_col">
-                    <div class="flex-wrap popular_tours_row asia" style="display: none"></div>
-                    <div class="flex-wrap popular_tours_row australia" style="display: none"></div>
-                    <div class="flex-wrap popular_tours_row europe" style="display: none"></div>
-                    <div class="flex-wrap popular_tours_row north-america" style="display: none"></div>
-                    <div class="flex-wrap popular_tours_row south-america" style="display: none"></div>
+                    <div class="flex-wrap popular_tours_row asia" data-continent="Asia" style="display: none"></div>
+                    <div class="flex-wrap popular_tours_row australia" data-continent="Australia" style="display: none"></div>
+                    <div class="flex-wrap popular_tours_row europe" data-continent="Europe" style="display: none"></div>
+                    <div class="flex-wrap popular_tours_row north-america" data-continent="North America" style="display: none"></div>
+                    <div class="flex-wrap popular_tours_row south-america" data-continent="South America" style="display: none"></div>
                 </div>
             </div>
         </div>`)
@@ -2311,7 +2314,8 @@ let initHeader = setInterval(() => {
 
                 e.target.parentElement.classList.add('active')
                 document.querySelectorAll(`.popular_tours_row`)[index].style.display = 'flex';
-                document.querySelector('.popular_tours').style = ''
+                document.querySelector('.popular_tours').style = '';
+                document.querySelector('.popular_tours .title > p').innerHTML = 'Popular tours in ' + document.querySelectorAll(`.popular_tours_row`)[index].dataset.continent
            })
         })
 
@@ -2419,7 +2423,7 @@ let init = setInterval(() => {
                 <div class="d-flex flex-wrap">
                     <div class="left">
                         <ul class="breadcrumbs-customer"></ul>
-                        <div class="d-flex align-items-md-center flex-md-row flex-column-reverse">
+                        <div class="d-flex align-items-md-center flex-md-row flex-column-reverse flex-wrap">
                             <h1></h1>
                         </div>
                         <div class="rating d-md-flex align-items-center"></div>
@@ -2994,13 +2998,13 @@ let meeting_spot = setInterval(() => {
 })
 
 let video = setInterval(() => {
-    if (document.querySelector('.youtube[data-embed]') != null && document.querySelector('.video-section') != null) {
+    if (document.querySelector('.youtube[data-embed]') != null && document.querySelector('.video-section') != null &&  document.querySelectorAll('.breadcrumbs-customer li a')[1] != null) {
         clearInterval(video)
         let embed = document.querySelector('.youtube[data-embed]').dataset.embed;
         let linkVideo = `https://www.youtube.com/embed/${embed}`
         
         document.querySelector('.video-section > .container').innerHTML =`
-            <h2>VIDEO OF SECRET FOOD TOUR: MONTMARTRE</h2>
+            <h2>VIDEO OF SECRET FOOD TOUR: ${document.querySelectorAll('.breadcrumbs-customer li a')[1].innerHTML}</h2>
             <iframe width="1080" height="715" src="${linkVideo}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>`;
 
         document.querySelector('.header_sticky_bottom .menu ul').insertAdjacentHTML('beforeend',`<li><a href="#video" onclick="menuToElement(event)">Video</a></li>`)
@@ -3011,12 +3015,12 @@ let video = setInterval(() => {
 });
 
 let photos = setInterval(() => {
-    if ((document.querySelector('#my-gallery') != null || document.querySelector('.w3-content.w3-display-container') != null || document.querySelector('.parallax-mirror img') != null) && document.querySelector('.photos-gallery') != null && document.querySelectorAll('.breadcrumbs-customer li a')) {
+    if ((document.querySelector('#my-gallery') != null || document.querySelector('.w3-content.w3-display-container') != null || document.querySelector('.parallax-mirror img') != null) && document.querySelector('.photos-gallery') != null && document.querySelectorAll('.breadcrumbs-customer li a')[1] != null) {
         clearInterval(photos)
 
         document.querySelector('.photos-gallery').innerHTML = `
         <h2>PHOTOS OF SECRET FOOD TOUR: <br class="d-md-block d-none">
-        <span class="c-gold">${document.querySelectorAll('.breadcrumbs-customer li a')[document.querySelectorAll('.breadcrumbs-customer li a').length - 2].innerHTML}</span></h2>
+        <span class="c-gold">${document.querySelectorAll('.breadcrumbs-customer li a')[1].innerHTML}</span></h2>
         <div class="slider-gallery">
             <ul class="swiper-wrapper"></ul>
             <div class="swiper-pagination swiper-pagination-fraction"></div>
