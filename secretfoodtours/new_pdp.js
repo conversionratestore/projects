@@ -803,6 +803,7 @@ header .main_menu {
     font-family: 'Josefin Sans';
     font-weight: 700;
     font-size: 16px;
+    text-align: left;
 }
 .right-footer > div {
     margin-top: 20px;
@@ -983,6 +984,7 @@ header .main_menu {
     border: 1.5px solid #144732;
     border-radius: 60px;
     font-weight: 700;
+    font-size: 14px!important;
     line-height: 14px;
     margin: 0 24px 0 0;
     padding: 13px 15px 10px;
@@ -1856,11 +1858,11 @@ header .main_menu {
     }
     .item-group_ic {
         order: 6;
-        border: none;
+        border: none!important;
     }
     .item-cutlery_ic {
         order: 5;
-        border: none;
+        border: none!important;
     }
     .item-world_ic {
         order: 4;
@@ -1875,7 +1877,7 @@ header .main_menu {
         display: block;
         border: 2px solid #F3F3F3;
         border-radius: 20px 20px 0 0;
-        padding: 16x 7px 8px;
+        padding: 16px 7px 8px;
     }
     .brands {
         margin: 25px 0 60px;
@@ -1918,6 +1920,7 @@ header .main_menu {
         width: 100%;
         margin: 0 0 20px 0;
         height: auto;
+        padding: 13px 10px 10px;
     }
     .tour-do ul {
         margin-top: 20px;
@@ -1940,13 +1943,60 @@ header .main_menu {
         margin-top: 16px;
         padding: 20px 16px;
     }
-    .meeting-spot__left {
+    .meeting-spot {
+        margin-bottom: 70px;
+    }
+    .meeting-spot__left, .meeting-spot__right {
         width: 100%;
         padding: 0;
     }
     .meeting-spot .notate {
         margin: 16px 0;
     }
+    .meeting-spot .grey_block {
+        display: block;
+        padding: 20px 20px 17px;
+    }
+    .meeting-spot .grey_block .right {
+        margin-top: 16px;
+        min-width: auto;
+    }
+    .meeting-spot .grey_block .right .item p:before {
+        left: 0;
+        right: auto;
+    }
+    .meeting-spot .grey_block .right .item p span {
+        padding-left: 22px;
+    }
+    .meeting-spot__right {
+        margin-top: 20px;
+    }
+    .meeting-spot__covid, .meeting-spot__contact {
+        padding: 20px;
+        min-height: auto;
+    }
+    .meeting-spot__covid .main_subheading {
+        font-size: 20px;
+        line-height: 32px;
+    }
+    .meeting-spot__covid .buy-covid {
+        font-size: 14px!important;
+        letter-spacing: normal;
+    }
+    .meeting-spot__contact .PT_link_black {
+        margin-top: 24px;
+    }
+    .video-section iframe {
+        width: 100%;
+        height: 59.2vw;
+    }
+    .video-section {
+        margin-bottom: 42px;
+    }
+    .slider-gallery {
+        margin-right: -20px;
+    }
+    
 }
 </style>`
 
@@ -2372,7 +2422,7 @@ let init = setInterval(() => {
                     </div>
                 </div>
             </div>
-            <div class="video-section text-center" id="video">
+            <div class="video-section text-md-center" id="video">
                 <div class="container"></div>
             </div>
             <div class="container">
@@ -2868,7 +2918,7 @@ let photos = setInterval(() => {
         clearInterval(photos)
 
         document.querySelector('.photos-gallery').innerHTML = `
-        <h2>PHOTOS OF SECRET FOOD TOUR: <br>
+        <h2>PHOTOS OF SECRET FOOD TOUR: <br class="d-md-block d-none">
         <span class="c-gold">${document.querySelectorAll('.breadcrumbs-customer li a')[document.querySelectorAll('.breadcrumbs-customer li a').length - 2].innerHTML}</span></h2>
         <div class="slider-gallery">
             <ul class="swiper-wrapper"></ul>
@@ -2952,6 +3002,17 @@ let photos = setInterval(() => {
                 nextEl: ".slider-gallery .swiper-button-next",
                 prevEl: ".slider-gallery .swiper-button-prev",
             },
+            breakpoints: {
+                // when window width is >= 767px
+                767: {
+                  slidesPerView: 1.1,
+                  spaceBetween: 16,
+                  pagination: {
+                    el: '.slider-gallery .swiper-pagination"',
+                    type: 'bullets',
+                  },
+                }
+              }
         });                     
                             
     }
