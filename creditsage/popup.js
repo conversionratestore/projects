@@ -51,19 +51,10 @@ if (window.location.pathname.includes('/a/')) {
         padding: 4px;
     }
 
-    .popup .title {
-        font-family: 'Circe', sans-serif;
-        font-weight: 700;
-        font-size: 28px;
-        line-height: 32px;
-        color: #1E2F44;
-        margin-bottom: 12px;
-    }
-
     .popup p {
-        font-family: 'Circular Std', 'Circe', sans-serif;
+        font-family: 'Circe', sans-serif;
         font-style: normal;
-        font-weight: 450;
+        font-weight: 400;
         font-size: 14px;
         line-height: 22px;
         color: #5F6B7A;
@@ -72,6 +63,18 @@ if (window.location.pathname.includes('/a/')) {
 
     .popup p span {
         color: #2DAF6B;
+    }
+
+    .popup .title {
+        font-weight: 700;
+        font-size: 28px;
+        line-height: 32px;
+        color: #1E2F44;
+        margin-bottom: 12px;
+    }
+
+    .popup .title + p {
+        font-family: 'Circularstd', 'Circe', sans-serif;
     }
 
     .graph {
@@ -93,15 +96,10 @@ if (window.location.pathname.includes('/a/')) {
 
     p.green_div span.asterisk {
         color: #5F6B7A;
-        font-family: sans-serif;
+        font-family: 'Roboto', sans-serif;
     }
 
     p.call_to_fix {
-        font-family: 'Circe', sans-serif;
-        font-style: normal;
-        font-weight: 400;
-        font-size: 14px;
-        line-height: 22px;
         text-align: center;
         color: #1E2F44;
         margin: 12px auto;
