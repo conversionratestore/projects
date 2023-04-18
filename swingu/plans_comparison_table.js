@@ -383,7 +383,7 @@ const style = /*html*/`
             font-weight: 700;
             font-size: 16px;
             line-height: 20px;
-            padding-bottom: 8px;
+            padding-bottom: 10px;
         }
 
         #plans_comparison_table tr th:nth-child(2) {
