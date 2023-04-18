@@ -497,6 +497,32 @@ const style = /*html*/`
                 font-size: 10px;
             }
         }
+
+        
+        @media only screen and (max-width: 355px) {
+            .plans_checkbox_container {
+                padding: 0 10px;
+            }
+
+            #plans_comparison_table th:nth-child(3), #plans_comparison_table td:nth-child(3) {
+                padding-left: 10px;
+                padding-right: 10px;
+            }
+        }
+
+        @media only screen and (max-width: 335px) {
+            .plans_checkbox_container {
+                padding: 0 5px;
+            }
+
+            .annual_checkbox_wrapper .plan_checkbox:first-child {
+                margin-right: 5px;
+            }
+
+            #plans_comparison_table th:nth-child(2), #plans_comparison_table td:nth-child(2) {
+                padding-left: 15px;
+            }
+        }
     </style>
 `
 
