@@ -1482,7 +1482,7 @@ let run = setInterval(() => {
         })
 
         document.querySelector('.mobile-nav > li:nth-child(3) > a').addEventListener('click', (e) => {
-            document.querySelector('.site-nav--mobile button').click()
+            document.querySelector('.site-nav--mobile button')?.click()
 
             e.preventDefault();
             e.stopImmediatePropagation();
