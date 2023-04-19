@@ -1189,7 +1189,6 @@ class DiscountProduct {
       
         this.initialElement.insertAdjacentHTML('beforeend', element);
         let message = this.initialElement.querySelector('.slide_in__message').innerText;
-       
 
         document.querySelector('.slide_in__cart > .container').addEventListener('scroll', () => this.isVisibleDataLayer(message))
         this.isVisibleDataLayer(message)
@@ -1206,7 +1205,7 @@ class Message {
 
     getVariantMessage() {
 
-        if (this.style == 'freeshipping') {
+        if (this.style == 'freeshipping' && !document.querySelector('.freeshipping')) {
             return `
                 <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <g clip-path="url(#clip0_78_7029)">
@@ -1230,12 +1229,16 @@ class Message {
                     <path d="M13.0044 10.6284L10.1256 13.5159L8.9969 12.3784C8.91532 12.2968 8.81846 12.2321 8.71187 12.188C8.60527 12.1438 8.49103 12.1211 8.37565 12.1211C8.26027 12.1211 8.14603 12.1438 8.03943 12.188C7.93284 12.2321 7.83598 12.2968 7.7544 12.3784C7.67282 12.46 7.6081 12.5569 7.56395 12.6635C7.51979 12.77 7.49707 12.8843 7.49707 12.9997C7.49707 13.1151 7.51979 13.2293 7.56395 13.3359C7.6081 13.4425 7.67282 13.5393 7.7544 13.6209L9.5044 15.3709C9.58574 15.4529 9.68252 15.518 9.78915 15.5625C9.89577 15.6069 10.0101 15.6297 10.1256 15.6297C10.2412 15.6297 10.3555 15.6069 10.4622 15.5625C10.5688 15.518 10.6656 15.4529 10.7469 15.3709L14.2469 11.8709C14.3285 11.7893 14.3932 11.6925 14.4374 11.5859C14.4815 11.4793 14.5042 11.3651 14.5042 11.2497C14.5042 11.1343 14.4815 11.02 14.4374 10.9135C14.3932 10.8069 14.3285 10.71 14.2469 10.6284C14.1653 10.5468 14.0685 10.4821 13.9619 10.438C13.8553 10.3938 13.741 10.3711 13.6256 10.3711C13.5103 10.3711 13.396 10.3938 13.2894 10.438C13.1828 10.4821 13.086 10.5468 13.0044 10.6284Z" fill="#773BD9"/>
                 </svg>
                 <p style="text-transform: uppercase;">Shop confidently <br> <span class="fw-bold">60-day money back guarantee</span></p>`
-        } 
+        } else {
+            return ''
+        }
     }
     render() {
-        let element = `<div class="slide_in__message d-flex items-center ${this.style}">${this.getVariantMessage()}</div>`;
+        if (this.getVariantMessage()) {
+            let element = `<div class="slide_in__message d-flex items-center ${this.style}">${this.getVariantMessage()}</div>`;
 
-        this.item.insertAdjacentHTML(this.position, element);
+            this.item.insertAdjacentHTML(this.position, element);
+        }
     }
 }
 
@@ -1447,7 +1450,7 @@ function toggleActive(method, eventNon = '') {
 }
 
 let run = setInterval(() => {
-    if (document.querySelector('#AccessibleNav > li:nth-child(3) > a') != null && document.querySelectorAll('.cart-link') && document.querySelectorAll('[data-key="product"] [name="add"]') && appikon != null && appikon['discounts'] != null) {
+    if (document.querySelector('#AccessibleNav > li:nth-child(3) > a') != null && document.querySelector('.mobile-nav > li:nth-child(3) > a') != null && document.querySelectorAll('.cart-link') && document.querySelectorAll('[data-key="product"] [name="add"]') && appikon != null && appikon['discounts'] != null) {
         clearInterval(run)
 
         let isDiscount = setInterval(() => {
@@ -1480,6 +1483,17 @@ let run = setInterval(() => {
             document.querySelector('.slide_in__cart .container').scrollTop = 0;
             toggleActive(true)
         })
+
+        document.querySelector('.mobile-nav > li:nth-child(3) > a').addEventListener('click', (e) => {
+            document.querySelector('.site-nav--mobile button')?.click()
+
+            e.preventDefault();
+            e.stopImmediatePropagation();
+
+            document.querySelector('.slide_in__cart .container').scrollTop = 0;
+            toggleActive(true)
+        })
+
         document.querySelectorAll('.cart-link').forEach(item => {
             item.addEventListener('click', (e) => {
                 e.preventDefault();
