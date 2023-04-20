@@ -132,7 +132,7 @@ if (window.innerWidth <= 768) {
           });
         });
       });
-      document.querySelector(".body #getNow .days")?.addEventListener("click", (e) => {
+      document.querySelector("body #getNow .days")?.addEventListener("click", (e) => {
         e.preventDefault();
         e.stopPropagation();
         console.log(`IMG click`);
