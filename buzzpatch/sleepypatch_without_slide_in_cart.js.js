@@ -44,7 +44,7 @@ if (window.innerWidth <= 768) {
             background: #FFFFFF !important;
         }
         #getNow{
-            background: linear-gradient(180deg,#FFFFFF 0%,#F9F8F6 27.82%);
+            background: linear-gradient(180deg,#FFFFFF 10%,#F9F8F6 160.82%);
             padding-bottom: 50px;
         }
         #purchase{
@@ -102,7 +102,7 @@ if (window.innerWidth <= 768) {
           document.querySelector("#getNow .days").src = "http://web.archive.org/web/20220710004356im_/https://cdn.shopify.com/s/files/1/0387/0749/4956/files/30day-graphic_600x.png";
           document.querySelector("#getNow .days").srcset = "http://web.archive.org/web/20220710004356im_/https://cdn.shopify.com/s/files/1/0387/0749/4956/files/30day-graphic_600x.png";
         }
-      }, 100);
+      }, 150);
 
       document.querySelectorAll("#open").forEach((el) => {
         el.href = "#getNow";
