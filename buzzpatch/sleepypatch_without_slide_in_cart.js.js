@@ -160,6 +160,28 @@ if (window.innerWidth <= 768) {
         });
       });
 
+      // observer
+      let observer = new MutationObserver(() => {
+        if (document) {
+          observer.disconnect();
+          if (document.querySelector("#getNow .days").src !== "http://web.archive.org/web/20220710004356im_/https://cdn.shopify.com/s/files/1/0387/0749/4956/files/30day-graphic_600x.png") {
+            console.log(`!!!!!!!!!!!!!!!!!!!!!!!! IMG SRC observer`);
+            document.querySelector("#getNow .days").src = "http://web.archive.org/web/20220710004356im_/https://cdn.shopify.com/s/files/1/0387/0749/4956/files/30day-graphic_600x.png";
+            document.querySelector("#getNow .days").srcset = "http://web.archive.org/web/20220710004356im_/https://cdn.shopify.com/s/files/1/0387/0749/4956/files/30day-graphic_600x.png";
+          }
+
+          observer.observe(document, {
+            childList: true,
+            subtree: true,
+          });
+        }
+      });
+
+      observer.observe(document, {
+        childList: true,
+        subtree: true,
+      });
+
       pushDataLayer("loaded");
       const record = setInterval(() => {
         if (typeof clarity === "function") {
