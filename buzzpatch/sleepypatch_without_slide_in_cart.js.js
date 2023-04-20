@@ -79,6 +79,9 @@ if (window.innerWidth <= 768) {
           transform: rotate(-10deg);
           border-radius: 50px;
         }
+        body #purchase .prices{
+          margin: 0 !important; 
+        }
       </style>
       `;
 
