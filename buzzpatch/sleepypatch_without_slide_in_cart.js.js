@@ -59,7 +59,6 @@ if (window.innerWidth <= 768) {
             margin-bottom: 0;
         }
         body #getNow .days{
-            max-width: 100%;
             margin: 20px auto auto;
         }
         body.slide{
@@ -81,6 +80,9 @@ if (window.innerWidth <= 768) {
         }
         body #purchase .prices{
           margin: 0 !important; 
+        }
+        body .bestseller{
+              border-radius: 2px !important;
         }
       </style>
       `;
@@ -129,6 +131,11 @@ if (window.innerWidth <= 768) {
             behavior: "smooth",
           });
         });
+      });
+      document.querySelector(".body #getNow .days")?.addEventListener("click", (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        console.log(`IMG click`);
       });
 
       document.querySelectorAll('[name="radios"]').forEach((i) => {
