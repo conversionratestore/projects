@@ -82,7 +82,10 @@ if (window.innerWidth <= 768) {
           margin: 0 !important; 
         }
         body .bestseller{
-              border-radius: 2px !important;
+          border-radius: 2px !important;
+        }
+        body #purchase .prices + div.js-heading{
+          background: #fcfcfb;
         }
       </style>
       `;
