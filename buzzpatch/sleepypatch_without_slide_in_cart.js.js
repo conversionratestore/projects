@@ -58,9 +58,6 @@ if (window.innerWidth <= 768) {
             font-weight: 700!important;
             margin-bottom: 0;
         }
-        body #getNow .days{
-            margin: 20px auto auto;
-        }
         body.slide{
             overflow-y: visible !important;
         }
@@ -84,9 +81,6 @@ if (window.innerWidth <= 768) {
         body .bestseller{
           border-radius: 2px !important;
         }
-        body #purchase .prices + div.js-heading{
-          background: #fcfcfb;
-        }
       </style>
       `;
 
@@ -102,15 +96,6 @@ if (window.innerWidth <= 768) {
             </div>`
         );
       }
-
-      let s = setInterval(() => {
-        if (document.querySelector("#getNow .days")) {
-          clearInterval(s);
-          console.log(`!!!!!!!!!!!!!!!!!!!!!!!! IMG SRC`);
-          document.querySelector("#getNow .days").src = "http://web.archive.org/web/20220710004356im_/https://cdn.shopify.com/s/files/1/0387/0749/4956/files/30day-graphic_600x.png";
-          document.querySelector("#getNow .days").srcset = "http://web.archive.org/web/20220710004356im_/https://cdn.shopify.com/s/files/1/0387/0749/4956/files/30day-graphic_600x.png";
-        }
-      }, 300);
 
       document.querySelectorAll("#open").forEach((el) => {
         el.href = "#getNow";
@@ -134,11 +119,6 @@ if (window.innerWidth <= 768) {
             behavior: "smooth",
           });
         });
-      });
-      document.querySelector("body #getNow .days")?.addEventListener("click", (e) => {
-        e.preventDefault();
-        e.stopPropagation();
-        console.log(`IMG click`);
       });
 
       document.querySelectorAll('[name="radios"]').forEach((i) => {
@@ -168,28 +148,6 @@ if (window.innerWidth <= 768) {
             }
           }
         });
-      });
-
-      // observer
-      let observer = new MutationObserver(() => {
-        if (document) {
-          observer.disconnect();
-          if (document.querySelector("#getNow .days").src !== "http://web.archive.org/web/20220710004356im_/https://cdn.shopify.com/s/files/1/0387/0749/4956/files/30day-graphic_600x.png") {
-            console.log(`!!!!!!!!!!!!!!!!!!!!!!!! IMG SRC observer`);
-            document.querySelector("#getNow .days").src = "http://web.archive.org/web/20220710004356im_/https://cdn.shopify.com/s/files/1/0387/0749/4956/files/30day-graphic_600x.png";
-            document.querySelector("#getNow .days").srcset = "http://web.archive.org/web/20220710004356im_/https://cdn.shopify.com/s/files/1/0387/0749/4956/files/30day-graphic_600x.png";
-          }
-
-          observer.observe(document, {
-            childList: true,
-            subtree: true,
-          });
-        }
-      });
-
-      observer.observe(document, {
-        childList: true,
-        subtree: true,
       });
 
       pushDataLayer("loaded");
