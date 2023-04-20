@@ -9,7 +9,7 @@ if (window.innerWidth <= 768) {
           console.log(actionDataLayer + " : " + labelDataLayer);
           dataLayer.push({
             event: "event-to-ga",
-            eventCategory: `Exp:Text content`,
+            eventCategory: `Exp: Sleepypatch: BA test with old slide in flow`,
             eventAction: `${actionDataLayer}`,
             eventLabel: `${labelDataLayer}`,
           });
@@ -17,7 +17,7 @@ if (window.innerWidth <= 768) {
           console.log(actionDataLayer);
           dataLayer.push({
             event: "event-to-ga",
-            eventCategory: `Exp: Text content`,
+            eventCategory: `Exp: Sleepypatch: BA test with old slide in flow`,
             eventAction: `${actionDataLayer}`,
           });
         }
@@ -44,7 +44,7 @@ if (window.innerWidth <= 768) {
             background: #FFFFFF !important;
         }
         #getNow{
-            background: linear-gradient(180deg,#FFFFFF 10%,#F9F8F6 160.82%);
+            background: linear-gradient(180deg,#FFFFFF 10%,#F9F8F6 171.82%);
             padding-bottom: 50px;
         }
         #purchase{
