@@ -112,7 +112,19 @@ if (window.innerWidth <= 768) {
         el.addEventListener("click", (e) => {
           e.preventDefault();
           e.stopPropagation();
-          console.log(`click >>>>>>>>>>>>>>>>>>>`);
+          console.log(`click >>>>>>>>>>>>>>>>>>>`, e.target.getAttribute("href"));
+          let href = e.target.getAttribute("href").substring(1);
+
+          const scrollTarget = document.getElementById(href);
+
+          const topOffset = 0;
+          const elementPosition = scrollTarget.getBoundingClientRect().top;
+          const offsetPosition = elementPosition - topOffset;
+
+          window.scrollBy({
+            top: offsetPosition,
+            behavior: "smooth",
+          });
         });
       });
 
