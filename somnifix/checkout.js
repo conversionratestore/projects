@@ -1,6 +1,54 @@
 
-// For 4 week  pack "No returns required — test as much as you want"
-// For 12, 52 week  pack "We offer hassle-free returns for unused strips"
+var myHeaders = new Headers();
+myHeaders.append("Content-Type", "application/json");
+
+var raw = JSON.stringify({
+  "productIds": [
+    {
+      "productId": "4617243754611"
+    }
+  ],
+  "apiKey": "pubkey-RxMuBm77cI6JUCn6jCIsMpGSUFYdkK",
+  "storeUrl": "37715"
+});
+  
+var requestOptions = {
+  method: 'POST',
+  headers: myHeaders,
+  body: raw,
+  redirect: 'follow'
+};
+let request = new Promise((resolve, reject) => {
+  
+  fetch("http://stamped.io/api/widget/badges?isIncludeBreakdown=true&isincludehtml=true", requestOptions)
+    .then(response => response.json())
+    .then(result => {
+      console.log(result)   
+      resolve(result)
+    })
+    .catch(error => console.log('error', error));
+})
+
+let reviewobj = [
+    {
+        'date': '03/29/2023', 
+        'author': 'Emily R.', 
+        'title': 'NO MORE SNORING', 
+        'text': 'These strips truly keep me from snoring in my sleep. I was happy to find that the adhesive works well without causing irritation on my sensitive skin, and I was pleased to find that I could put it back in place after a sip of water in the middle of the night! They don’t come off easily which is a plus. I highly recommend them. They also arrived timely.'
+    },
+    {
+        'date': '03/18/2023', 
+        'author': 'Michael', 
+        'title': 'DELIGHTFULLY PERFECT', 
+        'text': 'I have only recently discovered the world of mouth taping and thought I would give it a try. I was nervous to do it as I’m an open mouth breather at night and thought I might choke or feel suffocated. In fact, the tape is light, perfectly sticky and has a little hole in it in case you panic. It stayed on perfectly the first night and I got used to it quickly. I’ve used them for a week now and I’m impressed. My sleep quality has drastically improved. The only downfall is they’re expensive but I don’t think I’d go back to mouth breathing.'
+    },
+    {
+        'date': '02/14/2022', 
+        'author': 'Anonymous', 
+        'title': 'SO GREAT WITH OUR CPAPS', 
+        'text': `We use Somnifix every single night along with our CPAPs. Before Somnifix we had to wear a very uncomfortable contraption that kept our mouth closed. Then we switched to Somnifix right after it came out and immediately signed up for a 3-month subscription for each of us. I don't know what we'd do without it. It's feather-light, so comfortable, easy on and off and has that little slit in the middle so you can take in some air as needed. This is a FANTASTIC product. We have given strips to others and recommend that they try it. Now, the only thing Somnifix needs to do is make a larger size. My husband has a larger size mouth and could really use a bigger size. Please consider as it would be extremely helpful. Thank you Somnifix!!`
+    }
+]
 
 let checkoutsInterval = setInterval(() => {
     if (window.location.href.includes('/checkouts/') && document.querySelector('.breadcrumb__item.breadcrumb__item--current') != null && document.querySelector('.breadcrumb__item.breadcrumb__item--current').innerText.includes('Information') && document.querySelector('.product__description__variant.order-summary__small-text') != null) {
@@ -42,6 +90,70 @@ let checkoutsInterval = setInterval(() => {
                 text-transform: uppercase;
                 line-height: 19px;
             }
+
+            /* review */
+            .main__content {
+                padding-bottom: 24px;
+            }
+            .reviews_block {
+                padding-top: 36px;
+                margin-top: 56px;
+                border-top: 1px solid #D9D9D9;
+            }
+            .reviews_block > div:first-child {
+                margin-bottom: 24px;
+            }
+            .reviews_block h2 {
+                font-family: 'Rubik', sans-serif;
+                font-style: normal;
+                font-weight: 500;
+                font-size: 24px;
+                line-height: 32px;
+                color: #20425E;
+            }
+            .reviews_block_rating {
+                font-family: 'Roboto', sans-serif;
+                font-style: normal;
+                font-size: 18px;
+                line-height: 21px;
+                color: #20425E;
+            }
+            .reviews_block_rating span {
+                margin-right: 6px;
+            }
+            .reviews_block_rating+p {
+                font-size: 12px;
+                line-height: 14px;
+                color: #5E778B;
+                margin-top: 6px;
+                text-align: right;
+            }
+            .review {
+                background: #F8F8F8;
+                border-radius: 6px;
+                padding: 24px;
+                font-size: 14px;
+                line-height: 22px;
+                margin-top: 18px;
+            }
+            .review .star {
+                margin-bottom: 8px;
+            }
+            .review .author {
+                color: #5E778B;
+                margin-right: 14px;
+            }
+            .review .c-green {
+                margin-left: 8px;
+            }
+            .review h3 {
+                font-size: 16px;
+                line-height: 24px;
+                color: #20425E;
+                margin: 14px 0 8px;
+            }
+
+            /* flex, font*/
             .d-flex {
                 display: flex;
             } 
@@ -51,6 +163,13 @@ let checkoutsInterval = setInterval(() => {
             .justify-between {
                 justify-content: space-between;
             }
+            .fw-bold {
+                font-weight: 700;
+            }
+            .c-green {
+                color: #3ABC72;
+            }
+            /* media */
             @media screen and (min-width: 1000px) {
                 .messages {
                     padding: 2px 0 14px;
@@ -68,11 +187,6 @@ let checkoutsInterval = setInterval(() => {
                 .banner {
                     padding-bottom: 12px;
                 }
-            }
-            @media screen and (max-width: 600px) {
-                // .messages {
-                //     padding: 12px 0 0 0;
-                // }
             }
         </style>`)
 
@@ -101,6 +215,9 @@ let checkoutsInterval = setInterval(() => {
                 </div>
             </div>`)
             
+
+        // For 4 week  pack "No returns required — test as much as you want"
+        // For 12, 52 week  pack "We offer hassle-free returns for unused strips"
         document.querySelector('.money-back_block p:last-child').innerHTML = pack == '1 Pack' ? 'No returns required — test as much as you want' : 'We offer hassle-free returns for unused strips';
 
         if (window.matchMedia("(max-width: 1000px)").matches) {
@@ -108,6 +225,65 @@ let checkoutsInterval = setInterval(() => {
         } else {
             document.querySelector('.main__header .logo.logo--left').after(document.querySelector('.messages'))
         }
+
+
+        request.then(data => {
+            let rating = data[0]['rating'].toFixed(1);
+            let count = data[0]['count'] - data[0]['breakdown']['rating2'];
+
+
+            document.querySelector('.main__content').insertAdjacentHTML('beforeend', `
+            <div class="reviews_block">
+                <div class="d-flex items-center justify-between">
+                    <h2>Reviews</h2>
+                    <div>
+                        <p class="reviews_block_rating">
+                            <span class="fw-bold">${rating}</span>
+                            <svg width="98" height="19" viewBox="0 0 98 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M8.08663 2.54906C8.43899 1.75857 9.56101 1.75857 9.91337 2.54906L11.2515 5.55105C11.3968 5.87709 11.7049 6.10093 12.0599 6.1384L15.3285 6.48338C16.1892 6.57422 16.5359 7.64132 15.893 8.22071L13.4514 10.421C13.1863 10.66 13.0686 11.0222 13.1426 11.3714L13.8246 14.5866C14.0042 15.4332 13.0964 16.0927 12.3467 15.6603L9.49962 14.0182C9.19041 13.8398 8.80959 13.8398 8.50038 14.0182L5.65327 15.6603C4.90357 16.0927 3.99584 15.4332 4.17541 14.5866L4.85736 11.3714C4.93142 11.0222 4.81374 10.66 4.54857 10.421L2.10702 8.22071C1.4641 7.64132 1.81082 6.57422 2.67151 6.48338L5.94008 6.1384C6.29507 6.10093 6.60316 5.87709 6.74849 5.55105L8.08663 2.54906Z" fill="#F2B413"/>
+                                <path d="M28.0866 2.54906C28.439 1.75857 29.561 1.75857 29.9134 2.54906L31.2515 5.55105C31.3968 5.87709 31.7049 6.10093 32.0599 6.1384L35.3285 6.48338C36.1892 6.57422 36.5359 7.64132 35.893 8.22071L33.4514 10.421C33.1863 10.66 33.0686 11.0222 33.1426 11.3714L33.8246 14.5866C34.0042 15.4332 33.0964 16.0927 32.3467 15.6603L29.4996 14.0182C29.1904 13.8398 28.8096 13.8398 28.5004 14.0182L25.6533 15.6603C24.9036 16.0927 23.9958 15.4332 24.1754 14.5866L24.8574 11.3714C24.9314 11.0222 24.8137 10.66 24.5486 10.421L22.107 8.22071C21.4641 7.64132 21.8108 6.57422 22.6715 6.48338L25.9401 6.1384C26.2951 6.10093 26.6032 5.87709 26.7485 5.55105L28.0866 2.54906Z" fill="#F2B413"/>
+                                <path d="M48.0866 2.54906C48.439 1.75857 49.561 1.75857 49.9134 2.54906L51.2515 5.55105C51.3968 5.87709 51.7049 6.10093 52.0599 6.1384L55.3285 6.48338C56.1892 6.57422 56.5359 7.64132 55.893 8.22071L53.4514 10.421C53.1863 10.66 53.0686 11.0222 53.1426 11.3714L53.8246 14.5866C54.0042 15.4332 53.0964 16.0927 52.3467 15.6603L49.4996 14.0182C49.1904 13.8398 48.8096 13.8398 48.5004 14.0182L45.6533 15.6603C44.9036 16.0927 43.9958 15.4332 44.1754 14.5866L44.8574 11.3714C44.9314 11.0222 44.8137 10.66 44.5486 10.421L42.107 8.22071C41.4641 7.64132 41.8108 6.57422 42.6715 6.48338L45.9401 6.1384C46.2951 6.10093 46.6032 5.87709 46.7485 5.55105L48.0866 2.54906Z" fill="#F2B413"/>
+                                <path d="M68.0866 2.54906C68.439 1.75857 69.561 1.75857 69.9134 2.54906L71.2515 5.55105C71.3968 5.87709 71.7049 6.10093 72.0599 6.1384L75.3285 6.48338C76.1892 6.57422 76.5359 7.64132 75.893 8.22071L73.4514 10.421C73.1863 10.66 73.0686 11.0222 73.1426 11.3714L73.8246 14.5866C74.0042 15.4332 73.0964 16.0927 72.3467 15.6603L69.4996 14.0182C69.1904 13.8398 68.8096 13.8398 68.5004 14.0182L65.6533 15.6603C64.9036 16.0927 63.9958 15.4332 64.1754 14.5866L64.8574 11.3714C64.9314 11.0222 64.8137 10.66 64.5486 10.421L62.107 8.22071C61.4641 7.64132 61.8108 6.57422 62.6715 6.48338L65.9401 6.1384C66.2951 6.10093 66.6032 5.87709 66.7485 5.55105L68.0866 2.54906Z" fill="#F2B413"/>
+                                <path d="M88.0866 2.54906C88.439 1.75857 89.561 1.75857 89.9134 2.54906L91.2515 5.55105C91.3968 5.87709 91.7049 6.10093 92.0599 6.1384L95.3285 6.48338C96.1892 6.57422 96.5359 7.64132 95.893 8.22071L93.4514 10.421C93.1863 10.66 93.0686 11.0222 93.1426 11.3714L93.8246 14.5866C94.0042 15.4332 93.0964 16.0927 92.3467 15.6603L89.4996 14.0182C89.1904 13.8398 88.8096 13.8398 88.5004 14.0182L85.6533 15.6603C84.9036 16.0927 83.9958 15.4332 84.1754 14.5866L84.8574 11.3714C84.9314 11.0222 84.8137 10.66 84.5486 10.421L82.107 8.22071C81.4641 7.64132 81.8108 6.57422 82.6715 6.48338L85.9401 6.1384C86.2951 6.10093 86.6032 5.87709 86.7485 5.55105L88.0866 2.54906Z" fill="#F2B413"/>
+                            </svg>
+                        </p>
+                        <p>Based on ${count} reviews</p>
+                    </div>
+                </div>
+            </div>`)
+
+
+            let reviewHtml = (date, author, title, text) => `
+                <div class="review">
+                    <div class="d-flex justify-between items-center">
+                        <div>
+                            <svg class="star" width="98" height="18" viewBox="0 0 98 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M8.08663 2.04906C8.43899 1.25857 9.56101 1.25857 9.91337 2.04906L11.2515 5.05105C11.3968 5.37709 11.7049 5.60093 12.0599 5.6384L15.3285 5.98338C16.1892 6.07422 16.5359 7.14132 15.893 7.72071L13.4514 9.92102C13.1863 10.16 13.0686 10.5222 13.1426 10.8714L13.8246 14.0866C14.0042 14.9332 13.0964 15.5927 12.3467 15.1603L9.49962 13.5182C9.19041 13.3398 8.80959 13.3398 8.50038 13.5182L5.65327 15.1603C4.90357 15.5927 3.99584 14.9332 4.17541 14.0866L4.85736 10.8714C4.93142 10.5222 4.81374 10.16 4.54857 9.92102L2.10702 7.72071C1.4641 7.14132 1.81082 6.07422 2.67151 5.98338L5.94008 5.6384C6.29507 5.60093 6.60316 5.37709 6.74849 5.05105L8.08663 2.04906Z" fill="#F2B413"/>
+                                <path d="M28.0866 2.04906C28.439 1.25857 29.561 1.25857 29.9134 2.04906L31.2515 5.05105C31.3968 5.37709 31.7049 5.60093 32.0599 5.6384L35.3285 5.98338C36.1892 6.07422 36.5359 7.14132 35.893 7.72071L33.4514 9.92102C33.1863 10.16 33.0686 10.5222 33.1426 10.8714L33.8246 14.0866C34.0042 14.9332 33.0964 15.5927 32.3467 15.1603L29.4996 13.5182C29.1904 13.3398 28.8096 13.3398 28.5004 13.5182L25.6533 15.1603C24.9036 15.5927 23.9958 14.9332 24.1754 14.0866L24.8574 10.8714C24.9314 10.5222 24.8137 10.16 24.5486 9.92102L22.107 7.72071C21.4641 7.14132 21.8108 6.07422 22.6715 5.98338L25.9401 5.6384C26.2951 5.60093 26.6032 5.37709 26.7485 5.05105L28.0866 2.04906Z" fill="#F2B413"/>
+                                <path d="M48.0866 2.04906C48.439 1.25857 49.561 1.25857 49.9134 2.04906L51.2515 5.05105C51.3968 5.37709 51.7049 5.60093 52.0599 5.6384L55.3285 5.98338C56.1892 6.07422 56.5359 7.14132 55.893 7.72071L53.4514 9.92102C53.1863 10.16 53.0686 10.5222 53.1426 10.8714L53.8246 14.0866C54.0042 14.9332 53.0964 15.5927 52.3467 15.1603L49.4996 13.5182C49.1904 13.3398 48.8096 13.3398 48.5004 13.5182L45.6533 15.1603C44.9036 15.5927 43.9958 14.9332 44.1754 14.0866L44.8574 10.8714C44.9314 10.5222 44.8137 10.16 44.5486 9.92102L42.107 7.72071C41.4641 7.14132 41.8108 6.07422 42.6715 5.98338L45.9401 5.6384C46.2951 5.60093 46.6032 5.37709 46.7485 5.05105L48.0866 2.04906Z" fill="#F2B413"/>
+                                <path d="M68.0866 2.04906C68.439 1.25857 69.561 1.25857 69.9134 2.04906L71.2515 5.05105C71.3968 5.37709 71.7049 5.60093 72.0599 5.6384L75.3285 5.98338C76.1892 6.07422 76.5359 7.14132 75.893 7.72071L73.4514 9.92102C73.1863 10.16 73.0686 10.5222 73.1426 10.8714L73.8246 14.0866C74.0042 14.9332 73.0964 15.5927 72.3467 15.1603L69.4996 13.5182C69.1904 13.3398 68.8096 13.3398 68.5004 13.5182L65.6533 15.1603C64.9036 15.5927 63.9958 14.9332 64.1754 14.0866L64.8574 10.8714C64.9314 10.5222 64.8137 10.16 64.5486 9.92102L62.107 7.72071C61.4641 7.14132 61.8108 6.07422 62.6715 5.98338L65.9401 5.6384C66.2951 5.60093 66.6032 5.37709 66.7485 5.05105L68.0866 2.04906Z" fill="#F2B413"/>
+                                <path d="M88.0866 2.04906C88.439 1.25857 89.561 1.25857 89.9134 2.04906L91.2515 5.05105C91.3968 5.37709 91.7049 5.60093 92.0599 5.6384L95.3285 5.98338C96.1892 6.07422 96.5359 7.14132 95.893 7.72071L93.4514 9.92102C93.1863 10.16 93.0686 10.5222 93.1426 10.8714L93.8246 14.0866C94.0042 14.9332 93.0964 15.5927 92.3467 15.1603L89.4996 13.5182C89.1904 13.3398 88.8096 13.3398 88.5004 13.5182L85.6533 15.1603C84.9036 15.5927 83.9958 14.9332 84.1754 14.0866L84.8574 10.8714C84.9314 10.5222 84.8137 10.16 84.5486 9.92102L82.107 7.72071C81.4641 7.14132 81.8108 6.07422 82.6715 5.98338L85.9401 5.6384C86.2951 5.60093 86.6032 5.37709 86.7485 5.05105L88.0866 2.04906Z" fill="#F2B413"/>
+                            </svg>
+                            <p>
+                                <span class="author fw-bold">${author}</span>
+                                <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M7 0C3.13384 0 0 3.13384 0 7C0 10.8662 3.13384 14 7 14C10.8662 14 14 10.8662 14 7C14 3.13384 10.8662 0 7 0ZM10.2481 4.36236C10.5452 4.60987 10.5853 5.05132 10.3378 5.34827L6.83765 9.54833C6.71554 9.69505 6.5387 9.7854 6.34828 9.79852C6.15785 9.81177 5.97033 9.74661 5.829 9.61817L3.72909 7.70903C3.44303 7.44899 3.42195 7.00624 3.68198 6.72019C3.94203 6.43413 4.38477 6.41304 4.67083 6.67308L6.23016 8.0906L9.2623 4.45185C9.50981 4.15489 9.95114 4.1147 10.2481 4.3622L10.2481 4.36236Z" fill="#5ABE8B"/>
+                                </svg>
+                                <span class="c-green">Verified Buyer</span>
+                            </p>
+                        </div>
+                        <p>${date}</p>
+                    </div>
+                    <h3>${title}</h3>
+                    <p class="text">${text}</p>
+                </div>`
+
+
+                for (let i = 0; i < reviewobj.length; i++) {
+                    document.querySelector('.reviews_block').insertAdjacentHTML('beforeend', reviewHtml(reviewobj[i].date, reviewobj[i].author, reviewobj[i].title, reviewobj[i].text))
+                    
+                }
+        })
         
     }
 });
