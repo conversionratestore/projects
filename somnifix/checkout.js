@@ -50,6 +50,26 @@ let reviewobj = [
     }
 ]
 
+function pushDataLayer(action) {
+    console.log(action)
+    window.dataLayer = window.dataLayer || [];
+    dataLayer.push({
+        'event': 'event-to-ga',
+        'eventCategory': 'Exp: shipping and money-back guarantee at Checkout',
+        'eventAction': action
+    });
+}
+//comes into view
+function isScrolledIntoView(el) {
+    let rect = el.getBoundingClientRect(),
+        elemTop = rect.top,
+        elemBottom = rect.bottom;
+
+    let isVisible = (elemTop >= 0) && (elemBottom <= window.innerHeight);
+
+    return isVisible;
+}
+
 let checkoutsInterval = setInterval(() => {
     if (window.location.href.includes('/checkouts/') && document.querySelector('.breadcrumb__item.breadcrumb__item--current') != null && document.querySelector('.breadcrumb__item.breadcrumb__item--current').innerText.includes('Information') && document.querySelector('.product__description__variant.order-summary__small-text') != null) {
         clearInterval(checkoutsInterval)
@@ -227,6 +247,8 @@ let checkoutsInterval = setInterval(() => {
         }
 
 
+        pushDataLayer('Visibility Free shipping in the USA block')
+
         request.then(data => {
             let rating = data[0]['rating'].toFixed(1);
             let count = data[0]['count'] - data[0]['breakdown']['rating2'];
@@ -283,7 +305,59 @@ let checkoutsInterval = setInterval(() => {
                     document.querySelector('.reviews_block').insertAdjacentHTML('beforeend', reviewHtml(reviewobj[i].date, reviewobj[i].author, reviewobj[i].title, reviewobj[i].text))
                     
                 }
+
+            document.querySelectorAll('.reviews_block .review').forEach((item, index) => {
+                item.addEventListener('click', (e) => {
+                    let reviewIndex = index == 0 ? 'first' : index == 1 ? 'second' : 'third'
+                    pushDataLayer(`Click on ${reviewIndex} review`)
+                })
+            })
+
+            let viewed1 = false;
+            let viewed2 = false;
+            let viewed3 = false;
+            function isVisibleReviews() {
+                setTimeout(() => {
+                    if (isScrolledIntoView(document.querySelectorAll('.reviews_block .review')[0]) && viewed1 == false) {
+                        viewed1 = true;
+                        pushDataLayer('Visibility first review')
+                    }
+                    if (isScrolledIntoView(document.querySelectorAll('.reviews_block .review')[1]) && viewed3 == false) {
+                        viewed2 = true;
+                        pushDataLayer('Visibility second review')
+                    }
+                    if (isScrolledIntoView(document.querySelectorAll('.reviews_block .review')[2]) && viewed3 == false) {
+                        viewed3 = true;
+                        pushDataLayer('Visibility third review')
+                    }
+                }, 5000)
+            }
+            if (
+                (isScrolledIntoView(document.querySelectorAll('.reviews_block .review')[0]) && viewed1 == false) ||
+                (isScrolledIntoView(document.querySelectorAll('.reviews_block .review')[1]) && viewed2 == false) ||
+                (isScrolledIntoView(document.querySelectorAll('.reviews_block .review')[2]) && viewed3 == false)
+            ) {
+                isVisibleReviews()
+            }
+            window.addEventListener('scroll', (e) => {
+                if (
+                    (isScrolledIntoView(document.querySelectorAll('.reviews_block .review')[0]) && viewed1 == false) ||
+                    (isScrolledIntoView(document.querySelectorAll('.reviews_block .review')[1]) && viewed2 == false) ||
+                    (isScrolledIntoView(document.querySelectorAll('.reviews_block .review')[2]) && viewed3 == false)
+                ) {
+                    isVisibleReviews()
+                }
+            })
         })
         
+        pushDataLayer('loaded')
     }
 });
+
+//clarify
+let isClarify = setInterval(() => {
+    if(typeof clarity == 'function') {
+        clearInterval(isClarify)
+        clarity("set", "new_product_selection_process", "variant_1");
+    }
+}, 100)
