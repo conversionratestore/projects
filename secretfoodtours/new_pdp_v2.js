@@ -4424,10 +4424,6 @@ state.then((state) => {
                                 tour.link
                                 )}</li>`
 							);
-
-                        document.querySelector(`.is_menu_tours [data-continent="${key}"] .is_menu_popular > p`).addEventListener('click', (e) => {
-                            pushDataLayer( 'Click on Popular Tours in menu', e.currentTarget.innerText)
-                        })
 					}
 				}
 				let citys = document.querySelectorAll(
@@ -4457,6 +4453,11 @@ state.then((state) => {
 				document
 					.querySelector(`.is_menu_tours [data-continent="${key}"] > ul`)
 					.insertAdjacentHTML('beforeend', listCountry);
+
+                document.querySelector(`.is_menu_tours [data-continent="${key}"] .is_menu_popular > p`).addEventListener('click', (e) => {
+                    e.stopImmediatePropagation()
+                    pushDataLayer( 'Click on Popular Tours in menu', e.currentTarget.innerText)
+                })
 			}
 			let isUSA = false;
 			for(let el of document.querySelectorAll(
