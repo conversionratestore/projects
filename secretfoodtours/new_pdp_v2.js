@@ -3547,6 +3547,10 @@ let drink = setInterval(() => {
                 </p>                    
             </div>
             <ul>${document.querySelector('.mini_ul').innerHTML} </ul>
+        </div>`
+		);
+        if (!window.location.href.includes('upgraded-drinks-package')) {
+            document.querySelector('.drinks ul').insertAdjacentHTML('afterend', ` 
             <div class="d-md-flex align-items-center">
                 <a href="#" class="buy-2" onclick="pushDataLayer('Click on Add upgraded drink package link')">
                     <svg width="17" height="16" viewBox="0 0 17 16" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -3555,9 +3559,8 @@ let drink = setInterval(() => {
                     Add Upgraded Drinks Package
                 </a>
                 <p class="text">When you purchase our upgraded drink package, you'll enjoy the following in addition to what is already served on the tour:</p>
-            </div>
-        </div>`
-		);
+            </div>`)
+        }
 		let isVisibleBuy2 = false;
 		window.addEventListener('scroll', (e) => {
 			if(isScrolledIntoView('.buy-2') == true && isVisibleBuy2 == false) {
