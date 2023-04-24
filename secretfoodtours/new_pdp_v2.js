@@ -4455,7 +4455,6 @@ state.then((state) => {
 					.insertAdjacentHTML('beforeend', listCountry);
 
                 document.querySelector(`.is_menu_tours [data-continent="${key}"] .is_menu_popular > p`).addEventListener('click', (e) => {
-                    e.stopImmediatePropagation()
                     pushDataLayer( 'Click on Popular Tours in menu', e.currentTarget.innerText)
                 })
 			}
