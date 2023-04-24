@@ -660,7 +660,7 @@ font-weight: 400 !important;
 .navbar-default .container {
     width: 100%;
     max-width: 1202px;
-    padding: 0;
+    padding: 0 16px;
 }
 #block-landingpageheader{
     flex: 0 0 141px;
