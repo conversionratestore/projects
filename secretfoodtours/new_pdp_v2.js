@@ -4418,12 +4418,16 @@ state.then((state) => {
 							.insertAdjacentHTML(
 								'beforeend',
 								`<li class="popular_tours_row ">${popularTout(
-                  tour.image,
-                  tour.rate,
-                  tour.name,
-                  tour.link
-                )}</li>`
+                                tour.image,
+                                tour.rate,
+                                tour.name,
+                                tour.link
+                                )}</li>`
 							);
+
+                        document.querySelector(`.is_menu_tours [data-continent="${key}"] .is_menu_popular > p`).addEventListener('click', (e) => {
+                            pushDataLayer( 'Click on Popular Tours in menu', e.currentTarget.innerText)
+                        })
 					}
 				}
 				let citys = document.querySelectorAll(
