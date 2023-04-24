@@ -3816,9 +3816,10 @@ let photos = setInterval(() => {
 			});
 		} else if (document.querySelector('.w3-content.w3-display-container > img') != null) {
 			document.querySelectorAll('.w3-content.w3-display-container > img').forEach((item) => {
-                console.log(item)
-                console.log(item.src)
-                slide += `<li class="swiper-slide"><img src="${item.src}" alt="${item.alt}"></li>`;
+                let src = item.dataset.cfsrc != null ? 'https://www.secretfoodtours.com' + item.dataset.cfsrc : item.src;
+                console.log(src)
+
+                slide += `<li class="swiper-slide"><img src="${src}" alt="${item.alt}"></li>`;
             });
 		} else {
 			slide = `<li class="swiper-slide"><img src="${document.querySelector('.parallax-mirror img').src }" alt="${item.alt}"></li>`;
