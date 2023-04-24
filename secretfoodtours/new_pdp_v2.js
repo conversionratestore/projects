@@ -4503,7 +4503,7 @@ state.then((state) => {
 						document.querySelector('html').classList.add('lav-menu_open');
 						document.querySelector('.is_menu').style.display = 'flex';
 						document
-							.querySelector('.search_he∏ader')
+							.querySelector('.search_header')
 							.classList.add('visible_search');
 						document
 							.querySelector('#close_ic_desktop')
