@@ -197,6 +197,7 @@ a.new:after {
 }
 .popular_tours_row .more svg {
     margin-left: 10px;
+    margin-top: -4px;
 }
 .popular_tours {
     background: #EBEBE7;
@@ -3017,7 +3018,7 @@ let init = setInterval(() => {
 			document.querySelector('.header_sticky .title').innerHTML =
 				document.querySelector('h1.dest_title').innerHTML; //title sticky header
 		}
-		if(document.querySelectorAll('.breadcrumbs-customer').innerText) {
+		if(document.querySelector('.breadcrumbs-customer').innerText) {
 			document.querySelector('.header_sticky .back span').innerHTML =
 				'All ' +
 				document.querySelectorAll('.breadcrumbs-customer li a')[
@@ -3813,18 +3814,14 @@ let photos = setInterval(() => {
 			document.querySelectorAll('#my-gallery ul li').forEach((item) => {
 				slide += `<li class="swiper-slide">${item.innerHTML}</li>`;
 			});
-		} else if(
-			document.querySelector('.w3-content.w3-display-container') != null
-		) {
-			document
-				.querySelectorAll('.w3-content.w3-display-container > img')
-				.forEach((item) => {
-					slide += `<li class="swiper-slide"><img src="${item.src}" alt="item.alt"></li>`;
-				});
+		} else if (document.querySelector('.w3-content.w3-display-container') != null) {
+			document.querySelectorAll('.w3-content.w3-display-container > img').forEach((item) => {
+                console.log(item)
+                console.log(item.src)
+                slide += `<li class="swiper-slide"><img src="${item.src}" alt="${item.alt}"></li>`;
+            });
 		} else {
-			slide = `<li class="swiper-slide"><img src="${
-        document.querySelector('.parallax-mirror img').src
-      }" alt="item.alt"></li>`;
+			slide = `<li class="swiper-slide"><img src="${document.querySelector('.parallax-mirror img').src }" alt="${item.alt}"></li>`;
 		}
 		if(
 			document.querySelector('#my-gallery') != null ||
@@ -3846,15 +3843,10 @@ let photos = setInterval(() => {
 		} else {
 			document.querySelector('.photos-gallery').style.display = 'none';
 		}
-		document
-			.querySelector('.slider-gallery ul')
-			.insertAdjacentHTML('beforeend', slide);
-		document
-			.querySelector('.gallery ul.swiper-wrapper')
-			.insertAdjacentHTML('beforeend', slide);
-		document
-			.querySelector('.popup_gallery ul.swiper-wrapper')
-			.insertAdjacentHTML('beforeend', slide);
+		document.querySelector('.slider-gallery ul').insertAdjacentHTML('beforeend', slide);
+		document.querySelector('.gallery ul.swiper-wrapper').insertAdjacentHTML('beforeend', slide);
+		document.querySelector('.popup_gallery ul.swiper-wrapper').insertAdjacentHTML('beforeend', slide);
+
 		document.querySelector('.btn-gallery').addEventListener('click', () => {
 			document.querySelector('.popup_gallery').classList.add('active');
 		});
@@ -4506,7 +4498,7 @@ state.then((state) => {
 						document.querySelector('html').classList.add('lav-menu_open');
 						document.querySelector('.is_menu').style.display = 'flex';
 						document
-							.querySelector('.search_header')
+							.querySelector('.search_he∏ader')
 							.classList.add('visible_search');
 						document
 							.querySelector('#close_ic_desktop')
