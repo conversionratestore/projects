@@ -3759,7 +3759,7 @@ let video = setInterval(() => {
 let photos = setInterval(() => {
 	if(
 		(document.querySelector('#my-gallery') != null ||
-			document.querySelector('.w3-content.w3-display-container') != null ||
+			document.querySelector('.w3-content.w3-display-container > img') != null ||
 			document.querySelector('.parallax-mirror img') != null) &&
 		document.querySelector('.photos-gallery') != null &&
 		document.querySelectorAll('.breadcrumbs-customer li a')[2] != null
@@ -3814,7 +3814,7 @@ let photos = setInterval(() => {
 			document.querySelectorAll('#my-gallery ul li').forEach((item) => {
 				slide += `<li class="swiper-slide">${item.innerHTML}</li>`;
 			});
-		} else if (document.querySelector('.w3-content.w3-display-container') != null) {
+		} else if (document.querySelector('.w3-content.w3-display-container > img') != null) {
 			document.querySelectorAll('.w3-content.w3-display-container > img').forEach((item) => {
                 console.log(item)
                 console.log(item.src)
