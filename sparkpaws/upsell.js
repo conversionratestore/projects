@@ -798,15 +798,6 @@ const setObj = {
 // CART CONSTANTS
 const isExpandedCart = window.location.pathname === '/cart'
 
-let currency = ''
-const waitForCurrency = setInterval(() => {
-    if (window.afterpay_shop_money_format) {
-        clearInterval(waitForCurrency)
-
-        currency = afterpay_shop_money_format.split('{')[0]
-    }
-}, WAIT_INTERVAL_TIMEOUT)
-
 const fbt_urls = [
     'dog-pajama',
     'cloud-knit-dog-sweater',
@@ -1806,7 +1797,7 @@ const formatPrice = (number) => {
 
         // Return the formatted number
 
-        return `${currency}${formattedNumber}`
+        return `${getTopLevelDomain() === 'uk' ? '£' : '$'}${formattedNumber}`
     } else {
         return ''
     }
