@@ -1567,7 +1567,7 @@ let init = () => {
                 window.addEventListener('resize', resizeTab())
 
                 document.querySelector('.header_tab').addEventListener('click', (e) => {
-                    pushDataLayer(`Click on ${e.currentTarget}`)
+                    pushDataLayer(`Click on ${e.currentTarget.innerText}`)
                 })
             }
 
