@@ -120,6 +120,7 @@ a.new:after {
 }
 .header_sticky .title {
     color: #FFFFFF;
+    line-height: initial;
 }
 .header_sticky .menu a {
     font-weight: 500;
@@ -141,6 +142,7 @@ a.new:after {
 .header_sticky .is_price {
     font-weight: 400;
     margin-right: 24px;
+    text-align: right;
 }
 .header_sticky .is_price span {
     font-weight: 700;
@@ -661,6 +663,7 @@ header .main_menu {
     border: 1.5px solid #C39958;
     color: #FFFFFF!important;
     padding: 14px 24px 11px;
+    white-space: nowrap;
 }
 .btn-customer.gold-full:hover {
     background: #fff;
