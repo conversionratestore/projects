@@ -3796,6 +3796,7 @@ let photos = setInterval(() => {
             </div>
         </div>`;
 		let slide = ``;
+		let slideLength = 0;
 		document.querySelector('.gallery').innerHTML = `
         <ul class="swiper-wrapper"></ul>
         <div class="d-flex align-items-center justify-content-between w-100">
@@ -3822,6 +3823,8 @@ let photos = setInterval(() => {
 		if(document.querySelector('#my-gallery') != null) {
 			document.querySelectorAll('#my-gallery ul li').forEach((item) => {
                 if (!item.classList.contains('swiper-slide-duplicate')) {
+                    console.log(item)
+                    slideLength += 1;
                     slide += `<li class="swiper-slide">${item.innerHTML}</li>`;
                 }
 			});
@@ -3829,10 +3832,11 @@ let photos = setInterval(() => {
 			document.querySelectorAll('.w3-content.w3-display-container > img').forEach((item) => {
                 let src = item.dataset.cfsrc != null ? 'https://www.secretfoodtours.com' + item.dataset.cfsrc : item.src;
                 console.log(src)
-
+                slideLength += 1;
                 slide += `<li class="swiper-slide"><img src="${src}" alt="${item.alt}"></li>`;
             });
 		} else {
+            slideLength += 1;
 			slide = `<li class="swiper-slide"><img src="${document.querySelector('.parallax-mirror img').src }" alt="${document.querySelector('.parallax-mirror img').alt}"></li>`;
 		}
 		if(
@@ -3867,6 +3871,9 @@ let photos = setInterval(() => {
 			.addEventListener('click', () => {
 				document.querySelector('.popup_gallery').classList.remove('active');
 			});
+            
+        let isLoop = slideLength > 2 ? true : false;
+
 		const waitSwiper = setInterval(() => {
 			if(typeof Swiper == 'function') {
 				clearInterval(waitSwiper);
@@ -3902,7 +3909,7 @@ let photos = setInterval(() => {
 					new Swiper('.slider-gallery', {
 						slidesPerView: 1.1,
 						spaceBetween: 16,
-						loop: true,
+						loop: isLoop,
 						navigation: {
 							nextEl: '.slider-gallery .swiper-button-next',
 							prevEl: '.slider-gallery .swiper-button-prev',
@@ -3916,7 +3923,7 @@ let photos = setInterval(() => {
 					new Swiper('.slider-gallery', {
 						slidesPerView: 2.5,
 						spaceBetween: 20,
-						loop: true,
+						loop: isLoop,
 						navigation: {
 							nextEl: '.slider-gallery .swiper-button-next',
 							prevEl: '.slider-gallery .swiper-button-prev',
