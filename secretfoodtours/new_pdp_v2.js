@@ -3821,7 +3821,9 @@ let photos = setInterval(() => {
         </div>`;
 		if(document.querySelector('#my-gallery') != null) {
 			document.querySelectorAll('#my-gallery ul li').forEach((item) => {
-				slide += `<li class="swiper-slide">${item.innerHTML}</li>`;
+                if (!item.classList.contains('swiper-slide-duplicate')) {
+                    slide += `<li class="swiper-slide">${item.innerHTML}</li>`;
+                }
 			});
 		} else if (document.querySelector('.w3-content.w3-display-container > img') != null) {
 			document.querySelectorAll('.w3-content.w3-display-container > img').forEach((item) => {
