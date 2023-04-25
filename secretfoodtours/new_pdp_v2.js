@@ -1361,6 +1361,10 @@ header .main_menu {
     background: transparent;
     margin-top: 24px;
 }
+.meeting-spot__covid .buy-covid:hover {
+    color: #fff;
+    background-color: #144732;
+}
 .meeting-spot__contact .title-guide {
     font-size: 16px;
     line-height: 32px;
@@ -3024,9 +3028,7 @@ let init = setInterval(() => {
 		if(document.querySelector('.breadcrumbs-customer').innerText) {
 			document.querySelector('.header_sticky .back span').innerHTML =
 				'All ' +
-				document.querySelectorAll('.breadcrumbs-customer li a')[
-					document.querySelectorAll('.breadcrumbs-customer li a').length - 2
-				].innerHTML +
+				document.querySelectorAll('.breadcrumbs-customer li a')[1].innerHTML +
 				' tours'; //back text
 			document.querySelector('.header_sticky .back').href =
 				document.querySelectorAll('.breadcrumbs-customer li a')[
