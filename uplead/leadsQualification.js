@@ -1554,6 +1554,18 @@ let init = () => {
                             text-align: left;
                             padding-left: 20px;
                         }
+                        .header_tab {
+                            padding: 10.5px 13.5px;
+                        }
+                        .header_tab svg {
+                            width: 28px;
+                            height: 28px;
+                            margin-right: 6px;
+                        }
+                        .header_tab > span > span, .header_tab > span > span.fw-bold  {
+                            font-size: 12px;
+                            line-height: 15px;
+                        }
                     }
                 </style>
                 <a href="https://www.uplead.com/uplead-demo" class="flx header_tab">
