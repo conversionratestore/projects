@@ -1548,6 +1548,13 @@ let init = () => {
                         color: #091D30;
                         display: block;
                     }
+
+                    @media (max-width: 767px) {
+                        .guest-header {
+                            text-align: left;
+                            padding-left: 20px;
+                        }
+                    }
                 </style>
                 <a href="https://www.uplead.com/uplead-demo" class="flx header_tab">
                     <svg width="33" height="32" viewBox="0 0 33 32" fill="none" xmlns="http://www.w3.org/2000/svg">
