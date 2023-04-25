@@ -3532,7 +3532,8 @@ let drink = setInterval(() => {
 		document.querySelector('.mini_ul') != null &&
 		document.querySelector('.tour-section .left') != null &&
 		document.querySelectorAll('.breadcrumbs-customer li a')[1] != null &&
-        !window.location.href.includes('upgraded-drinks-package')
+        !window.location.href.includes('upgraded-drinks-package') &&
+        document.querySelector('.what_we_do .buy-2') != null
 	) {
 		clearInterval(drink);
 		document.querySelector('.tour-section .tour-do').insertAdjacentHTML(
@@ -3566,7 +3567,7 @@ let drink = setInterval(() => {
 				pushDataLayer('Visibility Add upgraded drinks package button');
 			}
 		});
-		document.querySelector('.drinks a.buy-2').href = 'https://www.secretfoodtours.com' + document.querySelector('.what_we_do .buy-2').href;
+		document.querySelector('.drinks a.buy-2').href = document.querySelector('.what_we_do .buy-2').href;
 	}
 });
 let tourDo = setInterval(() => {
@@ -3871,7 +3872,7 @@ let photos = setInterval(() => {
 			.addEventListener('click', () => {
 				document.querySelector('.popup_gallery').classList.remove('active');
 			});
-            
+
         let isLoop = slideLength > 2 ? true : false;
 
 		const waitSwiper = setInterval(() => {
