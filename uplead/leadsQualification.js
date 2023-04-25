@@ -1556,6 +1556,7 @@ let init = () => {
                         }
                         .header_tab {
                             padding: 10.5px 13.5px;
+                            right: 20px!important;
                         }
                         .header_tab svg {
                             width: 28px;
