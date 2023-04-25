@@ -1566,6 +1566,9 @@ let init = () => {
                             font-size: 12px;
                             line-height: 15px;
                         }
+                        .guest-header .logo .logo-image {
+                            max-width: 112px!important;
+                        }
                     }
                 </style>
                 <a href="https://www.uplead.com/uplead-demo" class="flx header_tab">
