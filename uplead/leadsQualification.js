@@ -1431,7 +1431,7 @@ let init = () => {
 
         //Create an account
         //Dropdown list for selection number of prospects you would like to reach monthly
-        if (hrefLocation.includes('app.uplead.com/trial-signup') && document.querySelector('.cO98tMz831zEgmUg_ng5') != null && document.querySelector('.dropdown') == null && document.querySelector('.guest-header') != null) {
+        if (hrefLocation.includes('app.uplead.com/trial-signup') && document.querySelector('.cO98tMz831zEgmUg_ng5') != null && document.querySelector('.dropdown') == null && document.querySelector('.guest-header') != null && document.querySelector('.ZJTKvk_PikRPjgNCOU0N') != null) {
             clearInterval(run)
             document.querySelector('.your-trial') != null ? document.querySelector('.your-trial').style.display = 'none' : ''
 
