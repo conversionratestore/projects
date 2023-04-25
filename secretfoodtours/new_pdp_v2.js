@@ -3030,10 +3030,7 @@ let init = setInterval(() => {
 				'All ' +
 				document.querySelectorAll('.breadcrumbs-customer li a')[1].innerHTML +
 				' tours'; //back text
-			document.querySelector('.header_sticky .back').href =
-				document.querySelectorAll('.breadcrumbs-customer li a')[
-					document.querySelectorAll('.breadcrumbs-customer li a').length - 2
-				].href; //back
+			document.querySelector('.header_sticky .back').href = document.querySelectorAll('.breadcrumbs-customer li a')[1].href; //back
 		}
 		document
 			.querySelector('.header_sticky .back')
