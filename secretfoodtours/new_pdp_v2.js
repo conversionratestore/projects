@@ -3026,11 +3026,10 @@ let init = setInterval(() => {
 				document.querySelector('h1.dest_title').innerHTML; //title sticky header
 		}
 		if(document.querySelector('.breadcrumbs-customer').innerText) {
-			document.querySelector('.header_sticky .back span').innerHTML =
-				'All ' +
-				document.querySelectorAll('.breadcrumbs-customer li a')[1].innerHTML +
-				' tours'; //back text
-			document.querySelector('.header_sticky .back').href = document.querySelectorAll('.breadcrumbs-customer li a')[1].href; //back
+            let crumb = document.querySelectorAll('.breadcrumbs-customer li a')[document.querySelectorAll('.breadcrumbs-customer li a').length - 2];
+			document.querySelector('.header_sticky .back span').innerHTML = !window.location.href.includes('upgraded-drinks-package') ?
+				`All ${crumb.innerHTML} tours` : crumb.innerHTML; //back text
+			document.querySelector('.header_sticky .back').href = crumb.href; //back
 		}
 		document
 			.querySelector('.header_sticky .back')
@@ -3625,7 +3624,6 @@ let meeting_spot = setInterval(() => {
 	if(
 		document.querySelector('.notate') != null &&
 		document.querySelector('.meeting_spot .covid') != null &&
-		document.querySelector('.meeting_spot .contact_info') != null &&
 		document.querySelector('.meeting-spot') != null
 	) {
 		clearInterval(meeting_spot);
@@ -3669,8 +3667,17 @@ let meeting_spot = setInterval(() => {
 		}
 		document.querySelector('.meeting-spot__covid').innerHTML =
 			document.querySelector('.meeting_spot .covid').innerHTML;
-		document.querySelector('.meeting-spot__contact').innerHTML =
-			document.querySelector('.meeting_spot .contact_info').innerHTML;
+        if ( document.querySelector('.meeting_spot .contact_info') != null) {
+            document.querySelector('.meeting-spot__contact').innerHTML =
+                document.querySelector('.meeting_spot .contact_info').innerHTML;
+        } else {
+            let tourName = document.querySelectorAll('.breadcrumbs-customer li a')[document.querySelectorAll('.breadcrumbs-customer li a').length - 2].innerHTML;
+
+            document.querySelector('.meeting-spot__contact').insertAdjacentHTML('afterbegin', `
+            <p class="title-guide">Secret ${tourName}</p>
+            <p class="name">Contact Us</p>`)
+			
+        }
 		document
 			.querySelector('.meeting-spot__covid .main_subheading')
 			.insertAdjacentHTML(
