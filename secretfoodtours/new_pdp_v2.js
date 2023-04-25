@@ -3775,7 +3775,8 @@ let photos = setInterval(() => {
 	if(
 		(document.querySelector('#my-gallery') != null ||
 			document.querySelector('.w3-content.w3-display-container > img') != null ||
-			document.querySelector('.parallax-mirror img') != null) &&
+			document.querySelector('.parallax-mirror img') != null || 
+            document.querySelector('.parallax-window') != null) &&
 		document.querySelector('.photos-gallery') != null &&
 		document.querySelectorAll('.breadcrumbs-customer li a')[2] != null
 	) {
@@ -3841,10 +3842,13 @@ let photos = setInterval(() => {
                 slideLength += 1;
                 slide += `<li class="swiper-slide"><img src="${src}" alt="${item.alt}"></li>`;
             });
-		} else {
+		} else if (document.querySelector('.parallax-mirror img') != null) {
             slideLength += 1;
 			slide = `<li class="swiper-slide"><img src="${document.querySelector('.parallax-mirror img').src }" alt="${document.querySelector('.parallax-mirror img').alt}"></li>`;
-		}
+		} else if (document.querySelector('.parallax-window') != null) {
+            slideLength += 1;
+			slide = `<li class="swiper-slide"><img src="https://www.secretfoodtours.com/${document.querySelector('.parallax-window').getAttribute('data-image-src') }" alt="image"></li>`;
+        }
 		if(
 			document.querySelector('#my-gallery') != null ||
 			document.querySelector('.w3-content.w3-display-container') != null
