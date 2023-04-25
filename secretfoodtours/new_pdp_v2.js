@@ -902,6 +902,7 @@ header .main_menu {
     max-width: 342px!important;
     display: block!important;
     height: auto!important;
+    opacity: 0;
 }
 .destination_page_wr .destination_content .plugin_right .close_btn {
     display: none!important;
@@ -2997,9 +2998,7 @@ let init = setInterval(() => {
 				'.tour-section > .container > div > .left'
 			);
 			if(tourLeft && document.querySelector('#plugin')) {
-				document.querySelector('#plugin').style = `left: ${
-          tourLeft.offsetLeft + tourLeft.clientWidth
-        }px; top: ${tourLeft.offsetTop}px;`;
+				document.querySelector('#plugin').style = `left: ${tourLeft.offsetLeft + tourLeft.clientWidth }px; top: ${tourLeft.offsetTop}px; opacity: 1;`;
 			}
 		};
 		setTimeout(() => {
