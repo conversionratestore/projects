@@ -1431,8 +1431,9 @@ let init = () => {
 
         //Create an account
         //Dropdown list for selection number of prospects you would like to reach monthly
-        if (hrefLocation.includes('app.uplead.com/trial-signup') && document.querySelector('.cO98tMz831zEgmUg_ng5') != null && document.querySelector('.dropdown') == null) {
+        if (hrefLocation.includes('app.uplead.com/trial-signup') && document.querySelector('.cO98tMz831zEgmUg_ng5') != null && document.querySelector('.dropdown') == null && document.querySelector('.guest-header') != null) {
             clearInterval(run)
+            document.querySelector('.your-trial') != null ? document.querySelector('.your-trial').style.display = 'none' : ''
 
             if (document.querySelector('.style-trial') == null) {
                 document.body.insertAdjacentHTML('afterbegin', `
@@ -1520,13 +1521,64 @@ let init = () => {
                 sessionStorage.setItem('numberProspects', selectCurrent.dataset.current)
             })
 
+            if (document.querySelector('.header_tab') == null) {
+                document.querySelector('.guest-header').insertAdjacentHTML('beforeend', `
+                <style>
+                    .header_tab {
+                        background: #F8FBFB;
+                        border-radius: 1e+08px;
+                        padding: 10.5px 30px;
+                        position: absolute;
+                        top: 50%;
+                        transform: translateY(-50%);
+                        text-align: left;
+                    }
+                    .header_tab svg {
+                        margin-right: 12px;
+                    }
+                    .header_tab > span > span {
+                        font-size: 14px;
+                        line-height: 17px;
+                        color: #69727A;
+                    }
+                    .header_tab > span > span.fw-bold {
+                        margin-bottom: 2px;
+                        font-size: 16px;
+                        line-height: 20px;
+                        color: #091D30;
+                        display: block;
+                    }
+                </style>
+                <a href="https://www.uplead.com/uplead-demo" class="flx header_tab">
+                    <svg width="33" height="32" viewBox="0 0 33 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="16.5" cy="16" r="16" fill="#00A2BB"/>
+                        <path fill-rule="evenodd" clip-rule="evenodd" d="M19.5365 17.6892C20.1903 18.101 20.8445 18.5129 21.4982 18.9246C21.7796 19.1017 21.9031 19.4775 21.7923 19.8202C21.2298 21.5618 19.5823 22.4811 18.0322 21.8399C14.858 20.5269 12.5052 17.8602 11.3465 14.2628C10.7807 12.506 11.5919 10.6388 13.1286 10.0013C13.431 9.87576 13.7626 10.0157 13.9192 10.3346C14.2821 11.0756 14.6455 11.817 15.0089 12.5579C15.1792 12.9056 15.1392 13.3182 14.906 13.615C14.6008 14.0043 14.2955 14.3936 13.9902 14.7825C14.6419 16.581 15.9867 18.1051 17.5736 18.8436C17.9168 18.4977 18.2602 18.1517 18.6038 17.8057C18.866 17.5415 19.2298 17.4962 19.5364 17.6892L19.5365 17.6892Z" fill="white"/>
+                    </svg>
+                    <span>
+                        <span class="fw-bold">Enterprise?</span>
+                        <span>Contact our sales team</span>
+                    </span>
+                </a>`)
+
+                let resizeTab = () => {
+                    document.querySelector('.header_tab').style = `right: ${(window.innerWidth - document.querySelector('.ZJTKvk_PikRPjgNCOU0N').clientWidth) / 2}px`
+                }
+                resizeTab()
+                window.addEventListener('resize', resizeTab())
+
+                document.querySelector('.header_tab').addEventListener('click', (e) => {
+                    pushDataLayer(`Click on ${e.currentTarget}`)
+                })
+            }
+
             pushDataLayer('loaded')
         }
         //Activate your trial
         //Option activate your trial if the user selected  1000+ monthly credits
         if (hrefLocation.includes('/verification') && document.querySelector('.verificationEmail__wrapper') != null) {
             clearInterval(run)
-           
+            document.querySelector('.header_tab') != null ? document.querySelector('.header_tab').remove() : '';
+
             if (sessionStorage.getItem('numberProspects') != null && sessionStorage.getItem('numberProspects') == 3) {
                 let youCanTrialArr = ['Use UpLead to build highly targeted prospect lists','Search for specific contacts to engage in account-based marketing','Enrich and enhance contact data to get more context about your prospects','Get access to prospect email addresses that are verified in real-time'];
   
@@ -1765,6 +1817,12 @@ let init = () => {
             }
 
             pushDataLayer('loaded')
+        }
+
+        if (hrefLocation.includes('/login') ) {
+            clearInterval(run)
+            document.querySelector('.header_tab') != null ? document.querySelector('.header_tab').remove() : '';
+            document.querySelector('.your-trial') != null ? document.querySelector('.your-trial').style.display = 'none' : ''
         }
     })
 }
