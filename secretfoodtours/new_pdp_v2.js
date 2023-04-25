@@ -3594,9 +3594,10 @@ let tourDo = setInterval(() => {
 			.querySelector('.tour-do .content-text')
 			.after(document.querySelector('.what_we_do .note'));
 		// document.querySelector('.tour-do .content-text').after(document.querySelector('.what_we_do .load_more'))
-		document
-			.querySelector('.tour-do .content-text')
-			.after(document.querySelector('.what_we_do > ul'));
+		if (document.querySelector('.what_we_do > ul') != null) {
+            document.querySelector('.tour-do .content-text').after(document.querySelector('.what_we_do > ul'));
+        }
+      
 		document.querySelectorAll('.tour-do ul li').forEach((item) => {
 			item.innerHTML = `
             <svg width="30" height="36" viewBox="0 0 30 36" fill="none" xmlns="http://www.w3.org/2000/svg">
