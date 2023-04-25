@@ -3566,9 +3566,7 @@ let drink = setInterval(() => {
 				pushDataLayer('Visibility Add upgraded drinks package button');
 			}
 		});
-		document.querySelector('.drinks a.buy-2').href =
-			document.querySelectorAll('.breadcrumbs-customer li a')[1].href +
-			'upgraded-drinks-package/';
+		document.querySelector('.drinks a.buy-2').href = 'https://www.secretfoodtours.com' + document.querySelector('.what_we_do .buy-2').href;
 	}
 });
 let tourDo = setInterval(() => {
@@ -3629,9 +3627,9 @@ let meeting_spot = setInterval(() => {
 		document
 			.querySelector('.meeting-spot .title')
 			.after(document.querySelector('.notate'));
-		document
-			.querySelector('.meeting-spot .title')
-			.after(document.querySelector('#meeting_spot + .text'));
+        if (document.querySelector('#meeting_spot + .text') != null) {
+            document.querySelector('.meeting-spot .title').after(document.querySelector('#meeting_spot + .text'));
+        }
 		if(document.querySelector('.grey_block') != null) {
 			document.querySelectorAll('.grey_block').forEach((item) => {
 				if(item.querySelector('a') != null) {
@@ -3833,7 +3831,7 @@ let photos = setInterval(() => {
                 slide += `<li class="swiper-slide"><img src="${src}" alt="${item.alt}"></li>`;
             });
 		} else {
-			slide = `<li class="swiper-slide"><img src="${document.querySelector('.parallax-mirror img').src }" alt="${item.alt}"></li>`;
+			slide = `<li class="swiper-slide"><img src="${document.querySelector('.parallax-mirror img').src }" alt="${document.querySelector('.parallax-mirror img').alt}"></li>`;
 		}
 		if(
 			document.querySelector('#my-gallery') != null ||
