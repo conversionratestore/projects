@@ -3531,7 +3531,8 @@ let drink = setInterval(() => {
 	if(
 		document.querySelector('.mini_ul') != null &&
 		document.querySelector('.tour-section .left') != null &&
-		document.querySelectorAll('.breadcrumbs-customer li a')[1] != null
+		document.querySelectorAll('.breadcrumbs-customer li a')[1] != null &&
+        !window.location.href.includes('upgraded-drinks-package')
 	) {
 		clearInterval(drink);
 		document.querySelector('.tour-section .tour-do').insertAdjacentHTML(
@@ -3547,10 +3548,6 @@ let drink = setInterval(() => {
                 </p>                    
             </div>
             <ul>${document.querySelector('.mini_ul').innerHTML} </ul>
-        </div>`
-		);
-        if (!window.location.href.includes('upgraded-drinks-package')) {
-            document.querySelector('.drinks ul').insertAdjacentHTML('afterend', ` 
             <div class="d-md-flex align-items-center">
                 <a href="#" class="buy-2" onclick="pushDataLayer('Click on Add upgraded drink package link')">
                     <svg width="17" height="16" viewBox="0 0 17 16" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -3559,8 +3556,9 @@ let drink = setInterval(() => {
                     Add Upgraded Drinks Package
                 </a>
                 <p class="text">When you purchase our upgraded drink package, you'll enjoy the following in addition to what is already served on the tour:</p>
-            </div>`)
-        }
+            </div>
+        </div>`
+		);
 		let isVisibleBuy2 = false;
 		window.addEventListener('scroll', (e) => {
 			if(isScrolledIntoView('.buy-2') == true && isVisibleBuy2 == false) {
@@ -3601,15 +3599,17 @@ let tourDo = setInterval(() => {
 			.querySelector('.tour-do .content-text')
 			.after(document.querySelector('.what_we_do > ul'));
 		document.querySelectorAll('.tour-do ul li').forEach((item) => {
-			item.insertAdjacentHTML(
-				'afterbegin',
-				`<svg width="30" height="36" viewBox="0 0 30 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+			item.innerHTML = `
+            <svg width="30" height="36" viewBox="0 0 30 36" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path fill-rule="evenodd" clip-rule="evenodd" d="M15.0009 36C15.3719 36 15.7155 35.8051 15.906 35.4868L19.7089 29.1305C25.6544 27.1582 29.9452 21.5541 29.9452 14.9443C29.9452 6.69078 23.2544 3.8147e-06 15.0009 3.8147e-06C6.74742 3.8147e-06 0.0566406 6.69078 0.0566406 14.9443C0.0566406 21.5541 4.34749 27.1582 10.2929 29.1305L14.0959 35.4868C14.2863 35.8051 14.63 36 15.0009 36ZM15.0009 32.8911L11.8977 27.7042C11.7627 27.4786 11.5483 27.3115 11.2966 27.2358C6.01304 25.6457 2.16602 20.7432 2.16602 14.9443C2.16602 7.85576 7.91239 2.10938 15.0009 2.10938C22.0895 2.10938 27.8358 7.85576 27.8358 14.9443C27.8358 20.7432 23.9888 25.6457 18.7053 27.2358C18.4535 27.3115 18.2392 27.4786 18.1042 27.7042L15.0009 32.8911Z" fill="#C39958"/>
                 <path fill-rule="evenodd" clip-rule="evenodd" d="M5.89062 17.4443C5.89062 18.0268 6.36282 18.499 6.94531 18.499H23.0573C23.6398 18.499 24.112 18.0268 24.112 17.4443C24.112 16.8618 23.6398 16.3896 23.0573 16.3896H6.94531C6.36282 16.3896 5.89062 16.8618 5.89062 17.4443Z" fill="#C39958"/>
                 <path fill-rule="evenodd" clip-rule="evenodd" d="M8.45508 18.5166C9.03757 18.5166 9.50977 18.0444 9.50977 17.4619V16.3969C9.50977 13.3795 11.9829 10.9064 15.0003 10.9064C18.0176 10.9064 20.4908 13.3798 20.4908 16.3969V17.4619C20.4908 18.0444 20.9629 18.5166 21.5454 18.5166C22.1279 18.5166 22.6001 18.0444 22.6001 17.4619V16.3969C22.6001 12.2149 19.1826 8.79702 15.0003 8.79702C10.8179 8.79702 7.40039 12.2145 7.40039 16.3969V17.4619C7.40039 18.0444 7.87259 18.5166 8.45508 18.5166Z" fill="#C39958"/>
                 <path fill-rule="evenodd" clip-rule="evenodd" d="M15 10.8691C15.5825 10.8691 16.0547 10.3969 16.0547 9.81445V8.74043C16.0547 8.15794 15.5825 7.68574 15 7.68574C14.4175 7.68574 13.9453 8.15794 13.9453 8.74043V9.81445C13.9453 10.3969 14.4175 10.8691 15 10.8691Z" fill="#C39958"/>
-            </svg>`
-			);
+            </svg>
+            <p>${item.innerHTML}</p>`;
+            if (item.querySelector('p').clientHeight > 45) {
+                item.style = 'align-items: flex-start;'
+            }
 		});
 		document
 			.querySelector('.header_sticky_bottom .menu ul')
