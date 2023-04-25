@@ -3619,16 +3619,20 @@ let tourDo = setInterval(() => {
 			);
 	}
 });
-let meeting_spot = setInterval(() => {
+
+let meetingSpotNotate = setInterval(() => {
+    if (document.querySelector('.notate') != null && document.querySelector('.meeting-spot .title') != null) {
+        clearInterval(meetingSpotNotate)
+        document.querySelector('.meeting-spot .title').after(document.querySelector('.notate'));
+    }
+})
+let meetingSpot = setInterval(() => {
 	if(
-		document.querySelector('.notate') != null &&
 		document.querySelector('.meeting_spot .covid') != null &&
 		document.querySelector('.meeting-spot') != null
 	) {
-		clearInterval(meeting_spot);
-		document
-			.querySelector('.meeting-spot .title')
-			.after(document.querySelector('.notate'));
+		clearInterval(meetingSpot);
+		
         if (document.querySelector('#meeting_spot + .text') != null) {
             document.querySelector('.meeting-spot .title').after(document.querySelector('#meeting_spot + .text'));
         }
