@@ -304,7 +304,7 @@ let checkoutsInterval = setInterval(() => {
                         viewed1 = true;
                         pushDataLayer('Visibility first review')
                     }
-                    if (isScrolledIntoView(document.querySelectorAll('.reviews_block .review')[1]) && viewed3 == false) {
+                    if (isScrolledIntoView(document.querySelectorAll('.reviews_block .review')[1]) && viewed2 == false) {
                         viewed2 = true;
                         pushDataLayer('Visibility second review')
                     }
