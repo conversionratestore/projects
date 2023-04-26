@@ -798,7 +798,7 @@ const waitForMainColumn = setInterval(() => {
                                 payBtn.innerText = 'Start 7-day free trial'
 
                                 if (document.querySelector('.annual_checkbox_wrapper .checkbox_active_plan').dataset.pack === 'annual_plus') {
-                                    payBtn.innerText = 'Start 7-day free trial'
+                                    payBtn.innerText = 'Continue'
                                 }
                             }
 
