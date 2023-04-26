@@ -18,3 +18,10 @@ let removing = setInterval(() => {
         })
     }
 });
+
+const recordMF = setInterval(() => {
+    if (typeof window._mfq === "object") {
+      clearInterval(recordMF);
+      window._mfq.push(["setVariable", "removing_extras_from_basic_plan", "var1"]);
+    }
+}, 200);
