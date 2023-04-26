@@ -77,11 +77,12 @@ let checkoutsInterval = setInterval(() => {
         document.querySelector('.breadcrumb__item.breadcrumb__item--current').innerText.includes('Information') && 
         document.querySelector('.product__description__variant.order-summary__small-text') != null && 
         document.querySelector('.product__description__name.order-summary__emphasis') != null &&
-        document.querySelector('.product__description__name.order-summary__emphasis').innerText == 'SomniFix Mouth Strips'
+        document.querySelector('.product__description__name.order-summary__emphasis').innerHTML == 'SomniFix Mouth Strips' &&
+        document.querySelector('.main__content') != null
         ) {
         clearInterval(checkoutsInterval)
 
-        let pack = document.querySelector('.product__description__variant.order-summary__small-text').innerText;
+        let pack = document.querySelector('.product__description__variant.order-summary__small-text').innerHTML;
 
         document.head.insertAdjacentHTML('beforeend',`
             <link rel="preconnect" href="https://fonts.googleapis.com">
