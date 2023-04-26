@@ -20,6 +20,10 @@ let reviewobj = [
     }
 ]
 
+let viewed1 = false;
+let viewed2 = false;
+let viewed3 = false;
+
 function pushDataLayer(action) {
     console.log(action)
     window.dataLayer = window.dataLayer || [];
@@ -294,9 +298,6 @@ let checkoutsInterval = setInterval(() => {
                 })
             })
 
-            let viewed1 = false;
-            let viewed2 = false;
-            let viewed3 = false;
             function isVisibleReviews() {
                 setTimeout(() => {
                     if (isScrolledIntoView(document.querySelectorAll('.reviews_block .review')[0]) && viewed1 == false) {
