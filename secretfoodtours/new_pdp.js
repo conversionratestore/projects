@@ -745,6 +745,9 @@ header .main_menu {
     margin-right: 14px;
     border-right: 1px solid #333333;
 }
+.rating .rate-tours {
+    margin-left: 10px;
+}
 .rating .to-rating, .rating .rate-tours {
     font-family: 'Josefin Sans';
     font-style: normal;
