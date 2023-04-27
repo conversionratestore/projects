@@ -391,7 +391,7 @@ header .search_header input::placeholder {
     background: #fff;
 }
 .destinations-active header .search_header, .destinations-active header .search_header.visible_search {
-    width: calc(100% - 240px);
+    width: calc(100% - 240px)!important;
     z-index: 99999;
 }
 .destinations-active #close_ic_desktop {
