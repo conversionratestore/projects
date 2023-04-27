@@ -7,6 +7,9 @@ let removing = setInterval(() => {
             .pt-0 {
                 padding-top: 0!important;
             }
+            .pb-0 {
+                padding-bottom: 0!important;
+            }
         </style>`)
         document.querySelectorAll('.count_sec .row1030').forEach(item => {
             if (item.innerHTML.includes('3 exclusive bonus classes')) {
@@ -16,6 +19,7 @@ let removing = setInterval(() => {
             }
         })
         document.querySelector('#unlimited_personal_coaching').classList.add('hidden')
+        document.querySelector('#unlimited_personal_coaching').previousElementSibling.querySelector('.paw_icons ul').classList.add('pb-0')
     }
     if (window.location.href.includes('//k9ti.org/enroll') && document.querySelector('.payment_inform_box .payment_order') != null) {
         clearInterval(removing)
