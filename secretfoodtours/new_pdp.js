@@ -2811,6 +2811,8 @@ let initHeader = setInterval(() => {
 					.querySelector('.destinations-active')
 					.classList.remove('destinations-active');
                 document.querySelector('#close_ic_desktop').style.display = 'none'
+                document.querySelector('#cities_desktop').style.display = 'none'
+                document.querySelector('#myInputDesktop').value = '';
 			}
 		});
 	}
@@ -3048,7 +3050,8 @@ let init = setInterval(() => {
 				document
 					.querySelector('.droped.active_menu')
 					.classList.remove('active_menu');
-                document.querySelector('#close_ic_desktop').style.display = 'none'
+                document.querySelector('#close_ic_desktop').style.display = 'none';
+                document.querySelector('#myInputDesktop').value = '';
 			}
 			if(window.pageYOffset > 970) {
 				if(document.querySelector('.header_sticky.fixed') == null) {
