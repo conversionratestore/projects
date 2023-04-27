@@ -2807,6 +2807,7 @@ let initHeader = setInterval(() => {
 				document
 					.querySelector('.destinations-active')
 					.classList.remove('destinations-active');
+                document.querySelector('#close_ic_desktop').style.display = 'none'
 			}
 		});
 	}
