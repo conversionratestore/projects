@@ -614,6 +614,18 @@ let isScrolledIntoView = (el) => {
 }
 let viewedReview = false;
 
+function setUtm() {
+    var match = document.cookie.match('(?:^|;)\\s*_ga=([^;]*)');
+    var raw = (match) ? decodeURIComponent(match[1]) : null;
+    if (raw) {
+        match = raw.match(/(\d+\.\d+)$/);
+    }
+    var gacid = (match) ? match[1] : null;
+    if (gacid) {
+        return gacid;
+    } else return "n/a";
+}
+
 let init = () => {
     let run = setInterval(() => {
         // Homepage
@@ -1376,17 +1388,7 @@ let init = () => {
                     newBlock.querySelector('.formBook').style.display = 'none';
                     newBlock.querySelector('.block_call').style = '';
                     document.querySelector('.block_calendly').style = `position:initial; opacity:1;pointer-events:auto;height:510px;`;
-                    function setUtm() {
-                        var match = document.cookie.match('(?:^|;)\\s*_ga=([^;]*)');
-                        var raw = (match) ? decodeURIComponent(match[1]) : null;
-                        if (raw) {
-                            match = raw.match(/(\d+\.\d+)$/);
-                        }
-                        var gacid = (match) ? match[1] : null;
-                        if (gacid) {
-                            return gacid;
-                        } else return "n/a";
-                    }
+
                     let utm_term = setUtm()
 
                     var xhr = new XMLHttpRequest();
@@ -1593,6 +1595,24 @@ let init = () => {
                     pushDataLayer(`Click on ${e.currentTarget.innerText}`)
                 })
             }
+
+            document.querySelector('.vCenklqa2IbXcZFtBtUj').addEventListener('click', () => {
+                let utm_term = setUtm()
+
+                
+                let partnerCode = document.querySelector('form > div.Os71zjSj2xDr22ogTMr1 > div:nth-child(6) > input') != null ? document.querySelector('form > div.Os71zjSj2xDr22ogTMr1 > div:nth-child(6) > input').value : ''
+                
+                let dataBody = 'full_name='+document.querySelector('[placeholder="Jeff Bezos"]').value
+                +'&email='+document.querySelector('[type="email"]').value
+                +'&password='+document.querySelector('[type="password"]').value
+                +'&phone='+document.querySelector('[type="tel"]').value
+                +'&prospects='+document.querySelector('.select-current span').innerHTML
+                +'&partner_code='+partnerCode
+                +'&client_id='+utm_term;
+             
+                sessionStorage.setItem('data_form', dataBody)
+            })
+           
 
             pushDataLayer('loaded')
         }
@@ -1839,6 +1859,15 @@ let init = () => {
                 document.querySelector('.verificationEmail__wrapper').style.display = 'block'
             }
 
+            if (sessionStorage.getItem('data_form') != null) {
+
+                var xhr = new XMLHttpRequest();
+                xhr.open("POST", `https://hooks.zapier.com/hooks/catch/15010393/34ozyzm/?${sessionStorage.getItem('data_form')}`, true);
+                xhr.setRequestHeader('Content-Type', 'application/json');
+                xhr.send()
+                
+                sessionStorage.removeItem('data_form') 
+            }
             pushDataLayer('loaded')
         }
 
