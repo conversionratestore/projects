@@ -411,7 +411,8 @@ header {
     position: relative;
 }
 header .visible_search .close_ic {
-    top: 24px!important;
+    top: 50%!important;
+    transform: translateY(-50%);
 }
 header .logo img {
     max-width: 200px;
@@ -437,6 +438,12 @@ header .search_btn {
     height: 20px;
     background: url(${dir}search-icon.svg) no-repeat center / 100%;
     margin-left: 20px;
+}
+@media screen and (min-width: 991px) {
+    header .search_header.visible_search {
+        width: calc(100% - 240px - 160px);
+        height: 100%;
+    }
 }
 @media screen and (min-width: 768px) {
     .help_center .container:first-child .left_help {
@@ -906,6 +913,7 @@ header .main_menu {
     display: block!important;
     height: auto!important;
     opacity: 0;
+    z-index: 2;
 }
 .destination_page_wr .destination_content .plugin_right .close_btn {
     display: none!important;
