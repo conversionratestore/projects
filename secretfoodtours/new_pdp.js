@@ -441,7 +441,6 @@ header .search_btn {
 }
 @media screen and (min-width: 991px) {
     header .search_header.visible_search {
-        // width: calc(100% - 240px - 160px)!important;
         min-height: 100%;
     }
 }
@@ -2573,7 +2572,8 @@ let menuToElement = (event) => {
 let initHeader = setInterval(() => {
 	if(
 		document.querySelector('header .search_header input') != null &&
-		document.querySelector('.header_dropdown .city_wr') != null
+		document.querySelector('.header_dropdown .city_wr') != null && 
+        document.querySelector('header .main_menu .droped') != null
 	) {
 		clearInterval(initHeader);
 		//fonts
@@ -2603,6 +2603,8 @@ let initHeader = setInterval(() => {
 					.style.display.includes('block')
 				) {
                   
+                    console.log(document.querySelector('header .main_menu').offsetLeft)
+                    console.log(document.querySelector('header .main_menu .droped').offsetWidth)
 					document.querySelector('.search_header').style =
 						`width: calc(100% - ${document.querySelector('header .main_menu').offsetLeft + document.querySelector('header .main_menu .droped').offsetWidth + 20}px);`;
 				} else {

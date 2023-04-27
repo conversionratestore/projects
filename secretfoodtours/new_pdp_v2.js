@@ -395,7 +395,7 @@ header .search_header input::placeholder {
     width: calc(100% - 270px)!important;
     z-index: 99999;
 }
-.destinations-active #close_ic_desktop {
+.destinations-active header #close_ic_desktop {
     display: none!important;
 }
 .destinations-active .gold {
