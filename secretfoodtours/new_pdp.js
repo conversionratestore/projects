@@ -2553,7 +2553,7 @@ let menuToElement = (event) => {
             href.split('-').join(' ')
         );
     } else {
-        pushDataLayer('Click on rating button');
+        pushDataLayer('Click on rating', event.currentTarget.closest('.left').querySelector('h1').innerHTML);
     }
 	
 };
@@ -2594,11 +2594,30 @@ let initHeader = setInterval(() => {
 				} else {
 					document.querySelector('.search_header').style = '';
 				}
+                pushDataLayer('Click on search icon in header')
 			});
 		});
+        document.querySelector('#myInputDesktop').addEventListener('click', (e) => {
+            let label = ''
+            if (document.querySelector('.is_menu').style.display != '') {
+                label = 'Menu'
+            } else {
+                label = 'Header'
+            }
+            pushDataLayer('Click on search input', label)
+        })
 		document
 			.querySelector('#close_ic_desktop')
 			.addEventListener('click', () => {
+                    
+                let label = ''
+                if (document.querySelector('.is_menu').style.display != '') {
+                    label = 'Menu'
+                } else {
+                    label = 'Header'
+                }
+                pushDataLayer('Click on X in search input', label)
+
 				if(
 					document.querySelector('#myInputDesktop') &&
 					document.querySelector('#myInputDesktop').value
@@ -2620,6 +2639,17 @@ let initHeader = setInterval(() => {
 					.querySelector('.search_header')
 					.classList.remove('visible_search');
 			});
+        document.querySelectorAll('#cities_desktop a').forEach(item => {
+            item.addEventListener('click', (e) => {
+                let label = ''
+                if (document.querySelector('.is_menu').style.display != '') {
+                    label = 'Menu'
+                } else {
+                    label = 'Header'
+                }
+                pushDataLayer('Click on suggested option in search input', label)
+            })
+        })
 		//dropdown
 		//add menu right
 		document
@@ -4414,6 +4444,17 @@ state.then((state) => {
                 </div>
             </div> `
 			);
+
+            document.querySelectorAll('.is_menu_social a').forEach(item => {
+                item.addEventListener('click', (e) => {
+                    pushDataLayer('Click on menu button', item.href)
+                })
+            })
+            document.querySelectorAll('.is_menu_items a').forEach(item => {
+                item.addEventListener('click', (e) => {
+                    pushDataLayer('Click on menu button', item.href)
+                })
+            })
 			for(const key in objPopularTours) {
 				document.querySelector('.is_menu_tours').insertAdjacentHTML(
 					'beforeend',
@@ -4487,9 +4528,6 @@ state.then((state) => {
 					.querySelector(`.is_menu_tours [data-continent="${key}"] > ul`)
 					.insertAdjacentHTML('beforeend', listCountry);
 
-                document.querySelector(`.is_menu_tours [data-continent="${key}"] .is_menu_popular > p`).addEventListener('click', (e) => {
-                    pushDataLayer( 'Click on Popular Tours in menu', e.currentTarget.innerText)
-                })
 			}
 			let isUSA = false;
 			for(let el of document.querySelectorAll(
@@ -4514,8 +4552,20 @@ state.then((state) => {
 			document.querySelectorAll('.is_menu_tours li p').forEach((item) => {
 				item.addEventListener('click', (e) => {
 					e.currentTarget.parentElement.classList.toggle('active');
+                    if (e.currentTarget.parentElement.classList.contains('is_menu_popular')) {
+                        pushDataLayer( 'Click on Popular Tours in menu', e.currentTarget.innerText)
+                    } else {
+                        pushDataLayer('Click on menu button', e.currentTarget.innerText)
+                    }
 				});
 			});
+			document.querySelectorAll('.is_menu_tours li a').forEach((item) => {
+                item.addEventListener('click', (e) => {
+                    if (!e.currentTarget.closest('is_menu_popular')) {
+                        pushDataLayer('Click on menu button', e.currentTarget.href)
+                    }
+                });
+            })
 			document.querySelector('.menu_btn').insertAdjacentHTML(
 				'afterend',
 				`
@@ -4541,6 +4591,8 @@ state.then((state) => {
 						document
 							.querySelector('#close_ic_desktop')
 							.setAttribute('style', 'display:none !important');
+
+                        pushDataLayer('Open hamburger menu', 'Header')
 					} else {
 						document.body.classList.remove('lav-menu_open');
 						document.querySelector('html').classList.remove('lav-menu_open');
@@ -4551,6 +4603,8 @@ state.then((state) => {
 						document
 							.querySelector('#close_ic_desktop')
 							.removeAttribute('style');
+
+                        pushDataLayer('Click the cross button', 'Header')
 					}
 				});
 			if(
