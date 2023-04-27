@@ -2599,7 +2599,7 @@ let initHeader = setInterval(() => {
 		});
         document.querySelector('#myInputDesktop').addEventListener('click', (e) => {
             let label = ''
-            if (document.querySelector('.is_menu').style.display != '') {
+            if (document.querySelector('.is_menu').style.display != '' || document.querySelector('.destinations-active') != null) {
                 label = 'Menu'
             } else {
                 label = 'Header'
@@ -2611,7 +2611,7 @@ let initHeader = setInterval(() => {
 			.addEventListener('click', () => {
                     
                 let label = ''
-                if (document.querySelector('.is_menu').style.display != '') {
+                if (document.querySelector('.is_menu').style.display != '' || document.querySelector('.destinations-active') != null) {
                     label = 'Menu'
                 } else {
                     label = 'Header'
@@ -2642,7 +2642,7 @@ let initHeader = setInterval(() => {
         document.querySelectorAll('#cities_desktop a').forEach(item => {
             item.addEventListener('click', (e) => {
                 let label = ''
-                if (document.querySelector('.is_menu').style.display != '') {
+                if (document.querySelector('.is_menu').style.display != '' || document.querySelector('.destinations-active') != null) {
                     label = 'Menu'
                 } else {
                     label = 'Header'
@@ -2668,6 +2668,12 @@ let initHeader = setInterval(() => {
             </div>
         </div>`
 			);
+
+        document.querySelectorAll('.header_dropdown .right-menu a').forEach(item => {
+            item.addEventListener('click', (e) => {
+                pushDataLayer('Click on menu button', e.currentTarget.href)
+            })
+        })
 		document
 			.querySelector('.header_dropdown .right-menu')
 			.before(document.querySelector('.country_wr'));
@@ -2714,6 +2720,10 @@ let initHeader = setInterval(() => {
 						) {
 							item.insertAdjacentHTML('afterbegin', `<i class="fi fi-us"></i>`);
 						}
+
+                        item.addEventListener('click', (e) => {
+                            pushDataLayer('Click on menu button', e.currentTarget.href)
+                        })
 					});
 			}
 		});
@@ -2749,6 +2759,7 @@ let initHeader = setInterval(() => {
                     <path d="M10 0.943848L5 5.94385L0 0.943848L0.8875 0.0563478L5 4.16885L9.1125 0.0563478L10 0.943848Z" fill="#333333"/>
                 </svg>`;
 				item.previousElementSibling.addEventListener('click', (e) => {
+                    pushDataLayer('Click on menu button', e.currentTarget.href)
 					if(e.target.closest('.block_wr').querySelector('.active') != null) {
 						e.target
 							.closest('.block_wr')
