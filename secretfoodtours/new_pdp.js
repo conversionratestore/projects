@@ -390,7 +390,7 @@ header .search_header input::placeholder {
     z-index: 999999;
     background: #fff;
 }
-.destinations-active .search_header {
+.destinations-active header .search_header, .destinations-active header .search_header.visible_search {
     width: calc(100% - 240px);
     z-index: 99999;
 }
@@ -441,7 +441,7 @@ header .search_btn {
 }
 @media screen and (min-width: 991px) {
     header .search_header.visible_search {
-        width: calc(100% - 240px - 160px);
+        width: calc(100% - 240px - 160px)!important;
         height: 100%;
     }
 }
