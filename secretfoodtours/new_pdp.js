@@ -391,7 +391,7 @@ header .search_header input::placeholder {
     background: #fff;
 }
 .destinations-active header .search_header, .destinations-active header .search_header.visible_search {
-    width: calc(100% - 240px)!important;
+    width: calc(100% - 270px)!important;
     z-index: 99999;
 }
 .destinations-active #close_ic_desktop {
@@ -450,7 +450,6 @@ header .search_btn {
     }
     header .search_header input {
         width: 400px!important;
-        margin-left: 30px;
     }
 }
 @media screen and (max-width: 1335px) {
