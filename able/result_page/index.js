@@ -56,11 +56,11 @@ let v1 = new IntersectionObserver(entries => {
         if(item.isIntersecting) {
             setTimeout(function () {
                 v2.observe(item.target)
-            },1000)
+            },5000)
         }
     })
 }, {
-    threshold: 0.9
+    threshold: 0.5
 })
 
 let v2 = new IntersectionObserver(entries => {
@@ -82,7 +82,6 @@ let record = setInterval(function () {
 
 pushDataLayer('loaded')
 function pushDataLayer(action, label = '') {
-    console.log(action, label)
     window.dataLayer = window.dataLayer || []
     dataLayer.push({
         'event': 'event-to-ga',
@@ -90,6 +89,7 @@ function pushDataLayer(action, label = '') {
         'eventAction': action,
         'eventLabel': label
     })
+    console.log('Event: ' + action)
 }
 
 const $all = (selector) => document.querySelectorAll(selector)
@@ -193,7 +193,7 @@ function start () {
                     clearInterval(paymentInt)
                     paymentBlock()
                 }
-                if($('.fullPayment>div>div button span').innerText === 'Credit / Debit Card') {
+                if($('.fullPayment>div>div button span')?.innerText === 'Credit / Debit Card') {
                     clearInterval(paymentInt)
                     paymentBlock()
                 }
@@ -203,6 +203,9 @@ function start () {
             afterSliderBlock2()
             reviewIo()
             document.querySelector('.body_part').insertAdjacentHTML('afterbegin', style)
+            $all('[data-visible]').forEach(item => {
+                v1.observe(item)
+            })
         }
     }, 100)
 }
@@ -256,7 +259,7 @@ function weightLossBlock () {
     let levelBefore = 50
     let levelAfter = 75
     const bodyPart = /* html */ `
-        <div class="body_part">
+        <div class="body_part" data-visible="Your personalized weight loss program">
             <style>
                 .body_part {
                     padding: 0 26px;
@@ -583,11 +586,15 @@ function weightLossBlock () {
             $('.fullPayment').scrollIntoView({
                 behavior: "smooth",
             })
+            pushDataLayer('Click on button CTA first screen')
         })
     }
     if(!$('.new_h2')) {
         $('.body_part+div>div:first-child').innerHTML = /* html */`<h2 class="new_h2">We've identified a few key points for your goal of losing <span>${currentWeight - goalWeight}</span> <span>${(metric) ? 'kg' : 'lbs'}</span> by Jul 23</h2>`
     }
+    $('.body_part .info').addEventListener('hover', function() {
+        pushDataLayer('Show tooltip')
+    })
     
 }
 
@@ -595,7 +602,6 @@ function paymentBlock () {
     const price = JSON.parse(localStorage.getItem('planCode')).price
     const value = JSON.parse(localStorage.getItem('planCode')).value
     const save = ((1 - (price / 3500)) * 100).toFixed(0)
-    console.log(price, value)
     $('.fullPayment').style.display = 'block'
     $all('.fullPayment div').forEach(block => {
         const cls = block.getAttribute('class')
@@ -807,7 +813,7 @@ function paymentBlock () {
             }
         </style>
         <div class="payment_block">
-            <div class="list">
+            <div class="list" data-visible="Based on your answers">
                 <h3>Based on your answers you'll receive:</h3>
                 <ul>
                     <li><span><img src="${git}scale.svg" alt="scale"></span>Science-backed weight loss program tailored to your lifestyle & body-needs</li>
@@ -819,7 +825,7 @@ function paymentBlock () {
         </div>
     `
     const paymentBlock2 = /* html */`
-    <div class="payment_block">
+    <div class="payment_block" data-visible="Payment block">
         <div class="payments">
             <div class="price flx">
                 <p>Personalized 7-day trial plan</p>
@@ -873,7 +879,7 @@ function rebuildVideoSlider () {
             block.querySelector('h1').innerHTML = 'Customer Success Stories To Inspire You:'
             block.querySelector('h1').style.marginBottom = '12px'
             block.querySelector('h1').insertAdjacentHTML('afterend', `
-                <p style="font-size: 18px; line-height: 26px; margin-bottom: 24px; padding: 0 26px; font-family: 'SF Pro Text', sans-serif;">
+                <p style="font-size: 18px; line-height: 26px; margin-bottom: 24px; padding: 0 26px; font-family: 'SF Pro Text', sans-serif;" data-visible="Video slider">
                     We're proud of all the customers our program has helped, and we're confident it will work for you too:
                 </p>
             `)
@@ -1101,7 +1107,7 @@ function afterSliderBlock1 () {
                     }
                 }
             </style>
-            <div class="coaching">
+            <div class="coaching" data-visible="We'll keep you on track">
                 <h2>We'll keep you on track!</h2>
                 <p>Get 1-1 support, accountability, and advice as part of your program at no extra cost.</p>
                 <div class="swiper">
@@ -1129,7 +1135,7 @@ function afterSliderBlock1 () {
                     </div>
                 </div>
             </div>
-            <div class="as_seen">
+            <div class="as_seen" data-visible="As seen on">
                 <h2>As seen on:</h2>
                 <div class="swiper">
                     <div class="swiper-wrapper">
@@ -1161,7 +1167,7 @@ function afterSliderBlock1 () {
                     <div class="swiper-pagination"></div>
                 </div>
             </div>
-            <div class="examples_result">
+            <div class="examples_result" data-visible="People just like">
                 <h2>People just like you achieved great results using our <span>weight loss program</span></h2>
                 <div class="swiper">
                     <div class="swiper-wrapper">
@@ -1228,6 +1234,9 @@ function afterSliderBlock1 () {
             }
         }
     });
+    swiper1.on('touchEnd', function() {
+        pushDataLayer('Interection with slider', 'We`ll keep you on track!')
+    })
 
     const swiper2 = new Swiper('.as_seen .swiper', {
         speed: 400,
@@ -1241,6 +1250,9 @@ function afterSliderBlock1 () {
             type: 'bullets',
         },
     });
+    swiper2.on('touchEnd', function() {
+        pushDataLayer('Interection with slider', 'As seen on')
+    })
 
     const swiper3 = new Swiper('.examples_result .swiper', {
         speed: 400,
@@ -1260,6 +1272,9 @@ function afterSliderBlock1 () {
             }
         }
     });
+    swiper3.on('touchEnd', function() {
+        pushDataLayer('Interection with slider', 'People just like')
+    })
 }
 
 function afterSliderBlock2 () {
@@ -1438,7 +1453,7 @@ function afterSliderBlock2 () {
                     }
                 }
             </style>
-            <div class="body_goals">
+            <div class="body_goals" data-visible="Body goals">
                 <h2>Your path to your<br>body-goals<img src="${git}red_heart.svg" alt="heart"></h2>
                 <div class="after_time flx">
                     <p>After <span>1 week</span></p>
@@ -1466,7 +1481,7 @@ function afterSliderBlock2 () {
                     </div>
                 </div>
             </div>
-            <div class="s_result">
+            <div class="s_result" data-visible="Sustainable result">
                 <h2>Able program <span>delivers sustainable results</span></h2>
                 <div class="desktop_wrapper">
                     <div>
@@ -1494,7 +1509,7 @@ function afterSliderBlock2 () {
 
 function reviewIo () {
     const reviews = /* html */ `
-        <section class="reviewsio_block">
+        <section class="reviewsio_block" data-visible="Reviews block">
             <style>
                 .reviewsio_block {
                     font-family: "SF Pro Text", sans-serif ;
@@ -1645,7 +1660,6 @@ function reviewIo () {
     `
     $('#root>div:nth-child(3)').insertAdjacentHTML('beforeend', reviews)
     let reviewReady = setInterval(function() {
-        console.log(document.querySelectorAll('.R-ReviewsList__item'))
         if(document.querySelectorAll('.R-ReviewsList__item').length > 0) {
             clearInterval(reviewReady)
             document.querySelectorAll('.R-ReviewsList__item').forEach(item => {
@@ -1669,6 +1683,7 @@ function reviewIo () {
     
     $('.reviewsio_block .more_reviews').addEventListener('click', function() {
         showMoreReviews()
+        pushDataLayer('Click on load more btn')
     })
     function showMoreReviews() {
         let step = 3
@@ -1688,7 +1703,6 @@ function reviewIo () {
 
 function hideBlocks () {
     // hide unused blocks
-    console.log($all('#root>div:nth-child(3)>div'))
     $all('#root>div:nth-child(3)>div').forEach(block => {
         const cls = block.getAttribute('class')
         if(cls.includes('weightLossPlanListWrapper') || cls.includes('weightCarePathWrapper') || cls.includes('customerReviewsWrapper') || cls.includes('buttonPlaceholder') || cls.includes('buttonWrapper')) {
@@ -1708,6 +1722,7 @@ function hideBlocks () {
                 $('.fullPayment').scrollIntoView({
                     behavior: "smooth",
                 })
+                pushDataLayer('Click on sticky button CTA')
             })
         }
     })
