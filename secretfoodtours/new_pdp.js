@@ -2573,7 +2573,8 @@ let initHeader = setInterval(() => {
 	if(
 		document.querySelector('header .search_header input') != null &&
 		document.querySelector('.header_dropdown .city_wr') != null && 
-        document.querySelector('header .main_menu .droped') != null
+        document.querySelector('header .main_menu .droped') != null && 
+        document.querySelectorAll('.search_btn')
 	) {
 		clearInterval(initHeader);
 		//fonts
@@ -2597,17 +2598,20 @@ let initHeader = setInterval(() => {
 			'Type you destination';
 		document.querySelectorAll('.search_btn').forEach((button) => {
 			button.addEventListener('click', (e) => {
+            
 				if(
 					document
 					.querySelector('#close_ic_desktop')
 					.style.display.includes('block')
 				) {
                   
+                    console.log('true')
                     console.log(document.querySelector('header .main_menu').offsetLeft)
                     console.log(document.querySelector('header .main_menu .droped').offsetWidth)
 					document.querySelector('.search_header').style =
-						`width: calc(100% - ${document.querySelector('header .main_menu').offsetLeft + document.querySelector('header .main_menu .droped').offsetWidth + 20}px);`;
+						`width: calc(100% - ${document.querySelector('header .main_menu').offsetLeft + document.querySelector('header .main_menu .droped').offsetWidth}px - 20px);`;
 				} else {
+                    console.log('false')
 					document.querySelector('.search_header').style = '';
 				}
                 pushDataLayer('Click on search icon in header')
