@@ -2604,7 +2604,7 @@ let initHeader = setInterval(() => {
 				) {
                   
 					document.querySelector('.search_header').style =
-						`width: calc(100% - ${document.querySelector('header .main_menu').offsetLeft}px);`;
+						`width: calc(100% - ${document.querySelector('header .main_menu').offsetLeft + document.querySelector('header .main_menu .droped').offsetWidth}px);`;
 				} else {
 					document.querySelector('.search_header').style = '';
 				}
