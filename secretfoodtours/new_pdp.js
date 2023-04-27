@@ -2722,6 +2722,7 @@ let initHeader = setInterval(() => {
 						}
 
                         item.addEventListener('click', (e) => {
+                            e.stopImmediatePropagation()
                             pushDataLayer('Click on menu button', e.currentTarget.href)
                         })
 					});
