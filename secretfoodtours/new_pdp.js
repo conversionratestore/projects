@@ -2599,11 +2599,7 @@ let initHeader = setInterval(() => {
 		document.querySelectorAll('.search_btn').forEach((button) => {
 			button.addEventListener('click', (e) => {
             
-				if(
-					document
-					.querySelector('#close_ic_desktop')
-					.style.display.includes('block')
-				) {
+				if (document.querySelector('.visible_search') != null) {
                   
                     console.log('true')
                     console.log(document.querySelector('header .main_menu').offsetLeft)
