@@ -2537,20 +2537,25 @@ let bestSellers = [
 ];
 let menuToElement = (event) => {
 	event.preventDefault();
-	let href = event.target.href.split('#')[1];
+	let href = event.currentTarget.href.split('#')[1];
 	document.querySelector('html').scrollTop =
 		document.querySelector(`#${href}`).offsetTop - 130;
-	if(event.target.closest('ul').querySelector('.active') != null) {
-		event.target
-			.closest('ul')
-			.querySelector('.active')
-			.classList.remove('active');
-	}
-	event.target.classList.add('active');
-	pushDataLayer(
-		'Click on navigation button in sticky menu',
-		href.split('-').join(' ')
-	);
+    if (event.target.closest('.header_sticky_bottom')) {
+        if(event.target.closest('ul').querySelector('.active') != null) {
+            event.target
+                .closest('ul')
+                .querySelector('.active')
+                .classList.remove('active');
+        }
+        event.target.classList.add('active');
+        pushDataLayer(
+            'Click on navigation button in sticky menu',
+            href.split('-').join(' ')
+        );
+    } else {
+        pushDataLayer('Click on rating button');
+    }
+	
 };
 let initHeader = setInterval(() => {
 	if(
@@ -3217,7 +3222,7 @@ let init = setInterval(() => {
 				document.querySelector('.rating').insertAdjacentHTML(
 					'beforeend',
 					`<div class="star-row d-flex align-items-center">
-                    <p class="to-rating">/5 Rating </p>
+                    <a href="#review" class="d-flex" onclick="menuToElement(event)"><p class="to-rating">/5 Rating </p></a>
                 </div>
                 <div class="d-flex align-items-center">
                     <svg width="23" height="15" viewBox="0 0 23 15" fill="none" xmlns="http://www.w3.org/2000/svg">
