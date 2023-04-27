@@ -411,8 +411,7 @@ header {
     position: relative;
 }
 header .visible_search .close_ic {
-    top: 50%!important;
-    transform: translateY(-50%);
+    top: 14px!important;
 }
 header .logo img {
     max-width: 200px;
@@ -442,7 +441,7 @@ header .search_btn {
 @media screen and (min-width: 991px) {
     header .search_header.visible_search {
         width: calc(100% - 240px - 160px)!important;
-        height: 100%;
+        min-height: 100%;
     }
 }
 @media screen and (min-width: 768px) {
@@ -502,6 +501,9 @@ header .search_btn {
         height: 12px;
         background: url('https://www.secretfoodtours.com/img/icons/close_green.svg') no-repeat center / contain;
         right: 36px!important;
+    }
+    header .visible_search .close_ic {
+        top: 24px!important;
     }
 }
 </style>
