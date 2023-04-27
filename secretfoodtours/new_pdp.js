@@ -2602,8 +2602,9 @@ let initHeader = setInterval(() => {
 					.querySelector('#close_ic_desktop')
 					.style.display.includes('block')
 				) {
+                  
 					document.querySelector('.search_header').style =
-						'width: calc(100% - 240px);';
+						`width: calc(100% - ${document.querySelector('header .main_menu').offsetLeft}px);`;
 				} else {
 					document.querySelector('.search_header').style = '';
 				}
