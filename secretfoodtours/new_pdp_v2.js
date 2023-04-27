@@ -3045,6 +3045,7 @@ let init = setInterval(() => {
 				document
 					.querySelector('.droped.active_menu')
 					.classList.remove('active_menu');
+                document.querySelector('#close_ic_desktop').style.display = 'none'
 			}
 			if(window.pageYOffset > 970) {
 				if(document.querySelector('.header_sticky.fixed') == null) {
