@@ -81,6 +81,7 @@ let checkoutsInterval = setInterval(() => {
             .shipping_block {
                 background: #EBFFF4;
                 padding: 12px 20px;
+                display: none;
             }
             .money-back_block p:first-child, .shipping_block p:first-child {
                 margin-bottom: 2px;
@@ -172,6 +173,9 @@ let checkoutsInterval = setInterval(() => {
             .c-green {
                 color: #3ABC72;
             }
+            .d-none {
+                display: none!important;
+            }
             /* media */
             @media screen and (min-width: 1000px) {
                 .messages {
@@ -211,7 +215,7 @@ let checkoutsInterval = setInterval(() => {
                         <p>No returns required — test as much as you want</p>
                     </div>
                 </div>
-                <div class="items-center shipping_block ${document.querySelector('#checkout_shipping_address_country').value != 'United States' && document.querySelector('#checkout_shipping_address_country').value != '' ? 'd-none' : 'd-flex'}">
+                <div class="items-center shipping_block ">
                     <svg width="30" height="26" viewBox="0 0 30 26" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M28.6667 10.9573L27.3963 10.1877L25.8912 6.32207C25.7152 5.87772 25.3988 5.49478 24.9845 5.22452C24.57 4.95448 24.0776 4.80999 23.5732 4.81098H19.4642V1.9499C19.4636 1.43294 19.2448 0.937454 18.8559 0.572043C18.4673 0.206461 17.94 0.000758008 17.3903 0H2.57395C2.0242 0.000789541 1.49698 0.206476 1.10828 0.572043C0.719404 0.937428 0.500591 1.43289 0.5 1.9499V21.6318C0.50063 22.0489 0.677223 22.4487 0.990928 22.7436C1.30463 23.0385 1.73005 23.2045 2.17352 23.2053H4.18743C4.37179 24.2402 5.06873 25.1311 6.06486 25.6048C7.06098 26.0786 8.2375 26.0786 9.23362 25.6048C10.2297 25.1311 10.9267 24.2402 11.111 23.2053H19.3919C19.5467 24.2473 20.2295 25.154 21.2235 25.6374C22.2178 26.1209 23.3995 26.1209 24.3936 25.6374C25.3876 25.154 26.0704 24.2473 26.2252 23.2053H28.3323C28.775 23.2029 29.1987 23.0363 29.5112 22.7416C29.8236 22.4469 29.9994 22.0479 30 21.6318V13.2523C30.0017 12.3233 29.4988 11.4579 28.6666 10.9572L28.6667 10.9573ZM23.5732 6.2259C23.7698 6.22492 23.9619 6.28078 24.1236 6.38619C24.2851 6.4914 24.4083 6.64103 24.4763 6.81435L26.0747 10.9036C26.1318 11.0483 26.2376 11.1713 26.3758 11.2546L27.8599 12.1518V12.1516C28.2574 12.394 28.4966 12.8099 28.4948 13.2553V16.6965H19.4641V6.2259H23.5732ZM2.57357 1.41493H17.3899C17.7034 1.41651 17.9573 1.65516 17.9587 1.94988V16.6967H2.00442V1.94988C2.00589 1.65517 2.25976 1.41649 2.57325 1.41493H2.57357ZM7.65191 24.5807C7.11856 24.5807 6.60703 24.3815 6.22995 24.027C5.85286 23.6724 5.64096 23.1916 5.64096 22.6902C5.64096 22.189 5.85283 21.7081 6.22995 21.3536C6.60706 20.9991 7.11856 20.7999 7.65191 20.7999C8.18526 20.7999 8.69679 20.9991 9.07387 21.3536C9.45078 21.7081 9.66264 22.189 9.66264 22.6902C9.66201 23.1914 9.44973 23.6719 9.0728 24.0262C8.69589 24.3805 8.18499 24.5799 7.65186 24.5807L7.65191 24.5807ZM22.8053 24.5807C22.2881 24.5807 21.7919 24.3874 21.4261 24.0435C21.0601 23.6997 20.8548 23.2332 20.8548 22.7468C20.8548 22.2604 21.0601 21.7942 21.4261 21.4501C21.7919 21.1063 22.2881 20.913 22.8053 20.913C23.3226 20.913 23.8188 21.1063 24.1846 21.4501C24.5504 21.7942 24.756 22.2604 24.756 22.7468C24.7551 23.2324 24.5498 23.6981 24.1848 24.0418C23.8199 24.3854 23.325 24.5791 22.8084 24.5807H22.8053ZM28.3264 21.7904H26.1107C25.8186 20.8998 25.1334 20.17 24.2299 19.7867C23.3262 19.4033 22.2908 19.4033 21.3872 19.7867C20.4835 20.17 19.7985 20.8998 19.5063 21.7904H11.0356C10.7574 20.8605 10.0599 20.0918 9.12693 19.6872C8.19402 19.2825 7.1191 19.2825 6.18619 19.6872C5.25307 20.0918 4.5555 20.8605 4.27748 21.7904H2.17036C2.07839 21.7889 2.0049 21.7184 2.0049 21.6319V18.1115H28.495V21.6319C28.495 21.674 28.4774 21.7142 28.4457 21.7438C28.4142 21.7737 28.3714 21.7904 28.3266 21.7904L28.3264 21.7904Z" fill="#1E415F"/>
                         <path d="M6.1876 13.4564C6.51768 13.6927 6.98886 13.6333 7.24107 13.3234L13.6411 5.45929C13.8903 5.14662 13.8229 4.70326 13.4905 4.46873C13.1579 4.23422 12.6863 4.29759 12.4368 4.61026L6.04597 12.4521C5.9204 12.6019 5.86475 12.7932 5.89121 12.9825C5.91788 13.1716 6.02476 13.3426 6.18749 13.4567L6.1876 13.4564Z" fill="#1E415F"/>
@@ -334,6 +338,45 @@ let checkoutsInterval = setInterval(() => {
     }
 });
 
+function setShippingBlock(hidden = true, select = '.shipping_block') {
+    if (hidden) {
+        document.querySelector(select).classList.add('d-none')
+        document.querySelector(select).classList.remove('d-flex')
+    } else {
+        document.querySelector(select).classList.add('d-flex')
+        document.querySelector(select).classList.remove('d-none')
+    }
+}
+let stepsCheckout = setInterval(() => {
+    if (document.querySelector('.shipping_block') != null) {
+        if (document.querySelector('#checkout_shipping_address_country') != null) {
+            clearInterval(stepsCheckout)
+            if (document.querySelector('#checkout_shipping_address_country').value != 'United States' && document.querySelector('#checkout_shipping_address_country').value != '') {
+                setShippingBlock()
+            }  else {
+                setShippingBlock(false)
+            }
+
+            document.querySelector('#checkout_shipping_address_country').addEventListener('change', (e) => {
+                if (e.target.value != 'United States' && e.target.value != '') {
+                    setShippingBlock()
+                }  else {
+                    setShippingBlock(false)
+                }
+            })
+        }
+
+        if (document.querySelector('.address.address--tight') != null) {
+            clearInterval(stepsCheckout)
+            if (!document.querySelector('.address.address--tight').innerHTML.includes('United States')) {
+                setShippingBlock()
+            } else {
+                setShippingBlock(false)
+            }
+        }
+    }
+    
+})
 //clarify
 let isClarify = setInterval(() => {
     if(typeof clarity == 'function') {

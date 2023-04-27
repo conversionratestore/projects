@@ -256,6 +256,7 @@ a.new:after {
     padding: 0!important;
     background: #F3F3F3!important;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25)!important;
+    z-index: 2000!important;
 }
 .header_dropdown .block .heading {
     margin: 0 40px 0 0!important;
