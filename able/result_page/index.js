@@ -254,8 +254,10 @@ function weightLossBlock () {
             age = 30
     } 
     const height = (localStorage.getItem('body-height-ft') !== '') ? Math.floor(((+localStorage.getItem('body-height-ft') * 12) + +localStorage.getItem('body-height-inches')) * 2.54) : localStorage.getItem('body-height-cm')
-    const baseBodyFat = Math.round((1.2 * (currentWeight / (height * height / 10000))) + (0.23 * age) - ind)
-    const goalBodyFat = Math.round((1.2 * (goalWeight / (height * height / 10000))) + (0.23 * age) - ind)
+    const weight1 = (localStorage.getItem('body-weight-lbs') !== '') ? Math.floor(+localStorage.getItem('body-weight-lbs') * 0.453) : +localStorage.getItem('body-weight-kg')
+    const weight2 = (localStorage.getItem('body-weight-lbs') !== '') ? Math.floor(+localStorage.getItem('weightGoal') * 0.453)  : +localStorage.getItem('weightGoal')
+    const baseBodyFat = Math.round((1.2 * (weight1 / (height * height / 10000))) + (0.23 * age) - ind)
+    const goalBodyFat = Math.round((1.2 * (weight2 / (height * height / 10000))) + (0.23 * age) - ind)
     let levelBefore = 50
     let levelAfter = 75
     const bodyPart = /* html */ `
@@ -590,7 +592,8 @@ function weightLossBlock () {
         })
     }
     if(!$('.new_h2')) {
-        $('.body_part+div>div:first-child').innerHTML = /* html */`<h2 class="new_h2">We've identified a few key points for your goal of losing <span>${currentWeight - goalWeight}</span> <span>${(metric) ? 'kg' : 'lbs'}</span> by Jul 23</h2>`
+        const finishDate = $('.body_part+div>div:first-child>div>div:first-child').innerText.split('by ')[1].split(' and')[0]
+        $('.body_part+div>div:first-child').innerHTML = /* html */`<h2 class="new_h2">We've identified a few key points for your goal of losing <span>${currentWeight - goalWeight} ${(metric) ? 'kg' : 'lbs'}</span> by <span>${finishDate}</span></h2>`
     }
     $('.body_part .info').addEventListener('hover', function() {
         pushDataLayer('Show tooltip')
