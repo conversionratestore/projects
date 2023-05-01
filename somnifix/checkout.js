@@ -342,9 +342,11 @@ function setShippingBlock(hidden = true, select = '.shipping_block') {
     if (hidden) {
         document.querySelector(select).classList.add('d-none')
         document.querySelector(select).classList.remove('d-flex')
+        document.querySelector(select).previousElementSibling.style = 'width: 100%';
     } else {
         document.querySelector(select).classList.add('d-flex')
         document.querySelector(select).classList.remove('d-none')
+        document.querySelector(select).previousElementSibling.style = '';
     }
 }
 let stepsCheckout = setInterval(() => {
