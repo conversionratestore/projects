@@ -1077,6 +1077,22 @@ function afterSliderBlock1 () {
                     font-size: 16px;
                     line-height: 20px;
                     letter-spacing: -0.0024em;
+                    max-height: 120px;
+                    overflow: hidden;
+                    position: relative;
+                }
+                .examples_result .swiper-slide .review button {
+                    position: absolute;
+                    bottom: 0;
+                    right: 0;
+                    background-color: #F6F6F6;
+                    color: #1375D6;
+                    padding: 0;
+                    margin: 0;
+                    border: none;
+                    text-decoration: underline;
+                    font-size: 16px;
+                    line-height: 20px;
                 }
                 .examples_result .swiper-slide .date {
                     text-align: right;
@@ -1236,7 +1252,7 @@ function afterSliderBlock1 () {
                                 <p>Gloria-Taylor Fricks<br><img src="${git}trust_stars.svg" alt="stars"></p>
                                 <div class="pounds">-2 pounds</div>
                             </div>
-                            <p class="review">So, I dont usually do reviews, and I'll admit, I'm not sticking to my workout regimen 'all' the time. However, I'm making way better choices than I used to. I can use my Fitbit along with my matched program, and the support from the video calls, and...</p>
+                            <p class="review"><span>So, I dont usually do reviews, and I'll admit, I'm not sticking to my workout regimen 'all' the time. However, I'm making way better choices than I used to. I can use my Fitbit along with my matched program, and the support from the video calls, and texts from my coach Lauren are convenient and supportive. This is a tough time for me, so I'm trying to celebrate wins in the overall context of my life. While being a stressed out, working, single new mother; Able has given me the mental health aspect, along with confidence to keep moving forward. I'm stronger, I feel better, and my friend Veronica says she sees a difference in my body, and overall demeanor. All of this, plus, i've lost 2 pounds as of today! Everyone is different, and times get hard; but if you're willing, there is Able.</span></p>
                             <p class="date">Jan 21, 2023</p>
                         </div>
                         <div class="swiper-slide">
@@ -1244,7 +1260,7 @@ function afterSliderBlock1 () {
                                 <p>Paul Wilson<br><img src="${git}trust_stars.svg" alt="stars"></p>
                                 <div class="pounds">-27 pounds</div>
                             </div>
-                            <p class="review">I've been working with coach for 6 weeks now and I am down 27 pounds. It's not easy, but my coaches help me through it! The daily advices have also given me a lot of motivation - even if we're having days where things seem stagnant or difficult.</p>
+                            <p class="review"><span>I've been working with coach for 6 weeks now and I am down 27 pounds. It's not easy, but my coaches help me through it! The daily advices have also given me a lot of motivation - even if we're having days where things seem stagnant or difficult.</span></p>
                             <p class="date">Feb 2, 2023</p>
                         </div>
                         <div class="swiper-slide">
@@ -1252,7 +1268,7 @@ function afterSliderBlock1 () {
                                 <p>Antonia HOVER<br><img src="${git}trust_stars.svg" alt="stars"></p>
                                 <div class="pounds">-12 pounds</div>
                             </div>
-                            <p class="review">I had a great experience with ABLE. I started with a goal to lose 10-15 pounds; I lost 12! My coach, Carolyn, was great! She provided lots of great advice, websites, and You-Tube videos for me to reference. I am also a diabetic, who can proudly...</p>
+                            <p class="review"><span>I had a great experience with ABLE. I started with a goal to lose 10-15 pounds; I lost 12! My coach, Carolyn, was great! She provided lots of great advice, websites, and You-Tube videos for me to reference. I am also a diabetic, who can proudly say that my current A1C, last doctor visit, was 5.8! I have not only lost weight, but I feel, and am so much healthier! Thanks ABLE, and thanks Coach Carolyn!</span></p>
                             <p class="date">Apr 22, 2022</p>
                         </div>
                     </div>
@@ -1334,6 +1350,24 @@ function afterSliderBlock1 () {
     });
     swiper3.on('touchEnd', function() {
         pushDataLayer('Interection with slider', 'People just like')
+    })
+
+    $all('.examples_result .swiper-slide').forEach(item => {
+        const textContainer = item.querySelector('.review')
+        const text = textContainer.querySelector('span')
+        const maxHeight = parseInt(getComputedStyle(textContainer).maxHeight)
+    
+        if (text.offsetHeight > maxHeight) {
+            const readMoreBtn = document.createElement('button')
+            readMoreBtn.className = 'read-more-btn'
+            readMoreBtn.textContent = ' ...more'
+            textContainer.appendChild(readMoreBtn)
+    
+            readMoreBtn.addEventListener('click', () => {
+                textContainer.style.maxHeight = 'none'
+                readMoreBtn.style.display = 'none'
+            })
+        }
     })
 }
 
