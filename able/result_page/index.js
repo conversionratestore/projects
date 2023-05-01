@@ -593,16 +593,20 @@ function weightLossBlock () {
             })
             pushDataLayer('Click on button CTA first screen')
         })
+
     }
-    if(!$('.new_h2')) {
-        let finishDate 
-        if(window.innerWidth < 769) {
-            finishDate = $('.body_part+div>div:first-child>div:first-child').innerText.split('by ')[1].split(' and')[0]
-        } else {
-            finishDate = $('.body_part+div>div:first-child>div>div:first-child').innerText.split('by ')[1].split(' and')[0]
+    setTimeout(function() {
+        if(!$('.new_h2')) {
+            let finishDate 
+            if(window.innerWidth < 769) {
+                finishDate = $('.body_part+div>div:first-child>div:first-child').innerText.split('by ')[1].split(' and')[0]
+            } else {
+                finishDate = $('.body_part+div>div:first-child>div>div:first-child').innerText.split('by ')[1].split(' and')[0]
+            }
+            $('.body_part+div>div:first-child').innerHTML = /* html */`<h2 class="new_h2">We've identified a few key points for your goal of losing <span>${currentWeight - goalWeight} ${(metric) ? 'kg' : 'lbs'}</span> by <span>${finishDate}</span></h2>`
         }
-        $('.body_part+div>div:first-child').innerHTML = /* html */`<h2 class="new_h2">We've identified a few key points for your goal of losing <span>${currentWeight - goalWeight} ${(metric) ? 'kg' : 'lbs'}</span> by <span>${finishDate}</span></h2>`
-    }
+    }, 1000)
+    
     $('.body_part .info').addEventListener('hover', function() {
         pushDataLayer('Show tooltip')
     })
@@ -845,7 +849,7 @@ function paymentBlock () {
                 <div>
                     <p class="flx">
                         <span class="base_price">$35.00</span>
-                        <span class="trial_price">${value}${(value !== '$18.37')? '.00' : ''}</span>
+                        <span class="trial_price">${value}${(!value.includes('.'))? '.00' : ''}</span>
                     </p>
                     <span class="save">You save ${save}%</span>
                 </div>
@@ -855,10 +859,10 @@ function paymentBlock () {
                     <img src="${git}carrot.svg" alt="carrot">
                     <p>You'll have 7 days to try Able and use it’s science-backed, personalized approach to create lasting results.</p>
                 </div>
-                <p>Your 7-day trial will cost only ${value}${(value !== '$18.37')? '.00' : ''}. Afterwards, it will be $35/week.</p>
+                <p>Your 7-day trial will cost only ${value}${(!value.includes('.'))? '.00' : ''}. Afterwards, it will be $35/week.</p>
             </div>
             <div class="total flx">
-                Total due today: <span>${value}${(value !== '$18.37')? '.00' : ''}</span>
+                Total due today: <span>${value}${(!value.includes('.'))? '.00' : ''}</span>
             </div>
             <div class="money_back flx">
                 <img src="${git}shield.svg" alt="shield">
@@ -881,9 +885,35 @@ function paymentBlock () {
 }
 
 function rebuildVideoSlider () {
+    const sliderStyle = /* html */ `
+        <style>
+            @media (min-width: 769px) {
+                .swiper-watch-progress::before, .swiper-watch-progress::after {
+                    content: '';
+                    display: block;
+                    position: absolute;
+                    height: 100%;
+                    width: 12.5%;
+                    top: 0;
+                    z-index: 2;
+                }
+
+                .swiper-watch-progress::before {
+                    background: linear-gradient(90deg, white, transparent);
+                    left: 0;
+                }
+
+                .swiper-watch-progress::after {
+                    background: linear-gradient(270deg, white, transparent);
+                    right: 0;
+                }
+            }
+        </style>
+    `
     $all('#root>div:nth-child(3)>div').forEach(block => {
         const cls = block.getAttribute('class')
         if(cls.includes('customerVideoReviewsWrapper')) {
+            block.insertAdjacentHTML('afterbegin', sliderStyle)
             block.style.background = 'none'
             if(window.innerWidth < 769) {
                 block.querySelector('h1+div').style.display = 'none'
