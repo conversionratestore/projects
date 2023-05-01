@@ -1460,6 +1460,11 @@ let run = setInterval(() => {
             } 
         })
 
+        let styleSplitit = document.createElement('link');
+        styleSplitit.href = 'https://documents.production.splitit.com/_app/immutable/assets/_layout.d5bda238.css';
+        styleSplitit.rel = 'stylesheet';
+        document.head.appendChild(styleSplitit)
+
         document.body.insertAdjacentHTML('afterbegin', styles);
         document.body.insertAdjacentHTML('beforeend', slideInCartHTML)
 
