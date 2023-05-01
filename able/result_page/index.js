@@ -617,7 +617,7 @@ function paymentBlock () {
     $all('.fullPayment div').forEach(block => {
         const cls = block.getAttribute('class')
         if(cls?.includes('banner') || cls?.includes('paymentInfoWrapper') || cls?.includes('header')) {
-            block.remove()
+            block.style.display = 'none'
         }
     })
 
@@ -870,8 +870,8 @@ function paymentBlock () {
         </div>
     </div>
     `
-    $('.fullPayment>div>div').insertAdjacentHTML('afterbegin', paymentBlock2)
-    $('.fullPayment>div').insertAdjacentHTML('afterbegin', paymentBlock1)
+    $('.fullPayment>div:last-of-type>div:last-of-type').insertAdjacentHTML('afterbegin', paymentBlock2)
+    $('.fullPayment>div:last-child').insertAdjacentHTML('afterbegin', paymentBlock1)
     if(window.innerWidth > 768) {
         $('.fullPayment>div>div:last-of-type h1').remove()
         setTimeout(function() {
