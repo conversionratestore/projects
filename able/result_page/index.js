@@ -273,7 +273,7 @@ function weightLossBlock () {
     const baseBodyFat = Math.round((1.2 * (weight1 / (height * height / 10000))) + (0.23 * age) - ind)
     const goalBodyFat = Math.round((1.2 * (weight2 / (height * height / 10000))) + (0.23 * age) - ind)
     let levelBefore = 50
-    let levelAfter = 75
+    let levelAfter = 90
     const bodyPart = /* html */ `
         <div class="body_part" data-visible="Your personalized weight loss program">
             <style>
