@@ -215,10 +215,10 @@ function timer() {
         $('header+div').insertAdjacentHTML('afterbegin', `<div class="crs_banner_wrapper"></div>`)
         $('.crs_banner_wrapper').insertAdjacentHTML('afterend', `<button>Get My Program</button>`)
         $('.crs_banner_wrapper').append($('header+div h3'))
-        $('header+div h3').innerHTML = `Your spot with <b>Tony</b> is reserved for:`
+        $('header+div h3').innerHTML = `Your spot is reserved for:`
         $('header+div h3').append($('header+div>div:not(.crs_banner_wrapper)'))
         $('.crs_banner_wrapper+button').addEventListener('click', function() {
-            $('.payment_block').scrollIntoView({
+            $('.payment_block .payments').scrollIntoView({
                 behavior: "smooth",
             })
             pushDataLayer('Click on header CTA')
@@ -271,7 +271,6 @@ function weightLossBlock () {
                 }
                 .reviews_line {
                     display: flex;
-                    justify-content: space-between;
                     align-items: center;
                     background: #F6F6F6;
                     border-radius: 100px;
@@ -281,6 +280,7 @@ function weightLossBlock () {
                 }
                 .reviews_line img {
                     width: 70px;
+                    margin-right: 6px;
                 }
                 .body_part h2 {
                     font-size: 32px;
@@ -333,6 +333,9 @@ function weightLossBlock () {
                     justify-content: center;
                     align-items: stretch;
                     text-align: center;
+                }
+                .body_part .data .before {
+                    border-right: 1px solid #E0E3EB;
                 }
                 .body_part .data {
                     display: flex;
@@ -539,7 +542,7 @@ function weightLossBlock () {
             <div>
                 <div class="reviews_line">
                     <img src="${git}stars.svg" alt="stars">
-                    <b>4.7/5</b> by <b>15,000+</b> Happy Customers
+                    4.7/5 by 15,000+ Happy Customers
                 </div>
                 <h2>Your personalized weight loss program is ready!</h2>
                 <p>It has been proven to be <b>3x more effective</b>,  thanks to the assistance of a dedicated 1-1 coach.</p>
@@ -585,7 +588,7 @@ function weightLossBlock () {
     if(!$('.body_part')) {
         $('#root>*:nth-child(3)').insertAdjacentHTML('afterbegin', bodyPart)
         $('.body_part h2+p+button').addEventListener('click', function(){
-            $('.payment_block').scrollIntoView({
+            $('.payment_block .payments').scrollIntoView({
                 behavior: "smooth",
             })
             pushDataLayer('Click on button CTA first screen')
@@ -640,6 +643,7 @@ function paymentBlock () {
                 margin-top: 18px;
                 font-size: 16px;
                 line-height: 20px;
+                align-items: center;
             }
             .payment_block .list li span {
                 display: block;
@@ -662,6 +666,7 @@ function paymentBlock () {
                 line-height: 28px;
                 color: #202B47;
                 font-weight: 600;
+                padding-right: 8px;
             }
             .payment_block .price>p+div {
                 text-align: right;
@@ -825,7 +830,7 @@ function paymentBlock () {
                 <h3>Based on your answers you'll receive:</h3>
                 <ul>
                     <li><span><img src="${git}scale.svg" alt="scale"></span>Science-backed weight loss program tailored to your lifestyle & body-needs</li>
-                    <li><span><img src="${git}coach.svg" alt="coach"></span>Unlimited 1-1 video and text support from your coach, Tony</li>
+                    <li><span><img src="${git}coach.svg" alt="coach"></span>Unlimited 1-1 video and text support from your coach</li>
                     <li><span><img src="${git}salad.svg" alt="salad"></span>Customized nutrition guidance and unique exercise plan</li>
                     <li><span><img src="${git}heart.svg" alt="heart"></span>Everything you need to achieve & maintain your healthy body goals.</li>
                 </ul>
@@ -840,7 +845,7 @@ function paymentBlock () {
                 <div>
                     <p class="flx">
                         <span class="base_price">$35.00</span>
-                        <span class="trial_price">${value}</span>
+                        <span class="trial_price">${value}${(value !== '$18.37')? '.00' : ''}</span>
                     </p>
                     <span class="save">You save ${save}%</span>
                 </div>
@@ -850,10 +855,10 @@ function paymentBlock () {
                     <img src="${git}carrot.svg" alt="carrot">
                     <p>You'll have 7 days to try Able and use it’s science-backed, personalized approach to create lasting results.</p>
                 </div>
-                <p>Your 7-day trial will cost only ${value}. Afterwards, it will be $35/week.</p>
+                <p>Your 7-day trial will cost only ${value}${(value !== '$18.37')? '.00' : ''}. Afterwards, it will be $35/week.</p>
             </div>
             <div class="total flx">
-                Total due today: <span>${value}</span>
+                Total due today: <span>${value}${(value !== '$18.37')? '.00' : ''}</span>
             </div>
             <div class="money_back flx">
                 <img src="${git}shield.svg" alt="shield">
@@ -1436,6 +1441,20 @@ function afterSliderBlock2 () {
                         font-size: 16px;
                         line-height: 20px;
                     }
+                    .body_goals .after_time p:first-child {
+                        border-right: none;
+                        position: relative;
+                    }
+                    .body_goals .after_time p:first-child::after {
+                        position: absolute;
+                        content: '';
+                        right: -11px;
+                        top: calc(50% - 11px);
+                        width: 22px;
+                        height: 22px;
+                        background: url(https://conversionratestore.github.io/projects/able/result_page/img/arr_right.svg) center center no-repeat;
+                        background-size: contain;
+                    }   
                     .s_result {
                         margin: 90px auto;
                         border: none;
@@ -1462,9 +1481,9 @@ function afterSliderBlock2 () {
                 }
             </style>
             <div class="body_goals" data-visible="Body goals">
-                <h2>Your path to your<br>body-goals<img src="${git}red_heart.svg" alt="heart"></h2>
+                <h2>Your path to your <br>body-goals<img src="${git}red_heart.svg" alt="heart"></h2>
                 <div class="after_time flx">
-                    <p>After <span>1 week</span></p>
+                    <p>After <span>1 week</span></p> 
                     <p>After <span>1 month</span></p>
                 </div>
                 <div class="goals">
@@ -1727,7 +1746,7 @@ function hideBlocks () {
             block.querySelector('button').addEventListener('click', function(e) {
                 e.preventDefault()
                 e.stopPropagation()
-                $('.payment_block').scrollIntoView({
+                $('.payment_block .payments').scrollIntoView({
                     behavior: "smooth",
                 })
                 pushDataLayer('Click on sticky button CTA')
@@ -1745,6 +1764,10 @@ function setObserver() {
             weightLossBlock()
             let paymentInt = setInterval(function() {
                 if ($('.fullPayment>div>div:last-of-type button[type="submit"]')) {
+                    clearInterval(paymentInt)
+                    paymentBlock()
+                }
+                if($('.fullPayment>div>div button span')?.innerText === 'Credit / Debit Card') {
                     clearInterval(paymentInt)
                     paymentBlock()
                 }
