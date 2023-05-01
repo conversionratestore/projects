@@ -592,9 +592,11 @@ function weightLossBlock () {
         })
     }
     if(!$('.new_h2')) {
-        let finishDate = $('.body_part+div>div:first-child>div>div:first-child').innerText.split('by ')[1].split(' and')[0]
+        let finishDate 
         if(window.innerWidth < 769) {
             finishDate = $('.body_part+div>div:first-child>div:first-child').innerText.split('by ')[1].split(' and')[0]
+        } else {
+            finishDate = $('.body_part+div>div:first-child>div>div:first-child').innerText.split('by ')[1].split(' and')[0]
         }
         $('.body_part+div>div:first-child').innerHTML = /* html */`<h2 class="new_h2">We've identified a few key points for your goal of losing <span>${currentWeight - goalWeight} ${(metric) ? 'kg' : 'lbs'}</span> by <span>${finishDate}</span></h2>`
     }
