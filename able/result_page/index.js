@@ -218,7 +218,7 @@ function timer() {
         $('header+div h3').innerHTML = `Your spot with <b>Tony</b> is reserved for:`
         $('header+div h3').append($('header+div>div:not(.crs_banner_wrapper)'))
         $('.crs_banner_wrapper+button').addEventListener('click', function() {
-            $('.fullPayment').scrollIntoView({
+            $('.payment_block').scrollIntoView({
                 behavior: "smooth",
             })
             pushDataLayer('Click on header CTA')
@@ -585,7 +585,7 @@ function weightLossBlock () {
     if(!$('.body_part')) {
         $('#root>*:nth-child(3)').insertAdjacentHTML('afterbegin', bodyPart)
         $('.body_part h2+p+button').addEventListener('click', function(){
-            $('.fullPayment').scrollIntoView({
+            $('.payment_block').scrollIntoView({
                 behavior: "smooth",
             })
             pushDataLayer('Click on button CTA first screen')
@@ -1727,7 +1727,7 @@ function hideBlocks () {
             block.querySelector('button').addEventListener('click', function(e) {
                 e.preventDefault()
                 e.stopPropagation()
-                $('.fullPayment').scrollIntoView({
+                $('.payment_block').scrollIntoView({
                     behavior: "smooth",
                 })
                 pushDataLayer('Click on sticky button CTA')
