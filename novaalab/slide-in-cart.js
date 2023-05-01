@@ -510,6 +510,11 @@ input.clac_qty {
 .splitit-iframe-popup .grid, .splitit-iframe-popup .grid--rev, .splitit-iframe-popup .grid--full, .splitit-iframe-popup .grid-uniform {
     margin-left: 0!important;
 }
+.splitit-iframe-popup .grid-cols-4 {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
 /* fonts */
 .fw-bold {
     font-weight: 700!important;
