@@ -151,6 +151,20 @@ const style = /* html */ `
             max-width: 260px;
         }
 
+        .accordionWrapper-0-2-147 {
+            flex-direction: row;
+            justify-content: space-between;
+        }
+
+        .weightChartWrapper-0-2-35 h2, .weightChartWrapper-0-2-35 h3 {
+            display: none;
+        }
+
+        .weightChartWrapper-0-2-35 {
+            box-shadow: none;
+            background-color: #fff;
+        }
+
         @media (min-width: 769px) {
             header+div {
                 padding: 8px 10% !important;
@@ -508,6 +522,8 @@ function weightLossBlock () {
                         color: #fff;
                         border: none;
                         cursor: pointer;
+                        line-height: 26px;
+                        font-size: 18px;
                     }
                     .body_part .data>div span  {
                         width: 50%;
@@ -603,6 +619,7 @@ function weightLossBlock () {
             } else {
                 finishDate = $('.body_part+div>div:first-child>div>div:first-child').innerText.split('by ')[1].split(' and')[0]
             }
+            $('.body_part+div>div:last-child')
             $('.body_part+div>div:first-child').innerHTML = /* html */`<h2 class="new_h2">We've identified a few key points for your goal of losing <span>${currentWeight - goalWeight} ${(metric) ? 'kg' : 'lbs'}</span> by <span>${finishDate}</span></h2>`
         }
     }, 1000)
