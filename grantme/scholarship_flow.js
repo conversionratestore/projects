@@ -37,6 +37,36 @@ let startFunk = setInterval(() => {
     scriptCustomMask.async = false;
     document.head.appendChild(scriptCustomMask);
 
+    let eventVar = "desktop";
+
+    if (window.innerWidth <= 768) {
+      eventVar = "mobile";
+    }
+
+    function pushDataLayer(nameDataLayer, deskDataLayer, typeDataLayer, actionDataLayer, labelDataLayer) {
+      window.dataLayer = window.dataLayer || [];
+      if (labelDataLayer) {
+        console.log(nameDataLayer + " " + deskDataLayer + typeDataLayer + actionDataLayer + " : " + labelDataLayer);
+        dataLayer.push({
+          event: "event-to-ga4",
+          event_name: `${nameDataLayer} ${eventVar}`,
+          event_desc: `${deskDataLayer}`,
+          event_type: `${typeDataLayer}`,
+          event_loc: `${actionDataLayer}`,
+          eventLabel: `${labelDataLayer}`,
+        });
+      } else {
+        console.log(nameDataLayer + " " + deskDataLayer + " " + typeDataLayer + " " + actionDataLayer);
+        dataLayer.push({
+          event: "event-to-ga4",
+          event_name: `${nameDataLayer} ${eventVar}`,
+          event_desc: `${deskDataLayer}`,
+          event_type: `${typeDataLayer}`,
+          event_loc: `${actionDataLayer}`,
+        });
+      }
+    }
+
     let newStyle = /*html */ `
     <style>
 .accent_var {
@@ -365,9 +395,6 @@ body .our_consultants_wrapper h3 {
 }
 #navbar .reviews_btn_wrapper {
   cursor: pointer;
-}
-#navbar.is_fixed .reviews_btn_wrapper {
-  cursor: initial;
 }
 .reviews_btn_wrapper p {
   font-family: "Lato", sans-serif;
@@ -1792,7 +1819,7 @@ padding: 0;
     <section class="reviews_btn_box">
       <h2>Book a <span class="accent_var">Free</span> call to find out how to get this scolarship</h2>
       <a class="book_free_call_btn" href="#newScheduleBox">Book a Free Call</a>
-      <div class="reviews_btn_wrapper" data-reviews>
+      <div class="reviews_btn_wrapper" data-reviews data-count='1'>
         <svg width="109" height="20" viewBox="0 0 109 20" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path d="M0 19.1283H19.9722V0.0078125H0V19.1283Z" fill="#2DAF6B" />
           <path d="M17.0255 8.14277L5.69745 16.021L7.35043 11.1519L3.02344 8.14277H8.37182L10.0244 3.27344L11.6771 8.14277H17.0255ZM10.0249 13.0121L13.1186 12.3891L14.3512 16.021L10.0249 13.0121Z" fill="white" />
@@ -2155,7 +2182,7 @@ padding: 0;
 
     let stickyBox = /*html */ `
     <div class="sticky_box">
-      <div class="reviews_btn_wrapper">
+      <div class="reviews_btn_wrapper" data-reviews data-count='2'>
         <svg width="109" height="20" viewBox="0 0 109 20" fill="none" xmlns="htactp://www.w3.org/2000/svg">
           <path d="M0 19.1283H19.9722V0.0078125H0V19.1283Z" fill="#2DAF6B" />
           <path d="M17.0255 8.14277L5.69745 16.021L7.35043 11.1519L3.02344 8.14277H8.37182L10.0244 3.27344L11.6771 8.14277H17.0255ZM10.0249 13.0121L13.1186 12.3891L14.3512 16.021L10.0249 13.0121Z" fill="white" />
@@ -2182,7 +2209,7 @@ padding: 0;
 
     let stickyHeader = /*html */ `
     <div class="sticky_header">
-      <div class="reviews_btn_wrapper" data-reviews>
+      <div class="reviews_btn_wrapper" data-reviews data-count='2'>
         <svg width="109" height="20" viewBox="0 0 109 20" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path d="M0 19.1283H19.9722V0.0078125H0V19.1283Z" fill="#2DAF6B" />
           <path d="M17.0255 8.14277L5.69745 16.021L7.35043 11.1519L3.02344 8.14277H8.37182L10.0244 3.27344L11.6771 8.14277H17.0255ZM10.0249 13.0121L13.1186 12.3891L14.3512 16.021L10.0249 13.0121Z" fill="white" />
@@ -2277,8 +2304,6 @@ padding: 0;
       let tippyRun = setInterval(() => {
         if (typeof tippy === "function") {
           clearInterval(tippyRun);
-          console.log(`tippyRun`);
-
           document.querySelectorAll("[data-title]").forEach((el) => {
             tippy(el, {
               content: el.getAttribute("data-title"),
@@ -2287,7 +2312,9 @@ padding: 0;
               appendTo: function () {
                 return document.querySelector(".tooltip_wrapper");
               },
-              onTrigger(e) {},
+              onTrigger(e) {
+                pushDataLayer("exp_bookpage_fs_tooltip", "Interaction", "Tooltip", "First screen");
+              },
             });
           });
         }
@@ -2345,14 +2372,19 @@ padding: 0;
     }
     if (document.querySelector("[data-reviews]")) {
       document.querySelectorAll("[data-reviews]").forEach((el) => {
-        el.addEventListener("click", () => {
-          if (!el.closest(".navbar-default")?.classList.contains("is_fixed")) {
-            if (window.innerWidth <= 768) {
-              document.querySelector("#block-trustpilotwidgetstartfreetrial").scrollIntoView({ block: "start", behavior: "smooth" });
-            } else {
-              document.querySelector("#block-trustpilotwidgetstartfreetrial").scrollIntoView({ block: "center", behavior: "smooth" });
-            }
+        el.addEventListener("click", (e) => {
+          if (e.currentTarget.getAttribute("data-count") === "1") {
+            pushDataLayer("exp_bookpage_fs_reviews", "Reviews", "Link", "First screen");
+          } else if (e.currentTarget.getAttribute("data-count") === "2") {
+            pushDataLayer("exp_bookpage_sticky_review", "Reviews", "Link", "Sticky button");
           }
+          if (window.innerWidth <= 768) {
+            document.querySelector("#block-trustpilotwidgetstartfreetrial").scrollIntoView({ block: "start", behavior: "smooth" });
+          } else {
+            document.querySelector("#block-trustpilotwidgetstartfreetrial").scrollIntoView({ block: "center", behavior: "smooth" });
+          }
+          // if (!el.closest(".navbar-default")?.classList.contains("is_fixed")) {
+          // }
         });
       });
     }
@@ -2387,6 +2419,15 @@ padding: 0;
           ],
         });
         slider.on("swipe", function () {});
+        document.querySelectorAll(".slick-arrow").forEach((el) => {
+          el.addEventListener("click", function (e) {
+            if (e.currentTarget.classList.contains("testimonials_arrow_prev")) {
+              pushDataLayer("exp_bookpage_userssay_prev", "Previous", "Button", "What Our Users Say");
+            } else {
+              pushDataLayer("exp_bookpage_userssay_next", "Next", "Button", "What Our Users Say");
+            }
+          });
+        });
       }
     }, 100);
 
@@ -2394,10 +2435,19 @@ padding: 0;
     let calendar = setInterval(() => {
       if (typeof jQuery("#calendarContainer").simpleCalendar === "function") {
         clearInterval(calendar);
-        console.log(`calendar`);
         document.querySelector("#calendarContainer .ajax-throbber.sk-circle").remove();
         setCalendar();
         setNewEvents();
+        document.querySelectorAll(".calendar header .simple-calendar-btn").forEach((el) => {
+          el.addEventListener("click", (i) => {
+            if (i.target.classList.contains("btn-prev")) {
+              pushDataLayer("exp_bookpage_calendar_prev_mon", "Prevoius month", "Button", "Calendar");
+            }
+            if (i.target.classList.contains("btn-next")) {
+              pushDataLayer("exp_bookpage_calendar_next_mon", "Next month", "Button", "Calendar");
+            }
+          });
+        });
       }
     }, 600);
 
@@ -2414,6 +2464,7 @@ padding: 0;
         onInit: function (calendar) {},
         onDateSelect: function (date, events) {
           if (events.length > 0) {
+            pushDataLayer("exp_bookpage_calendar_day", "Day", "Select", "Calendar");
             document.querySelectorAll(".block-schedule-consulation ul.nav.nav-tabs a span.date").forEach((span) => {
               if (span.textContent.includes(`${new Intl.DateTimeFormat("en-US", { month: "short" }).format(new Date(date))} ${new Date(date).getDate()}`)) {
                 span.closest("a").click();
@@ -2473,6 +2524,7 @@ padding: 0;
 
     jQuery(".select-wrapper select").on("change", (e) => {
       console.log(`ONCHANGE`, e);
+      pushDataLayer("exp_bookpage_calendar_timezone", "Time Zone", "Select", "Calendar");
       let container = jQuery("#calendarContainer").simpleCalendar();
       let jQuerycalendar = container.data("plugin_simpleCalendar");
       jQuerycalendar.setEvents([]);
@@ -2481,7 +2533,6 @@ padding: 0;
         let f = setInterval(() => {
           if (!document.querySelector(".ajax-progress.ajax-progress-fullscreen")) {
             clearInterval(f);
-            console.log(`  clearInterval(f);`);
             document.querySelector(".path-start-free-trial.path-schedule-consultation #scholarshipListContent .col-lg-7.center").scrollIntoView({ block: "start", behavior: "smooth" });
             setNewEvents();
           }
@@ -2493,6 +2544,7 @@ padding: 0;
       document.querySelector(".new_schedule .nav_steps svg").addEventListener("click", (el) => {
         document.querySelector(".path-start-free-trial.path-schedule-consultation #scholarshipListContent .col-lg-7.center").scrollIntoView({ block: "start", behavior: "smooth" });
         if (el.currentTarget.getAttribute("data-navsteps") === "2") {
+          pushDataLayer("exp_bookpage_calendar_back_2", "Back step 2", "Button", "Calendar");
           document.querySelector(".nav_steps svg").setAttribute("data-navsteps", "1");
           el.currentTarget.classList.add("svg_is_hidden");
           document.querySelector(".new_schedule .nav_steps > p:nth-of-type(1)").textContent = "Select a Day";
@@ -2504,6 +2556,7 @@ padding: 0;
           document.querySelector(".time_zone_wrapper").classList.remove("is_hidden");
         }
         if (el.currentTarget.getAttribute("data-navsteps") === "3") {
+          pushDataLayer("exp_bookpage_calendar_back_3", "Back step 3", "Button", "Calendar");
           document.querySelector(".nav_steps svg").setAttribute("data-navsteps", "2");
           document.querySelector(".new_schedule .nav_steps > p:nth-of-type(1)").textContent = "Select a Time (30 min)";
           document.querySelector(".new_schedule .nav_steps > p .step_active").textContent = "2";
@@ -2534,6 +2587,7 @@ padding: 0;
       document.querySelectorAll(".chosen_select ul li").forEach(function (el) {
         el.addEventListener("click", function (e) {
           e.stopPropagation();
+          pushDataLayer("exp_bookpage_calendar_selecttime_opt", "Select a time", "Selected option", "Calendar");
           document.querySelectorAll(".block-schedule-consulation .tab-content>.active label").forEach((time) => {
             if (e.target.getAttribute("data-time") === time.querySelector("input").getAttribute("data-fulldatetime")) {
               time.querySelector("input").click();
@@ -2576,8 +2630,6 @@ padding: 0;
       let menu_is_active = menu.hasClass("active");
 
       if (!its_menu && !its_hamburger && menu_is_active && menu.has(e.target).length === 0 && e.target.getAttribute("type") !== "checkbox" && !e.target.getAttribute("data-checkboxid")) {
-        console.log(e.target);
-        console.log(`toggle hamburger`);
         menu.toggleClass("active");
         if (jQuery(".chosen_select div.options_custom").hasClass("active")) {
           jQuery(".chosen_select div.options_custom").slideDown();
@@ -2593,9 +2645,9 @@ padding: 0;
 
       jQuery(".chosen_select div.select_custom").on("click", (e) => {
         e.stopPropagation();
+        pushDataLayer("exp_bookpage_calendar_selecttime_sel", "Select a time", "Select", "Calendar");
         if (!hamburger.has(e.target).length === 0) return;
         if (hamburger.has(e.target).length === 0) {
-          console.log(e.target);
           e.target.classList.toggle("is_visit");
           jQuery(".chosen_select div.options_custom").toggleClass("active");
           if (jQuery(".chosen_select div.options_custom").hasClass("active")) {
@@ -2609,6 +2661,7 @@ padding: 0;
       // Click on confirm_time_btn
       document.querySelector(".confirm_time_btn").addEventListener("click", (e) => {
         e.preventDefault();
+        pushDataLayer("exp_bookpage_calendar_confirm", "Confirm", "Button", "Calendar");
         document.querySelector(".path-start-free-trial.path-schedule-consultation #scholarshipListContent .col-lg-7.center").scrollIntoView({ block: "start", behavior: "smooth" });
         document.querySelector(".nav_steps svg").setAttribute("data-navsteps", "3");
         if (document.querySelector(".select-wrapper select").value === "") {
@@ -2628,7 +2681,6 @@ padding: 0;
       document.querySelectorAll("#yourInformationForm input").forEach((i) => {
         i.addEventListener("input", (e) => {
           validationForm(e.target);
-
           let paramsLocation = new URLSearchParams(window.location.search);
           if (paramsLocation.get("user_type") === "parent") {
             if (e.target.getAttribute("name") === "firstName") {
@@ -2691,6 +2743,25 @@ padding: 0;
           }
         });
         i.addEventListener("blur", (e) => {
+          if (e.target.getAttribute("name") === "firstName") {
+            pushDataLayer("exp_bookpage_calendar_fname", "Enter details. First name", "Input", "Calendar");
+          }
+          if (e.target.getAttribute("name") === "lastName") {
+            pushDataLayer("exp_bookpage_calendar_lname", "Enter details. Last Name", "Input", "Calendar");
+          }
+          if (e.target.getAttribute("name") === "phoneNumber") {
+            pushDataLayer("exp_bookpage_calendar_phone", "Enter details. Phone number", "Input", "Calendar");
+          }
+          if (e.target.getAttribute("name") === "newFirstNameGuest") {
+            pushDataLayer("exp_bookpage_calendar_fname_guest", "Enter details. First name Guest", "Input", "Calendar");
+          }
+          if (e.target.getAttribute("name") === "newLastNameGuest") {
+            pushDataLayer("exp_bookpage_calendar_lname_guest", "Enter details. Last Name Guest", "Input", "Calendar");
+          }
+          if (e.target.getAttribute("name") === "newPhoneNumberGuest") {
+            pushDataLayer("exp_bookpage_calendar_phone_guest", "Enter details. Phone number Guest", "Input", "Calendar");
+          }
+
           if (e.target.previousElementSibling.classList.contains("is_active") && e.target.value === "") {
             e.target.previousElementSibling.classList.remove("is_active");
           }
@@ -2709,6 +2780,7 @@ padding: 0;
 
       //Click on add_guests_btn
       document.querySelector(".add_guests_btn").addEventListener("click", (e) => {
+        pushDataLayer("exp_bookpage_calendar_addguest", "Enter details. Add Guests", "Link", "Calendar");
         e.target.classList.add("is_hidden");
         document.querySelector(".your_parent_information_wrapper").classList.remove("is_hidden");
       });
@@ -2716,6 +2788,7 @@ padding: 0;
       //
       document.querySelector("#yourInformationForm .schedule_call_btn").addEventListener("click", (e) => {
         e.preventDefault();
+        pushDataLayer("exp_bookpage_calendar_schedule", "Schedule a Call", "Button", "Calendar");
 
         let paramsLocation = new URLSearchParams(window.location.search);
         if (paramsLocation.get("user_type") === "parent") {
@@ -2816,7 +2889,6 @@ padding: 0;
           if (typeof IMask === "function") {
             clearInterval(s);
             mask = new IMask(element, maskOptions);
-            console.log(mask._unmaskedValue.length);
             if (mask._unmaskedValue.length !== 10) {
               if (!document.querySelector(`.text_validation.phone_number_var`)) {
                 document.querySelector(`#yourInformationForm input[name='phoneNumber']`)?.closest("label").insertAdjacentHTML("afterend", `<p class="text_validation phone_number_var">Phone Number does not contain a valid phone number.</p>`);
@@ -2834,7 +2906,6 @@ padding: 0;
       }
 
       if (inputValueFirstName !== null && inputValueLastName !== null && inputValueEmail !== null) {
-        console.log(`>>>>>>>>>>>`, document.querySelector(`.text_validation.phone_number_var`) == null);
         setTimeout(() => {
           if (document.querySelector(`.text_validation.phone_number_var`) == null && document.querySelector(`.text_validation.name_guest_var`) == null && document.querySelector(`.text_validation.last_name_guest_var`) == null && document.querySelector(`.text_validation.phone_number_guest_var`) == null) {
             if (document.querySelector("#yourInformationForm .schedule_call_btn:disabled")) {
@@ -2914,5 +2985,118 @@ padding: 0;
         }
       }
     }
+    document.querySelector(".reviews_btn_box .book_free_call_btn")?.addEventListener("click", () => {
+      pushDataLayer("exp_bookpage_fs_book", "Book a Free Call", "Button", "First screen");
+    });
+    document.querySelector("[href='tel:+18004934084']")?.addEventListener("click", () => {
+      pushDataLayer("exp_bookpage_notimes_phone", "Phone", "Link", "No suitable times for you");
+    });
+    document.querySelector(".testimonials_item_last .btn")?.addEventListener("click", () => {
+      pushDataLayer("exp_bookpage_userssay_see", "See More", "Button", "What Our Users Say");
+    });
+    document.querySelector(".footer-start-free-trial a.btn.primary-solid-yellow")?.addEventListener("click", () => {
+      pushDataLayer("exp_bookpage_ready_book", "Book A Call", "Button", "Ready To Get Started");
+    });
+    document.querySelector(".sticky_box .book_free_call_btn")?.addEventListener("click", () => {
+      pushDataLayer("exp_bookpage_sticky_book", "Book a Free Call", "Button", "Sticky button");
+    });
+    document.querySelector(".navbar-default .sticky_header .book_free_call_btn")?.addEventListener("click", () => {
+      pushDataLayer("exp_bookpage_sticky_book", "Book a Free Call", "Button", "Sticky button");
+    });
+    document.querySelector(".hs-faq-beacon-open")?.addEventListener("click", () => {
+      pushDataLayer("exp_bookpage_faq_speak", "Speak With an Educator", "Link", "Frequently Asked Questions");
+    });
+    document.querySelectorAll("#block-faqstartfreetrialacademy-2 #accordion .panel .panel-heading a").forEach((el) => {
+      el.addEventListener("click", (link) => {
+        console.log(link.currentTarget.closest(".panel-heading").nextElementSibling.classList.contains("in"));
+        if (link.currentTarget.closest(".panel-heading").nextElementSibling.classList.contains("in")) {
+          pushDataLayer("exp_bookpage_faq_close", "{{question_name}}", "Close question", "Frequently Asked Questions");
+        } else {
+          pushDataLayer("exp_bookpage_faq_open", "{{question_name}}", "Open question", "Frequently Asked Questions");
+        }
+      });
+    });
+    //visibility elem
+    let obs = new IntersectionObserver(visibility, {
+      threshold: 1,
+    });
+
+    let obs2 = new IntersectionObserver(visibility2, {
+      threshold: 1,
+    });
+    obs.observe(document.querySelector(".path-schedule-consultation .block-schedule-consulation-header #scholarshipListContent .academy-waiting-left > .reviews_btn_box"));
+    obs.observe(document.querySelector("body .consultation_descr_box > div.no_commitments_wrapper"));
+    obs.observe(document.querySelector(".our_consultants_wrapper"));
+    obs.observe(document.querySelector(".as_seen_on_box .count_txt_wrapper"));
+    obs.observe(document.querySelector(".testimonials_arrows"));
+    obs.observe(document.querySelector("#competition_step1 img"));
+    obs.observe(document.querySelector(".persuasive_comparison_table_box .odds_txt_wrapper"));
+    obs.observe(document.querySelector(".path-start-free-trial .our-scholars"));
+    obs.observe(document.querySelector(".faq-help-text-wrapper"));
+    obs.observe(document.querySelector("#competition_step2 img"));
+    obs.observe(document.querySelector("#competition_step3 img"));
+    obs.observe(document.querySelector(".footer-start-free-trial a.btn.primary-solid-yellow"));
+    //
+    function visibility(entries) {
+      entries.forEach((i) => {
+        if (i.isIntersecting) {
+          setTimeout(function () {
+            obs2.observe(i.target);
+          }, 100);
+        }
+      });
+    }
+    function visibility2(entries) {
+      entries.forEach((i) => {
+        if (i.isIntersecting) {
+          if (i.target.classList.contains("reviews_btn_box")) {
+            pushDataLayer("exp_bookpage_viewel_01", "Interaction", "View element on screen", "Your Child Is Eligible");
+          }
+          if (i.target.classList.contains("no_commitments_wrapper")) {
+            pushDataLayer("exp_bookpage_viewel_02", "Interaction", "View element on screen", "Book a Free Grade");
+          }
+          if (i.target.classList.contains("our_consultants_wrapper")) {
+            pushDataLayer("exp_bookpage_viewel_03", "Interaction", "View element on screen", "Schedule a Free Scholarship");
+          }
+          if (i.target.classList.contains("count_txt_wrapper")) {
+            pushDataLayer("exp_bookpage_viewel_04", "Interaction", "View element on screen", "As Seen On");
+          }
+          if (i.target.classList.contains("testimonials_arrows")) {
+            pushDataLayer("exp_bookpage_viewel_05", "Interaction", "View element on screen", "What Our Users Say");
+          }
+          if (i.target.getAttribute("alt") === "step 1") {
+            pushDataLayer("exp_bookpage_viewel_06", "Interaction", "View element on screen", "Leave Your Competition In The Dust");
+          }
+          if (i.target.classList.contains("odds_txt_wrapper")) {
+            pushDataLayer("exp_bookpage_viewel_07", "Interaction", "View element on screen", "Our 2022 University Admission Odds");
+          }
+          if (i.target.classList.contains("our-scholars")) {
+            pushDataLayer("exp_bookpage_viewel_08", "Interaction", "View element on screen", "Hear From Our Scholars");
+          }
+          if (i.target.classList.contains("faq-help-text-wrapper")) {
+            pushDataLayer("exp_bookpage_viewel_09", "Interaction", "View element on screen", "Frequently Asked Questions");
+          }
+          if (i.target.getAttribute("alt") === "step 2") {
+            pushDataLayer("exp_bookpage_viewel_10", "Interaction", "View element on screen", "Stand Out & Get In");
+          }
+          if (i.target.getAttribute("alt") === "step 3") {
+            pushDataLayer("exp_bookpage_viewel_11", "Interaction", "View element on screen", "Discover Your Dreams");
+          }
+          if (i.target.classList.contains("btn")) {
+            pushDataLayer("exp_bookpage_viewel_12", "Interaction", "View element on screen", "Ready To Get Started");
+          }
+
+          obs.unobserve(i.target);
+        }
+        obs2.unobserve(i.target);
+      });
+    }
+    pushDataLayer("exp_bookpage_loaded", " ", " ", " ");
+    const record = setInterval(() => {
+      if (typeof clarity === "function") {
+        clearInterval(record);
+        clarity("set", `booking_page_exp${eventVar}`, "variant_1");
+      }
+    }, 200);
   }
 }, 500);
