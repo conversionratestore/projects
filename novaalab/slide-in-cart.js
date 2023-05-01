@@ -515,6 +515,9 @@ input.clac_qty {
     align-items: center;
     justify-content: space-between;
 }
+.splitit-iframe-popup .grid:after {
+    content: none!important;
+}
 /* fonts */
 .fw-bold {
     font-weight: 700!important;
