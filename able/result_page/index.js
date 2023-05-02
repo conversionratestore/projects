@@ -65,7 +65,7 @@ let v1 = new IntersectionObserver(entries => {
 let v2 = new IntersectionObserver(entries => {
     entries.forEach(item => {
         if(item.isIntersecting) {
-            pushDataLayer('Visibility of ' + item.target.dataset.visible)
+            pushDataLayer('Element visibility' , 'View element on screen (5 sec or more)', item.target.dataset.visible)
             v1.unobserve(item.target)
         }
         v2.unobserve(item.target)
@@ -75,20 +75,21 @@ let v2 = new IntersectionObserver(entries => {
 let record = setInterval(function () {
     if (typeof clarity === 'function') {
         clearInterval(record)
-        clarity("set", "New result page", "variant 1");
+        clarity("set", "Add payment options", "variant 1");
     }
 }, 100)
 
 pushDataLayer('loaded')
-function pushDataLayer(action, label = '') {
+function pushDataLayer(desc, type = '', loc = '') {
     window.dataLayer = window.dataLayer || []
     dataLayer.push({
-        'event': 'event-to-ga',
-        'eventCategory': 'Exp: New result page',
-        'eventAction': action,
-        'eventLabel': label
+        'event': 'event-to-ga4',
+        'event_name': 'Exp: Add payment options',
+        'event_desc': desc,
+        'event_type': type,
+        'event_loc' : loc
     })
-    console.log('Event: ' + action)
+    console.log(`Event:${desc} ${type} ${loc}`)
 }
 
 const $all = (selector) => document.querySelectorAll(selector)
@@ -196,7 +197,7 @@ const style = /* html */ `
 
 function start () {
     const check = setInterval(function() {
-        if(window.location.pathname === '/subscribe') {
+        if(window.location.pathname === '/subscribe' && !$('.flicker')) {
             $('#root').insertAdjacentHTML('beforebegin', '<style class="flicker">#root{opacity: 0}</style>')
         }
         
@@ -246,7 +247,7 @@ function timer() {
             $('.payment_block .payments').scrollIntoView({
                 behavior: "smooth",
             })
-            pushDataLayer('Click on header CTA')
+            pushDataLayer('Get My Program', 'Sticky button', 'Header')
         })
     }
 }
@@ -626,7 +627,7 @@ function weightLossBlock () {
             $('.payment_block .payments').scrollIntoView({
                 behavior: "smooth",
             })
-            pushDataLayer('Click on button CTA first screen')
+            pushDataLayer('Get My Program Now', 'Button', 'First screen')
         })
 
     }
@@ -644,7 +645,7 @@ function weightLossBlock () {
     }, 1000)
     
     $('.body_part .info').addEventListener('hover', function() {
-        pushDataLayer('Show tooltip')
+        pushDataLayer('How "Body fat" is calculated', 'Tooltip interaction', 'First screen')
     })
     
 }
@@ -962,13 +963,18 @@ function rebuildVideoSlider () {
                     We're proud of all the customers our program has helped, and we're confident it will work for you too:
                 </p>
             `)
+
+            block.querySelector('.swiper').swiper.on('touchEnd', function(){
+                pushDataLayer('Slide', 'Interaction with slider', 'Customer Success Stories To Inspire You')
+            })
+
+            if(window.innerWidth > 768) {
+                block.querySelector('.swiper').swiper.params.centeredSlides = true
+                block.querySelector('.swiper').swiper.params.slidesPerView = 4
+                block.querySelector('.swiper').swiper.update()
+            }
         }
     })
-    if(window.innerWidth > 768) {
-        $('.swiper').swiper.params.centeredSlides = true
-        $('.swiper').swiper.params.slidesPerView = 4
-        $('.swiper').swiper.update()
-    }
     
 }
 
@@ -1330,7 +1336,7 @@ function afterSliderBlock1 () {
         }
     });
     swiper1.on('touchEnd', function() {
-        pushDataLayer('Interection with slider', 'We`ll keep you on track!')
+        pushDataLayer('Slide', 'Interaction with slider', 'We`ll keep you on track!')
     })
 
     const swiper2 = new Swiper('.as_seen .swiper', {
@@ -1346,7 +1352,7 @@ function afterSliderBlock1 () {
         },
     });
     swiper2.on('touchEnd', function() {
-        pushDataLayer('Interection with slider', 'As seen on')
+        pushDataLayer('Slide', 'Interaction with slider', 'As seen on')
     })
 
     const swiper3 = new Swiper('.examples_result .swiper', {
@@ -1368,7 +1374,7 @@ function afterSliderBlock1 () {
         }
     });
     swiper3.on('touchEnd', function() {
-        pushDataLayer('Interection with slider', 'People just like')
+        pushDataLayer('Slide', 'Interaction with slider', 'People just like')
     })
 
     $all('.examples_result .swiper-slide').forEach(item => {
@@ -1810,7 +1816,7 @@ function reviewIo () {
     
     $('.reviewsio_block .more_reviews').addEventListener('click', function() {
         showMoreReviews()
-        pushDataLayer('Click on load more btn')
+        pushDataLayer('Load more', 'Button', 'User love our program')
     })
     function showMoreReviews() {
         let step = 3
@@ -1849,7 +1855,7 @@ function hideBlocks () {
                 $('.payment_block .payments').scrollIntoView({
                     behavior: "smooth",
                 })
-                pushDataLayer('Click on sticky button CTA')
+                pushDataLayer('Get My Program Now', 'Sticky button', 'Footer')
             })
         }
     })
@@ -1860,7 +1866,9 @@ function setObserver() {
     const globalMut = new MutationObserver(muts => {
         globalMut.disconnect()
         if(window.location.pathname === '/subscribe' && !$('.body_part')) {
-            $('#root').insertAdjacentHTML('beforebegin', '<style class="flicker">#root{opacity: 0}</style>')
+            if(!$('.flicker')) {
+                $('#root').insertAdjacentHTML('beforebegin', '<style class="flicker">#root{opacity: 0}</style>')
+            }
             hideBlocks()
             weightLossBlock()
             let paymentInt = setInterval(function() {
