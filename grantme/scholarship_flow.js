@@ -2530,7 +2530,9 @@ padding: 0;
       if (typeof Intl.DateTimeFormat === "function") {
         clearInterval(t);
         const timeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
-        document.querySelector(".select2-selection__rendered").textContent = timeZone;
+        if (document.querySelector(".select2-selection__rendered")) {
+          document.querySelector(".select2-selection__rendered").textContent = timeZone;
+        }
       }
     }, 10);
 
