@@ -1315,7 +1315,7 @@ function afterSliderBlock1 () {
         speed: 400,
         spaceBetween: 100,
         autoplay: {
-            delay: 5000,
+            delay: 10000,
             disableOnInteraction: false
         },
         pagination: {
