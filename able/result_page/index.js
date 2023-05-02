@@ -65,7 +65,7 @@ let v1 = new IntersectionObserver(entries => {
 let v2 = new IntersectionObserver(entries => {
     entries.forEach(item => {
         if(item.isIntersecting) {
-            pushDataLayer('Element visibility' , 'View element on screen (5 sec or more)', item.target.dataset.visible)
+            pushDataLayer('view', 'Element visibility' , 'View element on screen (5 sec or more)', item.target.dataset.visible)
             v1.unobserve(item.target)
         }
         v2.unobserve(item.target)
@@ -79,12 +79,12 @@ let record = setInterval(function () {
     }
 }, 100)
 
-pushDataLayer('loaded')
-function pushDataLayer(desc, type = '', loc = '') {
+pushDataLayer('loaded','loaded')
+function pushDataLayer(name, desc, type = '', loc = '') {
     window.dataLayer = window.dataLayer || []
     dataLayer.push({
         'event': 'event-to-ga4',
-        'event_name': 'Exp: Add payment options',
+        'event_name': 'exp_add_payment_option_' + name,
         'event_desc': desc,
         'event_type': type,
         'event_loc' : loc
@@ -247,7 +247,7 @@ function timer() {
             $('.payment_block .payments').scrollIntoView({
                 behavior: "smooth",
             })
-            pushDataLayer('Get My Program', 'Sticky button', 'Header')
+            pushDataLayer('stick_h', 'Get My Program', 'Sticky button', 'Header')
         })
     }
 }
@@ -627,7 +627,7 @@ function weightLossBlock () {
             $('.payment_block .payments').scrollIntoView({
                 behavior: "smooth",
             })
-            pushDataLayer('Get My Program Now', 'Button', 'First screen')
+            pushDataLayer('desktop_get', 'Get My Program Now', 'Button', 'First screen')
         })
 
     }
@@ -645,7 +645,7 @@ function weightLossBlock () {
     }, 1000)
     
     $('.body_part .info').addEventListener('hover', function() {
-        pushDataLayer('How "Body fat" is calculated', 'Tooltip interaction', 'First screen')
+        pushDataLayer('tooltip', 'How "Body fat" is calculated', 'Tooltip interaction', 'First screen')
     })
     
 }
@@ -965,7 +965,7 @@ function rebuildVideoSlider () {
             `)
 
             block.querySelector('.swiper').swiper.on('touchEnd', function(){
-                pushDataLayer('Slide', 'Interaction with slider', 'Customer Success Stories To Inspire You')
+                pushDataLayer('int_customer', 'Slide', 'Interaction with slider', 'Customer Success Stories To Inspire You')
             })
 
             if(window.innerWidth > 768) {
@@ -1336,7 +1336,7 @@ function afterSliderBlock1 () {
         }
     });
     swiper1.on('touchEnd', function() {
-        pushDataLayer('Slide', 'Interaction with slider', 'We`ll keep you on track!')
+        pushDataLayer('int_1to1coaching', 'Slide', 'Interaction with slider', 'We`ll keep you on track!')
     })
 
     const swiper2 = new Swiper('.as_seen .swiper', {
@@ -1352,7 +1352,7 @@ function afterSliderBlock1 () {
         },
     });
     swiper2.on('touchEnd', function() {
-        pushDataLayer('Slide', 'Interaction with slider', 'As seen on')
+        pushDataLayer('int_asseenon', 'Slide', 'Interaction with slider', 'As seen on')
     })
 
     const swiper3 = new Swiper('.examples_result .swiper', {
@@ -1374,7 +1374,7 @@ function afterSliderBlock1 () {
         }
     });
     swiper3.on('touchEnd', function() {
-        pushDataLayer('Slide', 'Interaction with slider', 'People just like')
+        pushDataLayer('int_people', 'Slide', 'Interaction with slider', 'People just like')
     })
 
     $all('.examples_result .swiper-slide').forEach(item => {
@@ -1816,7 +1816,7 @@ function reviewIo () {
     
     $('.reviewsio_block .more_reviews').addEventListener('click', function() {
         showMoreReviews()
-        pushDataLayer('Load more', 'Button', 'User love our program')
+        pushDataLayer('reviews_load', 'Button', 'User love our program')
     })
     function showMoreReviews() {
         let step = 3
@@ -1855,7 +1855,7 @@ function hideBlocks () {
                 $('.payment_block .payments').scrollIntoView({
                     behavior: "smooth",
                 })
-                pushDataLayer('Get My Program Now', 'Sticky button', 'Footer')
+                pushDataLayer('stick_f', 'Get My Program Now', 'Sticky button', 'Footer')
             })
         }
     })
