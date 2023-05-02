@@ -2470,6 +2470,7 @@ padding: 0;
         events: [],
         onInit: function (calendar) {},
         onDateSelect: function (date, events) {
+          console.log(`events`, events);
           if (events.length > 0) {
             pushDataLayer("exp_bookpage_calendar_day", "Day", "Select", "Calendar");
             document.querySelectorAll(".block-schedule-consulation ul.nav.nav-tabs a span.date").forEach((span) => {
@@ -2530,7 +2531,9 @@ padding: 0;
       if (typeof Intl.DateTimeFormat === "function") {
         clearInterval(t);
         const timeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+        console.log(timeZone, `timeZone`);
         if (document.querySelector(".select2-selection__rendered")) {
+          console.log(`document.querySelector(".select2-selection__rendered")`, document.querySelector(".select2-selection__rendered"));
           document.querySelector(".select2-selection__rendered").textContent = timeZone;
         }
       }
