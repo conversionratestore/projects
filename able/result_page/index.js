@@ -12,8 +12,7 @@ const scriptList = [
     // 'https://js.braintreegateway.com/web/3.81.0/js/paypal-checkout.min.js',
     // 'https://js.stripe.com/v3',
     // 'https://js.chargebee.com/v2/chargebee.js'
-  ];
-  
+  ];  
   // функція для завантаження скрипту
   function loadScript(url) {
     return new Promise((resolve, reject) => {
@@ -97,6 +96,7 @@ const $ = (selector) => document.querySelector(selector)
 
 
 // main part
+
 
 const style = /* html */ `
     <style>
@@ -196,6 +196,10 @@ const style = /* html */ `
 
 function start () {
     const check = setInterval(function() {
+        if(window.location.pathname === '/subscribe') {
+            $('#root').insertAdjacentHTML('beforebegin', '<style class="flicker">#root{opacity: 0}</style>')
+        }
+        
         if(window.location.pathname === '/subscribe' && typeof Swiper === 'function' && $('.fullPayment')) {
             clearInterval(check)
             hideBlocks()
@@ -217,9 +221,16 @@ function start () {
             afterSliderBlock2()
             reviewIo()
             document.querySelector('.body_part').insertAdjacentHTML('afterbegin', style)
+            $('.flicker').remove()
             $all('[data-visible]').forEach(item => {
                 v1.observe(item)
             })
+
+            setTimeout(function(){
+                if($('.flicker')) {
+                    $('.flicker').remove()
+                }
+            }, 2000)
         }
     }, 100)
 }
@@ -403,8 +414,12 @@ function weightLossBlock () {
                 .body_part .imgs .title {
                     color: #202B47;
                     font-weight: 600;
-                    width: fit-content;
+                    text-align: center;
+                    width: 100%;
                     margin: 0 auto 13px;
+                }
+                .body_part .imgs .before .title {
+                    border-right: 1px solid #E0E3EB;
                 }
                 .body_part .imgs .after .title {
                     position: relative;
@@ -552,6 +567,10 @@ function weightLossBlock () {
                         height: 40px;
                         background: url(${git}arrow_3.svg) center center no-repeat;
                         background-size: contain;
+                    }
+
+                    .body_part .imgs .before .title {
+                        border-right: none;
                     }
                 }
             </style>
@@ -1756,7 +1775,7 @@ function reviewIo () {
                 <h2>User love our program</h2>
                 <div class="stars">
                     <p>4.9 <img src="${git}stars.svg" alt="stars"></p>
-                    <p><span>71</span> Reviews</p>
+                    <p><span>20</span> Reviews</p>
                 </div>
             </div>
             <div class="filter"></div>
@@ -1841,6 +1860,7 @@ function setObserver() {
     const globalMut = new MutationObserver(muts => {
         globalMut.disconnect()
         if(window.location.pathname === '/subscribe' && !$('.body_part')) {
+            $('#root').insertAdjacentHTML('beforebegin', '<style class="flicker">#root{opacity: 0}</style>')
             hideBlocks()
             weightLossBlock()
             let paymentInt = setInterval(function() {
@@ -1857,6 +1877,7 @@ function setObserver() {
             afterSliderBlock1()
             afterSliderBlock2()
             reviewIo()
+            $('.flicker').remove()
             document.querySelector('.body_part').insertAdjacentHTML('afterbegin', style)
         }
         if(window.location.pathname === '/subscribe') {
