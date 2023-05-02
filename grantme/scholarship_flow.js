@@ -2526,8 +2526,13 @@ padding: 0;
     }
 
     document.querySelector(".select_dropdown_wrapper span").after(document.querySelector(".timezone"));
-    const timeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
-    document.querySelector(".select2-selection__rendered").textContent = timeZone;
+    let t = setInterval(() => {
+      if (typeof Intl.DateTimeFormat === "function") {
+        clearInterval(t);
+        const timeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+        document.querySelector(".select2-selection__rendered").textContent = timeZone;
+      }
+    }, 10);
 
     jQuery(".select-wrapper select").on("change", (e) => {
       console.log(`ONCHANGE`, e);
