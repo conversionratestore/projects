@@ -1224,7 +1224,7 @@ label.is_hidden {
   display: block;
 }
 .testimonials_content {
-  height: 538px;
+  height: 463px;
   align-items: center;
   overflow: hidden;
   justify-content: center;
@@ -1285,8 +1285,11 @@ label.is_hidden {
 .slick-initialized .slick-slide {
   margin: 0 10px;
 }
+.w-chrome, .wistia_swatch{
+border-radius: 12px
+}
 .testimonials_item_last {
-  min-height: 650px;
+  min-height: 575px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -1308,7 +1311,6 @@ label.is_hidden {
   outline: none;
   border: none;
 }
-
 @media (min-width: 768px) {
   .chosen_select div.options_custom ul {
     max-height: 222px;
@@ -2041,7 +2043,9 @@ padding: 0;
             <div class="testimonials_video section_grey_radius">
       <div class="container container_video">
         <div class="testimonials_slider">
-          <div class="testimonials_item"></div>
+          <div class="testimonials_item">
+            <script src="https://fast.wistia.com/embed/medias/i6p6x44e4v.jsonp" async></script><script src="https://fast.wistia.com/assets/external/E-v1.js" async></script><div class="wistia_responsive_padding" style="padding:177.5% 0 0 0;position:relative;"><div class="wistia_responsive_wrapper" style="height:100%;left:0;position:absolute;top:0;width:100%;"><div class="wistia_embed wistia_async_i6p6x44e4v videoFoam=true" style="height:100%;position:relative;width:100%"><div class="wistia_swatch" style="height:100%;left:0;opacity:0;overflow:hidden;position:absolute;top:0;transition:opacity 200ms;width:100%;"><img src="https://fast.wistia.com/embed/medias/i6p6x44e4v/swatch" style="filter:blur(5px);height:100%;object-fit:contain;width:100%;" alt="" aria-hidden="true" onload="this.parentNode.style.opacity=1;" /></div></div></div></div>
+          </div>
           <div class="testimonials_item">
             <div class="testimonials_content">
               <div class="testimonials_content_text">... Short story long, GrantMe did not just improve my writing abilities and applications but also equipped me with the skills to be a successful student"</div>
@@ -2057,8 +2061,8 @@ padding: 0;
             </div>
           </div>
           <div class="testimonials_item">
-            <script src="https://fast.wistia.com/embed/medias/ytvyjkpqml.jsonp" async="" defer=""></script>
-          </div>
+          <script src="https://fast.wistia.com/embed/medias/jjxyh7vxsw.jsonp" async></script><script src="https://fast.wistia.com/assets/external/E-v1.js" async></script><div class="wistia_responsive_padding" style="padding:177.5% 0 0 0;position:relative;"><div class="wistia_responsive_wrapper" style="height:100%;left:0;position:absolute;top:0;width:100%;"><div class="wistia_embed wistia_async_jjxyh7vxsw videoFoam=true" style="height:100%;position:relative;width:100%"><div class="wistia_swatch" style="height:100%;left:0;opacity:0;overflow:hidden;position:absolute;top:0;transition:opacity 200ms;width:100%;"><img src="https://fast.wistia.com/embed/medias/jjxyh7vxsw/swatch" style="filter:blur(5px);height:100%;object-fit:contain;width:100%;" alt="" aria-hidden="true" onload="this.parentNode.style.opacity=1;" /></div></div></div></div>
+        </div>
           <div class="testimonials_item">
             <div class="testimonials_content">
               <div class="testimonials_content_text">“My favourite part of GrantMe was the wonderful essay editing, really helpful feedback, and great turnaround times”</div>
@@ -2072,6 +2076,9 @@ padding: 0;
                 <div class="testimonials_school">Simon Fraser University</div>
               </div>
             </div>
+          </div>
+          <div class="testimonials_item">
+            <script src="https://fast.wistia.com/embed/medias/6utt82y2dy.jsonp" async></script><script src="https://fast.wistia.com/assets/external/E-v1.js" async></script><div class="wistia_responsive_padding" style="padding:177.71% 0 0 0;position:relative;"><div class="wistia_responsive_wrapper" style="height:100%;left:0;position:absolute;top:0;width:100%;"><div class="wistia_embed wistia_async_6utt82y2dy videoFoam=true" style="height:100%;position:relative;width:100%"><div class="wistia_swatch" style="height:100%;left:0;opacity:0;overflow:hidden;position:absolute;top:0;transition:opacity 200ms;width:100%;"><img src="https://fast.wistia.com/embed/medias/6utt82y2dy/swatch" style="filter:blur(5px);height:100%;object-fit:contain;width:100%;" alt="" aria-hidden="true" onload="this.parentNode.style.opacity=1;" /></div></div></div></div>
           </div>
           <div class="testimonials_item">
             <div class="testimonials_item_last">
@@ -2407,7 +2414,7 @@ padding: 0;
           nextArrow: ".testimonials_arrow_next",
           dots: false,
           infinite: false,
-          adaptiveHeight: true,
+          // adaptiveHeight: true,
           responsive: [
             {
               breakpoint: 767,
@@ -3006,6 +3013,12 @@ padding: 0;
     document.querySelector(".hs-faq-beacon-open")?.addEventListener("click", () => {
       pushDataLayer("exp_bookpage_faq_speak", "Speak With an Educator", "Link", "Frequently Asked Questions");
     });
+    document.querySelectorAll(".wistia_responsive_padding").forEach((el) => {
+      el.addEventListener("click", () => {
+        pushDataLayer("exp_bookpage_userssay_int", "Interaction", "Video", "What Our Users Say");
+      });
+    });
+    //
     document.querySelectorAll("#block-faqstartfreetrialacademy-2 #accordion .panel .panel-heading a").forEach((el) => {
       el.addEventListener("click", (link) => {
         console.log(link.currentTarget.closest(".panel-heading").nextElementSibling.classList.contains("in"));
@@ -3031,7 +3044,9 @@ padding: 0;
     obs.observe(document.querySelector(".testimonials_arrows"));
     obs.observe(document.querySelector("#competition_step1 img"));
     obs.observe(document.querySelector(".persuasive_comparison_table_box .odds_txt_wrapper"));
-    obs.observe(document.querySelector(".path-start-free-trial .our-scholars"));
+    if (document.querySelector(".path-start-free-trial .our-scholars")) {
+      obs.observe(document.querySelector(".path-start-free-trial .our-scholars"));
+    }
     obs.observe(document.querySelector(".faq-help-text-wrapper"));
     obs.observe(document.querySelector("#competition_step2 img"));
     obs.observe(document.querySelector("#competition_step3 img"));
@@ -3098,5 +3113,6 @@ padding: 0;
         clarity("set", `booking_page_exp${eventVar}`, "variant_1");
       }
     }, 200);
+    document.querySelector(".exp")?.remove();
   }
 }, 500);
