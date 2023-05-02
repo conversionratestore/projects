@@ -1,5 +1,5 @@
 let startFunk = setInterval(() => {
-  if (document.querySelector("#block-scheduleconsulationheaderblock")) {
+  if (document.querySelector(".block-schedule-consulation #available-slots-wrapper ul.nav.nav-tabs")) {
     clearInterval(startFunk);
 
     let scriptCalendar = document.createElement("script");
