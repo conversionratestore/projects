@@ -3032,11 +3032,10 @@ padding: 0;
     //
     document.querySelectorAll("#block-faqstartfreetrialacademy-2 #accordion .panel .panel-heading a").forEach((el) => {
       el.addEventListener("click", (link) => {
-        console.log(link.currentTarget.closest(".panel-heading").nextElementSibling.classList.contains("in"));
         if (link.currentTarget.closest(".panel-heading").nextElementSibling.classList.contains("in")) {
-          pushDataLayer("exp_bookpage_faq_close", "{{question_name}}", "Close question", "Frequently Asked Questions");
+          pushDataLayer("exp_bookpage_faq_close", `${link.currentTarget.textContent}`, "Close question", "Frequently Asked Questions");
         } else {
-          pushDataLayer("exp_bookpage_faq_open", "{{question_name}}", "Open question", "Frequently Asked Questions");
+          pushDataLayer("exp_bookpage_faq_open", `${link.currentTarget.textContent}`, "Open question", "Frequently Asked Questions");
         }
       });
     });
