@@ -1816,7 +1816,7 @@ padding: 0;
           />
         </svg></span>
       </p>
-      <p class="win_scholarships_txt"><span class="accent_var">Grade 9 - 10</span> students can win 5x as many scholarships.</p>
+      <p class="win_scholarships_txt"><span class="accent_var grade_var">Grade 9 - 10</span> students can win 5x as many scholarships.</p>
     </section>
     <section class="reviews_btn_box">
       <h2>Book a <span class="accent_var">Free</span> call to find out how to get this scolarship</h2>
@@ -1902,7 +1902,7 @@ padding: 0;
                     </clipPath>
                 </defs>
                 </svg>
-                <p>Select a Date</p>
+                <p>Select a Day</p>
                 <p><span class="step_active">1</span>/3</p>
             </div>
             <div class="calendar_container" id="calendarContainer">
@@ -2266,6 +2266,7 @@ padding: 0;
 
     if (document.querySelector(".greetings_box")) {
       document.querySelector(".funding_price").textContent = document.querySelector(".marketing b.clr-yellow").textContent;
+      document.querySelector(".grade_var").textContent = document.querySelector(".u_l")?.textContent;
       let paramsLocation = new URLSearchParams(window.location.search);
 
       if (paramsLocation.get("user_type") === "parent") {
