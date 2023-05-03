@@ -1123,7 +1123,6 @@ label.is_hidden {
   border-radius: 6px;
   font-weight: 400;
   font-size: 16px;
-  line-height: 24px;
   color: #2b3e51;
 }
 #yourInformationForm label > span.is_active {
