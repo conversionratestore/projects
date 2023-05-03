@@ -421,6 +421,7 @@ const style = /*html*/`
             max-height: 0;
             overflow: hidden;
             transition: max-height 0.7s ease;
+            border-radius: 0 0 10px 10px;
         }
 
         .features.show_table {
@@ -437,6 +438,8 @@ const style = /*html*/`
         .features.show_table + .table_wrap {
             max-height: 2000px;
             border: 1px solid #D9E1E8;
+            border-top: none;
+            margin-bottom: 5px;
         }
 
         .features p {
@@ -456,11 +459,7 @@ const style = /*html*/`
         }
 
         #plans_comparison_table {
-            border-collapse: collapse;            
-            border: 1px solid #D9E1E8;
-            border-radius: 0 0 10px 10px;
-            margin-top: -5px;
-            margin-bottom: 5px;
+            border-collapse: collapse;                        
             overflow: hidden;
         }
 
