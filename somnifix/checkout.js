@@ -240,9 +240,6 @@ let checkoutsInterval = setInterval(() => {
             document.querySelector('.main__header .logo.logo--left').after(document.querySelector('.messages'))
         }
 
-        pushDataLayer('Visibility Free shipping in the USA block')
-        pushDataLayer(`Visibility 30 day money back for ${pack == '1 Pack' ? '4' : '12-52'} week pack`)
-
         document.querySelector('.main__content').insertAdjacentHTML('beforeend', `
             <div class="reviews_block">
                 <div class="d-flex items-center justify-between">
@@ -335,18 +332,25 @@ let checkoutsInterval = setInterval(() => {
             })
         
         pushDataLayer('loaded')
+        pushDataLayer(`Visibility 30 day money back for ${pack == '1 Pack' ? '4' : '12-52'} week pack`)
     }
 });
+let viewedShipping = false;
 
 function setShippingBlock(hidden = true, select = '.shipping_block') {
     if (hidden) {
         document.querySelector(select).classList.add('d-none')
         document.querySelector(select).classList.remove('d-flex')
         document.querySelector(select).previousElementSibling.style = 'width: 100%';
+        viewedShipping = false
     } else {
         document.querySelector(select).classList.add('d-flex')
         document.querySelector(select).classList.remove('d-none')
         document.querySelector(select).previousElementSibling.style = '';
+        if (viewedShipping == false && isScrolledIntoView(document.querySelector(select)) && !document.querySelector(select).classList.contains('d-none')) {
+            viewedShipping = true;
+            pushDataLayer('Visibility Free shipping in the USA block')   
+        }
     }
 }
 let stepsCheckout = setInterval(() => {
@@ -364,6 +368,13 @@ let stepsCheckout = setInterval(() => {
                     setShippingBlock()
                 }  else {
                     setShippingBlock(false)
+                }
+            })
+
+            window.addEventListener('scroll', () => {
+                if (document.querySelector('.shipping_block:not(.d-none)') != null && viewedShipping == false && isScrolledIntoView(document.querySelector('.shipping_block:not(.d-none)'))) {
+                    viewedShipping = true;
+                    pushDataLayer('Visibility Free shipping in the USA block')   
                 }
             })
         }
