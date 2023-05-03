@@ -2260,9 +2260,6 @@ padding: 0;
     }
     document.querySelector("#block-faqstartfreetrialacademy-2").insertAdjacentHTML("afterend", competitionNextSteps);
     document.querySelector("#block-whattoexpectonthecallscheduleconsultation").insertAdjacentHTML("afterend", slider);
-    if (document.querySelector(".calc_step_third")) {
-      document.querySelector(".calc_step_third > p > span:last-child").textContent = Intl.DateTimeFormat().resolvedOptions().timeZone;
-    }
 
     if (document.querySelector(".greetings_box")) {
       document.querySelector(".funding_price").textContent = document.querySelector(".marketing b.clr-yellow").textContent;
@@ -2529,13 +2526,16 @@ padding: 0;
 
     document.querySelector(".select_dropdown_wrapper span").after(document.querySelector(".timezone"));
     let t = setInterval(() => {
-      if (typeof Intl.DateTimeFormat === "function") {
+      if (typeof Intl.DateTimeFormat === "function" && document.querySelector(".select2-selection__rendered")) {
         clearInterval(t);
         const timeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
         console.log(timeZone, `timeZone`);
         if (document.querySelector(".select2-selection__rendered")) {
           console.log(`document.querySelector(".select2-selection__rendered")`, document.querySelector(".select2-selection__rendered"));
           document.querySelector(".select2-selection__rendered").textContent = timeZone;
+          if (document.querySelector(".calc_step_third")) {
+            document.querySelector(".calc_step_third > p > span:last-child").textContent = timeZone;
+          }
         }
       }
     }, 10);
