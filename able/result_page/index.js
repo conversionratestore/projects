@@ -434,6 +434,7 @@ function weightLossBlock () {
                     line-height: 20px;
                     border-radius: 12px;
                     z-index: 1;
+
                 }
                 .body_part .info .hint:after {
                     display: block;
@@ -447,7 +448,7 @@ function weightLossBlock () {
                     right: 20%;
                     transform: rotateZ(45deg)
                 }
-                .body_part .info:hover .hint {
+                .body_part .info.active .hint {
                     display: block;
                 }
                 .body_part .imgs .title {
@@ -666,6 +667,14 @@ function weightLossBlock () {
                 behavior: "smooth",
             })
             pushDataLayer('desktop_get', 'Get My Program Now', 'Button', 'First screen')
+        })
+        $('.body_part .info').addEventListener('click', function(){
+            this.classList.toggle('active')
+        })
+        document.addEventListener('click', function(e) {
+            if (!e.target.closest('.info') && !e.target.classList.contains('info')) {
+                $('.body_part .info').classList.remove('active')
+            }
         })
 
     }
@@ -1416,7 +1425,7 @@ function afterSliderBlock1 () {
     $all('.examples_result .swiper-slide').forEach(item => {
         const textContainer = item.querySelector('.review')
         const text = textContainer.querySelector('span')
-        
+
         if (text.clientHeight > 80) {
             const readMoreBtn = document.createElement('button')
             readMoreBtn.className = 'read-more-btn'
