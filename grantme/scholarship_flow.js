@@ -2720,27 +2720,55 @@ padding: 0;
     }
 
     if (document.querySelectorAll("#yourInformationForm")) {
+      document.querySelectorAll("#yourInformationForm label").forEach((el) => {
+        el.addEventListener("click", (e) => {
+          if (e.currentTarget.querySelector("input").getAttribute("name") === "firstName") {
+            if (!e.currentTarget.getAttribute("data-test")) {
+              pushDataLayer("exp_bookpage_calendar_fname", "Enter details. First name", "Input", "Calendar");
+            }
+            e.currentTarget.setAttribute("data-test", "1");
+          }
+          if (e.currentTarget.querySelector("input").getAttribute("name") === "lastName") {
+            if (!e.currentTarget.getAttribute("data-test")) {
+              pushDataLayer("exp_bookpage_calendar_lname", "Enter details. Last Name", "Input", "Calendar");
+            }
+            e.currentTarget.setAttribute("data-test", "1");
+          }
+
+          if (e.currentTarget.querySelector("input").getAttribute("name") === "phoneNumber") {
+            if (!e.currentTarget.getAttribute("data-test")) {
+              pushDataLayer("exp_bookpage_calendar_phone", "Enter details. Phone number", "Input", "Calendar");
+            }
+            e.currentTarget.setAttribute("data-test", "1");
+          }
+          if (e.currentTarget.querySelector("input").getAttribute("name") === "newFirstNameGuest") {
+            if (!e.currentTarget.getAttribute("data-test")) {
+              pushDataLayer("exp_bookpage_calendar_fname_guest", "Enter details. First name Guest", "Input", "Calendar");
+            }
+            e.currentTarget.setAttribute("data-test", "1");
+          }
+          if (e.currentTarget.querySelector("input").getAttribute("name") === "newLastNameGuest") {
+            if (!e.currentTarget.getAttribute("data-test")) {
+              pushDataLayer("exp_bookpage_calendar_lname_guest", "Enter details. Last Name Guest", "Input", "Calendar");
+            }
+            e.currentTarget.setAttribute("data-test", "1");
+          }
+          if (e.currentTarget.querySelector("input").getAttribute("name") === "newPhoneNumberGuest") {
+            if (!e.currentTarget.getAttribute("data-test")) {
+              pushDataLayer("exp_bookpage_calendar_phone_guest", "Enter details. Phone number Guest", "Input", "Calendar");
+            }
+            e.currentTarget.setAttribute("data-test", "1");
+          }
+          setTimeout(() => {
+            if (el.getAttribute("data-test")) {
+              el.removeAttribute("data-test");
+            }
+          }, 300);
+        });
+      });
       document.querySelectorAll("#yourInformationForm input").forEach((i) => {
         i.addEventListener("input", (e) => {
           validationForm(e.target);
-          if (e.target.getAttribute("name") === "firstName") {
-            pushDataLayer("exp_bookpage_calendar_fname", "Enter details. First name", "Input", "Calendar");
-          }
-          if (e.target.getAttribute("name") === "lastName") {
-            pushDataLayer("exp_bookpage_calendar_lname", "Enter details. Last Name", "Input", "Calendar");
-          }
-          if (e.target.getAttribute("name") === "phoneNumber") {
-            pushDataLayer("exp_bookpage_calendar_phone", "Enter details. Phone number", "Input", "Calendar");
-          }
-          if (e.target.getAttribute("name") === "newFirstNameGuest") {
-            pushDataLayer("exp_bookpage_calendar_fname_guest", "Enter details. First name Guest", "Input", "Calendar");
-          }
-          if (e.target.getAttribute("name") === "newLastNameGuest") {
-            pushDataLayer("exp_bookpage_calendar_lname_guest", "Enter details. Last Name Guest", "Input", "Calendar");
-          }
-          if (e.target.getAttribute("name") === "newPhoneNumberGuest") {
-            pushDataLayer("exp_bookpage_calendar_phone_guest", "Enter details. Phone number Guest", "Input", "Calendar");
-          }
 
           let paramsLocation = new URLSearchParams(window.location.search);
           if (paramsLocation.get("user_type") === "parent") {
