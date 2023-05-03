@@ -2479,7 +2479,7 @@ padding: 0;
                 }, 200);
               }
             });
-            document.querySelector(".chosen_select div.select_custom").textContent = "";
+            document.querySelector(".chosen_select div.select_custom").textContent = "Select a time";
             document.querySelector(".chosen_select div.select_custom").removeAttribute("data-selected");
             document.querySelector(".chosen_select div.select_custom").classList?.remove("is_active");
             document.querySelector(".confirm_time_btn").disabled = true;
