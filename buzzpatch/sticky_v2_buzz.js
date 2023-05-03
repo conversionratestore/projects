@@ -8,7 +8,7 @@ const style = /*html*/`
     <style>
             #provesrc-widget-area #provesrc-notification-container {
                 bottom: auto !important;
-                top: 87px !important;
+                top: 95px !important;
                 left: 0 !important;
                 right: auto !important;
             }
