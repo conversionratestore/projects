@@ -188,6 +188,7 @@ let startFunk = setInterval(() => {
   background: url(https://conversionratestore.github.io/projects/grantme/img/zoom.svg) no-repeat center center;
 }
 .new_schedule {
+  position: relative;
   max-width: 358px;
   width: 100%;
   background: #ffffff;
@@ -1041,6 +1042,9 @@ label.is_hidden {
   margin: 16px 0 !important;
   padding: 0 !important;
 }
+#yourInformationForm{
+  position: relative;
+}
 #yourInformationForm .schedule_call_btn {
   font-family: "Lato", sans-serif;
   height: 62px;
@@ -1167,6 +1171,7 @@ label.is_hidden {
   width: 40px;
   height: 40px;
   position: relative;
+  z-index: 1;
 }
 .ajax-throbber .sk-circle-dot {
   width: 100%;
@@ -1174,6 +1179,12 @@ label.is_hidden {
   position: absolute;
   left: 0;
   top: 0;
+}
+.loader_form_var{
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: 11;
 }
 #calendarContainer .ajax-throbber .sk-circle-dot:nth-child(1) {
   transform: rotate(30deg);
@@ -2817,9 +2828,33 @@ padding: 0;
       });
 
       //
+      window.onunload = unloadPage;
+      function unloadPage() {
+        console.log("unload event detected!");
+        document.querySelector(".loader_form_var")?.remove();
+      }
       document.querySelector("#yourInformationForm .schedule_call_btn").addEventListener("click", (e) => {
         e.preventDefault();
         pushDataLayer("exp_bookpage_calendar_schedule", "Schedule a Call", "Button", "Calendar");
+        if (!document.querySelector(".loader_form_var")) {
+          document.querySelector(".new_schedule").insertAdjacentHTML(
+            "afterbegin",
+            `<div class="loader_form_var"><div class="ajax-throbber sk-circle">
+          <div class="sk-circle-dot"></div>
+          <div class="sk-circle-dot"></div>
+          <div class="sk-circle-dot"></div>
+          <div class="sk-circle-dot"></div>
+          <div class="sk-circle-dot"></div>
+          <div class="sk-circle-dot"></div>
+          <div class="sk-circle-dot"></div>
+          <div class="sk-circle-dot"></div>
+          <div class="sk-circle-dot"></div>
+          <div class="sk-circle-dot"></div>
+          <div class="sk-circle-dot"></div>
+          <div class="sk-circle-dot"></div>
+        </div></div>`
+          );
+        }
 
         let paramsLocation = new URLSearchParams(window.location.search);
         if (paramsLocation.get("user_type") === "parent") {
