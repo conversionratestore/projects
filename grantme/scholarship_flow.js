@@ -2446,7 +2446,7 @@ padding: 0;
         document.querySelectorAll(".calendar header .simple-calendar-btn").forEach((el) => {
           el.addEventListener("click", (i) => {
             if (i.target.classList.contains("btn-prev")) {
-              pushDataLayer("exp_bookpage_calendar_prev_mon", "Prevoius month", "Button", "Calendar");
+              pushDataLayer("exp_bookpage_calendar_prev_mon", "Previous month", "Button", "Calendar");
             }
             if (i.target.classList.contains("btn-next")) {
               pushDataLayer("exp_bookpage_calendar_next_mon", "Next month", "Button", "Calendar");
@@ -2699,6 +2699,25 @@ padding: 0;
       document.querySelectorAll("#yourInformationForm input").forEach((i) => {
         i.addEventListener("input", (e) => {
           validationForm(e.target);
+          if (e.target.getAttribute("name") === "firstName") {
+            pushDataLayer("exp_bookpage_calendar_fname", "Enter details. First name", "Input", "Calendar");
+          }
+          if (e.target.getAttribute("name") === "lastName") {
+            pushDataLayer("exp_bookpage_calendar_lname", "Enter details. Last Name", "Input", "Calendar");
+          }
+          if (e.target.getAttribute("name") === "phoneNumber") {
+            pushDataLayer("exp_bookpage_calendar_phone", "Enter details. Phone number", "Input", "Calendar");
+          }
+          if (e.target.getAttribute("name") === "newFirstNameGuest") {
+            pushDataLayer("exp_bookpage_calendar_fname_guest", "Enter details. First name Guest", "Input", "Calendar");
+          }
+          if (e.target.getAttribute("name") === "newLastNameGuest") {
+            pushDataLayer("exp_bookpage_calendar_lname_guest", "Enter details. Last Name Guest", "Input", "Calendar");
+          }
+          if (e.target.getAttribute("name") === "newPhoneNumberGuest") {
+            pushDataLayer("exp_bookpage_calendar_phone_guest", "Enter details. Phone number Guest", "Input", "Calendar");
+          }
+
           let paramsLocation = new URLSearchParams(window.location.search);
           if (paramsLocation.get("user_type") === "parent") {
             if (e.target.getAttribute("name") === "firstName") {
@@ -2761,25 +2780,6 @@ padding: 0;
           }
         });
         i.addEventListener("blur", (e) => {
-          if (e.target.getAttribute("name") === "firstName") {
-            pushDataLayer("exp_bookpage_calendar_fname", "Enter details. First name", "Input", "Calendar");
-          }
-          if (e.target.getAttribute("name") === "lastName") {
-            pushDataLayer("exp_bookpage_calendar_lname", "Enter details. Last Name", "Input", "Calendar");
-          }
-          if (e.target.getAttribute("name") === "phoneNumber") {
-            pushDataLayer("exp_bookpage_calendar_phone", "Enter details. Phone number", "Input", "Calendar");
-          }
-          if (e.target.getAttribute("name") === "newFirstNameGuest") {
-            pushDataLayer("exp_bookpage_calendar_fname_guest", "Enter details. First name Guest", "Input", "Calendar");
-          }
-          if (e.target.getAttribute("name") === "newLastNameGuest") {
-            pushDataLayer("exp_bookpage_calendar_lname_guest", "Enter details. Last Name Guest", "Input", "Calendar");
-          }
-          if (e.target.getAttribute("name") === "newPhoneNumberGuest") {
-            pushDataLayer("exp_bookpage_calendar_phone_guest", "Enter details. Phone number Guest", "Input", "Calendar");
-          }
-
           if (e.target.previousElementSibling.classList.contains("is_active") && e.target.value === "") {
             e.target.previousElementSibling.classList.remove("is_active");
           }
