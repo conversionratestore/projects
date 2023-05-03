@@ -65,7 +65,7 @@ let v1 = new IntersectionObserver(entries => {
 let v2 = new IntersectionObserver(entries => {
     entries.forEach(item => {
         if(item.isIntersecting) {
-            pushDataLayer('view', 'Element visibility' , 'View element on screen (5 sec or more)', item.target.dataset.visible)
+            pushDataLayer(`view_${item.target.dataset.number}`, 'Element visibility' , 'View element on screen (5 sec or more)', item.target.dataset.visible)
             v1.unobserve(item.target)
         }
         v2.unobserve(item.target)
@@ -79,6 +79,37 @@ let record = setInterval(function () {
     }
 }, 100)
 
+let scrollDepth = () => {
+    const scrollTop = window.pageYOffset;
+    const winHeight = window.innerHeight;
+    const docHeight = document.documentElement.scrollHeight;
+    const totalDocScrollLength = docHeight - winHeight;
+    const scrollPercent = (scrollTop / totalDocScrollLength) * 100;
+    return Math.round(scrollPercent);
+}
+
+let maxScrollDepth = () => {
+    let maxScrollDepth = 0; // переменная для хранения максимальной глубины скролла
+
+    function trackScrollDepth() {
+        const scrolled = window.pageYOffset; // определяем текущее значение прокрутки по оси Y
+        const windowHeight = window.innerHeight; // определяем высоту видимой области окна браузера
+        const pageHeight = document.documentElement.scrollHeight; // определяем высоту всей страницы, включая невидимую область
+
+        const currentDepth = (scrolled + windowHeight) / pageHeight * 100; // вычисляем текущую глубину скролла в процентах
+        if (currentDepth > maxScrollDepth) {
+            maxScrollDepth = Math.round(currentDepth); // если текущая глубина больше максимальной, обновляем значение переменной
+            pushDataLayer('scroll', `${maxScrollDepth}%`, 'Scroll depth', 'Page')
+        }
+        if(currentDepth >= 100) {
+            window.removeEventListener("scroll", trackScrollDepth)
+        }
+    }
+
+    // вызываем функцию trackScrollDepth при прокрутке страницы
+    window.addEventListener("scroll", trackScrollDepth);
+}
+
 pushDataLayer('loaded','loaded')
 function pushDataLayer(name, desc, type = '', loc = '') {
     window.dataLayer = window.dataLayer || []
@@ -89,7 +120,7 @@ function pushDataLayer(name, desc, type = '', loc = '') {
         'event_type': type,
         'event_loc' : loc
     })
-    console.log(`Event:${desc} ${type} ${loc}`)
+    console.log(`Event: ${name} ${desc} ${type} ${loc}`)
 }
 
 const $all = (selector) => document.querySelectorAll(selector)
@@ -166,6 +197,12 @@ const style = /* html */ `
             background-color: #fff;
         }
 
+        @media (max-width: 768px) {
+            footer {
+                padding-bottom: 100px;
+            }
+        }
+
         @media (min-width: 769px) {
             header+div {
                 padding: 8px 10% !important;
@@ -223,6 +260,7 @@ function start () {
             reviewIo()
             document.querySelector('.body_part').insertAdjacentHTML('afterbegin', style)
             $('.flicker').remove()
+            maxScrollDepth()
             $all('[data-visible]').forEach(item => {
                 v1.observe(item)
             })
@@ -287,7 +325,7 @@ function weightLossBlock () {
     let levelBefore = 50
     let levelAfter = 90
     const bodyPart = /* html */ `
-        <div class="body_part" data-visible="Your personalized weight loss program">
+        <div class="body_part" data-visible="Your personalized weight loss program" data-number="01">
             <style>
                 .body_part {
                     padding: 0 26px;
@@ -867,7 +905,7 @@ function paymentBlock () {
             }
         </style>
         <div class="payment_block">
-            <div class="list" data-visible="Based on your answers">
+            <div class="list" data-visible="We've identified a few key points for your goal" data-number="02">
                 <h3>Based on your answers you'll receive:</h3>
                 <ul>
                     <li><span><img src="${git}scale.svg" alt="scale"></span>Science-backed weight loss program tailored to your lifestyle & body-needs</li>
@@ -879,7 +917,7 @@ function paymentBlock () {
         </div>
     `
     const paymentBlock2 = /* html */`
-    <div class="payment_block" data-visible="Payment block">
+    <div class="payment_block" data-visible="Personalized 7-day trial plan" data-number="03">
         <div class="payments">
             <div class="price flx">
                 <p>Personalized 7-day trial plan</p>
@@ -959,7 +997,7 @@ function rebuildVideoSlider () {
             block.querySelector('h1').innerHTML = 'Customer Success Stories To Inspire You:'
             block.querySelector('h1').style.marginBottom = '12px'
             block.querySelector('h1').insertAdjacentHTML('afterend', `
-                <p style="font-size: 18px; line-height: 26px; margin-bottom: 24px; padding: 0 26px; font-family: 'SF Pro Text', sans-serif;" data-visible="Video slider">
+                <p style="font-size: 18px; line-height: 26px; margin-bottom: 24px; padding: 0 26px; font-family: 'SF Pro Text', sans-serif;" data-visible="Customer Success Stories To Inspire You" data-number="04">
                     We're proud of all the customers our program has helped, and we're confident it will work for you too:
                 </p>
             `)
@@ -1102,14 +1140,12 @@ function afterSliderBlock1 () {
                     font-size: 16px;
                     line-height: 20px;
                     letter-spacing: -0.0024em;
-                    max-height: 120px;
-                    overflow: hidden;
                     position: relative;
                 }
+                .examples_result .swiper-slide .review span {
+                    display: block;
+                }
                 .examples_result .swiper-slide .review button {
-                    position: absolute;
-                    bottom: 0;
-                    right: 0;
                     background-color: #F6F6F6;
                     color: #1375D6;
                     padding: 0;
@@ -1208,13 +1244,13 @@ function afterSliderBlock1 () {
                     }
                 }
             </style>
-            <div class="coaching" data-visible="We'll keep you on track">
+            <div class="coaching" data-visible="We'll keep you on track" data-number="05">
                 <h2>We'll keep you on track!</h2>
                 <p>Get 1-1 support, accountability, and advice as part of your program at no extra cost.</p>
                 <div class="swiper">
                     <div class="swiper-wrapper">
                         <div class="swiper-slide">
-                            <p><span>1-on-1 video</span><br>coaching</p>
+                            <p><span>1-on-1 text</span><br>coaching</p>
                             <img src="${git}track1.png" alt="image">
                         </div>
                         <div class="swiper-slide">
@@ -1222,7 +1258,7 @@ function afterSliderBlock1 () {
                             <img src="${git}track2.png" alt="image">
                         </div>
                         <div class="swiper-slide">
-                            <p><span>1-on-1 video</span><br>coaching</p>
+                            <p><span>1-on-1 audio</span><br>coaching</p>
                             <img src="${git}track3.png" alt="image">
                         </div>
                     </div>
@@ -1236,7 +1272,7 @@ function afterSliderBlock1 () {
                     </div>
                 </div>
             </div>
-            <div class="as_seen" data-visible="As seen on">
+            <div class="as_seen" data-visible="As seen on" data-number="06">
                 <h2>As seen on:</h2>
                 <div class="swiper">
                     <div class="swiper-wrapper">
@@ -1268,7 +1304,7 @@ function afterSliderBlock1 () {
                     <div class="swiper-pagination"></div>
                 </div>
             </div>
-            <div class="examples_result" data-visible="People just like">
+            <div class="examples_result" data-visible="People just like you achieved great results using our weight loss program" data-number="07">
                 <h2>People just like you achieved great results using our <span>weight loss program</span></h2>
                 <div class="swiper">
                     <div class="swiper-wrapper">
@@ -1380,17 +1416,24 @@ function afterSliderBlock1 () {
     $all('.examples_result .swiper-slide').forEach(item => {
         const textContainer = item.querySelector('.review')
         const text = textContainer.querySelector('span')
-        const maxHeight = parseInt(getComputedStyle(textContainer).maxHeight)
-    
-        if (text.offsetHeight > maxHeight) {
+        
+        if (text.clientHeight > 80) {
             const readMoreBtn = document.createElement('button')
             readMoreBtn.className = 'read-more-btn'
-            readMoreBtn.textContent = ' ...more'
+            readMoreBtn.textContent = 'more'
             textContainer.appendChild(readMoreBtn)
+            text.style.overflow = 'hidden';
+            text.style.textOverflow = 'ellipsis';
+            text.style.webkitLineClamp = '4';
+            text.style.display = '-webkit-box';
+            text.style.webkitBoxOrient = 'vertical';
     
             readMoreBtn.addEventListener('click', () => {
-                textContainer.style.maxHeight = 'none'
                 readMoreBtn.style.display = 'none'
+                text.style.overflow = 'initial';
+                text.style.textOverflow = 'initial';
+                text.style.webkitLineClamp = 'initial';
+                text.style.display = 'initial';
             })
         }
     })
@@ -1586,7 +1629,7 @@ function afterSliderBlock2 () {
                     }
                 }
             </style>
-            <div class="body_goals" data-visible="Body goals">
+            <div class="body_goals" data-visible="Your path to your body-goals" data-number="09">
                 <h2>Your path to your <br>body-goals<img src="${git}red_heart.svg" alt="heart"></h2>
                 <div class="after_time flx">
                     <p>After <span>1 week</span></p> 
@@ -1614,7 +1657,7 @@ function afterSliderBlock2 () {
                     </div>
                 </div>
             </div>
-            <div class="s_result" data-visible="Sustainable result">
+            <div class="s_result" data-visible="Able program delivers sustainable results" data-number="10">
                 <h2>Able program <span>delivers sustainable results</span></h2>
                 <div class="desktop_wrapper">
                     <div>
@@ -1642,7 +1685,7 @@ function afterSliderBlock2 () {
 
 function reviewIo () {
     const reviews = /* html */ `
-        <section class="reviewsio_block" data-visible="Reviews block">
+        <section class="reviewsio_block" data-visible="User love our program" data-number="11">
             <style>
                 .reviewsio_block {
                     font-family: "SF Pro Text", sans-serif ;
@@ -1720,6 +1763,7 @@ function reviewIo () {
                     border-radius: 8px;
                     color: #EB731A;
                     font-weight: 600;
+                    font-size: 18px;
                     display: flex;
                     justify-content: center;
                     align-items: center;
@@ -1841,22 +1885,22 @@ function hideBlocks () {
         if(cls.includes('weightLossPlanListWrapper') || cls.includes('weightCarePathWrapper') || cls.includes('customerReviewsWrapper') || cls.includes('buttonPlaceholder') || cls.includes('buttonWrapper')) {
             block.style.display = 'none'
         }
-        if(cls.includes('floatedButton')) {
-            block.style.position = 'fixed'
-            block.style.bottom = '-1px'
-            block.style.left = '0'
-            block.style.background = '#fff'
-            block.style.boxShadow = '0px -4px 12px rgba(0, 0, 0, 0.12)'
-            block.style.zIndex = '100'
-            block.querySelector('button span').innerHTML = 'Get My Program Now'
-            block.querySelector('button').addEventListener('click', function(e) {
-                e.preventDefault()
-                e.stopPropagation()
-                $('.payment_block .payments').scrollIntoView({
-                    behavior: "smooth",
+        if(cls.includes('floatedButton') && block.querySelector('button span').innerHTML !== 'Get My Program Now') {
+                block.style.position = 'fixed'
+                block.style.bottom = '-1px'
+                block.style.left = '0'
+                block.style.background = '#fff'
+                block.style.boxShadow = '0px -4px 12px rgba(0, 0, 0, 0.12)'
+                block.style.zIndex = '100'
+                block.querySelector('button span').innerHTML = 'Get My Program Now'
+                block.querySelector('button').addEventListener('click', function(e) {
+                    e.preventDefault()
+                    e.stopPropagation()
+                    $('.payment_block .payments').scrollIntoView({
+                        behavior: "smooth",
+                    })
+                    pushDataLayer('stick_f', 'Get My Program Now', 'Sticky button', `Footer ${scrollDepth()}%`)
                 })
-                pushDataLayer('stick_f', 'Get My Program Now', 'Sticky button', 'Footer')
-            })
         }
     })
 
@@ -1886,6 +1930,9 @@ function setObserver() {
             afterSliderBlock2()
             reviewIo()
             $('.flicker').remove()
+            $all('[data-visible]').forEach(item => {
+                v1.observe(item)
+            })
             document.querySelector('.body_part').insertAdjacentHTML('afterbegin', style)
         }
         if(window.location.pathname === '/subscribe') {
