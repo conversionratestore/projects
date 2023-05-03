@@ -2310,17 +2310,30 @@ padding: 0;
         if (typeof tippy === "function") {
           clearInterval(tippyRun);
           document.querySelectorAll("[data-title]").forEach((el) => {
-            tippy(el, {
-              content: el.getAttribute("data-title"),
-              //   trigger: "click",
-              placement: "bottom",
-              appendTo: function () {
-                return document.querySelector(".tooltip_wrapper");
-              },
-              onTrigger(e) {
-                pushDataLayer("exp_bookpage_fs_tooltip", "Interaction", "Tooltip", "First screen");
-              },
-            });
+            if (innerWidth <= 768) {
+              tippy(el, {
+                content: el.getAttribute("data-title"),
+                trigger: "click",
+                placement: "bottom",
+                appendTo: function () {
+                  return document.querySelector(".tooltip_wrapper");
+                },
+                onTrigger() {
+                  pushDataLayer("exp_bookpage_fs_tooltip", "Interaction", "Tooltip", "First screen");
+                },
+              });
+            } else {
+              tippy(el, {
+                content: el.getAttribute("data-title"),
+                placement: "bottom",
+                appendTo: function () {
+                  return document.querySelector(".tooltip_wrapper");
+                },
+                onTrigger() {
+                  pushDataLayer("exp_bookpage_fs_tooltip", "Interaction", "Tooltip", "First screen");
+                },
+              });
+            }
           });
         }
       }, 700);
