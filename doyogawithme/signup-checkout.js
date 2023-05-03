@@ -14,6 +14,9 @@ let dir = 'https://conversionratestore.github.io/projects/doyogawithme/img/';
 
 let style = `
 <style>
+input[type="checkbox"], input[type="radio"] {
+    display: none;
+}
 .o-page--simpleCard .o-page__main {
     background-color: #F6F6F6;
 }
@@ -46,6 +49,7 @@ let style = `
     position: absolute;
     left: 20px;
     top: 50%;
+    z-index: 3;
     transform: translateY(-50%);
 }
 .btn-back svg {
@@ -66,20 +70,6 @@ let style = `
 .progressbar .step:not(.active) {
     color: #A5A5A5;
 }
-.progressbar .step:before, .progressbar .step.active:after {
-    content: '';
-    background: #E0E0E0;
-    border-radius: 40px;
-    height: 2px;
-    width: 100%;
-    position: absolute;
-    bottom: 0;
-    left: 0;
-}
-.progressbar .step.active:after {
-    background: #027DB8;
-    width: 50%;
-}
 .progressbar .step.checked:before  {
     background: #027DB8;
 }
@@ -87,6 +77,7 @@ let style = `
     background: #027DB8;
 }
 .progressbar .step.checked > div:before {
+    content: '';
     background: #027DB8 url(${dir}checked.svg) no-repeat center / 14px 10px;
 }
 .progressbar .step > div:before {
@@ -124,10 +115,7 @@ form label {
     font-size: 14px;
     line-height: 24px;
     color: #555555;
-    margin-bottom: 6px;
-}
-.form-required:after {
-    content: none;
+    margin-bottom: 4px;
 }
 .social-auth__networks {
     padding: 0;
@@ -144,7 +132,7 @@ form label {
     align-items: center;
     border: 1px solid #E0E0E0;
     border-radius: 50px;
-    padding: 14px;
+    padding: 13px;
     color: #555555;
 }
 .social-auth.auth-link span {
@@ -166,7 +154,10 @@ form label {
     color: #555555;
     padding: 0 24.5px;
 }
-form input {
+[data-drupal-selector="edit-login-returning-customer"] .social-auth__divider__text {
+    padding: 0 12px; 
+}
+form input, .select2-container--default .select2-selection--single, input:not([type="submit"]):not([type=checkbox]):not([type=radio]):not([type=button]) {
     font-family: 'Manrope';
     font-style: normal;
     font-weight: 500;
@@ -174,8 +165,86 @@ form input {
     line-height: 24px;
     border: 1px solid #E0E0E0;
     border-radius: 8px!important;
-    padding: 12px 16px!important;
+    padding: 11px 16px!important;
     outline: none!important;
+    width: 100%;
+    box-sizing: border-box!important;
+    max-width: none;
+    height: auto!important;
+}
+.select2-container--default .select2-selection--single {
+    background: none;
+}
+form input::-webkit-input-placeholder {
+    font-family: 'Manrope';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 24px;
+    color: #A5A5A5;
+}
+
+form input:-moz-placeholder {
+    font-family: 'Manrope';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 24px;
+    color: #A5A5A5;
+ }
+form input::-moz-placeholder {
+    font-family: 'Manrope';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 24px;
+    color: #A5A5A5;
+}
+form input:-ms-input-placeholder {
+    font-family: 'Manrope';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 24px;
+    color: #A5A5A5;
+}
+.select2, .select2-container[data-select2-id] {
+    width: 100%!important;
+}
+.select2-selection {
+    background: none;
+}
+.select2-selection label {
+    display: none;
+}
+.select2-container--default .select2-selection--single .select2-selection__rendered {
+    font-family: 'Manrope';
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 24px;
+    padding-left: 0;
+    margin: 0;
+}
+.select2-container--default .select2-selection--single .select2-selection__rendered[title="- Select -"] {
+    color: #A5A5A5;
+}
+.select2-container--default .select2-selection--single .select2-selection__arrow {
+    right: 16px;
+    height: 100%;
+    display: block;
+    margin: 0;
+}
+.select2-container--default .select2-selection--single .select2-selection__arrow b {
+    border: none;
+    height: 100%;
+    width: 12px;
+    background: url(${dir}arrow-down.svg) no-repeat center / contain;
+    left: 0;
+    top: 0;
+    margin: 0;
+}
+.select2-container--default.select2-container--open .select2-selection--single .select2-selection__arrow b {
+    transform: scaleY(-1);
 }
 .shwpd {
     margin-top: 48px;
@@ -206,6 +275,7 @@ form input {
     color: #555555;
 }
 input[type="checkbox"]:checked ~ .check {
+    border-color: #027DB8;
     background: #027DB8 url(${dir}checked.svg) no-repeat center / 12px 10px;
 }
 .remember-me + a {
@@ -222,7 +292,7 @@ input[type="checkbox"]:checked ~ .check {
     display: block;
     padding: 24px 0 42px;
 }
-.form-actions .button, #edit-login-returning-customer-submit {
+.form-actions .button, #edit-login-returning-customer-submit, .btn-reg, .btn_start_membership {
     background: #027DB8;
     border-radius: 30px!important;
     font-family: 'Manrope';
@@ -233,8 +303,23 @@ input[type="checkbox"]:checked ~ .check {
     text-transform: capitalize;
     color: #FFFFFF;
     width: 100%;
+    outline: none;
+    justify-content: center;
+    display: flex;
 }
-#edit-login-returning-customer-submit {
+.btn_start_membership.disabled, .btn_start_membership[disabled]{
+    background-color: #A5A5A5!important;
+    border-color: #A5A5A5!important;
+    cursor: no-drop!important;
+}
+.btn-reg {
+    line-height: 48px!important;
+    outline: none;
+}
+#edit-login-register-register {
+    display: none;
+}
+#edit-login-returning-customer-submit, .btn-reg {
     margin-top: 24px;
 }
 .singup {
@@ -254,6 +339,20 @@ input[type="checkbox"]:checked ~ .check {
     display: none!important;
 }
 
+.header-logo {
+    border-bottom: 1px solid #E0E0E0;
+    padding: 8px 20px;
+    width: 100%;
+    height: fit-content;
+    box-sizing: border-box;
+}
+.header-logo img {
+    height: 52px;
+}
+.check-accept {
+    margin-bottom: 16px;
+}
+
 /* flex */
 .flex {
     display: flex;
@@ -267,12 +366,86 @@ input[type="checkbox"]:checked ~ .check {
 .justify-between {
     justify-content: space-between;
 }
-
+.justify-end {
+    justify-content: flex-end;
+}
 .text-center {
     text-align: center;
 }
 .c-red {
     color: #FF0000;
+}
+
+@media only screen and (min-width: 768px) {
+    .justify-md-center {
+        justify-content: center;
+    }
+    .progressbar .step:before, .progressbar .step.active:after {
+        content: '';
+        background: #E0E0E0;
+        border-radius: 40px;
+        height: 2px;
+        width: 100%;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+    }
+    .progressbar .step.active:after {
+        background: #027DB8;
+        width: 50%;
+    }
+}
+@media only screen and (max-width: 767px) {
+    .progressbar, .topbar {
+        margin-bottom: 16px;
+    }
+    .progressbar .step.checked, .progressbar .step:not(.active) {
+        display: none;
+    }
+    .progressbar .step {
+        padding: 0;
+    }
+    .progressbar .step.active > div:before {
+        background-color: transparent;
+        color: #027DB8;
+        margin: 0;
+    }
+    .progressbar .step.active > div {
+        color: #555555;
+        width: 10px;
+    }
+    .header-logo img {
+        height: 32px;
+    }
+    .header-logo {
+        padding: 6px 20px 2px;
+    }
+    .btn-back {
+        font-size: 14px;
+        line-height: 24px;
+    }
+    .btn-back svg {
+        width: 8px;
+        margin-right: 8px;
+    }
+    .o-page--simpleCard .o-page__mainContent {
+        width: calc(100% - 40px);
+        margin: 0 auto;
+    }
+    .path-yogi .block-system-main-block {
+        padding: 0;
+    }
+    .user-login-form, .user-register-form, .user-pass {
+        padding: 20px;
+    }
+    form h1 {
+        font-size: 22px;
+        line-height: 30px;
+        margin-bottom: 20px;
+    }
+    .form-actions {
+        padding: 20px 0 0 0;
+    }
 }
 </style>`
 
@@ -284,7 +457,7 @@ let headHTML = `
         </svg>
         <span>Back</span>
     </a>
-    <div class="progressbar flex justify-center">
+    <div class="progressbar flex justify-md-center justify-end">
         <div class="step checked active"><div class="flex items-center" data-step="">Choose a plan</div></div>
         <div class="step active"><div class="flex items-center" data-step="2">Create your account</div></div>
         <div class="step"><div class="flex items-center" data-step="3">Payment</div></div>
@@ -329,17 +502,38 @@ let logInGoogle = `
 </svg>
 <span>Login with Google</span>`
 
+let acceptHTML = `
+<label class="check-accept flex items-center">
+    <input type="checkbox" style="display: none;" >
+    <span class="check"></span>
+    <span>Accept <a href="/legal">Terms & Conditions</a> of Use & <a href="/privacy">Privacy Policy</a><span class="c-red">*</span></span>
+</label>
+<label class="check-accept flex ">
+    <input type="checkbox" style="display: none;" >
+    <span class="check"></span>
+    <span>Subscribe to our newsletter highlighting new classes, blog articles, programs and challenges. No spam - we promise!</span>
+</label>`
+
+let error = false;
+
 let init = setInterval(() => {
     if (document.querySelector('.o-page--simpleCard .o-page__mainContentWrapper') != null && document.querySelector('form') != null) {
         clearInterval(init)
 
         document.body.insertAdjacentHTML('afterbegin', style) //add style
         document.querySelector('.o-page--simpleCard .o-page__mainContentWrapper').insertAdjacentHTML('afterbegin', headHTML) //add topbar
+        
+        if (window.matchMedia("(max-width: 767px)").matches) {
+            document.querySelector('.progressbar .step.active:not(.checked) > div').innerHTML = '/3'
+        }
 
         if (window.location.href.includes('/yogi/login') || window.location.href.includes('/yogi/register')) {
             document.querySelector('form h1').after(document.querySelector('.social-auth__container'))
             document.querySelector('form h1').after(document.querySelector('.social-auth__networks'))
             document.querySelector('.social-auth__networks a').innerHTML = logInGoogle;
+            if (document.querySelector('.messages.messages--status') && document.querySelector('.messages.messages--status').innerHTML.includes('if you are having trouble logging in to your account.')) {
+                document.querySelector('.messages.messages--status').remove()
+            }
         }
         if (window.location.href.includes('/yogi/login')) {
            
@@ -359,10 +553,13 @@ let init = setInterval(() => {
         if (window.location.href.includes('/checkout') && window.location.href.includes('/login')) {
             document.body.insertAdjacentHTML('afterbegin',`
             <style>
-                .messages--status, .c-jsTabs__tabList, #id_second {
-                    display: none;
+                .sfc-tabs__tablist, .password-suggestions, #edit-login-register-password-pass2, #edit-login-register-password-pass2, .form-item-login-register-legal-legal-accept, .form-item-login-register-legal-extras-1, .ac-newsletter-reg-suffix, #edit-login-register-field-ac-newsletter-reg-wrapper, #edit-login-register-password .password-strength, .form-item-login-register-password-pass2, .messages--status, .c-jsTabs__tabList {
+                    display: none!important;
                 }
-                #id_first h2 {
+                .sfc-tabs__tabcontent {
+                    margin: 0;
+                }
+                .sfc-tabs__tabcontent.tabs__content h2 {
                     position: initial!important;
                     font-family: 'Manrope';
                     font-style: normal;
@@ -373,9 +570,23 @@ let init = setInterval(() => {
                     text-align: center;
                     color: #272727;
                 }
+                .commerce-checkout-flow {
+                    margin: 0;
+                }
+                .layout-checkout-form {
+                    padding: 42px;
+                }
+                .check-accept {
+                    margin-bottom: 16px;
+                }
+                .form-item-payment-information-add-payment-method-billing-information-address-0-address-postal-code + .form-item-payment-information-add-payment-method-billing-information-address-0-address-locality, .form-item-payment-information-add-payment-method-billing-information-address-0-address-locality + .form-item-payment-information-add-payment-method-billing-information-address-0-address-postal-code {
+                    width: calc(50% - 8px);
+                }
+                
             </style>`)
 
-            document.querySelector('#id_first h2').insertAdjacentHTML('afterend', `
+            document.querySelector('[data-drupal-selector="edit-login-returning-customer"]').insertAdjacentHTML('afterbegin', `
+            <h2>Log In</h2>
             <div class="social-auth__networks">
                 <a class="social-auth auth-link" href="/yogi/login/google?destination=%2Fcheckout%2F23414%2Flogin">${logInGoogle}</a>
             </div>
@@ -386,7 +597,23 @@ let init = setInterval(() => {
                     </span>
                 </div>
             </div>`)
+            document.querySelector('[data-drupal-selector="edit-login-register"]').insertAdjacentHTML('afterbegin', `
+            <h2>Create your account</h2>
+            <div class="social-auth__networks">
+                <a class="social-auth auth-link" href="/yogi/login/google?destination=%2Fcheckout%2F23414%2Flogin">${logInGoogle}</a>
+            </div>
+            <div class="social-auth__container">
+                <div class="social-auth__divider">
+                    <span class="social-auth__divider__text">
+                    or create an account
+                    </span>
+                </div>
+            </div>`)
            
+            document.querySelector('[data-drupal-selector="edit-login-register"] .social-auth.auth-link span').innerHTML = 'Sign up with Google'
+
+            document.querySelector('[data-drupal-selector="edit-login-register"] h2').innerHTML = 'Create your account';
+
             document.querySelector('label[for="edit-login-returning-customer-name"]').innerHTML = 'Email address';
             document.querySelector('#edit-login-returning-customer-name').placeholder = 'Email';
             document.querySelector('#edit-login-returning-customer-password').placeholder = 'Password';
@@ -395,15 +622,67 @@ let init = setInterval(() => {
             document.querySelector('.remember-me').after(document.querySelector('#edit-login-returning-customer-forgot-password'))
 
             document.querySelector('#edit-login-returning-customer-submit').insertAdjacentHTML('afterend', `<p class="text-center singup">Don’t have an account? <a href="#">Sing up</a></p>`)
+            document.querySelector('#edit-login-register-register').insertAdjacentHTML('afterend', `<p class="text-center singup">Already have an account? <a href="#">Log in</a></p>`)
 
+            document.querySelector('#edit-login-register-register').insertAdjacentHTML('beforebegin', `${acceptHTML}
+            <button type="button" class="btn-reg">Create an account </button>`)
 
-            
-            document.querySelector('#id_first .singup a').addEventListener('click', (e) => {
-                document.querySelector('#id_first').style.display = 'none!important'
-                document.querySelector('#id_second').style.display = 'block!important'
+            document.querySelector('[data-drupal-selector="edit-login-returning-customer"] .singup a').addEventListener('click', (e) => {
+                document.querySelectorAll('.sfc-tabs__tablistItem > a')[1].click()
+            })
+            document.querySelector('[data-drupal-selector="edit-login-register"] .singup a').addEventListener('click', (e) => {
+                document.querySelectorAll('.sfc-tabs__tablistItem > a')[0].click()
             })
             document.querySelector('#edit-login-returning-customer-submit').addEventListener('click', () => {
+                localStorage.setItem('email', document.querySelector('#edit-login-returning-customer-name').value)
                 lsRememberMe('.remember-me input', '#edit-name')
+            })
+
+            //passwords
+            document.querySelector('#edit-login-register-password-pass1').addEventListener('input', (e) => {
+                document.querySelector('#edit-login-register-password-pass2').value = e.target.value;
+            })
+
+            //checkbox
+            document.querySelectorAll('.check-accept input').forEach((item, index) => {
+                item.addEventListener('change', (e) => {
+                    if (index == 0) {
+                        if (item.checked) {
+                            document.querySelector('#edit-login-register-legal-extras-1').checked = true
+                            document.querySelector('#edit-login-register-legal-legal-accept').checked = true
+                            item.nextElementSibling.style = '';
+                        } else {
+                            document.querySelector('#edit-login-register-legal-extras-1').checked = false
+                            document.querySelector('#edit-login-register-legal-legal-accept').checked = false
+                        }
+                    }
+
+                    if (index == 1) {
+                        if (item.checked) {
+                            document.querySelector('#edit-login-register-field-ac-newsletter-reg-value').checked = true
+                        } else {
+                            document.querySelector('#edit-login-register-field-ac-newsletter-reg-value').checked = false
+                        }
+                    }
+                })
+            })
+
+            document.querySelector('.btn-reg').addEventListener('click', (e) => {
+                if (!document.querySelectorAll('.check-accept input')[0].checked) {
+                    document.querySelectorAll('.check-accept input')[0].nextElementSibling.style = 'border-color: #FF0000'
+                } else {
+                    document.querySelectorAll('.check-accept input')[0].nextElementSibling.style = '';
+                }
+
+                if (document.querySelector('.js-password-strength__text') != null && (document.querySelector('.js-password-strength__text').innerHTML == '' || document.querySelector('.js-password-strength__text').innerHTML.includes('Weak'))) {
+                    document.querySelector('.password-strength').style = 'dusplay: block!important'
+                } else {
+                    document.querySelector('.password-strength').style = ''
+                }
+
+                localStorage.setItem('email', document.querySelector('#edit-login-register-mail').value)
+                document.querySelector('#edit-login-register-register').click()
+               
             })
         }
         if (window.location.href.includes('/yogi/register') || window.location.href.includes('yogi/intake-survey')) {
@@ -415,19 +694,11 @@ let init = setInterval(() => {
                 .password-suggestions, .user-register-form .ac-newsletter-reg-suffix, .user-register-form .form-type-checkbox, header.o-page__header, .js-form-item-pass-pass2, .user-register-form .password-strength__title, .user-register-form .password-strength {
                     display: none!important;
                 }
-                .header-logo {
-                    border-bottom: 1px solid #E0E0E0;
-                    padding: 8px 20px;
-                    width: 100%;
-                    height: fit-content;
+                @media only screen and (max-width: 767px) {
+                    .o-page--simpleCard .o-page__mainContentWrapper {
+                        margin-top: 16px;
+                    }
                 }
-                .header-logo img {
-                    height: 52px;
-                }
-                .check-accept {
-                    margin-bottom: 16px;
-                }
-                
             </style>`)
             document.querySelector('.o-page__mainContentWrapper').insertAdjacentHTML('beforebegin',`
             <div class="header-logo text-center"> <a href="/" class="logo"><img src="/themes/custom/lotus/logo.png" alt="image"></a></div>`);
@@ -437,20 +708,11 @@ let init = setInterval(() => {
         if (window.location.href.includes('/yogi/register')) {
             document.querySelector('form h1').innerHTML = 'Create your account';
 
-            document.querySelector('#edit-pass').insertAdjacentHTML('afterend',`
-                <label class="check-accept flex items-center">
-                    <input type="checkbox" style="display: none;" >
-                    <span class="check"></span>
-                    <span>Accept <a href="/legal">Terms & Conditions</a> of Use & <a href="/privacy">Privacy Policy</a><span class="c-red">*</span></span>
-                </label>
-                <label class="check-accept flex ">
-                    <input type="checkbox" style="display: none;" >
-                    <span class="check"></span>
-                    <span>Subscribe to our newsletter highlighting new classes, blog articles, programs and challenges. No spam - we promise!</span>
-                </label>`)
+            document.querySelector('#edit-pass').insertAdjacentHTML('afterend', acceptHTML)
 
             document.querySelector('.form-actions .button').insertAdjacentHTML('afterend', `<p class="text-center singup">Already have an account? <a href="/yogi/login">Log in</a></p>`)
 
+            document.querySelector('.social-auth.auth-link span').innerHTML = 'Sign up with Google'
             //passwords
             document.querySelector('#edit-pass-pass1').addEventListener('input', (e) => {
                 document.querySelector('#edit-pass-pass2').value = e.target.value;
@@ -547,9 +809,6 @@ let init = setInterval(() => {
                 .form-checkboxes .form-item, .form-radios .form-item {
                     margin: 0 0 8px 0;
                 }
-                input[type="checkbox"], input[type="radio"] {
-                    display: none;
-                }
                 input[type="checkbox"]+label, input[type="radio"]+label {
                     padding-left: 30px;
                     margin-left: 0;
@@ -572,10 +831,7 @@ let init = setInterval(() => {
                     border-color: transparent;
                     border-radius: 50%;
                 }
-                input[type="checkbox"]:checked ~ label:before {
-                    background: #027DB8 url(${dir}checked.svg) no-repeat center / 12px 10px;
-                    border-color: #027DB8;
-                }
+
                 input[type="radio"]+label:before {
                     border-radius: 50%;
                 }
@@ -584,6 +840,10 @@ let init = setInterval(() => {
                 }
                 input[type="radio"]:checked ~ label:after {
                     background: #027DB8;
+                }
+                input[type="checkbox"]:checked ~ label:before {
+                    background: #027DB8 url(${dir}checked.svg) no-repeat center / 12px 10px;
+                    border-color: #027DB8;
                 }
                 .profile-student-form .form-actions {
                     padding-top: 2px;
@@ -599,10 +859,505 @@ let init = setInterval(() => {
                 `
             }
         }
-    
-        if (window.location.href.includes('/checkout') && !window.location.href.includes('/login')) {
-            document.querySelector('.progressbar .step:nth-child(2)').classList.add('checked')
-            document.querySelector('.progressbar .step:last-child').classList.add('active')
-        }
     }
+
+    if (document.querySelector('.o-page__mainContent') != null && window.location.href.includes('/checkout') && !window.location.href.includes('/login') && document.querySelector('#edit-actions-next') != null) {
+        clearInterval(init)
+
+        document.body.insertAdjacentHTML('afterbegin', style) //add style
+        document.querySelector('.o-page__mainContent').insertAdjacentHTML('afterbegin', headHTML) //add topbar
+
+        document.body.insertAdjacentHTML('afterbegin', `
+        <style>
+            #edit-coupon-redemption, .order-total-line.order-total-line__subtotal, .form-item-payment-information-add-payment-method-billing-information-copy-to-address-book, .layout-region.layout-region-checkout-footer, #edit-commerce-donation-pane > legend > .fieldset-legend, #edit-commerce-donation-pane > .fieldset-wrapper > p, .form-item-payment-information-add-payment-method-billing-information-copy-to-address-book, .o-page__header, .address-line2, .form-item-payment-information-add-payment-method-billing-information-address-0-address-address-line2 {
+                display: none!important;
+            }
+            #edit-coupon-redemption.active {
+                display: block!important;
+                margin-top: 24px;
+            }
+            #edit-sidebar-coupon-redemption-form {
+                display: flex;
+            }
+            #edit-sidebar-coupon-redemption-form-apply {
+                height: fit-content;
+                margin: 28px 0 0 16px;
+                flex-shrink: 0;
+                padding: 13px 20px;
+                line-height: 20px;
+                border-radius: 8px!important;
+            }
+            .layout-region-checkout-main, .layout-region-checkout-secondary {
+                margin-top: 0;
+                background: #FFFFFF;
+                box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.15);
+                border-radius: 12px;
+                padding: 42px;
+                flex: inherit;
+                max-width: none;
+                overflow: visible;
+            }
+            .o-page--checkout .o-page__main {
+                background-color: #F6F6F6;
+            }
+            .layout-checkout-form {
+                max-width: 1264px;
+                width: 100%;
+                padding: 0 20px;
+                margin: 0 auto;
+            }
+            .layout-region-checkout-main {
+                width: calc(100% - 554px - 30px);
+            }
+            .layout-region-checkout-secondary  {
+                width: 554px;
+                margin-left: 30px;
+            }
+            .fieldset-legend, .layout-region.layout-region-checkout-secondary h3 {
+                font-family: 'Manrope';
+                font-style: normal;
+                font-weight: 700;
+                font-size: 24px;
+                line-height: 33px;
+                text-transform: capitalize;
+                color: #272727;
+            }
+            .checkout-pane-payment-information .fieldset-wrapper {
+                padding-top: 53px;
+            }
+            .recurly-hosted-field {
+                margin-top: 4px;
+                margin-bottom: 16px;
+                border: 1px solid #E0E0E0;
+                border-radius: 8px;
+                height: 48px;
+                padding: 0;
+            }
+            .form-item {
+                margin-bottom: 16px;
+            }
+            #edit-payment-information-add-payment-method-billing-information-address-0-address {
+                display: flex;
+                flex-direction: column;
+            }
+            .address-container-inline.js-form-wrapper.form-wrapper, #edit-payment-information-add-payment-method-billing-information-address-0-address-container0, #edit-payment-information-add-payment-method-billing-information-address-0-address-container4 {
+                display: flex;
+                flex-wrap: wrap;
+            }
+            .form-item-payment-information-add-payment-method-billing-information-address-0-address-address-line1, #edit-payment-information-add-payment-method-billing-information-address-0-address-container0 {
+                order: 4;
+            }
+            #edit-payment-information-add-payment-method-billing-information-address-0-address-country-code, [data-drupal-selector="edit-payment-information-add-payment-method-billing-information-address-0-address-country-code"] {
+                order: 5;
+            }
+            #edit-payment-information-add-payment-method-billing-information-address-0-address-container4 {
+                order: 6;
+            }
+            .address-container-inline > .form-item {
+                width: calc(50% - 8px);
+                margin-right: 16px;
+            }
+            .address-container-inline > .form-item:nth-child(2n+2),  .address-container-inline > .form-item:last-child {
+                margin-right: 0;
+            }
+            .address-container-inline > .form-item.form-item-payment-information-add-payment-method-billing-information-address-0-address-locality {
+                width: 100%;
+                margin-right: 0;
+            }
+            .address-container-inline > .form-item.form-item-payment-information-add-payment-method-billing-information-address-0-address-administrative-area {
+                margin-right: 16px;
+            }
+            #edit-commerce-donation-pane {
+                border: none;
+                background: #F6F6F6;
+                border-radius: 8px;
+                padding: 14px ;
+            }
+            .btn_start_membership {
+                line-height: 48px!important;
+            }
+            label.option, .form-item-commerce-donation-pane-donation-toggler {
+                margin: 0;
+            }
+            label[for="edit-commerce-donation-pane-donation-toggler"] {
+                font-weight: 600;
+                color: #555555;
+            }
+            .form-checkboxes label, .form-radios label, label[for="edit-commerce-donation-pane-donation-toggler"] {
+                padding-left: 28px;
+                margin-left: 0!important;
+            }
+            .check, .form-radio+label:before {
+                transform: translateY(-50%);
+                position: absolute;
+                left: 0;
+                top: 50%;
+            }
+            .form-radio+label:before {
+                content: '';
+                border-radius: 50%;
+                width: 18px;
+                height: 18px;
+                border: 1px solid #A5A5A5;
+                background: #FFFFFF;
+            }
+            .form-radio+label:after {
+                border-radius: 50%;
+                position: absolute;
+                top: 50%;
+                left: 4px;
+                transform: translateY(-50%);
+                width: 12px;
+                height: 12px;
+                background: #027DB8;
+            }
+            .form-radio:checked+label:after {
+                content: '';
+            }
+            #edit-commerce-donation-pane .fieldset-legend {
+                font-size: 16px;
+                line-height: 24px;
+            }
+            #edit-commerce-donation-pane-field-gift-type--wrapper .fieldset-legend {
+                border-top: 1px solid #E0E0E0;
+                padding: 16px 0 0 0;
+                margin-top: 12px;
+            }
+            .form-composite > legend, .label {
+                width: 100%;
+            }
+            #edit-commerce-donation-pane-field-gift-type--wrapper, #edit-commerce-donation-pane-field-donation-amount-0-donation-level {
+                border: none;
+                padding: 0;
+                margin: 0;
+            }
+            #edit-commerce-donation-pane-field-donation-amount-0-donation-level .fieldset-legend {
+                padding: 8px 0 0 0;
+            }
+            #edit-commerce-donation-pane-field-donation-amount-0-donation-level-amount {
+                width: 230px;
+            }
+            .tablesaw th, .tablesaw td {
+                padding: 0 0 16px 0;
+            }
+            .views-field.views-field-total-price__number {
+                text-align: right;
+                font-family: 'Manrope';
+                font-style: normal;
+                font-weight: 600;
+                font-size: 16px;
+                line-height: 28px;
+                color: #272727;
+            }
+            .views-field.views-field-title {
+                font-weight: 500;
+                font-size: 16px;
+                line-height: 22px;
+                color: #272727;
+                vertical-align: initial;
+            }
+            tr {
+                border-bottom-style: dashed;
+            }
+            .views-field.views-field-total-price__number p {
+                margin: 0;
+            }
+            .views-field.views-field-total-price__number p span {
+                text-decoration-line: line-through;
+                color: #A5A5A5;
+            }
+            .views-field.views-field-total-price__number p.c-green {
+                font-size: 14px;
+                line-height: 19px;
+                color: #017922;
+                padding-top: 6px;
+            }
+            .order-total-line__total {
+                padding: 16px 0;
+                display: flex;
+                justify-content: space-between;
+                font-weight: 700;
+                font-size: 20px;
+                line-height: 27px;
+                text-transform: capitalize;
+                color: #272727;
+            }
+            .saved_block {
+                margin: 0 0 16px auto;
+                font-weight: 600;
+                font-size: 14px;
+                line-height: 20px;
+                color: #272727;
+                padding: 4px 8px;
+                background: #F3A83C;
+                border-radius: 8px;
+                width: fit-content;
+            }
+            .field--name-total-price--recurly {
+                border-bottom: 1px solid #E0E0E0;
+            }
+            .btn_got_coupon {
+                font-weight: 600;
+                font-size: 16px;
+                line-height: 22px;
+                text-decoration-line: underline;
+                color: #027DB8;
+                margin-top: 24px;
+                outline: none;
+            }
+            input[readonly] {
+                background: #F6F6F6;
+            }
+            [data-drupal-messages] {
+                position: fixed;
+                top: 0;
+                right: 0;
+            }
+            .info_dashed {
+                background: #F9F9F9;
+                border: 1px dashed #D6D6D6;
+                border-radius: 12px;
+                padding: 10px 30px;
+                font-family: 'Manrope';
+                font-style: normal;
+                font-weight: 600;
+                font-size: 16px;
+                line-height: 24px;
+                color: #555555;
+            }
+            .info_dashed svg {
+                margin-right: 8px;
+            }
+            .infos_dashed {
+                position: absolute;
+                bottom: -74px;
+                left: 0;
+                width: 100%;
+            }
+
+            @media only screen and (max-width: 1200px) {
+                .layout-region-checkout-main, .layout-region-checkout-secondary {
+                    padding: 20px;
+                }
+                .infos_dashed {
+                    bottom: -66px;
+                }
+                .info_dashed {
+                    padding: 6px 10px;
+                    line-height: 18px;
+                    min-height: 50px;
+                }
+                .info_dashed:first-child {
+                    margin-right: 16px;
+                    flex-shrink: 0;
+                    min-width: 167px;
+                }
+                .layout-region-checkout-secondary {
+                    width: 500px;
+                    margin-left: 20px;
+                }
+                .layout-region-checkout-main {
+                    width: calc(100% - 500px - 20px);
+                }
+            }
+            @media only screen and (max-width: 767px) {
+                .layout-region-checkout-main, .layout-region-checkout-secondary {
+                    width: 100%;
+                    margin: 0;
+                }
+                .layout-region-checkout-secondary {
+                    margin-bottom: 82px;
+                }
+                .fieldset-legend, .layout-region.layout-region-checkout-secondary h3 {
+                    font-size: 22px;
+                    line-height: 30px;
+                }
+                .info_dashed {
+                    font-size: 14px;
+                }
+                .info_dashed svg {
+                    max-height: 20px;
+                    max-width: 17px;
+                }
+                #edit-commerce-donation-pane {
+                    padding: 10px 13px 10px 15px;
+                    margin-top: -16px;
+                }
+                .tablesaw-stack tbody tr {
+                    display: flex;
+                    border-bottom-style: dashed;
+                }
+                .views-field.views-field-title {
+                    font-size: 14px;
+                    line-height: 24px;
+                }
+                .views-field.views-field-total-price__number {
+                    width: fit-content;
+                    font-size: 12px;
+                    line-height: 24px;          
+                }
+                .btn_got_coupon {
+                    font-size: 14px;
+                    line-height: 19px;
+                    margin-bottom: 16px;
+                }
+                .layout-region-checkout-secondary {
+                    padding-bottom: 4px;
+                }
+                #edit-coupon-redemption.active {
+                    margin-top: 8px;
+                }
+                .samsara .form-type-checkbox .check {
+                    top: 12px;
+                }
+            }
+        </style>`)
+        document.querySelector('.o-page__header').insertAdjacentHTML('afterend',`
+        <div class="header-logo text-center"> <a href="/" class="logo"><img src="/themes/custom/lotus/logo.png" alt="image"></a></div>`);
+
+        document.querySelector('.progressbar .step:nth-child(2)').classList.add('checked')
+        document.querySelector('.progressbar .step:last-child').classList.add('active')
+        if (window.matchMedia("(max-width: 767px)").matches) {
+            document.querySelector('.progressbar .step.active:not(.checked) > div').innerHTML = '/3'
+        }
+    
+        document.querySelector('.checkout-pane .fieldset-legend').innerHTML = 'Enter your card information';
+
+        if (localStorage.getItem('email')) {
+            let email = localStorage.getItem('email');
+
+            document.querySelector('.checkout-pane-payment-information .fieldset-wrapper').insertAdjacentHTML('afterbegin',`
+            <div class="field-email form-item">
+                <label>Email</label>
+                <input type="email" readonly value="${email}">
+            </div>`)
+        }
+
+        document.querySelector('.recurly-hosted-field').insertAdjacentHTML('beforebegin',`<label>Card Information</label>`)
+
+        document.querySelector('.layout-region.layout-region-checkout-main').insertAdjacentHTML('beforeend',`
+        <button type="button" class="btn_start_membership" disabled>Start membership</button>`)
+
+        document.querySelector('#edit-commerce-donation-pane-donation-toggler').insertAdjacentHTML('afterend', `<span class="check"></span>`)
+        document.querySelector('[for="edit-commerce-donation-pane-donation-toggler"]').innerHTML = `I'd like to make a donation to support instructors and free content creation `
+
+        if (document.querySelector('.views-field.views-field-total-price__number').innerHTML.includes('$108.99')) {
+            let price = document.querySelector('.views-field.views-field-total-price__number');
+            price.innerHTML = `
+                <p><span>$167.88</span> ${price.innerHTML}</p>
+                <p class="c-green">Just $9.08/month!</p>`
+
+            document.querySelector('.order-total-line__total').insertAdjacentHTML('afterend',` <div class="saved_block">You just saved $58,89 (35% off)</div>`)
+        }
+      
+        if (document.querySelector('#edit-coupon-redemption') != null) {
+            document.querySelector('#edit-coupon-redemption').insertAdjacentHTML('beforebegin',`
+            <a href="#" class="btn_got_coupon">Got a Coupon?</a>`)
+
+            document.querySelector('#edit-sidebar-coupon-redemption-form-apply').innerHTML = 'Apply';
+
+            document.querySelector('.btn_got_coupon').addEventListener('click', (e) => {
+                e.preventDefault()
+                document.querySelector('#edit-coupon-redemption').classList.toggle('active');
+            })
+        }
+
+        document.querySelector('.layout-region-checkout-secondary').insertAdjacentHTML('beforeend', `
+        <div class="flex items-center justify-between infos_dashed">
+            <div class="info_dashed flex items-center justify-center">
+                <svg width="26" height="30" viewBox="0 0 26 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12.0009 29.0625C12.912 29.0613 13.8029 28.7947 14.5648 28.2952C15.3267 27.7957 15.9265 27.085 16.2909 26.25H7.71094C8.07535 27.085 8.67518 27.7957 9.43707 28.2952C10.199 28.7947 11.0899 29.0613 12.0009 29.0625Z" fill="#027DB8"/>
+                    <path d="M21.3826 16.6882V16.632C19.5155 17.1306 17.528 16.8883 15.8354 15.9558C14.1428 15.0234 12.876 13.4728 12.2999 11.6282C11.7237 9.78357 11.8828 7.78767 12.7438 6.05759C13.6048 4.32751 15.1011 2.99713 16.9201 2.34448C15.5018 1.46489 13.8741 0.980652 12.2057 0.941968C10.5373 0.903283 8.88886 1.31156 7.43136 2.12447C5.97386 2.93738 4.76032 4.12533 3.91654 5.56518C3.07276 7.00503 2.62945 8.64436 2.63258 10.3132V16.6882L0.976014 20.5479C0.796978 20.9656 0.724393 21.4211 0.764766 21.8738C0.80514 22.3264 0.95721 22.7619 1.20734 23.1413C1.45747 23.5207 1.79785 23.832 2.19794 24.0475C2.59804 24.2629 3.04535 24.3757 3.49976 24.3757H20.5154C20.9698 24.3758 21.4171 24.263 21.8172 24.0476C22.2173 23.8321 22.5577 23.5207 22.8078 23.1413C23.0578 22.7619 23.2098 22.3263 23.25 21.8737C23.2902 21.421 23.2175 20.9655 23.0382 20.5479L21.3826 16.6882Z" fill="#027DB8"/>
+                    <path d="M19.5 3.75C18.3875 3.75 17.2999 4.0799 16.3749 4.69798C15.4499 5.31607 14.7289 6.19457 14.3032 7.22241C13.8774 8.25024 13.766 9.38124 13.9831 10.4724C14.2001 11.5635 14.7359 12.5658 15.5225 13.3525C16.3092 14.1391 17.3115 14.6749 18.4026 14.8919C19.4938 15.109 20.6248 14.9976 21.6526 14.5718C22.6804 14.1461 23.5589 13.4251 24.177 12.5001C24.7951 11.5751 25.125 10.4875 25.125 9.375C25.1233 7.88369 24.5301 6.45396 23.4756 5.39944C22.421 4.34493 20.9913 3.75174 19.5 3.75ZM21.4884 10.0378C21.578 10.1243 21.6494 10.2277 21.6985 10.3421C21.7477 10.4565 21.7735 10.5795 21.7746 10.704C21.7757 10.8285 21.752 10.9519 21.7048 11.0671C21.6577 11.1824 21.5881 11.287 21.5001 11.3751C21.412 11.4631 21.3074 11.5327 21.1921 11.5798C21.0769 11.627 20.9535 11.6507 20.829 11.6496C20.7045 11.6485 20.5815 11.6227 20.4671 11.5735C20.3527 11.5244 20.2493 11.453 20.1628 11.3634L19.5 10.7006L18.8372 11.3634C18.7507 11.453 18.6473 11.5244 18.5329 11.5735C18.4185 11.6227 18.2955 11.6485 18.171 11.6496C18.0465 11.6507 17.9231 11.627 17.8079 11.5798C17.6926 11.5327 17.588 11.4631 17.4999 11.3751C17.4119 11.287 17.3423 11.1824 17.2952 11.0671C17.248 10.9519 17.2243 10.8285 17.2254 10.704C17.2265 10.5795 17.2523 10.4565 17.3015 10.3421C17.3506 10.2277 17.422 10.1243 17.5116 10.0378L18.1744 9.375L17.5116 8.71219C17.422 8.62571 17.3506 8.52226 17.3015 8.40788C17.2523 8.2935 17.2265 8.17048 17.2254 8.046C17.2243 7.92152 17.248 7.79807 17.2952 7.68286C17.3423 7.56764 17.4119 7.46297 17.4999 7.37494C17.588 7.28692 17.6926 7.21731 17.8079 7.17017C17.9231 7.12303 18.0465 7.09931 18.171 7.10039C18.2955 7.10147 18.4185 7.12733 18.5329 7.17647C18.6473 7.2256 18.7507 7.29702 18.8372 7.38656L19.5 8.04938L20.1628 7.38656C20.2493 7.29702 20.3527 7.2256 20.4671 7.17647C20.5815 7.12733 20.7045 7.10147 20.829 7.10039C20.9535 7.09931 21.0769 7.12303 21.1921 7.17017C21.3074 7.21731 21.412 7.28692 21.5001 7.37494C21.5881 7.46297 21.6577 7.56764 21.7048 7.68286C21.752 7.79807 21.7757 7.92152 21.7746 8.046C21.7735 8.17048 21.7477 8.2935 21.6985 8.40788C21.6494 8.52226 21.578 8.62571 21.4884 8.71219L20.8256 9.375L21.4884 10.0378Z" fill="#027DB8"/>
+                </svg>
+                Cancel anytime
+            </div>
+            <div class="info_dashed flex items-center justify-center">
+                <svg width="26" height="30" viewBox="0 0 26 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M13.0012 9.28516C9.84931 9.28516 7.28516 11.8493 7.28516 15.001C7.28516 18.1529 9.84931 20.7171 13.0012 20.7171C16.1529 20.7171 18.7171 18.1529 18.7171 15.001C18.7171 11.8493 16.1529 9.28516 13.0012 9.28516ZM16.3949 13.9246L12.2999 18.0195C12.1281 18.1914 11.9026 18.2774 11.6774 18.2774C11.4522 18.2774 11.2269 18.1916 11.0551 18.0195L9.4902 16.4546C9.14642 16.1111 9.14642 15.5538 9.4902 15.21C9.83375 14.8662 10.3911 14.8662 10.7349 15.21L11.6774 16.1525L15.1502 12.6799C15.4938 12.3361 16.0511 12.3361 16.3949 12.6799C16.7386 13.0235 16.7386 13.5808 16.3949 13.9246Z" fill="#027DB8"/>
+                    <path d="M25.7434 8.13976L25.7425 8.11641C25.7294 7.82825 25.7207 7.52338 25.7154 7.18418C25.691 5.53006 24.376 4.1618 22.7217 4.06934C19.2724 3.87685 16.6041 2.75212 14.3243 0.529917L14.3048 0.511378C13.5612 -0.170459 12.4394 -0.170459 11.6956 0.511378L11.6761 0.529917C9.39622 2.75212 6.72792 3.87685 3.27868 4.06956C1.62456 4.1618 0.309407 5.53006 0.284917 7.18441C0.279881 7.52132 0.270955 7.82619 0.257909 8.11641L0.256535 8.17066C0.189473 11.6879 0.10616 16.0652 1.57054 20.0384C2.37575 22.2233 3.59523 24.1225 5.19488 25.6837C7.01677 27.4617 9.40309 28.8732 12.2874 29.8789C12.3813 29.9116 12.4788 29.9382 12.5781 29.9581C12.7182 29.986 12.8592 30 13.0002 30C13.1412 30 13.2824 29.986 13.4222 29.9581C13.5216 29.9382 13.6198 29.9114 13.7141 29.8784C16.595 28.8709 18.9788 27.4587 20.7991 25.681C22.398 24.1193 23.6175 22.2196 24.4234 20.0343C25.8933 16.0492 25.8102 11.6636 25.7434 8.13976ZM12.9997 22.4769C8.87712 22.4769 5.52332 19.1231 5.52332 15.0005C5.52332 10.8779 8.87712 7.52407 12.9997 7.52407C17.1221 7.52407 20.4761 10.8779 20.4761 15.0005C20.4761 19.1231 17.1221 22.4769 12.9997 22.4769Z" fill="#027DB8"/>
+                </svg>
+                100% money back guarantee
+            </div>
+        </div>`)
+        document.querySelectorAll('form #edit-payment-information input:not([type="hidden"],[type="checkbox"],[type="radio"])').forEach(item => {
+            item.addEventListener('input', () => {
+                disabledBtnFun()
+            })
+        })
+     
+        document.querySelector('.btn_start_membership').addEventListener('click', (e) => {
+            console.log(e.target)
+            document.querySelector('#edit-actions-next').click();
+        })
+    }
+});
+
+let setLabelCountry = setInterval(() => {
+    if (document.querySelector('.form-item-payment-information-add-payment-method-billing-information-address-0-address-country-code') != null && document.querySelector('.form-item-payment-information-add-payment-method-billing-information-address-0-address-country-code > label') == null) {
+        document.querySelector('.form-item-payment-information-add-payment-method-billing-information-address-0-address-country-code').insertAdjacentHTML('afterbegin',`<label class="form-required">Country</label>`)
+    }
+});
+let setLabelState = setInterval(() => {
+    if (document.querySelector('.form-item-payment-information-add-payment-method-billing-information-address-0-address-administrative-area') != null && document.querySelector('.form-item-payment-information-add-payment-method-billing-information-address-0-address-administrative-area > label') == null) {
+        document.querySelector('.form-item-payment-information-add-payment-method-billing-information-address-0-address-administrative-area').insertAdjacentHTML('afterbegin',`<label class="form-required">State</label>`)
+    }
+});
+let changeCompane = setInterval(() => {
+    if (document.querySelector('label[for="edit-payment-information-add-payment-method-billing-information-address-0-address-organization"]') != null && document.querySelector('label[for="edit-payment-information-add-payment-method-billing-information-address-0-address-organization"]').innerHTML == 'Company') {
+        document.querySelector('label[for="edit-payment-information-add-payment-method-billing-information-address-0-address-organization"]').innerHTML = 'Name on Card'
+        document.querySelector('label[for="edit-payment-information-add-payment-method-billing-information-address-0-address-organization"]+input').placeholder = 'Enter a card name'
+
+    }
+})
+
+let disabledBtnFun = () => {
+    let disabledBtn = setInterval(() => {
+        if (document.querySelectorAll('form #edit-payment-information input') && document.querySelector('#edit-actions-next') != null && document.querySelector('.btn_start_membership') != null) {
+            error = false;
+            error = document.querySelector('#select2-edit-payment-information-add-payment-method-billing-information-address-0-address-administrative-area-container') != null && document.querySelector('#select2-edit-payment-information-add-payment-method-billing-information-address-0-address-administrative-area-container').innerHTML.includes('Select');
+            
+            clearInterval(disabledBtn)
+
+            let inputs = document.querySelectorAll('form #edit-payment-information input:not([type="hidden"],[type="checkbox"],[type="radio"])');
+    
+            if (error == false) {
+                for (let i = 0; i < inputs.length; i++) {
+                    if (inputs[i].value == '') {
+                        if (inputs[i].id.includes('edit-payment-information-add-payment-method-billing-information-address-0-address-given-name') || 
+                            inputs[i].id.includes('edit-payment-information-add-payment-method-billing-information-address-0-address-family-name') || 
+                            inputs[i].id.includes('edit-payment-information-add-payment-method-billing-information-address-0-address-address-line1') || 
+                            inputs[i].id.includes('edit-payment-information-add-payment-method-billing-information-address-0-address-locality') ||
+                            inputs[i].id.includes('edit-payment-information-add-payment-method-billing-information-address-0-address-postal-code') || 
+                            inputs[i].classList.contains('locality') || 
+                            inputs[i].classList.contains('postal-code')) {
+    
+                            error = true;
+                        }
+                    }
+                }
+            } 
+    
+            document.querySelector('.btn_start_membership').disabled = error;
+            console.log(error)
+            console.log(document.querySelector('.btn_start_membership'))
+        }
+    });
+} 
+
+let mut = new MutationObserver(function (muts) {
+    if (document.querySelector('#select2-edit-payment-information-add-payment-method-billing-information-address-0-address-administrative-area-container') != null) {
+        mut.disconnect()
+
+        error = document.querySelector('#select2-edit-payment-information-add-payment-method-billing-information-address-0-address-administrative-area-container').innerHTML.includes('Select')
+        disabledBtnFun()
+    }
+    mut.observe(document, {
+        childList: true,
+        subtree: true
+    });
+})
+mut.observe(document, {
+    childList: true,
+    subtree: true
 });
