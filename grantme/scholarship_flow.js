@@ -2863,25 +2863,25 @@ padding: 0;
       document.querySelector("#yourInformationForm .schedule_call_btn").addEventListener("click", (e) => {
         e.preventDefault();
         pushDataLayer("exp_bookpage_calendar_schedule", "Schedule a Call", "Button", "Calendar");
-        if (!document.querySelector(".loader_form_var")) {
-          document.querySelector(".new_schedule").insertAdjacentHTML(
-            "afterbegin",
-            `<div class="loader_form_var"><div class="ajax-throbber sk-circle">
-          <div class="sk-circle-dot"></div>
-          <div class="sk-circle-dot"></div>
-          <div class="sk-circle-dot"></div>
-          <div class="sk-circle-dot"></div>
-          <div class="sk-circle-dot"></div>
-          <div class="sk-circle-dot"></div>
-          <div class="sk-circle-dot"></div>
-          <div class="sk-circle-dot"></div>
-          <div class="sk-circle-dot"></div>
-          <div class="sk-circle-dot"></div>
-          <div class="sk-circle-dot"></div>
-          <div class="sk-circle-dot"></div>
-        </div></div>`
-          );
-        }
+        // if (!document.querySelector(".loader_form_var")) {
+        //   document.querySelector(".new_schedule").insertAdjacentHTML(
+        //     "afterbegin",
+        //     `<div class="loader_form_var"><div class="ajax-throbber sk-circle">
+        //   <div class="sk-circle-dot"></div>
+        //   <div class="sk-circle-dot"></div>
+        //   <div class="sk-circle-dot"></div>
+        //   <div class="sk-circle-dot"></div>
+        //   <div class="sk-circle-dot"></div>
+        //   <div class="sk-circle-dot"></div>
+        //   <div class="sk-circle-dot"></div>
+        //   <div class="sk-circle-dot"></div>
+        //   <div class="sk-circle-dot"></div>
+        //   <div class="sk-circle-dot"></div>
+        //   <div class="sk-circle-dot"></div>
+        //   <div class="sk-circle-dot"></div>
+        // </div></div>`
+        //   );
+        // }
 
         let paramsLocation = new URLSearchParams(window.location.search);
         if (paramsLocation.get("user_type") === "parent") {
