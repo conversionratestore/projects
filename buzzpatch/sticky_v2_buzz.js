@@ -6,11 +6,13 @@ const WAIT_INTERVAL_TIMEOUT = 100
 // Define CSS styles
 const style = /*html*/`
     <style>
-            #provesrc-notification-container.bottom-left {
+            #provesrc-widget-area #provesrc-notification-container {
                 bottom: auto !important;
-                top: 87px;
+                top: 87px !important;
+                left: 0 !important;
+                right: auto !important;
             }
-            
+
             .sticky_wrapper {
                 position: fixed;
                 bottom: 0;
@@ -44,7 +46,7 @@ const style = /*html*/`
             .current_selected_pack {
                 position: relative;
                 background-color: #fff;
-                border: 2px solid #EC4F81;
+                border: 2px solid #FF3C7F;
                 border-radius: 31px;
                 z-index: 2;
                 padding: 8px 20px;
@@ -75,7 +77,7 @@ const style = /*html*/`
                 z-index: 1;
                 opacity: 0;
                 background-color: #fff;
-                border: 2px solid #EC4F81;
+                border: 2px solid #FF3C7F;
                 border-bottom: none;
                 border-radius: 31px 31px 0 0;
                 padding: 6px 0 36px;
@@ -116,7 +118,7 @@ const style = /*html*/`
             }
 
             .get_now_btn {
-                background: #EC4F81;
+                background: #FF3C7F;
                 box-shadow: 0px 2px 4px rgba(12, 11, 11, 0.1), 0px 24px 60px rgba(12, 11, 11, 0.05), 0px 12px 24px rgba(12, 11, 11, 0.05);
                 border-radius: 52px;
                 padding: 6px 11px;
@@ -193,7 +195,7 @@ const style = /*html*/`
                 width: 7px;
                 height: 21px;
                 border-radius: 20%;
-                background: #EC4F81;
+                background: #FF3C7F;
                 border: 1px solid #FFFFFF;
                 border-radius: 4px;
             }
