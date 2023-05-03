@@ -53,6 +53,7 @@ const git = 'https://conversionratestore.github.io/projects/able/result_page/img
 let v1 = new IntersectionObserver(entries => {
     entries.forEach(item => {
         if(item.isIntersecting) {
+            v1.unobserve(item.target)
             setTimeout(function () {
                 v2.observe(item.target)
             },5000)
@@ -67,8 +68,11 @@ let v2 = new IntersectionObserver(entries => {
         if(item.isIntersecting) {
             pushDataLayer(`view_${item.target.dataset.number}`, 'Element visibility' , 'View element on screen (5 sec or more)', item.target.dataset.visible)
             v1.unobserve(item.target)
+        } else {
+            v1.observe(item.target)
         }
         v2.unobserve(item.target)
+
     })
 })
 
@@ -97,8 +101,9 @@ let maxScrollDepth = () => {
         const pageHeight = document.documentElement.scrollHeight; // определяем высоту всей страницы, включая невидимую область
 
         const currentDepth = (scrolled + windowHeight) / pageHeight * 100; // вычисляем текущую глубину скролла в процентах
-        if (currentDepth > maxScrollDepth) {
-            maxScrollDepth = Math.round(currentDepth); // если текущая глубина больше максимальной, обновляем значение переменной
+        if (currentDepth >= maxScrollDepth + 5) {
+
+            maxScrollDepth = Math.round(currentDepth / 5) * 5; // если текущая глубина больше максимальной, обновляем значение переменной
             pushDataLayer('scroll', `${maxScrollDepth}%`, 'Scroll depth', 'Page')
         }
         if(currentDepth >= 100) {
@@ -261,9 +266,13 @@ function start () {
             document.querySelector('.body_part').insertAdjacentHTML('afterbegin', style)
             $('.flicker').remove()
             maxScrollDepth()
-            $all('[data-visible]').forEach(item => {
-                v1.observe(item)
-            })
+            setTimeout(function(){
+                $all('[data-visible]').forEach(item => {
+                    console.log(item.getAttribute('data-visible'))
+                    v1.observe(item)
+                })
+            }, 2000)
+            
 
             setTimeout(function(){
                 if($('.flicker')) {
@@ -669,6 +678,9 @@ function weightLossBlock () {
             pushDataLayer('desktop_get', 'Get My Program Now', 'Button', 'First screen')
         })
         $('.body_part .info').addEventListener('click', function(){
+            if(!this.classList.contains('active')) {
+                pushDataLayer('tooltip', 'How "Body fat" is calculated', 'Tooltip interaction', 'First screen')
+            }
             this.classList.toggle('active')
         })
         document.addEventListener('click', function(e) {
@@ -689,12 +701,7 @@ function weightLossBlock () {
             $('.body_part+div>div:last-child')
             $('.body_part+div>div:first-child').innerHTML = /* html */`<h2 class="new_h2">We've identified a few key points for your goal of losing <span>${currentWeight - goalWeight} ${(metric) ? 'kg' : 'lbs'}</span> by <span>${finishDate}</span></h2>`
         }
-    }, 1000)
-    
-    $('.body_part .info').addEventListener('hover', function() {
-        pushDataLayer('tooltip', 'How "Body fat" is calculated', 'Tooltip interaction', 'First screen')
-    })
-    
+    }, 1000) 
 }
 
 function paymentBlock () {
