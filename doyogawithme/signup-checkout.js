@@ -899,7 +899,7 @@ let init = setInterval(() => {
                 height: fit-content;
                 margin: 28px 0 0 16px;
                 flex-shrink: 0;
-                padding: 13px 20px;
+                padding: 12px 20px;
                 line-height: 20px;
                 border-radius: 8px!important;
             }
