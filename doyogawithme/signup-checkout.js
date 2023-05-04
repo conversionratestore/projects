@@ -877,7 +877,7 @@ let init = setInterval(() => {
         }
     }
 
-    if (document.querySelector('.o-page__mainContent') != null && window.location.href.includes('/checkout') && !window.location.href.includes('/login') && document.querySelector('#edit-actions-next') != null) {
+    if (document.querySelector('[for="edit-commerce-donation-pane-donation-toggler"]') != null && document.querySelector('.views-field.views-field-total-price__number') != null && document.querySelector('.o-page__mainContent') != null && window.location.href.includes('/checkout') && !window.location.href.includes('/login') && document.querySelector('#edit-actions-next') != null) {
         clearInterval(init)
 
         document.body.insertAdjacentHTML('afterbegin', style) //add style
