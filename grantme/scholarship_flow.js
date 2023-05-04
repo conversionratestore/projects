@@ -487,6 +487,10 @@ body .our_consultants_wrapper h3 {
 }
 .persuasive_comparison_table_box {
   padding: 40px 16px 30px;
+  display: none;
+}
+#block-trustpilotwidgetstartfreetrial{
+  padding-top: 40px;
 }
 .persuasive_comparison_table_box h2 {
   font-weight: 700;
@@ -1565,6 +1569,9 @@ border-radius: 12px
   }
   .persuasive_comparison_table_box {
     padding: 100px 16px;
+  }
+  #block-trustpilotwidgetstartfreetrial{
+    padding-top: 10px;
   }
   .persuasive_comparison_table_box h2 {
     font-weight: 600;
@@ -2766,6 +2773,9 @@ padding: 0;
         });
       });
       document.querySelectorAll("#yourInformationForm input").forEach((i) => {
+        if (i.value !== "") {
+          i.previousElementSibling.classList.add("is_active");
+        }
         i.addEventListener("input", (e) => {
           validationForm(e.target);
 
