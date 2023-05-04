@@ -1188,6 +1188,8 @@ label.is_hidden {
   width: 100%;
   height: 100%;
   z-index: 11;
+  left: 0;
+  top: 0;
 }
 #calendarContainer .ajax-throbber .sk-circle-dot:nth-child(1) {
   transform: rotate(30deg);
