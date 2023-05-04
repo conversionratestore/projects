@@ -1320,9 +1320,9 @@ let setLabelState = setInterval(() => {
     }
 });
 let changeCompane = setInterval(() => {
-    if (document.querySelector('label[for="edit-payment-information-add-payment-method-billing-information-address-0-address-organization"]') != null && document.querySelector('label[for="edit-payment-information-add-payment-method-billing-information-address-0-address-organization"]').innerHTML == 'Company') {
-        document.querySelector('label[for="edit-payment-information-add-payment-method-billing-information-address-0-address-organization"]').innerHTML = 'Name on Card'
-        document.querySelector('label[for="edit-payment-information-add-payment-method-billing-information-address-0-address-organization"]+input').placeholder = 'Enter a card name'
+    if (document.querySelector('.form-item-payment-information-add-payment-method-billing-information-address-0-address-organization label') != null && document.querySelector('.form-item-payment-information-add-payment-method-billing-information-address-0-address-organization label').innerHTML == 'Company') {
+        document.querySelector('.form-item-payment-information-add-payment-method-billing-information-address-0-address-organization label').innerHTML = 'Name on Card'
+        document.querySelector('.form-item-payment-information-add-payment-method-billing-information-address-0-address-organization label+input').placeholder = 'Enter a card name'
 
     }
 })
