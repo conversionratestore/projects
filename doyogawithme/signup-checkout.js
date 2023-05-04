@@ -438,13 +438,16 @@ input[type="checkbox"]:checked ~ .check {
     .user-login-form, .user-register-form, .user-pass {
         padding: 20px;
     }
-    form h1 {
+    form h1, .sfc-tabs__tabcontent.tabs__content h2 {
         font-size: 22px;
         line-height: 30px;
         margin-bottom: 20px;
     }
     .form-actions {
         padding: 20px 0 0 0;
+    }
+    .social-auth__container {
+        padding: 18px 0;
     }
 }
 </style>`
@@ -542,6 +545,9 @@ let init = setInterval(() => {
             document.querySelector('#edit-pass').placeholder = 'Password';
             document.querySelector('form [href="/yogi/password"]').insertAdjacentHTML('beforebegin', rememberMeHTML)
 
+            if (localStorage.username != null && localStorage.username != '') {
+                document.querySelector('#edit-name').value = localStorage.username 
+            }
             document.querySelector('.remember-me').after(document.querySelector('form [href="/yogi/password"]'))
             document.querySelector('form [href="/yogi/password"]').innerHTML = 'Forgot Password?';
             document.querySelector('.form-actions .button').insertAdjacentHTML('afterend', `<p class="text-center singup">Don’t have an account? <a href="/yogi/register">Sing up</a></p>`)
@@ -582,6 +588,11 @@ let init = setInterval(() => {
                 .form-item-payment-information-add-payment-method-billing-information-address-0-address-postal-code + .form-item-payment-information-add-payment-method-billing-information-address-0-address-locality, .form-item-payment-information-add-payment-method-billing-information-address-0-address-locality + .form-item-payment-information-add-payment-method-billing-information-address-0-address-postal-code {
                     width: calc(50% - 8px);
                 }
+                @media only screen and (max-width: 767px) {
+                    .layout-checkout-form {
+                        padding: 20px;
+                    }
+                 }
                 
             </style>`)
 
@@ -633,9 +644,14 @@ let init = setInterval(() => {
             document.querySelector('[data-drupal-selector="edit-login-register"] .singup a').addEventListener('click', (e) => {
                 document.querySelectorAll('.sfc-tabs__tablistItem > a')[0].click()
             })
+
+            if (localStorage.username != null && localStorage.username != '') {
+                document.querySelector('#edit-login-returning-customer-name').value = localStorage.username 
+            }
             document.querySelector('#edit-login-returning-customer-submit').addEventListener('click', () => {
                 localStorage.setItem('email', document.querySelector('#edit-login-returning-customer-name').value)
-                lsRememberMe('.remember-me input', '#edit-name')
+
+                lsRememberMe('.remember-me input', '#edit-login-returning-customer-name')
             })
 
             //passwords
@@ -1340,7 +1356,6 @@ let disabledBtnFun = () => {
     
             document.querySelector('.btn_start_membership').disabled = error;
             console.log(error)
-            console.log(document.querySelector('.btn_start_membership'))
         }
     });
 } 
