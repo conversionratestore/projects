@@ -20,6 +20,14 @@ let removing = setInterval(() => {
         })
         document.querySelector('#unlimited_personal_coaching').classList.add('hidden')
         document.querySelector('#unlimited_personal_coaching').previousElementSibling.querySelector('.paw_icons ul').classList.add('pb-0')
+        
+        window._mfq = window._mfq || [];
+        (function() {
+            var mf = document.createElement("script");
+            mf.type = "text/javascript"; mf.defer = true;
+            mf.src = "//cdn.mouseflow.com/projects/29f75cc1-dffc-4a86-b3d0-cca4b689c018.js";
+            document.getElementsByTagName("head")[0].appendChild(mf);
+        })();
     }
     if (window.location.href.includes('//k9ti.org/enroll') && document.querySelector('.payment_inform_box .payment_order') != null) {
         clearInterval(removing)
@@ -28,6 +36,14 @@ let removing = setInterval(() => {
                 item.parentElement.remove();
             }
         })
+
+        window._mfq = window._mfq || [];
+        (function() {
+            var mf = document.createElement("script");
+            mf.type = "text/javascript"; mf.defer = true;
+            mf.src = "//cdn.mouseflow.com/projects/29f75cc1-dffc-4a86-b3d0-cca4b689c018.js";
+            document.getElementsByTagName("head")[0].appendChild(mf);
+        })();
     }
 });
 
