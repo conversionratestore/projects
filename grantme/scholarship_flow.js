@@ -2776,6 +2776,10 @@ padding: 0;
         if (i.value !== "") {
           i.previousElementSibling.classList.add("is_active");
         }
+        if (document.querySelector(`.text_validation.phone_number_var`) !== null) {
+          document.querySelector("#yourInformationForm .schedule_call_btn").disabled = true;
+        }
+
         i.addEventListener("input", (e) => {
           validationForm(e.target);
 
@@ -2938,7 +2942,7 @@ padding: 0;
       let maskGuest;
 
       if (target.getAttribute("name") === "firstName") {
-        if (inputValueFirstName === null) {
+        if (inputValueFirstName == null) {
           document.querySelector(`#yourInformationForm input[name='firstName']`)?.closest("label").classList.add("label_error");
           if (!document.querySelector(`.text_validation.name_var`)) {
             document.querySelector(`#yourInformationForm input[name='firstName']`)?.closest("label").insertAdjacentHTML("afterend", `<p class="text_validation name_var">Please enter First name without spaces or special characters.</p>`);
