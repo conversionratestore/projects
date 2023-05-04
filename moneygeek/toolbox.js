@@ -2,6 +2,26 @@ let toolBox = setInterval(() => {
   if (document.querySelector("#menu-list")) {
     clearInterval(toolBox);
 
+    function pushDataLayer(actionDataLayer, labelDataLayer) {
+      window.dataLayer = window.dataLayer || [];
+      if (labelDataLayer) {
+        console.log(actionDataLayer + " : " + labelDataLayer);
+        dataLayer.push({
+          event: "event-to-ga",
+          eventCategory: `Exp: ToolBox`,
+          eventAction: `${actionDataLayer}`,
+          eventLabel: `${labelDataLayer}`,
+        });
+      } else {
+        console.log(actionDataLayer);
+        dataLayer.push({
+          event: "event-to-ga",
+          eventCategory: `Exp: Exp: ToolBox`,
+          eventAction: `${actionDataLayer}`,
+        });
+      }
+    }
+
     let styleToolBox = /*html */ `
     <style>
         .site-navigation > div.social {
@@ -282,6 +302,42 @@ let toolBox = setInterval(() => {
           document.querySelector(".css-fk0bbl #menu-list li:first-child").scrollIntoView({ block: "start", behavior: "smooth" });
         }
       });
+
+      document.querySelector(".overflow_nav_scroll").addEventListener("scroll", (e) => {
+        if (+((+e.target.scrollTop.toFixed(0) / +(+(e.target.scrollHeight - e.target.clientHeight).toFixed(0) / 2)) * 100).toFixed(0) === 100 || +((+e.target.scrollTop.toFixed(0) / +(+(e.target.scrollHeight - e.target.clientHeight).toFixed(0) / 2)) * 100).toFixed(0) === 101 || +((+e.target.scrollTop.toFixed(0) / +(+(e.target.scrollHeight - e.target.clientHeight).toFixed(0) / 2)) * 100).toFixed(0) === 102 || +((+e.target.scrollTop.toFixed(0) / +(+(e.target.scrollHeight - e.target.clientHeight).toFixed(0) / 2)) * 100).toFixed(0) === 103 || +((+e.target.scrollTop.toFixed(0) / +(+(e.target.scrollHeight - e.target.clientHeight).toFixed(0) / 2)) * 100).toFixed(0) === 104 || +((+e.target.scrollTop.toFixed(0) / +(+(e.target.scrollHeight - e.target.clientHeight).toFixed(0) / 2)) * 100).toFixed(0) === 105 || +((+e.target.scrollTop.toFixed(0) / +(+(e.target.scrollHeight - e.target.clientHeight).toFixed(0) / 2)) * 100).toFixed(0) === 106) {
+          pushDataLayer("Scroll to 50%", "Navigation block On This Page");
+        }
+        if (+(e.target.scrollHeight - e.target.scrollTop).toFixed(0) === e.target.clientHeight) {
+          pushDataLayer("Scroll to 100%", "Navigation block On Thisac Page");
+        }
+      });
+
+      document.querySelectorAll(".tool_box_body ul li a").forEach((el) => {
+        el.addEventListener("click", (e) => {
+          switch (e.target.getAttribute("href")) {
+            case "https://www.moneygeek.com/insurance/auto/car-insurance-estimate-calculator/#lower-car-insurance-costs":
+              pushDataLayer("Car Insurance Cost Calculator", "Car Insurance Toolbox");
+              break;
+            case "https://www.moneygeek.com/insurance/auto/how-much-car-insurance-do-you-need/":
+              pushDataLayer("Determine How Much Car Insurance You need", "Car Insurance Toolbox");
+              break;
+            case "https://www.moneygeek.com/insurance/auto/how-to-reduce-your-car-insurance-costs/":
+              pushDataLayer("Determine How to Reduce the Cost of Car Insurance", "Car Insurance Toolbox");
+              break;
+
+            default:
+              break;
+          }
+        });
+      });
     }
+
+    pushDataLayer("loaded");
+    const record = setInterval(() => {
+      if (typeof clarity === "function") {
+        clearInterval(record);
+        clarity("set", `tool_box`, "variant_1");
+      }
+    }, 200);
   }
 }, 100);
