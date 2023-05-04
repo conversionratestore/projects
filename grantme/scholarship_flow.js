@@ -1571,7 +1571,7 @@ border-radius: 12px
     padding: 100px 16px;
   }
   #block-trustpilotwidgetstartfreetrial{
-    padding-top: 10px;
+    padding-top: 100px;
   }
   .persuasive_comparison_table_box h2 {
     font-weight: 600;
@@ -2776,9 +2776,12 @@ padding: 0;
         if (i.value !== "") {
           i.previousElementSibling.classList.add("is_active");
         }
-        if (document.querySelector(`.text_validation.phone_number_var`) !== null) {
-          document.querySelector("#yourInformationForm .schedule_call_btn").disabled = true;
-        }
+        setTimeout(() => {
+          if (document.querySelector(`.text_validation.phone_number_var`) !== null) {
+            console.log(`<<<<<<<<<<<<<<<<<,`);
+            document.querySelector("#yourInformationForm .schedule_call_btn").disabled = true;
+          }
+        }, 500);
 
         i.addEventListener("input", (e) => {
           validationForm(e.target);
