@@ -1864,7 +1864,7 @@ padding: 0;
       </div>
     </section>
     <section class="consultation_descr_box">
-      <h2>Book a Free Grade 12 Scolarship Consultation</h2>
+      <h2>Book a Free <span class="grade_var">Grade 12</span> Scolarship Consultation</h2>
       <div>
         <h3>What you’ll learn on the call:</h3>
         <ul>
@@ -2283,7 +2283,9 @@ padding: 0;
 
     if (document.querySelector(".greetings_box")) {
       document.querySelector(".funding_price").textContent = document.querySelector(".marketing b.clr-yellow").textContent;
-      document.querySelector(".grade_var").textContent = document.querySelector(".u_l")?.textContent;
+      document.querySelectorAll(".grade_var").forEach((el) => {
+        el.textContent = document.querySelector(".u_l")?.textContent;
+      });
       let paramsLocation = new URLSearchParams(window.location.search);
 
       if (paramsLocation.get("user_type") === "parent") {
