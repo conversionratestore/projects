@@ -518,6 +518,40 @@ input.clac_qty {
 .splitit-iframe-popup .grid:after {
     content: none!important;
 }
+
+.selected.svelte-5no3ze {
+    position: relative;
+    border-width: 2px;
+    --tw-border-opacity: 1;
+    border-color: rgb(61 28 81 / var(--tw-border-opacity));
+    --tw-bg-opacity: 1;
+    background-color: rgb(236 232 238 / var(--tw-bg-opacity));
+    --tw-shadow: 0 4px 10px rgb(0 0 0 / 25%);
+    --tw-shadow-colored: 0 4px 10px var(--tw-shadow-color);
+    box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000),var(--tw-ring-shadow, 0 0 #0000),var(--tw-shadow);
+}
+.selected-wrapper.svelte-5no3ze:after {
+    --tw-content: "";
+    content: var(--tw-content);
+}
+
+.selected-wrapper.svelte-5no3ze:after {
+    position: absolute;
+    right: 50%;
+    height: 0.75rem;
+    width: 0.75rem;
+    --tw-translate-y: -50%;
+    --tw-translate-x: 50%;
+    --tw-rotate: 45deg;
+    transform: translate(var(--tw-translate-x),var(--tw-translate-y)) rotate(var(--tw-rotate)) skew(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+    border-bottom-width: 2px;
+    border-right-width: 2px;
+    border-bottom-color: rgb(61 28 81 / var(--tw-border-opacity));
+    --tw-border-opacity: 1;
+    border-right-color: rgb(61 28 81 / var(--tw-border-opacity));
+    --tw-bg-opacity: 1;
+    background-color: rgb(236 232 238 / var(--tw-bg-opacity));
+}
 /* fonts */
 .fw-bold {
     font-weight: 700!important;
@@ -569,7 +603,35 @@ input.clac_qty {
     .text-sm-center {
         text-align: center;
     }
+    .selected.svelte-5no3ze {
+        --tw-border-opacity: 1;
+        border-color: rgb(57 188 167 / var(--tw-border-opacity));
+        --tw-bg-opacity: 1;
+        background-color: rgb(234 247 246 / var(--tw-bg-opacity));
+        --tw-text-opacity: 1;
+        color: rgb(57 188 167 / var(--tw-text-opacity));
+    }
+    .selected-wrapper.svelte-5no3ze:after {
+        border-bottom-color: rgb(57 188 167 / var(--tw-border-opacity));
+        --tw-border-opacity: 1;
+        border-right-color: rgb(57 188 167 / var(--tw-border-opacity));
+        --tw-bg-opacity: 1;
+        background-color: rgb(234 247 246 / var(--tw-bg-opacity));
+    }
+    .selected.svelte-1kctpzc {
+        --tw-shadow: 0 4px 10px rgb(0 0 0 / 25%);
+        --tw-shadow-colored: 0 4px 10px var(--tw-shadow-color);
+        box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000),var(--tw-ring-shadow, 0 0 #0000),var(--tw-shadow);
+    }
 }
+
+@media (min-width: 960px) {
+    .selected-wrapper.svelte-5no3ze:after {
+        height: 1.25rem;
+        width: 1.25rem;
+    }
+}
+
 .gf_product-quantity-minus, .gf_product-quantity-plus {
     display: flex!important;
     justify-content: center!important;
@@ -856,10 +918,10 @@ function getCart(discountChange = false, cartDrawer = document.querySelector('.s
 
                             .big-circle.svelte-sz06yz{width:8rem;height:8rem;border:5px solid #642f6c;border-radius:50%;display:flex;align-items:center;justify-content:center;position:relative;border-color:#642f6c transparent #642f6c #642f6c;animation:svelte-sz06yz-bigcircle .7s linear infinite}.small-circle.svelte-sz06yz{position:relative;width:5rem;height:5rem;border:5px solid #642f6c;border-radius:50%;border-color:#642f6c #642f6c transparent #642f6c}@keyframes svelte-sz06yz-bigcircle{0%{transform:rotate(0)}to{transform:rotate(360deg)}}
                             </style>
-                            <link href="https://documents.production.splitit.com/_app/immutable/assets/_layout.19c2acc3.css" rel="stylesheet">
-                            <link href="https://documents.production.splitit.com/_app/immutable/assets/_page.4dc6b50c.css" rel="stylesheet">
-                            <link href="https://documents.production.splitit.com/_app/immutable/assets/InfoContainerV2.ce274ac5.css" rel="stylesheet">
-                            <link href="https://documents.production.splitit.com/_app/immutable/assets/Loader.588f1967.css" rel="stylesheet">
+                            <link href="https://documents.production.splitit.com/_app/immutable/assets/_layout.css" rel="stylesheet">
+                            <link href="https://documents.production.splitit.com/_app/immutable/assets/_page.css" rel="stylesheet">
+                            <link href="https://documents.production.splitit.com/_app/immutable/assets/InfoContainerV2.css" rel="stylesheet">
+                            <link href="https://documents.production.splitit.com/_app/immutable/assets/Loader.css" rel="stylesheet">
                             <div class="h-full w-full overflow-auto"> <main class="h-full w-full"><div class="h-full w-full font-noto"><div class="svelte-1yc61tn splitit-modal-wrapper"><div class="flex w-full flex-col bg-bg-pale sm:bg-white sm:pt-4 svelte-1yc61tn splitit-modal"><img src="https://documents.production.splitit.com/assets/svgs/close.svg" alt="close" class="absolute right-2 top-2 z-10 hidden cursor-pointer sm:block"> <img src="https://documents.production.splitit.com/assets/svgs/back.svg" alt="back" class="absolute top-5 left-5 z-10 sm:hidden"> <div class="hidden items-center px-4 sm:flex sm:px-10"><div class="mr-4 flex h-10 w-10 justify-center rounded-full bg-secondary/30"><img src="https://documents.production.splitit.com/assets/svgs/split.svg" alt="split" class="w-6"></div> <div class="pl-16 text-2xl font-semibold text-black sm:pl-0">Мonthly payments on your credit card </div></div> <div class="flex h-16 w-full items-center bg-main-dark px-5 sm:hidden"><div class="text-white pl-16"> </div></div> <div class="bg-bg-lighter py-5 sm:bg-white"><section class="text-lg"><div class="flex items-start px-4 text-base text-text-dark sm:px-10 sm:text-lg"><img src="https://documents.production.splitit.com/assets/svgs/split.svg" alt="split" class="mr-1 sm:hidden"> <p class="leading-5">Use your existing credit card to split your purchase into smaller payment amounts.</p></div> <section class="px-4 sm:px-10"><p class="pt-3 text-base font-bold text-text-dark sm:text-lg">How does it work?</p> <div class="grid grid-cols-1 py-3 sm:grid-cols-4 sm:pt-3 sm:pb-0"><div class="my-2 flex items-center sm:my-0 sm:flex-col"><div class="order-1 mr-4 flex h-8 w-8 min-w-[32px] items-center justify-center rounded-full bg-secondary/40 text-base font-bold text-black sm:order-2 sm:bg-transparent">1</div> <img src="https://documents.production.splitit.com/assets/svgs/select_step.svg" alt="select_step" class="order-1 h-20 w-20"> <div class="order-3 flex flex-col items-start text-left text-sm sm:items-center sm:text-center"><div class="my-1 mx-2 text-sm-center">Add your item(s) to cart </div>  <div class="my-1 mx-2 flex items-center rounded bg-secondary-light pt-1 pl-1 pb-2 pr-2 sm:my-0 sm:mx-0"><img src="https://documents.production.splitit.com/assets/svgs/split.svg" alt="split"> <div class="pt-1 pl-[2px] text-left"><div class="text-xs font-medium leading-2 text-main-dark">Monthly</div> <div class="text-xs font-medium leading-2 text-main-dark">Рayments</div></div></div></div> </div><div class="my-2 flex items-center sm:my-0 sm:flex-col"><div class="order-1 mr-4 flex h-8 w-8 min-w-[32px] items-center justify-center rounded-full bg-secondary/40 text-base font-bold text-black sm:order-2 sm:bg-transparent">2</div> <img src="https://documents.production.splitit.com/assets/svgs/pay_step.svg" alt="pay_step" class="order-1 h-20 w-20"> <div class="order-3 flex flex-col items-start text-left text-sm sm:items-center sm:text-center"><div class="my-1 mx-2 text-sm-center">Enter your credit card details </div>  </div> </div><div class="my-2 flex items-center sm:my-0 sm:flex-col"><div class="order-1 mr-4 flex h-8 w-8 min-w-[32px] items-center justify-center rounded-full bg-secondary/40 text-base font-bold text-black sm:order-2 sm:bg-transparent">3</div> <img src="https://documents.production.splitit.com/assets/svgs/choose_step.svg" alt="choose_step" class="order-1 h-20 w-20"> <div class="order-3 flex flex-col items-start text-left text-sm sm:items-center sm:text-center"><div class="my-1 mx-2 text-sm-center">Choose the number of installments </div>  </div> </div><div class="my-2 flex items-center sm:my-0 sm:flex-col"><div class="order-1 mr-4 flex h-8 w-8 min-w-[32px] items-center justify-center rounded-full bg-secondary/40 text-base font-bold text-black sm:order-2 sm:bg-transparent">4</div> <img src="https://documents.production.splitit.com/assets/svgs/held_step.svg" alt="held_step" class="order-1 h-20 w-20"> <div class="order-3 flex flex-col items-start text-left text-sm sm:items-center sm:text-center"><div class="my-1 mx-2 text-sm-center">Make your first payment. </div>  </div> </div></div></section> <div class="px-4 sm:mt-4 sm:px-10"><div class="flex flex-col items-center justify-center rounded bg-main-pale/30 py-3 text-center text-sm text-main-dark sm:flex-row sm:bg-secondary-light sm:text-base"> <span class="mx-2">No new loans</span> <p class="h-[6px] w-[6px] rounded-full bg-black"></p> <span class="mx-2">No applications</span> <p class="h-[6px] w-[6px] rounded-full bg-black"></p> <span class="mx-2">No additional interest or fees</span> </div></div> <div class="py-4 svelte-41engz"><div><section class="flex justify-center"><div class="d-flex w-full max-w-3xl grid-rows-1 gap-1 px-4 pb-4 sm:grid-cols-4 sm:gap-4 sm:pb-2 md:w-[750px] svelte-5no3ze grid-cols-1 md:px-10"><section class="cursor-pointer sm:col-span-2 svelte-5no3ze single-option mx-auto"><div class="h-full rounded-lg border border-gray-border px-3 py-4 text-main-dark transition svelte-5no3ze"><p class="block text-sm sm:flex sm:text-base"><span class="pr-1 payment__splitit">$${priceSplitit}</span> <span>/month</span></p> <p class="text-xs sm:text-base"><span class="lowercase">6 Рayments</span></p></div> </section></div></section> <section class="flex w-full flex-col space-y-2 xl:max-w-4xl"><div class="d-flex grid-cols-1 gap-4 bg-white px-4 sm:px-10 md:py-4 sm:grid-cols-4 md:px-32"><section class="flex flex-col justify-between rounded p-3 pr-5 sm:bg-gray-bg sm:py-3 sm:pl-6 svelte-1kctpzc notSelected single mx-auto"><div class="text-sm"><div class="svelte-1kctpzc"><div class="grid grid-cols-4 py-1"><div class="col-span-3 flex"><p class="mr-1 flex font-bold"><span>1</span> <span class="text-xs">st</span></p> <span class="font-bold capitalize">now</span></div> <span class="payment__splitit">$${priceSplitit}</span> </div><div class="grid grid-cols-4 py-1"><div class="col-span-3 flex"><p class="mr-1 flex font-bold"><span>2</span> <span class="text-xs">nd</span></p> <span class="ml-1">payment</span></div> <span class="payment__splitit">$${priceSplitit}</span> </div><div class="grid grid-cols-4 py-1"><div class="col-span-3 flex"><p class="mr-1 flex font-bold"><span>3</span> <span class="text-xs">rd</span></p> <span class="ml-1">payment</span></div> <span class="payment__splitit">$${priceSplitit}</span> </div><div class="grid grid-cols-4 py-1"><div class="col-span-3 flex"><p class="mr-1 flex font-bold"><span>4</span> <span class="text-xs">th</span></p> <span class="ml-1">payment</span></div> <span class="payment__splitit">$${priceSplitit}</span> </div><div class="grid grid-cols-4 py-1"><div class="col-span-3 flex"><p class="mr-1 flex font-bold"><span>5</span> <span class="text-xs">th</span></p> <span class="ml-1">payment</span></div> <span class="payment__splitit">$${priceSplitit}</span> </div><div class="grid grid-cols-4 py-1"><div class="col-span-3 flex"><p class="mr-1 flex font-bold"><span>6</span> <span class="text-xs">th</span></p> <span class="ml-1">payment</span></div> <span class="payment__splitit">$${priceSplitit}</span> </div></div></div> <div class="grid grid-cols-4 items-center border-gray-border sm:border-t sm:pt-2"><span class="col-span-2 text-sm font-bold sm:font-normal">Total</span> <span class="col-span-2 text-sm font-bold sm:text-base flex justify-end pr-2 total__splitit">$${(totalPrice-discountValue).toFixed(2)}</span></div></section></div></section></div></div></section></div> <section class="bg-bg-lighter px-5 sm:flex sm:flex-col sm:bg-white sm:px-10"><div class="border-gray-border pt-2 text-sm opacity-70 sm:order-2 sm:border-t">Things you need to know:</div> <div class="pb-2 text-xs opacity-50 sm:order-3"> <p class="pb-1">* Payments will be made automatically according to your agreed installment schedule. You must maintain sufficient available funds on your card until the plan is completed.</p> <p>* We will not charge you interest or fees. Your standard credit card terms and conditions apply.</p></div> <div class="flex items-end justify-between pb-4 sm:order-1"><div class="flex flex-col items-center text-center text-xs text-text-dark xsm:flex-row xsm:space-x-1 sm:items-end sm:pb-1 sm:text-base"><div>Powered by</div> <img src="https://documents.production.splitit.com/assets/svgs/logo.svg" alt="logo" class="mt-[2px] mr-0 w-11 sm:ml-2 sm:w-[75px]"></div> <div class="ml-2 min-w-[180px] cursor-pointer rounded bg-black px-4 py-2 text-center text-base font-bold text-white sm:px-5 sm:py-3">Continue shopping</div></div></section></div></div></div></main> <div id="svelte-announcer" aria-live="assertive" aria-atomic="true" style="position: absolute; left: 0px; top: 0px; clip: rect(0px, 0px, 0px, 0px); clip-path: inset(50%); overflow: hidden; white-space: nowrap; width: 1px; height: 1px;"></div></div>
                         </div>`)
 
@@ -877,6 +939,7 @@ function getCart(discountChange = false, cartDrawer = document.querySelector('.s
                         })
 
                         function removeSelected(target, boolean = false) {
+                            console.log(target)
                             if (boolean) {
                                 target.classList.add('selected-wrapper')
                                 target.children[0].classList.add('selected')
