@@ -964,10 +964,11 @@ label.is_hidden {
   margin-top: 4px;
   display: block;
 }
+/*
 .chosen_select div.options_custom {
   display: none;
 }
-
+*/
 .chosen_select div.options_custom ul {
   overflow-x: auto;
   max-height: 184px;
@@ -2027,7 +2028,7 @@ padding: 0;
       </div>
       <div class="our_consultants_wrapper">
         <h3>No suitable times for you?</h3>
-        <p>Call us <a href="tel:+17787711847">(778) 771-1847</a></p>
+        <p>Text us <a href="tel:+17787711847">(778) 771-1847</a></p>
         <div>
           <img src="https://conversionratestore.github.io/projects/grantme/img/our_consultants.png" alt="Our consultants" />
           <p>Our consultants are ready to help you</p>
