@@ -251,6 +251,86 @@ let styles = `
         font-size: 18px;
         line-height: 27px;      
     }
+    .feedback_section .swiper-slide {
+        margin-bottom: 42px;
+    }
+    .swiper-slide {
+        background: #FFFFFF;
+        box-shadow: 0px 0px 32px rgba(0, 0, 0, 0.08);
+        border-radius: 14px;
+        padding: 16px;
+        font-family: 'Circe';
+        font-style: normal;
+        font-weight: 400;
+        margin-bottom: 16px;
+    }
+    .swiper-slide .author {
+        font-weight: 700;
+        font-size: 16px;
+        line-height: 24px;
+        color: #1E2F44;
+        margin: 0;
+    }
+    .verified {
+        background: #DBF5ED;
+        border-radius: 999px;
+        padding: 5.5px 6.5px;
+        font-size: 12px;
+        line-height: 18px;
+        color: #2DAF6B;
+        margin: 4px 0 14px;
+        width: fit-content;
+    }
+    .verified svg {
+        margin-right: 6px;
+    }
+    .swiper-slide .theme {
+        font-weight: 700;
+        font-size: 16px;
+        line-height: 20px;
+        color: #1E2F44;
+        margin-bottom: 8px;
+    }
+    .swiper-slide .review_text {
+        font-family: 'Circularstd', sans-serif;
+        font-size: 14px;
+        line-height: 22px;
+        color: #5F6B7A;
+        margin-bottom: 8px;
+    }
+    .swiper-slide .date {
+        font-weight: 700;
+        font-size: 16px;
+        line-height: 20px;
+        color: #1E2F44;
+        margin: 0;
+    }
+    .swiper-pagination {
+        bottom: 24px!important;
+        transform: translate(-50%,0)!important;
+        top: auto!important;
+        width: fit-content!important;
+        display: flex;
+    }
+    .swiper-slider {
+        position: relative;
+    }
+    .swiper-pagination-bullet  {
+        border-radius: 100px;
+        width: 6px;
+        height: 6px;
+        margin: 0 2.5px!important;
+        position: initial!important;
+        transform: translate(0,0)!important;
+        transform: none!important;
+        display: block;
+    
+    }
+    .swiper-pagination-bullet.swiper-pagination-bullet-active {
+        width: 20px;
+        background: #1E2F44;
+    }
+    
     /* about_section */
     .about_section {
         margin-top: 36px;
@@ -298,32 +378,37 @@ let styles = `
         background: #174172;
         box-shadow: 0px 0px 32px rgba(0, 0, 0, 0.08);
         border-radius: 14px;
-        color: #E8ECF1;
         padding: 30px 19.5px;
+        color: #E8ECF1;
     }
-    .did-you-now .inactive-popup-content_title {
+    .did-you-now p {
+        font-family: 'Circularstd';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 22px;
+        margin: 0;
+    }
+    .did-you-now h2 {
         color: #fff;
         font-size: 28px;
         line-height: 32px;
     }
-    .did-you-now .inactive-popup-content_paragraph {
-        font-family: 'Circularstd';
-        font-style: normal;
-        /* font-weight: 450; */
-        font-size: 14px;
-        line-height: 22px;
+    .did-you-now img.graph {
+        margin: 16px auto 12px;
+        display: block;
     }
-    .did-you-now .inactive-popup-content_img {
-        margin: 16px 0 12px;
-    }
-    .did-you-now .inactive-popup-content_paragraph.is--alert {
+    .did-you-now .green_div {
         text-align: center;
+        background: #27548B;
+        border-radius: 14px;
         padding: 6px 14px;
+        color: #FFFFFF;
         margin-bottom: 12px;
     }
-    .did-you-now .inactive-popup-content_text {
-        line-htight: 22px;
-        margin-bottom: 16px;
+    .did-you-now .call_to_fix {
+        text-align: center;
+        padding: 0 10px;
     }
     /* guarantee */
     .rich-cta-wrp.guarantee {
@@ -351,13 +436,60 @@ let styles = `
     .review_section {
         padding-top: 36px;
     }
-    .review_section > div > p {
+    .review_section .head {
         font-family: 'Circe';
         font-style: normal;
         font-weight: 700;
-        font-size: 22px;
-        line-height: 30px;
+        font-size: 18px;
+        line-height: 27px;
         color: #5F6B7A;
+        border-bottom: 1px solid #E2E2E2;
+        padding-bottom: 13px;
+    }
+    .review_section .head .title, .review_section .head .rating {
+        font-size: 22px;
+        margin-right: 6px;
+    }
+    .review_section .head svg {
+        margin-rught: 2px;
+    }
+    .content_item {
+        display: none;
+    }
+    .content_item.active {
+        display: block;
+    }
+    .navigation {
+        padding: 8px 0 24px;
+    }
+    .navigation li {
+        margin: 0 4px;
+        padding: 0;
+    }
+    .navigation li a {
+        font-family: 'Circe';
+        font-style: normal;
+        font-weight: 700;
+        font-size: 16px;
+        line-height: 34px;
+        text-align: center;
+        color: #5F6B7A;
+        border: 1px solid #E0E0E0;
+        border-radius: 50%;
+        width: 34px;
+        height: 34px;
+        flex-shrink: 0;
+        padding: 0;
+        cursor: pointer;
+        display: block;
+    }
+    .navigation li.active a {
+        background: #2DAF6B;
+        border-color: #2DAF6B;
+        color: #FFFFFF;
+    }
+    ul.navigation li:before {
+        content: none;
     }
     /* flex */
     .flex {
@@ -401,6 +533,123 @@ let styles = `
     }
 </style>`;
 
+
+let objReview = [
+    {
+        'author': 'Julie McKenney',
+        'theme': 'My score went up 53 Points and 4 Collections deleted!!!',
+        'review': 'I signed up months ago and I noticed improvements in my credit score after about 45 days of being signed up I canceled after 3-4 months when I saw my score went up about 53 Points and I had 4 Collection accounts deleted. Thank you, Matt and their team that worked on this for me! You all are the reason why I bought a 2022 Honda Civic with a really good interest rate!!!',
+        'date': '2 days ago'
+    },
+    {
+        'author': 'Julie McKenney 2',
+        'theme': 'My score went up 53 Points and 4 Collections deleted!!!',
+        'review': 'I signed up months ago and I noticed improvements in my credit score after about 45 days of being signed up I canceled after 3-4 months when I saw my score went up about 53 Points and I had 4 Collection accounts deleted. Thank you, Matt and their team that worked on this for me! You all are the reason why I bought a 2022 Honda Civic with a really good interest rate!!!',
+        'date': '2 days ago'
+    },
+    {
+        'author': 'Julie McKenney 2',
+        'theme': 'My score went up 53 Points and 4 Collections deleted!!!',
+        'review': 'I signed up months ago and I noticed improvements in my credit score after about 45 days of being signed up I canceled after 3-4 months when I saw my score went up about 53 Points and I had 4 Collection accounts deleted. Thank you, Matt and their team that worked on this for me! You all are the reason why I bought a 2022 Honda Civic with a really good interest rate!!!',
+        'date': '2 days ago'
+    },
+    {
+        'author': 'Julie McKenney 2',
+        'theme': 'My score went up 53 Points and 4 Collections deleted!!!',
+        'review': 'I signed up months ago and I noticed improvements in my credit score after about 45 days of being signed up I canceled after 3-4 months when I saw my score went up about 53 Points and I had 4 Collection accounts deleted. Thank you, Matt and their team that worked on this for me! You all are the reason why I bought a 2022 Honda Civic with a really good interest rate!!!',
+        'date': '2 days ago'
+    },
+    {
+        'author': 'Julie McKenney 2',
+        'theme': 'My score went up 53 Points and 4 Collections deleted!!!',
+        'review': 'I signed up months ago and I noticed improvements in my credit score after about 45 days of being signed up I canceled after 3-4 months when I saw my score went up about 53 Points and I had 4 Collection accounts deleted. Thank you, Matt and their team that worked on this for me! You all are the reason why I bought a 2022 Honda Civic with a really good interest rate!!!',
+        'date': '2 days ago'
+    },
+    {
+        'author': 'Julie McKenney 2',
+        'theme': 'My score went up 53 Points and 4 Collections deleted!!!',
+        'review': 'I signed up months ago and I noticed improvements in my credit score after about 45 days of being signed up I canceled after 3-4 months when I saw my score went up about 53 Points and I had 4 Collection accounts deleted. Thank you, Matt and their team that worked on this for me! You all are the reason why I bought a 2022 Honda Civic with a really good interest rate!!!',
+        'date': '2 days ago'
+    },
+    {
+        'author': 'Julie McKenney 2',
+        'theme': 'My score went up 53 Points and 4 Collections deleted!!!',
+        'review': 'I signed up months ago and I noticed improvements in my credit score after about 45 days of being signed up I canceled after 3-4 months when I saw my score went up about 53 Points and I had 4 Collection accounts deleted. Thank you, Matt and their team that worked on this for me! You all are the reason why I bought a 2022 Honda Civic with a really good interest rate!!!',
+        'date': '2 days ago'
+    },
+    {
+        'author': 'Julie McKenney 2',
+        'theme': 'My score went up 53 Points and 4 Collections deleted!!!',
+        'review': 'I signed up months ago and I noticed improvements in my credit score after about 45 days of being signed up I canceled after 3-4 months when I saw my score went up about 53 Points and I had 4 Collection accounts deleted. Thank you, Matt and their team that worked on this for me! You all are the reason why I bought a 2022 Honda Civic with a really good interest rate!!!',
+        'date': '2 days ago'
+    },
+    {
+        'author': 'Julie McKenney 2',
+        'theme': 'My score went up 53 Points and 4 Collections deleted!!!',
+        'review': 'I signed up months ago and I noticed improvements in my credit score after about 45 days of being signed up I canceled after 3-4 months when I saw my score went up about 53 Points and I had 4 Collection accounts deleted. Thank you, Matt and their team that worked on this for me! You all are the reason why I bought a 2022 Honda Civic with a really good interest rate!!!',
+        'date': '2 days ago'
+    },
+    {
+        'author': 'Julie McKenney 2',
+        'theme': 'My score went up 53 Points and 4 Collections deleted!!!',
+        'review': 'I signed up months ago and I noticed improvements in my credit score after about 45 days of being signed up I canceled after 3-4 months when I saw my score went up about 53 Points and I had 4 Collection accounts deleted. Thank you, Matt and their team that worked on this for me! You all are the reason why I bought a 2022 Honda Civic with a really good interest rate!!!',
+        'date': '2 days ago'
+    },
+    {
+        'author': 'Julie McKenney 2',
+        'theme': 'My score went up 53 Points and 4 Collections deleted!!!',
+        'review': 'I signed up months ago and I noticed improvements in my credit score after about 45 days of being signed up I canceled after 3-4 months when I saw my score went up about 53 Points and I had 4 Collection accounts deleted. Thank you, Matt and their team that worked on this for me! You all are the reason why I bought a 2022 Honda Civic with a really good interest rate!!!',
+        'date': '2 days ago'
+    }
+]
+
+let slide = (author, theme, review, date) => `
+    <div class="swiper-slide">
+        <div class="flex justify-between">
+            <p class="author">${author}</p>
+            <svg width="88" height="16" viewBox="0 0 88 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M7.52447 1.46352C7.67415 1.00287 8.32585 1.00287 8.47553 1.46353L9.68386 5.18237C9.75079 5.38838 9.94277 5.52786 10.1594 5.52786H14.0696C14.554 5.52786 14.7554 6.14767 14.3635 6.43237L11.2001 8.73075C11.0248 8.85807 10.9515 9.08375 11.0184 9.28976L12.2268 13.0086C12.3764 13.4693 11.8492 13.8523 11.4573 13.5676L8.29389 11.2693C8.11865 11.1419 7.88135 11.1419 7.70611 11.2693L4.54267 13.5676C4.15081 13.8523 3.62357 13.4693 3.77325 13.0086L4.98157 9.28976C5.04851 9.08375 4.97518 8.85807 4.79994 8.73075L1.6365 6.43237C1.24464 6.14767 1.44603 5.52786 1.93039 5.52786H5.84062C6.05723 5.52786 6.24921 5.38838 6.31614 5.18237L7.52447 1.46352Z" fill="#FFB900"/>
+                <path d="M25.5245 1.46352C25.6741 1.00287 26.3259 1.00287 26.4755 1.46353L27.6839 5.18237C27.7508 5.38838 27.9428 5.52786 28.1594 5.52786H32.0696C32.554 5.52786 32.7554 6.14767 32.3635 6.43237L29.2001 8.73075C29.0248 8.85807 28.9515 9.08375 29.0184 9.28976L30.2268 13.0086C30.3764 13.4693 29.8492 13.8523 29.4573 13.5676L26.2939 11.2693C26.1186 11.1419 25.8814 11.1419 25.7061 11.2693L22.5427 13.5676C22.1508 13.8523 21.6236 13.4693 21.7732 13.0086L22.9816 9.28976C23.0485 9.08375 22.9752 8.85807 22.7999 8.73075L19.6365 6.43237C19.2446 6.14767 19.446 5.52786 19.9304 5.52786H23.8406C24.0572 5.52786 24.2492 5.38838 24.3161 5.18237L25.5245 1.46352Z" fill="#FFB900"/>
+                <path d="M43.5245 1.46352C43.6741 1.00287 44.3259 1.00287 44.4755 1.46353L45.6839 5.18237C45.7508 5.38838 45.9428 5.52786 46.1594 5.52786H50.0696C50.554 5.52786 50.7554 6.14767 50.3635 6.43237L47.2001 8.73075C47.0248 8.85807 46.9515 9.08375 47.0184 9.28976L48.2268 13.0086C48.3764 13.4693 47.8492 13.8523 47.4573 13.5676L44.2939 11.2693C44.1186 11.1419 43.8814 11.1419 43.7061 11.2693L40.5427 13.5676C40.1508 13.8523 39.6236 13.4693 39.7732 13.0086L40.9816 9.28976C41.0485 9.08375 40.9752 8.85807 40.7999 8.73075L37.6365 6.43237C37.2446 6.14767 37.446 5.52786 37.9304 5.52786H41.8406C42.0572 5.52786 42.2492 5.38838 42.3161 5.18237L43.5245 1.46352Z" fill="#FFB900"/>
+                <path d="M61.5245 1.46352C61.6741 1.00287 62.3259 1.00287 62.4755 1.46353L63.6839 5.18237C63.7508 5.38838 63.9428 5.52786 64.1594 5.52786H68.0696C68.554 5.52786 68.7554 6.14767 68.3635 6.43237L65.2001 8.73075C65.0248 8.85807 64.9515 9.08375 65.0184 9.28976L66.2268 13.0086C66.3764 13.4693 65.8492 13.8523 65.4573 13.5676L62.2939 11.2693C62.1186 11.1419 61.8814 11.1419 61.7061 11.2693L58.5427 13.5676C58.1508 13.8523 57.6236 13.4693 57.7732 13.0086L58.9816 9.28976C59.0485 9.08375 58.9752 8.85807 58.7999 8.73075L55.6365 6.43237C55.2446 6.14767 55.446 5.52786 55.9304 5.52786H59.8406C60.0572 5.52786 60.2492 5.38838 60.3161 5.18237L61.5245 1.46352Z" fill="#FFB900"/>
+                <path d="M79.5245 1.46352C79.6741 1.00287 80.3259 1.00287 80.4755 1.46353L81.6839 5.18237C81.7508 5.38838 81.9428 5.52786 82.1594 5.52786H86.0696C86.554 5.52786 86.7554 6.14767 86.3635 6.43237L83.2001 8.73075C83.0248 8.85807 82.9515 9.08375 83.0184 9.28976L84.2268 13.0086C84.3764 13.4693 83.8492 13.8523 83.4573 13.5676L80.2939 11.2693C80.1186 11.1419 79.8814 11.1419 79.7061 11.2693L76.5427 13.5676C76.1508 13.8523 75.6236 13.4693 75.7732 13.0086L76.9816 9.28976C77.0485 9.08375 76.9752 8.85807 76.7999 8.73075L73.6365 6.43237C73.2446 6.14767 73.446 5.52786 73.9304 5.52786H77.8406C78.0572 5.52786 78.2492 5.38838 78.3161 5.18237L79.5245 1.46352Z" fill="#FFB900"/>
+            </svg>
+        </div>
+        <div class="verified flex items-center">
+            <svg width="17" height="16" viewBox="0 0 17 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M11.2013 5.90374L6.98214 10.0967L4.97363 8.10068" stroke="#2DAF6B" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                <mask id="mask0_101_897" style="mask-type:luminance" maskUnits="userSpaceOnUse" x="0" y="0" width="17" height="16">
+                <path d="M0.0371094 9.53674e-07H16.1371V16H0.0371094V9.53674e-07Z" fill="white"/>
+                </mask>
+                <g mask="url(#mask0_101_897)">
+                <path d="M15.5082 8C15.5082 12.0731 12.1857 15.375 8.08711 15.375C3.98856 15.375 0.666016 12.0731 0.666016 8C0.666016 3.92691 3.98856 0.625001 8.08711 0.625001C12.1857 0.625001 15.5082 3.92691 15.5082 8Z" stroke="#2DAF6B" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                </g>
+            </svg>
+            Verified User
+        </div>
+        <p class="theme">${theme}</p>
+        <p class="review_text">${review}</p>
+        <p class="date">${date}</p>
+    </div>`;
+
+
+let scrollToElement = (event) => {
+    event.preventDefault()
+    let target = event.currentTarget;
+    let arrSpt = target.href.split('/'),
+        path = arrSpt[arrSpt.length - 1].split('%20').join(' ');
+
+    let elementTo = document.querySelector(path);
+    if (target.dataset.index) {
+        elementTo = document.querySelectorAll(path)[target.dataset.index];
+    }
+    
+    let top = elementTo.getBoundingClientRect().top - 52;
+
+    seamless.polyfill();
+    seamless.scrollBy(window, { behavior: "smooth", top: top, left: 0 });
+}
+
 window.onload = function() {
     document.body.insertAdjacentHTML('afterbegin', styles);
 
@@ -412,22 +661,6 @@ window.onload = function() {
     scriptScroll.src = 'https://cdn.jsdelivr.net/npm/seamless-scroll-polyfill@latest/lib/bundle.min.js';
     document.head.appendChild(scriptScroll)
 
-    function scrollToElement(event) {
-        event.preventDefault()
-        let target = event.currentTarget;
-        let arrSpt = target.href.split('/'),
-            path = arrSpt[arrSpt.length - 1].split('%20').join(' ');
-
-        let elementTo = document.querySelector(path);
-        if (target.dataset.index) {
-            elementTo = document.querySelectorAll(path)[target.dataset.index];
-        }
-        
-        let top = elementTo.getBoundingClientRect().top - 52;
-
-        seamless.polyfill();
-        seamless.scrollBy(window, { behavior: "smooth", top: top, left: 0 });
-    }
 
     // section 1
     document.querySelector('.h1-small').innerHTML = `Why is ` + document.querySelector('.h1-small').innerHTML; // title
@@ -496,7 +729,7 @@ window.onload = function() {
             <h2>We're proud to showcase our customer feedback!</h2>
             <p>Here's what our users say about us.</p>
             <a href=".review_section" class="flex justify-between feedback_section_head" onclick="scrollToElement(event)">
-                <p><span class="c-green">3,746</span> Reviews</p>
+                <p><span class="c-green">4,505</span> Reviews</p>
                 <p class="flex items-center">
                     4.9 
                     <svg style="margin-left: 4px;" width="88" height="16" viewBox="0 0 88 16" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -508,6 +741,10 @@ window.onload = function() {
                     </svg>
                 </p>
             </a>
+            <div class="swiper-slider">
+                <div class="swiper-wrapper"></div>
+                <div class="swiper-pagination"></div>
+            </div>
             <a href="tel:(855)685-2090" class="btn btn_green w-inline-block">
                 <div class="ic ic_btn w-embed">
                     <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -525,6 +762,36 @@ window.onload = function() {
         <h2>Essential information about Radius Global Solutions <span class="text-nowrap">you need</span> to know</h2>
         <ul></ul>
     </section>`);
+
+    //slider review
+    //add script/link Swiper slider
+    let scriptSwiper = document.createElement('script');
+    scriptSwiper.src = 'https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js';
+    document.body.appendChild(scriptSwiper);
+
+    let linkSwiper = document.createElement('link');
+    linkSwiper.href = 'https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css';
+    linkSwiper.rel = 'stylesheet';
+    document.head.appendChild(linkSwiper);
+
+    for (let i = 0; i < objReview.length; i++) {
+        document.querySelector('.feedback_section .swiper-wrapper').insertAdjacentHTML('beforeend', slide(objReview[i].author, objReview[i].theme, objReview[i].review, objReview[i].date))
+    }
+    //init Swiper slider
+    const waitSwiper = setInterval(() => {
+        if(typeof Swiper == 'function') {
+            clearInterval(waitSwiper)
+            new Swiper(".swiper-slider", {
+                loop: true,
+                slidesPerView: 1,
+                spaceBetween: 19.5,
+                pagination: {
+                    el: ".swiper-pagination",
+                    dynamicBullets: true,
+                },
+            });
+        }
+    });
 
     //sticky button 
     let offsetTopBrands = document.querySelector('.brands_section').offsetTop / 2,
@@ -565,12 +832,12 @@ window.onload = function() {
     document.querySelectorAll('.rich-cta-wrp')[0].style.display = 'none'
     document.querySelectorAll('.rich-cta-wrp')[0].insertAdjacentHTML('afterend', `
     <div class="did-you-now">
-        ${document.querySelector('.inactive-popup-content').innerHTML}
+        <h2 class="title">Did you know?</h2>
+        <p>A collection account can remain on your credit reports <span class="c-green"> for up to 7 years</span>, negatively impacting your credit score,<span class="c-green"> even if you pay the debt.</span></p>
+        <img class="graph" src="${dir}/graph_2.svg" alt="graph">
+        <p class="green_div">* CreditSage's experts  <span class="c-green">can potentially remove </span>negative items from your report or provide a full refund (minus setup fee) if none are removed <span class="c-green"> within the first 100 days.</span></p>
+        <p class="call_to_fix">Call now to fix your credit report and reclaim financial freedom today!</p>
     </div>`)
-
-    document.querySelector('.did-you-now .inactive-popup-content_img').src = dir + 'graph_2.svg';
-    document.querySelector('.did-you-now .inactive-popup-content_paragraph.is--alert').innerHTML = `CreditSage's experts <span class="inactive-popup-content_span">can potentially remove</span> negative items from your report or provide a full refund (minus setup fee) if none are removed <span class="inactive-popup-content_span">within the first 100 days.</span>`
-
 
     //"Industry Leading, Risk-Free Guarantee"
     document.querySelectorAll('.rich-cta-wrp')[1].classList.add('guarantee');
@@ -591,7 +858,47 @@ window.onload = function() {
     <section class="review_section">
         <div class="sct__cnt sct__cnt_template">
             <h2>Trusted customer reviews</h2>
-            <p>Reviews</p>
+            <p class="head">
+                <span class="title">Reviews</span>
+                <svg width="16" height="15" viewBox="0 0 16 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M7.52447 0.463526C7.67415 0.0028708 8.32585 0.00286996 8.47553 0.463525L9.90837 4.87336C9.97531 5.07937 10.1673 5.21885 10.3839 5.21885H15.0207C15.505 5.21885 15.7064 5.83865 15.3146 6.12336L11.5633 8.84878C11.3881 8.9761 11.3148 9.20179 11.3817 9.4078L12.8145 13.8176C12.9642 14.2783 12.437 14.6613 12.0451 14.3766L8.29389 11.6512C8.11865 11.5239 7.88135 11.5239 7.70611 11.6512L3.95488 14.3766C3.56303 14.6613 3.03578 14.2783 3.18546 13.8176L4.6183 9.4078C4.68524 9.20179 4.61191 8.9761 4.43667 8.84878L0.685441 6.12336C0.293584 5.83866 0.494972 5.21885 0.979333 5.21885H5.6161C5.83272 5.21885 6.02469 5.07937 6.09163 4.87336L7.52447 0.463526Z" fill="#FFB900"/>
+                </svg>
+                <span class="rating">4.9</span>
+                <span><span class="c-green">3,746 </span>Total</span>
+            </p>
+            <div class="content_reviews"> </div>
+            <ul class="navigation flex justify-center"></ul>
         </div>
     </section>`)
+
+    let pageCount = objReview.length / 4;
+    let content = '';
+
+    for (let i = 0; i < pageCount; i++) {
+        document.querySelector('.navigation').insertAdjacentHTML('beforeend', `<li class="${i == 0 ? 'active': ''}"><a href=".content_reviews">${i+1}</a></li>`)
+     
+        document.querySelector('.content_reviews').insertAdjacentHTML('beforeend', ` <div class="content_item ${i == 0 ? 'active': ''}" data-item="${i == 0 ? '4' : (i+1)*4}"> </div>`)
+  
+    }
+   
+
+    document.querySelectorAll('.content_item[data-item]').forEach((item, index) => {
+        let items = +item.dataset.item;
+        let indexTo = index != 0 ? items - 4: 0;
+    
+        for (let i = indexTo; i < items; i++) {
+            if (objReview[i]) {
+                item.insertAdjacentHTML('beforeend', slide(objReview[i].author, objReview[i].theme, objReview[i].review, objReview[i].date))
+       
+            }
+        }
+
+        document.querySelectorAll('.navigation li')[index].addEventListener('click', (e) => {
+            e.currentTarget.parentElement.querySelector('.active').classList.remove('active')
+            item.parentElement.querySelector('.active').classList.remove('active')
+
+            e.currentTarget.classList.add('active')
+            item.classList.add('active')
+        })
+    })
 };
