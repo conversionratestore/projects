@@ -1348,7 +1348,7 @@ let applyCoupon = setInterval(() => {
 
 let disabledBtnFun = () => {
     let disabledBtn = setInterval(() => {
-        if (document.querySelectorAll('form #edit-payment-information input') && document.querySelector('#edit-actions-next') != null && document.querySelector('.btn_start_membership') != null) {
+        if (document.querySelectorAll('form #edit-payment-information input') && document.querySelector('[data-drupal-selector="edit-actions-next"]') != null && document.querySelector('.btn_start_membership') != null) {
             error = false;
             error = document.querySelector('#select2-edit-payment-information-add-payment-method-billing-information-address-0-address-administrative-area-container') != null && document.querySelector('#select2-edit-payment-information-add-payment-method-billing-information-address-0-address-administrative-area-container').innerHTML.includes('Select');
             
