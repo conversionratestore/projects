@@ -1314,8 +1314,7 @@ function init() {
             })
         
             document.querySelector('.btn_start_membership').addEventListener('click', (e) => {
-                console.log(e.target)
-                document.querySelector('#edit-actions-next').click();
+                document.querySelector('[data-drupal-selector="edit-actions-next"]').click();
             })
         }
     });
