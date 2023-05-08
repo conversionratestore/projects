@@ -877,7 +877,7 @@ let init = setInterval(() => {
         }
     }
 
-    if (document.querySelector('[for="edit-commerce-donation-pane-donation-toggler"]') != null && document.querySelector('.views-field.views-field-total-price__number') != null && document.querySelector('.o-page__mainContent') != null && window.location.href.includes('/checkout') && !window.location.href.includes('/login') && document.querySelector('#edit-actions-next') != null) {
+    if (document.querySelector('.form-item-commerce-donation-pane-donation-toggler label') != null && document.querySelector('.views-field.views-field-total-price__number') != null && document.querySelector('.o-page__mainContent') != null && window.location.href.includes('/checkout') && !window.location.href.includes('/login') && document.querySelector('[data-drupal-selector="edit-actions-next"]') != null) {
         clearInterval(init)
 
         document.body.insertAdjacentHTML('afterbegin', style) //add style
@@ -995,11 +995,11 @@ let init = setInterval(() => {
             label.option, .form-item-commerce-donation-pane-donation-toggler {
                 margin: 0;
             }
-            label[for="edit-commerce-donation-pane-donation-toggler"] {
+            .form-item-commerce-donation-pane-donation-toggler label {
                 font-weight: 600;
                 color: #555555;
             }
-            .form-checkboxes label, .form-radios label, label[for="edit-commerce-donation-pane-donation-toggler"] {
+            .form-checkboxes label, .form-radios label, .form-item-commerce-donation-pane-donation-toggler label {
                 padding-left: 28px;
                 margin-left: 0!important;
             }
@@ -1254,8 +1254,8 @@ let init = setInterval(() => {
         document.querySelector('.layout-region.layout-region-checkout-main').insertAdjacentHTML('beforeend',`
         <button type="button" class="btn_start_membership" disabled>Start membership</button>`)
 
-        document.querySelector('#edit-commerce-donation-pane-donation-toggler').insertAdjacentHTML('afterend', `<span class="check"></span>`)
-        document.querySelector('[for="edit-commerce-donation-pane-donation-toggler"]').innerHTML = `I'd like to make a donation to support instructors and free content creation `
+        document.querySelector('[data-drupal-selector="edit-commerce-donation-pane-donation-toggler"]').insertAdjacentHTML('afterend', `<span class="check"></span>`)
+        document.querySelector('.form-item-commerce-donation-pane-donation-toggler label').innerHTML = `I'd like to make a donation to support instructors and free content creation `
 
         if (document.querySelector('.views-field.views-field-total-price__number').innerHTML.includes('$108.99')) {
             let price = document.querySelector('.views-field.views-field-total-price__number');
