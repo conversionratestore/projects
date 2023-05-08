@@ -881,7 +881,10 @@ let init = setInterval(() => {
         clearInterval(init)
 
         document.body.insertAdjacentHTML('afterbegin', style) //add style
-        document.querySelector('.o-page__mainContent').insertAdjacentHTML('afterbegin', headHTML) //add topbar
+
+        if (document.querySelector('.topbar') == null) {
+            document.querySelector('.o-page__mainContent').insertAdjacentHTML('afterbegin', headHTML) //add topbar
+        }
 
         document.body.insertAdjacentHTML('afterbegin', `
         <style>
@@ -1228,8 +1231,11 @@ let init = setInterval(() => {
                 }
             }
         </style>`)
-        document.querySelector('.o-page__header').insertAdjacentHTML('afterend',`
-        <div class="header-logo text-center"> <a href="/" class="logo"><img src="/themes/custom/lotus/logo.png" alt="image"></a></div>`);
+
+        if (document.querySelector('.header-logo') == null) {
+            document.querySelector('.o-page__header').insertAdjacentHTML('afterend',`
+            <div class="header-logo text-center"> <a href="/" class="logo"><img src="/themes/custom/lotus/logo.png" alt="image"></a></div>`);
+        }
 
         document.querySelector('.progressbar .step:nth-child(2)').classList.add('checked')
         document.querySelector('.progressbar .step:last-child').classList.add('active')
@@ -1270,7 +1276,7 @@ let init = setInterval(() => {
             document.querySelector('#edit-coupon-redemption').insertAdjacentHTML('beforebegin',`
             <a href="#" class="btn_got_coupon">Got a Coupon?</a>`)
 
-            document.querySelector('#edit-sidebar-coupon-redemption-form-apply').innerHTML = 'Apply';
+            document.querySelector('[data-drupal-selector="edit-sidebar-coupon-redemption-form-apply"]').innerHTML = 'Apply';
 
             document.querySelector('.btn_got_coupon').addEventListener('click', (e) => {
                 e.preventDefault()
