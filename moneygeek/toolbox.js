@@ -133,11 +133,11 @@ let toolBox = setInterval(() => {
             color: #555555;
         }
         .overflow_nav_scroll{
-            height: 227px;
+            height: 228px;
             overflow: auto;
         }
         .css-fk0bbl ul{
-            max-height:227px;
+            max-height:228px;
             height: 100%;
         }
         .css-1wbld27 h6{
@@ -293,6 +293,12 @@ let toolBox = setInterval(() => {
     if (document.querySelector(".overflow_nav_scroll")) {
       document.querySelector(".overflow_nav_scroll span").after(document.querySelector("#menu-list"));
       document.querySelector(".overflow_nav_scroll").insertAdjacentHTML("afterend", toolBoxHtml);
+
+      if (document.querySelectorAll("#menu-list li").length < 5) {
+        document.querySelector(".tool_box").style.top = "272px";
+      } else {
+        document.querySelector(".tool_box").style.top = "349px";
+      }
 
       window.addEventListener("scroll", (e) => {
         if (document.querySelector(".css-fk0bbl #menu-list li:nth-child(5) a.is-active") || document.querySelector(".css-fk0bbl #menu-list li:nth-child(6) a.is-active") || document.querySelector(".css-fk0bbl #menu-list li:nth-child(7) a.is-active") || document.querySelector(".css-fk0bbl #menu-list li:nth-child(8) a.is-active") || document.querySelector(".css-fk0bbl #menu-list li:nth-child(9) a.is-active") || document.querySelector(".css-fk0bbl #menu-list li:nth-child(10) a.is-active") || document.querySelector(".css-fk0bbl #menu-list li:nth-child(11) a.is-active")) {
