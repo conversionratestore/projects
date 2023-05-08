@@ -560,13 +560,11 @@ input.clac_qty {
 .mb-auto {
     margin-bottom: auto;
 }
-
-
-@media screen and (min-width:768px) {
-    .splitit-iframe-popup .single-option, .splitit-iframe-popup .single {
-        width: 311px;
-    }
+.splitit-iframe-popup .single-option, .splitit-iframe-popup .single {
+    max-width: 311px;
+    width: 100%;
 }
+
 @media screen and (min-width:600px) {
     .text-sm-center {
         text-align: center;
