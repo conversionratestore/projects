@@ -3923,7 +3923,7 @@ let photos = setInterval(() => {
                             document.querySelector('.gallery-bottom').classList.remove('center')
                         }  
                         document.querySelector(".gallery .swiper-slide-video iframe").src = document.querySelector(".gallery .swiper-slide-video iframe").src
-                    }, 200)
+                    }, 300)
                   
                 })
             })
