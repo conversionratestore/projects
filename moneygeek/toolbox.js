@@ -339,38 +339,26 @@ let toolBox = setInterval(() => {
     }
 
     window.addEventListener("scroll", () => {
-      let obs = new IntersectionObserver(visibility, {
-        threshold: 0.1,
-      });
-
-      let obs2 = new IntersectionObserver(visibility2, {
-        threshold: 0.1,
-      });
-
-      obs.observe(document.querySelector(".css-qn3qut"));
-
-      function visibility(entries) {
-        entries.forEach((i) => {
-          if (i.isIntersecting) {
-            setTimeout(function () {
-              obs2.observe(i.target);
-            }, 100);
-          }
-        });
-      }
-
-      function visibility2(entries) {
+      const options = {
+        root: null,
+        threshold: 0.5,
+      };
+      let containerHint = document.querySelector("footer.css-qn3qut");
+      let observer = new IntersectionObserver((entries) => {
         entries.forEach((i) => {
           if (i.isIntersecting) {
             document.querySelector(".tool_box").style.display = "none";
-            obs.unobserve(i.target);
           } else {
             document.querySelector(".tool_box").style.display = "block";
           }
 
-          obs2.unobserve(i.target);
+          observer.unobserve(i.target);
         });
-      }
+
+        observer.disconnect();
+      });
+
+      observer.observe(containerHint, options);
     });
 
     pushDataLayer("loaded");
