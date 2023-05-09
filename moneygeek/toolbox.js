@@ -334,6 +334,9 @@ let toolBox = setInterval(() => {
             case "https://www.moneygeek.com/insurance/auto/how-to-reduce-your-car-insurance-costs/":
               pushDataLayer("Determine How to Reduce the Cost of Car Insurance", "Car Insurance Toolbox");
               break;
+            case "https://www.moneygeek.com/insurance/auto/compare-quotes/":
+              pushDataLayer("Car Insurance Comparison Tool", "Car Insurance Toolbox");
+              break;
 
             default:
               break;
