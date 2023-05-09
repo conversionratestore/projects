@@ -451,6 +451,11 @@ header .search_btn {
     header .search_header input {
         width: 400px!important;
     }
+    .gallery-bottom.center {
+        width: 50%!important;
+        left: 50%;
+        transform: translateX(-50%);
+    }
 }
 @media screen and (max-width: 1335px) {
     header .btns-header a {
@@ -821,6 +826,7 @@ header .main_menu {
     width: 100%;
     height: 100%;
     z-index: 1;
+    pointer-events: none;
 }
 .gallery > div {
     position: absolute;
@@ -838,6 +844,11 @@ header .main_menu {
     width: 100%;
     height: 100%;
     object-fit: cover;
+}
+.swiper-slide-video * {
+    padding: 0!important;
+    height: 100%;
+    width: 100%;
 }
 .btn-gallery {
     font-weight: 700;
@@ -3841,7 +3852,8 @@ let video = setInterval(() => {
 });
 let photos = setInterval(() => {
 	if(
-		(document.querySelector('#my-gallery') != null ||
+		(document.querySelector('.video_wr iframe') != null ||
+            document.querySelector('#my-gallery') != null ||
 			document.querySelector('.w3-content.w3-display-container > img') != null ||
 			document.querySelector('.parallax-mirror img') != null || 
             document.querySelector('.parallax-window') != null) &&
@@ -3874,7 +3886,7 @@ let photos = setInterval(() => {
 		let slideLength = 0;
 		document.querySelector('.gallery').innerHTML = `
         <ul class="swiper-wrapper"></ul>
-        <div class="d-flex align-items-center justify-content-between w-100">
+        <div class="d-flex align-items-center justify-content-between w-100 gallery-bottom">
             <button type="button" class="btn-gallery" onclick="pushDataLayer('Click on Gallery','Watch gallery button')">
                 <svg width="16" height="13" viewBox="0 0 16 13" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M13.125 11.125H3.9375C2.70703 11.125 1.75 10.168 1.75 8.9375V3.25H1.3125C0.574219 3.25 0 3.85156 0 4.5625V11.5625C0 12.3008 0.574219 12.875 1.3125 12.875H11.8125C12.5234 12.875 13.125 12.3008 13.125 11.5625V11.125ZM15.75 8.9375V1.9375C15.75 1.22656 15.1484 0.625 14.4375 0.625H3.9375C3.19922 0.625 2.625 1.22656 2.625 1.9375V8.9375C2.625 9.67578 3.19922 10.25 3.9375 10.25H14.4375C15.1484 10.25 15.75 9.67578 15.75 8.9375ZM7 3.25C7 3.98828 6.39844 4.5625 5.6875 4.5625C4.94922 4.5625 4.375 3.98828 4.375 3.25C4.375 2.53906 4.94922 1.9375 5.6875 1.9375C6.39844 1.9375 7 2.53906 7 3.25ZM4.375 7.1875L5.87891 5.68359C6.01562 5.54688 6.20703 5.54688 6.34375 5.68359L7.4375 6.75L11.1289 3.05859C11.2656 2.92188 11.457 2.92188 11.5938 3.05859L14 5.4375V8.5H4.375V7.1875Z" fill="white"/>
@@ -3895,6 +3907,27 @@ let photos = setInterval(() => {
                 </button>
             </div>
         </div>`;
+
+        if (document.querySelector('.video_wr iframe') != null) {
+            slideLength += 1;
+            slide += `<li class="swiper-slide swiper-slide-video">${document.querySelector('.video_wr iframe').parentElement.innerHTML}</li>`;
+            
+            document.querySelector('.gallery-bottom').classList.add('center')
+            
+            document.querySelectorAll('.gallery-bottom .btn-arrow').forEach(item => {
+                item.addEventListener('click', (e) => {
+                    setTimeout(() => {
+                        if (document.querySelector('.swiper-slide-video').classList.contains('swiper-slide-active')) {
+                            document.querySelector('.gallery-bottom').classList.add('center')
+                        } else {
+                            document.querySelector('.gallery-bottom').classList.remove('center')
+                        }  
+                        document.querySelector(".gallery .swiper-slide-video iframe").src = document.querySelector(".gallery .swiper-slide-video iframe").src
+                    }, 200)
+                  
+                })
+            })
+        }
 		if(document.querySelector('#my-gallery') != null) {
 			document.querySelectorAll('#my-gallery ul li').forEach((item) => {
                 if (!item.classList.contains('swiper-slide-duplicate')) {
@@ -3943,11 +3976,17 @@ let photos = setInterval(() => {
 
 		document.querySelector('.btn-gallery').addEventListener('click', () => {
 			document.querySelector('.popup_gallery').classList.add('active');
-		});
+            if (document.querySelector(".gallery .swiper-slide-video iframe") != null) {
+                document.querySelector(".gallery .swiper-slide-video iframe").src = document.querySelector(".gallery .swiper-slide-video iframe").src
+            }
+        });
 		document
 			.querySelector('.popup_gallery_close')
 			.addEventListener('click', () => {
 				document.querySelector('.popup_gallery').classList.remove('active');
+                if ( document.querySelector(".popup_gallery .swiper-slide-video iframe") != null) {
+                    document.querySelector(".popup_gallery .swiper-slide-video iframe").src = document.querySelector(".popup_gallery .swiper-slide-video iframe").src
+                }
 			});
 
         let isLoop = slideLength > 2 ? true : false;
