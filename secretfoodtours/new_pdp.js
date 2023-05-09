@@ -3917,7 +3917,7 @@ let photos = setInterval(() => {
             document.querySelectorAll('.gallery-bottom .btn-arrow').forEach(item => {
                 item.addEventListener('click', (e) => {
                     setTimeout(() => {
-                        if (document.querySelector('.swiper-slide-video').classList.contains('swiper-slide-active')) {
+                        if (document.querySelector('.gallery-bottom .swiper-pagination-current').innerHTML == '1' || document.querySelector('.swiper-slide-video').classList.contains('swiper-slide-active')) {
                             document.querySelector('.gallery-bottom').classList.add('center')
                         } else {
                             document.querySelector('.gallery-bottom').classList.remove('center')
