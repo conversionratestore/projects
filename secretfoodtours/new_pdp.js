@@ -3908,7 +3908,7 @@ let photos = setInterval(() => {
             </div>
         </div>`;
 
-        if (document.querySelector('.video_wr iframe') != null) {
+        if (document.querySelector('.video_wr iframe') != null && window.matchMedia("(min-width: 768px)").matches) {
             slideLength += 1;
             slide += `<li class="swiper-slide swiper-slide-video">${document.querySelector('.video_wr iframe').parentElement.innerHTML}</li>`;
             
