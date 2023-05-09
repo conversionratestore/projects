@@ -24,7 +24,7 @@ let toolBox = setInterval(() => {
     let styleToolBox = /*html */ `
     <style>
         footer.css-qn3qut{
-            z-index: 2000;
+            z-index: 3000;
         }
         .site-navigation > div.social {
             height: 26px;
@@ -37,7 +37,7 @@ let toolBox = setInterval(() => {
             background: #596DF6;
             box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.16);
             border-radius: 0;
-            z-index: 2001;
+            z-index: 3001;
         }
         #stickywidgetdiv .css-1jb1j0h{
             padding: 16px 20px;
