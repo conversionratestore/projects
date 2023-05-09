@@ -626,7 +626,7 @@ body .consultation_descr_box > div ul li span {
   font-weight: 700;
 }
 body .consultation_descr_box > div ul li + li {
-  margin-top: 8px;
+  margin-top: 3px;
 }
 body .consultation_descr_box > div.no_commitments_wrapper {
   margin-top: 20px;
@@ -1439,7 +1439,7 @@ border-radius: 12px
   }
   .new_schedule {
     max-width: 100%;
-    margin: 16px 24px 0;
+    margin: 23px 24px 0;
     width: auto;
     padding: 24px 0;
     border-top: 1px solid #f2f2f2;
@@ -1717,7 +1717,7 @@ border-radius: 12px
   }
   .time_zone_wrapper {
     text-align: center;
-    margin: 24px 0 -8px;
+    margin: 24px 0 0;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -1872,6 +1872,7 @@ padding: 0;
           <li>How to win <span>at least $3,600</span> in grants per year - guaranteed.</li>
           <li>Which scholarships and <span>funding opportunities</span> your child is eligible for based on their profile.</li>
           <li>How to <span>double your odds</span> of winning funding by creating a plan with our expert.</li>
+          <li>You’ll learn if your child <span>will be offered a spot</span> into GrantMe’s programs</li>
         </ul>
       </div>
       <div>
@@ -2059,7 +2060,7 @@ padding: 0;
       </div>
     </section>
     <section class="what_users_say_box">
-      <h2>What Our Users Say</h2>
+      <h2>What Our Students Say</h2>
       <div class="users_say_slider">
             <div class="testimonials_video section_grey_radius">
       <div class="container container_video">
@@ -2463,9 +2464,9 @@ padding: 0;
         document.querySelectorAll(".slick-arrow").forEach((el) => {
           el.addEventListener("click", function (e) {
             if (e.currentTarget.classList.contains("testimonials_arrow_prev")) {
-              pushDataLayer("exp_bookpage_userssay_prev", "Previous", "Button", "What Our Users Say");
+              pushDataLayer("exp_bookpage_userssay_prev", "Previous", "Button", "What Our Students Say");
             } else {
-              pushDataLayer("exp_bookpage_userssay_next", "Next", "Button", "What Our Users Say");
+              pushDataLayer("exp_bookpage_userssay_next", "Next", "Button", "What Our Students Say");
             }
           });
         });
@@ -3108,7 +3109,7 @@ padding: 0;
       pushDataLayer("exp_bookpage_notimes_phone", "Phone", "Link", "No suitable times for you");
     });
     document.querySelector(".testimonials_item_last .btn")?.addEventListener("click", () => {
-      pushDataLayer("exp_bookpage_userssay_see", "See More", "Button", "What Our Users Say");
+      pushDataLayer("exp_bookpage_userssay_see", "See More", "Button", "What Our Students Say");
     });
     document.querySelector(".footer-start-free-trial a.btn.primary-solid-yellow")?.addEventListener("click", () => {
       pushDataLayer("exp_bookpage_ready_book", "Book A Call", "Button", "Ready To Get Started");
@@ -3124,7 +3125,7 @@ padding: 0;
     });
     document.querySelectorAll(".wistia_responsive_padding").forEach((el) => {
       el.addEventListener("click", () => {
-        pushDataLayer("exp_bookpage_userssay_int", "Interaction", "Video", "What Our Users Say");
+        pushDataLayer("exp_bookpage_userssay_int", "Interaction", "Video", "What Our Students Say");
       });
     });
     //
@@ -3185,7 +3186,7 @@ padding: 0;
             pushDataLayer("exp_bookpage_viewel_04", "Interaction", "View element on screen", "As Seen On");
           }
           if (i.target.classList.contains("testimonials_arrows")) {
-            pushDataLayer("exp_bookpage_viewel_05", "Interaction", "View element on screen", "What Our Users Say");
+            pushDataLayer("exp_bookpage_viewel_05", "Interaction", "View element on screen", "What Our Students Say");
           }
           if (i.target.getAttribute("alt") === "step 1") {
             pushDataLayer("exp_bookpage_viewel_06", "Interaction", "View element on screen", "Leave Your Competition In The Dust");
