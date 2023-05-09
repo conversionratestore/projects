@@ -3852,13 +3852,14 @@ let video = setInterval(() => {
 });
 let photos = setInterval(() => {
 	if(
-		(document.querySelector('.video_wr iframe') != null ||
-            document.querySelector('#my-gallery') != null ||
+        document.querySelector('.photos-gallery') != null &&
+		document.querySelectorAll('.breadcrumbs-customer li a')[2] != null &&
+		(   document.querySelector('#my-gallery') != null ||
 			document.querySelector('.w3-content.w3-display-container > img') != null ||
 			document.querySelector('.parallax-mirror img') != null || 
-            document.querySelector('.parallax-window') != null) &&
-		document.querySelector('.photos-gallery') != null &&
-		document.querySelectorAll('.breadcrumbs-customer li a')[2] != null
+            document.querySelector('.parallax-window') != null ||
+            (document.querySelector('.video_wr iframe') != null && window.matchMedia("(min-width: 768px)").matches) 
+        )
 	) {
 		clearInterval(photos);
 		let city = getCity(
@@ -4083,7 +4084,7 @@ let photos = setInterval(() => {
 				});
 			});
 	}
-});
+}, 200);
 let whyTour = setInterval(() => {
 	if(
 		document.querySelector('.why-tour') != null &&
