@@ -354,7 +354,7 @@ let toolBox = setInterval(() => {
           if (i.isIntersecting) {
             setTimeout(function () {
               obs2.observe(i.target);
-            }, 1000);
+            }, 100);
           }
         });
       }
