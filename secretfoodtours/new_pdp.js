@@ -2943,12 +2943,12 @@ let init = setInterval(() => {
                 </svg>
             </button>
             <ul class="swiper-wrapper"></ul>
-            <div class="swiper-button-prev" onclick="pushDataLayer('Click on navigation button in gallery popup','Previous slide')">
+            <div class="swiper-button-prev popup_gallery_button" onclick="pushDataLayer('Click on navigation button in gallery popup','Previous slide')">
                 <svg width="19" height="24" viewBox="0 0 9 14" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M8 1L2 7L8 13" stroke="#fff" stroke-width="2" stroke-linecap="round"/>
                 </svg>
             </div>
-            <div class="swiper-button-next" onclick="pushDataLayer('Click on navigation button  in gallery popup','Next slide')">
+            <div class="swiper-button-next popup_gallery_button" onclick="pushDataLayer('Click on navigation button  in gallery popup','Next slide')">
                 <svg width="19" height="24" viewBox="0 0 9 14" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M0.999999 13L7 7L1 1" stroke="#fff" stroke-width="2" stroke-linecap="round"/>
                 </svg>
@@ -3913,6 +3913,20 @@ let photos = setInterval(() => {
             slide += `<li class="swiper-slide swiper-slide-video">${document.querySelector('.video_wr iframe').parentElement.innerHTML}</li>`;
             
             document.querySelector('.gallery-bottom').classList.add('center')
+            
+            document.querySelector('.popup_gallery .popup_gallery_button').forEach(item => {
+                item.addEventListener('click', (e) => {
+                    setTimeout(() => {
+                        if (document.querySelector('.gallery-bottom .swiper-pagination-current').innerHTML == '1' || document.querySelector('.swiper-slide-video').classList.contains('swiper-slide-active')) {
+                            document.querySelector('.gallery-bottom').classList.add('center')
+                        } else {
+                            document.querySelector('.gallery-bottom').classList.remove('center')
+                        }  
+                        document.querySelector(".gallery .swiper-slide-video iframe").src = document.querySelector(".gallery .swiper-slide-video iframe").src
+                    }, 300)
+                
+                })
+            })
             
             document.querySelectorAll('.gallery-bottom .btn-arrow').forEach(item => {
                 item.addEventListener('click', (e) => {
