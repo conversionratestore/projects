@@ -210,7 +210,7 @@ let toolBox = setInterval(() => {
         .tool_box_body ul li a{
             font-weight: 400;
             font-size: 16px;
-            line-height: 24px;
+            line-height: 20px;
             color: #555555;
             width: 100%;
             display: block;
@@ -233,10 +233,11 @@ let toolBox = setInterval(() => {
         .tool_box_body ul li:nth-child(1) a::after{
             top: 9px;
         }
-        .tool_box_body ul li:nth-child(2) a{
+        .tool_box_body ul li:nth-child(2) a,
+        .tool_box_body ul li:nth-child(3) a{
             padding: 10px 45px 10px 0;
         }
-        .tool_box_body ul li:nth-child(3) a{
+        .tool_box_body ul li:nth-child(4) a{
             padding: 10px 45px 0 0;
         }
         .tool_box_body ul li a:hover{
@@ -279,6 +280,9 @@ let toolBox = setInterval(() => {
           </li>
           <li>
             <a href="https://www.moneygeek.com/insurance/auto/how-to-reduce-your-car-insurance-costs/" target="_blank" rel="noopener noreferrer">Determine How to Reduce the Cost of Car Insurance</a>
+          </li>
+          <li>
+            <a href="https://www.moneygeek.com/insurance/auto/compare-quotes/" target="_blank" rel="noopener noreferrer">Car Insurance Comparison Tool</a>
           </li>
         </ul>
       </div>
