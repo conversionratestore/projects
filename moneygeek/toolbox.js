@@ -21,12 +21,11 @@ let toolBox = setInterval(() => {
         });
       }
     }
-
     let styleToolBox = /*html */ `
     <style>
-      footer.css-qn3qut{
-z-index: 1000;
-      }
+        footer.css-qn3qut{
+            z-index: 2000;
+        }
         .site-navigation > div.social {
             height: 26px;
         }
@@ -38,7 +37,7 @@ z-index: 1000;
             background: #596DF6;
             box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.16);
             border-radius: 0;
-            z-index: 1005;
+            z-index: 2001;
         }
         #stickywidgetdiv .css-1jb1j0h{
             padding: 16px 20px;
@@ -307,16 +306,6 @@ z-index: 1000;
       } else {
         document.querySelector(".tool_box").style.top = "349px";
       }
-
-      // window.addEventListener("scroll", (e) => {
-      //   if (document.querySelector(".css-fk0bbl #menu-list li:nth-child(5) a.is-active") || document.querySelector(".css-fk0bbl #menu-list li:nth-child(6) a.is-active") || document.querySelector(".css-fk0bbl #menu-list li:nth-child(7) a.is-active") || document.querySelector(".css-fk0bbl #menu-list li:nth-child(8) a.is-active") || document.querySelector(".css-fk0bbl #menu-list li:nth-child(9) a.is-active") || document.querySelector(".css-fk0bbl #menu-list li:nth-child(10) a.is-active") || document.querySelector(".css-fk0bbl #menu-list li:nth-child(11) a.is-active")) {
-      //     document.querySelector(".css-fk0bbl #menu-list li:last-child").scrollIntoView({ block: "end", behavior: "smooth" });
-      //   }
-      //   if (document.querySelector(".css-fk0bbl #menu-list li:nth-child(1) a.is-active") || document.querySelector(".css-fk0bbl #menu-list li:nth-child(2) a.is-active") || document.querySelector(".css-fk0bbl #menu-list li:nth-child(3) a.is-active") || document.querySelector(".css-fk0bbl #menu-list li:nth-child(4) a.is-active")) {
-      //     document.querySelector(".css-fk0bbl #menu-list li:first-child").scrollIntoView({ block: "start", behavior: "smooth" });
-      //   }
-      // });
-
       document.querySelector(".overflow_nav_scroll").addEventListener("scroll", (e) => {
         if (+((+e.target.scrollTop.toFixed(0) / +(+(e.target.scrollHeight - e.target.clientHeight).toFixed(0) / 2)) * 100).toFixed(0) === 100 || +((+e.target.scrollTop.toFixed(0) / +(+(e.target.scrollHeight - e.target.clientHeight).toFixed(0) / 2)) * 100).toFixed(0) === 101 || +((+e.target.scrollTop.toFixed(0) / +(+(e.target.scrollHeight - e.target.clientHeight).toFixed(0) / 2)) * 100).toFixed(0) === 102 || +((+e.target.scrollTop.toFixed(0) / +(+(e.target.scrollHeight - e.target.clientHeight).toFixed(0) / 2)) * 100).toFixed(0) === 103 || +((+e.target.scrollTop.toFixed(0) / +(+(e.target.scrollHeight - e.target.clientHeight).toFixed(0) / 2)) * 100).toFixed(0) === 104 || +((+e.target.scrollTop.toFixed(0) / +(+(e.target.scrollHeight - e.target.clientHeight).toFixed(0) / 2)) * 100).toFixed(0) === 105 || +((+e.target.scrollTop.toFixed(0) / +(+(e.target.scrollHeight - e.target.clientHeight).toFixed(0) / 2)) * 100).toFixed(0) === 106) {
           pushDataLayer("Scroll to 50%", "Navigation block On This Page");
@@ -348,7 +337,6 @@ z-index: 1000;
         });
       });
     }
-
     pushDataLayer("loaded");
     const record = setInterval(() => {
       if (typeof clarity === "function") {
