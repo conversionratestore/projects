@@ -337,6 +337,42 @@ let toolBox = setInterval(() => {
         });
       });
     }
+
+    window.addEventListener("scroll", () => {
+      let obs = new IntersectionObserver(visibility, {
+        threshold: 0.1,
+      });
+
+      let obs2 = new IntersectionObserver(visibility2, {
+        threshold: 0.1,
+      });
+
+      obs.observe(document.querySelector(".css-qn3qut"));
+
+      function visibility(entries) {
+        entries.forEach((i) => {
+          if (i.isIntersecting) {
+            setTimeout(function () {
+              obs2.observe(i.target);
+            }, 1000);
+          }
+        });
+      }
+
+      function visibility2(entries) {
+        entries.forEach((i) => {
+          if (i.isIntersecting) {
+            document.querySelector(".tool_box").style.display = "none";
+            obs.unobserve(i.target);
+          } else {
+            document.querySelector(".tool_box").style.display = "block";
+          }
+
+          obs2.unobserve(i.target);
+        });
+      }
+    });
+
     pushDataLayer("loaded");
     const record = setInterval(() => {
       if (typeof clarity === "function") {
