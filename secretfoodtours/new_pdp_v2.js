@@ -395,7 +395,7 @@ header .search_header input::placeholder {
     width: calc(100% - 270px)!important;
     z-index: 99999;
 }
-.destinations-active header #close_ic_desktop {
+.destinations-active #close_ic_desktop {
     display: none!important;
 }
 .destinations-active .gold {
@@ -441,7 +441,6 @@ header .search_btn {
 }
 @media screen and (min-width: 991px) {
     header .search_header.visible_search {
-        // width: calc(100% - 240px - 160px)!important;
         min-height: 100%;
     }
 }
@@ -451,6 +450,11 @@ header .search_btn {
     }
     header .search_header input {
         width: 400px!important;
+    }
+    .gallery-bottom.center {
+        width: 50%!important;
+        left: 50%;
+        transform: translateX(-50%);
     }
 }
 @media screen and (max-width: 1335px) {
@@ -822,6 +826,7 @@ header .main_menu {
     width: 100%;
     height: 100%;
     z-index: 1;
+    pointer-events: none;
 }
 .gallery > div {
     position: absolute;
@@ -839,6 +844,11 @@ header .main_menu {
     width: 100%;
     height: 100%;
     object-fit: cover;
+}
+.swiper-slide-video * {
+    padding: 0!important;
+    height: 100%;
+    width: 100%;
 }
 .btn-gallery {
     font-weight: 700;
@@ -2573,7 +2583,9 @@ let menuToElement = (event) => {
 let initHeader = setInterval(() => {
 	if(
 		document.querySelector('header .search_header input') != null &&
-		document.querySelector('.header_dropdown .city_wr') != null
+		document.querySelector('.header_dropdown .city_wr') != null && 
+        document.querySelector('header .main_menu .droped') != null && 
+        document.querySelectorAll('.search_btn')
 	) {
 		clearInterval(initHeader);
 		//fonts
@@ -2597,15 +2609,16 @@ let initHeader = setInterval(() => {
 			'Type you destination';
 		document.querySelectorAll('.search_btn').forEach((button) => {
 			button.addEventListener('click', (e) => {
-				if(
-					document
-					.querySelector('#close_ic_desktop')
-					.style.display.includes('block')
-				) {
+            
+				if (document.querySelector('.visible_search') != null) {
                   
+                    console.log('true')
+                    console.log(document.querySelector('header .main_menu').offsetLeft)
+                    console.log(document.querySelector('header .main_menu .droped').offsetWidth)
 					document.querySelector('.search_header').style =
-						`width: calc(100% - ${document.querySelector('header .main_menu').offsetLeft + document.querySelector('header .main_menu .droped').offsetWidth + 20}px);`;
+						`width: calc(100% - ${document.querySelector('header .main_menu').offsetLeft + document.querySelector('header .main_menu .droped').offsetWidth}px - 20px);`;
 				} else {
+                    console.log('false')
 					document.querySelector('.search_header').style = '';
 				}
                 pushDataLayer('Click on search icon in header')
@@ -2809,6 +2822,8 @@ let initHeader = setInterval(() => {
 					.querySelector('.destinations-active')
 					.classList.remove('destinations-active');
                 document.querySelector('#close_ic_desktop').style.display = 'none'
+                document.querySelector('#cities_desktop').style.display = 'none'
+                document.querySelector('#myInputDesktop').value = '';
 			}
 		});
 	}
@@ -2928,12 +2943,12 @@ let init = setInterval(() => {
                 </svg>
             </button>
             <ul class="swiper-wrapper"></ul>
-            <div class="swiper-button-prev" onclick="pushDataLayer('Click on navigation button in gallery popup','Previous slide')">
+            <div class="swiper-button-prev popup_gallery_button" onclick="pushDataLayer('Click on navigation button in gallery popup','Previous slide')">
                 <svg width="19" height="24" viewBox="0 0 9 14" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M8 1L2 7L8 13" stroke="#fff" stroke-width="2" stroke-linecap="round"/>
                 </svg>
             </div>
-            <div class="swiper-button-next" onclick="pushDataLayer('Click on navigation button  in gallery popup','Next slide')">
+            <div class="swiper-button-next popup_gallery_button" onclick="pushDataLayer('Click on navigation button  in gallery popup','Next slide')">
                 <svg width="19" height="24" viewBox="0 0 9 14" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M0.999999 13L7 7L1 1" stroke="#fff" stroke-width="2" stroke-linecap="round"/>
                 </svg>
@@ -3046,7 +3061,8 @@ let init = setInterval(() => {
 				document
 					.querySelector('.droped.active_menu')
 					.classList.remove('active_menu');
-                document.querySelector('#close_ic_desktop').style.display = 'none'
+                document.querySelector('#close_ic_desktop').style.display = 'none';
+                document.querySelector('#myInputDesktop').value = '';
 			}
 			if(window.pageYOffset > 970) {
 				if(document.querySelector('.header_sticky.fixed') == null) {
@@ -3836,12 +3852,14 @@ let video = setInterval(() => {
 });
 let photos = setInterval(() => {
 	if(
-		(document.querySelector('#my-gallery') != null ||
+        document.querySelector('.photos-gallery') != null &&
+		document.querySelectorAll('.breadcrumbs-customer li a')[2] != null &&
+		(   document.querySelector('#my-gallery') != null ||
 			document.querySelector('.w3-content.w3-display-container > img') != null ||
 			document.querySelector('.parallax-mirror img') != null || 
-            document.querySelector('.parallax-window') != null) &&
-		document.querySelector('.photos-gallery') != null &&
-		document.querySelectorAll('.breadcrumbs-customer li a')[2] != null
+            document.querySelector('.parallax-window') != null ||
+            document.querySelector('.video_wr iframe') != null
+        )
 	) {
 		clearInterval(photos);
 		let city = getCity(
@@ -3869,7 +3887,7 @@ let photos = setInterval(() => {
 		let slideLength = 0;
 		document.querySelector('.gallery').innerHTML = `
         <ul class="swiper-wrapper"></ul>
-        <div class="d-flex align-items-center justify-content-between w-100">
+        <div class="d-flex align-items-center justify-content-between w-100 gallery-bottom">
             <button type="button" class="btn-gallery" onclick="pushDataLayer('Click on Gallery','Watch gallery button')">
                 <svg width="16" height="13" viewBox="0 0 16 13" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M13.125 11.125H3.9375C2.70703 11.125 1.75 10.168 1.75 8.9375V3.25H1.3125C0.574219 3.25 0 3.85156 0 4.5625V11.5625C0 12.3008 0.574219 12.875 1.3125 12.875H11.8125C12.5234 12.875 13.125 12.3008 13.125 11.5625V11.125ZM15.75 8.9375V1.9375C15.75 1.22656 15.1484 0.625 14.4375 0.625H3.9375C3.19922 0.625 2.625 1.22656 2.625 1.9375V8.9375C2.625 9.67578 3.19922 10.25 3.9375 10.25H14.4375C15.1484 10.25 15.75 9.67578 15.75 8.9375ZM7 3.25C7 3.98828 6.39844 4.5625 5.6875 4.5625C4.94922 4.5625 4.375 3.98828 4.375 3.25C4.375 2.53906 4.94922 1.9375 5.6875 1.9375C6.39844 1.9375 7 2.53906 7 3.25ZM4.375 7.1875L5.87891 5.68359C6.01562 5.54688 6.20703 5.54688 6.34375 5.68359L7.4375 6.75L11.1289 3.05859C11.2656 2.92188 11.457 2.92188 11.5938 3.05859L14 5.4375V8.5H4.375V7.1875Z" fill="white"/>
@@ -3890,6 +3908,39 @@ let photos = setInterval(() => {
                 </button>
             </div>
         </div>`;
+
+        if (document.querySelector('.video_wr iframe') != null) {
+            slideLength += 1;
+            slide += `<li class="swiper-slide swiper-slide-video">${document.querySelector('.video_wr iframe').parentElement.innerHTML}</li>`;
+            
+            document.querySelector('.gallery-bottom').classList.add('center')
+            
+            document.querySelectorAll('.popup_gallery .popup_gallery_button').forEach(item => {
+                item.addEventListener('click', (e) => {
+                    setTimeout(() => {
+                        if (document.querySelector('.gallery-bottom .swiper-pagination-current').innerHTML == '1' || document.querySelector('.swiper-slide-video').classList.contains('swiper-slide-active')) {
+                            document.querySelector('.gallery-bottom').classList.add('center')
+                        } else {
+                            document.querySelector('.gallery-bottom').classList.remove('center')
+                        }  
+                    }, 300)
+                })
+            })
+            
+            document.querySelectorAll('.gallery-bottom .btn-arrow').forEach(item => {
+                item.addEventListener('click', (e) => {
+                    setTimeout(() => {
+                        if (document.querySelector('.gallery-bottom .swiper-pagination-current').innerHTML == '1' || document.querySelector('.swiper-slide-video').classList.contains('swiper-slide-active')) {
+                            document.querySelector('.gallery-bottom').classList.add('center')
+                        } else {
+                            document.querySelector('.gallery-bottom').classList.remove('center')
+                        }  
+                        document.querySelector(".gallery .swiper-slide-video iframe").src = document.querySelector(".gallery .swiper-slide-video iframe").src
+                    }, 300)
+                  
+                })
+            })
+        }
 		if(document.querySelector('#my-gallery') != null) {
 			document.querySelectorAll('#my-gallery ul li').forEach((item) => {
                 if (!item.classList.contains('swiper-slide-duplicate')) {
@@ -3938,11 +3989,17 @@ let photos = setInterval(() => {
 
 		document.querySelector('.btn-gallery').addEventListener('click', () => {
 			document.querySelector('.popup_gallery').classList.add('active');
-		});
+            if (document.querySelector(".gallery .swiper-slide-video iframe") != null) {
+                document.querySelector(".gallery .swiper-slide-video iframe").src = document.querySelector(".gallery .swiper-slide-video iframe").src
+            }
+        });
 		document
 			.querySelector('.popup_gallery_close')
 			.addEventListener('click', () => {
 				document.querySelector('.popup_gallery').classList.remove('active');
+                if ( document.querySelector(".popup_gallery .swiper-slide-video iframe") != null) {
+                    document.querySelector(".popup_gallery .swiper-slide-video iframe").src = document.querySelector(".popup_gallery .swiper-slide-video iframe").src
+                }
 			});
 
         let isLoop = slideLength > 2 ? true : false;
@@ -4027,7 +4084,7 @@ let photos = setInterval(() => {
 				});
 			});
 	}
-});
+}, 200);
 let whyTour = setInterval(() => {
 	if(
 		document.querySelector('.why-tour') != null &&

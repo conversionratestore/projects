@@ -3858,7 +3858,7 @@ let photos = setInterval(() => {
 			document.querySelector('.w3-content.w3-display-container > img') != null ||
 			document.querySelector('.parallax-mirror img') != null || 
             document.querySelector('.parallax-window') != null ||
-            (document.querySelector('.video_wr iframe') != null && window.matchMedia("(min-width: 768px)").matches) 
+            document.querySelector('.video_wr iframe') != null
         )
 	) {
 		clearInterval(photos);
@@ -3909,7 +3909,7 @@ let photos = setInterval(() => {
             </div>
         </div>`;
 
-        if (document.querySelector('.video_wr iframe') != null && window.matchMedia("(min-width: 768px)").matches) {
+        if (document.querySelector('.video_wr iframe') != null) {
             slideLength += 1;
             slide += `<li class="swiper-slide swiper-slide-video">${document.querySelector('.video_wr iframe').parentElement.innerHTML}</li>`;
             
