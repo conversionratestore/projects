@@ -3914,7 +3914,7 @@ let photos = setInterval(() => {
             
             document.querySelector('.gallery-bottom').classList.add('center')
             
-            document.querySelector('.popup_gallery .popup_gallery_button').forEach(item => {
+            document.querySelectorAll('.popup_gallery .popup_gallery_button').forEach(item => {
                 item.addEventListener('click', (e) => {
                     setTimeout(() => {
                         if (document.querySelector('.gallery-bottom .swiper-pagination-current').innerHTML == '1' || document.querySelector('.swiper-slide-video').classList.contains('swiper-slide-active')) {
