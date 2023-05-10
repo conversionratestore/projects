@@ -557,7 +557,7 @@ function init() {
                     lsRememberMe('.remember-me input', '#edit-name')
                 })
             }
-            if (window.location.href.includes('/checkout') && window.location.href.includes('/login')) {
+            if (window.location.href.includes('/checkout') && window.location.href.includes('/login') && document.querySelectorAll('.sfc-tabs__tablistItem > a').length > 1) {
                 document.body.insertAdjacentHTML('afterbegin',`
                 <style>
                     .sfc-tabs__tablist, .password-suggestions, #edit-login-register-password-pass2, #edit-login-register-password-pass2, .form-item-login-register-legal-legal-accept, .form-item-login-register-legal-extras-1, .ac-newsletter-reg-suffix, #edit-login-register-field-ac-newsletter-reg-wrapper, #edit-login-register-password .password-strength, .form-item-login-register-password-pass2, .messages--status, .c-jsTabs__tabList {
