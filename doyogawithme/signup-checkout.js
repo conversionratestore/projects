@@ -612,6 +612,7 @@ function init() {
 
                 document.querySelectorAll('.sfc-tabs__tablistItem > a')[1].click()
                 document.querySelector('#edit-login-register-mail').focus()
+                document.querySelector('.o-page--simpleCard .o-page__mainContent').classList.add('active')
 
                 document.querySelector('[data-drupal-selector="edit-login-returning-customer"]').insertAdjacentHTML('afterbegin', `
                 <h2>Log In</h2>
@@ -663,6 +664,7 @@ function init() {
                 document.querySelector('[data-drupal-selector="edit-login-register"] .singup a').addEventListener('click', (e) => {
                     document.querySelectorAll('.sfc-tabs__tablistItem > a')[0].click()
                     document.querySelector('.o-page--simpleCard .o-page__mainContent').classList.remove('active')
+                    document.querySelector('#edit-login-returning-customer-name').focus()
                 })
 
                 if (localStorage.username != null && localStorage.username != '') {
@@ -789,7 +791,7 @@ function init() {
                         }
                     })
                 })
-                
+
                 document.querySelector('#edit-mail').focus()
 
                 document.querySelector('#edit-actions').addEventListener('click', (e) => {
