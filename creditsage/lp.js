@@ -55,9 +55,6 @@ let styles = `
         font-size: 28px;
         line-height: 32px;
     }
-    .tustpilot-wrp.tustpilot-wrp_hero {
-        display: none;
-    }
     .h1-small {
         font-weight: 700;
         font-size: 28px;
@@ -84,18 +81,39 @@ let styles = `
         background-color: transparent;
         top: 3px;
     }
-    .rich-templete_transtpilot img {
+    .sct_template-hero img.arrow-dashed {
         max-width: 244px;
         height: fit-content;
         margin: 0;
     }
-    .rich-templete_transtpilot > img {
+    .sct_template-hero img.arrow-dashed {
         width: 38.55px;
         height: 51.62px;  
         margin-right: 8px;
     }
     .btn-description.btn-description_cta-hero {
         display: none;
+    }
+    .sct_template-hero .tustpilot-wrp.tustpilot-wrp_hero {
+        margin: 0 0 4px 0!important;
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+    }
+    .sct_template-hero .trustpilot-widget {
+        width: 80px;
+        height: 27px;
+        overflow: hidden;
+        margin-left: 12px;
+    }
+    .sct_template-hero .btn.btn_green {
+        order: 2;
+    }
+    .sct_template-hero .trustpilot-widget iframe {
+        position: absolute!important;
+        bottom: 0;
+        left: 0;
+        pointer-events: none;
     }
     .ic {
         width: 22px;
@@ -298,6 +316,13 @@ let styles = `
         color: #5F6B7A;
         margin-bottom: 8px;
     }
+    .feedback_section .swiper-slide .review_text {
+        text-overflow: ellipsis;
+        overflow: hidden;
+        display: -webkit-box;
+        -webkit-line-clamp: 9;
+        -webkit-box-orient: vertical;
+    }
     .swiper-slide .date {
         font-weight: 700;
         font-size: 16px;
@@ -459,38 +484,21 @@ let styles = `
     .content_item.active {
         display: block;
     }
-    .navigation {
-        padding: 8px 0 24px;
-    }
-    .navigation li {
-        margin: 0 4px;
-        padding: 0;
-    }
-    .navigation li a {
+    .btn_more {
+        background: rgba(255, 255, 255, 0.16);
+        border: 2px solid #2DAF6B;
+        border-radius: 630px;
+        width: 100%;
+        margin-top: 12px;
         font-family: 'Circe';
         font-style: normal;
         font-weight: 700;
-        font-size: 16px;
-        line-height: 34px;
+        font-size: 20px;
+        line-height: 54px;
         text-align: center;
-        color: #5F6B7A;
-        border: 1px solid #E0E0E0;
-        border-radius: 50%;
-        width: 34px;
-        height: 34px;
-        flex-shrink: 0;
-        padding: 0;
-        cursor: pointer;
-        display: block;
+        color: #2DAF6B;
     }
-    .navigation li.active a {
-        background: #2DAF6B;
-        border-color: #2DAF6B;
-        color: #FFFFFF;
-    }
-    ul.navigation li:before {
-        content: none;
-    }
+  
     /* flex */
     .flex {
         display: flex;
@@ -536,70 +544,118 @@ let styles = `
 
 let objReview = [
     {
-        'author': 'Julie McKenney',
-        'theme': 'My score went up 53 Points and 4 Collections deleted!!!',
-        'review': 'I signed up months ago and I noticed improvements in my credit score after about 45 days of being signed up I canceled after 3-4 months when I saw my score went up about 53 Points and I had 4 Collection accounts deleted. Thank you, Matt and their team that worked on this for me! You all are the reason why I bought a 2022 Honda Civic with a really good interest rate!!!',
-        'date': '2 days ago'
+        'author': 'Hunter Rossi',
+        'theme': 'Zach Richardson is the man!',
+        'review': `Zach Richardson is the man!! There was the call I made, and he explain everything throughout the whole process and breaking down all the information I needed to know. My goal is to go get things off my record and improve my credit score and credit Sage company will do their best to get me where I want to be! I’m actually excited to see where this goes and looks like I’m going the right direction to the top! Thank you 🙏🏻`,
+        'date': 'May 08, 2023'
     },
     {
-        'author': 'Julie McKenney 2',
-        'theme': 'My score went up 53 Points and 4 Collections deleted!!!',
-        'review': 'I signed up months ago and I noticed improvements in my credit score after about 45 days of being signed up I canceled after 3-4 months when I saw my score went up about 53 Points and I had 4 Collection accounts deleted. Thank you, Matt and their team that worked on this for me! You all are the reason why I bought a 2022 Honda Civic with a really good interest rate!!!',
-        'date': '2 days ago'
+        'author': 'Tracy Singletary',
+        'theme': 'Excellent people skills',
+        'review': `Mrs Mary G was very helpful and very knowledgeable to the point I accepted your company. I never really cared about credit. I've been paying high interest rates since since day one in my adult life. Let it be clear I only accepted your company because of Mrs Mary G`,
+        'date': 'May 08, 2023'
     },
     {
-        'author': 'Julie McKenney 2',
-        'theme': 'My score went up 53 Points and 4 Collections deleted!!!',
-        'review': 'I signed up months ago and I noticed improvements in my credit score after about 45 days of being signed up I canceled after 3-4 months when I saw my score went up about 53 Points and I had 4 Collection accounts deleted. Thank you, Matt and their team that worked on this for me! You all are the reason why I bought a 2022 Honda Civic with a really good interest rate!!!',
-        'date': '2 days ago'
+        'author': 'Shell Mose',
+        'theme': 'My experience with Credit Sage has been…',
+        'review': `My experience with Credit Sage has been excellent. Kris was informative and knowledgeable about the process. The matter was cleared on my report. The service was cancelled by Credit Sage after it was resolved! I am pleased, I was dealing with this for over a year and half with no good results! Except my score decreasing..The process took about 30 days...which is excellent... ofcourse a fee is involved with the service.....I would be dishonest if I didn't let you know upfront. I wrote all the letters to dispute the charge before I reached out to Credit Sage...for me it was worth the money I paid! Thank you Kris and Credit Sage! Rochelle`,
+        'date': 'May 08, 2023'
     },
     {
-        'author': 'Julie McKenney 2',
-        'theme': 'My score went up 53 Points and 4 Collections deleted!!!',
-        'review': 'I signed up months ago and I noticed improvements in my credit score after about 45 days of being signed up I canceled after 3-4 months when I saw my score went up about 53 Points and I had 4 Collection accounts deleted. Thank you, Matt and their team that worked on this for me! You all are the reason why I bought a 2022 Honda Civic with a really good interest rate!!!',
-        'date': '2 days ago'
+        'author': 'Braelyn Dixon',
+        'theme': 'Wow wow wow Chelsea is absolutely…',
+        'review': 'Wow wow wow Chelsea is absolutely amazing. She was so incredibly kind, and extremely knowledgeable and beyond helpful. Honestly, I miss chatting with her already and we just hung up 5 mins ago. Thank you so much, Chelsea!!',
+        'date': 'May 06, 2023'
     },
     {
-        'author': 'Julie McKenney 2',
-        'theme': 'My score went up 53 Points and 4 Collections deleted!!!',
-        'review': 'I signed up months ago and I noticed improvements in my credit score after about 45 days of being signed up I canceled after 3-4 months when I saw my score went up about 53 Points and I had 4 Collection accounts deleted. Thank you, Matt and their team that worked on this for me! You all are the reason why I bought a 2022 Honda Civic with a really good interest rate!!!',
-        'date': '2 days ago'
+        'author': 'Will Mabe',
+        'theme': 'Noelle was very helpful and friendly…',
+        'review': 'Noelle was very helpful and friendly during our phone conversation, She gave me the best of two options and helped me get set up. I hope the rest of my dispute process goes as smooth with Credit Sage as all my headaches are from a horrible divorce from a golddigger.',
+        'date': 'May 05, 2023'
     },
     {
-        'author': 'Julie McKenney 2',
-        'theme': 'My score went up 53 Points and 4 Collections deleted!!!',
-        'review': 'I signed up months ago and I noticed improvements in my credit score after about 45 days of being signed up I canceled after 3-4 months when I saw my score went up about 53 Points and I had 4 Collection accounts deleted. Thank you, Matt and their team that worked on this for me! You all are the reason why I bought a 2022 Honda Civic with a really good interest rate!!!',
-        'date': '2 days ago'
+        'author': 'Wayne',
+        'theme': 'Johnny explained how easy it would be…',
+        'review': 'Johnny explained how easy it would be to up my credit score and it would take less than 3 months or I will be refunded my monthly payments. He does have poor taste in football teams though,but other than that he explained my options well and made sense 😛.',
+        'date': 'April 17, 2023'
     },
     {
-        'author': 'Julie McKenney 2',
-        'theme': 'My score went up 53 Points and 4 Collections deleted!!!',
-        'review': 'I signed up months ago and I noticed improvements in my credit score after about 45 days of being signed up I canceled after 3-4 months when I saw my score went up about 53 Points and I had 4 Collection accounts deleted. Thank you, Matt and their team that worked on this for me! You all are the reason why I bought a 2022 Honda Civic with a really good interest rate!!!',
-        'date': '2 days ago'
+        'author': 'Jacob Todd',
+        'theme': 'Sam Wender is a very knowledgeable…',
+        'review': 'Sam Wender is a very knowledgeable person he answered all the questions I had. He explained to me what he can do to help my credit score. He walked me the the process and making it easy to get the paper work done. Very polite and has a great sense of humor. Thanks for all the help',
+        'date': 'May 08, 2023'
     },
     {
-        'author': 'Julie McKenney 2',
-        'theme': 'My score went up 53 Points and 4 Collections deleted!!!',
-        'review': 'I signed up months ago and I noticed improvements in my credit score after about 45 days of being signed up I canceled after 3-4 months when I saw my score went up about 53 Points and I had 4 Collection accounts deleted. Thank you, Matt and their team that worked on this for me! You all are the reason why I bought a 2022 Honda Civic with a really good interest rate!!!',
-        'date': '2 days ago'
+        'author': 'T BJ',
+        'theme': 'Im very happy with the treatment.',
+        'review': `Im very happy with the treatment and the customer service provided to me.Tonya,was so helpful, she explained the process to me and explained how and how long the process will be. I'm extremely satisfied and I thank her very much for being so upfront. Amazing customer service. This company should look at her calls for training purpose. She's amazing.`,
+        'date': 'May 04, 2023'
     },
     {
-        'author': 'Julie McKenney 2',
-        'theme': 'My score went up 53 Points and 4 Collections deleted!!!',
-        'review': 'I signed up months ago and I noticed improvements in my credit score after about 45 days of being signed up I canceled after 3-4 months when I saw my score went up about 53 Points and I had 4 Collection accounts deleted. Thank you, Matt and their team that worked on this for me! You all are the reason why I bought a 2022 Honda Civic with a really good interest rate!!!',
-        'date': '2 days ago'
+        'author': 'Moe Dollas',
+        'theme': 'I talked to a wonderful women named…',
+        'review': `I talked to a wonderful women named Chelsea who broke down the whole process & explained what to expect during the 90 days. It was a pleasure talking to her she was very helpful & in all honesty fun to talk to. That being said I’m hoping credit sage pulls through for me like she said they will .`,
+        'date': 'May 03, 2023'
     },
     {
-        'author': 'Julie McKenney 2',
-        'theme': 'My score went up 53 Points and 4 Collections deleted!!!',
-        'review': 'I signed up months ago and I noticed improvements in my credit score after about 45 days of being signed up I canceled after 3-4 months when I saw my score went up about 53 Points and I had 4 Collection accounts deleted. Thank you, Matt and their team that worked on this for me! You all are the reason why I bought a 2022 Honda Civic with a really good interest rate!!!',
-        'date': '2 days ago'
+        'author': 'Casey White',
+        'theme': 'Rep was amazing',
+        'review': 'The rep that assisted me was very professional, friendly, and knowledgeable. Seems genuine and trustworthy. Only reason for not giving 5 stars (which the rep should get) is the fact that I mistakenly called your firm during a Google search for a creditor so left a bad taste in my mouth. If all that the rep promised comes through it definitely will be an happy accident. Once again 5 stars for the rep -1 foe feeling leary about how I fell into the service',
+        'date': 'May 04, 2023'
     },
     {
-        'author': 'Julie McKenney 2',
-        'theme': 'My score went up 53 Points and 4 Collections deleted!!!',
-        'review': 'I signed up months ago and I noticed improvements in my credit score after about 45 days of being signed up I canceled after 3-4 months when I saw my score went up about 53 Points and I had 4 Collection accounts deleted. Thank you, Matt and their team that worked on this for me! You all are the reason why I bought a 2022 Honda Civic with a really good interest rate!!!',
-        'date': '2 days ago'
+        'author': 'Ali Finn',
+        'theme': 'Michael VanDyke is an EARTH ANGEL',
+        'review': 'Michael VanDyke is an EARTH ANGEL! I am feeling a new sense of hope, when it comes to my credit, because this rep took the time to answer every question with kindness and professionalism. I am looking forward to the process of trying to fix my credit, instead of dreading it…finally! Thank you so much!',
+        'date': 'May 02, 2023'
+    },
+    {
+        'author': 'Robert Philyaw',
+        'theme': 'Lisa Willieford',
+        'review': 'Lisa Willieford. I believe she is an under appreciated agent working for you! Lisa was an absolute professional and extremely knowledgeable in her field of expertise. Lisa should be promoted immediately! I do not know the hierarchy for your organization, however, if you knew who your best agent was - Lisa should be in charge of that person and everyone else! Lisa is an absolute direct reflection of the goals of your organization!!',
+        'date': 'May 01, 2023'
+    },
+    {
+        'author': 'Cheryl Kreider',
+        'theme': 'I called into credit sage to get help…',
+        'review': `I called into credit sage to get help with a collection acct Lisa Willeford was my contact person and I'm extremely pleased she was! Not only was she very professional, knowledgeable and friendly, but was able to explain my reports and what's going on with them. I am excited to have this company and Lisa working to help me. It was a very positive and pivotal turning point for my future. Thank you Lisa for your expertise, I will definitely refer you to people needing help getting their credit reports cleaned up.`,
+        'date': 'May 02, 2023'
+    },
+    {
+        'author': 'Ken Carrico',
+        'theme': 'He was very kind honest and explained…',
+        'review': 'He was very kind honest and explained everything well so I could understand my options going forward.',
+        'date': 'May 08, 2023'
+    },
+    {
+        'author': 'Lee Trawick',
+        'theme': 'Mr Basil',
+        'review': 'Mr. Basil was amazing and understanding to my situation. He walked me through a realistic timeline and expectations.',
+        'date': 'May 08, 2023'
+    },
+    {
+        'author': 'Jennifer N',
+        'theme': 'Katrina English Rocks',
+        'review': `Katrina English, thank you for taking the time today to explain how the process will work, and reassuring me on how the removal of items on my credit will move forward. I'm very hopeful, and you provided excellent customer service today!`,
+        'date': 'May 06, 2023'
+    },
+    {
+        'author': 'Mark',
+        'theme': 'I am convinced this is a good move!',
+        'review': `I have had the pleasure of doing credit repair through Sage, and specifically with Jeff! His expertise was evident from the start, and that really is southing for those in need of help in this area. It's the dawn of a new day for me and I'll even do a couple of cartwheels when their job is complete.`,
+        'date': 'May 04, 2023'
+    },
+    {
+        'author': 'Alex Coffin',
+        'theme': 'Lucas was so helpful every question I…',
+        'review': 'Lucas was so helpful every question I had he answered with great detail and helped me completely understand what was going on and how they can help!',
+        'date': 'May 06, 2023'
+    },
+    {
+        'author': 'Laura Best',
+        'theme': 'I spoke with Hannah Fadler today about…',
+        'review': `I spoke with Hannah Fadler today about disputing some things on my credit report and she's exceeded my expectations during our call. She shared with me options I had available to myself I was unaware of prior to calling. She's very thorough with what the company does to assist it's clients and offered other helpful tips I can do to approve my credit score. I will absolutely be mentioning my experience and the company to my friends after today's call with her.`,
+        'date': 'May 02, 2023'
     }
 ]
 
@@ -664,14 +720,14 @@ let scrollToElement = (event) => {
 
     // section 1
     document.querySelector('.h1-small').innerHTML = `Why is ` + document.querySelector('.h1-small').innerHTML; // title
-    document.querySelector('.rich-templete.rich-templete_hero').insertAdjacentHTML('afterend',` 
-    <div class="rich-templete_transtpilot flex justify-center ">
-        <img src="${dir}arrow-dashed.svg" alt="arrow dashed">
-        <a href=".feedback_section" onclick="scrollToElement(event)">
-            <img src="${dir}transtpilot.svg" alt="transtpilot">
-            ${document.querySelector('.sct_template-hero .trustpilot-widget').parentElement.innerHTML}
-        </a>
-    </div>`); // transtpilot
+    document.querySelector('.tustpilot-wrp.tustpilot-wrp_hero').insertAdjacentHTML('afterbegin',`<img src="${dir}arrow-dashed.svg" class="arrow-dashed" alt="arrow dashed"><img src="${dir}trustpilot-stars.svg" alt="transtpilot">`); // transtpilot
+
+    document.querySelector('.tustpilot-wrp.tustpilot-wrp_hero').href = ".feedback_section";
+    document.querySelector('.tustpilot-wrp.tustpilot-wrp_hero').addEventListener('click', (event) => {
+        scrollToElement(event)
+    })
+    
+
     document.querySelector('.sct.sct_template-hero > div').insertAdjacentHTML('beforeend', `
     <a href=".about_section" class="btn_learn_more flex items-center justify-center" onclick="scrollToElement(event)">Learn more about Radius Global Solutions 
         <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -786,6 +842,9 @@ let scrollToElement = (event) => {
                 loop: true,
                 slidesPerView: 1,
                 spaceBetween: 19.5,
+                autoplay: {
+                    delay: 5000,
+                },
                 pagination: {
                     el: ".swiper-pagination",
                     dynamicBullets: true,
@@ -868,21 +927,17 @@ let scrollToElement = (event) => {
                 <span><span class="c-green">3,746 </span>Total</span>
             </p>
             <div class="content_reviews"> </div>
-            <ul class="navigation flex justify-center"></ul>
+            <button type="button" class="btn_more btn_more_load">Load more</button>
+            <a href="https://www.trustpilot.com/review/creditsage.com" class="btn_more btn_more_trustpilot">Read more on Trustpilot</a>
         </div>
     </section>`)
 
     let pageCount = objReview.length / 4;
-    let content = '';
 
     for (let i = 0; i < pageCount; i++) {
-        document.querySelector('.navigation').insertAdjacentHTML('beforeend', `<li class="${i == 0 ? 'active': ''}"><a href=".content_reviews">${i+1}</a></li>`)
-     
         document.querySelector('.content_reviews').insertAdjacentHTML('beforeend', ` <div class="content_item ${i == 0 ? 'active': ''}" data-item="${i == 0 ? '4' : (i+1)*4}"> </div>`)
-  
     }
    
-
     document.querySelectorAll('.content_item[data-item]').forEach((item, index) => {
         let items = +item.dataset.item;
         let indexTo = index != 0 ? items - 4: 0;
@@ -893,13 +948,5 @@ let scrollToElement = (event) => {
        
             }
         }
-
-        document.querySelectorAll('.navigation li')[index].addEventListener('click', (e) => {
-            e.currentTarget.parentElement.querySelector('.active').classList.remove('active')
-            item.parentElement.querySelector('.active').classList.remove('active')
-
-            e.currentTarget.classList.add('active')
-            item.classList.add('active')
-        })
     })
 // };
