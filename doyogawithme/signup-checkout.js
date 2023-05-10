@@ -307,6 +307,9 @@ input[type="checkbox"]:checked ~ .check {
     justify-content: center;
     display: flex;
 }
+.form-actions .button[value="Create new account"] {
+    display: none;
+}
 .btn_start_membership.disabled, .btn_start_membership[disabled]{
     background-color: #A5A5A5!important;
     border-color: #A5A5A5!important;
@@ -562,7 +565,10 @@ function init() {
                 }
                 document.querySelector('.remember-me').after(document.querySelector('form [href="/yogi/password"]'))
                 document.querySelector('form [href="/yogi/password"]').innerHTML = 'Forgot Password?';
-                document.querySelector('.form-actions .button').insertAdjacentHTML('afterend', `<p class="text-center singup">Don’t have an account? <a href="/yogi/register">Sing up</a></p>`)
+                document.querySelector('.form-actions .button
+                .form-actions .button[value="Create new account"] {
+                    display: none;
+                }').insertAdjacentHTML('afterend', `<p class="text-center singup">Don’t have an account? <a href="/yogi/register">Sing up</a></p>`)
 
                 document.querySelector('.form-actions .button').addEventListener('click', () => {
                     lsRememberMe('.remember-me input', '#edit-name')
@@ -665,7 +671,7 @@ function init() {
                 document.querySelector('#edit-login-register-register').insertAdjacentHTML('afterend', `<p class="text-center singup">Already have an account? <a href="#">Log in</a></p>`)
 
                 document.querySelector('#edit-login-register-register').insertAdjacentHTML('beforebegin', `${acceptHTML}
-                <button type="button" class="btn-reg">Create an account </button>`)
+                <button type="button" class="btn-reg">Sign Up</button>`)
 
                 document.querySelector('[data-drupal-selector="edit-login-returning-customer"] .singup a').addEventListener('click', (e) => {
                     document.querySelectorAll('.sfc-tabs__tablistItem > a')[1].click()
@@ -780,7 +786,11 @@ function init() {
 
                 document.querySelector('#edit-pass').insertAdjacentHTML('afterend', acceptHTML)
 
-                document.querySelector('.form-actions .button').insertAdjacentHTML('afterend', `<p class="text-center singup">Already have an account? <a href="/yogi/login">Log in</a></p>`)
+                document.querySelector('.form-actions .button').insertAdjacentHTML('afterend', `<button type="button" class="btn-reg">Sign Up</button><p class="text-center singup">Already have an account? <a href="/yogi/login">Log in</a></p>`)
+                
+                document.querySelector('.btn-reg').addEventListener('click', () => {
+                    document.querySelector('.form-actions .button').click();
+                })
 
                 document.querySelector('.social-auth.auth-link span').innerHTML = 'Sign up with Google'
                 //passwords
