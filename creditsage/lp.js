@@ -2,7 +2,7 @@ let dir = `https://conversionratestore.github.io/projects/creditsage/img/`;
 
 let styles = `
 <style>
-    .inactive-popup, .inactive-popup-content_close {
+    .inactive-popup, .inactive-popup-content_close, [hidden] {
         display: none!important;
     }
     h2, h4 {
@@ -247,6 +247,7 @@ let styles = `
     }
     .feedback_section {
         padding-top: 36px;
+        overflow: hidden;
     }
     .feedback_section > div > p {
         font-family: 'Circularstd';
@@ -458,9 +459,6 @@ let styles = `
         height: 30px;
     }
     /* review_section */
-    .review_section {
-        padding-top: 36px;
-    }
     .review_section .head {
         font-family: 'Circe';
         font-style: normal;
@@ -477,6 +475,9 @@ let styles = `
     }
     .review_section .head svg {
         margin-rught: 2px;
+    }
+    .content_reviews {
+        margin-top: 24px;
     }
     .content_reviews .swiper-slide {
         display: none;
@@ -702,6 +703,8 @@ let isScrolledIntoView = (el) => {
 };
 
 let pushDataLayer = (name, desc, type, loc) => {
+    console.log(name, desc, type, loc)
+
     window.dataLayer = window.dataLayer || [];
     dataLayer.push({
         'event': 'event-to-ga4',
@@ -735,7 +738,7 @@ let scrollToElement = (event) => {
     }
 }
 
-// window.onload = function() {
+window.onload = function() {
     document.body.insertAdjacentHTML('afterbegin', styles);
 
     document.head.insertAdjacentHTML('beforeend', `
@@ -1015,7 +1018,7 @@ let scrollToElement = (event) => {
     <p>Today, we're offering you an industry leading guarantee that if no inaccurate and/or negative information is removed in your first 100 days, we'll give you a full refund (less the setup fee). No questions asked.</p>`;
 
     // last block hidden "Looking for help with Radius Global Solutions?"
-    document.querySelectorAll('.rich-cta-wrp')[document.querySelectorAll('.rich-cta-wrp').length - 1].style.display = 'none!important'
+    document.querySelectorAll('.rich-cta-wrp')[document.querySelectorAll('.rich-cta-wrp').length - 1].hidden = true;
 
     //section "Trusted customer reviews"
     document.querySelector('.sct.sct_cta').insertAdjacentHTML('beforebegin',`
@@ -1030,6 +1033,7 @@ let scrollToElement = (event) => {
                 <span class="rating">4.9</span>
                 <span><span class="c-green">3,746 </span>Total</span>
             </p>
+            <img src="${dir}trustpilot-divider.svg" alt="stars">
             <div class="content_reviews"> </div>
             <button type="button" class="btn_more btn_more_load">Load more</button>
             <a href="https://www.trustpilot.com/review/creditsage.com" class="btn_more btn_more_trustpilot">Read more on Trustpilot</a>
@@ -1040,12 +1044,20 @@ let scrollToElement = (event) => {
         document.querySelector('.content_reviews').insertAdjacentHTML('beforeend', slide(objReview[i].author, objReview[i].theme, objReview[i].review, objReview[i].date))
     }
 
+    document.querySelector('.review_section > div > img').addEventListener('click', (e) => {
+        pushDataLayer('exp_reviews_lp_review_stars','Stars images', 'Stars', 'Trusted customer reviews')
+    })
     document.querySelector('.btn_more_load').addEventListener('click', (e) => {
         e.currentTarget.hidden = true;
         document.querySelector('.content_reviews').classList.add('show')
+        pushDataLayer('exp_reviews_lp_load_more','Tap to load more','Button','Trusted customer reviews')
     })
-   
-// };
+    //event: Tap to Read more on Trustpilot
+    document.querySelector('.btn_more_trustpilot').addEventListener('click', (e) => {
+        pushDataLayer('exp_reviews_lp_read_more_on_trustpilot','Tap to Read more on Trustpilot','Button','Trusted customer reviews')
+    })
+};
+
 const isClarity = setInterval(() => {
     if (typeof clarity === 'function') {
         clearInterval(isClarity)
