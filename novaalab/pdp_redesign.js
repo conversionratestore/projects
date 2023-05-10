@@ -2295,6 +2295,8 @@ max-width: 1248px;
   margin-top: 1rem;
   background: rgb(234, 247, 246);
   padding: 12px;
+  margin-left: 0;
+  margin-right: 0;
 }
 
 .splitit_popup_container ul li {
@@ -5132,7 +5134,13 @@ waitForElement('.fixed_upsell button').then(btn => btn.addEventListener('click',
 
 // SHIPPING CUSTOM SELECT
 const waitForSelectOptions = setInterval(() => {
-    if (document.querySelectorAll('.select_options .option')[1] && document.querySelector('.overlay_screen')) {
+    if (
+        document.querySelectorAll('.select_options .option')[1]
+        && document.querySelector('.overlay_screen')
+        && document.querySelector('.date_sh span')
+        && document.querySelector('[data-days-range]')
+        && document.querySelector('.date_days')
+    ) {
         clearInterval(waitForSelectOptions)
 
         // Get the select box, trigger, and options
@@ -5557,7 +5565,7 @@ let jqueryLoaded = setInterval(() => {
                                 document.querySelector('#privy-container #privy-inner-container .privy-mobile.privy-tab-container.privy-basic').classList.add('custom_pos')
                             }
 
-                            
+
 
                             if (!once) {
                                 sendGAEvent('Visibility Get Novaalab light pad sticky button', 'Sticky button')
@@ -5573,13 +5581,13 @@ let jqueryLoaded = setInterval(() => {
 
                             document.querySelector('.empty_space').style.paddingTop = '0px'
 
-                            
-                            
+
+
                             if (document.querySelector('#privy-container #privy-inner-container .privy-mobile.privy-tab-container.privy-basic')) {
                                 document.querySelector('#privy-container #privy-inner-container .privy-mobile.privy-tab-container.privy-basic').classList.remove('custom_pos')
                             }
-                            
-                            
+
+
                         }
                     }
                 })
@@ -5658,9 +5666,9 @@ let jqueryLoaded = setInterval(() => {
 
                 if (DEVICE === 'mobile') {
                     const waitForH2 = setInterval(() => {
-                        if(document.querySelector('.privy-truncate')) {
+                        if (document.querySelector('.privy-truncate')) {
                             clearInterval(waitForH2)
-                    
+
                             document.querySelector('.privy-mobile-tab').innerHTML = `<p class="custom_get">Get discount 
                             <svg xmlns="http://www.w3.org/2000/svg" width="8" height="10" viewBox="0 0 8 10" fill="none">
                             <path d="M0.912597 1.175L4.72926 5L0.912598 8.825L2.0876 10L7.0876 5L2.0876 1.87058e-07L0.912597 1.175Z" fill="white"/>
