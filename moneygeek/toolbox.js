@@ -279,13 +279,13 @@ let toolBox = setInterval(() => {
             <a href="https://www.moneygeek.com/insurance/auto/car-insurance-estimate-calculator/#lower-car-insurance-costs" target="_blank" rel="noopener noreferrer">Car Insurance Cost Calculator</a>
           </li>
           <li>
+            <a href="https://www.moneygeek.com/insurance/auto/compare-quotes/" target="_blank" rel="noopener noreferrer">Side by side car insurance comparison tool</a>
+          </li>
+          <li>
             <a href="https://www.moneygeek.com/insurance/auto/how-much-car-insurance-do-you-need/" target="_blank" rel="noopener noreferrer">Determine How Much Car Insurance You need</a>
           </li>
           <li>
             <a href="https://www.moneygeek.com/insurance/auto/how-to-reduce-your-car-insurance-costs/" target="_blank" rel="noopener noreferrer">Determine How to Reduce the Cost of Car Insurance</a>
-          </li>
-          <li>
-            <a href="https://www.moneygeek.com/insurance/auto/compare-quotes/" target="_blank" rel="noopener noreferrer">Car Insurance Comparison Tool</a>
           </li>
         </ul>
       </div>
@@ -328,7 +328,7 @@ let toolBox = setInterval(() => {
               pushDataLayer("Determine How to Reduce the Cost of Car Insurance", "Car Insurance Toolbox");
               break;
             case "https://www.moneygeek.com/insurance/auto/compare-quotes/":
-              pushDataLayer("Car Insurance Comparison Tool", "Car Insurance Toolbox");
+              pushDataLayer("Car Insurance Comparison Tool", "Side by side car insurance comparison tool");
               break;
 
             default:
