@@ -81,7 +81,7 @@ let videoReviews = setInterval(() => {
   .timeline_new_title_new {
     font-family: "Oxygen", sans-serif;
     font-weight: 700;
-    font-size: 24px !important;
+    font-size: 20px !important;
     line-height: 32px !important;
     color: #2d2d2d;
   }
@@ -292,6 +292,9 @@ let videoReviews = setInterval(() => {
     padding: 10px;
     outline: unset;
   }
+  .containerInner > a.schedule_new_btn {
+    display: none;
+  }
   .is_sticky_box {
     padding: 20px;
     position: sticky;
@@ -300,7 +303,6 @@ let videoReviews = setInterval(() => {
     right: 0;
     z-index: 10;
     background: #f7f7f7;
-    display: none;
   }
   #reviewsBlock {
     margin: 0 20px;
@@ -925,17 +927,6 @@ let videoReviews = setInterval(() => {
     }
 
     document.head.insertAdjacentHTML("beforeend", styleNew);
-    // if (window.innerWidth <= 768) {
-    //   let intTimeSrc = setInterval(() => {
-    //     if (document.querySelector(".mobile-iframe")) {
-    //       clearInterval(intTimeSrc)
-    //       if (document.querySelector(".mobile-iframe").src !== "https://player.vimeo.com/video/790201146?h=eda73cb7b6&loop=1&title=0&byline=0&portrait=0") {
-    //         document.querySelector(".mobile-iframe").src = "https://player.vimeo.com/video/790201146?h=eda73cb7b6&loop=1&title=0&byline=0&portrait=0"
-    //       }
-    //       console.log(`changed src`)
-    //     }
-    //   }, 10)
-    // }
     if (window.innerWidth <= 768) {
       let intTimeSrc = setInterval(() => {
         if (document.querySelector(".elCustomJS_code > div")) {
@@ -980,26 +971,26 @@ let videoReviews = setInterval(() => {
             >Schedule A Free<br/>College Planning Session Now</a></div>`
         );
       }
-      const element = document.querySelectorAll(".timeline_item_new")[7];
-      function visible(target) {
-        if (target.getBoundingClientRect().y < window.innerHeight - target.clientHeight - 110) {
-          if (document.querySelector(".is_sticky_box")) {
-            document.querySelector(".schedule_new_btn.second_var").style.display = "none";
-            document.querySelector(".is_sticky_box").style.display = "block";
-            document.querySelector("#reviewsBlock").style.paddingBottom = "130px";
-          }
-        } else {
-          if (document.querySelector(".is_sticky_box")) {
-            document.querySelector(".schedule_new_btn.second_var").style.display = "block";
-            document.querySelector(".is_sticky_box").style.display = "none";
-            document.querySelector("#reviewsBlock").style.paddingBottom = "32px";
-          }
-        }
-      }
-      window.addEventListener("scroll", function () {
-        visible(element);
-      });
-      visible(element);
+      // const element = document.querySelectorAll(".timeline_item_new")[7];
+      // function visible(target) {
+      //   if (target.getBoundingClientRect().y < window.innerHeight - target.clientHeight - 110) {
+      //     if (document.querySelector(".is_sticky_box")) {
+      //       document.querySelector(".schedule_new_btn.second_var").style.display = "none";
+      //       document.querySelector(".is_sticky_box").style.display = "block";
+      //       document.querySelector("#reviewsBlock").style.paddingBottom = "130px";
+      //     }
+      //   } else {
+      //     if (document.querySelector(".is_sticky_box")) {
+      //       document.querySelector(".schedule_new_btn.second_var").style.display = "block";
+      //       document.querySelector(".is_sticky_box").style.display = "none";
+      //       document.querySelector("#reviewsBlock").style.paddingBottom = "32px";
+      //     }
+      //   }
+      // }
+      // window.addEventListener("scroll", function () {
+      //   visible(element);
+      // });
+      // visible(element);
     } else {
       if (!document.querySelector(".first_var")) {
         document.querySelector("#row-165")?.insertAdjacentHTML(
