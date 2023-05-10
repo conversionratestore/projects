@@ -834,22 +834,22 @@ let videoReviews = setInterval(() => {
   }
   @media (min-width: 1220px){
         .timeline_new .timeline_list_new:before {
-          height: 180%;
+          height: 180.6%;
     }
   }
   @media (min-width: 1225px){
         .timeline_new .timeline_list_new:before {
-          height: 180%;
+          height: 180.6%;
     }
   }
   @media (min-width: 1250px){
         .timeline_new .timeline_list_new:before {
-          height: 180%;
+          height: 180.6%;
     }
   }
   @media (min-width: 1275px){
         .timeline_new .timeline_list_new:before {
-          height: 180%;
+          height: 180.6%;
     }
   }
       </style>
