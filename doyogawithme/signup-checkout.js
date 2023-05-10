@@ -921,7 +921,7 @@ function init() {
             }
         }
 
-        if (document.querySelector('.form-item-commerce-donation-pane-donation-toggler label') != null && document.querySelector('.views-field.views-field-total-price__number') != null && document.querySelector('.o-page__mainContent') != null && window.location.href.includes('/checkout') && !window.location.href.includes('/login') && document.querySelector('[data-drupal-selector="edit-actions-next"]') != null) {
+        if (document.querySelector('.recurly-hosted-field') != null && document.querySelector('.form-item-commerce-donation-pane-donation-toggler label') != null && document.querySelector('.views-field.views-field-total-price__number') != null && document.querySelector('.o-page__mainContent') != null && window.location.href.includes('/checkout') && !window.location.href.includes('/login') && document.querySelector('[data-drupal-selector="edit-actions-next"]') != null) {
             clearInterval(init)
 
             document.body.insertAdjacentHTML('afterbegin', style) //add style
@@ -1316,12 +1316,8 @@ function init() {
                     <p><span>$167.88</span> ${price.innerHTML}</p>
                     <p class="c-green">Just $9.08/month!</p>`
 
-                    if (window.matchMedia("(min-width: 768px)").matches) {
-                        document.querySelector('.views-field.views-field-title').innerHTML = '12-month DYWM Subscription';
-                    } else {
-                        document.querySelector('.views-field.views-field-title').innerHTML = '1-Year DYWM Subscription';
-                    }
-
+                document.querySelector('.views-field.views-field-title').innerHTML = `${window.matchMedia("(min-width: 768px)").matches ? '12-month' : '1-Year'} DYWM Subscription`;
+                 
                 document.querySelector('.order-total-line__total').insertAdjacentHTML('afterend',` <div class="saved_block">You just saved $58,89 (35% off)</div>`)
             }
         
