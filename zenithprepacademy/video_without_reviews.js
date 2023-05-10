@@ -404,6 +404,9 @@ let videoReviews = setInterval(() => {
   .review_card_descr p + p {
     margin-top: 15px;
   }
+  .containerInner > a.schedule_new_btn {
+      display: none;
+    }
   @media (max-width: 360px) {
     #headline-94582-131-125 .elHeadline,
     a.schedule_new_btn {
@@ -434,7 +437,7 @@ let videoReviews = setInterval(() => {
   }
   @media (min-width: 768px) {
     .containerInner > a.schedule_new_btn {
-      display: none;
+      display: flex;
     }
     #reviewsBlock {
       margin: 0;
