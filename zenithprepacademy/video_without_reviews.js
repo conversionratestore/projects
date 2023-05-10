@@ -436,6 +436,9 @@ let videoReviews = setInterval(() => {
     }
   }
   @media (min-width: 768px) {
+    .elVideoWrapper {
+      height: 39.5vw !important;
+    }
     .containerInner > a.schedule_new_btn {
       display: flex;
     }
@@ -624,6 +627,9 @@ let videoReviews = setInterval(() => {
   @media (min-width: 1220px) {
     .timeline_list_new {
       height: 83%;
+    }
+        .elVideoWrapper {
+        height: 524px !important;
     }
   }
   @media (min-width: 1010px){
@@ -828,22 +834,22 @@ let videoReviews = setInterval(() => {
   }
   @media (min-width: 1220px){
         .timeline_new .timeline_list_new:before {
-          height: 190%;
+          height: 180%;
     }
   }
   @media (min-width: 1225px){
         .timeline_new .timeline_list_new:before {
-          height: 188%;
+          height: 180%;
     }
   }
   @media (min-width: 1250px){
         .timeline_new .timeline_list_new:before {
-          height: 185%;
+          height: 180%;
     }
   }
   @media (min-width: 1275px){
         .timeline_new .timeline_list_new:before {
-          height: 182%;
+          height: 180%;
     }
   }
       </style>
