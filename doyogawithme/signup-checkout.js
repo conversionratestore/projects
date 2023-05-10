@@ -315,6 +315,17 @@ input[type="checkbox"]:checked ~ .check {
 .btn-reg {
     line-height: 48px!important;
     outline: none;
+    position: relative;
+}
+.btn-reg.loading:after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    right: 20px;
+    transform: translateY(-50%);
+    background: url(https://conversionratestore.github.io/projects/novaalab/img/loading.gif) no-repeat center / contain;
+    width: 20px;
+    height: 20px;
 }
 #edit-login-register-register {
     display: none;
@@ -724,6 +735,7 @@ function init() {
 
                     if (document.querySelectorAll('.check-accept input')[0].checked && 
                         document.querySelector('#edit-login-register-name').value != '' && 
+                        document.querySelector('#edit-login-register-password-pass1').value != '' && 
                         !document.querySelector('.js-password-strength__text').innerHTML.includes('Weak')
                      ) {
                         e.currentTarget.classList.add('loading')
@@ -1319,6 +1331,8 @@ function init() {
                 document.querySelector('.views-field.views-field-title').innerHTML = `${window.matchMedia("(min-width: 768px)").matches ? '12-month' : '1-Year'} DYWM Subscription`;
                  
                 document.querySelector('.order-total-line__total').insertAdjacentHTML('afterend',` <div class="saved_block">You just saved $58,89 (35% off)</div>`)
+            } else if (document.querySelector('.views-field.views-field-total-price__number').innerHTML.includes('$13.99 ')) {
+                document.querySelector('.views-field.views-field-title').innerHTML = `1-Month DYWM Subscription`;
             }
         
             if (document.querySelector('#edit-coupon-redemption') != null) {
