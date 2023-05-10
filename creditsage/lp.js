@@ -148,7 +148,7 @@ let styles = `
     /* sticky_btn */
     .sticky_btn {
         position: fixed;
-        bottom: 0;
+        top: 0;
         left: 0;
         width: 100%;
         background: #174172;
@@ -158,7 +158,7 @@ let styles = `
         opacity: 0;
         pointer-events: none;
         transition: all 0.2s ease;
-        transform: translateY(100px);
+        transform: translateY(-100px);
     }
     .sticky_btn.active {
         opacity: 1;
@@ -478,10 +478,10 @@ let styles = `
     .review_section .head svg {
         margin-rught: 2px;
     }
-    .content_item {
+    .content_reviews .swiper-slide {
         display: none;
     }
-    .content_item.active {
+    .content_reviews .swiper-slide:nth-child(-n + 4), .content_reviews.show .swiper-slide {
         display: block;
     }
     .btn_more {
@@ -497,8 +497,11 @@ let styles = `
         line-height: 54px;
         text-align: center;
         color: #2DAF6B;
+        display: block;
     }
-  
+    .btn_more.btn_more_load {
+        margin-top: 20px;
+    }
     /* flex */
     .flex {
         display: flex;
@@ -688,6 +691,26 @@ let slide = (author, theme, review, date) => `
         <p class="date">${date}</p>
     </div>`;
 
+//comes into view
+let isScrolledIntoView = (el) => {
+	if(document.querySelector(el) == null) return false;
+	let rect = document.querySelector(el).getBoundingClientRect(),
+		elemTop = rect.top,
+		elemBottom = rect.bottom;
+	let isVisible = elemTop >= 0 && elemBottom <= window.innerHeight;
+	return isVisible;
+};
+
+let pushDataLayer = (name, desc, type, loc) => {
+    window.dataLayer = window.dataLayer || [];
+    dataLayer.push({
+        'event': 'event-to-ga4',
+        'event_name': name,
+        'event_desc': desc,
+        'event_type': type,
+        'event_loc': loc
+    });
+}
 
 let scrollToElement = (event) => {
     event.preventDefault()
@@ -704,6 +727,12 @@ let scrollToElement = (event) => {
 
     seamless.polyfill();
     seamless.scrollBy(window, { behavior: "smooth", top: top, left: 0 });
+
+    if (target.classList.contains('btn_learn_more')) {
+        pushDataLayer('exp_reviews_lp_sticky_header_reviews','Learn more','Text link','First screen')
+    } else if (path.includes('.rich-templete h2')) {
+        pushDataLayer('exp_reviews_lp_essential_info', 'Item block', `Item name ${target.innerText}`, 'Essential info about ...')
+    }
 }
 
 // window.onload = function() {
@@ -854,10 +883,42 @@ let scrollToElement = (event) => {
     });
 
     //sticky button 
-    let offsetTopBrands = document.querySelector('.brands_section').offsetTop / 2,
+    let offsetTopBrands = document.querySelector('.brands_section').offsetTop,
         offsetTopFeedback = document.querySelector('.feedback_section').offsetTop;
 
     let stickyBtn = document.querySelector('.sticky_btn');
+
+    let viewedStickyBtn = false,
+        viewedHelpSection = false,
+        viewedFeedbackSection = false,
+        viewedAboutSection = false,
+        viewedDidYouNow = false,
+        viewedGuarantee = false;
+
+    let isVisible = () => {
+        setTimeout(() => {
+            if (isScrolledIntoView('.help_section h2') == true && viewedHelpSection == false) {
+                viewedHelpSection = true;
+                pushDataLayer('exp_reviews_lp_we_help_visibility','Text block','Visibility','We help repair yuor credit ...')
+            }
+            if (isScrolledIntoView('.feedback_section h2') == true && viewedFeedbackSection == false) {
+                viewedFeedbackSection = true;
+                pushDataLayer('exp_reviews_lp_we_proud_visibility','Text block','Visibility','We are proud to showcase ...')
+            }
+            if (isScrolledIntoView('.about_section h2') == true && viewedAboutSection == false) {
+                viewedAboutSection = true;
+                pushDataLayer('exp_reviews_lp_essential_info_visibility','Item block','Visibility','Essential info about ...')
+            }
+            if (isScrolledIntoView('.did-you-now h2') == true && viewedDidYouNow == false) {
+                viewedDidYouNow = true;
+                pushDataLayer('exp_reviews_lp_did_you_know_visibility','Timeline block','Visibility','Did you know?')
+            } 
+            if (isScrolledIntoView('.rich-cta-wrp.guarantee') == true && viewedGuarantee == false) {
+                viewedGuarantee = true;
+                pushDataLayer('exp_reviews_lp_industry_visibility','Guarantee block','Visibility','Industry Leading ...')
+            }
+        }, 5000)
+    }
 
     window.addEventListener('scroll', (e) => {
         if (window.pageYOffset >= offsetTopBrands) {
@@ -867,10 +928,53 @@ let scrollToElement = (event) => {
             } else {
                 stickyBtn.querySelector('a:not(.btn)').href = '.feedback_section'
             }
+            if (viewedStickyBtn == false) {
+                viewedStickyBtn = true
+                pushDataLayer('exp_reviews_lp_sticky_header_vis', window.pageYOffset, 'Visibility', 'Sticky Header')
+            }
+            
         } else {
+            viewedStickyBtn = false
             stickyBtn.classList.remove('active')
         }
+        if (
+            isScrolledIntoView('.help_section h2') == true && viewedHelpSection == false ||
+            isScrolledIntoView('.feedback_section h2') == true && viewedFeedbackSection == false ||
+            isScrolledIntoView('.about_section h2') == true && viewedAboutSection == false  || 
+            isScrolledIntoView('.did-you-now h2') == true && viewedDidYouNow == false ||
+            isScrolledIntoView('.rich-cta-wrp.guarantee') == true && viewedGuarantee == false
+        ) {
+            isVisible()
+        }
     })
+    //event: Visibility. Trusted customer reviews
+    document.querySelectorAll('.content_reviews .swiper-slide .theme').forEach((element, index) => {
+        let viwedElement = false;
+
+        window.addEventListener('scroll', (e) => {
+            if (isScrolledIntoView(`.content_reviews .swiper-slide ${element.className}`) == true && viwedElement == false) {
+                setTimeout(() => {
+                    if (isScrolledIntoView(`.content_reviews .swiper-slide ${element.className}`) == true && viwedElement == false) {
+                        viwedElement = true;
+                        pushDataLayer('exp_reviews_lp_review_block', element.parentElement.querySelector('.author'), 'Visibility', 'Trusted customer reviews')
+                    }
+                }, 5000)
+            }
+        })
+    });
+    //event: Button. Sticky Header
+    document.querySelector('.sticky_btn .btn.btn_green').addEventListener('click', () => {
+        pushDataLayer('exp_reviews_lp_sticky_header_tap_to_call','Tap to call','Button','Sticky Header')
+    })
+    //event: Reviews. Sticky Header
+    document.querySelector('.sticky_btn a:not(.btn_green)').addEventListener('click', () => {
+        pushDataLayer('exp_reviews_lp_sticky_header_reviews','TrustScore','Reviews','Sticky Header')
+    })
+    //event: Text link. We help repair yuor credit ...
+    document.querySelector('.help_section > div > p .c-green').addEventListener('click', () => {
+        pushDataLayer('exp_reviews_lp_we_help_call_now','Call now','Text link','We help repair yuor credit ...')
+    })
+    
 
     // section 5 "Essential information about Radius Global Solutions you need to know"
     let titleTemplates = document.querySelectorAll('.rich-templete h2');
@@ -932,21 +1036,19 @@ let scrollToElement = (event) => {
         </div>
     </section>`)
 
-    let pageCount = objReview.length / 4;
-
-    for (let i = 0; i < pageCount; i++) {
-        document.querySelector('.content_reviews').insertAdjacentHTML('beforeend', ` <div class="content_item ${i == 0 ? 'active': ''}" data-item="${i == 0 ? '4' : (i+1)*4}"> </div>`)
+    for (let i = 0; i < objReview.length ; i++) {
+        document.querySelector('.content_reviews').insertAdjacentHTML('beforeend', slide(objReview[i].author, objReview[i].theme, objReview[i].review, objReview[i].date))
     }
-   
-    document.querySelectorAll('.content_item[data-item]').forEach((item, index) => {
-        let items = +item.dataset.item;
-        let indexTo = index != 0 ? items - 4: 0;
-    
-        for (let i = indexTo; i < items; i++) {
-            if (objReview[i]) {
-                item.insertAdjacentHTML('beforeend', slide(objReview[i].author, objReview[i].theme, objReview[i].review, objReview[i].date))
-       
-            }
-        }
+
+    document.querySelector('.btn_more_load').addEventListener('click', (e) => {
+        e.currentTarget.hidden = true;
+        document.querySelector('.content_reviews').classList.add('show')
     })
+   
 // };
+const isClarity = setInterval(() => {
+    if (typeof clarity === 'function') {
+        clearInterval(isClarity)
+        clarity("set", "Exp; Reviews LP", "variant_1");
+    }
+}, 200)
