@@ -122,7 +122,7 @@ let styles = `
     .sct_template-hero .btn {
         margin-top: 4px;
     }
-    .btn-txt.mobile {
+    .btn-txt {
         font-weight: 700;
         font-size: 24px;
         line-height: 32px;
@@ -173,6 +173,7 @@ let styles = `
     .sticky_btn .btn-txt {
         font-size: 16px;
         line-height: 32px;
+        display: block!important;
     }
     .sticky_btn .btn .ic {
         width: 19px;
