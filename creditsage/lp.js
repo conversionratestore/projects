@@ -182,6 +182,10 @@ let styles = `
         padding: 14px 0;
         background: #E8ECF1;
     }
+    .brands_section img {
+        display: block;
+        margin: 0 auto;
+    }
     /* help_section */
     .help_section {
         padding-top: 36px;
@@ -479,11 +483,8 @@ let styles = `
     .content_reviews {
         margin-top: 24px;
     }
-    .content_reviews .swiper-slide {
-        display: none;
-    }
-    .content_reviews .swiper-slide:nth-child(-n + 4), .content_reviews.show .swiper-slide {
-        display: block;
+    .content_reviews.show .swiper-slide {
+        display: block!important;
     }
     .btn_more {
         background: rgba(255, 255, 255, 0.16);
@@ -663,8 +664,8 @@ let objReview = [
     }
 ]
 
-let slide = (author, theme, review, date) => `
-    <div class="swiper-slide">
+let slide = (author, theme, review, date, index, parent = '') => `
+    <div class="swiper-slide" style="display: ${parent == 'content_reviews' && index > 3  ? 'none' : 'block' }" data-index="${index}">
         <div class="flex justify-between">
             <p class="author">${author}</p>
             <svg width="88" height="16" viewBox="0 0 88 16" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -788,7 +789,7 @@ window.onload = function() {
                     <path d="M8.83333 14.3933C10.7533 18.1667 13.84 21.2533 17.62 23.1733L20.5533 20.2333C20.92 19.8667 21.4467 19.76 21.9067 19.9067C23.4 20.4 25.0067 20.6667 26.6667 20.6667C27.4067 20.6667 28 21.26 28 22V26.6667C28 27.4067 27.4067 28 26.6667 28C14.1467 28 4 17.8533 4 5.33333C4 4.59333 4.6 4 5.33333 4H10C10.74 4 11.3333 4.59333 11.3333 5.33333C11.3333 6.99333 11.6 8.6 12.0933 10.0933C12.24 10.5533 12.1333 11.08 11.7667 11.4467L8.83333 14.3933Z" fill="currentColor"></path>
                 </svg>
             </div>
-            <div class="btn-txt mobile">Tap To Call</div>
+            <div class="btn-txt">Tap To Call</div>
         </a>
     </div>
     <section class="help_section">
@@ -864,7 +865,7 @@ window.onload = function() {
     document.head.appendChild(linkSwiper);
 
     for (let i = 0; i < objReview.length; i++) {
-        document.querySelector('.feedback_section .swiper-wrapper').insertAdjacentHTML('beforeend', slide(objReview[i].author, objReview[i].theme, objReview[i].review, objReview[i].date))
+        document.querySelector('.feedback_section .swiper-wrapper').insertAdjacentHTML('beforeend', slide(objReview[i].author, objReview[i].theme, objReview[i].review, objReview[i].date, i, 'feedback_section'))
     }
     //init Swiper slider
     const waitSwiper = setInterval(() => {
@@ -950,21 +951,6 @@ window.onload = function() {
             isVisible()
         }
     })
-    //event: Visibility. Trusted customer reviews
-    document.querySelectorAll('.content_reviews .swiper-slide .theme').forEach((element, index) => {
-        let viwedElement = false;
-
-        window.addEventListener('scroll', (e) => {
-            if (isScrolledIntoView(`.content_reviews .swiper-slide ${element.className}`) == true && viwedElement == false) {
-                setTimeout(() => {
-                    if (isScrolledIntoView(`.content_reviews .swiper-slide ${element.className}`) == true && viwedElement == false) {
-                        viwedElement = true;
-                        pushDataLayer('exp_reviews_lp_review_block', element.parentElement.querySelector('.author'), 'Visibility', 'Trusted customer reviews')
-                    }
-                }, 5000)
-            }
-        })
-    });
     //event: Button. Sticky Header
     document.querySelector('.sticky_btn .btn.btn_green').addEventListener('click', () => {
         pushDataLayer('exp_reviews_lp_sticky_header_tap_to_call','Tap to call','Button','Sticky Header')
@@ -1041,18 +1027,43 @@ window.onload = function() {
     </section>`)
 
     for (let i = 0; i < objReview.length ; i++) {
-        document.querySelector('.content_reviews').insertAdjacentHTML('beforeend', slide(objReview[i].author, objReview[i].theme, objReview[i].review, objReview[i].date))
+        document.querySelector('.content_reviews').insertAdjacentHTML('beforeend', slide(objReview[i].author, objReview[i].theme, objReview[i].review, objReview[i].date, i, 'content_reviews'))
     }
 
+    //event: Visibility. Trusted customer reviews
+    let viwedElements = [];
+
+    let slideReviews = document.querySelectorAll('.content_reviews .swiper-slide');
+    slideReviews.forEach((element, index) => {
+        viwedElements.push({
+            'viewed': false
+        })
+    });
+
+    window.addEventListener('scroll', (e) => {
+        for (let i = 0; i < slideReviews.length; i++) {
+            if (document.querySelector(`.content_reviews .swiper-slide[data-index="${i}"]`).style.display == 'block' && isScrolledIntoView(`.content_reviews .swiper-slide[data-index="${i}"]`) == true && viwedElements[i].viewed == false) {
+                setTimeout(() => {
+                    if (document.querySelector(`.content_reviews .swiper-slide[data-index="${i}"]`).style.display == 'block' && isScrolledIntoView(`.content_reviews .swiper-slide[data-index="${i}"]`) == true && viwedElements[i].viewed == false) {
+                        viwedElements[i].viewed = true;
+                        pushDataLayer('exp_reviews_lp_review_block', document.querySelectorAll('.author')[i].innerHTML, 'Visibility', 'Trusted customer reviews')
+                    }
+                }, 5000)
+            }
+        }
+    })
+    //event: Stars. Stars images
     document.querySelector('.review_section > div > img').addEventListener('click', (e) => {
         pushDataLayer('exp_reviews_lp_review_stars','Stars images', 'Stars', 'Trusted customer reviews')
     })
+    //event: Button. Tap to load more
     document.querySelector('.btn_more_load').addEventListener('click', (e) => {
         e.currentTarget.hidden = true;
-        document.querySelector('.content_reviews').classList.add('show')
+        document.querySelectorAll('.content_reviews > div').forEach(element => element.style.display = 'block');
+
         pushDataLayer('exp_reviews_lp_load_more','Tap to load more','Button','Trusted customer reviews')
     })
-    //event: Tap to Read more on Trustpilot
+    //event: Button. Tap to Read more on Trustpilot
     document.querySelector('.btn_more_trustpilot').addEventListener('click', (e) => {
         pushDataLayer('exp_reviews_lp_read_more_on_trustpilot','Tap to Read more on Trustpilot','Button','Trusted customer reviews')
     })
