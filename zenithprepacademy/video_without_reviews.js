@@ -292,9 +292,6 @@ let videoReviews = setInterval(() => {
     padding: 10px;
     outline: unset;
   }
-  .containerInner > a.schedule_new_btn {
-    display: none;
-  }
   .is_sticky_box {
     padding: 20px;
     position: sticky;
@@ -436,6 +433,9 @@ let videoReviews = setInterval(() => {
     }
   }
   @media (min-width: 768px) {
+    .containerInner > a.schedule_new_btn {
+      display: none;
+    }
     #reviewsBlock {
       margin: 0;
       padding: 72px 0;
