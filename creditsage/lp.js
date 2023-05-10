@@ -251,7 +251,7 @@ let styles = `
         font-family: 'Circularstd', sans-serif;
     }
     .feedback_section {
-        padding-top: 36px;
+        padding: 36px 0;
         overflow: hidden;
     }
     .feedback_section > div > p {
@@ -364,7 +364,6 @@ let styles = `
     
     /* about_section */
     .about_section {
-        margin-top: 36px;
         padding: 18px 18px 7px;
         box-shadow: 0px 0px 63.18px rgba(0, 0, 0, 0.16);
         border-radius: 14px;
