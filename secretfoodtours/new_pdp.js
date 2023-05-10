@@ -4041,32 +4041,25 @@ let photos = setInterval(() => {
                         clearInterval(addVideo)
 
                         document.querySelector('.gallery-bottom').classList.add('center')
-                        
+                        function addActiveGallery() {
+                            setTimeout(() => {
+                                if (document.querySelector('.gallery-bottom .swiper-pagination-current').innerHTML == '1' || document.querySelector('.swiper-slide-video').classList.contains('swiper-slide-active')) {
+                                    document.querySelector('.gallery-bottom').classList.add('center')
+                                } else {
+                                    document.querySelector('.gallery-bottom').classList.remove('center')
+                                }      
+                                document.querySelector(".gallery .swiper-slide-video iframe").src = document.querySelector(".gallery .swiper-slide-video iframe").src
+                                
+                            }, 300)
+                        }
                         document.querySelectorAll('.popup_gallery .popup_gallery_button').forEach(item => {
-                            item.addEventListener('click', (e) => {
-                                setTimeout(() => {
-                                    if (document.querySelector('.gallery-bottom .swiper-pagination-current').innerHTML == '1' || document.querySelector('.swiper-slide-video').classList.contains('swiper-slide-active')) {
-                                        document.querySelector('.gallery-bottom').classList.add('center')
-                                    } else {
-                                        document.querySelector('.gallery-bottom').classList.remove('center')
-                                    }  
-                                }, 300)
-                            })
+                            item.addEventListener('click', (e) => addActiveGallery())
                         })
                         
                         document.querySelectorAll('.gallery-bottom .btn-arrow').forEach(item => {
-                            item.addEventListener('click', (e) => {
-                                setTimeout(() => {
-                                    if (document.querySelector('.gallery-bottom .swiper-pagination-current').innerHTML == '1' || document.querySelector('.swiper-slide-video').classList.contains('swiper-slide-active')) {
-                                        document.querySelector('.gallery-bottom').classList.add('center')
-                                    } else {
-                                        document.querySelector('.gallery-bottom').classList.remove('center')
-                                    }  
-                                    document.querySelector(".gallery .swiper-slide-video iframe").src = document.querySelector(".gallery .swiper-slide-video iframe").src
-                                }, 300)
-                            
-                            })
+                            item.addEventListener('click', (e) => addActiveGallery())
                         })
+                        
                         swiperPopup.prependSlide(`<li class="swiper-slide swiper-slide-video">${document.querySelector('.video_wr iframe').parentElement.innerHTML}</li>`);
                         swiper.prependSlide(`<li class="swiper-slide swiper-slide-video">${document.querySelector('.video_wr iframe').parentElement.innerHTML}</li>`);
                         
