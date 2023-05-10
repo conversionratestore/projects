@@ -706,6 +706,7 @@ function init() {
                 })
 
                 document.querySelector('.btn-reg').addEventListener('click', (e) => {
+                   
                     if (!document.querySelectorAll('.check-accept input')[0].checked) {
                         document.querySelectorAll('.check-accept input')[0].nextElementSibling.style = 'border-color: #FF0000'
                     } else {
@@ -720,7 +721,14 @@ function init() {
 
                     localStorage.setItem('email', document.querySelector('#edit-login-register-mail').value)
                     document.querySelector('#edit-login-register-register').click()
-                
+
+                    if (document.querySelectorAll('.check-accept input')[0].checked && 
+                        document.querySelector('#edit-login-register-name').value != '' && 
+                        !document.querySelector('.js-password-strength__text').innerHTML.includes('Weak')
+                     ) {
+                        e.currentTarget.classList.add('loading')
+                    }
+                  
                 })
             }
             if (window.location.href.includes('/yogi/register') || window.location.href.includes('yogi/intake-survey')) {
@@ -1308,6 +1316,12 @@ function init() {
                     <p><span>$167.88</span> ${price.innerHTML}</p>
                     <p class="c-green">Just $9.08/month!</p>`
 
+                    if (window.matchMedia("(min-width: 768px)").matches) {
+                        document.querySelector('.views-field.views-field-title').innerHTML = '12-month DYWM Subscription';
+                    } else {
+                        document.querySelector('.views-field.views-field-title').innerHTML = '1-Year DYWM Subscription';
+                    }
+
                 document.querySelector('.order-total-line__total').insertAdjacentHTML('afterend',` <div class="saved_block">You just saved $58,89 (35% off)</div>`)
             }
         
@@ -1388,7 +1402,7 @@ let disabledBtnFun = () => {
             
             clearInterval(disabledBtn)
 
-            let inputs = document.querySelectorAll('form #edit-payment-information input:not([type="hidden"],[type="checkbox"],[type="radio"])');
+            let inputs = document.querySelectorAll('form #edit-payment-information input:not([type="hidden"],[type="checkbox"],[type="radio"],.address-line2)');
     
             if (error == false) {
                 for (let i = 0; i < inputs.length; i++) {
