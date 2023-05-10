@@ -299,7 +299,7 @@ let videoReviews = setInterval(() => {
     left: 0;
     right: 0;
     z-index: 10;
-    background: #FFFFFF;
+    background: #F7F7F7;
   }
   #reviewsBlock {
     margin: 0 20px;
