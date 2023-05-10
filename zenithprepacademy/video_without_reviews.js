@@ -880,7 +880,7 @@ let videoReviews = setInterval(() => {
           </div>
   
           <div class='timeline_item_new'>
-            <div class='timeline_item_new_title'>Strategies and five factors that affect the college application process</div>
+            <div class='timeline_item_new_title'>Strategies and 5 factors that сontrol сollege application process</div>
             <div class='timeline_item_new_time'>(10:52)</div>
           </div>
   
