@@ -650,7 +650,7 @@ let scrollToElement = (event) => {
     seamless.scrollBy(window, { behavior: "smooth", top: top, left: 0 });
 }
 
-window.onload = function() {
+// window.onload = function() {
     document.body.insertAdjacentHTML('afterbegin', styles);
 
     document.head.insertAdjacentHTML('beforeend', `
@@ -669,6 +669,7 @@ window.onload = function() {
         <img src="${dir}arrow-dashed.svg" alt="arrow dashed">
         <a href=".feedback_section" onclick="scrollToElement(event)">
             <img src="${dir}transtpilot.svg" alt="transtpilot">
+            ${document.querySelector('.sct_template-hero .trustpilot-widget').parentElement.innerHTML}
         </a>
     </div>`); // transtpilot
     document.querySelector('.sct.sct_template-hero > div').insertAdjacentHTML('beforeend', `
@@ -901,4 +902,4 @@ window.onload = function() {
             item.classList.add('active')
         })
     })
-};
+// };
