@@ -728,7 +728,7 @@ let scrollToElement = (event) => {
         elementTo = document.querySelectorAll(path)[target.dataset.index];
     }
     
-    let top = elementTo.getBoundingClientRect().top - 52;
+    let top = elementTo.getBoundingClientRect().top - 82;
 
     seamless.polyfill();
     seamless.scrollBy(window, { behavior: "smooth", top: top, left: 0 });
