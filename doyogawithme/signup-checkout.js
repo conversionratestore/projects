@@ -49,7 +49,7 @@ input[type="checkbox"], input[type="radio"] {
     position: absolute;
     left: 20px;
     top: 50%;
-    z-index: 3;
+    z-index: 2;
     transform: translateY(-50%);
 }
 .btn-back svg {
@@ -454,7 +454,7 @@ input[type="checkbox"]:checked ~ .check {
 
 let headHTML = `
 <div class="topbar">
-    <a href="/" class="btn-back flex items-center">
+    <a href="https://www.doyogawithme.com/become-a-subscriber" class="btn-back flex items-center">
         <svg width="10" height="16" viewBox="0 0 10 16" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M0.255198 7.39519C-0.0850662 7.72509 -0.0850662 8.27491 0.255198 8.60481L7.58979 15.7526C7.96786 16.0825 8.53497 16.0825 8.87524 15.7526L9.7448 14.9095C10.0851 14.5796 10.0851 14.0298 9.7448 13.6632L3.9225 7.98167L9.7448 2.33677C10.0851 1.97022 10.0851 1.42039 9.7448 1.09049L8.87524 0.247423C8.53497 -0.0824742 7.96786 -0.0824742 7.58979 0.247423L0.255198 7.39519Z" fill="#027DB8"/>
         </svg>
@@ -540,7 +540,7 @@ function init() {
                 }
             }
             if (window.location.href.includes('/yogi/login')) {
-            
+
                 document.querySelector('label[for="edit-name"]').innerHTML = 'Email address';
                 document.querySelector('#edit-name').placeholder = 'Email';
                 document.querySelector('#edit-pass').placeholder = 'Password';
@@ -589,6 +589,19 @@ function init() {
                     .form-item-payment-information-add-payment-method-billing-information-address-0-address-postal-code + .form-item-payment-information-add-payment-method-billing-information-address-0-address-locality, .form-item-payment-information-add-payment-method-billing-information-address-0-address-locality + .form-item-payment-information-add-payment-method-billing-information-address-0-address-postal-code {
                         width: calc(50% - 8px);
                     }
+
+                    @media only screen and (min-width: 768px) {
+                        .o-page--simpleCard .o-page__mainContent.active:before {
+                            content: '';
+                            position: absolute;
+                            left: 50%;
+                            top: 50%;
+                            transform: translate(-50%,-50%);
+                            background: url(${dir}bg.svg) no-repeat center / contain;
+                            height: 732.5px;
+                            width: 942px;
+                        }
+                    }
                     @media only screen and (max-width: 767px) {
                         .layout-checkout-form {
                             padding: 20px;
@@ -596,6 +609,9 @@ function init() {
                     }
                     
                 </style>`)
+
+                document.querySelectorAll('.sfc-tabs__tablistItem > a')[1].click()
+                document.querySelector('#edit-login-register-mail').focus()
 
                 document.querySelector('[data-drupal-selector="edit-login-returning-customer"]').insertAdjacentHTML('afterbegin', `
                 <h2>Log In</h2>
@@ -641,9 +657,12 @@ function init() {
 
                 document.querySelector('[data-drupal-selector="edit-login-returning-customer"] .singup a').addEventListener('click', (e) => {
                     document.querySelectorAll('.sfc-tabs__tablistItem > a')[1].click()
+                    document.querySelector('.o-page--simpleCard .o-page__mainContent').classList.add('active')
+                    document.querySelector('#edit-login-register-mail').focus()
                 })
                 document.querySelector('[data-drupal-selector="edit-login-register"] .singup a').addEventListener('click', (e) => {
                     document.querySelectorAll('.sfc-tabs__tablistItem > a')[0].click()
+                    document.querySelector('.o-page--simpleCard .o-page__mainContent').classList.remove('active')
                 })
 
                 if (localStorage.username != null && localStorage.username != '') {
@@ -711,6 +730,18 @@ function init() {
                     .password-suggestions, .user-register-form .ac-newsletter-reg-suffix, .user-register-form .form-type-checkbox, header.o-page__header, .js-form-item-pass-pass2, .user-register-form .password-strength__title, .user-register-form .password-strength {
                         display: none!important;
                     }
+                    @media only screen and (min-width: 768px) {
+                        .o-page--simpleCard .o-page__mainContent:before {
+                            content: '';
+                            position: absolute;
+                            left: 50%;
+                            top: 50%;
+                            transform: translate(-50%,-50%);
+                            background: url(${dir}bg.svg) no-repeat center / contain;
+                            height: 732.5px;
+                            width: 942px;
+                        }
+                    }
                     @media only screen and (max-width: 767px) {
                         .o-page--simpleCard .o-page__mainContentWrapper {
                             margin-top: 16px;
@@ -758,6 +789,8 @@ function init() {
                         }
                     })
                 })
+                
+                document.querySelector('#edit-mail').focus()
 
                 document.querySelector('#edit-actions').addEventListener('click', (e) => {
                     if (!document.querySelectorAll('.check-accept input')[0].checked) {
