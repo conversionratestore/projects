@@ -220,6 +220,7 @@ let toolBox = setInterval(() => {
             border: unset;
             padding: 0;
             position: relative;
+            text-transform: capitalize;
         }
         .tool_box_body ul li a::after{
             position: absolute;
