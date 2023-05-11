@@ -1338,6 +1338,13 @@ function init() {
                         top: 12px;
                     }
                 }
+                @media only screen and (max-width: 360px) {
+                    .info_dashed:first-child {
+                        min-width: 48%;
+                        flex-shrink: 1;
+                        margin-right: 10px;
+                    }
+                }
             </style>`)
 
             if (document.querySelector('.header-logo') == null) {
@@ -1458,7 +1465,7 @@ let applyCoupon = setInterval(() => {
 }, 200)
 
 let findMessageSubscription = setInterval(() => {
-    if (document.querySelector('.messages--status') != null && document.querySelector('.messages--status').innerHTML.includes('DYWM Subscription, Monthly added to')) {
+    if (document.querySelector('.messages--status') != null && document.querySelector('.messages--status').innerHTML.includes('your cart')) {
         clearInterval(findMessageSubscription)
         document.querySelector('.messages--status').remove();
     }
