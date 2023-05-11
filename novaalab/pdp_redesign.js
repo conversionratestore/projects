@@ -2,8 +2,7 @@ const DEVICE = screen.width <= 768 ? 'mobile' : 'desktop'
 const WAIT_INTERVAL_TIMEOUT = 100
 
 const dateToday = new Date().toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })
-const until60 = new Date(Date.now() + (60 * 24 * 60 * 60 * 1000)).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })
-const until2years = new Date(Date.now() + (2 * 365 * 24 * 60 * 60 * 1000)).toLocaleDateString('en-US', { month: 'long', year: 'numeric' })
+const untilTwoYears = new Date(Date.now() + (2 * 365 * 24 * 60 * 60 * 1000)).toLocaleDateString('en-US', { month: 'long', year: 'numeric' })
 
 function getDeliveryDateRange(country) {
   const currentDate = new Date()
@@ -29,6 +28,22 @@ function getDeliveryDateRange(country) {
   }
 }
 
+function addTwoMonth(country) {
+  const today = new Date()
+  let daysToAdd
+
+  if (country === 'Canada') {
+    daysToAdd = 12
+  } else {
+    daysToAdd = 5
+  }
+
+  const futureDate = new Date(today.getTime() + (daysToAdd + 60) * 24 * 60 * 60 * 1000)
+  const month = futureDate.toLocaleString('default', { month: 'long' })
+  const day = futureDate.getDate()
+
+  return `Until ${month} ${day}, 2023`
+}
 
 const style = /*html*/`
     <style>
@@ -2059,7 +2074,7 @@ margin-bottom: 0;
   position: absolute;
   top: auto;
   right: 0;
-  bottom: 0;
+  bottom: -4px;
 }
 
 #faq .gina .review img.quote_open {
@@ -2184,7 +2199,7 @@ max-width: 1248px;
 }
 
 .splitit_overlay.opened_splitit_popup {
-  z-index: 1000;
+  z-index: 10000000000;
   opacity: 1;
 }
 
@@ -2382,6 +2397,8 @@ max-width: 1248px;
   --tw-bg-opacity: 1;
   background-color: rgb(250 250 250 / var(--tw-bg-opacity));
   margin: 1rem auto;
+  z-index: -1;
+  position: relative;
 }
 
 .splitit_popup_container .total,
@@ -3360,7 +3377,7 @@ max-width: 1248px;
     margin-top: 0;
     opacity: 0;
     max-height: 0;
-    transition: all 0.5 ease-in-out;
+    transition: all 0.5s ease-in-out;
   }
 
   .calculations_container.opened_this .top {
@@ -3402,6 +3419,7 @@ max-width: 1248px;
     margin: 0 -1rem;
     padding: 0.5rem 1.5rem;
     max-width: 100vw;
+    z-index: 1;
   }
 
   .splitit_popup_container .total {
@@ -4052,14 +4070,14 @@ const html = /*html*/`
                             <img src="https://conversionratestore.github.io/projects/novaalab/img/no_risk3.svg" alt="">
                             <div>
                                 <h5>60-day 100% money back guarantee</h5>
-                                <span>Until ${until60}</span>
+                                <span class="until_month">${addTwoMonth('United States')}</span>
                             </div>
                         </div>
                         <div class="item">
                             <img src="https://conversionratestore.github.io/projects/novaalab/img/no_risk4.svg" alt="">
                             <div>
                                 <h5>2+ years: Warranty and free replacement</h5>
-                                <span>Until ${until2years}</span>
+                                <span>Until ${untilTwoYears}</span>
                             </div>
                         </div>
                     </div>
@@ -4730,8 +4748,8 @@ const html = /*html*/`
                                         was
                                         laying in my side with no pain! I continued using it and <b>I was pain free in
                                             10
-                                            days!</b>. “ - Gina, happy NovaaLab customer <img
-                                            src="https://conversionratestore.github.io/projects/novaalab/img/quotes.svg" alt="">
+                                            days!</b>. “ - Gina, happy NovaaLab <span style="margin-right: 35px;">customer <img
+                                            src="https://conversionratestore.github.io/projects/novaalab/img/quotes.svg" alt=""></span>
                                 </p>
                             </div>
                         </div>
@@ -5174,6 +5192,7 @@ const waitForSelectOptions = setInterval(() => {
         }
 
         document.querySelector('.date_sh span').innerText = getDeliveryDateRange(country)
+        document.querySelector('.until_month').innerText = addTwoMonth(country)
 
         document.querySelector('.date_days').innerText = `${getDeliveryDateRange(country)}, 2023`
       })
@@ -5253,7 +5272,6 @@ const waitForSplitit = setInterval(() => {
         sendGAEvent('Click on payments', 'Splitit popup')
       })
     }
-
 
     for (const close of document.querySelectorAll('.close_splitit')) {
       close.addEventListener('click', () => {
@@ -5576,17 +5594,17 @@ waitForElement('.links_container').then(() => {
         if (!navList.classList.contains('fixed')) {
           navList.classList.add('fixed')
 
-          if (document.querySelector('#privy-container #privy-inner-container .privy-mobile.privy-tab-container.privy-basic')) {
-            document.querySelector('#privy-container #privy-inner-container .privy-mobile.privy-tab-container.privy-basic').classList.add('custom_pos')
+          // if (document.querySelector('#privy-container #privy-inner-container .privy-mobile.privy-tab-container.privy-basic')) {
+          //   document.querySelector('#privy-container #privy-inner-container .privy-mobile.privy-tab-container.privy-basic').classList.add('custom_pos')
 
-            if (document.querySelector('iframe#chat-button')) {
-              document.querySelector('iframe#chat-button').classList.add('higher')
-            }
-          } else {
-            if (document.querySelector('iframe#chat-button')) {
-              document.querySelector('iframe#chat-button').classList.add('average')
-            }
-          }
+          //   if (document.querySelector('iframe#chat-button')) {
+          //     document.querySelector('iframe#chat-button').classList.add('higher')
+          //   }
+          // } else {
+          //   if (document.querySelector('iframe#chat-button')) {
+          //     document.querySelector('iframe#chat-button').classList.add('average')
+          //   }
+          // }
 
           if (!once) {
             sendGAEvent('Visibility Get Novaalab light pad sticky button', 'Sticky button')
