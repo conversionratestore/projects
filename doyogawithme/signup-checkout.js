@@ -481,6 +481,16 @@ let headHTML = `
     </div>
 </div>`
 
+function pushDataLayer(action, label = '') {
+    window.dataLayer = window.dataLayer || [];
+    dataLayer.push({
+    'event': 'event-to-ga',
+        'eventCategory': 'Exp: Change Plans page, Signup, Checkout',
+        'eventAction': action,
+        'eventLabel': label
+    });
+}
+
 function lsRememberMe(checkbox, email) {
 
     const rmCheck = document.querySelector(checkbox),
@@ -569,6 +579,26 @@ function init() {
 
                 document.querySelector('.form-actions .button').addEventListener('click', () => {
                     lsRememberMe('.remember-me input', '#edit-name')
+                })
+                pushDataLayer('Visibility','Log in form')
+
+                document.querySelector('.social-auth.auth-link').addEventListener('click', () => {
+                    pushDataLayer('Login with google button','Log in form')
+                })
+                document.querySelectorAll('form input').forEach(item => {
+                    item.addEventListener('click', (e) => {
+                        let parent = e.currentTarget.parentElement;
+                        if (parent.querySelector('label')) {
+                            pushDataLayer(`Click on ${parent.querySelector('label').innerText}`, 'Log in form')
+                        } else if (parent.classList.contains('remember-me')) {
+                            pushDataLayer('Remember me','Log in form')
+                        } else {
+                            pushDataLayer(`Click on ${e.currentTarget.value}`, 'Log in form')
+                        }
+                    })
+                })
+                document.querySelector('.remember-me + a').addEventListener('click', (e) => {
+                    pushDataLayer(`Forgot password`, 'Log in form')
                 })
             }
             if (window.location.href.includes('/checkout') && window.location.href.includes('/login') && document.querySelectorAll('.sfc-tabs__tablistItem > a').length > 1) {
@@ -679,6 +709,8 @@ function init() {
                     document.querySelectorAll('.sfc-tabs__tablistItem > a')[0].click()
                     document.querySelector('.o-page--simpleCard .o-page__mainContent').classList.remove('active')
                     document.querySelector('#edit-login-returning-customer-name').focus()
+
+                    pushDataLayer('Visibility','Log in form')
                 })
 
                 if (localStorage.username != null && localStorage.username != '') {
@@ -1460,3 +1492,12 @@ mut.observe(document, {
     childList: true,
     subtree: true
 });
+
+pushDataLayer('loaded')
+
+let isClarify = setInterval(() => {
+    if (typeof clarity == 'function') {
+        clearInterval(isClarify)
+        clarity('set', 'change_plans_page_signup_сheckout', 'variant_1')
+    }
+}, 100)
