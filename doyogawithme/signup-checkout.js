@@ -466,6 +466,14 @@ input[type="checkbox"]:checked ~ .check {
         padding: 18px 0;
     }
 }
+@media only screen and (max-width: 360px) {
+    .user-login-form, .user-register-form, .user-pass {
+        padding: 20px 15px;
+    }
+    .o-page--simpleCard .o-page__mainContent {
+        width: calc(100% - 20px);
+    }
+}
 </style>`
 
 let headHTML = `
