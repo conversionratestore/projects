@@ -328,7 +328,7 @@ input[type="checkbox"]:checked ~ .check {
     top: 50%;
     right: 20px;
     transform: translateY(-50%);
-    background: url(https://conversionratestore.github.io/projects/novaalab/img/loading.gif) no-repeat center / contain;
+    background: url(https://conversionratestore.github.io/projects/medicalmega/img/loading-buffering.gif) no-repeat center / contain;
     width: 20px;
     height: 20px;
 }
@@ -774,8 +774,7 @@ function init() {
 
                     if (document.querySelectorAll('.check-accept input')[0].checked && 
                         document.querySelector('#edit-login-register-name').value != '' && 
-                        document.querySelector('#edit-login-register-password-pass1').value != '' && 
-                        !document.querySelector('.js-password-strength__text').innerHTML.includes('Weak')
+                        document.querySelector('#edit-login-register-password-pass1').value != ''
                      ) {
                         e.currentTarget.classList.add('loading')
                     }
