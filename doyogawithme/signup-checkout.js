@@ -14,7 +14,7 @@ let dir = 'https://conversionratestore.github.io/projects/doyogawithme/img/';
 
 let style = `
 <style>
-input[type="checkbox"], input[type="radio"] {
+input[type="checkbox"], input[type="radio"], .form-item-payment-information-add-payment-method-billing-information-address-0-address-organization {
     display: none;
 }
 .o-page--simpleCard .o-page__main {
@@ -484,6 +484,8 @@ let headHTML = `
 </div>`
 
 function pushDataLayer(action, label = '') {
+    console.log(action + " : " + label )
+
     window.dataLayer = window.dataLayer || [];
     dataLayer.push({
     'event': 'event-to-ga',
@@ -1450,13 +1452,6 @@ let setLabelState = setInterval(() => {
         document.querySelector('.form-item-payment-information-add-payment-method-billing-information-address-0-address-administrative-area').insertAdjacentHTML('afterbegin',`<label class="form-required">State</label>`)
     }
 });
-let changeCompane = setInterval(() => {
-    if (document.querySelector('.form-item-payment-information-add-payment-method-billing-information-address-0-address-organization label') != null && document.querySelector('.form-item-payment-information-add-payment-method-billing-information-address-0-address-organization label').innerHTML == 'Company') {
-        document.querySelector('.form-item-payment-information-add-payment-method-billing-information-address-0-address-organization label').innerHTML = 'Name on Card'
-        document.querySelector('.form-item-payment-information-add-payment-method-billing-information-address-0-address-organization label+input').placeholder = 'Enter a card name'
-
-    }
-})
 
 let applyCoupon = setInterval(() => {
     if (document.querySelector('[data-drupal-selector="edit-sidebar-coupon-redemption-form-apply"]') != null && document.querySelector('.field-email') == null && document.querySelector('.btn_got_coupon') == null) {
@@ -1464,12 +1459,13 @@ let applyCoupon = setInterval(() => {
     }            
 }, 200)
 
+//remove Message "DYWM Subscription, Yearly added to "
 let findMessageSubscription = setInterval(() => {
     if (document.querySelector('.messages--status') != null && document.querySelector('.messages--status').innerHTML.includes('your cart')) {
-        clearInterval(findMessageSubscription)
         document.querySelector('.messages--status').remove();
     }
 });
+
 let disabledBtnFun = () => {
     let disabledBtn = setInterval(() => {
         if (document.querySelectorAll('form #edit-payment-information input') && document.querySelector('[data-drupal-selector="edit-actions-next"]') != null && document.querySelector('.btn_start_membership') != null) {
