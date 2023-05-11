@@ -415,7 +415,7 @@ const style = /* html */ `
         .comp_table thead th:nth-child(4)::before {
             content: '';
             display: block;
-            height: 100%;
+            height: calc(100% - 20px);
             position: absolute;
             width: 1px;
             background-color: #D9D9D9;
