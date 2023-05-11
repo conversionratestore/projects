@@ -1305,7 +1305,7 @@ function init() {
                     padding: 8px 0 0 0;
                 }
                 [data-drupal-selector="edit-commerce-donation-pane-field-donation-amount-0-donation-level-amount"] {
-                    width: 230px;
+                    width: 230px!important;
                 }
                 .tablesaw th, .tablesaw td {
                     padding: 0 0 16px 0;
