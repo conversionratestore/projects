@@ -683,7 +683,7 @@ function init() {
                 <div class="social-auth__container">
                     <div class="social-auth__divider">
                         <span class="social-auth__divider__text">
-                        or create an account
+                        or
                         </span>
                     </div>
                 </div>`)
@@ -795,7 +795,9 @@ function init() {
                     }
                   
                 })
-
+                document.querySelectorAll('form .form-item label').forEach(item => {
+                    item.classList.add('form-required')
+                })
                 document.querySelectorAll('form input').forEach(item => {
                     item.addEventListener('click', (e) => {
                         let parent = e.currentTarget.parentElement;
