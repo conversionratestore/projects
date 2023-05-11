@@ -1062,6 +1062,9 @@ function init() {
                     height: 48px;
                     padding: 0;
                 }
+                .recurly-hosted-field.recurly-element-invalid, .recurly-hosted-field.recurly-hosted-field-invalid {
+                    border-color: #e62600;
+                }
                 .form-item {
                     margin-bottom: 16px;
                 }
