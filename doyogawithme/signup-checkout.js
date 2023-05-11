@@ -608,12 +608,39 @@ function init() {
                     pushDataLayer(`Sign up`, 'Log in form')
                 })
             }
+            //all register pages
+            if (window.location.href.includes('/yogi/register') || window.location.href.includes('yogi/intake-survey') || window.location.href.includes('/checkout') && window.location.href.includes('/login')) {
+                document.body.insertAdjacentHTML('afterbegin', `
+                <style>
+                    #main-content {
+                        min-height: auto!important;
+                    }
+                    .password-suggestions, .user-register-form .ac-newsletter-reg-suffix, .user-register-form .form-type-checkbox, header.o-page__header, .js-form-item-pass-pass2, .user-register-form .password-strength__title, .user-register-form .password-strength {
+                        display: none!important;
+                    }
+                    @media only screen and (max-width: 767px) {
+                        .o-page--simpleCard .o-page__mainContentWrapper {
+                            margin-top: 16px;
+                        }
+                    }
+                </style>`)
+                document.querySelector('.o-page__mainContentWrapper').insertAdjacentHTML('beforebegin',`
+                <div class="header-logo text-center"> <a href="/" class="logo"><img src="/themes/custom/lotus/logo.png" alt="image"></a></div>`);
+
+            }
 
             if (window.location.href.includes('/checkout') && window.location.href.includes('/login') && document.querySelectorAll('.sfc-tabs__tablistItem > a').length > 1) {
                 document.body.insertAdjacentHTML('afterbegin',`
                 <style>
                     .sfc-tabs__tablist, .password-suggestions, #edit-login-register-password-pass2, #edit-login-register-password-pass2, .form-item-login-register-legal-legal-accept, .form-item-login-register-legal-extras-1, .ac-newsletter-reg-suffix, #edit-login-register-field-ac-newsletter-reg-wrapper, #edit-login-register-password .password-strength, .form-item-login-register-password-pass2, .messages--status, .c-jsTabs__tabList {
                         display: none!important;
+                    }
+
+                    body.show-header .header-logo{
+                        display: none!important;
+                    }
+                    body.show-header header.o-page__header{
+                        display: block!important;
                     }
                     .sfc-tabs__tabcontent {
                         margin: 0;
@@ -725,6 +752,7 @@ function init() {
                     document.querySelectorAll('.sfc-tabs__tablistItem > a')[1].click()
                     document.querySelector('.o-page--simpleCard .o-page__mainContent').classList.add('active')
                     document.querySelector('#edit-login-register-mail').focus()
+                    document.body.classList.remove('show-header');
                     pushDataLayer(`Sign up`, 'Log in form')
                     pushDataLayer('Visibility','Sing up form')
                 })
@@ -732,6 +760,7 @@ function init() {
                     document.querySelectorAll('.sfc-tabs__tablistItem > a')[0].click()
                     document.querySelector('.o-page--simpleCard .o-page__mainContent').classList.remove('active')
                     document.querySelector('#edit-login-returning-customer-name').focus()
+                    document.body.classList.add('show-header')
                     pushDataLayer(`Log in`, 'Sing up form')
                     pushDataLayer('Visibility','Log in form')
                 })
@@ -741,7 +770,7 @@ function init() {
                 }
                 document.querySelector('#edit-login-returning-customer-submit').addEventListener('click', () => {
                     localStorage.setItem('email', document.querySelector('#edit-login-returning-customer-name').value)
-
+                    pushDataLayer('Log in button','Log in form')
                     lsRememberMe('.remember-me input', '#edit-login-returning-customer-name')
                 })
 
@@ -819,25 +848,6 @@ function init() {
                 document.querySelector('.remember-me + a').addEventListener('click', (e) => {
                     pushDataLayer(`Forgot password`, 'Log in form')
                 })
-            }
-            if (window.location.href.includes('/yogi/register') || window.location.href.includes('yogi/intake-survey')) {
-                document.body.insertAdjacentHTML('afterbegin', `
-                <style>
-                    #main-content {
-                        min-height: auto!important;
-                    }
-                    .password-suggestions, .user-register-form .ac-newsletter-reg-suffix, .user-register-form .form-type-checkbox, header.o-page__header, .js-form-item-pass-pass2, .user-register-form .password-strength__title, .user-register-form .password-strength {
-                        display: none!important;
-                    }
-                    @media only screen and (max-width: 767px) {
-                        .o-page--simpleCard .o-page__mainContentWrapper {
-                            margin-top: 16px;
-                        }
-                    }
-                </style>`)
-                document.querySelector('.o-page__mainContentWrapper').insertAdjacentHTML('beforebegin',`
-                <div class="header-logo text-center"> <a href="/" class="logo"><img src="/themes/custom/lotus/logo.png" alt="image"></a></div>`);
-
             }
         
             if (window.location.href.includes('/yogi/register')) {
