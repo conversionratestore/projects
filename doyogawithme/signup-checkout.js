@@ -1011,6 +1011,9 @@ function init() {
                         color: #017922;
                         padding: 8px;
                         border: none;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
                     }
                     .messages--status svg {
                         margin-right: 8px;
@@ -1071,15 +1074,19 @@ function init() {
                     .profile-student-form .form-actions {
                         padding-top: 2px;
                     }
+
+                    @media only screen and (min-width: 768px) {
+                        .messages--status {
+                            margin-left: -18px;
+                            margin-right: -18px;
+                        }
+                    }
                     @media only screen and (max-width: 767px) {
                         .profile-student-form .form-actions {
                             padding-bottom: 42px
                         }
                         .messages--status {
                             font-size: 12px;
-                            display: flex;
-                            align-items: center;
-                            justify-content: center;
                         }
                         .messages--status svg {
                             width: 12px;
