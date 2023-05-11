@@ -5232,7 +5232,7 @@ const waitForSplitit = setInterval(() => {
 
     const closeSplititPopup = () => {
       document.querySelector('.splitit_overlay').classList.remove('opened_splitit_popup')
-      sendGAEvent('close splitit popup')
+      sendGAEvent('Close', 'Splitit popup')
     }
 
     document.querySelector('.splitit_overlay').addEventListener('click', function (event) {
@@ -5250,7 +5250,7 @@ const waitForSplitit = setInterval(() => {
     if (DEVICE === 'mobile') {
       document.querySelector('.splitit_popup_container .top').addEventListener('click', () => {
         document.querySelector('.calculations_container').classList.add('opened_this')
-        sendGAEvent('open calculations')
+        sendGAEvent('Click on payments', 'Splitit popup')
       })
     }
 
@@ -5627,7 +5627,7 @@ const waitForContactLinks = setInterval(() => {
         if (element.closest('.contact_us')) {
           sendGAEvent('Click on email in Contact us', 'Our mission')
         } else {
-          sendGAEvent('Click on email in FAQ', 'FAQ')
+          sendGAEvent('Click on email', 'Experience faster recovery and pain relief with Novaa Light Pad')
         }
       })
 
@@ -5644,6 +5644,7 @@ const waitForPrivy = setInterval(() => {
 
     document.getElementById('privy-container').addEventListener('click', () => {
       sendGAEvent('Click on Get discount button', 'Sticky button')
+
     })
 
     if (DEVICE === 'mobile') {
