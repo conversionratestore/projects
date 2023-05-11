@@ -157,7 +157,7 @@ form label {
 [data-drupal-selector="edit-login-returning-customer"] .social-auth__divider__text {
     padding: 0 12px; 
 }
-form input, .select2-container--default .select2-selection--single, input:not([type="submit"]):not([type=checkbox]):not([type=radio]):not([type=button]) {
+form input:not([data-drupal-selector="edit-search-api-fulltext"]), .select2-container--default .select2-selection--single, input:not([type="submit"]):not([type=checkbox]):not([type=radio]):not([type=button]):not([data-drupal-selector="edit-search-api-fulltext"]) {
     font-family: 'Manrope';
     font-style: normal;
     font-weight: 500;
@@ -175,7 +175,7 @@ form input, .select2-container--default .select2-selection--single, input:not([t
 .select2-container--default .select2-selection--single {
     background: none;
 }
-form input::-webkit-input-placeholder {
+form input:not([data-drupal-selector="edit-search-api-fulltext"])::-webkit-input-placeholder {
     font-family: 'Manrope';
     font-style: normal;
     font-weight: 500;
@@ -184,7 +184,7 @@ form input::-webkit-input-placeholder {
     color: #A5A5A5;
 }
 
-form input:-moz-placeholder {
+form input:not([data-drupal-selector="edit-search-api-fulltext"]):-moz-placeholder {
     font-family: 'Manrope';
     font-style: normal;
     font-weight: 500;
@@ -192,7 +192,7 @@ form input:-moz-placeholder {
     line-height: 24px;
     color: #A5A5A5;
  }
-form input::-moz-placeholder {
+form input:not([data-drupal-selector="edit-search-api-fulltext"])::-moz-placeholder {
     font-family: 'Manrope';
     font-style: normal;
     font-weight: 500;
@@ -200,7 +200,7 @@ form input::-moz-placeholder {
     line-height: 24px;
     color: #A5A5A5;
 }
-form input:-ms-input-placeholder {
+form input:not([data-drupal-selector="edit-search-api-fulltext"]):-ms-input-placeholder {
     font-family: 'Manrope';
     font-style: normal;
     font-weight: 500;
@@ -1373,6 +1373,7 @@ function init() {
                     position: fixed;
                     top: 0;
                     right: 0;
+                    z-index: 99;
                 }
                 .info_dashed {
                     background: #F9F9F9;
@@ -1654,12 +1655,6 @@ let setLabelState = setInterval(() => {
 
 let applyCoupon = setInterval(() => {
     if (document.querySelector('[data-drupal-selector="edit-sidebar-coupon-redemption-form-apply"]') != null && document.querySelector('.field-email') == null && document.querySelector('.btn_got_coupon') == null) {
-        setTimeout(() => {
-            if (document.querySelector('.messages--error') != null) {
-                document.querySelector('.messages--error').remove()
-            }
-        }, 5000)
-
         init()
     }            
 }, 200)
