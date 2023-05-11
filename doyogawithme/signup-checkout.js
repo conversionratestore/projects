@@ -478,7 +478,7 @@ input[type="checkbox"]:checked ~ .check {
 
 let headHTML = `
 <div class="topbar">
-    <a href="https://www.doyogawithme.com/become-a-subscriber" class="btn-back flex items-center">
+    <a href="https://www.doyogawithme.com/become-a-subscriber" class="btn-back flex items-center" onclick="pushDataLayer('Back', getLabel(event))">
         <svg width="10" height="16" viewBox="0 0 10 16" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M0.255198 7.39519C-0.0850662 7.72509 -0.0850662 8.27491 0.255198 8.60481L7.58979 15.7526C7.96786 16.0825 8.53497 16.0825 8.87524 15.7526L9.7448 14.9095C10.0851 14.5796 10.0851 14.0298 9.7448 13.6632L3.9225 7.98167L9.7448 2.33677C10.0851 1.97022 10.0851 1.42039 9.7448 1.09049L8.87524 0.247423C8.53497 -0.0824742 7.96786 -0.0824742 7.58979 0.247423L0.255198 7.39519Z" fill="#027DB8"/>
         </svg>
@@ -490,6 +490,21 @@ let headHTML = `
         <div class="step"><div class="flex items-center" data-step="3">Payment</div></div>
     </div>
 </div>`
+
+function getLabel(event) {
+    let label = '';
+    let href = window.location.href;
+    if (href.includes('yogi/register') || (href.includes('/checkout') && href.includes('/login'))) {
+        if (event.closest('.o-page__main').querySelector('.sfc-tabs__tabcontent:not([aria-hidden=true] h2)') != null && event.closest('.o-page__main').querySelector('.sfc-tabs__tabcontent:not([aria-hidden=true] h2)').innerHTML.includes('Log In')) {
+            label = 'Log in form'
+        } else {
+            label = 'Create your account'
+        }
+    } else if (href.includes('yogi/login')) {
+        label = 'Log in form'
+    }
+    return label;
+}
 
 function pushDataLayer(action, label = '') {
     console.log(action + " : " + label )
@@ -596,18 +611,6 @@ function init() {
 
                 document.querySelector('.social-auth.auth-link').addEventListener('click', () => {
                     pushDataLayer('Login with google button','Log in form')
-                })
-                document.querySelectorAll('form input').forEach(item => {
-                    item.addEventListener('click', (e) => {
-                        let parent = e.currentTarget.parentElement;
-                        if (parent.querySelector('label')) {
-                            pushDataLayer(`Click on ${parent.querySelector('label').innerText}`, 'Log in form')
-                        } else if (parent.classList.contains('remember-me')) {
-                            pushDataLayer('Remember me','Log in form')
-                        } else {
-                            pushDataLayer(`Click on ${e.currentTarget.value}`, 'Log in form')
-                        }
-                    })
                 })
                 document.querySelector('.remember-me + a').addEventListener('click', (e) => {
                     pushDataLayer(`Forgot password`, 'Log in form')
@@ -730,9 +733,9 @@ function init() {
                 document.querySelector('[data-drupal-selector="edit-login-returning-customer"] .social-auth').addEventListener('click', (e) => {
                     pushDataLayer('Login with google button','Log in form')
                 })
-                //event: Click google Sing up form
+                //event: Click google Create your account
                 document.querySelector('[data-drupal-selector="edit-login-register"] .social-auth').addEventListener('click', (e) => {
-                    pushDataLayer('Sign up with google','Sing up form')
+                    pushDataLayer('Sign up with google','Create your account')
                 })
                 document.querySelector('[data-drupal-selector="edit-login-register"] .social-auth.auth-link span').innerHTML = 'Sign up with Google'
 
@@ -753,7 +756,7 @@ function init() {
 
                 document.querySelectorAll('.check-accept a').forEach(item => {
                     item.addEventListener('click', (e) => {
-                        pushDataLayer(e.currentTarget.innerText,'Sing up form')
+                        pushDataLayer(e.currentTarget.innerText,'Create your account')
                     })
                 })
                 document.querySelector('[data-drupal-selector="edit-login-returning-customer"] .singup a').addEventListener('click', (e) => {
@@ -762,14 +765,14 @@ function init() {
                     document.querySelector('#edit-login-register-mail').focus()
                     document.body.classList.remove('show-header');
                     pushDataLayer(`Sign up`, 'Log in form')
-                    pushDataLayer('Visibility','Sing up form')
+                    pushDataLayer('Visibility','Create your account')
                 })
                 document.querySelector('[data-drupal-selector="edit-login-register"] .singup a').addEventListener('click', (e) => {
                     document.querySelectorAll('.sfc-tabs__tablistItem > a')[0].click()
                     document.querySelector('.o-page--simpleCard .o-page__mainContent').classList.remove('active')
                     document.querySelector('#edit-login-returning-customer-name').focus()
                     document.body.classList.add('show-header')
-                    pushDataLayer(`Log in`, 'Sing up form')
+                    pushDataLayer(`Log in`, 'Create your account')
                     pushDataLayer('Visibility','Log in form')
                 })
 
@@ -839,20 +842,6 @@ function init() {
                 document.querySelectorAll('form .form-item label').forEach(item => {
                     item.classList.add('form-required')
                 })
-                document.querySelectorAll('form input').forEach(item => {
-                    item.addEventListener('click', (e) => {
-                        let parent = e.currentTarget.parentElement;
-                        let label = e.currentTarget.closest('[data-drupal-selector="edit-login-returning-customer"]') ? 'Log in form' : 'Sing up form';
-                        
-                        if (parent.querySelector('label')) {
-                            pushDataLayer(`Click on ${parent.querySelector('label').innerText}`, label)
-                        } else if (parent.tagName == 'LABEL') {
-                            pushDataLayer(parent.innerText, label)
-                        }  else {
-                            pushDataLayer(`Click on ${e.currentTarget.value}`, label)
-                        }
-                    })
-                })
                 document.querySelector('.remember-me + a').addEventListener('click', (e) => {
                     pushDataLayer(`Forgot password`, 'Log in form')
                 })
@@ -880,7 +869,7 @@ function init() {
 
                 document.querySelectorAll('.check-accept a').forEach(item => {
                     item.addEventListener('click', (e) => {
-                        pushDataLayer(e.currentTarget.innerText,'Sing up form')
+                        pushDataLayer(e.currentTarget.innerText,'Create your account')
                     })
                 })
                 document.querySelector('.form-actions .button').insertAdjacentHTML('afterend', `<button type="button" class="btn-reg">Sign Up</button><p class="text-center singup">Already have an account? <a href="/yogi/login">Log in</a></p>`)
@@ -891,6 +880,9 @@ function init() {
                 })
 
                 document.querySelector('.social-auth.auth-link span').innerHTML = 'Sign up with Google'
+                document.querySelector('[data-drupal-selector="user-register-form"] .social-auth').addEventListener('click', (e) => {
+                    pushDataLayer('Sign up with google','Create your account')
+                })
                 //passwords
                 document.querySelector('#edit-pass-pass1').addEventListener('input', (e) => {
                     document.querySelector('#edit-pass-pass2').value = e.target.value;
@@ -935,6 +927,35 @@ function init() {
                         document.querySelector('.password-strength').style = ''
                     }
                 
+                })
+
+
+                pushDataLayer('Visibility','Create your account')
+            }
+
+            if (window.location.href.includes('/yogi/register') || window.location.href.includes('/yogi/login') || (window.location.href.includes('/checkout') && window.location.href.includes('/login'))) {
+
+                document.querySelectorAll('form input').forEach(item => {
+                    item.addEventListener('click', (e) => {
+                        let parent = e.currentTarget.parentElement;
+                        let label = '';
+
+                        if (window.location.href.includes('/yogi/register')) {
+                            label = 'Create your account'
+                        } else {
+                            label =  !e.currentTarget.closest('[data-drupal-selector="edit-login-returning-customer"]') || window.location.href.includes('/yogi/login')  ? 'Log in form' : 'Create your account';
+                        }
+                        
+                        if (parent.querySelector('label')) {
+                            pushDataLayer(`Click on ${parent.querySelector('label').innerText}`, label)
+                        } else if (parent.tagName == 'LABEL') {
+                            pushDataLayer(parent.innerText, label)
+                        }  else if (parent.classList.contains('remember-me')) {
+                            pushDataLayer('Remember me','Log in form')
+                        } else {
+                            pushDataLayer(`Click on ${e.currentTarget.value == 'Create new account' ? 'Sign up' : e.currentTarget.value}`, label)
+                        }
+                    })
                 })
             }
 
