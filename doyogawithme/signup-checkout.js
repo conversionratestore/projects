@@ -1206,7 +1206,7 @@ function init() {
                 .form-item {
                     margin-bottom: 16px;
                 }
-                #edit-payment-information-add-payment-method-billing-information-address-0-address {
+                [data-drupal-selector="edit-payment-information-add-payment-method-billing-information-address-0-address"] {
                     display: flex;
                     flex-direction: column;
                 }
@@ -1220,7 +1220,7 @@ function init() {
                 #edit-payment-information-add-payment-method-billing-information-address-0-address-country-code, [data-drupal-selector="edit-payment-information-add-payment-method-billing-information-address-0-address-country-code"] {
                     order: 5;
                 }
-                #edit-payment-information-add-payment-method-billing-information-address-0-address-container4 {
+                #edit-payment-information-add-payment-method-billing-information-address-0-address-container4, [data-drupal-selector="edit-payment-information-add-payment-method-billing-information-address-0-address-container4"] {
                     order: 6;
                 }
                 .address-container-inline > .form-item {
