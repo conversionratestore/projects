@@ -1511,14 +1511,14 @@ function init() {
         
             document.querySelector('.btn_start_membership').addEventListener('click', (e) => {
                 document.querySelector('[data-drupal-selector="edit-actions-next"]').click();
-            })
 
-            let invalidCard = setInterval(() => {
-                if (document.querySelector('.recurly-hosted-field.recurly-hosted-field-invalid')) {
-                    clearInterval(invalidCard)
-                    window.scrollTo(0,0)
-                }
-            });
+                let invalidCard = setInterval(() => {
+                    if (document.querySelector('.recurly-hosted-field.recurly-hosted-field-invalid')) {
+                        clearInterval(invalidCard)
+                        window.scrollTo(0,0)
+                    }
+                });
+            })
         }
     });
 }
