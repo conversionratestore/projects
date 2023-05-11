@@ -33,6 +33,35 @@ function getDeliveryDateRange(country) {
 const style = /*html*/`
     <style>
 
+    body #privy-container #privy-inner-container .privy-mobile.privy-tab-container.privy-basic {
+        z-index: 99 !important;
+        transition: bottom 0.5s ease-in-out;
+        padding: 0 !important;
+        bottom: 0;
+    } 
+
+    body #privy-container #privy-inner-container .privy-mobile.privy-tab-container.privy-basic.custom_pos {
+        bottom: 82px;
+    }
+    
+    #privy-container #privy-inner-container .privy-mobile.privy-tab-container.privy-basic .privy-tab.privy-mobile-tab {
+        text-align: center;
+        border-radius: 0;
+    }
+
+    #privy-container #privy-inner-container .privy-mobile.privy-tab-container.privy-basic .privy-tab.privy-mobile-tab::after {
+        display: none;
+    }
+
+    .custom_get {
+        font-family: 'Urbanist', sans-serif;
+        font-weight: 700;
+    font-size: 16px;
+    line-height: 26px;
+    color: #FFFFFF;
+    margin: 8px auto !important;
+    }
+
     .gf_row {
         margin: 0 !important;
     }
@@ -53,10 +82,6 @@ const style = /*html*/`
     .pdp_main .slick-slider .slick-dots li a:before {
         display: none;
     }    
-
-#privy-container #privy-inner-container .privy-mobile.privy-tab-container.privy-basic.privy-bottom {
-  bottom: 83px !important;
-}
 
 .main-content {
   display: none !important;
@@ -4985,7 +5010,7 @@ waitForElement('#PageContainer').then(el => {
 const sendGAEvent = (eventAction, eventLabel = '') => { // Send a Google Analytics event
     const eventData = {
         event: 'event-to-ga',
-        eventCategory: `Exp: ${DEVICE}`,
+        eventCategory: `Exp: PDP redesign. ${DEVICE.charAt(0).toUpperCase() + DEVICE.slice(1)}`,
         eventAction,
         eventLabel,
     }
@@ -5365,15 +5390,13 @@ let jqueryLoaded = setInterval(() => {
                 })
 
 
-                waitForEl('.slider_for_wrap').then(el => {
+                waitForElement('.slider_for_wrap').then(el => {
                     swipe('.slider_for_wrap')
                 })
 
-                waitForEl('#reviews .slider_wrap').then(el => {
+                waitForElement('#reviews .slider_wrap').then(el => {
                     swipe('#reviews .slider_wrap')
                 })
-
-
 
                 // $('.slider_for').on('afterChange', function (event, slick, currentSlide) {
                 //     let $slides = $('.slider_nav .slick-slide')
@@ -5584,12 +5607,17 @@ let jqueryLoaded = setInterval(() => {
                         if (!navList.classList.contains('fixed')) {
                             navList.classList.add('fixed')
 
+                            if (document.querySelector('#privy-container #privy-inner-container .privy-mobile.privy-tab-container.privy-basic')) {
+                                document.querySelector('#privy-container #privy-inner-container .privy-mobile.privy-tab-container.privy-basic').classList.add('custom_pos')
+                            }
+
+                            
+
                             if (!once) {
                                 sendGAEvent('Visibility Get Novaalab light pad sticky button', 'Sticky button')
                                 sendGAEvent('Visibility navigation panel')
                                 once = true
                             }
-
 
                             document.querySelector('.empty_space').style.paddingTop = heightWithMargin + 'px'
                         }
@@ -5598,6 +5626,14 @@ let jqueryLoaded = setInterval(() => {
                             navList.classList.remove('fixed')
 
                             document.querySelector('.empty_space').style.paddingTop = '0px'
+
+                            
+                            
+                            if (document.querySelector('#privy-container #privy-inner-container .privy-mobile.privy-tab-container.privy-basic')) {
+                                document.querySelector('#privy-container #privy-inner-container .privy-mobile.privy-tab-container.privy-basic').classList.remove('custom_pos')
+                            }
+                            
+                            
                         }
                     }
                 })
@@ -5668,11 +5704,24 @@ let jqueryLoaded = setInterval(() => {
             if (document.getElementById('privy-container')) {
                 clearInterval(waitForPrivy)
 
-                checkVisibilityAfterMs('#privy-container')
+                sendGAEvent('Visibility Get discount button', 'Sticky button')
 
                 document.getElementById('privy-container').addEventListener('click', () => {
                     sendGAEvent('Click on Get discount button', 'Sticky button')
                 })
+
+                if (DEVICE === 'mobile') {
+                    const waitForH2 = setInterval(() => {
+                        if(document.querySelector('.privy-truncate')) {
+                            clearInterval(waitForH2)
+                    
+                            document.querySelector('.privy-mobile-tab').innerHTML = `<p class="custom_get">Get discount 
+                            <svg xmlns="http://www.w3.org/2000/svg" width="8" height="10" viewBox="0 0 8 10" fill="none">
+                            <path d="M0.912597 1.175L4.72926 5L0.912598 8.825L2.0876 10L7.0876 5L2.0876 1.87058e-07L0.912597 1.175Z" fill="white"/>
+                            </svg></p>`
+                        }
+                    }, WAIT_INTERVAL_TIMEOUT)
+                }
             }
         }, 500)
     }
