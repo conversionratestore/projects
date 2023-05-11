@@ -1719,23 +1719,27 @@ let disabledBtnFun = () => {
         }
     });
 } 
-
-let mut = new MutationObserver(function (muts) {
-    if (document.querySelector('#select2-edit-payment-information-add-payment-method-billing-information-address-0-address-administrative-area-container') != null) {
-        mut.disconnect()
-
-        error = document.querySelector('#select2-edit-payment-information-add-payment-method-billing-information-address-0-address-administrative-area-container').innerHTML.includes('Select')
-        disabledBtnFun()
-    }
-    mut.observe(document, {
-        childList: true,
-        subtree: true
-    });
-})
-mut.observe(document, {
+let optionMut = {
     childList: true,
     subtree: true
-});
+};
+
+let mut = new MutationObserver(function (muts) {
+    if (document.querySelector('[data-drupal-selector="edit-payment-information-add-payment-method-billing-information-address-0-address-country-code"]') != null) {
+        mut.disconnect()
+
+        disabledBtnFun()
+    }
+    mut.observe(document, optionMut);
+    if (document.querySelector('[data-drupal-selector="edit-payment-information-add-payment-method-billing-information-address-0-address-administrative-area"]') != null) {
+        mut.disconnect()
+
+        error = document.querySelector('[data-drupal-selector="edit-payment-information-add-payment-method-billing-information-address-0-address-administrative-area"]').innerHTML.includes('Select')
+        disabledBtnFun()
+    }
+    mut.observe(document, optionMut);
+})
+mut.observe(document, optionMut);
 
 pushDataLayer('loaded')
 
