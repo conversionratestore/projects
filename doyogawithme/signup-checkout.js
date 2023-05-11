@@ -497,7 +497,7 @@ function getLabel(event) {
     let href = window.location.href;
 
     if (href.includes('yogi/register') || (href.includes('/checkout') && href.includes('/login'))) {
-        if (target.closest('.o-page__main').querySelector('.sfc-tabs__tabcontent:not([aria-hidden=true] h2)') != null && target.closest('.o-page__main').querySelector('.sfc-tabs__tabcontent:not([aria-hidden=true] h2)').innerHTML.includes('Log In')) {
+        if (target.closest('.o-page__main').querySelector('.sfc-tabs__tabcontent:not([aria-hidden=true]) h2') != null && target.closest('.o-page__main').querySelector('.sfc-tabs__tabcontent:not([aria-hidden=true]) h2').innerHTML.includes('Log In')) {
             label = 'Log in form'
         } else {
             label = 'Create your account'
@@ -1535,28 +1535,6 @@ function init() {
                     document.querySelector('.btn_start_membership').disabled = true;
                 } 
             })
-
-            let waitRadios = setInterval(() => {
-                if (document.querySelector('.address-book-edit-button') == null && document.querySelectorAll('.form-item-payment-information-payment-method').length > 1 && document.querySelectorAll('form #edit-payment-information input:not([type="hidden"],[type="checkbox"],[type="radio"])').length > 1) {
-                    clearInterval(waitRadios)
-                    console.log('waitRadios')
-                    document.querySelectorAll('form #edit-payment-information input:not([type="hidden"],[type="checkbox"],[type="radio"])').forEach(item => {
-                        item.addEventListener('input', (e) => {
-                            setTimeout(() => {
-                                disabledBtnFun()
-                            }, 200);
-                            
-                        })
-                    })
-
-                    document.querySelector('.country').addEventListener('change', (e) => {
-                        console.log(e.currentTarget.value)
-                        setTimeout(() => {
-                            disabledBtnFun()
-                        }, 200);
-                    })
-                }
-            })
             
             if (document.querySelector('.samsara .form-type-checkbox .check') == null) {
                 document.querySelector('[data-drupal-selector="edit-commerce-donation-pane-donation-toggler"]').insertAdjacentHTML('afterend', `<span class="check"></span>`)
@@ -1626,6 +1604,30 @@ function init() {
                 });
             })
 
+            let waitRadios = setInterval(() => {
+                if (document.querySelector('.address-book-edit-button') == null && document.querySelectorAll('.form-item-payment-information-payment-method').length > 1 && document.querySelectorAll('form #edit-payment-information input:not([type="hidden"],[type="checkbox"],[type="radio"])').length > 1 && document.querySelector('[data-drupal-selector="edit-commerce-donation-pane-donation-toggler"]') != null) {
+                    clearInterval(waitRadios)
+                    
+                    document.querySelectorAll('form #edit-payment-information input:not([type="hidden"],[type="checkbox"],[type="radio"])').forEach(item => {
+                        item.addEventListener('input', (e) => {
+                            setTimeout(() => {
+                                disabledBtnFun()
+                            }, 200);
+                            
+                        })
+                    })
+
+                    document.querySelector('.country').addEventListener('change', (e) => {
+                        console.log(e.currentTarget.value)
+                        setTimeout(() => {
+                            disabledBtnFun()
+                        }, 200);
+                    })
+                    console.log('waitRadios')
+                    disabledBtnFun()
+                }
+            })
+
             pushDataLayer('Visibility',label)
         }
     });
@@ -1660,7 +1662,7 @@ let disabledBtnFun = () => {
     let disabledBtn = setInterval(() => {
         if (document.querySelectorAll('form #edit-payment-information input') && document.querySelector('[data-drupal-selector="edit-actions-next"]') != null && document.querySelector('.btn_start_membership') != null) {
             error = false;
-            error = document.querySelector('#select2-edit-payment-information-add-payment-method-billing-information-address-0-address-administrative-area-container') != null && document.querySelector('#select2-edit-payment-information-add-payment-method-billing-information-address-0-address-administrative-area-container').innerHTML.includes('Select');
+            error = document.querySelector('[data-drupal-selector="edit-payment-information-add-payment-method-billing-information-address-0-address-administrative-area"]') != null && document.querySelector('[data-drupal-selector="edit-payment-information-add-payment-method-billing-information-address-0-address-administrative-area"] + .select2 .select2-selection__rendered').innerHTML.includes('Select');
             
             clearInterval(disabledBtn)
 
@@ -1683,6 +1685,7 @@ let disabledBtnFun = () => {
                     e.stopImmediatePropagation()
                     let parent = e.currentTarget.parentElement
                     if (parent.querySelector('label')) {
+                        console.log(e.target)
                         if (parent.closest('[data-drupal-selector="edit-commerce-donation-pane-field-gift-type"]')) {
                             pushDataLayer(`Select Donation Type - ${parent.innerText}`, label)
                         } else if (parent.closest('[data-drupal-selector="edit-commerce-donation-pane-field-donation-amount-0-donation-level"]')) {
