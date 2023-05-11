@@ -604,6 +604,9 @@ function init() {
                 document.querySelector('.remember-me + a').addEventListener('click', (e) => {
                     pushDataLayer(`Forgot password`, 'Log in form')
                 })
+                document.querySelector('.singup a').addEventListener('click', (e) => {
+                    pushDataLayer(`Sign up`, 'Log in form')
+                })
             }
 
             if (window.location.href.includes('/checkout') && window.location.href.includes('/login') && document.querySelectorAll('.sfc-tabs__tablistItem > a').length > 1) {
@@ -722,13 +725,14 @@ function init() {
                     document.querySelectorAll('.sfc-tabs__tablistItem > a')[1].click()
                     document.querySelector('.o-page--simpleCard .o-page__mainContent').classList.add('active')
                     document.querySelector('#edit-login-register-mail').focus()
+                    pushDataLayer(`Sign up`, 'Log in form')
                     pushDataLayer('Visibility','Sing up form')
                 })
                 document.querySelector('[data-drupal-selector="edit-login-register"] .singup a').addEventListener('click', (e) => {
                     document.querySelectorAll('.sfc-tabs__tablistItem > a')[0].click()
                     document.querySelector('.o-page--simpleCard .o-page__mainContent').classList.remove('active')
                     document.querySelector('#edit-login-returning-customer-name').focus()
-
+                    pushDataLayer(`Log in`, 'Sing up form')
                     pushDataLayer('Visibility','Log in form')
                 })
 
