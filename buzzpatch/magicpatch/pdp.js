@@ -934,7 +934,10 @@ function main() {
     {
         threshold: 0.2,
     })
-    checkFreeShipping.observe(document.querySelector('header'))
+    setTimeout(function(){
+        checkFreeShipping.observe(document.querySelector('header'))
+    }, 2000)
+    
 
     $('.btn_main').click(function() {
         document.querySelector('#open').click()
