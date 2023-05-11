@@ -1059,16 +1059,29 @@ function init() {
                         .profile-student-form .form-actions {
                             padding-bottom: 42px
                         }
+                        .messages--status {
+                            font-size: 12px;
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                        }
+                        .messages--status svg {
+                            width: 12px;
+                        }
                     }
                 </style>`)
 
+                let messHtml = `
+                    <svg width="16" height="12" viewBox="0 0 16 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M5.42188 11.7644C5.73438 12.0785 6.26562 12.0785 6.57812 11.7644L15.7656 2.5288C16.0781 2.21466 16.0781 1.68063 15.7656 1.36649L14.6406 0.235602C14.3281 -0.078534 13.8281 -0.078534 13.5156 0.235602L6.01562 7.77487L2.48438 4.25654C2.17188 3.94241 1.67188 3.94241 1.35938 4.25654L0.234375 5.38743C-0.078125 5.70157 -0.078125 6.2356 0.234375 6.54974L5.42188 11.7644Z" fill="#017922"/>
+                    </svg>
+                    <span>Registration successful. You are now logged in.</span>`;
+
                 if (document.querySelector('.messages--status') != null) {
-                    document.querySelector('.messages--status').innerHTML = `
-                        <svg width="16" height="12" viewBox="0 0 16 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M5.42188 11.7644C5.73438 12.0785 6.26562 12.0785 6.57812 11.7644L15.7656 2.5288C16.0781 2.21466 16.0781 1.68063 15.7656 1.36649L14.6406 0.235602C14.3281 -0.078534 13.8281 -0.078534 13.5156 0.235602L6.01562 7.77487L2.48438 4.25654C2.17188 3.94241 1.67188 3.94241 1.35938 4.25654L0.234375 5.38743C-0.078125 5.70157 -0.078125 6.2356 0.234375 6.54974L5.42188 11.7644Z" fill="#017922"/>
-                        </svg>
-                        <span>Registration successful. You are now logged in.</span>
-                    `
+                    document.querySelector('.messages--status').innerHTML = messHtml
+                } else {
+                    document.querySelector('.profile-student-form').insertAdjacentHTML('beforebegin',`
+                    <div class="messages--status" style="margin-bottom: -22px;">${messHtml}</div>`)
                 }
             }
         }
