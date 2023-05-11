@@ -2397,7 +2397,6 @@ max-width: 1248px;
   --tw-bg-opacity: 1;
   background-color: rgb(250 250 250 / var(--tw-bg-opacity));
   margin: 1rem auto;
-  z-index: -1;
   position: relative;
 }
 
@@ -3378,6 +3377,7 @@ max-width: 1248px;
     opacity: 0;
     max-height: 0;
     transition: all 0.5s ease-in-out;
+    z-index: -1;
   }
 
   .calculations_container.opened_this .top {
