@@ -824,7 +824,8 @@ function init() {
 
                 document.querySelector('.form-actions .button').insertAdjacentHTML('afterend', `<button type="button" class="btn-reg">Sign Up</button><p class="text-center singup">Already have an account? <a href="/yogi/login">Log in</a></p>`)
                 
-                document.querySelector('.btn-reg').addEventListener('click', () => {
+                document.querySelector('.btn-reg').addEventListener('click', (e) => {
+                    e.currentTarget.classList.add('loading')
                     document.querySelector('.form-actions .button').click();
                 })
 
@@ -984,7 +985,7 @@ function init() {
             }
         }
 
-        if (document.querySelector('.recurly-hosted-field') != null && document.querySelector('.form-item-commerce-donation-pane-donation-toggler label') != null && document.querySelector('.views-field.views-field-total-price__number') != null && document.querySelector('.o-page__mainContent') != null && window.location.href.includes('/checkout') && !window.location.href.includes('/login') && document.querySelector('[data-drupal-selector="edit-actions-next"]') != null) {
+        if (document.querySelector('.form-item-commerce-donation-pane-donation-toggler label') != null && document.querySelector('.views-field.views-field-total-price__number') != null && document.querySelector('.o-page__mainContent') != null && window.location.href.includes('/checkout') && !window.location.href.includes('/login') && document.querySelector('[data-drupal-selector="edit-actions-next"]') != null) {
             clearInterval(init)
 
             document.body.insertAdjacentHTML('afterbegin', style) //add style
@@ -1346,6 +1347,12 @@ function init() {
                         flex-shrink: 1;
                         margin-right: 10px;
                     }
+                    .layout-region-checkout-main, .layout-region-checkout-secondary {
+                        padding: 20px 11px;
+                    }
+                    .fieldset-legend, .layout-region.layout-region-checkout-secondary h3 {
+                        font-size: 21px;
+                    }
                 }
             </style>`)
 
@@ -1362,23 +1369,28 @@ function init() {
         
             document.querySelector('.checkout-pane .fieldset-legend').innerHTML = 'Enter your card information';
 
-            if (localStorage.getItem('email')) {
-                let email = localStorage.getItem('email');
-
-                document.querySelector('.checkout-pane-payment-information .fieldset-wrapper').insertAdjacentHTML('afterbegin',`
-                <div class="field-email form-item">
-                    <label>Email</label>
-                    <input type="email" readonly value="${email}">
-                </div>`)
-            }
-
-            document.querySelector('.recurly-hosted-field').insertAdjacentHTML('beforebegin',`<label>Card Information</label>`)
-
             if (document.querySelector('.btn_start_membership') == null) {
                 document.querySelector('.layout-region.layout-region-checkout-main').insertAdjacentHTML('beforeend',`
                 <button type="button" class="btn_start_membership" disabled>Start membership</button>`)
             }
 
+            if (document.querySelector('.recurly-hosted-field') != null ) {
+
+                if (localStorage.getItem('email')) {
+                    let email = localStorage.getItem('email');
+
+                    document.querySelector('.checkout-pane-payment-information .fieldset-wrapper').insertAdjacentHTML('afterbegin',`
+                    <div class="field-email form-item">
+                        <label>Email</label>
+                        <input type="email" readonly value="${email}">
+                    </div>`)
+                }
+
+                document.querySelector('.recurly-hosted-field').insertAdjacentHTML('beforebegin',`<label>Card Information</label>`)
+            } else {
+                document.querySelector('.btn_start_membership').disabled = false;
+            }
+            
             if (document.querySelector('.samsara .form-type-checkbox .check') == null) {
                 document.querySelector('[data-drupal-selector="edit-commerce-donation-pane-donation-toggler"]').insertAdjacentHTML('afterend', `<span class="check"></span>`)
             }
