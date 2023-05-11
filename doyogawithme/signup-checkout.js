@@ -1371,25 +1371,48 @@ function init() {
 
             if (document.querySelector('.btn_start_membership') == null) {
                 document.querySelector('.layout-region.layout-region-checkout-main').insertAdjacentHTML('beforeend',`
-                <button type="button" class="btn_start_membership" disabled>Start membership</button>`)
+                <button type="button" class="btn_start_membership">Start membership</button>`)
             }
 
-            if (document.querySelector('.recurly-hosted-field') != null ) {
+            let waitEmail = setInterval(() => {
+                if (document.querySelector('.recurly-hosted-field') != null && document.querySelector('.form-radios') == null ) {
+                    clearInterval(waitEmail)
+                    if (localStorage.getItem('email')) {
+                        let email = localStorage.getItem('email');
+    
+                        document.querySelector('[data-drupal-selector="edit-payment-information-add-payment-method-payment-details"]').insertAdjacentHTML('beforebegin',`
+                        <div class="field-email form-item">
+                            <label>Email</label>
+                            <input type="email" readonly value="${email}">
+                        </div>`)
+                    }
+    
+                    document.querySelector('.recurly-hosted-field').insertAdjacentHTML('beforebegin',`<label>Card Information</label>`)
+                    document.querySelector('.btn_start_membership').disabled = true;
+                } 
+            })
 
-                if (localStorage.getItem('email')) {
-                    let email = localStorage.getItem('email');
+            let waitRadios = setInterval(() => {
+                if (document.querySelector('.address-book-edit-button') == null && document.querySelectorAll('.form-item-payment-information-payment-method').length > 1 && document.querySelectorAll('form #edit-payment-information input:not([type="hidden"],[type="checkbox"],[type="radio"])').length > 1) {
+                    clearInterval(waitRadios)
+                    console.log('waitRadios')
+                    document.querySelectorAll('form #edit-payment-information input:not([type="hidden"],[type="checkbox"],[type="radio"])').forEach(item => {
+                        item.addEventListener('input', (e) => {
+                            setTimeout(() => {
+                                disabledBtnFun()
+                            }, 200);
+                            
+                        })
+                    })
 
-                    document.querySelector('.checkout-pane-payment-information .fieldset-wrapper').insertAdjacentHTML('afterbegin',`
-                    <div class="field-email form-item">
-                        <label>Email</label>
-                        <input type="email" readonly value="${email}">
-                    </div>`)
+                    document.querySelector('.country').addEventListener('change', (e) => {
+                        console.log(e.currentTarget.value)
+                        setTimeout(() => {
+                            disabledBtnFun()
+                        }, 200);
+                    })
                 }
-
-                document.querySelector('.recurly-hosted-field').insertAdjacentHTML('beforebegin',`<label>Card Information</label>`)
-            } else {
-                document.querySelector('.btn_start_membership').disabled = false;
-            }
+            })
             
             if (document.querySelector('.samsara .form-type-checkbox .check') == null) {
                 document.querySelector('[data-drupal-selector="edit-commerce-donation-pane-donation-toggler"]').insertAdjacentHTML('afterend', `<span class="check"></span>`)
