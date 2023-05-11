@@ -4,11 +4,18 @@ function pushDataLayer(action, label = '') {
     window.dataLayer = window.dataLayer || []
     dataLayer.push({
         'event': 'event-to-ga',
-        'eventCategory': 'Exp; Magicpath LP redesign',
+        'eventCategory': 'Exp: Magicpath LP redesign',
         'eventAction': action,
         'eventLabel': label
     })
 } 
+
+let record = setInterval(function () {
+    if (typeof clarity === 'function') {
+        clearInterval(record)
+        clarity("set", "Exp: Magicpath LP redesign", "variant 1");
+    }
+}, 100)
 
 // load script
 const loadScript = (url) => {
@@ -114,11 +121,20 @@ const trimText = (container) => {
             text.style.webkitBoxOrient = 'vertical';
     
             readMoreBtn.addEventListener('click', () => {
-                readMoreBtn.style.display = 'none'
-                text.style.overflow = 'initial';
-                text.style.textOverflow = 'initial';
-                text.style.webkitLineClamp = 'initial';
-                text.style.display = 'initial';
+                if(readMoreBtn.textContent === 'View more') {
+                    readMoreBtn.textContent = 'View less'
+                    text.style.overflow = 'initial';
+                    text.style.textOverflow = 'initial';
+                    text.style.webkitLineClamp = 'initial';
+                    text.style.display = 'initial';
+                } else {
+                    readMoreBtn.textContent = 'View more'
+                    text.style.overflow = 'hidden';
+                    text.style.textOverflow = 'ellipsis';
+                    text.style.webkitLineClamp = '4';
+                    text.style.display = '-webkit-box';
+                    text.style.webkitBoxOrient = 'vertical';
+                }
             })
         }
 }
@@ -155,17 +171,18 @@ const style = /* html */ `
             display: block;
             content: '';
             width: 100%;
-            height: 56px;
+            height: 90px;
             left: 0;
-            background-size: contain;
         }
         .block1::before {
-            background: url(${git}/wave1.svg) center center no-repeat;
+            background: url(${git}/wave1.svg) bottom left no-repeat;
             bottom: calc(100% - 1px);
+            background-size: 100%;
         }
         .block1::after {
-            background: url(${git}/wave2.svg) center center no-repeat;
+            background: url(${git}/wave2.svg) bottom left no-repeat;
             bottom: -1px;
+            background-size: 100%;
         }
         .block1 h3, .main_section .science h3 {
             display: flex;
@@ -270,6 +287,7 @@ const style = /* html */ `
             border-radius: 10px;
             padding: 14px 20px;
             margin-top: 8px;
+            font-weight: 700;
         }
 
         .main_section .works ul li img {
@@ -285,6 +303,7 @@ const style = /* html */ `
             line-height: 1.3 !important;
             color: #0C0B0B;
             text-align: center;
+            font-weight: 500;
         }
         .main_section .steps h2 {
             text-align: center;
@@ -388,12 +407,29 @@ const style = /* html */ `
             border: none;
             text-align: center;
             font-size: 14px;
+            position: relative;
+            font-weight: 400;
         }
+        .comp_table thead th:nth-child(2)::before,
+        .comp_table thead th:nth-child(3)::before,
+        .comp_table thead th:nth-child(4)::before {
+            content: '';
+            display: block;
+            height: 100%;
+            position: absolute;
+            width: 1px;
+            background-color: #D9D9D9;
+            left: 0;
+            top: 10px;
+        }
+
+
         .comp_table thead th:first-child {
             color: #008CD6;
             letter-spacing: 0.015em;
             font-family: 'DINEngschrift LT';
             text-transform: uppercase;
+            font-weight: 700;
         }
         .comp_table thead th:first-child, .comp_table thead th:last-child {
             position: relative;
@@ -474,6 +510,8 @@ const style = /* html */ `
             color: #212529;
             font-family: 'Roboto', sans-serif;
             margin-bottom: 40px;
+            font-weight: 700;
+            text-transform: none;
         }
         .main_section .reviews {
             padding: 0 0 32px;
@@ -485,7 +523,7 @@ const style = /* html */ `
             text-align: center;
             letter-spacing: 0.02em;
             text-transform: uppercase;
-            margin-bottom: 28px;
+            margin-bottom: 18px;
             color: #212529;
         }
         .main_section .reviews .btn_main {
@@ -501,7 +539,7 @@ const style = /* html */ `
             box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.25);
             border-radius: 9px;
             padding: 16px;
-            margin: 0 10px 20px;
+            margin: 10px 10px 20px;
         }
         .main_section .reviews .slick-dots {
             position: relative;
@@ -546,10 +584,12 @@ const style = /* html */ `
         }
         .main_section .reviews .slide .text p:first-child {
             margin-bottom: 8px;
+            font-weight: 700;
         }
         .main_section .reviews .slide .verified {
             color: #00B67E;
             font-weight: 500;
+            font-size: 12px !important;
             display: flex;
             align-items: center;
         }
@@ -603,6 +643,10 @@ const style = /* html */ `
             font-family: 'Roboto';
             text-transform: none;
             display: block;
+        }
+        .shipping-noti.js-mobile {
+            position: unset;
+            z-index: 0;
         }
     </style>
 `
@@ -730,7 +774,7 @@ const block2 = /* html */ `
                     <tr>
                         <td><b>No side effects, chemicals, or allergy-triggering ingredients</b></td>
                         <td>Stinging, burning, irritation, dryness or redness at the application, acne</td>
-                        <td>Rash, hives,itching, red, swollen, blistered, or peeling skin</td>
+                        <td>Rash, hives, itching, red, swollen, blistered, or peeling skin</td>
                         <td>Irritation, pruritus, contact dermatitis</td>
                     </tr>
                     <tr>
@@ -763,7 +807,7 @@ const block2 = /* html */ `
             </div>
         </div>
         <div class="reviews" data-visible="As seen on">
-            <h2>Why people love Magic Patch</h2>
+            <h2>Why people love<br>Magic Patch</h2>
             <div class="slider_1">
                 <div class="slide">
                     <div class="img">
@@ -777,7 +821,7 @@ const block2 = /* html */ `
                     <div class="text">
                         <p>Outdoors are enjoyable again!</p>
                         <p><span style="display: block;">My daughter (2 1/2), my son (15) and I are all allergic to mosquitoes. When we get bit we swell, we itch, it is horrible. 
-                        Mydaughter is a total outside girl and comes home from camp with bites all the time. She doesn't understand scratching makes it worse. 
+                        My daughter is a total outside girl and comes home from camp with bites all the time. She doesn't understand scratching makes it worse. 
                         If she gets a bite we put a MagicPatch on it and it is gone within a couple of days. Once we put the magic patch on she leaves the bites completely 
                         alone and doesn't even play with the patch. Both BuzzPatch and MagicPatch have been something that has made the outdoors more enjoyable for all 3 of us.</span></p>
                     </div>
@@ -816,7 +860,7 @@ const block2 = /* html */ `
                     <img src="${git}/stars.svg" alt="stars" class="stars">
                     <div class="text">
                         <p>bite gone!</p>
-                        <p><span style="display: block;">These work like magic! I don't understandhow but I had a huge mosquito bite that was itchy like you wouldn't believe.
+                        <p><span style="display: block;">These work like magic! I don't understand how but I had a huge mosquito bite that was itchy like you wouldn't believe.
                          I put on a patch and it was forgotten shortly, by the next day it wasn't even there when on a normal basis it will stay
                           a few days due to scratching.</span></p>
                     </div>
@@ -860,14 +904,18 @@ function main() {
         trimText(item)
     })
 
-    $('.card').click(function(){
-        if($(this).find('.card-link').hasClass('collapsed')) {
+    
+    $('.card-link:not(.collapsed)').closest('.card').find('.vertical-line').css('display', 'none')
+    $('.card-link').click(function(){
+        if($(this).hasClass('collapsed')) {
             $('.card .vertical-line').css('display', 'block')
-            $(this).find('.vertical-line').css('display', 'none')
+            $(this).closest('.card').find('.vertical-line').css('display', 'none')
         } else {
-            $(this).find('.vertical-line').css('display', 'block')
+            $(this).closest('.card').find('.vertical-line').css('display', 'block')
         }
     })
+
+    
 
     $('.itch-problems h2 span').text('Bug-bite issues')
     $('.itch-problems h2+h3').text('do you struggle with?')
