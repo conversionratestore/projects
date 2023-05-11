@@ -605,6 +605,7 @@ function init() {
                     pushDataLayer(`Forgot password`, 'Log in form')
                 })
             }
+
             if (window.location.href.includes('/checkout') && window.location.href.includes('/login') && document.querySelectorAll('.sfc-tabs__tablistItem > a').length > 1) {
                 document.body.insertAdjacentHTML('afterbegin',`
                 <style>
@@ -687,6 +688,14 @@ function init() {
                     </div>
                 </div>`)
             
+                //event: Click google Log in form
+                document.querySelector('[data-drupal-selector="edit-login-returning-customer"] .social-auth').addEventListener('click', (e) => {
+                    pushDataLayer('Login with google button','Log in form')
+                })
+                //event: Click google Sing up form
+                document.querySelector('[data-drupal-selector="edit-login-register"] .social-auth').addEventListener('click', (e) => {
+                    pushDataLayer('Sign up with google','Sing up form')
+                })
                 document.querySelector('[data-drupal-selector="edit-login-register"] .social-auth.auth-link span').innerHTML = 'Sign up with Google'
 
                 document.querySelector('[data-drupal-selector="edit-login-register"] h2').innerHTML = 'Create your account';
@@ -704,10 +713,16 @@ function init() {
                 document.querySelector('#edit-login-register-register').insertAdjacentHTML('beforebegin', `${acceptHTML}
                 <button type="button" class="btn-reg">Sign Up</button>`)
 
+                document.querySelectorAll('.check-accept a').forEach(item => {
+                    item.addEventListener('click', (e) => {
+                        pushDataLayer(e.currentTarget.innerText,'Sing up form')
+                    })
+                })
                 document.querySelector('[data-drupal-selector="edit-login-returning-customer"] .singup a').addEventListener('click', (e) => {
                     document.querySelectorAll('.sfc-tabs__tablistItem > a')[1].click()
                     document.querySelector('.o-page--simpleCard .o-page__mainContent').classList.add('active')
                     document.querySelector('#edit-login-register-mail').focus()
+                    pushDataLayer('Visibility','Sing up form')
                 })
                 document.querySelector('[data-drupal-selector="edit-login-register"] .singup a').addEventListener('click', (e) => {
                     document.querySelectorAll('.sfc-tabs__tablistItem > a')[0].click()
@@ -780,6 +795,24 @@ function init() {
                     }
                   
                 })
+
+                document.querySelectorAll('form input').forEach(item => {
+                    item.addEventListener('click', (e) => {
+                        let parent = e.currentTarget.parentElement;
+                        let label = e.currentTarget.closest('[data-drupal-selector="edit-login-returning-customer"]') ? 'Log in form' : 'Sing up form';
+                        
+                        if (parent.querySelector('label')) {
+                            pushDataLayer(`Click on ${parent.querySelector('label').innerText}`, label)
+                        } else if (parent.tagName == 'LABEL') {
+                            pushDataLayer(parent.innerText, label)
+                        }  else {
+                            pushDataLayer(`Click on ${e.currentTarget.value}`, label)
+                        }
+                    })
+                })
+                document.querySelector('.remember-me + a').addEventListener('click', (e) => {
+                    pushDataLayer(`Forgot password`, 'Log in form')
+                })
             }
             if (window.location.href.includes('/yogi/register') || window.location.href.includes('yogi/intake-survey')) {
                 document.body.insertAdjacentHTML('afterbegin', `
@@ -821,6 +854,11 @@ function init() {
 
                 document.querySelector('#edit-pass').insertAdjacentHTML('afterend', acceptHTML)
 
+                document.querySelectorAll('.check-accept a').forEach(item => {
+                    item.addEventListener('click', (e) => {
+                        pushDataLayer(e.currentTarget.innerText,'Sing up form')
+                    })
+                })
                 document.querySelector('.form-actions .button').insertAdjacentHTML('afterend', `<button type="button" class="btn-reg">Sign Up</button><p class="text-center singup">Already have an account? <a href="/yogi/login">Log in</a></p>`)
                 
                 document.querySelector('.btn-reg').addEventListener('click', (e) => {
