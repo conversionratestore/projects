@@ -3249,7 +3249,7 @@ max-width: 1248px;
     display: block;
     --tw-bg-opacity: 1;
     background-color: rgb(61 28 81 / var(--tw-bg-opacity));
-    padding: 1.25rem 0.75rem;
+    padding: 1.25rem 0.75rem 1rem;
     margin: 0;
   }
 
@@ -3417,9 +3417,10 @@ max-width: 1248px;
       margin-right: -1rem; */
     background-color: #fff;
     margin: 0 -1rem;
-    padding: 0.5rem 1.5rem;
+    padding: 0.25rem 1.5rem 0.5rem;
     max-width: 100vw;
     z-index: 1;
+    margin-top: 15px;
   }
 
   .splitit_popup_container .total {
@@ -5594,18 +5595,6 @@ waitForElement('.links_container').then(() => {
         if (!navList.classList.contains('fixed')) {
           navList.classList.add('fixed')
 
-          // if (document.querySelector('#privy-container #privy-inner-container .privy-mobile.privy-tab-container.privy-basic')) {
-          //   document.querySelector('#privy-container #privy-inner-container .privy-mobile.privy-tab-container.privy-basic').classList.add('custom_pos')
-
-          //   if (document.querySelector('iframe#chat-button')) {
-          //     document.querySelector('iframe#chat-button').classList.add('higher')
-          //   }
-          // } else {
-          //   if (document.querySelector('iframe#chat-button')) {
-          //     document.querySelector('iframe#chat-button').classList.add('average')
-          //   }
-          // }
-
           if (!once) {
             sendGAEvent('Visibility Get Novaalab light pad sticky button', 'Sticky button')
             sendGAEvent('Visibility navigation panel')
@@ -5695,22 +5684,6 @@ const waitForVideos = setInterval(() => {
 waitForElement('#video_wrap').then(el => {
   checkVisibilityAfterMs(el)
 })
-
-// const waitForVideo = setInterval(() => {
-//     if (document.querySelector('#c-1654780143310') && document.querySelector('.video_wrap')) {
-//         clearInterval(waitForVideo)
-
-//         document.querySelector('.video_wrap').appendChild(document.querySelector('#c-1654780143310'))
-
-//         // waitForElement('.video_wrap iframe').then(el => {
-//         //     console.log('heloo!!');
-//         //     el.setAttribute('width', '486')
-//         //     el.setAttribute('height', '100%')
-//         // })
-
-//         // document.querySelector('.video_wrap iframe')
-//     }
-// }, WAIT_INTERVAL_TIMEOUT )
 
 const waitForReviews = setInterval(() => {
   if (
