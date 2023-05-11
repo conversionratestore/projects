@@ -875,7 +875,13 @@ function init() {
                 document.querySelector('.form-actions .button').insertAdjacentHTML('afterend', `<button type="button" class="btn-reg">Sign Up</button><p class="text-center singup">Already have an account? <a href="/yogi/login">Log in</a></p>`)
                 
                 document.querySelector('.btn-reg').addEventListener('click', (e) => {
-                    e.currentTarget.classList.add('loading')
+                    if (document.querySelectorAll('.check-accept input')[0].checked && 
+                        document.querySelector('.form-email').value != '' && 
+                        document.querySelector('.username').value != '' &&
+                        document.querySelector('#edit-pass-pass1').value != ''
+                    ) {
+                        e.currentTarget.classList.add('loading')
+                    }
                     document.querySelector('.form-actions .button').click();
                 })
 
@@ -1424,6 +1430,9 @@ function init() {
                     }
                     .samsara .form-type-checkbox .check {
                         top: 12px;
+                    }
+                    .commerce-checkout-flow--order-information .form-submit {
+                        margin-bottom: 20px;
                     }
                 }
                 @media only screen and (max-width: 360px) {
