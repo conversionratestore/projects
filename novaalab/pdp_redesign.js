@@ -1244,7 +1244,7 @@ article.no_risk, article.why_choose {
   position: absolute;
   top: 0;
   left: 30px;
-  z-index: -1;
+  z-index: 0;
   height: 100%;
   width: 1px;
   border-right: 1px dashed #E2E2E2;
@@ -1253,6 +1253,8 @@ article.no_risk, article.why_choose {
 .shipping_list .item {
   display: flex;
   margin-bottom: 30px;
+  position: relative;
+  z-index: 1;
 }
 
 .shipping_list .item div {
@@ -2672,8 +2674,7 @@ max-width: 1248px;
 
   .slider .slick-list {
     margin: 0 !important;
-    padding-left: 24px !important;
-    padding-right: 24px !important;
+    padding-right: 20px;
   }
 
   .slider img {
@@ -4583,7 +4584,7 @@ const html = /*html*/`
         </section>
         <section id="faq" data-section="faq">
             <article>
-                <div class="content" data-visibility="Visibility FAQ section" data-ga-label="FAQ">
+                <div class="content" data-ga-label="FAQ">
                     <h1>Frequently Asked Questions</h1>
                     <div class="flx">
                         <div class="accordion" data-ga="Open FAQ accordion">
@@ -4596,7 +4597,7 @@ const html = /*html*/`
                                     -
                                     they will last for a lifetime. </p>
                             </div>
-                            <div class="accordion_header">
+                            <div class="accordion_header" data-visibility="Visibility FAQ section">
                                 <h6>What is the warranty and return policy?</h6>
                                 <img src="https://conversionratestore.github.io/projects/novaalab/img/expand_more_white.svg" alt="">
                             </div>
@@ -4997,13 +4998,7 @@ const checkVisibilityAfterMs = (el, ms = 3000) => { // Checks element visibility
     entries.forEach((entry) => {
       if (entry.isIntersecting) {
         timer = setTimeout(() => {
-          if (el.id === 'privy-container') {
-            if (DEVICE === 'mobile') {
-              sendGAEvent('Visibility Get discount pop-up', 'Sticky button')
-            } else {
-              sendGAEvent('Visibility Get discount button', 'Sticky button')
-            }
-          } else if (el.id === 'c-1654794074761') {
+          if (el.id === 'c-1654794074761') {
             sendGAEvent('Visibility first video', 'Melt your plan ...')
           }
           else if (el.id === 'c-1654794103606') {
@@ -5208,7 +5203,13 @@ const waitForReadMore = setInterval(() => {
 
 // splitit
 const waitForSplitit = setInterval(() => {
-  if (document.querySelectorAll('.splitit span')[1]) {
+  if (
+    document.querySelectorAll('.splitit span')[1]
+    && document.querySelector('.splitit_popup_container button')
+    && document.querySelector('.splitit_popup_container .top')
+    && document.querySelector('.calculations_container')
+    && document.querySelectorAll('.close_splitit')[1]
+  ) {
     clearInterval(waitForSplitit)
 
     document.querySelectorAll('.splitit span').forEach((item, index) => {
@@ -5234,9 +5235,8 @@ const waitForSplitit = setInterval(() => {
       sendGAEvent('close splitit popup')
     }
 
-    document.querySelector('.splitit_overlay').addEventListener('click', function (e) {
+    document.querySelector('.splitit_overlay').addEventListener('click', function (event) {
       // check if the clicked element is not inside the popup container
-      console.log(e.target)
       if (!document.querySelector('.splitit_popup_container').contains(event.target) && document.querySelector('.opened_splitit_popup')) {
         // remove the "opened_splitit_popup" class from the popup container
         closeSplititPopup()
@@ -5358,7 +5358,7 @@ let jqueryLoaded = setInterval(() => {
               breakpoint: 768,
               settings: {
                 slidesToShow: 2.7,
-                slidesToScroll: 2,
+                slidesToScroll: 3,
                 fade: false,
                 arrows: false
               }
@@ -5513,64 +5513,6 @@ let jqueryLoaded = setInterval(() => {
       })
     })
 
-    // scroll
-    waitForElement('.links_container').then(() => {
-      setTimeout(() => {
-        let once = false
-
-        const navList = document.querySelector('.links_container')
-
-        const style = window.getComputedStyle(navList)
-        const heightWithMargin = navList.offsetHeight + parseInt(style.marginTop) + parseInt(style.marginBottom)
-
-        const navListOffsetTop = navList.offsetTop
-
-        window.addEventListener('scroll', function () {
-          if (window.pageYOffset >= navListOffsetTop) {
-            if (!navList.classList.contains('fixed')) {
-              navList.classList.add('fixed')
-
-              if (document.querySelector('#privy-container #privy-inner-container .privy-mobile.privy-tab-container.privy-basic')) {
-                document.querySelector('#privy-container #privy-inner-container .privy-mobile.privy-tab-container.privy-basic').classList.add('custom_pos')
-
-                if (document.querySelector('iframe#chat-button')) {
-                  document.querySelector('iframe#chat-button').classList.add('higher')
-                }
-              } else {
-                if (document.querySelector('iframe#chat-button')) {
-                  document.querySelector('iframe#chat-button').classList.add('average')
-                }
-              }
-
-              if (!once) {
-                sendGAEvent('Visibility Get Novaalab light pad sticky button', 'Sticky button')
-                sendGAEvent('Visibility navigation panel')
-                once = true
-              }
-
-              document.querySelector('.empty_space').style.paddingTop = heightWithMargin + 'px'
-            }
-          } else {
-            if (navList.classList.contains('fixed')) {
-              navList.classList.remove('fixed')
-
-              document.querySelector('.empty_space').style.paddingTop = '0px'
-
-              if (document.querySelector('#privy-container #privy-inner-container .privy-mobile.privy-tab-container.privy-basic')) {
-                document.querySelector('#privy-container #privy-inner-container .privy-mobile.privy-tab-container.privy-basic').classList.remove('custom_pos')
-              }
-
-              if (document.querySelector('iframe#chat-button.higher')) {
-                document.querySelector('iframe#chat-button.higher').classList.remove('higher')
-              } else if (document.querySelector('iframe#chat-button.average')) {
-                document.querySelector('iframe#chat-button.average').classList.remove('average')
-              }
-            }
-          }
-        })
-      }, WAIT_INTERVAL_TIMEOUT)
-    })
-
     // Get references to the sections
     const waitForSections = setInterval(() => {
       if (document.querySelectorAll("section[data-section]")[5]) {
@@ -5614,49 +5556,110 @@ let jqueryLoaded = setInterval(() => {
         })
       }
     }, WAIT_INTERVAL_TIMEOUT)
-
-    const waitForContactLinks = setInterval(() => {
-      if (document.querySelectorAll('a[href^="mailto:"]')[2]) {
-        clearInterval(waitForContactLinks)
-
-        document.querySelectorAll('a[href^="mailto:"]').forEach((element, index) => {
-          element.addEventListener('click', () => {
-            if (index === 0) {
-              sendGAEvent('Click on email in Contact us', 'Our mission')
-            }
-          })
-
-        })
-      }
-    }, WAIT_INTERVAL_TIMEOUT)
-
-    // PRIVY 
-    const waitForPrivy = setInterval(() => {
-      if (document.getElementById('privy-container')) {
-        clearInterval(waitForPrivy)
-
-        sendGAEvent('Visibility Get discount button', 'Sticky button')
-
-        document.getElementById('privy-container').addEventListener('click', () => {
-          sendGAEvent('Click on Get discount button', 'Sticky button')
-        })
-
-        if (DEVICE === 'mobile') {
-          const waitForH2 = setInterval(() => {
-            if (document.querySelector('.privy-truncate')) {
-              clearInterval(waitForH2)
-
-              document.querySelector('.privy-mobile-tab').innerHTML = `<p class="custom_get">Get discount 
-                            <svg xmlns="http://www.w3.org/2000/svg" width="8" height="10" viewBox="0 0 8 10" fill="none">
-                            <path d="M0.912597 1.175L4.72926 5L0.912598 8.825L2.0876 10L7.0876 5L2.0876 1.87058e-07L0.912597 1.175Z" fill="white"/>
-                            </svg></p>`
-            }
-          }, WAIT_INTERVAL_TIMEOUT)
-        }
-      }
-    }, 500)
   }
 }, WAIT_INTERVAL_TIMEOUT)
+
+// scroll
+waitForElement('.links_container').then(() => {
+  setTimeout(() => {
+    let once = false
+
+    const navList = document.querySelector('.links_container')
+
+    const style = window.getComputedStyle(navList)
+    const heightWithMargin = navList.offsetHeight + parseInt(style.marginTop) + parseInt(style.marginBottom)
+
+    const navListOffsetTop = navList.offsetTop
+
+    window.addEventListener('scroll', function () {
+      if (window.pageYOffset >= navListOffsetTop) {
+        if (!navList.classList.contains('fixed')) {
+          navList.classList.add('fixed')
+
+          if (document.querySelector('#privy-container #privy-inner-container .privy-mobile.privy-tab-container.privy-basic')) {
+            document.querySelector('#privy-container #privy-inner-container .privy-mobile.privy-tab-container.privy-basic').classList.add('custom_pos')
+
+            if (document.querySelector('iframe#chat-button')) {
+              document.querySelector('iframe#chat-button').classList.add('higher')
+            }
+          } else {
+            if (document.querySelector('iframe#chat-button')) {
+              document.querySelector('iframe#chat-button').classList.add('average')
+            }
+          }
+
+          if (!once) {
+            sendGAEvent('Visibility Get Novaalab light pad sticky button', 'Sticky button')
+            sendGAEvent('Visibility navigation panel')
+            once = true
+          }
+
+          document.querySelector('.empty_space').style.paddingTop = heightWithMargin + 'px'
+        }
+      } else {
+        if (navList.classList.contains('fixed')) {
+          navList.classList.remove('fixed')
+
+          document.querySelector('.empty_space').style.paddingTop = '0px'
+
+          if (document.querySelector('#privy-container #privy-inner-container .privy-mobile.privy-tab-container.privy-basic')) {
+            document.querySelector('#privy-container #privy-inner-container .privy-mobile.privy-tab-container.privy-basic').classList.remove('custom_pos')
+          }
+
+          if (document.querySelector('iframe#chat-button.higher')) {
+            document.querySelector('iframe#chat-button.higher').classList.remove('higher')
+          } else if (document.querySelector('iframe#chat-button.average')) {
+            document.querySelector('iframe#chat-button.average').classList.remove('average')
+          }
+        }
+      }
+    })
+  }, WAIT_INTERVAL_TIMEOUT)
+})
+
+const waitForContactLinks = setInterval(() => {
+  if (document.querySelectorAll('a[href^="mailto:"]')[4]) {
+    clearInterval(waitForContactLinks)
+
+    document.querySelectorAll('a[href^="mailto:"]').forEach((element, index) => {
+      element.addEventListener('click', () => {
+
+        if (element.closest('.contact_us')) {
+          sendGAEvent('Click on email in Contact us', 'Our mission')
+        } else {
+          sendGAEvent('Click on email in FAQ', 'FAQ')
+        }
+      })
+
+    })
+  }
+}, WAIT_INTERVAL_TIMEOUT)
+
+// PRIVY 
+const waitForPrivy = setInterval(() => {
+  if (document.getElementById('privy-container')) {
+    clearInterval(waitForPrivy)
+
+    sendGAEvent('Visibility Get discount button', 'Sticky button')
+
+    document.getElementById('privy-container').addEventListener('click', () => {
+      sendGAEvent('Click on Get discount button', 'Sticky button')
+    })
+
+    if (DEVICE === 'mobile') {
+      const waitForH2 = setInterval(() => {
+        if (document.querySelector('.privy-truncate')) {
+          clearInterval(waitForH2)
+
+          document.querySelector('.privy-mobile-tab').innerHTML = `<p class="custom_get">Get discount 
+                <svg xmlns="http://www.w3.org/2000/svg" width="8" height="10" viewBox="0 0 8 10" fill="none">
+                <path d="M0.912597 1.175L4.72926 5L0.912598 8.825L2.0876 10L7.0876 5L2.0876 1.87058e-07L0.912597 1.175Z" fill="white"/>
+                </svg></p>`
+        }
+      }, WAIT_INTERVAL_TIMEOUT)
+    }
+  }
+}, 500)
 
 const waitForVideos = setInterval(() => {
   if (document.getElementById('r-1663147869219') && document.querySelector('.videos')) {
@@ -5702,7 +5705,6 @@ const waitForReviews = setInterval(() => {
     waitForElement('.reviews_block #opinew-app-container [data-v-20db9aa4]').then(el => el.addEventListener('click', () => { sendGAEvent('Click on review rating block', 'Reviews') }))
 
     waitForElement('.reviews_block .opinew-navbar-button').then(el => el.addEventListener('click', () => { sendGAEvent('Click on Write review button', 'Reviews') }))
-
     waitForElement('.reviews_block .opw-filters-select[data-v-0e090d90]').then(el => el.addEventListener('click', () => { sendGAEvent('Click on Filer and Sort button in review ', 'Reviews') }))
   }
 }, WAIT_INTERVAL_TIMEOUT)
