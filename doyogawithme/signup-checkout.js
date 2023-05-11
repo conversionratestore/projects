@@ -1613,26 +1613,7 @@ function init() {
                     disabledBtnFun()
                 })
             })
-            document.querySelectorAll('form input').forEach(item => {
-                item.addEventListener('click', (e) => {
-                    let parent = e.currentTarget.parentElement
-                    if (parent.querySelector('label')) {
-                        pushDataLayer(`Click on ${parent.querySelector('label').innerText}`, label)
-                    } else if (parent.tagName == 'LABEL') {
-                        if (parent.closest('[data-drupal-selector="edit-commerce-donation-pane-field-gift-type"]')) {
-                            pushDataLayer(`Select Donation Type - ${parent.innerText}`, label)
-                        } else if (parent.closest('[data-drupal-selector="edit-commerce-donation-pane-field-donation-amount-0-donation-level"]')) {
-                            pushDataLayer(`Amount - ${parent.innerText}`, label)
-                        } else {
-                            pushDataLayer(parent.innerText, label)
-                        }
-                    }
-                })
-            })
-        
-            document.querySelector('[data-drupal-selector="edit-commerce-donation-pane-field-donation-amount-0-donation-level-amount"]').addEventListener('click', () => {
-                pushDataLayer('',label)
-            })
+
             document.querySelector('.btn_start_membership').addEventListener('click', (e) => {
                 document.querySelector('[data-drupal-selector="edit-actions-next"]').click();
                 pushDataLayer(`Start membership button`, label)
@@ -1684,9 +1665,40 @@ let disabledBtnFun = () => {
             clearInterval(disabledBtn)
 
             let inputs = document.querySelectorAll('form #edit-payment-information input:not([type="hidden"],[type="checkbox"],[type="radio"],.address-line2)');
-    
+            let inputsAll = document.querySelectorAll('form input');
+            let selects = document.querySelectorAll('form select');
+
+            let label = 'Card information';
+
+            // selects.forEach(item => {
+            //     item.addEventListener('change', (e) => {
+            //         console.log(e.currentTarget)
+            //         let parent = e.currentTarget.parentElement
+            //         pushDataLayer(`Click on ${parent.querySelector('label').innerText}`, label)
+            //     })
+            // })
+
+            inputsAll.forEach(item => {
+                item.addEventListener('click', (e) => {
+                    e.stopImmediatePropagation()
+                    let parent = e.currentTarget.parentElement
+                    if (parent.querySelector('label')) {
+                        pushDataLayer(`Click on ${parent.querySelector('label').innerText}`, label)
+                    } else if (parent.tagName == 'LABEL') {
+                        if (parent.closest('[data-drupal-selector="edit-commerce-donation-pane-field-gift-type"]')) {
+                            pushDataLayer(`Select Donation Type - ${parent.innerText}`, label)
+                        } else if (parent.closest('[data-drupal-selector="edit-commerce-donation-pane-field-donation-amount-0-donation-level"]')) {
+                            pushDataLayer(`Amount - ${parent.innerText}`, label)
+                        } else {
+                            pushDataLayer(parent.innerText, label)
+                        }
+                    }
+                })
+            })
+        
             if (error == false) {
                 for (let i = 0; i < inputs.length; i++) {
+                   
                     if (inputs[i].value == '') {
                         if (inputs[i].id.includes('edit-payment-information-add-payment-method-billing-information-address-0-address-given-name') || 
                             inputs[i].id.includes('edit-payment-information-add-payment-method-billing-information-address-0-address-family-name') || 
