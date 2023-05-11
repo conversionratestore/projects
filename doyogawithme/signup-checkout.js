@@ -893,6 +893,7 @@ function init() {
                         document.querySelector('#edit-pass-pass1').value != ''
                     ) {
                         e.currentTarget.classList.add('loading')
+                        pushDataLayer('Submit form','Create your account')
                     }
                     document.querySelector('.form-actions .button').click();
                 })
@@ -947,7 +948,9 @@ function init() {
                 
                 })
 
-
+                document.querySelector('.singup a').addEventListener('click', () => {
+                    pushDataLayer('Log in','Create your account')
+                })
                 pushDataLayer('Visibility','Create your account')
             }
 
@@ -979,6 +982,9 @@ function init() {
 
             if (window.location.href.includes('yogi/intake-survey')) {
                 document.body.insertAdjacentHTML('afterbegin',`<style>
+                    .messages--status[role="contentinfo"] {
+                        display: none!important;
+                    }
                     form.profile-student-form h1 {
                         text-align: left;
                         margin-bottom: 0;
@@ -1089,12 +1095,11 @@ function init() {
                     </svg>
                     <span>Registration successful. You are now logged in.</span>`;
 
-                if (document.querySelector('.messages--status') != null) {
-                    document.querySelector('.messages--status').innerHTML = messHtml
-                } else {
-                    document.querySelector('.profile-student-form').insertAdjacentHTML('beforebegin',`
+                document.querySelector('.profile-student-form').insertAdjacentHTML('beforebegin',`
                     <div class="messages--status" style="margin-bottom: -22px;">${messHtml}</div>`)
-                }
+                
+
+                pushDataLayer('Visibility','Lets find classes that work best for you')
             }
         }
 
