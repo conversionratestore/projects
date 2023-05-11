@@ -565,10 +565,7 @@ function init() {
                 }
                 document.querySelector('.remember-me').after(document.querySelector('form [href="/yogi/password"]'))
                 document.querySelector('form [href="/yogi/password"]').innerHTML = 'Forgot Password?';
-                document.querySelector('.form-actions .button
-                .form-actions .button[value="Create new account"] {
-                    display: none;
-                }').insertAdjacentHTML('afterend', `<p class="text-center singup">Don’t have an account? <a href="/yogi/register">Sing up</a></p>`)
+                document.querySelector('.form-actions .button[value="Create new account"]').insertAdjacentHTML('afterend', `<p class="text-center singup">Don’t have an account? <a href="/yogi/register">Sing up</a></p>`)
 
                 document.querySelector('.form-actions .button').addEventListener('click', () => {
                     lsRememberMe('.remember-me input', '#edit-name')
