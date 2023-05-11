@@ -1288,7 +1288,7 @@ function init() {
                     font-size: 16px;
                     line-height: 24px;
                 }
-                #edit-commerce-donation-pane-field-gift-type--wrapper .fieldset-legend {
+                [data-drupal-selector="edit-commerce-donation-pane-field-gift-type"] .fieldset-legend {
                     border-top: 1px solid #E0E0E0;
                     padding: 16px 0 0 0;
                     margin-top: 12px;
@@ -1296,15 +1296,15 @@ function init() {
                 .form-composite > legend, .label {
                     width: 100%;
                 }
-                #edit-commerce-donation-pane-field-gift-type--wrapper, #edit-commerce-donation-pane-field-donation-amount-0-donation-level {
+                [data-drupal-selector="edit-commerce-donation-pane-field-gift-type"], [data-drupal-selector="edit-commerce-donation-pane-field-donation-amount-0-donation-level"] {
                     border: none;
                     padding: 0;
                     margin: 0;
                 }
-                #edit-commerce-donation-pane-field-donation-amount-0-donation-level .fieldset-legend {
+                [data-drupal-selector="edit-commerce-donation-pane-field-donation-amount-0-donation-level"] .fieldset-legend {
                     padding: 8px 0 0 0;
                 }
-                #edit-commerce-donation-pane-field-donation-amount-0-donation-level-amount {
+                [data-drupal-selector="edit-commerce-donation-pane-field-donation-amount-0-donation-level-amount"] {
                     width: 230px;
                 }
                 .tablesaw th, .tablesaw td {
@@ -1683,14 +1683,12 @@ let disabledBtnFun = () => {
                     e.stopImmediatePropagation()
                     let parent = e.currentTarget.parentElement
                     if (parent.querySelector('label')) {
-                        pushDataLayer(`Click on ${parent.querySelector('label').innerText}`, label)
-                    } else if (parent.tagName == 'LABEL') {
                         if (parent.closest('[data-drupal-selector="edit-commerce-donation-pane-field-gift-type"]')) {
                             pushDataLayer(`Select Donation Type - ${parent.innerText}`, label)
                         } else if (parent.closest('[data-drupal-selector="edit-commerce-donation-pane-field-donation-amount-0-donation-level"]')) {
                             pushDataLayer(`Amount - ${parent.innerText}`, label)
                         } else {
-                            pushDataLayer(parent.innerText, label)
+                            pushDataLayer(`Click on ${parent.querySelector('label').innerText}`, label)
                         }
                     }
                 })
