@@ -845,6 +845,8 @@ function init() {
                      ) {
                         e.currentTarget.classList.add('loading')
                     }
+
+                    pushDataLayer('Click on Sign Up','Create your account')
                   
                 })
                 document.querySelectorAll('form .form-item label').forEach(item => {
