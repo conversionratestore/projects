@@ -624,12 +624,6 @@ function init() {
                 document.querySelector('.singup a').addEventListener('click', (e) => {
                     pushDataLayer(`Sign up`, 'Log in form')
                 })
-                document.querySelector('#edit-submit').addEventListener('click', () => {
-                    if (document.querySelector('#edit-name').value != '' &&
-                    document.querySelector('#edit-pass').value != '') {
-                        pushDataLayer('Submit form','Log in form')
-                    }
-                })
             }
             //all register pages
             if (window.location.href.includes('/yogi/register') || window.location.href.includes('yogi/intake-survey') || window.location.href.includes('/checkout') && window.location.href.includes('/login')) {
@@ -715,6 +709,8 @@ function init() {
                 document.querySelectorAll('.sfc-tabs__tablistItem > a')[1].click()
                 document.querySelector('#edit-login-register-mail').focus()
                 document.querySelector('.o-page--simpleCard .o-page__mainContent').classList.add('active')
+
+                pushDataLayer('Visibility','Create your account')
 
                 document.querySelector('[data-drupal-selector="edit-login-returning-customer"]').insertAdjacentHTML('afterbegin', `
                 <h2>Log In</h2>
@@ -964,7 +960,7 @@ function init() {
                         if (window.location.href.includes('/yogi/register')) {
                             label = 'Create your account'
                         } else {
-                            label =  !e.currentTarget.closest('[data-drupal-selector="edit-login-returning-customer"]') || window.location.href.includes('/yogi/login')  ? 'Log in form' : 'Create your account';
+                            label =  e.currentTarget.closest('[data-drupal-selector="edit-login-returning-customer"]') || window.location.href.includes('/yogi/login')  ? 'Log in form' : 'Create your account';
                         }
                         
                         if (parent.querySelector('label')) {
@@ -1098,6 +1094,19 @@ function init() {
                 document.querySelector('.profile-student-form').insertAdjacentHTML('beforebegin',`
                     <div class="messages--status" style="margin-bottom: -22px;">${messHtml}</div>`)
                 
+                document.querySelectorAll('.form-item input').forEach(item => {
+                    item.addEventListener('change', (e) => {
+                        if (item.type == 'checkbox' || item.type == 'radio') {
+                            if (item.checked) {
+                                pushDataLayer(`${item.closest('.fieldset-wrapper').previousElementSibling.innerText.replace('?','')} - ${item.parentElement.innerText}`, 'Lets find classes that work best for you')
+                            }
+                        }
+                    })
+                })
+
+                document.querySelector('#edit-submit').addEventListener('click', () => {
+                    pushDataLayer('Save button', 'Lets find classes that work best for you')
+                })
 
                 pushDataLayer('Visibility','Lets find classes that work best for you')
             }
@@ -1105,6 +1114,7 @@ function init() {
 
         if (document.querySelector('.form-item-commerce-donation-pane-donation-toggler label') != null && document.querySelector('.views-field.views-field-total-price__number') != null && document.querySelector('.o-page__mainContent') != null && window.location.href.includes('/checkout') && !window.location.href.includes('/login') && document.querySelector('[data-drupal-selector="edit-actions-next"]') != null) {
             clearInterval(init)
+            let label = 'Card information';
 
             document.body.insertAdjacentHTML('afterbegin', style) //add style
 
@@ -1565,6 +1575,7 @@ function init() {
                 document.querySelector('.btn_got_coupon').addEventListener('click', (e) => {
                     e.preventDefault()
                     document.querySelector('#edit-coupon-redemption').classList.toggle('active');
+                    pushDataLayer('Got a Coupon?', label)
                 })
                
             }
@@ -1592,9 +1603,29 @@ function init() {
                     disabledBtnFun()
                 })
             })
+            document.querySelectorAll('form input').forEach(item => {
+                item.addEventListener('click', (e) => {
+                    let parent = e.currentTarget.parentElement
+                    if (parent.querySelector('label')) {
+                        pushDataLayer(`Click on ${parent.querySelector('label').innerText}`, label)
+                    } else if (parent.tagName == 'LABEL') {
+                        if (parent.closest('[data-drupal-selector="edit-commerce-donation-pane-field-gift-type"]')) {
+                            pushDataLayer(`Select Donation Type - ${parent.innerText}`, label)
+                        } else if (parent.closest('[data-drupal-selector="edit-commerce-donation-pane-field-donation-amount-0-donation-level"]')) {
+                            pushDataLayer(`Amount - ${parent.innerText}`, label)
+                        } else {
+                            pushDataLayer(parent.innerText, label)
+                        }
+                    }
+                })
+            })
         
+            document.querySelector('[data-drupal-selector="edit-commerce-donation-pane-field-donation-amount-0-donation-level-amount"]').addEventListener('click', () => {
+                pushDataLayer('',label)
+            })
             document.querySelector('.btn_start_membership').addEventListener('click', (e) => {
                 document.querySelector('[data-drupal-selector="edit-actions-next"]').click();
+                pushDataLayer(`Start membership button`, label)
 
                 let invalidCard = setInterval(() => {
                     if (document.querySelector('.recurly-hosted-field.recurly-hosted-field-invalid')) {
@@ -1603,6 +1634,8 @@ function init() {
                     }
                 });
             })
+
+            pushDataLayer('Visibility',label)
         }
     });
 }
@@ -1621,6 +1654,12 @@ let setLabelState = setInterval(() => {
 
 let applyCoupon = setInterval(() => {
     if (document.querySelector('[data-drupal-selector="edit-sidebar-coupon-redemption-form-apply"]') != null && document.querySelector('.field-email') == null && document.querySelector('.btn_got_coupon') == null) {
+        setTimeout(() => {
+            if (document.querySelector('.messages--error') != null) {
+                document.querySelector('.messages--error').remove()
+            }
+        }, 5000)
+
         init()
     }            
 }, 200)
