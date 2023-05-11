@@ -1666,17 +1666,17 @@ let disabledBtnFun = () => {
 
             let inputs = document.querySelectorAll('form #edit-payment-information input:not([type="hidden"],[type="checkbox"],[type="radio"],.address-line2)');
             let inputsAll = document.querySelectorAll('form input');
-            let selects = document.querySelectorAll('form select');
 
             let label = 'Card information';
 
-            // selects.forEach(item => {
-            //     item.addEventListener('change', (e) => {
-            //         console.log(e.currentTarget)
-            //         let parent = e.currentTarget.parentElement
-            //         pushDataLayer(`Click on ${parent.querySelector('label').innerText}`, label)
-            //     })
-            // })
+            let selects = document.querySelectorAll('form .select2');
+            selects.forEach(item => {
+                item.addEventListener('click', (e) => {
+                    e.stopImmediatePropagation();
+                    console.log(e.currentTarget)
+                    pushDataLayer(`Click on ${e.currentTarget.closest('.form-item').querySelector('label').innerText}`, label)
+                })
+            })
 
             inputsAll.forEach(item => {
                 item.addEventListener('click', (e) => {
