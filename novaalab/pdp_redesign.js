@@ -2053,7 +2053,7 @@ margin-bottom: 0;
   font-style: italic;
 }
 
-#faq .gina .review p {
+#faq .gina .review p img {
   position: absolute;
   top: auto;
   right: 0;
@@ -5032,10 +5032,8 @@ const checkVisibilityAfterMs = (el, ms = 3000) => { // Checks element visibility
 }
 
 const waitForReviewsNumber = setInterval(() => {
-  if (document.querySelector('.opinew-no-reviews-stars-plugin')?.innerText.length && document.querySelectorAll('.review u')[1]) {
+  if (document.querySelector('.opw-fontLg.opw-textColor')?.innerText.length && document.querySelectorAll('.review u')[1]) {
     clearInterval(waitForReviewsNumber)
-
-    console.log();
 
     const number = parseInt(document.querySelector('.opw-fontLg.opw-textColor').innerText.match(/\d+/)[0])
 
@@ -5401,10 +5399,10 @@ let jqueryLoaded = setInterval(() => {
         }, WAIT_INTERVAL_TIMEOUT)
 
         const waitForDots = setInterval(() => {
-          if (document.querySelector('.slick-dots')) {
+          if (document.querySelector('.product_gallery .slick-dots')) {
             clearInterval(waitForDots)
 
-            document.querySelectorAll('.pdp_main .slick-list')[1].addEventListener('click', (e) => {
+            document.querySelector('.product_gallery .slick-dots').addEventListener('click', (e) => {
               if (e.target.closest('li')) {
                 sendGAEvent('Click on navigation in mobile', 'First screen')
               }
