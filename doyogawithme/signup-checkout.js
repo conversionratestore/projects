@@ -1467,7 +1467,7 @@ function init() {
                     <p><span>$167.88</span> ${price.innerHTML}</p>
                     <p class="c-green">Just $9.08/month!</p>`
 
-                document.querySelector('.views-field.views-field-title').innerHTML = `${window.matchMedia("(min-width: 768px)").matches ? '12-month' : '1-Year'} DYWM Subscription`;
+                document.querySelector('.views-field.views-field-title').innerHTML = `1-Year DYWM Subscription`;
                  
                 document.querySelector('.order-total-line__total').insertAdjacentHTML('afterend',` <div class="saved_block">You just saved $58,89 (35% off)</div>`)
             } else if (document.querySelector('.views-field.views-field-total-price__number').innerHTML.includes('$13.99 ')) {
