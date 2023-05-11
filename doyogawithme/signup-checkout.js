@@ -492,16 +492,22 @@ let headHTML = `
 </div>`
 
 function getLabel(event) {
+    let target = event.target;
     let label = '';
     let href = window.location.href;
+
     if (href.includes('yogi/register') || (href.includes('/checkout') && href.includes('/login'))) {
-        if (event.closest('.o-page__main').querySelector('.sfc-tabs__tabcontent:not([aria-hidden=true] h2)') != null && event.closest('.o-page__main').querySelector('.sfc-tabs__tabcontent:not([aria-hidden=true] h2)').innerHTML.includes('Log In')) {
+        if (target.closest('.o-page__main').querySelector('.sfc-tabs__tabcontent:not([aria-hidden=true] h2)') != null && target.closest('.o-page__main').querySelector('.sfc-tabs__tabcontent:not([aria-hidden=true] h2)').innerHTML.includes('Log In')) {
             label = 'Log in form'
         } else {
             label = 'Create your account'
         }
     } else if (href.includes('yogi/login')) {
         label = 'Log in form'
+    } else if (href.includes('yogi/intake-survey')) {
+        label = 'Lets find classes that work best for you'
+    } else if ((href.includes('/checkout') && !href.includes('/login'))) {
+        label = 'Card information'
     }
     return label;
 }
@@ -617,6 +623,12 @@ function init() {
                 })
                 document.querySelector('.singup a').addEventListener('click', (e) => {
                     pushDataLayer(`Sign up`, 'Log in form')
+                })
+                document.querySelector('#edit-submit').addEventListener('click', () => {
+                    if (document.querySelector('#edit-name').value != '' &&
+                    document.querySelector('#edit-pass').value != '') {
+                        pushDataLayer('Submit form','Log in form')
+                    }
                 })
             }
             //all register pages
