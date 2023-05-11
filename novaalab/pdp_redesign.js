@@ -5710,7 +5710,7 @@ waitForElement('#video_wrap').then(el => {
 
 //         // document.querySelector('.video_wrap iframe')
 //     }
-// }, WAIT_INTERVAL_TIMEOUT)
+// }, WAIT_INTERVAL_TIMEOUT )
 
 const waitForReviews = setInterval(() => {
   if (
