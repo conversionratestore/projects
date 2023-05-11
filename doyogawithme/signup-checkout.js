@@ -319,6 +319,8 @@ input[type="checkbox"]:checked ~ .check {
     line-height: 48px!important;
     outline: none;
     position: relative;
+    margin-left: 0!important;
+    margin-right: 0!important;
 }
 .btn-reg.loading:after {
     content: '';
@@ -787,18 +789,6 @@ function init() {
                     .password-suggestions, .user-register-form .ac-newsletter-reg-suffix, .user-register-form .form-type-checkbox, header.o-page__header, .js-form-item-pass-pass2, .user-register-form .password-strength__title, .user-register-form .password-strength {
                         display: none!important;
                     }
-                    @media only screen and (min-width: 768px) {
-                        .o-page--simpleCard .o-page__mainContent:before {
-                            content: '';
-                            position: absolute;
-                            left: 50%;
-                            top: 50%;
-                            transform: translate(-50%,-50%);
-                            background: url(${dir}bg.svg) no-repeat center / contain;
-                            height: 732.5px;
-                            width: 942px;
-                        }
-                    }
                     @media only screen and (max-width: 767px) {
                         .o-page--simpleCard .o-page__mainContentWrapper {
                             margin-top: 16px;
@@ -811,6 +801,21 @@ function init() {
             }
         
             if (window.location.href.includes('/yogi/register')) {
+                document.body.insertAdjacentHTML('afterbegin', `
+                <style>
+                    @media only screen and (min-width: 768px) {
+                        .o-page--simpleCard .o-page__mainContent:before {
+                            content: '';
+                            position: absolute;
+                            left: 50%;
+                            top: 50%;
+                            transform: translate(-50%,-50%);
+                            background: url(${dir}bg.svg) no-repeat center / contain;
+                            height: 732.5px;
+                            width: 942px;
+                        }
+                    }
+                </style>`)
                 document.querySelector('form h1').innerHTML = 'Create your account';
 
                 document.querySelector('#edit-pass').insertAdjacentHTML('afterend', acceptHTML)
@@ -958,6 +963,11 @@ function init() {
                     }
                     .profile-student-form .form-actions {
                         padding-top: 2px;
+                    }
+                    @media only screen and (max-width: 767px) {
+                        .profile-student-form .form-actions {
+                            padding-bottom: 42px
+                        }
                     }
                 </style>`)
 
@@ -1355,10 +1365,14 @@ function init() {
 
             document.querySelector('.recurly-hosted-field').insertAdjacentHTML('beforebegin',`<label>Card Information</label>`)
 
-            document.querySelector('.layout-region.layout-region-checkout-main').insertAdjacentHTML('beforeend',`
-            <button type="button" class="btn_start_membership" disabled>Start membership</button>`)
+            if (document.querySelector('.btn_start_membership') == null) {
+                document.querySelector('.layout-region.layout-region-checkout-main').insertAdjacentHTML('beforeend',`
+                <button type="button" class="btn_start_membership" disabled>Start membership</button>`)
+            }
 
-            document.querySelector('[data-drupal-selector="edit-commerce-donation-pane-donation-toggler"]').insertAdjacentHTML('afterend', `<span class="check"></span>`)
+            if (document.querySelector('.samsara .form-type-checkbox .check') == null) {
+                document.querySelector('[data-drupal-selector="edit-commerce-donation-pane-donation-toggler"]').insertAdjacentHTML('afterend', `<span class="check"></span>`)
+            }
             document.querySelector('.form-item-commerce-donation-pane-donation-toggler label').innerHTML = `I'd like to make a donation to support instructors and free content creation `
 
             if (document.querySelector('.views-field.views-field-total-price__number').innerHTML.includes('$108.99')) {
@@ -1374,7 +1388,7 @@ function init() {
                 document.querySelector('.views-field.views-field-title').innerHTML = `1-Month DYWM Subscription`;
             }
         
-            if (document.querySelector('#edit-coupon-redemption') != null) {
+            if (document.querySelector('#edit-coupon-redemption') != null && document.querySelector('.btn_got_coupon') == null) {
                 document.querySelector('#edit-coupon-redemption').insertAdjacentHTML('beforebegin',`
                 <a href="#" class="btn_got_coupon">Got a Coupon?</a>`)
 
@@ -1443,6 +1457,12 @@ let applyCoupon = setInterval(() => {
     }            
 }, 200)
 
+let findMessageSubscription = setInterval(() => {
+    if (document.querySelector('.messages--status') != null && document.querySelector('.messages--status').innerHTML.includes('DYWM Subscription, Monthly added to')) {
+        clearInterval(findMessageSubscription)
+        document.querySelector('.messages--status').remove();
+    }
+});
 let disabledBtnFun = () => {
     let disabledBtn = setInterval(() => {
         if (document.querySelectorAll('form #edit-payment-information input') && document.querySelector('[data-drupal-selector="edit-actions-next"]') != null && document.querySelector('.btn_start_membership') != null) {
