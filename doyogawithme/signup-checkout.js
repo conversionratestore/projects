@@ -1605,8 +1605,16 @@ function init() {
             })
 
             let waitRadios = setInterval(() => {
-                if (document.querySelector('.address-book-edit-button') == null && document.querySelectorAll('.form-item-payment-information-payment-method').length > 1 && document.querySelectorAll('form #edit-payment-information input:not([type="hidden"],[type="checkbox"],[type="radio"])').length > 1 && document.querySelector('[data-drupal-selector="edit-commerce-donation-pane-donation-toggler"]') != null) {
+                if (document.querySelectorAll('.form-item-payment-information-payment-method').length > 1 && document.querySelector('[data-drupal-selector="edit-commerce-donation-pane-donation-toggler"]') != null) {
                     clearInterval(waitRadios)
+                    setTimeout(() => {
+                        disabledBtnFun()
+                    }, 200);
+                }
+            })
+            let waitFormEdit = setInterval(() => {
+                if (document.querySelector('.address-book-edit-button') == null && document.querySelectorAll('.form-item-payment-information-payment-method').length > 1 && document.querySelectorAll('form #edit-payment-information input:not([type="hidden"],[type="checkbox"],[type="radio"])').length > 1) {
+                    clearInterval(waitFormEdit)
                     
                     document.querySelectorAll('form #edit-payment-information input:not([type="hidden"],[type="checkbox"],[type="radio"])').forEach(item => {
                         item.addEventListener('input', (e) => {
@@ -1623,8 +1631,6 @@ function init() {
                             disabledBtnFun()
                         }, 200);
                     })
-                    console.log('waitRadios')
-                    disabledBtnFun()
                 }
             })
 
@@ -1675,7 +1681,6 @@ let disabledBtnFun = () => {
             selects.forEach(item => {
                 item.addEventListener('click', (e) => {
                     e.stopImmediatePropagation();
-                    console.log(e.currentTarget)
                     pushDataLayer(`Click on ${e.currentTarget.closest('.form-item').querySelector('label').innerText}`, label)
                 })
             })
