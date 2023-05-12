@@ -576,6 +576,8 @@ let acceptHTML = `
 
 let error = false;
 
+let clickApplyCoupon = false;
+
 function init() {
     let init = setInterval(() => {
         if (document.querySelector('.o-page--simpleCard .o-page__mainContentWrapper') != null && document.querySelector('form') != null) {
@@ -1560,12 +1562,10 @@ function init() {
 
                 document.querySelector('[data-drupal-selector="edit-sidebar-coupon-redemption-form-apply"]').innerHTML = 'Apply';
 
-                document.querySelector('[data-drupal-selector="edit-sidebar-coupon-redemption-form-apply"]').addEventListener('click', () => {
-                    pushDataLayer('Apply (Coupon)', label)
-                })
                 document.querySelector('.btn_got_coupon').addEventListener('click', (e) => {
                     e.preventDefault()
                     document.querySelector('#edit-coupon-redemption').classList.toggle('active');
+                    clickApplyCoupon = false;
                     pushDataLayer('Got a Coupon?', label)
                 })
                
@@ -1749,6 +1749,13 @@ let mut = new MutationObserver(function (muts) {
         mut.disconnect()
 
         disabledBtnFun()
+    }
+    mut.observe(document, optionMut);
+
+    if (clickApplyCoupon == false && document.querySelector('[data-drupal-selector="edit-sidebar-coupon-redemption-form-apply"]') != null && document.querySelector('[data-drupal-selector="edit-sidebar-coupon-redemption-form-apply"]').nextElementSibling != null ) {
+        mut.disconnect()
+        clickApplyCoupon = true;
+        pushDataLayer('Apply (Coupon)', 'Card information')
     }
     mut.observe(document, optionMut);
 })
