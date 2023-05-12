@@ -5418,7 +5418,7 @@ let jqueryLoaded = setInterval(() => {
 
         waitForElement('.slider_nav .slick-slide').then(el => {
           if (!document.querySelector('.slider_nav .slick-current')) {
-            el.classList.add('slick-current')            
+            el.classList.add('slick-current')
           }
         })
 
@@ -5815,8 +5815,6 @@ if (DEVICE === 'mobile') {
             }
           }
         }
-
-
       } else {
         document.querySelector('.under_bottom')?.classList.remove('under_bottom')
 
@@ -5834,8 +5832,7 @@ if (DEVICE === 'mobile') {
           }
         }
       }
-    })
-
+    }, { rootMargin: '0px 0px -87px 0px' })
     observer.observe(block)
   })
 }
