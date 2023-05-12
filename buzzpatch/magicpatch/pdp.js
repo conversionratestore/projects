@@ -247,6 +247,7 @@ const style = /* html */ `
             background: url(${bp}/img/plus-pink.svg) rgba(255, 60, 127, 0.1) center center no-repeat;
             background-size: 50% 50%;
             margin-right: 16px;
+            flex-shrink: 0;
         }
         .main_section .science .text {
             display: none;
@@ -571,6 +572,12 @@ const style = /* html */ `
             font-size: 12px !important;
             line-height: 1.3 !important;
             color: #999999;
+            display: flex;
+            align-items: center;
+        }
+        .main_section .reviews .slide .country img {
+            height: 10px;
+            margin-right: 5px;
         }
         .main_section .reviews .slide .stars {
             margin: 10px 0;
@@ -604,6 +611,7 @@ const style = /* html */ `
             background: none;
             border: none;
             padding: 0;
+            outline: none;
         }
         .main_section li.slick-active button:before {
             color: #FF3C7F;
@@ -826,7 +834,7 @@ const block2 = /* html */ `
                         alone and doesn't even play with the patch. Both BuzzPatch and MagicPatch have been something that has made the outdoors more enjoyable for all 3 of us.</span></p>
                     </div>
                     <div class="flx">
-                        <div class="country">Canada</div>
+                        <div class="country"><img src="https://judgeme-public-images.imgix.net/judgeme/flags/CA.svg" alt="flag">Canada</div>
                         <div class="verified"><img src="${bp}/img/check_circle.svg" alt="check">Verified Buyer</div>
                     </div>
                 </div>
@@ -845,7 +853,7 @@ const block2 = /* html */ `
                         Within about 60 seconds all the itch was gone! It was magic! I’ve recommended it to all of my friends!</span></p>
                     </div>
                     <div class="flx">
-                        <div class="country">Canada</div>
+                        <div class="country"><img src="https://judgeme-public-images.imgix.net/judgeme/flags/CA.svg" alt="flag">Canada</div>
                         <div class="verified"><img src="${bp}/img/check_circle.svg" alt="check">Verified Buyer</div>
                     </div>
                 </div>
@@ -865,7 +873,7 @@ const block2 = /* html */ `
                           a few days due to scratching.</span></p>
                     </div>
                     <div class="flx">
-                        <div class="country">Canada</div>
+                        <div class="country"><img src="https://judgeme-public-images.imgix.net/judgeme/flags/CA.svg" alt="flag">Canada</div>
                         <div class="verified"><img src="${bp}/img/check_circle.svg" alt="check">Verified Buyer</div>
                     </div>
                 </div>
