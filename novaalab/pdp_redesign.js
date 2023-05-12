@@ -373,7 +373,7 @@ article {
   cursor: pointer;
 }
 
-.slider_nav .slick-current .slider_item img {
+.slider_nav .slick-current.slider_item img {
   border: 2px solid #773BD9;
 }
 
@@ -3503,7 +3503,7 @@ const html = /*html*/`
                                     alt="">                                
                             </div>
                             <div class="slider_item">
-                                <video controls>
+                                <video controls poster="https://cdn.shopify.com/s/files/1/0156/6529/9510/products/c22c8d057a7b49e5976c147bd8c6ffb6.thumbnail.0000000000_480x480.jpg?v=1674651563">
                                     <source
                                         src="https://cdn.shopify.com/videos/c/vp/c22c8d057a7b49e5976c147bd8c6ffb6/c22c8d057a7b49e5976c147bd8c6ffb6.m3u8"
                                         type="application/x-mpegURL">
@@ -5360,7 +5360,11 @@ let jqueryLoaded = setInterval(() => {
                                 arrows: false
                             }
                         },
-                    ]
+                    ],
+                    onAfterChange: function (slick, currentSlide, nextSlide) {
+                        document.querySelector('.slider_nav .slick-current')?.classList.remove('slick-current')
+                        document.querySelector('.slider_nav .slick-active')?.classList.add('slick-current')
+                    }
                 })
 
                 $('.slider').slick({
