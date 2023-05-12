@@ -3843,7 +3843,7 @@ const html = /*html*/`
                         <div data-visibility="Visibility Clinically proven red light therapy">
                             <h5>Clinically proven red light therapy</h5>
                             <p>FDA Class 2 Light Therapy for safe and efficient results</p>
-                            <img src="https://conversionratestore.github.io/projects/novaalab/img/companies.png" loading="lazy" alt="">
+                            <img src="https://conversionratestore.github.io/projects/novaalab/img/companies.png"  alt="">
                         </div>
                     </div>
                 </div>
@@ -4298,7 +4298,7 @@ const html = /*html*/`
                                     session.</span>
                             </p>
                         </div>
-                        <img src="https://conversionratestore.github.io/projects/novaalab/img/relax1.jpg" loading="lazy" alt="">
+                        <img src="https://conversionratestore.github.io/projects/novaalab/img/relax1.jpg"  alt="">
                     </div>
                     <div class="second_block">
                         <div class="video_wrap" id="video_wrap"><iframe src="https://player.vimeo.com/video/792612527?h=976912cf7b&title=0&byline=0&portrait=0&app_id=122963" width="100%" height="100%" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
@@ -4471,7 +4471,7 @@ const html = /*html*/`
                         </div>
                     </div>
                     <div>
-                        <img src="https://conversionratestore.github.io/projects/novaalab/img/mitochondria.svg" loading="lazy" alt="">
+                        <img src="https://conversionratestore.github.io/projects/novaalab/img/mitochondria.svg"  alt="">
                     </div>
                 </div>
             </article>
@@ -4495,7 +4495,7 @@ const html = /*html*/`
                         <p>That's why the Novaa Deep Healing Pad is recognized as a medical device by the FDA.</p>
                     </div>
                     <div>
-                        <img src="https://conversionratestore.github.io/projects/novaalab/img/doctor.png"loading="lazy" alt="">
+                        <img src="https://conversionratestore.github.io/projects/novaalab/img/doctor.png" alt="">
                     </div>
                 </div>
             </article>
@@ -4512,7 +4512,7 @@ const html = /*html*/`
                 <img class="desktop" data-visibility="Visibility When will the Novaab Light help you - infographics" data-ga-label="When will the Novaab Light help you - infographics"
                     src="https://ucarecdn.com/cdb9e201-2a53-4263-8b74-7eab4feae96f/Group%20220%20_2_%20_1_.svg" alt="">
                 <div class="mobile" data-visibility="Visibility When will the Novaab Light help you - infographics" data-ga-label="When will the Novaab Light help you - infographics">
-                    <img src="https://conversionratestore.github.io/projects/novaalab/img/proven_mobile.jpg" loading="lazy" alt="">
+                    <img src="https://conversionratestore.github.io/projects/novaalab/img/proven_mobile.jpg"  alt="">
                 </div>
             </article>
             <article class="promise">
@@ -4826,7 +4826,7 @@ const html = /*html*/`
                         <div class="splitit_steps">
                             <div class="splitit_step">
                                 <div>
-                                    <img src="https://documents.production.splitit.com/assets/svgs/select_step.svg" loading="lazy"
+                                    <img src="https://documents.production.splitit.com/assets/svgs/select_step.svg" 
                                         alt="">
                                     <div class="number_step">
                                         <span>1</span>
@@ -4835,19 +4835,19 @@ const html = /*html*/`
                                 <div class="mob_payment">
                                     <p>Add your item(s) to cart</p>
                                     <div class="label">
-                                        <img src="https://documents.production.splitit.com/assets/svgs/split.svg" loading="lazy"
+                                        <img src="https://documents.production.splitit.com/assets/svgs/split.svg" 
                                             alt="">
                                         <p>Monthly<br>Payments</p>
                                     </div>
                                 </div>
                                 <div class="label">
-                                    <img src="https://documents.production.splitit.com/assets/svgs/split.svg" loading="lazy" alt="">
+                                    <img src="https://documents.production.splitit.com/assets/svgs/split.svg"  alt="">
                                     <p>Monthly<br>Payments</p>
                                 </div>
                             </div>
                             <div class="splitit_step">
                                 <div>
-                                    <img src="https://documents.production.splitit.com/assets/svgs/pay_step.svg" loading="lazy" alt="">
+                                    <img src="https://documents.production.splitit.com/assets/svgs/pay_step.svg"  alt="">
                                     <div class="number_step">
                                         <span>2</span>
                                     </div>
