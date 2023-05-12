@@ -1605,7 +1605,7 @@ function init() {
             })
 
             let waitRadios = setInterval(() => {
-                if (document.querySelectorAll('.form-item-payment-information-payment-method').length > 1 && document.querySelector('[data-drupal-selector="edit-commerce-donation-pane-donation-toggler"]') != null) {
+                if (document.querySelectorAll('.form-item-payment-information-payment-method input').length > 1 && document.querySelector('[data-drupal-selector="edit-commerce-donation-pane-donation-toggler"]') != null) {
                     clearInterval(waitRadios)
                     setTimeout(() => {
                         disabledBtnFun()
@@ -1741,6 +1741,12 @@ let mut = new MutationObserver(function (muts) {
         mut.disconnect()
 
         error = document.querySelector('[data-drupal-selector="edit-payment-information-add-payment-method-billing-information-address-0-address-administrative-area"]').innerHTML.includes('Select')
+        disabledBtnFun()
+    }
+    mut.observe(document, optionMut);
+    if (document.querySelectorAll('.form-item-payment-information-payment-method ').length > 1 && document.querySelector('[data-drupal-selector="edit-commerce-donation-pane-donation-toggler"]') != null) {
+        mut.disconnect()
+
         disabledBtnFun()
     }
     mut.observe(document, optionMut);
