@@ -8,7 +8,7 @@ function getDeliveryDateRange(country) {
   const currentDate = new Date()
   let deliveryDateStart, deliveryDateEnd
 
-  if (country === "Canada") {
+  if (country.includes("Canada")) {
     deliveryDateStart = new Date(currentDate.getTime() + (8 * 24 * 60 * 60 * 1000)) // add 8 days
     deliveryDateEnd = new Date(currentDate.getTime() + (12 * 24 * 60 * 60 * 1000)) // add 12 days
   } else {
@@ -32,7 +32,7 @@ function addTwoMonth(country) {
   const today = new Date()
   let daysToAdd
 
-  if (country === 'Canada') {
+  if (country.includes('Canada')) {
     daysToAdd = 12
   } else {
     daysToAdd = 5
@@ -5213,7 +5213,7 @@ const waitForSelectOptions = setInterval(() => {
 
         sendGAEvent('Click on option in pop-up Ship to', country)
 
-        if (country === 'Canada') {
+        if (country.includes('Canada')) {
           document.querySelector('[data-days-range]').innerText = `8-12 days: We ship it to you`
         } else {
           document.querySelector('[data-days-range]').innerText = `4-5 days: We ship it to you`
@@ -5832,7 +5832,7 @@ if (DEVICE === 'mobile') {
           }
         }
       }
-    }, { rootMargin: '0px 0px -87px 0px' })
+    }, { rootMargin: '0px 0px -100px 0px' })
     observer.observe(block)
   })
 }
