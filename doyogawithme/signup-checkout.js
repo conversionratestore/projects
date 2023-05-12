@@ -1380,12 +1380,9 @@ function init() {
                 input[readonly] {
                     background: #F6F6F6;
                 }
-                // [data-drupal-messages] {
-                //     position: fixed;
-                //     top: 0;
-                //     right: 0;
-                //     z-index: 99;
-                // }
+                [data-drupal-messages] {
+                    margin: 10px 0;
+                }
                 .info_dashed {
                     background: #F9F9F9;
                     border: 1px dashed #D6D6D6;
@@ -1756,6 +1753,15 @@ let mut = new MutationObserver(function (muts) {
         mut.disconnect()
         clickApplyCoupon = true;
         pushDataLayer('Apply (Coupon)', 'Card information')
+    }
+    mut.observe(document, optionMut);
+    if (document.querySelectorAll('[data-drupal-messages]') && document.querySelector('[data-drupal-selector="edit-coupon-redemption"]') != null) {
+        mut.disconnect()
+        document.querySelectorAll('[data-drupal-messages]').forEach(item => {
+            if (item.innerHTML.includes('coupon code')) {
+                document.querySelector('[data-drupal-selector="edit-coupon-redemption"]').after(item)
+            }
+        })
     }
     mut.observe(document, optionMut);
 })
