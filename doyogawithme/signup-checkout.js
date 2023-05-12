@@ -1380,12 +1380,12 @@ function init() {
                 input[readonly] {
                     background: #F6F6F6;
                 }
-                [data-drupal-messages] {
-                    position: fixed;
-                    top: 0;
-                    right: 0;
-                    z-index: 99;
-                }
+                // [data-drupal-messages] {
+                //     position: fixed;
+                //     top: 0;
+                //     right: 0;
+                //     z-index: 99;
+                // }
                 .info_dashed {
                     background: #F9F9F9;
                     border: 1px dashed #D6D6D6;
@@ -1722,7 +1722,7 @@ let disabledBtnFun = () => {
             } 
     
             document.querySelector('.btn_start_membership').disabled = error;
-            console.log('error = ' + error)
+            console.log('Start membership = ' + error)
         }
     });
 } 
