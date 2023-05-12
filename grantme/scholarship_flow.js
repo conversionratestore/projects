@@ -964,11 +964,11 @@ label.is_hidden {
   margin-top: 4px;
   display: block;
 }
-/*
+
 .chosen_select div.options_custom {
   display: none;
 }
-*/
+
 .chosen_select div.options_custom ul {
   overflow-x: auto;
   max-height: 184px;
@@ -2531,6 +2531,38 @@ padding: 0;
             document.querySelector("#calendarContainer").classList.add("is_hidden");
             document.querySelector(".chosen_select").classList.remove("is_hidden");
             document.querySelector(".time_zone_wrapper").classList.add("is_hidden");
+
+            //visibility elem
+            let obs = new IntersectionObserver(visibility, {
+              threshold: 1,
+            });
+
+            let obs2 = new IntersectionObserver(visibility2, {
+              threshold: 1,
+            });
+
+            obs.observe(document.querySelector(".chosen_select"));
+            function visibility(entries) {
+              entries.forEach((i) => {
+                if (i.isIntersecting) {
+                  setTimeout(function () {
+                    obs2.observe(i.target);
+                  }, 100);
+                }
+              });
+            }
+            function visibility2(entries) {
+              entries.forEach((i) => {
+                if (i.isIntersecting) {
+                  if (i.target.classList.contains("chosen_select")) {
+                    pushDataLayer("exp_bookpage_viewel_st1", "Interaction", "View element on screen", "Select a time");
+                  }
+
+                  obs.unobserve(i.target);
+                }
+                obs2.unobserve(i.target);
+              });
+            }
           }
         },
       });
@@ -2568,7 +2600,6 @@ padding: 0;
         const timeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
         console.log(timeZone, `timeZone`);
         if (document.querySelector(".select2-selection__rendered")) {
-          console.log(`document.querySelector(".select2-selection__rendered")`, document.querySelector(".select2-selection__rendered"));
           document.querySelector(".select2-selection__rendered").textContent = timeZone;
           if (document.querySelector(".calc_step_third")) {
             document.querySelector(".calc_step_third > p > span:last-child").textContent = timeZone;
@@ -2670,6 +2701,37 @@ padding: 0;
 
           if (document.querySelector(".chosen_select div.select_custom").getAttribute("data-selected") && document.querySelector(".confirm_time_btn:disabled")) {
             document.querySelector(".confirm_time_btn:disabled").disabled = false;
+            //visibility elem
+            let obs = new IntersectionObserver(visibility, {
+              threshold: 1,
+            });
+
+            let obs2 = new IntersectionObserver(visibility2, {
+              threshold: 1,
+            });
+
+            obs.observe(document.querySelector(".chosen_select div.select_custom"));
+            function visibility(entries) {
+              entries.forEach((i) => {
+                if (i.isIntersecting) {
+                  setTimeout(function () {
+                    obs2.observe(i.target);
+                  }, 100);
+                }
+              });
+            }
+            function visibility2(entries) {
+              entries.forEach((i) => {
+                if (i.isIntersecting) {
+                  if (i.target.getAttribute("data-selected")) {
+                    pushDataLayer("exp_bookpage_viewel_st2", "Interaction", "View element on screen", "Select a time");
+                  }
+
+                  obs.unobserve(i.target);
+                }
+                obs2.unobserve(i.target);
+              });
+            }
           }
         });
       });
@@ -2729,6 +2791,38 @@ padding: 0;
         document.querySelector(".chosen_select").classList.add("is_hidden");
         document.querySelector(".time_zone_wrapper").classList.add("is_hidden");
         document.querySelector(".calc_step_third").classList.remove("is_hidden");
+
+        //visibility elem
+        let obs = new IntersectionObserver(visibility, {
+          threshold: 1,
+        });
+
+        let obs2 = new IntersectionObserver(visibility2, {
+          threshold: 1,
+        });
+
+        obs.observe(document.querySelector(".calc_step_third"));
+        function visibility(entries) {
+          entries.forEach((i) => {
+            if (i.isIntersecting) {
+              setTimeout(function () {
+                obs2.observe(i.target);
+              }, 100);
+            }
+          });
+        }
+        function visibility2(entries) {
+          entries.forEach((i) => {
+            if (i.isIntersecting) {
+              if (i.target.classList.contains("calc_step_third")) {
+                pushDataLayer("exp_bookpage_viewel_fc", "Interaction", "View element on screen", "Free Call with a Student  Success Specialist");
+              }
+
+              obs.unobserve(i.target);
+            }
+            obs2.unobserve(i.target);
+          });
+        }
       });
     }
 
