@@ -5417,9 +5417,10 @@ let jqueryLoaded = setInterval(() => {
         })
 
         waitForElement('.slider_nav .slick-slide').then(el => {
-          el.classList.add('slick-current')
+          if (!document.querySelector('.slider_nav .slick-current')) {
+            el.classList.add('slick-current')            
+          }
         })
-
 
         waitForElement('.slider_for_wrap').then(el => {
           swipe('.slider_for_wrap')
