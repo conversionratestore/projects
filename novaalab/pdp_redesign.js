@@ -300,6 +300,8 @@ article {
   position: relative;
 }
 
+.slider_nav_wrap .slick-list {padding:0 15% 0 0 !important;}
+
 .slider_nav_wrap .slick-prev,
 .slider_nav_wrap .slick-next,
 .slider .slick-prev,
@@ -409,6 +411,12 @@ bottom: auto !important;
   list-style-type: none;
   padding: 0;
   margin-top: 20px !important;
+}
+
+.pdp_main .slick-dots li {
+    width: 10px;
+    height: 10px;
+    margin: 0 5px !important;
 }
 
 .pdp_main .slick-dots li button {
@@ -3165,6 +3173,7 @@ max-width: 1248px;
     margin-top: 16px !important;
   }
 
+  .slider_nav_wrap .slick-list,
   .slick-list {
     padding-left: 24px !important;
   }
@@ -5348,7 +5357,7 @@ let jqueryLoaded = setInterval(() => {
                     }
                 })
                 $('.slider_nav').slick({
-                    slidesToShow: 3.5,
+                    slidesToShow: 3,
                     slidesToScroll: 3,
                     asNavFor: '.slider_for',
                     dots: true,
@@ -5359,7 +5368,7 @@ let jqueryLoaded = setInterval(() => {
                         {
                             breakpoint: 768,
                             settings: {
-                                slidesToShow: 4.5,
+                                slidesToShow: 4,
                                 slidesToScroll: 4,
                                 arrows: false
                             }
