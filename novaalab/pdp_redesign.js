@@ -5637,6 +5637,10 @@ const waitForNav = setInterval(() => {
                     }
 
                     document.querySelector('.empty_space').style.paddingTop = heightWithMargin + 'px'
+
+                    if (document.querySelector('#privy-container #privy-inner-container .privy-mobile.privy-tab-container.privy-basic')) {
+                        document.querySelector('#privy-container #privy-inner-container .privy-mobile.privy-tab-container.privy-basic').classList.add('custom_pos')
+                    }
                 }
             } else {
                 if (navList.classList.contains('fixed')) {
@@ -5646,12 +5650,6 @@ const waitForNav = setInterval(() => {
 
                     if (document.querySelector('#privy-container #privy-inner-container .privy-mobile.privy-tab-container.privy-basic')) {
                         document.querySelector('#privy-container #privy-inner-container .privy-mobile.privy-tab-container.privy-basic').classList.remove('custom_pos')
-                    }
-
-                    if (document.querySelector('iframe#chat-button.higher')) {
-                        document.querySelector('iframe#chat-button.higher').classList.remove('higher')
-                    } else if (document.querySelector('iframe#chat-button.average')) {
-                        document.querySelector('iframe#chat-button.average').classList.remove('average')
                     }
                 }
             }
