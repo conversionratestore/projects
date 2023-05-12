@@ -625,12 +625,11 @@ const style = /* html */ `
             width: 30px;
             height: 30px;
             margin-right: 16px;
-            position: relative;
             flex-shrink: 0;
         }
         .card-header .card-link {
             font-weight: 600;
-            padding-left: 0 !important;
+            padding-left: 40px !important;
         }
         .card-header .card-link:hover {
             opacity: 1;
