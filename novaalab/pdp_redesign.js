@@ -5832,7 +5832,7 @@ if (DEVICE === 'mobile') {
           }
         }
       }
-    }, { rootMargin: "-73px 0px 0px 0px" })
+    }, { rootMargin: "-52px 0px 0px 0px" })
     observer.observe(block)
   })
 }
