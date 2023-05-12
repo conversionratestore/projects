@@ -123,12 +123,14 @@ const trimText = (container) => {
             readMoreBtn.addEventListener('click', () => {
                 if(readMoreBtn.textContent === 'View more') {
                     readMoreBtn.textContent = 'View less'
+                    readMoreBtn.style.marginLeft = '4px'
                     text.style.overflow = 'initial';
                     text.style.textOverflow = 'initial';
                     text.style.webkitLineClamp = 'initial';
                     text.style.display = 'initial';
                 } else {
                     readMoreBtn.textContent = 'View more'
+                    readMoreBtn.style.marginLeft = '0'
                     text.style.overflow = 'hidden';
                     text.style.textOverflow = 'ellipsis';
                     text.style.webkitLineClamp = '4';
@@ -661,7 +663,7 @@ const style = /* html */ `
 const block1 = /* html */ `
     <div class='block1' data-visible="Drain bug toxins from the skin - the natural way">
         <h3><img src="https://conversionratestore.github.io/projects/buzzpatch/zenpatch/sience/img/natural.svg" alt="natural">Drain bug toxins from the skin - the natural way</h3>
-        <p>The Buzz Patch's Grid-Relief technology reduces itching & swelling without any chemicals. Using medical grade fabric, each patch is
+        <p>The Magic Patch's Grid-Relief technology reduces itching & swelling without any chemicals. Using medical grade fabric, each patch is
         dermatologically engineered to mechanically lift the skin around a bite - draining away bug & mosquito saliva and providing immediate drug-free relief. </p>
         <p class="sub"><b>Ingredients:</b><br>Medical Grade, non-woven fabric.</p>
     </div>
