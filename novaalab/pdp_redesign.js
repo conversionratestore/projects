@@ -5682,7 +5682,7 @@ const waitForNav = setInterval(() => {
             if (document.getElementById('privy-container')) {
               document.querySelector('iframe#chat-button').classList.add('higher')
             } else {
-              document.querySelector('iframe#chat-button.average').classList.add('average')
+              document.querySelector('iframe#chat-button').classList.add('average')
             }
           }
         }
@@ -5832,7 +5832,7 @@ if (DEVICE === 'mobile') {
           }
         }
       }
-    }, { rootMargin: '0px 0px -100px 0px' })
+    }, { rootMargin: "-95px 0px 0px 0px" })
     observer.observe(block)
   })
 }
