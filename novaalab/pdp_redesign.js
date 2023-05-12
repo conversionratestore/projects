@@ -5,44 +5,44 @@ const dateToday = new Date().toLocaleDateString('en-US', { month: 'short', day: 
 const untilTwoYears = new Date(Date.now() + (2 * 365 * 24 * 60 * 60 * 1000)).toLocaleDateString('en-US', { month: 'long', year: 'numeric' })
 
 function getDeliveryDateRange(country) {
-    const currentDate = new Date()
-    let deliveryDateStart, deliveryDateEnd
+  const currentDate = new Date()
+  let deliveryDateStart, deliveryDateEnd
 
-    if (country === "Canada") {
-        deliveryDateStart = new Date(currentDate.getTime() + (8 * 24 * 60 * 60 * 1000)) // add 8 days
-        deliveryDateEnd = new Date(currentDate.getTime() + (12 * 24 * 60 * 60 * 1000)) // add 12 days
-    } else {
-        deliveryDateStart = new Date(currentDate.getTime() + (4 * 24 * 60 * 60 * 1000)) // add 4 days
-        deliveryDateEnd = new Date(currentDate.getTime() + (5 * 24 * 60 * 60 * 1000)) // add 5 days
-    }
+  if (country === "Canada") {
+    deliveryDateStart = new Date(currentDate.getTime() + (8 * 24 * 60 * 60 * 1000)) // add 8 days
+    deliveryDateEnd = new Date(currentDate.getTime() + (12 * 24 * 60 * 60 * 1000)) // add 12 days
+  } else {
+    deliveryDateStart = new Date(currentDate.getTime() + (4 * 24 * 60 * 60 * 1000)) // add 4 days
+    deliveryDateEnd = new Date(currentDate.getTime() + (5 * 24 * 60 * 60 * 1000)) // add 5 days
+  }
 
-    const startDay = deliveryDateStart.toLocaleDateString('en-US', { day: 'numeric' })
-    const endDay = deliveryDateEnd.toLocaleDateString('en-US', { day: 'numeric' })
-    const startMonth = deliveryDateStart.toLocaleDateString('en-US', { month: 'long' })
-    const endMonth = deliveryDateEnd.toLocaleDateString('en-US', { month: 'long' })
+  const startDay = deliveryDateStart.toLocaleDateString('en-US', { day: 'numeric' })
+  const endDay = deliveryDateEnd.toLocaleDateString('en-US', { day: 'numeric' })
+  const startMonth = deliveryDateStart.toLocaleDateString('en-US', { month: 'long' })
+  const endMonth = deliveryDateEnd.toLocaleDateString('en-US', { month: 'long' })
 
-    if (startMonth !== endMonth) {
-        return `${startDay} ${startMonth.slice(0, 3)} - ${endDay} ${endMonth.slice(0, 3)}`
-    } else {
-        return `${startDay} - ${endDay} ${endMonth}`
-    }
+  if (startMonth !== endMonth) {
+    return `${startDay} ${startMonth.slice(0, 3)} - ${endDay} ${endMonth.slice(0, 3)}`
+  } else {
+    return `${startDay} - ${endDay} ${endMonth}`
+  }
 }
 
 function addTwoMonth(country) {
-    const today = new Date()
-    let daysToAdd
+  const today = new Date()
+  let daysToAdd
 
-    if (country === 'Canada') {
-        daysToAdd = 12
-    } else {
-        daysToAdd = 5
-    }
+  if (country === 'Canada') {
+    daysToAdd = 12
+  } else {
+    daysToAdd = 5
+  }
 
-    const futureDate = new Date(today.getTime() + (daysToAdd + 60) * 24 * 60 * 60 * 1000)
-    const month = futureDate.toLocaleString('default', { month: 'long' })
-    const day = futureDate.getDate()
+  const futureDate = new Date(today.getTime() + (daysToAdd + 60) * 24 * 60 * 60 * 1000)
+  const month = futureDate.toLocaleString('default', { month: 'long' })
+  const day = futureDate.getDate()
 
-    return `Until ${month} ${day}, 2023`
+  return `Until ${month} ${day}, 2023`
 }
 
 const style = /*html*/`
@@ -53,12 +53,12 @@ const style = /*html*/`
       transition: bottom 0.5s ease-in-out 0.1s;
     }
 
-    iframe#chat-button.higher {
-      bottom: 135px !important;
-    }
-
     iframe#chat-button.average {
       bottom: 100px !important;
+    }
+
+    iframe#chat-button.higher {
+      bottom: 135px !important;
     }
 
     body #privy-container #privy-inner-container .privy-mobile.privy-tab-container.privy-basic {
@@ -590,6 +590,10 @@ bottom: auto !important;
   padding: 16px;
   transition: bottom 0.5s ease-in-out;
   z-index: 100;
+}
+
+.fixed_upsell.under_bottom {
+  bottom: -100% !important;
 }
 
 .fixed_upsell>div {
@@ -2078,13 +2082,6 @@ margin-bottom: 0;
   font-style: italic;
 }
 
-#faq .gina .review p img {
-  position: absolute;
-  top: auto;
-  right: 0;
-  bottom: -4px;
-}
-
 #faq .gina .review img.quote_open {
   top: -4px;
   margin-right: 10px;
@@ -2513,6 +2510,23 @@ max-width: 1248px;
 }
 
 @media (max-width: 768px) {
+
+iframe#chat-button.higher {
+    bottom: 135px !important;
+}
+
+#faq .gina .review p img {
+  position: absolute;
+  top: auto;
+  right: 0;
+  bottom: -4px;
+}
+
+#faq .gina .review p img .customer_quote {
+    display: inline-block;
+    margin-right: 35px;
+}
+
   #technical .row p:last-child,
   .specifications .list .row>ul li {
     font-style: italic;
@@ -3892,12 +3906,13 @@ const html = /*html*/`
                         </div>
                     </div>
                 </div>
+                <div class="add_block">
                 <div class="kit" id="kit">
                     <h3>Choose your kit</h3>
                     <div class="content">
                         <div class="left" data-visibility="Visibility Choose your kit - top part" data-ga-label="Choose your kit">
                             <img src="https://conversionratestore.github.io/projects/novaalab/img/kit.png" alt="">
-                            <div>
+                            <div id="mob_scroll">
                                 <img src="https://conversionratestore.github.io/projects/novaalab/img/check_purple.svg" alt="">
                                 <p>Get <b>FREE ebook</b> "Red Light Therapy secrets"</p>
                             </div>
@@ -4052,6 +4067,7 @@ const html = /*html*/`
                             <button>Add to cart</button>
                         </div>
                     </div>
+                </div>
                 </div>
             </article>
             <article class="no_risk">
@@ -4755,7 +4771,7 @@ const html = /*html*/`
                                         was
                                         laying in my side with no pain! I continued using it and <b>I was pain free in
                                             10
-                                            days!</b>. “ - Gina, happy NovaaLab <span style="margin-right: 35px;">customer <img
+                                            days!</b>. “ - Gina, happy NovaaLab <span class="customer_quote">customer <img
                                             src="https://conversionratestore.github.io/projects/novaalab/img/quotes.svg" alt=""></span>
                                 </p>
                             </div>
@@ -4987,770 +5003,840 @@ const html = /*html*/`
 `
 
 const waitForElement = async (selector) => { // Wait for an element to appear on the page
-    while (!document.querySelector(selector)) {
-        await new Promise(resolve => setTimeout(resolve, WAIT_INTERVAL_TIMEOUT))
-    }
-    return document.querySelector(selector)
+  while (!document.querySelector(selector)) {
+    await new Promise(resolve => setTimeout(resolve, WAIT_INTERVAL_TIMEOUT))
+  }
+  return document.querySelector(selector)
 }
 
 document.head.insertAdjacentHTML('beforebegin', style)
 waitForElement('#PageContainer').then(el => {
-    el.insertAdjacentHTML('afterbegin', html)
+  el.insertAdjacentHTML('afterbegin', html)
 })
 
 const sendGAEvent = (eventAction, eventLabel = '') => { // Send a Google Analytics event
-    const eventData = {
-        event: 'event-to-ga',
-        eventCategory: `Exp: PDP redesign. ${DEVICE.charAt(0).toUpperCase() + DEVICE.slice(1)}`,
-        eventAction,
-        eventLabel,
-    }
+  const eventData = {
+    event: 'event-to-ga',
+    eventCategory: `Exp: PDP redesign. ${DEVICE.charAt(0).toUpperCase() + DEVICE.slice(1)}`,
+    eventAction,
+    eventLabel,
+  }
 
-    window.dataLayer = window.dataLayer || []
-    dataLayer.push(eventData)
-    console.log(eventData)
+  window.dataLayer = window.dataLayer || []
+  dataLayer.push(eventData)
+  console.log(eventData)
 }
 
 const checkVisibilityAfterMs = (el, ms = 3000) => { // Checks element visibility after a specified time. 
-    let timer
+  let timer
 
-    const config = {
-        root: null,
-        threshold: 0.6,
-    }
+  const config = {
+    root: null,
+    threshold: 0.6,
+  }
 
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-                timer = setTimeout(() => {
-                    if (el.id === 'c-1654794074761') {
-                        sendGAEvent('Visibility first video', 'Melt your plan ...')
-                    }
-                    else if (el.id === 'c-1654794103606') {
-                        sendGAEvent('Visibility second video', 'Melt your plan ...')
-                    }
-                    else if (el.id === 'video_wrap') {
-                        sendGAEvent('Visibility third video', 'Perfect for your daily routine')
-                    }
-                    else {
-                        if (el.dataset.gaLabel) {
-                            sendGAEvent(`${el.dataset.visibility}`, el.dataset.gaLabel)
-                        } else {
-                            sendGAEvent(`${el.dataset.visibility}`)
-                        }
-                    }
-
-                    observer.disconnect()
-                }, ms)
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        timer = setTimeout(() => {
+          if (el.id === 'c-1654794074761') {
+            sendGAEvent('Visibility first video', 'Melt your plan ...')
+          }
+          else if (el.id === 'c-1654794103606') {
+            sendGAEvent('Visibility second video', 'Melt your plan ...')
+          }
+          else if (el.id === 'video_wrap') {
+            sendGAEvent('Visibility third video', 'Perfect for your daily routine')
+          }
+          else {
+            if (el.dataset.gaLabel) {
+              sendGAEvent(`${el.dataset.visibility}`, el.dataset.gaLabel)
             } else {
-                clearTimeout(timer)
+              sendGAEvent(`${el.dataset.visibility}`)
             }
-        })
-    }, config)
+          }
 
-    observer.observe(el)
+          observer.disconnect()
+        }, ms)
+      } else {
+        clearTimeout(timer)
+      }
+    })
+  }, config)
+
+  observer.observe(el)
 }
 
 const waitForReviewsNumber = setInterval(() => {
-    if (document.querySelector('.opw-fontLg.opw-textColor')?.innerText.length && document.querySelectorAll('.review u')[1]) {
-        clearInterval(waitForReviewsNumber)
+  if (document.querySelector('.opw-fontLg.opw-textColor')?.innerText.length && document.querySelectorAll('.review u')[1]) {
+    clearInterval(waitForReviewsNumber)
 
-        const number = parseInt(document.querySelector('.opw-fontLg.opw-textColor').innerText.match(/\d+/)[0])
+    const number = parseInt(document.querySelector('.opw-fontLg.opw-textColor').innerText.match(/\d+/)[0])
 
-        for (let review of document.querySelectorAll('.review u')) {
-            review.innerText = `From ${number} Reviews`
-        }
+    for (let review of document.querySelectorAll('.review u')) {
+      review.innerText = `From ${number} Reviews`
     }
+  }
 }, WAIT_INTERVAL_TIMEOUT)
 
 // CHOOSE UR KIT
 const waitForKit = setInterval(() => {
-    if (document.querySelectorAll('.kit .pack')[1]) {
-        clearInterval(waitForKit)
+  if (document.querySelectorAll('.kit .pack')[1]) {
+    clearInterval(waitForKit)
 
-        for (const pack of document.querySelectorAll('.kit .pack')) {
-            pack.addEventListener('click', () => {
-                document.querySelector('.pack.checked').classList.remove('checked')
-                sendGAEvent(`Click on select kit - ${pack.querySelector('.pack_name h5').innerText}`, 'Choose your kit')
-                pack.classList.add('checked')
-            })
-        }
+    for (const pack of document.querySelectorAll('.kit .pack')) {
+      pack.addEventListener('click', () => {
+        document.querySelector('.pack.checked').classList.remove('checked')
+        sendGAEvent(`Click on select kit - ${pack.querySelector('.pack_name h5').innerText}`, 'Choose your kit')
+        pack.classList.add('checked')
+      })
     }
+  }
 }, WAIT_INTERVAL_TIMEOUT)
 
 // ADD TO CART
 function addToCart(id, quantity = 1) {
-    $.ajax({
-        url: "/cart/add.js",
-        data: { id, quantity },
-        method: "POST",
-        dataType: "JSON",
-        success: function (data) {
-            console.log(data)
-            window.location = 'https://novaalab.com/cart'
-        },
-        error: function (error) {
-            console.log(error)
-        }
-    })
+  $.ajax({
+    url: "/cart/add.js",
+    data: { id, quantity },
+    method: "POST",
+    dataType: "JSON",
+    success: function (data) {
+      console.log(data)
+      window.location = 'https://novaalab.com/cart'
+    },
+    error: function (error) {
+      console.log(error)
+    }
+  })
 }
 
 waitForElement('.kit button').then(btn =>
-    btn.addEventListener('click', () => {
-        if (document.querySelector('.pack.checked h5')?.innerText.includes('2')) {
-            addToCart(40322897838134, 2)
-            sendGAEvent('Click on Add to cart', '2 NOVAA LIGHT PADS', 'Choose your kit')
-        } else {
-            addToCart(40322897838134)
-            sendGAEvent('Click on Add to cart', '1 NOVAA LIGHT PAD', 'Choose your kit')
-        }
-    })
+  btn.addEventListener('click', () => {
+    if (document.querySelector('.pack.checked h5')?.innerText.includes('2')) {
+      addToCart(40322897838134, 2)
+      sendGAEvent('Click on Add to cart', '2 NOVAA LIGHT PADS', 'Choose your kit')
+    } else {
+      addToCart(40322897838134)
+      sendGAEvent('Click on Add to cart', '1 NOVAA LIGHT PAD', 'Choose your kit')
+    }
+  })
 )
 
 waitForElement('.bundle_save button').then(btn => btn.addEventListener('click', () => {
-    addToCart(39758302806070)
-    sendGAEvent('Click on Add to cart 2', 'Bandle and save')
+  addToCart(39758302806070)
+  sendGAEvent('Click on Add to cart 2', 'Bandle and save')
 }))
 
 waitForElement('.fixed_upsell button').then(btn => btn.addEventListener('click', () => {
-    sendGAEvent('Click on Get Novaalab light pad sticky button', 'Sticky button')
+  sendGAEvent('Click on Get Novaalab light pad sticky button', 'Sticky button')
 
-    $('html, body').animate({
-        scrollTop: $('#kit').offset().top - $('.links_container').outerHeight() - (DEVICE === 'mobile' ? 30 : 60)
-    }, 2000)
+  let target = '#kit'
 
+  if (DEVICE === 'mobile') {
+    target = '#mob_scroll'
+  }
+
+  $('html, body').animate({
+    scrollTop: $(target).offset().top - $('.links_container').outerHeight() - (DEVICE === 'mobile' ? 30 : 60)
+  }, 2000)
 }))
 
 // SHIPPING CUSTOM SELECT
 const waitForSelectOptions = setInterval(() => {
-    if (
-        document.querySelectorAll('.select_options .option')[1]
-        && document.querySelector('.overlay_screen')
-        && document.querySelector('.date_sh span')
-        && document.querySelector('[data-days-range]')
-        && document.querySelector('.date_days')
-    ) {
-        clearInterval(waitForSelectOptions)
+  if (
+    document.querySelectorAll('.select_options .option')[1]
+    && document.querySelector('.overlay_screen')
+    && document.querySelector('.date_sh span')
+    && document.querySelector('[data-days-range]')
+    && document.querySelector('.date_days')
+  ) {
+    clearInterval(waitForSelectOptions)
 
-        // Get the select box, trigger, and options
-        const select = document.querySelector('.select')
-        const trigger = document.querySelector('.select_trigger')
-        const options = document.querySelector('.select_options')
+    // Get the select box, trigger, and options
+    const select = document.querySelector('.select')
+    const trigger = document.querySelector('.select_trigger')
+    const options = document.querySelector('.select_options')
 
-        document.querySelector('.close_x').addEventListener('click', () => {
-            select.classList.remove('opened')
-        })
+    document.querySelector('.close_x').addEventListener('click', () => {
+      select.classList.remove('opened')
+    })
 
-        let onceShipTo = false
+    let onceShipTo = false
 
-        // Show the options when the trigger is clicked
-        trigger.addEventListener('click', function () {
-            sendGAEvent('Click on Ship to link', 'Choose your kit')
+    // Show the options when the trigger is clicked
+    trigger.addEventListener('click', function () {
+      sendGAEvent('Click on Ship to link', 'Choose your kit')
 
-            if (!select.classList.contains('opened')) {
-                select.classList.add('opened')
+      if (!select.classList.contains('opened')) {
+        select.classList.add('opened')
 
-                // Calculate the height of the options and the space available below the select box
-                const optionsHeight = options.offsetHeight
-                const spaceBelow = window.innerHeight - select.getBoundingClientRect().bottom
+        // Calculate the height of the options and the space available below the select box
+        const optionsHeight = options.offsetHeight
+        const spaceBelow = window.innerHeight - select.getBoundingClientRect().bottom
 
-                // If there is not enough space below, show the options above instead
-                if (spaceBelow < optionsHeight) {
-                    options.style.top = `-${optionsHeight + 20}px`
-                } else {
-                    options.style.top = '100%'
-                }
-
-                if (!onceShipTo) {
-                    sendGAEvent('Visibility pop-up Ship to', 'Ship to')
-                    onceShipTo = true
-                }
-            } else {
-                select.classList.remove('opened')
-            }
-        })
-
-        // Hide the options when anything else is clicked
-        document.addEventListener('click', function (e) {
-            if (!select.contains(e.target)) {
-                select.classList.remove('opened')
-            }
-        })
-
-        document.querySelector('.date_sh span').innerText = getDeliveryDateRange('United States')
-
-        for (const option of options.querySelectorAll('.option')) {
-            option.addEventListener("click", () => {
-                const country = option.innerText
-                trigger.querySelector('span').textContent = country
-                select.classList.remove('opened')
-
-                if (!option.classList.contains('selected')) {
-                    document.querySelector('.option.selected').classList.remove('selected')
-                    option.classList.add('selected')
-                }
-
-                sendGAEvent('Click on option in pop-up Ship to', country)
-
-                if (country === 'Canada') {
-                    document.querySelector('[data-days-range]').innerText = `8-12 days: We ship it to you`
-                } else {
-                    document.querySelector('[data-days-range]').innerText = `4-5 days: We ship it to you`
-                }
-
-                document.querySelector('.date_sh span').innerText = getDeliveryDateRange(country)
-                document.querySelector('.until_month').innerText = addTwoMonth(country)
-
-                document.querySelector('.date_days').innerText = `${getDeliveryDateRange(country)}, 2023`
-            })
+        // If there is not enough space below, show the options above instead
+        if (spaceBelow < optionsHeight) {
+          options.style.top = `-${optionsHeight + 20}px`
+        } else {
+          options.style.top = '100%'
         }
+
+        if (!onceShipTo) {
+          sendGAEvent('Visibility pop-up Ship to', 'Ship to')
+          onceShipTo = true
+        }
+      } else {
+        select.classList.remove('opened')
+      }
+    })
+
+    // Hide the options when anything else is clicked
+    document.addEventListener('click', function (e) {
+      if (!select.contains(e.target)) {
+        select.classList.remove('opened')
+      }
+    })
+
+    document.querySelector('.date_sh span').innerText = getDeliveryDateRange('United States')
+
+    for (const option of options.querySelectorAll('.option')) {
+      option.addEventListener("click", () => {
+        const country = option.innerText
+        trigger.querySelector('span').textContent = country
+        select.classList.remove('opened')
+
+        if (!option.classList.contains('selected')) {
+          document.querySelector('.option.selected').classList.remove('selected')
+          option.classList.add('selected')
+        }
+
+        sendGAEvent('Click on option in pop-up Ship to', country)
+
+        if (country === 'Canada') {
+          document.querySelector('[data-days-range]').innerText = `8-12 days: We ship it to you`
+        } else {
+          document.querySelector('[data-days-range]').innerText = `4-5 days: We ship it to you`
+        }
+
+        document.querySelector('.date_sh span').innerText = getDeliveryDateRange(country)
+        document.querySelector('.until_month').innerText = addTwoMonth(country)
+
+        document.querySelector('.date_days').innerText = `${getDeliveryDateRange(country)}, 2023`
+      })
     }
+  }
 }, WAIT_INTERVAL_TIMEOUT)
 
 // READ MORE
 const waitForReadMore = setInterval(() => {
-    if (document.querySelectorAll('.preview_text')[1]) {
-        clearInterval(waitForReadMore)
+  if (document.querySelectorAll('.preview_text')[1]) {
+    clearInterval(waitForReadMore)
 
-        for (const previewText of document.querySelectorAll('.preview_text')) {
-            const readMore = previewText.querySelector('.read_more')
+    for (const previewText of document.querySelectorAll('.preview_text')) {
+      const readMore = previewText.querySelector('.read_more')
 
-            const fullText = document.querySelector('.full_text')
+      const fullText = document.querySelector('.full_text')
 
-            readMore.addEventListener('click', function () {
-                sendGAEvent('Click on Read more link in therapy cost up section', 'Melt your plan ...')
-                fullText.style.display = 'block' // Show the full text
-                previewText.style.display = 'none' // Hide the preview text and "Read more" span
-            })
-        }
+      readMore.addEventListener('click', function () {
+        sendGAEvent('Click on Read more link in therapy cost up section', 'Melt your plan ...')
+        fullText.style.display = 'block' // Show the full text
+        previewText.style.display = 'none' // Hide the preview text and "Read more" span
+      })
     }
+  }
 }, WAIT_INTERVAL_TIMEOUT)
 
 
 // splitit
 const waitForSplitit = setInterval(() => {
-    if (
-        document.querySelectorAll('.splitit span')[1]
-        && document.querySelector('.splitit_popup_container button')
-        && document.querySelector('.splitit_popup_container .top')
-        && document.querySelector('.calculations_container')
-        && document.querySelectorAll('.close_splitit')[1]
-    ) {
-        clearInterval(waitForSplitit)
+  if (
+    document.querySelectorAll('.splitit span')[1]
+    && document.querySelector('.splitit_popup_container button')
+    && document.querySelector('.splitit_popup_container .top')
+    && document.querySelector('.calculations_container')
+    && document.querySelectorAll('.close_splitit')[1]
+  ) {
+    clearInterval(waitForSplitit)
 
-        document.querySelectorAll('.splitit span').forEach((item, index) => {
-            item.addEventListener('click', () => {
-                sendGAEvent(`Click on learn more ${index === 1 ? '2 ' : ''}link`, index === 1 ? 'Bandle and save' : 'Choose your kit')
+    document.querySelectorAll('.splitit span').forEach((item, index) => {
+      item.addEventListener('click', () => {
+        sendGAEvent(`Click on learn more ${index === 1 ? '2 ' : ''}link`, index === 1 ? 'Bandle and save' : 'Choose your kit')
 
-                if (index === 1) {
-                    document.querySelector('.splitit_overlay').setAttribute('data-product', 'bundle')
-                } else {
-                    if (document.querySelector('.pack.checked h5').innerText.includes('1')) {
-                        document.querySelector('.splitit_overlay').setAttribute('data-product', 'light1')
-                    } else {
-                        document.querySelector('.splitit_overlay').setAttribute('data-product', 'light2')
-                    }
-                }
-
-                document.querySelector('.splitit_overlay').classList.add('opened_splitit_popup')
-            })
-        })
-
-        const closeSplititPopup = () => {
-            document.querySelector('.splitit_overlay').classList.remove('opened_splitit_popup')
-            sendGAEvent('Close', 'Splitit popup')
+        if (index === 1) {
+          document.querySelector('.splitit_overlay').setAttribute('data-product', 'bundle')
+        } else {
+          if (document.querySelector('.pack.checked h5').innerText.includes('1')) {
+            document.querySelector('.splitit_overlay').setAttribute('data-product', 'light1')
+          } else {
+            document.querySelector('.splitit_overlay').setAttribute('data-product', 'light2')
+          }
         }
 
-        document.querySelector('.splitit_overlay').addEventListener('click', function (event) {
-            // check if the clicked element is not inside the popup container
-            if (!document.querySelector('.splitit_popup_container').contains(event.target) && document.querySelector('.opened_splitit_popup')) {
-                // remove the "opened_splitit_popup" class from the popup container
-                closeSplititPopup()
-            }
-        })
+        document.querySelector('.splitit_overlay').classList.add('opened_splitit_popup')
+      })
+    })
 
-        document.querySelector('.splitit_popup_container button').addEventListener('click', function (event) {
-            closeSplititPopup()
-        })
-
-        if (DEVICE === 'mobile') {
-            document.querySelector('.splitit_popup_container .top').addEventListener('click', () => {
-                document.querySelector('.calculations_container').classList.add('opened_this')
-                sendGAEvent('Click on payments', 'Splitit popup')
-            })
-        }
-
-        for (const close of document.querySelectorAll('.close_splitit')) {
-            close.addEventListener('click', () => {
-                closeSplititPopup()
-            })
-        }
+    const closeSplititPopup = () => {
+      document.querySelector('.splitit_overlay').classList.remove('opened_splitit_popup')
+      sendGAEvent('Close', 'Splitit popup')
     }
+
+    document.querySelector('.splitit_overlay').addEventListener('click', function (event) {
+      // check if the clicked element is not inside the popup container
+      if (!document.querySelector('.splitit_popup_container').contains(event.target) && document.querySelector('.opened_splitit_popup')) {
+        // remove the "opened_splitit_popup" class from the popup container
+        closeSplititPopup()
+      }
+    })
+
+    document.querySelector('.splitit_popup_container button').addEventListener('click', function (event) {
+      closeSplititPopup()
+    })
+
+    if (DEVICE === 'mobile') {
+      document.querySelector('.splitit_popup_container .top').addEventListener('click', () => {
+        document.querySelector('.calculations_container').classList.add('opened_this')
+        sendGAEvent('Click on payments', 'Splitit popup')
+      })
+    }
+
+    for (const close of document.querySelectorAll('.close_splitit')) {
+      close.addEventListener('click', () => {
+        closeSplititPopup()
+      })
+    }
+  }
 }, WAIT_INTERVAL_TIMEOUT)
 
 function swipe(selector) {
-    // Get the element you want to attach the swipe event to
-    const element = document.querySelector(selector)
+  // Get the element you want to attach the swipe event to
+  const element = document.querySelector(selector)
 
-    // Store the starting touch position
-    let startX
+  // Store the starting touch position
+  let startX
 
-    // Add a touchstart event listener to the element
-    element.addEventListener('touchstart', function (event) {
-        startX = event.touches[0].clientX
-    })
+  // Add a touchstart event listener to the element
+  element.addEventListener('touchstart', function (event) {
+    startX = event.touches[0].clientX
+  })
 
-    // Add a touchend event listener to the element
-    element.addEventListener('touchend', function (event) {
-        // Get the ending touch position
-        const endX = event.changedTouches[0].clientX
+  // Add a touchend event listener to the element
+  element.addEventListener('touchend', function (event) {
+    // Get the ending touch position
+    const endX = event.changedTouches[0].clientX
 
-        // Calculate the difference between the starting and ending touch positions
-        const diffX = endX - startX
+    // Calculate the difference between the starting and ending touch positions
+    const diffX = endX - startX
 
-        // If the difference is greater than a threshold value, assume it's a swipe
-        if (Math.abs(diffX) > 50) {
-            // Call your function here
-            if (selector === '.slider_for_wrap') {
-                sendGAEvent('Swipe on image in gallery', 'First screen')
-            } else {
-                sendGAEvent('Swipe on customer photo in Americans are pain-free', 'Reviews')
-            }
-        }
-    })
+    // If the difference is greater than a threshold value, assume it's a swipe
+    if (Math.abs(diffX) > 50) {
+      // Call your function here
+      if (selector === '.slider_for_wrap') {
+        sendGAEvent('Swipe on image in gallery', 'First screen')
+      } else {
+        sendGAEvent('Swipe on customer photo in Americans are pain-free', 'Reviews')
+      }
+    }
+  })
 }
 
 let jqueryLoaded = setInterval(() => {
-    if (typeof jQuery === 'function') {
-        clearInterval(jqueryLoaded)
+  if (typeof jQuery === 'function') {
+    clearInterval(jqueryLoaded)
 
-        // SLIDER
-        const waitForSlick = setInterval(() => {
-            if (typeof jQuery.fn.slick === 'function'
-                && document.querySelectorAll('.slider_item')[43]
-                && document.querySelector('.slider_nav_wrap .slick-next')
-                && document.querySelector('.slider_nav_wrap .slick-prev')
-            ) {
+    // SLIDER
+    const waitForSlick = setInterval(() => {
+      if (typeof jQuery.fn.slick === 'function'
+        && document.querySelectorAll('.slider_item')[43]
+        && document.querySelector('.slider_nav_wrap .slick-next')
+        && document.querySelector('.slider_nav_wrap .slick-prev')
+      ) {
 
-                clearInterval(waitForSlick)
+        clearInterval(waitForSlick)
 
-                $('.slider_for').slick({
-                    slidesToShow: 1,
-                    slidesToScroll: 1,
-                    arrows: false,
-                    fade: true,
-                    asNavFor: '.slider_nav',
-                    infinite: false,
-                    responsive: [
-                        {
-                            breakpoint: 768,
-                            settings: {
-                                slidesToShow: 1.1,
-                                fade: false,
-                                arrows: false
-                            }
-                        },
-                    ],
-                    onAfterChange: function (slick, currentSlide, nextSlide) {
-                        document.querySelector('.slider_nav .slick-current')?.classList.remove('slick-current')
-                        document.querySelectorAll('.slider_nav .slick-slide')[Math.round(currentSlide)]?.classList.add('slick-current')
-                    }
-                })
-                $('.slider_nav').slick({
-                    slidesToShow: 3,
-                    slidesToScroll: 3,
-                    asNavFor: '.slider_for',
-                    dots: true,
-                    arrows: true,
-                    focusOnSelect: true,
-                    infinite: false,
-                    responsive: [
-                        {
-                            breakpoint: 768,
-                            settings: {
-                                slidesToShow: 4,
-                                slidesToScroll: 4,
-                                arrows: false
-                            }
-                        },
-                    ],
-                })
-
-                $('.slider').slick({
-                    slidesToShow: 4,
-                    slidesToScroll: 1,
-                    arrows: true,
-                    dots: true,
-                    infinite: false,
-                    responsive: [
-                        {
-                            breakpoint: 768,
-                            settings: {
-                                slidesToShow: 2.7,
-                                slidesToScroll: 3,
-                                fade: false,
-                                arrows: false
-                            }
-                        },
-                    ]
-                })
-
-                waitForElement('.slider_for_wrap').then(el => {
-                    swipe('.slider_for_wrap')
-                })
-
-                waitForElement('#reviews .slider_wrap').then(el => {
-                    swipe('#reviews .slider_wrap')
-                })
-
-                const waitForGallery = setInterval(() => {
-                    if (document.querySelector('.pdp_main .slick-list')) {
-                        clearInterval(waitForGallery)
-
-                        document.querySelector('.pdp_main .slick-list').addEventListener('click', (e) => {
-                            if (e.target.closest('.slick-slide')) {
-                                sendGAEvent('Click on image in gallery')
-                            }
-                        })
-                    }
-                }, WAIT_INTERVAL_TIMEOUT)
-
-                const waitForThumbnail = setInterval(() => {
-                    if (document.querySelectorAll('.pdp_main .slick-list')[1]) {
-                        clearInterval(waitForThumbnail)
-
-                        document.querySelectorAll('.pdp_main .slick-list')[1].addEventListener('click', (e) => {
-                            if (e.target.closest('.slick-slide')) {
-                                sendGAEvent('Click on image thumbnail in gallery', 'First screen')
-                            }
-                        })
-                    }
-                }, WAIT_INTERVAL_TIMEOUT)
-
-                const waitForDots = setInterval(() => {
-                    if (document.querySelector('.product_gallery .slick-dots')) {
-                        clearInterval(waitForDots)
-
-                        document.querySelector('.product_gallery .slick-dots').addEventListener('click', (e) => {
-                            if (e.target.closest('li')) {
-                                sendGAEvent('Click on navigation in mobile', 'First screen')
-                            }
-                        })
-                    }
-                }, WAIT_INTERVAL_TIMEOUT)
-
-                const waitForEl1 = setInterval(() => {
-                    if (document.querySelector('.slider .slick-dots')) {
-                        clearInterval(waitForEl1)
-
-                        document.querySelector('.slider .slick-dots').addEventListener('click', (e) => {
-                            if (e.target.closest('li')) {
-                                sendGAEvent('Click on navigation item on customer photo in Experience faster recovery - pagination', 'Experience faster recovery and pain relief with Novaa Light Pad')
-                            }
-                        })
-                    }
-                }, WAIT_INTERVAL_TIMEOUT)
-
-                const waitForEl2 = setInterval(() => {
-                    if (document.querySelector('.slider .slick-next')) {
-                        clearInterval(waitForEl2)
-
-                        document.querySelector('.slider .slick-next').addEventListener('click', (e) => {
-                            sendGAEvent('Click on navigation item on customer photo in Experience faster recovery - right button', 'Experience faster recovery and pain relief with Novaa Light Pad')
-                        })
-                    }
-                }, WAIT_INTERVAL_TIMEOUT)
-
-                const waitForEl3 = setInterval(() => {
-                    if (document.querySelector('.slider .slick-prev')) {
-                        clearInterval(waitForEl3)
-
-                        document.querySelector('.slider .slick-prev').addEventListener('click', (e) => {
-                            sendGAEvent('Click on navigation item on customer photo in Experience faster recovery - left button', 'Experience faster recovery and pain relief with Novaa Light Pad')
-                        })
-                    }
-                }, WAIT_INTERVAL_TIMEOUT)
-            }
-        }, WAIT_INTERVAL_TIMEOUT)
-
-        // ACCORDION
-        const waitForAccordionHeaders = setInterval(() => {
-            if (document.querySelectorAll('.accordion_header')[19]) {
-                clearInterval(waitForAccordionHeaders)
-
-                $('.accordion_header').click(function () {
-                    // Check if this header is already active
-                    var isActive = $(this).hasClass('active')
-
-                    // Find the closest parent element that contains both the header and the content
-                    var accordionBlock = $(this).closest('.accordion')
-
-                    // Hide all content panels within the parent block
-                    accordionBlock.find('.accordion_content').slideUp()
-
-                    // Remove the active class from all headers within the parent block
-                    accordionBlock.find('.accordion_header').removeClass('active')
-
-                    // If this header wasn't already active, show its content panel and add the active class
-                    if (!isActive) {
-                        $(this).next('.accordion_content').slideDown()
-                        $(this).addClass('active')
-                    }
-
-                    if ($(this).closest('.accordion.one_txt').length) {
-                        var label = 'Technical specifications'
-
-                        if ($(this).closest('.accordion').find('h6').text().includes('Red Light Therapy')) {
-                            label = 'What makes it so effecient?'
-                        }
-                        sendGAEvent($(this).closest('.accordion').find('h6').text(), label)
-                    } else {
-                        sendGAEvent($(this).closest('[data-ga]').data('ga'), $(this).text().trim())
-                    }
-
-                })
-            }
-        }, WAIT_INTERVAL_TIMEOUT)
-
-        // NAV LINKS
-        const waitForNavLinks = setInterval(() => {
-            if (document.querySelectorAll('.links_container li')[4]) {
-                clearInterval(waitForNavLinks)
-
-                $('.links_container li').on('click', function () {
-                    // Find the anchor tag inside the clicked li element
-                    var target = $(this).find('a')
-
-                    sendGAEvent('Click on item in navigation panel', target.text())
-
-                    // Scroll smoothly to the anchor tag's href attribute
-                    $('html, body').animate({
-                        scrollTop: $(target.attr('href')).offset().top - $('.links_container').outerHeight() - (DEVICE === 'mobile' ? 30 : 60)
-                    }, 2000)
-                })
-            }
-        }, WAIT_INTERVAL_TIMEOUT)
-
-        // RATING
-        waitForElement('.rating').then(() => {
-            $('.rating').on('click', function () {
-                $('html, body').animate({
-                    scrollTop: $('#reviews').offset().top - $('.links_container').outerHeight() - (DEVICE === 'mobile' ? 30 : 60)
-                }, 2000)
-
-                sendGAEvent('Click on rating element')
-            })
+        $('.slider_for').slick({
+          slidesToShow: 1,
+          slidesToScroll: 1,
+          arrows: false,
+          fade: true,
+          asNavFor: '.slider_nav',
+          infinite: false,
+          responsive: [
+            {
+              breakpoint: 768,
+              settings: {
+                slidesToShow: 1.1,
+                fade: false,
+                arrows: false
+              }
+            },
+          ],
+          onAfterChange: function (slick, currentSlide, nextSlide) {
+            document.querySelector('.slider_nav .slick-current')?.classList.remove('slick-current')
+            document.querySelectorAll('.slider_nav .slick-slide')[Math.round(currentSlide)]?.classList.add('slick-current')
+          }
+        })
+        $('.slider_nav').slick({
+          slidesToShow: 3,
+          slidesToScroll: 3,
+          asNavFor: '.slider_for',
+          dots: true,
+          arrows: true,
+          focusOnSelect: true,
+          infinite: false,
+          responsive: [
+            {
+              breakpoint: 768,
+              settings: {
+                slidesToShow: 4,
+                slidesToScroll: 4,
+                arrows: false
+              }
+            },
+          ],
         })
 
-        // Get references to the sections
-        const waitForSections = setInterval(() => {
-            if (document.querySelectorAll("section[data-section]")[5]) {
-                clearInterval(waitForSections)
-                const sections = document.querySelectorAll("section[data-section]")
-                const observerOptions = {
-                    rootMargin: "-50% 0px -50% 0px",
+        $('.slider').slick({
+          slidesToShow: 4,
+          slidesToScroll: 1,
+          arrows: true,
+          dots: true,
+          infinite: false,
+          responsive: [
+            {
+              breakpoint: 768,
+              settings: {
+                slidesToShow: 2.7,
+                slidesToScroll: 3,
+                fade: false,
+                arrows: false
+              }
+            },
+          ]
+        })
+
+        waitForElement('.slider_nav .slick-slide').then(el => {
+          el.classList.add('slick-current')
+        })
+
+
+        waitForElement('.slider_for_wrap').then(el => {
+          swipe('.slider_for_wrap')
+        })
+
+        waitForElement('#reviews .slider_wrap').then(el => {
+          swipe('#reviews .slider_wrap')
+        })
+
+        const waitForGallery = setInterval(() => {
+          if (document.querySelector('.pdp_main .slick-list')) {
+            clearInterval(waitForGallery)
+
+            document.querySelector('.pdp_main .slick-list').addEventListener('click', (e) => {
+              if (e.target.closest('.slick-slide')) {
+                sendGAEvent('Click on image in gallery')
+              }
+            })
+          }
+        }, WAIT_INTERVAL_TIMEOUT)
+
+        const waitForThumbnail = setInterval(() => {
+          if (document.querySelectorAll('.pdp_main .slick-list')[1]) {
+            clearInterval(waitForThumbnail)
+
+            document.querySelectorAll('.pdp_main .slick-list')[1].addEventListener('click', (e) => {
+              if (e.target.closest('.slick-slide')) {
+                sendGAEvent('Click on image thumbnail in gallery', 'First screen')
+              }
+            })
+          }
+        }, WAIT_INTERVAL_TIMEOUT)
+
+        const waitForDots = setInterval(() => {
+          if (document.querySelector('.product_gallery .slick-dots')) {
+            clearInterval(waitForDots)
+
+            document.querySelector('.product_gallery .slick-dots').addEventListener('click', (e) => {
+              if (e.target.closest('li')) {
+                sendGAEvent('Click on navigation in mobile', 'First screen')
+              }
+            })
+          }
+        }, WAIT_INTERVAL_TIMEOUT)
+
+        const waitForEl1 = setInterval(() => {
+          if (document.querySelector('.slider .slick-dots')) {
+            clearInterval(waitForEl1)
+
+            document.querySelector('.slider .slick-dots').addEventListener('click', (e) => {
+              if (e.target.closest('li')) {
+                sendGAEvent('Click on navigation item on customer photo in Experience faster recovery - pagination', 'Experience faster recovery and pain relief with Novaa Light Pad')
+              }
+            })
+          }
+        }, WAIT_INTERVAL_TIMEOUT)
+
+        const waitForEl2 = setInterval(() => {
+          if (document.querySelector('.slider .slick-next')) {
+            clearInterval(waitForEl2)
+
+            document.querySelector('.slider .slick-next').addEventListener('click', (e) => {
+              sendGAEvent('Click on navigation item on customer photo in Experience faster recovery - right button', 'Experience faster recovery and pain relief with Novaa Light Pad')
+            })
+          }
+        }, WAIT_INTERVAL_TIMEOUT)
+
+        const waitForEl3 = setInterval(() => {
+          if (document.querySelector('.slider .slick-prev')) {
+            clearInterval(waitForEl3)
+
+            document.querySelector('.slider .slick-prev').addEventListener('click', (e) => {
+              sendGAEvent('Click on navigation item on customer photo in Experience faster recovery - left button', 'Experience faster recovery and pain relief with Novaa Light Pad')
+            })
+          }
+        }, WAIT_INTERVAL_TIMEOUT)
+      }
+    }, WAIT_INTERVAL_TIMEOUT)
+
+    // ACCORDION
+    const waitForAccordionHeaders = setInterval(() => {
+      if (document.querySelectorAll('.accordion_header')[19]) {
+        clearInterval(waitForAccordionHeaders)
+
+        $('.accordion_header').click(function () {
+          // Check if this header is already active
+          var isActive = $(this).hasClass('active')
+
+          // Find the closest parent element that contains both the header and the content
+          var accordionBlock = $(this).closest('.accordion')
+
+          // Hide all content panels within the parent block
+          accordionBlock.find('.accordion_content').slideUp()
+
+          // Remove the active class from all headers within the parent block
+          accordionBlock.find('.accordion_header').removeClass('active')
+
+          // If this header wasn't already active, show its content panel and add the active class
+          if (!isActive) {
+            $(this).next('.accordion_content').slideDown()
+            $(this).addClass('active')
+          }
+
+          if ($(this).closest('.accordion.one_txt').length) {
+            var label = 'Technical specifications'
+
+            if ($(this).closest('.accordion').find('h6').text().includes('Red Light Therapy')) {
+              label = 'What makes it so effecient?'
+            }
+            sendGAEvent($(this).closest('.accordion').find('h6').text(), label)
+          } else {
+            sendGAEvent($(this).closest('[data-ga]').data('ga'), $(this).text().trim())
+          }
+
+        })
+      }
+    }, WAIT_INTERVAL_TIMEOUT)
+
+    // NAV LINKS
+    const waitForNavLinks = setInterval(() => {
+      if (document.querySelectorAll('.links_container li')[4]) {
+        clearInterval(waitForNavLinks)
+
+        $('.links_container li').on('click', function () {
+          // Find the anchor tag inside the clicked li element
+          var target = $(this).find('a')
+
+          sendGAEvent('Click on item in navigation panel', target.text())
+
+          // Scroll smoothly to the anchor tag's href attribute
+          $('html, body').animate({
+            scrollTop: $(target.attr('href')).offset().top - $('.links_container').outerHeight() - (DEVICE === 'mobile' ? 30 : 60)
+          }, 2000)
+        })
+      }
+    }, WAIT_INTERVAL_TIMEOUT)
+
+    // RATING
+    waitForElement('.rating').then(() => {
+      $('.rating').on('click', function () {
+        $('html, body').animate({
+          scrollTop: $('#reviews').offset().top - $('.links_container').outerHeight() - (DEVICE === 'mobile' ? 30 : 60)
+        }, 2000)
+
+        sendGAEvent('Click on rating element')
+      })
+    })
+
+    // Get references to the sections
+    const waitForSections = setInterval(() => {
+      if (document.querySelectorAll("section[data-section]")[5]) {
+        clearInterval(waitForSections)
+        const sections = document.querySelectorAll("section[data-section]")
+        const observerOptions = {
+          rootMargin: "-50% 0px -50% 0px",
+        }
+
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              const sectionId = entry.target.getAttribute("data-section")
+
+              if (sectionId === 'rest') {
+                document.querySelector('.active_link')?.classList.remove("active_link")
+              } else {
+                const navLink = document.querySelector(`nav li[data-section=${sectionId}]`)
+
+                document.querySelector('.active_link')?.classList.remove("active_link")
+
+                navLink.classList.add("active_link")
+
+                // Scroll the nav element horizontally to show the active link
+                const activeLink = $('.active_link')
+                const activeLinkOffset = activeLink.offset().left
+                const navScrollLeft = $('.links_container').scrollLeft()
+                const navWidth = $('.links_container').width()
+                const activeLinkWidth = activeLink.outerWidth()
+
+                // Determine the left and right offsets of the visible area
+                const visibleLeft = navScrollLeft
+                const visibleRight = visibleLeft + navWidth
+
+                // Determine the left and right offsets of the active link
+                const activeLinkLeft = activeLinkOffset - navScrollLeft
+                const activeLinkRight = activeLinkLeft + activeLinkWidth
+
+                // Determine the left and right offsets of the active link's previous and next list items
+                const prevLinkOffset = activeLink.prev().length ? activeLink.prev().offset().left - navScrollLeft : activeLinkLeft - activeLinkWidth
+                const nextLinkOffset = activeLink.next().offset() ? activeLink.next().offset().left - navScrollLeft : activeLinkRight
+
+                // Calculate the scroll distance required to center the active link and its previous and next list items
+                let scrollDistance
+                if (activeLinkLeft >= visibleLeft && activeLinkRight <= visibleRight) {
+                  // Active link is already fully visible, no need to scroll
+                  scrollDistance = navScrollLeft
+                } else {
+                  if (prevLinkOffset < visibleLeft) {
+                    // Active link's previous list item is partially or fully hidden to the left
+                    scrollDistance = prevLinkOffset
+                  } else if (nextLinkOffset + activeLinkWidth > visibleRight) {
+                    // Active link's next list item is partially or fully hidden to the right
+                    scrollDistance = nextLinkOffset + activeLinkWidth - navWidth
+                  } else {
+                    // Active link is partially visible, but its previous and next list items are fully visible
+                    scrollDistance = activeLinkLeft + activeLinkWidth / 2 - navWidth / 2
+                  }
                 }
 
-                const observer = new IntersectionObserver((entries) => {
-                    entries.forEach((entry) => {
-                        if (entry.isIntersecting) {
-                            const sectionId = entry.target.getAttribute("data-section")
-
-                            if (sectionId === 'rest') {
-                                document.querySelector('.active_link')?.classList.remove("active_link")
-                            } else {
-                                const navLink = document.querySelector(`nav li[data-section=${sectionId}]`)
-
-                                document.querySelector('.active_link')?.classList.remove("active_link")
-
-                                navLink.classList.add("active_link")
-
-                                // Scroll the nav element horizontally to show the active link
-                                const activeLink = $('.active_link')
-                                const activeLinkOffset = activeLink.offset().left
-                                const navScrollLeft = $('.links_container').scrollLeft()
-                                const navWidth = $('.links_container').width()
-                                const activeLinkWidth = activeLink.outerWidth()
-
-                                // Determine the left and right offsets of the visible area
-                                const visibleLeft = navScrollLeft
-                                const visibleRight = visibleLeft + navWidth
-
-                                // Determine the left and right offsets of the active link
-                                const activeLinkLeft = activeLinkOffset - navScrollLeft
-                                const activeLinkRight = activeLinkLeft + activeLinkWidth
-
-                                // Determine the left and right offsets of the active link's previous and next list items
-                                const prevLinkOffset = activeLink.prev().length ? activeLink.prev().offset().left - navScrollLeft : activeLinkLeft - activeLinkWidth
-                                const nextLinkOffset = activeLink.next().offset() ? activeLink.next().offset().left - navScrollLeft : activeLinkRight
-
-                                // Calculate the scroll distance required to center the active link and its previous and next list items
-                                let scrollDistance
-                                if (activeLinkLeft >= visibleLeft && activeLinkRight <= visibleRight) {
-                                    // Active link is already fully visible, no need to scroll
-                                    scrollDistance = navScrollLeft
-                                } else {
-                                    if (prevLinkOffset < visibleLeft) {
-                                        // Active link's previous list item is partially or fully hidden to the left
-                                        scrollDistance = prevLinkOffset
-                                    } else if (nextLinkOffset + activeLinkWidth > visibleRight) {
-                                        // Active link's next list item is partially or fully hidden to the right
-                                        scrollDistance = nextLinkOffset + activeLinkWidth - navWidth
-                                    } else {
-                                        // Active link is partially visible, but its previous and next list items are fully visible
-                                        scrollDistance = activeLinkLeft + activeLinkWidth / 2 - navWidth / 2
-                                    }
-                                }
-
-                                // Animate the container's scroll position
-                                $('.links_container').animate({ scrollLeft: scrollDistance }, 'fast')
-                            }
-                        }
-                    })
-                }, observerOptions)
-
-                sections.forEach((section) => {
-                    observer.observe(section)
-                })
+                // Animate the container's scroll position
+                $('.links_container').animate({ scrollLeft: scrollDistance }, 'fast')
+              }
             }
-        }, WAIT_INTERVAL_TIMEOUT)
-    }
+          })
+        }, observerOptions)
+
+        sections.forEach((section) => {
+          observer.observe(section)
+        })
+      }
+    }, WAIT_INTERVAL_TIMEOUT)
+  }
 }, WAIT_INTERVAL_TIMEOUT)
 
 // scroll
 const waitForNav = setInterval(() => {
-    if (
-        document.querySelector('.slider_nav_wrap .slick-dots')
-        && document.querySelector('.empty_space')
-        && document.querySelector('.links_container [data-section="faq"]')
-    ) {
-        clearInterval(waitForNav)
-        let once = false
+  if (
+    document.querySelector('.slider_nav_wrap .slick-dots')
+    && document.querySelector('.empty_space')
+    && document.querySelector('.links_container [data-section="faq"]')
+  ) {
+    clearInterval(waitForNav)
+    let once = false
 
-        const navList = document.querySelector('.links_container')
+    const navList = document.querySelector('.links_container')
 
-        const style = window.getComputedStyle(navList)
-        const heightWithMargin = navList.offsetHeight + parseInt(style.marginTop) + parseInt(style.marginBottom)
+    const style = window.getComputedStyle(navList)
+    const heightWithMargin = navList.offsetHeight + parseInt(style.marginTop) + parseInt(style.marginBottom)
 
-        const navListOffsetTop = navList.offsetTop
+    const navListOffsetTop = navList.offsetTop
 
-        window.addEventListener('scroll', function () {
-            if (window.pageYOffset >= navListOffsetTop) {
-                if (!navList.classList.contains('fixed')) {
-                    navList.classList.add('fixed')
+    window.addEventListener('scroll', function () {
+      if (window.pageYOffset >= navListOffsetTop) {
+        if (!navList.classList.contains('fixed')) {
+          navList.classList.add('fixed')
 
-                    if (!once) {
-                        sendGAEvent('Visibility Get Novaalab light pad sticky button', 'Sticky button')
-                        sendGAEvent('Visibility navigation panel')
-                        once = true
-                    }
+          if (!once) {
+            sendGAEvent('Visibility Get Novaalab light pad sticky button', 'Sticky button')
+            sendGAEvent('Visibility navigation panel')
+            once = true
+          }
 
-                    document.querySelector('.empty_space').style.paddingTop = heightWithMargin + 'px'
+          document.querySelector('.empty_space').style.paddingTop = heightWithMargin + 'px'
 
-                    if (document.querySelector('#privy-container #privy-inner-container .privy-mobile.privy-tab-container.privy-basic')) {
-                        document.querySelector('#privy-container #privy-inner-container .privy-mobile.privy-tab-container.privy-basic').classList.add('custom_pos')
-                    }
-                }
+          if (document.querySelector('#privy-container #privy-inner-container .privy-mobile.privy-tab-container.privy-basic')) {
+            document.querySelector('#privy-container #privy-inner-container .privy-mobile.privy-tab-container.privy-basic').classList.add('custom_pos')
+          }
+
+          if (DEVICE === 'mobile' && document.querySelector('iframe#chat-button')) {
+            if (document.getElementById('privy-container')) {
+              document.querySelector('iframe#chat-button').classList.add('higher')
             } else {
-                if (navList.classList.contains('fixed')) {
-                    navList.classList.remove('fixed')
-
-                    document.querySelector('.empty_space').style.paddingTop = '0px'
-
-                    if (document.querySelector('#privy-container #privy-inner-container .privy-mobile.privy-tab-container.privy-basic')) {
-                        document.querySelector('#privy-container #privy-inner-container .privy-mobile.privy-tab-container.privy-basic').classList.remove('custom_pos')
-                    }
-                }
+              document.querySelector('iframe#chat-button.average').classList.add('average')
             }
-        })
-    }
+          }
+        }
+      } else {
+        if (navList.classList.contains('fixed')) {
+          navList.classList.remove('fixed')
+
+          document.querySelector('.empty_space').style.paddingTop = '0px'
+
+          if (document.querySelector('#privy-container #privy-inner-container .privy-mobile.privy-tab-container.privy-basic')) {
+            document.querySelector('#privy-container #privy-inner-container .privy-mobile.privy-tab-container.privy-basic').classList.remove('custom_pos')
+          }
+
+          if (DEVICE === 'mobile' && document.querySelector('iframe#chat-button')) {
+            if (document.querySelector('iframe#chat-button.higher')) {
+              document.querySelector('iframe#chat-button.higher').classList.remove('higher')
+            } else if (document.querySelector('iframe#chat-button.average')) {
+              document.querySelector('iframe#chat-button.average').classList.remove('average')
+            }
+          }
+        }
+      }
+    })
+  }
 }, WAIT_INTERVAL_TIMEOUT)
 
 const waitForContactLinks = setInterval(() => {
-    if (document.querySelectorAll('a[href^="mailto:"]')[4]) {
-        clearInterval(waitForContactLinks)
+  if (document.querySelectorAll('a[href^="mailto:"]')[4]) {
+    clearInterval(waitForContactLinks)
 
-        document.querySelectorAll('a[href^="mailto:"]').forEach((element, index) => {
-            element.addEventListener('click', () => {
+    document.querySelectorAll('a[href^="mailto:"]').forEach((element, index) => {
+      element.addEventListener('click', () => {
 
-                if (element.closest('.contact_us')) {
-                    sendGAEvent('Click on email in Contact us', 'Our mission')
-                } else {
-                    sendGAEvent('Click on email', 'Experience faster recovery and pain relief with Novaa Light Pad')
-                }
-            })
+        if (element.closest('.contact_us')) {
+          sendGAEvent('Click on email in Contact us', 'Our mission')
+        } else {
+          sendGAEvent('Click on email', 'Experience faster recovery and pain relief with Novaa Light Pad')
+        }
+      })
 
-        })
-    }
+    })
+  }
 }, WAIT_INTERVAL_TIMEOUT)
 
 // PRIVY 
 const waitForPrivy = setInterval(() => {
-    if (document.getElementById('privy-container')) {
-        clearInterval(waitForPrivy)
+  if (document.getElementById('privy-container')) {
+    clearInterval(waitForPrivy)
 
-        sendGAEvent('Visibility Get discount button', 'Sticky button')
+    sendGAEvent('Visibility Get discount button', 'Sticky button')
 
-        document.getElementById('privy-container').addEventListener('click', () => {
-            sendGAEvent('Click on Get discount button', 'Sticky button')
+    document.getElementById('privy-container').addEventListener('click', () => {
+      sendGAEvent('Click on Get discount button', 'Sticky button')
 
-        })
+    })
 
-        if (DEVICE === 'mobile') {
-            const waitForH2 = setInterval(() => {
-                if (document.querySelector('.privy-truncate')) {
-                    clearInterval(waitForH2)
+    if (DEVICE === 'mobile') {
+      const waitForH2 = setInterval(() => {
+        if (document.querySelector('.privy-truncate')) {
+          clearInterval(waitForH2)
 
-                    document.querySelector('.privy-mobile-tab').innerHTML = `<p class="custom_get">Get discount 
+          document.querySelector('.privy-mobile-tab').innerHTML = `<p class="custom_get">Get discount 
                 <svg xmlns="http://www.w3.org/2000/svg" width="8" height="10" viewBox="0 0 8 10" fill="none">
                 <path d="M0.912597 1.175L4.72926 5L0.912598 8.825L2.0876 10L7.0876 5L2.0876 1.87058e-07L0.912597 1.175Z" fill="white"/>
                 </svg></p>`
-                }
-            }, WAIT_INTERVAL_TIMEOUT)
         }
+      }, WAIT_INTERVAL_TIMEOUT)
     }
+  }
 }, 500)
 
 const waitForVideos = setInterval(() => {
-    if (document.getElementById('r-1663147869219') && document.querySelector('.videos')) {
-        clearInterval(waitForVideos)
+  if (document.getElementById('r-1663147869219') && document.querySelector('.videos')) {
+    clearInterval(waitForVideos)
 
-        document.querySelector('.videos').appendChild(document.getElementById('r-1663147869219'))
+    document.querySelector('.videos').appendChild(document.getElementById('r-1663147869219'))
 
-        waitForElement('.videos #c-1654794074761').then(el => checkVisibilityAfterMs(el))
-        waitForElement('.videos #c-1654794103606').then(el => checkVisibilityAfterMs(el))
-    }
+    waitForElement('.videos #c-1654794074761').then(el => checkVisibilityAfterMs(el))
+    waitForElement('.videos #c-1654794103606').then(el => checkVisibilityAfterMs(el))
+  }
 }, WAIT_INTERVAL_TIMEOUT)
 
 
 waitForElement('#video_wrap').then(el => {
-    checkVisibilityAfterMs(el)
+  checkVisibilityAfterMs(el)
 })
 
 const waitForReviews = setInterval(() => {
-    if (
-        document.querySelector('.reviews_block')
-        && document.getElementById('opinew-plugin')
-    ) {
-        clearInterval(waitForReviews)
+  if (
+    document.querySelector('.reviews_block')
+    && document.getElementById('opinew-plugin')
+  ) {
+    clearInterval(waitForReviews)
 
-        document.querySelector('.reviews_block').insertAdjacentElement('afterbegin', document.getElementById('opinew-plugin'))
+    document.querySelector('.reviews_block').insertAdjacentElement('afterbegin', document.getElementById('opinew-plugin'))
 
-        waitForElement('.reviews_block #opinew-app-container [data-v-20db9aa4]').then(el => el.addEventListener('click', () => { sendGAEvent('Click on review rating block', 'Reviews') }))
+    waitForElement('.reviews_block #opinew-app-container [data-v-20db9aa4]').then(el => el.addEventListener('click', () => { sendGAEvent('Click on review rating block', 'Reviews') }))
 
-        waitForElement('.reviews_block .opinew-navbar-button').then(el => el.addEventListener('click', () => { sendGAEvent('Click on Write review button', 'Reviews') }))
-        waitForElement('.reviews_block .opw-filters-select[data-v-0e090d90]').then(el => el.addEventListener('click', () => { sendGAEvent('Click on Filer and Sort button in review ', 'Reviews') }))
-    }
+    waitForElement('.reviews_block .opinew-navbar-button').then(el => el.addEventListener('click', () => { sendGAEvent('Click on Write review button', 'Reviews') }))
+    waitForElement('.reviews_block .opw-filters-select[data-v-0e090d90]').then(el => el.addEventListener('click', () => { sendGAEvent('Click on Filer and Sort button in review ', 'Reviews') }))
+  }
 }, WAIT_INTERVAL_TIMEOUT)
 
 const waitForAllVisibility = setInterval(() => {
-    if (document.querySelectorAll('[data-visibility]')[34]) {
-        clearInterval(waitForAllVisibility)
+  if (document.querySelectorAll('[data-visibility]')[34]) {
+    clearInterval(waitForAllVisibility)
 
-        for (const block of document.querySelectorAll('[data-visibility]')) {
-            checkVisibilityAfterMs(block)
-        }
+    for (const block of document.querySelectorAll('[data-visibility]')) {
+      checkVisibilityAfterMs(block)
     }
+  }
 }, WAIT_INTERVAL_TIMEOUT)
+
+if (DEVICE === 'mobile') {
+  waitForElement('.add_block').then(block => {
+    const observer = new IntersectionObserver((entries) => {
+      if (entries[0].isIntersecting) {
+        document.querySelector('.fixed_upsell')?.classList.add('under_bottom')
+
+        if (DEVICE === 'mobile') {
+          if (document.querySelector('#privy-container #privy-inner-container .privy-mobile.privy-tab-container.privy-basic')) {
+            document.querySelector('#privy-container #privy-inner-container .privy-mobile.privy-tab-container.privy-basic').classList.remove('custom_pos')
+          }
+
+          if (document.querySelector('iframe#chat-button')) {
+            if (document.querySelector('iframe#chat-button.higher')) {
+              document.querySelector('iframe#chat-button.higher').classList.remove('higher')
+            } else if (document.querySelector('iframe#chat-button.average')) {
+              document.querySelector('iframe#chat-button.average').classList.remove('average')
+            }
+          }
+        }
+
+
+      } else {
+        document.querySelector('.under_bottom')?.classList.remove('under_bottom')
+
+        if (DEVICE === 'mobile') {
+          if (document.querySelector('#privy-container #privy-inner-container .privy-mobile.privy-tab-container.privy-basic')) {
+            document.querySelector('#privy-container #privy-inner-container .privy-mobile.privy-tab-container.privy-basic').classList.add('custom_pos')
+          }
+
+          if (document.querySelector('iframe#chat-button')) {
+            if (document.getElementById('privy-container')) {
+              document.querySelector('iframe#chat-button').classList.add('higher')
+            } else {
+              document.querySelector('iframe#chat-button.average').classList.add('average')
+            }
+          }
+        }
+      }
+    })
+
+    observer.observe(block)
+  })
+}
 
 sendGAEvent('loaded')
