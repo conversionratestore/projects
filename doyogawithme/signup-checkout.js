@@ -1626,7 +1626,6 @@ function init() {
                     })
 
                     document.querySelector('.country').addEventListener('change', (e) => {
-                        console.log(e.currentTarget.value)
                         setTimeout(() => {
                             disabledBtnFun()
                         }, 200);
@@ -1690,7 +1689,6 @@ let disabledBtnFun = () => {
                     e.stopImmediatePropagation()
                     let parent = e.currentTarget.parentElement
                     if (parent.querySelector('label')) {
-                        console.log(e.target)
                         if (parent.closest('[data-drupal-selector="edit-commerce-donation-pane-field-gift-type"]')) {
                             pushDataLayer(`Select Donation Type - ${parent.innerText}`, label)
                         } else if (parent.closest('[data-drupal-selector="edit-commerce-donation-pane-field-donation-amount-0-donation-level"]')) {
@@ -1721,7 +1719,7 @@ let disabledBtnFun = () => {
             } 
     
             document.querySelector('.btn_start_membership').disabled = error;
-            console.log(error)
+            console.log('error = ' + error)
         }
     });
 } 
