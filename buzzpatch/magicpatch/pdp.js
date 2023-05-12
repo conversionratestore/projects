@@ -888,7 +888,7 @@ start()
 
 function start() {
     let go = setInterval(function(){
-        if(typeof $ === 'function') {
+        if(typeof $ === 'function' && document.querySelector('.navbar')) {
             clearInterval(go)
             main()
         }
