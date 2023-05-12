@@ -5341,7 +5341,11 @@ let jqueryLoaded = setInterval(() => {
                                 arrows: false
                             }
                         },
-                    ]
+                    ],
+                    onAfterChange: function (slick, currentSlide, nextSlide) {
+                        document.querySelector('.slider_nav .slick-current')?.classList.remove('slick-current')
+                        document.querySelectorAll('.slider_nav .slick-slide')[Math.round(currentSlide)]?.classList.add('slick-current')
+                    }
                 })
                 $('.slider_nav').slick({
                     slidesToShow: 3.5,
@@ -5361,10 +5365,6 @@ let jqueryLoaded = setInterval(() => {
                             }
                         },
                     ],
-                    onAfterChange: function (slick, currentSlide, nextSlide) {
-                        document.querySelector('.slider_nav .slick-current')?.classList.remove('slick-current')
-                        document.querySelector('.slider_nav .slick-active')?.classList.add('slick-current')
-                    }
                 })
 
                 $('.slider').slick({
