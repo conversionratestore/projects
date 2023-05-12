@@ -1,3 +1,9 @@
+let href = window.location.href;
+
+if (href.includes('/a/')) {
+    window.location.href = href.replace('/a/','/b/');
+}
+
 let dir = `https://conversionratestore.github.io/projects/creditsage/img/`;
 
 let styles = `
