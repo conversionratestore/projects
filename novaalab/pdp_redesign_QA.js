@@ -5658,6 +5658,7 @@ let jqueryLoaded = setInterval(() => {
         // Add a click event listener to the messenger button
         messengerButton.addEventListener('click', () => {
           savedPosition = window.pageYOffset
+          console.log(savedPosition);
           console.log('clicked');
         })
 
