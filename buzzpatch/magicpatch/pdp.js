@@ -982,7 +982,16 @@ function main() {
         pushDataLayer('Click on proceed to checkout button', 'Select package')
     })
 
-
+    $('.card-MP-link').click(function () {
+        if($(this).hasClass('collapsed')) {
+            setTimeout(function () {
+                window.scrollTo({
+                  top: window.pageYOffset - 40,
+                  behavior: 'smooth'
+              })
+            }, 900)
+        }
+    })
 
 
     blockVisibility('[data-visible]', 3)
