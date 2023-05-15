@@ -1,9 +1,3 @@
-let href = window.location.href;
-
-if (href.includes('/a/')) {
-    window.location.href = href.replace('/a/','/b/');
-}
-
 let dir = `https://conversionratestore.github.io/projects/creditsage/img/`;
 
 let styles = `
@@ -234,7 +228,7 @@ let styles = `
         list-style-type: none;
         cursor: pointer;
         padding: 0;
-     }
+    }
     .help_section_list li:before {
         content: '';
         width: 24px;
@@ -701,12 +695,12 @@ let slide = (author, theme, review, date, index, parent = '') => `
 
 //comes into view
 let isScrolledIntoView = (el) => {
-	if(document.querySelector(el) == null) return false;
-	let rect = document.querySelector(el).getBoundingClientRect(),
-		elemTop = rect.top,
-		elemBottom = rect.bottom;
-	let isVisible = elemTop >= 0 && elemBottom <= window.innerHeight;
-	return isVisible;
+    if(document.querySelector(el) == null) return false;
+    let rect = document.querySelector(el).getBoundingClientRect(),
+        elemTop = rect.top,
+        elemBottom = rect.bottom;
+    let isVisible = elemTop >= 0 && elemBottom <= window.innerHeight;
+    return isVisible;
 };
 
 let pushDataLayer = (name, desc, type, loc) => {
