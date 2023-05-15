@@ -5108,7 +5108,6 @@ function addToCart(id, quantity = 1) {
     method: "POST",
     dataType: "JSON",
     success: function (data) {
-      console.log(data)
       window.location = 'https://novaalab.com/cart'
     },
     error: function (error) {
@@ -5649,38 +5648,37 @@ let jqueryLoaded = setInterval(() => {
     }, WAIT_INTERVAL_TIMEOUT)
 
     // fix chat 
-    waitForElement('#chat-button').then((chatButtonIframe) => {
-      let savedPosition = 0
+    if (DEVICE === 'mobile') {
+      waitForElement('#chat-button').then((chatButtonIframe) => {
+        let savedPosition = 0
 
-      // Select the chat button iframe element and its content window
-      const chatButtonIframeContentWindow = chatButtonIframe.contentWindow
+        // Select the chat button iframe element and its content window
+        const chatButtonIframeContentWindow = chatButtonIframe.contentWindow
 
-      // Select the messenger button element inside the iframe
-      const messengerButton = chatButtonIframeContentWindow.document.querySelector('#gorgias-chat-messenger-button')
+        // Select the messenger button element inside the iframe
+        const messengerButton = chatButtonIframeContentWindow.document.querySelector('#gorgias-chat-messenger-button')
 
-      // Add a click event listener to the messenger button
-      messengerButton.addEventListener('click', () => {
-        savedPosition = window.pageYOffset
-      })
-
-      // Create a new MutationObserver instance
-      const observer = new MutationObserver(mutations => {
-        mutations.forEach(mutation => {
-          // Check if the aria-label attribute has changed and if the new value is 'Open the chat'
-          if (mutation.type === 'attributes' && mutation.attributeName === 'aria-label' && mutation.target.getAttribute('aria-label') === 'Open the chat') {
-            console.log('Open the chat')
-            console.log(savedPosition)
-
-            $('html, body').animate({
-              scrollTop: savedPosition
-            }, 2000)
-          }
+        // Add a click event listener to the messenger button
+        messengerButton.addEventListener('click', () => {
+          savedPosition = window.pageYOffset
         })
-      })
 
-      // Configure the observer to watch for changes to the aria-label attribute of the messenger button
-      observer.observe(messengerButton, { attributes: true, attributeFilter: ['aria-label'] })
-    })
+        // Create a new MutationObserver instance
+        const observer = new MutationObserver(mutations => {
+          mutations.forEach(mutation => {
+            // Check if the aria-label attribute has changed and if the new value is 'Open the chat'
+            if (mutation.type === 'attributes' && mutation.attributeName === 'aria-label' && mutation.target.getAttribute('aria-label') === 'Open the chat') {
+              setTimeout(() => {
+                window.scrollTo(0, savedPosition)
+              }, 100)
+            }
+          })
+        })
+
+        // Configure the observer to watch for changes to the aria-label attribute of the messenger button
+        observer.observe(messengerButton, { attributes: true, attributeFilter: ['aria-label'] })
+      })
+    }
   }
 }, WAIT_INTERVAL_TIMEOUT)
 
