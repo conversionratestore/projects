@@ -2518,13 +2518,8 @@ iframe#chat-button.higher {
 #faq .gina .review p img {
   position: absolute;
   top: auto;
-  right: 0;
+  right: -2px;
   bottom: -4px;
-}
-
-#faq .gina .review p img .customer_quote {
-    display: inline-block;
-    margin-right: 35px;
 }
 
   #technical .row p:last-child,
@@ -3972,7 +3967,7 @@ const html = /*html*/`
                             </div>
                             <div class="bottom">
                                 <div class="splitit">
-                                    <p>Pay $50/month with</p>
+                                    <p>Pay $49.98/month with</p>
                                     <img src="https://conversionratestore.github.io/projects/novaalab/img/splitit.png" alt="">
                                     <span>Learn more</span>
                                 </div>
@@ -5089,6 +5084,12 @@ const waitForKit = setInterval(() => {
         document.querySelector('.pack.checked').classList.remove('checked')
         sendGAEvent(`Click on select kit - ${pack.querySelector('.pack_name h5').innerText}`, 'Choose your kit')
         pack.classList.add('checked')
+
+        if (pack.querySelector('.pack_name h5').innerText.includes('1')) {
+          document.querySelector('.splitit p').innerText = `Pay $49.98/month with`
+        } else {
+          document.querySelector('.splitit p').innerText = `Pay $83.30/month with`
+        }
       })
     }
   }
@@ -5102,7 +5103,6 @@ function addToCart(id, quantity = 1) {
     method: "POST",
     dataType: "JSON",
     success: function (data) {
-      console.log(data)
       window.location = 'https://novaalab.com/cart'
     },
     error: function (error) {
@@ -5211,7 +5211,7 @@ const waitForSelectOptions = setInterval(() => {
           option.classList.add('selected')
         }
 
-        sendGAEvent('Click on option in pop-up Ship to', country)
+        sendGAEvent('Click on option in pop-up Ship to', country.includes('Canada') ? 'Canada' : 'United States')
 
         if (country.includes('Canada')) {
           document.querySelector('[data-days-range]').innerText = `8-12 days: We ship it to you`
@@ -5641,6 +5641,51 @@ let jqueryLoaded = setInterval(() => {
         })
       }
     }, WAIT_INTERVAL_TIMEOUT)
+
+    // fix chat 
+    if (DEVICE === 'mobile') {
+      waitForElement('#chat-button').then((chatButtonIframe) => {
+        let savedPosition = 0
+
+        console.log('chatButtonIframe', chatButtonIframe)
+
+        const waitForBtn = setInterval(() => {
+          if (chatButtonIframe.contentWindow && chatButtonIframe.contentWindow?.document.querySelector('#gorgias-chat-messenger-button')) {
+            clearInterval(waitForBtn)
+
+            // Select the chat button content window
+            const chatButtonIframeContentWindow = chatButtonIframe.contentWindow
+
+            // Select the messenger button element inside the iframe
+            const messengerButton = chatButtonIframeContentWindow.document.querySelector('#gorgias-chat-messenger-button')
+
+            // Add a click event listener to the messenger button
+            messengerButton.addEventListener('click', () => {
+              savedPosition = window.pageYOffset
+              console.log(savedPosition)
+              console.log('clicked')
+            })
+
+            console.log(savedPosition)
+
+            // Create a new MutationObserver instance
+            const observer = new MutationObserver(mutations => {
+              mutations.forEach(mutation => {
+                // Check if the aria-label attribute has changed and if the new value is 'Open the chat'
+                if (mutation.type === 'attributes' && mutation.attributeName === 'aria-label' && mutation.target.getAttribute('aria-label') === 'Open the chat') {
+                  setTimeout(() => {
+                    window.scrollTo(0, savedPosition)
+                  }, 100)
+                }
+              })
+            })
+
+            // Configure the observer to watch for changes to the aria-label attribute of the messenger button
+            observer.observe(messengerButton, { attributes: true, attributeFilter: ['aria-label'] })
+          }
+        }, WAIT_INTERVAL_TIMEOUT)
+      })
+    }
   }
 }, WAIT_INTERVAL_TIMEOUT)
 
