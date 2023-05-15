@@ -339,42 +339,69 @@ let styles = `
         color: #1E2F44;
         margin: 0;
     }
-    .swiper-pagination {
-        bottom: 24px!important;
-        transform: translate(-50%,0)!important;
-        top: auto!important;
-        width: fit-content!important;
-        display: flex;
-    }
+
     .swiper-slider {
         position: relative;
     }
-    .swiper-pagination-bullet  {
-        border-radius: 100px;
-        width: 6px;
-        height: 6px;
-        margin: 0 2.5px!important;
-        position: initial!important;
-        transform: translate(0,0)!important;
-        transform: none!important;
-        display: none;
-        transition: all 0.2s ease;
+    ul.splide__pagination li:before, ul.splide__list li:before {
+        content: none;
     }
-    .swiper-pagination-bullet.swiper-pagination-bullet-active {
-        width: 20px;
-        background: #1E2F44;
-        display: block;
+    .splide__slide {
+        padding: 0;
     }
-    .swiper-pagination-bullet.swiper-pagination-bullet-active-prev, .swiper-pagination-bullet.swiper-pagination-bullet-active-prev-prev, .swiper-pagination-bullet.swiper-pagination-bullet-active-next, .swiper-pagination-bullet.swiper-pagination-bullet-active-next-next {
-        display: block;
-        transform: scale(0.9)!important
+    .splide__track {
+        overflow: visible!important;
     }
-    .swiper-pagination-bullet.swiper-pagination-bullet-active-prev-prev, .swiper-pagination-bullet.swiper-pagination-bullet-active-next-next {
-        transform: scale(0.7)!important
-    }
-    .swiper-horizontal>.swiper-pagination-bullets.swiper-pagination-bullets-dynamic .swiper-pagination-bullet, .swiper-pagination-horizontal.swiper-pagination-bullets.swiper-pagination-bullets-dynamic .swiper-pagination-bullet {
-        transition: all 0.3s ease!important;
-    }
+    .splide__pagination {
+        padding: 0;
+        position: absolute;
+        left: 50%;
+        bottom: 20px;
+        transform: translateX(-50%);
+        height: 12px;
+      }
+      .splide__pagination li {
+        display: flex;
+        transition: 0.3s;
+      }
+      .splide__pagination li + li {
+        margin-left: 6px;
+        padding: 0;
+      }
+      .splide__pagination__page {
+        height: 10px;
+        width: 10px;
+        border: 0;
+        padding: 0;
+        border-radius: 50%;
+        background: #E0E0E0;
+        transition: 0.3s;
+      }
+      .lav-pag-next button {
+        width: 7px;
+        height: 7px;
+      }
+      .lav-pag-prev button {
+        width: 7px;
+        height: 7px;
+      }
+      .lav-pag-prev-l button {
+        width: 4px;
+        height: 4px;
+      }
+      .splide__pagination-prev li:not(.lav-pag-prev-l ~ li):not(.lav-pag-prev-l) {
+        opacity: 0;
+      }
+      .lav-pag-next + li button {
+        width: 4px;
+        height: 4px;
+      }
+      .lav-pag-next + li ~ li {
+        opacity: 0;
+      }
+      .splide__pagination__page.is-active {
+        background-color: #1E2F44;
+      }
     
     /* about_section */
     .about_section {
@@ -679,7 +706,7 @@ let objReview = [
 ]
 
 let slide = (author, theme, review, date, index, parent = '') => `
-    <div class="swiper-slide" style="display: ${parent == 'content_reviews' && index > 3  ? 'none;' : 'block;' }" data-index="${index}">
+    <div class="swiper-slide " style="display: ${parent == 'content_reviews' && index > 3  ? 'none;' : 'block;' }" data-index="${index}">
         <div class="flex justify-between">
             <p class="author">${author}</p>
             <svg width="88" height="16" viewBox="0 0 88 16" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -751,6 +778,93 @@ let scrollToElement = (event) => {
     } else if (path.includes('.rich-templete h2')) {
         pushDataLayer('exp_reviews_lp_essential_info', 'Item block', `Item name ${target.innerText}`, 'Essential info about ...')
     }
+}
+
+function initSlider() {
+	const slider = new Splide('.lav-gallery', {
+		rewind: true,
+		pagination: true,
+		arrows: false,
+		autoplay: true,
+		interval: 5000,
+		gap: 6,
+	});
+	slider.on('autoplay:playing', function(rate) {
+		if(rate === 1) {
+			const num = parseInt(
+				document.querySelector('.splide__slide.is-next')?.ariaLabel || 1
+			);
+		}
+	});
+	slider.on('dragged', function() {
+		setTimeout(() => {
+			const num = parseInt(
+				document.querySelector('.splide__slide.is-active')?.ariaLabel || 1
+			);
+		}, 500);
+	});
+	slider.on('pagination:mounted', function(data) {
+		data.items[3].li.classList.add('lav-pag-next');
+		let num = 1;
+		for(let item of data.items) {
+			let i = num;
+			num++;
+		}
+	});
+	slider.on('move', function(newIndex, prevIndex, destIndex) {
+		if(document.querySelector('.lav-pag-prev')) {
+			document.querySelector('.lav-pag-prev').classList.remove('lav-pag-prev');
+		}
+		if(document.querySelector('.lav-pag-prev-l')) {
+			document
+				.querySelector('.lav-pag-prev-l')
+				.classList.remove('lav-pag-prev-l');
+		}
+		if(newIndex > 2) {
+			document
+				.querySelector(
+					'.splide__pagination li:nth-child(' + (newIndex - 2) + ')'
+				)
+				.classList.add('lav-pag-prev');
+		}
+		if(newIndex > 3) {
+			document
+				.querySelector('.splide__pagination')
+				.classList.add('splide__pagination-prev');
+			document
+				.querySelector(
+					'.splide__pagination li:nth-child(' + (newIndex - 3) + ')'
+				)
+				.classList.add('lav-pag-prev-l');
+		} else {
+			document
+				.querySelector('.splide__pagination')
+				.classList.remove('splide__pagination-prev');
+		}
+		if(newIndex > 1) {
+			if(document.querySelector('.lav-pag-next')) {
+				document
+					.querySelector('.lav-pag-next')
+					.classList.remove('lav-pag-next');
+			}
+			if(
+				document.querySelector(
+					'.splide__pagination li:nth-child(' + (newIndex + 2) + ')'
+				)
+			) {
+				document
+					.querySelector(
+						'.splide__pagination li:nth-child(' + (newIndex + 2) + ')'
+					)
+					.classList.add('lav-pag-next');
+			}
+		} else if(prevIndex === 8 && newIndex >= 0 && newIndex <= 3) {
+			document
+				.querySelector('.splide__pagination li:nth-child(4)')
+				.classList.add('lav-pag-next');
+		}
+	});
+	slider.mount();
 }
 
 window.onload = function() {
@@ -847,10 +961,11 @@ window.onload = function() {
                     </svg>
                 </p>
             </a>
-            <div class="swiper-slider">
-                <div class="swiper-wrapper"></div>
-                <div class="swiper-pagination"></div>
+            <div class="splide lav-gallery swiper-slider">
+            <div class="splide__track">
+              <ul class="splide__list swiper-wrapper"> </ul>
             </div>
+          </div>
             <a href="tel:(855)685-2090" class="btn btn_green w-inline-block">
                 <div class="ic ic_btn w-embed">
                     <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -870,38 +985,25 @@ window.onload = function() {
     </section>`);
 
     //slider review
-    //add script/link Swiper slider
-    let scriptSwiper = document.createElement('script');
-    scriptSwiper.src = 'https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js';
-    document.body.appendChild(scriptSwiper);
+	const sliderStyles = document.createElement('link');
+	sliderStyles.rel = 'stylesheet';
+	sliderStyles.href = 'https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.1/dist/css/splide-core.min.css';
+	document.body.appendChild(sliderStyles);
 
-    let linkSwiper = document.createElement('link');
-    linkSwiper.href = 'https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css';
-    linkSwiper.rel = 'stylesheet';
-    document.head.appendChild(linkSwiper);
+	let sliderScript = document.createElement('script');
+	sliderScript.src = 'https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.1/dist/js/splide.min.js';
+    document.body.append(sliderScript);
 
     for (let i = 0; i < objReview.length; i++) {
-        document.querySelector('.feedback_section .swiper-wrapper').insertAdjacentHTML('beforeend', slide(objReview[i].author, objReview[i].theme, objReview[i].review, objReview[i].date, i, 'feedback_section'))
+        document.querySelector('.feedback_section .swiper-wrapper').insertAdjacentHTML('beforeend', `<li class="splide__slide">${slide(objReview[i].author, objReview[i].theme, objReview[i].review, objReview[i].date, i, 'feedback_section')}</li>`)
     }
-    //init Swiper slider
-    const waitSwiper = setInterval(() => {
-        if(typeof Swiper == 'function') {
-            clearInterval(waitSwiper)
-            new Swiper(".swiper-slider", {
-                loop: true,
-                slidesPerView: 1,
-                spaceBetween: 19.5,
-                autoplay: {
-                    delay: 5000,
-                },
-                pagination: {
-                    el: ".swiper-pagination",
-                    dynamicBullets: true,
-                    clickable: true
-                },
-            });
-        }
-    });
+
+	let initSplideInterval = setInterval(() => {
+		if(typeof Splide == 'function') {
+			clearInterval(initSplideInterval);
+			initSlider();
+		}
+	}, 200);
 
     //sticky button 
     let offsetTopBrands = document.querySelector('.brands_section').offsetTop,
@@ -1039,7 +1141,7 @@ window.onload = function() {
             <img src="${dir}trustpilot-divider.svg" alt="stars">
             <div class="content_reviews"> </div>
             <button type="button" class="btn_more btn_more_load">Load more</button>
-            <a href="https://www.trustpilot.com/review/creditsage.com" class="btn_more btn_more_trustpilot" hidden>Read more on Trustpilot</a>
+            <a href="https://www.trustpilot.com/review/creditsage.com" class="btn_more btn_more_trustpilot" hidden target="_blank">Read more on Trustpilot</a>
         </div>
     </section>`)
 
