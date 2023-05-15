@@ -775,8 +775,10 @@ window.onload = function() {
     })
     
 
+    let title = document.querySelector('.h1-small').innerHTML.split('Why is ').join('').split('?').join('').split('On Your Report').join('');
+
     document.querySelector('.sct.sct_template-hero > div').insertAdjacentHTML('beforeend', `
-    <a href=".about_section" class="btn_learn_more flex items-center justify-center" onclick="scrollToElement(event)">Learn more about ${document.querySelector('.h1-small').innerHTML.replace('Why is ','').replace('?','')}
+    <a href=".about_section" class="btn_learn_more flex items-center justify-center" onclick="scrollToElement(event)">Learn more about ${title}
         <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
             <rect x="20" y="20" width="20" height="20" rx="10" transform="rotate(180 20 20)" fill="#DBF5ED"/>
             <path d="M9 7L12 10L9 13" stroke="#2DAF6B" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
@@ -863,7 +865,7 @@ window.onload = function() {
         </div>
     </section>
     <section class="about_section sct__cnt sct__cnt_template">
-        <h2>Essential information about ${document.querySelector('.h1-small').innerHTML.replace('Why is ','').replace('?','')} <span class="text-nowrap">you need</span> to know</h2>
+        <h2>Essential information about ${title} <span class="text-nowrap">you need</span> to know</h2>
         <ul></ul>
     </section>`);
 
