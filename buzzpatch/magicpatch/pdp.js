@@ -240,6 +240,7 @@ const style = /* html */ `
             font-size: 18px !important;
             font-weight: 600;
             line-height: 27px !important;
+            color: #212529;
         }
         .main_section .science .title span {
             display: block;
@@ -291,6 +292,7 @@ const style = /* html */ `
             padding: 14px 20px;
             margin-top: 8px;
             font-weight: 700;
+            color: #212529;
         }
 
         .main_section .works ul li img {
@@ -931,21 +933,13 @@ function main() {
     $('.js-heading h1').html('Magic Patch It!<br><span>100% natural relief from bites, itching & swelling</span>')
     document.querySelector('.navbar').after(document.querySelector('.shipping-noti.js-mobile'))
 
-    let checkFreeShipping = new IntersectionObserver((entries, observer) => {
-        entries.forEach((entry) => {
-            if(!entry.isIntersecting) {
-                $('.shipping-noti.js-mobile').css('position', 'fixed').css('left', '0').css('top', '80px').css('width', '100%').css('z-index', '110')
-            } else {
-                $('.shipping-noti.js-mobile').css('position', 'unset').css('left', '0').css('top', '80px').css('width', '100%').css('z-index', '1')
-            }
-        })
-    },
-    {
-        threshold: 0.2,
+    $(document).scroll(function(){
+        if(document.querySelector('img.free-shipping-checkout').getBoundingClientRect().y > window.innerHeight && document.querySelector('.block1').getBoundingClientRect().y < 80 ) {
+            $('.shipping-noti.js-mobile').css('position', 'fixed').css('left', '0').css('top', '80px').css('width', '100%').css('z-index', '110')
+        } else {
+            $('.shipping-noti.js-mobile').css('position', 'unset').css('left', '0').css('top', '80px').css('width', '100%').css('z-index', '1')
+        }
     })
-    setTimeout(function(){
-        checkFreeShipping.observe(document.querySelector('header'))
-    }, 2000)
     
 
     $('.btn_main').click(function() {
