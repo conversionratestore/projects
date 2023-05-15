@@ -216,7 +216,7 @@ let styles = `
         padding: 12px;
         text-align: center;
         color: #5F6B7A;
-        margin-bottom: 18px;
+        margin: -1px -1px 18px -1px;
     }
     ul.help_section_list {
         padding: 0 0 18px 30px!important;
