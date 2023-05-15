@@ -2518,13 +2518,8 @@ iframe#chat-button.higher {
 #faq .gina .review p img {
   position: absolute;
   top: auto;
-  right: 0;
+  right: -2px;
   bottom: -4px;
-}
-
-#faq .gina .review p img .customer_quote {
-    display: inline-block;
-    margin-right: 35px;
 }
 
   #technical .row p:last-child,
@@ -5652,6 +5647,8 @@ let jqueryLoaded = setInterval(() => {
       waitForElement('#chat-button').then((chatButtonIframe) => {
         let savedPosition = 0
 
+        console.log('chatButtonIframe', chatButtonIframe);
+
         // Select the chat button iframe element and its content window
         const chatButtonIframeContentWindow = chatButtonIframe.contentWindow
 
@@ -5661,7 +5658,10 @@ let jqueryLoaded = setInterval(() => {
         // Add a click event listener to the messenger button
         messengerButton.addEventListener('click', () => {
           savedPosition = window.pageYOffset
+          console.log('clicked');
         })
+
+        console.log(savedPosition);
 
         // Create a new MutationObserver instance
         const observer = new MutationObserver(mutations => {
@@ -5670,7 +5670,7 @@ let jqueryLoaded = setInterval(() => {
             if (mutation.type === 'attributes' && mutation.attributeName === 'aria-label' && mutation.target.getAttribute('aria-label') === 'Open the chat') {
               setTimeout(() => {
                 window.scrollTo(0, savedPosition)
-              }, 100)
+              }, 500)
             }
           })
         })
