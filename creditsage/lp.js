@@ -279,7 +279,7 @@ let styles = `
         line-height: 27px;      
     }
     .feedback_section .swiper-slide {
-        margin-bottom: 42px;
+        margin-bottom: 0;
     }
     .swiper-slide {
         background: #FFFFFF;
@@ -354,11 +354,7 @@ let styles = `
     }
     .splide__pagination {
         padding: 0;
-        position: absolute;
-        left: 50%;
-        bottom: 20px;
-        transform: translateX(-50%);
-        height: 12px;
+        margin: 12px 0 24px!important;
       }
       .splide__pagination li {
         display: flex;
