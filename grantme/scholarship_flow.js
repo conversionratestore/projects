@@ -3310,6 +3310,12 @@ padding: 0;
       });
     }
     pushDataLayer("exp_bookpage_loaded", " ", " ", " ");
+    const recordMF = setInterval(() => {
+      if (typeof window._mfq === "object") {
+        clearInterval(recordMF);
+        window._mfq.push(["setVariable", "book-call", "variant_1"]);
+      }
+    }, 200);
     const record = setInterval(() => {
       if (typeof clarity === "function") {
         clearInterval(record);
