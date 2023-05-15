@@ -2,6 +2,9 @@ let dir = `https://conversionratestore.github.io/projects/creditsage/img/`;
 
 let styles = `
 <style>
+    .sct_rich-first > .sct__cnt_template > .rich-cta-wrp .trustpilot-widget iframe {
+        pointer-events: none;
+    }
     .inactive-popup, .inactive-popup-content_close, [hidden] {
         display: none!important;
     }
@@ -354,12 +357,23 @@ let styles = `
         position: initial!important;
         transform: translate(0,0)!important;
         transform: none!important;
-        display: block;
-    
+        display: none;
+        transition: all 0.2s ease;
     }
     .swiper-pagination-bullet.swiper-pagination-bullet-active {
         width: 20px;
         background: #1E2F44;
+        display: block;
+    }
+    .swiper-pagination-bullet.swiper-pagination-bullet-active-prev, .swiper-pagination-bullet.swiper-pagination-bullet-active-prev-prev, .swiper-pagination-bullet.swiper-pagination-bullet-active-next, .swiper-pagination-bullet.swiper-pagination-bullet-active-next-next {
+        display: block;
+        transform: scale(0.9)!important
+    }
+    .swiper-pagination-bullet.swiper-pagination-bullet-active-prev-prev, .swiper-pagination-bullet.swiper-pagination-bullet-active-next-next {
+        transform: scale(0.7)!important
+    }
+    .swiper-horizontal>.swiper-pagination-bullets.swiper-pagination-bullets-dynamic .swiper-pagination-bullet, .swiper-pagination-horizontal.swiper-pagination-bullets.swiper-pagination-bullets-dynamic .swiper-pagination-bullet {
+        transition: all 0.3s ease!important;
     }
     
     /* about_section */
@@ -665,7 +679,7 @@ let objReview = [
 ]
 
 let slide = (author, theme, review, date, index, parent = '') => `
-    <div class="swiper-slide" style="display: ${parent == 'content_reviews' && index > 3  ? 'none' : 'block' }" data-index="${index}">
+    <div class="swiper-slide" style="display: ${parent == 'content_reviews' && index > 3  ? 'none;' : 'block;' }" data-index="${index}">
         <div class="flex justify-between">
             <p class="author">${author}</p>
             <svg width="88" height="16" viewBox="0 0 88 16" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -762,7 +776,7 @@ window.onload = function() {
     
 
     document.querySelector('.sct.sct_template-hero > div').insertAdjacentHTML('beforeend', `
-    <a href=".about_section" class="btn_learn_more flex items-center justify-center" onclick="scrollToElement(event)">Learn more about Radius Global Solutions 
+    <a href=".about_section" class="btn_learn_more flex items-center justify-center" onclick="scrollToElement(event)">Learn more about ${document.querySelector('.h1-small').innerHTML.replace('Why is ','').replace('?','')}
         <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
             <rect x="20" y="20" width="20" height="20" rx="10" transform="rotate(180 20 20)" fill="#DBF5ED"/>
             <path d="M9 7L12 10L9 13" stroke="#2DAF6B" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
@@ -849,7 +863,7 @@ window.onload = function() {
         </div>
     </section>
     <section class="about_section sct__cnt sct__cnt_template">
-        <h2>Essential information about Radius Global Solutions <span class="text-nowrap">you need</span> to know</h2>
+        <h2>Essential information about ${document.querySelector('.h1-small').innerHTML.replace('Why is ','').replace('?','')} <span class="text-nowrap">you need</span> to know</h2>
         <ul></ul>
     </section>`);
 
@@ -881,6 +895,7 @@ window.onload = function() {
                 pagination: {
                     el: ".swiper-pagination",
                     dynamicBullets: true,
+                    clickable: true
                 },
             });
         }
@@ -1022,13 +1037,22 @@ window.onload = function() {
             <img src="${dir}trustpilot-divider.svg" alt="stars">
             <div class="content_reviews"> </div>
             <button type="button" class="btn_more btn_more_load">Load more</button>
-            <a href="https://www.trustpilot.com/review/creditsage.com" class="btn_more btn_more_trustpilot">Read more on Trustpilot</a>
+            <a href="https://www.trustpilot.com/review/creditsage.com" class="btn_more btn_more_trustpilot" hidden>Read more on Trustpilot</a>
         </div>
     </section>`)
 
     for (let i = 0; i < objReview.length ; i++) {
         document.querySelector('.content_reviews').insertAdjacentHTML('beforeend', slide(objReview[i].author, objReview[i].theme, objReview[i].review, objReview[i].date, i, 'content_reviews'))
     }
+
+    // section "Looking for help with "
+    document.querySelectorAll('.rich-cta-wrp')[document.querySelectorAll('.rich-cta-wrp').length - 2].querySelector('.trustpilot-widget').addEventListener('click', (e) => {
+        e.preventDefault()
+        let top = document.querySelector('.review_section').getBoundingClientRect().top - 82;
+
+        seamless.polyfill();
+        seamless.scrollBy(window, { behavior: "smooth", top: top, left: 0 });
+    })
 
     //event: Visibility. Trusted customer reviews
     let viwedElements = [];
@@ -1058,8 +1082,18 @@ window.onload = function() {
     })
     //event: Button. Tap to load more
     document.querySelector('.btn_more_load').addEventListener('click', (e) => {
-        e.currentTarget.hidden = true;
-        document.querySelectorAll('.content_reviews > div').forEach(element => element.style.display = 'block');
+        let reviewLast = document.querySelectorAll('.content_reviews > div[style="display: block;"]')[document.querySelectorAll('.content_reviews > div[style="display: block;"]').length - 1];
+        let countShow = +reviewLast.dataset.index + 4;
+
+        document.querySelectorAll('.content_reviews > div').forEach((element, i) => {
+            if (i <= countShow) {
+                element.style.display = 'block';
+            }
+            if (countShow >= 18) {
+                e.currentTarget.hidden = true;
+                document.querySelector('.btn_more_trustpilot').hidden = false;
+            }
+        });
 
         pushDataLayer('exp_reviews_lp_load_more','Tap to load more','Button','Trusted customer reviews')
     })
