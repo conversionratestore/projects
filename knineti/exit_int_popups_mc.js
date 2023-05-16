@@ -717,31 +717,14 @@ let startPopup = setInterval(() => {
               document.querySelector("video").currentTime = 60 * 35;
               sessionStorage.setItem("special_offer_end", "true");
               console.log(document.querySelector("video").currentTime, `document.querySelector("video").currentTime`);
+              if (document.querySelector("video").currentTime !== 35 * 60) {
+                document.querySelector("video").currentTime = 60 * 35;
+                console.log(document.querySelector("video").currentTime, `document.querySelector("video").currentTime !!!!!!!!!!!`);
+              }
             }
           }, 10);
         }
       }, 10);
-    }
-
-    window.onunload = unloadPage;
-    function unloadPage() {
-      console.log("unload event detected!");
-      if (sessionStorage.getItem("special_offer") && sessionStorage.getItem("exit_popup_loaded") && !sessionStorage.getItem("special_offer_end")) {
-        let start = setInterval(() => {
-          if (document.querySelector(".fp-play.fp-visible")) {
-            clearInterval(start);
-            startVideo();
-            let v = setInterval(() => {
-              if (document.querySelector("video")) {
-                clearInterval(v);
-                sessionStorage.setItem("special_offer_end", "true");
-                document.querySelector("video").currentTime = 60 * 35;
-                console.log(document.querySelector("video").currentTime, `document.querySelector("video").currentTime`);
-              }
-            }, 10);
-          }
-        }, 10);
-      }
     }
 
     exitIntentPopup();
