@@ -2,6 +2,7 @@
 // https://www.doyogawithme.com/yogi/login?destination=/checkout/23348/order_information
 // https://www.doyogawithme.com/yogi/login?destination=/yogi/login
 // https://www.doyogawithme.com/checkout/23406/login
+// https://www.doyogawithme.com/yogi/login?destination=/
 
 //register
 //https://www.doyogawithme.com/yogi/register
@@ -1633,6 +1634,16 @@ function init() {
             })
 
             pushDataLayer('Visibility',label)
+        }
+
+        if (window.location.href.includes('checkout/') && window.location.href.includes('/review') && document.querySelector('.commerce-checkout-flow--review') != null) {
+            clearInterval(init)
+            document.body.insertAdjacentHTML('afterbegin',`
+            <style> 
+                .commerce-checkout-flow--review {
+                    width: 100%;
+                }
+            </style>`)
         }
     });
 }
