@@ -387,6 +387,7 @@ let styles = `
       }
       .splide__pagination-prev li:not(.lav-pag-prev-l ~ li):not(.lav-pag-prev-l) {
         opacity: 0;
+        display: none;
       }
       .lav-pag-next + li button {
         width: 4px;
@@ -394,6 +395,7 @@ let styles = `
       }
       .lav-pag-next + li ~ li {
         opacity: 0;
+        display: none;
       }
       .splide__pagination__page.is-active {
         background-color: #1E2F44;
