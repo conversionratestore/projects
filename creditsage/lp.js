@@ -1204,7 +1204,9 @@ window.onload = function() {
         pushDataLayer('exp_reviews_lp_read_more_on_trustpilot','Tap to Read more on Trustpilot','Button','Trusted customer reviews')
     })
 
-    document.querySelector('.exp-loading') != null ? document.querySelector('.exp-loading').remove() : '';
+    setTimeout(() => {
+        document.querySelector('.exp-loading') != null ? document.querySelector('.exp-loading').remove() : '';
+    }, 2000)
 };
 
 const isClarity = setInterval(() => {
