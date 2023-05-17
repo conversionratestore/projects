@@ -183,6 +183,10 @@ let styles = `
     }
     .sticky_btn .btn .ic {
         width: 19px;
+        height: 19px;
+    }
+    .sticky_btn .btn .ic svg {
+        display: block;
     }
     /* brand section */
     .brands_section {
