@@ -4,6 +4,7 @@ let style = `
 <style>
     #stickywidgetbutton {
         background-color: #FFC45C;
+        color: #292929;
     }
     header.site-header {
         height: auto;
@@ -522,5 +523,6 @@ let init = setInterval(() => {
                 })
             }
         })
+        document.querySelector('.loading-exp') != null ? document.querySelector('.loading-exp').remove() : '';
     }
 })
