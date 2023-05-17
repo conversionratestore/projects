@@ -22,7 +22,6 @@ if (settings.clarity) {
 const blockVisibility = (selector, viewTime) => {
     let v1 = new IntersectionObserver(entries => {
         entries.forEach(item => {
-            console.log(item)
             if(item.isIntersecting) {
                 v1.unobserve(item.target)
                 setTimeout(function () {
@@ -38,7 +37,6 @@ const blockVisibility = (selector, viewTime) => {
         entries.forEach(item => {
             if(item.isIntersecting) {
                 let attr = JSON.parse(item.target.dataset.visible)
-                console.log('observer', attr)
                 gaEvent(attr.name, attr.desc, 'View element on screen', attr.loc)
             } else {
                 v1.observe(item.target)
@@ -684,8 +682,8 @@ function initGuarantee() {
 
 function initModal() {
   const el = `
-  <div class='lav-modal-wrapper' data-visible='{"name": "exp_discount_30_money_back1", "desc": "30-Day Money-Back Guarantee banner", "loc": "${screenType}"}'>
-    <div class='lav-modal'>
+  <div class='lav-modal-wrapper'>
+    <div class='lav-modal' data-visible='{"name": "exp_discount_did_you_know_popup_view", "desc": "Did you know popup", "loc": "${screenType}"}'>
       <div class='lav-modal__inner lav-disc'>
         <div class='lav-modal__close'>
           <img src='${settings.dir}/img/icon-close.svg'>
