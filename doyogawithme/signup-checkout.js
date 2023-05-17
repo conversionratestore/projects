@@ -1649,7 +1649,7 @@ function init() {
                         padding-bottom: 4em;
                     }
                     .samsara .form-actions {
-                        difplsy: block;
+                        display: block;
                     }
                     .ayout-region-checkout-footer .commerce-checkout-flow--review .form-submit {
                         margin-right: 0;
