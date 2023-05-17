@@ -12,6 +12,7 @@ let style = `
     }
     .css-1lno5h0 {
         padding: 0 20px 20px;
+        border: none;
     }
     .css-p0twtd {
         height: auto;
