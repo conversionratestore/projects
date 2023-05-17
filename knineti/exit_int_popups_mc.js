@@ -347,6 +347,7 @@ let startPopup = setInterval(() => {
       }
       .overlay_popup .container_popup{
             margin: 16px auto auto;
+            max-width: 343px;
       }
         .img_wrapper,
         [data-popup="5"] .img_wrapper{
@@ -358,8 +359,8 @@ let startPopup = setInterval(() => {
             border-radius: 16px;
             padding: 20px;
         }
-        .overlay_popup .container_popup{
-            max-width: 343px;
+        .overlay_popup .container_popup.email_step{
+            margin: 144px auto auto;
         }
         .title_var {
             font-size: 20px !important;
