@@ -62,11 +62,7 @@ let style = `
         -webkit-margin-end: 3px;
         margin-inline-end: 3px;
     }
-    .css-1ee0r0h {
-        margin-right: -11px;
-        margin-left: 45px;
-    }
-    .item-review .banner-link > .css-k008qs, .css-1lno5h0 li:first-child, .css-mljoh, .css-x3wokz, .banner-authorship, .css-k008qs .css-c0gtt0, .banner-last-updated, .banner-contribution .css-1k9efnl svg {
+    .item-review .banner-link > .css-k008qs, .css-1lno5h0 li:first-child, .css-mljoh, .css-x3wokz, .banner-authorship, .css-k008qs .css-c0gtt0, .item-review .css-c0gtt0, .banner-last-updated, .banner-contribution .css-1k9efnl svg {
         display: none!important;
     }
     .css-1uguvmx {
@@ -257,6 +253,11 @@ let style = `
         .text-md-left {
             text-align: left;
         }
+
+        .css-1ee0r0h {
+            margin-right: -11px;
+            margin-left: 45px;
+        }
         .css-1lno5h0, header.site-header, .css-2ops0h, .footer_section {
             max-width: 1320px;
             margin: 0 auto;
@@ -296,7 +297,7 @@ let style = `
             padding: 0;
         }
         header.site-header {
-            padding: 6px 16px;
+            padding: 6px 5px;
         }
         .breadcrumbs-container {
             display: block!important;
