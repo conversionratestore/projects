@@ -1643,6 +1643,24 @@ function init() {
                 .layout-region.layout-region-checkout-footer {
                     width: 100%!Important;
                 }
+
+                @media only screen and (max-width: 600px) {
+                    .checkout-pane-review {
+                        padding-bottom: 4em;
+                    }
+                    .samsara .form-actions {
+                        difplsy: block;
+                    }
+                    .ayout-region-checkout-footer .commerce-checkout-flow--review .form-submit {
+                        margin-right: 0;
+                        width: 100%;
+                    }
+                    #edit-actions .link--previous {
+                        margin: 9px auto 0;
+                        display: block;
+                        text-align: center;
+                    }
+                }
             </style>`)
         }
     });
