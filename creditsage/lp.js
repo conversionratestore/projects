@@ -130,8 +130,8 @@ let styles = `
     }
     .btn-txt {
         font-weight: 700;
-        font-size: 24px;
-        line-height: 32px;
+        font-size: 24px!important;
+        line-height: 32px!important;
     }
     .btn.btn_green {
         padding: 13px;
@@ -177,7 +177,7 @@ let styles = `
         padding: 4px 10px;
     }
     .sticky_btn .btn-txt {
-        font-size: 16px;
+        font-size: 16px!important;
         line-height: 32px;
         display: block!important;
     }
@@ -490,7 +490,7 @@ let styles = `
     }
     .did-you-now .btn-txt.mobile {
         font-size: 24px;
-        line-height: 35px;
+        line-height: 35px!important;
     }
     .did-you-now .btn.btn_green {
         padding: 16px;
