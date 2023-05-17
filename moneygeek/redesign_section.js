@@ -441,7 +441,7 @@ let stickyBtn = setInterval(() => {
     }
 });
 let init = setInterval(() => {
-    if (document.querySelector('.breadcrumbs-container') != null && document.querySelector('.css-xi606m') != null) {
+    if (document.querySelector('.breadcrumbs-container') != null && document.querySelector('.css-xi606m') != null && document.querySelector('.banner-grid') != null && document.querySelector('.banner-description') != null && document.querySelector('.banner-widget .css-xi606m') != null) {
         clearInterval(init)
         document.head.insertAdjacentHTML('beforeend',`
         <link rel="preconnect" href="https://fonts.googleapis.com">
