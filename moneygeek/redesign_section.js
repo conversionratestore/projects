@@ -403,11 +403,11 @@ let byFind = setInterval(() => {
                 document.querySelector('.item-review').classList.add('isReview')
                 if (window.matchMedia("(max-width: 767px)").matches) {
                     document.querySelector('.info_block').insertAdjacentHTML('afterbegin', factCheckedHTML)
-                    document.querySelector('.item-review').innerHTML = item.innerHTML.replace(wordAfterQuot, '')
+                    document.querySelector('.item-review').innerHTML = item.innerHTML.replace(wordAfterQuot, '').replace(',','')
                 } else {
                     document.querySelector('.item-review').innerHTML = ` 
                     ${factCheckedHTML}
-                    ${item.innerHTML.replace('Reviewed By','by Licensed Insurance Agent').replace(wordAfterQuot, '')}`;
+                    ${item.innerHTML.replace('Reviewed By','by Licensed Insurance Agent').replace(wordAfterQuot, '').replace(',','')}`;
                 }
 
                 document.querySelector('.item-review [aria-haspopup="dialog"]').before(item)
@@ -516,8 +516,6 @@ let addFooter = setInterval(() => {
 let addStyle = setInterval(() => {
     if (document.body != null) {
         clearInterval(addStyle)
-
-        console.log('addStyle')
 
         document.head.insertAdjacentHTML('beforeend',`
         <link rel="preconnect" href="https://fonts.googleapis.com">
