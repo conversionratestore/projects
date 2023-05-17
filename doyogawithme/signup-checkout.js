@@ -1636,12 +1636,12 @@ function init() {
             pushDataLayer('Visibility',label)
         }
 
-        if (window.location.href.includes('checkout/') && window.location.href.includes('/review') && document.querySelector('.commerce-checkout-flow--review') != null) {
+        if (window.location.href.includes('checkout/') && window.location.href.includes('/review') && document.querySelector('.commerce-checkout-flow--review') != null && document.querySelector('.style-js') == null) {
             clearInterval(init)
             document.body.insertAdjacentHTML('afterbegin',`
-            <style> 
-                .commerce-checkout-flow--review {
-                    width: 100%;
+            <style class="style-js"> 
+                .layout-region.layout-region-checkout-footer {
+                    width: 100%!Important;
                 }
             </style>`)
         }
