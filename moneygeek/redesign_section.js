@@ -157,7 +157,7 @@ let style = `
     .info_block .css-k008qs b {
         font-weight: 400;
     }
-    .info_block .css-k008qs:not([aria-haspopup="dialog"]), .banner-contribution .css-1k9efnl, .banner-advertising, .item-review {
+    .info_block .css-k008qs:not([aria-haspopup="dialog"]), .banner-contribution .css-1k9efnl, .banner-advertising, .item-review.isReview {
         margin-bottom: 15px;
     } 
     .item-review {
@@ -333,14 +333,15 @@ let style = `
             top: 20px;
             right: 15px;
         }
-        .item-review, .css-1k9efnl a, .by-item + .css-k008qs, .css-1t0181o > .css-k008qs, .banner-advertising, .css-1ciy9pg a {
+        .item-review.isReview, .css-1k9efnl a, .by-item + .css-k008qs, .css-1t0181o > .css-k008qs, .banner-advertising, .css-1ciy9pg a {
             position: relative;
             padding-left: 21px;
             background: url('${dir}checkbox.svg') no-repeat left center / 14px;
             font-weight: 400;
         }
-        .info_block .css-k008qs:not([aria-haspopup="dialog"]), .banner-contribution .css-1k9efnl, .banner-advertising, .item-review {
+        .info_block .css-k008qs:not([aria-haspopup="dialog"]), .banner-contribution .css-1k9efnl, .banner-advertising, .item-review.isReview {
             margin-bottom: 10px;
+            width: fit-content;
         }
         .info_block > .flex-md > .fw-bold {
             font-size: 13px;
@@ -369,7 +370,7 @@ let mounth = ['Jan','Feb','Mar','Apr','May','June','July','Aug','Sep','Oct','Nov
 let dateFind = setInterval(() => {
     if (document.querySelector('.banner-last-updated') != null && document.querySelector('.by-item') != null) {
         clearInterval(dateFind)
-        let date = document.querySelector('.banner-last-updated').innerHTML.split(':')[1],
+        let date = document.querySelector('.banner-last-updated').innerText.split(':')[1],
             mounthDate = mounth[+date.split('/')[0] - 1],
             dayDate = date.split('/')[1],
             yearDate = date.split('/')[2];
@@ -398,7 +399,7 @@ let byFind = setInterval(() => {
                     </svg>
                     Fact Checked
                 </div>`;
-               
+                document.querySelector('.item-review').classList.add('isReview')
                 if (window.matchMedia("(max-width: 767px)").matches) {
                     document.querySelector('.info_block').insertAdjacentHTML('afterbegin', factCheckedHTML)
                     document.querySelector('.item-review').innerHTML = item.innerHTML.replace(wordAfterQuot, '')
@@ -486,7 +487,7 @@ let init = setInterval(() => {
             <div class="flex-md items-center">
                 <div class="by-item"></div>
             </div>
-            <div class="flex flex-wrap items-center">
+            <div class="flex-md flex-wrap items-center">
                 <div class="item-review flex items-center"></div>
                 <div class="item-edited"></div>
                 <div class="item-advertising"></div>
