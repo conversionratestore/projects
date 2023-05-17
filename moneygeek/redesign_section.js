@@ -443,6 +443,8 @@ let stickyBtn = setInterval(() => {
 let init = setInterval(() => {
     if (document.querySelector('.breadcrumbs-container') != null && document.querySelector('.css-xi606m') != null && document.querySelector('.banner-grid') != null && document.querySelector('.banner-description') != null && document.querySelector('.banner-widget .css-xi606m') != null) {
         clearInterval(init)
+
+        console.log('init')
         document.head.insertAdjacentHTML('beforeend',`
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -464,8 +466,11 @@ let init = setInterval(() => {
             <h3>Compare Rates and
             <span class="text-nowrap">Save On Auto</span> Insurance</h3>
         `)
+        console.log(document.querySelector('.banner-widget h3'))
 
         document.querySelector('.banner-widget .css-1chw4q3').innerHTML = 'Enter Your Zip Code';
+        console.log(document.querySelector('.banner-widget .css-1chw4q3').innerHTML)
+
         document.querySelector('.banner-widget .css-1hx7vxy').innerHTML = `
             <svg width="15" height="19" viewBox="0 0 15 19" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path fill-rule="evenodd" clip-rule="evenodd" d="M7.49009 4.97238C6.10949 4.97238 4.9903 6.09167 4.9903 7.47238C4.9903 8.85309 6.10949 9.97238 7.49009 9.97238C8.87069 9.97238 9.98989 8.85309 9.98989 7.47238C9.98806 6.09243 8.86993 4.97422 7.49009 4.97238ZM7.49121 8.72242C6.98567 8.72242 6.52991 8.41787 6.33645 7.95077C6.14299 7.48368 6.24993 6.94603 6.6074 6.58853C6.96486 6.23104 7.50247 6.12409 7.96953 6.31757C8.43658 6.51104 8.74111 6.96684 8.74111 7.47242C8.74019 8.16239 8.18113 8.7215 7.49121 8.72242Z" fill="#526EFF"/>
