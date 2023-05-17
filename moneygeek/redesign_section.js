@@ -359,7 +359,7 @@ let style = `
         .css-86e6ef {
             display: none!important;
         }
-        .css-1gtqflt, .css-kuk5vd {
+        .css-1gtqflt, .css-kuk5vd, .info_block .css-1t0181o {
             display: block!important;
         }
     }
