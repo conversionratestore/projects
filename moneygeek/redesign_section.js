@@ -504,7 +504,7 @@ let descriptionFind = setInterval(() => {
 });
 
 let addFooter = setInterval(() => {
-    if (document.querySelector('.css-2ops0h') != null && document.querySelector('.footer_section') != null) {
+    if (document.querySelector('.css-2ops0h') != null && document.querySelector('.footer_section') == null) {
         document.querySelector('.css-2ops0h').insertAdjacentHTML('afterend',`
         <div class="flex-md justify-between items-center footer_section">
             <p class="text-md-left text-center">Select from a variety of trusted carriers and save on auto insurance</p>
