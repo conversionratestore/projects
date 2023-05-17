@@ -1,4 +1,3 @@
-
 // additional scripts
 let v1 = new IntersectionObserver(entries => {
     entries.forEach(item => {
@@ -8,12 +7,14 @@ let v1 = new IntersectionObserver(entries => {
             },1000)
         }
     })
+}, {
+    threshold: 0.9
 })
 
 let v2 = new IntersectionObserver(entries => {
     entries.forEach(item => {
         if(item.isIntersecting) {
-            pushDataLayer('Visibility of' + item.target.dataset.visible)
+            pushDataLayer('Visibility of ' + item.target.dataset.visible)
             v1.unobserve(item.target)
         }
         v2.unobserve(item.target)
@@ -23,7 +24,7 @@ let v2 = new IntersectionObserver(entries => {
 let record = setInterval(function () {
     if (typeof clarity === 'function') {
         clearInterval(record)
-        clarity("set", "", "variant 1");
+        clarity("set", "Science-based solution block", "variant 1");
     }
 }, 100)
 
@@ -33,7 +34,7 @@ function pushDataLayer(action, label = '') {
     window.dataLayer = window.dataLayer || []
     dataLayer.push({
         'event': 'event-to-ga',
-        'eventCategory': 'Exp: Vertical scroll navigation',
+        'eventCategory': 'Exp: Science-based solution block',
         'eventAction': action,
         'eventLabel': label
     })
@@ -44,12 +45,16 @@ function pushDataLayer(action, label = '') {
 const git = 'https://conversionratestore.github.io/projects/buzzpatch/zenpatch/sience/img/'
 const style = /* html */ `
     <style>
+        #flowers {
+            padding-bottom: 20px;
+        }
+
         #flowers .container  {
             margin-bottom: 117px;
             position: relative;
         }
         .sleeping-problems {
-            padding-top: 107px;
+            padding-top: 50px;
         }
         .js-mobile.scientific .container {
             padding: 0;
@@ -74,12 +79,29 @@ const style = /* html */ `
             letter-spacing: 0;
         }
 
-        .exp_part1 .steps>img {
+        .exp_part1 .steps>a {
             position: absolute;
             z-index: 2;
-            top: calc(100% + 28px);
+            top: calc(100% + 45px);
             left: 50%;
             transform: translateX(-50%);
+            padding: 20px 10px;
+            width: 100%;
+            max-width: 331px;
+            font-size: 18px;
+            letter-spacing: .015em;
+            line-height: 24px;
+            font-weight: 700;
+            border-radius: 500px;
+            filter: drop-shadow(0px 4px 4px rgba(0,0,0,.4));
+            color: #fff;
+            font-family: Din Condensed,Roboto,sans-serif;
+            text-transform: uppercase;
+            background: #2A7B72;
+            box-shadow: 0 4px 15px #48434582;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .exp_part1 .steps>div {
@@ -115,12 +137,12 @@ const style = /* html */ `
         }
 
         .exp_part1 .step1 .lines, .exp_part1 .step3 .lines {
-            top: 27px;
+            top: 43px;
             left: 105%;
         }
 
         .exp_part1 .step2 .lines, .exp_part1 .step4 .lines {
-            top: 29px;
+            top: 44px;
             right: 110%;
         }
 
@@ -142,8 +164,6 @@ const style = /* html */ `
         }
 
         .exp_part1 .sub {
-            display: flex;
-            align-items:center;
             font-family: 'Din Condensed','Roboto',sans-serif;
             color: #212529;
             text-transform: uppercase;
@@ -152,12 +172,13 @@ const style = /* html */ `
         }
 
         .exp_part1 .sub .info {
-            display: block;
-            margin-left: 6px;
-            height: 16px;
-            width: 16px;
-            background: url(${git}info.svg) center center no-repeat;
-            background-size: contain;
+            font-family: 'Din Condensed','Roboto',sans-serif;
+            color: #2C7C73;
+            text-transform: uppercase;
+            text-decoration: underline;
+            font-size: 16px;
+            line-height: 1.1;
+            text-align: center;
         }
 
         .exp_part2 ul {
@@ -178,6 +199,7 @@ const style = /* html */ `
             padding: 0 15px 74px;
             background: url(${git}spline.svg) bottom center no-repeat;
             background-size: 100%;
+            margin-bottom: -1px;
         }
 
         .exp_part2 .info .text p{
@@ -311,16 +333,15 @@ const style = /* html */ `
 
     </style> 
 `
-
 const part1 = /* html */ `
     <div class="exp_part1">
         <div class="title">
-            <img src="${git}natural.png" alt="natural">
+            <img src="${git}natural.svg" alt="natural">
             <h3>Soothe an overactive mind for up to 8 hours with 100% all natural support</h3>
         </div>
         <p>Balanced with bright and soothing essential oils like <b>Mandarin, Sweet Orange, Atlas Cedarwood</b> and <b>Lavender</b>, ZenPatch helps regulate emotions like stress and anxiety* for up to 8 hours — <b>perfect for achieving a steady, focused calm all day long.</b></p>
         <div class="steps">
-            <div class="step1" data-visible="Mandarin oil step">
+            <div class="step1 step" data-visible="Mandarin oil step">
                 <div class="img">
                     <img src="${git}1.jpg" alt="photo">
                     <img src="${git}right.svg" alt="line" class="lines">
@@ -328,12 +349,13 @@ const part1 = /* html */ `
                 <div class="sub">
                     Mandarin oil
                     <div class="info">
+                    learn more
                         <span class="hint">Mandarin oil contains a unique monoterpene profile that has been proven to have calming, anti-inflammatory, and relaxing effects, making it a useful tool for soothing restlessness and hyperactivity</span>
                         <span class="arrow"></span>
                     </div>
                 </div>
             </div>
-            <div class="step2" data-visible="Sweet Orange oil step">
+            <div class="step2 step" data-visible="Sweet Orange oil step">
                 <div class="img">
                     <img src="${git}2.jpg" alt="photo">
                     <img src="${git}left.svg" alt="line" class="lines">
@@ -341,12 +363,13 @@ const part1 = /* html */ `
                 <div class="sub">
                     Sweet Orange oil
                     <div class="info">
+                    learn more
                         <span class="hint">Sweet orange oil is a natural remedy that can help manage stress and anxiety in children by promoting relaxation and reducing feelings of anxiety. Its mood-boosting properties and uplifting aroma can also help improve emotional balance.</span>
                         <span class="arrow"></span>
                     </div>
                 </div>
             </div>
-            <div class="step3" data-visible="Atlas Cedarwood oil step">
+            <div class="step3 step" data-visible="Atlas Cedarwood oil step">
                 <div class="img">
                     <img src="${git}3.jpg" alt="photo">
                     <img src="${git}right2.svg" alt="line" class="lines">
@@ -354,12 +377,13 @@ const part1 = /* html */ `
                 <div class="sub">
                     Atlas Cedarwood oil
                     <div class="info">
+                    learn more
                         <span class="arrow"></span>
                         <span class="hint">Atlas cedarwood oil has natural sedative properties that can help reduce stress and anxiety. Its calming effects on the nervous system can promote relaxation and improve sleep quality, which can be beneficial for children with anxiety or sleep disturbances.</span>
                     </div>
                 </div>
             </div>
-            <div class="step4" data-visible="Lavender oil step">
+            <div class="step4 step" data-visible="Lavender oil step">
                 <div class="img">
                     <img src="${git}4.jpg" alt="photo">
                     <img src="${git}left2.svg" alt="line" class="lines">
@@ -367,12 +391,14 @@ const part1 = /* html */ `
                 <div class="sub">
                     Lavender oil
                     <div class="info">
+                    learn more
                         <span class="arrow"></span>
                         <span class="hint">Lavender oil can reduce stress and anxiety in children by soothing the nervous system and promoting relaxation. Its pleasant aroma has also been shown to improve sleep quality, making it a helpful natural remedy for children with anxiety or sleep difficulties.</span>
                     </div>
                 </div>
             </div>
-            <img src="${git}logo.svg" class="logo" alt="">
+            <!--<img src="${git}logo.svg" class="logo" alt="">-->
+            <a href="#" data-visible="Button try Zenpatch">Try zenpatch stickers</a>
         </div>
     </div>
 `
@@ -389,31 +415,24 @@ const part3 = /* html */ `
                 <p>This allows <b>ZenPatch to produce results in as little as 30 minutes,</b> with each patch lasting for up to 8 hours.</p>
             </div>
         </div>
-        <div class="tabs" data-visible="Part 2 tabs">
+        <div class="tabs">
             <p>Below you'll find relevant academic reading material for the natural essential oils we use:</p>
             <ul>
-                <li>
-                    <img src="${git}rg.svg" alt="rg">
-                    <div>
-                        <p class="title">Source: ResearchGate.</p>
-                        <p>“The effect of aromatherapy with orange essential oil on anxiety and pain in patients with fractured limbs admitted to an emergency ward: A randomized clinical trial”</p>
-                    </div>
-                </li>
-                <li>
-                    <img src="${git}journal.svg" alt="journal">
+                <li data-visible="Part 2 tabs 1">
+                    <img src="${git}journal.svg" alt="rg">
                     <div>
                         <p class="title">Source: Central European Journal of Nursing and Midwifery.</p>
                         <p>“The effect of aromatherapy with orange essential oil on anxiety and pain in patients with fractured limbs admitted to an emergency ward: A randomized clinical trial”</p>
                     </div>
                 </li>
-                <li>
+                <li data-visible="Part 2 tabs 2">
                     <img src="${git}nih.svg" alt="nih">
                     <div>
                         <p class="title">Source: National Library of Medicine.</p>
                         <p>“Therapeutic Effect and Mechanisms of Essential Oils in Mood Disorders: Interaction between the Nervous and Respiratory Systems”</p>
                     </div>
                 </li>
-                <li>
+                <li data-visible="Part 2 tabs 3">
                     <img src="${git}mdpi.svg" alt="mdpi">
                     <div>
                         <p class="title">Source: MDPI.</p>
@@ -433,7 +452,7 @@ start()
 
 function start () {
     let int = setInterval(function() {
-        if(document.body) {
+        if(document.querySelector('#flowers')) {
             clearInterval(int)
             experiment()
         }
@@ -447,8 +466,16 @@ function experiment() {
     $('#flowers>.container').append(part1)
     $('.scientific.js-mobile>.container').empty()
     $('.scientific.js-mobile>.container').append(part3)
+    $('#flowers>.wave-bg').remove()
+    document.querySelector('.steps a').addEventListener('click', function(e) {
+        e.preventDefault()
+        pushDataLayer('Click on steps try zenpatch button')
+        $('#open')[0].click()
+    })
     hintCreator()
-    v2.observe(document.querySelectorAll('[data-visible]'))
+    document.querySelectorAll('[data-visible]').forEach(item => {
+        v1.observe(item)
+    })
 }
 
 function hintCreator() {
@@ -466,18 +493,18 @@ function hintCreator() {
 
     document.querySelectorAll('.hint').forEach(item => {
         let hintTarget = item.closest('.sub')
-        hintTarget.addEventListener('click', function(e) {
+        hintTarget.addEventListener('click', function() {
             document.querySelectorAll('.info.active').forEach(item => {
                 item.classList.remove('active')
                 item.classList.remove('top')
                 item.classList.remove('bot')
                 item.querySelector('.hint').removeAttribute('style')
             })
-            pushDataLayer('Click on info item', hintTarget.innerText )
+            pushDataLayer('Click on info item', hintTarget.innerText)
             pushDataLayer('Visibility hint', hintTarget.innerText)
-            const hint = e.target.querySelector('.hint')
-            e.target.querySelector('.info').classList.add('active')
-            e.target.querySelector('.info').style.position = 'relative'
+            const hint = this.querySelector('.hint')
+            this.querySelector('.info').classList.add('active')
+            this.querySelector('.info').style.position = 'relative'
             const infoPosition = hintTarget.querySelector('.info').getBoundingClientRect();
             const bot = window.innerHeight - infoPosition.bottom
             const left = infoPosition.left
@@ -486,17 +513,14 @@ function hintCreator() {
             const hintW = hintSize.width
             const hintH = hintSize.height
             if(hintH > bot) {
-                e.target.querySelector('.info').classList.add('top')
+                this.querySelector('.info').classList.add('top')
             } else {
-                e.target.querySelector('.info').classList.add('bot')
+                this.querySelector('.info').classList.add('bot')
             }
 
             if(left < (window.innerWidth / 2)) {
                 hint.style.left = `${0 - left + 15}px`
             } else {
-                if(right < 23) {
-                    e.target.querySelector('.arrow').style.left = '-20px'
-                }
                 hint.style.right = `${0 - right + 15}px`
             }
 
