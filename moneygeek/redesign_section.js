@@ -369,8 +369,7 @@ let style = `
 let mounth = ['Jan','Feb','Mar','Apr','May','June','July','Aug','Sep','Oct','Nov','Dec'];
 
 let dateFind = setInterval(() => {
-    if (document.querySelector('.banner-last-updated') != null && document.querySelector('.by-item') != null) {
-        clearInterval(dateFind)
+    if (document.querySelector('.banner-last-updated') != null && document.querySelector('.by-item') != null && document.querySelector('.info_block > div > .fw-bold') == null) {
         let date = document.querySelector('.banner-last-updated').innerText.split(':')[1],
             mounthDate = mounth[+date.split('/')[0] - 1],
             dayDate = date.split('/')[1],
@@ -381,8 +380,7 @@ let dateFind = setInterval(() => {
 });
 
 let byFind = setInterval(() => {
-    if (document.querySelector('.banner-authorship .css-1t0181o:not(.banner-contribution)') != null && document.querySelector('.item-edited') != null && document.querySelector('.item-review') != null) {
-        clearInterval(byFind)
+    if (document.querySelector('.banner-authorship .css-1t0181o:not(.banner-contribution)  > .css-k008qs') != null && document.querySelector('.item-edited') != null && document.querySelector('.item-review') != null && document.querySelector('.info_block .by-item + .css-k008qs') == null) {
         
         document.querySelectorAll('.banner-authorship .css-1t0181o:not(.banner-contribution) > .css-k008qs').forEach((item, index) => {
             if (item.querySelector('b') != null && item.querySelector('b').innerHTML == 'By') {
@@ -421,55 +419,34 @@ let byFind = setInterval(() => {
 });
 
 let bannerContributionFind = setInterval(() => {
-    if (document.querySelector('.item-edited') != null && document.querySelector('.banner-contribution') != null) {
-        clearInterval(bannerContributionFind)
+    if (document.querySelector('.item-edited') != null && document.querySelector('.banner-contribution') != null && document.querySelector('.info_block .banner-contribution') == null) {
         document.querySelector('.item-edited').after(document.querySelector('.banner-contribution'))
     }
 });
 
 let bannerAdvertisingFind = setInterval(() => {
-    if (document.querySelector('.item-advertising') != null && document.querySelector('.banner-advertising ') != null) {
-        clearInterval(bannerAdvertisingFind)
+    if (document.querySelector('.item-advertising') != null && document.querySelector('.banner-advertising ') != null && document.querySelector('.info_block .banner-advertising') == null) {
         document.querySelector('.item-advertising').after(document.querySelector('.banner-advertising'))
     }
 })
 
-let stickyBtn = setInterval(() => {
-    if (document.querySelector('#stickywidgetbutton') != null) {
-        clearInterval(stickyBtn)
-        document.querySelector('#stickywidgetbutton').innerHTML = 'Get Started';
-    }
-});
-let init = setInterval(() => {
-    if (document.querySelector('.breadcrumbs-container') != null && document.querySelector('.css-xi606m') != null && document.querySelector('.banner-grid') != null && document.querySelector('.banner-description') != null && document.querySelector('.banner-widget .css-xi606m') != null) {
-        clearInterval(init)
-
-        console.log('init')
-        document.head.insertAdjacentHTML('beforeend',`
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&family=Source+Sans+Pro:wght@300;400;600;700;900&display=swap" rel="stylesheet">`)
-
-        document.body.insertAdjacentHTML('afterbegin', style)
-
+let breadcrumbFind = setInterval(() => {
+    if (document.querySelector('.breadcrumbs-container') != null && document.querySelector('.banner-grid') != null && document.querySelector('.banner-container .breadcrumbs') == null) {
         document.querySelector('.banner-grid').before(document.querySelector('.breadcrumbs-container'))
+    }
+})
 
-        document.querySelectorAll('.css-vgxujl').forEach(item => {
-            item.insertAdjacentHTML('beforeend',`
-                <svg width="10" height="7" viewBox="0 0 10 7" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path fill-rule="evenodd" clip-rule="evenodd" d="M9.46669 0.533325C9.13335 0.199992 8.66669 0.199992 8.33335 0.533325L4.93335 3.93333L1.53335 0.533325C1.20002 0.199992 0.733354 0.199992 0.400021 0.533325C0.0666866 0.866659 0.0666866 1.33333 0.400021 1.66666L4.86669 6.13333L9.46669 1.66666C9.73335 1.39999 9.73335 0.866659 9.46669 0.533325Z" fill="#292929"/>
-                </svg>
-            `)
-        })
+let formFind = setInterval(() => {
+    if (document.querySelector('#stickywidgetbutton') != null && document.querySelector('.banner-widget .css-xi606m') != null && document.querySelector('.banner-widget h3') == null) {
 
         document.querySelector('.banner-widget .css-xi606m').insertAdjacentHTML('beforebegin',`
             <h3>Compare Rates and
             <span class="text-nowrap">Save On Auto</span> Insurance</h3>
         `)
-        console.log(document.querySelector('.banner-widget h3'))
 
         document.querySelector('.banner-widget .css-1chw4q3').innerHTML = 'Enter Your Zip Code';
-        console.log(document.querySelector('.banner-widget .css-1chw4q3').innerHTML)
+        document.querySelector('.banner-widget .css-1ga36kt').innerHTML = 'Get Started';
+        document.querySelector('#stickywidgetbutton').innerHTML = 'Get Started';
 
         document.querySelector('.banner-widget .css-1hx7vxy').innerHTML = `
             <svg width="15" height="19" viewBox="0 0 15 19" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -485,9 +462,23 @@ let init = setInterval(() => {
             </svg>
             Free and simple -  your information is secure
         </div>`)
+    }
+})
 
-        document.querySelector('.banner-widget .css-1ga36kt').innerHTML = 'Get Started';
+let headerFind = setInterval(() => {
+    if (document.querySelectorAll('.css-86e6ef .css-vgxujl') && document.querySelector('.css-86e6ef .css-vgxujl svg') == null) {
+        document.querySelectorAll('.css-86e6ef .css-vgxujl').forEach(item => {
+            item.insertAdjacentHTML('beforeend',`
+                <svg width="10" height="7" viewBox="0 0 10 7" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" clip-rule="evenodd" d="M9.46669 0.533325C9.13335 0.199992 8.66669 0.199992 8.33335 0.533325L4.93335 3.93333L1.53335 0.533325C1.20002 0.199992 0.733354 0.199992 0.400021 0.533325C0.0666866 0.866659 0.0666866 1.33333 0.400021 1.66666L4.86669 6.13333L9.46669 1.66666C9.73335 1.39999 9.73335 0.866659 9.46669 0.533325Z" fill="#292929"/>
+                </svg>
+            `)
+        })
+    }
+});
 
+let descriptionFind = setInterval(() => {
+    if (document.querySelector('.info_block') == null && document.querySelector('.banner-description') != null &&  document.querySelector('.banner-container') != null) {
         let infoBlockHTML = `
         <div class="info_block">
             <div class="flex-md items-center">
@@ -499,35 +490,40 @@ let init = setInterval(() => {
                 <div class="item-advertising"></div>
             </div>
         </div>`
-
+    
+    
         if (window.matchMedia("(max-width: 767px)").matches) {
             document.querySelector('.banner-container').insertAdjacentHTML('afterend', infoBlockHTML)
         } else {
             document.querySelector('.banner-description').insertAdjacentHTML('afterbegin', infoBlockHTML)
         }
         
+    } 
+});
 
+let addFooter = setInterval(() => {
+    if (document.querySelector('.css-2ops0h') != null && document.querySelector('.footer_section') != null) {
         document.querySelector('.css-2ops0h').insertAdjacentHTML('afterend',`
         <div class="flex-md justify-between items-center footer_section">
             <p class="text-md-left text-center">Select from a variety of trusted carriers and save on auto insurance</p>
             <img src="${dir}${window.matchMedia("(max-width: 767px)").matches ? 'logos-mob':'logos'}.svg" alt="logos">
         </div>`)
+    }
+})
 
-        document.querySelectorAll('.info_block .banner-link').forEach(item => {
-            item.addEventListener('click', () => {
-                if (document.querySelector('.info_block .tooltip.active') != null) {
-                    document.querySelector('.info_block .tooltip.active').classList.remove('active')
-                }
-                item.nextElementSibling.classList.add('active')
-            })
-        })
-        document.addEventListener('click', (e) => {
-            if (!e.target.closest('.tooltip-trigger') && document.querySelector('.info_block .tooltip.active') != null) {
-                document.querySelectorAll('.info_block .tooltip.active').forEach(item => {
-                    item.classList.remove('active')
-                })
-            }
-        })
+let addStyle = setInterval(() => {
+    if (document.body != null) {
+        clearInterval(addStyle)
+
+        console.log('addStyle')
+
+        document.head.insertAdjacentHTML('beforeend',`
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&family=Source+Sans+Pro:wght@300;400;600;700;900&display=swap" rel="stylesheet">`)
+
+        document.body.insertAdjacentHTML('afterbegin', style)
+
         document.querySelector('.loading-exp') != null ? document.querySelector('.loading-exp').remove() : '';
     }
 })
