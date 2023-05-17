@@ -360,7 +360,7 @@ let startPopup = setInterval(() => {
             padding: 20px;
         }
         .overlay_popup .container_popup.email_step{
-            margin: 144px auto auto;
+            margin: auto;
         }
         .title_var {
             font-size: 20px !important;
