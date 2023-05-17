@@ -1651,7 +1651,7 @@ function init() {
                     .samsara .form-actions {
                         display: block;
                     }
-                    .ayout-region-checkout-footer .commerce-checkout-flow--review .form-submit {
+                    #edit-actions .form-submit {
                         margin-right: 0;
                         width: 100%;
                     }
