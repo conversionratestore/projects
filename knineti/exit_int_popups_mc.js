@@ -890,7 +890,7 @@ let startPopup = setInterval(() => {
                     pushDataLayer("I don't have time now. Remind me later.", "Popup 2.1: Encourage to watch more than 5 minutes of the video.");
                     break;
                   case "3":
-                    pushDataLayer("I don't have time now. Remind me later.', 'Popup 2.2: Encourage to watch more than 30 minutes of the video.");
+                    pushDataLayer("I don't have time now. Remind me later.", "Popup 2.2: Encourage to watch more than 30 minutes of the video.");
                     break;
                   default:
                     break;
