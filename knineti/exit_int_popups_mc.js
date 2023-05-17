@@ -391,20 +391,20 @@ let startPopup = setInterval(() => {
           top: 0px;
           width: 48px;
           height: 48px;
-          background: url(https://conversionratestore.github.io/projects/knineti/img/dog_training1.svg) no-repeat center center;
+          background: url(https://conversionratestore.github.io/projects/knineti/img/dog_training1_opt.svg) no-repeat center center;
           background-size: contain;
         }
         [data-popup="2"] .subtitle_var::before{
-          background: url(https://conversionratestore.github.io/projects/knineti/img/dog_training2.svg) no-repeat center center;
+          background: url(https://conversionratestore.github.io/projects/knineti/img/dog_training2_opt.svg) no-repeat center center;
         }
         [data-popup="3"] .subtitle_var::before{
-          background: url(https://conversionratestore.github.io/projects/knineti/img/dog_training3.svg) no-repeat center center;
+          background: url(https://conversionratestore.github.io/projects/knineti/img/dog_training3_opt.svg) no-repeat center center;
         }
         [data-popup="4"] .subtitle_var::before{
-          background: url(https://conversionratestore.github.io/projects/knineti/img/dog_training4.svg) no-repeat center center;
+          background: url(https://conversionratestore.github.io/projects/knineti/img/dog_training4_opt.svg) no-repeat center center;
         }
         [data-popup="5"] .subtitle_var::before{
-          background: url(https://conversionratestore.github.io/projects/knineti/img/dog_training5.svg) no-repeat center center;
+          background: url(https://conversionratestore.github.io/projects/knineti/img/dog_training5_opt.svg) no-repeat center center;
         }
         [data-popup="5"] .title_var{
           max-width: 259px;
@@ -432,7 +432,7 @@ let startPopup = setInterval(() => {
           top: -80px;
           width: 72px;
           height: 72px;
-          background: url(https://conversionratestore.github.io/projects/knineti/img/dog_training6.svg) no-repeat center center;
+          background: url(https://conversionratestore.github.io/projects/knineti/img/dog_training6_opt.svg) no-repeat center center;
           background-size: contain;
         }
         .container_popup.email_step .descr_var{
