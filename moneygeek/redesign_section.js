@@ -3,8 +3,8 @@ let dir = 'https://conversionratestore.github.io/projects/moneygeek/img/'
 let style = `
 <style>
     #stickywidgetbutton {
-        background-color: #FFC45C;
-        color: #292929;
+        color: #292929!important;
+        background-color: #FFD35A!important;
     }
     header.site-header {
         height: auto;
@@ -112,6 +112,8 @@ let style = `
         text-transform: uppercase;
         color: #292929;
         height: 50px;
+        background: #FFD35A!important;
+        border-radius: 6px;
      }
     .banner-widget .css-1jdy22u {
          padding: 0 0 20px 0;
