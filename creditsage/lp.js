@@ -132,6 +132,7 @@ let styles = `
         font-weight: 700;
         font-size: 24px!important;
         line-height: 32px!important;
+        display: block!important;
     }
     .btn.btn_green {
         padding: 13px;
@@ -930,12 +931,15 @@ window.onload = function() {
     //section 3 "We help repair your credit by fixing inaccuracies",
     //section 4 "We're proud to showcase our customer feedback!",
     //section 5 "Essential information about Radius Global Solutionsyou need to know"
+
+    let tel = document.querySelector('.sct_template-hero .btn.btn_green').href;
+
     document.querySelector('.brands_section').insertAdjacentHTML('afterend',`
     <div class="sticky_btn flex items-center justify-between">
         <a href=".feedback_section" onclick="scrollToElement(event)">
             <img src="${dir}trustpilot.svg" alt="trustpilot">
         </a>
-        <a href="tel:(855)685-2090" class="btn btn_green w-inline-block">
+        <a href="${tel}" class="btn btn_green w-inline-block">
             <div class="ic ic_btn w-embed">
                 <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M8.83333 14.3933C10.7533 18.1667 13.84 21.2533 17.62 23.1733L20.5533 20.2333C20.92 19.8667 21.4467 19.76 21.9067 19.9067C23.4 20.4 25.0067 20.6667 26.6667 20.6667C27.4067 20.6667 28 21.26 28 22V26.6667C28 27.4067 27.4067 28 26.6667 28C14.1467 28 4 17.8533 4 5.33333C4 4.59333 4.6 4 5.33333 4H10C10.74 4 11.3333 4.59333 11.3333 5.33333C11.3333 6.99333 11.6 8.6 12.0933 10.0933C12.24 10.5533 12.1333 11.08 11.7667 11.4467L8.83333 14.3933Z" fill="currentColor"></path>
@@ -988,16 +992,13 @@ window.onload = function() {
               <ul class="splide__list swiper-wrapper"> </ul>
             </div>
           </div>
-            <a href="tel:(855)685-2090" class="btn btn_green w-inline-block">
+            <a href="${tel}" class="btn btn_green w-inline-block">
                 <div class="ic ic_btn w-embed">
                     <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M8.83333 14.3933C10.7533 18.1667 13.84 21.2533 17.62 23.1733L20.5533 20.2333C20.92 19.8667 21.4467 19.76 21.9067 19.9067C23.4 20.4 25.0067 20.6667 26.6667 20.6667C27.4067 20.6667 28 21.26 28 22V26.6667C28 27.4067 27.4067 28 26.6667 28C14.1467 28 4 17.8533 4 5.33333C4 4.59333 4.6 4 5.33333 4H10C10.74 4 11.3333 4.59333 11.3333 5.33333C11.3333 6.99333 11.6 8.6 12.0933 10.0933C12.24 10.5533 12.1333 11.08 11.7667 11.4467L8.83333 14.3933Z" fill="currentColor"></path>
                     </svg>
                 </div>
-                <div class="btn-txt mobile">Tap To Call</div>
-                <div class="w-embed">
-                    <p class="btn-txt">Call (855) 685-2090</p>
-                </div>
+                <div class="btn-txt">Tap To Call</div>
             </a>
         </div>
     </section>
@@ -1131,14 +1132,11 @@ window.onload = function() {
         <img class="graph" src="${dir}/graph_2.svg" alt="graph">
         <p class="green_div">* CreditSage's experts  <span class="c-green">can potentially remove </span>negative items from your report or provide a full refund (minus setup fee) if none are removed <span class="c-green"> within the first 100 days.</span></p>
         <p class="call_to_fix">Call now to fix your credit report and reclaim financial freedom today!</p>
-        <a href="tel:(844)442-0573" class="btn btn_green w-inline-block">
+        <a href="${tel}" class="btn btn_green w-inline-block">
             <div class="ic ic_btn w-embed"><svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M8.83333 14.3933C10.7533 18.1667 13.84 21.2533 17.62 23.1733L20.5533 20.2333C20.92 19.8667 21.4467 19.76 21.9067 19.9067C23.4 20.4 25.0067 20.6667 26.6667 20.6667C27.4067 20.6667 28 21.26 28 22V26.6667C28 27.4067 27.4067 28 26.6667 28C14.1467 28 4 17.8533 4 5.33333C4 4.59333 4.6 4 5.33333 4H10C10.74 4 11.3333 4.59333 11.3333 5.33333C11.3333 6.99333 11.6 8.6 12.0933 10.0933C12.24 10.5533 12.1333 11.08 11.7667 11.4467L8.83333 14.3933Z" fill="currentColor"></path>
                 </svg></div>
-            <div class="btn-txt mobile">Tap To Call</div>
-            <div class="w-embed">
-                <p class="btn-txt">Call (844) 442-0573</p>
-            </div>
+            <div class="btn-txt">Tap To Call</div>
         </a>
     </div>`)
 
