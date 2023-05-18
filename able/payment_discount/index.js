@@ -596,10 +596,8 @@ function init() {
     }
   }, 500);
   const currentPrice = JSON.parse(localStorage.getItem('planCode')).price
-  console.log(+currentPrice)
-  console.log(+sessionStorage.getItem('newPrice'))
 
-  if(sessionStorage.getItem('isDiscountActivated') && +sessionStorage.getItem('newPrice') === +currentPrice) {
+  if(sessionStorage.getItem('isDiscountActivated') && +localStorage.getItem('newPrice') === +currentPrice) {
     document.querySelector('.lav-offer').classList.add('active');
   }
   setTimeout(function(){
@@ -746,7 +744,7 @@ function initModal() {
 
 function openModal() {
   // todo uncomment
-  if (sessionStorage.getItem('isDiscountActivated')) return false;
+  if (sessionStorage.getItem('isDiscountActivated') || +localStorage.getItem('newPrice') === JSON.parse(localStorage.getItem('planCode')).price) return false;
   console.log('>>> open modal')
 
   sessionStorage.setItem('isDiscountActivated', 'yes');
@@ -754,7 +752,7 @@ function openModal() {
   plan.price = Math.round(plan.price * 0.49)
   plan.value = (plan.price % 100 === 0) ? `$${plan.price / 100}` : `$${(plan.price / 100).toFixed(2)}`
   localStorage.setItem('planCode', JSON.stringify(plan))
-  sessionStorage.setItem('newPrice', plan.price);
+  localStorage.setItem('newPrice', plan.price);
   document.body.classList.add('lav-overflow');
   document.body.classList.add('lav-offer_activated');
   document.querySelector('.lav-offer').classList.add('active');
