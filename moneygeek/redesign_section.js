@@ -66,8 +66,10 @@ let style = `
         display: none!important;
     }
     .css-1uguvmx {
-        background: #526EFF;
-        border-radius: 6px;
+        background: #526EFF!important;
+        border-radius: 6px!important;
+        color: #fff!important;
+        padding: 0!important;
     }
     .banner-widget .css-amzw5g {
         padding: 30px 30px 20px;
@@ -110,7 +112,7 @@ let style = `
         font-size: 16px;
         line-height: 22px;
         text-transform: uppercase;
-        color: #292929;
+        color: #292929!important;
         height: 50px;
         background: #FFD35A!important;
         border-radius: 6px;
@@ -118,10 +120,13 @@ let style = `
     .banner-widget .css-1jdy22u {
          padding: 0 0 20px 0;
     }
+    .content-wrapper.banner-redesign .banner-components {
+        flex-direction: column!important;
+    }
     .footer-widget {
         background: #485DDC;
         font-family: 'Open Sans';
-        padding: 15px;
+        padding: 15px!important;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -319,8 +324,11 @@ let style = `
             padding: 80px 16px 16px;
         }
         .css-1lno5h0 {
-            padding: 0 0px 20px;
+            padding: 0 0 20px 0;
             border: none;
+        }
+        .content-wrapper.banner-redesign .breadcrumbs-container .breadcrumbs {
+            padding-left: 0!important;
         }
         .banner-components .css-2ops0h {
             grid-gap: initial;
@@ -449,12 +457,17 @@ let breadcrumbFind = setInterval(() => {
 })
 
 let formFind = setInterval(() => {
-    if (document.querySelector('#stickywidgetbutton') != null && document.querySelector('.banner-widget .css-xi606m') != null && document.querySelector('.banner-widget h3') == null) {
+    if (document.querySelector('#stickywidgetbutton') != null && document.querySelector('.banner-widget .css-xi606m') != null && document.querySelector('.footer-widget') == null) {
 
-        document.querySelector('.banner-widget .css-xi606m').insertAdjacentHTML('beforebegin',`
-            <h3>Compare Rates and
-            <span class="text-nowrap">Save On Auto</span> Insurance</h3>
-        `)
+        let title = `Compare Rates and <span class="text-nowrap">Save On Auto</span> Insurance`;
+
+        if (document.querySelector('.banner-widget h4') != null) {
+            document.querySelector('.banner-widget h4').innerHTML = title;
+        } else {
+            if (document.querySelector('.banner-widget h3') == null) {
+                document.querySelector('.banner-widget .css-xi606m').insertAdjacentHTML('beforebegin',`<h3>${title}</h3>`)
+            }
+        }
 
         document.querySelector('.banner-widget .css-1chw4q3').innerHTML = 'Enter Your Zip Code';
         document.querySelector('.banner-widget .css-1ga36kt').innerHTML = 'Get Started';
@@ -466,14 +479,15 @@ let formFind = setInterval(() => {
                 <path fill-rule="evenodd" clip-rule="evenodd" d="M14.246 6.76311C13.8768 3.32727 10.9929 0.674774 7.489 0.674774C4.99098 0.674415 2.69428 2.0451 1.50854 4.24393C0.322797 6.44277 0.439321 9.11502 1.81196 11.2023L1.79613 11.1764L6.51908 18.4273C6.73242 18.7537 7.09566 18.9508 7.48557 18.9518C7.87548 18.9528 8.23973 18.7576 8.45476 18.4323L8.45726 18.4281L13.1802 11.1773C13.902 10.0736 14.2846 8.78268 14.281 7.46394C14.281 7.21728 14.2676 6.97394 14.2426 6.73394L14.2451 6.76394L14.246 6.76311ZM12.1328 10.4941L7.48819 17.6249L2.84356 10.4941C1.4237 8.29598 1.72535 5.40577 3.5685 3.54827C4.57175 2.54494 5.95748 1.9241 7.48819 1.9241C9.0189 1.9241 10.4046 2.54494 11.4079 3.54827C13.251 5.40577 13.5527 8.29598 12.1328 10.4941Z" fill="#1F1B50"/>
             </svg>`;
 
-        document.querySelector('.css-amzw5g').insertAdjacentHTML('afterend',`
-        <div class="footer-widget">
-            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M14.2626 0.934692L14.7482 0.815571L14.6547 0.434692H14.2626V0.934692ZM8.04034 14.929L7.93537 15.4178L8.0571 15.444L8.17688 15.4099L8.04034 14.929ZM1.81812 0.934692V0.434692H1.44238L1.33785 0.795597L1.81812 0.934692ZM13.777 1.05381C14.7506 5.0231 14.7218 8.00064 13.8057 10.0611L14.7194 10.4673C15.7698 8.10493 15.741 4.8628 14.7482 0.815571L13.777 1.05381ZM13.8057 10.0611C12.9024 12.0927 10.9802 13.5747 7.9038 14.448L8.17688 15.4099C11.4303 14.4864 13.6563 12.8585 14.7194 10.4673L13.8057 10.0611ZM8.14531 14.4401C5.21486 13.8108 3.2896 12.343 2.27499 10.0611L1.36124 10.4673C2.52827 13.0921 4.75117 14.7341 7.93537 15.4178L8.14531 14.4401ZM2.27499 10.0611C1.2499 7.75555 1.22564 4.77767 2.29838 1.07379L1.33785 0.795597C0.228947 4.62437 0.204689 7.86616 1.36124 10.4673L2.27499 10.0611ZM1.81812 1.43469H14.2626V0.434692H1.81812V1.43469Z" fill="white"/>
-                <path fill-rule="evenodd" clip-rule="evenodd" d="M10.775 5.4132C10.6531 5.3124 10.4948 5.26258 10.335 5.27471C10.1752 5.28683 10.0269 5.35991 9.92272 5.47786L7.32015 8.42412L5.9198 7.29273C5.6856 7.10364 5.33739 7.1338 5.14162 7.36013C5.04781 7.46877 5.00247 7.60903 5.01559 7.75003C5.0287 7.89103 5.09919 8.02121 5.21154 8.11189L7.08799 9.62794C7.20503 9.72236 7.35738 9.76543 7.50854 9.74684C7.66863 9.73492 7.81722 9.66179 7.92146 9.54362L10.8418 6.23751C11.0586 5.99195 11.0287 5.6228 10.775 5.41295" fill="white"/>
-            </svg>
-            Free and simple -  your information is secure
-        </div>`)
+            document.querySelector('.css-amzw5g').insertAdjacentHTML('afterend',`
+            <div class="footer-widget">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M14.2626 0.934692L14.7482 0.815571L14.6547 0.434692H14.2626V0.934692ZM8.04034 14.929L7.93537 15.4178L8.0571 15.444L8.17688 15.4099L8.04034 14.929ZM1.81812 0.934692V0.434692H1.44238L1.33785 0.795597L1.81812 0.934692ZM13.777 1.05381C14.7506 5.0231 14.7218 8.00064 13.8057 10.0611L14.7194 10.4673C15.7698 8.10493 15.741 4.8628 14.7482 0.815571L13.777 1.05381ZM13.8057 10.0611C12.9024 12.0927 10.9802 13.5747 7.9038 14.448L8.17688 15.4099C11.4303 14.4864 13.6563 12.8585 14.7194 10.4673L13.8057 10.0611ZM8.14531 14.4401C5.21486 13.8108 3.2896 12.343 2.27499 10.0611L1.36124 10.4673C2.52827 13.0921 4.75117 14.7341 7.93537 15.4178L8.14531 14.4401ZM2.27499 10.0611C1.2499 7.75555 1.22564 4.77767 2.29838 1.07379L1.33785 0.795597C0.228947 4.62437 0.204689 7.86616 1.36124 10.4673L2.27499 10.0611ZM1.81812 1.43469H14.2626V0.434692H1.81812V1.43469Z" fill="white"/>
+                    <path fill-rule="evenodd" clip-rule="evenodd" d="M10.775 5.4132C10.6531 5.3124 10.4948 5.26258 10.335 5.27471C10.1752 5.28683 10.0269 5.35991 9.92272 5.47786L7.32015 8.42412L5.9198 7.29273C5.6856 7.10364 5.33739 7.1338 5.14162 7.36013C5.04781 7.46877 5.00247 7.60903 5.01559 7.75003C5.0287 7.89103 5.09919 8.02121 5.21154 8.11189L7.08799 9.62794C7.20503 9.72236 7.35738 9.76543 7.50854 9.74684C7.66863 9.73492 7.81722 9.66179 7.92146 9.54362L10.8418 6.23751C11.0586 5.99195 11.0287 5.6228 10.775 5.41295" fill="white"/>
+                </svg>
+                Free and simple -  your information is secure
+            </div>`)
+        
     }
 })
 
