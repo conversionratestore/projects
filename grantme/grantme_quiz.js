@@ -1070,7 +1070,7 @@ let myFunk = setInterval(() => {
 
     let arrLabel = {
       "University of British Columbia (UBC)": ["ubc", "984"],
-      "University of Toronto": ["toronto", "907"],
+      "University of Toronto": ["toronto", "1003"],
       "University of Waterloo": ["waterloo", "1006"],
       "McMaster University": ["mcmaster", "819"],
       "University of Alberta": ["alberta", "983"],
@@ -1087,14 +1087,25 @@ let myFunk = setInterval(() => {
       Other: ["other2", "521"],
     }
 
+    let arrLabel3 = {
+      "University of California, LA (UCLA)": ["ucla", "2913"],
+      "Harvard University": ["harvard", "2913"],
+      "Stanford University": ["stanford", "2913"],
+      "Yale University": ["yale", "2913"],
+      "New York University": ["newyork ", "2913"],
+      "University of California, Berkeley (UCB)": ["ucb", "2913"],
+      Other: ["other", "2913"],
+    }
+
     document.head.insertAdjacentHTML("beforeend", `<link href="https://fonts.googleapis.com/css2?family=Lato:wght@900&display=swap" rel="stylesheet">`)
     document.head.insertAdjacentHTML("beforeend", '<meta name="viewport" content="width=device-width, height=device-height, initial-scale=1">')
     document.head.insertAdjacentHTML("beforeend", newStyle)
 
-    document.querySelectorAll("#edit-actions-13").forEach((el) => {
-      for (let key in arrLabel) {
-        el.insertAdjacentHTML("beforebegin", renderLabelCheckBox("school_are_you_interested_in_attending_var", key, arrLabel[key][0], arrLabel[key][1]))
-      }
+    document.querySelectorAll("#edit-actions-13").forEach((el) => { 
+      // for (let key in arrLabel) {
+      //   el.insertAdjacentHTML("beforebegin", renderLabelCheckBox("school_are_you_interested_in_attending_var", key, arrLabel[key][0], arrLabel[key][1]))
+      // } 
+      el.insertAdjacentHTML("beforebegin", `<div id="parent_school"></div>`)
     })
 
     document.querySelectorAll("#edit-actions-14").forEach((el) => {
@@ -1377,8 +1388,13 @@ let myFunk = setInterval(() => {
     </p>`
     )
     //click input
+    
+    function clickRadion() {
+
     document.querySelectorAll("input[type=radio]").forEach((el) => {
       el.addEventListener("click", (i) => {
+        i.stopImmediatePropagation()
+        console.log(i)
         if (!i.currentTarget.getAttribute("data-test")) {
           if (i.currentTarget.closest("div").classList.contains("skip_var") || i.currentTarget.closest("div").classList.contains("i_dont_know_var")) {
             pushDataLayer(
@@ -1447,6 +1463,19 @@ let myFunk = setInterval(() => {
             document.querySelector("#edit-cards-next--2").click()
           }
           if (i.currentTarget.closest("#edit-what-is-your-citizenship-")) {
+            let schoolOptions = '';
+            if (i.currentTarget.checked && i.currentTarget.id == 'edit-what-is-your-citizenship-us-citizen') {
+              for (let key in arrLabel3) {
+                schoolOptions += renderLabelCheckBox("school_are_you_interested_in_attending_var", key, arrLabel3[key][0], arrLabel3[key][1])
+              }
+            } else {
+              for (let key in arrLabel) {
+                schoolOptions +=  renderLabelCheckBox("school_are_you_interested_in_attending_var", key, arrLabel[key][0], arrLabel[key][1])
+              }
+            }
+
+            document.querySelector('#parent_school').innerHTML = schoolOptions;
+
             document.querySelector("#edit-cards-next--3").click()
             i.currentTarget
               .closest("#edit-what-is-your-citizenship-")
@@ -1457,6 +1486,9 @@ let myFunk = setInterval(() => {
                 }
               })
             i.currentTarget.closest("label").classList.add("active")
+
+            clickRadion()
+    
           }
           if (i.currentTarget.closest("#edit-what-year-of-university-are-you-currently-in-") || i.currentTarget.closest("#edit-what-year-of-study-are-you-currently-in-")) {
             document.querySelector("#edit-cards-next--4").click()
@@ -1733,7 +1765,7 @@ let myFunk = setInterval(() => {
                 document.querySelector(".program_assessment_wrap").classList.remove("last_step_var")
 
                 document.querySelector(".path-scholarship-eligibility-quiz .webform-progress ul li:last-child").style.background = "rgb(233, 243, 250)"
-                document.querySelector("#edit-cards-prev--15").click()
+                document.querySelector("#edit-cards-prev--14").click()
                 pushDataLayer(`exp_remove_barriers_on_quiz_b`, "Back", `Button`, i.currentTarget.closest("section").querySelector("h4").textContent)
                 document.querySelector("#edit-qa13-wrap").style.display = "none"
                 if (document.querySelector(".loader_wrap")) {
@@ -1755,6 +1787,10 @@ let myFunk = setInterval(() => {
         }, 500)
       })
     })
+    }
+
+    clickRadion()
+  
 
     // click on back_btn_var
     document.querySelectorAll(".back_btn_var").forEach((el) => {
@@ -1850,7 +1886,7 @@ let myFunk = setInterval(() => {
           }
           if (i.currentTarget.closest(".guarantee_block")) {
             pushDataLayer(`exp_remove_barriers_on_quiz_b`, "Back", `Button`, i.currentTarget.closest("section").querySelector("h4").textContent)
-            document.querySelector("#edit-cards-prev--15").click()
+            document.querySelector("#edit-cards-prev--14").click()
 
             document.querySelector("form > .row > .col.col-md-8").classList.remove("last_step_var")
             document.querySelector(".path-grantme-program-assessment #block-landingpageheaderquiz .col-md-4.bluebg").classList.remove("last_step_var")
