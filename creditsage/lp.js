@@ -3,7 +3,7 @@ let dir = `https://conversionratestore.github.io/projects/creditsage/img/`;
 let styles = `
 <style>
     .sct.sct_header {
-        position: initital;
+        position: initial;
     }
     .sct_rich-first > .sct__cnt_template > .rich-cta-wrp .trustpilot-widget iframe {
         pointer-events: none;
