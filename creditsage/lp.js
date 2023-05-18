@@ -812,6 +812,7 @@ function initSlider() {
 		interval: 5000,
 		gap: 6,
 	});
+
 	slider.on('autoplay:playing', function(rate) {
 		if(rate === 1) {
 			const num = parseInt(
@@ -1023,18 +1024,18 @@ window.onload = function() {
     }
 
 	let initSplideInterval = setInterval(() => {
-		if(typeof Splide == 'function' &&  document.querySelectorAll('.feedback_section .splide__list li').length >= objReview.length) {
+		if(typeof Splide == 'function') {
 			clearInterval(initSplideInterval);
 			initSlider();
 		}
 	}, 200);
 
-    // let dotsRender = setInterval(() => {
-	// 	if(typeof Splide == 'function' && document.querySelectorAll('.feedback_section .splide__list li').length == objReview.length) {
-	// 		clearInterval(initSplideInterval2);
-	// 		initSlider();
-	// 	}
-	// }, 200);
+    let dotsRender = setInterval(() => {
+        if (document.querySelector('.splide__pagination li:first-child .splide__pagination__page.is-active') != null) {
+            document.querySelector('.splide__pagination li:nth-child(4)').classList.add('lav-pag-next')
+        }
+    }, 200);
+
     //sticky button 
     let offsetTopBrands = document.querySelector('.brands_section').offsetTop,
         offsetTopFeedback = document.querySelector('.feedback_section').offsetTop;

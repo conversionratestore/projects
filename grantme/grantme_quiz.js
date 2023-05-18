@@ -1088,12 +1088,12 @@ let myFunk = setInterval(() => {
     }
 
     let arrLabel3 = {
-      "University of California, LA (UCLA)": ["ucla", "2913"],
-      "Harvard University": ["harvard", "2913"],
-      "Stanford University": ["stanford", "2913"],
-      "Yale University": ["yale", "2913"],
-      "New York University": ["newyork ", "2913"],
-      "University of California, Berkeley (UCB)": ["ucb", "2913"],
+      "University of California, LA (UCLA)": ["ucla", "2831"],
+      "Harvard University": ["harvard", "1644"],
+      "Stanford University": ["stanford", "1670"],
+      "Yale University": ["yale", "1663"],
+      "New York University": ["newyork ", "1990"],
+      "University of California, Berkeley (UCB)": ["ucb", "2942"],
       Other: ["other", "2913"],
     }
 
