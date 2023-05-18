@@ -212,6 +212,9 @@ let style = `
     .footer_section {
         padding-top: 20px;
     }
+    .css-1qq679y {
+        top: 20px!important;
+    }
     /* font */
     .fw-bold {
         font-weight: 700;
@@ -285,8 +288,10 @@ let style = `
             background: #292929;
         }
     }
-    
     @media screen and (max-width: 767px) {
+        .css-1qq679y {
+            top: 10px!important;
+        }
         .css-11h5ku {
             font-family: 'Brandon Grotesque';
             font-style: normal;

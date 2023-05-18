@@ -353,7 +353,7 @@ let styles = `
         margin: 0;
     }
 
-    .swiper-slider {
+    .lav-gallery {
         position: relative;
     }
     ul.splide__pagination li:before, ul.splide__list li:before {
@@ -987,11 +987,11 @@ window.onload = function() {
                     </svg>
                 </p>
             </a>
-            <div class="splide lav-gallery swiper-slider">
-            <div class="splide__track">
-              <ul class="splide__list swiper-wrapper"> </ul>
+            <div class="splide lav-gallery">
+                <div class="splide__track">
+                    <ul class="splide__list"> </ul>
+                </div>
             </div>
-          </div>
             <a href="${tel}" class="btn btn_green w-inline-block">
                 <div class="ic ic_btn w-embed">
                     <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -1017,17 +1017,24 @@ window.onload = function() {
 	sliderScript.src = 'https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.1/dist/js/splide.min.js';
     document.body.append(sliderScript);
 
+
     for (let i = 0; i < objReview.length; i++) {
-        document.querySelector('.feedback_section .swiper-wrapper').insertAdjacentHTML('beforeend', `<li class="splide__slide">${slide(objReview[i].author, objReview[i].theme, objReview[i].review, objReview[i].date, i, 'feedback_section')}</li>`)
+        document.querySelector('.feedback_section .splide__list').insertAdjacentHTML('beforeend', `<li class="splide__slide">${slide(objReview[i].author, objReview[i].theme, objReview[i].review, objReview[i].date, i, 'feedback_section')}</li>`)
     }
 
 	let initSplideInterval = setInterval(() => {
-		if(typeof Splide == 'function') {
+		if(typeof Splide == 'function' &&  document.querySelectorAll('.feedback_section .splide__list').length >= objReview.length) {
 			clearInterval(initSplideInterval);
 			initSlider();
 		}
 	}, 200);
 
+    // let dotsRender = setInterval(() => {
+	// 	if(typeof Splide == 'function' && document.querySelectorAll('.feedback_section .splide__list li').length == objReview.length) {
+	// 		clearInterval(initSplideInterval2);
+	// 		initSlider();
+	// 	}
+	// }, 200);
     //sticky button 
     let offsetTopBrands = document.querySelector('.brands_section').offsetTop,
         offsetTopFeedback = document.querySelector('.feedback_section').offsetTop;
