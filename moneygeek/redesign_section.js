@@ -289,6 +289,9 @@ let style = `
         }
     }
     @media screen and (max-width: 767px) {
+        .css-13tllwe {
+            min-width: auto!important;
+        }
         .css-1qq679y {
             top: 10px!important;
         }
