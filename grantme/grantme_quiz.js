@@ -1775,7 +1775,7 @@ let myFunk = setInterval(() => {
             })
           }
           if (i.currentTarget.closest("#edit-what-is-your-contact-info-")) {
-            document.querySelector("#edit-cards-next--15").click()
+            document.querySelector("#edit-cards-next--14").click()
           }
         }
         i.currentTarget.setAttribute("data-test", "1")
