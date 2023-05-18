@@ -2,6 +2,9 @@ let dir = 'https://conversionratestore.github.io/projects/moneygeek/img/'
 
 let style = `
 <style>
+    .content-wrapper.banner-redesign .banner-container div.banner-widget .chakra-form-control::after {
+        content: none!important;
+    }
     #stickywidgetbutton {
         color: #292929!important;
         background-color: #FFD35A!important;
@@ -14,7 +17,7 @@ let style = `
         padding: 0 20px 20px;
         border: none;
     }
-    .css-p0twtd {
+    .css-p0twtd, .css-1p0nd13 {
         height: auto;
     }
     header [aria-label="MoneyGeek"] svg {
@@ -77,7 +80,7 @@ let style = `
     }
     .banner-widget .css-xi606m {
         font-size: 20px;
-        line-height: 28px;
+        line-height: 28px!important;
         margin-bottom: 12px;
     }
     .banner-widget h3 {
@@ -305,10 +308,10 @@ let style = `
         .css-11h5ku {
             font-family: 'Brandon Grotesque';
             font-style: normal;
-            font-weight: 600;
+            font-weight: 600!important;
             font-size: 28px;
             line-height: 30px;
-            margin-bottom: 10px;
+            margin-bottom: 10px!important;
             padding: 0;
         }
         header.site-header {
