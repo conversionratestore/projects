@@ -790,14 +790,20 @@ function closeModal() {
 
 function promoCodeDesktop() {
     if(window.innerWidth > 768) {
-        document.querySelector('.infoBlockWrapper-0-2-46.wrappableBlock-0-2-56>div').style.display = 'none'
-        document.querySelector('.infoBlockWrapper-0-2-46.wrappableBlock-0-2-56>div').insertAdjacentHTML('beforebegin',
-         '<p class="open_promo_code" style="margin-bottom: 12px; font-weight: 600; font-size: 14px; color: #1375D6; cursor: pointer;">Got a promo code?</p>')
-         document.querySelector('.open_promo_code').addEventListener('click', function(){
-            this.remove()
-            document.querySelector('.infoBlockWrapper-0-2-46.wrappableBlock-0-2-56>div').style.display = 'block'
-            gaEvent('exp_discount_get_promo_code', 'Get a promo code', 'Link', screenType)
-         })
+        document.querySelectorAll('div').forEach(div => {
+            if(div.classList.toString().includes('couponWrapper')) {
+                console.log('>>> 1 coupon')
+                div.style.display = 'none'
+                div.insertAdjacentHTML('beforebegin',
+                '<p class="open_promo_code" style="margin-bottom: 12px; font-weight: 600; font-size: 14px; color: #1375D6; cursor: pointer;">Got a promo code?</p>')
+                document.querySelector('.open_promo_code').addEventListener('click', function(){
+                    this.remove()
+                    div.style.display = 'block'
+                    gaEvent('exp_discount_get_promo_code', 'Get a promo code', 'Link', screenType)
+                })
+            }
+        })
+         
     }
 }
 
