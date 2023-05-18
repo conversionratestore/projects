@@ -8,6 +8,7 @@ const settings = {
 };
 
 const screenType = (sessionStorage.getItem('isDiscountActivated')) ? 'Second screen' : 'First screen'
+const screenNumber = (sessionStorage.getItem('isDiscountActivated')) ? '2' : '1'
 
 //Clarity
 if (settings.clarity) {
@@ -567,6 +568,7 @@ const errosForModal = [
 
 let start = setInterval(function() {
     if(window.location.pathname === '/payment') {
+        
         clearInterval(start)
         init()
     }
@@ -593,12 +595,17 @@ function init() {
       openModal();
     }
   }, 500);
+  const currentPrice = JSON.parse(localStorage.getItem('planCode')).price
+  console.log(+currentPrice)
+  console.log(+sessionStorage.getItem('newPrice'))
 
-  if(sessionStorage.getItem('isDiscountActivated')) {
+  if(sessionStorage.getItem('isDiscountActivated') && +sessionStorage.getItem('newPrice') === +currentPrice) {
     document.querySelector('.lav-offer').classList.add('active');
   }
-
-  setTracking()
+  setTimeout(function(){
+    setTracking()
+  },1000)
+    
 
   let globalObserver = new MutationObserver((muts)=> {
     console.log('>>> global')
@@ -658,7 +665,7 @@ function initOffer() {
 
 function initGuarantee() {
   const el = `
-  <div class='lav-guarantee' data-visible='{"name": "exp_discount_30_money_back1", "desc": "30-Day Money-Back Guarantee banner", "loc": "${screenType}"}'>
+  <div class='lav-guarantee' data-visible='{"name": "exp_discount_30_money_back${screenNumber}", "desc": "30-Day Money-Back Guarantee banner", "loc": "${screenType}"}'>
     <div class='lav-guarantee__icon'>
       <img src="${settings.dir}/img/icon-guarantee.svg" />
     </div>
@@ -733,7 +740,7 @@ function initModal() {
     .querySelector('.lav-disc__btn')
     .addEventListener('click', function () {
       closeModal();
-      gaEvent('exp_discount_did_you_know_popup_claim', 'Claim Weightloss Discount', 'Button', 'Did you know popup')
+      gaEvent('exp_discount_did_you_know_popup_get_dis', 'Get my discount', 'Button', 'Did you know popup')
     });
 }
 
@@ -747,6 +754,7 @@ function openModal() {
   plan.price = Math.round(plan.price * 0.49)
   plan.value = (plan.price % 100 === 0) ? `$${plan.price / 100}` : `$${(plan.price / 100).toFixed(2)}`
   localStorage.setItem('planCode', JSON.stringify(plan))
+  sessionStorage.setItem('newPrice', plan.price);
   document.body.classList.add('lav-overflow');
   document.body.classList.add('lav-offer_activated');
   document.querySelector('.lav-offer').classList.add('active');
@@ -823,8 +831,13 @@ function setTracking() {
         }
         if(item.classList.toString().includes('continueButton')) {
             item.addEventListener('click', function() {
-                gaEvent('exp_discount_credit_card1', 'Credit / Debit card', 'Button', screenType)
+                gaEvent(`exp_discount_credit_card${screenNumber}`, 'Credit / Debit card', 'Button', screenType)
             })
+        }
+        if(item.classList.toString().includes('backButtonIconInnerWrapper')) {
+          item.addEventListener('click', function() {
+            gaEvent(`exp_discount_back${screenNumber}`, 'Back', 'Button', screenType)
+          })
         }
     })
 
