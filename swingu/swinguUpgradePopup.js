@@ -1026,6 +1026,6 @@ sendGAEvent({
 const recordClarity = setInterval(() => {
   if (typeof clarity === 'function') {
     clearInterval(recordClarity)
-    clarity('set', `improve_upgrade_popup`, 'variant_1')
+    clarity('set', `improve_upgrade_popup_v2`, 'variant_1')
   }
 }, WAIT_INTERVAL_TIMEOUT)
