@@ -825,7 +825,7 @@ function setTracking() {
         }
         if(item.classList.toString().includes('creditCardBtnClass')) {
             item.addEventListener('click', function() {
-                gaEvent('exp_discount_credit_card2', 'Credit / Debit card', 'Button', screenType)
+                gaEvent(`exp_discount_credit_card${screenNumber}`, 'Credit / Debit card', 'Button', screenType)
                 gaEvent('exp_discount_cart_pay_popup_view', 'Сard payment popup', 'View element on screen', screenType)
             })
         }
