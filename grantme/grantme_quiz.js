@@ -1101,6 +1101,11 @@ let myFunk = setInterval(() => {
     document.head.insertAdjacentHTML("beforeend", '<meta name="viewport" content="width=device-width, height=device-height, initial-scale=1">')
     document.head.insertAdjacentHTML("beforeend", newStyle)
 
+
+    for (let key in arrLabel3) {
+      document.querySelector('.js-webform-select2').insertAdjacentHTML('beforeend', `<option value="${arrLabel3[key][1]}">${key}</option>`)
+    }
+
     document.querySelectorAll("#edit-actions-13").forEach((el) => { 
       // for (let key in arrLabel) {
       //   el.insertAdjacentHTML("beforebegin", renderLabelCheckBox("school_are_you_interested_in_attending_var", key, arrLabel[key][0], arrLabel[key][1]))
