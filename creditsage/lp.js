@@ -1023,7 +1023,7 @@ window.onload = function() {
     }
 
 	let initSplideInterval = setInterval(() => {
-		if(typeof Splide == 'function' &&  document.querySelectorAll('.feedback_section .splide__list').length >= objReview.length) {
+		if(typeof Splide == 'function' &&  document.querySelectorAll('.feedback_section .splide__list li').length >= objReview.length) {
 			clearInterval(initSplideInterval);
 			initSlider();
 		}
