@@ -206,7 +206,8 @@ let myFunk = setInterval(() => {
         #edit-what-school-are-you-interested-in-attending-
           .js-form-type-select.form-item-what-school-are-you-interested-in-attending.js-form-item-what-school-are-you-interested-in-attending.form-no-label.form-group,
         #edit-what-field-of-study-are-you-looking-to-study-currently-studying-
-          .js-form-type-select.form-item-what-field-of-study-are-you-looking-to-study-currently-studying.js-form-item-what-field-of-study-are-you-looking-to-study-currently-studying {
+          .js-form-type-select.form-item-what-field-of-study-are-you-looking-to-study-currently-studying.js-form-item-what-field-of-study-are-you-looking-to-study-currently-studying,
+          .form-item-what-school-are-you-interested-in-attending-us {
           display: none !important;
         }
         .path-scholarship-eligibility-quiz .webform-submission-form label {
@@ -1101,17 +1102,18 @@ let myFunk = setInterval(() => {
     document.head.insertAdjacentHTML("beforeend", '<meta name="viewport" content="width=device-width, height=device-height, initial-scale=1">')
     document.head.insertAdjacentHTML("beforeend", newStyle)
 
+    document.querySelectorAll("#edit-actions-13").forEach((el) => { 
+      el.insertAdjacentHTML("beforebegin", `<div id="parent_school"></div>`)
+      el.insertAdjacentHTML("beforebegin", `<div id="parent_school_us"></div>`)
+    })
 
     for (let key in arrLabel3) {
-      document.querySelector('.js-webform-select2').insertAdjacentHTML('beforeend', `<option value="${arrLabel3[key][1]}">${key}</option>`)
+      document.querySelector('#parent_school_us').insertAdjacentHTML('beforeend', renderLabelCheckBox("school_are_you_interested_in_attending_var", key, arrLabel3[key][0], arrLabel3[key][1]))
     }
 
-    document.querySelectorAll("#edit-actions-13").forEach((el) => { 
-      // for (let key in arrLabel) {
-      //   el.insertAdjacentHTML("beforebegin", renderLabelCheckBox("school_are_you_interested_in_attending_var", key, arrLabel[key][0], arrLabel[key][1]))
-      // } 
-      el.insertAdjacentHTML("beforebegin", `<div id="parent_school"></div>`)
-    })
+    for (let key in arrLabel) {
+      document.querySelector('#parent_school').insertAdjacentHTML('beforeend', renderLabelCheckBox("school_are_you_interested_in_attending_var", key, arrLabel[key][0], arrLabel[key][1])) 
+    }
 
     document.querySelectorAll("#edit-actions-14").forEach((el) => {
       for (let key in arrLabel2) {
@@ -1393,12 +1395,9 @@ let myFunk = setInterval(() => {
     </p>`
     )
     //click input
-    
-    function clickRadion() {
 
     document.querySelectorAll("input[type=radio]").forEach((el) => {
       el.addEventListener("click", (i) => {
-        i.stopImmediatePropagation()
         console.log(i)
         if (!i.currentTarget.getAttribute("data-test")) {
           if (i.currentTarget.closest("div").classList.contains("skip_var") || i.currentTarget.closest("div").classList.contains("i_dont_know_var")) {
@@ -1468,18 +1467,13 @@ let myFunk = setInterval(() => {
             document.querySelector("#edit-cards-next--2").click()
           }
           if (i.currentTarget.closest("#edit-what-is-your-citizenship-")) {
-            let schoolOptions = '';
             if (i.currentTarget.checked && i.currentTarget.id == 'edit-what-is-your-citizenship-us-citizen') {
-              for (let key in arrLabel3) {
-                schoolOptions += renderLabelCheckBox("school_are_you_interested_in_attending_var", key, arrLabel3[key][0], arrLabel3[key][1])
-              }
+              document.querySelector('#parent_school_us').style.display = 'block';
+              document.querySelector('#parent_school').style.display = 'none';
             } else {
-              for (let key in arrLabel) {
-                schoolOptions +=  renderLabelCheckBox("school_are_you_interested_in_attending_var", key, arrLabel[key][0], arrLabel[key][1])
-              }
+              document.querySelector('#parent_school_us').style.display = 'none';
+              document.querySelector('#parent_school').style.display = 'block';
             }
-
-            document.querySelector('#parent_school').innerHTML = schoolOptions;
 
             document.querySelector("#edit-cards-next--3").click()
             i.currentTarget
@@ -1491,9 +1485,6 @@ let myFunk = setInterval(() => {
                 }
               })
             i.currentTarget.closest("label").classList.add("active")
-
-            clickRadion()
-    
           }
           if (i.currentTarget.closest("#edit-what-year-of-university-are-you-currently-in-") || i.currentTarget.closest("#edit-what-year-of-study-are-you-currently-in-")) {
             document.querySelector("#edit-cards-next--4").click()
@@ -1575,24 +1566,25 @@ let myFunk = setInterval(() => {
             i.currentTarget.closest("label").classList.add("active")
           }
           if (i.currentTarget.closest("#edit-qa9-wrap")) {
-            document.querySelector("#edit-what-school-are-you-interested-in-attending").value = i.target.getAttribute("value")
+
+            if (i.currentTarget.closest("#parent_school_us")) {
+              document.querySelector("#edit-what-school-are-you-interested-in-attending-us").value = i.target.getAttribute("value")
+            
+              if (document.querySelector("#edit-what-school-are-you-interested-in-attending-us").value !== "") {
+                document.querySelector("#edit-cards-next--11").click()
+              }
+            } else if (i.currentTarget.closest("#parent_school")) {
+              document.querySelector("#edit-what-school-are-you-interested-in-attending").value = i.target.getAttribute("value")
+            
+              if (document.querySelector("#edit-what-school-are-you-interested-in-attending").value !== "") {
+                document.querySelector("#edit-cards-next--11").click()
+              }
+            }
             if (i.target.getAttribute("id") === "skip_school_are_you_interested_in_attending_var") {
               document.querySelector("#edit-what-school-are-you-interested-in-attending").setAttribute("skip", true)
               // document.querySelector("#edit-cards-next--11").click()
             }
-            if (document.querySelector("#edit-what-school-are-you-interested-in-attending").value !== "") {
-              document.querySelector("#edit-cards-next--11").click()
-              // if (i.currentTarget.getAttribute("id") !== "other") {
-              // }
-
-              // if (i.currentTarget.getAttribute("id") === "other") {
-              //   i.currentTarget.closest("#edit-qa9-wrap").querySelector("textarea.other_textarea").style.display = "block"
-              //   document.querySelector("button#edit-cards-next--11").classList.add("active_btn")
-              // } else {
-              //   i.currentTarget.closest("#edit-qa9-wrap").querySelector("textarea.other_textarea").style.display = "none"
-              //   document.querySelector("button#edit-cards-next--11").classList.remove("active_btn")
-              // }
-            }
+          
             pushDataLayer(
               `exp_remove_barriers_on_quiz_c`,
               `checked ${i.currentTarget.nextElementSibling.textContent}`,
@@ -1792,10 +1784,6 @@ let myFunk = setInterval(() => {
         }, 500)
       })
     })
-    }
-
-    clickRadion()
-  
 
     // click on back_btn_var
     document.querySelectorAll(".back_btn_var").forEach((el) => {
