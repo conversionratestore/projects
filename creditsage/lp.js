@@ -8,7 +8,7 @@ let styles = `
     .sct_rich-first > .sct__cnt_template > .rich-cta-wrp .trustpilot-widget iframe {
         pointer-events: none;
     }
-    .inactive-popup, .inactive-popup-content_close, [hidden] {
+    .inactive-popup, .inactive-popup-content_close, [hidden], .btn-txt+.w-embed {
         display: none!important;
     }
     h2, h4 {
