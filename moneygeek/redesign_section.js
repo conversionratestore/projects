@@ -68,7 +68,7 @@ let style = `
         -webkit-margin-end: 3px;
         margin-inline-end: 3px;
     }
-    .css-mljoh, .item-review .banner-link > .css-k008qs, .css-1lno5h0 li:first-child, .css-x3wokz, .banner-authorship, .css-k008qs .css-c0gtt0, .item-review .css-c0gtt0, .banner-last-updated, .banner-contribution .css-1k9efnl svg {
+    .css-mljoh, .item-review .banner-link > .css-k008qs, .css-1lno5h0 li:first-child, .css-x3wokz, .banner-authorship, .css-k008qs .css-c0gtt0, .item-review .css-c0gtt0, .banner-last-updated, .css-1k9efnl svg {
         display: none!important;
     }
     .css-1uguvmx {
@@ -171,7 +171,7 @@ let style = `
     .info_block .css-k008qs:not([aria-haspopup="dialog"]) {
         flex-wrap: wrap;
     }
-    .info_block .css-k008qs:not([aria-haspopup="dialog"]), .banner-contribution .css-1k9efnl, .banner-advertising, .item-review.isReview {
+    .info_block .css-k008qs:not([aria-haspopup="dialog"]), .css-1k9efnl, .banner-advertising, .item-review.isReview {
         margin-bottom: 15px;
     } 
     .item-review {
@@ -183,7 +183,7 @@ let style = `
     .info_block .css-1t0181o {
         gap: initial;
     }
-    .by-item + .css-k008qs, .css-1t0181o > .css-k008qs, .banner-advertising, .css-1ciy9pg a {
+    .by-item + .css-k008qs, .css-1t0181o > .css-k008qs, .banner-advertising, .css-1ciy9pg a, .item-review+.css-k008qs {
         padding-left: 24px;
         position: relative;
         width: fit-content;
@@ -287,7 +287,7 @@ let style = `
             margin-right: 50px;
         }
 
-        .by-item + .css-k008qs:before, .css-1ciy9pg a:before, .css-1t0181o > .css-k008qs:before, .banner-advertising:before {
+        .by-item + .css-k008qs:before, .css-1ciy9pg a:before, .css-1t0181o > .css-k008qs:before, .banner-advertising:before, .item-review+.css-k008qs:before {
             content: '';
             position: absolute;
             left: 10px;
@@ -360,13 +360,13 @@ let style = `
             top: 20px;
             right: 15px;
         }
-        .item-review.isReview, .css-1k9efnl a, .by-item + .css-k008qs, .css-1t0181o > .css-k008qs, .banner-advertising, .css-1ciy9pg a {
+        .item-review.isReview, .css-1k9efnl a, .by-item + .css-k008qs, .css-1t0181o > .css-k008qs, .banner-advertising, .css-1ciy9pg a, .item-review+.css-k008qs {
             position: relative;
             padding-left: 21px;
             background: url('${dir}checkbox.svg') no-repeat left top / 14px 18px;
             font-weight: 400;
         }
-        .info_block .css-k008qs:not([aria-haspopup="dialog"]), .banner-contribution .css-1k9efnl, .banner-advertising, .item-review.isReview {
+        .info_block .css-k008qs:not([aria-haspopup="dialog"]), .css-1k9efnl, .banner-advertising, .item-review.isReview {
             margin-bottom: 10px;
             width: fit-content;
         }
@@ -439,7 +439,10 @@ let byFind = setInterval(() => {
 
 let bannerContributionFind = setInterval(() => {
     if (document.querySelector('.item-edited') != null && document.querySelector('.banner-contribution') != null && document.querySelector('.info_block .banner-contribution') == null) {
-        document.querySelector('.item-edited').after(document.querySelector('.banner-contribution'))
+        
+        document.querySelectorAll('.banner-contribution > div').forEach(item => {
+            document.querySelector('.item-edited').before(item)
+        })
     }
 });
 
