@@ -77,6 +77,9 @@ let style = `
         color: #fff!important;
         padding: 0!important;
     }
+    div#banner-widget {
+        border: none;
+    }
     .banner-widget .css-amzw5g {
         padding: 30px 30px 20px;
         height: auto;
