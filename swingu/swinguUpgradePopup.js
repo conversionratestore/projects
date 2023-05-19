@@ -7,6 +7,10 @@ const IMAGE_DIR_URL = 'https://conversionratestore.github.io/projects/swingu/img
 // Define CSS styles
 const style = /*html*/`
     <style>
+        body {
+            padding-bottom: 0 !important;
+        }
+
       .main-column {
         background: #fff;
       }
@@ -18,7 +22,7 @@ const style = /*html*/`
         }
 
         .page-template-page-sections .main-container .main-column {
-            padding-bottom: 120px !important;
+            padding-bottom: 140px !important;
         }
 
         .header-type-in-app,
@@ -423,7 +427,7 @@ border-radius: 10px;
         .table_wrap {
             max-height: 0;
             overflow: hidden;
-            transition: max-height 1s ease-in-out;
+            transition: max-height 0.5s ease-in-out;
             border-radius: 0 0 10px 10px;
         }
 
@@ -431,12 +435,8 @@ border-radius: 10px;
             border-radius: 10px;
         }
 
-        .features > div + img {
-            transform: rotate(180deg);
-        }      
-
         .features.show_table > div + img {
-            transform: rotate(0) !important;
+            transform: rotate(180deg) !important;
         }
         .features.show_table + .table_wrap {
           max-height: 2000px;
