@@ -20,6 +20,9 @@ let style = `
     .css-p0twtd, .css-1p0nd13 {
         height: auto;
     }
+    .css-1p0nd13 {
+        padding: 30px 30px 20px 30px!important;
+    }
     header [aria-label="MoneyGeek"] svg {
         max-width: 167px;
     }
