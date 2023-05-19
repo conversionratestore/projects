@@ -165,6 +165,9 @@ let style = `
     .info_block .css-k008qs b {
         font-weight: 400;
     }
+    .info_block .css-k008qs:not([aria-haspopup="dialog"]) {
+        flex-wrap: wrap;
+    }
     .info_block .css-k008qs:not([aria-haspopup="dialog"]), .banner-contribution .css-1k9efnl, .banner-advertising, .item-review.isReview {
         margin-bottom: 15px;
     } 
@@ -172,13 +175,7 @@ let style = `
         position: relative;
     }
     .item-review > .css-k008qs:not([aria-haspopup="dialog"]) {
-        position: absolute;
-        top: 0;
-        height: 100%;
-        right: 0;
-        width: 200px;
-        pointer-events: none;
-        opacity: 0;
+        margin: 0!important;
     }
     .info_block .css-1t0181o {
         gap: initial;
@@ -363,7 +360,7 @@ let style = `
         .item-review.isReview, .css-1k9efnl a, .by-item + .css-k008qs, .css-1t0181o > .css-k008qs, .banner-advertising, .css-1ciy9pg a {
             position: relative;
             padding-left: 21px;
-            background: url('${dir}checkbox.svg') no-repeat left center / 14px;
+            background: url('${dir}checkbox.svg') no-repeat left top / 14px 18px;
             font-weight: 400;
         }
         .info_block .css-k008qs:not([aria-haspopup="dialog"]), .banner-contribution .css-1k9efnl, .banner-advertising, .item-review.isReview {
@@ -411,12 +408,8 @@ let byFind = setInterval(() => {
         document.querySelectorAll('.banner-authorship .css-1t0181o:not(.banner-contribution) > .css-k008qs').forEach((item, index) => {
             if (item.querySelector('b') != null && item.querySelector('b').innerHTML == 'By') {
                 document.querySelector('.by-item').after(item)
-                if (!window.matchMedia("(max-width: 767px)").matches) {
-                    item.insertAdjacentHTML('beforeend',`, Insurance Analyst`)
-                }
             } else if (item.innerHTML.includes('Reviewed By')) {
 
-                let wordAfterQuot = item.innerHTML.split(',')[1];
                 let factCheckedHTML = `
                 <div class="fact-checked flex items-center">
                     <svg width="8" height="6" viewBox="0 0 8 6" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -427,18 +420,15 @@ let byFind = setInterval(() => {
                 document.querySelector('.item-review').classList.add('isReview')
                 if (window.matchMedia("(max-width: 767px)").matches) {
                     document.querySelector('.info_block').insertAdjacentHTML('afterbegin', factCheckedHTML)
-                    document.querySelector('.item-review').innerHTML = item.innerHTML.replace(wordAfterQuot, '').replace(',','')
+                    document.querySelector('.item-review').innerHTML = `<div></div>`;
+                    document.querySelector('.item-review div').after(item)
                 } else {
-                    document.querySelector('.item-review').innerHTML = ` 
-                    ${factCheckedHTML}
-                    ${item.innerHTML.replace('Reviewed By','by Licensed Insurance Agent').replace(wordAfterQuot, '').replace(',','')}`;
+                    document.querySelector('.item-review').innerHTML = factCheckedHTML;
+                    document.querySelector('.item-review .fact-checked').after(item)
                 }
 
-                document.querySelector('.item-review [aria-haspopup="dialog"]').before(item)
+                
 
-                document.querySelectorAll('.item-review .banner-link')[1].addEventListener('click', (e) => {
-                    document.querySelectorAll('.item-review .banner-link')[0].click()
-                })
             }
         })
     }
