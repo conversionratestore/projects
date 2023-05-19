@@ -18,7 +18,7 @@ const style = /*html*/`
         }
 
         .page-template-page-sections .main-container .main-column {
-            padding-bottom: 90px !important;
+            padding-bottom: 120px !important;
         }
 
         .header-type-in-app,
