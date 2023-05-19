@@ -46,7 +46,7 @@ let style = `
         transition: all 0.3s ease;
     }
     .banner-container, .content-wrapper.banner-redesign .banner-container {
-        background-color: #F6F8FF!important;
+        background: #F6F8FF!important;
         padding: 15px 0 20px;
         color: #292929;
     }
