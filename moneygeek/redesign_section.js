@@ -79,6 +79,7 @@ let style = `
     }
     div#banner-widget {
         border: none;
+        border-radius: 6px;
     }
     .banner-widget .css-amzw5g {
         padding: 30px 30px 20px;
