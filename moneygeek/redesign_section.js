@@ -45,8 +45,8 @@ let style = `
         margin-left: 6px;
         transition: all 0.3s ease;
     }
-    .banner-container {
-        background: #F6F8FF;
+    .banner-container, .content-wrapper.banner-redesign .banner-container {
+        background-color: #F6F8FF!important;
         padding: 15px 0 20px;
         color: #292929;
     }
@@ -323,8 +323,11 @@ let style = `
         .breadcrumbs-container li:last-child, .breadcrumbs-container .breadcrumb-separator, .breadcrumbs-container li:nth-last-child(2) span {
             display: none;
         }
-        .banner-container {
-            padding: 80px 16px 16px;
+        .content-wrapper.banner-redesign .breadcrumbs-container {
+            margin-top: 0!important;
+        }
+        .banner-container, .content-wrapper.banner-redesign .banner-container {
+            padding: 80px 16px 16px!important;
         }
         .css-1lno5h0 {
             padding: 0 0 20px 0;
