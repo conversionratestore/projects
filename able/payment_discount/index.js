@@ -139,14 +139,14 @@ if (settings.observe) {
 
       for (let node of mutation.removedNodes) {
         if (!(node instanceof HTMLElement)) continue;
-        if(node.style.zIndex === '2147483647' && !node.getAttribute('data-merchant')) {
-            setTimeout(() => {
-                if(window.location.pathname === '/payment') {
-                    openModal();
-                }
-            }, 500);
+        // if(node.style.zIndex === '2147483647' && !node.getAttribute('data-merchant')) {
+        //     setTimeout(() => {
+        //         if(window.location.pathname === '/payment') {
+        //             openModal();
+        //         }
+        //     }, 500);
             
-        }
+        // }
         // console.log('Removed', node);
       }
     }
@@ -564,6 +564,7 @@ const errosForModal = [
   'PayPal error',
   'PayPal payment canceled',
   'Error! PayPal',
+  'OnboardingAppleGooglePayCloseClicked'
 ];
 
 let start = setInterval(function() {
