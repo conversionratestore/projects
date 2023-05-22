@@ -1320,3 +1320,45 @@ let videoReviews = setInterval(() => {
     document.querySelector(".exp")?.remove();
   }
 }, 400);
+
+if (window.location.pathname === "/booking-page1666161342817") {
+  let startFuncBooking = setInterval(() => {
+    if (document.querySelector("#row--75703")) {
+      clearInterval(startFuncBooking);
+
+      changeCalendly();
+
+      function changeCalendly() {
+        document.querySelectorAll(".calendly-iframe").forEach((el) => {
+          if (el.src !== "https://calendly.com/d/2m6-c5q-fq4/zoom-meeting-w-admissions-counselor-45min?hide_event_type_details=1&hide_gdpr_banner=1&month=2023-05") {
+            el.src = "https://calendly.com/d/2m6-c5q-fq4/zoom-meeting-w-admissions-counselor-45min?hide_event_type_details=1&hide_gdpr_banner=1&month=2023-05";
+          }
+        });
+
+        if (document.querySelector("#col-right-144 h1 b").textContent !== "Meeting w/ Admissions Counselor (Zoom)") {
+          document.querySelector("#col-right-144 h1 b").textContent = "Meeting w/ Admissions Counselor (Zoom)";
+        }
+      }
+
+      // observer
+      let observer = new MutationObserver(() => {
+        if (document) {
+          observer.disconnect();
+
+          changeCalendly();
+
+          observer.observe(document, {
+            childList: true,
+            subtree: true,
+          });
+        }
+      });
+
+      observer.observe(document, {
+        childList: true,
+        subtree: true,
+      });
+      document.querySelector(".exp")?.remove();
+    }
+  }, 500);
+}
