@@ -239,7 +239,7 @@ const style = /* html */ `
 
 function start () {
     const check = setInterval(function() {
-        if(window.location.pathname === '/subscribe' && !$('.flicker')) {
+        if(window.location.pathname === '/subscribe' && !$('.flicker') && typeof ) {
             $('#root').insertAdjacentHTML('beforebegin', '<style class="flicker">#root{opacity: 0}</style>')
         }
         
@@ -1018,15 +1018,15 @@ function rebuildVideoSlider () {
                 </p>
             `)
 
-            block.querySelector('.swiper').swiper.on('touchEnd', function(){
-                pushDataLayer('int_customer', 'Slide', 'Interaction with slider', 'Customer Success Stories To Inspire You')
-            })
+            // block.querySelector('.swiper').swiper.on('touchEnd', function(){
+            //     pushDataLayer('int_customer', 'Slide', 'Interaction with slider', 'Customer Success Stories To Inspire You')
+            // })
 
-            if(window.innerWidth > 768) {
-                block.querySelector('.swiper').swiper.params.centeredSlides = true
-                block.querySelector('.swiper').swiper.params.slidesPerView = 4
-                block.querySelector('.swiper').swiper.update()
-            }
+            // if(window.innerWidth > 768) {
+            //     block.querySelector('.swiper').swiper.params.centeredSlides = true
+            //     block.querySelector('.swiper').swiper.params.slidesPerView = 4
+            //     block.querySelector('.swiper').swiper.update()
+            // }
         }
     })
     
