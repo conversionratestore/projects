@@ -239,7 +239,7 @@ const style = /* html */ `
 
 function start () {
     const check = setInterval(function() {
-        if(window.location.pathname === '/subscribe' && !$('.flicker') && typeof ) {
+        if(window.location.pathname === '/subscribe' && !$('.flicker')) {
             $('#root').insertAdjacentHTML('beforebegin', '<style class="flicker">#root{opacity: 0}</style>')
         }
         
