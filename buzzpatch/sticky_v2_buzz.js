@@ -11,6 +11,11 @@ const style = /*html*/`
                 top: 95px !important;
                 left: 0 !important;
                 right: auto !important;
+                max-width: 75%;
+            }
+
+            body #provesrc-notification-container._ps-mobile-small>.bubble-body {
+              max-width: none !important;
             }
 
             .sticky_wrapper {
