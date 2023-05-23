@@ -8,6 +8,7 @@ document.head.appendChild(link);
 // список скриптів, які потрібно завантажити
 const scriptList = [
     'https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js',
+    'https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/js/splide.min.js'
     // 'https://js.braintreegateway.com/web/3.81.0/js/client.min.js',
     // 'https://js.braintreegateway.com/web/3.81.0/js/paypal-checkout.min.js',
     // 'https://js.stripe.com/v3',
@@ -1006,9 +1007,8 @@ function rebuildVideoSlider () {
         if(cls.includes('customerVideoReviewsWrapper')) {
             block.insertAdjacentHTML('afterbegin', sliderStyle)
             block.style.background = 'none'
-            if(window.innerWidth < 769) {
-                block.querySelector('h1+div').style.display = 'none'
-                block.querySelector('h1+div+div').style.display = 'none'
+            if(window.innerWidth < 769 && block.querySelector('.splide__arrows')) {
+                block.querySelector('.splide__arrows').style.display = 'none'
             }
             block.querySelector('h1').innerHTML = 'Customer Success Stories To Inspire You:'
             block.querySelector('h1').style.marginBottom = '12px'
