@@ -1,6 +1,14 @@
 let startPopup = setInterval(() => {
   if (document.querySelector("#player")) {
     clearInterval(startPopup);
+    window._mfq = window._mfq || [];
+    (function () {
+      var mf = document.createElement("script");
+      mf.type = "text/javascript";
+      mf.defer = true;
+      mf.src = "//cdn.mouseflow.com/projects/29f75cc1-dffc-4a86-b3d0-cca4b689c018.js";
+      document.getElementsByTagName("head")[0].appendChild(mf);
+    })();
     let eventVar = "desktop";
     if (window.innerWidth <= 768) {
       eventVar = "mobile";
