@@ -989,6 +989,7 @@ let startPopup = setInterval(() => {
     function startVideo() {
       if (document.querySelector(".flowplayer.is-paused .fp-ui")) {
         document.querySelector(".flowplayer.is-paused .fp-ui")?.click();
+        document.querySelector(".flowplayer.is-paused .fp-ui")?.scrollIntoView({ block: "center", behavior: "smooth" });
       }
     }
     function calcScroll() {
