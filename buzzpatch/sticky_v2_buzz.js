@@ -41,26 +41,24 @@ const style = /*html*/`
             .packs_selector {
                 position: relative;
                 cursor: pointer;
+                min-width: 130px;
             }
 
             .current_selected_pack {
-                position: relative;
+                position: relative; 
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
                 background-color: #fff;
                 border: 2px solid #FF3C7F;
-                border-radius: 31px;
+                border-radius: 12px;
                 z-index: 2;
-                padding: 8px 20px;
+                padding: 20px;
             }
 
             .pack.active .pack_name,
             .current_selected_pack .pack_name {
                 color: #FF3C7F;
-            }
-
-            .current_selected_pack svg {
-                position: absolute;
-                top: 14px;
-                right: 16px;
             }
 
             .visible .current_selected_pack svg {
@@ -79,8 +77,8 @@ const style = /*html*/`
                 background-color: #fff;
                 border: 2px solid #FF3C7F;
                 border-bottom: none;
-                border-radius: 31px 31px 0 0;
-                padding: 6px 0 36px;
+                border-radius: 12px 12px 0 0;
+                padding: 6px 0 33px;
                 width: 100%;
             }
 
@@ -108,6 +106,10 @@ const style = /*html*/`
                 margin-bottom: 4px;
             }
 
+            .current_selected_pack p.pack_name {
+              margin-bottom: 0;
+            }
+
             p.pack_price {
                 font-family: 'Roboto', sans-serif;
                 font-style: normal;
@@ -120,8 +122,8 @@ const style = /*html*/`
             .get_now_btn {
                 background: #FF3C7F;
                 box-shadow: 0px 2px 4px rgba(12, 11, 11, 0.1), 0px 24px 60px rgba(12, 11, 11, 0.05), 0px 12px 24px rgba(12, 11, 11, 0.05);
-                border-radius: 52px;
-                padding: 6px 11px;
+                border-radius: 12px;
+                padding: 19px 11px;
                 width: 100%;
                 margin-left: 10px;
                 cursor: pointer;
@@ -131,23 +133,12 @@ const style = /*html*/`
                 text-transform: uppercase;
                 font-family: 'DIN Condensed', 'Roboto', sans-serif;
                 font-weight: 700;
-                font-size: 14px !important;
+                font-size: 20px !important;
                 line-height: 24px !important;
                 text-align: center;
                 letter-spacing: 1.5px;
                 text-transform: uppercase;
                 color: #FFFFFF;
-            }
-
-            .get_now_btn span[data-pack-price="current"] {
-                font-size: 18px !important;
-                line-height: 110% !important;
-                letter-spacing: 0.02em;
-                font-weight: 400;
-            }
-
-            .get_now_btn span[data-pack-price="regular"] {
-                text-decoration: line-through;
             }
 
             /* loader */
@@ -256,21 +247,19 @@ const style = /*html*/`
 // HTML ELEMENTS
 // -------------------------------------
 const stickyBtns = () => {
-    const currentPackFullPrices = document.querySelector('.prices')
-    const currPackDiscountPercent = currentPackFullPrices.querySelector('.ps').innerText
-    const currPackRegular = currentPackFullPrices.querySelector('.js-strike').innerText
-    const currPackPrice = currentPackFullPrices.querySelector('.js-total').innerText.split(' ')[0]
+  const currentPackFullPrices = document.querySelector('.prices')
+  const currPackPrice = currentPackFullPrices.querySelector('.js-total').innerText.split(' ')[0]
 
-    const [packs, defaultPack] = getPacksInfo()
+  const [packs, defaultPack] = getPacksInfo()
 
-    let packsHTML = packs.map((pack, index) => `
+  let packsHTML = packs.map((pack, index) => `
             <div class="pack${index === 1 ? ' active' : ''}">
                 <p class="pack_name">${pack[0]}</p>
                 <p class="pack_price">${pack[1]}</p>
             </div>
         `).join('')
 
-    return /*html*/`
+  return /*html*/`
             <div class="sticky_wrapper" data-name="sticky">
                 <div class="packs_selector">
                     <div class="packs_list">
@@ -278,15 +267,13 @@ const stickyBtns = () => {
                     </div>
                     <div class="current_selected_pack">
                         <p class="pack_name">${defaultPack[0]}</p>
-                        <p class="pack_price">${defaultPack[1]}</p>
                         <svg width="12" height="8" viewBox="0 0 12 8" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M1 1L6 6L11 1" stroke="#FF3C7F" stroke-width="2" stroke-linecap="round" />
                         </svg>
                     </div>
                 </div>
                 <div class="get_now_btn">
-                    <p>Get now and save <span data-pack-price="discount">${currPackDiscountPercent}%</span></p>
-                    <p>for <span data-pack-price="regular">${currPackRegular}</span> <span data-pack-price="current">${currPackPrice}</span></p>
+                    <p>Get now for <span data-pack-price="current">${currPackPrice}</span></p>
                 </div>
             </div>
             <div class="overlay">                
@@ -308,150 +295,146 @@ const stickyBtns = () => {
 // FUNCTIONS
 // -------------------------------------
 const getPacksInfo = () => {
-    let packsInfo = []
+  let packsInfo = []
 
-    const newPacks = document.querySelectorAll('#purchase .list-packs')
+  const newPacks = document.querySelectorAll('#purchase .list-packs')
 
-    for (const pack of newPacks) {
-        const packPrice = pack.querySelector('.pcs').innerText.toUpperCase()
-        const packName = pack.querySelector('.pack-price').innerText.toLowerCase()
+  for (const pack of newPacks) {
+    const packPrice = pack.querySelector('.pcs').innerText.toUpperCase()
+    const packName = pack.querySelector('.pack-price').innerText.toLowerCase()
 
-        packsInfo.push([packPrice, packName])
-    }
+    packsInfo.push([packPrice, packName])
+  }
 
-    return [packsInfo, packsInfo[1]]
+  return [packsInfo, packsInfo[1]]
 }
 
 const purchaseObserver = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            const purchaseH2 = document.querySelector('#purchase h2')
-            const purchaseRect = purchaseH2.getBoundingClientRect()
-            if (purchaseRect.bottom <= window.innerHeight) {
-                document.querySelector('.sticky_wrapper').classList.add('sticky_hidden')
-            }
-        } else {
-            document.querySelector('.sticky_wrapper').classList.remove('sticky_hidden')
-        }
-    })
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      const purchaseH2 = document.querySelector('#purchase h2')
+      const purchaseRect = purchaseH2.getBoundingClientRect()
+      if (purchaseRect.bottom <= window.innerHeight) {
+        document.querySelector('.sticky_wrapper').classList.add('sticky_hidden')
+      }
+    } else {
+      document.querySelector('.sticky_wrapper').classList.remove('sticky_hidden')
+    }
+  })
 }, { threshold: 0 })
 
 const sendGAEvent = (eventAction, eventLabel = '') => { // Send a Google Analytics event
-    const eventData = {
-        event: 'event-to-ga',
-        eventCategory: 'Exp: Buzz Patch sticky Get it now',
-        eventAction,
-        eventLabel,
-    }
+  const eventData = {
+    event: 'event-to-ga',
+    eventCategory: 'Exp: Buzz Patch sticky Get it now',
+    eventAction,
+    eventLabel,
+  }
 
-    window.dataLayer = window.dataLayer || []
-    dataLayer.push(eventData)
-    console.log(eventData)
+  window.dataLayer = window.dataLayer || []
+  dataLayer.push(eventData)
+  console.log(eventData)
 }
 
 const convertPackIdToClient = (number) => {
-    let clientPackId
+  let clientPackId
 
-    switch (+number) {
-        case 0:
-            clientPackId = 1
-            break
-        case 1:
-            clientPackId = 0
-            break
-        case 2:
-            clientPackId = 2
-            break
-        case 3:
-            clientPackId = 3
-            break
-        default:
-            break
-    }
+  switch (+number) {
+    case 0:
+      clientPackId = 1
+      break
+    case 1:
+      clientPackId = 0
+      break
+    case 2:
+      clientPackId = 2
+      break
+    case 3:
+      clientPackId = 3
+      break
+    default:
+      break
+  }
 
-    return clientPackId
+  return clientPackId
 }
 
 const handlePackClickEvent = (e) => {
-    const packsList = document.querySelector('.packs_list')
-    const packIndex = [...packsList.querySelectorAll('.pack')].findIndex(pack => pack.contains(e.target))
+  const packsList = document.querySelector('.packs_list')
+  const packIndex = [...packsList.querySelectorAll('.pack')].findIndex(pack => pack.contains(e.target))
 
-    if (packIndex >= 0) {
-        sendGAEvent(`Selected ${document.querySelectorAll('.pack')[packIndex].querySelector('.pack_name').innerText.toLowerCase()} option`)
-    }
+  if (packIndex >= 0) {
+    sendGAEvent(`Selected ${document.querySelectorAll('.pack')[packIndex].querySelector('.pack_name').innerText.toLowerCase()} option`)
+  }
 }
 
 const handleClicks = () => {
-    const currentSelectedPack = document.querySelector('.current_selected_pack')
-    const packsSelector = document.querySelector('.packs_selector')
-    const packsList = document.querySelector('.packs_list')
+  const currentSelectedPack = document.querySelector('.current_selected_pack')
+  const packsSelector = document.querySelector('.packs_selector')
+  const packsList = document.querySelector('.packs_list')
 
-    currentSelectedPack.addEventListener('click', () => {
-        packsSelector.classList.toggle('visible')
-        sendGAEvent('Click on Package select drop-down')
+  currentSelectedPack.addEventListener('click', () => {
+    packsSelector.classList.toggle('visible')
+    sendGAEvent('Click on Package select drop-down')
+  })
+
+  document.addEventListener('click', (event) => {
+    if (!event.target.closest('.packs_selector')) {
+      // If the packs_list element is visible, hide it
+      if (packsSelector.classList.contains('visible')) {
+        packsSelector.classList.remove('visible')
+      }
+    }
+  })
+
+  // Add click event listener to each pack element
+  const packElements = document.querySelectorAll('.pack')
+  packElements.forEach((packElement, index) => {
+    packElement.addEventListener('click', () => {
+      // Change price in the get now btn 
+      document.querySelectorAll('.js-packs input[type="radio"]')[convertPackIdToClient(index)].click()
+      document.querySelectorAll('.js-packs input[type="radio"]')[convertPackIdToClient(index)].checked = true
+
+      setTimeout(() => {
+        document.querySelector('.get_now_btn [data-pack-price="current"]').innerText = document.querySelector('.prices .js-total').innerText.split(' ')[0]
+      }, 250)
+
+      // Get the pack name and price
+      const packName = packElement.querySelector('.pack_name').textContent
+
+      // Update the current selected pack element with the new values
+      currentSelectedPack.querySelector('.pack_name').textContent = packName
+
+      // Hide the packs_list element
+      packsSelector.classList.remove('visible')
+
+      // update active pack
+      document.querySelector('.pack.active').classList.remove('active')
+
+      packElement.classList.add('active')
     })
+  })
 
-    document.addEventListener('click', (event) => {
-        if (!event.target.closest('.packs_selector')) {
-            // If the packs_list element is visible, hide it
-            if (packsSelector.classList.contains('visible')) {
-                packsSelector.classList.remove('visible')
-            }
-        }
-    })
+  // Send event by clicking on pack
+  packsList.addEventListener('click', handlePackClickEvent)
 
-    // Add click event listener to each pack element
-    const packElements = document.querySelectorAll('.pack')
-    packElements.forEach((packElement, index) => {
-        packElement.addEventListener('click', () => {
-            // Change price in the get now btn 
-            document.querySelectorAll('.js-packs input[type="radio"]')[convertPackIdToClient(index)].click()
-            document.querySelectorAll('.js-packs input[type="radio"]')[convertPackIdToClient(index)].checked = true
+  // Add click event listener to Get now btn
+  document.querySelector('.get_now_btn').addEventListener('click', () => {
+    document.getElementById('addToCart').click()
+    document.querySelector('.overlay').classList.add('show_overlay')
+    sendGAEvent('Click on CTA button', document.querySelector('.pack.active .pack_name').innerText.toLowerCase())
+  })
 
-            setTimeout(() => {
-                document.querySelector('.get_now_btn [data-pack-price="discount"]').innerText = document.querySelector('.prices .ps').innerText + '%'
-                document.querySelector('.get_now_btn [data-pack-price="regular"]').innerText = document.querySelector('.prices .js-strike').innerText
-                document.querySelector('.get_now_btn [data-pack-price="current"]').innerText = document.querySelector('.prices .js-total').innerText.split(' ')[0]
-            }, 250)
+  // Add change event listener to PDP packs and change my packs accordingly
+  document.querySelector('.form-group').addEventListener('change', (e) => {
+    const pdpPackId = e.target.id.split('-')[1]
 
-            // Get the pack name and price
-            const packName = packElement.querySelector('.pack_name').textContent
-            const packPrice = packElement.querySelector('.pack_price').textContent
+    packsList.removeEventListener('click', handlePackClickEvent)
 
-            // Update the current selected pack element with the new values
-            currentSelectedPack.querySelector('.pack_name').textContent = packName
-            currentSelectedPack.querySelector('.pack_price').textContent = packPrice
+    document.querySelectorAll('.pack')[convertPackIdToClient(pdpPackId)].click()
 
-            // Hide the packs_list element
-            packsSelector.classList.remove('visible')
-
-            // update active pack
-            document.querySelector('.pack.active').classList.remove('active')
-
-            packElement.classList.add('active')
-        })
-    })
-
-    // Send event by clicking on pack
     packsList.addEventListener('click', handlePackClickEvent)
-
-    // Add click event listener to Get now btn
-    document.querySelector('.get_now_btn').addEventListener('click', () => {
-        document.getElementById('addToCart').click()
-        document.querySelector('.overlay').classList.add('show_overlay')
-        sendGAEvent('Click on CTA button', document.querySelector('.pack.active .pack_name').innerText.toLowerCase())
-    })
-
-    // Add change event listener to PDP packs and change my packs accordingly
-    document.querySelector('.form-group').addEventListener('change', (e) => {
-        const pdpPackId = e.target.id.split('-')[1]
-
-        packsList.removeEventListener('click', handlePackClickEvent)
-
-        document.querySelectorAll('.pack')[convertPackIdToClient(pdpPackId)].click()
-
-        packsList.addEventListener('click', handlePackClickEvent)
-    })
+  })
 }
 
 // -------------------------------------
@@ -461,55 +444,55 @@ document.head.insertAdjacentHTML('beforeend', style)
 
 // Hide the loader when the page is shown
 window.addEventListener("pageshow", function (event) {
-    // Check if the page is being shown due to navigation from the second page
-    if (event.persisted) {
-        // Hide the loader if the user has returned from page 2
-        const waitForLoader = setInterval(() => {
-            if (document.querySelector('.overlay')) {
-                clearInterval(waitForLoader)
+  // Check if the page is being shown due to navigation from the second page
+  if (event.persisted) {
+    // Hide the loader if the user has returned from page 2
+    const waitForLoader = setInterval(() => {
+      if (document.querySelector('.overlay')) {
+        clearInterval(waitForLoader)
 
-                if (document.querySelector('.overlay.show_overlay')) {
-                    document.querySelector('.overlay').classList.remove('show_overlay')
-                }
-            }
-        }, WAIT_INTERVAL_TIMEOUT)
-    }
+        if (document.querySelector('.overlay.show_overlay')) {
+          document.querySelector('.overlay').classList.remove('show_overlay')
+        }
+      }
+    }, WAIT_INTERVAL_TIMEOUT)
+  }
 })
 
 const waitForLastPack = setInterval(() => {
-    if (document.querySelectorAll('.form-group .js-packs label span')[3] && document.querySelector('.prices .js-strike')) {
-        clearInterval(waitForLastPack)
+  if (document.querySelectorAll('.form-group .js-packs label span')[3] && document.querySelector('.prices .js-strike')) {
+    clearInterval(waitForLastPack)
 
-        document.body.insertAdjacentHTML('beforeend', stickyBtns())
+    document.body.insertAdjacentHTML('beforeend', stickyBtns())
 
-        const waitForStickyPacks = setInterval(() => {
-            if (document.querySelectorAll('.pack')[3]) {
-                clearInterval(waitForStickyPacks)
+    const waitForStickyPacks = setInterval(() => {
+      if (document.querySelectorAll('.pack')[3]) {
+        clearInterval(waitForStickyPacks)
 
-                handleClicks()
+        handleClicks()
 
-                purchaseObserver.observe(document.querySelector('#purchase'))
+        purchaseObserver.observe(document.querySelector('#purchase'))
 
-                document.addEventListener('scroll', () => {
-                    const purchaseH2 = document.querySelector('.package  h2')
-                    const purchaseRect = purchaseH2.getBoundingClientRect()
-                    if (purchaseRect.bottom <= window.innerHeight) {
-                        document.querySelector('.sticky_wrapper').classList.add('sticky_hidden')
-                    } else {
-                        document.querySelector('.sticky_wrapper').classList.remove('sticky_hidden')
-                    }
-                })
-            }
-        }, WAIT_INTERVAL_TIMEOUT)
-    }
+        document.addEventListener('scroll', () => {
+          const purchaseH2 = document.querySelector('.package  h2')
+          const purchaseRect = purchaseH2.getBoundingClientRect()
+          if (purchaseRect.bottom <= window.innerHeight) {
+            document.querySelector('.sticky_wrapper').classList.add('sticky_hidden')
+          } else {
+            document.querySelector('.sticky_wrapper').classList.remove('sticky_hidden')
+          }
+        })
+      }
+    }, WAIT_INTERVAL_TIMEOUT)
+  }
 }, WAIT_INTERVAL_TIMEOUT)
 
 // GA loaded and Clarity
 sendGAEvent('loaded')
 
 const recordClarity = setInterval(() => {
-    if (typeof clarity === 'function') {
-        clearInterval(recordClarity)
-        clarity('set', `buzz_patch_sticky_btn_v2`, 'variant_1')
-    }
+  if (typeof clarity === 'function') {
+    clearInterval(recordClarity)
+    clarity('set', `buzz_patch_sticky_btn_v2`, 'variant_1')
+  }
 }, WAIT_INTERVAL_TIMEOUT)
