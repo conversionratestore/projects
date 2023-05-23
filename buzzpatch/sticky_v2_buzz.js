@@ -425,8 +425,12 @@ const handleClicks = () => {
 
   // Add click event listener to Get now btn
   document.querySelector('.get_now_btn').addEventListener('click', () => {
-    document.getElementById('addToCart').click()
     document.querySelector('.overlay').classList.add('show_overlay')
+
+    requestAnimationFrame(() => {
+      document.getElementById('addToCart').click()
+    })
+
     sendGAEvent('Click on CTA button', document.querySelector('.pack.active .pack_name').innerText.toLowerCase())
   })
 
@@ -471,7 +475,12 @@ const waitForLastPack = setInterval(() => {
     document.body.insertAdjacentHTML('beforeend', stickyBtns())
 
     const waitForStickyPacks = setInterval(() => {
-      if (document.querySelectorAll('.pack')[3]) {
+      if (
+        document.querySelectorAll('.pack')[3]
+        && document.querySelector('.get_now_btn')
+        && document.querySelector('.overlay')
+        && document.querySelector('.sticky_wrapper')
+      ) {
         clearInterval(waitForStickyPacks)
 
         handleClicks()
