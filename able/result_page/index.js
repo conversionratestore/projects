@@ -1838,7 +1838,7 @@ function reviewIo () {
                 }
             </style>
             <div class="flx title">
-                <h2>User love our program</h2>
+                <h2>Users love our program</h2>
                 <div class="stars">
                     <p>4.9 <img src="${git}stars.svg" alt="stars"></p>
                     <p><span>20</span> Reviews</p>
