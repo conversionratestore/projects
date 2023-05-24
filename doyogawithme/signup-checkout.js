@@ -488,7 +488,7 @@ let headHTML = `
         </svg>
         <span>Back</span>
     </a>
-    <div class="progressbar flex justify-md-center justify-end ${window.location.href.includes('yogi/login?destination') ? 'hidden' : ''}">
+    <div class="progressbar flex justify-md-center justify-end ${window.location.href.includes('?destination') ? 'hidden' : ''}">
         <div class="step checked active"><div class="flex items-center" data-step="">Choose a plan</div></div>
         <div class="step active"><div class="flex items-center" data-step="2">Create your account</div></div>
         <div class="step"><div class="flex items-center" data-step="3">Payment</div></div>
@@ -618,6 +618,11 @@ function init() {
                 document.querySelector('.form-actions .button').addEventListener('click', () => {
                     lsRememberMe('.remember-me input', '#edit-name')
                 })
+
+                if (window.location.href.includes('yogi/login?destination')) {
+                    document.querySelector('.singup a').href = document.querySelector('.singup a').href + '?destination='
+                }
+
                 pushDataLayer('Visibility','Log in form')
 
                 document.querySelector('.social-auth.auth-link').addEventListener('click', () => {
@@ -648,7 +653,6 @@ function init() {
                 </style>`)
                 document.querySelector('.o-page__mainContentWrapper').insertAdjacentHTML('beforebegin',`
                 <div class="header-logo text-center"> <a href="/" class="logo"><img src="/themes/custom/lotus/logo.png" alt="image"></a></div>`);
-
             }
 
             if (window.location.href.includes('/checkout') && window.location.href.includes('/login') && document.querySelectorAll('.sfc-tabs__tablistItem > a').length > 1) {
@@ -868,7 +872,11 @@ function init() {
                     })
                 })
                 document.querySelector('.form-actions .button').insertAdjacentHTML('afterend', `<button type="button" class="btn-reg">Sign Up</button><p class="text-center singup">Already have an account? <a href="/yogi/login">Log in</a></p>`)
-                
+            
+                if (window.location.href.includes('yogi/register?destination')) {
+                    document.querySelector('.singup a').href = document.querySelector('.singup a').href + '?destination='
+                }
+
                 document.querySelector('.btn-reg').addEventListener('click', (e) => {
                     if (document.querySelectorAll('.check-accept input')[0].checked && 
                         document.querySelector('.form-email').value != '' && 

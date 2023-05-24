@@ -488,7 +488,7 @@ let headHTML = `
         </svg>
         <span>Back</span>
     </a>
-    <div class="progressbar flex justify-md-center justify-end ${window.location.href.includes('yogi/login?destination') ? 'hidden' : ''}">
+    <div class="progressbar flex justify-md-center justify-end ${window.location.href.includes('?destination') ? 'hidden' : ''}">
         <div class="step checked active"><div class="flex items-center" data-step="">Choose a plan</div></div>
         <div class="step active"><div class="flex items-center" data-step="2">Create your account</div></div>
         <div class="step"><div class="flex items-center" data-step="3">Payment</div></div>
@@ -615,6 +615,10 @@ function init() {
                 document.querySelector('form [href="/yogi/password"]').innerHTML = 'Forgot Password?';
                 document.querySelector('.form-actions .button[value="Log in"]').insertAdjacentHTML('afterend', `<p class="text-center singup">Don’t have an account? <a href="/yogi/register">Sing up</a></p>`)
                 
+                if (window.location.href.includes('yogi/login?destination')) {
+                    document.querySelector('.singup a').href = document.querySelector('.singup a').href + '?destination='
+                }
+
                 document.querySelector('.form-actions .button').addEventListener('click', () => {
                     lsRememberMe('.remember-me input', '#edit-name')
                 })
@@ -889,6 +893,10 @@ function init() {
                 })
                 document.querySelector('.form-actions .button').insertAdjacentHTML('afterend', `<button type="button" class="btn-reg">Sign Up</button><p class="text-center singup">Already have an account? <a href="/yogi/login">Log in</a></p>`)
                 
+                if (window.location.href.includes('yogi/register?destination')) {
+                    document.querySelector('.singup a').href = document.querySelector('.singup a').href + '?destination='
+                }
+
                 document.querySelector('.btn-reg').addEventListener('click', (e) => {
                     if (document.querySelectorAll('.check-accept input')[0].checked && 
                         document.querySelector('.form-email').value != '' && 
