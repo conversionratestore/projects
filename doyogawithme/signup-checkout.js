@@ -714,40 +714,40 @@ function init() {
 
                 pushDataLayer('Visibility','Create your account')
 
-                document.querySelector('[data-drupal-selector="edit-login-returning-customer"]').insertAdjacentHTML('afterbegin', `
-                <h2>Log In</h2>
-                <div class="social-auth__networks">
-                    <a class="social-auth auth-link" href="/yogi/login/google?destination=%2Fcheckout%2F23414%2Flogin">${logInGoogle}</a>
-                </div>
-                <div class="social-auth__container">
-                    <div class="social-auth__divider">
-                        <span class="social-auth__divider__text">
-                        or
-                        </span>
-                    </div>
-                </div>`)
-                document.querySelector('[data-drupal-selector="edit-login-register"]').insertAdjacentHTML('afterbegin', `
-                <h2>Create your account</h2>
-                <div class="social-auth__networks">
-                    <a class="social-auth auth-link" href="/yogi/login/google?destination=%2Fcheckout%2F23414%2Flogin">${logInGoogle}</a>
-                </div>
-                <div class="social-auth__container">
-                    <div class="social-auth__divider">
-                        <span class="social-auth__divider__text">
-                        or
-                        </span>
-                    </div>
-                </div>`)
+                // document.querySelector('[data-drupal-selector="edit-login-returning-customer"]').insertAdjacentHTML('afterbegin', `
+                // <h2>Log In</h2>
+                // <div class="social-auth__networks">
+                //     <a class="social-auth auth-link" href="/yogi/login/google?destination=%2Fcheckout%2F23414%2Flogin">${logInGoogle}</a>
+                // </div>
+                // <div class="social-auth__container">
+                //     <div class="social-auth__divider">
+                //         <span class="social-auth__divider__text">
+                //         or
+                //         </span>
+                //     </div>
+                // </div>`)
+                // document.querySelector('[data-drupal-selector="edit-login-register"]').insertAdjacentHTML('afterbegin', `
+                // <h2>Create your account</h2>
+                // <div class="social-auth__networks">
+                //     <a class="social-auth auth-link" href="/yogi/login/google?destination=%2Fcheckout%2F23414%2Flogin">${logInGoogle}</a>
+                // </div>
+                // <div class="social-auth__container">
+                //     <div class="social-auth__divider">
+                //         <span class="social-auth__divider__text">
+                //         or
+                //         </span>
+                //     </div>
+                // </div>`)
             
-                //event: Click google Log in form
-                document.querySelector('[data-drupal-selector="edit-login-returning-customer"] .social-auth').addEventListener('click', (e) => {
-                    pushDataLayer('Login with google button','Log in form')
-                })
-                //event: Click google Create your account
-                document.querySelector('[data-drupal-selector="edit-login-register"] .social-auth').addEventListener('click', (e) => {
-                    pushDataLayer('Sign up with google','Create your account')
-                })
-                document.querySelector('[data-drupal-selector="edit-login-register"] .social-auth.auth-link span').innerHTML = 'Sign up with Google'
+                // //event: Click google Log in form
+                // document.querySelector('[data-drupal-selector="edit-login-returning-customer"] .social-auth').addEventListener('click', (e) => {
+                //     pushDataLayer('Login with google button','Log in form')
+                // })
+                // //event: Click google Create your account
+                // document.querySelector('[data-drupal-selector="edit-login-register"] .social-auth').addEventListener('click', (e) => {
+                //     pushDataLayer('Sign up with google','Create your account')
+                // })
+                // document.querySelector('[data-drupal-selector="edit-login-register"] .social-auth.auth-link span').innerHTML = 'Sign up with Google'
 
                 document.querySelector('[data-drupal-selector="edit-login-register"] h2').innerHTML = 'Create your account';
 
