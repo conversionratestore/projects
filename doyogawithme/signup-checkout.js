@@ -714,30 +714,10 @@ function init() {
 
                 pushDataLayer('Visibility','Create your account')
 
-                // document.querySelector('[data-drupal-selector="edit-login-returning-customer"]').insertAdjacentHTML('afterbegin', `
-                // <h2>Log In</h2>
-                // <div class="social-auth__networks">
-                //     <a class="social-auth auth-link" href="/yogi/login/google?destination=%2Fcheckout%2F23414%2Flogin">${logInGoogle}</a>
-                // </div>
-                // <div class="social-auth__container">
-                //     <div class="social-auth__divider">
-                //         <span class="social-auth__divider__text">
-                //         or
-                //         </span>
-                //     </div>
-                // </div>`)
-                // document.querySelector('[data-drupal-selector="edit-login-register"]').insertAdjacentHTML('afterbegin', `
-                // <h2>Create your account</h2>
-                // <div class="social-auth__networks">
-                //     <a class="social-auth auth-link" href="/yogi/login/google?destination=%2Fcheckout%2F23414%2Flogin">${logInGoogle}</a>
-                // </div>
-                // <div class="social-auth__container">
-                //     <div class="social-auth__divider">
-                //         <span class="social-auth__divider__text">
-                //         or
-                //         </span>
-                //     </div>
-                // </div>`)
+                document.querySelector('[data-drupal-selector="edit-login-returning-customer"]').insertAdjacentHTML('afterbegin', `
+                <h2>Log In</h2>`)
+                document.querySelector('[data-drupal-selector="edit-login-register"]').insertAdjacentHTML('afterbegin', `
+                <h2>Create your account</h2>`)
             
                 // //event: Click google Log in form
                 // document.querySelector('[data-drupal-selector="edit-login-returning-customer"] .social-auth').addEventListener('click', (e) => {
