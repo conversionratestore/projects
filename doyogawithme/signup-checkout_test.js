@@ -60,6 +60,9 @@ input[type="checkbox"], input[type="radio"], .form-item-payment-information-add-
     margin-bottom: 30px;
     font-family: 'Manrope', sans-serif;
 }
+.progressbar.hidden {
+    display: none!important;
+}
 .progressbar .step {
     font-weight: 600;
     font-size: 14px;
@@ -485,7 +488,7 @@ let headHTML = `
         </svg>
         <span>Back</span>
     </a>
-    <div class="progressbar flex justify-md-center justify-end">
+    <div class="progressbar flex justify-md-center justify-end ${window.location.href.includes('yogi/login?destination') ? 'hidden' : ''}">
         <div class="step checked active"><div class="flex items-center" data-step="">Choose a plan</div></div>
         <div class="step active"><div class="flex items-center" data-step="2">Create your account</div></div>
         <div class="step"><div class="flex items-center" data-step="3">Payment</div></div>
