@@ -53,24 +53,12 @@ const style = /*html*/`
       transition: bottom 0.5s ease-in-out 0.1s;
     }
 
-    iframe#chat-button.average {
-      bottom: 100px !important;
-    }
-
-    iframe#chat-button.higher {
-      bottom: 135px !important;
-    }
-
     body #privy-container #privy-inner-container .privy-mobile.privy-tab-container.privy-basic {
         z-index: 99 !important;
         transition: bottom 0.5s ease-in-out;
         padding: 0 !important;
         bottom: 0;
     } 
-
-    body #privy-container #privy-inner-container .privy-mobile.privy-tab-container.privy-basic.custom_pos {
-        bottom: 82px;
-    }
     
     #privy-container #privy-inner-container .privy-mobile.privy-tab-container.privy-basic .privy-tab.privy-mobile-tab {
         text-align: center;
@@ -456,6 +444,30 @@ bottom: auto !important;
   color: #773BD9 !important;
 }
 
+.product_info.desktop {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.product_info.desktop .refund{
+  margin-bottom: 30px;
+}
+
+.choose_kit {
+  background: radial-gradient(90.92% 2726% at 2.15% 56%, #691BEA 0%, #9E41EF 100%);
+  border-radius: 4px;
+  padding: 11px 64px;
+  font-weight: 700;
+  font-family: "Urbanist", sans-serif;
+  font-size: 18px;
+  line-height: 28px;
+  text-align: center;
+  letter-spacing: 1px;
+  color: #FFFFFF;
+  max-width: 100%;
+}
+
 .product_info h2 {
   margin-bottom: 16px;
 }
@@ -476,6 +488,7 @@ bottom: auto !important;
   margin: 0;
   padding: 0;
   list-style: none;
+  margin-bottom: 24px;
 }
 
 .product_info ul li {
@@ -584,7 +597,7 @@ bottom: auto !important;
   position: fixed;
   left: 0;
   right: 0;
-  bottom: -100%;
+  bottom: 0;
   background: #FFFFFF;
   box-shadow: 0px 0px 16px rgba(107, 28, 235, 0.16);
   padding: 16px;
@@ -600,18 +613,17 @@ bottom: auto !important;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  max-width: 844px;
+  max-width: 784px;
   margin: 0 auto;
 }
 
 .fixed_upsell>div h5 {
   font-weight: 700;
-  max-width: 57.7%;
   margin: 0 !important;
 }
 
 .fixed_upsell>div button {
-  max-width: 38.74%;
+  max-width: 267px;
   margin: 0;
   padding: 11px;
 }
@@ -630,6 +642,10 @@ bottom: auto !important;
 
 .accordion_article {
   max-width: 728px;
+}
+
+.accordion_article .choose_kit {
+  margin-top: 16px;
 }
 
 .accordion_header {
@@ -2497,6 +2513,44 @@ max-width: 1248px;
   display: none;
 }
 
+article.no_risk .choose_kit {
+  margin-top: 20px;
+}
+
+.efficient .choose_kit {
+    margin-top: 16px;
+  }
+
+  .comparison  .choose_kit_wrap {
+    margin-top: 32px;
+    text-align: center;
+  }
+
+  .frequency.desktop .choose_kit {
+    margin-top: 32px;
+  }
+
+  .frequency.mobile .choose_kit {
+    margin-top: 24px;
+  }
+
+  .choose_kit_wrap {
+    text-align: center;
+  }
+
+  #reviews .choose_kit_wrap {
+    margin-top: 70px;
+  }
+  
+  .aliments .choose_kit_wrap {
+    margin-top: 48px;
+  }
+
+  #rest .choose_kit_wrap {
+    margin: 90px auto;
+    padding: 0 24px;
+  }
+
 @media (max-width: 1150px) {
   .product_gallery>div:last-child {
     max-width: 45%;
@@ -2510,10 +2564,13 @@ max-width: 1248px;
 }
 
 @media (max-width: 768px) {
+  iframe#chat-button {
+    bottom: 90px !important;
+  }
 
-iframe#chat-button.higher {
-    bottom: 135px !important;
-}
+  iframe#chat-button.lower {
+    bottom: 20px !important;
+  }
 
 #faq .gina .review p img {
   position: absolute;
@@ -2542,7 +2599,7 @@ iframe#chat-button.higher {
   }
 
   .desktop {
-    display: none;
+    display: none !important;
   }
 
   .flx>* {
@@ -2585,7 +2642,6 @@ iframe#chat-button.higher {
   article.bundle_article {
     overflow: hidden;
   }
-
 
 
   #about .mobile_rating {
@@ -3481,9 +3537,40 @@ iframe#chat-button.higher {
   .total span {
     font-weight: 700;
   }
+
+  .choose_kit {
+    padding: 11px;
+    width: 100%;
+  }
+
+  .accordion_article .choose_kit {
+    margin-top: 12px;
+  }
+
+  article.no_risk {
+    margin-bottom: 47px;
+  }
+  
+  .efficient .choose_kit,
+  .aliments .choose_kit_wrap,
+  .comparison .choose_kit_wrap {
+    margin-top: 24px;
+  }
+
+  #reviews .choose_kit_wrap {
+    margin-top: 36px;
+  }
+
+  #rest .choose_kit_wrap {
+    margin: 36px 0;
+  }
 }
     </style>
 `
+
+const chooseKitBtn = (btnPosition = '') =>
+  /*html*/`<button class="choose_kit" ${btnPosition ? `data-event-pos="${btnPosition}"` : ''}>Choose your kit</button>`
+
 const html = /*html*/`
     <main class="pdp_main">
         <section id="about" data-section="about">
@@ -3667,20 +3754,23 @@ const html = /*html*/`
                     </div>
                 </div>
                 <div class="product_info desktop">
-                    <h2>NOVAA LIGHT PAD - The Deep Healing Therapy</h2>
-                    <div class="rating">
-                        <img src="https://conversionratestore.github.io/projects/novaalab/img/5_stars.svg" alt="">
-                        <span class="rate">4.8</span>
-                        <p class="review">(<u>From Reviews</u>)</p>
+                    <div>
+                      <h2>NOVAA LIGHT PAD - The Deep Healing Therapy</h2>
+                      <div class="rating">
+                          <img src="https://conversionratestore.github.io/projects/novaalab/img/5_stars.svg" alt="">
+                          <span class="rate">4.8</span>
+                          <p class="review">(<u>From Reviews</u>)</p>
+                      </div>
+                      <h4>Only 20 minutes a day to:</h4>
+                      <ul data-visibility="Visibility Only 20 minets a day" data-ga-label='Only 20 minutes a day to'>
+                          <li>Heal your back, knees, neck</li>
+                          <li>Get rid of back pain, muscle pain, joint pain</li>
+                          <li>Reduce arthritis, inflammations and chronic pains</li>
+                          <li>Treat neuropathy and chronic pain conditions</li>
+                          <li>Heal faster after replacement/surgery</li>
+                      </ul>
+                      ${chooseKitBtn('Only 20 minutes a day to')}
                     </div>
-                    <h4>Only 20 minutes a day to:</h4>
-                    <ul data-visibility="Visibility Only 20 minets a day" data-ga-label='Only 2 minutes ...'>
-                        <li>Heal your back, knees, neck</li>
-                        <li>Get rid of back pain, muscle pain, joint pain</li>
-                        <li>Reduce arthritis, inflammations and chronic pains</li>
-                        <li>Treat neuropathy and chronic pain conditions</li>
-                        <li>Heal faster after replacement/surgery</li>
-                    </ul>
                     <div class="refund">
                         <img src="https://conversionratestore.github.io/projects/novaalab/img/clinicaly_proven.svg" alt="">
                         <p>Pain relief within 60 days or your money back. Guaranteed.</p>
@@ -3700,7 +3790,7 @@ const html = /*html*/`
             <div class="fixed_upsell">
                 <div>
                     <h5>NOVAA LIGHT PAD - The Deep Healing Therapy</h5>
-                    <button>Get Novaa Light Pad</button>
+                    <button>Choose your kit</button>
                 </div>
             </div>
             <article class="product_info mobile">
@@ -3713,6 +3803,7 @@ const html = /*html*/`
                         <li>Treat neuropathy and chronic pain conditions</li>
                         <li>Heal faster after replacement/surgery</li>
                     </ul>
+                    ${chooseKitBtn('Only 20 minutes a day to')}
                 </div>
             </article>
             <div class="refund mobile">
@@ -3738,6 +3829,7 @@ const html = /*html*/`
                             will
                             this allow you to recuperate more quickly, but it’ll also make you less likely to suffer any
                             scarring or long-term muscle damage.</p>
+                            ${chooseKitBtn('Experience faster recovery and pain relief with Novaa Light Pad')}
                     </div>
                     <div class="accordion_header">
                         <h6>Back pain</h6>
@@ -3749,6 +3841,7 @@ const html = /*html*/`
                             restore proper cell function, and improve circulation. This means that consistent use of the
                             Novaa Pad can help ease back pain for good. That means less time worrying about whether you
                             can bend over to pick up the shopping, and more time doing the activities you love.</p>
+                            ${chooseKitBtn('Experience faster recovery and pain relief with Novaa Light Pad')}
                     </div>
                     <div class="accordion_header">
                         <h6>Hand and Knee pain</h6>
@@ -3759,6 +3852,7 @@ const html = /*html*/`
                             inflammation is the result of tissue damage. By providing the cells in these areas with more
                             energy via the Novaa Light Pad, you can accelerate the healing process – and by healing the
                             underlying tissue, you can remove inflammation and pain.</p>
+                            ${chooseKitBtn('Experience faster recovery and pain relief with Novaa Light Pad')}
                     </div>
                     <div class="accordion_header">
                         <h6>Neck pain</h6>
@@ -3773,6 +3867,7 @@ const html = /*html*/`
                             Using the Novaa Light Pad to release energizing light into your neck can help to ‘undo’ some
                             of these symptoms – this is because healing damaged cells and improving circulation can
                             relieve the tension and inflammation in your neck.</p>
+                            ${chooseKitBtn('Experience faster recovery and pain relief with Novaa Light Pad')}
                     </div>
                     <div class="accordion_header">
                         <h6>Joint pain and Arthritis</h6>
@@ -3782,6 +3877,7 @@ const html = /*html*/`
                         <p>Arthritis and Joint Pain occurs when the cartilage in your joints gets worn down overtime or
                             is negatively affected by inflammation. Applying the Novaa Light Pad over affected joints
                             can help heal the cells in that area, relieving joint pain and restoring mobility.</p>
+                            ${chooseKitBtn('Experience faster recovery and pain relief with Novaa Light Pad')}
                     </div>
                     <div class="accordion_header">
                         <h6>Nerve pain and Neuropathy</h6>
@@ -3796,6 +3892,7 @@ const html = /*html*/`
                             circulation to the extremities so as to prevent any future nerve damage or pain. This, along
                             with Electric Therapy, is giving relief to Neuropathy sufferers worldwide, and today you can
                             join them, and start taking back your life and living pain free.</p>
+                            ${chooseKitBtn('Experience faster recovery and pain relief with Novaa Light Pad')}
                     </div>
                     <div class="accordion_header">
                         <h6>Any other Body pain</h6>
@@ -3807,6 +3904,7 @@ const html = /*html*/`
                             Novaa Pad, you can experience healing on a cellular level, across all areas of your body.
                             This is because it’s light therapy penetrates into the body’s deepest tissues, supplying
                             damaged cells with more energy so that they can finally begin to recover.</p>
+                            ${chooseKitBtn('Experience faster recovery and pain relief with Novaa Light Pad')}
                     </div>
                     <div class="accordion_header">
                         <h6>Inflammation and Swelling</h6>
@@ -3817,6 +3915,7 @@ const html = /*html*/`
                             Novaa Light Pad can release healing light deep enough into the body. When these damaged
                             tissues are provided with more energy by Novaa's Light, they will begin to heal on a
                             cellular level – removing the root cause of your inflammation and swelling.</p>
+                            ${chooseKitBtn('Experience faster recovery and pain relief with Novaa Light Pad')}
                     </div>
                     <div class="accordion_header">
                         <h6>Skin Issues such as wrinkles, scars, pigmentation, and eczema</h6>
@@ -3832,6 +3931,7 @@ const html = /*html*/`
                             can energize your cells into a full recovery, and begin reducing any negative skin
                             conditions. That means healthier, smoother, and clearer skin, without irritation, flakiness
                             or inflammation. </p>
+                            ${chooseKitBtn('Experience faster recovery and pain relief with Novaa Light Pad')}
                     </div>
                     <div class="accordion_header">
                         <h6>Sport Injuries such as tendinitis, strained and torn muscles, and tennis elbow</h6>
@@ -3842,6 +3942,7 @@ const html = /*html*/`
                             damage then causes inflammation and pain. However, it’s possible to target the root cause of
                             your sports injuries by using the Novaa Pad to supply your body with extra energy. With more
                             energy, the damaged cells can heal faster, reducing pain and recovery time.</p>
+                            ${chooseKitBtn('Experience faster recovery and pain relief with Novaa Light Pad')}
                     </div>
                     <div class="accordion_header">
                         <h6>Pet Injuries</h6>
@@ -3852,6 +3953,7 @@ const html = /*html*/`
                             struggles with pain or inflammation, or has arthritis, then Novaa Light Pad can be used to
                             stimulate their natural healing process, allowing your pet to be pain-free, happy, and
                             energetic again.</p>
+                            ${chooseKitBtn('Experience faster recovery and pain relief with Novaa Light Pad')}
                     </div>
                     <div class="contact">
                         <p>Still not sure if Novaa Light Pad is the right solution for you?</p>
@@ -4106,6 +4208,7 @@ const html = /*html*/`
                             price, and we want you to share our confidence!</p>
                         <p>If you're unhappy with the product for any reason, simply return it and we'll give you a full
                             refund within 60 days of receipt.</p>
+                        ${chooseKitBtn(`Yes, we're THAT confident ...`)}
                     </div>
                 </div>
                 </div>
@@ -4186,6 +4289,7 @@ const html = /*html*/`
                         your deeper cells.</p>
                     <p>Imagine this healing light reaching your <b>tissues, muscles, tendons and even bones,</b>
                         increasing blood circulation, further promoting the healing process.</p>
+                    ${chooseKitBtn('What makes it so efficient?')}
                 </div>
                 <div class="mobile">
                     <h2>What makes it so efficient?</h2>
@@ -4207,6 +4311,7 @@ const html = /*html*/`
                                 increasing blood circulation, further promoting the healing process.</p>
                         </div>
                     </div>
+                    ${chooseKitBtn('What makes it so efficient?')}
             </article>
             <article class="result">
                 <h4 class="line">See our customers' results<span></span></h4>
@@ -4280,6 +4385,9 @@ const html = /*html*/`
                             </div>
                         </div>
                     </div>
+                    <div class="choose_kit_wrap">
+                      ${chooseKitBtn('Novaa Light Pad vs Other Red Light Pad')}
+                    </div>                    
                 </div>
             </article>
             <article class="relax">
@@ -4426,9 +4534,10 @@ const html = /*html*/`
                     </ul>
                     <p>The combination of these 2 lights will activate the auto-healing of cells, and you will finally
                         get rid of this long-lasting pain.</p>
+                    ${chooseKitBtn('Technical specifications')}
                 </div>
                 <div class="frequency mobile">
-                    <div class="accordion one_txt">
+                      <div class="accordion one_txt">
                         <div class="accordion_header">
                             <h6>Light frequency / strength</h6>
                             <img src="https://conversionratestore.github.io/projects/novaalab/img/expand_more_white.svg" alt="">
@@ -4458,6 +4567,7 @@ const html = /*html*/`
                                 finally
                                 get rid of this long-lasting pain.</p>
                         </div>
+                        ${chooseKitBtn('Technical specifications')}
                     </div>
 
             </article>
@@ -4534,6 +4644,10 @@ const html = /*html*/`
                 <div class="mobile" data-visibility="Visibility When will the Novaab Light help you - infographics" data-ga-label="When will the Novaab Light help you - infographics">
                     <img src="https://conversionratestore.github.io/projects/novaalab/img/proven_mobile.jpg"  alt="">
                 </div>
+                <div class="choose_kit_wrap">
+                ${chooseKitBtn('When will Novaa Light help you?')}
+                </div>
+                
             </article>
             <article class="promise">
                 <div>
@@ -4616,6 +4730,9 @@ const html = /*html*/`
                     </div>
                 </div>
                 <div class="reviews_block" data-visibility="Visibility review rating block" data-ga-label="Reviews"></div>
+                <div class="choose_kit_wrap">
+                ${chooseKitBtn('Reviews')}
+                </div>
             </article>
         </section>
         <section id="faq" data-section="faq">
@@ -4805,6 +4922,9 @@ const html = /*html*/`
                     </div>
                 </div>
             </article>
+            <div class="choose_kit_wrap">
+            ${chooseKitBtn('Help YOU heal faster from home')}
+            </div>            
             <article class="contact_us" data-visibility="Visibility Contact Us" data-ga-label="Contact Us">
                 <h4 class="line">Contact Us<span></span></h4>
                 <div class="content flx">
@@ -5043,6 +5163,9 @@ const checkVisibilityAfterMs = (el, ms = 3000) => { // Checks element visibility
           else if (el.id === 'video_wrap') {
             sendGAEvent('Visibility third video', 'Perfect for your daily routine')
           }
+          else if (el.dataset.eventPos) {
+            sendGAEvent('Visibility Choose your kit', el.dataset.eventPos)
+          }
           else {
             if (el.dataset.gaLabel) {
               sendGAEvent(`${el.dataset.visibility}`, el.dataset.gaLabel)
@@ -5126,20 +5249,6 @@ waitForElement('.kit button').then(btn =>
 waitForElement('.bundle_save button').then(btn => btn.addEventListener('click', () => {
   addToCart(39758302806070)
   sendGAEvent('Click on Add to cart 2', 'Bandle and save')
-}))
-
-waitForElement('.fixed_upsell button').then(btn => btn.addEventListener('click', () => {
-  sendGAEvent('Click on Get Novaalab light pad sticky button', 'Sticky button')
-
-  let target = '#kit'
-
-  if (DEVICE === 'mobile') {
-    target = '#mob_scroll'
-  }
-
-  $('html, body').animate({
-    scrollTop: $(target).offset().top - $('.links_container').outerHeight() - (DEVICE === 'mobile' ? 30 : 60)
-  }, 2000)
 }))
 
 // SHIPPING CUSTOM SELECT
@@ -5500,6 +5609,31 @@ let jqueryLoaded = setInterval(() => {
       }
     }, WAIT_INTERVAL_TIMEOUT)
 
+    // Choose kit CTA btn
+    const waitForChooseKit = setInterval(() => {
+      if (document.querySelectorAll('.choose_kit')[21]) {
+        clearInterval(waitForChooseKit)
+
+        for (const btn of document.querySelectorAll('.choose_kit')) {
+          btn.addEventListener('click', () => {
+            sendGAEvent('Click on Choose your kit', btn.dataset.eventPos)
+
+            let target = '#kit'
+
+            if (DEVICE === 'mobile') {
+              target = '#mob_scroll'
+            }
+
+            $('html, body').animate({
+              scrollTop: $(target).offset().top - $('.links_container').outerHeight() - (DEVICE === 'mobile' ? 30 : 60)
+            }, 2000)
+          })
+
+          checkVisibilityAfterMs(btn)
+        }
+      }
+    }, WAIT_INTERVAL_TIMEOUT)
+
     // ACCORDION
     const waitForAccordionHeaders = setInterval(() => {
       if (document.querySelectorAll('.accordion_header')[19]) {
@@ -5642,12 +5776,24 @@ let jqueryLoaded = setInterval(() => {
       }
     }, WAIT_INTERVAL_TIMEOUT)
 
+    waitForElement('.fixed_upsell button').then(btn => btn.addEventListener('click', () => {
+      sendGAEvent('Click on Choose your kit', 'Sticky button')
+
+      let target = '#kit'
+
+      if (DEVICE === 'mobile') {
+        target = '#mob_scroll'
+      }
+
+      $('html, body').animate({
+        scrollTop: $(target).offset().top - $('.links_container').outerHeight() - (DEVICE === 'mobile' ? 30 : 60)
+      }, 2000)
+    }))
+
     // fix chat 
     if (DEVICE === 'mobile') {
       waitForElement('#chat-button').then((chatButtonIframe) => {
         let savedPosition = 0
-
-        console.log('chatButtonIframe', chatButtonIframe)
 
         const waitForBtn = setInterval(() => {
           if (chatButtonIframe.contentWindow && chatButtonIframe.contentWindow?.document.querySelector('#gorgias-chat-messenger-button')) {
@@ -5662,11 +5808,7 @@ let jqueryLoaded = setInterval(() => {
             // Add a click event listener to the messenger button
             messengerButton.addEventListener('click', () => {
               savedPosition = window.pageYOffset
-              console.log(savedPosition)
-              console.log('clicked')
             })
-
-            console.log(savedPosition)
 
             // Create a new MutationObserver instance
             const observer = new MutationObserver(mutations => {
@@ -5712,42 +5854,18 @@ const waitForNav = setInterval(() => {
           navList.classList.add('fixed')
 
           if (!once) {
-            sendGAEvent('Visibility Get Novaalab light pad sticky button', 'Sticky button')
+            sendGAEvent('Visibility Choose your kit', 'Sticky button')
             sendGAEvent('Visibility navigation panel')
             once = true
           }
 
           document.querySelector('.empty_space').style.paddingTop = heightWithMargin + 'px'
-
-          if (document.querySelector('#privy-container #privy-inner-container .privy-mobile.privy-tab-container.privy-basic')) {
-            document.querySelector('#privy-container #privy-inner-container .privy-mobile.privy-tab-container.privy-basic').classList.add('custom_pos')
-          }
-
-          if (DEVICE === 'mobile' && document.querySelector('iframe#chat-button')) {
-            if (document.getElementById('privy-container')) {
-              document.querySelector('iframe#chat-button').classList.add('higher')
-            } else {
-              document.querySelector('iframe#chat-button').classList.add('average')
-            }
-          }
         }
       } else {
         if (navList.classList.contains('fixed')) {
           navList.classList.remove('fixed')
 
           document.querySelector('.empty_space').style.paddingTop = '0px'
-
-          if (document.querySelector('#privy-container #privy-inner-container .privy-mobile.privy-tab-container.privy-basic')) {
-            document.querySelector('#privy-container #privy-inner-container .privy-mobile.privy-tab-container.privy-basic').classList.remove('custom_pos')
-          }
-
-          if (DEVICE === 'mobile' && document.querySelector('iframe#chat-button')) {
-            if (document.querySelector('iframe#chat-button.higher')) {
-              document.querySelector('iframe#chat-button.higher').classList.remove('higher')
-            } else if (document.querySelector('iframe#chat-button.average')) {
-              document.querySelector('iframe#chat-button.average').classList.remove('average')
-            }
-          }
         }
       }
     })
@@ -5771,33 +5889,6 @@ const waitForContactLinks = setInterval(() => {
     })
   }
 }, WAIT_INTERVAL_TIMEOUT)
-
-// PRIVY 
-const waitForPrivy = setInterval(() => {
-  if (document.getElementById('privy-container')) {
-    clearInterval(waitForPrivy)
-
-    sendGAEvent('Visibility Get discount button', 'Sticky button')
-
-    document.getElementById('privy-container').addEventListener('click', () => {
-      sendGAEvent('Click on Get discount button', 'Sticky button')
-
-    })
-
-    if (DEVICE === 'mobile') {
-      const waitForH2 = setInterval(() => {
-        if (document.querySelector('.privy-truncate')) {
-          clearInterval(waitForH2)
-
-          document.querySelector('.privy-mobile-tab').innerHTML = `<p class="custom_get">Get discount 
-                <svg xmlns="http://www.w3.org/2000/svg" width="8" height="10" viewBox="0 0 8 10" fill="none">
-                <path d="M0.912597 1.175L4.72926 5L0.912598 8.825L2.0876 10L7.0876 5L2.0876 1.87058e-07L0.912597 1.175Z" fill="white"/>
-                </svg></p>`
-        }
-      }, WAIT_INTERVAL_TIMEOUT)
-    }
-  }
-}, 500)
 
 const waitForVideos = setInterval(() => {
   if (document.getElementById('r-1663147869219') && document.querySelector('.videos')) {
@@ -5847,35 +5938,12 @@ if (DEVICE === 'mobile') {
       if (entries[0].isIntersecting) {
         document.querySelector('.fixed_upsell')?.classList.add('under_bottom')
 
-        if (DEVICE === 'mobile') {
-          if (document.querySelector('#privy-container #privy-inner-container .privy-mobile.privy-tab-container.privy-basic')) {
-            document.querySelector('#privy-container #privy-inner-container .privy-mobile.privy-tab-container.privy-basic').classList.remove('custom_pos')
-          }
+        document.querySelector('iframe#chat-button')?.classList.add('lower')
 
-          if (document.querySelector('iframe#chat-button')) {
-            if (document.querySelector('iframe#chat-button.higher')) {
-              document.querySelector('iframe#chat-button.higher').classList.remove('higher')
-            } else if (document.querySelector('iframe#chat-button.average')) {
-              document.querySelector('iframe#chat-button.average').classList.remove('average')
-            }
-          }
-        }
       } else {
         document.querySelector('.under_bottom')?.classList.remove('under_bottom')
 
-        if (DEVICE === 'mobile') {
-          if (document.querySelector('#privy-container #privy-inner-container .privy-mobile.privy-tab-container.privy-basic')) {
-            document.querySelector('#privy-container #privy-inner-container .privy-mobile.privy-tab-container.privy-basic').classList.add('custom_pos')
-          }
-
-          if (document.querySelector('iframe#chat-button')) {
-            if (document.getElementById('privy-container')) {
-              document.querySelector('iframe#chat-button').classList.add('higher')
-            } else {
-              document.querySelector('iframe#chat-button').classList.add('average')
-            }
-          }
-        }
+        document.querySelector('iframe#chat-button.lower')?.classList.remove('lower')
       }
     }, { rootMargin: "-52px 0px 0px 0px" })
     observer.observe(block)
