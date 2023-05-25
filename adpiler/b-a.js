@@ -1,8 +1,14 @@
 let init = setInterval(() => {
-    if (document.querySelector('.elementor-element-83989a8') && document.querySelector('.elementor-nav-menu--main ul li:nth-child(3) > a')) {
+    if (window.location.href == 'https://adpiler.com/' && document.querySelector('.elementor-element-83989a8') && document.querySelector('.elementor-element-27d482a .elementor-button')) {
         clearInterval(init)
         document.querySelector('.elementor-element-83989a8').remove()
         document.querySelector('.elementor-element-27d482a .elementor-button').classList.add('skewed')
-        document.querySelector('.elementor-nav-menu--main ul li:nth-child(3) > a').href = 'https://adpiler.com/schedule-a-demo/'
     }   
+});
+
+let linkChange = setInterval(() => {
+    if (document.querySelector('.elementor-nav-menu--main ul li:nth-child(3) > a')) {
+        clearInterval(linkChange)
+        document.querySelector('.elementor-nav-menu--main ul li:nth-child(3) > a').href = 'https://adpiler.com/schedule-a-demo/'
+    }
 });
