@@ -5913,21 +5913,27 @@ const action = () => {
   document.querySelector('iframe#chat-button')?.classList.add('higher')
 }
 
-if (DEVICE === 'mobile') {
-  const klaviyoObserver = new MutationObserver(mutations => {
-    if (document.querySelector('[aria-label="Open Form"]')) {
-      action()
-    }
+const klaviyoObserver = new MutationObserver(mutations => {
+  if (DEVICE === 'mobile' && document.querySelector('[aria-label="Open Form"]')) {
+    action()
+  }
 
-    for (let mutation of mutations) {
-      for (let node of mutation.addedNodes) {
-        if (!(node instanceof HTMLElement)) continue
+  for (let mutation of mutations) {
+    for (let node of mutation.addedNodes) {
+      if (!(node instanceof HTMLElement)) continue
 
-        if (node.matches('[aria-label="Open Form"]')) {
+      if (node.matches('[aria-label="Open Form"]')) {
+        if (DEVICE === 'mobile') {
           action()
+        } else {
+          if (document.querySelector('.links_container')?.classList.contains('fixed')) {
+            document.querySelector('[aria-label="Open Form"]').classList.add('lower')
+          }
         }
       }
+    }
 
+    if (DEVICE === 'mobile') {
       for (let node of mutation.removedNodes) {
         if (!(node instanceof HTMLElement)) continue
 
@@ -5937,10 +5943,10 @@ if (DEVICE === 'mobile') {
         }
       }
     }
-  })
+  }
+})
 
-  klaviyoObserver.observe(document.documentElement, { childList: true, subtree: true })
-}
+klaviyoObserver.observe(document.documentElement, { childList: true, subtree: true })
 
 waitForElement('.fixed_discount').then(el => {
   if (DEVICE === 'mobile') {
@@ -6062,6 +6068,8 @@ const waitForAllVisibility = setInterval(() => {
     }
   }
 }, WAIT_INTERVAL_TIMEOUT)
+
+
 
 waitForElement('.add_block').then(block => {
   const observer = new IntersectionObserver((entries) => {
