@@ -23,7 +23,8 @@ let isScrolledIntoView = (el) => {
 	return isVisible;
 };
 let viewed1 = false,
-    viewed2 = false;
+    viewed2 = false,
+    viewed3 = false;
 
 let isVisible = () => {
     setTimeout(() => {
@@ -44,51 +45,18 @@ let init = setInterval(() => {
         document.querySelector('.elementor-element-83989a8').remove()
         document.querySelector('.elementor-element-27d482a .elementor-button').classList.add('skewed')
 
-        // let timer;
-        // let viewed3 = false;
-        // function hideTooltip() {
-        //     clearTimeout(timer);
-        //     viewed3 = false
-        // }
+        document.querySelector('.elementor-element-f21df48').addEventListener('mouseover', (e) => {
+            // setTimeout(() => {
+                if (viewed3 == false) {
+                    viewed3 = true;
+                    pushDataLayer('Demo video','Hover')
+                }
+            // }, 5000);
+        })
 
-        // document.querySelector('.elementor-element-f21df48').addEventListener('mouseover', (e) => {
-        //     timer = setTimeout(() => {
-        //         if (viewed3 == false) {
-        //             viewed3 = true;
-        //             pushDataLayer('Demo video','Hover')
-        //         }
-                
-        //     }, 5000);
-        // }, hideTooltip)
-
-        // let hoverVideo = false;
-        // let count = 0;
-
-        // document.addEventListener('mouseover', (e) => {
-        //     console.log(e.target.closest('.elementor-element-f21df48') || e.target.classList.contains('elementor-element-f21df48'))
-        //     console.log(hoverVideo)
-        //     console.log(count)
-        //     if ((e.target.closest('.elementor-element-f21df48') || e.target.classList.contains('elementor-element-f21df48')) && hoverVideo == false) {
-        //         let initEvent = setInterval(() => {
-        //             if (count == 5 && hoverVideo == false && (e.target.closest('.elementor-element-f21df48') || e.target.classList.contains('elementor-element-f21df48'))) {
-        //                 clearInterval(initEvent)
-        //                 hoverVideo = true;
-        //                 pushDataLayer('Demo video','Hover')
-                       
-        //             } else {
-        //                 return
-        //             }
-        //             count += 1;
-        //         }, 1000);
-        //     } else {
-        //         hoverVideo = false;
-        //         count = 0
-        //     }
-        // })
-
-        // document.querySelector('.elementor-element-f21df48').addEventListener('mouseout', (e) => {
-        //     hoverVideo = false;
-        // })
+        document.querySelector('.elementor-element-f21df48').addEventListener('mouseout', (e) => {
+            viewed3 = false;
+        })
 
         document.querySelector('.elementor-element-f21df48').addEventListener('click', (e) => pushDataLayer('Demo video','Click'))
 
