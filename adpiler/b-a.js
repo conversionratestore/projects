@@ -1,4 +1,4 @@
-let pushDataLaer = (action, label = '') => {
+let pushDataLayer = (action, label = '') => {
     console.log(action + ' : ' + label)
 
     window.dataLayer = window.dataLayer || [];
@@ -44,6 +44,23 @@ let init = setInterval(() => {
         document.querySelector('.elementor-element-83989a8').remove()
         document.querySelector('.elementor-element-27d482a .elementor-button').classList.add('skewed')
 
+        // let timer;
+        // let viewed3 = false;
+        // function hideTooltip() {
+        //     clearTimeout(timer);
+        //     viewed3 = false
+        // }
+
+        // document.querySelector('.elementor-element-f21df48').addEventListener('mouseover', (e) => {
+        //     timer = setTimeout(() => {
+        //         if (viewed3 == false) {
+        //             viewed3 = true;
+        //             pushDataLayer('Demo video','Hover')
+        //         }
+                
+        //     }, 5000);
+        // }, hideTooltip)
+
         // let hoverVideo = false;
         // let count = 0;
 
@@ -56,7 +73,7 @@ let init = setInterval(() => {
         //             if (count == 5 && hoverVideo == false && (e.target.closest('.elementor-element-f21df48') || e.target.classList.contains('elementor-element-f21df48'))) {
         //                 clearInterval(initEvent)
         //                 hoverVideo = true;
-        //                 pushDataLaer('Demo video','Hover')
+        //                 pushDataLayer('Demo video','Hover')
                        
         //             } else {
         //                 return
@@ -73,16 +90,16 @@ let init = setInterval(() => {
         //     hoverVideo = false;
         // })
 
-        document.querySelector('.elementor-element-f21df48').addEventListener('click', (e) => pushDataLaer('Demo video','Click'))
+        document.querySelector('.elementor-element-f21df48').addEventListener('click', (e) => pushDataLayer('Demo video','Click'))
 
         document.querySelector('.elementor-4927 .elementor-element.elementor-element-5b61511 .elementor-button').addEventListener('click', (e) => {
-            pushDataLaer('Upload my files button')
+            pushDataLayer('Upload my files button')
         })
         document.querySelector('.elementor-4927 .elementor-element.elementor-element-7846156 .elementor-button').addEventListener('click', (e) => {
-            pushDataLaer('Discover more features button')
+            pushDataLayer('Discover more features button')
         }) 
         document.querySelector('.elementor-4927 .elementor-element.elementor-element-577bf28').addEventListener('click', (e) => {
-            pushDataLaer('Click on youtube video')
+            pushDataLayer('Click on youtube video')
         })
         
 
@@ -102,7 +119,7 @@ let linkChange = setInterval(() => {
     if (document.querySelector('.elementor-nav-menu--main ul li:nth-child(3) > a')) {
         clearInterval(linkChange)
         document.querySelector('.elementor-nav-menu--main ul li:nth-child(3) > a').href = 'https://adpiler.com/schedule-a-demo/'
-        pushDataLaer('loaded')
+        pushDataLayer('loaded')
     }
 });
 
