@@ -5907,32 +5907,34 @@ const action = () => {
   document.querySelector('iframe#chat-button')?.classList.add('higher')
 }
 
-const klaviyoObserver = new MutationObserver(mutations => {
-  if (document.querySelector('[aria-label="Open Form"]')) {
-    action()
-  }
-
-  for (let mutation of mutations) {
-    for (let node of mutation.addedNodes) {
-      if (!(node instanceof HTMLElement)) continue
-
-      if (node.matches('[aria-label="Open Form"]')) {
-        action()
-      }
+if (DEVICE === 'mobile') {
+  const klaviyoObserver = new MutationObserver(mutations => {
+    if (document.querySelector('[aria-label="Open Form"]')) {
+      action()
     }
 
-    for (let node of mutation.removedNodes) {
-      if (!(node instanceof HTMLElement)) continue
+    for (let mutation of mutations) {
+      for (let node of mutation.addedNodes) {
+        if (!(node instanceof HTMLElement)) continue
 
-      if (node.matches('[aria-label="Open Form"]') && document.querySelector('.fixed_discount.show')) {
-        document.querySelector('.fixed_discount.show')?.classList.remove('show')
-        document.querySelector('iframe#chat-button.higher')?.classList.remove('higher')
+        if (node.matches('[aria-label="Open Form"]')) {
+          action()
+        }
+      }
+
+      for (let node of mutation.removedNodes) {
+        if (!(node instanceof HTMLElement)) continue
+
+        if (node.matches('[aria-label="Open Form"]') && document.querySelector('.fixed_discount.show')) {
+          document.querySelector('.fixed_discount.show')?.classList.remove('show')
+          document.querySelector('iframe#chat-button.higher')?.classList.remove('higher')
+        }
       }
     }
-  }
-})
+  })
 
-klaviyoObserver.observe(document.documentElement, { childList: true, subtree: true })
+  klaviyoObserver.observe(document.documentElement, { childList: true, subtree: true })
+}
 
 waitForElement('.fixed_discount').then(el => {
   if (DEVICE === 'mobile') {
