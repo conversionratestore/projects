@@ -45,17 +45,15 @@ let init = setInterval(() => {
         document.querySelector('.elementor-element-83989a8').remove()
         document.querySelector('.elementor-element-27d482a .elementor-button').classList.add('skewed')
 
-        document.querySelector('.elementor-element-f21df48').addEventListener('mouseover', (e) => {
-            // setTimeout(() => {
-                if (viewed3 == false) {
-                    viewed3 = true;
-                    pushDataLayer('Demo video','Hover')
-                }
-            // }, 5000);
-        })
 
-        document.querySelector('.elementor-element-f21df48').addEventListener('mouseout', (e) => {
+        document.querySelector('.elementor-element-f21df48').addEventListener('mouseleave', (e) => {
             viewed3 = false;
+        })
+        document.querySelector('.elementor-element-f21df48').addEventListener('mousemove', (e) => {
+            if (viewed3 == false) {
+                viewed3 = true;
+                pushDataLayer('Demo video','Hover')
+            }
         })
 
         document.querySelector('.elementor-element-f21df48').addEventListener('click', (e) => pushDataLayer('Demo video','Click'))
