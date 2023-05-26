@@ -2894,6 +2894,10 @@ article.no_risk .choose_kit {
     margin: 0 !important;
   }
 
+  .kit .content .right .bottom .select .select_options {
+    border-radius: 6px 6px 0 0;
+  }
+
   .header_wrapper {
     display: flex;
     align-items: center;
