@@ -1660,7 +1660,6 @@ const checkVisibilityAfterMs = (el) => { // Checks element visibility after a sp
           }
           if (el.classList.contains('info_title') && el.textContent.length > 0) {
             const itemName = el.textContent
-            console.log(itemName)
 
             if (!(itemName in itemWasVisible)) {
               sendGAEvent('Visibility', itemName)
@@ -1955,8 +1954,6 @@ const addUpsellsToCart = (upsells, cartItems) => {
         </div>
         `
 
-  console.log('length!', upsells.length)
-
   const waitForEl = setInterval(() => {
     if (document.querySelectorAll('.upsells_container .item .info_title')[upsells.length - 1]) {
       clearInterval(waitForEl)
@@ -2063,11 +2060,11 @@ const main = async () => {
       && !document.querySelector('.upsells_container')
     ) {
       // Render the cached data
-      console.log('%c GET CACHED products', 'color: green')
+      // console.log('%c GET CACHED products', 'color: green')
 
       addUpsellsToCart(JSON.parse(sessionStorage.getItem('myUpsellsArray')), JSON.parse(sessionStorage.getItem('myCartItemsArray')))
     } else {
-      console.log('%c FETCH NEW the suggested products', 'color: green')
+      // console.log('%c FETCH NEW the suggested products', 'color: green')
 
       const cart = await getCart()
 
