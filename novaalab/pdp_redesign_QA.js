@@ -2592,8 +2592,14 @@ article.no_risk .choose_kit {
     bottom: 20px !important;
   }
 
-  iframe#chat-button.higher {
-    bottom: 130px !important;
+  iframe#chat-button.almost_low,
+  iframe#chat-button.higher.almost_low {
+    bottom: 50px !important;
+  }
+
+  iframe#chat-button.ultra_low,
+  iframe#chat-button.higher.ultra_low {
+    bottom: 20px !important;
   }
 
 #faq .gina .review p img {
@@ -6053,11 +6059,23 @@ if (DEVICE === 'mobile') {
 
         document.querySelector('.fixed_discount')?.classList.add('lower')
 
-
+        if (document.querySelector('iframe#chat-button')) {
+          if (document.querySelector('.fixed_discount.show')) {
+            document.querySelector('iframe#chat-button').classList.add('almost_low')
+          }
+          else {
+            document.querySelector('iframe#chat-button').classList.add('ultra_low')
+          }
+        }
       } else {
         document.querySelector('.under_bottom')?.classList.remove('under_bottom')
 
         document.querySelector('.fixed_discount.lower')?.classList.remove('lower')
+
+        if (document.querySelector('iframe#chat-button')) {
+          document.querySelector('iframe#chat-button.almost_low')?.classList.remove('almost_low')
+          document.querySelector('iframe#chat-button.ultra_low')?.classList.remove('ultra_low')
+        }
       }
     }, { rootMargin: "-52px 0px 0px 0px" })
     observer.observe(block)
