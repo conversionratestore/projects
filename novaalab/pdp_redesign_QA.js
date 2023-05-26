@@ -48,6 +48,15 @@ function addTwoMonth(country) {
 const style = /*html*/`
     <style>
 
+    [aria-label="Open Form"] {
+      transition: top 0.5s ease-in-out !important;
+      z-index: 700 !important;
+    }
+
+    [aria-label="Open Form"].lower {
+      top: 57px !important;
+    }
+
     iframe#chat-button {
       bottom: 50px !important;
       transition: bottom 0.5s ease-in-out 0.1s;
@@ -2564,6 +2573,9 @@ article.no_risk .choose_kit {
 }
 
 @media (max-width: 768px) {
+    [aria-label="Open Form"].lower {
+      top: 50px !important;
+    }
   iframe#chat-button {
     bottom: 90px !important;
   }
@@ -5853,6 +5865,11 @@ const waitForNav = setInterval(() => {
         if (!navList.classList.contains('fixed')) {
           navList.classList.add('fixed')
 
+          if (document.querySelector('[aria-label="Open Form"]')) {
+            console.log(document.querySelector('[aria-label="Open Form"]'))
+            document.querySelector('[aria-label="Open Form"]').classList.add('lower')
+          }
+
           if (!once) {
             sendGAEvent('Visibility Choose your kit', 'Sticky button')
             sendGAEvent('Visibility navigation panel')
@@ -5866,6 +5883,10 @@ const waitForNav = setInterval(() => {
           navList.classList.remove('fixed')
 
           document.querySelector('.empty_space').style.paddingTop = '0px'
+
+          if (document.querySelector('[aria-label="Open Form"]')) {
+            document.querySelector('[aria-label="Open Form"]').classList.remove('lower')
+          }
         }
       }
     })
