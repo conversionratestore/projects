@@ -6055,12 +6055,12 @@ const waitForAllVisibility = setInterval(() => {
   }
 }, WAIT_INTERVAL_TIMEOUT)
 
-if (DEVICE === 'mobile') {
-  waitForElement('.add_block').then(block => {
-    const observer = new IntersectionObserver((entries) => {
-      if (entries[0].isIntersecting) {
-        document.querySelector('.fixed_upsell')?.classList.add('under_bottom')
+waitForElement('.add_block').then(block => {
+  const observer = new IntersectionObserver((entries) => {
+    if (entries[0].isIntersecting) {
+      document.querySelector('.fixed_upsell')?.classList.add('under_bottom')
 
+      if (DEVICE === 'mobile') {
         document.querySelector('.fixed_discount')?.classList.add('lower')
 
         if (document.querySelector('iframe#chat-button')) {
@@ -6071,9 +6071,11 @@ if (DEVICE === 'mobile') {
             document.querySelector('iframe#chat-button').classList.add('ultra_low')
           }
         }
-      } else {
-        document.querySelector('.under_bottom')?.classList.remove('under_bottom')
+      }
+    } else {
+      document.querySelector('.under_bottom')?.classList.remove('under_bottom')
 
+      if (DEVICE === 'mobile') {
         document.querySelector('.fixed_discount.lower')?.classList.remove('lower')
 
         if (document.querySelector('iframe#chat-button')) {
@@ -6081,9 +6083,9 @@ if (DEVICE === 'mobile') {
           document.querySelector('iframe#chat-button.ultra_low')?.classList.remove('ultra_low')
         }
       }
-    }, { rootMargin: "-52px 0px 0px 0px" })
-    observer.observe(block)
-  })
-}
+    }
+  }, { rootMargin: "-52px 0px 0px 0px" })
+  observer.observe(block)
+})
 
 sendGAEvent('loaded')
