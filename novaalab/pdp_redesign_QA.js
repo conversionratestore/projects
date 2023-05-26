@@ -2592,6 +2592,10 @@ article.no_risk .choose_kit {
     bottom: 20px !important;
   }
 
+  iframe#chat-button.higher {
+    bottom: 130px !important;
+  }
+
   iframe#chat-button.almost_low,
   iframe#chat-button.higher.almost_low {
     bottom: 50px !important;
