@@ -48,6 +48,10 @@ function addTwoMonth(country) {
 const style = /*html*/`
     <style>
 
+    .gorgias-chat-key-1spa6uy {
+      z-index: 2000 !important;
+    }
+
     [aria-label="Open Form"] {
       transition: top 0.5s ease-in-out !important;
       z-index: 700 !important;
@@ -609,7 +613,7 @@ bottom: auto !important;
   bottom: 0;
   background: #FFFFFF;
   box-shadow: 0px 0px 16px rgba(107, 28, 235, 0.16);
-  padding: 16px;
+  padding: 16px 24px;
   transition: bottom 0.5s ease-in-out;
   z-index: 100;
 }
@@ -2560,6 +2564,10 @@ article.no_risk .choose_kit {
     padding: 0 24px;
   }
 
+  .fixed_discount {
+    display: none;
+  }
+
 @media (max-width: 1150px) {
   .product_gallery>div:last-child {
     max-width: 45%;
@@ -2573,15 +2581,19 @@ article.no_risk .choose_kit {
 }
 
 @media (max-width: 768px) {
-    [aria-label="Open Form"].lower {
-      top: 50px !important;
-    }
+  [aria-label="Open Form"] {
+    z-index: -1 !important;
+  }
   iframe#chat-button {
     bottom: 90px !important;
   }
 
   iframe#chat-button.lower {
     bottom: 20px !important;
+  }
+
+  iframe#chat-button.higher {
+    bottom: 130px !important;
   }
 
 #faq .gina .review p img {
@@ -3576,6 +3588,35 @@ article.no_risk .choose_kit {
   #rest .choose_kit_wrap {
     margin: 36px 0;
   }
+
+  .fixed_discount {
+    position: fixed;
+    bottom: 82px;
+    left: 0;
+    width: 100%;
+    text-align: center;
+    background: #4A4A4A;
+    padding: 8px;
+    z-index: 100; 
+    transition: bottom 0.5s ease-in-out 0.1s;
+  }
+
+  .fixed_discount.show {
+    display: block;
+  }
+
+  .fixed_discount.lower {
+    bottom: 0;
+  }
+
+  p.custom_get {
+    font-family: 'Urbanist', sans-serif;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 26px;
+    color: #FFFFFF !important;
+    margin: 0 !important;
+  }
 }
     </style>
 `
@@ -3799,6 +3840,12 @@ const html = /*html*/`
                     <li data-section="faq"><a href="#faq">FAQ</a></li>
                 </ul>
             </nav>
+            <div class="fixed_discount">
+                <p class="custom_get">Get discount 
+                <svg xmlns="http://www.w3.org/2000/svg" width="8" height="10" viewBox="0 0 8 10" fill="none">
+                <path d="M0.912597 1.175L4.72926 5L0.912598 8.825L2.0876 10L7.0876 5L2.0876 1.87058e-07L0.912597 1.175Z" fill="white"/>
+                </svg></p>
+            </div>
             <div class="fixed_upsell">
                 <div>
                     <h5>NOVAA LIGHT PAD - The Deep Healing Therapy</h5>
@@ -5368,7 +5415,6 @@ const waitForReadMore = setInterval(() => {
   }
 }, WAIT_INTERVAL_TIMEOUT)
 
-
 // splitit
 const waitForSplitit = setInterval(() => {
   if (
@@ -5843,6 +5889,52 @@ let jqueryLoaded = setInterval(() => {
   }
 }, WAIT_INTERVAL_TIMEOUT)
 
+// Klaviyo Popup
+const action = () => {
+  document.querySelector('[aria-label="Open Form"]').classList.add('lower')
+
+  document.querySelector('.fixed_discount')?.classList.add('show')
+  document.querySelector('iframe#chat-button')?.classList.add('higher')
+}
+
+const klaviyoObserver = new MutationObserver(mutations => {
+  if (document.querySelector('[aria-label="Open Form"]')) {
+    action()
+  }
+
+  for (let mutation of mutations) {
+    for (let node of mutation.addedNodes) {
+      if (!(node instanceof HTMLElement)) continue
+
+      if (node.matches('[aria-label="Open Form"]')) {
+        action()
+      }
+    }
+
+    for (let node of mutation.removedNodes) {
+      if (!(node instanceof HTMLElement)) continue
+
+      if (node.matches('[aria-label="Open Form"]') && document.querySelector('.fixed_discount.show')) {
+        document.querySelector('.fixed_discount.show')?.classList.remove('show')
+        document.querySelector('iframe#chat-button.higher')?.classList.remove('higher')
+      }
+    }
+  }
+})
+
+klaviyoObserver.observe(document.documentElement, { childList: true, subtree: true })
+
+waitForElement('.fixed_discount').then(el => {
+  if (DEVICE === 'mobile') {
+    sendGAEvent('Visibility Get discount button', 'Sticky button')
+  }
+
+  el.addEventListener('click', () => {
+    document.querySelector('[aria-label="Open Form"]')?.click()
+    sendGAEvent('Click on Get discount button', 'Sticky button')
+  })
+})
+
 // scroll
 const waitForNav = setInterval(() => {
   if (
@@ -5865,7 +5957,7 @@ const waitForNav = setInterval(() => {
         if (!navList.classList.contains('fixed')) {
           navList.classList.add('fixed')
 
-          if (document.querySelector('[aria-label="Open Form"]')) {
+          if (DEVICE === 'desktop' && document.querySelector('[aria-label="Open Form"]')) {
             console.log(document.querySelector('[aria-label="Open Form"]'))
             document.querySelector('[aria-label="Open Form"]').classList.add('lower')
           }
@@ -5884,7 +5976,7 @@ const waitForNav = setInterval(() => {
 
           document.querySelector('.empty_space').style.paddingTop = '0px'
 
-          if (document.querySelector('[aria-label="Open Form"]')) {
+          if (DEVICE === 'desktop' && document.querySelector('[aria-label="Open Form"]')) {
             document.querySelector('[aria-label="Open Form"]').classList.remove('lower')
           }
         }
@@ -5959,12 +6051,13 @@ if (DEVICE === 'mobile') {
       if (entries[0].isIntersecting) {
         document.querySelector('.fixed_upsell')?.classList.add('under_bottom')
 
-        document.querySelector('iframe#chat-button')?.classList.add('lower')
+        document.querySelector('.fixed_discount')?.classList.add('lower')
+
 
       } else {
         document.querySelector('.under_bottom')?.classList.remove('under_bottom')
 
-        document.querySelector('iframe#chat-button.lower')?.classList.remove('lower')
+        document.querySelector('.fixed_discount.lower')?.classList.remove('lower')
       }
     }, { rootMargin: "-52px 0px 0px 0px" })
     observer.observe(block)
