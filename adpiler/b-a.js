@@ -1,4 +1,6 @@
-function pushDataLaer(action, label = '') {
+let pushDataLaer = (action, label = '') => {
+    console.log(action + ' : ' + label)
+
     window.dataLayer = window.dataLayer || [];
     dataLayer.push({
         'event': 'event-to-ga',
@@ -20,6 +22,21 @@ let isScrolledIntoView = (el) => {
 
 	return isVisible;
 };
+let viewed1 = false,
+    viewed2 = false;
+
+let isVisible = () => {
+    setTimeout(() => {
+        if (isScrolledIntoView('.elementor-element-d27c586') == true && viewed1 == false) {
+            viewed1 = true;
+            pushDataLayer('Visibility built to save you time ... section')
+        }
+        if (isScrolledIntoView('.elementor-element-37beddd') == true && viewed2 == false) {
+            viewed2 = true;
+            pushDataLayer('Visibility The most popular features ... section')
+        }
+    }, 5000)
+}
 
 let init = setInterval(() => {
     if (window.location.href == 'https://adpiler.com/' && document.querySelector('.elementor-element-83989a8') && document.querySelector('.elementor-element-27d482a .elementor-button') && document.querySelector('.elementor-element-f21df48')) {
@@ -27,36 +44,55 @@ let init = setInterval(() => {
         document.querySelector('.elementor-element-83989a8').remove()
         document.querySelector('.elementor-element-27d482a .elementor-button').classList.add('skewed')
 
-        let count = 0
-        document.querySelector('.elementor-element-f21df48').addEventListener('mouseover', (e) => {
-            let timer = setInterval(() => {
-                if (count == 5) {
-                    clearInterval(timer)
-                    pushDataLaer('Demo video','Hover')
-                }
-                count += 1;
-            }, 1000)
-        })
-        document.querySelector('.elementor-element-f21df48').addEventListener("mouseout", (event) => count = 0);
+        // let hoverVideo = false;
+        // let count = 0;
+
+        // document.addEventListener('mouseover', (e) => {
+        //     console.log(e.target.closest('.elementor-element-f21df48') || e.target.classList.contains('elementor-element-f21df48'))
+        //     console.log(hoverVideo)
+        //     console.log(count)
+        //     if ((e.target.closest('.elementor-element-f21df48') || e.target.classList.contains('elementor-element-f21df48')) && hoverVideo == false) {
+        //         let initEvent = setInterval(() => {
+        //             if (count == 5 && hoverVideo == false && (e.target.closest('.elementor-element-f21df48') || e.target.classList.contains('elementor-element-f21df48'))) {
+        //                 clearInterval(initEvent)
+        //                 hoverVideo = true;
+        //                 pushDataLaer('Demo video','Hover')
+                       
+        //             } else {
+        //                 return
+        //             }
+        //             count += 1;
+        //         }, 1000);
+        //     } else {
+        //         hoverVideo = false;
+        //         count = 0
+        //     }
+        // })
+
+        // document.querySelector('.elementor-element-f21df48').addEventListener('mouseout', (e) => {
+        //     hoverVideo = false;
+        // })
 
         document.querySelector('.elementor-element-f21df48').addEventListener('click', (e) => pushDataLaer('Demo video','Click'))
 
-        let viewed1 = false;
-        let viewed1Count = 0
-        window.addEventListener('scroll', (e) => {
+        document.querySelector('.elementor-4927 .elementor-element.elementor-element-5b61511 .elementor-button').addEventListener('click', (e) => {
+            pushDataLaer('Upload my files button')
+        })
+        document.querySelector('.elementor-4927 .elementor-element.elementor-element-7846156 .elementor-button').addEventListener('click', (e) => {
+            pushDataLaer('Discover more features button')
+        }) 
+        document.querySelector('.elementor-4927 .elementor-element.elementor-element-577bf28').addEventListener('click', (e) => {
+            pushDataLaer('Click on youtube video')
+        })
+        
 
-            let viewed1Interval = setInterval(() => {
-                if (viewed1 == false && isScrolledIntoView('.elementor-element-d27c586')) {
-                    if (viewed1Count == 5) {
-                        clearInterval(viewed1Interval)
-                        viewed1 = true;
-                        pushDataLaer('Visibility built to save you time ... section')
-                    }
-                    viewed1Count += 1;
-                } else {
-                    viewed1Count = 0
-                }
-            }, 1000)
+        window.addEventListener('scroll', (e) => {
+            if (
+                isScrolledIntoView('.elementor-element-d27c586') == true && viewed1 == false ||
+                isScrolledIntoView('.elementor-element-37beddd') && viewed2 == false
+            ) {
+                isVisible()
+            }
 
         })
     }   
