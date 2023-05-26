@@ -105,6 +105,7 @@ const style = /*html*/`
 
     #PageContainer {
         padding-bottom: 90px;
+        background: #fff;
     }
 
     .pdp_main .slick-slider .slick-dots li button:before,
@@ -2583,6 +2584,7 @@ article.no_risk .choose_kit {
 @media (max-width: 768px) {
   [aria-label="Open Form"] {
     z-index: -1 !important;
+    opacity: 0;
   }
   iframe#chat-button {
     bottom: 90px !important;
