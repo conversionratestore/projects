@@ -4086,7 +4086,7 @@ const html = /*html*/`
                 <div class="reviews_block" data-visibility="Visibility review rating block" data-ga-label="Reviews"></div>
             </article>
         </section>
-            <section>
+            <section data-section="buy_section">
             <article class="bundle_article">
                 <div class="add_block">
                 <div class="kit" id="kit">
@@ -5786,7 +5786,7 @@ let jqueryLoaded = setInterval(() => {
 
     // Get references to the sections
     const waitForSections = setInterval(() => {
-      if (document.querySelectorAll("section[data-section]")[5]) {
+      if (document.querySelectorAll("section[data-section]")[6]) {
         clearInterval(waitForSections)
         const sections = document.querySelectorAll("section[data-section]")
         const observerOptions = {
@@ -5798,52 +5798,55 @@ let jqueryLoaded = setInterval(() => {
             if (entry.isIntersecting) {
               const sectionId = entry.target.getAttribute("data-section")
 
-              const navLink = document.querySelector(`nav li[data-section=${sectionId}]`)
-
-              navLink.classList.add("active_link")
-
-              // Scroll the nav element horizontally to show the active link
-              const activeLink = $('.active_link')
-              const activeLinkOffset = activeLink.offset().left
-              const navScrollLeft = $('.links_container').scrollLeft()
-              const navWidth = $('.links_container').width()
-              const activeLinkWidth = activeLink.outerWidth()
-
-              // Determine the left and right offsets of the visible area
-              const visibleLeft = navScrollLeft
-              const visibleRight = visibleLeft + navWidth
-
-              // Determine the left and right offsets of the active link
-              const activeLinkLeft = activeLinkOffset - navScrollLeft
-              const activeLinkRight = activeLinkLeft + activeLinkWidth
-
-              // Determine the left and right offsets of the active link's previous and next list items
-              const prevLinkOffset = activeLink.prev().length ? activeLink.prev().offset().left - navScrollLeft : activeLinkLeft - activeLinkWidth
-              const nextLinkOffset = activeLink.next().offset() ? activeLink.next().offset().left - navScrollLeft : activeLinkRight
-
-              // Calculate the scroll distance required to center the active link and its previous and next list items
-              let scrollDistance
-              if (activeLinkLeft >= visibleLeft && activeLinkRight <= visibleRight) {
-                // Active link is already fully visible, no need to scroll
-                scrollDistance = navScrollLeft
+              if (sectionId === 'rest' || sectionId === 'buy_section') {
+                document.querySelector('.active_link')?.classList.remove("active_link")
               } else {
-                if (prevLinkOffset < visibleLeft) {
-                  // Active link's previous list item is partially or fully hidden to the left
-                  scrollDistance = prevLinkOffset
-                } else if (nextLinkOffset + activeLinkWidth > visibleRight) {
-                  // Active link's next list item is partially or fully hidden to the right
-                  scrollDistance = nextLinkOffset + activeLinkWidth - navWidth
+                const navLink = document.querySelector(`nav li[data-section=${sectionId}]`)
+
+                document.querySelector('.active_link')?.classList.remove("active_link")
+
+                navLink.classList.add("active_link")
+
+                // Scroll the nav element horizontally to show the active link
+                const activeLink = $('.active_link')
+                const activeLinkOffset = activeLink.offset().left
+                const navScrollLeft = $('.links_container').scrollLeft()
+                const navWidth = $('.links_container').width()
+                const activeLinkWidth = activeLink.outerWidth()
+
+                // Determine the left and right offsets of the visible area
+                const visibleLeft = navScrollLeft
+                const visibleRight = visibleLeft + navWidth
+
+                // Determine the left and right offsets of the active link
+                const activeLinkLeft = activeLinkOffset - navScrollLeft
+                const activeLinkRight = activeLinkLeft + activeLinkWidth
+
+                // Determine the left and right offsets of the active link's previous and next list items
+                const prevLinkOffset = activeLink.prev().length ? activeLink.prev().offset().left - navScrollLeft : activeLinkLeft - activeLinkWidth
+                const nextLinkOffset = activeLink.next().offset() ? activeLink.next().offset().left - navScrollLeft : activeLinkRight
+
+                // Calculate the scroll distance required to center the active link and its previous and next list items
+                let scrollDistance
+                if (activeLinkLeft >= visibleLeft && activeLinkRight <= visibleRight) {
+                  // Active link is already fully visible, no need to scroll
+                  scrollDistance = navScrollLeft
                 } else {
-                  // Active link is partially visible, but its previous and next list items are fully visible
-                  scrollDistance = activeLinkLeft + activeLinkWidth / 2 - navWidth / 2
+                  if (prevLinkOffset < visibleLeft) {
+                    // Active link's previous list item is partially or fully hidden to the left
+                    scrollDistance = prevLinkOffset
+                  } else if (nextLinkOffset + activeLinkWidth > visibleRight) {
+                    // Active link's next list item is partially or fully hidden to the right
+                    scrollDistance = nextLinkOffset + activeLinkWidth - navWidth
+                  } else {
+                    // Active link is partially visible, but its previous and next list items are fully visible
+                    scrollDistance = activeLinkLeft + activeLinkWidth / 2 - navWidth / 2
+                  }
                 }
+
+                // Animate the container's scroll position
+                $('.links_container').animate({ scrollLeft: scrollDistance }, 'fast')
               }
-
-              // Animate the container's scroll position
-              $('.links_container').animate({ scrollLeft: scrollDistance }, 'fast')
-
-            } else {
-              document.querySelector('.active_link')?.classList.remove("active_link")
             }
           })
         }, observerOptions)
