@@ -350,11 +350,6 @@ article {
   align-items: center;
 }
 
-.slider .slick-prev,
-.slider .slick-next {
-  top: calc(50% - 55px);
-}
-
 .slider .slick-slide img {
   width: 100%;
 }
@@ -2569,6 +2564,10 @@ article.no_risk .choose_kit {
     display: none;
   }
 
+  .recovery .choose_kit_wrap{
+    margin-top: 70px;
+  }
+
 @media (max-width: 1150px) {
   .product_gallery>div:last-child {
     max-width: 45%;
@@ -2582,6 +2581,10 @@ article.no_risk .choose_kit {
 }
 
 @media (max-width: 768px) {
+  .recovery .choose_kit_wrap{
+    margin-top: 36px;
+  }
+
   [aria-label="Open Form"] {
     z-index: -1 !important;
     opacity: 0;
@@ -2805,7 +2808,7 @@ article.no_risk .choose_kit {
   }
 
   .kit {
-    margin: 30px -24px 0;
+    margin: 0 -24px;
     padding: 24px !important;
   }
 
@@ -3850,9 +3853,9 @@ const html = /*html*/`
             <nav class="links_container">
                 <ul>
                     <li class="active_link" data-section="about"><a href="#about">About</a></li>
+                    <li data-section="reviews"><a href="#reviews">Reviews</a></li>
                     <li data-section="how_it_works"><a href="#how_it_works">How it works</a></li>
                     <li data-section="technical"><a href="#technical">Specification</a></li>
-                    <li data-section="reviews"><a href="#reviews">Reviews</a></li>
                     <li data-section="faq"><a href="#faq">FAQ</a></li>
                 </ul>
             </nav>
@@ -4043,27 +4046,13 @@ const html = /*html*/`
                     </div>
                 </div>
             </article>
-            <article class="bundle_article">
-                <h4>94.8% of our customers are satisfied!</h4>
-                <h1>Experience faster recovery and pain relief with Novaa Light Pad</h1>
-                <div class="slider_wrap" data-visibility="Visibility customer photo in Experience faster recovery" data-ga-label="Experience faster recovery ...">
-                    <div class="slider">
-                        <div class="slider_item">
-                            <img src="https://ucarecdn.com/01cd0230-1cd2-457b-93f9-e85d737fb002/-/format/auto/-/preview/3000x3000/-/quality/lighter/Testim%201%20-%204x5%20-%20250px.jpg"
-                                alt="">
-                        </div>
-                        <div class="slider_item">
-                            <img src="https://ucarecdn.com/345650e4-6830-4230-afe3-57f586ecbea2/-/format/auto/-/preview/3000x3000/-/quality/lighter/Testim%202%20-%204x5%20-%20250px.jpg"
-                                alt="">
-                        </div>
-                        <div class="slider_item">
-                            <img src="https://ucarecdn.com/f48834bd-fd7e-46a8-9c4b-14eaf84f1fba/-/format/auto/-/preview/3000x3000/-/quality/lighter/Testim%204%20-%204x5%20-%20250px.jpg"
-                                alt="">
-                        </div>
-                        <div class="slider_item">
-                            <img src="https://ucarecdn.com/f20ac9e1-e3d6-4af9-95bc-0b7ef75ebf33/-/format/auto/-/preview/3000x3000/-/quality/lighter/Testim%207%20-%204x5%20-%20250px.jpg"
-                                alt="">
-                        </div>
+            </section>
+            <section id="reviews" data-section="reviews">
+            <article>
+                <h4 class="line">94.8% of our customers are satisfied<span></span></h4>
+                <h1>14,500+ Americans are pain-free thanks to NovaaLab</h1>
+                <div class="slider_wrap" data-visibility="Visibility customer photo in Americans are pain-free" data-ga-label="Reviews">
+                    <div class="slider mobile">
                         <div class="slider_item">
                             <img src="https://ucarecdn.com/8995221f-c13e-4e09-a8db-d66211855735/-/format/auto/-/preview/3000x3000/-/quality/lighter/Testim%203%20-%204x5%20-%20250px.jpg"
                                 alt="">
@@ -4076,8 +4065,29 @@ const html = /*html*/`
                             <img src="https://ucarecdn.com/f257ab55-7e96-4b41-9adc-eed9ae852c61/-/format/auto/-/preview/3000x3000/-/quality/lighter/Testim%206%20-%204x5%20-%20250px.jpg"
                                 alt="">
                         </div>
+                        <div class="slider_item">
+                            <img src="https://ucarecdn.com/f20ac9e1-e3d6-4af9-95bc-0b7ef75ebf33/-/format/auto/-/preview/3000x3000/-/quality/lighter/Testim%207%20-%204x5%20-%20250px.jpg"
+                                alt="">
+                        </div>
+                        <div class="slider_item">
+                            <img src="https://ucarecdn.com/f48834bd-fd7e-46a8-9c4b-14eaf84f1fba/-/format/auto/-/preview/3000x3000/-/quality/lighter/Testim%204%20-%204x5%20-%20250px.jpg"
+                                alt="">
+                        </div>
+                        <div class="slider_item">
+                            <img src="https://ucarecdn.com/345650e4-6830-4230-afe3-57f586ecbea2/-/format/auto/-/preview/3000x3000/-/quality/lighter/Testim%202%20-%204x5%20-%20250px.jpg"
+                                alt="">
+                        </div>
+                        <div class="slider_item">
+                            <img src="https://ucarecdn.com/01cd0230-1cd2-457b-93f9-e85d737fb002/-/format/auto/-/preview/3000x3000/-/quality/lighter/Testim%201%20-%204x5%20-%20250px.jpg"
+                                alt="">
+                        </div>
                     </div>
                 </div>
+                <div class="reviews_block" data-visibility="Visibility review rating block" data-ga-label="Reviews"></div>
+            </article>
+        </section>
+            <section data-section="buy_section">
+            <article class="bundle_article">
                 <div class="add_block">
                 <div class="kit" id="kit">
                     <h3>Choose your kit</h3>
@@ -4767,13 +4777,27 @@ const html = /*html*/`
                     </div>
                 </div>
             </article>
-        </section>
-        <section id="reviews" data-section="reviews">
-            <article>
-                <h4 class="line">94.8% of our customers are satisfied<span></span></h4>
-                <h1>14,500+ Americans are pain-free thanks to NovaaLab</h1>
-                <div class="slider_wrap" data-visibility="Visibility customer photo in Americans are pain-free" data-ga-label="Reviews">
-                    <div class="slider mobile">
+            <article class="recovery">
+            <h4>94.8% of our customers are satisfied!</h4>
+                <h1>Experience faster recovery and pain relief with Novaa Light Pad</h1>
+                <div class="slider_wrap" data-visibility="Visibility customer photo in Experience faster recovery" data-ga-label="Experience faster recovery ...">
+                    <div class="slider">
+                        <div class="slider_item">
+                            <img src="https://ucarecdn.com/01cd0230-1cd2-457b-93f9-e85d737fb002/-/format/auto/-/preview/3000x3000/-/quality/lighter/Testim%201%20-%204x5%20-%20250px.jpg"
+                                alt="">
+                        </div>
+                        <div class="slider_item">
+                            <img src="https://ucarecdn.com/345650e4-6830-4230-afe3-57f586ecbea2/-/format/auto/-/preview/3000x3000/-/quality/lighter/Testim%202%20-%204x5%20-%20250px.jpg"
+                                alt="">
+                        </div>
+                        <div class="slider_item">
+                            <img src="https://ucarecdn.com/f48834bd-fd7e-46a8-9c4b-14eaf84f1fba/-/format/auto/-/preview/3000x3000/-/quality/lighter/Testim%204%20-%204x5%20-%20250px.jpg"
+                                alt="">
+                        </div>
+                        <div class="slider_item">
+                            <img src="https://ucarecdn.com/f20ac9e1-e3d6-4af9-95bc-0b7ef75ebf33/-/format/auto/-/preview/3000x3000/-/quality/lighter/Testim%207%20-%204x5%20-%20250px.jpg"
+                                alt="">
+                        </div>
                         <div class="slider_item">
                             <img src="https://ucarecdn.com/8995221f-c13e-4e09-a8db-d66211855735/-/format/auto/-/preview/3000x3000/-/quality/lighter/Testim%203%20-%204x5%20-%20250px.jpg"
                                 alt="">
@@ -4786,29 +4810,12 @@ const html = /*html*/`
                             <img src="https://ucarecdn.com/f257ab55-7e96-4b41-9adc-eed9ae852c61/-/format/auto/-/preview/3000x3000/-/quality/lighter/Testim%206%20-%204x5%20-%20250px.jpg"
                                 alt="">
                         </div>
-                        <div class="slider_item">
-                            <img src="https://ucarecdn.com/f20ac9e1-e3d6-4af9-95bc-0b7ef75ebf33/-/format/auto/-/preview/3000x3000/-/quality/lighter/Testim%207%20-%204x5%20-%20250px.jpg"
-                                alt="">
-                        </div>
-                        <div class="slider_item">
-                            <img src="https://ucarecdn.com/f48834bd-fd7e-46a8-9c4b-14eaf84f1fba/-/format/auto/-/preview/3000x3000/-/quality/lighter/Testim%204%20-%204x5%20-%20250px.jpg"
-                                alt="">
-                        </div>
-                        <div class="slider_item">
-                            <img src="https://ucarecdn.com/345650e4-6830-4230-afe3-57f586ecbea2/-/format/auto/-/preview/3000x3000/-/quality/lighter/Testim%202%20-%204x5%20-%20250px.jpg"
-                                alt="">
-                        </div>
-                        <div class="slider_item">
-                            <img src="https://ucarecdn.com/01cd0230-1cd2-457b-93f9-e85d737fb002/-/format/auto/-/preview/3000x3000/-/quality/lighter/Testim%201%20-%204x5%20-%20250px.jpg"
-                                alt="">
-                        </div>
                     </div>
                 </div>
-                <div class="reviews_block" data-visibility="Visibility review rating block" data-ga-label="Reviews"></div>
                 <div class="choose_kit_wrap">
                 ${chooseKitBtn('Reviews')}
                 </div>
-            </article>
+            </article>            
         </section>
         <section id="faq" data-section="faq">
             <article>
@@ -5779,7 +5786,7 @@ let jqueryLoaded = setInterval(() => {
 
     // Get references to the sections
     const waitForSections = setInterval(() => {
-      if (document.querySelectorAll("section[data-section]")[5]) {
+      if (document.querySelectorAll("section[data-section]")[6]) {
         clearInterval(waitForSections)
         const sections = document.querySelectorAll("section[data-section]")
         const observerOptions = {
@@ -5791,7 +5798,7 @@ let jqueryLoaded = setInterval(() => {
             if (entry.isIntersecting) {
               const sectionId = entry.target.getAttribute("data-section")
 
-              if (sectionId === 'rest') {
+              if (sectionId === 'rest' || sectionId === 'buy_section') {
                 document.querySelector('.active_link')?.classList.remove("active_link")
               } else {
                 const navLink = document.querySelector(`nav li[data-section=${sectionId}]`)
@@ -5850,19 +5857,23 @@ let jqueryLoaded = setInterval(() => {
       }
     }, WAIT_INTERVAL_TIMEOUT)
 
-    waitForElement('.fixed_upsell button').then(btn => btn.addEventListener('click', () => {
-      sendGAEvent('Click on Choose your kit', 'Sticky button')
+    waitForElement('.fixed_upsell button').then(btn => {
+      sendGAEvent('Visibility Choose your kit', 'Sticky button')
 
-      let target = '#kit'
+      btn.addEventListener('click', () => {
+        sendGAEvent('Click on Choose your kit', 'Sticky button')
 
-      if (DEVICE === 'mobile') {
-        target = '#mob_scroll'
-      }
+        let target = '#kit'
 
-      $('html, body').animate({
-        scrollTop: $(target).offset().top - $('.links_container').outerHeight() - (DEVICE === 'mobile' ? 30 : 60)
-      }, 2000)
-    }))
+        if (DEVICE === 'mobile') {
+          target = '#mob_scroll'
+        }
+
+        $('html, body').animate({
+          scrollTop: $(target).offset().top - $('.links_container').outerHeight() - (DEVICE === 'mobile' ? 30 : 60)
+        }, 2000)
+      })
+    })
 
     // fix chat 
     if (DEVICE === 'mobile') {
@@ -5906,11 +5917,18 @@ let jqueryLoaded = setInterval(() => {
 }, WAIT_INTERVAL_TIMEOUT)
 
 // Klaviyo Popup
+let getDiscountWasVisible = false
+
 const action = () => {
   document.querySelector('[aria-label="Open Form"]').classList.add('lower')
 
   document.querySelector('.fixed_discount')?.classList.add('show')
   document.querySelector('iframe#chat-button')?.classList.add('higher')
+
+  if (!getDiscountWasVisible) {
+    sendGAEvent('Visibility Get discount button', 'Sticky button')
+    getDiscountWasVisible = true
+  }
 }
 
 const klaviyoObserver = new MutationObserver(mutations => {
@@ -5949,10 +5967,6 @@ const klaviyoObserver = new MutationObserver(mutations => {
 klaviyoObserver.observe(document.documentElement, { childList: true, subtree: true })
 
 waitForElement('.fixed_discount').then(el => {
-  if (DEVICE === 'mobile') {
-    sendGAEvent('Visibility Get discount button', 'Sticky button')
-  }
-
   el.addEventListener('click', () => {
     document.querySelector('[aria-label="Open Form"]')?.click()
     sendGAEvent('Click on Get discount button', 'Sticky button')
@@ -5987,7 +6001,6 @@ const waitForNav = setInterval(() => {
           }
 
           if (!once) {
-            sendGAEvent('Visibility Choose your kit', 'Sticky button')
             sendGAEvent('Visibility navigation panel')
             once = true
           }
