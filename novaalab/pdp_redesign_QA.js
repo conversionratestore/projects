@@ -5857,19 +5857,23 @@ let jqueryLoaded = setInterval(() => {
       }
     }, WAIT_INTERVAL_TIMEOUT)
 
-    waitForElement('.fixed_upsell button').then(btn => btn.addEventListener('click', () => {
-      sendGAEvent('Click on Choose your kit', 'Sticky button')
+    waitForElement('.fixed_upsell button').then(btn => {
+      sendGAEvent('Visibility Choose your kit', 'Sticky button')
 
-      let target = '#kit'
+      btn.addEventListener('click', () => {
+        sendGAEvent('Click on Choose your kit', 'Sticky button')
 
-      if (DEVICE === 'mobile') {
-        target = '#mob_scroll'
-      }
+        let target = '#kit'
 
-      $('html, body').animate({
-        scrollTop: $(target).offset().top - $('.links_container').outerHeight() - (DEVICE === 'mobile' ? 30 : 60)
-      }, 2000)
-    }))
+        if (DEVICE === 'mobile') {
+          target = '#mob_scroll'
+        }
+
+        $('html, body').animate({
+          scrollTop: $(target).offset().top - $('.links_container').outerHeight() - (DEVICE === 'mobile' ? 30 : 60)
+        }, 2000)
+      })
+    })
 
     // fix chat 
     if (DEVICE === 'mobile') {
@@ -5913,11 +5917,18 @@ let jqueryLoaded = setInterval(() => {
 }, WAIT_INTERVAL_TIMEOUT)
 
 // Klaviyo Popup
+let getDiscountWasVisible = false
+
 const action = () => {
   document.querySelector('[aria-label="Open Form"]').classList.add('lower')
 
   document.querySelector('.fixed_discount')?.classList.add('show')
   document.querySelector('iframe#chat-button')?.classList.add('higher')
+
+  if (!getDiscountWasVisible) {
+    sendGAEvent('Visibility Get discount button', 'Sticky button')
+    getDiscountWasVisible = true
+  }
 }
 
 const klaviyoObserver = new MutationObserver(mutations => {
@@ -5956,10 +5967,6 @@ const klaviyoObserver = new MutationObserver(mutations => {
 klaviyoObserver.observe(document.documentElement, { childList: true, subtree: true })
 
 waitForElement('.fixed_discount').then(el => {
-  if (DEVICE === 'mobile') {
-    sendGAEvent('Visibility Get discount button', 'Sticky button')
-  }
-
   el.addEventListener('click', () => {
     document.querySelector('[aria-label="Open Form"]')?.click()
     sendGAEvent('Click on Get discount button', 'Sticky button')
@@ -5994,7 +6001,6 @@ const waitForNav = setInterval(() => {
           }
 
           if (!once) {
-            sendGAEvent('Visibility Choose your kit', 'Sticky button')
             sendGAEvent('Visibility navigation panel')
             once = true
           }
