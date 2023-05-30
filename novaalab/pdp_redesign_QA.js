@@ -5803,6 +5803,8 @@ let jqueryLoaded = setInterval(() => {
               } else {
                 const navLink = document.querySelector(`nav li[data-section=${sectionId}]`)
 
+                document.querySelector('.active_link')?.classList.remove("active_link")
+
                 navLink.classList.add("active_link")
 
                 // Scroll the nav element horizontally to show the active link
