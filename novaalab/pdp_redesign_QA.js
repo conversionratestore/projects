@@ -350,11 +350,6 @@ article {
   align-items: center;
 }
 
-.slider .slick-prev,
-.slider .slick-next {
-  top: calc(50% - 55px);
-}
-
 .slider .slick-slide img {
   width: 100%;
 }
@@ -2569,6 +2564,10 @@ article.no_risk .choose_kit {
     display: none;
   }
 
+  .recovery .choose_kit_wrap{
+    margin-top: 70px;
+  }
+
 @media (max-width: 1150px) {
   .product_gallery>div:last-child {
     max-width: 45%;
@@ -2582,6 +2581,10 @@ article.no_risk .choose_kit {
 }
 
 @media (max-width: 768px) {
+  .recovery .choose_kit_wrap{
+    margin-top: 36px;
+  }
+
   [aria-label="Open Form"] {
     z-index: -1 !important;
     opacity: 0;
@@ -2805,7 +2808,7 @@ article.no_risk .choose_kit {
   }
 
   .kit {
-    margin: 30px -24px 0;
+    margin: 0 -24px;
     padding: 24px !important;
   }
 
@@ -3850,9 +3853,9 @@ const html = /*html*/`
             <nav class="links_container">
                 <ul>
                     <li class="active_link" data-section="about"><a href="#about">About</a></li>
+                    <li data-section="reviews"><a href="#reviews">Reviews</a></li>
                     <li data-section="how_it_works"><a href="#how_it_works">How it works</a></li>
                     <li data-section="technical"><a href="#technical">Specification</a></li>
-                    <li data-section="reviews"><a href="#reviews">Reviews</a></li>
                     <li data-section="faq"><a href="#faq">FAQ</a></li>
                 </ul>
             </nav>
@@ -4043,27 +4046,13 @@ const html = /*html*/`
                     </div>
                 </div>
             </article>
-            <article class="bundle_article">
-                <h4>94.8% of our customers are satisfied!</h4>
-                <h1>Experience faster recovery and pain relief with Novaa Light Pad</h1>
-                <div class="slider_wrap" data-visibility="Visibility customer photo in Experience faster recovery" data-ga-label="Experience faster recovery ...">
-                    <div class="slider">
-                        <div class="slider_item">
-                            <img src="https://ucarecdn.com/01cd0230-1cd2-457b-93f9-e85d737fb002/-/format/auto/-/preview/3000x3000/-/quality/lighter/Testim%201%20-%204x5%20-%20250px.jpg"
-                                alt="">
-                        </div>
-                        <div class="slider_item">
-                            <img src="https://ucarecdn.com/345650e4-6830-4230-afe3-57f586ecbea2/-/format/auto/-/preview/3000x3000/-/quality/lighter/Testim%202%20-%204x5%20-%20250px.jpg"
-                                alt="">
-                        </div>
-                        <div class="slider_item">
-                            <img src="https://ucarecdn.com/f48834bd-fd7e-46a8-9c4b-14eaf84f1fba/-/format/auto/-/preview/3000x3000/-/quality/lighter/Testim%204%20-%204x5%20-%20250px.jpg"
-                                alt="">
-                        </div>
-                        <div class="slider_item">
-                            <img src="https://ucarecdn.com/f20ac9e1-e3d6-4af9-95bc-0b7ef75ebf33/-/format/auto/-/preview/3000x3000/-/quality/lighter/Testim%207%20-%204x5%20-%20250px.jpg"
-                                alt="">
-                        </div>
+            </section>
+            <section id="reviews" data-section="reviews">
+            <article>
+                <h4 class="line">94.8% of our customers are satisfied<span></span></h4>
+                <h1>14,500+ Americans are pain-free thanks to NovaaLab</h1>
+                <div class="slider_wrap" data-visibility="Visibility customer photo in Americans are pain-free" data-ga-label="Reviews">
+                    <div class="slider mobile">
                         <div class="slider_item">
                             <img src="https://ucarecdn.com/8995221f-c13e-4e09-a8db-d66211855735/-/format/auto/-/preview/3000x3000/-/quality/lighter/Testim%203%20-%204x5%20-%20250px.jpg"
                                 alt="">
@@ -4076,8 +4065,29 @@ const html = /*html*/`
                             <img src="https://ucarecdn.com/f257ab55-7e96-4b41-9adc-eed9ae852c61/-/format/auto/-/preview/3000x3000/-/quality/lighter/Testim%206%20-%204x5%20-%20250px.jpg"
                                 alt="">
                         </div>
+                        <div class="slider_item">
+                            <img src="https://ucarecdn.com/f20ac9e1-e3d6-4af9-95bc-0b7ef75ebf33/-/format/auto/-/preview/3000x3000/-/quality/lighter/Testim%207%20-%204x5%20-%20250px.jpg"
+                                alt="">
+                        </div>
+                        <div class="slider_item">
+                            <img src="https://ucarecdn.com/f48834bd-fd7e-46a8-9c4b-14eaf84f1fba/-/format/auto/-/preview/3000x3000/-/quality/lighter/Testim%204%20-%204x5%20-%20250px.jpg"
+                                alt="">
+                        </div>
+                        <div class="slider_item">
+                            <img src="https://ucarecdn.com/345650e4-6830-4230-afe3-57f586ecbea2/-/format/auto/-/preview/3000x3000/-/quality/lighter/Testim%202%20-%204x5%20-%20250px.jpg"
+                                alt="">
+                        </div>
+                        <div class="slider_item">
+                            <img src="https://ucarecdn.com/01cd0230-1cd2-457b-93f9-e85d737fb002/-/format/auto/-/preview/3000x3000/-/quality/lighter/Testim%201%20-%204x5%20-%20250px.jpg"
+                                alt="">
+                        </div>
                     </div>
                 </div>
+                <div class="reviews_block" data-visibility="Visibility review rating block" data-ga-label="Reviews"></div>
+            </article>
+        </section>
+            <section>
+            <article class="bundle_article">
                 <div class="add_block">
                 <div class="kit" id="kit">
                     <h3>Choose your kit</h3>
@@ -4767,13 +4777,27 @@ const html = /*html*/`
                     </div>
                 </div>
             </article>
-        </section>
-        <section id="reviews" data-section="reviews">
-            <article>
-                <h4 class="line">94.8% of our customers are satisfied<span></span></h4>
-                <h1>14,500+ Americans are pain-free thanks to NovaaLab</h1>
-                <div class="slider_wrap" data-visibility="Visibility customer photo in Americans are pain-free" data-ga-label="Reviews">
-                    <div class="slider mobile">
+            <article class="recovery">
+            <h4>94.8% of our customers are satisfied!</h4>
+                <h1>Experience faster recovery and pain relief with Novaa Light Pad</h1>
+                <div class="slider_wrap" data-visibility="Visibility customer photo in Experience faster recovery" data-ga-label="Experience faster recovery ...">
+                    <div class="slider">
+                        <div class="slider_item">
+                            <img src="https://ucarecdn.com/01cd0230-1cd2-457b-93f9-e85d737fb002/-/format/auto/-/preview/3000x3000/-/quality/lighter/Testim%201%20-%204x5%20-%20250px.jpg"
+                                alt="">
+                        </div>
+                        <div class="slider_item">
+                            <img src="https://ucarecdn.com/345650e4-6830-4230-afe3-57f586ecbea2/-/format/auto/-/preview/3000x3000/-/quality/lighter/Testim%202%20-%204x5%20-%20250px.jpg"
+                                alt="">
+                        </div>
+                        <div class="slider_item">
+                            <img src="https://ucarecdn.com/f48834bd-fd7e-46a8-9c4b-14eaf84f1fba/-/format/auto/-/preview/3000x3000/-/quality/lighter/Testim%204%20-%204x5%20-%20250px.jpg"
+                                alt="">
+                        </div>
+                        <div class="slider_item">
+                            <img src="https://ucarecdn.com/f20ac9e1-e3d6-4af9-95bc-0b7ef75ebf33/-/format/auto/-/preview/3000x3000/-/quality/lighter/Testim%207%20-%204x5%20-%20250px.jpg"
+                                alt="">
+                        </div>
                         <div class="slider_item">
                             <img src="https://ucarecdn.com/8995221f-c13e-4e09-a8db-d66211855735/-/format/auto/-/preview/3000x3000/-/quality/lighter/Testim%203%20-%204x5%20-%20250px.jpg"
                                 alt="">
@@ -4786,29 +4810,12 @@ const html = /*html*/`
                             <img src="https://ucarecdn.com/f257ab55-7e96-4b41-9adc-eed9ae852c61/-/format/auto/-/preview/3000x3000/-/quality/lighter/Testim%206%20-%204x5%20-%20250px.jpg"
                                 alt="">
                         </div>
-                        <div class="slider_item">
-                            <img src="https://ucarecdn.com/f20ac9e1-e3d6-4af9-95bc-0b7ef75ebf33/-/format/auto/-/preview/3000x3000/-/quality/lighter/Testim%207%20-%204x5%20-%20250px.jpg"
-                                alt="">
-                        </div>
-                        <div class="slider_item">
-                            <img src="https://ucarecdn.com/f48834bd-fd7e-46a8-9c4b-14eaf84f1fba/-/format/auto/-/preview/3000x3000/-/quality/lighter/Testim%204%20-%204x5%20-%20250px.jpg"
-                                alt="">
-                        </div>
-                        <div class="slider_item">
-                            <img src="https://ucarecdn.com/345650e4-6830-4230-afe3-57f586ecbea2/-/format/auto/-/preview/3000x3000/-/quality/lighter/Testim%202%20-%204x5%20-%20250px.jpg"
-                                alt="">
-                        </div>
-                        <div class="slider_item">
-                            <img src="https://ucarecdn.com/01cd0230-1cd2-457b-93f9-e85d737fb002/-/format/auto/-/preview/3000x3000/-/quality/lighter/Testim%201%20-%204x5%20-%20250px.jpg"
-                                alt="">
-                        </div>
                     </div>
                 </div>
-                <div class="reviews_block" data-visibility="Visibility review rating block" data-ga-label="Reviews"></div>
                 <div class="choose_kit_wrap">
                 ${chooseKitBtn('Reviews')}
                 </div>
-            </article>
+            </article>            
         </section>
         <section id="faq" data-section="faq">
             <article>
@@ -5791,55 +5798,52 @@ let jqueryLoaded = setInterval(() => {
             if (entry.isIntersecting) {
               const sectionId = entry.target.getAttribute("data-section")
 
-              if (sectionId === 'rest') {
-                document.querySelector('.active_link')?.classList.remove("active_link")
+              const navLink = document.querySelector(`nav li[data-section=${sectionId}]`)
+
+              navLink.classList.add("active_link")
+
+              // Scroll the nav element horizontally to show the active link
+              const activeLink = $('.active_link')
+              const activeLinkOffset = activeLink.offset().left
+              const navScrollLeft = $('.links_container').scrollLeft()
+              const navWidth = $('.links_container').width()
+              const activeLinkWidth = activeLink.outerWidth()
+
+              // Determine the left and right offsets of the visible area
+              const visibleLeft = navScrollLeft
+              const visibleRight = visibleLeft + navWidth
+
+              // Determine the left and right offsets of the active link
+              const activeLinkLeft = activeLinkOffset - navScrollLeft
+              const activeLinkRight = activeLinkLeft + activeLinkWidth
+
+              // Determine the left and right offsets of the active link's previous and next list items
+              const prevLinkOffset = activeLink.prev().length ? activeLink.prev().offset().left - navScrollLeft : activeLinkLeft - activeLinkWidth
+              const nextLinkOffset = activeLink.next().offset() ? activeLink.next().offset().left - navScrollLeft : activeLinkRight
+
+              // Calculate the scroll distance required to center the active link and its previous and next list items
+              let scrollDistance
+              if (activeLinkLeft >= visibleLeft && activeLinkRight <= visibleRight) {
+                // Active link is already fully visible, no need to scroll
+                scrollDistance = navScrollLeft
               } else {
-                const navLink = document.querySelector(`nav li[data-section=${sectionId}]`)
-
-                document.querySelector('.active_link')?.classList.remove("active_link")
-
-                navLink.classList.add("active_link")
-
-                // Scroll the nav element horizontally to show the active link
-                const activeLink = $('.active_link')
-                const activeLinkOffset = activeLink.offset().left
-                const navScrollLeft = $('.links_container').scrollLeft()
-                const navWidth = $('.links_container').width()
-                const activeLinkWidth = activeLink.outerWidth()
-
-                // Determine the left and right offsets of the visible area
-                const visibleLeft = navScrollLeft
-                const visibleRight = visibleLeft + navWidth
-
-                // Determine the left and right offsets of the active link
-                const activeLinkLeft = activeLinkOffset - navScrollLeft
-                const activeLinkRight = activeLinkLeft + activeLinkWidth
-
-                // Determine the left and right offsets of the active link's previous and next list items
-                const prevLinkOffset = activeLink.prev().length ? activeLink.prev().offset().left - navScrollLeft : activeLinkLeft - activeLinkWidth
-                const nextLinkOffset = activeLink.next().offset() ? activeLink.next().offset().left - navScrollLeft : activeLinkRight
-
-                // Calculate the scroll distance required to center the active link and its previous and next list items
-                let scrollDistance
-                if (activeLinkLeft >= visibleLeft && activeLinkRight <= visibleRight) {
-                  // Active link is already fully visible, no need to scroll
-                  scrollDistance = navScrollLeft
+                if (prevLinkOffset < visibleLeft) {
+                  // Active link's previous list item is partially or fully hidden to the left
+                  scrollDistance = prevLinkOffset
+                } else if (nextLinkOffset + activeLinkWidth > visibleRight) {
+                  // Active link's next list item is partially or fully hidden to the right
+                  scrollDistance = nextLinkOffset + activeLinkWidth - navWidth
                 } else {
-                  if (prevLinkOffset < visibleLeft) {
-                    // Active link's previous list item is partially or fully hidden to the left
-                    scrollDistance = prevLinkOffset
-                  } else if (nextLinkOffset + activeLinkWidth > visibleRight) {
-                    // Active link's next list item is partially or fully hidden to the right
-                    scrollDistance = nextLinkOffset + activeLinkWidth - navWidth
-                  } else {
-                    // Active link is partially visible, but its previous and next list items are fully visible
-                    scrollDistance = activeLinkLeft + activeLinkWidth / 2 - navWidth / 2
-                  }
+                  // Active link is partially visible, but its previous and next list items are fully visible
+                  scrollDistance = activeLinkLeft + activeLinkWidth / 2 - navWidth / 2
                 }
-
-                // Animate the container's scroll position
-                $('.links_container').animate({ scrollLeft: scrollDistance }, 'fast')
               }
+
+              // Animate the container's scroll position
+              $('.links_container').animate({ scrollLeft: scrollDistance }, 'fast')
+
+            } else {
+              document.querySelector('.active_link')?.classList.remove("active_link")
             }
           })
         }, observerOptions)
