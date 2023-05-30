@@ -77,13 +77,6 @@ let v2 = new IntersectionObserver(entries => {
     })
 })
 
-let record = setInterval(function () {
-    if (typeof clarity === 'function') {
-        clearInterval(record)
-        clarity("set", "Add payment options", "variant 1");
-    }
-}, 100)
-
 let scrollDepth = () => {
     const scrollTop = window.pageYOffset;
     const winHeight = window.innerHeight;
