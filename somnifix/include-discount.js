@@ -136,6 +136,13 @@ let style = `
         line-height: 42px;
         background: #68CAD9;
         color: #14282B;
+        position: relative;
+    }
+    .discount-wrapper button.btn--loading {
+        color: transparent;
+    }
+    .discount-wrapper button.btn--loading svg {
+        color: #000;
     }
     .discount-wrapper button[disabled] {
         background: #D9D9D9;
@@ -300,7 +307,10 @@ let discountCode = setInterval(() => {
                 <div class="discount-wrapper ${error}" style="${isVisibleDiscount == true ? 'display: block' : ''}">
                     <div class="d-flex">
                         <input placeholder="Enter your coupon code">
-                        <button type="button" disabled="disabled"> Apply </button>  
+                        <button type="button" disabled="disabled"> Apply 
+                            <svg class="icon-svg icon-svg--size-18 btn__spinner icon-svg--spinner-button  btn--loading" aria-hidden="true" focusable="false"> <use xlink:href="#spinner-button"></use> </svg>
+                        </button>  
+                        
                     </div>
                     <p>${errorMessage}</p>
                     <p>${noticeWarning}</p>
@@ -337,9 +347,12 @@ let discountCode = setInterval(() => {
             if (event.key === "Enter") {
                 document.querySelector('.anyflexbox .field__input-btn').click()
                 pushDataLayer('Click on Enter yuor coupon code input')
+                document.querySelector('.discount-wrapper button').classList.add('btn--loading')
             }
-          });
+        });
+
         document.querySelector('.discount-wrapper button').addEventListener('click', (e) => { 
+            e.currentTarget.classList.add('btn--loading')
             document.querySelector('.anyflexbox .field__input-btn').click()
             pushDataLayer('Click on Apply button')
         })
