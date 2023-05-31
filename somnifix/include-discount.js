@@ -34,7 +34,7 @@ let pushDataLayer = (action, label = '') => {
 }
 
 let style = `
-<style>
+<style class="style-exp">
     .order-summary__section--product-list .product-table {
         margin-bottom: 13px;
     }
@@ -239,7 +239,7 @@ let mql = window.matchMedia("(min-width: 1000px)").matches;
 let saved = setInterval(() => {
     if (document.querySelector('.product__description__variant.order-summary__small-text') && document.querySelector('.payment-due__price') && document.querySelector('.saved') == null) {
 
-        document.body.insertAdjacentHTML('afterbegin', style)
+        if (document.querySelector('.style-exp') == null) document.body.insertAdjacentHTML('afterbegin', style)
 
         let packSelector = document.querySelector('.product__description__variant.order-summary__small-text').innerHTML;
         let pack = !packSelector.includes('1 Pack') && packSelector != '' ? packs[packSelector][document.querySelector('.product__price span').innerHTML] : ''
