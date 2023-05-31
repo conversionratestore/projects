@@ -962,8 +962,6 @@ function main() {
         pushDataLayer(`Click on item - ${$(this).text()}`, 'The Science-Backed Formula For Quick, Easy, & Effective Itch Relief')
     })
 
-    $('#purchase [data-pack-count="4"]').click()
-    $('#purchase [data-pack-count="3"]').click()
     $('.itch-problems')[0].setAttribute('data-visible', 'Bug-bite issues')
     $('.itch-problems .card-MP').click(function() {
         pushDataLayer(`Click on item - ${$(this).find('button').text().trim()}`, 'Bug-bite issues')
