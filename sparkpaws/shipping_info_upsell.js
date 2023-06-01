@@ -1647,7 +1647,7 @@ const checkVisibilityAfterMs = (el) => { // Checks element visibility after a sp
             couponWasVisible = true
           }
           if (el.classList.contains('paid_shipping') && el.classList.contains('show_shipping_txt')) {
-            sendGAEvent('Visibility', 'You’re only $23 away from unlocking Free Shipping')
+            sendGAEvent('Visibility', 'You’re only away from unlocking Free Shipping')
             paidWasVisible = true
           }
           if (el.classList.contains('free_shipping') && el.classList.contains('show_shipping_txt')) {
@@ -2157,23 +2157,23 @@ const main = async () => {
     waitForElement('.Cart__Checkout span:last-child').then(el => {
       let isDiscount = localStorage.getItem('discount') === 'true'
 
-      document.querySelector('div.Drawer__Footer').insertAdjacentHTML('beforebegin', checkoutFooter(el.innerText, isDiscount))
+      if (!document.querySelector('.checkout_footer')) {
+        document.querySelector('div.Drawer__Footer').insertAdjacentHTML('beforebegin', checkoutFooter(el.innerText, isDiscount))
 
+        waitForElement('.checkout_btn').then(el => {
+          el.addEventListener('click', () => {
+            let link = '/checkout'
 
+            if (localStorage.getItem('discount') === 'true') {
+              link = '/checkout?discount=WELCOME10'
+              localStorage.setItem('discount', 'false')
+            }
 
-      waitForElement('.checkout_btn').then(el => {
-        el.addEventListener('click', () => {
-          let link = '/checkout'
-
-          if (localStorage.getItem('discount') === 'true') {
-            link = '/checkout?discount=WELCOME10'
-            localStorage.setItem('discount', 'false')
-          }
-
-          sendGAEvent('Click on checkout button')
-          window.location.href = link
+            sendGAEvent('Click on checkout button')
+            window.location.href = link
+          })
         })
-      })
+      }
     })
   }
 
