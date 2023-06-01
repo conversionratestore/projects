@@ -879,6 +879,7 @@ const translations = {
     `Add`,
     `Total:`,
     'Checkout',
+    'Congrats! You get 100% Free Shipping'
   ],
   'DE': [
     `<span>Sparen Sie 10%</span> bei Ihrer ersten Bestellung. CODE: <span>WELCOME10</span>`,
@@ -889,7 +890,8 @@ const translations = {
     '(ausverkauft)',
     'Hinzufügen',
     'Gesamt:',
-    'Zur Kasse'
+    'Zur Kasse',
+    'Felicitaciones! Obtienes envío gratuito al 100%'
   ]
 }
 
@@ -1438,7 +1440,7 @@ const progressBar = /*html*/`
             d="M8.5 0C4.08892 0 0.5 3.58892 0.5 8C0.5 12.4111 4.08892 16 8.5 16C12.9111 16 16.5 12.4111 16.5 8C16.5 3.58892 12.9111 0 8.5 0ZM12.2547 5.93231L8.4401 10.5108C8.25467 10.7323 7.9839 10.8661 7.69672 10.8792C7.68195 10.8792 7.66718 10.8792 7.65241 10.8792C7.38082 10.8792 7.11826 10.7709 6.92626 10.5781L4.78308 8.43487C4.54267 8.19446 4.54267 7.80472 4.78308 7.56431C5.02349 7.3239 5.41323 7.3239 5.65364 7.56431L7.63928 9.54913L11.3103 5.1438C11.5285 4.88205 11.915 4.84759 12.1775 5.06503C12.4385 5.28246 12.4737 5.67056 12.2563 5.93149L12.2547 5.93231Z"
             fill="#3CBE1A" />
         </svg>
-        <p>Congrats! You get 100% Free Shipping</p>
+        <p>${translatedText[9]}</p>
       </div>
       <p class="paid_shipping">${translatedText[1]}</p>
     </div>
@@ -1743,7 +1745,7 @@ const formatPrice = (number) => {
     const formattedDecimalPart = decimalPart ? decimalPart.padEnd(2, "0") : "00"
 
     // Combine the whole number and decimal part with a period separator
-    const formattedNumber = `${formattedWholeNumber}.${formattedDecimalPart}`
+    const formattedNumber = `${formattedWholeNumber}${country === 'DE' ? ',' : '.'}${formattedDecimalPart}`
 
     // Return the formatted number
     return `${getCurrencySymbol()}${formattedNumber}`
@@ -2184,71 +2186,78 @@ const main = async () => {
   // add progress bar
   let progressBarPosition = isExpandedCart ? '.Cart--expanded .Cart__ItemList' : '.Cart .Drawer__Container'
 
-  waitForElement(progressBarPosition).then(el => el.insertAdjacentHTML('afterend', progressBar))
-  const waitForProgressPrices = setInterval(() => {
-    if (document.querySelector('.max_total span')
-      && document.querySelector('.filled_line span')
-      && document.querySelector('.paid_shipping span')
-      && (document.querySelector('.checkout_btn span:last-child') || document.querySelector('.Cart__Total span'))
-    ) {
-      clearInterval(waitForProgressPrices)
-
-      const currentValue = isExpandedCart ? document.querySelector('.Cart__Total span') : document.querySelector('.checkout_btn span:last-child')
-
-      // update curr and total prices in the progress bar
-      document.querySelector('.filled_line span').innerText = currentValue.textContent.replace(/[^0-9.]+$/, "")
-      document.querySelector('.max_total span').innerText = getFreeShippingPerCountry()
-
-      // remove non-numeric symbols 
-      const totalPrice = getFreeShippingPerCountry().replace(/[^0-9.]/g, '')
-      const currentValuePrice = +currentValue.textContent.replace(/[^0-9.]/g, '')
-
-      // calc
-      const percentage = (currentValuePrice / totalPrice) * 100
-      const difference = (totalPrice - currentValuePrice).toFixed(2)
-
-      // show txt below progress bar line
-      document.querySelector('.show_shipping_txt')?.classList.remove('show_shipping_txt')
-      if (difference <= 0) {
-        document.querySelector('.free_shipping').classList.add('show_shipping_txt')
-
-        if (!freeWasVisible) {
-          waitForElement('.free_shipping').then(el => checkVisibilityAfterMs(el))
-        }
-
-      } else {
-        document.querySelector('.paid_shipping').classList.add('show_shipping_txt')
-        document.querySelector('.paid_shipping span').innerText = `${getCurrencySymbol()}${difference}`
-
-        if (!paidWasVisible) {
-          waitForElement('.paid_shipping').then(el => checkVisibilityAfterMs(el))
-        }
-
-
-        // // hide last upsell
-        // document.querySelector('.upsells_container')?.classList.remove('one_upsell')
-      }
-
-      // change progress bar line percentage
-      document.querySelector('.filled_line').style.width = `${percentage}% `
-
-      // Check if the current progress value txt collides with the total value txt
-      const currProgressValue = document.querySelector('.filled_line span')
-      const elementRect = document.querySelector('.max_total span').getBoundingClientRect()
-      const targetRect = currProgressValue.getBoundingClientRect()
-
-      if (
-        elementRect.right >= targetRect.left &&
-        elementRect.left <= targetRect.right &&
-        elementRect.bottom >= targetRect.top &&
-        elementRect.top <= targetRect.bottom
+  if (!document.querySelector('.progress_wrapper')) {
+    waitForElement(progressBarPosition).then(el => el.insertAdjacentHTML('afterend', progressBar))
+    const waitForProgressPrices = setInterval(() => {
+      if (document.querySelector('.max_total span')
+        && document.querySelector('.filled_line span')
+        && document.querySelector('.paid_shipping span')
+        && (document.querySelector('.checkout_btn span:last-child') || document.querySelector('.Cart__Total span'))
       ) {
-        currProgressValue.style.display = 'none'
-      } else {
-        currProgressValue.style.display = 'block'
+        clearInterval(waitForProgressPrices)
+
+        const currentValue = isExpandedCart ? document.querySelector('.Cart__Total span') : document.querySelector('.checkout_btn span:last-child')
+
+        // update curr and total prices in the progress bar
+        document.querySelector('.filled_line span').innerText = currentValue.textContent.replace(/[^0-9.]+$/, "")
+
+        if (country === 'DE') {
+          document.querySelector('.max_total span').innerText = getFreeShippingPerCountry().replace('.', ',')
+        } else {
+          document.querySelector('.max_total span').innerText = getFreeShippingPerCountry()
+        }
+
+        // remove non-numeric symbols 
+        const totalPrice = getFreeShippingPerCountry().replace(/[^0-9.]/g, '')
+        const currentValuePrice = +currentValue.textContent.replace(',', '.').replace(/[^0-9.]/g, '')
+
+        // calc
+        const percentage = (currentValuePrice / totalPrice) * 100
+        let difference = (totalPrice - currentValuePrice).toFixed(2)
+
+        // show txt below progress bar line
+        document.querySelector('.show_shipping_txt')?.classList.remove('show_shipping_txt')
+        if (difference <= 0) {
+          document.querySelector('.free_shipping').classList.add('show_shipping_txt')
+
+          if (!freeWasVisible) {
+            waitForElement('.free_shipping').then(el => checkVisibilityAfterMs(el))
+          }
+
+        } else {
+          document.querySelector('.paid_shipping').classList.add('show_shipping_txt')
+          document.querySelector('.paid_shipping span').innerText = `${getCurrencySymbol()}${country === 'DE' ? difference.replace('.', ',') : difference}`
+
+          if (!paidWasVisible) {
+            waitForElement('.paid_shipping').then(el => checkVisibilityAfterMs(el))
+          }
+
+
+          // // hide last upsell
+          // document.querySelector('.upsells_container')?.classList.remove('one_upsell')
+        }
+
+        // change progress bar line percentage
+        document.querySelector('.filled_line').style.width = `${percentage}% `
+
+        // Check if the current progress value txt collides with the total value txt
+        const currProgressValue = document.querySelector('.filled_line span')
+        const elementRect = document.querySelector('.max_total span').getBoundingClientRect()
+        const targetRect = currProgressValue.getBoundingClientRect()
+
+        if (
+          elementRect.right >= targetRect.left &&
+          elementRect.left <= targetRect.right &&
+          elementRect.bottom >= targetRect.top &&
+          elementRect.top <= targetRect.bottom
+        ) {
+          currProgressValue.style.display = 'none'
+        } else {
+          currProgressValue.style.display = 'block'
+        }
       }
-    }
-  }, WAIT_INTERVAL_TIMEOUT)
+    }, WAIT_INTERVAL_TIMEOUT)
+  }
 }
 
 // -------------------------------------
