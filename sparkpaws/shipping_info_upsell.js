@@ -26,9 +26,14 @@ const style = /*html*/`
         }
 
         .save_code {
+          display: none;
           background: #F0F4F5;
           padding: 7px;
           text-align: center;
+        }
+
+        .save_code.show {
+          display: block;
         }
 
         .save_code p {
@@ -1427,8 +1432,8 @@ const customSelectHTML = (options) => {
 `
 }
 
-const saveCode = /*html*/`
-<div class="save_code">
+const saveCode = (isShown) => /*html*/`
+<div class="save_code${isShown ? ' show' : ''}">
 <p>${translatedText[0]}</p>
 </div>
 `
@@ -1518,7 +1523,7 @@ const checkoutFooter = (total, isCoupon) => /*html*/`
 `
 const checkoutFooterCartPage = (isCoupon) => /*html*/`
   <div class="checkout_footer">
-    ${localStorage.getItem('discount') === 'true' ? saveCode : ''}
+    ${saveCode(localStorage.getItem('discount') === 'true' ? true : false)}
     <div class="total">
       <p>${translatedText[7]}</p>
       <p></p>
@@ -2113,14 +2118,14 @@ const main = async () => {
   }
 
   // add discount coupon to the top of the cart
-  if (localStorage.getItem('discount') === 'true' && !document.querySelector('.save_code')) {
+  if (!document.querySelector('.save_code')) {
     if (!isExpandedCart) {
       waitForElement('.Cart .Drawer__Main').then(el => {
-        el.insertAdjacentHTML('beforebegin', saveCode)
+        el.insertAdjacentHTML('beforebegin', saveCode(localStorage.getItem('discount') === 'true' ? true : false))
       })
     } else if (isExpandedCart && DEVICE === 'mobile') {
       waitForElement('.Cart--expanded').then(el => {
-        el.insertAdjacentHTML('beforebegin', saveCode)
+        el.insertAdjacentHTML('beforebegin', saveCode(localStorage.getItem('discount') === 'true' ? true : false))
       })
     }
 
@@ -2301,6 +2306,20 @@ waitForElement('body').then(() => observeCartNodes(main))
 if (!localStorage.getItem('discount')) {
   waitForElement('[data-testid="POPUP"] .ql-font-verdana').then(el => {
     localStorage.setItem('discount', 'true')
+
+    const waitForEls = setInterval(() => {
+      if (document.querySelector('.save_code')
+        && document.querySelector('.checkout_btn')
+      ) {
+        clearInterval(waitForEls)
+
+        document.querySelector('.save_code').classList.add('show')
+
+        if (!document.querySelector('.discount_code')) {
+          document.querySelector('.checkout_btn').insertAdjacentHTML('afterend', `<p class="discount_code">${translatedText[2]}</p>`)
+        }
+      }
+    }, WAIT_INTERVAL_TIMEOUT)
   })
 }
 
