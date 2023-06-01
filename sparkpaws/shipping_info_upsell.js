@@ -151,6 +151,10 @@ const style = /*html*/`
       margin-left: 6px;
     }
 
+    .Drawer__Main .free_shipping.de p {
+      text-align: left;
+    }
+
     .paid_shipping span {
       font-weight: 700;
     }
@@ -223,6 +227,19 @@ color: #1C1B1B;
       font-size: 12px;
       line-height: 14px;
       color: #5C5555;
+    }
+
+    .checkout_footer.de .icons {
+      flex-direction: column;
+      padding: 0;
+    }
+
+    .checkout_footer.de .icons>div:first-child {
+      margin: 10px 0;
+    }
+
+    .checkout_footer.de .separator_line {
+      display: none !important;
     }
 
     .checkout_btn {
@@ -898,7 +915,7 @@ const translations = {
   ],
   'DE': [
     `<span>Sparen Sie 10%</span> bei Ihrer ersten Bestellung. CODE: <span>WELCOME10</span>`,
-    `Sie sind nur noch <span></span> entfernt, um <b>kostenlosen Versand</b> freizuschalten.`,
+    `Sie sind nur noch <span></span> entfernt, um kostenlosen Versand <b>freizuschalten.</b>`,
     `Rabattcode wird beim Bezahlen angewendet.`,
     `30-tägige Rückgabe & Umtauschmöglichkeit`,
     'Versand weltweit mit vollständiger Abdeckung',
@@ -906,7 +923,7 @@ const translations = {
     'Hinzufügen',
     'Gesamt:',
     'Zur Kasse',
-    'Herzlichen Glückwunsch! Sie erhalten 100% kostenlosen Versand'
+    `Herzlichen Glückwunsch! Sie erhalten 100% kostenlosen Versand`
   ]
 }
 
@@ -1449,7 +1466,7 @@ const progressBar = /*html*/`
       </div>
     </div>
     <div class="progress_shipping">
-      <div class="free_shipping">
+      <div class="free_shipping${country === 'DE' ? ' de' : ''}">
         <svg xmlns="http://www.w3.org/2000/svg" width="17" height="16" viewBox="0 0 17 16" fill="none">
           <path
             d="M8.5 0C4.08892 0 0.5 3.58892 0.5 8C0.5 12.4111 4.08892 16 8.5 16C12.9111 16 16.5 12.4111 16.5 8C16.5 3.58892 12.9111 0 8.5 0ZM12.2547 5.93231L8.4401 10.5108C8.25467 10.7323 7.9839 10.8661 7.69672 10.8792C7.68195 10.8792 7.66718 10.8792 7.65241 10.8792C7.38082 10.8792 7.11826 10.7709 6.92626 10.5781L4.78308 8.43487C4.54267 8.19446 4.54267 7.80472 4.78308 7.56431C5.02349 7.3239 5.41323 7.3239 5.65364 7.56431L7.63928 9.54913L11.3103 5.1438C11.5285 4.88205 11.915 4.84759 12.1775 5.06503C12.4385 5.28246 12.4737 5.67056 12.2563 5.93149L12.2547 5.93231Z"
@@ -1464,7 +1481,7 @@ const progressBar = /*html*/`
 `
 
 const checkoutFooter = (total, isCoupon) => /*html*/`
-  <div class="checkout_footer">
+  <div class="checkout_footer${country === 'DE' ? ' de': ''}">
     <div class="icons">
       <div>
         <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 22 22" fill="none">
@@ -1522,7 +1539,7 @@ const checkoutFooter = (total, isCoupon) => /*html*/`
   </div>
 `
 const checkoutFooterCartPage = (isCoupon) => /*html*/`
-  <div class="checkout_footer">
+  <div class="checkout_footer${country === 'DE' ? ' de': ''}">
     ${saveCode(localStorage.getItem('discount') === 'true' ? true : false)}
     <div class="total">
       <p>${translatedText[7]}</p>
