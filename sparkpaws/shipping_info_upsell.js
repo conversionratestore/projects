@@ -1976,11 +1976,7 @@ const addUpsellsToCart = (upsells, cartItems) => {
     }
   }, WAIT_INTERVAL_TIMEOUT)
 
-  if (isExpandedCart) {
-    document.querySelector('.Cart--expanded .Cart__ItemList')?.insertAdjacentHTML('afterend', productsWrap)
-  } else {
-    document.querySelector('#sidebar-cart .Drawer__Main')?.insertAdjacentHTML('beforeend', productsWrap)
-  }
+  waitForElement('.progress_wrapper').then(el => el.insertAdjacentHTML('afterend', productsWrap))
 
   setupCustomSelectCartLogic(upsells.length)
 }
