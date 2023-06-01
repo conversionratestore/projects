@@ -238,6 +238,10 @@ color: #1C1B1B;
       margin: 10px 0;
     }
 
+    .Cart.Drawer__Content .checkout_footer.de .icons>div:first-child {
+      margin: 0 0 10px 0;
+    }
+
     .checkout_footer.de .separator_line {
       display: none !important;
     }
@@ -718,7 +722,6 @@ color: #1C1B1B;
                 width: 100%;
             }
 
-            .free_shipping,
             .Cart--expanded .upsells_container {
                 margin: 0 -24px;
             }
