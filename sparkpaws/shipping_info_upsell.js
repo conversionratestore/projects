@@ -716,6 +716,10 @@ color: #1C1B1B;
             }
         }
 
+        div.olark-launch-button-wrapper {
+          z-index: 19 !important;
+        }
+
         @media only screen and (max-width: 768px) {
             .Cart--expanded .custom_select .select_field {
                 max-width: initial;
@@ -733,6 +737,8 @@ color: #1C1B1B;
             .Cart .item {
                 padding: 15px 24px;
             }
+
+            
 
             .item img {
                 width: 90px;
@@ -2322,6 +2328,10 @@ waitForElement('.Cart__ItemList div').then(() => {
 })
 
 waitForElement('body').then(() => observeCartNodes(main))
+
+waitForElement('div#smile-ui-lite-container').then((el) => {
+  el.style.setProperty("z-index", "19", "important");
+})
 
 if (!localStorage.getItem('discount')) {
   waitForElement('[data-testid="POPUP"] .ql-font-verdana').then(el => {
