@@ -270,6 +270,7 @@ let startTimer = setInterval(() => {
                 display: block;
                 padding: 20px;
                 margin: 0;
+                border-radius: 16px;
             }
             #newMyCarousel .tips_wrapper p{
                 margin: 0 0 12px;
@@ -370,7 +371,12 @@ let startTimer = setInterval(() => {
           localStorage.setItem("timerU", 17999);
           document.querySelector(".timer").dataset.time = +localStorage.getItem("timerU");
         } else {
-          document.querySelector(".timer").dataset.time = +localStorage.getItem("timerU") - elapsed;
+          if (elapsed <= 60) {
+            elapsed = 0;
+            document.querySelector(".timer").dataset.time = +localStorage.getItem("timerU") - elapsed;
+          } else {
+            document.querySelector(".timer").dataset.time = +localStorage.getItem("timerU") - elapsed;
+          }
         }
         localStorage.setItem("start", new Date().getTime());
       } else {
