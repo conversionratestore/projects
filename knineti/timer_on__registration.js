@@ -3,7 +3,8 @@ let startTimer = setInterval(() => {
     clearInterval(startTimer);
 
     if (!localStorage.getItem("timerU")) {
-      localStorage.setItem("timerU", 17999);
+      //   localStorage.setItem("timerU", 17999);
+      localStorage.setItem("timerU", 2*60+59);
       localStorage.setItem("start", new Date().getTime());
     }
     let elapsed = 0;
