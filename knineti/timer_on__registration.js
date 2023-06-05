@@ -3,8 +3,8 @@ let startTimer = setInterval(() => {
     clearInterval(startTimer);
 
     if (!localStorage.getItem("timerU")) {
-      //   localStorage.setItem("timerU", 17999);
-      localStorage.setItem("timerU", 1 * 60 * 60 + 1 * 60 + 59);
+      localStorage.setItem("timerU", 17999);
+      //   localStorage.setItem("timerU", 1 * 60 * 60 + 1 * 60 + 59);
       localStorage.setItem("start", new Date().getTime());
     }
     let elapsed = 0;
@@ -400,6 +400,12 @@ let startTimer = setInterval(() => {
       });
     }
 
+    window.onunload = unloadPage;
+    function unloadPage() {
+      console.log("unload event detected!");
+      localStorage.setItem("start", new Date().getTime());
+    }
+
     function startTime() {
       if (!localStorage.getItem("start")) {
         localStorage.setItem("start", new Date().getTime());
@@ -410,6 +416,8 @@ let startTimer = setInterval(() => {
       }
       const end = new Date().getTime();
       elapsed = Math.round((end - start) / 1000);
+      console.log(new Date(start), `start`);
+      console.log(new Date(end), `end`);
       console.log(elapsed, `elapsed`);
     }
 
