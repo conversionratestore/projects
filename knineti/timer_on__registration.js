@@ -4,7 +4,7 @@ let startTimer = setInterval(() => {
 
     if (!localStorage.getItem("timerU")) {
       //   localStorage.setItem("timerU", 17999);
-      localStorage.setItem("timerU", 2*60+59);
+      localStorage.setItem("timerU", 1 * 60 * 60 + 1 * 60 + 59);
       localStorage.setItem("start", new Date().getTime());
     }
     let elapsed = 0;
@@ -365,7 +365,13 @@ let startTimer = setInterval(() => {
     }
     if (localStorage.getItem("timerU") && !localStorage.getItem("timerF")) {
       if (+localStorage.getItem("timerU") - elapsed >= 0) {
-        document.querySelector(".timer").dataset.time = +localStorage.getItem("timerU") - elapsed;
+        if (+localStorage.getItem("timerU") - elapsed <= 3600) {
+          console.log(localStorage.getItem("timerU"), `+localStorage.getItem("timerU") - elapsed <= 3600`);
+          localStorage.setItem("timerU", 17999);
+          document.querySelector(".timer").dataset.time = +localStorage.getItem("timerU");
+        } else {
+          document.querySelector(".timer").dataset.time = +localStorage.getItem("timerU") - elapsed;
+        }
         localStorage.setItem("start", new Date().getTime());
       } else {
         localStorage.setItem("timerF", true);
