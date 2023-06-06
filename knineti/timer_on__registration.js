@@ -4,6 +4,7 @@ let startTimer = setInterval(() => {
 
     if (!localStorage.getItem("timerU")) {
       localStorage.setItem("timerU", 17999);
+      localStorage.setItem("timerStart", 17999);
       //   localStorage.setItem("timerU", 1 * 60 * 60 + 1 * 60 + 59);
       localStorage.setItem("start", new Date().getTime());
     }
@@ -375,10 +376,11 @@ let startTimer = setInterval(() => {
             elapsed = 0;
             document.querySelector(".timer").dataset.time = +localStorage.getItem("timerU") - elapsed;
           } else {
-            document.querySelector(".timer").dataset.time = +localStorage.getItem("timerU") - elapsed;
+            document.querySelector(".timer").dataset.time = +localStorage.getItem("timerStart") - elapsed;
           }
         }
         localStorage.setItem("start", new Date().getTime());
+        localStorage.setItem("timerStart", +localStorage.getItem("timerU"));
       } else {
         localStorage.setItem("timerF", true);
       }
@@ -409,6 +411,7 @@ let startTimer = setInterval(() => {
     function startTime() {
       if (!localStorage.getItem("start")) {
         localStorage.setItem("start", new Date().getTime());
+        localStorage.setItem("timerStart", 17999);
       }
       let start = "";
       if (localStorage.getItem("start")) {
