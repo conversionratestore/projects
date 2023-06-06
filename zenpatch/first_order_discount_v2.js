@@ -8,7 +8,7 @@ let startFunkPopupV2 = setInterval(() => {
         console.log(actionDataLayer + " : " + labelDataLayer);
         dataLayer.push({
           event: "event-to-ga",
-          eventCategory: `Exp: - Exp: Popup first order`,
+          eventCategory: `Exp: - Exp: Changing First order discount`,
           eventAction: `${actionDataLayer}`,
           eventLabel: `${labelDataLayer}`,
         });
@@ -16,7 +16,7 @@ let startFunkPopupV2 = setInterval(() => {
         console.log(actionDataLayer);
         dataLayer.push({
           event: "event-to-ga",
-          eventCategory: `Exp: - Exp: Popup first order`,
+          eventCategory: `Exp: - Exp: Changing First order discount`,
           eventAction: `${actionDataLayer}`,
         });
       }
@@ -155,6 +155,8 @@ let startFunkPopupV2 = setInterval(() => {
     max-width: 53px !important;
           }
             #zenpatch-mood-calming-stickers-the-natural-patch-co .ju_Con,
+            body #ju_Con_907501,
+            body #ju_overlay,
             #zenpatch-mood-calming-stickers-the-natural-patch-co #ju_overlay{
                 display: none !important;
             }
@@ -690,7 +692,8 @@ body .sidebar .btn_trigger_popup.applied_discount > p {
       }
 
       const popupTrigger = document.querySelectorAll("[data-popup]"),
-        popup = document.querySelector(".overlay_popup");
+        popup = document.querySelector(".overlay_popup"),
+        notClickElem = document.querySelectorAll(".applied_discount");
 
       function closePopup() {
         popup.classList.add("is_hidden");
@@ -786,12 +789,24 @@ body .sidebar .btn_trigger_popup.applied_discount > p {
         if (!btn.classList.contains("applied_discount")) {
           btn.addEventListener("click", () => {
             if (btn.closest(".sidebar")) {
-              pushDataLayer("Tap sidebar Additional 10 off applied button");
+              pushDataLayer("Click Get additional 10 off", "Slide in cart");
             }
             if (btn.closest("#getNow")) {
-              pushDataLayer("Tap Additional 10 off applied button");
+              pushDataLayer("Click Get additional 10 off", "Shopping block on the page");
             }
             openPopup();
+          });
+        }
+      });
+      notClickElem.forEach((btn) => {
+        if (!btn.classList.contains("not_applied_discount")) {
+          btn.addEventListener("click", () => {
+            if (btn.closest(".sidebar")) {
+              pushDataLayer("'Click Additional 10 off applied next", "Slide in cart");
+            }
+            if (btn.closest("#getNow")) {
+              pushDataLayer("Click Additional 10 off applied next", "Shopping block on the page");
+            }
           });
         }
       });
@@ -1004,16 +1019,16 @@ body .sidebar .btn_trigger_popup.applied_discount > p {
               pushDataLayer("Visibility extra 10 percent popup", "step_2");
             }
             if (i.target.classList.contains("getnow_visab_not_applied")) {
-              pushDataLayer("Visibility Get additional 10 off button");
+              pushDataLayer("Visibility Get additional 10 off", "Shopping block on the page");
             }
             if (i.target.classList.contains("getnow_visab_applied") && document.querySelector(".overlay_popup").classList.contains("is_hidden")) {
-              pushDataLayer("Visibility Additional 10 off applied button");
+              pushDataLayer("Visibility Additional 10 off applied next", "Shopping block on the page");
             }
             if (i.target.classList.contains("sidebar_visab_not_applied")) {
-              pushDataLayer("Visibility sidebar Get additional 10 off button");
+              pushDataLayer("Visibility Get additional 10 off. Slide in cart", "Slide in cart");
             }
             if (i.target.classList.contains("sidebar_visab_applied") && document.querySelector(".overlay_popup").classList.contains("is_hidden")) {
-              pushDataLayer("Visibility sidebar Additional 10 off applied button");
+              pushDataLayer("Visibility Additional 10 off applied next'", "Slide in cart");
             }
             obs.unobserve(i.target);
           }
@@ -1075,7 +1090,7 @@ body .sidebar .btn_trigger_popup.applied_discount > p {
     const record = setInterval(() => {
       if (typeof clarity === "function") {
         clearInterval(record);
-        clarity("set", "popup_first_order", "variant_1");
+        clarity("set", "changing_first_order_discount", "variant_1");
       }
     }, 200);
   }
