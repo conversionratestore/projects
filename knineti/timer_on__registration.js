@@ -400,11 +400,11 @@ let startTimer = setInterval(() => {
       });
     }
 
-    window.onunload = unloadPage;
-    function unloadPage() {
-      console.log("unload event detected!");
-      localStorage.setItem("start", new Date().getTime());
-    }
+    // window.onunload = unloadPage;
+    // function unloadPage() {
+    //   console.log("unload event detected!");
+    //   localStorage.setItem("start", new Date().getTime());
+    // }
 
     function startTime() {
       if (!localStorage.getItem("start")) {
