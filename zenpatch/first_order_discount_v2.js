@@ -155,9 +155,9 @@ let startFunkPopupV2 = setInterval(() => {
     max-width: 53px !important;
           }
             #zenpatch-mood-calming-stickers-the-natural-patch-co .ju_Con,
-            body #ju_Con_907501,
-            body #ju_overlay,
-            body #ju_Con_908884
+            html body #ju_Con_907501,
+            html body #ju_overlay,
+            html body #ju_Con_908884
             #zenpatch-mood-calming-stickers-the-natural-patch-co #ju_overlay{
                 display: none !important;
             }
