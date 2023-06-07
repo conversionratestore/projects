@@ -351,11 +351,13 @@ let discountCode = setInterval(() => {
         document.querySelector('.discount-wrapper input').addEventListener('click', (e) => {
             pushDataLayer('Click on Enter your coupon code input')
         })
+        let applyBtn = document.querySelectorAll('#checkout_submit')
         document.querySelector('.discount-wrapper input').addEventListener('input', (e) => {
             document.querySelector('#checkout_reduction_code').value = e.currentTarget.value
             if (e.currentTarget.value != '') {
                 document.querySelector('.discount-wrapper button').disabled = false;
-                document.querySelector('.anyflexbox .field__input-btn').disabled = false;
+                
+                applyBtn[applyBtn.length - 1].disabled = false;
             } else {
                 document.querySelector('.discount-wrapper button').disabled = true;
             }
@@ -363,7 +365,7 @@ let discountCode = setInterval(() => {
         //apply 
         document.querySelector('.discount-wrapper input').addEventListener("keypress", function(event) {
             if (event.key === "Enter") {
-                document.querySelector('.anyflexbox .field__input-btn').click()
+                applyBtn[applyBtn.length - 1].click()
                 pushDataLayer('Click on Enter yuor coupon code input')
                 document.querySelector('.discount-wrapper button').classList.add('btn--loading')
             }
@@ -371,7 +373,7 @@ let discountCode = setInterval(() => {
 
         document.querySelector('.discount-wrapper button').addEventListener('click', (e) => { 
             e.currentTarget.classList.add('btn--loading')
-            document.querySelector('.anyflexbox .field__input-btn').click()
+            applyBtn[applyBtn.length - 1].click()
             pushDataLayer('Click on Apply button')
         })
     }
