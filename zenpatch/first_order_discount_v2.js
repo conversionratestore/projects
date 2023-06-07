@@ -872,13 +872,13 @@ body .sidebar .btn_trigger_popup.applied_discount > p {
       // change EVENT btn addToCart and setDiscountCheckout
       function setDiscountCheckout() {
         let idValue = document.querySelector(".js-packs input[type=radio]:checked+label").previousElementSibling.value;
-        let idValueCart = document.querySelector(".button-proceed").href.split("/")[4].split(":")[0];
+        let idValueCart = document.querySelector("#cons .button-proceed").href.split("/")[4].split(":")[0];
         // observer
         let observer = new MutationObserver(() => {
           if (document) {
             observer.disconnect();
             idValue = document.querySelector(".js-packs input[type=radio]:checked+label").previousElementSibling.value;
-            idValueCart = document.querySelector(".button-proceed").href.split("/")[4].split(":")[0];
+            idValueCart = document.querySelector("#cons .button-proceed").href.split("/")[4].split(":")[0];
             observer.observe(document, {
               childList: true,
               subtree: true,
@@ -896,7 +896,7 @@ body .sidebar .btn_trigger_popup.applied_discount > p {
           pushDataLayer("Click on addToCart");
           addToCartCheckout(idValue);
         });
-        document.querySelector("№cons .button-proceed")?.addEventListener("click", function (e) {
+        document.querySelector("#cons .button-proceed")?.addEventListener("click", function (e) {
           e.preventDefault();
           pushDataLayer("Click on Proceed to checkout");
           addToCartCheckout(idValueCart);
