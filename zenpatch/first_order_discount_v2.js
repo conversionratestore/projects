@@ -894,6 +894,11 @@ body .sidebar .btn_trigger_popup.applied_discount > p {
           pushDataLayer("Click on addToCart");
           addToCartCheckout(idValue);
         });
+        document.querySelector("№cons .button-proceed")?.addEventListener("click", function (e) {
+          e.preventDefault();
+          pushDataLayer("Click on Proceed to checkout");
+          addToCartCheckout(idValue);
+        });
 
         async function addToCartCheckout(idValue) {
           // clearCart
