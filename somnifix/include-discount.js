@@ -181,6 +181,7 @@ let style = `
     }
     .total-line.total-line--reduction .total-line__name, .total-line.total-line--reduction .total-line__price {
         padding: 0;
+        border: 0px solid transparent;
     }
     .total-line.total-line--reduction .total-line__name {
         border-radius: 6px 0 0 6px!important;
@@ -188,8 +189,8 @@ let style = `
     .total-line.total-line--reduction .total-line__price {
         border-radius: 0 6px 6px 0!important;
     }
-    .total-line.total-line--shipping {
-        border-bottom: 12px solid #fafafa;
+    .total-line.total-line--shipping th,  .total-line.total-line--shipping td{
+        padding-bottom: 12px;
     }
     .total-line.total-line--reduction .reduction-code__text {
         font-weight: 400;
