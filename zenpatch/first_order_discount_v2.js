@@ -1109,4 +1109,4 @@ body .sidebar .btn_trigger_popup.applied_discount > p {
       }
     }, 200);
   }
-}, 400);
+}, 600);
