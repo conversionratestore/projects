@@ -66,6 +66,9 @@ let startFunkPopupV2 = setInterval(() => {
 
     let popupStyle = /*html */ `
         <style>
+          .reviews-slide{
+            border-top: unset !important;
+          }
           #getNow .free-shipping-checkout{
             margin-top: 0;
             margin-bottom: 0;
