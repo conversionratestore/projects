@@ -1,28 +1,28 @@
 let myFunk = setInterval(() => {
   if (document.querySelector("#webform-submission-grantme-program-assessment-add-form")) {
-    clearInterval(myFunk)
+    clearInterval(myFunk);
 
     // cdn slider
-    let scriptCustomSlider = document.createElement("script")
-    scriptCustomSlider.src = "https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.js"
-    scriptCustomSlider.async = false
-    document.head.appendChild(scriptCustomSlider)
+    let scriptCustomSlider = document.createElement("script");
+    scriptCustomSlider.src = "https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.js";
+    scriptCustomSlider.async = false;
+    document.head.appendChild(scriptCustomSlider);
 
-    let scriptCustomSliderStyle = document.createElement("link")
-    scriptCustomSliderStyle.href = "https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css"
-    scriptCustomSliderStyle.rel = "stylesheet"
-    document.head.appendChild(scriptCustomSliderStyle)
+    let scriptCustomSliderStyle = document.createElement("link");
+    scriptCustomSliderStyle.href = "https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css";
+    scriptCustomSliderStyle.rel = "stylesheet";
+    document.head.appendChild(scriptCustomSliderStyle);
 
-    let eventVar = "desktop"
+    let eventVar = "desktop";
 
     if (window.innerWidth <= 768) {
-      eventVar = "mobile"
+      eventVar = "mobile";
     }
 
     function pushDataLayer(nameDataLayer, deskDataLayer, typeDataLayer, actionDataLayer, labelDataLayer) {
-      window.dataLayer = window.dataLayer || []
+      window.dataLayer = window.dataLayer || [];
       if (labelDataLayer) {
-        console.log(deskDataLayer + typeDataLayer + actionDataLayer + " : " + labelDataLayer)
+        console.log(deskDataLayer + typeDataLayer + actionDataLayer + " : " + labelDataLayer);
         dataLayer.push({
           event: "event-to-ga4",
           event_name: `${nameDataLayer} ${eventVar}`,
@@ -30,16 +30,16 @@ let myFunk = setInterval(() => {
           event_type: `${typeDataLayer}`,
           event_loc: `${actionDataLayer}`,
           eventLabel: `${labelDataLayer}`,
-        })
+        });
       } else {
-        console.log(deskDataLayer + " " + typeDataLayer + " " + actionDataLayer)
+        console.log(deskDataLayer + " " + typeDataLayer + " " + actionDataLayer);
         dataLayer.push({
           event: "event-to-ga4",
           event_name: `${nameDataLayer} ${eventVar}`,
           event_desc: `${deskDataLayer}`,
           event_type: `${typeDataLayer}`,
           event_loc: `${actionDataLayer}`,
-        })
+        });
       }
     }
 
@@ -892,13 +892,13 @@ let myFunk = setInterval(() => {
           }
         }
     </style>
-    `
-    let text1 = ""
-    let text2 = "you're"
-    let text3 = "you"
-    let text4 = ""
-    let text5 = "qualify"
-    let text6 = "your"
+    `;
+    let text1 = "";
+    let text2 = "you're";
+    let text3 = "you";
+    let text4 = "";
+    let text5 = "qualify";
+    let text6 = "your";
 
     let reviews = /*html */ `
     <div class="reviews_block ative_right">
@@ -907,7 +907,7 @@ let myFunk = setInterval(() => {
       </div>
         <span class="load_more_btn">LOAD MORE</span>
     </div>
-    `
+    `;
 
     let loaderWrap = /*html */ `
     <div class="loader_wrap">
@@ -924,7 +924,7 @@ let myFunk = setInterval(() => {
         <li><span>Preparing your results</span></li>
       </ul>
     </div>
-      `
+      `;
 
     let guaranteeBlock = /*html */ `
     <div class="guarantee_block">
@@ -968,40 +968,13 @@ let myFunk = setInterval(() => {
         </ul>
       </div>
     </div>
-    `
+    `;
 
     let arrReviews = {
-      "Thomas Satosek": [
-        `https://conversionratestore.github.io/projects/grantme/img/review1.png`,
-        "2 reviews",
-        `CA`,
-        5,
-        `Feb 17, 2023`,
-        `<b>One of the best decisions I have made</b> I think that this program has been one of the best decisions I have ever made. GrantMe and the everyone on the team, from the editors to the advisors really try their hardest to make you succeed. They are all very friendly and extremely helpful. Amy my advisor, was extremely helpful, and she really tried her hardest and pushed me to be successful. At our meetings she would always put on a friendly smile and worked with me rather than for or directing me.To the rest of the team, just keep up the great work!`,
-        `Date of experience: February 16, 2023`,
-        "1",
-      ],
-      "Tula quian sarsons": [
-        `https://conversionratestore.github.io/projects/grantme/img/review2.png`,
-        "2 reviews",
-        `CA`,
-        5,
-        `Feb 21, 2023`,
-        `<b>My experience so far with Grant Me Canada.</b> My Grant Me helper has been so wonderful to work with. Staring out with Grant Me, I knew so little about applying for scholarships and grants, at school I had only been told that there were very few I could apply for. But with their help, I've already learned so much in just the past two weeks! I'm super lucky to be working with Grant Me Canada and my helper and I believe that I'll have a super bright future continuing with them.`,
-        `Date of experience: February 24, 2023`,
-        "2",
-      ],
-      "Zuriel Ogundare": [
-        `https://conversionratestore.github.io/projects/grantme/img/review3.png`,
-        "2 reviews",
-        `CA`,
-        5,
-        `Jan 7, 2023`,
-        `<b>Grant me experience.</b> All of my questions have been thoroughly answered.They have given me many opportunities to make sure I stand out from other college applicants. I very much appreciate the fact they support all my actions and decisions.`,
-        `Date of experience: January 06, 2023`,
-        "3",
-      ],
-    }
+      "Thomas Satosek": [`https://conversionratestore.github.io/projects/grantme/img/review1.png`, "2 reviews", `CA`, 5, `Feb 17, 2023`, `<b>One of the best decisions I have made</b> I think that this program has been one of the best decisions I have ever made. GrantMe and the everyone on the team, from the editors to the advisors really try their hardest to make you succeed. They are all very friendly and extremely helpful. Amy my advisor, was extremely helpful, and she really tried her hardest and pushed me to be successful. At our meetings she would always put on a friendly smile and worked with me rather than for or directing me.To the rest of the team, just keep up the great work!`, `Date of experience: February 16, 2023`, "1"],
+      "Tula quian sarsons": [`https://conversionratestore.github.io/projects/grantme/img/review2.png`, "2 reviews", `CA`, 5, `Feb 21, 2023`, `<b>My experience so far with Grant Me Canada.</b> My Grant Me helper has been so wonderful to work with. Staring out with Grant Me, I knew so little about applying for scholarships and grants, at school I had only been told that there were very few I could apply for. But with their help, I've already learned so much in just the past two weeks! I'm super lucky to be working with Grant Me Canada and my helper and I believe that I'll have a super bright future continuing with them.`, `Date of experience: February 24, 2023`, "2"],
+      "Zuriel Ogundare": [`https://conversionratestore.github.io/projects/grantme/img/review3.png`, "2 reviews", `CA`, 5, `Jan 7, 2023`, `<b>Grant me experience.</b> All of my questions have been thoroughly answered.They have given me many opportunities to make sure I stand out from other college applicants. I very much appreciate the fact they support all my actions and decisions.`, `Date of experience: January 06, 2023`, "3"],
+    };
 
     function setReviews(name, img, revw, local, star, date, descr, dateExperience, count) {
       return `<div class="reviews_link" data-count="${count}">
@@ -1040,7 +1013,7 @@ let myFunk = setInterval(() => {
                 </div>
                 <p class="descr_var">${descr}</p>
                 <p class="date_experience_var"><b>${dateExperience}</b></p>
-            </div>`
+            </div>`;
     }
 
     function renderLabel(text, class_f, class_s, name, id, msg, once = "", err = "") {
@@ -1059,14 +1032,14 @@ let myFunk = setInterval(() => {
           data-webform-required-error="${err}"
         />${text}</label
       >
-    </div>`
+    </div>`;
     }
 
     function renderLabelCheckBox(selector, text, id, value) {
       return `<div class="checkbox_block ${selector}">
                <input class="custom_checkbox" id="${id}" type="radio" name="${selector}" value="${value}" />
                 <label for="${id}" tabindex="0"><span class=""></span>${text}</label>
-              </div>`
+              </div>`;
     }
 
     let arrLabel = {
@@ -1077,7 +1050,7 @@ let myFunk = setInterval(() => {
       "University of Alberta": ["alberta", "983"],
       "Queen's University": ["queens", "889"],
       Other: ["other", "2913"],
-    }
+    };
 
     let arrLabel2 = {
       "Psychology (BA)": ["psychology", "497"],
@@ -1086,7 +1059,7 @@ let myFunk = setInterval(() => {
       "Business (BCom)": ["business", "442"],
       "Kinesiology (BKin)": ["kinesiology", "517"],
       Other: ["other2", "521"],
-    }
+    };
 
     let arrLabel3 = {
       "University of California, LA (UCLA)": ["ucla", "2831"],
@@ -1096,277 +1069,77 @@ let myFunk = setInterval(() => {
       "New York University": ["newyork ", "1990"],
       "University of California, Berkeley (UCB)": ["ucb", "2942"],
       Other: ["other", "2913"],
-    }
+    };
 
-    document.head.insertAdjacentHTML("beforeend", `<link href="https://fonts.googleapis.com/css2?family=Lato:wght@900&display=swap" rel="stylesheet">`)
-    document.head.insertAdjacentHTML("beforeend", '<meta name="viewport" content="width=device-width, height=device-height, initial-scale=1">')
-    document.head.insertAdjacentHTML("beforeend", newStyle)
+    document.head.insertAdjacentHTML("beforeend", `<link href="https://fonts.googleapis.com/css2?family=Lato:wght@900&display=swap" rel="stylesheet">`);
+    document.head.insertAdjacentHTML("beforeend", '<meta name="viewport" content="width=device-width, height=device-height, initial-scale=1">');
+    document.head.insertAdjacentHTML("beforeend", newStyle);
 
-    document.querySelectorAll("#edit-actions-13").forEach((el) => { 
-      el.insertAdjacentHTML("beforebegin", `<div id="parent_school"></div>`)
-      el.insertAdjacentHTML("beforebegin", `<div id="parent_school_us"></div>`)
-    })
+    document.querySelectorAll("#edit-actions-13").forEach((el) => {
+      el.insertAdjacentHTML("beforebegin", `<div id="parent_school"></div>`);
+      el.insertAdjacentHTML("beforebegin", `<div id="parent_school_us"></div>`);
+    });
 
     for (let key in arrLabel3) {
-      document.querySelector('#parent_school_us').insertAdjacentHTML('beforeend', renderLabelCheckBox("school_are_you_interested_in_attending_var", key, arrLabel3[key][0], arrLabel3[key][1]))
+      document.querySelector("#parent_school_us").insertAdjacentHTML("beforeend", renderLabelCheckBox("school_are_you_interested_in_attending_var", key, arrLabel3[key][0], arrLabel3[key][1]));
     }
 
     for (let key in arrLabel) {
-      document.querySelector('#parent_school').insertAdjacentHTML('beforeend', renderLabelCheckBox("school_are_you_interested_in_attending_var", key, arrLabel[key][0], arrLabel[key][1])) 
+      document.querySelector("#parent_school").insertAdjacentHTML("beforeend", renderLabelCheckBox("school_are_you_interested_in_attending_var", key, arrLabel[key][0], arrLabel[key][1]));
     }
 
     document.querySelectorAll("#edit-actions-14").forEach((el) => {
       for (let key in arrLabel2) {
-        el.insertAdjacentHTML("beforebegin", renderLabelCheckBox("study_are_you_looking_to_study_currently_studying_var", key, arrLabel2[key][0], arrLabel2[key][1]))
+        el.insertAdjacentHTML("beforebegin", renderLabelCheckBox("study_are_you_looking_to_study_currently_studying_var", key, arrLabel2[key][0], arrLabel2[key][1]));
       }
-    })
+    });
 
-    document.querySelector("#edit-actions-13").insertAdjacentHTML("beforebegin", `<textarea class="other_textarea" placeholder="Description"></textarea>`)
-    document.querySelector("#edit-actions-14").insertAdjacentHTML("beforebegin", `<textarea class="other_textarea" placeholder="Description"></textarea>`)
+    document.querySelector("#edit-actions-13").insertAdjacentHTML("beforebegin", `<textarea class="other_textarea" placeholder="Description"></textarea>`);
+    document.querySelector("#edit-actions-14").insertAdjacentHTML("beforebegin", `<textarea class="other_textarea" placeholder="Description"></textarea>`);
 
-    // if (document.querySelector("#edit-what-school-are-you-interested-in-attending").value === "") {
-    //   document.querySelector("#edit-cards-next--11").disabled = true
-    // }
-    // if (document.querySelector("#edit-what-field-of-study-are-you-looking-to-study-currently-studying").value === "") {
-    //   document.querySelector("#edit-cards-next--12").disabled = true
-    // }
+    document.querySelector("#edit-actions-13").insertAdjacentHTML("afterend", renderLabelCheckBox("school_are_you_interested_in_attending_var skip_checkbox_var", "Skip", "skip_school_are_you_interested_in_attending_var", "2913"));
 
-    document
-      .querySelector("#edit-actions-13")
-      .insertAdjacentHTML(
-        "afterend",
-        renderLabelCheckBox("school_are_you_interested_in_attending_var skip_checkbox_var", "Skip", "skip_school_are_you_interested_in_attending_var", "2913")
-      )
-
-    document
-      .querySelector("#edit-actions-14")
-      .insertAdjacentHTML(
-        "afterend",
-        renderLabelCheckBox("study_are_you_looking_to_study_currently_studying_var skip_checkbox_var", "Skip", "skip_study_are_you_looking_to_study_currently_studying_var", "521")
-      )
+    document.querySelector("#edit-actions-14").insertAdjacentHTML("afterend", renderLabelCheckBox("study_are_you_looking_to_study_currently_studying_var skip_checkbox_var", "Skip", "skip_study_are_you_looking_to_study_currently_studying_var", "521"));
 
     // render text Program Assessment
     if (!document.querySelector(".program_assessment_var")) {
-      document
-        .querySelector(".navbar")
-        .insertAdjacentHTML("afterend", `<div class='program_assessment_wrap'><p class="program_assessment_var">Program Assessment</p><div></div></div>`)
+      document.querySelector(".navbar").insertAdjacentHTML("afterend", `<div class='program_assessment_wrap'><p class="program_assessment_var">Program Assessment</p><div></div></div>`);
     }
     // render back_btn_var
     document.querySelectorAll(".time-left").forEach((el) => {
       if (!el.closest("#edit-processed-text-10")) {
-        el.insertAdjacentHTML(
-          "beforebegin",
-          `<span class="back_btn_var"><svg width="9" height="14" viewBox="0 0 9 14" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M8 1L2 7L8 13" stroke="#3D78BA" stroke-width="2"/></svg>Back</span>`
-        )
+        el.insertAdjacentHTML("beforebegin", `<span class="back_btn_var"><svg width="9" height="14" viewBox="0 0 9 14" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M8 1L2 7L8 13" stroke="#3D78BA" stroke-width="2"/></svg>Back</span>`);
       }
-    })
+    });
     // render btn Skip and I don’t know
-    document
-      .querySelector("#edit-what-is-your-citizenship")
-      .insertAdjacentHTML(
-        "beforeend",
-        renderLabel(
-          "Skip",
-          "form-item-what-is-your-citizenship skip_var",
-          "js-form-item-what-is-your-citizenship",
-          "what_is_your_citizenship",
-          "skip-what-is-your-citizenship",
-          "What is your citizenship? field is required."
-        )
-      )
-    document
-      .querySelector("#edit-what-year-of-study-are-you-currently-in")
-      .insertAdjacentHTML(
-        "beforeend",
-        renderLabel(
-          "Skip",
-          "form-item-what-year-of-study-are-you-currently-in skip_var",
-          "js-form-item-what-year-of-study-are-you-currently-in",
-          "what_year_of_study_are_you_currently_in",
-          "skip-what-year-of-study-are-you-currently-in",
-          "Please choose a year of study",
-          "webform-required-error",
-          "Please choose a year of study"
-        )
-      )
-    document
-      .querySelector("#edit-what-is-your-gpa")
-      .insertAdjacentHTML(
-        "beforeend",
-        renderLabel(
-          "I don’t know",
-          "js-form-type-radio form-item-what-is-your-gpa i_dont_know_var",
-          "js-form-item-what-is-your-gpa",
-          "what_is_your_gpa",
-          "i-dont-know-what-is-your-gpa",
-          "This field is required.",
-          "webform-required-error",
-          "This field is required."
-        )
-      )
-    document
-      .querySelector("#edit-what-is-your-gpa")
-      .insertAdjacentHTML(
-        "beforeend",
-        renderLabel(
-          "Skip",
-          "js-form-type-radio form-item-what-is-your-gpa skip_var",
-          "js-form-item-what-is-your-gpa",
-          "what_is_your_gpa",
-          "skip-what-is-your-gpa",
-          "This field is required.",
-          "webform-required-error",
-          "This field is required."
-        )
-      )
-    document
-      .querySelector("#edit-what-program-are-you-looking-to-study-currently-studying")
-      .insertAdjacentHTML(
-        "beforeend",
-        renderLabel(
-          "I don’t know",
-          "form-item-what-program-are-you-looking-to-study-currently-studying i_dont_know_var",
-          "js-form-item-what-program-are-you-looking-to-study-currently-studying",
-          "what_program_are_you_looking_to_study_currently_studying",
-          "i-dont-know-what-program-are-you-looking-to-study-currently-studying",
-          "This field is required.",
-          "webform-required-error",
-          "This field is required."
-        )
-      )
-    document
-      .querySelector("#edit-what-program-are-you-looking-to-study-currently-studying")
-      .insertAdjacentHTML(
-        "beforeend",
-        renderLabel(
-          "Skip",
-          "form-item-what-program-are-you-looking-to-study-currently-studying skip_var",
-          "js-form-item-what-program-are-you-looking-to-study-currently-studying",
-          "what_program_are_you_looking_to_study_currently_studying",
-          "skip-what-program-are-you-looking-to-study-currently-studying",
-          "This field is required.",
-          "webform-required-error",
-          "This field is required."
-        )
-      )
-    document
-      .querySelector("#edit-how-many-extracurricular-or-volunteer-activities-do-you-partici")
-      .insertAdjacentHTML(
-        "beforeend",
-        renderLabel(
-          "I don’t know",
-          "form-item-how-many-extracurricular-or-volunteer-activities-do-you-partici i_dont_know_var",
-          "js-form-item-how-many-extracurricular-or-volunteer-activities-do-you-partici",
-          "how_many_extracurricular_or_volunteer_activities_do_you_partici",
-          "i-dont-know-how-many-extracurricular-or-volunteer-activities-do-you-partici",
-          "This field is required.",
-          "webform-required-error",
-          "This field is required."
-        )
-      )
-    document
-      .querySelector("#edit-how-many-extracurricular-or-volunteer-activities-do-you-partici")
-      .insertAdjacentHTML(
-        "beforeend",
-        renderLabel(
-          "Skip",
-          "form-item-how-many-extracurricular-or-volunteer-activities-do-you-partici skip_var",
-          "js-form-item-how-many-extracurricular-or-volunteer-activities-do-you-partici",
-          "how_many_extracurricular_or_volunteer_activities_do_you_partici",
-          "skip-how-many-extracurricular-or-volunteer-activities-do-you-partici",
-          "This field is required.",
-          "webform-required-error",
-          "This field is required."
-        )
-      )
-    document
-      .querySelector("#edit-if-selected-for-our-program-")
-      .insertAdjacentHTML(
-        "beforeend",
-        renderLabel(
-          "I don’t know",
-          "js-form-type-radio form-item-if-selected-for-our-program- i_dont_know_var",
-          "js-form-item-if-selected-for-our-program-",
-          "if_selected_for_our_program_",
-          "i-dont-know-if-selected-for-our-program",
-          "This field is required.",
-          "webform-required-error",
-          "This field is required."
-        )
-      )
-    document
-      .querySelector("#edit-if-selected-for-our-program-")
-      .insertAdjacentHTML(
-        "beforeend",
-        renderLabel(
-          "Skip",
-          "js-form-type-radio form-item-if-selected-for-our-program- skip_var",
-          "js-form-item-if-selected-for-our-program-",
-          "if_selected_for_our_program_",
-          "skip-if-selected-for-our-program",
-          "This field is required.",
-          "webform-required-error",
-          "This field is required."
-        )
-      )
-    document
-      .querySelector("#edit-what-is-your-family-s-approximate-yearly-household-income")
-      .insertAdjacentHTML(
-        "beforeend",
-        renderLabel(
-          "Skip",
-          "js-form-type-radio form-item-what-is-your-family-s-approximate-yearly-household-income skip_var",
-          "js-form-item-what-is-your-family-s-approximate-yearly-household-income",
-          "what_is_your_family_s_approximate_yearly_household_income",
-          "skip-what-is-your-family-s-approximate-yearly-household-income",
-          "Please indicate your yearly household income.",
-          "webform-required-error",
-          "Please indicate your yearly household income."
-        )
-      )
-    document
-      .querySelector("#edit-are-you-currently-studying-in-canada")
-      .insertAdjacentHTML(
-        "beforeend",
-        renderLabel(
-          "Skip",
-          "form-item-are-you-currently-studying-in-canada skip_var",
-          "js-form-item-are-you-currently-studying-in-canada",
-          "are_you_currently_studying_in_canada",
-          "skip-are-you-currently-studying-in-canada"
-        )
-      )
+    document.querySelector("#edit-what-is-your-citizenship").insertAdjacentHTML("beforeend", renderLabel("Skip", "form-item-what-is-your-citizenship skip_var", "js-form-item-what-is-your-citizenship", "what_is_your_citizenship", "skip-what-is-your-citizenship", "What is your citizenship? field is required."));
+    document.querySelector("#edit-what-year-of-study-are-you-currently-in").insertAdjacentHTML("beforeend", renderLabel("Skip", "form-item-what-year-of-study-are-you-currently-in skip_var", "js-form-item-what-year-of-study-are-you-currently-in", "what_year_of_study_are_you_currently_in", "skip-what-year-of-study-are-you-currently-in", "Please choose a year of study", "webform-required-error", "Please choose a year of study"));
+    document.querySelector("#edit-what-is-your-gpa").insertAdjacentHTML("beforeend", renderLabel("I don’t know", "js-form-type-radio form-item-what-is-your-gpa i_dont_know_var", "js-form-item-what-is-your-gpa", "what_is_your_gpa", "i-dont-know-what-is-your-gpa", "This field is required.", "webform-required-error", "This field is required."));
+    document.querySelector("#edit-what-is-your-gpa").insertAdjacentHTML("beforeend", renderLabel("Skip", "js-form-type-radio form-item-what-is-your-gpa skip_var", "js-form-item-what-is-your-gpa", "what_is_your_gpa", "skip-what-is-your-gpa", "This field is required.", "webform-required-error", "This field is required."));
+    document.querySelector("#edit-what-program-are-you-looking-to-study-currently-studying").insertAdjacentHTML("beforeend", renderLabel("I don’t know", "form-item-what-program-are-you-looking-to-study-currently-studying i_dont_know_var", "js-form-item-what-program-are-you-looking-to-study-currently-studying", "what_program_are_you_looking_to_study_currently_studying", "i-dont-know-what-program-are-you-looking-to-study-currently-studying", "This field is required.", "webform-required-error", "This field is required."));
+    document.querySelector("#edit-what-program-are-you-looking-to-study-currently-studying").insertAdjacentHTML("beforeend", renderLabel("Skip", "form-item-what-program-are-you-looking-to-study-currently-studying skip_var", "js-form-item-what-program-are-you-looking-to-study-currently-studying", "what_program_are_you_looking_to_study_currently_studying", "skip-what-program-are-you-looking-to-study-currently-studying", "This field is required.", "webform-required-error", "This field is required."));
+    document.querySelector("#edit-how-many-extracurricular-or-volunteer-activities-do-you-partici").insertAdjacentHTML("beforeend", renderLabel("I don’t know", "form-item-how-many-extracurricular-or-volunteer-activities-do-you-partici i_dont_know_var", "js-form-item-how-many-extracurricular-or-volunteer-activities-do-you-partici", "how_many_extracurricular_or_volunteer_activities_do_you_partici", "i-dont-know-how-many-extracurricular-or-volunteer-activities-do-you-partici", "This field is required.", "webform-required-error", "This field is required."));
+    document.querySelector("#edit-how-many-extracurricular-or-volunteer-activities-do-you-partici").insertAdjacentHTML("beforeend", renderLabel("Skip", "form-item-how-many-extracurricular-or-volunteer-activities-do-you-partici skip_var", "js-form-item-how-many-extracurricular-or-volunteer-activities-do-you-partici", "how_many_extracurricular_or_volunteer_activities_do_you_partici", "skip-how-many-extracurricular-or-volunteer-activities-do-you-partici", "This field is required.", "webform-required-error", "This field is required."));
+    document.querySelector("#edit-if-selected-for-our-program-").insertAdjacentHTML("beforeend", renderLabel("I don’t know", "js-form-type-radio form-item-if-selected-for-our-program- i_dont_know_var", "js-form-item-if-selected-for-our-program-", "if_selected_for_our_program_", "i-dont-know-if-selected-for-our-program", "This field is required.", "webform-required-error", "This field is required."));
+    document.querySelector("#edit-if-selected-for-our-program-").insertAdjacentHTML("beforeend", renderLabel("Skip", "js-form-type-radio form-item-if-selected-for-our-program- skip_var", "js-form-item-if-selected-for-our-program-", "if_selected_for_our_program_", "skip-if-selected-for-our-program", "This field is required.", "webform-required-error", "This field is required."));
+    document.querySelector("#edit-what-is-your-family-s-approximate-yearly-household-income").insertAdjacentHTML("beforeend", renderLabel("Skip", "js-form-type-radio form-item-what-is-your-family-s-approximate-yearly-household-income skip_var", "js-form-item-what-is-your-family-s-approximate-yearly-household-income", "what_is_your_family_s_approximate_yearly_household_income", "skip-what-is-your-family-s-approximate-yearly-household-income", "Please indicate your yearly household income.", "webform-required-error", "Please indicate your yearly household income."));
+    document.querySelector("#edit-are-you-currently-studying-in-canada").insertAdjacentHTML("beforeend", renderLabel("Skip", "form-item-are-you-currently-studying-in-canada skip_var", "js-form-item-are-you-currently-studying-in-canada", "are_you_currently_studying_in_canada", "skip-are-you-currently-studying-in-canada"));
 
     //last step
-    document.querySelector("#edit-processed-text-44").insertAdjacentHTML("afterbegin", reviews)
+    document.querySelector("#edit-processed-text-44").insertAdjacentHTML("afterbegin", reviews);
     if (document.querySelector(".new_reviews")) {
       for (let key in arrReviews) {
-        document
-          .querySelector(".new_reviews")
-          .insertAdjacentHTML(
-            "beforeend",
-            setReviews(
-              key,
-              arrReviews[key][0],
-              arrReviews[key][1],
-              arrReviews[key][2],
-              arrReviews[key][3],
-              arrReviews[key][4],
-              arrReviews[key][5],
-              arrReviews[key][6],
-              arrReviews[key][7]
-            )
-          )
+        document.querySelector(".new_reviews").insertAdjacentHTML("beforeend", setReviews(key, arrReviews[key][0], arrReviews[key][1], arrReviews[key][2], arrReviews[key][3], arrReviews[key][4], arrReviews[key][5], arrReviews[key][6], arrReviews[key][7]));
       }
 
       // click on load more btn
       if (document.querySelector(".load_more_btn")) {
         document.querySelector(".load_more_btn").addEventListener("click", (e) => {
-          pushDataLayer(`exp_remove_barriers_on_quiz_l`, "Load more", `Button`, `Under reviews`)
-          e.target.style.display = "none"
-          document.querySelector('[data-count="3"]').style.display = "block"
-          document.querySelector('[data-count="3"]')?.scrollIntoView({ block: "start", behavior: "smooth" })
-        })
+          pushDataLayer(`exp_remove_barriers_on_quiz_l`, "Load more", `Button`, `Under reviews`);
+          e.target.style.display = "none";
+          document.querySelector('[data-count="3"]').style.display = "block";
+          document.querySelector('[data-count="3"]')?.scrollIntoView({ block: "start", behavior: "smooth" });
+        });
       }
     }
 
@@ -1378,13 +1151,13 @@ let myFunk = setInterval(() => {
           //   i.currentTarget.previousElementSibling.scrollIntoView({ block: "start", behavior: "smooth" })
           // }
           // pushDataLayer("event focus on textarea 'Description'", i.currentTarget.closest("section").querySelector("h4").textContent)
-        })
-      })
+        });
+      });
     }
 
-    document.querySelector("#edit-processed-text-10").insertAdjacentHTML("beforebegin", guaranteeBlock)
-    document.querySelector("form #edit-actions-10-submit").textContent = "Get results"
-    document.querySelector(".form-item-email-address").after(document.querySelector(".form-item-mobile-number"))
+    document.querySelector("#edit-processed-text-10").insertAdjacentHTML("beforebegin", guaranteeBlock);
+    document.querySelector("form #edit-actions-10-submit").textContent = "Get results";
+    document.querySelector(".form-item-email-address").after(document.querySelector(".form-item-mobile-number"));
 
     document.querySelector("#edit-processed-text-12")?.insertAdjacentHTML(
       "afterend",
@@ -1393,215 +1166,192 @@ let myFunk = setInterval(() => {
         <a href="https://grantme.ca/terms-of-use/?__hstc=166450401.d0807ef5d572f44bbd6f27a9bad53784.1677748614911.1677748614911.1677754299636.2&amp;__hssc=166450401.4.1677754299636&amp;__hsfp=2335833925" target="_blank">Terms of Use</a> 
         and consent to receiving promotional messages.
     </p>`
-    )
+    );
     //click input
 
     document.querySelectorAll("input[type=radio]").forEach((el) => {
       el.addEventListener("click", (i) => {
-        console.log(i)
         if (!i.currentTarget.getAttribute("data-test")) {
           if (i.currentTarget.closest("div").classList.contains("skip_var") || i.currentTarget.closest("div").classList.contains("i_dont_know_var")) {
-            pushDataLayer(
-              `exp_remove_barriers_on_quiz_s`,
-              `${i.currentTarget.closest("label").textContent}`,
-              `Button`,
-              i.currentTarget.closest("section").querySelector("h4").textContent
-            )
+            pushDataLayer(`exp_remove_barriers_on_quiz_s`, `${i.currentTarget.closest("label").textContent}`, `Button`, i.currentTarget.closest("section").querySelector("h4").textContent);
           }
           document.querySelectorAll(".webform-progress ul li").forEach((el) => {
             let int = setInterval(() => {
-              if (
-                (el.classList.contains("is-active") && el.getAttribute("data-webform-card") !== "what_is_your_contact_info_") ||
-                (el.classList.contains("is-complete") && el.getAttribute("data-webform-card") !== "what_is_your_contact_info_")
-              ) {
-                clearInterval(int)
-                el.style.background = "#3e78ba"
+              if ((el.classList.contains("is-active") && el.getAttribute("data-webform-card") !== "what_is_your_contact_info_") || (el.classList.contains("is-complete") && el.getAttribute("data-webform-card") !== "what_is_your_contact_info_")) {
+                clearInterval(int);
+                el.style.background = "#3e78ba";
               }
-            }, 10)
-          })
+            }, 10);
+          });
 
           if (i.currentTarget.closest("#edit-are-you-a-current-student-")) {
-            document.querySelector("#edit-cards-next").click()
-            localStorage.setItem("name", i.currentTarget.getAttribute("value"))
+            document.querySelector("#edit-cards-next").click();
+            localStorage.setItem("name", i.currentTarget.getAttribute("value"));
             if (localStorage.getItem("name") === "Parent of Student") {
               document.querySelectorAll(".guarantee_block .text_first").forEach((el) => {
-                el.textContent = "child’s"
-              })
+                el.textContent = "child’s";
+              });
               document.querySelectorAll(".guarantee_block .text_second").forEach((el) => {
-                el.textContent = "your child is"
-              })
+                el.textContent = "your child is";
+              });
               document.querySelectorAll(".guarantee_block .text_third").forEach((el) => {
-                el.textContent = "your child"
-              })
+                el.textContent = "your child";
+              });
               document.querySelectorAll(".guarantee_block .text_fourth").forEach((el) => {
-                el.textContent = "child"
-              })
+                el.textContent = "child";
+              });
               document.querySelectorAll(".guarantee_block .text_fifth").forEach((el) => {
-                el.textContent = "qualifies"
-              })
+                el.textContent = "qualifies";
+              });
               document.querySelectorAll(".guarantee_block .text_sixth").forEach((el) => {
-                el.textContent = " their"
-              })
+                el.textContent = " their";
+              });
             } else {
               document.querySelectorAll(".guarantee_block .text_first").forEach((el) => {
-                el.textContent = ""
-              })
+                el.textContent = "";
+              });
               document.querySelectorAll(".guarantee_block .text_second").forEach((el) => {
-                el.textContent = "you're"
-              })
+                el.textContent = "you're";
+              });
               document.querySelectorAll(".guarantee_block .text_third").forEach((el) => {
-                el.textContent = "you"
-              })
+                el.textContent = "you";
+              });
               document.querySelectorAll(".guarantee_block .text_fourth").forEach((el) => {
-                el.textContent = ""
-              })
+                el.textContent = "";
+              });
               document.querySelectorAll(".guarantee_block .text_fifth").forEach((el) => {
-                el.textContent = "qualify"
-              })
+                el.textContent = "qualify";
+              });
               document.querySelectorAll(".guarantee_block .text_sixth").forEach((el) => {
-                el.textContent = " your"
-              })
+                el.textContent = " your";
+              });
             }
-          }
-          if (i.currentTarget.closest("#edit-what-were-you-looking-for-today-")) {
-            document.querySelector("#edit-cards-next--2").click()
           }
           if (i.currentTarget.closest("#edit-what-is-your-citizenship-")) {
-            if (i.currentTarget.checked && i.currentTarget.id == 'edit-what-is-your-citizenship-us-citizen') {
-              document.querySelector('#parent_school_us').style.display = 'block';
-              document.querySelector('#parent_school').style.display = 'none';
+            if (i.currentTarget.checked && i.currentTarget.id == "edit-what-is-your-citizenship-us-citizen") {
+              document.querySelector("#parent_school_us").style.display = "block";
+              document.querySelector("#parent_school").style.display = "none";
             } else {
-              document.querySelector('#parent_school_us').style.display = 'none';
-              document.querySelector('#parent_school').style.display = 'block';
+              document.querySelector("#parent_school_us").style.display = "none";
+              document.querySelector("#parent_school").style.display = "block";
             }
-
-            document.querySelector("#edit-cards-next--3").click()
+            document.querySelector("#edit-cards-next--2").click();
             i.currentTarget
               .closest("#edit-what-is-your-citizenship-")
               .querySelectorAll(".radio label")
               .forEach((r) => {
                 if (r.classList.contains("active")) {
-                  r.classList.remove("active")
+                  r.classList.remove("active");
                 }
-              })
-            i.currentTarget.closest("label").classList.add("active")
+              });
+            i.currentTarget.closest("label").classList.add("active");
           }
-          if (i.currentTarget.closest("#edit-what-year-of-university-are-you-currently-in-") || i.currentTarget.closest("#edit-what-year-of-study-are-you-currently-in-")) {
-            document.querySelector("#edit-cards-next--4").click()
+          if (i.currentTarget.closest("#edit-what-year-of-study-are-you-currently-in-")) {
+            setTimeout(() => {
+              document.querySelector("#edit-cards-next--3").click();
+            }, 400);
+
+            i.currentTarget
+              .closest("#edit-what-year-of-study-are-you-currently-in-")
+              .querySelectorAll(".radio label")
+              .forEach((r) => {
+                if (r.classList.contains("active")) {
+                  r.classList.remove("active");
+                }
+              });
+            i.currentTarget.closest("label").classList.add("active");
+          }
+          if (i.currentTarget.closest("#edit-are-you-currently-studying-in-canada-")) {
+            document.querySelector("#edit-cards-next--5").click();
+            i.currentTarget
+              .closest("#edit-are-you-currently-studying-in-canada-")
+              .querySelectorAll(".radio label")
+              .forEach((r) => {
+                if (r.classList.contains("active")) {
+                  r.classList.remove("active");
+                }
+              });
+            i.currentTarget.closest("label").classList.add("active");
+          }
+          if (i.currentTarget.closest("#edit-what-year-of-university-are-you-currently-in-")) {
+            document.querySelector("#edit-cards-next--5").click();
             if (i.currentTarget.closest("#edit-what-year-of-university-are-you-currently-in-")) {
               i.currentTarget
                 .closest("#edit-what-year-of-university-are-you-currently-in-")
                 .querySelectorAll(".radio label")
                 .forEach((r) => {
                   if (r.classList.contains("active")) {
-                    r.classList.remove("active")
+                    r.classList.remove("active");
                   }
-                })
-              i.currentTarget.closest("label").classList.add("active")
+                });
+              i.currentTarget.closest("label").classList.add("active");
             }
-            if (i.currentTarget.closest("#edit-what-year-of-study-are-you-currently-in-")) {
-              i.currentTarget
-                .closest("#edit-what-year-of-study-are-you-currently-in-")
-                .querySelectorAll(".radio label")
-                .forEach((r) => {
-                  if (r.classList.contains("active")) {
-                    r.classList.remove("active")
-                  }
-                })
-              i.currentTarget.closest("label").classList.add("active")
-            }
-          }
-          if (i.currentTarget.closest("#edit-are-you-currently-studying-in-canada-")) {
-            document.querySelector("#edit-cards-next--5").click()
-            i.currentTarget
-              .closest("#edit-are-you-currently-studying-in-canada-")
-              .querySelectorAll(".radio label")
-              .forEach((r) => {
-                if (r.classList.contains("active")) {
-                  r.classList.remove("active")
-                }
-              })
-            i.currentTarget.closest("label").classList.add("active")
-          }
-          if (i.currentTarget.closest("#edit-what-year-of-university-are-you-currently-in-")) {
-            document.querySelector("#edit-cards-next--6").click()
           }
           if (i.currentTarget.closest("#edit-how-old-are-you-")) {
-            document.querySelector("#edit-cards-next--7").click()
+            document.querySelector("#edit-cards-next--7").click();
           }
           if (i.currentTarget.closest("#edit-what-is-your-gpa-")) {
-            document.querySelector("#edit-cards-next--8").click()
+            document.querySelector("#edit-cards-next--8").click();
             i.currentTarget
               .closest("#edit-what-is-your-gpa-")
               .querySelectorAll(".radio label")
               .forEach((r) => {
                 if (r.classList.contains("active")) {
-                  r.classList.remove("active")
+                  r.classList.remove("active");
                 }
-              })
-            i.currentTarget.closest("label").classList.add("active")
+              });
+            i.currentTarget.closest("label").classList.add("active");
           }
           if (i.currentTarget.closest("#edit-what-program-are-you-looking-to-study-currently-studying-")) {
-            document.querySelector("#edit-cards-next--9").click()
+            document.querySelector("#edit-cards-next--9").click();
             i.currentTarget
               .closest("#edit-what-program-are-you-looking-to-study-currently-studying-")
               .querySelectorAll(".radio label")
               .forEach((r) => {
                 if (r.classList.contains("active")) {
-                  r.classList.remove("active")
+                  r.classList.remove("active");
                 }
-              })
-            i.currentTarget.closest("label").classList.add("active")
+              });
+            i.currentTarget.closest("label").classList.add("active");
           }
           if (i.currentTarget.closest("#edit-how-many-extracurricular-or-volunteer-activities-do-you-particip")) {
-            document.querySelector("#edit-cards-next--10").click()
+            document.querySelector("#edit-cards-next--10").click();
             i.currentTarget
               .closest("#edit-how-many-extracurricular-or-volunteer-activities-do-you-particip")
               .querySelectorAll(".radio label")
               .forEach((r) => {
                 if (r.classList.contains("active")) {
-                  r.classList.remove("active")
+                  r.classList.remove("active");
                 }
-              })
-            i.currentTarget.closest("label").classList.add("active")
+              });
+            i.currentTarget.closest("label").classList.add("active");
           }
           if (i.currentTarget.closest("#edit-qa9-wrap")) {
-
             if (i.currentTarget.closest("#parent_school_us")) {
-              document.querySelector("#edit-what-school-are-you-interested-in-attending-us").value = i.target.getAttribute("value")
-            
+              document.querySelector("#edit-what-school-are-you-interested-in-attending-us").value = i.target.getAttribute("value");
+
               if (document.querySelector("#edit-what-school-are-you-interested-in-attending-us").value !== "") {
-                document.querySelector("#edit-cards-next--11").click()
+                document.querySelector("#edit-cards-next--11").click();
               }
             } else if (i.currentTarget.closest("#parent_school")) {
-              document.querySelector("#edit-what-school-are-you-interested-in-attending").value = i.target.getAttribute("value")
-            
+              document.querySelector("#edit-what-school-are-you-interested-in-attending").value = i.target.getAttribute("value");
+
               if (document.querySelector("#edit-what-school-are-you-interested-in-attending").value !== "") {
-                document.querySelector("#edit-cards-next--11").click()
+                document.querySelector("#edit-cards-next--11").click();
               }
             }
             if (i.target.getAttribute("id") === "skip_school_are_you_interested_in_attending_var") {
-              document.querySelector("#edit-what-school-are-you-interested-in-attending").setAttribute("skip", true)
+              document.querySelector("#edit-what-school-are-you-interested-in-attending").setAttribute("skip", true);
               // document.querySelector("#edit-cards-next--11").click()
             }
-          
-            pushDataLayer(
-              `exp_remove_barriers_on_quiz_c`,
-              `checked ${i.currentTarget.nextElementSibling.textContent}`,
-              `Checkbox`,
-              i.currentTarget.closest("section").querySelector("h4").textContent
-            )
+
+            pushDataLayer(`exp_remove_barriers_on_quiz_c`, `checked ${i.currentTarget.nextElementSibling.textContent}`, `Checkbox`, i.currentTarget.closest("section").querySelector("h4").textContent);
           }
           if (i.currentTarget.closest("#edit-qa10-wrap")) {
-            document.querySelector("#edit-what-field-of-study-are-you-looking-to-study-currently-studying").value = i.target.getAttribute("value")
-            pushDataLayer(
-              `exp_remove_barriers_on_quiz_c`,
-              `checked ${i.currentTarget.nextElementSibling.textContent}`,
-              `Checkbox`,
-              i.currentTarget.closest("section").querySelector("h4").textContent
-            )
+            document.querySelector("#edit-what-field-of-study-are-you-looking-to-study-currently-studying").value = i.target.getAttribute("value");
+            pushDataLayer(`exp_remove_barriers_on_quiz_c`, `checked ${i.currentTarget.nextElementSibling.textContent}`, `Checkbox`, i.currentTarget.closest("section").querySelector("h4").textContent);
 
-            document.querySelector("#edit-cards-next--12").click()
+            document.querySelector("#edit-cards-next--12").click();
             // if (i.currentTarget.getAttribute("id") !== "other2") {
             // }
 
@@ -1618,27 +1368,27 @@ let myFunk = setInterval(() => {
             // }
           }
           if (i.currentTarget.closest("#edit-if-selected-for-our-program")) {
-            document.querySelector("#edit-cards-next--13").click()
+            document.querySelector("#edit-cards-next--13").click();
             i.currentTarget
               .closest("#edit-if-selected-for-our-program")
               .querySelectorAll(".radio label.control-label")
               .forEach((r) => {
                 if (r.classList.contains("active")) {
-                  r.classList.remove("active")
+                  r.classList.remove("active");
                 }
-              })
-            i.currentTarget.closest("label.control-label").classList.add("active")
+              });
+            i.currentTarget.closest("label.control-label").classList.add("active");
           }
           if (i.currentTarget.closest("#edit-what-is-your-family-s-approximate-yearly-household-income-")) {
-            document.querySelector("#edit-cards-next--14").click()
+            document.querySelector("#edit-cards-next--14").click();
             // slider mob
             if (window.innerWidth >= 991) {
               setTimeout(() => {
-                document.querySelector(".reviews_block").style.opacity = "1"
-              }, 200)
+                document.querySelector(".reviews_block").style.opacity = "1";
+              }, 200);
               let slickInterval = setInterval(() => {
                 if (typeof jQuery(".new_reviews").slick === "function" && document.querySelector(".new_reviews .reviews_link")) {
-                  clearInterval(slickInterval)
+                  clearInterval(slickInterval);
 
                   //  slider
                   let slider = jQuery(".new_reviews").slick({
@@ -1648,142 +1398,142 @@ let myFunk = setInterval(() => {
                     dots: false,
                     adaptiveHeight: true,
                     infinite: false,
-                  })
+                  });
                   slider.on("swipe", function () {
                     // pushDataLayer("swipe slider")
                     if (document.querySelector(".slick-slide:last-child").classList.contains("slick-active")) {
-                      document.querySelector(".reviews_block").classList.add("ative_left")
-                      document.querySelector(".reviews_block").classList.remove("ative_right")
+                      document.querySelector(".reviews_block").classList.add("ative_left");
+                      document.querySelector(".reviews_block").classList.remove("ative_right");
                     }
                     if (document.querySelector(".slick-slide:first-child").classList.contains("slick-active")) {
-                      document.querySelector(".reviews_block").classList.remove("ative_left")
-                      document.querySelector(".reviews_block").classList.add("ative_right")
+                      document.querySelector(".reviews_block").classList.remove("ative_left");
+                      document.querySelector(".reviews_block").classList.add("ative_right");
                     }
-                  })
+                  });
 
                   document.querySelectorAll(".new_reviews .slick-arrow").forEach((el) => {
                     el.addEventListener("click", () => {
                       // pushDataLayer("click on btn slider")
                       if (document.querySelector(".slick-slide:last-child").classList.contains("slick-active")) {
-                        document.querySelector(".reviews_block").classList.add("ative_left")
-                        document.querySelector(".reviews_block").classList.remove("ative_right")
+                        document.querySelector(".reviews_block").classList.add("ative_left");
+                        document.querySelector(".reviews_block").classList.remove("ative_right");
                       }
                       if (document.querySelector(".slick-slide:first-child").classList.contains("slick-active")) {
-                        document.querySelector(".reviews_block").classList.remove("ative_left")
-                        document.querySelector(".reviews_block").classList.add("ative_right")
+                        document.querySelector(".reviews_block").classList.remove("ative_left");
+                        document.querySelector(".reviews_block").classList.add("ative_right");
                       }
-                    })
-                  })
+                    });
+                  });
                 }
-              }, 100)
+              }, 100);
             }
-            document.querySelector("form > .row > .col.col-md-8").classList.add("last_step_var")
-            document.querySelector(".path-grantme-program-assessment #block-landingpageheaderquiz .col-md-4.bluebg").classList.add("last_step_var")
-            document.querySelector("#webform-submission-grantme-program-assessment-add-form .col.col-md-4.bluebg.hidden-xs.hidden-sm").classList.add("last_step_var")
-            document.querySelector("#block-landingpageheaderquiz .row > .col.col-md-8.col-xs-12").classList.add("last_step_var")
-            document.querySelector(".program_assessment_var").classList.add("last_step_var")
-            document.querySelector(".program_assessment_wrap").classList.add("last_step_var")
+            document.querySelector("form > .row > .col.col-md-8").classList.add("last_step_var");
+            document.querySelector(".path-grantme-program-assessment #block-landingpageheaderquiz .col-md-4.bluebg").classList.add("last_step_var");
+            document.querySelector("#webform-submission-grantme-program-assessment-add-form .col.col-md-4.bluebg.hidden-xs.hidden-sm").classList.add("last_step_var");
+            document.querySelector("#block-landingpageheaderquiz .row > .col.col-md-8.col-xs-12").classList.add("last_step_var");
+            document.querySelector(".program_assessment_var").classList.add("last_step_var");
+            document.querySelector(".program_assessment_wrap").classList.add("last_step_var");
 
             i.currentTarget
               .closest("#edit-what-is-your-family-s-approximate-yearly-household-income-")
               .querySelectorAll(".radio label")
               .forEach((r) => {
                 if (r.classList.contains("active")) {
-                  r.classList.remove("active")
+                  r.classList.remove("active");
                 }
-              })
-            i.currentTarget.closest("label").classList.add("active")
+              });
+            i.currentTarget.closest("label").classList.add("active");
             if (!document.querySelector(".loader_wrap")) {
-              document.querySelector("#edit-what-is-your-contact-info- .webform-card-wrapper").insertAdjacentHTML("afterbegin", loaderWrap)
+              document.querySelector("#edit-what-is-your-contact-info- .webform-card-wrapper").insertAdjacentHTML("afterbegin", loaderWrap);
             }
             if (document.querySelector(".loader_wrap")) {
               if (localStorage.getItem("name") === "Parent of Student") {
                 document.querySelectorAll(".loader_wrap .text_first")?.forEach((el) => {
-                  el.textContent = "child’s"
-                })
+                  el.textContent = "child’s";
+                });
                 document.querySelectorAll(".loader_wrap .text_second")?.forEach((el) => {
-                  el.textContent = "your child is"
-                })
+                  el.textContent = "your child is";
+                });
                 document.querySelectorAll(".loader_wrap .text_third")?.forEach((el) => {
-                  el.textContent = "your child"
-                })
+                  el.textContent = "your child";
+                });
                 document.querySelectorAll(".loader_wrap .text_fourth")?.forEach((el) => {
-                  el.textContent = "child"
-                })
+                  el.textContent = "child";
+                });
               }
-              document.querySelector("#navbar")?.scrollIntoView({ block: "start", behavior: "smooth" })
-              startPreloader()
+              document.querySelector("#navbar")?.scrollIntoView({ block: "start", behavior: "smooth" });
+              startPreloader();
               function startPreloader() {
-                console.log("startPreloader")
-                let idx = 0
-                var delay = 0.7
+                console.log("startPreloader");
+                let idx = 0;
+                var delay = 0.7;
 
                 for (let item of document.querySelectorAll(".loader_list li")) {
                   setTimeout(() => {
-                    let el = document.querySelector(".loader_list li.active")
+                    let el = document.querySelector(".loader_list li.active");
                     if (el) {
-                      el.classList.remove("active")
-                      el.classList.add("finish")
+                      el.classList.remove("active");
+                      el.classList.add("finish");
                     }
 
-                    item.classList.add("active")
-                  }, idx * delay * 1000)
+                    item.classList.add("active");
+                  }, idx * delay * 1000);
 
-                  idx++
+                  idx++;
 
                   if (idx == 3) {
                     setTimeout(() => {
-                      let el = document.querySelector(".loader_list li.active")
+                      let el = document.querySelector(".loader_list li.active");
 
                       if (el) {
-                        el.classList.remove("active")
-                        el.classList.add("finish")
+                        el.classList.remove("active");
+                        el.classList.add("finish");
                       }
                       setTimeout(() => {
                         if (document.querySelectorAll(".loader_list li.finish").length === 6) {
-                          document.querySelector(".loader_wrap").style.display = "none"
-                          document.querySelector("#edit-qa13-wrap").style.display = "block"
-                          document.querySelector(".path-scholarship-eligibility-quiz .webform-progress ul li:last-child").style.background = "#3e78ba"
-                          document.querySelector("#navbar")?.scrollIntoView({ block: "start", behavior: "smooth" })
+                          document.querySelector(".loader_wrap").style.display = "none";
+                          document.querySelector("#edit-qa13-wrap").style.display = "block";
+                          document.querySelector(".path-scholarship-eligibility-quiz .webform-progress ul li:last-child").style.background = "#3e78ba";
+                          document.querySelector("#navbar")?.scrollIntoView({ block: "start", behavior: "smooth" });
                         }
-                      }, 300)
-                    }, idx * delay * 1000 + 3000)
+                      }, 300);
+                    }, idx * delay * 1000 + 3000);
                   }
                 }
               }
             }
             document.querySelector(".loader_wrap .back_btn_var")?.addEventListener("click", (i) => {
               if (i.currentTarget.closest(".loader_wrap")) {
-                document.querySelector("form > .row > .col.col-md-8").classList.remove("last_step_var")
-                document.querySelector(".path-grantme-program-assessment #block-landingpageheaderquiz .col-md-4.bluebg").classList.remove("last_step_var")
-                document.querySelector("#webform-submission-grantme-program-assessment-add-form .col.col-md-4.bluebg.hidden-xs.hidden-sm").classList.remove("last_step_var")
-                document.querySelector("#block-landingpageheaderquiz .row > .col.col-md-8.col-xs-12").classList.remove("last_step_var")
-                document.querySelector(".program_assessment_var").classList.remove("last_step_var")
-                document.querySelector(".program_assessment_wrap").classList.remove("last_step_var")
+                document.querySelector("form > .row > .col.col-md-8").classList.remove("last_step_var");
+                document.querySelector(".path-grantme-program-assessment #block-landingpageheaderquiz .col-md-4.bluebg").classList.remove("last_step_var");
+                document.querySelector("#webform-submission-grantme-program-assessment-add-form .col.col-md-4.bluebg.hidden-xs.hidden-sm").classList.remove("last_step_var");
+                document.querySelector("#block-landingpageheaderquiz .row > .col.col-md-8.col-xs-12").classList.remove("last_step_var");
+                document.querySelector(".program_assessment_var").classList.remove("last_step_var");
+                document.querySelector(".program_assessment_wrap").classList.remove("last_step_var");
 
-                document.querySelector(".path-scholarship-eligibility-quiz .webform-progress ul li:last-child").style.background = "rgb(233, 243, 250)"
-                document.querySelector("#edit-cards-prev--14").click()
-                pushDataLayer(`exp_remove_barriers_on_quiz_b`, "Back", `Button`, i.currentTarget.closest("section").querySelector("h4").textContent)
-                document.querySelector("#edit-qa13-wrap").style.display = "none"
+                document.querySelector(".path-scholarship-eligibility-quiz .webform-progress ul li:last-child").style.background = "rgb(233, 243, 250)";
+                document.querySelector("#edit-cards-prev--14").click();
+                pushDataLayer(`exp_remove_barriers_on_quiz_b`, "Back", `Button`, i.currentTarget.closest("section").querySelector("h4").textContent);
+                document.querySelector("#edit-qa13-wrap").style.display = "none";
                 if (document.querySelector(".loader_wrap")) {
-                  document.querySelector(".loader_wrap").remove()
+                  document.querySelector(".loader_wrap").remove();
                 }
               }
-            })
+            });
           }
           if (i.currentTarget.closest("#edit-what-is-your-contact-info-")) {
-            document.querySelector("#edit-cards-next--14").click()
+            document.querySelector("#edit-cards-next--14").click();
           }
         }
-        i.currentTarget.setAttribute("data-test", "1")
+        i.currentTarget.setAttribute("data-test", "1");
 
         setTimeout(() => {
           if (el.getAttribute("data-test")) {
-            el.removeAttribute("data-test")
+            el.removeAttribute("data-test");
           }
-        }, 500)
-      })
-    })
+        }, 500);
+      });
+    });
 
     // click on back_btn_var
     document.querySelectorAll(".back_btn_var").forEach((el) => {
@@ -1792,221 +1542,218 @@ let myFunk = setInterval(() => {
           document.querySelectorAll(".webform-progress ul li").forEach((el) => {
             let int = setInterval(() => {
               if (!el.classList.contains("is-active") && !el.classList.contains("is-complete")) {
-                clearInterval(int)
-                el.style.background = "#e9f3fa"
+                clearInterval(int);
+                el.style.background = "#e9f3fa";
               }
-            }, 100)
-          })
+            }, 100);
+          });
           if (i.currentTarget.closest("#edit-are-you-a-current-student-")) {
-            pushDataLayer(`exp_remove_barriers_on_quiz_b`, "Back", `Button`, i.currentTarget.closest("section").querySelector("h4").textContent)
-            i.currentTarget.closest("section").querySelector(".back_btn_var").style.opacity = "0"
-            i.currentTarget.closest("section").querySelector(".back_btn_var").style.visibility = "hidden"
+            pushDataLayer(`exp_remove_barriers_on_quiz_b`, "Back", `Button`, i.currentTarget.closest("section").querySelector("h4").textContent);
+            i.currentTarget.closest("section").querySelector(".back_btn_var").style.opacity = "0";
+            i.currentTarget.closest("section").querySelector(".back_btn_var").style.visibility = "hidden";
             document.querySelectorAll("#edit-are-you-a-current-student.js-webform-radios input[type=radio]").forEach((input) => {
               if (input.checked === true) {
-                input.checked = false
+                input.checked = false;
                 if (localStorage.getItem("name")) {
-                  localStorage.removeItem("name")
+                  localStorage.removeItem("name");
                 }
                 if (input.closest("label").classList.contains("active")) {
-                  input.closest("label").classList.remove("active")
+                  input.closest("label").classList.remove("active");
                 }
               }
-            })
-            if (
-              document.querySelector(".path-scholarship-eligibility-quiz .webform-progress ul li:nth-child(1)").classList.contains("is-complete") ||
-              document.querySelector(".path-scholarship-eligibility-quiz .webform-progress ul li:nth-child(1)").classList.contains("is-active")
-            ) {
-              document.querySelector(".path-scholarship-eligibility-quiz .webform-progress ul li:nth-child(1)").classList.remove("is-complete")
-              document.querySelector(".path-scholarship-eligibility-quiz .webform-progress ul li:nth-child(1)").classList.remove("is-active")
+            });
+            if (document.querySelector(".path-scholarship-eligibility-quiz .webform-progress ul li:nth-child(1)").classList.contains("is-complete") || document.querySelector(".path-scholarship-eligibility-quiz .webform-progress ul li:nth-child(1)").classList.contains("is-active")) {
+              document.querySelector(".path-scholarship-eligibility-quiz .webform-progress ul li:nth-child(1)").classList.remove("is-complete");
+              document.querySelector(".path-scholarship-eligibility-quiz .webform-progress ul li:nth-child(1)").classList.remove("is-active");
             }
           }
           if (i.currentTarget.closest("#edit-what-were-you-looking-for-today-")) {
-            document.querySelector("#edit-cards-prev--2").click()
-            pushDataLayer(`exp_remove_barriers_on_quiz_b`, "Back", `Button`, i.currentTarget.closest("section").querySelector("h4").textContent)
+            document.querySelector("#edit-cards-prev--2").click();
+            pushDataLayer(`exp_remove_barriers_on_quiz_b`, "Back", `Button`, i.currentTarget.closest("section").querySelector("h4").textContent);
           }
           if (i.currentTarget.closest("#edit-what-is-your-citizenship-")) {
-            document.querySelector("#edit-cards-prev--3").click()
-            pushDataLayer(`exp_remove_barriers_on_quiz_b`, "Back", `Button`, i.currentTarget.closest("section").querySelector("h4").textContent)
+            document.querySelector("#edit-cards-prev--3").click();
+            pushDataLayer(`exp_remove_barriers_on_quiz_b`, "Back", `Button`, i.currentTarget.closest("section").querySelector("h4").textContent);
           }
-          if (i.currentTarget.closest("#edit-what-year-of-university-are-you-currently-in-") || i.currentTarget.closest("#edit-what-year-of-study-are-you-currently-in-")) {
-            document.querySelector("#edit-cards-prev--4").click()
-            pushDataLayer(`exp_remove_barriers_on_quiz_b`, "Back", `Button`, i.currentTarget.closest("section").querySelector("h4").textContent)
+          if (i.currentTarget.closest("#edit-what-year-of-study-are-you-currently-in-")) {
+            document.querySelector("#edit-cards-prev--4").click();
+            pushDataLayer(`exp_remove_barriers_on_quiz_b`, "Back", `Button`, i.currentTarget.closest("section").querySelector("h4").textContent);
           }
           if (i.currentTarget.closest("#edit-are-you-currently-studying-in-canada-")) {
-            document.querySelector("#edit-cards-prev--5").click()
-            pushDataLayer(`exp_remove_barriers_on_quiz_b`, "Back", `Button`, i.currentTarget.closest("section").querySelector("h4").textContent)
+            document.querySelector("#edit-cards-prev--5").click();
+            pushDataLayer(`exp_remove_barriers_on_quiz_b`, "Back", `Button`, i.currentTarget.closest("section").querySelector("h4").textContent);
           }
           if (i.currentTarget.closest("#edit-what-year-of-university-are-you-currently-in-")) {
-            document.querySelector("#edit-cards-prev--6").click()
-            pushDataLayer(`exp_remove_barriers_on_quiz_b`, "Back", `Button`, i.currentTarget.closest("section").querySelector("h4").textContent)
+            document.querySelector("#edit-cards-prev--6").click();
+            pushDataLayer(`exp_remove_barriers_on_quiz_b`, "Back", `Button`, i.currentTarget.closest("section").querySelector("h4").textContent);
           }
           if (i.currentTarget.closest("#edit-how-old-are-you-")) {
-            document.querySelector("#edit-cards-prev--7").click()
-            pushDataLayer(`exp_remove_barriers_on_quiz_b`, "Back", `Button`, i.currentTarget.closest("section").querySelector("h4").textContent)
+            document.querySelector("#edit-cards-prev--7").click();
+            pushDataLayer(`exp_remove_barriers_on_quiz_b`, "Back", `Button`, i.currentTarget.closest("section").querySelector("h4").textContent);
           }
           if (i.currentTarget.closest("#edit-what-is-your-gpa-")) {
-            document.querySelector("#edit-cards-prev--8").click()
-            pushDataLayer(`exp_remove_barriers_on_quiz_b`, "Back", `Button`, i.currentTarget.closest("section").querySelector("h4").textContent)
+            document.querySelector("#edit-cards-prev--8").click();
+            pushDataLayer(`exp_remove_barriers_on_quiz_b`, "Back", `Button`, i.currentTarget.closest("section").querySelector("h4").textContent);
           }
           if (i.currentTarget.closest("#edit-what-program-are-you-looking-to-study-currently-studying-")) {
-            document.querySelector("#edit-cards-prev--9").click()
-            pushDataLayer(`exp_remove_barriers_on_quiz_b`, "Back", `Button`, i.currentTarget.closest("section").querySelector("h4").textContent)
+            document.querySelector("#edit-cards-prev--9").click();
+            pushDataLayer(`exp_remove_barriers_on_quiz_b`, "Back", `Button`, i.currentTarget.closest("section").querySelector("h4").textContent);
           }
           if (i.currentTarget.closest("#edit-how-many-extracurricular-or-volunteer-activities-do-you-particip")) {
-            document.querySelector("#edit-cards-prev--10").click()
-            pushDataLayer(`exp_remove_barriers_on_quiz_b`, "Back", `Button`, i.currentTarget.closest("section").querySelector("h4").textContent)
+            document.querySelector("#edit-cards-prev--10").click();
+            pushDataLayer(`exp_remove_barriers_on_quiz_b`, "Back", `Button`, i.currentTarget.closest("section").querySelector("h4").textContent);
           }
           if (i.currentTarget.closest("#edit-what-school-are-you-interested-in-attending-")) {
-            document.querySelector("#edit-cards-prev--11").click()
-            pushDataLayer(`exp_remove_barriers_on_quiz_b`, "Back", `Button`, i.currentTarget.closest("section").querySelector("h4").textContent)
+            document.querySelector("#edit-cards-prev--11").click();
+            pushDataLayer(`exp_remove_barriers_on_quiz_b`, "Back", `Button`, i.currentTarget.closest("section").querySelector("h4").textContent);
           }
           if (i.currentTarget.closest("#edit-what-field-of-study-are-you-looking-to-study-currently-studying-")) {
-            document.querySelector("#edit-cards-prev--12").click()
-            pushDataLayer(`exp_remove_barriers_on_quiz_b`, "Back", `Button`, i.currentTarget.closest("section").querySelector("h4").textContent)
+            document.querySelector("#edit-cards-prev--12").click();
+            pushDataLayer(`exp_remove_barriers_on_quiz_b`, "Back", `Button`, i.currentTarget.closest("section").querySelector("h4").textContent);
             if (document.querySelector("#edit-what-school-are-you-interested-in-attending").getAttribute("skip") === "true") {
-              document.querySelector("#edit-what-school-are-you-interested-in-attending").value = ""
+              document.querySelector("#edit-what-school-are-you-interested-in-attending").value = "";
               // document.querySelector("#edit-cards-next--11").disabled = true
-              document.querySelector("#edit-what-school-are-you-interested-in-attending").removeAttribute("skip")
+              document.querySelector("#edit-what-school-are-you-interested-in-attending").removeAttribute("skip");
             }
           }
           if (i.currentTarget.closest("#edit-if-selected-for-our-program")) {
-            document.querySelector("#edit-cards-prev--13").click()
-            pushDataLayer(`exp_remove_barriers_on_quiz_b`, "Back", `Button`, i.currentTarget.closest("section").querySelector("h4").textContent)
+            document.querySelector("#edit-cards-prev--13").click();
+            pushDataLayer(`exp_remove_barriers_on_quiz_b`, "Back", `Button`, i.currentTarget.closest("section").querySelector("h4").textContent);
           }
           if (i.currentTarget.closest("#edit-what-is-your-family-s-approximate-yearly-household-income-")) {
-            document.querySelector("#edit-cards-prev--14").click()
-            pushDataLayer(`exp_remove_barriers_on_quiz_b`, "Back", `Button`, i.currentTarget.closest("section").querySelector("h4").textContent)
+            document.querySelector("#edit-cards-prev--14").click();
+            pushDataLayer(`exp_remove_barriers_on_quiz_b`, "Back", `Button`, i.currentTarget.closest("section").querySelector("h4").textContent);
           }
           if (i.currentTarget.closest(".guarantee_block")) {
-            pushDataLayer(`exp_remove_barriers_on_quiz_b`, "Back", `Button`, i.currentTarget.closest("section").querySelector("h4").textContent)
-            document.querySelector("#edit-cards-prev--14").click()
+            pushDataLayer(`exp_remove_barriers_on_quiz_b`, "Back", `Button`, i.currentTarget.closest("section").querySelector("h4").textContent);
+            document.querySelector("#edit-cards-prev--14").click();
 
-            document.querySelector("form > .row > .col.col-md-8").classList.remove("last_step_var")
-            document.querySelector(".path-grantme-program-assessment #block-landingpageheaderquiz .col-md-4.bluebg").classList.remove("last_step_var")
-            document.querySelector("#webform-submission-grantme-program-assessment-add-form .col.col-md-4.bluebg.hidden-xs.hidden-sm").classList.remove("last_step_var")
-            document.querySelector("#block-landingpageheaderquiz .row > .col.col-md-8.col-xs-12").classList.remove("last_step_var")
-            document.querySelector(".program_assessment_var").classList.remove("last_step_var")
-            document.querySelector(".program_assessment_wrap").classList.remove("last_step_var")
-            document.querySelector("#edit-qa13-wrap").style.display = "none"
+            document.querySelector("form > .row > .col.col-md-8").classList.remove("last_step_var");
+            document.querySelector(".path-grantme-program-assessment #block-landingpageheaderquiz .col-md-4.bluebg").classList.remove("last_step_var");
+            document.querySelector("#webform-submission-grantme-program-assessment-add-form .col.col-md-4.bluebg.hidden-xs.hidden-sm").classList.remove("last_step_var");
+            document.querySelector("#block-landingpageheaderquiz .row > .col.col-md-8.col-xs-12").classList.remove("last_step_var");
+            document.querySelector(".program_assessment_var").classList.remove("last_step_var");
+            document.querySelector(".program_assessment_wrap").classList.remove("last_step_var");
+            document.querySelector("#edit-qa13-wrap").style.display = "none";
             if (document.querySelector(".loader_wrap")) {
-              document.querySelector(".loader_wrap").remove()
+              document.querySelector(".loader_wrap").remove();
             }
           }
         }
-        i.currentTarget.setAttribute("data-test", "1")
+        i.currentTarget.setAttribute("data-test", "1");
 
         setTimeout(() => {
           if (el.getAttribute("data-test")) {
-            el.removeAttribute("data-test")
+            el.removeAttribute("data-test");
           }
-        }, 500)
-      })
-    })
+        }, 500);
+      });
+    });
 
     // validate
     let observer = new MutationObserver(() => {
       if (document.querySelector("#edit-qa13-wrap")) {
-        observer.disconnect()
-        console.log(`observer`)
+        observer.disconnect();
+        console.log(`observer`);
 
         if (jQuery("strong.error").is(":visible")) {
           if (!document.querySelector("form #edit-actions-10-submit").classList.contains("disabled")) {
-            document.querySelector("form #edit-actions-10-submit").classList.add("disabled")
+            document.querySelector("form #edit-actions-10-submit").classList.add("disabled");
           }
-          document.querySelector("form #edit-actions-10-submit").disabled = true
-          console.log(document.querySelector("form #edit-actions-10-submit").disabled)
+          document.querySelector("form #edit-actions-10-submit").disabled = true;
+          console.log(document.querySelector("form #edit-actions-10-submit").disabled);
         } else {
-          document.querySelector("form #edit-actions-10-submit").disabled = false
+          document.querySelector("form #edit-actions-10-submit").disabled = false;
           if (document.querySelector("form #edit-actions-10-submit").classList.contains("disabled")) {
-            document.querySelector("form #edit-actions-10-submit").classList.remove("disabled")
-            console.log(`second`, document.querySelector("form #edit-actions-10-submit").disabled)
+            document.querySelector("form #edit-actions-10-submit").classList.remove("disabled");
+            console.log(`second`, document.querySelector("form #edit-actions-10-submit").disabled);
           }
         }
 
         observer.observe(document.querySelector("#edit-qa13-wrap"), {
           childList: true,
           subtree: true,
-        })
+        });
       }
-    })
+    });
 
     observer.observe(document.querySelector("#edit-qa13-wrap"), {
       childList: true,
       subtree: true,
-    })
+    });
 
     // Hover or click on bullets
-    let evTxt = "Hover"
-    let ev = "mouseenter"
+    let evTxt = "Hover";
+    let ev = "mouseenter";
 
     if (window.innerWidth <= 991) {
-      evTxt = "Click"
-      ev = "click"
+      evTxt = "Click";
+      ev = "click";
     }
 
     document.querySelectorAll(".benefits_wrap ul li").forEach((el) => {
       el.addEventListener(`${ev}`, (e) => {
-        pushDataLayer(`exp_remove_barriers_on_quiz_h`, `${e.currentTarget.querySelector("span").textContent}`, `${evTxt}`, `Summary`)
-      })
-    })
+        pushDataLayer(`exp_remove_barriers_on_quiz_h`, `${e.currentTarget.querySelector("span").textContent}`, `${evTxt}`, `Summary`);
+      });
+    });
 
     let obs = new IntersectionObserver(visibility, {
       threshold: 1,
-    })
+    });
 
     let obs2 = new IntersectionObserver(visibility2, {
       threshold: 1,
-    })
+    });
 
-    obs.observe(document.querySelector(".policy_var"))
-    obs.observe(document.querySelector(".guarantee_block"))
+    obs.observe(document.querySelector(".policy_var"));
+    obs.observe(document.querySelector(".guarantee_block"));
 
     let int = setInterval(() => {
       if (document.querySelector('.reviews_link[data-count="1"]')) {
-        clearInterval(int)
-        obs.observe(document.querySelector('.reviews_link[data-count="1"]'))
+        clearInterval(int);
+        obs.observe(document.querySelector('.reviews_link[data-count="1"]'));
       }
-    }, 100)
+    }, 100);
     let int2 = setInterval(() => {
       if (document.querySelector('.reviews_link[data-count="2"]')) {
-        clearInterval(int2)
-        obs.observe(document.querySelector('.reviews_link[data-count="2"]'))
+        clearInterval(int2);
+        obs.observe(document.querySelector('.reviews_link[data-count="2"]'));
       }
-    }, 100)
+    }, 100);
     let int3 = setInterval(() => {
       if (document.querySelector('.reviews_link[data-count="3"]')) {
-        clearInterval(int3)
-        obs.observe(document.querySelector('.reviews_link[data-count="3"]'))
+        clearInterval(int3);
+        obs.observe(document.querySelector('.reviews_link[data-count="3"]'));
       }
-    }, 100)
+    }, 100);
     let int4 = setInterval(() => {
       if (document.querySelector(".reviews_block")) {
-        clearInterval(int4)
-        obs.observe(document.querySelector(".reviews_block"))
+        clearInterval(int4);
+        obs.observe(document.querySelector(".reviews_block"));
       }
-    }, 100)
+    }, 100);
 
     function visibility(entries) {
       entries.forEach((i) => {
         if (i.isIntersecting) {
           setTimeout(function () {
-            obs2.observe(i.target)
-          }, 100)
+            obs2.observe(i.target);
+          }, 100);
         }
-      })
+      });
     }
 
     function visibility2(entries) {
       entries.forEach((i) => {
         if (i.isIntersecting) {
           if (i.target.classList.contains("policy_var")) {
-            pushDataLayer(`exp_remove_barriers_on_quiz_vcta`, "Visibility new text", "Text area", `under CTA button`)
+            pushDataLayer(`exp_remove_barriers_on_quiz_vcta`, "Visibility new text", "Text area", `under CTA button`);
           }
           if (i.target.classList.contains("reviews_block")) {
-            pushDataLayer("exp_remove_barriers_on_quiz_vr", "Visibility reviews section", "Reviews", `Reviews sections`)
+            pushDataLayer("exp_remove_barriers_on_quiz_vr", "Visibility reviews section", "Reviews", `Reviews sections`);
           }
           if (i.target.classList.contains("guarantee_block")) {
-            pushDataLayer(`exp_remove_barriers_on_quiz_vs`, `Visibility summary flow`, `Bullets box`, `Summary`)
+            pushDataLayer(`exp_remove_barriers_on_quiz_vs`, `Visibility summary flow`, `Bullets box`, `Summary`);
           }
           // switch (i.target.getAttribute("data-count")) {
           //   case "1":
@@ -2022,18 +1769,18 @@ let myFunk = setInterval(() => {
           //     break
           // }
 
-          obs.unobserve(i.target)
+          obs.unobserve(i.target);
         }
-        obs2.unobserve(i.target)
-      })
+        obs2.unobserve(i.target);
+      });
     }
 
-    // pushDataLayer("loaded")
+    pushDataLayer("loaded");
     const record = setInterval(() => {
       if (typeof clarity === "function") {
-        clearInterval(record)
-        clarity("set", `remove_barriers_on_quiz_${eventVar}`, "variant_1")
+        clearInterval(record);
+        clarity("set", `remove_barriers_on_quiz_${eventVar}`, "variant_1");
       }
-    }, 200)
+    }, 200);
   }
-}, 300)
+}, 300);
