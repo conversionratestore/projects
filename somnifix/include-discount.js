@@ -170,17 +170,26 @@ let style = `
     }
     .reduction-code svg.btn-remove {
         margin-left: 5px;
+        cursor: pointer;
     }
     .total-line.total-line--reduction {
         background: #FFFFFF;
         border-radius: 6px;
-        border-top: 12px solid #fafafa;
     }
     .total-line.total-line--reduction > td, .total-line.total-line--reduction > th {
         padding: 11px 12px!important;
     }
     .total-line.total-line--reduction .total-line__name, .total-line.total-line--reduction .total-line__price {
         padding: 0;
+    }
+    .total-line.total-line--reduction .total-line__name {
+        border-radius: 6px 0 0 6px!important;
+    } 
+    .total-line.total-line--reduction .total-line__price {
+        border-radius: 0 6px 6px 0!important;
+    }
+    .total-line.total-line--shipping {
+        border-bottom: 12px solid #fafafa;
     }
     .total-line.total-line--reduction .reduction-code__text {
         font-weight: 400;
@@ -242,7 +251,7 @@ let saved = setInterval(() => {
         if (document.querySelector('.style-exp') == null) document.body.insertAdjacentHTML('afterbegin', style)
 
         let packSelector = document.querySelector('.product__description__variant.order-summary__small-text').innerHTML;
-        let pack = !packSelector.includes('1 Pack') && packSelector != '' ? packs[packSelector][document.querySelector('.product__price span').innerHTML] : ''
+        let pack = !packSelector.includes('1 Pack') && packSelector != '' ? packs[packSelector][document.querySelector('.product__price span').innerHTML] : '';
         let oldPrice = packSelector.includes('3 Pack') ? 71.97 : packSelector.includes('12 Pack') ? 311.87 : '';
 
         if (pack != '') {
@@ -261,7 +270,7 @@ let saved = setInterval(() => {
             }
             
             //saved
-            let saved = oldPrice - +document.querySelector('.payment-due__price').innerText.replace('$','')
+            let saved = oldPrice - +document.querySelector('.payment-due__price').innerHTML.replace('$','')
             document.querySelector('.total-line-table__footer .total-line').insertAdjacentHTML('afterend',`<tr> ${saving(Math.floor(saved))}</tr>` )
             if (mql) {
                 pushDataLayer('Visibility Your total saving on this order', document.querySelector('.saved').innerHTML.split(':')[1])
@@ -324,7 +333,7 @@ let discountCode = setInterval(() => {
             document.querySelector('.discount-wrapper').style.display = 'block';
             isVisibleDiscount = true;
             pushDataLayer('Click on Have a coupon code?')
-            pushDataLayer('Visibility Enter yuor coupon code input')
+            pushDataLayer('Visibility Enter your coupon code input')
         })
         //input 
         let inputCode = document.querySelector('#checkout_reduction_code');
@@ -333,6 +342,9 @@ let discountCode = setInterval(() => {
             document.querySelector('.discount-wrapper button').disabled = false;
         }
        
+        document.querySelector('.discount-wrapper input').addEventListener('click', (e) => {
+            pushDataLayer('Click on Enter your coupon code input')
+        })
         document.querySelector('.discount-wrapper input').addEventListener('input', (e) => {
             document.querySelector('#checkout_reduction_code').value = e.currentTarget.value
             if (e.currentTarget.value != '') {
