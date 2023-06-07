@@ -8,7 +8,7 @@ let startFunkPopupV2 = setInterval(() => {
         console.log(actionDataLayer + " : " + labelDataLayer);
         dataLayer.push({
           event: "event-to-ga",
-          eventCategory: `Exp: - Exp: Changing First order discount`,
+          eventCategory: `Exp: Changing First order discount`,
           eventAction: `${actionDataLayer}`,
           eventLabel: `${labelDataLayer}`,
         });
@@ -16,7 +16,7 @@ let startFunkPopupV2 = setInterval(() => {
         console.log(actionDataLayer);
         dataLayer.push({
           event: "event-to-ga",
-          eventCategory: `Exp: - Exp: Changing First order discount`,
+          eventCategory: `Exp: Changing First order discount`,
           eventAction: `${actionDataLayer}`,
         });
       }
