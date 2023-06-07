@@ -44,12 +44,15 @@ let startFunkPopupV2 = setInterval(() => {
           console.log(`New User`);
           active = true;
           localStorage.setItem("newUser", "true");
-          popupTimerId = setTimeout(() => {
-            openPopup();
-            if (document.querySelector(".overlay_popup .content_popup")) {
-              countTimer();
+          popupTimerId = setInterval(() => {
+            if (document.querySelector("html body .ju_Con")) {
+              clearInterval(popupTimerId);
+              openPopup();
+              if (document.querySelector(".overlay_popup .content_popup")) {
+                countTimer();
+              }
             }
-          }, 10000);
+          }, 10);
         }
       }
     }
@@ -157,8 +160,9 @@ let startFunkPopupV2 = setInterval(() => {
             min-width: 53px !important;
     max-width: 53px !important;
           }
-            #zenpatch-mood-calming-stickers-the-natural-patch-co .ju_Con,
+            html body .ju_Con,
             html body #ju_Con_907501,
+            html body #ju_Con_907502,
             html body #ju_overlay,
             html body #ju_Con_908884,
             #zenpatch-mood-calming-stickers-the-natural-patch-co #ju_overlay{
