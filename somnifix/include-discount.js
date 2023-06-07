@@ -291,10 +291,9 @@ let reductionCode = setInterval(() => {
         <svg class="btn-remove" width="10" height="10" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path fill-rule="evenodd" clip-rule="evenodd" d="M4.99993 3.58579L1.4644 0.0502526L0.0501826 1.46447L3.58572 5L0.0501823 8.53553L1.4644 9.94975L4.99993 6.41421L8.53546 9.94975L9.94968 8.53553L6.41414 5L9.94968 1.46447L8.53546 0.0502526L4.99993 3.58579Z" fill="#20425E"/>
         </svg>`)
-
+        window.scrollTo(0, 0);
         document.querySelector('.btn-remove').addEventListener('click', (e) => {
             document.querySelector('.tag__button').click()
-            
         })
 
         document.querySelector('.total-line.total-line--shipping').after(document.querySelector('.total-line.total-line--reduction'))
@@ -306,6 +305,7 @@ let isVisibleDiscount = false;
 let discountCode = setInterval(() => {
     if (document.querySelector('#checkout_reduction_code') && document.querySelector('.total-line-table__tbody') && document.querySelector('.discount-wrapper input') == null) {
         
+        window.scrollTo(0, 0);
         let error = document.querySelector('.order-summary__section--discount .field--error') || document.querySelector('.notice--warning') ? 'error' : '',
             errorMessage = document.querySelector('.order-summary__section--discount .field__message') != null ? document.querySelector('.order-summary__section--discount .field__message').innerHTML : '',
             noticeWarning = document.querySelector('.notice--warning') != null ? document.querySelector('.notice--warning .notice__text').innerText : '';
