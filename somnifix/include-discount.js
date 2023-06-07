@@ -244,6 +244,7 @@ let packs = {
     }
 }
 let mql = window.matchMedia("(min-width: 1000px)").matches;
+let pageY = window.pageYOffset;
 
 //coupon message and total saving
 let saved = setInterval(() => {
@@ -292,11 +293,12 @@ let reductionCode = setInterval(() => {
             <path fill-rule="evenodd" clip-rule="evenodd" d="M4.99993 3.58579L1.4644 0.0502526L0.0501826 1.46447L3.58572 5L0.0501823 8.53553L1.4644 9.94975L4.99993 6.41421L8.53546 9.94975L9.94968 8.53553L6.41414 5L9.94968 1.46447L8.53546 0.0502526L4.99993 3.58579Z" fill="#20425E"/>
         </svg>`)
         if (navigator.userAgent.match(/Android/i)) {
-            window.scrollTo(0, 0);
+            window.scrollTo(0, pageY);
         }
        
         document.querySelector('.btn-remove').addEventListener('click', (e) => {
             document.querySelector('.tag__button').click()
+            pageY = window.pageYOffset;
         })
 
         document.querySelector('.total-line.total-line--shipping').after(document.querySelector('.total-line.total-line--reduction'))
@@ -309,7 +311,7 @@ let discountCode = setInterval(() => {
     if (document.querySelector('#checkout_reduction_code') && document.querySelector('.total-line-table__tbody') && document.querySelector('.discount-wrapper input') == null) {
         
         if (navigator.userAgent.match(/Android/i)) {
-            window.scrollTo(0, 0);
+            window.scrollTo(0, pageY);
         }
         let error = document.querySelector('.order-summary__section--discount .field--error') || document.querySelector('.notice--warning') ? 'error' : '',
             errorMessage = document.querySelector('.order-summary__section--discount .field__message') != null ? document.querySelector('.order-summary__section--discount .field__message').innerHTML : '',
@@ -365,6 +367,7 @@ let discountCode = setInterval(() => {
         //apply 
         document.querySelector('.discount-wrapper input').addEventListener("keypress", function(event) {
             if (event.key === "Enter") {
+                pageY = window.pageYOffset;
                 applyBtn[applyBtn.length - 1].click()
                 pushDataLayer('Click on Enter yuor coupon code input')
                 document.querySelector('.discount-wrapper button').classList.add('btn--loading')
@@ -373,6 +376,7 @@ let discountCode = setInterval(() => {
 
         document.querySelector('.discount-wrapper button').addEventListener('click', (e) => { 
             e.currentTarget.classList.add('btn--loading')
+            pageY = window.pageYOffset;
             applyBtn[applyBtn.length - 1].click()
             pushDataLayer('Click on Apply button')
         })
