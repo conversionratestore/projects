@@ -87,7 +87,7 @@ let style = `
     .discount-wrapper, .order-summary__section.order-summary__section--discount {
         display: none;
     }
-    .discount-wrapper input {
+    .discount-wrapper input, #checkout_reduction_code_mobile {
         padding: 11px 14px!important;
         border-radius: 6px 0 0 6px!important;
         color: #20425E;
@@ -99,35 +99,38 @@ let style = `
         width: calc(100% - 120px);
         border-right: none;
     }
-    .discount-wrapper input::-webkit-input-placeholder {
+    #checkout_reduction_code_mobile {
+        width: 100%;
+    }
+    .discount-wrapper input::-webkit-input-placeholder,  #checkout_reduction_code_mobile::-webkit-input-placeholder {
         font-weight: 400;
         font-size: 14px;
         line-height: 140%;
         color: #737373; 
     }
     
-    .discount-wrapper input:-moz-placeholder {
+    .discount-wrapper input:-moz-placeholder,  #checkout_reduction_code_mobile:-moz-placeholder  {
         font-weight: 400;
         font-size: 14px;
         line-height: 140%;
         color: #737373; 
     }
     
-    .discount-wrapper input::-moz-placeholder {
+    .discount-wrapper input::-moz-placeholder,  #checkout_reduction_code_mobile::-moz-placeholder  {
         font-weight: 400;
         font-size: 14px;
         line-height: 140%;
         color: #737373; 
     }
     
-    .discount-wrapper input:-ms-input-placeholder {
+    .discount-wrapper input:-ms-input-placeholder,  #checkout_reduction_code_mobile:-ms-input-placeholder  {
         font-weight: 400;
         font-size: 14px;
         line-height: 140%;
         color: #737373; 
     }
 
-    .discount-wrapper button {
+    .discount-wrapper button, .anyflexbox .field__input-btn {
         margin: 0;
         border-radius: 0px 6px 6px 0px!important;
         width: 120px;
@@ -144,9 +147,12 @@ let style = `
     .discount-wrapper button.btn--loading svg {
         color: #000;
     }
-    .discount-wrapper button[disabled] {
+    .discount-wrapper button[disabled], .anyflexbox .field__input-btn[disabled] {
         background: #D9D9D9;
         color: #FFFFFF;
+    }
+    .floating-labels .field--show-floating-label .field__label {
+        display: none;
     }
     .total-line__discount .discount-wrapper  {
         padding: 12px 0 0 0!important;
@@ -192,13 +198,13 @@ let style = `
     .total-line.total-line--shipping th,  .total-line.total-line--shipping td{
         padding-bottom: 12px;
     }
-    .total-line.total-line--reduction .reduction-code__text {
+    .total-line.total-line--reduction .reduction-code__text, .coupon-used .reduction-code__text {
         font-weight: 400;
         font-size: 14px;
         line-height: 140%;
         color: #20425E;
     }
-    .total-line.total-line--reduction .order-summary__emphasis {
+    .total-line.total-line--reduction .order-summary__emphasis, .coupon-used .order-summary__emphasis {
         font-weight: 700;
         font-size: 14px;
         line-height: 140%;
@@ -210,6 +216,24 @@ let style = `
     .items-center  {
         align-items: center;
     }
+    .coupon-used {
+        background: #fafafa;
+        border-radius: 6px;
+        padding: 11px 12px
+    }
+    .coupon-used span:first-child {
+        display: none;
+    }
+    .coupon-used .reduction-code {
+        margin-right: auto;
+    }
+    .section__content #checkout_submit .shown-on-mobile {
+        display: none!important;
+    }
+    .field--error .field__message--error {
+        font-size: 12px;
+    }
+
     @media (min-width: 1000px) {
         .order-summary__section~.order-summary__section {
             border-top: none;
@@ -296,13 +320,22 @@ let reductionCode = setInterval(() => {
             window.scrollTo(0, pageY);
         }
        
-        document.querySelector('.btn-remove').addEventListener('click', (e) => {
-            document.querySelector('.tag__button').click()
-            pageY = window.pageYOffset;
-        })
-
         document.querySelector('.total-line.total-line--shipping').after(document.querySelector('.total-line.total-line--reduction'))
         document.querySelector('.total-line.total-line--discount').style.display = 'none';
+
+        if (document.querySelector('#checkout_reduction_code_mobile')) {
+            
+            document.querySelector('#checkout_reduction_code_mobile').placeholder = 'Enter your coupon code';
+            document.querySelector('#checkout_reduction_code_mobile').closest('.section__content').classList.add('coupon-used', 'd-flex')
+            document.querySelector('#checkout_reduction_code_mobile').closest('.section__content').innerHTML = document.querySelector('.total-line.total-line--reduction').innerHTML;
+        }
+
+        document.querySelectorAll('.btn-remove').forEach(element => {
+            element.addEventListener('click', (e) => {
+                document.querySelector('.tag__button').click()
+                pageY = window.pageYOffset;
+            })
+        });
     }
 })
 //discount 
@@ -380,6 +413,13 @@ let discountCode = setInterval(() => {
             applyBtn[applyBtn.length - 1].click()
             pushDataLayer('Click on Apply button')
         })
+
+        if (document.querySelector('#checkout_reduction_code_mobile')) {
+            
+            document.querySelector('#checkout_reduction_code_mobile').placeholder = 'Enter your coupon code';
+            document.querySelector('.section__content #checkout_submit .btn__content').classList.remove('visually-hidden-on-mobile');
+
+        }
     }
 })
 
