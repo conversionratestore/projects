@@ -334,6 +334,13 @@ let reductionCode = setInterval(() => {
             element.addEventListener('click', (e) => {
                 document.querySelector('.tag__button').click()
                 pageY = window.pageYOffset;
+
+                if (e.currentTarget.closest('.coupon-used')) {
+                    pushDataLayer('Remove discount code','Gift section')
+                } else {
+                    pushDataLayer('Remove discount code')
+
+                }
             })
         });
     }
@@ -418,7 +425,13 @@ let discountCode = setInterval(() => {
             
             document.querySelector('#checkout_reduction_code_mobile').placeholder = 'Enter your coupon code';
             document.querySelector('.section__content #checkout_submit .btn__content').classList.remove('visually-hidden-on-mobile');
-
+            
+            document.querySelector('#checkout_reduction_code_mobile').addEventListener('click', () => {
+                pushDataLayer('Click on Enter your coupon code input','Gift section')
+            })
+            document.querySelector('.anyflexbox .field__input-btn').addEventListener('click', () => {
+                pushDataLayer('Click on Apply button','Gift section')
+            })
         }
     }
 })
