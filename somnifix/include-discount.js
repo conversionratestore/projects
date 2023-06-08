@@ -272,7 +272,7 @@ let pageY = window.pageYOffset;
 
 //coupon message and total saving
 let saved = setInterval(() => {
-    if (document.querySelector('.product__description__variant.order-summary__small-text') && document.querySelector('.payment-due__price') && document.querySelector('.saved') == null) {
+    if (document.querySelector('.product__description__variant.order-summary__small-text') && document.querySelector('.payment-due__price') ) {
 
         if (document.querySelector('.style-exp') == null) document.body.insertAdjacentHTML('afterbegin', style)
 
@@ -280,11 +280,13 @@ let saved = setInterval(() => {
         let pack = !packSelector.includes('1 Pack') && packSelector != '' ? packs[packSelector][document.querySelector('.product__price span').innerHTML] : '';
         let oldPrice = packSelector.includes('3 Pack') ? 71.97 : packSelector.includes('12 Pack') ? 311.87 : '';
 
+        if (packSelector.includes('1 Pack') && document.querySelector('.total-line--reduction .total-line__price .order-summary__emphasis') != null) {
+            pack = Math.round(+document.querySelector('.total-line--reduction .total-line__price .order-summary__emphasis').innerHTML.split('$')[1] * 100 / +document.querySelector('.product__price .order-summary__emphasis').innerHTML.split('$')[1]);
+        } 
+    
         if (pack != '') {
-            document.querySelector('.total-line__price').insertAdjacentHTML('afterbegin',
-                `<span class="order-summary__line-through skeleton-while-loading"> $${oldPrice} </span>`)
-            
             if (document.querySelector('.includes_discount') == null) {
+
                 document.querySelector('.product-table').insertAdjacentHTML('afterend', coupon(pack))
                 if (mql) {
                     pushDataLayer('Visibility Congratulations', document.querySelector('.includes_discount p span').innerHTML)
@@ -293,17 +295,27 @@ let saved = setInterval(() => {
                         pushDataLayer('Visibility Congratulations', document.querySelector('.includes_discount p span').innerHTML)
                     })
                 }
+    
             }
-            
-            //saved
-            let saved = oldPrice - +document.querySelector('.payment-due__price').innerHTML.replace('$','')
-            document.querySelector('.total-line-table__footer .total-line').insertAdjacentHTML('afterend',`<tr> ${saving(Math.floor(saved))}</tr>` )
-            if (mql) {
-                pushDataLayer('Visibility Your total saving on this order', document.querySelector('.saved').innerHTML.split(':')[1])
-            } else {
-                document.querySelector('.order-summary-toggle').addEventListener('click', () => {
+
+            if (!packSelector.includes('1 Pack') && document.querySelector('.saved') == null) {
+
+                document.querySelector('.total-line__price').insertAdjacentHTML('afterbegin',
+                `<span class="order-summary__line-through skeleton-while-loading"> $${oldPrice} </span>`)
+    
+                //saved
+                let total = +document.querySelector('.payment-due__price').innerHTML.replace('$','');
+                let shipping = document.querySelector('.total-line--shipping .order-summary__emphasis') != null ? +document.querySelector('.total-line--shipping .order-summary__emphasis').innerHTML.replace('$','') : 0;
+                let saved = oldPrice - total + shipping;
+               
+                document.querySelector('.total-line-table__footer .total-line').insertAdjacentHTML('afterend',`<tr> ${saving(Math.floor(saved))}</tr>` )
+                if (mql) {
                     pushDataLayer('Visibility Your total saving on this order', document.querySelector('.saved').innerHTML.split(':')[1])
-                })
+                } else {
+                    document.querySelector('.order-summary-toggle').addEventListener('click', () => {
+                        pushDataLayer('Visibility Your total saving on this order', document.querySelector('.saved').innerHTML.split(':')[1])
+                    })
+                }
             }
         }
         
@@ -375,6 +387,9 @@ let discountCode = setInterval(() => {
             </td>
         </tr>`)
 
+        if (document.querySelector('.includes_discount') && document.querySelector('.product__description__variant.order-summary__small-text').innerHTML.includes('1 Pack')) {
+            document.querySelector('.includes_discount').remove()
+        }
         //click on "Have a coupon code?" button
         document.querySelector('.btn-coupon').addEventListener('click', (e) => {
             e.currentTarget.style.display = 'none';
