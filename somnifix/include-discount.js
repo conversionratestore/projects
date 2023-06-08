@@ -307,9 +307,9 @@ let saved = setInterval(() => {
                 //saved
                 let total = +document.querySelector('.payment-due__price').innerHTML.replace(currency,'');
                 let shipping = document.querySelector('.total-line--shipping .order-summary__emphasis') != null ? +document.querySelector('.total-line--shipping .order-summary__emphasis').innerHTML.replace(currency,'') : 0;
-                let saved = !packSelector.includes('1 Pack') ? oldPrice - total + shipping : document.querySelector('.total-line--reduction .total-line__price .order-summary__emphasis').innerHTML.split(currency)[1];
+                let saved = !packSelector.includes('1 Pack') ? oldPrice - total + shipping : +document.querySelector('.total-line--reduction .total-line__price .order-summary__emphasis').innerHTML.split(currency)[1];
                
-                document.querySelector('.total-line-table__footer .total-line').insertAdjacentHTML('afterend',`<tr> ${saving(Math.floor(saved),currency)}</tr>` )
+                document.querySelector('.total-line-table__footer .total-line').insertAdjacentHTML('afterend',`<tr> ${saving(saved.toFixed(2),currency)}</tr>` )
                 if (mql) {
                     pushDataLayer('Visibility Your total saving on this order', document.querySelector('.saved').innerHTML.split(':')[1])
                 } else {
