@@ -3195,13 +3195,13 @@ padding: 0;
 
     function validationForm(target) {
       console.log(target, `target`);
-      let inputValueFirstName = document.querySelector(`#yourInformationForm input[name='firstName']`).value.match(/^[а-яА-ЯёЁa-zA-Z0-9]+$/);
-      let inputValueLastName = document.querySelector(`#yourInformationForm input[name='lastName']`).value.match(/^[а-яА-ЯёЁa-zA-Z0-9]+$/);
+      let inputValueFirstName = document.querySelector(`#yourInformationForm input[name='firstName']`).value.match(/^.{1,30}$/);
+      let inputValueLastName = document.querySelector(`#yourInformationForm input[name='lastName']`).value.match(/^.{1,30}$/);
       let inputValueEmail = document.querySelector(`#yourInformationForm input[name='email']`).value.match(/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/);
       let mask;
 
-      let inputValueFirstNameGuest = document.querySelector(`#yourInformationForm input[name='newFirstNameGuest']`).value.match(/^[а-яА-ЯёЁa-zA-Z0-9]+$/);
-      let inputValueLastNameGuest = document.querySelector(`#yourInformationForm input[name='newLastNameGuest']`).value.match(/^[а-яА-ЯёЁa-zA-Z0-9]+$/);
+      let inputValueFirstNameGuest = document.querySelector(`#yourInformationForm input[name='newFirstNameGuest']`).value.match(/^.{1,30}$/);
+      let inputValueLastNameGuest = document.querySelector(`#yourInformationForm input[name='newLastNameGuest']`).value.match(/^.{1,30}$/);
       let inputValueEmailGuest = document.querySelector(`#yourInformationForm input[name='newEmailGuest']`).value.match(/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/);
       let maskGuest;
 
