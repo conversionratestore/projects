@@ -301,6 +301,8 @@ let startFunkPopupV2 = setInterval(() => {
             margin: 0 0 16px !important;
             position: relative;
             width: 100%;
+            outline: none !important;
+            border: none !important;
         }
         .email_opt_in label::before{
             position: absolute;
@@ -321,6 +323,7 @@ let startFunkPopupV2 = setInterval(() => {
             background: unset !important;
             box-shadow: unset !important;
             padding: 0 24px 0 50px !important;
+            outline: none !important;
         }
         .email_opt_in label input::placeholder{
           font-weight: 400;
@@ -729,10 +732,10 @@ body .sidebar .btn_trigger_popup.applied_discount > p {
               if (!e.target.getAttribute("data-test")) {
                 let step;
                 if ($(".email_opt_in").is(":visible") && el.getAttribute("data-close") === "Close extra 10 percent popup") {
-                  step = 1;
+                  step = "step_1";
                 }
                 if ($(".success_block ").is(":visible") && el.getAttribute("data-close") === "Close extra 10 percent popup") {
-                  step = 2;
+                  step = "step_2";
                 }
                 pushDataLayer(`${el.getAttribute("data-close")}`, step);
                 closePopup();
