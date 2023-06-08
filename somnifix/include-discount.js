@@ -19,6 +19,7 @@ let coupon = (discount) => {
     </div>`
 }
 
+
 let saving = (saved, currency) => `<td class="saved" colspan="2">Your total saving on this order: ${currency}${saved}</td>`
 
 let pushDataLayer = (action, label = '') => {
@@ -254,17 +255,6 @@ let style = `
 </style>`
 
  
-
-let packs = {
-    '3 Pack': {
-        '50.37': '30',
-        '55.97': '22'
-    },
-    '12 Pack': {
-        '197.97': '37',
-        '219.97': '30'
-    }
-}
 let mql = window.matchMedia("(min-width: 1000px)").matches;
 let pageY = window.pageYOffset;
 
@@ -277,8 +267,8 @@ let saved = setInterval(() => {
         if (document.querySelector('.style-exp') == null) document.body.insertAdjacentHTML('afterbegin', style)
 
         let packSelector = document.querySelector('.product__description__variant.order-summary__small-text').innerHTML;
-        let pack = !packSelector.includes('1 Pack') && packSelector != '' ? packs[packSelector][document.querySelector('.product__price span').innerHTML.replace(currency,'')] : '';
-        let oldPrice = packSelector.includes('3 Pack') ? 71.97 : packSelector.includes('12 Pack') ? 311.87 : 0;
+        let pack = !packSelector.includes('1 Pack') && packSelector != '' ? sessionStorage.getItem('productExp').split('/')[0] : '';
+        let oldPrice = sessionStorage.getItem('productExp').split('/')[1]
 
         if (packSelector.includes('1 Pack') && document.querySelector('.total-line--reduction .total-line__price .order-summary__emphasis') != null) {
             pack = Math.round(+document.querySelector('.total-line--reduction .total-line__price .order-summary__emphasis').innerHTML.split(currency)[1] * 100 / +document.querySelector('.product__price .order-summary__emphasis').innerHTML.split(currency)[1]);
@@ -301,13 +291,13 @@ let saved = setInterval(() => {
             if (document.querySelector('.saved') == null) {
                 if (!packSelector.includes('1 Pack')) {
                     document.querySelector('.total-line__price').insertAdjacentHTML('afterbegin',
-                    `<span class="order-summary__line-through skeleton-while-loading"> ${currency}${oldPrice} </span>`)
+                    `<span class="order-summary__line-through skeleton-while-loading"> ${currency+oldPrice} </span>`)
                 }
 
                 //saved
                 let total = +document.querySelector('.payment-due__price').innerHTML.replace(currency,'');
                 let shipping = document.querySelector('.total-line--shipping .order-summary__emphasis') != null ? +document.querySelector('.total-line--shipping .order-summary__emphasis').innerHTML.replace(currency,'') : 0;
-                let saved = !packSelector.includes('1 Pack') ? oldPrice - total + shipping : +document.querySelector('.total-line--reduction .total-line__price .order-summary__emphasis').innerHTML.split(currency)[1];
+                let saved = !packSelector.includes('1 Pack') ? +oldPrice - total + shipping : +document.querySelector('.total-line--reduction .total-line__price .order-summary__emphasis').innerHTML.split(currency)[1];
                
                 document.querySelector('.total-line-table__footer .total-line').insertAdjacentHTML('afterend',`<tr> ${saving(saved.toFixed(2),currency)}</tr>` )
                 if (mql) {
