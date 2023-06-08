@@ -1,4 +1,4 @@
-let obj = {
+let changeTo = {
     'Free account':'Try eSignature Free',
     'Create free account':'Try eSignature Free',
     'Get up to 3 documents signed for free, every month':'Start your free 7-day trial and get your documents signed right now!',
@@ -11,6 +11,7 @@ let obj = {
     'Signaturely (eSign Documents)':'Need to sign a document?',
     'Sign 3 documents for free using Signaturely!':'Start your free 7-day trial and get your documents signed right now!',
     'Sign 1 document for free using Signaturely!':'Start your free 7-day trial and get your documents signed right now!',
+    'Sign 1 documents for free using Signaturely!':'Start your free 7-day trial and get your documents signed right now!',
     'Get your documents signed today. It’s free forever!':'',
     'Yes! Signaturely’s free plan lets you request 3 documents for e-signature each month 100% free. No credit card required.':'You can start your free 7-day trial and try Signaturely before you will be charged.',
     'Yes! Signaturely’s free plan lets you request 1 document for e-signature each month 100% free. No credit card required.':'You can start your free 7-day trial and try Signaturely before you will be charged.',
@@ -34,8 +35,8 @@ function replaceInText(element, pattern, replacement) {
 }
 
 window.onload = function() {
-    for (const key in obj) {
-        replaceInText(document.body, key, obj[key])
+    for (const key in changeTo) {
+        replaceInText(document.body, key, changeTo[key])
     }
 };
 
@@ -69,11 +70,6 @@ function init() {
                 .elementor-element-194383e .elementor-row {
                     justify-content: center;
                 }
-                .elementor-element-194383e .elementor-column.elementor-col-33 {
-                    width: 50%!important;
-                    max-width: 514px;
-                    margin: 0 5px;
-                }
                 .elementor-5311 .elementor-element.elementor-element-bcd9b15>.elementor-widget-container {
                     margin: -17px 0 14px!important;
                 }
@@ -92,16 +88,16 @@ function init() {
                 .elementor-element-6d61dd28 .elementor img {
                     display: none!important;
                 }
-                .elementor-widget.elementor-widget-icon-list .elementor-icon-list-icon i {
+                .elementor-element.elementor-element-6d61dd28 .elementor-widget.elementor-widget-icon-list .elementor-icon-list-icon i {
                     display: none!important;
                 }
-                .elementor-widget.elementor-widget-icon-list .elementor-icon-list-icon {
+                .elementor-element.elementor-element-6d61dd28 .elementor-widget.elementor-widget-icon-list .elementor-icon-list-icon {
                     width: 22px;
                     height: 22px;
                     margin-right: 5px;
                     background: url(${dir}check-white.svg) no-repeat center / contain;
                 }
-                .elementor-5311 .elementor-element.elementor-element-cb9545e .elementor-icon-list-icon {
+                .elementor-element.elementor-element-6d61dd28 .elementor-5311 .elementor-element.elementor-element-cb9545e .elementor-icon-list-icon {
                     background-image: url(${dir}check-blue.svg);
                 }
                 .elementor-widget .elementor-icon-list-item {
@@ -119,6 +115,34 @@ function init() {
                 }
                 .elementor-5311 .elementor-element.elementor-element-09f484a>.elementor-widget-container {
                     margin: 96px 0 0!important;
+                }
+
+                .elementor-element-194383e .elementor-column.elementor-col-33 {
+                    width: 50%!important;
+                    margin: 0 5px;
+                    max-width: 514px;
+                }
+                @media screen and (max-width: 1024px) {
+                   
+                    .elementor-element-194383e .elementor-column.elementor-col-33 {
+                        width: 100%!important;
+                        margin: 0 auto;
+                    }
+                    .elementor-5311 .elementor-element.elementor-element-a5b0f1d>.elementor-element-populated>.elementor-widget-wrap {
+                        padding: 30px 20px!Important;
+                    }
+                    .elementor-5311 .elementor-element.elementor-element-20fb1d8>.elementor-element-populated>.elementor-widget-wrap, .elementor-5311 .elementor-element.elementor-element-20fb1d8>.elementor-element-populated>.elementor-widget-wrap {
+                        padding: 0 20px 30px!important
+                    }
+                    .elementor-5311 .elementor-element.elementor-element-bcd9b15>.elementor-widget-container {
+                        margin: -17px 0 6px!important;
+                    }
+                    .elementor-5311 .elementor-element.elementor-element-edc7b42>.elementor-widget-container, .elementor-5311 .elementor-element.elementor-element-cb9545e>.elementor-widget-container {
+                        margin: 8px 0 0!important;
+                    }
+                    .elementor-element-194383e .elementor-column.elementor-col-33:nth-child(2) {
+                        order: 2;
+                    }
                 }
             </style>`)
 
@@ -156,3 +180,11 @@ let btnHeaderChange = setInterval(() => {
         </style>`)
     }
 })
+
+let modal = setInterval(() => {
+    if (document.querySelector('.chakra-modal__content .css-zooxi0') != null && document.querySelector('.chakra-modal__content .css-zooxi0').innerHTML.includes('Signaturely (eSign Documents)')) {
+        for (const key in changeTo) {
+            replaceInText(document.body, key, changeTo[key])
+        }
+    }
+});
