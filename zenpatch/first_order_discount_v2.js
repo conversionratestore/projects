@@ -853,6 +853,12 @@ body .sidebar .btn_trigger_popup.applied_discount > p {
 
               return countdown;
             };
+
+            document.querySelector("#countdown").addEventListener("click", (e) => {
+              e.preventDefault();
+              e.stopPropagation();
+            });
+
             set_countdown = function (minutes, start) {
               let elapsed, end, left_secs, now, seconds;
               if (countdown.running) {
