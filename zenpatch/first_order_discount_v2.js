@@ -1010,8 +1010,10 @@ body .sidebar .btn_trigger_popup.applied_discount > p {
                 }, 4);
               }
               if (e.target.classList.contains("active-slide") && e.target.getAttribute("test")) {
-                document.querySelector("#addToCart").click();
-                e.target.removeAttribute("test");
+                setTimeout(() => {
+                  document.querySelector("#addToCart").click();
+                  e.target.removeAttribute("test");
+                }, 300);
               }
               document.querySelectorAll("#purchase .slide-packs>ul>li").forEach((i) => {
                 if (e.target !== i) {
@@ -1029,8 +1031,10 @@ body .sidebar .btn_trigger_popup.applied_discount > p {
                 }, 4);
               }
               if (e.target.classList.contains("active-slide") && e.target.getAttribute("test")) {
-                document.querySelector(".button-proceed").click();
-                e.target.removeAttribute("test");
+                setTimeout(() => {
+                  document.querySelector(".button-proceed").click();
+                  e.target.removeAttribute("test");
+                }, 300);
               }
               document.querySelectorAll(".sidebar .list-packs").forEach((i) => {
                 if (e.target !== i) {
