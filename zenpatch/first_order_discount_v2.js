@@ -85,6 +85,14 @@ let startFunkPopupV2 = setInterval(() => {
 
     let popupStyle = /*html */ `
         <style>
+          #getNow .days{
+            display: none !important;
+          }
+          #getNow img.new_img_reviews{
+            max-width: 182px !important;
+            margin-top: 16px;
+            display: block;
+          }
           .reviews-slide{
             border-top: unset !important;
           }
@@ -696,6 +704,9 @@ body .sidebar .btn_trigger_popup.applied_discount > p {
     document.head.insertAdjacentHTML("beforeend", `<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">`);
     document.head.insertAdjacentHTML("beforeend", popupStyle);
     document.querySelector("#addToCart")?.after(document.querySelector("#getNow .free-shipping-checkout"));
+    if (!document.querySelector("#getNow .new_img_reviews")) {
+      document.querySelector("#getNow .days")?.insertAdjacentHTML("afterend", `<img src="https://conversionratestore.github.io/projects/zenpatch/img/new_img_shipping.png" alt="Reviews 1273" class="new_img_reviews">`);
+    }
     if (!localStorage.getItem("restartFunc")) {
       document.querySelector("#addToCart")?.insertAdjacentHTML("beforebegin", triggerPopup);
       document.querySelector(".button-proceed")?.insertAdjacentHTML("beforebegin", triggerPopup);
