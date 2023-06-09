@@ -998,24 +998,103 @@ body .sidebar .btn_trigger_popup.applied_discount > p {
         }
       }
 
-      document.querySelectorAll("#purchase .slide-packs>ul>li").forEach((el) => {
-        el.addEventListener("click", (e) => {
-          if (!localStorage.getItem("restartFunc")) {
-            if (e.target.classList.contains("active-slide")) {
-              document.querySelector("#addToCart").click();
-            }
+      document.querySelectorAll("#cons .list-packs")[0].setAttribute("data-pack-count-s", 4);
+      document.querySelectorAll("#cons .list-packs")[1].setAttribute("data-pack-count-s", 3);
+      document.querySelectorAll("#cons .list-packs")[2].setAttribute("data-pack-count-s", 2);
+      document.querySelectorAll("#cons .list-packs")[3].setAttribute("data-pack-count-s", 1);
+
+      if (localStorage.getItem("appliedDiscount") && !localStorage.getItem("restartFunc")) {
+        let doubleClick = false;
+        let lastSelectedPack = 3;
+
+        $("#purchase .list-packs").click(function (event) {
+          event.preventDefault();
+          let selectedPack = $(this).attr("data-pack-count");
+          if (doubleClick && lastSelectedPack == selectedPack) {
+            return;
+          } else {
+            doubleClick = false;
           }
-        });
-      });
-      document.querySelectorAll(".sidebar .list-packs").forEach((el) => {
-        el.addEventListener("click", (e) => {
-          if (!localStorage.getItem("restartFunc")) {
-            if (e.target.classList.contains("active-slide")) {
-              document.querySelector(".sidebar .button-proceed").click();
-            }
+
+          if (lastSelectedPack == selectedPack && window.innerWidth <= 750) {
+            doubleClick = true;
+
+            $("body").addClass("loading");
+            setTimeout(function () {
+              doubleClick = false;
+            }, 5000);
+            window.location.href = "/checkout?discount=NATURAL10";
+            localStorage.setItem("restartFunc", "true");
+            return;
           }
+          lastSelectedPack = selectedPack;
+          switch (selectedPack) {
+            case "1":
+              selectedPack = 3;
+              break;
+            case "2":
+              selectedPack = 2;
+              break;
+            case "3":
+              selectedPack = 0;
+              break;
+            case "4":
+              selectedPack = 1;
+              break;
+          }
+          $("label[for=radios-" + selectedPack + "]").click();
         });
-      });
+
+        let doubleClick2 = false;
+        let lastSelectedPack2 = 3;
+
+        // $("#cons .list-packs").click(function (event) {
+        //   event.preventDefault();
+        //   let selectedPack = $(this).attr("data-pack-count-s");
+        //   if (doubleClick2 && lastSelectedPack2 == selectedPack) {
+        //     return;
+        //   } else {
+        //     doubleClick2 = false;
+        //   }
+
+        //   if (lastSelectedPack2 == selectedPack && window.innerWidth <= 750) {
+        //     doubleClick2 = true;
+
+        //     $("body").addClass("loading");
+        //     setTimeout(function () {
+        //       doubleClick2 = false;
+        //     }, 5000);
+        //     window.location.href = "/checkout?discount=NATURAL10";
+        //     localStorage.setItem("restartFunc", "true");
+        //     return;
+        //   }
+        //   lastSelectedPack2 = selectedPack;
+        //   switch (selectedPack) {
+        //     case "1":
+        //       selectedPack = 3;
+        //       break;
+        //     case "2":
+        //       selectedPack = 2;
+        //       break;
+        //     case "3":
+        //       selectedPack = 0;
+        //       break;
+        //     case "4":
+        //       selectedPack = 1;
+        //       break;
+        //   }
+        //   $("label[for=radios-" + selectedPack + "]").click();
+        // });
+
+        document.querySelectorAll(".sidebar .list-packs").forEach((el) => {
+          el.addEventListener("click", (e) => {
+            console.log(e.target, `.sidebar .list-packs`);
+            if (e.target.classList.contains("active-slide")) {
+              window.location.href = "/checkout?discount=NATURAL10";
+            }
+          });
+        });
+      }
 
       function changeVisabilityApplieddiscount() {
         document.querySelectorAll(".btn_trigger_popup.not_applied_discount")?.forEach((el) => {
