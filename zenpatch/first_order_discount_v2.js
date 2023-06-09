@@ -353,6 +353,12 @@ let startFunkPopupV2 = setInterval(() => {
           font-weight: 400;
           color: #9C9C9C;
         }
+        .email_opt_in label:focus-visible{
+            outline-offset: unset !important;
+            box-shadow: unset !important;
+            outline: none !important;
+            border: none !important;
+        }
         .email_opt_in label input:focus-visible{
           outline:1px solid #D3D3D3 !important;
           outline-offset: unset !important;
