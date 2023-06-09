@@ -1,5 +1,5 @@
 let startFunkPopupV2 = setInterval(() => {
-  if (document.querySelector("#shopify-section-template--15241309945900__zenpatch") && document.cookie.indexOf("_ga") !== -1) {
+  if (document.querySelector("#shopify-section-template--15241309945900__zenpatch")) {
     clearInterval(startFunkPopupV2);
 
     function pushDataLayer(actionDataLayer, labelDataLayer) {
