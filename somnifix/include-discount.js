@@ -281,7 +281,7 @@ let saved = setInterval(() => {
         let oldPrice = 0;
         if (sessionStorage.getItem('productExp') != null) {
             pack = !packSelector.includes('1 Pack') && packSelector != '' ? sessionStorage.getItem('productExp').split('/')[0] : '';
-            oldPrice = sessionStorage.getItem('productExp').split('/')[1]
+            oldPrice = +sessionStorage.getItem('productExp').split('/')[1]
         } else {
             pack = !packSelector.includes('1 Pack') && packSelector != '' ? packs[packSelector][document.querySelector('.product__price span').innerHTML.replace(currency,'')] : '';
             oldPrice = packSelector.includes('3 Pack') ? 71.97 : packSelector.includes('12 Pack') ? 311.87 : 0;
@@ -313,8 +313,8 @@ let saved = setInterval(() => {
 
                 //saved
                 let total = +document.querySelector('.payment-due__price').innerHTML.replace(currency,'');
-                let shipping = document.querySelector('.total-line--shipping .order-summary__emphasis') != null ? +document.querySelector('.total-line--shipping .order-summary__emphasis').innerHTML.replace(currency,'') : 0;
-                let saved = !packSelector.includes('1 Pack') ? +oldPrice - total + shipping : +document.querySelector('.total-line--reduction .total-line__price .order-summary__emphasis').innerHTML.split(currency)[1];
+                let shipping = document.querySelector('.total-line--shipping .order-summary__emphasis') != null && document.querySelector('.total-line--shipping .order-summary__emphasis').innerHTML.includes(currency) ? +document.querySelector('.total-line--shipping .order-summary__emphasis').innerHTML.replace(currency,'') : 0;
+                let saved = !packSelector.includes('1 Pack') ? oldPrice - total + shipping : +document.querySelector('.total-line--reduction .total-line__price .order-summary__emphasis').innerHTML.split(currency)[1];
                
                 document.querySelector('.total-line-table__footer .total-line').insertAdjacentHTML('afterend',`<tr> ${saving(saved.toFixed(2),currency)}</tr>` )
                 if (mql) {
