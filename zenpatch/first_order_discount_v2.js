@@ -24,38 +24,54 @@ let startFunkPopupV2 = setInterval(() => {
 
     let popupTimerId;
     let active = false;
-    getNewUser("_ga");
+    // getNewUser("_ga");
 
     if (document.cookie.indexOf("_ga") !== -1) {
       console.log("Куки есть");
     } else {
       console.log("Куки нет");
     }
-    function getNewUser(name) {
-      const value = `; ${document.cookie}`;
-      const parts = value.split(`; ${name}=`);
-      let valueCookie;
-      let timeNewUser;
-      if (parts.length === 2 && !localStorage.getItem("newUser")) {
-        valueCookie = parts.pop().split(";").shift();
-        timeNewUser = +(valueCookie.split(".").pop() + "000");
-        console.log(`timeNewUser`, new Date(timeNewUser));
-        if (+new Date() - +new Date(timeNewUser) <= 5 * 60 * 1000) {
+
+    if (!localStorage.getItem("newUser")) {
+      popupTimerId = setInterval(() => {
+        if (document.querySelector("html body .ju_Con")) {
+          clearInterval(popupTimerId);
           console.log(`New User`);
           active = true;
           localStorage.setItem("newUser", "true");
-          popupTimerId = setInterval(() => {
-            if (document.querySelector("html body .ju_Con")) {
-              clearInterval(popupTimerId);
-              openPopup();
-              if (document.querySelector(".overlay_popup .content_popup")) {
-                countTimer();
-              }
-            }
-          }, 10);
+          openPopup();
+          if (document.querySelector(".overlay_popup .content_popup")) {
+            countTimer();
+          }
         }
-      }
+      }, 10);
     }
+    // function getNewUser(name) {
+    //   const value = `; ${document.cookie}`;
+    //   const parts = value.split(`; ${name}=`);
+    //   let valueCookie;
+    //   let timeNewUser;
+    //   console.log(`timeNewUser`, new Date(timeNewUser));
+    //   if (parts.length === 2 && !localStorage.getItem("newUser")) {
+    //     valueCookie = parts.pop().split(";").shift();
+    //     timeNewUser = +(valueCookie.split(".").pop() + "000");
+    //     console.log(`timeNewUser`, new Date(timeNewUser));
+    //     if (+new Date() - +new Date(timeNewUser) <= 5 * 60 * 1000) {
+    //       console.log(`New User`);
+    //       active = true;
+    //       localStorage.setItem("newUser", "true");
+    //       popupTimerId = setInterval(() => {
+    //         if (document.querySelector("html body .ju_Con")) {
+    //           clearInterval(popupTimerId);
+    //           openPopup();
+    //           if (document.querySelector(".overlay_popup .content_popup")) {
+    //             countTimer();
+    //           }
+    //         }
+    //       }, 10);
+    //     }
+    //   }
+    // }
 
     let scriptCustomTimer = document.createElement("script");
     scriptCustomTimer.src = "https://cdnjs.cloudflare.com/ajax/libs/flipclock/0.7.0/flipclock.min.js";
