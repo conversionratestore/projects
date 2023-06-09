@@ -254,7 +254,17 @@ let style = `
     }
 </style>`
 
- 
+let packs = {
+    '3 Pack': {
+        '50.37': '30',
+        '55.97': '22'
+    },
+    '12 Pack': {
+        '197.97': '37',
+        '219.97': '30'
+    }
+}
+
 let mql = window.matchMedia("(min-width: 1000px)").matches;
 let pageY = window.pageYOffset;
 
@@ -267,8 +277,15 @@ let saved = setInterval(() => {
         if (document.querySelector('.style-exp') == null) document.body.insertAdjacentHTML('afterbegin', style)
 
         let packSelector = document.querySelector('.product__description__variant.order-summary__small-text').innerHTML;
-        let pack = !packSelector.includes('1 Pack') && packSelector != '' ? sessionStorage.getItem('productExp').split('/')[0] : '';
-        let oldPrice = sessionStorage.getItem('productExp').split('/')[1]
+        let pack = '';
+        let oldPrice = 0;
+        if (sessionStorage.getItem('productExp') != null) {
+            pack = !packSelector.includes('1 Pack') && packSelector != '' ? sessionStorage.getItem('productExp').split('/')[0] : '';
+            oldPrice = sessionStorage.getItem('productExp').split('/')[1]
+        } else {
+            pack = !packSelector.includes('1 Pack') && packSelector != '' ? packs[packSelector][document.querySelector('.product__price span').innerHTML.replace(currency,'')] : '';
+            oldPrice = packSelector.includes('3 Pack') ? 71.97 : packSelector.includes('12 Pack') ? 311.87 : 0;
+        }
 
         if (packSelector.includes('1 Pack') && document.querySelector('.total-line--reduction .total-line__price .order-summary__emphasis') != null) {
             pack = Math.round(+document.querySelector('.total-line--reduction .total-line__price .order-summary__emphasis').innerHTML.split(currency)[1] * 100 / +document.querySelector('.product__price .order-summary__emphasis').innerHTML.split(currency)[1]);
