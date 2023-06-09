@@ -999,6 +999,7 @@ body .sidebar .btn_trigger_popup.applied_discount > p {
       }
 
       document.querySelector("#purchase .slide-packs>ul>li.active-slide").setAttribute("test", "test");
+
       if (localStorage.getItem("appliedDiscount") && !localStorage.getItem("restartFunc")) {
         document.querySelectorAll("#purchase .slide-packs>ul>li").forEach((el) => {
           el.addEventListener("click", (e) => {
@@ -1018,16 +1019,25 @@ body .sidebar .btn_trigger_popup.applied_discount > p {
             });
           });
         });
-        // document.querySelectorAll(".sidebar .list-packs").forEach((el) => {
-        //   el.addEventListener("click", (e) => {
-        //     if (!localStorage.getItem("restartFunc")) {
-        //       if (e.target.classList.contains("active-slide")) {
-        //         document.querySelector(".sidebar .button-proceed").click();
-        //         localStorage.setItem("restartFunc", "true");
-        //       }
-        //     }
-        //   });
-        // });
+
+        document.querySelectorAll(".sidebar .list-packs").forEach((el) => {
+          el.addEventListener("click", (e) => {
+            if (e.target.classList.contains("active-slide") && !e.target.getAttribute("test")) {
+              setTimeout(() => {
+                e.target.setAttribute("test", "test");
+              }, 4);
+            }
+            if (e.target.classList.contains("active-slide") && e.target.getAttribute("test")) {
+              document.querySelector(".button-proceed").click();
+              e.target.removeAttribute("test");
+            }
+            document.querySelectorAll(".sidebar .list-packs").forEach((i) => {
+              if (e.target !== i) {
+                i.removeAttribute("test");
+              }
+            });
+          });
+        });
       }
 
       function changeVisabilityApplieddiscount() {
@@ -1118,6 +1128,7 @@ body .sidebar .btn_trigger_popup.applied_discount > p {
               pushDataLayer("Visibility Get additional 10 off. Slide in cart", "Slide in cart");
             }
             if (i.target.classList.contains("sidebar_visab_applied") && document.querySelector(".overlay_popup").classList.contains("is_hidden")) {
+              document.querySelector(".sidebar .list-packs.active-slide").setAttribute("test", "test");
               pushDataLayer("Visibility Additional 10 off applied next'", "Slide in cart");
             }
             obs.unobserve(i.target);
