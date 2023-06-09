@@ -287,13 +287,18 @@ let saved = setInterval(() => {
             oldPrice = packSelector.includes('3 Pack') ? 71.97 : packSelector.includes('12 Pack') ? 311.87 : 0;
         }
 
-        if (packSelector.includes('1 Pack') && document.querySelector('.total-line--reduction .total-line__price .order-summary__emphasis') != null) {
-            pack = Math.round(+document.querySelector('.total-line--reduction .total-line__price .order-summary__emphasis').innerHTML.split(currency)[1] * 100 / +document.querySelector('.product__price .order-summary__emphasis').innerHTML.split(currency)[1]);
-        } 
-    
+        if (document.querySelector('.total-line--reduction .total-line__price .order-summary__emphasis') != null) {
+
+            if (packSelector.includes('1 Pack')) {
+                pack = Math.round(+document.querySelector('.total-line--reduction .total-line__price .order-summary__emphasis').innerHTML.split(currency)[1] * 100 / +document.querySelector('.product__price .order-summary__emphasis').innerHTML.split(currency)[1]);
+            } else {
+                pack = Math.round(100 - (+document.querySelector('.payment-due .payment-due__price').innerHTML.replace(currency,'') * 100 / oldPrice)).toFixed(0)
+            }
+        }
+        
         if (pack != '') {
             if (document.querySelector('.includes_discount') == null) {
-
+               
                 document.querySelector('.product-table').insertAdjacentHTML('afterend', coupon(pack))
                 if (mql) {
                     pushDataLayer('Visibility Congratulations', document.querySelector('.includes_discount p span').innerHTML)
@@ -395,7 +400,7 @@ let discountCode = setInterval(() => {
             </td>
         </tr>`)
 
-        if (document.querySelector('.includes_discount') && document.querySelector('.product__description__variant.order-summary__small-text').innerHTML.includes('1 Pack')) {
+        if (document.querySelector('.includes_discount') ) {
             document.querySelector('.includes_discount').remove()
         }
         //click on "Have a coupon code?" button
