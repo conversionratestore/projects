@@ -356,6 +356,7 @@ let startFunkPopupV2 = setInterval(() => {
         .email_opt_in label input:focus-visible{
           outline:1px solid #D3D3D3 !important;
           outline-offset: unset !important;
+          border-radius: 31px !important;
         }
         .no_thanks_btn{
             font-weight: 400;
