@@ -998,6 +998,25 @@ body .sidebar .btn_trigger_popup.applied_discount > p {
         }
       }
 
+      document.querySelectorAll("#purchase .slide-packs>ul>li").forEach((el) => {
+        el.addEventListener("click", (e) => {
+          if (!localStorage.getItem("restartFunc")) {
+            if (e.target.classList.contains("active-slide")) {
+              document.querySelector("#addToCart").click();
+            }
+          }
+        });
+      });
+      document.querySelectorAll(".sidebar .list-packs").forEach((el) => {
+        el.addEventListener("click", (e) => {
+          if (!localStorage.getItem("restartFunc")) {
+            if (e.target.classList.contains("active-slide")) {
+              document.querySelector(".sidebar .button-proceed").click();
+            }
+          }
+        });
+      });
+
       function changeVisabilityApplieddiscount() {
         document.querySelectorAll(".btn_trigger_popup.not_applied_discount")?.forEach((el) => {
           el.classList.add("is_hidden");
