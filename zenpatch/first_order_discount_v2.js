@@ -1099,7 +1099,7 @@ body .sidebar .btn_trigger_popup.applied_discount > p {
 
                   countdown.stop();
                   localStorage.setItem("appliedDiscount", "yes");
-                  // ju_callback(t, email);
+                  top.fbq("track", "Lead");
                   changeVisabilityApplieddiscount();
                 }
               })
@@ -1108,34 +1108,6 @@ body .sidebar .btn_trigger_popup.applied_discount > p {
               });
           }
         }
-      }
-    }
-
-    function ju_callback(t, email) {
-      if (t == 4 || t == 10) {
-        // this line means it will only fire the code after an email or incentivized form engagement
-
-        //FAECBOOK PIXEL CODE
-
-        !(function (f, b, e, v, n, t, s) {
-          if (f.fbq) return;
-          n = f.fbq = function () {
-            n.callMethod ? n.callMethod.apply(n, arguments) : n.queue.push(arguments);
-          };
-          if (!f._fbq) f._fbq = n;
-          n.push = n;
-          n.loaded = !0;
-          n.version = "2.0";
-          n.queue = [];
-          t = b.createElement(e);
-          t.async = !0;
-          t.src = v;
-          s = b.getElementsByTagName(e)[0];
-          s.parentNode.insertBefore(t, s);
-        })(window, document, "script", "//connect.facebook.net/en_US/fbevents.js");
-
-        top.fbq("track", "Lead");
-        //for custom conversion track specific to Justuno promos use fbq('trackCustom', 'MyCustomEvent', {custom_param: 'custom_value'});
       }
     }
 
