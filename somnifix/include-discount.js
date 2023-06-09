@@ -292,7 +292,9 @@ let saved = setInterval(() => {
             if (packSelector.includes('1 Pack')) {
                 pack = Math.round(+document.querySelector('.total-line--reduction .total-line__price .order-summary__emphasis').innerHTML.split(currency)[1] * 100 / +document.querySelector('.product__price .order-summary__emphasis').innerHTML.split(currency)[1]);
             } else {
-                pack = Math.round(100 - (+document.querySelector('.payment-due .payment-due__price').innerHTML.replace(currency,'') * 100 / oldPrice)).toFixed(0)
+                let discount = +document.querySelector('.total-line--reduction .total-line__price .order-summary__emphasis').innerHTML.split(currency)[1];
+                let subtotal = +document.querySelector('.product__price .order-summary__emphasis').innerHTML.replace(currency,'');
+                pack = Math.round(100 - (subtotal - discount) * 100 / oldPrice).toFixed(0)
             }
         }
         
