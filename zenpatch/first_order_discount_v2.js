@@ -32,7 +32,7 @@ let startFunkPopupV2 = setInterval(() => {
       console.log("Куки нет");
     }
 
-    if (!localStorage.getItem("newUser")) {
+    if (!localStorage.getItem("newUser") && !localStorage.getItem("appliedDiscount") && !localStorage.getItem("restartFunc")) {
       popupTimerId = setInterval(() => {
         if (document.querySelector("html body .ju_Con")) {
           clearInterval(popupTimerId);
@@ -1184,7 +1184,7 @@ body .sidebar .btn_trigger_popup.applied_discount > p {
                   localStorage.setItem("appliedDiscount", "yes");
                   top.fbq("track", "Lead");
                   changeVisabilityApplieddiscount();
-                  // onClickPacks();
+                  onClickPacks();
                 }
               })
               .catch((error) => {
