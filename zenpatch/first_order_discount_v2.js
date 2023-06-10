@@ -926,7 +926,6 @@ body .sidebar .btn_trigger_popup.applied_discount > p {
             observer.disconnect();
             idValue = document.querySelector(".js-packs input[type=radio]:checked+label").previousElementSibling.value;
             idValueCart = document.querySelector("#cons .button-proceed").href.split("/")[4].split(":")[0];
-            onClickPacks();
             observer.observe(document, {
               childList: true,
               subtree: true,
@@ -1014,7 +1013,7 @@ body .sidebar .btn_trigger_popup.applied_discount > p {
                 setTimeout(() => {
                   document.querySelector("#addToCart").click();
                   // e.target.removeAttribute("test");
-                }, 500);
+                }, 200);
               }
               document.querySelectorAll("#purchase .slide-packs>ul>li").forEach((i) => {
                 if (e.target !== i) {
@@ -1035,7 +1034,7 @@ body .sidebar .btn_trigger_popup.applied_discount > p {
                 setTimeout(() => {
                   document.querySelector(".button-proceed").click();
                   // e.target.removeAttribute("test");
-                }, 500);
+                }, 200);
               }
               document.querySelectorAll(".sidebar .list-packs").forEach((i) => {
                 if (e.target !== i) {
@@ -1055,6 +1054,7 @@ body .sidebar .btn_trigger_popup.applied_discount > p {
           el.classList.remove("is_hidden");
         });
         setDiscountCheckout();
+        onClickPacks();
 
         if (document.querySelector(".success_block")?.classList.contains("is_hidden")) {
           document.querySelector(".success_block")?.classList.remove("is_hidden");
@@ -1185,7 +1185,6 @@ body .sidebar .btn_trigger_popup.applied_discount > p {
                   localStorage.setItem("appliedDiscount", "yes");
                   top.fbq("track", "Lead");
                   changeVisabilityApplieddiscount();
-                  onClickPacks();
                 }
               })
               .catch((error) => {
