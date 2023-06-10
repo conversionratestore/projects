@@ -1010,8 +1010,10 @@ body .sidebar .btn_trigger_popup.applied_discount > p {
                 }, 4);
               }
               if (e.target.classList.contains("active-slide") && e.target.getAttribute("test")) {
+                localStorage.setItem("natural", true);
                 // setTimeout(() => {
-                document.querySelector("#addToCart").click();
+                // document.querySelector("#addToCart").click();
+
                 // window.location.href = window.location.href + "discount=NATURAL10";
                 // e.target.removeAttribute("test");
                 // }, 500);
@@ -1032,8 +1034,9 @@ body .sidebar .btn_trigger_popup.applied_discount > p {
                 }, 4);
               }
               if (e.target.classList.contains("active-slide") && e.target.getAttribute("test")) {
+                localStorage.setItem("natural", true);
                 // setTimeout(() => {
-                document.querySelector("#cons .button-proceed").click();
+                // document.querySelector("#cons .button-proceed").click();
                 // window.location.href = window.location.href + "discount=NATURAL10";
                 // e.target.removeAttribute("test");
                 // }, 500);
@@ -1206,3 +1209,15 @@ body .sidebar .btn_trigger_popup.applied_discount > p {
     }, 200);
   }
 }, 600);
+
+if (window.location.pathname === "/mc/") {
+  let startFuncMc = setInterval(() => {
+    if (document.querySelector("#order-summary") && localStorage.getItem("natural")) {
+      clearInterval(startFuncMc);
+      window.location.href = window.location.href + "?discount=NATURAL10";
+      if (localStorage.getItem("natural")) {
+        localStorage.removeItem("natural");
+      }
+    }
+  }, 400);
+}
