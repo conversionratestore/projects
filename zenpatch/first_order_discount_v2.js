@@ -926,7 +926,6 @@ body .sidebar .btn_trigger_popup.applied_discount > p {
             observer.disconnect();
             idValue = document.querySelector(".js-packs input[type=radio]:checked+label").previousElementSibling.value;
             idValueCart = document.querySelector("#cons .button-proceed").href.split("/")[4].split(":")[0];
-            onClickPacks();
             observer.observe(document, {
               childList: true,
               subtree: true,
@@ -1185,7 +1184,7 @@ body .sidebar .btn_trigger_popup.applied_discount > p {
                   localStorage.setItem("appliedDiscount", "yes");
                   top.fbq("track", "Lead");
                   changeVisabilityApplieddiscount();
-                  onClickPacks();
+                  // onClickPacks();
                 }
               })
               .catch((error) => {
