@@ -926,6 +926,7 @@ body .sidebar .btn_trigger_popup.applied_discount > p {
             observer.disconnect();
             idValue = document.querySelector(".js-packs input[type=radio]:checked+label").previousElementSibling.value;
             idValueCart = document.querySelector("#cons .button-proceed").href.split("/")[4].split(":")[0];
+            onClickPacks();
             observer.observe(document, {
               childList: true,
               subtree: true,
@@ -1013,7 +1014,7 @@ body .sidebar .btn_trigger_popup.applied_discount > p {
                 setTimeout(() => {
                   document.querySelector("#addToCart").click();
                   e.target.removeAttribute("test");
-                }, 300);
+                }, 500);
               }
               document.querySelectorAll("#purchase .slide-packs>ul>li").forEach((i) => {
                 if (e.target !== i) {
@@ -1034,7 +1035,7 @@ body .sidebar .btn_trigger_popup.applied_discount > p {
                 setTimeout(() => {
                   document.querySelector(".button-proceed").click();
                   e.target.removeAttribute("test");
-                }, 300);
+                }, 500);
               }
               document.querySelectorAll(".sidebar .list-packs").forEach((i) => {
                 if (e.target !== i) {
