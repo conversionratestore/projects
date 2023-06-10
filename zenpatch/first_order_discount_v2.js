@@ -1210,7 +1210,7 @@ body .sidebar .btn_trigger_popup.applied_discount > p {
   }
 }, 600);
 
-if (window.location.pathname === "/mc/") {
+if (window.location.pathname.includes("checkouts")) {
   let startFuncMc = setInterval(() => {
     if (document.querySelector("#order-summary") && localStorage.getItem("natural")) {
       clearInterval(startFuncMc);
