@@ -1011,6 +1011,7 @@ body .sidebar .btn_trigger_popup.applied_discount > p {
               }
               if (e.target.classList.contains("active-slide") && e.target.getAttribute("test")) {
                 localStorage.setItem("natural", true);
+                localStorage.setItem("restartFunc", "true");
                 // setTimeout(() => {
                 // document.querySelector("#addToCart").click();
 
@@ -1035,6 +1036,7 @@ body .sidebar .btn_trigger_popup.applied_discount > p {
               }
               if (e.target.classList.contains("active-slide") && e.target.getAttribute("test")) {
                 localStorage.setItem("natural", true);
+                localStorage.setItem("restartFunc", "true");
                 // setTimeout(() => {
                 // document.querySelector("#cons .button-proceed").click();
                 // window.location.href = window.location.href + "discount=NATURAL10";
