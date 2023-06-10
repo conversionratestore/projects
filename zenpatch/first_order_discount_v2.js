@@ -36,9 +36,9 @@ let startFunkPopupV2 = setInterval(() => {
       popupTimerId = setInterval(() => {
         if (document.querySelector("html body .ju_Con")) {
           clearInterval(popupTimerId);
+          localStorage.setItem("newUser", "true");
           console.log(`New User`);
           active = true;
-          localStorage.setItem("newUser", "true");
           openPopup();
           if (document.querySelector(".overlay_popup .content_popup")) {
             countTimer();
@@ -1012,7 +1012,7 @@ body .sidebar .btn_trigger_popup.applied_discount > p {
               if (e.target.classList.contains("active-slide") && e.target.getAttribute("test")) {
                 setTimeout(() => {
                   document.querySelector("#addToCart").click();
-                  e.target.removeAttribute("test");
+                  // e.target.removeAttribute("test");
                 }, 500);
               }
               document.querySelectorAll("#purchase .slide-packs>ul>li").forEach((i) => {
@@ -1033,7 +1033,7 @@ body .sidebar .btn_trigger_popup.applied_discount > p {
               if (e.target.classList.contains("active-slide") && e.target.getAttribute("test")) {
                 setTimeout(() => {
                   document.querySelector(".button-proceed").click();
-                  e.target.removeAttribute("test");
+                  // e.target.removeAttribute("test");
                 }, 500);
               }
               document.querySelectorAll(".sidebar .list-packs").forEach((i) => {
