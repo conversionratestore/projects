@@ -1,6 +1,14 @@
 let startTimer = setInterval(() => {
   if (document.querySelector("#myCarousel")) {
     clearInterval(startTimer);
+    window._mfq = window._mfq || [];
+    (function () {
+      var mf = document.createElement("script");
+      mf.type = "text/javascript";
+      mf.defer = true;
+      mf.src = "//cdn.mouseflow.com/projects/29f75cc1-dffc-4a86-b3d0-cca4b689c018.js";
+      document.getElementsByTagName("head")[0].appendChild(mf);
+    })();
 
     if (!localStorage.getItem("timerU")) {
       localStorage.setItem("timerU", 17999);
@@ -521,7 +529,7 @@ let startTimer = setInterval(() => {
     const recordMF = setInterval(() => {
       if (typeof window._mfq === "object") {
         clearInterval(recordMF);
-        window._mfq.push(["setVariable", "exp_timer", "var1"]);
+        window._mfq.push(["setVariable", "timer_reg_page", "var1"]);
       }
     }, 200);
     // clarity
