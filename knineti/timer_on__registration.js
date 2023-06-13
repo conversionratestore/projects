@@ -378,6 +378,7 @@ let startTimer = setInterval(() => {
         var idNumber = parseInt(idArray[1]) - 1;
         console.log(idArray[0] + "-" + idNumber);
         if (idNumber > 0) {
+          $("body, html").stop();
           $("body, html").animate(
             {
               scrollTop: accordianTopArray[idNumber].top,
