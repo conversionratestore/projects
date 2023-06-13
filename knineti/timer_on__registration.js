@@ -370,6 +370,23 @@ let startTimer = setInterval(() => {
       `;
 
     document.head.insertAdjacentHTML("beforeend", newStyle);
+    $(document).ready(function () {
+      var accordianTopArray = [$("#heading-1").offset(), $("#heading-2").offset(), $("#heading-3").offset(), $("#heading-4").offset(), $("#heading-5").offset(), $("#heading-6").offset(), $("#heading-7").offset()];
+      $(".panel-heading").on("click", function (e) {
+        $("body, html").stop();
+        var idArray = $(this).attr("id").split("-");
+        var idNumber = parseInt(idArray[1]) - 1;
+        console.log(idArray[0] + "-" + idNumber);
+        if (idNumber > 0) {
+          $("body, html").animate(
+            {
+              scrollTop: accordianTopArray[idNumber].top,
+            },
+            600
+          );
+        }
+      });
+    });
     if (document.querySelector("header + section") && !document.querySelector("#newMyCarousel")) {
       document.querySelector("header + section").insertAdjacentHTML("afterend", newHtml);
     }
