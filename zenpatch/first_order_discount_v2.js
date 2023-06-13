@@ -1216,7 +1216,11 @@ if (window.location.pathname.includes("checkouts")) {
   let startFuncMc = setInterval(() => {
     if (document.querySelector("#order-summary") && localStorage.getItem("natural")) {
       clearInterval(startFuncMc);
-      window.location.href = window.location.href + "?discount=NATURAL10";
+      if (!window.location.href.includes("?")) {
+        window.location.href = window.location.href + "?discount=NATURAL10";
+      } else {
+        window.location.href = window.location.href + "&discount=NATURAL10";
+      }
       if (localStorage.getItem("natural")) {
         localStorage.removeItem("natural");
       }
