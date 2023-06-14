@@ -710,7 +710,7 @@ body .sidebar .btn_trigger_popup.applied_discount > p {
 
     document.head.insertAdjacentHTML("beforeend", `<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">`);
     document.head.insertAdjacentHTML("beforeend", popupStyle);
-    document.body.insertAdjacentHTML("afterbegin", popUp);
+    document.body.insertAdjacentHTML("beforeend", popUp);
     document.querySelector("#addToCart")?.after(document.querySelector("#getNow .free-shipping-checkout"));
     if (!document.querySelector("#getNow .new_img_reviews")) {
       document.querySelector("#getNow .days")?.insertAdjacentHTML("afterend", `<img src="https://conversionratestore.github.io/projects/zenpatch/img/new_img_shipping.png" alt="Reviews 1273" class="new_img_reviews">`);
