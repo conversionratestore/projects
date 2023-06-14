@@ -205,7 +205,7 @@ let startFunkPopupV2 = setInterval(() => {
             transition: all 0.5s ease;
         }
         .overlay_popup.is_hidden{
-            opacity: 0;
+            opacity: 0 !important;
             pointer-events: none;
         }
         .overlay_popup .container_popup {
@@ -653,7 +653,7 @@ body .sidebar .btn_trigger_popup.applied_discount > p {
         `;
 
     let popUp = /*html */ `
-                <div class="overlay_popup is_hidden">
+                <div class="overlay_popup is_hidden" style="opacity:0;">
                     <div class="container_popup">
                         <div class="btn_close" data-close="Close extra 10 percent popup">
                           <span></span>
@@ -751,6 +751,7 @@ body .sidebar .btn_trigger_popup.applied_discount > p {
           document.querySelector(".overlay_popup .container_popup")?.insertAdjacentHTML("beforeend", contentPopup);
         }
         popup.classList.remove("is_hidden");
+        popup.style.opacity = "1";
         document.body.style.overflow = "hidden";
 
         clearInterval(popupTimerId);
