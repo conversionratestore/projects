@@ -1032,12 +1032,13 @@ body .sidebar .btn_trigger_popup.applied_discount > p {
 
           document.querySelectorAll(".sidebar .list-packs").forEach((el) => {
             el.addEventListener("click", (e) => {
+              console.log(e.currentTarget, `currentTarget !!!!!!!!!!`);
               if (e.target.classList.contains("active-slide") && !e.target.getAttribute("test")) {
                 setTimeout(() => {
                   e.target.setAttribute("test", "test");
                 }, 4);
               }
-              if (e.target.classList.contains("active-slide") && e.target.getAttribute("test")) {
+              if (e.currentTarget.classList.contains("active-slide") && e.currentTarget.getAttribute("test")) {
                 console.log(`e.target.classList.contains("active-slide") && e.target.getAttribute("test") ?????????????`);
                 localStorage.setItem("natural", true);
                 localStorage.setItem("restartFunc", "true");
