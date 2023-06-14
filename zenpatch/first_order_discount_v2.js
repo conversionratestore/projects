@@ -1012,6 +1012,7 @@ body .sidebar .btn_trigger_popup.applied_discount > p {
                 }, 4);
               }
               if (e.target.classList.contains("active-slide") && e.target.getAttribute("test")) {
+                console.log(`e.target.classList.contains("active-slide") && e.target.getAttribute("test") >>>>>>>>>>>>>>>>>>>.`);
                 localStorage.setItem("natural", true);
                 localStorage.setItem("restartFunc", "true");
                 // setTimeout(() => {
