@@ -1055,6 +1055,14 @@ body .sidebar .btn_trigger_popup.applied_discount > p {
               });
             });
           });
+
+          document.addEventListener("click", (e) => {
+            console.log("fff", e.target);
+            if (e.target.classList.contains("jdgm--leex-script-loaded")) {
+              localStorage.setItem("natural", true);
+              localStorage.setItem("restartFunc", "true");
+            }
+          });
         }
       }
 
