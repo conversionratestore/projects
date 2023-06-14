@@ -229,7 +229,7 @@ let startFunkPopupV2 = setInterval(() => {
             align-items: center;
             justify-content: center;
             border-radius: 50%;
-            z-index: 1111;
+            z-index: 1;
         }
         .overlay_popup .container_popup > .btn_close span{
           background: url(https://conversionratestore.github.io/projects/zenpatch/img/btn_close.svg) center center no-repeat;
