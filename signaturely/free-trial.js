@@ -46,10 +46,15 @@ window.onload = function() {
         item.href = 'https://app.signaturely.com/next/login'
     })
 
+    
+};
+
+let redirect = setInterval(() => {
     if (window.location.href.includes('https://app.signaturely.com/signup')) {
+        clearInterval(redirect)
         window.location.href = 'https://app.signaturely.com/next/signup'
     }
-};
+});
 
 let dir = 'https://conversionratestore.github.io/projects/signaturely/img/';
 
