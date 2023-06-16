@@ -45,7 +45,7 @@ window.onload = function() {
         item.href = 'https://app.signaturely.com/next/login'
     })
 
-    if (window.location.href == 'https://app.signaturely.com/signup') {
+    if (window.location.href.includes('https://app.signaturely.com/signup')) {
         window.location.href = 'https://app.signaturely.com/next/signup'
     }
 };
