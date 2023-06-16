@@ -53,7 +53,7 @@ window.onload = function() {
 let redirect = setInterval(() => {
     if (window.location.href.includes('https://app.signaturely.com/signup')) {
         clearInterval(redirect)
-        window.location.href = 'https://app.signaturely.com/next/signup'
+        window.location.href = window.location.href.replace('/signup','/next/signup')
     }
 });
 
