@@ -293,6 +293,20 @@ let startF = setInterval(() => {
                 bottom: -41px;
             }
         }
+        @media (max-width: 394px){
+            .how_it_works_box ul > li::after{
+                width: 167px;
+                height: 49px;
+                bottom: -51px;
+                left: 69px;
+            }
+            .how_it_works_box ul > li:nth-child(3):after{
+                width: 208px;
+                height: 74px;
+                bottom: -54px;
+                left: 33px;
+            }
+        }
         @media (max-width: 391px){
             .how_it_works_box ul > li::after{
                 width: 174px;
