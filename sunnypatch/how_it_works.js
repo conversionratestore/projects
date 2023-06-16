@@ -1,6 +1,26 @@
 let startF = setInterval(() => {
   if (document.querySelector(".sleeping-problems")) {
     clearInterval(startF);
+    function pushDataLayer(actionDataLayer, labelDataLayer) {
+      window.dataLayer = window.dataLayer || [];
+      if (labelDataLayer) {
+        console.log(actionDataLayer + " : " + labelDataLayer);
+        dataLayer.push({
+          event: "event-to-ga",
+          eventCategory: `Exp; Sunnypatch How it work`,
+          eventAction: `${actionDataLayer}`,
+          eventLabel: `${labelDataLayer}`,
+        });
+      } else {
+        console.log(actionDataLayer);
+        dataLayer.push({
+          event: "event-to-ga",
+          eventCategory: `Exp; Sunnypatch How it work`,
+          eventAction: `${actionDataLayer}`,
+        });
+      }
+    }
+
     let styleVar = /*html */ `
     <style>
         .js-heading.js-mobile .sub-title,
@@ -387,7 +407,7 @@ let startF = setInterval(() => {
     <section class="how_it_works_box">
       <h2>HOW IT WORKS (AND WHY YOU'LL WANT TO HUG US)</h2>
       <ul></ul>
-      <a href="#">get it now</a>
+      <a href="#" class="new_btn_get_it_now">get it now</a>
     </section>
     `;
 
@@ -427,8 +447,91 @@ let startF = setInterval(() => {
 
       document.querySelector(".how_it_works_box a").addEventListener("click", (e) => {
         e.preventDefault();
-        document.querySelector("header .header-shipping #open").click();
+        pushDataLayer("Button", "How it works");
+        document.querySelector("header .navbar #open.js-mobile").click();
+      });
+
+      document.querySelector("header .header-shipping #open").addEventListener("click", (e) => {
+        pushDataLayer("Button", "First screen");
       });
     }
+
+    // Visability
+    let obs = new IntersectionObserver(visibility, {
+      threshold: 1,
+    });
+    let obs2 = new IntersectionObserver(visibility2, {
+      threshold: 1,
+    });
+    let int = setInterval(() => {
+      if (document.querySelector(".yellow-wave")) {
+        clearInterval(int);
+        obs.observe(document.querySelector(".yellow-wave"));
+      }
+    }, 100);
+
+    function visibility(entries) {
+      entries.forEach((i) => {
+        if (i.isIntersecting) {
+          setTimeout(function () {
+            obs2.observe(i.target);
+          }, 3000);
+        }
+      });
+    }
+    function visibility2(entries) {
+      entries.forEach((i) => {
+        if (i.isIntersecting) {
+          if (i.target.classList.contains("yellow-wave")) {
+            pushDataLayer("Visibility", "First screen");
+          }
+          obs.unobserve(i.target);
+        }
+        obs2.unobserve(i.target);
+      });
+    }
+
+    let obs3 = new IntersectionObserver(visibility3, {
+      threshold: 1,
+    });
+    let obs4 = new IntersectionObserver(visibility4, {
+      threshold: 1,
+    });
+    let int2 = setInterval(() => {
+      if (document.querySelector(".how_it_works_box a.new_btn_get_it_now")) {
+        clearInterval(int2);
+        obs3.observe(document.querySelector(".how_it_works_box a.new_btn_get_it_now"));
+      }
+    }, 100);
+
+    function visibility3(entries) {
+      entries.forEach((i) => {
+        if (i.isIntersecting) {
+          setTimeout(function () {
+            obs4.observe(i.target);
+          }, 5000);
+        }
+      });
+    }
+    function visibility4(entries) {
+      entries.forEach((i) => {
+        if (i.isIntersecting) {
+          console.log(`object`);
+          if (i.target.classList.contains("new_btn_get_it_now")) {
+            pushDataLayer("Visibility", "How it works");
+          }
+          obs3.unobserve(i.target);
+        }
+        obs4.unobserve(i.target);
+      });
+    }
+
+    pushDataLayer("loaded");
+    const record = setInterval(() => {
+      if (typeof clarity === "function") {
+        clearInterval(record);
+        clarity("set", "how_it_work", "variant_1");
+      }
+    }, 200);
   }
 }, 100);
