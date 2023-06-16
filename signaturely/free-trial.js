@@ -1,6 +1,8 @@
 let changeTo = {
     'Free account':'Try eSignature Free',
     'Create free account':'Try eSignature Free',
+    'Sign 1 document for FREE':'Try eSignature Free',
+    'Sign 3 documents for free':'Try eSignature Free',
     'Get up to 3 documents signed for free, every month':'Start your free 7-day trial and get your documents signed right now!',
     'Get up to 1 document signed for free, every month':'Start your free 7-day trial and get your documents signed right now!',
     'Simply sign up for Signaturely for free and start setting up your documents.':'Simply start your free 7-day trial and get your documents signed right now!',
@@ -15,8 +17,7 @@ let changeTo = {
     'Get your documents signed today. It’s free forever!':'',
     'Yes! Signaturely’s free plan lets you request 3 documents for e-signature each month 100% free. No credit card required.':'You can start your free 7-day trial and try Signaturely before you will be charged.',
     'Yes! Signaturely’s free plan lets you request 1 document for e-signature each month 100% free. No credit card required.':'You can start your free 7-day trial and try Signaturely before you will be charged.',
-    'Yes! Signaturely’s free plan lets you request 1 document for e-signature 100% free. No credit card required.':'You can start your free 7-day trial and try Signaturely before you will be charged.',
-    'Sign 3 documents for free':'Try eSignature Free'
+    'Yes! Signaturely’s free plan lets you request 1 document for e-signature 100% free. No credit card required.':'You can start your free 7-day trial and try Signaturely before you will be charged.'
 }
 
 
@@ -36,8 +37,10 @@ function replaceInText(element, pattern, replacement) {
 }
 
 window.onload = function() {
-    for (const key in changeTo) {
-        replaceInText(document.body, key, changeTo[key]) 
+    if (!window.location.href.includes('https://app.signaturely.com/next/signup')) {
+        for (const key in changeTo) {
+            replaceInText(document.body, key, changeTo[key]) 
+        }
     }
     document.querySelectorAll('[href="https://app.signaturely.com/signup"]').forEach(item => {
         item.href = 'https://app.signaturely.com/next/signup'
@@ -45,8 +48,6 @@ window.onload = function() {
     document.querySelectorAll('[href="https://app.signaturely.com/login/"]').forEach(item => {
         item.href = 'https://app.signaturely.com/next/login'
     })
-
-    
 };
 
 let redirect = setInterval(() => {
