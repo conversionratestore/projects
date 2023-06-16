@@ -24,7 +24,9 @@ let startF = setInterval(() => {
     let styleVar = /*html */ `
     <style>
         .js-heading.js-mobile .sub-title,
-        .yellow-wave + .blue-wave-image{
+        .yellow-wave + .blue-wave-image,
+        .js-mobile.scientific,
+        .js-mobile.c-yellow{
             display: none;
         }
         .sleeping-problems{
