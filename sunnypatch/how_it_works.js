@@ -7,7 +7,7 @@ let startF = setInterval(() => {
         console.log(actionDataLayer + " : " + labelDataLayer);
         dataLayer.push({
           event: "event-to-ga",
-          eventCategory: `Exp; Sunnypatch How it work`,
+          eventCategory: `Exp: Sunnypatch How it work`,
           eventAction: `${actionDataLayer}`,
           eventLabel: `${labelDataLayer}`,
         });
@@ -15,7 +15,7 @@ let startF = setInterval(() => {
         console.log(actionDataLayer);
         dataLayer.push({
           event: "event-to-ga",
-          eventCategory: `Exp; Sunnypatch How it work`,
+          eventCategory: `Exp: Sunnypatch How it work`,
           eventAction: `${actionDataLayer}`,
         });
       }
