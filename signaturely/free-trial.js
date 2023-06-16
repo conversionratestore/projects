@@ -36,7 +36,17 @@ function replaceInText(element, pattern, replacement) {
 
 window.onload = function() {
     for (const key in changeTo) {
-        replaceInText(document.body, key, changeTo[key])
+        replaceInText(document.body, key, changeTo[key]) 
+    }
+    document.querySelectorAll('[href="https://app.signaturely.com/signup"]').forEach(item => {
+        item.href = 'https://app.signaturely.com/next/signup'
+    })
+    document.querySelectorAll('[href="https://app.signaturely.com/login/"]').forEach(item => {
+        item.href = 'https://app.signaturely.com/next/login'
+    })
+
+    if (window.location.href == 'https://app.signaturely.com/signup') {
+        window.location.href = 'https://app.signaturely.com/next/signup'
     }
 };
 
@@ -68,22 +78,22 @@ function init() {
             document.querySelector('.elementor-element-28646d0').style.display = 'none';
             document.body.insertAdjacentHTML('afterbegin',`
             <style>
-                .elementor-element-194383e .elementor-row {
+                .elementor-element-194383e .elementor-row, .elementor-element-662694b .elementor-row {
                     justify-content: center;
                 }
-                .elementor-5311 .elementor-element.elementor-element-bcd9b15>.elementor-widget-container {
+                .elementor-5311 .elementor-element.elementor-element-bcd9b15>.elementor-widget-container, .elementor-5325 .elementor-element.elementor-element-40c5395 > .elementor-widget-container {
                     margin: -17px 0 14px!important;
                 }
-                .elementor-5311 .elementor-element.elementor-element-ba7c272 {
+                .elementor-5311 .elementor-element.elementor-element-ba7c272, .elementor-5325 .elementor-element.elementor-element-8134e12 {
                     line-height: 43px!important;
                 }
-                .elementor-5311 .elementor-element.elementor-element-eec8d7b {
+                .elementor-5311 .elementor-element.elementor-element-eec8d7b, .elementor-5325 .elementor-element.elementor-element-df93625 {
                     line-height: 49px!important;
                 }
-                .elementor-5311 .elementor-element.elementor-element-d7e2eb6>.elementor-widget-container {
+                .elementor-5311 .elementor-element.elementor-element-d7e2eb6>.elementor-widget-container, .elementor-5325 .elementor-element.elementor-element-b7f4423 > .elementor-widget-container {
                     margin: 0px 0 0!important;
                 }
-                .elementor-5311 .elementor-element.elementor-element-20fb1d8>.elementor-element-populated>.elementor-widget-wrap {
+                .elementor-5311 .elementor-element.elementor-element-20fb1d8>.elementor-element-populated>.elementor-widget-wrap, .elementor-5325 .elementor-element.elementor-element-382a9f6 > .elementor-element-populated > .elementor-widget-wrap {
                     padding: 0 48px 48px!important
                 }
                 .elementor-element-6d61dd28 .elementor img {
@@ -108,34 +118,34 @@ function init() {
                     margin: 10px 0 0!important;
                 }
 
-                .elementor-5311 .elementor-element.elementor-element-a5b0f1d>.elementor-element-populated>.elementor-widget-wrap {
+                .elementor-5311 .elementor-element.elementor-element-a5b0f1d>.elementor-element-populated>.elementor-widget-wrap, .elementor-5325 .elementor-element.elementor-element-1f2236f > .elementor-element-populated > .elementor-widget-wrap {
                     padding: 46px 48px 48px!important;
                 }
                 .elementor-5311 .elementor-element.elementor-element-b460e3f>.elementor-widget-container {
                     margin: 34px 0 0!important;
                 }
-                .elementor-5311 .elementor-element.elementor-element-09f484a>.elementor-widget-container {
+                .elementor-5311 .elementor-element.elementor-element-09f484a>.elementor-widget-container, .elementor-5325 .elementor-element.elementor-element-2d3ffcf > .elementor-widget-container {
                     margin: 96px 0 0!important;
                 }
 
-                .elementor-element-194383e .elementor-column.elementor-col-33 {
+                .elementor-element-194383e .elementor-column.elementor-col-33, .elementor-element-662694b .elementor-column.elementor-col-33 {
                     width: 50%!important;
                     margin: 0 5px;
                     max-width: 514px;
                 }
                 @media screen and (max-width: 1024px) {
                    
-                    .elementor-element-194383e .elementor-column.elementor-col-33 {
+                    .elementor-element-194383e .elementor-column.elementor-col-33, .elementor-element-662694b .elementor-column.elementor-col-33 {
                         width: 100%!important;
                         margin: 0 auto;
                     }
-                    .elementor-5311 .elementor-element.elementor-element-a5b0f1d>.elementor-element-populated>.elementor-widget-wrap {
+                    .elementor-5311 .elementor-element.elementor-element-a5b0f1d>.elementor-element-populated>.elementor-widget-wrap, .elementor-5325 .elementor-element.elementor-element-1f2236f > .elementor-element-populated > .elementor-widget-wrap {
                         padding: 30px 20px 20px!Important;
                     }
-                    .elementor-5311 .elementor-element.elementor-element-20fb1d8>.elementor-element-populated>.elementor-widget-wrap, .elementor-5311 .elementor-element.elementor-element-20fb1d8>.elementor-element-populated>.elementor-widget-wrap {
+                    .elementor-5311 .elementor-element.elementor-element-20fb1d8>.elementor-element-populated>.elementor-widget-wrap, .elementor-5325 .elementor-element.elementor-element-382a9f6 > .elementor-element-populated > .elementor-widget-wrap {
                         padding: 0 20px 20px!important
                     }
-                    .elementor-5311 .elementor-element.elementor-element-bcd9b15>.elementor-widget-container {
+                    .elementor-5311 .elementor-element.elementor-element-bcd9b15>.elementor-widget-container, .elementor-5325 .elementor-element.elementor-element-40c5395 > .elementor-widget-container {
                         margin: -17px 0 6px!important;
                     }
                     .elementor-5311 .elementor-element.elementor-element-edc7b42>.elementor-widget-container, .elementor-5311 .elementor-element.elementor-element-cb9545e>.elementor-widget-container {
@@ -186,7 +196,7 @@ function init() {
                     .elementor-5311 .elementor-element.elementor-element-4b09bfd {
                         margin-bottom: 13px;
                     }
-                    .elementor-5311 .elementor-element.elementor-element-09f484a>.elementor-widget-container {
+                    .elementor-5311 .elementor-element.elementor-element-09f484a>.elementor-widget-container, .elementor-5325 .elementor-element.elementor-element-2d3ffcf > .elementor-widget-container {
                         margin: 4px 0 0!important;
                     }
                     .elementor-5325 .elementor-element.elementor-element-40c5395 {
@@ -222,11 +232,13 @@ function init() {
                 }
             </style>`)
 
-            // document.querySelectorAll('.entry-content p')[0].innerHTML = document.querySelectorAll('.entry-content p')[0].innerHTML.replace('40','30')
-
             document.querySelectorAll('.elementor-button span').forEach(item => {
                 if (item.innerHTML.includes('Buy now') ) {
                     item.innerHTML = 'Start Free Trial';
+                    if (item.closest('a')) {
+                        item.closest('a').href = 'https://app.signaturely.com/next/signup';
+                    }
+                
                 }
             })
         }
