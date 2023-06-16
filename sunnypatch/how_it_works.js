@@ -547,5 +547,7 @@ let startF = setInterval(() => {
         clarity("set", "how_it_work", "variant_1");
       }
     }, 200);
+
+    document.querySelector(".exp")?.remove();
   }
 }, 100);
