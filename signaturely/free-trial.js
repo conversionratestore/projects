@@ -15,7 +15,8 @@ let changeTo = {
     'Get your documents signed today. It’s free forever!':'',
     'Yes! Signaturely’s free plan lets you request 3 documents for e-signature each month 100% free. No credit card required.':'You can start your free 7-day trial and try Signaturely before you will be charged.',
     'Yes! Signaturely’s free plan lets you request 1 document for e-signature each month 100% free. No credit card required.':'You can start your free 7-day trial and try Signaturely before you will be charged.',
-    'Yes! Signaturely’s free plan lets you request 1 document for e-signature 100% free. No credit card required.':'You can start your free 7-day trial and try Signaturely before you will be charged.'
+    'Yes! Signaturely’s free plan lets you request 1 document for e-signature 100% free. No credit card required.':'You can start your free 7-day trial and try Signaturely before you will be charged.',
+    'Sign 3 documents for free':'Try eSignature Free'
 }
 
 
