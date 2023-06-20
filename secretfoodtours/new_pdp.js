@@ -3404,9 +3404,9 @@ let init = setInterval(() => {
 							`<li><a href="#review" onclick="menuToElement(event)">Reviews</a></li>`
 						);
 					for(let i = 0; i < customers_reviews.length; i++) {
-						let slide = document.createElement('div');
-						slide.classList.add('swiper-slide');
-						slide.innerHTML = `
+                        let slide = document.createElement('div');
+                        slide.classList.add('swiper-slide');
+                        slide.innerHTML = `
                         <div class="d-flex align-items-center">
                             <img src="${customers_reviews[i][0]}">
                             <div>
@@ -3435,13 +3435,23 @@ let init = setInterval(() => {
                             <b>${customers_reviews[i][2]}</b>
                             ${customers_reviews[i][3]}
                         </p> `;
-						if(
-							document.querySelector('.slider-review .swiper-wrapper') != null
-						) {
-							document
-								.querySelector('.slider-review .swiper-wrapper')
-								.appendChild(slide);
-						}
+                        if(
+                            document.querySelector('.slider-review .swiper-wrapper') != null
+                        ) {
+
+                            if (window.location.pathname.includes('/london/') && !customers_reviews[i][2].includes('Paris')) {
+                                document
+                                .querySelector('.slider-review .swiper-wrapper')
+                                .appendChild(slide);
+                            } else {
+                                if (!window.location.pathname.includes('/london/')) {
+                                    document
+                                    .querySelector('.slider-review .swiper-wrapper')
+                                    .appendChild(slide);
+                                }
+                            }
+                           
+                        }
 					}
 					const waitSwiper2 = setInterval(() => {
 						if(typeof Swiper == 'function') {
