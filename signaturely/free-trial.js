@@ -249,7 +249,7 @@ function init() {
             })
         }
 
-        if (window.location.href == 'https://signaturely.com/' && document.querySelectorAll('.elementor-element-e71e1ac .bullet') != null) {
+        if (window.location.href == 'https://signaturely.com/' && document.querySelectorAll('.elementor-element-e71e1ac .bullet')) {
             document.querySelectorAll('.elementor-element-e71e1ac .bullet').forEach(element => {
                 element.parentElement.remove()
             })
