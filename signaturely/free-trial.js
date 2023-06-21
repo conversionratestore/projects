@@ -1,5 +1,5 @@
 let changeTo = {
-    'Free account':'Try eSignature Free',
+    'Free account':'Start Free Trial',
     'Create free account':'Try eSignature Free',
     'Sign 1 document for FREE':'Try eSignature Free',
     'Sign 3 documents for free':'Try eSignature Free',
