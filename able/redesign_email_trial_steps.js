@@ -1001,7 +1001,7 @@ const setTrialPageLogic = () => {
       'event': 'event-to-ga4',
       'event_name': 'exp_move_email_next_try_week',
       'event_desc': 'Next',
-      'event_type': document.querySelectorAll('header + div button')[index].innerText,
+      'event_type': document.querySelector('.active_price')?.innerText,
       'event_loc': 'Step Try Able for 1 week'
     })
 
