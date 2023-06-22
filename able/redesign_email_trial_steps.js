@@ -1105,7 +1105,7 @@ waitForElm('#root').then(async (root) => {
   const globalMut = new MutationObserver(async () => {
     globalMut.disconnect()
 
-    if (window.location.pathname === '/email') {
+    if (window.location.pathname === '/email')  {
       showEmailOnPage()
     } else if (window.location.pathname === '/trial-pay') {
       showTrialOnPage()
