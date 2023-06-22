@@ -933,6 +933,10 @@ const showEmailOnPage = async () => {
       document.querySelector('.mainContent-0-2-1').hidden = true
       document.querySelector('.email_step').hidden = false
 
+      if (!document.querySelector('.trial_step')?.hidden) {
+        document.querySelector('.trial_step').hidden = true
+      }
+
       sendGAEvent({
         'event': 'event-to-ga4',
         'event_name': 'exp_move_email_vis_will_get',
@@ -1024,6 +1028,10 @@ const showTrialOnPage = async () => {
 
       document.querySelector('header + div').hidden = true
       document.querySelector('.trial_step').hidden = false
+
+      if (!document.querySelector('.email_step')?.hidden) {
+        document.querySelector('.email_step').hidden = true
+      }
 
       sendGAEvent({
         'event': 'event-to-ga4',
