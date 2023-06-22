@@ -1073,7 +1073,7 @@ document.body.appendChild(scriptTag)
 
 document.head.insertAdjacentHTML('afterend', styleCSS)
 
-await waitForElm('#root').then(async (root) => {
+waitForElm('#root').then(async (root) => {
   // Add pages to the DOM
   if (DEVICE === 'desktop') {
     root.insertAdjacentHTML('afterend', emailPageDesktop)
