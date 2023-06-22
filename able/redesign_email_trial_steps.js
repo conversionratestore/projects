@@ -930,12 +930,12 @@ const showEmailOnPage = async () => {
     ) {
       clearInterval(waitForElements)
 
-      document.querySelector('.mainContent-0-2-1').hidden = true
-      document.querySelector('.email_step').hidden = false
-
       if (!document.querySelector('.trial_step')?.hidden) {
         document.querySelector('.trial_step').hidden = true
       }
+
+      document.querySelector('.mainContent-0-2-1').hidden = true
+      document.querySelector('.email_step').hidden = false
 
       sendGAEvent({
         'event': 'event-to-ga4',
@@ -1026,12 +1026,12 @@ const showTrialOnPage = async () => {
     ) {
       clearInterval(waitForElements)
 
-      document.querySelector('header + div').hidden = true
-      document.querySelector('.trial_step').hidden = false
-
       if (!document.querySelector('.email_step')?.hidden) {
         document.querySelector('.email_step').hidden = true
       }
+
+      document.querySelector('header + div').hidden = true
+      document.querySelector('.trial_step').hidden = false
 
       sendGAEvent({
         'event': 'event-to-ga4',
