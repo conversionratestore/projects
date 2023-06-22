@@ -83,10 +83,11 @@ let newLightPage = setInterval(() => {
         margin: unset;
         }
         #below_video_text .button-header.enroll_now_lite {
-        display: flex;
+        display: flex !important;
         align-items: center;
         justify-content: center;
         margin-top: 15px;
+        margin-bottom: 35px;
         }
         #below_video_text .top_video_guarantee {
         margin-left: 30px;
@@ -110,10 +111,9 @@ let newLightPage = setInterval(() => {
         margin: 0;
         padding: 0;
         height: 62px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
+        display: black;
         transition: all 250ms cubic-bezier(0.45, 0.05, 0.55, 0.95);
+        padding: 10px 5px;
         }
         #below_video_text .enroll_btn_txt p {
         color: #734f22 !important;
@@ -1633,10 +1633,12 @@ let newLightPage = setInterval(() => {
         #below_video_text .button-header a {
             max-width: 224px;
             margin: 0 !important;
-            font-size: 16px !important;
+            font-size: 12px !important;
+            padding: 18px 10px !important;
         }
         #below_video_text .button-header.enroll_now_lite {
             margin-top: 8px;
+            margin-bottom: -3px;
         }
         .after-refresh .count_sec .white-block {
             padding: 40px 0 !important;
@@ -2006,9 +2008,6 @@ let newLightPage = setInterval(() => {
         }
         }
         @media (max-width: 320px) {
-        #below_video_text .button-header a {
-            max-width: 168px;
-        }
         body .want-to-obey .reviews_wrap h3,
         .new_accardion_link p span:nth-child(2),
         .all_inform_wrap .text_descr p:nth-child(1),
@@ -2444,7 +2443,7 @@ let newLightPage = setInterval(() => {
   </div>
     `;
     document.head.insertAdjacentHTML("beforeend", styleFreeWorkShop);
-    document.querySelectorAll(".white-block a.button-blue-large").forEach((el) => {
+    document.querySelectorAll("a.button-blue-large").forEach((el) => {
       el.innerHTML = `Enroll Now - Lite Version <svg width="7" height="10" viewBox="0 0 7 10" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M1.23984 8.23356L4.47318 5.00023L1.23984 1.76689C0.914844 1.44189 0.914844 0.916894 1.23984 0.591895C1.56484 0.266895 2.08984 0.266895 2.41484 0.591895L6.23984 4.41689C6.56484 4.74189 6.56484 5.26689 6.23984 5.59189L2.41484 9.41689C2.08984 9.74189 1.56484 9.74189 1.23984 9.41689C0.923177 9.09189 0.914844 8.55856 1.23984 8.23356Z" fill="white"/>
                         </svg>`;
