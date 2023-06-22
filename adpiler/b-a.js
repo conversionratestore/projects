@@ -6,7 +6,7 @@ let init = setInterval(() => {
         document.querySelector('.elementor-element-27d482a .elementor-button').classList.add('skewed')
     }   
 
-    if (window.location.href == 'https://adpiler.com/social-ad-mockups/' && document.querySelector('.elementor-element-c71f642') && document.querySelector('.elementor-element-a3783ba .elementor-button')) {
+    if (window.location.href.includes('https://adpiler.com/social-ad-mockups/') && document.querySelector('.elementor-element-c71f642') && document.querySelector('.elementor-element-a3783ba .elementor-button')) {
         clearInterval(init)
         document.querySelector('.elementor-element-c71f642').remove()
         document.querySelector('.elementor-element-a3783ba .elementor-button').classList.add('skewed')
