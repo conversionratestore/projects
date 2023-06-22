@@ -1,6 +1,6 @@
-let newLightPage = setInterval(() => {
+let newLitePage = setInterval(() => {
   if (document.querySelector("#player")) {
-    clearInterval(newLightPage);
+    clearInterval(newLitePage);
 
     let styleFreeWorkShop = /*html */ `
     <style>
