@@ -5,9 +5,11 @@ const WAIT_INTERVAL_TIMEOUT = 100
 const IMAGE_DIR_URL = 'https://conversionratestore.github.io/projects/able/img'
 const DEVICE = screen.width < 768 ? 'mobile' : 'desktop'
 
+let isEmailPageVisited = false
+let isTrialPageVisited = false
+
 const styleCSS = /*html*/`
   <style>
-
     .disabled_arr {
       visibility: hidden;
     }
@@ -763,8 +765,6 @@ const checkVisibilityAfterMs = (elSelector, eventsObj) => {
 
   observer.observe(document.querySelector(elSelector))
   observerMap[elSelector] = observer
-
-  console.log(observerMap)
 }
 
 // Function to disconnect all observers
@@ -933,6 +933,8 @@ function onClickHandler() {
 let isEmailLogicAdded = false
 
 const showEmailOnPage = () => {
+  isEmailPageVisited = true
+
   if (DEVICE === 'desktop') {
     document.body.classList.add('grayBg')
   }
@@ -1035,6 +1037,8 @@ const setTrialPageLogic = () => {
 }
 
 const showTrialOnPage = () => {
+  isTrialPageVisited = true
+
   if (DEVICE === 'desktop') {
     document.body.classList.add('grayBg')
   }
@@ -1123,11 +1127,7 @@ waitForElm('#root').then((root) => {
   const globalMut = new MutationObserver(() => {
     globalMut.disconnect()
 
-    if (window.location.pathname === '/email') {
-      showEmailOnPage()
-    } else if (window.location.pathname === '/trial-pay') {
-      showTrialOnPage()
-    } else {
+    if (window.location.pathname !== '/trial-pay' && window.location.pathname !== '/email') {
       document.querySelector('.grayBg')?.classList.remove('grayBg')
 
       if (document.querySelector('.mainContent-0-2-1')?.hidden) {
@@ -1143,9 +1143,15 @@ waitForElm('#root').then((root) => {
       }
 
       if (Object.entries(observerMap).length > 0) {
-        console.log('Disconnecting all observers...')
         disconnectAllObservers()
       }
+
+      isEmailPageVisited = false
+      isTrialPageVisited = false
+    } else if (window.location.pathname === '/email' && isEmailPageVisited === false) {
+      showEmailOnPage()
+    } else if (window.location.pathname === '/trial-pay' && isTrialPageVisited === false) {
+      showTrialOnPage()
     }
 
     globalMut.observe(root, {
