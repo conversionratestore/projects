@@ -591,7 +591,7 @@ const emailPage = /*html*/`
         <span>The accountability tools you'll need to live our program and build life-long health.</span>
       </li>
     </ul>
-    <div id="email_wrapper" class="${localStorage.email ? 'valid' : ''}" ${localStorage.email ? sendValidBtnEvent() : ''}>
+    <div id="email_wrapper" class="${localStorage.email ? 'valid' : ''}">
       <label for="email">Your email</label>
       <input type="email" placeholder="email@gmail.com" value="${localStorage.email ? localStorage.email : ''}" />
       <p>Please enter correct email.</p>
@@ -782,17 +782,7 @@ function sendGAEvent(obj) { // Send a Google Analytics event
   console.log(obj)
 }
 
-function sendValidBtnEvent() {
-  sendGAEvent({
-    'event': 'event-to-ga4',
-    'event_name': 'exp_move_email_cont',
-    'event_desc': 'Continue',
-    'event_type': 'Button',
-    'event_loc': 'Step What email would you like'
-  })
-}
-
-const setEmailValue = (isGoogle = false) => {
+const setEmailValue = () => {
   const clientInput = document.querySelector('.mainContent-0-2-1 input')
   const myInput = document.querySelector('#email_wrapper input')
 
@@ -807,10 +797,6 @@ const setEmailValue = (isGoogle = false) => {
     tracker.setValue(lastValue)
   }
   clientInput.dispatchEvent(inputEvent)
-
-  if (isGoogle) {
-    sendValidBtnEvent()
-  }
 
   sendGAEvent({
     'event': 'event-to-ga4',
@@ -834,25 +820,25 @@ const setEmailPageLogic = () => {
   let typingTimer
   const delay = 1000 // Adjust the delay as desired (in milliseconds)
 
+  myInput.addEventListener('click', () => {
+    sendGAEvent({
+      'event': 'event-to-ga4',
+      'event_name': 'exp_move_email_einput',
+      'event_desc': 'Your email',
+      'event_type': 'Input',
+      'event_loc': 'Step What email would you like'
+    })
+  })
+
   myInput.addEventListener('input', () => {
     clearTimeout(typingTimer) // Clear the previous typing timer
 
     typingTimer = setTimeout(() => {
-      sendGAEvent({
-        'event': 'event-to-ga4',
-        'event_name': 'exp_move_email_einput',
-        'event_desc': 'Your email',
-        'event_type': 'Input',
-        'event_loc': 'Step What email would you like'
-      })
-
       if (myInput.value.length > 0) {
         if (emailPattern.test(myInput.value)) {
           emailWrapper.classList.add('valid')
           emailWrapper.classList.remove('invalid')
-
-          sendValidBtnEvent()
-        } else {
+        } else if (!emailWrapper.classList.contains('invalid')) {
           emailWrapper.classList.add('invalid')
           emailWrapper.classList.remove('valid')
 
@@ -864,8 +850,7 @@ const setEmailPageLogic = () => {
             'event_loc': 'Step What email would you like'
           })
         }
-      }
-      else {
+      } else {
         emailWrapper.classList.remove('invalid')
         emailWrapper.classList.remove('valid')
       }
@@ -873,6 +858,14 @@ const setEmailPageLogic = () => {
   })
 
   myButton.addEventListener('click', () => {
+    sendGAEvent({
+      'event': 'event-to-ga4',
+      'event_name': 'exp_move_email_cont',
+      'event_desc': 'Continue',
+      'event_type': 'Button',
+      'event_loc': 'Step What email would you like'
+    })
+
     if (myInput.value.length === 0) {
       emailWrapper.classList.add('invalid')
       myInput.focus()
