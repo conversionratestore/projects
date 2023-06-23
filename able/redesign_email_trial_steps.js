@@ -8,6 +8,10 @@ const DEVICE = screen.width < 768 ? 'mobile' : 'desktop'
 const styleCSS = /*html*/`
   <style>
 
+    .disabled_arr {
+      visibility: hidden;
+    }
+
     #buttonDiv {
       display: flex;
       justify-content: center;
@@ -145,6 +149,10 @@ const styleCSS = /*html*/`
 
     #email_wrapper button {
       margin-top: 8px;
+    }
+
+    #email_wrapper.invalid label {
+      color: #FF4D2B;
     }
 
     #email_wrapper.invalid input {
@@ -296,6 +304,7 @@ const styleCSS = /*html*/`
     .most_popular>div img {
       display: block;
       margin: 0 auto;
+      max-width: 100%;
     }
 
     .support {
@@ -363,6 +372,12 @@ const styleCSS = /*html*/`
     font-size: 14px;
     line-height: 18px;
     color: #010101;
+    }
+
+    @media only screen and (max-width: 389px) {
+      .support {
+        margin-top: 60px;
+      }
     }
 
     @media only screen and (min-width: 769px) {
@@ -575,8 +590,8 @@ const emailPage = /*html*/`
       </li>
     </ul>
     <div id="email_wrapper" class="${localStorage.email ? 'valid' : ''}" ${localStorage.email ? sendValidBtnEvent() : ''}>
-      <label for="email">Your e-mail</label>
-      <input type="email" placeholder="e-mail@gmail.com" value="${localStorage.email ? localStorage.email : ''}" />
+      <label for="email">Your email</label>
+      <input type="email" placeholder="email@gmail.com" value="${localStorage.email ? localStorage.email : ''}" />
       <p>Please enter correct email.</p>
       <button>Continue</button>
       <div class="divider">
@@ -623,8 +638,8 @@ const emailPageDesktop = /*html*/`
       <h3>What email would you like to use to access your program?</h3>
       <h4>We’ve created a personalized program to help you reach your goal of losing 10 kg</h4>
       <div id="email_wrapper" class="${localStorage.email ? 'valid' : ''}">
-        <label for="email">Your e-mail</label>
-        <input type="email" placeholder="e-mail@gmail.com" value="${localStorage.email ? localStorage.email : ''}" />
+        <label for="email">Your email</label>
+        <input type="email" placeholder="email@gmail.com" value="${localStorage.email ? localStorage.email : ''}" />
         <p>Please enter correct email.</p>
         <button>Continue</button>
         <div class="divider">
@@ -675,7 +690,7 @@ const trialPage = /*html*/`
           </div>
         </div>
         <div><span>$10</span></div>
-        <div><span>$18.43</span></div>
+        <div><span>$18.37</span></div>
       </div>
       <div class="support_wrapper">
       <div class="support">
@@ -937,11 +952,15 @@ const showEmailOnPage = async () => {
       document.querySelector('.mainContent-0-2-1').hidden = true
       document.querySelector('.email_step').hidden = false
 
+      if (document.querySelector('header > div')) {
+        document.querySelector('header > div').classList.add('disabled_arr')
+      }
+
       sendGAEvent({
         'event': 'event-to-ga4',
-        'event_name': 'exp_move_email_vis_will_get',
-        'event_desc': 'You will get',
-        'event_type': 'View element on screen',
+        'event_name': 'exp_move_email_vis_screen_what_email',
+        'event_desc': 'What email would you like to use to access your program?',
+        'event_type': 'View screen',
         'event_loc': 'Step What email would you like'
       })
 
@@ -982,6 +1001,8 @@ let isTrailLogicAdded = false
 
 const setTrialPageLogic = () => {
   const prices = document.querySelectorAll('.prices > div')
+
+  document.querySelectorAll('header + div button')[1].click()
 
   prices.forEach((price, index) => {
     price.addEventListener('click', () => {
