@@ -1170,3 +1170,10 @@ sendGAEvent({
   'event_name': 'exp_discount_after_payment_attempt_load',
   'event_desc': 'loaded'
 })
+
+const recordClarity = setInterval(() => {
+  if (typeof clarity === 'function') {
+    clearInterval(recordClarity)
+    clarity('set', `move_email_${DEVICE}`, 'variant_1')
+  }
+}, WAIT_INTERVAL_TIMEOUT)
