@@ -932,12 +932,12 @@ function onClickHandler() {
 
 let isEmailLogicAdded = false
 
-const showEmailOnPage = async () => {
+const showEmailOnPage = () => {
   if (DEVICE === 'desktop') {
     document.body.classList.add('grayBg')
   }
 
-  const waitForElements = setInterval(async () => {
+  const waitForElements = setInterval(() => {
     if (
       document.querySelector('.mainContent-0-2-1 button')
       && document.querySelector('.mainContent-0-2-1 input')
@@ -1034,12 +1034,12 @@ const setTrialPageLogic = () => {
   })
 }
 
-const showTrialOnPage = async () => {
+const showTrialOnPage = () => {
   if (DEVICE === 'desktop') {
     document.body.classList.add('grayBg')
   }
 
-  const waitForElements = setInterval(async () => {
+  const waitForElements = setInterval(() => {
     if (
       document.querySelectorAll('header + div button')[4]
       && document.querySelectorAll('.prices > div')[3]
@@ -1102,7 +1102,7 @@ document.body.appendChild(scriptTag)
 
 document.head.insertAdjacentHTML('afterend', styleCSS)
 
-waitForElm('#root').then(async (root) => {
+waitForElm('#root').then((root) => {
   // Add pages to the DOM
   if (DEVICE === 'desktop') {
     root.insertAdjacentHTML('afterend', emailPageDesktop)
@@ -1113,17 +1113,14 @@ waitForElm('#root').then(async (root) => {
   root.insertAdjacentHTML('afterend', trialPage)
 
   if (window.location.pathname === '/email') {
-    // waitForElm('.email_step').then(() => showEmailOnPage())
-    await waitForElm('.email_step')
-    showEmailOnPage()
+    waitForElm('.email_step').then(() => showEmailOnPage())
   }
   if (window.location.pathname === '/trial-pay') {
-    await waitForElm('.trial_step')
-    showTrialOnPage()
+    waitForElm('.trial_step').then(() => showTrialOnPage())
   }
 
   /* Run mutation for page recognition */
-  const globalMut = new MutationObserver(async () => {
+  const globalMut = new MutationObserver(() => {
     globalMut.disconnect()
 
     if (window.location.pathname === '/email') {
