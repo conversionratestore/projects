@@ -2666,9 +2666,11 @@ padding: 0;
       let dates;
       let finalEvents;
       dates = Object.keys(newEvent);
+      console.log(dates, `dates`);
       finalEvents = dates.map((d) => {
-        return { startDate: new Date(d).getTime(), endDate: new Date(d).getTime() + 2000, summary: d };
+        return { startDate: new Date(d).getTime() + new Date(d).getTimezoneOffset() * 1000 * 60, endDate: new Date(d).getTime() + new Date(d).getTimezoneOffset() * 1000 * 60 + 2000, summary: d };
       });
+      console.log(finalEvents, `finalEvents`);
       let container = jQuery("#calendarContainer").simpleCalendar();
       let jQuerycalendar = container.data("plugin_simpleCalendar");
       jQuerycalendar.setEvents(finalEvents);
