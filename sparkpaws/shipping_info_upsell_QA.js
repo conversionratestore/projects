@@ -1490,7 +1490,7 @@ const progressBar = /*html*/`
 `
 
 const checkoutFooter = (total, isCoupon) => /*html*/`
-  <div class="checkout_footer${country === 'DE' ? ' de': ''}">
+  <div class="checkout_footer${country === 'DE' ? ' de' : ''}">
     <div class="icons">
       <div>
         <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 22 22" fill="none">
@@ -1548,7 +1548,7 @@ const checkoutFooter = (total, isCoupon) => /*html*/`
   </div>
 `
 const checkoutFooterCartPage = (isCoupon) => /*html*/`
-  <div class="checkout_footer${country === 'DE' ? ' de': ''}">
+  <div class="checkout_footer${country === 'DE' ? ' de' : ''}">
     ${saveCode(localStorage.getItem('discount') === 'true' ? true : false)}
     <div class="total">
       <p>${translatedText[7]}</p>
@@ -1721,17 +1721,15 @@ const checkVisibilityAfterMs = (el) => { // Checks element visibility after a sp
   observer.observe(el)
 }
 
-function waitForElement(selector, index) {
+function waitForElement(selector) {
   return new Promise(resolve => {
-    const element = index ? document.querySelectorAll(selector)[index] : document.querySelector(selector)
-
-    if (element) {
-      return resolve(element)
+    if (document.querySelector(selector)) {
+      return resolve(document.querySelector(selector))
     }
 
     const observer = new MutationObserver(() => {
-      if (element) {
-        resolve(element)
+      if (document.querySelector(selector)) {
+        resolve(document.querySelector(selector))
         observer.disconnect()
       }
     })
@@ -2332,27 +2330,31 @@ waitForElement('.Cart__ItemList div').then(() => {
 waitForElement('body').then(() => observeCartNodes(main))
 
 waitForElement('div#smile-ui-lite-container').then((el) => {
-  el.style.setProperty("z-index", "19", "important");
+  el.style.setProperty("z-index", "19", "important")
 })
 
 if (!localStorage.getItem('discount')) {
-  waitForElement('[data-testid="POPUP"] .ql-font-verdana', 3).then(() => {
-    localStorage.setItem('discount', 'true')
+  const waitForPopup = setInterval(() => {
+    if (document.querySelectorAll('[data-testid="POPUP"] .ql-font-verdana')[3]) {
+      clearInterval(waitForPopup)
 
-    const waitForEls = setInterval(() => {
-      if (document.querySelector('.save_code')
-        && document.querySelector('.checkout_btn')
-      ) {
-        clearInterval(waitForEls)
+      localStorage.setItem('discount', 'true')
 
-        document.querySelector('.save_code').classList.add('show')
+      const waitForEls = setInterval(() => {
+        if (document.querySelector('.save_code')
+          && document.querySelector('.checkout_btn')
+        ) {
+          clearInterval(waitForEls)
 
-        if (!document.querySelector('.discount_code')) {
-          document.querySelector('.checkout_btn').insertAdjacentHTML('afterend', `<p class="discount_code">${translatedText[2]}</p>`)
+          document.querySelector('.save_code').classList.add('show')
+
+          if (!document.querySelector('.discount_code')) {
+            document.querySelector('.checkout_btn').insertAdjacentHTML('afterend', `<p class="discount_code">${translatedText[2]}</p>`)
+          }
         }
-      }
-    }, WAIT_INTERVAL_TIMEOUT)
-  })
+      }, WAIT_INTERVAL_TIMEOUT)
+    }
+  }, 500)
 }
 
 sendGAEvent('loaded')
