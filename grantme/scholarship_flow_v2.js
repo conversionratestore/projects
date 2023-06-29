@@ -2337,7 +2337,11 @@ padding: 0;
     if (document.querySelector(".greetings_box")) {
       document.querySelector(".funding_price").textContent = document.querySelector(".marketing b.clr-yellow").textContent;
       document.querySelectorAll(".grade_var").forEach((el) => {
-        el.textContent = document.querySelector(".u_l")?.textContent;
+        if (document.querySelector(".u_l")) {
+          el.textContent = document.querySelector(".u_l")?.textContent;
+        } else {
+          el.textContent = "University";
+        }
       });
 
       if (paramsLocation.get("user_type") === "parent") {
