@@ -568,26 +568,46 @@ if (window.location.pathname === "/enroll/") {
         });
       });
       // btn_continue 2 Click
-      document.querySelectorAll(".btn_continue")?.forEach((el) => {
-        console.log(el, `btn_continue`);
-        el.addEventListener("click", (e) => {
-          console.log(e.currentTarget);
-          if (e.currentTarget.getAttribute("data-count") === "1") {
-            document.querySelectorAll(".payment_inform_box .payment_plan_wrapp .input_wrapper>div> input:checked").forEach((i) => {
-              if (i.getAttribute("id") === "onetime_pay") {
-                pushDataLayer("exp_upsell_option_concpp", "Continue - one-time payment", "Button", "Choose payment plan");
-              } else {
-                pushDataLayer("exp_upsell_option_concpp", "Continue - 3 interest-free", "Button", "Choose payment plan");
-              }
-            });
-          }
-          if (e.currentTarget.getAttribute("data-count") === "2") {
-            if ($("#submit").is(":visible")) {
-              changePrice();
-            }
-          }
-        });
+      let observer = new MutationObserver(() => {
+        if (document.querySelector(".btn_continue")) {
+          observer.disconnect();
+          console.log(`observer`);
+          findBtn();
+          observer.observe(document.querySelector(".btn_continue"), {
+            childList: true,
+            subtree: true,
+          });
+        }
       });
+
+      observer.observe(document.querySelector(".btn_continue"), {
+        childList: true,
+        subtree: true,
+      });
+      findBtn();
+      function findBtn() {
+        document.querySelectorAll(".btn_continue")?.forEach((el) => {
+          console.log(el, `btn_continue`);
+          el.addEventListener("click", (e) => {
+            console.log(e.currentTarget);
+            if (e.currentTarget.getAttribute("data-count") === "1") {
+              document.querySelectorAll(".payment_inform_box .payment_plan_wrapp .input_wrapper>div> input:checked").forEach((i) => {
+                if (i.getAttribute("id") === "onetime_pay") {
+                  pushDataLayer("exp_upsell_option_concpp", "Continue - one-time payment", "Button", "Choose payment plan");
+                } else {
+                  pushDataLayer("exp_upsell_option_concpp", "Continue - 3 interest-free", "Button", "Choose payment plan");
+                }
+              });
+            }
+            if (e.currentTarget.getAttribute("data-count") === "2") {
+              if ($("#submit").is(":visible")) {
+                changePrice();
+              }
+            }
+          });
+        });
+      }
+
       // learn_more_box Click
       document.querySelectorAll(".learn_more_box").forEach((el) => {
         el.addEventListener("click", (e) => {
