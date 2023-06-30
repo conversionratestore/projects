@@ -734,7 +734,7 @@ if (window.location.pathname === "/enroll/") {
         }
       }, 200);
     }
-  }, 100);
+  }, 500);
 }
 
 if (window.location.pathname === "/mc/") {
