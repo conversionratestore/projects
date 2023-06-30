@@ -589,6 +589,7 @@ if (window.location.pathname === "/enroll/") {
         if (document.querySelector(".btn_continue")) {
           clearInterval(fBtn);
           findBtn();
+          changePrice();
         }
       }, 100);
 
@@ -690,7 +691,7 @@ if (window.location.pathname === "/enroll/") {
         });
         //
 
-        console.log(totalAct.toFixed(2), totalPay.toFixed(2));
+        console.log(totalAct.toFixed(2), totalPay.toFixed(2), `>>>>>>>>>>>>>>>>>>>>>>`);
       }
 
       //visibility elem
