@@ -568,24 +568,22 @@ if (window.location.pathname === "/enroll/") {
         });
       });
       // btn_continue 2 Click
-      let observer = new MutationObserver(() => {
-        if (document.querySelectorAll(".total_actual")) {
-          observer.disconnect();
+      let observerMut = new MutationObserver(() => {
+        if (document) {
+          observerMut.disconnect();
           console.log(`observer`);
           changePrice();
-          observer.observe(document.querySelectorAll(".total_actual"), {
+          observerMut.observe(document.querySelectorAll(".total_actual"), {
             childList: true,
             subtree: true,
           });
         }
       });
 
-      if (document.querySelectorAll(".total_actual")) {
-        observer.observe(document.querySelectorAll(".total_actual"), {
-          childList: true,
-          subtree: true,
-        });
-      }
+      observerMut.observe(document, {
+        childList: true,
+        subtree: true,
+      });
 
       let fBtn = setInterval(() => {
         if (document.querySelector(".btn_continue")) {
