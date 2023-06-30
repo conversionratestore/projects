@@ -573,7 +573,7 @@ if (window.location.pathname === "/enroll/") {
           observerMut.disconnect();
           console.log(`observer`);
           changePrice();
-          observerMut.observe(document.querySelectorAll(".total_actual"), {
+          observerMut.observe(document, {
             childList: true,
             subtree: true,
           });
