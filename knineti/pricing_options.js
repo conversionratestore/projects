@@ -569,7 +569,9 @@ if (window.location.pathname === "/enroll/") {
       });
       // btn_continue 2 Click
       document.querySelectorAll(".btn_continue")?.forEach((el) => {
+        console.log(el, `btn_continue`);
         el.addEventListener("click", (e) => {
+          console.log(e.currentTarget);
           if (e.currentTarget.getAttribute("data-count") === "1") {
             document.querySelectorAll(".payment_inform_box .payment_plan_wrapp .input_wrapper>div> input:checked").forEach((i) => {
               if (i.getAttribute("id") === "onetime_pay") {
