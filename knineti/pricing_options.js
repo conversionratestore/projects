@@ -795,6 +795,9 @@ if (window.location.pathname === "/mc/") {
                 color: #794E15;
                 margin: 0 0 20px !important;
             }
+            #unlimited_personal_coaching h2 span{
+                text-decoration-line: line-through;
+            }
             #unlimited_personal_coaching .content .descr_wrap > p{
                 font-weight: 400;
                 font-size: 16px;
@@ -944,7 +947,7 @@ if (window.location.pathname === "/mc/") {
       document.head.insertAdjacentHTML("beforeend", newStyle);
 
       if (window.innerWidth <= 768) {
-        document.querySelector("#unlimited_personal_coaching h2").innerHTML = "<b>Limited Time Offer:</b> add Personal Coaching for <b>only</b> $398 <b>$90 more!</b>";
+        document.querySelector("#unlimited_personal_coaching h2").innerHTML = "<b>Limited Time Offer:</b> add Personal Coaching for <b>only</b> <span>$398</span> <b>$90 more!</b>";
       } else {
         document.querySelector("#unlimited_personal_coaching h2").innerHTML = "<b>Limited Time Offer:</b><br/> add Personal Coaching for <b>only</b> $398 <b>$90 more!</b>";
       }
