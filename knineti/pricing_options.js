@@ -691,7 +691,7 @@ if (window.location.pathname === "/enroll/") {
         });
         //
 
-        console.log(totalAct.toFixed(2), totalPay.toFixed(2), `>>>>>>>>>>>>>>>>>>>>>>`);
+        // console.log(totalAct.toFixed(2), totalPay.toFixed(2), `>>>>>>>>>>>>>>>>>>>>>>`);
       }
 
       //visibility elem
