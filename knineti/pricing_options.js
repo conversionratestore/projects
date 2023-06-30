@@ -570,7 +570,7 @@ if (window.location.pathname === "/enroll/") {
       // btn_continue 2 Click
       document.querySelectorAll(".btn_continue")?.forEach((el) => {
         el.addEventListener("click", (e) => {
-          if (e.target.getAttribute("data-count") === "1") {
+          if (e.currentTarget.getAttribute("data-count") === "1") {
             document.querySelectorAll(".payment_inform_box .payment_plan_wrapp .input_wrapper>div> input:checked").forEach((i) => {
               if (i.getAttribute("id") === "onetime_pay") {
                 pushDataLayer("exp_upsell_option_concpp", "Continue - one-time payment", "Button", "Choose payment plan");
@@ -579,7 +579,7 @@ if (window.location.pathname === "/enroll/") {
               }
             });
           }
-          if (e.target.getAttribute("data-count") === "2") {
+          if (e.currentTarget.getAttribute("data-count") === "2") {
             if ($("#submit").is(":visible")) {
               changePrice();
             }
