@@ -580,10 +580,12 @@ if (window.location.pathname === "/enroll/") {
         }
       });
 
-      observer.observe(document.querySelectorAll(".total_actual"), {
-        childList: true,
-        subtree: true,
-      });
+      if (document.querySelectorAll(".total_actual")) {
+        observer.observe(document.querySelectorAll(".total_actual"), {
+          childList: true,
+          subtree: true,
+        });
+      }
 
       let fBtn = setInterval(() => {
         if (document.querySelector(".btn_continue")) {
