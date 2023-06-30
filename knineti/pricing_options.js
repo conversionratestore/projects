@@ -569,22 +569,29 @@ if (window.location.pathname === "/enroll/") {
       });
       // btn_continue 2 Click
       let observer = new MutationObserver(() => {
-        if (document.querySelector(".btn_continue")) {
+        if (document) {
           observer.disconnect();
           console.log(`observer`);
           findBtn();
-          observer.observe(document.querySelector(".btn_continue"), {
+          observer.observe(document, {
             childList: true,
             subtree: true,
           });
         }
       });
 
-      observer.observe(document.querySelector(".btn_continue"), {
+      observer.observe(document, {
         childList: true,
         subtree: true,
       });
-      findBtn();
+
+      let fBtn = setInterval(() => {
+        if (document.querySelector(".btn_continue")) {
+          clearInterval(fBtn);
+          findBtn();
+        }
+      }, 100);
+
       function findBtn() {
         document.querySelectorAll(".btn_continue")?.forEach((el) => {
           console.log(el, `btn_continue`);
