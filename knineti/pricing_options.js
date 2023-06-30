@@ -134,6 +134,9 @@ if (window.location.pathname === "/enroll/") {
             color: #734F22;
             margin: 0 !important;
         }
+        #limitedTimeOffer > h2.new_title span{
+            text-decoration-line: line-through;
+        }
         #limitedTimeOffer > p.new_txt{
             text-align: left;
             font-weight: 400;
@@ -400,7 +403,7 @@ if (window.location.pathname === "/enroll/") {
 
       let html = /*html */ `
     <div id="limitedTimeOffer">
-      <h2 class="new_title">Limited Time Offer:<br/> add Personal Coaching for just $90 more (usually $398)!</h2>
+      <h2 class="new_title">Limited Time Offer:<br/> add Personal Coaching for just $90 more (usually <span>$398</span>)!</h2>
       <p class="new_txt">Check the box below to take advantage of this offer.</p>
       <div class="personalized_coaching_wrap">
         <div class="custom_checkbox_wrap">
@@ -414,8 +417,8 @@ if (window.location.pathname === "/enroll/") {
           </label>
         </div>
         <div class="full_info_block">
-            <p data-title>
-              View less info
+            <p data-mytitle>
+              <span>View full info</span>
               <svg class="mobile_var" width="10" height="7" viewBox="0 0 10 7" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M9 6L5 2L1 6" stroke="#734F22" stroke-width="2" stroke-linecap="round" />
               </svg>
@@ -483,14 +486,17 @@ if (window.location.pathname === "/enroll/") {
         });
 
         if (window.innerWidth <= 768) {
-          document.querySelectorAll("[data-title]").forEach((el) => {
+          document.querySelectorAll("[data-mytitle]").forEach((el) => {
             el.addEventListener("click", (e) => {
               e.preventDefault();
               jQuery("ul.list_dropdawn").slideToggle();
-              e.target.classList.toggle("show");
-              if (e.target.classList.contains("show")) {
+              e.currentTarget.classList.toggle("show");
+              if (e.currentTarget.classList.contains("show")) {
+                console.log(e.target);
+                e.currentTarget.querySelector("span").textContent = "View less info";
                 pushDataLayer("exp_upsell_option_", "View full info - open", "Link", "Limited time offer ... Order summary");
               } else {
+                e.currentTarget.querySelector("span").textContent = "View full info";
                 pushDataLayer("exp_upsell_option_", "View less info - close", "Link", "Limited time offer ... Order summary");
               }
             });
@@ -500,15 +506,15 @@ if (window.location.pathname === "/enroll/") {
           document.querySelector(".payment_order .subtitle_text + div").after(document.querySelector(".payment_plan_wrapp.payment_plan"));
           document.querySelector(".payment_order").insertAdjacentHTML("afterend", `<li></li>`);
           for (let key in arrTooltipTable) {
-            document.querySelectorAll("[data-title]").forEach((el) => {
+            document.querySelectorAll("[data-mytitle]").forEach((el) => {
               el.setAttribute("data-tooltip", arrTooltipTable[key][0]);
             });
           }
           let tippyRun = setInterval(() => {
-            if (typeof tippy === "function" && document.querySelector("p[data-title]")) {
+            if (typeof tippy === "function" && document.querySelector("p[data-mytitle]")) {
               clearInterval(tippyRun);
 
-              document.querySelectorAll("[data-title]").forEach((el) => {
+              document.querySelectorAll("[data-mytitle]").forEach((el) => {
                 tippy(el, {
                   content: el.getAttribute("data-tooltip"),
                   placement: "bottom",
