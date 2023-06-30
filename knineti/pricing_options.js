@@ -135,7 +135,17 @@ if (window.location.pathname === "/enroll/") {
             margin: 0 !important;
         }
         #limitedTimeOffer > h2.new_title span{
-            text-decoration-line: line-through;
+            position: relative;
+        }
+        #limitedTimeOffer > h2.new_title span::before{
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            left: 0;
+            content: '';
+            width: 100%;
+            height: 0.5px;
+            background: #734F22;
         }
         #limitedTimeOffer > p.new_txt{
             text-align: left;
