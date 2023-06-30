@@ -144,7 +144,7 @@ if (window.location.pathname === "/enroll/") {
             left: 0;
             content: '';
             width: 100%;
-            height: 0.5px;
+            height: 0.8px;
             background: #734F22;
         }
         #limitedTimeOffer > p.new_txt{
@@ -183,7 +183,7 @@ if (window.location.pathname === "/enroll/") {
         .custom_checkbox_wrap{
             border-bottom: 1px solid #DDE8F1;
             background: #DDE8F1;
-            border-radius: 10px 10px 0 0;
+            border-radius: 8px 8px 0 0;
             padding: 13px 16px;
         }
         .custom_checkbox_wrap input.custom_checkbox {
