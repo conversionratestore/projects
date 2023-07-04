@@ -652,7 +652,12 @@ if (window.location.pathname === "/enroll/") {
           el.textContent = "$" + totalAct.toFixed(2);
         });
         document.querySelectorAll(".monthly_sec .new_full_price").forEach((el) => {
-          el.textContent = "$" + (totalAct / 3).toFixed(1);
+          console.log((totalAct / 3).toFixed(0), `totalAct`);
+          if ((totalAct / 3).toFixed(1) === "368.0") {
+            el.textContent = "$" + (totalAct / 3).toFixed(0);
+          } else {
+            el.textContent = "$" + (totalAct / 3).toFixed(1);
+          }
         });
         document.querySelectorAll(".total_price").forEach((el) => {
           el.textContent = "$" + totalPay.toFixed(2);
