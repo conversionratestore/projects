@@ -80,7 +80,7 @@ if (window.location.pathname === "/enroll/") {
             margin-top: 8px !important;
             padding: 0 16px;
         }
-        .payment_inform_box li > div > p.saved_box{
+        body .payment_inform_box li > div > p.saved_box{
             line-height: 12px !important;
             padding: 6px 8px !important;
             margin: 10px 16px 0 auto !important;
