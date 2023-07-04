@@ -291,14 +291,16 @@ if (window.location.pathname.includes('cart')) {
     /* Chrome, Safari, Edge, Opera */
     #custom_cart input[type=number]::-webkit-outer-spin-button,
     #custom_cart input[type=number]::-webkit-inner-spin-button {
-      -webkit-appearance: none;
+      -webkit-appearance: none; 
       margin: 0;
     }
 
     /* Firefox */
-    /* #custom_cart input[type=number] {
+     #custom_cart input[type=number] {
       -moz-appearance: textfield;
     }
+
+    /*
 
     html.fixed_body,
     html.gemapp.video.fixed_body {
