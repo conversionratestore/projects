@@ -651,6 +651,7 @@ function init() {
                 document.querySelector('#edit-actions .form-submit').insertAdjacentHTML('afterend', `<p class="text-center singup">Don’t have an account? <a href="/yogi/register">Sing up</a></p>`)
                 
                 document.querySelector('#edit-actions .form-submit').addEventListener('click', () => {
+                    pushDataLayer('exp_ch_pl_page_login_b', 'Log in button', 'Button', 'Log in form');
                     lsRememberMe('.remember-me input', '#edit-name')
                 })
 
