@@ -659,7 +659,7 @@ function init() {
                     lsRememberMe('.remember-me input', '#edit-name')
                 })
 
-                if (window.location.href.includes('yogi/login?destination')) {
+                if (window.location.search == '?destination=/' || window.location.search == '?destination=/become-a-subscriber') {
                     document.querySelector('.singup a').href = document.querySelector('.singup a').href + '?destination=/become-a-subscriber'
                 }
 
@@ -878,7 +878,7 @@ function init() {
 
                 document.querySelector('#edit-actions .form-submit').insertAdjacentHTML('afterend', `<button type="button" class="btn-reg">Create an account</button><p class="text-center singup">Already have an account? <a href="/yogi/login">Log in</a></p>`)
             
-                if (window.location.href.includes('yogi/register?destination')) {
+                if (window.location.search == '?destination=/' || window.location.search == '?destination=/become-a-subscriber') {
                     document.querySelector('.singup a').href = document.querySelector('.singup a').href + '?destination=/become-a-subscriber'
                 }
 
