@@ -150,8 +150,6 @@ const addItem = async (title, id, removeThisId) => {
       name = 'Novaa light Pro'
     }
 
-    alert(name)
-
     sendGAEventNew('exp_bundle_cart_remove_product', `Remove - ${name}`, 'Event', 'Checkout')
   }
 
