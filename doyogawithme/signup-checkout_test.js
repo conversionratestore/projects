@@ -618,7 +618,7 @@ function init() {
                 document.querySelector('.progressbar .step.active:not(.checked) > div').innerHTML = '/3'
             }
 
-            if (window.location.href.includes('/yogi/login') || window.location.href.includes('/yogi/register') && document.querySelector('form h1')) {
+            if ((window.location.href.includes('/yogi/login') || window.location.href.includes('/yogi/register')) && document.querySelector('form h1')) {
                 document.querySelector('form h1').after(document.querySelector('.social-auth__container'))
                 document.querySelector('form h1').after(document.querySelector('.social-auth__networks'))
                 
