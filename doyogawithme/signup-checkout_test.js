@@ -1095,8 +1095,10 @@ function init() {
             }
 
             document.querySelectorAll('#block-legalacceptcopy a').forEach(item => {
-                let name = item.pathname == '/legal' ? 'term_l' : item.pathname == '/privacy' ? 'priv_l' : ''
-                pushDataLayer('exp_ch_pl_page_'+name, item.innerText, 'Link', loc);
+                item.addEventListener('click', (e) => {
+                    let name = item.pathname == '/legal' ? 'term_l' : item.pathname == '/privacy' ? 'priv_l' : '';
+                    pushDataLayer('exp_ch_pl_page_'+name, item.innerText, 'Link', loc);
+                })
             })
         }
 
