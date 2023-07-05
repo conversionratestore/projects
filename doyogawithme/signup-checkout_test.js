@@ -638,7 +638,7 @@ function init() {
                 })
 
                 if (window.location.href.includes('yogi/login?destination')) {
-                    document.querySelector('.singup a').href = document.querySelector('.singup a').href + '?destination='
+                    document.querySelector('.singup a').href = document.querySelector('.singup a').href + '?destination=/become-a-subscriber'
                 }
 
                 pushDataLayer('Visibility','Log in form')
@@ -864,7 +864,7 @@ function init() {
                 document.querySelector('#edit-actions .form-submit').insertAdjacentHTML('afterend', `<button type="button" class="btn-reg">Create an account</button><p class="text-center singup">Already have an account? <a href="/yogi/login">Log in</a></p>`)
             
                 if (window.location.href.includes('yogi/register?destination')) {
-                    document.querySelector('.singup a').href = document.querySelector('.singup a').href + '?destination='
+                    document.querySelector('.singup a').href = document.querySelector('.singup a').href + '?destination=/become-a-subscriber'
                 }
 
                 document.querySelector('.btn-reg').addEventListener('click', (e) => {
