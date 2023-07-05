@@ -611,6 +611,7 @@ function init() {
         if (document.querySelector('.o-page--simpleCard .o-page__mainContentWrapper') != null && document.querySelector('form') != null) {
             clearInterval(init)
 
+            let loc = '';
             document.body.insertAdjacentHTML('afterbegin', style) //add style
             document.querySelector('.o-page--simpleCard .o-page__mainContentWrapper').insertAdjacentHTML('afterbegin', headHTML) //add topbar
             
@@ -627,6 +628,9 @@ function init() {
                 }
             }
             if (window.location.href.includes('/yogi/login')) {
+
+                loc = 'Log in form';
+
                 document.querySelector('.social-auth__networks a').innerHTML = logInGoogle('Login');
                 document.querySelector('label[for="edit-name"]').innerHTML = 'Email address';
                 document.querySelector('#edit-name').placeholder = 'Email';
@@ -651,7 +655,7 @@ function init() {
                 document.querySelector('#edit-actions .form-submit').insertAdjacentHTML('afterend', `<p class="text-center singup">Don’t have an account? <a href="/yogi/register">Sing up</a></p>`)
                 
                 document.querySelector('#edit-actions .form-submit').addEventListener('click', () => {
-                    pushDataLayer('exp_ch_pl_page_login_b', 'Log in button', 'Button', 'Log in form');
+                    pushDataLayer('exp_ch_pl_page_login_b', 'Log in button', 'Button', loc);
                     lsRememberMe('.remember-me input', '#edit-name')
                 })
 
@@ -659,16 +663,16 @@ function init() {
                     document.querySelector('.singup a').href = document.querySelector('.singup a').href + '?destination=/become-a-subscriber'
                 }
 
-                pushDataLayer('exp_ch_pl_page_login', 'Log in form', 'Visibility', 'Log in form');
+                pushDataLayer('exp_ch_pl_page_login', loc, 'Visibility',loc);
 
                 document.querySelector('.social-auth.auth-link').addEventListener('click', () => {
-                    pushDataLayer('exp_ch_pl_page_login_g', 'Login with google button', 'Button', 'Log in form');
+                    pushDataLayer('exp_ch_pl_page_login_g', 'Login with google button', 'Button', loc);
                 })
                 document.querySelector('.remember-me + a').addEventListener('click', (e) => {
-                    pushDataLayer('exp_ch_pl_page_forg', 'Forgot password', 'Link', 'Log in form');
+                    pushDataLayer('exp_ch_pl_page_forg', 'Forgot password', 'Link', loc);
                 })
                 document.querySelector('.singup a').addEventListener('click', (e) => {
-                    pushDataLayer('exp_ch_pl_page_login_link', 'Sign up', 'Link', 'Log in form');
+                    pushDataLayer('exp_ch_pl_page_login_link', 'Sign up', 'Link', loc);
                 })
             }
             //all register pages
@@ -849,6 +853,9 @@ function init() {
             }
         
             if (window.location.href.includes('/yogi/register') && document.querySelector('form h1')) {
+
+                loc = 'Create your account';
+
                 document.body.insertAdjacentHTML('afterbegin', `
                 <style>
                     @media only screen and (min-width: 768px) {
@@ -881,14 +888,14 @@ function init() {
                         document.querySelector('#edit-pass-pass1').value != ''
                     ) {
                         e.currentTarget.classList.add('loading')
-                        pushDataLayer('exp_ch_pl_page_create_b', 'Create an account button', 'Button', 'Create your account');
+                        pushDataLayer('exp_ch_pl_page_create_b', 'Create an account button', 'Button', loc);
                     }
                     document.querySelector('#edit-actions .form-submit').click();
                 })
 
                 document.querySelector('.social-auth.auth-link span').innerHTML = 'Sign up with Google'
                 document.querySelector('[data-drupal-selector="user-register-form"] .social-auth').addEventListener('click', (e) => {
-                    pushDataLayer('exp_ch_pl_page_sign_create', 'Sign up with google', 'Button', 'Create your account');
+                    pushDataLayer('exp_ch_pl_page_sign_create', 'Sign up with google', 'Button', loc);
                 })
                 //passwords
                 document.querySelector('#edit-pass-pass1').addEventListener('input', (e) => {
@@ -917,9 +924,10 @@ function init() {
                 })
 
                 document.querySelector('.singup a').addEventListener('click', () => {
-                    pushDataLayer('exp_ch_pl_page_create_login', 'Log in', 'Link', 'Create your account');
+                    pushDataLayer('exp_ch_pl_page_create_login', 'Log in', 'Link', loc);
                 })
-                pushDataLayer('exp_ch_pl_page_create_v', 'Create your account', 'Visibility', 'Create your account');
+                pushDataLayer('exp_ch_pl_page_create_v', loc, 'Visibility', loc);
+
             }
 
             if (window.location.href.includes('/yogi/register') || window.location.href.includes('/yogi/login') || (window.location.href.includes('/checkout') && window.location.href.includes('/login'))) {
@@ -1085,6 +1093,11 @@ function init() {
                 })
                 pushDataLayer('exp_ch_pl_page_lets_v', 'Lets find classes that work best for you', 'Visibility', 'Lets find classes that work best for you');
             }
+
+            document.querySelectorAll('#block-legalacceptcopy a').forEach(item => {
+                let name = item.pathname == '/legal' ? 'term_l' : item.pathname == '/privacy' ? 'priv_l' : ''
+                pushDataLayer('exp_ch_pl_page_'+name, item.innerText, 'Link', loc);
+            })
         }
 
         if (document.querySelector('.form-item-commerce-donation-pane-donation-toggler label') != null && document.querySelector('.views-field.views-field-total-price__number') != null && document.querySelector('.o-page__mainContent') != null && window.location.href.includes('/checkout') && !window.location.href.includes('/login') && document.querySelector('[data-drupal-selector="edit-actions-next"]') != null) {
