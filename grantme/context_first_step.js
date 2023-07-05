@@ -1017,3 +1017,4 @@ if (window.location.pathname === "/scholarship-eligibility-quiz") {
     }
   }, 100);
 }
+
