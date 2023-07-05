@@ -314,6 +314,8 @@ input[type="checkbox"]:checked ~ .check {
     outline: none;
     justify-content: center;
     display: flex;
+    align-items: center;
+    min-height: 50px;
 }
 .samsara .user-register-form .form-actions {
     margin: 0;
@@ -326,6 +328,9 @@ input[type="checkbox"]:checked ~ .check {
 }
 .form-actions .button[value="Create new account"], #edit-actions .form-submit, #block-legalacceptcopy, #block-socialauthlogin-2 {
     display: none;
+}
+.profile-student-form #edit-actions .form-submit {
+    display: block;
 }
 .btn_start_membership.disabled, .btn_start_membership[disabled]{
     background-color: #A5A5A5!important;
@@ -1060,10 +1065,10 @@ function init() {
                 document.querySelectorAll('.form-item input').forEach(item => {
                     item.addEventListener('change', (e) => {
                         if (item.type == 'checkbox' || item.type == 'radio') {
-                            let name = item.closest('[data-drupal-selector="edit-field-class-interest"]').querySelector('.fieldset-legend').innerText.trim().split(' ')[0].toLowerCase() + item.type == 'radio' ? '_r' : '_ch',
-                                desk = `${item.closest('.fieldset-wrapper').previousElementSibling.innerText.replace('?','')} - ${item.parentElement.innerText}`;
-
                             if (item.checked) {
+                                let name = item.closest('[data-drupal-selector="edit-field-class-interest"]').querySelector('.fieldset-legend').innerText.trim().split(' ')[0].toLowerCase() + item.type == 'radio' ? '_r' : '_ch',
+                                    desk = `${item.closest('.fieldset-wrapper').previousElementSibling.innerText.replace('?','')} - ${item.parentElement.innerText}`;
+
                                 pushDataLayer(`exp_ch_pl_page_${name}`, desk, item.type, 'Lets find classes that work best for you');
                             }
                         }
