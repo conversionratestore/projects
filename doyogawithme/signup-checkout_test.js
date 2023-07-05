@@ -495,7 +495,7 @@ input[type="checkbox"]:checked ~ .check {
 
 let headHTML = `
 <div class="topbar">
-    <a href="/become-a-subscriber" class="btn-back flex items-center" onclick="pushDataLayer('Back', getLabel(event))">
+    <a href="/become-a-subscriber" class="btn-back flex items-center" onclick="pushDataLayer('exp_ch_pl_page_back_'+getLoc(event)[0], 'Back', 'Button', getLoc(event)[1]);">
         <svg width="10" height="16" viewBox="0 0 10 16" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M0.255198 7.39519C-0.0850662 7.72509 -0.0850662 8.27491 0.255198 8.60481L7.58979 15.7526C7.96786 16.0825 8.53497 16.0825 8.87524 15.7526L9.7448 14.9095C10.0851 14.5796 10.0851 14.0298 9.7448 13.6632L3.9225 7.98167L9.7448 2.33677C10.0851 1.97022 10.0851 1.42039 9.7448 1.09049L8.87524 0.247423C8.53497 -0.0824742 7.96786 -0.0824742 7.58979 0.247423L0.255198 7.39519Z" fill="#027DB8"/>
         </svg>
@@ -508,36 +508,45 @@ let headHTML = `
     </div>
 </div>`
 
-function getLabel(event) {
+function getLoc(event) {
     let target = event.target;
-    let label = '';
+    let loc = '';
+    let name = '';
     let href = window.location.href;
 
     if (href.includes('yogi/register') || (href.includes('/checkout') && href.includes('/login'))) {
         if (target.closest('.o-page__main').querySelector('.sfc-tabs__tabcontent:not([aria-hidden=true]) h2') != null && target.closest('.o-page__main').querySelector('.sfc-tabs__tabcontent:not([aria-hidden=true]) h2').innerHTML.includes('Log In')) {
-            label = 'Log in form'
+            loc = 'Log in form';
+            name = 'login';
         } else {
-            label = 'Create your account'
+            loc = 'Create your account';
+            name = 'create';
         }
     } else if (href.includes('yogi/login')) {
-        label = 'Log in form'
+        loc = 'Log in form';
+        name = 'login';
     } else if (href.includes('yogi/intake-survey')) {
-        label = 'Lets find classes that work best for you'
+        loc = 'Lets find classes that work best for you';
+        name = 'lets';
     } else if ((href.includes('/checkout') && !href.includes('/login'))) {
-        label = 'Card information'
+        loc = 'Card information';
+        name = 'card';
     }
-    return label;
+    return [name,loc];
 }
 
-function pushDataLayer(action, label = '') {
-    console.log(action + " : " + label )
+function pushDataLayer(name, desc, type, loc) {
+    console.log(name + " / " + desc + " / " + type + " / " + loc)
+
     window.dataLayer = window.dataLayer || [];
     dataLayer.push({
-    'event': 'event-to-ga',
-        'eventCategory': 'Exp: Change Plans page, Signup, Checkout',
-        'eventAction': action,
-        'eventLabel': label
+        'event': 'event-to-ga4',
+        'event_name': name,
+        'event_desc': desc,
+        'event_type': type,
+        'event_loc': loc
     });
+    
 }
 
 function lsRememberMe(checkbox, email) {
@@ -641,16 +650,16 @@ function init() {
                     document.querySelector('.singup a').href = document.querySelector('.singup a').href + '?destination=/become-a-subscriber'
                 }
 
-                pushDataLayer('Visibility','Log in form')
+                pushDataLayer('exp_ch_pl_page_login', 'Log in form', 'Visibility', 'Log in form');
 
                 document.querySelector('.social-auth.auth-link').addEventListener('click', () => {
-                    pushDataLayer('Login with google button','Log in form')
+                    pushDataLayer('exp_ch_pl_page_login_g', 'Login with google button', 'Button', 'Log in form');
                 })
                 document.querySelector('.remember-me + a').addEventListener('click', (e) => {
-                    pushDataLayer(`Forgot password`, 'Log in form')
+                    pushDataLayer('exp_ch_pl_page_forg', 'Forgot password', 'Link', 'Log in form');
                 })
                 document.querySelector('.singup a').addEventListener('click', (e) => {
-                    pushDataLayer(`Sign up`, 'Log in form')
+                    pushDataLayer('exp_ch_pl_page_login_link', 'Sign up', 'Link', 'Log in form');
                 })
             }
             //all register pages
@@ -737,23 +746,13 @@ function init() {
                 document.querySelector('#edit-login-register-mail').focus()
                 document.querySelector('.o-page--simpleCard .o-page__mainContent').classList.add('active')
 
-                pushDataLayer('Visibility','Create your account')
+                pushDataLayer('exp_ch_pl_page_create_v', 'Create your account', 'Visibility', 'Create your account');
 
                 document.querySelector('[data-drupal-selector="edit-login-returning-customer"]').insertAdjacentHTML('afterbegin', `
                 <h2>Log In</h2>`)
                 document.querySelector('[data-drupal-selector="edit-login-register"]').insertAdjacentHTML('afterbegin', `
                 <h2>Create your account</h2>`)
             
-                // //event: Click google Log in form
-                // document.querySelector('[data-drupal-selector="edit-login-returning-customer"] .social-auth').addEventListener('click', (e) => {
-                //     pushDataLayer('Login with google button','Log in form')
-                // })
-                // //event: Click google Create your account
-                // document.querySelector('[data-drupal-selector="edit-login-register"] .social-auth').addEventListener('click', (e) => {
-                //     pushDataLayer('Sign up with google','Create your account')
-                // })
-                // document.querySelector('[data-drupal-selector="edit-login-register"] .social-auth.auth-link span').innerHTML = 'Sign up with Google'
-
                 document.querySelector('[data-drupal-selector="edit-login-register"] h2').innerHTML = 'Create your account';
 
                 document.querySelector('label[for="edit-login-returning-customer-name"]').innerHTML = 'Email address';
@@ -775,16 +774,16 @@ function init() {
                     document.querySelector('.o-page--simpleCard .o-page__mainContent').classList.add('active')
                     document.querySelector('#edit-login-register-mail').focus()
                     document.body.classList.remove('show-header');
-                    pushDataLayer(`Sign up`, 'Log in form')
-                    pushDataLayer('Visibility','Create your account')
+                    pushDataLayer('exp_ch_pl_page_login_link', 'Sign up', 'Link', 'Log in form');
+                    pushDataLayer('exp_ch_pl_page_create_v', 'Create your account', 'Visibility', 'Create your account');
                 })
                 document.querySelector('[data-drupal-selector="edit-login-register"] .singup a').addEventListener('click', (e) => {
                     document.querySelectorAll('.sfc-tabs__tablistItem > a')[0].click()
                     document.querySelector('.o-page--simpleCard .o-page__mainContent').classList.remove('active')
                     document.querySelector('#edit-login-returning-customer-name').focus()
                     document.body.classList.add('show-header')
-                    pushDataLayer(`Log in`, 'Create your account')
-                    pushDataLayer('Visibility','Log in form')
+                    pushDataLayer('exp_ch_pl_page_create_link', 'Log in', 'Link', 'Create your account');
+                    pushDataLayer('exp_ch_pl_page_login_v', 'Log in form', 'Visibility', 'Log in form');
                 })
 
                 if (localStorage.username != null && localStorage.username != '') {
@@ -792,7 +791,7 @@ function init() {
                 }
                 document.querySelector('#edit-login-returning-customer-submit').addEventListener('click', () => {
                     localStorage.setItem('email', document.querySelector('#edit-login-returning-customer-name').value)
-                    pushDataLayer('Log in button','Log in form')
+                    pushDataLayer('exp_ch_pl_page_login_b', 'Log in button', 'Button', 'Log in form');
                     lsRememberMe('.remember-me input', '#edit-login-returning-customer-name')
                 })
 
@@ -809,6 +808,7 @@ function init() {
                         } else {
                             document.querySelector('#edit-login-register-field-ac-newsletter-reg-value').checked = false
                         }
+                        pushDataLayer('exp_ch_pl_page_create_chs', 'Checkbox subscribe', 'Checkbox', 'Create your account');
                     })
                 })
 
@@ -829,14 +829,14 @@ function init() {
                         e.currentTarget.classList.add('loading')
                     }
 
-                    pushDataLayer('Click on Sign Up','Create your account')
+                    pushDataLayer('exp_ch_pl_page_create_b', 'Create an account button', 'Button', 'Create your account');
                   
                 })
                 document.querySelectorAll('form .form-item label').forEach(item => {
                     item.classList.add('form-required')
                 })
                 document.querySelector('.remember-me + a').addEventListener('click', (e) => {
-                    pushDataLayer(`Forgot password`, 'Log in form')
+                    pushDataLayer('exp_ch_pl_page_forg', 'Forgot password', 'Link', 'Log in form');
                 })
             }
         
@@ -873,14 +873,14 @@ function init() {
                         document.querySelector('#edit-pass-pass1').value != ''
                     ) {
                         e.currentTarget.classList.add('loading')
-                        pushDataLayer('Submit form','Create your account')
+                        pushDataLayer('exp_ch_pl_page_create_b', 'Create an account button', 'Button', 'Create your account');
                     }
                     document.querySelector('#edit-actions .form-submit').click();
                 })
 
                 document.querySelector('.social-auth.auth-link span').innerHTML = 'Sign up with Google'
                 document.querySelector('[data-drupal-selector="user-register-form"] .social-auth').addEventListener('click', (e) => {
-                    pushDataLayer('Sign up with google','Create your account')
+                    pushDataLayer('exp_ch_pl_page_sign_create', 'Sign up with google', 'Button', 'Create your account');
                 })
                 //passwords
                 document.querySelector('#edit-pass-pass1').addEventListener('input', (e) => {
@@ -895,6 +895,7 @@ function init() {
                         } else {
                             document.querySelector('#edit-field-ac-newsletter-reg-value').checked = false
                         }
+                        pushDataLayer('exp_ch_pl_page_create_chs', 'Checkbox subscribe', 'Checkbox', 'Create your account');
                     })
                 })
 
@@ -909,9 +910,9 @@ function init() {
                 })
 
                 document.querySelector('.singup a').addEventListener('click', () => {
-                    pushDataLayer('Log in','Create your account')
+                    pushDataLayer('exp_ch_pl_page_create_login', 'Log in', 'Link', 'Create your account');
                 })
-                pushDataLayer('Visibility','Create your account')
+                pushDataLayer('exp_ch_pl_page_create_v', 'Create your account', 'Visibility', 'Create your account');
             }
 
             if (window.location.href.includes('/yogi/register') || window.location.href.includes('/yogi/login') || (window.location.href.includes('/checkout') && window.location.href.includes('/login'))) {
@@ -919,22 +920,15 @@ function init() {
                 document.querySelectorAll('form input').forEach(item => {
                     item.addEventListener('click', (e) => {
                         let parent = e.currentTarget.parentElement;
-                        let label = '';
 
-                        if (window.location.href.includes('/yogi/register')) {
-                            label = 'Create your account'
-                        } else {
-                            label =  e.currentTarget.closest('[data-drupal-selector="edit-login-returning-customer"]') || window.location.href.includes('/yogi/login')  ? 'Log in form' : 'Create your account';
-                        }
-                        
                         if (parent.querySelector('label')) {
-                            pushDataLayer(`Click on ${parent.querySelector('label').innerText}`, label)
+                            pushDataLayer(`exp_ch_pl_page_input_${getLoc(e)[0]}`, `Click on ${parent.querySelector('label').innerText}`, 'Input', getLoc(e)[1]);
                         } else if (parent.tagName == 'LABEL') {
-                            pushDataLayer(parent.innerText, label)
+                            pushDataLayer(`exp_ch_pl_page_input_${getLoc(e)[0]}`, `Click on ${parent.innerText}`, 'Input', getLoc(e)[1]);
                         }  else if (parent.classList.contains('remember-me')) {
-                            pushDataLayer('Remember me','Log in form')
+                            pushDataLayer('exp_ch_pl_page_rem_ch', 'Remember me', 'Checkbox', 'Log in form');
                         } else {
-                            pushDataLayer(`Click on ${e.currentTarget.value == 'Create new account' ? 'Sign up' : e.currentTarget.value}`, label)
+                            pushDataLayer(`exp_ch_pl_page_input_${getLoc(e)[0]}`, `Click on ${e.currentTarget.value == 'Create new account' ? 'Sign up' : e.currentTarget.value}`, 'Input', getLoc(e)[1]);
                         }
                     })
                 })
@@ -1068,24 +1062,26 @@ function init() {
                 document.querySelectorAll('.form-item input').forEach(item => {
                     item.addEventListener('change', (e) => {
                         if (item.type == 'checkbox' || item.type == 'radio') {
+                            let name = item.closest('.fieldset-wrapper').previousElementSibling.innerText.trim().split(' ')[0].toLowerCase() + item.type == 'radio' ? '_r' : '_ch',
+                                desk = `${item.closest('.fieldset-wrapper').previousElementSibling.innerText.replace('?','')} - ${item.parentElement.innerText}`;
+
                             if (item.checked) {
-                                pushDataLayer(`${item.closest('.fieldset-wrapper').previousElementSibling.innerText.replace('?','')} - ${item.parentElement.innerText}`, 'Lets find classes that work best for you')
+                                pushDataLayer(`exp_ch_pl_page_${name}`, desk, item.type, 'Lets find classes that work best for you');
                             }
                         }
                     })
                 })
 
                 document.querySelector('#edit-submit').addEventListener('click', () => {
-                    pushDataLayer('Save button', 'Lets find classes that work best for you')
+                    pushDataLayer('exp_ch_pl_page_save_b', 'Save button', 'Button', 'Lets find classes that work best for you');
                 })
-
-                pushDataLayer('Visibility','Lets find classes that work best for you')
+                pushDataLayer('exp_ch_pl_page_lets_v', 'Lets find classes that work best for you', 'Visibility', 'Lets find classes that work best for you');
             }
         }
 
         if (document.querySelector('.form-item-commerce-donation-pane-donation-toggler label') != null && document.querySelector('.views-field.views-field-total-price__number') != null && document.querySelector('.o-page__mainContent') != null && window.location.href.includes('/checkout') && !window.location.href.includes('/login') && document.querySelector('[data-drupal-selector="edit-actions-next"]') != null) {
             clearInterval(init)
-            let label = 'Card information';
+            let loc = 'Card information';
 
             document.body.insertAdjacentHTML('afterbegin', style) //add style
 
@@ -1497,6 +1493,9 @@ function init() {
             
             if (document.querySelector('.samsara .form-type-checkbox .check') == null) {
                 document.querySelector('[data-drupal-selector="edit-commerce-donation-pane-donation-toggler"]').insertAdjacentHTML('afterend', `<span class="check"></span>`)
+                document.querySelector('[data-drupal-selector="edit-commerce-donation-pane-donation-toggler"]').addEventListener('change', (e) => {
+                    pushDataLayer('exp_ch_pl_page_would_ch', `I'd like to make ...`, 'Checkbox', loc);
+                })
             }
             document.querySelector('.form-item-commerce-donation-pane-donation-toggler label').innerHTML = `I'd like to make a donation to support instructors and free content creation `
 
@@ -1523,7 +1522,7 @@ function init() {
                     e.preventDefault()
                     document.querySelector('#edit-coupon-redemption').classList.toggle('active');
                     clickApplyCoupon = false;
-                    pushDataLayer('Got a Coupon?', label)
+                    pushDataLayer('exp_ch_pl_page_coupon_link', 'Got a Coupon?', 'Link', loc);
                 })
                
             }
@@ -1554,7 +1553,7 @@ function init() {
 
             document.querySelector('.btn_start_membership').addEventListener('click', (e) => {
                 document.querySelector('[data-drupal-selector="edit-actions-next"]').click();
-                pushDataLayer(`Start membership button`, label)
+                pushDataLayer('exp_ch_pl_page_start_b', 'Start membership button', 'Button', loc);
 
                 let invalidCard = setInterval(() => {
                     if (document.querySelector('.recurly-hosted-field.recurly-hosted-field-invalid')) {
@@ -1593,7 +1592,7 @@ function init() {
                 }
             })
 
-            pushDataLayer('Visibility',label)
+            pushDataLayer('exp_ch_pl_page_card_v', loc, 'Visibility', loc);
         }
     });
 }
@@ -1634,13 +1633,14 @@ let disabledBtnFun = () => {
             let inputs = document.querySelectorAll('form #edit-payment-information input:not([type="hidden"],[type="checkbox"],[type="radio"],.address-line2)');
             let inputsAll = document.querySelectorAll('form input');
 
-            let label = 'Card information';
+            let loc = 'Card information';
 
             let selects = document.querySelectorAll('form .select2');
             selects.forEach(item => {
                 item.addEventListener('click', (e) => {
                     e.stopImmediatePropagation();
-                    pushDataLayer(`Click on ${e.currentTarget.closest('.form-item').querySelector('label').innerText}`, label)
+                    let name = item.parentElement.querySelector('label').innerText.replace('*','').toLowerCase();
+                    pushDataLayer('exp_ch_pl_page_select_'+name, e.currentTarget.closest('.form-item').querySelector('label').innerText, 'Select', loc);
                 })
             })
 
@@ -1650,11 +1650,9 @@ let disabledBtnFun = () => {
                     let parent = e.currentTarget.parentElement
                     if (parent.querySelector('label')) {
                         if (parent.closest('[data-drupal-selector="edit-commerce-donation-pane-field-gift-type"]')) {
-                            pushDataLayer(`Select Donation Type - ${parent.innerText}`, label)
+                            pushDataLayer('exp_ch_pl_page_sel_card', `Select Donation Type - ${parent.innerText}`, 'Radio', loc);
                         } else if (parent.closest('[data-drupal-selector="edit-commerce-donation-pane-field-donation-amount-0-donation-level"]')) {
-                            pushDataLayer(`Amount - ${parent.innerText}`, label)
-                        } else {
-                            pushDataLayer(`Click on ${parent.querySelector('label').innerText}`, label)
+                            pushDataLayer('exp_ch_pl_page_amount_r', `Amount - ${parent.innerText}`, 'Radio', loc);
                         }
                     }
                 })
@@ -1712,7 +1710,7 @@ let mut = new MutationObserver(function (muts) {
     if (clickApplyCoupon == false && document.querySelector('[data-drupal-selector="edit-sidebar-coupon-redemption-form-apply"]') != null && document.querySelector('[data-drupal-selector="edit-sidebar-coupon-redemption-form-apply"]').nextElementSibling != null ) {
         mut.disconnect()
         clickApplyCoupon = true;
-        pushDataLayer('Apply (Coupon)', 'Card information')
+        pushDataLayer('exp_ch_pl_page_apply', 'Apply (Coupon)', 'Button', 'Card information');
     }
     mut.observe(document, optionMut);
     if (document.querySelectorAll('[data-drupal-messages]') && document.querySelector('[data-drupal-selector="edit-coupon-redemption"]') != null) {
@@ -1726,8 +1724,6 @@ let mut = new MutationObserver(function (muts) {
     mut.observe(document, optionMut);
 })
 mut.observe(document, optionMut);
-
-pushDataLayer('loaded')
 
 let isClarify = setInterval(() => {
     if (typeof clarity == 'function') {
