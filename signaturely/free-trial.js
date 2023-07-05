@@ -2,7 +2,6 @@ let changeTo = {
     'Free account':'Start Free Trial',
     'Create free account':'Try eSignature Free',
     'Sign 1 document for FREE':'Try eSignature Free',
-    'Sign 3 documents for free':'Try eSignature Free',
     'Get up to 3 documents signed for free, every month':'Start your free 7-day trial and get your documents signed right now!',
     'Get up to 1 document signed for free, every month':'Start your free 7-day trial and get your documents signed right now!',
     'Simply sign up for Signaturely for free and start setting up your documents.':'Simply start your free 7-day trial and get your documents signed right now!',
@@ -19,7 +18,9 @@ let changeTo = {
     'Yes! Signaturely’s free plan lets you request 1 document for e-signature each month 100% free. No credit card required.':'You can start your free 7-day trial and try Signaturely before you will be charged.',
     'Yes! Signaturely’s free plan lets you request 1 document for e-signature 100% free. No credit card required.':'You can start your free 7-day trial and try Signaturely before you will be charged.',
     'Get 1 document signed for free, every month': 'Start your free 7-day trial and get your documents signed right now!',
-    'Try eSignature Free using Signaturely!':'Start your free 7-day trial and get your documents signed right now!'
+    'Try eSignature Free using Signaturely!':'Start your free 7-day trial and get your documents signed right now!',
+    'Sign 1 documents for free':'Try eSignature Free',
+    'Sign 3 documents for free':'Try eSignature Free'
 }
 
 
