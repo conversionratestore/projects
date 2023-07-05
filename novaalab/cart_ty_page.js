@@ -3391,7 +3391,7 @@ the United States</span>
       padding: 5px 6px 4px 12px;
       position: relative;
       font-size: 14px;
-      line-height: 17px;
+      line-height: 15px;
       color: #D84432;
       margin-left: auto;
       width: fit-content;
@@ -3560,6 +3560,10 @@ the United States</span>
     }
 
     @media only screen and (max-width: 768px) {
+      .slide_in__saved {
+        margin: 0;
+      }
+
       .offer_header span,
       .offer_header p,
       .item_info>p,
