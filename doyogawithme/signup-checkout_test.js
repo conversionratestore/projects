@@ -848,7 +848,7 @@ function init() {
                 })
             }
         
-            if (window.location.href.includes('/yogi/register')) {
+            if (window.location.href.includes('/yogi/register') && document.querySelector('form h1')) {
                 document.body.insertAdjacentHTML('afterbegin', `
                 <style>
                     @media only screen and (min-width: 768px) {
