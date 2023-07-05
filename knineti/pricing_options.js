@@ -299,6 +299,9 @@ if (window.location.pathname === "/enroll/") {
             .payment_inform_box li:nth-child(1), .payment_inform_box li:nth-child(2){
                 margin-bottom: 5px !important;
             }
+            body .payment_inform_box li > div table thead tr th:nth-child(2){
+              padding-left: 6px !important;
+            }
         }
         @media (max-width: 768px) {
             [data-checkstep="1"],
