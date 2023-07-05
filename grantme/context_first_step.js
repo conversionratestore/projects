@@ -63,6 +63,9 @@ if (window.location.pathname === "/grantme-program-assessment") {
                 height: 100%;
                 min-height: unset;
                 width: 100%;
+                max-width: 540px;
+                margin: auto !important;
+                float: unset;
             }
             #edit-processed-text-15 .seqq-row{
                 display: flex !important;
