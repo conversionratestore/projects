@@ -1265,6 +1265,10 @@ if (window.location.pathname === "/thanks-for-ordering/") {
         });
       }
 
+      if (localStorage.getItem("personalCoaching")) {
+        localStorage.removeItem("personalCoaching");
+      }
+
       const record = setInterval(() => {
         if (typeof clarity === "function") {
           clearInterval(record);
