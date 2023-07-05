@@ -413,8 +413,8 @@ if (window.location.pathname === "/grantme-program-assessment") {
           e.currentTarget.setAttribute("data-test", "1");
 
           setTimeout(() => {
-            if (e.currentTarget.getAttribute("data-test")) {
-              e.currentTarget.removeAttribute("data-test");
+            if (e.target.getAttribute("data-test")) {
+              e.target.removeAttribute("data-test");
             }
           }, 500);
         });
@@ -867,8 +867,8 @@ if (window.location.pathname === "/scholarship-eligibility-quiz") {
           e.currentTarget.setAttribute("data-test", "1");
 
           setTimeout(() => {
-            if (e.currentTarget.getAttribute("data-test")) {
-              e.currentTarget.removeAttribute("data-test");
+            if (e.target.getAttribute("data-test")) {
+              e.target.removeAttribute("data-test");
             }
           }, 500);
         });
