@@ -1647,7 +1647,7 @@ let disabledBtnFun = () => {
     let disabledBtn = setInterval(() => {
         if (document.querySelectorAll('form #edit-payment-information input') && document.querySelector('[data-drupal-selector="edit-actions-next"]') != null && document.querySelector('.btn_start_membership') != null) {
             error = false;
-            error = document.querySelector('[data-drupal-selector="edit-payment-information-add-payment-method-billing-information-address-0-address-administrative-area"]') != null && document.querySelector('[data-drupal-selector="edit-payment-information-add-payment-method-billing-information-address-0-address-administrative-area"] + .select2 .select2-selection__rendered').innerHTML.includes('Select');
+            error = document.querySelector('[data-drupal-selector="edit-payment-information-add-payment-method-billing-information-address-0-address-administrative-area"]') != null && document.querySelector('[data-drupal-selector="edit-payment-information-add-payment-method-billing-information-address-0-address-administrative-area"] + .select2 .select2-selection__rendered') != null && document.querySelector('[data-drupal-selector="edit-payment-information-add-payment-method-billing-information-address-0-address-administrative-area"] + .select2 .select2-selection__rendered').innerHTML.includes('Select');
             
             clearInterval(disabledBtn)
 
