@@ -3,6 +3,36 @@ if (window.location.pathname === "/grantme-program-assessment") {
     if (document.querySelector("#edit-are-you-a-current-student-")) {
       clearInterval(startContext);
 
+      let eventVar = "desktop";
+
+      if (window.innerWidth <= 768) {
+        eventVar = "mobile";
+      }
+
+      function pushDataLayer(nameDataLayer, deskDataLayer, typeDataLayer, actionDataLayer, labelDataLayer) {
+        window.dataLayer = window.dataLayer || [];
+        if (labelDataLayer) {
+          console.log(deskDataLayer + typeDataLayer + actionDataLayer + " : " + labelDataLayer);
+          dataLayer.push({
+            event: "event-to-ga4",
+            event_name: `${nameDataLayer} ${eventVar}`,
+            event_desc: `${deskDataLayer}`,
+            event_type: `${typeDataLayer}`,
+            event_loc: `${actionDataLayer}`,
+            eventLabel: `${labelDataLayer}`,
+          });
+        } else {
+          console.log(deskDataLayer + " " + typeDataLayer + " " + actionDataLayer);
+          dataLayer.push({
+            event: "event-to-ga4",
+            event_name: `${nameDataLayer} ${eventVar}`,
+            event_desc: `${deskDataLayer}`,
+            event_type: `${typeDataLayer}`,
+            event_loc: `${actionDataLayer}`,
+          });
+        }
+      }
+
       let newStyle = /*html */ `
         <style>
             .row.webform-progress-wrapper{
@@ -384,6 +414,59 @@ if (window.location.pathname === "/grantme-program-assessment") {
         }
       });
 
+      document.querySelectorAll("#reviewsTxt .reviews_btn_wrapper > a").forEach((el) => {
+        el.addEventListener("click", () => {
+          pushDataLayer("exp_context_fs_trustpilot", "TrustScore", "Link", "First screen");
+        });
+      });
+      document.querySelectorAll("#edit-are-you-a-current-student- h4.quiz-question").forEach((el) => {
+        el.addEventListener("click", () => {
+          pushDataLayer("exp_context_fs_text", "Are you are a student or a parent?", "Click on text", "First screen");
+        });
+      });
+      document.querySelectorAll("#reviewsTxt > img").forEach((el) => {
+        el.addEventListener("click", () => {
+          pushDataLayer("exp_context_fs_image", "Preview of desktop and mobile interface", "Click on image", "First screen");
+        });
+      });
+
+      //visibility elem
+      let obs = new IntersectionObserver(visibility, {
+        threshold: 1,
+      });
+
+      let obs2 = new IntersectionObserver(visibility2, {
+        threshold: 1,
+      });
+
+      obs.observe(document.querySelector("#edit-are-you-a-current-student- h4.quiz-question"));
+      obs.observe(document.querySelector("#edit-processed-text-15 .seqq-row"));
+
+      function visibility(entries) {
+        entries.forEach((i) => {
+          if (i.isIntersecting) {
+            setTimeout(function () {
+              obs2.observe(i.target);
+            }, 5000);
+          }
+        });
+      }
+      function visibility2(entries) {
+        entries.forEach((i) => {
+          if (i.isIntersecting) {
+            if (i.target.classList.contains("quiz-question")) {
+              pushDataLayer("exp_context_fs_view_1", "5 secs or more", "View element on screen", "Win scholarship, Graduate Debt-Free");
+            }
+            if (i.target.classList.contains("seqq-row")) {
+              pushDataLayer("exp_context_fs_view_2", "5 secs or more", "View element on screen", "What you`ll get with GrantMe");
+            }
+
+            obs.unobserve(i.target);
+          }
+          obs2.unobserve(i.target);
+        });
+      }
+
       // observer pdp
       let observer = new MutationObserver(() => {
         if (document.querySelector(".path-scholarship-eligibility-quiz .back-button-wrapper p span")) {
@@ -714,6 +797,59 @@ if (window.location.pathname === "/scholarship-eligibility-quiz") {
           document.querySelector(".path-scholarship-eligibility-quiz .back-button-wrapper").style.display = "none";
         }
       });
+
+      document.querySelectorAll("#reviewsTxt .reviews_btn_wrapper > a").forEach((el) => {
+        el.addEventListener("click", () => {
+          pushDataLayer("exp_context_fs_trustpilot", "TrustScore", "Link", "First screen");
+        });
+      });
+      document.querySelectorAll("#edit-are-you-a-current-student- h4.quiz-question").forEach((el) => {
+        el.addEventListener("click", () => {
+          pushDataLayer("exp_context_fs_text", "Are you are a student or a parent?", "Click on text", "First screen");
+        });
+      });
+      document.querySelectorAll("#reviewsTxt > img").forEach((el) => {
+        el.addEventListener("click", () => {
+          pushDataLayer("exp_context_fs_image", "Preview of desktop and mobile interface", "Click on image", "First screen");
+        });
+      });
+
+      //visibility elem
+      let obs = new IntersectionObserver(visibility, {
+        threshold: 1,
+      });
+
+      let obs2 = new IntersectionObserver(visibility2, {
+        threshold: 1,
+      });
+
+      obs.observe(document.querySelector("#edit-are-you-a-current-student- h4.quiz-question"));
+      obs.observe(document.querySelector("#edit-processed-text-15 .seqq-row"));
+
+      function visibility(entries) {
+        entries.forEach((i) => {
+          if (i.isIntersecting) {
+            setTimeout(function () {
+              obs2.observe(i.target);
+            }, 5000);
+          }
+        });
+      }
+      function visibility2(entries) {
+        entries.forEach((i) => {
+          if (i.isIntersecting) {
+            if (i.target.classList.contains("quiz-question")) {
+              pushDataLayer("exp_context_fs_view_1", "5 secs or more", "View element on screen", "Win scholarship, Graduate Debt-Free");
+            }
+            if (i.target.classList.contains("seqq-row")) {
+              pushDataLayer("exp_context_fs_view_2", "5 secs or more", "View element on screen", "What you`ll get with GrantMe");
+            }
+
+            obs.unobserve(i.target);
+          }
+          obs2.unobserve(i.target);
+        });
+      }
 
       // observer pdp
       let observer = new MutationObserver(() => {
