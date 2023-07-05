@@ -329,7 +329,7 @@ input[type="checkbox"]:checked ~ .check {
 .samsara .user-register-form .form-actions {
     padding: 0 0 15px 0;
 }
-.form-actions .button[value="Create new account"], #edit-actions .form-submit, #block-legalacceptcopy, #block-socialauthlogin-2 {
+.form-actions .button[value="Create new account"], #edit-actions .form-submit {
     display: none;
 }
 .profile-student-form #edit-actions .form-submit {
