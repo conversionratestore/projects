@@ -226,7 +226,8 @@ if (window.location.pathname === "/grantme-program-assessment") {
                 min-height: 30px;
             }
             #GrantMeTxt{
-                margin: 0 auto 70px;
+                margin: 0 auto;
+                padding-bottom: 70px;
                 max-width: 540px;
             }
             #GrantMeTxt ul li::before{
@@ -297,7 +298,8 @@ if (window.location.pathname === "/grantme-program-assessment") {
                     min-height: unset;
                 }
                 #GrantMeTxt{
-                    margin: 0 auto 30px;
+                    margin: 0 auto;
+                    padding-bottom: 30px;
                 }
                 .navbar-top .navbar-header .region.region-navigation{
                     margin: 0 auto;
@@ -348,7 +350,7 @@ if (window.location.pathname === "/grantme-program-assessment") {
                     </p>
                     <a target="_blank" href="https://www.trustpilot.com/review/grantme.ca?utm_medium=trustbox&amp;utm_source=Slider">(1,021 reviews)</a>
                 </div>
-                <img src="https://conversionratestore.github.io/projects/grantme/img/grantme-program-assessment_img.jpg" alt="Graduates" />
+                <img src="https://conversionratestore.github.io/projects/grantme/img/grantme-program-assessment_img.jpg" alt="Graduates" class="my_img" />
                 <h2>Everything Students Need To Get Into University</h2>
                 <p>Find out your odds of getting into your top choice university with this <b>60 second quiz</b> approved by our experts.</p>
             </div>
@@ -372,7 +374,13 @@ if (window.location.pathname === "/grantme-program-assessment") {
       document.querySelector("#edit-processed-text-15 .seqq-img figcaption p:nth-child(2)").textContent = "Founder & COO";
 
       document.querySelectorAll("#edit-are-you-a-current-student- label").forEach((el) => {
-        el.addEventListener("click", () => {
+        el.addEventListener("click", (e) => {
+          if (e.currentTarget.getAttribute("for") === "edit-are-you-a-current-student-current-student") {
+            pushDataLayer("exp_context_fs_trustpilot", "Current Student", "Button", "First step");
+          }
+          if (e.currentTarget.getAttribute("for") === "edit-are-you-a-current-student-parent-of-student") {
+            pushDataLayer("exp_context_fs_trustpilot", "Parent of Student", "Button", "First step");
+          }
           if (window.innerWidth <= 768) {
             setTimeout(() => {
               document.querySelector(".quiz-title").style.display = "block";
@@ -432,6 +440,41 @@ if (window.location.pathname === "/grantme-program-assessment") {
           pushDataLayer("exp_context_fs_image", "Preview of desktop and mobile interface", "Click on image", "First screen");
         });
       });
+      document.querySelectorAll("#GrantMeTxt").forEach((el) => {
+        el.addEventListener("click", (e) => {
+          if (e.currentTarget) {
+            pushDataLayer("exp_context_fs_what_you", "Click", "Text section", "What you`ll get with GrantMe");
+          }
+        });
+      });
+      document.querySelectorAll("#edit-processed-text-15").forEach((el) => {
+        el.addEventListener("click", (e) => {
+          if (e.currentTarget) {
+            pushDataLayer("exp_context_fs_what_you", "Click", "Text section", "What you`ll get with GrantMe");
+          }
+        });
+      });
+      if (window.innerWidth > 768) {
+        document.querySelectorAll("#reviewsTxt > img").forEach((el) => {
+          el.addEventListener("mouseenter", () => {
+            pushDataLayer("exp_context_fs_image_ v", "Preview of desktop and mobile interface", "Visibility or Hover", "First screen");
+          });
+        });
+        document.querySelectorAll("#GrantMeTxt").forEach((el) => {
+          el.addEventListener("mouseenter", (e) => {
+            if (e.currentTarget) {
+              pushDataLayer("exp_context_fs_what_you_v", "What you`ll get with GrantMe", "Visibility or Hover", "What you`ll get with GrantMe");
+            }
+          });
+        });
+        document.querySelectorAll("#edit-processed-text-15").forEach((el) => {
+          el.addEventListener("mouseenter", (e) => {
+            if (e.currentTarget) {
+              pushDataLayer("exp_context_fs_what_you_v", "What you`ll get with GrantMe", "Visibility or Hover", "What you`ll get with GrantMe");
+            }
+          });
+        });
+      }
 
       //visibility elem
       let obs = new IntersectionObserver(visibility, {
@@ -444,6 +487,8 @@ if (window.location.pathname === "/grantme-program-assessment") {
 
       obs.observe(document.querySelector("#edit-are-you-a-current-student- h4.quiz-question"));
       obs.observe(document.querySelector("#edit-processed-text-15 .seqq-row"));
+      obs.observe(document.querySelector("#reviewsTxt .reviews_btn_wrapper"));
+      obs.observe(document.querySelector("#reviewsTxt > img"));
 
       function visibility(entries) {
         entries.forEach((i) => {
@@ -460,8 +505,17 @@ if (window.location.pathname === "/grantme-program-assessment") {
             if (i.target.classList.contains("quiz-question")) {
               pushDataLayer("exp_context_fs_view_1", "5 secs or more", "View element on screen", "Win scholarship, Graduate Debt-Free");
             }
-            if (i.target.classList.contains("seqq-row")) {
-              pushDataLayer("exp_context_fs_view_2", "5 secs or more", "View element on screen", "What you`ll get with GrantMe");
+
+            if (i.target.classList.contains("reviews_btn_wrapper")) {
+              pushDataLayer("exp_context_fs_trustpilot_v", "TrustScore", "Visibility", "First screen");
+            }
+            if (window.innerWidth <= 768) {
+              if (i.target.classList.contains("seqq-row")) {
+                pushDataLayer("exp_context_fs_what_you_v", "What you`ll get with GrantMe", "Visibility or Hover", "What you`ll get with GrantMe");
+              }
+              if (i.target.classList.contains("my_img")) {
+                pushDataLayer("exp_context_fs_image_v", "Preview of desktop and mobile interface", "Visibility or Hover", "First screen");
+              }
             }
 
             obs.unobserve(i.target);
@@ -489,6 +543,13 @@ if (window.location.pathname === "/grantme-program-assessment") {
         childList: true,
         subtree: true,
       });
+
+      const record = setInterval(() => {
+        if (typeof clarity === "function") {
+          clearInterval(record);
+          clarity("set", `context_fs${eventVar}`, "variant_1");
+        }
+      }, 200);
     }
   }, 100);
 }
@@ -656,7 +717,8 @@ if (window.location.pathname === "/scholarship-eligibility-quiz") {
                 min-height: 30px;
             }
             #GrantMeTxt{
-                margin: 0 auto 50px;
+                margin: 0 auto;
+                padding-bottom: 50px;
                 max-width: 540px;
             }
             #GrantMeTxt ul li::before{
@@ -704,7 +766,8 @@ if (window.location.pathname === "/scholarship-eligibility-quiz") {
                     min-height: unset;
                 }
                 #GrantMeTxt{
-                    margin: 0 auto 30px;
+                    margin: 0 auto;
+                    padding-bottom: 30px;
                 }
                 .navbar-top .navbar-header .region.region-navigation{
                     margin: 0 auto;
@@ -754,7 +817,7 @@ if (window.location.pathname === "/scholarship-eligibility-quiz") {
                     </p>
                     <a target="_blank" href="https://www.trustpilot.com/review/grantme.ca?utm_medium=trustbox&amp;utm_source=Slider">(1,021 reviews)</a>
                 </div>
-                <img src="https://conversionratestore.github.io/projects/grantme/img/isolated_tablet_laptop_and_smartphone_composition.png" alt="isolated tablet laptop_and smartphone composition" />
+                <img src="https://conversionratestore.github.io/projects/grantme/img/isolated_tablet_laptop_and_smartphone_composition.png" alt="isolated tablet laptop_and smartphone composition" class="my_img" />
                 <h2>Win Scholarships, Graduate Debt-Free</h2>
                 <p>Receive an estimated value and number of scholarships you or your child is eligible for with this <b>60 second quiz</b> approved by our experts.</p>
             </div>
@@ -819,6 +882,42 @@ if (window.location.pathname === "/scholarship-eligibility-quiz") {
           pushDataLayer("exp_context_fs_image", "Preview of desktop and mobile interface", "Click on image", "First screen");
         });
       });
+      document.querySelectorAll("#GrantMeTxt").forEach((el) => {
+        el.addEventListener("click", (e) => {
+          if (e.currentTarget) {
+            pushDataLayer("exp_context_fs_what_you", "Click", "Text section", "What you`ll get with GrantMe");
+          }
+        });
+      });
+      document.querySelectorAll("#edit-processed-text-15").forEach((el) => {
+        el.addEventListener("click", (e) => {
+          if (e.currentTarget) {
+            pushDataLayer("exp_context_fs_what_you", "Click", "Text section", "What you`ll get with GrantMe");
+          }
+        });
+      });
+
+      if (window.innerWidth > 768) {
+        document.querySelectorAll("#reviewsTxt > img").forEach((el) => {
+          el.addEventListener("mouseenter", () => {
+            pushDataLayer("exp_context_fs_image_ v", "Preview of desktop and mobile interface", "Visibility or Hover", "First screen");
+          });
+        });
+        document.querySelectorAll("#GrantMeTxt").forEach((el) => {
+          el.addEventListener("mouseenter", (e) => {
+            if (e.currentTarget) {
+              pushDataLayer("exp_context_fs_what_you_v", "What you`ll get with GrantMe", "Visibility or Hover", "What you`ll get with GrantMe");
+            }
+          });
+        });
+        document.querySelectorAll("#edit-processed-text-15").forEach((el) => {
+          el.addEventListener("mouseenter", (e) => {
+            if (e.currentTarget) {
+              pushDataLayer("exp_context_fs_what_you_v", "What you`ll get with GrantMe", "Visibility or Hover", "What you`ll get with GrantMe");
+            }
+          });
+        });
+      }
 
       //visibility elem
       let obs = new IntersectionObserver(visibility, {
@@ -831,6 +930,8 @@ if (window.location.pathname === "/scholarship-eligibility-quiz") {
 
       obs.observe(document.querySelector("#edit-are-you-a-current-student- h4.quiz-question"));
       obs.observe(document.querySelector("#edit-processed-text-15 .seqq-row"));
+      obs.observe(document.querySelector("#reviewsTxt .reviews_btn_wrapper"));
+      obs.observe(document.querySelector("#reviewsTxt > img"));
 
       function visibility(entries) {
         entries.forEach((i) => {
@@ -847,8 +948,17 @@ if (window.location.pathname === "/scholarship-eligibility-quiz") {
             if (i.target.classList.contains("quiz-question")) {
               pushDataLayer("exp_context_fs_view_1", "5 secs or more", "View element on screen", "Win scholarship, Graduate Debt-Free");
             }
-            if (i.target.classList.contains("seqq-row")) {
-              pushDataLayer("exp_context_fs_view_2", "5 secs or more", "View element on screen", "What you`ll get with GrantMe");
+
+            if (i.target.classList.contains("reviews_btn_wrapper")) {
+              pushDataLayer("exp_context_fs_trustpilot_v", "TrustScore", "Visibility", "First screen");
+            }
+            if (window.innerWidth <= 768) {
+              if (i.target.classList.contains("seqq-row")) {
+                pushDataLayer("exp_context_fs_what_you_v", "What you`ll get with GrantMe", "Visibility or Hover", "What you`ll get with GrantMe");
+              }
+              if (i.target.classList.contains("my_img")) {
+                pushDataLayer("exp_context_fs_image_v", "Preview of desktop and mobile interface", "Visibility or Hover", "First screen");
+              }
             }
 
             obs.unobserve(i.target);
@@ -876,6 +986,13 @@ if (window.location.pathname === "/scholarship-eligibility-quiz") {
         childList: true,
         subtree: true,
       });
+
+      const record = setInterval(() => {
+        if (typeof clarity === "function") {
+          clearInterval(record);
+          clarity("set", `context_fs${eventVar}`, "variant_1");
+        }
+      }, 200);
     }
   }, 100);
 }
