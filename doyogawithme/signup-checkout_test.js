@@ -808,7 +808,6 @@ function init() {
                         } else {
                             document.querySelector('#edit-login-register-field-ac-newsletter-reg-value').checked = false
                         }
-                        pushDataLayer('exp_ch_pl_page_create_chs', 'Checkbox subscribe', 'Checkbox', 'Create your account');
                     })
                 })
 
@@ -895,7 +894,6 @@ function init() {
                         } else {
                             document.querySelector('#edit-field-ac-newsletter-reg-value').checked = false
                         }
-                        pushDataLayer('exp_ch_pl_page_create_chs', 'Checkbox subscribe', 'Checkbox', 'Create your account');
                     })
                 })
 
@@ -1032,10 +1030,10 @@ function init() {
                     }
 
                     @media only screen and (min-width: 768px) {
-                        .messages--status {
-                            margin-left: -18px;
-                            margin-right: -18px;
-                        }
+                        // .messages--status {
+                        //     margin-left: -18px;
+                        //     margin-right: -18px;
+                        // }
                     }
                     @media only screen and (max-width: 767px) {
                         .profile-student-form .form-actions {
@@ -1062,7 +1060,7 @@ function init() {
                 document.querySelectorAll('.form-item input').forEach(item => {
                     item.addEventListener('change', (e) => {
                         if (item.type == 'checkbox' || item.type == 'radio') {
-                            let name = item.closest('.fieldset-wrapper').previousElementSibling.innerText.trim().split(' ')[0].toLowerCase() + item.type == 'radio' ? '_r' : '_ch',
+                            let name = item.closest('[data-drupal-selector="edit-field-class-interest"]').querySelector('.fieldset-legend').innerText.trim().split(' ')[0].toLowerCase() + item.type == 'radio' ? '_r' : '_ch',
                                 desk = `${item.closest('.fieldset-wrapper').previousElementSibling.innerText.replace('?','')} - ${item.parentElement.innerText}`;
 
                             if (item.checked) {
