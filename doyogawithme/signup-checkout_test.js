@@ -15,8 +15,11 @@ let dir = 'https://conversionratestore.github.io/projects/doyogawithme/img/';
 
 let style = `
 <style>
-input[type="checkbox"], input[type="radio"], .form-item-payment-information-add-payment-method-billing-information-address-0-address-organization {
+.c-tabs, input[type="checkbox"], input[type="radio"], .form-item-payment-information-add-payment-method-billing-information-address-0-address-organization {
     display: none;
+}
+.block-single-file-component-blockuser-login-register-tabs-block ~ * h1 {
+    position: initial!important;
 }
 .o-page--simpleCard .o-page__main {
     background-color: #F6F6F6;
@@ -101,7 +104,7 @@ input[type="checkbox"], input[type="radio"], .form-item-payment-information-add-
 }
 
 .user-login-form, .user-register-form, .user-pass {
-    padding: 42px 24px 0;
+    padding: 0 6px 0;
 }
 form h1 {
     font-family: 'Manrope', sans-serif;
@@ -143,7 +146,8 @@ form label {
     margin-left: 15px;
 }
 .social-auth__container {
-    padding: 24px 0;
+    margin: 24px 0;
+    padding: 0;
 }
 .social-auth__divider {
     margin: 0;
@@ -311,7 +315,16 @@ input[type="checkbox"]:checked ~ .check {
     justify-content: center;
     display: flex;
 }
-.form-actions .button[value="Create new account"] {
+.samsara .user-register-form .form-actions {
+    margin: 0;
+}
+.samsara .form-actions {
+    padding-bottom: 15px;
+}
+.samsara .user-register-form .form-actions {
+    padding: 0 0 15px 0;
+}
+.form-actions .button[value="Create new account"], #edit-actions .form-submit, #block-legalacceptcopy, #block-socialauthlogin-2 {
     display: none;
 }
 .btn_start_membership.disabled, .btn_start_membership[disabled]{
@@ -482,7 +495,7 @@ input[type="checkbox"]:checked ~ .check {
 
 let headHTML = `
 <div class="topbar">
-    <a href="https://www.doyogawithme.com/become-a-subscriber" class="btn-back flex items-center" onclick="pushDataLayer('Back', getLabel(event))">
+    <a href="/become-a-subscriber" class="btn-back flex items-center" onclick="pushDataLayer('Back', getLabel(event))">
         <svg width="10" height="16" viewBox="0 0 10 16" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M0.255198 7.39519C-0.0850662 7.72509 -0.0850662 8.27491 0.255198 8.60481L7.58979 15.7526C7.96786 16.0825 8.53497 16.0825 8.87524 15.7526L9.7448 14.9095C10.0851 14.5796 10.0851 14.0298 9.7448 13.6632L3.9225 7.98167L9.7448 2.33677C10.0851 1.97022 10.0851 1.42039 9.7448 1.09049L8.87524 0.247423C8.53497 -0.0824742 7.96786 -0.0824742 7.58979 0.247423L0.255198 7.39519Z" fill="#027DB8"/>
         </svg>
@@ -556,21 +569,16 @@ let rememberMeHTML = `
     </label>
 </div>`
 
-let logInGoogle = `
+let logInGoogle = (name) => `
 <svg width="23" height="22" viewBox="0 0 23 22" fill="none" xmlns="http://www.w3.org/2000/svg">
     <path fill-rule="evenodd" clip-rule="evenodd" d="M22.06 11.2485C22.06 10.4685 21.99 9.71854 21.86 8.99854H11.5V13.2535H17.42C17.165 14.6285 16.39 15.7935 15.225 16.5735V19.3335H18.78C20.86 17.4185 22.06 14.5985 22.06 11.2485Z" fill="#4285F4"/>
     <path fill-rule="evenodd" clip-rule="evenodd" d="M11.4994 21.9998C14.4694 21.9998 16.9594 21.0148 18.7794 19.3348L15.2244 16.5748C14.2394 17.2348 12.9794 17.6248 11.4994 17.6248C8.63443 17.6248 6.20943 15.6898 5.34443 13.0898H1.66943V15.9398C3.47943 19.5348 7.19943 21.9998 11.4994 21.9998Z" fill="#34A853"/>
     <path fill-rule="evenodd" clip-rule="evenodd" d="M5.345 13.0901C5.125 12.4301 5 11.7251 5 11.0001C5 10.2751 5.125 9.57006 5.345 8.91006V6.06006H1.67C0.925 7.54506 0.5 9.22506 0.5 11.0001C0.5 12.7751 0.925 14.4551 1.67 15.9401L5.345 13.0901Z" fill="#FBBC05"/>
     <path fill-rule="evenodd" clip-rule="evenodd" d="M11.4994 4.37451C13.1144 4.37451 14.5644 4.92951 15.7044 6.01951L18.8594 2.86451C16.9544 1.08951 14.4644 -0.000488281 11.4994 -0.000488281C7.19943 -0.000488281 3.47943 2.46451 1.66943 6.05951L5.34443 8.90951C6.20943 6.30951 8.63443 4.37451 11.4994 4.37451Z" fill="#EA4335"/>
 </svg>
-<span>Login with Google</span>`
+<span>${name} with Google</span>`
 
-let acceptHTML = `
-<label class="check-accept flex items-center">
-    <input type="checkbox" style="display: none;" >
-    <span class="check"></span>
-    <span>Accept <a href="/legal">Terms & Conditions</a> of Use & <a href="/privacy">Privacy Policy</a><span class="c-red">*</span></span>
-</label>
+let subscribeHTML = `
 <label class="check-accept flex ">
     <input type="checkbox" style="display: none;" >
     <span class="check"></span>
@@ -596,13 +604,13 @@ function init() {
             if (window.location.href.includes('/yogi/login') || window.location.href.includes('/yogi/register')) {
                 document.querySelector('form h1').after(document.querySelector('.social-auth__container'))
                 document.querySelector('form h1').after(document.querySelector('.social-auth__networks'))
-                document.querySelector('.social-auth__networks a').innerHTML = logInGoogle;
+                
                 if (document.querySelector('.messages.messages--status') && document.querySelector('.messages.messages--status').innerHTML.includes('if you are having trouble logging in to your account.')) {
                     document.querySelector('.messages.messages--status').remove()
                 }
             }
             if (window.location.href.includes('/yogi/login')) {
-
+                document.querySelector('.social-auth__networks a').innerHTML = logInGoogle('Login');
                 document.querySelector('label[for="edit-name"]').innerHTML = 'Email address';
                 document.querySelector('#edit-name').placeholder = 'Email';
                 document.querySelector('#edit-pass').placeholder = 'Password';
@@ -613,15 +621,26 @@ function init() {
                 }
                 document.querySelector('.remember-me').after(document.querySelector('form [href="/yogi/password"]'))
                 document.querySelector('form [href="/yogi/password"]').innerHTML = 'Forgot Password?';
-                document.querySelector('.form-actions .button[value="Log in"]').insertAdjacentHTML('afterend', `<p class="text-center singup">Don’t have an account? <a href="/yogi/register">Sing up</a></p>`)
+
+                document.querySelector('#edit-actions .form-submit').style = `
+                    display: block;
+                    width: 100%;    
+                    text-align: center;
+                    justify-content: center;
+                    display: flex;
+                    font-weight: 700;
+                `;
+
+                document.querySelector('#edit-actions .form-submit').insertAdjacentHTML('afterend', `<p class="text-center singup">Don’t have an account? <a href="/yogi/register">Sing up</a></p>`)
                 
+                document.querySelector('#edit-actions .form-submit').addEventListener('click', () => {
+                    lsRememberMe('.remember-me input', '#edit-name')
+                })
+
                 if (window.location.href.includes('yogi/login?destination')) {
                     document.querySelector('.singup a').href = document.querySelector('.singup a').href + '?destination='
                 }
 
-                document.querySelector('.form-actions .button').addEventListener('click', () => {
-                    lsRememberMe('.remember-me input', '#edit-name')
-                })
                 pushDataLayer('Visibility','Log in form')
 
                 document.querySelector('.social-auth.auth-link').addEventListener('click', () => {
@@ -652,7 +671,6 @@ function init() {
                 </style>`)
                 document.querySelector('.o-page__mainContentWrapper').insertAdjacentHTML('beforebegin',`
                 <div class="header-logo text-center"> <a href="/" class="logo"><img src="/themes/custom/lotus/logo.png" alt="image"></a></div>`);
-
             }
 
             if (window.location.href.includes('/checkout') && window.location.href.includes('/login') && document.querySelectorAll('.sfc-tabs__tablistItem > a').length > 1) {
@@ -721,40 +739,20 @@ function init() {
 
                 pushDataLayer('Visibility','Create your account')
 
-               document.querySelector('[data-drupal-selector="edit-login-returning-customer"]').insertAdjacentHTML('afterbegin', `
-                <h2>Log In</h2>
-                <div class="social-auth__networks">
-                    <a class="social-auth auth-link" href="/yogi/login/google?destination=%2Fcheckout%2F23414%2Flogin">${logInGoogle}</a>
-                </div>
-                <div class="social-auth__container">
-                    <div class="social-auth__divider">
-                        <span class="social-auth__divider__text">
-                        or
-                        </span>
-                    </div>
-                </div>`)
+                document.querySelector('[data-drupal-selector="edit-login-returning-customer"]').insertAdjacentHTML('afterbegin', `
+                <h2>Log In</h2>`)
                 document.querySelector('[data-drupal-selector="edit-login-register"]').insertAdjacentHTML('afterbegin', `
-                <h2>Create your account</h2>
-                <div class="social-auth__networks">
-                    <a class="social-auth auth-link" href="/yogi/login/google?destination=%2Fcheckout%2F23414%2Flogin">${logInGoogle}</a>
-                </div>
-                <div class="social-auth__container">
-                    <div class="social-auth__divider">
-                        <span class="social-auth__divider__text">
-                        or
-                        </span>
-                    </div>
-                </div>`)
+                <h2>Create your account</h2>`)
             
-                //event: Click google Log in form
-                document.querySelector('[data-drupal-selector="edit-login-returning-customer"] .social-auth').addEventListener('click', (e) => {
-                    pushDataLayer('Login with google button','Log in form')
-                })
-                //event: Click google Create your account
-                document.querySelector('[data-drupal-selector="edit-login-register"] .social-auth').addEventListener('click', (e) => {
-                    pushDataLayer('Sign up with google','Create your account')
-                })
-                document.querySelector('[data-drupal-selector="edit-login-register"] .social-auth.auth-link span').innerHTML = 'Sign up with Google'
+                // //event: Click google Log in form
+                // document.querySelector('[data-drupal-selector="edit-login-returning-customer"] .social-auth').addEventListener('click', (e) => {
+                //     pushDataLayer('Login with google button','Log in form')
+                // })
+                // //event: Click google Create your account
+                // document.querySelector('[data-drupal-selector="edit-login-register"] .social-auth').addEventListener('click', (e) => {
+                //     pushDataLayer('Sign up with google','Create your account')
+                // })
+                // document.querySelector('[data-drupal-selector="edit-login-register"] .social-auth.auth-link span').innerHTML = 'Sign up with Google'
 
                 document.querySelector('[data-drupal-selector="edit-login-register"] h2').innerHTML = 'Create your account';
 
@@ -768,14 +766,10 @@ function init() {
                 document.querySelector('#edit-login-returning-customer-submit').insertAdjacentHTML('afterend', `<p class="text-center singup">Don’t have an account? <a href="#">Sing up</a></p>`)
                 document.querySelector('#edit-login-register-register').insertAdjacentHTML('afterend', `<p class="text-center singup">Already have an account? <a href="#">Log in</a></p>`)
 
-                document.querySelector('#edit-login-register-register').insertAdjacentHTML('beforebegin', `${acceptHTML}
+                document.querySelector('#edit-login-register-register').insertAdjacentHTML('beforebegin', `${subscribeHTML}
                 <button type="button" class="btn-reg">Sign Up</button>`)
 
-                document.querySelectorAll('.check-accept a').forEach(item => {
-                    item.addEventListener('click', (e) => {
-                        pushDataLayer(e.currentTarget.innerText,'Create your account')
-                    })
-                })
+               
                 document.querySelector('[data-drupal-selector="edit-login-returning-customer"] .singup a').addEventListener('click', (e) => {
                     document.querySelectorAll('.sfc-tabs__tablistItem > a')[1].click()
                     document.querySelector('.o-page--simpleCard .o-page__mainContent').classList.add('active')
@@ -810,34 +804,15 @@ function init() {
                 //checkbox
                 document.querySelectorAll('.check-accept input').forEach((item, index) => {
                     item.addEventListener('change', (e) => {
-                        if (index == 0) {
-                            if (item.checked) {
-                                document.querySelector('#edit-login-register-legal-extras-1').checked = true
-                                document.querySelector('#edit-login-register-legal-legal-accept').checked = true
-                                item.nextElementSibling.style = '';
-                            } else {
-                                document.querySelector('#edit-login-register-legal-extras-1').checked = false
-                                document.querySelector('#edit-login-register-legal-legal-accept').checked = false
-                            }
-                        }
-
-                        if (index == 1) {
-                            if (item.checked) {
-                                document.querySelector('#edit-login-register-field-ac-newsletter-reg-value').checked = true
-                            } else {
-                                document.querySelector('#edit-login-register-field-ac-newsletter-reg-value').checked = false
-                            }
+                        if (item.checked) {
+                            document.querySelector('#edit-login-register-field-ac-newsletter-reg-value').checked = true
+                        } else {
+                            document.querySelector('#edit-login-register-field-ac-newsletter-reg-value').checked = false
                         }
                     })
                 })
 
                 document.querySelector('.btn-reg').addEventListener('click', (e) => {
-                   
-                    if (!document.querySelectorAll('.check-accept input')[0].checked) {
-                        document.querySelectorAll('.check-accept input')[0].nextElementSibling.style = 'border-color: #FF0000'
-                    } else {
-                        document.querySelectorAll('.check-accept input')[0].nextElementSibling.style = '';
-                    }
 
                     if (document.querySelector('.js-password-strength__text') != null && (document.querySelector('.js-password-strength__text').innerHTML == '' || document.querySelector('.js-password-strength__text').innerHTML.includes('Weak'))) {
                         document.querySelector('.password-strength').style = 'dusplay: block!important'
@@ -848,8 +823,7 @@ function init() {
                     localStorage.setItem('email', document.querySelector('#edit-login-register-mail').value)
                     document.querySelector('#edit-login-register-register').click()
 
-                    if (document.querySelectorAll('.check-accept input')[0].checked && 
-                        document.querySelector('#edit-login-register-name').value != '' && 
+                    if (document.querySelector('#edit-login-register-name').value != '' && 
                         document.querySelector('#edit-login-register-password-pass1').value != ''
                      ) {
                         e.currentTarget.classList.add('loading')
@@ -883,30 +857,25 @@ function init() {
                     }
                 </style>`)
                 document.querySelector('form h1').innerHTML = 'Create your account';
+                document.querySelector('.social-auth__networks a').innerHTML = logInGoogle('Sing Up');
+                document.querySelector('.social-auth__container .social-auth__divider__text').innerHTML = 'or create an account';
+                document.querySelector('#edit-pass').insertAdjacentHTML('afterend', subscribeHTML)
 
-                document.querySelector('#edit-pass').insertAdjacentHTML('afterend', acceptHTML)
-
-                document.querySelectorAll('.check-accept a').forEach(item => {
-                    item.addEventListener('click', (e) => {
-                        pushDataLayer(e.currentTarget.innerText,'Create your account')
-                    })
-                })
-                document.querySelector('.form-actions .button').insertAdjacentHTML('afterend', `<button type="button" class="btn-reg">Sign Up</button><p class="text-center singup">Already have an account? <a href="/yogi/login">Log in</a></p>`)
-                
+                document.querySelector('#edit-actions .form-submit').insertAdjacentHTML('afterend', `<button type="button" class="btn-reg">Create an account</button><p class="text-center singup">Already have an account? <a href="/yogi/login">Log in</a></p>`)
+            
                 if (window.location.href.includes('yogi/register?destination')) {
                     document.querySelector('.singup a').href = document.querySelector('.singup a').href + '?destination='
                 }
 
                 document.querySelector('.btn-reg').addEventListener('click', (e) => {
-                    if (document.querySelectorAll('.check-accept input')[0].checked && 
-                        document.querySelector('.form-email').value != '' && 
+                    if (document.querySelector('.form-email').value != '' && 
                         document.querySelector('.username').value != '' &&
                         document.querySelector('#edit-pass-pass1').value != ''
                     ) {
                         e.currentTarget.classList.add('loading')
                         pushDataLayer('Submit form','Create your account')
                     }
-                    document.querySelector('.form-actions .button').click();
+                    document.querySelector('#edit-actions .form-submit').click();
                 })
 
                 document.querySelector('.social-auth.auth-link span').innerHTML = 'Sign up with Google'
@@ -921,23 +890,10 @@ function init() {
                 //checkbox
                 document.querySelectorAll('.check-accept input').forEach((item, index) => {
                     item.addEventListener('change', (e) => {
-                        if (index == 0) {
-                            if (item.checked) {
-                                document.querySelector('#edit-extras-1').checked = true
-                                document.querySelector('#edit-legal-accept').checked = true
-                                item.nextElementSibling.style = '';
-                            } else {
-                                document.querySelector('#edit-extras-1').checked = false
-                                document.querySelector('#edit-legal-accept').checked = false
-                            }
-                        }
-
-                        if (index == 1) {
-                            if (item.checked) {
-                                document.querySelector('#edit-field-ac-newsletter-reg-value').checked = true
-                            } else {
-                                document.querySelector('#edit-field-ac-newsletter-reg-value').checked = false
-                            }
+                        if (item.checked) {
+                            document.querySelector('#edit-field-ac-newsletter-reg-value').checked = true
+                        } else {
+                            document.querySelector('#edit-field-ac-newsletter-reg-value').checked = false
                         }
                     })
                 })
@@ -945,18 +901,11 @@ function init() {
                 document.querySelector('#edit-mail').focus()
 
                 document.querySelector('#edit-actions').addEventListener('click', (e) => {
-                    if (!document.querySelectorAll('.check-accept input')[0].checked) {
-                        document.querySelectorAll('.check-accept input')[0].nextElementSibling.style = 'border-color: #FF0000'
-                    } else {
-                        document.querySelectorAll('.check-accept input')[0].nextElementSibling.style = '';
-                    }
-
                     if (document.querySelector('.password-strength__indicator.is-weak') != null) {
                         document.querySelector('.password-strength').style = 'dusplay: block!important'
                     } else {
                         document.querySelector('.password-strength').style = ''
                     }
-                
                 })
 
                 document.querySelector('.singup a').addEventListener('click', () => {
@@ -1646,7 +1595,6 @@ function init() {
 
             pushDataLayer('Visibility',label)
         }
-
     });
 }
 init()
