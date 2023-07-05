@@ -380,10 +380,10 @@ if (window.location.pathname === "/grantme-program-assessment") {
         el.addEventListener("click", (e) => {
           if (!e.currentTarget.getAttribute("data-test")) {
             if (e.currentTarget.getAttribute("for") === "edit-are-you-a-current-student-current-student") {
-              pushDataLayer("exp_context_fs_trustpilot", "Current Student", "Button", "First step");
+              pushDataLayer("exp_context_fs_student", "Current Student", "Button", "First step");
             }
             if (e.currentTarget.getAttribute("for") === "edit-are-you-a-current-student-parent-of-student") {
-              pushDataLayer("exp_context_fs_trustpilot", "Parent of Student", "Button", "First step");
+              pushDataLayer("exp_context_fs_parent", "Parent of Student", "Button", "First step");
             }
             if (window.innerWidth <= 768) {
               setTimeout(() => {
@@ -853,6 +853,12 @@ if (window.location.pathname === "/scholarship-eligibility-quiz") {
       document.querySelectorAll("#edit-are-you-a-current-student- label").forEach((el) => {
         el.addEventListener("click", (e) => {
           if (!e.currentTarget.getAttribute("data-test")) {
+            if (e.currentTarget.getAttribute("for") === "edit-are-you-a-current-student-current-student") {
+              pushDataLayer("exp_context_fs_student", "Current Student", "Button", "First step");
+            }
+            if (e.currentTarget.getAttribute("for") === "edit-are-you-a-current-student-parent-of-student") {
+              pushDataLayer("exp_context_fs_parent", "Parent of Student", "Button", "First step");
+            }
             if (window.innerWidth <= 768) {
               setTimeout(() => {
                 document.querySelector(".quiz-title").style.display = "block";
@@ -1017,4 +1023,3 @@ if (window.location.pathname === "/scholarship-eligibility-quiz") {
     }
   }, 100);
 }
-
