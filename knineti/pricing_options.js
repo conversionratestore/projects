@@ -473,7 +473,7 @@ if (window.location.pathname === "/enroll/") {
         document.querySelector(".payment_inform_box li.payment_order > div tbody tr:nth-child(7) td:nth-child(1)").textContent = "BONUS class ‘Cure your dog’s separation anxiety’";
         document.querySelector(".payment_inform_box li.payment_order > div tbody tr:nth-child(8) td:nth-child(1)").textContent = "BONUS class ‘How to manage your dog's interactions with children’";
       }
-      if (localStorage.getItem("personalCoaching")) {
+      if (sessionStorage.getItem("personalCoaching")) {
         document.querySelector(".custom_checkbox_wrap .custom_checkbox").checked = true;
         if (document.querySelector(".premium_coaching_tr")) {
           document.querySelector(".premium_coaching_tr").classList.add("open");
@@ -483,12 +483,12 @@ if (window.location.pathname === "/enroll/") {
       if (document.querySelector("#limitedTimeOffer")) {
         document.querySelector(".custom_checkbox_wrap label").addEventListener("click", (e) => {
           if (!e.currentTarget.previousElementSibling.checked) {
-            localStorage.setItem("personalCoaching", true);
+            sessionStorage.setItem("personalCoaching", true);
             pushDataLayer("exp_upsell_option_10wchonlto", "10 weeks", "Checkbox ON", "Limited time offer ... Order summary");
             document.querySelector(".premium_coaching_tr").classList.add("open");
           } else {
-            if (localStorage.getItem("personalCoaching")) {
-              localStorage.removeItem("personalCoaching");
+            if (sessionStorage.getItem("personalCoaching")) {
+              sessionStorage.removeItem("personalCoaching");
               pushDataLayer("exp_upsell_option_10wchofflto", "10 weeks", "Checkbox OFF", "Limited time offer ... Order summary");
               if (document.querySelector(".premium_coaching_tr").classList.contains("open")) {
                 document.querySelector(".premium_coaching_tr").classList.remove("open");
@@ -640,7 +640,7 @@ if (window.location.pathname === "/enroll/") {
           totalAct,
           totalPay;
 
-        if (!localStorage.getItem("personalCoaching")) {
+        if (!sessionStorage.getItem("personalCoaching")) {
           totalAct = prAct1 + prAct2 + prAct3 + prAct4;
           totalPay = prPay1 + prPay2 + prPay3 + prPay4;
         } else {
@@ -960,13 +960,13 @@ if (window.location.pathname === "/mc/") {
         document.querySelector("#unlimited_personal_coaching h2").innerHTML = "<b>Limited Time Offer:</b><br/> add Personal Coaching for <b>only</b> <span>$398</span> <b>$90 more!</b>";
       }
       document.querySelector("#unlimited_personal_coaching .content").insertAdjacentHTML("afterbegin", newHtml);
-      if (localStorage.getItem("personalCoaching")) {
+      if (sessionStorage.getItem("personalCoaching")) {
         document.querySelector("#unlimited_personal_coaching .custom_checkbox_wrap .custom_checkbox").checked = true;
       }
       if (document.querySelector("#unlimited_personal_coaching .enroll_now_btn.new_btn_var")) {
         document.querySelector("#unlimited_personal_coaching .enroll_now_btn.new_btn_var").addEventListener("click", (e) => {
           e.preventDefault();
-          if (localStorage.getItem("personalCoaching")) {
+          if (sessionStorage.getItem("personalCoaching")) {
             pushDataLayer("exp_upsell_option_enrolllto", "Enroll now - YES", "Button", "Limited time offer ... Free workshop");
           } else {
             pushDataLayer("exp_upsell_option_enrolllto", "Enroll now - NO", "Button", "Limited time offer ... Free workshop");
@@ -977,10 +977,10 @@ if (window.location.pathname === "/mc/") {
         document.querySelector("#unlimited_personal_coaching .custom_checkbox_wrap label").addEventListener("click", (e) => {
           if (!e.target.previousElementSibling.checked) {
             pushDataLayer("exp_upsell_option_chonlto", "Yes i would like to add personal coaching", "Checkbox ON", "Limited time offer ... Free workshop");
-            localStorage.setItem("personalCoaching", true);
+            sessionStorage.setItem("personalCoaching", true);
           } else {
-            if (localStorage.getItem("personalCoaching")) {
-              localStorage.removeItem("personalCoaching");
+            if (sessionStorage.getItem("personalCoaching")) {
+              sessionStorage.removeItem("personalCoaching");
               pushDataLayer("exp_upsell_option_chofflto", "Yes i would like to add personal coaching", "Checkbox OFF", "Limited time offer ... Free workshop");
             }
           }
@@ -1065,7 +1065,7 @@ if (window.location.pathname === "/mc/") {
 
 if (window.location.pathname === "/thanks-for-ordering/") {
   let startThanks = setInterval(() => {
-    if (localStorage.getItem("personalCoaching")) {
+    if (sessionStorage.getItem("personalCoaching")) {
       clearInterval(startThanks);
 
       let eventVar = "desktop";
@@ -1265,8 +1265,8 @@ if (window.location.pathname === "/thanks-for-ordering/") {
         });
       }
 
-      if (localStorage.getItem("personalCoaching")) {
-        localStorage.removeItem("personalCoaching");
+      if (sessionStorage.getItem("personalCoaching")) {
+        sessionStorage.removeItem("personalCoaching");
       }
 
       const record = setInterval(() => {
