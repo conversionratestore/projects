@@ -15,6 +15,9 @@ let dir = 'https://conversionratestore.github.io/projects/doyogawithme/img/';
 
 let style = `
 <style>
+.checkout-pane-payment-information #edit-payment-information-add-payment-method {
+    margin-bottom: 0;
+}
 .c-tabs, input[type="checkbox"], input[type="radio"], .form-item-payment-information-add-payment-method-billing-information-address-0-address-organization {
     display: none;
 }
@@ -977,10 +980,10 @@ function init() {
                     .messages--status svg {
                         margin-right: 8px;
                     }
-                    .path-yogi .block-system-main-block {
-                        box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.15);
-                        border-radius: 0px 0px 12px 12px;
-                    }
+                    // .path-yogi .block-system-main-block {
+                    //     box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.15);
+                    //     border-radius: 0px 0px 12px 12px;
+                    // }
                     .fieldset-legend {
                         font-family: 'Manrope';
                         font-style: normal;
@@ -1066,10 +1069,11 @@ function init() {
                     item.addEventListener('change', (e) => {
                         if (item.type == 'checkbox' || item.type == 'radio') {
                             if (item.checked) {
-                                let name = item.closest('[data-drupal-selector="edit-field-class-interest"]').querySelector('.fieldset-legend').innerText.trim().split(' ')[0].toLowerCase() + item.type == 'radio' ? '_r' : '_ch',
+                                let name = item.closest('fieldset').querySelector('legend > .fieldset-legend').innerText.trim().split(' ')[0].toLowerCase(),
+                                    type = item.type == 'radio' ? '_r' : '_ch',
                                     desk = `${item.closest('.fieldset-wrapper').previousElementSibling.innerText.replace('?','')} - ${item.parentElement.innerText}`;
 
-                                pushDataLayer(`exp_ch_pl_page_${name}`, desk, item.type, 'Lets find classes that work best for you');
+                                pushDataLayer(`exp_ch_pl_page_${name}`+type, desk, item.type, 'Lets find classes that work best for you');
                             }
                         }
                     })
@@ -1656,6 +1660,8 @@ let disabledBtnFun = () => {
                             pushDataLayer('exp_ch_pl_page_sel_card', `Select Donation Type - ${parent.innerText}`, 'Radio', loc);
                         } else if (parent.closest('[data-drupal-selector="edit-commerce-donation-pane-field-donation-amount-0-donation-level"]')) {
                             pushDataLayer('exp_ch_pl_page_amount_r', `Amount - ${parent.innerText}`, 'Radio', loc);
+                        } else {
+                            pushDataLayer('exp_ch_pl_page_input_card', `Click on ${parent.querySelector('label').innerText}`, 'Input', loc);
                         }
                     }
                 })
