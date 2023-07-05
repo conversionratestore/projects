@@ -550,6 +550,28 @@ let startF = setInterval(() => {
       }
     }, 200);
 
+    document.querySelectorAll("#open").forEach((el) => {
+      let originalElement = el;
+      let clonedElement = originalElement.cloneNode(true);
+
+      originalElement.parentNode.replaceChild(clonedElement, originalElement);
+      clonedElement.addEventListener("click", (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        let headerOffset = 80;
+        if (e.currentTarget.closest(".hand-banner") || (!e.currentTarget.closest(".static-top")?.classList.contains("fixed-top") && e.currentTarget.closest(".static-top"))) {
+          headerOffset = 120;
+        }
+
+        const elementPosition = document.querySelector("#getNow").getBoundingClientRect().top;
+        const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+        window.scrollTo({
+          top: offsetPosition,
+          behavior: "smooth",
+        });
+      });
+    });
+
     document.querySelector(".exp")?.remove();
   }
 }, 100);
