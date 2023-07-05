@@ -627,7 +627,7 @@ function init() {
                     document.querySelector('.messages.messages--status').remove()
                 }
             }
-            if (window.location.href.includes('/yogi/login')) {
+            if (window.location.href.includes('/yogi/login') && document.querySelector('.social-auth__networks a')) {
 
                 loc = 'Log in form';
 
@@ -1615,7 +1615,7 @@ function init() {
 
             pushDataLayer('exp_ch_pl_page_card_v', loc, 'Visibility', loc);
         }
-    });
+    }, 100);
 }
 init()
 
