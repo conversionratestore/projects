@@ -101,7 +101,7 @@ if (window.location.pathname === "/grantme-program-assessment") {
             }
             #edit-are-you-a-current-student-{
                 margin: 0;
-                padding: 0 24px;
+                padding: 0 30px;
             }
             #edit-are-you-a-current-student- #edit-are-you-a-current-student{
                 display: flex;
