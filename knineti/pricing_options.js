@@ -304,6 +304,9 @@ if (window.location.pathname === "/enroll/") {
             }
         }
         @media (max-width: 768px) {
+          .payment_inform_box li:nth-child(1) br{
+            display: none !important;
+          }
             [data-checkstep="1"],
             #limitedTimeOffer > h2.new_title > br,
             .desk_var{
