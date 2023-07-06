@@ -753,6 +753,9 @@ if (window.location.pathname === "/scholarship-eligibility-quiz") {
                 margin-top: 16px;
             }
             @media (max-width: 768px) {
+                #webform-submission-scholarship-eligibility-quiz-add-form{
+                    padding: 0 20px !important;
+                }
                 #reviewsTxt{
                     margin: 23px auto 8px;
                 }
