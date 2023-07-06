@@ -33,6 +33,26 @@ let startF = setInterval(() => {
       #purchase .js-heading>h2{
         margin-bottom: 10px !important;
       }
+      #getNow .img_wrapp{
+        position: relative;
+        width: 170px;
+        height: 170px;
+        margin: 0 auto;
+      }
+      #getNow .img_wrapp::before{
+        content: "";
+        position: absolute;
+        width: 60px;
+        height: 60px;
+        top: 0;
+        right: 0;
+        background: url(https://conversionratestore.github.io/projects/buzzpatch/img/free_shipping_icon.svg) no-repeat center center;
+        background-size: contain;
+        z-index: 2;
+      }
+      .package .js-heading .js-btn.btn-primary{
+        margin-top: 10px;
+      }
       body #purchase .form-horizontal,
       body .img-purchase{
         display: block !important;
@@ -41,7 +61,8 @@ let startF = setInterval(() => {
         .yellow-wave + .blue-wave-image,
         .js-mobile.scientific,
         .js-mobile.c-yellow,
-        body #purchase .slide-packs{
+        body #purchase .slide-packs,
+        #getNow .free-shipping-checkout{
             display: none !important;
         }
         .sleeping-problems{
@@ -453,7 +474,10 @@ let startF = setInterval(() => {
     }
 
     document.head.insertAdjacentHTML("beforeend", styleVar);
-    document.querySelector("#purchase .js-heading>h2").insertAdjacentHTML("afterend", `<p class='new_sub_title'>24 patches in 1 pack</p>`);
+    document.querySelector("#purchase .js-heading>h2").insertAdjacentHTML("afterend", `<p class='new_sub_title'>24 patches in 1 pack</p><div class="img_wrapp"><span></span></div>`);
+    if (document.querySelector(".img_wrapp")) {
+      document.querySelector(".img_wrapp span").after(document.querySelector("#getNow .js-heading > img"));
+    }
     document.querySelector(".js-iphone .js-heading.js-mobile h1").innerHTML = "Stay Sun-Safe: Your <br/> UV-Detection Buddy for <br/> Reapplying Sunscreen";
     document.querySelector("header .header-shipping #open").textContent = "get it now";
     document.querySelector(".yellow-wave h5.text-green").textContent = "Reapply Sunscreen with Confidence";
