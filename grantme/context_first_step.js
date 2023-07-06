@@ -38,7 +38,7 @@ if (window.location.pathname === "/grantme-program-assessment") {
             .row.webform-progress-wrapper{
                 display: none;
             }
-            .path-grantme-program-assessment .navbar .logo{
+            .path-grantme-program-assessment header .container .row.is_logo .logo{
                 padding: 24px 0 30px;
             }
             .path-grantme-program-assessment header .container .row.is_logo{
@@ -253,10 +253,10 @@ if (window.location.pathname === "/grantme-program-assessment") {
                 margin-top: 16px;
             }
             @media (max-width: 768px) {
-                .path-grantme-program-assessment .navbar .logo{
+                .path-grantme-program-assessment header .container .row.is_logo .logo{
                     padding: 16px 0 23px;
                 }
-                #navbar #block-landingpageheaderquiz img{
+                .path-grantme-program-assessment header .container .row.is_logo img{
                     max-width: 120px !important;
                     min-width: 120px !important;
                 }
