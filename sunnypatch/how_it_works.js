@@ -23,11 +23,16 @@ let startF = setInterval(() => {
 
     let styleVar = /*html */ `
     <style>
+      body #purchase .form-horizontal,
+      body .img-purchase{
+        display: block !important;
+      }
         .js-heading.js-mobile .sub-title,
         .yellow-wave + .blue-wave-image,
         .js-mobile.scientific,
-        .js-mobile.c-yellow{
-            display: none;
+        .js-mobile.c-yellow,
+        body #purchase .slide-packs{
+            display: none !important;
         }
         .sleeping-problems{
             padding-top: 0;
