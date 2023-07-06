@@ -1114,6 +1114,9 @@ function init() {
 
             document.body.insertAdjacentHTML('afterbegin', `
             <style>
+                .commerce-checkout-flow {
+                    margin-bottom: 5em;
+                }
                 [data-drupal-selector="edit-commerce-donation-pane"] [data-drupal-messages], #edit-coupon-redemption, .order-total-line.order-total-line__subtotal, .form-item-payment-information-add-payment-method-billing-information-copy-to-address-book, .layout-region.layout-region-checkout-footer, #edit-commerce-donation-pane > legend > .fieldset-legend, #edit-commerce-donation-pane > .fieldset-wrapper > p, .form-item-payment-information-add-payment-method-billing-information-copy-to-address-book, .o-page__header, .address-line2, .form-item-payment-information-add-payment-method-billing-information-address-0-address-address-line2 {
                     display: none!important;
                 }
