@@ -935,11 +935,14 @@ function init() {
 
                         if (parent.querySelector('label')) {
                             pushDataLayer(`exp_ch_pl_page_input_${getLoc(e)[0]}`, `Click on ${parent.querySelector('label').innerText}`, 'Input', getLoc(e)[1]);
-                        } else if (parent.tagName == 'LABEL' && !parent.classList.contains('remember-me')) {
+                        } else if (parent.tagName == 'LABEL' && item.type != 'checkbox') {
                             pushDataLayer(`exp_ch_pl_page_input_${getLoc(e)[0]}`, `Click on ${parent.innerText}`, 'Input', getLoc(e)[1]);
                         }  else if (parent.classList.contains('remember-me')) {
                             pushDataLayer('exp_ch_pl_page_rem_ch', 'Remember me', 'Checkbox', 'Log in form');
-                        } else {
+                        } else if (parent.classList.contains('check-accept')) {
+                            pushDataLayer('exp_ch_pl_page_create_chs', 'Checkbox subscribe', 'Checkbox', 'Create your account');
+                        }
+                         else {
                             pushDataLayer(`exp_ch_pl_page_input_${getLoc(e)[0]}`, `Click on ${e.currentTarget.value == 'Create new account' ? 'Sign up' : e.currentTarget.value}`, 'Input', getLoc(e)[1]);
                         }
                     })
@@ -1676,7 +1679,7 @@ let disabledBtnFun = () => {
                             pushDataLayer('exp_ch_pl_page_sel_card', `Select Donation Type - ${parent.innerText}`, 'Radio', loc);
                         } else if (parent.closest('[data-drupal-selector="edit-commerce-donation-pane-field-donation-amount-0-donation-level"]')) {
                             pushDataLayer('exp_ch_pl_page_amount_r', `Amount - ${parent.innerText}`, 'Radio', loc);
-                        } else {
+                        } else if (item.type != 'checkbox') {
                             pushDataLayer('exp_ch_pl_page_input_card', `Click on ${parent.querySelector('label').innerText}`, 'Input', loc);
                         }
                     }
