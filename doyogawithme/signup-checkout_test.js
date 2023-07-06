@@ -477,7 +477,7 @@ input[type="checkbox"]:checked ~ .check {
         padding: 0;
     }
     .user-login-form, .user-register-form, .user-pass {
-        padding: 20px;
+        padding: 2px;
     }
     form h1, .sfc-tabs__tabcontent.tabs__content h2 {
         font-size: 22px;
@@ -488,13 +488,13 @@ input[type="checkbox"]:checked ~ .check {
         padding: 20px 0 0 0;
     }
     .social-auth__container {
-        padding: 18px 0;
+        margin: 20px 0;
+    }
+    #block-userloginregistertabs--2 {
+        margin: 0;
     }
 }
 @media only screen and (max-width: 360px) {
-    .user-login-form, .user-register-form, .user-pass {
-        padding: 20px 15px;
-    }
     .o-page--simpleCard .o-page__mainContent {
         width: calc(100% - 20px);
     }
