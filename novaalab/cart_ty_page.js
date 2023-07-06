@@ -5,12 +5,11 @@ const DEVICE = screen.width < 768 ? 'mobile' : 'desktop'
 const WAIT_INTERVAL_TIMEOUT = 100
 const IMAGE_DIR_URL = 'https://conversionratestore.github.io/projects/novaalab/img'
 
-// Function to format time as "HH:MM:SS"
+// Function to format time as "MM:SS"
 const formatTime = (time) => {
-  const hours = Math.floor(time / 3600).toString().padStart(2, '0')
-  const minutes = Math.floor((time % 3600) / 60).toString().padStart(2, '0')
+  const minutes = Math.floor(time / 60).toString().padStart(2, '0')
   const seconds = Math.floor(time % 60).toString().padStart(2, '0')
-  return `${hours}:${minutes}:${seconds}`
+  return `${minutes}:${seconds}`
 }
 
 // Calculate scroll depth
@@ -42,7 +41,7 @@ const startTimer = () => {
   }
 
   // Calculate remaining time
-  const totalTime = 15 * 3600 // 15 hours in seconds
+  const totalTime = 15 * 60 // 15 minutes in seconds
   let remainingTime = Math.max(totalTime - elapsedTime, 0)
 
   // Update the timer display
@@ -53,7 +52,8 @@ const startTimer = () => {
   const countdown = setInterval(() => {
     if (remainingTime <= 0) {
       clearInterval(countdown)
-      timerElement.textContent = '00:00:00'
+      timerElement.textContent = '00:00'
+
       // Timer has ended, perform any necessary actions here
     } else {
       remainingTime--
@@ -173,9 +173,27 @@ const addItem = async (title, id, removeThisId) => {
   location.reload()
 }
 
-const handleAddToCart = (index, name) => {
-  document.querySelectorAll('.upsellrow .btn-default a')[index].click()
+const handleAddToCart = async (id, name) => {
+  // document.querySelectorAll('.upsellrow .btn-default a')[index].click()
+
+  const response = await fetch("/cart/add.json", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Accept: "application/json",
+    },
+    body: JSON.stringify({
+      id,
+      quantity: 1,
+    }),
+  })
+  if (!response.ok) {
+    throw new Error(`Failed to add item to cart. ${response.status} ${response.statusText}`)
+  }
+
   sendGAEventNew('exp_bundle_cart_also_like_add', `Add to cart - ${name}`, 'Button', 'You may also like')
+
+  location.reload()
 }
 
 const waitForTimer = setInterval(() => {
@@ -242,6 +260,18 @@ if (window.location.pathname.includes('cart')) {
   const style = /*html*/`
   <style>
 
+
+  .may_like_only_inner {
+    max-width: 792px;
+    margin: 0 auto;
+    padding-bottom: 36px;
+  }
+
+  .may_like_only_inner .may_like {
+    margin: 0 !important;
+    box-shadow: none !important;
+    padding-top: 16px;
+  }
 
   .p10 {
     padding: 10px;
@@ -1173,9 +1203,9 @@ if (window.location.pathname.includes('cart')) {
       }
 
       .slide_in__timer p {
-font-size: 18px;
-font-weight: 700;
-line-height: 26px;
+        font-size: 18px;
+        font-weight: 700;
+        line-height: 26px;
       }
 
       .content_wrap {
@@ -1269,29 +1299,28 @@ line-height: 26px;
 
       .slide_in__bundle li > div div:last-child{
         display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: flex-end;
-    min-width: 43%;
-
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: flex-end;
+        min-width: 43%;
       }
 
       .slide_in__bundle p img {
         width: auto;
-    height: 100px;
-    object-fit: cover;
+        height: 100px;
+        object-fit: cover;
       }
 
       .slide_in__bundle p.item_product__price {
-margin: 0 0 6px 0 !important;
+        margin: 0 0 6px 0 !important;
       }
 
       .slide_in__bundle .btn-purple {
         font-size: 18px;
-font-weight: 700;
-line-height: 28px;
-letter-spacing: 1px;
-padding: 11px;
+        font-weight: 700;
+        line-height: 28px;
+        letter-spacing: 1px;
+        padding: 11px;
       }
 
       .slide_in__bundle .splitit_inner {
@@ -1304,18 +1333,18 @@ padding: 11px;
 
       .slide_in__shipping p {
         font-size: 14px;
-line-height: 15px;
-letter-spacing: 1.4px;
-text-transform: uppercase;
+        line-height: 15px;
+        letter-spacing: 1.4px;
+        text-transform: uppercase;
       }
 
       .slide_in__subtotal p:first-child {
         color: #252726;
-font-size: 16px;
-font-weight: 600;
-line-height: 15px;
-letter-spacing: 1.4px;
-text-transform: uppercase;
+        font-size: 16px;
+        font-weight: 600;
+        line-height: 15px;
+        letter-spacing: 1.4px;
+        text-transform: uppercase;
       }
 
       .slide_in__subtotal span {
@@ -1334,71 +1363,73 @@ text-transform: uppercase;
       }
 
       #custom_cart .garunteelogo h6 {
-    display: none;
-}
+          display: none;
+      }
 
-#custom_cart .garunteetext {
-    width: 100%;
-    padding-left: 15px;
-    margin: 0;
-}
+      #custom_cart .garunteetext {
+          width: 100%;
+          padding-left: 15px;
+          margin: 0;
+      }
 
-#custom_cart .garunteetext h6 {
-    display: block;
-    font-weight: 700;
-}
+      #custom_cart .garunteetext h6 {
+          display: block;
+          font-weight: 700;
+      }
 
-.may_like {
-  box-shadow: none;
-  margin: 40px 0 31px;
-}
+      .may_like {
+        box-shadow: none;
+        margin: 40px 0 31px;
+      }
 
-.may_like p.item_product__price {
-  margin: 12px 0 0;
-}
+      .may_like p.item_product__price {
+        margin: 12px 0 0;
+      }
 
-.may_like .item_product {
-  border: 1px solid #E2E2E2;
-background: #F5F5FD;
-}
+      .may_like .item_product {
+        border: 1px solid #E2E2E2;
+      background: #F5F5FD;
+      }
 
-.may_like h4 {
-font-size: 22px;
-font-weight: 700;
-line-height: 32px;
-}
+      .may_like h4 {
+      font-size: 22px;
+      font-weight: 700;
+      line-height: 32px;
+      }
 
-#custom_cart .garunteelogo img {
-  min-width: 77px;
-}
+      #custom_cart .garunteelogo img {
+        min-width: 77px;
+      }
 
-#custom_cart .garunteesec {
-  flex-wrap: nowrap;
-}
+      #custom_cart .garunteesec {
+        flex-wrap: nowrap;
+      }
 
-.slide_in__products .d-flex img + div {
-  width: 100%;
-}
+      .slide_in__products .d-flex img + div {
+        width: 100%;
+      }
 
-.item_product .inner_content {
-  display: flex;
-  flex-direction: row !important;
-  align-items: center;
-  justify-content: space-between !important;
-  gap: 10px;
-}
+      .item_product .inner_content {
+        display: flex;
+        flex-direction: row !important;
+        align-items: center;
+        justify-content: space-between !important;
+        gap: 10px;
+      }
 
-.item_product .add-to-cart {
-  max-width: 203px;
-  min-height: 50px;
-}
+      .item_product .add-to-cart {
+        max-width: 203px;
+        min-height: 50px;
+      }
 
-.may_like .d-flex > p,
-.item_product img {
-  margin-right: 20px !important;
-}
+      .may_like .d-flex > p,
+      .item_product img {
+        margin-right: 20px !important;
+      }
 
     }
+
+    
 
     /* .splitit-iframe-popup .single-option,
     .splitit-iframe-popup .single {
@@ -2256,11 +2287,7 @@ the United States</span>
         <span class="learn">Learn more</span>
       </div>
     </div>
-
-    </div>
-
-
-    
+    </div>    
   </div>
   
   `
@@ -2269,7 +2296,7 @@ the United States</span>
     <div id="custom_cart">
     <div class="slide_in__timer">
       <p hidden="true"><span class="c-purple">Save up to 50%</span> on bundles. Offer is reserved for <span id="timer"
-          class="c-purple">15:00:00</span></p>
+          class="c-purple">15:00</span></p>
       <p hidden="true">Yay! You just saved <span class="c-purple"></span></p>
     </div>
     <div class="content_wrap">
@@ -2308,20 +2335,20 @@ the United States</span>
   </div>
     `
 
-  let drawMayLikeUpsell = (img, name, oldPrice, currentPrice, index) => /*html*/`
+  let drawMayLikeUpsell = (img, name, oldPrice, currentPrice, id) => /*html*/`
 <li class="item_product">
   <div class="d-flex">
       <p><img src="${img}" alt="${name}"></p>
       <div>
           <p class="item_product__name">${name}</p>
           <p class="item_product__price"><span class="compare">${oldPrice}</span> <span class="pr c-purple fw-bold">${currentPrice}</span></p>
-          <button type="button" class="btn-purple add-to-cart" onclick="handleAddToCart(${index}, '${name}')">Add to cart</button>
+          <button type="button" class="btn-purple add-to-cart" onclick="handleAddToCart(${id}, '${name}')">Add to cart</button>
       </div>
   </div></li>
   `
 
   if (DEVICE === 'desktop') {
-    drawMayLikeUpsell = (img, name, oldPrice, currentPrice, index) => /*html*/`
+    drawMayLikeUpsell = (img, name, oldPrice, currentPrice, id) => /*html*/`
 <li class="item_product">
   <div class="d-flex">
       <p><img src="${img}" alt="${name}"></p>
@@ -2330,7 +2357,7 @@ the United States</span>
             <p class="item_product__name">${name}</p>
             <p class="item_product__price"><span class="compare">${oldPrice}</span> <span class="pr c-purple fw-bold">${currentPrice}</span></p>
           </div>
-          <button type="button" class="btn-purple add-to-cart" onclick="handleAddToCart(${index}, '${name}')">Add to cart</button>
+          <button type="button" class="btn-purple add-to-cart" onclick="handleAddToCart(${id}, '${name}')">Add to cart</button>
       </div>
 
   </div></li>
@@ -2672,8 +2699,8 @@ the United States</span>
     return str.substr(0, str.length - 2) + '.' + str.substr(str.length - 2, str.length)
   }
 
-  const drawCartItems = async () => {
-    const cart = await getCart()
+  const drawCartItems = async (data) => {
+    const cart = data
     const cartItems = cart.items
     const cartItemsLength = cartItems.length
 
@@ -2815,7 +2842,6 @@ the United States</span>
 
   const drawTotalPrices = () => {
     fetchCartData().then((data) => {
-
       const itemsCount = data.item_count // Shopping cart (2)
       const itemsLength = data.items.length
 
@@ -2823,6 +2849,7 @@ the United States</span>
         if (
           document.querySelectorAll('.slide_in__products .item_product__price .compare')[itemsLength - 1]
           && document.querySelectorAll('.slide_in__products .item_product__price .pr')[itemsLength - 1]
+          && typeof appikon?.discounts?.additional_discount_value !== 'undefined'
         ) {
           clearInterval(waitForElsPrice)
 
@@ -3073,15 +3100,31 @@ the United States</span>
     }
 
     if (document.querySelectorAll('.upsellrow').length > 0) {
+      let items = []
+
       document.querySelectorAll('.upsellrow').forEach((item, index) => {
         const img = item.querySelector('.upsellimg img')?.src
         const name = item.querySelector('.prodnamecart').innerText
         const oldPrice = item.querySelector('.upsellprice em').innerText
         const currPrice = item.querySelector('.upsellprice strong').innerText
-        const id = item.querySelector('[data-variant').dataset.variant
+        const id = item.querySelector('[data-variant]').dataset.variant
+
+        // Create an object with the item information
+        const itemInfo = {
+          id,
+          img,
+          name,
+          oldPrice,
+          currPrice,
+          index,
+        }
+
+        items.push(itemInfo)
+        // Save the updated items array to session storage
+        sessionStorage.setItem('mayLikeItems', JSON.stringify(items))
 
         if (!obj[id]) {
-          document.querySelector('.may_like ul').insertAdjacentHTML('beforeend', drawMayLikeUpsell(img, name, oldPrice, currPrice, index))
+          document.querySelector('.may_like ul').insertAdjacentHTML('beforeend', drawMayLikeUpsell(img, name, oldPrice, currPrice, id))
         }
       })
     }
@@ -3112,193 +3155,244 @@ the United States</span>
   // MAKE DOM CHANGES
   // -------------------------------------
 
-  waitForElement('.shopping_cart form div').then(() => {
-    document.head.insertAdjacentHTML('beforeend', style)
-    document.head.insertAdjacentHTML('beforeend', splititStyle)
-
-    if (DEVICE === 'desktop') {
-      waitForElement('#PageContainer main').then(el => el.insertAdjacentHTML('afterend', cartHTMLDesktop))
-    } else {
-      waitForElement('#PageContainer main').then(el => el.insertAdjacentHTML('afterend', cartHTML))
-    }
-
-    const waitForCart = setInterval(() => {
-      if (
-        document.querySelector('.slide_in__products')
-        && document.querySelector('.slide_in__discount')
-      ) {
-        clearInterval(waitForCart)
-
-        drawCartItems().then(() => drawTotalPrices())
-
-        // waitForElement('#apply-appikon-discount').then(() => {
-        if (appikon['discounts']['additional_discount_value'] != null && appikon['discounts']['additional_discount_value'] != 0) {
-          isCompleted = true
-        }
-
-        if (isCompleted == true) {
-          let completedIntervat = setInterval(() => {
-            if (appikon['discounts']['additional_discount_value'] != null && appikon['discounts']['additional_discount_value'] != 0) {
-              clearInterval(completedIntervat)
-              new Discount(document.querySelector('.slide_in__discount'), true).render()
+  getCart().then((data) => {
+    if (data.items.length > 0) {
+      waitForElement('.shopping_cart form div').then(() => {
+        document.head.insertAdjacentHTML('beforeend', style)
+        document.head.insertAdjacentHTML('beforeend', /*html*/`
+        <style>
+          @media only screen and (max-width:768px) {
+            #PageContainer {
+                padding-bottom: 170px;
             }
-          }, 200)
+          }
+        </style>
+        `)
+        document.head.insertAdjacentHTML('beforeend', splititStyle)
+
+        if (DEVICE === 'desktop') {
+          waitForElement('#PageContainer main').then(el => el.insertAdjacentHTML('afterend', cartHTMLDesktop))
         } else {
-          let notCompletedIntervat = setInterval(() => {
-            if (appikon['discounts']['additional_discount_value'] == null || appikon['discounts']['additional_discount_value'] == 0) {
-              clearInterval(notCompletedIntervat)
-              new Discount(document.querySelector('.slide_in__discount'), false).render()
-            }
-          }, 200)
-        }
-        // })
-
-        // drawMayLike()
-
-        if (DEVICE === 'mobile') {
-          splititLogicFixed()
+          waitForElement('#PageContainer main').then(el => el.insertAdjacentHTML('afterend', cartHTML))
         }
 
-        document.body.insertAdjacentHTML('beforeend', splititPopup)
-      }
-    }, WAIT_INTERVAL_TIMEOUT)
+        const waitForCart = setInterval(() => {
+          if (
+            document.querySelector('.slide_in__products')
+            && document.querySelector('.slide_in__discount')
+          ) {
+            clearInterval(waitForCart)
 
-    // splitit
-    const waitForSplitit = setInterval(() => {
-      if (
-        document.getElementById('custom_cart')
-        && document.querySelector('.splitit_popup_container .top')
-        && document.querySelector('.calculations_container')
-        && document.querySelectorAll('.close_splitit')[1]
-      ) {
-        clearInterval(waitForSplitit)
+            drawCartItems(data).then(() => drawTotalPrices())
 
-        document.getElementById('custom_cart').addEventListener('click', (e) => {
-          if (e.target.matches('span.learn')) {
-            let totalPrice = ''
+            const waitForAppikonDiscountVar = setInterval(() => {
+              if (typeof appikon?.discounts?.additional_discount_value !== 'undefined') {
+                clearInterval(waitForAppikonDiscountVar)
+                // waitForElement('#apply-appikon-discount').then(() => {
+                if (appikon['discounts']['additional_discount_value'] != null && appikon['discounts']['additional_discount_value'] != 0) {
+                  isCompleted = true
+                }
 
-            if (e.target.closest('.slide_in__bundle')) {
-              totalPrice = document.querySelector('.slide_in__bundle .pr').innerText
-            } else {
-              totalPrice = document.querySelector('.slide_in__subtotal .pr').innerText
+                if (isCompleted == true) {
+                  let completedIntervat = setInterval(() => {
+                    if (appikon['discounts']['additional_discount_value'] != null && appikon['discounts']['additional_discount_value'] != 0) {
+                      clearInterval(completedIntervat)
+                      new Discount(document.querySelector('.slide_in__discount'), true).render()
+                    }
+                  }, 200)
+                } else {
+                  let notCompletedIntervat = setInterval(() => {
+                    if (appikon['discounts']['additional_discount_value'] == null || appikon['discounts']['additional_discount_value'] == 0) {
+                      clearInterval(notCompletedIntervat)
+                      new Discount(document.querySelector('.slide_in__discount'), false).render()
+                    }
+                  }, 200)
+                }
+                // })
+              }
+            }, WAIT_INTERVAL_TIMEOUT)
+
+            if (DEVICE === 'mobile') {
+              splititLogicFixed()
             }
 
-            document.querySelector('.top [data-price] span').innerText = dividePriceInto6Payments(totalPrice)[0] + ' /month'
-            document.querySelector('.total [data-price] span').innerText = totalPrice
+            document.body.insertAdjacentHTML('beforeend', splititPopup)
+          }
+        }, WAIT_INTERVAL_TIMEOUT)
 
-            document.querySelectorAll('.payments [data-price] span').forEach((span, index) => {
-              span.innerText = dividePriceInto6Payments(totalPrice)[index]
+        // splitit
+        const waitForSplitit = setInterval(() => {
+          if (
+            document.getElementById('custom_cart')
+            && document.querySelector('.splitit_popup_container .top')
+            && document.querySelector('.calculations_container')
+            && document.querySelectorAll('.close_splitit')[1]
+          ) {
+            clearInterval(waitForSplitit)
+
+            document.getElementById('custom_cart').addEventListener('click', (e) => {
+              if (e.target.matches('span.learn')) {
+                let totalPrice = ''
+
+                if (e.target.closest('.slide_in__bundle')) {
+                  totalPrice = document.querySelector('.slide_in__bundle .pr').innerText
+                } else {
+                  totalPrice = document.querySelector('.slide_in__subtotal .pr').innerText
+                }
+
+                document.querySelector('.top [data-price] span').innerText = dividePriceInto6Payments(totalPrice)[0] + ' /month'
+                document.querySelector('.total [data-price] span').innerText = totalPrice
+
+                document.querySelectorAll('.payments [data-price] span').forEach((span, index) => {
+                  span.innerText = dividePriceInto6Payments(totalPrice)[index]
+                })
+
+                document.querySelector('.splitit_overlay').classList.add('opened_splitit_popup')
+              }
             })
 
-            document.querySelector('.splitit_overlay').classList.add('opened_splitit_popup')
+            const closeSplititPopup = () => {
+              document.querySelector('.splitit_overlay').classList.remove('opened_splitit_popup')
+              sendGAEventNew('exp_bundle_cart_splitit_popup_close', 'Close', 'Event', 'Splitit Popup')
+            }
+
+            document.querySelector('.splitit_overlay').addEventListener('click', function (event) {
+              // check if the clicked element is not inside the popup container
+              if (!document.querySelector('.splitit_popup_container').contains(event.target) && document.querySelector('.opened_splitit_popup')) {
+                // remove the "opened_splitit_popup" class from the popup container
+                closeSplititPopup()
+              }
+            })
+
+            document.querySelector('.splitit_popup_container button').addEventListener('click', function (event) {
+              closeSplititPopup()
+            })
+
+            if (DEVICE === 'mobile') {
+              document.querySelector('.splitit_popup_container .top').addEventListener('click', () => {
+                document.querySelector('.calculations_container').classList.add('opened_this')
+                // sendGAEvent('Click on payments', 'Splitit popup')
+              })
+            }
+
+            for (const close of document.querySelectorAll('.close_splitit')) {
+              close.addEventListener('click', () => {
+                closeSplititPopup()
+              })
+            }
           }
-        })
+        }, WAIT_INTERVAL_TIMEOUT)
 
-        const closeSplititPopup = () => {
-          document.querySelector('.splitit_overlay').classList.remove('opened_splitit_popup')
-          sendGAEventNew('exp_bundle_cart_splitit_popup_close', 'Close', 'Event', 'Splitit Popup')
-        }
+        const waitForHighlight = setInterval(() => {
+          if (document.querySelectorAll('.slide_in__timer p')[1]) {
+            clearInterval(waitForHighlight)
 
-        document.querySelector('.splitit_overlay').addEventListener('click', function (event) {
-          // check if the clicked element is not inside the popup container
-          if (!document.querySelector('.splitit_popup_container').contains(event.target) && document.querySelector('.opened_splitit_popup')) {
-            // remove the "opened_splitit_popup" class from the popup container
-            closeSplititPopup()
+            checkVisibility(
+              document.querySelector('.slide_in__timer p'),
+              'exp_bundle_cart_save_50_v',
+              'Save up to 50% on bundles',
+              'Visibility or Hover',
+              'Highlight',
+            )
+            checkVisibility(document.querySelector('.slide_in__timer p + p'),
+              'exp_bundle_cart_yay_v',
+              'Yay! You just saved',
+              'Visibility or Hover',
+              'Highlight',
+            )
           }
-        })
+        }, WAIT_INTERVAL_TIMEOUT)
 
-        document.querySelector('.splitit_popup_container button').addEventListener('click', function (event) {
-          closeSplititPopup()
-        })
+        const waitForTotalCheckout = setInterval(() => {
+          if (
+            document.querySelector('.slide_in__total .splitit_wrap a')
+            && document.querySelector('.slide_in__total .learn')
+          ) {
+            clearInterval(waitForTotalCheckout)
+
+            checkVisibility(document.querySelector('.slide_in__total .splitit_wrap'),
+              'exp_bundle_cart_checkoutsub_v',
+              'Checkout',
+              'Visibility or Hover',
+              'New checkout section under subtotal'
+            )
+
+            document.querySelector('.slide_in__total .splitit_wrap a').addEventListener('click', () => {
+              sendGAEventNew('exp_bundle_cart_checkoutsub_b', 'Checkout', 'Button', 'New checkout section under subtotal')
+            })
+
+            document.querySelector('.slide_in__total .learn').addEventListener('click', () => {
+              sendGAEventNew('exp_bundle_cart_checkoutsub_lm', 'Learn more', 'Button', 'New checkout section under subtotal')
+            })
+          }
+        }, WAIT_INTERVAL_TIMEOUT)
 
         if (DEVICE === 'mobile') {
-          document.querySelector('.splitit_popup_container .top').addEventListener('click', () => {
-            document.querySelector('.calculations_container').classList.add('opened_this')
-            // sendGAEvent('Click on payments', 'Splitit popup')
-          })
+          const waitForFixedCheckout = setInterval(() => {
+            if (
+              document.querySelector('.splitit_fixed a')
+              && document.querySelector('.splitit_fixed .learn')
+              && document.querySelector('#custom_cart .garunteesec + .splitit_inner .learn')
+            ) {
+              clearInterval(waitForFixedCheckout)
+
+              checkVisibility(document.querySelector('.splitit_fixed'),
+                'exp_bundle_cart_checkoutst_v',
+                'Checkout',
+                'Visibility or Hover',
+                'New checkout stiky section'
+              )
+
+              document.querySelector('.splitit_fixed a').addEventListener('click', () => {
+                sendGAEventNew('exp_bundle_cart_checkoutst_b', `Checkout - ${getScrollDepth()}`, 'Button', 'New checkout stiky section')
+              })
+
+              document.querySelector('.splitit_fixed .learn').addEventListener('click', () => {
+                sendGAEventNew('exp_bundle_cart_checkoutst_lm', 'Learn more', 'Button', 'New checkout stiky section')
+              })
+
+              document.querySelector('#custom_cart .garunteesec + .splitit_inner .learn').addEventListener('click', () => {
+                sendGAEventNew('exp_bundle_cart_under_guarantee_lm', 'Learn more', 'Button', 'New checkout section under guarantee')
+              })
+            }
+          }, WAIT_INTERVAL_TIMEOUT)
         }
+      })
+    } else {
 
-        for (const close of document.querySelectorAll('.close_splitit')) {
-          close.addEventListener('click', () => {
-            closeSplititPopup()
-          })
-        }
-      }
-    }, WAIT_INTERVAL_TIMEOUT)
+      if (sessionStorage.getItem('mayLikeItems')) {
+        document.head.insertAdjacentHTML('beforeend', style)
 
-    const waitForHighlight = setInterval(() => {
-      if (document.querySelectorAll('.slide_in__timer p')[1]) {
-        clearInterval(waitForHighlight)
+        const items = JSON.parse(sessionStorage.getItem('mayLikeItems'))
+        let itemsHTML = ''
 
-        checkVisibility(
-          document.querySelector('.slide_in__timer p'),
-          'exp_bundle_cart_save_50_v',
-          'Save up to 50% on bundles',
-          'Visibility or Hover',
-          'Highlight',
-        )
-        checkVisibility(document.querySelector('.slide_in__timer p + p'),
-          'exp_bundle_cart_yay_v',
-          'Yay! You just saved',
-          'Visibility or Hover',
-          'Highlight',
-        )
-      }
-    }, WAIT_INTERVAL_TIMEOUT)
-
-    const waitForTotalCheckout = setInterval(() => {
-      if (
-        document.querySelector('.slide_in__total .splitit_wrap a')
-        && document.querySelector('.slide_in__total .learn')
-      ) {
-        clearInterval(waitForTotalCheckout)
-
-        checkVisibility(document.querySelector('.slide_in__total .splitit_wrap'),
-          'exp_bundle_cart_checkoutsub_v',
-          'Checkout',
-          'Visibility or Hover',
-          'New checkout section under subtotal'
-        )
-
-        document.querySelector('.slide_in__total .splitit_wrap a').addEventListener('click', () => {
-          sendGAEventNew('exp_bundle_cart_checkoutsub_b', 'Checkout', 'Button', 'New checkout section under subtotal')
+        items.forEach(({ id, img, name, oldPrice, currPrice }) => {
+          itemsHTML = itemsHTML + drawMayLikeUpsell(img, name, oldPrice, currPrice, id)
         })
 
-        document.querySelector('.slide_in__total .learn').addEventListener('click', () => {
-          sendGAEventNew('exp_bundle_cart_checkoutsub_lm', 'Learn more', 'Button', 'New checkout section under subtotal')
-        })
-      }
-    }, WAIT_INTERVAL_TIMEOUT)
+        waitForElement('#PageContainer main').then(el => el.insertAdjacentHTML('afterend', /*html*/`
+            <div id="custom_cart">
+              <div class="may_like_only_inner">
+                <div class="slide_in__header">
+                  <p>Shopping cart</p>
+                </div>
+                <div class="may_like">
+                  <h4 class="fw-semi">You may also like</h4>
+                  <ul>${itemsHTML}</ul>
+                </div>
+              </div>
+            </div>
+        `))
 
-    if (DEVICE === 'mobile') {
-      const waitForFixedCheckout = setInterval(() => {
-        if (
-          document.querySelector('.splitit_fixed a')
-          && document.querySelector('.splitit_fixed .learn')
-          && document.querySelector('#custom_cart .garunteesec + .splitit_inner .learn')
-        ) {
-          clearInterval(waitForFixedCheckout)
-
-          checkVisibility(document.querySelector('.splitit_fixed'),
-            'exp_bundle_cart_checkoutst_v',
-            'Checkout',
+        waitForElement('.may_like').then((el) => {
+          checkVisibility(el,
+            'exp_bundle_cart_also_like_v',
+            'You may also like',
             'Visibility or Hover',
-            'New checkout stiky section'
+            'You may also like'
           )
-
-          document.querySelector('.splitit_fixed a').addEventListener('click', () => {
-            sendGAEventNew('exp_bundle_cart_checkoutst_b', `Checkout - ${getScrollDepth()}`, 'Button', 'New checkout stiky section')
-          })
-
-          document.querySelector('.splitit_fixed .learn').addEventListener('click', () => {
-            sendGAEventNew('exp_bundle_cart_checkoutst_lm', 'Learn more', 'Button', 'New checkout stiky section')
-          })
-
-          document.querySelector('#custom_cart .garunteesec + .splitit_inner .learn').addEventListener('click', () => {
-            sendGAEventNew('exp_bundle_cart_under_guarantee_lm', 'Learn more', 'Button', 'New checkout section under guarantee')
-          })
-        }
-      }, WAIT_INTERVAL_TIMEOUT)
+        })
+      }
     }
   })
 } else {
@@ -3593,7 +3687,7 @@ the United States</span>
    <div class="offer">
     <div class="offer_header">
       <p>Personalized offer is reserved for:</p>
-      <span id="timer">15:00:00</span>
+      <span id="timer">15:00</span>
     </div>
     <div class="offer_body">
       <p class="username">Exclusive offer only for you, <span>${name}</span></p>
@@ -3640,7 +3734,7 @@ the United States</span>
    <div class="offer">
     <div class="offer_header">
       <p>Personalized offer is reserved for:</p>
-      <span id="timer">15:00:00</span>
+      <span id="timer">15:00</span>
     </div>
     <div class="offer_body">
       <p class="username">Exclusive offer only for you, <span>${name}</span></p>
