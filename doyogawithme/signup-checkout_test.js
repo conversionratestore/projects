@@ -935,7 +935,7 @@ function init() {
 
                         if (parent.querySelector('label')) {
                             pushDataLayer(`exp_ch_pl_page_input_${getLoc(e)[0]}`, `Click on ${parent.querySelector('label').innerText}`, 'Input', getLoc(e)[1]);
-                        } else if (parent.tagName == 'LABEL') {
+                        } else if (parent.tagName == 'LABEL' && !parent.classList.contains('remember-me')) {
                             pushDataLayer(`exp_ch_pl_page_input_${getLoc(e)[0]}`, `Click on ${parent.innerText}`, 'Input', getLoc(e)[1]);
                         }  else if (parent.classList.contains('remember-me')) {
                             pushDataLayer('exp_ch_pl_page_rem_ch', 'Remember me', 'Checkbox', 'Log in form');
