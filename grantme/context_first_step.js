@@ -304,7 +304,7 @@ if (window.location.pathname === "/grantme-program-assessment") {
                     margin: 0 auto;
                     padding-bottom: 30px;
                 }
-                .navbar-top .navbar-header .region.region-navigation{
+                .navbar-top .navbar-header .region.region-navigation.is_logo{
                     margin: 0 auto;
                 }
                 #edit-processed-text-15 .seqq-row {
@@ -781,7 +781,7 @@ if (window.location.pathname === "/scholarship-eligibility-quiz") {
                     margin: 0 auto;
                     padding-bottom: 30px;
                 }
-                .navbar-top .navbar-header .region.region-navigation{
+                .navbar-top .navbar-header .region.region-navigation.is_logo{
                     margin: 0 auto;
                 }
                 #edit-are-you-a-current-student- h4.quiz-question{
@@ -847,6 +847,7 @@ if (window.location.pathname === "/scholarship-eligibility-quiz") {
 
       document.head.insertAdjacentHTML("beforeend", newStyle);
       document.querySelector("#edit-are-you-a-current-student- h4.quiz-question").insertAdjacentHTML("beforebegin", htmlFirst);
+      document.querySelector(".navbar-top .navbar-header .region.region-navigation").classList.add("is_logo");
       document.querySelector("#edit-processed-text-15").insertAdjacentHTML("beforebegin", htmlSecond);
       document.querySelector("#edit-processed-text-15 .seqq-img figcaption p:nth-child(2)").textContent = "Founder & COO";
 
@@ -864,12 +865,18 @@ if (window.location.pathname === "/scholarship-eligibility-quiz") {
                 document.querySelector(".quiz-title").style.display = "block";
                 document.querySelector(".path-scholarship-eligibility-quiz .webform-progress").style.display = "table";
                 document.querySelector(".path-scholarship-eligibility-quiz .back-button-wrapper").style.display = "block";
+                if (document.querySelector(".navbar-top .navbar-header .region.region-navigation").classList.contains("is_logo")) {
+                  document.querySelector(".navbar-top .navbar-header .region.region-navigation").classList.remove("is_logo");
+                }
               }, 250);
             } else {
               setTimeout(() => {
                 document.querySelector(".quiz-title").style.display = "block";
                 document.querySelector(".path-scholarship-eligibility-quiz .webform-progress").style.display = "table";
                 document.querySelector(".path-scholarship-eligibility-quiz .back-button-wrapper").style.display = "block";
+                if (document.querySelector(".navbar-top .navbar-header .region.region-navigation").classList.contains("is_logo")) {
+                  document.querySelector(".navbar-top .navbar-header .region.region-navigation").classList.remove("is_logo");
+                }
               }, 10);
             }
           }
@@ -890,6 +897,9 @@ if (window.location.pathname === "/scholarship-eligibility-quiz") {
             document.querySelector(".quiz-title").style.display = "none";
             document.querySelector(".path-scholarship-eligibility-quiz .webform-progress").style.display = "none";
             document.querySelector(".path-scholarship-eligibility-quiz .back-button-wrapper").style.display = "none";
+            if (!document.querySelector(".navbar-top .navbar-header .region.region-navigation").classList.contains("is_logo")) {
+              document.querySelector(".navbar-top .navbar-header .region.region-navigation").classList.add("is_logo");
+            }
           }
         }, 10);
       });
