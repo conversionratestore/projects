@@ -491,7 +491,7 @@ input[type="checkbox"]:checked ~ .check {
         margin: 20px 0;
     }
     #block-userloginregistertabs--2 {
-        margin: 0;
+        margin: 0!important;
     }
 }
 @media only screen and (max-width: 360px) {
