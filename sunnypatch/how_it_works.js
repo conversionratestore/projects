@@ -23,6 +23,16 @@ let startF = setInterval(() => {
 
     let styleVar = /*html */ `
     <style>
+      .new_sub_title{
+        font-size: 20px!important;
+        line-height: 20px!important;
+        font-weight: 500;
+        margin-bottom: 20px;
+        position: relative;
+      }
+      #purchase .js-heading>h2{
+        margin-bottom: 10px !important;
+      }
       body #purchase .form-horizontal,
       body .img-purchase{
         display: block !important;
@@ -443,6 +453,7 @@ let startF = setInterval(() => {
     }
 
     document.head.insertAdjacentHTML("beforeend", styleVar);
+    document.querySelector("#purchase .js-heading>h2").insertAdjacentHTML("afterend", `<p class='new_sub_title'>24 patches in 1 pack</p>`);
     document.querySelector(".js-iphone .js-heading.js-mobile h1").innerHTML = "Stay Sun-Safe: Your <br/> UV-Detection Buddy for <br/> Reapplying Sunscreen";
     document.querySelector("header .header-shipping #open").textContent = "get it now";
     document.querySelector(".yellow-wave h5.text-green").textContent = "Reapply Sunscreen with Confidence";
