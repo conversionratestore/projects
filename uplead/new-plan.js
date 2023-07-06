@@ -2,6 +2,12 @@ let dir = 'https://conversionratestore.github.io/projects/uplead';
 // toggle active
 let toggleActive = (selector) => selector.classList.toggle('active')
 
+//calendly widget
+let scriptCalendly = document.createElement('script');
+scriptCalendly.type = 'text/javascript';
+scriptCalendly.async = true;
+scriptCalendly.src = 'https://assets.calendly.com/assets/external/widget.js';
+
 //get state
 const state = new Promise((resolve, reject) => {
     fetch(`${dir}/state.json`).then(res => res.json()).then(data => {
@@ -205,7 +211,7 @@ b {
     color: #69727A;
 }
 .block_consultants {
-    margin
+    margin: 0 -20px;
 }
 p.error-message {
     position: absolute;
@@ -395,23 +401,29 @@ p.error-message {
 }
 /* button */
 .btn_submit {
+    border-radius: 100px;
     background: #00A2BB;
-    border-radius: 60px;
     border: none;
-    font-weight: 700;
-    font-size: 16px;
-    line-height: 50px;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 58px;
     text-align: center;
-    text-transform: capitalize;
     color: #FFFFFF;
     width: 100%;
     padding: 0;
+    max-width: 250px;
+}
+.btn_submit.btn_book {
+    line-height: 40px;
+    max-width: 220px;
 }
 .tooltip {
     height: fit-content;
     display: flex;
     border: none;
     margin-left: 4px;
+    position: relative;
 }
 .tooltip .tooltiptext {
     position: absolute;
@@ -427,6 +439,10 @@ p.error-message {
     width: 226px;
     text-align: left;
     z-index: 3;
+    visibility: hidden;
+}
+.tooltip:hover .tooltiptext {
+    visibility: visible;
 }
 .tooltip .tooltiptext:after {
     content: '';
@@ -438,6 +454,54 @@ p.error-message {
     border-style: solid;
     border-width: 9px 7.5px 0 7.5px;
     border-color: #00A2BB transparent transparent transparent;
+}
+/* popup */
+.overflow-bg {
+    background: rgba(38, 41, 44, 0.3);
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100vh;
+    z-index: 9999;
+    width: 100%;
+    height: 100vh;
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.2s ease;
+}
+.popup {
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -30%);
+    overflow-y: auto;
+    padding: 56px 55px 40px;
+    background: #fff;
+    z-index: 99999;
+    border-radius: 16px;
+    border: 1px solid #E1EBEE;
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.2s ease;
+    width: 500px;
+    box-shadow: 0px 14px 44px 0px rgba(0, 162, 187, 0.04), 0px -2px 4px 0px rgba(9, 29, 48, 0.02), 0px 2px 8px 0px rgba(9, 29, 48, 0.02), 0px 19px 44px 0px rgba(9, 29, 48, 0.02);
+}
+.popup.active, .overflow-bg.active {
+    opacity: 1;
+    pointer-events: auto;
+}
+.popup.active {
+    transform: translate(-50%,-50%);
+}
+.btn-close {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    padding: 5px;
+    width: 24px;
+    height: 24px;
+    cursor: pointer;
 }
 /* flex */
 .d-flex {
@@ -506,11 +570,6 @@ p.error-message {
 }
 .underline {
     text-decoration: underline;
-}
-.mx-auto {
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
 }
 .mr-auto {
     margin-right: auto!important;
@@ -996,17 +1055,18 @@ if (window.location.href == '')  { // new team solution page
             
         }
         return `
-            <div class="item-plan ${selected} ${active}">
+            <div class="item-plan ${selected} ${active}" >
+                ${active != '' ? '<div class="item-plan_popular">Most Popular</div>': ''}
                 <div class="item-plan_top text-center">${topText}</div>
                 <div class="item-plan_container">
                     <div class="item-plan_head">
                         <h3 class="item-plan_title text-center">${title}</h3>
                         <p class="item-plan_span text-center">${spanText}</p>
                     </div>
-                    <a href="#" class="btn-plan">${btnName}</a>
+                    <a href="#" class="btn-plan">${selected != '' ? 'Current Plan' : btnName}</a>
                     <div class="item-plan_info text-center">${info}</div>
                     <ul class="item-plan_includes"> ${list}</ul>
-                    <a href="#" class="btn-plan">${btnName}</a>
+                    <a href="#" class="btn-plan">${selected != '' ? 'Current Plan' : btnName}</a>
                     <a href="Complete Feature List" class="btn-show-list flex-center">Show Complete Feature List 
                         <svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M7.27978 14.2998L0.328735 7.2998L1.54517 6.05293L6.4109 10.9529V0.299805H8.14867V10.9529L13.0144 6.05293L14.2308 7.2998L7.27978 14.2998Z" fill="#091D30"/>
@@ -1080,7 +1140,7 @@ if (window.location.href == '')  { // new team solution page
 
     </style>
     <div class="book_demo active">
-        <div class="container d-flex">
+        <div class="container d-flex items-center">
             <div class="left">
                 <h2>Supercharge Your Team's Sales <span class="text-nowrap">Pipeline with</span> UpLead</h2>
                 <p>Book a demo and experience UpLead's impact on your team</p>
@@ -1152,18 +1212,42 @@ if (window.location.href == '')  { // new team solution page
             if (window.location.href.includes('https://app.uplead.com/plans')) {
                 document.querySelector('.accountPlans__plans-list').innerHTML = '';
                 document.querySelector('.accountPlans__plans-list').classList.add('plans', 'd-flex', 'flex-wrap', 'justify-between');
-                document.body.insertAdjacentHTML('beforeend', bookDemoHtml)
+              
+                document.body.insertAdjacentHTML('beforeend', `
+                <div class="overflow-bg"></div>
+                <div class="popup">
+                    <svg class="btn-close" width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M13 13L1 1M13 1L1 13" stroke="#091D30" stroke-width="2" stroke-linejoin="round"/>
+                    </svg>
+                    <h2>UpLead Product Demo</h2>
+                    <div class="block_calendly"></div>
+                    <div class="flex-center block_call">
+                        <svg style="flex-shrink:0;" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M12 0C9.62664 0 7.30656 0.7038 5.33316 2.02236C3.35976 3.34092 1.82172 5.21508 0.913436 7.40778C0.005216 9.60054 -0.232444 12.0133 0.230576 14.3411C0.693596 16.6688 1.83648 18.8071 3.51474 20.4853C5.19294 22.1635 7.33116 23.3064 9.65892 23.7694C11.9867 24.2324 14.3995 23.9948 16.5922 23.0866C18.7849 22.1783 20.6591 20.6402 21.9776 18.6668C23.2962 16.6934 24 14.3734 24 12C23.9966 8.81844 22.7312 5.76822 20.4815 3.51852C18.2318 1.26882 15.1816 0.00342 12 0ZM12 19C11.7034 19 11.4133 18.912 11.1667 18.7472C10.92 18.5824 10.7277 18.3481 10.6142 18.074C10.5007 17.8 10.471 17.4983 10.5288 17.2073C10.5867 16.9164 10.7296 16.6491 10.9393 16.4393C11.1491 16.2296 11.4164 16.0867 11.7074 16.0288C11.9983 15.9709 12.2999 16.0006 12.574 16.1142C12.8481 16.2277 13.0824 16.42 13.2472 16.6666C13.412 16.9133 13.5 17.2033 13.5 17.5C13.5 17.8978 13.342 18.2794 13.0607 18.5606C12.7793 18.842 12.3978 19 12 19ZM13.6 12.92C13.4216 12.9979 13.2698 13.1261 13.1632 13.289C13.0567 13.4519 12.9999 13.6423 13 13.837C13 14.1022 12.8947 14.3566 12.7071 14.5441C12.5196 14.7316 12.2652 14.837 12 14.837C11.7348 14.837 11.4805 14.7316 11.2929 14.5441C11.1053 14.3566 11 14.1022 11 13.837C10.9999 13.2532 11.1702 12.682 11.4899 12.1936C11.8096 11.7051 12.265 11.3205 12.8 11.087C13.1305 10.9427 13.4159 10.7118 13.6259 10.4186C13.8359 10.1255 13.9627 9.78096 13.993 9.42162C14.0232 9.06228 13.9557 8.70144 13.7977 8.37732C13.6396 8.0532 13.3968 7.7778 13.095 7.58034C12.7933 7.38294 12.4437 7.27074 12.0834 7.25568C11.7231 7.24068 11.3654 7.32336 11.0482 7.49496C10.7311 7.66656 10.4662 7.92072 10.2817 8.23056C10.0972 8.5404 9.99984 8.8944 10 9.255C10 9.5202 9.89466 9.77454 9.7071 9.9621C9.5196 10.1497 9.2652 10.255 9 10.255C8.7348 10.255 8.48046 10.1497 8.2929 9.9621C8.10534 9.77454 7.99998 9.5202 7.99998 9.255C7.99998 8.53386 8.19492 7.8261 8.56422 7.20666C8.93352 6.58722 9.46338 6.07914 10.0978 5.73618C10.7322 5.39322 11.4475 5.22816 12.1681 5.25846C12.8885 5.28876 13.5875 5.51328 14.1908 5.90826C14.7943 6.3033 15.2796 6.85404 15.5956 7.50228C15.9116 8.15052 16.0464 8.87214 15.9859 9.59076C15.9253 10.3094 15.6716 10.9982 15.2516 11.5845C14.8316 12.1708 14.261 12.6325 13.6 12.921V12.92Z" fill="#00A2BB"></path>
+                        </svg>
+                        <span>Need a demo sooner? <br class="d-xl-none d-flex">Call Jeremy Perez: <a href="tel:8106237427">(810) 623-7427</a></span>
+                    </div>
+                    <div class="flex-center block_consultants">
+                        <img src="${dir}/img/group-consultants-2.svg" alt="image">
+                        <span>Our product consultants are ready <span class="text-nowrap">to help you</span></span>
+                    </div>
+                </div>`)
+                document.querySelector('.overflow-bg', '.btn-close').addEventListener('click', (e) => {
+                    toggleActive(document.querySelector('.popup'));
+                    toggleActive(document.querySelector('.overflow-bg'));
+                })
             }
 
             document.body.insertAdjacentHTML('afterbegin',`
             
             <style>
-            .accountPlans__monthlyPlans-link {
+            .accountPlans__monthlyPlans-link, .accountPlans__plans-list .item-plan_top {
                 display: none;
             }
             .plans {
                 max-width: 1085px;
                 margin: 25px auto;
+                gap: initial;
             }
             .item-plan {
                 margin: 25px 36px 25px 0;
@@ -1171,6 +1255,7 @@ if (window.location.href == '')  { // new team solution page
                 border-radius: 16px;
                 border: 1px solid #E1EBEE;
                 background: #FFF;
+                position: relative;
             }
             .item-plan:last-child {
                 margin-right: 0;
@@ -1196,6 +1281,31 @@ if (window.location.href == '')  { // new team solution page
             }
             .item-plan.selected  {
                 pointer-events: none;
+            }
+            .item-plan.selected {
+                background: transparent;
+            }
+            .item-plan.selected .btn-plan {
+                background: #DEE0E6;
+                border-color: #DEE0E6;
+                color: #69727A;
+            }
+            .item-plan_popular {
+                border-radius: 40px;
+                border: 1px solid #00A2BB;
+                background: #F0FBF8;
+                padding: 8px 24px;
+                font-size: 14px;
+                line-height: 24px;
+                position: absolute;
+                z-index: 2;
+                top: -14px;
+                left: 50%;
+                transform: translateX(-50%);
+                display: none;
+            }
+            .accountPlans__plans-list .item-plan_popular {
+                display: block;
             }
             .item-plan.active .item-plan_title,  .item-plan.active .item-plan_span {
                 color: #fff;
@@ -1243,6 +1353,9 @@ if (window.location.href == '')  { // new team solution page
                 background: #00A2BB;
                 height: 156px;
                 z-index: -1;
+            }
+            .accountPlans__plans-list .item-plan.active .item-plan_head:before {
+                border-radius: 16px 16px 0 0;
             }
             .item-plan_info {
                 padding-bottom: 20px;
@@ -1300,6 +1413,10 @@ if (window.location.href == '')  { // new team solution page
             }
           
             </style>`)
+
+            //add calendly script
+            document.body.appendChild(scriptCalendly)
+
             for (let i = 0; i < plansObj.length; i++) {
                 let active = ''
                 let selected = '';
@@ -1312,12 +1429,31 @@ if (window.location.href == '')  { // new team solution page
                
                     
                 document.querySelector('.plans').insertAdjacentHTML('beforeend', 
-                    itemPlans(plansObj[i].top, plansObj[i].title, plansObj[i].titleSpan, plansObj[i].nameBtn, plansObj[i].info, plansObj[i].includes, selected, active))
+                    itemPlans(plansObj[i].top, plansObj[i].title, plansObj[i].titleSpan, plansObj[i].nameBtn, plansObj[i].info, plansObj[i].includes, selected, active)
+                )
                 
             
                 document.querySelectorAll('.btn-show-list')[i].addEventListener('click', (e) => {
                     e.preventDefault()
                     document.querySelector('html').scrollTop = document.querySelector(`.feature-list-section`).offsetTop + window.innerHeight;
+                })
+                document.querySelectorAll('.item-plan')[i].querySelectorAll('.btn-plan').forEach(item => {
+                    item.addEventListener('click', (e) => {
+                        if (i == 1 && window.location.href == 'https://www.uplead.com/pricing/') {
+                            toggleActive(document.querySelector('.book_demo'));
+                            document.querySelector('.pricing-section').style.display = 'none';
+                            document.querySelector('.ast-container').style.display = 'none';
+                        } else if ((i == 1 || i == 2) && window.location.href.includes('https://app.uplead.com/plans')) {
+                            toggleActive(document.querySelector('.popup'));
+                            toggleActive(document.querySelector('.overflow-bg'));
+                            document.querySelector('.block_calendly').style = `position:initial; opacity:1;pointer-events:auto;height:510px;`;
+               
+                            window.Calendly.initInlineWidget({
+                                url: `https://calendly.com/upleadhq/phone-call/?hide_event_type_details=1&hide_gdpr_banner=1`,
+                                parentElement: document.querySelector(".block_calendly")
+                            })
+                        }
+                    })
                 })
             }
         }
@@ -1397,6 +1533,7 @@ if (window.location.href == '')  { // new team solution page
         margin: 0!important;
         text-align: center;
         border-left: 1px solid #CFE9EE;
+        background: #fff;
     }
     .sticky-head_item:first-child {
         border: none;
@@ -1404,15 +1541,26 @@ if (window.location.href == '')  { // new team solution page
     .feature-list .sticky-head_item:last-child {
         border-right: 1px solid #CFE9EE;
     }
-    .sticky-head {
+    .sticky-head .sticky-head_item:last-child {
+        border-radius: 0 16px 0 0;
         border: 1px solid #CFE9EE;
-        border-radius: 16px 16px 0 0;
-        margin-left: auto;
-        width: fit-content;
-        background: #fff;
+    }
+    .sticky-head .sticky-head_item:first-child {
+        border-radius: 16px 0 0 0;
+        margin-left: auto!important;
+        border: 1px solid #CFE9EE;
+        border-bottom: none;
+    }
+    .sticky-head .sticky-head_item:nth-child(2) {
+        border: none;
+        border-top: 1px solid #CFE9EE;
+    }
+    .sticky-head {
         z-index: 2;
         position: sticky;
         top: 0;
+        background: #F8FBFB;
+        border-bottom: 1px solid #CFE9EE;
     }
     .sticky-head .sticky-head_item {
         padding: 16px 16px 8px;
@@ -1432,9 +1580,12 @@ if (window.location.href == '')  { // new team solution page
         margin: 12px 0 8px!important;
         height: fit-content;
     }
+    .feature-list {
+        background: #fff;
+    }
     .feature-list [data-name] {
         background: rgba(1, 141, 163, 0.19);
-        padding: 12px 10px;
+        padding: 12px 16px;
         font-weight: 700;
         font-size: 18px;
         line-height: 21px;
@@ -1445,7 +1596,7 @@ if (window.location.href == '')  { // new team solution page
     .feature-list p {
         font-size: 18px;
         line-height: 26px;
-        padding: 11px 0;
+        padding: 11px 16px;
     }
     </style>
     <section class="feature-list-section">
@@ -1604,10 +1755,6 @@ let submitForm = setInterval(() => {
         clearInterval(submitForm)
 
         //add calendly script
-        let scriptCalendly = document.createElement('script');
-        scriptCalendly.type = 'text/javascript';
-        scriptCalendly.async = true;
-        scriptCalendly.src = 'https://assets.calendly.com/assets/external/widget.js';
         document.body.appendChild(scriptCalendly)
         
         //flag-icons
@@ -1652,8 +1799,8 @@ let submitForm = setInterval(() => {
                 </li>`)
 
                 document.querySelectorAll('.country-list li')[i].addEventListener('click', (e) => {
-                    document.querySelector('.country-list li.active').classList.remove('active');
-                    e.currentTarget.classList.add('active');
+                    toggleActive(document.querySelector('.country-list li.active'))
+                    toggleActive(e.currentTarget);
 
                     flagCurrent.innerHTML = ` <span class="fi fi-${e.currentTarget.dataset.countryCode}"></span>`;
                     inputPhone.placeholder = e.currentTarget.querySelector('.dial-code').innerHTML;
@@ -1703,22 +1850,46 @@ let submitForm = setInterval(() => {
 
 let tabBookDemo = setInterval(() => {
     if (window.location.href.includes('https://app.uplead.com/') && document.querySelectorAll('.sidebar__menu-item')[0].classList.contains('sidebar__menu-item--open') && document.querySelector('.home__wrapper') && document.querySelector('.home_tab') == null) {
-        document.querySelector('.home__wrapper').insertAdjacentHTML('afterbegin', `
+        document.querySelector('.home__wrapper').insertAdjacentHTML('beforebegin', `
+        ${styleBase}
         <style>
-            ${styleBase}
             .home_tab {
-                background: #E9F5F3;
-                border-radius: 20px;
-                padding: 20px;
+                padding: 11px 40px 11px 32px;
+                background: rgba(117, 201, 215, 0.10);
+                color: #091D30;
+            }
+            .home_tab_left, .home_tab_right {
+                width: 100%;
+            }
+            .home_tab_left svg {
+                margin-right: 18px;
+            }
+            .home_tab_right svg {
+                margin: 0 21px;
+            }
+            .home_tab_left p, .home_tab_right p {
+                color: #091D30;
+            }
+            .home_tab_right p {
+                font-size: 16px;
             }
         </style>
-        <div class="mx-auto d-flex items-center home_tab">
-            <p class="text-center">Supercharge Prospect Finding with 
-                <b> Advanced Filters & Intent Data</b>
-            </p>
-            <div>
-                <p>Talk to a sales expert</p>
-                <button type="button" class="btn_submit btn_book">Book a Demo</button>
+        <div class="flex-between-center home_tab">
+            <div class="home_tab_left d-flex items-center">
+                <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M11 10.5V15.5" stroke="#00A2BB" stroke-width="1.63616" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M11 6.51087L11.0108 6.49902" stroke="#00A2BB" stroke-width="1.63616" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M11 21C16.523 21 21 16.523 21 11C21 5.477 16.523 1 11 1C5.477 1 1 5.477 1 11C1 16.523 5.477 21 11 21Z" stroke="#00A2BB" stroke-width="1.63616" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+
+                <p class="fw-semi">Supercharge Prospect Finding with Advanced Filters & Intent Data</p>
+            </div>
+            <div class="home_tab_right d-flex items-center justify-end">
+                <p>Talk to a sales expert </p>
+                <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M14 7.04895L7 14L5.75313 12.7836L10.6531 7.91783L-2.6586e-07 7.91783L-3.4182e-07 6.18007L10.6531 6.18007L5.75312 1.31434L7 0.097902L14 7.04895Z" fill="#00A2BB"/>
+                </svg>
+                <a href="#" class="btn_submit btn_book">Book a Demo</a>
             </div>
         <div>`)
     }   
