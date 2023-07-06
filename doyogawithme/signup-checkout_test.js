@@ -490,7 +490,7 @@ input[type="checkbox"]:checked ~ .check {
     .social-auth__container {
         margin: 20px 0;
     }
-    #block-userloginregistertabs--2 {
+    #block-userloginregistertabs--2, #block-userloginregistertabs {
         margin: 0!important;
     }
 }
