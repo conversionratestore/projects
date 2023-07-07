@@ -598,9 +598,9 @@ let startF = setInterval(() => {
       clonedElement.addEventListener("click", (e) => {
         e.preventDefault();
         e.stopPropagation();
-        let headerOffset = 80;
+        let headerOffset = 75;
         if (e.currentTarget.closest(".hand-banner") || (!e.currentTarget.closest(".static-top")?.classList.contains("fixed-top") && e.currentTarget.closest(".static-top"))) {
-          headerOffset = 120;
+          headerOffset = 116;
         }
 
         const elementPosition = document.querySelector("#getNow").getBoundingClientRect().top;
