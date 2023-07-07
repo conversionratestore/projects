@@ -46,7 +46,7 @@ let startF = setInterval(() => {
         height: 60px;
         top: 0;
         right: 0;
-        background: url(https://conversionratestore.github.io/projects/buzzpatch/img/free_shipping_icon.svg) no-repeat center center;
+        background: url(https://conversionratestore.github.io/projects/sunnypatch/img/Free_Shipping_A.svg) no-repeat center center;
         background-size: contain;
         z-index: 2;
       }
