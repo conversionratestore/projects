@@ -3143,9 +3143,9 @@ the United States</span>
   // -------------------------------------
   // MAKE DOM CHANGES
   // -------------------------------------
-  document.head.insertAdjacentHTML('beforeend', style)
-
   getCart().then((data) => {
+    document.head.insertAdjacentHTML('beforeend', style)
+
     if (data.items.length > 0) {
       waitForElement('.shopping_cart form div').then(() => {
         document.head.insertAdjacentHTML('beforeend', /*html*/`
