@@ -556,19 +556,6 @@ if (window.location.pathname.includes('cart')) {
       border-color: #773BD9 !important;
     }
 
-    /*
-
-    .calc_action:hover {
-      border-color: #773BD9;
-    }
-
-    .calc_action:hover:before,
-    .calc_action:hover:after {
-      background-color: #773BD9;
-    }
-
-    */
-
     .calc_action.calc_action__minus {
       border-radius: 4px 0 0 4px;
     }
@@ -992,99 +979,6 @@ if (window.location.pathname.includes('cart')) {
       line-height: 48px;
     }
 
-    /* popup */
-    /* .splitit-iframe-popup {
-      opacity: 0;
-      pointer-events: none;
-      position: fixed;
-      top: 0;
-      left: 0;
-      height: 100vh;
-      width: 100%;
-      z-index: 9999999999;
-      overflow-y: auto;
-    }
-
-    .splitit-iframe-popup.active {
-      opacity: 1;
-      pointer-events: auto;
-    }
-
-    .slide_in__splitit {
-      margin-bottom: 12px;
-    }
-
-    .slide_in__splitit p {
-      font-weight: 600;
-      font-size: 14px;
-      line-height: 10px;
-      color: #6D6E75;
-    }
-
-    .slide_in__splitit a {
-      font-weight: 700;
-      font-size: 14px;
-      line-height: 10px;
-      text-decoration-line: underline;
-      color: #7C28D0;
-    }
-
-    .slide_in__splitit img {
-      margin: 0 10px 0 8px;
-    }
-
-    .splitit-iframe-popup .grid,
-    .splitit-iframe-popup .grid--rev,
-    .splitit-iframe-popup .grid--full,
-    .splitit-iframe-popup .grid-uniform {
-      margin-left: 0 !important;
-    }
-
-    .splitit-iframe-popup .grid-cols-4 {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-
-    .splitit-iframe-popup .grid:after {
-      content: none !important;
-    }
-
-    .selected.svelte-5no3ze {
-      position: relative;
-      border-width: 2px;
-      --tw-border-opacity: 1;
-      border-color: rgb(61 28 81 / var(--tw-border-opacity));
-      --tw-bg-opacity: 1;
-      background-color: rgb(236 232 238 / var(--tw-bg-opacity));
-      --tw-shadow: 0 4px 10px rgb(0 0 0 / 25%);
-      --tw-shadow-colored: 0 4px 10px var(--tw-shadow-color);
-      box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
-    }
-
-    .selected-wrapper.svelte-5no3ze:after {
-      --tw-content: "";
-      content: var(--tw-content);
-    }
-
-    .selected-wrapper.svelte-5no3ze:after {
-      position: absolute;
-      right: 50%;
-      height: 0.75rem;
-      width: 0.75rem;
-      --tw-translate-y: -50%;
-      --tw-translate-x: 50%;
-      --tw-rotate: 45deg;
-      transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skew(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
-      border-bottom-width: 2px;
-      border-right-width: 2px;
-      border-bottom-color: rgb(61 28 81 / var(--tw-border-opacity));
-      --tw-border-opacity: 1;
-      border-right-color: rgb(61 28 81 / var(--tw-border-opacity));
-      --tw-bg-opacity: 1;
-      background-color: rgb(236 232 238 / var(--tw-bg-opacity));
-    } */
-
     /* fonts */
     .fw-bold {
       font-weight: 700 !important;
@@ -1372,63 +1266,21 @@ if (window.location.pathname.includes('cart')) {
       .item_product img {
         margin-right: 20px !important;
       }
-
     }
-
-    
-
-    /* .splitit-iframe-popup .single-option,
-    .splitit-iframe-popup .single {
-      max-width: 311px;
-      width: 100%;
-    } */
-
-    /* @media screen and (min-width:600px) {
-      .text-sm-center {
-        text-align: center;
-      }
-
-      .selected.svelte-5no3ze {
-        --tw-border-opacity: 1;
-        border-color: rgb(57 188 167 / var(--tw-border-opacity));
-        --tw-bg-opacity: 1;
-        background-color: rgb(234 247 246 / var(--tw-bg-opacity));
-        --tw-text-opacity: 1;
-        color: rgb(57 188 167 / var(--tw-text-opacity));
-      }
-
-      .selected-wrapper.svelte-5no3ze:after {
-        border-bottom-color: rgb(57 188 167 / var(--tw-border-opacity));
-        --tw-border-opacity: 1;
-        border-right-color: rgb(57 188 167 / var(--tw-border-opacity));
-        --tw-bg-opacity: 1;
-        background-color: rgb(234 247 246 / var(--tw-bg-opacity));
-      }
-
-      .selected.svelte-1kctpzc {
-        --tw-shadow: 0 4px 10px rgb(0 0 0 / 25%);
-        --tw-shadow-colored: 0 4px 10px var(--tw-shadow-color);
-        box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
-      }
-    } */
-
-    /* @media (min-width: 960px) {
-      .selected-wrapper.svelte-5no3ze:after {
-        height: 1.25rem;
-        width: 1.25rem;
-      }
-    } */
-
-    /* .gf_product-quantity-minus,
-    .gf_product-quantity-plus {
-      display: flex !important;
-      justify-content: center !important;
-      align-items: center !important;
-    } */
 
     @media only screen and (min-width:768px) and (max-width:1080px) {
       .bottom_icons > div {
         padding: 5px;
+      }
+    }
+
+    @media only screen and (max-width: 768px) {
+      #provesrc-widget-area {
+        display: none !important;
+      }
+
+      #chat-button.gorgias-chat-key-1spa6uy {
+        transition: bottom 0.7s ease-in-out 0s;
       }
     }
   </style>
@@ -1788,7 +1640,6 @@ if (window.location.pathname.includes('cart')) {
 .use img {
   display: none;
 }
-
 
 @media (max-width: 768px) {
 
@@ -3067,16 +2918,19 @@ the United States</span>
     const waitForEls = setInterval(() => {
       const hideElement = document.querySelector('.splitit_fixed')
       const targetElement = document.querySelector('.slide_in__subtotal')
+      const chatBtn = document.querySelector('#chat-button.gorgias-chat-key-1spa6uy')
 
-      if (targetElement && hideElement) {
+      if (targetElement && hideElement && chatBtn) {
         clearInterval(waitForEls)
 
         const observer = new IntersectionObserver((entries) => {
           entries.forEach(entry => {
             if (entry.isIntersecting) {
-              hideElement.classList.add('hide_footer')
+              hideElement.classList.add('hide_footer')              
+              chatBtn.style.bottom = "20px"
             } else {
               hideElement.classList.remove('hide_footer')
+              chatBtn.style.bottom = "190px"
             }
           })
         })
@@ -3608,7 +3462,7 @@ the United States</span>
       color: #212121;
     }
 
-    .custom-select {
+    /*.custom-select {
       position: relative;
       display: inline-block;
     }
@@ -3634,7 +3488,7 @@ the United States</span>
       right: 8px;
       transform: translateY(-50%);
       pointer-events: none;
-    }
+    }*/
 
     .signs_row {
       justify-content: space-between;
@@ -3664,15 +3518,15 @@ the United States</span>
         font-size: 16px;
       }
       
-      .custom-select,
+      /*.custom-select,
       .custom-select select {
         width: 100%;
-      }
+      }*/
     }
   </style>
   `
 
-  let thankBlock = (name, imgUrl, itemTitle, options) => /*html*/`
+  let thankBlock = (name, imgUrl, itemTitle) => /*html*/`
    <div class="offer">
     <div class="offer_header">
       <p>Personalized offer is reserved for:</p>
@@ -3697,17 +3551,6 @@ the United States</span>
               <input type="number" value="1" class="clac_qty" min="1">
               <button type="button" class="calc_action calc_action__plus"></button>
             </div>
-            <div class="custom-select">
-              <select>
-                ${options}
-              </select>
-              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="12" viewBox="0 0 14 12" fill="none">
-                <g id="Frame 36042">
-                  <path id="Vector 988" d="M0.875 3L6.875 9L12.875 3" stroke="#773BD9" stroke-width="2" />
-                </g>
-              </svg>
-            </div>
-
           </div>
         </div>
       </div>
@@ -3719,7 +3562,7 @@ the United States</span>
   `
 
   if (DEVICE === 'mobile') {
-    thankBlock = (name, imgUrl, itemTitle, options) => /*html*/`
+    thankBlock = (name, imgUrl, itemTitle) => /*html*/`
    <div class="offer">
     <div class="offer_header">
       <p>Personalized offer is reserved for:</p>
@@ -3746,16 +3589,6 @@ the United States</span>
           </div>
         </div>
       </div>
-      <div class="custom-select">
-              <select>
-                ${options}
-              </select>
-              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="12" viewBox="0 0 14 12" fill="none">
-                <g id="Frame 36042">
-                  <path id="Vector 988" d="M0.875 3L6.875 9L12.875 3" stroke="#773BD9" stroke-width="2" />
-                </g>
-              </svg>
-            </div>
       <div class="d-flex bottom item_info">
             <p>
               <span class="old"></span>
@@ -3825,7 +3658,7 @@ the United States</span>
           })
 
           document.querySelector('.clac_qty').addEventListener('input', function (event) {
-            const inputValue = event.target.value
+            // const inputValue = event.target.value
             const inputElement = document.querySelector('.as-quantitySelection input')
 
             // if (!inputValue) {
