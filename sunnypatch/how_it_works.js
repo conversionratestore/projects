@@ -598,7 +598,7 @@ let startF = setInterval(() => {
       clonedElement.addEventListener("click", (e) => {
         e.preventDefault();
         e.stopPropagation();
-        let headerOffset = 75;
+        let headerOffset = 60;
         if (e.currentTarget.closest(".hand-banner") || (!e.currentTarget.closest(".static-top")?.classList.contains("fixed-top") && e.currentTarget.closest(".static-top"))) {
           headerOffset = 116;
         }
