@@ -3494,6 +3494,10 @@ the United States</span>
       justify-content: space-between;
     }
 
+    .step__footer {
+      margin-top: 2rem;
+    }
+
     .step__footer .btn {
       background: radial-gradient(90.92% 2726% at 2.15% 56%, #691BEA 0%, #9E41EF 100%) !important;
       border-radius: 4px !important;
@@ -3505,18 +3509,25 @@ the United States</span>
       letter-spacing: 1px !important;
       color: #FFFFFF !important;
       border: none !important;
-      width: 100% !important;
+      width: 60% !important;
       display: block !important;
       position: relative !important;
       min-height: 50px !important;
       cursor: pointer !important;
       clip-path: none !important;
-      margin-top: 30px;
     }
 
     @media only screen and (max-width: 768px) {
-      .step__footer .btn {
-        margin-top: 40px;
+      .step__footer {
+        margin-top: 2.5rem;
+      }
+
+      .step__footer__continue-btn.btn {
+        width: 100% !important;
+      }
+
+      .step__footer__continue-btn.btn + .step__footer__info {
+        padding-top: 12px;
       }
 
       .slide_in__saved {
