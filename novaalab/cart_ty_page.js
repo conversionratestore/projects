@@ -205,7 +205,6 @@ const waitForTimer = setInterval(() => {
 }, WAIT_INTERVAL_TIMEOUT)
 
 if (window.location.pathname.includes('cart')) {
-
   let isCompleted
 
   // 40322897838134 // "The Novaa Deep Healing Therapy Pad" "/products/novaa-light-pad-powerful-red-light-therapy-at-home?variant=40322897838134"
@@ -3141,24 +3140,15 @@ the United States</span>
     }
   }
 
-  // function dividePriceInto6Payments(price) {
-  //   // Remove the dollar sign and convert the price to a number
-  //   const numericPrice = Number(price.replace('$', ''))
-
-  //   // Calculate the amount for each payment
-  //   const paymentAmount = (numericPrice / 6).toFixed(2)
-
-  //   return '$' + paymentAmount
-  // }
-
   // -------------------------------------
   // MAKE DOM CHANGES
   // -------------------------------------
 
   getCart().then((data) => {
     if (data.items.length > 0) {
+      document.head.insertAdjacentHTML('beforeend', style)
+
       waitForElement('.shopping_cart form div').then(() => {
-        document.head.insertAdjacentHTML('beforeend', style)
         document.head.insertAdjacentHTML('beforeend', /*html*/`
         <style>
           @media only screen and (max-width:768px) {
