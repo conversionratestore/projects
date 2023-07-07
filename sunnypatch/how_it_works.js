@@ -598,12 +598,12 @@ let startF = setInterval(() => {
       clonedElement.addEventListener("click", (e) => {
         e.preventDefault();
         e.stopPropagation();
-        let headerOffset = 60;
+        let headerOffset = 85;
         if (e.currentTarget.closest(".hand-banner") || (!e.currentTarget.closest(".static-top")?.classList.contains("fixed-top") && e.currentTarget.closest(".static-top"))) {
-          headerOffset = 116;
+          headerOffset = 155;
         }
 
-        const elementPosition = document.querySelector("#getNow").getBoundingClientRect().top;
+        const elementPosition = document.querySelector(".new_sub_title").getBoundingClientRect().top;
         const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
         window.scrollTo({
           top: offsetPosition,
