@@ -205,64 +205,8 @@ const waitForTimer = setInterval(() => {
 }, WAIT_INTERVAL_TIMEOUT)
 
 if (window.location.pathname.includes('cart')) {
-  document.head.insertAdjacentHTML('beforeend', style)
-
-
-  let isCompleted
-
-  // 40322897838134 // "The Novaa Deep Healing Therapy Pad" "/products/novaa-light-pad-powerful-red-light-therapy-at-home?variant=40322897838134"
-  // 40365298679862 //"Novoral Care Pro - Oral Care at home - Complete Oral Care" "/products/novaa-oral-care-gums-periodontal-treatment?variant=40365298679862"
-  // 40156488761398 // "Novaa Extra-Strength Healing Laser - Professional-grade Laser Home Therapy" "/products/laser-red-light-therapy?variant=40156488761398"
-  // 32854816784438 // "Novaa Light Pro - Limited sale price - 1 Novaa Light Pro" // "/products/novaa-light-pro-red-light-laser-therapy-device?variant=32854816784438"
-  // 39758302806070 // "Novaa Deep Healing Pad + Novaa Light Pro" 
-  // 39782656311350 "The Novaa Deep Healing Pad for Knee"
-  // 39737414484022  "Novaa Deep Healing Pad for Knee Pain"
-
-  const bundles = {
-    40322897838134: [39758302806070, "novaa-knee-deep-healing-therapy™-novaa-light-pro™", '$800.00', '$399.90', '$400.10'],
-    40365298679862: [32854816784438, 'novaa-light-pro-red-light-laser-therapy-device', '$299.90', '$149.90', '$150.00'],
-    40156488761398: [40365298679862, 'novaa-oral-care-gums-periodontal-treatment', '$199.90', '$129.90', '$70.00'],
-    32854816784438: [39758302806070, "novaa-knee-deep-healing-therapy™-novaa-light-pro™", '$800.00', '$399.90', '$400.10'],
-    39758302806070: [40365298679862, 'novaa-oral-care-gums-periodontal-treatment', '$199.90', '$129.90', '$70.00'],
-    39782656311350: [32854816784438, 'novaa-light-pro-red-light-laser-therapy-device', '$299.90', '$149.90', '$150.00'],
-    39737414484022: [32854816784438, 'novaa-light-pro-red-light-laser-therapy-device', '$299.90', '$149.90', '$150.00'],
-  }
-
-  let discountShopacado = {
-    40365298679862: { //Novaa Oral Care Pro (varinat id)
-      'nameOffer': 'Oral Care Pro - Black Friday Bundle discount',
-      'details': ['2/$99.90', '3/$89.90']
-    },
-    40156488761398: { //Novaa Extra-Strength Healing Laser
-      'nameOffer': 'Laser - Black Friday Bundle discount',
-      'details': ['2/$269.90', '3/$229.90']
-    },
-    32854816784438: { //Novaa Light Pro™ - Limited sale price
-      'nameOffer': 'Light Pro - Black Friday Bundle discount',
-      'details': ['2/$129.90', '3/$99.90']
-    },
-    // '': { //The Novaa Deep Healing Therapy Pad™
-    //   'nameOffer': 'Deep Healing Pad for Knee - Black Friday Bundle discount',
-    //   'details': ['2/239.90', '3/199.90']
-    // },
-    40322897838134: { //The Novaa Deep Healing Therapy Pad™
-      'nameOffer': 'Deep Healing Pad - Black Friday Bundle discount',
-      'details': ['2/$249.90', '3/$229.90']
-    },
-    39413432909878: { //Novaa Deep Healing Pad™ for professionals
-      'nameOffer': 'RLT Pad for Professionals - Volume Discount',
-      'details': ['3/$209.90', '5/$199.90']
-    },
-    33084012134454: { //Novaa Light Pro™ - for Professionals
-      'nameOffer': 'RLT HH for Professionals - Volume Discount',
-      'details': ['5/$99.90', '10/$94.90']
-    }
-  }
-
   const style = /*html*/`
   <style>
-
-
   .may_like_only_inner {
     max-width: 792px;
     margin: 0 auto;
@@ -1489,6 +1433,59 @@ if (window.location.pathname.includes('cart')) {
     }
   </style>
   `
+
+  document.head.insertAdjacentHTML('beforeend', style)
+
+  let isCompleted
+
+  // 40322897838134 // "The Novaa Deep Healing Therapy Pad" "/products/novaa-light-pad-powerful-red-light-therapy-at-home?variant=40322897838134"
+  // 40365298679862 //"Novoral Care Pro - Oral Care at home - Complete Oral Care" "/products/novaa-oral-care-gums-periodontal-treatment?variant=40365298679862"
+  // 40156488761398 // "Novaa Extra-Strength Healing Laser - Professional-grade Laser Home Therapy" "/products/laser-red-light-therapy?variant=40156488761398"
+  // 32854816784438 // "Novaa Light Pro - Limited sale price - 1 Novaa Light Pro" // "/products/novaa-light-pro-red-light-laser-therapy-device?variant=32854816784438"
+  // 39758302806070 // "Novaa Deep Healing Pad + Novaa Light Pro" 
+  // 39782656311350 "The Novaa Deep Healing Pad for Knee"
+  // 39737414484022  "Novaa Deep Healing Pad for Knee Pain"
+
+  const bundles = {
+    40322897838134: [39758302806070, "novaa-knee-deep-healing-therapy™-novaa-light-pro™", '$800.00', '$399.90', '$400.10'],
+    40365298679862: [32854816784438, 'novaa-light-pro-red-light-laser-therapy-device', '$299.90', '$149.90', '$150.00'],
+    40156488761398: [40365298679862, 'novaa-oral-care-gums-periodontal-treatment', '$199.90', '$129.90', '$70.00'],
+    32854816784438: [39758302806070, "novaa-knee-deep-healing-therapy™-novaa-light-pro™", '$800.00', '$399.90', '$400.10'],
+    39758302806070: [40365298679862, 'novaa-oral-care-gums-periodontal-treatment', '$199.90', '$129.90', '$70.00'],
+    39782656311350: [32854816784438, 'novaa-light-pro-red-light-laser-therapy-device', '$299.90', '$149.90', '$150.00'],
+    39737414484022: [32854816784438, 'novaa-light-pro-red-light-laser-therapy-device', '$299.90', '$149.90', '$150.00'],
+  }
+
+  let discountShopacado = {
+    40365298679862: { //Novaa Oral Care Pro (varinat id)
+      'nameOffer': 'Oral Care Pro - Black Friday Bundle discount',
+      'details': ['2/$99.90', '3/$89.90']
+    },
+    40156488761398: { //Novaa Extra-Strength Healing Laser
+      'nameOffer': 'Laser - Black Friday Bundle discount',
+      'details': ['2/$269.90', '3/$229.90']
+    },
+    32854816784438: { //Novaa Light Pro™ - Limited sale price
+      'nameOffer': 'Light Pro - Black Friday Bundle discount',
+      'details': ['2/$129.90', '3/$99.90']
+    },
+    // '': { //The Novaa Deep Healing Therapy Pad™
+    //   'nameOffer': 'Deep Healing Pad for Knee - Black Friday Bundle discount',
+    //   'details': ['2/239.90', '3/199.90']
+    // },
+    40322897838134: { //The Novaa Deep Healing Therapy Pad™
+      'nameOffer': 'Deep Healing Pad - Black Friday Bundle discount',
+      'details': ['2/$249.90', '3/$229.90']
+    },
+    39413432909878: { //Novaa Deep Healing Pad™ for professionals
+      'nameOffer': 'RLT Pad for Professionals - Volume Discount',
+      'details': ['3/$209.90', '5/$199.90']
+    },
+    33084012134454: { //Novaa Light Pro™ - for Professionals
+      'nameOffer': 'RLT HH for Professionals - Volume Discount',
+      'details': ['5/$99.90', '10/$94.90']
+    }
+  }
 
   const splititStyle = /*html*/`
 <style>
@@ -3350,8 +3347,6 @@ the United States</span>
       })
     } else {
       if (sessionStorage.getItem('mayLikeItems')) {
-        document.head.insertAdjacentHTML('beforeend', style)
-
         const items = JSON.parse(sessionStorage.getItem('mayLikeItems'))
         let itemsHTML = ''
 
@@ -3383,7 +3378,7 @@ the United States</span>
         })
       } else {
         waitForElement('#PageContainer main').then(el => el.insertAdjacentHTML('afterend', /*html*/`
-        <div class="empty_cart" style="padding-top: 30px; text-align: center;">
+        <div style="padding-top: 30px; text-align: center;">
           <p style="color: #212121; font-size: 22px; font-weight: 700; line-height: 32px;">Shopping cart</p>
         </div>
         `))
@@ -3391,7 +3386,6 @@ the United States</span>
     }
   })
 } else {
-
   const thankBlockStyle = /*html*/`
   <style>
     #as_after_customer_info {
