@@ -3494,7 +3494,31 @@ the United States</span>
       justify-content: space-between;
     }
 
+    .step__footer .btn {
+      background: radial-gradient(90.92% 2726% at 2.15% 56%, #691BEA 0%, #9E41EF 100%) !important;
+      border-radius: 4px !important;
+      font-style: normal !important;
+      font-weight: 700 !important;
+      font-size: 18px !important;
+      line-height: 28px !important;
+      text-align: center !important;
+      letter-spacing: 1px !important;
+      color: #FFFFFF !important;
+      border: none !important;
+      width: 100% !important;
+      display: block !important;
+      position: relative !important;
+      min-height: 50px !important;
+      cursor: pointer !important;
+      clip-path: none !important;
+      margin-top: 30px;
+    }
+
     @media only screen and (max-width: 768px) {
+      .step__footer .btn {
+        margin-top: 40px;
+      }
+
       .slide_in__saved {
         margin: 0;
       }
