@@ -3,6 +3,15 @@ if (window.location.pathname === "/enroll/") {
     if (document.querySelector(".payment_inform_box")) {
       clearInterval(startEnroll);
 
+      window._mfq = window._mfq || [];
+      (function () {
+        var mf = document.createElement("script");
+        mf.type = "text/javascript";
+        mf.defer = true;
+        mf.src = "//cdn.mouseflow.com/projects/29f75cc1-dffc-4a86-b3d0-cca4b689c018.js";
+        document.getElementsByTagName("head")[0].appendChild(mf);
+      })();
+
       let eventVar = "desktop";
 
       if (window.innerWidth <= 768) {
@@ -737,6 +746,13 @@ if (window.location.pathname === "/enroll/") {
         });
       }
 
+      const recordMF = setInterval(() => {
+        if (typeof window._mfq === "object") {
+          clearInterval(recordMF);
+          window._mfq.push(["setVariable", "upsell_option", "var1"]);
+        }
+      }, 200);
+
       const record = setInterval(() => {
         if (typeof clarity === "function") {
           clearInterval(record);
@@ -751,6 +767,15 @@ if (window.location.pathname === "/mc/") {
   let startMC = setInterval(() => {
     if (document.querySelector("#unlimited_personal_coaching")) {
       clearInterval(startMC);
+
+      window._mfq = window._mfq || [];
+      (function () {
+        var mf = document.createElement("script");
+        mf.type = "text/javascript";
+        mf.defer = true;
+        mf.src = "//cdn.mouseflow.com/projects/29f75cc1-dffc-4a86-b3d0-cca4b689c018.js";
+        document.getElementsByTagName("head")[0].appendChild(mf);
+      })();
 
       let eventVar = "desktop";
 
@@ -1055,6 +1080,13 @@ if (window.location.pathname === "/mc/") {
           });
         }
 
+        const recordMF = setInterval(() => {
+          if (typeof window._mfq === "object") {
+            clearInterval(recordMF);
+            window._mfq.push(["setVariable", "upsell_option", "var1"]);
+          }
+        }, 200);
+
         const record = setInterval(() => {
           if (typeof clarity === "function") {
             clearInterval(record);
@@ -1070,6 +1102,15 @@ if (window.location.pathname === "/thanks-for-ordering/") {
   let startThanks = setInterval(() => {
     if (sessionStorage.getItem("personalCoaching")) {
       clearInterval(startThanks);
+
+      window._mfq = window._mfq || [];
+      (function () {
+        var mf = document.createElement("script");
+        mf.type = "text/javascript";
+        mf.defer = true;
+        mf.src = "//cdn.mouseflow.com/projects/29f75cc1-dffc-4a86-b3d0-cca4b689c018.js";
+        document.getElementsByTagName("head")[0].appendChild(mf);
+      })();
 
       let eventVar = "desktop";
 
@@ -1271,6 +1312,13 @@ if (window.location.pathname === "/thanks-for-ordering/") {
       if (sessionStorage.getItem("personalCoaching")) {
         sessionStorage.removeItem("personalCoaching");
       }
+
+      const recordMF = setInterval(() => {
+        if (typeof window._mfq === "object") {
+          clearInterval(recordMF);
+          window._mfq.push(["setVariable", "upsell_option", "var1"]);
+        }
+      }, 200);
 
       const record = setInterval(() => {
         if (typeof clarity === "function") {
