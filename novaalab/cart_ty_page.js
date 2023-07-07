@@ -3143,11 +3143,10 @@ the United States</span>
   // -------------------------------------
   // MAKE DOM CHANGES
   // -------------------------------------
+  document.head.insertAdjacentHTML('beforeend', style)
 
   getCart().then((data) => {
     if (data.items.length > 0) {
-      document.head.insertAdjacentHTML('beforeend', style)
-
       waitForElement('.shopping_cart form div').then(() => {
         document.head.insertAdjacentHTML('beforeend', /*html*/`
         <style>
