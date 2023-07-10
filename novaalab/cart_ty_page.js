@@ -141,7 +141,7 @@ const removeCartItem = async (variantId) => {
 }
 
 const addItem = async (title, id, removeThisId) => {
-  if (removeThisId) {
+  if (removeThisId && +document.querySelector('.item_product input')?.value <= 1) {
     await removeCartItem(String(removeThisId))
 
     let name = 'Novaa light Pad'
@@ -2809,7 +2809,7 @@ the United States</span>
           break // Stop the loop
         } else {
 
-          let removeFirstCartItem = (firstItemId === 40322897838134 || firstItemId === 32854816784438) && items[0].quantity === 1
+          let removeFirstCartItem = (firstItemId === 40322897838134 || firstItemId === 32854816784438)
 
           const product = await fetch(`/products/${upsellHandle}.js`).then(response => response.json())
 
