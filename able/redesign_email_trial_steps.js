@@ -997,7 +997,13 @@ let isTrailLogicAdded = false
 const setTrialPageLogic = () => {
   const prices = document.querySelectorAll('.prices > div')
 
-  document.querySelectorAll('header + div button')[1].click()
+  const waitFor2ndBtn = setInterval(() => {
+    if (document.querySelectorAll('header + div button')[1]) {
+      clearInterval(waitFor2ndBtn)
+
+      document.querySelectorAll('header + div button')[1].click()
+    }
+  }, WAIT_INTERVAL_TIMEOUT)
 
   prices.forEach((price, index) => {
     price.addEventListener('click', () => {
