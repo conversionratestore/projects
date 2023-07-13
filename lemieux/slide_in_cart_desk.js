@@ -28,8 +28,15 @@ let style = `
     content: ')';
     margin-left: -3px;
 }
-.cdk-overlay-pane h5 .p1 span {
+.cdk-overlay-pane h5 .p1 span, .cdk-overlay-pane ._body + div.box-shadow-1 ul li:not(:last-child), ._content .box-shadow-1 .p-b-8  {
     display: none!important;
+}
+.cdk-overlay-pane ._body + div.box-shadow-1 ul li:last-child {
+    text-align: right;
+    align-items: flex-start;
+}
+.cdk-overlay-pane ._body + div.box-shadow-1 ul li:last-child .saved_block {
+    margin-top: 8px;
 }
 .cdk-overlay-pane .p-a-5 {
     padding: 12px 24px;
@@ -105,6 +112,16 @@ let style = `
     line-height: 18px;
     letter-spacing: 0.28px;
 }
+.cdk-overlay-pane [sl-minibasket-button="basket"] {
+    font-weight: 600;
+    line-height: 42px;
+    height: auto;
+    display: block!important;
+}
+._content ._body {
+    display: flex;
+    flex-direction: column;
+}
 .c-gray {
     color: #ACACAC;
     margin: 0!important;
@@ -113,8 +130,26 @@ let style = `
     margin-right: auto;
 }
 .cdk-overlay-pane .swiper-slide {
-    width: 100%!important;
+    width: 85%!important;
     margin-bottom: 10px;
+}
+.text_guarantee {
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 18px; 
+    text-transform: uppercase;
+    justify-content: center;
+    padding: 12px 0;
+}
+.text_guarantee svg {
+    margin-right: 12px;
+}
+._content .box-shadow-1 .p-l-1 {
+    padding: 0;
+}
+._content .box-shadow-1 .m-l-1 {
+    marin-left: 0;
 }
 .empty_body {
     border: 1px dashed #D0D2D3;
@@ -218,6 +253,164 @@ let style = `
     line-height: 18px;
     text-decoration-line: underline;
 }
+.coupon_item .btn-cancel * {
+    pointer-events: none;
+}
+/* total order */
+.total_content {
+    padding: 16px 16px 0;
+}
+.total_content > div p {
+    font-family: 'source-sans-3', sans-serif;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 22px;
+    padding: 7px 0;
+}
+.cdk-overlay-pane .pr {
+    font-weight: 700;
+    text-align: right;
+}
+.cdk-overlay-pane .pr-line {
+    font-weight: 400;
+    text-decoration-line: line-through;
+    color: #ACACAC;
+    text-align: right;
+}
+.order_total {
+    border-top: 1px dashed #D0D2D3;
+    padding: 5px 0;
+}
+.total_content > div.order_total p {
+    font-size: 20px;
+}
+.saved_block {
+    background: url('${dir}/img/saved-bg.svg') no-repeat right center / 100%;
+    color:  #FFF;
+    text-align: right;
+    font-family: 'source-sans-3', sans-serif;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 22px;
+    padding: 0 8px 0 20px;
+    width: fit-content;
+    display: block;
+}
+.footer_content .saved_block {
+    margin-top: -8px;
+    margin-right: 16px;
+}
+/* klarna */
+.klarna_content {
+    padding: 13px 16px;
+    font-size: 14px;
+    font-family: 'source-sans-3', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 22px;
+    order: 2;
+}
+.klarna_content .klarna_pr {
+    margin-left: 4px;
+}
+.img-klarna {
+    margin: 0 8px;
+    background-color: #F1B6C6;
+    padding: 7px 5.4px;
+    border-radius: 8px;
+}
+.klarna_content .btn-more {
+    text-decoration-line: underline;
+}
+.klarna_popup {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.70);
+    z-index: 99999;
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.2s ease;
+    font-family: 'source-sans-3', sans-serif;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 22px;
+}
+.klarna_popup p {
+    color: #595959;
+}
+.klarna_popup h3+p {
+    font-size: 16px;
+}
+.klarna_popup.active {
+    opacity: 1;
+    pointer-events: auto;
+}
+.klarna_popup_container {
+    background: #FFF;
+    box-shadow: 0px 2px 16px 0px rgba(0, 0, 0, 0.10);
+    margin: auto;
+    padding: 20px;
+    max-width: 335px;
+}
+.klarna_popup .btn-close {
+    padding: 5px;
+}
+.klarna_popup .btn-close svg {
+    pointer-events: none;
+}
+.klarna_popup h3 {
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 26px;
+    margin-bottom: 8px;
+}
+.klarna_popup ul {
+    padding: 4px 0 24px;
+}
+.klarna_popup li {
+    margin-top: 12px;
+    font-weight: 600;
+}
+.klarna_popup li span {
+    margin: 0 10px;
+}
+.klarna_popup .btn-continue {
+    color: #FFF;
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 44px;
+    background: #212121;
+    margin-bottom: 16px;
+    width: 100%;
+}
+.klarna_popup a {
+    font-weight: 600;
+    text-decoration-line: underline;
+}
+.img-feefo {
+    margin: 24px auto;
+    display: block;
+    order: 3;
+}
+.footer_content {
+    position: relative;
+}
+.loading .footer_content:after {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 99;
+    background: rgba(255,255,255,0.7);
+}
 </style>`;
 
 function replaceInText(element, pattern, replacement) {
@@ -285,6 +478,42 @@ let init = () => {
 
     if (!document.querySelector('.style-exp')) {
         document.body.insertAdjacentHTML('afterbegin', style)
+        //add klarna popup
+        document.body.insertAdjacentHTML('beforeend',`<div class="klarna_popup flex">
+            <div class="klarna_popup_container">
+                <div class="head flex flex-middle">
+                    <img src="${dir}/img/Klarna_Logo_black.svg" alt="logo">
+                    <button type="button" class="btn-close ml-auto">
+                        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M13.3007 0.709727C12.9107 0.319727 12.2807 0.319727 11.8907 0.709727L7.0007 5.58973L2.1107 0.699727C1.7207 0.309727 1.0907 0.309727 0.700703 0.699727C0.310703 1.08973 0.310703 1.71973 0.700703 2.10973L5.5907 6.99973L0.700703 11.8897C0.310703 12.2797 0.310703 12.9097 0.700703 13.2997C1.0907 13.6897 1.7207 13.6897 2.1107 13.2997L7.0007 8.40973L11.8907 13.2997C12.2807 13.6897 12.9107 13.6897 13.3007 13.2997C13.6907 12.9097 13.6907 12.2797 13.3007 11.8897L8.4107 6.99973L13.3007 2.10973C13.6807 1.72973 13.6807 1.08973 13.3007 0.709727Z" fill="#212121"/>
+                        </svg>
+                    </button>
+                </div>
+                <h3>3 interest-free payment of <b class="klarna_pr"></b> </h3>
+                <p>Buy what you love and split the cost. It’s easy and interest-free.</p>
+                <ul>
+                    <li class="flex flex-middle">
+                        <img src="${dir}/img/add-to-basket.svg" alt="icon">
+                        <span>Add product(s) to your bag</span>
+                    </li>
+                    <li class="flex flex-middle">
+                        <img src="${dir}/img/k.svg" alt="icon">
+                        <span>Go to checkout and choose</span>
+                        <img src="${dir}/img/klarna.svg" alt="logo icon" class="img-klarna">
+                    </li>
+                    <li class="flex flex-middle">
+                        <img src="${dir}/img/credit-card.svg" alt="icon">
+                        <span>Enter your debit or credit card information</span>
+                    </li>
+                    <li class="flex">
+                        <img src="${dir}/img/time.svg" alt="icon">
+                        <span>Your first payment is taken when the order is processed and the remaining 3 are automatically taken every 14 days.</span>
+                    </li>
+                </ul>
+                <button type="button" class="btn-continue">Complete purchase</button>
+                <p>Please note that a higher initial payment may be required for some consumers. Fees may apply. Read the <a href="https://cdn.klarna.com/1.0/shared/content/legal/terms/0/en_au/paylaterin3">terms </a> for more information.</p>
+            </div>
+        </div>`)
     }
 
     if (document.querySelector('.cdk-overlay-pane')) {
@@ -304,8 +533,8 @@ let init = () => {
         parent.insertAdjacentHTML('afterbegin', carSvg);
     }
 
-    if (document.querySelector('._content ._body') && !document.querySelector('.empty_body')) {
-        if (!document.querySelector('._content ._body .coupon')) { //coupon promocode, gift
+    if (document.querySelector('._content ._body') && !document.querySelector('.empty_body') &&  !document.querySelector('.coupon')) {
+        //coupon promocode, gift
 
             let promoCodeHTML = `
             <div class="coupon_promocode coupon_item">
@@ -449,8 +678,15 @@ let init = () => {
                 </div>
             </div>`;
 
-            let couponHtml = `
-            <div class="coupon">
+
+            document.querySelector('._content ._body ').insertAdjacentHTML('beforeend', `
+            <div class="footer_content">
+                <div class="coupon"> </div>
+                <div class="total_content"> </div>
+            </div> `)
+
+            if (!document.querySelector('._content .coupon_vouchers')) {
+                document.querySelector('._content .coupon').insertAdjacentHTML('afterbegin', `
                 <a href="/e-gift-card-173" class="coupon_vouchers coupon_item coupon_current flex flex-middle">
                     <svg width="20" height="18" viewBox="0 0 20 18" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M17.2521 3.49618H16.5513C16.7473 3.1547 16.8601 2.75959 16.8601 2.33838C16.8601 1.40186 16.3282 0.584379 15.4721 0.204833C14.6159 -0.174748 13.653 -0.0197878 12.9591 0.609102L11.4799 1.94968C11.1651 1.46543 10.6196 1.14421 10.0002 1.14421C9.37981 1.14421 8.83361 1.46638 8.51904 1.95193L7.03728 0.609067C6.34338 -0.0197526 5.38041 -0.174677 4.52436 0.204904C3.66821 0.584379 3.13638 1.40193 3.13638 2.33842C3.13638 2.75963 3.24911 3.1547 3.4451 3.49621H2.74835C1.77569 3.49618 0.984375 4.28749 0.984375 5.26015V7.61212C0.984375 7.93683 1.24763 8.20012 1.57238 8.20012H2.16038V16.236C2.16038 17.2086 2.95169 18 3.92435 18C4.49675 18 15.6345 18 16.0761 18C17.0488 18 17.8401 17.2086 17.8401 16.236V8.20012H18.4281C18.7528 8.20012 19.0161 7.93687 19.0161 7.61212V5.26015C19.0161 4.28749 18.2247 3.49618 17.2521 3.49618ZM8.23624 16.8239H3.92431C3.6001 16.8239 3.33631 16.5602 3.33631 16.2359V8.20012H8.23621L8.23624 16.8239ZM8.23624 7.02412C7.98514 7.02412 2.41328 7.02412 2.16034 7.02412V5.26015C2.16034 4.93593 2.42413 4.67215 2.74835 4.67215C2.95758 4.67215 7.9838 4.67215 8.23624 4.67215V7.02412ZM5.47014 3.49614C4.83174 3.49614 4.31235 2.97678 4.31235 2.33838C4.31235 1.86674 4.56976 1.47107 5.00093 1.27994C5.15843 1.21013 5.32054 1.17583 5.47993 1.17583C5.75696 1.17583 6.02578 1.27951 6.24762 1.4805L8.47182 3.49618L5.47014 3.49614ZM10.0002 2.32021C10.2777 2.32021 10.5103 2.51366 10.5718 2.77266L9.99824 3.29244L9.42792 2.77554C9.48825 2.51511 9.72167 2.32021 10.0002 2.32021ZM10.5882 16.8239H9.41225V8.20012H10.5882V16.8239ZM10.5882 7.02412H9.41225V4.67215C9.83258 4.67215 10.1638 4.67215 10.5882 4.67215V7.02412ZM13.7488 1.48054C14.0983 1.16386 14.5643 1.08891 14.9955 1.28001C15.4267 1.4711 15.6841 1.86681 15.6841 2.33842C15.6841 2.97682 15.1647 3.49621 14.5263 3.49621H11.5246L13.7488 1.48054ZM16.6641 16.236C16.6641 16.5602 16.4003 16.824 16.0761 16.824H11.7642V8.20012H16.6641V16.236ZM17.8401 7.02412C17.5871 7.02412 12.0151 7.02412 11.7642 7.02412V4.67215C12.0116 4.67215 17.0374 4.67215 17.2521 4.67215C17.5763 4.67215 17.8401 4.93593 17.8401 5.26015V7.02412Z" fill="#595959"/>
@@ -459,89 +695,76 @@ let init = () => {
                     <svg class="ml-auto" width="20" height="12" viewBox="0 0 7 12" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M1.16117 11.8146C0.869956 12.0873 0.427756 12.0554 0.173203 11.7437C-0.0810943 11.4317 -0.0513579 10.9579 0.239597 10.6852L5.23735 6.00012L0.239341 1.31479C-0.0518697 1.04206 -0.0813497 0.568276 0.172947 0.256543C0.427501 -0.0554647 0.8697 -0.087325 1.16091 0.185408L6.76083 5.43543C6.91284 5.57771 7 5.7837 7 6.00012C7 6.21655 6.91284 6.42227 6.76083 6.56482L1.16117 11.8146Z" fill="#212121"/>
                     </svg>
-                </a>
-            </div>`;
+                </a>`)
+            }
 
-            document.querySelector('._content ._body').insertAdjacentHTML('beforeend', couponHtml)
+            if (!document.querySelector('._content .klarna_content')) {
+                
+                document.querySelector('._content .footer_content').insertAdjacentHTML('afterend', `
+                <div class="klarna_content">
+                    <p class="flex flex-middle">3 interest-fee payment of <b class="klarna_pr"></b> <img src="${dir}/img/klarna.svg" alt="logo" class="img-klarna"> <button type="button" class="btn-more">Learn more</button></p>
+                </div>
+                <img src="${dir}/img/feefo.svg" alt="imgae feefo" class="img-feefo">`)
+            }
+
+            //klarna popup show/hide
+            document.addEventListener('click', (e) => {
+                if (e.target.classList.contains('btn-continue') || e.target.classList.contains('btn-close') || e.target.classList.contains('klarna_popup')) {
+                    document.querySelector('.klarna_popup').classList.remove('active');
+                }
+                if (e.target.classList.contains('btn-more')) {
+                    document.querySelector('.klarna_popup').classList.add('active');
+                }
+                if (e.target.classList.contains('btn-cancel')) {
+                    e.target.closest('.coupon_item').classList.remove('active');
+                }
+            })
 
             postCart().then(data => {
                 console.log(data)
 
-                let coupon = data.customer.cart.coupon;
-                let gift = data.customer.cart.giftcards;
+                let coupon = data.customer.cart.coupon,
+                    gift = data.customer.cart.giftcards,
+                    carTotal = data.customer.cart.totals;
+                    grand_total = data.customer.cart.totals.grand_total;
+                    shipping = data.customer.cart.totals.shipping;
 
-                console.log(coupon)
-                console.log(gift)
 
-                if (coupon) {
-                    document.querySelector('.coupon_vouchers').insertAdjacentHTML('afterend', havePromoCodeHTML(coupon));
-                    
-                    //remove promo code 
-                    document.querySelector('.coupon_promocode .btn-remove-code').addEventListener('click', (e) => {
-                        let code = {"coupon":coupon};
-                        postFetch('coupon/remove', code, 'POST').then(data => {
-                            document.querySelector('.coupon_promocode').remove();
-                            document.querySelector('.coupon_vouchers').insertAdjacentHTML('afterend', promoCodeHTML);
+                let compareSum = 0;
+                let currency = document.querySelector('.cdk-overlay-pane ._body .p-l-5 ul li .price').innerText.charAt(0);
 
-                            currentCoupon('.coupon_promocode')
-                        })
-                    })
-                } else {
-                    document.querySelector('.coupon_vouchers').insertAdjacentHTML('afterend', promoCodeHTML)
+                document.querySelectorAll('.cdk-overlay-pane ._body .p-l-5 ul li').forEach(item => {
+                    let compare = 0;
 
-                    currentCoupon('.coupon_promocode')
-                    //Click on Cancel button
-                    document.querySelector('.coupon .btn-cancel').addEventListener('click', (e) => {
-                        e.target.closest('.coupon_item').classList.remove('active');
-                    })
+                    if (item.querySelector('.line-through.price')) {
+                        compare = item.querySelector('.line-through.price').innerText.replace(currency, '');
+                    } else {
+                        compare = item.querySelector('.left + .p1 .price:last-child').innerText.replace(currency, '');
+                    }
+                    console.log(compare)
+                    compareSum += +compare;
+                })
+
+                document.querySelector('.total_content').insertAdjacentHTML('afterend',`<div class="saved_block ml-auto">You just saved ${currency}${(compareSum + shipping - grand_total).toFixed(2)}</div>`)
+
+                document.querySelectorAll('.klarna_pr').forEach(item => {
+                    item.innerHTML = currency + (grand_total / 3).toFixed(2);
+                })
+
+                for (const key in carTotal) {
+                    if (carTotal[key] != '0' && !key.includes('tax')) {
+                        document.querySelector('.total_content').insertAdjacentHTML('beforeend',`
+                        <div class="flex flex-middle  ${key == 'grand_total' ? 'order_total' : ''}" data-name="${key}">
+                            <p class="">${key == 'grand_total' ? 'Order total' : key}</p>
+                            <p class="ml-auto">
+                                <span class="pr-line">${key == 'grand_total' || key == 'subtotal' ? (compareSum + shipping).toFixed(2) : ''}</span>
+                                <span class="pr">${carTotal[key]}</span>
+                            </p>
+                        </div>`)
+                    }
                 }
 
-                if (gift.length > 0) {
-                    document.querySelector('.coupon').insertAdjacentHTML('beforeend', haveGiftCodeHTML(coupon));
-                    //remove gift code 
-                    document.querySelector('.coupon_gift .btn-remove-code').addEventListener('click', (e) => {
-                        let code = {"code":gift};
-                        postFetch('giftcard/remove', code, 'POST').then(data => {
-                            document.querySelector('.coupon_gift').remove();
-                            document.querySelector('.coupon').insertAdjacentHTML('beforeend', couponGiftHTML);
-
-                            currentCoupon('.coupon_gift')
-                        })
-                    })
-                    
-                } else {
-                    document.querySelector('.coupon').insertAdjacentHTML('beforeend', couponGiftHTML)
-
-
-                    currentCoupon('.coupon_gift')
-
-                    //Click on Check balance button
-                    document.querySelector('.btn-check-balance').addEventListener('click', (e) => {
-                        e.currentTarget.classList.add('busy');
-            
-                        let value =  document.querySelector('.coupon_item input[name="giftcard"]').value;
-            
-                        let giftcard = {"code": value}
-                        if (value != '') {
-                            postFetch('giftcard/balance', giftcard, 'POST').then(data => {
-                                console.log(data)
-                                e.currentTarget.classList.remove('busy');
-                
-                                if (data.error) {
-                                    let message = data.error == "INVALID_GIFTCARD" ? `Sorry, we don't recognise this code` : data.error;
-                                    document.querySelector('.coupon_gift_form result').innerHTML = message;
-                                    document.querySelector('.coupon_gift_form result').classList.remove('ng-hide');
-                                } else {
-                                    console.log('balance true')
-                                }
-                            })
-                        } else {
-                            e.currentTarget.classList.remove('busy');
-                            document.querySelector('.coupon_gift_form validation').classList.remove('ng-hide')
-                            document.querySelector('.coupon_gift_form .mui-input').classList.add('is-invalid')
-                        }
-                    })
-                }
+                //coupon
 
                 function currentCoupon(parent) {
                     let parentEl = document.querySelector(parent);
@@ -562,6 +785,7 @@ let init = () => {
             
                                 postFetch('giftcard/add', giftcard, 'POST').then(data => {
                                     console.log(data)
+
                                     _this.classList.remove('busy');
             
                                     if (data.error) {
@@ -570,8 +794,7 @@ let init = () => {
                                         parentEl.querySelector(`result`).classList.remove('ng-hide');
                                     } else {
                                         console.log('giftcard true')
-                                        parentEl.remove();
-                                        _this.closest('.coupon').insertAdjacentHTML('afterend', haveGiftCodeHTML(value))
+                                        document.querySelector('.footer_content').classList.add('busy-icon')
                                     }
                                 })
                             } else if (_this.closest('.coupon_promocode_form')) {
@@ -580,15 +803,14 @@ let init = () => {
                                 postFetch('coupon/add', coupon, 'POST').then(data => {
                                     console.log(data)
                                     _this.classList.remove('busy');
-            
                                     if (data.error) {
                                         let message = data.error == "INVALID_GIFTCARD" ? `Sorry, we don't recognise this code` : data.error;
                                         parentEl.querySelector('result').innerHTML = message;
                                         parentEl.querySelector('result').classList.remove('ng-hide');
                                     } else {
                                         console.log('coupon true')
-                                        parentEl.remove();
-                                        parentEl.parentElement.querySelector('.coupon_vouchers').insertAdjacentHTML('afterend', havePromoCodeHTML(value))
+
+                                        document.querySelector('.footer_content').classList.add('busy-icon')
                                     }
                                 })
                             }
@@ -608,78 +830,159 @@ let init = () => {
                         }
                     })
                 }
-            })
-        }
 
-        
+                if (!document.querySelector('.coupon_promocode')) {
+                    if (coupon) {
+                        document.querySelector('.coupon_vouchers').insertAdjacentHTML('afterend', havePromoCodeHTML(coupon));
+                        
+                        //remove promo code 
+                        document.querySelector('.coupon_promocode .btn-remove-code').addEventListener('click', (e) => {
+                            let code = {"coupon":coupon};
+                            postFetch('coupon/remove', code, 'POST')
+                            document.querySelector('.footer_content').classList.add('busy-icon')
+                        })
+                    } else {
+                        document.querySelector('.coupon_vouchers').insertAdjacentHTML('afterend', promoCodeHTML)
+    
+                        currentCoupon('.coupon_promocode')
+                    }
+                }
+
+                if (!document.querySelector('.coupon_gift')) {
+                    if (gift.length > 0) {
+                        document.querySelector('.coupon').insertAdjacentHTML('beforeend', haveGiftCodeHTML(coupon));
+                        //remove gift code 
+                        document.querySelector('.coupon_gift .btn-remove-code').addEventListener('click', (e) => {
+                            let code = {"code":gift};
+                            postFetch('giftcard/remove', code, 'POST')
+                            document.querySelector('.footer_content').classList.add('busy-icon')
+                        })
+                        
+                    } else {
+                        document.querySelector('.coupon').insertAdjacentHTML('beforeend', couponGiftHTML)
+
+                        currentCoupon('.coupon_gift')
+
+                        //Click on Check balance button
+                        document.querySelector('.btn-check-balance').addEventListener('click', (e) => {
+                            e.currentTarget.classList.add('busy');
+                
+                            let value =  document.querySelector('.coupon_item input[name="giftcard"]').value;
+                
+                            let giftcard = {"code": value}
+                            if (value != '') {
+                                postFetch('giftcard/balance', giftcard, 'POST').then(data => {
+                                    console.log(data)
+                                    e.currentTarget.classList.remove('busy');
+                    
+                                    if (data.error) {
+                                        let message = data.error == "INVALID_GIFTCARD" ? `Sorry, we don't recognise this code` : data.error;
+                                        console.log(message)
+                                        document.querySelector('.coupon_gift_form result').innerHTML = message;
+                                        document.querySelector('.coupon_gift_form result').classList.remove('ng-hide');
+                                    } else {
+                                        console.log('balance true')
+                                    }
+                                })
+                            } else {
+                                e.currentTarget.classList.remove('busy');
+                                document.querySelector('.coupon_gift_form validation').classList.remove('ng-hide')
+                                document.querySelector('.coupon_gift_form .mui-input').classList.add('is-invalid')
+                            }
+                        })
+                    }
+                }
+
+                document.querySelector('.cdk-overlay-pane ._body + div.box-shadow-1 ul li:last-child .p1').innerHTML = 'Order total';
+                document.querySelector('.cdk-overlay-pane ._body + div.box-shadow-1 ul li:last-child .price').innerHTML = `
+                <span class="">
+                    <span class="pr-line">${currency}${(compareSum + shipping).toFixed(2)}</span>
+                    <span class="pr">${currency}${grand_total}</span>
+                </span>
+                <span class="saved_block">You just saved ${currency}${(compareSum + shipping - grand_total).toFixed(2)}</span>`;
+
+                document.querySelector('.cdk-overlay-pane [sl-minibasket-button="basket"]').href = '/checkout';
+                document.querySelector('.cdk-overlay-pane [sl-minibasket-button="basket"]').insertAdjacentHTML('afterend',`
+                <p class="flex flex-middle text_guarantee">
+                    <svg width="16" height="18" viewBox="0 0 16 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M1.25 3.47076L8.00338 1.49976L14.75 3.47076V7.51251C14.75 9.58389 14.0981 11.6027 12.8869 13.2831C11.6756 14.9634 9.96629 16.22 8.00113 16.8748C6.03536 16.22 4.32548 14.9633 3.11379 13.2826C1.90209 11.6019 1.25003 9.58256 1.25 7.51063V3.47076Z" stroke="#212121" stroke-width="2" stroke-linejoin="round"/>
+                        <path d="M4.625 8.625L7.25 11.25L11.75 6.75" stroke="#212121" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    60-day money back guarantee
+                </p>`)
+
+                document.body.classList.remove('loading')
+            })
+
     }
+
 
     if (document.querySelector('basket-related-products p.h3') && document.querySelectorAll('basket-related-products .swiper-slide') && document.querySelector('.count-swiper') == null) {
         let slideLength = document.querySelectorAll('basket-related-products .swiper-slide').length;
       
-        document.querySelector('basket-related-products').insertAdjacentHTML('beforebegin', `
-        <style>
-        ._body basket-related-products.block.ng-star-inserted {
-            padding: 0 24px;
-            margin: 0!important;
-        }
-        ._body basket-related-products.block.ng-star-inserted .h3 {
-            padding-left: 0!important;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        .count-swiper {
-            color: #595959;
-            font-size: 18px;
-            font-style: normal;
-            font-weight: 400;
-            line-height: 24px;
-        }
-        swiper {
-            padding: 0!important;
-            margin-top: 12px!important;
-        }
-        swiper .product-card > .ng-star-inserted{
-            display: flex;
-        }
-        swiper .product-card .pos-relative {
-            width: 100px;
-            height: 132px;
-            flex-shrink: 0;
-            margin-right: 12px;
-            border: 1px solid var(--border, #D0D2D3);
-        }
-        swiper .product-card > div > .m-t-3 {
-            display: flex;
-            width: 100%;
-            justify-content: space-between;
-            margin-top: 0!important;
-        }
-        swiper .product-card > div > .m-t-3 > p {
-            order: 1;
-        }
-        swiper .product-card .product-wishlist, swiper .product-card > div > .m-t-3 .p1.ng-star-inserted, swiper rating.inline-flex {
-            display: none!important;
-        }
-        swiper product-price {
-            display: block;
-            text-align: right;
-            font-size: 16px;
-            font-style: normal;
-            font-weight: 400;
-            line-height: 20px;
-            color: #ACACAC;
-            margin: 0!important;
-            padding-left: 10px;
-        }
-        swiper product-price.price {
-            color: #212121;
-            font-weight: 700;
-        }
-        </style>`)
-        document.querySelector('basket-related-products p.h3').insertAdjacentHTML('beforeend',`
-        <span class="count-swiper"> <span>1</span>/${slideLength} </span>`)
+        // document.querySelector('basket-related-products').insertAdjacentHTML('beforebegin', `
+        // <style>
+        // ._body basket-related-products.block.ng-star-inserted {
+        //     padding: 0 24px;
+        //     margin: 0!important;
+        // }
+        // ._body basket-related-products.block.ng-star-inserted .h3 {
+        //     padding-left: 0!important;
+        //     display: flex;
+        //     justify-content: space-between;
+        //     align-items: center;
+        // }
+        // .count-swiper {
+        //     color: #595959;
+        //     font-size: 18px;
+        //     font-style: normal;
+        //     font-weight: 400;
+        //     line-height: 24px;
+        // }
+        // swiper {
+        //     padding: 0!important;
+        //     margin-top: 12px!important;
+        // }
+        // swiper .product-card > .ng-star-inserted{
+        //     display: flex;
+        // }
+        // swiper .product-card .pos-relative {
+        //     width: 100px;
+        //     height: 132px;
+        //     flex-shrink: 0;
+        //     margin-right: 12px;
+        //     border: 1px solid var(--border, #D0D2D3);
+        // }
+        // swiper .product-card > div > .m-t-3 {
+        //     display: flex;
+        //     width: 100%;
+        //     justify-content: space-between;
+        //     margin-top: 0!important;
+        // }
+        // swiper .product-card > div > .m-t-3 > p {
+        //     order: 1;
+        // }
+        // swiper .product-card .product-wishlist, swiper .product-card > div > .m-t-3 .p1.ng-star-inserted, swiper rating.inline-flex {
+        //     display: none!important;
+        // }
+        // swiper product-price {
+        //     display: block;
+        //     text-align: right;
+        //     font-size: 16px;
+        //     font-style: normal;
+        //     font-weight: 400;
+        //     line-height: 20px;
+        //     color: #ACACAC;
+        //     margin: 0!important;
+        //     padding-left: 10px;
+        // }
+        // swiper product-price.price {
+        //     color: #212121;
+        //     font-weight: 700;
+        // }
+        // </style>`)
+        // document.querySelector('basket-related-products p.h3').insertAdjacentHTML('beforeend',`
+        // <span class="count-swiper"> <span>1</span>/${slideLength} </span>`)
 
     }
 } 
@@ -726,6 +1029,16 @@ let mut = new MutationObserver(function (muts) {
         `
     }
     mut.observe(document, optionMut);
+
+    if (document.querySelector('.busy-icon') && document.querySelector('.footer_content') && !document.querySelector('loading')) {
+        mut.disconnect()
+        document.querySelector('.footer_content').remove()
+        document.body.classList.add('loading')
+
+        init()
+    }
+
+    mut.observe(document, optionMut);
 })
 
 mut.observe(document, optionMut);
@@ -759,22 +1072,3 @@ mut.observe(document, optionMut);
 // postFetch('basket/add', objAdd, 'POST').then(data => {
 //     console.log(data)
 // })
-
-// //get data cart
-// fetch(`https://www.lemieuxproducts.com/api/p/customer/data`, {
-//     headers: {
-//         'Content-Type': 'application/json'
-//     },
-//     method: 'GET'
-// }).then(res => res.json()).then(data => {
-//     console.log(data)
-    
-// }).catch((error) => {
-//     console.error('Error:', error);
-// });
-
-// //  let objItemsCart = [{"action":"route","children":[{"path":"/new-in/rhone-polo-bandages-petrol-blue-full","_reqId":0}]}]
-//  //https://www.lemieuxproducts.com/api/n/bundle?requests=%5B%7B%22action%22%3A%22route%22%2C%22children%22%3A%5B%7B%22path%22%3A%22%2Fnew-in%2Frhone-polo-bandages-petrol-blue-full%22%2C%22_reqId%22%3A0%7D%5D%7D%5D
-
-
-
