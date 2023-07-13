@@ -4,9 +4,7 @@ localStorage.setItem('subtotal', '-999999');
 let isAddCart,
   isKlarnaClick,
   isDiscountEvent = false;
-
 let klaviyoStep = 1;
-
 (function () {
   /********* exp **********/
   const exp = {
