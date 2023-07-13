@@ -1000,6 +1000,9 @@ let klaviyoStep = 1;
     footer.site-footer {
         padding-bottom: 100px;
     }
+    .shopify-cleanslate .Vru56DW5IUIiRpxbGTDg {
+        display: none !important;
+    }
     @media(max-width: 768px) {
       .lav-paypal .shopify-cleanslate [data-testid="grid-cell"] {
         // height: 42px!important;
