@@ -4,7 +4,9 @@ localStorage.setItem('subtotal', '-999999');
 let isAddCart,
   isKlarnaClick,
   isDiscountEvent = false;
+
 let klaviyoStep = 1;
+
 (function () {
   /********* exp **********/
   const exp = {
@@ -1200,7 +1202,6 @@ let klaviyoStep = 1;
               'Product Information',
             ]);
           }
-
           if (entry.target.classList.contains('lav-extend')) {
             isElementInViewport(entry.target, [
               'new_payments_extend_vis',
@@ -1209,7 +1210,6 @@ let klaviyoStep = 1;
               'Product Information',
             ]);
           }
-
           if (entry.target.classList.contains('lav-shipping__rush')) {
             isElementInViewport(entry.target, [
               'new_payments_rush_order_vis',
@@ -1218,7 +1218,6 @@ let klaviyoStep = 1;
               'Product Information',
             ]);
           }
-
           if (entry.target.classList.contains('lav-summary')) {
             isElementInViewport(entry.target, [
               'new_payments_cart_subtotal_vis',
