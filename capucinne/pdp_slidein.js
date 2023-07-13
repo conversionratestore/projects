@@ -1496,7 +1496,7 @@ let klaviyoStep = 1;
   }
 
   function handleWidgets() {
-    // if (!window.location.pathname.includes('/products/')) return false;
+    if (!window.location.pathname.includes('/products/')) return false;
     $el('.widget-visible')?.setAttribute('style', 'z-index: 22!important');
 
     for (let frame of $$el('.widget-visible iframe')) {
