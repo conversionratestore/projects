@@ -123,15 +123,19 @@ let klaviyoStep = 1;
       transition: all 0.3s ease;
       border: 1px solid #1C1D1D;
     }
-    .lav-btn:hover {
-      color: #1C1D1D;
-      background-color: #fff;
+    @media (min-width: 769px) {
+        .lav-btn:hover {
+        color: #1C1D1D;
+        background-color: #fff;
+        }
     }
     .lav-btn img {
       transition: 0.35s;
     }
-    .lav-btn:hover img {
-      filter: invert(106%) sepia(5%) saturate(360%) hue-rotate(131deg) brightness(92%) contrast(88%);
+    @media (min-width: 769px) {
+        .lav-btn:hover img {
+        filter: invert(106%) sepia(5%) saturate(360%) hue-rotate(131deg) brightness(92%) contrast(88%);
+        }
     }
     .lav-btn img {
       margin-right: 8px;
@@ -807,10 +811,12 @@ let klaviyoStep = 1;
     .cart__checkout-wrapper .lav-btn {
       background: #1C1D1D;
     }
-    .cart__checkout-wrapper .lav-btn:hover {
-      background: #fff!important;
-      animation: none!important;
-      transition-delay: 0s!important;
+    @media (min-width: 769px) {
+        .cart__checkout-wrapper .lav-btn:hover {
+        background: #fff!important;
+        animation: none!important;
+        transition-delay: 0s!important;
+        }
     }
     .cart__terms {
       margin-bottom: 12px!important;
@@ -901,8 +907,10 @@ let klaviyoStep = 1;
       padding-right: 28px;
       margin-right: 24px;
     }
-    .lav-btn:hover .lav-btn-price:after {
-      background-color: #1C1D1D;
+    @media(min-width: 769px) {
+        .lav-btn:hover .lav-btn-price:after {
+        background-color: #1C1D1D;
+        }
     }
     .lav-btn-price:after {
       content: '';
@@ -2175,18 +2183,39 @@ let klaviyoStep = 1;
 
     $el('body').insertAdjacentHTML('beforeend', el);
 
+    let activated = false;
+
+    document.querySelectorAll('[data-type="dropdown"] select').forEach((el) => {
+        el.addEventListener('change', () => {
+            if (!activated) {
+                activated = true;
+            }
+        });
+    });
+
+
     $el('.lav-sticky__btn').addEventListener('click', () => {
-      pushDataLayer(
-        'new_payments_sticky_add_to_cart',
-        'Sticky add to cart',
-        'Button',
-        'Sticky section'
-      );
-      isAddCart = true;
-      $el('button.add-to-cart').click();
-      setTimeout(() => {
-        isAddCart = false;
-      }, 200);
+        if (activated) {
+            pushDataLayer(
+                'new_payments_sticky_add_to_cart',
+                'Sticky add to cart',
+                'Button',
+                'Sticky section'
+            );
+            isAddCart = true;
+            $el('button.add-to-cart').click();
+            setTimeout(() => {
+                isAddCart = false;
+            }, 200);
+        } else {
+            const el = $el('.lav-options');
+            const offset = el.getBoundingClientRect().top + window.scrollY - 100;
+            window.scrollTo({
+                top: offset,
+                behavior: 'smooth'
+            });
+        }
+
     });
 
     waitFor(
