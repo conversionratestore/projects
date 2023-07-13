@@ -565,4 +565,3 @@ let videoReviews = setInterval(() => {
     document.querySelector(".exp")?.remove();
   }
 }, 400);
-
