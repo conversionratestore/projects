@@ -138,6 +138,7 @@ let videoReviews = setInterval(() => {
     font-size: 13.5px;
     line-height: 21px;
     color: #505050;
+    margin: 0;
   }
   .review_card_descr p + p {
     margin-top: 15px;
@@ -166,6 +167,13 @@ let videoReviews = setInterval(() => {
     }
   }
   @media (min-width: 768px) {
+    #row-186{
+      padding-bottom: 0 !important;
+    }
+    #container-60629{
+      padding-bottom: 72px !important;
+    }
+
     #reviewsBlock {
       margin: 0;
       padding: 72px 0;
