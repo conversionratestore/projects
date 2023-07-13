@@ -2183,6 +2183,9 @@ let klaviyoStep = 1;
 
     $el('body').insertAdjacentHTML('beforeend', el);
 
+    $el('select[name="properties[Ring size]"]').insertAdjacentHTML('afterbegin', '<option value="0">Select size</option>')
+    $el('select[name="properties[Ring size]"]').value = 0;
+
     let activated = false;
 
     document.querySelectorAll('[data-type="dropdown"] select').forEach((el) => {
