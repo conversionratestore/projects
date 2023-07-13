@@ -991,18 +991,19 @@ let klaviyoStep = 1;
     .widget-visible {
       z-index: 22!important;
     }
-    .shopify-cleanslate .XLcXEW3RnM9fyU7k7fvC {
-        height: 40px !important;
+    .dynamic-checkout__content .shopify-cleanslate li {
+        height: 52px !important;
         overflow: hidden;
         display: flex;
         align-items: center;
     }
+    .dynamic-checkout__content .shopify-cleanslate li:not(:last-child) {
+        display: none;
+    }
     footer.site-footer {
         padding-bottom: 100px;
     }
-    .shopify-cleanslate .Vru56DW5IUIiRpxbGTDg {
-        display: none !important;
-    }
+    
     @media(max-width: 768px) {
       .lav-paypal .shopify-cleanslate [data-testid="grid-cell"] {
         // height: 42px!important;
@@ -1119,6 +1120,9 @@ let klaviyoStep = 1;
       }
       footer.site-footer {
         padding-bottom: 75px;
+      }
+      .dynamic-checkout__content .shopify-cleanslate li {
+        height: 40px !important;
       }
     }
   `;
@@ -2295,12 +2299,16 @@ let klaviyoStep = 1;
           .innerText.toLowerCase()
           .includes('extend protection')
       ) {
-        pr.querySelector('.cart__price').insertAdjacentHTML(
-          'afterend',
-          getDiscount
-        );
+        
+        if(!pr.querySelector('.cart__item-name').innerText.toLowerCase().includes('engraving') && 
+        !pr.querySelector('.cart__item-name').innerText.toLowerCase().includes('rush')) {
+            pr.querySelector('.cart__price').insertAdjacentHTML(
+            'afterend',
+            getDiscount
+            );
+        }
 
-        pr.querySelector('.lav-discount').addEventListener(
+        pr.querySelector('.lav-discount')?.addEventListener(
           'click',
           function (e) {
             if ($el('.needsclick[aria-label="Open Form"]')) {
