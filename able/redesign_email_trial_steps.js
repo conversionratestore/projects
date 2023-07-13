@@ -376,6 +376,20 @@ const styleCSS = /*html*/`
     color: #010101;
     }
 
+    @media only screen and (max-width: 768px) {
+      .trial_step {
+        height: calc(100% - 52px) !important;
+      }
+
+      .trial_step .bottom {
+        position: absolute;
+        width: calc(100% - 48px);
+        left: 50%;
+        transform: translateX(-50%);
+        bottom: 24px;
+      }
+    }
+
     @media only screen and (max-width: 389px) {
       .support {
         margin-top: 60px;
