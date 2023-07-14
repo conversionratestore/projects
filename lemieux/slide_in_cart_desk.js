@@ -2,7 +2,7 @@ let dir = 'https://conversionratestore.github.io/projects/lemieux/';
 
 let style = `
 <style class="style-exp">
-.cdk-overlay-pane {
+#cdk-overlay-1 {
     max-width: 380px!important;
     margin-left: auto!important;
     width: 100%!important;
@@ -10,7 +10,7 @@ let style = `
 [_nghost-app-c206] ._title[_ngcontent-app-c206] {
     min-height: auto;
 }
-.h3, .text.h3, .text h3, .cdk-overlay-pane h5 .p1, .cdk-overlay-pane h5 .p1:before, .cdk-overlay-pane h5 .p1:after {
+.h3, .text.h3, .text h3, #cdk-overlay-1 h5 .p1, #cdk-overlay-1 h5 .p1:before, #cdk-overlay-1 h5 .p1:after {
     color: #212121;
     font-size: 18px;
     font-style: normal;
@@ -18,30 +18,30 @@ let style = `
     line-height: 24px;
     letter-spacing: normal;
 }
-.cdk-overlay-pane h5 .p1 {
+#cdk-overlay-1 h5 .p1 {
     margin-left: -5px;
 }
-.cdk-overlay-pane h5 .p1:before {
+#cdk-overlay-1 h5 .p1:before {
     content: '(';
 }
-.cdk-overlay-pane h5 .p1:after {
+#cdk-overlay-1 h5 .p1:after {
     content: ')';
     margin-left: -3px;
 }
-.cdk-overlay-pane h5 .p1 span, .cdk-overlay-pane ._body + div.box-shadow-1 ul li:not(:last-child), ._content .box-shadow-1 .p-b-8  {
+#cdk-overlay-1 h5 .p1 span, #cdk-overlay-1 ._body + div.box-shadow-1 ul li:not(:last-child), ._content .box-shadow-1 .p-b-8  {
     display: none!important;
 }
-.cdk-overlay-pane ._body + div.box-shadow-1 ul li:last-child {
+#cdk-overlay-1 ._body + div.box-shadow-1 ul li:last-child {
     text-align: right;
     align-items: flex-start;
 }
-.cdk-overlay-pane ._body + div.box-shadow-1 ul li:last-child .saved_block {
+#cdk-overlay-1 ._body + div.box-shadow-1 ul li:last-child .saved_block {
     margin-top: 8px;
 }
-.cdk-overlay-pane .p-a-5 {
+#cdk-overlay-1 .p-a-5 {
     padding: 12px 24px;
 }
-.cdk-overlay-pane .bg-col-51 {
+#cdk-overlay-1 .bg-col-51 {
     background: #F0F0F0;
     display: flex;
     align-items: center;
@@ -53,44 +53,44 @@ let style = `
     font-weight: 400;
     line-height: 18px;
 }
-.cdk-overlay-pane .bg-col-51.bg-green {
+#cdk-overlay-1 .bg-col-51.bg-green {
     background: #9FCAB9;
 }
-.cdk-overlay-pane .bg-col-51 span {
+#cdk-overlay-1 .bg-col-51 span {
     display: none;
 }
-.cdk-overlay-pane .bg-col-51.bg-green span {
+#cdk-overlay-1 .bg-col-51.bg-green span {
     display: block;
     margin-right: 4px;
 }
-.cdk-overlay-pane ._body .p-l-5 {
+#cdk-overlay-1 ._body .p-l-5 {
     padding: 0;
 }
-.cdk-overlay-pane ._body ul li > .w-12 {
+#cdk-overlay-1 ._body ul li > .w-12 {
     padding: 0 24px;
     border-color: #D0D2D3;
 }
-.cdk-overlay-pane .bg-col-51 svg {
+#cdk-overlay-1 .bg-col-51 svg {
     margin-right: 8px;
 }
 .size-l .right-4 {
     padding: 0 24px;
     right: 0;
 }
-.cdk-overlay-pane  .minibasket-item-image {
+#cdk-overlay-1  .minibasket-item-image {
     flex-shrink: 0;
     width: 100px;
     height: 132px;
     max-width: none;
 }
-.cdk-overlay-pane .minibasket-item-image+.w-9.p-l {
+#cdk-overlay-1 .minibasket-item-image+.w-9.p-l {
     padding-left: 12px;
 }
-.cdk-overlay-pane ._body ul li .left {
+#cdk-overlay-1 ._body ul li .left {
     width: 100%;
     padding-right: 10px;
 }
-.cdk-overlay-pane ._body ul li .left .p1, .product-card a {
+#cdk-overlay-1 ._body ul li .left .p1, .product-card a {
     color: #212121;
     letter-spacing: normal;
     font-size: 16px;
@@ -98,19 +98,19 @@ let style = `
     font-weight: 400;
     line-height: 22px;
 }
-.cdk-overlay-pane ._body ul li .left + .p1 {
+#cdk-overlay-1 ._body ul li .left + .p1 {
     flex-direction: column-reverse;
     text-align: right;
     font-size: 16px;
     letter-spacing: normal;
 }
-.cdk-overlay-pane ._body ul li .left + .p1 .price {
+#cdk-overlay-1 ._body ul li .left + .p1 .price {
     margin-right: 0!important;
 }
-.cdk-overlay-pane ._body ul li .left + .p1 .price:last-child {
+#cdk-overlay-1 ._body ul li .left + .p1 .price:last-child {
     font-weight: 700;
 }
-.cdk-overlay-pane .minibasket-item-image+.w-9.p-l > .m-t-3 {
+#cdk-overlay-1 .minibasket-item-image+.w-9.p-l > .m-t-3 {
     margin-top: 4px;
     color: #595959;
     font-size: 14px;
@@ -119,7 +119,7 @@ let style = `
     line-height: 18px;
     letter-spacing: 0.28px;
 }
-.cdk-overlay-pane [sl-minibasket-button="basket"] {
+#cdk-overlay-1 [sl-minibasket-button="basket"] {
     font-weight: 600;
     line-height: 42px;
     height: auto;
@@ -133,10 +133,10 @@ let style = `
     color: #ACACAC;
     margin: 0!important;
 }
-.cdk-overlay-pane .item-qty {
+#cdk-overlay-1 .item-qty {
     margin-right: auto;
 }
-.cdk-overlay-pane .swiper-slide {
+#cdk-overlay-1 .swiper-slide {
     width: 43%!important;
     margin-bottom: 10px;
     margin-right: 16px!important;
@@ -276,11 +276,11 @@ let style = `
     line-height: 22px;
     padding: 7px 0;
 }
-.cdk-overlay-pane .pr {
+#cdk-overlay-1 .pr {
     font-weight: 700;
     text-align: right;
 }
-.cdk-overlay-pane .pr-line {
+#cdk-overlay-1 .pr-line {
     font-weight: 400;
     text-decoration-line: line-through;
     color: #ACACAC;
@@ -524,20 +524,20 @@ let init = () => {
         </div>`)
     }
 
-    if (document.querySelector('.cdk-overlay-pane')) {
+    if (document.querySelector('#cdk-overlay-1')) {
        
-        document.querySelectorAll('.cdk-overlay-pane ._body ul li .left .c1').forEach(item => {
+        document.querySelectorAll('#cdk-overlay-1 ._body ul li .left .c1').forEach(item => {
             item.closest('.left').parentElement.after(item)
         })
 
-        document.querySelectorAll('.cdk-overlay-pane .minibasket-item-image+.w-9.p-l > .m-t-3 > span').forEach(item => {
+        document.querySelectorAll('#cdk-overlay-1 .minibasket-item-image+.w-9.p-l > .m-t-3 > span').forEach(item => {
             let spl = item.innerHTML.split(':')[0]
             item.innerHTML =  item.innerHTML.replace(spl,`<span class="c-gray">${spl}`).replace(':',':</span>');
         })
     }
     //shipping topbar
-    if (document.querySelector('.cdk-overlay-pane .bg-col-51') && document.querySelector('.cdk-overlay-pane .bg-col-51 svg') == null) {
-        let parent = document.querySelector('.cdk-overlay-pane .bg-col-51');
+    if (document.querySelector('#cdk-overlay-1 .bg-col-51') && document.querySelector('#cdk-overlay-1 .bg-col-51 svg') == null) {
+        let parent = document.querySelector('#cdk-overlay-1 .bg-col-51');
 
         parent.insertAdjacentHTML('afterbegin', carSvg + '<span>Congratulation! </span>');
     }
@@ -740,9 +740,9 @@ let init = () => {
 
 
                 let compareSum = shipping;
-                let currency = document.querySelector('.cdk-overlay-pane ._body .p-l-5 ul li .price').innerText.charAt(0);
+                let currency = document.querySelector('#cdk-overlay-1 ._body .p-l-5 ul li .price').innerText.charAt(0);
 
-                document.querySelectorAll('.cdk-overlay-pane ._body .p-l-5 ul li').forEach(item => {
+                document.querySelectorAll('#cdk-overlay-1 ._body .p-l-5 ul li').forEach(item => {
                     if (item.querySelector('.line-through.price')) {
                         compareSum += +item.querySelector('.line-through.price').innerText.replace(currency, '');
                     } else {
@@ -901,21 +901,21 @@ let init = () => {
                     }
                 }
 
-                document.querySelector('.cdk-overlay-pane ._body + div.box-shadow-1 ul li:last-child .p1').innerHTML = 'Order total';
-                document.querySelector('.cdk-overlay-pane ._body + div.box-shadow-1 ul li:last-child .price').innerHTML = `
+                document.querySelector('#cdk-overlay-1 ._body + div.box-shadow-1 ul li:last-child .p1').innerHTML = 'Order total';
+                document.querySelector('#cdk-overlay-1 ._body + div.box-shadow-1 ul li:last-child .price').innerHTML = `
                 <span class="">
                     ${savedTotal != 0 ? ' <span class="pr-line">' + currency + (compareSum).toFixed(2) + '</span>' : ''}
                     <span class="pr">${currency}${grand_total}</span>
                 </span>
                 ${savedTotal != 0 ? '<span class="saved_block">You just saved ' + currency + savedTotal + '</span>' : ''}`;
 
-                document.querySelector('.cdk-overlay-pane [sl-minibasket-button="basket"]').addEventListener('click', (e) => {
+                document.querySelector('#cdk-overlay-1 [sl-minibasket-button="basket"]').addEventListener('click', (e) => {
                     e.preventDefault();
                     window.location.href = 'https://www.lemieuxproducts.com/checkout';
                 })
 
                 if (!document.querySelector('.text_guarantee')) {
-                    document.querySelector('.cdk-overlay-pane [sl-minibasket-button="basket"]').insertAdjacentHTML('afterend',`
+                    document.querySelector('#cdk-overlay-1 [sl-minibasket-button="basket"]').insertAdjacentHTML('afterend',`
                     <p class="flex flex-middle text_guarantee">
                         <svg width="16" height="18" viewBox="0 0 16 18" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M1.25 3.47076L8.00338 1.49976L14.75 3.47076V7.51251C14.75 9.58389 14.0981 11.6027 12.8869 13.2831C11.6756 14.9634 9.96629 16.22 8.00113 16.8748C6.03536 16.22 4.32548 14.9633 3.11379 13.2826C1.90209 11.6019 1.25003 9.58256 1.25 7.51063V3.47076Z" stroke="#212121" stroke-width="2" stroke-linejoin="round"/>
@@ -1010,18 +1010,18 @@ let optionMut = {
 };
 
 let mut = new MutationObserver(function (muts) {
-    if (document.querySelector('.cdk-overlay-pane [sl-minibasket-button="basket"]')) {
+    if (document.querySelector('#cdk-overlay-1 [sl-minibasket-button="basket"]')) {
         mut.disconnect()
 
         init()
     }
     mut.observe(document, optionMut);
   
-    if (document.querySelector('.icon-loading') == null && document.querySelector('.cdk-overlay-pane .bg-col-51')) {
+    if (document.querySelector('.icon-loading') == null && document.querySelector('#cdk-overlay-1 .bg-col-51')) {
        
         mut.disconnect()
        
-        let parent = document.querySelector('.cdk-overlay-pane .bg-col-51');
+        let parent = document.querySelector('#cdk-overlay-1 .bg-col-51');
 
         if (parent.innerText.includes('You have Free')) {
             parent.classList.add('bg-green')
@@ -1032,7 +1032,7 @@ let mut = new MutationObserver(function (muts) {
 
     mut.observe(document, optionMut);
    
-    if (document.querySelector('.cdk-overlay-pane ._body p') && document.querySelector('.cdk-overlay-pane ._body p').innerText.includes('Your bag is empty')) {
+    if (document.querySelector('#cdk-overlay-1 ._body p') && document.querySelector('#cdk-overlay-1 ._body p').innerText.includes('Your bag is empty')) {
         mut.disconnect()
 
         document.querySelector('._body p').innerHTML = `
@@ -1051,7 +1051,7 @@ let mut = new MutationObserver(function (muts) {
         (
             document.querySelector('.busy-icon') || 
             document.querySelector('basket-related-products action.busy') ||
-            document.querySelector('.cdk-overlay-pane ._body ul li > .w-12 action.underline.busy')
+            document.querySelector('#cdk-overlay-1 ._body ul li > .w-12 action.underline.busy')
         ) && 
         !document.querySelector('loading') &&
         document.querySelector('.footer_content')
