@@ -2185,6 +2185,9 @@ let klaviyoStep = 1;
     $el('.lav-sticky__btn .lav-product-price').style.display = 'none';
     $el('.lav-sticky__btn img').style.display = 'none';
 
+
+
+
     let activated = false;
 
 
@@ -2202,7 +2205,8 @@ let klaviyoStep = 1;
                 isAddCart = false;
             }, 200);
         } else {
-            const el = $el('.lav-options');
+            activated = true;
+            const el = $el('.variant-wrapper');
             const offset = el.getBoundingClientRect().top + window.scrollY - 100;
             window.scrollTo({
                 top: offset,
@@ -2211,9 +2215,7 @@ let klaviyoStep = 1;
             $el('.lav-sticky__btn .lav-product-price').style.display = 'block';
             $el('.lav-sticky__btn img').style.display = 'block';
             $el('.lav-sticky__btn .lav-btn-caption').innerText = 'Add to cart';
-
         }
-
     });
 
     waitFor(
@@ -2224,6 +2226,20 @@ let klaviyoStep = 1;
         }
       }
     );
+
+    const obs = new MutationObserver((muts) => {
+        for (let mut of muts) {
+            if(mut.target.classList.contains('money')) {
+                $el('.lav-sticky__btn .lav-product-price').innerText = mut.target.innerText.trim();
+            }
+        }
+    })
+
+    obs.observe($el('.product__price'), {
+        childList: true,
+        subtree: true,
+        characterData: true,
+    });
   }
 
   function handleSlideIn(benefits) {
