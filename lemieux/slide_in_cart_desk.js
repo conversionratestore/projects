@@ -289,6 +289,7 @@ let style = `
 .order_total {
     border-top: 1px dashed #D0D2D3;
     padding: 5px 0;
+    order: 3;
 }
 .total_content > div.order_total p {
     font-size: 20px;
@@ -762,12 +763,12 @@ let init = () => {
                     })
 
                     document.querySelector('.total_content').innerHTML = '';
-                    
+
                     for (const key in carTotal) {
                         if (carTotal[key] != '0' && !key.includes('tax')) {
                             document.querySelector('.total_content').insertAdjacentHTML('beforeend',`
                             <div class="flex flex-middle  ${key == 'grand_total' ? 'order_total' : ''}" data-name="${key}">
-                                <p class="">${key == 'grand_total' ? 'Order total' : key}</p>
+                                <p class="">${key == 'grand_total' ? 'Order total' : key.split('_').join(' ')}</p>
                                 <p class="ml-auto">
                                     ${carTotal[key] < (compareSum).toFixed(2) && (key == 'grand_total' || key == 'subtotal') ? ' <span class="pr-line">' + (compareSum).toFixed(2) + '</span>' : ''}
                                     <span class="pr">${carTotal[key]}</span>
@@ -862,47 +863,51 @@ let init = () => {
 
                     if (!document.querySelector('.coupon_gift')) {
                         if (gift.length > 0) {
-                            document.querySelector('.coupon').insertAdjacentHTML('beforeend', haveGiftCodeHTML(gift[0].code));
-                            //remove gift code 
-                            document.querySelector('.coupon_gift .btn-remove-code').addEventListener('click', (e) => {
-                                let code = {"code":gift[0].code};
-                                postFetch('giftcard/remove', code, 'POST')
-                                document.querySelector('.footer_content').classList.add('busy-icon')
-                            })
-                            
-                        } else {
-                            document.querySelector('.coupon').insertAdjacentHTML('beforeend', couponGiftHTML)
 
-                            currentCoupon('.coupon_gift')
+                            for (let i = 0; i < gift.length; i++) {
+                                document.querySelector('.coupon').insertAdjacentHTML('beforeend', haveGiftCodeHTML(gift[i].code));
+                                //remove gift code 
+                                document.querySelectorAll('.coupon_gift .btn-remove-code')[i].addEventListener('click', (e) => {
+                                    let code = {"code":gift[i].code};
+                                    postFetch('giftcard/remove', code, 'POST')
+                                    document.querySelector('.footer_content').classList.add('busy-icon')
+                                })
+                            }
+                           
+                        } 
 
-                            //Click on Check balance button
-                            document.querySelector('.btn-check-balance').addEventListener('click', (e) => {
-                                e.currentTarget.classList.add('busy');
-                    
-                                let value =  document.querySelector('.coupon_item input[name="giftcard"]').value;
-                    
-                                let giftcard = {"code": value}
-                                if (value != '') {
-                                    postFetch('giftcard/balance', giftcard, 'POST').then(data => {
-                                        console.log(data)
-                                        e.currentTarget.classList.remove('busy');
-                        
-                                        if (data.error) {
-                                            let message = data.error == "INVALID_GIFTCARD" ? `Sorry, we don't recognise this code` : data.error;
-                                            console.log(message)
-                                            document.querySelector('.coupon_gift_form result').innerHTML = message;
-                                            document.querySelector('.coupon_gift_form result').classList.remove('ng-hide');
-                                        } else {
-                                            console.log('balance true')
-                                        }
-                                    })
-                                } else {
+                        document.querySelector('.coupon').insertAdjacentHTML('beforeend', couponGiftHTML)
+
+                        currentCoupon('.coupon_gift')
+
+                        //Click on Check balance button
+                        document.querySelector('.btn-check-balance').addEventListener('click', (e) => {
+                            let form = e.currentTarget.closest('.coupon_gift_form');
+                
+                            let value =  form.querySelector('input[name="giftcard"]').value;
+                
+                            let giftcard = {"code": value}
+                            if (value != '') {
+                                postFetch('giftcard/balance', giftcard, 'POST').then(data => {
+                                    console.log(data)
                                     e.currentTarget.classList.remove('busy');
-                                    document.querySelector('.coupon_gift_form validation').classList.remove('ng-hide')
-                                    document.querySelector('.coupon_gift_form .mui-input').classList.add('is-invalid')
-                                }
-                            })
-                        }
+                    
+                                    if (data.error && data.error != '') {
+                                        let message = data.error == "INVALID_GIFTCARD" ? `Sorry, we don't recognise this code` : data.error;
+                                        console.log(message)
+                                        form.querySelector('result').innerHTML = message;
+                                        form.querySelector('result').classList.remove('ng-hide');
+                                    } else {
+                                        console.log('balance true')
+                                        form.querySelector('result p').innerHTML = data;
+                                    }
+                                })
+                            } else {
+                                e.currentTarget.classList.remove('busy');
+                                form.querySelector('validation').classList.remove('ng-hide')
+                                form.querySelector('.mui-input').classList.add('is-invalid')
+                            }
+                        })
                     }
 
                     document.querySelector('.cdk-overlay-pane ._body + div.box-shadow-1 ul li:last-child .p1').innerHTML = 'Order total';
@@ -1071,50 +1076,3 @@ let mut = new MutationObserver(function (muts) {
 })
 
 mut.observe(document, optionMut);
-
-
-
-// // remove item 
-// // https://www.lemieuxproducts.com/api/p/basket/remove 
-
-// let obj = {
-//     "ids":[3322527]
-// }
-// postFetch('basket/remove', obj, 'POST').then(data => {
-//     console.log(data)
-// })
-
-
-// // update qty item 
-// //https://www.lemieuxproducts.com/api/p/basket/qty
-// let objUpdateQty = {"id":3322527,"qty":2}
-
-// postFetch('basket/qty', objUpdateQty, 'POST').then(data => {
-//     console.log(data)
-// })
-
-// //add item 
-// // https://www.lemieuxproducts.com/api/p/basket/add
-// let idAdd = document.querySelector('.product-image-gallery-container').getAttribute('class').split('galleryuid-')[1].split(' ')[0]
-// let objAdd = {"products":[{"id":8497,"qty":1,"options":{},"bundle_options":{}}]}
-
-// postFetch('basket/add', objAdd, 'POST').then(data => {
-//     console.log(data)
-// })
-
-// //get data cart
-// fetch(`https://www.lemieuxproducts.com/api/p/customer/data`, {
-//     headers: {
-//         'Content-Type': 'application/json'
-//     },
-//     method: 'GET'
-// }).then(res => res.json()).then(data => {
-//     console.log(data)
-    
-// }).catch((error) => {
-//     console.error('Error:', error);
-// });
-
-// //  let objItemsCart = [{"action":"route","children":[{"path":"/new-in/rhone-polo-bandages-petrol-blue-full","_reqId":0}]}]
-//  //https://www.lemieuxproducts.com/api/n/bundle?requests=%5B%7B%22action%22%3A%22route%22%2C%22children%22%3A%5B%7B%22path%22%3A%22%2Fnew-in%2Frhone-polo-bandages-petrol-blue-full%22%2C%22_reqId%22%3A0%7D%5D%7D%5D
-
