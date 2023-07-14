@@ -2185,10 +2185,51 @@ let klaviyoStep = 1;
     $el('.lav-sticky__btn .lav-product-price').style.display = 'none';
     $el('.lav-sticky__btn img').style.display = 'none';
 
-
-
-
     let activated = false;
+
+    if($el('[name="properties[Ring size]"]')) {
+      $el('[name="properties[Ring size]"]').insertAdjacentHTML('afterbegin', '<option value="Select size" selected>Select size</option>');
+      $el('[data-add-to-cart] [data-default-text]').innerText = 'Select size';
+      $el('[data-add-to-cart] img').style.display = 'none';
+
+      $el('[name="properties[Ring size]"]').addEventListener('change', function(e){
+        if(e.target.value !== 'Select size') {
+          activated = true;
+          $el('.lav-sticky__btn .lav-product-price').style.display = 'block';
+          $el('.lav-sticky__btn img').style.display = 'block';
+          $el('.lav-sticky__btn .lav-btn-caption').innerText = 'Add to cart';
+          $el('[data-add-to-cart] [data-default-text]').innerText = 'Add to cart';
+          $el('[data-add-to-cart] img').style.display = 'block';
+        } else {
+          activated = false;
+          $el('.lav-sticky__btn .lav-product-price').style.display = 'none';
+          $el('.lav-sticky__btn img').style.display = 'none';
+          $el('.lav-sticky__btn .lav-btn-caption').innerText = 'Select size';
+          $el('[data-add-to-cart] [data-default-text]').innerText = 'Select size';
+          $el('[data-add-to-cart] img').style.display = 'none';
+        }
+      })
+
+      document.querySelector('[data-add-to-cart]').addEventListener('click', function(e){
+        if(!document.querySelector('[data-add-to-cart] [data-default-text]').innerText.toLowerCase().includes('cart')) {
+            e.preventDefault()
+            const el = $el('.variant-wrapper');
+            const offset = el.getBoundingClientRect().top + window.scrollY - 120;
+            window.scrollTo({
+                top: offset,
+                behavior: 'smooth'
+            });
+        }
+      })
+    } else {
+      activated = true;
+      $el('.lav-sticky__btn .lav-product-price').style.display = 'block';
+      $el('.lav-sticky__btn img').style.display = 'block';
+      $el('.lav-sticky__btn .lav-btn-caption').innerText = 'Add to cart';
+    }
+
+
+    
 
 
     $el('.lav-sticky__btn').addEventListener('click', () => {
@@ -2205,16 +2246,12 @@ let klaviyoStep = 1;
                 isAddCart = false;
             }, 200);
         } else {
-            activated = true;
             const el = $el('.variant-wrapper');
             const offset = el.getBoundingClientRect().top + window.scrollY - 120;
             window.scrollTo({
                 top: offset,
                 behavior: 'smooth'
             });
-            $el('.lav-sticky__btn .lav-product-price').style.display = 'block';
-            $el('.lav-sticky__btn img').style.display = 'block';
-            $el('.lav-sticky__btn .lav-btn-caption').innerText = 'Add to cart';
         }
     });
 
