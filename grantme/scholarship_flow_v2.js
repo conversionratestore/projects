@@ -1914,7 +1914,7 @@ padding: 0;
       </div>
     </section>
     <section class="consultation_descr_box">
-      <h2>Book a Free <span class="grade_var">Grade 12</span> Scolarship Consultation</h2>
+      <h2>Book a Free <span class="grade_var">Grade 12</span> Scholarship Consultation</h2>
       <div>
         <h3>What you’ll learn on the call:</h3>
         <ul>
