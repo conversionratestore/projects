@@ -1889,7 +1889,7 @@ padding: 0;
       <p class="win_scholarships_txt"><span class="accent_var grade_var">Grade 9 - 10</span> students can win 5x as many scholarships.</p>
     </section>
     <section class="reviews_btn_box">
-      <h2>Book a <span class="accent_var">Free</span> call to find out how to get this scolarship</h2>
+      <h2>Book a <span class="accent_var">Free</span> call to find out how to get this scholarship</h2>
       <a class="book_free_call_btn" href="#newScheduleBox">Book a Free Call</a>
       <div class="reviews_btn_wrapper" data-reviews data-count='1'>
         <svg width="109" height="20" viewBox="0 0 109 20" fill="none" xmlns="http://www.w3.org/2000/svg">
