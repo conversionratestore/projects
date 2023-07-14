@@ -607,3 +607,4 @@ if (window.location.pathname === "/booking-page1666161342817") {
     }
   }, 500);
 }
+
