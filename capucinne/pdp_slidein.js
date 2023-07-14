@@ -219,7 +219,7 @@ let klaviyoStep = 1;
       flex-shrink: 0;0
     }
     .lav-sticky__btn {
-      max-width: 280px;
+      max-width: 330px;
       width: 100%;
     }
 
