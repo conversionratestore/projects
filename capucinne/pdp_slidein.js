@@ -1341,7 +1341,7 @@ let klaviyoStep = 1;
   const earnStart = `
   <div class='lav-earn lav-earn-start lav-watch'>
     <div class='lav-earn__img'>
-      <img class='lav-earn_moon' src='https://conversionratestore.github.io/projects/capucinne/earn.png' />
+      <img class='lav-earn_moon' src='https://conversionratestore.github.io/projects/capucinne/earn.jpg' />
     </div>
     <div class='lav-earn__caption lav-earn_moon'>
       Spend <span>$1500 or more</span> and <span>get free</span> complimentary Half Moon Capucinne earrings <a href='/products/gift?variant=46796290392405'><u>Learn more</u> <img src="${exp.dir}/img/black-arrow.svg"></a>
@@ -1501,7 +1501,7 @@ let klaviyoStep = 1;
     );
 
     waitFor(
-      () => $el('.product-single__title') && item && item.ImageURL,
+      () => $el('.product-single__title') && item && item.ImageURL && $el('[data-add-to-cart]'),
       () => {
         addSticky();
       }
@@ -2205,7 +2205,6 @@ let klaviyoStep = 1;
 
     if($el('[name="properties[Ring size]"]')) {
       $el('[name="properties[Ring size]"]').insertAdjacentHTML('afterbegin', '<option value="Select size" selected>Select size</option>');
-      $el('[data-add-to-cart] [data-default-text]').innerText = 'Select size';
       $el('[data-add-to-cart] img').style.display = 'none';
       $el('.extend-offer').insertAdjacentHTML('afterend', '<div class="lav-select_size">Select size</div>')
       $el('[data-add-to-cart]').style.display = 'none';
@@ -2216,7 +2215,6 @@ let klaviyoStep = 1;
           $el('.lav-sticky__btn .lav-product-price').style.display = 'block';
           $el('.lav-sticky__btn img').style.display = 'block';
           $el('.lav-sticky__btn .lav-btn-caption').innerText = 'Add to cart';
-          $el('[data-add-to-cart] [data-default-text]').innerText = 'Add to cart';
           $el('[data-add-to-cart] img').style.display = 'block';
           $el('[data-add-to-cart]').style.display = 'block';
           $el('.lav-select_size').style.display = 'none';
@@ -2226,7 +2224,6 @@ let klaviyoStep = 1;
           $el('.lav-sticky__btn .lav-product-price').style.display = 'none';
           $el('.lav-sticky__btn img').style.display = 'none';
           $el('.lav-sticky__btn .lav-btn-caption').innerText = 'Select size';
-          $el('[data-add-to-cart] [data-default-text]').innerText = 'Select size';
           $el('[data-add-to-cart] img').style.display = 'none';
           $el('[data-add-to-cart]').style.display = 'none';
           $el('.lav-select_size').style.display = 'block';
