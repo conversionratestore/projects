@@ -761,6 +761,8 @@ let init = () => {
                         item.innerHTML = currency + (grand_total / 3).toFixed(2);
                     })
 
+                    document.querySelector('.total_content').innerHTML = '';
+                    
                     for (const key in carTotal) {
                         if (carTotal[key] != '0' && !key.includes('tax')) {
                             document.querySelector('.total_content').insertAdjacentHTML('beforeend',`
