@@ -1501,7 +1501,7 @@ let klaviyoStep = 1;
     );
 
     waitFor(
-      () => $el('.product-single__title') && item && item.ImageURL && $el('[data-add-to-cart]'),
+      () => $el('.product-single__title') && item && item.ImageURL && $el('[data-add-to-cart]') && $el('.extend-offer'),
       () => {
         addSticky();
       }
@@ -1677,7 +1677,9 @@ let klaviyoStep = 1;
       return false;
 
     updateTotal();
-    handleEarn(subtotal);
+    setTimeout(() => {
+      handleEarn(subtotal);
+    }, 1000);
     setTimeout(() => {
         handleItemsSummary();
     }, 500);
