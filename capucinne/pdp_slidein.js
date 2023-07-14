@@ -2207,7 +2207,7 @@ let klaviyoStep = 1;
         } else {
             activated = true;
             const el = $el('.variant-wrapper');
-            const offset = el.getBoundingClientRect().top + window.scrollY - 100;
+            const offset = el.getBoundingClientRect().top + window.scrollY - 120;
             window.scrollTo({
                 top: offset,
                 behavior: 'smooth'
