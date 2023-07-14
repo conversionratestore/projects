@@ -2176,25 +2176,16 @@ let klaviyoStep = 1;
         <button class='lav-sticky__btn lav-btn'>
           <img src='${exp.dir}/img/bag.svg' />
           <span class='lav-product-price lav-btn-price lav-mob'></span>
-          <span class='lav-btn-caption'>Add to cart</span>
+          <span class='lav-btn-caption'>Select size</span>
         </button>
       </div>
     `;
 
     $el('body').insertAdjacentHTML('beforeend', el);
-
-    $el('select[name="properties[Ring size]"]').insertAdjacentHTML('afterbegin', '<option value="0">Select size</option>')
-    $el('select[name="properties[Ring size]"]').value = 0;
+    $el('.lav-sticky__btn .lav-product-price').style.display = 'none';
+    $el('.lav-sticky__btn img').style.display = 'none';
 
     let activated = false;
-
-    document.querySelectorAll('[data-type="dropdown"] select').forEach((el) => {
-        el.addEventListener('change', () => {
-            if (!activated) {
-                activated = true;
-            }
-        });
-    });
 
 
     $el('.lav-sticky__btn').addEventListener('click', () => {
@@ -2217,6 +2208,10 @@ let klaviyoStep = 1;
                 top: offset,
                 behavior: 'smooth'
             });
+            $el('.lav-sticky__btn .lav-product-price').style.display = 'block';
+            $el('.lav-sticky__btn img').style.display = 'block';
+            $el('.lav-sticky__btn .lav-btn-caption').innerText = 'Add to cart';
+
         }
 
     });
