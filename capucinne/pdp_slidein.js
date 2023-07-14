@@ -2205,7 +2205,6 @@ let klaviyoStep = 1;
 
     if($el('[name="properties[Ring size]"]')) {
       $el('[name="properties[Ring size]"]').insertAdjacentHTML('afterbegin', '<option value="Select size" selected>Select size</option>');
-      $el('[data-add-to-cart] img').style.display = 'none';
       $el('.extend-offer').insertAdjacentHTML('afterend', '<div class="lav-select_size">Select size</div>')
       $el('[data-add-to-cart]').style.display = 'none';
 
@@ -2215,8 +2214,7 @@ let klaviyoStep = 1;
           $el('.lav-sticky__btn .lav-product-price').style.display = 'block';
           $el('.lav-sticky__btn img').style.display = 'block';
           $el('.lav-sticky__btn .lav-btn-caption').innerText = 'Add to cart';
-          $el('[data-add-to-cart] img').style.display = 'block';
-          $el('[data-add-to-cart]').style.display = 'block';
+          $el('[data-add-to-cart]').style.display = 'flex';
           $el('.lav-select_size').style.display = 'none';
 
         } else {
@@ -2224,9 +2222,8 @@ let klaviyoStep = 1;
           $el('.lav-sticky__btn .lav-product-price').style.display = 'none';
           $el('.lav-sticky__btn img').style.display = 'none';
           $el('.lav-sticky__btn .lav-btn-caption').innerText = 'Select size';
-          $el('[data-add-to-cart] img').style.display = 'none';
           $el('[data-add-to-cart]').style.display = 'none';
-          $el('.lav-select_size').style.display = 'block';
+          $el('.lav-select_size').style.display = 'flex';
         }
       })
 
