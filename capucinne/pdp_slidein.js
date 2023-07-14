@@ -1326,10 +1326,10 @@ let klaviyoStep = 1;
   const earnStart = `
   <div class='lav-earn lav-earn-start lav-watch'>
     <div class='lav-earn__img'>
-      <img class='lav-earn_moon' src='${exp.dir}/img/earn.png' />
+      <img class='lav-earn_moon' src='https://conversionratestore.github.io/projects/capucinne/earn.png' />
     </div>
     <div class='lav-earn__caption lav-earn_moon'>
-      Spend <span>$1500 or more</span> and <span>get free</span> complimentary Half Moon Capucinne earrings
+      Spend <span>$1500 or more</span> and <span>get free</span> complimentary Half Moon Capucinne earrings <a href='/products/gift?variant=46796290392405'><u>Learn more</u> <img src="${exp.dir}/img/black-arrow.svg"></a>
     </div>
   </div>
   `;
@@ -1337,10 +1337,10 @@ let klaviyoStep = 1;
   const earnGift1 = `
   <div class='lav-earn lav-earn-1500 lav-watch'>
     <div class='lav-earn__img'>
-      <img class='lav-earn_moon' src='${exp.dir}/img/earn.png' />
+      <img class='lav-earn_moon' src='https://conversionratestore.github.io/projects/capucinne/earn.jpg' />
     </div>
     <div class='lav-earn__caption lav-earn_moon' >
-      <span>You’ll receive a free</span> pair of Half Moon Capucinne  <span>earrings</span> with your order of $1500 or more&nbsp; <a href='/products/gift?variant=46796290392405'><u>Learn more</u> <img src="${exp.dir}/img/black-arrow.svg"></a>
+      <span>You’ll receive a free</span> pair of Half Moon Capucinne <span>earrings</span> with your order&nbsp; <a href='/products/gift?variant=46796290392405'><u>Learn more</u> <img src="${exp.dir}/img/black-arrow.svg"></a>
     </div>
   </div>
   `;
@@ -1348,10 +1348,10 @@ let klaviyoStep = 1;
   const earnGift2 = `
   <div class='lav-earn lav-earn-5000 lav-watch'>
     <div class='lav-earn__img'>
-      <img class='lav-earn_chain' src='${exp.dir}/img/chain.png'  />
+      <img class='lav-earn_chain' src='https://conversionratestore.github.io/projects/capucinne/chain.jpg'  />
     </div>
     <div class='lav-earn__caption lav-earn_chain'>
-      <span>You’ll receive a free</span> Half Moon Capucinne <span>bracelet</span> with your order of $5000 or more&nbsp; <a href='/products/gift?variant=46796290392405'><u>Learn more</u> <img src="${exp.dir}/img/black-arrow.svg"></a>
+      <span>You’ll receive a free<span> pair of Half Moon Capucinne <span>bracelet</span> with your order&nbsp; <a href='/products/gift?variant=46796290392405'><u>Learn more</u> <img src="${exp.dir}/img/black-arrow.svg"></a>
     </div>
   </div>
   `;
@@ -2009,7 +2009,8 @@ let klaviyoStep = 1;
         earnStart
       );
     }
-
+    const price = +document.querySelector('.product__price:not(.product__price--compare) .money').getAttribute('doubly-currency-usd') / 100
+    subtotal = price
     if (subtotal >= 5000 && !$el('[data-product-blocks] .lav-earn-5000')) {
       $el('[data-product-blocks] .lav-earn')?.remove();
       $el('.the4-toolkit-wishlist')?.insertAdjacentHTML(
@@ -2246,6 +2247,12 @@ let klaviyoStep = 1;
                 isAddCart = false;
             }, 200);
         } else {
+            pushDataLayer(
+              'new_payments_sticky_select_size',
+              'Sticky select size',
+              'Button',
+              'Sticky section'
+            );
             const el = $el('.variant-wrapper');
             const offset = el.getBoundingClientRect().top + window.scrollY - 120;
             window.scrollTo({
@@ -2266,13 +2273,13 @@ let klaviyoStep = 1;
 
     const obs = new MutationObserver((muts) => {
         for (let mut of muts) {
+            console.log(mut)
             if(mut.target.classList.contains('money')) {
                 $el('.lav-sticky__btn .lav-product-price').innerText = mut.target.innerText.trim();
             }
         }
     })
-
-    obs.observe($el('.product__price'), {
+    obs.observe($el('.product__price:not(.product__price--compare)'), {
         childList: true,
         subtree: true,
         characterData: true,
