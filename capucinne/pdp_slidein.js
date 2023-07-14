@@ -1677,9 +1677,12 @@ let klaviyoStep = 1;
       return false;
 
     updateTotal();
-    setTimeout(() => {
-      handleEarn(subtotal);
-    }, 1000);
+    waitFor(
+      () => $el('[doubly-currency-usd]'),
+      () => {
+        handleEarn(subtotal);
+      }
+    );
     setTimeout(() => {
         handleItemsSummary();
     }, 500);
