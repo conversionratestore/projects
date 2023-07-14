@@ -1011,6 +1011,21 @@ let klaviyoStep = 1;
     footer.site-footer {
         padding-bottom: 100px;
     }
+    .lav-select_size {
+      width: 100%;
+      background: #1C1D1D;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-transform: uppercase;
+      font-size: 12px;
+      font-weight: 700;
+      line-height: 12px;
+      letter-spacing: 0.8px;
+      padding: 16px;
+      cursor: pointer;
+    }
     
     @media(max-width: 768px) {
       .lav-paypal .shopify-cleanslate [data-testid="grid-cell"] {
@@ -1351,7 +1366,7 @@ let klaviyoStep = 1;
       <img class='lav-earn_chain' src='https://conversionratestore.github.io/projects/capucinne/chain.jpg'  />
     </div>
     <div class='lav-earn__caption lav-earn_chain'>
-      <span>You’ll receive a free<span> pair of Half Moon Capucinne <span>bracelet</span> with your order&nbsp; <a href='/products/gift?variant=46796290392405'><u>Learn more</u> <img src="${exp.dir}/img/black-arrow.svg"></a>
+      <span>You’ll receive a free</span> pair of Half Moon Capucinne <span>bracelet</span> with your order&nbsp; <a href='/products/gift?variant=46796290392405'><u>Learn more</u> <img src="${exp.dir}/img/black-arrow.svg"></a>
     </div>
   </div>
   `;
@@ -2192,6 +2207,8 @@ let klaviyoStep = 1;
       $el('[name="properties[Ring size]"]').insertAdjacentHTML('afterbegin', '<option value="Select size" selected>Select size</option>');
       $el('[data-add-to-cart] [data-default-text]').innerText = 'Select size';
       $el('[data-add-to-cart] img').style.display = 'none';
+      $el('.extend-offer').insertAdjacentHTML('afterend', '<div class="lav-select_size">Select size</div>')
+      $el('[data-add-to-cart]').style.display = 'none';
 
       $el('[name="properties[Ring size]"]').addEventListener('change', function(e){
         if(e.target.value !== 'Select size') {
@@ -2201,6 +2218,9 @@ let klaviyoStep = 1;
           $el('.lav-sticky__btn .lav-btn-caption').innerText = 'Add to cart';
           $el('[data-add-to-cart] [data-default-text]').innerText = 'Add to cart';
           $el('[data-add-to-cart] img').style.display = 'block';
+          $el('[data-add-to-cart]').style.display = 'block';
+          $el('.lav-select_size').style.display = 'none';
+
         } else {
           activated = false;
           $el('.lav-sticky__btn .lav-product-price').style.display = 'none';
@@ -2208,20 +2228,11 @@ let klaviyoStep = 1;
           $el('.lav-sticky__btn .lav-btn-caption').innerText = 'Select size';
           $el('[data-add-to-cart] [data-default-text]').innerText = 'Select size';
           $el('[data-add-to-cart] img').style.display = 'none';
+          $el('[data-add-to-cart]').style.display = 'none';
+          $el('.lav-select_size').style.display = 'block';
         }
       })
 
-      document.querySelector('[data-add-to-cart]').addEventListener('click', function(e){
-        if(!document.querySelector('[data-add-to-cart] [data-default-text]').innerText.toLowerCase().includes('cart')) {
-            e.preventDefault()
-            const el = $el('.variant-wrapper');
-            const offset = el.getBoundingClientRect().top + window.scrollY - 120;
-            window.scrollTo({
-                top: offset,
-                behavior: 'smooth'
-            });
-        }
-      })
     } else {
       activated = true;
       $el('.lav-sticky__btn .lav-product-price').style.display = 'block';
@@ -2230,7 +2241,21 @@ let klaviyoStep = 1;
     }
 
 
-    
+    $el('.lav-select_size').addEventListener('click', () => {
+            pushDataLayer(
+              'new_payments_select_size',
+              'Select size',
+              'Button',
+              'Add product section'
+            );
+            const el = $el('.variant-wrapper');
+            const offset = el.getBoundingClientRect().top + window.scrollY - 120;
+            window.scrollTo({
+                top: offset,
+                behavior: 'smooth'
+            });
+    })
+
 
 
     $el('.lav-sticky__btn').addEventListener('click', () => {
