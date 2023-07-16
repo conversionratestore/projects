@@ -1,5 +1,8 @@
 let dir = 'https://conversionratestore.github.io/projects/lemieux/';
 
+//get currency website
+let currency = window.autoInitData.website.currency.list[0].symbol;
+
 let style = `
 <style>
 .cart input::-webkit-outer-spin-button,
@@ -97,7 +100,7 @@ let style = `
     background: #FAFAFA;
     display: block;
     width: 100%;
-    padding: 6px 12px;
+    padding: 8px 12px;
     margin-top: 10px;
 }
 .ml-auto {
@@ -137,6 +140,16 @@ let style = `
     font-style: normal;
     font-weight: 600;
     line-height: 22px;
+}
+.total_content ul li {
+    padding: 7px 0;
+}
+.total_content [data-name="grand_total"] {
+    font-size: 20px;
+    line-height: 28px;
+    border-top: 1px solid #D0D2D3;
+    padding: 12px 0;
+    margin-top: 5px;
 }
 .saved_block {
     background-color: #822338;
@@ -275,6 +288,12 @@ let style = `
     margin-top: 16px;
 }
 /* product */
+.product_content {
+    width: 100%;
+}
+.options .option:not(:last-child):after {
+    content: ' | ';
+}
 .cart_products li {
     padding: 16px;
     border-bottom: 1px solid #D0D2D3;
@@ -476,7 +495,7 @@ let removeItem = (parent, id) => {  // remove item
         let countCart = data.customer.cart.qty;
 
         cart.querySelector('.cart_head span').innerHTML = countCart;
-        
+
         for (const key in totals) {
             if (totals[key] != '0' && !key.includes('tax')) {
                 new Total (
@@ -510,23 +529,7 @@ class Product {
         this.idProduct = idProduct;
         this.currency = currency;
         this.qty = qty;
-        this.option();
     }
-
-    option() {
-        let option = this.options;
-        let item = '';
-
-        for (let i = 0; i < option.length; i++) {
-            item += '<div class="option">' + '<span>' + option[i] + '</span>' + option[i] + '</div>';
-        }
-
-        return item
-    }
-
-    // calc() {
-    //     document.querySelector(`[data-id-product=""]`)
-    // }
 
     render() {
         let element = document.createElement('li');
@@ -545,9 +548,9 @@ class Product {
                     ${this.compare != '' ? ' <span class="pr-line" data-compare="' + this.compare + '">' + this.currency + this.compare + '</span>' : ''}
                 </p>
             </div>
-            <div class="options m-b-auto">
-               ${this.option()}
-            </div>
+            <p class="options m-b-auto">
+               ${this.options}
+            </p>
             <div class="flex flex-justify-between flex-middle">
                 <div class="calc flex">
                     <button type="button" class="calc_minus calc_button flex" ${this.qty <= 1 ? 'disabled' : ''}>
@@ -627,9 +630,6 @@ let getCart = (host) => new Promise((resolve, reject) => {
 let clickBasket = setInterval(() => {
     if (document.querySelector('basket-qty') && !document.querySelector('.cart_products li') ) {
         clearInterval(clickBasket)
-
-        //get currency website
-        let currency = window.autoInitData.website.currency.list[0].symbol;
 
         // add slide in cart html
         document.body.insertAdjacentHTML('afterbegin', style);
@@ -738,6 +738,15 @@ let clickBasket = setInterval(() => {
                             document.querySelector('.cart_footer .saved_block').style.display = 'block';
                         }
                     }
+                    let options = '';
+
+                    if (item.size_guide) {
+                        options += `<span class="option"><span>Size: </span> ${JSON.stringify(window.autoInitData.data.attribute).split(`${item.size_guide},"label":"`)[1].split('"')[0]}</span> `
+                    } 
+                    if (item.color_org) {
+                        options += `<span class="option"><span>Colour: </span> ${JSON.stringify(window.autoInitData.data.attribute).split(`${item.color_org},"label":"`)[1].split('"')[0]}</span> `
+                    }
+                   
 
                     new Product(
                         document.querySelector('.cart_products'), 
@@ -746,11 +755,11 @@ let clickBasket = setInterval(() => {
                         item.name, 
                         item.price, 
                         item.org_price ? item.org_price : '', 
-                        '', 
+                        options, 
                         items[i].id,
                         item.id,
                         currency,
-                        item.qty_increment_website).render()
+                        items[i].request.qty).render()
                 })
             }
 
@@ -761,3 +770,52 @@ let clickBasket = setInterval(() => {
         button.addEventListener('click', () => toggleActive(cart))
     }
 })
+
+
+
+
+
+// // remove item 
+// // https://www.lemieuxproducts.com/api/p/basket/remove 
+
+// let obj = {
+//     "ids":[3322527]
+// }
+// postFetch('basket/remove', obj, 'POST').then(data => {
+//     console.log(data)
+// })
+
+
+// // update qty item 
+// //https://www.lemieuxproducts.com/api/p/basket/qty
+// let objUpdateQty = {"id":3322527,"qty":2}
+
+// postFetch('basket/qty', objUpdateQty, 'POST').then(data => {
+//     console.log(data)
+// })
+
+// //add item 
+// // https://www.lemieuxproducts.com/api/p/basket/add
+// let idAdd = document.querySelector('.product-image-gallery-container').getAttribute('class').split('galleryuid-')[1].split(' ')[0]
+// let objAdd = {"products":[{"id":8497,"qty":1,"options":{},"bundle_options":{}}]}
+
+// postFetch('basket/add', objAdd, 'POST').then(data => {
+//     console.log(data)
+// })
+
+// //get data cart
+// fetch(`https://www.lemieuxproducts.com/api/p/customer/data`, {
+//     headers: {
+//         'Content-Type': 'application/json'
+//     },
+//     method: 'GET'
+// }).then(res => res.json()).then(data => {
+//     console.log(data)
+    
+// }).catch((error) => {
+//     console.error('Error:', error);
+// });
+
+// //  let objItemsCart = [{"action":"route","children":[{"path":"/new-in/rhone-polo-bandages-petrol-blue-full","_reqId":0}]}]
+//  //https://www.lemieuxproducts.com/api/n/bundle?requests=%5B%7B%22action%22%3A%22route%22%2C%22children%22%3A%5B%7B%22path%22%3A%22%2Fnew-in%2Frhone-polo-bandages-petrol-blue-full%22%2C%22_reqId%22%3A0%7D%5D%7D%5D
+
