@@ -255,6 +255,9 @@ basket-view-totals .saved_block {
     line-height: 22px;
     padding: 7px 0;
 }
+.total_content > div p .c-red {
+    margin-right: 0!important;
+}
 .cdk-overlay-pane .pr {
     font-weight: 700;
     text-align: right;
@@ -739,16 +742,18 @@ let init = () => {
 
 
                     for (const key in carTotal) {
-                        if (carTotal[key] != '0' && !key.includes('tax')) {
+                        if (carTotal[key] != '0' && !key.includes('tax') || key.includes('shipping')) {
                             let letter = key.charAt(0);
                             let letterUp = key.charAt(0).toUpperCase();
+
+                            let price = key.includes('shipping') && carTotal[key] == 0 ? '<span class="c-red">FREE</span>' : currency + carTotal[key].toFixed(2)
 
                             document.querySelector('.total_content').insertAdjacentHTML('beforeend',`
                             <div class="flex flex-middle  ${key == 'grand_total' ? 'order_total' : ''}" data-name="${key}">
                                 <p class="">${key == 'grand_total' ? 'Order total' : key.split('_').join(' ').replace(letter,letterUp)}</p>
                                 <p class="ml-auto">
                                     ${carTotal[key] < (compareSum).toFixed(2) && (key == 'grand_total' || key == 'subtotal') ? ' <span class="pr-line">' + currency + (compareSum).toFixed(2) + '</span>' : ''}
-                                    <span class="pr">${currency + carTotal[key].toFixed(2)}</span>
+                                    <span class="pr">${price}</span>
                                 </p>
                             </div>`)
                         }
