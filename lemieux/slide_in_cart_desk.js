@@ -417,13 +417,16 @@ let carSvg = `
 </svg>`
 
 //  api
-let postFetch = (host,body,method) => {
+let postFetch = (host, body) => {
     return new Promise((resolve, reject) => {
-        fetch(`https://www.lemieuxproducts.com/api/p/${host}`, {
+
+        let webCode = window.autoInitData.website.websiteCode != 'base' ? window.autoInitData.website.websiteCode : '';
+
+        fetch(`https://www.lemieuxproducts.com/${webCode}/api/p/${host}`, {
             headers: {
                 'Content-Type': 'application/json'
             },
-            method: method,
+            method: 'POST',
             body: JSON.stringify(body)
         }).then(res => res.json()).then(data => {
             resolve(data)
@@ -770,7 +773,7 @@ let init = () => {
                                 if (_this.closest('.coupon_gift_form')) {
                                     let giftcard = {"code": value}
                 
-                                    postFetch('giftcard/add', giftcard, 'POST').then(data => {
+                                    postFetch('giftcard/add', giftcard).then(data => {
                                         console.log(data)
 
                                         _this.classList.remove('busy');
@@ -787,7 +790,7 @@ let init = () => {
                                 } else if (_this.closest('.coupon_promocode_form')) {
                                     let coupon = {"coupon": value}
                                     
-                                    postFetch('coupon/add', coupon, 'POST').then(data => {
+                                    postFetch('coupon/add', coupon).then(data => {
                                         console.log(data)
                                         _this.classList.remove('busy');
                                         if (data.error) {
@@ -825,7 +828,7 @@ let init = () => {
                             //remove promo code 
                             document.querySelector('.coupon_promocode .btn-remove-code').addEventListener('click', (e) => {
                                 let code = {"coupon":coupon};
-                                postFetch('coupon/remove', code, 'POST')
+                                postFetch('coupon/remove', code)
                                 document.querySelector('.footer_content').classList.add('busy-icon')
                             })
                         } else {
@@ -841,7 +844,7 @@ let init = () => {
                             //remove gift code 
                             document.querySelectorAll('.coupon_gift .btn-remove-code')[i].addEventListener('click', (e) => {
                                 let code = {"code":gift[i].code};
-                                postFetch('giftcard/remove', code, 'POST')
+                                postFetch('giftcard/remove', code)
                                 document.querySelector('.footer_content').classList.add('busy-icon')
                             })
                         }
@@ -860,7 +863,7 @@ let init = () => {
                 
                             let giftcard = {"code": value}
                             if (value != '') {
-                                postFetch('giftcard/balance', giftcard, 'POST').then(data => {
+                                postFetch('giftcard/balance', giftcard).then(data => {
                                     console.log(data)
                                     e.currentTarget.classList.remove('busy');
                     
