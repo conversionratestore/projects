@@ -796,7 +796,12 @@ let init = () => {
                             let letter = key.charAt(0);
                             let letterUp = key.charAt(0).toUpperCase();
 
-                            let price = key.includes('shipping') && carTotal[key] == 0 ? '<span class="c-red">FREE</span>' : currency + carTotal[key].toFixed(2)
+                            let minusIcon = carTotal[key].toString().charAt(0) == '-' ? carTotal[key].toString().charAt(0) : '';
+
+                            let total = minusIcon + currency + carTotal[key].toFixed(2).toString().replace(minusIcon,'');
+
+                            let price = key.includes('shipping') && carTotal[key] == 0 ? '<span class="c-red">FREE</span>' : total;
+
 
                             document.querySelector('.total_content').insertAdjacentHTML('beforeend',`
                             <div class="flex flex-middle  ${key == 'grand_total' ? 'order_total' : ''}" data-name="${key}">
