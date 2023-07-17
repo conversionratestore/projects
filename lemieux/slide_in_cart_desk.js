@@ -304,6 +304,7 @@ basket-view-totals .saved_block {
     padding: 0 8px;
     width: fit-content;
     display: block;
+    border-radius: 4.5px;
 }
 .footer_content .saved_block {
     margin-top: -8px;
@@ -354,6 +355,9 @@ basket-view-totals .saved_block {
 .klarna_popup h3+p {
     font-size: 16px;
 }
+.klarna_popup .head {
+    padding-bottom: 16px;
+}
 .klarna_popup.active {
     opacity: 1;
     pointer-events: auto;
@@ -362,8 +366,8 @@ basket-view-totals .saved_block {
     background: #FFF;
     box-shadow: 0px 2px 16px 0px rgba(0, 0, 0, 0.10);
     margin: auto;
-    padding: 20px;
-    max-width: 335px;
+    padding: 20px 24px 24px;
+    max-width: 480px;
 }
 .klarna_popup .btn-close {
     padding: 5px;
@@ -535,11 +539,11 @@ let init = () => {
                                 </li>
                                 <li class="flex">
                                     <img src="${dir}/img/time.svg" alt="icon">
-                                    <span>Your first payment is taken when the order is processed and the remaining 3 are automatically taken every 14 days.</span>
+                                    <span>Your first payment is taken when the order is processed and the remaining 2 are automatically taken every 14 days.</span>
                                 </li>
                             </ul>
                             <button type="button" class="btn-continue">Complete purchase</button>
-                            <p>Please note that a higher initial payment may be required for some consumers. Fees may apply. Read the <a href="https://cdn.klarna.com/1.0/shared/content/legal/terms/en-GB/1.0.1/paylaterin3" target="_blank">terms </a> for more information.</p>
+                            <p>Please note that a higher initial payment may be required for some consumers. Fees may apply. Read the  <a href="https://cdn.klarna.com/1.0/shared/content/legal/terms/en-GB/1.0.1/paylaterin3" target="_blank">terms </a> for more information.</p>
                         </div>
                     </div>`)
                     document.querySelector('.klarna_popup_container > p a').addEventListener('click', () => {
