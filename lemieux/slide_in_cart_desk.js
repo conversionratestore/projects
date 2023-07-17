@@ -164,12 +164,10 @@ basket-view-totals .saved_block {
     margin-right: auto;
 }
 .cdk-overlay-pane .swiper {
-    padding: 0 23px!important;
+    padding: 0 0 0 23px!important;
 }
 .cdk-overlay-pane .swiper-slide {
-    width: 148px!important;
     margin-bottom: 10px;
-    margin-right: 16px!important;
 }
 .text_guarantee {
     font-size: 14px;
