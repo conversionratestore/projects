@@ -419,6 +419,31 @@ let carSvg = `
     </defs>
 </svg>`
 
+let pushDataLayer = (name, desc, type, loc) => {
+    console.log(name + ' : ' + desc + ' : ' + type + ' : ' + loc)
+
+    window.dataLayer = window.dataLayer || [];
+    dataLayer.push({
+        'event': 'event-to-ga4',
+        'event_name': name,
+        'event_desc': desc,
+        'event_type': type,
+        'event_loc': loc
+    });
+}
+
+//comes into view
+let isScrolledIntoView = (el) => {
+    let rect = el.getBoundingClientRect(),
+        elemTop = rect.top,
+        elemBottom = rect.bottom;
+
+    let isVisible = (elemTop >= 0) && (elemBottom <= window.innerHeight);
+
+    return isVisible;
+}
+let viewedKlarna = false;
+
 //  api
 let postFetch = (host, body) => {
     return new Promise((resolve, reject) => {
@@ -501,6 +526,9 @@ let init = () => {
                             <p>Please note that a higher initial payment may be required for some consumers. Fees may apply. Read the <a href="https://cdn.klarna.com/1.0/shared/content/legal/terms/en-GB/1.0.1/paylaterin3">terms </a> for more information.</p>
                         </div>
                     </div>`)
+                    document.querySelector('.klarna_popup_container > p a').addEventListener('click', () => {
+                        pushDataLayer('exp_slide_in_cart_popup_klarna_terms', 'Terms', 'Link', 'Klarna Popup');
+                    })
                 }
                 
             })
@@ -688,6 +716,10 @@ let init = () => {
                             <path d="M1.16117 11.8146C0.869956 12.0873 0.427756 12.0554 0.173203 11.7437C-0.0810943 11.4317 -0.0513579 10.9579 0.239597 10.6852L5.23735 6.00012L0.239341 1.31479C-0.0518697 1.04206 -0.0813497 0.568276 0.172947 0.256543C0.427501 -0.0554647 0.8697 -0.087325 1.16091 0.185408L6.76083 5.43543C6.91284 5.57771 7 5.7837 7 6.00012C7 6.21655 6.91284 6.42227 6.76083 6.56482L1.16117 11.8146Z" fill="#212121"/>
                         </svg>
                     </a>`)
+
+                    document.querySelector('.coupon_vouchers').addEventListener('click', () => {
+                        pushDataLayer('exp_slide_in_cart_buy_gift_vouchers', 'Buy gift vouchers', 'Button', 'Sidebar cart. Discounts');
+                    })
                 }
 
                 if (!document.querySelector('._content .klarna_content')) {
@@ -697,15 +729,30 @@ let init = () => {
                         <p class="flex flex-middle">3 interest-fee payment of <b class="klarna_pr"></b> <img src="${dir}/img/klarna.svg" alt="logo" class="img-klarna"> <button type="button" class="btn-more">Learn more</button></p>
                     </div>
                     <img src="${dir}/img/feefo.svg" alt="imgae feefo" class="img-feefo">`)
+
+                    window.addEventListener('scroll', () => {
+                        if (isScrolledIntoView(document.querySelector('.klarna_content')) && viewedKlarna == false) {
+                            viewedKlarna = true;
+                            pushDataLayer('exp_slide_in_cart_clarna_visibility','Klarna','Element visibility','Sidebar cart. Klarna')
+                        }
+                    })
                 }
 
                 //klarna popup show/hide
                 document.addEventListener('click', (e) => {
                     if (e.target.classList.contains('btn-continue') || e.target.classList.contains('btn-close') || e.target.classList.contains('klarna_popup')) {
                         document.querySelector('.klarna_popup').classList.remove('active');
+                        if (e.target.classList.contains('btn-close')) {
+                            pushDataLayer('exp_slide_in_cart_popup_klarna_close', 'Close', 'Button', 'Klarna Popup');
+                        } else if (e.target.classList.contains('btn-continue') ) {
+                            pushDataLayer('exp_slide_in_cart_popup_klarna_complete', 'Complete purchase', 'Button', 'Klarna Popup');
+                        }
                     }
                     if (e.target.classList.contains('btn-more')) {
                         document.querySelector('.klarna_popup').classList.add('active');
+                        pushDataLayer('exp_slide_in_cart_clarna_link','Learn more', 'Link','Sidebar cart. Klarna')
+                        pushDataLayer('exp_slide_in_cart_popup_klarna_vis', 'Klarna Popup', 'Element visibility', 'Klarna Popup');
+
                     }
                     if (e.target.classList.contains('btn-cancel')) {
                         e.target.closest('.coupon_item').classList.remove('active');
@@ -902,7 +949,10 @@ let init = () => {
                         document.querySelector('basket-view-totals > div:last-child').style = 'display: flex!important;';
 
                         document.querySelector('.cdk-overlay-pane [sl-minibasket-button="basket"]').addEventListener('click', (e) => {
-                            e.preventDefault();
+                            e.preventDefault();       
+
+                            pushDataLayer('exp_slide_in_cart_check_out_securely','Check out securely','Button','Sidebar cart. Order total')
+
                             window.location.href = 'https://www.lemieuxproducts.com/checkout';
                         })
 
@@ -988,6 +1038,12 @@ let emptyIs = setInterval(() => {
         </span>
         `
 
+        pushDataLayer( 'exp_slide_in_cart_bag_is_empty_vis','Your bag is empty','Element visibility','Sidebar cart. Your bag is empty')
+       
+        document.querySelector('.empty_body a').addEventListener('click', () => {
+            pushDataLayer('exp_slide_in_cart_shop_all_products','Shop all products','Button','Sidebar cart. Your bag is empty')
+        })
+
         document.querySelector('.footer_content') ? document.querySelector('.footer_content').remove() : ''
         document.querySelector('.klarna_content') ? document.querySelector('.klarna_content').remove() : ''
         document.querySelector('.img-feefo') ? document.querySelector('.img-feefo').remove() : ''
@@ -1042,8 +1098,12 @@ let basketBtn = setInterval(() => {
 
         document.querySelector('button basket-qty').addEventListener('click', (e) => {
             console.log('Click on basket icon')
+            pushDataLayer('exp_slide_in_cart_visibility', 'Cart visibility', 'Element visibility' , 'Sidebar cart')
+
+            viewedKlarna = false;
+
             init();
-            countBasket = 0
+            countBasket = 0;
         })
     }
 })
@@ -1053,6 +1113,10 @@ let addToBag = setInterval(() => {
         clearInterval(addToBag)
         document.querySelector('product-view-add-to-basket action.button').addEventListener('click', () => {
             console.log('Click on Add to bag button PDP')
+            pushDataLayer('exp_slide_in_cart_visibility', 'Cart visibility', 'Element visibility' , 'Sidebar cart')
+
+            viewedKlarna = false;
+
             init();
         })
     }
@@ -1064,8 +1128,20 @@ let addToBagLp = setInterval(() => {
             element.addEventListener('click', (e) => {
                 e.stopImmediatePropagation()
                 console.log('Click on Add to bag button LP')
+                pushDataLayer('exp_slide_in_cart_visibility', 'Cart visibility', 'Element visibility' , 'Sidebar cart')
+
+                viewedKlarna = false;
+
                 init();
             })
         });
     }
 });
+
+//clarify
+let isClarify = setInterval(() => {
+    if(typeof clarity == 'function') {
+        clearInterval(isClarify)
+        clarity("set", "exp_slide_in_cart", "variant_1");
+    }
+}, 100)
