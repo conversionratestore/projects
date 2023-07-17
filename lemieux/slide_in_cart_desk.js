@@ -1078,7 +1078,15 @@ let emptyIs = setInterval(() => {
             width: 100%;
             background: #212121;
             margin-top: 16px;
-        }</style>
+        }
+        .count_basket {
+            font-family: "baskerville-urw",sans-serif;;
+            font-size: 18px;
+            font-style: normal;
+            font-weight: 600;
+            line-height: 24px;
+        }
+            </style>
         <span class="empty_body">
             <span>Your bag is empty</span>
             <span>Uncover our top-notch products</span>
@@ -1086,6 +1094,8 @@ let emptyIs = setInterval(() => {
         </span>
         `
 
+        document.querySelector('.cdk-overlay-pane ._title h5 .h3').insertAdjacentHTML('beforeend', ` 
+        <span  class="count_basket m-l-1">(0)</span>`)
         pushDataLayer( 'exp_slide_in_cart_bag_is_empty_vis','Your bag is empty','Element visibility','Sidebar cart. Your bag is empty')
        
         document.querySelector('.empty_body a').addEventListener('click', () => {
