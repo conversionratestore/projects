@@ -534,7 +534,7 @@ let init = () => {
                                 </li>
                             </ul>
                             <button type="button" class="btn-continue">Complete purchase</button>
-                            <p>Please note that a higher initial payment may be required for some consumers. Fees may apply. Read the <a href="https://cdn.klarna.com/1.0/shared/content/legal/terms/en-GB/1.0.1/paylaterin3">terms </a> for more information.</p>
+                            <p>Please note that a higher initial payment may be required for some consumers. Fees may apply. Read the <a href="https://cdn.klarna.com/1.0/shared/content/legal/terms/en-GB/1.0.1/paylaterin3" target="_blank">terms </a> for more information.</p>
                         </div>
                     </div>`)
                     document.querySelector('.klarna_popup_container > p a').addEventListener('click', () => {
