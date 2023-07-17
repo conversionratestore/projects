@@ -848,7 +848,7 @@ let init = () => {
                     }
 
                     for (let i = 0; i < gift.length; i++) {
-                        // if (gift.length > 0 && !document.querySelector(`.coupon [data-code="${gift[0].code}"]`)) {
+                        if (gift.length > 0 && !document.querySelector(`.coupon [data-code="${gift[i].code}"]`)) {
                             document.querySelector('.coupon').insertAdjacentHTML('beforeend', haveGiftCodeHTML(gift[i].code));
                             //remove gift code 
                             document.querySelectorAll('.coupon_gift .btn-remove-code')[i].addEventListener('click', (e) => {
@@ -856,7 +856,7 @@ let init = () => {
                                 postFetch('giftcard/remove', code, 'POST')
                                 document.querySelector('.footer_content').classList.add('busy-icon')
                             })
-                        // }
+                        }
                     } 
 
                     if (!document.querySelector('.coupon_gift:not(.is)')) {
