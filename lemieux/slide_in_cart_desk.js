@@ -1011,8 +1011,8 @@ let topBar = setInterval(() => {
 
 let basketBtn = setInterval(() => {
     if (document.querySelector('button basket-qty')) {
-        clearInterval(basketBtn)
-        document.querySelector('button basket-qty').addEventListener('click', () => {
+        document.querySelector('button basket-qty').addEventListener('click', (e) => {
+            e.stopImmediatePropagation()
             console.log('Click on basket icon')
             init();
         })
