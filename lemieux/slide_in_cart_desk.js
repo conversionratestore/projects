@@ -21,6 +21,12 @@ let style = `
     line-height: 24px;
     letter-spacing: normal;
 }
+basket-related-products .h3 {
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 32px;
+}
 .cdk-overlay-pane h5 .p1 {
     margin-left: -5px;
 }
@@ -157,7 +163,6 @@ basket-view-totals .saved_block {
     margin-right: auto;
 }
 .cdk-overlay-pane .swiper-slide {
-    width: 43%!important;
     margin-bottom: 10px;
     margin-right: 16px!important;
 }
