@@ -277,7 +277,7 @@ basket-view-totals .saved_block {
     padding: 7px 0;
 }
 .total_content > div p .c-red {
-    margin-right: 0!important;
+    margin: 0!important;
 }
 .cdk-overlay-pane .pr {
     font-weight: 700;
