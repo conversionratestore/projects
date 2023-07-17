@@ -26,6 +26,7 @@ basket-related-products .h3 {
     font-style: normal;
     font-weight: 400;
     line-height: 32px;
+    padding-left: 23px!important;
 }
 .cdk-overlay-pane h5 .p1 {
     margin-left: -5px;
@@ -85,7 +86,7 @@ basket-view-totals .saved_block {
     padding: 0;
 }
 .cdk-overlay-pane ._body ul li > .w-12 {
-    padding: 0 24px;
+    padding: 0 23px;
     border-color: #D0D2D3;
 }
 .cdk-overlay-pane .bg-col-51 svg {
@@ -162,7 +163,11 @@ basket-view-totals .saved_block {
 .cdk-overlay-pane .item-qty {
     margin-right: auto;
 }
+.cdk-overlay-pane .swiper {
+    padding: 0 23px!important;
+}
 .cdk-overlay-pane .swiper-slide {
+    width: 148px!important;
     margin-bottom: 10px;
     margin-right: 16px!important;
 }
@@ -185,7 +190,7 @@ basket-view-totals .saved_block {
     marin-left: 0;
 }
 .coupon {
-    padding: 6px 16px 16px;
+    padding: 6px 23px 16px;
 }
 .coupon_item {
     border: 1px solid #D0D2D3;
@@ -261,7 +266,7 @@ basket-view-totals .saved_block {
 }
 /* total order */
 .total_content {
-    padding: 16px 16px 0;
+    padding: 16px 23px 0;
 }
 .total_content > div p {
     font-family: 'source-sans-3', sans-serif;
@@ -308,17 +313,27 @@ basket-view-totals .saved_block {
 }
 .footer_content .saved_block {
     margin-top: -8px;
-    margin-right: 16px;
+    margin-right: 23px;
 }
 /* klarna */
 .klarna_content {
-    padding: 13px 16px;
+    padding: 13px 23px;
     font-size: 14px;
     font-family: 'source-sans-3', sans-serif;
     font-style: normal;
     font-weight: 400;
     line-height: 22px;
     order: 2;
+    position: relative;
+}
+.klarna_content:after {
+    content: '';
+    width: calc(100% - 48px);
+    height: 1px;
+    border-bottom: 1px dashed #D0D2D3;
+    position: absolute;
+    left: 24px;
+    bottom: 0;
 }
 .klarna_content .klarna_pr {
     margin-left: 4px;
