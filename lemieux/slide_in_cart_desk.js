@@ -745,7 +745,7 @@ let init = () => {
                                 <p class="">${key == 'grand_total' ? 'Order total' : key.split('_').join(' ').replace(letter,letterUp)}</p>
                                 <p class="ml-auto">
                                     ${carTotal[key] < (compareSum).toFixed(2) && (key == 'grand_total' || key == 'subtotal') ? ' <span class="pr-line">' + currency + (compareSum).toFixed(2) + '</span>' : ''}
-                                    <span class="pr">${currency + carTotal[key]}</span>
+                                    <span class="pr">${currency + carTotal[key].toFixed(2)}</span>
                                 </p>
                             </div>`)
                         }
@@ -887,7 +887,7 @@ let init = () => {
                         document.querySelector('basket-view-totals > div:last-child .price').innerHTML = `
                         <span class="">
                             ${savedTotal != 0 ? ' <span class="pr-line">' + currency + (compareSum).toFixed(2) + '</span>' : ''}
-                            <span class="pr">${currency}${grand_total}</span>
+                            <span class="pr">${currency}${grand_total.toFixed(2)}</span>
                         </span>
                         ${savedTotal != 0 ? '<span class="saved_block">You just saved ' + currency + savedTotal + '</span>' : ''}`;
 
