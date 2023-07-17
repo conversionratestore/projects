@@ -192,6 +192,9 @@ basket-view-totals .saved_block {
 .coupon_current span {
     padding-left: 14px;
 }
+.coupon_current svg {
+    flex-shrink: 0;
+}
 .ml-auto {
     margin-left: auto;
 }
@@ -277,7 +280,7 @@ basket-view-totals .saved_block {
     font-size: 20px;
 }
 .saved_block {
-    background: url('${dir}/img/saved-bg.svg') no-repeat right center / 100%;
+    background: #822338;
     color:  #FFF;
     text-align: right;
     font-family: 'source-sans-3', sans-serif;
@@ -285,7 +288,7 @@ basket-view-totals .saved_block {
     font-style: normal;
     font-weight: 600;
     line-height: 22px;
-    padding: 0 8px 0 20px;
+    padding: 0 8px;
     width: fit-content;
     display: block;
 }
