@@ -317,7 +317,7 @@ basket-view-totals .saved_block {
 }
 /* klarna */
 .klarna_content {
-    padding: 13px 23px;
+    padding: 13px;
     font-size: 14px;
     font-family: 'source-sans-3', sans-serif;
     font-style: normal;
@@ -761,7 +761,7 @@ let init = () => {
                     
                     document.querySelector('._content .footer_content').insertAdjacentHTML('afterend', `
                     <div class="klarna_content">
-                        <p class="flex flex-middle">3 interest-fee payment of <b class="klarna_pr"></b> <img src="${dir}/img/klarna.svg" alt="logo" class="img-klarna"> <button type="button" class="btn-more">Learn more</button></p>
+                        <p class="flex flex-middle flex-justify-center">3 interest-fee payment of <b class="klarna_pr"></b> <img src="${dir}/img/klarna.svg" alt="logo" class="img-klarna"> <button type="button" class="btn-more">Learn more</button></p>
                     </div>
                     <img src="${dir}/img/feefo.svg" alt="imgae feefo" class="img-feefo">`)
 
