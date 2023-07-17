@@ -668,7 +668,7 @@ let clickBasket = setInterval(() => {
                     </li>
                 </ul>
                 <button type="button" class="btn_continue btn">Complete purchase</button>
-                <p>Please note that a higher initial payment may be required for some consumers. Fees may apply. Read the <a href="https://cdn.klarna.com/1.0/shared/content/legal/terms/0/en_au/paylaterin3" class="underline">terms </a> for more information.</p>
+                <p>Please note that a higher initial payment may be required for some consumers. Fees may apply. Read the <a href="https://cdn.klarna.com/1.0/shared/content/legal/terms/en-GB/1.0.1/paylaterin3" class="underline">terms </a> for more information.</p>
             </div>
         </div>`)
 
