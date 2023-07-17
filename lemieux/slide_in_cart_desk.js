@@ -881,7 +881,7 @@ let init = () => {
                         })
                     }
 
-                    if ( document.querySelector('basket-view-totals > div:last-child label')) {
+                    if (document.querySelector('basket-view-totals > div:last-child .price')) {
 
                         document.querySelector('basket-view-totals > div:last-child label').innerHTML = 'Order total';
                         document.querySelector('basket-view-totals > div:last-child .price').innerHTML = `
@@ -911,19 +911,35 @@ let init = () => {
                     }
 
                     document.body.classList.remove('loading')
-
                     count = 0;
+
                 })
             }
             
         }
-    });
+    }, 100);
 } 
 
 let emptyIs = setInterval(() => {
     if (document.querySelector('.cdk-overlay-pane ._body p') && document.querySelector('.cdk-overlay-pane ._body p').innerText.includes('Your bag is empty') && !document.querySelector('.empty_body')) {
         document.querySelector('._body p').innerHTML = `
         <style>
+        .cdk-overlay-pane {
+            max-width: 380px!important;
+            margin-left: auto!important;
+            width: 100%!important;
+        }
+        .cdk-overlay-pane .p-a-5 {
+            padding: 12px 24px;
+        }
+        .h3, .text.h3, .text h3, .cdk-overlay-pane h5 .p1, .cdk-overlay-pane h5 .p1:before, .cdk-overlay-pane h5 .p1:after {
+            color: #212121;
+            font-size: 18px;
+            font-style: normal;
+            font-weight: 600;
+            line-height: 24px;
+            letter-spacing: normal;
+        }
         .empty_body {
             border: 1px dashed #D0D2D3;
             width: 100%;
@@ -981,7 +997,8 @@ let interval = setInterval(() => {
         !document.querySelector('loading') &&
         document.querySelector('.footer_content') && 
         !document.querySelector('.empty_body') &&
-        count == 0
+        count == 0 &&
+        document.querySelector('.cdk-overlay-pane [sl-minibasket-button="basket"]')
      
     ) {
         count = 1;
@@ -1009,12 +1026,16 @@ let topBar = setInterval(() => {
     }
 });
 
+let countBasket = 0;
+
 let basketBtn = setInterval(() => {
-    if (document.querySelector('button basket-qty')) {
+    if (document.querySelector('button basket-qty') && countBasket == 0) {
+        countBasket = 1;
+
         document.querySelector('button basket-qty').addEventListener('click', (e) => {
-            e.stopImmediatePropagation()
             console.log('Click on basket icon')
             init();
+            countBasket = 0
         })
     }
 })
