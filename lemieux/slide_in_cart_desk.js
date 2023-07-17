@@ -304,7 +304,7 @@ basket-view-totals .saved_block {
     padding: 0 8px;
     width: fit-content;
     display: block;
-    border-radius: 4.5px;
+    border-radius: 4px;
 }
 .footer_content .saved_block {
     margin-top: -8px;
