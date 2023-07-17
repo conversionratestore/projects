@@ -401,22 +401,6 @@ basket-view-totals .saved_block {
 }
 </style>`;
 
-function replaceInText(element, pattern, replacement) {
-    for (let node of element.childNodes) {
-        switch (node.nodeType) {
-            case Node.ELEMENT_NODE:
-                replaceInText(node, pattern, replacement);
-                break;
-            case Node.TEXT_NODE:
-                node.textContent = node.textContent.replace(pattern, replacement);
-                break;
-            case Node.DOCUMENT_NODE:
-                replaceInText(node, pattern, replacement);
-        }
-    }
-}
-
-
 let carSvg = `
 <svg width="26" height="26" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg">
     <g clip-path="url(#clip0_128_3164)">
@@ -462,7 +446,10 @@ let postCart = () => new Promise((resolve, reject) => {
     });
 })
 
+let count = 0;
+
 let init = () => {
+
     let basket = setInterval(() => {
         
         if (document.querySelector('.cdk-overlay-pane [sl-minibasket-button="basket"]') && document.querySelector('.cdk-overlay-pane').innerText.includes('Shopping Bag')) {
@@ -739,13 +726,14 @@ let init = () => {
                     })
 
                     let savedTotal = (compareSum - grand_total).toFixed(2)
-                    if (savedTotal != 0) {
+                    if (savedTotal != 0 && document.querySelector('.total_content')) {
                         document.querySelector('.total_content').insertAdjacentHTML('afterend',`<div class="saved_block ml-auto">You just saved ${currency}${savedTotal}</div>`)
                     }
 
                     document.querySelectorAll('.klarna_pr').forEach(item => {
                         item.innerHTML = currency + (grand_total / 3).toFixed(2);
                     })
+
 
                     for (const key in carTotal) {
                         if (carTotal[key] != '0' && !key.includes('tax')) {
@@ -830,7 +818,7 @@ let init = () => {
                         })
                     }
 
-                    if (!document.querySelector('.coupon_promocode')) {
+                    if (!document.querySelector('.coupon_promocode') && document.querySelector('.coupon_vouchers')) {
                         if (coupon) {
                             document.querySelector('.coupon_vouchers').insertAdjacentHTML('afterend', havePromoCodeHTML(coupon));
                             
@@ -848,7 +836,7 @@ let init = () => {
                     }
 
                     for (let i = 0; i < gift.length; i++) {
-                        if (gift.length > 0 && !document.querySelector(`.coupon [data-code="${gift[i].code}"]`)) {
+                        if (gift.length > 0 && !document.querySelector(`.coupon [data-code="${gift[i].code}"]`) && document.querySelector('.coupon')) {
                             document.querySelector('.coupon').insertAdjacentHTML('beforeend', haveGiftCodeHTML(gift[i].code));
                             //remove gift code 
                             document.querySelectorAll('.coupon_gift .btn-remove-code')[i].addEventListener('click', (e) => {
@@ -859,7 +847,7 @@ let init = () => {
                         }
                     } 
 
-                    if (!document.querySelector('.coupon_gift:not(.is)')) {
+                    if (!document.querySelector('.coupon_gift:not(.is)') && document.querySelector('.coupon')) {
                         document.querySelector('.coupon').insertAdjacentHTML('beforeend', couponGiftHTML)
 
                         currentCoupon('.coupon_gift:not(.is)')
@@ -893,46 +881,44 @@ let init = () => {
                         })
                     }
 
-                    document.querySelector('basket-view-totals > div:last-child label').innerHTML = 'Order total';
-                    document.querySelector('basket-view-totals > div:last-child .price').innerHTML = `
-                    <span class="">
-                        ${savedTotal != 0 ? ' <span class="pr-line">' + currency + (compareSum).toFixed(2) + '</span>' : ''}
-                        <span class="pr">${currency}${grand_total}</span>
-                    </span>
-                    ${savedTotal != 0 ? '<span class="saved_block">You just saved ' + currency + savedTotal + '</span>' : ''}`;
+                    if ( document.querySelector('basket-view-totals > div:last-child label')) {
 
-                    document.querySelector('basket-view-totals > div:last-child').style = 'display: flex!important;';
+                        document.querySelector('basket-view-totals > div:last-child label').innerHTML = 'Order total';
+                        document.querySelector('basket-view-totals > div:last-child .price').innerHTML = `
+                        <span class="">
+                            ${savedTotal != 0 ? ' <span class="pr-line">' + currency + (compareSum).toFixed(2) + '</span>' : ''}
+                            <span class="pr">${currency}${grand_total}</span>
+                        </span>
+                        ${savedTotal != 0 ? '<span class="saved_block">You just saved ' + currency + savedTotal + '</span>' : ''}`;
 
-                    document.querySelector('.cdk-overlay-pane [sl-minibasket-button="basket"]').addEventListener('click', (e) => {
-                        e.preventDefault();
-                        window.location.href = 'https://www.lemieuxproducts.com/checkout';
-                    })
+                        document.querySelector('basket-view-totals > div:last-child').style = 'display: flex!important;';
 
-                    if (!document.querySelector('.text_guarantee')) {
-                        document.querySelector('.cdk-overlay-pane [sl-minibasket-button="basket"]').insertAdjacentHTML('afterend',`
-                        <p class="flex flex-middle text_guarantee">
-                            <svg width="16" height="18" viewBox="0 0 16 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M1.25 3.47076L8.00338 1.49976L14.75 3.47076V7.51251C14.75 9.58389 14.0981 11.6027 12.8869 13.2831C11.6756 14.9634 9.96629 16.22 8.00113 16.8748C6.03536 16.22 4.32548 14.9633 3.11379 13.2826C1.90209 11.6019 1.25003 9.58256 1.25 7.51063V3.47076Z" stroke="#212121" stroke-width="2" stroke-linejoin="round"/>
-                                <path d="M4.625 8.625L7.25 11.25L11.75 6.75" stroke="#212121" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                            </svg>
-                            60-day money back guarantee
-                        </p>`)
+                        document.querySelector('.cdk-overlay-pane [sl-minibasket-button="basket"]').addEventListener('click', (e) => {
+                            e.preventDefault();
+                            window.location.href = 'https://www.lemieuxproducts.com/checkout';
+                        })
+
+                        if (!document.querySelector('.text_guarantee')) {
+                            document.querySelector('.cdk-overlay-pane [sl-minibasket-button="basket"]').insertAdjacentHTML('afterend',`
+                            <p class="flex flex-middle text_guarantee">
+                                <svg width="16" height="18" viewBox="0 0 16 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M1.25 3.47076L8.00338 1.49976L14.75 3.47076V7.51251C14.75 9.58389 14.0981 11.6027 12.8869 13.2831C11.6756 14.9634 9.96629 16.22 8.00113 16.8748C6.03536 16.22 4.32548 14.9633 3.11379 13.2826C1.90209 11.6019 1.25003 9.58256 1.25 7.51063V3.47076Z" stroke="#212121" stroke-width="2" stroke-linejoin="round"/>
+                                    <path d="M4.625 8.625L7.25 11.25L11.75 6.75" stroke="#212121" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                                60-day money back guarantee
+                            </p>`)
+                        }
                     }
 
                     document.body.classList.remove('loading')
 
-                    loadingIs()
+                    count = 0;
                 })
             }
             
-            setTimeout(() => {
-                document.body.classList.remove('loading')
-            }, 2000)
         }
     });
 } 
-
-init()
 
 let emptyIs = setInterval(() => {
     if (document.querySelector('.cdk-overlay-pane ._body p') && document.querySelector('.cdk-overlay-pane ._body p').innerText.includes('Your bag is empty') && !document.querySelector('.empty_body')) {
@@ -979,8 +965,36 @@ let emptyIs = setInterval(() => {
         `
 
         document.querySelector('.footer_content') ? document.querySelector('.footer_content').remove() : ''
+        document.querySelector('.klarna_content') ? document.querySelector('.klarna_content').remove() : ''
+        document.querySelector('.img-feefo') ? document.querySelector('.img-feefo').remove() : ''
     }
 })
+
+
+let interval = setInterval(() => {
+    if (
+        (
+            document.querySelector('.busy-icon') || 
+            document.querySelector('basket-related-products action.busy') ||
+            document.querySelector('.cdk-overlay-pane ._body ul li > .w-12 action.underline.busy')
+        ) && 
+        !document.querySelector('loading') &&
+        document.querySelector('.footer_content') && 
+        !document.querySelector('.empty_body') &&
+        count == 0
+     
+    ) {
+        count = 1;
+
+        document.querySelector('.footer_content').remove()
+        document.body.classList.add('loading')
+
+        console.log('init 2')
+
+        init()
+    }
+}, 100)
+
 
 let topBar = setInterval(() => {
     if (document.querySelector('.icon-loading') == null && document.querySelector('.cdk-overlay-pane .bg-col-51')) {
@@ -995,25 +1009,34 @@ let topBar = setInterval(() => {
     }
 });
 
-let loadingIs = () => {
-    let interval = setInterval(() => {
-        if (
-            (
-                document.querySelector('.busy-icon') || 
-                document.querySelector('basket-related-products action.busy') ||
-                document.querySelector('.cdk-overlay-pane ._body ul li > .w-12 action.underline.busy')
-            ) && 
-            !document.querySelector('loading') &&
-            document.querySelector('.footer_content')
-        ) {
-            clearInterval(interval)
+let basketBtn = setInterval(() => {
+    if (document.querySelector('button basket-qty')) {
+        clearInterval(basketBtn)
+        document.querySelector('button basket-qty').addEventListener('click', () => {
+            console.log('Click on basket icon')
+            init();
+        })
+    }
+})
 
-            document.querySelector('.footer_content').remove()
-            document.body.classList.add('loading')
-    
-            console.log('init 2')
-    
-            init()
-        }
-    }, 100)
-} 
+let addToBag = setInterval(() => {
+    if (document.querySelector('product-view-add-to-basket action.button')) {
+        clearInterval(addToBag)
+        document.querySelector('product-view-add-to-basket action.button').addEventListener('click', () => {
+            console.log('Click on Add to bag button PDP')
+            init();
+        })
+    }
+});
+
+let addToBagLp = setInterval(() => {
+    if (document.querySelectorAll('lp-add-to-basket action.button'))    {
+        document.querySelectorAll('lp-add-to-basket action.button').forEach(element => {
+            element.addEventListener('click', (e) => {
+                e.stopImmediatePropagation()
+                console.log('Click on Add to bag button LP')
+                init();
+            })
+        });
+    }
+});
