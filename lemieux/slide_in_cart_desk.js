@@ -448,9 +448,9 @@ let viewedKlarna = false;
 let postFetch = (host, body) => {
     return new Promise((resolve, reject) => {
 
-        let webCode = window.autoInitData.website.websiteCode != 'base' ? window.autoInitData.website.websiteCode : '';
+        let webCode = window.autoInitData.website.websiteCode != 'base' ? '/'+window.autoInitData.website.websiteCode : '';
 
-        fetch(`https://www.lemieuxproducts.com/${webCode}/api/p/${host}`, {
+        fetch(`https://www.lemieuxproducts.com${webCode}/api/p/${host}`, {
             headers: {
                 'Content-Type': 'application/json'
             },
@@ -688,7 +688,7 @@ let init = () => {
                             <path d="M17.0744 12.6266H15.8151C15.4847 12.6266 15.2168 12.3588 15.2168 12.0283C15.2168 11.6979 15.4847 11.4301 15.8151 11.4301H17.0744C17.4048 11.4301 17.6727 11.6979 17.6727 12.0283C17.6727 12.3588 17.4048 12.6266 17.0744 12.6266Z" fill="#595959"/>
                             <path d="M13.409 12.6266H10.2624C9.93193 12.6266 9.66406 12.3588 9.66406 12.0283C9.66406 11.6979 9.93193 11.4301 10.2624 11.4301H13.409C13.7394 11.4301 14.0073 11.6979 14.0073 12.0283C14.0073 12.3588 13.7394 12.6266 13.409 12.6266Z" fill="#595959"/>
                         </svg>
-                        <span>Voucher <b class="c-red m-b-0 m-r-0"> ${code} </b> has been applied
+                        <span>Gift card <b class="c-red m-b-0 m-r-0"> ${code} </b> has been applied
                             <button class="btn-remove-code">Click here to remove</button>
                         </span>
                     
