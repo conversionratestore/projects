@@ -141,6 +141,14 @@ basket-view-totals .saved_block {
     display: flex;
     flex-direction: column;
 }
+.balance-item {
+    color: #595959;
+    font-family: 'source-sans-3', sans-serif;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 18px;
+}
 .c-gray {
     color: #ACACAC;
     margin: 0!important;
@@ -800,17 +808,22 @@ let init = () => {
 
                             let total = minusIcon + currency + carTotal[key].toFixed(2).toString().replace(minusIcon,'');
 
-                            let price = key.includes('shipping') && carTotal[key] == 0 ? '<span class="c-red">FREE</span>' : total;
+                            let price = key.includes('shipping') && 
+                                        carTotal[key] == 0 && 
+                                        carTotal['subtotal'] >= 75 ?  '<span class="c-red">FREE</span>' : total;
 
+                            console.log(price)
+                            if (price != currency+'0.00' ) {
 
-                            document.querySelector('.total_content').insertAdjacentHTML('beforeend',`
-                            <div class="flex flex-middle  ${key == 'grand_total' ? 'order_total' : ''}" data-name="${key}">
-                                <p class="">${key == 'grand_total' ? 'Order total' : key.split('_').join(' ').replace(letter,letterUp)}</p>
-                                <p class="ml-auto">
-                                    ${carTotal[key] < (compareSum).toFixed(2) && (key == 'grand_total' || key == 'subtotal') ? ' <span class="pr-line">' + currency + (compareSum).toFixed(2) + '</span>' : ''}
-                                    <span class="pr">${price}</span>
-                                </p>
-                            </div>`)
+                                document.querySelector('.total_content').insertAdjacentHTML('beforeend',`
+                                <div class="flex flex-middle  ${key == 'grand_total' ? 'order_total' : ''}" data-name="${key}">
+                                    <p class="">${key == 'grand_total' ? 'Order total' : key.split('_').join(' ').replace(letter,letterUp)}</p>
+                                    <p class="ml-auto">
+                                        ${carTotal[key] < (compareSum).toFixed(2) && (key == 'grand_total' || key == 'subtotal') ? ' <span class="pr-line">' + currency + (compareSum).toFixed(2) + '</span>' : ''}
+                                        <span class="pr">${price}</span>
+                                    </p>
+                                </div>`)
+                            }
                         }
                     }
 
@@ -838,7 +851,7 @@ let init = () => {
 
                                         _this.classList.remove('busy');
                 
-                                        if (data.error) {
+                                        if (data.error && data.error != '') {
                                             let message = data.error == "INVALID_GIFTCARD" ? `Sorry, we don't recognise this code` : data.error;
                                             parentEl.querySelector(`result`).innerHTML = message;
                                             parentEl.querySelector(`result`).classList.remove('ng-hide');
@@ -853,7 +866,7 @@ let init = () => {
                                     postFetch('coupon/add', coupon).then(data => {
                                         console.log(data)
                                         _this.classList.remove('busy');
-                                        if (data.error) {
+                                        if (data.error && data.error != '') {
                                             let message = data.error == "INVALID_GIFTCARD" ? `Sorry, we don't recognise this code` : data.error;
                                             parentEl.querySelector('result').innerHTML = message;
                                             parentEl.querySelector('result').classList.remove('ng-hide');
@@ -925,16 +938,21 @@ let init = () => {
                             if (value != '') {
                                 postFetch('giftcard/balance', giftcard).then(data => {
                                     console.log(data)
-                                    e.currentTarget.classList.remove('busy');
-                    
-                                    if (data.error) {
-                                        let message = data.error == "INVALID_GIFTCARD" ? `Sorry, we don't recognise this code` : data.error;
-                                        console.log(message)
-                                        document.querySelector('.coupon_gift_form result').innerHTML = message;
-                                        document.querySelector('.coupon_gift_form result').classList.remove('ng-hide');
+                                    let message = ''
+                                    if (data.error && data.error != '') {
+                                        message = data.error.includes('INVALID_GIFTCARD') ? `Sorry, we don't recognise this code` : data.error;
+                                     
                                     } else {
                                         console.log('balance true')
+
+                                        message = ` <p class="balance-item center">Your balance is&nbsp; <price>${currency + data.balance.toFixed(2)}</price></p>`
                                     }
+
+
+                                    document.querySelector('.coupon_gift_form result').innerHTML = message;
+                                    document.querySelector('.coupon_gift_form result').classList.remove('ng-hide');
+
+                                    document.querySelector('.btn-check-balance').classList.remove('busy');
                                 })
                             } else {
                                 e.currentTarget.classList.remove('busy');
