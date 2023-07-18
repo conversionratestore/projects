@@ -1394,7 +1394,7 @@ let klaviyoStep = 1;
           }
         </style>
       `
-      document.body.insertAdjacentHTML('afterbegin', hideLabel);
+      document.head.insertAdjacentHTML('beforeend', hideLabel);
 
       waitFor(
         () => $el('.lav-reviews span'),
@@ -1711,6 +1711,7 @@ let klaviyoStep = 1;
     const mutSumary = new MutationObserver(() => {
       handleItemsSummary();
       $el('.lav-summary__value.lav-cart-price').innerText = $el('[data-subtotal] .money').innerText;
+      $el('.lav-btn-price.lav-cart-price').innerText = $el('[data-subtotal] .money').innerText;
     })
 
     mutSumary.observe($el('[data-subtotal]'), {
