@@ -371,12 +371,6 @@ let klaviyoStep = 1;
       top: 2px;
     }
 
-    .needsclick[aria-label="Open Form"] {
-      opacity: 0;
-      pointer-events: none;
-      z-index: -1!important;
-    }
-
     .product-single__form .add-to-cart {
       display: flex;
       align-items: center;
@@ -1390,6 +1384,31 @@ let klaviyoStep = 1;
   function init() {
     console.log('init');
 
+    if(window.location.pathname.includes('/products/')) {
+      const hideLabel = `
+        <style>
+          .needsclick[aria-label="Open Form"] {
+            opacity: 0;
+            pointer-events: none;
+            z-index: -1!important;
+          }
+        </style>
+      `
+      document.body.insertAdjacentHTML('afterbegin', hideLabel);
+
+      waitFor(
+        () => $el('.lav-reviews span'),
+        () => {
+            $el('.lav-reviews span').style.cursor = 'pointer'
+            $el('.lav-reviews span').addEventListener('click', function () {
+              document.querySelector('.lav-reviews a').click()
+            })
+        }
+      )
+    }
+
+    
+
     waitFor(
       () => $el('[href="#reviews"]'),
       () => {
@@ -1688,6 +1707,16 @@ let klaviyoStep = 1;
     }, 500);
 
     localStorage.setItem('subtotal', subtotal);
+
+    const mutSumary = new MutationObserver(() => {
+      handleItemsSummary();
+      $el('.lav-summary__value.lav-cart-price').innerText = $el('[data-subtotal] .money').innerText;
+    })
+
+    mutSumary.observe($el('[data-subtotal]'), {
+      childList: true,
+      subtree: true
+    });
   }
 
   function handleKlarna() {
@@ -2023,6 +2052,7 @@ let klaviyoStep = 1;
   }
 
   function handleEarn(subtotal) {
+    if (!window.location.pathname.includes('/products/')) return false;
     if (!$el('[data-product-blocks] .lav-earn')) {
       $el('.the4-toolkit-wishlist')?.insertAdjacentHTML(
         'beforebegin',
@@ -2239,21 +2269,22 @@ let klaviyoStep = 1;
       $el('.lav-sticky__btn .lav-btn-caption').innerText = 'Add to cart';
     }
 
-
-    $el('.lav-select_size').addEventListener('click', () => {
-            pushDataLayer(
-              'new_payments_select_size',
-              'Select size',
-              'Button',
-              'Add product section'
-            );
-            const el = $el('.variant-wrapper');
-            const offset = el.getBoundingClientRect().top + window.scrollY - 120;
-            window.scrollTo({
-                top: offset,
-                behavior: 'smooth'
-            });
-    })
+    if($el('.lav-select_size')) {
+      $el('.lav-select_size').addEventListener('click', () => {
+              pushDataLayer(
+                'new_payments_select_size',
+                'Select size',
+                'Button',
+                'Add product section'
+              );
+              const el = $el('.variant-wrapper');
+              const offset = el.getBoundingClientRect().top + window.scrollY - 120;
+              window.scrollTo({
+                  top: offset,
+                  behavior: 'smooth'
+              });
+      })
+    }
 
 
 
@@ -2300,6 +2331,7 @@ let klaviyoStep = 1;
             console.log(mut)
             if(mut.target.classList.contains('money')) {
                 $el('.lav-sticky__btn .lav-product-price').innerText = mut.target.innerText.trim();
+                $el('.lav-sticky__price-new').innerText = mut.target.innerText.trim();
             }
         }
     })
