@@ -4,6 +4,9 @@ let currency = window.autoInitData.website.currency.list[0].symbol ? window.auto
 
 let style = `
 <style>
+:root {
+    --app-height: 100%;
+}
 .cart input::-webkit-outer-spin-button,
 .cart input::-webkit-inner-spin-button {
     /* display: none; <- Crashes Chrome on hover */
@@ -30,6 +33,7 @@ let style = `
     top: 0;
     width: 100%;
     height: 100vh;
+    height: var(--app-height);
     z-index: 999;
     background: rgba(0, 0, 0, 0.70);
     opacity: 0;
@@ -1258,7 +1262,7 @@ let init = () => {
             let cart = document.querySelector('.cart');
 
             const appHeight = () => {
-                cart.style.height = window.innerHeight + 'px';
+                cart.style.setProperty('--app-height', `${window.innerHeight}px`)
             }
             window.addEventListener('resize', appHeight)
             appHeight()
