@@ -539,6 +539,7 @@ let postCart = () => new Promise((resolve, reject) => {
 
 let count = 0;
 let countBasket = 0;
+let isVisibleCart = false;
 
 let init = () => {
 
@@ -1054,6 +1055,11 @@ let init = () => {
 
                 })
             }
+
+            if (isVisibleCart == false) {
+                isVisibleCart = true
+                pushDataLayer('exp_slide_in_cart_visibility', 'Cart visibility', 'Element visibility' , 'Sidebar cart')    
+            }
             
         }
     }, 100);
@@ -1184,10 +1190,9 @@ let basketBtn = setInterval(() => {
         countBasket = 1;
 
         document.querySelector('button basket-qty').addEventListener('click', (e) => {
-            pushDataLayer('exp_slide_in_cart_visibility', 'Cart visibility', 'Element visibility' , 'Sidebar cart')
 
             viewedKlarna = false;
-
+            isVisibleCart = false;
             init();
         })
     }
@@ -1197,10 +1202,9 @@ let addToBag = setInterval(() => {
     if (document.querySelector('product-view-add-to-basket action.button')) {
         clearInterval(addToBag)
         document.querySelector('product-view-add-to-basket action.button').addEventListener('click', () => {
-            pushDataLayer('exp_slide_in_cart_visibility', 'Cart visibility', 'Element visibility' , 'Sidebar cart')
 
             viewedKlarna = false;
-
+            isVisibleCart = false;
             init();
         })
     }
@@ -1211,10 +1215,8 @@ let addToBagLp = setInterval(() => {
         document.querySelectorAll('lp-add-to-basket action.button').forEach(element => {
             element.addEventListener('click', (e) => {
                 e.stopImmediatePropagation()
-                pushDataLayer('exp_slide_in_cart_visibility', 'Cart visibility', 'Element visibility' , 'Sidebar cart')
-
                 viewedKlarna = false;
-
+                isVisibleCart = false;
                 init();
             })
         });
