@@ -611,7 +611,7 @@ let getCart = (host) => new Promise((resolve, reject) => {
     });
 })
 
-let updateTotal = (parent, totals) => {
+let updateTotal = (parent, totals, items = '') => {
     //add total in footer cart
     parent.querySelector('.cart_footer price .pr').innerHTML = currency + totals.grand_total;
     parent.querySelector('.total_content ul').innerHTML = '';
@@ -628,13 +628,23 @@ let updateTotal = (parent, totals) => {
         }
     }
 
+    let compareSum = 0;
+    if (items != '') {
+        for (let i = 0; i < items.length; i++) {
+            getCart(`n/product/${items[i].product}/verbosity/3`).then(dataItem => {
+                console.log(dataItem)
 
-    let compareSum = !!parent.querySelector('[data-name="subtotal"] .pr-line') ? 
-        parent.querySelector('[data-name="subtotal"] .pr-line').innerHTML.replace(parent.querySelector('[data-name="subtotal"] .pr-line').innerHTML.charAt(0), '') :
-        parent.querySelector('[data-name="subtotal"] .pr').innerHTML.replace(parent.querySelector('[data-name="subtotal"] .pr').innerHTML.charAt(0), '');
+                let item = dataItem.result[0];
 
-    setCompare(+compareSum, 'grand_total', totals.grand_total, totals.shipping)
+                compareSum += item.org_price ? item.org_price * items[i].request.qty : item.price * items[i].request.qty;
 
+                if (i == items.length - 1) {
+                    setCompare(compareSum, 'grand_total', totals['grand_total'], totals['shipping'])
+                    setCompare(compareSum, 'subtotal', totals['subtotal'], totals['shipping'])
+                }
+            })
+        }
+    }
 }
 //add products
 let addProduct = (parent, items, totals) => {
@@ -651,11 +661,8 @@ let addProduct = (parent, items, totals) => {
             compareSum += item.org_price ? item.org_price * items[i].request.qty : item.price * items[i].request.qty;
 
             if (i == items.length - 1) {
-                for (const key in totals) {
-                    if (key == 'grand_total' || key == 'subtotal') {
-                        setCompare(compareSum, key, totals[key], totals['shipping'])
-                    }
-                }
+                setCompare(compareSum, 'grand_total', totals['grand_total'], totals['shipping'])
+                setCompare(compareSum, 'subtotal', totals['subtotal'], totals['shipping'])
             }
 
             let options = '';
@@ -712,7 +719,6 @@ let removeItem = (parent, id) => {  // remove item
         } else {
             cart.classList.add('empty')
         }
-
 
         cart.classList.remove('loading');
     })
@@ -817,15 +823,15 @@ let removeCoupon = (code, classes) => {
                 ''
             ).render()
         }
-        updateTotal(document.querySelector('.cart'), data.customer.cart.totals) 
+
+        updateTotal(document.querySelector('.cart'), data.customer.cart.totals, data.customer.cart.items) 
         
     })
 }
 //add coupon
 let addCoupon = (e) => {
-    console.log(e)
+   
     let _this = e.currentTarget;
-    console.log(_this)
     let parentEl = _this.closest('.coupon_item');
     _this.classList.add('busy');
 
@@ -845,13 +851,12 @@ let addCoupon = (e) => {
                     parentEl.querySelector(`result`).innerHTML = message;
                     parentEl.querySelector(`result`).classList.remove('ng-hide');
                 } else {
-                    console.log('giftcard true')
                     new Coupon(
                         _this.closest('.coupon_content'), 
                         'coupon_gift', 
                         value).render()
 
-                    updateTotal(document.querySelector('.cart'), data.customer.cart.totals) 
+                    updateTotal(document.querySelector('.cart'), data.customer.cart.totals, data.customer.cart.items) 
                 }
             })
         } else if (_this.closest('.coupon_promocode_form')) {
@@ -865,15 +870,12 @@ let addCoupon = (e) => {
                     parentEl.querySelector('result').innerHTML = message;
                     parentEl.querySelector('result').classList.remove('ng-hide');
                 } else {
-                    console.log('coupon true')
-                    console.log(  parentEl.closest('.coupon_content'))
                     new Coupon(
                         parentEl.closest('.coupon_content'), 
                         'coupon_promocode', 
                         value).render()
 
-
-                    updateTotal(document.querySelector('.cart'), data.customer.cart.totals) 
+                    updateTotal(document.querySelector('.cart'), data.customer.cart.totals, data.customer.cart.items) 
 
                     parentEl.remove();
 
@@ -911,7 +913,6 @@ let checkBalance = (e) => {
             if (data.error && data.error != '') {
                 message = data.error.includes('INVALID_GIFTCARD') ? `Sorry, we don't recognise this code` : data.error;
             } else {
-                console.log('balance true')
                 message = ` <p class="balance-item center">Your balance is&nbsp; <price>${currency + data.balance.toFixed(2)}</price></p>`
             }
 
@@ -1084,7 +1085,6 @@ class Total {
             }
         } else {
             if (price != currency+'0.00' && price != '-'+currency+'0.00' ) {
-                console.log(price)
                 this.parent.appendChild(element)
             }
         }
@@ -1314,9 +1314,6 @@ let init = () => {
                     // add total in footer cart
                     document.querySelector('.cart_footer price .pr').innerHTML = currency + grand_total;
 
-                    // add products
-                    addProduct(cart, items, totals)
-
                     // add coupons
                     if (data.customer.cart.coupon && data.customer.cart.coupon != '' && !cart.querySelector(`.coupon_promocode[data-code="${data.customer.cart.coupon}"]`)) {
                         new Coupon(
@@ -1347,8 +1344,10 @@ let init = () => {
                         }
                         
                     }
-              
 
+
+                    // add products
+                    addProduct(cart, items, totals)
                 }
 
                 document.querySelector('.cart_head h2 span').innerHTML = countCart;
@@ -1362,7 +1361,6 @@ let init = () => {
 
             document.addEventListener('click', (e) => {
                 if (e.target.classList.contains('cart')) {
-                    console.log(e.target.classList.contains('cart'))
                     toggleActive(cart, false)
                 }
             })
@@ -1380,7 +1378,6 @@ let addToBagLp = setInterval(() => {
         </style>`)
         document.querySelector('.cdk-overlay-pane basket-add-notice .icon-close').click()
 
-        console.log('init ')
         document.querySelector('.cart').classList.add('loading');
         toggleActive(document.querySelector('.cart'), true)
 
