@@ -648,7 +648,6 @@ let addProduct = (parent, items, totals) => {
 
             let item = dataItem.result[0];
 
-
             compareSum += item.org_price ? item.org_price * items[i].request.qty : item.price * items[i].request.qty;
 
             if (i == items.length - 1) {
@@ -667,7 +666,6 @@ let addProduct = (parent, items, totals) => {
             if (item.color) {
                 options += `<span class="option"><span>Colour: </span> ${JSON.stringify(window.autoInitData.data.attribute).split(`${item.color},"label":"`)[1].split('"')[0]}</span> `
             }
-
 
             new Product(
                 document.querySelector('.cart_products'), 
@@ -1299,59 +1297,60 @@ let init = () => {
 
                 let items = data.customer.cart.items;
 
-                let totals = data.customer.cart.totals;
-                let grand_total = totals.grand_total;
-                let subtotal = totals.subtotal;
-                let countCart = data.customer.cart.qty;
-                let giftcards = data.customer.cart.giftcards;
-
+                let countCart = data.customer.cart.qty ? data.customer.cart.qty : 0;
+                
                 if (countCart == 0) {
                     document.querySelector('.cart').classList.add('empty')
                 } else {
                     document.querySelector('.cart').classList.remove('empty');
-                }
 
-                //add total in footer cart
-                document.querySelector('.cart_footer price .pr').innerHTML = currency + grand_total;
-                document.querySelector('.cart_head h2 span').innerHTML = countCart;
-               
+                    let totals = data.customer.cart.totals;
+                    let grand_total = totals.grand_total;
+                    let giftcards = data.customer.cart.giftcards;
 
-                addProduct(cart, items, totals)
+                    // add total in footer cart
+                    document.querySelector('.cart_footer price .pr').innerHTML = currency + grand_total;
 
-               
-                if (data.customer.cart.coupon && data.customer.cart.coupon != '' && !cart.querySelector(`.coupon_promocode[data-code="${data.customer.cart.coupon}"]`)) {
-                    new Coupon(
-                        document.querySelector('.coupon_content'),
-                        'coupon_promocode',
-                        data.customer.cart.coupon
-                    ).render()
-                } else {
-                    if (!cart.querySelector(`.coupon_promocode[data-code=""]`)) {
+                    // add products
+                    addProduct(cart, items, totals)
+
+                    // add coupons
+                    if (data.customer.cart.coupon && data.customer.cart.coupon != '' && !cart.querySelector(`.coupon_promocode[data-code="${data.customer.cart.coupon}"]`)) {
                         new Coupon(
                             document.querySelector('.coupon_content'),
                             'coupon_promocode',
-                             ''
+                            data.customer.cart.coupon
                         ).render()
-                    } 
-                }
-                
-
-                if (giftcards.length > 0) {
-                    for (let i = 0; i < giftcards.length; i++) {
-                        if (!cart.querySelector(`.coupon_gift[data-code="${giftcards[i].code}"]`)) {
+                    } else {
+                        if (!cart.querySelector(`.coupon_promocode[data-code=""]`)) {
                             new Coupon(
                                 document.querySelector('.coupon_content'),
-                                'coupon_gift',
-                                giftcards[i].code
+                                'coupon_promocode',
+                                ''
                             ).render()
-                        }
+                        } 
                     }
-                      
-                }
+                    
+
+                    if (giftcards.length > 0) {
+                        for (let i = 0; i < giftcards.length; i++) {
+                            if (!cart.querySelector(`.coupon_gift[data-code="${giftcards[i].code}"]`)) {
+                                new Coupon(
+                                    document.querySelector('.coupon_content'),
+                                    'coupon_gift',
+                                    giftcards[i].code
+                                ).render()
+                            }
+                        }
+                        
+                    }
               
 
-                cart.classList.remove('loading');
+                }
 
+                document.querySelector('.cart_head h2 span').innerHTML = countCart;
+               
+                cart.classList.remove('loading');
             })
 
             document.querySelector('.cart_close').addEventListener('click', (e) => {
