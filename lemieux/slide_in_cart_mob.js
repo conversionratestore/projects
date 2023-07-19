@@ -15,17 +15,14 @@ let style = `
     -moz-appearance:textfield; /* Firefox */
 }
 .loading .cart_container:after {
-    content: 'Loading..';
+    content: '';
     position: absolute;
     top: 0;
-    left: 0;
+    right: 0;
     width: 100%;
     height: 100%;
-    z-index: 8;
-    background: rgba(255,255,255,0.7);
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    z-index: 7;
+    background: rgba(255,255,255,0.7) url(${dir}img/loading.gif) no-repeat center / 1em;
 }
 .cart {
     position: fixed;
@@ -163,11 +160,14 @@ let style = `
     font-weight: 700;
     padding: 7px 0;
 }
-.total_content ul li .pr .c-red {
+.total_content ul li .c-red {
     margin: 0;
 }
 .total_content ul p:not(.price) {
     font-weight: 600;
+}
+.total_content ul li .pr {
+    font-weight: 700;
 }
 .total_content li[data-name="grand_total"] {
     font-size: 20px;
@@ -1070,14 +1070,17 @@ class Total {
         element.innerHTML =`
         <p class="">${this.key == 'grand_total' ? 'Order total' : this.key == 'shipping' ? 'Delivery' :  this.key.split('_').join(' ').replace(letter,letterUp)}</p>
         <p class="ml-auto prices">
-            <span class="pr">${price}</span>
+            <span class="pr ${price.includes('-') ? 'c-red' : ''}">${price}</span>
         </p>`;
 
         if (this.parent.querySelector(`[data-name="${this.key}"]`)) {
+
             if ((this.key.includes('shipping') && this.subtotal < 75) || (!this.key.includes('shipping') && total.includes(currency+'0.00'))) {
                 this.parent.querySelector(`[data-name="${this.key}"]`).remove()
             } else {
-                this.parent.querySelector(`[data-name="${this.key}"] .pr`).innerHTML = price;
+                let newPr =  this.parent.querySelector(`[data-name="${this.key}"] .pr`)
+                newPr.innerHTML = price;
+                newPr.innerHTML.includes('-') ? newPr.classList.add('c-red') : newPr.classList.remove('c-red');
             }
         } else {
             if (price != currency+'0.00' && price != '-'+currency+'0.00' ) {
