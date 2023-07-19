@@ -586,6 +586,18 @@ let cartHTML = `
         </div>
     </div>`;
 
+
+//comes into view
+let isScrolledIntoView = (el) => {
+    let rect = el.getBoundingClientRect(),
+        elemTop = rect.top,
+        elemBottom = rect.bottom;
+
+    let isVisible = (elemTop >= 0) && (elemBottom <= window.innerHeight);
+
+    return isVisible;
+}
+
 //  api
 let postFetch = (host, body) => {
     return new Promise((resolve, reject) => {
@@ -621,6 +633,20 @@ let getCart = (host) => new Promise((resolve, reject) => {
         console.error('Error:', error);
     });
 })
+
+// pushDataLayer
+let pushDataLayer = (name, desc, type, loc) => {
+    console.log(name + ' : ' + desc + ' : ' + type + ' : ' + loc)
+
+    window.dataLayer = window.dataLayer || [];
+    dataLayer.push({
+        'event': 'event-to-ga4',
+        'event_name': name,
+        'event_desc': desc,
+        'event_type': type,
+        'event_loc': loc
+    });
+}
 
 let updateTotal = (parent, totals, items = '') => {
     //add total in footer cart
@@ -729,6 +755,7 @@ let removeItem = (parent, id) => {  // remove item
 
         } else {
             cart.classList.add('empty')
+            pushDataLayer('exp_slide_in_cart_bag_is_empty_vis','Your bag is empty','Element visibility','Sidebar cart. Your bag is empty')
         }
 
         cart.classList.remove('loading');
@@ -1060,6 +1087,7 @@ class TopBar {
         }
     }
 }
+
 class Total {
     constructor(parent, key, value, currency, subtotal, grandTotal) {
         this.parent = parent;
@@ -1223,9 +1251,8 @@ class Coupon {
     }
 }
 
-
 let clickBasket = setInterval(() => {
-    if (document.querySelector('header basket-qty') && !document.querySelector('.btn-basket')) {
+    if (document.querySelector('header basket-qty') && !document.querySelector('.btn-basket') && !document.querySelector('.cart')) {
         clearInterval(clickBasket)
 
         // add slide in cart html
@@ -1239,6 +1266,16 @@ let clickBasket = setInterval(() => {
         
         buttonBasket.insertAdjacentHTML('afterend', `<button type="button" class="btn-basket">
         ${document.querySelector('header basket-qty').innerHTML}</button>`)
+
+        cart.querySelector('.btn_submit').addEventListener('click', () => {
+            pushDataLayer('exp_slide_in_cart_check_out_securely', 'Check out securely', 'Button', 'Sidebar cart. Order total')
+        })
+        cart.querySelector('.cart_empty a').addEventListener('click', () => {
+            pushDataLayer('exp_slide_in_cart_shop_all_products', 'Shop all products', 'Button', 'Sidebar cart. Your bag is empty')
+        })
+        cart.querySelector('.coupon_vouchers').addEventListener('click', () => {
+            pushDataLayer('exp_slide_in_cart_buy_gift_vouchers', 'Buy gift vouchers', 'Button', 'Sidebar cart. Discounts')
+        })
 
         document.querySelector('.btn-basket').addEventListener('click', (e) => {
             e.stopImmediatePropagation();
@@ -1260,6 +1297,8 @@ let init = () => {
             currency = window.autoInitData.website.currency.list[0].symbol;
             //cart
             let cart = document.querySelector('.cart');
+       
+            pushDataLayer('exp_slide_in_cart_visibility', 'Cart visibility', 'Element visibility', 'Sidebar cart')
 
             const appHeight = () => {
                 cart.style.setProperty('--app-height', `${window.innerHeight}px`)
@@ -1305,14 +1344,34 @@ let init = () => {
                     </div>
                 </div>`)
 
-                document.querySelector('.btn-more ').addEventListener('click', () => {
+                document.querySelector('.btn-more').addEventListener('click', () => {
                     toggleActive(document.querySelector('.klarna_popup'), true)
+                    pushDataLayer('exp_slide_in_cart_clarna_link','Learn more','Link','Sidebar cart. Klarna');
+                    pushDataLayer('exp_slide_in_cart_popup_klarna_vis','Klarna Popup','Element visibility','Klarna Popup');
                 })  
                 document.querySelector('.klarna_popup .btn-close').addEventListener('click', () => {
-                    toggleActive(document.querySelector('.klarna_popup'), false)
+                    toggleActive(document.querySelector('.klarna_popup'), false);
+                    pushDataLayer('exp_slide_in_cart_popup_klarna_close','Close','Button','Klarna Popup');
                 })
                 document.querySelector('.klarna_popup .btn_continue').addEventListener('click', () => {
                     toggleActive(document.querySelector('.klarna_popup'), false)
+                    pushDataLayer('exp_slide_in_cart_popup_klarna_complete','Complete purchase','Button','Klarna Popup');
+                })
+
+                document.querySelector('.klarna_popup > div > p a.underline').addEventListener('click', () => {
+                    pushDataLayer('exp_slide_in_cart_popup_klarna_terms', 'Terms', 'Link', 'Klarna Popup')
+                })
+
+                let viewedKlarna = false;
+                document.querySelector('.cart_container').addEventListener('scroll', () => {
+                    if (isScrolledIntoView(document.querySelector('.klarna_content')) && viewedKlarna == false) {
+                        setTimeout(() => {
+                            if (isScrolledIntoView(document.querySelector('.klarna_content')) && viewedKlarna == false) {
+                                viewedKlarna = true;
+                                pushDataLayer('exp_slide_in_cart_clarna_visibility','Klarna','Element visibility','Sidebar cart. Klarna') 
+                            }
+                        }, 3000)
+                    }
                 })
             }
             if (!cart.querySelector(`.coupon_gift[data-code=""]`)) {
@@ -1331,7 +1390,9 @@ let init = () => {
                 let countCart = data.customer.cart.qty ? data.customer.cart.qty : 0;
                 
                 if (countCart == 0) {
-                    document.querySelector('.cart').classList.add('empty')
+                    document.querySelector('.cart').classList.add('empty');
+                    pushDataLayer('exp_slide_in_cart_bag_is_empty_vis','Your bag is empty','Element visibility','Sidebar cart. Your bag is empty')
+
                 } else {
                     document.querySelector('.cart').classList.remove('empty');
 
@@ -1413,3 +1474,11 @@ let addToBagLp = setInterval(() => {
         init()
     }
 });
+
+//clarify
+let isClarify = setInterval(() => {
+    if(typeof clarity == 'function') {
+        clearInterval(isClarify)
+        clarity("set", "exp_slide_in_cart", "variant_1");
+    }
+}, 100)
