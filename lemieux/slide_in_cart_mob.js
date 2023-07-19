@@ -553,7 +553,7 @@ let cartHTML = `
                 </div>
                 <div class="total_content">
                     <ul class="flex-column"></ul>
-                    <div class="saved_block ml-auto m-t-1"></div>
+                    <div class="saved_block ml-auto m-t--2"></div>
                 </div>
                 <div class="klarna_content">
                     <p class="flex flex-middle flex-justify-center">3 interest-fee payment of <b class="klarna_pr"></b> <img src="${dir}/img/Klarna_Logo_black.svg" alt="logo" class="img-klarna"> <button type="button" class="btn-more underline">Learn more</button></p>
@@ -567,7 +567,7 @@ let cartHTML = `
                         <span class="">
                             <span class="pr"></span>
                         </span>
-                        <span class="saved_block m-t-2"></span>
+                        <span class="saved_block ml-auto m-t-2"></span>
                     </price>
                 </div>
                 <a href="/checkout" class="btn_submit m-b m-t-2 btn">Checkout securely</a>
