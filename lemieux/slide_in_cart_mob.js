@@ -185,6 +185,8 @@ let style = `
     padding: 0 8px;
     color: #fff;
     font-size: 14px;
+    width: fit-content;
+    border-radius: 4px;
 }
 .img-feefo {
     margin: 24px auto;
@@ -425,6 +427,9 @@ let style = `
     font-size: 18px;
     font-weight: 600;
     line-height: 18px;
+}
+.cart_footer price {
+    text-align: right;
 }
 .cart_footer .pr {
     font-weight: 700;
@@ -792,13 +797,24 @@ let setCompare = (compareSum, key, value, shipping) => {
     let compareSumIsShipping = key == 'grand_total' ? compareSum + shipping : compareSum;
     let priceLine = value < (compareSumIsShipping).toFixed(2) ? ' <span class="pr-line m-r-1">' + currency + (compareSumIsShipping).toFixed(2) + '</span>' : ''
    
-    price.forEach(item => {
+    
+    price.forEach((item, index) => {
         if (item.parentElement.querySelector(`.pr-line`)) {
             item.parentElement.querySelector(`.pr-line`).remove()
         }
     
         item.innerHTML = currency + value.toFixed(2);
     
+        if (key == 'grand_total') {
+            if (value < compareSumIsShipping) {
+                document.querySelectorAll('.saved_block')[index].innerHTML = 'You just saved ' + currency + (compareSumIsShipping - value).toFixed(2);
+                document.querySelectorAll('.saved_block')[index].style.display = 'block';
+
+            } else {
+                document.querySelectorAll('.saved_block')[index].style = '';
+            }
+        } 
+
         item.insertAdjacentHTML('beforebegin', priceLine)
     })
    
@@ -1242,7 +1258,7 @@ let init = () => {
             let cart = document.querySelector('.cart');
 
             const appHeight = () => {
-                cart.style.height = window.outerHeight + 'px';
+                cart.style.height = window.innerHeight + 'px';
             }
             window.addEventListener('resize', appHeight)
             appHeight()
