@@ -1322,7 +1322,7 @@ let init = () => {
                             data.customer.cart.coupon
                         ).render()
                     } else {
-                        if (!cart.querySelector(`.coupon_promocode[data-code=""]`)) {
+                        if (!cart.querySelector(`.coupon_promocode`)) {
                             new Coupon(
                                 document.querySelector('.coupon_content'),
                                 'coupon_promocode',
