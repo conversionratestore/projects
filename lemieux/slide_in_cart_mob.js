@@ -712,8 +712,8 @@ let addProduct = (parent, items, totals) => {
                 item.url, 
                 item.image, 
                 item.name, 
-                item.price, 
-                item.org_price ? item.org_price : '', 
+                items[i].rowPrice, 
+                item.org_price ? item.org_price : item.price, 
                 options, 
                 items[i].id,
                 item.id,
@@ -986,6 +986,8 @@ class Product {
         this.idProduct = idProduct;
         this.currency = currency;
         this.qty = qty;
+
+        this.webCode = window.autoInitData.website.websiteCode != 'base' ? '/'+window.autoInitData.website.websiteCode : '';
     }
 
     render() {
@@ -995,14 +997,14 @@ class Product {
         element.dataset.idProduct = this.idProduct;
         
         element.innerHTML = `
-        <a href="${this.link}"> <img src="/static/media/catalog/${this.image}" alt="${this.name}"></a>
+        <a href="${this.webCode + this.link}"> <img src="/static/media/catalog/${this.image}" alt="${this.name}"></a>
    
         <div class="product_content flex-column flex-justify-between">
             <div class="flex flex-justify-between">
-                <a href="${this.link}" class="name">${this.name}</a>
+                <a href="${this.webCode + this.link}" class="name">${this.name}</a>
                 <p class="prices">
                     <span class="pr" data-price="${this.price}">${this.currency + (this.price * this.qty).toFixed(2)}</span>
-                    ${this.compare != '' ? ' <span class="pr-line" data-compare="' + this.compare + '">' + this.currency + (this.compare * this.qty).toFixed(2) + '</span>' : ''}
+                    ${this.compare != '' && this.compare > this.price ? ' <span class="pr-line" data-compare="' + this.compare + '">' + this.currency + (this.compare * this.qty).toFixed(2) + '</span>' : ''}
                 </p>
             </div>
             <p class="options m-b-auto">
@@ -1041,7 +1043,7 @@ class Product {
             document.querySelector(`[data-id-product="${this.idProduct}"] .pr`).innerHTML = this.currency + (this.price * this.qty).toFixed(2);
             if (!document.querySelector(`[data-id-product="${this.idProduct}"] .pr-line`)) {
                 document.querySelector(`[data-id-product="${this.idProduct}"] .pr`).insertAdjacentHTML('afterend',`
-                    ${this.compare != '' ? ' <span class="pr-line" data-compare="' + this.compare + '">' + this.currency + (this.compare * this.qty).toFixed(2) + '</span>' : ''}
+                    ${this.compare != '' && this.compare > this.price ? ' <span class="pr-line" data-compare="' + this.compare + '">' + this.currency + (this.compare * this.qty).toFixed(2) + '</span>' : ''}
                 `)
             } else {
                 document.querySelector(`[data-id-product="${this.idProduct}"] .pr-line`).dataset.compare = this.compare;

@@ -525,7 +525,9 @@ let postFetch = (host, body) => {
 }
 
 let postCart = () => new Promise((resolve, reject) => {
-    fetch(`https://www.lemieuxproducts.com/api/p/customer/data`, {
+    let webCode = window.autoInitData.website.websiteCode != 'base' ? '/'+window.autoInitData.website.websiteCode : '';
+
+    fetch(`https://www.lemieuxproducts.com${webCode}/api/p/customer/data`, {
         headers: {
             'Content-Type': 'application/json'
         },
