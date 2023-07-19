@@ -511,6 +511,7 @@ let postCart = () => new Promise((resolve, reject) => {
 })
 
 let count = 0;
+let countBasket = 0;
 
 let init = () => {
 
@@ -519,6 +520,8 @@ let init = () => {
         if (document.querySelector('.cdk-overlay-pane [sl-minibasket-button="basket"]') && document.querySelector('.cdk-overlay-pane').innerText.includes('Shopping Bag')) {
             clearInterval(basket)
             console.log('init ')
+
+            countBasket = 0;
 
             let klarnaPopup = setInterval(() => {
                 if (!document.querySelector('.klarna_popup')) {
@@ -756,17 +759,22 @@ let init = () => {
                 }
 
                 if (!document.querySelector('._content .klarna_content')) {
-                    
+
                     document.querySelector('._content .footer_content').insertAdjacentHTML('afterend', `
                     <div class="klarna_content">
                         <p class="flex flex-middle flex-justify-center">3 interest-fee payment of <b class="klarna_pr"></b> <img src="${dir}/img/klarna.svg" alt="logo" class="img-klarna"> <button type="button" class="btn-more">Learn more</button></p>
                     </div>
                     <img src="${dir}/img/feefo.svg" alt="imgae feefo" class="img-feefo">`)
 
-                    window.addEventListener('scroll', () => {
+                    document.querySelector('._content ._body').addEventListener('scroll', () => {
                         if (isScrolledIntoView(document.querySelector('.klarna_content')) && viewedKlarna == false) {
-                            viewedKlarna = true;
-                            pushDataLayer('exp_slide_in_cart_clarna_visibility','Klarna','Element visibility','Sidebar cart. Klarna')
+                        
+                            setTimeout(() => {
+                                if (isScrolledIntoView(document.querySelector('.klarna_content')) && viewedKlarna == false) {
+                                    viewedKlarna = true;
+                                    pushDataLayer('exp_slide_in_cart_clarna_visibility','Klarna','Element visibility','Sidebar cart. Klarna') 
+                                }
+                            }, 3000)
                         }
                     })
                 }
@@ -774,6 +782,7 @@ let init = () => {
                 //klarna popup show/hide
                 document.addEventListener('click', (e) => {
                     if (e.target.classList.contains('btn-continue') || e.target.classList.contains('btn-close') || e.target.classList.contains('klarna_popup')) {
+                        e.stopImmediatePropagation()
                         document.querySelector('.klarna_popup').classList.remove('active');
                         if (e.target.classList.contains('btn-close')) {
                             pushDataLayer('exp_slide_in_cart_popup_klarna_close', 'Close', 'Button', 'Klarna Popup');
@@ -782,6 +791,7 @@ let init = () => {
                         }
                     }
                     if (e.target.classList.contains('btn-more')) {
+                        e.stopImmediatePropagation()
                         document.querySelector('.klarna_popup').classList.add('active');
                         pushDataLayer('exp_slide_in_cart_clarna_link','Learn more', 'Link','Sidebar cart. Klarna')
                         pushDataLayer('exp_slide_in_cart_popup_klarna_vis', 'Klarna Popup', 'Element visibility', 'Klarna Popup');
@@ -834,7 +844,6 @@ let init = () => {
                                         carTotal[key] == 0 && 
                                         carTotal['subtotal'] >= 75 ?  '<span class="c-red">FREE</span>' : total;
 
-                            console.log(price)
                             if (price != currency+'0.00' ) {
 
                                 document.querySelector('.total_content').insertAdjacentHTML('beforeend',`
@@ -878,7 +887,6 @@ let init = () => {
                                             parentEl.querySelector(`result`).innerHTML = message;
                                             parentEl.querySelector(`result`).classList.remove('ng-hide');
                                         } else {
-                                            console.log('giftcard true')
                                             document.querySelector('.footer_content').classList.add('busy-icon')
                                         }
                                     })
@@ -893,7 +901,6 @@ let init = () => {
                                             parentEl.querySelector('result').innerHTML = message;
                                             parentEl.querySelector('result').classList.remove('ng-hide');
                                         } else {
-                                            console.log('coupon true')
 
                                             document.querySelector('.footer_content').classList.add('busy-icon')
                                         }
@@ -965,8 +972,6 @@ let init = () => {
                                         message = data.error.includes('INVALID_GIFTCARD') ? `Sorry, we don't recognise this code` : data.error;
                                      
                                     } else {
-                                        console.log('balance true')
-
                                         message = ` <p class="balance-item center">Your balance is&nbsp; <price>${currency + data.balance.toFixed(2)}</price></p>`
                                     }
 
@@ -998,6 +1003,7 @@ let init = () => {
 
                         document.querySelector('.cdk-overlay-pane [sl-minibasket-button="basket"]').addEventListener('click', (e) => {
                             e.preventDefault();       
+                            e.stopImmediatePropagation();       
 
                             pushDataLayer('exp_slide_in_cart_check_out_securely','Check out securely','Button','Sidebar cart. Order total')
 
@@ -1128,8 +1134,6 @@ let interval = setInterval(() => {
         document.querySelector('.footer_content').remove()
         document.body.classList.add('loading')
 
-        console.log('init 2')
-
         init()
     }
 }, 100)
@@ -1148,20 +1152,16 @@ let topBar = setInterval(() => {
     }
 });
 
-let countBasket = 0;
-
 let basketBtn = setInterval(() => {
     if (document.querySelector('button basket-qty') && countBasket == 0) {
         countBasket = 1;
 
         document.querySelector('button basket-qty').addEventListener('click', (e) => {
-            console.log('Click on basket icon')
             pushDataLayer('exp_slide_in_cart_visibility', 'Cart visibility', 'Element visibility' , 'Sidebar cart')
 
             viewedKlarna = false;
 
             init();
-            countBasket = 0;
         })
     }
 })
@@ -1170,7 +1170,6 @@ let addToBag = setInterval(() => {
     if (document.querySelector('product-view-add-to-basket action.button')) {
         clearInterval(addToBag)
         document.querySelector('product-view-add-to-basket action.button').addEventListener('click', () => {
-            console.log('Click on Add to bag button PDP')
             pushDataLayer('exp_slide_in_cart_visibility', 'Cart visibility', 'Element visibility' , 'Sidebar cart')
 
             viewedKlarna = false;
@@ -1185,7 +1184,6 @@ let addToBagLp = setInterval(() => {
         document.querySelectorAll('lp-add-to-basket action.button').forEach(element => {
             element.addEventListener('click', (e) => {
                 e.stopImmediatePropagation()
-                console.log('Click on Add to bag button LP')
                 pushDataLayer('exp_slide_in_cart_visibility', 'Cart visibility', 'Element visibility' , 'Sidebar cart')
 
                 viewedKlarna = false;
