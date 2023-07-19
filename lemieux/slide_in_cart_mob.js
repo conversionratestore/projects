@@ -712,7 +712,7 @@ let addProduct = (parent, items, totals) => {
                 item.url, 
                 item.image, 
                 item.name, 
-                items[i].rowPrice, 
+                items[i].price, 
                 item.org_price ? item.org_price : item.price, 
                 options, 
                 items[i].id,
