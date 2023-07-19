@@ -26,7 +26,34 @@ basket-related-products .h3 {
     font-style: normal;
     font-weight: 400;
     line-height: 32px;
-    padding-left: 23px!important;
+}
+basket-related-products .rate-empty, basket-related-products .rate-full, basket-related-products .rate-half {
+    width: 14px;
+    margin: 0;
+    display: flex;
+}
+basket-related-products .icon-star:before, basket-related-products .rate-full:before {
+    font-size: 14px;
+}
+basket-related-products p.m-t-1.col-12.p1.ng-star-inserted {
+    font-size: 14px;
+    line-height: 18px;
+}
+basket-related-products product-price {
+    font-size: 16px;
+    font-style: normal;
+    line-height: 22px; 
+    font-weight: 400;
+}
+basket-related-products product-price.m-r-1.price.ng-star-inserted {
+    font-weight: 600;
+}
+basket-related-products span.m-l-2.p1.ng-star-inserted {
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 1em;
+    margin-left: 3px;
 }
 .cdk-overlay-pane h5 .p1 {
     margin-left: -5px;
@@ -38,7 +65,7 @@ basket-related-products .h3 {
     content: ')';
     margin-left: -3px;
 }
-.cdk-overlay-pane h5 .p1 span, ._content .box-shadow-1 .p-b-8, basket-view-totals > div.flex  {
+.cdk-overlay-pane h5 .p1 span, ._content .box-shadow-1 .p-b-8, basket-view-totals > div.flex, .cdk-overlay-pane .swiper-slide div > div > span.m-r-1.ng-star-inserted  {
     display: none!important;
 }
 basket-view-totals > div {
@@ -163,8 +190,8 @@ basket-view-totals .saved_block {
 .cdk-overlay-pane .item-qty {
     margin-right: auto;
 }
-.cdk-overlay-pane .swiper {
-    padding: 0 0 0 23px!important;
+basket-related-products {
+    padding: 0 0 0 8px!important;
 }
 .cdk-overlay-pane .swiper-slide {
     margin-bottom: 10px;
