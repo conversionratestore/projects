@@ -4,9 +4,6 @@ let currency = window.autoInitData.website.currency.list[0].symbol ? window.auto
 
 let style = `
 <style>
-:root {
-    --app-height: 100%;
-}
 .cart input::-webkit-outer-spin-button,
 .cart input::-webkit-inner-spin-button {
     /* display: none; <- Crashes Chrome on hover */
@@ -33,7 +30,6 @@ let style = `
     top: 0;
     width: 100%;
     height: 100vh;
-    height: var(--app-height);
     z-index: 999;
     background: rgba(0, 0, 0, 0.70);
     opacity: 0;
@@ -1263,7 +1259,12 @@ let clickBasket = setInterval(() => {
         let buttonBasket = document.querySelector('header basket-qty').parentElement,
             cart = document.querySelector('.cart');
 
-        
+        let appHeight = () => {
+            cart.querySelector('.cart_container').style.height = window.innerHeight + 'px';
+        }
+        window.addEventListener('resize', appHeight)
+        appHeight()
+
         buttonBasket.insertAdjacentHTML('afterend', `<button type="button" class="btn-basket">
         ${document.querySelector('header basket-qty').innerHTML}</button>`)
 
@@ -1299,12 +1300,6 @@ let init = () => {
             let cart = document.querySelector('.cart');
        
             pushDataLayer('exp_slide_in_cart_visibility', 'Cart visibility', 'Element visibility', 'Sidebar cart')
-
-            const appHeight = () => {
-                cart.style.setProperty('--app-height', `${window.innerHeight}px`)
-            }
-            window.addEventListener('resize', appHeight)
-            appHeight()
 
             if (!document.querySelector('.klarna_popup')) {
                 // add klarna popup
