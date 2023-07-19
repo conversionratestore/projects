@@ -833,7 +833,7 @@ let setCompare = (compareSum, key, value, shipping) => {
         item.innerHTML = currency + value.toFixed(2);
     
         if (key == 'grand_total') {
-            if (value < compareSumIsShipping) {
+            if (value < (compareSumIsShipping).toFixed(2)) {
                 document.querySelectorAll('.saved_block')[index].innerHTML = 'You just saved ' + currency + (compareSumIsShipping - value).toFixed(2);
                 document.querySelectorAll('.saved_block')[index].style.display = 'block';
 
