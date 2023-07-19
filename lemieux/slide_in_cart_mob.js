@@ -217,8 +217,10 @@ let style = `
 .img-klarna {
     margin: 0 8px;
     background-color: #F1B6C6;
-    padding: 7px 5.4px;
+    padding: 9.5px 7.4px;
     border-radius: 8px;
+    width: 46px;
+    object-fit: contain;
 }
 .klarna_popup {
     position: fixed;
@@ -549,7 +551,7 @@ let cartHTML = `
                     <div class="saved_block ml-auto m-t-1"></div>
                 </div>
                 <div class="klarna_content">
-                    <p class="flex flex-middle flex-justify-center">3 interest-fee payment of <b class="klarna_pr"></b> <img src="${dir}/img/klarna.svg" alt="logo" class="img-klarna"> <button type="button" class="btn-more underline">Learn more</button></p>
+                    <p class="flex flex-middle flex-justify-center">3 interest-fee payment of <b class="klarna_pr"></b> <img src="${dir}/img/Klarna_Logo_black.svg" alt="logo" class="img-klarna"> <button type="button" class="btn-more underline">Learn more</button></p>
                 </div>
                 <img src="${dir}/img/feefo.svg" alt="imgae feefo" class="img-feefo">
             </div>
@@ -1239,6 +1241,12 @@ let init = () => {
             //cart
             let cart = document.querySelector('.cart');
 
+            const appHeight = () => {
+                cart.style.height = window.outerHeight + 'px';
+            }
+            window.addEventListener('resize', appHeight)
+            appHeight()
+
             if (!document.querySelector('.klarna_popup')) {
                 // add klarna popup
                 document.body.insertAdjacentHTML('beforeend',`<div class="klarna_popup flex">
@@ -1261,7 +1269,7 @@ let init = () => {
                             <li class="flex flex-middle">
                                 <img src="${dir}/img/k.svg" alt="icon">
                                 <span>Go to checkout and choose</span>
-                                <img src="${dir}/img/klarna.svg" alt="logo icon" class="img-klarna">
+                                <img src="${dir}/img/Klarna_Logo_black.svg" alt="logo icon" class="img-klarna">
                             </li>
                             <li class="flex flex-middle">
                                 <img src="${dir}/img/credit-card.svg" alt="icon">
@@ -1365,13 +1373,6 @@ let init = () => {
                 }
             })
 
-            const appHeight = () => {
-                cart.style.height = window.innerHeight + 'px';
-                console.log(cart.style.height)
-            }
-            window.addEventListener('resize', appHeight)
-            appHeight()
-           
         }
     })
 }
