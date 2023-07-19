@@ -1726,7 +1726,7 @@ let klaviyoStep = 1;
       !$el('klarna-placement div')
     )
       return false;
-
+    if($el('klarna-placement div').style.display === 'none') return false;
     const original = $el('klarna-placement div')?.shadowRoot?.querySelector(
       'div'
     );
