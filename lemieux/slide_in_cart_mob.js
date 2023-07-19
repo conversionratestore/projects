@@ -1364,6 +1364,14 @@ let init = () => {
                     toggleActive(cart, false)
                 }
             })
+
+            const appHeight = () => {
+                cart.style.height = window.innerHeight + 'px';
+                console.log(cart.style.height)
+            }
+            window.addEventListener('resize', appHeight)
+            appHeight()
+           
         }
     })
 }
