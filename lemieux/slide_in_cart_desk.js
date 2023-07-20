@@ -567,7 +567,7 @@ let init = () => {
                                     </svg>
                                 </button>
                             </div>
-                            <h3>3 interest-free payment of <b class="klarna_pr"></b> </h3>
+                            <h3>3 interest free payments of <b class="klarna_pr"></b> </h3>
                             <p>Buy what you love and split the cost. It’s easy and interest-free.</p>
                             <ul>
                                 <li class="flex flex-middle">
@@ -792,7 +792,7 @@ let init = () => {
 
                     document.querySelector('._content .footer_content').insertAdjacentHTML('afterend', `
                     <div class="klarna_content">
-                        <p class="flex flex-middle flex-justify-center">3 interest-fee payment of <b class="klarna_pr"></b> <img src="${dir}/img/klarna.svg" alt="logo" class="img-klarna"> <button type="button" class="btn-more">Learn more</button></p>
+                        <p class="flex flex-middle flex-justify-center">3 interest free payments of <b class="klarna_pr"></b> <img src="${dir}/img/klarna.svg" alt="logo" class="img-klarna"> <button type="button" class="btn-more">Learn more</button></p>
                     </div>
                     <img src="${dir}/img/feefo.svg" alt="imgae feefo" class="img-feefo">`)
 

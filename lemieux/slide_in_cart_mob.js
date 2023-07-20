@@ -1,6 +1,6 @@
 let dir = 'https://conversionratestore.github.io/projects/lemieux/';
 
-let currency = window.autoInitData.website.currency.list[0].symbol ? window.autoInitData.website.currency.list[0].symbol : '';
+let currency = window.autoInitData.website && window.autoInitData.website.currency.list[0].symbol ? window.autoInitData.website.currency.list[0].symbol : '';
 
 let style = `
 <style>
@@ -296,15 +296,19 @@ let style = `
 .klarna_popup a {
     font-weight: 600;
 }
+
 /* cart empty */
 .cart_empty {
     display: none;
     padding: 16px 24px;
 }
+.cart_favourites {
+    display: none;
+}
 .cart.empty .cart_body, .cart.empty .cart_footer {
     display: none!important;
 }
-.cart.empty .cart_empty {
+.cart.empty .cart_empty, .cart.empty .cart_favourites {
     display: block;
 }
 .cart_empty_body {
@@ -501,6 +505,33 @@ let style = `
 .coupon_item.is {
     border-style: dashed;
 }
+product-quick-buy button {
+    border-radius: 50%;
+}
+.container-add-to-bag modal-bottom-container {
+    width: 100%;
+}
+[_nghost-app-c143] .swiper-scrollbar {
+    width: 13.75rem!important;
+    height: 2px!important;
+    left: 50%!important;
+    bottom: 0!important;
+    transform: translateX(-50%);
+}
+.container-add-to-bag box .box {
+    position: relative;
+    display: block;
+    min-width: 3.125rem;
+    border-color: #cfd2d3;
+    background-color: #fff;
+    min-width: 2.8125rem;
+    padding: 0.375rem;
+}
+.container-add-to-bag box.is-selected .box {
+    border-color: #595959;
+    background-color: #595959;
+    color: #fff;
+}
 </style>`;
 
 
@@ -520,6 +551,42 @@ let cartHTML = `
                     <a href="/" class="btn">Shop all products</a>
                 </div>
             </div>
+            <div class="cart_favourites">
+                <cms-outlet-block variant="basket-empty" name="Empty Basket" class="w-12 cms-block">
+                    <cms-outlet style="display: block; position: relative;" class="ng-star-inserted">
+                        <div>
+                            <div class="ng-star-inserted">
+                                <page-component-product-carousel 
+                                    class="ng-star-inserted cms-component page-component-product-carousel">
+                                    <div class="center wrap-x">
+                                        <h1 sizeclass="XL:h1, MS:h2" class="p-t-5-s b-t-s b-col-42-s h2 ng-star-inserted">Our Favourites</h1>
+                                        <p class="m-t-1 p1 ng-star-inserted">New Arrivals</p>
+                                        <div class="p-t-3 p-b-3 text ng-star-inserted">
+                                            <p class="p1 m-b-0-s ng-star-inserted"></p>
+                                        </div>
+                                        <div sizeclass="!S: flex flex-justify-center m-t-3" class="col-12 underline m-b-6-s m-b-6-m ng-star-inserted"></div>
+                                        
+                                        <div sizeclass="XL:m-l-6 m-r-6,SM:m-l m-r" class="p-l-6 p-r-6">
+                                            <related-products
+                                                class="block m-b-8" _nghost-app-c143="">
+                                                <div class="ng-star-inserted">
+                                                    <swiper _ngcontent-app-c143 class="p-b-7 swiper">
+                                                        <div class="swiper-scrollbar"></div>
+                                                        <div class="swiper-wrapper"></div>
+                                                        <span class="swiper-notification"></span>
+                                                    </swiper>
+                                                </div>
+                                            </related-products>
+                                        </div>
+                                    </div>
+                                </page-component-product-carousel>
+                            </div>
+                            <div></div>
+                        </div>
+                    </cms-outlet>
+                </cms-outlet-block>
+            </div>
+
             <div class="cart_body">
                 <div class="cart_topBar flex flex-middle flex-justify-center">
                     <svg class="m-r-2" width="26" height="26" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -556,7 +623,7 @@ let cartHTML = `
                     <div class="saved_block ml-auto m-t--2"></div>
                 </div>
                 <div class="klarna_content">
-                    <p class="flex flex-middle flex-justify-center">3 interest-fee payment of <b class="klarna_pr"></b> <img src="${dir}/img/Klarna_Logo_black.svg" alt="logo" class="img-klarna"> <button type="button" class="btn-more underline">Learn more</button></p>
+                    <p class="flex flex-middle flex-justify-center">3 interest free payments of <b class="klarna_pr"></b> <img src="${dir}/img/Klarna_Logo_black.svg" alt="logo" class="img-klarna"> <button type="button" class="btn-more underline">Learn more</button></p>
                 </div>
                 <img src="${dir}/img/feefo.svg" alt="imgae feefo" class="img-feefo">
             </div>
@@ -580,8 +647,9 @@ let cartHTML = `
                 </p>
             </div>
         </div>
-    </div>`;
-
+    </div>
+    <div class="cdk-overlay-container container-add-to-bag"></div>`;
+ 
 
 //comes into view
 let isScrolledIntoView = (el) => {
@@ -613,7 +681,7 @@ let postFetch = (host, body) => {
     });
 }
 
-let getCart = (host) => new Promise((resolve, reject) => {
+let getFetch = (host) => new Promise((resolve, reject) => {
 
     let webCode = window.autoInitData.website.websiteCode != 'base' ? '/'+window.autoInitData.website.websiteCode : '';
 
@@ -629,6 +697,8 @@ let getCart = (host) => new Promise((resolve, reject) => {
         console.error('Error:', error);
     });
 })
+
+let reqCategory = getFetch('n/category/76/verbosity/3');
 
 // pushDataLayer
 let pushDataLayer = (name, desc, type, loc) => {
@@ -666,7 +736,7 @@ let updateTotal = (parent, totals, items) => {
         const promises = [];
 
         for (let i = 0; i < items.length; i++) {
-            promises.push(getCart(`n/product/${items[i].product}/verbosity/3`))
+            promises.push(getFetch(`n/product/${items[i].product}/verbosity/3`))
         }
 
         Promise.all(promises).then(dataItem => {
@@ -689,12 +759,12 @@ let updateTotal = (parent, totals, items) => {
     }
 }
 //add products
-let addProduct = (parent, items, totals) => {
+let addProduct = (parent, items, totals, count) => {
    
     updateTotal(parent, totals, items) 
 
     for (let i = 0; i < items.length; i++) {
-        getCart(`n/product/${items[i].product}/verbosity/3`).then(dataItem => {
+        getFetch(`n/product/${items[i].product}/verbosity/3`).then(dataItem => {
             console.log(dataItem)
 
             let item = dataItem.result[0];
@@ -702,7 +772,10 @@ let addProduct = (parent, items, totals) => {
             let options = '';
 
             if (item.size) {
-                options += `<span class="option"><span>Size: </span> ${JSON.stringify(window.autoInitData.data.attribute).split(`${item.size},"label":"`)[1].split('"')[0]}</span> `
+                let size = JSON.stringify(window.autoInitData.data.attribute).split(`${item.size},"label":"`)[1].split('"')[0];
+       
+                let iSlash = size.split('\\') ? size.replace('\\','"') : size;
+                options += `<span class="option"><span>Size: </span> ${iSlash}</span> `
             } 
             if (item.color) {
                 options += `<span class="option"><span>Colour: </span> ${JSON.stringify(window.autoInitData.data.attribute).split(`${item.color},"label":"`)[1].split('"')[0]}</span> `
@@ -723,6 +796,13 @@ let addProduct = (parent, items, totals) => {
 
         })
     }
+
+    parent.closest('.cart').querySelector('.cart_head span').innerHTML = count;
+
+    if (count != 0) {
+        parent.closest('.cart').classList.remove('empty');
+    } 
+
 }
 
 // remmove item 
@@ -748,7 +828,7 @@ let removeItem = (parent, id) => {  // remove item
         if (countCart != 0) {
             cart.classList.remove('empty');
 
-            addProduct(cart, items, totals)
+            addProduct(cart, items, totals, countCart)
 
         } else {
             cart.classList.add('empty')
@@ -790,7 +870,7 @@ let qty = (_this) => {
 
         if (data.error && data.error != '') {
             _this.closest('.product_content').insertAdjacentHTML('beforeend', `<p class="error-qty m-t-1 c-red m-b-0">${data.error}</p>`)
-            getCart('p/customer/data').then(data => {
+            getFetch('p/customer/data').then(data => {
 
                 let items = data.customer.cart.items;
                 for (let i = 0; i < items.length; i++) {
@@ -811,9 +891,7 @@ let qty = (_this) => {
         let totals = data.customer.cart.totals;
         let countCart = data.customer.cart.qty;
 
-        _this.closest('.cart').querySelector('.cart_head span').innerHTML = countCart;
-
-        addProduct(_this.closest('.cart'), items, totals)
+        addProduct(_this.closest('.cart'), items, totals, countCart)
 
         _this.closest('.cart').classList.remove('loading');
     })
@@ -1251,6 +1329,15 @@ class Coupon {
     }
 }
 
+// Swiper Slider 
+let scriptCustom = document.createElement('script')
+scriptCustom.src = 'https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js'
+scriptCustom.async = false
+
+let scriptCustomStyle = document.createElement('link')
+scriptCustomStyle.href = 'https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css'
+scriptCustomStyle.rel = 'stylesheet'
+
 let clickBasket = setInterval(() => {
     if (document.querySelector('header basket-qty') && !document.querySelector('.btn-basket') && !document.querySelector('.cart')) {
         clearInterval(clickBasket)
@@ -1258,6 +1345,9 @@ let clickBasket = setInterval(() => {
         // add slide in cart html
         document.body.insertAdjacentHTML('afterbegin', style);
         document.body.insertAdjacentHTML('beforeend', cartHTML);
+
+        document.head.appendChild(scriptCustom)
+        document.head.appendChild(scriptCustomStyle)
 
 
         let buttonBasket = document.querySelector('header basket-qty').parentElement,
@@ -1289,6 +1379,190 @@ let clickBasket = setInterval(() => {
             toggleActive(cart, true)
             init()
         })
+        let backdrop = (size, sizeBox, name) => `
+      
+        <div class="cdk-overlay-backdrop cdk-overlay-dark-backdrop cdk-overlay-backdrop-showing"></div>
+        <div class="cdk-global-overlay-wrapper" dir="ltr" style="justify-content: flex-start; align-items: flex-start;">
+            <div id="cdk-overlay-1" class="cdk-overlay-pane"
+                style="width: 100%; height: 100%; max-width: 100%; position: static; margin: 0px;">
+                <div tabindex="0" class="cdk-visually-hidden cdk-focus-trap-anchor" aria-hidden="true"></div>
+                <modal-bottom-container tabindex="-1" aria-modal="true"
+                    class="modal-container modal-bottom-container ng-tns-c22-24 ng-trigger ng-trigger-modalBottomContainer ng-star-inserted modal-container-overflow-hidden"
+                    id="modal-1" role="dialog" style="transform: translateY(0%);">
+                    <div class="pos-absolute bottom-0 left-2 right-2 z-3 bg-col-w p-a p-b-5 quick-add-to-basket ng-star-inserted">
+                        <button _ngcontent-app-c142="" type="button" class="pos-absolute p-a top-0 right-0" aria-label="Close">
+                            <i aria-hidden="true" class="icon-close"></i>
+                        </button>
+                        <h4 class="h4 col-11 center m-t p-l-14 p-r-14 m-b-5-s">${name}</h4>
+                        <div>
+                            <lp-product-configurable-options class="w-12 p-l-2 p-r-2 p-t-5 p-r-0-s p-b p-l-0-s center">
+                                <p class="p2 col-11 m-b-1 ng-star-inserted">Size: ${size}</p>
+                                ${sizeBox}
+                            </lp-product-configurable-options>
+                            <lp-product-in-stock-date class="ng-star-inserted"></lp-product-in-stock-date>
+                            <lp-add-to-basket class="flex-column flex-column-reverse-s flex-grow-s ng-star-inserted">
+                                <action cy-basketaddbutton="" class="w-12 button p-r-0-s p-l-0-s btn-add-to-bag">
+                                    <span class="button__busy">
+                                        <span class="bounce1"></span>
+                                            <span _ngcontent-app-c81=""
+                                        class="bounce2"></span></span>
+                                        <span class="button__body"> Add to bag</span>
+                                </action>
+                                <result class="block ng-hide">
+                                    <p class="s2 m-t-1"></p>
+                                </result>
+                            </lp-add-to-basket>
+                        </div>
+                    </div>
+                </modal-bottom-container>
+                <div tabindex="0" class="cdk-visually-hidden cdk-focus-trap-anchor" aria-hidden="true"></div>
+            </div>
+        </div>`
+
+        reqCategory.then(data => {
+            console.log(data)
+            let randomIndexes = [];
+            for (let i = 0; i < 11; i++) {
+                randomIndexes.push(Math.floor(Math.random() * 100))
+            }
+          
+            for (let i = 0; i < randomIndexes.length; i++) {
+                let item =  data.catalog[randomIndexes[i]];
+
+                if (item.plp_label != "Sold Out") {
+                    //stars
+                    let stars = '';
+                    let reviewRating = (item.reviews.rating / 10 / 2).toFixed(1);
+                    let reviewCount = item.reviews.count;
+
+                    let iWholeStars = Math.floor(reviewRating);
+                    let iEmptyStars = 5 - Math.ceil(reviewRating);
+
+                    let blnHalfStar = (iWholeStars < reviewRating);
+                
+                    for (var iStar = 1; iStar <= iWholeStars; iStar++) {
+                        stars += '<i class="rate-full"></i>'
+                    }
+                
+                    if (blnHalfStar) {
+                        stars += '<i class="rate-half"></i>'
+                    } 
+                    for (let iEmp = 0; iEmp < iEmptyStars; iEmp++) {
+                        stars += '<i class="rate-empty"></i>'
+                    }
+
+                    //sizes
+                    let size = item.size_org ? item.size_org : item.size;
+                    let sizes = '';
+                    let sizeItem = JSON.stringify(window.autoInitData.data.attribute).split(`${size[0]},"label":"`)[1].split('"')[0]
+
+                    for (let k = 0; k < size.length; k++) {
+                        sizes += ` 
+                        <box class="inline-block va-m cursor-pointer m-t-1 m-r-1 ng-star-inserted ${k == 0 ? 'is-selected' : ''}" data-id="${item.directChildrenIds[k]}" _nghost-app-c120="">
+                            <div _ngcontent-app-c120="" class="p2 b-a inline-block center box">${JSON.stringify(window.autoInitData.data.attribute).split(`${size[k]},"label":"`)[1].split('"')[0]} </div>
+                        </box>`
+                    }
+
+                    document.querySelector('.cart .swiper-wrapper').insertAdjacentHTML('beforeend',`
+                    <div class="swiper-slide ng-star-inserted">
+                        <product class="w-12 left ng-star-inserted" style="visibility: visible;">
+                            <div class="pos-relative flex-column height-100 product-card ng-star-inserted">
+                                
+                                <div class="ng-star-inserted">
+                                    <div class="pos-relative">
+                                        <a class="w-12 ratio-3-4 overflow-hidden ng-star-inserted"
+                                            href="${item.url}">
+                                            <shell>
+                                                <img class="_shellImg">
+                                            </shell>
+                                            <img class="rf dynamic-image loaded" alt="${item.name}"
+                                                src="/tco-images/unsafe/152x203/filters:format(webp):quality(70)/https://www.lemieuxproducts.com/static/media/catalog/${item.image}">
+                                        </a>
+                                        <div class="product-size" style="display: none;">${sizes}</div>
+                                        <product-quick-buy class="pos-absolute bottom-2 right-2 z-1 ng-tns-c133-30 ng-star-inserted" data-size="${sizeItem}" data-name="${item.name}">
+                                            <button class="quick-add-btn bg-col-w flex flex-middle flex-justify-center ng-tns-c133-30 ng-star-inserted">
+                                                <i aria-hidden="true" class="icon-basket-add flex col-12 p-a-1 ng-tns-c133-30"></i>
+                                            </button>
+                                        </product-quick-buy>
+                                    </div>
+                                    <div  class="m-t-3 p-b-1">
+                                        <a sizeclass="!SM: p1, SM: p2" cy-listingproductname="" class="p2 col-1" href="${item.url}">${item.name}</a><!---->
+                                        <p sizeclass="!SM: p1, SM: p2" class="m-t-1 col-12 p2 ng-star-inserted"> ${size.length} Colours</p>
+                                        <div sizeclass="!SM: p1, SM: p2" class="m-t-1 p1 col-1">
+                                            <product-price class="m-r-1 price">
+                                                ${window.autoInitData.website.currency.list[0].symbol + item.price.toFixed(2)}
+                                            </product-price>
+                                            ${item.org_price ? `<product-price class="m-r-1 line-through col-12">` +
+                                                window.autoInitData.website.currency.list[0].symbol + item.price.toFixed(2) +
+                                            `</product-price>` : '' }
+                                        </div>
+                                        ${reviewCount > 0 ? ` 
+                                        <div class="flex flex-middle m-t-1" style="margin-left: -0.14rem;">
+                                            <rating class="inline-flex fs-7-x fs-7-l ng-star-inserted">${stars}</rating>
+                                            <span sizeclass="XL:p1, MS:p2" class="m-l-2 p1 ng-star-inserted" style="line-height: 1em;">(${reviewCount})</span>
+                                        </div>`: ''}
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                        </product>
+                    </div>`)
+
+                    
+                }
+            }
+            document.querySelectorAll('.cart product-quick-buy').forEach(el => {
+                el.addEventListener('click', () => {
+                    document.querySelector('.container-add-to-bag').innerHTML = backdrop(el.dataset.size, el.previousElementSibling.innerHTML, el.dataset.name)
+                    
+                    document.querySelectorAll('.container-add-to-bag box').forEach(box => {
+                        box.addEventListener('click', (e) => {
+                            e.currentTarget.parentElement.querySelector('.is-selected').classList.remove('is-selected');
+                            box.classList.add('is-selected');
+                        })
+                    })
+                    document.addEventListener('click', (e) => {
+                        if (e.target.classList.contains('modal-container')) {
+                            document.querySelector('.container-add-to-bag').innerHTML = '';
+                        }
+                    })
+                    document.querySelector('.container-add-to-bag .quick-add-to-basket > button').addEventListener('click', () => {
+                        document.querySelector('.container-add-to-bag').innerHTML = '';
+                    })
+                    document.querySelector('.container-add-to-bag .btn-add-to-bag').addEventListener('click', (e) => {
+                        let id = document.querySelector('lp-product-configurable-options box.is-selected').dataset.id;
+                        let body = {"products":[{"id":id,"qty":1,"options":{},"bundle_options":{}}]}
+                        
+                        postFetch('basket/add', body).then(dataAdd => {
+                            let items = dataAdd.customer.cart.items;
+                            let totals = dataAdd.customer.cart.totals;
+
+                            document.querySelector('.container-add-to-bag').innerHTML = '';
+
+                            addProduct(document.querySelector('.cart'), items, totals, 1) 
+                        })
+                    })
+                })
+            })
+
+            const waitForSwiper = setInterval(() => {
+                if (typeof Swiper !== 'undefined') {
+                    clearInterval(waitForSwiper)
+            
+                    // #1 Main slider 
+                    var swiperMainSync = new Swiper(".cart .swiper", {
+                        slidesPerView: 2,
+                        slideToClickedSlide: true,
+                        spaceBetween: 16,
+                        scrollbar: {
+                            el: '.swiper-scrollbar',
+                            draggable: true,
+                            dragSize: 48
+                          }
+                    })
+                }
+            })
+        })
     }
 });
 
@@ -1317,7 +1591,7 @@ let init = () => {
                                 </svg>
                             </button>
                         </div>
-                        <h3>3 interest-free payment of <b class="klarna_pr"></b> </h3>
+                        <h3>3 interest free payments of <b class="klarna_pr"></b> </h3>
                         <p>Buy what you love and split the cost. It’s easy and interest-free.</p>
                         <ul>
                             <li class="flex flex-middle">
@@ -1381,13 +1655,31 @@ let init = () => {
                 ).render()
             }
 
-            getCart('p/customer/data').then(data => {
+            getFetch('p/customer/data').then(data => {
                 console.log(data)
 
                 let items = data.customer.cart.items;
 
                 let countCart = data.customer.cart.qty ? data.customer.cart.qty : 0;
                 
+
+                // add promocode
+                if (data.customer.cart.coupon && data.customer.cart.coupon != '' && !cart.querySelector(`.coupon_promocode[data-code="${data.customer.cart.coupon}"]`)) {
+                    new Coupon(
+                        document.querySelector('.coupon_content'),
+                        'coupon_promocode',
+                        data.customer.cart.coupon
+                    ).render()
+                } else {
+                    if (!cart.querySelector(`.coupon_promocode`)) {
+                        new Coupon(
+                            document.querySelector('.coupon_content'),
+                            'coupon_promocode',
+                            ''
+                        ).render()
+                    } 
+                }
+
                 if (countCart == 0) {
                     document.querySelector('.cart').classList.add('empty');
                     pushDataLayer('exp_slide_in_cart_bag_is_empty_vis','Your bag is empty','Element visibility','Sidebar cart. Your bag is empty')
@@ -1401,25 +1693,8 @@ let init = () => {
 
                     // add total in footer cart
                     document.querySelector('.cart_footer price .pr').innerHTML = currency + grand_total;
-
-                    // add coupons
-                    if (data.customer.cart.coupon && data.customer.cart.coupon != '' && !cart.querySelector(`.coupon_promocode[data-code="${data.customer.cart.coupon}"]`)) {
-                        new Coupon(
-                            document.querySelector('.coupon_content'),
-                            'coupon_promocode',
-                            data.customer.cart.coupon
-                        ).render()
-                    } else {
-                        if (!cart.querySelector(`.coupon_promocode`)) {
-                            new Coupon(
-                                document.querySelector('.coupon_content'),
-                                'coupon_promocode',
-                                ''
-                            ).render()
-                        } 
-                    }
                     
-
+                    //add giftcards
                     if (giftcards.length > 0) {
                         for (let i = 0; i < giftcards.length; i++) {
                             if (!cart.querySelector(`.coupon_gift[data-code="${giftcards[i].code}"]`)) {
@@ -1435,7 +1710,7 @@ let init = () => {
 
 
                     // add products
-                    addProduct(cart, items, totals)
+                    addProduct(cart, items, totals, countCart)
                 }
 
                 document.querySelector('.cart_head h2 span').innerHTML = countCart;
