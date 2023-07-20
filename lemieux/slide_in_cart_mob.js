@@ -1524,6 +1524,7 @@ let clickBasket = setInterval(() => {
                         box.addEventListener('click', (e) => {
                             e.currentTarget.parentElement.querySelector('.is-selected').classList.remove('is-selected');
                             box.classList.add('is-selected');
+                            box.parentElement.querySelector('p').innerHTML = 'Size: ' + box.innerText;
                         })
                     })
                     document.addEventListener('click', (e) => {

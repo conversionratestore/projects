@@ -1238,7 +1238,7 @@ let emptyIs = setInterval(() => {
                     pointer-events: none;
                 }
                 .cart_favourites {
-                    padding: 12px 0;
+                    padding: 12px 24px;
                 }
             </style>
             <div class=" container-add-to-bag"></div>`)
@@ -1331,12 +1331,12 @@ let emptyIs = setInterval(() => {
                     //sizes
                     let size = item.size_org ? item.size_org : item.size;
                     let sizes = '';
-                    let sizeItem = JSON.stringify(window.autoInitData.data.attribute).split(`${size[0]},"label":"`)[1].split('"')[0]
+                    let sizeItem = JSON.stringify(window.autoInitData.data.attribute).split(`${size[0]},"label":"`)[1].split('"')[0].replace('\\','"')
 
                     for (let k = 0; k < size.length; k++) {
                         sizes += ` 
                         <box class="inline-block va-m cursor-pointer m-t-1 m-r-1 ng-star-inserted ${k == 0 ? 'is-selected' : ''}" data-id="${item.directChildrenIds[k]}" _nghost-app-c120="">
-                            <div _ngcontent-app-c120="" class="p2 b-a inline-block center box">${JSON.stringify(window.autoInitData.data.attribute).split(`${size[k]},"label":"`)[1].split('"')[0]} </div>
+                            <div _ngcontent-app-c120="" class="p2 b-a inline-block center box">${JSON.stringify(window.autoInitData.data.attribute).split(`${size[k]},"label":"`)[1].split('"')[0].replace('\\','"')} </div>
                         </box>`
                     }
 
@@ -1396,6 +1396,7 @@ let emptyIs = setInterval(() => {
                         box.addEventListener('click', (e) => {
                             e.currentTarget.parentElement.querySelector('.is-selected').classList.remove('is-selected');
                             box.classList.add('is-selected');
+                            box.parentElement.querySelector('p').innerHTML = 'Size: ' + box.innerText;
                         })
                     })
                     document.addEventListener('click', (e) => {
