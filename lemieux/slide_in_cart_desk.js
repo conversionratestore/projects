@@ -543,6 +543,15 @@ let count = 0;
 let countBasket = 0;
 let isVisibleCart = false;
 
+// Swiper Slider 
+let scriptCustom = document.createElement('script')
+scriptCustom.src = 'https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js'
+scriptCustom.async = false
+
+let scriptCustomStyle = document.createElement('link')
+scriptCustomStyle.href = 'https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css'
+scriptCustomStyle.rel = 'stylesheet'
+
 let init = () => {
 
     let basket = setInterval(() => {
@@ -591,7 +600,8 @@ let init = () => {
                             <button type="button" class="btn-continue">Complete purchase</button>
                             <p>Please note that a higher initial payment may be required for some consumers. Fees may apply. Read the  <a href="https://cdn.klarna.com/1.0/shared/content/legal/terms/en-GB/1.0.1/paylaterin3" target="_blank">terms </a> for more information.</p>
                         </div>
-                    </div>`)
+                    </div>
+                    `)
                     document.querySelector('.klarna_popup_container > p a').addEventListener('click', () => {
                         pushDataLayer('exp_slide_in_cart_popup_klarna_terms', 'Terms', 'Link', 'Klarna Popup');
                     })
@@ -601,6 +611,7 @@ let init = () => {
 
             if (!document.querySelector('.style-exp')) {
                 document.querySelector('.cdk-overlay-pane').insertAdjacentHTML('beforebegin', style)
+
             }
 
             document.querySelectorAll('.cdk-overlay-pane ._body ul li .left .c1').forEach(item => {
@@ -1067,6 +1078,61 @@ let init = () => {
     }, 100);
 } 
 
+let backdrop = (size, sizeBox, name) => ` 
+<div class="cdk-overlay-backdrop cdk-overlay-dark-backdrop cdk-overlay-backdrop-showing"></div>
+<div class="cdk-global-overlay-wrapper" dir="ltr" style="justify-content: flex-start; align-items: flex-start;">
+    <div id="cdk-overlay-1" class="cdk-overlay-pane"
+        style="width: 100%; height: 100%; max-width: 100%; position: static; margin: 0px;">
+        <div tabindex="0" class="cdk-visually-hidden cdk-focus-trap-anchor" aria-hidden="true"></div>
+        <modal-bottom-container tabindex="-1" aria-modal="true"
+            class="modal-container modal-bottom-container ng-tns-c22-24 ng-trigger ng-trigger-modalBottomContainer ng-star-inserted modal-container-overflow-hidden"
+            id="modal-1" role="dialog" style="transform: translateY(0%);">
+            <div class="pos-absolute bottom-0 left-2 right-2 z-3 bg-col-w p-a p-b-5 quick-add-to-basket ng-star-inserted">
+                <button _ngcontent-app-c142="" type="button" class="pos-absolute p-a top-0 right-0" aria-label="Close">
+                    <i aria-hidden="true" class="icon-close"></i>
+                </button>
+                <h4 class="h4 col-11 center m-t p-l-14 p-r-14 m-b-5-s">${name}</h4>
+                <div>
+                    <lp-product-configurable-options class="w-12 p-l-2 p-r-2 p-t-5 p-r-0-s p-b p-l-0-s center">
+                        <p class="p2 col-11 m-b-1 ng-star-inserted">Size: ${size}</p>
+                        ${sizeBox}
+                    </lp-product-configurable-options>
+                    <lp-product-in-stock-date class="ng-star-inserted"></lp-product-in-stock-date>
+                    <lp-add-to-basket class="flex-column flex-column-reverse-s flex-grow-s ng-star-inserted">
+                        <action cy-basketaddbutton="" class="w-12 button p-r-0-s p-l-0-s btn-add-to-bag">
+                            <span class="button__busy">
+                                <span class="bounce1"></span>
+                                    <span _ngcontent-app-c81=""
+                                class="bounce2"></span></span>
+                                <span class="button__body"> Add to bag</span>
+                        </action>
+                        <result class="block ng-hide">
+                            <p class="s2 m-t-1"></p>
+                        </result>
+                    </lp-add-to-basket>
+                </div>
+            </div>
+        </modal-bottom-container>
+        <div tabindex="0" class="cdk-visually-hidden cdk-focus-trap-anchor" aria-hidden="true"></div>
+    </div>
+</div>`
+
+let reqCategory = new Promise((resolve, reject) => {
+    let webCode = window.autoInitData.website.websiteCode != 'base' ? '/'+window.autoInitData.website.websiteCode : '';
+
+    fetch(`https://www.lemieuxproducts.com${webCode}/api/n/category/76/verbosity/3`, {
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        method: 'GET'
+    }).then(res => res.json()).then(data => {
+        resolve(data)
+    }).catch((error) => {
+        console.error('Error:', error);
+    });
+})
+
+
 let emptyIs = setInterval(() => {
     if (document.querySelector('.cdk-overlay-pane ._body p') && document.querySelector('.cdk-overlay-pane ._body p').innerText.includes('Your bag is empty') && !document.querySelector('.empty_body')) {
         document.querySelector('._body p').innerHTML = `
@@ -1134,6 +1200,88 @@ let emptyIs = setInterval(() => {
             <a href="/">Shop all products</a>
         </span>
         `
+        if (!document.querySelector('.container-add-to-bag')) {
+            document.body.insertAdjacentHTML('beforeend',`
+            <style>
+                product-quick-buy button {
+                    border-radius: 50%;
+                }
+                .container-add-to-bag modal-bottom-container {
+                    width: 100%;
+                }
+                .container-add-to-bag .quick-add-to-basket {
+                    width: 365px;
+                    margin: 0 0 0 auto;
+                }
+                [_nghost-app-c143] .swiper-scrollbar {
+                    width: 13.75rem!important;
+                    height: 2px!important;
+                    left: 50%!important;
+                    bottom: 0!important;
+                    transform: translateX(-50%);
+                }
+                .container-add-to-bag box .box {
+                    position: relative;
+                    display: block;
+                    min-width: 3.125rem;
+                    border-color: #cfd2d3;
+                    background-color: #fff;
+                    min-width: 2.8125rem;
+                    padding: 0.375rem;
+                }
+                .container-add-to-bag box.is-selected .box {
+                    border-color: #595959;
+                    background-color: #595959;
+                    color: #fff;
+                }
+                .container-add-to-bag .btn-add-to-bag *, .container-add-to-bag .btn-add-to-bag.busy {
+                    pointer-events: none;
+                }
+                .cart_favourites {
+                    padding: 12px 0;
+                }
+            </style>
+            <div class=" container-add-to-bag"></div>`)
+        }
+
+        document.querySelector('._body p').insertAdjacentHTML('afterend', `<div class="cart_favourites">
+            <cms-outlet-block variant="basket-empty" name="Empty Basket" class="w-12 cms-block">
+                <cms-outlet style="display: block; position: relative;" class="ng-star-inserted">
+                    <div>
+                        <div class="ng-star-inserted">
+                            <page-component-product-carousel 
+                                class="ng-star-inserted cms-component page-component-product-carousel">
+                                <div class="center wrap-x">
+                                    <h1 sizeclass="XL:h1, MS:h2" class="p-t-5-s b-t-s b-col-42-s h2 ng-star-inserted">Our Favourites</h1>
+                                    <p class="m-t-1 p1 ng-star-inserted">New Arrivals</p>
+                                    <div class="p-t-3 p-b-3 text ng-star-inserted">
+                                        <p class="p1 m-b-0-s ng-star-inserted"></p>
+                                    </div>
+                                    <div sizeclass="!S: flex flex-justify-center m-t-3" class="col-12 underline m-b-6-s m-b-6-m ng-star-inserted"></div>
+                                    
+                                    <div sizeclass="XL:m-l-6 m-r-6,SM:m-l m-r" class="">
+                                        <related-products
+                                            class="block m-b-8" _nghost-app-c143="">
+                                            <div class="ng-star-inserted">
+                                                <swiper _ngcontent-app-c143 class="p-b-7 swiper">
+                                                    <div class="swiper-scrollbar"></div>
+                                                    <div class="swiper-wrapper"></div>
+                                                    <span class="swiper-notification"></span>
+                                                </swiper>
+                                            </div>
+                                        </related-products>
+                                    </div>
+                                </div>
+                            </page-component-product-carousel>
+                        </div>
+                        <div></div>
+                    </div>
+                </cms-outlet>
+            </cms-outlet-block>
+        </div>`)
+
+        document.head.appendChild(scriptCustom)
+        document.head.appendChild(scriptCustomStyle)
 
         document.querySelector('.cdk-overlay-pane ._title h5 .h3').insertAdjacentHTML('beforeend', ` 
         <span  class="count_basket m-l-1">(0)</span>`)
@@ -1143,9 +1291,156 @@ let emptyIs = setInterval(() => {
             pushDataLayer('exp_slide_in_cart_shop_all_products','Shop all products','Button','Sidebar cart. Your bag is empty')
         })
 
-        document.querySelector('.footer_content') ? document.querySelector('.footer_content').remove() : ''
-        document.querySelector('.klarna_content') ? document.querySelector('.klarna_content').remove() : ''
-        document.querySelector('.img-feefo') ? document.querySelector('.img-feefo').remove() : ''
+        document.querySelector('.footer_content') ? document.querySelector('.footer_content').remove() : '';
+        document.querySelector('.klarna_content') ? document.querySelector('.klarna_content').remove() : '';
+        document.querySelector('.img-feefo') ? document.querySelector('.img-feefo').remove() : '';
+
+
+        reqCategory.then(data => {
+            console.log(data)
+            let randomIndexes = [];
+            for (let i = 0; i < 11; i++) {
+                randomIndexes.push(Math.floor(Math.random() * 100))
+            }
+          
+            for (let i = 0; i < randomIndexes.length; i++) {
+                let item =  data.catalog[randomIndexes[i]];
+
+                if (item.plp_label != "Sold Out") {
+                    //stars
+                    let stars = '';
+                    let reviewRating = (item.reviews.rating / 10 / 2).toFixed(1);
+                    let reviewCount = item.reviews.count;
+
+                    let iWholeStars = Math.floor(reviewRating);
+                    let iEmptyStars = 5 - Math.ceil(reviewRating);
+
+                    let blnHalfStar = (iWholeStars < reviewRating);
+                
+                    for (var iStar = 1; iStar <= iWholeStars; iStar++) {
+                        stars += '<i class="rate-full"></i>'
+                    }
+                
+                    if (blnHalfStar) {
+                        stars += '<i class="rate-half"></i>'
+                    } 
+                    for (let iEmp = 0; iEmp < iEmptyStars; iEmp++) {
+                        stars += '<i class="rate-empty"></i>'
+                    }
+
+                    //sizes
+                    let size = item.size_org ? item.size_org : item.size;
+                    let sizes = '';
+                    let sizeItem = JSON.stringify(window.autoInitData.data.attribute).split(`${size[0]},"label":"`)[1].split('"')[0]
+
+                    for (let k = 0; k < size.length; k++) {
+                        sizes += ` 
+                        <box class="inline-block va-m cursor-pointer m-t-1 m-r-1 ng-star-inserted ${k == 0 ? 'is-selected' : ''}" data-id="${item.directChildrenIds[k]}" _nghost-app-c120="">
+                            <div _ngcontent-app-c120="" class="p2 b-a inline-block center box">${JSON.stringify(window.autoInitData.data.attribute).split(`${size[k]},"label":"`)[1].split('"')[0]} </div>
+                        </box>`
+                    }
+
+                    document.querySelector('.cart_favourites .swiper-wrapper').insertAdjacentHTML('beforeend',`
+                    <div class="swiper-slide ng-star-inserted">
+                        <product class="w-12 left ng-star-inserted" style="visibility: visible;">
+                            <div class="pos-relative flex-column height-100 product-card ng-star-inserted">
+                                
+                                <div class="ng-star-inserted">
+                                    <div class="pos-relative">
+                                        <a class="w-12 ratio-3-4 overflow-hidden ng-star-inserted"
+                                            href="${item.url}">
+                                            <shell>
+                                                <img class="_shellImg">
+                                            </shell>
+                                            <img class="rf dynamic-image loaded" alt="${item.name}"
+                                                src="/tco-images/unsafe/152x203/filters:format(webp):quality(70)/https://www.lemieuxproducts.com/static/media/catalog/${item.image}">
+                                        </a>
+                                        <div class="product-size" style="display: none;">${sizes}</div>
+                                        <product-quick-buy class="pos-absolute bottom-2 right-2 z-1 ng-tns-c133-30 ng-star-inserted" data-size="${sizeItem}" data-name="${item.name}">
+                                            <button class="quick-add-btn bg-col-w flex flex-middle flex-justify-center ng-tns-c133-30 ng-star-inserted">
+                                                <i aria-hidden="true" class="icon-basket-add flex col-12 p-a-1 ng-tns-c133-30"></i>
+                                            </button>
+                                        </product-quick-buy>
+                                    </div>
+                                    <div  class="m-t-3 p-b-1">
+                                        <a sizeclass="!SM: p1, SM: p2" cy-listingproductname="" class="p2 col-1" href="${item.url}">${item.name}</a><!---->
+                                        <p sizeclass="!SM: p1, SM: p2" class="m-t-1 col-12 p2 ng-star-inserted"> ${size.length} Colours</p>
+                                        <div sizeclass="!SM: p1, SM: p2" class="m-t-1 p1 col-1">
+                                            <product-price class="m-r-1 price">
+                                                ${window.autoInitData.website.currency.list[0].symbol + item.price.toFixed(2)}
+                                            </product-price>
+                                            ${item.org_price ? `<product-price class="m-r-1 line-through col-12">` +
+                                                window.autoInitData.website.currency.list[0].symbol + item.price.toFixed(2) +
+                                            `</product-price>` : '' }
+                                        </div>
+                                        ${reviewCount > 0 ? ` 
+                                        <div class="flex flex-middle m-t-1" style="margin-left: -0.14rem;">
+                                            <rating class="inline-flex fs-7-x fs-7-l ng-star-inserted">${stars}</rating>
+                                            <span sizeclass="XL:p1, MS:p2" class="m-l-2 p1 ng-star-inserted" style="line-height: 1em;">(${reviewCount})</span>
+                                        </div>`: ''}
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                        </product>
+                    </div>`)
+
+                    
+                }
+            }
+            document.querySelectorAll('.cart_favourites product-quick-buy').forEach(el => {
+                el.addEventListener('click', () => {
+                    document.querySelector('.container-add-to-bag').innerHTML = backdrop(el.dataset.size, el.previousElementSibling.innerHTML, el.dataset.name)
+                    
+                    document.querySelectorAll('.container-add-to-bag box').forEach(box => {
+                        box.addEventListener('click', (e) => {
+                            e.currentTarget.parentElement.querySelector('.is-selected').classList.remove('is-selected');
+                            box.classList.add('is-selected');
+                        })
+                    })
+                    document.addEventListener('click', (e) => {
+                        if (e.target.classList.contains('modal-container')) {
+                            document.querySelector('.container-add-to-bag').innerHTML = '';
+                        }
+                    })
+                    document.querySelector('.container-add-to-bag .quick-add-to-basket > button').addEventListener('click', () => {
+                        document.querySelector('.container-add-to-bag').innerHTML = '';
+                    })
+
+                    document.querySelector('.container-add-to-bag .btn-add-to-bag').addEventListener('click', (e) => {
+                        let id = document.querySelector('lp-product-configurable-options box.is-selected').dataset.id;
+                        let body = {"products":[{"id":id,"qty":1,"options":{},"bundle_options":{}}]}
+                        
+                        e.currentTarget.classList.add('busy')
+
+                        postFetch('basket/add', body).then(dataAdd => {
+                            let items = dataAdd.customer.cart.items;
+                            let totals = dataAdd.customer.cart.totals;
+                            sessionStorage.setItem('reload','true')
+                            window.location.reload()
+                        })
+                    })
+                })
+            })
+
+            const waitForSwiper = setInterval(() => {
+                if (typeof Swiper !== 'undefined') {
+                    clearInterval(waitForSwiper)
+            
+                    // #1 Main slider 
+                    var swiperMainSync = new Swiper(".cart_favourites .swiper", {
+                        slidesPerView: 2,
+                        slideToClickedSlide: true,
+                        spaceBetween: 16,
+                        scrollbar: {
+                            el: '.swiper-scrollbar',
+                            draggable: true,
+                            dragSize: 48
+                          }
+                    })
+                }
+            })
+        })
     }
 })
 
@@ -1224,6 +1519,14 @@ let addToBagLp = setInterval(() => {
         });
     }
 });
+
+let reloaded = setInterval(() => {
+    if (sessionStorage.getItem('reload') && sessionStorage.getItem('reload') == 'true' && document.querySelector('header basket-qty')) {
+        clearInterval(reloaded)
+        sessionStorage.setItem('reload','')
+        document.querySelector('header basket-qty').click()
+    }
+})
 
 //clarify
 let isClarify = setInterval(() => {

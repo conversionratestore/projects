@@ -532,6 +532,9 @@ product-quick-buy button {
     background-color: #595959;
     color: #fff;
 }
+.container-add-to-bag .btn-add-to-bag *, .container-add-to-bag .btn-add-to-bag.busy {
+    pointer-events: none;
+}
 </style>`;
 
 
@@ -1454,16 +1457,18 @@ let clickBasket = setInterval(() => {
                     //sizes
                     let size = item.size_org ? item.size_org : item.size;
                     let sizes = '';
-                    let sizeItem = JSON.stringify(window.autoInitData.data.attribute).split(`${size[0]},"label":"`)[1].split('"')[0]
+                    let sizeItem = JSON.stringify(window.autoInitData.data.attribute).split(`${size[0]},"label":"`)[1].split('"')[0].replace('\\','"')
+
 
                     for (let k = 0; k < size.length; k++) {
+
                         sizes += ` 
                         <box class="inline-block va-m cursor-pointer m-t-1 m-r-1 ng-star-inserted ${k == 0 ? 'is-selected' : ''}" data-id="${item.directChildrenIds[k]}" _nghost-app-c120="">
-                            <div _ngcontent-app-c120="" class="p2 b-a inline-block center box">${JSON.stringify(window.autoInitData.data.attribute).split(`${size[k]},"label":"`)[1].split('"')[0]} </div>
+                            <div _ngcontent-app-c120="" class="p2 b-a inline-block center box">${JSON.stringify(window.autoInitData.data.attribute).split(`${size[k]},"label":"`)[1].split('"')[0].replace('\\','"')} </div>
                         </box>`
                     }
 
-                    document.querySelector('.cart .swiper-wrapper').insertAdjacentHTML('beforeend',`
+                    document.querySelector('.cart_favourites .swiper-wrapper').insertAdjacentHTML('beforeend',`
                     <div class="swiper-slide ng-star-inserted">
                         <product class="w-12 left ng-star-inserted" style="visibility: visible;">
                             <div class="pos-relative flex-column height-100 product-card ng-star-inserted">
@@ -1511,7 +1516,7 @@ let clickBasket = setInterval(() => {
                     
                 }
             }
-            document.querySelectorAll('.cart product-quick-buy').forEach(el => {
+            document.querySelectorAll('.cart_favourites product-quick-buy').forEach(el => {
                 el.addEventListener('click', () => {
                     document.querySelector('.container-add-to-bag').innerHTML = backdrop(el.dataset.size, el.previousElementSibling.innerHTML, el.dataset.name)
                     
@@ -1533,6 +1538,8 @@ let clickBasket = setInterval(() => {
                         let id = document.querySelector('lp-product-configurable-options box.is-selected').dataset.id;
                         let body = {"products":[{"id":id,"qty":1,"options":{},"bundle_options":{}}]}
                         
+                        e.currentTarget.classList.add('busy')
+                        cart.classList.add('loading')
                         postFetch('basket/add', body).then(dataAdd => {
                             let items = dataAdd.customer.cart.items;
                             let totals = dataAdd.customer.cart.totals;
@@ -1550,7 +1557,7 @@ let clickBasket = setInterval(() => {
                     clearInterval(waitForSwiper)
             
                     // #1 Main slider 
-                    var swiperMainSync = new Swiper(".cart .swiper", {
+                    var swiperMainSync = new Swiper(".cart_favourites .swiper", {
                         slidesPerView: 2,
                         slideToClickedSlide: true,
                         spaceBetween: 16,
