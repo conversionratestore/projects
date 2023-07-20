@@ -432,6 +432,11 @@ let startFunkPopupV2 = setInterval(() => {
             border: none;
             outline: none;
         }
+        .content_popup .green_btn:hover,
+        .content_popup .green_btn:active{
+            background-color: #0c0b0b;
+            border: none;
+        }
         /*countdown */
         .countdown-wrapper{
             padding: 0px 0 50px;
@@ -818,6 +823,23 @@ body .sidebar .btn_trigger_popup.applied_discount > p {
               }
             }, 300);
           });
+          document.querySelector(`input[name='myEmail']`)?.addEventListener("input", (e) => {
+            e.preventDefault();
+            if (!e.target.getAttribute("data-test")) {
+              validationInputForm();
+              if (document.querySelector(".input_validation_email").textContent === "You've already given us that email address before") {
+                document.querySelector(".input_validation_email").textContent = "Your email doesn't seem to be valid";
+                validationInputForm();
+              }
+            }
+            e.target.setAttribute("data-test", "1");
+
+            setTimeout(() => {
+              if (e.target.getAttribute("data-test")) {
+                e.target.removeAttribute("data-test");
+              }
+            }, 100);
+          });
           document.querySelector(`.voucher_block`)?.addEventListener("click", (e) => {
             if (!e.target.getAttribute("data-test")) {
               pushDataLayer("Discount number");
@@ -1164,6 +1186,16 @@ body .sidebar .btn_trigger_popup.applied_discount > p {
         });
       }
       // validationForm
+      function validationInputForm() {
+        let inputValueEmail = document.querySelector(`input[name='myEmail']`).value.match(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,})+$/);
+        if (inputValueEmail === null) {
+          document.querySelector(`input[name='email']`).classList.add("error");
+          document.querySelector(`.input_validation_email`).style.display = "block";
+        } else {
+          document.querySelector(`input[name='email']`).classList.remove("error");
+          document.querySelector(`.input_validation_email`).style.display = "none";
+        }
+      }
       function validationForm() {
         let inputValueEmail = document.querySelector(`input[name='myEmail']`).value.match(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,})+$/);
         if (inputValueEmail === null) {
