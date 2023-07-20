@@ -21,34 +21,61 @@ let style = `
     line-height: 24px;
     letter-spacing: normal;
 }
-basket-related-products .h3 {
+.cdk-overlay-pane .product-card .h3 {
     font-size: 24px;
     font-style: normal;
     font-weight: 400;
     line-height: 32px;
 }
-basket-related-products .rate-empty, basket-related-products .rate-full, basket-related-products .rate-half {
+.cdk-overlay-pane .product-card .button .button__body, .button>span {
+    font-size: 14px;
+    padding: 5px 3px;
+    line-height: 1;
+}
+.cdk-overlay-pane .product-card h4 {
+    display: none;
+}
+.cdk-overlay-pane .product-card lp-product-configurable-options {
+    padding: 10px 0;
+}
+.cdk-overlay-pane .product-card .quick-add-to-basket {
+    left: 0;
+    right: 0;
+}
+.cdk-overlay-pane .product-card action {
+    padding: 5px 0;
+    height: fit-content;
+}
+.cdk-overlay-pane .product-card button[aria-label="Close"] {
+    padding: 10px;
+}
+.cdk-overlay-pane .product-card .box {
+    font-size: 12px;
+    line-height: 1;
+    min-width: auto;
+}
+.cdk-overlay-pane .product-card .rate-empty, .product-card .rate-full, .cdk-overlay-pane .product-card .rate-half {
     width: 14px;
     margin: 0;
     display: flex;
 }
-basket-related-products .icon-star:before, basket-related-products .rate-full:before {
+.cdk-overlay-pane  .product-card .icon-star:before, .cdk-overlay-pane  .product-card .rate-full:before {
     font-size: 14px;
 }
-basket-related-products p.m-t-1.col-12.p1.ng-star-inserted {
+.cdk-overlay-pane  .product-card p.m-t-1.col-12.p1.ng-star-inserted {
     font-size: 14px;
     line-height: 18px;
 }
-basket-related-products product-price {
+.cdk-overlay-pane  .product-card product-price {
     font-size: 16px;
     font-style: normal;
     line-height: 22px; 
     font-weight: 400;
 }
-basket-related-products product-price.m-r-1.price.ng-star-inserted {
+.cdk-overlay-pane  .product-card product-price.m-r-1.price.ng-star-inserted {
     font-weight: 600;
 }
-basket-related-products span.m-l-2.p1.ng-star-inserted {
+.cdk-overlay-pane  .product-card span.m-l-2.p1.ng-star-inserted {
     font-size: 14px;
     font-style: normal;
     font-weight: 400;
