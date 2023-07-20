@@ -765,7 +765,7 @@ let updateTotal = (parent, totals, items) => {
 let addProduct = (parent, items, totals, count) => {
    
     console.log(parent) 
-    
+
     updateTotal(parent, totals, items) 
 
     for (let i = 0; i < items.length; i++) {
@@ -989,6 +989,9 @@ let addCoupon = (e) => {
                         'coupon_gift', 
                         value).render()
 
+                    parentEl.querySelector(`result`).innerHTML = '';
+                    parentEl.querySelector(`result`).classList.add('ng-hide');
+
                     updateTotal(document.querySelector('.cart'), data.customer.cart.totals, data.customer.cart.items) 
                 }
             })
@@ -1023,13 +1026,16 @@ let addCoupon = (e) => {
     }
 }
 
-let validCoupon = (e) => {
+let validCoupon = (e, event = '') => {
     let parentEl = e.currentTarget.closest('.coupon_item');
-    if (e.currentTarget.value != '') {
-        parentEl.querySelector(`validation`).classList.add('ng-hide')
+    if (event == '' && e.currentTarget.value != '') {
         parentEl.querySelector(`.mui-input`).classList.remove('is-invalid')
         parentEl.querySelector(`.mui-input`).classList.add('is-not-empty','is-valid')
-    }
+    } 
+    if (event == 'blur' && e.currentTarget.value == '') {
+        parentEl.querySelector(`.mui-input`).classList.remove('is-invalid', 'is-not-empty','is-valid')
+    } 
+    parentEl.querySelector(`validation`).classList.add('ng-hide')
 }
 
 let checkBalance = (e) => {
@@ -1289,7 +1295,7 @@ class Coupon {
         formElement.innerHTML = `
         <input-wrap class="input-wrap no-validation-icon">
             <div class="has-label is-required mui-input"><!---->
-                <input type="text" name="${this.name}" required="" class="input ng-pristine ng-invalid ng-touched" oninput="validCoupon(event)">
+                <input type="text" name="${this.name}" required="" class="input ng-pristine ng-invalid ng-touched" oninput="validCoupon(event)" onblur="validCoupon(event, 'blur')">
                 <label>Enter offer code</label>
                 <validation class="ng-hide">This is a required field.</validation>
             </div>
@@ -1430,6 +1436,9 @@ let clickBasket = setInterval(() => {
         reqCategory.then(data => {
             console.log(data)
             let randomIndexes = [];
+
+            let webCode = window.autoInitData.website.websiteCode != 'base' ? '/'+window.autoInitData.website.websiteCode : '';
+
             for (let i = 0; i < 11; i++) {
                 randomIndexes.push(Math.floor(Math.random() * 100))
             }
@@ -1481,7 +1490,7 @@ let clickBasket = setInterval(() => {
                                 <div class="ng-star-inserted">
                                     <div class="pos-relative">
                                         <a class="w-12 ratio-3-4 overflow-hidden ng-star-inserted"
-                                            href="${item.url}">
+                                            href="${webCode+item.url}">
                                             <shell>
                                                 <img class="_shellImg">
                                             </shell>
@@ -1497,7 +1506,7 @@ let clickBasket = setInterval(() => {
                                     </div>
                                     <wishlist-toggle _ngcontent-app-c142="" class="product-wishlist ng-star-inserted"><div class="pos-absolute top-2 z-1 right-2"><div><action cy-wishlistaddbtn="" data-id="${item.id}" class="wishlist-button cursor-pointer" _nghost-app-c81=""><span _ngcontent-app-c81="" class="button__busy"><span _ngcontent-app-c81="" class="bounce1"></span><span _ngcontent-app-c81="" class="bounce2"></span></span><!----><span _ngcontent-app-c81="" class="button__body"><i aria-hidden="true" class="inline-flex icon-wishlist" style="font-size: 1.1em;"></i></span></action><!----></div></div><result class="block ng-hide"><p class="s2 m-t-1"></p></result></wishlist-toggle>
                                     <div  class="m-t-3 p-b-1">
-                                        <a sizeclass="!SM: p1, SM: p2" cy-listingproductname="" class="p2 col-1" href="${item.url}">${item.name}</a><!---->
+                                        <a sizeclass="!SM: p1, SM: p2" cy-listingproductname="" class="p2 col-1" href="${webCode+item.url}">${item.name}</a>
                                         <p sizeclass="!SM: p1, SM: p2" class="m-t-1 col-12 p2 ng-star-inserted"> ${size.length} Colours</p>
                                         <div sizeclass="!SM: p1, SM: p2" class="m-t-1 p1 col-1">
                                             <product-price class="m-r-1 price">
@@ -1529,8 +1538,9 @@ let clickBasket = setInterval(() => {
                     e.currentTarget.classList.add('busy')
 
                     postFetch('wishlist/add', body).then(dataWishlist => {
+                        let webCode = window.autoInitData.website.websiteCode != 'base' ? '/'+window.autoInitData.website.websiteCode : '';
                         if (dataWishlist.error && dataWishlist.error == 'LOGGEDOUT') {
-                            window.location.href = '/login'
+                            window.location.href = webCode + '/login'
                         } else {
                             e.target.closest('.product-wishlist').innerHTML = `<div class="pos-absolute top-2 z-1 w-12 center p-l-2 p-r-2"><div class="p-a-1 bg-col-w flex flex-middle flex-justify-center"><action cy-wishlistaddbtn="" class="wishlist-button cursor-pointer" _nghost-app-c81=""><span _ngcontent-app-c81="" class="button__busy"><span _ngcontent-app-c81="" class="bounce1"></span><span _ngcontent-app-c81="" class="bounce2"></span></span><!----><span _ngcontent-app-c81="" class="button__body"><i aria-hidden="true" class="inline-flex icon-wishlist-fill col-1" style="font-size: 1.1em;"></i></span></action><span sizeclass="XL:p1" class="p-l-2 p3 ng-star-inserted">Added to wishlist</span><!----></div></div>`
                         }

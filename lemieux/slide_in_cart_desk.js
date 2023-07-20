@@ -989,6 +989,12 @@ let init = () => {
                                 parentEl.querySelector(`.mui-input`).classList.add('is-not-empty','is-valid')
                             }
                         })
+                        parentEl.querySelector(`.mui-input input`).addEventListener('blur', (e) => {
+                            if (e.currentTarget.value == '') {
+                                parentEl.querySelector(`validation`).classList.add('ng-hide')
+                                parentEl.querySelector(`.mui-input`).classList.remove('is-invalid', 'is-not-empty','is-valid')
+                            }
+                        })
                     }
 
                     if (!document.querySelector('.coupon_promocode') && document.querySelector('.coupon_vouchers')) {
@@ -1326,6 +1332,9 @@ let emptyIs = setInterval(() => {
         reqCategory.then(data => {
             console.log(data)
             let randomIndexes = [];
+
+            let webCode = window.autoInitData.website.websiteCode != 'base' ? '/'+window.autoInitData.website.websiteCode : '';
+
             for (let i = 0; i < 11; i++) {
                 randomIndexes.push(Math.floor(Math.random() * 100))
             }
@@ -1375,7 +1384,7 @@ let emptyIs = setInterval(() => {
                                 <div class="ng-star-inserted">
                                     <div class="pos-relative">
                                         <a class="w-12 ratio-3-4 overflow-hidden ng-star-inserted"
-                                            href="${item.url}">
+                                            href="${webCode+item.url}">
                                             <shell>
                                                 <img class="_shellImg">
                                             </shell>
@@ -1391,7 +1400,7 @@ let emptyIs = setInterval(() => {
                                     </div>
                                     <wishlist-toggle _ngcontent-app-c142="" class="product-wishlist ng-star-inserted"><div class="pos-absolute top-2 z-1 right-2"><div><action cy-wishlistaddbtn="" data-id="${item.id}" class="wishlist-button cursor-pointer" _nghost-app-c81=""><span _ngcontent-app-c81="" class="button__busy"><span _ngcontent-app-c81="" class="bounce1"></span><span _ngcontent-app-c81="" class="bounce2"></span></span><!----><span _ngcontent-app-c81="" class="button__body"><i aria-hidden="true" class="inline-flex icon-wishlist" style="font-size: 1.1em;"></i></span></action><!----></div></div><result class="block ng-hide"><p class="s2 m-t-1"></p></result></wishlist-toggle>
                                     <div  class="m-t-3 p-b-1">
-                                        <a sizeclass="!SM: p1, SM: p2" cy-listingproductname="" class="p2 col-1" href="${item.url}">${item.name}</a><!---->
+                                        <a sizeclass="!SM: p1, SM: p2" cy-listingproductname="" class="p2 col-1" href="${webCode+item.url}">${item.name}</a><!---->
                                         <p sizeclass="!SM: p1, SM: p2" class="m-t-1 col-12 p2 ng-star-inserted"> ${size.length} Colours</p>
                                         <div sizeclass="!SM: p1, SM: p2" class="m-t-1 p1 col-1">
                                             <product-price class="m-r-1 price">
@@ -1423,8 +1432,9 @@ let emptyIs = setInterval(() => {
                     e.currentTarget.classList.add('busy')
 
                     postFetch('wishlist/add', body).then(dataWishlist => {
+                        let webCode = window.autoInitData.website.websiteCode != 'base' ? '/'+window.autoInitData.website.websiteCode : '';
                         if (dataWishlist.error && dataWishlist.error == 'LOGGEDOUT') {
-                            window.location.href = '/login'
+                            window.location.href = webCode + '/login'
                         } else {
                             e.target.closest('.product-wishlist').innerHTML = `<div class="pos-absolute top-2 z-1 w-12 center p-l-2 p-r-2"><div class="p-a-1 bg-col-w flex flex-middle flex-justify-center"><action cy-wishlistaddbtn="" class="wishlist-button cursor-pointer" _nghost-app-c81=""><span _ngcontent-app-c81="" class="button__busy"><span _ngcontent-app-c81="" class="bounce1"></span><span _ngcontent-app-c81="" class="bounce2"></span></span><!----><span _ngcontent-app-c81="" class="button__body"><i aria-hidden="true" class="inline-flex icon-wishlist-fill col-1" style="font-size: 1.1em;"></i></span></action><span sizeclass="XL:p1" class="p-l-2 p3 ng-star-inserted">Added to wishlist</span><!----></div></div>`
                         }
