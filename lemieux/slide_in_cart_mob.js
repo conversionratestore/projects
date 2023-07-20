@@ -644,7 +644,7 @@ let pushDataLayer = (name, desc, type, loc) => {
     });
 }
 
-let updateTotal = (parent, totals, items = '') => {
+let updateTotal = (parent, totals, items) => {
     //add total in footer cart
     parent.querySelector('.cart_footer price .pr').innerHTML = currency + totals.grand_total;
     parent.querySelector('.total_content ul').innerHTML = '';
@@ -663,40 +663,41 @@ let updateTotal = (parent, totals, items = '') => {
 
     let compareSum = 0;
     if (items != '') {
+        const promises = [];
+
         for (let i = 0; i < items.length; i++) {
-            getCart(`n/product/${items[i].product}/verbosity/3`).then(dataItem => {
-                console.log(dataItem)
-
-                let item = dataItem.result[0];
-
-                compareSum += item.org_price ? item.org_price * items[i].request.qty : item.price * items[i].request.qty;
-
-                if (i == items.length - 1) {
-                    setCompare(compareSum, 'grand_total', totals['grand_total'], totals['shipping'])
-                    setCompare(compareSum, 'subtotal', totals['subtotal'], totals['shipping'])
-                }
-            })
+            promises.push(getCart(`n/product/${items[i].product}/verbosity/3`))
         }
+
+        Promise.all(promises).then(dataItem => {
+            console.log(dataItem)
+
+            for (let i = 0; i < dataItem.length; i++) {
+                
+                let item = dataItem[i].result[0];
+
+                console.log(items[i].rowPrice)
+                
+                compareSum += item.org_price ? item.org_price * items[i].request.qty : items[i].rowPrice;
+
+                setCompare(compareSum, 'grand_total', totals['grand_total'], totals['shipping'])
+                setCompare(compareSum, 'subtotal', totals['subtotal'], totals['shipping'])
+                
+            }
+                
+        });
     }
 }
 //add products
 let addProduct = (parent, items, totals) => {
-    let compareSum = 0;
-         
-    updateTotal(parent, totals) 
+   
+    updateTotal(parent, totals, items) 
 
     for (let i = 0; i < items.length; i++) {
         getCart(`n/product/${items[i].product}/verbosity/3`).then(dataItem => {
             console.log(dataItem)
 
             let item = dataItem.result[0];
-
-            compareSum += item.org_price ? item.org_price * items[i].request.qty : item.price * items[i].request.qty;
-
-            if (i == items.length - 1) {
-                setCompare(compareSum, 'grand_total', totals['grand_total'], totals['shipping'])
-                setCompare(compareSum, 'subtotal', totals['subtotal'], totals['shipping'])
-            }
 
             let options = '';
 
@@ -832,14 +833,15 @@ let setCompare = (compareSum, key, value, shipping) => {
     
         item.innerHTML = currency + value.toFixed(2);
     
-        if (item.closest('[data-name]').dataset.name == 'grand_total') {
-            if (value < (compareSumIsShipping).toFixed(2)) {
-                document.querySelectorAll('.saved_block')[index].innerHTML = 'You just saved ' + currency + (compareSumIsShipping - value).toFixed(2);
-                document.querySelectorAll('.saved_block')[index].style.display = 'block';
-
-            } else {
-                document.querySelectorAll('.saved_block')[index].style = '';
-            }
+        if (item.closest('[data-name]').dataset.name == 'grand_total' && key == 'grand_total') {
+            document.querySelectorAll('.saved_block').forEach(el => {
+                if (value < (compareSumIsShipping).toFixed(2)) {
+                    el.innerHTML = 'You just saved ' + currency + (compareSumIsShipping - value).toFixed(2);
+                    el.style.display = 'block';
+                } else {
+                    el.style = '';
+                }
+            })
         } 
 
         item.insertAdjacentHTML('beforebegin', priceLine)
