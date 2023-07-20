@@ -764,6 +764,8 @@ let updateTotal = (parent, totals, items) => {
 //add products
 let addProduct = (parent, items, totals, count) => {
    
+    console.log(parent) 
+    
     updateTotal(parent, totals, items) 
 
     for (let i = 0; i < items.length; i++) {
@@ -797,13 +799,16 @@ let addProduct = (parent, items, totals, count) => {
                 currency,
                 items[i].request.qty).render()
 
+
+                parent.classList.remove('loading');
+
         })
     }
 
-    parent.closest('.cart').querySelector('.cart_head span').innerHTML = count;
+    parent.querySelector('.cart_head span').innerHTML = count;
 
     if (count != 0) {
-        parent.closest('.cart').classList.remove('empty');
+        parent.classList.remove('empty');
     } 
 
 }
@@ -1490,6 +1495,7 @@ let clickBasket = setInterval(() => {
                                             </button>
                                         </product-quick-buy>
                                     </div>
+                                    <wishlist-toggle _ngcontent-app-c142="" class="product-wishlist ng-star-inserted"><div class="pos-absolute top-2 z-1 right-2"><div><action cy-wishlistaddbtn="" data-id="${item.id}" class="wishlist-button cursor-pointer" _nghost-app-c81=""><span _ngcontent-app-c81="" class="button__busy"><span _ngcontent-app-c81="" class="bounce1"></span><span _ngcontent-app-c81="" class="bounce2"></span></span><!----><span _ngcontent-app-c81="" class="button__body"><i aria-hidden="true" class="inline-flex icon-wishlist" style="font-size: 1.1em;"></i></span></action><!----></div></div><result class="block ng-hide"><p class="s2 m-t-1"></p></result></wishlist-toggle>
                                     <div  class="m-t-3 p-b-1">
                                         <a sizeclass="!SM: p1, SM: p2" cy-listingproductname="" class="p2 col-1" href="${item.url}">${item.name}</a><!---->
                                         <p sizeclass="!SM: p1, SM: p2" class="m-t-1 col-12 p2 ng-star-inserted"> ${size.length} Colours</p>
@@ -1516,7 +1522,21 @@ let clickBasket = setInterval(() => {
                     
                 }
             }
-            document.querySelectorAll('.cart_favourites product-quick-buy').forEach(el => {
+            document.querySelectorAll('.cart_favourites product-quick-buy').forEach((el, index) => {
+                document.querySelectorAll('.cart_favourites .wishlist-button')[index].addEventListener('click', (e) => {
+                    let body = {"product": e.currentTarget.dataset.id};
+                    
+                    e.currentTarget.classList.add('busy')
+
+                    postFetch('wishlist/add', body).then(dataWishlist => {
+                        if (dataWishlist.error && dataWishlist.error == 'LOGGEDOUT') {
+                            window.location.href = '/login'
+                        } else {
+                            e.target.closest('.product-wishlist').innerHTML = `<div class="pos-absolute top-2 z-1 w-12 center p-l-2 p-r-2"><div class="p-a-1 bg-col-w flex flex-middle flex-justify-center"><action cy-wishlistaddbtn="" class="wishlist-button cursor-pointer" _nghost-app-c81=""><span _ngcontent-app-c81="" class="button__busy"><span _ngcontent-app-c81="" class="bounce1"></span><span _ngcontent-app-c81="" class="bounce2"></span></span><!----><span _ngcontent-app-c81="" class="button__body"><i aria-hidden="true" class="inline-flex icon-wishlist-fill col-1" style="font-size: 1.1em;"></i></span></action><span sizeclass="XL:p1" class="p-l-2 p3 ng-star-inserted">Added to wishlist</span><!----></div></div>`
+                        }
+                    })
+                })
+
                 el.addEventListener('click', () => {
                     document.querySelector('.container-add-to-bag').innerHTML = backdrop(el.dataset.size, el.previousElementSibling.innerHTML, el.dataset.name)
                     
