@@ -1101,18 +1101,18 @@ let checkBalance = (e) => {
 let openCoupon = (e) => {
     let parent = e.currentTarget.parentElement;
     parent.classList.toggle('active');
-    
-    if (e.currentTarget.closest('.coupon_promocode')) {
-        if ( parent.classList.contains('active')) {
+
+    if (e.currentTarget.closest('.coupon_promocode:not(.is)')) {
+        if (parent.classList.contains('active')) {
             pushDataLayer('exp_slide_in_cart_promo_open', 'Open', 'Tab', 'Sidebar. Cart. Have you got a promo code');
         } else {
             pushDataLayer('exp_slide_in_cart_promo_close', 'Close', 'Tab', 'Sidebar. Cart. Have you got a promo code');
         }
-    } else if (e.currentTarget.closest('.coupon_gift')) {
-        if ( parent.classList.contains('active')) {
+    } else if (e.currentTarget.closest('.coupon_gift:not(.is)')) {
+        if (parent.classList.contains('active')) {
             pushDataLayer('exp_slide_in_cart_gift_open', 'Open', 'Tab', 'Sidebar. Cart. Have you got a gift card');
         } else {
-            pushDataLayer('exp_slide_in_cart_gift_open', 'Close', 'Tab', 'Sidebar. Cart. Have you got a gift card');
+            pushDataLayer('exp_slide_in_cart_gift_close', 'Close', 'Tab', 'Sidebar. Cart. Have you got a gift card');
         }
     }
 }
