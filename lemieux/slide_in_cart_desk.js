@@ -13,7 +13,10 @@ let style = `
 [_nghost-app-c206] ._title[_ngcontent-app-c206] {
     min-height: auto;
 }
-.h3, .text.h3, .text h3, .cdk-overlay-pane h5 .p1, .cdk-overlay-pane h5 .p1:before, .cdk-overlay-pane h5 .p1:after {
+.h3 {
+    font-size: 24px;
+}
+h5 .h3, .text.h3, .text h3, .cdk-overlay-pane h5 .p1, .cdk-overlay-pane h5 .p1:before, .cdk-overlay-pane h5 .p1:after {
     color: #212121;
     font-size: 18px;
     font-style: normal;

@@ -854,6 +854,10 @@ let toggleActive = (selector, open) => {
     } else {
         selector.classList.remove('active')
     }
+
+    if (selector.classList.contains('coupon_promocode')) {
+        pushDataLayer('exp_slide_in_cart_promo_cancel', 'Cancel', 'Button', 'Sidebar. Cart. Have you got a promo code');
+    }
 }
 // update qty item 
 let qty = (_this) => {
@@ -955,6 +959,10 @@ let removeCoupon = (code, classes) => {
                 'coupon_promocode',
                 ''
             ).render()
+
+            pushDataLayer('exp_slide_in_cart_promo_remove', 'Click here to remove', 'Button', 'Sidebar. Cart. Have you got a promo code');
+        } else {
+            pushDataLayer('exp_slide_in_cart_gift_remove', 'Click here to remove', 'Button', 'Sidebar. Cart. Have you got a gift card');
         }
 
         updateTotal(document.querySelector('.cart'), data.customer.cart.totals, data.customer.cart.items) 
@@ -963,13 +971,18 @@ let removeCoupon = (code, classes) => {
 }
 //add coupon
 let addCoupon = (e) => {
-   
     let _this = e.currentTarget;
     let parentEl = _this.closest('.coupon_item');
     _this.classList.add('busy');
 
     let value = parentEl.querySelector(`input`).value;
 
+    if (parentEl.classList.contains('coupon_promocode')) {
+        pushDataLayer('exp_slide_in_cart_promo_apply', 'Apply', 'Button', 'Sidebar. Cart. Have you got a promo code');
+    } else if (parentEl.classList.contains('coupon_gift')) {
+        pushDataLayer('exp_slide_in_cart_gift_apply', 'Apply', 'Button', 'Sidebar. Cart. Have you got a gift card');
+    }
+   
     if (value != '') {
         if (_this.closest('.coupon_gift_form')) {
             let giftcard = {"code": value}
@@ -983,6 +996,8 @@ let addCoupon = (e) => {
                     let message = data.error == "INVALID_GIFTCARD" ? `Sorry, we don't recognise this code` : data.error;
                     parentEl.querySelector(`result`).innerHTML = message;
                     parentEl.querySelector(`result`).classList.remove('ng-hide');
+
+                    pushDataLayer('exp_slide_in_cart_gift_wrong', 'Wrong code', 'Element visibility', 'Sidebar. Cart. Have you got a gift card');
                 } else {
                     new Coupon(
                         _this.closest('.coupon_content'), 
@@ -991,6 +1006,8 @@ let addCoupon = (e) => {
 
                     parentEl.querySelector(`result`).innerHTML = '';
                     parentEl.querySelector(`result`).classList.add('ng-hide');
+
+                    pushDataLayer('exp_slide_in_cart_gift_applied', 'Promo code applied', 'Element visibility', 'Sidebar. Cart. Have you got a gift card');
 
                     updateTotal(document.querySelector('.cart'), data.customer.cart.totals, data.customer.cart.items) 
                 }
@@ -1005,11 +1022,16 @@ let addCoupon = (e) => {
                     let message = data.error == "INVALID_GIFTCARD" ? `Sorry, we don't recognise this code` : data.error;
                     parentEl.querySelector('result').innerHTML = message;
                     parentEl.querySelector('result').classList.remove('ng-hide');
+
+                    pushDataLayer('exp_slide_in_cart_promo_wrong', 'Wrong code', 'Element visibility', 'Sidebar. Cart. Have you got a promo code');
+
                 } else {
                     new Coupon(
                         parentEl.closest('.coupon_content'), 
                         'coupon_promocode', 
                         value).render()
+
+                    pushDataLayer('exp_slide_in_cart_promo_applied', 'Promo code applied', 'Element visibility', 'Sidebar. Cart. Have you got a promo code');
 
                     updateTotal(document.querySelector('.cart'), data.customer.cart.totals, data.customer.cart.items) 
 
@@ -1035,6 +1057,13 @@ let validCoupon = (e, event = '') => {
     if (event == 'blur' && e.currentTarget.value == '') {
         parentEl.querySelector(`.mui-input`).classList.remove('is-invalid', 'is-not-empty','is-valid')
     } 
+    if (event == 'click') {
+        if (parentEl.classList.contains('coupon_promocode')) {
+            pushDataLayer('exp_slide_in_cart_promo_input', 'Enter offer code', 'Input', 'Sidebar. Cart. Have you got a promo code');
+        } else if (parentEl.classList.contains('coupon_gift')) {
+            pushDataLayer('exp_slide_in_cart_gift_input', 'Enter offer code', 'Input', 'Sidebar. Cart. Have you got a gift card');
+        }
+    }
     parentEl.querySelector(`validation`).classList.add('ng-hide')
 }
 
@@ -1043,6 +1072,8 @@ let checkBalance = (e) => {
     _this.classList.add('busy');
                 
     let value = _this.closest('.coupon_item').querySelector('input[name="giftcard"]').value;
+
+    pushDataLayer('exp_slide_in_cart_gift_check', 'Check balance', 'Button', 'Sidebar. Cart. Have you got a gift card');
 
     let giftcard = {"code": value}
     if (value != '') {
@@ -1064,6 +1095,25 @@ let checkBalance = (e) => {
         _this.classList.remove('busy');
         _this.closest('.coupon_item').querySelector('.coupon_gift_form validation').classList.remove('ng-hide')
         _this.closest('.coupon_item').querySelector('.coupon_gift_form .mui-input').classList.add('is-invalid')
+    }
+}
+
+let openCoupon = (e) => {
+    let parent = e.currentTarget.parentElement;
+    parent.classList.toggle('active');
+    
+    if (e.currentTarget.closest('.coupon_promocode')) {
+        if ( parent.classList.contains('active')) {
+            pushDataLayer('exp_slide_in_cart_promo_open', 'Open', 'Tab', 'Sidebar. Cart. Have you got a promo code');
+        } else {
+            pushDataLayer('exp_slide_in_cart_promo_close', 'Close', 'Tab', 'Sidebar. Cart. Have you got a promo code');
+        }
+    } else if (e.currentTarget.closest('.coupon_gift')) {
+        if ( parent.classList.contains('active')) {
+            pushDataLayer('exp_slide_in_cart_gift_open', 'Open', 'Tab', 'Sidebar. Cart. Have you got a gift card');
+        } else {
+            pushDataLayer('exp_slide_in_cart_gift_open', 'Close', 'Tab', 'Sidebar. Cart. Have you got a gift card');
+        }
     }
 }
 
@@ -1295,7 +1345,7 @@ class Coupon {
         formElement.innerHTML = `
         <input-wrap class="input-wrap no-validation-icon">
             <div class="has-label is-required mui-input"><!---->
-                <input type="text" name="${this.name}" required="" class="input ng-pristine ng-invalid ng-touched" oninput="validCoupon(event)" onblur="validCoupon(event, 'blur')">
+                <input type="text" name="${this.name}" required="" class="input ng-pristine ng-invalid ng-touched" oninput="validCoupon(event)" onblur="validCoupon(event, 'blur')" onclick="validCoupon(event, 'click')">
                 <label>Enter offer code</label>
                 <validation class="ng-hide">This is a required field.</validation>
             </div>
@@ -1325,7 +1375,7 @@ class Coupon {
         </div>`
 
         element.innerHTML = `
-        <div class="coupon_current flex flex-middle" onclick="this.parentElement.classList.toggle('active')">
+        <div class="coupon_current flex flex-middle" onclick="openCoupon(event)">
             ${this.svg}
             <span>${this.textCurrent}</span>
             
@@ -1336,7 +1386,7 @@ class Coupon {
         </div>`;
 
         this.parent.appendChild(element)
-     
+
         if (this.code == '') {
             element.appendChild(formElement)
         } 
