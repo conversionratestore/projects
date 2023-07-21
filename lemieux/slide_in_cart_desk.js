@@ -1273,6 +1273,12 @@ let emptyIs = setInterval(() => {
                 .cart_favourites {
                     padding: 12px 24px;
                 }
+                result.c-red {
+                    margin-bottom: 0;
+                    margin-right: 0;
+
+                    color: #822338;
+                }
             </style>
             <div class=" container-add-to-bag"></div>`)
         }
@@ -1469,7 +1475,6 @@ let emptyIs = setInterval(() => {
                         postFetch('basket/add', body).then(dataAdd => {
                             console.log(dataAdd)
                             if (dataAdd.error && dataAdd.error != '') {
-                                console.log( document.querySelector('.container-add-to-bag result p'))
                                 document.querySelector('.container-add-to-bag result p').innerHTML = dataAdd.error;
                                 document.querySelector('.container-add-to-bag result').classList.remove('ng-hide')
                             } else {
@@ -1477,6 +1482,7 @@ let emptyIs = setInterval(() => {
                                 sessionStorage.setItem('reload','true')
                                 window.location.reload()
                             }
+                            e.currentTarget.classList.remove('busy')
                         })
                     })
                 })

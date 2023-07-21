@@ -1572,9 +1572,10 @@ let clickBasket = setInterval(() => {
                         e.currentTarget.classList.add('busy')
                         cart.classList.add('loading')
                         postFetch('basket/add', body).then(dataAdd => {
+                            console.log(dataAdd)
                             if (dataAdd.error && dataAdd.error != '') {
-                                e.currentTarget.nextElementSibling.innerHTML = dataAdd.error;
-                                e.currentTarget.nextElementSibling.classList.remove('ng-hide')
+                                document.querySelector('.container-add-to-bag result p').innerHTML = dataAdd.error;
+                                document.querySelector('.container-add-to-bag result').classList.remove('ng-hide')
                             } else {
                                 let items = dataAdd.customer.cart.items;
                                 let totals = dataAdd.customer.cart.totals;
@@ -1583,6 +1584,9 @@ let clickBasket = setInterval(() => {
     
                                 addProduct(document.querySelector('.cart'), items, totals, 1) 
                             }
+
+                            e.currentTarget.classList.remove('busy')
+                            cart.classList.remove('loading')
                         })
                     })
                 })
