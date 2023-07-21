@@ -1575,7 +1575,9 @@ let clickBasket = setInterval(() => {
                             console.log(dataAdd)
                             if (dataAdd.error && dataAdd.error != '') {
                                 document.querySelector('.container-add-to-bag result p').innerHTML = dataAdd.error;
-                                document.querySelector('.container-add-to-bag result').classList.remove('ng-hide')
+                                document.querySelector('.container-add-to-bag result').classList.remove('ng-hide');
+                                e.currentTarget.classList.remove('busy');
+                                cart.classList.remove('loading');
                             } else {
                                 let items = dataAdd.customer.cart.items;
                                 let totals = dataAdd.customer.cart.totals;
@@ -1585,8 +1587,7 @@ let clickBasket = setInterval(() => {
                                 addProduct(document.querySelector('.cart'), items, totals, 1) 
                             }
 
-                            e.currentTarget.classList.remove('busy')
-                            cart.classList.remove('loading')
+                        
                         })
                     })
                 })
