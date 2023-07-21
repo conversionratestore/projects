@@ -1422,7 +1422,7 @@ let clickBasket = setInterval(() => {
                                         class="bounce2"></span></span>
                                         <span class="button__body"> Add to bag</span>
                                 </action>
-                                <result class="block ng-hide">
+                                <result class="block ng-hide c-red">
                                     <p class="s2 m-t-1"></p>
                                 </result>
                             </lp-add-to-basket>
@@ -1572,12 +1572,17 @@ let clickBasket = setInterval(() => {
                         e.currentTarget.classList.add('busy')
                         cart.classList.add('loading')
                         postFetch('basket/add', body).then(dataAdd => {
-                            let items = dataAdd.customer.cart.items;
-                            let totals = dataAdd.customer.cart.totals;
-
-                            document.querySelector('.container-add-to-bag').innerHTML = '';
-
-                            addProduct(document.querySelector('.cart'), items, totals, 1) 
+                            if (dataAdd.error && dataAdd.error != '') {
+                                e.currentTarget.nextElementSibling.innerHTML = dataAdd.error;
+                                e.currentTarget.nextElementSibling.classList.remove('ng-hide')
+                            } else {
+                                let items = dataAdd.customer.cart.items;
+                                let totals = dataAdd.customer.cart.totals;
+    
+                                document.querySelector('.container-add-to-bag').innerHTML = '';
+    
+                                addProduct(document.querySelector('.cart'), items, totals, 1) 
+                            }
                         })
                     })
                 })

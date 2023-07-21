@@ -1467,10 +1467,16 @@ let emptyIs = setInterval(() => {
                         e.currentTarget.classList.add('busy')
 
                         postFetch('basket/add', body).then(dataAdd => {
-                            let items = dataAdd.customer.cart.items;
-                            let totals = dataAdd.customer.cart.totals;
-                            sessionStorage.setItem('reload','true')
-                            window.location.reload()
+                            console.log(dataAdd)
+                            if (dataAdd.error && dataAdd.error != '') {
+                                console.log( document.querySelector('.container-add-to-bag result p'))
+                                document.querySelector('.container-add-to-bag result p').innerHTML = dataAdd.error;
+                                document.querySelector('.container-add-to-bag result').classList.remove('ng-hide')
+                            } else {
+                                document.querySelector('.container-add-to-bag result').classList.add('ng-hide')
+                                sessionStorage.setItem('reload','true')
+                                window.location.reload()
+                            }
                         })
                     })
                 })
