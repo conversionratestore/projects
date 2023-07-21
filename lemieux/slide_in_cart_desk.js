@@ -129,7 +129,7 @@ basket-view-totals .saved_block {
 .cdk-overlay-pane .bg-col-51.bg-green {
     background: #9FCAB9;
 }
-.cdk-overlay-pane .bg-col-51 span {
+.cdk-overlay-pane .custom-scrollbar .bg-col-51 span {
     display: none;
 }
 .cdk-overlay-pane .bg-col-51.bg-green span {
@@ -1178,7 +1178,10 @@ let emptyIs = setInterval(() => {
         .cdk-overlay-pane .p-a-5 {
             padding: 12px 24px;
         }
-        .h3, .text.h3, .text h3, .cdk-overlay-pane h5 .p1, .cdk-overlay-pane h5 .p1:before, .cdk-overlay-pane h5 .p1:after {
+        .h3 {
+            font-size: 24px;
+        }
+        h5 .h3, .text.h3, .text h3, .cdk-overlay-pane h5 .p1, .cdk-overlay-pane h5 .p1:before, .cdk-overlay-pane h5 .p1:after {
             color: #212121;
             font-size: 18px;
             font-style: normal;
