@@ -1566,6 +1566,7 @@ let clickBasket = setInterval(() => {
                         document.querySelector('.container-add-to-bag').innerHTML = '';
                     })
                     document.querySelector('.container-add-to-bag .btn-add-to-bag').addEventListener('click', (e) => {
+                        e.stopImmediatePropagation()
                         let id = document.querySelector('lp-product-configurable-options box.is-selected').dataset.id;
                         let body = {"products":[{"id":id,"qty":1,"options":{},"bundle_options":{}}]}
                         
@@ -1576,8 +1577,8 @@ let clickBasket = setInterval(() => {
                             if (dataAdd.error && dataAdd.error != '') {
                                 document.querySelector('.container-add-to-bag result p').innerHTML = dataAdd.error;
                                 document.querySelector('.container-add-to-bag result').classList.remove('ng-hide');
-                                e.currentTarget.classList.remove('busy');
-                                cart.classList.remove('loading');
+                                document.querySelector('.container-add-to-bag .btn-add-to-bag').classList.remove('busy');
+                                document.querySelector('.cart').classList.remove('loading');
                             } else {
                                 let items = dataAdd.customer.cart.items;
                                 let totals = dataAdd.customer.cart.totals;
