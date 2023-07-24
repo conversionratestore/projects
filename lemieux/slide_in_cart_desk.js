@@ -881,6 +881,7 @@ let init = () => {
                         carTotal = data.customer.cart.totals;
                         grand_total = data.customer.cart.totals.grand_total;
                         shipping = data.customer.cart.totals.shipping;
+                        coupon = data.customer.cart.coupon ? coupon.toUpperCase() : '';
 
 
                     let compareSum = shipping;
@@ -903,7 +904,7 @@ let init = () => {
 
 
                     for (const key in carTotal) {
-                        if (carTotal[key] != '0' && !key.includes('tax') || key.includes('shipping')) {
+                        if (carTotal[key] != '0' && !key.includes('tax') && !key.includes('amasty_giftcard') || key.includes('shipping')) {
                             let letter = key.charAt(0);
                             let letterUp = key.charAt(0).toUpperCase();
 
@@ -913,7 +914,13 @@ let init = () => {
 
                             let price = key.includes('shipping') && 
                                         carTotal[key] == 0 && 
-                                        carTotal['subtotal'] >= 75 ?  '<span class="c-red">FREE</span>' : total;
+                                        carTotal['grand_total'] >= 75 &&
+                                        window.autoInitData.website.websiteCode == 'base' ||
+                                        (
+                                            key.includes('shipping') &&
+                                            coupon == 'FREEDEL'
+                                        ) ?  '<span class="c-red">FREE</span>' : 
+                                        key == 'giftcards' ? '-'+total : total;
 
                             if (price != currency+'0.00' ) {
 
@@ -922,7 +929,7 @@ let init = () => {
                                     <p class="">${key == 'grand_total' ? 'Order total' : key == 'shipping' ? 'Delivery' : key.split('_').join(' ').replace(letter,letterUp)}</p>
                                     <p class="ml-auto">
                                         ${carTotal[key] < (compareSum).toFixed(2) && (key == 'grand_total' || key == 'subtotal') ? ' <span class="pr-line">' + currency + (compareSum).toFixed(2) + '</span>' : ''}
-                                        <span class="pr">${price}</span>
+                                        <span class="pr ${price.includes('-') ? 'c-red' : ''}">${price}</span>
                                     </p>
                                 </div>`)
                             }
