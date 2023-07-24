@@ -1284,7 +1284,7 @@ class Total {
 
         let price = this.key.includes('shipping') && 
                     this.value == 0 && 
-                    this.subtotal >= 75 &&
+                    this.grandTotal >= 75 &&
                     window.autoInitData.website.websiteCode == 'base' ||
                     (
                         this.key.includes('shipping') && 
