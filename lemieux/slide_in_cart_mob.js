@@ -861,6 +861,15 @@ let removeItem = (parent, id) => {  // remove item
         } else {
             cart.classList.add('empty')
             pushDataLayer('exp_slide_in_cart_bag_is_empty_vis','Your bag is empty','Element visibility','Sidebar cart. Your bag is empty')
+
+            if (cart.querySelector(`.coupon_promocode.is`)) {
+                cart.querySelector(`.coupon_promocode.is`).remove()
+                new Coupon(
+                    cart.querySelector('.coupon_content'),
+                    'coupon_promocode',
+                    ''
+                ).render()
+            } 
         }
 
         cart.classList.remove('loading');
@@ -1516,7 +1525,6 @@ let clickBasket = setInterval(() => {
         </div>`
 
         reqCategory.then(data => {
-            console.log(data)
             let randomIndexes = [];
 
             let webCode = window.autoInitData.website.websiteCode != 'base' ? '/'+window.autoInitData.website.websiteCode : '';
