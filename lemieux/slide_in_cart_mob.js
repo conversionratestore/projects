@@ -770,12 +770,12 @@ let updateTotal = (parent, totals, items) => {
 
                 console.log(items[i].rowPrice)
                 
-                compareSum += item.org_price ? item.org_price * items[i].request.qty : items[i].rowPrice;
+                compareSum += items[i].request.qty * (item.org_price ? item.org_price : item.price);
 
-                setCompare(compareSum, 'grand_total', totals['grand_total'], totals['shipping'], totals['giftcards'])
-                setCompare(compareSum, 'subtotal', totals['subtotal'], totals['shipping'], totals['giftcards'])
                 
             }
+            setCompare(compareSum, 'grand_total', totals['grand_total'], totals['shipping'])
+            setCompare(compareSum, 'subtotal', totals['subtotal'], 0)
                 
         });
     }
@@ -928,10 +928,10 @@ let qty = (_this) => {
     })
 }
 
-let setCompare = (compareSum, key, value, shipping, giftcards) => {
-    console.log(compareSum, key, value)
+let setCompare = (compareSum, key, value, shipping) => {
+    console.log(compareSum, key, value, shipping)
     let price = document.querySelectorAll(`[data-name="${key}"] .pr`);
-    let compareSumIsShipping = key == 'grand_total' ? compareSum + shipping - giftcards : compareSum;
+    let compareSumIsShipping = key == 'grand_total' ? compareSum + shipping : compareSum;
     let priceLine = value < (compareSumIsShipping).toFixed(2) ? ' <span class="pr-line m-r-1">' + currency + (compareSumIsShipping).toFixed(2) + '</span>' : ''
    
     
