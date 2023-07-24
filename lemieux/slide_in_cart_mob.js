@@ -532,9 +532,28 @@ product-quick-buy button {
     background-color: #595959;
     color: #fff;
 }
+.container-add-to-bag box.is-warning .box {
+    border-color: #8e1538;
+    background-color: #fff;
+    color: #8e1538;
+    cursor: default;
+}
+.container-add-to-bag box.is-warning .box:after {
+    background: linear-gradient(to bottom right,transparent calc(50% - 1px),#8e1538,transparent calc(50% + 1px));
+}
+
+.container-add-to-bag box.is-warning .box:after {
+    position: absolute;
+    inset: 0;
+    display: block;
+    content: "";
+    pointer-events: none;
+}
+
 .container-add-to-bag .btn-add-to-bag *, .container-add-to-bag .btn-add-to-bag.busy {
     pointer-events: none;
 }
+
 </style>`;
 
 
@@ -640,7 +659,7 @@ let cartHTML = `
                         <span class="saved_block ml-auto m-t-2"></span>
                     </price>
                 </div>
-                <a href="/checkout" class="btn_submit m-b m-t-2 btn">Checkout securely</a>
+                <a href="/checkout" class="btn_submit m-b m-t-2 btn">Check out securely</a>
                 <p class="flex flex-middle flex-justify-center text_guarantee">
                     <svg class="m-r-2" width="16" height="18" viewBox="0 0 16 18" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M1.25 3.47076L8.00338 1.49976L14.75 3.47076V7.51251C14.75 9.58389 14.0981 11.6027 12.8869 13.2831C11.6756 14.9634 9.96629 16.22 8.00113 16.8748C6.03536 16.22 4.32548 14.9633 3.11379 13.2826C1.90209 11.6019 1.25003 9.58256 1.25 7.51063V3.47076Z" stroke="#212121" stroke-width="2" stroke-linejoin="round"/>
@@ -1462,7 +1481,7 @@ let clickBasket = setInterval(() => {
                             <i aria-hidden="true" class="icon-close"></i>
                         </button>
                         <h4 class="h4 col-11 center m-t p-l-14 p-r-14 m-b-5-s">${name}</h4>
-                        <div>
+                        <div class="body-configurable-options">
                             <lp-product-configurable-options class="w-12 p-l-2 p-r-2 p-t-5 p-r-0-s p-b p-l-0-s center">
                                 <p class="p2 col-11 m-b-1 ng-star-inserted">Size: ${size}</p>
                                 ${sizeBox}
@@ -1497,6 +1516,8 @@ let clickBasket = setInterval(() => {
                 randomIndexes.push(Math.floor(Math.random() * 100))
             }
           
+            let promisesBox = [];
+
             for (let i = 0; i < randomIndexes.length; i++) {
                 let item =  data.catalog[randomIndexes[i]];
 
@@ -1534,8 +1555,10 @@ let clickBasket = setInterval(() => {
                         <box class="inline-block va-m cursor-pointer m-t-1 m-r-1 ng-star-inserted ${k == 0 ? 'is-selected' : ''}" data-id="${item.directChildrenIds[k]}" _nghost-app-c120="">
                             <div _ngcontent-app-c120="" class="p2 b-a inline-block center box">${JSON.stringify(window.autoInitData.data.attribute).split(`${size[k]},"label":"`)[1].split('"')[0].replace('\\','"')} </div>
                         </box>`
-                    }
 
+                        promisesBox.push(getFetch(`n/product/${item.directChildrenIds[k]}/verbosity/3`))
+                    
+                    }
                     document.querySelector('.cart_favourites .swiper-wrapper').insertAdjacentHTML('beforeend',`
                     <div class="swiper-slide ng-star-inserted">
                         <product class="w-12 left ng-star-inserted" style="visibility: visible;">
@@ -1581,10 +1604,25 @@ let clickBasket = setInterval(() => {
                             </div>
                         </product>
                     </div>`)
-
-                    
                 }
             }
+
+            Promise.all(promisesBox).then(dataItem => {
+                console.log(dataItem)
+
+                for (let k = 0; k < dataItem.length; k++) {
+                    let catalog = dataItem[k].catalog;
+                    for (let j = 0; j < catalog.length; j++) {
+                        if (document.querySelector(`.product-size > [data-id="${catalog[j].id}"]`)) {
+                            console.log(document.querySelector(`.product-size > [data-id="${catalog[j].id}"]`))
+                            let isOut = catalog[j].isOut && catalog[j].isOut == true ? 'is-warning' : '';
+                            console.log(isOut)
+                            isOut != '' ? document.querySelector(`.product-size > [data-id="${catalog[j].id}"]`).classList.add(isOut) : '';
+                        }
+                    }
+                }
+            })
+
             document.querySelectorAll('.cart_favourites product-quick-buy').forEach((el, index) => {
                 document.querySelectorAll('.cart_favourites .wishlist-button')[index].addEventListener('click', (e) => {
                     let body = {"product": e.currentTarget.dataset.id};
@@ -1604,7 +1642,8 @@ let clickBasket = setInterval(() => {
                 el.addEventListener('click', () => {
                     document.querySelector('.container-add-to-bag').innerHTML = backdrop(el.dataset.size, el.previousElementSibling.innerHTML, el.dataset.name)
                     
-                    document.querySelectorAll('.container-add-to-bag box').forEach(box => {
+
+                    document.querySelectorAll('.container-add-to-bag box:not(.is-warning)').forEach(box => {
                         box.addEventListener('click', (e) => {
                             e.currentTarget.parentElement.querySelector('.is-selected').classList.remove('is-selected');
                             box.classList.add('is-selected');
@@ -1621,7 +1660,8 @@ let clickBasket = setInterval(() => {
                     })
                     document.querySelector('.container-add-to-bag .btn-add-to-bag').addEventListener('click', (e) => {
                         e.stopImmediatePropagation()
-                        let id = document.querySelector('lp-product-configurable-options box.is-selected').dataset.id;
+                        
+                        let id = e.target.closest('.body-configurable-options').querySelector('box.is-selected').dataset.id;
                         let body = {"products":[{"id":id,"qty":1,"options":{},"bundle_options":{}}]}
                         
                         e.currentTarget.classList.add('busy')
