@@ -1244,7 +1244,7 @@ class TopBar {
         } else {
             topBar.hidden = false;
         
-            if (this.grandTotal >= 75 || this.coupon == 'FREEDEL') {
+            if (this.grandTotal >= 75 || this.coupon.toUpperCase() == 'FREEDEL') {
                 topBar.classList.add('green')
                 text = 'Congratulation! You have Free UK Delivery';
             } else {
@@ -1288,7 +1288,7 @@ class Total {
                     window.autoInitData.website.websiteCode == 'base' ||
                     (
                         this.key.includes('shipping') && 
-                        this.coupon == 'FREEDEL'
+                        this.coupon.toUpperCase() == 'FREEDEL'
                     )
                      ?  '<span class="c-red">FREE</span>' : 
                     this.key == 'giftcards' ? '-'+total : total;
