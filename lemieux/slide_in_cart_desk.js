@@ -1546,12 +1546,11 @@ let emptyIs = setInterval(() => {
                             if (dataAdd.error && dataAdd.error != '') {
                                 document.querySelector('.container-add-to-bag result p').innerHTML = dataAdd.error;
                                 document.querySelector('.container-add-to-bag result').classList.remove('ng-hide')
+                                e.currentTarget.classList.remove('busy')
                             } else {
                                 document.querySelector('.container-add-to-bag result').classList.add('ng-hide')
-                                sessionStorage.setItem('reload','true')
                                 window.location.reload()
                             }
-                            e.currentTarget.classList.remove('busy')
                         })
                     })
                 })
@@ -1653,13 +1652,6 @@ let addToBagLp = setInterval(() => {
         });
     }
 });
-
-let reloaded = setInterval(() => {
-    if (sessionStorage.getItem('reload') && sessionStorage.getItem('reload') == 'true' && document.querySelector('header basket-qty')) {
-        document.querySelector('header basket-qty').parentElement.click()
-        sessionStorage.setItem('reload','')
-    }
-})
 
 //clarify
 let isClarify = setInterval(() => {
