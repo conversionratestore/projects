@@ -1052,7 +1052,9 @@ let addCoupon = (e) => {
 
                     pushDataLayer('exp_slide_in_cart_promo_applied', 'Promo code applied', 'Element visibility', 'Sidebar. Cart. Have you got a promo code');
 
-                    updateTotal(document.querySelector('.cart'), data.customer.cart.totals, data.customer.cart.items) 
+                    // if (value == 'FREEDEL') {
+                        updateTotal(document.querySelector('.cart'), data.customer.cart.totals, data.customer.cart.items) 
+                    // }
 
                     parentEl.remove();
 
@@ -1219,14 +1221,12 @@ class Product {
 }
 
 class TopBar {
-    constructor(parent, subtotal, currency) {
+    constructor(parent, grandTotal, currency) {
         this.parent = parent;
-        this.subtotal = subtotal;
+        this.grandTotal = grandTotal;
         this.currency = currency;
     }
     render() {
-
-
         //update topBar
         let text = '';
         let topBar =  this.parent.parentElement;
@@ -1236,12 +1236,12 @@ class TopBar {
         } else {
             topBar.hidden = false;
         
-            if (this.subtotal >= 75 ) {
+            if (this.grandTotal >= 75 ) {
                 topBar.classList.add('green')
                 text = 'Congratulation! You have Free UK Delivery';
             } else {
                 topBar.classList.remove('green')
-                text = `You are ${ this.currency + (75 - this.subtotal).toFixed(2)} away from Free UK Delivery`;
+                text = `You are ${ this.currency + (75 - this.grandTotal).toFixed(2)} away from Free UK Delivery`;
             }
 
             this.parent.innerHTML = text;
@@ -1302,7 +1302,7 @@ class Total {
 
         new TopBar(
             this.parent.closest('.cart_body').querySelector('.cart_topBar p'),
-            this.subtotal,
+            this.grandTotal,
             this.currency
         ).render()
         
