@@ -736,7 +736,7 @@ let pushDataLayer = (name, desc, type, loc) => {
     });
 }
 
-let updateTotal = (parent, totals, items) => {
+let updateTotal = (parent, totals, items, coupon) => {
     //add total in footer cart
     parent.querySelector('.cart_footer price .pr').innerHTML = currency + totals.grand_total;
     parent.querySelector('.total_content ul').innerHTML = '';
@@ -749,7 +749,8 @@ let updateTotal = (parent, totals, items) => {
                 totals[key],
                 currency,
                 totals.subtotal,
-                totals.grand_total ).render()
+                totals.grand_total,
+                coupon ).render()
         }
     }
 
@@ -781,11 +782,11 @@ let updateTotal = (parent, totals, items) => {
     }
 }
 //add products
-let addProduct = (parent, items, totals, count) => {
+let addProduct = (parent, items, totals, count, coupon) => {
    
     console.log(parent) 
 
-    updateTotal(parent, totals, items) 
+    updateTotal(parent, totals, items, coupon) 
 
     for (let i = 0; i < items.length; i++) {
         getFetch(`n/product/${items[i].product}/verbosity/3`).then(dataItem => {
@@ -848,6 +849,7 @@ let removeItem = (parent, id) => {  // remove item
         let items = data.customer.cart.items;
         let totals = data.customer.cart.totals;
         let countCart = data.customer.cart.qty;
+        let coupon = data.customer.cart.coupon;
 
         cart.querySelector('.cart_head span').innerHTML = countCart;
         cart.querySelector('.total_content ul').innerHTML = '';
@@ -855,7 +857,7 @@ let removeItem = (parent, id) => {  // remove item
         if (countCart != 0) {
             cart.classList.remove('empty');
 
-            addProduct(cart, items, totals, countCart)
+            addProduct(cart, items, totals, countCart, coupon)
 
         } else {
             cart.classList.add('empty')
@@ -921,8 +923,9 @@ let qty = (_this) => {
         let items = data.customer.cart.items;
         let totals = data.customer.cart.totals;
         let countCart = data.customer.cart.qty;
+        let coupon = data.customer.cart.coupon;
 
-        addProduct(_this.closest('.cart'), items, totals, countCart)
+        addProduct(_this.closest('.cart'), items, totals, countCart, coupon)
 
         _this.closest('.cart').classList.remove('loading');
     })
@@ -972,6 +975,7 @@ let removeCoupon = (code, classes) => {
 
         coupon.closest('.cart').classList.remove('loading');
         coupon.remove();
+
         if (classes == 'coupon_promocode') {
             new Coupon(
                 document.querySelector('.coupon_content'),
@@ -984,7 +988,8 @@ let removeCoupon = (code, classes) => {
             pushDataLayer('exp_slide_in_cart_gift_remove', 'Click here to remove', 'Button', 'Sidebar. Cart. Have you got a gift card');
         }
 
-        updateTotal(document.querySelector('.cart'), data.customer.cart.totals, data.customer.cart.items) 
+        let couponData = data.customer.cart.coupon;
+        updateTotal(document.querySelector('.cart'), data.customer.cart.totals, data.customer.cart.items, couponData) 
         
     })
 }
@@ -1028,7 +1033,8 @@ let addCoupon = (e) => {
 
                     pushDataLayer('exp_slide_in_cart_gift_applied', 'Promo code applied', 'Element visibility', 'Sidebar. Cart. Have you got a gift card');
 
-                    updateTotal(document.querySelector('.cart'), data.customer.cart.totals, data.customer.cart.items) 
+                    let couponData = data.customer.cart.coupon;
+                    updateTotal(document.querySelector('.cart'), data.customer.cart.totals, data.customer.cart.items, couponData) 
                 }
             })
         } else if (_this.closest('.coupon_promocode_form')) {
@@ -1037,6 +1043,8 @@ let addCoupon = (e) => {
             postFetch('coupon/add', coupon).then(data => {
                 console.log(data)
                 _this.classList.remove('busy');
+
+
                 if (data.error && data.error != '') {
                     let message = data.error == "INVALID_GIFTCARD" ? `Sorry, we don't recognise this code` : data.error;
                     parentEl.querySelector('result').innerHTML = message;
@@ -1052,10 +1060,9 @@ let addCoupon = (e) => {
 
                     pushDataLayer('exp_slide_in_cart_promo_applied', 'Promo code applied', 'Element visibility', 'Sidebar. Cart. Have you got a promo code');
 
-                    // if (value == 'FREEDEL') {
-                        updateTotal(document.querySelector('.cart'), data.customer.cart.totals, data.customer.cart.items) 
-                    // }
-
+                    let couponData = data.customer.cart.coupon;
+                    updateTotal(document.querySelector('.cart'), data.customer.cart.totals, data.customer.cart.items, couponData) 
+                    
                     parentEl.remove();
 
                 }
@@ -1221,10 +1228,11 @@ class Product {
 }
 
 class TopBar {
-    constructor(parent, grandTotal, currency) {
+    constructor(parent, grandTotal, currency, coupon) {
         this.parent = parent;
         this.grandTotal = grandTotal;
         this.currency = currency;
+        this.coupon = coupon;
     }
     render() {
         //update topBar
@@ -1236,7 +1244,7 @@ class TopBar {
         } else {
             topBar.hidden = false;
         
-            if (this.grandTotal >= 75 ) {
+            if (this.grandTotal >= 75 || this.coupon == 'FREEDEL') {
                 topBar.classList.add('green')
                 text = 'Congratulation! You have Free UK Delivery';
             } else {
@@ -1250,13 +1258,14 @@ class TopBar {
 }
 
 class Total {
-    constructor(parent, key, value, currency, subtotal, grandTotal) {
+    constructor(parent, key, value, currency, subtotal, grandTotal, coupon) {
         this.parent = parent;
         this.key = key;
         this.value = value;
         this.currency = currency;
         this.subtotal = subtotal;
         this.grandTotal = grandTotal;
+        this.coupon = coupon;
     }
 
     render() {
@@ -1276,7 +1285,12 @@ class Total {
         let price = this.key.includes('shipping') && 
                     this.value == 0 && 
                     this.subtotal >= 75 &&
-                    window.autoInitData.website.websiteCode == 'base' ?  '<span class="c-red">FREE</span>' : 
+                    window.autoInitData.website.websiteCode == 'base' ||
+                    (
+                        this.key.includes('shipping') && 
+                        this.coupon == 'FREEDEL'
+                    )
+                     ?  '<span class="c-red">FREE</span>' : 
                     this.key == 'giftcards' ? '-'+total : total;
 
         element.innerHTML =`
@@ -1676,10 +1690,11 @@ let clickBasket = setInterval(() => {
                             } else {
                                 let items = dataAdd.customer.cart.items;
                                 let totals = dataAdd.customer.cart.totals;
+                                let coupon = dataAdd.customer.cart.coupon;
     
                                 document.querySelector('.container-add-to-bag').innerHTML = '';
     
-                                addProduct(document.querySelector('.cart'), items, totals, 1) 
+                                addProduct(document.querySelector('.cart'), items, totals, 1, coupon) 
                             }
 
                         
@@ -1833,6 +1848,7 @@ let init = () => {
                     let totals = data.customer.cart.totals;
                     let grand_total = totals.grand_total;
                     let giftcards = data.customer.cart.giftcards;
+                    let coupon = data.customer.cart.coupon;
 
                     // add total in footer cart
                     document.querySelector('.cart_footer price .pr').innerHTML = currency + grand_total;
@@ -1853,7 +1869,7 @@ let init = () => {
 
 
                     // add products
-                    addProduct(cart, items, totals, countCart)
+                    addProduct(cart, items, totals, countCart, coupon)
                 }
 
                 document.querySelector('.cart_head h2 span').innerHTML = countCart;
