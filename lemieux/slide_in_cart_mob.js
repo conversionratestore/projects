@@ -753,7 +753,7 @@ let updateTotal = (parent, totals, items, coupon) => {
                 currency,
                 totals.subtotal,
                 totals.grand_total,
-                coupon ).render()
+                coupon.toUpperCase() ).render()
         }
     }
 
@@ -1236,7 +1236,7 @@ class TopBar {
         } else {
             topBar.hidden = false;
 
-            if (this.grandTotal >= 75 || this.coupon.toUpperCase() == 'FREEDEL') {
+            if (this.grandTotal >= 75 || this.coupon == 'FREEDEL') {
                 topBar.classList.add('green')
                 text = 'Congratulation! You have Free UK Delivery';
             } else {
@@ -1279,8 +1279,8 @@ class Total {
                     this.grandTotal >= 75 &&
                     window.autoInitData.website.websiteCode == 'base' ||
                     (
-                        this.key.includes('shipping') && 
-                        this.coupon.toUpperCase() == 'FREEDEL'
+                        this.key.includes('shipping') &&
+                        this.coupon == 'FREEDEL'
                     )
                      ?  '<span class="c-red">FREE</span>' : 
                     this.key == 'giftcards' ? '-'+total : total;
