@@ -914,7 +914,7 @@ let init = () => {
 
                             let price = key.includes('shipping') && 
                                         carTotal[key] == 0 && 
-                                        carTotal['grand_total'] >= 75 &&
+                                        carTotal['subtotal'] >= 75 &&
                                         window.autoInitData.website.websiteCode == 'base' ||
                                         (
                                             key.includes('shipping') &&

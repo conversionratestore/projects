@@ -1233,9 +1233,9 @@ class Product {
 }
 
 class TopBar {
-    constructor(parent, grandTotal, currency, coupon) {
+    constructor(parent, subtotal, currency, coupon) {
         this.parent = parent;
-        this.grandTotal = grandTotal;
+        this.subtotal = subtotal;
         this.currency = currency;
         this.coupon = coupon;
     }
@@ -1249,12 +1249,12 @@ class TopBar {
         } else {
             topBar.hidden = false;
 
-            if (this.grandTotal >= 75 || this.coupon == 'FREEDEL') {
+            if (this.subtotal >= 75 || this.coupon == 'FREEDEL') {
                 topBar.classList.add('green')
                 text = 'Congratulation! You have Free UK Delivery';
             } else {
                 topBar.classList.remove('green')
-                text = `You are ${ this.currency + (75 - this.grandTotal).toFixed(2)} away from Free UK Delivery`;
+                text = `You are ${ this.currency + (75 - this.subtotal).toFixed(2)} away from Free UK Delivery`;
             }
 
             this.parent.innerHTML = text;
@@ -1289,7 +1289,7 @@ class Total {
 
         let price = this.key.includes('shipping') && 
                     this.value == 0 && 
-                    this.grandTotal >= 75 &&
+                    this.subtotal >= 75 &&
                     window.autoInitData.website.websiteCode == 'base' ||
                     (
                         this.key.includes('shipping') &&
@@ -1321,7 +1321,7 @@ class Total {
 
         new TopBar(
             this.parent.closest('.cart_body').querySelector('.cart_topBar p'),
-            this.grandTotal,
+            this.subtotal,
             this.currency,
             this.coupon
         ).render()
