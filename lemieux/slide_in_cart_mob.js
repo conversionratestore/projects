@@ -1430,10 +1430,14 @@ let clickBasket = setInterval(() => {
             pushDataLayer('exp_slide_in_cart_check_out_securely', 'Check out securely', 'Button', 'Sidebar cart. Order total')
         })
         cart.querySelector('.cart_empty a').addEventListener('click', () => {
+            e.preventDefault()
             pushDataLayer('exp_slide_in_cart_shop_all_products', 'Shop all products', 'Button', 'Sidebar cart. Your bag is empty')
+            window.location.href = window.autoInitData.website.websiteCode != 'base' ? '/'+window.autoInitData.website.websiteCode : '/'
         })
-        cart.querySelector('.coupon_vouchers').addEventListener('click', () => {
+        cart.querySelector('.coupon_vouchers').addEventListener('click', (e) => {
+            e.preventDefault()
             pushDataLayer('exp_slide_in_cart_buy_gift_vouchers', 'Buy gift vouchers', 'Button', 'Sidebar cart. Discounts')
+            window.location.href = `${window.autoInitData.website.websiteCode != 'base' ? '/'+window.autoInitData.website.websiteCode : ''}/e-gift-card-173`
         })
 
         document.querySelector('.btn-basket').addEventListener('click', (e) => {
