@@ -884,7 +884,7 @@ let init = () => {
                         coupon = data.customer.cart.coupon ? coupon.toUpperCase() : '';
 
 
-                    let compareSum = shipping;
+                    let compareSum = 0;
                     document.querySelectorAll('.cdk-overlay-pane ._body .p-l-5 ul li').forEach(item => {
                         if (item.querySelector('.line-through.price')) {
                             compareSum += +item.querySelector('.line-through.price').innerText.replace(currency, '');
@@ -923,6 +923,7 @@ let init = () => {
                                         key == 'giftcards' ? '-'+total : total;
 
                             if (price != currency+'0.00' ) {
+                                compareSum += key == 'grand_total' ? shipping : 0;
 
                                 document.querySelector('.total_content').insertAdjacentHTML('beforeend',`
                                 <div class="flex flex-middle  ${key == 'grand_total' ? 'order_total' : ''}" data-name="${key}">
@@ -1655,8 +1656,8 @@ let addToBagLp = setInterval(() => {
 
 let reloaded = setInterval(() => {
     if (sessionStorage.getItem('reload') && sessionStorage.getItem('reload') == 'true' && document.querySelector('header basket-qty')) {
+        document.querySelector('header basket-qty').parentElement.click()
         sessionStorage.setItem('reload','')
-        document.querySelector('header basket-qty').click()
     }
 })
 
