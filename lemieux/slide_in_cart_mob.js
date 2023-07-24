@@ -1035,6 +1035,7 @@ let addCoupon = (e) => {
 
                     parentEl.querySelector(`result`).innerHTML = '';
                     parentEl.querySelector(`result`).classList.add('ng-hide');
+                    parentEl.classList.remove('active');
 
                     pushDataLayer('exp_slide_in_cart_gift_applied', 'Promo code applied', 'Element visibility', 'Sidebar. Cart. Have you got a gift card');
 
@@ -1062,6 +1063,7 @@ let addCoupon = (e) => {
                         'coupon_promocode', 
                         value).render()
 
+                    parentEl.classList.remove('active');
                     pushDataLayer('exp_slide_in_cart_promo_applied', 'Promo code applied', 'Element visibility', 'Sidebar. Cart. Have you got a promo code');
 
                     let couponData = data.customer.cart.coupon;

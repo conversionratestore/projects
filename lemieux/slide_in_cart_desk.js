@@ -1169,6 +1169,23 @@ let reqCategory = new Promise((resolve, reject) => {
 })
 
 
+let getFetch = (host) => new Promise((resolve, reject) => {
+
+    let webCode = window.autoInitData.website.websiteCode != 'base' ? '/'+window.autoInitData.website.websiteCode : '';
+
+    fetch(`https://www.lemieuxproducts.com${webCode}/api/${host}`, {
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        method: 'GET'
+    }).then(res => res.json()).then(data => {
+        resolve(data)
+    }).catch((error) => {
+        console.error('Error:', error);
+    });
+})
+
+
 let emptyIs = setInterval(() => {
     if (document.querySelector('.cdk-overlay-pane ._body p') && document.querySelector('.cdk-overlay-pane ._body p').innerText.includes('Your bag is empty') && !document.querySelector('.empty_body')) {
         document.querySelector('._body p').innerHTML = `
@@ -1273,6 +1290,23 @@ let emptyIs = setInterval(() => {
                     background-color: #595959;
                     color: #fff;
                 }
+                .container-add-to-bag box.is-warning .box {
+                    border-color: #8e1538;
+                    background-color: #fff;
+                    color: #8e1538;
+                    cursor: default;
+                }
+                .container-add-to-bag box.is-warning .box:after {
+                    background: linear-gradient(to bottom right,transparent calc(50% - 1px),#8e1538,transparent calc(50% + 1px));
+                }
+                
+                .container-add-to-bag box.is-warning .box:after {
+                    position: absolute;
+                    inset: 0;
+                    display: block;
+                    content: "";
+                    pointer-events: none;
+                }
                 .container-add-to-bag .btn-add-to-bag *, .container-add-to-bag .btn-add-to-bag.busy {
                     pointer-events: none;
                 }
@@ -1351,6 +1385,8 @@ let emptyIs = setInterval(() => {
                 randomIndexes.push(Math.floor(Math.random() * 100))
             }
           
+            let promisesBox = [];
+
             for (let i = 0; i < randomIndexes.length; i++) {
                 let item =  data.catalog[randomIndexes[i]];
 
@@ -1385,7 +1421,9 @@ let emptyIs = setInterval(() => {
                         sizes += ` 
                         <box class="inline-block va-m cursor-pointer m-t-1 m-r-1 ng-star-inserted ${k == 0 ? 'is-selected' : ''}" data-id="${item.directChildrenIds[k]}" _nghost-app-c120="">
                             <div _ngcontent-app-c120="" class="p2 b-a inline-block center box">${JSON.stringify(window.autoInitData.data.attribute).split(`${size[k]},"label":"`)[1].split('"')[0].replace('\\','"')} </div>
-                        </box>`
+                        </box>`;
+
+                        promisesBox.push(getFetch(`n/product/${item.directChildrenIds[k]}/verbosity/3`))
                     }
 
                     document.querySelector('.cart_favourites .swiper-wrapper').insertAdjacentHTML('beforeend',`
@@ -1437,6 +1475,21 @@ let emptyIs = setInterval(() => {
                     
                 }
             }
+
+            Promise.all(promisesBox).then(dataItem => {
+                console.log(dataItem)
+
+                for (let k = 0; k < dataItem.length; k++) {
+                    let catalog = dataItem[k].catalog;
+                    for (let j = 0; j < catalog.length; j++) {
+                        if (document.querySelector(`.product-size > [data-id="${catalog[j].id}"]`)) {
+                            let isOut = catalog[j].isOut && catalog[j].isOut == true ? 'is-warning' : '';
+                            isOut != '' ? document.querySelector(`.product-size > [data-id="${catalog[j].id}"]`).classList.add(isOut) : '';
+                        }
+                    }
+                }
+            })
+
             document.querySelectorAll('.cart_favourites product-quick-buy').forEach((el, index) => {
                 document.querySelectorAll('.cart_favourites .wishlist-button')[index].addEventListener('click', (e) => {
                     let body = {"product": e.currentTarget.dataset.id};
