@@ -696,6 +696,8 @@ let postFetch = (host, body) => {
             method: "POST",
             body: JSON.stringify(body)
         }).then(res => res.json()).then(data => {
+            console.log(webCode)
+            console.log(data)
             resolve(data)
         }).catch((error) => {
             console.error('Error:', error);
@@ -714,6 +716,7 @@ let getFetch = (host) => new Promise((resolve, reject) => {
         method: 'GET'
     }).then(res => res.json()).then(data => {
         console.log(webCode)
+        console.log(data)
         resolve(data)
     }).catch((error) => {
         console.error('Error:', error);
@@ -768,12 +771,8 @@ let updateTotal = (parent, totals, items, coupon) => {
             for (let i = 0; i < dataItem.length; i++) {
                 
                 let item = dataItem[i].result[0];
-
-                console.log(items[i].rowPrice)
                 
                 compareSum += items[i].request.qty * (item.org_price ? item.org_price : item.price);
-
-                
             }
             setCompare(compareSum, 'grand_total', totals['grand_total'], totals['shipping'])
             setCompare(compareSum, 'subtotal', totals['subtotal'], 0)
@@ -790,7 +789,6 @@ let addProduct = (parent, items, totals, count, coupon) => {
 
     for (let i = 0; i < items.length; i++) {
         getFetch(`n/product/${items[i].product}/verbosity/3`).then(dataItem => {
-            console.log(dataItem)
 
             let item = dataItem.result[0];
 
@@ -842,7 +840,6 @@ let removeItem = (parent, id) => {  // remove item
     cart.classList.add('loading');
 
     postFetch('basket/remove', obj).then(data => {
-        console.log(data)
 
         !!cart.querySelector(`.cart_products [data-id="${id}"]`) ? cart.querySelector(`.cart_products [data-id="${id}"]`).remove() : ''; 
         
@@ -899,7 +896,6 @@ let qty = (_this) => {
     let objUpdateQty = {"id":id,"qty": qty.value}
 
     postFetch('basket/qty', objUpdateQty).then(data => {
-        console.log(data)
 
         if (data.error && data.error != '') {
             _this.closest('.product_content').insertAdjacentHTML('beforeend', `<p class="error-qty m-t-1 c-red m-b-0">${data.error}</p>`)
@@ -932,7 +928,7 @@ let qty = (_this) => {
 }
 
 let setCompare = (compareSum, key, value, shipping) => {
-    console.log(compareSum, key, value, shipping)
+
     let price = document.querySelectorAll(`[data-name="${key}"] .pr`);
     let compareSumIsShipping = key == 'grand_total' ? compareSum + shipping : compareSum;
     let priceLine = value < (compareSumIsShipping).toFixed(2) ? ' <span class="pr-line m-r-1">' + currency + (compareSumIsShipping).toFixed(2) + '</span>' : ''
@@ -971,7 +967,6 @@ let removeCoupon = (code, classes) => {
     coupon.closest('.cart').classList.add('loading');
 
     postFetch(host+'/remove', codeObj).then(data => {
-        console.log(data)
 
         coupon.closest('.cart').classList.remove('loading');
         coupon.remove();
@@ -1012,7 +1007,6 @@ let addCoupon = (e) => {
             let giftcard = {"code": value}
 
             postFetch('giftcard/add', giftcard).then(data => {
-                console.log(data)
 
                 _this.classList.remove('busy');
 
@@ -1041,7 +1035,6 @@ let addCoupon = (e) => {
             let coupon = {"coupon": value}
             
             postFetch('coupon/add', coupon).then(data => {
-                console.log(data)
                 _this.classList.remove('busy');
 
 
@@ -1106,7 +1099,6 @@ let checkBalance = (e) => {
     let giftcard = {"code": value}
     if (value != '') {
         postFetch('giftcard/balance', giftcard).then(data => {
-            console.log(data)
             let message = ''
             if (data.error && data.error != '') {
                 message = data.error.includes('INVALID_GIFTCARD') ? `Sorry, we don't recognise this code` : data.error;
@@ -1243,7 +1235,7 @@ class TopBar {
             topBar.hidden = true;
         } else {
             topBar.hidden = false;
-        
+
             if (this.grandTotal >= 75 || this.coupon.toUpperCase() == 'FREEDEL') {
                 topBar.classList.add('green')
                 text = 'Congratulation! You have Free UK Delivery';
@@ -1317,7 +1309,8 @@ class Total {
         new TopBar(
             this.parent.closest('.cart_body').querySelector('.cart_topBar p'),
             this.grandTotal,
-            this.currency
+            this.currency,
+            this.coupon
         ).render()
         
         document.body.querySelectorAll('.klarna_pr').forEach(item => {
@@ -1628,9 +1621,7 @@ let clickBasket = setInterval(() => {
                     let catalog = dataItem[k].catalog;
                     for (let j = 0; j < catalog.length; j++) {
                         if (document.querySelector(`.product-size > [data-id="${catalog[j].id}"]`)) {
-                            console.log(document.querySelector(`.product-size > [data-id="${catalog[j].id}"]`))
                             let isOut = catalog[j].isOut && catalog[j].isOut == true ? 'is-warning' : '';
-                            console.log(isOut)
                             isOut != '' ? document.querySelector(`.product-size > [data-id="${catalog[j].id}"]`).classList.add(isOut) : '';
                         }
                     }
@@ -1681,7 +1672,6 @@ let clickBasket = setInterval(() => {
                         e.currentTarget.classList.add('busy')
                         cart.classList.add('loading')
                         postFetch('basket/add', body).then(dataAdd => {
-                            console.log(dataAdd)
                             if (dataAdd.error && dataAdd.error != '') {
                                 document.querySelector('.container-add-to-bag result p').innerHTML = dataAdd.error;
                                 document.querySelector('.container-add-to-bag result').classList.remove('ng-hide');
@@ -1814,7 +1804,6 @@ let init = () => {
             }
 
             getFetch('p/customer/data').then(data => {
-                console.log(data)
 
                 let items = data.customer.cart.items;
 
