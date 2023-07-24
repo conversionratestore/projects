@@ -744,6 +744,8 @@ let updateTotal = (parent, totals, items, coupon) => {
     parent.querySelector('.cart_footer price .pr').innerHTML = currency + totals.grand_total;
     parent.querySelector('.total_content ul').innerHTML = '';
 
+    let isCoupon = coupon != undefined ? coupon.toUpperCase() : ''
+    console.log(isCoupon)
     for (const key in totals) {
         if (!key.includes('tax') && !key.includes('amasty_giftcard')) {
             new Total(
@@ -753,7 +755,7 @@ let updateTotal = (parent, totals, items, coupon) => {
                 currency,
                 totals.subtotal,
                 totals.grand_total,
-                coupon.toUpperCase() ).render()
+                isCoupon).render()
         }
     }
 
