@@ -904,7 +904,7 @@ let init = () => {
 
 
                     for (const key in carTotal) {
-                        if (carTotal[key] != '0' && !key.includes('tax') && !key.includes('amasty_giftcard') || key.includes('shipping')) {
+                        if (carTotal[key] != '0' && !key.includes('tax') && !key.includes('amasty_giftcard') || key == 'shipping') {
                             let letter = key.charAt(0);
                             let letterUp = key.charAt(0).toUpperCase();
 

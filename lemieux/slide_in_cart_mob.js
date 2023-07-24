@@ -1465,8 +1465,10 @@ let clickBasket = setInterval(() => {
         buttonBasket.insertAdjacentHTML('afterend', `<button type="button" class="btn-basket">
         ${document.querySelector('header basket-qty').innerHTML}</button>`)
 
-        cart.querySelector('.btn_submit').addEventListener('click', () => {
+        cart.querySelector('.btn_submit').addEventListener('click', (e) => {
+            e.preventDefault()
             pushDataLayer('exp_slide_in_cart_check_out_securely', 'Check out securely', 'Button', 'Sidebar cart. Order total')
+            window.location.href = `${window.autoInitData.website.websiteCode != 'base' ? '/'+window.autoInitData.website.websiteCode : ''}/checkout`
         })
         cart.querySelector('.cart_empty a').addEventListener('click', (e) => {
             e.preventDefault()
