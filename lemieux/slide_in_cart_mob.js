@@ -1429,7 +1429,7 @@ let clickBasket = setInterval(() => {
         cart.querySelector('.btn_submit').addEventListener('click', () => {
             pushDataLayer('exp_slide_in_cart_check_out_securely', 'Check out securely', 'Button', 'Sidebar cart. Order total')
         })
-        cart.querySelector('.cart_empty a').addEventListener('click', () => {
+        cart.querySelector('.cart_empty a').addEventListener('click', (e) => {
             e.preventDefault()
             pushDataLayer('exp_slide_in_cart_shop_all_products', 'Shop all products', 'Button', 'Sidebar cart. Your bag is empty')
             window.location.href = window.autoInitData.website.websiteCode != 'base' ? '/'+window.autoInitData.website.websiteCode : '/'
