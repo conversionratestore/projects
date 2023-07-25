@@ -62,7 +62,7 @@ let style = `
     padding: 12px 20px;
     position: sticky;
     top: 0;
-    z-index: 2;
+    z-index: 9;
     background-color: #fff;
     font-family: "baskerville-urw", sans-serif;
     font-size: 18px;
