@@ -921,14 +921,15 @@ let init = () => {
 
                             if (price != currency+'0.00' ) {
 
-                                let totalPrice = (document.querySelector('.pr-line-ship') ? carTotal[key] : carTotal[key] + shippingPriceFix).toFixed(2);
+                                let totalPrice = (document.querySelector('.pr-line-ship') ? carTotal[key] : carTotal[key]).toFixed(2);
                                
+                                console.log(totalPrice)
                                 document.querySelector('.total_content').insertAdjacentHTML('beforeend',`
                                 <div class="flex flex-middle  ${key == 'grand_total' ? 'order_total' : ''}" data-name="${key}">
                                     <p class="">${key == 'grand_total' ? 'Order total' : key == 'shipping' ? 'Delivery' : key.split('_').join(' ').replace(letter,letterUp)}</p>
                                     <p class="ml-auto">
                                         ${totalPrice < compareSum.toFixed(2) && key == 'subtotal' ? ' <span class="pr-line">' + currency + (compareSum).toFixed(2) + '</span>' : ''}
-                                        <span class="pr ${price.toString().includes('-') ? 'c-red' : ''}">${key == 'grand_total' ? currency + totalPrice : price}</span>
+                                        <span class="pr ${price.toString().includes('-') ? 'c-red' : ''}">${price}</span>
                                     </p>
                                 </div>`)
                             }
@@ -936,28 +937,41 @@ let init = () => {
                     }
 
                   
-                    let savedTotal = (compareSum - grand_total).toFixed(2)
-                    console.log(savedTotal)
-                    if (savedTotal != 0 && savedTotal != shippingPriceFix && document.querySelector('.total_content')) {
-                        document.querySelector('.total_content').insertAdjacentHTML('afterend',`<div class="saved_block ml-auto">You just saved ${currency}${savedTotal}</div>`)
-                        
+                    let isShip = !document.querySelector('.pr-line-ship') ? shippingPriceFix : 0;
+                    let isShipNew = shipping == 0 ? isShip : 0;
+               
+                    let savedTotal = (compareSum + shippingPriceFix - grand_total).toFixed(2)
+                  
+                    console.log(compareSum + ' (1)')
+                    console.log(isShipNew + ' (1)')
+                    console.log(grand_total + ' (1)')
+                    console.log(savedTotal + ' (1)')
+                    if (document.querySelector('.total_content')) {
                         let price = document.querySelector('.total_content [data-name="grand_total"] .pr');
                         
                         if (price.nextElementSibling) {
                             price.nextElementSibling.remove()
                         }
 
-                        let isShip = !document.querySelector('.pr-line-ship') ? shippingPriceFix : 0;
-                        let isShipNew = shipping == 0 ? isShip : 0;
+                        if (document.querySelector('.total_content .saved_block')) {
+                            document.querySelector('.total_content .saved_block').remove()
+                        } 
+                        if (savedTotal != 0) {
+                            document.querySelector('.total_content').insertAdjacentHTML('afterend',`<div class="saved_block ml-auto">You just saved ${currency}${savedTotal}</div>`)
+                            price.insertAdjacentHTML('beforebegin',` <span class="pr-line">${currency + (compareSum + shippingPriceFix).toFixed(2)} </span> `)
+                        }
 
+
+                        
                         price.innerHTML = currency + (grand_total + isShipNew).toFixed(2);
-                        price.insertAdjacentHTML('beforebegin',` <span class="pr-line">${currency + (compareSum + isShip).toFixed(2)} </span> `)
 
                     }
 
-                    document.querySelectorAll('.klarna_pr').forEach(item => {
-                        item.innerHTML = currency + ((grand_total + (document.querySelector('.pr-line-ship') ? 0 : shippingPriceFix)) / 3).toFixed(2);
+                    document.querySelectorAll('.klarna_pr').forEach(klarna => {
+                        klarna.innerHTML = currency + ((grand_total + isShipNew) / 3).toFixed(2);
                     })
+
+               
 
                     //coupon
 
@@ -1103,14 +1117,17 @@ let init = () => {
                         let isShip = !document.querySelector('.pr-line-ship') ? shippingPriceFix : 0;
                         let isShipNew = shipping == 0 ? isShip : 0;
 
-                        console.log(isShip)
-                        console.log(grand_total)
+                        console.log(compareSum + ' (2)')
+                        console.log(isShipNew + ' (2)')
+                        console.log(grand_total + ' (2)')
+                        console.log(savedTotal + ' (2)')
+
                         document.querySelector('basket-view-totals > div:last-child .price').innerHTML = `
                         <span class="">
-                            ${compareSum > grand_total+isShip ? ' <span class="pr-line">' + currency + (compareSum + isShip).toFixed(2) + '</span>' : ''}
+                            ${compareSum + shippingPriceFix > grand_total+isShipNew ? ' <span class="pr-line">' + currency + (compareSum + shippingPriceFix).toFixed(2) + '</span>' : ''}
                             <span class="pr">${currency}${(grand_total+isShipNew).toFixed(2)}</span>
                         </span>
-                        ${compareSum > grand_total+isShip ? '<span class="saved_block">You just saved ' + currency + savedTotal + '</span>' : ''}`;
+                        ${compareSum + shippingPriceFix > grand_total+isShipNew ? '<span class="saved_block">You just saved ' + currency + savedTotal + '</span>' : ''}`;
 
 
                         document.querySelector('basket-view-totals > div:last-child').style = 'display: flex!important;';

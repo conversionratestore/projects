@@ -775,14 +775,15 @@ let updateTotal = (parent, totals, items, coupon) => {
 
 
             let shippingPriceFix = window.autoInitData.website.websiteCode != 'base' ? 14.95 : 3.95;
-            let isShip = parent.querySelector(`.pr-line-ship`) ? 0 : shippingPriceFix
+            let isShip = parent.querySelector(`.pr-line-ship`) ? 0 : shippingPriceFix;
+            let isShipNew = totals['shipping'] == 0 ? isShip : 0;
 
             setCompare(compareSum, 'grand_total', totals['grand_total'])
             setCompare(compareSum, 'subtotal', totals['subtotal'])
 
                     
             parent.querySelectorAll(`[data-name="grand_total"] .pr`).forEach((pr,index) => {
-                pr.innerHTML = currency + (totals['grand_total'] + isShip).toFixed(2)
+                pr.innerHTML = currency + (totals['grand_total'] + isShipNew).toFixed(2)
                 console.log(pr.previousElementSibling)
                 if (pr.previousElementSibling) {
                     pr.previousElementSibling.remove()
@@ -791,11 +792,11 @@ let updateTotal = (parent, totals, items, coupon) => {
                 if (parent.querySelectorAll('.saved_block')[index]) {
                     parent.querySelectorAll('.saved_block')[index].style = '';
                 }
-                if (!pr.previousElementSibling && totals['grand_total'] + isShip < compareSum + shippingPriceFix) {
+                if (!pr.previousElementSibling && totals['grand_total'] + isShipNew < compareSum + shippingPriceFix) {
                   
                     pr.insertAdjacentHTML('beforebegin', `<span class="pr-line m-r-1">${currency + (compareSum + shippingPriceFix).toFixed(2)}</span>`)
                     
-                    let saved = compareSum + shippingPriceFix - (totals['grand_total'] + isShip);
+                    let saved = compareSum + shippingPriceFix - (totals['grand_total'] + isShipNew);
 
                     document.querySelectorAll('.saved_block')[index].innerHTML = `You just saved ${currency + saved.toFixed(2)}`
                     document.querySelectorAll('.saved_block')[index].style.display = 'block';
@@ -804,7 +805,7 @@ let updateTotal = (parent, totals, items, coupon) => {
             })
 
             document.body.querySelectorAll('.klarna_pr').forEach(klarna => {
-                klarna.innerHTML = currency + ((totals['grand_total'] + isShip) / 3).toFixed(2)
+                klarna.innerHTML = currency + ((totals['grand_total'] + isShipNew) / 3).toFixed(2)
             })
          
 
