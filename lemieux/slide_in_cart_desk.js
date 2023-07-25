@@ -928,7 +928,7 @@ let init = () => {
                                 <div class="flex flex-middle  ${key == 'grand_total' ? 'order_total' : ''}" data-name="${key}">
                                     <p class="">${key == 'grand_total' ? 'Order total' : key == 'shipping' ? 'Delivery' : key.split('_').join(' ').replace(letter,letterUp)}</p>
                                     <p class="ml-auto">
-                                        ${totalPrice < compareSum.toFixed(2) && key == 'subtotal' ? ' <span class="pr-line">' + currency + (compareSum).toFixed(2) + '</span>' : ''}
+                                        ${carTotal['subtotal'] < compareSum.toFixed(2) && key == 'subtotal' ? ' <span class="pr-line">' + currency + compareSum.toFixed(2) + '</span>' : ''}
                                         <span class="pr ${price.toString().includes('-') ? 'c-red' : ''}">${price}</span>
                                     </p>
                                 </div>`)
