@@ -338,7 +338,7 @@ basket-related-products {
     font-weight: 700;
     text-align: right;
 }
-.cdk-overlay-pane .pr-line {
+.cdk-overlay-pane .pr-line, .cdk-overlay-pane .pr-line-ship {
     font-weight: 400;
     text-decoration-line: line-through;
     color: #ACACAC;
@@ -540,7 +540,7 @@ let postFetch = (host, body) => {
 
         let webCode = window.autoInitData.website.websiteCode != 'base' ? '/'+window.autoInitData.website.websiteCode : '';
 
-        fetch(`https://www.lemieuxproducts.com${webCode}/api/p/${host}`, {
+        fetch(`${webCode}/api/p/${host}`, {
             headers: {
                 'Content-Type': 'application/json'
             },
@@ -557,7 +557,7 @@ let postFetch = (host, body) => {
 let postCart = () => new Promise((resolve, reject) => {
     let webCode = window.autoInitData.website.websiteCode != 'base' ? '/'+window.autoInitData.website.websiteCode : '';
 
-    fetch(`https://www.lemieuxproducts.com${webCode}/api/p/customer/data`, {
+    fetch(`${webCode}/api/p/customer/data`, {
         headers: {
             'Content-Type': 'application/json'
         },
@@ -883,6 +883,7 @@ let init = () => {
                         shipping = data.customer.cart.totals.shipping;
                         coupon = data.customer.cart.coupon ? coupon.toUpperCase() : '';
 
+                    let shippingPriceFix = window.autoInitData.website.websiteCode != 'base' ? 14.95 : 3.95;
 
                     let compareSum = 0;
                     document.querySelectorAll('.cdk-overlay-pane ._body .p-l-5 ul li').forEach(item => {
@@ -919,18 +920,21 @@ let init = () => {
                                         (
                                             key.includes('shipping') &&
                                             coupon == 'FREEDEL'
-                                        ) ?  '<span class="c-red">FREE</span>' : 
-                                        key == 'giftcards' ? '-'+total : total;
+                                        ) ?  '<span class="pr-line-ship">' + currency + shippingPriceFix + '</span> <span class="c-red">FREE</span>' : 
+                                        key == 'giftcards' ? '-'+total : 
+                                        key.includes('shipping') ? currency + shippingPriceFix : total;
 
                             if (price != currency+'0.00' ) {
-                                compareSum += key == 'grand_total' ? shipping : 0;
+                                compareSum += key == 'grand_total' ? shippingPriceFix : 0;
 
+                                let totalPrice = currency + (document.querySelector('.pr-line-ship') ? carTotal[key] : carTotal[key] + shippingPriceFix).toFixed(2);
+ 
                                 document.querySelector('.total_content').insertAdjacentHTML('beforeend',`
                                 <div class="flex flex-middle  ${key == 'grand_total' ? 'order_total' : ''}" data-name="${key}">
                                     <p class="">${key == 'grand_total' ? 'Order total' : key == 'shipping' ? 'Delivery' : key.split('_').join(' ').replace(letter,letterUp)}</p>
                                     <p class="ml-auto">
-                                        ${carTotal[key] < (compareSum).toFixed(2) && (key == 'grand_total' || key == 'subtotal') ? ' <span class="pr-line">' + currency + (compareSum).toFixed(2) + '</span>' : ''}
-                                        <span class="pr ${price.includes('-') ? 'c-red' : ''}">${price}</span>
+                                        ${totalPrice < (compareSum).toFixed(2) && (key == 'grand_total' || key == 'subtotal') ? ' <span class="pr-line">' + currency + (compareSum).toFixed(2) + '</span>' : ''}
+                                        <span class="pr ${price.toString().includes('-') ? 'c-red' : ''}">${key == 'grand_total' ? totalPrice : price}</span>
                                     </p>
                                 </div>`)
                             }
@@ -1077,13 +1081,17 @@ let init = () => {
                     if (document.querySelector('basket-view-totals > div:last-child .price')) {
 
                         document.querySelector('basket-view-totals > div:last-child label').innerHTML = 'Order total';
+
+                        let shippingPriceFix = !document.querySelector('.pr-line-ship') ? window.autoInitData.website.websiteCode != 'base' ? 14.95 : 3.95 : 0;
+
                         document.querySelector('basket-view-totals > div:last-child .price').innerHTML = `
                         <span class="">
-                            ${savedTotal != 0 ? ' <span class="pr-line">' + currency + (compareSum).toFixed(2) + '</span>' : ''}
-                            <span class="pr">${currency}${grand_total.toFixed(2)}</span>
+                            ${savedTotal - shippingPriceFix > 0 ? ' <span class="pr-line">' + currency + (compareSum).toFixed(2) + '</span>' : ''}
+                            <span class="pr">${currency}${(grand_total+shippingPriceFix).toFixed(2)}</span>
                         </span>
-                        ${savedTotal != 0 ? '<span class="saved_block">You just saved ' + currency + savedTotal + '</span>' : ''}`;
+                        ${savedTotal - shippingPriceFix > 0 ? '<span class="saved_block">You just saved ' + currency + savedTotal + '</span>' : ''}`;
 
+                        
                         document.querySelector('basket-view-totals > div:last-child').style = 'display: flex!important;';
 
                         document.querySelector('.cdk-overlay-pane [sl-minibasket-button="basket"] span').innerHTML = 'Check out securely';
@@ -1094,7 +1102,7 @@ let init = () => {
 
                             pushDataLayer('exp_slide_in_cart_check_out_securely','Check out securely','Button','Sidebar cart. Order total')
 
-                            window.location.href = `https://www.lemieuxproducts.com${webCode}/checkout`;
+                            window.location.href = `https://${window.location.host+webCode}/checkout`;
                         })
 
                         if (!document.querySelector('.text_guarantee')) {
@@ -1166,7 +1174,7 @@ let backdrop = (size, sizeBox, name) => `
 let reqCategory = new Promise((resolve, reject) => {
     let webCode = window.autoInitData.website.websiteCode != 'base' ? '/'+window.autoInitData.website.websiteCode : '';
 
-    fetch(`https://www.lemieuxproducts.com${webCode}/api/n/category/76/verbosity/3`, {
+    fetch(`${webCode}/api/n/category/76/verbosity/3`, {
         headers: {
             'Content-Type': 'application/json'
         },
@@ -1183,7 +1191,7 @@ let getFetch = (host) => new Promise((resolve, reject) => {
 
     let webCode = window.autoInitData.website.websiteCode != 'base' ? '/'+window.autoInitData.website.websiteCode : '';
 
-    fetch(`https://www.lemieuxproducts.com${webCode}/api/${host}`, {
+    fetch(`${webCode}/api/${host}`, {
         headers: {
             'Content-Type': 'application/json'
         },
@@ -1449,7 +1457,7 @@ let emptyIs = setInterval(() => {
                                                 <img class="_shellImg">
                                             </shell>
                                             <img class="rf dynamic-image loaded" alt="${item.name}"
-                                                src="/tco-images/unsafe/152x203/filters:format(webp):quality(70)/https://www.lemieuxproducts.com/static/media/catalog/${item.image}">
+                                                src="/tco-images/unsafe/152x203/filters:format(webp):quality(70)/https://${window.location.host}/static/media/catalog/${item.image}">
                                         </a>
                                         <div class="product-size" style="display: none;">${sizes}</div>
                                         <product-quick-buy class="pos-absolute bottom-2 right-2 z-1 ng-tns-c133-30 ng-star-inserted" data-size="${sizeItem}" data-name="${item.name}">

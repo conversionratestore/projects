@@ -1294,7 +1294,7 @@ class Total {
 
         let total = minusIcon + this.currency +  this.value.toFixed(2).toString().replace(minusIcon,'');
 
-        let shippingPriceFix = window.autoInitData.website.websiteCode != 'base' ? 14.95 : 3.95;
+        let shippingPriceFix = this.currency + (window.autoInitData.website.websiteCode != 'base' ? 14.95 : 3.95);
 
         let price = this.key.includes('shipping') && 
                     this.value == 0 && 
@@ -1304,9 +1304,9 @@ class Total {
                         this.key.includes('shipping') &&
                         this.coupon == 'FREEDEL'
                     )
-                     ?  '<span class="pr-line-ship">' + this.currency+shippingPriceFix + '</span> <span class="c-red">FREE</span>' : 
+                     ?  '<span class="pr-line-ship">' + shippingPriceFix + '</span> <span class="c-red">FREE</span>' : 
                     this.key == 'giftcards' ? '-'+total : 
-                    this.key.includes('shipping') ? this.currency + shippingPriceFix : total;
+                    this.key.includes('shipping') ? shippingPriceFix : total;
 
         element.innerHTML =`
         <p class="">${this.key == 'grand_total' ? 'Order total' : this.key == 'shipping' ? 'Delivery' :  this.key.split('_').join(' ').replace(letter,letterUp)}</p>
@@ -1603,7 +1603,7 @@ let clickBasket = setInterval(() => {
                                                 <img class="_shellImg">
                                             </shell>
                                             <img class="rf dynamic-image loaded" alt="${item.name}"
-                                                src="/tco-images/unsafe/152x203/filters:format(webp):quality(70)/https://www.lemieux.com/static/media/catalog/${item.image}">
+                                                src="/tco-images/unsafe/152x203/filters:format(webp):quality(70)/https://${window.location.host}/static/media/catalog/${item.image}">
                                         </a>
                                         <div class="product-size" style="display: none;">${sizes}</div>
                                         <product-quick-buy class="pos-absolute bottom-2 right-2 z-1 ng-tns-c133-30 ng-star-inserted" data-size="${sizeItem}" data-name="${item.name}">
