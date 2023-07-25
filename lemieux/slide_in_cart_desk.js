@@ -885,7 +885,8 @@ let init = () => {
 
                     let shippingPriceFix = window.autoInitData.website.websiteCode != 'base' ? 14.95 : 3.95;
 
-                    let compareSum = 0;
+                    let compareSum = document.querySelector('.pr-line-ship') ? 0 : shippingPriceFix;
+
                     document.querySelectorAll('.cdk-overlay-pane ._body .p-l-5 ul li').forEach(item => {
                         if (item.querySelector('.line-through.price')) {
                             compareSum += +item.querySelector('.line-through.price').innerText.replace(currency, '');
@@ -895,7 +896,7 @@ let init = () => {
                     })
 
                     let savedTotal = (compareSum - grand_total).toFixed(2)
-                    if (savedTotal != 0 && document.querySelector('.total_content')) {
+                    if (savedTotal != 0 && savedTotal != shippingPriceFix && document.querySelector('.total_content')) {
                         document.querySelector('.total_content').insertAdjacentHTML('afterend',`<div class="saved_block ml-auto">You just saved ${currency}${savedTotal}</div>`)
                     }
 
@@ -925,16 +926,17 @@ let init = () => {
                                         key.includes('shipping') ? currency + shippingPriceFix : total;
 
                             if (price != currency+'0.00' ) {
-                                compareSum += key == 'grand_total' ? shippingPriceFix : 0;
 
-                                let totalPrice = currency + (document.querySelector('.pr-line-ship') ? carTotal[key] : carTotal[key] + shippingPriceFix).toFixed(2);
- 
+                                let totalPrice = (document.querySelector('.pr-line-ship') ? carTotal[key] : carTotal[key] + shippingPriceFix).toFixed(2);
+                                let compareTotal = document.querySelector('.pr-line-ship') && key == 'grand_total' ? (carTotal[key] + shippingPriceFix).toFixed(2) : compareSum.toFixed(2);
+
                                 document.querySelector('.total_content').insertAdjacentHTML('beforeend',`
                                 <div class="flex flex-middle  ${key == 'grand_total' ? 'order_total' : ''}" data-name="${key}">
                                     <p class="">${key == 'grand_total' ? 'Order total' : key == 'shipping' ? 'Delivery' : key.split('_').join(' ').replace(letter,letterUp)}</p>
                                     <p class="ml-auto">
-                                        ${totalPrice < (compareSum).toFixed(2) && (key == 'grand_total' || key == 'subtotal') ? ' <span class="pr-line">' + currency + (compareSum).toFixed(2) + '</span>' : ''}
-                                        <span class="pr ${price.toString().includes('-') ? 'c-red' : ''}">${key == 'grand_total' ? totalPrice : price}</span>
+                                        ${totalPrice < compareSum.toFixed(2) && key == 'subtotal' ? ' <span class="pr-line">' + currency + compareSum.toFixed(2) + '</span>' : ''}
+                                        ${totalPrice < compareTotal && key == 'grand_total' ? ' <span class="pr-line">' + currency + compareTotal + '</span>' : ''}
+                                        <span class="pr ${price.toString().includes('-') ? 'c-red' : ''}">${key == 'grand_total' ? currency + totalPrice : price}</span>
                                     </p>
                                 </div>`)
                             }
@@ -1084,14 +1086,15 @@ let init = () => {
 
                         let shippingPriceFix = !document.querySelector('.pr-line-ship') ? window.autoInitData.website.websiteCode != 'base' ? 14.95 : 3.95 : 0;
 
+                        
                         document.querySelector('basket-view-totals > div:last-child .price').innerHTML = `
                         <span class="">
-                            ${savedTotal - shippingPriceFix > 0 ? ' <span class="pr-line">' + currency + (compareSum).toFixed(2) + '</span>' : ''}
+                            ${savedTotal - shippingPriceFix > 0 ? ' <span class="pr-line">' + currency + (compareSum + shippingPriceFix).toFixed(2) + '</span>' : ''}
                             <span class="pr">${currency}${(grand_total+shippingPriceFix).toFixed(2)}</span>
                         </span>
                         ${savedTotal - shippingPriceFix > 0 ? '<span class="saved_block">You just saved ' + currency + savedTotal + '</span>' : ''}`;
 
-                        
+
                         document.querySelector('basket-view-totals > div:last-child').style = 'display: flex!important;';
 
                         document.querySelector('.cdk-overlay-pane [sl-minibasket-button="basket"] span').innerHTML = 'Check out securely';
