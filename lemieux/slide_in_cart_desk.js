@@ -942,10 +942,10 @@ let init = () => {
                
                     let savedTotal = (compareSum + shippingPriceFix - grand_total).toFixed(2)
                   
-                    console.log(compareSum + ' (1)')
-                    console.log(isShipNew + ' (1)')
-                    console.log(grand_total + ' (1)')
-                    console.log(savedTotal + ' (1)')
+                    // console.log(compareSum + ' (1)')
+                    // console.log(isShipNew + ' (1)')
+                    // console.log(grand_total + ' (1)')
+                    // console.log(savedTotal + ' (1)')
                     if (document.querySelector('.total_content')) {
                         let price = document.querySelector('.total_content [data-name="grand_total"] .pr');
                         
@@ -956,7 +956,7 @@ let init = () => {
                         if (document.querySelector('.total_content .saved_block')) {
                             document.querySelector('.total_content .saved_block').remove()
                         } 
-                        if (savedTotal != 0) {
+                        if (savedTotal != 0 && compareSum + shippingPriceFix > grand_total + isShipNew) {
                             document.querySelector('.total_content').insertAdjacentHTML('afterend',`<div class="saved_block ml-auto">You just saved ${currency}${savedTotal}</div>`)
                             price.insertAdjacentHTML('beforebegin',` <span class="pr-line">${currency + (compareSum + shippingPriceFix).toFixed(2)} </span> `)
                         }
@@ -1117,10 +1117,10 @@ let init = () => {
                         let isShip = !document.querySelector('.pr-line-ship') ? shippingPriceFix : 0;
                         let isShipNew = shipping == 0 ? isShip : 0;
 
-                        console.log(compareSum + ' (2)')
-                        console.log(isShipNew + ' (2)')
-                        console.log(grand_total + ' (2)')
-                        console.log(savedTotal + ' (2)')
+                        // console.log(compareSum + ' (2)')
+                        // console.log(isShipNew + ' (2)')
+                        // console.log(grand_total + ' (2)')
+                        // console.log(savedTotal + ' (2)')
 
                         document.querySelector('basket-view-totals > div:last-child .price').innerHTML = `
                         <span class="">
