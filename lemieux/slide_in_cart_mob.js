@@ -803,7 +803,7 @@ let updateTotal = (parent, totals, items, coupon) => {
                 }
             })
 
-            parent.querySelectorAll('.klarna_pr').forEach(klarna => {
+            document.body.querySelectorAll('.klarna_pr').forEach(klarna => {
                 klarna.innerHTML = currency + ((totals['grand_total'] + isShip) / 3).toFixed(2)
             })
          
