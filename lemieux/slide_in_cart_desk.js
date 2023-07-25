@@ -1132,11 +1132,14 @@ let init = () => {
 
                         document.querySelector('basket-view-totals > div:last-child').style = 'display: flex!important;';
 
+                        let webCode = window.autoInitData.website.websiteCode != 'base' ? '/'+window.autoInitData.website.websiteCode : '';
+                        
                         document.querySelector('.cdk-overlay-pane [sl-minibasket-button="basket"] span').innerHTML = 'Check out securely';
+                        document.querySelector('.cdk-overlay-pane [sl-minibasket-button="basket"]').href = `${webCode}/checkout`;
+
                         document.querySelector('.cdk-overlay-pane [sl-minibasket-button="basket"]').addEventListener('click', (e) => {
                             e.preventDefault();       
                             e.stopImmediatePropagation();       
-                            let webCode = window.autoInitData.website.websiteCode != 'base' ? '/'+window.autoInitData.website.websiteCode : '';
 
                             pushDataLayer('exp_slide_in_cart_check_out_securely','Check out securely','Button','Sidebar cart. Order total')
 
