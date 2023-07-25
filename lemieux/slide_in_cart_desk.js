@@ -896,6 +896,7 @@ let init = () => {
                     })
 
                     let savedTotal = (compareSum - grand_total).toFixed(2)
+                    console.log(savedTotal)
                     if (savedTotal != 0 && savedTotal != shippingPriceFix && document.querySelector('.total_content')) {
                         document.querySelector('.total_content').insertAdjacentHTML('afterend',`<div class="saved_block ml-auto">You just saved ${currency}${savedTotal}</div>`)
                     }
@@ -1084,15 +1085,14 @@ let init = () => {
 
                         document.querySelector('basket-view-totals > div:last-child label').innerHTML = 'Order total';
 
-                        let shippingPriceFix = !document.querySelector('.pr-line-ship') ? window.autoInitData.website.websiteCode != 'base' ? 14.95 : 3.95 : 0;
+                        let isShip = !document.querySelector('.pr-line-ship') ? shippingPriceFix : 0;
 
-                        
                         document.querySelector('basket-view-totals > div:last-child .price').innerHTML = `
                         <span class="">
-                            ${savedTotal - shippingPriceFix > 0 ? ' <span class="pr-line">' + currency + (compareSum + shippingPriceFix).toFixed(2) + '</span>' : ''}
-                            <span class="pr">${currency}${(grand_total+shippingPriceFix).toFixed(2)}</span>
+                            ${compareSum > grand_total+isShip ? ' <span class="pr-line">' + currency + (compareSum).toFixed(2) + '</span>' : ''}
+                            <span class="pr">${currency}${(grand_total+isShip).toFixed(2)}</span>
                         </span>
-                        ${savedTotal - shippingPriceFix > 0 ? '<span class="saved_block">You just saved ' + currency + savedTotal + '</span>' : ''}`;
+                        ${compareSum > grand_total+isShip ? '<span class="saved_block">You just saved ' + currency + savedTotal + '</span>' : ''}`;
 
 
                         document.querySelector('basket-view-totals > div:last-child').style = 'display: flex!important;';
