@@ -1016,6 +1016,29 @@ const setTrialPageLogic = () => {
       clearInterval(waitFor2ndBtn)
 
       document.querySelectorAll('header + div button')[1].click()
+
+      setTimeout(() => {
+        if (localStorage.getItem("planCode")) {
+          const storedData = localStorage.getItem("planCode")
+          const parsedData = JSON.parse(storedData)
+          parsedData.price = 500
+          parsedData.trialAmount = 500
+          parsedData.value = "$5"
+          localStorage.setItem("planCode", JSON.stringify(parsedData))
+        } else {
+          localStorage.setItem("planCode", JSON.stringify(
+            {
+              currency: "USD",
+              currencyLabel: "$",
+              invoiceItemPriceId: "Set-Up-Fee-Able-v2-USD",
+              key: "able-35-weekly-free-trial-USD-Weekly",
+              price: 500,
+              trialAmount: 500,
+              value: "$5"
+            }
+          ))
+        }
+      }, 250)
     }
   }, WAIT_INTERVAL_TIMEOUT)
 
