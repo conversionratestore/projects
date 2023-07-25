@@ -876,12 +876,12 @@ let init = () => {
                 postCart().then(data => {
                     console.log(data)
 
-                    let coupon = data.customer.cart.coupon,
-                        gift = data.customer.cart.giftcards,
+                    let gift = data.customer.cart.giftcards,
                         carTotal = data.customer.cart.totals,
                         grand_total = carTotal.grand_total,
-                        coupon = data.customer.cart.coupon ? coupon.toUpperCase() : '',
                         shipping = carTotal.shipping;
+                        coupon = data.customer.cart.coupon ? data.customer.cart.coupon.toUpperCase() : '';
+                        
 
                     let shippingPriceFix = window.autoInitData.website.websiteCode != 'base' ? 14.95 : 3.95;
 
