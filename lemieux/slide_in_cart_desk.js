@@ -880,12 +880,11 @@ let init = () => {
                         gift = data.customer.cart.giftcards,
                         carTotal = data.customer.cart.totals;
                         grand_total = data.customer.cart.totals.grand_total;
-                        shipping = data.customer.cart.totals.shipping;
                         coupon = data.customer.cart.coupon ? coupon.toUpperCase() : '';
 
                     let shippingPriceFix = window.autoInitData.website.websiteCode != 'base' ? 14.95 : 3.95;
 
-                    let compareSum = document.querySelector('.pr-line-ship') ? 0 : shippingPriceFix;
+                    let compareSum = 0;
 
                     document.querySelectorAll('.cdk-overlay-pane ._body .p-l-5 ul li').forEach(item => {
                         if (item.querySelector('.line-through.price')) {
@@ -935,7 +934,7 @@ let init = () => {
                                 <div class="flex flex-middle  ${key == 'grand_total' ? 'order_total' : ''}" data-name="${key}">
                                     <p class="">${key == 'grand_total' ? 'Order total' : key == 'shipping' ? 'Delivery' : key.split('_').join(' ').replace(letter,letterUp)}</p>
                                     <p class="ml-auto">
-                                        ${totalPrice < compareSum.toFixed(2) && key == 'subtotal' ? ' <span class="pr-line">' + currency + compareSum.toFixed(2) + '</span>' : ''}
+                                        ${totalPrice < compareSum.toFixed(2) && key == 'subtotal' ? ' <span class="pr-line">' + currency + (compareSum).toFixed(2) + '</span>' : ''}
                                         ${totalPrice < compareTotal && key == 'grand_total' ? ' <span class="pr-line">' + currency + compareTotal + '</span>' : ''}
                                         <span class="pr ${price.toString().includes('-') ? 'c-red' : ''}">${key == 'grand_total' ? currency + totalPrice : price}</span>
                                     </p>

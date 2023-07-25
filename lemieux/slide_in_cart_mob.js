@@ -782,16 +782,25 @@ let updateTotal = (parent, totals, items, coupon) => {
             setCompare(compareSum, 'subtotal', totals['subtotal'])
 
                     
-            parent.querySelectorAll(`[data-name="grand_total"] .pr`).forEach(pr => {
+            parent.querySelectorAll(`[data-name="grand_total"] .pr`).forEach((pr,index) => {
                 pr.innerHTML = currency + (totals['grand_total'] + isShip).toFixed(2)
                 console.log(pr.previousElementSibling)
                 if (pr.previousElementSibling) {
                     pr.previousElementSibling.remove()
+                   
+                }
+                if (parent.querySelectorAll('.saved_block')[index]) {
+                    parent.querySelectorAll('.saved_block')[index].innerHTML = ''
                 }
                 if (!pr.previousElementSibling && totals['grand_total'] + isShip < compareSum + shippingPriceFix) {
                   
-                    pr.insertAdjacentHTML('beforebegin', `<span class="pr-line m-r-1">${(compareSum + shippingPriceFix).toFixed(2)}</span>`)
+                    pr.insertAdjacentHTML('beforebegin', `<span class="pr-line m-r-1">${currency + (compareSum + shippingPriceFix).toFixed(2)}</span>`)
                     
+                    let saved = compareSum + shippingPriceFix - (totals['grand_total'] + isShip);
+
+                    console.log(saved)
+                    document.querySelectorAll('.saved_block')[index].innerHTML = `You just saved ${currency + saved.toFixed(2)}`
+                  
                 }
             })
          
