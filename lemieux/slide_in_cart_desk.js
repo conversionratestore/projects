@@ -902,7 +902,7 @@ let init = () => {
                     }
 
                     document.querySelectorAll('.klarna_pr').forEach(item => {
-                        item.innerHTML = currency + (grand_total / 3).toFixed(2);
+                        item.innerHTML = currency + ((grand_total + (document.querySelector('.pr-line-ship') ? 0 : shippingPriceFix)) / 3).toFixed(2);
                     })
 
 

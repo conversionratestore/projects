@@ -772,9 +772,30 @@ let updateTotal = (parent, totals, items, coupon) => {
                 
                 compareSum += items[i].request.qty * (item.org_price ? item.org_price : item.price);
             }
-            setCompare(compareSum, 'grand_total', totals['grand_total'], totals['shipping'])
-            setCompare(compareSum, 'subtotal', totals['subtotal'], 0)
-                
+
+
+            let shippingPriceFix = window.autoInitData.website.websiteCode != 'base' ? 14.95 : 3.95;
+            let isShip = parent.querySelector(`.pr-line-ship`) ? 0 : shippingPriceFix
+            console.log(totals['grand_total'])
+            console.log(totals['grand_total'] + isShip)
+            setCompare(compareSum, 'grand_total', totals['grand_total'])
+            setCompare(compareSum, 'subtotal', totals['subtotal'])
+
+                    
+            parent.querySelectorAll(`[data-name="grand_total"] .pr`).forEach(pr => {
+                pr.innerHTML = currency + (totals['grand_total'] + isShip).toFixed(2)
+                console.log(pr.previousElementSibling)
+                if (pr.previousElementSibling) {
+                    pr.previousElementSibling.remove()
+                }
+                if (!pr.previousElementSibling && totals['grand_total'] + isShip < compareSum + shippingPriceFix) {
+                  
+                    pr.insertAdjacentHTML('beforebegin', `<span class="pr-line m-r-1">${(compareSum + shippingPriceFix).toFixed(2)}</span>`)
+                    
+                }
+            })
+         
+
         });
     }
 }
@@ -938,15 +959,11 @@ let qty = (_this) => {
     })
 }
 
-let setCompare = (compareSum, key, value, shipping) => {
-
-    let shippingPriceFix = shipping == 0 ? window.autoInitData.website.websiteCode != 'base' ? 14.95 : 3.95 : shipping;
+let setCompare = (compareSum, key, value) => {
 
     let price = document.querySelectorAll(`[data-name="${key}"] .pr`);
-    let compareSumIsShipping = key == 'grand_total' ? compareSum + shippingPriceFix : compareSum;
-    let priceLine = value < (compareSumIsShipping).toFixed(2) ? ' <span class="pr-line m-r-1">' + currency + (compareSumIsShipping).toFixed(2) + '</span>' : ''
+    let priceLine = value < (compareSum).toFixed(2) ? ' <span class="pr-line m-r-1">' + currency + (compareSum).toFixed(2) + '</span>' : ''
    
-    
     price.forEach((item, index) => {
         if (item.parentElement.querySelector(`.pr-line`)) {
             item.parentElement.querySelector(`.pr-line`).remove()
@@ -956,8 +973,8 @@ let setCompare = (compareSum, key, value, shipping) => {
     
         if (item.closest('[data-name]').dataset.name == 'grand_total' && key == 'grand_total') {
             document.querySelectorAll('.saved_block').forEach(el => {
-                if (value < (compareSumIsShipping).toFixed(2)) {
-                    el.innerHTML = 'You just saved ' + currency + (compareSumIsShipping - value).toFixed(2);
+                if (value < (compareSum).toFixed(2)) {
+                    el.innerHTML = 'You just saved ' + currency + (compareSum - value).toFixed(2);
                     el.style.display = 'block';
                 } else {
                     el.style = '';
@@ -1292,9 +1309,12 @@ class Total {
 
         let minusIcon =  this.value.toString().charAt(0) == '-' ?  this.value.toString().charAt(0) : '';
 
-        let total = minusIcon + this.currency +  this.value.toFixed(2).toString().replace(minusIcon,'');
+        let total = this.value.toFixed(2).toString().replace(minusIcon,'');
 
-        let shippingPriceFix = this.currency + (window.autoInitData.website.websiteCode != 'base' ? 14.95 : 3.95);
+        let shippingPriceFix = window.autoInitData.website.websiteCode != 'base' ? 14.95 : 3.95;
+        let isFreeShip = this.parent.querySelector('.pr-line-ship') ? 0 : shippingPriceFix;
+
+        console.log(isFreeShip)
 
         let price = this.key.includes('shipping') && 
                     this.value == 0 && 
@@ -1303,10 +1323,14 @@ class Total {
                     (
                         this.key.includes('shipping') &&
                         this.coupon == 'FREEDEL'
-                    )
-                     ?  '<span class="pr-line-ship">' + shippingPriceFix + '</span> <span class="c-red">FREE</span>' : 
-                    this.key == 'giftcards' ? '-'+total : 
-                    this.key.includes('shipping') ? shippingPriceFix : total;
+                    ) ?  
+                    '<span class="pr-line-ship">' + this.currency + shippingPriceFix + '</span> <span class="c-red">FREE</span>' : 
+                        this.key == 'giftcards' ? 
+                            '-'+ minusIcon + this.currency + total : 
+                            this.key.includes('shipping') ? 
+                                this.currency + shippingPriceFix : 
+                                minusIcon + this.currency + total;
+     
 
         element.innerHTML =`
         <p class="">${this.key == 'grand_total' ? 'Order total' : this.key == 'shipping' ? 'Delivery' :  this.key.split('_').join(' ').replace(letter,letterUp)}</p>
@@ -1324,7 +1348,7 @@ class Total {
                 newPr.innerHTML.includes('-') ? newPr.classList.add('c-red') : newPr.classList.remove('c-red');
             }
         } else {
-            if (price != this.currency+'0.00' && price != '-'+this.currency+'0.00' ) {
+            if (this.value != 0 || this.key.includes('shipping')) {
                 this.parent.appendChild(element)
             }
         }
