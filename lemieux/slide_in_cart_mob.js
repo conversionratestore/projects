@@ -982,17 +982,6 @@ let setCompare = (compareSum, key, value) => {
         }
     
         item.innerHTML = currency + value.toFixed(2);
-    
-        if (item.closest('[data-name]').dataset.name == 'grand_total' && key == 'grand_total') {
-            document.querySelectorAll('.saved_block').forEach(el => {
-                if (value < (compareSum).toFixed(2)) {
-                    el.innerHTML = 'You just saved ' + currency + (compareSum - value).toFixed(2);
-                    el.style.display = 'block';
-                } else {
-                    el.style = '';
-                }
-            })
-        } 
 
         item.insertAdjacentHTML('beforebegin', priceLine)
     })
