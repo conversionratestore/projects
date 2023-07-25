@@ -323,6 +323,9 @@ basket-related-products {
 .total_content {
     padding: 16px 23px 0;
 }
+.total_content [data-name="grand_total"] .pr-line {
+    margin-right: 5px;
+}
 .total_content > div p {
     font-family: 'source-sans-3', sans-serif;
     font-size: 16px;
