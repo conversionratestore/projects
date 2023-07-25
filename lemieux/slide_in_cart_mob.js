@@ -776,8 +776,7 @@ let updateTotal = (parent, totals, items, coupon) => {
 
             let shippingPriceFix = window.autoInitData.website.websiteCode != 'base' ? 14.95 : 3.95;
             let isShip = parent.querySelector(`.pr-line-ship`) ? 0 : shippingPriceFix
-            console.log(totals['grand_total'])
-            console.log(totals['grand_total'] + isShip)
+
             setCompare(compareSum, 'grand_total', totals['grand_total'])
             setCompare(compareSum, 'subtotal', totals['subtotal'])
 
@@ -790,7 +789,7 @@ let updateTotal = (parent, totals, items, coupon) => {
                    
                 }
                 if (parent.querySelectorAll('.saved_block')[index]) {
-                    parent.querySelectorAll('.saved_block')[index].innerHTML = ''
+                    parent.querySelectorAll('.saved_block')[index].style = '';
                 }
                 if (!pr.previousElementSibling && totals['grand_total'] + isShip < compareSum + shippingPriceFix) {
                   
@@ -798,10 +797,14 @@ let updateTotal = (parent, totals, items, coupon) => {
                     
                     let saved = compareSum + shippingPriceFix - (totals['grand_total'] + isShip);
 
-                    console.log(saved)
                     document.querySelectorAll('.saved_block')[index].innerHTML = `You just saved ${currency + saved.toFixed(2)}`
+                    document.querySelectorAll('.saved_block')[index].style.display = 'block';
                   
                 }
+            })
+
+            parent.querySelectorAll('.klarna_pr').forEach(klarna => {
+                klarna.innerHTML = currency + ((totals['grand_total'] + isShip) / 3).toFixed(2)
             })
          
 
