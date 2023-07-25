@@ -940,12 +940,12 @@ let init = () => {
                     let isShip = !document.querySelector('.pr-line-ship') ? shippingPriceFix : 0;
                     let isShipNew = shipping == 0 ? isShip : 0;
                
-                    let savedTotal = (compareSum + shippingPriceFix - grand_total).toFixed(2)
+                    let savedTotal = (compareSum + shippingPriceFix - (grand_total + isShipNew)).toFixed(2)
                   
-                    // console.log(compareSum + ' (1)')
-                    // console.log(isShipNew + ' (1)')
-                    // console.log(grand_total + ' (1)')
-                    // console.log(savedTotal + ' (1)')
+                    console.log(compareSum + ' (1) compareSum')
+                    console.log(isShipNew + ' (1) isShipNew')
+                    console.log(grand_total + ' (1) grand_total')
+                    console.log(savedTotal + ' (1) savedTotal')
                     if (document.querySelector('.total_content')) {
                         let price = document.querySelector('.total_content [data-name="grand_total"] .pr');
                         
@@ -1117,10 +1117,10 @@ let init = () => {
                         let isShip = !document.querySelector('.pr-line-ship') ? shippingPriceFix : 0;
                         let isShipNew = shipping == 0 ? isShip : 0;
 
-                        // console.log(compareSum + ' (2)')
-                        // console.log(isShipNew + ' (2)')
-                        // console.log(grand_total + ' (2)')
-                        // console.log(savedTotal + ' (2)')
+                        console.log(compareSum + ' (2)')
+                        console.log(isShipNew + ' (2)')
+                        console.log(grand_total + ' (2)')
+                        console.log(savedTotal + ' (2)')
 
                         document.querySelector('basket-view-totals > div:last-child .price').innerHTML = `
                         <span class="">
