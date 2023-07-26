@@ -1020,6 +1020,11 @@ let klaviyoStep = 1;
       padding: 16px;
       cursor: pointer;
     }
+
+    .lav-error {
+      border: 1px solid #C60200;
+      color: #C60200;
+    }
     
     @media(max-width: 768px) {
       .lav-paypal .shopify-cleanslate [data-testid="grid-cell"] {
@@ -1328,7 +1333,7 @@ let klaviyoStep = 1;
       <div class='lav-discount__icon'>
         <img src='${exp.dir}/img/discount-apply.svg' />
       </div>
-      <div class='lav-discount__caption'>You save 50$</div>
+      <div class='lav-discount__caption'>You save up to 50$</div>
     </div>
   `;
 
@@ -2252,7 +2257,7 @@ let klaviyoStep = 1;
           $el('.lav-sticky__btn .lav-btn-caption').innerText = 'Add to cart';
           $el('[data-add-to-cart]').style.display = 'flex';
           $el('.lav-select_size').style.display = 'none';
-
+          $el('[name="properties[Ring size]"]').classList.remove('lav-error');
         } else {
           activated = false;
           $el('.lav-sticky__btn .lav-product-price').style.display = 'none';
@@ -2280,6 +2285,7 @@ let klaviyoStep = 1;
               );
               const el = $el('.variant-wrapper');
               const offset = el.getBoundingClientRect().top + window.scrollY - 120;
+              $el('[name="properties[Ring size]"]').classList.add('lav-error');
               window.scrollTo({
                   top: offset,
                   behavior: 'smooth'
@@ -2311,6 +2317,7 @@ let klaviyoStep = 1;
             );
             const el = $el('.variant-wrapper');
             const offset = el.getBoundingClientRect().top + window.scrollY - 120;
+            $el('[name="properties[Ring size]"]').classList.add('lav-error');
             window.scrollTo({
                 top: offset,
                 behavior: 'smooth'
