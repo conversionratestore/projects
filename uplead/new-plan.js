@@ -20,10 +20,16 @@ const state = new Promise((resolve, reject) => {
 let styleBase = `
 <style>
 /* base */
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
+@media (min-width: 768px) {
+    .elementor-10072 .elementor-column.elementor-col-20.elementor-element-67ea24f {
+        width: 15%!important;
+    }
+    .elementor-10072 .elementor-element.elementor-element-ce88a86 {
+        width: 51%!important;
+    }
+}
+.elementor-10072 .elementor-element.elementor-element-64a3398 .jet-menu .jet-menu-item .top-level-link {
+    font-size: 16px!important;
 }
 body {
     font-family: 'gilroy', sans-serif;
@@ -413,7 +419,7 @@ p.error-message {
 }
 .tooltip {
     height: fit-content;
-    display: flex;
+    display: inline-flex;
     border: none;
     margin-left: 4px;
     position: relative;
@@ -710,7 +716,14 @@ let tooltipIcon = `<svg width="25" height="24" viewBox="0 0 25 24" fill="none" x
 <path d="M11.75 16V14.5H13.25V16H11.75Z" fill="#0098B0"/>
 </svg>`;
 
-if (window.location.href.includes('https://www.uplead.com/findleadsnow/'))  { // new team solution page
+if (window.location.href.includes('https://www.uplead.com/pricing-2/team-solution-page/'))  { // new team solution page
+  
+    document.head.insertAdjacentHTML('beforeend',`
+        <link rel="stylesheet" id="elementor-global-css" href="https://www.uplead.com/wp-content/uploads/elementor/css/global.css" media="all">
+        <link rel="stylesheet" id="elementor-post-6232-css" href="https://www.uplead.com/wp-content/uploads/elementor/css/post-6232.css" media="all">
+        <link rel="stylesheet" id="elementor-post-10072-css" href="https://www.uplead.com/wp-content/uploads/elementor/css/post-10072.css" media="all"></link>
+    `)
+  
     let style = `
     ${styleBase}
     <style>
@@ -918,10 +931,12 @@ if (window.location.href.includes('https://www.uplead.com/findleadsnow/'))  { //
             <div class="left">
                 <div class="tab">Team solution</div>
                 <h1>10X Your ROI: Master Complex Sales Cycles with UpLead</h1>
-                <p class="c-gray">Accelerate your sales efforts with UpLead's precise, verified direct dials, phone numbers, and emails, reducing manual work and boosting efficiency</p>
+                <p class="c-gray">Schedule a demo and see how UpLead can grow your sales efforts</p>
                 <ul class="list-customer">
                     <li><b>Unlimited Potential:</b> Customise your sales pipeline with unlimited prospects and users for targeting ideal customers</li>
                     <li><b>Dedicated Support and Mentoring:</b> Maximise ROI with ongoing guidance for sales optimisation</li>
+                    <li><b>Advanced Search & Intent Data:</b> Filter prospects actively seeking solutions like yours for effective sales approaches </li>
+                    <li><b>Accurate Contact Data:</b> Rely on our verified contact information for meaningful connections </li>
                 </ul>
                 <img src="${dir}/img/medals-2.svg" alt="medals image">
             </div>
@@ -1159,7 +1174,7 @@ if (window.location.href.includes('https://www.uplead.com/findleadsnow/'))  { //
 
 
     let initNewPage = setInterval(() => {
-        if (document.body) {
+        if (document.querySelector('.entry-content')) {
             clearInterval(initNewPage)
 
             //add fonts
@@ -1170,7 +1185,7 @@ if (window.location.href.includes('https://www.uplead.com/findleadsnow/'))  { //
             `)
             //add style/html
             document.body.insertAdjacentHTML('afterbegin', style)
-            document.body.insertAdjacentHTML('afterbegin', html)
+            document.querySelector('.entry-content').insertAdjacentHTML('afterbegin', html)
             
         }
     })
@@ -1183,16 +1198,19 @@ if (window.location.href.includes('https://www.uplead.com/findleadsnow/'))  { //
             'nameBtn': 'Try For Free',
             'hrefBtn': 'https://app.uplead.com/trial-signup',
             'info': `
-                <p>7 days with 5</p>
-                <p class="flex-center"><span class="c-blue-dark">Then $99/mo</span>, with <span class="c-blue-dark fw-semi">170 Credits</span> <span class="tooltip">${tooltipIcon}</span></p>
+                <p class="flex-center">7 days & <span class="c-blue-dark fw-semi">5 Credits</span> <span class="tooltip">${tooltipIcon}<span class="tooltiptext">Credit unlocks a contact for download or CRM export and gives access to their email and mobile or direct dial. One credit = one contact.</span></span></p>
+                <p class="flex-center"><span class="c-blue-dark fw-semi">Then $99/mo</span> & <span class="c-blue-dark fw-semi"> 170 Credits</span> <span class="tooltip">${tooltipIcon}<span class="tooltiptext">Credit unlocks a contact for download or CRM export and gives access to their email and mobile or direct dial. One credit = one contact.</span></span></p>
                 <p>Billed annually</p>
             `,
-            'includes': [
-                'Free includes:','Single User Account','135M Verified Emails, Phone Numbers and Direct Dials',
-                'CRM Integration',
-                'Data Enhancement',
-                'Competitor Intelligence'
-            ]
+            'includes': {
+                'Free includes:': '',
+                'Single User Account' : 'Individual user account',
+                '135M Verified Emails, Phone Numbers and Direct Dials' : 'Verified email addresses and phone numbers with a data accuracy rate of 95%',
+                'CRM Integration' : 'Connect to Salesforce, Hubspot, Zoho, Pipedrive, Microsoft Dynamics 365, Outreach, SalesLoft, Reply.io, Woodpecker, Copper, Nimble, Mailshake, Lemlist, Close and Insightly. Also 1,500+ other apps by using Zapier',
+                'Data Enhancement' : 'Enhance your leads with contact information by uploading a list of names and companies and adding key details such as email addresses, phone numbers and social links',
+                'Competitor Intelligence' : 'Find competitors to your ideal prospects'
+            }
+            
         },
         {
             'top': 'For Small Teams with 2-5 Users',
@@ -1201,13 +1219,17 @@ if (window.location.href.includes('https://www.uplead.com/findleadsnow/'))  { //
             'nameBtn': 'Book a Demo',
             'hrefBtn': '#',
             'info': `
-                <p>Team account up to <span class="c-blue-dark fw-semi">5 seats</span></p>
-                <p class="flex-center"><span class="c-blue-dark fw-semi">Custom</span> number of Credits <span class="tooltip">${tooltipIcon}</span></p>
+                <p>Number of seats:  <span class="c-blue-dark fw-semi">Up to 5</span></p>
+                <p>Number of Credits: <span class="c-blue-dark fw-semi">Custom</span></p>
             `,
-            'includes': [
-                'Everything in Starter and:','Up to 5 Users Seats','Intent Data','Advanced Search Filters',
-                'Email Pattern Intel','Suppression List Uploads'
-            ]
+            'includes': {
+                'Everything in Starter and:': '',
+                'Up to 5 Users Seats': 'Team account with up to 5 total users maximum',
+                'Intent Data': 'Find out which prospects are looking for the solution you offer',
+                'Advanced Search Filters': 'Hone your ICP (Ideal Customer Profile) with advanced search filters that allow you to find the perfect prospects based on the technologies they use, industry, revenue and more',
+                'Email Pattern Intel': 'See the most common email format for companies. <br> (e.g. first.last@domain.com)',
+                'Suppression List Uploads: ': 'Upload lists of contacts/companies to exclude from your search results'
+            }
         },
         {
             'top': 'For Big Teams with 5+ users',
@@ -1216,35 +1238,39 @@ if (window.location.href.includes('https://www.uplead.com/findleadsnow/'))  { //
             'nameBtn': 'Contact Sales',
             'hrefBtn': 'https://www.uplead.com/findleadsnow/',
             'info': `
-                <p><span class="c-blue-dark fw-semi">Custom</span> users seats</p>
-                <p><span class="c-blue-dark fw-semi">Custom</span> team’s accounts</p>
-                <p class="flex-center"><span class="c-blue-dark fw-semi">Custom</span> number of Credits <span class="tooltip">${tooltipIcon}</span></p>
+                <p>Number of seats: <span class="c-blue-dark fw-semi">Custom</span></p>
+                <p>Number of team's account: <span class="c-blue-dark fw-semi">Custom</span> </p>
+                <p>Number of Credits: <span class="c-blue-dark fw-semi">Custom</span></p>
             `,
-            'includes': [
-                'Everything in Professional and:','Intent Data','All Search Filters','Full API Access',
-                'Prospector pro API','Competitor Intelligence'
-            ]
+            'includes': {
+                'Everything in Professional and:': '',
+                'Intent Data': 'Find out which prospects are looking for the solution you offer',
+                'All Search Filters': 'Hone your ICP (Ideal Customer Profile) with all the search filters available, allowing you to find the perfect prospects based on all available data',
+                'Full API Access': `Use UpLead's API to access all API calls and seamlessly enrich company and contact information for your product`,
+                'Prospector pro API': `Use UpLead's API to access all UpLead's search functionality`,
+                'Competitor Intelligence': 'Find competitors to your ideal prospects'
+            }
         }
     ];
     
     let itemPlans = (href, topText, title, spanText, btnName, info, includes, selected, active) => {
         let list = '';
-        for (let i = 0; i < includes.length; i++) {
-    
+        for (const key in includes) {
             list += `<li class="d-flex items-center">
                         ${i != 0 ? 
                             `<svg width="12" height="9" viewBox="0 0 12 9" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M10.8158 0.601562L4.01735 7.40004L1.18466 4.56734" stroke="${title == 'Professional'? '#fff': '#00A2BB'}" stroke-miterlimit="10"/>
                             </svg>` : ''
                         }
-                        ${includes[i]}
-                        ${i != 0 ? `
+                        ${key}
+                        ${includes[key] != '' ? `
                             <span class="tooltip">${tooltipIcon}
-                            <span class="tooltiptext">text</span></span>` : ''
+                            <span class="tooltiptext">${includes[key]}</span></span>` : ''
                         }
                     </li>`
-            
+                
         }
+        
         return `
             <div class="item-plan ${selected} ${active}" >
                 ${active != '' ? '<div class="item-plan_popular">Most Popular</div>': ''}
@@ -1301,17 +1327,27 @@ if (window.location.href.includes('https://www.uplead.com/findleadsnow/'))  { //
         line-height: 28px;
         color: #091D30;
     }
+    .book_demo+.data-section {
+        display: none;
+        padding: 100px 20px 60px;
+    }
+    .book_demo.active+.data-section  {
+        display: block;
+    }
+    .book_demo+.data-section p {
+        margin: 24px 0 30px;
+    }
 
     </style>
     <div class="book_demo">
         <div class="container d-flex items-center">
             <div class="left">
-                <h2>Supercharge Your Team's Sales <span class="text-nowrap">Pipeline with</span> UpLead</h2>
-                <p>Book a demo and experience UpLead's impact on your team</p>
+                <h2>Grow Your Team's Sales Pipeline with UpLead</h2>
+                <p>Book a demo to see how UpLead can be effective for your team</p>
                 <ul class="list-customer">
-                    <li><b>Team Account:</b> Accommodate up to 5 users and scale prospects to meet your team's objectives</li>
-                    <li><b>Advanced Search & Intent Data:</b> Filter prospects precisely,  personalise and time your sales outreach effectively</li>
-                    <li><b>Enriched Contact Data:</b> Enhance prospect insights for meaningful and efficient connections</li>
+                    <li><b>Team Account:</b> Add up to 5 users and scale perspectives to meet team goals</li>
+                    <li><b>Advanced Search & Intent Data:</b> Precisely filter prospects, personalise and target your sales outreach effectively</li>
+                    <li><b>Enriched Contact Data:</b> Enhance prospect insight for more efficient and profitable connections</li>
                     <li><b>Seamless Integrations:</b> Seamlessly integrate UpLead with your CRM for enhanced productivity</li>
                 </ul>
                 <p>Schedule a demo today and let UpLead transform your sales process to meet your unique goals.</p>
@@ -1319,8 +1355,12 @@ if (window.location.href.includes('https://www.uplead.com/findleadsnow/'))  { //
             </div>
             ${htmlForm}
         </div>
-    </div>`
-    
+    </div>
+    <section class="data-section text-center">
+        <h2 class="trusted-title ">Trusted by Companies<br> Commited to Sales</h2>
+        <p class="c-gray">Uplead is the preferred lead generation tool for companies selling<br> across the globe.</p>
+        <img src="https://www.uplead.com/wp-content/uploads/2021/01/good-company-logos-desktop.svg" alt="logos">
+    </section>`
   
     let initPlan = setInterval(() => {
         if (
@@ -1348,8 +1388,9 @@ if (window.location.href.includes('https://www.uplead.com/findleadsnow/'))  { //
                         }
                         /* pricing-section */
                         .pricing-section {
-                            max-width: 1030px;
+                            max-width: 1127px;
                             margin: 40px auto 100px;
+                            padding: 0 20px;
                         }
                         .pricing-section h1 {
                             margin-bottom: 24px;
@@ -1413,13 +1454,13 @@ if (window.location.href.includes('https://www.uplead.com/findleadsnow/'))  { //
                 display: none;
             }
             .plans {
-                max-width: 1085px;
+                max-width: 1087px;
                 margin: 25px auto;
                 gap: initial;
             }
             .item-plan {
-                margin: 25px 36px 25px 0;
-                width: calc(33.33% - 24px);
+                margin: 25px 32px 25px 0;
+                width: calc(33.33% - 22px);
                 border-radius: 16px;
                 border: 1px solid #E1EBEE;
                 background: #FFF;
@@ -1535,6 +1576,9 @@ if (window.location.href.includes('https://www.uplead.com/findleadsnow/'))  { //
                 line-height: 26px;
                 margin-bottom: 4px;
             }
+            .item-plan_info p span {
+                margin: 0 4px;
+            }
             .item-plan_includes {
                 list-style-type: none;
                 font-size: 16px;
@@ -1602,13 +1646,19 @@ if (window.location.href.includes('https://www.uplead.com/findleadsnow/'))  { //
                 //scroll to feature list section
                 document.querySelectorAll('.btn-show-list')[i].addEventListener('click', (e) => {
                     e.preventDefault()
-                    document.querySelector('html').scrollTop = document.querySelector(`.feature-list-section`).offsetTop + window.innerHeight;
+
+                    let scrollTarget = document.querySelector(`.feature-list-section`);
+                    let elementPosition = scrollTarget.getBoundingClientRect().top;
+                    let offsetPosition =  elementPosition + window.innerHeight / 2;
+
+                    document.querySelector('html').scrollTop = offsetPosition;
                 })
 
                 document.querySelectorAll('.item-plan')[i].querySelectorAll('.btn-plan').forEach(item => {
                     item.addEventListener('click', (e) => {
                         if (i == 1 && window.location.href.includes('https://www.uplead.com/pricing/')) {
                             toggleActive(document.querySelector('.book_demo'));
+                            
                             document.querySelector('.pricing-section').style.display = 'none';
                             document.querySelector('.ast-container').style.display = 'none';
                         } else if ((i == 1 || i == 2) && window.location.href.includes('https://app.uplead.com/plans')) {
@@ -1630,45 +1680,45 @@ if (window.location.href.includes('https://www.uplead.com/findleadsnow/'))  { //
     //Complete Feature List section
     let dataListObj = {
         'Plan Details': [
-            ['Amount of Credits','test tooltip','170 credits/ month','Custom','Custom'],
-            ['Amount of Users Seats','','1 user','Up to 5 users','Custom'],
-            ['Additional Credits','','$0.6/ credit','Custom','Custom']
+            ['Amount of Credits','Each plan has a unique number of credits. A credit unlocks a contact for download or CRM export and gives access to their email and mobile / direct dial. One credit = one contact.','170 credits/ month','Custom','Custom'],
+            ['Amount of Users Seats','Each plan has a unique number of users','1 user','Up to 5 users','Custom'],
+            ['Additional Credits','Buy additional credits if you run out. Each plan offers a custom price for additional credits.','$0.6/ credit','Custom','Custom']
         ],
         'Business data': [
-            ['Verified Emails','','','',''],
-            ['Verified Phone Numbers','','','',''],
-            ['Mobile Direct Dials','','','','']
+            ['Verified Emails','We verify email addresses with a data accuracy rate of 95%','','',''],
+            ['Verified Phone Numbers','We verify phone numbers with a data accuracy rate of 95%','','',''],
+            ['Mobile Direct Dials','Access mobile numbers or direct dials','','','']
         ],
         'Contacts Management': [
-            ['Data Enhancement','','','',''],
-            ['Technographics','','','',''],
-            ['Data Enrichment','','empty','',''],
-            ['Intent Data','','empty','','']
+            ['Data Enhancement','Enhance your leads with conta/ct information by uploading a list of names and companies and adding key details such as email addresses, phone numbers and social links','','',''],
+            ['Technographics','Find companies using competitive or complementary technologies. Search over 16,000 technologies.','','',''],
+            ['Data Enrichment','Enrich your business or disconnected contact list with over 50 accurate data points such as email, phone, social and more','empty','',''],
+            ['Intent Data','Find out which prospects are looking for the solution you offer','empty','','']
         ],
         'Competitor Analysis': [
-            ['Competitor Intelligence','','','',''],
+            ['Competitor Intelligence','Upload lists of contacts/companies to exclude from your search results','','',''],
         ],
         'Prospecting Platform': [
-            ['Advanced Search Filters','','empty','',''],
-            ['Suppression List Uploads','','empty','',''],
-            ['Email Pattern Intel','','empty','',''],
-            ['All Search Filters','','empty','empty','']
+            ['Advanced Search Filters','Hone your ICP (Ideal Customer Profile) with advanced search filters that allow you to find the perfect prospects based on the technologies they use, industry, revenue and more','empty','',''],
+            ['Suppression List Uploads','Upload lists of contacts/companies to exclude from your search results','empty','',''],
+            ['Email Pattern Intel','See the most common email format for companies. <br>(e.g. first.last@domain.com)','empty','',''],
+            ['All Search Filters','Hone your ICP (Ideal Customer Profile) with all the search filters available, allowing you to find the perfect prospects based on all available data','empty','empty','']
         ],
-        'CRM Integrations ': [
-            ['Salesforce','','','',''],
-            ['HubSpot','','','',''],
-            ['Pipedrive','','','','']
+        'Integrations': [
+            ['Zapier','Export your contacts and accounts, along with their contact information and demographics, directly to a CSV file','','',''],
+            ['CRMs','Integration with CRMs Salesforce, HubSpot, Pipedrive, Microsoft Dynamics 365, Copper, Nimble, Close, Insightly and more','','',''],
+            ['Sales Tools','Integration with sales tools Mailshake, Outreach, Reply, Zoho, SalesLoft, Woodpecker, Lemlist and more','','','']
         ],
         'UpLead Extension': [
-            ['Chrome','','','','']
+            ['Chrome','Find sales information for prospects and companies by visiting their website or LinkedIn profile','','','']
         ],
         'News': [
-            ['Company News','','','','']
+            ['Company News','See news events for companies and get alerts for companies you should be speaking with','','','']
         ],
         'API': [
-            ['Enrichment API','','empty','',''],
-            ['Prospector pro API','','empty','empty',''],
-            ['Full API Access','','empty','empty','']
+            ['Enrichment API',`Use UpLead's API to enrich your leads in real time `,'empty','',''],
+            ['Prospector pro API',`Use UpLead's API to access all UpLead's search functionality`,'empty','empty',''],
+            ['Full API Access',`Use UpLead's API to access all API calls and seamlessly enrich company and contact information for your product`,'empty','empty','']
         ]
     }
 
@@ -1824,6 +1874,13 @@ if (window.location.href.includes('https://www.uplead.com/findleadsnow/'))  { //
     })
 }
 
+
+let addItemHeader = setInterval(() => {
+    if (window.location.href.includes('https://www.uplead.com/') && document.querySelector('.jet-desktop-menu-active .elementor-10072 .elementor-element.elementor-element-64a3398 .jet-menu>.jet-menu-item:last-child')) {
+        clearInterval(addItemHeader)
+        document.querySelector('.jet-desktop-menu-active .elementor-10072 .elementor-element.elementor-element-64a3398 .jet-menu>.jet-menu-item:last-child').insertAdjacentHTML('afterend',`<li id="jet-menu-item-10058" class="jet-menu-item jet-menu-item-type-custom jet-menu-item-object-custom jet-current-menu-item jet-has-roll-up jet-simple-menu-item jet-regular-item jet-menu-item-10058"><a href="https://www.uplead.com/pricing-2/team-solution-page/" class="top-level-link menu-link" data-wpel-link="internal"><div class="jet-menu-item-wrapper"><div class="jet-menu-title">Team Solution</div></div></a></li>`);
+    }
+});
 
 //mask phome
 const mask = (inputName, mask, evt) => {
