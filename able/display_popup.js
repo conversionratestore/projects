@@ -464,8 +464,8 @@
                     || typeof localStorage["paywall-timer-seconds"] === 'undefined'
                   ) {
                     clearInterval(this.timer)
-                    document.body.style.overflow = "auto" // Allow scrolling of the background content again
                     document.querySelector('.show-popup')?.classList.remove('show-popup')
+                    document.body.style.overflow = "auto" // Allow scrolling of the background content again
                   } else {
                     document.querySelector('.popup .timer span').innerHTML = `${localStorage["paywall-timer-minutes"].padStart(2, '0')}:${localStorage["paywall-timer-seconds"].padStart(2, '0')}`
                   }
