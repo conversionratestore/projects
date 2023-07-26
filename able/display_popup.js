@@ -98,7 +98,7 @@
     }
 
     .popup .price>p {
-      margin-bottom: 12px;
+      margin-bottom: 16px;
     }
 
     .price .packs {
@@ -168,7 +168,7 @@
     }
 
     .popup button {
-      margin-block: 24px 18px;
+      margin-block: 24px 16px;
       padding: 11px 16px;
       border-radius: 8px;
       background: #EB731A;
@@ -231,6 +231,14 @@
     }
 
     @media only screen and (max-width: 768px) {
+      .popup button {
+        margin-block: 16px 12px;
+      }
+
+      .popup .price>p {
+        margin-bottom: 12px;
+      }
+
       .popup .trial-support p {
         max-width: 195px;
       }
