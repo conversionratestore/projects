@@ -20,17 +20,6 @@ const state = new Promise((resolve, reject) => {
 let styleBase = `
 <style>
 /* base */
-@media (min-width: 768px) {
-    .elementor-10072 .elementor-column.elementor-col-20.elementor-element-67ea24f {
-        width: 15%!important;
-    }
-    .elementor-10072 .elementor-element.elementor-element-ce88a86 {
-        width: 51%!important;
-    }
-}
-.elementor-10072 .elementor-element.elementor-element-64a3398 .jet-menu .jet-menu-item .top-level-link {
-    font-size: 16px!important;
-}
 body {
     font-family: 'gilroy', sans-serif;
     font-style: normal;
@@ -215,7 +204,7 @@ b {
 p.error-message {
     position: absolute;
     left: 0;
-    bottom: 9px;
+    top: calc(100% - 24px);
     font-size: 12px;
     line-height: 1;
     color: red;
@@ -715,6 +704,19 @@ let tooltipIcon = `<svg width="25" height="24" viewBox="0 0 25 24" fill="none" x
 <path d="M9.5 10C9.5 8.35059 10.8506 7 12.5 7C14.1494 7 15.5 8.35059 15.5 10C15.5 11.2158 14.709 12.3115 13.5547 12.6953L13.25 12.7891V13.75H11.75V12.7891C11.75 12.1475 12.1689 11.5615 12.7812 11.3594L13.0859 11.2656C13.6309 11.084 14 10.5742 14 10C14 9.16211 13.3379 8.5 12.5 8.5C11.6621 8.5 11 9.16211 11 10H9.5Z" fill="#0098B0"/>
 <path d="M11.75 16V14.5H13.25V16H11.75Z" fill="#0098B0"/>
 </svg>`;
+
+
+function setUtm() {
+    var match = document.cookie.match('(?:^|;)\\s*_ga=([^;]*)');
+    var raw = (match) ? decodeURIComponent(match[1]) : null;
+    if (raw) {
+        match = raw.match(/(\d+\.\d+)$/);
+    }
+    var gacid = (match) ? match[1] : null;
+    if (gacid) {
+        return gacid;
+    } else return "n/a";
+}
 
 if (window.location.href.includes('https://www.uplead.com/pricing-2/team-solution-page/'))  { // new team solution page
   
@@ -1665,9 +1667,11 @@ if (window.location.href.includes('https://www.uplead.com/pricing-2/team-solutio
                             toggleActive(document.querySelector('.popup'));
                             toggleActive(document.querySelector('.overflow-bg'));
                             document.querySelector('.block_calendly').style = `position:initial; opacity:1;pointer-events:auto;height:510px;`;
-               
+                            
+                            let utm_term = setUtm()
+
                             window.Calendly.initInlineWidget({
-                                url: `https://calendly.com/upleadhq/phone-call/?hide_event_type_details=1&hide_gdpr_banner=1`,
+                                url: `https://calendly.com/upleadhq/phone-call/?utm_term=${utm_term}&hide_event_type_details=1&hide_gdpr_banner=1`,
                                 parentElement: document.querySelector(".block_calendly")
                             })
                         }
@@ -1878,7 +1882,21 @@ if (window.location.href.includes('https://www.uplead.com/pricing-2/team-solutio
 let addItemHeader = setInterval(() => {
     if (window.location.href.includes('https://www.uplead.com/') && document.querySelector('.jet-desktop-menu-active .elementor-10072 .elementor-element.elementor-element-64a3398 .jet-menu>.jet-menu-item:last-child')) {
         clearInterval(addItemHeader)
-        document.querySelector('.jet-desktop-menu-active .elementor-10072 .elementor-element.elementor-element-64a3398 .jet-menu>.jet-menu-item:last-child').insertAdjacentHTML('afterend',`<li id="jet-menu-item-10058" class="jet-menu-item jet-menu-item-type-custom jet-menu-item-object-custom jet-current-menu-item jet-has-roll-up jet-simple-menu-item jet-regular-item jet-menu-item-10058"><a href="https://www.uplead.com/pricing-2/team-solution-page/" class="top-level-link menu-link" data-wpel-link="internal"><div class="jet-menu-item-wrapper"><div class="jet-menu-title">Team Solution</div></div></a></li>`);
+        document.body.insertAdjacentHTML('afterbegin',`
+        <style>
+        @media (min-width: 768px) {
+            .elementor-10072 .elementor-column.elementor-col-20.elementor-element-67ea24f {
+                width: 15%!important;
+            }
+            .elementor-10072 .elementor-element.elementor-element-ce88a86 {
+                width: 51%!important;
+            }
+        }
+        .elementor-10072 .elementor-element.elementor-element-64a3398 .jet-menu .jet-menu-item .top-level-link {
+            font-size: 16px!important;
+        }
+        </style>`)
+        document.querySelector('.jet-desktop-menu-active .elementor-10072 .elementor-element.elementor-element-64a3398 .jet-menu>.jet-menu-item:last-child').insertAdjacentHTML('afterend',`<li id="jet-menu-item-10058" class="jet-menu-item jet-menu-item-type-custom jet-menu-item-object-custom ${window.location.href.includes('/pricing-2/team-solution-page/') ? ' jet-current-menu-item ' : ''} jet-has-roll-up jet-simple-menu-item jet-regular-item jet-menu-item-10058"><a href="https://www.uplead.com/pricing-2/team-solution-page/" class="top-level-link menu-link" data-wpel-link="internal"><div class="jet-menu-item-wrapper"><div class="jet-menu-title">Team Solution</div></div></a></li>`);
     }
 });
 
@@ -1990,7 +2008,7 @@ let submitForm = setInterval(() => {
 
         //select
 
-        let newBlock = document.querySelector('.book_demo'),
+        let newBlock = document.querySelector('.form_contact'),
             inputPhone = document.querySelector('#phoneCode'),
             inputName = document.querySelector('#full-name'),
             inputEmail = document.querySelector('#input-email'),
@@ -2063,8 +2081,10 @@ let submitForm = setInterval(() => {
                 document.querySelector('.block_calendly').style = `position:initial; opacity:1;pointer-events:auto;height:510px;margin-top: -30px;`;
                 document.querySelector('.form_contact h2').innerHTML = 'UpLead Product Demo';
 
+                let utm_term = setUtm()
+
                 window.Calendly.initInlineWidget({
-                    url: `https://calendly.com/upleadhq/phone-call/?name=${inputName.value}&email=${inputEmail.value}&hide_event_type_details=1&hide_gdpr_banner=1`,
+                    url: `https://calendly.com/upleadhq/phone-call/?utm_term=${utm_term}&name=${inputName.value}&email=${inputEmail.value}&hide_event_type_details=1&hide_gdpr_banner=1`,
                     parentElement: document.querySelector(".block_calendly")
                 })
             } 
