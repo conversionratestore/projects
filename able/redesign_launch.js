@@ -347,6 +347,11 @@
     }
 
     @media only screen and (min-width: 769px) {
+      .email_step ul,
+      .email_step ul li span:last-child {
+        margin-bottom: 0;
+      }
+
       body.grayBg {
         background: #F6F6F6;
       }
