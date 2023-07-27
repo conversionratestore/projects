@@ -571,6 +571,54 @@ product-quick-buy button {
 </style>`;
 
 
+let componentCarousel = (variant, title) => {
+    let span = variant == 'basket-empty' ? `<p class="m-t-1 p1 ng-star-inserted">New Arrivals</p>` : `
+    <div _ngcontent-app-c405="" sizeclass="!S: flex flex-justify-center m-t-3" class="col-12 underline m-b-6-s m-b-6-m ng-star-inserted">
+        <button _ngcontent-app-c405="" zippyclass="col-1" class="s1 product-carousel-tab m-t-2-s w-12-s col-1 ng-star-inserted">
+            <span _ngcontent-app-c405="" class="underline-s">Recently Viewed</span>
+        </button>
+        <button _ngcontent-app-c405="" zippyclass="col-1" class="s1 product-carousel-tab m-t-2-s w-12-s ng-star-inserted">
+            <span _ngcontent-app-c405="" class="underline-s">Customers Also Bought</span>
+        </button>
+    </div>`;
+
+    return `
+        <cms-outlet-block variant="${variant}" class="w-12 cms-block">
+            <cms-outlet style="display: block; position: relative;" class="ng-star-inserted">
+                <div>
+                    <div class="ng-star-inserted">
+                        <page-component-product-carousel 
+                            class="ng-star-inserted cms-component page-component-product-carousel">
+                            <div class="center wrap-x">
+                                <h1 sizeclass="XL:h1, MS:h2" class="p-t-5-s b-t-s b-col-42-s h2 ng-star-inserted">${title}</h1>
+                                ${span}
+                                <div class="p-t-3 p-b-3 text ng-star-inserted">
+                                    <p class="p1 m-b-0-s ng-star-inserted"></p>
+                                </div>
+                                <div sizeclass="!S: flex flex-justify-center m-t-3" class="col-12 underline m-b-6-s m-b-6-m ng-star-inserted"></div>
+                                
+                                <div sizeclass="XL:m-l-6 m-r-6,SM:m-l m-r" class="p-l-6 p-r-6">
+                                    <related-products
+                                        class="block m-b-8" _nghost-app-c143="">
+                                        <div class="ng-star-inserted">
+                                            <swiper _ngcontent-app-c143 class="p-b-7 swiper" >
+                                                <div class="swiper-scrollbar"></div>
+                                                <div class="swiper-wrapper"></div>
+                                                <span class="swiper-notification"></span>
+                                            </swiper>
+                                           
+                                        </div>
+                                    </related-products>
+                                </div>
+                            </div>
+                        </page-component-product-carousel>
+                    </div>
+                    <div></div>
+                </div>
+            </cms-outlet>
+        </cms-outlet-block>`
+}
+
 let cartHTML = `
     <div class="cart empty">
         <div class="cart_container flex-column">
@@ -588,46 +636,14 @@ let cartHTML = `
                 </div>
             </div>
             <div class="cart_favourites">
-                <cms-outlet-block variant="basket-empty" name="Empty Basket" class="w-12 cms-block">
-                    <cms-outlet style="display: block; position: relative;" class="ng-star-inserted">
-                        <div>
-                            <div class="ng-star-inserted">
-                                <page-component-product-carousel 
-                                    class="ng-star-inserted cms-component page-component-product-carousel">
-                                    <div class="center wrap-x">
-                                        <h1 sizeclass="XL:h1, MS:h2" class="p-t-5-s b-t-s b-col-42-s h2 ng-star-inserted">Our Favourites</h1>
-                                        <p class="m-t-1 p1 ng-star-inserted">New Arrivals</p>
-                                        <div class="p-t-3 p-b-3 text ng-star-inserted">
-                                            <p class="p1 m-b-0-s ng-star-inserted"></p>
-                                        </div>
-                                        <div sizeclass="!S: flex flex-justify-center m-t-3" class="col-12 underline m-b-6-s m-b-6-m ng-star-inserted"></div>
-                                        
-                                        <div sizeclass="XL:m-l-6 m-r-6,SM:m-l m-r" class="p-l-6 p-r-6">
-                                            <related-products
-                                                class="block m-b-8" _nghost-app-c143="">
-                                                <div class="ng-star-inserted">
-                                                    <swiper _ngcontent-app-c143 class="p-b-7 swiper">
-                                                        <div class="swiper-scrollbar"></div>
-                                                        <div class="swiper-wrapper"></div>
-                                                        <span class="swiper-notification"></span>
-                                                    </swiper>
-                                                </div>
-                                            </related-products>
-                                        </div>
-                                    </div>
-                                </page-component-product-carousel>
-                            </div>
-                            <div></div>
-                        </div>
-                    </cms-outlet>
-                </cms-outlet-block>
+               ${componentCarousel('basket-empty', 'Our Favourites')}
             </div>
 
             <div class="cart_body">
-            <div class="cart_ecologi flex flex-middle flex-justify-center" hidden>
-                <img class="m-r-2" src="/tco-images/unsafe/68x34/filters:quality(70)/https://www.lemieux.com/static/cms/media/Ecologi_Logo_Black-1-(1).png">
-                <p></p>
-            </div>
+                <div class="cart_ecologi flex flex-middle flex-justify-center" hidden>
+                    <img class="m-r-2" src="/tco-images/unsafe/68x34/filters:quality(70)/https://www.lemieux.com/static/cms/media/Ecologi_Logo_Black-1-(1).png">
+                    <p></p>
+                </div>
                 <div class="cart_topBar flex flex-middle flex-justify-center">
                     <svg class="m-r-2" width="26" height="26" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <g clip-path="url(#clip0_128_3164)">
@@ -648,6 +664,9 @@ let cartHTML = `
 
                 <ul class="cart_products"></ul>
 
+                <div class="cart_extra">
+                    ${componentCarousel('basket-extra', 'Add a little extra')}
+                </div>
                 <div class="coupon"> 
                     <a href="/e-gift-card-173" class="coupon_vouchers coupon_item coupon_current flex flex-middle">
                         <svg class="m-r-3 flex-noshrink" width="20" height="18" viewBox="0 0 20 18" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -741,6 +760,45 @@ let getFetch = (host) => new Promise((resolve, reject) => {
 
 let reqCategory = getFetch('n/category/76/verbosity/3');
 
+let backdrop = (size, sizeBox, name) => `
+    <div class="cdk-overlay-backdrop cdk-overlay-dark-backdrop cdk-overlay-backdrop-showing"></div>
+    <div class="cdk-global-overlay-wrapper" dir="ltr" style="justify-content: flex-start; align-items: flex-start;">
+        <div id="cdk-overlay-1" class="cdk-overlay-pane"
+            style="width: 100%; height: 100%; max-width: 100%; position: static; margin: 0px;">
+            <div tabindex="0" class="cdk-visually-hidden cdk-focus-trap-anchor" aria-hidden="true"></div>
+            <modal-bottom-container tabindex="-1" aria-modal="true"
+                class="modal-container modal-bottom-container ng-tns-c22-24 ng-trigger ng-trigger-modalBottomContainer ng-star-inserted modal-container-overflow-hidden"
+                id="modal-1" role="dialog" style="transform: translateY(0%);">
+                <div class="pos-absolute bottom-0 left-2 right-2 z-3 bg-col-w p-a p-b-5 quick-add-to-basket ng-star-inserted">
+                    <button _ngcontent-app-c142="" type="button" class="pos-absolute p-a top-0 right-0" aria-label="Close">
+                        <i aria-hidden="true" class="icon-close"></i>
+                    </button>
+                    <h4 class="h4 col-11 center m-t p-l-14 p-r-14 m-b-5-s">${name}</h4>
+                    <div class="body-configurable-options">
+                        <lp-product-configurable-options class="w-12 p-l-2 p-r-2 p-t-5 p-r-0-s p-b p-l-0-s center">
+                            <p class="p2 col-11 m-b-1 ng-star-inserted">Size: ${size}</p>
+                            ${sizeBox}
+                        </lp-product-configurable-options>
+                        <lp-product-in-stock-date class="ng-star-inserted"></lp-product-in-stock-date>
+                        <lp-add-to-basket class="flex-column flex-column-reverse-s flex-grow-s ng-star-inserted">
+                            <action cy-basketaddbutton="" class="w-12 button p-r-0-s p-l-0-s btn-add-to-bag">
+                                <span class="button__busy">
+                                    <span class="bounce1"></span>
+                                        <span _ngcontent-app-c81=""
+                                    class="bounce2"></span></span>
+                                    <span class="button__body"> Add to bag</span>
+                            </action>
+                            <result class="block ng-hide c-red">
+                                <p class="s2 m-t-1"></p>
+                            </result>
+                        </lp-add-to-basket>
+                    </div>
+                </div>
+            </modal-bottom-container>
+            <div tabindex="0" class="cdk-visually-hidden cdk-focus-trap-anchor" aria-hidden="true"></div>
+        </div>
+    </div>`;
+
 // pushDataLayer
 let pushDataLayer = (name, desc, type, loc) => {
     console.log(name + ' : ' + desc + ' : ' + type + ' : ' + loc)
@@ -823,7 +881,7 @@ let updateTotal = (parent, totals, items, coupon) => {
 
             parent.querySelectorAll(`[data-name="grand_total"] .pr`).forEach((pr,index) => {
                 pr.innerHTML = currency + (totals['grand_total'] + isShipNew).toFixed(2)
-                console.log(pr.previousElementSibling)
+               
                 if (pr.previousElementSibling) {
                     pr.previousElementSibling.remove()
                    
@@ -855,43 +913,149 @@ let addProduct = (parent, items, totals, count, coupon) => {
     console.log(parent) 
 
     updateTotal(parent, totals, items, coupon) 
+    let records = [];
 
-    for (let i = 0; i < items.length; i++) {
-        getFetch(`n/product/${items[i].product}/verbosity/3`).then(dataItem => {
-            console.log(dataItem)
+    let getRecords = () => new Promise((resolve, reject) => {
+        for (let i = 0; i < items.length; i++) {
+        
+            getFetch(`n/product/${items[i].product}/verbosity/3`).then(dataItem => {
+                console.log(dataItem)
 
-            let item = dataItem.result[0];
+                let item = dataItem.result[0];
 
-            let options = '';
+                console.log(`${item.parent}-${item.id}`)
+                let options = '';
 
-            if (item.size) {
-                let size = JSON.stringify(window.autoInitData.data.attribute).split(`${item.size},"label":"`)[1].split('"')[0];
-       
-                let iSlash = size.split('\\') ? size.replace('\\','"') : size;
-                options += `<span class="option"><span>Size: </span> ${iSlash}</span> `
-            } 
-            if (item.color) {
-                options += `<span class="option"><span>Colour: </span> ${JSON.stringify(window.autoInitData.data.attribute).split(`${item.color},"label":"`)[1].split('"')[0]}</span> `
-            }
+                if (item.size) {
+                    let size = JSON.stringify(window.autoInitData.data.attribute).split(`${item.size},"label":"`)[1].split('"')[0];
+        
+                    let iSlash = size.split('\\') ? size.replace('\\','"') : size;
+                    options += `<span class="option"><span>Size: </span> ${iSlash}</span> `
+                } 
+                if (item.color) {
+                    options += `<span class="option"><span>Colour: </span> ${JSON.stringify(window.autoInitData.data.attribute).split(`${item.color},"label":"`)[1].split('"')[0]}</span> `
+                }
 
-            new Product(
-                document.querySelector('.cart_products'), 
-                item.url, 
-                item.image, 
-                item.name, 
-                items[i].price, 
-                item.org_price ? item.org_price : item.price, 
-                options, 
-                items[i].id,
-                item.id,
-                currency,
-                items[i].request.qty).render()
+                new Product(
+                    document.querySelector('.cart_products'), 
+                    item.url, 
+                    item.image, 
+                    item.name, 
+                    items[i].price, 
+                    item.org_price ? item.org_price : item.price, 
+                    options, 
+                    items[i].id,
+                    item.id,
+                    currency,
+                    items[i].request.qty).render()
 
-
+                
+                records.push()
+                
                 parent.classList.remove('loading');
+                resolve({"id":`${item.parent}-${item.id}`})
+            })
+            
+        }
+    })
+    getRecords()
+    records.push(getRecords())
 
-        })
-    }
+    console.log(records)
+
+    Promise.all(records).then(data => {
+        console.log(data)
+        let obj
+        fetch(`https://eucs30v2.ksearchnet.com/cs/v2/search`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({"context":{"apiKeys":["klevu-166193529863215439"]},"recordQueries":[{"id":"klevuRECSItemList","typeOfRequest":"RECS_ALSO_BOUGHT","settings":{"typeOfRecords":["KLEVU_PRODUCT"],"limit":10,"context":{"recentObjects":[{"typeOfRecord":"KLEVU_PRODUCT",
+            "records":data}]}}}]})
+        }).then(res => res.json()).then(dataBought => {
+            console.log(dataBought)
+
+            parent.querySelector('.cart_extra .swiper-wrapper').innerHTML = '';
+
+            let itemsRecords = dataBought.queryResults[0].records;
+
+            for (let i = 0; i < itemsRecords.length; i++) {
+                let item = itemsRecords[i];
+
+                //stars
+                let stars = '';
+                let reviewCount = 0;
+                if (item.rating) {
+                    let reviewRating = (+item.rating).toFixed(1);
+                    reviewCount = item.ratingCount;
+
+                    let iWholeStars = Math.floor(reviewRating);
+                    let iEmptyStars = 5 - Math.ceil(reviewRating);
+
+                    let blnHalfStar = (iWholeStars < reviewRating);
+                
+                    for (var iStar = 1; iStar <= iWholeStars; iStar++) {
+                        stars += '<i class="rate-full"></i>'
+                    }
+                
+                    if (blnHalfStar) {
+                        stars += '<i class="rate-half"></i>'
+                    } 
+                    for (let iEmp = 0; iEmp < iEmptyStars; iEmp++) {
+                        stars += '<i class="rate-empty"></i>'
+                    }
+                }
+
+                parent.querySelector('.cart_extra .swiper-wrapper').insertAdjacentHTML('beforeend', 
+                slide(item.url, item.name, 'product/'+item.image.split('/200X200/')[1], reviewCount, '', +item.salePrice, stars, item.itemGroupId, '', 0, +item.price))
+                
+                getFetch(`n/product/${item.itemGroupId}/verbosity/3`).then(dataProduct => {
+                    
+                    console.log(dataProduct)
+
+                    let product = dataProduct.result[0]
+
+                    //sizes
+                    let size = product.size_org ? product.size_org : product.size;
+                    let sizes = '';
+                    let sizeItem = JSON.stringify(window.autoInitData.data.attribute).split(`${size[0]},"label":"`)[1].split('"')[0].replace('\\','"')
+                    
+                    for (let k = 0; k < size.length; k++) {
+
+                        sizes += ` 
+                        <box class="inline-block va-m cursor-pointer m-t-1 m-r-1 ng-star-inserted ${k == 0 ? 'is-selected' : ''}" data-id="${product.directChildrenIds[k]}" _nghost-app-c120="">
+                            <div _ngcontent-app-c120="" class="p2 b-a inline-block center box">${JSON.stringify(window.autoInitData.data.attribute).split(`${size[k]},"label":"`)[1].split('"')[0].replace('\\','"')} </div>
+                        </box>`
+
+                    
+                    }
+
+                    parent.querySelector(`.cart_extra .product-size[data-id="${itemsRecords[i].itemGroupId}"]`).innerHTML = sizes;
+                    parent.querySelector(`.cart_extra .product-size[data-id="${itemsRecords[i].itemGroupId}"]+product-quick-buy`).dataset.size = sizeItem;
+
+                    let catalog = dataProduct.catalog;
+                    for (let j = 0; j < catalog.length; j++) {
+                        if (parent.querySelector(`.cart_extra .product-size > [data-id="${catalog[j].id}"]`)) {
+                            let isOut = catalog[j].isOut && catalog[j].isOut == true ? 'is-warning' : '';
+                            isOut != '' ? parent.querySelector(`.cart_extra .product-size > [data-id="${catalog[j].id}"]`).classList.add(isOut) : '';
+                        }
+                    }
+                    
+                })
+                
+                
+
+                modal(parent.querySelector('.cart_extra'))
+              
+            }
+            
+            // backdrop(size, sizeBox, name)
+        }).catch((error) => {
+            console.error('Error:', error);
+        });
+    })
+
 
     parent.querySelector('.cart_head span').innerHTML = count;
 
@@ -1456,7 +1620,7 @@ class Coupon {
         formElement.className = this.classes + '_form';
         formElement.innerHTML = `
         <input-wrap class="input-wrap no-validation-icon">
-            <div class="has-label is-required mui-input"><!---->
+            <div class="has-label is-required mui-input">
                 <input type="text" name="${this.name}" required="" class="input ng-pristine ng-invalid ng-touched" oninput="validCoupon(event)" onblur="validCoupon(event, 'blur')" onclick="validCoupon(event, 'click')">
                 <label>Enter offer code</label>
                 <validation class="ng-hide">This is a required field.</validation>
@@ -1514,6 +1678,160 @@ let scriptCustomStyle = document.createElement('link')
 scriptCustomStyle.href = 'https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css'
 scriptCustomStyle.rel = 'stylesheet'
 
+let slide = (url, name, image, reviewCount, sizeItem, price, stars, id, sizes, sizeLength, org_price) => {
+    let webCode = window.autoInitData.website.websiteCode != 'base' ? '/'+window.autoInitData.website.websiteCode : '';
+
+    return ` 
+    <div class="swiper-slide ng-star-inserted">
+        <product class="w-12 left ng-star-inserted" style="visibility: visible;">
+            <div class="pos-relative flex-column height-100 product-card ng-star-inserted">
+                
+                <div class="ng-star-inserted">
+                    <div class="pos-relative">
+                        <a class="w-12 ratio-3-4 overflow-hidden ng-star-inserted"
+                            href="${webCode+url}">
+                            <shell>
+                                <img class="_shellImg">
+                            </shell>
+                            <img class="rf dynamic-image loaded" alt="${name}"
+                                src="/tco-images/unsafe/152x203/filters:format(webp):quality(70)/https://${window.location.host}/static/media/catalog/${image}">
+                        </a>
+                        <div class="product-size" style="display: none;" data-id="${id}">${sizes}</div>
+                        <product-quick-buy class="pos-absolute bottom-2 right-2 z-1 ng-tns-c133-30 ng-star-inserted" data-size="${sizeItem}" data-name="${name}">
+                            <button class="quick-add-btn bg-col-w flex flex-middle flex-justify-center ng-tns-c133-30 ng-star-inserted">
+                                <i aria-hidden="true" class="icon-basket-add flex col-12 p-a-1 ng-tns-c133-30"></i>
+                            </button>
+                        </product-quick-buy>
+                    </div>
+                    <wishlist-toggle _ngcontent-app-c142="" class="product-wishlist ng-star-inserted">
+                        <div class="pos-absolute top-2 z-1 right-2">
+                            <div>
+                                <action cy-wishlistaddbtn="" data-id="${id}" class="wishlist-button cursor-pointer" _nghost-app-c81="">
+                                    <span _ngcontent-app-c81="" class="button__busy">
+                                        <span _ngcontent-app-c81="" class="bounce1"> </span>
+                                        <span _ngcontent-app-c81="" class="bounce2"></span>
+                                    </span>
+                                    <span _ngcontent-app-c81="" class="button__body">
+                                        <i aria-hidden="true" class="inline-flex icon-wishlist" style="font-size: 1.1em;"></i>
+                                    </span>
+                                </action>
+                            </div>
+                        </div>
+                        <result class="block ng-hide"><p class="s2 m-t-1"></p></result>
+                    </wishlist-toggle>
+                    <div  class="m-t-3 p-b-1">
+                        <a sizeclass="!SM: p1, SM: p2" cy-listingproductname="" class="p2 col-1" href="${webCode+url}">${name}</a>
+                        <p sizeclass="!SM: p1, SM: p2" class="m-t-1 col-12 p2 ng-star-inserted"> ${sizeLength} Colours</p>
+                        <div sizeclass="!SM: p1, SM: p2" class="m-t-1 p1 col-1">
+                            <product-price class="m-r-1 price">
+                                ${window.autoInitData.website.currency.list[0].symbol + price.toFixed(2)}
+                            </product-price>
+                            ${org_price && org_price > price ? `<product-price class="m-r-1 line-through col-12">` +
+                                window.autoInitData.website.currency.list[0].symbol + org_price.toFixed(2) +
+                            `</product-price>` : '' }
+                        </div>
+                        ${reviewCount > 0 ? ` 
+                        <div class="flex flex-middle m-t-1" style="margin-left: -0.14rem;">
+                            <rating class="inline-flex fs-7-x fs-7-l ng-star-inserted">${stars}</rating>
+                            <span sizeclass="XL:p1, MS:p2" class="m-l-2 p1 ng-star-inserted" style="line-height: 1em;">(${reviewCount})</span>
+                        </div>`: ''}
+                        
+                    </div>
+                </div>
+            </div>
+        </product>
+    </div>`;
+}
+
+let modal = (parent) => {
+    let classesParent = parent.classList.contains('cart_favourites') ? '.cart_favourites' : '.cart_extra'
+
+    parent.querySelectorAll('product-quick-buy').forEach((el, index) => {
+        parent.querySelectorAll('.wishlist-button')[index].addEventListener('click', (e) => {
+            let body = {"product": e.currentTarget.dataset.id};
+            
+            e.currentTarget.classList.add('busy')
+
+            postFetch('wishlist/add', body).then(dataWishlist => {
+                console.log(dataWishlist)
+
+                let webCode = window.autoInitData.website.websiteCode != 'base' ? '/'+window.autoInitData.website.websiteCode : '';
+                if (dataWishlist.error && dataWishlist.error == 'LOGGEDOUT') {
+                    window.location.href = webCode + '/login'
+                } else {
+                    e.target.closest('.product-wishlist').innerHTML = `<div class="pos-absolute top-2 z-1 w-12 center p-l-2 p-r-2"><div class="p-a-1 bg-col-w flex flex-middle flex-justify-center"><action cy-wishlistaddbtn="" class="wishlist-button cursor-pointer" _nghost-app-c81=""><span _ngcontent-app-c81="" class="button__busy"><span _ngcontent-app-c81="" class="bounce1"></span><span _ngcontent-app-c81="" class="bounce2"></span></span><span _ngcontent-app-c81="" class="button__body"><i aria-hidden="true" class="inline-flex icon-wishlist-fill col-1" style="font-size: 1.1em;"></i></span></action><span sizeclass="XL:p1" class="p-l-2 p3 ng-star-inserted">Added to wishlist</span></div></div>`
+                }
+            })
+        })
+
+        el.addEventListener('click', () => {
+            document.querySelector('.container-add-to-bag').innerHTML = backdrop(el.dataset.size, el.previousElementSibling.innerHTML, el.dataset.name)
+            
+
+            document.querySelectorAll('.container-add-to-bag box:not(.is-warning)').forEach(box => {
+                box.addEventListener('click', (e) => {
+                    e.currentTarget.parentElement.querySelector('.is-selected').classList.remove('is-selected');
+                    box.classList.add('is-selected');
+                    box.parentElement.querySelector('p').innerHTML = 'Size: ' + box.innerText;
+                })
+            })
+            document.addEventListener('click', (e) => {
+                if (e.target.classList.contains('modal-container')) {
+                    document.querySelector('.container-add-to-bag').innerHTML = '';
+                }
+            })
+            document.querySelector('.container-add-to-bag .quick-add-to-basket > button').addEventListener('click', () => {
+                document.querySelector('.container-add-to-bag').innerHTML = '';
+            })
+            document.querySelector('.container-add-to-bag .btn-add-to-bag').addEventListener('click', (e) => {
+                e.stopImmediatePropagation()
+                
+                let id = e.target.closest('.body-configurable-options').querySelector('box.is-selected').dataset.id;
+                let body = {"products":[{"id":id,"qty":1,"options":{},"bundle_options":{}}]}
+                
+                e.currentTarget.classList.add('busy')
+                parent.closest('.cart').classList.add('loading')
+                postFetch('basket/add', body).then(dataAdd => {
+                    console.log(dataAdd)
+
+                    if (dataAdd.error && dataAdd.error != '') {
+                        document.querySelector('.container-add-to-bag result p').innerHTML = dataAdd.error;
+                        document.querySelector('.container-add-to-bag result').classList.remove('ng-hide');
+                        document.querySelector('.container-add-to-bag .btn-add-to-bag').classList.remove('busy');
+                        document.querySelector('.cart').classList.remove('loading');
+                    } else {
+                        let items = dataAdd.customer.cart.items;
+                        let totals = dataAdd.customer.cart.totals;
+                        let coupon = dataAdd.customer.cart.coupon;
+
+                        document.querySelector('.container-add-to-bag').innerHTML = '';
+
+                        addProduct(document.querySelector('.cart'), items, totals, 1, coupon) 
+                    }
+                
+                })
+            })
+        })
+    })
+
+    const waitForSwiper = setInterval(() => {
+        if (typeof Swiper !== 'undefined') {
+            clearInterval(waitForSwiper)
+    
+            // #1 Main slider 
+            var swiperMainSync = new Swiper(`${classesParent} .swiper`, {
+                slidesPerView: 2,
+                // slideToClickedSlide: true,
+                spaceBetween: 16,
+                scrollbar: {
+                    el: `${classesParent} .swiper-scrollbar`,
+                    draggable: true,
+                    dragSize: 48
+                  }
+            })
+        }
+    })
+}
 let clickBasket = setInterval(() => {
     if (document.querySelector('header basket-qty') && !document.querySelector('.btn-basket') && !document.querySelector('.cart')) {
         clearInterval(clickBasket)
@@ -1561,47 +1879,9 @@ let clickBasket = setInterval(() => {
             toggleActive(cart, true)
             init()
         })
-        let backdrop = (size, sizeBox, name) => `
-      
-        <div class="cdk-overlay-backdrop cdk-overlay-dark-backdrop cdk-overlay-backdrop-showing"></div>
-        <div class="cdk-global-overlay-wrapper" dir="ltr" style="justify-content: flex-start; align-items: flex-start;">
-            <div id="cdk-overlay-1" class="cdk-overlay-pane"
-                style="width: 100%; height: 100%; max-width: 100%; position: static; margin: 0px;">
-                <div tabindex="0" class="cdk-visually-hidden cdk-focus-trap-anchor" aria-hidden="true"></div>
-                <modal-bottom-container tabindex="-1" aria-modal="true"
-                    class="modal-container modal-bottom-container ng-tns-c22-24 ng-trigger ng-trigger-modalBottomContainer ng-star-inserted modal-container-overflow-hidden"
-                    id="modal-1" role="dialog" style="transform: translateY(0%);">
-                    <div class="pos-absolute bottom-0 left-2 right-2 z-3 bg-col-w p-a p-b-5 quick-add-to-basket ng-star-inserted">
-                        <button _ngcontent-app-c142="" type="button" class="pos-absolute p-a top-0 right-0" aria-label="Close">
-                            <i aria-hidden="true" class="icon-close"></i>
-                        </button>
-                        <h4 class="h4 col-11 center m-t p-l-14 p-r-14 m-b-5-s">${name}</h4>
-                        <div class="body-configurable-options">
-                            <lp-product-configurable-options class="w-12 p-l-2 p-r-2 p-t-5 p-r-0-s p-b p-l-0-s center">
-                                <p class="p2 col-11 m-b-1 ng-star-inserted">Size: ${size}</p>
-                                ${sizeBox}
-                            </lp-product-configurable-options>
-                            <lp-product-in-stock-date class="ng-star-inserted"></lp-product-in-stock-date>
-                            <lp-add-to-basket class="flex-column flex-column-reverse-s flex-grow-s ng-star-inserted">
-                                <action cy-basketaddbutton="" class="w-12 button p-r-0-s p-l-0-s btn-add-to-bag">
-                                    <span class="button__busy">
-                                        <span class="bounce1"></span>
-                                            <span _ngcontent-app-c81=""
-                                        class="bounce2"></span></span>
-                                        <span class="button__body"> Add to bag</span>
-                                </action>
-                                <result class="block ng-hide c-red">
-                                    <p class="s2 m-t-1"></p>
-                                </result>
-                            </lp-add-to-basket>
-                        </div>
-                    </div>
-                </modal-bottom-container>
-                <div tabindex="0" class="cdk-visually-hidden cdk-focus-trap-anchor" aria-hidden="true"></div>
-            </div>
-        </div>`
-
+        
         reqCategory.then(data => {
+            console.log(data)
             let randomIndexes = [];
 
             let webCode = window.autoInitData.website.websiteCode != 'base' ? '/'+window.autoInitData.website.websiteCode : '';
@@ -1618,23 +1898,26 @@ let clickBasket = setInterval(() => {
                 if (item.plp_label != "Sold Out") {
                     //stars
                     let stars = '';
-                    let reviewRating = (item.reviews.rating / 10 / 2).toFixed(1);
-                    let reviewCount = item.reviews.count;
-
-                    let iWholeStars = Math.floor(reviewRating);
-                    let iEmptyStars = 5 - Math.ceil(reviewRating);
-
-                    let blnHalfStar = (iWholeStars < reviewRating);
-                
-                    for (var iStar = 1; iStar <= iWholeStars; iStar++) {
-                        stars += '<i class="rate-full"></i>'
-                    }
-                
-                    if (blnHalfStar) {
-                        stars += '<i class="rate-half"></i>'
-                    } 
-                    for (let iEmp = 0; iEmp < iEmptyStars; iEmp++) {
-                        stars += '<i class="rate-empty"></i>'
+                    let reviewCount = 0;
+                    if (item.reviews) {
+                        let reviewRating = (item.reviews.rating / 10 / 2).toFixed(1);
+                        reviewCount = item.reviews.count;
+    
+                        let iWholeStars = Math.floor(reviewRating);
+                        let iEmptyStars = 5 - Math.ceil(reviewRating);
+    
+                        let blnHalfStar = (iWholeStars < reviewRating);
+                    
+                        for (var iStar = 1; iStar <= iWholeStars; iStar++) {
+                            stars += '<i class="rate-full"></i>'
+                        }
+                    
+                        if (blnHalfStar) {
+                            stars += '<i class="rate-half"></i>'
+                        } 
+                        for (let iEmp = 0; iEmp < iEmptyStars; iEmp++) {
+                            stars += '<i class="rate-empty"></i>'
+                        }
                     }
 
                     //sizes
@@ -1653,51 +1936,8 @@ let clickBasket = setInterval(() => {
                         promisesBox.push(getFetch(`n/product/${item.directChildrenIds[k]}/verbosity/3`))
                     
                     }
-                    document.querySelector('.cart_favourites .swiper-wrapper').insertAdjacentHTML('beforeend',`
-                    <div class="swiper-slide ng-star-inserted">
-                        <product class="w-12 left ng-star-inserted" style="visibility: visible;">
-                            <div class="pos-relative flex-column height-100 product-card ng-star-inserted">
-                                
-                                <div class="ng-star-inserted">
-                                    <div class="pos-relative">
-                                        <a class="w-12 ratio-3-4 overflow-hidden ng-star-inserted"
-                                            href="${webCode+item.url}">
-                                            <shell>
-                                                <img class="_shellImg">
-                                            </shell>
-                                            <img class="rf dynamic-image loaded" alt="${item.name}"
-                                                src="/tco-images/unsafe/152x203/filters:format(webp):quality(70)/https://${window.location.host}/static/media/catalog/${item.image}">
-                                        </a>
-                                        <div class="product-size" style="display: none;">${sizes}</div>
-                                        <product-quick-buy class="pos-absolute bottom-2 right-2 z-1 ng-tns-c133-30 ng-star-inserted" data-size="${sizeItem}" data-name="${item.name}">
-                                            <button class="quick-add-btn bg-col-w flex flex-middle flex-justify-center ng-tns-c133-30 ng-star-inserted">
-                                                <i aria-hidden="true" class="icon-basket-add flex col-12 p-a-1 ng-tns-c133-30"></i>
-                                            </button>
-                                        </product-quick-buy>
-                                    </div>
-                                    <wishlist-toggle _ngcontent-app-c142="" class="product-wishlist ng-star-inserted"><div class="pos-absolute top-2 z-1 right-2"><div><action cy-wishlistaddbtn="" data-id="${item.id}" class="wishlist-button cursor-pointer" _nghost-app-c81=""><span _ngcontent-app-c81="" class="button__busy"><span _ngcontent-app-c81="" class="bounce1"></span><span _ngcontent-app-c81="" class="bounce2"></span></span><!----><span _ngcontent-app-c81="" class="button__body"><i aria-hidden="true" class="inline-flex icon-wishlist" style="font-size: 1.1em;"></i></span></action><!----></div></div><result class="block ng-hide"><p class="s2 m-t-1"></p></result></wishlist-toggle>
-                                    <div  class="m-t-3 p-b-1">
-                                        <a sizeclass="!SM: p1, SM: p2" cy-listingproductname="" class="p2 col-1" href="${webCode+item.url}">${item.name}</a>
-                                        <p sizeclass="!SM: p1, SM: p2" class="m-t-1 col-12 p2 ng-star-inserted"> ${size.length} Colours</p>
-                                        <div sizeclass="!SM: p1, SM: p2" class="m-t-1 p1 col-1">
-                                            <product-price class="m-r-1 price">
-                                                ${window.autoInitData.website.currency.list[0].symbol + item.price.toFixed(2)}
-                                            </product-price>
-                                            ${item.org_price ? `<product-price class="m-r-1 line-through col-12">` +
-                                                window.autoInitData.website.currency.list[0].symbol + item.price.toFixed(2) +
-                                            `</product-price>` : '' }
-                                        </div>
-                                        ${reviewCount > 0 ? ` 
-                                        <div class="flex flex-middle m-t-1" style="margin-left: -0.14rem;">
-                                            <rating class="inline-flex fs-7-x fs-7-l ng-star-inserted">${stars}</rating>
-                                            <span sizeclass="XL:p1, MS:p2" class="m-l-2 p1 ng-star-inserted" style="line-height: 1em;">(${reviewCount})</span>
-                                        </div>`: ''}
-                                        
-                                    </div>
-                                </div>
-                            </div>
-                        </product>
-                    </div>`)
+                    document.querySelector('.cart_favourites .swiper-wrapper').insertAdjacentHTML('beforeend', 
+                    slide(item.url, item.name, item.image, reviewCount, sizeItem, item.price, stars, item.id, sizes, size.length, item.org_price))
                 }
             }
 
@@ -1715,92 +1955,7 @@ let clickBasket = setInterval(() => {
                 }
             })
 
-            document.querySelectorAll('.cart_favourites product-quick-buy').forEach((el, index) => {
-                document.querySelectorAll('.cart_favourites .wishlist-button')[index].addEventListener('click', (e) => {
-                    let body = {"product": e.currentTarget.dataset.id};
-                    
-                    e.currentTarget.classList.add('busy')
-
-                    postFetch('wishlist/add', body).then(dataWishlist => {
-                        console.log(dataWishlist)
-
-                        let webCode = window.autoInitData.website.websiteCode != 'base' ? '/'+window.autoInitData.website.websiteCode : '';
-                        if (dataWishlist.error && dataWishlist.error == 'LOGGEDOUT') {
-                            window.location.href = webCode + '/login'
-                        } else {
-                            e.target.closest('.product-wishlist').innerHTML = `<div class="pos-absolute top-2 z-1 w-12 center p-l-2 p-r-2"><div class="p-a-1 bg-col-w flex flex-middle flex-justify-center"><action cy-wishlistaddbtn="" class="wishlist-button cursor-pointer" _nghost-app-c81=""><span _ngcontent-app-c81="" class="button__busy"><span _ngcontent-app-c81="" class="bounce1"></span><span _ngcontent-app-c81="" class="bounce2"></span></span><!----><span _ngcontent-app-c81="" class="button__body"><i aria-hidden="true" class="inline-flex icon-wishlist-fill col-1" style="font-size: 1.1em;"></i></span></action><span sizeclass="XL:p1" class="p-l-2 p3 ng-star-inserted">Added to wishlist</span><!----></div></div>`
-                        }
-                    })
-                })
-
-                el.addEventListener('click', () => {
-                    document.querySelector('.container-add-to-bag').innerHTML = backdrop(el.dataset.size, el.previousElementSibling.innerHTML, el.dataset.name)
-                    
-
-                    document.querySelectorAll('.container-add-to-bag box:not(.is-warning)').forEach(box => {
-                        box.addEventListener('click', (e) => {
-                            e.currentTarget.parentElement.querySelector('.is-selected').classList.remove('is-selected');
-                            box.classList.add('is-selected');
-                            box.parentElement.querySelector('p').innerHTML = 'Size: ' + box.innerText;
-                        })
-                    })
-                    document.addEventListener('click', (e) => {
-                        if (e.target.classList.contains('modal-container')) {
-                            document.querySelector('.container-add-to-bag').innerHTML = '';
-                        }
-                    })
-                    document.querySelector('.container-add-to-bag .quick-add-to-basket > button').addEventListener('click', () => {
-                        document.querySelector('.container-add-to-bag').innerHTML = '';
-                    })
-                    document.querySelector('.container-add-to-bag .btn-add-to-bag').addEventListener('click', (e) => {
-                        e.stopImmediatePropagation()
-                        
-                        let id = e.target.closest('.body-configurable-options').querySelector('box.is-selected').dataset.id;
-                        let body = {"products":[{"id":id,"qty":1,"options":{},"bundle_options":{}}]}
-                        
-                        e.currentTarget.classList.add('busy')
-                        cart.classList.add('loading')
-                        postFetch('basket/add', body).then(dataAdd => {
-                            console.log(dataAdd)
-
-                            if (dataAdd.error && dataAdd.error != '') {
-                                document.querySelector('.container-add-to-bag result p').innerHTML = dataAdd.error;
-                                document.querySelector('.container-add-to-bag result').classList.remove('ng-hide');
-                                document.querySelector('.container-add-to-bag .btn-add-to-bag').classList.remove('busy');
-                                document.querySelector('.cart').classList.remove('loading');
-                            } else {
-                                let items = dataAdd.customer.cart.items;
-                                let totals = dataAdd.customer.cart.totals;
-                                let coupon = dataAdd.customer.cart.coupon;
-    
-                                document.querySelector('.container-add-to-bag').innerHTML = '';
-    
-                                addProduct(document.querySelector('.cart'), items, totals, 1, coupon) 
-                            }
-
-                        
-                        })
-                    })
-                })
-            })
-
-            const waitForSwiper = setInterval(() => {
-                if (typeof Swiper !== 'undefined') {
-                    clearInterval(waitForSwiper)
-            
-                    // #1 Main slider 
-                    var swiperMainSync = new Swiper(".cart_favourites .swiper", {
-                        slidesPerView: 2,
-                        slideToClickedSlide: true,
-                        spaceBetween: 16,
-                        scrollbar: {
-                            el: '.swiper-scrollbar',
-                            draggable: true,
-                            dragSize: 48
-                          }
-                    })
-                }
-            })
+            modal(document.querySelector('.cart_favourites'))
         })
     }
 });
@@ -2004,3 +2159,4 @@ let isClarify = setInterval(() => {
         clarity("set", "exp_slide_in_cart", "variant_1");
     }
 }, 100)
+
