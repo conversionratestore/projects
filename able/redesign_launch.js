@@ -1,4 +1,4 @@
-(function () {
+;(function () {
   // -------------------------------------
   // CONSTANTS & CSS
   // -------------------------------------
@@ -475,7 +475,7 @@
       }
     }
   </style>
-`
+  `
 
   // -------------------------------------
   // HTML ELEMENTS
@@ -496,7 +496,6 @@
           </defs>
         </svg>
   `
-
   const svg2 = `<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40" fill="none">
   <circle cx="20" cy="20" r="20" fill="#E0E6F7"/>
   <g clip-path="url(#clip0_633_522)">
@@ -514,7 +513,6 @@
   </defs>
 </svg>
   `
-
   const svg3 = `<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40" fill="none">
   <circle cx="20" cy="20" r="20" fill="#E0E6F7"/>
   <g clip-path="url(#clip0_633_533)">
@@ -528,7 +526,6 @@
   </clipPath>
   </defs>
   </svg>`
-
   const svg4 = `<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40" fill="none">
   <circle cx="20" cy="20" r="20" fill="#E0E6F7"/>
   <g clip-path="url(#clip0_633_547)">
@@ -588,7 +585,7 @@
       <p>We take data security seriously. Your email address will never be shared with third parties or spam.</p>
     </div>
   </div>
-`
+  `
   const emailPageDesktop = /*html*/`
   <div class="email_step crs_block" hidden="true">
     <div class="left">
@@ -640,7 +637,7 @@
       <img class="circles_bottom" src="${IMAGE_DIR_URL}/email_circles_bottom.svg" alt="">
     </div>
   </div>
-`
+  `
 
   // -------------------------------------
   // FUNCTIONS
@@ -851,6 +848,7 @@
   }
 
   let isEmailLogicAdded = false
+  let stepIsRecorded = false
 
   const showEmailOnPage = () => {
     isEmailPageVisited = true
@@ -912,6 +910,17 @@
         }
       }
     }, WAIT_INTERVAL_TIMEOUT)
+
+    if (!stepIsRecorded) {
+      stepIsRecorded = true
+
+      const recordClarityEmailStep = setInterval(() => {
+        if (typeof clarity === 'function') {
+          clearInterval(recordClarityEmailStep)
+          clarity('set', `move_email_relaunch`, 'email_step')
+        }
+      }, WAIT_INTERVAL_TIMEOUT)
+    }
   }
 
   function handleCredentialResponse(response) {
@@ -1000,7 +1009,7 @@
   const recordClarity = setInterval(() => {
     if (typeof clarity === 'function') {
       clearInterval(recordClarity)
-      clarity('set', `move_email_relaunch_${DEVICE}`, 'variant_1')
+      clarity('set', `move_email_relaunch`, 'variant_1')
     }
   }, WAIT_INTERVAL_TIMEOUT)
 })()
