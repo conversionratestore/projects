@@ -47,7 +47,7 @@ let style = `
     pointer-events: auto;
 }
 .cart_container {
-    max-width: 400px;
+    max-width: 380px;
     margin-left: auto;
     width: 95%;
     height: 100vh;
@@ -81,15 +81,29 @@ let style = `
     background: #F0F0F0;
     padding: 4px;
 }
-.cart_topBar[hidden], header a[routerlink="/basket"] {
+.cart_topBar[hidden], header a[routerlink="/basket"], a[routerlink="/login"]+button, .cart_ecologi[hidden] {
     display: none!important;
 }
-.cart_topBar.green {
-    background: #9FCAB9;
+.cart_topBar.yellow {
+    background: #FFF173;
 }
 .cart_topBar, .coupon_item, .saved_block   {
     font-size: 14px;
     line-height: 18px;
+}
+.cart_ecologi {
+    background: #22A96F;
+    padding: 5px;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 18px; 
+    color: #fff;
+    margin-bottom: 1px;
+}
+.cart_ecologi img {
+    width: 48px;
+    height: 24px;
 }
 .coupon {
     padding: 16px;
@@ -610,6 +624,10 @@ let cartHTML = `
             </div>
 
             <div class="cart_body">
+            <div class="cart_ecologi flex flex-middle flex-justify-center" hidden>
+                <img class="m-r-2" src="/tco-images/unsafe/68x34/filters:quality(70)/https://www.lemieux.com/static/cms/media/Ecologi_Logo_Black-1-(1).png">
+                <p></p>
+            </div>
                 <div class="cart_topBar flex flex-middle flex-justify-center">
                     <svg class="m-r-2" width="26" height="26" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <g clip-path="url(#clip0_128_3164)">
@@ -626,6 +644,8 @@ let cartHTML = `
                     </svg>
                     <p></p>
                 </div>
+
+
                 <ul class="cart_products"></ul>
 
                 <div class="coupon"> 
@@ -756,6 +776,7 @@ let updateTotal = (parent, totals, items, coupon) => {
     }
 
     let compareSum = 0;
+    let countEcologi = 0;
     if (items != '') {
         const promises = [];
 
@@ -771,6 +792,10 @@ let updateTotal = (parent, totals, items, coupon) => {
                 let item = dataItem[i].result[0];
                 
                 compareSum += items[i].request.qty * (item.org_price ? item.org_price : item.price);
+                if (item.ecologi && item.ecologi != 0 && item.ecologi != '') {
+                    countEcologi += item.ecologi * items[i].request.qty
+                }
+                
             }
 
 
@@ -781,7 +806,21 @@ let updateTotal = (parent, totals, items, coupon) => {
             setCompare(compareSum, 'grand_total', totals['grand_total'])
             setCompare(compareSum, 'subtotal', totals['subtotal'])
 
-                    
+            if (countEcologi != 0) {
+                let textEcologi = '';
+                if (countEcologi == 1) {
+                    textEcologi = `You will plant 1 tree with this order!`;
+                } else {
+                    textEcologi =`You will plant ${countEcologi} trees with this order!`
+                }
+
+                parent.querySelector('.cart_ecologi p').innerHTML = textEcologi;
+                parent.querySelector('.cart_ecologi').hidden = false;
+
+            } else {
+                parent.querySelector('.cart_ecologi').hidden = true;
+            }
+
             parent.querySelectorAll(`[data-name="grand_total"] .pr`).forEach((pr,index) => {
                 pr.innerHTML = currency + (totals['grand_total'] + isShipNew).toFixed(2)
                 console.log(pr.previousElementSibling)
@@ -807,8 +846,6 @@ let updateTotal = (parent, totals, items, coupon) => {
             document.body.querySelectorAll('.klarna_pr').forEach(klarna => {
                 klarna.innerHTML = currency + ((totals['grand_total'] + isShipNew) / 3).toFixed(2)
             })
-         
-
         });
     }
 }
@@ -1276,10 +1313,10 @@ class TopBar {
             topBar.hidden = false;
 
             if (this.subtotal >= 75 || this.coupon == 'FREEDEL') {
-                topBar.classList.add('green')
+                topBar.classList.add('yellow')
                 text = 'Congratulation! You have Free UK Delivery';
             } else {
-                topBar.classList.remove('green')
+                topBar.classList.remove('yellow')
                 text = `You are ${ this.currency + (75 - this.subtotal).toFixed(2)} away from Free UK Delivery`;
             }
 
@@ -1936,6 +1973,14 @@ let init = () => {
 }
 
 let addToBagLp = setInterval(() => {
+    if (document.querySelector('.cdk-overlay-container') && document.querySelector('.cdk-overlay-container').innerText.includes('Shopping Bag')) {
+        document.querySelector('.cdk-overlay-container').remove()
+
+        document.querySelector('.cart').classList.add('loading');
+        toggleActive(document.querySelector('.cart'), true)
+
+        init()
+    }
     if (document.querySelector('.cdk-overlay-pane basket-add-notice .icon-close') && document.querySelector('.cart') && document.querySelector('.cdk-overlay-pane').innerText.includes('Added to your bag') && !document.querySelector('.style-lp-exp')) {
         document.querySelector('.cdk-overlay-pane').insertAdjacentHTML('beforebegin',`
         <style class="style-lp-exp">
