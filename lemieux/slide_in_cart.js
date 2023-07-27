@@ -908,22 +908,21 @@ let updateTotal = (parent, totals, items, coupon) => {
     }
 }
 //add products
-let addProduct = (parent, items, totals, count, coupon) => {
+let addProduct = (parent, items, totals, count, coupon, bought_klevu = '') => {
    
     console.log(parent) 
 
     updateTotal(parent, totals, items, coupon) 
-    let records = [];
+    
+    let recordsBought = [];
 
-    let getRecords = () => new Promise((resolve, reject) => {
-        for (let i = 0; i < items.length; i++) {
-        
+    for (let i = 0; i < items.length; i++) {
+        recordsBought.push(new Promise((resolve, reject) => { 
             getFetch(`n/product/${items[i].product}/verbosity/3`).then(dataItem => {
                 console.log(dataItem)
 
                 let item = dataItem.result[0];
 
-                console.log(`${item.parent}-${item.id}`)
                 let options = '';
 
                 if (item.size) {
@@ -949,112 +948,115 @@ let addProduct = (parent, items, totals, count, coupon) => {
                     currency,
                     items[i].request.qty).render()
 
-                
-                records.push()
-                
                 parent.classList.remove('loading');
-                resolve({"id":`${item.parent}-${item.id}`})
+
+                let obj = {"id":`${item.parent}-${item.id}`};
+
+                resolve(obj);
             })
-            
-        }
-    })
-    getRecords()
-    records.push(getRecords())
+        }))
+    }
 
-    console.log(records)
+    if (bought_klevu != '') {
+        const allResults = Promise.all(recordsBought).then(data => {
+            console.log(data)
 
-    Promise.all(records).then(data => {
-        console.log(data)
-        let obj
-        fetch(`https://eucs30v2.ksearchnet.com/cs/v2/search`, {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({"context":{"apiKeys":["klevu-166193529863215439"]},"recordQueries":[{"id":"klevuRECSItemList","typeOfRequest":"RECS_ALSO_BOUGHT","settings":{"typeOfRecords":["KLEVU_PRODUCT"],"limit":10,"context":{"recentObjects":[{"typeOfRecord":"KLEVU_PRODUCT",
-            "records":data}]}}}]})
-        }).then(res => res.json()).then(dataBought => {
-            console.log(dataBought)
-
-            parent.querySelector('.cart_extra .swiper-wrapper').innerHTML = '';
-
-            let itemsRecords = dataBought.queryResults[0].records;
-
-            for (let i = 0; i < itemsRecords.length; i++) {
-                let item = itemsRecords[i];
-
-                //stars
-                let stars = '';
-                let reviewCount = 0;
-                if (item.rating) {
-                    let reviewRating = (+item.rating).toFixed(1);
-                    reviewCount = item.ratingCount;
-
-                    let iWholeStars = Math.floor(reviewRating);
-                    let iEmptyStars = 5 - Math.ceil(reviewRating);
-
-                    let blnHalfStar = (iWholeStars < reviewRating);
+            let dataRecords = [];
+            for (let i = 0; i < data.length; i++) {
+                dataRecords.push(data[i]);
                 
-                    for (var iStar = 1; iStar <= iWholeStars; iStar++) {
-                        stars += '<i class="rate-full"></i>'
-                    }
-                
-                    if (blnHalfStar) {
-                        stars += '<i class="rate-half"></i>'
-                    } 
-                    for (let iEmp = 0; iEmp < iEmptyStars; iEmp++) {
-                        stars += '<i class="rate-empty"></i>'
-                    }
-                }
+            }
+            console.log(dataRecords)
+            fetch(`https://eucs30v2.ksearchnet.com/cs/v2/search`, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({"context":{"apiKeys":["klevu-166193529863215439"]},"recordQueries":[{"id":"klevuRECSItemList","typeOfRequest":"RECS_ALSO_BOUGHT","settings":{"typeOfRecords":["KLEVU_PRODUCT"],"limit":10,"context":{"recentObjects":[{"typeOfRecord":"KLEVU_PRODUCT",
+                "records":dataRecords}]}}}]})
+            }).then(res => res.json()).then(dataBought => {
+                console.log(dataBought)
 
-                parent.querySelector('.cart_extra .swiper-wrapper').insertAdjacentHTML('beforeend', 
-                slide(item.url, item.name, 'product/'+item.image.split('/200X200/')[1], reviewCount, '', +item.salePrice, stars, item.itemGroupId, '', 0, +item.price))
-                
-                getFetch(`n/product/${item.itemGroupId}/verbosity/3`).then(dataProduct => {
+                parent.querySelector('.cart_extra .swiper-wrapper').innerHTML = '';
+
+                let itemsRecords = dataBought.queryResults[0].records;
+
+                for (let i = 0; i < itemsRecords.length; i++) {
+                    let item = itemsRecords[i];
+
+                    //stars
+                    let stars = '';
+                    let reviewCount = 0;
+                    if (item.rating) {
+                        let reviewRating = (+item.rating).toFixed(1);
+                        reviewCount = item.ratingCount;
+
+                        let iWholeStars = Math.floor(reviewRating);
+                        let iEmptyStars = 5 - Math.ceil(reviewRating);
+
+                        let blnHalfStar = (iWholeStars < reviewRating);
                     
-                    console.log(dataProduct)
-
-                    let product = dataProduct.result[0]
-
-                    //sizes
-                    let size = product.size_org ? product.size_org : product.size;
-                    let sizes = '';
-                    let sizeItem = JSON.stringify(window.autoInitData.data.attribute).split(`${size[0]},"label":"`)[1].split('"')[0].replace('\\','"')
+                        for (var iStar = 1; iStar <= iWholeStars; iStar++) {
+                            stars += '<i class="rate-full"></i>'
+                        }
                     
-                    for (let k = 0; k < size.length; k++) {
-
-                        sizes += ` 
-                        <box class="inline-block va-m cursor-pointer m-t-1 m-r-1 ng-star-inserted ${k == 0 ? 'is-selected' : ''}" data-id="${product.directChildrenIds[k]}" _nghost-app-c120="">
-                            <div _ngcontent-app-c120="" class="p2 b-a inline-block center box">${JSON.stringify(window.autoInitData.data.attribute).split(`${size[k]},"label":"`)[1].split('"')[0].replace('\\','"')} </div>
-                        </box>`
-
-                    
-                    }
-
-                    parent.querySelector(`.cart_extra .product-size[data-id="${itemsRecords[i].itemGroupId}"]`).innerHTML = sizes;
-                    parent.querySelector(`.cart_extra .product-size[data-id="${itemsRecords[i].itemGroupId}"]+product-quick-buy`).dataset.size = sizeItem;
-
-                    let catalog = dataProduct.catalog;
-                    for (let j = 0; j < catalog.length; j++) {
-                        if (parent.querySelector(`.cart_extra .product-size > [data-id="${catalog[j].id}"]`)) {
-                            let isOut = catalog[j].isOut && catalog[j].isOut == true ? 'is-warning' : '';
-                            isOut != '' ? parent.querySelector(`.cart_extra .product-size > [data-id="${catalog[j].id}"]`).classList.add(isOut) : '';
+                        if (blnHalfStar) {
+                            stars += '<i class="rate-half"></i>'
+                        } 
+                        for (let iEmp = 0; iEmp < iEmptyStars; iEmp++) {
+                            stars += '<i class="rate-empty"></i>'
                         }
                     }
-                    
-                })
-                
-                
 
-                modal(parent.querySelector('.cart_extra'))
-              
-            }
-            
-            // backdrop(size, sizeBox, name)
-        }).catch((error) => {
-            console.error('Error:', error);
-        });
-    })
+                    parent.querySelector('.cart_extra .swiper-wrapper').insertAdjacentHTML('beforeend', 
+                    slide(item.url, item.name, 'product/'+item.image.split('/200X200/')[1], reviewCount, '', +item.salePrice, stars, item.itemGroupId, '', 0, +item.price))
+                    
+                    getFetch(`n/product/${item.itemGroupId}/verbosity/3`).then(dataProduct => {
+                        
+                        console.log(dataProduct)
+
+                        let product = dataProduct.result[0]
+
+                        //sizes
+                        let size = product.size_org ? product.size_org : product.size;
+                        let sizes = '';
+                        let sizeItem = JSON.stringify(window.autoInitData.data.attribute).split(`${size[0]},"label":"`)[1].split('"')[0].replace('\\','"')
+                        
+                        for (let k = 0; k < size.length; k++) {
+
+                            sizes += ` 
+                            <box class="inline-block va-m cursor-pointer m-t-1 m-r-1 ng-star-inserted ${k == 0 ? 'is-selected' : ''}" data-id="${product.directChildrenIds[k]}" _nghost-app-c120="">
+                                <div _ngcontent-app-c120="" class="p2 b-a inline-block center box">${JSON.stringify(window.autoInitData.data.attribute).split(`${size[k]},"label":"`)[1].split('"')[0].replace('\\','"')} </div>
+                            </box>`
+
+                        
+                        }
+
+                        parent.querySelector(`.cart_extra .product-size[data-id="${itemsRecords[i].itemGroupId}"]`).innerHTML = sizes;
+                        parent.querySelector(`.cart_extra .product-size[data-id="${itemsRecords[i].itemGroupId}"]+product-quick-buy`).dataset.size = sizeItem;
+
+                        let catalog = dataProduct.catalog;
+                        for (let j = 0; j < catalog.length; j++) {
+                            if (parent.querySelector(`.cart_extra .product-size > [data-id="${catalog[j].id}"]`)) {
+                                let isOut = catalog[j].isOut && catalog[j].isOut == true ? 'is-warning' : '';
+                                isOut != '' ? parent.querySelector(`.cart_extra .product-size > [data-id="${catalog[j].id}"]`).classList.add(isOut) : '';
+                            }
+                        }
+                        
+                    })
+                    
+                    
+
+                    modal(parent.querySelector('.cart_extra'))
+                
+                }
+                
+                // backdrop(size, sizeBox, name)
+            }).catch((error) => {
+                console.error('Error:', error);
+            });
+        })
+    }
 
 
     parent.querySelector('.cart_head span').innerHTML = count;
@@ -1089,7 +1091,7 @@ let removeItem = (parent, id) => {  // remove item
         if (countCart != 0) {
             cart.classList.remove('empty');
 
-            addProduct(cart, items, totals, countCart, coupon)
+            addProduct(cart, items, totals, countCart, coupon, 'bought_klevu')
 
         } else {
             cart.classList.add('empty')
@@ -1806,7 +1808,7 @@ let modal = (parent) => {
 
                         document.querySelector('.container-add-to-bag').innerHTML = '';
 
-                        addProduct(document.querySelector('.cart'), items, totals, 1, coupon) 
+                        addProduct(document.querySelector('.cart'), items, totals, 1, coupon, 'bought_klevu') 
                     }
                 
                 })
@@ -2105,7 +2107,7 @@ let init = () => {
 
 
                     // add products
-                    addProduct(cart, items, totals, countCart, coupon)
+                    addProduct(cart, items, totals, countCart, coupon, 'bought_klevu')
                 }
 
                 document.querySelector('.cart_head h2 span').innerHTML = countCart;
