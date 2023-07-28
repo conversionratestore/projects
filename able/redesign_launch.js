@@ -570,8 +570,8 @@
       </li>
     </ul>
     <div id="email_wrapper" class="${localStorage.email ? 'valid' : ''}">
-      <label for="email">Your email</label>
-      <input type="email" placeholder="email@gmail.com" value="${localStorage.email ? localStorage.email : ''}" />
+      <label for="crs_email">Your email</label>
+      <input id="crs_email" type="email" placeholder="email@gmail.com" value="${localStorage.email ? localStorage.email : ''}" />
       <p>Please enter correct email.</p>
       <button>Continue</button>
       <div class="divider">
