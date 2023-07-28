@@ -567,9 +567,10 @@ product-quick-buy button {
 .container-add-to-bag .btn-add-to-bag *, .container-add-to-bag .btn-add-to-bag.busy {
     pointer-events: none;
 }
-.cart_extra {
-    padding-top: 20px;
+.cart_extra .b-t-s {
+    border: none;
 }
+
 @media (min-width: 1113px) {
     .klarna_popup_container {
         max-width: 480px;
@@ -594,6 +595,9 @@ product-quick-buy button {
         max-width: 380px;
         margin-left: auto;
         right: 0;
+    }
+    .cart_extra {
+        padding-top: 20px;
     }
 }
 </style>`;
@@ -626,7 +630,7 @@ let componentCarousel = (variant, title) => {
                                 
                                 <div sizeclass="XL:m-l-6 m-r-6,SM:m-l m-r">
                                     <related-products
-                                        class="block m-b-8" _nghost-app-c143="">
+                                        class="block" _nghost-app-c143="">
                                         <div class="ng-star-inserted">
                                             <swiper _ngcontent-app-c143 class="p-b-7 swiper swiper-${variant}" data-variant="swiper-${variant}" >
                                                 <div class="swiper-scrollbar"></div>
