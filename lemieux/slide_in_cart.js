@@ -598,7 +598,6 @@ product-quick-buy button {
 }
 </style>`;
 
-
 let componentCarousel = (variant, title) => {
     let span = variant == 'basket-empty' ? `<p class="m-t-1 p1 ng-star-inserted">New Arrivals</p>` : `
     <div _ngcontent-app-c405="" sizeclass="!S: flex flex-justify-center m-t-3" class="col-12 underline m-t-6 ng-star-inserted btns-action">
@@ -934,13 +933,9 @@ let updateTotal = (parent, totals, items, coupon) => {
                   
                 }
             })
-            
-            if (window.autoInitData.website.websiteCode == 'us') {
-                parent.querySelector('.klarna_content').hidden = true
-            } else {
-                parent.querySelector('.klarna_content').hidden = false
-            }
 
+            parent.querySelector('.klarna_content').hidden = window.autoInitData.website.websiteCode == 'us'
+         
             document.body.querySelectorAll('.klarna_pr').forEach(klarna => {
                 klarna.innerHTML = currency + ((totals['grand_total'] + isShipNew) / 3).toFixed(2)
             })
@@ -997,7 +992,7 @@ let addProduct = (parent, items, totals, count, coupon, bought_klevu = '') => {
         }))
     }
 
-    if (bought_klevu != '') {
+    if (bought_klevu != '' && window.autoInitData.website.websiteCode != 'us') {
         const allResults = Promise.all(recordsBought).then(data => {
             console.log(data)
 
@@ -1087,9 +1082,8 @@ let addProduct = (parent, items, totals, count, coupon, bought_klevu = '') => {
                         
                     })
                     
-                    
 
-                    modal(parent.querySelector('.swiper-basket-extra-2'))
+                    modal(parent.querySelector('.cart_extra'))
 
                     parent.querySelectorAll('.cart_extra .btns-action button').forEach((button, index) => {
                         button.addEventListener('click', (e) => {
@@ -1108,12 +1102,13 @@ let addProduct = (parent, items, totals, count, coupon, bought_klevu = '') => {
                 
                 }
                 
-                // backdrop(size, sizeBox, name)
             }).catch((error) => {
                 console.error('Error:', error);
             });
         })
-    }
+    } 
+
+    parent.querySelector('.cart_extra').hidden = window.autoInitData.website.websiteCode == 'us';
   
     parent.querySelector('.cart_head span').innerHTML = count;
 
@@ -1873,7 +1868,6 @@ let modal = (parent) => {
             clearInterval(waitForSwiper)
     
             swiperClass.forEach( swiper => {
-                console.log(swiper)
                 var swiperMainSync = new Swiper(swiper,  {
                     slidesPerView: 2,
                     // slideToClickedSlide: true,
@@ -2087,9 +2081,9 @@ let init = () => {
 
                 let viewedKlarna = false;
                 document.querySelector('.cart_container').addEventListener('scroll', () => {
-                    if (isScrolledIntoView(document.querySelector('.klarna_content:not([hidden])')) && viewedKlarna == false) {
+                    if (document.querySelector('.klarna_content:not([hidden])') && isScrolledIntoView(document.querySelector('.klarna_content:not([hidden])')) && viewedKlarna == false) {
                         setTimeout(() => {
-                            if (isScrolledIntoView(document.querySelector('.klarna_content:not([hidden])')) && viewedKlarna == false) {
+                            if (document.querySelector('.klarna_content:not([hidden])') && isScrolledIntoView(document.querySelector('.klarna_content:not([hidden])')) && viewedKlarna == false) {
                                 viewedKlarna = true;
                                 pushDataLayer('exp_slide_in_cart_clarna_visibility','Klarna','Element visibility','Sidebar cart. Klarna') 
                             }
