@@ -1084,20 +1084,7 @@ let addProduct = (parent, items, totals, count, coupon, bought_klevu = '') => {
 
                     modal(parent.querySelector('.cart_extra'))
 
-                    parent.querySelectorAll('.cart_extra .btns-action button').forEach((button, index) => {
-                        button.addEventListener('click', (e) => {
-                            button.classList.add('col-1')
-                            if (index == 0) {
-                                button.nextElementSibling.classList.remove('col-1')
-                                parent.querySelectorAll('.cart_extra .swiper')[0].classList.remove('ng-hide')
-                                parent.querySelectorAll('.cart_extra .swiper')[1].classList.add('ng-hide')
-                            } else {
-                                button.previousElementSibling.classList.remove('col-1')
-                                parent.querySelectorAll('.cart_extra .swiper')[0].classList.add('ng-hide')
-                                parent.querySelectorAll('.cart_extra .swiper')[1].classList.remove('ng-hide')
-                            }
-                        })
-                    })
+                 
                 
                 }
                 
@@ -1924,6 +1911,21 @@ let clickBasket = setInterval(() => {
             cart.classList.add('loading');
             toggleActive(cart, true)
             init()
+        })
+        
+        cart.querySelectorAll('.cart_extra .btns-action button').forEach((button, index) => {
+            button.addEventListener('click', (e) => {
+                button.classList.add('col-1')
+                if (index == 0) {
+                    button.nextElementSibling.classList.remove('col-1')
+                    parent.querySelectorAll('.cart_extra .swiper')[0].classList.remove('ng-hide')
+                    parent.querySelectorAll('.cart_extra .swiper')[1].classList.add('ng-hide')
+                } else {
+                    button.previousElementSibling.classList.remove('col-1')
+                    parent.querySelectorAll('.cart_extra .swiper')[0].classList.add('ng-hide')
+                    parent.querySelectorAll('.cart_extra .swiper')[1].classList.remove('ng-hide')
+                }
+            })
         })
         
         reqCategory.then(data => {
