@@ -880,7 +880,6 @@ let updateTotal = (parent, totals, items, coupon) => {
         }
 
         Promise.all(promises).then(dataItem => {
-            console.log(dataItem)
 
             for (let i = 0; i < dataItem.length; i++) {
                 
@@ -956,7 +955,6 @@ let addProduct = (parent, items, totals, count, coupon, bought_klevu = '') => {
     for (let i = 0; i < items.length; i++) {
         recordsBought.push(new Promise((resolve, reject) => { 
             getFetch(`n/product/${items[i].product}/verbosity/3`).then(dataItem => {
-                console.log(dataItem)
 
                 let item = dataItem.result[0];
 
@@ -971,7 +969,6 @@ let addProduct = (parent, items, totals, count, coupon, bought_klevu = '') => {
                 if (item.color) {
                     let findColor = typeof JSON.stringify(window.autoInitData.data.attribute).split(`${item.color},"label":"`)[1] != 'undefined' ? JSON.stringify(window.autoInitData.data.attribute).split(`${item.color},"label":"`)[1] : '';
                     
-                    console.log(findColor)
                     options += (findColor != '' ? `<span class="option"><span>Colour: </span> ${findColor.split('"')[0]}</span> ` : '')
                 }
 
@@ -1014,7 +1011,6 @@ let addProduct = (parent, items, totals, count, coupon, bought_klevu = '') => {
                 body: JSON.stringify({"context":{"apiKeys":["klevu-166193529863215439"]},"recordQueries":[{"id":"klevuRECSItemList","typeOfRequest":"RECS_ALSO_BOUGHT","settings":{"typeOfRecords":["KLEVU_PRODUCT"],"limit":10,"context":{"recentObjects":[{"typeOfRecord":"KLEVU_PRODUCT",
                 "records":dataRecords}]}}}]})
             }).then(res => res.json()).then(dataBought => {
-                console.log(dataBought)
 
                 parent.querySelector('.swiper-basket-extra-2 .swiper-wrapper').innerHTML = '';
 
@@ -1051,9 +1047,6 @@ let addProduct = (parent, items, totals, count, coupon, bought_klevu = '') => {
                     slide(item.url.replace('mage.',''), item.name, 'product/'+item.image.split('/200X200/')[1], reviewCount, '', +item.salePrice, stars, item.itemGroupId, '', 0, +item.price))
                     
                     getFetch(`n/product/${item.itemGroupId}/verbosity/3`).then(dataProduct => {
-                        
-                        console.log(dataProduct)
-
                         let product = dataProduct.result[0]
 
                         //sizes
@@ -1133,7 +1126,6 @@ let removeItem = (parent, id) => {  // remove item
     cart.classList.add('loading');
 
     postFetch('basket/remove', obj).then(data => {
-        console.log(data)
         
         !!cart.querySelector(`.cart_products [data-id="${id}"]`) ? cart.querySelector(`.cart_products [data-id="${id}"]`).remove() : ''; 
         
@@ -1199,12 +1191,10 @@ let qty = (_this) => {
     let objUpdateQty = {"id":id,"qty": qty.value}
 
     postFetch('basket/qty', objUpdateQty).then(data => {
-        console.log(data)
 
         if (data.error && data.error != '') {
             _this.closest('.product_content').insertAdjacentHTML('beforeend', `<p class="error-qty m-t-1 c-red m-b-0">${data.error}</p>`)
             getFetch('p/customer/data').then(data => {
-                console.log(data)
 
                 let items = data.customer.cart.items;
                 for (let i = 0; i < items.length; i++) {
@@ -1259,7 +1249,6 @@ let removeCoupon = (code, classes) => {
     coupon.closest('.cart').classList.add('loading');
 
     postFetch(host+'/remove', codeObj).then(data => {
-        console.log(data)
 
         coupon.closest('.cart').classList.remove('loading');
         coupon.remove();
@@ -1300,7 +1289,6 @@ let addCoupon = (e) => {
             let giftcard = {"code": value}
 
             postFetch('giftcard/add', giftcard).then(data => {
-                console.log(data)
 
                 _this.classList.remove('busy');
 
@@ -1330,7 +1318,6 @@ let addCoupon = (e) => {
             let coupon = {"coupon": value}
             
             postFetch('coupon/add', coupon).then(data => {
-                console.log(data)
                 _this.classList.remove('busy');
 
 
@@ -1396,7 +1383,6 @@ let checkBalance = (e) => {
     let giftcard = {"code": value}
     if (value != '') {
         postFetch('giftcard/balance', giftcard).then(data => {
-            console.log(data)
 
             let message = ''
             if (data.error && data.error != '') {
@@ -1731,7 +1717,6 @@ scriptCustomStyle.href = 'https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.m
 scriptCustomStyle.rel = 'stylesheet'
 
 let slide = (url, name, image, reviewCount, sizeItem, price, stars, id, sizes, sizeLength, org_price) => {
-    console.log(sizeLength + " : " + name)
     let webCode = window.autoInitData.website.websiteCode != 'base' ? '/'+window.autoInitData.website.websiteCode : '';
 
     return ` 
@@ -1806,8 +1791,11 @@ let modal = (parent) => {
             
             e.currentTarget.classList.add('busy')
 
+            setTimeout(() => {
+                parent.querySelectorAll('.wishlist-button')[index].classList.remove('busy')
+            }, 5000)
+
             postFetch('wishlist/add', body).then(dataWishlist => {
-                console.log(dataWishlist)
 
                 let webCode = window.autoInitData.website.websiteCode != 'base' ? '/'+window.autoInitData.website.websiteCode : '';
                 if (dataWishlist.error && dataWishlist.error == 'LOGGEDOUT') {
@@ -1846,7 +1834,6 @@ let modal = (parent) => {
                 e.currentTarget.classList.add('busy')
                 parent.closest('.cart').classList.add('loading')
                 postFetch('basket/add', body).then(dataAdd => {
-                    console.log(dataAdd)
 
                     if (dataAdd.error && dataAdd.error != '') {
                         document.querySelector('.container-add-to-bag result p').innerHTML = dataAdd.error;
@@ -1936,7 +1923,6 @@ let clickBasket = setInterval(() => {
         })
         
         reqCategory.then(data => {
-            console.log(data)
             let randomIndexes = [];
 
             let webCode = window.autoInitData.website.websiteCode != 'base' ? '/'+window.autoInitData.website.websiteCode : '';
@@ -2000,7 +1986,6 @@ let clickBasket = setInterval(() => {
             }
 
             Promise.all(promisesBox).then(dataItem => {
-                console.log(dataItem)
 
                 for (let k = 0; k < dataItem.length; k++) {
                     let catalog = dataItem[k].catalog;
@@ -2110,8 +2095,6 @@ let init = () => {
             }
 
             getFetch('p/customer/data').then(data => {
-                console.log(data)
-
                 let items = data.customer.cart.items;
 
                 let countCart = data.customer.cart.qty ? data.customer.cart.qty : 0;
@@ -2204,7 +2187,6 @@ let init = () => {
                 for (let i = 0; i < arrId.length; i++) {
                     if (!cart.querySelector(`.swiper-slide product[data-id="${arrId}"]`)) {
                         getFetch(`n/product/${arrId[i]}/verbosity/3`).then(dataItem => {
-                            console.log(dataItem)
 
                             let item = dataItem.result[0];
 
@@ -2260,8 +2242,6 @@ let init = () => {
                             }
                 
                             Promise.all(promisesBox).then(dataItem => {
-                                console.log(dataItem)
-                
                                 for (let k = 0; k < dataItem.length; k++) {
                                     let catalog = dataItem[k].catalog;
                                     for (let j = 0; j < catalog.length; j++) {
