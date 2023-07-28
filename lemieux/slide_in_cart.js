@@ -567,13 +567,41 @@ product-quick-buy button {
 .container-add-to-bag .btn-add-to-bag *, .container-add-to-bag .btn-add-to-bag.busy {
     pointer-events: none;
 }
-
+.cart_extra {
+    padding-top: 20px;
+}
+@media (min-width: 1113px) {
+    .klarna_popup_container {
+        max-width: 480px;
+        padding: 20px 24px 24px;
+    }
+    .cart_head {
+        padding: 12px 24px;
+    }
+    .cart_products li {
+        padding: 16px 24px;
+    }
+    .cart_footer, .coupon {
+        padding: 16px 24px!important;
+    }
+    .total_content {
+        padding: 0 24px;
+    }
+    .klarna_popup h3 {
+        margin-top: 18px;
+    }
+    .container-add-to-bag .cdk-global-overlay-wrapper {
+        max-width: 380px;
+        margin-left: auto;
+        right: 0;
+    }
+}
 </style>`;
 
 
 let componentCarousel = (variant, title) => {
     let span = variant == 'basket-empty' ? `<p class="m-t-1 p1 ng-star-inserted">New Arrivals</p>` : `
-    <div _ngcontent-app-c405="" sizeclass="!S: flex flex-justify-center m-t-3" class="col-12 underline m-b-6-s m-b-6-m ng-star-inserted">
+    <div _ngcontent-app-c405="" sizeclass="!S: flex flex-justify-center m-t-3" class="col-12 underline m-t-6 ng-star-inserted btns-action">
         <button _ngcontent-app-c405="" zippyclass="col-1" class="s1 product-carousel-tab m-t-2-s w-12-s col-1 ng-star-inserted">
             <span _ngcontent-app-c405="" class="underline-s">Recently Viewed</span>
         </button>
@@ -589,7 +617,7 @@ let componentCarousel = (variant, title) => {
                     <div class="ng-star-inserted">
                         <page-component-product-carousel 
                             class="ng-star-inserted cms-component page-component-product-carousel">
-                            <div class="center wrap-x">
+                            <div class="center wrap">
                                 <h1 sizeclass="XL:h1, MS:h2" class="p-t-5-s b-t-s b-col-42-s h2 ng-star-inserted">${title}</h1>
                                 ${span}
                                 <div class="p-t-3 p-b-3 text ng-star-inserted">
@@ -597,16 +625,22 @@ let componentCarousel = (variant, title) => {
                                 </div>
                                 <div sizeclass="!S: flex flex-justify-center m-t-3" class="col-12 underline m-b-6-s m-b-6-m ng-star-inserted"></div>
                                 
-                                <div sizeclass="XL:m-l-6 m-r-6,SM:m-l m-r" class="p-l-6 p-r-6">
+                                <div sizeclass="XL:m-l-6 m-r-6,SM:m-l m-r">
                                     <related-products
                                         class="block m-b-8" _nghost-app-c143="">
                                         <div class="ng-star-inserted">
-                                            <swiper _ngcontent-app-c143 class="p-b-7 swiper" >
+                                            <swiper _ngcontent-app-c143 class="p-b-7 swiper swiper-${variant}" data-variant="swiper-${variant}" >
                                                 <div class="swiper-scrollbar"></div>
                                                 <div class="swiper-wrapper"></div>
                                                 <span class="swiper-notification"></span>
                                             </swiper>
-                                           
+                                            ${variant == 'basket-extra' ? `
+                                            <swiper _ngcontent-app-c143 class="p-b-7 swiper ng-hide swiper-${variant}-2"  data-variant="swiper-${variant}-2">
+                                                <div class="swiper-scrollbar"></div>
+                                                <div class="swiper-wrapper"></div>
+                                                <span class="swiper-notification"></span>
+                                            </swiper>
+                                            `: ''}
                                         </div>
                                     </related-products>
                                 </div>
@@ -977,7 +1011,7 @@ let addProduct = (parent, items, totals, count, coupon, bought_klevu = '') => {
             }).then(res => res.json()).then(dataBought => {
                 console.log(dataBought)
 
-                parent.querySelector('.cart_extra .swiper-wrapper').innerHTML = '';
+                parent.querySelector('.swiper-basket-extra-2 .swiper-wrapper').innerHTML = '';
 
                 let itemsRecords = dataBought.queryResults[0].records;
 
@@ -1008,8 +1042,8 @@ let addProduct = (parent, items, totals, count, coupon, bought_klevu = '') => {
                         }
                     }
 
-                    parent.querySelector('.cart_extra .swiper-wrapper').insertAdjacentHTML('beforeend', 
-                    slide(item.url, item.name, 'product/'+item.image.split('/200X200/')[1], reviewCount, '', +item.salePrice, stars, item.itemGroupId, '', 0, +item.price))
+                    parent.querySelector('.swiper-basket-extra-2 .swiper-wrapper').insertAdjacentHTML('beforeend', 
+                    slide(item.url.replace('mage.',''), item.name, 'product/'+item.image.split('/200X200/')[1], reviewCount, '', +item.salePrice, stars, item.itemGroupId, '', 0, +item.price))
                     
                     getFetch(`n/product/${item.itemGroupId}/verbosity/3`).then(dataProduct => {
                         
@@ -1034,6 +1068,8 @@ let addProduct = (parent, items, totals, count, coupon, bought_klevu = '') => {
 
                         parent.querySelector(`.cart_extra .product-size[data-id="${itemsRecords[i].itemGroupId}"]`).innerHTML = sizes;
                         parent.querySelector(`.cart_extra .product-size[data-id="${itemsRecords[i].itemGroupId}"]+product-quick-buy`).dataset.size = sizeItem;
+                        parent.querySelector(`.cart_extra product[data-id="${itemsRecords[i].itemGroupId}"] .product_colors`).innerHTML = product.color.length + ' Colours';
+                        
 
                         let catalog = dataProduct.catalog;
                         for (let j = 0; j < catalog.length; j++) {
@@ -1047,7 +1083,22 @@ let addProduct = (parent, items, totals, count, coupon, bought_klevu = '') => {
                     
                     
 
-                    modal(parent.querySelector('.cart_extra'))
+                    modal(parent.querySelector('.swiper-basket-extra-2'))
+
+                    parent.querySelectorAll('.cart_extra .btns-action button').forEach((button, index) => {
+                        button.addEventListener('click', (e) => {
+                            button.classList.add('col-1')
+                            if (index == 0) {
+                                button.nextElementSibling.classList.remove('col-1')
+                                parent.querySelectorAll('.cart_extra .swiper')[0].classList.remove('ng-hide')
+                                parent.querySelectorAll('.cart_extra .swiper')[1].classList.add('ng-hide')
+                            } else {
+                                button.previousElementSibling.classList.remove('col-1')
+                                parent.querySelectorAll('.cart_extra .swiper')[0].classList.add('ng-hide')
+                                parent.querySelectorAll('.cart_extra .swiper')[1].classList.remove('ng-hide')
+                            }
+                        })
+                    })
                 
                 }
                 
@@ -1057,8 +1108,7 @@ let addProduct = (parent, items, totals, count, coupon, bought_klevu = '') => {
             });
         })
     }
-
-
+  
     parent.querySelector('.cart_head span').innerHTML = count;
 
     if (count != 0) {
@@ -1685,7 +1735,7 @@ let slide = (url, name, image, reviewCount, sizeItem, price, stars, id, sizes, s
 
     return ` 
     <div class="swiper-slide ng-star-inserted">
-        <product class="w-12 left ng-star-inserted" style="visibility: visible;">
+        <product class="w-12 left ng-star-inserted" style="visibility: visible;" data-id="${id}">
             <div class="pos-relative flex-column height-100 product-card ng-star-inserted">
                 
                 <div class="ng-star-inserted">
@@ -1723,7 +1773,7 @@ let slide = (url, name, image, reviewCount, sizeItem, price, stars, id, sizes, s
                     </wishlist-toggle>
                     <div  class="m-t-3 p-b-1">
                         <a sizeclass="!SM: p1, SM: p2" cy-listingproductname="" class="p2 col-1" href="${webCode+url}">${name}</a>
-                        <p sizeclass="!SM: p1, SM: p2" class="m-t-1 col-12 p2 ng-star-inserted"> ${sizeLength} Colours</p>
+                        <p sizeclass="!SM: p1, SM: p2" class="m-t-1 col-12 p2 ng-star-inserted product_colors"> ${sizeLength} Colours</p>
                         <div sizeclass="!SM: p1, SM: p2" class="m-t-1 p1 col-1">
                             <product-price class="m-r-1 price">
                                 ${window.autoInitData.website.currency.list[0].symbol + price.toFixed(2)}
@@ -1746,7 +1796,8 @@ let slide = (url, name, image, reviewCount, sizeItem, price, stars, id, sizes, s
 }
 
 let modal = (parent) => {
-    let classesParent = parent.classList.contains('cart_favourites') ? '.cart_favourites' : '.cart_extra'
+
+    let swiperClass = parent.querySelectorAll('swiper');
 
     parent.querySelectorAll('product-quick-buy').forEach((el, index) => {
         parent.querySelectorAll('.wishlist-button')[index].addEventListener('click', (e) => {
@@ -1820,16 +1871,17 @@ let modal = (parent) => {
         if (typeof Swiper !== 'undefined') {
             clearInterval(waitForSwiper)
     
-            // #1 Main slider 
-            var swiperMainSync = new Swiper(`${classesParent} .swiper`, {
-                slidesPerView: 2,
-                // slideToClickedSlide: true,
-                spaceBetween: 16,
-                scrollbar: {
-                    el: `${classesParent} .swiper-scrollbar`,
-                    draggable: true,
-                    dragSize: 48
-                  }
+            swiperClass.forEach( swiper => {
+                var swiperMainSync = new Swiper(swiper,  {
+                    slidesPerView: 2,
+                    // slideToClickedSlide: true,
+                    spaceBetween: 16,
+                    scrollbar: {
+                        el: `.${swiper.dataset.variant} .swiper-scrollbar`,
+                        draggable: true,
+                        dragSize: 48
+                      }
+                })
             })
         }
     })
@@ -2123,7 +2175,99 @@ let init = () => {
                 if (e.target.classList.contains('cart')) {
                     toggleActive(cart, false)
                 }
+                if (e.target.classList.contains('klarna_popup')) {
+                    toggleActive(document.querySelector('.klarna_popup'), false)
+                    
+                }
             })
+
+
+            //recently viewed
+            let webCode = window.autoInitData.website.websiteCode != 'base' ? '/'+window.autoInitData.website.websiteCode : '';
+
+            if (localStorage.getItem(`ngStorage-${webCode}/-recentlyViewed`) && localStorage.getItem(`ngStorage-${webCode}/-recentlyViewed`) != '') {
+                let arrId = JSON.parse(localStorage.getItem(`ngStorage-${webCode}/-recentlyViewed`));
+
+                cart.querySelector('.btns-action').classList.remove('ng-hide')
+                cart.querySelector('.swiper-basket-extra').classList.remove('ng-hide')
+                cart.querySelector('.swiper-basket-extra-2').classList.add('ng-hide')
+
+                console.log(arrId)
+                for (let i = 0; i < arrId.length; i++) {
+                    getFetch(`n/product/${arrId[i]}/verbosity/3`).then(dataItem => {
+                        console.log(dataItem)
+
+                        let item = dataItem.result[0];
+
+                        let promisesBox = [];
+
+                        if (item.plp_label != "Sold Out") {
+                            //stars
+                            let stars = '';
+                            let reviewCount = 0;
+                            if (item.reviews) {
+                                let reviewRating = (item.reviews.rating / 10 / 2).toFixed(1);
+                                reviewCount = item.reviews.count;
+            
+                                let iWholeStars = Math.floor(reviewRating);
+                                let iEmptyStars = 5 - Math.ceil(reviewRating);
+            
+                                let blnHalfStar = (iWholeStars < reviewRating);
+                            
+                                for (var iStar = 1; iStar <= iWholeStars; iStar++) {
+                                    stars += '<i class="rate-full"></i>'
+                                }
+                            
+                                if (blnHalfStar) {
+                                    stars += '<i class="rate-half"></i>'
+                                } 
+                                for (let iEmp = 0; iEmp < iEmptyStars; iEmp++) {
+                                    stars += '<i class="rate-empty"></i>'
+                                }
+                            }
+        
+                            //sizes
+                            let size = item.size_org ? item.size_org : item.size;
+                            let sizes = '';
+                            let sizeItem = JSON.stringify(window.autoInitData.data.attribute).split(`${size[0]},"label":"`)[1].split('"')[0].replace('\\','"')
+        
+        
+                            for (let k = 0; k < size.length; k++) {
+        
+                                sizes += ` 
+                                <box class="inline-block va-m cursor-pointer m-t-1 m-r-1 ng-star-inserted ${k == 0 ? 'is-selected' : ''}" data-id="${item.directChildrenIds[k]}" _nghost-app-c120="">
+                                    <div _ngcontent-app-c120="" class="p2 b-a inline-block center box">${JSON.stringify(window.autoInitData.data.attribute).split(`${size[k]},"label":"`)[1].split('"')[0].replace('\\','"')} </div>
+                                </box>`
+        
+                                promisesBox.push(getFetch(`n/product/${item.directChildrenIds[k]}/verbosity/3`))
+                            
+                            }
+                            document.querySelector('.cart_favourites .swiper-wrapper').insertAdjacentHTML('beforeend', 
+                            slide(item.url, item.name, item.image, reviewCount, sizeItem, item.price, stars, item.id, sizes, size.length, item.org_price))
+                        }
+            
+                        Promise.all(promisesBox).then(dataItem => {
+                            console.log(dataItem)
+            
+                            for (let k = 0; k < dataItem.length; k++) {
+                                let catalog = dataItem[k].catalog;
+                                for (let j = 0; j < catalog.length; j++) {
+                                    if (document.querySelector(`.product-size > [data-id="${catalog[j].id}"]`)) {
+                                        let isOut = catalog[j].isOut && catalog[j].isOut == true ? 'is-warning' : '';
+                                        isOut != '' ? document.querySelector(`.product-size > [data-id="${catalog[j].id}"]`).classList.add(isOut) : '';
+                                    }
+                                }
+                            }
+                        })
+
+                        modal(parent.querySelector('.swiper-basket-extra'))
+                    })
+                }
+            } else {
+                cart.querySelector('.btns-action').classList.add('ng-hide')
+                cart.querySelector('.swiper-basket-extra').classList.add('ng-hide')
+                cart.querySelector('.swiper-basket-extra-2').classList.remove('ng-hide')
+            }
 
         }
     })
