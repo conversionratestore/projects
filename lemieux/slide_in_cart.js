@@ -604,7 +604,7 @@ product-quick-buy button {
 
 let componentCarousel = (variant, title) => {
     let span = variant == 'basket-empty' ? `<p class="m-t-1 p1 ng-star-inserted">New Arrivals</p>` : `
-    <div _ngcontent-app-c405="" sizeclass="!S: flex flex-justify-center m-t-3" class="col-12 underline m-t-6 ng-star-inserted btns-action">
+    <div _ngcontent-app-c405="" sizeclass="!S: flex flex-justify-center m-t-3" class="col-12 underline m-t-6 ng-star-inserted btns-action ">
         <button _ngcontent-app-c405="" zippyclass="col-1" class="s1 product-carousel-tab m-t-2-s w-12-s col-1 ng-star-inserted">
             <span _ngcontent-app-c405="" class="underline-s">Recently Viewed</span>
         </button>
@@ -701,7 +701,7 @@ let cartHTML = `
 
                 <ul class="cart_products"></ul>
 
-                <div class="cart_extra">
+                <div class="cart_extra" hidden>
                     ${componentCarousel('basket-extra', 'Add a little extra')}
                 </div>
                 <div class="coupon"> 
@@ -996,6 +996,7 @@ let addProduct = (parent, items, totals, count, coupon, bought_klevu = '') => {
 
     if (bought_klevu != '' && window.autoInitData.website.websiteCode != 'us') {
         const allResults = Promise.all(recordsBought).then(data => {
+            console.log(data)
 
             let dataRecords = [];
             for (let i = 0; i < data.length; i++) {
@@ -1011,81 +1012,104 @@ let addProduct = (parent, items, totals, count, coupon, bought_klevu = '') => {
                 body: JSON.stringify({"context":{"apiKeys":["klevu-166193529863215439"]},"recordQueries":[{"id":"klevuRECSItemList","typeOfRequest":"RECS_ALSO_BOUGHT","settings":{"typeOfRecords":["KLEVU_PRODUCT"],"limit":10,"context":{"recentObjects":[{"typeOfRecord":"KLEVU_PRODUCT",
                 "records":dataRecords}]}}}]})
             }).then(res => res.json()).then(dataBought => {
+                console.log(dataBought)
 
                 parent.querySelector('.swiper-basket-extra-2 .swiper-wrapper').innerHTML = '';
 
                 let itemsRecords = dataBought.queryResults[0].records;
+                let webCode = window.autoInitData.website.websiteCode != 'base' ? '/'+window.autoInitData.website.websiteCode : '';
 
-                for (let i = 0; i < itemsRecords.length; i++) {
-                    let item = itemsRecords[i];
+                if (itemsRecords.length < 1) {
+                    parent.querySelector('.btns-action').classList.add('ng-hide');
+                    parent.querySelector('.swiper-basket-extra-2').classList.add('ng-hide');
+                    parent.querySelector('.swiper-basket-extra').classList.remove('ng-hide');
 
-                    //stars
-                    let stars = '';
-                    let reviewCount = 0;
-                    if (item.rating) {
-                        let reviewRating = (+item.rating).toFixed(1);
-                        reviewCount = item.ratingCount;
+                    parent.querySelectorAll('.btns-action button')[0].classList.add('col-1');
+                    parent.querySelectorAll('.btns-action button')[1].classList.remove('col-1');
 
-                        let iWholeStars = Math.floor(reviewRating);
-                        let iEmptyStars = 5 - Math.ceil(reviewRating);
-
-                        let blnHalfStar = (iWholeStars < reviewRating);
-                    
-                        for (var iStar = 1; iStar <= iWholeStars; iStar++) {
-                            stars += '<i class="rate-full"></i>'
-                        }
-                    
-                        if (blnHalfStar) {
-                            stars += '<i class="rate-half"></i>'
-                        } 
-                        for (let iEmp = 0; iEmp < iEmptyStars; iEmp++) {
-                            stars += '<i class="rate-empty"></i>'
-                        }
+                    if (window.autoInitData.website.websiteCode != 'us' && localStorage.getItem(`ngStorage-${webCode}/-recentlyViewed`) && localStorage.getItem(`ngStorage-${webCode}/-recentlyViewed`) != '' && localStorage.getItem(`ngStorage-${webCode}/-recentlyViewed`) != '[]') {
+                        parent.querySelector('.cart_extra').hidden = false;
+                    } else {
+                        parent.querySelector('.cart_extra').hidden = true;
                     }
+                } else {
 
-                    parent.querySelector('.swiper-basket-extra-2 .swiper-wrapper').insertAdjacentHTML('beforeend', 
-                    slide(item.url.replace('mage.',''), item.name, 'product/'+item.image.split('/200X200/')[1], reviewCount, '', +item.salePrice, stars, item.itemGroupId, '', 0, +item.price))
-                    
-                    getFetch(`n/product/${item.itemGroupId}/verbosity/3`).then(dataProduct => {
-                        let product = dataProduct.result[0]
+                    for (let i = 0; i < itemsRecords.length; i++) {
+                        let item = itemsRecords[i];
 
-                        //sizes
-                        let size = product.size_org ? product.size_org : product.size;
-                        let sizes = '';
-                        let sizeItem = JSON.stringify(window.autoInitData.data.attribute).split(`${size[0]},"label":"`)[1].split('"')[0].replace('\\','"')
+                        //stars
+                        let stars = '';
+                        let reviewCount = 0;
+                        if (item.rating) {
+                            let reviewRating = (+item.rating).toFixed(1);
+                            reviewCount = item.ratingCount;
+
+                            let iWholeStars = Math.floor(reviewRating);
+                            let iEmptyStars = 5 - Math.ceil(reviewRating);
+
+                            let blnHalfStar = (iWholeStars < reviewRating);
                         
-                        for (let k = 0; k < size.length; k++) {
-
-                            sizes += ` 
-                            <box class="inline-block va-m cursor-pointer m-t-1 m-r-1 ng-star-inserted ${k == 0 ? 'is-selected' : ''}" data-id="${product.directChildrenIds[k]}" _nghost-app-c120="">
-                                <div _ngcontent-app-c120="" class="p2 b-a inline-block center box">${JSON.stringify(window.autoInitData.data.attribute).split(`${size[k]},"label":"`)[1].split('"')[0].replace('\\','"')} </div>
-                            </box>`
-
+                            for (var iStar = 1; iStar <= iWholeStars; iStar++) {
+                                stars += '<i class="rate-full"></i>'
+                            }
                         
-                        }
-
-                        parent.querySelector(`.swiper-basket-extra-2 .product-size[data-id="${itemsRecords[i].itemGroupId}"]`).innerHTML = sizes;
-                        parent.querySelector(`.swiper-basket-extra-2 .product-size[data-id="${itemsRecords[i].itemGroupId}"]+product-quick-buy`).dataset.size = sizeItem;
-
-                        let length = typeof item.color != "object" ? 1 : product.color.length;
-                        parent.querySelector(`.swiper-basket-extra-2 product[data-id="${itemsRecords[i].itemGroupId}"] .product_colors`).innerHTML = length + ' Colours';
-                        
-
-                        let catalog = dataProduct.catalog;
-                        for (let j = 0; j < catalog.length; j++) {
-                            if (parent.querySelector(`.swiper-basket-extra-2 .product-size > [data-id="${catalog[j].id}"]`)) {
-                                let isOut = catalog[j].isOut && catalog[j].isOut == true ? 'is-warning' : '';
-                                isOut != '' ? parent.querySelector(`.swiper-basket-extra-2 .product-size > [data-id="${catalog[j].id}"]`).classList.add(isOut) : '';
+                            if (blnHalfStar) {
+                                stars += '<i class="rate-half"></i>'
+                            } 
+                            for (let iEmp = 0; iEmp < iEmptyStars; iEmp++) {
+                                stars += '<i class="rate-empty"></i>'
                             }
                         }
+
+                        parent.querySelector('.swiper-basket-extra-2 .swiper-wrapper').insertAdjacentHTML('beforeend', 
+                        slide(item.url.replace('https://mage.lemieuxproducts.com/','/new-in/'), item.name, 'product/'+item.image.split('/200X200/')[1], reviewCount, '', +item.salePrice, stars, item.itemGroupId, '', 0, +item.price))
                         
-                    })
+                        getFetch(`n/product/${item.itemGroupId}/verbosity/3`).then(dataProduct => {
+                            let product = dataProduct.result[0]
+
+                            //sizes
+                            let size = product.size_org ? product.size_org : product.size;
+                            let sizes = '';
+                            let sizeItem = JSON.stringify(window.autoInitData.data.attribute).split(`${size[0]},"label":"`)[1].split('"')[0].replace('\\','"')
+                            
+                            for (let k = 0; k < size.length; k++) {
+
+                                sizes += ` 
+                                <box class="inline-block va-m cursor-pointer m-t-1 m-r-1 ng-star-inserted ${k == 0 ? 'is-selected' : ''}" data-id="${product.directChildrenIds[k]}" _nghost-app-c120="">
+                                    <div _ngcontent-app-c120="" class="p2 b-a inline-block center box">${JSON.stringify(window.autoInitData.data.attribute).split(`${size[k]},"label":"`)[1].split('"')[0].replace('\\','"')} </div>
+                                </box>`
+
+                            
+                            }
+
+                            parent.querySelector(`.swiper-basket-extra-2 .product-size[data-id="${itemsRecords[i].itemGroupId}"]`).innerHTML = sizes;
+                            parent.querySelector(`.swiper-basket-extra-2 .product-size[data-id="${itemsRecords[i].itemGroupId}"]+product-quick-buy`).dataset.size = sizeItem;
+
+                            let length = typeof item.color != "object" ? 1 : product.color.length;
+                            parent.querySelector(`.swiper-basket-extra-2 product[data-id="${itemsRecords[i].itemGroupId}"] .product_colors`).innerHTML = length + ' Colours';
+                            
+
+                            let catalog = dataProduct.catalog;
+                            for (let j = 0; j < catalog.length; j++) {
+                                if (parent.querySelector(`.swiper-basket-extra-2 .product-size > [data-id="${catalog[j].id}"]`)) {
+                                    let isOut = catalog[j].isOut && catalog[j].isOut == true ? 'is-warning' : '';
+                                    isOut != '' ? parent.querySelector(`.swiper-basket-extra-2 .product-size > [data-id="${catalog[j].id}"]`).classList.add(isOut) : '';
+                                }
+                            }
+                            
+                        })
+                        
+
+                        modal(parent.querySelector('.cart_extra'))
+                    }
+                   
+                    if (localStorage.getItem(`ngStorage-${webCode}/-recentlyViewed`) && localStorage.getItem(`ngStorage-${webCode}/-recentlyViewed`) != '') {
+                        parent.querySelector('.btns-action').classList.remove('ng-hide');
+                    } else {
+                        parent.querySelector('.btns-action').classList.add('ng-hide')
+                    }
                     
-
-                    modal(parent.querySelector('.cart_extra'))
-
-                 
-                
+                    parent.querySelector('.cart_extra').hidden = window.autoInitData.website.websiteCode == 'us';
                 }
                 
             }).catch((error) => {
@@ -1094,7 +1118,6 @@ let addProduct = (parent, items, totals, count, coupon, bought_klevu = '') => {
         })
     } 
 
-    parent.querySelector('.cart_extra').hidden = window.autoInitData.website.websiteCode == 'us';
   
     parent.querySelector('.cart_head span').innerHTML = count;
 
@@ -2183,10 +2206,10 @@ let init = () => {
             //recently viewed
             let webCode = window.autoInitData.website.websiteCode != 'base' ? '/'+window.autoInitData.website.websiteCode : '';
 
+            cart.querySelector('.btns-action').classList.add('ng-hide')
             if (localStorage.getItem(`ngStorage-${webCode}/-recentlyViewed`) && localStorage.getItem(`ngStorage-${webCode}/-recentlyViewed`) != '') {
                 let arrId = JSON.parse(localStorage.getItem(`ngStorage-${webCode}/-recentlyViewed`));
 
-                cart.querySelector('.btns-action').classList.remove('ng-hide')
                 cart.querySelector('.swiper-basket-extra').classList.remove('ng-hide')
                 cart.querySelector('.swiper-basket-extra-2').classList.add('ng-hide')
 
@@ -2265,7 +2288,6 @@ let init = () => {
                     }
                 }
             } else {
-                cart.querySelector('.btns-action').classList.add('ng-hide')
                 cart.querySelector('.swiper-basket-extra').classList.add('ng-hide')
                 cart.querySelector('.swiper-basket-extra-2').classList.remove('ng-hide')
             }
