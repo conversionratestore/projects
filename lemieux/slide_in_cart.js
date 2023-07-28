@@ -1064,16 +1064,18 @@ let addProduct = (parent, items, totals, count, coupon, bought_klevu = '') => {
                         
                         }
 
-                        parent.querySelector(`.cart_extra .product-size[data-id="${itemsRecords[i].itemGroupId}"]`).innerHTML = sizes;
-                        parent.querySelector(`.cart_extra .product-size[data-id="${itemsRecords[i].itemGroupId}"]+product-quick-buy`).dataset.size = sizeItem;
-                        parent.querySelector(`.cart_extra product[data-id="${itemsRecords[i].itemGroupId}"] .product_colors`).innerHTML = product.color.length + ' Colours';
+                        parent.querySelector(`.swiper-basket-extra-2 .product-size[data-id="${itemsRecords[i].itemGroupId}"]`).innerHTML = sizes;
+                        parent.querySelector(`.swiper-basket-extra-2 .product-size[data-id="${itemsRecords[i].itemGroupId}"]+product-quick-buy`).dataset.size = sizeItem;
+
+                        let length = typeof item.color != "object" ? 1 : product.color.length;
+                        parent.querySelector(`.swiper-basket-extra-2 product[data-id="${itemsRecords[i].itemGroupId}"] .product_colors`).innerHTML = length + ' Colours';
                         
 
                         let catalog = dataProduct.catalog;
                         for (let j = 0; j < catalog.length; j++) {
-                            if (parent.querySelector(`.cart_extra .product-size > [data-id="${catalog[j].id}"]`)) {
+                            if (parent.querySelector(`.swiper-basket-extra-2 .product-size > [data-id="${catalog[j].id}"]`)) {
                                 let isOut = catalog[j].isOut && catalog[j].isOut == true ? 'is-warning' : '';
-                                isOut != '' ? parent.querySelector(`.cart_extra .product-size > [data-id="${catalog[j].id}"]`).classList.add(isOut) : '';
+                                isOut != '' ? parent.querySelector(`.swiper-basket-extra-2 .product-size > [data-id="${catalog[j].id}"]`).classList.add(isOut) : '';
                             }
                         }
                         
@@ -1722,6 +1724,7 @@ scriptCustomStyle.href = 'https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.m
 scriptCustomStyle.rel = 'stylesheet'
 
 let slide = (url, name, image, reviewCount, sizeItem, price, stars, id, sizes, sizeLength, org_price) => {
+    console.log(sizeLength + " : " + name)
     let webCode = window.autoInitData.website.websiteCode != 'base' ? '/'+window.autoInitData.website.websiteCode : '';
 
     return ` 
@@ -1981,8 +1984,11 @@ let clickBasket = setInterval(() => {
                         promisesBox.push(getFetch(`n/product/${item.directChildrenIds[k]}/verbosity/3`))
                     
                     }
+
+                    let length = typeof item.color != "object" ? 1 : item.color.length;
+
                     document.querySelector('.cart_favourites .swiper-wrapper').insertAdjacentHTML('beforeend', 
-                    slide(item.url, item.name, item.image, reviewCount, sizeItem, item.price, stars, item.id, sizes, size.length, item.org_price))
+                    slide(item.url, item.name, item.image, reviewCount, sizeItem, item.price, stars, item.id, sizes, length, item.org_price))
                 }
             }
 
@@ -2015,7 +2021,9 @@ let init = () => {
             currency = window.autoInitData.website.currency.list[0].symbol;
             //cart
             let cart = document.querySelector('.cart');
-       
+
+            cart.querySelector('.swiper-basket-extra .swiper-wrapper').innerHTML = '';
+
             pushDataLayer('exp_slide_in_cart_visibility', 'Cart visibility', 'Element visibility', 'Sidebar cart')
 
             if (!document.querySelector('.klarna_popup')) {
@@ -2160,13 +2168,15 @@ let init = () => {
 
             document.querySelector('.cart_close').addEventListener('click', (e) => {
                 toggleActive(cart, false)
+                cart.querySelectorAll('.btns-action button')[0].classList.add('col-1')
+                cart.querySelectorAll('.btns-action button')[1].classList.remove('col-1')
             })
 
             document.addEventListener('click', (e) => {
                 if (e.target.classList.contains('cart')) {
                     toggleActive(cart, false)
-                    document.querySelectorAll('.btns-action button')[0].remove('ng-hide')
-                    document.querySelectorAll('.btns-action button')[1].add('ng-hide')
+                    cart.querySelectorAll('.btns-action button')[0].classList.add('col-1')
+                    cart.querySelectorAll('.btns-action button')[1].classList.remove('col-1')
                 }
                 if (e.target.classList.contains('klarna_popup')) {
                     toggleActive(document.querySelector('.klarna_popup'), false)
@@ -2234,8 +2244,12 @@ let init = () => {
                                     promisesBox.push(getFetch(`n/product/${item.directChildrenIds[k]}/verbosity/3`))
                                 
                                 }
+
+                                let length = typeof item.color != "object" ? 1 : item.color.length;
+
                                 cart.querySelector('.swiper-basket-extra .swiper-wrapper').insertAdjacentHTML('beforeend', 
-                                slide(item.url, item.name, item.image, reviewCount, sizeItem, item.price, stars, item.id, sizes, size.length, item.org_price))
+                                slide(item.url, item.name, item.image, reviewCount, sizeItem, item.price, stars, item.id, sizes, length, item.org_price))
+                               
                             }
                 
                             Promise.all(promisesBox).then(dataItem => {
