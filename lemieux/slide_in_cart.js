@@ -934,6 +934,12 @@ let updateTotal = (parent, totals, items, coupon) => {
                   
                 }
             })
+            
+            if (window.autoInitData.website.websiteCode == 'us') {
+                parent.querySelector('.klarna_content').hidden = true
+            } else {
+                parent.querySelector('.klarna_content').hidden = false
+            }
 
             document.body.querySelectorAll('.klarna_pr').forEach(klarna => {
                 klarna.innerHTML = currency + ((totals['grand_total'] + isShipNew) / 3).toFixed(2)
@@ -1614,11 +1620,6 @@ class Total {
             this.currency,
             this.coupon
         ).render()
-        
-        document.body.querySelectorAll('.klarna_pr').forEach(item => {
-            item.innerHTML = this.currency + (this.grandTotal / 3).toFixed(2);
-        })
-        
     }
 }
 
@@ -1872,6 +1873,7 @@ let modal = (parent) => {
             clearInterval(waitForSwiper)
     
             swiperClass.forEach( swiper => {
+                console.log(swiper)
                 var swiperMainSync = new Swiper(swiper,  {
                     slidesPerView: 2,
                     // slideToClickedSlide: true,
@@ -2085,9 +2087,9 @@ let init = () => {
 
                 let viewedKlarna = false;
                 document.querySelector('.cart_container').addEventListener('scroll', () => {
-                    if (isScrolledIntoView(document.querySelector('.klarna_content')) && viewedKlarna == false) {
+                    if (isScrolledIntoView(document.querySelector('.klarna_content:not([hidden])')) && viewedKlarna == false) {
                         setTimeout(() => {
-                            if (isScrolledIntoView(document.querySelector('.klarna_content')) && viewedKlarna == false) {
+                            if (isScrolledIntoView(document.querySelector('.klarna_content:not([hidden])')) && viewedKlarna == false) {
                                 viewedKlarna = true;
                                 pushDataLayer('exp_slide_in_cart_clarna_visibility','Klarna','Element visibility','Sidebar cart. Klarna') 
                             }
@@ -2182,6 +2184,7 @@ let init = () => {
             })
 
 
+
             //recently viewed
             let webCode = window.autoInitData.website.websiteCode != 'base' ? '/'+window.autoInitData.website.websiteCode : '';
 
@@ -2242,7 +2245,7 @@ let init = () => {
                                 promisesBox.push(getFetch(`n/product/${item.directChildrenIds[k]}/verbosity/3`))
                             
                             }
-                            document.querySelector('.cart_favourites .swiper-wrapper').insertAdjacentHTML('beforeend', 
+                            cart.querySelector('.swiper-basket-extra .swiper-wrapper').insertAdjacentHTML('beforeend', 
                             slide(item.url, item.name, item.image, reviewCount, sizeItem, item.price, stars, item.id, sizes, size.length, item.org_price))
                         }
             
@@ -2259,8 +2262,9 @@ let init = () => {
                                 }
                             }
                         })
-
-                        modal(parent.querySelector('.swiper-basket-extra'))
+                                
+                        modal(cart.querySelector('.cart_extra'))
+                        
                     })
                 }
             } else {
