@@ -965,7 +965,10 @@ let addProduct = (parent, items, totals, count, coupon, bought_klevu = '') => {
                     options += `<span class="option"><span>Size: </span> ${iSlash}</span> `
                 } 
                 if (item.color) {
-                    options += `<span class="option"><span>Colour: </span> ${JSON.stringify(window.autoInitData.data.attribute).split(`${item.color},"label":"`)[1].split('"')[0]}</span> `
+                    let findColor = typeof JSON.stringify(window.autoInitData.data.attribute).split(`${item.color},"label":"`)[1] != 'undefined' ? JSON.stringify(window.autoInitData.data.attribute).split(`${item.color},"label":"`)[1] : '';
+                    
+                    console.log(findColor)
+                    options += (findColor != '' ? `<span class="option"><span>Colour: </span> ${findColor.split('"')[0]}</span> ` : '')
                 }
 
                 new Product(
