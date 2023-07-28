@@ -852,7 +852,7 @@ let updateTotal = (parent, totals, items, coupon) => {
     parent.querySelector('.total_content ul').innerHTML = '';
 
     let isCoupon = coupon != undefined ? coupon.toUpperCase() : ''
-    console.log(isCoupon)
+  
     for (const key in totals) {
         if (!key.includes('tax') && !key.includes('amasty_giftcard')) {
             new Total(
@@ -944,8 +944,6 @@ let updateTotal = (parent, totals, items, coupon) => {
 }
 //add products
 let addProduct = (parent, items, totals, count, coupon, bought_klevu = '') => {
-   
-    console.log(parent) 
 
     updateTotal(parent, totals, items, coupon) 
     
@@ -994,14 +992,13 @@ let addProduct = (parent, items, totals, count, coupon, bought_klevu = '') => {
 
     if (bought_klevu != '' && window.autoInitData.website.websiteCode != 'us') {
         const allResults = Promise.all(recordsBought).then(data => {
-            console.log(data)
 
             let dataRecords = [];
             for (let i = 0; i < data.length; i++) {
                 dataRecords.push(data[i]);
                 
             }
-            console.log(dataRecords)
+
             fetch(`https://eucs30v2.ksearchnet.com/cs/v2/search`, {
                 method: "POST",
                 headers: {
@@ -1569,8 +1566,6 @@ class Total {
 
         let shippingPriceFix = window.autoInitData.website.websiteCode != 'base' ? 14.95 : 3.95;
         let isFreeShip = this.parent.querySelector('.pr-line-ship') ? 0 : shippingPriceFix;
-
-        console.log(isFreeShip)
 
         let price = this.key.includes('shipping') && 
                     this.value == 0 && 
@@ -2170,14 +2165,14 @@ let init = () => {
             document.addEventListener('click', (e) => {
                 if (e.target.classList.contains('cart')) {
                     toggleActive(cart, false)
+                    document.querySelectorAll('.btns-action button')[0].remove('ng-hide')
+                    document.querySelectorAll('.btns-action button')[1].add('ng-hide')
                 }
                 if (e.target.classList.contains('klarna_popup')) {
                     toggleActive(document.querySelector('.klarna_popup'), false)
                     
                 }
             })
-
-
 
             //recently viewed
             let webCode = window.autoInitData.website.websiteCode != 'base' ? '/'+window.autoInitData.website.websiteCode : '';
@@ -2189,77 +2184,78 @@ let init = () => {
                 cart.querySelector('.swiper-basket-extra').classList.remove('ng-hide')
                 cart.querySelector('.swiper-basket-extra-2').classList.add('ng-hide')
 
-                console.log(arrId)
                 for (let i = 0; i < arrId.length; i++) {
-                    getFetch(`n/product/${arrId[i]}/verbosity/3`).then(dataItem => {
-                        console.log(dataItem)
-
-                        let item = dataItem.result[0];
-
-                        let promisesBox = [];
-
-                        if (item.plp_label != "Sold Out") {
-                            //stars
-                            let stars = '';
-                            let reviewCount = 0;
-                            if (item.reviews) {
-                                let reviewRating = (item.reviews.rating / 10 / 2).toFixed(1);
-                                reviewCount = item.reviews.count;
-            
-                                let iWholeStars = Math.floor(reviewRating);
-                                let iEmptyStars = 5 - Math.ceil(reviewRating);
-            
-                                let blnHalfStar = (iWholeStars < reviewRating);
-                            
-                                for (var iStar = 1; iStar <= iWholeStars; iStar++) {
-                                    stars += '<i class="rate-full"></i>'
-                                }
-                            
-                                if (blnHalfStar) {
-                                    stars += '<i class="rate-half"></i>'
-                                } 
-                                for (let iEmp = 0; iEmp < iEmptyStars; iEmp++) {
-                                    stars += '<i class="rate-empty"></i>'
-                                }
-                            }
-        
-                            //sizes
-                            let size = item.size_org ? item.size_org : item.size;
-                            let sizes = '';
-                            let sizeItem = JSON.stringify(window.autoInitData.data.attribute).split(`${size[0]},"label":"`)[1].split('"')[0].replace('\\','"')
-        
-        
-                            for (let k = 0; k < size.length; k++) {
-        
-                                sizes += ` 
-                                <box class="inline-block va-m cursor-pointer m-t-1 m-r-1 ng-star-inserted ${k == 0 ? 'is-selected' : ''}" data-id="${item.directChildrenIds[k]}" _nghost-app-c120="">
-                                    <div _ngcontent-app-c120="" class="p2 b-a inline-block center box">${JSON.stringify(window.autoInitData.data.attribute).split(`${size[k]},"label":"`)[1].split('"')[0].replace('\\','"')} </div>
-                                </box>`
-        
-                                promisesBox.push(getFetch(`n/product/${item.directChildrenIds[k]}/verbosity/3`))
-                            
-                            }
-                            cart.querySelector('.swiper-basket-extra .swiper-wrapper').insertAdjacentHTML('beforeend', 
-                            slide(item.url, item.name, item.image, reviewCount, sizeItem, item.price, stars, item.id, sizes, size.length, item.org_price))
-                        }
-            
-                        Promise.all(promisesBox).then(dataItem => {
+                    if (!cart.querySelector(`.swiper-slide product[data-id="${arrId}"]`)) {
+                        getFetch(`n/product/${arrId[i]}/verbosity/3`).then(dataItem => {
                             console.log(dataItem)
-            
-                            for (let k = 0; k < dataItem.length; k++) {
-                                let catalog = dataItem[k].catalog;
-                                for (let j = 0; j < catalog.length; j++) {
-                                    if (document.querySelector(`.product-size > [data-id="${catalog[j].id}"]`)) {
-                                        let isOut = catalog[j].isOut && catalog[j].isOut == true ? 'is-warning' : '';
-                                        isOut != '' ? document.querySelector(`.product-size > [data-id="${catalog[j].id}"]`).classList.add(isOut) : '';
+
+                            let item = dataItem.result[0];
+
+                            let promisesBox = [];
+
+                            if (item.plp_label != "Sold Out") {
+                                //stars
+                                let stars = '';
+                                let reviewCount = 0;
+                                if (item.reviews) {
+                                    let reviewRating = (item.reviews.rating / 10 / 2).toFixed(1);
+                                    reviewCount = item.reviews.count;
+                
+                                    let iWholeStars = Math.floor(reviewRating);
+                                    let iEmptyStars = 5 - Math.ceil(reviewRating);
+                
+                                    let blnHalfStar = (iWholeStars < reviewRating);
+                                
+                                    for (var iStar = 1; iStar <= iWholeStars; iStar++) {
+                                        stars += '<i class="rate-full"></i>'
+                                    }
+                                
+                                    if (blnHalfStar) {
+                                        stars += '<i class="rate-half"></i>'
+                                    } 
+                                    for (let iEmp = 0; iEmp < iEmptyStars; iEmp++) {
+                                        stars += '<i class="rate-empty"></i>'
                                     }
                                 }
-                            }
-                        })
+            
+                                //sizes
+                                let size = item.size_org ? item.size_org : item.size;
+                                let sizes = '';
+                                let sizeItem = JSON.stringify(window.autoInitData.data.attribute).split(`${size[0]},"label":"`)[1].split('"')[0].replace('\\','"')
+            
+            
+                                for (let k = 0; k < size.length; k++) {
+            
+                                    sizes += ` 
+                                    <box class="inline-block va-m cursor-pointer m-t-1 m-r-1 ng-star-inserted ${k == 0 ? 'is-selected' : ''}" data-id="${item.directChildrenIds[k]}" _nghost-app-c120="">
+                                        <div _ngcontent-app-c120="" class="p2 b-a inline-block center box">${JSON.stringify(window.autoInitData.data.attribute).split(`${size[k]},"label":"`)[1].split('"')[0].replace('\\','"')} </div>
+                                    </box>`
+            
+                                    promisesBox.push(getFetch(`n/product/${item.directChildrenIds[k]}/verbosity/3`))
                                 
-                        modal(cart.querySelector('.cart_extra'))
-                        
-                    })
+                                }
+                                cart.querySelector('.swiper-basket-extra .swiper-wrapper').insertAdjacentHTML('beforeend', 
+                                slide(item.url, item.name, item.image, reviewCount, sizeItem, item.price, stars, item.id, sizes, size.length, item.org_price))
+                            }
+                
+                            Promise.all(promisesBox).then(dataItem => {
+                                console.log(dataItem)
+                
+                                for (let k = 0; k < dataItem.length; k++) {
+                                    let catalog = dataItem[k].catalog;
+                                    for (let j = 0; j < catalog.length; j++) {
+                                        if (document.querySelector(`.product-size > [data-id="${catalog[j].id}"]`)) {
+                                            let isOut = catalog[j].isOut && catalog[j].isOut == true ? 'is-warning' : '';
+                                            isOut != '' ? document.querySelector(`.product-size > [data-id="${catalog[j].id}"]`).classList.add(isOut) : '';
+                                        }
+                                    }
+                                }
+                            })
+                                    
+                            modal(cart.querySelector('.cart_extra'))
+                            
+                        })
+                    }
                 }
             } else {
                 cart.querySelector('.btns-action').classList.add('ng-hide')
