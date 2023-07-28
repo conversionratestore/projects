@@ -1741,6 +1741,10 @@ let slide = (url, name, image, reviewCount, sizeItem, price, stars, id, sizes, s
                             </button>
                         </product-quick-buy>
                     </div>
+                    ${ org_price && org_price > price ?
+                        ' <div _ngcontent-app-c140="" class="pos-absolute p2 top-2 left-2 p-t-1 p-r-2 p-b-1 p-l-2 z-1 ng-star-inserted" style="color: white; background-color: rgb(142, 21, 55);"> Sale </div>' : 
+                        ''
+                    }
                     <wishlist-toggle _ngcontent-app-c142="" class="product-wishlist ng-star-inserted">
                         <div class="pos-absolute top-2 z-1 right-2">
                             <div>
