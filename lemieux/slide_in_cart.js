@@ -2273,8 +2273,10 @@ let init = () => {
 }
 
 let addToBagLp = setInterval(() => {
-    if (document.querySelector('.cdk-overlay-container') && document.querySelector('.cdk-overlay-container').innerText.includes('Shopping Bag')) {
-        document.querySelector('.cdk-overlay-container').remove()
+    if (document.querySelector('.cdk-overlay-container .cdk-overlay-backdrop') && document.querySelector('.cart') && !document.querySelector('.cart.active') && document.querySelector('.cdk-overlay-container').innerText.includes('Shopping Bag')) {
+       
+        document.querySelector('.cdk-overlay-container .cdk-overlay-backdrop').click()
+        console.log('init')
 
         document.querySelector('.cart').classList.add('loading');
         toggleActive(document.querySelector('.cart'), true)
