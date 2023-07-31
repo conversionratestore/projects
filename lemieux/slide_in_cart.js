@@ -605,7 +605,7 @@ product-quick-buy button {
     .btns-action {
         margin-top: 4px!important;
     }
-    .btns-action button {
+    .size-s .btns-action button {
         margin-top: 12px!important;
     }
 }
