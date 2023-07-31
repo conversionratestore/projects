@@ -14,10 +14,15 @@
       visibility: hidden;
     }
 
+    #buttonDiv > div > div:first-child{
+      display: none;
+    }
+
     #buttonDiv {
       display: flex;
       justify-content: center;
-    }
+      min-height: 40px;
+    }    
 
     .crs_block {
       font-family: 'SF Pro Text', sans-serif;
