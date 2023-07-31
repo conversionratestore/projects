@@ -1670,8 +1670,10 @@ if (window.location.href.includes('https://www.uplead.com/pricing-2/team-solutio
                             
                             let utm_term = setUtm()
 
+                            let calendlyName = window.location.href.includes('https://www.uplead.com/pricing-2/team-solution-page/') ? 'contact-sales' : 'phone-call';
+
                             window.Calendly.initInlineWidget({
-                                url: `https://calendly.com/upleadhq/phone-call/?utm_term=${utm_term}&hide_event_type_details=1&hide_gdpr_banner=1`,
+                                url: `https://calendly.com/upleadhq/${calendlyName}/?utm_term=${utm_term}&hide_event_type_details=1&hide_gdpr_banner=1`,
                                 parentElement: document.querySelector(".block_calendly")
                             })
                         }
@@ -2083,8 +2085,10 @@ let submitForm = setInterval(() => {
 
                 let utm_term = setUtm()
 
+                let calendlyName = window.location.href.includes('https://www.uplead.com/pricing-2/team-solution-page/') ? 'contact-sales' : 'phone-call';
+
                 window.Calendly.initInlineWidget({
-                    url: `https://calendly.com/upleadhq/phone-call/?utm_term=${utm_term}&name=${inputName.value}&email=${inputEmail.value}&hide_event_type_details=1&hide_gdpr_banner=1`,
+                    url: `https://calendly.com/upleadhq/${calendlyName}/?utm_term=${utm_term}&name=${inputName.value}&email=${inputEmail.value}&hide_event_type_details=1&hide_gdpr_banner=1`,
                     parentElement: document.querySelector(".block_calendly")
                 })
             } 
