@@ -1460,5 +1460,7 @@ margin: 0 0 12px;
         }, 100);
       }
     }, 100);
+
+    document.querySelector(".exp")?.remove();
   }
 }, 100);
