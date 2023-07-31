@@ -600,6 +600,15 @@ product-quick-buy button {
         padding-top: 20px;
     }
 }
+
+@media (max-width: 767px) {
+    .btns-action {
+        margin-top: 4px!important;
+    }
+    .btns-action button {
+        margin-top: 12px!important;
+    }
+}
 </style>`;
 
 let componentCarousel = (variant, title) => {
