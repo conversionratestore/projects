@@ -911,6 +911,8 @@ let updateTotal = (parent, totals, items, coupon) => {
                 parent.querySelector('.cart_ecologi p').innerHTML = textEcologi;
                 parent.querySelector('.cart_ecologi').hidden = false;
 
+                pushDataLayer('exp_slide_in_cart_plant_tree', `Ecologi. ${textEcologi}`, 'Element visibility', 'Sidebar. Cart');
+            
             } else {
                 parent.querySelector('.cart_ecologi').hidden = true;
             }
@@ -1809,6 +1811,8 @@ let modal = (parent) => {
                 parent.querySelectorAll('.wishlist-button')[index].classList.remove('busy')
             }, 5000)
 
+            pushDataLayer('exp_slide_in_cart_extra_wish', 'Add to wishlist', 'Button', 'Sidebar. Cart. Add a little extra');
+            
             postFetch('wishlist/add', body).then(dataWishlist => {
 
                 let webCode = window.autoInitData.website.websiteCode != 'base' ? '/'+window.autoInitData.website.websiteCode : '';
@@ -1821,6 +1825,9 @@ let modal = (parent) => {
         })
 
         el.addEventListener('click', () => {
+
+            pushDataLayer('exp_slide_in_cart_extra_quick', 'Quick Buy', 'Button', 'Sidebar. Cart. Add a little extra');
+
             document.querySelector('.container-add-to-bag').innerHTML = backdrop(el.dataset.size, el.previousElementSibling.innerHTML, el.dataset.name)
             
 
@@ -1829,24 +1836,31 @@ let modal = (parent) => {
                     e.currentTarget.parentElement.querySelector('.is-selected').classList.remove('is-selected');
                     box.classList.add('is-selected');
                     box.parentElement.querySelector('p').innerHTML = 'Size: ' + box.innerText;
+
+                    pushDataLayer('exp_slide_in_cart_extra_option', 'Choose option', 'Button', 'Sidebar. Cart. Add a little extra');
                 })
             })
             document.addEventListener('click', (e) => {
                 if (e.target.classList.contains('modal-container')) {
                     document.querySelector('.container-add-to-bag').innerHTML = '';
+                    pushDataLayer('exp_slide_in_cart_extra_close', 'Close', 'Button', 'Sidebar. Cart. Add a little extra');
                 }
             })
             document.querySelector('.container-add-to-bag .quick-add-to-basket > button').addEventListener('click', () => {
                 document.querySelector('.container-add-to-bag').innerHTML = '';
+                pushDataLayer('exp_slide_in_cart_extra_close', 'Close', 'Button', 'Sidebar. Cart. Add a little extra');
             })
             document.querySelector('.container-add-to-bag .btn-add-to-bag').addEventListener('click', (e) => {
                 e.stopImmediatePropagation()
+                
+                pushDataLayer('exp_slide_in_cart_extra_add', 'Add to bag', 'Button', 'Sidebar. Cart. Add a little extra');
                 
                 let id = e.target.closest('.body-configurable-options').querySelector('box.is-selected').dataset.id;
                 let body = {"products":[{"id":id,"qty":1,"options":{},"bundle_options":{}}]}
                 
                 e.currentTarget.classList.add('busy')
                 parent.closest('.cart').classList.add('loading')
+
                 postFetch('basket/add', body).then(dataAdd => {
 
                     if (dataAdd.error && dataAdd.error != '') {
@@ -1948,6 +1962,7 @@ let clickBasket = setInterval(() => {
                     cart.querySelectorAll('.cart_extra .swiper')[0].classList.add('ng-hide')
                     cart.querySelectorAll('.cart_extra .swiper')[1].classList.remove('ng-hide')
                 }
+                pushDataLayer('exp_slide_in_cart_extra_category', button.innerText, 'Category', 'Sidebar. Cart. Add a little extra');
             })
         })
 
@@ -2267,7 +2282,12 @@ let init = () => {
 
                                 cart.querySelector('.swiper-basket-extra .swiper-wrapper').insertAdjacentHTML('beforeend', 
                                 slide(item.url, item.name, item.image, reviewCount, sizeItem, item.price, stars, item.id, sizes, length, item.org_price))
-                               
+                                
+                                cart.querySelectorAll(`.swiper-basket-extra .swiper-slide product[data-id="${item.id}"] a`).forEach(product => {
+                                    product.addEventListener('click', () => {
+                                        pushDataLayer('exp_slide_in_cart_extra_open', 'Open product', 'Product card', 'Sidebar. Cart. Add a little extra');
+                                    })
+                                })
                             }
                 
                             Promise.all(promisesBox).then(dataItem => {
