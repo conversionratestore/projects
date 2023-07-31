@@ -1818,6 +1818,7 @@ let modal = (parent) => {
             }, 5000)
 
             if (el.closest('.cart_extra')) {
+                e.stopImmediatePropagation()
                 pushDataLayer('exp_slide_in_cart_extra_wish', 'Add to wishlist', 'Button', 'Sidebar. Cart. Add a little extra');
             }
             postFetch('wishlist/add', body).then(dataWishlist => {
@@ -1831,9 +1832,10 @@ let modal = (parent) => {
             })
         })
 
-        el.addEventListener('click', () => {
+        el.addEventListener('click', (e) => {
 
             if (el.closest('.cart_extra')) {
+                e.stopImmediatePropagation()
                 pushDataLayer('exp_slide_in_cart_extra_quick', 'Quick Buy', 'Button', 'Sidebar. Cart. Add a little extra');
             }
 
@@ -1847,6 +1849,7 @@ let modal = (parent) => {
                     box.parentElement.querySelector('p').innerHTML = 'Size: ' + box.innerText;
 
                     if (el.closest('.cart_extra')) {
+                        e.stopImmediatePropagation()
                         pushDataLayer('exp_slide_in_cart_extra_option', 'Choose option', 'Button', 'Sidebar. Cart. Add a little extra');
                     }
                 })
@@ -1855,13 +1858,15 @@ let modal = (parent) => {
                 if (e.target.classList.contains('modal-container')) {
                     document.querySelector('.container-add-to-bag').innerHTML = '';
                     if (el.closest('.cart_extra')) {
+                        e.stopImmediatePropagation()
                         pushDataLayer('exp_slide_in_cart_extra_close', 'Close', 'Button', 'Sidebar. Cart. Add a little extra');
                     }
                 }
             })
-            document.querySelector('.container-add-to-bag .quick-add-to-basket > button').addEventListener('click', () => {
+            document.querySelector('.container-add-to-bag .quick-add-to-basket > button').addEventListener('click', (e) => {
                 document.querySelector('.container-add-to-bag').innerHTML = '';
                 if (el.closest('.cart_extra')) {
+                    e.stopImmediatePropagation()
                     pushDataLayer('exp_slide_in_cart_extra_close', 'Close', 'Button', 'Sidebar. Cart. Add a little extra');
                 }
             })
