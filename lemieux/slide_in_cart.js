@@ -850,6 +850,8 @@ let pushDataLayer = (name, desc, type, loc) => {
     });
 }
 
+let viewedEcologi = false;
+
 let updateTotal = (parent, totals, items, coupon) => {
     //add total in footer cart
     parent.querySelector('.cart_footer price .pr').innerHTML = currency + totals.grand_total;
@@ -911,9 +913,12 @@ let updateTotal = (parent, totals, items, coupon) => {
                 parent.querySelector('.cart_ecologi p').innerHTML = textEcologi;
                 parent.querySelector('.cart_ecologi').hidden = false;
 
-                pushDataLayer('exp_slide_in_cart_plant_tree', `Ecologi. ${textEcologi}`, 'Element visibility', 'Sidebar. Cart');
-            
+                if (viewedEcologi == false) {
+                    viewedEcologi = true;
+                    pushDataLayer('exp_slide_in_cart_plant_tree', `Ecologi. ${textEcologi}`, 'Element visibility', 'Sidebar. Cart');
+                }
             } else {
+                viewedEcologi = false
                 parent.querySelector('.cart_ecologi').hidden = true;
             }
 
