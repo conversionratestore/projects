@@ -1066,6 +1066,12 @@ let addProduct = (parent, items, totals, count, coupon, bought_klevu = '') => {
                         parent.querySelector('.swiper-basket-extra-2 .swiper-wrapper').insertAdjacentHTML('beforeend', 
                         slide(item.url.replace('https://mage.lemieuxproducts.com/','/new-in/'), item.name, 'product/'+item.image.split('/200X200/')[1], reviewCount, '', +item.salePrice, stars, item.itemGroupId, '', 0, +item.price))
                         
+                        parent.querySelectorAll(`.swiper-basket-extra-2 .swiper-slide product[data-id="${item.itemGroupId}"] a`).forEach(product => {
+                            product.addEventListener('click', () => {
+                                pushDataLayer('exp_slide_in_cart_extra_open', 'Open product', 'Product card', 'Sidebar. Cart. Add a little extra');
+                            })
+                        })
+
                         getFetch(`n/product/${item.itemGroupId}/verbosity/3`).then(dataProduct => {
                             let product = dataProduct.result[0]
 
@@ -1811,8 +1817,9 @@ let modal = (parent) => {
                 parent.querySelectorAll('.wishlist-button')[index].classList.remove('busy')
             }, 5000)
 
-            pushDataLayer('exp_slide_in_cart_extra_wish', 'Add to wishlist', 'Button', 'Sidebar. Cart. Add a little extra');
-            
+            if (el.closest('.cart_extra')) {
+                pushDataLayer('exp_slide_in_cart_extra_wish', 'Add to wishlist', 'Button', 'Sidebar. Cart. Add a little extra');
+            }
             postFetch('wishlist/add', body).then(dataWishlist => {
 
                 let webCode = window.autoInitData.website.websiteCode != 'base' ? '/'+window.autoInitData.website.websiteCode : '';
@@ -1826,7 +1833,9 @@ let modal = (parent) => {
 
         el.addEventListener('click', () => {
 
-            pushDataLayer('exp_slide_in_cart_extra_quick', 'Quick Buy', 'Button', 'Sidebar. Cart. Add a little extra');
+            if (el.closest('.cart_extra')) {
+                pushDataLayer('exp_slide_in_cart_extra_quick', 'Quick Buy', 'Button', 'Sidebar. Cart. Add a little extra');
+            }
 
             document.querySelector('.container-add-to-bag').innerHTML = backdrop(el.dataset.size, el.previousElementSibling.innerHTML, el.dataset.name)
             
@@ -1837,24 +1846,30 @@ let modal = (parent) => {
                     box.classList.add('is-selected');
                     box.parentElement.querySelector('p').innerHTML = 'Size: ' + box.innerText;
 
-                    pushDataLayer('exp_slide_in_cart_extra_option', 'Choose option', 'Button', 'Sidebar. Cart. Add a little extra');
+                    if (el.closest('.cart_extra')) {
+                        pushDataLayer('exp_slide_in_cart_extra_option', 'Choose option', 'Button', 'Sidebar. Cart. Add a little extra');
+                    }
                 })
             })
             document.addEventListener('click', (e) => {
                 if (e.target.classList.contains('modal-container')) {
                     document.querySelector('.container-add-to-bag').innerHTML = '';
-                    pushDataLayer('exp_slide_in_cart_extra_close', 'Close', 'Button', 'Sidebar. Cart. Add a little extra');
+                    if (el.closest('.cart_extra')) {
+                        pushDataLayer('exp_slide_in_cart_extra_close', 'Close', 'Button', 'Sidebar. Cart. Add a little extra');
+                    }
                 }
             })
             document.querySelector('.container-add-to-bag .quick-add-to-basket > button').addEventListener('click', () => {
                 document.querySelector('.container-add-to-bag').innerHTML = '';
-                pushDataLayer('exp_slide_in_cart_extra_close', 'Close', 'Button', 'Sidebar. Cart. Add a little extra');
+                if (el.closest('.cart_extra')) {
+                    pushDataLayer('exp_slide_in_cart_extra_close', 'Close', 'Button', 'Sidebar. Cart. Add a little extra');
+                }
             })
             document.querySelector('.container-add-to-bag .btn-add-to-bag').addEventListener('click', (e) => {
                 e.stopImmediatePropagation()
-                
-                pushDataLayer('exp_slide_in_cart_extra_add', 'Add to bag', 'Button', 'Sidebar. Cart. Add a little extra');
-                
+                if (el.closest('.cart_extra')) {
+                    pushDataLayer('exp_slide_in_cart_extra_add', 'Add to bag', 'Button', 'Sidebar. Cart. Add a little extra');
+                }
                 let id = e.target.closest('.body-configurable-options').querySelector('box.is-selected').dataset.id;
                 let body = {"products":[{"id":id,"qty":1,"options":{},"bundle_options":{}}]}
                 
