@@ -91,6 +91,7 @@
 
     .popup .txt p b {
       color: #010101;
+      font-weight: 600;
     }
 
     .popup .price {
