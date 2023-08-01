@@ -1334,11 +1334,11 @@ margin: 0 0 12px;
       if (window.location.pathname.includes("checkout") && sessionStorage.getItem("checkoutPremium") && document.querySelector("#edit-sidebar-order-summary-summary .views-field.views-field-title").textContent.includes("1-Year")) {
         clearInterval(checkoutPremium);
         // sessionStorage.removeItem("checkoutPremium");
-        if (document.querySelector("#edit-sidebar-coupon-redemption-form-code").value === "") {
+        if (document.querySelector("#edit-sidebar-coupon-redemption-form-code")?.value === "") {
           document.querySelector("#edit-sidebar-coupon-redemption-form-code").value = "YOGA45";
         }
 
-        if (document.querySelector("#edit-sidebar-coupon-redemption-form-code").value === "YOGA45") {
+        if (document.querySelector("#edit-sidebar-coupon-redemption-form-code")?.value === "YOGA45") {
           const element = document.querySelector("#edit-sidebar-coupon-redemption-form-apply");
           const events = ["mousedown", "focusin"];
           events.forEach((eventType) => element.dispatchEvent(new MouseEvent(eventType, { bubbles: true })));
