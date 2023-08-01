@@ -490,6 +490,10 @@
 
           sessionStorage.setItem('popupWasShown', 'true')
 
+          if (sessionStorage.trialDiscountApplied !== 'true') {
+            sessionStorage.removeItem("trialDiscountModalWindowShown")
+          }
+
           location.reload()
 
           sendGAEvent('exp_popup_trial_see_my_program', 'See My Program', 'Button', 'Popup Try Able for 1 week')
@@ -536,13 +540,9 @@
 
               // Log the mutations and their targets
               mutations.forEach((mutation) => {
-
                 if (mutation.target.matches('#root')) {
                   hideArrow()
 
-                  popupWasVisible = false
-
-                  sessionStorage.setItem('popupWasShown', 'false')
                   const showPopupInstance = new ShowPopup()
                   showPopupInstance.init()
                 }
@@ -553,8 +553,18 @@
                 childList: true,
                 subtree: true
               })
-            } else if (document.querySelector('.hide_arrow')) {
-              document.querySelector('.hide_arrow').classList.remove('hide_arrow')
+            } else {
+              if (sessionStorage.popupWasShown !== 'false') {
+                sessionStorage.setItem('popupWasShown', 'false')
+              }
+
+              if (popupWasVisible) {
+                popupWasVisible = false
+              }
+
+              if (document.querySelector('.hide_arrow')) {
+                document.querySelector('.hide_arrow').classList.remove('hide_arrow')
+              }
             }
           })
           // Initial observation of the 'root' element
