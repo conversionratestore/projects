@@ -1114,6 +1114,8 @@ margin: 0 0 12px;
     document.head.insertAdjacentHTML("beforeend", `<link href="https://fonts.googleapis.com/css2?family=Inter:wght@600&display=swap" rel="stylesheet">`);
     document.head.insertAdjacentHTML("beforeend", newStyle);
 
+    console.log(`Promote subscription + Exit intent pop-up`);
+
     //Hypothesis #6 - Add exit-intent popup with limited-time offer
     // Show exit intent popups for users who are logged in but have not bought a paid plan (free users) on pages:
     if (!document.querySelector('.menu--account [data-drupal-link-system-path="yogi/login"]') && (window.location.pathname === "/" || window.location.pathname === "/yoga-classes" || window.location.pathname === "/yoga-meditation" || window.location.pathname === "/yoga-challenges" || window.location.pathname === "/yoga-programs" || window.location.pathname.match("/content/"))) {
