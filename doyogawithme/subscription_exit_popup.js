@@ -1324,7 +1324,7 @@ margin: 0 0 12px;
         clearInterval(becomeSubscriber);
         sessionStorage.removeItem("becomeSubscriber");
         sessionStorage.setItem("checkoutPremium", "true");
-        document.querySelectorAll(".lav-jumb__plans-all .lav-plan__btn.lav-plan__btn-year.lav-btn.sfc-button").forEach((el) => {
+        document.querySelectorAll(".lav-jumb__plan .lav-plan__btn.lav-plan__btn-year").forEach((el) => {
           el.click();
         });
       }
