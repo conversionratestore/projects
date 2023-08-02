@@ -1390,38 +1390,40 @@ margin: 0 0 12px;
       }
     }
 
-    jQuery(".toggle_btn_features").click(function () {
-      jQuery(".hidden_inform_box").slideToggle();
-      setTimeout(() => {
-        if (window.location.pathname === "/become-a-subscriber") {
-          // Hypothesis #5 - Promote Subscription on Premium content pages
-          if (window.innerWidth <= 768) {
-            document.querySelector("#promoteSubscriptionWrap").scrollIntoView({ block: "start", behavior: "smooth" });
+    if (typeof jQuery === "function" && jQuery(".toggle_btn_features")) {
+      jQuery(".toggle_btn_features").click(function () {
+        jQuery(".hidden_inform_box").slideToggle();
+        setTimeout(() => {
+          if (window.location.pathname === "/become-a-subscriber") {
+            // Hypothesis #5 - Promote Subscription on Premium content pages
+            if (window.innerWidth <= 768) {
+              document.querySelector("#promoteSubscriptionWrap").scrollIntoView({ block: "start", behavior: "smooth" });
+            } else {
+              document.querySelector(".path-become-a-subscriber .new_box_subscriber").scrollIntoView({ block: "nearest", behavior: "smooth" });
+            }
           } else {
-            document.querySelector(".path-become-a-subscriber .new_box_subscriber").scrollIntoView({ block: "nearest", behavior: "smooth" });
+            document.querySelector("#promoteSubscriptionWrap").scrollIntoView({ block: "start", behavior: "smooth" });
+          }
+        }, 400);
+        if (!jQuery(this).hasClass("open_var")) {
+          jQuery(this).addClass("open_var");
+          document.querySelector(".toggle_btn_features span").textContent = "Less all Premium features";
+          if (window.innerWidth <= 768) {
+            document.querySelectorAll("[data-openmobvar]").forEach((el) => {
+              el.classList.add("open_var");
+            });
           }
         } else {
-          document.querySelector("#promoteSubscriptionWrap").scrollIntoView({ block: "start", behavior: "smooth" });
+          jQuery(this).removeClass("open_var");
+          document.querySelector(".toggle_btn_features span").textContent = "See all Premium features";
+          if (window.innerWidth <= 768) {
+            document.querySelectorAll("[data-openmobvar]").forEach((el) => {
+              el.classList.remove("open_var");
+            });
+          }
         }
-      }, 400);
-      if (!jQuery(this).hasClass("open_var")) {
-        jQuery(this).addClass("open_var");
-        document.querySelector(".toggle_btn_features span").textContent = "Less all Premium features";
-        if (window.innerWidth <= 768) {
-          document.querySelectorAll("[data-openmobvar]").forEach((el) => {
-            el.classList.add("open_var");
-          });
-        }
-      } else {
-        jQuery(this).removeClass("open_var");
-        document.querySelector(".toggle_btn_features span").textContent = "See all Premium features";
-        if (window.innerWidth <= 768) {
-          document.querySelectorAll("[data-openmobvar]").forEach((el) => {
-            el.classList.remove("open_var");
-          });
-        }
-      }
-    });
+      });
+    }
 
     // Hypothesis #5 - Promote Subscription on Premium content pages
     let findTriggerHypothesis = setInterval(() => {
