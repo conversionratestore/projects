@@ -1,5 +1,5 @@
-console.log('initExp');
-localStorage.setItem('subtotal', '-999999');
+console.log("initExp");
+localStorage.setItem("subtotal", "-999999");
 
 let isAddCart,
   isKlarnaClick,
@@ -10,11 +10,11 @@ let klaviyoStep = 1;
 (function () {
   /********* exp **********/
   const exp = {
-    dir: 'https://flopsi69.github.io/crs/capucinne/pdp_slidein',
+    dir: "https://flopsi69.github.io/crs/capucinne/pdp_slidein",
     observer: true,
     clarity: {
       enable: true,
-      params: ['set', 'new_payments', 'variant_1'],
+      params: ["set", "new_payments", "variant_1"],
     },
     debug: false,
   };
@@ -23,12 +23,12 @@ let klaviyoStep = 1;
   if (exp.observer) {
     initObserver(
       (el) => {
-        if (el.ariaLabel === 'POPUP Form') {
+        if (el.ariaLabel === "POPUP Form") {
           pushDataLayer(
-            'new_payments_pp_get_50_off',
-            'Visibility',
-            'Popup',
-            'Popup 50$ off'
+            "new_payments_pp_get_50_off",
+            "Visibility",
+            "Popup",
+            "Popup 50$ off"
           );
         }
 
@@ -39,56 +39,56 @@ let klaviyoStep = 1;
         // }
 
         if (
-          (el.closest('.needsclick') &&
-            el.querySelector('svg path') &&
+          (el.closest(".needsclick") &&
+            el.querySelector("svg path") &&
             el
               .closest('[component="[object Object]"]')
-              ?.querySelector('svg path')
-              ?.getAttribute('d') ===
+              ?.querySelector("svg path")
+              ?.getAttribute("d") ===
               `M11.1597 18.9917L6.66651 14.4983C5.99844 13.8687 4.95494 13.8706 4.28909 14.5025C3.59908 15.1574 3.56725 16.2465 4.21784 16.9405L9.72916 23.085C10.5199 23.9286 11.862 23.9189 12.6405 23.064L25.9625 8.9336C26.5713 8.26509 26.5411 7.23449 25.8943 6.60272C25.2293 5.95322 24.1631 5.96785 23.5162 6.63534L11.1597 18.9917Z`) ||
           el
             .closest('[component="[object Object]"]')
-            ?.querySelector('svg path')
-            ?.getAttribute('d') ===
+            ?.querySelector("svg path")
+            ?.getAttribute("d") ===
             `M3.60156 1.09961C1.94471 1.09961 0.601562 2.44275 0.601562 4.09961V22.4996C0.601562 24.1565 1.94471 25.4996 3.60156 25.4996H8V23.4996H3.60156C3.04928 23.4996 2.60156 23.0519 2.60156 22.4996V4.09961C2.60156 3.54732 3.04928 3.09961 3.60156 3.09961H18.8016C19.3538 3.09961 19.8016 3.54732 19.8016 4.09961V5.30078H21.8016V4.09961C21.8016 2.44276 20.4584 1.09961 18.8016 1.09961H3.60156Z`
         ) {
-          sessionStorage.setItem('lav-discount', 'yes');
+          sessionStorage.setItem("lav-discount", "yes");
         }
 
-        if (el.name == 'phone-number' && el.closest('.needsclick')) {
-          el.closest('form.needsclick')
+        if (el.name == "phone-number" && el.closest(".needsclick")) {
+          el.closest("form.needsclick")
             .querySelectorAll('button[class*="go"')[1]
             .click();
         }
 
-        if (el.closest('.needsclick')?.querySelector('[title="Recaptcha"]')) {
+        if (el.closest(".needsclick")?.querySelector('[title="Recaptcha"]')) {
           pushDataLayer(
-            'new_payments_pp_get_50_off_captcha_vis',
-            'CAPTCHA',
-            'Element visibility',
-            'Popup 50$ off'
+            "new_payments_pp_get_50_off_captcha_vis",
+            "CAPTCHA",
+            "Element visibility",
+            "Popup 50$ off"
           );
 
-          el.closest('.needsclick')
+          el.closest(".needsclick")
             .querySelector('[title="Recaptcha"]')
-            .addEventListener('click', () => {
+            .addEventListener("click", () => {
               pushDataLayer(
-                'new_payments_pp_get_50_off_captcha_click',
-                'Klick on CAPTCHA',
-                'CAPTCHA',
-                'Popup 50$ off'
+                "new_payments_pp_get_50_off_captcha_click",
+                "Klick on CAPTCHA",
+                "CAPTCHA",
+                "Popup 50$ off"
               );
             });
         }
       },
       (el) => {
         // console.log('Remove', el);
-        if (el.id === 'extend-learn-more-modal-iframe') {
+        if (el.id === "extend-learn-more-modal-iframe") {
           pushDataLayer(
-            'new_payments_ext_pop_close',
-            'Close',
-            'Button',
-            'Extend popup'
+            "new_payments_ext_pop_close",
+            "Close",
+            "Button",
+            "Extend popup"
           );
         }
       }
@@ -1153,40 +1153,40 @@ let klaviyoStep = 1;
     const observerOptions = {
       // root: null,
       threshold: 0.8,
-      rootMargin: '0px 0px -20% 0px',
+      rootMargin: "0px 0px -20% 0px",
     };
 
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
-          if (entry.target.classList.contains('lav-point__wrap')) {
+          if (entry.target.classList.contains("lav-point__wrap")) {
             isElementInViewport(entry.target, [
-              'new_payments_14_day_visibility',
-              '14 day free block visibility',
-              'Element visibility',
-              'Product Information',
+              "new_payments_14_day_visibility",
+              "14 day free block visibility",
+              "Element visibility",
+              "Product Information",
             ]);
           }
 
-          if (entry.target.classList.contains('lav-klarna')) {
+          if (entry.target.classList.contains("lav-klarna")) {
             isElementInViewport(entry.target, [
-              'new_payments_cart_clarna_vis',
-              'Klarn block',
-              'Element visibility',
-              'Cart sidebar',
+              "new_payments_cart_clarna_vis",
+              "Klarn block",
+              "Element visibility",
+              "Cart sidebar",
             ]);
           }
 
           // TODO
-          if (entry.target.classList.contains('needsclick')) {
+          if (entry.target.classList.contains("needsclick")) {
             // console.log('ffff');
             isElementInViewport(
-              entry.target.closest('.needsclick'),
+              entry.target.closest(".needsclick"),
               [
-                'new_payments_pp_get_50_off',
-                'Visibility',
-                'Popup',
-                'Popup 50$ off',
+                "new_payments_pp_get_50_off",
+                "Visibility",
+                "Popup",
+                "Popup 50$ off",
               ],
               3,
               () => {
@@ -1195,78 +1195,78 @@ let klaviyoStep = 1;
             );
           }
 
-          if (entry.target.classList.contains('lav-earn')) {
-            if (entry.target.closest('.product-single__meta')) {
+          if (entry.target.classList.contains("lav-earn")) {
+            if (entry.target.closest(".product-single__meta")) {
               isElementInViewport(entry.target, [
-                'new_payments_free_earrings_vis',
-                'Free earrings banner',
-                'Element visibility',
-                'Product Information',
+                "new_payments_free_earrings_vis",
+                "Free earrings banner",
+                "Element visibility",
+                "Product Information",
               ]);
-            } else if (entry.target.closest('.drawer__inner')) {
+            } else if (entry.target.closest(".drawer__inner")) {
               isElementInViewport(entry.target, [
-                'new_payments_cart_free_earrings_vis',
-                'Free earrings banner',
-                'Element visibility',
-                'Cart sidebar',
+                "new_payments_cart_free_earrings_vis",
+                "Free earrings banner",
+                "Element visibility",
+                "Cart sidebar",
               ]);
             }
           }
 
           if (
-            entry.target.classList.contains('lav-benefits') &&
-            entry.target.closest('.product-single__form')
+            entry.target.classList.contains("lav-benefits") &&
+            entry.target.closest(".product-single__form")
           ) {
             isElementInViewport(entry.target, [
-              'new_payments_rush_free_shipping1',
-              'Free shipping (add to cart)',
-              'Element visibility',
-              'Product Information',
+              "new_payments_rush_free_shipping1",
+              "Free shipping (add to cart)",
+              "Element visibility",
+              "Product Information",
             ]);
           }
-          if (entry.target.classList.contains('lav-extend')) {
+          if (entry.target.classList.contains("lav-extend")) {
             isElementInViewport(entry.target, [
-              'new_payments_extend_vis',
-              'Extend block',
-              'Element visibility',
-              'Product Information',
+              "new_payments_extend_vis",
+              "Extend block",
+              "Element visibility",
+              "Product Information",
             ]);
           }
-          if (entry.target.classList.contains('lav-shipping__rush')) {
+          if (entry.target.classList.contains("lav-shipping__rush")) {
             isElementInViewport(entry.target, [
-              'new_payments_rush_order_vis',
-              'Rush order is activated',
-              'Element visibility',
-              'Product Information',
+              "new_payments_rush_order_vis",
+              "Rush order is activated",
+              "Element visibility",
+              "Product Information",
             ]);
           }
-          if (entry.target.classList.contains('lav-summary')) {
+          if (entry.target.classList.contains("lav-summary")) {
             isElementInViewport(entry.target, [
-              'new_payments_cart_subtotal_vis',
-              'Subtotal block',
-              'Element visibility',
-              'Cart sidebar',
+              "new_payments_cart_subtotal_vis",
+              "Subtotal block",
+              "Element visibility",
+              "Cart sidebar",
             ]);
           }
 
-          if (entry.target.classList.contains('drawer__header')) {
+          if (entry.target.classList.contains("drawer__header")) {
             isElementInViewport(entry.target, [
-              'new_payments_cart_free_shipping',
-              'Free shipping',
-              'Element visibility',
-              'Cart sidebar',
+              "new_payments_cart_free_shipping",
+              "Free shipping",
+              "Element visibility",
+              "Cart sidebar",
             ]);
           }
 
           if (
-            entry.target.classList.contains('lav-benefits') &&
-            entry.target.closest('.lav-shipping')
+            entry.target.classList.contains("lav-benefits") &&
+            entry.target.closest(".lav-shipping")
           ) {
             isElementInViewport(entry.target, [
-              'new_payments_rush_free_shipping2',
-              'Free shipping (faq)',
-              'Element visibility',
-              'Product Information',
+              "new_payments_rush_free_shipping2",
+              "Free shipping (faq)",
+              "Element visibility",
+              "Product Information",
             ]);
           }
         }
@@ -1276,7 +1276,7 @@ let klaviyoStep = 1;
     if (el) {
       observer.observe(el);
     } else {
-      for (let el of Array.from(document.querySelectorAll('.lav-watch'))) {
+      for (let el of Array.from(document.querySelectorAll(".lav-watch"))) {
         observer.observe(el);
       }
     }
@@ -1292,10 +1292,10 @@ let klaviyoStep = 1;
           rect.bottom > rect.height * 0.3
         ) {
           observer.unobserve(el);
-          if (!el.classList.contains('in-view')) {
+          if (!el.classList.contains("in-view")) {
             pushDataLayer(...events);
-            el.classList.add('in-view');
-            if (typeof cb === 'function') {
+            el.classList.add("in-view");
+            if (typeof cb === "function") {
               cb();
             }
           }
@@ -1304,7 +1304,7 @@ let klaviyoStep = 1;
     }
   }
 
-  const stylesEl = document.createElement('style');
+  const stylesEl = document.createElement("style");
   stylesEl.innerHTML = styles;
   waitFor(
     () => document.head,
@@ -1387,9 +1387,9 @@ let klaviyoStep = 1;
 
   init();
   function init() {
-    console.log('init');
+    console.log("init");
 
-    if(window.location.pathname.includes('/products/')) {
+    if (window.location.pathname.includes("/products/")) {
       const hideLabel = `
         <style>
           .needsclick[aria-label="Open Form"] {
@@ -1398,36 +1398,34 @@ let klaviyoStep = 1;
             z-index: -1!important;
           }
         </style>
-      `
-      document.head.insertAdjacentHTML('beforeend', hideLabel);
+      `;
+      document.head.insertAdjacentHTML("beforeend", hideLabel);
 
       waitFor(
-        () => $el('.lav-reviews span'),
+        () => $el(".lav-reviews span"),
         () => {
-            $el('.lav-reviews span').style.cursor = 'pointer'
-            $el('.lav-reviews span').addEventListener('click', function () {
-              document.querySelector('.lav-reviews a').click()
-            })
+          $el(".lav-reviews span").style.cursor = "pointer";
+          $el(".lav-reviews span").addEventListener("click", function () {
+            document.querySelector(".lav-reviews a").click();
+          });
         }
-      )
+      );
     }
-
-    
 
     waitFor(
       () => $el('[href="#reviews"]'),
       () => {
         $el('[href="#reviews"]')
-          .closest('.product-block')
-          ?.classList.add('lav-reviews');
+          .closest(".product-block")
+          ?.classList.add("lav-reviews");
 
-        $el('.lav-reviews > div span').innerText =
-          'Over ' +
-          $el('.lav-reviews > div span').innerText.match(/\d+\s\w+/)[0];
+        $el(".lav-reviews > div span").innerText =
+          "Over " +
+          $el(".lav-reviews > div span").innerText.match(/\d+\s\w+/)[0];
 
-        $el('[data-product-blocks]').insertAdjacentElement(
-          'afterbegin',
-          $el('[href="#reviews"]').closest('.product-block')
+        $el("[data-product-blocks]").insertAdjacentElement(
+          "afterbegin",
+          $el('[href="#reviews"]').closest(".product-block")
         );
       }
     );
@@ -1470,47 +1468,47 @@ let klaviyoStep = 1;
   `;
 
     waitFor(
-      () => $el('.product-block--sales-point'),
+      () => $el(".product-block--sales-point"),
       () => {
-        $el('.product-block--sales-point').insertAdjacentHTML(
-          'beforebegin',
+        $el(".product-block--sales-point").insertAdjacentHTML(
+          "beforebegin",
           points
         );
 
-        $el('.lav-point:last-child').addEventListener('click', () => {
-          $el('.product-block--sales-point span[onclick]').click();
+        $el(".lav-point:last-child").addEventListener("click", () => {
+          $el(".product-block--sales-point span[onclick]").click();
         });
       }
     );
 
     waitFor(
-      () => $el('.product-single__form .add-to-cart'),
+      () => $el(".product-single__form .add-to-cart"),
       () => {
-        $el('.one-whole')
-          ?.closest('.product-block')
-          ?.classList.add('lav-options');
+        $el(".one-whole")
+          ?.closest(".product-block")
+          ?.classList.add("lav-options");
 
-        $el('.product-single__form .add-to-cart').insertAdjacentHTML(
-          'afterbegin',
+        $el(".product-single__form .add-to-cart").insertAdjacentHTML(
+          "afterbegin",
           `<img src='${exp.dir}/img/bag.svg' />`
         );
 
-        $el('.product-single__form .add-to-cart').addEventListener(
-          'click',
+        $el(".product-single__form .add-to-cart").addEventListener(
+          "click",
           () => {
             if (!isAddCart) {
               pushDataLayer(
-                'new_payments_add_to_cart_new',
-                'Add to cart new',
-                'Button',
-                'Product Information'
+                "new_payments_add_to_cart_new",
+                "Add to cart new",
+                "Button",
+                "Product Information"
               );
             }
           }
         );
 
-        $el('.product-single__form .add-to-cart').insertAdjacentHTML(
-          'afterend',
+        $el(".product-single__form .add-to-cart").insertAdjacentHTML(
+          "afterend",
           benefits
         );
       }
@@ -1518,14 +1516,19 @@ let klaviyoStep = 1;
 
     handleShipping(benefits);
     waitFor(
-      () => $el('#CartDrawer') && $el('#CartDrawer [for="CartNoteDrawer"]'),
+      () => $el("#CartDrawer") && $el('#CartDrawer [for="CartNoteDrawer"]'),
       () => {
         handleSlideIn(benefits);
       }
     );
 
     waitFor(
-      () => $el('.product-single__title') && item && item.ImageURL && $el('[data-add-to-cart]') && $el('.extend-offer'),
+      () =>
+        $el(".product-single__title") &&
+        item &&
+        item.ImageURL &&
+        $el("[data-add-to-cart]") &&
+        $el(".extend-offer"),
       () => {
         addSticky();
       }
@@ -1547,119 +1550,119 @@ let klaviyoStep = 1;
   }
 
   function handleWidgets() {
-    if (!window.location.pathname.includes('/products/')) return false;
-    $el('.widget-visible')?.setAttribute('style', 'z-index: 22!important');
+    if (!window.location.pathname.includes("/products/")) return false;
+    $el(".widget-visible")?.setAttribute("style", "z-index: 22!important");
 
-    for (let frame of $$el('.widget-visible iframe')) {
-      if (frame.width === '120px') {
-        frame.style.display = 'none';
+    for (let frame of $$el(".widget-visible iframe")) {
+      if (frame.width === "120px") {
+        frame.style.display = "none";
       }
-      if (frame.width === '64px' || frame.width === '67px') {
+      if (frame.width === "64px" || frame.width === "67px") {
         if (window.innerWidth < 768) {
-          frame.style.bottom = '80px';
+          frame.style.bottom = "80px";
         } else {
-          frame.style.bottom = '110px';
-          frame.style.right = '10px';
+          frame.style.bottom = "110px";
+          frame.style.right = "10px";
         }
       }
 
-      if (frame.width === '300px') {
+      if (frame.width === "300px") {
         // frame.style.right = '130px';
-        frame.style.bottom = '100px';
+        frame.style.bottom = "100px";
       }
     }
   }
 
   function handleDocumentClick() {
-    document.addEventListener('click', (e) => {
+    document.addEventListener("click", (e) => {
       const target = e.target;
 
-      if (target.closest('.klaviyo-close-form')) {
+      if (target.closest(".klaviyo-close-form")) {
         pushDataLayer(
-          'new_payments_pp_get_50_off_close',
+          "new_payments_pp_get_50_off_close",
           `Close. ${target
-            .closest('.klaviyo-close-form')
+            .closest(".klaviyo-close-form")
             ?.nextElementSibling?.querySelector(
               '[data-testid="form-component"]'
             )
             ?.innerText?.trim()}`,
-          'Button',
-          'Popup 50$ off'
+          "Button",
+          "Popup 50$ off"
         );
       }
 
-      if (target.closest('.needsclick')) {
+      if (target.closest(".needsclick")) {
         if (
-          target.tagName === 'INPUT' &&
-          target.placeholder === 'Enter your email address'
+          target.tagName === "INPUT" &&
+          target.placeholder === "Enter your email address"
         ) {
           pushDataLayer(
-            'new_payments_pp_get_50_off_email',
-            'Email',
-            'Input',
-            'Popup 50$ off'
+            "new_payments_pp_get_50_off_email",
+            "Email",
+            "Input",
+            "Popup 50$ off"
           );
         }
 
         if (
-          target.tagName === 'BUTTON' &&
-          target.innerText === 'UNLOCK MY DEAL' &&
+          target.tagName === "BUTTON" &&
+          target.innerText === "UNLOCK MY DEAL" &&
           klaviyoStep < 3
         ) {
           pushDataLayer(
-            'new_payments_pp_get_50_off_unlock',
-            `Unlock my deal. ${klaviyoStep === 1 ? 'Step 1' : 'Step 2'}`,
-            'Button',
-            'Popup 50$ off'
+            "new_payments_pp_get_50_off_unlock",
+            `Unlock my deal. ${klaviyoStep === 1 ? "Step 1" : "Step 2"}`,
+            "Button",
+            "Popup 50$ off"
           );
 
-          if (!target.closest('.klaviyo-form')) {
+          if (!target.closest(".klaviyo-form")) {
             klaviyoStep++;
           }
         }
 
         if (
-          target.tagName === 'BUTTON' &&
-          (target.innerText === 'No thanks I’ll pay full price' ||
+          target.tagName === "BUTTON" &&
+          (target.innerText === "No thanks I’ll pay full price" ||
             target.innerText === `No thanks, I'll pay the full price`) &&
           klaviyoStep < 3
         ) {
           pushDataLayer(
-            'new_payments_pp_get_50_off_no',
-            `No, thanks. ${klaviyoStep === 1 ? 'Step 1' : 'Step 2'}`,
-            'Button',
-            'Popup 50$ off'
+            "new_payments_pp_get_50_off_no",
+            `No, thanks. ${klaviyoStep === 1 ? "Step 1" : "Step 2"}`,
+            "Button",
+            "Popup 50$ off"
           );
         }
 
         if (
           target
             .closest('[component="[object Object]"]')
-            ?.querySelector('svg path')
-            ?.getAttribute('d') ===
+            ?.querySelector("svg path")
+            ?.getAttribute("d") ===
           `M11.1597 18.9917L6.66651 14.4983C5.99844 13.8687 4.95494 13.8706 4.28909 14.5025C3.59908 15.1574 3.56725 16.2465 4.21784 16.9405L9.72916 23.085C10.5199 23.9286 11.862 23.9189 12.6405 23.064L25.9625 8.9336C26.5713 8.26509 26.5411 7.23449 25.8943 6.60272C25.2293 5.95322 24.1631 5.96785 23.5162 6.63534L11.1597 18.9917Z`
         ) {
-          sessionStorage.setItem('lav-discount', 'yes');
+          sessionStorage.setItem("lav-discount", "yes");
 
           pushDataLayer(
-            'new_payments_pp_get_50_off_copy',
-            'Copy discount code',
-            'Button',
-            'Popup 50$ off'
+            "new_payments_pp_get_50_off_copy",
+            "Copy discount code",
+            "Button",
+            "Popup 50$ off"
           );
         }
 
         if (
-          target.tagName === 'BUTTON' &&
-          target.innerText === 'CONTINUE SHOPPING'
+          target.tagName === "BUTTON" &&
+          target.innerText === "CONTINUE SHOPPING"
         ) {
-          sessionStorage.setItem('lav-discount', 'yes');
+          sessionStorage.setItem("lav-discount", "yes");
 
           pushDataLayer(
-            'new_payments_pp_get_50_off_continue',
-            'Continue shopping',
-            'Button',
-            'Popup 50$ off'
+            "new_payments_pp_get_50_off_continue",
+            "Continue shopping",
+            "Button",
+            "Popup 50$ off"
           );
         }
       }
@@ -1667,19 +1670,19 @@ let klaviyoStep = 1;
   }
 
   function updateData() {
-    if (!$el('[data-cart-subtotal]')) return false;
+    if (!$el("[data-cart-subtotal]")) return false;
 
     const subtotal =
       parseInt(
-        $el('[data-cart-subtotal]')?.getAttribute('data-cart-subtotal')
+        $el("[data-cart-subtotal]")?.getAttribute("data-cart-subtotal")
       ) / 100;
 
-    const cart = $el('#CartDrawer');
+    const cart = $el("#CartDrawer");
 
     handleExtend();
     handleKlarna();
     waitFor(
-      () => $el('.lav-sticky'),
+      () => $el(".lav-sticky"),
       () => {
         handleDiscount();
       }
@@ -1697,129 +1700,133 @@ let klaviyoStep = 1;
     }, 500);
     findGift();
 
-    if (parseInt(localStorage.getItem('subtotal')) === parseInt(subtotal))
+    if (parseInt(localStorage.getItem("subtotal")) === parseInt(subtotal))
       return false;
 
     updateTotal();
     waitFor(
-      () => $el('[doubly-currency-usd]'),
+      () => $el("[doubly-currency-usd]"),
       () => {
         handleEarn(subtotal);
       }
     );
     setTimeout(() => {
-        handleItemsSummary();
+      handleItemsSummary();
     }, 500);
 
-    localStorage.setItem('subtotal', subtotal);
+    localStorage.setItem("subtotal", subtotal);
 
     const mutSumary = new MutationObserver(() => {
       handleItemsSummary();
-      $el('.lav-summary__value.lav-cart-price').innerText = $el('[data-subtotal] .money').innerText;
-      $el('.lav-btn-price.lav-cart-price').innerText = $el('[data-subtotal] .money').innerText;
-    })
+      $el(".lav-summary__value.lav-cart-price").innerText = $el(
+        "[data-subtotal] .money"
+      ).innerText;
+      $el(".lav-btn-price.lav-cart-price").innerText = $el(
+        "[data-subtotal] .money"
+      ).innerText;
+    });
 
-    mutSumary.observe($el('[data-subtotal]'), {
+    mutSumary.observe($el("[data-subtotal]"), {
       childList: true,
-      subtree: true
+      subtree: true,
     });
   }
 
   function handleKlarna() {
     if (
       $el('#CartDrawerForm [part="osm-container"]') ||
-      !$el('klarna-placement div')
+      !$el("klarna-placement div")
     )
       return false;
-    if($el('klarna-placement div').style.display === 'none') return false;
-    const original = $el('klarna-placement div')?.shadowRoot?.querySelector(
-      'div'
+    if ($el("klarna-placement div").style.display === "none") return false;
+    const original = $el("klarna-placement div")?.shadowRoot?.querySelector(
+      "div"
     );
 
-    original.querySelector('.container').style = 'border: 0;padding: 3px 0;';
-    original.querySelector('.text-wrapper').style = 'margin-left: 9px;';
+    original.querySelector(".container").style = "border: 0;padding: 3px 0;";
+    original.querySelector(".text-wrapper").style = "margin-left: 9px;";
     original.querySelector('.text-wrapper .text[part="osm-message"]').style =
-      'color: #565656';
-    original.querySelector('.text button').style = 'color: #000';
+      "color: #565656";
+    original.querySelector(".text button").style = "color: #000";
 
     const clone = original?.cloneNode(true);
 
     if (!clone) return false;
 
-    clone.classList.add('lav-klarna');
+    clone.classList.add("lav-klarna");
 
     observerView(clone);
 
-    $el('klarna-placement div')
+    $el("klarna-placement div")
       ?.shadowRoot?.querySelector('[part="osm-cta"]')
-      .addEventListener('click', () => {
+      .addEventListener("click", () => {
         if (!isKlarnaClick) {
           pushDataLayer(
-            'new_payments_klarna_link',
-            'Klarna learn more',
-            'Link',
-            'Product Information'
+            "new_payments_klarna_link",
+            "Klarna learn more",
+            "Link",
+            "Product Information"
           );
         }
 
         setTimeout(() => {
-          $el('klarna-osm-interstitial')
+          $el("klarna-osm-interstitial")
             ?.shadowRoot.querySelector(
-              '#learn-more-dialog-payment_calculator-light__footer-button-wrapper'
+              "#learn-more-dialog-payment_calculator-light__footer-button-wrapper"
             )
-            ?.addEventListener('click', () => {
+            ?.addEventListener("click", () => {
               pushDataLayer(
-                'new_payments_klarna_go_it',
-                'Go it',
-                'Button',
-                'Klarna popup'
+                "new_payments_klarna_go_it",
+                "Go it",
+                "Button",
+                "Klarna popup"
               );
             });
 
-          $el('klarna-osm-interstitial')
+          $el("klarna-osm-interstitial")
             ?.shadowRoot.querySelector(
-              '#learn-more-dialog-payment_calculator-light__nav-bar__right-icon'
+              "#learn-more-dialog-payment_calculator-light__nav-bar__right-icon"
             )
-            ?.addEventListener('click', () => {
+            ?.addEventListener("click", () => {
               pushDataLayer(
-                'new_payments_klarna_close',
-                'Close',
-                'Button',
-                'Klarna popup'
+                "new_payments_klarna_close",
+                "Close",
+                "Button",
+                "Klarna popup"
               );
             });
         }, 1000);
       });
 
-    clone.querySelector('[part="osm-cta"]').addEventListener('click', (e) => {
+    clone.querySelector('[part="osm-cta"]').addEventListener("click", (e) => {
       e.preventDefault();
       pushDataLayer(
-        'new_payments_cart_clarna_learn',
-        'Klarna learn more',
-        'Link',
-        'Cart sidebar'
+        "new_payments_cart_clarna_learn",
+        "Klarna learn more",
+        "Link",
+        "Cart sidebar"
       );
       isKlarnaClick = true;
-      $el('klarna-placement div')
+      $el("klarna-placement div")
         ?.shadowRoot?.querySelector('[part="osm-cta"]')
         .click();
       isKlarnaClick = false;
     });
 
-    $el('.lav-summary')?.insertAdjacentElement('afterend', clone);
+    $el(".lav-summary")?.insertAdjacentElement("afterend", clone);
   }
 
   function handleExtend() {
     if (
-      $el('.lav-extend') ||
-      !$el('.extend-offer iframe')
-        ?.contentWindow?.document?.querySelector('.btn-offer .term-length')
+      $el(".lav-extend") ||
+      !$el(".extend-offer iframe")
+        ?.contentWindow?.document?.querySelector(".btn-offer .term-length")
         ?.textContent.trim() ||
-      !$el('.product-single__form .add-to-cart + .lav-benefits')
+      !$el(".product-single__form .add-to-cart + .lav-benefits")
     )
       return false;
 
-    const innerEl = $el('.extend-offer iframe').contentWindow.document;
+    const innerEl = $el(".extend-offer iframe").contentWindow.document;
 
     const extend = `
       <div class='lav-extend lav-watch'>
@@ -1838,140 +1845,140 @@ let klaviyoStep = 1;
     `;
 
     $el(
-      '.product-single__form .add-to-cart + .lav-benefits'
-    ).insertAdjacentHTML('afterend', extend);
+      ".product-single__form .add-to-cart + .lav-benefits"
+    ).insertAdjacentHTML("afterend", extend);
 
     // console.log('testik', innerEl, innerEl.querySelectorAll('.btn-offer'));
 
-    for (let item of innerEl.querySelectorAll('.btn-offer')) {
-      const el = document.createElement('div');
-      el.classList.add('lav-extend__item');
+    for (let item of innerEl.querySelectorAll(".btn-offer")) {
+      const el = document.createElement("div");
+      el.classList.add("lav-extend__item");
 
       el.innerHTML = `
         <div class='lav-extend__item-caption'>${
-          item.querySelector('.term-length').textContent
+          item.querySelector(".term-length").textContent
         }</div>
         <div class='lav-extend__item-price'>${
-          item.querySelector('.plan-price').textContent
+          item.querySelector(".plan-price").textContent
         }</div>
       `;
 
       document
-        .querySelector('.lav-extend__body')
-        .insertAdjacentElement('beforeend', el);
+        .querySelector(".lav-extend__body")
+        .insertAdjacentElement("beforeend", el);
 
-      el.addEventListener('click', () => {
+      el.addEventListener("click", () => {
         item.click();
 
         pushDataLayer(
-          'new_payments_extend_term',
+          "new_payments_extend_term",
           `Term of protection: ${
-            item.querySelector('.term-length').textContent
+            item.querySelector(".term-length").textContent
           }`,
-          'Button',
-          'Product Information'
+          "Button",
+          "Product Information"
         );
 
-        if (el.classList.contains('active')) {
-          el.classList.remove('active');
+        if (el.classList.contains("active")) {
+          el.classList.remove("active");
         } else {
-          $el('.lav-extend__item.active')?.classList.remove('active');
-          el.classList.add('active');
+          $el(".lav-extend__item.active")?.classList.remove("active");
+          el.classList.add("active");
         }
       });
     }
 
-    $el('.lav-extend__covered').addEventListener('click', () => {
+    $el(".lav-extend__covered").addEventListener("click", () => {
       pushDataLayer(
-        'new_payments_extend_what_is_covered',
-        'What is covered',
-        'Link',
-        'Product Information'
+        "new_payments_extend_what_is_covered",
+        "What is covered",
+        "Link",
+        "Product Information"
       );
-      innerEl.querySelector('.info-link').click();
+      innerEl.querySelector(".info-link").click();
     });
   }
 
   function handleItemsSummary() {
     for (let item of $$el(
-      '.lav-summary__item:not(.lav-summary__item-subtotal)'
+      ".lav-summary__item:not(.lav-summary__item-subtotal)"
     )) {
       item.remove();
     }
 
-    for (let item of $$el('.cart__items .cart__item')) {
+    for (let item of $$el(".cart__items .cart__item")) {
       const el = `
         <div class="lav-summary__item ${
-          item.querySelector('.cart__item-name').innerText.trim() ===
-          'Free Gift'
-            ? 'lav-summary__item-gift'
-            : ''
+          item.querySelector(".cart__item-name").innerText.trim() ===
+          "Free Gift"
+            ? "lav-summary__item-gift"
+            : ""
         }">
           <div class="lav-summary__caption">
-          ${item.querySelector('.cart__item-name').innerText}
+          ${item.querySelector(".cart__item-name").innerText}
           ${
-            item.querySelector('.cart__item-name').innerText.trim() ===
-            'Free Gift'
+            item.querySelector(".cart__item-name").innerText.trim() ===
+            "Free Gift"
               ? `(${item
-                  .querySelector('.cart__item--variants')
-                  .innerText.replace('Product:', '')
+                  .querySelector(".cart__item--variants")
+                  .innerText.replace("Product:", "")
                   .trim()})`
-              : ''
+              : ""
           }
           </div>
           <div class="lav-summary__value">
-          ${item.querySelector('.cart__price').innerText} 
+          ${item.querySelector(".cart__price").innerText} 
           ${
-            item.querySelector('.js-qty__num')?.value > 1
-              ? `(X${item.querySelector('.js-qty__num')?.value})`
-              : ''
+            item.querySelector(".js-qty__num")?.value > 1
+              ? `(X${item.querySelector(".js-qty__num")?.value})`
+              : ""
           }
       </div>
         </div>
       `;
 
-      $el('.lav-summary').insertAdjacentHTML('afterbegin', el);
+      $el(".lav-summary").insertAdjacentHTML("afterbegin", el);
     }
   }
 
   function handleHand() {
     if (
-      !$el('.product-single__meta .tangiblee-cta-wrapper') ||
-      $el('.product-single__meta .tangiblee-cta')?.style.display === 'none'
+      !$el(".product-single__meta .tangiblee-cta-wrapper") ||
+      $el(".product-single__meta .tangiblee-cta")?.style.display === "none"
     ) {
       if (
-        $el('.product-single__meta .tangiblee-cta')?.style.display === 'none'
+        $el(".product-single__meta .tangiblee-cta")?.style.display === "none"
       ) {
-        $el('.product-single__meta .tangiblee-cta-wrapper')?.classList.add(
-          'lav-hide'
+        $el(".product-single__meta .tangiblee-cta-wrapper")?.classList.add(
+          "lav-hide"
         );
       }
       return false;
     }
 
-    $el('.product-single__meta .tangiblee-cta-wrapper').classList.add(
-      'lav-hand'
+    $el(".product-single__meta .tangiblee-cta-wrapper").classList.add(
+      "lav-hand"
     );
 
-    $el('.lav-hand').addEventListener('click', () => {
+    $el(".lav-hand").addEventListener("click", () => {
       pushDataLayer(
-        'new_payments_try_it_on_your_hand',
-        'Try it on your hand',
-        'Button',
-        'Gallery'
+        "new_payments_try_it_on_your_hand",
+        "Try it on your hand",
+        "Button",
+        "Gallery"
       );
     });
 
-    $el('.product__main-photos').insertAdjacentElement(
-      'afterbegin',
-      $el('.product-single__meta .tangiblee-cta-wrapper')
+    $el(".product__main-photos").insertAdjacentElement(
+      "afterbegin",
+      $el(".product-single__meta .tangiblee-cta-wrapper")
     );
 
-    $el('.tangiblee-cta-wrapper .tangiblee-cta__icon').innerHTML = `
+    $el(".tangiblee-cta-wrapper .tangiblee-cta__icon").innerHTML = `
       <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg"><g clip-path="url(#clip0_420_3986)"> <path fill-rule="evenodd" clip-rule="evenodd" d="M20.4238 3.57381C20.4238 2.47158 19.5302 1.57804 18.428 1.57804H14.7148V0L18.428 1.62302e-07C20.4018 2.48578e-07 22.0018 1.60005 22.0018 3.57381V7.28686H20.4238V3.57381Z" fill="#CC9286"/> <path fill-rule="evenodd" clip-rule="evenodd" d="M1.57806 3.57381C1.57806 2.47158 2.4716 1.57804 3.57384 1.57804L7.28691 1.57805V1.62304e-07L3.57384 0C1.60006 -8.62765e-08 2.48578e-07 1.60005 1.62302e-07 3.57381L0 7.28686H1.57806V3.57381Z" fill="#CC9286"/> <path fill-rule="evenodd" clip-rule="evenodd" d="M18.428 20.422C19.5302 20.422 20.4238 19.5284 20.4238 18.4262V14.7131H22.0018V18.4262C22.0018 20.4 20.4018 22 18.428 22H14.7148V20.422H18.428Z" fill="#CC9286"/> <path fill-rule="evenodd" clip-rule="evenodd" d="M1.57806 18.4262C1.57806 19.5284 2.4716 20.422 3.57384 20.422H7.28691V22H3.57384C1.60006 22 -2.58829e-07 20.4 0 18.4262L4.86909e-07 14.7131H1.57806V18.4262Z" fill="#CC9286"/> <g clip-path="url(#clip1_420_3986)"> <path d="M6.42969 12.9181V7.80573C6.42969 7.78528 6.42969 7.76669 6.42969 7.74624C6.44224 7.60337 6.51071 7.47124 6.62022 7.37862C6.72972 7.28601 6.87139 7.24039 7.01436 7.25173C7.08812 7.24833 7.16177 7.2605 7.23052 7.28744C7.29927 7.31438 7.36158 7.35549 7.41339 7.40809C7.46521 7.4607 7.50538 7.52362 7.53128 7.59277C7.55717 7.66192 7.56822 7.73575 7.56371 7.80945V11.2598C7.76077 11.1398 7.9679 11.0372 8.18277 10.9531V6.10284C8.19106 5.95808 8.25442 5.82197 8.35984 5.72241C8.46525 5.62285 8.60477 5.56738 8.74978 5.56738C8.89479 5.56738 9.03431 5.62285 9.13972 5.72241C9.24512 5.82197 9.30852 5.95808 9.31679 6.10284V10.6454C9.52138 10.6116 9.72783 10.5899 9.93492 10.5804V5.68549C9.9432 5.54072 10.0066 5.4046 10.112 5.30505C10.2174 5.20549 10.3569 5.15002 10.5019 5.15002C10.6469 5.15002 10.7865 5.20549 10.8919 5.30505C10.9973 5.4046 11.0607 5.54072 11.0689 5.68549V10.612C11.2778 10.638 11.4847 10.6783 11.688 10.7328V6.39285C11.6963 6.24809 11.7597 6.11197 11.8651 6.01242C11.9705 5.91286 12.11 5.85739 12.255 5.85739C12.4 5.85739 12.5395 5.91286 12.645 6.01242C12.7504 6.11197 12.8138 6.24809 12.822 6.39285V11.6911C12.822 12.2712 12.8759 12.577 13.06 12.577C13.3677 12.577 13.7534 11.3528 14.0704 10.7096C14.3492 10.1165 14.5407 9.90181 15.0287 9.90181C15.2444 9.90181 15.5678 10.111 15.5678 10.347C15.4626 10.9005 15.2968 11.4407 15.0733 11.9579C14.7953 13.2831 14.2038 14.5224 13.3481 15.5719C12.9331 15.9979 12.4328 16.3315 11.8801 16.5512C11.3274 16.7707 10.7346 16.8713 10.1403 16.8463C7.98013 16.8463 6.42969 15.6267 6.42969 12.9181Z" fill="#CC9286"/> </g> </g> <defs> <clipPath id="clip0_420_3986"> <rect width="22" height="22" fill="white"/> </clipPath> <clipPath id="clip1_420_3986"> <rect width="11.7" height="11.7" fill="white" transform="translate(5.14844 5.15002)"/> </clipPath> </defs> </svg>
     `;
 
-    $el('.tangiblee-cta-wrapper').classList.remove('lav-hide');
+    $el(".tangiblee-cta-wrapper").classList.remove("lav-hide");
 
     // $el('.lav-hand').addEventListener('click', () => {
     //   $el('.tangiblee-cta-wrapper a').click();
@@ -1979,31 +1986,31 @@ let klaviyoStep = 1;
   }
 
   function updateTotal() {
-    let value = $el('.drawer__footer [data-subtotal]')?.innerText.trim();
+    let value = $el(".drawer__footer [data-subtotal]")?.innerText.trim();
     if (!value) return false;
 
-    for (let item of $$el('.lav-cart-price')) {
+    for (let item of $$el(".lav-cart-price")) {
       item.innerText = value;
     }
   }
 
   function handleDiscount() {
     if (!$el('.needsclick[aria-label="Open Form"]')) {
-      for (let item of $$el('.lav-discount:not(.lav-discount_applied)')) {
+      for (let item of $$el(".lav-discount:not(.lav-discount_applied)")) {
         item.remove();
       }
 
-      if (sessionStorage.getItem('lav-discount') === 'yes') {
-        if (!$el('.product-block--price .lav-discount')) {
-          $el('[data-product-price]').insertAdjacentHTML(
-            'beforeend',
+      if (sessionStorage.getItem("lav-discount") === "yes") {
+        if (!$el(".product-block--price .lav-discount")) {
+          $el("[data-product-price]").insertAdjacentHTML(
+            "beforeend",
             appliedDiscount
           );
         }
 
-        if (!$el('.lav-sticky .lav-discount')) {
-          $el('.lav-sticky__price').insertAdjacentHTML(
-            'beforeend',
+        if (!$el(".lav-sticky .lav-discount")) {
+          $el(".lav-sticky__price").insertAdjacentHTML(
+            "beforeend",
             appliedDiscount
           );
         }
@@ -2012,29 +2019,29 @@ let klaviyoStep = 1;
       return false;
     }
 
-    if (!$el('.product-block--price .lav-discount')) {
-      $el('[data-product-price]').insertAdjacentHTML('beforeend', getDiscount);
+    if (!$el(".product-block--price .lav-discount")) {
+      $el("[data-product-price]").insertAdjacentHTML("beforeend", getDiscount);
 
-      $el('.product-block--price .lav-discount').addEventListener(
-        'click',
+      $el(".product-block--price .lav-discount").addEventListener(
+        "click",
         () => {
           if ($el('.needsclick[aria-label="Open Form"]')) {
             pushDataLayer(
-              'new_payments_pdp_get_your_50_off',
-              'Get your 50$ off',
-              'Link',
-              'Product Information'
+              "new_payments_pdp_get_your_50_off",
+              "Get your 50$ off",
+              "Link",
+              "Product Information"
             );
 
             pushDataLayer(
-              'new_payments_pp_get_50_off',
-              'Visibility',
-              'Popup',
-              'Popup 50$ off'
+              "new_payments_pp_get_50_off",
+              "Visibility",
+              "Popup",
+              "Popup 50$ off"
             );
             $el('.needsclick[aria-label="Open Form"]').click();
           } else {
-            for (let item of $$el('.lav-discount')) {
+            for (let item of $$el(".lav-discount")) {
               item.remove();
             }
           }
@@ -2042,15 +2049,15 @@ let klaviyoStep = 1;
       );
     }
 
-    if (!$el('.lav-sticky .lav-discount')) {
-      $el('.lav-sticky__price').insertAdjacentHTML('beforeend', getDiscount);
+    if (!$el(".lav-sticky .lav-discount")) {
+      $el(".lav-sticky__price").insertAdjacentHTML("beforeend", getDiscount);
 
-      $el('.lav-sticky .lav-discount').addEventListener('click', () => {
+      $el(".lav-sticky .lav-discount").addEventListener("click", () => {
         pushDataLayer(
-          'new_payments_pp_get_50_off',
-          'Visibility',
-          'Popup',
-          'Popup 50$ off'
+          "new_payments_pp_get_50_off",
+          "Visibility",
+          "Popup",
+          "Popup 50$ off"
         );
         $el('.needsclick[aria-label="Open Form"]').click();
       });
@@ -2058,70 +2065,73 @@ let klaviyoStep = 1;
   }
 
   function handleEarn(subtotal) {
-    if (!window.location.pathname.includes('/products/')) return false;
-    if (!$el('[data-product-blocks] .lav-earn')) {
-      $el('.the4-toolkit-wishlist')?.insertAdjacentHTML(
-        'beforebegin',
+    if (!window.location.pathname.includes("/products/")) return false;
+    if (!$el("[data-product-blocks] .lav-earn")) {
+      $el(".the4-toolkit-wishlist")?.insertAdjacentHTML(
+        "beforebegin",
         earnStart
       );
     }
-    const price = +document.querySelector('.product__price:not(.product__price--compare) .money').getAttribute('doubly-currency-usd') / 100
-    subtotal = price
-    if (subtotal >= 5000 && !$el('[data-product-blocks] .lav-earn-5000')) {
-      $el('[data-product-blocks] .lav-earn')?.remove();
-      $el('.the4-toolkit-wishlist')?.insertAdjacentHTML(
-        'beforebegin',
+    const price =
+      +document
+        .querySelector(".product__price:not(.product__price--compare) .money")
+        .getAttribute("doubly-currency-usd") / 100;
+    subtotal = price;
+    if (subtotal >= 5000 && !$el("[data-product-blocks] .lav-earn-5000")) {
+      $el("[data-product-blocks] .lav-earn")?.remove();
+      $el(".the4-toolkit-wishlist")?.insertAdjacentHTML(
+        "beforebegin",
         earnGift2
       );
-      $el('[data-product-blocks] .lav-earn a')?.addEventListener(
-        'click',
+      $el("[data-product-blocks] .lav-earn a")?.addEventListener(
+        "click",
         () => {
           pushDataLayer(
-            'new_payments_learn_more_brecelet',
-            'Learn more (earrings)',
-            'Link',
-            'Product Information'
+            "new_payments_learn_more_brecelet",
+            "Learn more (earrings)",
+            "Link",
+            "Product Information"
           );
         }
       );
     } else if (
       subtotal < 5000 &&
       subtotal >= 1500 &&
-      !$el('[data-product-blocks] .lav-earn-1500')
+      !$el("[data-product-blocks] .lav-earn-1500")
     ) {
-      $el('[data-product-blocks] .lav-earn')?.remove();
-      $el('.the4-toolkit-wishlist')?.insertAdjacentHTML(
-        'beforebegin',
+      $el("[data-product-blocks] .lav-earn")?.remove();
+      $el(".the4-toolkit-wishlist")?.insertAdjacentHTML(
+        "beforebegin",
         earnGift1
       );
-      $el('[data-product-blocks] .lav-earn a')?.addEventListener(
-        'click',
+      $el("[data-product-blocks] .lav-earn a")?.addEventListener(
+        "click",
         () => {
           pushDataLayer(
-            'new_payments_learn_more_earrings',
-            'Learn more (earrings)',
-            'Link',
-            'Product Information'
+            "new_payments_learn_more_earrings",
+            "Learn more (earrings)",
+            "Link",
+            "Product Information"
           );
         }
       );
     } else if (
       subtotal < 1500 &&
-      !$el('[data-product-blocks] .lav-earn-start')
+      !$el("[data-product-blocks] .lav-earn-start")
     ) {
-      $el('[data-product-blocks] .lav-earn')?.remove();
-      $el('.the4-toolkit-wishlist')?.insertAdjacentHTML(
-        'beforebegin',
+      $el("[data-product-blocks] .lav-earn")?.remove();
+      $el(".the4-toolkit-wishlist")?.insertAdjacentHTML(
+        "beforebegin",
         earnStart
       );
     }
   }
 
   function handleShipping(benefits) {
-    const el = Array.from($$el('.product-block--tab')).find((item) => {
+    const el = Array.from($$el(".product-block--tab")).find((item) => {
       return item
-        .querySelector('.label')
-        .innerText.includes('Shipping and Production');
+        .querySelector(".label")
+        .innerText.includes("Shipping and Production");
     });
 
     if (!el) {
@@ -2131,35 +2141,35 @@ let klaviyoStep = 1;
       return false;
     }
 
-    el.classList.add('lav-shipping');
+    el.classList.add("lav-shipping");
 
-    el.querySelector('.label').innerHTML = el
-      .querySelector('.label')
+    el.querySelector(".label").innerHTML = el
+      .querySelector(".label")
       .innerHTML.replace(
-        'Shipping and Production',
-        'Shipping, returns and exechnges'
+        "Shipping and Production",
+        "Shipping, returns and exechnges"
       );
 
-    el.querySelector('.collapsible-content__inner').classList.remove('rte');
+    el.querySelector(".collapsible-content__inner").classList.remove("rte");
 
-    const options = { day: '2-digit', month: 'short' };
+    const options = { day: "2-digit", month: "short" };
     const date = new Date();
-    const currentDate = date.toLocaleString('en-US', options);
+    const currentDate = date.toLocaleString("en-US", options);
     const dateAfter8Weeks = new Date(
       date.getTime() + 8 * 7 * 24 * 60 * 60 * 1000
-    ).toLocaleString('en-US', options);
+    ).toLocaleString("en-US", options);
     const dateAfter9Weeks = new Date(
       date.getTime() + 9 * 7 * 24 * 60 * 60 * 1000
-    ).toLocaleString('en-US', options);
+    ).toLocaleString("en-US", options);
 
     const deliveryFrom = new Date(
       date.getTime() + (8 * 7 + 5) * 24 * 60 * 60 * 1000
-    ).toLocaleString('en-US', options);
+    ).toLocaleString("en-US", options);
     const deliferyAfter = new Date(
       date.getTime() + (9 * 7 + 5) * 24 * 60 * 60 * 1000
-    ).toLocaleString('en-US', options);
+    ).toLocaleString("en-US", options);
 
-    el.querySelector('.collapsible-content__inner').innerHTML = `
+    el.querySelector(".collapsible-content__inner").innerHTML = `
         <div class='lav-shipping__caption'>Estimated arrival</div>
         <div class='lav-shipping__date'>${deliveryFrom}-${deliferyAfter}</div>
 
@@ -2202,15 +2212,15 @@ let klaviyoStep = 1;
         ${benefits}
     `;
 
-    $el('[id="switch-label-rush"]')?.addEventListener('change', () => {
+    $el('[id="switch-label-rush"]')?.addEventListener("change", () => {
       if ($el('[id="switch-label-rush"]').checked) {
-        $el('.lav-shipping__rush').classList.add('active');
+        $el(".lav-shipping__rush").classList.add("active");
       } else {
-        $el('.lav-shipping__rush').classList.remove('active');
+        $el(".lav-shipping__rush").classList.remove("active");
       }
 
-      $el('.lav-shipping button').click();
-      $el('.lav-shipping button').click();
+      $el(".lav-shipping button").click();
+      $el(".lav-shipping button").click();
     });
   }
 
@@ -2222,7 +2232,7 @@ let klaviyoStep = 1;
             <img src='${item.ImageURL}' />
           </div>
           <div class='lav-sticky__title'>
-            ${$el('.product-single__title').innerText}
+            ${$el(".product-single__title").innerText}
           </div>
           <div class='lav-sticky__price'>
             <div class='lav-sticky__price-old'>$2,110.00</div>
@@ -2233,125 +2243,130 @@ let klaviyoStep = 1;
         <button class='lav-sticky__btn lav-btn'>
           <img src='${exp.dir}/img/bag.svg' />
           <span class='lav-product-price lav-btn-price lav-mob'></span>
-          <span class='lav-btn-caption'>Select size</span>
+          <span class='lav-btn-caption'>Add to cart</span>
         </button>
       </div>
     `;
 
-    $el('body').insertAdjacentHTML('beforeend', el);
-    $el('.lav-sticky__btn .lav-product-price').style.display = 'none';
-    $el('.lav-sticky__btn img').style.display = 'none';
+    $el("body").insertAdjacentHTML("beforeend", el);
+    $el(".lav-sticky__btn .lav-product-price").style.display = "none";
+    $el(".lav-sticky__btn img").style.display = "none";
 
     let activated = false;
 
-    if($el('[name="properties[Ring size]"]')) {
-      $el('[name="properties[Ring size]"]').insertAdjacentHTML('afterbegin', '<option value="Select size" selected>Select size</option>');
-      $el('.extend-offer').insertAdjacentHTML('afterend', '<div class="lav-select_size">Select size</div>')
-      $el('[data-add-to-cart]').style.display = 'none';
+    if ($el('[name="properties[Ring size]"]')) {
+      $el('[name="properties[Ring size]"]').insertAdjacentHTML(
+        "afterbegin",
+        '<option value="Select size" selected>Select size</option>'
+      );
+      $el(".extend-offer").insertAdjacentHTML(
+        "afterend",
+        '<div class="lav-select_size">Add to cart</div>'
+      );
+      $el("[data-add-to-cart]").style.display = "none";
 
-      $el('[name="properties[Ring size]"]').addEventListener('change', function(e){
-        if(e.target.value !== 'Select size') {
-          activated = true;
-          $el('.lav-sticky__btn .lav-product-price').style.display = 'block';
-          $el('.lav-sticky__btn img').style.display = 'block';
-          $el('.lav-sticky__btn .lav-btn-caption').innerText = 'Add to cart';
-          $el('[data-add-to-cart]').style.display = 'flex';
-          $el('.lav-select_size').style.display = 'none';
-          $el('[name="properties[Ring size]"]').classList.remove('lav-error');
-        } else {
-          activated = false;
-          $el('.lav-sticky__btn .lav-product-price').style.display = 'none';
-          $el('.lav-sticky__btn img').style.display = 'none';
-          $el('.lav-sticky__btn .lav-btn-caption').innerText = 'Select size';
-          $el('[data-add-to-cart]').style.display = 'none';
-          $el('.lav-select_size').style.display = 'flex';
+      $el('[name="properties[Ring size]"]').addEventListener(
+        "change",
+        function (e) {
+          if (e.target.value !== "Select size") {
+            activated = true;
+            $el(".lav-sticky__btn .lav-product-price").style.display = "block";
+            $el(".lav-sticky__btn img").style.display = "block";
+            $el("[data-add-to-cart]").style.display = "flex";
+            $el(".lav-select_size").style.display = "none";
+            $el('[name="properties[Ring size]"]').classList.remove("lav-error");
+          } else {
+            activated = false;
+            $el(".lav-sticky__btn .lav-product-price").style.display = "none";
+            $el(".lav-sticky__btn img").style.display = "none";
+            $el("[data-add-to-cart]").style.display = "none";
+            $el(".lav-select_size").style.display = "flex";
+          }
         }
-      })
-
+      );
     } else {
       activated = true;
-      $el('.lav-sticky__btn .lav-product-price').style.display = 'block';
-      $el('.lav-sticky__btn img').style.display = 'block';
-      $el('.lav-sticky__btn .lav-btn-caption').innerText = 'Add to cart';
+      $el(".lav-sticky__btn .lav-product-price").style.display = "block";
+      $el(".lav-sticky__btn img").style.display = "block";
+      $el(".lav-sticky__btn .lav-btn-caption").innerText = "Add to cart";
     }
 
-    if($el('.lav-select_size')) {
-      $el('.lav-select_size').addEventListener('click', () => {
-              pushDataLayer(
-                'new_payments_select_size',
-                'Select size',
-                'Button',
-                'Add product section'
-              );
-              const el = $el('.variant-wrapper');
-              const offset = el.getBoundingClientRect().top + window.scrollY - 120;
-              $el('[name="properties[Ring size]"]').classList.add('lav-error');
-              window.scrollTo({
-                  top: offset,
-                  behavior: 'smooth'
-              });
-      })
+    if ($el(".lav-select_size")) {
+      $el(".lav-select_size").addEventListener("click", () => {
+        pushDataLayer(
+          "new_payments_select_size",
+          "Select size",
+          "Button",
+          "Add product section"
+        );
+        const el = $el(".variant-wrapper");
+        const offset = el.getBoundingClientRect().top + window.scrollY - 120;
+        $el('[name="properties[Ring size]"]').classList.add("lav-error");
+        window.scrollTo({
+          top: offset,
+          behavior: "smooth",
+        });
+      });
     }
 
-
-
-    $el('.lav-sticky__btn').addEventListener('click', () => {
-        if (activated) {
-            pushDataLayer(
-                'new_payments_sticky_add_to_cart',
-                'Sticky add to cart',
-                'Button',
-                'Sticky section'
-            );
-            isAddCart = true;
-            $el('button.add-to-cart').click();
-            setTimeout(() => {
-                isAddCart = false;
-            }, 200);
-        } else {
-            pushDataLayer(
-              'new_payments_sticky_select_size',
-              'Sticky select size',
-              'Button',
-              'Sticky section'
-            );
-            const el = $el('.variant-wrapper');
-            const offset = el.getBoundingClientRect().top + window.scrollY - 120;
-            $el('[name="properties[Ring size]"]').classList.add('lav-error');
-            window.scrollTo({
-                top: offset,
-                behavior: 'smooth'
-            });
-        }
+    $el(".lav-sticky__btn").addEventListener("click", () => {
+      if (activated) {
+        pushDataLayer(
+          "new_payments_sticky_add_to_cart",
+          "Sticky add to cart",
+          "Button",
+          "Sticky section"
+        );
+        isAddCart = true;
+        $el("button.add-to-cart").click();
+        setTimeout(() => {
+          isAddCart = false;
+        }, 200);
+      } else {
+        pushDataLayer(
+          "new_payments_sticky_select_size",
+          "Sticky select size",
+          "Button",
+          "Sticky section"
+        );
+        const el = $el(".variant-wrapper");
+        const offset = el.getBoundingClientRect().top + window.scrollY - 120;
+        $el('[name="properties[Ring size]"]').classList.add("lav-error");
+        window.scrollTo({
+          top: offset,
+          behavior: "smooth",
+        });
+      }
     });
 
     waitFor(
-      () => $el('.product__price .money')?.innerText,
+      () => $el(".product__price .money")?.innerText,
       () => {
-        for (let spot of $$el('.lav-product-price')) {
-          spot.innerText = $el('.product__price .money').innerText.trim();
+        for (let spot of $$el(".lav-product-price")) {
+          spot.innerText = $el(".product__price .money").innerText.trim();
         }
       }
     );
 
     const obs = new MutationObserver((muts) => {
-        for (let mut of muts) {
-            console.log(mut)
-            if(mut.target.classList.contains('money')) {
-                $el('.lav-sticky__btn .lav-product-price').innerText = mut.target.innerText.trim();
-                $el('.lav-sticky__price-new').innerText = mut.target.innerText.trim();
-            }
+      for (let mut of muts) {
+        console.log(mut);
+        if (mut.target.classList.contains("money")) {
+          $el(".lav-sticky__btn .lav-product-price").innerText =
+            mut.target.innerText.trim();
+          $el(".lav-sticky__price-new").innerText = mut.target.innerText.trim();
         }
-    })
-    obs.observe($el('.product__price:not(.product__price--compare)'), {
-        childList: true,
-        subtree: true,
-        characterData: true,
+      }
+    });
+    obs.observe($el(".product__price:not(.product__price--compare)"), {
+      childList: true,
+      subtree: true,
+      characterData: true,
     });
   }
 
   function handleSlideIn(benefits) {
-    const el = $el('#CartDrawer');
+    const el = $el("#CartDrawer");
 
     const summary = `
       <div class='lav-notes'>
@@ -2367,115 +2382,122 @@ let klaviyoStep = 1;
       </div>
     `;
 
-    $el('[for="CartNoteDrawer"]', el).style.display = 'none';
-    $el('[for="CartNoteDrawer"]', el).innerText = 'Order notes:';
-    $el('.input-full.cart-notes', el).style.display = 'none';
+    $el('[for="CartNoteDrawer"]', el).style.display = "none";
+    $el('[for="CartNoteDrawer"]', el).innerText = "Order notes:";
+    $el(".input-full.cart-notes", el).style.display = "none";
 
-    $el('.cart-notes', el).insertAdjacentHTML('afterend', summary);
-    $el('.lav-notes', el).addEventListener('click', function (e) {
+    $el(".cart-notes", el).insertAdjacentHTML("afterend", summary);
+    $el(".lav-notes", el).addEventListener("click", function (e) {
       e.preventDefault();
       e.stopPropagation();
       pushDataLayer(
-        'new_payments_cart_leave_order_notes',
-        'Leave order notes',
-        'Link',
-        'Cart sidebar'
+        "new_payments_cart_leave_order_notes",
+        "Leave order notes",
+        "Link",
+        "Cart sidebar"
       );
-      $el('.lav-notes', el).remove();
-      $el('[for="CartNoteDrawer"]', el).style.display = 'block';
-      $el('.input-full.cart-notes', el).style.display = 'block';
+      $el(".lav-notes", el).remove();
+      $el('[for="CartNoteDrawer"]', el).style.display = "block";
+      $el(".input-full.cart-notes", el).style.display = "block";
     });
 
-    $el('.drawer__inner', el).insertAdjacentHTML('beforeend', benefits);
-    $el('.lav-benefits', el).classList.add('lav-benefits__slide');
-    $el('.drawer__header', el).classList.add('lav-watch');
+    $el(".drawer__inner", el).insertAdjacentHTML("beforeend", benefits);
+    $el(".lav-benefits", el).classList.add("lav-benefits__slide");
+    $el(".drawer__header", el).classList.add("lav-watch");
 
-    $el('[for="CartTermsDrawer"] a', el).innerText = 'Terms and Conditions';
+    $el('[for="CartTermsDrawer"] a', el).innerText = "Terms and Conditions";
 
-    $el('.cart__checkout-wrapper button', el).addEventListener('click', () => {
+    $el(".cart__checkout-wrapper button", el).addEventListener("click", () => {
       pushDataLayer(
-        'new_payments_cart_checkout',
-        'Checkout',
-        'Button',
-        'Cart sidebar'
+        "new_payments_cart_checkout",
+        "Checkout",
+        "Button",
+        "Cart sidebar"
       );
     });
 
-    $el('.cart__checkout-wrapper button', el).innerHTML = `
+    $el(".cart__checkout-wrapper button", el).innerHTML = `
       <img src='${exp.dir}/img/bag.svg' />
       <span class='lav-btn-price lav-cart-price'></span>
       <span class='lav-btn-caption'>CHECK OUT</span>
     `;
-    $el('.cart__checkout-wrapper button', el).classList.add('lav-btn');
+    $el(".cart__checkout-wrapper button", el).classList.add("lav-btn");
 
-    if ($el('.lav-paypal')) {
-      $el('.lav-paypal').style.display = 'flex';
+    if ($el(".lav-paypal")) {
+      $el(".lav-paypal").style.display = "flex";
       if ($el('.lav-paypal [data-testid="grid-cell"]')) {
         $el('.lav-paypal [data-testid="grid-cell"]').style.flexGrow =
-          '1!important';
+          "1!important";
       } else {
         setTimeout(() => {
           if ($el('.lav-paypal [data-testid="grid-cell"]')) {
             $el('.lav-paypal [data-testid="grid-cell"]').style.flexGrow =
-              '1!important';
+              "1!important";
           }
         }, 1500);
       }
 
-      $el('.lav-paypal').addEventListener('click', () => {
+      $el(".lav-paypal").addEventListener("click", () => {
         pushDataLayer(
-          'new_payments_cart_paypal',
-          'PayPal',
-          'Button',
-          'Cart sidebar'
+          "new_payments_cart_paypal",
+          "PayPal",
+          "Button",
+          "Cart sidebar"
         );
       });
     }
   }
 
   function handleItems(el) {
-    Array.from($$el('.cart__item', el)).forEach((pr) => {
+    Array.from($$el(".cart__item", el)).forEach((pr) => {
       if (
         $el('.needsclick[aria-label="Open Form"]') &&
-        !pr.querySelector('.lav-discount') &&
+        !pr.querySelector(".lav-discount") &&
         !pr
-          .querySelector('.cart__item-name')
+          .querySelector(".cart__item-name")
           .innerText.toLowerCase()
-          .includes('gift') &&
+          .includes("gift") &&
         !pr
-          .querySelector('.cart__item-name')
+          .querySelector(".cart__item-name")
           .innerText.toLowerCase()
-          .includes('extend protection')
+          .includes("extend protection")
       ) {
-        
-        if(!pr.querySelector('.cart__item-name').innerText.toLowerCase().includes('engraving') && 
-        !pr.querySelector('.cart__item-name').innerText.toLowerCase().includes('rush')) {
-            pr.querySelector('.cart__price').insertAdjacentHTML(
-            'afterend',
+        if (
+          !pr
+            .querySelector(".cart__item-name")
+            .innerText.toLowerCase()
+            .includes("engraving") &&
+          !pr
+            .querySelector(".cart__item-name")
+            .innerText.toLowerCase()
+            .includes("rush")
+        ) {
+          pr.querySelector(".cart__price").insertAdjacentHTML(
+            "afterend",
             getDiscount
-            );
+          );
         }
 
-        pr.querySelector('.lav-discount')?.addEventListener(
-          'click',
+        pr.querySelector(".lav-discount")?.addEventListener(
+          "click",
           function (e) {
             if ($el('.needsclick[aria-label="Open Form"]')) {
               pushDataLayer(
-                'new_payments_cart_get_your_50_off',
-                'Get your 50$ off',
-                'Link',
-                'Cart sidebar'
+                "new_payments_cart_get_your_50_off",
+                "Get your 50$ off",
+                "Link",
+                "Cart sidebar"
               );
 
               pushDataLayer(
-                'new_payments_pp_get_50_off',
-                'Visibility',
-                'Popup',
-                'Popup 50$ off'
+                "new_payments_pp_get_50_off",
+                "Visibility",
+                "Popup",
+                "Popup 50$ off"
               );
               $el('.needsclick[aria-label="Open Form"]').click();
             } else {
-              for (let item of $$el('.lav-discount')) {
+              for (let item of $$el(".lav-discount")) {
                 item.remove();
               }
             }
@@ -2485,79 +2507,79 @@ let klaviyoStep = 1;
 
       if (
         !$el('.needsclick[aria-label="Open Form"]') &&
-        sessionStorage.getItem('lav-discount') === 'yes' &&
-        !pr.querySelector('.lav-discount.lav-discount_applied') &&
+        sessionStorage.getItem("lav-discount") === "yes" &&
+        !pr.querySelector(".lav-discount.lav-discount_applied") &&
         !pr
-          .querySelector('.cart__item-name')
+          .querySelector(".cart__item-name")
           .innerText.toLowerCase()
-          .includes('gift') &&
+          .includes("gift") &&
         !pr
-          .querySelector('.cart__item-name')
+          .querySelector(".cart__item-name")
           .innerText.toLowerCase()
-          .includes('extend protection')
+          .includes("extend protection")
       ) {
-        pr.querySelector('.cart__price').insertAdjacentHTML(
-          'afterend',
+        pr.querySelector(".cart__price").insertAdjacentHTML(
+          "afterend",
           appliedDiscount
         );
       }
 
       if (
-        !pr.querySelector('.extend-simple-offer iframe') &&
-        pr.querySelector('.lav-p-extend')
+        !pr.querySelector(".extend-simple-offer iframe") &&
+        pr.querySelector(".lav-p-extend")
       ) {
-        pr.querySelector('.lav-p-extend').remove();
+        pr.querySelector(".lav-p-extend").remove();
       }
 
       if (
-        pr.querySelector('.extend-simple-offer iframe') &&
-        !pr.querySelector('.lav-p-extend')
+        pr.querySelector(".extend-simple-offer iframe") &&
+        !pr.querySelector(".lav-p-extend")
       ) {
-        pr.querySelector('.cart__item-details').insertAdjacentHTML(
-          'beforeend',
+        pr.querySelector(".cart__item-details").insertAdjacentHTML(
+          "beforeend",
           productExtend
         );
 
-        pr.querySelector('.lav-p-extend').addEventListener(
-          'click',
+        pr.querySelector(".lav-p-extend").addEventListener(
+          "click",
           function () {
             pushDataLayer(
-              'new_payments_cart_protect_your_gewellery',
-              'Protect your gewellery',
-              'Link',
-              'Cart sidebar'
+              "new_payments_cart_protect_your_gewellery",
+              "Protect your gewellery",
+              "Link",
+              "Cart sidebar"
             );
-            pr.querySelector('.extend-simple-offer iframe')
-              .contentDocument.querySelector('button')
+            pr.querySelector(".extend-simple-offer iframe")
+              .contentDocument.querySelector("button")
               .click();
           }
         );
       }
 
       if (
-        !pr.querySelector('.js-qty__wrapper') ||
-        pr.querySelector('.lav-product__remove')
+        !pr.querySelector(".js-qty__wrapper") ||
+        pr.querySelector(".lav-product__remove")
       ) {
         return false;
       }
 
-      pr.querySelector('.js-qty__wrapper').insertAdjacentHTML(
-        'beforeend',
+      pr.querySelector(".js-qty__wrapper").insertAdjacentHTML(
+        "beforeend",
         `<div class='lav-product__remove'>Remove</div>`
       );
 
-      pr.querySelector('.lav-product__remove').addEventListener(
-        'click',
+      pr.querySelector(".lav-product__remove").addEventListener(
+        "click",
         function (e) {
-          if (pr.querySelector('.js-qty__num')) {
+          if (pr.querySelector(".js-qty__num")) {
             pushDataLayer(
-              'new_payments_cart_remove',
-              'Remove',
-              'Link',
-              'Cart sidebar'
+              "new_payments_cart_remove",
+              "Remove",
+              "Link",
+              "Cart sidebar"
             );
-            pr.querySelector('.js-qty__num').value = 0;
-            pr.querySelector('.js-qty__num').dispatchEvent(new Event('change'));
+            pr.querySelector(".js-qty__num").value = 0;
+            pr.querySelector(".js-qty__num").dispatchEvent(new Event("change"));
           }
         }
       );
@@ -2565,32 +2587,39 @@ let klaviyoStep = 1;
   }
 
   function findGift() {
-    const el = $el('#CartDrawer');
+    const el = $el("#CartDrawer");
 
-    let gift = Array.from($$el('.cart__item', el)).find((pr) => {
-      return pr.querySelector('.cart__item-name').innerText.trim() == 'Gift';
+    let gift = Array.from($$el(".cart__item", el)).find((pr) => {
+      return pr.querySelector(".cart__item-name").innerText.trim() == "Gift";
     });
 
     if (gift) {
-      gift.classList.add('lav-gift');
+      gift.classList.add("lav-gift");
       // gift.querySelector('.cart__image').innerHTML = `
       //   <img src='${exp.dir}/img/gift.png' />
       // `;
-      gift.querySelector('.cart__item-name').innerText = 'Free Gift';
-      if(gift.querySelector('.cart__item--variants>div').innerHTML.toLowerCase().includes('earrings')) {
-        gift.querySelector('.cart__item--variants>div').innerHTML = '<span>Product:</span> Half moon Capucinne earrings';
+      gift.querySelector(".cart__item-name").innerText = "Free Gift";
+      if (
+        gift
+          .querySelector(".cart__item--variants>div")
+          .innerHTML.toLowerCase()
+          .includes("earrings")
+      ) {
+        gift.querySelector(".cart__item--variants>div").innerHTML =
+          "<span>Product:</span> Half moon Capucinne earrings";
       } else {
-        gift.querySelector('.cart__item--variants>div').innerHTML = '<span>Product:</span>  Half moon Capucinne bracelet';
+        gift.querySelector(".cart__item--variants>div").innerHTML =
+          "<span>Product:</span>  Half moon Capucinne bracelet";
       }
-      
-      gift.querySelector('.cart__price').innerText = '$0.00';
-      if ($el('.drawer__scrollable .lav-earn')) {
-        $el('.drawer__scrollable .lav-earn').remove();
+
+      gift.querySelector(".cart__price").innerText = "$0.00";
+      if ($el(".drawer__scrollable .lav-earn")) {
+        $el(".drawer__scrollable .lav-earn").remove();
       }
-    } else if (!$el('.drawer__scrollable .lav-earn') && !$el('.lav-gift')) {
+    } else if (!$el(".drawer__scrollable .lav-earn") && !$el(".lav-gift")) {
       $el('.drawer__scrollable [for="CartNoteDrawer"]')
-        .closest('div')
-        .insertAdjacentHTML('afterbegin', earnStart);
+        .closest("div")
+        .insertAdjacentHTML("afterbegin", earnStart);
     }
   }
 
@@ -2598,34 +2627,34 @@ let klaviyoStep = 1;
   // Waiting for loading by condition
   function waitFor(condition, cb, ms = 1000) {
     if (condition()) {
-      if (typeof cb == 'function') cb();
+      if (typeof cb == "function") cb();
       return;
     }
 
     let interval = setInterval(function () {
       if (condition()) {
         clearInterval(interval);
-        if (typeof cb == 'function') cb();
+        if (typeof cb == "function") cb();
       }
     }, ms);
   }
 
   // Alalytic 4
-  function pushDataLayer(name = '', desc = '', type = '', loc = '') {
+  function pushDataLayer(name = "", desc = "", type = "", loc = "") {
     try {
       var objData = {
-        event: 'event-to-ga4',
+        event: "event-to-ga4",
         event_name: name,
         event_desc: desc,
         event_type: type,
         event_loc: loc,
       };
-      console.log('eventFire', objData);
+      console.log("eventFire", objData);
       if (!exp.debug) {
         dataLayer.push(objData);
       }
     } catch (e) {
-      console.log('Event Error:', e);
+      console.log("Event Error:", e);
     }
   }
 
@@ -2659,7 +2688,7 @@ let klaviyoStep = 1;
   //Clarity
   if (!exp.debug && exp.clarity.enable) {
     waitFor(
-      () => typeof clarity == 'function',
+      () => typeof clarity == "function",
       () => {
         clarity(...exp.clarity.params);
       }
