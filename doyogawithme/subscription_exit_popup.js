@@ -1427,10 +1427,22 @@ margin: 0 0 12px;
       }
     }
 
+    let findSvg = setInterval(() => {
+      if (document.querySelector(".lav-plan__options.lav-mob .lav-plan__option img")) {
+        clearInterval(findSvg);
+        if (document.querySelectorAll(".lav-plan__options.lav-mob .lav-plan__option img")[0].src !== "https://conversionratestore.github.io/projects/doyogawithme/img/delete_icon.svg") {
+          document.querySelectorAll(".lav-plan__options.lav-mob .lav-plan__option img")[0].src = "https://conversionratestore.github.io/projects/doyogawithme/img/delete_icon.svg";
+        }
+        if (document.querySelectorAll(".lav-plan__options.lav-mob .lav-plan__option img")[1].src !== "https://conversionratestore.github.io/projects/doyogawithme/img/guarantee_icon.svg") {
+          document.querySelectorAll(".lav-plan__options.lav-mob .lav-plan__option img")[1].src = "https://conversionratestore.github.io/projects/doyogawithme/img/guarantee_icon.svg";
+        }
+      }
+    }, 100);
+
     let findToggleBtn = setInterval(() => {
       if (typeof jQuery === "function" && document.querySelector(".toggle_btn_features")) {
         clearInterval(findToggleBtn);
-        jQuery(".toggle_btn_features").click(function () {
+        jQuery(".toggle_btn_features")?.click(function () {
           jQuery(".hidden_inform_box").slideToggle();
           setTimeout(() => {
             if (window.location.pathname === "/become-a-subscriber") {
