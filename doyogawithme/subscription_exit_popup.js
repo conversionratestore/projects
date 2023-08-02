@@ -1428,7 +1428,7 @@ margin: 0 0 12px;
     }
 
     let findToggleBtn = setInterval(() => {
-      if (typeof jQuery === "function" && jQuery(".toggle_btn_features")) {
+      if (typeof jQuery === "function" && document.querySelector(".toggle_btn_features")) {
         clearInterval(findToggleBtn);
         jQuery(".toggle_btn_features").click(function () {
           jQuery(".hidden_inform_box").slideToggle();
