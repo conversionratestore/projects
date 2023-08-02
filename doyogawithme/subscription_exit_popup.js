@@ -1349,32 +1349,59 @@ margin: 0 0 12px;
     // Hypothesis #4 - Promote Subscription on content pages
     switch (window.location.pathname) {
       case "/yoga-classes":
-        document.querySelector(".o-page__header")?.insertAdjacentHTML("afterend", newBoxFeatures);
+        let yogaClassesFind = setInterval(() => {
+          if (document.querySelector(".o-page__header")) {
+            clearInterval(yogaClassesFind);
+            document.querySelector(".o-page__header")?.insertAdjacentHTML("afterend", newBoxFeatures);
+          }
+        }, 100);
         break;
       case "/yoga-meditation":
-        document.querySelector(".o-page__header")?.insertAdjacentHTML("afterend", newBoxFeatures);
+        let yogaMeditationFind = setInterval(() => {
+          if (document.querySelector(".o-page__header")) {
+            clearInterval(yogaMeditationFind);
+            document.querySelector(".o-page__header")?.insertAdjacentHTML("afterend", newBoxFeatures);
+          }
+        }, 100);
         break;
       case "/yoga-challenges":
-        document.querySelector(".o-page__banner")?.insertAdjacentHTML("afterend", newBoxFeatures);
+        let yogaChallengesFind = setInterval(() => {
+          if (document.querySelector(".o-page__banner")) {
+            clearInterval(yogaChallengesFind);
+            document.querySelector(".o-page__banner")?.insertAdjacentHTML("afterend", newBoxFeatures);
+          }
+        }, 100);
         break;
       case "/yoga-programs":
-        document.querySelector(".o-page__banner")?.insertAdjacentHTML("afterend", newBoxFeatures);
+        let yogaProgramsFind = setInterval(() => {
+          if (document.querySelector(".o-page__banner")) {
+            clearInterval(yogaProgramsFind);
+            document.querySelector(".o-page__banner")?.insertAdjacentHTML("afterend", newBoxFeatures);
+          }
+        }, 100);
+
         break;
       case "/become-a-subscriber":
         // Hypothesis #5 - Promote Subscription on Premium content pages
         // logged-in user - to a page with two plans, on which a block with premium benefits appears at the top + in comparison with the old page - a different header
         if (!document.querySelector('.menu--account [data-drupal-link-system-path="yogi/login"]')) {
-          document.querySelector(".o-page__header")?.insertAdjacentHTML("afterend", newBoxFeatures);
-          if (window.innerWidth <= 768) {
-            if (document.querySelector("#promoteSubscriptionWrap") && !document.querySelector(".new_title_subscriber")) {
-              document.querySelector("#promoteSubscriptionWrap").insertAdjacentHTML("afterbegin", `<h2 class="new_title_subscriber">Unlock Premium Classes for a Transformative Yoga Journey</h2>`);
-              document.querySelector(".btn_wrapper h2").innerHTML = `What’s included in <span class="accent_color">Premium</span>`;
+          let becomeSubscriberFind = setInterval(() => {
+            if (document.querySelector(".o-page__header")) {
+              clearInterval(becomeSubscriberFind);
+
+              document.querySelector(".o-page__header")?.insertAdjacentHTML("afterend", newBoxFeatures);
+              if (window.innerWidth <= 768) {
+                if (document.querySelector("#promoteSubscriptionWrap") && !document.querySelector(".new_title_subscriber")) {
+                  document.querySelector("#promoteSubscriptionWrap").insertAdjacentHTML("afterbegin", `<h2 class="new_title_subscriber">Unlock Premium Classes for a Transformative Yoga Journey</h2>`);
+                  document.querySelector(".btn_wrapper h2").innerHTML = `What’s included in <span class="accent_color">Premium</span>`;
+                }
+              } else {
+                if (document.querySelector("#promoteSubscriptionWrap") && !document.querySelector(".new_box_subscriber")) {
+                  document.querySelector("#promoteSubscriptionWrap").insertAdjacentHTML("beforebegin", `<div class="new_box_subscriber"><h2 class="new_title_subscriber">Unlock Premium Classes for a Transformative Yoga Journey</h2></div>`);
+                }
+              }
             }
-          } else {
-            if (document.querySelector("#promoteSubscriptionWrap") && !document.querySelector(".new_box_subscriber")) {
-              document.querySelector("#promoteSubscriptionWrap").insertAdjacentHTML("beforebegin", `<div class="new_box_subscriber"><h2 class="new_title_subscriber">Unlock Premium Classes for a Transformative Yoga Journey</h2></div>`);
-            }
-          }
+          }, 100);
         }
         break;
 
@@ -1382,48 +1409,61 @@ margin: 0 0 12px;
         break;
     }
     if (!document.querySelector('.menu--account [data-drupal-link-system-path="yogi/login"]') && window.location.pathname === "/") {
-      document.querySelector(".o-page__banner")?.insertAdjacentHTML("afterend", newBoxFeatures);
+      let mainPagesFind = setInterval(() => {
+        if (document.querySelector(".o-page__banner")) {
+          clearInterval(mainPagesFind);
+          document.querySelector(".o-page__banner")?.insertAdjacentHTML("afterend", newBoxFeatures);
+        }
+      }, 100);
     }
     if (window.location.pathname.match("/content/")) {
       if (sessionStorage.getItem("survi::7e5b485118252bfdd1f1e031d8a5f743::visitReferrerUrl") !== '"https://www.doyogawithme.com/yoga-challenges"' && sessionStorage.getItem("survi::7e5b485118252bfdd1f1e031d8a5f743::visitReferrerUrl") !== '"https://www.doyogawithme.com/yoga-programs"') {
-        document.querySelector(".o-page__header")?.insertAdjacentHTML("afterend", newBoxFeatures);
+        let contentFind = setInterval(() => {
+          if (document.querySelector(".o-page__header")) {
+            clearInterval(contentFind);
+            document.querySelector(".o-page__header")?.insertAdjacentHTML("afterend", newBoxFeatures);
+          }
+        }, 100);
       }
     }
 
-    if (typeof jQuery === "function" && jQuery(".toggle_btn_features")) {
-      jQuery(".toggle_btn_features").click(function () {
-        jQuery(".hidden_inform_box").slideToggle();
-        setTimeout(() => {
-          if (window.location.pathname === "/become-a-subscriber") {
-            // Hypothesis #5 - Promote Subscription on Premium content pages
-            if (window.innerWidth <= 768) {
-              document.querySelector("#promoteSubscriptionWrap").scrollIntoView({ block: "start", behavior: "smooth" });
+    let findToggleBtn = setInterval(() => {
+      if (typeof jQuery === "function" && jQuery(".toggle_btn_features")) {
+        clearInterval(findToggleBtn);
+        jQuery(".toggle_btn_features").click(function () {
+          jQuery(".hidden_inform_box").slideToggle();
+          setTimeout(() => {
+            if (window.location.pathname === "/become-a-subscriber") {
+              // Hypothesis #5 - Promote Subscription on Premium content pages
+              if (window.innerWidth <= 768) {
+                document.querySelector("#promoteSubscriptionWrap").scrollIntoView({ block: "start", behavior: "smooth" });
+              } else {
+                document.querySelector(".path-become-a-subscriber .new_box_subscriber").scrollIntoView({ block: "nearest", behavior: "smooth" });
+              }
             } else {
-              document.querySelector(".path-become-a-subscriber .new_box_subscriber").scrollIntoView({ block: "nearest", behavior: "smooth" });
+              document.querySelector("#promoteSubscriptionWrap").scrollIntoView({ block: "start", behavior: "smooth" });
+            }
+          }, 400);
+          if (!jQuery(this).hasClass("open_var")) {
+            jQuery(this).addClass("open_var");
+            document.querySelector(".toggle_btn_features span").textContent = "Less all Premium features";
+            if (window.innerWidth <= 768) {
+              document.querySelectorAll("[data-openmobvar]").forEach((el) => {
+                el.classList.add("open_var");
+              });
             }
           } else {
-            document.querySelector("#promoteSubscriptionWrap").scrollIntoView({ block: "start", behavior: "smooth" });
+            jQuery(this).removeClass("open_var");
+            document.querySelector(".toggle_btn_features span").textContent = "See all Premium features";
+            if (window.innerWidth <= 768) {
+              document.querySelectorAll("[data-openmobvar]").forEach((el) => {
+                el.classList.remove("open_var");
+              });
+            }
           }
-        }, 400);
-        if (!jQuery(this).hasClass("open_var")) {
-          jQuery(this).addClass("open_var");
-          document.querySelector(".toggle_btn_features span").textContent = "Less all Premium features";
-          if (window.innerWidth <= 768) {
-            document.querySelectorAll("[data-openmobvar]").forEach((el) => {
-              el.classList.add("open_var");
-            });
-          }
-        } else {
-          jQuery(this).removeClass("open_var");
-          document.querySelector(".toggle_btn_features span").textContent = "See all Premium features";
-          if (window.innerWidth <= 768) {
-            document.querySelectorAll("[data-openmobvar]").forEach((el) => {
-              el.classList.remove("open_var");
-            });
-          }
-        }
-      });
-    }
+        });
+      }
+    }, 100);
 
     // Hypothesis #5 - Promote Subscription on Premium content pages
     let findTriggerHypothesis = setInterval(() => {
