@@ -1,6 +1,6 @@
 let startFunk = setInterval(() => {
   // user.isSubscriber === false
-  if (JSON.parse(document.querySelector('[data-drupal-selector="drupal-settings-json"]')?.textContent).dywm.gtm.customer_info.user.isSubscriber === false) {
+  if (JSON.parse(document.querySelector('[data-drupal-selector="drupal-settings-json"]')?.textContent).dywm.gtm.customer_info.user.isSubscriber === false && document.body) {
     clearInterval(startFunk);
 
     //cdn jquery
