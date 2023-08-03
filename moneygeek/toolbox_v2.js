@@ -1,5 +1,5 @@
 let toolBox = setInterval(() => {
-  if (document.querySelector("#menu-list")) {
+  if (document.querySelector("#sub-navigation")) {
     clearInterval(toolBox);
 
     function pushDataLayer(nameDataLayer, deskDataLayer, typeDataLayer, actionDataLayer, labelDataLayer) {
@@ -45,7 +45,7 @@ let toolBox = setInterval(() => {
             z-index: 3001;
         }
         #stickywidgetdiv .css-1jb1j0h{
-            padding: 16px 20px;
+            padding: 16px 0;
             max-width: 1150px;
             width: 100%;
             margin: 0 auto;
@@ -236,7 +236,7 @@ let toolBox = setInterval(() => {
         .tool_box_body ul li a{
             font-weight: 400;
             font-size: 16px;
-            line-height: 24px;
+            line-height: 20px;
             width: 100%;
             display: block;
             border: unset;
