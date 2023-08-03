@@ -2,22 +2,26 @@ let toolBox = setInterval(() => {
   if (document.querySelector("#menu-list")) {
     clearInterval(toolBox);
 
-    function pushDataLayer(actionDataLayer, labelDataLayer) {
+    function pushDataLayer(nameDataLayer, deskDataLayer, typeDataLayer, actionDataLayer, labelDataLayer) {
       window.dataLayer = window.dataLayer || [];
       if (labelDataLayer) {
-        console.log(actionDataLayer + " : " + labelDataLayer);
+        console.log(nameDataLayer + " " + deskDataLayer + typeDataLayer + actionDataLayer + " : " + labelDataLayer);
         dataLayer.push({
-          event: "event-to-ga",
-          eventCategory: `Exp: ToolBox`,
-          eventAction: `${actionDataLayer}`,
+          event: "event-to-ga4",
+          event_name: `${nameDataLayer}`,
+          event_desc: `${deskDataLayer}`,
+          event_type: `${typeDataLayer}`,
+          event_loc: `${actionDataLayer}`,
           eventLabel: `${labelDataLayer}`,
         });
       } else {
-        console.log(actionDataLayer);
+        console.log(nameDataLayer + " " + deskDataLayer + " " + typeDataLayer + " " + actionDataLayer);
         dataLayer.push({
-          event: "event-to-ga",
-          eventCategory: `Exp: Exp: ToolBox`,
-          eventAction: `${actionDataLayer}`,
+          event: "event-to-ga4",
+          event_name: `${nameDataLayer}`,
+          event_desc: `${deskDataLayer}`,
+          event_type: `${typeDataLayer}`,
+          event_loc: `${actionDataLayer}`,
         });
       }
     }
@@ -146,7 +150,7 @@ let toolBox = setInterval(() => {
             color: #555555;
         }
         .overflow_nav_scroll{
-            height: 215px;
+            height: 216px;
             overflow: auto;
         }
         .css-fk0bbl ul{
@@ -317,10 +321,27 @@ let toolBox = setInterval(() => {
 
       document.querySelector(".overflow_nav_scroll").addEventListener("scroll", (e) => {
         if (+((+e.target.scrollTop.toFixed(0) / +(+(e.target.scrollHeight - e.target.clientHeight).toFixed(0) / 2)) * 100).toFixed(0) === 100 || +((+e.target.scrollTop.toFixed(0) / +(+(e.target.scrollHeight - e.target.clientHeight).toFixed(0) / 2)) * 100).toFixed(0) === 101 || +((+e.target.scrollTop.toFixed(0) / +(+(e.target.scrollHeight - e.target.clientHeight).toFixed(0) / 2)) * 100).toFixed(0) === 102 || +((+e.target.scrollTop.toFixed(0) / +(+(e.target.scrollHeight - e.target.clientHeight).toFixed(0) / 2)) * 100).toFixed(0) === 103 || +((+e.target.scrollTop.toFixed(0) / +(+(e.target.scrollHeight - e.target.clientHeight).toFixed(0) / 2)) * 100).toFixed(0) === 104 || +((+e.target.scrollTop.toFixed(0) / +(+(e.target.scrollHeight - e.target.clientHeight).toFixed(0) / 2)) * 100).toFixed(0) === 105 || +((+e.target.scrollTop.toFixed(0) / +(+(e.target.scrollHeight - e.target.clientHeight).toFixed(0) / 2)) * 100).toFixed(0) === 106) {
-          pushDataLayer("Scroll to 50%", "Navigation block On This Page");
+          if (!e.target.getAttribute("data-test")) {
+            pushDataLayer("exp_toolbox_scroll50", "Scroll to 50%", "Scroll", "Navigation block On This Page");
+          }
+          e.target.setAttribute("data-test", "1");
+          setTimeout(() => {
+            if (e.target.getAttribute("data-test")) {
+              e.target.removeAttribute("data-test");
+            }
+          }, 1000);
         }
+
         if (+(e.target.scrollHeight - e.target.scrollTop).toFixed(0) === e.target.clientHeight) {
-          pushDataLayer("Scroll to 100%", "Navigation block On Thisac Page");
+          if (!e.target.getAttribute("data-test2")) {
+            pushDataLayer("exp_toolbox_scroll100", "Scroll to 100%", "Scroll", "Navigation block On This Page");
+          }
+          e.target.setAttribute("data-test2", "1");
+          setTimeout(() => {
+            if (e.target.getAttribute("data-test2")) {
+              e.target.removeAttribute("data-test2");
+            }
+          }, 1000);
         }
       });
 
@@ -328,16 +349,16 @@ let toolBox = setInterval(() => {
         el.addEventListener("click", (e) => {
           switch (e.target.getAttribute("href")) {
             case "https://www.moneygeek.com/insurance/auto/car-insurance-estimate-calculator/":
-              pushDataLayer("Car Insurance Cost Calculator", "Car Insurance Toolbox");
+              pushDataLayer("exp_toolbox_a_", "Car Insurance Cost Calculator", "Accordion", "Car Insurance Toolbox");
               break;
             case "https://www.moneygeek.com/insurance/auto/how-much-car-insurance-do-you-need/":
-              pushDataLayer("Determine How Much Car Insurance You need", "Car Insurance Toolbox");
+              pushDataLayer("exp_toolbox_a_", "Determine How Much Car Insurance You need", "Accordion", "Car Insurance Toolbox");
               break;
             case "https://www.moneygeek.com/insurance/auto/how-to-reduce-your-car-insurance-costs/":
-              pushDataLayer("Guide to Reducing the Cost of Car Insurance", "Car Insurance Toolbox");
+              pushDataLayer("exp_toolbox_a_", "Determine How to Reduce the Cost of Car Insurance", "Accordion", "Car Insurance Toolbox");
               break;
             case "https://www.moneygeek.com/insurance/auto/compare-quotes/":
-              pushDataLayer("Side By Side Car Insurance Comparison Tool", "Car Insurance Toolbox");
+              pushDataLayer("exp_toolbox_a_", "Side By Side Car Insurance Comparison Tool", "Accordion", "Car Insurance Toolbox");
               break;
 
             default:
@@ -370,11 +391,10 @@ let toolBox = setInterval(() => {
       observer.observe(containerHint, options);
     });
 
-    pushDataLayer("loaded");
     const record = setInterval(() => {
       if (typeof clarity === "function") {
         clearInterval(record);
-        clarity("set", `tool_box`, "variant_1");
+        clarity("set", "toolbox", "variant_1");
       }
     }, 200);
   }
