@@ -133,7 +133,7 @@ let klaviyoStep = 1;
       transition: 0.35s;
     }
     @media (min-width: 769px) {
-        .lav-btn:hover img {
+        .lav-btn:hover img, .lav-btn:active img {
         filter: invert(106%) sepia(5%) saturate(360%) hue-rotate(131deg) brightness(92%) contrast(88%);
         }
     }
@@ -805,6 +805,10 @@ let klaviyoStep = 1;
     .cart__checkout-wrapper .lav-btn {
       background: #1C1D1D;
     }
+    .cart__checkout-wrapper .lav-btn:active {
+      background: #fff!important;
+      color: #1C1D1D!important;
+    }
     @media (min-width: 769px) {
         .cart__checkout-wrapper .lav-btn:hover {
         background: #fff!important;
@@ -902,7 +906,7 @@ let klaviyoStep = 1;
       margin-right: 24px;
     }
     @media(min-width: 769px) {
-        .lav-btn:hover .lav-btn-price:after {
+        .lav-btn:hover .lav-btn-price:after, .lav-btn:active .lav-btn-price:after {
         background-color: #1C1D1D;
         }
     }
