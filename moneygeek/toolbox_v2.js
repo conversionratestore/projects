@@ -311,84 +311,112 @@ let toolBox = setInterval(() => {
     `;
 
     document.body.insertAdjacentHTML("afterbegin", styleToolBox);
+    console.log(`load`);
 
-    if (!document.querySelector(".overflow_nav_scroll")) {
-      document.querySelector("#sub-navigation h6").insertAdjacentHTML("afterend", `<div class="overflow_nav_scroll"><span></span></div>`);
-    }
-    if (document.querySelector(".overflow_nav_scroll")) {
-      document.querySelector(".overflow_nav_scroll span").after(document.querySelector("#menu-list"));
-      document.querySelector("#sub-navigation h6").insertAdjacentHTML("beforebegin", toolBoxHtml);
+    renderNewBox();
 
-      document.querySelector(".overflow_nav_scroll").addEventListener("scroll", (e) => {
-        if (+((+e.target.scrollTop.toFixed(0) / +(+(e.target.scrollHeight - e.target.clientHeight).toFixed(0) / 2)) * 100).toFixed(0) === 100 || +((+e.target.scrollTop.toFixed(0) / +(+(e.target.scrollHeight - e.target.clientHeight).toFixed(0) / 2)) * 100).toFixed(0) === 101 || +((+e.target.scrollTop.toFixed(0) / +(+(e.target.scrollHeight - e.target.clientHeight).toFixed(0) / 2)) * 100).toFixed(0) === 102 || +((+e.target.scrollTop.toFixed(0) / +(+(e.target.scrollHeight - e.target.clientHeight).toFixed(0) / 2)) * 100).toFixed(0) === 103 || +((+e.target.scrollTop.toFixed(0) / +(+(e.target.scrollHeight - e.target.clientHeight).toFixed(0) / 2)) * 100).toFixed(0) === 104 || +((+e.target.scrollTop.toFixed(0) / +(+(e.target.scrollHeight - e.target.clientHeight).toFixed(0) / 2)) * 100).toFixed(0) === 105 || +((+e.target.scrollTop.toFixed(0) / +(+(e.target.scrollHeight - e.target.clientHeight).toFixed(0) / 2)) * 100).toFixed(0) === 106) {
-          if (!e.target.getAttribute("data-test")) {
-            pushDataLayer("exp_toolbox_scroll50", "Scroll to 50%", "Scroll", "Navigation block On This Page");
-          }
-          e.target.setAttribute("data-test", "1");
-          setTimeout(() => {
-            if (e.target.getAttribute("data-test")) {
-              e.target.removeAttribute("data-test");
+    function renderNewBox() {
+      if (!document.querySelector(".overflow_nav_scroll")) {
+        document.querySelector("#sub-navigation h6").insertAdjacentHTML("afterend", `<div class="overflow_nav_scroll"><span></span></div>`);
+      }
+      if (document.querySelector(".overflow_nav_scroll")) {
+        document.querySelector(".overflow_nav_scroll span").after(document.querySelector("#menu-list"));
+        document.querySelector("#sub-navigation h6")?.insertAdjacentHTML("beforebegin", toolBoxHtml);
+
+        document.querySelector(".overflow_nav_scroll").addEventListener("scroll", (e) => {
+          if (+((+e.target.scrollTop.toFixed(0) / +(+(e.target.scrollHeight - e.target.clientHeight).toFixed(0) / 2)) * 100).toFixed(0) === 100 || +((+e.target.scrollTop.toFixed(0) / +(+(e.target.scrollHeight - e.target.clientHeight).toFixed(0) / 2)) * 100).toFixed(0) === 101 || +((+e.target.scrollTop.toFixed(0) / +(+(e.target.scrollHeight - e.target.clientHeight).toFixed(0) / 2)) * 100).toFixed(0) === 102 || +((+e.target.scrollTop.toFixed(0) / +(+(e.target.scrollHeight - e.target.clientHeight).toFixed(0) / 2)) * 100).toFixed(0) === 103 || +((+e.target.scrollTop.toFixed(0) / +(+(e.target.scrollHeight - e.target.clientHeight).toFixed(0) / 2)) * 100).toFixed(0) === 104 || +((+e.target.scrollTop.toFixed(0) / +(+(e.target.scrollHeight - e.target.clientHeight).toFixed(0) / 2)) * 100).toFixed(0) === 105 || +((+e.target.scrollTop.toFixed(0) / +(+(e.target.scrollHeight - e.target.clientHeight).toFixed(0) / 2)) * 100).toFixed(0) === 106) {
+            if (!e.target.getAttribute("data-test")) {
+              pushDataLayer("exp_toolbox_scroll50", "Scroll to 50%", "Scroll", "Navigation block On This Page");
             }
-          }, 1000);
-        }
-
-        if (+(e.target.scrollHeight - e.target.scrollTop).toFixed(0) === e.target.clientHeight) {
-          if (!e.target.getAttribute("data-test2")) {
-            pushDataLayer("exp_toolbox_scroll100", "Scroll to 100%", "Scroll", "Navigation block On This Page");
+            e.target.setAttribute("data-test", "1");
+            setTimeout(() => {
+              if (e.target.getAttribute("data-test")) {
+                e.target.removeAttribute("data-test");
+              }
+            }, 1000);
           }
-          e.target.setAttribute("data-test2", "1");
-          setTimeout(() => {
-            if (e.target.getAttribute("data-test2")) {
-              e.target.removeAttribute("data-test2");
+
+          if (+(e.target.scrollHeight - e.target.scrollTop).toFixed(0) === e.target.clientHeight) {
+            if (!e.target.getAttribute("data-test2")) {
+              pushDataLayer("exp_toolbox_scroll100", "Scroll to 100%", "Scroll", "Navigation block On This Page");
             }
-          }, 1000);
-        }
-      });
-
-      document.querySelectorAll(".tool_box_body ul li a").forEach((el) => {
-        el.addEventListener("click", (e) => {
-          switch (e.target.getAttribute("href")) {
-            case "https://www.moneygeek.com/insurance/auto/car-insurance-estimate-calculator/":
-              pushDataLayer("exp_toolbox_a_", "Car Insurance Cost Calculator", "Accordion", "Car Insurance Toolbox");
-              break;
-            case "https://www.moneygeek.com/insurance/auto/how-much-car-insurance-do-you-need/":
-              pushDataLayer("exp_toolbox_a_", "Determine How Much Car Insurance You need", "Accordion", "Car Insurance Toolbox");
-              break;
-            case "https://www.moneygeek.com/insurance/auto/how-to-reduce-your-car-insurance-costs/":
-              pushDataLayer("exp_toolbox_a_", "Determine How to Reduce the Cost of Car Insurance", "Accordion", "Car Insurance Toolbox");
-              break;
-            case "https://www.moneygeek.com/insurance/auto/compare-quotes/":
-              pushDataLayer("exp_toolbox_a_", "Side By Side Car Insurance Comparison Tool", "Accordion", "Car Insurance Toolbox");
-              break;
-
-            default:
-              break;
+            e.target.setAttribute("data-test2", "1");
+            setTimeout(() => {
+              if (e.target.getAttribute("data-test2")) {
+                e.target.removeAttribute("data-test2");
+              }
+            }, 1000);
           }
         });
+
+        document.querySelectorAll(".tool_box_body ul li a").forEach((el) => {
+          el.addEventListener("click", (e) => {
+            switch (e.target.getAttribute("href")) {
+              case "https://www.moneygeek.com/insurance/auto/car-insurance-estimate-calculator/":
+                pushDataLayer("exp_toolbox_a_", "Car Insurance Cost Calculator", "Accordion", "Car Insurance Toolbox");
+                break;
+              case "https://www.moneygeek.com/insurance/auto/how-much-car-insurance-do-you-need/":
+                pushDataLayer("exp_toolbox_a_", "Determine How Much Car Insurance You need", "Accordion", "Car Insurance Toolbox");
+                break;
+              case "https://www.moneygeek.com/insurance/auto/how-to-reduce-your-car-insurance-costs/":
+                pushDataLayer("exp_toolbox_a_", "Determine How to Reduce the Cost of Car Insurance", "Accordion", "Car Insurance Toolbox");
+                break;
+              case "https://www.moneygeek.com/insurance/auto/compare-quotes/":
+                pushDataLayer("exp_toolbox_a_", "Side By Side Car Insurance Comparison Tool", "Accordion", "Car Insurance Toolbox");
+                break;
+
+              default:
+                break;
+            }
+          });
+        });
+      }
+
+      window.addEventListener("scroll", () => {
+        const options = {
+          root: null,
+          threshold: 0.5,
+        };
+        let containerHint = document.querySelector("footer.css-qn3qut");
+        let observer = new IntersectionObserver((entries) => {
+          entries.forEach((i) => {
+            if (document.querySelector(".tool_box")) {
+              if (i.isIntersecting) {
+                document.querySelector(".tool_box").style.display = "none";
+              } else {
+                document.querySelector(".tool_box").style.display = "block";
+              }
+            }
+
+            observer.unobserve(i.target);
+          });
+
+          observer.disconnect();
+        });
+
+        observer.observe(containerHint, options);
       });
     }
 
-    window.addEventListener("scroll", () => {
-      const options = {
-        root: null,
-        threshold: 0.5,
-      };
-      let containerHint = document.querySelector("footer.css-qn3qut");
-      let observer = new IntersectionObserver((entries) => {
-        entries.forEach((i) => {
-          if (i.isIntersecting) {
-            document.querySelector(".tool_box").style.display = "none";
-          } else {
-            document.querySelector(".tool_box").style.display = "block";
-          }
-
-          observer.unobserve(i.target);
-        });
-
+    // Observe
+    let observer = new MutationObserver(() => {
+      if (document) {
         observer.disconnect();
-      });
+        console.log(`observer`);
 
-      observer.observe(containerHint, options);
+        if (!document.querySelector(".overflow_nav_scroll")) {
+          renderNewBox();
+        }
+        observer.observe(document, {
+          childList: true,
+          subtree: true,
+        });
+      }
+    });
+
+    observer.observe(document, {
+      childList: true,
+      subtree: true,
     });
 
     const record = setInterval(() => {
