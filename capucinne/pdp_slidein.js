@@ -1029,6 +1029,10 @@ let klaviyoStep = 1;
       border: 1px solid #C60200;
       color: #C60200;
     }
+
+    .cart__item-sub small.cart__discount {
+      display: none;
+    }
     
     @media(max-width: 768px) {
       .lav-paypal .shopify-cleanslate [data-testid="grid-cell"] {
@@ -1931,7 +1935,11 @@ let klaviyoStep = 1;
           }
           </div>
           <div class="lav-summary__value">
-          ${item.querySelector(".cart__price").innerText} 
+          ${
+            item.querySelector("small.cart__discount")
+              ? item.querySelector(".cart__price.cart__discount span").innerText
+              : item.querySelector(".cart__price").innerText
+          } 
           ${
             item.querySelector(".js-qty__num")?.value > 1
               ? `(X${item.querySelector(".js-qty__num")?.value})`
@@ -2522,10 +2530,13 @@ let klaviyoStep = 1;
           .innerText.toLowerCase()
           .includes("extend protection")
       ) {
-        pr.querySelector(".cart__price").insertAdjacentHTML(
+        pr.querySelector("small.cart__discount").insertAdjacentHTML(
           "afterend",
           appliedDiscount
         );
+        pr.querySelector(".lav-discount__caption").innerText = `You save ${
+          pr.querySelector("small.cart__discount span").innerText
+        }`;
       }
 
       if (
