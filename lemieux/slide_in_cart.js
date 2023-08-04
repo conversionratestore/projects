@@ -1117,7 +1117,7 @@ let addProduct = (parent, items, totals, count, coupon, bought_klevu = '') => {
                         }
 
                         parent.querySelector('.swiper-basket-extra-2 .swiper-wrapper').insertAdjacentHTML('beforeend', 
-                        slide(item.url.replace('https://mage.lemieuxproducts.com/','/new-in/'), item.name, 'product/'+item.image.split('/200X200/')[1], reviewCount, '', +item.salePrice, stars, item.itemGroupId, '', 0, +item.price))
+                        slide('', item.name, 'product/'+item.image.split('/200X200/')[1], reviewCount, '', +item.salePrice, stars, item.itemGroupId, '', 0, +item.price))
                         
                         parent.querySelectorAll(`.swiper-basket-extra-2 .swiper-slide product[data-id="${item.itemGroupId}"] a`).forEach(product => {
                             product.addEventListener('click', () => {
@@ -1126,7 +1126,7 @@ let addProduct = (parent, items, totals, count, coupon, bought_klevu = '') => {
                         })
 
                         getFetch(`n/product/${item.itemGroupId}/verbosity/3`).then(dataProduct => {
-                            let product = dataProduct.result[0]
+                            let product = dataProduct.result[0];
 
                             //sizes
                             let size = product.size_org ? product.size_org : product.size;
@@ -1145,9 +1145,12 @@ let addProduct = (parent, items, totals, count, coupon, bought_klevu = '') => {
 
                             parent.querySelector(`.swiper-basket-extra-2 .product-size[data-id="${itemsRecords[i].itemGroupId}"]`).innerHTML = sizes;
                             parent.querySelector(`.swiper-basket-extra-2 .product-size[data-id="${itemsRecords[i].itemGroupId}"]+product-quick-buy`).dataset.size = sizeItem;
+                            parent.querySelector(`.swiper-basket-extra-2 .product-size[data-id="${itemsRecords[i].itemGroupId}"]+product-quick-buy`).dataset.size = sizeItem;
 
                             let length = typeof item.color != "object" ? 1 : product.color.length;
-                            parent.querySelector(`.swiper-basket-extra-2 product[data-id="${itemsRecords[i].itemGroupId}"] .product_colors`).innerHTML = length + ' Colours';
+                            parent.querySelectorAll(`.swiper-basket-extra-2 product[data-id="${itemsRecords[i].itemGroupId}"] a`).forEach(link => {
+                                link.href = webCode + product.url;
+                            })
                             
 
                             let catalog = dataProduct.catalog;
