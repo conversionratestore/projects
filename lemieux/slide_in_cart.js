@@ -981,11 +981,11 @@ let updateTotal = (parent, totals, items, coupon) => {
 
                 if (!pr.previousElementSibling && total < compare) {
 
-                    pr.insertAdjacentHTML('beforebegin', `<span class="pr-line m-r-1">${currency + (compareSum + shippingPriceFix).toFixed(2)}</span>`)
+                    pr.insertAdjacentHTML('beforebegin', `<span class="pr-line m-r-1">${currency + compare}</span>`)
                 
                     console.log(pr.previousElementSibling)
 
-                    let saved = (compareSum + shippingPriceFix) - (totals['grand_total'] + isShipNew);
+                    let saved = compare - total;
 
                     document.querySelectorAll('.saved_block')[index].innerHTML = `You just saved ${currency + saved.toFixed(2)}`
                     document.querySelectorAll('.saved_block')[index].style.display = 'block';
