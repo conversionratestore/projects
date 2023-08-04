@@ -964,7 +964,8 @@ let updateTotal = (parent, totals, items, coupon) => {
                 if (parent.querySelectorAll('.saved_block')[index]) {
                     parent.querySelectorAll('.saved_block')[index].style = '';
                 }
-                if (!pr.previousElementSibling && totals['grand_total'] + isShipNew < compareSum + shippingPriceFix) {
+                if (!pr.previousElementSibling && 
+                    (totals['grand_total'] + isShipNew).toFixed(2) < (compareSum + shippingPriceFix).toFixed(2)) {
                   
                     pr.insertAdjacentHTML('beforebegin', `<span class="pr-line m-r-1">${currency + (compareSum + shippingPriceFix).toFixed(2)}</span>`)
                     
@@ -973,7 +974,7 @@ let updateTotal = (parent, totals, items, coupon) => {
                     document.querySelectorAll('.saved_block')[index].innerHTML = `You just saved ${currency + saved.toFixed(2)}`
                     document.querySelectorAll('.saved_block')[index].style.display = 'block';
                   
-                }
+                } 
             })
 
             parent.querySelector('.klarna_content').hidden = window.autoInitData.website.websiteCode == 'us'
