@@ -261,7 +261,7 @@ let toolBox = setInterval(() => {
             padding: 0 63px 10px 0;
         }
         .tool_box_body ul li:nth-child(1) a::after{
-            top: 9px;
+            top: 4px;
         }
         .tool_box_body ul li:nth-child(2) a,
         .tool_box_body ul li:nth-child(3) a{
