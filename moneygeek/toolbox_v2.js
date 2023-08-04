@@ -245,6 +245,9 @@ let toolBox = setInterval(() => {
             text-transform: capitalize;
             color: #1F1B50;
         }
+        .tool_box_body ul li a:focus{
+          color: inherit !important;
+        }
         .tool_box_body ul li a::after{
             position: absolute;
             content: '';
