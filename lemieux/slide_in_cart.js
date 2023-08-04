@@ -906,6 +906,9 @@ let updateTotal = (parent, totals, items, coupon) => {
 
     let compareSum = 0;
     let countEcologi = 0;
+
+    console.log('updateTotal')
+    
     if (items != '') {
         const promises = [];
 
@@ -913,6 +916,7 @@ let updateTotal = (parent, totals, items, coupon) => {
             promises.push(getFetch(`n/product/${items[i].product}/verbosity/3`))
         }
 
+        console.log('promises')
         Promise.all(promises).then(dataItem => {
 
             for (let i = 0; i < dataItem.length; i++) {
@@ -954,7 +958,10 @@ let updateTotal = (parent, totals, items, coupon) => {
                 parent.querySelector('.cart_ecologi').hidden = true;
             }
 
+
             parent.querySelectorAll(`[data-name="grand_total"] .pr`).forEach((pr,index) => {
+
+                console.log(pr)
                 pr.innerHTML = currency + (totals['grand_total'] + isShipNew).toFixed(2)
                
                 if (pr.previousElementSibling) {
@@ -964,16 +971,24 @@ let updateTotal = (parent, totals, items, coupon) => {
                 if (parent.querySelectorAll('.saved_block')[index]) {
                     parent.querySelectorAll('.saved_block')[index].style = '';
                 }
-                if (!pr.previousElementSibling && 
-                    (totals['grand_total'] + isShipNew).toFixed(2) < (compareSum + shippingPriceFix).toFixed(2)) {
-                  
+
+            
+                let total = +(totals['grand_total'] + isShipNew).toFixed(2)
+                let compare = +(compareSum + shippingPriceFix).toFixed(2)
+
+                console.log(total + " < " + compare)
+                console.log(total < compare)
+
+                if (!pr.previousElementSibling && total < compare) {
+
                     pr.insertAdjacentHTML('beforebegin', `<span class="pr-line m-r-1">${currency + (compareSum + shippingPriceFix).toFixed(2)}</span>`)
-                    
-                    let saved = compareSum + shippingPriceFix - (totals['grand_total'] + isShipNew);
+                
+                    console.log(pr.previousElementSibling)
+
+                    let saved = (compareSum + shippingPriceFix) - (totals['grand_total'] + isShipNew);
 
                     document.querySelectorAll('.saved_block')[index].innerHTML = `You just saved ${currency + saved.toFixed(2)}`
                     document.querySelectorAll('.saved_block')[index].style.display = 'block';
-                  
                 } 
             })
 
