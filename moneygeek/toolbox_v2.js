@@ -42,7 +42,6 @@ let toolBox = setInterval(() => {
             background: #FFF;
             box-shadow: 0px -2px 12px 0px rgba(0, 0, 0, 0.16);
             border-radius: 0;
-            z-index: 3001;
         }
         #stickywidgetdiv .css-1jb1j0h{
             padding: 16px 0;
