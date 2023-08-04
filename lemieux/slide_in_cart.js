@@ -1148,6 +1148,8 @@ let addProduct = (parent, items, totals, count, coupon, bought_klevu = '') => {
                             parent.querySelector(`.swiper-basket-extra-2 .product-size[data-id="${itemsRecords[i].itemGroupId}"]+product-quick-buy`).dataset.size = sizeItem;
 
                             let length = typeof item.color != "object" ? 1 : product.color.length;
+                            parent.querySelector(`.swiper-basket-extra-2 product[data-id="${itemsRecords[i].itemGroupId}"] .product_colors`).innerHTML = length + ' Colours';
+                            
                             parent.querySelectorAll(`.swiper-basket-extra-2 product[data-id="${itemsRecords[i].itemGroupId}"] a`).forEach(link => {
                                 link.href = webCode + product.url;
                             })
