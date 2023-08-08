@@ -1840,8 +1840,8 @@ let startPdp = setInterval(() => {
       if (document.querySelector(".layout-container.bg-platinum-1 .bg-white.bottom-0.z-20.px-4.py-6:not(#add-cart-button-fixed) > button > div > div")?.textContent !== "ADD TO BASKET") {
         document.querySelector(".layout-container.bg-platinum-1 .bg-white.bottom-0.z-20.px-4.py-6:not(#add-cart-button-fixed) > button > div > div").textContent = "ADD TO BASKET";
       }
-      if (document.querySelector(".layout-container.p-none.py-10 button > div > div") && document.querySelector(".layout-container.p-none.py-10 button > div > div").textContent !== "ADD TO BASKET") {
-        document.querySelector(".layout-container.p-none.py-10 button > div > div").textContent = "ADD TO BASKET";
+      if (document.querySelector(".layout-container.p-none.py-10 button[data-testid='add-to-bag'] > div > div") && document.querySelector(".layout-container.p-none.py-10 button[data-testid='add-to-bag'] > div > div").textContent !== "ADD TO BASKET") {
+        document.querySelector(".layout-container.p-none.py-10 button[data-testid='add-to-bag'] > div > div").textContent = "ADD TO BASKET";
       }
       if (!document.querySelector(".made_pure_wrap")) {
         document.querySelector(".layout-container .col-span-full:nth-child(2) .relative.flex.w-full p.text-p")?.insertAdjacentHTML("afterend", `<div class="made_pure_wrap"><span class="made_pure_txt">(99.9% purity)</span> <span data-learnMore="1">learn more</span></div>`);
