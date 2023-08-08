@@ -2,12 +2,6 @@ let startPdp = setInterval(() => {
   if (document.querySelector("#add-cart-button-fixed") && window.location.pathname.match(".*/shop/[^/]+/[^/]+/[^/]+$")) {
     clearInterval(startPdp);
 
-    window.onunload = unloadPage;
-    function unloadPage() {
-      console.log("unload event detected!");
-    }
-    // window.location.reload();
-
     /********* Settings **********/
     const settings = {
       observe: false,
@@ -596,8 +590,11 @@ let startPdp = setInterval(() => {
       font-weight: 500;
       line-height: 20px;
     }
-    .my-3[role="radiogroup"] {
-      margin: 30px 0;
+    .my-3[role="radiogroup"]{
+      margin: 30px 0 14px;
+    }
+    .my-3[role="radiogroup"] + .flex.flex-col.items-end {
+      margin: 16px 0 0;
     }
     .my-3[role="radiogroup"] + .items-end .text-p.h-10 {
       height: unset;
@@ -1300,7 +1297,7 @@ let startPdp = setInterval(() => {
       .layout-container .col-span-full:nth-child(2) .relative.flex.w-full > p.text-p,
       .made_pure_wrap .made_pure_txt {
         line-height: 18px !important;
-        font-size: 12px !important;
+        font-size: 11px !important;
         font-family: inherit;
       }
       .my-7.flex.items-center.justify-between {
@@ -1354,11 +1351,14 @@ let startPdp = setInterval(() => {
         font-size: 10px !important;
         line-height: 14px !important;
       }
-      .my-3[role="radiogroup"] {
-        margin: 32px 0;
+      .my-3[role="radiogroup"]{
+        margin: 32px 0 16px;
+      }
+      .my-3[role="radiogroup"] + .flex.flex-col.items-end {
+        margin: 12px 0 0;
       }
       .layout-container.py-10 .my-3[role="radiogroup"] {
-        margin: 20px 0;
+        margin: 20px 0 8px;
       }
       .back_to_top_btn span {
         font-size: 16px;
@@ -1797,6 +1797,8 @@ let startPdp = setInterval(() => {
           overlay.classList.add("is_hidden");
           document.body.style.overflow = "unset";
           document.body.style.marginRight = `0px`;
+          document.body.style.overflow = "auto";
+          document.body.style.display = "initial";
           setTimeout(() => {
             document.querySelector(".content_popup")?.remove();
           }, 400);
@@ -1805,6 +1807,8 @@ let startPdp = setInterval(() => {
           overlay.classList.remove("is_hidden");
           document.body.style.overflow = "hidden";
           document.body.style.marginRight = `${scroll}px`;
+          document.body.style.display = "block";
+          document.body.style.height = "100%";
           if (!document.querySelector(".overlay_popup .content_popup")) {
             containerPopup?.insertAdjacentHTML("beforeend", contentPopup);
           }
@@ -2019,7 +2023,7 @@ let startPdp = setInterval(() => {
           document.querySelector("#add-cart-button-fixed")?.insertAdjacentHTML(
             "afterbegin",
             `    <div class="sticky_wrap">
-                    <p class="sticky_information"><span class="metal_txt">PURE PLATINUM</span> | <span class="size_txt">26" LENGTH ~ 66CM</span></p>
+                    <p class="sticky_information"><span class="metal_txt">PURE PLATINUM</span> <span class="size_txt">26" LENGTH ~ 66CM</span></p>
                     <p class="our_price">£1,609.41</p>
                     </div>`
           );
@@ -2027,7 +2031,7 @@ let startPdp = setInterval(() => {
 
         if (document.querySelector(".sticky_wrap")) {
           document.querySelector(".sticky_wrap .metal_txt").textContent = document.querySelectorAll('.my-3[role="radiogroup"] .gap-6 span.bg-black')[0].closest(".border-black").nextElementSibling?.textContent;
-          document.querySelector(".sticky_wrap .size_txt").textContent = document.querySelectorAll(".mb-3.w-full button .text-p.truncate")[0]?.textContent;
+          document.querySelector(".sticky_wrap .size_txt").textContent = document.querySelectorAll(".mb-3.w-full button .text-p.truncate")[0]?.textContent.length == null ? document.querySelectorAll(".mb-3.w-full button .text-p.truncate")[0]?.textContent : `| ${document.querySelectorAll(".mb-3.w-full button .text-p.truncate")[0]?.textContent}`;
           document.querySelector(".sticky_wrap .our_price").textContent = document.querySelector(".my-7.flex.items-center.justify-between h3.text-h3.font-semibold")?.textContent.split("*")[0];
         }
       }
