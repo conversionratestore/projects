@@ -1,5 +1,5 @@
 let startPdp = setInterval(() => {
-  if (document.querySelector("#add-cart-button-fixed")) {
+  if (document.querySelector(".layout-container.bg-platinum-1  .col-span-full:nth-child(2) h1")) {
     clearInterval(startPdp);
 
     /********* Settings **********/
