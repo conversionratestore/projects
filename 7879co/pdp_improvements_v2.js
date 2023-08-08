@@ -1250,6 +1250,13 @@ let startPdp = setInterval(() => {
           line-height: 20px;
           text-decoration-line: underline;
         }
+        /*
+        .sticky_wrap > .sticky_information .size_txt{
+          border-left: 1px solid #000;
+          padding-left: 5px;
+          margin-left: 5px;
+        }
+        */
         .sticky_wrap .our_price {
           color: #000;
           font-size: 14px;
@@ -2013,9 +2020,9 @@ let startPdp = setInterval(() => {
         }
 
         if (document.querySelector(".sticky_wrap")) {
-          document.querySelector(".sticky_wrap .metal_txt").textContent = document.querySelectorAll('.my-3[role="radiogroup"] .gap-6 span.bg-black')[0].closest(".border-black").nextElementSibling.textContent;
-          document.querySelector(".sticky_wrap .size_txt").textContent = document.querySelectorAll(".mb-3.w-full button .text-p.truncate")[0].textContent;
-          document.querySelector(".sticky_wrap .our_price").textContent = document.querySelector(".my-7.flex.items-center.justify-between h3.text-h3.font-semibold").textContent.split("*")[0];
+          document.querySelector(".sticky_wrap .metal_txt").textContent = document.querySelectorAll('.my-3[role="radiogroup"] .gap-6 span.bg-black')[0].closest(".border-black").nextElementSibling?.textContent;
+          document.querySelector(".sticky_wrap .size_txt").textContent = document.querySelectorAll(".mb-3.w-full button .text-p.truncate")[0]?.textContent;
+          document.querySelector(".sticky_wrap .our_price").textContent = document.querySelector(".my-7.flex.items-center.justify-between h3.text-h3.font-semibold")?.textContent.split("*")[0];
         }
       }
     }
@@ -2374,5 +2381,7 @@ let startPdp = setInterval(() => {
         clarity("set", "exp_pdp_2", "variant_1");
       }
     }, 200);
+
+    document.querySelector(".exp")?.remove();
   }
 }, 700);
