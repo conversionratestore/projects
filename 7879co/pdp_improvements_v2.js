@@ -23,6 +23,30 @@ let startPdp = setInterval(() => {
     scriptCustomSliderStyle.rel = "stylesheet";
     document.head.appendChild(scriptCustomSliderStyle);
 
+    function pushDataLayer(nameDataLayer, deskDataLayer, typeDataLayer, actionDataLayer, labelDataLayer) {
+      window.dataLayer = window.dataLayer || [];
+      if (labelDataLayer) {
+        console.log(nameDataLayer + " " + deskDataLayer + typeDataLayer + actionDataLayer + " : " + labelDataLayer);
+        dataLayer.push({
+          event: "event-to-ga4",
+          event_name: `${nameDataLayer}`,
+          event_desc: `${deskDataLayer}`,
+          event_type: `${typeDataLayer}`,
+          event_loc: `${actionDataLayer}`,
+          eventLabel: `${labelDataLayer}`,
+        });
+      } else {
+        console.log(nameDataLayer + " " + deskDataLayer + " " + typeDataLayer + " " + actionDataLayer);
+        dataLayer.push({
+          event: "event-to-ga4",
+          event_name: `${nameDataLayer}`,
+          event_desc: `${deskDataLayer}`,
+          event_type: `${typeDataLayer}`,
+          event_loc: `${actionDataLayer}`,
+        });
+      }
+    }
+
     let arrProduct = {
       "/shop/gold/necklace-chains/diamond-cut-curb-chain-necklace": {
         Necklaces: {
@@ -1454,6 +1478,9 @@ let startPdp = setInterval(() => {
         .popup_txt_wrap p br {
           display: none;
         }
+        .h-6.items-center.gap-4{
+          gap: 1rem;
+        }
       }
       @media (max-width: 376px) {
         .bg-special.mt-7.mb-4.flex.w-full.items-center.justify-center.rounded.p-2 > p {
@@ -1675,6 +1702,20 @@ let startPdp = setInterval(() => {
           scroll = calcScroll();
 
         btnClose.addEventListener("click", (e) => {
+          if (!e.target.getAttribute("data-test")) {
+            if (e.target.closest(".container_popup").querySelector(".popup_title").classList.contains("txt_made_from")) {
+              pushDataLayer("exp_pdp_2_made_pure_platinum_close", "Close", "Button", "Made from pure platinum sidebar");
+            } else {
+              pushDataLayer("exp_pdp_2_fees_are_fair_close", "Close", "Button", "Our fees are fair and transparent sidebar");
+            }
+          }
+          e.target.setAttribute("data-test", "1");
+          setTimeout(() => {
+            if (e.target.getAttribute("data-test")) {
+              e.target.removeAttribute("data-test");
+            }
+          }, 1000);
+
           onClosePopup();
         });
 
@@ -1686,12 +1727,22 @@ let startPdp = setInterval(() => {
 
         document.querySelectorAll("[data-learnMore]").forEach((el) => {
           el.addEventListener("click", (e) => {
-            if (e.currentTarget.getAttribute("data-learnMore") === "1") {
-              onOpenPopup(txtMadeFrom);
+            if (!e.target.getAttribute("data-test")) {
+              if (e.currentTarget.getAttribute("data-learnMore") === "1") {
+                pushDataLayer("exp_pdp_2_material_learn_more_2", "Material Learn more 2", "Link", "Product Information 2");
+                onOpenPopup(txtMadeFrom);
+              }
+              if (e.currentTarget.getAttribute("data-learnMore") === "2") {
+                pushDataLayer("exp_pdp_2_jewellery_investment_learn_more", "Learn more", "Link", "7879 jewellery is a long-term investment");
+                onOpenPopup(txtOurFees);
+              }
             }
-            if (e.currentTarget.getAttribute("data-learnMore") === "2") {
-              onOpenPopup(txtOurFees);
-            }
+            e.target.setAttribute("data-test", "1");
+            setTimeout(() => {
+              if (e.target.getAttribute("data-test")) {
+                e.target.removeAttribute("data-test");
+              }
+            }, 1000);
           });
         });
 
@@ -1833,6 +1884,7 @@ let startPdp = setInterval(() => {
             clearInterval(findBtnBackToTop);
             document.querySelector(".back_to_top_btn").addEventListener("click", (e) => {
               e.preventDefault();
+              pushDataLayer("exp_pdp_2_back_to_top", "Back to top", "Button", "Product Information 3");
               document.querySelector("#main").scrollIntoView({ block: "start", behavior: "smooth" });
             });
           }
@@ -2040,6 +2092,24 @@ let startPdp = setInterval(() => {
             if (document.querySelector(".new_return_wrapper .px-4 p:nth-child(2)")?.textContent !== document.querySelector(".mb-1.flex.items-center.justify-center + .px-4 p:nth-child(2)")?.textContent) {
               document.querySelector(".new_return_wrapper .px-4 p:nth-child(2)").textContent = document.querySelector(".mb-1.flex.items-center.justify-center + .px-4 p:nth-child(2)").textContent;
             }
+
+            document.querySelectorAll("button.ml-1.inline.flex-shrink-0.underline").forEach((el) => {
+              el.addEventListener("click", (e) => {
+                if (!e.target.getAttribute("data-test")) {
+                  if (e.target.closest("bg-platinum-1 ")) {
+                    pushDataLayer("exp_pdp_2_lifetame_warranty_learn_more2", "Lifetime warranty Learn more 2", "Link", "Product Information 2");
+                  } else {
+                    pushDataLayer("exp_pdp_2_lifetame_warranty_learn_more2", "Lifetime warranty Learn more 2", "Link", "Product Information 2");
+                  }
+                }
+                e.target.setAttribute("data-test", "1");
+                setTimeout(() => {
+                  if (e.target.getAttribute("data-test")) {
+                    e.target.removeAttribute("data-test");
+                  }
+                }, 3000);
+              });
+            });
           }
         }
       }, 100);
@@ -2102,6 +2172,17 @@ let startPdp = setInterval(() => {
                 }
               }
             }
+
+            let findLinkCardReccomend = setInterval(() => {
+              if (document.querySelector(".pair_it_with_item")) {
+                clearInterval(findLinkCardReccomend);
+                document.querySelectorAll(".pair_it_with_item a").forEach((el) => {
+                  el.addEventListener("click", (e) => {
+                    pushDataLayer("exp_pdp_2_product_card", `Product card — ${e.currentTarget.href}`, "Card", "Pair it with");
+                  });
+                });
+              }
+            }, 100);
 
             if (window.innerWidth <= 768) {
               let slickInterval = setInterval(() => {
@@ -2240,5 +2321,12 @@ let startPdp = setInterval(() => {
       childList: true,
       subtree: true,
     });
+
+    const record = setInterval(() => {
+      if (typeof clarity === "function") {
+        clearInterval(record);
+        clarity("set", "exp_pdp_2", "variant_1");
+      }
+    }, 200);
   }
 }, 700);
