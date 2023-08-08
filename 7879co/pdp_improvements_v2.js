@@ -1224,9 +1224,15 @@ let startPdp = setInterval(() => {
         .layout-container.bg-platinum-1 .bg-white.bottom-0.z-20.px-4.py-6:not(#add-cart-button-fixed) {
           z-index: 1;
           padding: 16px 0 12px;
+          margin: 0;
         }
-        .layout-container.bg-platinum-1 .bg-white.bottom-0.z-20.px-4.py-6:not(#add-cart-button-fixed) > button {
+        .layout-container.bg-platinum-1 .bg-white.bottom-0.z-20.px-4.py-6:not(#add-cart-button-fixed) > button,
+        .layout-container.p-none.py-10 button.tracking-widest,
+        .layout-container.p-none.py-10 button.tracking-widest > div > div {
           height: 44px;
+        }
+        .layout-container.p-none.py-10 button.tracking-widest{
+          display: block;
         }
         .layout-container.bg-platinum-1 .bg-white.bottom-0.z-20.px-4.py-6:not(#add-cart-button-fixed) > button div {
           height: 100%;
@@ -1821,13 +1827,13 @@ let startPdp = setInterval(() => {
     }
 
     function renderHtml() {
-      if (document.querySelector("#add-cart-button-fixed button .text-p > div").textContent !== "ADD TO BASKET") {
+      if (document.querySelector("#add-cart-button-fixed button .text-p > div")?.textContent !== "ADD TO BASKET") {
         document.querySelector("#add-cart-button-fixed button .text-p > div").textContent = "ADD TO BASKET";
       }
-      if (document.querySelector(".layout-container.bg-platinum-1 .bg-white.bottom-0.z-20.px-4.py-6:not(#add-cart-button-fixed) > button > div > div").textContent !== "ADD TO BASKET") {
+      if (document.querySelector(".layout-container.bg-platinum-1 .bg-white.bottom-0.z-20.px-4.py-6:not(#add-cart-button-fixed) > button > div > div")?.textContent !== "ADD TO BASKET") {
         document.querySelector(".layout-container.bg-platinum-1 .bg-white.bottom-0.z-20.px-4.py-6:not(#add-cart-button-fixed) > button > div > div").textContent = "ADD TO BASKET";
       }
-      if (document.querySelector(".layout-container.p-none.py-10 button > div > div").textContent !== "ADD TO BASKET") {
+      if (document.querySelector(".layout-container.p-none.py-10 button > div > div") && document.querySelector(".layout-container.p-none.py-10 button > div > div").textContent !== "ADD TO BASKET") {
         document.querySelector(".layout-container.p-none.py-10 button > div > div").textContent = "ADD TO BASKET";
       }
       if (!document.querySelector(".made_pure_wrap")) {
