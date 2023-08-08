@@ -1,5 +1,5 @@
 let startPdp = setInterval(() => {
-  if (document.querySelector(".layout-container.bg-platinum-1  .col-span-full:nth-child(2) h1")) {
+  if (document.querySelector("#add-cart-button-fixed")) {
     clearInterval(startPdp);
 
     /********* Settings **********/
@@ -1168,7 +1168,7 @@ let startPdp = setInterval(() => {
         .made_pure_wrap .made_pure_txt,
         .made_pure_box_mini .made_pure_txt,
         .made_pure_box_mini > p.text-xsc {
-          font-size: 12px !important;
+          font-size: 11px !important;
           line-height: 18px !important;
         }
         .my-7.flex.items-center.justify-between,
@@ -1559,7 +1559,7 @@ let startPdp = setInterval(() => {
             </div>
     `;
     let txtOurFees = /*html */ `
-            <h2 class="popup_title">Our fees are fair & transparent</h2>
+            <h2 class="popup_title our_fees_are">Our fees are fair & transparent</h2>
             <div class="popup_txt_wrap">
                 <p>At 7879, transparency is at the core of our pricing, selling, and <br/> buy-back processes.</p>
                 <p>We base our prices on the current market value of gold and platinum, determining the cost by the weight of each piece.</p>
@@ -1705,7 +1705,7 @@ let startPdp = setInterval(() => {
                             <td><p>&nbsp;</p></td>
                             <td colspan="2"><p>Sustainably & Ethically Produced</p></td>
                         </tr>
-                        <tr>
+                        <tr class="comparison_table_visib">
                             <td>
                                 <p>Sustainably & Ethically Produced</p>
                             </td>
@@ -2339,7 +2339,10 @@ let startPdp = setInterval(() => {
           }
         }
 
-        console.log(isClick, `isClick`);
+        if (!document.querySelector("#advantagesBox")) {
+          visibElem();
+        }
+
         if (!isClick) {
           onClickBtnLifetime();
         }
@@ -2373,6 +2376,120 @@ let startPdp = setInterval(() => {
           }, 1000);
         });
       });
+    }
+
+    visibElem();
+    //visibility elem
+    function visibElem() {
+      let obsV = new IntersectionObserver(visibilityV, {
+        threshold: 1,
+      });
+
+      let obsV2 = new IntersectionObserver(visibilityV2, {
+        threshold: 1,
+      });
+
+      let intV1 = setInterval(() => {
+        if (document.querySelector(".our_fees_wrap")) {
+          clearInterval(intV1);
+          obsV.observe(document.querySelector(".our_fees_wrap"));
+        }
+      }, 100);
+      let intV2 = setInterval(() => {
+        if (document.querySelector(".stability_box")) {
+          clearInterval(intV2);
+          obsV.observe(document.querySelector(".stability_box"));
+        }
+      }, 100);
+      let intV3 = setInterval(() => {
+        if (document.querySelector(".bracelets_box")) {
+          clearInterval(intV3);
+          obsV.observe(document.querySelector(".bracelets_box"));
+        }
+      }, 100);
+      let intV4 = setInterval(() => {
+        if (document.querySelector(".advantages_box_bgr")) {
+          clearInterval(intV4);
+          obsV.observe(document.querySelector(".advantages_box_bgr"));
+        }
+      }, 100);
+      let intV5 = setInterval(() => {
+        if (document.querySelector(".comparison_table_visib")) {
+          clearInterval(intV5);
+          console.log(`comparison_table_visib`);
+          obsV.observe(document.querySelector(".comparison_table_visib"));
+        }
+      }, 100);
+      let intV6 = setInterval(() => {
+        if (document.querySelector(".title_review")) {
+          clearInterval(intV6);
+          obsV.observe(document.querySelector(".title_review"));
+        }
+      }, 100);
+      let intV7 = setInterval(() => {
+        if (document.querySelector("#caption-text-12")) {
+          clearInterval(intV7);
+          obsV.observe(document.querySelector("#caption-text-12"));
+        }
+      }, 100);
+      let intV8 = setInterval(() => {
+        if (document.querySelector(".popup_title.txt_made_from")) {
+          clearInterval(intV8);
+          obsV.observe(document.querySelector(".popup_title.txt_made_from"));
+        }
+      }, 100);
+      let intV9 = setInterval(() => {
+        if (document.querySelector(".popup_title.our_fees_are")) {
+          clearInterval(intV9);
+          obsV.observe(document.querySelector(".popup_title.our_fees_are"));
+        }
+      }, 100);
+
+      function visibilityV(entries) {
+        entries.forEach((i) => {
+          if (i.isIntersecting) {
+            setTimeout(function () {
+              obsV2.observe(i.target);
+            }, 3000);
+          }
+        });
+      }
+      function visibilityV2(entries) {
+        entries.forEach((i) => {
+          if (i.isIntersecting) {
+            if (i.target.classList.contains("our_fees_wrap")) {
+              pushDataLayer("exp_pdp_2_7879_is_incestment_visibility", "7879 jewellery is  long-term investment", "Element visibility", "Content");
+            }
+            if (i.target.classList.contains("stability_box")) {
+              pushDataLayer("exp_pdp_2_investment_in_the_stability", "Visibility section", "Element visibility", "Investment in the stability");
+            }
+            if (i.target.classList.contains("bracelets_box")) {
+              pushDataLayer("exp_pdp_2_pair_it_with_visibility", "Visibility section", "Element visibility", "Pair it with");
+            }
+            if (i.target.classList.contains("advantages_box_bgr")) {
+              pushDataLayer("exp_pdp_2_transparent_portfol_sell_vis", "Visibility section", "Element visibility", "Transparent, portfolio, sell");
+            }
+            if (i.target.classList.contains("comparison_table_visib")) {
+              pushDataLayer("exp_pdp_2_comparison_table_visibility", "Visibility section", "Element visibility", "Comparison table");
+            }
+            if (i.target.classList.contains("title_review")) {
+              pushDataLayer("exp_pdp_2_headline_review_visibility", "Headline review", "Element visibility", "Review section");
+            }
+            if (i.target.getAttribute("id") === "caption-text-12") {
+              pushDataLayer("exp_pdp_2_", "Visibility section", "Element visibility", "See what Forbes thinks about 7879");
+            }
+            if (i.target.classList.contains("txt_made_from")) {
+              pushDataLayer("exp_pdp_2_made_pure_platinum_visibility", "Sidebar visibility", "Element visibility", "Made from pure platinum sidebar");
+            }
+            if (i.target.classList.contains("our_fees_are")) {
+              pushDataLayer("exp_pdp_2_fees_are_fair_visibility", "Sidebar visibility", "Element visibility", "Our fees are fair and transparent sidebar");
+            }
+
+            obsV.unobserve(i.target);
+          }
+          obsV2.unobserve(i.target);
+        });
+      }
     }
 
     const record = setInterval(() => {
