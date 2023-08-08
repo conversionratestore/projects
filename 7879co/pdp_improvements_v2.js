@@ -261,6 +261,7 @@ let startPdp = setInterval(() => {
 
     let stylePdp = /*html */ `
     <style>
+
       .overlay_popup {
         position: fixed !important;
         overflow: hidden;
@@ -337,8 +338,25 @@ let startPdp = setInterval(() => {
       .layout-container .col-span-full .fixed.bottom-0 {
         margin: 0;
       }
-      .layout-container .col-span-full .fixed.bottom-0 .mx-auto.w-full {
+      .layout-container .col-span-full .fixed.bottom-0 .mx-auto.w-full,
+      .layout-container.bg-platinum-1 .bg-white.bottom-0.z-20.px-4.py-6:not(#add-cart-button-fixed) > button,
+      .layout-container.p-none.py-10 button.tracking-widest{
         height: 56px;
+      }
+      .layout-container.bg-platinum-1 .bg-white.bottom-0.z-20.px-4.py-6:not(#add-cart-button-fixed) > button > div,
+      .layout-container.bg-platinum-1 .bg-white.bottom-0.z-20.px-4.py-6:not(#add-cart-button-fixed) > button > div > div,
+      .layout-container.p-none.py-10 button.tracking-widest > div{
+        height: 100%;
+      }
+      .layout-container.p-none.py-10 button.tracking-widest > div > div{
+        height: 56px;
+      }
+      .layout-container.bg-platinum-1 .bg-white.bottom-0.z-20.px-4.py-6:not(#add-cart-button-fixed) > button + .my-5,
+      .layout-container.p-none.py-10 button.tracking-widest + .my-5{
+        margin: 16px 0 0;
+      }
+      .bottom-0.z-20.w-full.bg-white.px-4.py-6:not(#add-cart-button-fixed){
+        margin: 16px 0 0;
       }
       .layout-container .col-span-full .fixed.bottom-0 .mx-auto.w-full > div,
       .layout-container .col-span-full .fixed.bottom-0 .mx-auto.w-full > div > div {
@@ -1069,6 +1087,9 @@ let startPdp = setInterval(() => {
         text-transform: capitalize;
         z-index: 1;
       }
+              .h-6.items-center.gap-4{
+          gap: 1rem;
+        }
       @media (max-width: 768px) {
         .pair_it_with_block {
           padding: 0 0 40px;
@@ -1182,6 +1203,12 @@ let startPdp = setInterval(() => {
         }
         #add-cart-button-fixed button {
           height: 44px;
+        }
+        #add-cart-button-fixed button + .my-5{
+          margin: 8px 0 0;
+        }
+        .layout-container.bg-platinum-1 .bg-white.bottom-0.z-20.px-4.py-6:not(#add-cart-button-fixed) > button + .my-5{
+          margin: 16px 0 0;
         }
         #add-cart-button-fixed {
           display: block;
@@ -1684,11 +1711,12 @@ let startPdp = setInterval(() => {
 
     document.head.insertAdjacentHTML("beforeend", stylePdp);
     document.body.insertAdjacentHTML("afterbegin", popUp);
-
+    let isClick = false;
     renderHtml();
     changePopup();
     changeMiniCard();
     renderRecommendBlock();
+    onClickBtnLifetime();
 
     if (window.innerWidth > 768) {
       changePlaceExcellent();
@@ -1795,6 +1823,12 @@ let startPdp = setInterval(() => {
     function renderHtml() {
       if (document.querySelector("#add-cart-button-fixed button .text-p > div").textContent !== "ADD TO BASKET") {
         document.querySelector("#add-cart-button-fixed button .text-p > div").textContent = "ADD TO BASKET";
+      }
+      if (document.querySelector(".layout-container.bg-platinum-1 .bg-white.bottom-0.z-20.px-4.py-6:not(#add-cart-button-fixed) > button > div > div").textContent !== "ADD TO BASKET") {
+        document.querySelector(".layout-container.bg-platinum-1 .bg-white.bottom-0.z-20.px-4.py-6:not(#add-cart-button-fixed) > button > div > div").textContent = "ADD TO BASKET";
+      }
+      if (document.querySelector(".layout-container.p-none.py-10 button > div > div").textContent !== "ADD TO BASKET") {
+        document.querySelector(".layout-container.p-none.py-10 button > div > div").textContent = "ADD TO BASKET";
       }
       if (!document.querySelector(".made_pure_wrap")) {
         document.querySelector(".layout-container .col-span-full:nth-child(2) .relative.flex.w-full p.text-p")?.insertAdjacentHTML("afterend", `<div class="made_pure_wrap"><span class="made_pure_txt">(99.9% purity)</span> <span data-learnMore="1">learn more</span></div>`);
@@ -1975,7 +2009,7 @@ let startPdp = setInterval(() => {
         if (document.querySelector(".sticky_wrap")) {
           document.querySelector(".sticky_wrap .metal_txt").textContent = document.querySelectorAll('.my-3[role="radiogroup"] .gap-6 span.bg-black')[0].closest(".border-black").nextElementSibling.textContent;
           document.querySelector(".sticky_wrap .size_txt").textContent = document.querySelectorAll(".mb-3.w-full button .text-p.truncate")[0].textContent;
-          document.querySelector(".sticky_wrap .our_price").textContent = document.querySelector("#left-view h4.text-h4:nth-child(2)").textContent.split("*")[0];
+          document.querySelector(".sticky_wrap .our_price").textContent = document.querySelector(".my-7.flex.items-center.justify-between h3.text-h3.font-semibold").textContent.split("*")[0];
         }
       }
     }
@@ -2092,24 +2126,6 @@ let startPdp = setInterval(() => {
             if (document.querySelector(".new_return_wrapper .px-4 p:nth-child(2)")?.textContent !== document.querySelector(".mb-1.flex.items-center.justify-center + .px-4 p:nth-child(2)")?.textContent) {
               document.querySelector(".new_return_wrapper .px-4 p:nth-child(2)").textContent = document.querySelector(".mb-1.flex.items-center.justify-center + .px-4 p:nth-child(2)").textContent;
             }
-
-            document.querySelectorAll("button.ml-1.inline.flex-shrink-0.underline").forEach((el) => {
-              el.addEventListener("click", (e) => {
-                if (!e.target.getAttribute("data-test")) {
-                  if (e.target.closest("bg-platinum-1 ")) {
-                    pushDataLayer("exp_pdp_2_lifetame_warranty_learn_more2", "Lifetime warranty Learn more 2", "Link", "Product Information 2");
-                  } else {
-                    pushDataLayer("exp_pdp_2_lifetame_warranty_learn_more2", "Lifetime warranty Learn more 2", "Link", "Product Information 2");
-                  }
-                }
-                e.target.setAttribute("data-test", "1");
-                setTimeout(() => {
-                  if (e.target.getAttribute("data-test")) {
-                    e.target.removeAttribute("data-test");
-                  }
-                }, 3000);
-              });
-            });
           }
         }
       }, 100);
@@ -2310,6 +2326,10 @@ let startPdp = setInterval(() => {
           }
         }
 
+        console.log(isClick, `isClick`);
+        if (!isClick) {
+          onClickBtnLifetime();
+        }
         observer.observe(document, {
           childList: true,
           subtree: true,
@@ -2321,6 +2341,26 @@ let startPdp = setInterval(() => {
       childList: true,
       subtree: true,
     });
+
+    function onClickBtnLifetime() {
+      document.querySelectorAll("button.ml-1.inline.flex-shrink-0.underline").forEach((el) => {
+        el.addEventListener("click", (e) => {
+          if (!e.target.getAttribute("data-test")) {
+            if (e.target.closest("bg-platinum-1 ")) {
+              pushDataLayer("exp_pdp_2_lifetame_warranty_learn_more2", "Lifetime warranty Learn more 2", "Link", "Product Information 2");
+            } else {
+              pushDataLayer("exp_pdp_2_lifetame_warranty_learn_more2", "Lifetime warranty Learn more 2", "Link", "Product Information 2");
+            }
+          }
+          e.target.setAttribute("data-test", "1");
+          setTimeout(() => {
+            if (e.target.getAttribute("data-test")) {
+              e.target.removeAttribute("data-test");
+            }
+          }, 1000);
+        });
+      });
+    }
 
     const record = setInterval(() => {
       if (typeof clarity === "function") {
