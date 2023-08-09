@@ -294,7 +294,7 @@ let newContent = setInterval(() => {
                 <div class="accardion_lists_assistance">
                     <div>
                         ${text}
-                        <a target="_blank" class="schedule_new_btn" data-count="" rel="noopener noreferrer" href="https://webinar.zenithprepacademy.com/booking-page1666161342817">Schedule a Free call</a>
+                        <a data-number=${count} target="_blank" class="schedule_new_btn" data-count="" rel="noopener noreferrer" href="https://webinar.zenithprepacademy.com/booking-page1666161342817">Schedule a Free call</a>
                     </div>
                 </div>
             </li>
@@ -390,8 +390,12 @@ let newContent = setInterval(() => {
     });
 
     document.querySelectorAll(".schedule_new_btn").forEach((el) => {
-      el.addEventListener("click", () => {
-        console.log(`schedule_new_btn`);
+      el.addEventListener("click", (e) => {
+        if (e.currentTarget.getAttribute("data-number")) {
+          pushDataLayer("exp_new_content_schedule _ia", `Schedule a Free call - ${e.currentTarget.getAttribute("data-number")}`, "Button", "Incide accardion");
+        } else {
+          pushDataLayer("exp_new_content_schedule _cpsn", "Schedule a Free College Planning Session Now", "Button", "The process outlined");
+        }
       });
     });
 
