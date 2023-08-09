@@ -567,6 +567,26 @@ let style = `
     .review-item {
         margin-top: 30px;
     }
+    @media (min-width: 900px) {
+        section .container {
+            max-width: 930px;
+        }
+        .firs-screen-home__image {
+            display: none;
+        }
+        .firs-screen-home__content {
+            margin-right: 0;
+            max-width: 100%;
+        }
+        .firs-screen-home__content h1 {
+            font-size: 36px;
+            line-height: 42px;
+            margin-bottom: 30px;
+        }
+        .firs-screen-home__content h1 span {
+            font-size: 24px;
+        }
+    }
 </style>`;
 
 let style2 = `
@@ -1258,33 +1278,39 @@ let ratingsHTML = `
 let backForPayment = false;
 
 //timer
-let timerDuration = sessionStorage.getItem('timer') ? parseFloat(sessionStorage.getItem('timer').split(':').join('.')) : 15.00;
-let formattedTime;
+const inputTime = sessionStorage.getItem('timer') && sessionStorage.getItem('timer') != null ? JSON.parse(JSON.stringify(sessionStorage.getItem('timer'))) : '15:00';
+
+const [inputMinutes, inputSeconds] = inputTime.split(":").map(Number);
+
+const timerDuration = inputMinutes * 60 + inputSeconds;
 
 const startTime = Date.now();
 
-const updateTimer = (parent) => {
-
-    const currentTime = Date.now();
-    const elapsedTime = Math.floor((currentTime - startTime) / 1000); // convert to seconds
-    const remainingTime = timerDuration * 60 - elapsedTime; // seconds left
-    
-    if (remainingTime <= 0) {
-        parent.parentElement.remove();
-        return;
-    }
-    
-    const minutes = Math.floor(remainingTime / 60);
-    const seconds = remainingTime % 60;
-    
-    const formattedMinutes = String(minutes).padStart(2, '0');
-    const formattedSeconds = String(seconds).padStart(2, '0');
-    
-    formattedTime = `${formattedMinutes}:${formattedSeconds}`;
-
+function updateTimer(parent) {
+  const currentTime = Date.now();
+  const elapsedTime = Math.floor((currentTime - startTime) / 1000); // перетворюємо в секунди
+  const remainingTime = timerDuration - elapsedTime; // залишилось секунд
+  
+  if (remainingTime <= 0) {
+    clearInterval(timerInterval);
+    parent.parentElement.remove();
+    console.log("Таймер завершено!");
+    return;
+  }
+  
+  const minutes = Math.floor(remainingTime / 60);
+  const seconds = remainingTime % 60;
+  
+  const formattedMinutes = String(minutes).padStart(2, '0');
+  const formattedSeconds = String(seconds).padStart(2, '0');
+  
+  const formattedTime = `${formattedMinutes}:${formattedSeconds}`;
     if (parent) {
         parent.innerHTML = formattedTime;
+        console.log(`${formattedTime} - set storage formattedTime`)
+        sessionStorage.setItem('timer', formattedTime)
     }
+  console.log(formattedTime);
 }
 
 let init = () => {
@@ -1685,7 +1711,7 @@ let init = () => {
                 clearInterval(setTimer)
                 
                 document.querySelector('.header-fixed').insertAdjacentHTML('afterbegin',`<p class="topbar_timer">Your seat has been reserved for: <span>
-                ${sessionStorage.getItem('timer') ? sessionStorage.getItem('timer') : '15:00'}
+                ${sessionStorage.getItem('timer') ? sessionStorage.getItem('timer').replace('.',':') : '15:00'}
                 </span></p>`)
              
        
@@ -1723,7 +1749,6 @@ let init = () => {
                 document.querySelectorAll('.page-action button')[1].innerHTML = 'Continue to payment';
                 document.querySelectorAll('.page-action button')[1].addEventListener('click', () => {
                     backForPayment = false;
-                    sessionStorage.setItem('timer', formattedTime)
                 })
 
             }
