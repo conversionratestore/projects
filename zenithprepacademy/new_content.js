@@ -345,7 +345,6 @@ let newContent = setInterval(() => {
 
     if (document.querySelector("#admissionsAssistance")) {
       for (let key in arrR) {
-        console.log(key);
         document.querySelector(".accardion_assistance").insertAdjacentHTML("beforeend", setList(arrR[key][0], arrR[key][1], key));
       }
     }
@@ -388,6 +387,12 @@ let newContent = setInterval(() => {
       } else {
         pushDataLayer("exp_new_content_schedule_u", "Schedule A Free College Planning Session Now", "Button", "Under video");
       }
+    });
+
+    document.querySelectorAll(".schedule_new_btn").forEach((el) => {
+      el.addEventListener("click", () => {
+        console.log(`schedule_new_btn`);
+      });
     });
 
     visibElem();
@@ -580,7 +585,7 @@ let newContent = setInterval(() => {
             }
 
             if (i.target.classList.contains("path_to_success_visib")) {
-              pushDataLayer("exp_new_content_your_student_vis', 'Steps', 'Visibility', 'Your Student's Path to Success (The process outlined)");
+              pushDataLayer("exp_new_content_your_student_vis", "Steps", "Visibility", "Your Student's Path to Success (The process outlined)");
             }
 
             obsV.unobserve(i.target);
