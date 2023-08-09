@@ -6,6 +6,11 @@ let currency;
 
 let style = `
 <style class="style-exp">
+    .form-group-title {
+        font-size: 12px;
+        font-weight: 600;
+        line-height: normal;
+    }
     .hero-section-title-loader {
         min-height: auto;
     }
@@ -37,7 +42,7 @@ let style = `
         order: 2;
         margin-top: 20px;
     }
-    .filters-block__item:first-child, main > section:nth-child(3) {
+    .filters-block__item:first-child {
        display: none;
     }
     .filters-block__item:nth-child(2) {
@@ -162,6 +167,9 @@ let style = `
     .filters-block__selected p:first-child {
         color: #0D3B5B;
         font-weight: 600;
+    }
+    .filters-block__selected {
+        box-shadow: none;
     }
     .filters-block.active .filters-block__selected {
         display: flex;
@@ -345,7 +353,9 @@ let style = `
         display: none;
     }
     .card[style="display: block;"]+.message_block, 
-    .card[style="display: block;"]+.message_block+h5 {
+    .card[style="display: block;"]+.message_block+h5,  
+    .card[style="display: flex;"]+.message_block, 
+    .card[style="display: flex;"]+.message_block+h5 {
         display: block;
     }
     .card > .d-flex > div:last-child {
@@ -488,6 +498,9 @@ let style = `
     }
     .filters_result {
         padding-top: 30px;
+        max-width: 672px;
+        margin: 0 auto;
+        width: 100%;
     }
     .filters_result h5 {
         margin-bottom: 12px;
@@ -582,7 +595,7 @@ let style = `
         padding-top: 30px;
         margin-bottom: 10px!important;
     }
-    section.bg-white .review-block {
+    section.bg-white .border_info {
         order: 3;
         margin-bottom: 30px;
         margin-top: -20px;
@@ -590,7 +603,12 @@ let style = `
     section.bg-white .footer__top {
         order: 4;
     }
-    @media (min-width: 900px) {
+    @media (max-width: 767px) {
+        main > section:nth-child(3) {
+            display: none;
+        }
+    }
+    @media (min-width: 768px) {
         section .container {
             max-width: 930px;
         }
@@ -608,6 +626,118 @@ let style = `
         }
         .firs-screen-home__content h1 span {
             font-size: 24px;
+        }
+        .filters-block__item:last-child {
+            margin: 0 15px
+        }
+        .radius-10.box-shadow .filters-block {
+            padding: 20px 20px 0;
+        }
+        .radius-10.box-shadow .filters-block.active {
+            padding: 20px;
+        }
+        .filters-block-row {
+            margin: 0;
+            flex-wrap: nowrap;
+        }
+        .filters-block-row .filters-block__item {
+            width: calc(100% - 48px);
+            margin: 0 24px 0 0;
+            flex: inherit;
+        }
+        .filters-block__item:nth-child(2) {
+            max-width: 324px;
+        }
+        .filters-block-row .filters-block__item:nth-child(3) {
+            min-width: 285px;
+        }
+        .filters-block-row .filters-block__item:last-child {
+            margin-right: 0;
+            max-width: 188px;
+            margin-bottom: 32.5px;
+        }
+        .filters-block__selected {
+            margin-top: 0;
+            max-width: 350px;
+            margin-bottom: 20px;
+        }
+        .filters-block__selected > div {
+            display: flex;
+        }
+        .filters-block__selected > div p {
+            margin-right: 8px;
+        }
+        .border_info {
+            border-radius: 4px;
+            border: 1px dashed var(--border, #DBE8F4);
+            background: #FFF;
+            margin: 24px auto!important;
+            max-width: 672px;
+            width: 100%;
+            display: flex;
+            padding: 20px 20px 10px;
+            justify-content: space-between;
+        }
+        .filters-block-row+div {
+            margin: 16px -20px 0;
+            padding: 10px!important;
+            justify-content: center;
+        }
+        section.bg-white .paymant-info {
+            order: 0;
+            max-width: 260px;
+            margin-right: 16px;
+        }
+        .paymant-info__list, .paymant-info__cards {
+            margin: 0;
+        }
+        .radius-10 .paymant-info .paymant-info__list li:first-child {
+            margin-top: 0;
+        }
+        .review-item {
+            padding: 16px 10px;
+            font-size: 14px;
+        }
+        .review-block {
+            width: 100%;
+        }
+        .footer__accreditations {
+            padding: 24px!important;
+            margin: 0 auto 40px;
+            max-width: 672px;
+        }
+        .fag .container {
+            max-width: 702px;
+            padding-bottom: 40px;
+        }
+        .fag .container h2 {
+            font-size: 24px;
+            line-height: 24px;
+            text-align: left;
+            margin-bottom: 20px;
+        }
+        .footer__accreditations h5 {
+            margin-bottom: 20px!important;
+        }
+        section.section.pb-140.pb-md-50.padding-top-sm-0 {
+            padding-bottom: 76px!important;
+        }
+        .book_onsite {
+            margin: 0 -20px -20px;
+            padding: 16px 12px;
+        }
+        .book_onsite .btn {
+            max-width: 188px;
+            margin-left: auto;
+        }
+        .book_onsite p, .book_onsite b {
+            margin: 0 10px 0 0;
+        }
+        .card > div {
+            width: 100%;
+        }
+        .card_footer {
+            max-width: 297px;
         }
     }
 </style>`;
@@ -887,6 +1017,10 @@ let style2 = `
     .sm-border-bottom:before {
         content: none;
     }
+    section.bg-white .paymant-info {
+        order: 0;
+        max-width: 260px;
+    }
 </style>`;
 
 
@@ -948,19 +1082,23 @@ const card = (data, closest, index, currency) => {
         
     }
 
+    let displayCard = window.matchMedia("(min-width: 768px)").matches ? 'flex' : 'block';
+
     return ` 
-    <div class="card" style="${index < 5 ? 'display: block;' : ''}">
-        <div class="d-flex">
-            ${closest != '' ? '<div class="card_closest">' + closest + '</div>' : ''}
-            <div class="card_miles">${miles} miles</div>
-        </div>
-        <div class="card_body">
-            <p class="card_title">${title}</p>
-            <p class="card_span">${addresses.join(', ')}</p>
-            <div class="select">
-                <label>Pick start date</label>
-                <div class="select_current" onclick="toggleActive(event)">${startDateFirst}</div>
-                <ul class="select_drop">${options}</ul>
+    <div class="card" style="${index < 5 ? 'display: ' + displayCard : ''}">
+        <div>
+            <div class="d-flex">
+                ${closest != '' ? '<div class="card_closest">' + closest + '</div>' : ''}
+                <div class="card_miles">${miles} miles</div>
+            </div>
+            <div class="card_body">
+                <p class="card_title">${title}</p>
+                <p class="card_span">${addresses.join(', ')}</p>
+                <div class="select">
+                    <label>Pick start date</label>
+                    <div class="select_current" onclick="toggleActive(event)">${startDateFirst}</div>
+                    <ul class="select_drop">${options}</ul>
+                </div>
             </div>
         </div>
         <div class="card_footer">
@@ -1169,9 +1307,9 @@ const nextPage = (event, page, pages) => {
         let selector = document.querySelectorAll('.card');
         selector.forEach((item, index) => {
             if (page == 0 && index < 5) {
-                item.style.display = 'block';
+                item.style.display = window.matchMedia("(min-width: 768px)").matches ? 'flex' : 'block';
             } else if (page * 5 < index && index < (page + 1) * 5) {
-                item.style.display = 'block';
+                item.style.display = window.matchMedia("(min-width: 768px)").matches ? 'flex' : 'block';
             } else {
                 item.style = ''
             }
@@ -1287,6 +1425,7 @@ let ratingsHTML = `
         font-style: normal;
         font-weight: 400;
         line-height: normal;
+        height: fit-content;
     }
     .review-item img {
         margin: 0 auto 8px;
@@ -1315,7 +1454,9 @@ let init = () => {
             document.querySelector(`${parent} .paymant-info`).insertAdjacentHTML('afterend', `<div class="footer__top footer__accreditations d-flex align-items-center justify-content-between flex-wrap pb-sm-40 pt-sm-40">
                 ${document.querySelector('.footer__top').innerHTML}
             </div>`)
-            document.querySelector(`${parent} .accreditation-items`).innerHTML = `<img src="${dir}accreditations.svg" alt="accreditations">`;
+            
+            let img = window.matchMedia("(min-width: 768px)").matches ? '2' : '';
+            document.querySelector(`${parent} .accreditation-items`).innerHTML = `<img src="${dir}accreditations${img}.svg" alt="accreditations">`;
 
             document.body.insertAdjacentHTML('afterbegin',`<style>
             .footer__top:not(.footer__accreditations) {
@@ -1385,13 +1526,12 @@ let init = () => {
     
                     if (clickSearch == true) {
                         clickSearch == false;
-                        
     
-                        if (title.innerText == 'Emergency First Aid at Work\n6 Hours EFW' || 
-                            title.innerText == 'First Aid At Work - 18 Hours\nBFAW' || 
-                            title.innerText == 'Blended Paediatric First Aid Course\nBPFA') {
+                        if (title.innerText.toLowerCase().includes('emergency first aid at work') || 
+                            title.innerText.toLowerCase().includes('first aid at work - 18 hours') || 
+                            title.innerText.toLowerCase().includes('blended paediatric first aid course')) {
     
-                                document.querySelector('.book_onsite').style.display = 'block';
+                                document.querySelector('.book_onsite').style.display = window.matchMedia("(min-width: 768px)").matches ? 'flex' : 'block';
                                 if (!document.querySelector('.modal_form')) {
                                     formCourse(title.innerHTML);
                                 }
@@ -1407,7 +1547,9 @@ let init = () => {
         changeTitle()
 
         let filtersBlock = setInterval(() => {
-            if (document.querySelector('.firs-screen-home__content .mb-30.mb-sm-40') && document.querySelectorAll('.filters-block__item') &&  document.querySelector('.filters-block-row+div')) {
+            if (document.querySelector('.firs-screen-home__content .mb-30.mb-sm-40') && 
+                document.querySelectorAll('.filters-block__item') && 
+                document.querySelector('.filters-block-row+div')) {
                 clearInterval(filtersBlock)
     
                 document.querySelector('.firs-screen-home__content .mb-30.mb-sm-40').innerHTML = 'Please select your location and date first. It will help us suggest the best option for you.'
@@ -1431,6 +1573,7 @@ let init = () => {
                     </p>
                     <button type="button" class="btn--info btn">Book onsite</button>
                 </div>`)
+
                 document.querySelector('.filters-block').insertAdjacentHTML('afterend',`
                 <div class="filters_result">
                     <h5></h5>
@@ -1451,7 +1594,13 @@ let init = () => {
                         </button>
                     </nav>
                 </div>
-                ${ratingsHTML}`);
+                <div class="border_info">
+                    ${ratingsHTML}
+                </div>`);
+
+                if (window.matchMedia("(min-width: 768px)").matches) {
+                    document.querySelector('.border_info .review-block').before(document.querySelector('.firs-screen-home .paymant-info'))
+                }
 
                 document.querySelectorAll('.filters-block__item').forEach((item, index) => {
                     if (index == 2) {
@@ -1657,12 +1806,14 @@ let init = () => {
                     learners = 1;
 
                 if (href.includes('https://booking.skillstg.co.uk/payment-details/')) {
-                    title = JSON.parse(sessionStorage.getItem('data_booking')).title;
+                    let dataBooking = JSON.parse(sessionStorage.getItem('data_booking'));
+
+                    title = dataBooking.title;
                     titleRes = title.split('(').join('<span class="span">(') + '</span>';
-                    costRes = JSON.parse(sessionStorage.getItem('data_booking')).cost;
-                    text = JSON.parse(sessionStorage.getItem('data_booking')).text;
-                    total = JSON.parse(sessionStorage.getItem('data_booking')).total;
-                    learners = JSON.parse(sessionStorage.getItem('data_booking')).learners;
+                    costRes = dataBooking.cost;
+                    text = dataBooking.text;
+                    total = dataBooking.total;
+                    learners = dataBooking.learners;
                 } else {
                     title = document.querySelector('main.content > .section.padding-top-sm-0 > .container h2').innerHTML;
                     pathname = href.includes('/booking/') ? '/booking/' : '/booking-details/';
