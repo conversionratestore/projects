@@ -1542,6 +1542,12 @@ let startPdp = setInterval(() => {
         font-size: 11px !important;
       }
     }
+    @media (min-width: 1441px) {
+      .layout-container .col-span-full:nth-child(2){
+        max-width: unset;
+        margin-left: 1rem;
+      }
+    }
   </style>
   `;
 
@@ -2375,9 +2381,7 @@ let startPdp = setInterval(() => {
       document.querySelectorAll("button.ml-1.inline.flex-shrink-0.underline").forEach((el) => {
         el.addEventListener("click", (e) => {
           if (!e.target.getAttribute("data-test")) {
-            if (e.target.closest("bg-platinum-1 ")) {
-              pushDataLayer("exp_pdp_2_lifetame_warranty_learn_more2", "Lifetime warranty Learn more 2", "Link", "Product Information 2");
-            } else {
+            if (e.target.closest(".bg-platinum-1")) {
               pushDataLayer("exp_pdp_2_lifetame_warranty_learn_more2", "Lifetime warranty Learn more 2", "Link", "Product Information 2");
             }
           }
@@ -2457,6 +2461,12 @@ let startPdp = setInterval(() => {
           obsV.observe(document.querySelector(".popup_title.our_fees_are"));
         }
       }, 100);
+      let intV10 = setInterval(() => {
+        if (document.querySelector(".necklaces_box")) {
+          clearInterval(intV10);
+          obsV.observe(document.querySelector(".necklaces_box"));
+        }
+      }, 100);
 
       function visibilityV(entries) {
         entries.forEach((i) => {
@@ -2477,7 +2487,10 @@ let startPdp = setInterval(() => {
               pushDataLayer("exp_pdp_2_investment_in_the_stability", "Visibility section", "Element visibility", "Investment in the stability");
             }
             if (i.target.classList.contains("bracelets_box")) {
-              pushDataLayer("exp_pdp_2_pair_it_with_visibility", "Visibility section", "Element visibility", "Pair it with");
+              pushDataLayer("exp_pdp_2_pair_it_with_bracelets_visibility", "Visibility section", "Element visibility", "Pair it with");
+            }
+            if (i.target.classList.contains("necklaces_box")) {
+              pushDataLayer("exp_pdp_2_pair_it_with_necklaces_visibility", "Visibility section", "Element visibility", "Pair it with");
             }
             if (i.target.classList.contains("advantages_box_bgr")) {
               pushDataLayer("exp_pdp_2_transparent_portfol_sell_vis", "Visibility section", "Element visibility", "Transparent, portfolio, sell");
@@ -2489,7 +2502,7 @@ let startPdp = setInterval(() => {
               pushDataLayer("exp_pdp_2_headline_review_visibility", "Headline review", "Element visibility", "Review section");
             }
             if (i.target.getAttribute("id") === "caption-text-12") {
-              pushDataLayer("exp_pdp_2_", "Visibility section", "Element visibility", "See what Forbes thinks about 7879");
+              pushDataLayer("exp_pdp_2_forbs_visibility", "Visibility section", "Element visibility", "See what Forbes thinks about 7879");
             }
             if (i.target.classList.contains("txt_made_from")) {
               pushDataLayer("exp_pdp_2_made_pure_platinum_visibility", "Sidebar visibility", "Element visibility", "Made from pure platinum sidebar");
