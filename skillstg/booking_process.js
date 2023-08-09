@@ -37,7 +37,7 @@ let style = `
         order: 2;
         margin-top: 20px;
     }
-    .filters-block__item:first-child {
+    .filters-block__item:first-child, main > section:nth-child(3) {
        display: none;
     }
     .filters-block__item:nth-child(2) {
@@ -564,8 +564,31 @@ let style = `
     .pagination_customer_action[disabled] svg path{
         fill: #DBE8F4;
     }
-    .review-item {
-        margin-top: 30px;
+    section.bg-white {
+        padding-bottom: 0!important;
+    }
+    section.bg-white > div > .radius-10 {
+        display: grid;
+        margin-bottom: 0;
+    }
+    .paymant-info.display-sm-block.d-none {
+        border: none;
+    }
+    section.bg-white .action_buttons {
+        order: 1;
+    }
+    section.bg-white .paymant-info {
+        order: 2;
+        padding-top: 30px;
+        margin-bottom: 10px!important;
+    }
+    section.bg-white .review-block {
+        order: 3;
+        margin-bottom: 30px;
+        margin-top: -20px;
+    }
+    section.bg-white .footer__top {
+        order: 4;
     }
     @media (min-width: 900px) {
         section .container {
@@ -1137,6 +1160,11 @@ const nextPage = (event, page, pages) => {
                 item.closest('ul').nextElementSibling.disabled = true;
             } 
         })
+
+        let lastPage = target.parentElement.querySelectorAll('li')[target.parentElement.querySelectorAll('li').length - 1];
+        if (lastPage.classList.contains('selected')) {
+            lastPage.previousElementSibling.previousElementSibling.style.display = 'block';
+        }
     
         let selector = document.querySelectorAll('.card');
         selector.forEach((item, index) => {
@@ -1276,42 +1304,6 @@ let ratingsHTML = `
 </div>`
 
 let backForPayment = false;
-
-//timer
-const inputTime = sessionStorage.getItem('timer') && sessionStorage.getItem('timer') != null ? JSON.parse(JSON.stringify(sessionStorage.getItem('timer'))) : '15:00';
-
-const [inputMinutes, inputSeconds] = inputTime.split(":").map(Number);
-
-const timerDuration = inputMinutes * 60 + inputSeconds;
-
-const startTime = Date.now();
-
-function updateTimer(parent) {
-  const currentTime = Date.now();
-  const elapsedTime = Math.floor((currentTime - startTime) / 1000); // перетворюємо в секунди
-  const remainingTime = timerDuration - elapsedTime; // залишилось секунд
-  
-  if (remainingTime <= 0) {
-    clearInterval(timerInterval);
-    parent.parentElement.remove();
-    console.log("Таймер завершено!");
-    return;
-  }
-  
-  const minutes = Math.floor(remainingTime / 60);
-  const seconds = remainingTime % 60;
-  
-  const formattedMinutes = String(minutes).padStart(2, '0');
-  const formattedSeconds = String(seconds).padStart(2, '0');
-  
-  const formattedTime = `${formattedMinutes}:${formattedSeconds}`;
-    if (parent) {
-        parent.innerHTML = formattedTime;
-        console.log(`${formattedTime} - set storage formattedTime`)
-        sessionStorage.setItem('timer', formattedTime)
-    }
-  console.log(formattedTime);
-}
 
 let init = () => {
         
@@ -1783,6 +1775,42 @@ let init = () => {
 
 init()
 
+//timer
+let inputTime = sessionStorage.getItem('timer') && sessionStorage.getItem('timer') != null ? JSON.parse(JSON.stringify(sessionStorage.getItem('timer'))) : '15:00';
+
+const [inputMinutes, inputSeconds] = inputTime.split(":").map(Number);
+
+const timerDuration = inputMinutes * 60 + inputSeconds;
+
+const startTime = Date.now();
+
+let updateTimer = (parent) => {
+  const currentTime = Date.now();
+  const elapsedTime = Math.floor((currentTime - startTime) / 1000); // перетворюємо в секунди
+  const remainingTime = timerDuration - elapsedTime; // залишилось секунд
+  
+  if (remainingTime <= 0) {
+    clearInterval(timerInterval);
+    parent.parentElement.remove();
+    console.log("Таймер завершено!");
+    return;
+  }
+  
+  const minutes = Math.floor(remainingTime / 60);
+  const seconds = remainingTime % 60;
+  
+  const formattedMinutes = String(minutes).padStart(2, '0');
+  const formattedSeconds = String(seconds).padStart(2, '0');
+  
+  const formattedTime = `${formattedMinutes}:${formattedSeconds}`;
+    if (parent) {
+        parent.innerHTML = formattedTime;
+        console.log(`${formattedTime} - set storage formattedTime`)
+        sessionStorage.setItem('timer', formattedTime)
+    }
+  console.log(formattedTime);
+}
+
 let redirect = setInterval(() => {
     let newHeref = window.location.href;
     if (newHeref != href) {
@@ -1855,8 +1883,6 @@ let mut = new MutationObserver(function (muts) {
  
         dataOrderObj.total = total;
         dataOrderObj.learners = countLearn;
-
-        console.log(dataOrderObj.learners)
 
         sessionStorage.setItem('data_booking', JSON.stringify(dataOrderObj))
         document.querySelector('.booking_order h3 span').innerHTML = total;
