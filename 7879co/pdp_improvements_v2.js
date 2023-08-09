@@ -272,7 +272,7 @@ let startPdp = setInterval(() => {
       opacity: 1;
       background: rgba(0, 0, 0, 0.3);
       transition: all 0.5s ease 0s;
-      z-index: 9005;
+      z-index: 2200000000;
       display: block;
       max-height: 100%;
     }
@@ -1203,6 +1203,7 @@ let startPdp = setInterval(() => {
       .stability_box .stability_title {
         font-size: 14px;
         line-height: 20px;
+        max-width: 304px;
       }
       #add-cart-button-fixed button {
         height: 44px;
@@ -1584,7 +1585,7 @@ let startPdp = setInterval(() => {
     let stabilityBox = /*html */ `
       <div class="stability_box">
           <h3 class="stability_title">Invest in the stability of platinum and gold</h3>
-          <p class="stability_txt">Our jewellery uses investment grade 24k gold and pure platinum. This gives it a value that appreciates over time, and can easily be tracked or exchanged for cash. Additionally, pure gold has a distinct warm glow that just makes it look more appealing.</p>
+          <p class="stability_txt">Our jewellery uses investment grade 24k gold and pure platinum only. This gives it a value that appreciates over time, and can easily be tracked or exchanged for cash using your 7879 portfolio.I have removed the final sentence.</p>
       </div>
   `;
     let advantagesBox = /*html */ `
