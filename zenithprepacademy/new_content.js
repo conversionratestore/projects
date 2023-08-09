@@ -294,6 +294,7 @@ let newContent = setInterval(() => {
                 <div class="accardion_lists_assistance">
                     <div>
                         ${text}
+                        <a target="_blank" class="schedule_new_btn" data-count="" rel="noopener noreferrer" href="https://webinar.zenithprepacademy.com/booking-page1666161342817">Schedule a Free call</a>
                     </div>
                 </div>
             </li>
