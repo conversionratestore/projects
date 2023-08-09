@@ -2515,3 +2515,11 @@ let startPdp = setInterval(() => {
     document.querySelector(".exp")?.remove();
   }
 }, 700);
+
+if (!window.location.pathname.match(".*/shop/[^/]+/[^/]+/[^/]+$")) {
+  sessionStorage.setItem("loadPage", "ok");
+  if (window.location.pathname.match(".*/shop/[^/]+/[^/]+/[^/]+$") && sessionStorage.getItem("loadPage")) {
+    sessionStorage.removeItem("loadPage");
+    window.location.reload();
+  }
+}
