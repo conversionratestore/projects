@@ -1065,19 +1065,6 @@ let startPdp = setInterval(() => {
     img.img_hover {
       opacity: 0;
     }
-    .pair_it_with_item:hover img.img_hover {
-      opacity: 1;
-      --tw-scale-x: 1.05;
-      --tw-scale-y: 1.05;
-      transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
-    }
-    .pair_it_with_item:hover .img_full {
-      opacity: 0;
-    }
-    .pair_it_with_item:hover .pair_it_with_link_title,
-    .pair_it_with_item:hover .pair_it_with_link_txt {
-      text-decoration: underline;
-    }
     .layout-container.p-none.py-10 .mt-2.mb-4.flex.items-end.justify-between.gap-4::before {
       content: "Excellent";
       position: absolute;
@@ -1090,8 +1077,23 @@ let startPdp = setInterval(() => {
       text-transform: capitalize;
       z-index: 1;
     }
-            .h-6.items-center.gap-4{
+      .h-6.items-center.gap-4{
         gap: 1rem;
+      }
+      @media (min-width: 768px) {
+        .pair_it_with_item:hover img.img_hover {
+          opacity: 1;
+          --tw-scale-x: 1.05;
+          --tw-scale-y: 1.05;
+          transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+        }
+        .pair_it_with_item:hover .img_full {
+          opacity: 0;
+        }
+        .pair_it_with_item:hover .pair_it_with_link_title,
+        .pair_it_with_item:hover .pair_it_with_link_txt {
+          text-decoration: underline;
+        }
       }
     @media (max-width: 768px) {
       .pair_it_with_block {
@@ -1463,7 +1465,8 @@ let startPdp = setInterval(() => {
       .title_review {
         font-size: 24px;
         line-height: 32px;
-        margin: 0;
+        margin: 0 auto;
+        max-width: 320px;
       }
       #TrustpilotReviewSection {
         padding: 24px 1rem;
