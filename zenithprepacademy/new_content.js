@@ -225,59 +225,57 @@ let newContent = setInterval(() => {
     let arrR = {
       1: [
         "My child needs help identifying their interests and developing their passion",
-        `<p>Children may be unaware of their passions and interests, or even lack the ability to recognize them. Identifying a child's interests and helping them nurture those interests helps build self-esteem, expands their knowledge base, and develops an area of natural aptitude or talent in which they can excel.</p>
-        <p>The Zenith Prep Academy counseling program is specifically designed to help 6th-12th graders figure out their purpose, find their hidden strengths, and make use of their interests and passions in ways that will make them highly desirable to top universities.</p>
-        <p>This is especially useful if you're inexperienced with the U.S. college system. Elsewhere in the world, it's the students with the highest test scores that gain admission to the best universities. In the U.S., however, there are multiple academic and non-academic factors that need to be carefully cultivated for success.</p>
-        <p data-assistance="1"><b>To learn more about our counseling program, please click the button below to request a free 45-minute consultation with one of our experienced counselors in our Admissions Counseling Department that collectively have spent over 67+ years of their careers in education.</b></p>
+        `<p>Children may be unaware of their passions and interests or lack the ability to recognize them. Identifying a child's interests and helping them nurture those interests helps build self-esteem, expands their knowledge base, and develops an area of natural aptitude or talent in which they can excel.</p>
+        <p>The Zenith Prep Academy counseling program is specifically designed to help 6th-12th graders figure out their purpose, discover their hidden strengths, and make use of their interests and passions in ways that will make them highly desirable to top universities.</p>
+        <p>This is especially useful if you are unfamiliar with the U.S. college system. While in other parts of the world, it is mainly students with the highest test scores who gain admission to the best universities, in the U.S., there are multiple academic and non-academic factors that need to be carefully cultivated for success.</p>
+        <p data-assistance="1"><b>To learn more about our counseling program, please click the button below to request a free 45-minute consultation with one of our experienced counselors in our Admissions Counseling Department. Collectively, they have over 67+ years of experience in education.</b></p>
         `,
       ],
       2: [
-        "My child needs help developing a comprehensive profile that will help them stand out, and highlight their academic strengths and extracurricular interests",
-        `<p>Every parent wants the best for their child. However, even if you have a student attending a hyper-competitive high school, there's no guarantee that they'll have an edge over all the other students competing for top university spots.</p>
-        <p>Ultimately, strong test scores aren’t enough to secure a good college admission. Students who are serious about attending the best university possible need a mix between strong academics and strong extracurricular activities.</p>
-        <p>Zenith systems are designed to help accelerate the pace at which your child achieves extracurricular milestones, so that they can build the kind of comprehensive profile that is most likely to gain them admissions to top universities.</p>
-        <p data-assistance="2"><b>To learn more about our counseling program, please click the button below to request a free 45-minute consultation with one of our experienced counselors in our Admissions Counseling Department that collectively have spent over 67+ years of their careers in education.</b></p>
+        "My child needs help developing a comprehensive profile that will help them stand out and highlight their academic strengths and extracurricular interests",
+        `<p>Every parent wants the best for their child. However, even if your student attends a hyper-competitive high school, there is no guarantee that they will have an edge over all the other students competing for top university spots.</p>
+        <p>Ultimately, strong test scores alone are not enough to secure a good college admission. Students who are serious about attending the best university possible need a combination of strong academics and impactful extracurricular activities.</p>
+        <p>Zenith systems are designed to help accelerate the pace at which your child achieves extracurricular milestones so that they can build the kind of comprehensive profile that is most likely to gain them admission to top universities.</p>
+        <p data-assistance="2"><b>To learn more about our counseling program, please click the button below to request a free 45-minute consultation with one of our experienced counselors in our Admissions Counseling Department. Collectively, they have over 67+ years of experience in education.</b></p>
         `,
       ],
       3: [
-        "My child needs help selecting extracurricular activities that will help them stand out to their dream college",
-        `<p>Some children may excel academically, but lack a clear sense of direction, so they need help navigating high school to pick the right extracurricular activities that universities actually care about and look for when deciding which students to accept.</p>
-        <p>Tell us your college goals and we'll reverse-engineer the exact extracurricular roadmap your child will need to follow to make themselves the most attractive to their top choice universities.</p>
-        <p>This will include identifying the necessary extracurricular milestones, as well as supporting their progress through our unique systems so that they can reach these milestones at an accelerated pace.</p>
-        <p data-assistance="3"><b>To learn more about our counseling program, please click the button below to request a free 45-minute consultation with one of our experienced counselors in our Admissions Counseling Department that collectively have spent over 67+ years of their careers in education.</b></p>
+        "My child needs help selecting extracurricular activities that will make them stand out to their dream college",
+        `<p>Some children may excel academically but lack a clear sense of direction, requiring assistance in navigating high school to choose the right extracurricular activities that universities value and consider when deciding which students to accept.</p>
+        <p>By sharing your college goals with us, we can reverse-engineer the exact extracurricular roadmap your child needs to follow in order to make themselves most attractive to their top-choice universities.</p>
+        <p>This includes identifying the necessary extracurricular milestones and supporting their progress through our unique systems, enabling them to reach these milestones at an accelerated pace.</p>
+        <p data-assistance="3"><b>To learn more about our counseling program, please click the button below to request a free 45-minute consultation with one of our experienced counselors in our Admissions Counseling Department. Collectively, they have spent over 67+ years in their careers in education.</b></p>
         `,
       ],
       4: [
         "Motivate my child towards their full potential so that they have an edge over their peers when applying to college",
-        `<p>Although it is important to do well in school, it is equally important to get involved in worthwhile activities beyond academics, such as strong extracurricular activities that will help a child stand out to the universities they're looking to attend.</p>
-        <p>Our experience of over 15+ years allows us to take any family's college goal or situation, any student's strengths and weaknesses, and create a realistic, achievable, and enjoyable extracurricular plan that will help the child get into the best college possible.</p>
-        <p>It doesn't matter if your child struggles with sports, prefers to work independently, or is highly selective about their fields of interests – we’ll find extracurriculars that your child can enjoy and stay motivated about, so that they can gain an edge over their peers and maximize their chances for admissions into top colleges.</p>
-        <p data-assistance="4"><b>To learn more about our counseling program, please click the button below to request a free 45-minute consultation with one of our experienced counselors in our Admissions Counseling Department that collectively have spent over 67+ years of their careers in education.</b></p>
+        `<p>While excelling in academics is important, it is equally crucial to engage in meaningful extracurricular activities that can set a child apart when applying to their desired universities.</p>
+        <p>With our experience of over 15+ years, we have the expertise to tailor an extracurricular plan that aligns with any family's college goals, student's strengths and weaknesses, creating a realistic, achievable, and enjoyable path that maximizes their chances of getting into the best college possible.</p>
+        <p>Whether your child struggles with sports, prefers independent work, or is highly selective about their areas of interest, we will find extracurricular activities that they can genuinely enjoy and stay motivated about. Our aim is to help them gain an advantage over their peers and optimize their chances for admission to top colleges.</p>
+        <p data-assistance="4"><b>To learn more about our counseling program, please click the button below to request a free 45-minute consultation with one of our experienced counselors in our Admissions Counseling Department, who collectively possess over 67+ years of experience in education.</b></p>
         `,
       ],
       5: [
         "Need someone to guide my child through the process, end-to-end",
-        `<p>Having someone to guide you and your child through the college admission process in the US is important for several reasons. First, college admissions in the US can be highly competitive and complicated. An expert can help you understand the requirements and techniques associated with a successful application. They can also provide valuable insight on how to pick and excel in the extracurricular activities that matter most in high school and improve your child's chances of being admitted into their desired universities and much more.</p>
-        <p>Since 2007, our college counseling team comprised of Ivy League graduates, ex-admissions officers, and college admissions experts have collectively spent over 100,000+ hours specializing in working with 6th-12th graders and helping them get into top universities over the past 15+ years. What that means is that we're in a very unique position to offer your child and family end-to-end support in their college admissions journey. Whether that involves supporting them from an academic standpoint, guiding them to achieve extracurricular milestones, or helping them secure prestigious internships/programs, our unique process is designed to guide students from beginning to end. With us by your side, your child can just focus on taking the steps, while we provide the plan.</p>
-        <p data-assistance="5"><b>To learn more about our counseling program, please click the button below to request a free 45-minute consultation with one of our experienced counselors in our Admissions Counseling Department that collectively have spent over 67+ years of their careers in education.</b></p>
+        `<p>Having someone to guide you and your child through the college admission process in the US is important for several reasons. First, college admissions in the US can be highly competitive and complex. An expert can help you understand the requirements and strategies associated with a successful application. They can also provide valuable insight on how to select and excel in the extracurricular activities that hold the most significance in high school, thereby improving your child's chances of admission to their desired universities, among other benefits.</p>
+        <p>Since 2007, our college counseling team, comprised of Ivy League graduates, former admissions officers, and college admissions experts, has collectively dedicated over 100,000+ hours to specialize in working with 6th-12th graders and helping them gain admission to top universities over the past 15+ years. This unique expertise positions us to offer comprehensive support to your child and family throughout the entire college admissions journey. Whether it involves academic guidance, assistance in achieving extracurricular milestones, or securing prestigious internships/programs, our tailored process is designed to guide students from start to finish. With us by your side, your child can focus on taking the necessary steps while we provide the plan.</p>
+        <p data-assistance="5"><b>To learn more about our counseling program, please click the button below to request a free 45-minute consultation with one of our experienced counselors in our Admissions Counseling Department, who collectively possess over 67+ years of experience in education.</b></p>
         `,
       ],
       6: [
-        "Unfamiliar with the U.S college admission process and need help",
-        `<p>When you're aiming for a top college, the most valuable resource you have is time. With time on your side, your child can get the right grades, the right extracurriculars, and the right internships to maximize their chances. However, figuring out the process that U.S. college admissions follow can be confusing, and making even a single mistake could waste years.</p>
-        <p>That's why, if you're unfamiliar with the way the U.S. college admission process works, Zenith Prep Academy is specifically designed for you and your family so that you can have the confidence knowing you gave your child more opportunities than you've had. Without any more guesswork, stress, or misinformation.</p>
-        <p data-assistance="6"><b>To learn more about our counseling program, please click the button below to request a free 45-minute consultation with one of our experienced counselors in our Admissions Counseling Department that collectively have spent over 67+ years of their careers in education.</b></p>
+        "Unfamiliar with the U.S. college admission process and need help",
+        `<p>When aiming for a top college, time becomes a valuable resource. With ample time, your child can focus on achieving the right grades, engaging in meaningful extracurricular activities, and securing relevant internships to maximize their chances of success. However, understanding the intricacies of the U.S. college admission process can be confusing, and even a single mistake can potentially waste years of effort.</p>
+        <p>That's why Zenith Prep Academy is specifically designed to support families like yours who are unfamiliar with the U.S. college admission process. We aim to provide you with the confidence of knowing that you have equipped your child with more opportunities than you had, eliminating guesswork, stress, and misinformation.</p>
+        <p data-assistance="6"><b>To learn more about our counseling program, please click the button below to request a free 45-minute consultation with one of our experienced counselors in our Admissions Counseling Department. Collectively, they have spent over 67+ years of their careers in education.</b></p>
         `,
       ],
       7: [
         "My child needs resources, recommendations, strategies, and guidance",
-        `<p>You might think that it would be helpful to take as many AP classes as possible, achieve a weighted GPA of 4.5+, and ace all standardized tests.</p>
-        <p>But unfortunately, that isn't always the case.</p>
-        <p>Take Manoj, for example. His oldest son was bright and academically successful. However, when it was time to apply for college, Manoj discovered just how challenging and overwhelming the process can be. The result? Manoj's oldest missed the opportunities he deserved.</p>
-        <p>Not wanting to repeat past mistakes with his younger son, who had just entered 9th grade, Manoj looked for an approach that would be fully optimized with a proven track record of success.</p>
-        <p>He didn't want to waste his time. He simply wanted to learn what his child would need to do in order to gain admission to a top university.</p>
-        <p>That's where we came in. We guided Manoj and his son throughout high school to develop the right profile with the extracurricular activities and internships/programs that matted most to his top choice universities so that when college decisions came out, they had multiple top universities to choose from to attend.</p>
-        <p data-assistance="7"><b>To learn more about our counseling program, please click the button below to request a free 45-minute consultation with one of our experienced counselors in our Admissions Counseling Department that collectively have spent over 67+ years of their careers in education.</b></p>
+        `<p>You might assume that taking as many AP classes as possible, achieving a weighted GPA of 4.5+, and excelling in standardized tests would be sufficient. However, unfortunately, that is not always the case.</p>
+        <p>Let's consider the example of Manoj. His eldest son was bright and academically successful. However, when the time came to apply for college, Manoj discovered the daunting and overwhelming nature of the process. As a result, his eldest son missed out on the opportunities he deserved.</p>
+        <p>Determined not to repeat past mistakes with his younger son, who had just entered 9th grade, Manoj sought an approach that would be fully optimized and backed by a proven track record of success. He didn't want to waste time; he simply wanted to understand what his child needed to do to gain admission to a top university.</p>
+        <p>That's where we stepped in. We guided Manoj and his son throughout high school, helping them develop the right profile with extracurricular activities, internships/programs, and other elements that held significance to their top-choice universities. When college decisions were released, they had multiple top universities to choose from.</p>
+        <p data-assistance="7"><b>To learn more about our counseling program, please click the button below to request a free 45-minute consultation with one of our experienced counselors in our Admissions Counseling Department. Collectively, they have over 67+ years of experience in education.</b></p>
         `,
       ],
     };
@@ -316,21 +314,21 @@ let newContent = setInterval(() => {
             <span class="count_step">1</span>
             <div class="descr_step">
               <span>Step one:</span>
-              <p>Watch the free webinar to learn the 3 main factors that prevent 6th-12th graders from getting the college spot they deserve.</p>
+              <p>Watch the free webinar to learn about the 3 main factors that prevent 6th-12th graders from securing the college spot they deserve.</p>
             </div>
           </li>
           <li>
             <span class="count_step">2</span>
             <div class="descr_step">
               <span>Step two:</span>
-              <p>Schedule your free college planning session by choosing a day & time that works best for you based on the availabilities of our admissions counselors.</p>
+              <p>Schedule your free college planning session by selecting a convenient day and time based on the availability of our admissions counselors.</p>
             </div>
           </li>
           <li class="path_to_success_visib">
             <span class="count_step">3</span>
             <div class="descr_step">
               <span>Step three:</span>
-              <p>Meet our College Admissions Counselor over Zoom. It's a 45 minute free of charge meeting where we discuss your child's profile and university goals. You'll also receive recommended next steps for maximizing your child's chances of getting into top universities.</p>
+              <p>Meet with our College Admissions Counselor via Zoom. This 45-minute meeting is free of charge and involves discussing your child's profile and university goals. You will also receive recommended next steps to maximize your child's chances of gaining admission to top universities.</p>
             </div>
           </li>
         </ul>
