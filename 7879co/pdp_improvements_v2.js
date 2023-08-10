@@ -1211,7 +1211,7 @@ let startPdp = setInterval(() => {
       #add-cart-button-fixed button {
         height: 44px;
       }
-      #add-cart-button-fixed button + .my-5{
+      #add-cart-button-fixed button + div + .my-5{
         margin: 8px 0 0;
       }
       .layout-container.bg-platinum-1 .bg-white.bottom-0.z-20.px-4.py-6:not(#add-cart-button-fixed) > button + .my-5{
