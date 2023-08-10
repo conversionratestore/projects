@@ -757,6 +757,7 @@ let style2 = `
         line-height: normal;
         padding: 10px 15px;
         text-align: center;
+        height: fit-content;
     }
     .page-action, 
     main.content > .section.padding-top-sm-0 > .container > div:not(.booking_order), 
@@ -828,8 +829,8 @@ let style2 = `
         right: 30px;
         top: 23px;
         background: url(${dir}arrow-down.svg) no-repeat center / 100%;
-        width: 10px;
-        height: 10px;
+        width: 13px;
+        height: 13px;
         pointer-events: none;
     }
     .booking_order_content.arrow-true:not(.active) p:not(.booking_order_learn) {
@@ -936,6 +937,8 @@ let style2 = `
         line-height: 48px; 
         border: none;
         background-color: #09983F;
+        max-width: 240px;
+        margin-left: auto;
     }
     .btn_continue svg {
         margin-left: 8px;
@@ -1022,8 +1025,189 @@ let style2 = `
     .sm-border-bottom:before {
         content: none;
     }
+    @media (min-width: 768px) {
+        .paymant-info.mb-30.display-sm-block {
+            display: none!important;
+        }
+        .section.bg-white {
+            padding: 0 15px;
+            max-width: 935px;
+            display: flex;
+            margin: 0 auto;
+            padding-top: 40px;
+        }
+        .section.bg-white .container {
+            width: 50%;
+            padding: 0 12px 0 0;
+            margin-left: 0;
+        }
+        .right_info {
+            width: 50%;
+            padding-left: 12px;
+            display: block!important;
+        }
+        .right_info_top {
+            border-radius: 4px;
+            background: #FFF;
+            box-shadow: 0px 2px 8px 0px rgba(0, 0, 0, 0.15);
+            padding-bottom: 20px;
+            z-index: 1;
+            position: relative;
+        }
+        .topbar_timer {
+            border-radius: 4px 4px 0px 0px;
+        }
+        .right_info_bottom {
+            border-radius: 0 0 4px 4px;
+            border-right: 1px dashed var(--border, #DBE8F4);
+            border-bottom: 1px dashed var(--border, #DBE8F4);
+            border-left: 1px dashed var(--border, #DBE8F4);
+            background: #FFF;
+            padding: 0 20px 20px;
+        }
+        .booking_order h3 {
+            padding: 16px 0;
+            font-size: 24px;
+            line-height: 32px;
+        }
+        .booking_order {
+            width: calc(100% - 40px);
+            margin: 0 auto;
+        }
+        .booking_order_content {
+            border-radius: 4px;
+            border: 1px dashed var(--border, #DBE8F4);
+            color: var(--blue-dark, #0D3B5B);
+        }
+        .booking_order_content h4 {
+            font-size: 18px;
+            line-height: 26px;
+            margin-bottom: 16px;
+        }
+        .booking_order_date, .booking_order_cost, .booking_order_content.arrow-true.active .booking_order_learn {
+            margin-bottom: 16px;
+        }
+        .booking_order_date, .booking_order_cost, .booking_order_text, .booking_order_learn {
+            font-size: 16px;
+        }
+        .row.gutters-20.mb-50.mb-lg-30.mb-sm-40 .col-md-6 {
+            width: 100%!important;
+            margin-top: 12px!important;
+        }
+        .row.gutters-20.mb-50.mb-lg-30.mb-sm-40 {
+            margin-bottom: 30px!important;
+        }
+        main.content > .section.bg-white > .container > h3.mb-10v {
+            font-size: 24px;
+            line-height: 32px;
+        }
+        section.bg-white > div > .row.gutters-20.mb-30 > div.col-md-6.mt-sm-16 {
+            width: 100%;
+        }
+        main.content > .section.bg-white > .container > h3.mb-30 {
+            padding-bottom: 24px!important;
+        }
+        .row.gutters-20.mb-50.mb-lg-30.mb-sm-40 .btn--shadow {
+            position: relative;
+        }
+        .row.gutters-20.mb-50.mb-lg-30.mb-sm-40 .btn--shadow:before, .row.gutters-20.mb-50.mb-lg-30.mb-sm-40 .btn--shadow:after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            border-radius: 50%;
+        }
+        .row.gutters-20.mb-50.mb-lg-30.mb-sm-40 .btn--shadow:before {
+            border: 1px solid #DBE8F4;
+            right: 12px;
+            width: 16px;
+            height: 16px;
+        }
+        .row.gutters-20.mb-50.mb-lg-30.mb-sm-40 .btn--shadow:after  {
+            right: 15px;
+            width: 10px;
+            height: 10px;
+        }
+        .row.gutters-20.mb-50.mb-lg-30.mb-sm-40 .btn--white-active:before {
+            border-color: #58C3D8;
+        }
+        .row.gutters-20.mb-50.mb-lg-30.mb-sm-40 .btn--white-active:after {
+            background-color: #58C3D8;
+        }
+        .review-item {
+            margin-bottom: 0;
+        }
+        section.bg-white .paymant-info {
+            padding-top: 20px!important;
+            margin-bottom: 2px!important;
+        }
+        .paymant-info__list {
+            display: block;
+        }
+        .paymant-info__list li+li {
+            border: none!important;
+        }
+        .def-text-1 {
+            margin-bottom: 24px;
+        }
+        .input, .textarea {
+            line-height: 22px;
+        }
+        .css-1n8pi6e-control {
+            height: 44px;
+        }
+        .review-item {
+            padding: 16px 10px;
+        }
+        .review-item img {
+            margin-bottom: 12px;
+        }
+        .border-bottom:last-child {
+            border: none;
+            padding-bottom: 0;
+        }
+        .border-bottom > .row.gutters-80 > .col-md-6 {
+            width: 100%!important;
+        }
+        .name-details {
+            color: var(--blue-dark, #0D3B5B);
+            font-size: 14px;
+            font-style: normal;
+            font-weight: 700;
+            line-height: 22px; 
+            margin: -24px 0 30px;
+        }
+        .name-details span {
+            font-weight: 400;
+        }
+        .detail-list li {
+            position: relative;
+        }
+        .detail-list li span {
+            background: #fff;
+            position: relative;
+            z-index: 1;
+        }
+        .detail-list li span:first-child {
+            padding-right: 12px;
+        }
+        .detail-list li span:last-child {
+            padding-left: 12px;
+        }
+        .detail-list li:before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 0;
+            border-bottom: 1px dashed #DBE8F4;
+        }
+        .section.bg-white .row.gutters-20 .col-lg-6 {
+            width: 100%;
+        }
+    }
 </style>`;
-
 
 const formatedDate = (time) => {
     const timestamp = time * 1000; // Переводим секунды в миллисекунды
@@ -1231,7 +1415,8 @@ const orderHTML = (title, date, cost, text, total, learners) => {
             <h4>${title}</h4>
             ${path ? '<p class="booking_order_learn">Number of learners - <span>' + learners + '</span></p>' : ''}
          
-            <p class="booking_order_date">Start date - ${date}</p>
+            ${date != null ? '<p class="booking_order_date">Start date - ' + date + '</p>' : ''}
+            
             <p class="booking_order_cost">${cost}</p>
             <p class="booking_order_text">${text}</p>
         </div>
@@ -1444,6 +1629,7 @@ let ratingsHTML = `
 </div>`
 
 let backForPayment = false;
+let media = window.matchMedia("(min-width: 768px)").matches;
 
 let init = () => {
         
@@ -1452,11 +1638,14 @@ let init = () => {
             clearInterval(changePositionAccredination)
 
             let parent = window.location.href.includes('booking.skillstg.co.uk/course/') ? '.radius-10' : '';
-            document.querySelector(`${parent} .paymant-info`).insertAdjacentHTML('afterend', `<div class="footer__top footer__accreditations d-flex align-items-center justify-content-between flex-wrap pb-sm-40 pt-sm-40">
+
+            parenInsert = media && !window.location.href.includes('booking.skillstg.co.uk/course/') ? document.querySelector(`.section.bg-white`) : document.querySelector(`${parent} .paymant-info`);
+
+            parenInsert.insertAdjacentHTML('afterend', `<div class="footer__top footer__accreditations d-flex align-items-center justify-content-between flex-wrap pb-sm-40 pt-sm-40">
                 ${document.querySelector('.footer__top').innerHTML}
             </div>`)
             
-            let img = window.matchMedia("(min-width: 768px)").matches ? '2' : '';
+            let img = media ? '2' : '';
             document.querySelector(`${parent} .accreditation-items`).innerHTML = `<img src="${dir}accreditations${img}.svg" alt="accreditations">`;
 
             document.body.insertAdjacentHTML('afterbegin',`<style>
@@ -1485,6 +1674,12 @@ let init = () => {
             }
             .footer__accreditations .accreditation-items img {
                 margin: 0!important;
+            }
+            @media (min-width: 768px) {
+                .footer__accreditations {
+                    max-width: 904px;
+                    margin: 60px auto;
+                }
             }
             </style>`)
         }   
@@ -1599,7 +1794,7 @@ let init = () => {
                     ${ratingsHTML}
                 </div>`);
 
-                if (window.matchMedia("(min-width: 768px)").matches) {
+                if (media) {
                     document.querySelector('.border_info .review-block').before(document.querySelector('.firs-screen-home .paymant-info'))
                 }
 
@@ -1792,6 +1987,7 @@ let init = () => {
         !href.includes('https://booking.skillstg.co.uk/payment/')) {
 
         let setOrder = setInterval(() => {
+          
             if (
                 (document.querySelector('main.content > .section.padding-top-sm-0 > .container h2') &&
                 href.includes('https://booking.skillstg.co.uk/booking/')) ||
@@ -1801,6 +1997,14 @@ let init = () => {
             ) {
 
                 let parent = document.querySelector('main.content');
+
+                if (media) {
+                    if (document.querySelector('.right_info_top')) {
+                        parent = document.querySelector('.right_info_top')
+                    } else {
+                        return
+                    }
+                } 
 
                 let title = '',
                     pathname = '', 
@@ -1816,7 +2020,7 @@ let init = () => {
                     let dataBooking = JSON.parse(sessionStorage.getItem('data_booking'));
 
                     title = dataBooking.title;
-                    titleRes = title.split('(').join('<span class="span">(') + '</span>';
+                    titleRes = title.split('(').join(' <span class="span"> (') + '</span>';
                     costRes = dataBooking.cost;
                     text = dataBooking.text;
                     total = dataBooking.total;
@@ -1830,17 +2034,17 @@ let init = () => {
                     pathname = href.includes('/booking/') ? '/booking/' : '/booking-details/';
 
                     if (title.includes('(')){
-                        titleRes = title.split('(').join('<span class="span">(') + ' (' + window.location.href.split(pathname)[1].split('/')[0] + ')</span>';
+                        titleRes = title.split('(').join(' <span class="span"> (') + ' (' + window.location.href.split(pathname)[1].split('/')[0] + ')</span>';
 
                     } else {
-                        titleRes = title + '<span class="span">(' + window.location.href.split(pathname)[1].split('/')[0] + ')</span>';
+                        titleRes = title + ' <span class="span"> (' + window.location.href.split(pathname)[1].split('/')[0] + ')</span>';
                     
                     }
                    
                     cost = document.querySelector('main.content > .section.padding-top-sm-0 > .container > div:not(.booking_order) > p').innerHTML;
                     
                     let costspt = cost.split(').')[0]
-                    costRes = costspt.split('(').join('<span class="span">(') + ')</span>';
+                    costRes = costspt.split('(').join(' <span class="span">(') + ')</span>';
                     
                     text = cost.split(').')[1];
                 }
@@ -1856,7 +2060,9 @@ let init = () => {
                 }
                 sessionStorage.setItem('data_booking', JSON.stringify(dataOrder))
               
-                parent.insertAdjacentHTML('afterbegin',
+                let position = media ? 'beforeend' : 'afterbegin';
+
+                parent.insertAdjacentHTML(position,
                 orderHTML(titleRes, sessionStorage.getItem('date_booking'), costRes, text, total, learners))
 
                 if (document.querySelector('.booking_order_content.arrow-true')) {
@@ -1869,10 +2075,17 @@ let init = () => {
 
         //timer topbar
         let setTimer = setInterval(() => {
-            if (document.querySelector('.header-fixed') && !document.querySelector('.topbar_timer')) {
+            if (
+                (media && document.querySelector('.right_info_top')) ||
+                (!media && 
+                    document.querySelector('.header-fixed') && 
+                    !document.querySelector('.topbar_timer')
+                )
+            ) {
                 clearInterval(setTimer)
-                
-                document.querySelector('.header-fixed').insertAdjacentHTML('afterbegin',`<p class="topbar_timer">Your seat has been reserved for: <span>
+                let parent = media ? document.querySelector('.right_info_top') : document.querySelector('.header-fixed');
+
+                parent.insertAdjacentHTML('afterbegin',`<p class="topbar_timer">Your seat has been reserved for: <span>
                 ${sessionStorage.getItem('timer') ? sessionStorage.getItem('timer').replace('.',':') : '15:00'}
                 </span></p>`)
              
@@ -1886,6 +2099,17 @@ let init = () => {
                 }, 1000);
             }
         });
+
+        let setRowDesk = setInterval(() => {
+            if (media && document.querySelector('section.section.bg-white')) {
+                clearInterval(setRowDesk)
+                document.querySelector('section.section.bg-white .container').insertAdjacentHTML('afterend', `
+                <div class="right_info">
+                    <div class="right_info_top"> </div>
+                    <div class="right_info_bottom"><div class="paymant-info desk"></div> </div>
+                </div>`)
+            }
+        })
     }
     if (href.includes('https://booking.skillstg.co.uk/payment-details/')) {
         let findBackBtn = setInterval(() => {
@@ -1913,6 +2137,12 @@ let init = () => {
                     backForPayment = false;
                 })
 
+                if (media) {
+                    let title = JSON.parse(sessionStorage.getItem('data_booking')).title;
+                    document.querySelector('main.content > .section.bg-white > .container > h3.mb-30').insertAdjacentHTML('afterend', 
+                    `<p class="name-details">${title}</p>`)
+                }
+
             }
         });
     }
@@ -1932,13 +2162,26 @@ let init = () => {
     }
 
 
-    let findPayments = setInterval(() => {
+    let setRating = setInterval(() => {
         if (document.querySelector('.paymant-info') && 
             !document.querySelector('.review-block') &&
             !href.includes('booking.skillstg.co.uk/course/')) {
-            clearInterval(findPayments);
+            
+            let parent = document.querySelector('.paymant-info');
+            if (media) {
+                if (document.querySelector('.right_info_bottom')) {
+                    clearInterval(setRating);
+                    document.querySelector('.right_info_bottom > div.paymant-info.desk').innerHTML = document.querySelector('.paymant-info.mb-30.display-sm-block').innerHTML
+                    parent = document.querySelector('.right_info_bottom > div.paymant-info.desk');
+                    document.querySelector('.paymant-info.mb-30.display-sm-block .paymant-info__cards li:last-child svg').remove()
+                } else {
+                    return
+                }
+            } else {
+                clearInterval(setRating);
+            }
 
-            document.querySelector('.paymant-info').insertAdjacentHTML('afterend', ratingsHTML)
+            parent.insertAdjacentHTML('afterend', ratingsHTML)
         }
     });
 }
