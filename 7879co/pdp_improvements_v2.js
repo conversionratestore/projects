@@ -618,6 +618,7 @@ let startPdp = setInterval(() => {
       height: 56px;
     }
     #add-cart-button-fixed button .text-p {
+      font-family: "Roobert TRIAL", sans-serif;
       color: #fff;
       font-size: 16px;
       font-weight: 500;
@@ -2344,7 +2345,7 @@ let startPdp = setInterval(() => {
                 document.querySelector("#add-cart-button-fixed").style.opacity = "0";
                 document.querySelector("#add-cart-button-fixed").style.pointerEvents = "none";
               }
-              if (i.target.classList.contains("mx-auto")) {
+              if (i.target.classList.contains("mx-auto") && i.target.getAttribute("data-testid") === "add-to-bag") {
                 console.log(`mx-auto NONE`);
                 document.querySelector("#add-cart-button-fixed").style.display = "none";
                 document.querySelector("#add-cart-button-fixed").style.opacity = "0";
