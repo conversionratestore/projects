@@ -315,21 +315,21 @@ let newContent = setInterval(() => {
           <li>
             <span class="count_step">1</span>
             <div class="descr_step">
-              <span>Step one: 26.01</span>
+              <span>Step one:</span>
               <p>Watch the free webinar to learn the 3 main factors that prevent 6th-12th graders from getting the college spot they deserve.</p>
             </div>
           </li>
           <li>
             <span class="count_step">2</span>
             <div class="descr_step">
-              <span>Step two: 26.01</span>
+              <span>Step two:</span>
               <p>Schedule your free college planning session by choosing a day & time that works best for you based on the availabilities of our admissions counselors.</p>
             </div>
           </li>
           <li class="path_to_success_visib">
             <span class="count_step">3</span>
             <div class="descr_step">
-              <span>Step three: 3.02 - 8.02</span>
+              <span>Step three:</span>
               <p>Meet our College Admissions Counselor over Zoom. It's a 45 minute free of charge meeting where we discuss your child's profile and university goals. You'll also receive recommended next steps for maximizing your child's chances of getting into top universities.</p>
             </div>
           </li>
