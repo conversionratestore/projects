@@ -1068,7 +1068,7 @@ let startPdp = setInterval(() => {
     .layout-container.p-none.py-10 .mt-2.mb-4.flex.items-end.justify-between.gap-4::before {
       content: "Excellent";
       position: absolute;
-      top: -4px;
+      top: -3.5px;
       left: 0;
       color: #000;
       font-size: 20px;
@@ -1550,6 +1550,9 @@ let startPdp = setInterval(() => {
       .layout-container .col-span-full:nth-child(2){
         max-width: unset;
         margin-left: 1rem;
+      }
+      .stability_box .stability_txt{
+        max-width: unset;
       }
     }
   </style>
