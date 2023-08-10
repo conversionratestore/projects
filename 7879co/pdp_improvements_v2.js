@@ -2163,6 +2163,15 @@ let startPdp = setInterval(() => {
               document.querySelector(".new_return_wrapper .px-4 p:nth-child(2)").textContent = document.querySelector(".mb-1.flex.items-center.justify-center + .px-4 p:nth-child(2)")?.textContent;
             }
           }
+
+          let findBtnCheckout = setInterval(() => {
+            if (document.querySelector(".layout-container.p-none.py-10 .my-5")) {
+              clearInterval(findBtnCheckout);
+              if (!document.querySelector(".layout-container.p-none.py-10 button.tracking-widest + .my-5") && document.querySelector(".layout-container.p-none.py-10 button.tracking-widest")) {
+                document.querySelector(".layout-container.p-none.py-10 button.tracking-widest").after(document.querySelector(".layout-container.p-none.py-10 .my-5"));
+              }
+            }
+          }, 100);
         }
       }, 100);
     }
