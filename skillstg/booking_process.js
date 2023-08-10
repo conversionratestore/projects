@@ -743,6 +743,9 @@ let style = `
             order: 0;
             max-width: 260px;
         }
+        .card_footer .price {
+            margin: 16px 0 20px;
+        }
     }
 </style>`;
 
