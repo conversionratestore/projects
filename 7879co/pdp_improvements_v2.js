@@ -1216,7 +1216,14 @@ let startPdp = setInterval(() => {
       .layout-container.bg-platinum-1 .bg-white.bottom-0.z-20.px-4.py-6:not(#add-cart-button-fixed) > button + .my-5{
         margin: 16px 0 0;
       }
+      /*
+      #add-cart-button-fixed.absolute{
+        margin: 0;
+        box-shadow: 0px -2px 16px 0px rgba(0, 0, 0, 0.1);
+      }
+      */
       #add-cart-button-fixed {
+        position: fixed;
         display: block;
         opacity: 1;
         pointer-events: inherit;
@@ -2332,16 +2339,19 @@ let startPdp = setInterval(() => {
           entries.forEach((i) => {
             if (i.isIntersecting) {
               if (i.target.classList.contains("new_btn_add_to_basket")) {
+                console.log(`new_btn_add_to_basket NONE`);
                 document.querySelector("#add-cart-button-fixed").style.display = "none";
                 document.querySelector("#add-cart-button-fixed").style.opacity = "0";
                 document.querySelector("#add-cart-button-fixed").style.pointerEvents = "none";
               }
               if (i.target.classList.contains("mx-auto")) {
+                console.log(`mx-auto NONE`);
                 document.querySelector("#add-cart-button-fixed").style.display = "none";
                 document.querySelector("#add-cart-button-fixed").style.opacity = "0";
                 document.querySelector("#add-cart-button-fixed").style.pointerEvents = "none";
               }
             } else {
+              console.log(`all BLOCK`);
               document.querySelector("#add-cart-button-fixed").style.display = "block";
               document.querySelector("#add-cart-button-fixed").style.opacity = "1";
               document.querySelector("#add-cart-button-fixed").style.pointerEvents = "initial";
