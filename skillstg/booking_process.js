@@ -701,9 +701,9 @@ let style = `
         .review-block {
             width: 100%;
         }
-        .footer__accreditations {
+        .footer__top.footer__accreditations {
             padding: 24px!important;
-            margin: 0 auto 40px;
+            margin: 0 auto 40px!important;
             max-width: 672px;
         }
         .fag .container {
@@ -1083,10 +1083,10 @@ const card = (data, closest, index, currency) => {
         
     }
 
-    let displayCard = window.matchMedia("(min-width: 768px)").matches ? 'flex' : 'block';
+    let media = window.matchMedia("(min-width: 768px)").matches;
 
     return ` 
-    <div class="card" style="${index < 5 ? 'display: ' + displayCard : ''}">
+    <div class="card" style="${index < 5 ? 'display: ' + (media ? 'flex;' : 'block;') : ''}">
         <div>
             <div class="d-flex">
                 ${closest != '' ? '<div class="card_closest">' + closest + '</div>' : ''}
@@ -1102,7 +1102,7 @@ const card = (data, closest, index, currency) => {
                 </div>
             </div>
         </div>
-        <div class="card_footer">
+        <div class="card_footer ${media ? 'justify-content-end d-flex flex-column' : ''}">
             <div class="d-flex align-items-center justify-content-between">
                 <p>Reserve your seat</p>
                 <p>Only ${seats} seats left</p>
@@ -1370,7 +1370,7 @@ let checkLatLng = (val) => {
                             if (i == 0) {
                                 document.querySelector('.filters_result_container').insertAdjacentHTML('beforeend', `
                                 <p class="message_block">If suitable dates are not available please contact our customer service team on <a href="tel:08081642780">0808 164 2780.</a> For courses that are sold out, we can add you to our waiting list for any cancellations.</p>
-                                <h5>Check other locations</h5>`)
+                                ${list.length > 1 ? '<h5>Check other locations</h5>' : ''}`)
                             }
                         }
 
@@ -1792,7 +1792,13 @@ let init = () => {
         !href.includes('https://booking.skillstg.co.uk/payment/')) {
 
         let setOrder = setInterval(() => {
-            if (document.querySelector('main.content') && !document.querySelector('.booking_order')) {
+            if (
+                (document.querySelector('main.content > .section.padding-top-sm-0 > .container h2') &&
+                href.includes('https://booking.skillstg.co.uk/booking/')) ||
+                (document.querySelector('main.content') && 
+                !href.includes('https://booking.skillstg.co.uk/booking/')) && 
+                !document.querySelector('.booking_order')
+            ) {
 
                 let parent = document.querySelector('main.content');
 
