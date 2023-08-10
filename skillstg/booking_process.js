@@ -2206,7 +2206,6 @@ let updateTimer = (parent) => {
   const remainingTime = timerDuration - elapsedTime; // залишилось секунд
   
   if (remainingTime <= 0) {
-    clearInterval(timerInterval);
     parent.parentElement.remove();
     return;
   }

@@ -18,7 +18,7 @@ let style = `
 .checkout-pane-payment-information #edit-payment-information-add-payment-method {
     margin-bottom: 0;
 }
-.c-tabs, input[type="checkbox"], input[type="radio"], .form-item-payment-information-add-payment-method-billing-information-address-0-address-organization {
+.c-tabs, input[type="checkbox"], input[type="radio"], .form-item-payment-information-add-payment-method-billing-information-address-0-address-organization, .form-item-payment-information-billing-information-address-0-address-organization {
     display: none;
 }
 .block-single-file-component-blockuser-login-register-tabs-block ~ * h1 {
@@ -1190,7 +1190,7 @@ function init() {
                 .form-item {
                     margin-bottom: 16px;
                 }
-                [data-drupal-selector="edit-payment-information-add-payment-method-billing-information-address-0-address"] {
+                [data-drupal-selector="edit-payment-information-add-payment-method-billing-information-address-0-address"], [data-drupal-selector="edit-payment-information-billing-information-address-0-address"] {
                     display: flex;
                     flex-direction: column;
                 }
@@ -1198,7 +1198,7 @@ function init() {
                     display: flex;
                     flex-wrap: wrap;
                 }
-                .form-item-payment-information-add-payment-method-billing-information-address-0-address-address-line1, #edit-payment-information-add-payment-method-billing-information-address-0-address-container0 {
+                [data-drupal-selector="edit-payment-information-billing-information-address-0-address-country-code"], .form-item-payment-information-billing-information-address-0-address-country-code, .form-item-payment-information-add-payment-method-billing-information-address-0-address-address-line1, #edit-payment-information-add-payment-method-billing-information-address-0-address-container0, .form-item-payment-information-add-payment-method-billing-information-select-address {
                     order: 4;
                 }
                 #edit-payment-information-add-payment-method-billing-information-address-0-address-country-code, [data-drupal-selector="edit-payment-information-add-payment-method-billing-information-address-0-address-country-code"] {
@@ -1214,12 +1214,17 @@ function init() {
                 .address-container-inline > .form-item:nth-child(2n+2),  .address-container-inline > .form-item:last-child {
                     margin-right: 0;
                 }
-                .address-container-inline > .form-item.form-item-payment-information-add-payment-method-billing-information-address-0-address-locality {
+                .address-container-inline > .form-item.form-item-payment-information-add-payment-method-billing-information-address-0-address-locality,
+                .address-container-inline > .form-item-payment-information-billing-information-address-0-address-locality {
                     width: 100%;
                     margin-right: 0;
                 }
-                .address-container-inline > .form-item.form-item-payment-information-add-payment-method-billing-information-address-0-address-administrative-area {
-                    margin-right: 16px;
+                .form-item-payment-information-billing-information-address-0-address-address-line2 {
+                    margin: 0;
+                }
+                .address-container-inline > .form-item.form-item-payment-information-add-payment-method-billing-information-address-0-address-administrative-area,
+                .address-container-inline > .form-item-payment-information-billing-information-address-0-address-administrative-area {
+                    margin-right: 16px!important;
                 }
                 #edit-commerce-donation-pane {
                     border: none;
@@ -1625,13 +1630,44 @@ function init() {
 init()
 
 let setLabelCountry = setInterval(() => {
-    if (document.querySelector('.form-item-payment-information-add-payment-method-billing-information-address-0-address-country-code') != null && document.querySelector('.form-item-payment-information-add-payment-method-billing-information-address-0-address-country-code > label') == null) {
+    if (document.querySelector('.form-item-payment-information-add-payment-method-billing-information-address-0-address-country-code') != null && 
+        document.querySelector('.form-item-payment-information-add-payment-method-billing-information-address-0-address-country-code > label') == null
+    ) {
+          
         document.querySelector('.form-item-payment-information-add-payment-method-billing-information-address-0-address-country-code').insertAdjacentHTML('afterbegin',`<label class="form-required">Country</label>`)
     }
 });
+
 let setLabelState = setInterval(() => {
-    if (document.querySelector('.form-item-payment-information-add-payment-method-billing-information-address-0-address-administrative-area') != null && document.querySelector('.form-item-payment-information-add-payment-method-billing-information-address-0-address-administrative-area > label') == null) {
+    if (document.querySelector('.form-item-payment-information-add-payment-method-billing-information-address-0-address-administrative-area') && 
+        document.querySelector('.form-item-payment-information-add-payment-method-billing-information-address-0-address-administrative-area > label') == null
+    ) {
         document.querySelector('.form-item-payment-information-add-payment-method-billing-information-address-0-address-administrative-area').insertAdjacentHTML('afterbegin',`<label class="form-required">State</label>`)
+    }
+});
+
+let setLabelCountryPaypal = setInterval(() => {
+    if (document.querySelector('.form-item-payment-information-billing-information-address-0-address-country-code') && 
+        document.querySelector('.form-item-payment-information-billing-information-address-0-address-country-code > label') == null
+    ) {
+        document.querySelector('.form-item-payment-information-billing-information-address-0-address-country-code').insertAdjacentHTML('afterbegin',`<label class="form-required">Country</label>`)
+    }
+});
+
+let setLabelAddressPaypal = setInterval(() => {
+    if (document.querySelector('.form-item-payment-information-billing-information-select-address') && 
+        document.querySelector('.form-item-payment-information-billing-information-select-address > label') == null
+    ) {
+        document.querySelector('.form-item-payment-information-billing-information-select-address').insertAdjacentHTML('afterbegin',`<label class="form-required">Select an address</label>`)
+    }
+});
+
+let setLabelObls = setInterval(() => {
+    if (document.querySelector('.form-item-payment-information-billing-information-address-0-address-administrative-area') && 
+        document.querySelector('.form-item-payment-information-billing-information-address-0-address-administrative-area > label') == null
+    ) {
+        let label = document.querySelector('.form-item-payment-information-billing-information-address-0-address-administrative-area > .select2 label').innerText
+        document.querySelector('.form-item-payment-information-billing-information-address-0-address-administrative-area').insertAdjacentHTML('afterbegin',`<label class="form-required">${label}</label>`)
     }
 });
 
