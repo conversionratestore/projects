@@ -1206,7 +1206,6 @@ let startPdp = setInterval(() => {
       .stability_box .stability_title {
         font-size: 14px;
         line-height: 20px;
-        max-width: unset;
       }
       #add-cart-button-fixed button {
         height: 44px;
@@ -1560,6 +1559,9 @@ let startPdp = setInterval(() => {
         margin-left: 1rem;
       }
       .stability_box .stability_txt{
+        max-width: unset;
+      }
+      .stability_box .stability_title{
         max-width: unset;
       }
     }
