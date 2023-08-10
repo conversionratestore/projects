@@ -739,6 +739,10 @@ let style = `
         .card_footer {
             max-width: 297px;
         }
+        section.bg-white .paymant-info {
+            order: 0;
+            max-width: 260px;
+        }
     }
 </style>`;
 
@@ -778,6 +782,7 @@ let style2 = `
         font-size: 16px;
         line-height: 22px;
         margin-bottom: 8px;
+        padding-right: 25px;
     }
     .booking_order_content h4 span {
         font-size: 14px;
@@ -1016,10 +1021,6 @@ let style2 = `
     }
     .sm-border-bottom:before {
         content: none;
-    }
-    section.bg-white .paymant-info {
-        order: 0;
-        max-width: 260px;
     }
 </style>`;
 
@@ -1791,8 +1792,7 @@ let init = () => {
         !href.includes('https://booking.skillstg.co.uk/payment/')) {
 
         let setOrder = setInterval(() => {
-            if (document.querySelector('main.content')) {
-                clearInterval(setOrder)
+            if (document.querySelector('main.content') && !document.querySelector('.booking_order')) {
 
                 let parent = document.querySelector('main.content');
 
@@ -1806,6 +1806,7 @@ let init = () => {
                     learners = 1;
 
                 if (href.includes('https://booking.skillstg.co.uk/payment-details/')) {
+                    clearInterval(setOrder)
                     let dataBooking = JSON.parse(sessionStorage.getItem('data_booking'));
 
                     title = dataBooking.title;
@@ -1814,10 +1815,22 @@ let init = () => {
                     text = dataBooking.text;
                     total = dataBooking.total;
                     learners = dataBooking.learners;
-                } else {
+                } 
+                if (document.querySelector('main.content > .section.padding-top-sm-0 > .container h2') && 
+                    !href.includes('https://booking.skillstg.co.uk/payment-details/'))  {
+                    clearInterval(setOrder)
+
                     title = document.querySelector('main.content > .section.padding-top-sm-0 > .container h2').innerHTML;
                     pathname = href.includes('/booking/') ? '/booking/' : '/booking-details/';
-                    titleRes = title.split('(').join('<span class="span">(') + ' (' + window.location.href.split(pathname)[1].split('/')[0] + ')</span>';
+
+                    if (title.includes('(')){
+                        titleRes = title.split('(').join('<span class="span">(') + ' (' + window.location.href.split(pathname)[1].split('/')[0] + ')</span>';
+
+                    } else {
+                        titleRes = title + '<span class="span">(' + window.location.href.split(pathname)[1].split('/')[0] + ')</span>';
+                    
+                    }
+                   
                     cost = document.querySelector('main.content > .section.padding-top-sm-0 > .container > div:not(.booking_order) > p').innerHTML;
                     
                     let costspt = cost.split(').')[0]
@@ -1943,7 +1956,6 @@ let updateTimer = (parent) => {
   if (remainingTime <= 0) {
     clearInterval(timerInterval);
     parent.parentElement.remove();
-    console.log("Таймер завершено!");
     return;
   }
   
@@ -1956,21 +1968,20 @@ let updateTimer = (parent) => {
   const formattedTime = `${formattedMinutes}:${formattedSeconds}`;
     if (parent) {
         parent.innerHTML = formattedTime;
-        console.log(`${formattedTime} - set storage formattedTime`)
         sessionStorage.setItem('timer', formattedTime)
     }
-  console.log(formattedTime);
 }
 
-let redirect = setInterval(() => {
-    let newHeref = window.location.href;
-    if (newHeref != href) {
-        href = newHeref;
-        // window.location.reload()
-        console.log('init')
-        init()
-    }
-})
+// let redirect = setInterval(() => {
+//     let newHeref = window.location.href;
+//     if (newHeref != href) {
+//         href = newHeref;
+//         // window.location.reload()
+//         console.log('init')
+//         init()
+//     }
+// })
+
 let optionMut = {
     childList: true,
     subtree: true,
@@ -1978,6 +1989,16 @@ let optionMut = {
 };
 
 let mut = new MutationObserver(function (muts) {
+    let newHeref = window.location.href;
+    if (newHeref != href) {
+        mut.disconnect()
+        href = newHeref;
+        // window.location.reload()
+        console.log('init')
+        init()
+    }
+
+    mut.observe(document, optionMut);
     if (document.querySelectorAll('section.bg-white.learner > div > div > .col-md-12 span')) {
         mut.disconnect()
         document.querySelectorAll('section.bg-white.learner > div > div > .col-md-12 span').forEach(item => {
