@@ -1033,10 +1033,32 @@ let style2 = `
         content: none;
     }
 
-    @media (max-width: 767px) {
-        main > section:nth-child(3) {
-            display: none;
-        }
+    .row.gutters-20.mb-50.mb-lg-30.mb-sm-40 .btn--shadow {
+        position: relative;
+    }
+    .row.gutters-20.mb-50.mb-lg-30.mb-sm-40 .btn--shadow:before, .row.gutters-20.mb-50.mb-lg-30.mb-sm-40 .btn--shadow:after {
+        content: '';
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        border-radius: 50%;
+    }
+    .row.gutters-20.mb-50.mb-lg-30.mb-sm-40 .btn--shadow:before {
+        border: 1px solid #DBE8F4;
+        right: 12px;
+        width: 16px;
+        height: 16px;
+    }
+    .row.gutters-20.mb-50.mb-lg-30.mb-sm-40 .btn--shadow:after  {
+        right: 15px;
+        width: 10px;
+        height: 10px;
+    }
+    .row.gutters-20.mb-50.mb-lg-30.mb-sm-40 .btn--white-active:before {
+        border-color: #58C3D8;
+    }
+    .row.gutters-20.mb-50.mb-lg-30.mb-sm-40 .btn--white-active:after {
+        background-color: #58C3D8;
     }
     @media (min-width: 768px) {
         .paymant-info.mb-30.display-sm-block {
@@ -1119,33 +1141,6 @@ let style2 = `
         }
         main.content > .section.bg-white > .container > h3.mb-30 {
             padding-bottom: 24px!important;
-        }
-        .row.gutters-20.mb-50.mb-lg-30.mb-sm-40 .btn--shadow {
-            position: relative;
-        }
-        .row.gutters-20.mb-50.mb-lg-30.mb-sm-40 .btn--shadow:before, .row.gutters-20.mb-50.mb-lg-30.mb-sm-40 .btn--shadow:after {
-            content: '';
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            border-radius: 50%;
-        }
-        .row.gutters-20.mb-50.mb-lg-30.mb-sm-40 .btn--shadow:before {
-            border: 1px solid #DBE8F4;
-            right: 12px;
-            width: 16px;
-            height: 16px;
-        }
-        .row.gutters-20.mb-50.mb-lg-30.mb-sm-40 .btn--shadow:after  {
-            right: 15px;
-            width: 10px;
-            height: 10px;
-        }
-        .row.gutters-20.mb-50.mb-lg-30.mb-sm-40 .btn--white-active:before {
-            border-color: #58C3D8;
-        }
-        .row.gutters-20.mb-50.mb-lg-30.mb-sm-40 .btn--white-active:after {
-            background-color: #58C3D8;
         }
         .review-item {
             margin-bottom: 0;
