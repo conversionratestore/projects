@@ -52,6 +52,7 @@ let popup = `
     z-index: 3;
     padding: 0;
     border: none;
+    background: transparent;
 }
 .popup_img {
     padding: 16px 0 8px;
