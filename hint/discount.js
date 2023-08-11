@@ -284,6 +284,12 @@ let init = setInterval(() => {
             document.querySelector('.popup').classList.remove('active');
             window.location.href = window.location.href.replace(planCode, planObj[price]['nextGift'])
         })
+
+        const appHeight = () => {
+            document.querySelector('.popup').style.height = window.innerHeight + 'px';
+        }
+        window.addEventListener('resize', appHeight)
+        appHeight()
     }
 })
 
