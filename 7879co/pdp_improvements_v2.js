@@ -718,7 +718,9 @@ let startPdp = setInterval(() => {
       background: #fff;
       max-width: 1920px;
       padding-top: 40px;
-      margin: 0 2.5rem 60px;
+      margin: 0 auto 60px;
+      padding-left: 2.5rem;
+      padding-right: 2.5rem;
     }
     #advantagesBox {
       border: 1px solid #eaeaeb;
@@ -790,8 +792,8 @@ let startPdp = setInterval(() => {
     .comparison_table_bgr {
       background: #fff;
       max-width: 1920px;
-      margin: 0 2.5rem;
-      padding: 0 0 80px;
+      margin: 0 auto;
+      padding: 0 2.5rem 80px;
     }
     #comparisonTable {
       border: 1px solid #eaeaeb;
@@ -1440,6 +1442,8 @@ let startPdp = setInterval(() => {
       .advantages_box_bgr {
         padding-top: 24px;
         margin: 0 1rem 24px;
+        padding-left: 0;
+        padding-right: 0;
       }
       #advantagesBox {
         padding: 20px;
@@ -1601,7 +1605,7 @@ let startPdp = setInterval(() => {
     let stabilityBox = /*html */ `
       <div class="stability_box">
           <h3 class="stability_title">Invest in the stability of platinum and gold</h3>
-          <p class="stability_txt">Our jewellery uses investment grade 24k gold and pure platinum only. This gives it a value that appreciates over time, and can easily be tracked or exchanged for cash using your 7879 portfolio.I have removed the final sentence.</p>
+          <p class="stability_txt">Our jewellery uses investment grade 24k gold and pure platinum only. This gives it a value that may appreciate over time, and can easily be tracked or exchanged for cash using your 7879 portfolio.</p>
       </div>
   `;
     let advantagesBox = /*html */ `
@@ -1617,7 +1621,7 @@ let startPdp = setInterval(() => {
                       <p class="advantages_txt">7879 gives you a portfolio account where you can watch the value of your jewellery pieces appreciate over time.</p>
                   </li>
                   <li>
-                      <h3 class="advantages_title">sell-back act any time</h3>
+                      <h3 class="advantages_title">sell-back at any time</h3>
                       <p class="advantages_txt">When the price is right for you, it’s time to sell that asset. Just like when you first purchased, our buyback price is based on the current market price of the metal plus a small transaction fee.</p>
                   </li>
               </ul>
