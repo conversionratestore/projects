@@ -1204,7 +1204,7 @@ margin: 0 0 12px;
                 document.querySelector(".info_block > h2").after(document.querySelector(".discount_expires_wrap"));
               }
               let clock = setInterval(() => {
-                if (typeof FlipClock === "function" && typeof jQuery === "function" && document.querySelector("#countdown")) {
+                if (typeof FlipClock === "function" && document.querySelector("#countdown")) {
                   clearInterval(clock);
                   let countdown, init_countdown, set_countdown;
                   countdown = init_countdown = function () {
