@@ -4,7 +4,26 @@
 // $4.99 : 1_1_week_2099_499  /  payment $9 : Discount 75%      / planCode 1_1_week_2099_900
 // $6.81 : 1_1_week_2099_681  /  payment $13.21 : Discount 49%  / planCode 1_1_week_2099_1321
 
+//https://purchase.hint.app/payment-2?
+// &email=cofdvnversion@gmail.com
+// &planCode=1_1_week_2099_500
+// &price=500
+// &funnel=compatibility-_choose-plan_
+// &birthDateTime=08.02.2001%2000:00
+// &partnerBirthDateTime=08.06.2005
+// %2000:00
+// &placeId=MTE1NDA0NTEz
+// &partnerPlaceId=MzE4MDczNTUy
+
+// &planCode=1_1_week_2099_500 &price=500
+// &planCode=1_1_week_2099_199 &price=500
+
+
+// &planCode=1_1_week_2099_199 &price=199
+// &planCode=1_1_week_2099_099 &price=199
+
 const planCode = window.location.href.split('planCode=')[1].split('&')[0];
+const price = window.location.href.split('price=')[1].split('&')[0];
 
 let popup = `
 <style>
@@ -221,22 +240,28 @@ let popup = `
     </div>
 </div>`;
 
-const planObj = {
-    '1_1_week_2099_199': false,
-    '1_1_week_2099_099': true,
-    '1_1_week_2099_500': false,
-    '1_1_week_2099_199': true,
-    '1_1_week_2099_900': false,
-    '1_1_week_2099_499': true,
-    '1_1_week_2099_1321': false,
-    '1_1_week_2099_681': true
-}
 
-const planChoice = {
-    '1_1_week_2099_199': '1_1_week_2099_099',
-    '1_1_week_2099_500': '1_1_week_2099_199',
-    '1_1_week_2099_900': '1_1_week_2099_499',
-    '1_1_week_2099_1321': '1_1_week_2099_681'
+const planObj = {
+    '199': {
+        '1_1_week_2099_199': false,
+        '1_1_week_2099_099': true,
+        'nextGift': '1_1_week_2099_099'
+    },
+    '500': {
+        '1_1_week_2099_500': false,
+        '1_1_week_2099_199': true,
+        'nextGift': '1_1_week_2099_199'
+    },
+    '900': {
+        '1_1_week_2099_900': false,
+        '1_1_week_2099_499': true,
+        'nextGift': '1_1_week_2099_499'
+    },
+    '1321': {
+        '1_1_week_2099_1321': false,
+        '1_1_week_2099_681': true,
+        'nextGift': '1_1_week_2099_681'
+    }
 }
 
 console.log(planCode)
@@ -257,7 +282,7 @@ let init = setInterval(() => {
         //click on start trial button
         document.querySelector('.btn-get-trial').addEventListener('click', () => {
             document.querySelector('.popup').classList.remove('active');
-            window.location.href = window.location.href.replace(planCode, planChoice[planCode])
+            window.location.href = window.location.href.replace(planCode, planObj[price]['nextGift'])
         })
     }
 })
@@ -268,7 +293,7 @@ let findClose = setInterval(() => {
     ) {
         
         document.querySelector('.styles_buttonClose__ZGUNz').addEventListener('click', (e) => {
-            if (clickClose == false && planObj[planCode] == false) {
+            if (clickClose == false && planObj[price][planCode] == false) {
                 clickClose = true;
                 document.querySelector('.popup').classList.add('active')
             }
@@ -277,7 +302,7 @@ let findClose = setInterval(() => {
 });
 
 let checkPlan = setInterval(() => {
-    if (planObj[planCode] == true && document.querySelector('.styles_todayCount__P6R9F span+span')) {
+    if (planObj[price][planCode] == true && document.querySelector('.styles_todayCount__P6R9F span+span')) {
         clearInterval(checkPlan);
 
         let price = window.location.href.split('price=')[1].split('&')[0]
@@ -304,7 +329,7 @@ function checkErrors(val) {
         if (val.includes(item) && 
             !document.querySelector('.popup.active') && 
             document.querySelector('.popup') && 
-            planObj[planCode] == false
+            planObj[price][planCode] == false
         ) {
             document.querySelector('.popup').classList.add('active')
         }
