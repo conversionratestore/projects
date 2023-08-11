@@ -4,10 +4,10 @@ let startFunk = setInterval(() => {
     clearInterval(startFunk);
 
     //cdn jquery
-    let script = document.createElement("script");
-    script.src = "https://code.jquery.com/jquery-3.4.1.min.js";
-    script.async = false;
-    document.head.appendChild(script);
+    // let script = document.createElement("script");
+    // script.src = "https://code.jquery.com/jquery-3.4.1.min.js";
+    // script.async = false;
+    // document.head.appendChild(script);
     //cdn clipboard
     let scriptCustomSlider = document.createElement("script");
     scriptCustomSlider.src = "https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.10/clipboard.min.js";
@@ -1208,7 +1208,7 @@ margin: 0 0 12px;
                   clearInterval(clock);
                   let countdown, init_countdown, set_countdown;
                   countdown = init_countdown = function () {
-                    countdown = new FlipClock($(".countdown"), {
+                    countdown = new FlipClock(document.querySelector(".countdown"), {
                       clockFace: "MinuteCounter",
                       language: "en",
                       autoStart: false,
