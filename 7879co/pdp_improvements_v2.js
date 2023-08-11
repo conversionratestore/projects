@@ -261,7 +261,15 @@ let startPdp = setInterval(() => {
 
     let stylePdp = /*html */ `
   <style>
-
+    .bgr_load{
+      position: fixed;
+      width: 100%;
+      height: 100vh;
+      background: rgba(0, 0, 0, 0.3);
+      z-index: 111111111;
+      top: 0;
+      left: 0;
+    }
     .overlay_popup {
       position: fixed !important;
       overflow: hidden;
@@ -1757,6 +1765,7 @@ let startPdp = setInterval(() => {
 
     document.head.insertAdjacentHTML("beforeend", stylePdp);
     document.body.insertAdjacentHTML("afterbegin", popUp);
+
     let isClick = false;
     renderHtml();
     changePopup();
@@ -2396,7 +2405,11 @@ let startPdp = setInterval(() => {
           onClickBtnLifetime();
         }
         if (!window.location.pathname.match(".*/shop/[^/]+/[^/]+/[^/]+$")) {
-          window.location.reload();
+          if (!document.querySelector(".bgr_load")) {
+            window.location.reload();
+            document.body.style.overflow = "hidden";
+            document.body.insertAdjacentHTML("afterbegin", `<div class="bgr_load"></div>`);
+          }
         }
         observer.observe(document, {
           childList: true,
