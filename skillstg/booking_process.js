@@ -1690,14 +1690,15 @@ let isVisibleAccreditations = false;
 let isVisibleBookOnsite = false; 
 
 let isVisible = () => {
+    let count = href.includes('/booking/') ? 2 : ''
     setTimeout(() => {
         if (isScrolledIntoView('.footer__accreditations') == true && isVisibleAccreditations == false) {
             isVisibleAccreditations = true;
-            pushDataLayer('exp_book_imp_our_accreditations_vis', 'Our accreditations visibility', 'Element visibility', 'Our accreditations');
+            pushDataLayer(`exp_book_imp_our_accreditations_vis${count}`, 'Our accreditations visibility', 'Element visibility', 'Our accreditations');
         }
         if (isScrolledIntoView('.review-block') == true && isVisibleReview == false) {
             isVisibleReview = true;
-            pushDataLayer('exp_book_imp_google_trustpilot_vis', 'Google & Trustpilot visibiity', 'Element visibility', 'Google & Trustpilot section');
+            pushDataLayer(`exp_book_imp_google_trustpilot_vis${count}`, 'Google & Trustpilot visibiity', 'Element visibility', 'Google & Trustpilot section');
         }  if (isScrolledIntoView('.book_onsite[style="display: block;"]') == true && isVisibleBookOnsite == false) {
             isVisibleBookOnsite = true;
             pushDataLayer('exp_book_imp_course_onsite_vis', 'This course is also available onsite', 'Element visibility', 'Select location and date section');
@@ -2012,6 +2013,12 @@ let init = () => {
                     index == 1 ? item.querySelector('span:not(.btn-icon)').innerHTML = 'I’m booking for one or more colleagues' : ''
                     item.addEventListener('click', (e) => {
                         document.querySelector('.section.bg-white > .container > h3.mb-10v').innerHTML = index == 1 ? 'Billing Contact Details' : 'Your Details';
+
+                        if (index == 1) {
+                            pushDataLayer('exp_book_imp_booking_for_myself', 'I`m booking for myself', 'Radiobitton', 'Who are you booking for?');                        } else {
+                        } else {
+                            pushDataLayer('exp_book_imp_booking_for_colleges', 'I`m booking for colleges', 'Radiobitton', 'Who are you booking for?');
+                        }
                     })
                 })
 
@@ -2195,7 +2202,8 @@ let init = () => {
                 ${sessionStorage.getItem('timer') ? sessionStorage.getItem('timer').replace('.',':') : '15:00'}
                 </span></p>`)
              
-       
+                pushDataLayer('exp_book_imp_reserverd_timer_visibility', 'You seat has been reserved for', 'Element visibility', 'Header');
+
                 const timerInterval = setInterval( () => {
                     if (document.querySelector('.topbar_timer span')) {
                         updateTimer(document.querySelector('.topbar_timer span'))
