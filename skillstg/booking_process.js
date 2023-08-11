@@ -1223,6 +1223,19 @@ let style2 = `
     }
 </style>`;
 
+const pushDataLayer = (name, desk, type, loc) => {
+    console.log(name + " / " + desk + " / " + type + " / " +  loc)
+
+    window.dataLayer = window.dataLayer || [];
+    dataLayer.push({
+        'event': 'event-to-ga4',
+        'event_name': name,
+        'event_desc': desk,
+        'event_type': type,
+        'event_loc': loc
+    });
+}
+
 const formatedDate = (time) => {
     const timestamp = time * 1000; // Переводим секунды в миллисекунды
     const date = new Date(timestamp);
@@ -1248,11 +1261,15 @@ let choiceDate = (event) => {
     target.classList.add('selected');
 
     target.closest('.select').classList.remove('active');
+
+    pushDataLayer('exp_book_imp_course_card_date_selected', 'Selected date', 'Dropdown', `Course card — ${target.closest('.card_body').querySelector('.card_title').innerText}`);
 }
 
 const toggleActive = (event) => {
     let target = event.target;
     target.parentElement.classList.toggle('active')
+
+    pushDataLayer('exp_book_imp_course_card_date_select', 'Select date', 'Dropdown', `Course card — ${target.closest('.card_body').querySelector('.card_title').innerText}`);
 }
 
 const card = (data, closest, index, currency) => {
@@ -1309,8 +1326,8 @@ const card = (data, closest, index, currency) => {
                 <span class="pr">${currency}${price}</span>
                 <span>(inc VAT)</span> 
             </p>
-            <a href="${link}" class="btn btn--info btn_book" onclick="sessionStorage.setItem('date_booking', event.target.closest('.card').querySelector('.select_current').innerHTML)
-            ">Book now</a>
+            <a href="${link}" class="btn btn--info btn_book" 
+                onclick="sessionStorage.setItem('date_booking', event.target.closest('.card').querySelector('.select_current').innerHTML); pushDataLayer('exp_book_imp_course_card_book_now', 'Book now', 'Button', 'Course card — ${title}');">Book now</a>
         </div>
     </div>`;
 
@@ -1468,8 +1485,13 @@ const nextPage = (event, page, pages) => {
     let target = event.target;
 
     if (target.classList.contains('pagination_customer_prev')) {
+        pushDataLayer('exp_book_imp_pagination', 'Pagination — Prev', 'Button', 'Course list');
+        localStorage.setItem('paginatin_btn', '')
         target.nextElementSibling.querySelector('.selected').previousElementSibling.click()
+        
     } else if (target.classList.contains('pagination_customer_next')) {
+        pushDataLayer('exp_book_imp_pagination', 'Pagination — Next', 'Button', 'Course list');
+        localStorage.setItem('paginatin_btn', '')
         target.previousElementSibling.querySelector('.selected').nextElementSibling.click()
     } else {
 
@@ -1514,6 +1536,11 @@ const nextPage = (event, page, pages) => {
                 item.style = ''
             }
         })
+        if (localStorage.getItem('paginatin_btn') == null) {
+            pushDataLayer('exp_book_imp_pagination', `Pagination — ${page + 1}`, 'Button', 'Course list');
+        }
+        localStorage.removeItem('paginatin_btn')
+      
     }
 
     scrollTo(document.querySelector('.filters_result'))
@@ -1568,7 +1595,7 @@ let checkLatLng = (val) => {
 
                             if (i == 0) {
                                 document.querySelector('.filters_result_container').insertAdjacentHTML('beforeend', `
-                                <p class="message_block">If suitable dates are not available please contact our customer service team on <a href="tel:08081642780">0808 164 2780.</a> For courses that are sold out, we can add you to our waiting list for any cancellations.</p>
+                                <p class="message_block">If suitable dates are not available please contact our customer service team on <a href="tel:08081642780" onclick="pushDataLayer('exp_book_imp_cusomer_service_phone', 'Customer service phon', 'Link', 'Course list');">0808 164 2780.</a> For courses that are sold out, we can add you to our waiting list for any cancellations.</p>
                                 ${list.length > 1 ? '<h5>Check other locations</h5>' : ''}`)
                             }
                         }
@@ -1581,6 +1608,7 @@ let checkLatLng = (val) => {
                             document.querySelector('.pagination_customer').classList.remove('d-flex')
                         }
                         document.querySelector('.pagination_customer ul').innerHTML = pagination;
+
                     }
                    
                 }
@@ -1645,8 +1673,52 @@ let ratingsHTML = `
 let backForPayment = false;
 let media = window.matchMedia("(min-width: 768px)").matches;
 
+//comes into view
+let isScrolledIntoView = (el) => {
+    if(document.querySelector(el) == null) return false;
+    let rect = document.querySelector(el).getBoundingClientRect(),
+        elemTop = rect.top,
+        elemBottom = rect.bottom;
+
+    let isVisible = (elemTop >= 0) && (elemBottom <= window.innerHeight);
+
+    return isVisible;
+}
+
+let isVisibleReview = false;
+let isVisibleAccreditations = false; 
+let isVisibleBookOnsite = false; 
+
+let isVisible = () => {
+    setTimeout(() => {
+        if (isScrolledIntoView('.footer__accreditations') == true && isVisibleAccreditations == false) {
+            isVisibleAccreditations = true;
+            pushDataLayer('exp_book_imp_our_accreditations_vis', 'Our accreditations visibility', 'Element visibility', 'Our accreditations');
+        }
+        if (isScrolledIntoView('.review-block') == true && isVisibleReview == false) {
+            isVisibleReview = true;
+            pushDataLayer('exp_book_imp_google_trustpilot_vis', 'Google & Trustpilot visibiity', 'Element visibility', 'Google & Trustpilot section');
+        }  if (isScrolledIntoView('.book_onsite[style="display: block;"]') == true && isVisibleBookOnsite == false) {
+            isVisibleBookOnsite = true;
+            pushDataLayer('exp_book_imp_course_onsite_vis', 'This course is also available onsite', 'Element visibility', 'Select location and date section');
+        }
+    }, 3000)
+}
+
+isVisible()
+window.addEventListener('scroll', () => {
+    if (
+        isScrolledIntoView('.footer__accreditations') == true && isVisibleReview == false ||
+        isScrolledIntoView('.review-block') == true && isVisibleAccreditations == false ||
+        isScrolledIntoView('.book_onsite[style="display: block;"]') == true && isVisibleBookOnsite == false
+    ) {
+        isVisible()
+    }
+})
+
 let init = () => {
-        
+  
+
     let changePositionAccredination = setInterval(() => {
         if (document.querySelector('.footer__top') && (document.querySelector('.radius-10 .paymant-info') || document.querySelector('.paymant-info')) && !document.querySelector('.footer__accreditations')) {
             clearInterval(changePositionAccredination)
@@ -1740,16 +1812,20 @@ let init = () => {
     
                         if (title.innerText.toLowerCase().includes('emergency first aid at work') || 
                             title.innerText.toLowerCase().includes('first aid at work - 18 hours') || 
-                            title.innerText.toLowerCase().includes('blended paediatric first aid course')) {
-    
-                                document.querySelector('.book_onsite').style.display = window.matchMedia("(min-width: 768px)").matches ? 'flex' : 'block';
-                                if (!document.querySelector('.modal_form')) {
-                                    formCourse(title.innerHTML);
-                                }
-    
-                                document.querySelector('.book_onsite .btn').addEventListener('click', () => {
-                                    document.querySelector('.modal_form').classList.add('active')
-                                })
+                            title.innerText.toLowerCase().includes('blended paediatric first aid course')
+                        ) {
+
+                            document.querySelector('.book_onsite').style.display = window.matchMedia("(min-width: 768px)").matches ? 'flex' : 'block';
+                            if (!document.querySelector('.modal_form')) {
+                                formCourse(title.innerHTML);
+                            }
+
+                            isVisible()
+                            document.querySelector('.book_onsite .btn').addEventListener('click', (e) => {
+                                e.stopImmediatePropagation()
+                                document.querySelector('.modal_form').classList.add('active')
+                                pushDataLayer('exp_book_imp_book_onsite', 'Book onsite', 'Button', 'Select location and date section');
+                            })
                         }
                     }
                 }   
@@ -1797,7 +1873,7 @@ let init = () => {
                             Prev
                         </button>
                         <ul class="d-flex"></ul>
-                        <button type="button" class="pagination_customer_next pagination_customer_action d-flex align-items-center"  onclick="nextPage(event, '', '')">
+                        <button type="button" class="pagination_customer_next pagination_customer_action d-flex align-items-center" onclick="nextPage(event, '', '')">
                             Next
                             <svg xmlns="http://www.w3.org/2000/svg" width="19" height="16" viewBox="0 0 19 16" fill="none">
                                 <path d="M18.7071 8.70711C19.0976 8.31658 19.0976 7.68342 18.7071 7.29289L12.3431 0.928932C11.9526 0.538407 11.3195 0.538407 10.9289 0.928932C10.5384 1.31946 10.5384 1.95262 10.9289 2.34315L16.5858 8L10.9289 13.6569C10.5384 14.0474 10.5384 14.6805 10.9289 15.0711C11.3195 15.4616 11.9526 15.4616 12.3431 15.0711L18.7071 8.70711ZM-8.74228e-08 9L18 9L18 7L8.74228e-08 7L-8.74228e-08 9Z" fill="#49718C"/>
@@ -1814,6 +1890,11 @@ let init = () => {
                 }
 
                 document.querySelectorAll('.filters-block__item').forEach((item, index) => {
+                    if (index == 1) {
+                        item.querySelector('input').addEventListener('click', () => {
+                            pushDataLayer('exp_book_imp_date_selection', 'Date selection', 'Input', 'Select location and date section');
+                        })
+                    }
                     if (index == 2) {
                         item.querySelector('.form-group-title').innerHTML = 'Your Location';
                         item.querySelector('input').placeholder = 'Type your location';
@@ -1821,11 +1902,17 @@ let init = () => {
                         <div class="d-flex flex-wrap tabs">
                             <p>London</p>  <p>Edinburgh</p>  <p>Birmingham</p>  <p>Glasgow</p>
                         </div>`)
+
+                        item.querySelector('input').addEventListener('click', () => {
+                            pushDataLayer('exp_book_imp_type_location', 'Type your location', 'Input', 'Select location and date section');
+                        })
                     }
                     if (index == 3) {
                         item.querySelector('button').addEventListener('click', (e) => {
                             let input = document.querySelectorAll('.filters-block__item')[2].querySelector('input');
-    
+
+                            pushDataLayer('exp_book_imp_search', 'Search', 'Button', 'Select location and date');
+
                             if (input.value != '') {
     
                                 input.style = '';
@@ -1854,13 +1941,16 @@ let init = () => {
                     document.querySelector('.radius-10').classList.remove('show');
                     document.querySelector('.book_onsite').style = '';
                     document.querySelector('.filters_result_container').innerHTML = '';
+
+                    pushDataLayer('exp_book_imp_date_selection2', 'Date selection', 'Input', 'Select location and date section');
                    
                 })
     
                 document.querySelectorAll('.tabs p').forEach(tab => {
                     tab.addEventListener('click', (e) => {
-                        console.log(tab.innerText)
-    
+
+                        pushDataLayer('exp_book_imp_quick_location_select', `Quick location selection — ${tab.innerText}`, 'Link', 'Select location and date section');
+
                         const inputElement = document.querySelectorAll('.filters-block__item input')[2];
                         inputElement.value = tab.innerText;
                         inputElement.dispatchEvent(new Event('input', { bubbles: true }));
@@ -2341,4 +2431,13 @@ let mut = new MutationObserver(function (muts) {
     }
     mut.observe(document, optionMut);
 })  
-mut.observe(document, optionMut);                      
+mut.observe(document, optionMut);  
+
+
+//clarify
+let isClarify = setInterval(() => {
+    if(typeof clarity == 'function') {
+        clearInterval(isClarify)
+        clarity("set", "exp_booking_process_improvements", "variant_1");
+    }
+}, 100)
