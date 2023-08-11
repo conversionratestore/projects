@@ -116,7 +116,7 @@ let style = `
         margin-right: 5px;
         padding: 8px 0;
     }
-    .btn--info {
+    section .btn--info {
         border-radius: 4px;
         background: #09983F;
         color: #FFF;
@@ -603,12 +603,16 @@ let style = `
     section.bg-white .footer__top {
         order: 4;
     }
-    @media (max-width: 767px) {
-        main > section:nth-child(3) {
-            display: none;
-        }
+    main > section:nth-child(3) {
+        margin: 0!important;
+        background: #fff;
+        padding-bottom: 30px!important;
     }
     @media (min-width: 768px) {
+        .firs-screen-home__content h2 {
+            font-size: 24px;
+            line-height: 32px;
+        }
         section .container {
             max-width: 930px;
         }
@@ -1027,6 +1031,12 @@ let style2 = `
     }
     .sm-border-bottom:before {
         content: none;
+    }
+
+    @media (max-width: 767px) {
+        main > section:nth-child(3) {
+            display: none;
+        }
     }
     @media (min-width: 768px) {
         .paymant-info.mb-30.display-sm-block {
@@ -1703,9 +1713,10 @@ let init = () => {
 
         //hide modal location
         let hidePopupLocation = setInterval(() => {
-            if (document.querySelector('.your-location-modal.modal--show input') && document.querySelector('.your-location-modal.modal--show .btn--info')) {
+            if (document.querySelector('.your-location-modal.modal--show input') && 
+                document.querySelector('.your-location-modal.modal--show .btn--info')) {
                 clearInterval(hidePopupLocation)
-    
+
                 document.querySelector('.your-location-modal.modal--show').classList.remove('modal--show')
                 document.body.classList.remove('ovh')
             }
@@ -1716,7 +1727,7 @@ let init = () => {
             let interval = setInterval(() => {
                 if (document.querySelector('.firs-screen-home__content h1')) {
                     clearInterval(interval)
-        
+
                     let title = document.querySelector('.firs-screen-home__content h1');
                     console.log(title)
                     let spt = title.innerHTML.split('(').join('<span>').split(')').join('</span>');
