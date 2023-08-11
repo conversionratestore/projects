@@ -26,7 +26,7 @@ let startFunk = setInterval(() => {
     function pushDataLayer(nameDataLayer, deskDataLayer, typeDataLayer, actionDataLayer, labelDataLayer) {
       window.dataLayer = window.dataLayer || [];
       if (labelDataLayer) {
-        alert(nameDataLayer + " " + deskDataLayer + typeDataLayer + actionDataLayer + " : " + labelDataLayer);
+        // alert(nameDataLayer + " " + deskDataLayer + typeDataLayer + actionDataLayer + " : " + labelDataLayer);
         console.log(nameDataLayer + " " + deskDataLayer + typeDataLayer + actionDataLayer + " : " + labelDataLayer);
         dataLayer.push({
           event: "event-to-ga4",
@@ -37,7 +37,7 @@ let startFunk = setInterval(() => {
           eventLabel: `${labelDataLayer}`,
         });
       } else {
-        alert(nameDataLayer + " " + deskDataLayer + " " + typeDataLayer + " " + actionDataLayer);
+        // alert(nameDataLayer + " " + deskDataLayer + " " + typeDataLayer + " " + actionDataLayer);
         console.log(nameDataLayer + " " + deskDataLayer + " " + typeDataLayer + " " + actionDataLayer);
         dataLayer.push({
           event: "event-to-ga4",
