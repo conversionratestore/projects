@@ -207,7 +207,7 @@ let newContent = setInterval(() => {
                 padding: 16px 20px 20px;
             }
             #PathToSuccess .container_var{
-                padding-bottom: 130px;
+                padding-bottom: 32px;
             }
             #container-60629{
               padding-bottom: 40px !important;
