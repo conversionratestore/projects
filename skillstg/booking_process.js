@@ -1035,6 +1035,12 @@ let style2 = `
 
     .row.gutters-20.mb-50.mb-lg-30.mb-sm-40 .btn--shadow {
         position: relative;
+        font-size: 14px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: 24px; 
+        padding: 12px;
+        color: #0D3B5B;
     }
     .row.gutters-20.mb-50.mb-lg-30.mb-sm-40 .btn--shadow:before, .row.gutters-20.mb-50.mb-lg-30.mb-sm-40 .btn--shadow:after {
         content: '';
@@ -1913,6 +1919,7 @@ let init = () => {
                 }
 
                 document.querySelectorAll('.btn--shadow').forEach((item, index) => {
+                    index == 1 ? item.querySelector('span:not(.btn-icon)').innerHTML = 'I’m booking for one or more colleagues' : ''
                     item.addEventListener('click', (e) => {
                         document.querySelector('.section.bg-white > .container > h3.mb-10v').innerHTML = index == 1 ? 'Billing Contact Details' : 'Your Details';
                     })
