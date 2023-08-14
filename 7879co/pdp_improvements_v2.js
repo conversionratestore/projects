@@ -2386,31 +2386,35 @@ let startPdp = setInterval(() => {
         observer.disconnect();
         // console.log(`observer`);
 
-        renderHtml();
-        changePopup();
-        changeMiniCard();
-        renderRecommendBlock();
+        if (window.location.pathname.match(".*/shop/[^/]+/[^/]+/[^/]+$")) {
+          renderHtml();
+          changePopup();
+          changeMiniCard();
+          renderRecommendBlock();
 
-        if (window.innerWidth > 768) {
-          if (!document.querySelector(".layout-container.bg-platinum-1 .mt-2.mb-4.flex.items-end.justify-between.gap-4 + h1")) {
-            changePlaceExcellent();
+          if (window.innerWidth > 768) {
+            if (!document.querySelector(".layout-container.bg-platinum-1 .mt-2.mb-4.flex.items-end.justify-between.gap-4 + h1")) {
+              changePlaceExcellent();
+            }
           }
+
+          if (!document.querySelector("#advantagesBox")) {
+            visibElem();
+          }
+
+          if (!isClick) {
+            onClickBtnLifetime();
+          }
+          // if (!window.location.pathname.match(".*/shop/[^/]+/[^/]+/[^/]+$")) {
+          //   // if (!document.querySelector(".bgr_load")) {
+          //   //   window.location.reload();
+          //   //   document.body.style.overflow = "hidden";
+          //   //   document.body.insertAdjacentHTML("afterbegin", `<div class="bgr_load"></div>`);
+          //   // }
+
+          // }
         }
 
-        if (!document.querySelector("#advantagesBox")) {
-          visibElem();
-        }
-
-        if (!isClick) {
-          onClickBtnLifetime();
-        }
-        // if (!window.location.pathname.match(".*/shop/[^/]+/[^/]+/[^/]+$")) {
-        //   if (!document.querySelector(".bgr_load")) {
-        //     window.location.reload();
-        //     document.body.style.overflow = "hidden";
-        //     document.body.insertAdjacentHTML("afterbegin", `<div class="bgr_load"></div>`);
-        //   }
-        // }
         observer.observe(document, {
           childList: true,
           subtree: true,
