@@ -2069,6 +2069,10 @@ let startPdp = setInterval(() => {
           document.querySelector(".sticky_wrap .metal_txt").textContent = document.querySelectorAll('.my-3[role="radiogroup"] .gap-6 span.bg-black')[0]?.closest(".border-black").nextElementSibling?.textContent;
           document.querySelector(".sticky_wrap .size_txt").textContent = document.querySelectorAll(".mb-3.w-full button .text-p.truncate")[0]?.textContent.length == null ? document.querySelectorAll(".mb-3.w-full button .text-p.truncate")[0]?.textContent : `| ${document.querySelectorAll(".mb-3.w-full button .text-p.truncate")[0]?.textContent}`;
           document.querySelector(".sticky_wrap .our_price").textContent = document.querySelector(".my-7.flex.items-center.justify-between h3.text-h3.font-semibold")?.textContent.split("*")[0];
+
+          document.querySelector(".sticky_information")?.addEventListener("click", () => {
+            document.querySelector('.my-3[role="radiogroup"]')?.scrollIntoView({ block: "start", behavior: "smooth" });
+          });
         }
       }
     }
