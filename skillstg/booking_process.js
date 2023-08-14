@@ -197,6 +197,7 @@ let style = `
         opacity: 0;
         pointer-events: none;
         z-index: 9999;
+        overflow-y: auto;
     }
     .modal_form.active {
         opacity: 1;
@@ -1402,6 +1403,7 @@ const formCourse = (title) => {
                 item.classList.remove('active');
                 if (sessionStorage.getItem('thankyou') != null) {
                     sessionStorage.removeItem('thankyou')
+                    document.body.classList.remove('ovh')
                 }
             })
         }
@@ -1824,6 +1826,7 @@ let init = () => {
                             document.querySelector('.book_onsite .btn').addEventListener('click', (e) => {
                                 e.stopImmediatePropagation()
                                 document.querySelector('.modal_form[data-index="0"]').classList.add('active')
+                                document.body.classList.add('ovh')
                                 pushDataLayer('exp_book_imp_book_onsite', 'Book onsite', 'Button', 'Select location and date section');
                             })
                         }
@@ -1967,6 +1970,8 @@ let init = () => {
             if (sessionStorage.getItem('thankyou') != null && !document.querySelector('.modal_form[data-index="0"]')) {
                 clearInterval(findThankyou)
 
+                document.body.classList.add('ovh')
+
                 let title = sessionStorage.getItem('thankyou');
                 console.log(title)
 
@@ -2001,6 +2006,7 @@ let init = () => {
                     if (e.target.classList.contains('modal_form_close') || e.target.classList.contains('modal_form') || e.target.closest('.modal_form_close') || e.target.classList.contains('btn-thankyou')) {
                         document.querySelectorAll('.modal_form').forEach(item => {
                             item.classList.remove('active');
+                            document.body.classList.remove('ovh')
                             sessionStorage.removeItem('thankyou')
                         })
                     }
