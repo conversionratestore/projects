@@ -1601,12 +1601,13 @@ let checkLatLng = (val) => {
                         }
 
                         let pagination = list.length > 5 ? addPagination(list.length) : '';
-                        
+                    
                         if (list.length > 5 ) {
                             document.querySelector('.pagination_customer').classList.add('d-flex')
                         } else {
                             document.querySelector('.pagination_customer').classList.remove('d-flex')
                         }
+                      
                         document.querySelector('.pagination_customer ul').innerHTML = pagination;
 
                     }
@@ -1943,6 +1944,9 @@ let init = () => {
                     document.querySelector('.book_onsite').style = '';
                     document.querySelector('.filters_result_container').innerHTML = '';
 
+                    if ( document.querySelector('.pagination_customer')) {
+                        document.querySelector('.pagination_customer').classList.remove('d-flex')
+                    }
                     pushDataLayer('exp_book_imp_date_selection2', 'Date selection', 'Input', 'Select location and date section');
                    
                 })
