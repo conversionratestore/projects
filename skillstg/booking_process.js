@@ -196,6 +196,7 @@ let style = `
         padding: 10px;
         opacity: 0;
         pointer-events: none;
+        z-index: 9999;
     }
     .modal_form.active {
         opacity: 1;
@@ -306,9 +307,6 @@ let style = `
         font-size: 16px;
         font-weight: 600;
         text-transform: uppercase;
-    }
-    .modal_form_thank {
-        display: none;
     }
     .modal_form_thank svg {
         margin: 8px auto 12px;
@@ -1335,7 +1333,7 @@ const card = (data, closest, index, currency) => {
 
 const formCourse = (title) => {
     document.body.insertAdjacentHTML('beforeend',`
-    <div class="modal_form">
+    <div class="modal_form" data-index="0">
         <div class="modal_form_container">
             <div class="modal_form_head">
                 <h2>${title}</h2>
@@ -1373,28 +1371,16 @@ const formCourse = (title) => {
                 <input class="btn" name="submit" type="submit" value="Book" style="display: none;" />
                 <input class="btn btn-book"  type="button" value="Book" />
             </form>
-            <div class="modal_form_thank">
-                <svg xmlns="http://www.w3.org/2000/svg" width="51" height="50" viewBox="0 0 51 50" fill="none">
-                    <path d="M25.5 39.1703H8.64062C6.65 39.1703 5.03125 37.5516 5.03125 35.5609V12.5312C5.03125 10.5406 6.65 8.92188 8.64062 8.92188H12.0344V9.77188C12.0344 10.5484 12.6641 11.1781 13.4406 11.1781C14.2172 11.1781 14.8469 10.5484 14.8469 9.77188V8.92188H31.6656V9.77188C31.6656 10.5484 32.2953 11.1781 33.0719 11.1781C33.8484 11.1781 34.4781 10.5484 34.4781 9.77188V8.92188H37.8594C39.8484 8.92188 41.4688 10.5406 41.4688 12.5312V22.5781C41.4688 23.3547 42.0984 23.9844 42.875 23.9844C43.6516 23.9844 44.2812 23.3547 44.2812 22.5781V12.5312C44.2812 8.99063 41.4 6.10938 37.8594 6.10938H34.4781V5.39063C34.4781 4.61406 33.8484 3.98438 33.0719 3.98438C32.2953 3.98438 31.6656 4.61406 31.6656 5.39063V6.10938H14.8469V5.39063C14.8469 4.61406 14.2172 3.98438 13.4406 3.98438C12.6641 3.98438 12.0344 4.61406 12.0344 5.39063V6.10938H8.64062C5.1 6.10938 2.21875 8.99063 2.21875 12.5312V35.5625C2.21875 39.1047 5.1 41.9844 8.64062 41.9844H25.5C26.2766 41.9844 26.9062 41.3547 26.9062 40.5781C26.9062 39.8016 26.2766 39.1703 25.5 39.1703Z" fill="#09983F"/>
-                    <path d="M13.1469 19.1313C12.25 19.1313 11.5234 19.8579 11.5234 20.7548C11.5234 21.6517 12.25 22.3782 13.1469 22.3782C14.0438 22.3782 14.7703 21.6517 14.7703 20.7548C14.7703 19.8579 14.0438 19.1313 13.1469 19.1313Z" fill="#09983F"/>
-                    <path d="M23.2548 19.1313C22.3579 19.1313 21.6313 19.8579 21.6313 20.7548C21.6313 21.6517 22.3579 22.3782 23.2548 22.3782C24.1517 22.3782 24.8782 21.6517 24.8782 20.7548C24.8782 19.8579 24.1501 19.1313 23.2548 19.1313Z" fill="#09983F"/>
-                    <path d="M31.7373 20.7548C31.7373 21.6517 32.4639 22.3782 33.3607 22.3782C34.2576 22.3782 34.9842 21.6517 34.9842 20.7548C34.9842 19.8579 34.2576 19.1313 33.3607 19.1313C32.4639 19.1313 31.7373 19.8579 31.7373 20.7548Z" fill="#09983F"/>
-                    <path d="M13.1469 27.9766C12.25 27.9766 11.5234 28.7031 11.5234 29.6C11.5234 30.4969 12.25 31.2234 13.1469 31.2234C14.0438 31.2234 14.7703 30.4969 14.7703 29.6C14.7703 28.7031 14.0438 27.9766 13.1469 27.9766Z" fill="#09983F"/>
-                    <path d="M23.2548 27.9766C22.3579 27.9766 21.6313 28.7031 21.6313 29.6C21.6313 30.4969 22.3579 31.2234 23.2548 31.2234C24.1517 31.2234 24.8782 30.4969 24.8782 29.6C24.8782 28.7031 24.1501 27.9766 23.2548 27.9766Z" fill="#09983F"/>
-                    <path d="M38.7924 26.0391C33.2846 26.0391 28.8018 30.5203 28.8018 36.0281C28.8018 41.5344 33.283 46.0172 38.7924 46.0172C44.3018 46.0172 48.783 41.5359 48.783 36.0281C48.7814 30.5187 44.3002 26.0391 38.7924 26.0391ZM38.7924 43.2016C34.8361 43.2016 31.6158 39.9828 31.6158 36.0266C31.6158 32.0703 34.8361 28.85 38.7924 28.85C42.7486 28.85 45.9689 32.0703 45.9689 36.0266C45.9689 39.9828 42.7486 43.2016 38.7924 43.2016Z" fill="#09983F"/>
-                    <path d="M40.8296 33.4703L37.7483 35.9531L36.9811 34.9734C36.4999 34.3625 35.6202 34.2562 35.0061 34.7359C34.3952 35.2156 34.2889 36.0984 34.7686 36.7109L36.4155 38.8109C36.6467 39.1062 36.9874 39.2984 37.3608 39.3406C37.4139 39.3468 37.4671 39.35 37.5217 39.35C37.8405 39.35 38.153 39.2406 38.403 39.039L42.5936 35.664C43.1999 35.175 43.2936 34.2906 42.8077 33.6859C42.3202 33.0812 41.4342 32.9812 40.8296 33.4703Z" fill="#09983F"/>
-                </svg>
-                <p>Thank you for sending us your details. A member of our team will be in touch shortly.</p>
-                <input class="btn" type="button" value="OK" />
-            </div>
         </div>
     </div>`)
 
-    const form = document.querySelector('.modal_form form'); 
+    const form = document.querySelector('.modal_form[data-index="0"] form'); 
     
     document.addEventListener('click', (e) => {
         if (e.target.classList.contains('modal_form_close') || e.target.classList.contains('modal_form') || e.target.closest('.modal_form_close')) {
-            document.querySelector('.modal_form').classList.remove('active');
+            document.querySelectorAll('.modal_form').forEach(item => {
+                item.classList.remove('active');
+            })
         }
     })
     
@@ -1407,9 +1393,12 @@ const formCourse = (title) => {
         })
 
         if (!form.querySelector('.error')) {
+            sessionStorage.setItem('thankyou', title)
+            console.log(sessionStorage.getItem('thankyou'))
             document.querySelector('.btn[name="submit"]').click()
         }
     })
+
     // form.addEventListener('submit', function(event) {
     //     event.preventDefault(); 
 
@@ -1447,7 +1436,52 @@ const formCourse = (title) => {
 
     // });
 };
- 
+
+let findThankyou = setInterval(() => {
+    if (sessionStorage.getItem('thankyou') != null && !document.querySelector('.modal_form.active[data-index="0"]')) {
+        clearInterval(findThankyou)
+
+        let title = sessionStorage.getItem('thankyou');
+        console.log(title)
+
+        document.body.insertAdjacentHTML('beforeend',`
+        <div class="modal_form active" data-index="1">
+            <div class="modal_form_container">
+                <div class="modal_form_head">
+                    <h2>${title}</h2>
+                    <svg class="modal_form_close" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14" fill="none">
+                        <path d="M1.32713 13.8318C0.983892 13.8517 0.646328 13.7376 0.385622 13.5135C-0.128541 12.9963 -0.128541 12.1609 0.385622 11.6437L11.6441 0.385178C12.1789 -0.115229 13.018 -0.0874119 13.5184 0.447363C13.9709 0.930957 13.9973 1.67425 13.5802 2.18868L2.25537 13.5135C1.99803 13.7344 1.66588 13.8483 1.32713 13.8318Z" fill="white"/>
+                        <path d="M12.5726 13.8318C12.2247 13.8303 11.8913 13.6922 11.6443 13.4472L0.385759 2.18866C-0.090586 1.6324 -0.0258243 0.795263 0.530436 0.318874C1.02691 -0.106291 1.75912 -0.106291 2.25555 0.318874L13.5804 11.5774C14.115 12.0779 14.1427 12.9171 13.6421 13.4518C13.6222 13.473 13.6016 13.4936 13.5804 13.5135C13.3031 13.7547 12.9381 13.8699 12.5726 13.8318Z" fill="white"/>
+                    </svg>
+                </div>
+                <div class="modal_form_thank">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="51" height="50" viewBox="0 0 51 50" fill="none">
+                        <path d="M25.5 39.1703H8.64062C6.65 39.1703 5.03125 37.5516 5.03125 35.5609V12.5312C5.03125 10.5406 6.65 8.92188 8.64062 8.92188H12.0344V9.77188C12.0344 10.5484 12.6641 11.1781 13.4406 11.1781C14.2172 11.1781 14.8469 10.5484 14.8469 9.77188V8.92188H31.6656V9.77188C31.6656 10.5484 32.2953 11.1781 33.0719 11.1781C33.8484 11.1781 34.4781 10.5484 34.4781 9.77188V8.92188H37.8594C39.8484 8.92188 41.4688 10.5406 41.4688 12.5312V22.5781C41.4688 23.3547 42.0984 23.9844 42.875 23.9844C43.6516 23.9844 44.2812 23.3547 44.2812 22.5781V12.5312C44.2812 8.99063 41.4 6.10938 37.8594 6.10938H34.4781V5.39063C34.4781 4.61406 33.8484 3.98438 33.0719 3.98438C32.2953 3.98438 31.6656 4.61406 31.6656 5.39063V6.10938H14.8469V5.39063C14.8469 4.61406 14.2172 3.98438 13.4406 3.98438C12.6641 3.98438 12.0344 4.61406 12.0344 5.39063V6.10938H8.64062C5.1 6.10938 2.21875 8.99063 2.21875 12.5312V35.5625C2.21875 39.1047 5.1 41.9844 8.64062 41.9844H25.5C26.2766 41.9844 26.9062 41.3547 26.9062 40.5781C26.9062 39.8016 26.2766 39.1703 25.5 39.1703Z" fill="#09983F"/>
+                        <path d="M13.1469 19.1313C12.25 19.1313 11.5234 19.8579 11.5234 20.7548C11.5234 21.6517 12.25 22.3782 13.1469 22.3782C14.0438 22.3782 14.7703 21.6517 14.7703 20.7548C14.7703 19.8579 14.0438 19.1313 13.1469 19.1313Z" fill="#09983F"/>
+                        <path d="M23.2548 19.1313C22.3579 19.1313 21.6313 19.8579 21.6313 20.7548C21.6313 21.6517 22.3579 22.3782 23.2548 22.3782C24.1517 22.3782 24.8782 21.6517 24.8782 20.7548C24.8782 19.8579 24.1501 19.1313 23.2548 19.1313Z" fill="#09983F"/>
+                        <path d="M31.7373 20.7548C31.7373 21.6517 32.4639 22.3782 33.3607 22.3782C34.2576 22.3782 34.9842 21.6517 34.9842 20.7548C34.9842 19.8579 34.2576 19.1313 33.3607 19.1313C32.4639 19.1313 31.7373 19.8579 31.7373 20.7548Z" fill="#09983F"/>
+                        <path d="M13.1469 27.9766C12.25 27.9766 11.5234 28.7031 11.5234 29.6C11.5234 30.4969 12.25 31.2234 13.1469 31.2234C14.0438 31.2234 14.7703 30.4969 14.7703 29.6C14.7703 28.7031 14.0438 27.9766 13.1469 27.9766Z" fill="#09983F"/>
+                        <path d="M23.2548 27.9766C22.3579 27.9766 21.6313 28.7031 21.6313 29.6C21.6313 30.4969 22.3579 31.2234 23.2548 31.2234C24.1517 31.2234 24.8782 30.4969 24.8782 29.6C24.8782 28.7031 24.1501 27.9766 23.2548 27.9766Z" fill="#09983F"/>
+                        <path d="M38.7924 26.0391C33.2846 26.0391 28.8018 30.5203 28.8018 36.0281C28.8018 41.5344 33.283 46.0172 38.7924 46.0172C44.3018 46.0172 48.783 41.5359 48.783 36.0281C48.7814 30.5187 44.3002 26.0391 38.7924 26.0391ZM38.7924 43.2016C34.8361 43.2016 31.6158 39.9828 31.6158 36.0266C31.6158 32.0703 34.8361 28.85 38.7924 28.85C42.7486 28.85 45.9689 32.0703 45.9689 36.0266C45.9689 39.9828 42.7486 43.2016 38.7924 43.2016Z" fill="#09983F"/>
+                        <path d="M40.8296 33.4703L37.7483 35.9531L36.9811 34.9734C36.4999 34.3625 35.6202 34.2562 35.0061 34.7359C34.3952 35.2156 34.2889 36.0984 34.7686 36.7109L36.4155 38.8109C36.6467 39.1062 36.9874 39.2984 37.3608 39.3406C37.4139 39.3468 37.4671 39.35 37.5217 39.35C37.8405 39.35 38.153 39.2406 38.403 39.039L42.5936 35.664C43.1999 35.175 43.2936 34.2906 42.8077 33.6859C42.3202 33.0812 41.4342 32.9812 40.8296 33.4703Z" fill="#09983F"/>
+                    </svg>
+                    <p>Thank you for sending us your details. A member of our team will be in touch shortly.</p>
+                    <input class="btn btn-thankyou" type="button" value="OK" />
+                </div>
+            </div>
+        </div>`)
+
+        document.addEventListener('click', (e) => {
+            if (e.target.classList.contains('modal_form_close') || e.target.classList.contains('modal_form') || e.target.closest('.modal_form_close') || e.target.classList.contains('btn-thankyou')) {
+                document.querySelectorAll('.modal_form').forEach(item => {
+                    item.classList.remove('active');
+                    sessionStorage.removeItem('thankyou')
+                })
+            }
+        })
+    }
+});
+
 const orderHTML = (title, date, cost, text, total, learners) => {
 
     let path = window.location.href.includes('/booking-details/') || window.location.href.includes('/payment-details/');
@@ -1831,14 +1865,14 @@ let init = () => {
                         ) {
 
                             document.querySelector('.book_onsite').style.display = window.matchMedia("(min-width: 768px)").matches ? 'flex' : 'block';
-                            if (!document.querySelector('.modal_form')) {
+                            if (!document.querySelector('.modal_form[data-index="0"]')) {
                                 formCourse(title.innerHTML);
                             }
 
                             isVisible()
                             document.querySelector('.book_onsite .btn').addEventListener('click', (e) => {
                                 e.stopImmediatePropagation()
-                                document.querySelector('.modal_form').classList.add('active')
+                                document.querySelector('.modal_form[data-index="0"]').classList.add('active')
                                 pushDataLayer('exp_book_imp_book_onsite', 'Book onsite', 'Button', 'Select location and date section');
                             })
                         }
