@@ -2421,8 +2421,21 @@ let startPdp = setInterval(() => {
               document.querySelector("html").classList.remove("active_pdp");
             }
 
-            document.querySelector(".active_pdp .back_to_top_btn")?.remove();
+            document.querySelector(".back_to_top_btn")?.remove();
           }
+        }
+        if (!window.location.pathname.match(".*/shop/[^/]+/[^/]+/[^/]+$")) {
+          // if (!document.querySelector(".bgr_load")) {
+          //   window.location.reload();
+          //   document.body.style.overflow = "hidden";
+          //   document.body.insertAdjacentHTML("afterbegin", `<div class="bgr_load"></div>`);
+          // }
+
+          if (document.querySelector("html").classList.contains("active_pdp")) {
+            document.querySelector("html").classList.remove("active_pdp");
+          }
+
+          document.querySelector(".back_to_top_btn")?.remove();
         }
 
         observer.observe(document, {
