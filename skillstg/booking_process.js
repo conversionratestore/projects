@@ -2114,6 +2114,30 @@ let init = () => {
 
                     pushDataLayer('exp_book_imp_continue', `Continue — ${name}`, 'Button', 'Order details');
                 })
+
+                let step = document.querySelector('.section.bg-white > .container > h3.mb-10v') ? 
+                document.querySelector('.section.bg-white > .container > h3.mb-10v').innerText : 
+                document.querySelector('.section.bg-white > .container > h3.mb-30').innerText;
+
+                console.log(step)
+
+                document.querySelectorAll('section.bg-white input').forEach(input => {
+                    input.addEventListener('click', (e) => {
+                        e.stopImmediatePropagation()
+                        let name = input.previousElementSibling ? input.previousElementSibling.innerText.replace('*','') : '';
+                            
+                        pushDataLayer('exp_book_imp_order_details_input', `${name} — ${step}`, 'Input', 'Order details');
+                    })
+                })
+                document.querySelectorAll('.css-fyq6mk-container').forEach(select => {
+                    select.addEventListener('click', (e) => {
+                        console.log(e.target)
+                        let name = select.closest('.form-group').querySelector('label').innerText.replace('*','');
+
+                        pushDataLayer('exp_book_imp_order_details_select', `${name} — ${step}`, 'Select', 'Order details');
+                    
+                    })
+                })
             }   
         });
     }
@@ -2479,23 +2503,6 @@ let mut = new MutationObserver(function (muts) {
             if (item.innerText.includes('Learner')) {
                 item.classList.add('learn')
             }
-        })
-    }
-    mut.observe(document, optionMut);
-    if (document.querySelectorAll('section.bg-white input') && 
-        (document.querySelector('.section.bg-white > .container > h3.mb-10v') ||
-         document.querySelector('.section.bg-white > .container > h3.mb-30'))
-    ) {
-        document.querySelectorAll('section.bg-white input').forEach(input => {
-            input.addEventListener('click', (e) => {
-                e.stopImmediatePropagation()
-                let name = input.previousElementSibling.innerText.replace('*',''),
-                    step = document.querySelector('.section.bg-white > .container > h3.mb-10v') ? 
-                        document.querySelector('.section.bg-white > .container > h3.mb-10v').innerText : 
-                        document.querySelector('.section.bg-white > .container > h3.mb-30').innerText;
-
-                pushDataLayer('exp_book_imp_order_details_input', `${name}— ${step}`, 'Input', 'Order details');
-            })
         })
     }
     mut.observe(document, optionMut);
