@@ -1,4 +1,5 @@
 let startPdp = setInterval(() => {
+  // .*\/shop\/[^\/]+\/[^\/]+\/[^\/]+$
   if (document.querySelector("#add-cart-button-fixed") && window.location.pathname.match(".*/shop/[^/]+/[^/]+/[^/]+$")) {
     clearInterval(startPdp);
 
@@ -2411,7 +2412,8 @@ let startPdp = setInterval(() => {
           if (!isClick) {
             onClickBtnLifetime();
           }
-          if (!window.location.pathname.match(".*/shop/[^/]+/[^/]+/[^/]+$")) {
+          if (!window.location.pathname.match(".*/shop/[^/]+/[^/]+/[^/]+$") || window.location.pathname.match("/shop/platinum/men/") || window.location.pathname.match("/shop/platinum/women/") || window.location.pathname.match("/shop/gold/men/") || window.location.pathname.match("/shop/gold/women/")) {
+            console.log(`match`);
             // if (!document.querySelector(".bgr_load")) {
             //   window.location.reload();
             //   document.body.style.overflow = "hidden";
@@ -2426,19 +2428,14 @@ let startPdp = setInterval(() => {
             document.querySelector(".overlay_popup")?.remove();
           }
         }
-        if (!window.location.pathname.match(".*/shop/[^/]+/[^/]+/[^/]+$")) {
-          // if (!document.querySelector(".bgr_load")) {
-          //   window.location.reload();
-          //   document.body.style.overflow = "hidden";
-          //   document.body.insertAdjacentHTML("afterbegin", `<div class="bgr_load"></div>`);
-          // }
-
-          if (document.querySelector("html").classList.contains("active_pdp")) {
-            document.querySelector("html").classList.remove("active_pdp");
-          }
+        if (!window.location.pathname.match(".*/shop/[^/]+/[^/]+/[^/]+$") || window.location.pathname.match("/shop/platinum/men/") || window.location.pathname.match("/shop/platinum/women/") || window.location.pathname.match("/shop/gold/men/") || window.location.pathname.match("/shop/gold/women/")) {
+          console.log(`match2`);
 
           document.querySelector(".back_to_top_btn")?.remove();
           document.querySelector(".overlay_popup")?.remove();
+          if (document.querySelector("html").classList.contains("active_pdp")) {
+            document.querySelector("html").classList.remove("active_pdp");
+          }
         }
 
         observer.observe(document, {
