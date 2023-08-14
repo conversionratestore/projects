@@ -2404,13 +2404,13 @@ let startPdp = setInterval(() => {
         if (!isClick) {
           onClickBtnLifetime();
         }
-        if (!window.location.pathname.match(".*/shop/[^/]+/[^/]+/[^/]+$")) {
-          if (!document.querySelector(".bgr_load")) {
-            window.location.reload();
-            document.body.style.overflow = "hidden";
-            document.body.insertAdjacentHTML("afterbegin", `<div class="bgr_load"></div>`);
-          }
-        }
+        // if (!window.location.pathname.match(".*/shop/[^/]+/[^/]+/[^/]+$")) {
+        //   if (!document.querySelector(".bgr_load")) {
+        //     window.location.reload();
+        //     document.body.style.overflow = "hidden";
+        //     document.body.insertAdjacentHTML("afterbegin", `<div class="bgr_load"></div>`);
+        //   }
+        // }
         observer.observe(document, {
           childList: true,
           subtree: true,
@@ -2575,10 +2575,10 @@ let startPdp = setInterval(() => {
   }
 }, 700);
 
-if (!window.location.pathname.match(".*/shop/[^/]+/[^/]+/[^/]+$")) {
-  sessionStorage.setItem("loadPage", "ok");
-  if (window.location.pathname.match(".*/shop/[^/]+/[^/]+/[^/]+$") && sessionStorage.getItem("loadPage")) {
-    sessionStorage.removeItem("loadPage");
-    window.location.reload();
-  }
-}
+// if (!window.location.pathname.match(".*/shop/[^/]+/[^/]+/[^/]+$")) {
+//   sessionStorage.setItem("loadPage", "ok");
+//   if (window.location.pathname.match(".*/shop/[^/]+/[^/]+/[^/]+$") && sessionStorage.getItem("loadPage")) {
+//     sessionStorage.removeItem("loadPage");
+//     window.location.reload();
+//   }
+// }
