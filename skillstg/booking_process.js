@@ -607,6 +607,25 @@ let style = `
         padding-bottom: 30px!important;
     }
     @media (min-width: 768px) {
+        .modal_form_container {
+            max-width: 440px;
+        }
+        .modal_form_head {
+            padding: 12px 24px;
+        }
+        .modal_form form, .modal_form_thank {
+            padding: 16px 24px 20px;
+        }
+        main > section:nth-child(3) {
+            margin-top: -60px!important;
+        }
+        .modal_form p {
+            max-width: 295px;
+            margin: 0 auto;
+        }
+        .pagination_customer_action {
+            margin: 0 33px;
+        }
         .firs-screen-home__content h2 {
             font-size: 24px;
             line-height: 32px;
@@ -710,7 +729,7 @@ let style = `
         }
         .fag .container {
             max-width: 702px;
-            padding-bottom: 40px;
+            padding-bottom: 10px;
         }
         .fag .container h2 {
             font-size: 24px;
@@ -1872,7 +1891,7 @@ let init = () => {
                 <div class="filters_result">
                     <h5></h5>
                     <ul class="filters_result_container"></ul>
-                    <nav class="pagination_customer align-items-center justify-content-between">
+                    <nav class="pagination_customer align-items-center justify-content-between justify-content-md-center">
                         <button type="button" class="pagination_customer_prev pagination_customer_action d-flex align-items-center" disabled onclick="nextPage(event, '', '')">
                             <svg xmlns="http://www.w3.org/2000/svg" width="19" height="16" viewBox="0 0 19 16" fill="none">
                                 <path d="M0.292893 7.29289C-0.0976311 7.68342 -0.0976311 8.31658 0.292893 8.70711L6.65685 15.0711C7.04738 15.4616 7.68054 15.4616 8.07107 15.0711C8.46159 14.6805 8.46159 14.0474 8.07107 13.6569L2.41421 8L8.07107 2.34315C8.46159 1.95262 8.46159 1.31946 8.07107 0.928932C7.68054 0.538408 7.04738 0.538408 6.65685 0.928932L0.292893 7.29289ZM19 7H1V9H19V7Z" fill="#DBE8F4"/>
