@@ -721,9 +721,10 @@ let style = `
         }
         .review-block {
             width: 100%;
+            max-width: 354px;
         }
         .footer__top.footer__accreditations {
-            padding: 24px!important;
+            padding: 24px 24px 8px 24px!important;
             margin: 0 auto 40px!important;
             max-width: 672px;
         }
@@ -1420,43 +1421,6 @@ const formCourse = (title) => {
             document.querySelector('.btn[name="submit"]').click()
         }
     })
-
-    // form.addEventListener('submit', function(event) {
-    //     event.preventDefault(); 
-
-    //     const formData = new FormData(form);
-        
-    //     form.querySelectorAll('input[name]').forEach(item => {
-    //         item.parentElement.classList.remove('error')
-    //         if (item.value == '') {
-    //             item.parentElement.classList.add('error')
-    //         }
-    //     })
-        
-    //     if (!form.querySelector('.error')) {
-    //         fetch('https://webto.salesforce.com/servlet/servlet.WebToLead?encoding=UTF-8', {
-    //             method: 'POST',
-    //             body: formData
-    //         })
-    //         .then(response => {
-    //             if (response.ok) {
-    //                 // Після успішної обробки даних ви можете відобразити повідомлення користувачу
-    //                 alert('Form submitted successfully!');
-                    
-    //                 form.classList.style = 'none';
-    //                 form.nextElementSibling.classList.style = 'block';
-    //                 // Опційно: очистити поля форми після відправки
-    //                 form.reset();
-    //             } else {
-    //                 alert('An error occurred while submitting the form.');
-    //             }
-    //         })
-    //         .catch(error => {
-    //             console.error('An error occurred:', error);
-    //         });
-    //     }
-
-    // });
 };
 
 const orderHTML = (title, date, cost, text, total, learners) => {
@@ -1757,8 +1721,8 @@ let init = () => {
                 ${document.querySelector('.footer__top').innerHTML}
             </div>`)
             
-            let img = media ? '2' : '';
-            document.querySelector(`${parent} .accreditation-items`).innerHTML = `<img src="${dir}accreditations${img}.svg" alt="accreditations">`;
+            // let img = media ? '2' : '';
+            // document.querySelector(`${parent} .accreditation-items`).innerHTML = `<img src="${dir}accreditations${img}.svg" alt="accreditations">`;
 
             document.body.insertAdjacentHTML('afterbegin',`<style>
             .footer__top:not(.footer__accreditations) {
@@ -1767,7 +1731,7 @@ let init = () => {
             .footer__accreditations {
                 margin: 0 -15px ${parent != '' ? '-75px' : '0'};
                 background: #EAF5FE;
-                padding: 24px 15px!important;
+                padding: 24px 15px 8px!important;
             }
             .footer__accreditations h5 {
                 color: #0D3B5B!important;
@@ -1785,12 +1749,22 @@ let init = () => {
                 margin: 0!important;
             }
             .footer__accreditations .accreditation-items img {
-                margin: 0!important;
+                margin: 0 12px 16px 0!important;
+                max-height: 40px;
+            }
+            @media (max-width: 767px) {
+                .footer__accreditations .accreditation-items {
+                    max-width: 360px;
+                    justify-content: flex-start!important;
+                }
             }
             @media (min-width: 768px) {
                 .footer__accreditations {
                     max-width: 904px;
                     margin: 60px auto;
+                }
+                .footer__accreditations .accreditation-items {
+                    max-width: 100%;
                 }
             }
             </style>`)
