@@ -2281,8 +2281,9 @@ let init = () => {
                     document.querySelector('.booking_order_content.arrow-true').addEventListener('click', (e) => {
                         e.currentTarget.classList.toggle('active');
                         let desk = e.currentTarget.classList.contains('active') ? 'Open order description' : 'Close order description'
-
-                        pushDataLayer('exp_book_imp_close_order_description', desk, 'Accordeon', 'Order details');
+                        let name = e.currentTarget.classList.contains('active') ? 'exp_book_imp_open_order_description' : 'exp_book_imp_close_order_description'
+                        
+                        pushDataLayer(name, desk, 'Accordeon', 'Order details');
                     })
                 }
             }
