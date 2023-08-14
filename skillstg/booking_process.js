@@ -1348,29 +1348,30 @@ const formCourse = (title) => {
                 <h3>Book the onsite course</h3>
 
                 <input name="oid" type="hidden" value="00D1r000000exaC" />
-                <input name="retURL" type="hidden" value="${href}&thankyou=yes" />
+                <input name="retURL" type="hidden" value="${href}" />
                 <label for="first_name">First name <span class="c-red">*</span></label>
                 <div>
-                    <input id="first_name" maxlength="40" name="first_name" size="20" type="text" placeholder="Type your First Name" />
+                    <input id="first_name" maxlength="40" name="first_name" size="20" type="text" placeholder="Type your First Name" required />
                 </div>
                 <label for="last_name">Last Name <span class="c-red">*</span></label>
                 <div>
-                    <input id="last_name" maxlength="80" name="last_name" size="20" type="text"  placeholder="Type your Last Name"/>
+                    <input id="last_name" maxlength="80" name="last_name" size="20" type="text"  placeholder="Type your Last Name" required/>
                 </div>
                 <label for="phone">Phone Number <span class="c-red">*</span></label>
                 <div>
-                    <input id="phone" maxlength="40" name="phone" size="20" type="text" placeholder="Type your Phone Number" />
+                    <input id="phone" maxlength="40" name="phone" size="20" type="text" placeholder="Type your Phone Number" required/>
                 </div>
                 <label for="email">Email <span class="c-red">*</span></label>
                 <div>
-                    <input id="email" maxlength="80" name="email" size="20" type="email" placeholder="Type your Email" />
+                    <input id="email" maxlength="80" name="email" size="20" type="email" placeholder="Type your Email" required/>
                 </div>
                 <div style="display: none;">nterested Course:
                     <input id="00N1r000009BJov" maxlength="255" name="00N1r000009BJov" size="20" type="text" value="Paisley Academy contact form" />
                     Information Request Only:
                     <input id="00N1r00000KdhrQ" checked="checked" name="00N1r00000KdhrQ" type="checkbox" value="1" />
                 </div>
-                <input class="btn" name="submit" type="submit" value="Book" />
+                <input class="btn" name="submit" type="submit" value="Book" style="display: none;" />
+                <input class="btn btn-book"  type="button" value="Book" />
             </form>
             <div class="modal_form_thank">
                 <svg xmlns="http://www.w3.org/2000/svg" width="51" height="50" viewBox="0 0 51 50" fill="none">
@@ -1397,42 +1398,54 @@ const formCourse = (title) => {
         }
     })
     
-    form.addEventListener('submit', function(event) {
-        event.preventDefault(); 
-
-        const formData = new FormData(form);
-        
+    document.querySelector('.btn-book').addEventListener('click', () => {
         form.querySelectorAll('input[name]').forEach(item => {
             item.parentElement.classList.remove('error')
             if (item.value == '') {
                 item.parentElement.classList.add('error')
             }
         })
-        
-        if (!form.querySelector('.error')) {
-            fetch('https://webto.salesforce.com/servlet/servlet.WebToLead?encoding=UTF-8', {
-                method: 'POST',
-                body: formData
-            })
-            .then(response => {
-                if (response.ok) {
-                    // Після успішної обробки даних ви можете відобразити повідомлення користувачу
-                    alert('Form submitted successfully!');
-                    
-                    form.classList.style = 'none';
-                    form.nextElementSibling.classList.style = 'block';
-                    // Опційно: очистити поля форми після відправки
-                    form.reset();
-                } else {
-                    alert('An error occurred while submitting the form.');
-                }
-            })
-            .catch(error => {
-                console.error('An error occurred:', error);
-            });
-        }
 
-    });
+        if (!form.querySelector('.error')) {
+            document.querySelector('.btn[name="submit"]').click()
+        }
+    })
+    // form.addEventListener('submit', function(event) {
+    //     event.preventDefault(); 
+
+    //     const formData = new FormData(form);
+        
+    //     form.querySelectorAll('input[name]').forEach(item => {
+    //         item.parentElement.classList.remove('error')
+    //         if (item.value == '') {
+    //             item.parentElement.classList.add('error')
+    //         }
+    //     })
+        
+    //     if (!form.querySelector('.error')) {
+    //         fetch('https://webto.salesforce.com/servlet/servlet.WebToLead?encoding=UTF-8', {
+    //             method: 'POST',
+    //             body: formData
+    //         })
+    //         .then(response => {
+    //             if (response.ok) {
+    //                 // Після успішної обробки даних ви можете відобразити повідомлення користувачу
+    //                 alert('Form submitted successfully!');
+                    
+    //                 form.classList.style = 'none';
+    //                 form.nextElementSibling.classList.style = 'block';
+    //                 // Опційно: очистити поля форми після відправки
+    //                 form.reset();
+    //             } else {
+    //                 alert('An error occurred while submitting the form.');
+    //             }
+    //         })
+    //         .catch(error => {
+    //             console.error('An error occurred:', error);
+    //         });
+    //     }
+
+    // });
 };
  
 const orderHTML = (title, date, cost, text, total, learners) => {
