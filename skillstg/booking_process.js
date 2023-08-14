@@ -1403,8 +1403,8 @@ const formCourse = (title) => {
                 item.classList.remove('active');
                 if (sessionStorage.getItem('thankyou') != null) {
                     sessionStorage.removeItem('thankyou')
-                    document.body.classList.remove('ovh')
                 }
+                document.body.classList.remove('ovh')
             })
         }
     })
@@ -1719,12 +1719,15 @@ let init = () => {
 
             parenInsert = media && !window.location.href.includes('booking.skillstg.co.uk/course/') ? document.querySelector(`.section.bg-white`) : document.querySelector(`${parent} .paymant-info`);
 
+            let img = media ? '2' : '';
+
             parenInsert.insertAdjacentHTML('afterend', `<div class="footer__accreditations d-flex align-items-center justify-content-between flex-wrap pb-sm-40 pt-sm-40">
                 <h5 class="color-white mb-4">OUR ACCREDITATIONS</h5>
-                <div class="d-flex align-items-center justify-content-between flex-wrap accreditation-items"><img src="/static/media/footer-image-1.eb0b93963904c8bdc305e5d530d02ac1.svg" alt=""><img src="/static/media/footer-image-2.fd9cd7a0ecdcfd42a5dd482133382a19.svg" alt=""><img src="/static/media/footer-image-3.b7e632559ecd13f176cb6ec9487bd65d.svg" alt=""><img src="/static/media/footer-image-4.4aae21e8378f525086398aed71373dcf.svg" alt=""><img src="/static/media/footer-image-5.ec7d2cb476c40718e0508a278f1d2323.svg" alt=""><img src="/static/media/footer-image-6.de075f98b9a43ebdb6143a6585e6741c.svg" alt=""><img src="/static/media/footer-image-7.af8e64f6c6b3099d238930aca4540861.svg" alt=""><img src="/static/media/footer-image-8.3828b7b2e060cdfa0d8c0182832f47a4.svg" alt=""></div>
+                <div class="d-flex align-items-center justify-content-between flex-wrap accreditation-items">
+                    <img src="${dir}accreditations${img}.svg" alt="accreditations icons">
+                </div>
             </div>`)
             
-            // let img = media ? '2' : '';
             // document.querySelector(`${parent} .accreditation-items`).innerHTML = `<img src="${dir}accreditations${img}.svg" alt="accreditations">`;
 
             document.body.insertAdjacentHTML('afterbegin',`<style>
@@ -1753,7 +1756,7 @@ let init = () => {
             }
             .footer__accreditations .accreditation-items img {
                 margin: 0 12px 16px 0!important;
-                max-height: 40px;
+                // max-height: 40px;
             }
             @media (max-width: 767px) {
                 .footer__accreditations .accreditation-items {
@@ -1971,7 +1974,6 @@ let init = () => {
             if (sessionStorage.getItem('thankyou') != null && !document.querySelector('.modal_form[data-index="0"]')) {
                 clearInterval(findThankyou)
 
-                document.body.classList.add('ovh')
 
                 let title = sessionStorage.getItem('thankyou');
                 console.log(title)
@@ -2002,6 +2004,8 @@ let init = () => {
                         </div>
                     </div>
                 </div>`)
+
+                document.body.classList.add('ovh')
 
                 document.addEventListener('click', (e) => {
                     if (e.target.classList.contains('modal_form_close') || e.target.classList.contains('modal_form') || e.target.closest('.modal_form_close') || e.target.classList.contains('btn-thankyou')) {
