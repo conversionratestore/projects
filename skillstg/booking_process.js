@@ -1380,7 +1380,7 @@ const formCourse = (title) => {
         if (e.target.classList.contains('modal_form_close') || e.target.classList.contains('modal_form') || e.target.closest('.modal_form_close')) {
             document.querySelectorAll('.modal_form').forEach(item => {
                 item.classList.remove('active');
-                if (sessionStorage.getItem('c') != null) {
+                if (sessionStorage.getItem('thankyou') != null) {
                     sessionStorage.removeItem('thankyou')
                 }
             })
