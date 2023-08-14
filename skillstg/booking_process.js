@@ -599,7 +599,7 @@ let style = `
         margin-bottom: 30px;
         margin-top: -20px;
     }
-    section.bg-white .footer__top {
+    section.bg-white .footer__top, .footer__accreditations {
         order: 4;
     }
     main > section:nth-child(3) {
@@ -724,7 +724,7 @@ let style = `
             width: 100%;
             max-width: 354px;
         }
-        .footer__top.footer__accreditations {
+        .footer__accreditations {
             padding: 24px 24px 8px 24px!important;
             margin: 0 auto 40px!important;
             max-width: 672px;
@@ -931,7 +931,7 @@ let style2 = `
     section.bg-white .review-block {
         order: 3;
     }
-    section.bg-white .footer__top {
+    section.bg-white .footer__top, .footer__accreditations {
         order: 4;
     }
     .btn_back, 
@@ -1712,15 +1712,16 @@ let init = () => {
   
 
     let changePositionAccredination = setInterval(() => {
-        if (document.querySelector('.footer__top') && (document.querySelector('.radius-10 .paymant-info') || document.querySelector('.paymant-info')) && !document.querySelector('.footer__accreditations')) {
+        if ((document.querySelector('.radius-10 .paymant-info') || document.querySelector('.paymant-info')) && !document.querySelector('.footer__accreditations')) {
             clearInterval(changePositionAccredination)
 
             let parent = window.location.href.includes('booking.skillstg.co.uk/course/') ? '.radius-10' : '';
 
             parenInsert = media && !window.location.href.includes('booking.skillstg.co.uk/course/') ? document.querySelector(`.section.bg-white`) : document.querySelector(`${parent} .paymant-info`);
 
-            parenInsert.insertAdjacentHTML('afterend', `<div class="footer__top footer__accreditations d-flex align-items-center justify-content-between flex-wrap pb-sm-40 pt-sm-40">
-                ${document.querySelector('.footer__top').innerHTML}
+            parenInsert.insertAdjacentHTML('afterend', `<div class="footer__accreditations d-flex align-items-center justify-content-between flex-wrap pb-sm-40 pt-sm-40">
+                <h5 class="color-white mb-4">OUR ACCREDITATIONS</h5>
+                <div class="d-flex align-items-center justify-content-between flex-wrap accreditation-items"><img src="/static/media/footer-image-1.eb0b93963904c8bdc305e5d530d02ac1.svg" alt=""><img src="/static/media/footer-image-2.fd9cd7a0ecdcfd42a5dd482133382a19.svg" alt=""><img src="/static/media/footer-image-3.b7e632559ecd13f176cb6ec9487bd65d.svg" alt=""><img src="/static/media/footer-image-4.4aae21e8378f525086398aed71373dcf.svg" alt=""><img src="/static/media/footer-image-5.ec7d2cb476c40718e0508a278f1d2323.svg" alt=""><img src="/static/media/footer-image-6.de075f98b9a43ebdb6143a6585e6741c.svg" alt=""><img src="/static/media/footer-image-7.af8e64f6c6b3099d238930aca4540861.svg" alt=""><img src="/static/media/footer-image-8.3828b7b2e060cdfa0d8c0182832f47a4.svg" alt=""></div>
             </div>`)
             
             // let img = media ? '2' : '';
