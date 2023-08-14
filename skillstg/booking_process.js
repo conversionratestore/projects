@@ -1719,12 +1719,12 @@ let init = () => {
 
             parenInsert = media && !window.location.href.includes('booking.skillstg.co.uk/course/') ? document.querySelector(`.section.bg-white`) : document.querySelector(`${parent} .paymant-info`);
 
-            let img = media ? '2' : '';
+            let img = media ? '2.svg' : '.png';
 
             parenInsert.insertAdjacentHTML('afterend', `<div class="footer__accreditations d-flex align-items-center justify-content-between flex-wrap pb-sm-40 pt-sm-40">
                 <h5 class="color-white mb-4">OUR ACCREDITATIONS</h5>
                 <div class="d-flex align-items-center justify-content-between flex-wrap accreditation-items">
-                    <img src="${dir}accreditations${img}.svg" alt="accreditations icons">
+                    <img src="${dir}accreditations${img}" alt="accreditations icons">
                 </div>
             </div>`)
             
