@@ -1987,7 +1987,6 @@ let startPdp = setInterval(() => {
       if (window.innerWidth < 768) {
         if (!document.querySelector(".layout-container.p-none.py-10 .new_btn_add_to_basket")) {
           document.querySelectorAll(".layout-container.p-none.py-10 .mb-1.flex.items-center.justify-center").forEach((el) => {
-            console.log(el, `GGGGGGGGGGGGGGGGG`);
             el.insertAdjacentHTML("beforebegin", `<div class="new_btn_add_to_basket"></div>`);
           });
         }
@@ -2248,12 +2247,12 @@ let startPdp = setInterval(() => {
                 let necklacesObj = arrProduct[key].Necklaces,
                   braceletsObj = arrProduct[key].Bracelets;
 
-                if (necklacesObj) {
+                if (necklacesObj && document.querySelector(".necklaces_box .pair_it_with_list")?.children.length !== Object.keys(necklacesObj).length) {
                   for (let i in necklacesObj) {
                     document.querySelector(".necklaces_box .pair_it_with_list")?.insertAdjacentHTML("beforeend", setProduct(i, necklacesObj[i][0], necklacesObj[i][1], necklacesObj[i][2], necklacesObj[i][3], necklacesObj[i][4]));
                   }
                 }
-                if (braceletsObj) {
+                if (braceletsObj && document.querySelector(".bracelets_box .pair_it_with_list")?.children.length !== Object.keys(braceletsObj).length) {
                   for (let i in braceletsObj) {
                     document.querySelector(".bracelets_box .pair_it_with_list")?.insertAdjacentHTML("beforeend", setProduct(i, braceletsObj[i][0], braceletsObj[i][1], braceletsObj[i][2], braceletsObj[i][3], braceletsObj[i][4]));
                   }
@@ -2359,19 +2358,16 @@ let startPdp = setInterval(() => {
           entries.forEach((i) => {
             if (i.isIntersecting) {
               if (i.target.classList.contains("new_btn_add_to_basket")) {
-                console.log(`new_btn_add_to_basket NONE`);
                 document.querySelector("#add-cart-button-fixed").style.display = "none";
                 document.querySelector("#add-cart-button-fixed").style.opacity = "0";
                 document.querySelector("#add-cart-button-fixed").style.pointerEvents = "none";
               }
               if (i.target.classList.contains("mx-auto") && i.target.getAttribute("data-testid") === "add-to-bag") {
-                console.log(`mx-auto NONE`);
                 document.querySelector("#add-cart-button-fixed").style.display = "none";
                 document.querySelector("#add-cart-button-fixed").style.opacity = "0";
                 document.querySelector("#add-cart-button-fixed").style.pointerEvents = "none";
               }
             } else {
-              console.log(`all BLOCK`);
               document.querySelector("#add-cart-button-fixed").style.display = "block";
               document.querySelector("#add-cart-button-fixed").style.opacity = "1";
               document.querySelector("#add-cart-button-fixed").style.pointerEvents = "initial";
@@ -2483,7 +2479,6 @@ let startPdp = setInterval(() => {
       let intV5 = setInterval(() => {
         if (document.querySelector(".comparison_table_visib")) {
           clearInterval(intV5);
-          console.log(`comparison_table_visib`);
           obsV.observe(document.querySelector(".comparison_table_visib"));
         }
       }, 100);
@@ -2586,4 +2581,3 @@ let startPdp = setInterval(() => {
 //     window.location.reload();
 //   }
 // }
-
