@@ -621,13 +621,13 @@ let startPdp = setInterval(() => {
     .active_pdp .mb-3.w-full {
       margin: 0;
     }
-    .active_pdp #add-cart-button-fixed {
+    #add-cart-button-fixed {
       margin: 16px 0 12px;
     }
-    .active_pdp #add-cart-button-fixed button {
+    #add-cart-button-fixed button {
       height: 56px;
     }
-    .active_pdp #add-cart-button-fixed button .text-p {
+    #add-cart-button-fixed button .text-p {
       font-family: "Roobert TRIAL", sans-serif;
       color: #fff;
       font-size: 16px;
@@ -1219,10 +1219,10 @@ let startPdp = setInterval(() => {
         font-size: 14px;
         line-height: 20px;
       }
-      .active_pdp #add-cart-button-fixed button {
+      #add-cart-button-fixed button {
         height: 44px;
       }
-      .active_pdp #add-cart-button-fixed button + div + .my-5{
+      #add-cart-button-fixed button + div + .my-5{
         margin: 8px 0 0;
       }
       .active_pdp .layout-container.bg-platinum-1 .bg-white.bottom-0.z-20.px-4.py-6:not(#add-cart-button-fixed) > button + .my-5{
@@ -1234,7 +1234,7 @@ let startPdp = setInterval(() => {
         box-shadow: 0px -2px 16px 0px rgba(0, 0, 0, 0.1);
       }
       */
-      .active_pdp #add-cart-button-fixed {
+      #add-cart-button-fixed {
         position: fixed;
         display: block;
         opacity: 1;
@@ -1766,7 +1766,6 @@ let startPdp = setInterval(() => {
   `;
 
     document.querySelector(".active_pdp head").insertAdjacentHTML("beforeend", stylePdp);
-    document.querySelector(".active_pdp body").insertAdjacentHTML("afterbegin", popUp);
 
     let isClick = false;
     renderHtml();
@@ -1780,6 +1779,9 @@ let startPdp = setInterval(() => {
     }
 
     function changePopup() {
+      if (!document.querySelector(".active_pdp .overlay_popup")) {
+        document.querySelector(".active_pdp body").insertAdjacentHTML("afterbegin", popUp);
+      }
       if (document.querySelector(".active_pdp .overlay_popup")) {
         let overlay = document.querySelector(".active_pdp .overlay_popup"),
           containerPopup = overlay.querySelector(".container_popup"),
@@ -1810,7 +1812,7 @@ let startPdp = setInterval(() => {
           }
         });
 
-        document.querySelectorAll("[data-learnMore]").forEach((el) => {
+        document.querySelectorAll(".active_pdp [data-learnMore]").forEach((el) => {
           el.addEventListener("click", (e) => {
             if (!e.target.getAttribute("data-test")) {
               if (e.currentTarget.getAttribute("data-learnMore") === "1") {
@@ -1833,7 +1835,6 @@ let startPdp = setInterval(() => {
 
         function onClosePopup() {
           overlay.classList.add("is_hidden");
-          document.body.style.overflow = "unset";
           document.body.style.marginRight = `0px`;
           document.body.style.overflow = "auto";
           document.body.style.display = "initial";
@@ -1847,14 +1848,14 @@ let startPdp = setInterval(() => {
           document.body.style.marginRight = `${scroll}px`;
           document.body.style.display = "block";
           document.body.style.height = "100%";
-          if (!document.querySelector(".overlay_popup .content_popup")) {
+          if (!document.querySelector(".active_pdp .overlay_popup .content_popup")) {
             containerPopup?.insertAdjacentHTML("beforeend", contentPopup);
           }
-          if (document.querySelector(".overlay_popup .content_popup") && document.querySelector(".overlay_popup .content_popup").children.length === 0) {
-            document.querySelector(".overlay_popup .content_popup")?.insertAdjacentHTML("beforeend", txt);
+          if (document.querySelector(".active_pdp .overlay_popup .content_popup") && document.querySelector(".overlay_popup .content_popup").children.length === 0) {
+            document.querySelector(".active_pdp .overlay_popup .content_popup")?.insertAdjacentHTML("beforeend", txt);
           }
-          if (document.querySelector(".txt_made_from")) {
-            document.querySelector(".txt_made_from").textContent = document.querySelector(".layout-container .p-2 .tracking-widest")?.textContent;
+          if (document.querySelector(".active_pdp .txt_made_from")) {
+            document.querySelector(".active_pdp .txt_made_from").textContent = document.querySelector(".layout-container .p-2 .tracking-widest")?.textContent;
           }
         }
         function calcScroll() {
@@ -1882,11 +1883,11 @@ let startPdp = setInterval(() => {
     }
 
     function renderHtml() {
-      if (document.querySelector(".active_pdp #add-cart-button-fixed button .text-p > div") && document.querySelector("#add-cart-button-fixed button .text-p > div")?.textContent !== "ADD TO BASKET") {
-        document.querySelector(".active_pdp #add-cart-button-fixed button .text-p > div").textContent = "ADD TO BASKET";
+      if (document.querySelector("#add-cart-button-fixed button .text-p > div") && document.querySelector("#add-cart-button-fixed button .text-p > div")?.textContent !== "ADD TO BASKET") {
+        document.querySelector("#add-cart-button-fixed button .text-p > div").textContent = "ADD TO BASKET";
       }
-      if (document.querySelector(".active_pdp .layout-container.bg-platinum-1 .bg-white.bottom-0.z-20.px-4.py-6:not(#add-cart-button-fixed) > button > div > div") && document.querySelector(".layout-container.bg-platinum-1 .bg-white.bottom-0.z-20.px-4.py-6:not(#add-cart-button-fixed) > button > div > div")?.textContent !== "ADD TO BASKET") {
-        document.querySelector(".active_pdp .layout-container.bg-platinum-1 .bg-white.bottom-0.z-20.px-4.py-6:not(#add-cart-button-fixed) > button > div > div").textContent = "ADD TO BASKET";
+      if (document.querySelector(".layout-container.bg-platinum-1 .bg-white.bottom-0.z-20.px-4.py-6:not(#add-cart-button-fixed) > button > div > div") && document.querySelector(".layout-container.bg-platinum-1 .bg-white.bottom-0.z-20.px-4.py-6:not(#add-cart-button-fixed) > button > div > div")?.textContent !== "ADD TO BASKET") {
+        document.querySelector(".layout-container.bg-platinum-1 .bg-white.bottom-0.z-20.px-4.py-6:not(#add-cart-button-fixed) > button > div > div").textContent = "ADD TO BASKET";
       }
       if (document.querySelector(".active_pdp .layout-container.p-none.py-10 button[data-testid='add-to-bag'] > div > div") && document.querySelector(".layout-container.p-none.py-10 button[data-testid='add-to-bag'] > div > div")?.textContent !== "ADD TO BASKET") {
         document.querySelector(".active_pdp .layout-container.p-none.py-10 button[data-testid='add-to-bag'] > div > div").textContent = "ADD TO BASKET";
@@ -2030,7 +2031,7 @@ let startPdp = setInterval(() => {
 
         if (document.querySelector(".active_pdp .layout-container.p-none.py-10 .new_btn_add_to_basket")) {
           if (!document.querySelector(".active_pdp .layout-container.p-none.py-10 .new_btn_add_to_basket button")) {
-            let newBtn = document.querySelector(".active_pdp #add-cart-button-fixed button").cloneNode(true);
+            let newBtn = document.querySelector("#add-cart-button-fixed button").cloneNode(true);
             document.querySelectorAll(".active_pdp .layout-container.p-none.py-10 .new_btn_add_to_basket").forEach((el) => {
               el.appendChild(newBtn);
             });
@@ -2056,8 +2057,8 @@ let startPdp = setInterval(() => {
           }
         }
 
-        if (!document.querySelector(".active_pdp .sticky_wrap")) {
-          document.querySelector(".active_pdp #add-cart-button-fixed")?.insertAdjacentHTML(
+        if (!document.querySelector(".sticky_wrap")) {
+          document.querySelector("#add-cart-button-fixed")?.insertAdjacentHTML(
             "afterbegin",
             `    <div class="sticky_wrap">
                     <p class="sticky_information"><span class="metal_txt">PURE PLATINUM</span> <span class="size_txt">26" LENGTH ~ 66CM</span></p>
@@ -2342,9 +2343,9 @@ let startPdp = setInterval(() => {
         }, 100);
 
         let int2 = setInterval(() => {
-          if (document.querySelector('.active_pdp .layout-container.bg-platinum-1 .bg-white.bottom-0.z-20.px-4.py-6:not(#add-cart-button-fixed) .mx-auto.h-16[data-testid="add-to-bag"]')) {
+          if (document.querySelector('.layout-container.bg-platinum-1 .bg-white.bottom-0.z-20.px-4.py-6:not(#add-cart-button-fixed) .mx-auto.h-16[data-testid="add-to-bag"]')) {
             clearInterval(int2);
-            obs.observe(document.querySelector('.active_pdp .layout-container.bg-platinum-1 .bg-white.bottom-0.z-20.px-4.py-6:not(#add-cart-button-fixed) .mx-auto.h-16[data-testid="add-to-bag"]'));
+            obs.observe(document.querySelector('.layout-container.bg-platinum-1 .bg-white.bottom-0.z-20.px-4.py-6:not(#add-cart-button-fixed) .mx-auto.h-16[data-testid="add-to-bag"]'));
           }
         }, 100);
         function visibility(entries) {
@@ -2359,20 +2360,20 @@ let startPdp = setInterval(() => {
         function visibility2(entries) {
           entries.forEach((i) => {
             if (i.isIntersecting) {
-              if (i.target.classList.contains(".active_pdp new_btn_add_to_basket")) {
-                document.querySelector(".active_pdp #add-cart-button-fixed").style.display = "none";
-                document.querySelector(".active_pdp #add-cart-button-fixed").style.opacity = "0";
-                document.querySelector(".active_pdp #add-cart-button-fixed").style.pointerEvents = "none";
+              if (i.target.classList.contains("new_btn_add_to_basket")) {
+                document.querySelector("#add-cart-button-fixed").style.display = "none";
+                document.querySelector("#add-cart-button-fixed").style.opacity = "0";
+                document.querySelector("#add-cart-button-fixed").style.pointerEvents = "none";
               }
               if (i.target.classList.contains("mx-auto") && i.target.getAttribute("data-testid") === "add-to-bag") {
-                document.querySelector(".active_pdp #add-cart-button-fixed").style.display = "none";
-                document.querySelector(".active_pdp #add-cart-button-fixed").style.opacity = "0";
-                document.querySelector(".active_pdp #add-cart-button-fixed").style.pointerEvents = "none";
+                document.querySelector("#add-cart-button-fixed").style.display = "none";
+                document.querySelector("#add-cart-button-fixed").style.opacity = "0";
+                document.querySelector("#add-cart-button-fixed").style.pointerEvents = "none";
               }
             } else {
-              document.querySelector(".active_pdp #add-cart-button-fixed").style.display = "block";
-              document.querySelector(".active_pdp #add-cart-button-fixed").style.opacity = "1";
-              document.querySelector(".active_pdp #add-cart-button-fixed").style.pointerEvents = "initial";
+              document.querySelector("#add-cart-button-fixed").style.display = "block";
+              document.querySelector("#add-cart-button-fixed").style.opacity = "1";
+              document.querySelector("#add-cart-button-fixed").style.pointerEvents = "initial";
             }
 
             obs.unobserve(i.target);
@@ -2422,6 +2423,7 @@ let startPdp = setInterval(() => {
             }
 
             document.querySelector(".back_to_top_btn")?.remove();
+            document.querySelector(".overlay_popup")?.remove();
           }
         }
         if (!window.location.pathname.match(".*/shop/[^/]+/[^/]+/[^/]+$")) {
@@ -2436,6 +2438,7 @@ let startPdp = setInterval(() => {
           }
 
           document.querySelector(".back_to_top_btn")?.remove();
+          document.querySelector(".overlay_popup")?.remove();
         }
 
         observer.observe(document, {
