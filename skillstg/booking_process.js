@@ -2015,7 +2015,7 @@ let init = () => {
                         document.querySelector('.section.bg-white > .container > h3.mb-10v').innerHTML = index == 1 ? 'Billing Contact Details' : 'Your Details';
 
                         if (index == 1) {
-                            pushDataLayer('exp_book_imp_booking_for_myself', 'I`m booking for myself', 'Radiobitton', 'Who are you booking for?');                        } else {
+                            pushDataLayer('exp_book_imp_booking_for_myself', 'I`m booking for myself', 'Radiobitton', 'Who are you booking for?'); 
                         } else {
                             pushDataLayer('exp_book_imp_booking_for_colleges', 'I`m booking for colleges', 'Radiobitton', 'Who are you booking for?');
                         }
