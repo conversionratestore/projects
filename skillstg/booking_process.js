@@ -1981,6 +1981,8 @@ let init = () => {
                 }
                 //previos button
                 document.querySelector('.btn_back').addEventListener('click', () => {
+                    let name = document.querySelector('main.content > .section.bg-white > .container > h3.mb-10v').innerText;
+
                     if (document.querySelector('section.bg-white:not(.billing, .learner)')) {
                         document.querySelector('.page-action button').click()
                     } else {
@@ -1998,6 +2000,7 @@ let init = () => {
                        
                         scrollTo(document.querySelector('section.bg-white'))
                     }
+                    pushDataLayer('exp_book_imp_back', `Back — ${name}`, 'Button', 'Order details');
                 })
 
                 const isUrlValid = (userInput) => {
@@ -2024,6 +2027,8 @@ let init = () => {
 
                 document.querySelector('.btn_continue').addEventListener('click', (e) => {
                     console.log(e.target)
+                    
+                    let name = document.querySelector('main.content > .section.bg-white > .container > h3.mb-10v').innerText;
 
                     if (document.querySelector('section.bg-white:not(.billing)')) {
 
@@ -2055,10 +2060,14 @@ let init = () => {
                             }
 
                         }
+                    
                     } else {
                         if (document.querySelector('section.bg-white.learner')) {
                             console.log('btn 2')
                             document.querySelectorAll('.page-action button')[1].click()
+
+
+                        
                         } else {
                             console.log('btn 3')
                             if ( document.querySelectorAll('section.bg-white > .container > .row.gutters-20.mb-50 button')[1].className.includes('btn--white-active')) {
@@ -2082,6 +2091,7 @@ let init = () => {
                                         document.querySelector('.learner > div > div > a.btn--info').click()
                                     }
                                     scrollTo(document.querySelector('section.bg-white'))
+
                                 }
                                 
                                 
@@ -2091,6 +2101,18 @@ let init = () => {
                         }
                         
                     }
+                    document.querySelectorAll('section.bg-white.learner > div a.btn--info').forEach(learn => {
+                        learn.addEventListener('click', () => {
+                            pushDataLayer('exp_book_imp_add_learner', 'Add learner', 'Button', 'Order details');
+                        })
+                    })
+                    document.querySelectorAll('section.bg-white.learner > div a.btn--outline-info').forEach(learnRemove => {
+                        learnRemove.addEventListener('click', () => {
+                            pushDataLayer('exp_book_imp_remove_learner', 'Remove learner', 'Button', 'Order details');           
+                        })
+                    })
+
+                    pushDataLayer('exp_book_imp_continue', `Continue — ${name}`, 'Button', 'Order details');
                 })
             }   
         });
@@ -2181,6 +2203,9 @@ let init = () => {
                 if (document.querySelector('.booking_order_content.arrow-true')) {
                     document.querySelector('.booking_order_content.arrow-true').addEventListener('click', (e) => {
                         e.currentTarget.classList.toggle('active');
+                        let desk = e.currentTarget.classList.contains('active') ? 'Open order description' : 'Close order description'
+
+                        pushDataLayer('exp_book_imp_close_order_description', desk, 'Accordeon', 'Order details');
                     })
                 }
             }
@@ -2227,14 +2252,23 @@ let init = () => {
     }
     if (href.includes('https://booking.skillstg.co.uk/payment-details/')) {
         let findBackBtn = setInterval(() => {
-            if (document.querySelector('.page-action button')) {
+            if (document.querySelectorAll('.page-action button')) {
                 clearInterval(findBackBtn)
                 document.querySelector('.section.bg-white').classList.add('payment-details');
 
-                document.querySelector('.page-action button').addEventListener('click', () => {
-                    backForPayment = true;
+                document.querySelectorAll('.page-action button').forEach((button, index) => {
+                    if (index == 1) {
+                        button.innerHTML = 'PAY ' + JSON.parse(sessionStorage.getItem('data_booking')).total;
+                    }
+                    button.addEventListener('click', () => {
+                        if (index == 0) {
+                            backForPayment = true;
+                            pushDataLayer('exp_book_imp_back', `Back — ${document.querySelector('.section.bg-white > .container > h3.mb-30').innerText}`, 'Button', 'Order details');
+                        } else {
+                            pushDataLayer('exp_book_imp_pay', 'Pay', 'Button', 'Order details');
+                        }
+                    })
                 })
-                document.querySelectorAll('.page-action button')[1].innerHTML = 'PAY ' + JSON.parse(sessionStorage.getItem('data_booking')).total;
             }
         });
     }
@@ -2246,9 +2280,19 @@ let init = () => {
                 clearInterval(actionBtns)
 
                 document.querySelector('.section.bg-white').classList.add('booking-details');
-                document.querySelectorAll('.page-action button')[1].innerHTML = 'Continue to payment';
-                document.querySelectorAll('.page-action button')[1].addEventListener('click', () => {
-                    backForPayment = false;
+
+                document.querySelectorAll('.page-action button').forEach((button, index) => {
+                    if (index == 1) {
+                        button.innerHTML = 'Continue to payment';
+                    }
+                    button.addEventListener('click', () => {
+                        if (index == 1) {
+                            backForPayment = false;
+                            pushDataLayer('exp_book_imp_payment', `Continue to payment`, 'Button', 'Order details');
+                        } else {
+                            pushDataLayer('exp_book_imp_back', `Back — ${document.querySelector('.section.bg-white > .container > h3.mb-30').innerText}`, 'Button', 'Order details');
+                        }
+                    })
                 })
 
                 if (media) {
@@ -2435,6 +2479,23 @@ let mut = new MutationObserver(function (muts) {
             if (item.innerText.includes('Learner')) {
                 item.classList.add('learn')
             }
+        })
+    }
+    mut.observe(document, optionMut);
+    if (document.querySelectorAll('section.bg-white input') && 
+        (document.querySelector('.section.bg-white > .container > h3.mb-10v') ||
+         document.querySelector('.section.bg-white > .container > h3.mb-30'))
+    ) {
+        document.querySelectorAll('section.bg-white input').forEach(input => {
+            input.addEventListener('click', (e) => {
+                e.stopImmediatePropagation()
+                let name = input.previousElementSibling.innerText.replace('*',''),
+                    step = document.querySelector('.section.bg-white > .container > h3.mb-10v') ? 
+                        document.querySelector('.section.bg-white > .container > h3.mb-10v').innerText : 
+                        document.querySelector('.section.bg-white > .container > h3.mb-30').innerText;
+
+                pushDataLayer('exp_book_imp_order_details_input', `${name}— ${step}`, 'Input', 'Order details');
+            })
         })
     }
     mut.observe(document, optionMut);
