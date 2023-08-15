@@ -1286,6 +1286,9 @@ let choiceDate = (event) => {
     target.classList.add('selected');
 
     target.closest('.select').classList.remove('active');
+    target.closest('.card').querySelector('.space').innerHTML = target.dataset.space;
+    target.closest('.card').querySelector('.price .pr').innerHTML = target.dataset.price;
+    
 
     pushDataLayer('exp_book_imp_course_card_date_selected', 'Selected date', 'Dropdown', `Course card — ${target.closest('.card_body').querySelector('.card_title').innerText}`);
 }
@@ -1301,13 +1304,8 @@ const card = (data, closest, index, currency) => {
 
     let miles = (data.center.distance * 0.621371).toFixed(1), 
     title = data.center.name, 
-    dropdown = data.schedules, 
-    startDateFirst = formatedDate(data.schedules[0]['start_date']), 
-    seats = data.schedules[0].space, 
-    price = data.schedules[0]['price_online'],
-    internalIdFirst = dropdown[0]['internal_id'],
+    dropdown = data.schedules,  
     pcode =  dropdown[0]['pcode'],
-    link = '/booking/' + pcode + '/' + internalIdFirst,
     addresses = [];
 
     addresses.push(data.center['address_line_1'])
@@ -1315,14 +1313,25 @@ const card = (data, closest, index, currency) => {
     addresses.push(data.schedules[0]['postal_code'])
 
     let options = '';
+    let selected = true;
     for (let i = 0; i < dropdown.length; i++) {
         let date =formatedDate(dropdown[i]['start_date']),
             internalId = dropdown[i]['internal_id']
 
-        options += `<li data-id="${internalId}" data-space="${dropdown[i]['space']}" class="${i == 0 ? 'selected' : ''}" onclick="choiceDate(event)">${date}</li>`
+        if (dropdown[i]['space'] != 0) {
+
+            options += `<li data-id="${internalId}" data-price="${currency+dropdown[i]['price_online']}" data-space="${dropdown[i]['space']}" class="${selected == true ? 'selected' : ''}" onclick="choiceDate(event)">${date}</li>`;
+            selected = false
+        }
         
     }
 
+    let startDateFirst = options.split('">')[1].split('</li>')[0],
+        seats = options.split('data-space="')[1].split('"')[0],
+        price = options.split('data-price="')[1].split('"')[0],
+        internalIdFirst = options.split('data-id="')[1].split('"')[0],
+        link = '/booking/' + pcode + '/' + internalIdFirst;
+    
     let media = window.matchMedia("(min-width: 768px)").matches;
 
     return ` 
@@ -1345,7 +1354,7 @@ const card = (data, closest, index, currency) => {
         <div class="card_footer ${media ? 'justify-content-end d-flex flex-column' : ''}">
             <div class="d-flex align-items-center justify-content-between">
                 <p>Reserve your seat</p>
-                <p>Only ${seats} seats left</p>
+                <p>Only <span class="space">${seats}</span> seats left</p>
             </div>
             <p class="price">
                 <span class="pr">${currency}${price}</span>
