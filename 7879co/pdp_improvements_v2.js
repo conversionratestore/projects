@@ -2590,12 +2590,12 @@ let startPdp = setInterval(() => {
       }
     }
 
-    const record = setInterval(() => {
-      if (typeof clarity === "function") {
-        clearInterval(record);
-        clarity("set", "exp_pdp_2", "variant_1");
-      }
-    }, 200);
+    // const record = setInterval(() => {
+    //   if (typeof clarity === "function") {
+    //     clearInterval(record);
+    //     clarity("set", "exp_pdp_2", "variant_1");
+    //   }
+    // }, 200);
 
     document.querySelector(".exp")?.remove();
   }
