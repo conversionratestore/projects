@@ -1452,9 +1452,9 @@ const orderHTML = (title, date, cost, text, total, learners) => {
             ${path ? '<p class="booking_order_learn">Number of learners - <span>' + learners + '</span></p>' : ''}
          
             ${date != null ? '<p class="booking_order_date">Start date - ' + date + '</p>' : ''}
+            ${cost != '' ? `<p class="booking_order_cost">${cost}</p>` : ''}
+            ${text != '' ? `<p class="booking_order_text">${text}</p>` : ''}
             
-            <p class="booking_order_cost">${cost}</p>
-            <p class="booking_order_text">${text}</p>
         </div>
     </div>`
 };
@@ -2277,12 +2277,16 @@ let init = () => {
                     
                     }
                    
-                    cost = document.querySelector('main.content > .section.padding-top-sm-0 > .container > div:not(.booking_order) > p').innerHTML;
+                    if (document.querySelector('main.content > .section.padding-top-sm-0 > .container > div:not(.booking_order) > p')) {
+                        cost = document.querySelector('main.content > .section.padding-top-sm-0 > .container > div:not(.booking_order) > p') ? 
+                        document.querySelector('main.content > .section.padding-top-sm-0 > .container > div:not(.booking_order) > p').innerHTML : '';
                     
-                    let costspt = cost.split(').')[0]
-                    costRes = costspt.split('(').join(' <span class="span">(') + ')</span>';
-                    
-                    text = cost.split(').')[1];
+                        let costspt = cost.split(').')[0]
+                        costRes = costspt.split('(').join(' <span class="span">(') + ')</span>';
+                        
+                        text = cost.split(').')[1];
+                    }
+                   
                 }
 
                 
