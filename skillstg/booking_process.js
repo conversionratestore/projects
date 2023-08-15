@@ -2011,8 +2011,12 @@ let init = () => {
                     </div>
                 </div>`)
 
-                document.body.classList.add('ovh')
-
+                let setOvh = setInterval(() => {
+                    if (!document.body.classList.contains('ovh') && document.querySelector('.modal_form.active[data-index="1"]')) {
+                        document.body.classList.add('ovh')
+                    }
+                });
+                
                 document.addEventListener('click', (e) => {
                     if (e.target.classList.contains('modal_form_close') || e.target.classList.contains('modal_form') || e.target.closest('.modal_form_close') || e.target.classList.contains('btn-thankyou')) {
                         document.querySelectorAll('.modal_form').forEach(item => {
