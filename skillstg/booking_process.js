@@ -1357,7 +1357,7 @@ const card = (data, closest, index, currency) => {
                 <p>Only <span class="space">${seats}</span> seats left</p>
             </div>
             <p class="price">
-                <span class="pr">${currency}${price}</span>
+                <span class="pr">${price}</span>
                 <span>(inc VAT)</span> 
             </p>
             <a href="${link}" class="btn btn--info btn_book" 
