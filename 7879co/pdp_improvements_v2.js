@@ -2073,8 +2073,17 @@ let startPdp = setInterval(() => {
           document.querySelector(".active_pdp .sticky_wrap .size_txt").textContent = document.querySelectorAll(".mb-3.w-full button .text-p.truncate")[0]?.textContent.length == null ? document.querySelectorAll(".mb-3.w-full button .text-p.truncate")[0]?.textContent : `| ${document.querySelectorAll(".mb-3.w-full button .text-p.truncate")[0]?.textContent}`;
           document.querySelector(".active_pdp .sticky_wrap .our_price").textContent = document.querySelector(".my-7.flex.items-center.justify-between h3.text-h3.font-semibold")?.textContent.split("*")[0];
 
-          document.querySelector(".active_pdp .sticky_information")?.addEventListener("click", () => {
-            document.querySelector('.active_pdp .my-3[role="radiogroup"]')?.scrollIntoView({ block: "start", behavior: "smooth" });
+          document.querySelector(".active_pdp .sticky_information")?.addEventListener("click", (e) => {
+            if (!e.target.getAttribute("data-test")) {
+              pushDataLayer("exp_pdp_2_link_sticky_button", "Sticky button link", "Link", "Sticky section");
+              document.querySelector('.active_pdp .my-3[role="radiogroup"]')?.scrollIntoView({ block: "start", behavior: "smooth" });
+            }
+            e.target.setAttribute("data-test", "1");
+            setTimeout(() => {
+              if (e.target.getAttribute("data-test")) {
+                e.target.removeAttribute("data-test");
+              }
+            }, 1000);
           });
         }
       }
