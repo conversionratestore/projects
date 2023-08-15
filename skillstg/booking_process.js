@@ -814,7 +814,6 @@ let style2 = `
     .booking_order_content h4 {
         font-size: 16px;
         line-height: 22px;
-        margin-bottom: 8px;
         padding-right: 25px;
     }
     .booking_order_content h4 span {
@@ -828,12 +827,9 @@ let style2 = `
     .booking_order_date, .booking_order_cost, .booking_order_text, .booking_order_learn   {
         font-size: 14px;
         line-height: 22px;
+        margin-top: 8px;
     }
-    .booking_order_date, .booking_order_cost {
-        font-weight: 600;
-        margin-bottom: 8px;
-    }
-    .booking_order_cost strong {
+    .booking_order_date, .booking_order_cost, .booking_order_cost strong {
         font-weight: 600;
     }
     .booking_order_cost .span {
@@ -842,9 +838,6 @@ let style2 = `
     .booking_order_learn {
         font-weight: 600;
         color: #0D3B5B;
-    }
-    .booking_order_content.arrow-true.active .booking_order_learn {
-        margin-bottom: 8px;
     }
     .booking_order_content {
         margin: 0;
@@ -874,6 +867,7 @@ let style2 = `
     .booking_order_text {
         color: #49718C;
         font-weight: 400;
+        margin-top: 8px;
     }
     .section {
         padding: 24px 0 0 0;
@@ -1148,12 +1142,9 @@ let style2 = `
         .booking_order_content h4 {
             font-size: 18px;
             line-height: 26px;
-            margin-bottom: 16px;
         }
-        .booking_order_date, .booking_order_cost, .booking_order_content.arrow-true.active .booking_order_learn {
-            margin-bottom: 16px;
-        }
-        .booking_order_date, .booking_order_cost, .booking_order_text, .booking_order_learn {
+        .booking_order_date, .booking_order_cost, .booking_order_learn, .booking_order_text {
+            margin-top: 16px;
             font-size: 16px;
         }
         .row.gutters-20.mb-50.mb-lg-30.mb-sm-40 .col-md-6 {
