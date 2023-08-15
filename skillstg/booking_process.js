@@ -1453,7 +1453,7 @@ const orderHTML = (title, date, cost, text, total, learners) => {
          
             ${date != null ? '<p class="booking_order_date">Start date - ' + date + '</p>' : ''}
             ${cost != '' ? `<p class="booking_order_cost">${cost}</p>` : ''}
-            ${text != '' ? `<p class="booking_order_text">${text}</p>` : ''}
+            <p class="booking_order_text">For cancellations within 20 working days of the start date, the course cost is non-refundable.</p>
             
         </div>
     </div>`
@@ -2247,7 +2247,6 @@ let init = () => {
                     titleRes = '',
                     costRes = '',
                     cost = '',
-                    text = '',
                     total = 0,
                     learners = 1;
 
@@ -2258,7 +2257,6 @@ let init = () => {
                     title = dataBooking.title;
                     titleRes = title.split('(').join(' <span class="span"> (') + '</span>';
                     costRes = dataBooking.cost;
-                    text = dataBooking.text;
                     total = dataBooking.total;
                     learners = dataBooking.learners;
                 } 
@@ -2284,7 +2282,6 @@ let init = () => {
                         let costspt = cost.split(').')[0]
                         costRes = costspt.split('(').join(' <span class="span">(') + ')</span>';
                         
-                        text = cost.split(').')[1];
                     }
                    
                 }
@@ -2294,7 +2291,6 @@ let init = () => {
                     'title': titleRes,
                     'date': sessionStorage.getItem('date_booking'),
                     'cost': costRes,
-                    'text': text,
                     'total': total,
                     'learners': learners
                 }
@@ -2303,7 +2299,7 @@ let init = () => {
                 let position = media ? 'beforeend' : 'afterbegin';
 
                 parent.insertAdjacentHTML(position,
-                orderHTML(titleRes, sessionStorage.getItem('date_booking'), costRes, text, total, learners))
+                orderHTML(titleRes, sessionStorage.getItem('date_booking'), costRes, total, learners))
 
                 if (document.querySelector('.booking_order_content.arrow-true')) {
                     document.querySelector('.booking_order_content.arrow-true').addEventListener('click', (e) => {
