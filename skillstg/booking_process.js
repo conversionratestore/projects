@@ -6,6 +6,12 @@ let currency;
 
 let style = `
 <style class="style-exp">
+    body.ovh {
+        position: fixed;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+    }
     .form-group-title {
         font-size: 12px;
         font-weight: 600;
