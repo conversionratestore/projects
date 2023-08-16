@@ -2604,6 +2604,9 @@ let mut = new MutationObserver(function (muts) {
                 item.classList.add('learn')
             }
         })
+        document.querySelectorAll('.learn input[placeholder="(480) 555-0103"]').forEach(item => {
+            item.placeholder = '077XX XXX XXX';
+        })
     }
     mut.observe(document, optionMut);
 })  
