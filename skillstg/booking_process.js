@@ -931,7 +931,7 @@ let style2 = `
         margin-bottom: -6px;
     }
     .section.bg-white:not(.learner) > .container > div[class="mb-30"] {
-        margin-top: -36px;
+        display: none;
     }
     section.bg-white.learner .hide > .col-md-12 span:before {
         transform: translateY(-50%) scaleY(1);
@@ -1779,7 +1779,7 @@ let init = () => {
                 }
             }
             @media (min-width: 768px) {
-                .footer__accreditations {
+                section.bg-white+.footer__accreditations {
                     max-width: 904px;
                     margin: 60px auto;
                 }
