@@ -300,7 +300,7 @@ let findClose = setInterval(() => {
     ) {
         
         document.querySelector('.styles_buttonClose__ZGUNz').addEventListener('click', (e) => {
-            if (clickClose == false && planObj[price][planCode] == false) {
+            if (clickClose == false && planObj[price] && planObj[price][planCode] == false) {
                 clickClose = true;
                 document.querySelector('.popup').classList.add('active')
             }
@@ -309,7 +309,7 @@ let findClose = setInterval(() => {
 });
 
 let checkPlan = setInterval(() => {
-    if (planObj[price][planCode] == true && document.querySelector('.styles_todayCount__P6R9F span+span')) {
+    if (planObj[price] && planObj[price][planCode] == true && document.querySelector('.styles_todayCount__P6R9F span+span')) {
         clearInterval(checkPlan);
 
         let price = window.location.href.split('price=')[1].split('&')[0]
@@ -336,6 +336,7 @@ function checkErrors(val) {
         if (val.includes(item) && 
             !document.querySelector('.popup.active') && 
             document.querySelector('.popup') && 
+            planObj[price] && 
             planObj[price][planCode] == false
         ) {
             document.querySelector('.popup').classList.add('active')
