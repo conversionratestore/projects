@@ -181,7 +181,7 @@ let popup = `
         </svg>
     </button>
     <div class="popup_img">
-        <img src="https://conversionratestore.github.io/projects/hint/img/${planCode == '1_1_week_2099_1321' ? 'gift-image-2':'gift-image'}.svg" alt="gift">
+        <img src="https://conversionratestore.github.io/projects/hint/img/${planCode.includes('1321') ? 'gift-image-2':'gift-image'}.svg" alt="gift">
     </div>
     <div class="popup_content">
         <h2>Get 7-day Trial</h2>
