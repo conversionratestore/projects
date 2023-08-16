@@ -22,8 +22,8 @@
 // &planCode=1_1_week_2099_199 &price=199
 // &planCode=1_1_week_2099_099 &price=199
 
-const planCode = window.location.href.includes('planCode=') ? window.location.href.split('planCode=')[1].split('&')[0] : '';
-const price = window.location.href.includes('price=') ? window.location.href.split('price=')[1].split('&')[0] : '';
+const planCode = window.location.href.split('planCode=')[1].split('&')[0];
+const price = window.location.href.split('price=')[1].split('&')[0];
 
 let popup = `
 <style>
@@ -309,7 +309,7 @@ let findClose = setInterval(() => {
 });
 
 let checkPlan = setInterval(() => {
-    if (price != '' && planObj[price] && planObj[price][planCode] == true && document.querySelector('.styles_todayCount__P6R9F span+span')) {
+    if (planObj[price] && planObj[price][planCode] == true && document.querySelector('.styles_todayCount__P6R9F span+span')) {
         clearInterval(checkPlan);
 
         let price = window.location.href.split('price=')[1].split('&')[0]
@@ -336,7 +336,6 @@ function checkErrors(val) {
         if (val.includes(item) && 
             !document.querySelector('.popup.active') && 
             document.querySelector('.popup') && 
-            price != '' &&
             planObj[price] && 
             planObj[price][planCode] == false
         ) {

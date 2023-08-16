@@ -919,9 +919,13 @@ let style2 = `
     section.bg-white.learner .hide > .col-md-6,
     section.bg-white.learner[data-count="1"] > div > .row.gutters-20.mb-30.learn[data-index="1"] > .col-12,
     section.bg-white:not(.learner) > div > .row.gutters-20.mb-30.learn,
-    section.bg-white.learner > div > .row.gutters-20.mb-30:not(.learn),
-    section.bg-white.billing .def-text-1  {
+    section.bg-white.learner > div > .row.gutters-20.mb-30:not(.learn)
+      {
         display: none;
+    }
+    section.bg-white.billing .def-text-1 {
+        opacity: 0;
+        margin-bottom: 0;
     }
     section.bg-white.billing > div > .row.gutters-20.mb-30:not(.learn) > div:nth-child(n+5) .col-12  {
         margin-bottom: -6px;
@@ -1467,8 +1471,8 @@ const actionBtns = (back, next) => {
     </div>`
 }
 
-const scrollTo = (slector) => {
-      let top = slector.getBoundingClientRect().top - 60;
+const scrollTo = (slector, number = 0) => {
+      let top = slector.getBoundingClientRect().top - 60 - number;
 
       seamless.polyfill();
       seamless.scrollBy(window, { behavior: "smooth", top: top, left: 0 });
@@ -2096,6 +2100,17 @@ let init = () => {
                         }
                     })
                 })
+                let inputPlaceholder = document.querySelectorAll('section.bg-white input');
+            
+                inputPlaceholder.forEach(item => {
+                    if (item.placeholder == '123456') {
+                        item.placeholder = 'SE93 2GP';
+                    } else if (item.placeholder == '1901 Thornridge Cir. Shiloh') {
+                        item.placeholder = '31 North Street';
+                    } else if (item.placeholder == 'Dublin') {
+                        item.placeholder = 'London';
+                    }
+                })
 
                 document.querySelector('.btn_continue').addEventListener('click', (e) => {
                     console.log(e.target)
@@ -2131,47 +2146,66 @@ let init = () => {
                                 document.querySelector('main.content > .section.bg-white > .container > h3.mb-10v').innerHTML = 'Billing Address Details';
                             }
 
+                        } else {
+                            scrollTo(document.querySelector('section.bg-white .row.gutters-20.mb-30:nth-child(5) > div:nth-child(-n+5) input.error'), 28)
                         }
                     
                     } else {
                         if (document.querySelector('section.bg-white.learner')) {
                             console.log('btn 2')
-                            document.querySelectorAll('.page-action button')[1].click()
 
+                            let input = document.querySelectorAll('.learn input');
+                            input.forEach(item => {
+                                if (item.value == '' && !item.id.includes('react-select')) {
+                                    item.classList.add('error')
+                                } 
+                                if (item.placeholder == 'john.doe@example.com' && isUrlValid(item) != true) {
+                                    item.classList.add('error')
+                                }
+                                item.addEventListener('input', () => {
+                                    item.classList.remove('error')
+                                })
+                            })
 
-                        
+                            if (document.querySelector('.learn input.error')) {
+                                scrollTo(document.querySelector('.learn input.error'), 28)
+                            } else {
+                                document.querySelectorAll('.page-action button')[1].click()
+                            }
                         } else {
                             console.log('btn 3')
-                            if ( document.querySelectorAll('section.bg-white > .container > .row.gutters-20.mb-50 button')[1].className.includes('btn--white-active')) {
-                                let input = document.querySelectorAll('section.bg-white .row.gutters-20.mb-30:nth-child(5) > div:nth-child(n+5) input');
-                                input.forEach(item => {
-                                    if (item.value == '' && !item.id.includes('react-select') && !item.closest('.form-group').innerHTML.includes('Company Name')) {
-                                        item.classList.add('error')
-                                    } 
-                                    if (item.placeholder == 'john.doe@example.com' && isUrlValid(item) != true) {
-                                        item.classList.add('error')
-                                    }
-                                    item.addEventListener('input', () => {
-                                        item.classList.remove('error')
-                                    })
+                            let input = document.querySelectorAll('section.bg-white .row.gutters-20.mb-30:nth-child(5) > div:nth-child(n+5) input');
+                            input.forEach(item => {
+                                if (item.value == '' && !item.id.includes('react-select') && !item.closest('.form-group').innerHTML.includes('Company Name')) {
+                                    item.classList.add('error')
+                                } 
+                                if (item.placeholder == 'john.doe@example.com' && isUrlValid(item) != true) {
+                                    item.classList.add('error')
+                                }
+                                item.addEventListener('input', () => {
+                                    item.classList.remove('error')
                                 })
-                                if (!document.querySelector('section.bg-white .row.gutters-20.mb-30:nth-child(5) > div:nth-child(n+5) input.error')) {
+                            })
+                            if (!document.querySelector('section.bg-white .row.gutters-20.mb-30:nth-child(5) > div:nth-child(n+5) input.error')) {
                                 
+                                if (document.querySelectorAll('section.bg-white > .container > .row.gutters-20.mb-50 button')[1].className.includes('btn--white-active')) {
+                            
                                     document.querySelector('.section.bg-white').classList.add('learner')
                                     document.querySelector('main.content > .section.bg-white > .container > h3.mb-10v').innerHTML = 'Add Learner';
                                     if (!document.querySelector('section.bg-white .row.gutters-20.mb-30:not(:nth-child(5))')) {
                                         document.querySelector('.learner > div > div > a.btn--info').click()
                                     }
                                     scrollTo(document.querySelector('section.bg-white'))
-
+                                    
+                                } else {
+                                    document.querySelectorAll('.page-action button')[1].click()
                                 }
-                                
-                                
-                            } else {
-                                document.querySelectorAll('.page-action button')[1].click()
+                            }
+
+                            if (document.querySelector('section.bg-white .row.gutters-20.mb-30:nth-child(5) > div:nth-child(n+5) input.error')) {
+                                scrollTo(document.querySelector('section.bg-white .row.gutters-20.mb-30:nth-child(5) > div:nth-child(n+5) input.error'), 28)
                             }
                         }
-                        
                     }
                     document.querySelectorAll('section.bg-white.learner > div a.btn--info').forEach(learn => {
                         learn.addEventListener('click', () => {
