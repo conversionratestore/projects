@@ -802,6 +802,18 @@ let style2 = `
         display: flex!important;
         margin-top: -10px;
     }
+    .payment-details input::-webkit-input-placeholder {
+        color: #80858A; }
+      
+    .payment-details input:-moz-placeholder {
+        color: #80858A; }
+      
+    .payment-details input::-moz-placeholder {
+        color: #80858A; }
+      
+    .payment-details input:-ms-input-placeholder {
+        color: #80858A; }
+
     .wrapper {
         background: none!important
     }
@@ -831,6 +843,7 @@ let style2 = `
     }
     .booking_order_date, .booking_order_cost, .booking_order_cost strong {
         font-weight: 600;
+        color: #0D3B5B;
     }
     .booking_order_cost .span {
         font-weight: 300;
@@ -892,6 +905,7 @@ let style2 = `
     main.content > .section.bg-white > .container > h3.mb-10v {
         font-size: 20px;
     }
+   
     .def-text-1 {
         font-size: 16px;
     }
@@ -905,7 +919,8 @@ let style2 = `
     section.bg-white.learner .hide > .col-md-6,
     section.bg-white.learner[data-count="1"] > div > .row.gutters-20.mb-30.learn[data-index="1"] > .col-12,
     section.bg-white:not(.learner) > div > .row.gutters-20.mb-30.learn,
-    section.bg-white.learner > div > .row.gutters-20.mb-30:not(.learn) {
+    section.bg-white.learner > div > .row.gutters-20.mb-30:not(.learn),
+    section.bg-white.billing .def-text-1  {
         display: none;
     }
     section.bg-white.billing > div > .row.gutters-20.mb-30:not(.learn) > div:nth-child(n+5) .col-12  {
@@ -1199,17 +1214,6 @@ let style2 = `
         .border-bottom > .row.gutters-80 > .col-md-6 {
             width: 100%!important;
         }
-        .name-details {
-            color: var(--blue-dark, #0D3B5B);
-            font-size: 14px;
-            font-style: normal;
-            font-weight: 700;
-            line-height: 22px; 
-            margin: -24px 0 30px;
-        }
-        .name-details span {
-            font-weight: 400;
-        }
         .detail-list li {
             position: relative;
         }
@@ -1431,7 +1435,7 @@ const formCourse = (title) => {
     })
 };
 
-const orderHTML = (title, date, cost, text, total, learners) => {
+const orderHTML = (title, date, cost, total, learners) => {
 
     let path = window.location.href.includes('/booking-details/') || window.location.href.includes('/payment-details/');
 
@@ -2289,6 +2293,12 @@ let init = () => {
               
                 let position = media ? 'beforeend' : 'afterbegin';
 
+                console.log(learners)
+
+
+                console.log(total + ' total')
+                console.log(learners + ' learners')
+
                 parent.insertAdjacentHTML(position,
                 orderHTML(titleRes, sessionStorage.getItem('date_booking'), costRes, total, learners))
 
@@ -2387,13 +2397,6 @@ let init = () => {
                         }
                     })
                 })
-
-                if (media) {
-                    let title = JSON.parse(sessionStorage.getItem('data_booking')).title;
-                    document.querySelector('main.content > .section.bg-white > .container > h3.mb-30').insertAdjacentHTML('afterend', 
-                    `<p class="name-details">${title}</p>`)
-                }
-
             }
         });
     }
@@ -2470,16 +2473,6 @@ let updateTimer = (parent) => {
         sessionStorage.setItem('timer', formattedTime)
     }
 }
-
-// let redirect = setInterval(() => {
-//     let newHeref = window.location.href;
-//     if (newHeref != href) {
-//         href = newHeref;
-//         // window.location.reload()
-//         console.log('init')
-//         init()
-//     }
-// })
 
 let optionMut = {
     childList: true,
@@ -2559,6 +2552,8 @@ let mut = new MutationObserver(function (muts) {
         document.querySelector('.booking_order h3 span').innerHTML = total;
         
      
+        console.log(total + ' mut total')
+        console.log(countLearn + ' mut countLearn')
         document.querySelector('.booking_order').addEventListener('click', (e) => {
             e.stopImmediatePropagation()
             e.currentTarget.classList.toggle('active');
