@@ -421,6 +421,56 @@ let toolBox = setInterval(() => {
       subtree: true,
     });
 
+    visibElem();
+    //visibility elem
+    function visibElem() {
+      let obsV = new IntersectionObserver(visibilityV, {
+        threshold: 1,
+      });
+
+      let obsV2 = new IntersectionObserver(visibilityV2, {
+        threshold: 1,
+      });
+
+      let intV1 = setInterval(() => {
+        if (document.querySelector(".tool_box")) {
+          clearInterval(intV1);
+          obsV.observe(document.querySelector(".tool_box"));
+        }
+      }, 100);
+      let intV2 = setInterval(() => {
+        if (document.querySelector("#stickywidgetdiv")) {
+          clearInterval(intV2);
+          obsV.observe(document.querySelector("#stickywidgetdiv"));
+        }
+      }, 100);
+
+      function visibilityV(entries) {
+        entries.forEach((i) => {
+          if (i.isIntersecting) {
+            setTimeout(function () {
+              obsV2.observe(i.target);
+            }, 100);
+          }
+        });
+      }
+      function visibilityV2(entries) {
+        entries.forEach((i) => {
+          if (i.isIntersecting) {
+            if (i.target.classList.contains("tool_box")) {
+              pushDataLayer("exp_toolbox_a_v_sb", "Compare rates", "Visibility", "Sticky bar");
+            }
+            if (i.target.getAttribute("id") === "stickywidgetdiv") {
+              pushDataLayer("exp_toolbox_a_v_ssta", "Car Insurance toolbox", "Visibility", "Left side");
+            }
+
+            obsV.unobserve(i.target);
+          }
+          obsV2.unobserve(i.target);
+        });
+      }
+    }
+
     const record = setInterval(() => {
       if (typeof clarity === "function") {
         clearInterval(record);
