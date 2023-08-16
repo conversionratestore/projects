@@ -68,11 +68,9 @@ let startFunk = setInterval(() => {
             .popup_slide_in .lav-paypal #dynamic-checkout-cart .shopify-cleanslate li{
                 flex-basis: calc(100% / 3 - 12px) !important;
                 margin: 0 !important;
-                height: 40px !important;
             }
             .popup_slide_in .lav-paypal .shopify-cleanslate .IcgSIE7pEVZrlnAeRS6j, .popup_slide_in .lav-paypal .shopify-cleanslate .DefhEHZZf4y32pvV7mZj,
             .popup_slide_in .lav-paypal .shopify-cleanslate .KHqjJyKjVNT1lCGf2bnQ, .shopify-cleanslate .wOEViUrCyNb9maEe3QrQ{
-                height: 40px !important;
             }
             .btn_remove_item:hover{
                 transform: scale(0.9);
@@ -471,7 +469,6 @@ let startFunk = setInterval(() => {
                 .popup_slide_in .container_popup{
                     max-width: 351px;
                 }
-                /*
                 .cart_popup_footer{
                     max-height: 284px;
                 }
@@ -484,7 +481,7 @@ let startFunk = setInterval(() => {
                 .popup_slide_in .lav-paypal .Jk692hbroeK5lg6b_t4v > ul{
                     flex-wrap: wrap !important;
                 }
-                */
+               
             }
         </style>
         `;
@@ -713,8 +710,8 @@ let startFunk = setInterval(() => {
                                 <h2><a href="${el.url}">${el.product_title}</a></h2>
                                 <div data-id=${el.id} class="all_props"></div>
                                 <div class="price_wrap">
-                                    <span class="my_old_price">$${(el.original_line_price / 100).toFixed(2)}</span>
-                                    <span class="my_price">$${(el.final_line_price / 100).toFixed(2)}</span>
+                                    <span class="my_old_price">$${(el.original_line_price / 100).toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, "$1,")}</span>
+                                    <span class="my_price">$${(el.final_line_price / 100).toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, "$1,")}</span>
                                 </div>
                             </div>
                         <div class="qty_wrap">
