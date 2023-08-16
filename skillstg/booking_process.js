@@ -2109,6 +2109,8 @@ let init = () => {
                         item.placeholder = '31 North Street';
                     } else if (item.placeholder == 'Dublin') {
                         item.placeholder = 'London';
+                    } else if (item.placeholder == '(480) 555-0103') {
+                        item.placeholder = '077XX XXX XXX';
                     }
                 })
 
