@@ -328,7 +328,8 @@ let checkPlan = setInterval(() => {
 
         history.pushState(null, null, location.href);
         window.onpopstate = function(event) {
-          history.go(-3);
+        //   history.go(-3);
+          window.location.href = 'https://compatibility.hint.app/#screen-0824ea7e';
         };
 
         
