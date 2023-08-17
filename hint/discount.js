@@ -5,8 +5,8 @@
 // $6.81 : 1_1_week_1900_681  /  payment $13.21 : Discount 50%  / planCode 1_1_week_1900_1321
 
 // pushDataLayer
-let pushDataLayer = (name, desc, type, loc) => {
-    console.log(name + ' : ' + desc + ' : ' + type + ' : ' + loc)
+function pushDataLayer(name, desc, type, loc) {
+    console.log(name + ' : ' + desc + ' : ' + type + ' : ' + loc);
 
     window.dataLayer = window.dataLayer || [];
     dataLayer.push({
@@ -256,6 +256,30 @@ let timerPopupActive = setInterval(() => {
     }
 }, 1000);
 
+
+const errosForModal = [
+    'GooglePay modal closed. Reason: cancel.',
+    'ApplePay modal closed. Reason: cancel.',
+    'ApplePay modal closed. Reason: error.',
+    'GooglePay modal closed. Reason: error.'
+];
+
+function checkErrors(val) {
+    for (let item of errosForModal) {
+        if (val.includes(item) && 
+            !document.querySelector('.popup.active') && 
+            document.querySelector('.popup') && 
+            planCodeB != '' &&
+            !!planObj[planCodeB]
+        ) {
+            document.querySelector('.popup').classList.add('active');
+
+            pushDataLayer('exp_special_offer_', `Screen view - ${planCodeB.includes('1321') ? '50' : '75'}%`, 'Visibility', 'We have a Gift for you ');
+            pushDataLayer('exp_special_offer_', `Save ${planCodeB.includes('1321') ? '50' : '75'}% today`, 'Visibility', 'We have a Gift for you ');
+        }
+    }
+}
+
 let init = setInterval(() => {
     if (document.querySelector('.styles_contentWrapper__ucnr6')) {
         clearInterval(init)
@@ -282,26 +306,56 @@ let init = setInterval(() => {
         }
         window.addEventListener('resize', appHeight)
         appHeight()
+
+        console.defaultLog = console.log.bind(console);
+        console.defaultError = console.log.bind(console);
+
+        console.log = function () {
+        console.defaultLog.apply(console, arguments);
+
+        try {
+            checkErrors(JSON.stringify(arguments));
+        } catch (e) {}
+        };
+
+        console.error = function () {
+        console.defaultError.apply(console, arguments);
+
+        try {
+            checkErrors(JSON.stringify(arguments));
+        } catch (e) {}
+        };
     }
 })
 
-
+let isVisibleCloseButton = false;
 let findClose = setInterval(() => {
     if (document.querySelector('.styles_buttonClose__ZGUNz') && 
         document.querySelector('.popup')
     ) {
-        
+
+        if (document.querySelector('.styles_todayCount__P6R9F span+span') && isVisibleCloseButton == false) {
+           
+            isVisibleCloseButton = true
+            let price = window.location.href.split('price=')[1].split('&')[0];
+            let total = document.querySelector('.styles_todayCount__P6R9F span+span').innerText;
+            let saved = price == '1321' ? '50%' : '75%';
+
+            pushDataLayer('exp_special_offer_', `Credit cart - ${total} - ${saved}`, 'Button', 'Additional Start your 7-day trial');
+
+        }
+      
+     
         document.querySelector('.styles_buttonClose__ZGUNz').addEventListener('click', (e) => {
             if (clickClose == false && planCodeB != '' && !!planObj[planCodeB]) {
                 clickClose = true;
                 document.querySelector('.popup').classList.add('active')
                 pushDataLayer('exp_special_offer_', `Screen view - ${planCodeB.includes('1321') ? '50' : '75'}%`, 'Visibility', 'We have a Gift for you ');
                 pushDataLayer('exp_special_offer_', `Save ${planCodeB.includes('1321') ? '50' : '75'}% today`, 'Visibility', 'We have a Gift for you ');
-
-                
-
             }
         })
+    } else {
+        isVisibleCloseButton = false
     }
 });
 
@@ -326,16 +380,11 @@ let checkPlan = setInterval(() => {
         let saved = discount == '-50%' ? '50%' : '75%';
         document.querySelector('.styles_todayCount__P6R9F span+span').insertAdjacentHTML('beforeend', `<div class="saved_block">You just saved ${saved}</div>`);
 
-        // history.pushState(null, null, location.href);
-        // window.onpopstate = function(event) {
-        // //   history.go(-3);
-        //   window.location.href = 'https://compatibility.hint.app/#screen-0824ea7e';
-        // };
-
-        //events
-        document.querySelector('.styles_buttonShowCard__CPDfR.styles_paymentButton__GtgSF').addEventListener('click', () => {
-            pushDataLayer('exp_special_offer_', `Credit cart - ${total} - ${saved}`, 'Button', 'Additional Start your 7-day trial');
-        })
+        history.pushState(null, null, location.href);
+        window.onpopstate = function(event) {
+        //   history.go(-3);
+          window.location.href = 'https://compatibility.hint.app/#screen-0824ea7e';
+        };
 
         let findpayments = setInterval(() => {
             if (document.querySelector('.style_appleGooglePayWrapper__tQynd iframe')) {
@@ -357,47 +406,6 @@ let checkPlan = setInterval(() => {
     }
 });
 
-const errosForModal = [
-    'GooglePay modal closed. Reason: cancel.',
-    'ApplePay modal closed. Reason: cancel.',
-    'ApplePay modal closed. Reason: error.',
-    'GooglePay modal closed. Reason: error.'
-];
-
-function checkErrors(val) {
-    for (let item of errosForModal) {
-        if (val.includes(item) && 
-            !document.querySelector('.popup.active') && 
-            document.querySelector('.popup') && 
-            planCodeB != '' &&
-            !!planObj[planCodeB]
-        ) {
-            document.querySelector('.popup').classList.add('active');
-
-            pushDataLayer('exp_special_offer_', `Screen view - ${planCodeB.includes('1321') ? '50' : '75'}%`, 'Visibility', 'We have a Gift for you ');
-            pushDataLayer('exp_special_offer_', `Save ${planCodeB.includes('1321') ? '50' : '75'}% today`, 'Visibility', 'We have a Gift for you ');
-        }
-    }
-}
-
-console.defaultLog = console.log.bind(console);
-console.defaultError = console.log.bind(console);
-
-console.log = function () {
-  console.defaultLog.apply(console, arguments);
-
-  try {
-    checkErrors(JSON.stringify(arguments));
-  } catch (e) {}
-};
-
-console.error = function () {
-  console.defaultError.apply(console, arguments);
-
-  try {
-    checkErrors(JSON.stringify(arguments));
-  } catch (e) {}
-};
 
 //clarify
 let isClarity = setInterval(() => {
