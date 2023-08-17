@@ -257,10 +257,10 @@ let timerPopupActive = setInterval(() => {
 }, 1000);
 
 let init = setInterval(() => {
-    if (document.body) {
+    if (document.querySelector('.styles_contentWrapper__ucnr6')) {
         clearInterval(init)
 
-        document.body.insertAdjacentHTML('beforeend', popup)
+        document.querySelector('.styles_contentWrapper__ucnr6').insertAdjacentHTML('beforeend', popup)
         //click close button
         document.querySelector('.popup_close').addEventListener('click', () => {
             document.querySelector('.popup').classList.remove('active');
@@ -326,11 +326,11 @@ let checkPlan = setInterval(() => {
         let saved = discount == '-50%' ? '50%' : '75%';
         document.querySelector('.styles_todayCount__P6R9F span+span').insertAdjacentHTML('beforeend', `<div class="saved_block">You just saved ${saved}</div>`);
 
-        history.pushState(null, null, location.href);
-        window.onpopstate = function(event) {
-        //   history.go(-3);
-          window.location.href = 'https://compatibility.hint.app/#screen-0824ea7e';
-        };
+        // history.pushState(null, null, location.href);
+        // window.onpopstate = function(event) {
+        // //   history.go(-3);
+        //   window.location.href = 'https://compatibility.hint.app/#screen-0824ea7e';
+        // };
 
         //events
         document.querySelector('.styles_buttonShowCard__CPDfR.styles_paymentButton__GtgSF').addEventListener('click', () => {
@@ -354,9 +354,6 @@ let checkPlan = setInterval(() => {
                 })
             }
         })
-       
-      
-      
     }
 });
 
