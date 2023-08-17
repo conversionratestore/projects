@@ -291,13 +291,20 @@ let checkPlan = setInterval(() => {
 
         let saved = discount == '-50%' ? '50%' : '75%';
         document.querySelector('.styles_todayCount__P6R9F span+span').insertAdjacentHTML('beforeend', `<div class="saved_block">You just saved ${saved}</div>`);
+
+        history.pushState(null, null, location.href);
+        window.onpopstate = function(event) {
+          history.go(-3);
+        };
     }
 });
 
 const errosForModal = [
     'GooglePay modal closed. Reason: cancel.',
     'ApplePay modal closed. Reason: cancel.',
-  ];
+    'ApplePay modal closed. Reason: error.',
+    'GooglePay modal closed. Reason: error.'
+];
 
 function checkErrors(val) {
     for (let item of errosForModal) {
