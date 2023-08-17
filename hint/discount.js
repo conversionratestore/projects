@@ -18,7 +18,7 @@ let pushDataLayer = (name, desc, type, loc) => {
     });
 }
 
-const planCode = window.location.href.includes('planCode=') ? window.location.href.split('planCode=')[1].split('&')[0] : '';
+let planCodeB = window.location.href.includes('planCode=') ? window.location.href.split('planCode=')[1].split('&')[0] : '';
 
 let popup = `
 <style>
@@ -177,10 +177,10 @@ let popup = `
         </svg>
     </button>
     <div class="popup_img">
-        <img src="https://conversionratestore.github.io/projects/hint/img/${planCode.includes('1321') ? 'gift-image-2':'gift-image'}.svg" alt="gift">
+        <img src="https://conversionratestore.github.io/projects/hint/img/${planCodeB.includes('1321') ? 'gift-image-2':'gift-image'}.svg" alt="gift">
     </div>
     <div class="popup_content">
-        <h2>Save ${planCode.includes('1321') ? '50' : '75'}% on your 7-day trial</h2>
+        <h2>Save ${planCodeB.includes('1321') ? '50' : '75'}% on your 7-day trial</h2>
         <ul>
             <li class="flex items-center">
                 <svg width="41" height="40" viewBox="0 0 41 40" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -228,7 +228,7 @@ let popup = `
             </li>
         </ul>
         <button type="button" class="btn-get-trial">
-            <span>Save ${planCode == '1_1_week_2099_1321' ? '50' : '75'}% today</span>
+            <span>Save ${planCodeB == '1_1_week_2099_1321' ? '50' : '75'}% today</span>
             <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path fill-rule="evenodd" clip-rule="evenodd" d="M1.93974 0.950928L9.01888 7.99988L1.93974 15.0488L0.582031 13.6969L6.30347 7.99988L0.582031 2.30284L1.93974 0.950928ZM8.34003 0.950928L15.4192 7.99988L8.34003 15.0488L6.98232 13.6969L12.7037 7.99988L6.98232 2.30284L8.34003 0.950928Z" fill="white"/>
             </svg>
@@ -244,7 +244,7 @@ const planObj = {
     '1_1_week_1900_1321': '1_1_week_1900_681'
 }
 
-console.log(planCode)
+console.log(planCodeB)
 
 let clickClose = false;
 
@@ -265,15 +265,15 @@ let init = setInterval(() => {
         document.querySelector('.popup_close').addEventListener('click', () => {
             document.querySelector('.popup').classList.remove('active');
             clickClose = false;
-            pushDataLayer('exp_special_offer_', `Close - ${planCode.includes('1321') ? '50' : '75'}%`, 'Button', 'We have a Gift for you ');
+            pushDataLayer('exp_special_offer_', `Close - ${planCodeB.includes('1321') ? '50' : '75'}%`, 'Button', 'We have a Gift for you ');
             pushDataLayer('exp_special_offer_', countTimer + ' second', 'Time', 'We have a Gift for you ');
         })
 
         //click on start trial button
         document.querySelector('.btn-get-trial').addEventListener('click', () => {
             document.querySelector('.popup').classList.remove('active');
-            window.location.href = window.location.href.replace(planCode, planObj[planCode])
-            pushDataLayer('exp_special_offer_', `Save ${planCode.includes('1321') ? '50' : '75'}% today`, 'Button', 'We have a Gift for you ');
+            window.location.href = window.location.href.replace(planCodeB, planObj[planCodeB])
+            pushDataLayer('exp_special_offer_', `Save ${planCodeB.includes('1321') ? '50' : '75'}% today`, 'Button', 'We have a Gift for you ');
             pushDataLayer('exp_special_offer_', countTimer + ' second', 'Time', 'We have a Gift for you ');
         })
 
@@ -292,11 +292,11 @@ let findClose = setInterval(() => {
     ) {
         
         document.querySelector('.styles_buttonClose__ZGUNz').addEventListener('click', (e) => {
-            if (clickClose == false && planCode != '' && !!planObj[planCode]) {
+            if (clickClose == false && planCodeB != '' && !!planObj[planCodeB]) {
                 clickClose = true;
                 document.querySelector('.popup').classList.add('active')
-                pushDataLayer('exp_special_offer_', `Screen view - ${planCode.includes('1321') ? '50' : '75'}%`, 'Visibility', 'We have a Gift for you ');
-                pushDataLayer('exp_special_offer_', `Save ${planCode.includes('1321') ? '50' : '75'}% today`, 'Visibility', 'We have a Gift for you ');
+                pushDataLayer('exp_special_offer_', `Screen view - ${planCodeB.includes('1321') ? '50' : '75'}%`, 'Visibility', 'We have a Gift for you ');
+                pushDataLayer('exp_special_offer_', `Save ${planCodeB.includes('1321') ? '50' : '75'}% today`, 'Visibility', 'We have a Gift for you ');
 
                 
 
@@ -307,8 +307,8 @@ let findClose = setInterval(() => {
 
 
 let checkPlan = setInterval(() => {
-    if (planCode != '' && 
-        !planObj[planCode] && 
+    if (planCodeB != '' && 
+        !planObj[planCodeB] && 
         document.querySelector('.styles_todayCount__P6R9F span+span') &&
         document.querySelector('.styles_buttonShowCard__CPDfR.styles_paymentButton__GtgSF')) {
         clearInterval(checkPlan);
@@ -372,13 +372,13 @@ function checkErrors(val) {
         if (val.includes(item) && 
             !document.querySelector('.popup.active') && 
             document.querySelector('.popup') && 
-            planCode != '' &&
-            !!planObj[planCode]
+            planCodeB != '' &&
+            !!planObj[planCodeB]
         ) {
             document.querySelector('.popup').classList.add('active');
 
-            pushDataLayer('exp_special_offer_', `Screen view - ${planCode.includes('1321') ? '50' : '75'}%`, 'Visibility', 'We have a Gift for you ');
-            pushDataLayer('exp_special_offer_', `Save ${planCode.includes('1321') ? '50' : '75'}% today`, 'Visibility', 'We have a Gift for you ');
+            pushDataLayer('exp_special_offer_', `Screen view - ${planCodeB.includes('1321') ? '50' : '75'}%`, 'Visibility', 'We have a Gift for you ');
+            pushDataLayer('exp_special_offer_', `Save ${planCodeB.includes('1321') ? '50' : '75'}% today`, 'Visibility', 'We have a Gift for you ');
         }
     }
 }
