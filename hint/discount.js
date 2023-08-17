@@ -55,6 +55,7 @@ let popup = `
     font-weight: 600;
     line-height: 140%;
     color: #121620;
+    text-align: center;
 }
 .popup p {
     font-size: 14px;
@@ -63,15 +64,12 @@ let popup = `
     line-height: 18px; 
     font-weight: 400;
 }
-.popup p.span {
-    font-weight: 500;
-    letter-spacing: 0.011px;
-}
 .popup b {
     font-weight: 600;
 }
 .popup ul {
     padding-top: 4px;
+    margin: 0 -7.5px;
 }
 .popup_content svg {
     flex-shrink: 0;
@@ -153,6 +151,9 @@ let popup = `
 .flex {
     display: flex;
 }
+.items-center {
+    align-items: center;
+}
 </style>
 <div class="popup">
     <button type="button" class="popup_close">
@@ -166,18 +167,17 @@ let popup = `
         <img src="https://conversionratestore.github.io/projects/hint/img/${planCode.includes('1321') ? 'gift-image-2':'gift-image'}.svg" alt="gift">
     </div>
     <div class="popup_content">
-        <h2>Get 7-day Trial</h2>
-        <p class="span">You’ll get:</p>
+        <h2>Save ${planCode.includes('1321') ? '50' : '75'}% on your 7-day trial</h2>
         <ul>
-            <li class="flex">
+            <li class="flex items-center">
                 <svg width="41" height="40" viewBox="0 0 41 40" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <rect x="0.5" width="40" height="40" rx="20" fill="#EFF2FD"/>
                     <path d="M29.2083 12.6771C29.2083 11.4745 28.2338 10.5 27.0312 10.5H17.9271C16.7245 10.5 15.75 11.4745 15.75 12.6771V23.3646C15.75 24.5671 16.7245 25.5417 17.9271 25.5417H27.0312C28.2338 25.5417 29.2083 24.5671 29.2083 23.3646V12.6771ZM25.4479 21.9792H19.5104C19.1827 21.9792 18.9167 21.7132 18.9167 21.3854C18.9167 21.0577 19.1827 20.7917 19.5104 20.7917H25.4479C25.7757 20.7917 26.0417 21.0577 26.0417 21.3854C26.0417 21.7132 25.7757 21.9792 25.4479 21.9792ZM25.4479 19.6042H19.5104C19.1827 19.6042 18.9167 19.3382 18.9167 19.0104C18.9167 18.6827 19.1827 18.4167 19.5104 18.4167H25.4479C25.7757 18.4167 26.0417 18.6827 26.0417 19.0104C26.0417 19.3382 25.7757 19.6042 25.4479 19.6042ZM25.4479 17.2292H19.5104C19.1827 17.2292 18.9167 16.9632 18.9167 16.6354C18.9167 16.3077 19.1827 16.0417 19.5104 16.0417H25.4479C25.7757 16.0417 26.0417 16.3077 26.0417 16.6354C26.0417 16.9632 25.7757 17.2292 25.4479 17.2292Z" fill="#005BBB"/>
                     <path d="M17.9264 26.729C16.0708 26.729 14.5618 25.2193 14.5618 23.3644V12.6769C14.5618 12.6088 14.5777 12.5455 14.5816 12.479H13.9681C12.7671 12.479 11.791 13.4551 11.791 14.6561V27.3228C11.791 28.5237 12.7671 29.4998 13.9681 29.4998H23.4681C24.6691 29.4998 25.6452 28.5237 25.6452 27.3228V26.729H17.9264Z" fill="#005BBB"/>
                 </svg>
-                <p>A copy of your <b>hyper-personalized compatibility report</b> that is based on synastry charts.</p>
+                <p>Get a copy of your <b>hyper-personalized compatibility report.</b></p>
             </li>
-            <li class="flex">
+            <li class="flex items-center">
                 <svg width="41" height="40" viewBox="0 0 41 40" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <rect x="0.5" width="40" height="40" rx="20" fill="#EFF2FD"/>
                     <g clip-path="url(#clip0_2609_288)">
@@ -192,9 +192,9 @@ let popup = `
                     </clipPath>
                     </defs>
                 </svg>
-                <p>Discover hidden <b>insights</b> and receive <b>personalized advice</b> tailored to your unique relationship dynamics.</p>
+                <p>Discover hidden <b>insights</b> and receive <b>personalized advice</b> for your relationships.</p>
             </li>
-            <li class="flex">
+            <li class="flex items-center">
                 <svg width="41" height="40" viewBox="0 0 41 40" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <rect x="0.5" width="40" height="40" rx="20" fill="#EFF2FD"/>
                     <g clip-path="url(#clip0_2609_297)">
@@ -210,7 +210,7 @@ let popup = `
                     </clipPath>
                     </defs>
                 </svg>
-                <p>Gain <b>clarity</b>, improve <b>communication</b>, and foster <b>deeper connections</b> with your partner.</p>
+                <p>Gain <b>clarity</b>, improve <b>communication</b>, and foster <b>deeper connection</b> with your partner.</p>
                     
             </li>
         </ul>
