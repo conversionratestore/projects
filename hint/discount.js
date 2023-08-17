@@ -1,26 +1,9 @@
 
-// $0.99 : 1_1_week_2099_099  /  payment $1.99 : Discount 75%   / planCode 1_1_week_2099_199
-// $1.99 : 1_1_week_2099_199  /  payment $5 : Discount 75%      / planCode 1_1_week_2099_500
-// $4.99 : 1_1_week_2099_499  /  payment $9 : Discount 75%      / planCode 1_1_week_2099_900
-// $6.81 : 1_1_week_2099_681  /  payment $13.21 : Discount 49%  / planCode 1_1_week_2099_1321
+// $0.99 : 1_1_week_1900_060  /  payment $1 : Discount 75%      / planCode 1_1_week_1900_100
+// $1.99 : 1_1_week_1900_199  /  payment $5 : Discount 75%      / planCode 1_1_week_1900_500
+// $4.99 : 1_1_week_1900_499  /  payment $9 : Discount 75%      / planCode 1_1_week_1900_900
+// $6.81 : 1_1_week_1900_681  /  payment $13.21 : Discount 50%  / planCode 1_1_week_1900_1321
 
-//https://purchase.hint.app/payment-2?
-// &email=cofdvnversion@gmail.com
-// &planCode=1_1_week_2099_500
-// &price=500
-// &funnel=compatibility-_choose-plan_
-// &birthDateTime=08.02.2001%2000:00
-// &partnerBirthDateTime=08.06.2005
-// %2000:00
-// &placeId=MTE1NDA0NTEz
-// &partnerPlaceId=MzE4MDczNTUy
-
-// &planCode=1_1_week_2099_500 &price=500
-// &planCode=1_1_week_2099_199 &price=500
-
-
-// &planCode=1_1_week_2099_199 &price=199
-// &planCode=1_1_week_2099_099 &price=199
 
 const planCode = window.location.href.includes('planCode=') ? window.location.href.split('planCode=')[1].split('&')[0] : '';
 const price = window.location.href.includes('price=') ? window.location.href.split('price=')[1].split('&')[0] : '';
@@ -243,29 +226,25 @@ let popup = `
 
 
 const planObj = {
-    '199': {
-        '1_1_week_2099_199': false,
-        '1_1_week_1900_199': false,
-        '1_1_week_2099_099': true,
-        'nextGift': '1_1_week_2099_099'
+    '100': {
+        '1_1_week_1900_100': false,
+        '1_1_week_1900_060': true,
+        'nextGift': '1_1_week_1900_060'
     },
     '500': {
-        '1_1_week_2099_500': false,
         '1_1_week_1900_500': false,
-        '1_1_week_2099_199': true,
-        'nextGift': '1_1_week_2099_199'
+        '1_1_week_1900_199': true,
+        'nextGift': '1_1_week_1900_199'
     },
     '900': {
-        '1_1_week_2099_900': false,
         '1_1_week_1900_900': false,
-        '1_1_week_2099_499': true,
-        'nextGift': '1_1_week_2099_499'
+        '1_1_week_1900_499': true,
+        'nextGift': '1_1_week_1900_499'
     },
     '1321': {
-        '1_1_week_2099_1321': false,
         '1_1_week_1900_1321': false,
-        '1_1_week_2099_681': true,
-        'nextGift': '1_1_week_2099_681'
+        '1_1_week_1900_681': true,
+        'nextGift': '1_1_week_1900_681'
     }
 }
 
