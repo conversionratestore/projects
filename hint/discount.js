@@ -4,6 +4,19 @@
 // $4.99 : 1_1_week_1900_499  /  payment $9 : Discount 75%      / planCode 1_1_week_1900_900
 // $6.81 : 1_1_week_1900_681  /  payment $13.21 : Discount 50%  / planCode 1_1_week_1900_1321
 
+// pushDataLayer
+let pushDataLayer = (name, desc, type, loc) => {
+    console.log(name + ' : ' + desc + ' : ' + type + ' : ' + loc)
+
+    window.dataLayer = window.dataLayer || [];
+    dataLayer.push({
+        'event': 'event-to-ga4',
+        'event_name': name,
+        'event_desc': desc,
+        'event_type': type,
+        'event_loc': loc
+    });
+}
 
 const planCode = window.location.href.includes('planCode=') ? window.location.href.split('planCode=')[1].split('&')[0] : '';
 
@@ -235,6 +248,14 @@ console.log(planCode)
 
 let clickClose = false;
 
+let countTimer = 0;
+
+let timerPopupActive = setInterval(() => {
+    if (document.querySelector('.popup.active')) {
+        countTimer += 1;
+    }
+}, 1000);
+
 let init = setInterval(() => {
     if (document.body) {
         clearInterval(init)
@@ -244,12 +265,16 @@ let init = setInterval(() => {
         document.querySelector('.popup_close').addEventListener('click', () => {
             document.querySelector('.popup').classList.remove('active');
             clickClose = false;
+            pushDataLayer('exp_special_offer_', `Close - ${planCode.includes('1321') ? '50' : '75'}%`, 'Button', 'We have a Gift for you ');
+            pushDataLayer('exp_special_offer_', countTimer + ' second', 'Time', 'We have a Gift for you ');
         })
 
         //click on start trial button
         document.querySelector('.btn-get-trial').addEventListener('click', () => {
             document.querySelector('.popup').classList.remove('active');
             window.location.href = window.location.href.replace(planCode, planObj[planCode])
+            pushDataLayer('exp_special_offer_', `Save ${planCode.includes('1321') ? '50' : '75'}% today`, 'Button', 'We have a Gift for you ');
+            pushDataLayer('exp_special_offer_', countTimer + ' second', 'Time', 'We have a Gift for you ');
         })
 
         const appHeight = () => {
@@ -260,6 +285,7 @@ let init = setInterval(() => {
     }
 })
 
+
 let findClose = setInterval(() => {
     if (document.querySelector('.styles_buttonClose__ZGUNz') && 
         document.querySelector('.popup')
@@ -269,15 +295,22 @@ let findClose = setInterval(() => {
             if (clickClose == false && planCode != '' && !!planObj[planCode]) {
                 clickClose = true;
                 document.querySelector('.popup').classList.add('active')
+                pushDataLayer('exp_special_offer_', `Screen view - ${planCode.includes('1321') ? '50' : '75'}%`, 'Visibility', 'We have a Gift for you ');
+                pushDataLayer('exp_special_offer_', `Save ${planCode.includes('1321') ? '50' : '75'}% today`, 'Visibility', 'We have a Gift for you ');
+
+                
+
             }
         })
     }
 });
 
+
 let checkPlan = setInterval(() => {
     if (planCode != '' && 
         !planObj[planCode] && 
-        document.querySelector('.styles_todayCount__P6R9F span+span')) {
+        document.querySelector('.styles_todayCount__P6R9F span+span') &&
+        document.querySelector('.styles_buttonShowCard__CPDfR.styles_paymentButton__GtgSF')) {
         clearInterval(checkPlan);
 
         let price = window.location.href.split('price=')[1].split('&')[0]
@@ -289,6 +322,7 @@ let checkPlan = setInterval(() => {
             <p>${discount}</p>
         </div>`)
 
+        let total = document.querySelector('.styles_todayCount__P6R9F span+span').innerText;
         let saved = discount == '-50%' ? '50%' : '75%';
         document.querySelector('.styles_todayCount__P6R9F span+span').insertAdjacentHTML('beforeend', `<div class="saved_block">You just saved ${saved}</div>`);
 
@@ -296,6 +330,18 @@ let checkPlan = setInterval(() => {
         window.onpopstate = function(event) {
           history.go(-3);
         };
+
+        
+        document.querySelector('.styles_buttonShowCard__CPDfR.styles_paymentButton__GtgSF').addEventListener('click', () => {
+            pushDataLayer('exp_special_offer_', `Credit cart - ${total} - ${saved}`, 'Button', 'Additional Start your 7-day trial');
+        })
+        document.querySelector('.styles_buttonPaypal__-YO5d').addEventListener('click', () => {
+            pushDataLayer('exp_special_offer_', `PayPal - ${total} - ${saved}`, 'Button', 'Additional Start your 7-day trial');
+        })
+        document.querySelector('.style_appleGooglePayWrapper__tQynd iframe').addEventListener('click', () => {
+            pushDataLayer('exp_special_offer_', `Apple/Gpay - ${total} - ${saved}`, 'Button', 'Additional Start your 7-day trial');        
+        })
+      
     }
 });
 
@@ -314,7 +360,10 @@ function checkErrors(val) {
             planCode != '' &&
             !!planObj[planCode]
         ) {
-            document.querySelector('.popup').classList.add('active')
+            document.querySelector('.popup').classList.add('active');
+
+            pushDataLayer('exp_special_offer_', `Screen view - ${planCode.includes('1321') ? '50' : '75'}%`, 'Visibility', 'We have a Gift for you ');
+            pushDataLayer('exp_special_offer_', `Save ${planCode.includes('1321') ? '50' : '75'}% today`, 'Visibility', 'We have a Gift for you ');
         }
     }
 }
@@ -337,3 +386,11 @@ console.error = function () {
     checkErrors(JSON.stringify(arguments));
   } catch (e) {}
 };
+
+//clarify
+let isClarity = setInterval(() => {
+    if(typeof clarity == 'function') {
+        clearInterval(isClarity)
+        clarity("set", "special_offer", "variant_1");
+    }
+}, 100)
