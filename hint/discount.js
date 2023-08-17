@@ -332,16 +332,30 @@ let checkPlan = setInterval(() => {
           window.location.href = 'https://compatibility.hint.app/#screen-0824ea7e';
         };
 
-        
+        //events
         document.querySelector('.styles_buttonShowCard__CPDfR.styles_paymentButton__GtgSF').addEventListener('click', () => {
             pushDataLayer('exp_special_offer_', `Credit cart - ${total} - ${saved}`, 'Button', 'Additional Start your 7-day trial');
         })
-        document.querySelector('.styles_buttonPaypal__-YO5d').addEventListener('click', () => {
-            pushDataLayer('exp_special_offer_', `PayPal - ${total} - ${saved}`, 'Button', 'Additional Start your 7-day trial');
+
+        let findpayments = setInterval(() => {
+            if (document.querySelector('.style_appleGooglePayWrapper__tQynd iframe')) {
+                clearInterval(findpayments)
+                document.querySelector('.style_appleGooglePayWrapper__tQynd iframe').addEventListener('click', () => {
+                    pushDataLayer('exp_special_offer_', `Apple/Gpay - ${total} - ${saved}`, 'Button', 'Additional Start your 7-day trial');        
+                })
+            }
+        });
+
+        let findpaypal = setInterval(() => {
+            if (document.querySelector('.styles_buttonPaypal__-YO5d')) {
+                clearInterval(findpaypal)
+                document.querySelector('.styles_buttonPaypal__-YO5d').addEventListener('click', () => {
+                    pushDataLayer('exp_special_offer_', `PayPal - ${total} - ${saved}`, 'Button', 'Additional Start your 7-day trial');
+                })
+            }
         })
-        document.querySelector('.style_appleGooglePayWrapper__tQynd iframe').addEventListener('click', () => {
-            pushDataLayer('exp_special_offer_', `Apple/Gpay - ${total} - ${saved}`, 'Button', 'Additional Start your 7-day trial');        
-        })
+       
+      
       
     }
 });
