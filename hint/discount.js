@@ -20,9 +20,7 @@ function sendGAEvent(event_name, event_desc, event_type, event_loc) { // Send a 
     // console.log(obj)
 }
 
-let planCodeB = window.location.href.includes('planCode=') ? window.location.href.split('planCode=')[1].split('&')[0] : '';
-
-let popup = `
+let popup = (price) => `
 <style>
 .popup {
     position: fixed;
@@ -179,10 +177,10 @@ let popup = `
         </svg>
     </button>
     <div class="popup_img">
-        <img src="https://conversionratestore.github.io/projects/hint/img/${planCodeB.includes('1321') ? 'gift-image-2':'gift-image'}.svg" alt="gift">
+        <img src="https://conversionratestore.github.io/projects/hint/img/${price.includes('1321') ? 'gift-image-2':'gift-image'}.svg" alt="gift">
     </div>
     <div class="popup_content">
-        <h2>Save ${planCodeB.includes('1321') ? '50' : '75'}% on your 7-day trial</h2>
+        <h2>Save ${price.includes('1321') ? '50' : '75'}% on your 7-day trial</h2>
         <ul>
             <li class="flex items-center">
                 <svg width="41" height="40" viewBox="0 0 41 40" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -230,7 +228,7 @@ let popup = `
             </li>
         </ul>
         <button type="button" class="btn-get-trial">
-            <span>Save ${planCodeB == '1_1_week_2099_1321' ? '50' : '75'}% today</span>
+            <span>Save ${price.includes('1321') ? '50' : '75'}% today</span>
             <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path fill-rule="evenodd" clip-rule="evenodd" d="M1.93974 0.950928L9.01888 7.99988L1.93974 15.0488L0.582031 13.6969L6.30347 7.99988L0.582031 2.30284L1.93974 0.950928ZM8.34003 0.950928L15.4192 7.99988L8.34003 15.0488L6.98232 13.6969L12.7037 7.99988L6.98232 2.30284L8.34003 0.950928Z" fill="white"/>
             </svg>
@@ -266,6 +264,9 @@ const errosForModal = [
 ];
 
 function checkErrors(val) {
+
+    let planCodeB = window.location.href.includes('planCode=') ? window.location.href.split('planCode=')[1].split('&')[0] : '';
+
     for (let item of errosForModal) {
         if (val.includes(item) && 
             !document.querySelector('.popup.active') && 
@@ -282,10 +283,15 @@ function checkErrors(val) {
 }
 
 let init = setInterval(() => {
-    if (document.querySelector('.styles_contentWrapper__ucnr6')) {
+    if (document.querySelector('.styles_contentWrapper__ucnr6') && 
+        window.location.href.includes('price=') && 
+        window.location.href.includes('planCode=')) {
         clearInterval(init)
 
-        document.querySelector('.styles_contentWrapper__ucnr6').insertAdjacentHTML('beforeend', popup)
+        let planCodeB = window.location.href.split('planCode=')[1].split('&')[0];
+        let priceB = window.location.href.split('price=')[1].split('&')[0];
+
+        document.querySelector('.styles_contentWrapper__ucnr6').insertAdjacentHTML('beforeend', popup(priceB))
         //click close button
         document.querySelector('.popup_close').addEventListener('click', () => {
             document.querySelector('.popup').classList.remove('active');
@@ -299,9 +305,12 @@ let init = setInterval(() => {
         //click on start trial button
         document.querySelector('.btn-get-trial').addEventListener('click', () => {
             document.querySelector('.popup').classList.remove('active');
-            window.location.href = window.location.href.replace(planCodeB, planObj[planCodeB])
+            let newPricce = planObj[planCodeB].split('_')[4];
+
             sendGAEvent('exp_special_offer_', `Save ${planCodeB.includes('1321') ? '50' : '75'}% today`, 'Button', 'We have a Gift for you ');
             sendGAEvent('exp_special_offer_', countTimer + ' second', 'Time', 'We have a Gift for you ');
+            
+            window.location.href = window.location.href.replace(planCodeB, planObj[planCodeB]).replace(priceB, newPricce)
         })
 
         const appHeight = () => {
@@ -336,7 +345,8 @@ let init = setInterval(() => {
 let isVisibleCloseButton = false;
 let findClose = setInterval(() => {
     if (document.querySelector('.styles_buttonClose__ZGUNz') && 
-        document.querySelector('.popup')
+        document.querySelector('.popup') &&
+        window.location.href.includes('planCode=')
     ) {
 
         if (document.querySelector('.styles_todayCount__P6R9F span+span') && isVisibleCloseButton == false) {
@@ -351,6 +361,8 @@ let findClose = setInterval(() => {
         }
       
      
+        let planCodeB = window.location.href.split('planCode=')[1].split('&')[0];
+
         document.querySelector('.styles_buttonClose__ZGUNz').addEventListener('click', (e) => {
             if (clickClose == false && planCodeB != '' && !!planObj[planCodeB]) {
                 clickClose = true;
@@ -366,6 +378,9 @@ let findClose = setInterval(() => {
 
 
 let checkPlan = setInterval(() => {
+
+    let planCodeB = window.location.href.includes('planCode=') ? window.location.href.split('planCode=')[1].split('&')[0] : '';
+    
     if (planCodeB != '' && 
         !planObj[planCodeB] && 
         document.querySelector('.styles_todayCount__P6R9F span+span') &&
