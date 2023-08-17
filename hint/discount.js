@@ -4,18 +4,20 @@
 // $4.99 : 1_1_week_1900_499  /  payment $9 : Discount 75%      / planCode 1_1_week_1900_900
 // $6.81 : 1_1_week_1900_681  /  payment $13.21 : Discount 50%  / planCode 1_1_week_1900_1321
 
-// pushDataLayer
-function pushDataLayer(name, desc, type, loc) {
-    console.log(name + ' : ' + desc + ' : ' + type + ' : ' + loc);
+// sendGAEvent
+function sendGAEvent(event_name, event_desc, event_type, event_loc) { // Send a Google Analytics event
+    window.dataLayer = window.dataLayer || []
 
-    window.dataLayer = window.dataLayer || [];
-    dataLayer.push({
-        'event': 'event-to-ga4',
-        'event_name': name,
-        'event_desc': desc,
-        'event_type': type,
-        'event_loc': loc
-    });
+    const obj = {
+      'event': 'event-to-ga4',
+      event_name,
+      event_desc,
+      event_type,
+      event_loc
+    }
+
+    // dataLayer.push(obj)
+    console.log(obj)
 }
 
 let planCodeB = window.location.href.includes('planCode=') ? window.location.href.split('planCode=')[1].split('&')[0] : '';
@@ -244,7 +246,6 @@ const planObj = {
     '1_1_week_1900_1321': '1_1_week_1900_681'
 }
 
-console.log(planCodeB)
 
 let clickClose = false;
 
@@ -274,8 +275,8 @@ function checkErrors(val) {
         ) {
             document.querySelector('.popup').classList.add('active');
 
-            pushDataLayer('exp_special_offer_', `Screen view - ${planCodeB.includes('1321') ? '50' : '75'}%`, 'Visibility', 'We have a Gift for you ');
-            pushDataLayer('exp_special_offer_', `Save ${planCodeB.includes('1321') ? '50' : '75'}% today`, 'Visibility', 'We have a Gift for you ');
+            sendGAEvent('exp_special_offer_', `Screen view - ${planCodeB.includes('1321') ? '50' : '75'}%`, 'Visibility', 'We have a Gift for you ');
+            sendGAEvent('exp_special_offer_', `Save ${planCodeB.includes('1321') ? '50' : '75'}% today`, 'Visibility', 'We have a Gift for you ');
         }
     }
 }
@@ -289,16 +290,16 @@ let init = setInterval(() => {
         document.querySelector('.popup_close').addEventListener('click', () => {
             document.querySelector('.popup').classList.remove('active');
             clickClose = false;
-            pushDataLayer('exp_special_offer_', `Close - ${planCodeB.includes('1321') ? '50' : '75'}%`, 'Button', 'We have a Gift for you ');
-            pushDataLayer('exp_special_offer_', countTimer + ' second', 'Time', 'We have a Gift for you ');
+            sendGAEvent('exp_special_offer_', `Close - ${planCodeB.includes('1321') ? '50' : '75'}%`, 'Button', 'We have a Gift for you ');
+            sendGAEvent('exp_special_offer_', countTimer + ' second', 'Time', 'We have a Gift for you ');
         })
 
         //click on start trial button
         document.querySelector('.btn-get-trial').addEventListener('click', () => {
             document.querySelector('.popup').classList.remove('active');
             window.location.href = window.location.href.replace(planCodeB, planObj[planCodeB])
-            pushDataLayer('exp_special_offer_', `Save ${planCodeB.includes('1321') ? '50' : '75'}% today`, 'Button', 'We have a Gift for you ');
-            pushDataLayer('exp_special_offer_', countTimer + ' second', 'Time', 'We have a Gift for you ');
+            sendGAEvent('exp_special_offer_', `Save ${planCodeB.includes('1321') ? '50' : '75'}% today`, 'Button', 'We have a Gift for you ');
+            sendGAEvent('exp_special_offer_', countTimer + ' second', 'Time', 'We have a Gift for you ');
         })
 
         const appHeight = () => {
@@ -341,7 +342,7 @@ let findClose = setInterval(() => {
             let total = document.querySelector('.styles_todayCount__P6R9F span+span').innerText;
             let saved = price == '1321' ? '50%' : '75%';
 
-            pushDataLayer('exp_special_offer_', `Credit cart - ${total} - ${saved}`, 'Button', 'Additional Start your 7-day trial');
+            sendGAEvent('exp_special_offer_', `Credit cart - ${total} - ${saved}`, 'Button', 'Additional Start your 7-day trial');
 
         }
       
@@ -350,8 +351,8 @@ let findClose = setInterval(() => {
             if (clickClose == false && planCodeB != '' && !!planObj[planCodeB]) {
                 clickClose = true;
                 document.querySelector('.popup').classList.add('active')
-                pushDataLayer('exp_special_offer_', `Screen view - ${planCodeB.includes('1321') ? '50' : '75'}%`, 'Visibility', 'We have a Gift for you ');
-                pushDataLayer('exp_special_offer_', `Save ${planCodeB.includes('1321') ? '50' : '75'}% today`, 'Visibility', 'We have a Gift for you ');
+                sendGAEvent('exp_special_offer_', `Screen view - ${planCodeB.includes('1321') ? '50' : '75'}%`, 'Visibility', 'We have a Gift for you ');
+                sendGAEvent('exp_special_offer_', `Save ${planCodeB.includes('1321') ? '50' : '75'}% today`, 'Visibility', 'We have a Gift for you ');
             }
         })
     } else {
@@ -390,7 +391,7 @@ let checkPlan = setInterval(() => {
             if (document.querySelector('.style_appleGooglePayWrapper__tQynd iframe')) {
                 clearInterval(findpayments)
                 document.querySelector('.style_appleGooglePayWrapper__tQynd iframe').addEventListener('click', () => {
-                    pushDataLayer('exp_special_offer_', `Apple/Gpay - ${total} - ${saved}`, 'Button', 'Additional Start your 7-day trial');        
+                    sendGAEvent('exp_special_offer_', `Apple/Gpay - ${total} - ${saved}`, 'Button', 'Additional Start your 7-day trial');        
                 })
             }
         });
@@ -399,7 +400,7 @@ let checkPlan = setInterval(() => {
             if (document.querySelector('.styles_buttonPaypal__-YO5d')) {
                 clearInterval(findpaypal)
                 document.querySelector('.styles_buttonPaypal__-YO5d').addEventListener('click', () => {
-                    pushDataLayer('exp_special_offer_', `PayPal - ${total} - ${saved}`, 'Button', 'Additional Start your 7-day trial');
+                    sendGAEvent('exp_special_offer_', `PayPal - ${total} - ${saved}`, 'Button', 'Additional Start your 7-day trial');
                 })
             }
         })
