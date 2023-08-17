@@ -6,7 +6,6 @@
 
 
 const planCode = window.location.href.includes('planCode=') ? window.location.href.split('planCode=')[1].split('&')[0] : '';
-const price = window.location.href.includes('price=') ? window.location.href.split('price=')[1].split('&')[0] : '';
 
 let popup = `
 <style>
@@ -226,26 +225,10 @@ let popup = `
 
 
 const planObj = {
-    '100': {
-        '1_1_week_1900_100': false,
-        '1_1_week_1900_060': true,
-        'nextGift': '1_1_week_1900_060'
-    },
-    '500': {
-        '1_1_week_1900_500': false,
-        '1_1_week_1900_199': true,
-        'nextGift': '1_1_week_1900_199'
-    },
-    '900': {
-        '1_1_week_1900_900': false,
-        '1_1_week_1900_499': true,
-        'nextGift': '1_1_week_1900_499'
-    },
-    '1321': {
-        '1_1_week_1900_1321': false,
-        '1_1_week_1900_681': true,
-        'nextGift': '1_1_week_1900_681'
-    }
+    '1_1_week_1900_100': '1_1_week_1900_060',
+    '1_1_week_1900_500': '1_1_week_1900_060',
+    '1_1_week_1900_900': '1_1_week_1900_499',
+    '1_1_week_1900_1321': '1_1_week_1900_681'
 }
 
 console.log(planCode)
@@ -266,7 +249,7 @@ let init = setInterval(() => {
         //click on start trial button
         document.querySelector('.btn-get-trial').addEventListener('click', () => {
             document.querySelector('.popup').classList.remove('active');
-            window.location.href = window.location.href.replace(planCode, planObj[price]['nextGift'])
+            window.location.href = window.location.href.replace(planCode, planObj[planCode])
         })
 
         const appHeight = () => {
@@ -283,7 +266,7 @@ let findClose = setInterval(() => {
     ) {
         
         document.querySelector('.styles_buttonClose__ZGUNz').addEventListener('click', (e) => {
-            if (clickClose == false && price != '' && planObj[price] && planObj[price][planCode] == false) {
+            if (clickClose == false && planCode != '' && !!planObj[planCode]) {
                 clickClose = true;
                 document.querySelector('.popup').classList.add('active')
             }
@@ -292,9 +275,8 @@ let findClose = setInterval(() => {
 });
 
 let checkPlan = setInterval(() => {
-    if (price != '' && 
-        planObj[price] && 
-        planObj[price][planCode] == true && 
+    if (planCode != '' && 
+        !planObj[planCode] && 
         document.querySelector('.styles_todayCount__P6R9F span+span')) {
         clearInterval(checkPlan);
 
@@ -322,9 +304,8 @@ function checkErrors(val) {
         if (val.includes(item) && 
             !document.querySelector('.popup.active') && 
             document.querySelector('.popup') && 
-            price != '' &&
-            planObj[price] && 
-            planObj[price][planCode] == false
+            planCode != '' &&
+            !!planObj[planCode]
         ) {
             document.querySelector('.popup').classList.add('active')
         }
