@@ -6,7 +6,7 @@
 
 // sendGAEvent
 function sendGAEvent(event_name, event_desc, event_type, event_loc) { // Send a Google Analytics event
-    window.dataLayer = window.dataLayer || []
+    window.dataLayer = window.dataLayer || [];
 
     const obj = {
       'event': 'event-to-ga4',
@@ -17,7 +17,7 @@ function sendGAEvent(event_name, event_desc, event_type, event_loc) { // Send a 
     }
 
     // dataLayer.push(obj)
-    console.log(obj)
+    // console.log(obj)
 }
 
 let planCodeB = window.location.href.includes('planCode=') ? window.location.href.split('planCode=')[1].split('&')[0] : '';
@@ -275,8 +275,8 @@ function checkErrors(val) {
         ) {
             document.querySelector('.popup').classList.add('active');
 
-            sendGAEvent('exp_special_offer_', `Screen view - ${planCodeB.includes('1321') ? '50' : '75'}%`, 'Visibility', 'We have a Gift for you ');
-            sendGAEvent('exp_special_offer_', `Save ${planCodeB.includes('1321') ? '50' : '75'}% today`, 'Visibility', 'We have a Gift for you ');
+            sendGAEvent('exp_special_offer_', `Screen view - ${planCodeB.includes('1321') ? '50' : '75'}%`, 'Visibility', 'We have a Gift for you');
+            sendGAEvent('exp_special_offer_', `Save ${planCodeB.includes('1321') ? '50' : '75'}% today`, 'Visibility', 'We have a Gift for you');
         }
     }
 }
@@ -292,6 +292,8 @@ let init = setInterval(() => {
             clickClose = false;
             sendGAEvent('exp_special_offer_', `Close - ${planCodeB.includes('1321') ? '50' : '75'}%`, 'Button', 'We have a Gift for you ');
             sendGAEvent('exp_special_offer_', countTimer + ' second', 'Time', 'We have a Gift for you ');
+
+            countTimer = 0;
         })
 
         //click on start trial button
@@ -312,19 +314,21 @@ let init = setInterval(() => {
         console.defaultError = console.log.bind(console);
 
         console.log = function () {
-        console.defaultLog.apply(console, arguments);
+            console.defaultLog.apply(console, arguments);
 
-        try {
-            checkErrors(JSON.stringify(arguments));
-        } catch (e) {}
+            document.body.insertAdjacentHTML('afterbegin',`<p>console.log: </p><p>${JSON.stringify(arguments)}</p>`)
+            try {
+                checkErrors(JSON.stringify(arguments));
+            } catch (e) {}
         };
 
         console.error = function () {
-        console.defaultError.apply(console, arguments);
+            console.defaultError.apply(console, arguments);
 
-        try {
-            checkErrors(JSON.stringify(arguments));
-        } catch (e) {}
+            document.body.insertAdjacentHTML('afterbegin',`<p>console.error: </p><p>${JSON.stringify(arguments)}</p>`)
+            try {
+                checkErrors(JSON.stringify(arguments));
+            } catch (e) {}
         };
     }
 })
@@ -406,7 +410,6 @@ let checkPlan = setInterval(() => {
         })
     }
 });
-
 
 //clarify
 let isClarity = setInterval(() => {
