@@ -16,8 +16,8 @@ function sendGAEvent(event_name, event_desc, event_type, event_loc) { // Send a 
       event_loc
     }
 
-    // dataLayer.push(obj)
-    // console.log(obj)
+    dataLayer.push(obj)
+    console.log(obj)
 }
 
 let popup = (price) => `
@@ -324,7 +324,6 @@ let init = setInterval(() => {
         console.log = function () {
             console.defaultLog.apply(console, arguments);
 
-            document.body.insertAdjacentHTML('afterbegin',`<p>console.log: </p><p>${JSON.stringify(arguments)}</p>`)
             try {
                 checkErrors(JSON.stringify(arguments));
             } catch (e) {}
@@ -333,7 +332,6 @@ let init = setInterval(() => {
         console.error = function () {
             console.defaultError.apply(console, arguments);
 
-            document.body.insertAdjacentHTML('afterbegin',`<p>console.error: </p><p>${JSON.stringify(arguments)}</p>`)
             try {
                 checkErrors(JSON.stringify(arguments));
             } catch (e) {}
@@ -399,17 +397,11 @@ let checkPlan = setInterval(() => {
         let saved = discount == '-50%' ? '50%' : '75%';
         document.querySelector('.styles_todayCount__P6R9F span+span').insertAdjacentHTML('beforeend', `<div class="saved_block">You just saved ${saved}</div>`);
 
-        // history.pushState(null, null, location.href);
-        // window.onpopstate = function(event) {
-        // //   history.go(-3);
-        //   window.location.href = 'https://compatibility.hint.app/#screen-0824ea7e';
-        // };
-
-        document.body.insertAdjacentHTML('afterbegin',`<p>get email storage: ${localStorage.getItem('email') != null ? localStorage.getItem('email') : 'not found'}</p>`)
-
-        let emailUrl = window.location.href.split('email=')[1].split('&')[0]
-        document.body.insertAdjacentHTML('afterbegin',`<p>get email url: ${emailUrl}</p>`)
-        
+        history.pushState(null, null, location.href);
+        window.onpopstate = function(event) {
+        //   history.go(-3);
+          window.location.href = 'https://compatibility.hint.app/#screen-0824ea7e';
+        };
 
         let findpayments = setInterval(() => {
             if (document.querySelector('.style_appleGooglePayWrapper__tQynd iframe')) {
