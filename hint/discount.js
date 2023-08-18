@@ -309,7 +309,7 @@ let init = setInterval(() => {
             sendGAEvent('exp_special_offer_', `Save ${planCodeB.includes('1321') ? '50' : '75'}% today`, 'Button', 'We have a Gift for you ');
             sendGAEvent('exp_special_offer_', countTimer + ' second', 'Time', 'We have a Gift for you ');
             
-            window.location.href = window.location.href.replace(planCodeB, planObj[planCodeB]);
+            window.location.href = window.location.href.replace(planCodeB, planObj[planCodeB]).replace(priceB, planObj[planCodeB].split('_')[4]);
         })
 
         const appHeight = () => {
