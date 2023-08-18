@@ -264,11 +264,11 @@ let startPdp = setInterval(() => {
 
     let stylePdp = /*html */ `
   <style>
-    .active_pdp body {
-      padding-bottom: 97px!important;
+    :root {
+      --var-padding: 97px;
     }
-    .active_pdp footer {
-      padding-bottom: 3.1rem!important;
+    .active_pdp body {
+      padding-bottom: var(--var-padding)!important;
     }
     .active_pdp .bgr_load{
       position: fixed;
@@ -1589,6 +1589,13 @@ let startPdp = setInterval(() => {
   </style>
   `;
 
+    let checkStripeElement = setInterval(() => {
+        if (document.querySelector('.StripeElement iframe')) {
+          clearInterval(checkStripeElement)
+          document.documentElement.style.setProperty('--var-padding', '145px');
+        }
+    });
+   
     // popup
     let popUp = /*html */ `
       <div class="overlay_popup is_hidden">
