@@ -31,6 +31,9 @@ let startFunk = setInterval(() => {
             button.mws-addtocart.btn.btn1.pr_btn:not(.new_btn_add){
                 display: none;
             }
+            #ShopifyChat, #dummy-chat-button-iframe {
+              z-index: 999!important;
+            }
             /* popap_box */
             .popup_slide_in {
             position: fixed;
@@ -43,7 +46,7 @@ let startFunk = setInterval(() => {
             opacity: 1;
             background: rgba(0, 0, 0, 0.65);
             transition: all 0.5s ease 0s;
-            z-index: 1111111111119005;
+            z-index: 9999;  /* 1111111111119005;*/
             display: block;
             }
             .popup_slide_in.is_hidden {
