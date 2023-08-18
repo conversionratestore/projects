@@ -266,9 +266,13 @@ let startPdp = setInterval(() => {
   <style>
     :root {
       --var-padding: 97px;
+      --var-bottom: 100px;
     }
     .active_pdp body {
       padding-bottom: var(--var-padding)!important;
+    }
+    .active_pdp .intercom-lightweight-app-launcher, .active_pdp .intercom-namespace .intercom-dfosxs {
+      bottom: var(--var-bottom)!important;
     }
     .active_pdp .bgr_load{
       position: fixed;
@@ -1593,6 +1597,7 @@ let startPdp = setInterval(() => {
         if (document.querySelector('.StripeElement iframe')) {
           clearInterval(checkStripeElement)
           document.documentElement.style.setProperty('--var-padding', '145px');
+          document.documentElement.style.setProperty('--var-bottom', '150px');
         }
     });
    
