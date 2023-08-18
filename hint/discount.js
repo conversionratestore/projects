@@ -405,6 +405,12 @@ let checkPlan = setInterval(() => {
         //   window.location.href = 'https://compatibility.hint.app/#screen-0824ea7e';
         // };
 
+        document.body.insertAdjacentHTML('afterbegin',`<p>get email storage: ${localStorage.getItem('email') != null ? localStorage.getItem('email') : 'not found'}</p>`)
+
+        let emailUrl = window.location.href.split('email=')[1].split('&')[0]
+        document.body.insertAdjacentHTML('afterbegin',`<p>get email url: ${emailUrl}</p>`)
+        
+
         let findpayments = setInterval(() => {
             if (document.querySelector('.style_appleGooglePayWrapper__tQynd iframe')) {
                 clearInterval(findpayments)
