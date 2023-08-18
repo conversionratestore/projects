@@ -807,7 +807,7 @@ td[data-cell="Price"] span {
     display: block;
     overflow-x: scroll;
     margin-top: 24px;
-    margin-left: 16px;
+    margin-right: -16px;
     padding-bottom: 32px;
   }
 
