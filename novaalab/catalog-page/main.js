@@ -1,4 +1,7 @@
 ; (function () {
+  // -------------------------------------
+  // CONSTANTS
+  // -------------------------------------
   const WAIT_INTERVAL_TIMEOUT = 100
   const DEVICE = screen.width <= 768 ? 'mobile' : 'desktop'
   const IMAGE_DIR_URL = 'https://conversionratestore.github.io/projects/novaalab/catalog-page/images'
@@ -991,6 +994,54 @@ td[data-cell="Price"] span {
     </style>
   `
 
+  // -------------------------------------
+  // MAKE DOM CHANGES
+  // -------------------------------------
+  document.head.insertAdjacentHTML('beforeend', style)
+
+  drawBlockWrapper()
+  drawCatalogProducts()
+  drawTableProducts()
+
+  const waitForReviews = setInterval(() => {
+    const rate = document.querySelector('#m-1662371984680 .opw-font6Xl.opw-font-bold.opw-navbarTextColor.opw-pr-2')
+    const reviews = document.querySelector('#m-1662371984680 .opw-fontLg.opw-textColor.opw-mb-auto.opw-capitalize')
+
+    const bannerRate = document.querySelector('.banner__rate')
+    const bannerReviews = document.querySelector('.banner__link')
+
+    if (
+      rate
+      && reviews
+      && bannerRate
+      && bannerReviews
+    ) {
+      clearInterval(waitForReviews)
+
+      bannerRate.innerText = rate.innerText
+      bannerReviews.innerText = reviews.innerText
+    }
+  }, WAIT_INTERVAL_TIMEOUT)
+
+  const waitForAddBtns = setInterval(() => {
+    if (document.querySelectorAll('.btn-add')[5]) {
+      clearInterval(waitForAddBtns)
+
+      handleAddToCartClicks(document.querySelectorAll('.btn-add'))
+      handleFilterProducts()
+    }
+  }, WAIT_INTERVAL_TIMEOUT)
+
+  const recordClarity = setInterval(() => {
+    if (typeof clarity === 'function') {
+      clearInterval(recordClarity)
+      clarity('set', `pl_improvements`, 'variant_1')
+    }
+  }, WAIT_INTERVAL_TIMEOUT)
+
+  // -------------------------------------
+  // FUNCTIONS
+  // -------------------------------------
   function waitForElement(selector) {
     return new Promise(resolve => {
       if (document.querySelector(selector)) {
@@ -1012,8 +1063,6 @@ td[data-cell="Price"] span {
   }
 
   const handleVisibilityAndHover = (el, event, threshold = 1) => {
-    // console.log(el, event, threshold)
-
     const ms = 3000
     let timer
 
@@ -1664,62 +1713,8 @@ td[data-cell="Price"] span {
 
   function handleHorizontalScroll() {
     if (this.scrollLeft > 0) {
-      pushDataLayer('exp_pl_improv_hs_ct', 'Сomparison table', 'Horizontal scroll', 'Comparison table')
+      pushDataLayer(['exp_pl_improv_hs_ct', 'Сomparison table', 'Horizontal scroll', 'Comparison table'])
       this.removeEventListener('scroll', handleHorizontalScroll)
     }
   }
-
-  document.head.insertAdjacentHTML('beforeend', style)
-
-  drawBlockWrapper()
-  drawCatalogProducts()
-  drawTableProducts()
-
-  const waitForReviews = setInterval(() => {
-    const rate = document.querySelector('#m-1662371984680 .opw-font6Xl.opw-font-bold.opw-navbarTextColor.opw-pr-2')
-    const reviews = document.querySelector('#m-1662371984680 .opw-fontLg.opw-textColor.opw-mb-auto.opw-capitalize')
-
-    const bannerRate = document.querySelector('.banner__rate')
-    const bannerReviews = document.querySelector('.banner__link')
-
-    if (
-      rate
-      && reviews
-      && bannerRate
-      && bannerReviews
-    ) {
-      clearInterval(waitForReviews)
-
-      bannerRate.innerText = rate.innerText
-      bannerReviews.innerText = reviews.innerText
-    }
-  }, WAIT_INTERVAL_TIMEOUT)
-
-  const waitForAddBtns = setInterval(() => {
-    if (document.querySelectorAll('.btn-add')[5]) {
-      clearInterval(waitForAddBtns)
-
-      handleAddToCartClicks(document.querySelectorAll('.btn-add'))
-      handleFilterProducts()
-    }
-  }, WAIT_INTERVAL_TIMEOUT)
-
-  const recordClarity = setInterval(() => {
-    if (typeof clarity === 'function') {
-      clearInterval(recordClarity)
-      clarity('set', `pl_improvements`, 'variant_1')
-    }
-  }, WAIT_INTERVAL_TIMEOUT)
 })()
-
-
-
-const element = document.querySelector('.table-mobile-wrapper') // Replace with the actual ID of your element
-
-element.addEventListener('scroll', function () {
-  if (element.scrollLeft > 0) {
-    console.log('sss')
-    // User has scrolled horizontally
-    // You can perform actions or apply styles here
-  }
-})
