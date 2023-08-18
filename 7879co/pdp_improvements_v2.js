@@ -264,6 +264,9 @@ let startPdp = setInterval(() => {
 
     let stylePdp = /*html */ `
   <style>
+    .active_pdp body {
+      padding-bottom: 97px!important;
+    }
     .active_pdp .bgr_load{
       position: fixed;
       width: 100%;
