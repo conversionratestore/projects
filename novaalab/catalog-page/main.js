@@ -145,9 +145,9 @@ body:not(.template-index) .main-content {
 
 .btn-filter:not(.btn-filter--active):hover,
 .btn-filter:not(.btn-filter--active):focus-visible {
-  border-radius: 4px;
   border: 2px solid #3D4852;
   background: #F5F5FD;
+  color: #3D4852;
 }
 
 .btn-learn {
@@ -219,11 +219,6 @@ body:not(.template-index) .main-content {
 .table-mobile__name:hover,
 .table-mobile__name:focus-visible {
   color: #773BD9;
-}
-
-.btn-filter:not(.btn-filter--active):hover,
-.btn-filter:not(.btn-filter--active):focus-visible {
-  border: 2px solid #3D4852;
 }
 
 .filter__select {
