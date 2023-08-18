@@ -236,14 +236,12 @@ let popup = (price) => `
     </div>
 </div>`;
 
-
 const planObj = {
     '1_1_week_1900_100': '1_1_week_1900_060',
     '1_1_week_1900_500': '1_1_week_1900_199',
     '1_1_week_1900_900': '1_1_week_1900_499',
     '1_1_week_1900_1321': '1_1_week_1900_681'
 }
-
 
 let clickClose = false;
 
@@ -254,7 +252,6 @@ let timerPopupActive = setInterval(() => {
         countTimer += 1;
     }
 }, 1000);
-
 
 const errosForModal = [
     'GooglePay modal closed. Reason: cancel.',
@@ -276,8 +273,8 @@ function checkErrors(val) {
         ) {
             document.querySelector('.popup').classList.add('active');
 
-            sendGAEvent('exp_special_offer_', `Screen view - ${planCodeB.includes('1321') ? '50' : '75'}%`, 'Visibility', 'We have a Gift for you');
-            sendGAEvent('exp_special_offer_', `Save ${planCodeB.includes('1321') ? '50' : '75'}% today`, 'Visibility', 'We have a Gift for you');
+            sendGAEvent('exp_special_offer_v_sv_wh', `Screen view - ${planCodeB.includes('1321') ? '50' : '75'}%`, 'Visibility', 'We have a Gift for you');
+            sendGAEvent('exp_special_offer_v_save_wh', `Save ${planCodeB.includes('1321') ? '50' : '75'}% today`, 'Visibility', 'We have a Gift for you');
         }
     }
 }
@@ -296,8 +293,8 @@ let init = setInterval(() => {
         document.querySelector('.popup_close').addEventListener('click', () => {
             document.querySelector('.popup').classList.remove('active');
             clickClose = false;
-            sendGAEvent('exp_special_offer_', `Close - ${planCodeB.includes('1321') ? '50' : '75'}%`, 'Button', 'We have a Gift for you ');
-            sendGAEvent('exp_special_offer_', countTimer + ' second', 'Time', 'We have a Gift for you ');
+            sendGAEvent('exp_special_offer_b_c_wh', `Close - ${planCodeB.includes('1321') ? '50' : '75'}%`, 'Button', 'We have a Gift for you ');
+            sendGAEvent('exp_special_offer_time_wh', countTimer + ' second', 'Time', 'We have a Gift for you ');
 
             countTimer = 0;
         })
@@ -306,8 +303,8 @@ let init = setInterval(() => {
         document.querySelector('.btn-get-trial').addEventListener('click', () => {
             document.querySelector('.popup').classList.remove('active');
 
-            sendGAEvent('exp_special_offer_', `Save ${planCodeB.includes('1321') ? '50' : '75'}% today`, 'Button', 'We have a Gift for you ');
-            sendGAEvent('exp_special_offer_', countTimer + ' second', 'Time', 'We have a Gift for you ');
+            sendGAEvent('exp_special_offer_b_save_wh', `Save ${planCodeB.includes('1321') ? '50' : '75'}% today`, 'Button', 'We have a Gift for you ');
+            sendGAEvent('exp_special_offer_time_wh', countTimer + ' second', 'Time', 'We have a Gift for you ');
             
             window.location.href = window.location.href.replace(planCodeB, planObj[planCodeB]).replace(priceB, planObj[planCodeB].split('_')[4]);
         })
@@ -353,10 +350,9 @@ let findClose = setInterval(() => {
             let total = document.querySelector('.styles_todayCount__P6R9F span+span').innerText;
             let saved = price == '1321' ? '50%' : '75%';
 
-            sendGAEvent('exp_special_offer_', `Credit cart - ${total} - ${saved}`, 'Button', 'Additional Start your 7-day trial');
+            sendGAEvent('exp_special_offer_b_cc_as', `Credit cart - ${total} - ${saved}`, 'Button', 'Additional Start your 7-day trial');
 
         }
-      
      
         let planCodeB = window.location.href.split('planCode=')[1].split('&')[0];
 
@@ -364,15 +360,14 @@ let findClose = setInterval(() => {
             if (clickClose == false && planCodeB != '' && !!planObj[planCodeB]) {
                 clickClose = true;
                 document.querySelector('.popup').classList.add('active')
-                sendGAEvent('exp_special_offer_', `Screen view - ${planCodeB.includes('1321') ? '50' : '75'}%`, 'Visibility', 'We have a Gift for you ');
-                sendGAEvent('exp_special_offer_', `Save ${planCodeB.includes('1321') ? '50' : '75'}% today`, 'Visibility', 'We have a Gift for you ');
+                sendGAEvent('exp_special_offer_v_sv_wh', `Screen view - ${planCodeB.includes('1321') ? '50' : '75'}%`, 'Visibility', 'We have a Gift for you ');
+                sendGAEvent('exp_special_offer_v_save_wh', `Save ${planCodeB.includes('1321') ? '50' : '75'}% today`, 'Visibility', 'We have a Gift for you ');
             }
         })
     } else {
         isVisibleCloseButton = false
     }
 });
-
 
 let checkPlan = setInterval(() => {
 
@@ -407,7 +402,7 @@ let checkPlan = setInterval(() => {
             if (document.querySelector('.style_appleGooglePayWrapper__tQynd iframe')) {
                 clearInterval(findpayments)
                 document.querySelector('.style_appleGooglePayWrapper__tQynd iframe').addEventListener('click', () => {
-                    sendGAEvent('exp_special_offer_', `Apple/Gpay - ${total} - ${saved}`, 'Button', 'Additional Start your 7-day trial');        
+                    sendGAEvent('exp_special_offer_b_agpay_as', `Apple/Gpay - ${total} - ${saved}`, 'Button', 'Additional Start your 7-day trial');        
                 })
             }
         });
@@ -416,7 +411,7 @@ let checkPlan = setInterval(() => {
             if (document.querySelector('.styles_buttonPaypal__-YO5d')) {
                 clearInterval(findpaypal)
                 document.querySelector('.styles_buttonPaypal__-YO5d').addEventListener('click', () => {
-                    sendGAEvent('exp_special_offer_', `PayPal - ${total} - ${saved}`, 'Button', 'Additional Start your 7-day trial');
+                    sendGAEvent('exp_special_offer_b_pp_as', `PayPal - ${total} - ${saved}`, 'Button', 'Additional Start your 7-day trial');
                 })
             }
         })
