@@ -970,7 +970,7 @@ td[data-cell="Price"] span {
 
   [data-row="Medical Lights content"] td>div>div+div {
     text-align: center;
-    line-height: 1.6;
+    line-height: 1.428;
   }
 
   [data-row="Medical Lights content"] td>div>div+div {
