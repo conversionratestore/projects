@@ -477,7 +477,7 @@ let startFunk = setInterval(() => {
                 font-weight: 600;
                 line-height: 26px; 
                 margin: 24px auto 8px;
-                max-width: 287px;
+                max-width: 290px;
             }
             .reviews_wraps .stars_wrap{
                 display: flex;
@@ -557,7 +557,7 @@ let startFunk = setInterval(() => {
                             <div class="img_wrap_ship">
                                 <img src="https://conversionratestore.github.io/projects/artisanborn/img/img_ship.svg" alt="Shop confidently 30-day money back guarantee" />
                             </div>
-                            <p>More than 7,500 US customers already trusted us</p>
+                            <p> More than 7,500 US customers have already trusted us</p>
                             <div class="reviews_wraps">
                                 <div class="stars_wrap">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="18" height="17" viewBox="0 0 18 17" fill="none">
