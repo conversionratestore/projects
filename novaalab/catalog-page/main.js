@@ -1547,8 +1547,6 @@ td[data-cell="Price"] span {
       el.addEventListener('click', (e) => {
         const target = e.target
 
-        e.preventDefault()
-
         const productName =
           target.closest("[data-product-name]")?.dataset.productName
           || target.closest("[data-cell='Products']")?.querySelector('.table__product-name')?.innerText
