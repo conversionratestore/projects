@@ -1092,7 +1092,7 @@ td[data-cell="Price"] span {
 
   const pushDataLayer = ([event_name, event_desc, event_type, event_loc]) => { // Send a Google Analytics event
     const eventData = {
-      event_name, event_desc, event_type, event_loc
+      'event': 'event-to-ga4', event_name, event_desc, event_type, event_loc
     }
 
     window.dataLayer = window.dataLayer || []
@@ -1111,7 +1111,7 @@ td[data-cell="Price"] span {
         <div class="banner__reviews">
           <span class="banner__rate">4.8</span>
           <div>
-            <img src="${IMAGE_DIR_URL}/stars.svg" alt="">
+            <img src="${IMAGE_DIR_URL}/stars-total-rate.svg" alt="">
             <a class="banner__link" href="#m-1662371984680">From 1048 Reviews</a>
           </div>
         </div>
