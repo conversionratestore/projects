@@ -123,7 +123,7 @@ let startFunk = setInterval(() => {
                 margin: auto 0 0;
                 background: #FFF;
                 box-shadow: 0px -4px 16px 0px rgba(0, 0, 0, 0.16);
-                height: 100%;
+                /* height: 100%; */
                 max-height: 198px;
                 position: relative;
             }
