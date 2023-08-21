@@ -435,6 +435,7 @@ body:not(.template-index) .main-content {
   margin-top: 40px;
   border: 1px solid #EAEAEA;
   border-radius: 4px 4px 0px 0px;
+  overflow: hidden;
 }
 
 .table {
@@ -483,8 +484,7 @@ text-transform: none;
   border-right: 1px solid #EAEAEA;
 }
 
-.table th,
-.table tr:not(:last-child) td {
+.table tr:not(:last-child) {
   border-bottom: 1px solid #EAEAEA;
 }
 
