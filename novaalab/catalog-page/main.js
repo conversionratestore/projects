@@ -479,9 +479,9 @@ text-transform: none;
   border-radius: 0px 4px 0px 0px;
 }
 
-.table th:not(:last-child),
-.table td:not(:last-child) {
-  border-right: 1px solid #EAEAEA;
+.table th:not(:first-child),
+.table td:not(:first-child) {
+  border-left: 1px solid #EAEAEA;
 }
 
 .table tr:not(:last-child) {
@@ -563,7 +563,7 @@ td[data-cell="Products"] a {
 }
 
 td[data-cell="Products"] .btn-learn {
-  padding: 12px;
+  padding: 8px;
 }
 
 .table__product-name {
