@@ -657,17 +657,24 @@ let startFunk = setInterval(() => {
         // is Safari
         if (userAgent.indexOf('Safari') !== -1 && userAgent.indexOf('Chrome') === -1) {
           console.log('This is Safari');
-          if (document.querySelector('[data-testid="GooglePay-button"]')) {
-            document.querySelector('[data-testid="GooglePay-button"]').parentElement.style = 'display: none!important;'
-          }
+          let findGooglePay = setInterval(() => {
+            if (document.querySelector('[data-testid="GooglePay-button"]')) {
+              clearInterval(findGooglePay)
+              document.querySelector('[data-testid="GooglePay-button"]').parentElement.style = 'display: none!important;'
+            }
+          });
         }
 
         // is Chrome
         if (userAgent.indexOf('Chrome') !== -1) {
           console.log('This is Chrome');
-          if (document.querySelector('[data-testid="ApplePay-button"]')) {
-            document.querySelector('[data-testid="ApplePay-button"]').parentElement.style = 'display: none!important;'
-          }
+          let findApplePay = setInterval(() => {
+            if (document.querySelector('[data-testid="ApplePay-button"]')) {
+              clearInterval(findApplePay)
+              document.querySelector('[data-testid="ApplePay-button"]').parentElement.style = 'display: none!important;'
+            }
+          });
+         
         }
       }
       document.querySelector(".cart_popup_scroll .cart_popup_list")?.insertAdjacentHTML("afterbegin", `<span class="loading"><svg viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg"><circle class="path" fill="none" stroke-width="6" cx="33" cy="33" r="30"></circle></svg></span>`);
