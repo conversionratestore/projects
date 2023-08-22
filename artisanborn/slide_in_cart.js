@@ -636,6 +636,7 @@ let startFunk = setInterval(() => {
     });
 
     function onOpenPopup(block) {
+      console.log('onOpenPopup')
       overlay.classList.remove("is_hidden");
       body.style.overflow = "hidden";
       html.style.overflow = "hidden";
@@ -644,8 +645,30 @@ let startFunk = setInterval(() => {
       document.querySelector(".container_popup").insertAdjacentHTML("beforeend", block);
 
       pushDataLayer("exp_slide_in_cart_v_sic", "Slide in cart", "Visibility", "Slide in cart");
-      if (document.querySelector(".btn_checkout") && document.querySelector(".lav-paypal")) {
+      if (document.querySelector(".btn_checkout") && 
+          document.querySelector(".lav-paypal") && 
+          !document.querySelector(".btn_checkout+.lav-paypal")
+      ) {
         document.querySelector(".btn_checkout").after(document.querySelector(".lav-paypal"));
+
+        // get user agent
+        let userAgent = navigator.userAgent;
+
+        // is Safari
+        if (userAgent.indexOf('Safari') !== -1 && userAgent.indexOf('Chrome') === -1) {
+          console.log('This is Safari');
+          if (document.querySelector('[data-testid="GooglePay-button"]')) {
+            document.querySelector('[data-testid="GooglePay-button"]').parentElement.style = 'display: none!important;'
+          }
+        }
+
+        // is Chrome
+        if (userAgent.indexOf('Chrome') !== -1) {
+          console.log('This is Chrome');
+          if (document.querySelector('[data-testid="ApplePay-button"]')) {
+            document.querySelector('[data-testid="ApplePay-button"]').parentElement.style = 'display: none!important;'
+          }
+        }
       }
       document.querySelector(".cart_popup_scroll .cart_popup_list")?.insertAdjacentHTML("afterbegin", `<span class="loading"><svg viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg"><circle class="path" fill="none" stroke-width="6" cx="33" cy="33" r="30"></circle></svg></span>`);
       document.querySelectorAll(".cart_popup_scroll .cart_popup_list .product_wrap")?.forEach((el) => {
@@ -718,6 +741,7 @@ let startFunk = setInterval(() => {
         e.preventDefault();
         e.stopPropagation();
 
+        console.log(`>>>MyCart 1`);
         onOpenPopup(slideInCartContent);
         document.querySelector(".cart_popup_scroll .cart_popup_list")?.insertAdjacentHTML("afterbegin", `<span class="loading"><svg viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg"><circle class="path" fill="none" stroke-width="6" cx="33" cy="33" r="30"></circle></svg></span>`);
         document.querySelectorAll(".cart_popup_scroll .cart_popup_list .product_wrap")?.forEach((el) => {
