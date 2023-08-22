@@ -48,14 +48,19 @@ let startFunk = setInterval(() => {
             transition: all 0.5s ease 0s;
             z-index: 9999;  /* 1111111111119005;*/
             display: block;
-            }
-            .popup_slide_in.is_hidden {
             opacity: 0;
             pointer-events: none;
             }
-            .popup_slide_in.is_hidden .container_popup {
-            transform: translateX(100%);
-            transition: all 0.8s ease 0s;
+            .popup_slide_in.is_visible {
+            opacity: 1;
+            pointer-events: auto;
+            }
+            .popup_slide_in .container_popup {
+              transform: translateX(100%);
+              transition: all 0.8s ease 0s;
+            }
+            .popup_slide_in.is_visible .container_popup {
+              transform: translateX(0);
             }
             .popup_slide_in .container_popup {
             display: flex;
@@ -523,7 +528,7 @@ let startFunk = setInterval(() => {
         `;
 
     let popUp = /*html */ `
-            <div class="popup_slide_in is_hidden" data-modal>
+            <div class="popup_slide_in" data-modal>
                 <div class="container_popup">
                     <div class="cart_popup_header">
                         <div class="cart_length">                        
@@ -637,7 +642,7 @@ let startFunk = setInterval(() => {
 
     function onOpenPopup(block) {
       console.log('onOpenPopup')
-      overlay.classList.remove("is_hidden");
+      overlay.classList.add("is_visible");
       body.style.overflow = "hidden";
       html.style.overflow = "hidden";
       body.style.display = "block";
@@ -735,7 +740,7 @@ let startFunk = setInterval(() => {
 
     function onClosePopup() {
       pushDataLayer("exp_slide_in_cart_b_close", "Close", "Button", "Slide in cart");
-      overlay.classList.add("is_hidden");
+      overlay.classList.remove("is_visible");
       body.style.overflow = "auto";
       html.style.overflow = "auto";
     }
