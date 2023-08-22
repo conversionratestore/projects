@@ -118,7 +118,7 @@ body:not(.template-index) .main-content {
 .filter__buttons {
   display: flex;
   gap: 15px;
-  padding-block: 2px 10px;
+  padding-block: 2px 40px;
 }
 
 /* buttons */
@@ -244,12 +244,11 @@ body:not(.template-index) .main-content {
 .products {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
+  gap: 30px;
 }
 
 .products>div {
-  width: calc(33.3% - 15px);
-  margin-top: 30px
+  width: calc(33.3% - 20px);
 }
 
 .product {
@@ -259,7 +258,6 @@ body:not(.template-index) .main-content {
 .product.product--visible {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
 }
 
 .product__info {
@@ -680,12 +678,15 @@ td[data-cell="Price"] span {
 
   .filter__select {
     display: block;
-    margin-block: 16px 8px;
+    margin-block: 16px 24px;
+  }
+
+  .products{
+    gap: 15px;
   }
 
   .products>div {
-    width: calc(50% - 7px);
-    margin-top: 16px;
+    width: calc(50% - 8px);
   }
 
   .product__img-wrapper {
@@ -1248,7 +1249,7 @@ td[data-cell="Price"] span {
         name: 'Novaa light pro',
         pdpLink: 'https://novaalab.com/products/novaa-light-pro-red-light-laser-therapy-device',
         imgUrl: 'https://novaalab.com/cdn/shop/products/Pro5_1024x1024.jpg?v=1627031589',
-        filter: 'body',
+        filter: 'body skin',
         healing: 'The Deep Healing Therapy',
         rate: '4.9',
         price: '$149.90',
@@ -1675,8 +1676,8 @@ td[data-cell="Price"] span {
 
     const applyFilter = (filter, name) => {
       products.forEach(card => {
-        const cardFilter = card.getAttribute("data-product-filter")
-        if (filter === "all" || filter === cardFilter) {
+        const cardFilters = card.getAttribute("data-product-filter").split(' ') // Split into an array of categories
+        if (filter === "all" || cardFilters.includes(filter)) { // Check if any category matches
           card.classList.add("product--visible")
         } else {
           card.classList.remove("product--visible")
