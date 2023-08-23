@@ -392,11 +392,16 @@ let checkPlan = setInterval(() => {
         let saved = discount == '-50%' ? '50%' : '75%';
         document.querySelector('.styles_todayCount__P6R9F span+span').insertAdjacentHTML('beforeend', `<div class="saved_block">You just saved ${saved}</div>`);
 
-        history.pushState(null, null, location.href);
-        window.onpopstate = function(event) {
-          history.go(-5);
-        //   window.location.href = 'https://compatibility.hint.app/#email';
-        };
+        // history.pushState(null, null, location.href);
+        // window.onpopstate = function(event) {
+        //   history.go(-5);
+        // //   window.location.href = 'https://compatibility.hint.app/#email';
+        // };
+
+        window.addEventListener('popstate', function(event) {
+            window.location.href = 'https://compatibility.hint.app/#email';
+        });
+          
 
         let findpayments = setInterval(() => {
             if (document.querySelector('.style_appleGooglePayWrapper__tQynd iframe')) {
