@@ -1456,7 +1456,7 @@ let klaviyoStep = 1;
 
         <div class='lav-point'>
           <img class='lav-point__icon' src='${exp.dir}/img/point3.svg' />
-          <div class='lav-points__caption'>See it live - schedule a meeting</div>
+          <div class='lav-points__caption'>See our products live - schedule a meeting</div>
         </div>
       </div>
     `;
