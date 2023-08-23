@@ -394,8 +394,8 @@ let checkPlan = setInterval(() => {
 
         history.pushState(null, null, location.href);
         window.onpopstate = function(event) {
-          history.go(-5);
-        //   window.location.href = 'https://compatibility.hint.app/#email';
+        //   history.go(-5);
+          window.location.href = 'https://compatibility.hint.app/#email';
         };
 
         let findpayments = setInterval(() => {
