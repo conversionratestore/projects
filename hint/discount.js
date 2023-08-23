@@ -147,8 +147,6 @@ let popup = (price) => `
 }
 .styles_todayCount__P6R9F span+span {
     text-align: right;
-    color: #121620;
-    font-weight: 600;
 }
 /* saved */
 .saved_block {
@@ -381,6 +379,13 @@ let checkPlan = setInterval(() => {
         document.querySelector('.styles_buttonShowCard__CPDfR.styles_paymentButton__GtgSF')) {
         clearInterval(checkPlan);
 
+        document.body.insertAdjacentHTML('afterbegin', `
+        <style>
+            .styles_todayCount__P6R9F span+span {
+                color: #121620;
+                font-weight: 600;
+            }
+        </style>`)
 
         !planObj[planCodeB] ? localStorage.setItem('redirectTo', 'https://compatibility.hint.app/#email') : '';
 
