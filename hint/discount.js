@@ -379,6 +379,8 @@ let checkPlan = setInterval(() => {
         document.querySelector('.styles_buttonShowCard__CPDfR.styles_paymentButton__GtgSF')) {
         clearInterval(checkPlan);
 
+        localStorage.setItem('redirectTo', 'https://compatibility.hint.app/#email');
+
         let price = window.location.href.split('price=')[1].split('&')[0]
         let discount = price == '1321' ? '-50%' : '<span>-50% </span> -75%';
 
@@ -398,13 +400,6 @@ let checkPlan = setInterval(() => {
         // //   window.location.href = 'https://compatibility.hint.app/#email';
         // };
 
-        // window.addEventListener('popstate', function(event) {
-        //     window.location.href = 'https://compatibility.hint.app/#email';
-        // });
-          
-        window.addEventListener('hashchange', function() {
-            window.location.hash = 'https://compatibility.hint.app/#email';
-        });
           
         let findpayments = setInterval(() => {
             if (document.querySelector('.style_appleGooglePayWrapper__tQynd iframe')) {
@@ -423,6 +418,11 @@ let checkPlan = setInterval(() => {
                 })
             }
         })
+    } else {
+        if (localStorage.getItem('redirectTo')) {
+            window.location.href = localStorage.getItem('redirectTo');
+            localStorage.removeItem('redirectTo');
+        }
     }
 });
 
