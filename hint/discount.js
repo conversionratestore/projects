@@ -398,11 +398,14 @@ let checkPlan = setInterval(() => {
         // //   window.location.href = 'https://compatibility.hint.app/#email';
         // };
 
-        window.addEventListener('popstate', function(event) {
-            window.location.href = 'https://compatibility.hint.app/#email';
+        // window.addEventListener('popstate', function(event) {
+        //     window.location.href = 'https://compatibility.hint.app/#email';
+        // });
+          
+        window.addEventListener('hashchange', function() {
+            window.location.hash = 'https://compatibility.hint.app/#email';
         });
           
-
         let findpayments = setInterval(() => {
             if (document.querySelector('.style_appleGooglePayWrapper__tQynd iframe')) {
                 clearInterval(findpayments)
