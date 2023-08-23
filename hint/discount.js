@@ -376,6 +376,7 @@ let checkPlan = setInterval(() => {
     let planCodeB = window.location.href.includes('planCode=') ? window.location.href.split('planCode=')[1].split('&')[0] : '';
     
     if (planCodeB != '' && 
+        !planObj[planCodeB] &&
         document.querySelector('.styles_todayCount__P6R9F span+span') &&
         document.querySelector('.styles_buttonShowCard__CPDfR.styles_paymentButton__GtgSF')) {
         clearInterval(checkPlan);
