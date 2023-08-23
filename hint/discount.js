@@ -387,10 +387,10 @@ let checkPlan = setInterval(() => {
             }
         </style>`)
 
-        !planObj[planCodeB] ? localStorage.setItem('redirectTo', 'https://compatibility.hint.app/#email') : '';
+        localStorage.setItem('redirectTo', 'https://compatibility.hint.app/#email');
 
         let price = window.location.href.split('price=')[1].split('&')[0]
-        let discount = price == '681' ? '-50%' : price == '060' ? '<span>-50% </span> -70%' : !planObj[planCodeB] ? '<span>-50% </span> -75%' : '-50%';
+        let discount = price == '681' ? '-50%' : price == '060' ? '<span>-50% </span> -70%' : '<span>-50% </span> -75%';
 
         document.querySelector('.styles_todayCount__P6R9F').insertAdjacentHTML('beforebegin',`
         <div class="discount_applied">
@@ -399,7 +399,7 @@ let checkPlan = setInterval(() => {
         </div>`)
 
         let total = document.querySelector('.styles_todayCount__P6R9F span+span').innerText;
-        let saved = price == '681' ? '50%' : price == '060' ? '70%' : !planObj[planCodeB] ? '75%' : '50%';
+        let saved = price == '681' ? '50%' : price == '060' ? '70%' : '75%';
 
         document.querySelector('.styles_todayCount__P6R9F span+span').insertAdjacentHTML('beforeend', `<div class="saved_block">You just saved ${saved}</div>`);
 
