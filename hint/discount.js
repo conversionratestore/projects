@@ -418,11 +418,13 @@ let checkPlan = setInterval(() => {
                 })
             }
         })
-    } else {
-        if (localStorage.getItem('redirectTo')) {
-            window.location.href = localStorage.getItem('redirectTo');
-            localStorage.removeItem('redirectTo');
-        }
+    } 
+    if (localStorage.getItem('redirectTo') &&
+        (planCodeB == '' || 
+        planObj[planCodeB])
+    ) {
+        window.location.href = localStorage.getItem('redirectTo');
+        localStorage.removeItem('redirectTo');
     }
 });
 
