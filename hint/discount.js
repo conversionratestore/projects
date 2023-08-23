@@ -147,6 +147,8 @@ let popup = (price) => `
 }
 .styles_todayCount__P6R9F span+span {
     text-align: right;
+    color: #121620;
+    font-weight: 600;
 }
 /* saved */
 .saved_block {
@@ -177,10 +179,10 @@ let popup = (price) => `
         </svg>
     </button>
     <div class="popup_img">
-        <img src="https://conversionratestore.github.io/projects/hint/img/${price.includes('1321') ? 'gift-image-2':'gift-image'}.svg" alt="gift">
+        <img src="https://conversionratestore.github.io/projects/hint/img/${price.includes('1321') ? 'gift-image-2' : price.includes('100') ? 'gift-image-3' : 'gift-image'}.svg" alt="gift">
     </div>
     <div class="popup_content">
-        <h2>Save ${price.includes('1321') ? '50' : '75'}% on your 7-day trial</h2>
+        <h2>Save ${price.includes('1321') ? '50' : price.includes('100') ? '70' : '75'}% on your 7-day trial</h2>
         <ul>
             <li class="flex items-center">
                 <svg width="41" height="40" viewBox="0 0 41 40" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -228,7 +230,7 @@ let popup = (price) => `
             </li>
         </ul>
         <button type="button" class="btn-get-trial">
-            <span>Save ${price.includes('1321') ? '50' : '75'}% today</span>
+            <span>Save ${price.includes('1321') ? '50' : price.includes('100') ? '70' : '75'}% today</span>
             <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path fill-rule="evenodd" clip-rule="evenodd" d="M1.93974 0.950928L9.01888 7.99988L1.93974 15.0488L0.582031 13.6969L6.30347 7.99988L0.582031 2.30284L1.93974 0.950928ZM8.34003 0.950928L15.4192 7.99988L8.34003 15.0488L6.98232 13.6969L12.7037 7.99988L6.98232 2.30284L8.34003 0.950928Z" fill="white"/>
             </svg>
@@ -293,7 +295,7 @@ let init = setInterval(() => {
         document.querySelector('.popup_close').addEventListener('click', () => {
             document.querySelector('.popup').classList.remove('active');
             clickClose = false;
-            sendGAEvent('exp_special_offer_b_c_wh', `Close - ${planCodeB.includes('1321') ? '50' : '75'}%`, 'Button', 'We have a Gift for you ');
+            sendGAEvent('exp_special_offer_b_c_wh', `Close - ${planCodeB.includes('1321') ? '50' : planCodeB.includes('100') ? '70' : '75'}%`, 'Button', 'We have a Gift for you ');
             sendGAEvent('exp_special_offer_time_wh', countTimer + ' second', 'Time', 'We have a Gift for you ');
 
             countTimer = 0;
@@ -303,7 +305,7 @@ let init = setInterval(() => {
         document.querySelector('.btn-get-trial').addEventListener('click', () => {
             document.querySelector('.popup').classList.remove('active');
 
-            sendGAEvent('exp_special_offer_b_save_wh', `Save ${planCodeB.includes('1321') ? '50' : '75'}% today`, 'Button', 'We have a Gift for you ');
+            sendGAEvent('exp_special_offer_b_save_wh', `Save ${planCodeB.includes('1321') ? '50' : planCodeB.includes('100') ? '70' : '75'}% today`, 'Button', 'We have a Gift for you ');
             sendGAEvent('exp_special_offer_time_wh', countTimer + ' second', 'Time', 'We have a Gift for you ');
             
             window.location.href = window.location.href.replace(planCodeB, planObj[planCodeB]).replace(priceB, planObj[planCodeB].split('_')[4]);
@@ -348,7 +350,7 @@ let findClose = setInterval(() => {
             isVisibleCloseButton = true
             let price = window.location.href.split('price=')[1].split('&')[0];
             let total = document.querySelector('.styles_todayCount__P6R9F span+span').innerText;
-            let saved = price == '1321' ? '50%' : '75%';
+            let saved = price == '1321' ? '50%' : price == '100' ? '70%' : '75%';
 
             sendGAEvent('exp_special_offer_b_cc_as', `Credit cart - ${total} - ${saved}`, 'Button', 'Additional Start your 7-day trial');
 
@@ -360,8 +362,8 @@ let findClose = setInterval(() => {
             if (clickClose == false && planCodeB != '' && !!planObj[planCodeB]) {
                 clickClose = true;
                 document.querySelector('.popup').classList.add('active')
-                sendGAEvent('exp_special_offer_v_sv_wh', `Screen view - ${planCodeB.includes('1321') ? '50' : '75'}%`, 'Visibility', 'We have a Gift for you ');
-                sendGAEvent('exp_special_offer_v_save_wh', `Save ${planCodeB.includes('1321') ? '50' : '75'}% today`, 'Visibility', 'We have a Gift for you ');
+                sendGAEvent('exp_special_offer_v_sv_wh', `Screen view - ${planCodeB.includes('1321') ? '50' : planCodeB.includes('100') ? '70' : '75'}%`, 'Visibility', 'We have a Gift for you ');
+                sendGAEvent('exp_special_offer_v_save_wh', `Save ${planCodeB.includes('1321') ? '50' : planCodeB.includes('100') ? '70' : '75'}% today`, 'Visibility', 'We have a Gift for you ');
             }
         })
     } else {
@@ -374,15 +376,15 @@ let checkPlan = setInterval(() => {
     let planCodeB = window.location.href.includes('planCode=') ? window.location.href.split('planCode=')[1].split('&')[0] : '';
     
     if (planCodeB != '' && 
-        !planObj[planCodeB] && 
         document.querySelector('.styles_todayCount__P6R9F span+span') &&
         document.querySelector('.styles_buttonShowCard__CPDfR.styles_paymentButton__GtgSF')) {
         clearInterval(checkPlan);
 
-        localStorage.setItem('redirectTo', 'https://compatibility.hint.app/#email');
+
+        !planObj[planCodeB] ? localStorage.setItem('redirectTo', 'https://compatibility.hint.app/#email') : '';
 
         let price = window.location.href.split('price=')[1].split('&')[0]
-        let discount = price == '1321' ? '-50%' : '<span>-50% </span> -75%';
+        let discount = price == '681' ? '-50%' : price == '060' ? '<span>-50% </span> -70%' : !planObj[planCodeB] ? '<span>-50% </span> -75%' : '-50%';
 
         document.querySelector('.styles_todayCount__P6R9F').insertAdjacentHTML('beforebegin',`
         <div class="discount_applied">
@@ -391,7 +393,8 @@ let checkPlan = setInterval(() => {
         </div>`)
 
         let total = document.querySelector('.styles_todayCount__P6R9F span+span').innerText;
-        let saved = discount == '-50%' ? '50%' : '75%';
+        let saved = price == '681' ? '50%' : price == '060' ? '70%' : !planObj[planCodeB] ? '75%' : '50%';
+
         document.querySelector('.styles_todayCount__P6R9F span+span').insertAdjacentHTML('beforeend', `<div class="saved_block">You just saved ${saved}</div>`);
 
         // history.pushState(null, null, location.href);
