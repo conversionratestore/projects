@@ -1561,6 +1561,8 @@ const addPagination = (length) => {
     return paginations;
 }
 
+let clickSeachBtn = false;
+
 let checkLatLng = (val) => {
     if (val.includes('{"success":true,"lat_lng":[')) {
         lat_lng = val.split('"lat_lng":[')[1].split(']')[0].split(',');
@@ -1579,6 +1581,7 @@ let checkLatLng = (val) => {
 
             let list = data.grouped;
 
+
             let findContaner = setInterval(() => {
                 if (document.querySelector('div.table-wrapper > table > tbody > tr:nth-child(2) > td > table > tbody > tr:nth-child(1) > td:nth-child(3)') && 
                     document.querySelector('.filters_result_container') && 
@@ -1592,7 +1595,8 @@ let checkLatLng = (val) => {
                         document.querySelector('.pagination_customer').classList.remove('d-flex')
                     } else {
                         document.querySelector('.filters_result_container').innerHTML = '';
-                    
+            
+
                         for (let i = 0; i < list.length; i++) {
                             document.querySelector('.filters_result_container').insertAdjacentHTML('beforeend', 
                             card(list[i], i == 0 ? document.querySelector('.filters_result h5').innerHTML : '', i, currency ))
@@ -1604,6 +1608,18 @@ let checkLatLng = (val) => {
                             }
                         }
 
+                        let resultView = setInterval(() => {
+                            if (list.length > 0 && 
+                                document.querySelector('.radius-10.show') && 
+                                document.querySelector('.filters_result_container').innerHTML != '' &&
+                                clickSeachBtn == true
+                            ) {
+                                clearInterval(resultView)
+                                clickSeachBtn = false;
+                                pushDataLayer('exp_book_imp_searching_result_view', 'Offer list', 'Table', 'Searching results');
+                            }
+                        })
+                      
                         let pagination = list.length > 5 ? addPagination(list.length) : '';
                     
                         if (list.length > 5 ) {
@@ -1949,6 +1965,7 @@ let init = () => {
         
                                 setTimeout(() => {
                                     item.closest('.radius-10').classList.add('show')
+                                    clickSeachBtn = true;
                                 }, 200)
                             } else {
                                 input.style = 'border-color: #F00';
