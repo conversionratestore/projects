@@ -48,9 +48,6 @@ let init = setInterval(() => {
 
         document.body.insertAdjacentHTML('afterbegin', `
         <style>
-            .elementor-16422 .elementor-element.elementor-element-d21317a > div > div > div .elementor-widget-icon-list ul {
-                min-height: 314px;
-            }
             .elementor-16422 .elementor-element.elementor-element-657058f > .elementor-widget-container,
             .elementor-16422 .elementor-element.elementor-element-2ce0c11 > .elementor-widget-container,
             .elementor-16422 .elementor-element.elementor-element-868f805 > .elementor-widget-container {
@@ -59,11 +56,17 @@ let init = setInterval(() => {
             .elementor-16422 .elementor-element.elementor-element-ed72a04 {
                 font-size: 50px;
             }
-            .elementor-element.elementor-element-bb20dfb.elementor-align-justify.elementor-widget.elementor-widget-button {
-                margin-top: 64px;
-            }
             .elementor-16422 .elementor-element.elementor-element-ed72a04 {
                 margin-bottom: 33px;
+            }
+
+            @media (min-width: 768px) {
+                .elementor-16422 .elementor-element.elementor-element-d21317a > div > div > div .elementor-widget-icon-list ul {
+                    min-height: 314px;
+                }
+                .elementor-element.elementor-element-bb20dfb.elementor-align-justify.elementor-widget.elementor-widget-button {
+                    margin-top: 64px;
+                }
             }
         </style>`)
 
@@ -101,11 +104,8 @@ let init = setInterval(() => {
                 }
             }
 
-            item.querySelector('.elementor-widget-icon-list ul').innerHTML = optionsPlan;
-           
-            
+            item.querySelector('.elementor-widget-icon-list ul').innerHTML = optionsPlan; 
         })
-
     }
 
     if (window.location.href.includes('/www.uplead.com/uplead-demo/') && 
@@ -120,11 +120,18 @@ let init = setInterval(() => {
     ) {
         clearInterval(init)
 
-       
         document.body.insertAdjacentHTML('afterbegin',`
         <style>
-            .accountPlans__plans-list .product-card .advantages-list__note {
+            .accountPlans__plans-list {
+                grid-template-columns: 1fr 1fr 1fr;
+            }
+            .accountPlans__plans-list .product-card .advantages-list__note,
+            .accountPlans__monthlyPlans-wrapper .accountPlans__plans-list .product-card:last-child,
+            .accountPlans__plans-list .product-card:last-child{
                 display: none!important;
+            }
+            .product-card.popular .product-card__body button.btn.btn--large.btn--blue.btn--disabled {
+                margin-top: 100px;
             }
         </style>`)
         
@@ -143,38 +150,29 @@ let init = setInterval(() => {
 
             item.querySelector('.advantages-list').innerHTML = optionsPlan;
          
-            if (index == 2 &&
-                !item.querySelector('.product-card__action-btn-wrap button').classList.contains('btn--disabled')
-            ) {
-                item.querySelector('.product-card__price').style = 'font-size: 45px;';
-                item.querySelector('.product-card__price').innerHTML = `Let's Chat`;
+            if (index == 2) {
 
-                item.querySelectorAll('.product-card__action-btn-wrap button').forEach((button, i) => {
-                    button.style = 'display: none!important';
-                    button.insertAdjacentHTML('afterend', `
-                    <a href="https://www.uplead.com/uplead-demo/" class="btn_book_demo btn btn--large btn--blue" ${i == 0 ? 'style="margin-top: 100px;"' : ''}>Book a Demo</a>`);
-                })
+                if (!item.querySelector('.product-card__action-btn-wrap button').classList.contains('btn--disabled')) {
+
+                    item.querySelector('.product-card__price').style = 'font-size: 45px;';
+                    item.querySelector('.product-card__price').innerHTML = `Let's Chat`;
+
+                    item.querySelectorAll('.product-card__action-btn-wrap button').forEach((button, i) => {
+                        button.style = 'display: none!important';
+                        button.insertAdjacentHTML('afterend', `
+                        <a href="https://www.uplead.com/uplead-demo/" class="btn_book_demo btn btn--large btn--blue" ${i == 0 ? 'style="margin-top: 100px;"' : ''}>Book a Demo</a>`);
+                    })
+                } else {
+                    item.querySelector('.product-card__price').style = 'font-size: 26px;';
+                    item.querySelector('.product-card__price').innerHTML = `You’re on this plan`;
+                }
+               
 
                 if (item.querySelector('.product-card__price-note')) {
                     item.querySelector('.product-card__price-note').remove();
                 }
                 
                 item.querySelector('.product-card__advantages-wrap').innerHTML = `<div class="product-card__advantages"><span class="product-card__advantages--title">Custom credits</span></div>`;
-                
-            }
-            if (index == 3 && 
-                !item.querySelector('.product-card__action-btn-wrap button').classList.contains('btn--disabled')) {
-                    
-                document.body.insertAdjacentHTML('afterbegin',`
-                <style>
-                    .accountPlans__plans-list {
-                        grid-template-columns: 1fr 1fr 1fr;
-                    }
-                    .accountPlans__monthlyPlans-wrapper .accountPlans__plans-list .product-card:last-child,
-                    .accountPlans__plans-list .product-card:last-child{
-                        display: none!important;
-                    }
-                </style>`)
             }
         })
     }
