@@ -116,7 +116,7 @@ let init = setInterval(() => {
     }
 
     if (window.location.href.includes('/app.uplead.com/plans') && 
-        document.querySelectorAll('.accountPlans__plans-list .product-card')
+        document.querySelectorAll('.accountPlans__plans-list .product-card').length > 3
     ) {
         clearInterval(init)
 
@@ -158,9 +158,9 @@ let init = setInterval(() => {
                 if (item.querySelector('.product-card__price-note')) {
                     item.querySelector('.product-card__price-note').remove();
                 }
-                if (item.querySelector('.product-card__advantages-wrap')) {
-                    item.querySelector('.product-card__advantages-wrap').innerHTML = `<div class="product-card__advantages"><span class="product-card__advantages--title">Custom credits</span></div>`;
-                }
+                
+                item.querySelector('.product-card__advantages-wrap').innerHTML = `<div class="product-card__advantages"><span class="product-card__advantages--title">Custom credits</span></div>`;
+                
             }
             if (index == 3 && 
                 !item.querySelector('.product-card__action-btn-wrap button').classList.contains('btn--disabled')) {
