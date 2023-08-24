@@ -66,6 +66,13 @@ function changePlan(item, index) {
                 button.insertAdjacentHTML('afterend', `
                 <a href="https://www.uplead.com/uplead-demo/" class="btn_book_demo btn btn--large btn--blue">Book a Demo</a>`);
             })
+
+            document.querySelectorAll('.btn_book_demo').forEach(book => {
+                book.addEventListener('click', () => {
+                    let parent = item.closest('.accountPlans__monthlyPlans-wrapper')
+                    sendGAEvent(`exp_changing_pricing_${parent ? 'm': 'a' }_bd`, `Book a Demo - ${parent ? 'monthly' : 'annual' }`, 'Button', 'Plan');
+                })
+            })
         } else {
             item.querySelector('.product-card__price').style = 'font-size: 26px;';
             item.querySelector('.product-card__price').innerHTML = `You’re on this plan`;
@@ -78,6 +85,22 @@ function changePlan(item, index) {
         
         item.querySelector('.product-card__advantages-wrap').innerHTML = `<div class="product-card__advantages"><span class="product-card__advantages--title">Custom credits</span></div>`;
     }
+}
+
+// sendGAEvent
+function sendGAEvent(event_name, event_desc, event_type, event_loc) { // Send a Google Analytics event
+    window.dataLayer = window.dataLayer || [];
+
+    const obj = {
+      'event': 'event-to-ga4',
+      event_name,
+      event_desc,
+      event_type,
+      event_loc
+    }
+
+    dataLayer.push(obj)
+    console.log(obj)
 }
 
 let init = setInterval(() => {
@@ -134,6 +157,14 @@ let init = setInterval(() => {
                 item.querySelector(`.elementor-element.elementor-element-${parent == 'd21317a' ? 'bb20dfb': 'e6d7aec' } a .elementor-button-text`).innerHTML = 'Book a Demo';
                 item.querySelector(`.elementor-element.elementor-element-${parent == 'd21317a' ? 'db37ca2': '04bb20b' } a`).href = 'https://www.uplead.com/uplead-demo/';
                 item.querySelector(`.elementor-element.elementor-element-${parent == 'd21317a' ? 'db37ca2': '04bb20b' } a .elementor-button-text`).innerHTML = 'Book a Demo';
+                item.querySelector(`.elementor-element.elementor-element-${parent == 'd21317a' ? 'bb20dfb': 'e6d7aec' } a`).addEventListener('click', () => {
+                    sendGAEvent(`exp_changing_pricing_${parent == 'd21317a' ? 'a': 'm' }_bd`, `Book a Demo - ${parent == 'd21317a' ? 'annual': 'monthly' }`, 'Button', 'Pricing');
+                })
+                item.querySelector(`.elementor-element.elementor-element-${parent == 'd21317a' ? 'db37ca2': '04bb20b' } a`).addEventListener('click', () => {
+                    sendGAEvent(`exp_changing_pricing_${parent == 'd21317a' ? 'a': 'm' }_bd`, `Book a Demo - ${parent == 'd21317a' ? 'annual': 'monthly' }`, 'Button', 'Pricing');
+                })
+                
+
             }
 
             let plan = planObj[index];
