@@ -116,9 +116,10 @@ let init = setInterval(() => {
     }
 
     if (window.location.href.includes('/app.uplead.com/plans') && 
-        document.querySelectorAll('.accountPlans__plans-list .product-card').length > 3
+        document.querySelectorAll('.accountPlans__plans-list .product-card').length > 3 &&
+        !document.querySelectorAll('.accountPlans__plans-list .product-card')[2].innerText.includes(`Let's Chat`) && 
+        !document.querySelectorAll('.accountPlans__plans-list .product-card')[2].innerText.includes(`You’re on this plan`) 
     ) {
-        clearInterval(init)
 
         document.body.insertAdjacentHTML('afterbegin',`
         <style>
