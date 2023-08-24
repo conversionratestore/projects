@@ -112,7 +112,7 @@ let init = setInterval(() => {
         document.querySelector('.elementor-22838 .elementor-element.elementor-element-74ef8e1a .elementor-heading-title')
     ) {
         clearInterval(init)
-        document.querySelector('.elementor-22838 .elementor-element.elementor-element-74ef8e1a .elementor-heading-title').innerHTML = 'Rated B2B Prospecting Tool';
+        document.querySelector('.elementor-22838 .elementor-element.elementor-element-74ef8e1a .elementor-heading-title').innerHTML = '#1 Rated B2B Prospecting Tool';
     }
 
     if (window.location.href.includes('/app.uplead.com/plans') && 
