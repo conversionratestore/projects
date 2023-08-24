@@ -41,7 +41,7 @@ let planObj = [
 
 
 function changePlan(item, index) {
-    let plan = planObj[index];
+    let plan = planObj[index + 1];
     let optionsPlan = '';
 
     for (const key in plan) {
