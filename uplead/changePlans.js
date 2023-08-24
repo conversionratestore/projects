@@ -109,10 +109,13 @@ let init = setInterval(() => {
     }
 
     if (window.location.href.includes('/www.uplead.com/uplead-demo/') && 
-        document.querySelector('.elementor-22838 .elementor-element.elementor-element-74ef8e1a .elementor-heading-title')
+        document.querySelector('.elementor-22838 .elementor-element.elementor-element-74ef8e1a .elementor-heading-title') &&
+        document.querySelector('.elementor-22838 .elementor-element.elementor-element-7800fc53 .elementor-heading-title')
     ) {
         clearInterval(init)
-        document.querySelector('.elementor-22838 .elementor-element.elementor-element-74ef8e1a .elementor-heading-title').innerHTML = '#1 Rated B2B Prospecting Tool';
+
+        document.querySelector('.elementor-22838 .elementor-element.elementor-element-74ef8e1a .elementor-heading-title').innerHTML = '#1 Rated B2B Prospecting Tool';;
+        document.querySelector('.elementor-22838 .elementor-element.elementor-element-7800fc53 .elementor-heading-title').innerHTML = '#1 Rated B2B Prospecting Tool';; 
     }
 
     if (window.location.href.includes('/app.uplead.com/plans') && 
