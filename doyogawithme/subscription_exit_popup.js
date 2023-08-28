@@ -1332,7 +1332,7 @@ margin: 0 0 12px;
     }, 100);
     //to apply the discount code automatically on the checkout after exit intent popup
     let checkoutPremium = setInterval(() => {
-      if ((window.location.pathname.includes("checkout") && sessionStorage.getItem("checkoutPremium") && document.querySelector("#edit-sidebar-order-summary-summary .views-field.views-field-title").textContent.includes("1-Year")) || document.querySelector("#edit-sidebar-order-summary-summary .views-field.views-field-title").textContent.includes("Yearly")) {
+      if ((window.location.pathname.includes("checkout") && sessionStorage.getItem("checkoutPremium") && document.querySelector("#edit-sidebar-order-summary-summary .views-field.views-field-title")?.textContent.includes("1-Year")) || document.querySelector("#edit-sidebar-order-summary-summary .views-field.views-field-title")?.textContent.includes("Yearly")) {
         clearInterval(checkoutPremium);
         // sessionStorage.removeItem("checkoutPremium");
         if (document.querySelector("#edit-sidebar-coupon-redemption-form-code")?.value === "") {
