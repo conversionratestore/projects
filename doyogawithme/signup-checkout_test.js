@@ -1546,8 +1546,9 @@ function init() {
             if (document.querySelector('#edit-coupon-redemption') != null && document.querySelector('.btn_got_coupon') == null) {
                 document.querySelector('#edit-coupon-redemption').insertAdjacentHTML('beforebegin',`
                 <a href="#" class="btn_got_coupon">Got a Coupon?</a>`)
-
-                document.querySelector('[data-drupal-selector="edit-sidebar-coupon-redemption-form-apply"]')?.innerHTML = 'Apply';
+                if(document.querySelector('[data-drupal-selector="edit-sidebar-coupon-redemption-form-apply"]')){
+                    document.querySelector('[data-drupal-selector="edit-sidebar-coupon-redemption-form-apply"]').innerHTML = 'Apply';
+                }
 
                 document.querySelector('.btn_got_coupon').addEventListener('click', (e) => {
                     e.preventDefault()
