@@ -380,7 +380,7 @@ let startFunk = setInterval(() => {
       }
       .path-become-a-subscriber .new_container {
         margin-bottom: -73px;
-        z-index: 4;
+        z-index: 2;
         margin-top: -119px;
       }
       .path-become-a-subscriber .new_title_subscriber {
