@@ -1547,7 +1547,7 @@ function init() {
                 document.querySelector('#edit-coupon-redemption').insertAdjacentHTML('beforebegin',`
                 <a href="#" class="btn_got_coupon">Got a Coupon?</a>`)
 
-                document.querySelector('[data-drupal-selector="edit-sidebar-coupon-redemption-form-apply"]').innerHTML = 'Apply';
+                document.querySelector('[data-drupal-selector="edit-sidebar-coupon-redemption-form-apply"]')?.innerHTML = 'Apply';
 
                 document.querySelector('.btn_got_coupon').addEventListener('click', (e) => {
                     e.preventDefault()
