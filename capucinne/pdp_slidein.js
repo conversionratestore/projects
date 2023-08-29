@@ -2604,6 +2604,14 @@ let klaviyoStep = 1;
   function findGift() {
     const el = $el("#CartDrawer");
 
+    if($el('.cart__item img.lazyautosizes[srcset*="Gift"]') && $el('.cart__item img.lazyautosizes[srcset*="Gift-2"]')) {
+      $el('.cart__item img.lazyautosizes[srcset*="Gift"]').srcset = 'https://conversionratestore.github.io/projects/capucinne/earn.jpg'
+      $el('.cart__item img.lazyautosizes[data-srcset*="Gift"]').dataset.srcset = 'https://conversionratestore.github.io/projects/capucinne/earn.jpg'
+    } else if($el('.cart__item img.lazyautosizes[srcset*="Gift"]') && $el('.cart__item img.lazyautosizes[srcset*="Gift-3"]')){
+      $el('.cart__item img.lazyautosizes[srcset*="Gift"]').srcset = 'https://conversionratestore.github.io/projects/capucinne/chain.jpg'
+      $el('.cart__item img.lazyautosizes[data-srcset*="Gift"]').dataset.srcset = 'https://conversionratestore.github.io/projects/capucinne/chain.jpg'
+    }
+
     let gift = Array.from($$el(".cart__item", el)).find((pr) => {
       return pr.querySelector(".cart__item-name").innerText.trim() == "Gift";
     });
@@ -2621,7 +2629,7 @@ let klaviyoStep = 1;
           .includes("earrings")
       ) {
         gift.querySelector(".cart__item--variants>div").innerHTML =
-          "<span>Product:</span> Half moon Capucinne earrings";
+          "<span>Product:</span> Half moon Capucinne earrings"; 
       } else {
         gift.querySelector(".cart__item--variants>div").innerHTML =
           "<span>Product:</span>  Half moon Capucinne bracelet";
@@ -2716,5 +2724,37 @@ let klaviyoStep = 1;
 
   function $$el(selector, context = document) {
     return context.querySelectorAll(selector);
+  }
+})();
+
+(function (){
+  if(!window.location.pathname.includes('/products/')) {
+    function $el(selector, context = document) {
+      return context.querySelector(selector)
+    }
+    const mut = new MutationObserver(() => {
+      changeImgGift()
+    })
+
+    if(document.querySelector('.cart__items')) {
+      mut.observe(document.querySelector('.cart__items'), {
+        childList: true,
+        subtree: true
+      })
+    }
+
+    if(window.location.pathname.includes('/cart')) {
+      changeImgGift()
+    }
+
+    function changeImgGift () {
+      if($el('.cart__item img.lazyautosizes[srcset*="Gift"]') && $el('.cart__item img.lazyautosizes[srcset*="Gift-2"]')) {
+        $el('.cart__item img.lazyautosizes[srcset*="Gift"]').srcset = 'https://conversionratestore.github.io/projects/capucinne/earn.jpg'
+        $el('.cart__item img.lazyautosizes[data-srcset*="Gift"]').dataset.srcset = 'https://conversionratestore.github.io/projects/capucinne/earn.jpg'
+      } else if($el('.cart__item img.lazyautosizes[srcset*="Gift"]') && $el('.cart__item img.lazyautosizes[srcset*="Gift-3"]')){
+        $el('.cart__item img.lazyautosizes[srcset*="Gift"]').srcset = 'https://conversionratestore.github.io/projects/capucinne/chain.jpg'
+        $el('.cart__item img.lazyautosizes[data-srcset*="Gift"]').dataset.srcset = 'https://conversionratestore.github.io/projects/capucinne/chain.jpg'
+      }
+    }
   }
 })();
