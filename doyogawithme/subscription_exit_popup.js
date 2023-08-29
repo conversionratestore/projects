@@ -1321,11 +1321,12 @@ margin: 0 0 12px;
     }
     //to redirect from https://www.doyogawithme.com/become-a-subscriber to https://www.doyogawithme.com/checkout/________?__/order_information after exit intent popup
     let becomeSubscriber = setInterval(() => {
-      if (sessionStorage.getItem("becomeSubscriber") && window.location.pathname === "/become-a-subscriber") {
+      if (sessionStorage.getItem("becomeSubscriber") && window.location.pathname === "/become-a-subscriber" && !sessionStorage.getItem("checkoutPremium")) {
         clearInterval(becomeSubscriber);
         sessionStorage.removeItem("becomeSubscriber");
         sessionStorage.setItem("checkoutPremium", "true");
         document.querySelectorAll(".lav-jumb__plan .lav-plan__btn.lav-plan__btn-year").forEach((el) => {
+          console.log(`CLICK plan__btn-year`);
           el.click();
         });
       }
