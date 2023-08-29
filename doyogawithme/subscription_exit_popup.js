@@ -1343,7 +1343,7 @@ margin: 0 0 12px;
           const element = document.querySelector("#edit-sidebar-coupon-redemption-form-apply");
           const events = ["mousedown", "focusin"];
           events.forEach((eventType) => element.dispatchEvent(new MouseEvent(eventType, { bubbles: true })));
-          window.location.reload();
+          // window.location.reload();
         }
       }
     }, 100);
