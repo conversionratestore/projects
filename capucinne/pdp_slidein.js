@@ -1149,7 +1149,7 @@ let klaviyoStep = 1;
         margin-right: 16px;
       }
       footer.site-footer {
-        padding-bottom: 75px;
+        padding-bottom: 75px !important;
       }
       .dynamic-checkout__content .shopify-cleanslate li {
         height: 40px !important;
