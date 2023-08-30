@@ -1950,8 +1950,42 @@ margin: 0 0 12px;
 let startFree = setInterval(() => {
   if (window.location.href === "https://www.doyogawithme.com/yogi/register") {
     clearInterval(startFree);
-    if (document.querySelector(".progressbar")) {
-      document.querySelector(".progressbar").style.display = "none";
+
+    let styleHidden = /*html */ `
+    <style>
+      .is_hidden{
+        display: none !important;
+      }
+    </style>
+    `;
+
+    document.head.insertAdjacentHTML("beforeend", styleHidden);
+
+    isHiddenInit();
+    function isHiddenInit() {
+      if (document.querySelector(".progressbar") && !document.querySelector(".progressbar").classList.contains("is_hidden")) {
+        document.querySelector(".progressbar").classList.add("is_hidden");
+        document.querySelector(".progressbar").style.display = "none";
+      }
     }
+
+    // observer
+    let observer = new MutationObserver(() => {
+      if (document) {
+        observer.disconnect();
+
+        isHiddenInit();
+
+        observer.observe(document, {
+          childList: true,
+          subtree: true,
+        });
+      }
+    });
+
+    observer.observe(document, {
+      childList: true,
+      subtree: true,
+    });
   }
 }, 100);
