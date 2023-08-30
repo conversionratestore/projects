@@ -1936,3 +1936,10 @@ margin: 0 0 12px;
     document.querySelector(".exp")?.remove();
   }
 }, 100);
+
+let startFree = setInterval(() => {
+  if (window.location.href === "https://www.doyogawithme.com/yogi/register") {
+    clearInterval(startFree);
+    document.querySelector(".progressbar ").style.display = "none";
+  }
+}, 100);
