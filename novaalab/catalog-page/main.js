@@ -1020,7 +1020,7 @@ td[data-cell="Price"] span {
   }, WAIT_INTERVAL_TIMEOUT)
 
   const waitForAddBtns = setInterval(() => {
-    if (document.querySelectorAll('.btn-add')[5]) {
+    if (document.querySelectorAll('.btn-add')[4]) {
       clearInterval(waitForAddBtns)
 
       handleAddToCartClicks(document.querySelectorAll('.btn-add'))
@@ -1113,7 +1113,7 @@ td[data-cell="Price"] span {
           <span class="banner__rate">4.8</span>
           <div>
             <img src="${IMAGE_DIR_URL}/stars-total-rate.svg" alt="">
-            <a class="banner__link" href="#m-1662371984680">From 1048 Reviews</a>
+            <a class="banner__link" href="#m-1662371984680">From 1055 Reviews</a>
           </div>
         </div>
         <div class="banner__companies">
@@ -1207,18 +1207,6 @@ td[data-cell="Price"] span {
         price: '$349.90',
         oldPrice: '$700.00',
         discount: '-50%'
-      },
-      {
-        id: 40322897838134,
-        name: 'Novaa light pad [2022]',
-        pdpLink: 'https://novaalab.com/products/novaa-light-pad-powerful-red-light-therapy-at-home',
-        imgUrl: 'https://novaalab.com/cdn/shop/products/Pad1_1_1_9120d702-160d-47d7-8fc0-4cbb61322f15_1024x1024.jpg?v=1660746782',
-        filter: 'body',
-        healing: 'The Deep Healing Therapy',
-        rate: '4.8',
-        price: '$299.90',
-        oldPrice: '$540.90',
-        discount: '-45%'
       },
       {
         id: 40365298679862,
@@ -1365,29 +1353,6 @@ td[data-cell="Price"] span {
         ],
         size: '15.7" x 9"',
         price: ['$700.00', '$349.90']
-      },
-      {
-        name: 'Novaa light pad [2022]',
-        pdpLink: `https://novaalab.com/products/novaa-light-pad-powerful-red-light-therapy-at-home`,
-        imgUrl: `https://novaalab.com/cdn/shop/products/Pad1_1_1_9120d702-160d-47d7-8fc0-4cbb61322f15_1024x1024.jpg?v=1660746782`,
-        zones: 'Whole Body',
-        benefits: `Strapable, Covers A Large Area, Easy To Use`,
-        lights: [
-          {
-            iconName: 'deep_red',
-            description: 'Deep red',
-            nm: '660',
-            number: `120`
-          },
-          {
-            iconName: 'infrared',
-            description: 'Infrared',
-            nm: `850`,
-            number: `240`
-          },
-        ],
-        size: `15.7" x 9"`,
-        price: ['$540.90', '$299.90']
       },
       {
         name: 'Novaa oral care pro',
