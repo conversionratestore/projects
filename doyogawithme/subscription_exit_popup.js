@@ -51,6 +51,16 @@ let startFunk = setInterval(() => {
 
     let newStyle = /*html */ `
         <style>
+      #edit-sidebar-order-summary-summary .order-total-line__adjustment--promotion{
+        display: flex;
+        justify-content: space-between;
+        padding: 0;
+        margin-top: 16px;
+        color: #555;
+        font-size: 16px;
+        font-weight: 500;
+        line-height: 24px;
+      }
       #promoteSubscriptionWrap {
         position: relative;
         background: #fff;
