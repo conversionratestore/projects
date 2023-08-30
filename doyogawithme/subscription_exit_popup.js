@@ -1950,6 +1950,8 @@ margin: 0 0 12px;
 let startFree = setInterval(() => {
   if (window.location.href === "https://www.doyogawithme.com/yogi/register") {
     clearInterval(startFree);
-    document.querySelector(".progressbar ").style.display = "none";
+    if (document.querySelector(".progressbar")) {
+      document.querySelector(".progressbar").style.display = "none";
+    }
   }
 }, 100);
