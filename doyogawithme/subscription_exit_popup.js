@@ -1102,7 +1102,7 @@ margin: 0 0 12px;
                   </li>
                 </ul>
                 <div  class="voucher_block">
-                  Use code <span data-clipboard-text="BOOK10">YOGA45</span> at checkout to claim your discount. But hurry, this offer won't last long!
+                  Use code <span data-clipboard-text="YOGA_45">YOGA_45</span> at checkout to claim your discount. But hurry, this offer won't last long!
                 </div>
                 <a id="subscribeSaveLink" href="https://www.doyogawithme.com//become-a-subscriber">Subscribe and Save 45% Now!</a>
 
@@ -1343,10 +1343,10 @@ margin: 0 0 12px;
         clearInterval(checkoutPremium);
         // sessionStorage.removeItem("checkoutPremium");
         if (document.querySelector("#edit-sidebar-coupon-redemption-form-code")?.value === "") {
-          document.querySelector("#edit-sidebar-coupon-redemption-form-code").value = "YOGA45";
+          document.querySelector("#edit-sidebar-coupon-redemption-form-code").value = "YOGA_45";
         }
 
-        if (document.querySelector("#edit-sidebar-coupon-redemption-form-code")?.value === "YOGA45") {
+        if (document.querySelector("#edit-sidebar-coupon-redemption-form-code")?.value === "YOGA_45") {
           const element = document.querySelector("#edit-sidebar-coupon-redemption-form-apply");
           const events = ["mousedown", "focusin"];
           events.forEach((eventType) => element.dispatchEvent(new MouseEvent(eventType, { bubbles: true })));
