@@ -1565,7 +1565,7 @@ function init() {
           document.querySelector(".saved_var").textContent = "$75.24";
           document.querySelector(".percent_var").textContent = "45%";
           if (document.querySelector(".views-field.views-field-total-price__number")) {
-            document.querySelector(".views-field.views-field-total-price__number").innerHTML = "<p><span>$167.88</span> $92.64</p>";
+            document.querySelector(".views-field.views-field-total-price__number").innerHTML = '<p><span>$167.88</span> $92.64</p> <p class="c-green">Just $7,83/month!</p>';
           }
         }
       } else if (document.querySelector(".views-field.views-field-total-price__number").innerHTML.includes("$13.99 ")) {
