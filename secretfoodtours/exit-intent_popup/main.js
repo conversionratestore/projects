@@ -320,6 +320,8 @@ p.timer__colon {
   transition: all .3s ease-in;
 
   transform: translate(50%, 0);
+
+  white-space: nowrap;
 }
 
 .exit-popup .copy-coupon__notif {
@@ -339,6 +341,10 @@ body .copy-coupon__notif p {
 }
 
 /* Book Your Tour */
+.plugin_right .book-code  {
+  margin-top: 8px;
+}
+
 .book-code {
   border-radius: 2px;
   border: 1px dashed  #C49959;
@@ -664,6 +670,7 @@ p.exit-popup__usually {
   /* --swiper-pagination-bullet-inactive-color: #EBEBE8 !important;
   --swiper-pagination-bullet-inactive-opacity: 1 !important; */
   --swiper-pagination-bottom: 0;
+  --swiper-pagination-bullet-horizontal-gap: 8px;
 }
 
 .interested {
@@ -771,10 +778,15 @@ line-height: 1.33; /* 133.333% */
 margin: 20px 0 !important;
 }
 .destination_page_wr .about-cont h1 + .book-code{
-  margin-bottom: 20px;
+    margin-bottom: 20px;
+    display: none;
 }
 
 @media only screen and (max-width: 767px) {
+  .destination_page_wr .about-cont h1 + .book-code {
+    display: flex;
+  }
+
   .book-code__copy+p {
     font-size: 14px;
     line-height: 1.42;
@@ -1152,8 +1164,8 @@ if (isBookMobilePage) {
           .then(el => handleVisibilityAndHover(el, ['exp_pdp_likelly_to_sell_out_visibility', 'Likelly to sell out', 'Element visibility', 'First screen'])))
 
 
-    waitForElement('.price.no-mobile')
-      .then(el => el.insertAdjacentHTML('afterend', bookWithCode()))
+    waitForElement('.plugin_right .plugin')
+      .then(el => el.insertAdjacentHTML('beforebegin', bookWithCode()))
       .then(() =>
         waitForElement('.book-code')
           .then(el => handleVisibilityAndHover(
