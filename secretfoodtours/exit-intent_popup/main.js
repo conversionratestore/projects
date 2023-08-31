@@ -673,10 +673,14 @@ p.exit-popup__usually {
 }
 
 /* Slide */
-:root {
+.interested  {
   --swiper-theme-color: #C49959 !important;
   /* --swiper-pagination-bullet-inactive-color: #EBEBE8 !important;
-  --swiper-pagination-bullet-inactive-opacity: 1 !important; */
+  --swiper-pagination-bullet-inactive-opacity: 1 !important;
+    --swiper-pagination-bullet-size: 6px;
+  --swiper-pagination-bullet-width: 6px;
+  --swiper-pagination-bullet-height: 6px;
+  */
   --swiper-pagination-bottom: 0;
   --swiper-pagination-bullet-horizontal-gap: 8px;
 }
@@ -693,9 +697,7 @@ p.exit-popup__usually {
   padding-top: 0;
 }
 
-.interested .swiper-container-horizontal>.swiper-pagination-bullets .swiper-pagination-bullet {
-  margin: 0 8px
-}
+
 
 .fixed_header + .interested {
   margin-top: 60px;
