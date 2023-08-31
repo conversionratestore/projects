@@ -913,8 +913,8 @@ margin: 20px 0 !important;
   }
 
   .exit-popup__pdp>div:first-child {
-    max-width: 80px;
-    height: auto;
+    width: 80px;
+    height: 71px;
   }
 
   .exit-popup__pdp-info>div {
