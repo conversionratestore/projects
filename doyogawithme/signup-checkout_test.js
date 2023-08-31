@@ -1561,9 +1561,12 @@ function init() {
         document.querySelector(".views-field.views-field-title").innerHTML = `1-Year DYWM Subscription`;
 
         document.querySelector(".order-total-line__total").insertAdjacentHTML("afterend", ` <div class="saved_block">You just saved <span class="saved_var">$58,89</span> (<span class="percent_var">35%</span> off)</div>`);
-        if (document.querySelector("#edit-sidebar-order-summary-summary .order-total-line__adjustment--promotion")) {
-          document.querySelector(".saved_var").textContent = document.querySelector("#edit-sidebar-order-summary-summary .order-total-line__adjustment--promotion .order-total-line-value").textContent.split("-")[1];
-          document.querySelector(".percent_var").textContent = document.querySelector("#edit-sidebar-order-summary-summary .order-total-line__adjustment--promotion .order-total-line-label").textContent.split(" ")[0];
+        if (document.querySelector("#edit-sidebar-order-summary-summary .order-total-line__adjustment--promotion") && document.querySelector(".order-total-line.order-total-line__total .order-total-line-value")?.textContent === "$92.64") {
+          document.querySelector(".saved_var").textContent = "$75.24";
+          document.querySelector(".percent_var").textContent = "45%";
+          if (document.querySelector(".views-field.views-field-total-price__number")) {
+            document.querySelector(".views-field.views-field-total-price__number").innerHTML = "<p><span>$167.88</span> $92.64</p>";
+          }
         }
       } else if (document.querySelector(".views-field.views-field-total-price__number").innerHTML.includes("$13.99 ")) {
         document.querySelector(".views-field.views-field-title").innerHTML = `1-Month DYWM Subscription`;
