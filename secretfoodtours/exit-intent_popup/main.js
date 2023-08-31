@@ -677,10 +677,11 @@ p.exit-popup__usually {
   --swiper-theme-color: #C49959 !important;
   /* --swiper-pagination-bullet-inactive-color: #EBEBE8 !important;
   --swiper-pagination-bullet-inactive-opacity: 1 !important;
-    --swiper-pagination-bullet-size: 6px;
-  --swiper-pagination-bullet-width: 6px;
-  --swiper-pagination-bullet-height: 6px;
+
   */
+  --swiper-pagination-bullet-size: 10px;
+  --swiper-pagination-bullet-width: 10px;
+  --swiper-pagination-bullet-height: 10px;
   --swiper-pagination-bottom: 0;
   --swiper-pagination-bullet-horizontal-gap: 8px;
 }
