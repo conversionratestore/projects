@@ -1538,7 +1538,7 @@ function init() {
 
                 document.querySelector('.views-field.views-field-title').innerHTML = `1-Year DYWM Subscription`;
                  
-                document.querySelector('.order-total-line__total').insertAdjacentHTML('afterend',` <div class="saved_block">You just saved $58,89 (35% off)</div>`)
+                document.querySelector('.order-total-line__total').insertAdjacentHTML('afterend',` <div class="saved_block">You just saved <span class="saved_var">$58,89</span> (<span class="percent_var">35%</span> off)</div>`)
             } else if (document.querySelector('.views-field.views-field-total-price__number').innerHTML.includes('$13.99 ')) {
                 document.querySelector('.views-field.views-field-title').innerHTML = `1-Month DYWM Subscription`;
             }
