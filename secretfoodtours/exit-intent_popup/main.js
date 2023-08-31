@@ -1,171 +1,178 @@
-// -------------------------------------
-// CONSTANTS
-// -------------------------------------
-const WAIT_INTERVAL_TIMEOUT = 100
-const DEVICE = screen.width <= 768 ? 'mobile' : 'desktop'
-const IMAGE_DIR_URL = 'https://conversionratestore.github.io/projects/secretfoodtours/exit-intent_popup/img'
+(function () {
+  // -------------------------------------
+  // CONSTANTS
+  // -------------------------------------
+  const WAIT_INTERVAL_TIMEOUT = 100
+  const DEVICE = screen.width <= 768 ? 'mobile' : 'desktop'
+  const IMAGE_DIR_URL = 'https://conversionratestore.github.io/projects/secretfoodtours/exit-intent_popup/img'
 
-const tours = {
-  // America
-  dallas:
-  {
-    "name": "Dallas Food Tour",
-    "price": "$89",
-    "rate": "4.91",
-    "img": "/img/dallas/secret-food-tours-dallas.jpg",
-    "link": "/dallas/food-tours-dallas/",
-    "region": "america"
-  },
-  "key-west":
-  {
-    "name": "Key-west Food Tour",
-    "price": "$89",
-    "rate": "4.92",
-    "img": "/img/key-west/secret-food-tours-key-west.jpg",
-    "link": "/key-west/food-tours-key-west/", "region": "america"
-  },
-  "los-angeles":
-  {
-    "name": "Venice Beach LA Food Tour",
-    "price": "$79",
-    "rate": "4.92",
-    "img": "/img/los-angeles/secret-food-tours-los-angeles.jpg",
-    "link": "/los-angeles/food-tours-los-angeles/", "region": "america"
-  },
-  milwaukee:
-  {
-    "name": "Milwaukee Food Tour",
-    "price": "$89",
-    "rate": "4.97",
-    "img": "/img/milwaukee/secret-food-tours-milwaukee.jpg",
-    "link": "/milwaukee/food-tours-milwaukee/", "region": "america"
-  },
-  philadelphia:
-  {
-    "name": "Philadelphia Food Tours",
-    "price": "",
-    "rate": "4.98",
-    "img": "/img/philadelphia/secret-food-tours-philadelphia.jpg?v2",
-    "link": "/philadelphia/food-tours-philadelphia/", "region": "america"
-  },
-  "san-diego":
-  {
-    "name": "San Diego Food Tour",
-    "price": "$85",
-    "rate": "4.97",
-    "img": "/img/san-diego/secret-food-tours-sandiego.jpg",
-    "link": "/san-diego/food-tours-san-diego/", "region": "america"
-  },
-  "washington-DC":
-  {
-    "name": "Washington Food Tour",
-    "price": "$85",
-    "rate": "4.97",
-    "img": "/img/washington/secret-food-tour-washington-HP-3.jpg",
-    "link": "/washington-DC/food-tours-washington/", "region": "america"
-  },
-  // Europe
-  belfast:
-  {
-    "name": "Belfast Food Tour",
-    "price": "£69",
-    "rate": "4.98",
-    "img": "/img/belfast/secret-food-tours-belfast-10.jpg",
-    "link": "/belfast/food-tours-belfast/", "region": "europe"
-  },
-  istanbul:
-  {
-    "name": "Lunch Food Tour Istanbul-kadikoy",
-    "price": "€69",
-    "rate": "4.96",
-    "img": "/img/istanbul/secret-food-tours-istanbul.jpg",
-    "link": "/istanbul/food-tours-istanbul/", "region": "europe"
-  },
-  krakow:
-  {
-    "name": "Krakow Food Tour",
-    "price": "€79",
-    "rate": "4.97",
-    "img": "/img/krakow/secret-food-tours-krakow.jpg",
-    "link": "/krakow/food-tours-krakow/", "region": "europe"
-  },
-  milan:
-  {
-    "name": "Milan Food Tour",
-    "price": "€89",
-    "rate": "4.97",
-    "img": "/img/milan/food-tours-milan-featured-01.jpg",
-    "link": "/milan/food-tours-milan/", "region": "europe"
-  },
-  porto:
-  {
-    "name": "Porto Food Tour",
-    "price": "€69",
-    "rate": "4.98",
-    "img": "/img/porto/secret-food-tours-porto.jpg",
-    "link": "/porto/food-tours-porto/", "region": "europe"
-  },
-  prague:
-  {
-    "name": "Prague Food Tour",
-    "price": "€76",
-    "rate": "4.97",
-    "img": "/img/prague/secret-food-tours-prague.jpg",
-    "link": "/prague/food-tours-prague/", "region": "europe"
-  },
-  seville:
-  {
-    "name": "Seville Food Tour",
-    "price": "€79",
-    "rate": "4.93",
-    "img": "/img/seville/secret-food-tours-seville.jpg",
-    "link": "/seville/food-tours-seville/", "region": "europe"
-  },
-  // Asia
-  bangkok:
-  {
-    "name": "Bangkok Food Tour",
-    "price": "$59",
-    "rate": "4.97",
-    "img": "/img/bangkok/secret-food-tours-bangkok.jpg?v2",
-    "link": "/bangkok/food-tours-bangkok/", "region": "asia"
-  },
-  "hong-kong":
-  {
-    "name": "Hong Kong Food Tour",
-    "price": "",
-    "rate": "4.95",
-    "img": "/img/hong-kong/secret-food-tours-hongkong-2.jpg",
-    "link": "/hong-kong/food-tours-hong-kong/", "region": "asia"
-  },
-  singapore:
-  {
-    "name": "Singapore Food Tours",
-    "price": "",
-    "rate": "4.95",
-    "img": "/img/singapore/secret-food-tours-singapore.jpg",
-    "link": "/singapore/food-tours-singapore/", "region": "asia"
-  },
-}
+  const tours = {
+    // America
+    dallas:
+    {
+      "name": "Dallas Food Tour",
+      "price": "$89",
+      "rate": "4.91",
+      "img": "/img/dallas/secret-food-tours-dallas.jpg",
+      "link": "/dallas/food-tours-dallas/",
+      "region": "america"
+    },
+    "key-west":
+    {
+      "name": "Key-west Food Tour",
+      "price": "$89",
+      "rate": "4.92",
+      "img": "/img/key-west/secret-food-tours-key-west.jpg",
+      "link": "/key-west/food-tours-key-west/", "region": "america"
+    },
+    "los-angeles":
+    {
+      "name": "Venice Beach LA Food Tour",
+      "price": "$79",
+      "rate": "4.92",
+      "img": "/img/los-angeles/secret-food-tours-los-angeles.jpg",
+      "link": "/los-angeles/food-tours-los-angeles/", "region": "america"
+    },
+    milwaukee:
+    {
+      "name": "Milwaukee Food Tour",
+      "price": "$89",
+      "rate": "4.97",
+      "img": "/img/milwaukee/secret-food-tours-milwaukee.jpg",
+      "link": "/milwaukee/food-tours-milwaukee/", "region": "america"
+    },
+    philadelphia:
+    {
+      "name": "Philadelphia Food Tours",
+      "price": "",
+      "rate": "4.98",
+      "img": "/img/philadelphia/secret-food-tours-philadelphia.jpg?v2",
+      "link": "/philadelphia/food-tours-philadelphia/", "region": "america"
+    },
+    "san-diego":
+    {
+      "name": "San Diego Food Tour",
+      "price": "$85",
+      "rate": "4.97",
+      "img": "/img/san-diego/secret-food-tours-sandiego.jpg",
+      "link": "/san-diego/food-tours-san-diego/", "region": "america"
+    },
+    "washington-DC":
+    {
+      "name": "Washington Food Tour",
+      "price": "$85",
+      "rate": "4.97",
+      "img": "/img/washington/secret-food-tour-washington-HP-3.jpg",
+      "link": "/washington-DC/food-tours-washington/", "region": "america"
+    },
+    // Europe
+    belfast:
+    {
+      "name": "Belfast Food Tour",
+      "price": "£69",
+      "rate": "4.98",
+      "img": "/img/belfast/secret-food-tours-belfast-10.jpg",
+      "link": "/belfast/food-tours-belfast/", "region": "europe"
+    },
+    istanbul:
+    {
+      "name": "Lunch Food Tour Istanbul-kadikoy",
+      "price": "€69",
+      "rate": "4.96",
+      "img": "/img/istanbul/secret-food-tours-istanbul.jpg",
+      "link": "/istanbul/food-tours-istanbul/", "region": "europe"
+    },
+    krakow:
+    {
+      "name": "Krakow Food Tour",
+      "price": "€79",
+      "rate": "4.97",
+      "img": "/img/krakow/secret-food-tours-krakow.jpg",
+      "link": "/krakow/food-tours-krakow/", "region": "europe"
+    },
+    milan:
+    {
+      "name": "Milan Food Tour",
+      "price": "€89",
+      "rate": "4.97",
+      "img": "/img/milan/food-tours-milan-featured-01.jpg",
+      "link": "/milan/food-tours-milan/", "region": "europe"
+    },
+    porto:
+    {
+      "name": "Porto Food Tour",
+      "price": "€69",
+      "rate": "4.98",
+      "img": "/img/porto/secret-food-tours-porto.jpg",
+      "link": "/porto/food-tours-porto/", "region": "europe"
+    },
+    prague:
+    {
+      "name": "Prague Food Tour",
+      "price": "€76",
+      "rate": "4.97",
+      "img": "/img/prague/secret-food-tours-prague.jpg",
+      "link": "/prague/food-tours-prague/", "region": "europe"
+    },
+    seville:
+    {
+      "name": "Seville Food Tour",
+      "price": "€79",
+      "rate": "4.93",
+      "img": "/img/seville/secret-food-tours-seville.jpg",
+      "link": "/seville/food-tours-seville/", "region": "europe"
+    },
+    // Asia
+    bangkok:
+    {
+      "name": "Bangkok Food Tour",
+      "price": "$59",
+      "rate": "4.97",
+      "img": "/img/bangkok/secret-food-tours-bangkok.jpg?v2",
+      "link": "/bangkok/food-tours-bangkok/", "region": "asia"
+    },
+    "hong-kong":
+    {
+      "name": "Hong Kong Food Tour",
+      "price": "",
+      "rate": "4.95",
+      "img": "/img/hong-kong/secret-food-tours-hongkong-2.jpg",
+      "link": "/hong-kong/food-tours-hong-kong/", "region": "asia"
+    },
+    singapore:
+    {
+      "name": "Singapore Food Tours",
+      "price": "",
+      "rate": "4.95",
+      "img": "/img/singapore/secret-food-tours-singapore.jpg",
+      "link": "/singapore/food-tours-singapore/", "region": "asia"
+    },
+  }
 
-const pathname = window.location.pathname
-const cityName = pathname.split('/')[1]
-const isEuropeanCity = checkIsEuropeanCity(cityName)
-const promocode = isEuropeanCity ? 'FREEUPGRADE7812' : 'BOOK10'
-const isBookMobilePage = pathname.includes('book')
+  const pathname = window.location.pathname
+  const cityName = pathname.split('/')[1]
+  const isEuropeanCity = checkIsEuropeanCity(cityName)
+  const promocode = isEuropeanCity ? 'FREEUPGRADE7812' : 'BOOK10'
+  const isBookMobilePage = pathname.includes('book')
 
-const currentTour = tours[cityName]
-const filteredTours = displayCities(cityName)
+  const currentTour = tours[cityName]
+  const filteredTours = displayCities(cityName)
 
-// -------------------------------------
-// CSS & HTML
-// -------------------------------------
-const style = /*html*/`
+  // -------------------------------------
+  // CSS & HTML
+  // -------------------------------------
+  const style = /*html*/`
 <style>
 /* Client's website */
-#om-ewmxd7y3oz2noro3ilwe {
+html .CampaignType--popup,
+html #om-h6gev8aslrdfs94jomxz,
+html #om-ewmxd7y3oz2noro3ilwe {
   opacity: 0;
   pointer-events: none;
+  display: none !important;
+}
+html.om-position-popup head + body {
+  overflow: initial !important;
 }
 .heading.no-mobile,
 .price.no-mobile {
@@ -231,6 +238,7 @@ const style = /*html*/`
   letter-spacing: 1px;
   text-transform: uppercase;
 
+  border: 0 !important;
   background: #144733;
   cursor: pointer;
   transition: all 0.5s ease;
@@ -296,6 +304,7 @@ p.timer__colon {
 
 .copy-coupon__code > div {
   position: relative;
+  flex-shrink: 0;
 }
 
 .copy-coupon__notif {
@@ -313,6 +322,7 @@ p.timer__colon {
   background: #FFF;
 
   padding: 4px 12px 4px 6px;
+  margin: 0 5px;
 
   opacity: 0;
   pointer-events: none;
@@ -320,8 +330,6 @@ p.timer__colon {
   transition: all .3s ease-in;
 
   transform: translate(50%, 0);
-
-  white-space: nowrap;
 }
 
 .exit-popup .copy-coupon__notif {
@@ -952,7 +960,7 @@ margin: 20px 0 !important;
 
 </style>`
 
-const copyCoupon = /*html*/`
+  const copyCoupon = /*html*/`
 <div class="copy-coupon__code ff-primary">
   <p class="accent">${promocode}</p>
   <div>
@@ -966,14 +974,14 @@ const copyCoupon = /*html*/`
     </div>
   </div>
 </div>`
-const bookWithCode = () => {
-  const bookNow = isEuropeanCity
-    ? 'Book now & get <span class="accent">Free drinks upgrade</span>'
-    : `Book now & enjoy <span class="accent">10% OFF</span>`
+  const bookWithCode = () => {
+    const bookNow = isEuropeanCity
+      ? 'Book now & get <span class="accent">Free drinks upgrade</span>'
+      : `Book now & enjoy <span class="accent">10% OFF</span>`
 
-  const icon = isEuropeanCity ? 'drink' : '24_sale'
+    const icon = isEuropeanCity ? 'drink' : '24_sale'
 
-  return /*html*/`
+    return /*html*/`
 <div class="book-code p-m-0 ff-primary">
   <div>
     <img src="https://conversionratestore.github.io/projects/secretfoodtours/exit-intent_popup/img/${icon}.svg"
@@ -988,13 +996,13 @@ const bookWithCode = () => {
     <p>Enter code after choosing a date</p>
   </div>
 </div>`
-}
-const desktopTourInfo = /*html*/`
+  }
+  const desktopTourInfo = /*html*/`
 <div class="desktop-tour-info p-m-0 ff-primary">
   <p class="likely-sell-out">LIKELY TO SELL OUT</p>
 </div>
 `
-const mobileTourInfo =  /*html*/`
+  const mobileTourInfo =  /*html*/`
 <div class="mobile-tour-info p-m-0 ff-primary">
   <p class="likely-sell-out">LIKELY TO SELL OUT</p>
   <div class="mobile-tour-info__price">
@@ -1003,12 +1011,12 @@ const mobileTourInfo =  /*html*/`
   ${bookWithCode()}
 </div>
 `
-const reserved = () => {
-  const bookNow = isEuropeanCity
-    ? 'Book now & get your <span class="accent">Free drinks upgrade</span>'
-    : `Book now & enjoy <span class="accent">10% OFF</span> on your tickets`
+  const reserved = () => {
+    const bookNow = isEuropeanCity
+      ? 'Book now & get your <span class="accent">Free drinks upgrade</span>'
+      : `Book now & enjoy <span class="accent">10% OFF</span> on your tickets`
 
-  return `
+    return `
   <div class="reserved p-m-0 ff-primary">
 <div>
   <p class="reserved__offer">Offer reserved only for:</p>
@@ -1035,13 +1043,13 @@ const reserved = () => {
   <button class="btn-custom-primary">Book a tour</button>
 </div>
 </div>`
-}
-const exitPopup = (tour) => {
-  const bookNow = isEuropeanCity
-    ? '<span class="accent">Free drinks upgrade</span>'
-    : `<span class="accent">10% OFF</span> on your tickets`
+  }
+  const exitPopup = (tour) => {
+    const bookNow = isEuropeanCity
+      ? '<span class="accent">Free drinks upgrade</span>'
+      : `<span class="accent">10% OFF</span> on your tickets`
 
-  return /*html*/`
+    return /*html*/`
   <div class="exit-popup__overlay ff-primary">
 <div class="exit-popup">
   <div class="exit-popup__text p-m-0">
@@ -1101,10 +1109,10 @@ const exitPopup = (tour) => {
 </div>
 </div>
   `
-}
-const interestedSlider = () => {
-  function generateTourHTML(tourInfo) {
-    return `
+  }
+  const interestedSlider = () => {
+    function generateTourHTML(tourInfo) {
+      return `
     <div class="swiper-slide interested__slide">
       <div class="interested__tour-img">
         <img src="${tourInfo.img}" alt="${tourInfo.name}">
@@ -1118,23 +1126,23 @@ const interestedSlider = () => {
         <a href="${tourInfo.link}">learn more ></a>
       </div>
     </div>`
-  }
-  function generateAllToursHTML(tourNames) {
-    const allToursHTML = tourNames
-      .map(tourName => {
-        const tourInfo = tours[tourName]
-        if (tourInfo) {
-          return generateTourHTML(tourInfo)
-        } else {
-          return ''
-        }
-      })
-      .join('')
+    }
+    function generateAllToursHTML(tourNames) {
+      const allToursHTML = tourNames
+        .map(tourName => {
+          const tourInfo = tours[tourName]
+          if (tourInfo) {
+            return generateTourHTML(tourInfo)
+          } else {
+            return ''
+          }
+        })
+        .join('')
 
-    return allToursHTML
-  }
+      return allToursHTML
+    }
 
-  return /*html*/`
+    return /*html*/`
   <div class="interested p-m-0 ff-primary">
     <p>Customers also interested:</p>
     <div class="swiper interested__slider">
@@ -1144,473 +1152,474 @@ const interestedSlider = () => {
       <div class="swiper-pagination"></div>
     </div>
   </div>`
-}
+  }
 
-// -------------------------------------
-// MAKE DOM CHANGES
-// -------------------------------------
-document.head.insertAdjacentHTML('beforeend', style)
+  // -------------------------------------
+  // MAKE DOM CHANGES
+  // -------------------------------------
+  document.head.insertAdjacentHTML('beforeend', style)
 
-if (isBookMobilePage) {
-  waitForElement('.destination_page_wr .about-cont h1 ')
-    .then(el => el.insertAdjacentHTML('afterend', bookWithCode()))
-} else {
+  if (isBookMobilePage) {
+    waitForElement('.destination_page_wr .about-cont h1 ')
+      .then(el => el.insertAdjacentHTML('afterend', bookWithCode()))
+  } else {
 
-  if (DEVICE === 'desktop') {
-    waitForElement('.tour-intro .breadcrumbs')
-      .then(el => el.insertAdjacentHTML('afterbegin', desktopTourInfo))
+    if (DEVICE === 'desktop') {
+      waitForElement('.tour-intro .breadcrumbs')
+        .then(el => el.insertAdjacentHTML('afterbegin', desktopTourInfo))
+        .then(() =>
+          waitForElement('.desktop-tour-info .likely-sell-out')
+            .then(el => handleVisibilityAndHover(el, ['exp_pdp_likelly_to_sell_out_visibility', 'Likelly to sell out', 'Element visibility', 'First screen'])))
+
+
+      waitForElement('.plugin_right .plugin')
+        .then(el => el.insertAdjacentHTML('beforebegin', bookWithCode()))
+        .then(() =>
+          waitForElement('.book-code')
+            .then(el => handleVisibilityAndHover(
+              el,
+              ['exp_pdp_book_now_enjoy_visibility', 'Book now and enjoy 10% off', 'Element visibility', 'Right sidebar']
+            )))
+    } else {
+      waitForElement('.tour-intro .breadcrumbs')
+        .then(el => el.insertAdjacentHTML('afterend', mobileTourInfo))
+        .then(() => {
+          const waitForPrice = setInterval(() => {
+            const price = document.querySelector('.price.no-mobile span')
+            const myTourPrice = document.querySelector('.mobile-tour-info__price span')
+
+            if (price && myTourPrice) {
+              clearInterval(waitForPrice)
+
+              myTourPrice.innerText = price.innerText
+            }
+          }, WAIT_INTERVAL_TIMEOUT)
+        })
+    }
+
+    waitForElement('.shadow_mobile')
+      .then(el => {
+        el.insertAdjacentHTML(DEVICE === 'desktop' ? 'afterend' : 'beforebegin', reserved())
+        setTourName('.reserved__tour-name')
+
+        handleClickOnBookTour()
+      })
       .then(() =>
-        waitForElement('.desktop-tour-info .likely-sell-out')
-          .then(el => handleVisibilityAndHover(el, ['exp_pdp_likelly_to_sell_out_visibility', 'Likelly to sell out', 'Element visibility', 'First screen'])))
-
-
-    waitForElement('.plugin_right .plugin')
-      .then(el => el.insertAdjacentHTML('beforebegin', bookWithCode()))
-      .then(() =>
-        waitForElement('.book-code')
+        waitForElement('.reserved')
           .then(el => handleVisibilityAndHover(
             el,
-            ['exp_pdp_book_now_enjoy_visibility', 'Book now and enjoy 10% off', 'Element visibility', 'Right sidebar']
+            ['exp_pdp_offer_reserved_only_for', 'Offer reserved only for', 'Element visibility', 'What you will do section']
           )))
-  } else {
-    waitForElement('.tour-intro .breadcrumbs')
-      .then(el => el.insertAdjacentHTML('afterend', mobileTourInfo))
-      .then(() => {
-        const waitForPrice = setInterval(() => {
-          const price = document.querySelector('.price.no-mobile span')
-          const myTourPrice = document.querySelector('.mobile-tour-info__price span')
 
-          if (price && myTourPrice) {
-            clearInterval(waitForPrice)
+    waitForElement('.banner_top')
+      .then(el => el.insertAdjacentHTML('beforebegin', interestedSlider()))
+      .then(() => initSlider())
+      .then(() =>
+        waitForElement('.interested')
+          .then(el => {
+            handleVisibilityAndHover(
+              el,
+              ['exp_pdp_customers_interested_visibility', 'Customers also interested', 'Element visibility', 'First screen']
+            )
 
-            myTourPrice.innerText = price.innerText
-          }
-        }, WAIT_INTERVAL_TIMEOUT)
-      })
-  }
+            el.addEventListener('click', (e) => {
+              if (e.target.tagName === 'A') {
+                e.preventDefault()
 
-  waitForElement('.shadow_mobile')
-    .then(el => {
-      el.insertAdjacentHTML(DEVICE === 'desktop' ? 'afterend' : 'beforebegin', reserved())
-      setTourName('.reserved__tour-name')
+                pushDataLayer(['exp_pdp_customers_interested_learn_more', `Learn more. ${cityName} — ${e.target.href}`, 'Link', 'Customers also interested'])
 
-      handleClickOnBookTour()
-    })
-    .then(() =>
-      waitForElement('.reserved')
-        .then(el => handleVisibilityAndHover(
-          el,
-          ['exp_pdp_offer_reserved_only_for', 'Offer reserved only for', 'Element visibility', 'What you will do section']
-        )))
+                window.location = e.target.href
+              }
+            })
 
-  waitForElement('.banner_top')
-    .then(el => el.insertAdjacentHTML('beforebegin', interestedSlider()))
-    .then(() => initSlider())
-    .then(() =>
-      waitForElement('.interested')
-        .then(el => {
-          handleVisibilityAndHover(
-            el,
-            ['exp_pdp_customers_interested_visibility', 'Customers also interested', 'Element visibility', 'First screen']
-          )
+            const paginationContainer = el.querySelector('.swiper-pagination')
+            paginationContainer.addEventListener('click', (e) => {
+              if (e.target.tagName === 'SPAN') {
+                const spanElements = Array.from(paginationContainer.querySelectorAll('span'))
+                const clickedIndex = spanElements.indexOf(e.target)
 
-          el.addEventListener('click', (e) => {
-            if (e.target.tagName === 'A') {
-              e.preventDefault()
-
-              pushDataLayer(['exp_pdp_customers_interested_learn_more', `Learn more. ${cityName} — ${e.target.href}`, 'Link', 'Customers also interested'])
-
-              window.location = e.target.href
-            }
-          })
-
-          const paginationContainer = el.querySelector('.swiper-pagination')
-          paginationContainer.addEventListener('click', (e) => {
-            if (e.target.tagName === 'SPAN') {
-              const spanElements = Array.from(paginationContainer.querySelectorAll('span'))
-              const clickedIndex = spanElements.indexOf(e.target)
-
-              pushDataLayer(['exp_pdp_customers_interested_navigation', `Navigation ${+clickedIndex + 1}`, 'Button', 'Customers also interested'])
-            }
-          })
-        }
-        ))
-
-}
-
-setCopyCouponLogic()
-
-waitForElement('body')
-  .then(el => {
-    el.insertAdjacentHTML('beforeend', exitPopup(currentTour))
-
-    setTourName('.exit-popup__pdp-info > p')
-
-    setExitPopupLogic()
-  })
-
-startCountdownTimer(30, 0)
-
-const recordClarity = setInterval(() => {
-  if (typeof clarity === 'function') {
-    clearInterval(recordClarity)
-    clarity('set', `exp_pdp`, 'variant_1')
-  }
-}, WAIT_INTERVAL_TIMEOUT)
-
-// -------------------------------------
-// FUNCTIONS
-// -------------------------------------
-function waitForElement(selector) {
-  return new Promise(resolve => {
-    if (document.querySelector(selector)) {
-      return resolve(document.querySelector(selector))
-    }
-
-    const observer = new MutationObserver(() => {
-      if (document.querySelector(selector)) {
-        resolve(document.querySelector(selector))
-        observer.disconnect()
-      }
-    })
-
-    observer.observe(document.documentElement, {
-      childList: true,
-      subtree: true
-    })
-  })
-}
-function handleVisibilityAndHover(el, event) {
-  const ms = 3000
-  let timer
-
-  const config = {
-    root: null,
-    threshold: 1,
-  }
-
-  if (DEVICE === 'mobile') {
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          timer = setTimeout(() => {
-            pushDataLayer(event)
-          }, ms)
-        } else {
-          clearTimeout(timer)
-        }
-      })
-    }, config)
-
-    observer.observe(el)
-  } else {
-    function handleHover() {
-      pushDataLayer(event)
-      el.removeEventListener('mouseenter', handleHover)
-    }
-
-    el.addEventListener('mouseenter', handleHover)
-  }
-}
-function pushDataLayer([event_name, event_desc, event_type, event_loc]) {
-  const eventData = {
-    'event': 'event-to-ga4', event_name, event_desc, event_type, event_loc
-  }
-
-  window.dataLayer = window.dataLayer || []
-  dataLayer.push(eventData)
-
-  console.log(eventData)
-}
-
-function checkIsEuropeanCity(city) {
-  const validCityNames = ['belfast', 'istanbul', 'krakow', 'milan', 'porto', 'prague', 'seville']
-  console.log(validCityNames.includes(city))
-  return validCityNames.includes(city)
-}
-function setCopyCouponLogic() {
-  let copiesCouponIndex = 2
-  if (isBookMobilePage) {
-    copiesCouponIndex = 0
-  }
-
-  const waitForEl = setInterval(() => {
-    if (document.querySelectorAll('.copy-coupon')[copiesCouponIndex]) {
-      clearInterval(waitForEl)
-
-      const copiesCoupon = document.querySelectorAll('.copy-coupon')
-
-      for (const copy of copiesCoupon) {
-        copy.addEventListener('click', function () {
-          if (!this.classList.contains('copy-coupon--disabled')) {
-            this.classList.add('copy-coupon--disabled') // Add the 'copy-coupon--disabled' class to disable the button
-
-            const textToCopy = this.querySelector('.accent').textContent
-            const notif = this.querySelector('.copy-coupon__notif')
-
-            // Use the Clipboard API to copy the text
-            navigator.clipboard.writeText(textToCopy).then(function () {
-              notif.classList.add('copy-coupon__notif--show')
-
-              setTimeout(() => {
-                notif.classList.remove('copy-coupon__notif--show')
-                copy.classList.remove('copy-coupon--disabled') // Re-enable the button
-              }, 1500)
-            }).catch(function (err) {
-              console.error("Unable to copy text: ", err)
-              copy.classList.remove('copy-coupon--disabled') // Re-enable the button in case of an error
+                pushDataLayer(['exp_pdp_customers_interested_navigation', `Navigation ${+clickedIndex + 1}`, 'Button', 'Customers also interested'])
+              }
             })
           }
+          ))
 
-          if (copy.closest('#plugin')) {
-            pushDataLayer(['exp_pdp_book_now_copy_discount_code', 'Copy discount code', 'Button', 'Book now and enjoy 10% off'])
-          } else if (copy.closest('.reserved')) {
-            pushDataLayer(['exp_pdp_offer_reserv_copy_discount_code', 'Copy discount code', 'Button', 'Offer reserved only for'])
-          } else if (copy.closest('.exit-popup__enter')) {
-            pushDataLayer(['exp_pdp_popup_book_now_copy_disc_code', 'Copy discount code', 'Button', 'Book now and enjoy 10% off'])
-          }
-        })
-      }
-    }
-  }, WAIT_INTERVAL_TIMEOUT)
-}
-function startCountdownTimer(minutes, seconds) {
-  let timersIndex = 1
-  if (isBookMobilePage) {
-    timersIndex = 0
   }
 
-  const waitForEl = setInterval(() => {
-    if (document.querySelectorAll('.timer__seconds span:last-child')[timersIndex]) {
-      clearInterval(waitForEl)
+  setCopyCouponLogic()
 
-      let totalSeconds = minutes * 60 + seconds
-      const containers = document.querySelectorAll(".timer")
+  waitForElement('body')
+    .then(el => {
+      el.insertAdjacentHTML('beforeend', exitPopup(currentTour))
 
-      // Retrieve the remaining time from session storage
-      const storedTime = sessionStorage.getItem("countdownTime")
-      if (storedTime !== null) {
-        totalSeconds = parseInt(storedTime, 10)
+      setTourName('.exit-popup__pdp-info > p')
+
+      setExitPopupLogic()
+    })
+
+  startCountdownTimer(30, 0)
+
+  const recordClarity = setInterval(() => {
+    if (typeof clarity === 'function') {
+      clearInterval(recordClarity)
+      clarity('set', `exp_pdp`, 'variant_1')
+    }
+  }, WAIT_INTERVAL_TIMEOUT)
+
+  // -------------------------------------
+  // FUNCTIONS
+  // -------------------------------------
+  function waitForElement(selector) {
+    return new Promise(resolve => {
+      if (document.querySelector(selector)) {
+        return resolve(document.querySelector(selector))
       }
 
-      function updateTimerDisplay(container) {
-        let minutes = Math.floor(totalSeconds / 60)
-        let seconds = totalSeconds % 60
+      const observer = new MutationObserver(() => {
+        if (document.querySelector(selector)) {
+          resolve(document.querySelector(selector))
+          observer.disconnect()
+        }
+      })
 
-        container.querySelector(".timer__minutes span:first-child").textContent = Math.floor(minutes / 10)
-        container.querySelector(".timer__minutes span:last-child").textContent = minutes % 10
-        container.querySelector(".timer__seconds span:first-child").textContent = Math.floor(seconds / 10)
-        container.querySelector(".timer__seconds span:last-child").textContent = seconds % 10
+      observer.observe(document.documentElement, {
+        childList: true,
+        subtree: true
+      })
+    })
+  }
+  function handleVisibilityAndHover(el, event) {
+    const ms = 3000
+    let timer
+
+    const config = {
+      root: null,
+      threshold: 1,
+    }
+
+    if (DEVICE === 'mobile') {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            timer = setTimeout(() => {
+              pushDataLayer(event)
+            }, ms)
+          } else {
+            clearTimeout(timer)
+          }
+        })
+      }, config)
+
+      observer.observe(el)
+    } else {
+      function handleHover() {
+        pushDataLayer(event)
+        el.removeEventListener('mouseenter', handleHover)
       }
 
-      function countdown() {
-        if (totalSeconds > 0) {
-          totalSeconds--
-        } else {
-          clearInterval(interval)
+      el.addEventListener('mouseenter', handleHover)
+    }
+  }
+  function pushDataLayer([event_name, event_desc, event_type, event_loc]) {
+    const eventData = {
+      'event': 'event-to-ga4', event_name, event_desc, event_type, event_loc
+    }
+
+    window.dataLayer = window.dataLayer || []
+    dataLayer.push(eventData)
+
+    console.log(eventData)
+  }
+
+  function checkIsEuropeanCity(city) {
+    const validCityNames = ['belfast', 'istanbul', 'krakow', 'milan', 'porto', 'prague', 'seville']
+    console.log(validCityNames.includes(city))
+    return validCityNames.includes(city)
+  }
+  function setCopyCouponLogic() {
+    let copiesCouponIndex = 2
+    if (isBookMobilePage) {
+      copiesCouponIndex = 0
+    }
+
+    const waitForEl = setInterval(() => {
+      if (document.querySelectorAll('.copy-coupon')[copiesCouponIndex]) {
+        clearInterval(waitForEl)
+
+        const copiesCoupon = document.querySelectorAll('.copy-coupon')
+
+        for (const copy of copiesCoupon) {
+          copy.addEventListener('click', function () {
+            if (!this.classList.contains('copy-coupon--disabled')) {
+              this.classList.add('copy-coupon--disabled') // Add the 'copy-coupon--disabled' class to disable the button
+
+              const textToCopy = this.querySelector('.accent').textContent
+              const notif = this.querySelector('.copy-coupon__notif')
+
+              // Use the Clipboard API to copy the text
+              navigator.clipboard.writeText(textToCopy).then(function () {
+                notif.classList.add('copy-coupon__notif--show')
+
+                setTimeout(() => {
+                  notif.classList.remove('copy-coupon__notif--show')
+                  copy.classList.remove('copy-coupon--disabled') // Re-enable the button
+                }, 1500)
+              }).catch(function (err) {
+                console.error("Unable to copy text: ", err)
+                copy.classList.remove('copy-coupon--disabled') // Re-enable the button in case of an error
+              })
+            }
+
+            if (copy.closest('#plugin')) {
+              pushDataLayer(['exp_pdp_book_now_copy_discount_code', 'Copy discount code', 'Button', 'Book now and enjoy 10% off'])
+            } else if (copy.closest('.reserved')) {
+              pushDataLayer(['exp_pdp_offer_reserv_copy_discount_code', 'Copy discount code', 'Button', 'Offer reserved only for'])
+            } else if (copy.closest('.exit-popup__enter')) {
+              pushDataLayer(['exp_pdp_popup_book_now_copy_disc_code', 'Copy discount code', 'Button', 'Book now and enjoy 10% off'])
+            }
+          })
+        }
+      }
+    }, WAIT_INTERVAL_TIMEOUT)
+  }
+  function startCountdownTimer(minutes, seconds) {
+    let timersIndex = 1
+    if (isBookMobilePage) {
+      timersIndex = 0
+    }
+
+    const waitForEl = setInterval(() => {
+      if (document.querySelectorAll('.timer__seconds span:last-child')[timersIndex]) {
+        clearInterval(waitForEl)
+
+        let totalSeconds = minutes * 60 + seconds
+        const containers = document.querySelectorAll(".timer")
+
+        // Retrieve the remaining time from session storage
+        const storedTime = sessionStorage.getItem("countdownTime")
+        if (storedTime !== null) {
+          totalSeconds = parseInt(storedTime, 10)
         }
 
-        // Store the remaining time in session storage
-        sessionStorage.setItem("countdownTime", totalSeconds)
+        function updateTimerDisplay(container) {
+          let minutes = Math.floor(totalSeconds / 60)
+          let seconds = totalSeconds % 60
+
+          container.querySelector(".timer__minutes span:first-child").textContent = Math.floor(minutes / 10)
+          container.querySelector(".timer__minutes span:last-child").textContent = minutes % 10
+          container.querySelector(".timer__seconds span:first-child").textContent = Math.floor(seconds / 10)
+          container.querySelector(".timer__seconds span:last-child").textContent = seconds % 10
+        }
+
+        function countdown() {
+          if (totalSeconds > 0) {
+            totalSeconds--
+          } else {
+            clearInterval(interval)
+          }
+
+          // Store the remaining time in session storage
+          sessionStorage.setItem("countdownTime", totalSeconds)
+          containers.forEach(updateTimerDisplay)
+        }
+
         containers.forEach(updateTimerDisplay)
+        const interval = setInterval(countdown, 1000)
       }
+    }, WAIT_INTERVAL_TIMEOUT)
+  }
+  function handleClickOnBookTour() {
+    const waitForEl = setInterval(() => {
+      if (document.querySelector('.reserved .btn-custom-primary')) {
+        clearInterval(waitForEl)
 
-      containers.forEach(updateTimerDisplay)
-      const interval = setInterval(countdown, 1000)
-    }
-  }, WAIT_INTERVAL_TIMEOUT)
-}
-function handleClickOnBookTour() {
-  const waitForEl = setInterval(() => {
-    if (document.querySelector('.reserved .btn-custom-primary')) {
-      clearInterval(waitForEl)
+        document.querySelector('.reserved .btn-custom-primary').addEventListener('click', () => {
 
-      document.querySelector('.reserved .btn-custom-primary').addEventListener('click', () => {
+          pushDataLayer(['exp_pdp_offer_reserved_book_a_tour', 'Book a tour', 'Button', 'Offer reserved only for'])
 
-        pushDataLayer(['exp_pdp_offer_reserved_book_a_tour', 'Book a tour', 'Button', 'Offer reserved only for'])
+          if (DEVICE === 'desktop') {
+            const targetElement = $("#plugin")
+            const offset = targetElement.offset().top
 
-        if (DEVICE === 'desktop') {
-          const targetElement = $("#plugin")
-          const offset = targetElement.offset().top
-
-          $("html, body").animate({
-            scrollTop: offset
-          }, 200)
-        } else {
-          window.location = `https://www.secretfoodtours.com/${cityName}/book`
-        }
-      })
-    }
-  }, WAIT_INTERVAL_TIMEOUT)
-}
-function setExitPopupLogic() {
-  const overlay = document.querySelector('.exit-popup__overlay')
-  const closeX = document.querySelector('.exit-popup__close')
-  const continueBtn = document.querySelector('.exit-popup .btn-continue')
-
-  const waitForEl = setInterval(() => {
-    if (overlay && closeX && continueBtn) {
-      clearInterval(waitForEl)
-
-      function openPopup() {
-        if (sessionStorage.getItem("exitPopupShowned") == null) {
-
-          let purchased = false
-
-          window.dataLayer = window.dataLayer || []
-
-          for (let i = window.dataLayer.length - 1; i >= 0; i--) {
-            if (window.dataLayer[i][1] === 'purchase') {
-              console.log('Found "purchase" at index', i)
-              purchased = true
-              break
-            }
-          }
-
-          if (!purchased) {
-            overlay.style.display = 'flex'
-            sessionStorage.setItem("exitPopupShowned", "true")
-
-            pushDataLayer(['exp_pdp_popup_book_now_visibility', 'Popup visibility', 'Element visibility', 'Book now and enjoy 10% off'])
-          }
-        }
-      }
-
-      function closePopup() {
-        overlay.style.display = 'none'
-      }
-
-      function exitIntentPopupLogic() {
-        function handleMouseOut(e) {
-          // Check if the mouse pointer is leaving the viewport and going towards the top
-          if (!e.toElement && !e.relatedTarget && e.clientY < 5) {
-            openPopup()
-            // Remove the event listener since the condition is met
-            document.removeEventListener("mouseout", handleMouseOut)
-          }
-        }
-
-        document.addEventListener("mouseout", handleMouseOut)
-
-        // check unfocused
-        let hidden = false
-        document.addEventListener("visibilitychange", function () {
-          if (document.hidden) {
-            // Page becomes hidden (user navigates away)
-            hidden = true
-          } else if (hidden) {
-            // Page becomes visible (user returns)
-            hidden = false
-
-            openPopup()
+            $("html, body").animate({
+              scrollTop: offset
+            }, 200)
+          } else {
+            window.location = `https://www.secretfoodtours.com/${cityName}/book`
           }
         })
+      }
+    }, WAIT_INTERVAL_TIMEOUT)
+  }
+  function setExitPopupLogic() {
+    const overlay = document.querySelector('.exit-popup__overlay')
+    const closeX = document.querySelector('.exit-popup__close')
+    const continueBtn = document.querySelector('.exit-popup .btn-continue')
 
-        if (DEVICE === 'mobile') {
-          let lastPosition = 0,
-            newPosition = 0,
-            currentSpeed = 0
+    const waitForEl = setInterval(() => {
+      if (overlay && closeX && continueBtn) {
+        clearInterval(waitForEl)
 
-          let scrollSpeed = () => {
-            lastPosition = window.scrollY
-            setTimeout(() => {
-              newPosition = window.scrollY
-            }, 70)
-            currentSpeed = newPosition - lastPosition
+        function openPopup() {
+          if (sessionStorage.getItem("exitPopupShowned") == null) {
 
-            if (currentSpeed > 70) {
+            let purchased = false
+
+            window.dataLayer = window.dataLayer || []
+
+            for (let i = window.dataLayer.length - 1; i >= 0; i--) {
+              if (window.dataLayer[i][1] === 'purchase') {
+                console.log('Found "purchase" at index', i)
+                purchased = true
+                break
+              }
+            }
+
+            if (!purchased) {
+              overlay.style.display = 'flex'
+              sessionStorage.setItem("exitPopupShowned", "true")
+
+              pushDataLayer(['exp_pdp_popup_book_now_visibility', 'Popup visibility', 'Element visibility', 'Book now and enjoy 10% off'])
+            }
+          }
+        }
+
+        function closePopup() {
+          overlay.style.display = 'none'
+        }
+
+        function exitIntentPopupLogic() {
+          function handleMouseOut(e) {
+            // Check if the mouse pointer is leaving the viewport and going towards the top
+            if (!e.toElement && !e.relatedTarget && e.clientY < 5) {
               openPopup()
-              document.removeEventListener("scroll", scrollSpeed)
+              // Remove the event listener since the condition is met
+              document.removeEventListener("mouseout", handleMouseOut)
             }
           }
 
-          document.addEventListener("scroll", scrollSpeed)
+          document.addEventListener("mouseout", handleMouseOut)
+
+          // check unfocused
+          let hidden = false
+          document.addEventListener("visibilitychange", function () {
+            if (document.hidden) {
+              // Page becomes hidden (user navigates away)
+              hidden = true
+            } else if (hidden) {
+              // Page becomes visible (user returns)
+              hidden = false
+
+              openPopup()
+            }
+          })
+
+          if (DEVICE === 'mobile') {
+            let lastPosition = 0,
+              newPosition = 0,
+              currentSpeed = 0
+
+            let scrollSpeed = () => {
+              lastPosition = window.scrollY
+              setTimeout(() => {
+                newPosition = window.scrollY
+              }, 70)
+              currentSpeed = newPosition - lastPosition
+
+              if (currentSpeed > 70) {
+                openPopup()
+                document.removeEventListener("scroll", scrollSpeed)
+              }
+            }
+
+            document.addEventListener("scroll", scrollSpeed)
+          }
         }
+
+        exitIntentPopupLogic()
+
+        closeX.addEventListener('click', () => {
+          pushDataLayer(['exp_pdp_popup_book_now_close', 'Close', 'Button', 'Book now and enjoy 10% off'])
+          closePopup()
+        })
+        continueBtn.addEventListener('click', () => {
+          pushDataLayer(['exp_pdp_popup_book_nowcontinue_booking', 'Continue booking', 'Button', 'Book now and enjoy 10% off'])
+          closePopup()
+        })
+
+        // overlay.addEventListener('click', function (event) {
+        //   if (event.target === overlay) {
+        //     closePopup()
+        //   }
+        // })
       }
-
-      exitIntentPopupLogic()
-
-      closeX.addEventListener('click', () => {
-        pushDataLayer(['exp_pdp_popup_book_now_close', 'Close', 'Button', 'Book now and enjoy 10% off'])
-        closePopup()
-      })
-      continueBtn.addEventListener('click', () => {
-        pushDataLayer(['exp_pdp_popup_book_nowcontinue_booking', 'Continue booking', 'Button', 'Book now and enjoy 10% off'])
-        closePopup()
-      })
-
-      // overlay.addEventListener('click', function (event) {
-      //   if (event.target === overlay) {
-      //     closePopup()
-      //   }
-      // })
-    }
-  }, WAIT_INTERVAL_TIMEOUT)
-}
-function displayCities(selectedCity) {
-  const allCities = Object.keys(tours).filter(city => city !== selectedCity)
-
-  const asianCities = allCities.filter(city => tours[city].region === "asia")
-  const europeanCities = allCities.filter(city => tours[city].region === "europe")
-  const americanCities = allCities.filter(city => tours[city].region === "america")
-
-  let displayOrder = []
-
-  if (selectedCity && tours[selectedCity] && tours[selectedCity].region === "asia") {
-    displayOrder = allCities
-  } else if (selectedCity && tours[selectedCity] && tours[selectedCity].region === "europe") {
-    displayOrder = [...europeanCities, ...asianCities]
-  } else if (selectedCity && tours[selectedCity] && tours[selectedCity].region === "america") {
-    displayOrder = [...americanCities, ...asianCities]
+    }, WAIT_INTERVAL_TIMEOUT)
   }
+  function displayCities(selectedCity) {
+    const allCities = Object.keys(tours).filter(city => city !== selectedCity)
 
-  shuffleArray(displayOrder)
+    const asianCities = allCities.filter(city => tours[city].region === "asia")
+    const europeanCities = allCities.filter(city => tours[city].region === "europe")
+    const americanCities = allCities.filter(city => tours[city].region === "america")
 
-  return displayOrder
+    let displayOrder = []
 
-  function shuffleArray(array) {
-    for (let i = array.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1));
-      [array[i], array[j]] = [array[j], array[i]]
+    if (selectedCity && tours[selectedCity] && tours[selectedCity].region === "asia") {
+      displayOrder = allCities
+    } else if (selectedCity && tours[selectedCity] && tours[selectedCity].region === "europe") {
+      displayOrder = [...europeanCities, ...asianCities]
+    } else if (selectedCity && tours[selectedCity] && tours[selectedCity].region === "america") {
+      displayOrder = [...americanCities, ...asianCities]
+    }
+
+    shuffleArray(displayOrder)
+
+    return displayOrder
+
+    function shuffleArray(array) {
+      for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]]
+      }
     }
   }
-}
-function initSlider() {
-  const script = document.createElement('script')
-  script.src = 'https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js'
-  script.async = false
-  document.head.appendChild(script)
+  function initSlider() {
+    const script = document.createElement('script')
+    script.src = 'https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js'
+    script.async = false
+    document.head.appendChild(script)
 
-  const style = document.createElement('link')
-  style.href = 'https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css'
-  style.rel = 'stylesheet'
-  document.head.appendChild(style)
+    const style = document.createElement('link')
+    style.href = 'https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css'
+    style.rel = 'stylesheet'
+    document.head.appendChild(style)
 
-  const waitForSlider = setInterval(() => {
-    if (typeof Swiper !== 'undefined' && document.querySelectorAll('.interested__slider a')[filteredTours.length - 1]) {
-      clearInterval(waitForSlider)
+    const waitForSlider = setInterval(() => {
+      if (typeof Swiper !== 'undefined' && document.querySelectorAll('.interested__slider a')[filteredTours.length - 1]) {
+        clearInterval(waitForSlider)
 
-      const swiper = new Swiper('.swiper', {
-        slidesPerView: 1.5,
-        pagination: {
-          el: '.swiper-pagination',
-          dynamicBullets: "true",
-          dynamicMainBullets: 1,
-          clickable: true
-        },
-      })
-    }
-  }, WAIT_INTERVAL_TIMEOUT)
-}
-function setTourName(elSelector) {
-  const waitForName = setInterval(() => {
-    const elementTourName = document.querySelector(`${elSelector}`)
-    const tourName = document.querySelector('.breadcrumbs ul li:last-child')
+        const swiper = new Swiper('.swiper', {
+          slidesPerView: 1.5,
+          pagination: {
+            el: '.swiper-pagination',
+            dynamicBullets: "true",
+            dynamicMainBullets: 1,
+            clickable: true
+          },
+        })
+      }
+    }, WAIT_INTERVAL_TIMEOUT)
+  }
+  function setTourName(elSelector) {
+    const waitForName = setInterval(() => {
+      const elementTourName = document.querySelector(`${elSelector}`)
+      const tourName = document.querySelector('.breadcrumbs ul li:last-child')
 
-    if (tourName && elementTourName) {
-      clearInterval(waitForName)
+      if (tourName && elementTourName) {
+        clearInterval(waitForName)
 
-      elementTourName.innerText = tourName.innerText
-    }
-  }, WAIT_INTERVAL_TIMEOUT)
-}
+        elementTourName.innerText = tourName.innerText
+      }
+    }, WAIT_INTERVAL_TIMEOUT)
+  }
+})()
