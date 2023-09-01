@@ -1250,7 +1250,11 @@ margin: 20px 0 !important;
                 if (e.target.tagName === 'A') {
                   e.preventDefault()
 
-                  pushDataLayer(['exp_pdp_customers_interested_learn_more', `Learn more. ${cityName} — ${e.target.href}`, 'Link', 'Customers also interested'])
+                  if (e.target.closest('.interested__tour-img')) {
+                    pushDataLayer(['exp_pdp_customers_interested_img', `Img. ${cityName} — ${e.target.href}`, 'Link', 'Customers also interested']);
+                  } else if (e.target.closest('.interested__tour-info')) {
+                    pushDataLayer(['exp_pdp_customers_interested_learn_more', `Learn more. ${cityName} — ${e.target.href}`, 'Link', 'Customers also interested'])
+                  }
 
                   window.location = e.target.href
                 }
