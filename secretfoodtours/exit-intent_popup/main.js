@@ -464,7 +464,7 @@ body .copy-coupon__notif p {
 .reserved>div:first-child {
   border-right: 1px dashed #C49959;
   align-items: center;
-  width: 52%;
+  width: 53%;
 }
 
 .reserved>div:last-child {
@@ -694,18 +694,8 @@ p.exit-popup__usually {
   bottom: 0;
 }
 
-.interested  + .banner_top.banner_padding {
-  padding-top: 0;
-}
-
-
-
-.fixed_header + .interested {
-  margin-top: 60px;
-}
-
 .interested {
-  padding: 14px 0px 13px 16px;
+  padding: 14px 0px 18px 16px;
 }
 
 .interested>p {
@@ -721,7 +711,7 @@ p.exit-popup__usually {
 .interested__slide {
   display: flex !important;
   gap: 8px;
-  padding-bottom: 33px;
+  padding-bottom: 24px;
 }
 
 .interested__tour-img {
@@ -761,6 +751,7 @@ p.interested__tour-name {
   font-weight: 400;
   line-height: 1.285;
   margin-block: 4px 8px;
+  min-height: 36px;
   /* 128.571% */
 }
 
@@ -794,6 +785,16 @@ margin: 20px 0 !important;
 }
 
 @media only screen and (max-width: 767px) {
+
+  .interested  + .banner_top.banner_padding {
+    padding-top: 0;
+  }
+
+  .fixed_header + .interested {
+    margin-top: 60px;
+  }
+
+
   .destination_page_wr .about-cont h1 + .book-code {
     display: flex;
   }
@@ -1214,38 +1215,40 @@ margin: 20px 0 !important;
             ['exp_pdp_offer_reserved_only_for', 'Offer reserved only for', 'Element visibility', 'What you will do section']
           )))
 
-    waitForElement('.banner_top')
-      .then(el => el.insertAdjacentHTML('beforebegin', interestedSlider()))
-      .then(() => initSlider())
-      .then(() =>
-        waitForElement('.interested')
-          .then(el => {
-            handleVisibilityAndHover(
-              el,
-              ['exp_pdp_customers_interested_visibility', 'Customers also interested', 'Element visibility', 'First screen']
-            )
+    if (DEVICE === 'mobile') {
+      waitForElement('.banner_top')
+        .then(el => el.insertAdjacentHTML('beforebegin', interestedSlider()))
+        .then(() => initSlider())
+        .then(() =>
+          waitForElement('.interested')
+            .then(el => {
+              handleVisibilityAndHover(
+                el,
+                ['exp_pdp_customers_interested_visibility', 'Customers also interested', 'Element visibility', 'First screen']
+              )
 
-            el.addEventListener('click', (e) => {
-              if (e.target.tagName === 'A') {
-                e.preventDefault()
+              el.addEventListener('click', (e) => {
+                if (e.target.tagName === 'A') {
+                  e.preventDefault()
 
-                pushDataLayer(['exp_pdp_customers_interested_learn_more', `Learn more. ${cityName} — ${e.target.href}`, 'Link', 'Customers also interested'])
+                  pushDataLayer(['exp_pdp_customers_interested_learn_more', `Learn more. ${cityName} — ${e.target.href}`, 'Link', 'Customers also interested'])
 
-                window.location = e.target.href
-              }
-            })
+                  window.location = e.target.href
+                }
+              })
 
-            const paginationContainer = el.querySelector('.swiper-pagination')
-            paginationContainer.addEventListener('click', (e) => {
-              if (e.target.tagName === 'SPAN') {
-                const spanElements = Array.from(paginationContainer.querySelectorAll('span'))
-                const clickedIndex = spanElements.indexOf(e.target)
+              const paginationContainer = el.querySelector('.swiper-pagination')
+              paginationContainer.addEventListener('click', (e) => {
+                if (e.target.tagName === 'SPAN') {
+                  const spanElements = Array.from(paginationContainer.querySelectorAll('span'))
+                  const clickedIndex = spanElements.indexOf(e.target)
 
-                pushDataLayer(['exp_pdp_customers_interested_navigation', `Navigation ${+clickedIndex + 1}`, 'Button', 'Customers also interested'])
-              }
-            })
-          }
-          ))
+                  pushDataLayer(['exp_pdp_customers_interested_navigation', `Navigation ${+clickedIndex + 1}`, 'Button', 'Customers also interested'])
+                }
+              })
+            }
+            ))
+    }
 
   }
 
@@ -1605,7 +1608,8 @@ margin: 20px 0 !important;
           slidesPerView: 1.5,
           pagination: {
             el: '.swiper-pagination',
-            clickable: true
+            clickable: true,
+            dynamicBullets: true,
           },
         })
       }
