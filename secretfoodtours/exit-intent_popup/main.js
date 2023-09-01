@@ -729,6 +729,7 @@ p.exit-popup__usually {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  padding-right: 5px;
 }
 
 .interested__tour-rate {
