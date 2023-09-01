@@ -229,6 +229,7 @@ html.om-position-popup head + body {
 
 
 .btn-continue {
+  width: 100%;
   color:  #FFF;
   font-family: JosefinSans-Regular;
   font-size: 14px;
@@ -632,6 +633,7 @@ p.exit-popup__usually {
 }
 
 .exit-popup__enter>div {
+  width: 100%;
   position: relative;
   display: flex;
   justify-content: center;
