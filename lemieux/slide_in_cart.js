@@ -2388,7 +2388,7 @@ let init = () => {
 let addToBagLp = setInterval(() => {
     if (document.querySelector('.cdk-overlay-container .cdk-global-overlay-wrapper') && 
         document.querySelector('.cart') && !document.querySelector('.cart.active') && 
-        document.querySelector('.cdk-overlay-container').innerText.includes('Shopping Bag')
+        document.querySelector('.cdk-overlay-container .cdk-global-overlay-wrapper').innerText.includes('Shopping Bag')
     ) {
        
         document.querySelector('.cdk-overlay-container .cdk-global-overlay-wrapper').parentElement.querySelector('.cdk-overlay-backdrop').click()
