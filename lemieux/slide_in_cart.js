@@ -906,8 +906,6 @@ let updateTotal = (parent, totals, items, coupon) => {
 
     let compareSum = 0;
     let countEcologi = 0;
-
-    console.log('updateTotal')
     
     if (items != '') {
         const promises = [];
@@ -916,7 +914,6 @@ let updateTotal = (parent, totals, items, coupon) => {
             promises.push(getFetch(`n/product/${items[i].product}/verbosity/3`))
         }
 
-        console.log('promises')
         Promise.all(promises).then(dataItem => {
 
             for (let i = 0; i < dataItem.length; i++) {
@@ -961,7 +958,6 @@ let updateTotal = (parent, totals, items, coupon) => {
 
             parent.querySelectorAll(`[data-name="grand_total"] .pr`).forEach((pr,index) => {
 
-                console.log(pr)
                 pr.innerHTML = currency + (totals['grand_total'] + isShipNew).toFixed(2)
                
                 if (pr.previousElementSibling) {
@@ -976,15 +972,10 @@ let updateTotal = (parent, totals, items, coupon) => {
                 let total = +(totals['grand_total'] + isShipNew).toFixed(2)
                 let compare = +(compareSum + shippingPriceFix).toFixed(2)
 
-                console.log(total + " < " + compare)
-                console.log(total < compare)
-
                 if (!pr.previousElementSibling && total < compare) {
 
                     pr.insertAdjacentHTML('beforebegin', `<span class="pr-line m-r-1">${currency + compare}</span>`)
                 
-                    console.log(pr.previousElementSibling)
-
                     let saved = compare - total;
 
                     document.querySelectorAll('.saved_block')[index].innerHTML = `You just saved ${currency + saved.toFixed(2)}`
@@ -2395,9 +2386,12 @@ let init = () => {
 }
 
 let addToBagLp = setInterval(() => {
-    if (document.querySelector('.cdk-overlay-container .cdk-overlay-backdrop') && document.querySelector('.cart') && !document.querySelector('.cart.active') && document.querySelector('.cdk-overlay-container').innerText.includes('Shopping Bag')) {
+    if (document.querySelector('.cdk-overlay-container .cdk-global-overlay-wrapper') && 
+        document.querySelector('.cart') && !document.querySelector('.cart.active') && 
+        document.querySelector('.cdk-overlay-container').innerText.includes('Shopping Bag')
+    ) {
        
-        document.querySelector('.cdk-overlay-container .cdk-overlay-backdrop').click()
+        document.querySelector('.cdk-overlay-container .cdk-global-overlay-wrapper').parentElement.querySelector('.cdk-overlay-backdrop').click()
         console.log('init')
 
         document.querySelector('.cart').classList.add('loading');
@@ -2405,7 +2399,11 @@ let addToBagLp = setInterval(() => {
 
         init()
     }
-    if (document.querySelector('.cdk-overlay-pane basket-add-notice .icon-close') && document.querySelector('.cart') && document.querySelector('.cdk-overlay-pane').innerText.includes('Added to your bag') && !document.querySelector('.style-lp-exp')) {
+    if (document.querySelector('.cdk-overlay-pane basket-add-notice .icon-close') && 
+        document.querySelector('.cart') && 
+        document.querySelector('.cdk-overlay-pane').innerText.includes('Added to your bag') && 
+        !document.querySelector('.style-lp-exp')
+    ) {
         document.querySelector('.cdk-overlay-pane').insertAdjacentHTML('beforebegin',`
         <style class="style-lp-exp">
             .cdk-overlay-pane {
