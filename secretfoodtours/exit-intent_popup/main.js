@@ -242,7 +242,7 @@ html.om-position-popup head + body {
   background: #144733;
   cursor: pointer;
   transition: all 0.5s ease;
-  padding: 14px 10px 10px;
+  padding: 14px 10px 10px;height: 44px;
 }
 
 .btn-continue:hover,
