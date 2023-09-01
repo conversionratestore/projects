@@ -1971,8 +1971,31 @@ let modal = (parent) => {
         }
     })
 }
+
+let addbasketBtn = setInterval(() => {
+    if (!document.querySelector('.btn-basket') && 
+        document.querySelector('header basket-qty') && 
+        document.querySelector('.cart')
+    ) {
+        let buttonBasket = document.querySelector('header basket-qty').parentElement;
+            
+        buttonBasket.insertAdjacentHTML('afterend', `<button type="button" class="btn-basket">
+        ${document.querySelector('header basket-qty').innerHTML}</button>`)
+
+        document.querySelector('.btn-basket').addEventListener('click', (e) => {
+            e.stopImmediatePropagation();
+
+            document.querySelector('.cart').classList.add('loading');
+            toggleActive(document.querySelector('.cart'), true)
+            init()
+        })
+    }
+});
+
 let clickBasket = setInterval(() => {
-    if (document.querySelector('header basket-qty') && !document.querySelector('.btn-basket') && !document.querySelector('.cart')) {
+    if (!document.querySelector('.cart') &&
+        document.querySelector('header basket-qty') 
+    ) {
         clearInterval(clickBasket)
 
         // add slide in cart html
@@ -1983,17 +2006,13 @@ let clickBasket = setInterval(() => {
         document.head.appendChild(scriptCustomStyle)
 
 
-        let buttonBasket = document.querySelector('header basket-qty').parentElement,
-            cart = document.querySelector('.cart');
+        let cart = document.querySelector('.cart');
 
         let appHeight = () => {
             cart.querySelector('.cart_container').style.height = window.innerHeight + 'px';
         }
         window.addEventListener('resize', appHeight)
         appHeight()
-
-        buttonBasket.insertAdjacentHTML('afterend', `<button type="button" class="btn-basket">
-        ${document.querySelector('header basket-qty').innerHTML}</button>`)
 
         cart.querySelector('.btn_submit').addEventListener('click', (e) => {
             e.preventDefault()
@@ -2009,14 +2028,6 @@ let clickBasket = setInterval(() => {
             e.preventDefault()
             pushDataLayer('exp_slide_in_cart_buy_gift_vouchers', 'Buy gift vouchers', 'Button', 'Sidebar cart. Discounts')
             window.location.href = `${window.autoInitData.website.websiteCode != 'base' ? '/'+window.autoInitData.website.websiteCode : ''}/e-gift-card-173`
-        })
-
-        document.querySelector('.btn-basket').addEventListener('click', (e) => {
-            e.stopImmediatePropagation();
-
-            cart.classList.add('loading');
-            toggleActive(cart, true)
-            init()
         })
         
         cart.querySelectorAll('.cart_extra .btns-action button').forEach((button, index) => {
