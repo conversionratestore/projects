@@ -635,7 +635,7 @@ p.exit-popup__usually {
   display: flex;
   justify-content: center;
   border: 1px solid #D4D3D3;
-  padding: 10px;
+  padding: 12px 10px 8px;
   cursor: pointer;
   width: 280px;
 }
@@ -728,7 +728,7 @@ p.exit-popup__usually {
 .interested__tour-info {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: center; 
   padding-right: 5px;
 }
 
