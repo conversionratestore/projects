@@ -8,6 +8,14 @@
 
   const tours = {
     // America
+    "portland-oregon": {
+      "name": "Portland Food Tour",
+      "price": "$99",
+      "rate": "4.98",
+      "img": "/img/portland/portland-food-tour-featured-01.jpg",
+      "link": "/portland-oregon/food-tours-portland-oregon/",
+      "region": "america"
+    },
     dallas:
     {
       "name": "Dallas Food Tour",
