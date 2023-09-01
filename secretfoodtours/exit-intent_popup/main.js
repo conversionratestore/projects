@@ -1138,7 +1138,7 @@ margin: 20px 0 !important;
       return `
     <div class="swiper-slide interested__slide">
       <div class="interested__tour-img">
-        <img src="${tourInfo.img}" alt="${tourInfo.name}">
+        <a href="${tourInfo.link}"><img src="${tourInfo.img}" alt="${tourInfo.name}"></a>        
       </div>
       <div class="interested__tour-info">
         <div class="interested__tour-rate">
