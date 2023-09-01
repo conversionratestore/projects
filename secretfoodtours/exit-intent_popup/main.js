@@ -242,6 +242,7 @@ html.om-position-popup head + body {
   background: #144733;
   cursor: pointer;
   transition: all 0.5s ease;
+  padding: 14px 10px 10px;
 }
 
 .btn-continue:hover,
@@ -635,9 +636,14 @@ p.exit-popup__usually {
   display: flex;
   justify-content: center;
   border: 1px solid #D4D3D3;
-  padding: 12px 10px 8px;
+  padding: 10px;
   cursor: pointer;
+  height: 44px;
   width: 280px;
+}
+
+.exit-popup__enter .accent {
+  font-size: 16px;
 }
 
 .exit-popup__food img {
@@ -661,7 +667,9 @@ p.exit-popup__usually {
 
 .exit-popup .copy-coupon>img {
   position: absolute;
-  right: 12px;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
 }
 
 .exit-popup .copy-coupon__notif {
@@ -1102,7 +1110,7 @@ margin: 20px 0 !important;
           <p>Code copied</p>
         </div>
       </div>
-      <div class="btn-continue">Continue booking</div>
+      <button class="btn-continue">Continue booking</button>
     </div>
   </div>
   <div class="exit-popup__food">
