@@ -1185,8 +1185,13 @@ margin: 20px 0 !important;
   if (isBookMobilePage) {
     waitForElement('.destination_page_wr .about-cont h1 ')
       .then(el => el.insertAdjacentHTML('afterend', bookWithCode()))
+      .then(() =>
+        waitForElement('.book-code')
+          .then(el => handleVisibilityAndHover(
+            el,
+            ['exp_pdp_d_code_vis', 'Code', 'Element visibility', 'Above the booking calendar']            
+          )))
   } else {
-
     if (DEVICE === 'desktop') {
       waitForElement('.tour-intro .breadcrumbs')
         .then(el => el.insertAdjacentHTML('afterbegin', desktopTourInfo))
@@ -1251,7 +1256,7 @@ margin: 20px 0 !important;
                   e.preventDefault()
 
                   if (e.target.closest('.interested__tour-img')) {
-                    pushDataLayer(['exp_pdp_customers_interested_img', `Img. ${cityName} — ${e.target.href}`, 'Link', 'Customers also interested']);
+                    pushDataLayer(['exp_pdp_customers_interested_img', `Img. ${cityName} — ${e.target.href}`, 'Link', 'Customers also interested'])
                   } else if (e.target.closest('.interested__tour-info')) {
                     pushDataLayer(['exp_pdp_customers_interested_learn_more', `Learn more. ${cityName} — ${e.target.href}`, 'Link', 'Customers also interested'])
                   }
@@ -1405,6 +1410,8 @@ margin: 20px 0 !important;
               pushDataLayer(['exp_pdp_offer_reserv_copy_discount_code', 'Copy discount code', 'Button', 'Offer reserved only for'])
             } else if (copy.closest('.exit-popup__enter')) {
               pushDataLayer(['exp_pdp_popup_book_now_copy_disc_code', 'Copy discount code', 'Button', 'Book now and enjoy 10% off'])
+            } else if (isBookMobilePage) {
+              pushDataLayer(['exp_pdp_d_code_copy', 'Code', 'Copy', 'Above the booking calendar'])
             }
           })
         }
@@ -1500,7 +1507,7 @@ margin: 20px 0 !important;
               if (window.dataLayer[i][1] === 'purchase') {
                 // console.log('Found "purchase" at index', i)
                 sessionStorage.setItem("exitPopupShowned", "true")
-                purchased = true              
+                purchased = true
                 break
               }
             }
