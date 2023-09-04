@@ -1498,8 +1498,9 @@ margin: 20px 0 !important;
 
             for (let i = window.dataLayer.length - 1; i >= 0; i--) {
               if (window.dataLayer[i][1] === 'purchase') {
-                console.log('Found "purchase" at index', i)
-                purchased = true
+                // console.log('Found "purchase" at index', i)
+                sessionStorage.setItem("exitPopupShowned", "true")
+                purchased = true              
                 break
               }
             }
