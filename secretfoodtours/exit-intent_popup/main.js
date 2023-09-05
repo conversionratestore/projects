@@ -88,7 +88,7 @@
       "price": "€69",
       "rate": "4.96",
       "img": "/img/istanbul/secret-food-tours-istanbul.jpg",
-      "link": "/istanbul/food-tours-istanbul/", "region": "europe"
+      "link": "/istanbul/food-tours-istanbul/", "region": "turkey"
     },
     krakow:
     {
@@ -704,6 +704,8 @@ p.exit-popup__usually {
   --swiper-pagination-bullet-horizontal-gap: 8px;
 }
 
+.interested .swiper-horizontal>.swiper-pagination-bullets, .swiper-pagination-bullets.swiper-pagination-horizontal {    bottom: 0px;}
+
 .interested {
   display: none;
 }
@@ -801,6 +803,10 @@ margin: 20px 0 !important;
 .destination_page_wr .about-cont h1 + .book-code{
     margin-bottom: 20px;
     display: none;
+}
+
+.destination_page_wr .about-cont h1 + .book-code + .container > .row >.col-md-4   {
+  text-align: center;
 }
 
 @media only screen and (max-width: 767px) {
@@ -1189,7 +1195,7 @@ margin: 20px 0 !important;
         waitForElement('.book-code')
           .then(el => handleVisibilityAndHover(
             el,
-            ['exp_pdp_d_code_vis', 'Code', 'Element visibility', 'Above the booking calendar']            
+            ['exp_pdp_d_code_vis', 'Code', 'Element visibility', 'Above the booking calendar']
           )))
   } else {
     if (DEVICE === 'desktop') {
@@ -1551,7 +1557,11 @@ margin: 20px 0 !important;
             }
           })
 
-          if (DEVICE === 'mobile') {
+          window.addEventListener("focus", function () {
+            openPopup()
+          })
+
+          if (DEVICE === 'mobile' && !isBookMobilePage) {
             let lastPosition = 0,
               newPosition = 0,
               currentSpeed = 0
@@ -1598,18 +1608,20 @@ margin: 20px 0 !important;
     const asianCities = allCities.filter(city => tours[city].region === "asia")
     const europeanCities = allCities.filter(city => tours[city].region === "europe")
     const americanCities = allCities.filter(city => tours[city].region === "america")
+    const turkishCities = allCities.filter(city => tours[city].region === "turkey")
 
     let displayOrder = []
 
     if (selectedCity && tours[selectedCity] && tours[selectedCity].region === "asia") {
-      displayOrder = allCities
+      const othersCities = shuffleArray([...europeanCities, ...turkishCities, ...americanCities])
+      displayOrder = [...shuffleArray(asianCities), ...othersCities]
     } else if (selectedCity && tours[selectedCity] && tours[selectedCity].region === "europe") {
-      displayOrder = [...europeanCities, ...asianCities]
+      displayOrder = [...shuffleArray(europeanCities), ...turkishCities, ...shuffleArray(asianCities)]
     } else if (selectedCity && tours[selectedCity] && tours[selectedCity].region === "america") {
-      displayOrder = [...americanCities, ...asianCities]
+      displayOrder = [...shuffleArray(americanCities), ...shuffleArray(asianCities)]
+    } else if (selectedCity && tours[selectedCity] && tours[selectedCity].region === "turkey") {
+      displayOrder = [...shuffleArray(europeanCities), ...shuffleArray(asianCities)]
     }
-
-    shuffleArray(displayOrder)
 
     return displayOrder
 
@@ -1618,6 +1630,7 @@ margin: 20px 0 !important;
         const j = Math.floor(Math.random() * (i + 1));
         [array[i], array[j]] = [array[j], array[i]]
       }
+      return array
     }
   }
   function initSlider() {
