@@ -1588,7 +1588,7 @@ class TopBar {
         } else {
             topBar.hidden = false;
 
-            if (this.subtotal >= 75 || this.coupon == 'FREEDEL') {
+            if (this.subtotal >= 75 || this.coupon == 'FREEDEL' || this.coupon == 'FIRSTORDERFREE') {
                 topBar.classList.add('navy')
                 text = 'Congratulations! You have Free UK Delivery';
             } else {
@@ -1635,7 +1635,7 @@ class Total {
                     window.autoInitData.website.websiteCode == 'base' ||
                     (
                         this.key.includes('shipping') &&
-                        this.coupon == 'FREEDEL'
+                        (this.coupon == 'FREEDEL' || this.coupon == 'FIRSTORDERFREE')
                     ) ?  
                     '<span class="pr-line-ship">' + this.currency + shippingPriceFix + '</span> <span class="c-red">FREE</span>' : 
                         this.key == 'giftcards' ? 
