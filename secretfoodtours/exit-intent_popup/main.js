@@ -704,8 +704,6 @@ p.exit-popup__usually {
   --swiper-pagination-bullet-horizontal-gap: 8px;
 }
 
-.interested .swiper-horizontal>.swiper-pagination-bullets, .swiper-pagination-bullets.swiper-pagination-horizontal {    bottom: 0px;}
-
 .interested {
   display: none;
 }
