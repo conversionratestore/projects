@@ -809,6 +809,8 @@ margin: 20px 0 !important;
 
 @media only screen and (max-width: 767px) {
 
+  .interested .swiper-horizontal>.swiper-pagination-bullets, .swiper-pagination-bullets.swiper-pagination-horizontal { bottom: 0px; }
+
   .interested  + .banner_top.banner_padding {
     padding-top: 0;
   }
