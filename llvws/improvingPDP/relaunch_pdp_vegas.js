@@ -470,9 +470,16 @@ let startPdp = setInterval(() => {
       font-size: 14px;
       font-weight: 400;
       line-height: 24px;
-      margin-bottom: 10px !important;
+      margin-bottom: 0px !important;
       overflow: hidden;
       height: 120px;
+    }
+    .preview_text::-webkit-scrollbar {
+      width: 4px;
+    }
+    .preview_text::-webkit-scrollbar-thumb {
+      border-radius: 10px;
+      background: #788188;
     }
     .reviews_read_more_btn {
       color: #28364b;
@@ -1871,7 +1878,8 @@ let startPdp = setInterval(() => {
                     e.stopPropagation();
                     pushDataLayer("exp_im_pdp_l_r_rm", `Read more ${el.closest(".reviews_link").querySelector(".reviews_name").textContent}`, "Link", "Reviews");
                     e.currentTarget.style.display = "none";
-                    e.currentTarget.previousElementSibling.style.height = "auto";
+                    e.currentTarget.previousElementSibling.style.overflowY = "scroll";
+                    e.currentTarget.previousElementSibling.style.height = "168px";
                     slider.slick("refresh");
                   });
                 });
