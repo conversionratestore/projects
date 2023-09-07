@@ -1769,8 +1769,18 @@ function handleProductInfo() {
   });
 
   // Looking & Booked
-  $(".looking>div:first-child span").innerText = $(".persons .grid").innerText;
-  $(".looking>div:last-child span").innerText = $(".booked .grid").innerText;
+  let personF = setInterval(() => {
+    if (document.querySelector(".persons .grid") && document.querySelector(".looking>div:first-child span")) {
+      clearInterval(personF);
+      $(".looking>div:first-child span").innerText = $(".persons .grid").innerText;
+    }
+  }, 100);
+  let bookedF = setInterval(() => {
+    if (document.querySelector(".persons .grid") && document.querySelector(".looking>div:last-child span")) {
+      clearInterval(bookedF);
+      $(".looking>div:last-child span").innerText = $(".booked .grid").innerText;
+    }
+  }, 100);
 
   // Boats type
   if (!$(".lav-product__head h2").innerText.trim().includes("Hour Electric Boat Rental")) {
