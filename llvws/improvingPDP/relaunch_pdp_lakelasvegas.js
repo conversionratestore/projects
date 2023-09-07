@@ -956,12 +956,6 @@ p.book_now_txt,
   text-transform: uppercase;
   margin: 0;
 }
-.main_slider .lav-product__head-icons {
-  display: flex;
-  position: absolute;
-  top: 13px;
-  right: 16px;
-}
 .lav-product__head-icons .copied {
   right: 39px;
   top: 26px;
@@ -982,6 +976,12 @@ p.book_now_txt,
   }
 }
 @media (max-width: 768px) {
+  .main_slider .lav-product__head-icons {
+  display: flex;
+  position: absolute;
+  top: 13px;
+  right: 16px;
+}
   .popup-trigger {
     padding: 15px;
     width: 100%;
