@@ -714,6 +714,7 @@ p.verified {
 .book_now_wrapp {
   display: flex;
   justify-content: space-between;
+  gap: 30px;
 }
 .code_wrapp {
   position: relative;
@@ -756,11 +757,11 @@ p.book_now_txt,
 }
 .popup__copy-icon {
   display: inline-block;
-  margin-left: 5px;
+  margin-left: 8px;
   cursor: pointer;
 }
 .popup__copy-icon svg {
-  margin-left: 4px;
+  margin-left: 5px;
 }
 .code_wrapp p:nth-child(2) {
   color: #333;
@@ -925,16 +926,14 @@ p.book_now_txt,
   border-top: 1px solid #ddd;
   padding-top: 15px;
 }
-.lav-cancel > div {
-  width: 50%;
-}
 .lav-cancel_txt {
-  width: 44% !important;
+  width: 42% !important;
   color: #333;
   font-size: 12px;
   font-weight: 400;
   line-height: 20px;
   margin-left: 10px;
+  min-width: 212px;
 }
 .lav-cancel__check {
   display: none;
@@ -966,6 +965,25 @@ p.book_now_txt,
 .lav-slide-vert img {
   object-fit: contain !important;
 }
+@media (max-width: 1286px) {
+.lav-cancel__text{
+      font-size: 12px;
+}
+.lav-cancel__text span{
+      font-size: 15px;
+}
+.looking p{
+      font-size: 13px;
+}
+}
+@media (max-width: 1243px) {
+.lav-product__right{
+  max-width: 44%;
+}
+.lav-product__left{
+      max-width: 52.3%;
+}
+}
 @media (max-width: 992px) {
   .lav-product {
     display: block;
@@ -996,6 +1014,7 @@ p.book_now_txt,
   .lav-cancel {
     flex-direction: column;
     align-items: flex-start;
+    gap: unset;
   }
   .book_now_txt .accent_color,
   .popup__copy-icon {
@@ -1014,7 +1033,11 @@ p.book_now_txt,
   .lav-cancel > div,
   .lav-cancel_txt {
     width: 100% !important;
+    min-width: unset;
   }
+  .lav-cancel__text {
+    font-size: 14px;
+}
   .lav-cancel_txt {
     margin-left: 50px;
     max-width: 215px;
@@ -1153,6 +1176,7 @@ p.book_now_txt,
     width: 100%;
   }
   .looking p {
+    font-size: 14px;
     line-height: 20px;
     font-weight: 500;
     color: var(--333333, #333);
@@ -1308,6 +1332,7 @@ p.book_now_txt,
     margin-top: 40px;
   }
 }
+
 @media (max-width: 530px) {
   .popup {
     max-width: 92%;
@@ -1512,7 +1537,7 @@ const html = `
         <p class="book_now_txt">Book now & enjoy <span class="accent_color">10% off</span></p>
           <div class="code_wrapp">
           <p>
-            <span>With code:</span>
+            <span>With this code:</span>
             <span class="popup__copy-icon">BOOK10
 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
   <path d="M13.598 3.63594H11.4163V1.41016C11.4163 1.18364 11.2363 1 11.0143 1H2.40202C2.18 1 2 1.18364 2 1.41016V11.9539C2 12.1804 2.18 12.3641 2.40202 12.3641H4.58368V14.5898C4.58368 14.8164 4.76368 15 4.9857 15H13.598C13.82 15 14 14.8164 14 14.5898V4.04609C14 3.81958 13.82 3.63594 13.598 3.63594ZM2.80405 11.5438V1.82031H10.6123V4.03923C10.6122 4.04153 10.6119 4.04377 10.6119 4.04609C10.6119 4.04842 10.6122 4.05066 10.6123 4.05298V11.5438H2.80405ZM13.196 14.1797H5.38773V12.3641H11.0143C11.2363 12.3641 11.4163 12.1804 11.4163 11.9539V4.45625H13.196V14.1797Z" fill="#18AAE2"/>
