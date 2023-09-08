@@ -1284,7 +1284,7 @@ let startPdp = setInterval(() => {
               <path d="M19.4281 2.73424C19.2867 2.593 19.095 2.51367 18.8951 2.51367C18.6952 2.51367 18.5035 2.593 18.3621 2.73424L9.31953 11.7514L6.05703 8.20807C5.92157 8.06106 5.73328 7.97383 5.53355 7.96555C5.33381 7.95728 5.13896 8.02863 4.9918 8.16393C4.919 8.23097 4.86011 8.31169 4.81852 8.40149C4.77692 8.49129 4.75341 8.5884 4.74935 8.68729C4.74529 8.78617 4.76074 8.88488 4.79484 8.97779C4.82893 9.0707 4.88099 9.15598 4.94805 9.22877L8.7418 13.3491C8.81043 13.4241 8.89354 13.4844 8.98612 13.5265C9.07869 13.5685 9.17882 13.5913 9.28047 13.5936H9.29648C9.49593 13.5935 9.68722 13.5145 9.82851 13.3737L19.4266 3.80026C19.5681 3.65908 19.6478 3.46748 19.6481 3.26757C19.6484 3.06766 19.5692 2.87582 19.4281 2.73424Z" fill="#CFBE88"/>
               <path d="M19.2461 9.24609C19.0462 9.2462 18.8546 9.32567 18.7133 9.46705C18.572 9.60842 18.4926 9.80012 18.4926 10C18.4926 14.6828 14.6828 18.4926 10 18.4926C5.31719 18.4926 1.50742 14.6828 1.50742 10C1.50742 5.31719 5.31719 1.50742 10 1.50742C10.1999 1.50742 10.3916 1.42805 10.533 1.28675C10.6743 1.14545 10.7538 0.953787 10.7539 0.753906C10.7539 0.553958 10.6745 0.362199 10.5331 0.220814C10.3917 0.0794292 10.1999 0 10 0C4.48594 0 0 4.48594 0 10C0 15.5141 4.48594 20 10 20C15.5141 20 20 15.5137 20 10C20 9.80005 19.9206 9.60829 19.7792 9.46691C19.6378 9.32552 19.446 9.24609 19.2461 9.24609Z" fill="#CFBE88"/>
             </svg>
-            <span>Free cancellationup</span>
+            <span>Free cancelation</span>
         </div>
         <p>up to 24 hours before the event</p>
         <p>For cancelations, please send us an email or submit your request via chat or SMS</p>
@@ -2032,8 +2032,8 @@ let startPdp = setInterval(() => {
       }
 
       if ($(".accardion_all_inform_block .how_to_find_accardion_link")) {
-        document.querySelectorAll(".accardion_all_inform_block .how_to_find_accardion_link")[1].classList.add("active_block");
-        document.querySelectorAll(".accardion_all_inform_block .how_to_find_accardion_lists")[1].style.display = "block";
+        document.querySelectorAll(".accardion_all_inform_block .how_to_find_accardion_link")[2].classList.add("active_block");
+        document.querySelectorAll(".accardion_all_inform_block .how_to_find_accardion_lists")[2].style.display = "block";
         $(".accardion_all_inform_block .how_to_find_accardion_link").click(function (e) {
           $(this).toggleClass("active_block");
           $(this).closest("li").toggleClass("active_block");
@@ -2215,8 +2215,10 @@ let startPdp = setInterval(() => {
       let link = setInterval(() => {
         if (document.querySelector(".lav_advisor > p > a")) {
           clearInterval(link);
-          document.querySelector(".lav_advisor > p > a").addEventListener("click", () => {
+          document.querySelector(".lav_advisor > p > a").addEventListener("click", (e) => {
+            e.preventDefault();
             pushDataLayer("exp_im_pdp_l_fsp_sar", "See all reviews", "Link", "First screen PDP");
+            document.querySelector("#reviewsBlock")?.scrollIntoView({ block: "start", behavior: "smooth" });
           });
         }
       }, 100);
