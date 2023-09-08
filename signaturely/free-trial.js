@@ -20,7 +20,8 @@ let changeTo = {
     'Get 1 document signed for free, every month': 'Start your free 7-day trial and get your documents signed right now!',
     'Try eSignature Free using Signaturely!':'Start your free 7-day trial and get your documents signed right now!',
     'Sign 1 documents for free':'Try eSignature Free',
-    'Sign 3 documents for free':'Try eSignature Free'
+    'Sign 3 documents for free':'Try eSignature Free',
+    'Sign 3 documents for FREE':'Try eSignature Free'
 }
 
 
@@ -145,6 +146,10 @@ function init() {
                 }
                 .elementor-5325 .elementor-element.elementor-element-df93625>.elementor-widget-container {
                     margin: -30px 0 0;
+                }
+                .elementor-5311 .elementor-element.elementor-element-194383e>.elementor-container {
+                    display: flex;
+                    justify-content: center;
                 }
                 @media screen and (max-width: 1024px) {
                    
