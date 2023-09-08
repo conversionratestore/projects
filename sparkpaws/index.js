@@ -731,6 +731,11 @@ let style = `
         .tab {
             min-width: 105px;
         }
+        .MobileNav__Image {
+            width: 50px;
+            height: 50px;
+            object-fit: cover;
+        }
     }
     @media screen and (min-width: 768px) {
         .text-md-center {
@@ -1028,7 +1033,6 @@ let style = `
         }
     }
     @media screen and (min-width:992px) and (max-width: 1200px) {
-   
         .jackets .container > div:first-child {
             width: 500px;
         }
@@ -1055,9 +1059,7 @@ let style = `
         .loox-review .swiper img.img {
             max-height: 280px;
         }
-        
     }
-
 </style>`;
 
 let addAdvantages = (classes) => `
@@ -1371,7 +1373,7 @@ let tophtml = `
                     </a>
                 </li>
             </ul>
-            <a href="https://www.sparkpaws.com/collections/dog-jackets" class=" Button btn btn-white flex-center">
+            <a href="https://www.sparkpaws.com/pages/fabrics" class=" Button btn btn-white flex-center">
                 <span>EXPLORE</span>
                 <svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" viewBox="0 0 21 21" fill="none">
                     <path d="M8.2418 13.7333L11.4751 10.5L8.2418 7.26665C7.9168 6.94165 7.9168 6.41665 8.2418 6.09165C8.5668 5.76665 9.0918 5.76665 9.4168 6.09165L13.2418 9.91665C13.5668 10.2417 13.5668 10.7667 13.2418 11.0917L9.4168 14.9166C9.0918 15.2416 8.5668 15.2416 8.2418 14.9166C7.92513 14.5916 7.9168 14.0583 8.2418 13.7333Z" fill="#344D79"/>
@@ -1512,16 +1514,147 @@ let optionMut = {
 };
   
 let mut = new MutationObserver(function (muts) {
-    if (!document.querySelector('.style-exp') && 
-        document.querySelector('#main') && 
-        document.querySelectorAll('#shopify-section-template--15821794246837__featured-collections .Grid__Cell')
+    if (document.querySelectorAll('.Header__MainNav > .HorizontalList--spacingExtraLoose > li > a').length >= 8 && 
+        !document.querySelector('.style-header')
     ) {
         mut.disconnect()
 
+        document.body.insertAdjacentHTML('afterbegin',`
+        <style class="style-header">
+            @media screen and (min-width: 768px) {
 
-        // <!-- TrustBox script -->
-        // <script type="text/javascript" src="//widget.trustpilot.com/bootstrap/v5/tp.widget.bootstrap.min.js" async></script>
-        // <!-- End TrustBox script -->
+                .Header__MainNav > .HorizontalList--spacingExtraLoose {
+                    display: flex;
+                }
+                .Header__MainNav > .HorizontalList--spacingExtraLoose > li.HorizontalList__Item:nth-child(5),
+                .Header__MainNav > .HorizontalList--spacingExtraLoose > li.HorizontalList__Item:nth-child(3),
+                .Header__MainNav > .HorizontalList--spacingExtraLoose > li.HorizontalList__Item:nth-child(8) {
+                    order: 2;
+                }
+                .Header__MainNav > .HorizontalList--spacingExtraLoose > li.HorizontalList__Item:nth-child(6) {
+                    order: 3;
+                }
+                .Header__MainNav > .HorizontalList--spacingExtraLoose > li.HorizontalList__Item:nth-child(7) {
+                    order: 4;
+                }
+                .Header__MainNav > .HorizontalList--spacingExtraLoose > li.HorizontalList__Item > a {
+                    color: #5C5555;
+                    text-transform: capitalize;
+                }
+                .Header__MainNav > .HorizontalList--spacingExtraLoose > li.HorizontalList__Item:nth-child(6) > a,
+                .Header__MainNav > .HorizontalList--spacingExtraLoose > li.HorizontalList__Item:nth-child(7) > a {
+                    font-weight: 500;
+                    text-transform: uppercase;
+                }
+                .HorizontalList--spacingExtraLoose .HorizontalList__Item {
+                    margin-right: 14px;
+                    margin-left: 14px;
+                }
+        
+                .Header__MainNav > .HorizontalList--spacingExtraLoose > li.HorizontalList__Item:nth-child(6),
+                .Header__MainNav > .HorizontalList--spacingExtraLoose > li.HorizontalList__Item:nth-child(7) {
+                    margin-right: 8px;
+                    margin-left: 8px;
+                }
+                .Header__MainNav > .HorizontalList--spacingExtraLoose > li.HorizontalList__Item:nth-child(6) {
+                    margin-left: 68px;
+                }
+                .Header__FlexItem--fill {
+                    flex: initial;
+                    margin: 0;
+                }
+                
+            }
+        </style>`)
+
+        document.querySelectorAll('.Header__MainNav > .HorizontalList--spacingExtraLoose > li > a').forEach((item, index) => {
+            let name = item.innerText;
+           
+            item.innerHTML = item.innerHTML.replace('&amp;','&').replace(name, name.toLowerCase());
+
+            item.parentElement.classList.remove('is-active');
+            
+            if (index == 0) {
+                item.href = '/collections/shop-all-2';
+                item.innerHTML = `Best Sellers<span class="Header__LinkSpacer">Best Sellers</span>`;
+
+                if (window.location.href.includes('/collections/shop-all-2')) {
+                    item.parentElement.classList.add('is-active')
+                }
+            } else if (index == 1) {
+                item.href = '/collections/summer-23';
+                item.innerHTML = 'New<span class="Header__LinkSpacer">New</span>';
+
+                if (window.location.href.includes('/collections/summer-23')) {
+                    item.parentElement.classList.add('is-active')
+                }
+            } else if (index == 2 && window.location.href.includes('/collections/dog-apparel')) {
+                item.parentElement.classList.add('is-active')
+            } else if (index == 3 && window.location.href.includes('/collections/walk')) {
+                item.parentElement.classList.add('is-active')
+            } else if (index == 4 && window.location.href.includes('/collections/jewelry-for-dogs')) {
+                item.parentElement.classList.add('is-active')
+            } else if (index == 5 && window.location.href.includes('/pages/about-us')) {
+                item.parentElement.classList.add('is-active')
+            } else if (index == 6 && window.location.href.includes('/pages/reviews')) {
+                item.parentElement.classList.add('is-active')
+            } else if (index == 7) {
+                item.href = '/collections/dog-shoes-boots';
+                item.innerHTML = 'Shoes & Boots<span class="Header__LinkSpacer">Shoes & Boots</span>';
+
+                if (window.location.href.includes('/collections/dog-shoes-boots')) {
+                    item.parentElement.classList.add('is-active')
+                }
+            }
+        })
+    }
+
+    mut.observe(document, optionMut);
+
+    if (document.querySelectorAll('.SidebarMenu__Nav > .Collapsible').length > 7 && 
+        !document.querySelector('.Collapsible_new')
+    ) {
+        mut.disconnect()
+
+        document.querySelectorAll('.SidebarMenu__Nav > .Collapsible')[6].insertAdjacentHTML('afterend',`
+        <div class="Collapsible Collapsible_new">
+            <button class="Collapsible__Button Heading u-h6 Collapsible__Button__Imaged" data-action="toggle-collapsible" aria-expanded="false">
+                <img class="MobileNav__Image" src="https://www.sparkpaws.com/cdn/shop/files/fabric_lab_mobile_8d2a2b5b-eba8-42ef-9970-f9ab130097e0_x800.jpg" alt="Fabric Technologies">
+                <span>Fabric Technologies<span class="Collapsible__Plus"></span></span>
+            </button>
+
+            <div class="Collapsible__Inner">
+                <div class="Collapsible__Content">
+                    <div class="Collapsible">
+                        <a href="/pages/fluff-dreams" class="Collapsible__Button Heading Text--subdued Link Link--primary u-h7">FluffDreams™</a>
+                    </div>
+                    <div class="Collapsible">
+                        <a href="/pages/velour-soft" class="Collapsible__Button Heading Text--subdued Link Link--primary u-h7">VelourSoft™</a>
+                    </div>
+                    <div class="Collapsible">
+                        <a href="/pages/breathable-shield" class="Collapsible__Button Heading Text--subdued Link Link--primary u-h7">BreatheShield™</a>
+                    </div>
+                    <div class="Collapsible">
+                        <a href="/pages/butter-stretch" class="Collapsible__Button Heading Text--subdued Link Link--primary u-h7">ButterStretch™</a>
+                    </div>
+                    <div class="Collapsible">
+                        <a href="/pages/chillflow" class="Collapsible__Button Heading Text--subdued Link Link--primary u-h7">ChillTech™</a>
+                    </div>
+                </div>
+            </div>
+        </div>`)
+    }
+
+    mut.observe(document, optionMut);
+
+    if (!document.querySelector('.style-exp') && 
+        document.querySelector('#main') && 
+        document.querySelectorAll('#shopify-section-template--15821794246837__featured-collections .Grid__Cell') && 
+        window.location.href == 'https://www.sparkpaws.com/'
+       
+    ) {
+        mut.disconnect()
+
         let scriptTrustpilot = document.createElement('script');
         scriptTrustpilot.src = '//widget.trustpilot.com/bootstrap/v5/tp.widget.bootstrap.min.js';
         scriptTrustpilot.async = false;
