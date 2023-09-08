@@ -229,10 +229,16 @@ let style = `
         padding-left: 0;
         padding-right: 0;
     }
+    .btn:hover {
+        background-color: #2A3E61!important;
+    }
     .btn-white {
         background-color: #fff!important;
         border: 1px solid var(--Primary, #344D79);
         padding: 9px;
+    }
+    .btn-white:hover {
+        background-color: #FAFAFA!important;
     }
     .tab {
         background: #FFF;
@@ -330,6 +336,9 @@ let style = `
         position: relative;
         padding-left: 8px;
         z-index: 1;
+    }
+    .explore_category li a:hover {
+        text-decoration-line: underline;
     }
     .explore_category li img {
         width: 53px;
