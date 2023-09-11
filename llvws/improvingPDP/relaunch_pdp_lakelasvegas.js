@@ -707,6 +707,7 @@ p.verified {
   border-radius: 8px;
   border: 1px solid #ddd;
   padding: 15px 20px;
+  width: 100%;
 }
 .book_now_block > svg {
   display: none;
@@ -934,6 +935,7 @@ p.book_now_txt,
   line-height: 20px;
   margin-left: 10px;
   min-width: 212px;
+  max-width: 212px;
 }
 .lav-cancel__check {
   display: none;
