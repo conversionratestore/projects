@@ -160,28 +160,6 @@ let objHolidayDeals = [
 
 let style = `
 <style class="style-exp">
-    .Footer {
-        background-color: #1B1B1B;
-    }
-    .Footer__StoreName, .Footer, .Footer h2, .Form__Input, .Form__Textarea, .spr-form-input-text, .spr-form-input-email, .spr-form-input-textarea{
-        color: #fff!important;
-    }
-    .Footer input.Form__Input::-webkit-input-placeholder {
-        color: #fff!important; 
-    }
-    .Footer input.Form__Input:-moz-placeholder {
-        color: #fff!important;
-    }
-    .Footer input.Form__Input::-moz-placeholder {
-        color: #fff!important;
-    }
-    .Footer input.Form__Input:-ms-input-placeholder {
-        color: #fff!important;
-    }
-    .Footer__Title, .Footer .Link--primary:hover {
-        color: #fff!important;
-        opacity: 0.8;
-    }
     #shopify-section-template--15821794246837__e826ee7c-7bbd-44b5-9a6d-60fcf25e1570,
     #shopify-section-template--15821794246837__1650547685f0318980,
     #shopify-section-template--15821794246837__7164ea44-ce08-4d5c-8d10-61c0a6e6e334,
@@ -275,6 +253,10 @@ let style = `
     }
     .top_category img {
         margin: 0 auto;
+        border-radius: 50%;
+        width: 40px;
+        height: 40px;
+        object-fit: cover;
     }
     .top_category span {
         display: block;
@@ -350,6 +332,9 @@ let style = `
         top: 50%;
         transform: translateY(-50%);
         z-index: -1;
+    }
+    .explore_category li img.scale-x {
+        transform: translateX(50%) scaleX(-1);
     }
     .explore_category p {
         max-width: 69px;
@@ -725,7 +710,6 @@ let style = `
     .flex-column {
         flex-direction: column;
     }
-
     @media screen and (max-width: 767px) {
         .top_discount .btn {
             margin-bottom: 20px;
@@ -744,6 +728,28 @@ let style = `
             width: 50px;
             height: 50px;
             object-fit: cover;
+        }
+        .Footer {
+            background-color: #1B1B1B;
+        }
+        .Footer__StoreName, .Footer, .Footer h2, .Form__Input, .Form__Textarea, .spr-form-input-text, .spr-form-input-email, .spr-form-input-textarea{
+            color: #fff!important;
+        }
+        .Footer input.Form__Input::-webkit-input-placeholder {
+            color: #fff!important; 
+        }
+        .Footer input.Form__Input:-moz-placeholder {
+            color: #fff!important;
+        }
+        .Footer input.Form__Input::-moz-placeholder {
+            color: #fff!important;
+        }
+        .Footer input.Form__Input:-ms-input-placeholder {
+            color: #fff!important;
+        }
+        .Footer__Title, .Footer .Link--primary:hover {
+            color: #fff!important;
+            opacity: 0.8;
         }
     }
     @media screen and (min-width: 768px) {
@@ -1123,37 +1129,37 @@ let tophtml = `
     <ul class="top_category d-md-none d-flex">
         <li>
             <a href="/collections/shop-all-2">
-                <img src="${dir}category.svg" alt="category">
+                <img src="${dir}category.png" alt="category">
                 <span>Best Sellers</span>
             </a>
         </li>
         <li>
             <a href="/collections/summer-23">
-                <img src="${dir}category-1.svg" alt="category"> 
+                <img src="${dir}category-1.png" alt="category"> 
                 <span>New</span>
             </a>
         </li>
         <li>
             <a href="/collections/tactical-collars">
-                <img src="${dir}category-2.svg" alt="category">
+                <img src="${dir}category-2.png" alt="category">
                 <span>Walk</span>
             </a>
         </li>
         <li>
             <a href="/collections/dog-hoodie">
-                <img src="${dir}category-3.svg" alt="category">
+                <img src="${dir}category-3.png" alt="category">
                 <span>Wear</span>
             </a>
         </li>
         <li>
             <a href="/collections/summer-23">
-                <img src="${dir}category-4.svg" alt="category">
+                <img src="${dir}category-4.png" alt="category">
                 <span>Chains&Tags</span>
             </a>
         </li>
         <li>
             <a href="/collections/dog-shoes-boots">
-                <img src="${dir}category-5.svg" alt="category">
+                <img src="${dir}category-5.png" alt="category">
                 <span>Shoes&Boots</span>
             </a>
         </li>
@@ -1206,7 +1212,7 @@ let tophtml = `
         <ul class="d-flex flex-wrap">
             <li>
                 <a href="https://www.sparkpaws.com/collections/tactical-collars" class="d-md-block d-flex items-center">
-                    <img class="d-md-block d-none" src="https://www.sparkpaws.com/cdn/shop/products/bigdog_pitbull_frenchiedogleash_pinkbluegradient_1000x.jpg" alt="Dog Harness Sets">
+                    <img class="d-md-block d-none scale-x" src="https://www.sparkpaws.com/cdn/shop/products/bigdog_pitbull_frenchiedogleash_pinkbluegradient_1000x.jpg" alt="Dog Harness Sets">
                     <p>Dog <br class="d-md-block d-none">  Collar Sets</p>
                     <img class="d-md-none" src="${dir}category-6.svg" alt="Dog Collar Sets">
                 </a>
@@ -1214,7 +1220,7 @@ let tophtml = `
             <li>
                 <a href="https://www.sparkpaws.com/collections/dog-hoodie" class="d-md-block d-flex items-center">
                     <img class="d-md-block d-none" src="https://www.sparkpaws.com/cdn/shop/products/1_35856d01-1b3d-4e5d-8adf-47931bcf8aa6_1600x.jpg" alt="Dog Hoodies">
-                    <p>Dog <br class="d-md-block d-none">  Hoodies</p>
+                    <p>Dog <br>  Hoodies</p>
                     <img class="d-md-none" src="${dir}category-7.svg" alt="Dog Hoodies">
                 </a>
             </li>
@@ -1235,7 +1241,7 @@ let tophtml = `
             <li>
                 <a href="https://www.sparkpaws.com/collections/dog-coats-jackets" class="d-md-block d-flex items-center">
                     <img class="d-md-block d-none"  src="https://www.sparkpaws.com/cdn/shop/products/dogwinterjacketcoat_clothesforbigdogs_pitbulls_bulldogs_8_7c34700f-b395-4273-94ec-c6146fe1fd09_400x.jpg" alt="Dog Jackets">
-                    <p>Dog <br class="d-md-block d-none">  Jackets</p>
+                    <p>Dog <br>  Jackets</p>
                     <img class="d-md-none" src="${dir}category-10.svg" alt="Dog Jackets">
                 </a>
             </li>
@@ -1249,14 +1255,14 @@ let tophtml = `
             <li>
                 <a href="https://www.sparkpaws.com/collections/matching-human-and-dog-clothes" class="d-md-block d-flex items-center">
                     <img class="d-md-block d-none" src="https://www.sparkpaws.com/cdn/shop/products/62_400x.jpg" alt="Human Matching Sets">
-                    <p>Human  <br class="d-md-block d-none"> Matching Sets</p>
+                    <p>Human  <br> Matching Sets</p>
                     <img class="d-md-none" src="${dir}category-12.svg" alt="Human Matching Sets">
                 </a>
             </li>
             <li>
                 <a href="https://www.sparkpaws.com/collections/dog-hats-accessories" class="d-md-block d-flex items-center">
                     <img class="d-md-block d-none" src="https://www.sparkpaws.com/cdn/shop/products/WeChatImage_20221018165946_400x.jpg" alt="Dog Hats & Warmers">
-                    <p>Dog Hats &  <br class="d-md-block d-none"> Warmers</p>
+                    <p>Dog Hats &  <br> Warmers</p>
                     <img class="d-md-none" src="${dir}category-13.svg" alt="Dog Hats & Warmers">
                 </a>
             </li>
@@ -1270,14 +1276,14 @@ let tophtml = `
             <li>
                 <a href="https://www.sparkpaws.com/collections/dog-pajama-onesies" class="d-md-block d-flex items-center">
                     <img class="d-md-block d-none" src="https://www.sparkpaws.com/cdn/shop/files/87_12a96df8-d5cb-4015-9043-802758cddf13_900x.jpg" alt="Dog Pajamas">
-                    <p>Dog  <br class="d-md-block d-none"> Pajamas</p>
+                    <p>Dog  <br> Pajamas</p>
                     <img class="d-md-none" src="${dir}category-15.svg" alt="Dog Pajamas">
                 </a>
             </li>
             <li>
                 <a href="https://www.sparkpaws.com/collections/dog-rainncoat" class="d-md-block d-flex items-center">
                     <img class="d-md-block d-none" src="https://www.sparkpaws.com/cdn/shop/files/8-dogclothes_hoodie_sweater_apparel_jacket_bigdogs_bulldogs_400x.jpg" alt="Dog Raincoats">
-                    <p>Dog  <br class="d-md-block d-none"> Raincoats</p>
+                    <p>Dog  <br> Raincoats</p>
                     <img class="d-md-none" src="${dir}category-16.svg" alt="Dog Raincoats">
                 </a>
             </li>
@@ -1327,7 +1333,7 @@ let tophtml = `
                 <p><b>Cooling vests are essential accessories for dogs that easily overheat in the summer. </b></p>
                 <p>The cooling vest reduces your dog’s body temperature by using evaporation - all you have to do is dampen it with water, wring it out, and put it on your pup. The fabric is specially designed to retain water, creating a cooling effect. The mesh layers allow air to circulate, while deflecting sunlight, offering extra UV protection and shading.</p>
                 <p>Put the dampen vest in the freezer for en extra cooling effect for up to 3 minutes.</p>
-                <a href="https://www.sparkpaws.com/collections/dog-jackets" class=" Button btn btn-white flex-center">
+                <a href="https://www.sparkpaws.com/collections/dog-cooling-vest" class=" Button btn btn-white flex-center">
                     <span>View products</span>
                     <svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" viewBox="0 0 21 21" fill="none">
                         <path d="M8.2418 13.7333L11.4751 10.5L8.2418 7.26665C7.9168 6.94165 7.9168 6.41665 8.2418 6.09165C8.5668 5.76665 9.0918 5.76665 9.4168 6.09165L13.2418 9.91665C13.5668 10.2417 13.5668 10.7667 13.2418 11.0917L9.4168 14.9166C9.0918 15.2416 8.5668 15.2416 8.2418 14.9166C7.92513 14.5916 7.9168 14.0583 8.2418 13.7333Z" fill="#344D79"/>
@@ -1407,7 +1413,7 @@ let tophtml = `
                 <path d="M53 12.0133L55.7667 13.6867C56.2734 13.9933 56.8934 13.54 56.76 12.9667L56.0267 9.82L58.4734 7.7C58.92 7.31334 58.68 6.58 58.0934 6.53334L54.8734 6.26L53.6134 3.28667C53.3867 2.74667 52.6134 2.74667 52.3867 3.28667L51.1267 6.25333L47.9067 6.52667C47.32 6.57333 47.08 7.30667 47.5267 7.69334L49.9734 9.81333L49.24 12.96C49.1067 13.5333 49.7267 13.9867 50.2334 13.68L53 12.0133Z" fill="#FCE358"/>
                 <path d="M68 12.0133L70.7667 13.6867C71.2734 13.9933 71.8934 13.54 71.76 12.9667L71.0267 9.82L73.4734 7.7C73.92 7.31334 73.68 6.58 73.0934 6.53334L69.8734 6.26L68.6134 3.28667C68.3867 2.74667 67.6134 2.74667 67.3867 3.28667L66.1267 6.25333L62.9067 6.52667C62.32 6.57333 62.08 7.30667 62.5267 7.69334L64.9734 9.81333L64.24 12.96C64.1067 13.5333 64.7267 13.9867 65.2334 13.68L68 12.0133Z" fill="#FCE358"/>
             </svg>
-            Based on over <b>30,000</b> customer reviews
+            <span>Based on over <b>30,000</b> customer reviews </span>
         <p>
         <div class="swiper-button swiper-button-prev">
             <svg xmlns="http://www.w3.org/2000/svg" width="12" height="20" viewBox="0 0 12 20" fill="none">
