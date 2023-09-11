@@ -1257,7 +1257,8 @@ let startPdp = setInterval(() => {
       .active_pdp .layout-container.p-none.py-10 button.tracking-widest > div > div {
         height: 44px;
       }
-      .active_pdp .layout-container.bg-platinum-1 .bg-white.bottom-0.z-20.px-4.py-6:not(#add-cart-button-fixed) > button +.w-full > div{
+      .active_pdp .layout-container.bg-platinum-1 .bg-white.bottom-0.z-20.px-4.py-6:not(#add-cart-button-fixed) > button +.w-full > div,
+      .StripeElement{
         margin-top: 12px;
       }
       .active_pdp .layout-container.p-none.py-10 button.tracking-widest{
