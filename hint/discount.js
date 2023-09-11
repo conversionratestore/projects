@@ -126,7 +126,7 @@ let popup = (price) => `
     justify-content: space-between;
     align-items: center
 }
-.discount_applied+.styles_todayCount__P6R9F {
+.discount_applied+.styles_todayCount__RhzGB {
     border-top: none;
     align-items: flex-start;
     padding-top: 8px;
@@ -145,7 +145,7 @@ let popup = (price) => `
     text-decoration: line-through;
     margin-right: 4px;
 }
-.styles_todayCount__P6R9F span+span {
+.styles_todayCount__RhzGB span+span {
     text-align: right;
 }
 /* saved */
@@ -343,11 +343,11 @@ let findClose = setInterval(() => {
         window.location.href.includes('planCode=')
     ) {
 
-        if (document.querySelector('.styles_todayCount__P6R9F span+span') && isVisibleCloseButton == false) {
+        if (document.querySelector('.styles_todayCount__RhzGB span+span') && isVisibleCloseButton == false) {
            
             isVisibleCloseButton = true
             let price = window.location.href.split('price=')[1].split('&')[0];
-            let total = document.querySelector('.styles_todayCount__P6R9F span+span').innerText;
+            let total = document.querySelector('.styles_todayCount__RhzGB span+span').innerText;
             let saved = price == '1321' ? '50%' : price == '100' ? '70%' : '75%';
 
             sendGAEvent('exp_special_offer_b_cc_as', `Credit cart - ${total} - ${saved}`, 'Button', 'Additional Start your 7-day trial');
@@ -375,13 +375,13 @@ let checkPlan = setInterval(() => {
     
     if (planCodeB != '' && 
         !planObj[planCodeB] &&
-        document.querySelector('.styles_todayCount__P6R9F span+span') &&
-        document.querySelector('.styles_buttonShowCard__CPDfR.styles_paymentButton__GtgSF')) {
+        document.querySelector('.styles_todayCount__RhzGB span+span') &&
+        document.querySelector('.styles_buttonShowCard__CPDfR')) {
         clearInterval(checkPlan);
 
         document.body.insertAdjacentHTML('afterbegin', `
         <style>
-            .styles_todayCount__P6R9F span+span {
+            .styles_todayCount__RhzGB span+span {
                 color: #121620;
                 font-weight: 600;
             }
@@ -392,16 +392,16 @@ let checkPlan = setInterval(() => {
         let price = window.location.href.split('price=')[1].split('&')[0]
         let discount = price == '681' ? '-50%' : price == '060' ? '<span>-50% </span> -70%' : '<span>-50% </span> -75%';
 
-        document.querySelector('.styles_todayCount__P6R9F').insertAdjacentHTML('beforebegin',`
+        document.querySelector('.styles_todayCount__RhzGB').insertAdjacentHTML('beforebegin',`
         <div class="discount_applied">
             <p>Additional discount applied</p>
             <p>${discount}</p>
         </div>`)
 
-        let total = document.querySelector('.styles_todayCount__P6R9F span+span').innerText;
+        let total = document.querySelector('.styles_todayCount__RhzGB span+span').innerText;
         let saved = price == '681' ? '50%' : price == '060' ? '70%' : '75%';
 
-        document.querySelector('.styles_todayCount__P6R9F span+span').insertAdjacentHTML('beforeend', `<div class="saved_block">You just saved ${saved}</div>`);
+        document.querySelector('.styles_todayCount__RhzGB span+span').insertAdjacentHTML('beforeend', `<div class="saved_block">You just saved ${saved}</div>`);
 
         // history.pushState(null, null, location.href);
         // window.onpopstate = function(event) {
