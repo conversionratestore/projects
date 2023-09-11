@@ -264,11 +264,6 @@ let startPdp = setInterval(() => {
 
     let stylePdp = /*html */ `
   <style>
-    :root {
-      --var-padding: 97px;
-      --var-bottom: 100px;
-    }
-
     .active_pdp .bgr_load{
       position: fixed;
       width: 100%;
@@ -1115,12 +1110,6 @@ let startPdp = setInterval(() => {
         }
       }
     @media (max-width: 768px) {
-      .active_pdp body {
-        padding-bottom: var(--var-padding)!important;
-      }
-      .active_pdp .intercom-lightweight-app-launcher, .active_pdp .intercom-namespace .intercom-dfosxs {
-        bottom: var(--var-bottom)!important;
-      }
       .active_pdp .pair_it_with_block {
         padding: 0 0 40px;
         margin-right: -11px;
@@ -1260,13 +1249,16 @@ let startPdp = setInterval(() => {
       }
       .active_pdp .layout-container.bg-platinum-1 .bg-white.bottom-0.z-20.px-4.py-6:not(#add-cart-button-fixed) {
         z-index: 1;
-        padding: 16px 0 12px;
+        padding: 16px 0 0;
         margin: 0;
       }
       .active_pdp .layout-container.bg-platinum-1 .bg-white.bottom-0.z-20.px-4.py-6:not(#add-cart-button-fixed) > button,
       .active_pdp .layout-container.p-none.py-10 button.tracking-widest,
       .active_pdp .layout-container.p-none.py-10 button.tracking-widest > div > div {
         height: 44px;
+      }
+      .active_pdp .layout-container.bg-platinum-1 .bg-white.bottom-0.z-20.px-4.py-6:not(#add-cart-button-fixed) > button +.w-full > div{
+        margin-top: 12px;
       }
       .active_pdp .layout-container.p-none.py-10 button.tracking-widest{
         display: block;
@@ -1594,14 +1586,6 @@ let startPdp = setInterval(() => {
   </style>
   `;
 
-    let checkStripeElement = setInterval(() => {
-        if (document.querySelector('.StripeElement iframe')) {
-          clearInterval(checkStripeElement)
-          document.documentElement.style.setProperty('--var-padding', '145px');
-          document.documentElement.style.setProperty('--var-bottom', '150px');
-        }
-    });
-   
     // popup
     let popUp = /*html */ `
       <div class="overlay_popup is_hidden">
