@@ -1312,6 +1312,7 @@ let startPdp = setInterval(() => {
         line-height: 1;
         text-transform: capitalize;
         z-index: 1;
+        display: none;
       }
       .active_pdp .layout-container .col-span-full:nth-child(2) h1 {
         font-size: 22px !important;
