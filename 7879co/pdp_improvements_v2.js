@@ -1090,6 +1090,7 @@ let startPdp = setInterval(() => {
       line-height: 1;
       text-transform: capitalize;
       z-index: 1;
+      display: none;
     }
       .active_pdp .h-6.items-center.gap-4{
         gap: 1rem;
