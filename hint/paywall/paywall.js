@@ -1,4 +1,3 @@
-console.log('%c Exp: Palmistry paywall', 'background: #3498eb; color: #fccf3a; font-size: 20px; font-weight: bold;')
 const $$el = (selector) => document.querySelectorAll(selector)
 const $el = (selector) => document.querySelector(selector)
 const git = 'https://conversionratestore.github.io/projects/hint/paywall/imgs'
@@ -20,7 +19,7 @@ const pushDataLayer = (name, desc, type = '', loc = '') => {
 const clarityInterval = setInterval(function () {
   if (typeof clarity == 'function') {
     clearInterval(clarityInterval)
-    clarity('set', '', 'variant_1')
+    clarity('set', 'palmistry: Paywall improvements', 'variant_1')
   }
 }, 1000)
 
