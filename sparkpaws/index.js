@@ -1133,7 +1133,7 @@ let tophtml = `
 
     ${addAdvantages('d-none d-md-block')}
     <div class="explore_category">
-        <h2 class="text-md-center">${german ? '' : 'Explore by Category'}</h2>
+        <h2 class="text-md-center">${german ? 'Erkunden nach Kategorie ' : 'Explore by Category'}</h2>
         <ul class="d-flex flex-wrap">
             <li>
                 <a href="https://www.sparkpaws.com/collections/tactical-collars" class="d-md-block d-flex items-center">
