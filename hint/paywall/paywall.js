@@ -1,4 +1,3 @@
-console.log('%c Exp: Palmistry paywall', 'background: #3498eb; color: #fccf3a; font-size: 20px; font-weight: bold;')
 const $$el = (selector) => document.querySelectorAll(selector)
 const $el = (selector) => document.querySelector(selector)
 const git = 'https://conversionratestore.github.io/projects/hint/paywall/imgs'
