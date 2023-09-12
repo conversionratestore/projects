@@ -311,6 +311,7 @@ let style = `
         font-style: normal;
         font-weight: 600;
         line-height: 16px;
+        word-break: break-word;
     }
     /* high-quality */
     .high-quality {
@@ -814,7 +815,7 @@ let style = `
             top: -54px;
         }
         .explore_category li a {
-            padding: 60px 20px 12px;
+            padding: 60px 0 12px;
             margin-top: 54px;
             min-height: 114px;
         }
@@ -1538,9 +1539,6 @@ let mut = new MutationObserver(function (muts) {
                     margin-right: 8px;
                     margin-left: 8px;
                 }
-                .Header__MainNav > .HorizontalList--spacingExtraLoose > li.HorizontalList__Item:nth-child(6) {
-                    margin-left: 68px;
-                }
                 .Header__FlexItem--fill {
                     flex: initial;
                     margin: 0;
@@ -1548,6 +1546,17 @@ let mut = new MutationObserver(function (muts) {
                 
             }
         </style>`)
+
+        if (!german) {
+            document.body.insertAdjacentHTML('afterbegin',`
+            <style class="style-header">
+                @media screen and (min-width: 768px) {
+                    .Header__MainNav > .HorizontalList--spacingExtraLoose > li.HorizontalList__Item:nth-child(6) {
+                        margin-left: 68px;
+                    }
+                }
+            </style>`)
+        }
 
         document.querySelectorAll('.Header__MainNav > .HorizontalList--spacingExtraLoose > li > a').forEach((item, index) => {
             let name = item.innerText;
