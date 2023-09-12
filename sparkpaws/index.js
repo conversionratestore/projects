@@ -1548,7 +1548,7 @@ let mut = new MutationObserver(function (muts) {
                 item.parentElement.classList.add('is-active')
             } else if (index == 7) {
                 item.href = '/collections/dog-shoes-boots';
-                item.innerHTML = `${german ? 'Hundeschuhe & Stiefel ' : 'Shoes & Boots'}<span class="Header__LinkSpacer">${german ? 'Hundeschuhe & Stiefel ' : 'Shoes & Boots'}</span>`;
+                item.innerHTML = `${german ? 'Schuhe & Stiefel' : 'Shoes & Boots'}<span class="Header__LinkSpacer">${german ? 'Schuhe & Stiefel' : 'Shoes & Boots'}</span>`;
 
                 if (window.location.href.includes('/collections/dog-shoes-boots')) {
                     item.parentElement.classList.add('is-active')
