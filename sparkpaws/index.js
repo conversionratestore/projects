@@ -166,9 +166,8 @@ let style = `
         letter-spacing: 2.2px;
         text-transform: uppercase;
         width: 100%;
+        padding: 14px 24px;
         background-color: #344D79!important;
-        padding-left: 0;
-        padding-right: 0;
     }
     .btn:hover {
         background-color: #2A3E61!important;
@@ -857,7 +856,7 @@ let style = `
             padding: 60px 24px;
         }
         .best-sellers .btn, .great-deals .btn {
-            max-width: 120px;
+            padding: 14px 24px;
             margin: 32px auto 0;
             display: block;
         }
@@ -888,9 +887,6 @@ let style = `
         .waterproof-jackets {
             background-image: url(${dir}waterproof-jackets.png);
         }
-        .jackets .btn {
-            max-width: 190px;
-        }
         h3 {
             font-size: 28px;
             font-weight: 700;
@@ -915,7 +911,6 @@ let style = `
             margin-right: 0;
         }
         .fabric_content .btn {
-            max-width: 133px;
             margin: 0 auto;
         }
         .fabric_content li img {
@@ -1001,6 +996,12 @@ let style = `
         .fabric_content li {
             width: calc(16.66% - 23px);
             margin-right: 27px;
+        }
+        .btn {
+            width: fit-content;
+        }
+        .btn-white {
+            padding: 9px 16px 9px 24px;
         }
     }
     @media screen and (min-width: 768px) and (max-width: 1200px) {
@@ -1089,48 +1090,49 @@ let addAdvantages = (classes) => `
     </div>
 </div>`
 
+let topCategoryHTML = `
+<ul class="top_category d-md-none d-flex">
+    <li>
+        <a href="/collections/shop-all-2">
+            <img src="${dir}category.png" alt="category">
+            <span>${german ? 'Bestseller' : 'Best Sellers'}</span>
+        </a>
+    </li>
+    <li>
+        <a href="/collections/summer-23">
+            <img src="${dir}category-1.png" alt="category"> 
+            <span>${german ? 'Neu' : 'New'}</span>
+        </a>
+    </li>
+    <li>
+        <a href="/collections/tactical-collars">
+            <img src="${dir}category-2.png" alt="category">
+            <span>${german ? 'Gehen' : 'Walk'}</span>
+        </a>
+    </li>
+    <li>
+        <a href="/collections/dog-hoodie">
+            <img src="${dir}category-3.png" alt="category">
+            <span>${german ? 'Tragen' : 'Wear'}</span>
+        </a>
+    </li>
+    <li>
+        <a href="/collections/summer-23">
+            <img src="${dir}category-4.png" alt="category">
+            <span>${german ? 'Ketten & Anhänger' : 'Chains&Tags'}</span>
+        </a>
+    </li>
+    <li>
+        <a href="/collections/dog-shoes-boots">
+            <img src="${dir}category-5.png" alt="category">
+            <span>${german ? 'Schuhe & Stiefel' : 'Shoes&Boots'}</span>
+        </a>
+    </li>
+</ul>`;
 
 let tophtml = `
 <div class="main-exp">
-    <ul class="top_category d-md-none d-flex">
-        <li>
-            <a href="/collections/shop-all-2">
-                <img src="${dir}category.png" alt="category">
-                <span>${german ? 'Bestseller' : 'Best Sellers'}</span>
-            </a>
-        </li>
-        <li>
-            <a href="/collections/summer-23">
-                <img src="${dir}category-1.png" alt="category"> 
-                <span>${german ? 'Neu' : 'New'}</span>
-            </a>
-        </li>
-        <li>
-            <a href="/collections/tactical-collars">
-                <img src="${dir}category-2.png" alt="category">
-                <span>${german ? 'Gehen' : 'Walk'}</span>
-            </a>
-        </li>
-        <li>
-            <a href="/collections/dog-hoodie">
-                <img src="${dir}category-3.png" alt="category">
-                <span>${german ? 'Tragen' : 'Wear'}</span>
-            </a>
-        </li>
-        <li>
-            <a href="/collections/summer-23">
-                <img src="${dir}category-4.png" alt="category">
-                <span>${german ? 'Ketten & Anhänger' : 'Chains&Tags'}</span>
-            </a>
-        </li>
-        <li>
-            <a href="/collections/dog-shoes-boots">
-                <img src="${dir}category-5.png" alt="category">
-                <span>${german ? 'Schuhe & Stiefel' : 'Shoes&Boots'}</span>
-            </a>
-        </li>
-    </ul>
-
+   
     ${addAdvantages('d-none d-md-block')}
     <div class="explore_category">
         <h2 class="text-md-center">${german ? 'Erkunden nach Kategorie ' : 'Explore by Category'}</h2>
@@ -1145,7 +1147,7 @@ let tophtml = `
             <li>
                 <a href="https://www.sparkpaws.com/collections/dog-hoodie" class="d-md-block d-flex items-center">
                     <img class="d-md-block d-none" src="https://www.sparkpaws.com/cdn/shop/products/1_35856d01-1b3d-4e5d-8adf-47931bcf8aa6_1600x.jpg" alt="Dog Hoodies">
-                    <p>${german ? 'Hundekapuzenpullover' : 'Dog <br>  Hoodies'}</p>
+                    <p>${german ? 'Hunde Kapuzenpullover' : 'Dog <br>  Hoodies'}</p>
                     <img class="d-md-none" src="${dir}category-7.png" alt="Dog Hoodies">
                 </a>
             </li>
@@ -1173,7 +1175,7 @@ let tophtml = `
             <li>
                 <a href="https://www.sparkpaws.com/collections/knit-dog-sweater" class="d-md-block d-flex items-center">
                     <img class="d-md-block d-none" src="https://www.sparkpaws.com/cdn/shop/products/TeddyBearKnitDogSweater-Black-modelpic3_400x.jpg" alt="Dog Knit Sweaters">
-                    <p>${german ? 'Hundestricksweater' : 'Dog <br class="d-md-block d-none">  Knit Sweaters'}</p>
+                    <p>${german ? 'Hundestrick Sweater' : 'Dog <br class="d-md-block d-none">  Knit Sweaters'}</p>
                     <img class="d-md-none" src="${dir}category-11.png" alt="Dog Knit Sweaters">
                 </a>
             </li>
@@ -1619,9 +1621,25 @@ let mut = new MutationObserver(function (muts) {
         linkSwiper.rel = 'stylesheet';
         document.head.appendChild(linkSwiper);
 
+
+        if (german) {
+            document.body.insertAdjacentHTML('afterbegin',`
+            <style class="style-header">
+                @media screen and (min-width: 768px) {
+                    .explore_category li a {
+                        min-height: 93px;
+                    }
+                    .explore_category p {
+                        font-size: 11px;
+                    }
+                }
+            </style>`)
+        }
+
         document.body.insertAdjacentHTML('afterbegin', style)
         document.querySelector('#main').insertAdjacentHTML('beforeend', tophtml)
-
+        document.querySelector('#main').insertAdjacentHTML('afterbegin', topCategoryHTML)
+        
         let media = window.matchMedia("(min-width: 768px)").matches;
 
         //best-sellers
