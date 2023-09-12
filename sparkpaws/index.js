@@ -1,6 +1,43 @@
 let dir = 'https://conversionratestore.github.io/projects/sparkpaws/img/';
 
 let german = window.location.href.includes('https://www.sparkpaws.de/');
+let currency = german ? '€' : '$';
+
+
+let objRatingHolidayDeals = [
+    {
+        'handle':'green-camo-shark-monster-dog-hoodie',
+        'rating':'1,431'
+    },
+    {
+        'handle':'sherpa-dog-jacket-pink',
+        'rating':'2,829'
+    },
+    {
+        'handle':'cotton-candy-color-block-hoodie',
+        'rating':'1916'
+    },
+    {
+        'handle':'cotton-candy-human-hoodie',
+        'rating':'353'
+    },
+    {
+        'handle':'olive-cream-human-hoodie',
+        'rating':'347'
+    },
+    {
+        'handle':'black-olive-cream-dog-hoodie',
+        'rating':'1361'
+    },
+    {
+        'handle':'woof-dog-hoodie-black',
+        'rating':'1509'
+    },
+    {
+        'handle':'woof-dog-hoodie-red',
+        'rating':'1135'
+    }
+]
 
 let objLooxReview = [
     {
@@ -82,81 +119,6 @@ let objLooxReview = [
         'imageProduct': 'https://cdn.shopify.com/s/files/1/0490/4219/4589/products/05_f98eb65c-e0e0-4fbe-90e9-ab39a885a877_x100.png',
         'titleProduct': 'Vintage Navy Sky Dye Dog Hoodie',
         'urlProduct': 'https://sparkpaws-global.myshopify.com/products/navy-grey-sky-dye-dog-hoodie?ref=loox-feed&post_id=VkYFX3hEh&rating=5&variant=41392863871133&utm_source=referral&utm_medium=post&utm_campaign=loox-feed',
-    }
-]
-
-let objHolidayDeals = [
-    {
-        'title': german ? 'Hai-Monster Hunde Hoodie - Camo Grün' : `Shark Monster Dog Hoodie - Green Camo`,
-        'image':'https://www.sparkpaws.com/cdn/shop/products/sharkmonsterdoghoodiesweater3_1_1400x.jpg',
-        'image2':'https://www.sparkpaws.com/cdn/shop/products/sharkmonsterdoghoodiesweater2_1_1600x.jpg',
-        'url':'/products/green-camo-shark-monster-dog-hoodie',
-        'rating':'1,431',
-        'price': german ? '€21,95' : '$23',
-        'compare': german ? '€30,95' : '$32'
-    },
-    {
-        'title': german ? 'Teddy Sherpa Hundejacke - Rosa' : 'Teddy Sherpa Dog Jacket - Pink',
-        'image':'https://www.sparkpaws.com/cdn/shop/products/2_1ac5d012-5fb7-4605-bcb4-a348507137cc_600x.jpg',
-        'image2':'https://www.sparkpaws.com/cdn/shop/products/TeddySherpaFleeceDogJacket-Pink-front_600x.png',
-        'url':'/products/sherpa-dog-jacket-pink',
-        'rating':'2,829',
-        'price': german ? '€26,95' : '$28',
-        'compare': german ? '€33,95' : '$35'
-    },
-    {
-        'title': german ? '' : 'Cotton Candy Dog Hoodie',
-        'image':'https://www.sparkpaws.com/cdn/shop/products/DSC_1393_600x.jpg',
-        'image2':'https://www.sparkpaws.com/cdn/shop/products/CottonCandyDogHoodieSweater-front_600x.png',
-        'url':'/products/cotton-candy-color-block-hoodie',
-        'rating':'1916',
-        'price': german ? '' : '$23',
-        'compare': german ? '' : '$32'
-    },
-    {
-        'title': german ? '' : 'Cotton Candy Human Hoodie',
-        'image':'https://www.sparkpaws.com/cdn/shop/products/20210815Spark4508_200x.jpg',
-        'image2':'https://www.sparkpaws.com/cdn/shop/products/hoodie_600x.jpg',
-        'url':'/products/cotton-candy-human-hoodie',
-        'rating':'353',
-        'price': german ? '' : '$55',
-        'compare': german ? '' : '$70'
-    },
-    {
-        'title': german ? '' : 'Olive Cream Human Hoodie',
-        'image':'https://www.sparkpaws.com/cdn/shop/products/Untitleddesign_15_600x.jpg',
-        'image2':'https://www.sparkpaws.com/cdn/shop/files/99_9a2dd394-c542-40a8-bf23-3cf18d6dce54_600x.jpg',
-        'url':'/products/olive-cream-human-hoodie',
-        'rating':'347',
-        'price': german ? '' : '$55',
-        'compare': german ? '' : '$70'
-    },
-    {
-        'title': german ? '' : 'Olive Cream Dog Hoodie',
-        'image':'https://www.sparkpaws.com/cdn/shop/products/DSC_1506_6619b348-64dc-4ad2-9c67-f5dda35fe7b9_600x.jpg',
-        'image2':'https://www.sparkpaws.com/cdn/shop/files/OliveCreamHeroImagedog_600x.jpg',
-        'url':'/products/black-olive-cream-dog-hoodie',
-        'rating':'1361',
-        'price': german ? '' : '$23',
-        'compare': german ? '' : '$32'
-    },
-    {
-        'title': german ? '' : '"WOOF" Dog Hoodie - Black & Reflective',
-        'image':'https://www.sparkpaws.com/cdn/shop/products/WOOF-BLACK-02_200x.jpg',
-        'image2':'https://www.sparkpaws.com/cdn/shop/products/20221024SparkPaws8356_600x.jpg',
-        'url':'/products/woof-dog-hoodie-black',
-        'rating':'1509',
-        'price': german ? '' : '$23',
-        'compare': german ? '' : '$32'
-    },
-    {
-        'title': german ? '' : '"WOOF" Dog Hoodie - Red',
-        'image':'https://www.sparkpaws.com/cdn/shop/products/WOOF-RED-01_200x.jpg',
-        'image2':'https://www.sparkpaws.com/cdn/shop/products/redwoof_600x.jpg',
-        'url':'/products/woof-dog-hoodie-red',
-        'rating':'1135',
-        'price': german ? '' : '$23',
-        'compare': german ? '' : '$32'
     }
 ]
 
@@ -1719,23 +1681,33 @@ let mut = new MutationObserver(function (muts) {
 
         //great-deals
         let sliders2 = '';
-        let lengthHolidayDeals = media ? 4 : objHolidayDeals.length;
+        let lengthHolidayDeals = media ? 4 : objHoliday.length > 9 ? 10 : objHoliday.length;
 
         for (let i = 0; i < lengthHolidayDeals; i++) {
+            let req = /(\d{1,})(\d{2})$/;
+            let rating = '';
+            for (let r = 0; r < objRatingHolidayDeals.length; r++) {
+                if (objHoliday[i].handle == objRatingHolidayDeals[r].handle) {
+                    rating = objRatingHolidayDeals[r].rating;
+                }
+            }
+            let price = objHoliday[i].price.toString().replace(req, "$1.$2");
+            let compare = objHoliday[i].compare_at_price_min.toString().replace(req, "$1.$2");
+
             sliders2 += `<div class="swiper-slide">
                             <div class="ProductItem " style="visibility: inherit; opacity: 1; transform: matrix(1, 0, 0, 1, 0, 0);">
                                 <div class="ProductItem__Wrapper">
-                                    <a href="${objHolidayDeals[i].url}" class="ProductItem__ImageWrapper ProductItem__ImageWrapper--withAlternateImage">
+                                    <a href="/products/${objHoliday[i].handle}" class="ProductItem__ImageWrapper ProductItem__ImageWrapper--withAlternateImage">
                                         <div class="AspectRatio AspectRatio--square" style="max-width: 2000px;  --aspect-ratio: 1.0">
-                                            <img class="ProductItem__Image ProductItem__Image--alternate Image--fadeIn lazyautosizes Image--lazyLoaded" data-widths="[200,300,400,600,800,900,1000,1200]" data-sizes="auto" alt="${objHolidayDeals[i].title}" src="${objHolidayDeals[i].image2}">
+                                            <img class="ProductItem__Image ProductItem__Image--alternate Image--fadeIn lazyautosizes Image--lazyLoaded" data-widths="[200,300,400,600,800,900,1000,1200]" data-sizes="auto" alt="${objHoliday[i].title}" src="${objHoliday[i].images[1]}">
                                             <span class="Image__Loader"></span>
-                                            <img class="ProductItem__Image Image--fadeIn lazyautosizes Image--lazyLoaded" data-widths="[200,400,600,700,800,900,1000,1200]" data-sizes="auto" alt="${objHolidayDeals[i].title}" src="${objHolidayDeals[i].image}" >
+                                            <img class="ProductItem__Image Image--fadeIn lazyautosizes Image--lazyLoaded" data-widths="[200,400,600,700,800,900,1000,1200]" data-sizes="auto" alt="${objHoliday[i].title}" src="${objHoliday[i].images[0]}" >
                                         </div>
                                     </a>
                                     <div class="ProductItem__LabelList"></div>
                                     <div class="ProductItem__Info ProductItem__Info--center">
                                         <h2 class="ProductItem__Title Heading">
-                                            <a href="${objHolidayDeals[i].url}">${objHolidayDeals[i].title}</a>
+                                            <a href="/products/${objHoliday[i].handle}">${objHoliday[i].title}</a>
                                         </h2>
                         
                                         <div class="loox-rating">
@@ -1756,12 +1728,13 @@ let mut = new MutationObserver(function (muts) {
                                                 <svg class="loox-icon" viewBox="0 0 24 24" data-lx-fill="full" aria-hidden="true">
                                                     <use href="#looxicons-rating-icon"></use>
                                                 </svg>
-                                                <span class="loox-rating-label">&nbsp;(${objHolidayDeals[i].rating})</span>
+                                                ${rating != '' ? '<span class="loox-rating-label">&nbsp;(' + rating + ')</span>' : ''}
+                                                
                                             </div>
                                         </div>
                                         <div class="ProductItem__PriceList  Heading">
-                                            <span class="ProductItem__Price Price Price--highlight Text--subdued">${objHolidayDeals[i].price}</span>
-                                            <span class="ProductItem__Price Price Price--compareAt Text--subdued">${objHolidayDeals[i].compare}</span>
+                                            <span class="ProductItem__Price Price Price--highlight Text--subdued">${currency + price}</span>
+                                            <span class="ProductItem__Price Price Price--compareAt Text--subdued">${currency + compare}</span>
                                         </div>
                                     </div>
                                 </div>
@@ -1859,11 +1832,7 @@ let mut = new MutationObserver(function (muts) {
                             },
                         });
                     }
-                   
-
-    
                 })
-               
             }
         });
     }
