@@ -1629,8 +1629,17 @@ let mut = new MutationObserver(function (muts) {
                     .explore_category li a {
                         min-height: 93px;
                     }
+                }
+                @media screen and (max-width: 767px) {
                     .explore_category p {
-                        font-size: 11px;
+                        max-width: 99px;
+                    }
+                    .explore_category li {
+                        width: calc(50% - 4px);
+                        margin-right: 8px!important;
+                    }
+                    .explore_category li:nth-child(2n+2) {
+                        margin-right: 0!important;
                     }
                 }
             </style>`)
