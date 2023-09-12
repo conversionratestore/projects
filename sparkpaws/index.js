@@ -1558,14 +1558,14 @@ let mut = new MutationObserver(function (muts) {
             
             if (index == 0) {
                 item.href = '/collections/shop-all-2';
-                item.innerHTML = `Best Sellers<span class="Header__LinkSpacer">Best Sellers</span>`;
+                item.innerHTML = `${german ? 'Bestseller' : 'Best Sellers'}<span class="Header__LinkSpacer">${german ? 'Bestseller' : 'Best Sellers'}</span>`;
 
                 if (window.location.href.includes('/collections/shop-all-2')) {
                     item.parentElement.classList.add('is-active')
                 }
             } else if (index == 1) {
                 item.href = '/collections/summer-23';
-                item.innerHTML = 'New<span class="Header__LinkSpacer">New</span>';
+                item.innerHTML = `${german ? 'Neu' : 'New'}<span class="Header__LinkSpacer">${german ? 'Neu' : 'New'}</span>`;
 
                 if (window.location.href.includes('/collections/summer-23')) {
                     item.parentElement.classList.add('is-active')
@@ -1582,7 +1582,7 @@ let mut = new MutationObserver(function (muts) {
                 item.parentElement.classList.add('is-active')
             } else if (index == 7) {
                 item.href = '/collections/dog-shoes-boots';
-                item.innerHTML = 'Shoes & Boots<span class="Header__LinkSpacer">Shoes & Boots</span>';
+                item.innerHTML = `${german ? 'Hundeschuhe & Stiefel ' : 'Shoes & Boots'}<span class="Header__LinkSpacer">${german ? 'Hundeschuhe & Stiefel ' : 'Shoes & Boots'}</span>`;
 
                 if (window.location.href.includes('/collections/dog-shoes-boots')) {
                     item.parentElement.classList.add('is-active')
