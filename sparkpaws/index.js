@@ -1,5 +1,7 @@
 let dir = 'https://conversionratestore.github.io/projects/sparkpaws/img/';
 
+let german = window.location.href.includes('https://www.sparkpaws.de/');
+
 let objLooxReview = [
     {
         'author': 'Kayla W. ',
@@ -85,76 +87,76 @@ let objLooxReview = [
 
 let objHolidayDeals = [
     {
-        'title':'Shark Monster Dog Hoodie - Green Camo',
+        'title': german ? 'Hai-Monster Hunde Hoodie - Camo Grün' : `Shark Monster Dog Hoodie - Green Camo`,
         'image':'https://www.sparkpaws.com/cdn/shop/products/sharkmonsterdoghoodiesweater3_1_1400x.jpg',
         'image2':'https://www.sparkpaws.com/cdn/shop/products/sharkmonsterdoghoodiesweater2_1_1600x.jpg',
         'url':'/products/green-camo-shark-monster-dog-hoodie',
         'rating':'1,431',
-        'price':'$23',
-        'compare':'$32'
+        'price': german ? '€21,95' : '$23',
+        'compare': german ? '€30,95' : '$32'
     },
     {
-        'title':'Teddy Sherpa Dog Jacket - Pink',
+        'title': german ? 'Teddy Sherpa Hundejacke - Rosa' : 'Teddy Sherpa Dog Jacket - Pink',
         'image':'https://www.sparkpaws.com/cdn/shop/products/2_1ac5d012-5fb7-4605-bcb4-a348507137cc_600x.jpg',
         'image2':'https://www.sparkpaws.com/cdn/shop/products/TeddySherpaFleeceDogJacket-Pink-front_600x.png',
         'url':'/products/sherpa-dog-jacket-pink',
         'rating':'2,829',
-        'price':'$28',
-        'compare':'$35'
+        'price': german ? '€26,95' : '$28',
+        'compare': german ? '€33,95' : '$35'
     },
     {
-        'title':'Cotton Candy Dog Hoodie',
+        'title': german ? '' : 'Cotton Candy Dog Hoodie',
         'image':'https://www.sparkpaws.com/cdn/shop/products/DSC_1393_600x.jpg',
         'image2':'https://www.sparkpaws.com/cdn/shop/products/CottonCandyDogHoodieSweater-front_600x.png',
         'url':'/products/cotton-candy-color-block-hoodie',
         'rating':'1916',
-        'price':'$23',
-        'compare':'$32'
+        'price': german ? '' : '$23',
+        'compare': german ? '' : '$32'
     },
     {
-        'title':'Cotton Candy Human Hoodie',
+        'title': german ? '' : 'Cotton Candy Human Hoodie',
         'image':'https://www.sparkpaws.com/cdn/shop/products/20210815Spark4508_200x.jpg',
         'image2':'https://www.sparkpaws.com/cdn/shop/products/hoodie_600x.jpg',
         'url':'/products/cotton-candy-human-hoodie',
         'rating':'353',
-        'price':'$55',
-        'compare':'$70'
+        'price': german ? '' : '$55',
+        'compare': german ? '' : '$70'
     },
     {
-        'title':'Olive Cream Human Hoodie',
+        'title': german ? '' : 'Olive Cream Human Hoodie',
         'image':'https://www.sparkpaws.com/cdn/shop/products/Untitleddesign_15_600x.jpg',
         'image2':'https://www.sparkpaws.com/cdn/shop/files/99_9a2dd394-c542-40a8-bf23-3cf18d6dce54_600x.jpg',
         'url':'/products/olive-cream-human-hoodie',
         'rating':'347',
-        'price':'$55',
-        'compare':'$70'
+        'price': german ? '' : '$55',
+        'compare': german ? '' : '$70'
     },
     {
-        'title':'Olive Cream Dog Hoodie',
+        'title': german ? '' : 'Olive Cream Dog Hoodie',
         'image':'https://www.sparkpaws.com/cdn/shop/products/DSC_1506_6619b348-64dc-4ad2-9c67-f5dda35fe7b9_600x.jpg',
         'image2':'https://www.sparkpaws.com/cdn/shop/files/OliveCreamHeroImagedog_600x.jpg',
         'url':'/products/black-olive-cream-dog-hoodie',
         'rating':'1361',
-        'price':'$23',
-        'compare':'$32'
+        'price': german ? '' : '$23',
+        'compare': german ? '' : '$32'
     },
     {
-        'title':'"WOOF" Dog Hoodie - Black & Reflective',
+        'title': german ? '' : '"WOOF" Dog Hoodie - Black & Reflective',
         'image':'https://www.sparkpaws.com/cdn/shop/products/WOOF-BLACK-02_200x.jpg',
         'image2':'https://www.sparkpaws.com/cdn/shop/products/20221024SparkPaws8356_600x.jpg',
         'url':'/products/woof-dog-hoodie-black',
         'rating':'1509',
-        'price':'$23',
-        'compare':'$32'
+        'price': german ? '' : '$23',
+        'compare': german ? '' : '$32'
     },
     {
-        'title':'"WOOF" Dog Hoodie - Red',
+        'title': german ? '' : '"WOOF" Dog Hoodie - Red',
         'image':'https://www.sparkpaws.com/cdn/shop/products/WOOF-RED-01_200x.jpg',
         'image2':'https://www.sparkpaws.com/cdn/shop/products/redwoof_600x.jpg',
         'url':'/products/woof-dog-hoodie-red',
         'rating':'1135',
-        'price':'$23',
-        'compare':'$32'
+        'price': german ? '' : '$23',
+        'compare': german ? '' : '$32'
     }
 ]
 
@@ -166,7 +168,8 @@ let style = `
     #shopify-section-template--15821794246837__1d73e740-c6f3-4c4e-83a3-25019344a4de,
     #shopify-section-template--15821794246837__00e1908d-9d44-4288-a91a-09094320b853,
     #shopify-section-template--15821794246837__featured-collections,
-    #shopify-section-template--15821794246837__219fd661-63ec-452c-8237-ed062313b6f4 {
+    #shopify-section-template--15821794246837__219fd661-63ec-452c-8237-ed062313b6f4,
+    .Slideshow  {
         display: none!Important;
     }
     .shopify-section--bordered>.Section--spacingNormal {
@@ -1082,16 +1085,16 @@ let addAdvantages = (classes) => `
     <div class="container flex-center ">
         <a href="/pages/about-us" class="flex-md-center">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <g id="Icons" clip-path="url(#clip0_672_4791)">
-            <path id="Vector" d="M23.3233 11.9483C23.8781 10.8507 23.6483 9.54783 22.7516 8.70614L21.45 7.48448C21.1498 7.20276 20.9662 6.88481 20.8723 6.48384L20.4651 4.7459C20.1846 3.54844 19.1711 2.69798 17.9431 2.62969L16.1608 2.53054C15.7497 2.50767 15.4047 2.38209 15.0751 2.13539L13.6461 1.0657C12.6616 0.328732 11.3384 0.328639 10.3538 1.0657L8.9248 2.13534C8.59518 2.38209 8.25013 2.50767 7.83904 2.53054L6.0568 2.62969C4.82882 2.69798 3.81528 3.54844 3.53479 4.7459L3.12758 6.48389C3.03369 6.88481 2.85013 7.20276 2.54994 7.48453L1.24832 8.70614C0.35155 9.54778 0.121816 10.8507 0.676629 11.9483L1.48194 13.5414C1.66771 13.9089 1.73146 14.2704 1.68257 14.6793L1.47069 16.4517C1.32477 17.6729 1.98627 18.8186 3.1168 19.3028L4.75771 20.0056C5.13618 20.1677 5.41743 20.4037 5.64285 20.7482L6.61986 22.2422C7.29294 23.2715 8.53616 23.724 9.71352 23.3682L11.4222 22.8518C11.8164 22.7326 12.1835 22.7327 12.5776 22.8518L14.2863 23.3682C14.5542 23.4491 14.8253 23.4883 15.0925 23.4882C15.9997 23.4882 16.86 23.0373 17.3799 22.2422L18.357 20.7482C18.5824 20.4037 18.8636 20.1676 19.2421 20.0055L20.883 19.3028C22.0135 18.8186 22.6751 17.6728 22.5291 16.4517L22.3172 14.6792C22.2683 14.2704 22.3321 13.9088 22.5178 13.5413L23.3233 11.9483ZM21.8486 13.2031C21.5966 13.7017 21.5063 14.2137 21.5726 14.7683L21.7845 16.5407C21.8923 17.4424 21.4225 18.2559 20.5878 18.6135L18.9469 19.3162C18.4334 19.5361 18.0351 19.8703 17.7294 20.3378L16.7523 21.8317C16.2553 22.5917 15.3725 22.913 14.5033 22.6503L12.7946 22.1339C12.5272 22.0531 12.2637 22.0127 11.9999 22.0127C11.7363 22.0127 11.4726 22.0531 11.2053 22.1339L9.49658 22.6503C8.62743 22.9129 7.74458 22.5917 7.24757 21.8317L6.27055 20.3378C5.96474 19.8703 5.56644 19.5361 5.05297 19.3162L3.41207 18.6135C2.57732 18.256 2.10763 17.4424 2.21539 16.5407L2.42727 14.7683C2.4936 14.2136 2.40332 13.7017 2.15127 13.203L1.34596 11.61C0.936363 10.7996 1.09944 9.87445 1.76155 9.25298L3.06318 8.03137C3.47047 7.64911 3.73039 7.19887 3.8578 6.65494L4.265 4.91695C4.4721 4.03284 5.19177 3.42895 6.09843 3.37856L7.88066 3.27942C8.43843 3.24839 8.92696 3.07054 9.37419 2.73581L10.8032 1.66612C11.5302 1.122 12.4697 1.12195 13.1966 1.66612L14.6256 2.73581C15.0729 3.07054 15.5615 3.24839 16.1192 3.27942L17.9014 3.37856C18.8081 3.429 19.5277 4.03284 19.7348 4.917L20.142 6.65494C20.2694 7.19892 20.5294 7.64915 20.9367 8.03137L22.2383 9.25298C22.9004 9.8744 23.0635 10.7996 22.6539 11.61L21.8486 13.2031ZM12 4.33378C7.7728 4.33378 4.33377 7.77281 4.33377 12C4.33377 16.2272 7.7728 19.6662 12 19.6662C16.2272 19.6662 19.6662 16.2272 19.6662 12C19.6662 7.77281 16.2272 4.33378 12 4.33378ZM12 18.9162C8.18638 18.9162 5.08377 15.8136 5.08377 12C5.08377 8.18639 8.18638 5.08378 12 5.08378C15.8136 5.08378 18.9162 8.18639 18.9162 12C18.9162 15.8136 15.8136 18.9162 12 18.9162ZM15.1918 8.52515C15.19 8.52515 15.1881 8.52515 15.1863 8.52515C14.8116 8.52661 14.4601 8.67389 14.1968 8.9399L11.0871 12.0806L9.80282 10.7962C9.5376 10.531 9.18491 10.385 8.80972 10.385C8.43449 10.385 8.08185 10.531 7.81658 10.7963C7.26904 11.3439 7.26904 12.2349 7.81658 12.7824L10.0976 15.0634C10.3714 15.3372 10.731 15.4741 11.0907 15.4741C11.4503 15.4741 11.81 15.3372 12.0838 15.0634C12.9486 14.1986 13.8212 13.3135 14.6651 12.4576C15.1721 11.9432 15.6793 11.4289 16.1876 10.9158C16.7314 10.367 16.7286 9.4777 16.1812 8.93339C15.9164 8.66995 15.5653 8.52515 15.1918 8.52515ZM15.6548 10.3879C15.1461 10.9014 14.6385 11.4162 14.1309 11.931C13.288 12.786 12.4164 13.6701 11.5535 14.533C11.2983 14.7882 10.883 14.7882 10.6279 14.533L8.34697 12.252C8.09183 11.9969 8.09183 11.5817 8.34697 11.3265C8.47054 11.2029 8.63488 11.1349 8.80972 11.1349C8.98452 11.1349 9.14891 11.2029 9.27247 11.3265L10.8232 12.8773C10.8936 12.9476 10.9889 12.9871 11.0884 12.9871H11.0893C11.1891 12.9869 11.2847 12.9469 11.3549 12.876L14.7298 9.46748C14.852 9.34406 15.0151 9.27572 15.1892 9.27506H15.1918C15.3657 9.27506 15.5291 9.34247 15.6524 9.46504C15.907 9.71836 15.9081 10.1323 15.6548 10.3879Z" fill="#323232"/>
-            </g>
-            <defs>
-            <clipPath id="clip0_672_4791">
-            <rect width="24" height="24" fill="white"/>
-            </clipPath>
-            </defs>
+                <g id="Icons" clip-path="url(#clip0_672_4791)">
+                <path id="Vector" d="M23.3233 11.9483C23.8781 10.8507 23.6483 9.54783 22.7516 8.70614L21.45 7.48448C21.1498 7.20276 20.9662 6.88481 20.8723 6.48384L20.4651 4.7459C20.1846 3.54844 19.1711 2.69798 17.9431 2.62969L16.1608 2.53054C15.7497 2.50767 15.4047 2.38209 15.0751 2.13539L13.6461 1.0657C12.6616 0.328732 11.3384 0.328639 10.3538 1.0657L8.9248 2.13534C8.59518 2.38209 8.25013 2.50767 7.83904 2.53054L6.0568 2.62969C4.82882 2.69798 3.81528 3.54844 3.53479 4.7459L3.12758 6.48389C3.03369 6.88481 2.85013 7.20276 2.54994 7.48453L1.24832 8.70614C0.35155 9.54778 0.121816 10.8507 0.676629 11.9483L1.48194 13.5414C1.66771 13.9089 1.73146 14.2704 1.68257 14.6793L1.47069 16.4517C1.32477 17.6729 1.98627 18.8186 3.1168 19.3028L4.75771 20.0056C5.13618 20.1677 5.41743 20.4037 5.64285 20.7482L6.61986 22.2422C7.29294 23.2715 8.53616 23.724 9.71352 23.3682L11.4222 22.8518C11.8164 22.7326 12.1835 22.7327 12.5776 22.8518L14.2863 23.3682C14.5542 23.4491 14.8253 23.4883 15.0925 23.4882C15.9997 23.4882 16.86 23.0373 17.3799 22.2422L18.357 20.7482C18.5824 20.4037 18.8636 20.1676 19.2421 20.0055L20.883 19.3028C22.0135 18.8186 22.6751 17.6728 22.5291 16.4517L22.3172 14.6792C22.2683 14.2704 22.3321 13.9088 22.5178 13.5413L23.3233 11.9483ZM21.8486 13.2031C21.5966 13.7017 21.5063 14.2137 21.5726 14.7683L21.7845 16.5407C21.8923 17.4424 21.4225 18.2559 20.5878 18.6135L18.9469 19.3162C18.4334 19.5361 18.0351 19.8703 17.7294 20.3378L16.7523 21.8317C16.2553 22.5917 15.3725 22.913 14.5033 22.6503L12.7946 22.1339C12.5272 22.0531 12.2637 22.0127 11.9999 22.0127C11.7363 22.0127 11.4726 22.0531 11.2053 22.1339L9.49658 22.6503C8.62743 22.9129 7.74458 22.5917 7.24757 21.8317L6.27055 20.3378C5.96474 19.8703 5.56644 19.5361 5.05297 19.3162L3.41207 18.6135C2.57732 18.256 2.10763 17.4424 2.21539 16.5407L2.42727 14.7683C2.4936 14.2136 2.40332 13.7017 2.15127 13.203L1.34596 11.61C0.936363 10.7996 1.09944 9.87445 1.76155 9.25298L3.06318 8.03137C3.47047 7.64911 3.73039 7.19887 3.8578 6.65494L4.265 4.91695C4.4721 4.03284 5.19177 3.42895 6.09843 3.37856L7.88066 3.27942C8.43843 3.24839 8.92696 3.07054 9.37419 2.73581L10.8032 1.66612C11.5302 1.122 12.4697 1.12195 13.1966 1.66612L14.6256 2.73581C15.0729 3.07054 15.5615 3.24839 16.1192 3.27942L17.9014 3.37856C18.8081 3.429 19.5277 4.03284 19.7348 4.917L20.142 6.65494C20.2694 7.19892 20.5294 7.64915 20.9367 8.03137L22.2383 9.25298C22.9004 9.8744 23.0635 10.7996 22.6539 11.61L21.8486 13.2031ZM12 4.33378C7.7728 4.33378 4.33377 7.77281 4.33377 12C4.33377 16.2272 7.7728 19.6662 12 19.6662C16.2272 19.6662 19.6662 16.2272 19.6662 12C19.6662 7.77281 16.2272 4.33378 12 4.33378ZM12 18.9162C8.18638 18.9162 5.08377 15.8136 5.08377 12C5.08377 8.18639 8.18638 5.08378 12 5.08378C15.8136 5.08378 18.9162 8.18639 18.9162 12C18.9162 15.8136 15.8136 18.9162 12 18.9162ZM15.1918 8.52515C15.19 8.52515 15.1881 8.52515 15.1863 8.52515C14.8116 8.52661 14.4601 8.67389 14.1968 8.9399L11.0871 12.0806L9.80282 10.7962C9.5376 10.531 9.18491 10.385 8.80972 10.385C8.43449 10.385 8.08185 10.531 7.81658 10.7963C7.26904 11.3439 7.26904 12.2349 7.81658 12.7824L10.0976 15.0634C10.3714 15.3372 10.731 15.4741 11.0907 15.4741C11.4503 15.4741 11.81 15.3372 12.0838 15.0634C12.9486 14.1986 13.8212 13.3135 14.6651 12.4576C15.1721 11.9432 15.6793 11.4289 16.1876 10.9158C16.7314 10.367 16.7286 9.4777 16.1812 8.93339C15.9164 8.66995 15.5653 8.52515 15.1918 8.52515ZM15.6548 10.3879C15.1461 10.9014 14.6385 11.4162 14.1309 11.931C13.288 12.786 12.4164 13.6701 11.5535 14.533C11.2983 14.7882 10.883 14.7882 10.6279 14.533L8.34697 12.252C8.09183 11.9969 8.09183 11.5817 8.34697 11.3265C8.47054 11.2029 8.63488 11.1349 8.80972 11.1349C8.98452 11.1349 9.14891 11.2029 9.27247 11.3265L10.8232 12.8773C10.8936 12.9476 10.9889 12.9871 11.0884 12.9871H11.0893C11.1891 12.9869 11.2847 12.9469 11.3549 12.876L14.7298 9.46748C14.852 9.34406 15.0151 9.27572 15.1892 9.27506H15.1918C15.3657 9.27506 15.5291 9.34247 15.6524 9.46504C15.907 9.71836 15.9081 10.1323 15.6548 10.3879Z" fill="#323232"/>
+                </g>
+                <defs>
+                <clipPath id="clip0_672_4791">
+                <rect width="24" height="24" fill="white"/>
+                </clipPath>
+                </defs>
             </svg>
-            <p>Premium Quality at Accessible Prices</p>
+            <p>${german ? 'Premiumqualität zu erschwinglichen Preisen ': 'Premium Quality at Accessible Prices'}</p>
         </a>
         <a href="/blogs/community/spark-paws-joins-the-fight-against-animal-cruelty" class="flex-md-center">
             <svg xmlns="http://www.w3.org/2000/svg" width="25" height="24" viewBox="0 0 25 24" fill="none">
@@ -1106,7 +1109,7 @@ let addAdvantages = (classes) => `
             </clipPath>
             </defs>
             </svg>
-            <p>Every Purchase Feeds Sheltered Dogs</p>
+            <p>${german ? 'Jeder Kauf unterstützt bedürftige Hunde ': 'Every Purchase Feeds Sheltered Dogs'}</p>
         </a>
         <a href="/pages/30-day-exchange-return" class="flex-md-center">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
@@ -1120,47 +1123,49 @@ let addAdvantages = (classes) => `
             <path d="M20.3444 5.62307H20.3075L17.2613 5.2934C17.1795 5.279 17.1062 5.23401 17.0564 5.16757C17.0066 5.10113 16.9839 5.01821 16.9929 4.93564C17.002 4.85308 17.0421 4.77705 17.1052 4.723C17.1683 4.66895 17.2495 4.64093 17.3325 4.64461L20.0437 4.93736L20.347 2.2156C20.349 2.17091 20.3601 2.1271 20.3797 2.08689C20.3993 2.04667 20.4269 2.0109 20.4609 1.98179C20.4949 1.95268 20.5345 1.93085 20.5772 1.91765C20.6199 1.90444 20.6649 1.90015 20.7094 1.90503C20.7539 1.90991 20.7969 1.92386 20.8357 1.94602C20.8746 1.96818 20.9085 1.99808 20.9353 2.03386C20.9622 2.06965 20.9814 2.11056 20.9918 2.15406C21.0022 2.19757 21.0036 2.24275 20.9958 2.28681L20.6688 5.33296C20.659 5.41913 20.6153 5.49787 20.5475 5.55186C20.4901 5.5984 20.4183 5.62357 20.3444 5.62307Z" fill="#383A3D"/>
             <path d="M3.33584 22.0143H3.29892C3.21297 22.005 3.13421 21.962 3.07984 21.8948C3.02548 21.8276 2.99994 21.7416 3.00881 21.6556L3.33848 18.6094C3.34258 18.5668 3.3552 18.5255 3.37559 18.4879C3.39597 18.4503 3.42371 18.4172 3.45716 18.3905C3.52468 18.3361 3.61091 18.3106 3.69716 18.3193L6.74331 18.6463C6.82473 18.6609 6.89762 18.7057 6.9473 18.7718C6.99699 18.8379 7.01978 18.9204 7.01108 19.0027C7.00239 19.0849 6.96286 19.1608 6.90045 19.2151C6.83805 19.2693 6.75739 19.2979 6.67474 19.2951L3.95562 19.0024L3.6576 21.7241C3.64915 21.8037 3.61163 21.8772 3.55225 21.9308C3.49286 21.9843 3.4158 22.0141 3.33584 22.0143Z" fill="#383A3D"/>
             </svg>
-            <p>Free Exchange and 24/7 Support</p>
+            <p>${german ? 'Kostenloser Umtausch und 24/7 Support': 'Free Exchange and 24/7 Support'}</p>
         </a>
     </div>
 </div>`
+
+
 let tophtml = `
 <div class="main-exp">
     <ul class="top_category d-md-none d-flex">
         <li>
             <a href="/collections/shop-all-2">
                 <img src="${dir}category.png" alt="category">
-                <span>Best Sellers</span>
+                <span>${german ? 'Bestseller' : 'Best Sellers'}</span>
             </a>
         </li>
         <li>
             <a href="/collections/summer-23">
                 <img src="${dir}category-1.png" alt="category"> 
-                <span>New</span>
+                <span>${german ? 'Neu' : 'New'}</span>
             </a>
         </li>
         <li>
             <a href="/collections/tactical-collars">
                 <img src="${dir}category-2.png" alt="category">
-                <span>Walk</span>
+                <span>${german ? 'Gehen' : 'Walk'}</span>
             </a>
         </li>
         <li>
             <a href="/collections/dog-hoodie">
                 <img src="${dir}category-3.png" alt="category">
-                <span>Wear</span>
+                <span>${german ? 'Tragen' : 'Wear'}</span>
             </a>
         </li>
         <li>
             <a href="/collections/summer-23">
                 <img src="${dir}category-4.png" alt="category">
-                <span>Chains&Tags</span>
+                <span>${german ? 'Ketten & Anhänger' : 'Chains&Tags'}</span>
             </a>
         </li>
         <li>
             <a href="/collections/dog-shoes-boots">
                 <img src="${dir}category-5.png" alt="category">
-                <span>Shoes&Boots</span>
+                <span>${german ? 'Schuhe & Stiefel' : 'Shoes&Boots'}</span>
             </a>
         </li>
     </ul>
@@ -1172,13 +1177,13 @@ let tophtml = `
             <path d="M53 11.5133L55.7667 13.1866C56.2734 13.4933 56.8934 13.0399 56.76 12.4666L56.0267 9.31992L58.4734 7.19993C58.92 6.81326 58.68 6.07993 58.0934 6.03326L54.8734 5.75993L53.6134 2.78659C53.3867 2.24659 52.6134 2.24659 52.3867 2.78659L51.1267 5.75326L47.9067 6.02659C47.32 6.07326 47.08 6.80659 47.5267 7.19326L49.9734 9.31326L49.24 12.4599C49.1067 13.0333 49.7267 13.4866 50.2334 13.1799L53 11.5133Z" fill="#FCE358"/>
             <path d="M68 11.5133L70.7667 13.1866C71.2734 13.4933 71.8934 13.0399 71.76 12.4666L71.0267 9.31992L73.4734 7.19993C73.92 6.81326 73.68 6.07993 73.0934 6.03326L69.8734 5.75993L68.6134 2.78659C68.3867 2.24659 67.6134 2.24659 67.3867 2.78659L66.1267 5.75326L62.9067 6.02659C62.32 6.07326 62.08 6.80659 62.5267 7.19326L64.9734 9.31326L64.24 12.4599C64.1067 13.0333 64.7267 13.4866 65.2334 13.1799L68 11.5133Z" fill="#FCE358"/>
         </svg>
-        <p>Based on <b>30,000+</b> Customer Reviews</p>
+        <p>${german ? 'Basierend auf <b>30,000+</b> Kundenbewertungen' : 'Based on <b>30,000+</b> Customer Reviews'}</p>
     </div>
     <div class="top_discount flex-md-row-reverse justify-end">
         <img src="${dir}image-home.png" alt="image" width="100%" height="auto" class="d-md-none">
         <img src="${dir}images-home.png" alt="image" width="100%" height="auto" class="d-md-block d-none">
         <div class="flex-md-column-reverse justify-center">
-            <a href="https://www.sparkpaws.com/collections/shop-all-2" class="ProductCollectionListItem__Link Button btn">Shop now</a>
+            <a href="https://www.sparkpaws.com/collections/shop-all-2" class="ProductCollectionListItem__Link Button btn">${german ? 'Jetzt einkaufen' : 'Shop now'}</a>
             <div class="flex-center d-md-block">
                 <svg width="130" height="42" viewBox="0 0 130 42" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <g id="Group 1217">
@@ -1208,90 +1213,90 @@ let tophtml = `
     </div>
     ${addAdvantages('d-none d-md-block')}
     <div class="explore_category">
-        <h2 class="text-md-center">Explore by Category</h2>
+        <h2 class="text-md-center">${german ? '' : 'Explore by Category'}</h2>
         <ul class="d-flex flex-wrap">
             <li>
                 <a href="https://www.sparkpaws.com/collections/tactical-collars" class="d-md-block d-flex items-center">
                     <img class="d-md-block d-none scale-x" src="https://www.sparkpaws.com/cdn/shop/products/bigdog_pitbull_frenchiedogleash_pinkbluegradient_1000x.jpg" alt="Dog Harness Sets">
-                    <p>Dog <br class="d-md-block d-none">  Collar Sets</p>
-                    <img class="d-md-none" src="${dir}category-6.svg" alt="Dog Collar Sets">
+                    <p>${german ? 'Hundehalsband-Sets' : 'Dog <br class="d-md-block d-none">  Collar Sets'}</p>
+                    <img class="d-md-none" src="${dir}category-6.png" alt="Dog Collar Sets">
                 </a>
             </li>
             <li>
                 <a href="https://www.sparkpaws.com/collections/dog-hoodie" class="d-md-block d-flex items-center">
                     <img class="d-md-block d-none" src="https://www.sparkpaws.com/cdn/shop/products/1_35856d01-1b3d-4e5d-8adf-47931bcf8aa6_1600x.jpg" alt="Dog Hoodies">
-                    <p>Dog <br>  Hoodies</p>
-                    <img class="d-md-none" src="${dir}category-7.svg" alt="Dog Hoodies">
+                    <p>${german ? 'Hundekapuzenpullover' : 'Dog <br>  Hoodies'}</p>
+                    <img class="d-md-none" src="${dir}category-7.png" alt="Dog Hoodies">
                 </a>
             </li>
             <li>
                 <a href="https://www.sparkpaws.com/collections/jewelry-for-dogs" class="d-md-block d-flex items-center">
                     <img class="d-md-block d-none" src="https://www.sparkpaws.com/cdn/shop/products/CubanLinkLeashProductPics_400x.jpg" alt="Dog Chains & Tags">
-                    <p>Dog <br class="d-md-block d-none">  Chains & Tags</p>
-                    <img class="d-md-none" src="${dir}category-8.svg" alt="Dog Chains & Tags">
+                    <p>${german ? 'Hundeketten & Anhänger' : 'Dog <br class="d-md-block d-none">  Chains & Tags'}</p>
+                    <img class="d-md-none" src="${dir}category-8.png" alt="Dog Chains & Tags">
                 </a>
             </li>
             <li>
                 <a href="https://www.sparkpaws.com/collections/comfort-control-no-pull-dog-harness" class="d-md-block d-flex items-center">
                     <img class="d-md-block d-none" src="https://www.sparkpaws.com/cdn/shop/products/bigdog_pitbull_frenchiedogleash_2.0_PB_13_400x.jpg" alt="Dog Collar Sets">
-                    <p>Dog <br class="d-md-block d-none"> Harness Sets</p>
-                    <img class="d-md-none" src="${dir}category-9.svg" alt="Dog Harness Sets">
+                    <p>${german ? 'Hundegeschirr-Sets ' : 'Dog <br class="d-md-block d-none"> Harness Sets'}</p>
+                    <img class="d-md-none" src="${dir}category-9.png" alt="Dog Harness Sets">
                 </a>
             </li>
             <li>
                 <a href="https://www.sparkpaws.com/collections/dog-coats-jackets" class="d-md-block d-flex items-center">
                     <img class="d-md-block d-none"  src="https://www.sparkpaws.com/cdn/shop/products/dogwinterjacketcoat_clothesforbigdogs_pitbulls_bulldogs_8_7c34700f-b395-4273-94ec-c6146fe1fd09_400x.jpg" alt="Dog Jackets">
-                    <p>Dog <br>  Jackets</p>
-                    <img class="d-md-none" src="${dir}category-10.svg" alt="Dog Jackets">
+                    <p>${german ? 'Hundemäntel' : 'Dog <br>  Jackets'}</p>
+                    <img class="d-md-none" src="${dir}category-10.png" alt="Dog Jackets">
                 </a>
             </li>
             <li>
                 <a href="https://www.sparkpaws.com/collections/knit-dog-sweater" class="d-md-block d-flex items-center">
                     <img class="d-md-block d-none" src="https://www.sparkpaws.com/cdn/shop/products/TeddyBearKnitDogSweater-Black-modelpic3_400x.jpg" alt="Dog Knit Sweaters">
-                    <p>Dog <br class="d-md-block d-none">  Knit Sweaters</p>
-                    <img class="d-md-none" src="${dir}category-11.svg" alt="Dog Knit Sweaters">
+                    <p>${german ? 'Hundestricksweater' : 'Dog <br class="d-md-block d-none">  Knit Sweaters'}</p>
+                    <img class="d-md-none" src="${dir}category-11.png" alt="Dog Knit Sweaters">
                 </a>
             </li>
             <li>
                 <a href="https://www.sparkpaws.com/collections/matching-human-and-dog-clothes" class="d-md-block d-flex items-center">
                     <img class="d-md-block d-none" src="https://www.sparkpaws.com/cdn/shop/products/62_400x.jpg" alt="Human Matching Sets">
-                    <p>Human  <br> Matching Sets</p>
-                    <img class="d-md-none" src="${dir}category-12.svg" alt="Human Matching Sets">
+                    <p>${german ? 'Menschliche Partner-Sets' : 'Human  <br> Matching Sets'}</p>
+                    <img class="d-md-none" src="${dir}category-12.png" alt="Human Matching Sets">
                 </a>
             </li>
             <li>
                 <a href="https://www.sparkpaws.com/collections/dog-hats-accessories" class="d-md-block d-flex items-center">
                     <img class="d-md-block d-none" src="https://www.sparkpaws.com/cdn/shop/products/WeChatImage_20221018165946_400x.jpg" alt="Dog Hats & Warmers">
-                    <p>Dog Hats &  <br> Warmers</p>
-                    <img class="d-md-none" src="${dir}category-13.svg" alt="Dog Hats & Warmers">
+                    <p>${german ? 'Hundehüte & Wärmer ' : 'Dog Hats &  <br> Warmers'}</p>
+                    <img class="d-md-none" src="${dir}category-13.png" alt="Dog Hats & Warmers">
                 </a>
             </li>
             <li>
                 <a href="https://www.sparkpaws.com/collections/dog-shoes-boots" class="d-md-block d-flex items-center">
                     <img class="d-md-block d-none" src="https://www.sparkpaws.com/cdn/shop/products/dogshoebootswinterbootieshotpavementprotector_5_b2f3c3f9-259d-46e0-aeac-f360c9b3200e_900x.jpg" alt="Dog Shoes & Boots">
-                    <p>Dog <br class="d-md-block d-none">  Shoes & Boots</p>
-                    <img class="d-md-none" src="${dir}category-14.svg" alt="Dog Shoes & Boots">
+                    <p>${german ? 'Hundeschuhe & Stiefel ' : 'Dog <br class="d-md-block d-none">  Shoes & Boots'}</p>
+                    <img class="d-md-none" src="${dir}category-14.png" alt="Dog Shoes & Boots">
                 </a>
             </li>
             <li>
                 <a href="https://www.sparkpaws.com/collections/dog-pajama-onesies" class="d-md-block d-flex items-center">
                     <img class="d-md-block d-none" src="https://www.sparkpaws.com/cdn/shop/files/87_12a96df8-d5cb-4015-9043-802758cddf13_900x.jpg" alt="Dog Pajamas">
-                    <p>Dog  <br> Pajamas</p>
-                    <img class="d-md-none" src="${dir}category-15.svg" alt="Dog Pajamas">
+                    <p>${german ? 'Hundeschlafanzüge' : 'Dog  <br> Pajamas'}</p>
+                    <img class="d-md-none" src="${dir}category-15.png" alt="Dog Pajamas">
                 </a>
             </li>
             <li>
                 <a href="https://www.sparkpaws.com/collections/dog-rainncoat" class="d-md-block d-flex items-center">
                     <img class="d-md-block d-none" src="https://www.sparkpaws.com/cdn/shop/files/8-dogclothes_hoodie_sweater_apparel_jacket_bigdogs_bulldogs_400x.jpg" alt="Dog Raincoats">
-                    <p>Dog  <br> Raincoats</p>
-                    <img class="d-md-none" src="${dir}category-16.svg" alt="Dog Raincoats">
+                    <p>${german ? 'Hunde-Regenmäntel ' : 'Dog  <br> Raincoats'}</p>
+                    <img class="d-md-none" src="${dir}category-16.png" alt="Dog Raincoats">
                 </a>
             </li>
             <li>
                 <a href="https://www.sparkpaws.com/collections/dog-cooling-vest" class="d-md-block d-flex items-center">
                     <img class="d-md-block d-none" src="https://www.sparkpaws.com/cdn/shop/files/27_54389a73-c3e8-4455-b637-c8504fe5b531_1000x.jpg" alt="Dog Cooling Vests">
-                    <p>Dog  <br class="d-md-block d-none"> Cooling Vests</p>
-                    <img class="d-md-none" src="${dir}category-17.svg" alt="Dog Cooling Vests">
+                    <p>${german ? 'Hunde-Kühlwesten' : 'Dog  <br class="d-md-block d-none"> Cooling Vests'}</p>
+                    <img class="d-md-none" src="${dir}category-17.png" alt="Dog Cooling Vests">
                 </a>
             </li>
         </ul>
@@ -1303,38 +1308,38 @@ let tophtml = `
                 <path d="M10.1216 15.0376C9.4016 15.0376 8.73345 14.6183 8.42234 13.9679L4.87419 6.60497C4.6979 6.23609 4.85197 5.79312 5.22086 5.61535C5.58975 5.43905 6.03123 5.59312 6.20901 5.96201L9.75716 13.3265C9.86975 13.562 10.489 13.5828 10.5231 13.1902L11.6727 0.996085C11.7112 0.588678 12.0623 0.274604 12.4786 0.327937C12.886 0.366456 13.1853 0.727937 13.1468 1.13386L11.9986 13.3265C11.9097 14.2998 11.1038 15.0376 10.1216 15.0376Z" fill="#323232"/>
                 <path d="M26.1475 35.7778C25.9919 35.7778 25.8363 35.7289 25.7045 35.6311C25.3297 35.3511 16.5178 28.7126 16.5178 23.3778C16.5178 20.4119 18.9297 18 21.8956 18C23.586 18 25.1445 18.7867 26.1475 20.08C27.1489 18.7867 28.7089 18 30.3993 18C33.3652 18 35.7771 20.4119 35.7771 23.3778C35.7771 28.7126 26.9652 35.3511 26.5904 35.6311C26.4586 35.7289 26.303 35.7778 26.1475 35.7778ZM21.8956 19.4815C19.7475 19.4815 17.9993 21.2296 17.9993 23.3778C17.9993 26.9778 23.5149 32.043 26.1475 34.1037C28.7786 32.0415 34.2956 26.9733 34.2956 23.3778C34.2956 21.2296 32.5475 19.4815 30.3993 19.4815C28.8452 19.4815 27.4437 20.3985 26.8275 21.8193C26.5934 22.36 25.703 22.36 25.4689 21.8193C24.8512 20.3985 23.4497 19.4815 21.8956 19.4815Z" fill="#323232"/>
             </svg>  
-            <p class="fw-semi">Spark Paws was created to deliver high-quality, beautiful, comfortable pet essentials at fair prices</p>  
+            <p class="fw-semi">${german ? 'Spark Paws wurde gegründet, um hochwertige, schöne und bequeme Haustierbedarfsartikel zu fairen Preisen anzubieten' : 'Spark Paws was created to deliver high-quality, beautiful, comfortable pet essentials at fair prices'}</p>  
         </div>
-        <p>Our approach is simple: quality is the most important. <br class="d-md-block d-none">
-        All our products are made with top-quality materials and meticulous craftmanship.</p>
+        <p>${german ? 'Unser Ansatz ist einfach: Qualität steht an erster Stelle.   <br class="d-md-block d-none"> Alle unsere Produkte werden mit hochwertigen Materialien und sorgfältiger Handwerkskunst hergestellt.' :
+        'Our approach is simple: quality is the most important. <br class="d-md-block d-none"> All our products are made with top-quality materials and meticulous craftmanship.'}</p>
     </div>
     ${addAdvantages('d-md-none')} 
     <div class="best-sellers">
-        <h2 class="text-md-center">Best Sellers</h2>
+        <h2 class="text-md-center">${german ? 'Bestseller': 'Best Sellers'}</h2>
         <div class="swiper">
             <div class="swiper-wrapper"></div>
         </div>
-        <a href="https://www.sparkpaws.com/collections/shop-all-2" class="ProductCollectionListItem__Link Button btn">Shop All</a>
+        <a href="https://www.sparkpaws.com/collections/shop-all-2" class="ProductCollectionListItem__Link Button btn">${german ? 'Alle anzeigen' : 'Shop All'}</a>
     </div>
     <div class="cooling-vest jackets">
         <div class="container relative d-md-flex">
             <div>
                 <div class="absolute d-md-none">
-                    <div class="tab c-green">New Arrival</div>
+                    <div class="tab c-green">${german ? 'Neue Ankunft ' : 'New Arrival'}</div>
                     <div class="tab">ChillTech™</div>
                 </div>
             </div>
             <div class="d-md-flex flex-column justify-center">
                 <div class="d-md-flex d-none">
-                    <div class="tab c-green">New Arrival</div>
+                    <div class="tab c-green">${german ? 'Neue Ankunft ' : 'New Arrival'}</div>
                     <div class="tab">ChillTech™</div>
                 </div>
-                <h3>ChillTech™ Cooling Vests</h3>
-                <p><b>Cooling vests are essential accessories for dogs that easily overheat in the summer. </b></p>
-                <p>The cooling vest reduces your dog’s body temperature by using evaporation - all you have to do is dampen it with water, wring it out, and put it on your pup. The fabric is specially designed to retain water, creating a cooling effect. The mesh layers allow air to circulate, while deflecting sunlight, offering extra UV protection and shading.</p>
-                <p>Put the dampen vest in the freezer for en extra cooling effect for up to 3 minutes.</p>
+                <h3>ChillTech™ ${german ? 'Kühlwesten ' : 'Cooling Vests'}</h3>
+                <p><b>${german ? 'Kühlwesten sind unverzichtbare Accessoires für Hunde, die sich im Sommer leicht überhitzen. ' : 'Cooling vests are essential accessories for dogs that easily overheat in the summer.'} </b></p>
+                <p>${german ? "Die Kühlweste reduziert die Körpertemperatur Ihres Hundes durch Verdunstung - alles, was Sie tun müssen, ist sie mit Wasser zu befeuchten, auszuwringen und Ihrem Hund anzulegen. Der Stoff ist speziell so konzipiert, dass er Wasser speichert und dadurch einen kühlenden Effekt erzeugt. Die Netzschichten ermöglichen die Luftzirkulation und reflektieren gleichzeitig Sonnenlicht, bieten zusätzlichen UV-Schutz und Schatten." : "The cooling vest reduces your dog’s body temperature by using evaporation - all you have to do is dampen it with water, wring it out, and put it on your pup. The fabric is specially designed to retain water, creating a cooling effect. The mesh layers allow air to circulate, while deflecting sunlight, offering extra UV protection and shading."}</p>
+                <p>${german ? 'Legen Sie die angefeuchtete Weste für einen zusätzlichen Kühlungseffekt bis zu 3 Minuten in den Gefrierschrank.' : 'Put the dampen vest in the freezer for en extra cooling effect for up to 3 minutes.'}</p>
                 <a href="https://www.sparkpaws.com/collections/dog-cooling-vest" class=" Button btn btn-white flex-center">
-                    <span>View products</span>
+                    <span>${german ? 'Produkte anzeigen' : 'View products'}</span>
                     <svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" viewBox="0 0 21 21" fill="none">
                         <path d="M8.2418 13.7333L11.4751 10.5L8.2418 7.26665C7.9168 6.94165 7.9168 6.41665 8.2418 6.09165C8.5668 5.76665 9.0918 5.76665 9.4168 6.09165L13.2418 9.91665C13.5668 10.2417 13.5668 10.7667 13.2418 11.0917L9.4168 14.9166C9.0918 15.2416 8.5668 15.2416 8.2418 14.9166C7.92513 14.5916 7.9168 14.0583 8.2418 13.7333Z" fill="#344D79"/>
                     </svg>
@@ -1343,12 +1348,12 @@ let tophtml = `
         </div>
     </div>
     <div class="fabric">
-        <div class="tab c-green">fabric made for dogs</div>
+        <div class="tab c-green">${german ? 'Stoffe speziell für Hunde entwickelt' : 'fabric made for dogs'}</div>
     </div>
     <div class="fabric_content">
         <div class="container text-md-center">
-            <h2>Spark Paws Fabric Lab</h2>
-            <p>Spark Paws is leading the pack as the first company to design fabrics specifically for dogs</p>
+            <h2>${german ? 'Spark Paws Fabric Lab ' : 'Spark Paws Fabric Lab'}</h2>
+            <p>${german ? 'Spark Paws ist Vorreiter als erstes Unternehmen, das Stoffe speziell für Hunde entwirft. ' : 'Spark Paws is leading the pack as the first company to design fabrics specifically for dogs'}</p>
             <ul class="d-flex flex-wrap">
                 <li>
                     <a href="/pages/butter-stretch">
@@ -1389,7 +1394,7 @@ let tophtml = `
                 </li>
             </ul>
             <a href="https://www.sparkpaws.com/pages/fabrics" class=" Button btn btn-white flex-center">
-                <span>EXPLORE</span>
+                <span>${german ? 'ERKUNDEN' : 'EXPLORE'}</span>
                 <svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" viewBox="0 0 21 21" fill="none">
                     <path d="M8.2418 13.7333L11.4751 10.5L8.2418 7.26665C7.9168 6.94165 7.9168 6.41665 8.2418 6.09165C8.5668 5.76665 9.0918 5.76665 9.4168 6.09165L13.2418 9.91665C13.5668 10.2417 13.5668 10.7667 13.2418 11.0917L9.4168 14.9166C9.0918 15.2416 8.5668 15.2416 8.2418 14.9166C7.92513 14.5916 7.9168 14.0583 8.2418 13.7333Z" fill="#344D79"/>
                 </svg>
@@ -1397,14 +1402,14 @@ let tophtml = `
         </div>
     </div>
     <div class="great-deals">
-        <h2 class="text-md-center">Great Deals of the Week</h2>
+        <h2 class="text-md-center">${german ? 'Großartige Angebote der Woche ' : 'Great Deals of the Week'}</h2>
         <div class="swiper">
             <div class="swiper-wrapper"></div>
         </div>
-        <a href="https://www.sparkpaws.com/collections/4th-of-july-sale-1" class="ProductCollectionListItem__Link Button btn">Shop All</a>
+        <a href="https://www.sparkpaws.com/collections/4th-of-july-sale-1" class="ProductCollectionListItem__Link Button btn">${german ? 'Alle anzeigen' : 'Shop All'}</a>
     </div>
     <div class="loox-review relative">
-        <h2 class="text-md-center">Our Happy Customers</h2>
+        <h2 class="text-md-center">${german ? 'Unsere zufriedenen Kunden ' : 'Our Happy Customers'}</h2>
         <p class="d-flex items-center justify-md-center">
             <svg width="76" height="17" viewBox="0 0 76 17" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M8.00005 12.0133L10.7667 13.6867C11.2734 13.9933 11.8934 13.54 11.76 12.9667L11.0267 9.82L13.4734 7.7C13.92 7.31334 13.68 6.58 13.0934 6.53334L9.87338 6.26L8.61338 3.28667C8.38671 2.74667 7.61338 2.74667 7.38671 3.28667L6.12671 6.25333L2.90672 6.52667C2.32005 6.57333 2.08005 7.30667 2.52672 7.69334L4.97338 9.81333L4.24005 12.96C4.10672 13.5333 4.72671 13.9867 5.23338 13.68L8.00005 12.0133Z" fill="#FCE358"/>
@@ -1413,7 +1418,7 @@ let tophtml = `
                 <path d="M53 12.0133L55.7667 13.6867C56.2734 13.9933 56.8934 13.54 56.76 12.9667L56.0267 9.82L58.4734 7.7C58.92 7.31334 58.68 6.58 58.0934 6.53334L54.8734 6.26L53.6134 3.28667C53.3867 2.74667 52.6134 2.74667 52.3867 3.28667L51.1267 6.25333L47.9067 6.52667C47.32 6.57333 47.08 7.30667 47.5267 7.69334L49.9734 9.81333L49.24 12.96C49.1067 13.5333 49.7267 13.9867 50.2334 13.68L53 12.0133Z" fill="#FCE358"/>
                 <path d="M68 12.0133L70.7667 13.6867C71.2734 13.9933 71.8934 13.54 71.76 12.9667L71.0267 9.82L73.4734 7.7C73.92 7.31334 73.68 6.58 73.0934 6.53334L69.8734 6.26L68.6134 3.28667C68.3867 2.74667 67.6134 2.74667 67.3867 3.28667L66.1267 6.25333L62.9067 6.52667C62.32 6.57333 62.08 7.30667 62.5267 7.69334L64.9734 9.81333L64.24 12.96C64.1067 13.5333 64.7267 13.9867 65.2334 13.68L68 12.0133Z" fill="#FCE358"/>
             </svg>
-            <span>Based on over <b>30,000</b> customer reviews </span>
+            <span>${german ? 'Basierend auf über <b>30.000</b> Kundenbewertungen' : 'Based on over <b>30,000</b> customer reviews '}</span>
         <p>
         <div class="swiper-button swiper-button-prev">
             <svg xmlns="http://www.w3.org/2000/svg" width="12" height="20" viewBox="0 0 12 20" fill="none">
@@ -1434,19 +1439,19 @@ let tophtml = `
         <div class="container relative d-md-flex">
             <div>
                 <div class="absolute d-md-none">
-                    <div class="tab c-green">New Arrival</div>
+                    <div class="tab c-green">${german ? 'Neue Ankunft ' : 'New Arrival'}</div>
                     <div class="tab">WarmShield™</div>
                 </div>
             </div>
             <div class="d-md-flex flex-column justify-center">
                 <div class="d-md-flex d-none">
-                    <div class="tab c-green">New Arrival</div>
+                    <div class="tab c-green">${german ? 'Neue Ankunft ' : 'New Arrival'}</div>
                     <div class="tab">WarmShield™</div>
                 </div>
-                <h3>WarmShield™ Waterproof Jackets</h3>
-                <p>WarmShield™ Waterproof Jacket is a sleek tech-wear inspired parka that will keep your dog dry and warm on the coldest winter days.</p>
+                <h3>WarmShield™ ${german ? 'Wasserdichte Jacken ' : 'Waterproof Jackets'}</h3>
+                <p>${german ? 'Die WarmShield™ Wasserdichte Jacke ist ein eleganter, von Technikbekleidung inspirierter Parka, der Ihren Hund an den kältesten Wintertagen trocken und warm hält. ' : 'WarmShield™ Waterproof Jacket is a sleek tech-wear inspired parka that will keep your dog dry and warm on the coldest winter days.'}</p>
                 <a href="https://www.sparkpaws.com/collections/warmshield-waterproof-jacket" class=" Button btn btn-white flex-center">
-                    <span>View products</span>
+                    <span>${german ? 'Produkte anzeigen' : 'View products'}</span>
                     <svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" viewBox="0 0 21 21" fill="none">
                         <path d="M8.2418 13.7333L11.4751 10.5L8.2418 7.26665C7.9168 6.94165 7.9168 6.41665 8.2418 6.09165C8.5668 5.76665 9.0918 5.76665 9.4168 6.09165L13.2418 9.91665C13.5668 10.2417 13.5668 10.7667 13.2418 11.0917L9.4168 14.9166C9.0918 15.2416 8.5668 15.2416 8.2418 14.9166C7.92513 14.5916 7.9168 14.0583 8.2418 13.7333Z" fill="#344D79"/>
                     </svg>
@@ -1468,8 +1473,8 @@ let tophtml = `
                 <path d="M3.33584 22.0143H3.29892C3.21297 22.005 3.13421 21.962 3.07984 21.8948C3.02548 21.8276 2.99994 21.7416 3.00881 21.6556L3.33848 18.6094C3.34258 18.5668 3.3552 18.5255 3.37559 18.4879C3.39597 18.4503 3.42371 18.4172 3.45716 18.3905C3.52468 18.3361 3.61091 18.3106 3.69716 18.3193L6.74331 18.6463C6.82473 18.6609 6.89762 18.7057 6.9473 18.7718C6.99699 18.8379 7.01978 18.9204 7.01108 19.0027C7.00239 19.0849 6.96286 19.1608 6.90045 19.2151C6.83805 19.2693 6.75739 19.2979 6.67474 19.2951L3.95562 19.0024L3.6576 21.7241C3.64915 21.8037 3.61163 21.8772 3.55225 21.9308C3.49286 21.9843 3.4158 22.0141 3.33584 22.0143Z" fill="#323232"/>
             </svg>
             <p> 
-                <span class="name">30 Day Return & Exchange</span> <br>
-                <span class="text">You may return or exchange purchased items within 30 days, hassle free</span>
+                <span class="name">${german ? '30-tägige Rückgabe und Umtauschmöglichkeit ' : '30 Day Return & Exchange'}</span> <br>
+                <span class="text">${german ? 'Sie können gekaufte Artikel innerhalb von 30 Tagen problemlos zurückgeben oder umtauschen. ' : 'You may return or exchange purchased items within 30 days, hassle free'}</span>
             </p>
         </div>
         <div class="d-flex">
@@ -1493,8 +1498,8 @@ let tophtml = `
                 </defs>
             </svg>
             <p> 
-                <span class="name">Full Coverage Shipping Worldwide</span> <br>
-                <span class="text">We will replace your package for <b>FREE</b> if it gets lost during shipping</span>
+                <span class="name">${german ? 'Weltweiter vollständiger Versandschutz' : 'Full Coverage Shipping Worldwide'}</span> <br>
+                <span class="text">${german ? 'Wir ersetzen Ihr Paket KOSTENLOS, wenn es während des Versands verloren geht. ' : 'We will replace your package for <b>FREE</b> if it gets lost during shipping'}</span>
             </p>
         </div>
         <div class="d-flex">
@@ -1509,8 +1514,8 @@ let tophtml = `
                 </defs>
             </svg>
             <p> 
-                <span class="name">Premium Quality & Safety Tested</span> <br>
-                <span class="text">All of our products are premium quality and tested under strict standards</span>
+                <span class="name">${german ? 'Premiumqualität und sicherheitsgeprüft ' : 'Premium Quality & Safety Tested'}</span> <br>
+                <span class="text">${german ? 'Alle unsere Produkte sind von Premiumqualität und unter strengen Standards getestet.' : 'All of our products are premium quality and tested under strict standards'}</span>
             </p>
         </div>
     </div>
@@ -1665,7 +1670,7 @@ let mut = new MutationObserver(function (muts) {
     if (!document.querySelector('.style-exp') && 
         document.querySelector('#main') && 
         document.querySelectorAll('#shopify-section-template--15821794246837__featured-collections .Grid__Cell') && 
-        window.location.href == 'https://www.sparkpaws.com/'
+        window.location.href == 'https://'+window.location.host+'/'
        
     ) {
         mut.disconnect()
@@ -1802,7 +1807,7 @@ let mut = new MutationObserver(function (muts) {
                                     <span>${objLooxReview[i].titleProduct}</span>
                                 </a>
                                 <a href="https://loox.io/s/E1WNN9nzHY" class=" Button btn btn-white flex-center">
-                                    <span>Read full review</span>
+                                    <span>${german ? 'Lesen Sie die vollständige Bewertung' : 'Read full review'}</span>
                                 </a>
                             </div>
                         </div>`;
