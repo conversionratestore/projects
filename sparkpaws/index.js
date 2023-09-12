@@ -1628,12 +1628,12 @@ let mut = new MutationObserver(function (muts) {
                 @media screen and (min-width: 768px) {
                     .explore_category li a {
                         min-height: 93px;
+                        font-size: 11px;
                     }
                 }
                 @media screen and (max-width: 767px) {
                     .explore_category p {
                         max-width: 99px;
-                        font-size: 11px;
                     }
                     .explore_category li {
                         width: calc(50% - 4px);
