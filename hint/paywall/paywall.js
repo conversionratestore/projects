@@ -1,3 +1,4 @@
+console.log('%c Exp: Palmistry paywall', 'background: #3498eb; color: #fccf3a; font-size: 20px; font-weight: bold;')
 const $$el = (selector) => document.querySelectorAll(selector)
 const $el = (selector) => document.querySelector(selector)
 const git = 'https://conversionratestore.github.io/projects/hint/paywall/imgs'
@@ -19,7 +20,7 @@ const pushDataLayer = (name, desc, type = '', loc = '') => {
 const clarityInterval = setInterval(function () {
   if (typeof clarity == 'function') {
     clearInterval(clarityInterval)
-    clarity('set', 'palmistry: Paywall improvements', 'variant_1')
+    clarity('set', '', 'variant_1')
   }
 }, 1000)
 
@@ -126,6 +127,9 @@ function start() {
   padding: 12px 20px;
   width: 100%;
   gap: 8px;
+}
+[class*="footerButton"].hide {
+  bottom: -65px;
 }
 footer[class*="styles_footer"] {
   border-top: none;
@@ -775,6 +779,7 @@ section[class*="styles_experts"],
   })
   setVisibilityHandler()
   setEventListeners()
+  hideSticky()
   const mut = new MutationObserver(() => {
     if (!window.location.href.includes('/palmistry/paywall')) {
       $el('.crs_style_block')?.remove()
@@ -795,6 +800,7 @@ section[class*="styles_experts"],
         })
         setVisibilityHandler()
         setEventListeners()
+        hideSticky()
       }
     }
   })
@@ -829,6 +835,28 @@ section[class*="styles_experts"],
     })
     $el('[class*=styles_footerButton]').addEventListener('click', () => {
       pushDataLayer('exp_palm_b_yp_gmp', 'Get My Prediction', 'Button', 'Your personilized')
+    })
+  }
+
+  function hideSticky() {
+    $el('[class*="footerButton"]').classList.add('hide')
+    const btns = new IntersectionObserver((entries) => {
+      entries.forEach(
+        (item) => {
+          if (item.isIntersecting) {
+            $el('[class*="footerButton"]').classList.add('hide')
+          } else {
+            $el('[class*="footerButton"]').classList.remove('hide')
+          }
+        },
+        {
+          threshold: 1
+        }
+      )
+    })
+
+    $$el('.crs_btn').forEach((item) => {
+      btns.observe(item)
     })
   }
 }
