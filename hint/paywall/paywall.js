@@ -619,7 +619,7 @@ section[class*="styles_experts"],
     <img src="${git}/money_back.svg" alt="money back">
     <p>
       <b>100% Money-back guarantee</b><br>
-      If you don’t notice any progress after using the app for at least a week, we are ready to makea complete refund within 14 days.
+      If you don’t notice any progress after using the app for at least a week, we are ready to make complete refund within 14 days.
     </p>
   </div>
 </section>
@@ -651,7 +651,7 @@ section[class*="styles_experts"],
       <span></span>
       <p>
         <b>Talk with a palm reading specialist anytime:</b><br>
-        Get the ongoing support you need by discussing your readings, personal horoscopes, and compatibilities with our expert palm reader and astrologist support team.
+        Get the ongoing support you need by discussing your readings, personal horoscopes, and compatibilities with our expert palm reader and astrologist team.
       </p>
     </li>
   </ul>
@@ -709,7 +709,7 @@ section[class*="styles_experts"],
     <li>
       <div class="crs_info">
         <p><b>Fate line</b> represents your material achievement and career goals</p>
-        <p>A short ring finger reveals that a person tends to take risk</p>
+        <p>A long ring finger reveals that a person tends to take risk</p>
       </div>
       <img src="${git}/palm4.svg" alt="palm1">
     </li>
@@ -759,7 +759,7 @@ section[class*="styles_experts"],
       </div>
     </li>
   </ul>
-  <button class="crs_btn">Become a Hint Success Story!</button>
+  <button class="crs_btn">Be Your Own Success Story!</button>
 </section>
 <section class="crs_as_seen">
   <h2><b>Hint</b> As Seen In</h2>
@@ -770,7 +770,7 @@ section[class*="styles_experts"],
   document.body.insertAdjacentHTML('afterbegin', style)
   $el('[class*=styles_contentWrapper]').insertAdjacentHTML('afterbegin', content)
   $el('[class*="footerButton"] [class*="button"]').innerText = 'Get My Prediction'
-  $el('[class*="timerCustomStyles"]').insertAdjacentHTML('afterbegin', 'Your Personilized Offer Reserved&nbsp;')
+  $el('[class*="timerCustomStyles"]').insertAdjacentHTML('afterbegin', 'Your Personalized Offer Reserved&nbsp;')
   $$el('.crs_btn').forEach((item) => {
     item.addEventListener('click', () => {
       $el('[class*="footerButton"] [class*="button"]').click()
@@ -790,7 +790,7 @@ section[class*="styles_experts"],
         $el('[class*=styles_contentWrapper]').insertAdjacentHTML('afterbegin', content)
         $el('[class*="footerButton"] [class*="button"]').innerText = 'Get My Prediction'
         if (!$el('[class*="timerCustomStyles"]').innerText.includes('Your Personilized')) {
-          $el('[class*="timerCustomStyles"]').insertAdjacentHTML('afterbegin', 'Your Personilized Offer Reserved&nbsp;')
+          $el('[class*="timerCustomStyles"]').insertAdjacentHTML('afterbegin', 'Your Personalized Offer Reserved&nbsp;')
         }
         $$el('.crs_btn').forEach((item) => {
           item.addEventListener('click', () => {
