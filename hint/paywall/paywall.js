@@ -840,23 +840,18 @@ section[class*="styles_experts"],
 
   function hideSticky() {
     $el('[class*="footerButton"]').classList.add('hide')
-    const btns = new IntersectionObserver((entries) => {
-      entries.forEach(
-        (item) => {
-          if (item.isIntersecting) {
-            $el('[class*="footerButton"]').classList.add('hide')
-          } else {
-            $el('[class*="footerButton"]').classList.remove('hide')
-          }
-        },
-        {
-          threshold: 1
+    $el('[class*="styles_wrapper"]').addEventListener('scroll', () => {
+      let hide = false
+      $$el('.crs_btn').forEach((item) => {
+        if (item.getBoundingClientRect().top > 0 && item.getBoundingClientRect().top < window.innerHeight) {
+          hide = true
         }
-      )
-    })
-
-    $$el('.crs_btn').forEach((item) => {
-      btns.observe(item)
+      })
+      if (hide) {
+        $el('[class*="footerButton"]').classList.add('hide')
+      } else {
+        $el('[class*="footerButton"]').classList.remove('hide')
+      }
     })
   }
 }
