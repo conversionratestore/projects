@@ -1448,13 +1448,26 @@ let tophtml = `
     <br>
 </div>`;
 
+const pushDataLayer = (name, desk, type, loc) => {
+    console.log(name + " / " + desk + " / " + type + " / " +  loc)
+
+    window.dataLayer = window.dataLayer || [];
+    dataLayer.push({
+        'event': 'event-to-ga4',
+        'event_name': name,
+        'event_desc': desk,
+        'event_type': type,
+        'event_loc': loc
+    });
+}
 
 let optionMut = {
     childList: true,
     subtree: true,
     attributes: true
 };
-  
+
+
 let mut = new MutationObserver(function (muts) {
     if (document.querySelectorAll('.Header__MainNav > .HorizontalList--spacingExtraLoose > li > a').length >= 8 && 
         !document.querySelector('.style-header')
@@ -1654,6 +1667,19 @@ let mut = new MutationObserver(function (muts) {
         
         let media = window.matchMedia("(min-width: 768px)").matches;
 
+        //events
+        document.querySelectorAll('.top_category a').forEach(item => {
+            item.addEventListener('click', () => {
+                pushDataLayer('exp_imp_hp_b_fs_cn', item.innerText, 'Button', 'First screen')
+            })
+        })
+
+        document.querySelectorAll('.explore_category li a').forEach(item => {
+            item.addEventListener('click', () => {
+                pushDataLayer('exp_imp_hp_v_ebc_cn', item.innerText, 'Button', 'Explore by category');
+            })
+        })
+  
         //best-sellers
         let sliders = '';
         document.querySelectorAll('#shopify-section-template--15821794246837__featured-collections .Grid__Cell').forEach((item, index) => {
@@ -1848,3 +1874,51 @@ let mut = new MutationObserver(function (muts) {
     mut.observe(document, optionMut);
 })
 mut.observe(document, optionMut);
+
+
+// function handleVisibility(className) {
+//     const targetElements = document.querySelector(className);
+  
+//     targetElements.forEach((targetElement) => {
+//       const rect = targetElement.getBoundingClientRect();
+  
+//       // Перевірка, чи блок видимий в видимій області
+//       if (rect.top >= 0 && rect.bottom <= window.innerHeight) {
+//         // Вираховуємо час, який блок знаходиться у видимій області
+//         const focusTime = Date.now() - startTime;
+
+//         if (targetElement.className.includes('explore_category') ) {
+//             const focusTime = Date.now() - startTime;
+//             pushDataLayer('exp_imp_hp_v_ebc_ft', focusTime, 'Visibility', 'Explore by category');
+//         }
+//         if (targetElement.className.includes('high-quality')) {
+//             pushDataLayer('exp_imp_hp_v_ben_ft', focusTime, 'Visibility', 'Benefits');
+//         }
+//         if (targetElement.className.includes('best-sellers')) {
+//             pushDataLayer('exp_imp_hp_v_bs_ft', focusTime, 'Visibility', 'Best Sellers');
+//         }
+//         // Відмінюємо обробник події scroll, щоб він не викликався більше одного разу
+//         window.removeEventListener('scroll', () => handleVisibility(className, label));
+//       }
+//     });
+//   }
+  
+//   // Обробник події завантаження сторінки
+//   function handlePageLoad() {
+  
+//     startTime = Date.now();
+  
+//     handleVisibility('.explore_category')
+//     handleVisibility('.high-quality')
+//     handleVisibility('.best-sellers')
+
+//     window.addEventListener('scroll', () => {
+//       handleVisibility('.explore_category')
+//       handleVisibility('.high-quality')
+//       handleVisibility('.best-sellers')
+//     });
+//   }
+  
+//   // Додаємо обробник події завантаження сторінки
+//   window.addEventListener('load', handlePageLoad);
+  
