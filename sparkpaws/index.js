@@ -1571,7 +1571,7 @@ let mut = new MutationObserver(function (muts) {
             }
         })
 
-        document.querySelector('button.Header__Icon Icon-Wrapper').addEventListener('click', () => {
+        document.querySelector('button.Header__Icon.Icon-Wrapper').addEventListener('click', () => {
             pushDataLayer('exp_imp_hp_v_sm_m', 'Menu', 'Visibility', 'Sidebar menu');
         })
 
@@ -1755,7 +1755,7 @@ let mut = new MutationObserver(function (muts) {
                         visibilityMap.delete(targetElement);
                     }
                 });
-            }, 100)
+            }, 500)
         }
 
 
